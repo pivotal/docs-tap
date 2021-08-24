@@ -1,28 +1,4 @@
-  
- Demote headings (H1 → H2, etc.)
- HTML headings/IDs
- Wrap HTML
- Render HTML tags
- Suppress top comment
-Help, Docs, Bugs
-<!-- Output copied to clipboard! -->
-
 <!-----
-NEW: Check the "Suppress top comment" option to remove this info from the output.
-
-Conversion time: 1.388 seconds.
-
-
-Using this Markdown file:
-
-1. Paste this output into your source file.
-2. See the notes and action items below regarding this conversion run.
-3. Check the rendered output (headings, lists, code blocks, tables) for proper
-   formatting and use a linkchecker before you publish this page.
-
-Conversion notes:
-
-* Docs to Markdown version 1.0β30
 * Tue Aug 24 2021 15:33:04 GMT-0700 (PDT)
 * Source doc: Install Packages using TAP repo bundle
 * Tables are currently converted to HTML tables.
@@ -44,27 +20,27 @@ Conversion notes:
 
 
 
-# Install Packages using TAP repo bundle {#install-packages-using-tap-repo-bundle}
+# <a id='installing'></a> Installing Tanzu Application Platform Packages
 
-This document describes how to install Tanzu Application Platform packages from the TAP package repository
-
-
-## Prerequisites {#prerequisites}
+This document describes how to install Tanzu Application Platform packages from the TAP package repository.
 
 
+## <a id='prereqs'></a>Prerequisites
 
-* The following [Carvel](https://carvel.dev/#whole-suite) tools are required to install packages using TAP repo bundle.
-    * **kapp** version [v0.37.0](https://github.com/vmware-tanzu/carvel-kapp/releases/tag/v0.37.0) or later
-    * **ytt** version [v0.34.0](https://github.com/vmware-tanzu/carvel-ytt/releases) or later
-    * **imgpkg** version [v0.14.0](https://github.com/vmware-tanzu/carvel-imgpkg/releases) or later
-    * **kbld** version [v0.30.0](https://github.com/vmware-tanzu/carvel-kbld/releases) or later
-    * **kapp-controller** version v0.20.00.20 or later
+The following prerequisites are required to install Tanzu Application Platform:
+
+* The following Carvel tools are required to install packages using TAP repo bundle:
+    * **kapp** [v0.37.0](https://github.com/vmware-tanzu/carvel-kapp/releases/tag/v0.37.0) or later
+    * **ytt** [v0.34.0](https://github.com/vmware-tanzu/carvel-ytt/releases) or later
+    * **imgpkg** [v0.14.0](https://github.com/vmware-tanzu/carvel-imgpkg/releases) or later
+    * **kbld** [v0.30.0](https://github.com/vmware-tanzu/carvel-kbld/releases) or later
+    * **kapp-controller** v0.20.00.20 or later
 * The kubectl CLI should be installed and authenticated with administrator rights for your target cluster.
 * The Kubernetes and kubectl version should be v1.17 or later
 * Tanzu Cli should be installed and package plugin enabled.
 
 
-## Kubernetes Cluster {#kubernetes-cluster}
+## Kubernetes Cluster
 
 Run the following commands to set and verify the cluster configuration:
 
@@ -108,19 +84,23 @@ kapp deploy -a kc -f \ https://github.com/vmware-tanzu/carvel-kapp-controller/re
 
 
 
-* Tanzu Build Services 
+* Tanzu Build Services
 * Cloud Native Runtimes
 * Application Accelerator for VMware Tanzu
 * App live view for VMware Tanzu
 
-Tanzu Build Services v1.2.2 can be installed directly from Tanzunet. Please refer to the [Tanzu Build Services documentation](https://docs.pivotal.io/build-service/1-2/index.html) for the installation procedure.
+Tanzu Build Services v1.2.2 can be installed directly from Tanzunet.
+Please refer to the [Tanzu Build Services documentation](https://docs.pivotal.io/build-service/1-2/index.html)
+for the installation procedure.
 
-Cloud Native Runtimes, Application Accelerator for VMware Tanzu and App live view for VMware Tanzu are available as a package in TAP Repo Bundle. The instructions to add the TAP packageRepository and install packages from the repository are explained in below sections.
+Cloud Native Runtimes, Application Accelerator for VMware Tanzu and App live view for VMware Tanzu are available as a package in TAP Repo Bundle.
+The instructions to add the TAP packageRepository and install packages from the repository are explained in below sections.
 
 
 ## Accepting EULA
 
-End User Licence Agreement has to be accepted for all the components separately in order to install packages. Make sure EULA is accepted on the Tanzunet for the following components on the corresponding product pages.
+End User Licence Agreement has to be accepted for all the components separately in order to install packages.
+Make sure EULA is accepted on the Tanzunet for the following components on the corresponding product pages.
 
 
 
@@ -142,7 +122,7 @@ End User Licence Agreement has to be accepted for all the components separately 
 ## Adding PackageRepositories {#adding-packagerepositories}
 
 
-#### Creating a namespace and secret. Used for package deployment (all the components). It is to keep the objects logically grouped together. This is a common process; TKG also uses this process. 
+#### Creating a namespace and secret. Used for package deployment (all the components). It is to keep the objects logically grouped together. This is a common process; TKG also uses this process.
 
 
 #### Create a namespace and secret for PackageRepository Pull {#create-a-namespace-and-secret-for-packagerepository-pull}
@@ -152,7 +132,7 @@ Create a namespace and install the PackageRepository.
 
 ```
 kubectl create ns tap-install
-​​kubectl create secret docker-registry tap-registry \ 
+​​kubectl create secret docker-registry tap-registry \
 -n tap-install \
 --docker-server='registry.pivotal.io' \
 --docker-username=<tanzunet_username> \   --docker-password=<tanzunet_password>
@@ -197,7 +177,7 @@ Get Package repository status by running command,
 
 ```
 tanzu package repository list -n tap-install
-- Retrieving repositories... 
+- Retrieving repositories...
   NAME                  REPOSITORY                                                         STATUS               DETAILS  
   tanzu-tap-repository  registry.pivotal.io/tanzu-application-platform/tap-packages:0.1.0  Reconcile succeeded
 ```
@@ -212,7 +192,7 @@ tanzu package available list -n tap-install
   NAME                          DISPLAY-NAME                              SHORT-DESCRIPTION
 accelerator.apps.tanzu.vmware.com  Application Accelerator for VMware Tanzu  Used to create new projects and configurations.                                      
   appliveview.tanzu.vmware.com       Application Live View for VMware Tanzu    App for monitoring and troubleshooting running apps                                  
-  cnrs.tanzu.vmware.com              Cloud Native Runtimes                     Cloud Native Runtimes is a serverless runtime based on Knative 
+  cnrs.tanzu.vmware.com              Cloud Native Runtimes                     Cloud Native Runtimes is a serverless runtime based on Knative
 
 
 ```
@@ -232,7 +212,7 @@ tanzu package available list cnrs.tanzu.vmware.com -n tap-install
 
 ## Installing packages {#installing-packages}
 
-To install any package from the PackageRepository, the parameters that are required for the installation need to be defined in a YAML file. 
+To install any package from the PackageRepository, the parameters that are required for the installation need to be defined in a YAML file.
 
 The required parameters for the individual packages can be identified by the values schema that are defined in the package and the same can be gathered by running a command.
 
@@ -357,7 +337,7 @@ Install the package by running the command,
 
 Follow the instructions under the [Installing Packages](#installing-packages) section and gather the values schema and populate the values.yaml.
 
-Sample Values.yml 
+Sample Values.yml
 
 
 ```
@@ -392,7 +372,7 @@ tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.1.0 -n 
 
 The packages installed can be verified using the command
 
-<code>tanzu package <strong>installed l</strong>ist</code> 
+<code>tanzu package <strong>installed l</strong>ist</code>
 
 
 ```
@@ -443,9 +423,9 @@ Retrieve the packagerepository name by running the command \
 
 ```
 tanzu package repository list -n tap-install
-/ Retrieving repositories... 
+/ Retrieving repositories...
   NAME                                           REPOSITORY                                                         STATUS               DETAILS  
-  tanzu-application-platform-package-repository  registry.pivotal.io/tanzu-application-platform/tap-packages:0.1.0  Reconcile succeeded 
+  tanzu-application-platform-package-repository  registry.pivotal.io/tanzu-application-platform/tap-packages:0.1.0  Reconcile succeeded
 ```
 
 
@@ -461,9 +441,6 @@ tanzu package repository delete <packagerepository-name>
 
 ```
 tanzu package repository delete tanzu-application-platform-package-repository -n tap-install
-- Deleting package repository 'tanzu-application-platform-package-repository'... 
+- Deleting package repository 'tanzu-application-platform-package-repository'...
  Deleted package repository 'tanzu-application-platform-package-repository' in namespace 'tap-install'
 ```
-
-
-
