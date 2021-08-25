@@ -65,9 +65,8 @@ rm docs.zip ; cd docs && zip -r ../docs.zip * && cd .. && unzip -l docs.zip
 
 ### In docsdash
 - Wait about 1 minute for processing to complete after uploading.
-- Go to https://docsdash.vmware.com/deployment-stage?search_api_views_fulltext=accelerator
-- There should be an entry with a blue link which says `Documentation` and points to
-  https://docs-staging.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.2/acc-docs/GUID-index.html
+- Go to https://docsdash.vmware.com/deployment-stage
+- There should be an entry with a blue link which says `Documentation` and points to staging
 
 ### Promoting to Pre-Prod and Prod
 - This may require additional privileges - reach out to Paige Calvert on the docs team [#tanzu-docs](https://vmware.slack.com/archives/C055V2M0H).
