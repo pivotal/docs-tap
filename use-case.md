@@ -1,10 +1,9 @@
 # Tanzu Application Platform Use Case: Install and Deploy the Spring Pet Clinic App 
 This topic describes how to use Tanzu Application Platform capabilities to install, configure, and deploy the Spring Pet Clinic app. This procedure includes Cloud Native Runtimes, App Live View, Application Accelerator, and Tanzu Build Service. 
 
-## TAP Repo Bundle Installation
+## Install and Configure the  Tanzu Application Platform Bundle
 
-1. 
-Make sure kubernetes cluster is created and it's configured properly. 
+1. Create a Kubernetes cluster. 
 ```
 vdesikan@vdesikan-a01 ~ % kubectl config get-contexts
 CURRENT   NAME                                                                CLUSTER                                                   AUTHINFO                                                  NAMESPACE
@@ -46,6 +45,7 @@ default       kubernetes   ClusterIP   10.100.0.1    <none>        443/TCP      
 kube-system   kube-dns     ClusterIP   10.100.0.10   <none>        53/UDP,53/TCP   4d
 ```
 2. Deploy kapp-controller.
+
 ```
 vdesikan@vdesikan-a01 ~ % kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/latest/download/release.yml
  
@@ -129,7 +129,7 @@ Continue? [yN]: y
  
 Succeeded
 ```
-3. Create secret.
+3. Create a secret.
 ```
 vdesikan@vdesikan-a01 ~ % kubectl create ns tap-install
  
@@ -138,7 +138,7 @@ vdesikan@vdesikan-a01 ~ % kubectl create secret docker-registry tap-registry -n 
  
 secret/tap-registry created
 ```
-4. Instal TAP repo bundle.
+4. Install the Tanzu Application Platform bundle.
 ```
 vdesikan@vdesikan-a01 tap-install % more tap-package-repo.yml
 apiVersion: packaging.carvel.dev/v1alpha1
@@ -265,7 +265,7 @@ server:
 engine:
   service_type: "ClusterIP"
 ```
-6. Install CNR
+6. Install Cloud Native Runtimes. 
 ```
 vdesikan@vdesikan-a01 tap-install % tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 1.0.1 -n tap-install
 - Installing package 'cnrs.tanzu.vmware.com'
@@ -351,7 +351,7 @@ vdesikan@vdesikan-a01 tap-install % tanzu package  installed  list -A
   NAME                   PACKAGE-NAME           PACKAGE-VERSION  STATUS               NAMESPACE
   cloud-native-runtimes  cnrs.tanzu.vmware.com  1.0.1            Reconcile succeeded  tap-install
 ```
-7. Instal flux and after installation delete the network policies.
+7. Instal Flux and after installation delete the network policies.
 ```
 vdesikan@vdesikan-a01 tap-install % kapp deploy -a flux -f https://github.com/fluxcd/flux2/releases/download/v0.15.0/install.yaml
  
@@ -616,7 +616,7 @@ networkpolicy.networking.k8s.io "allow-egress" deleted
 networkpolicy.networking.k8s.io "allow-scraping" deleted
 networkpolicy.networking.k8s.io "allow-webhooks" deleted
 ```
-8. Install App Accelerator
+8. Install Application Accelerator. 
 ```
 vdesikan@vdesikan-a01 tap-install % tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.2.0 -n tap-install -f values-acc.yml
 \ Installing package 'accelerator.apps.tanzu.vmware.com'
@@ -820,7 +820,7 @@ tap-install          application-live-view-server-79bd874566-qtcbc           1/1
 triggermesh          aws-event-sources-controller-7f9dd6d69-6ldbs            1/1     Running   0          9m8s
 vmware-sources       webhook-c9f67b5cd-tjv4p                                 1/1     Running   0          9m5s
 ```
-10. Check if you can Access App Accelerator UI and App Live View UI using the external IP listed.
+10. Verify that you can access the Application Accelerator UI and the App Live View UI using the external IP listed below:
 ```
 vdesikan@vdesikan-a01 tap-install % kubectl get service -A
 NAMESPACE            NAME                         TYPE           CLUSTER-IP       EXTERNAL-IP                                                               PORT(S)                           AGE
@@ -855,8 +855,8 @@ tap-install          application-live-view-5112   LoadBalancer   10.100.176.238 
 tap-install          application-live-view-7000   ClusterIP      10.100.29.252    <none>                                                                    7000/TCP                          55s
 vmware-sources       webhook                      ClusterIP      10.100.192.82    <none>                                                                    443/TCP                           9m18s
 ```
-## TBS Installation
-1. Relocate TBS bundle to another registry and do imgpkg pull to local directory from the relocated registry.
+## Install Tanzu Build Service 
+1. Move the Tanzu Build Service bundle from X registry to X registry. Pull imgpkg to the local directory from the registry where you moved the registry.
 ```
 vdesikan@vdesikan-a01 tap-install % imgpkg copy -b "registry.pivotal.io/build-service/bundle:1.2.2" --to-repo dev.registry.pivotal.io/tanzu-advanced-edition/beta1/tbs
 copy | exporting 17 images...
@@ -895,7 +895,7 @@ The bundle repo (dev.registry.pivotal.io/tanzu-advanced-edition/beta1/tbs) is ho
  
 Succeeded
 ```
-2. Install TBS
+2. Install Tanzu Build Service.
 ```
 vdesikan@vdesikan-a01 tap-install % ytt -f tmp/bundle/values.yaml -f tmp/bundle/config/ -v docker_repository=dev.registry.pivotal.io/tanzu-advanced-edition/beta1/tbs -v docker_username=$USRFULL -v docker_password=$PASS -v tanzunet_username=$USRFULL -v tanzunet_password=$PASS | kbld -f tmp/bundle/.imgpkg/images.yml -f- | kapp deploy -a tanzu-build-service -f- -y
 resolve | final: build-init -> dev.registry.pivotal.io/tanzu-advanced-edition/beta1/tbs@sha256:31e95adee6d59ac46f5f2ec48208cbd154db0f4f8e6c1de1b8edf0cd9418bba8
@@ -1444,8 +1444,8 @@ Lca: Last Change Age
 Succeeded
 ```
 
-## User Scenario Flow:
-1. Create an App Accelerator Template for a sample application (spring-pet-clinic) from a git repo.
+## Deploying the Spring Pet Clinic App
+1. Create an Application Accelerator template for the `spring-pet-clinic` app from your git repository.
   1. Create New Accelerator.
 ```
 vdesikan@vdesikan-a01 tap-install % more new-accelerator.yaml
@@ -1465,7 +1465,7 @@ vdesikan@vdesikan-a01 tap-install % kubectl get accelerator
 NAME              READY   REASON   AGE
 new-accelerator   True             5s
 ```
-  2. Create spring-pet-clinic accelerator, Generate the project, create a new accelerator and add accelerator.yaml to git repo. You should see new accelerator in App Accelerator UI.
+  2. Create the `spring-pet-clinic` accelerator. Generate a project, create a new accelerator and add accelerator.yaml to your git repo. You will see the accelerator you created in the Application Accelerator UI.
 ```
 vdesikan@vdesikan-a01 tap-install % cd ../Downloads
 vdesikan@vdesikan-a01 Downloads % ls | grep spring
@@ -1501,7 +1501,7 @@ engine:
   include:
   - '**'
 ```
-2. Generate the project and add that to a new git repo. Using the new spring-petclinic-demo-acc, create a new project "spring-pet-clinic-eks" and add it to a new git repo spring-pet-clinic-eks.git.
+2. Generate a project named `spring-pet-clinic-eks`. Create a new git repo `spring-pet-clinic-eks.git`. Using the new `spring-petclinic-demo-acc`, add the `spring-pet-clinic-eks` project to the `spring-pet-clinic-eks.git` git repo.
 ```
 vdesikan@vdesikan-a01 spring-petclinic-acc % cd ../
 vdesikan@vdesikan-a01 Downloads % ls | grep spring                 
@@ -1791,8 +1791,8 @@ To ssh://github.com/vdesikanvmware/spring-pet-clinic-eks.git
  * [new branch]      main -> main
 Branch 'main' set up to track remote branch 'main' from 'origin'.
 ```
-3. Using TBS create an image for the application from the new git repo added using App Accelerator Template.
-  1. Create TAP service account , secret for TBS. Also patch the secret to the service account's Image Pull secret.
+3. Use Tanzu Build Service to create an image for the app from the new git repo added using App Accelerator Template.
+  1. Create a Tanzu Application Platform service account and a secret for Tanzu Build Service. Patch the secret to the service account's Image Pull secret.
 ```
 vdesikan@vdesikan-a01 tap-install % more tap-sa.yaml
 apiVersion: v1
@@ -1831,7 +1831,7 @@ secret/tbs-secret created
 vdesikan@vdesikan-a01 tap-install % kubectl patch serviceaccount default -p "{\"imagePullSecrets\": [{\"name\": \"tbs-secret\"}]}" -n tap-install
 serviceaccount/default patched
 ```
-  2. Using TBS create an image for the git-repo created using App-Accelerator. Make sure you specify a container registry where this image can be pushed.
+  2. Use Tanzu Build Service to create an image for the git-repo created with Application Accelerator. Specify a container registry where you can push the image.
 ```
 vdesikan@vdesikan-a01 tap-install % more image.yaml
 apiVersion: kpack.io/v1alpha1
@@ -1961,7 +1961,7 @@ paketo-buildpacks/apache-tomcat        6.0.0                https://github.com/p
 paketo-buildpacks/dist-zip             4.1.2                https://github.com/paketo-buildpacks/dist-zip
 paketo-buildpacks/spring-boot          4.4.2                https://github.com/paketo-buildpacks/spring-boot
 ```
-4. Use the image generated and deploy it as a service using CNR in the name-space where App Live View is running with the labels (tanzu.app.live.view=true, tanzu.app.live.view.application.name=<app_name>). Make sure you add appropriate DNS entries (in this case using /etc/hosts).
+4. Deploy the image you generated as a service with Cloud Native Runtimes. Deploy the image in the namespace where App Live View is running with the labels `tanzu.app.live.view=true` and `tanzu.app.live.view.application.name=<app_name>`. Add the appropriate DNS entries using `/etc/hosts`.
 ```
 vdesikan@vdesikan-a01 tap-install % more kapp-deploy-spring-petclinic.yaml
     apiVersion: kappctrl.k14s.io/v1alpha1
@@ -2098,8 +2098,8 @@ vdesikan@vdesikan-a01 tap-install % more /etc/hosts
 # End of section
 vdesikan@vdesikan-a01 tap-install %
 ```
-5. Check that the spring pet clinic app can be accessed. Check that the App Live View is also displaying the stats for this app.
-6. Make some code changes in the git repo and commit the change. Check that new build is created automatically and new image is generated.
+5. Verify that you can access the Spring Pet Clinic app. Ensure that App Live View is also displaying the Spring Pet Clinic app.
+6. Make some code changes in the git repo and commit the change. Verify that the new build is created automatically and the new image is generated.
 ```
 vdesikan@vdesikan-a01 spring-pet-clinic-eks % ls
 README.md       Tiltfile        accelerator-log.md  config          docker-compose.yml  mvnw            mvnw.cmd        pom.xml         src         tes1
@@ -2227,7 +2227,7 @@ BUILD    STATUS     IMAGE                                                       
 1        SUCCESS    dev.registry.pivotal.io/tanzu-advanced-edition/vdesikan/spring-petclinic-eks@sha256:be889cf313016eb4fc168556493c2b1672c8e2af725e33696bf461b8212f9872    CONFIG
 2        SUCCESS    dev.registry.pivotal.io/tanzu-advanced-edition/vdesikan/spring-petclinic-eks@sha256:0b627060147d7d80d8aae5a650a70ebca67bbb73001420580b2effa77c4b90cd    COMMIT
 ```
-7. Update the CNR service with the new image.
+7. Update the Cloud Native Runtimes service with the new image.
 ```
 vdesikan@vdesikan-a01 tap-install % more kapp-deploy-spring-petclinic.yaml
     apiVersion: kappctrl.k14s.io/v1alpha1
@@ -2285,4 +2285,4 @@ petclinic-00002-deployment-9bcf8bdc9-mrvf7              1/2     Running     0   
 spring-petclinic-image-build-1-vl7j5-build-pod          0/1     Completed   0          5h54m
 spring-petclinic-image-build-2-gthhl-build-pod          0/1     Completed   0          11m
 ```
-8. Check that the new code changes are reflected in the application.
+8. Verify that the code changes are reflected in the app.
