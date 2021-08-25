@@ -1,6 +1,10 @@
+# Tanzu Application Platform Use Case: Install and Deploy the Spring Pet Clinic App 
+This topic describes how to use Tanzu Application Platform capabilities to install, configure, and deploy the Spring Pet Clinic app. This procedure includes Cloud Native Runtimes, App Live View, Application Accelerator, and Tanzu Build Service. 
+
 ## TAP Repo Bundle Installation
 
-1. Make sure kubernetes cluster is created and it's configured properly. 
+1. 
+Make sure kubernetes cluster is created and it's configured properly. 
 ```
 vdesikan@vdesikan-a01 ~ % kubectl config get-contexts
 CURRENT   NAME                                                                CLUSTER                                                   AUTHINFO                                                  NAMESPACE
