@@ -1,4 +1,14 @@
-# docs-tap
+# Documentation Repository for Tanzu Application Platform (TAP)
+
+## Overview
+
+This repo publishes to... 
+
+## Branches
+
+| Branch | Usage |
+|--------|-------|
+| main | Development branch for beta docs |
 
 
 ## Word List

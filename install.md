@@ -109,7 +109,7 @@ Make sure EULA is accepted on the Tanzunet for the following components on the c
 3. Cloud Native Runtimes
 4. Application Accelerator for VMware Tanzu
 5. App live view for VMware Tanzu
-
+![alt](images/tap-on-tanzu-net)
 
 
 <p id="gdcalert1" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image1.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert2">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
