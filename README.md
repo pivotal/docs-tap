@@ -4,6 +4,8 @@
 
 This repo publishes to... 
 
+docs-staging.vmware.com/en/VMware-Tanzu-Application-Service/0.1/tap-0-1
+
 ## Branches
 
 | Branch | Usage |

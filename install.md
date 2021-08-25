@@ -1,24 +1,7 @@
 <!-----
 * Tue Aug 24 2021 15:33:04 GMT-0700 (PDT)
 * Source doc: Install Packages using TAP repo bundle
-* Tables are currently converted to HTML tables.
-* This document has images: check for >>>>>  gd2md-html alert:  inline image link in generated source and store images to your server. NOTE: Images in exported zip file from Google Docs may not appear in  the same order as they do in your doc. Please check the images!
-
 ----->
-
-
-<p style="color: red; font-weight: bold">>>>>>  gd2md-html alert:  ERRORs: 0; WARNINGs: 0; ALERTS: 1.</p>
-<ul style="color: red; font-weight: bold"><li>See top comment block for details on ERRORs and WARNINGs. <li>In the converted Markdown or HTML, search for inline alerts that start with >>>>>  gd2md-html alert:  for specific instances that need correction.</ul>
-
-<p style="color: red; font-weight: bold">Links to alert messages:</p><a href="#gdcalert1">alert1</a>
-
-<p style="color: red; font-weight: bold">>>>>> PLEASE check and correct alert issues and delete this message and the inline alerts.<hr></p>
-
-
-
-[TOC]
-
-
 
 # <a id='installing'></a> Installing Tanzu Application Platform Packages
 
@@ -29,103 +12,123 @@ This document describes how to install Tanzu Application Platform packages from 
 
 The following prerequisites are required to install Tanzu Application Platform:
 
-* The following Carvel tools are required to install packages using TAP repo bundle:
-    * **kapp** [v0.37.0](https://github.com/vmware-tanzu/carvel-kapp/releases/tag/v0.37.0) or later
-    * **ytt** [v0.34.0](https://github.com/vmware-tanzu/carvel-ytt/releases) or later
-    * **imgpkg** [v0.14.0](https://github.com/vmware-tanzu/carvel-imgpkg/releases) or later
-    * **kbld** [v0.30.0](https://github.com/vmware-tanzu/carvel-kbld/releases) or later
-    * **kapp-controller** v0.20.00.20 or later
-* The kubectl CLI should be installed and authenticated with administrator rights for your target cluster.
-* The Kubernetes and kubectl version should be v1.17 or later
-* Tanzu Cli should be installed and package plugin enabled.
+* The following Carvel tools are required to install packages using TAP repo bundle.
+  For information about the Carvel tool suite,
+  see [Carvel](https://carvel.dev/#whole-suite):
+    * [kapp](https://github.com/vmware-tanzu/carvel-kapp/releases) (v0.37.0 or later)
+    * [ytt](https://github.com/vmware-tanzu/carvel-ytt/releases) (v0.34.0 or later)
+    * [imgpkg](https://github.com/vmware-tanzu/carvel-imgpkg/releases) (v0.14.0 or later)
+    * [kbld](https://github.com/vmware-tanzu/carvel-kbld/releases) (v0.30.0 or later)
+    * [kapp-controller](https://github.com/vmware-tanzu/carvel-kapp-controller) (v0.20.0 or later)
+
+* The Kubernetes command line tool, kubectl, v1.17 or later installed and authenticated with administrator rights for your target cluster.
+* Kubernetes v1.17 or later
+* The [Tanzu command line interface (CLI)](https://github.com/vmware-tanzu/tanzu-framework/blob/main/docs/cli/getting-started.md#installation)
+  with the package plugin enabled
+  <!-----
+  What is the publicly accessible link for the Tanzu CLI? The above 404's
+  ----->
 
 
-## Kubernetes Cluster
+## Set and Verify the Kubernetes Cluster configurations
+
+To set and verify the Kubernetes Cluster configurations:
 
 Run the following commands to set and verify the cluster configuration:
 
+1. List the existing contexts by running:
 
-```
+    ```    
+    kubectl config get-contexts
+    CURRENT   NAME                                CLUSTER           AUTHINFO                                NAMESPACE
+              aks-repo-trial                      aks-repo-trial    clusterUser_aks-rg-01_aks-repo-trial
+    *         aks-tap-cluster                     aks-tap-cluster   clusterUser_aks-rg-01_aks-tap-cluster
+              tkg-mgmt-vc-admin@tkg-mgmt-vc       tkg-mgmt-vc       tkg-mgmt-vc-admin
+              tkg-vc-antrea-admin@tkg-vc-antrea   tkg-vc-antrea     tkg-vc-antrea-admin
+    ```
+2. Set the context to the `aks-tap-cluster` context by running:
 
-kubectl config get-contexts
-CURRENT   NAME                                CLUSTER           AUTHINFO                                NAMESPACE
-          aks-repo-trial                      aks-repo-trial    clusterUser_aks-rg-01_aks-repo-trial
-*         aks-tap-cluster                     aks-tap-cluster   clusterUser_aks-rg-01_aks-tap-cluster
-          tkg-mgmt-vc-admin@tkg-mgmt-vc       tkg-mgmt-vc       tkg-mgmt-vc-admin
-          tkg-vc-antrea-admin@tkg-vc-antrea   tkg-vc-antrea     tkg-vc-antrea-admin
+    ```
+    kubectl config use-context aks-tap-cluster
+    Switched to context "aks-tap-cluster".
+    ```
 
-kubectl config use-context aks-tap-cluster
-Switched to context "aks-tap-cluster".
+3. Confirm that the context is set by running:
+    ```
+    kubectl config current-context
+    aks-tap-cluster
+    ```
 
-kubectl config current-context
-aks-tap-cluster
+4. List the parameters that are in use by running:
+    ```
+    kubectl cluster-info
+    ```
 
-kubectl cluster-info
-Kubernetes control plane is running at https://aks-tap-cluster-dns-eec0876a.hcp.eastus.azmk8s.io:443
-healthmodel-replicaset-service is running at https://aks-tap-cluster-dns-eec0876a.hcp.eastus.azmk8s.io:443/api/v1/namespaces/kube-system/services/healthmodel-replicaset-service/proxy
-CoreDNS is running at https://aks-tap-cluster-dns-eec0876a.hcp.eastus.azmk8s.io:443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
-Metrics-server is running at https://aks-tap-cluster-dns-eec0876a.hcp.eastus.azmk8s.io:443/api/v1/namespaces/kube-system/services/https:metrics-server:/proxy
+    For example:
+    <pre class="terminal">
+    $ kubectl cluster-info
+    Kubernetes control plane is running at https://aks-tap-cluster-dns-eec0876a.hcp.eastus.azmk8s.io:443
+    healthmodel-replicaset-service is running at https://aks-tap-cluster-dns-eec0876a.hcp.eastus.azmk8s.io:443/api/v1/namespaces/kube-system/services/healthmodel-replicaset-service/proxy
+    CoreDNS is running at https://aks-tap-cluster-dns-eec0876a.hcp.eastus.azmk8s.io:443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+    Metrics-server is running at https://aks-tap-cluster-dns-eec0876a.hcp.eastus.azmk8s.io:443/api/v1/namespaces/kube-system/services/https:metrics-server:/proxy    
 
-To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+    To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.    
 
-```
-
-
-If the kapp-controller is not installed in the cluster already, install it using the following commands.
-
-
-```
-kapp deploy -a kc -f \ https://github.com/vmware-tanzu/carvel-kapp-controller/releases/latest/download/release.yml
-```
+    </pre>
 
 
+5. If the kapp-controller is not already installed in the cluster, install it by running:
 
-## Available Packages in Beta-1
+    ```
+    kapp deploy -a kc -f \
+    https://github.com/vmware-tanzu/carvel-kapp-controller/releases/latest/download/release.yml
+    ```
 
 
 
-* Tanzu Build Services
-* Cloud Native Runtimes
-* Application Accelerator for VMware Tanzu
-* App live view for VMware Tanzu
+## Packages in Tanzu Application Platform v0.1
 
-Tanzu Build Services v1.2.2 can be installed directly from Tanzunet.
-Please refer to the [Tanzu Build Services documentation](https://docs.pivotal.io/build-service/1-2/index.html)
-for the installation procedure.
+The following packages are available in Tanzu Application Platform:
 
-Cloud Native Runtimes, Application Accelerator for VMware Tanzu and App live view for VMware Tanzu are available as a package in TAP Repo Bundle.
-The instructions to add the TAP packageRepository and install packages from the repository are explained in below sections.
+* Cloud Native Runtimes for Tanzu
+* Application Accelerator for Tanzu
+* Application Live View for Tanzu
+* Tanzu Build Service
 
+Cloud Native Runtimes, Application Accelerator, and Application Live View are available as a packages in TAP Repo Bundle.
+To add the TAP packageRepository and install packages from the repository are explained in below sections.
+
+Tanzu Build Services v1.2.2 can be installed from VMware Tanzu Network.
+For installation instructions,
+see the [Installing Tanzu Build Service](https://docs.pivotal.io/build-service/installing.html)
+in the Tanzu Build Services documentation.
+
+
+Tanzu Build Service: Install v1.2.2 from [VMware Tanzu Network](https://network.pivotal.io/products/build-service/)
 
 ## Accepting EULA
 
 End User Licence Agreement has to be accepted for all the components separately in order to install packages.
 Make sure EULA is accepted on the Tanzunet for the following components on the corresponding product pages.
 
++ Tanzu Application Platform
++ Tanzu Build Service
++ Cloud Native Runtimes
++ Application Accelerator for VMware Tanzu
++ App live view for VMware Tanzu
+
+  ![Screenshot of page on Tanzu Network from where you download Tanzu Application Platform packages shows the EULA warning](./images/tap-on-tanzu-net.png)
+
+## Adding PackageRepositories
+
+### Creating a namespace and secret
+
+Used for package deployment (all the components).
+It is to keep the objects logically grouped together.
+This is a common process; TKG also uses this process.
 
 
-1. Tanzu Application Platform
-2. Tanzu Build Services
-3. Cloud Native Runtimes
-4. Application Accelerator for VMware Tanzu
-5. App live view for VMware Tanzu
-![alt](images/tap-on-tanzu-net)
-
-
-<p id="gdcalert1" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image1.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert2">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image1.png "image_tooltip")
-
-
-
-## Adding PackageRepositories {#adding-packagerepositories}
-
-
-#### Creating a namespace and secret. Used for package deployment (all the components). It is to keep the objects logically grouped together. This is a common process; TKG also uses this process.
-
-
-#### Create a namespace and secret for PackageRepository Pull {#create-a-namespace-and-secret-for-packagerepository-pull}
+### Create a namespace and secret for PackageRepository Pull
 
 Create a namespace and install the PackageRepository.
 
@@ -139,12 +142,14 @@ kubectl create ns tap-install
 ```
 
 
-**_Note: The secret tap-registry is special since it was hard coded into the Package CR fetch section. The secret name has to be the same._**
+> **_Note:** The secret tap-registry is special since it was hard coded into the Package CR fetch section. The secret name has to be the same.
 
 
-#### Create a PackageRepository CR {#create-a-packagerepository-cr}
+###Create a PackageRepository CR
 
-Download the sample PackageRepository CR from tanzunet under Tanzu Application Platform.` Alternatively, `create a PackageRepository CR named tap-package-repo.yml and populate it with TAP repo bundle location and registry Secret as below
+Download the sample PackageRepository CR from tanzunet under Tanzu Application Platform.
+Alternatively, create a PackageRepository CR named tap-package-repo.yml and
+populate it with TAP repo bundle location and registry Secret as below
 
 
 ```
@@ -162,7 +167,7 @@ spec:
 
 
 
-#### Add PackageRepository to the cluster  {#add-packagerepository-to-the-cluster}
+### Add PackageRepository to the cluster
 
 Apply the PackageRepository yaml from above to add the PackageRepository to the cluster using the following commands
 
@@ -210,18 +215,20 @@ tanzu package available list cnrs.tanzu.vmware.com -n tap-install
 
 
 
-## Installing packages {#installing-packages}
+## Installing packages
 
-To install any package from the PackageRepository, the parameters that are required for the installation need to be defined in a YAML file.
+To install any package from the PackageRepository,
+the parameters that are required for the installation need to be defined in a YAML file.
 
-The required parameters for the individual packages can be identified by the values schema that are defined in the package and the same can be gathered by running a command.
+The required parameters for the individual packages can be identified by the values schema
+that are defined in the package and the same can be gathered by running a command.
 
  `tanzu package available get &lt;package-name>/&lt;version> --values-schema`
 
 The installation of the package is explained in the following examples.
 
 
-#### Install Cloud Native Runtimes {#install-cloud-native-runtimes}
+### Install Cloud Native Runtimes {#install-cloud-native-runtimes}
 
 Follow the instructions under the [Installing Packages](#installing-packages) section and gather the values schema and populate the values.yaml.
 
@@ -290,11 +297,13 @@ root@tkg-cli-client:~# tanzu package install cloud-native-runtimes -p cnrs.tanzu
 
 
 
-#### Install App Accelerator {#install-app-accelerator}
+### Install App Accelerator
 
-Installing App Accelerator requires Flux to be pre-installed in the cluster. Details can be found in [App Accelerator documentation](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.1/acc-docs/GUID-installation-install.html)
+Installing App Accelerator requires Flux to be pre-installed in the cluster.
+Details can be found in [App Accelerator documentation](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.1/acc-docs/GUID-installation-install.html)
 
-Follow the instructions under [Installing Packages](#installing-packages) section and gather the values schema for Application accelerator and populate the values.yaml.
+Follow the instructions under [Installing Packages](#installing-packages) section
+and gather the values schema for Application accelerator and populate the values.yaml.
 
 Sample values YAML for App Accelerator
 
@@ -333,9 +342,10 @@ Install the package by running the command,
 
 
 
-#### Install App Live View {#install-app-live-view}
+### Install App Live View
 
-Follow the instructions under the [Installing Packages](#installing-packages) section and gather the values schema and populate the values.yaml.
+Follow the instructions under the [Installing Packages](#installing-packages) section and
+gather the values schema and populate the values.yaml.
 
 Sample Values.yml
 
@@ -368,7 +378,7 @@ tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.1.0 -n 
 
 
 
-## Verifying Installed Packages {#verifying-installed-packages}
+## Verifying Installed Packages
 
 The packages installed can be verified using the command
 
@@ -386,7 +396,7 @@ tanzu package installed list -n tap-install
 
 
 
-## Deleting Packages {#deleting-packages}
+## Deleting Packages
 
 The installed packages can be removed by running the command
 
