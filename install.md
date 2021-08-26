@@ -21,14 +21,35 @@ The following prerequisites are required to install Tanzu Application Platform:
     * [kbld](https://github.com/vmware-tanzu/carvel-kbld/releases) (v0.30.0 or later)
     * [kapp-controller](https://github.com/vmware-tanzu/carvel-kapp-controller) (v0.20.0 or later)
 
-* The Kubernetes command line tool, kubectl, v1.17 or later, installed and authenticated with administrator rights for your target cluster.
-* Kubernetes v1.17 or later
+* The Kubernetes command line tool, kubectl, v1.19 or later, installed and authenticated with administrator rights for your target cluster.
 * The [Tanzu command line interface (CLI)](https://github.com/vmware-tanzu/tanzu-framework/blob/main/docs/cli/getting-started.md#installation)
   with the package plugin enabled
   <!-----
-  Eng team to find a link. PR?
+  What is the publicly accessible link for the Tanzu CLI? The above 404's
   ----->
+*Tanzu Application Platform is compatible with a Kubernetes cluster (v1.19 or later) on the following Kubernetes providers:
+  * Tanzu Kubernetes Grid v1.4.0 and later
+  * Azure Kubernetes Service
+  * Amazon Elastic Kubernetes Service
+  * Docker Desktop
+  * kind
+  * minikube
 
+Note: For Tanzu Kubernetes Grid on vSphere 7.0 with Tanzu, you must have a load balancer. The minimum required Kubernetes cluster config as follows
+  TKGm on vSphere 7 
+  Deployment Type: Dev, Prod
+  Instance type: Medium (2 vcpus, 8 GiB memory)
+  No. of worker Nodes: 3
+  
+  TKGm on Azure
+  Deployment Type: Dev, Prod
+  Instance type: Standard D2s v3 (2 vcpus, 8 GiB memory)
+  No of Worker Nodes: 3
+ 
+  TKGm on AWS
+  Deployment Type: Prod, Dev
+  Instance type: t2.large (2 vcpus, 8 GiB memory)
+  No of Worker Nodes: 3
 
 ## Set and Verify the Kubernetes Cluster configurations
 
@@ -74,6 +95,18 @@ To set and verify the Kubernetes cluster configurations:
     To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.    
     </pre>
 
+  <!-----
+ Is "To further debug part of the output? (as formatted in the google doc? or is it another step? 
+  ----->
+
+
+5. If the kapp-controller is not already installed in the cluster, install it by running:
+
+    ```
+    kapp deploy -a kc -f \
+    https://github.com/vmware-tanzu/carvel-kapp-controller/releases/latest/download/release.yml
+    ```
+
 
 ## Packages in Tanzu Application Platform v0.1
 
@@ -105,14 +138,14 @@ To accept EULAs:
 
 2. For each of the following components, accept or confirm that you have accepted the EULA:
 
-    + Tanzu Application Platform
+    + [Tanzu Application Platform] (https://network.pivotal.io/products/tanzu-application-platform/)
     + [Tanzu Build Service](https://network.pivotal.io/products/build-service/) and its associated components,
       [Tanzu Build Service Dependencies](https://network.pivotal.io/products/tbs-dependencies/),
       [Buildpacks for VMware Tanzu](https://network.pivotal.io/products/tanzu-buildpacks-suite), and
       [Stacks for VMware Tanzu](https://network.pivotal.io/products/tanzu-stacks-suite)
     + [Cloud Native Runtimes for Tanzu](https://network.pivotal.io/products/serverless/)
     + [Application Accelerator for Tanzu](https://network.pivotal.io/products/app-accelerator/)
-    + Application Live View for Tanzu
+    + [Application Live View for Tanzu] (https://network.pivotal.io/products/app-live-view/)
 
   ![Screenshot of page on Tanzu Network from where you download Tanzu Application Platform packages shows the EULA warning](./images/tap-on-tanzu-net.png)
 
@@ -233,15 +266,7 @@ the parameters that are required for the installation need to be defined in a YA
 The required parameters for the individual packages can be identified by the values schema
 that are defined in the package and the same can be gathered by running a command.
 
- `tanzu package available get PACKAGE-NAME/VERSION --values-schema`
- 
- Where:
- + PACKAGE-NAME is 
- + VERSION is 
-
-For example:
-`tanzu package available get cnrs.tanzu.vmware.com/1.0.1 --values-schema`
- 
+ `tanzu package available get &lt;package-name>/&lt;version> --values-schema`
 
 The installation of the package is explained in the following examples.
 
@@ -318,7 +343,7 @@ root@tkg-cli-client:~# tanzu package install cloud-native-runtimes -p cnrs.tanzu
 ### Install App Accelerator
 
 Installing App Accelerator requires Flux to be pre-installed in the cluster.
-Details can be found in [App Accelerator documentation](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.1/acc-docs/GUID-installation-install.html)
+Details can be found in [App Accelerator documentation](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.2/acc-docs/GUID-installation-install.html)
 
 Follow the instructions under [Install Packages](#install-packages) section
 and gather the values schema for Application accelerator and populate the values.yaml.
@@ -393,8 +418,12 @@ tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.1.0 -n 
 
  Added installed package 'app-live-view' in namespace 'tap-install'
 ```
+More details can be found in [Application Live View documentation](https://docs-staging.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.1/app-live-view-docs/GUID-index.html)
 
 
+  <!-----
+  This link above is in staging. This needs to be changed to the Public doc before publishing(docs.vmware.com)
+  ----->
 
 ## Verifying Installed Packages
 
