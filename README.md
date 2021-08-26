@@ -35,14 +35,14 @@ Use this table to keep a running list of terms used and how they should be defin
 
 | Word or phrase | Explanation |
 |----------------|-------------|
-| Package repository, PackageRepository, packagerepository, packageRepository | Are these all identical? If so, which formatting is correct? |
-| PackageRepositories |  |
-| PackageRepository CR | Is this a YAML file named `tap-package-repo.yml`? |
-| PackageRepository Pull | |
-| TAP repo bundle and TAP Repo Bundle| There are more instances of "TAP repo bundle" than "TAP Repo Bundle", so I'm assuming TAP repo bundle is correct.|
-| Tanzu Application Platform packages | Why plural? Are there are multiple? "…install packages from the repository". How many packages are there?|
+| packageRepository | Is a definition. Variations found in original doc (Package repository, PackageRepository, packagerepository) but standardize on the one shown. 2021.08.26 |
+| PackageRepositories | Don't use. There is really only one packageRepository of interest for this page. |
+| packageRepository custom resource | Because we don't use CR in other Kubernetes docs, spell out custom resource here too. An example of the packageRepository custom resource is given in the YAML file named `tap-package-repo.yaml`.|
+| packageRepository pull | Just means pulling the packages from the repository|
+| TAP repo bundle | Decided on lowercase and not "TAP Repo Bundle".|
+| TAP packages | Right now there are three packages: one for each component. The three packages make up the bundle. The bundle is stored in the the TAP package repository. Although "Tanzu Application Platform packages" is in the original google doc, let's use "TAP packages" for consistency.|
 | TAP package repository |  How is this different from the other package repositories? (Are there non-TAP package repositories discussed on this page?) |
-|  |  |
+| .yaml and YAML file | Standardize on using the "a", not `.yml` |
 
 ## Publishing docs
 v0.1 Staging docs:  
