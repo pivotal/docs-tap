@@ -31,7 +31,6 @@ The following prerequisites are required to install Tanzu Application Platform:
     * Tanzu Kubernetes Grid v1.4.0 and later
     * Azure Kubernetes Service
     * Amazon Elastic Kubernetes Service
-    * Docker Desktop
     * kind
     * minikube
 
