@@ -21,7 +21,7 @@ The following prerequisites are required to install Tanzu Application Platform:
     * [kbld](https://github.com/vmware-tanzu/carvel-kbld/releases) (v0.30.0 or later)
     * [kapp-controller](https://github.com/vmware-tanzu/carvel-kapp-controller) (v0.20.0 or later)
 
-* The Kubernetes command line tool, kubectl, v1.17 or later installed and authenticated with administrator rights for your target cluster.
+* The Kubernetes command line tool, kubectl, v1.17 or later, installed and authenticated with administrator rights for your target cluster.
 * Kubernetes v1.17 or later
 * The [Tanzu command line interface (CLI)](https://github.com/vmware-tanzu/tanzu-framework/blob/main/docs/cli/getting-started.md#installation)
   with the package plugin enabled
@@ -32,9 +32,7 @@ The following prerequisites are required to install Tanzu Application Platform:
 
 ## Set and Verify the Kubernetes Cluster configurations
 
-To set and verify the Kubernetes Cluster configurations:
-
-Run the following commands to set and verify the cluster configuration:
+To set and verify the Kubernetes cluster configurations:
 
 1. List the existing contexts by running:
 
@@ -46,6 +44,7 @@ Run the following commands to set and verify the cluster configuration:
               tkg-mgmt-vc-admin@tkg-mgmt-vc       tkg-mgmt-vc       tkg-mgmt-vc-admin
               tkg-vc-antrea-admin@tkg-vc-antrea   tkg-vc-antrea     tkg-vc-antrea-admin
     ```
+
 2. Set the context to the `aks-tap-cluster` context by running:
 
     ```
@@ -73,8 +72,11 @@ Run the following commands to set and verify the cluster configuration:
     Metrics-server is running at https://aks-tap-cluster-dns-eec0876a.hcp.eastus.azmk8s.io:443/api/v1/namespaces/kube-system/services/https:metrics-server:/proxy    
 
     To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.    
-
     </pre>
+
+  <!-----
+ Is "To further debug part of the output? (as formatted in the google doc? or is it another step? 
+  ----->
 
 
 5. If the kapp-controller is not already installed in the cluster, install it by running:
@@ -83,7 +85,6 @@ Run the following commands to set and verify the cluster configuration:
     kapp deploy -a kc -f \
     https://github.com/vmware-tanzu/carvel-kapp-controller/releases/latest/download/release.yml
     ```
-
 
 
 ## Packages in Tanzu Application Platform v0.1
@@ -95,8 +96,9 @@ The following packages are available in Tanzu Application Platform:
 * Application Live View for Tanzu
 * Tanzu Build Service
 
-Cloud Native Runtimes, Application Accelerator, and Application Live View are available as a packages in TAP Repo Bundle.
-To add the TAP packageRepository and install packages from the repository are explained in below sections.
+Cloud Native Runtimes, Application Accelerator, and Application Live View are available as a package in TAP repo bundle.
+For instructions on how to add the TAP packageRepository and install packages from the repository
+see [Add PackageRepositories](#add-package-repositories) and [Install Packages](#install-packages) below.
 
 Tanzu Build Services v1.2.2 can be installed from VMware Tanzu Network.
 For installation instructions,
@@ -104,29 +106,49 @@ see the [Installing Tanzu Build Service](https://docs.pivotal.io/build-service/i
 in the Tanzu Build Services documentation.
 
 
-Tanzu Build Service: Install v1.2.2 from [VMware Tanzu Network](https://network.pivotal.io/products/build-service/)
+## Accept the  EULAs
 
-## Accepting EULA
+Before you can install packages, you have to accept the End User Licence Agreements (EULAs)
+for all the components separately.
 
-End User Licence Agreement has to be accepted for all the components separately in order to install packages.
-Make sure EULA is accepted on the Tanzunet for the following components on the corresponding product pages.
+To accept EULAs:
 
-+ Tanzu Application Platform
-+ Tanzu Build Service
-+ Cloud Native Runtimes
-+ Application Accelerator for VMware Tanzu
-+ App live view for VMware Tanzu
+1. Sign in to [Tanzu Network](https://network.pivotal.io).
+
+2. For each of the following components, accept or confirm that you have accepted the EULA:
+
+    + Tanzu Application Platform
+    + [Tanzu Build Service](https://network.pivotal.io/products/build-service/) and its associated components,
+      [Tanzu Build Service Dependencies](https://network.pivotal.io/products/tbs-dependencies/),
+      [Buildpacks for VMware Tanzu](https://network.pivotal.io/products/tanzu-buildpacks-suite), and
+      [Stacks for VMware Tanzu](https://network.pivotal.io/products/tanzu-stacks-suite)
+    + [Cloud Native Runtimes for Tanzu](https://network.pivotal.io/products/serverless/)
+    + [Application Accelerator for Tanzu](https://network.pivotal.io/products/app-accelerator/)
+    + Application Live View for Tanzu
 
   ![Screenshot of page on Tanzu Network from where you download Tanzu Application Platform packages shows the EULA warning](./images/tap-on-tanzu-net.png)
 
-## Adding PackageRepositories
+##<a id='add-package-repositories'></a> Add PackageRepositories
 
+To add PackageRepositories:
+
+1. Create a namespace and secret for deploying the package of all the components.
+
+    This namespace is to keep the objects grouped together logically. 
+
+    For general information about creating a namespace and secret,
+    see [x-ref?].
+
+<!----
+Original text:
 ### Creating a namespace and secret
 
 Used for package deployment (all the components).
 It is to keep the objects logically grouped together.
 This is a common process; TKG also uses this process.
+----->
 
+2. Create a namespace and secret for PackageRepository pull by running:
 
 ### Create a namespace and secret for PackageRepository Pull
 
@@ -215,7 +237,7 @@ tanzu package available list cnrs.tanzu.vmware.com -n tap-install
 
 
 
-## Installing packages
+## <a id='install-packages'></a> Install Packages
 
 To install any package from the PackageRepository,
 the parameters that are required for the installation need to be defined in a YAML file.
@@ -230,7 +252,7 @@ The installation of the package is explained in the following examples.
 
 ### Install Cloud Native Runtimes {#install-cloud-native-runtimes}
 
-Follow the instructions under the [Installing Packages](#installing-packages) section and gather the values schema and populate the values.yaml.
+Follow the instructions under the [Install Packages](#install-packages) section and gather the values schema and populate the values.yaml.
 
 
 ```
@@ -302,7 +324,7 @@ root@tkg-cli-client:~# tanzu package install cloud-native-runtimes -p cnrs.tanzu
 Installing App Accelerator requires Flux to be pre-installed in the cluster.
 Details can be found in [App Accelerator documentation](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.1/acc-docs/GUID-installation-install.html)
 
-Follow the instructions under [Installing Packages](#installing-packages) section
+Follow the instructions under [Install Packages](#install-packages) section
 and gather the values schema for Application accelerator and populate the values.yaml.
 
 Sample values YAML for App Accelerator
@@ -344,7 +366,7 @@ Install the package by running the command,
 
 ### Install App Live View
 
-Follow the instructions under the [Installing Packages](#installing-packages) section and
+Follow the instructions under the [Install Packages](#install-packages) section and
 gather the values schema and populate the values.yaml.
 
 Sample Values.yml
