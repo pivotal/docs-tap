@@ -2,15 +2,31 @@
 
 ## Overview
 
-This repo publishes to... 
-
-docs-staging.vmware.com/en/VMware-Tanzu-Application-Service/0.1/tap-0-1
+This repo is expected to publish to https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Service/0.1/tap-0-1
 
 ## Branches
 
 | Branch | Usage |
 |--------|-------|
 | main | Development branch for beta docs |
+
+## Product Names
+
+There is a great variety of spellings and misspellings of product names.
+JD suggests the following list:
+
+* Cloud Native Runtimes for Tanzu
+* Application Accelerator for Tanzu
+* Application Live View for Tanzu
+* Tanzu Build Service (not Service**s**)
+
+Optionally, consider using the complete product name at first use:
+
+* Cloud Native Runtimes for VMware Tanzu
+* Application Accelerator for VMware Tanzu
+* Application Live View for VMware Tanzu
+* VMware Tanzu Build Service
+
 
 
 ## Word List
@@ -19,8 +35,13 @@ Use this table to keep a running list of terms used and how they should be defin
 
 | Word or phrase | Explanation |
 |----------------|-------------|
-| Tanzu Application Platform packages | Why plural? Are there are multiple? |
-| TAP package repository |  |
+| Package repository, PackageRepository, packagerepository, packageRepository | Are these all identical? If so, which formatting is correct? |
+| PackageRepositories |  |
+| PackageRepository CR | Is this a YAML file named `tap-package-repo.yml`? |
+| PackageRepository Pull | |
+| TAP repo bundle and TAP Repo Bundle| There are more instances of "TAP repo bundle" than "TAP Repo Bundle", so I'm assuming TAP repo bundle is correct.|
+| Tanzu Application Platform packages | Why plural? Are there are multiple? "…install packages from the repository". How many packages are there?|
+| TAP package repository |  How is this different from the other package repositories? (Are there non-TAP package repositories discussed on this page?) |
 |  |  |
 
 ## Publishing docs
