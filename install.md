@@ -128,7 +128,7 @@ To accept EULAs:
 
   ![Screenshot of page on Tanzu Network from where you download Tanzu Application Platform packages shows the EULA warning](./images/tap-on-tanzu-net.png)
 
-##<a id='add-package-repositories'></a> Add PackageRepositories
+## <a id='add-package-repositories'></a> Add PackageRepositories
 
 To add PackageRepositories:
 
@@ -167,7 +167,7 @@ kubectl create ns tap-install
 > **_Note:** The secret tap-registry is special since it was hard coded into the Package CR fetch section. The secret name has to be the same.
 
 
-###Create a PackageRepository CR
+### Create a PackageRepository CR
 
 Download the sample PackageRepository CR from tanzunet under Tanzu Application Platform.
 Alternatively, create a PackageRepository CR named tap-package-repo.yml and
