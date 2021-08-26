@@ -74,8 +74,8 @@ rm docs.zip ; cd docs && zip -r ../docs.zip * && cd .. && unzip -l docs.zip
 
 |field|value|
 |---|---|
-|Publication name:   |`VMware Tanzu Application Service`|
-|Product name:       |`VMware Tanzu Application Service`|
+|Publication name:   |`VMware Tanzu Application Platform`|
+|Product name:       |`VMware Tanzu Application Platform`|
 |Version:            |`0.1`|
 |Publication GUID:   |`tap-0-1`|
 |Output filename:    |`tap-0-1`|
