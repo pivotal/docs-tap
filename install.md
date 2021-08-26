@@ -25,8 +25,9 @@ The following prerequisites are required to install Tanzu Application Platform:
 * The [Tanzu command line interface (CLI)](https://github.com/vmware-tanzu/tanzu-framework/blob/main/docs/cli/getting-started.md#installation)
   with the package plugin enabled
   <!-----
-  What is the publicly accessible link for the Tanzu CLI? The above 404's
+  Eng team to supply publicly accessible link by PR.
   ----->
+
 * Tanzu Application Platform is compatible with a Kubernetes cluster (v1.19 or later) on the following Kubernetes providers:
     * Tanzu Kubernetes Grid v1.4.0 and later
     * Azure Kubernetes Service
@@ -49,6 +50,7 @@ The following prerequisites are required to install Tanzu Application Platform:
       Deployment Type: Prod, Dev
       Instance type: t2.large (2 vcpus, 8 GiB memory)
       No of Worker Nodes: 3
+
 
 ## Set and Verify the Kubernetes Cluster configurations
 
@@ -103,7 +105,7 @@ To set and verify the Kubernetes cluster configurations:
 
     ```
     kapp deploy -a kc -f \
-    https://github.com/vmware-tanzu/carvel-kapp-controller/releases/latest/download/release.yml
+    https://github.com/vmware-tanzu/carvel-kapp-controller/releases/latest/download/release.yaml
     ```
 
 
@@ -137,14 +139,14 @@ To accept EULAs:
 
 2. For each of the following components, accept or confirm that you have accepted the EULA:
 
-    + [Tanzu Application Platform] (https://network.pivotal.io/products/tanzu-application-platform/)
+    + [Tanzu Application Platform](https://network.pivotal.io/products/tanzu-application-platform/)
     + [Tanzu Build Service](https://network.pivotal.io/products/build-service/) and its associated components,
       [Tanzu Build Service Dependencies](https://network.pivotal.io/products/tbs-dependencies/),
       [Buildpacks for VMware Tanzu](https://network.pivotal.io/products/tanzu-buildpacks-suite), and
       [Stacks for VMware Tanzu](https://network.pivotal.io/products/tanzu-stacks-suite)
     + [Cloud Native Runtimes for Tanzu](https://network.pivotal.io/products/serverless/)
     + [Application Accelerator for Tanzu](https://network.pivotal.io/products/app-accelerator/)
-    + [Application Live View for Tanzu] (https://network.pivotal.io/products/app-live-view/)
+    + [Application Live View for Tanzu](https://network.pivotal.io/products/app-live-view/)
 
   ![Screenshot of page on Tanzu Network from where you download Tanzu Application Platform packages shows the EULA warning](./images/tap-on-tanzu-net.png)
 
@@ -184,13 +186,13 @@ kubectl create ns tap-install
 ```
 
 
-> **_Note:** The secret tap-registry is special since it was hard coded into the Package CR fetch section. The secret name has to be the same.
+> **Note:** The secret tap-registry is special since it was hard coded into the Package CR fetch section. The secret name has to be the same.
 
 
 ### Create a PackageRepository CR
 
 Download the sample PackageRepository CR from tanzunet under Tanzu Application Platform.
-Alternatively, create a PackageRepository CR named tap-package-repo.yml and
+Alternatively, create a PackageRepository CR named tap-package-repo.yaml and
 populate it with TAP repo bundle location and registry Secret as below
 
 
@@ -215,7 +217,7 @@ Apply the PackageRepository yaml from above to add the PackageRepository to the 
 
 
 ```
-kapp deploy -a tap-package-repo -n tap-install -f ./tap-package-repo.yml -y
+kapp deploy -a tap-package-repo -n tap-install -f ./tap-package-repo.yaml -y
 ```
 
 
@@ -266,6 +268,14 @@ The required parameters for the individual packages can be identified by the val
 that are defined in the package and the same can be gathered by running a command.
 
  `tanzu package available get &lt;package-name>/&lt;version> --values-schema`
+ `tanzu package available get PACKAGE-NAME/VERSION --values-schema`
+
+ Where:
+ + PACKAGE-NAME is 
+ + VERSION is 
+
+For example:
+`tanzu package available get cnrs.tanzu.vmware.com/1.0.1 --values-schema`
 
 The installation of the package is explained in the following examples.
 
@@ -324,7 +334,7 @@ Install the package by running the command,
 
 
 ```
-root@tkg-cli-client:~# tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 1.0.1 -n tap-install -f values.yml
+root@tkg-cli-client:~# tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 1.0.1 -n tap-install -f values.yaml
 - Installing package 'cnrs.tanzu.vmware.com'
 | Getting package metadata for 'cnrs.tanzu.vmware.com'
 | Creating service account 'cloud-native-runtimes-tap-install-sa'
@@ -369,7 +379,7 @@ Install the package by running the command,
 
 
 ```
- tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.2.0 -n tap-install -f values.yml
+ tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.2.0 -n tap-install -f values.yaml
 - Installing package 'accelerator.apps.tanzu.vmware.com'
 | Getting package metadata for 'accelerator.apps.tanzu.vmware.com'
 | Creating service account 'app-accelerator-tap-install-sa'
@@ -389,7 +399,7 @@ Install the package by running the command,
 Follow the instructions under the [Install Packages](#install-packages) section and
 gather the values schema and populate the values.yaml.
 
-Sample Values.yml
+Sample Values.yaml
 
 
 ```
@@ -405,7 +415,7 @@ Install the package using the command
 
 
 ```
-tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.1.0 -n tap-install -f values.yml
+tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.1.0 -n tap-install -f values.yaml
 - Installing package 'appliveview.tanzu.vmware.com'
 | Getting package metadata for 'appliveview.tanzu.vmware.com'
 | Creating service account 'app-live-view-tap-install-sa'
