@@ -8,10 +8,10 @@ Tanzu Application Platform includes the following components:
 
 | Component Name | Version | Link to Documentation |
 |--------------------------------|-------------------------------|------|
-| Cloud Native Runtimes for Tanzu | v1.0.1 | [Cloud Native Runtimes](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-cnr-overview.html) |
-| Tanzu Build Service | v1.2.2 | [Tanzu Build Service](https://docs.pivotal.io/build-service/1-2/) |
+| Cloud Native Runtimes for VMware Tanzu | v1.0.1 | [Cloud Native Runtimes](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-cnr-overview.html) |
+| VMware Tanzu Build Service | v1.2.2 | [Tanzu Build Service](https://docs.pivotal.io/build-service/1-2/) |
 | Application Accelerator for VMware Tanzu (Beta) | v0.2.0 | [Application Accelerator for VMware Tanzu](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/index.html) |
-| Application Live View (Beta) | v0.1.0 | INSERT DOCS LINK|
+| Application Live View for VMware Tanzu (Beta) | v0.1.0 | INSERT DOCS LINK|
 
 ## <a id='install'></a> Install Tanzu Application Platform Components
 
