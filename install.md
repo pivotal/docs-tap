@@ -140,14 +140,14 @@ To accept EULAs:
 
 2. For each of the following components, accept or confirm that you have accepted the EULA:
 
-    + [Tanzu Application Platform] (https://network.pivotal.io/products/tanzu-application-platform/)
+    + [Tanzu Application Platform](https://network.pivotal.io/products/tanzu-application-platform/)
     + [Tanzu Build Service](https://network.pivotal.io/products/build-service/) and its associated components,
       [Tanzu Build Service Dependencies](https://network.pivotal.io/products/tbs-dependencies/),
       [Buildpacks for VMware Tanzu](https://network.pivotal.io/products/tanzu-buildpacks-suite), and
       [Stacks for VMware Tanzu](https://network.pivotal.io/products/tanzu-stacks-suite)
     + [Cloud Native Runtimes for Tanzu](https://network.pivotal.io/products/serverless/)
     + [Application Accelerator for Tanzu](https://network.pivotal.io/products/app-accelerator/)
-    + [Application Live View for Tanzu] (https://network.pivotal.io/products/app-live-view/)
+    + [Application Live View for Tanzu](https://network.pivotal.io/products/app-live-view/)
 
   ![Screenshot of page on Tanzu Network from where you download Tanzu Application Platform packages shows the EULA warning](./images/tap-on-tanzu-net.png)
 
