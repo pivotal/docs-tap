@@ -27,29 +27,29 @@ The following prerequisites are required to install Tanzu Application Platform:
   <!-----
   What is the publicly accessible link for the Tanzu CLI? The above 404's
   ----->
-*Tanzu Application Platform is compatible with a Kubernetes cluster (v1.19 or later) on the following Kubernetes providers:
-  * Tanzu Kubernetes Grid v1.4.0 and later
-  * Azure Kubernetes Service
-  * Amazon Elastic Kubernetes Service
-  * Docker Desktop
-  * kind
-  * minikube
+* Tanzu Application Platform is compatible with a Kubernetes cluster (v1.19 or later) on the following Kubernetes providers:
+    * Tanzu Kubernetes Grid v1.4.0 and later
+    * Azure Kubernetes Service
+    * Amazon Elastic Kubernetes Service
+    * Docker Desktop
+    * kind
+    * minikube
 
-Note: For Tanzu Kubernetes Grid on vSphere 7.0 with Tanzu, you must have a load balancer. The minimum required Kubernetes cluster config as follows
-  TKGm on vSphere 7 
-  Deployment Type: Dev, Prod
-  Instance type: Medium (2 vcpus, 8 GiB memory)
-  No. of worker Nodes: 3
-  
-  TKGm on Azure
-  Deployment Type: Dev, Prod
-  Instance type: Standard D2s v3 (2 vcpus, 8 GiB memory)
-  No of Worker Nodes: 3
- 
-  TKGm on AWS
-  Deployment Type: Prod, Dev
-  Instance type: t2.large (2 vcpus, 8 GiB memory)
-  No of Worker Nodes: 3
+    The minimum required Kubernetes cluster config as follows
+      TKGm on vSphere 7 
+      Deployment Type: Dev, Prod
+      Instance type: Medium (2 vcpus, 8 GiB memory)
+      No. of worker Nodes: 3
+
+      TKGm on Azure
+      Deployment Type: Dev, Prod
+      Instance type: Standard D2s v3 (2 vcpus, 8 GiB memory)
+      No of Worker Nodes: 3
+
+      TKGm on AWS
+      Deployment Type: Prod, Dev
+      Instance type: t2.large (2 vcpus, 8 GiB memory)
+      No of Worker Nodes: 3
 
 ## Set and Verify the Kubernetes Cluster configurations
 
