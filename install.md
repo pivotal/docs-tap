@@ -184,7 +184,8 @@ To add the TAP package repository:
     kubectl create secret docker-registry tap-registry \
     -n tap-install \
     --docker-server='registry.pivotal.io' \
-    --docker-username=TANZU-NET-USER \   --docker-password=TANZU-NET-PASSWORD
+    --docker-username=TANZU-NET-USER \
+    --docker-password=TANZU-NET-PASSWORD
     ```
 
     Where `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for Tanzu Network.
@@ -331,7 +332,6 @@ To install Cloud Native Runtimes:
     For more information,
     see [Installing Cloud Native Runtimes](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-install.html)
     in the Cloud Native Runtime documentation.
-    For vSphere use `provider=tkgs`.
     For a local Kubernetes cluster use `provider=local`.
     For other infrastructures, `provider` is not required.
 
