@@ -72,6 +72,11 @@ Starting from the repo root, this will create a new `docs.zip` with no root fold
 ```sh
 rm docs.zip ; cd docs && zip -r ../docs.zip * && cd .. && unzip -l docs.zip
 ```
+or
+```sh
+git pull ; rm docs.zip ; zip -r docs.zip Images/ VMwarePub.yaml *.md
+```
+
 
 ### Upload the zip to docworks
 - Go to https://docworks.vmware.com/md2docs/publish
