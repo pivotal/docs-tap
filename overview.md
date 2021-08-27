@@ -6,10 +6,10 @@ Tanzu Application Platform is a packaged set of components that helps
 developers and operators to more easily build, deploy, and manage apps
 on a Kubernetes platform.
 
-Tanzu Application Platform improves and simpifies workflows in both the
+Tanzu Application Platform simplifies workflows in both the
 _inner loop_ and _outer loop_ of Kubernetes-based app development:
 
-* **Inner Loops**: The _inner loop_ describes a developer’s local development
+* **Inner Loop**: The _inner loop_ describes a developer’s local development
 environment where they code and test apps. The activities that take place
 in the inner loop include writing code, committing to a version control
 system, deploying to a development or staging environment, testing,
@@ -23,25 +23,23 @@ images, adding container security, and configuring continuous integration
 
 On a cloud native or Kubernetes platform, developers often spend additional
 time in the inner loop to build container images as well as connect their
-app to all necessary services, apps, or APIs to deploy their app to
+app to all necessary services, apps, or APIs in order to deploy it to
 a development environment.
 
 Outer loop activities can also be more difficult for operators in a
-Kubernetes-based development environment because of the need to build
-an app delivery platform using various different third-party and open
-source components, each with numerous configuration options.
+Kubernetes-based development environment because of the need to construct
+an app delivery platform from various third-party and open source
+components, each with numerous configuration options.
 
-Tanzu Application Platform reduces complexity for developers
-and operators by providing a default set of components that automate the
-steps required to push an app the production in a Kubernetes environment.
-For example, configuring development and production environments, building
-CI/CD pipelines, building and deploying containers, and enforcing security
-policies.
+Tanzu Application Platform provides a default set of components that automate
+the steps required to push an app to staging and production
+on Kubernetes. It also allows operators to customize the platform as
+needed by replacing Tanzu Application Platform components with existing
+or prefered products.
 
-It also allows operators to customize the platform as needed by replacing
-Tanzu Application Platform components with existing or prefered products.
-This separates the needs of developers and operators, allowing developers
-more time to focus on code.
+This reduces the complexity of deploying apps on Kubernetes
+by enabling operators to better automate and standardize the outer loop,
+while allowing developers more time to focus on code.
 
 ## <a id='components'></a> Tanzu Application Platform v0.1 (Beta) Components
 
@@ -49,10 +47,10 @@ Tanzu Application Platform v0.1 (Beta) includes the following components:
 
 | Component Name | Version | Link to Documentation |
 |--------------------------------|-------------------------------|------|
-| Cloud Native Runtimes for VMware Tanzu | v1.0.2 | [Cloud Native Runtimes](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-cnr-overview.html) |
-| VMware Tanzu Build Service | v1.2.2 | [Tanzu Build Service](https://docs.pivotal.io/build-service/1-2/) |
 | Application Accelerator for VMware Tanzu (Beta) | v0.2.0 | [Application Accelerator for VMware Tanzu](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/index.html) |
 | Application Live View for VMware Tanzu (Beta) | v0.1.0 | INSERT DOCS LINK|
+| Cloud Native Runtimes for VMware Tanzu | v1.0.1 | [Cloud Native Runtimes](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-cnr-overview.html) |
+| VMware Tanzu Build Service | v1.2.2 | [Tanzu Build Service](https://docs.pivotal.io/build-service/1-2/) |
 
 ## <a id='install'></a> Install Tanzu Application Platform v0.1 (Beta) Components
 
