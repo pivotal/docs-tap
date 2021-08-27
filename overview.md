@@ -35,7 +35,7 @@ Tanzu Application Platform provides a default set of components that automate
 the steps required to push an app to staging and production
 on Kubernetes. It also allows operators to customize the platform as
 needed by replacing Tanzu Application Platform components with existing
-or prefered products.
+or preferred products.
 
 This reduces the complexity of deploying apps on Kubernetes
 by enabling operators to better automate and standardize the outer loop,
