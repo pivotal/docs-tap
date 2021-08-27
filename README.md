@@ -99,7 +99,7 @@ git pull ; rm docs.zip ; zip -r docs.zip images/ VMwarePub.yaml *.md
 |Publication language|`English`|
 |Publish destination |`VMwareDocs` (default)|
 |Publication audience|`None` (default)|
-|PDF link            |`   ` (empty)|
+|PDF link            |`tanzu-application-platform-0-1`|
 |Zip File            |(choose the file)|
 
 ### In docsdash
