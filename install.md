@@ -88,7 +88,7 @@ To set and verify the Kubernetes cluster configurations:
 
 1. List the existing contexts by running:
 
-    ```    
+    ```
     kubectl config get-contexts
     CURRENT   NAME                                CLUSTER           AUTHINFO                                NAMESPACE
               aks-repo-trial                      aks-repo-trial    clusterUser_aks-rg-01_aks-repo-trial
@@ -121,9 +121,9 @@ To set and verify the Kubernetes cluster configurations:
     Kubernetes control plane is running at https://aks-tap-cluster-dns-eec0876a.hcp.eastus.azmk8s.io:443
     healthmodel-replicaset-service is running at https://aks-tap-cluster-dns-eec0876a.hcp.eastus.azmk8s.io:443/api/v1/namespaces/kube-system/services/healthmodel-replicaset-service/proxy
     CoreDNS is running at https://aks-tap-cluster-dns-eec0876a.hcp.eastus.azmk8s.io:443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
-    Metrics-server is running at https://aks-tap-cluster-dns-eec0876a.hcp.eastus.azmk8s.io:443/api/v1/namespaces/kube-system/services/https:metrics-server:/proxy    
+    Metrics-server is running at https://aks-tap-cluster-dns-eec0876a.hcp.eastus.azmk8s.io:443/api/v1/namespaces/kube-system/services/https:metrics-server:/proxy
 
-    To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.    
+    To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
     </pre>
 
 
@@ -222,7 +222,7 @@ To add the TAP package repository:
     ```
     tanzu package repository list -n tap-install
     - Retrieving repositories...
-      NAME                  REPOSITORY                                                         STATUS               DETAILS  
+      NAME                  REPOSITORY                                                         STATUS               DETAILS
       tanzu-tap-repository  registry.pivotal.io/tanzu-application-platform/tap-packages:0.1.0  Reconcile succeeded
     ```
 
@@ -252,7 +252,9 @@ To add the TAP package repository:
 The parameters that are required for the installation need to be defined in a YAML file.
 
 The required parameters for the individual packages can be identified by the values schema
-that are defined in the package and the same can be gathered by running a command.
+that are defined in the package.
+You can get these parameters by running a command
+as described in the procedure below.
 
 To install any package from the TAP package repository:
 
@@ -270,7 +272,7 @@ To install any package from the TAP package repository:
     For example:
     <pre class='terminal'>tanzu package available get cnrs.tanzu.vmware.com/1.0.1 --values-schema<pre>
 
-The installation of each package is explained in the following examples:
+The installation of each package is explained in the following sections:
 
 + [Install Cloud Native Runtimes](#install-cnr)
 + [Install Application Accelerator](#install-app-accelerator)
@@ -280,7 +282,7 @@ The installation of each package is explained in the following examples:
 
 To install Cloud Native Runtimes:
 
-1. Follow the instructions in [Install Packages](#install-packages).    
+1. Follow the instructions in [Install Packages](#install-packages) above.
 
     ```
     tanzu package available get cnrs.tanzu.vmware.com/1.0.1 --values-schema -n tap-install
@@ -298,16 +300,16 @@ To install Cloud Native Runtimes:
 
 2. Gather the values schema.
 
-3. Populate the `values.yaml`, using the sample `values.yaml` as a guide:
+3. Populate the `values.yaml`, using the following sample `values.yaml` as a guide:
 
-    Sample values.yaml for Cloud Native Runtimes:
+    Sample `values.yaml` for Cloud Native Runtimes:
 
     ```
     ---
     registry:
      server: registry.pivotal.io
      username: TANZU-NET-USER
-     password: TANZU-NET-PASSWORD    
+     password: TANZU-NET-PASSWORD
 
     provider:
     pdb:
@@ -326,7 +328,7 @@ To install Cloud Native Runtimes:
     In TKG environments, if the Contour addons are already be present, they will conflict with the Cloud Native Runtimes installation.
     For how to prevent conflicts,
     see [Installing Cloud Native Runtimes for Tanzu with an Existing Contour Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-contour.html) in the Cloud Native Runtimes documentation
-    and provide values for `ingress.reuse_crds`, `ingress.external.namespace`, and `ingress.internal.namespace` accordingly.    
+    and provide values for `ingress.reuse_crds`, `ingress.external.namespace`, and `ingress.internal.namespace` accordingly.
 
     Provide a provider based on Infrastructure provider.
     For more information,
@@ -335,7 +337,7 @@ To install Cloud Native Runtimes:
     For a local Kubernetes cluster use `provider=local`.
     For other infrastructures, `provider` is not required.
 
-4. Install the package by running:    
+4. Install the package by running:
 
     ```
     root@tkg-cli-client:~# tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 1.0.1 -n tap-install -f values.yaml
@@ -345,7 +347,7 @@ To install Cloud Native Runtimes:
     | Creating cluster admin role 'cloud-native-runtimes-tap-install-cluster-role'
     | Creating cluster role binding 'cloud-native-runtimes-tap-install-cluster-rolebinding'
     - Creating package resource
-    - Package install status: Reconciling    
+    - Package install status: Reconciling
 
      Added installed package 'cloud-native-runtimes' in namespace 'tap-install'
     ```
@@ -354,83 +356,90 @@ To install Cloud Native Runtimes:
 
 ### <a id='install-app-accelerator'></a> Install Application Accelerator
 
-Installing App Accelerator requires Flux to be pre-installed in the cluster.
-Details can be found in [App Accelerator documentation](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.2/acc-docs/GUID-installation-install.html)
+To install Application Accelerator:
 
-Follow the instructions under [Install Packages](#install-packages) section
-and gather the values schema for Application accelerator and populate the values.yaml.
+**Prerequisite**: Flux installed on the cluster.
+For how to install Flux,
+see [Install the Flux2 dependency](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.2/acc-docs/GUID-installation-install.html)
+in the App Accelerator documentation.
 
-Sample values YAML for App Accelerator
+1. Follow the instructions in [Install Packages](#install-packages) above.
 
+2. Gather the values schema.
 
-```
-registry:
-  server: "registry.pivotal.io"
-  username: "<tanzunet_username>"
-  password: "<tanzunet_password>"
-server:
-  service_type: "LoadBalancer"
-  watched_namespace: "default"
-  engine_invocation_url: "http://acc-engine.accelerator-system.svc.cluster.local/invocations"
-engine:
-  service_type: "ClusterIP"
+3. Populate the `values.yaml`, using the following sample `values.yaml` as a guide:
 
-```
+    Sample `values.yaml` for Application Accelerator:
 
+    ```
+    registry:
+      server: "registry.pivotal.io"
+      username: "TANZU-NET-USER"
+      password: "TANZU-NET-PASSWORD"
+    server:
+      service_type: "LoadBalancer"
+      watched_namespace: "default"
+      engine_invocation_url: "http://acc-engine.accelerator-system.svc.cluster.local/invocations"
+    engine:
+      service_type: "ClusterIP"
+    ```
 
-Install the package by running the command,
+4. Install the package by running:
 
+    ```
+     tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.2.0 -n tap-install -f values.yaml
+    - Installing package 'accelerator.apps.tanzu.vmware.com'
+    | Getting package metadata for 'accelerator.apps.tanzu.vmware.com'
+    | Creating service account 'app-accelerator-tap-install-sa'
+    | Creating cluster admin role 'app-accelerator-tap-install-cluster-role'
+    | Creating cluster role binding 'app-accelerator-tap-install-cluster-rolebinding'
+    | Creating secret 'app-accelerator-tap-install-values'
+    - Creating package resource
+    - Package install status: Reconciling
 
-```
- tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.2.0 -n tap-install -f values.yaml
-- Installing package 'accelerator.apps.tanzu.vmware.com'
-| Getting package metadata for 'accelerator.apps.tanzu.vmware.com'
-| Creating service account 'app-accelerator-tap-install-sa'
-| Creating cluster admin role 'app-accelerator-tap-install-cluster-role'
-| Creating cluster role binding 'app-accelerator-tap-install-cluster-rolebinding'
-| Creating secret 'app-accelerator-tap-install-values'
-- Creating package resource
-- Package install status: Reconciling
-
- Added installed package 'app-accelerator' in namespace 'tap-install'
-```
+     Added installed package 'app-accelerator' in namespace 'tap-install'
+    ```
 
 
 
 ### <a id="install-app-live-view"></a>Install Application Live View
 
-Follow the instructions under the [Install Packages](#install-packages) section and
-gather the values schema and populate the values.yaml.
+To install Application Live View:
 
-Sample Values.yaml
+1. Follow the instructions in [Install Packages](#install-packages) above.
 
+2. Gather the values schema.
 
-```
----
-registry:
-  server: registry.pivotal.io
-  username: <tanzunet_username>
-  password: <tanzunet_password>
-```
+3. Populate the `values.yaml`, using the following sample `values.yaml` as a guide:
 
+    Sample `values.yaml` for Application Live View:
 
-Install the package using the command
+    ```
+    ---
+    registry:
+      server: registry.pivotal.io
+      username: TANZU-NET-USER
+      password: TANZU-NET-PASSWORD
+    ```
 
+4. Install the package by running:
 
-```
-tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.1.0 -n tap-install -f values.yaml
-- Installing package 'appliveview.tanzu.vmware.com'
-| Getting package metadata for 'appliveview.tanzu.vmware.com'
-| Creating service account 'app-live-view-tap-install-sa'
-| Creating cluster admin role 'app-live-view-tap-install-cluster-role'
-| Creating cluster role binding 'app-live-view-tap-install-cluster-role binding'
-| Creating secret 'app-live-view-tap-install-values'
-- Creating package resource
-- Package install status: Reconciling
+    ```
+    tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.1.0 -n tap-install -f values.yaml
+    - Installing package 'appliveview.tanzu.vmware.com'
+    | Getting package metadata for 'appliveview.tanzu.vmware.com'
+    | Creating service account 'app-live-view-tap-install-sa'
+    | Creating cluster admin role 'app-live-view-tap-install-cluster-role'
+    | Creating cluster role binding 'app-live-view-tap-install-cluster-role binding'
+    | Creating secret 'app-live-view-tap-install-values'
+    - Creating package resource
+    - Package install status: Reconciling
 
- Added installed package 'app-live-view' in namespace 'tap-install'
-```
-More details can be found in [Application Live View documentation](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.1/app-live-view-docs/GUID-index.html)
+     Added installed package 'app-live-view' in namespace 'tap-install'
+    ```
+
+    For more information about Application Live View,
+    see the [Application Live View documentation](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.1/app-live-view-docs/GUID-index.html).
 
 
 ## Verify the Installed Packages
