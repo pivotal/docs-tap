@@ -15,12 +15,12 @@ This repo is expected to publish to https://docs-staging.vmware.com/en/VMware-Ta
 There is a great variety of spellings and misspellings of product names.
 JD suggests the following list:
 
-* Cloud Native Runtimes for Tanzu
-* Application Accelerator for Tanzu
-* Application Live View for Tanzu
+* Cloud Native Runtimes
+* Application Accelerator
+* Application Live View
 * Tanzu Build Service (not Service**s**)
 
-Optionally, consider using the complete product name at first use:
+But use the complete product name at first use:
 
 * Cloud Native Runtimes for VMware Tanzu
 * Application Accelerator for VMware Tanzu
@@ -45,7 +45,17 @@ Use this table to keep a running list of terms used and how they should be defin
 | TAP package repository |  How is this different from the other package repositories? (Are there non-TAP package repositories discussed on this page?) |
 | .yaml and YAML file | Standardize on using the "a", not `.yml` |
 
-## Publishing docs
+
+## Placeholder List
+
+| Placeholder | Definition |
+|-------------|------------|
+| `TANZU-NET-USER` and `TANZU-NET-PASSWORD` | Where `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for Tanzu Network |
+| `PACKAGE-REPO-NAME`| Where `PACKAGE-REPO-NAME` is the name of the packageRepository from step 1 above.|
+| `VERSION` | Where `VERSION` is the version of the package listed in step 7|
+
+## Publishing Docs
+
 v0.1 Staging docs:  
 
 - [docworks](https://docworks.vmware.com/) is the main tool for managing docs used by writers.
