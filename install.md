@@ -34,20 +34,20 @@ The following prerequisites are required to install Tanzu Application Platform:
 * For Tanzu Kubernetes Grid, the minimum cluster configuration is as follows:
 
     * Tanzu Kubernetes Grid on vSphere 7:
-    <table class="nice">
-      <tr>
-        <td>Deployment Type:</td>
-        <td>Dev, Prod</td>
-      </tr>
-      <tr>
-        <td>Instance type:</td>
-        <td>Medium (2 vCPUs, 8&nbsp;GiB memory)</td>
-      </tr>
-      <tr>
-        <td>Number of worker nodes:</td>
-        <td>3</td>
-      </tr>
-      </table>
+      <table class="nice">
+        <tr>
+          <td>Deployment Type:</td>
+          <td>Dev, Prod</td>
+        </tr>
+        <tr>
+          <td>Instance type:</td>
+          <td>Medium (2 vCPUs, 8&nbsp;GiB memory)</td>
+        </tr>
+        <tr>
+          <td>Number of worker nodes:</td>
+          <td>3</td>
+        </tr>
+       </table>
 
     * Tanzu Kubernetes Grid on Azure:
       <table class="nice">
@@ -181,7 +181,7 @@ To add the TAP package repository:
 
 2. Create a secret for the namespace:
     ```
-​​    kubectl create secret docker-registry tap-registry \
+    kubectl create secret docker-registry tap-registry \
     -n tap-install \
     --docker-server='registry.pivotal.io' \
     --docker-username=TANZU-NET-USER \   --docker-password=TANZU-NET-PASSWORD
@@ -231,7 +231,7 @@ To add the TAP package repository:
     tanzu package available list -n tap-install
     / Retrieving available packages...
       NAME                          DISPLAY-NAME                              SHORT-DESCRIPTION
-    accelerator.apps.tanzu.vmware.com  Application Accelerator for VMware Tanzu  Used to create new projects and configurations.                                      
+      accelerator.apps.tanzu.vmware.com  Application Accelerator for VMware Tanzu  Used to create new projects and configurations.                                      
       appliveview.tanzu.vmware.com       Application Live View for VMware Tanzu    App for monitoring and troubleshooting running apps                                  
       cnrs.tanzu.vmware.com              Cloud Native Runtimes                     Cloud Native Runtimes is a serverless runtime based on Knative
     ```
@@ -267,9 +267,7 @@ To install any package from the TAP package repository:
      [Add the TAP Package Repository](#add-package-repositories) above.
 
     For example:
-    <pre class='terminal'>
-    `tanzu package available get cnrs.tanzu.vmware.com/1.0.1 --values-schema`
-    </pre>
+    <pre class='terminal'>tanzu package available get cnrs.tanzu.vmware.com/1.0.1 --values-schema<pre>
 
 The installation of each package is explained in the following examples:
 
@@ -324,18 +322,18 @@ To install Cloud Native Runtimes:
     Local_dns:
     ```
 
-  In TKG environments, if the Contour addons are already be present, they will conflict with the Cloud Native Runtimes installation.
-  For how to prevent conflicts,
-  see [Installing Cloud Native Runtimes for Tanzu with an Existing Contour Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-contour.html) in the Cloud Native Runtimes documentation
-  and provide values for `ingress.reuse_crds`, `ingress.external.namespace`, and `ingress.internal.namespace` accordingly.    
+    In TKG environments, if the Contour addons are already be present, they will conflict with the Cloud Native Runtimes installation.
+    For how to prevent conflicts,
+    see [Installing Cloud Native Runtimes for Tanzu with an Existing Contour Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-contour.html) in the Cloud Native Runtimes documentation
+    and provide values for `ingress.reuse_crds`, `ingress.external.namespace`, and `ingress.internal.namespace` accordingly.    
 
-  Provide a provider based on Infrastructure provider.
-  For more information,
-  see [Installing Cloud Native Runtimes](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-install.html)
-  in the Cloud Native Runtime documentation.
-  For vSphere use `provider=tkgs`.
-  For a local Kubernetes cluster use `provider=local`.
-  For other infrastructures, `provider` is not required.
+    Provide a provider based on Infrastructure provider.
+    For more information,
+    see [Installing Cloud Native Runtimes](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-install.html)
+    in the Cloud Native Runtime documentation.
+    For vSphere use `provider=tkgs`.
+    For a local Kubernetes cluster use `provider=local`.
+    For other infrastructures, `provider` is not required.
 
 4. Install the package by running:    
 
@@ -450,7 +448,7 @@ To verify that the packages have been installed:
     \ Retrieving installed packages...
       NAME                   PACKAGE-NAME                       PACKAGE-VERSION  STATUS
       app-accelerator        accelerator.apps.tanzu.vmware.com  0.2.0            Reconcile succeeded
-      app-live-view         appliveview.tanzu.vmware.com       0.1.0            Reconcile succeeded
+      app-live-view         appliveview.tanzu.vmware.com        0.1.0            Reconcile succeeded
       cloud-native-runtimes  cnrs.tanzu.vmware.com              1.0.1            Reconcile succeeded
     ```
 
