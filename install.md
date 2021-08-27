@@ -332,7 +332,6 @@ To install Cloud Native Runtimes:
     For more information,
     see [Installing Cloud Native Runtimes](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-install.html)
     in the Cloud Native Runtime documentation.
-    For vSphere use `provider=tkgs`.
     For a local Kubernetes cluster use `provider=local`.
     For other infrastructures, `provider` is not required.
 
