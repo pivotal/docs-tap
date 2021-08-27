@@ -430,12 +430,8 @@ tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.1.0 -n 
 
  Added installed package 'app-live-view' in namespace 'tap-install'
 ```
-More details can be found in [Application Live View documentation](https://docs-staging.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.1/app-live-view-docs/GUID-index.html)
+More details can be found in [Application Live View documentation](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.1/app-live-view-docs/GUID-index.html)
 
-
-  <!-----
-  This link above is in staging. This needs to be changed to the Public doc before publishing(docs.vmware.com)
-  ----->
 
 ## Verify the Installed Packages
 
