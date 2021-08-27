@@ -116,7 +116,7 @@ To set and verify the Kubernetes cluster configurations:
     ```
 
     For example:
-    <pre class="terminal">
+    ```
     $ kubectl cluster-info
     Kubernetes control plane is running at https://aks-tap-cluster-dns-eec0876a.hcp.eastus.azmk8s.io:443
     healthmodel-replicaset-service is running at https://aks-tap-cluster-dns-eec0876a.hcp.eastus.azmk8s.io:443/api/v1/namespaces/kube-system/services/healthmodel-replicaset-service/proxy
@@ -124,7 +124,7 @@ To set and verify the Kubernetes cluster configurations:
     Metrics-server is running at https://aks-tap-cluster-dns-eec0876a.hcp.eastus.azmk8s.io:443/api/v1/namespaces/kube-system/services/https:metrics-server:/proxy
 
     To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
-    </pre>
+    ```
 
 
 ## Packages in Tanzu Application Platform v0.1
@@ -270,7 +270,9 @@ To install any package from the TAP package repository:
      [Add the TAP Package Repository](#add-package-repositories) above.
 
     For example:
-    <pre class='terminal'>tanzu package available get cnrs.tanzu.vmware.com/1.0.1 --values-schema<pre>
+    ```
+    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.1 --values-schema
+    ```
 
 The installation of each package is explained in the following sections:
 

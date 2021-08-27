@@ -10,12 +10,6 @@ The uninstall process is made up of two tasks:
 
 ## <a id='del-packages'></a> Delete the Packages
 
-<!---
-What is the purpose of this procedure. Is like deleting the installer archive (DMG file)
-on my laptop after I've successfully installed an app?
-Or is it like a complete uninstall of the components, if I decide I don't want to use TAP afterall?
----->
-
 To delete the installed packages:
 
 1. Remove a package by running:
@@ -24,8 +18,8 @@ To delete the installed packages:
     tanzu package installed delete PACKAGE-NAME
     ```
     For example:
-    <pre class='terminal'>
-    tanzu package installed delete cloud-native-runtimes -n tap-install
+    ```
+    $ tanzu package installed delete cloud-native-runtimes -n tap-install
     | Uninstalling package 'cloud-native-runtimes' from namespace 'tap-install'
     / Getting package install for 'cloud-native-runtimes'
     \ Deleting package install 'cloud-native-runtimes' from namespace 'tap-install'
@@ -37,7 +31,7 @@ To delete the installed packages:
     / Deleting service account 'cloud-native-runtimes-tap-install-sa'    
 
      Uninstalled package 'cloud-native-runtimes' from namespace 'tap-install'
-    </pre>
+    ```
 
 2. Repeat step 1 for each package installed.
 
@@ -65,8 +59,8 @@ To delete the TAP package repository:
 
     For example:
 
-    <pre class=terminal>
-    tanzu package repository delete tanzu-application-platform-package-repository -n tap-install
+    ```
+    $ tanzu package repository delete tanzu-application-platform-package-repository -n tap-install
     - Deleting package repository 'tanzu-application-platform-package-repository'...
      Deleted package repository 'tanzu-application-platform-package-repository' in namespace 'tap-install'
-    </pre>
+    ```
