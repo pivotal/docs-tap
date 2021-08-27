@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repo is expected to publish to https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Service/0.1/tap-0-1
+This repo is expected to publish to https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.1/tap-0-1/GUID-install.html
 
 ## Branches
 
