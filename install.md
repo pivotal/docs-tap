@@ -1,9 +1,4 @@
-<!-----
-* Tue Aug 24 2021 15:33:04 GMT-0700 (PDT)
-* Source doc: Install Packages using TAP repo bundle
------>
-
-# <a id='installing'></a> Installing Tanzu Application Platform Packages
+# <a id='installing'></a> Installing Tanzu Application Platform
 
 This document describes how to install Tanzu Application Platform packages from the TAP package repository.
 
@@ -23,8 +18,9 @@ The following prerequisites are required to install Tanzu Application Platform:
 
 * The Kubernetes command line tool, kubectl, v1.19 or later, installed and authenticated with administrator rights for your target cluster.
 * The [Tanzu command line interface (CLI)](ttps://github.com/vmware-tanzu/community-edition/releases/tag/v0.7.0).
-   Alternatively, if you have Tanzu Kubernetes Grid, see [Download and Unpack the Tanzu CLI](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.3/vmware-tanzu-kubernetes-grid-13/GUID-install-cli.html#download-and-unpack-the-tanzu-cli-and-kubectl-1)
-  in the Tanzu Kubernetes Grid documentation.
+   Alternatively, if you have Tanzu Kubernetes Grid,
+   see [Download and Unpack the Tanzu CLI](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.3/vmware-tanzu-kubernetes-grid-13/GUID-install-cli.html#download-and-unpack-the-tanzu-cli-and-kubectl-1)
+   in the Tanzu Kubernetes Grid documentation.
 
 
 * Tanzu Application Platform is compatible with a Kubernetes cluster (v1.19 or later) on the following Kubernetes providers:
@@ -135,10 +131,10 @@ To set and verify the Kubernetes cluster configurations:
 
 The following packages are available in Tanzu Application Platform:
 
-* Cloud Native Runtimes for Tanzu
-* Application Accelerator for Tanzu
-* Application Live View for Tanzu
-* Tanzu Build Service
+* Cloud Native Runtimes for VMware Tanzu
+* Application Accelerator for VMware Tanzu
+* Application Live View for VMware Tanzu
+* VMware Tanzu Build Service
 
 Cloud Native Runtimes, Application Accelerator, and Application Live View are available as a package in TAP repo bundle.
 For instructions on how to add the TAP package repository and install packages from the repository
@@ -166,9 +162,9 @@ To accept EULAs:
       [Tanzu Build Service Dependencies](https://network.pivotal.io/products/tbs-dependencies/),
       [Buildpacks for VMware Tanzu](https://network.pivotal.io/products/tanzu-buildpacks-suite), and
       [Stacks for VMware Tanzu](https://network.pivotal.io/products/tanzu-stacks-suite)
-    + [Cloud Native Runtimes for Tanzu](https://network.pivotal.io/products/serverless/)
-    + [Application Accelerator for Tanzu](https://network.pivotal.io/products/app-accelerator/)
-    + [Application Live View for Tanzu](https://network.pivotal.io/products/app-live-view/)
+    + [Cloud Native Runtimes](https://network.pivotal.io/products/serverless/)
+    + [Application Accelerator](https://network.pivotal.io/products/app-accelerator/)
+    + [Application Live View](https://network.pivotal.io/products/app-live-view/)
 
   ![Screenshot of page on Tanzu Network from where you download Tanzu Application Platform packages shows the EULA warning](./images/tap-on-tanzu-net.png)
 
@@ -184,13 +180,14 @@ To add the TAP package repository:
     This namespace is to keep the objects grouped together logically.
 
 2. Create a secret for the namespace:
-
     ```
 ​​    kubectl create secret docker-registry tap-registry \
     -n tap-install \
     --docker-server='registry.pivotal.io' \
-    --docker-username=<tanzunet_username> \   --docker-password=<tanzunet_password>
+    --docker-username=TANZU-NET-USER \   --docker-password=TANZU-NET-PASSWORD
     ```
+
+    Where `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for Tanzu Network.
 
     > **Note:** You must name the secret `tap-registry` because this secret name is
     hard-coded in the packageRepository custom resource.
@@ -251,95 +248,113 @@ To add the TAP package repository:
 
 ## <a id='install-packages'></a> Install Packages
 
-To install any package from the PackageRepository,
-the parameters that are required for the installation need to be defined in a YAML file.
+The parameters that are required for the installation need to be defined in a YAML file.
 
 The required parameters for the individual packages can be identified by the values schema
 that are defined in the package and the same can be gathered by running a command.
 
- `tanzu package available get &lt;package-name>/&lt;version> --values-schema`
- `tanzu package available get PACKAGE-NAME/VERSION --values-schema`
+To install any package from the TAP package repository:
 
- Where:
- + PACKAGE-NAME is
- + VERSION is
+1. Run:
+    ```
+    tanzu package available get PACKAGE-NAME/VERSION --values-schema
+    ```
 
-For example:
-`tanzu package available get cnrs.tanzu.vmware.com/1.0.1 --values-schema`
+     Where:
+     + `PACKAGE-NAME` is the name of the package listed in step 6 of
+     [Add the TAP Package Repository](#add-package-repositories) above.
+     + `VERSION` is the version of the package listed in step 7 of
+     [Add the TAP Package Repository](#add-package-repositories) above.
 
-The installation of the package is explained in the following examples.
+    For example:
+    <pre class='terminal'>
+    `tanzu package available get cnrs.tanzu.vmware.com/1.0.1 --values-schema`
+    </pre>
+
+The installation of each package is explained in the following examples:
+
++ [Install Cloud Native Runtimes](#install-cnr)
++ [Install Application Accelerator](#install-app-accelerator)
++ [Install Application Live View](#install-app-live-view)
+
+### <a id='install-crn'></a> Install Cloud Native Runtimes
+
+To install Cloud Native Runtimes:
+
+1. Follow the instructions in [Install Packages](#install-packages).    
+
+    ```
+    tanzu package available get cnrs.tanzu.vmware.com/1.0.1 --values-schema -n tap-install
+    | Retrieving package details for cnrs.tanzu.vmware.com/1.0.1...
+      KEY                         DEFAULT  TYPE             DESCRIPTION
+      registry.server             <nil>    registry server  <nil>
+      registry.username           <nil>    string           registry username
+      ingress.external.namespace  <nil>    string           external namespace
+      ingress.internal.namespace  <nil>    string           internal namespace
+      ingress.reuse_crds          false    string           set true to reuse existing Contour instance
+      local_dns                   <nil>    string           <nil>
+      provider                    <nil>    string           Kubernetes cluster provider
+      registry.password           <nil>    string           registry password
+    ```
+
+2. Gather the values schema.
+
+3. Populate the `values.yaml`, using the sample `values.yaml` as a guide:
+
+    Sample values.yaml for Cloud Native Runtimes:
+
+    ```
+    ---
+    registry:
+     server: registry.pivotal.io
+     username: TANZU-NET-USER
+     password: TANZU-NET-PASSWORD    
+
+    provider:
+    pdb:
+     enable: true    
+
+    ingress:
+     reuse_crds:
+     external:
+       namespace:
+     internal:
+       namespace:    
+
+    Local_dns:
+    ```
+
+  In TKG environments, if the Contour addons are already be present, they will conflict with the Cloud Native Runtimes installation.
+  For how to prevent conflicts,
+  see [Installing Cloud Native Runtimes for Tanzu with an Existing Contour Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-contour.html) in the Cloud Native Runtimes documentation
+  and provide values for `ingress.reuse_crds`, `ingress.external.namespace`, and `ingress.internal.namespace` accordingly.    
+
+  Provide a provider based on Infrastructure provider.
+  For more information,
+  see [Installing Cloud Native Runtimes](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-install.html)
+  in the Cloud Native Runtime documentation.
+  For vSphere use `provider=tkgs`.
+  For a local Kubernetes cluster use `provider=local`.
+  For other infrastructures, `provider` is not required.
+
+4. Install the package by running:    
+
+    ```
+    root@tkg-cli-client:~# tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 1.0.1 -n tap-install -f values.yaml
+    - Installing package 'cnrs.tanzu.vmware.com'
+    | Getting package metadata for 'cnrs.tanzu.vmware.com'
+    | Creating service account 'cloud-native-runtimes-tap-install-sa'
+    | Creating cluster admin role 'cloud-native-runtimes-tap-install-cluster-role'
+    | Creating cluster role binding 'cloud-native-runtimes-tap-install-cluster-rolebinding'
+    - Creating package resource
+    - Package install status: Reconciling    
+
+     Added installed package 'cloud-native-runtimes' in namespace 'tap-install'
+    ```
 
 
-### Install Cloud Native Runtimes {#install-cloud-native-runtimes}
 
-Follow the instructions under the [Install Packages](#install-packages) section and gather the values schema and populate the values.yaml.
-
-
-```
-tanzu package available get cnrs.tanzu.vmware.com/1.0.1 --values-schema -n tap-install
-| Retrieving package details for cnrs.tanzu.vmware.com/1.0.1...
-  KEY                         DEFAULT  TYPE             DESCRIPTION
-  registry.server             <nil>    registry server  <nil>
-  registry.username           <nil>    string           registry username
-  ingress.external.namespace  <nil>    string           external namespace
-  ingress.internal.namespace  <nil>    string           internal namespace
-  ingress.reuse_crds          false    string           set true to reuse existing Contour instance
-  local_dns                   <nil>    string           <nil>
-  provider                    <nil>    string           Kubernetes cluster provider
-  registry.password           <nil>    string           registry password
-```
-
-
-Sample values.yaml for Cloud Native Runtimes
-
-
-```
----
-registry:
- server: registry.pivotal.io
- username: <tanzunet_username>
- password: <tanzunet_password>
-
-provider:
-pdb:
- enable: true
-
-ingress:
- reuse_crds:
- external:
-   namespace:
- internal:
-   namespace:
-
-Local_dns:
-```
-
-
-In TKG environments, the contour addons might already be present and it will conflict with the Cloud Native Runtimes installation. Refer to the Cloud Native Runtimes [documentation](https://docs-staging.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-contour.html) and provide values for **ingress.reuse_crds, ingress.external.namespace, ingress.internal.namespace** accordingly.
-
-Also refer to the Cloud Native Runtimes [documentation](https://docs-staging.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-install.html) and provide a provider based on Infrastructure provider. \
-Example: For vSphere provider=tkgs for Local kubernetes cluster provider=local, for rest it is not needed.
-
-Install the package by running the command,
-
-
-```
-root@tkg-cli-client:~# tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 1.0.1 -n tap-install -f values.yaml
-- Installing package 'cnrs.tanzu.vmware.com'
-| Getting package metadata for 'cnrs.tanzu.vmware.com'
-| Creating service account 'cloud-native-runtimes-tap-install-sa'
-| Creating cluster admin role 'cloud-native-runtimes-tap-install-cluster-role'
-| Creating cluster role binding 'cloud-native-runtimes-tap-install-cluster-rolebinding'
-- Creating package resource
-- Package install status: Reconciling
-
-
- Added installed package 'cloud-native-runtimes' in namespace 'tap-install'
-```
-
-
-
-### Install App Accelerator
+### <a id='install-app-accelerator'></a> Install Application Accelerator
 
 Installing App Accelerator requires Flux to be pre-installed in the cluster.
 Details can be found in [App Accelerator documentation](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.2/acc-docs/GUID-installation-install.html)
@@ -384,7 +399,7 @@ Install the package by running the command,
 
 
 
-### Install App Live View
+### <a id="install-app-live-view"></a>Install Application Live View
 
 Follow the instructions under the [Install Packages](#install-packages) section and
 gather the values schema and populate the values.yaml.
@@ -424,50 +439,55 @@ More details can be found in [Application Live View documentation](https://docs-
   This link above is in staging. This needs to be changed to the Public doc before publishing(docs.vmware.com)
   ----->
 
-## Verifying Installed Packages
+## Verify the Installed Packages
 
-The packages installed can be verified using the command
+To verify that the packages have been installed:
 
-<code>tanzu package <strong>installed l</strong>ist</code>
+1. List the installed packages by running:
 
-
-```
-tanzu package installed list -n tap-install
-\ Retrieving installed packages...
-  NAME                   PACKAGE-NAME                       PACKAGE-VERSION  STATUS
-  app-accelerator        accelerator.apps.tanzu.vmware.com  0.2.0            Reconcile succeeded
-  app-live-view         appliveview.tanzu.vmware.com       0.1.0            Reconcile succeeded
-  cloud-native-runtimes  cnrs.tanzu.vmware.com              1.0.1            Reconcile succeeded
-```
-
-
-
-## Deleting Packages
-
-The installed packages can be removed by running the command
-
-
-```
-tanzu package installed delete <installed-package-name>
-```
+    ```
+    tanzu package installed list -n tap-install
+    \ Retrieving installed packages...
+      NAME                   PACKAGE-NAME                       PACKAGE-VERSION  STATUS
+      app-accelerator        accelerator.apps.tanzu.vmware.com  0.2.0            Reconcile succeeded
+      app-live-view         appliveview.tanzu.vmware.com       0.1.0            Reconcile succeeded
+      cloud-native-runtimes  cnrs.tanzu.vmware.com              1.0.1            Reconcile succeeded
+    ```
 
 
 
-```
-tanzu package installed delete cloud-native-runtimes -n tap-install
-| Uninstalling package 'cloud-native-runtimes' from namespace 'tap-install'
-/ Getting package install for 'cloud-native-runtimes'
-\ Deleting package install 'cloud-native-runtimes' from namespace 'tap-install'
-\ Package uninstall status: Reconciling
-/ Package uninstall status: Deleting
-| Deleting admin role 'cloud-native-runtimes-tap-install-cluster-role'
-| Deleting role binding 'cloud-native-runtimes-tap-install-cluster-rolebinding'
-| Deleting secret 'cloud-native-runtimes-tap-install-values'
-/ Deleting service account 'cloud-native-runtimes-tap-install-sa'
+## Delete the Packages
 
- Uninstalled package 'cloud-native-runtimes' from namespace 'tap-install'
-```
+<!---
+What is the purpose of this procedure. Is like deleting the installer archive (DMG file)
+on my laptop after I've successfully installed an app?
+Or is it like a complete uninstall of the components, if I decide I don't want to use TAP afterall?
+---->
 
+To delete the installed packages:
+
+1. Remove a package by running:
+
+    ```
+    tanzu package installed delete PACKAGE-NAME
+    ```
+    For example:
+    <pre class='terminal'>
+    tanzu package installed delete cloud-native-runtimes -n tap-install
+    | Uninstalling package 'cloud-native-runtimes' from namespace 'tap-install'
+    / Getting package install for 'cloud-native-runtimes'
+    \ Deleting package install 'cloud-native-runtimes' from namespace 'tap-install'
+    \ Package uninstall status: Reconciling
+    / Package uninstall status: Deleting
+    | Deleting admin role 'cloud-native-runtimes-tap-install-cluster-role'
+    | Deleting role binding 'cloud-native-runtimes-tap-install-cluster-rolebinding'
+    | Deleting secret 'cloud-native-runtimes-tap-install-values'
+    / Deleting service account 'cloud-native-runtimes-tap-install-sa'    
+
+     Uninstalled package 'cloud-native-runtimes' from namespace 'tap-install'
+    </pre>
+
+2. Repeat step 1 for each package installed.
 
 
 ## Delete the TAP Package Repository
@@ -486,17 +506,15 @@ To delete the TAP package repository:
 2. Remove the TAP package repository by running:
 
     ```
-    tanzu package repository delete PACKAGE-REPO-NAME
+    tanzu package repository delete PACKAGE-REPO-NAME -n tap-install
     ```
 
-    Where:
+    Where `PACKAGE-REPO-NAME` is the name of the packageRepository from step 1 above.
 
-    * PACKAGE-REPO-NAME is the name of the packageRepository from step 1 above.
+    For example:
 
-
-
-```
-tanzu package repository delete tanzu-application-platform-package-repository -n tap-install
-- Deleting package repository 'tanzu-application-platform-package-repository'...
- Deleted package repository 'tanzu-application-platform-package-repository' in namespace 'tap-install'
-```
+    <pre class=terminal>
+    tanzu package repository delete tanzu-application-platform-package-repository -n tap-install
+    - Deleting package repository 'tanzu-application-platform-package-repository'...
+     Deleted package repository 'tanzu-application-platform-package-repository' in namespace 'tap-install'
+    </pre>
