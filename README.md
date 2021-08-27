@@ -74,7 +74,7 @@ rm docs.zip ; cd docs && zip -r ../docs.zip * && cd .. && unzip -l docs.zip
 ```
 or
 ```sh
-git pull ; rm docs.zip ; zip -r docs.zip Images/ VMwarePub.yaml *.md
+git pull ; rm docs.zip ; zip -r docs.zip images/ VMwarePub.yaml *.md
 ```
 
 
