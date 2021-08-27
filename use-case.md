@@ -855,6 +855,8 @@ tap-install          application-live-view-5112   LoadBalancer   10.100.176.238 
 tap-install          application-live-view-7000   ClusterIP      10.100.29.252    <none>                                                                    7000/TCP                          55s
 vmware-sources       webhook                      ClusterIP      10.100.192.82    <none>                                                                    443/TCP                           9m18s
 ```
+![Screenshot of page on Application Accelerator where you create new accelerators.](./images/Screenshot 2021-08-23 at 8.13.32 PM.png)
+![Screenshot of page on Application Accelerator where you create new accelerators.](./images/Screenshot 2021-08-23 at 8.16.02 PM.png)
 ## Install Tanzu Build Service 
 1. Move the Tanzu Build Service bundle from X registry to X registry. Pull imgpkg to the local directory from the registry where you moved the registry.
 ```
@@ -1465,6 +1467,7 @@ vdesikan@vdesikan-a01 tap-install % kubectl get accelerator
 NAME              READY   REASON   AGE
 new-accelerator   True             5s
 ```
+![Screenshot of page on Application Accelerator that shows a new accelerator is created.](./images/image2021-8-24_9-37-33.png)
   2. Create the `spring-pet-clinic` accelerator. Generate a project, create a new accelerator and add accelerator.yaml to your git repo. You will see the accelerator you created in the Application Accelerator UI.
 ```
 vdesikan@vdesikan-a01 tap-install % cd ../Downloads
@@ -1501,7 +1504,11 @@ engine:
   include:
   - '**'
 ```
+![Screenshot of page on Application Accelerator that shows a new accelerator is created.](./images/image2021-8-24_9-48-46.png)
+![Screenshot of page on Application Accelerator that shows a new accelerator is created.](./images/image2021-8-24_9-44-16.png)
+![Screenshot of page on Application Accelerator that shows a new accelerator is created.](./images/image2021-8-24_9-45-33.png)
 2. Generate a project named `spring-pet-clinic-eks`. Create a new git repo `spring-pet-clinic-eks.git`. Using the new `spring-petclinic-demo-acc`, add the `spring-pet-clinic-eks` project to the `spring-pet-clinic-eks.git` git repo.
+![Screenshot of page on Application Accelerator that shows a new accelerator is created.](./images/image2021-8-24_9-48-46.png)
 ```
 vdesikan@vdesikan-a01 spring-petclinic-acc % cd ../
 vdesikan@vdesikan-a01 Downloads % ls | grep spring                 
@@ -2099,6 +2106,8 @@ vdesikan@vdesikan-a01 tap-install % more /etc/hosts
 vdesikan@vdesikan-a01 tap-install %
 ```
 5. Verify that you can access the Spring Pet Clinic app. Ensure that App Live View is also displaying the Spring Pet Clinic app.
+![Screenshot of page on Tanzu Network from where you download Tanzu Application Platform packages shows the EULA warning](./images/image2021-8-24_16-6-22.png)
+![Screenshot of page on Tanzu Network from where you download Tanzu Application Platform packages shows the EULA warning](./images/image2021-8-24_10-44-38.png)
 6. Make some code changes in the git repo and commit the change. Verify that the new build is created automatically and the new image is generated.
 ```
 vdesikan@vdesikan-a01 spring-pet-clinic-eks % ls
@@ -2286,3 +2295,4 @@ spring-petclinic-image-build-1-vl7j5-build-pod          0/1     Completed   0   
 spring-petclinic-image-build-2-gthhl-build-pod          0/1     Completed   0          11m
 ```
 8. Verify that the code changes are reflected in the app.
+![Screenshot of page on Tanzu Network from where you download Tanzu Application Platform packages shows the EULA warning](./images/image2021-8-24_16-6-22.png)
