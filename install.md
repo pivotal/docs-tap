@@ -308,13 +308,13 @@ To install Cloud Native Runtimes:
     ```
     ---
     registry:
-     server: registry.pivotal.io
-     username: TANZU-NET-USER
-     password: TANZU-NET-PASSWORD
+     server: "registry.pivotal.io"
+     username: "TANZU-NET-USER"
+     password: "TANZU-NET-PASSWORD"
 
     provider:
     pdb:
-     enable: true    
+     enable: "true"
 
     ingress:
      reuse_crds:
@@ -414,9 +414,9 @@ To install Application Live View:
     ```
     ---
     registry:
-      server: registry.pivotal.io
-      username: TANZU-NET-USER
-      password: TANZU-NET-PASSWORD
+      server: "registry.pivotal.io"
+      username: "TANZU-NET-USER"
+      password: "TANZU-NET-PASSWORD"
     ```
 
 4. Install the package by running:
