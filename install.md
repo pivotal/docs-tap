@@ -190,7 +190,7 @@ To add the TAP package repository:
 
     Where `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for Tanzu Network.
 
-    > **Note:** You must name the secret `tap-registry`."
+    > **Note:** You must name the secret `tap-registry`.
 
 3. Create the TAP package repository custom resource by downloading the sample custom resource
    from [Tanzu Network](https://network.pivotal.io/products/tanzu-application-platform/).
