@@ -331,13 +331,9 @@ To install Cloud Native Runtimes:
     see [Installing Cloud Native Runtimes for Tanzu with an Existing Contour Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-contour.html) in the Cloud Native Runtimes documentation
     and provide values for `ingress.reuse_crds`, `ingress.external.namespace`, and `ingress.internal.namespace` accordingly.
 
-    Provide a provider based on Infrastructure provider.
-    For more information,
-    see [Installing Cloud Native Runtimes](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-install.html)
-    in the Cloud Native Runtime documentation.
-    For a local Kubernetes cluster use `provider=local`.
-    For other infrastructures, `provider` is not required.
-
+    For a local Kubernetes cluster, set `provider=local`.
+    For other infrastructures, do not set provider.
+    
 4. Install the package by running:
 
     ```
