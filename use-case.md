@@ -1837,6 +1837,8 @@ vdesikan@vdesikan-a01 tap-install % kubectl create secret docker-registry tbs-se
 secret/tbs-secret created
 vdesikan@vdesikan-a01 tap-install % kubectl patch serviceaccount default -p "{\"imagePullSecrets\": [{\"name\": \"tbs-secret\"}]}" -n tap-install
 serviceaccount/default patched
+vdesikan@vdesikan-a01 tap-install % kubectl patch serviceaccount default -p "{\"secrets\": [{\"name\": \"tbs-secret\"}]}" -n tap-install
+serviceaccount/default patched
 ```
   2. Use Tanzu Build Service to create an image for the git-repo created with Application Accelerator. Specify a container registry where you can push the image.
 ```
@@ -1847,7 +1849,7 @@ metadata:
   name: spring-petclinic-image
 spec:
   tag: dev.registry.pivotal.io/tanzu-advanced-edition/vdesikan/spring-petclinic-eks
-  serviceAccount: tap-service-account
+  serviceAccount: default
   builder:
     kind: ClusterBuilder
     name: default
