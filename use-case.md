@@ -854,10 +854,8 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
   tap-install          application-live-view-7000   ClusterIP      10.100.29.252    <none>                                                                    7000/TCP                          55s
   vmware-sources       webhook                      ClusterIP      10.100.192.82    <none>                                                                    443/TCP                           9m18s
   ```
-  
-  ![Screenshot of page on Application Accelerator where you create new accelerators.](./images/Screenshot 2021-08-23 at 8.13.32 PM.png)
-  
-  ![Screenshot of page on Application Accelerator where you create new accelerators.](./images/Screenshot 2021-08-23 at 8.16.02 PM.png)
+  ![Screenshot of page on Application Accelerator where you create new accelerators.](./images/accelerators1.png)
+  ![Screenshot of page on Application Accelerator where you create new accelerators.](./images/app-live-view1.png)
 ## Install Tanzu Build Service 
 1. Move the Tanzu Build Service bundle from X registry to X registry. Pull imgpkg to the local directory from the registry where you moved the registry.
   ```
