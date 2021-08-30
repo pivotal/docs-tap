@@ -12,7 +12,10 @@ The uninstall process is made up of two tasks:
 
 To delete the installed packages:
 
-1. Remove a package by running:
+1. List the installed packages.
+   See [Verify the Installed Packages](./install.html#verify).
+
+2. Remove a package by running:
 
     ```
     tanzu package installed delete PACKAGE-NAME
@@ -33,7 +36,9 @@ To delete the installed packages:
      Uninstalled package 'cloud-native-runtimes' from namespace 'tap-install'
     ```
 
-2. Repeat step 1 for each package installed.
+    Where `PACKAGE-NAME` is the name of a package listed in step 1 above.
+
+3. Repeat step 2 for each package installed.
 
 
 ## <a id='del-repo'></a>Delete the TAP Package Repository

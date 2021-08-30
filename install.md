@@ -439,7 +439,7 @@ To install Application Live View:
     see the [Application Live View documentation](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.1/app-live-view-docs/GUID-index.html).
 
 
-## Verify the Installed Packages
+## <a id='verify'></a> Verify the Installed Packages
 
 To verify that the packages have been installed:
 
