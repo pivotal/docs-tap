@@ -1799,7 +1799,6 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
   ```
 3. Use Tanzu Build Service to create an image for the app from the new git repo added using App Accelerator Template.
   1. Create a Tanzu Application Platform service account and a secret for Tanzu Build Service. Patch the secret to the service account's Image Pull secret.
-<<<<<<< HEAD
     ```
     vdesikan@vdesikan-a01 tap-install % more tap-sa.yaml
     apiVersion: v1
@@ -1842,48 +1841,45 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
     ```
     vdesikan@vdesikan-a01 tap-install % more image.yaml
     apiVersion: kpack.io/v1alpha1
-    kind: Image
-=======
-```
-vdesikan@vdesikan-a01 tap-install % more tap-sa.yaml
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: tap-service-account
-  namespace: tap-install
----
-kind: ClusterRole
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: cluster-admin-cluster-role
-rules:
-- apiGroups: ["*"]
-  resources: ["*"]
-  verbs: ["*"]
----
-kind: ClusterRoleBinding
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: cluster-admin-cluster-role-binding
-subjects:
-- kind: ServiceAccount
-  name: tap-service-account
-  namespace: tap-install
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: cluster-admin-cluster-role
-vdesikan@vdesikan-a01 tap-install % kubectl apply -f tap-sa.yaml
-serviceaccount/tap-service-account created
-clusterrole.rbac.authorization.k8s.io/cluster-admin-cluster-role unchanged
-clusterrolebinding.rbac.authorization.k8s.io/cluster-admin-cluster-role-binding configured
-vdesikan@vdesikan-a01 tap-install % kubectl create secret docker-registry tbs-secret -n tap-install --docker-server='dev.registry.pivotal.io' --docker-username=$USRFULL --docker-password=$PASS
-secret/tbs-secret created
-vdesikan@vdesikan-a01 tap-install % kubectl patch serviceaccount default -p "{\"imagePullSecrets\": [{\"name\": \"tbs-secret\"}]}" -n tap-install
-serviceaccount/default patched
-vdesikan@vdesikan-a01 tap-install % kubectl patch serviceaccount default -p "{\"secrets\": [{\"name\": \"tbs-secret\"}]}" -n tap-install
-serviceaccount/default patched
-```
+    vdesikan@vdesikan-a01 tap-install % more tap-sa.yaml
+    apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      name: tap-service-account
+      namespace: tap-install
+    ---
+    kind: ClusterRole
+    apiVersion: rbac.authorization.k8s.io/v1
+    metadata:
+      name: cluster-admin-cluster-role
+    rules:
+    - apiGroups: ["*"]
+      resources: ["*"]
+      verbs: ["*"]
+    ---
+    kind: ClusterRoleBinding
+    apiVersion: rbac.authorization.k8s.io/v1
+    metadata:
+      name: cluster-admin-cluster-role-binding
+    subjects:
+    - kind: ServiceAccount
+      name: tap-service-account
+      namespace: tap-install
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
+      kind: ClusterRole
+      name: cluster-admin-cluster-role
+    vdesikan@vdesikan-a01 tap-install % kubectl apply -f tap-sa.yaml
+    serviceaccount/tap-service-account created
+    clusterrole.rbac.authorization.k8s.io/cluster-admin-cluster-role unchanged
+    clusterrolebinding.rbac.authorization.k8s.io/cluster-admin-cluster-role-binding configured
+    vdesikan@vdesikan-a01 tap-install % kubectl create secret docker-registry tbs-secret -n tap-install --docker-server='dev.registry.pivotal.io' --docker-username=$USRFULL --docker-password=$PASS
+    secret/tbs-secret created
+    vdesikan@vdesikan-a01 tap-install % kubectl patch serviceaccount default -p "{\"imagePullSecrets\": [{\"name\": \"tbs-secret\"}]}" -n tap-install
+    serviceaccount/default patched
+    vdesikan@vdesikan-a01 tap-install % kubectl patch serviceaccount default -p "{\"secrets\": [{\"name\": \"tbs-secret\"}]}" -n tap-install
+    serviceaccount/default patched
+    ```
   2. Use Tanzu Build Service to create an image for the git-repo created with Application Accelerator. Specify a container registry where you can push the image.
 ```
 vdesikan@vdesikan-a01 tap-install % more image.yaml
