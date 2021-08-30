@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repo is expected to publish to https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Service/0.1/tap-0-1
+This repo is expected to publish to https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.1/tap-0-1/GUID-install.html
 
 ## Branches
 
@@ -72,6 +72,11 @@ Starting from the repo root, this will create a new `docs.zip` with no root fold
 ```sh
 rm docs.zip ; cd docs && zip -r ../docs.zip * && cd .. && unzip -l docs.zip
 ```
+or
+```sh
+git pull ; rm docs.zip ; zip -r docs.zip images/ VMwarePub.yaml *.md
+```
+
 
 ### Upload the zip to docworks
 - Go to https://docworks.vmware.com/md2docs/publish
@@ -94,7 +99,7 @@ rm docs.zip ; cd docs && zip -r ../docs.zip * && cd .. && unzip -l docs.zip
 |Publication language|`English`|
 |Publish destination |`VMwareDocs` (default)|
 |Publication audience|`None` (default)|
-|PDF link            |`   ` (empty)|
+|PDF link            |`tanzu-application-platform-0-1`|
 |Zip File            |(choose the file)|
 
 ### In docsdash

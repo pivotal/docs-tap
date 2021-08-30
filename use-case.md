@@ -1799,6 +1799,7 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
   ```
 3. Use Tanzu Build Service to create an image for the app from the new git repo added using App Accelerator Template.
   1. Create a Tanzu Application Platform service account and a secret for Tanzu Build Service. Patch the secret to the service account's Image Pull secret.
+<<<<<<< HEAD
     ```
     vdesikan@vdesikan-a01 tap-install % more tap-sa.yaml
     apiVersion: v1
@@ -1842,6 +1843,183 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
     vdesikan@vdesikan-a01 tap-install % more image.yaml
     apiVersion: kpack.io/v1alpha1
     kind: Image
+=======
+```
+vdesikan@vdesikan-a01 tap-install % more tap-sa.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: tap-service-account
+  namespace: tap-install
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: cluster-admin-cluster-role
+rules:
+- apiGroups: ["*"]
+  resources: ["*"]
+  verbs: ["*"]
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: cluster-admin-cluster-role-binding
+subjects:
+- kind: ServiceAccount
+  name: tap-service-account
+  namespace: tap-install
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin-cluster-role
+vdesikan@vdesikan-a01 tap-install % kubectl apply -f tap-sa.yaml
+serviceaccount/tap-service-account created
+clusterrole.rbac.authorization.k8s.io/cluster-admin-cluster-role unchanged
+clusterrolebinding.rbac.authorization.k8s.io/cluster-admin-cluster-role-binding configured
+vdesikan@vdesikan-a01 tap-install % kubectl create secret docker-registry tbs-secret -n tap-install --docker-server='dev.registry.pivotal.io' --docker-username=$USRFULL --docker-password=$PASS
+secret/tbs-secret created
+vdesikan@vdesikan-a01 tap-install % kubectl patch serviceaccount default -p "{\"imagePullSecrets\": [{\"name\": \"tbs-secret\"}]}" -n tap-install
+serviceaccount/default patched
+vdesikan@vdesikan-a01 tap-install % kubectl patch serviceaccount default -p "{\"secrets\": [{\"name\": \"tbs-secret\"}]}" -n tap-install
+serviceaccount/default patched
+```
+  2. Use Tanzu Build Service to create an image for the git-repo created with Application Accelerator. Specify a container registry where you can push the image.
+```
+vdesikan@vdesikan-a01 tap-install % more image.yaml
+apiVersion: kpack.io/v1alpha1
+kind: Image
+metadata:
+  name: spring-petclinic-image
+spec:
+  tag: dev.registry.pivotal.io/tanzu-advanced-edition/vdesikan/spring-petclinic-eks
+  serviceAccount: default
+  builder:
+    kind: ClusterBuilder
+    name: default
+  source:
+    git:
+      url: https://github.com/vdesikanvmware/spring-pet-clinic-eks
+      revision: main
+vdesikan@vdesikan-a01 tap-install % kubectl apply -f image.yaml -n tap-install  
+image.kpack.io/spring-petclinic-image created
+vdesikan@vdesikan-a01 tap-install % kp image list
+Error: no images found
+vdesikan@vdesikan-a01 tap-install % kp image list -n tap-install
+NAME                      READY      LATEST REASON    LATEST IMAGE    NAMESPACE
+spring-petclinic-image    Unknown    CONFIG                           tap-install
+ 
+ 
+vdesikan@vdesikan-a01 tap-install % kp build list -n tap-install
+BUILD    STATUS      IMAGE    REASON
+1        BUILDING             CONFIG
+ 
+ 
+vdesikan@vdesikan-a01 tap-install % kp image list -n tap-install
+NAME                      READY      LATEST REASON    LATEST IMAGE    NAMESPACE
+spring-petclinic-image    Unknown    CONFIG                           tap-install
+ 
+ 
+vdesikan@vdesikan-a01 tap-install % kp build list -n tap-install
+BUILD    STATUS      IMAGE    REASON
+1        BUILDING             CONFIG
+ 
+ 
+vdesikan@vdesikan-a01 tap-install % kp build status spring-petclinic-image -n tap-install
+Image:            --
+Status:           BUILDING
+Reason:           CONFIG
+                  resources: {}
+                  - source: {}
+                  + source:
+                  +   git:
+                  +     revision: a3592d4d1a47ae3e6f6e0143d0369a9476da7620
+                  +     url: https://github.com/vdesikanvmware/spring-pet-clinic-eks
+Status Reason:    PodInitializing
+ 
+ 
+Started:     2021-08-24 10:09:27
+Finished:    --
+ 
+ 
+Pod Name:    spring-petclinic-image-build-1-vl7j5-build-pod
+ 
+ 
+Builder:      dev.registry.pivotal.io/tanzu-advanced-edition/beta1/tbs/default@sha256:c3acd9780a055d9657f702426460d2fbd0b9dcdac3facbaec894646a580d6f6d
+Run Image:    --
+ 
+ 
+Source:      GitUrl
+Url:         https://github.com/vdesikanvmware/spring-pet-clinic-eks
+Revision:    a3592d4d1a47ae3e6f6e0143d0369a9476da7620
+ 
+ 
+BUILDPACK ID    BUILDPACK VERSION    HOMEPAGE
+ 
+ 
+vdesikan@vdesikan-a01 tap-install % kp image list -n tap-install                        
+NAME                      READY      LATEST REASON    LATEST IMAGE    NAMESPACE
+spring-petclinic-image    Unknown    CONFIG                           tap-install
+ 
+ 
+vdesikan@vdesikan-a01 tap-install % kp build list -n tap-install                        
+BUILD    STATUS      IMAGE    REASON
+1        BUILDING             CONFIG
+ 
+ 
+vdesikan@vdesikan-a01 tap-install % kp image list -n tap-install
+NAME                      READY    LATEST REASON    LATEST IMAGE                                                                                                                                            NAMESPACE
+spring-petclinic-image    True     CONFIG           dev.registry.pivotal.io/tanzu-advanced-edition/vdesikan/spring-petclinic-eks@sha256:be889cf313016eb4fc168556493c2b1672c8e2af725e33696bf461b8212f9872    tap-install
+ 
+ 
+vdesikan@vdesikan-a01 tap-install % kp build list -n tap-install
+BUILD    STATUS     IMAGE                                                                                                                                                   REASON
+1        SUCCESS    dev.registry.pivotal.io/tanzu-advanced-edition/vdesikan/spring-petclinic-eks@sha256:be889cf313016eb4fc168556493c2b1672c8e2af725e33696bf461b8212f9872    CONFIG
+ 
+ 
+vdesikan@vdesikan-a01 tap-install % kp build status spring-petclinic-image -n tap-install
+Image:     dev.registry.pivotal.io/tanzu-advanced-edition/vdesikan/spring-petclinic-eks@sha256:be889cf313016eb4fc168556493c2b1672c8e2af725e33696bf461b8212f9872
+Status:    SUCCESS
+Reason:    CONFIG
+           resources: {}
+           - source: {}
+           + source:
+           +   git:
+           +     revision: a3592d4d1a47ae3e6f6e0143d0369a9476da7620
+           +     url: https://github.com/vdesikanvmware/spring-pet-clinic-eks
+ 
+ 
+Started:     2021-08-24 10:09:27
+Finished:    2021-08-24 10:10:58
+ 
+ 
+Pod Name:    spring-petclinic-image-build-1-vl7j5-build-pod
+ 
+ 
+Builder:      dev.registry.pivotal.io/tanzu-advanced-edition/beta1/tbs/default@sha256:c3acd9780a055d9657f702426460d2fbd0b9dcdac3facbaec894646a580d6f6d
+Run Image:    dev.registry.pivotal.io/tanzu-advanced-edition/beta1/tbs/run@sha256:ae65c51e7fb215fa3ed3ffddf9e438a3f9c571e591db71dec7d903ce5bc9bf92
+ 
+ 
+Source:      GitUrl
+Url:         https://github.com/vdesikanvmware/spring-pet-clinic-eks
+Revision:    a3592d4d1a47ae3e6f6e0143d0369a9476da7620
+ 
+ 
+BUILDPACK ID                           BUILDPACK VERSION    HOMEPAGE
+paketo-buildpacks/ca-certificates      2.3.2                https://github.com/paketo-buildpacks/ca-certificates
+paketo-buildpacks/bellsoft-liberica    8.2.0                https://github.com/paketo-buildpacks/bellsoft-liberica
+paketo-buildpacks/maven                5.3.3                https://github.com/paketo-buildpacks/maven
+paketo-buildpacks/executable-jar       5.1.2                https://github.com/paketo-buildpacks/executable-jar
+paketo-buildpacks/apache-tomcat        6.0.0                https://github.com/paketo-buildpacks/apache-tomcat
+paketo-buildpacks/dist-zip             4.1.2                https://github.com/paketo-buildpacks/dist-zip
+paketo-buildpacks/spring-boot          4.4.2                https://github.com/paketo-buildpacks/spring-boot
+```
+4. Deploy the image you generated as a service with Cloud Native Runtimes. Deploy the image in the namespace where App Live View is running with the labels `tanzu.app.live.view=true` and `tanzu.app.live.view.application.name=<app_name>`. Add the appropriate DNS entries using `/etc/hosts`.
+```
+vdesikan@vdesikan-a01 tap-install % more kapp-deploy-spring-petclinic.yaml
+    apiVersion: kappctrl.k14s.io/v1alpha1
+    kind: App
+>>>>>>> 41815f8433a4f08cb4f148cc329daaed98b3abc0
     metadata:
       name: spring-petclinic-image
     spec:
