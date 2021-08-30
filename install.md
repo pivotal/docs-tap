@@ -82,7 +82,7 @@ The following prerequisites are required to install Tanzu Application Platform:
       </table>
 
 
-## Set and Verify the Kubernetes Cluster configurations
+## Set and Verify the Kubernetes Cluster Configurations
 
 To set and verify the Kubernetes cluster configurations:
 
@@ -136,8 +136,8 @@ The following packages are available in Tanzu Application Platform:
 * Application Live View for VMware Tanzu
 * VMware Tanzu Build Service
 
-Cloud Native Runtimes, Application Accelerator, and Application Live View are available as a package in TAP repo bundle.
-For instructions on how to add the TAP package repository and install packages from the repository
+Cloud Native Runtimes, Application Accelerator, and Application Live View are available as a package in the TAP repo bundle.
+For instructions on how to add the TAP package repository and install packages from the repository,
 see [Add PackageRepositories](#add-package-repositories) and [Install Packages](#install-packages) below.
 
 Tanzu Build Services v1.2.2 can be installed from VMware Tanzu Network.
@@ -149,7 +149,7 @@ in the Tanzu Build Services documentation.
 ## Accept the EULAs
 
 Before you can install packages, you have to accept the End User License Agreements (EULAs)
-for all the components separately.
+for each component separately.
 
 To accept EULAs:
 
@@ -230,7 +230,7 @@ To add the TAP package repository:
     ```
     tanzu package available list -n tap-install
     / Retrieving available packages...
-      NAME                          DISPLAY-NAME                              SHORT-DESCRIPTION
+      NAME                               DISPLAY-NAME                              SHORT-DESCRIPTION
       accelerator.apps.tanzu.vmware.com  Application Accelerator for VMware Tanzu  Used to create new projects and configurations.                                      
       appliveview.tanzu.vmware.com       Application Live View for VMware Tanzu    App for monitoring and troubleshooting running apps                                  
       cnrs.tanzu.vmware.com              Cloud Native Runtimes                     Cloud Native Runtimes is a serverless runtime based on Knative
@@ -252,20 +252,21 @@ The parameters that are required for the installation need to be defined in a YA
 
 The required parameters for the individual packages can be identified by the values schema
 that are defined in the package.
-You can get these parameters by running a command
+You can get these parameters by running the command
 as described in the procedure below.
 
 To install any package from the TAP package repository:
 
 1. Run:
     ```
-    tanzu package available get PACKAGE-NAME/VERSION --values-schema
+    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema
     ```
 
      Where:
+
      + `PACKAGE-NAME` is the name of the package listed in step 6 of
      [Add the TAP Package Repository](#add-package-repositories) above.
-     + `VERSION` is the version of the package listed in step 7 of
+     + `VERSION-NUMBER` is the version of the package listed in step 7 of
      [Add the TAP Package Repository](#add-package-repositories) above.
 
     For example:
@@ -273,11 +274,12 @@ To install any package from the TAP package repository:
     $ tanzu package available get cnrs.tanzu.vmware.com/1.0.1 --values-schema
     ```
 
-The installation of each package is explained in the following sections:
+2. Follow the specific installation instructions for each package:
 
-+ [Install Cloud Native Runtimes](#install-cnr)
-+ [Install Application Accelerator](#install-app-accelerator)
-+ [Install Application Live View](#install-app-live-view)
+    + [Install Cloud Native Runtimes](#install-cnr)
+    + [Install Application Accelerator](#install-app-accelerator)
+    + [Install Application Live View](#install-app-live-view)
+
 
 ### <a id='install-crn'></a> Install Cloud Native Runtimes
 
@@ -326,13 +328,15 @@ To install Cloud Native Runtimes:
     Local_dns:
     ```
 
-    In TKG environments, if the Contour addons are already be present, they will conflict with the Cloud Native Runtimes installation.
+    In TKG environments, Contour addons that are already be present might conflict
+    with the Cloud Native Runtimes installation.
     For how to prevent conflicts,
-    see [Installing Cloud Native Runtimes for Tanzu with an Existing Contour Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-contour.html) in the Cloud Native Runtimes documentation
-    and provide values for `ingress.reuse_crds`, `ingress.external.namespace`, and `ingress.internal.namespace` accordingly.
+    see [Installing Cloud Native Runtimes for Tanzu with an Existing Contour Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-contour.html) in the Cloud Native Runtimes documentation.
+    Then, in the `values.yaml` file, specify values for `ingress.reuse_crds`, `ingress.external.namespace`,
+    and `ingress.internal.namespace` as appropriate.
 
     For a local Kubernetes cluster, set `provider=local`.
-    For other infrastructures, do not set provider.
+    For other infrastructures, do not set `provider`.
     
 4. Install the package by running:
 
@@ -384,7 +388,7 @@ in the App Accelerator documentation.
 4. Install the package by running:
 
     ```
-     tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.2.0 -n tap-install -f values.yaml
+    tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.2.0 -n tap-install -f values.yaml
     - Installing package 'accelerator.apps.tanzu.vmware.com'
     | Getting package metadata for 'accelerator.apps.tanzu.vmware.com'
     | Creating service account 'app-accelerator-tap-install-sa'
@@ -441,7 +445,7 @@ To install Application Live View:
 
 ## <a id='verify'></a> Verify the Installed Packages
 
-To verify that the packages have been installed:
+To verify that the packages are installed:
 
 1. List the installed packages by running:
 
