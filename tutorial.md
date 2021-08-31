@@ -1,5 +1,5 @@
 # Tanzu Application Platform Tutorial: Install and Deploy the Spring Pet Clinic App 
-This topic describes how to use Tanzu Application Platform capabilities to install, configure, and deploy the Spring Pet Clinic app. This procedure includes Cloud Native Runtimes, App Live View, Application Accelerator, and Tanzu Build Service. 
+This topic describes how to use Tanzu Application Platform capabilities to install, configure, and deploy the Spring Pet Clinic app. This procedure includes Cloud Native Runtimes, Application Live View, Application Accelerator, and Tanzu Build Service. 
 
 ## Install and Configure the  Tanzu Application Platform Bundle
 
@@ -292,7 +292,7 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
   networkpolicy.networking.k8s.io "allow-scraping" deleted
   networkpolicy.networking.k8s.io "allow-webhooks" deleted
   ```
-8. Install Application Accelerator. 
+8. Install Application Accelerator with the Tanzu Application Service package. 
   ```
   tap-install % tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.2.0 -n tap-install -f values-acc.yml
  
@@ -323,9 +323,9 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
  
   Succeeded
   ```
-9. Install App Live View.
+9. Install Application Live View.
   ```
-  vdesikan@vdesikan-a01 tap-install % tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.1.0 -n tap-install -f values-alv.yml
+  tap-install % tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.1.0 -n tap-install -f values-alv.yml
   - Installing package 'appliveview.tanzu.vmware.com'
   / Getting package metadata for 'appliveview.tanzu.vmware.com'
   - Creating service account 'app-live-view-tap-install-sa'
@@ -336,13 +336,13 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
   / Package install status: Reconciling
  
    Added installed package 'app-live-view' in namespace 'tap-install'
-  vdesikan@vdesikan-a01 tap-install % tanzu package  installed  list -A
+  tap-install % tanzu package  installed  list -A
   / Retrieving installed packages...
     NAME                   PACKAGE-NAME                       PACKAGE-VERSION  STATUS               NAMESPACE
     app-accelerator        accelerator.apps.tanzu.vmware.com  0.2.0            Reconcile succeeded  tap-install
     app-live-view          appliveview.tanzu.vmware.com       0.1.0            Reconcile succeeded  tap-install
     cloud-native-runtimes  cnrs.tanzu.vmware.com              1.0.1            Reconcile succeeded  tap-install
-  vdesikan@vdesikan-a01 tap-install % kapp list -A
+  tap-install % kapp list -A
   Target cluster 'https://94A70B79EF7B1D5E718A4E96B2925F91.gr7.us-east-2.eks.amazonaws.com' (nodes: ip-172-31-46-226.us-east-2.compute.internal, 3+)
  
   Apps in all namespaces
@@ -364,71 +364,11 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
   7 apps
  
   Succeeded
-  vdesikan@vdesikan-a01 tap-install % kubectl get pods -A
-  NAMESPACE            NAME                                                    READY   STATUS    RESTARTS   AGE
-  accelerator-system   acc-engine-69f7f7b6b8-pstf9                             1/1     Running   0          3m12s
-  accelerator-system   acc-ui-server-6df7c597bd-fz5hv                          1/1     Running   0          3m12s
-  accelerator-system   accelerator-controller-manager-796f7dff7-pqtvg          1/1     Running   0          3m12s
-  contour-external     contour-7c7795856b-8mqlz                                1/1     Running   0          9m6s
-  contour-external     contour-7c7795856b-8xh6c                                1/1     Running   0          9m6s
-  contour-external     envoy-7fzmk                                             2/2     Running   0          9m6s
-  contour-external     envoy-ccrgj                                             2/2     Running   0          9m6s
-  contour-external     envoy-fndxp                                             2/2     Running   0          9m6s
-  contour-external     envoy-mcbfr                                             2/2     Running   0          9m6s
-  contour-internal     contour-5b6b565d-6sbx4                                  1/1     Running   0          9m6s
-  contour-internal     contour-5b6b565d-lhmvn                                  1/1     Running   0          9m6s
-  contour-internal     envoy-l2tc6                                             2/2     Running   0          9m6s
-  contour-internal     envoy-mv7x2                                             2/2     Running   0          9m6s
-  contour-internal     envoy-rnhtf                                             2/2     Running   0          9m6s
-  contour-internal     envoy-t2llr                                             2/2     Running   0          9m6s
-  flux-system          helm-controller-68996c978c-rlfnb                        1/1     Running   0          6m8s
-  flux-system          image-automation-controller-68d55fccd8-52wwk            1/1     Running   0          6m6s
-  flux-system          image-reflector-controller-7784457d8f-n82r7             1/1     Running   0          6m8s
-  flux-system          kustomize-controller-759f994b-tpbrf                     1/1     Running   0          6m8s
-  flux-system          notification-controller-6fd769cbf4-qn2kk                1/1     Running   0          6m6s
-  flux-system          source-controller-648d7f445d-2h2wc                      1/1     Running   0          6m8s
-  kapp-controller      kapp-controller-ff4656bb-cjrl7                          1/1     Running   0          22m
-  knative-discovery    controller-b59bd9449-8l9f4                              1/1     Running   0          9m4s
-  knative-discovery    webhook-54c56fc5b8-8djnb                                1/1     Running   0          9m4s
-  knative-eventing     eventing-controller-6c7fbfdb79-7vr4w                    1/1     Running   0          9m6s
-  knative-eventing     eventing-webhook-5885fcccc9-7b5lh                       1/1     Running   0          9m6s
-  knative-eventing     eventing-webhook-5885fcccc9-vbgzs                       1/1     Running   0          8m51s
-  knative-eventing     imc-controller-bdb84c8ff-q67gj                          1/1     Running   0          9m6s
-  knative-eventing     imc-dispatcher-586bd55496-6j97d                         1/1     Running   0          9m5s
-  knative-eventing     mt-broker-controller-785589dd9d-vlx6v                   1/1     Running   0          9m5s
-  knative-eventing     mt-broker-filter-7dfcf6589-fjhmz                        1/1     Running   0          9m5s
-  knative-eventing     mt-broker-ingress-688cc7f74-l46p9                       1/1     Running   0          9m5s
-  knative-eventing     rabbitmq-broker-controller-85d5b56f8-kwz9x              1/1     Running   0          9m4s
-  knative-serving      activator-5b59f7c699-4cvts                              1/1     Running   0          8m52s
-  knative-serving      activator-5b59f7c699-4mbtl                              1/1     Running   0          9m8s
-  knative-serving      activator-5b59f7c699-sk2m5                              1/1     Running   0          8m52s
-  knative-serving      autoscaler-8f85d46c-g4tnh                               1/1     Running   0          9m8s
-  knative-serving      contour-ingress-controller-8fbc54c-whghl                1/1     Running   0          9m6s
-  knative-serving      controller-645bdbc7d9-z5n5v                             1/1     Running   0          9m8s
-  knative-serving      net-certmanager-webhook-dcdc76d4-qnxzg                  1/1     Running   0          9m4s
-  knative-serving      networking-certmanager-7575777f9f-t4tf9                 1/1     Running   0          9m4s
-  knative-serving      webhook-7cb844897b-sdqrz                                1/1     Running   0          9m7s
-  knative-serving      webhook-7cb844897b-tkszw                                1/1     Running   0          8m52s
-  knative-sources      rabbitmq-controller-manager-5dcb7c8494-t7c8k            1/1     Running   0          9m3s
-  knative-sources      rabbitmq-webhook-bcb77f84f-2d6fw                        1/1     Running   0          9m3s
-  kube-system          aws-node-2fzbz                                          1/1     Running   0          4d
-  kube-system          aws-node-4s2vw                                          1/1     Running   0          4d
-  kube-system          aws-node-jf8vp                                          1/1     Running   0          4d
-  kube-system          coredns-5c778788f4-bl47d                                1/1     Running   0          4d
-  kube-system          coredns-5c778788f4-swf2n                                1/1     Running   0          4d
-  kube-system          kube-proxy-dcbwg                                        1/1     Running   0          4d
-  kube-system          kube-proxy-rq6gh                                        1/1     Running   0          4d
-  kube-system          kube-proxy-sbsrz                                        1/1     Running   0          4d
-  kube-system          kube-proxy-xl2b5                                        1/1     Running   0          4d
-  tap-install          application-live-view-connector-57cd7c6c6-pv8dk         1/1     Running   0          43s
-  tap-install          application-live-view-crd-controller-5b659f8f57-7zz25   1/1     Running   0          43s
-  tap-install          application-live-view-server-79bd874566-qtcbc           1/1     Running   0          43s
-  triggermesh          aws-event-sources-controller-7f9dd6d69-6ldbs            1/1     Running   0          9m8s
-  vmware-sources       webhook-c9f67b5cd-tjv4p                                 1/1     Running   0          9m5s
+  tap-install % kubectl get pods -A
   ```
-10. Verify that you can access the Application Accelerator UI and the App Live View UI using the external IP listed below:
+10. Verify that you can access the Application Accelerator UI and the Application Live View UI using the external IP listed below:
   ```
-  vdesikan@vdesikan-a01 tap-install % kubectl get service -A
+  tap-install % kubectl get service -A
   NAMESPACE            NAME                         TYPE           CLUSTER-IP       EXTERNAL-IP                                                               PORT(S)                           AGE
   accelerator-system   acc-engine                   ClusterIP      10.100.253.164   <none>                                                                    80/TCP                            3m24s
   accelerator-system   acc-ui-server                LoadBalancer   10.100.74.90     a3b48dd9f15f746a48b503aee558bd96-309532596.us-east-2.elb.amazonaws.com    80:31689/TCP                      3m24s
@@ -466,7 +406,7 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
 ## Install Tanzu Build Service 
 1. Move the Tanzu Build Service bundle from X registry to X registry. Pull imgpkg to the local directory from the registry where you moved the registry.
   ```
-  vdesikan@vdesikan-a01 tap-install % imgpkg copy -b "registry.pivotal.io/build-service/bundle:1.2.2" --to-repo dev.registry.pivotal.io/tanzu-advanced-edition/beta1/tbs
+  tap-install % imgpkg copy -b "registry.pivotal.io/build-service/bundle:1.2.2" --to-repo dev.registry.pivotal.io/tanzu-advanced-edition/beta1/tbs
   copy | exporting 17 images...
   copy | will export registry.pivotal.io/build-service/bundle@sha256:e03765dbce254a1266a8bba026a71ec908854681bd12bf69cd7d55d407bbca95
   copy | will export registry.pivotal.io/build-service/dependency-updater@sha256:9f71c2fa6f7779924a95d9bcdedc248b4623c4d446ecddf950a21117e1cebd76
@@ -494,7 +434,7 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
   copy | done uploading images
   copy | Warning: Skipped layer due to it being non-distributable. If you would like to include non-distributable layers, use the --include-non-distributable-layers flag
   Succeeded
-  vdesikan@vdesikan-a01 tap-install % imgpkg pull -b "dev.registry.pivotal.io/tanzu-advanced-edition/beta1/tbs:1.2.2" -o tmp/bundle
+  tap-install % imgpkg pull -b "dev.registry.pivotal.io/tanzu-advanced-edition/beta1/tbs:1.2.2" -o tmp/bundle
   Pulling bundle 'dev.registry.pivotal.io/tanzu-advanced-edition/beta1/tbs@sha256:e03765dbce254a1266a8bba026a71ec908854681bd12bf69cd7d55d407bbca95'
     Extracting layer 'sha256:fe2f85ecc3c64ff1a1e1bf2ada42b179889f06f375fccb64f2f23ed24a331992' (1/1)
  
@@ -505,7 +445,7 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
   ```
 2. Install Tanzu Build Service.
   ```
-  vdesikan@vdesikan-a01 tap-install % ytt -f tmp/bundle/values.yaml -f tmp/bundle/config/ -v docker_repository=dev.registry.pivotal.io/tanzu-advanced-edition/beta1/tbs -v docker_username=$USRFULL -v docker_password=$PASS -v tanzunet_username=$USRFULL -v tanzunet_password=$PASS | kbld -f tmp/bundle/.imgpkg/images.yml -f- | kapp deploy -a tanzu-build-service -f- -y
+  tap-install % ytt -f tmp/bundle/values.yaml -f tmp/bundle/config/ -v docker_repository=dev.registry.pivotal.io/tanzu-advanced-edition/beta1/tbs -v docker_username=$USRFULL -v docker_password=$PASS -v tanzunet_username=$USRFULL -v tanzunet_password=$PASS | kbld -f tmp/bundle/.imgpkg/images.yml -f- | kapp deploy -a tanzu-build-service -f- -y
   resolve | final: build-init -> dev.registry.pivotal.io/tanzu-advanced-edition/beta1/tbs@sha256:31e95adee6d59ac46f5f2ec48208cbd154db0f4f8e6c1de1b8edf0cd9418bba8
   resolve | final: completion -> dev.registry.pivotal.io/tanzu-advanced-edition/beta1/tbs@sha256:1c63b9c876b11b7bf5f83095136b690fc07860c80b62a167c41b4c3efd1910bd
   resolve | final: dependency-updater -> dev.registry.pivotal.io/tanzu-advanced-edition/beta1/tbs@sha256:9f71c2fa6f7779924a95d9bcdedc248b4623c4d446ecddf950a21117e1cebd76
@@ -947,9 +887,9 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
   5:42:46PM: ---- waiting complete [95/95 done] ----
  
   Succeeded
-  vdesikan@vdesikan-a01 tap-install %
+  tap-install %
  
-  vdesikan@vdesikan-a01 tap-install % kubectl get pods -A
+  tap-install % kubectl get pods -A
   NAMESPACE                NAME                                                    READY   STATUS    RESTARTS   AGE
   accelerator-system       acc-engine-69f7f7b6b8-pstf9                             1/1     Running   0          49m
   accelerator-system       acc-ui-server-6df7c597bd-fz5hv                          1/1     Running   0          49m
@@ -1026,7 +966,7 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
   tap-install              application-live-view-server-79bd874566-qtcbc           1/1     Running   0          47m
   triggermesh              aws-event-sources-controller-7f9dd6d69-6ldbs            1/1     Running   0          55m
   vmware-sources           webhook-c9f67b5cd-tjv4p                                 1/1     Running   0          55m
-  vdesikan@vdesikan-a01 tap-install % kapp list -A
+  tap-install % kapp list -A
   Target cluster 'https://94A70B79EF7B1D5E718A4E96B2925F91.gr7.us-east-2.eks.amazonaws.com' (nodes: ip-172-31-46-226.us-east-2.compute.internal, 3+)
  
   Apps in all namespaces
@@ -1056,7 +996,7 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
 1. Create an Application Accelerator template for the `spring-pet-clinic` app from your git repository.
   1. Create New Accelerator.
     ```
-    vdesikan@vdesikan-a01 tap-install % more new-accelerator.yaml
+    tap-install % more new-accelerator.yaml
     apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
     kind: Accelerator
     metadata:
@@ -1067,35 +1007,35 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
         ref:
           branch: main
           tag: v0.2.x
-    vdesikan@vdesikan-a01 tap-install % kubectl apply -f new-accelerator.yaml
+    tap-install % kubectl apply -f new-accelerator.yaml
     accelerator.accelerator.apps.tanzu.vmware.com/new-accelerator created
-    vdesikan@vdesikan-a01 tap-install % kubectl get accelerator                 
+    tap-install % kubectl get accelerator                 
     NAME              READY   REASON   AGE
     new-accelerator   True             5s
     ```
     ![Screenshot of page on Application Accelerator that shows a new accelerator is created.](./images/image2021-8-24_9-37-33.png)
   2. Create the `spring-pet-clinic` accelerator. Generate a project, create a new accelerator and add accelerator.yaml to your git repo. You will see the accelerator you created in the Application Accelerator UI.
     ```
-    vdesikan@vdesikan-a01 tap-install % cd ../Downloads
-    vdesikan@vdesikan-a01 Downloads % ls | grep spring
+    tap-install % cd ../Downloads
+    Downloads % ls | grep spring
     spring-petclinic-acc.zip
-    vdesikan@vdesikan-a01 Downloads % unzip spring-petclinic-acc.zip
+    Downloads % unzip spring-petclinic-acc.zip
     Archive:  spring-petclinic-acc.zip
        creating: spring-petclinic-acc/
       inflating: spring-petclinic-acc/accelerator.yaml 
       inflating: spring-petclinic-acc/k8s-resource.yaml 
       inflating: spring-petclinic-acc/README.md 
       inflating: spring-petclinic-acc/accelerator-log.md 
-    vdesikan@vdesikan-a01 Downloads % cd spring-petclinic-acc
-    vdesikan@vdesikan-a01 spring-petclinic-acc % ls
+    Downloads % cd spring-petclinic-acc
+    spring-petclinic-acc % ls
     README.md       accelerator-log.md  accelerator.yaml    k8s-resource.yaml
-    vdesikan@vdesikan-a01 spring-petclinic-acc % kubectl apply -f k8s-resource.yaml
+    spring-petclinic-acc % kubectl apply -f k8s-resource.yaml
     accelerator.accelerator.apps.tanzu.vmware.com/spring-pet-clinic-acc created
-    vdesikan@vdesikan-a01 spring-petclinic-acc % kubectl get accelerator             
+    spring-petclinic-acc % kubectl get accelerator             
     NAME                    READY   REASON   AGE
     new-accelerator         True             4m32s
     spring-pet-clinic-acc   True             7s
-    vdesikan@vdesikan-a01 spring-petclinic-acc % more accelerator.yaml  
+    spring-petclinic-acc % more accelerator.yaml  
     accelerator:
       displayName: spring-petclinic-acc
       description: spring per clinic accelerator
@@ -1116,12 +1056,12 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
 2. Generate a project named `spring-pet-clinic-eks`. Create a new git repo `spring-pet-clinic-eks.git`. Using the new `spring-petclinic-demo-acc`, add the `spring-pet-clinic-eks` project to the `spring-pet-clinic-eks.git` git repo.
   ![Screenshot of page on Application Accelerator that shows a new accelerator is created.](./images/image2021-8-24_9-48-46.png)
   ```
-  vdesikan@vdesikan-a01 spring-petclinic-acc % cd ../
-  vdesikan@vdesikan-a01 Downloads % ls | grep spring                 
+  spring-petclinic-acc % cd ../
+  Downloads % ls | grep spring                 
   spring-pet-clinic-eks.zip
   spring-petclinic-acc
   spring-petclinic-acc.zip
-  vdesikan@vdesikan-a01 Downloads % unzip spring-pet-clinic-eks.zip
+  Downloads % unzip spring-pet-clinic-eks.zip
   Archive:  spring-pet-clinic-eks.zip
      creating: spring-pet-clinic-eks/
     inflating: spring-pet-clinic-eks/mvnw 
@@ -1276,13 +1216,13 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
     inflating: spring-pet-clinic-eks/config/workload.yaml 
     inflating: spring-pet-clinic-eks/Tiltfile 
     inflating: spring-pet-clinic-eks/accelerator-log.md 
-  vdesikan@vdesikan-a01 Downloads % cd spring-pet-clinic-eks
-  vdesikan@vdesikan-a01 spring-pet-clinic-eks % ls
+  Downloads % cd spring-pet-clinic-eks
+  spring-pet-clinic-eks % ls
   README.md       Tiltfile        accelerator-log.md  config          docker-compose.yml  mvnw            mvnw.cmd        pom.xml         src         tes1
-  vdesikan@vdesikan-a01 spring-pet-clinic-eks % git init -b main
+  spring-pet-clinic-eks % git init -b main
   Initialized empty Git repository in /Users/vdesikan/Downloads/spring-pet-clinic-eks/.git/
-  vdesikan@vdesikan-a01 spring-pet-clinic-eks % git add .
-  vdesikan@vdesikan-a01 spring-pet-clinic-eks % git commit -m "First commit"
+  spring-pet-clinic-eks % git add .
+  spring-pet-clinic-eks % git commit -m "First commit"
   [main (root-commit) a3592d4] First commit
    103 files changed, 14853 insertions(+)
    create mode 100644 .editorconfig
@@ -1388,10 +1328,10 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
    create mode 100644 src/test/java/org/springframework/samples/petclinic/vet/VetTests.java
    create mode 100644 src/test/jmeter/petclinic_test_plan.jmx
    create mode 100644 tes1
-  vdesikan@vdesikan-a01 spring-pet-clinic-eks % git remote add origin https://github.com/vdesikanvmware/spring-pet-clinic-eks.git
-  vdesikan@vdesikan-a01 spring-pet-clinic-eks % git branch -M main
-  vdesikan@vdesikan-a01 spring-pet-clinic-eks % git remote set-url origin ssh://git@github.com/vdesikanvmware/spring-pet-clinic-eks.git
-  vdesikan@vdesikan-a01 spring-pet-clinic-eks % git push -u origin main                                                               
+  spring-pet-clinic-eks % git remote add origin https://github.com/vdesikanvmware/spring-pet-clinic-eks.git
+  spring-pet-clinic-eks % git branch -M main
+  spring-pet-clinic-eks % git remote set-url origin ssh://git@github.com/vdesikanvmware/spring-pet-clinic-eks.git
+  spring-pet-clinic-eks % git push -u origin main                                                               
   Warning: Permanently added the RSA host key for IP address '13.234.210.38' to the list of known hosts.
   Enumerating objects: 149, done.
   Counting objects: 100% (149/149), done.
@@ -1407,7 +1347,7 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
 3. Use Tanzu Build Service to create an image for the app from the new git repo added using App Accelerator Template.
   1. Create a Tanzu Application Platform service account and a secret for Tanzu Build Service. Patch the secret to the service account's Image Pull secret.
     ```
-    vdesikan@vdesikan-a01 tap-install % more tap-sa.yaml
+    tap-install % more tap-sa.yaml
     apiVersion: v1
     kind: ServiceAccount
     metadata:
@@ -1435,20 +1375,20 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
       apiGroup: rbac.authorization.k8s.io
       kind: ClusterRole
       name: cluster-admin-cluster-role
-    vdesikan@vdesikan-a01 tap-install % kubectl apply -f tap-sa.yaml
+    tap-install % kubectl apply -f tap-sa.yaml
     serviceaccount/tap-service-account created
     clusterrole.rbac.authorization.k8s.io/cluster-admin-cluster-role unchanged
     clusterrolebinding.rbac.authorization.k8s.io/cluster-admin-cluster-role-binding configured
-    vdesikan@vdesikan-a01 tap-install % kubectl create secret docker-registry tbs-secret -n tap-install --docker-server='dev.registry.pivotal.io' --docker-username=$USRFULL --docker-password=$PASS
+    tap-install % kubectl create secret docker-registry tbs-secret -n tap-install --docker-server='dev.registry.pivotal.io' --docker-username=$USRFULL --docker-password=$PASS
     secret/tbs-secret created
-    vdesikan@vdesikan-a01 tap-install % kubectl patch serviceaccount default -p "{\"imagePullSecrets\": [{\"name\": \"tbs-secret\"}]}" -n tap-install
+    tap-install % kubectl patch serviceaccount default -p "{\"imagePullSecrets\": [{\"name\": \"tbs-secret\"}]}" -n tap-install
     serviceaccount/default patched
     ```
   2. Use Tanzu Build Service to create an image for the git-repo created with Application Accelerator. Specify a container registry where you can push the image.
     ```
-    vdesikan@vdesikan-a01 tap-install % more image.yaml
+    tap-install % more image.yaml
     apiVersion: kpack.io/v1alpha1
-    vdesikan@vdesikan-a01 tap-install % more tap-sa.yaml
+    tap-install % more tap-sa.yaml
     apiVersion: v1
     kind: ServiceAccount
     metadata:
@@ -1476,20 +1416,20 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
       apiGroup: rbac.authorization.k8s.io
       kind: ClusterRole
       name: cluster-admin-cluster-role
-    vdesikan@vdesikan-a01 tap-install % kubectl apply -f tap-sa.yaml
+    tap-install % kubectl apply -f tap-sa.yaml
     serviceaccount/tap-service-account created
     clusterrole.rbac.authorization.k8s.io/cluster-admin-cluster-role unchanged
     clusterrolebinding.rbac.authorization.k8s.io/cluster-admin-cluster-role-binding configured
-    vdesikan@vdesikan-a01 tap-install % kubectl create secret docker-registry tbs-secret -n tap-install --docker-server='dev.registry.pivotal.io' --docker-username=$USRFULL --docker-password=$PASS
+    tap-install % kubectl create secret docker-registry tbs-secret -n tap-install --docker-server='dev.registry.pivotal.io' --docker-username=$USRFULL --docker-password=$PASS
     secret/tbs-secret created
-    vdesikan@vdesikan-a01 tap-install % kubectl patch serviceaccount default -p "{\"imagePullSecrets\": [{\"name\": \"tbs-secret\"}]}" -n tap-install
+    tap-install % kubectl patch serviceaccount default -p "{\"imagePullSecrets\": [{\"name\": \"tbs-secret\"}]}" -n tap-install
     serviceaccount/default patched
-    vdesikan@vdesikan-a01 tap-install % kubectl patch serviceaccount default -p "{\"secrets\": [{\"name\": \"tbs-secret\"}]}" -n tap-install
+    tap-install % kubectl patch serviceaccount default -p "{\"secrets\": [{\"name\": \"tbs-secret\"}]}" -n tap-install
     serviceaccount/default patched
     ```
 2. Use Tanzu Build Service to create an image for the git-repo created with Application Accelerator. Specify a container registry where you can push the image.
   ```
-  vdesikan@vdesikan-a01 tap-install % more image.yaml
+  tap-install % more image.yaml
   apiVersion: kpack.io/v1alpha1
   kind: Image
   metadata:
@@ -1504,31 +1444,31 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
       git:
         url: https://github.com/vdesikanvmware/spring-pet-clinic-eks
         revision: main
-  vdesikan@vdesikan-a01 tap-install % kubectl apply -f image.yaml -n tap-install  
+  tap-install % kubectl apply -f image.yaml -n tap-install  
   image.kpack.io/spring-petclinic-image created
-  vdesikan@vdesikan-a01 tap-install % kp image list
+  tap-install % kp image list
   Error: no images found
-  vdesikan@vdesikan-a01 tap-install % kp image list -n tap-install
+  tap-install % kp image list -n tap-install
   NAME                      READY      LATEST REASON    LATEST IMAGE    NAMESPACE
   spring-petclinic-image    Unknown    CONFIG                           tap-install
    
    
-  vdesikan@vdesikan-a01 tap-install % kp build list -n tap-install
+  tap-install % kp build list -n tap-install
   BUILD    STATUS      IMAGE    REASON
   1        BUILDING             CONFIG
    
    
-  vdesikan@vdesikan-a01 tap-install % kp image list -n tap-install
+  tap-install % kp image list -n tap-install
   NAME                      READY      LATEST REASON    LATEST IMAGE    NAMESPACE
   spring-petclinic-image    Unknown    CONFIG                           tap-install
    
    
-  vdesikan@vdesikan-a01 tap-install % kp build list -n tap-install
+  tap-install % kp build list -n tap-install
   BUILD    STATUS      IMAGE    REASON
   1        BUILDING             CONFIG
    
    
-  vdesikan@vdesikan-a01 tap-install % kp build status spring-petclinic-image -n tap-install
+  tap-install % kp build status spring-petclinic-image -n tap-install
   Image:            --
   Status:           BUILDING
   Reason:           CONFIG
@@ -1560,27 +1500,27 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
   BUILDPACK ID    BUILDPACK VERSION    HOMEPAGE
    
    
-  vdesikan@vdesikan-a01 tap-install % kp image list -n tap-install                        
+  tap-install % kp image list -n tap-install                        
   NAME                      READY      LATEST REASON    LATEST IMAGE    NAMESPACE
   spring-petclinic-image    Unknown    CONFIG                           tap-install
    
    
-  vdesikan@vdesikan-a01 tap-install % kp build list -n tap-install                        
+  tap-install % kp build list -n tap-install                        
   BUILD    STATUS      IMAGE    REASON
   1        BUILDING             CONFIG
    
    
-  vdesikan@vdesikan-a01 tap-install % kp image list -n tap-install
+  tap-install % kp image list -n tap-install
   NAME                      READY    LATEST REASON    LATEST IMAGE                                                                                                                                            NAMESPACE
   spring-petclinic-image    True     CONFIG           dev.registry.pivotal.io/tanzu-advanced-edition/vdesikan/spring-petclinic-eks@sha256:be889cf313016eb4fc168556493c2b1672c8e2af725e33696bf461b8212f9872    tap-install
    
    
-  vdesikan@vdesikan-a01 tap-install % kp build list -n tap-install
+  tap-install % kp build list -n tap-install
   BUILD    STATUS     IMAGE                                                                                                                                                   REASON
   1        SUCCESS    dev.registry.pivotal.io/tanzu-advanced-edition/vdesikan/spring-petclinic-eks@sha256:be889cf313016eb4fc168556493c2b1672c8e2af725e33696bf461b8212f9872    CONFIG
    
    
-  vdesikan@vdesikan-a01 tap-install % kp build status spring-petclinic-image -n tap-install
+  tap-install % kp build status spring-petclinic-image -n tap-install
   Image:     dev.registry.pivotal.io/tanzu-advanced-edition/vdesikan/spring-petclinic-eks@sha256:be889cf313016eb4fc168556493c2b1672c8e2af725e33696bf461b8212f9872
   Status:    SUCCESS
   Reason:    CONFIG
@@ -1617,9 +1557,9 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
   paketo-buildpacks/dist-zip             4.1.2                https://github.com/paketo-buildpacks/dist-zip
   paketo-buildpacks/spring-boot          4.4.2                https://github.com/paketo-buildpacks/spring-boot
   ```
-3. Deploy the image you generated as a service with Cloud Native Runtimes. Deploy the image in the namespace where App Live View is running with the labels `tanzu.app.live.view=true` and `tanzu.app.live.view.application.name=<app_name>`. Add the appropriate DNS entries using `/etc/hosts`.
+3. Deploy the image you generated as a service with Cloud Native Runtimes. Deploy the image in the namespace where Application Live View is running with the labels `tanzu.app.live.view=true` and `tanzu.app.live.view.application.name=<app_name>`. Add the appropriate DNS entries using `/etc/hosts`.
   ```
-  vdesikan@vdesikan-a01 tap-install % more kapp-deploy-spring-petclinic.yaml
+  tap-install % more kapp-deploy-spring-petclinic.yaml
       apiVersion: kappctrl.k14s.io/v1alpha1
       kind: App
       metadata:
@@ -1665,30 +1605,30 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
           - ytt: {}
         deploy:
           - kapp: {}
-  vdesikan@vdesikan-a01 tap-install % kubectl apply -f kapp-deploy-spring-petclinic.yaml -n tap-install
+  tap-install % kubectl apply -f kapp-deploy-spring-petclinic.yaml -n tap-install
   app.kappctrl.k14s.io/spring-petclinic created
-  vdesikan@vdesikan-a01 tap-install % kubectl get pods -n tap-install
+  tap-install % kubectl get pods -n tap-install
   NAME                                                    READY   STATUS              RESTARTS   AGE
   application-live-view-connector-57cd7c6c6-pv8dk         1/1     Running             0          17h
   application-live-view-crd-controller-5b659f8f57-7zz25   1/1     Running             0          17h
   application-live-view-server-79bd874566-qtcbc           1/1     Running             0          17h
   petclinic-00001-deployment-5f7b86665f-lqhfs             0/2     ContainerCreating   0          10s
   spring-petclinic-image-build-1-vl7j5-build-pod          0/1     Completed           0          7m56s
-  vdesikan@vdesikan-a01 tap-install % kubectl get pods -n tap-install
+  tap-install % kubectl get pods -n tap-install
   NAME                                                    READY   STATUS      RESTARTS   AGE
   application-live-view-connector-57cd7c6c6-pv8dk         1/1     Running     0          17h
   application-live-view-crd-controller-5b659f8f57-7zz25   1/1     Running     0          17h
   application-live-view-server-79bd874566-qtcbc           1/1     Running     0          17h
   petclinic-00001-deployment-5f7b86665f-lqhfs             2/2     Running     0          23s
   spring-petclinic-image-build-1-vl7j5-build-pod          0/1     Completed   0          8m9s
-  vdesikan@vdesikan-a01 tap-install % kubectl get service -n tap-install
+  tap-install % kubectl get service -n tap-install
   NAME                         TYPE           CLUSTER-IP       EXTERNAL-IP                                                               PORT(S)                                      AGE
   application-live-view-5112   LoadBalancer   10.100.176.238   ac229c2c3af2f48be896688d5f176c16-1335129677.us-east-2.elb.amazonaws.com   5112:32387/TCP                               17h
   application-live-view-7000   ClusterIP      10.100.29.252    <none>                                                                    7000/TCP                                     17h
   petclinic                    ExternalName   <none>           envoy.contour-internal.svc.cluster.local                                  80/TCP                                       19s
   petclinic-00001              ClusterIP      10.100.254.12    <none>                                                                    80/TCP                                       37s
   petclinic-00001-private      ClusterIP      10.100.219.255   <none>                                                                    80/TCP,9090/TCP,9091/TCP,8022/TCP,8012/TCP   37s
-    vdesikan@vdesikan-a01 tap-install % kubectl get service -A           
+    tap-install % kubectl get service -A           
   NAMESPACE                NAME                                 TYPE           CLUSTER-IP       EXTERNAL-IP                                                               PORT(S)                                      AGE
   accelerator-system       acc-engine                           ClusterIP      10.100.253.164   <none>                                                                    80/TCP                                       17h
   accelerator-system       acc-ui-server                        LoadBalancer   10.100.74.90     a3b48dd9f15f746a48b503aee558bd96-309532596.us-east-2.elb.amazonaws.com    80:31689/TCP                                 17h
@@ -1726,18 +1666,18 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
   tap-install              petclinic-00001                      ClusterIP      10.100.254.12    <none>                                                                    80/TCP                                       53s
   tap-install              petclinic-00001-private              ClusterIP      10.100.219.255   <none>                                                                    80/TCP,9090/TCP,9091/TCP,8022/TCP,8012/TCP   53s
   vmware-sources           webhook                              ClusterIP      10.100.192.82 <none>                                                                    443/TCP                                      17h
-  vdesikan@vdesikan-a01 tap-install % kubectl get ksvc -n tap-install
+  tap-install % kubectl get ksvc -n tap-install
   NAME        URL                                        LATESTCREATED     LATESTREADY       READY   REASON
   petclinic   http://petclinic.tap-install.example.com   petclinic-00001   petclinic-00001   True   
-  vdesikan@vdesikan-a01 tap-install % ping afc0cc5526ef74617a20f89f27433b6f-609822777.us-east-2.elb.amazonaws.com 
+  tap-install % ping afc0cc5526ef74617a20f89f27433b6f-609822777.us-east-2.elb.amazonaws.com 
   PING afc0cc5526ef74617a20f89f27433b6f-609822777.us-east-2.elb.amazonaws.com (3.19.166.204): 56 data bytes
   Request timeout for icmp_seq 0
   Request timeout for icmp_seq 1
   ^C
   --- afc0cc5526ef74617a20f89f27433b6f-609822777.us-east-2.elb.amazonaws.com ping statistics ---
   3 packets transmitted, 0 packets received, 100.0% packet loss
-  vdesikan@vdesikan-a01 tap-install % sudo vi /etc/hosts                                                        
-  vdesikan@vdesikan-a01 tap-install % more /etc/hosts
+  tap-install % sudo vi /etc/hosts                                                        
+  tap-install % more /etc/hosts
   ##
   # Host Database
   #
@@ -1752,32 +1692,32 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
   127.0.0.1 kubernetes.docker.internal
   3.19.166.204 petclinic.tap-install.example.com
   # End of section
-  vdesikan@vdesikan-a01 tap-install %
+  tap-install %
   ```
-4. Verify that you can access the Spring Pet Clinic app. Ensure that App Live View is also displaying the Spring Pet Clinic app.
+4. Verify that you can access the Spring Pet Clinic app. Ensure that Application Live View is also displaying the Spring Pet Clinic app.
   ![Screenshot of page on Tanzu Network from where you download Tanzu Application Platform packages shows the EULA warning](./images/image2021-8-24_16-6-22.png)
   ![Screenshot of page on Tanzu Network from where you download Tanzu Application Platform packages shows the EULA warning](./images/image2021-8-24_10-44-38.png)
 5. Make some code changes in the git repo and commit the change. Verify that the new build is created automatically and the new image is generated.
   ```
-  vdesikan@vdesikan-a01 spring-pet-clinic-eks % ls
+  spring-pet-clinic-eks % ls
   README.md       Tiltfile        accelerator-log.md  config          docker-compose.yml  mvnw            mvnw.cmd        pom.xml         src         tes1
-  vdesikan@vdesikan-a01 spring-pet-clinic-eks % cd src
-  vdesikan@vdesikan-a01 src % ls
+  spring-pet-clinic-eks % cd src
+  src % ls
   checkstyle  main        test
-  vdesikan@vdesikan-a01 src % cd main
-  vdesikan@vdesikan-a01 main % ls
+  src % cd main
+  main % ls
   java        less        resources   wro
-  vdesikan@vdesikan-a01 main % cd resources
-  vdesikan@vdesikan-a01 resources % ls
+  main % cd resources
+  resources % ls
   application-mysql.properties    application.properties      banner.txt          db              messages            static              templates
-  vdesikan@vdesikan-a01 resources % cd templates
-  vdesikan@vdesikan-a01 templates % ls
+  resources % cd templates
+  templates % ls
   error.html  fragments   owners      pets        vets        welcome.html
-  vdesikan@vdesikan-a01 templates % cd vets
-  vdesikan@vdesikan-a01 vets % ls
+  templates % cd vets
+  vets % ls
   vetList.html
-  vdesikan@vdesikan-a01 vets % vi vetList.html
-  vdesikan@vdesikan-a01 vets % more vetList.html
+  vets % vi vetList.html
+  vets % more vetList.html
   <!DOCTYPE html>
    
    
@@ -1809,8 +1749,8 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
     </table>
   </body>
   </html>
-  vdesikan@vdesikan-a01 vets % vi vetList.html
-  vdesikan@vdesikan-a01 vets % more vetList.html
+  vets % vi vetList.html
+  vets % more vetList.html
   <!DOCTYPE html>
    
    
@@ -1842,13 +1782,13 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
     </table>
   </body>
   </html>
-  vdesikan@vdesikan-a01 vets % cd ../../../
-  vdesikan@vdesikan-a01 main % cd ../../
-  vdesikan@vdesikan-a01 spring-pet-clinic-eks % git add .
-  vdesikan@vdesikan-a01 spring-pet-clinic-eks %  git commit -m "Updated Veterinarians Page"
+  vets % cd ../../../
+  main % cd ../../
+  spring-pet-clinic-eks % git add .
+  spring-pet-clinic-eks %  git commit -m "Updated Veterinarians Page"
   [main e672afd] Updated Veterinarians Page
    1 file changed, 1 insertion(+), 1 deletion(-)
-  vdesikan@vdesikan-a01 spring-pet-clinic-eks % git push -u origin main
+  spring-pet-clinic-eks % git push -u origin main
   Enumerating objects: 15, done.
   Counting objects: 100% (15/15), done.
   Delta compression using up to 12 threads
@@ -1859,35 +1799,35 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
   To ssh://github.com/vdesikanvmware/spring-pet-clinic-eks.git
      a3592d4..e672afd  main -> main
   Branch 'main' set up to track remote branch 'main' from 'origin'.
-  vdesikan@vdesikan-a01 spring-pet-clinic-eks % kp build list -n tap-install
+  spring-pet-clinic-eks % kp build list -n tap-install
   BUILD    STATUS      IMAGE                                                                                                                                                   REASON
   1        SUCCESS     dev.registry.pivotal.io/tanzu-advanced-edition/vdesikan/spring-petclinic-eks@sha256:be889cf313016eb4fc168556493c2b1672c8e2af725e33696bf461b8212f9872    CONFIG
   2        BUILDING                                                                                                                                                            COMMIT
    
-  vdesikan@vdesikan-a01 spring-pet-clinic-eks % kp image list -n tap-install
+  spring-pet-clinic-eks % kp image list -n tap-install
   NAME                      READY      LATEST REASON    LATEST IMAGE                                                                                                                                            NAMESPACE
   spring-petclinic-image    Unknown    COMMIT           dev.registry.pivotal.io/tanzu-advanced-edition/vdesikan/spring-petclinic-eks@sha256:be889cf313016eb4fc168556493c2b1672c8e2af725e33696bf461b8212f9872    tap-install
    
    
-  vdesikan@vdesikan-a01 spring-pet-clinic-eks % kp build list -n tap-install
+  spring-pet-clinic-eks % kp build list -n tap-install
   BUILD    STATUS      IMAGE                                                                                                                                                   REASON
   1        SUCCESS     dev.registry.pivotal.io/tanzu-advanced-edition/vdesikan/spring-petclinic-eks@sha256:be889cf313016eb4fc168556493c2b1672c8e2af725e33696bf461b8212f9872    CONFIG
   2        BUILDING                                                                                                                                                            COMMIT
    
    
-  vdesikan@vdesikan-a01 spring-pet-clinic-eks % kp image list -n tap-install
+  spring-pet-clinic-eks % kp image list -n tap-install
   NAME                      READY    LATEST REASON    LATEST IMAGE                                                                                                                                            NAMESPACE
   spring-petclinic-image    True     COMMIT           dev.registry.pivotal.io/tanzu-advanced-edition/vdesikan/spring-petclinic-eks@sha256:0b627060147d7d80d8aae5a650a70ebca67bbb73001420580b2effa77c4b90cd    tap-install
    
    
-  vdesikan@vdesikan-a01 spring-pet-clinic-eks % kp build list -n tap-install
+  spring-pet-clinic-eks % kp build list -n tap-install
   BUILD    STATUS     IMAGE                                                                                                                                                   REASON
   1        SUCCESS    dev.registry.pivotal.io/tanzu-advanced-edition/vdesikan/spring-petclinic-eks@sha256:be889cf313016eb4fc168556493c2b1672c8e2af725e33696bf461b8212f9872    CONFIG
   2        SUCCESS    dev.registry.pivotal.io/tanzu-advanced-edition/vdesikan/spring-petclinic-eks@sha256:0b627060147d7d80d8aae5a650a70ebca67bbb73001420580b2effa77c4b90cd    COMMIT
   ```
 6. Update the Cloud Native Runtimes service with the new image.
   ```
-  vdesikan@vdesikan-a01 tap-install % more kapp-deploy-spring-petclinic.yaml
+  tap-install % more kapp-deploy-spring-petclinic.yaml
       apiVersion: kappctrl.k14s.io/v1alpha1
       kind: App
       metadata:
@@ -1933,9 +1873,9 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
           - ytt: {}
         deploy:
           - kapp: {}
-  vdesikan@vdesikan-a01 tap-install % kubectl apply -f kapp-deploy-spring-petclinic.yaml -n tap-install
+  tap-install % kubectl apply -f kapp-deploy-spring-petclinic.yaml -n tap-install
   app.kappctrl.k14s.io/spring-petclinic configured
-  vdesikan@vdesikan-a01 tap-install % kubectl get pods -n tap-install
+  tap-install % kubectl get pods -n tap-install
   NAME                                                    READY   STATUS      RESTARTS   AGE
   application-live-view-crd-controller-5b659f8f57-7zz25   1/1     Running     0          23h
   application-live-view-server-79bd874566-qtcbc           1/1     Running     0          23h
