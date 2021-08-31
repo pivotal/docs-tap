@@ -48,7 +48,7 @@ Tanzu Application Platform v0.1 (Beta) includes the following components:
 | Component Name | Version | Link to Documentation |
 |--------------------------------|-------------------------------|------|
 | Application Accelerator for VMware Tanzu (Beta) | v0.2.0 | [Application Accelerator for VMware Tanzu](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/index.html) |
-| Application Live View for VMware Tanzu (Beta) | v0.1.0 | [Application Live View for VMware Tanzu](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.1/app-live-view-docs/GUID-index.html)|
+| Application Live View for VMware Tanzu (Beta) | v0.1.0 | [Application Live View for VMware Tanzu](https://docs-staging.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.1/docs/GUID-index.html)|
 | Cloud Native Runtimes for VMware Tanzu | v1.0.2 | [Cloud Native Runtimes](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-cnr-overview.html) |
 | VMware Tanzu Build Service | v1.2.2 | [Tanzu Build Service](https://docs.pivotal.io/build-service/1-2/) |
 
