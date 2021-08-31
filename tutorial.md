@@ -3,19 +3,19 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
 
 ## Install and Configure the  Tanzu Application Platform Bundle
 
-1. Create a Kubernetes cluster. 
+1. Connect to a Kubernetes cluster. The following example output includes an Amazon Elastic Kubernetes Service (EKS) cluster. 
   ```
-  vdesikan@vdesikan-a01 ~ % kubectl config get-contexts
+  kubectl config get-contexts
   CURRENT   NAME                                                                CLUSTER                                                   AUTHINFO                                                  NAMESPACE
   *         arn:aws:eks:us-east-2:808682851023:cluster/tae-beta-ecs             arn:aws:eks:us-east-2:808682851023:cluster/tae-beta-ecs   arn:aws:eks:us-east-2:808682851023:cluster/tae-beta-ecs
-  vdesikan@vdesikan-a01 ~ % kubectl config current-context
+  kubectl config current-context
   arn:aws:eks:us-east-2:808682851023:cluster/tae-beta-ecs
-  vdesikan@vdesikan-a01 ~ % kubectl cluster-info
+  kubectl cluster-info
   Kubernetes control plane is running at https://94A70B79EF7B1D5E718A4E96B2925F91.gr7.us-east-2.eks.amazonaws.com
   CoreDNS is running at https://94A70B79EF7B1D5E718A4E96B2925F91.gr7.us-east-2.eks.amazonaws.com/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
 
   To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
-  vdesikan@vdesikan-a01 ~ % kubectl get pods -A
+  kubectl get pods -A
   NAMESPACE     NAME                       READY   STATUS    RESTARTS   AGE
   kube-system   aws-node-2fzbz             1/1     Running   0          4d
   kube-system   aws-node-4s2vw             1/1     Running   0          4d
@@ -27,19 +27,19 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
   kube-system   kube-proxy-rq6gh           1/1     Running   0          4d
   kube-system   kube-proxy-sbsrz           1/1     Running   0          4d
   kube-system   kube-proxy-xl2b5           1/1     Running   0          4d
-  vdesikan@vdesikan-a01 ~ % kubectl get ns
+  kubectl get ns
   NAME              STATUS   AGE
   default           Active   4d
   kube-node-lease   Active   4d
   kube-public       Active   4d
   kube-system       Active   4d
-  vdesikan@vdesikan-a01 ~ % kubectl get nodes -o wide
+  kubectl get nodes -o wide
   NAME                                          STATUS   ROLES    AGE   VERSION              INTERNAL-IP     EXTERNAL-IP      OS-IMAGE         KERNEL-VERSION                CONTAINER-RUNTIME
   ip-172-31-18-218.us-east-2.compute.internal   Ready    <none>   4d    v1.20.4-eks-6b7464   172.31.18.218   18.118.114.102   Amazon Linux 2   5.4.129-63.229.amzn2.x86_64   docker://19.3.13
   ip-172-31-30-192.us-east-2.compute.internal   Ready    <none>   4d    v1.20.4-eks-6b7464   172.31.30.192   3.143.242.102    Amazon Linux 2   5.4.129-63.229.amzn2.x86_64   docker://19.3.13
   ip-172-31-46-226.us-east-2.compute.internal   Ready    <none>   4d    v1.20.4-eks-6b7464   172.31.46.226   18.223.16.117    Amazon Linux 2   5.4.129-63.229.amzn2.x86_64   docker://19.3.13
   ip-172-31-6-194.us-east-2.compute.internal    Ready    <none>   4d    v1.20.4-eks-6b7464   172.31.6.194    18.222.111.53    Amazon Linux 2   5.4.129-63.229.amzn2.x86_64   docker://19.3.13
-  vdesikan@vdesikan-a01 ~ % kubectl get service -A
+  kubectl get service -A
   NAMESPACE     NAME         TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)         AGE
   default       kubernetes   ClusterIP   10.100.0.1    <none>        443/TCP         4d
   kube-system   kube-dns     ClusterIP   10.100.0.10   <none>        53/UDP,53/TCP   4d
@@ -47,7 +47,7 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
 2. Deploy kapp-controller.
 
   ```
-  vdesikan@vdesikan-a01 ~ % kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/latest/download/release.yml
+  kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/latest/download/release.yml
  
   Target cluster 'https://94A70B79EF7B1D5E718A4E96B2925F91.gr7.us-east-2.eks.amazonaws.com' (nodes: ip-172-31-46-226.us-east-2.compute.internal, 3+)
  
@@ -72,75 +72,22 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
  
   Op:      15 create, 0 delete, 0 update, 0 noop
   Wait to: 15 reconcile, 0 delete, 0 noop
- 
-  Continue? [yN]: y
- 
-  4:34:34PM: ---- applying 10 changes [0/15 done] ----
-  4:34:35PM: create clusterrolebinding/pkg-apiserver:system:auth-delegator (rbac.authorization.k8s.io/v1) cluster
-  4:34:35PM: create namespace/kapp-controller-packaging-global (v1) cluster
-  4:34:35PM: create namespace/kapp-controller (v1) cluster
-  4:34:35PM: create clusterrole/kapp-controller-cluster-role (rbac.authorization.k8s.io/v1) cluster
-  4:34:36PM: create clusterrolebinding/kapp-controller-cluster-role-binding (rbac.authorization.k8s.io/v1) cluster
-  4:34:36PM: create customresourcedefinition/packagerepositories.packaging.carvel.dev (apiextensions.k8s.io/v1) cluster
-  4:34:36PM: create customresourcedefinition/packageinstalls.packaging.carvel.dev (apiextensions.k8s.io/v1) cluster
-  4:34:36PM: create customresourcedefinition/apps.kappctrl.k14s.io (apiextensions.k8s.io/v1) cluster
-  4:34:37PM: create customresourcedefinition/internalpackagemetadatas.internal.packaging.carvel.dev (apiextensions.k8s.io/v1) cluster
-  4:34:38PM: create customresourcedefinition/internalpackages.internal.packaging.carvel.dev (apiextensions.k8s.io/v1) cluster
-  4:34:38PM: ---- waiting on 10 changes [0/15 done] ----
-  4:34:38PM: ok: reconcile namespace/kapp-controller-packaging-global (v1) cluster
-  4:34:38PM: ok: reconcile clusterrolebinding/kapp-controller-cluster-role-binding (rbac.authorization.k8s.io/v1) cluster
-  4:34:38PM: ok: reconcile clusterrolebinding/pkg-apiserver:system:auth-delegator (rbac.authorization.k8s.io/v1) cluster
-  4:34:38PM: ok: reconcile customresourcedefinition/internalpackages.internal.packaging.carvel.dev (apiextensions.k8s.io/v1) cluster
-  4:34:38PM: ok: reconcile namespace/kapp-controller (v1) cluster
-  4:34:38PM: ok: reconcile customresourcedefinition/packagerepositories.packaging.carvel.dev (apiextensions.k8s.io/v1) cluster
-  4:34:38PM: ok: reconcile customresourcedefinition/packageinstalls.packaging.carvel.dev (apiextensions.k8s.io/v1) cluster
-  4:34:38PM: ok: reconcile customresourcedefinition/apps.kappctrl.k14s.io (apiextensions.k8s.io/v1) cluster
-  4:34:38PM: ok: reconcile clusterrole/kapp-controller-cluster-role (rbac.authorization.k8s.io/v1) cluster
-  4:34:38PM: ok: reconcile customresourcedefinition/internalpackagemetadatas.internal.packaging.carvel.dev (apiextensions.k8s.io/v1) cluster
-  4:34:38PM: ---- applying 3 changes [10/15 done] ----
-  4:34:39PM: create rolebinding/pkgserver-auth-reader (rbac.authorization.k8s.io/v1) namespace: kube-system
-  4:34:41PM: create serviceaccount/kapp-controller-sa (v1) namespace: kapp-controller
-  4:34:41PM: create apiservice/v1alpha1.data.packaging.carvel.dev (apiregistration.k8s.io/v1) cluster
-  4:34:41PM: ---- waiting on 3 changes [10/15 done] ----
-  4:34:41PM: ok: reconcile serviceaccount/kapp-controller-sa (v1) namespace: kapp-controller
-  4:34:41PM: ok: reconcile rolebinding/pkgserver-auth-reader (rbac.authorization.k8s.io/v1) namespace: kube-system
-  4:34:41PM: ongoing: reconcile apiservice/v1alpha1.data.packaging.carvel.dev (apiregistration.k8s.io/v1) cluster
-  4:34:41PM:  ^ Condition Available is not True (False)
-  4:34:41PM: ---- applying 2 changes [13/15 done] ----
-  4:34:41PM: create service/packaging-api (v1) namespace: kapp-controller
-  4:34:43PM: create deployment/kapp-controller (apps/v1) namespace: kapp-controller
-  4:34:43PM: ---- waiting on 3 changes [12/15 done] ----
-  4:34:43PM: ok: reconcile service/packaging-api (v1) namespace: kapp-controller
-  4:34:45PM: ongoing: reconcile deployment/kapp-controller (apps/v1) namespace: kapp-controller
-  4:34:45PM:  ^ Waiting for 1 unavailable replicas
-  4:34:45PM:  L ok: waiting on replicaset/kapp-controller-ff4656bb (apps/v1) namespace: kapp-controller
-  4:34:45PM:  L ongoing: waiting on pod/kapp-controller-ff4656bb-cjrl7 (v1) namespace: kapp-controller
-  4:34:45PM:     ^ Pending: ContainerCreating
-  4:34:45PM: ---- waiting on 2 changes [13/15 done] ----
-  4:35:01PM: ongoing: reconcile deployment/kapp-controller (apps/v1) namespace: kapp-controller
-  4:35:01PM:  ^ Waiting for 1 unavailable replicas
-  4:35:01PM:  L ok: waiting on replicaset/kapp-controller-ff4656bb (apps/v1) namespace: kapp-controller
-  4:35:01PM:  L ok: waiting on pod/kapp-controller-ff4656bb-cjrl7 (v1) namespace: kapp-controller
-  4:35:05PM: ok: reconcile deployment/kapp-controller (apps/v1) namespace: kapp-controller
-  4:35:05PM: ---- waiting on 1 changes [14/15 done] ----
-  4:35:06PM: ok: reconcile apiservice/v1alpha1.data.packaging.carvel.dev (apiregistration.k8s.io/v1) cluster
-  4:35:06PM: ---- applying complete [15/15 done] ----
-  4:35:06PM: ---- waiting complete [15/15 done] ----
- 
-  Succeeded
   ```
-3. Create a secret.
+3. Create an image pull secret. You use the image pull secret to pull Tanzu Application Platform packages.
   ```
-  vdesikan@vdesikan-a01 ~ % kubectl create ns tap-install
+  kubectl create ns tap-install
  
   namespace/tap-install created
-  vdesikan@vdesikan-a01 ~ % kubectl create secret docker-registry tap-registry -n tap-install --docker-server='registry.pivotal.io' --docker-username=$USRFULL --docker-password=$PASS
+  kubectl create secret docker-registry tap-registry -n tap-install --docker-server='registry.pivotal.io' --docker-username=$USRFULL --docker-password=$PASS
  
   secret/tap-registry created
   ```
+  Where:
+  - `$USRFULL` is your username. 
+  - `$PASS` is your password. 
 4. Install the Tanzu Application Platform bundle.
   ```
-  vdesikan@vdesikan-a01 tap-install % more tap-package-repo.yml
+  tap-install % more tap-package-repo.yml
   apiVersion: packaging.carvel.dev/v1alpha1
   kind: PackageRepository
   metadata:
@@ -151,7 +98,9 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
         image: registry.pivotal.io/tanzu-application-platform/tap-packages:0.1.0
         secretRef:
           name: tap-registry
-  vdesikan@vdesikan-a01 tap-install % kapp deploy -a tap-package-repo -n tap-install -f ./tap-package-repo.yml -y
+  ```
+  ```
+  tap-install % kapp deploy -a tap-package-repo -n tap-install -f ./tap-package-repo.yml -y
  
   Target cluster 'https://94A70B79EF7B1D5E718A4E96B2925F91.gr7.us-east-2.eks.amazonaws.com' (nodes: ip-172-31-46-226.us-east-2.compute.internal, 3+)
  
@@ -162,41 +111,20 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
  
   Op:      1 create, 0 delete, 0 update, 0 noop
   Wait to: 1 reconcile, 0 delete, 0 noop
- 
-  4:40:46PM: ---- applying 1 changes [0/1 done] ----
-  4:40:48PM: create packagerepository/tanzu-application-platform-packages (packaging.carvel.dev/v1alpha1) namespace: tap-install
-  4:40:48PM: ---- waiting on 1 changes [0/1 done] ----
-  4:40:48PM: ok: reconcile packagerepository/tanzu-application-platform-packages (packaging.carvel.dev/v1alpha1) namespace: tap-install
-  4:40:48PM: ---- applying complete [1/1 done] ----
-  4:40:48PM: ---- waiting complete [1/1 done] ----
- 
-  Succeeded
-  vdesikan@vdesikan-a01 tap-install % tanzu package repository list -n tap-install
-  / Retrieving repositories...
-    NAME                                 REPOSITORY                                                         STATUS               DETAILS
-    tanzu-application-platform-packages  registry.pivotal.io/tanzu-application-platform/tap-packages:0.1.0  Reconcile succeeded
-  vdesikan@vdesikan-a01 tap-install % tanzu package available list -n tap-install
-  / Retrieving available packages...
-    NAME                               DISPLAY-NAME                              SHORT-DESCRIPTION
-    accelerator.apps.tanzu.vmware.com  Application Accelerator for VMware Tanzu  Used to create new projects and configurations.
-    appliveview.tanzu.vmware.com       Application Live View for VMware Tanzu    App for monitoring and troubleshooting running apps
-    cnrs.tanzu.vmware.com              Cloud Native Runtimes                     Cloud Native Runtimes is a serverless runtime based on Knative
-  vdesikan@vdesikan-a01 tap-install % tanzu package available list accelerator.apps.tanzu.vmware.com -n tap-install
-  - Retrieving package versions for accelerator.apps.tanzu.vmware.com...
-    NAME                               VERSION  RELEASED-AT
-    accelerator.apps.tanzu.vmware.com  0.2.0    2021-09-01T00:00:00Z
-  vdesikan@vdesikan-a01 tap-install % tanzu package available list appliveview.tanzu.vmware.com -n tap-install
-  - Retrieving package versions for appliveview.tanzu.vmware.com...
-    NAME                          VERSION  RELEASED-AT
-    appliveview.tanzu.vmware.com  0.1.0    2021-09-01T00:00:00Z
-  vdesikan@vdesikan-a01 tap-install % tanzu package available list cnrs.tanzu.vmware.com -n tap-install
-  / Retrieving package versions for cnrs.tanzu.vmware.com...
-    NAME                   VERSION  RELEASED-AT
-    cnrs.tanzu.vmware.com  1.0.1    2021-07-30T15:18:46Z
   ```
-5. Check for schema of the packages and create appropriate values.yml files for the same.
+5. Check for schema of the packages and create values.yml files for the following values:
+  - `ingress.internal.namespace`
+  - `ingress.reuse_crds`
+  - `ingress.external.namespace`
+  - `local_dns.domain`
+  - `local_dns.enable`
+  - `pdb.enable`
+  - `provider`
+  - `registry.password`
+  - `registry.server`
+  - `registry.username`
   ```
-  vdesikan@vdesikan-a01 tap-install % tanzu package available get cnrs.tanzu.vmware.com/1.0.1 --values-schema -n tap-install
+  tap-install % tanzu package available get cnrs.tanzu.vmware.com/1.0.1 --values-schema -n tap-install
   | Retrieving package details for cnrs.tanzu.vmware.com/1.0.1...
     KEY                         DEFAULT  TYPE     DESCRIPTION
     ingress.internal.namespace  <nil>    string   internal namespace
@@ -209,13 +137,13 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
     registry.password           <nil>    string   registry password
     registry.server             <nil>    string   registry server
     registry.username           <nil>    string   registry username
-  vdesikan@vdesikan-a01 tap-install % tanzu package available get appliveview.tanzu.vmware.com/0.1.0 --values-schema -n tap-install
+  tap-install % tanzu package available get appliveview.tanzu.vmware.com/0.1.0 --values-schema -n tap-install
   | Retrieving package details for appliveview.tanzu.vmware.com/0.1.0...
     KEY                DEFAULT  TYPE    DESCRIPTION
     registry.password  <nil>    string  Image Registry Password
     registry.server    <nil>    string  Image Registry URL
     registry.username  <nil>    string  Image Registry Username
-  vdesikan@vdesikan-a01 tap-install % tanzu package available get accelerator.apps.tanzu.vmware.com/0.2.0 --values-schema -n tap-install
+  tap-install % tanzu package available get accelerator.apps.tanzu.vmware.com/0.2.0 --values-schema -n tap-install
   | Retrieving package details for accelerator.apps.tanzu.vmware.com/0.2.0...
     KEY                           DEFAULT                                                             TYPE    DESCRIPTION
     engine.service_type           ClusterIP                                                           string  The service type for the Service of the engine.
@@ -225,7 +153,7 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
     server.watched_namespace      default                                                             string  The namespace that the server watches for accelerator resources.
     server.engine_invocation_url  http://acc-engine.accelerator-system.svc.cluster.local/invocations  string  The URL the server uses for invoking the accelerator engine.
     server.service_type           LoadBalancer
-  vdesikan@vdesikan-a01 tap-install % more values-cnr.yml
+  tap-install % more values-cnr.yml
   ---
   registry:
    server: registry.pivotal.io
@@ -247,13 +175,13 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
  
  
   Local_dns:
-  vdesikan@vdesikan-a01 tap-install % more values-alv.yml
+  tap-install % more values-alv.yml
   ---
   registry:
     server: registry.pivotal.io
     username: <username>
     password: <password>
-  vdesikan@vdesikan-a01 tap-install % more values-acc.yml
+  tap-install % more values-acc.yml
   registry:
     server: "registry.pivotal.io"
     username: <username>
