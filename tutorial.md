@@ -1837,7 +1837,7 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
     vdesikan@vdesikan-a01 tap-install % kubectl patch serviceaccount default -p "{\"imagePullSecrets\": [{\"name\": \"tbs-secret\"}]}" -n tap-install
     serviceaccount/default patched
     ```
-  1. Use Tanzu Build Service to create an image for the git-repo created with Application Accelerator. Specify a container registry where you can push the image.
+  2. Use Tanzu Build Service to create an image for the git-repo created with Application Accelerator. Specify a container registry where you can push the image.
     ```
     vdesikan@vdesikan-a01 tap-install % more image.yaml
     apiVersion: kpack.io/v1alpha1
