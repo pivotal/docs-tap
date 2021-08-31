@@ -331,7 +331,7 @@ To add the TAP package repository:
 
     > **Note:** You must name the secret `tap-registry`.
 
-3. Create the TAP package repository custom resource by downloading the sample custom resource
+3. Create the TAP package repository custom resource by downloading the `sample-package-repo.yaml` file
    from [Tanzu Network](https://network.pivotal.io/products/tanzu-application-platform/).
 
    Alternatively, you can create a file named `tap-package-repo.yaml` with the following contents:
