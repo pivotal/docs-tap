@@ -7,7 +7,7 @@ This document describes how to install Tanzu Application Platform packages from 
 
 The following prerequisites are required to install Tanzu Application Platform:
 
-* The following Carvel tools are required to install packages using TAP repo bundle.
+* The following Carvel tools are required to install packages using the TAP repo bundle.
   For information about the Carvel tool suite,
   see [Carvel](https://carvel.dev/#whole-suite):
     * [kapp](https://github.com/vmware-tanzu/carvel-kapp/releases) (v0.37.0 or later)
