@@ -195,73 +195,11 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
   ```
 6. Install Cloud Native Runtimes. 
   ```
-  vdesikan@vdesikan-a01 tap-install % tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 1.0.1 -n tap-install
-  - Installing package 'cnrs.tanzu.vmware.com'
-  - Getting package metadata for 'cnrs.tanzu.vmware.com'
-  \ Creating service account 'cloud-native-runtimes-tap-install-sa'
-  - Creating cluster admin role 'cloud-native-runtimes-tap-install-cluster-role'
-  \ Creating cluster role binding 'cloud-native-runtimes-tap-install-cluster-rolebinding'
-  | Creating package resource
-  - Package install status: Reconciling
- 
-   Added installed package 'cloud-native-runtimes' in namespace 'tap-install'
-  vdesikan@vdesikan-a01 tap-install % kubectl get pods -A
-  NAMESPACE           NAME                                           READY   STATUS    RESTARTS   AGE
-  contour-external    contour-7c7795856b-8mqlz                       1/1     Running   0          79s
-  contour-external    contour-7c7795856b-8xh6c                       1/1     Running   0          79s
-  contour-external    envoy-7fzmk                                    2/2     Running   0          79s
-  contour-external    envoy-ccrgj                                    2/2     Running   0          79s
-  contour-external    envoy-fndxp                                    2/2     Running   0          79s
-  contour-external    envoy-mcbfr                                    2/2     Running   0          79s
-  contour-internal    contour-5b6b565d-6sbx4                         1/1     Running   0          79s
-  contour-internal    contour-5b6b565d-lhmvn                         1/1     Running   0          79s
-  contour-internal    envoy-l2tc6                                    2/2     Running   0          79s
-  contour-internal    envoy-mv7x2                                    2/2     Running   0          79s
-  contour-internal    envoy-rnhtf                                    2/2     Running   0          79s
-  contour-internal    envoy-t2llr                                    2/2     Running   0          79s
-  kapp-controller     kapp-controller-ff4656bb-cjrl7                 1/1     Running   0          14m
-  knative-discovery   controller-b59bd9449-8l9f4                     1/1     Running   0          77s
-  knative-discovery   webhook-54c56fc5b8-8djnb                       1/1     Running   0          77s
-  knative-eventing    eventing-controller-6c7fbfdb79-7vr4w           1/1     Running   0          79s
-  knative-eventing    eventing-webhook-5885fcccc9-7b5lh              1/1     Running   0          79s
-  knative-eventing    eventing-webhook-5885fcccc9-vbgzs              1/1     Running   0          64s
-  knative-eventing    imc-controller-bdb84c8ff-q67gj                 1/1     Running   0          79s
-  knative-eventing    imc-dispatcher-586bd55496-6j97d                1/1     Running   0          78s
-  knative-eventing    mt-broker-controller-785589dd9d-vlx6v          1/1     Running   0          78s
-  knative-eventing    mt-broker-filter-7dfcf6589-fjhmz               1/1     Running   0          78s
-  knative-eventing    mt-broker-ingress-688cc7f74-l46p9              1/1     Running   0          78s
-  knative-eventing    rabbitmq-broker-controller-85d5b56f8-kwz9x     1/1     Running   0          77s
-  knative-serving     activator-5b59f7c699-4cvts                     1/1     Running   0          65s
-  knative-serving     activator-5b59f7c699-4mbtl                     1/1     Running   0          81s
-  knative-serving     activator-5b59f7c699-sk2m5                     1/1     Running   0          65s
-  knative-serving     autoscaler-8f85d46c-g4tnh                      1/1     Running   0          81s
-  knative-serving     contour-ingress-controller-8fbc54c-whghl       1/1     Running   0          79s
-  knative-serving     controller-645bdbc7d9-z5n5v                    1/1     Running   0          81s
-  knative-serving     net-certmanager-webhook-dcdc76d4-qnxzg         1/1     Running   0          77s
-  knative-serving     networking-certmanager-7575777f9f-t4tf9        1/1     Running   0          77s
-  knative-serving     webhook-7cb844897b-sdqrz                       1/1     Running   0          80s
-  knative-serving     webhook-7cb844897b-tkszw                       1/1     Running   0          65s
-  knative-sources     rabbitmq-controller-manager-5dcb7c8494-t7c8k   1/1     Running   0          76s
-  knative-sources     rabbitmq-webhook-bcb77f84f-2d6fw               1/1     Running   0          76s
-  kube-system         aws-node-2fzbz                                 1/1     Running   0          4d
-  kube-system         aws-node-4s2vw                                 1/1     Running   0          4d
-  kube-system         aws-node-jf8vp                                 1/1     Running   0          4d
-  kube-system         aws-node-m4rz7                                 1/1     Running   0          4d
-  kube-system         coredns-5c778788f4-bl47d                       1/1     Running   0          4d
-  kube-system         coredns-5c778788f4-swf2n                       1/1     Running   0          4d
-  kube-system         kube-proxy-dcbwg                               1/1     Running   0          4d
-  kube-system         kube-proxy-rq6gh                               1/1     Running   0          4d
-  kube-system         kube-proxy-sbsrz                               1/1     Running   0          4d
-  kube-system         kube-proxy-xl2b5                               1/1     Running   0          4d
-  triggermesh         aws-event-sources-controller-7f9dd6d69-6ldbs   1/1     Running   0          81s
-  vmware-sources      webhook-c9f67b5cd-tjv4p                        1/1     Running   0          78s
-  vdesikan@vdesikan-a01 tap-install % kapp list -A
-  Target cluster 'https://94A70B79EF7B1D5E718A4E96B2925F91.gr7.us-east-2.eks.amazonaws.com' (nodes: ip-172-31-46-226.us-east-2.compute.internal, 3+)
- 
-  Apps in all namespaces
- 
-  Namespace    Name                                      Namespaces                                                  Lcs   Lca
-  default      kc                                        (cluster),kapp-controller,kube-system                       true  14m
+  tap-install % tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 1.0.1 -n tap-install
+  Added installed package 'cloud-native-runtimes' in namespace 'tap-install'
+  
+  tap-install % kubectl get pods -A
+  
   tap-install  cloud-native-runtimes-ctrl                (cluster),contour-external,                                 true  10s
                                                          contour-internal,knative-discovery,knative-eventing,
                                                          knative-serving,knative-sources,triggermesh,vmware-sources
@@ -274,14 +212,14 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
   4 apps
  
   Succeeded
-  vdesikan@vdesikan-a01 tap-install % tanzu package  installed  list -A
+  tap-install % tanzu package  installed  list -A
   / Retrieving installed packages...
     NAME                   PACKAGE-NAME           PACKAGE-VERSION  STATUS               NAMESPACE
     cloud-native-runtimes  cnrs.tanzu.vmware.com  1.0.1            Reconcile succeeded  tap-install
   ```
-7. Instal Flux and after installation delete the network policies.
+7. Instal Flux. Delete the network policies after you install Flux.
   ```
-  vdesikan@vdesikan-a01 tap-install % kapp deploy -a flux -f https://github.com/fluxcd/flux2/releases/download/v0.15.0/install.yaml
+  tap-install % kapp deploy -a flux -f https://github.com/fluxcd/flux2/releases/download/v0.15.0/install.yaml
  
   Target cluster 'https://94A70B79EF7B1D5E718A4E96B2925F91.gr7.us-east-2.eks.amazonaws.com' (nodes: ip-172-31-46-226.us-east-2.compute.internal, 3+)
  
@@ -325,201 +263,9 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
  
   Op:      34 create, 0 delete, 0 update, 0 noop
   Wait to: 34 reconcile, 0 delete, 0 noop
- 
-  Continue? [yN]: y
- 
-  4:50:45PM: ---- applying 16 changes [0/34 done] ----
-  4:50:46PM: create clusterrolebinding/crd-controller (rbac.authorization.k8s.io/v1) cluster
-  4:50:47PM: create customresourcedefinition/providers.notification.toolkit.fluxcd.io (apiextensions.k8s.io/v1) cluster
-  4:50:47PM: create customresourcedefinition/imagepolicies.image.toolkit.fluxcd.io (apiextensions.k8s.io/v1) cluster
-  4:50:47PM: create customresourcedefinition/gitrepositories.source.toolkit.fluxcd.io (apiextensions.k8s.io/v1) cluster
-  4:50:48PM: create customresourcedefinition/helmreleases.helm.toolkit.fluxcd.io (apiextensions.k8s.io/v1) cluster
-  4:50:48PM: create customresourcedefinition/imageupdateautomations.image.toolkit.fluxcd.io (apiextensions.k8s.io/v1) cluster
-  4:50:48PM: create clusterrole/crd-controller (rbac.authorization.k8s.io/v1) cluster
-  4:50:49PM: create clusterrolebinding/cluster-reconciler (rbac.authorization.k8s.io/v1) cluster
-  4:50:49PM: create customresourcedefinition/imagerepositories.image.toolkit.fluxcd.io (apiextensions.k8s.io/v1) cluster
-  4:50:50PM: create customresourcedefinition/helmrepositories.source.toolkit.fluxcd.io (apiextensions.k8s.io/v1) cluster
-  4:50:50PM: create customresourcedefinition/kustomizations.kustomize.toolkit.fluxcd.io (apiextensions.k8s.io/v1) cluster
-  4:50:50PM: create namespace/flux-system (v1) cluster
-  4:50:50PM: create customresourcedefinition/receivers.notification.toolkit.fluxcd.io (apiextensions.k8s.io/v1) cluster
-  4:50:51PM: create customresourcedefinition/alerts.notification.toolkit.fluxcd.io (apiextensions.k8s.io/v1) cluster
-  4:50:52PM: create customresourcedefinition/buckets.source.toolkit.fluxcd.io (apiextensions.k8s.io/v1) cluster
-  4:50:52PM: create customresourcedefinition/helmcharts.source.toolkit.fluxcd.io (apiextensions.k8s.io/v1) cluster
-  4:50:52PM: ---- waiting on 16 changes [0/34 done] ----
-  4:50:52PM: ok: reconcile clusterrolebinding/cluster-reconciler (rbac.authorization.k8s.io/v1) cluster
-  4:50:52PM: ok: reconcile customresourcedefinition/gitrepositories.source.toolkit.fluxcd.io (apiextensions.k8s.io/v1) cluster
-  4:50:52PM: ok: reconcile customresourcedefinition/helmcharts.source.toolkit.fluxcd.io (apiextensions.k8s.io/v1) cluster
-  4:50:52PM: ok: reconcile customresourcedefinition/buckets.source.toolkit.fluxcd.io (apiextensions.k8s.io/v1) cluster
-  4:50:52PM: ok: reconcile namespace/flux-system (v1) cluster
-  4:50:52PM: ok: reconcile customresourcedefinition/providers.notification.toolkit.fluxcd.io (apiextensions.k8s.io/v1) cluster
-  4:50:52PM: ok: reconcile customresourcedefinition/receivers.notification.toolkit.fluxcd.io (apiextensions.k8s.io/v1) cluster
-  4:50:52PM: ok: reconcile clusterrolebinding/crd-controller (rbac.authorization.k8s.io/v1) cluster
-  4:50:52PM: ok: reconcile customresourcedefinition/alerts.notification.toolkit.fluxcd.io (apiextensions.k8s.io/v1) cluster
-  4:50:52PM: ok: reconcile customresourcedefinition/helmrepositories.source.toolkit.fluxcd.io (apiextensions.k8s.io/v1) cluster
-  4:50:52PM: ok: reconcile clusterrole/crd-controller (rbac.authorization.k8s.io/v1) cluster
-  4:50:52PM: ok: reconcile customresourcedefinition/imagerepositories.image.toolkit.fluxcd.io (apiextensions.k8s.io/v1) cluster
-  4:50:52PM: ok: reconcile customresourcedefinition/imageupdateautomations.image.toolkit.fluxcd.io (apiextensions.k8s.io/v1) cluster
-  4:50:52PM: ok: reconcile customresourcedefinition/helmreleases.helm.toolkit.fluxcd.io (apiextensions.k8s.io/v1) cluster
-  4:50:53PM: ok: reconcile customresourcedefinition/kustomizations.kustomize.toolkit.fluxcd.io (apiextensions.k8s.io/v1) cluster
-  4:50:53PM: ok: reconcile customresourcedefinition/imagepolicies.image.toolkit.fluxcd.io (apiextensions.k8s.io/v1) cluster
-  4:50:53PM: ---- applying 9 changes [16/34 done] ----
-  4:50:53PM: create networkpolicy/allow-webhooks (networking.k8s.io/v1) namespace: flux-system
-  4:50:54PM: create networkpolicy/allow-egress (networking.k8s.io/v1) namespace: flux-system
-  4:50:55PM: create serviceaccount/image-reflector-controller (v1) namespace: flux-system
-  4:50:55PM: create serviceaccount/image-automation-controller (v1) namespace: flux-system
-  4:50:55PM: create serviceaccount/kustomize-controller (v1) namespace: flux-system
-  4:50:55PM: create serviceaccount/source-controller (v1) namespace: flux-system
-  4:50:55PM: create networkpolicy/allow-scraping (networking.k8s.io/v1) namespace: flux-system
-  4:50:56PM: create serviceaccount/notification-controller (v1) namespace: flux-system
-  4:50:57PM: create serviceaccount/helm-controller (v1) namespace: flux-system
-  4:50:57PM: ---- waiting on 9 changes [16/34 done] ----
-  4:50:57PM: ok: reconcile serviceaccount/source-controller (v1) namespace: flux-system
-  4:50:57PM: ok: reconcile serviceaccount/image-automation-controller (v1) namespace: flux-system
-  4:50:57PM: ok: reconcile serviceaccount/helm-controller (v1) namespace: flux-system
-  4:50:57PM: ok: reconcile serviceaccount/image-reflector-controller (v1) namespace: flux-system
-  4:50:57PM: ok: reconcile networkpolicy/allow-egress (networking.k8s.io/v1) namespace: flux-system
-  4:50:58PM: ok: reconcile networkpolicy/allow-scraping (networking.k8s.io/v1) namespace: flux-system
-  4:50:58PM: ok: reconcile serviceaccount/notification-controller (v1) namespace: flux-system
-  4:50:58PM: ok: reconcile serviceaccount/kustomize-controller (v1) namespace: flux-system
-  4:50:58PM: ok: reconcile networkpolicy/allow-webhooks (networking.k8s.io/v1) namespace: flux-system
-  4:50:58PM: ---- applying 9 changes [25/34 done] ----
-  4:50:58PM: create service/source-controller (v1) namespace: flux-system
-  4:50:59PM: create service/webhook-receiver (v1) namespace: flux-system
-  4:50:59PM: create service/notification-controller (v1) namespace: flux-system
-  4:51:00PM: create deployment/helm-controller (apps/v1) namespace: flux-system
-  4:51:00PM: create deployment/image-reflector-controller (apps/v1) namespace: flux-system
-  4:51:00PM: create deployment/source-controller (apps/v1) namespace: flux-system
-  4:51:00PM: create deployment/kustomize-controller (apps/v1) namespace: flux-system
-  4:51:01PM: create deployment/image-automation-controller (apps/v1) namespace: flux-system
-  4:51:02PM: create deployment/notification-controller (apps/v1) namespace: flux-system
-  4:51:02PM: ---- waiting on 9 changes [25/34 done] ----
-  4:51:02PM: ok: reconcile service/source-controller (v1) namespace: flux-system
-  4:51:02PM: ok: reconcile service/webhook-receiver (v1) namespace: flux-system
-  4:51:02PM: ok: reconcile service/notification-controller (v1) namespace: flux-system
-  4:51:03PM: ongoing: reconcile deployment/helm-controller (apps/v1) namespace: flux-system
-  4:51:03PM:  ^ Waiting for 1 unavailable replicas
-  4:51:03PM:  L ok: waiting on replicaset/helm-controller-68996c978c (apps/v1) namespace: flux-system
-  4:51:03PM:  L ongoing: waiting on pod/helm-controller-68996c978c-rlfnb (v1) namespace: flux-system
-  4:51:03PM:     ^ Condition Ready is not True (False)
-  4:51:03PM: ongoing: reconcile deployment/notification-controller (apps/v1) namespace: flux-system
-  4:51:03PM:  ^ Waiting for 1 unavailable replicas
-  4:51:03PM:  L ok: waiting on replicaset/notification-controller-6fd769cbf4 (apps/v1) namespace: flux-system
-  4:51:03PM:  L ongoing: waiting on pod/notification-controller-6fd769cbf4-qn2kk (v1) namespace: flux-system
-  4:51:03PM:     ^ Condition Ready is not True (False)
-  4:51:03PM: ongoing: reconcile deployment/image-reflector-controller (apps/v1) namespace: flux-system
-  4:51:03PM:  ^ Waiting for 1 unavailable replicas
-  4:51:03PM:  L ok: waiting on replicaset/image-reflector-controller-7784457d8f (apps/v1) namespace: flux-system
-  4:51:03PM:  L ongoing: waiting on pod/image-reflector-controller-7784457d8f-n82r7 (v1) namespace: flux-system
-  4:51:03PM:     ^ Condition Ready is not True (False)
-  4:51:04PM: ongoing: reconcile deployment/source-controller (apps/v1) namespace: flux-system
-  4:51:04PM:  ^ Waiting for 1 unavailable replicas
-  4:51:04PM:  L ok: waiting on replicaset/source-controller-648d7f445d (apps/v1) namespace: flux-system
-  4:51:04PM:  L ongoing: waiting on pod/source-controller-648d7f445d-2h2wc (v1) namespace: flux-system
-  4:51:04PM:     ^ Pending: ContainerCreating
-  4:51:04PM: ongoing: reconcile deployment/kustomize-controller (apps/v1) namespace: flux-system
-  4:51:04PM:  ^ Waiting for 1 unavailable replicas
-  4:51:04PM:  L ok: waiting on replicaset/kustomize-controller-759f994b (apps/v1) namespace: flux-system
-  4:51:04PM:  L ongoing: waiting on pod/kustomize-controller-759f994b-tpbrf (v1) namespace: flux-system
-  4:51:04PM:     ^ Pending: ContainerCreating
-  4:51:05PM: ongoing: reconcile deployment/image-automation-controller (apps/v1) namespace: flux-system
-  4:51:05PM:  ^ Waiting for 1 unavailable replicas
-  4:51:05PM:  L ok: waiting on replicaset/image-automation-controller-68d55fccd8 (apps/v1) namespace: flux-system
-  4:51:05PM:  L ongoing: waiting on pod/image-automation-controller-68d55fccd8-52wwk (v1) namespace: flux-system
-  4:51:05PM:     ^ Condition Ready is not True (False)
-  4:51:05PM: ---- waiting on 6 changes [28/34 done] ----
-  4:51:06PM: ongoing: reconcile deployment/source-controller (apps/v1) namespace: flux-system
-  4:51:06PM:  ^ Waiting for 1 unavailable replicas
-  4:51:06PM:  L ok: waiting on replicaset/source-controller-648d7f445d (apps/v1) namespace: flux-system
-  4:51:06PM:  L ongoing: waiting on pod/source-controller-648d7f445d-2h2wc (v1) namespace: flux-system
-  4:51:06PM:     ^ Condition Ready is not True (False)
-  4:51:07PM: ongoing: reconcile deployment/kustomize-controller (apps/v1) namespace: flux-system
-  4:51:07PM:  ^ Waiting for 1 unavailable replicas
-  4:51:07PM:  L ok: waiting on replicaset/kustomize-controller-759f994b (apps/v1) namespace: flux-system
-  4:51:07PM:  L ongoing: waiting on pod/kustomize-controller-759f994b-tpbrf (v1) namespace: flux-system
-  4:51:07PM:     ^ Condition Ready is not True (False)
-  4:51:11PM: ok: reconcile deployment/source-controller (apps/v1) namespace: flux-system
-  4:51:11PM: ---- waiting on 5 changes [29/34 done] ----
-  4:51:13PM: ok: reconcile deployment/image-reflector-controller (apps/v1) namespace: flux-system
-  4:51:13PM: ok: reconcile deployment/image-automation-controller (apps/v1) namespace: flux-system
-  4:51:13PM: ongoing: reconcile deployment/helm-controller (apps/v1) namespace: flux-system
-  4:51:13PM:  ^ Waiting for 1 unavailable replicas
-  4:51:13PM:  L ok: waiting on replicaset/helm-controller-68996c978c (apps/v1) namespace: flux-system
-  4:51:13PM:  L ok: waiting on pod/helm-controller-68996c978c-rlfnb (v1) namespace: flux-system
-  4:51:13PM: ongoing: reconcile deployment/notification-controller (apps/v1) namespace: flux-system
-  4:51:13PM:  ^ Waiting for 1 unavailable replicas
-  4:51:13PM:  L ok: waiting on replicaset/notification-controller-6fd769cbf4 (apps/v1) namespace: flux-system
-  4:51:13PM:  L ok: waiting on pod/notification-controller-6fd769cbf4-qn2kk (v1) namespace: flux-system
-  4:51:13PM: ---- waiting on 3 changes [31/34 done] ----
-  4:51:14PM: ok: reconcile deployment/notification-controller (apps/v1) namespace: flux-system
-  4:51:14PM: ok: reconcile deployment/helm-controller (apps/v1) namespace: flux-system
-  4:51:15PM: ongoing: reconcile deployment/kustomize-controller (apps/v1) namespace: flux-system
-  4:51:15PM:  ^ Waiting for 1 unavailable replicas
-  4:51:15PM:  L ok: waiting on replicaset/kustomize-controller-759f994b (apps/v1) namespace: flux-system
-  4:51:15PM:  L ok: waiting on pod/kustomize-controller-759f994b-tpbrf (v1) namespace: flux-system
-  4:51:15PM: ---- waiting on 1 changes [33/34 done] ----
-  4:51:16PM: ok: reconcile deployment/kustomize-controller (apps/v1) namespace: flux-system
-  4:51:16PM: ---- applying complete [34/34 done] ----
-  4:51:16PM: ---- waiting complete [34/34 done] ----
- 
   Succeeded
-  vdesikan@vdesikan-a01 tap-install % kubectl get pods -A
-  NAMESPACE           NAME                                           READY   STATUS    RESTARTS   AGE
-  contour-external    contour-7c7795856b-8mqlz                       1/1     Running   0          3m27s
-  contour-external    contour-7c7795856b-8xh6c                       1/1     Running   0          3m27s
-  contour-external    envoy-7fzmk                                    2/2     Running   0          3m27s
-  contour-external    envoy-ccrgj                                    2/2     Running   0          3m27s
-  contour-external    envoy-fndxp                                    2/2     Running   0          3m27s
-  contour-external    envoy-mcbfr                                    2/2     Running   0          3m27s
-  contour-internal    contour-5b6b565d-6sbx4                         1/1     Running   0          3m27s
-  contour-internal    contour-5b6b565d-lhmvn                         1/1     Running   0          3m27s
-  contour-internal    envoy-l2tc6                                    2/2     Running   0          3m27s
-  contour-internal    envoy-mv7x2                                    2/2     Running   0          3m27s
-  contour-internal    envoy-rnhtf                                    2/2     Running   0          3m27s
-  contour-internal    envoy-t2llr                                    2/2     Running   0          3m27s
-  flux-system         helm-controller-68996c978c-rlfnb               1/1     Running   0          29s
-  flux-system         image-automation-controller-68d55fccd8-52wwk   1/1     Running   0          27s
-  flux-system         image-reflector-controller-7784457d8f-n82r7    1/1     Running   0          29s
-  flux-system         kustomize-controller-759f994b-tpbrf            1/1     Running   0          29s
-  flux-system         notification-controller-6fd769cbf4-qn2kk       1/1     Running   0          27s
-  flux-system         source-controller-648d7f445d-2h2wc             1/1     Running   0          29s
-  kapp-controller     kapp-controller-ff4656bb-cjrl7                 1/1     Running   0          16m
-  knative-discovery   controller-b59bd9449-8l9f4                     1/1     Running   0          3m25s
-  knative-discovery   webhook-54c56fc5b8-8djnb                       1/1     Running   0          3m25s
-  knative-eventing    eventing-controller-6c7fbfdb79-7vr4w           1/1     Running   0          3m27s
-  knative-eventing    eventing-webhook-5885fcccc9-7b5lh              1/1     Running   0          3m27s
-  knative-eventing    eventing-webhook-5885fcccc9-vbgzs              1/1     Running   0          3m12s
-  knative-eventing    imc-controller-bdb84c8ff-q67gj                 1/1     Running   0          3m27s
-  knative-eventing    imc-dispatcher-586bd55496-6j97d                1/1     Running   0          3m26s
-  knative-eventing    mt-broker-controller-785589dd9d-vlx6v          1/1     Running   0          3m26s
-  knative-eventing    mt-broker-filter-7dfcf6589-fjhmz               1/1     Running   0          3m26s
-  knative-eventing    mt-broker-ingress-688cc7f74-l46p9              1/1     Running   0          3m26s
-  knative-eventing    rabbitmq-broker-controller-85d5b56f8-kwz9x     1/1     Running   0          3m25s
-  knative-serving     activator-5b59f7c699-4cvts                     1/1     Running   0          3m13s
-  knative-serving     activator-5b59f7c699-4mbtl                     1/1     Running   0          3m29s
-  knative-serving     activator-5b59f7c699-sk2m5                     1/1     Running   0          3m13s
-  knative-serving     autoscaler-8f85d46c-g4tnh                      1/1     Running   0          3m29s
-  knative-serving     contour-ingress-controller-8fbc54c-whghl       1/1     Running   0          3m27s
-  knative-serving     controller-645bdbc7d9-z5n5v                    1/1     Running   0          3m29s
-  knative-serving     net-certmanager-webhook-dcdc76d4-qnxzg         1/1     Running   0          3m25s
-  knative-serving     networking-certmanager-7575777f9f-t4tf9        1/1     Running   0          3m25s
-  knative-serving     webhook-7cb844897b-sdqrz                       1/1     Running   0          3m28s
-  knative-serving     webhook-7cb844897b-tkszw                       1/1     Running   0          3m13s
-  knative-sources     rabbitmq-controller-manager-5dcb7c8494-t7c8k   1/1     Running   0          3m24s
-  knative-sources     rabbitmq-webhook-bcb77f84f-2d6fw               1/1     Running   0          3m24s
-  kube-system         aws-node-2fzbz                                 1/1     Running   0          4d
-  kube-system         aws-node-4s2vw                                 1/1     Running   0          4d
-  kube-system         aws-node-jf8vp                                 1/1     Running   0          4d
-  kube-system         aws-node-m4rz7                                 1/1     Running   0          4d
-  kube-system         coredns-5c778788f4-bl47d                       1/1     Running   0          4d
-  kube-system         coredns-5c778788f4-swf2n                       1/1     Running   0          4d
-  kube-system         kube-proxy-dcbwg                               1/1     Running   0          4d
-  kube-system         kube-proxy-rq6gh                               1/1     Running   0          4d
-  kube-system         kube-proxy-sbsrz                               1/1     Running   0          4d
-  kube-system         kube-proxy-xl2b5                               1/1     Running   0          4d
-  triggermesh         aws-event-sources-controller-7f9dd6d69-6ldbs   1/1     Running   0          3m29s
-  vmware-sources      webhook-c9f67b5cd-tjv4p                        1/1     Running   0          3m26s
-  vdesikan@vdesikan-a01 tap-install % kapp list -A
-  Target cluster 'https://94A70B79EF7B1D5E718A4E96B2925F91.gr7.us-east-2.eks.amazonaws.com' (nodes: ip-172-31-46-226.us-east-2.compute.internal, 3+)
+  
+  tap-install % kubectl get pods -A
  
   Apps in all namespaces
  
@@ -538,7 +284,9 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
   5 apps
  
   Succeeded
-  vdesikan@vdesikan-a01 tap-install % kubectl delete -n flux-system networkpolicies --all
+  ```
+  ```
+  tap-install % kubectl delete -n flux-system networkpolicies --all
  
   networkpolicy.networking.k8s.io "allow-egress" deleted
   networkpolicy.networking.k8s.io "allow-scraping" deleted
@@ -546,84 +294,15 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
   ```
 8. Install Application Accelerator. 
   ```
-  vdesikan@vdesikan-a01 tap-install % tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.2.0 -n tap-install -f values-acc.yml
-  \ Installing package 'accelerator.apps.tanzu.vmware.com'
-  / Getting package metadata for 'accelerator.apps.tanzu.vmware.com'
-  - Creating service account 'app-accelerator-tap-install-sa'
-  - Creating cluster admin role 'app-accelerator-tap-install-cluster-role'
-  - Creating cluster role binding 'app-accelerator-tap-install-cluster-rolebinding'
-  - Creating secret 'app-accelerator-tap-install-values'
-  \ Creating package resource
-  | Package install status: Reconciling
- 
+  tap-install % tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.2.0 -n tap-install -f values-acc.yml
  
    Added installed package 'app-accelerator' in namespace 'tap-install'
-  vdesikan@vdesikan-a01 tap-install % tanzu package  installed  list -A
+  tap-install % tanzu package  installed  list -A
   - Retrieving installed packages...
     NAME                   PACKAGE-NAME                       PACKAGE-VERSION  STATUS               NAMESPACE
     app-accelerator        accelerator.apps.tanzu.vmware.com  0.2.0            Reconcile succeeded  tap-install
     cloud-native-runtimes  cnrs.tanzu.vmware.com              1.0.1            Reconcile succeeded  tap-install
-  vdesikan@vdesikan-a01 tap-install % kubectl get pods -A
-  NAMESPACE            NAME                                             READY   STATUS    RESTARTS   AGE
-  accelerator-system   acc-engine-69f7f7b6b8-pstf9                      1/1     Running   0          74s
-  accelerator-system   acc-ui-server-6df7c597bd-fz5hv                   1/1     Running   0          74s
-  accelerator-system   accelerator-controller-manager-796f7dff7-pqtvg   1/1     Running   0          74s
-  contour-external     contour-7c7795856b-8mqlz                         1/1     Running   0          7m8s
-  contour-external     contour-7c7795856b-8xh6c                         1/1     Running   0          7m8s
-  contour-external     envoy-7fzmk                                      2/2     Running   0          7m8s
-  contour-external     envoy-ccrgj                                      2/2     Running   0          7m8s
-  contour-external     envoy-fndxp                                      2/2     Running   0          7m8s
-  contour-external     envoy-mcbfr                                      2/2     Running   0          7m8s
-  contour-internal     contour-5b6b565d-6sbx4                           1/1     Running   0          7m8s
-  contour-internal     contour-5b6b565d-lhmvn                           1/1     Running   0          7m8s
-  contour-internal     envoy-l2tc6                                      2/2     Running   0          7m8s
-  contour-internal     envoy-mv7x2                                      2/2     Running   0          7m8s
-  contour-internal     envoy-rnhtf                                      2/2     Running   0          7m8s
-  contour-internal     envoy-t2llr                                      2/2     Running   0          7m8s
-  flux-system          helm-controller-68996c978c-rlfnb                 1/1     Running   0          4m10s
-  flux-system          image-automation-controller-68d55fccd8-52wwk     1/1     Running   0          4m8s
-  flux-system          image-reflector-controller-7784457d8f-n82r7      1/1     Running   0          4m10s
-  flux-system          kustomize-controller-759f994b-tpbrf              1/1     Running   0          4m10s
-  flux-system          notification-controller-6fd769cbf4-qn2kk         1/1     Running   0          4m8s
-  flux-system          source-controller-648d7f445d-2h2wc               1/1     Running   0          4m10s
-  kapp-controller      kapp-controller-ff4656bb-cjrl7                   1/1     Running   0          20m
-  knative-discovery    controller-b59bd9449-8l9f4                       1/1     Running   0          7m6s
-  knative-discovery    webhook-54c56fc5b8-8djnb                         1/1     Running   0          7m6s
-  knative-eventing     eventing-controller-6c7fbfdb79-7vr4w             1/1     Running   0          7m8s
-  knative-eventing     eventing-webhook-5885fcccc9-7b5lh                1/1     Running   0          7m8s
-  knative-eventing     eventing-webhook-5885fcccc9-vbgzs                1/1     Running   0          6m53s
-  knative-eventing     imc-controller-bdb84c8ff-q67gj                   1/1     Running   0          7m8s
-  knative-eventing     imc-dispatcher-586bd55496-6j97d                  1/1     Running   0          7m7s
-  knative-eventing     mt-broker-controller-785589dd9d-vlx6v            1/1     Running   0          7m7s
-  knative-eventing     mt-broker-filter-7dfcf6589-fjhmz                 1/1     Running   0          7m7s
-  knative-eventing     mt-broker-ingress-688cc7f74-l46p9                1/1     Running   0          7m7s
-  knative-eventing     rabbitmq-broker-controller-85d5b56f8-kwz9x       1/1     Running   0          7m6s
-  knative-serving      activator-5b59f7c699-4cvts                       1/1     Running   0          6m54s
-  knative-serving      activator-5b59f7c699-4mbtl                       1/1     Running   0          7m10s
-  knative-serving      activator-5b59f7c699-sk2m5                       1/1     Running   0          6m54s
-  knative-serving      autoscaler-8f85d46c-g4tnh                        1/1     Running   0          7m10s
-  knative-serving      contour-ingress-controller-8fbc54c-whghl         1/1     Running   0          7m8s
-  knative-serving      controller-645bdbc7d9-z5n5v                      1/1     Running   0          7m10s
-  knative-serving      net-certmanager-webhook-dcdc76d4-qnxzg           1/1     Running   0          7m6s
-  knative-serving      networking-certmanager-7575777f9f-t4tf9          1/1     Running   0          7m6s
-  knative-serving      webhook-7cb844897b-sdqrz                         1/1     Running   0          7m9s
-  knative-serving      webhook-7cb844897b-tkszw                         1/1     Running   0          6m54s
-  knative-sources      rabbitmq-controller-manager-5dcb7c8494-t7c8k     1/1     Running   0          7m5s
-  knative-sources      rabbitmq-webhook-bcb77f84f-2d6fw                 1/1     Running   0          7m5s
-  kube-system          aws-node-2fzbz                                   1/1     Running   0          4d
-  kube-system          aws-node-4s2vw                                   1/1     Running   0          4d
-  kube-system          aws-node-jf8vp                                   1/1     Running   0          4d
-  kube-system          aws-node-m4rz7                                   1/1     Running   0          4d
-  kube-system          coredns-5c778788f4-bl47d                         1/1     Running   0          4d
-  kube-system          coredns-5c778788f4-swf2n                         1/1     Running   0          4d
-  kube-system          kube-proxy-dcbwg                                 1/1     Running   0          4d
-  kube-system          kube-proxy-rq6gh                                 1/1     Running   0          4d
-  kube-system          kube-proxy-sbsrz                                 1/1     Running   0          4d
-  kube-system          kube-proxy-xl2b5                                 1/1     Running   0          4d
-  triggermesh          aws-event-sources-controller-7f9dd6d69-6ldbs     1/1     Running   0          7m10s
-  vmware-sources       webhook-c9f67b5cd-tjv4p                          1/1     Running   0          7m7s
-  vdesikan@vdesikan-a01 tap-install % kapp list -A
-  Target cluster 'https://94A70B79EF7B1D5E718A4E96B2925F91.gr7.us-east-2.eks.amazonaws.com' (nodes: ip-172-31-46-226.us-east-2.compute.internal, 3+)
+  tap-install % kubectl get pods -A
  
   Apps in all namespaces
  
