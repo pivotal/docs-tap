@@ -554,64 +554,64 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
 ## Deploying the Spring Pet Clinic App
 1. Create an Application Accelerator template for the `spring-pet-clinic` app from your git repository.
   1. Create a New Accelerator.
-    ```
-    tap-install % more new-accelerator.yaml
-    apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
-    kind: Accelerator
-    metadata:
-      name: new-accelerator
-    spec:
-      git:
-        url: https://github.com/sample-accelerators/new-accelerator
-        ref:
-          branch: main
-          tag: v0.2.x
-    tap-install % kubectl apply -f new-accelerator.yaml
-    accelerator.accelerator.apps.tanzu.vmware.com/new-accelerator created
-    tap-install % kubectl get accelerator                 
-    NAME              READY   REASON   AGE
-    new-accelerator   True             5s
-    ```
-    ![Screenshot of page on Application Accelerator that shows a new accelerator is created.](./images/image2021-8-24_9-37-33.png)
+      ```
+      tap-install % more new-accelerator.yaml
+      apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
+      kind: Accelerator
+      metadata:
+        name: new-accelerator
+      spec:
+        git:
+          url: https://github.com/sample-accelerators/new-accelerator
+          ref:
+            branch: main
+            tag: v0.2.x
+      tap-install % kubectl apply -f new-accelerator.yaml
+      accelerator.accelerator.apps.tanzu.vmware.com/new-accelerator created
+      tap-install % kubectl get accelerator                 
+      NAME              READY   REASON   AGE
+      new-accelerator   True             5s
+      ```
+      ![Screenshot of page on Application Accelerator that shows a new accelerator is created.](./images/image2021-8-24_9-37-33.png)
   2. Create the `spring-pet-clinic` accelerator, and add the accelerator.yaml to your git repo. You will see the accelerator you created in the Application Accelerator UI.
-    ```
-    tap-install % cd ../Downloads
-    Downloads % ls | grep spring
-    spring-petclinic-acc.zip
-    Downloads % unzip spring-petclinic-acc.zip
-    Archive:  spring-petclinic-acc.zip
-       creating: spring-petclinic-acc/
-      inflating: spring-petclinic-acc/accelerator.yaml 
-      inflating: spring-petclinic-acc/k8s-resource.yaml 
-      inflating: spring-petclinic-acc/README.md 
-      inflating: spring-petclinic-acc/accelerator-log.md 
-    Downloads % cd spring-petclinic-acc
-    spring-petclinic-acc % ls
-    README.md       accelerator-log.md  accelerator.yaml    k8s-resource.yaml
-    spring-petclinic-acc % kubectl apply -f k8s-resource.yaml
-    accelerator.accelerator.apps.tanzu.vmware.com/spring-pet-clinic-acc created
-    spring-petclinic-acc % kubectl get accelerator             
-    NAME                    READY   REASON   AGE
-    new-accelerator         True             4m32s
-    spring-pet-clinic-acc   True             7s
-    spring-petclinic-acc % more accelerator.yaml  
-    accelerator:
-      displayName: spring-petclinic-acc
-      description: spring per clinic accelerator
-      iconUrl: https://raw.githubusercontent.com/sample-accelerators/icons/master/icon-tanzu-light.png
-      tags: []
-      options:
-      - name: optionName
-        label: Nice Label
-        display: true
-        defaultValue: ""
-    engine:
-      include:
-      - '**'
-    ```
-    ![Screenshot of page on Application Accelerator that shows a new accelerator is created.](./images/image2021-8-24_9-48-46.png)
-    ![Screenshot of page on Application Accelerator that shows a new accelerator is created.](./images/image2021-8-24_9-44-16.png)
-    ![Screenshot of page on Application Accelerator that shows a new accelerator is created.](./images/image2021-8-24_9-45-33.png)
+      ```
+      tap-install % cd ../Downloads
+      Downloads % ls | grep spring
+      spring-petclinic-acc.zip
+      Downloads % unzip spring-petclinic-acc.zip
+      Archive:  spring-petclinic-acc.zip
+         creating: spring-petclinic-acc/
+        inflating: spring-petclinic-acc/accelerator.yaml 
+        inflating: spring-petclinic-acc/k8s-resource.yaml 
+        inflating: spring-petclinic-acc/README.md 
+        inflating: spring-petclinic-acc/accelerator-log.md 
+      Downloads % cd spring-petclinic-acc
+      spring-petclinic-acc % ls
+      README.md       accelerator-log.md  accelerator.yaml    k8s-resource.yaml
+      spring-petclinic-acc % kubectl apply -f k8s-resource.yaml
+      accelerator.accelerator.apps.tanzu.vmware.com/spring-pet-clinic-acc created
+      spring-petclinic-acc % kubectl get accelerator             
+      NAME                    READY   REASON   AGE
+      new-accelerator         True             4m32s
+      spring-pet-clinic-acc   True             7s
+      spring-petclinic-acc % more accelerator.yaml  
+      accelerator:
+        displayName: spring-petclinic-acc
+        description: spring per clinic accelerator
+        iconUrl: https://raw.githubusercontent.com/sample-accelerators/icons/master/icon-tanzu-light.png
+        tags: []
+        options:
+        - name: optionName
+          label: Nice Label
+          display: true
+          defaultValue: ""
+      engine:
+        include:
+        - '**'
+      ```
+      ![Screenshot of page on Application Accelerator that shows a new accelerator is created.](./images/image2021-8-24_9-48-46.png)
+      ![Screenshot of page on Application Accelerator that shows a new accelerator is created.](./images/image2021-8-24_9-44-16.png)
+      ![Screenshot of page on Application Accelerator that shows a new accelerator is created.](./images/image2021-8-24_9-45-33.png)
 2. Generate a project named `spring-pet-clinic-eks`. Create a new git repo `spring-pet-clinic-eks.git`. Using the new `spring-petclinic-demo-acc`, add the `spring-pet-clinic-eks` project to the `spring-pet-clinic-eks.git` git repo.
   ![Screenshot of page on Application Accelerator that shows a new accelerator is created.](./images/image2021-8-24_9-48-46.png)
   ```
@@ -943,49 +943,49 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
       tap-install % kubectl patch serviceaccount default -p "{\"imagePullSecrets\": [{\"name\": \"tbs-secret\"}]}" -n tap-install
       serviceaccount/default patched
       ```
-  2. Use Tanzu Build Service to create an image for the git-repo created with Application Accelerator. Specify the `dev.registry.pivotal.io/tanzu-advanced-edition/vdesikan/spring-petclinic-eks container registry where you can push the image.
-    ```
-    tap-install % more image.yaml
-    apiVersion: kpack.io/v1alpha1
-    tap-install % more tap-sa.yaml
-    apiVersion: v1
-    kind: ServiceAccount
-    metadata:
-      name: tap-service-account
-      namespace: tap-install
-    ---
-    kind: ClusterRole
-    apiVersion: rbac.authorization.k8s.io/v1
-    metadata:
-      name: cluster-admin-cluster-role
-    rules:
-    - apiGroups: ["*"]
-      resources: ["*"]
-      verbs: ["*"]
-    ---
-    kind: ClusterRoleBinding
-    apiVersion: rbac.authorization.k8s.io/v1
-    metadata:
-      name: cluster-admin-cluster-role-binding
-    subjects:
-    - kind: ServiceAccount
-      name: tap-service-account
-      namespace: tap-install
-    roleRef:
-      apiGroup: rbac.authorization.k8s.io
+  2. Use Tanzu Build Service to create an image for the git-repo created with Application Accelerator. Specify the `dev.registry.pivotal.io/tanzu-advanced-edition/vdesikan/spring-petclinic-eks` container registry where you can push the image.
+      ```
+      tap-install % more image.yaml
+      apiVersion: kpack.io/v1alpha1
+      tap-install % more tap-sa.yaml
+      apiVersion: v1
+      kind: ServiceAccount
+      metadata:
+        name: tap-service-account
+        namespace: tap-install
+      ---
       kind: ClusterRole
-      name: cluster-admin-cluster-role
-    tap-install % kubectl apply -f tap-sa.yaml
-    serviceaccount/tap-service-account created
-    clusterrole.rbac.authorization.k8s.io/cluster-admin-cluster-role unchanged
-    clusterrolebinding.rbac.authorization.k8s.io/cluster-admin-cluster-role-binding configured
-    tap-install % kubectl create secret docker-registry tbs-secret -n tap-install --docker-server='dev.registry.pivotal.io' --docker-username=$USRFULL --docker-password=$PASS
-    secret/tbs-secret created
-    tap-install % kubectl patch serviceaccount default -p "{\"imagePullSecrets\": [{\"name\": \"tbs-secret\"}]}" -n tap-install
-    serviceaccount/default patched
-    tap-install % kubectl patch serviceaccount default -p "{\"secrets\": [{\"name\": \"tbs-secret\"}]}" -n tap-install
-    serviceaccount/default patched
-    ```
+      apiVersion: rbac.authorization.k8s.io/v1
+      metadata:
+        name: cluster-admin-cluster-role
+      rules:
+      - apiGroups: ["*"]
+        resources: ["*"]
+        verbs: ["*"]
+      ---
+      kind: ClusterRoleBinding
+      apiVersion: rbac.authorization.k8s.io/v1
+      metadata:
+        name: cluster-admin-cluster-role-binding
+      subjects:
+      - kind: ServiceAccount
+        name: tap-service-account
+        namespace: tap-install
+      roleRef:
+        apiGroup: rbac.authorization.k8s.io
+        kind: ClusterRole
+        name: cluster-admin-cluster-role
+      tap-install % kubectl apply -f tap-sa.yaml
+      serviceaccount/tap-service-account created
+      clusterrole.rbac.authorization.k8s.io/cluster-admin-cluster-role unchanged
+      clusterrolebinding.rbac.authorization.k8s.io/cluster-admin-cluster-role-binding configured
+      tap-install % kubectl create secret docker-registry tbs-secret -n tap-install --docker-server='dev.registry.pivotal.io' --docker-username=$USRFULL --docker-password=$PASS
+      secret/tbs-secret created
+      tap-install % kubectl patch serviceaccount default -p "{\"imagePullSecrets\": [{\"name\": \"tbs-secret\"}]}" -n tap-install
+      serviceaccount/default patched
+      tap-install % kubectl patch serviceaccount default -p "{\"secrets\": [{\"name\": \"tbs-secret\"}]}" -n tap-install
+      serviceaccount/default patched
+      ```
 2. Use Tanzu Build Service to create an image for the git-repo created with Application Accelerator. Specify a container registry where you can push the image.
   ```
   tap-install % more image.yaml
