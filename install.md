@@ -183,34 +183,55 @@ To install the Tanzu CLI:
 
 2. Navigate to [Tanzu Application Platform](https://network.pivotal.io/products/tanzu-application-platform/) on Tanzu Network.
 
-3. Download and unpack the ZIP files for the Tanzu CLI and package plugin for your operating system:
+3. Create a local directory called `tanzu`. 
 
-    - MacOS: `tanzu-core-darwin_amd64` and `PACKAGE-darwin-plugin`
-    - Linux: `tanzu-core-linux_amd64` and `PACKAGE-LINUX-plugin`
-    - Windows: `tanzu-core-darwin_amd64` and `PACKAGE-WINDOW-plugin`
+4. Download the Tanzu CLI for your operating system and unpack the TAR files into the `tanzu` directory:
 
-4. For MacOS and Linux: Install the CLI by running:
+    - MacOS: `tanzu-cli-bundle-mac`
+    - Linux: `tanzu-cli-bundle-linux`
+    - Windows: `tanzu-cli-bundle-windows`
+
+5. For MacOS and Linux: Install the CLI and package plugin from the `tanzu` directory by running:
     ```
-    mv tanzu /usr/local/bin/tanzu && \
-    chmod +x /usr/local/bin/tanzu
+    sudo install cli/core/v1.4.0-rc.5/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
     ```
     
-5. Confirm the installation of the Tanzu CLI by running:
+6. For Windows: Install the Tanzu CLI and package plugin as follows:
+
+    1. Create a new `Program Files\tanzu` folder.
+    
+    2. In the unpacked CLI folder, locate and copy the `core/v1.4.0-rc.5/tanzu-core-windows_amd64.exe`
+       into the new `Program Files\tanzu` folder.
+       
+    3. Rename `tanzu-core-windows_amd64.exe` to `tanzu.exe`.
+    
+    4. Right-click the `tanzu` folder, select **Properties > Security**,
+       and make sure that your user account has the **Full Control** permission.
+       
+    5. Use Windows Search to search for `env`.
+    
+    6. Select **Edit the system environment variables**, and click **Environment Variables**.
+    
+    7. Select the **Path** row under **System variables**, and click **Edit**.
+    
+    8. Click **New** to add a new row, and enter the path to the Tanzu CLI.
+
+7. Confirm the installation of the Tanzu CLI by running:
    ```
    tanzu version
    ```
 
-6. In the directory containing the package plugin, install it by running:    
+8. In the directory containing the package plugin, install it by running:    
    
    ```
-   tanzu plugin install package --local . 
+   tanzu plugin clean
+   tanzu plugin install -v v1.4.0-rc.5 --local cli package 
    ```
 
-7. Confirm the installation of the Tanzu CLI by running:
+9. Confirm the installation of the Tanzu CLI by running:
    ```
    tanzu package version
    ```
-
 
 ## <a id='add-package-repositories'></a> Add the TAP Package Repository
 
