@@ -18,8 +18,6 @@ The following prerequisites are required to install Tanzu Application Platform:
 
 * The Kubernetes command line tool, kubectl, v1.19 or later, installed and authenticated with administrator rights for your target cluster.
 
-* Go v1.16 installed locally. Required for the Tanzu command line interface (CLI).
-
 * Tanzu Application Platform is compatible with a Kubernetes cluster (v1.19 or later) on the following Kubernetes providers:
 
     * Azure Kubernetes Service
