@@ -4,5 +4,5 @@ This is the table of contents from which the Tanzu Application Platform Document
 
 - [About Tanzu Application Platform v0.1 (Beta)](overview.md)
 - [Installing Tanzu Application Platform](install.md)
-- [Use Case: Install and Deploy the Spring Pet Clinic App](use-case.md)
+- [Tutorial: Install and Deploy the Spring Pet Clinic App](tutorial.md)
 - [Uninstalling Tanzu Application Platform](uninstall.md)
