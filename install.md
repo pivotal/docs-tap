@@ -7,7 +7,7 @@ This document describes how to install Tanzu Application Platform packages from 
 
 The following prerequisites are required to install Tanzu Application Platform:
 
-* The following Carvel tools are required to install packages using TAP repo bundle.
+* The following Carvel tools are required to install packages using the TAP repo bundle.
   For information about the Carvel tool suite,
   see [Carvel](https://carvel.dev/#whole-suite):
     * [kapp](https://github.com/vmware-tanzu/carvel-kapp/releases) (v0.37.0 or later)
@@ -17,11 +17,8 @@ The following prerequisites are required to install Tanzu Application Platform:
     * [kapp-controller](https://github.com/vmware-tanzu/carvel-kapp-controller) (v0.20.0 or later)
 
 * The Kubernetes command line tool, kubectl, v1.19 or later, installed and authenticated with administrator rights for your target cluster.
-* The [Tanzu command line interface (CLI)](ttps://github.com/vmware-tanzu/community-edition/releases/tag/v0.7.0).
-   Alternatively, if you have Tanzu Kubernetes Grid,
-   see [Download and Unpack the Tanzu CLI](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.3/vmware-tanzu-kubernetes-grid-13/GUID-install-cli.html#download-and-unpack-the-tanzu-cli-and-kubectl-1)
-   in the Tanzu Kubernetes Grid documentation.
 
+* Go v1.16 installed locally. Required for the Tanzu command line interface (CLI).
 
 * Tanzu Application Platform is compatible with a Kubernetes cluster (v1.19 or later) on the following Kubernetes providers:
 
@@ -167,6 +164,53 @@ To accept EULAs:
     + [Application Live View](https://network.pivotal.io/products/app-live-view/)
 
   ![Screenshot of page on Tanzu Network from where you download Tanzu Application Platform packages shows the EULA warning](./images/tap-on-tanzu-net.png)
+
+## Install the Tanzu CLI
+
+Before you can install Tanzu Application Platform,
+you need to download and install the Tanzu CLI and the package plugin for the Tanzu CLI.
+
+> **Note:** If you have Tanzu Kubernetes Grid, as an alternative to following the procedure below,
+you can follow the procedures in
+[Download and Unpack the Tanzu CLI](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.3/vmware-tanzu-kubernetes-grid-13/GUID-install-cli.html#download-and-unpack-the-tanzu-cli-and-kubectl-1)
+in the Tanzu Kubernetes Grid documentation.
+Make sure to install the package plugin that you can download from
+[Tanzu Application Platform](https://network.pivotal.io/products/tanzu-application-platform/) on Tanzu Network.
+
+To install the Tanzu CLI:
+
+1. Sign in to [Tanzu Network](https://network.pivotal.io).
+
+2. Navigate to [Tanzu Application Platform](https://network.pivotal.io/products/tanzu-application-platform/) on Tanzu Network.
+
+3. Download and unpack the ZIP files for the Tanzu CLI and package plugin for your operating system:
+
+    - MacOS: `tanzu-core-darwin_amd64` and `PACKAGE-darwin-plugin`
+    - Linux: `tanzu-core-linux_amd64` and `PACKAGE-LINUX-plugin`
+    - Windows: `tanzu-core-darwin_amd64` and `PACKAGE-WINDOW-plugin`
+
+4. For MacOS and Linux: Install the CLI by running:
+    ```
+    mv tanzu /usr/local/bin/tanzu && \
+    chmod +x /usr/local/bin/tanzu
+    ```
+    
+5. Confirm the installation of the Tanzu CLI by running:
+   ```
+   tanzu version
+   ```
+
+6. In the directory containing the package plugin, install it by running:    
+   
+   ```
+   tanzu plugin install package --local . 
+   ```
+
+7. Confirm the installation of the Tanzu CLI by running:
+   ```
+   tanzu package version
+   ```
+
 
 ## <a id='add-package-repositories'></a> Add the TAP Package Repository
 

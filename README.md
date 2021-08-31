@@ -35,6 +35,7 @@ Use this table to keep a running list of terms used and how they should be defin
 
 | Word or phrase | Explanation |
 |----------------|-------------|
+| components | The individual products available in the TAP SKU. For example, Cloud Native Runtimes is a component of TAP. Not: add-ons or capabilities.|
 | packageRepository | Is a definition. Variations found in original doc (Package repository, PackageRepository, packagerepository) but standardize on the one shown. 2021.08.26 |
 | PackageRepositories | Don't use. There is really only one packageRepository of interest for this page. |
 | packageRepository custom resource | Because we don't use CR in other Kubernetes docs, spell out custom resource here too. An example of the packageRepository custom resource is given in the YAML file named `tap-package-repo.yaml`.|
