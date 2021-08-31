@@ -70,4 +70,4 @@ in the table above.
 
 To follow a tutorial that shows how to use Tanzu Application Platform
 v0.1 (Beta) components to deploy a sample app,
-see [Use Case: Install and Deploy the Spring Pet Clinic App](use-case.html).
+see [Tutorial: Install and Deploy the Spring Pet Clinic App](tutorial.html).
