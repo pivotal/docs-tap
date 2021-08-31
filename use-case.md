@@ -1,4 +1,4 @@
-# Tanzu Application Platform Use Case: Install and Deploy the Spring Pet Clinic App 
+# Tanzu Application Platform Tutorial: Install and Deploy the Spring Pet Clinic App 
 This topic describes how to use Tanzu Application Platform capabilities to install, configure, and deploy the Spring Pet Clinic app. This procedure includes Cloud Native Runtimes, App Live View, Application Accelerator, and Tanzu Build Service. 
 
 ## Install and Configure the  Tanzu Application Platform Bundle
@@ -1837,7 +1837,7 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
     vdesikan@vdesikan-a01 tap-install % kubectl patch serviceaccount default -p "{\"imagePullSecrets\": [{\"name\": \"tbs-secret\"}]}" -n tap-install
     serviceaccount/default patched
     ```
-  2. Use Tanzu Build Service to create an image for the git-repo created with Application Accelerator. Specify a container registry where you can push the image.
+  1. Use Tanzu Build Service to create an image for the git-repo created with Application Accelerator. Specify a container registry where you can push the image.
     ```
     vdesikan@vdesikan-a01 tap-install % more image.yaml
     apiVersion: kpack.io/v1alpha1
@@ -2010,7 +2010,7 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
   paketo-buildpacks/dist-zip             4.1.2                https://github.com/paketo-buildpacks/dist-zip
   paketo-buildpacks/spring-boot          4.4.2                https://github.com/paketo-buildpacks/spring-boot
   ```
-4. Deploy the image you generated as a service with Cloud Native Runtimes. Deploy the image in the namespace where App Live View is running with the labels `tanzu.app.live.view=true` and `tanzu.app.live.view.application.name=<app_name>`. Add the appropriate DNS entries using `/etc/hosts`.
+3. Deploy the image you generated as a service with Cloud Native Runtimes. Deploy the image in the namespace where App Live View is running with the labels `tanzu.app.live.view=true` and `tanzu.app.live.view.application.name=<app_name>`. Add the appropriate DNS entries using `/etc/hosts`.
   ```
   vdesikan@vdesikan-a01 tap-install % more kapp-deploy-spring-petclinic.yaml
       apiVersion: kappctrl.k14s.io/v1alpha1
@@ -2147,10 +2147,10 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
   # End of section
   vdesikan@vdesikan-a01 tap-install %
   ```
-5. Verify that you can access the Spring Pet Clinic app. Ensure that App Live View is also displaying the Spring Pet Clinic app.
+4. Verify that you can access the Spring Pet Clinic app. Ensure that App Live View is also displaying the Spring Pet Clinic app.
   ![Screenshot of page on Tanzu Network from where you download Tanzu Application Platform packages shows the EULA warning](./images/image2021-8-24_16-6-22.png)
   ![Screenshot of page on Tanzu Network from where you download Tanzu Application Platform packages shows the EULA warning](./images/image2021-8-24_10-44-38.png)
-6. Make some code changes in the git repo and commit the change. Verify that the new build is created automatically and the new image is generated.
+5. Make some code changes in the git repo and commit the change. Verify that the new build is created automatically and the new image is generated.
   ```
   vdesikan@vdesikan-a01 spring-pet-clinic-eks % ls
   README.md       Tiltfile        accelerator-log.md  config          docker-compose.yml  mvnw            mvnw.cmd        pom.xml         src         tes1
@@ -2278,7 +2278,7 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
   1        SUCCESS    dev.registry.pivotal.io/tanzu-advanced-edition/vdesikan/spring-petclinic-eks@sha256:be889cf313016eb4fc168556493c2b1672c8e2af725e33696bf461b8212f9872    CONFIG
   2        SUCCESS    dev.registry.pivotal.io/tanzu-advanced-edition/vdesikan/spring-petclinic-eks@sha256:0b627060147d7d80d8aae5a650a70ebca67bbb73001420580b2effa77c4b90cd    COMMIT
   ```
-7. Update the Cloud Native Runtimes service with the new image.
+6. Update the Cloud Native Runtimes service with the new image.
   ```
   vdesikan@vdesikan-a01 tap-install % more kapp-deploy-spring-petclinic.yaml
       apiVersion: kappctrl.k14s.io/v1alpha1
@@ -2336,5 +2336,5 @@ This topic describes how to use Tanzu Application Platform capabilities to insta
   spring-petclinic-image-build-1-vl7j5-build-pod          0/1     Completed   0          5h54m
   spring-petclinic-image-build-2-gthhl-build-pod          0/1     Completed   0          11m
   ```
-8. Verify that the code changes are reflected in the app.
+7. Verify that the code changes are reflected in the app.
   ![Screenshot of page on Tanzu Network from where you download Tanzu Application Platform packages shows the EULA warning](./images/image2021-8-24_16-6-22.png)
