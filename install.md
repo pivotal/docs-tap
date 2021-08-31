@@ -187,15 +187,22 @@ Make sure to install the package plugin that you can download from
 To install the Tanzu CLI and package plugin on a Linux operating system:
 
 1. Create a local directory called `tanzu`. 
+    ```
+    mkdir $HOME/tanzu
+    ```
  
 2. Sign in to [Tanzu Network](https://network.pivotal.io).
 
 3. Navigate to [Tanzu Application Platform](https://network.pivotal.io/products/tanzu-application-platform/) on Tanzu Network.
 
-4. Download the Tanzu CLI TAR file for Linux, `tanzu-cli-bundle-linux` and unpack the TAR files into the `tanzu` directory:
+4. Download `tanzu-cli-bundle-linux` under the tanzu-cli folder and unpack the TAR file into the `tanzu` directory:
+    ```
+    tar -xvf tanzu-cli-bundle-linux-amd64.tar -C $HOME/tanzu
+    ```
     
 5. Install the CLI and package plugin from the `tanzu` directory by running:
     ```
+    cd $HOME/tanzu
     sudo install cli/core/v1.4.0-rc.5/tanzu-core-linux_amd64 /usr/local/bin/tanzu
     ```
 
@@ -204,14 +211,13 @@ To install the Tanzu CLI and package plugin on a Linux operating system:
    tanzu version
    ```
 
-7. In the directory containing the package plugin, install it by running:    
-   
+7. From the `tanzu` directory, install the package plugin by running:
    ```
    tanzu plugin clean
    tanzu plugin install -v v1.4.0-rc.5 --local cli package 
    ```
 
-8. Confirm the installation of the Tanzu CLI by running:
+8. Confirm the installation of the Tanzu CLI package plugin by running:
    ```
    tanzu package version
    ```
@@ -221,15 +227,22 @@ To install the Tanzu CLI and package plugin on a Linux operating system:
 To install the Tanzu CLI and package plugin on a Mac operating system:
 
 1. Create a local directory called `tanzu`. 
+    ```
+    mkdir $HOME/tanzu
+    ```
  
 2. Sign in to [Tanzu Network](https://network.pivotal.io).
 
 3. Navigate to [Tanzu Application Platform](https://network.pivotal.io/products/tanzu-application-platform/) on Tanzu Network.
 
-4. Download the Tanzu CLI TAR file for Mac, `tanzu-cli-bundle-mac` and unpack the TAR files into the `tanzu` directory.
+4. Download `tanzu-cli-bundle-mac` under the tanzu-cli folder and unpack the TAR files into the `tanzu` directory.
+    ```
+    tar -xvf tanzu-cli-bundle-darwin-amd64.tar -C $HOME/tanzu
+    ```
 
 5.  Install the CLI and package plugin from the `tanzu` directory by running:
     ```
+    cd $HOME/tanzu
     sudo install cli/core/v1.4.0-rc.5/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
     ```
 
@@ -238,14 +251,13 @@ To install the Tanzu CLI and package plugin on a Mac operating system:
    tanzu version
    ```
 
-7. In the directory containing the package plugin, install it by running:    
-   
+7. From the `tanzu` directory, install the package plugin by running:
    ```
    tanzu plugin clean
    tanzu plugin install -v v1.4.0-rc.5 --local cli package 
    ```
 
-8. Confirm the installation of the Tanzu CLI by running:
+8. Confirm the installation of the Tanzu CLI package plugin by running:
    ```
    tanzu package version
    ```
