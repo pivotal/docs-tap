@@ -15,7 +15,7 @@ The following prerequisites are required to install Tanzu Application Platform:
     * [imgpkg](https://github.com/vmware-tanzu/carvel-imgpkg/releases) (v0.14.0 or later)
     * [kbld](https://github.com/vmware-tanzu/carvel-kbld/releases) (v0.30.0 or later)
 
-* [Kapp-controller](https://carvel.dev/kapp-controller/docs/latest/install/), v0.20.0 or later. To install kapp-controller, see [Install](https://carvel.dev/kapp-controller/docs/latest/install/) in the Carvel documentation.
+* kapp-controller v0.20.0 or later. To install kapp-controller, see [Install](https://carvel.dev/kapp-controller/docs/latest/install/) in the Carvel documentation.
 
 * The Kubernetes command line tool, kubectl, v1.19 or later, installed and authenticated with administrator rights for your target cluster.
 
