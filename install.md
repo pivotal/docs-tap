@@ -200,7 +200,7 @@ To install the Tanzu CLI and package plugin on a Linux operating system:
     tar -xvf tanzu-cli-bundle-linux-amd64.tar -C $HOME/tanzu
     ```
     
-5. Install the CLI and package plugin from the `tanzu` directory by running:
+5. Install the Tanzu CLI from the `tanzu` directory by running:
     ```
     cd $HOME/tanzu
     sudo install cli/core/v1.4.0-rc.5/tanzu-core-linux_amd64 /usr/local/bin/tanzu
@@ -240,7 +240,7 @@ To install the Tanzu CLI and package plugin on a Mac operating system:
     tar -xvf tanzu-cli-bundle-darwin-amd64.tar -C $HOME/tanzu
     ```
 
-5.  Install the CLI and package plugin from the `tanzu` directory by running:
+5.  Install the Tanzu CLI from the `tanzu` directory by running:
     ```
     cd $HOME/tanzu
     sudo install cli/core/v1.4.0-rc.5/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
@@ -355,7 +355,7 @@ To add the TAP package repository:
     kapp deploy -a tap-package-repo -n tap-install -f ./tap-package-repo.yaml -y
     ```
 
-5. Get status of the TAP package repository and ensure the status updates to `Reconcile succeeded` by running :
+5. Get status of the TAP package repository, and ensure the status updates to `Reconcile succeeded` by running:
 
     ```
     tanzu package repository list -n tap-install
@@ -442,7 +442,7 @@ To install Cloud Native Runtimes:
 
 2. Gather the values schema.
 
-3. Create a `cnr-values.yaml`, using the following sample as a guide:
+3. Create a `cnr-values.yaml` using the following sample as a guide:
 
     Sample `cnr-values.yaml` for Cloud Native Runtimes:
 
@@ -507,7 +507,7 @@ in the App Accelerator documentation.
 
 2. Gather the values schema.
 
-3. Create a `app-acclerator-values.yaml`, using the following sample as a guide:
+3. Create a `app-acclerator-values.yaml` using the following sample as a guide:
 
     Sample `app-accelerator-values.yaml` for Application Accelerator:
 
@@ -550,7 +550,7 @@ To install Application Live View:
 
 2. Gather the values schema.
 
-3. Create a `app-live-view-values.yaml`, using the following sample as a guide:
+3. Create a `app-live-view-values.yaml` using the following sample as a guide:
 
     Sample `app-live-view-values.yaml` for Application Live View:
 
