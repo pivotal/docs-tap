@@ -177,7 +177,9 @@ in the Tanzu Kubernetes Grid documentation.
 Make sure to install the package plugin that you can download from
 [Tanzu Application Platform](https://network.pivotal.io/products/tanzu-application-platform/) on Tanzu Network.
 
-To install the Tanzu CLI:
+### Linux: Install the Tanzu CLI and Package Plugin
+
+To install the Tanzu CLI and package plugin on a Linux operating system:
 
 1. Create a local directory called `tanzu`. 
  
@@ -185,41 +187,91 @@ To install the Tanzu CLI:
 
 3. Navigate to [Tanzu Application Platform](https://network.pivotal.io/products/tanzu-application-platform/) on Tanzu Network.
 
-4. Download the Tanzu CLI for your operating system and unpack the TAR files into the `tanzu` directory:
-
-    - Linux: `tanzu-cli-bundle-linux`
-    - MacOS: `tanzu-cli-bundle-mac`
-    - Windows: `tanzu-cli-bundle-windows`
-
-5. For MacOS: Install the CLI and package plugin from the `tanzu` directory by running:
-    ```
-    sudo install cli/core/v1.4.0-rc.5/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
-    ```
+4. Download the Tanzu CLI TAR file for Linux, `tanzu-cli-bundle-linux` and unpack the TAR files into the `tanzu` directory:
     
-5. For Linux: Install the CLI and package plugin from the `tanzu` directory by running:
+5. Install the CLI and package plugin from the `tanzu` directory by running:
     ```
     sudo install cli/core/v1.4.0-rc.5/tanzu-core-linux_amd64 /usr/local/bin/tanzu
     ```
-    
-6. For Windows: Install the Tanzu CLI and package plugin as follows:
 
-    1. Create a new `Program Files\tanzu` folder.
-    
-    2. In the unpacked CLI folder, locate and copy the `core/v1.4.0-rc.5/tanzu-core-windows_amd64.exe`
-       into the new `Program Files\tanzu` folder.
+7. Confirm the installation of the Tanzu CLI by running:
+   ```
+   tanzu version
+   ```
+
+8. In the directory containing the package plugin, install it by running:    
+   
+   ```
+   tanzu plugin clean
+   tanzu plugin install -v v1.4.0-rc.5 --local cli package 
+   ```
+
+9. Confirm the installation of the Tanzu CLI by running:
+   ```
+   tanzu package version
+   ```
+
+### MacOS: Install the Tanzu CLI and Package Plugin
+
+To install the Tanzu CLI and package plugin on a Mac operating system:
+
+1. Create a local directory called `tanzu`. 
+ 
+2. Sign in to [Tanzu Network](https://network.pivotal.io).
+
+3. Navigate to [Tanzu Application Platform](https://network.pivotal.io/products/tanzu-application-platform/) on Tanzu Network.
+
+4. Download the Tanzu CLI TAR file for Mac, `tanzu-cli-bundle-mac` and unpack the TAR files into the `tanzu` directory.
+
+5.  Install the CLI and package plugin from the `tanzu` directory by running:
+    ```
+    sudo install cli/core/v1.4.0-rc.5/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
+    ```
+
+7. Confirm the installation of the Tanzu CLI by running:
+   ```
+   tanzu version
+   ```
+
+8. In the directory containing the package plugin, install it by running:    
+   
+   ```
+   tanzu plugin clean
+   tanzu plugin install -v v1.4.0-rc.5 --local cli package 
+   ```
+
+9. Confirm the installation of the Tanzu CLI by running:
+   ```
+   tanzu package version
+   ```
+
+### Windows: Install the Tanzu CLI and Package Plugin
+
+To install the Tanzu CLI and package plugin on a Windows operating system:
+
+2. Sign in to [Tanzu Network](https://network.pivotal.io).
+
+3. Navigate to [Tanzu Application Platform](https://network.pivotal.io/products/tanzu-application-platform/) on Tanzu Network.
+
+4. Download the Tanzu CLI TAR file for Windows, `tanzu-cli-bundle-windows`.
+
+1. Create a new `Program Files\tanzu` folder.
+
+2. In the unpacked CLI folder, locate and copy the `core/v1.4.0-rc.5/tanzu-core-windows_amd64.exe`
+   into the new `Program Files\tanzu` folder.
        
-    3. Rename `tanzu-core-windows_amd64.exe` to `tanzu.exe`.
+3. Rename `tanzu-core-windows_amd64.exe` to `tanzu.exe`.
     
-    4. Right-click the `tanzu` folder, select **Properties > Security**,
-       and make sure that your user account has the **Full Control** permission.
+4. Right-click the `tanzu` folder, select **Properties > Security**,
+   and make sure that your user account has the **Full Control** permission.
        
-    5. Use Windows Search to search for `env`.
+5. Use Windows Search to search for `env`.
     
-    6. Select **Edit the system environment variables**, and click **Environment Variables**.
+6. Select **Edit the system environment variables**, and click **Environment Variables**.
     
-    7. Select the **Path** row under **System variables**, and click **Edit**.
+7. Select the **Path** row under **System variables**, and click **Edit**.
     
-    8. Click **New** to add a new row, and enter the path to the Tanzu CLI.
+8. Click **New** to add a new row, and enter the path to the Tanzu CLI.
 
 7. Confirm the installation of the Tanzu CLI by running:
    ```
