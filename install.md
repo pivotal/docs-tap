@@ -165,7 +165,7 @@ To accept EULAs:
 
   ![Screenshot of page on Tanzu Network from where you download Tanzu Application Platform packages shows the EULA warning](./images/tap-on-tanzu-net.png)
 
-## Install the Tanzu CLI
+## Install the Tanzu CLI and Package Plugin
 
 Before you can install Tanzu Application Platform,
 you need to download and install the Tanzu CLI and the package plugin for the Tanzu CLI.
