@@ -355,7 +355,7 @@ To add the TAP package repository:
     kapp deploy -a tap-package-repo -n tap-install -f ./tap-package-repo.yaml -y
     ```
 
-5. Get status of the TAP package repository by running:
+5. Get status of the TAP package repository and ensure the status updates to `Reconcile succeeded` by running :
 
     ```
     tanzu package repository list -n tap-install
@@ -398,7 +398,7 @@ To install any package from the TAP package repository:
 
 1. Run:
     ```
-    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema
+    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema -n tap-install
     ```
 
      Where:
@@ -410,7 +410,7 @@ To install any package from the TAP package repository:
 
     For example:
     ```
-    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.1 --values-schema
+    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.1 --values-schema -n tap-install
     ```
 
 2. Follow the specific installation instructions for each package:
@@ -420,7 +420,7 @@ To install any package from the TAP package repository:
     + [Install Application Live View](#install-app-live-view)
 
 
-### <a id='install-crn'></a> Install Cloud Native Runtimes
+### <a id='install-cnr'></a> Install Cloud Native Runtimes
 
 To install Cloud Native Runtimes:
 
@@ -442,9 +442,9 @@ To install Cloud Native Runtimes:
 
 2. Gather the values schema.
 
-3. Populate the `values.yaml`, using the following sample `values.yaml` as a guide:
+3. Create a `cnr-values.yaml`, using the following sample as a guide:
 
-    Sample `values.yaml` for Cloud Native Runtimes:
+    Sample `cnr-values.yaml` for Cloud Native Runtimes:
 
     ```
     ---
@@ -480,7 +480,7 @@ To install Cloud Native Runtimes:
 4. Install the package by running:
 
     ```
-    root@tkg-cli-client:~# tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 1.0.1 -n tap-install -f values.yaml
+    root@tkg-cli-client:~# tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 1.0.1 -n tap-install -f cnr-values.yaml
     - Installing package 'cnrs.tanzu.vmware.com'
     | Getting package metadata for 'cnrs.tanzu.vmware.com'
     | Creating service account 'cloud-native-runtimes-tap-install-sa'
@@ -507,9 +507,9 @@ in the App Accelerator documentation.
 
 2. Gather the values schema.
 
-3. Populate the `values.yaml`, using the following sample `values.yaml` as a guide:
+3. Create a `app-acclerator-values.yaml`, using the following sample as a guide:
 
-    Sample `values.yaml` for Application Accelerator:
+    Sample `app-accelerator-values.yaml` for Application Accelerator:
 
     ```
     registry:
@@ -527,7 +527,7 @@ in the App Accelerator documentation.
 4. Install the package by running:
 
     ```
-    tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.2.0 -n tap-install -f values.yaml
+    tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.2.0 -n tap-install -f app-accelerator-values.yaml
     - Installing package 'accelerator.apps.tanzu.vmware.com'
     | Getting package metadata for 'accelerator.apps.tanzu.vmware.com'
     | Creating service account 'app-accelerator-tap-install-sa'
@@ -550,9 +550,9 @@ To install Application Live View:
 
 2. Gather the values schema.
 
-3. Populate the `values.yaml`, using the following sample `values.yaml` as a guide:
+3. Create a `app-live-view-values.yaml`, using the following sample as a guide:
 
-    Sample `values.yaml` for Application Live View:
+    Sample `app-live-view-values.yaml` for Application Live View:
 
     ```
     ---
@@ -565,7 +565,7 @@ To install Application Live View:
 4. Install the package by running:
 
     ```
-    tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.1.0 -n tap-install -f values.yaml
+    tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.1.0 -n tap-install -f app-live-view-values.yaml
     - Installing package 'appliveview.tanzu.vmware.com'
     | Getting package metadata for 'appliveview.tanzu.vmware.com'
     | Creating service account 'app-live-view-tap-install-sa'
