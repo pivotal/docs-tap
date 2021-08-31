@@ -179,21 +179,26 @@ Make sure to install the package plugin that you can download from
 
 To install the Tanzu CLI:
 
-1. Sign in to [Tanzu Network](https://network.pivotal.io).
+1. Create a local directory called `tanzu`. 
+ 
+2. Sign in to [Tanzu Network](https://network.pivotal.io).
 
-2. Navigate to [Tanzu Application Platform](https://network.pivotal.io/products/tanzu-application-platform/) on Tanzu Network.
-
-3. Create a local directory called `tanzu`. 
+3. Navigate to [Tanzu Application Platform](https://network.pivotal.io/products/tanzu-application-platform/) on Tanzu Network.
 
 4. Download the Tanzu CLI for your operating system and unpack the TAR files into the `tanzu` directory:
 
-    - MacOS: `tanzu-cli-bundle-mac`
     - Linux: `tanzu-cli-bundle-linux`
+    - MacOS: `tanzu-cli-bundle-mac`
     - Windows: `tanzu-cli-bundle-windows`
 
-5. For MacOS and Linux: Install the CLI and package plugin from the `tanzu` directory by running:
+5. For MacOS: Install the CLI and package plugin from the `tanzu` directory by running:
     ```
     sudo install cli/core/v1.4.0-rc.5/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
+    ```
+    
+5. For Linux: Install the CLI and package plugin from the `tanzu` directory by running:
+    ```
+    sudo install cli/core/v1.4.0-rc.5/tanzu-core-linux_amd64 /usr/local/bin/tanzu
     ```
     
 6. For Windows: Install the Tanzu CLI and package plugin as follows:
