@@ -193,7 +193,7 @@ To install the Tanzu CLI:
 
 5. For MacOS and Linux: Install the CLI and Package plugin from the `tanzu` directory by running:
     ```
-    sudo cli/core/v1.4.0-rc.5/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
+    sudo install cli/core/v1.4.0-rc.5/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
     ```
     
 6. For Windows:
