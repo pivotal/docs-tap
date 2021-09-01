@@ -25,57 +25,6 @@ The following prerequisites are required to install Tanzu Application Platform:
     * Amazon Elastic Kubernetes Service
     * kind
     * minikube
-    * Tanzu Kubernetes Grid v1.4.0 and later
-
-* For Tanzu Kubernetes Grid, the minimum cluster configuration is as follows:
-
-    * Tanzu Kubernetes Grid on vSphere:
-      <table class="nice">
-        <tr>
-          <td>Deployment Type:</td>
-          <td>Dev, Prod</td>
-        </tr>
-        <tr>
-          <td>Instance type:</td>
-          <td>Medium (2 vCPUs, 8&nbsp;GiB memory)</td>
-        </tr>
-        <tr>
-          <td>Number of worker nodes:</td>
-          <td>3</td>
-        </tr>
-       </table>
-
-    * Tanzu Kubernetes Grid on Azure:
-      <table class="nice">
-        <tr>
-          <td>Deployment Type:</td>
-          <td>Dev, Prod</td>
-        </tr>
-        <tr>
-          <td>Instance type:</td>
-          <td>Standard D2s v3 (2 vCPUs, 8&nbsp;GiB memory)</td>
-        </tr>
-        <tr>
-          <td>Number of worker nodes:</td>
-          <td>3</td>
-        </tr>
-        </table>
-
-    * Tanzu Kubernetes Grid on AWS:
-      <table class="nice">
-        <tr>
-          <td>Deployment Type:</td>
-          <td>Dev, Prod</td>
-          </tr>
-        <tr>
-          <td>Instance type:</td>
-          <td>t2.large (2 vCPUs, 8&nbsp;GiB memory)</td>
-        </tr>
-        <tr>
-          <td>Number of worker nodes:</td>
-          <td>3</td>
-        </tr>
-      </table>
 
 
 ## Set and Verify the Kubernetes Cluster Configurations
@@ -175,12 +124,6 @@ Follow the procedure for your operating system:
 + [Mac: Install the Tanzu CLI and Package Plugin](#mac-cli)
 + [Windows: Install the Tanzu CLI and Package Plugin](#windows-cli)
 
-> **Note:** If you have Tanzu Kubernetes Grid, as an alternative to following the procedure below,
-you can follow the procedures in
-[Download and Unpack the Tanzu CLI](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.3/vmware-tanzu-kubernetes-grid-13/GUID-install-cli.html#download-and-unpack-the-tanzu-cli-and-kubectl-1)
-in the Tanzu Kubernetes Grid documentation.
-Make sure to install the package plugin that you can download from
-[Tanzu Application Platform](https://network.pivotal.io/products/tanzu-application-platform/) on Tanzu Network.
 
 ### <a id='linux-cli'></a> Linux: Install the Tanzu CLI and Package Plugin
 
