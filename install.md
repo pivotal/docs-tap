@@ -474,7 +474,7 @@ To install Cloud Native Runtimes:
     Then, in the `values.yaml` file, specify values for `ingress.reuse_crds`, `ingress.external.namespace`,
     and `ingress.internal.namespace` as appropriate.
 
-    For a local Kubernetes cluster, set `provider=local`.
+    For a local Kubernetes cluster, set `provider: "local"`.
     For other infrastructures, do not set `provider`.
     
 4. Install the package by running:
