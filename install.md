@@ -37,8 +37,8 @@ To set and verify the Kubernetes cluster configurations:
     kubectl config get-contexts
     ```
     For example:
-    ```console
-    $ kubectl config get-contexts \n
+    ```
+    $ kubectl config get-contexts
     CURRENT   NAME                                CLUSTER           AUTHINFO                                NAMESPACE
               aks-repo-trial                      aks-repo-trial    clusterUser_aks-rg-01_aks-repo-trial
     *         aks-tap-cluster                     aks-tap-cluster   clusterUser_aks-rg-01_aks-tap-cluster
@@ -50,12 +50,21 @@ To set and verify the Kubernetes cluster configurations:
 
     ```
     kubectl config use-context aks-tap-cluster
+    ```
+    For example:
+    ```
+    $ kubectl config use-context aks-tap-cluster
     Switched to context "aks-tap-cluster".
     ```
 
 3. Confirm that the context is set by running:
+    
     ```
     kubectl config current-context
+    ```
+    For example:
+    ```
+    $ kubectl config current-context
     aks-tap-cluster
     ```
 
@@ -63,7 +72,6 @@ To set and verify the Kubernetes cluster configurations:
     ```
     kubectl cluster-info
     ```
-
     For example:
     ```
     $ kubectl cluster-info
@@ -237,7 +245,7 @@ To install the Tanzu CLI and package plugin on a Windows operating system:
     
 11. Click **New** to add a new row, and enter the path to the Tanzu CLI.
 
-12. Confirm the installation of the Tanzu CLI by running:
+12. Confirm the installation of the Tanzu CLI by running in a terminal window:
    ```
    tanzu version
    ```
@@ -273,7 +281,7 @@ To add the TAP package repository:
     --docker-username=TANZU-NET-USER \
     --docker-password=TANZU-NET-PASSWORD
     ```
-
+    
     Where `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for Tanzu Network.
 
     > **Note:** You must name the secret `tap-registry`.
@@ -306,6 +314,10 @@ To add the TAP package repository:
 
     ```
     tanzu package repository list -n tap-install
+    ```
+    For example:
+    ```
+    $ tanzu package repository list -n tap-install
     - Retrieving repositories...
       NAME                  REPOSITORY                                                         STATUS               DETAILS
       tanzu-tap-repository  registry.pivotal.io/tanzu-application-platform/tap-packages:0.1.0  Reconcile succeeded
@@ -313,8 +325,13 @@ To add the TAP package repository:
 
 6. List the available packages by running:
 
+
     ```
     tanzu package available list -n tap-install
+    ```
+    For example:
+    ```
+    $ tanzu package available list -n tap-install
     / Retrieving available packages...
       NAME                               DISPLAY-NAME                              SHORT-DESCRIPTION
       accelerator.apps.tanzu.vmware.com  Application Accelerator for VMware Tanzu  Used to create new projects and configurations.                                      
@@ -323,9 +340,12 @@ To add the TAP package repository:
     ```
 
 7. List version information for the `cnrs.tanzu.vmware.com` package by running:
-
     ```
     tanzu package available list cnrs.tanzu.vmware.com -n tap-install
+    ```
+    For example:
+    ```
+    $ tanzu package available list cnrs.tanzu.vmware.com -n tap-install
     - Retrieving package versions for cnrs.tanzu.vmware.com...
       NAME                   VERSION  RELEASED-AT
       cnrs.tanzu.vmware.com  1.0.1    2021-07-30T15:18:46Z
@@ -373,8 +393,13 @@ To install Cloud Native Runtimes:
 
 1. Follow the instructions in [Install Packages](#install-packages) above.
 
+
     ```
     tanzu package available get cnrs.tanzu.vmware.com/1.0.1 --values-schema -n tap-install
+    ```
+    For example:
+    ```
+    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.1 --values-schema -n tap-install
     | Retrieving package details for cnrs.tanzu.vmware.com/1.0.1...
       KEY                         DEFAULT  TYPE             DESCRIPTION
       registry.server             <nil>    registry server  <nil>
@@ -427,7 +452,11 @@ To install Cloud Native Runtimes:
 4. Install the package by running:
 
     ```
-    root@tkg-cli-client:~# tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 1.0.1 -n tap-install -f cnr-values.yaml
+    tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 1.0.1 -n tap-install -f cnr-values.yaml
+    ```
+    For example:
+    ```
+    $ tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 1.0.1 -n tap-install -f cnr-values.yaml
     - Installing package 'cnrs.tanzu.vmware.com'
     | Getting package metadata for 'cnrs.tanzu.vmware.com'
     | Creating service account 'cloud-native-runtimes-tap-install-sa'
@@ -475,6 +504,10 @@ in the App Accelerator documentation.
 
     ```
     tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.2.0 -n tap-install -f app-accelerator-values.yaml
+    ```
+    For example:
+    ```
+    $ tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.2.0 -n tap-install -f app-accelerator-values.yaml
     - Installing package 'accelerator.apps.tanzu.vmware.com'
     | Getting package metadata for 'accelerator.apps.tanzu.vmware.com'
     | Creating service account 'app-accelerator-tap-install-sa'
@@ -513,6 +546,10 @@ To install Application Live View:
 
     ```
     tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.1.0 -n tap-install -f app-live-view-values.yaml
+    ```
+    For example:
+    ```
+    $ tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.1.0 -n tap-install -f app-live-view-values.yaml
     - Installing package 'appliveview.tanzu.vmware.com'
     | Getting package metadata for 'appliveview.tanzu.vmware.com'
     | Creating service account 'app-live-view-tap-install-sa'
@@ -534,9 +571,12 @@ To install Application Live View:
 To verify that the packages are installed:
 
 1. List the installed packages by running:
-
     ```
     tanzu package installed list -n tap-install
+    ```
+    For example:
+    ```
+    $ tanzu package installed list -n tap-install
     \ Retrieving installed packages...
       NAME                   PACKAGE-NAME                       PACKAGE-VERSION  STATUS
       app-accelerator        accelerator.apps.tanzu.vmware.com  0.2.0            Reconcile succeeded
