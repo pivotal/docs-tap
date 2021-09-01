@@ -35,12 +35,16 @@ To set and verify the Kubernetes cluster configurations:
 
     ```
     kubectl config get-contexts
+    ```
+    For example:
+    <pre class='terminal'>
+    $ kubectl config get-contexts
     CURRENT   NAME                                CLUSTER           AUTHINFO                                NAMESPACE
               aks-repo-trial                      aks-repo-trial    clusterUser_aks-rg-01_aks-repo-trial
     *         aks-tap-cluster                     aks-tap-cluster   clusterUser_aks-rg-01_aks-tap-cluster
               tkg-mgmt-vc-admin@tkg-mgmt-vc       tkg-mgmt-vc       tkg-mgmt-vc-admin
               tkg-vc-antrea-admin@tkg-vc-antrea   tkg-vc-antrea     tkg-vc-antrea-admin
-    ```
+    </pre>
 
 2. Set the context to the `aks-tap-cluster` context by running:
 
