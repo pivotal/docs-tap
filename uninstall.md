@@ -18,7 +18,7 @@ To delete the installed packages:
 2. Remove a package by running:
 
     ```
-    tanzu package installed delete PACKAGE-NAME
+    tanzu package installed delete PACKAGE-NAME -n tap-install
     ```
     For example:
     ```
