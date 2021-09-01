@@ -29,7 +29,7 @@ The following prerequisites are required to install Tanzu Application Platform:
 
 * For Tanzu Kubernetes Grid, the minimum cluster configuration is as follows:
 
-    * Tanzu Kubernetes Grid on vSphere 7:
+    * Tanzu Kubernetes Grid on vSphere:
       <table class="nice">
         <tr>
           <td>Deployment Type:</td>
