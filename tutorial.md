@@ -1,9 +1,7 @@
 # Tanzu Application Platform Tutorial: Install and Deploy the Spring Pet Clinic App 
 This topic describes how to use Tanzu Application Platform capabilities to install, configure, and deploy the Spring Pet Clinic app. This procedure includes Cloud Native Runtimes, Application Live View, Application Accelerator, and Tanzu Build Service. 
 
-## Install and Configure the  Tanzu Application Platform Bundle
-
-1. Install Tanzu Application Platform. See [Installing Tanzu Application Platform](install.md).
+Before following the procedure below, install Tanzu Application Platform. For information about how to install, see [Installing Tanzu Application Platform](install.md).
 
 ## Deploying the Spring Pet Clinic App
 1. Create an Application Accelerator template for the `spring-pet-clinic` app from your git repository.
