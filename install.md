@@ -487,9 +487,7 @@ in the App Accelerator documentation.
 
 2. Gather the values schema.
 
-3. Create a `app-acclerator-values.yaml` using the following sample as a guide:
-
-    Sample `app-accelerator-values.yaml` for Application Accelerator:
+3. Create an `app-acclerator-values.yaml` using the following sample as a guide:
 
     ```
     registry:
@@ -527,10 +525,11 @@ in the App Accelerator documentation.
 
 5. Download and apply sample accelerators:
 
-    a. Navigate to [Application Accelerator for VMware Tanzu](https://network.tanzu.vmware.com/products/app-accelerator)
+    1. Navigate to [Application Accelerator for VMware Tanzu](https://network.tanzu.vmware.com/products/app-accelerator)
      on Tanzu Network and download `sample-accelerators-0.2.yaml`.
 
-    b. Apply the sample accelerators by running:
+    2. Apply the sample accelerators by running:
+    
        ```
        kubectl apply -f sample-accelerators-0-2.yaml
        ```
