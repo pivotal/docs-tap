@@ -221,7 +221,7 @@ To install the Tanzu CLI and package plugin on a Mac operating system:
 
 To install the Tanzu CLI and package plugin on a Windows operating system:
 
-1. Create a local directory called `tanzu-bundle`. 
+1. Create a local directory called `tanzu-bundle`.
     
 2. Sign in to [Tanzu Network](https://network.pivotal.io).
 
@@ -248,21 +248,23 @@ To install the Tanzu CLI and package plugin on a Windows operating system:
 12. Click **New** to add a new row, and enter the path to the Tanzu CLI.
 
 13. Confirm the installation of the Tanzu CLI by running in a terminal window:
-   ```
-   tanzu version
-   ```
 
-13. From the Command Prompt Navigate to the tanzu-bundle directory containing the package plugin and install it by running:    
+    ```
+    tanzu version
+    ```
+
+14. From the command prompt, navigate to the `tanzu-bundle` directory that contains the package plugin,
+    and install the plugin by running:
    
-   ```
-   tanzu plugin clean
-   tanzu plugin install -v v1.4.0-rc.5 --local cli package 
-   ```
+    ```
+    tanzu plugin clean
+    tanzu plugin install -v v1.4.0-rc.5 --local cli package
+    ```
 
-14. Confirm the installation of the Tanzu CLI by running:
-   ```
-   tanzu package version
-   ```
+15. Confirm the installation of the Tanzu CLI by running:
+    ```
+    tanzu package version
+    ```
 
 ## <a id='add-package-repositories'></a> Add the TAP Package Repository
 
