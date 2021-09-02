@@ -37,14 +37,14 @@ To set and verify the Kubernetes cluster configurations:
     kubectl config get-contexts
     ```
     For example:
-    ```
+    <pre class="pre codeblock vm-code-block prettyprint">
     $ kubectl config get-contexts
     CURRENT   NAME                                CLUSTER           AUTHINFO                                NAMESPACE
               aks-repo-trial                      aks-repo-trial    clusterUser_aks-rg-01_aks-repo-trial
     *         aks-tap-cluster                     aks-tap-cluster   clusterUser_aks-rg-01_aks-tap-cluster
               tkg-mgmt-vc-admin@tkg-mgmt-vc       tkg-mgmt-vc       tkg-mgmt-vc-admin
               tkg-vc-antrea-admin@tkg-vc-antrea   tkg-vc-antrea     tkg-vc-antrea-admin
-    ```
+    </pre>
 
 2. Set the context to the `aks-tap-cluster` context by running:
 
@@ -52,10 +52,10 @@ To set and verify the Kubernetes cluster configurations:
     kubectl config use-context aks-tap-cluster
     ```
     For example:
-    ```
+    <pre class="pre codeblock vm-code-block prettyprint">
     $ kubectl config use-context aks-tap-cluster
     Switched to context "aks-tap-cluster".
-    ```
+    </pre>
 
 3. Confirm that the context is set by running:
     
@@ -63,17 +63,17 @@ To set and verify the Kubernetes cluster configurations:
     kubectl config current-context
     ```
     For example:
-    ```
+    <pre class="pre codeblock vm-code-block prettyprint">
     $ kubectl config current-context
     aks-tap-cluster
-    ```
+    </pre>
 
 4. List the parameters that are in use by running:
     ```
     kubectl cluster-info
     ```
     For example:
-    ```
+    <pre class="pre codeblock vm-code-block prettyprint">
     $ kubectl cluster-info
     Kubernetes control plane is running at https://aks-tap-cluster-dns-eec0876a.hcp.eastus.azmk8s.io:443
     healthmodel-replicaset-service is running at https://aks-tap-cluster-dns-eec0876a.hcp.eastus.azmk8s.io:443/api/v1/namespaces/kube-system/services/healthmodel-replicaset-service/proxy
@@ -81,7 +81,7 @@ To set and verify the Kubernetes cluster configurations:
     Metrics-server is running at https://aks-tap-cluster-dns-eec0876a.hcp.eastus.azmk8s.io:443/api/v1/namespaces/kube-system/services/https:metrics-server:/proxy
 
     To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
-    ```
+    </pre>
 
 
 ## Packages in Tanzu Application Platform v0.1
@@ -318,12 +318,12 @@ To add the TAP package repository:
     tanzu package repository list -n tap-install
     ```
     For example:
-    ```
+    <pre class="pre codeblock vm-code-block prettyprint">
     $ tanzu package repository list -n tap-install
     - Retrieving repositories...
       NAME                  REPOSITORY                                                         STATUS               DETAILS
       tanzu-tap-repository  registry.pivotal.io/tanzu-application-platform/tap-packages:0.1.0  Reconcile succeeded
-    ```
+    </pre>
 
 6. List the available packages by running:
 
@@ -332,26 +332,26 @@ To add the TAP package repository:
     tanzu package available list -n tap-install
     ```
     For example:
-    ```
+    <pre class="pre codeblock vm-code-block prettyprint">
     $ tanzu package available list -n tap-install
     / Retrieving available packages...
       NAME                               DISPLAY-NAME                              SHORT-DESCRIPTION
       accelerator.apps.tanzu.vmware.com  Application Accelerator for VMware Tanzu  Used to create new projects and configurations.                                      
       appliveview.tanzu.vmware.com       Application Live View for VMware Tanzu    App for monitoring and troubleshooting running apps                                  
       cnrs.tanzu.vmware.com              Cloud Native Runtimes                     Cloud Native Runtimes is a serverless runtime based on Knative
-    ```
+    </pre>
 
 7. List version information for the `cnrs.tanzu.vmware.com` package by running:
     ```
     tanzu package available list cnrs.tanzu.vmware.com -n tap-install
     ```
     For example:
-    ```
+    <pre class="pre codeblock vm-code-block prettyprint">
     $ tanzu package available list cnrs.tanzu.vmware.com -n tap-install
     - Retrieving package versions for cnrs.tanzu.vmware.com...
       NAME                   VERSION  RELEASED-AT
       cnrs.tanzu.vmware.com  1.0.1    2021-07-30T15:18:46Z
-    ```
+    </pre>
 
 
 ## <a id='install-packages'></a> Install Packages
@@ -378,9 +378,9 @@ To install any package from the TAP package repository:
      [Add the TAP Package Repository](#add-package-repositories) above.
 
     For example:
-    ```
+    <pre class="pre codeblock vm-code-block prettyprint">
     $ tanzu package available get cnrs.tanzu.vmware.com/1.0.1 --values-schema -n tap-install
-    ```
+    </pre>
 
 2. Follow the specific installation instructions for each package:
 
@@ -400,7 +400,7 @@ To install Cloud Native Runtimes:
     tanzu package available get cnrs.tanzu.vmware.com/1.0.1 --values-schema -n tap-install
     ```
     For example:
-    ```
+    <pre class="pre codeblock vm-code-block prettyprint">
     $ tanzu package available get cnrs.tanzu.vmware.com/1.0.1 --values-schema -n tap-install
     | Retrieving package details for cnrs.tanzu.vmware.com/1.0.1...
       KEY                         DEFAULT  TYPE             DESCRIPTION
@@ -412,7 +412,7 @@ To install Cloud Native Runtimes:
       local_dns                   <nil>    string           <nil>
       provider                    <nil>    string           Kubernetes cluster provider
       registry.password           <nil>    string           registry password
-    ```
+    </pre>
 
 2. Gather the values schema.
 
@@ -457,7 +457,7 @@ To install Cloud Native Runtimes:
     tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 1.0.1 -n tap-install -f cnr-values.yaml
     ```
     For example:
-    ```
+    <pre class="pre codeblock vm-code-block prettyprint">
     $ tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 1.0.1 -n tap-install -f cnr-values.yaml
     - Installing package 'cnrs.tanzu.vmware.com'
     | Getting package metadata for 'cnrs.tanzu.vmware.com'
@@ -468,7 +468,7 @@ To install Cloud Native Runtimes:
     - Package install status: Reconciling
 
      Added installed package 'cloud-native-runtimes' in namespace 'tap-install'
-    ```
+    </pre>
 
 
 
@@ -508,7 +508,7 @@ in the App Accelerator documentation.
     tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.2.0 -n tap-install -f app-accelerator-values.yaml
     ```
     For example:
-    ```
+    <pre class="pre codeblock vm-code-block prettyprint">
     $ tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.2.0 -n tap-install -f app-accelerator-values.yaml
     - Installing package 'accelerator.apps.tanzu.vmware.com'
     | Getting package metadata for 'accelerator.apps.tanzu.vmware.com'
@@ -520,7 +520,7 @@ in the App Accelerator documentation.
     - Package install status: Reconciling
 
      Added installed package 'app-accelerator' in namespace 'tap-install'
-    ```
+    </pre>
 
 
 
@@ -550,7 +550,7 @@ To install Application Live View:
     tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.1.0 -n tap-install -f app-live-view-values.yaml
     ```
     For example:
-    ```
+    <pre class="pre codeblock vm-code-block prettyprint">
     $ tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.1.0 -n tap-install -f app-live-view-values.yaml
     - Installing package 'appliveview.tanzu.vmware.com'
     | Getting package metadata for 'appliveview.tanzu.vmware.com'
@@ -562,7 +562,7 @@ To install Application Live View:
     - Package install status: Reconciling
 
      Added installed package 'app-live-view' in namespace 'tap-install'
-    ```
+    </pre>
 
     For more information about Application Live View,
     see the [Application Live View documentation](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.1/docs/GUID-index.html).
@@ -577,12 +577,12 @@ To verify that the packages are installed:
     tanzu package installed list -n tap-install
     ```
     For example:
-    ```
+    <pre class="pre codeblock vm-code-block prettyprint">
     $ tanzu package installed list -n tap-install
     \ Retrieving installed packages...
       NAME                   PACKAGE-NAME                       PACKAGE-VERSION  STATUS
       app-accelerator        accelerator.apps.tanzu.vmware.com  0.2.0            Reconcile succeeded
       app-live-view         appliveview.tanzu.vmware.com        0.1.0            Reconcile succeeded
       cloud-native-runtimes  cnrs.tanzu.vmware.com              1.0.1            Reconcile succeeded
-    ```
+    </pre>
 
