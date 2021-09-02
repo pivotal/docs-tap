@@ -497,6 +497,7 @@ in the App Accelerator documentation.
       username: "TANZU-NET-USER"
       password: "TANZU-NET-PASSWORD"
     server:
+      # Set this service_type to "NodePort" for local clusters like minikube.
       service_type: "LoadBalancer"
       watched_namespace: "default"
       engine_invocation_url: "http://acc-engine.accelerator-system.svc.cluster.local/invocations"
@@ -524,7 +525,11 @@ in the App Accelerator documentation.
      Added installed package 'app-accelerator' in namespace 'tap-install'
     ```
 
+5. Install the sample accelerators by applying `sample-accelerators-0-2.yaml` which you can download from the Accelerator product page at https://network.tanzu.vmware.com/products/app-accelerator.
 
+    ```
+    kubectl apply -f sample-accelerators-0-2.yaml
+    ```
 
 ### <a id="install-app-live-view"></a>Install Application Live View
 
