@@ -19,8 +19,9 @@ To delete the installed packages:
 
     ```
     tanzu package installed delete PACKAGE-NAME -n tap-install
+    ```
     For example:
-    <pre class="pre codeblock vm-code-block prettyprint">
+    ```
     $ tanzu package installed delete cloud-native-runtimes -n tap-install
     | Uninstalling package 'cloud-native-runtimes' from namespace 'tap-install'
     / Getting package install for 'cloud-native-runtimes'
@@ -33,7 +34,7 @@ To delete the installed packages:
     / Deleting service account 'cloud-native-runtimes-tap-install-sa'    
 
      Uninstalled package 'cloud-native-runtimes' from namespace 'tap-install'
-    </pre>
+    ```
 
     Where `PACKAGE-NAME` is the name of a package listed in step 1 above.
 
@@ -49,12 +50,12 @@ To delete the TAP package repository:
     tanzu package repository list -n tap-install
     ```
     For example:
-    <pre class="pre codeblock vm-code-block prettyprint">
+    ```
     $ tanzu package repository list -n tap-install
     / Retrieving repositories...
       NAME                                           REPOSITORY                                                         STATUS               DETAILS  
       tanzu-application-platform-package-repository  registry.pivotal.io/tanzu-application-platform/tap-packages:0.1.0  Reconcile succeeded
-    </pre>
+    ```
 
 2. Remove the TAP package repository by running:
 
@@ -65,8 +66,9 @@ To delete the TAP package repository:
     Where `PACKAGE-REPO-NAME` is the name of the packageRepository from step 1 above.
 
     For example:
-    <pre class="pre codeblock vm-code-block prettyprint">
+
+    ```
     $ tanzu package repository delete tanzu-application-platform-package-repository -n tap-install
     - Deleting package repository 'tanzu-application-platform-package-repository'...
      Deleted package repository 'tanzu-application-platform-package-repository' in namespace 'tap-install'
-    </pre>
+    ```
