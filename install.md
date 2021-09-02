@@ -440,7 +440,7 @@ To install Cloud Native Runtimes:
      internal:
        namespace:    
 
-    Local_dns:
+    local_dns:
     ```
 
     In TKG environments, Contour addons that are already be present might conflict
