@@ -19,6 +19,7 @@ To delete the installed packages:
 
     ```
     tanzu package installed delete PACKAGE-NAME -n tap-install
+    ```
     For example:
     <pre class="pre codeblock vm-code-block prettyprint">
     $ tanzu package installed delete cloud-native-runtimes -n tap-install
