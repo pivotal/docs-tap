@@ -523,16 +523,11 @@ in the App Accelerator documentation.
      Added installed package 'app-accelerator' in namespace 'tap-install'
     ```
 
-5. Download and apply sample accelerators:
+5. Download and apply sample accelerators.
+   For instructions,
+   see [Install the sample accelerators](https://docs-staging.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.2/acc-docs/GUID-installation-install.html#install-the-sample-accelerators-8)
+   in the Application Accelerator documentation.
 
-    1. Navigate to [Application Accelerator for VMware Tanzu](https://network.tanzu.vmware.com/products/app-accelerator)
-     on Tanzu Network and download `sample-accelerators-0.2.yaml`.
-
-    2. Apply the sample accelerators by running:
-    
-       ```
-       kubectl apply -f sample-accelerators-0-2.yaml
-       ```
 
 ### <a id="install-app-live-view"></a>Install Application Live View
 
