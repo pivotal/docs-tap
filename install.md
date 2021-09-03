@@ -97,10 +97,10 @@ Cloud Native Runtimes, Application Accelerator, and Application Live View are av
 For instructions on how to add the TAP package repository and install packages from the repository,
 see [Add PackageRepositories](#add-package-repositories) and [Install Packages](#install-packages) below.
 
-Tanzu Build Services v1.2.2 can be installed from VMware Tanzu Network.
+Tanzu Build Service v1.2.2 can be installed from VMware Tanzu Network.
 For installation instructions,
 see the [Installing Tanzu Build Service](https://docs.pivotal.io/build-service/installing.html)
-in the Tanzu Build Services documentation.
+in the Tanzu Build Service documentation.
 
 
 ## Accept the EULAs
