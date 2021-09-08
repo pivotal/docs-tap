@@ -487,7 +487,7 @@ in the App Accelerator documentation.
 
 2. Gather the values schema.
 
-3. Create an `app-acclerator-values.yaml` using the following sample as a guide:
+3. Create an `app-accelerator-values.yaml` using the following sample as a guide:
 
     ```
     registry:
