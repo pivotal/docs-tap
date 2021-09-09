@@ -168,7 +168,6 @@ To install the Tanzu CLI and package plugin on a Linux operating system:
 
 7. From the `tanzu` directory, install the package plugin by running:
    ```
-   tanzu plugin clean
    tanzu plugin install -v v1.4.0-rc.5 --local cli package 
    ```
 
@@ -208,7 +207,6 @@ To install the Tanzu CLI and package plugin on a Mac operating system:
 
 7. From the `tanzu` directory, install the package plugin by running:
    ```
-   tanzu plugin clean
    tanzu plugin install -v v1.4.0-rc.5 --local cli package 
    ```
 
@@ -257,7 +255,6 @@ To install the Tanzu CLI and package plugin on a Windows operating system:
     and install the plugin by running:
    
     ```
-    tanzu plugin clean
     tanzu plugin install -v v1.4.0-rc.5 --local cli package
     ```
 
