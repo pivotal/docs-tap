@@ -124,7 +124,7 @@ To set and verify the Kubernetes cluster configurations:
     kubectl cluster-info
     ```
     For example:
-    ```
+    ```{ .bash .no-copy }
     $ kubectl cluster-info
     Kubernetes control plane is running at https://aks-tap-cluster-dns-eec0876a.hcp.eastus.azmk8s.io:443
     healthmodel-replicaset-service is running at https://aks-tap-cluster-dns-eec0876a.hcp.eastus.azmk8s.io:443/api/v1/namespaces/kube-system/services/healthmodel-replicaset-service/proxy
