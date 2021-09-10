@@ -14,7 +14,7 @@ The following prerequisites are required to install Tanzu Application Platform:
     * kind
     * minikube
     * Tanzu Kubernetes Grid v1.4.0 and later.
-      > **Note:** Tanzu Application Platform v1.3 is not supported
+      > **Note:** Tanzu Kubernetes Grid v1.3 is not supported.
       If you want support for v1.3, please send feedback.
 
 * The [kapp Carvel command line tool](https://github.com/vmware-tanzu/carvel-kapp/releases) (v0.37.0 or later)
