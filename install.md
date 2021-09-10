@@ -7,25 +7,27 @@ This document describes how to install Tanzu Application Platform packages from 
 
 The following prerequisites are required to install Tanzu Application Platform:
 
-* The following Carvel command line tools are required to install packages using the TAP repo bundle.
-  For information about the Carvel tool suite,
-  see [Carvel](https://carvel.dev/#whole-suite):
-    * [kapp](https://github.com/vmware-tanzu/carvel-kapp/releases) (v0.37.0 or later)
-    * [ytt](https://github.com/vmware-tanzu/carvel-ytt/releases) (v0.34.0 or later)
-    * [imgpkg](https://github.com/vmware-tanzu/carvel-imgpkg/releases) (v0.14.0 or later)
-    * [kbld](https://github.com/vmware-tanzu/carvel-kbld/releases) (v0.30.0 or later)
-
-* kapp-controller v0.20.0 or later. To install kapp-controller, see [Install](https://carvel.dev/kapp-controller/docs/latest/install/) in the Carvel documentation.
-
-* The Kubernetes command line tool, kubectl, v1.19 or later, installed and authenticated with administrator rights for your target cluster.
-
-* Tanzu Application Platform is compatible with a Kubernetes cluster (v1.19 or later) on the following Kubernetes providers:
+* A Kubernetes cluster (v1.19 or later) on one of the following Kubernetes providers:
 
     * Azure Kubernetes Service
     * Amazon Elastic Kubernetes Service
     * kind
     * minikube
-    * Tanzu Kubernetes Grid v1.4.0 and later
+    * Tanzu Kubernetes Grid v1.4.0 and later.
+      > **Note:** Tanzu Application Platform v1.3 is not supported
+      If you want support for v1.3, please send feedback.
+
+* The [kapp Carvel command line tool](https://github.com/vmware-tanzu/carvel-kapp/releases) (v0.37.0 or later)
+
+* kapp-controller v0.20.0 or later:
+
+    * For Azure Kubernetes Service, Amazon Elastic Kubernetes Service, kind, and minikube,
+      see [Install](https://carvel.dev/kapp-controller/docs/latest/install/) in the Carvel documentation.
+
+    * For Tanzu Kubernetes Grid, ensure that you are using Tanzu Kubernetes Grid v1.14.0 or later.
+      Clusters of this version have kapp-controller v0.20.0 pre-installed.
+
+* The Kubernetes command line tool, kubectl, v1.19 or later, installed and authenticated with administrator rights for your target cluster.
 
 * For Tanzu Kubernetes Grid, the minimum cluster configuration is as follows:
 
@@ -187,12 +189,6 @@ Follow the procedure for your operating system:
 + [Mac: Install the Tanzu CLI and Package Plugin](#mac-cli)
 + [Windows: Install the Tanzu CLI and Package Plugin](#windows-cli)
 
-> **Note:** If you have Tanzu Kubernetes Grid, as an alternative to following the procedure below,
-you can follow the procedures in
-[Download and Unpack the Tanzu CLI](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.3/vmware-tanzu-kubernetes-grid-13/GUID-install-cli.html#download-and-unpack-the-tanzu-cli-and-kubectl-1)
-in the Tanzu Kubernetes Grid documentation.
-Make sure to install the package plugin that you can download from
-[Tanzu Application Platform](https://network.pivotal.io/products/tanzu-application-platform/) on Tanzu Network.
 
 ### <a id='linux-cli'></a> Linux: Install the Tanzu CLI and Package Plugin
 
