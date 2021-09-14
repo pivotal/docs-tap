@@ -573,7 +573,7 @@ in the App Accelerator documentation.
 
 5. Download and apply sample accelerators.
    For instructions,
-   see [Install the sample accelerators](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.2/acc-docs/GUID-installation-install.html#install-the-sample-accelerators-3)
+   see [Install the sample accelerators](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.2/acc-docs/GUID-installation-install.html#download-and-deploy-application-accelerator-3)
    in the Application Accelerator documentation.
 
 
