@@ -260,7 +260,7 @@ To install the Tanzu CLI and package plugin on a Mac operating system:
 
 7. From the `tanzu` directory, install the package plugin by running:
    ```
-   tanzu plugin install --local cli package 
+   tanzu plugin install --local ./cli package 
    ```
 
 8. Confirm the installation of the Tanzu CLI package plugin by running:
@@ -308,7 +308,7 @@ To install the Tanzu CLI and package plugin on a Windows operating system:
     and install the plugin by running:
    
     ```
-    tanzu plugin install -v v1.4.0-rc.5 --local cli package
+    tanzu plugin install --local .\cli package
     ```
 
 15. Confirm the installation of the Tanzu CLI by running:
