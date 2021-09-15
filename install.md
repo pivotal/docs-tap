@@ -111,7 +111,7 @@ To set and verify the Kubernetes cluster configurations:
     ```
 
 3. Confirm that the context is set by running:
-    
+
     ```
     kubectl config current-context
     ```
@@ -150,7 +150,7 @@ Cloud Native Runtimes, Application Accelerator, and Application Live View are av
 For instructions on how to add the TAP package repository and install packages from the repository,
 see [Add PackageRepositories](#add-package-repositories) and [Install Packages](#install-packages) below.
 
-You can install Tanzu Build Service v1.2.2 from VMware Tanzu Network. 
+You can install Tanzu Build Service v1.2.2 from VMware Tanzu Network.
 For production environment installation instructions, see [Installing Tanzu Build Service](https://docs.pivotal.io/build-service/installing.html) in the Tanzu Build Service documentation.
 For quick start installation instructions that may not include all configurations necessary for your production environment, see [Getting Started with Tanzu Build Service](https://docs.pivotal.io/build-service/getting-started.html) in the Tanzu Build Service documentation.
 
@@ -161,18 +161,18 @@ for each component separately.
 
 To accept EULAs:
 
-1. Sign in to [Tanzu Network](https://network.pivotal.io).
+1. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
 
 2. For each of the following components, accept or confirm that you have accepted the EULA:
 
-    + [Tanzu Application Platform](https://network.pivotal.io/products/tanzu-application-platform/)
-    + [Tanzu Build Service](https://network.pivotal.io/products/build-service/) and its associated components,
-      [Tanzu Build Service Dependencies](https://network.pivotal.io/products/tbs-dependencies/),
-      [Buildpacks for VMware Tanzu](https://network.pivotal.io/products/tanzu-buildpacks-suite), and
-      [Stacks for VMware Tanzu](https://network.pivotal.io/products/tanzu-stacks-suite)
-    + [Cloud Native Runtimes](https://network.pivotal.io/products/serverless/)
-    + [Application Accelerator](https://network.pivotal.io/products/app-accelerator/)
-    + [Application Live View](https://network.pivotal.io/products/app-live-view/)
+    + [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/)
+    + [Tanzu Build Service](https://network.tanzu.vmware.com/products/build-service/) and its associated components,
+      [Tanzu Build Service Dependencies](https://network.tanzu.vmware.com/products/tbs-dependencies/),
+      [Buildpacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-buildpacks-suite), and
+      [Stacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-stacks-suite)
+    + [Cloud Native Runtimes](https://network.tanzu.vmware.com/products/serverless/)
+    + [Application Accelerator](https://network.tanzu.vmware.com/products/app-accelerator/)
+    + [Application Live View](https://network.tanzu.vmware.com/products/app-live-view/)
 
   ![Screenshot of page on Tanzu Network from where you download Tanzu Application Platform packages shows the EULA warning](./images/tap-on-tanzu-net.png)
 
@@ -192,20 +192,20 @@ Follow the procedure for your operating system:
 
 To install the Tanzu CLI and package plugin on a Linux operating system:
 
-1. Create a local directory called `tanzu`. 
+1. Create a local directory called `tanzu`.
     ```
     mkdir $HOME/tanzu
     ```
- 
-2. Sign in to [Tanzu Network](https://network.pivotal.io).
 
-3. Navigate to [Tanzu Application Platform](https://network.pivotal.io/products/tanzu-application-platform/) on Tanzu Network.
+2. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
+
+3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/) on Tanzu Network.
 
 4. Download `tanzu-cli-bundle-linux` under the tanzu-cli folder and unpack the TAR file into the `tanzu` directory:
     ```
     tar -xvf tanzu-cli-bundle-linux-amd64.tar -C $HOME/tanzu
     ```
-    
+
 5. Install the Tanzu CLI from the `tanzu` directory by running:
     ```
     cd $HOME/tanzu
@@ -219,7 +219,7 @@ To install the Tanzu CLI and package plugin on a Linux operating system:
 
 7. From the `tanzu` directory, install the package plugin by running:
    ```
-   tanzu plugin install --local ./cli package 
+   tanzu plugin install --local ./cli package
    ```
 
 8. Confirm the installation of the Tanzu CLI package plugin by running:
@@ -231,14 +231,14 @@ To install the Tanzu CLI and package plugin on a Linux operating system:
 
 To install the Tanzu CLI and package plugin on a Mac operating system:
 
-1. Create a local directory called `tanzu`. 
+1. Create a local directory called `tanzu`.
     ```
     mkdir $HOME/tanzu
     ```
- 
-2. Sign in to [Tanzu Network](https://network.pivotal.io).
 
-3. Navigate to [Tanzu Application Platform](https://network.pivotal.io/products/tanzu-application-platform/) on Tanzu Network.
+2. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
+
+3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/) on Tanzu Network.
 
 4. Download `tanzu-cli-bundle-mac` under the tanzu-cli folder and unpack the TAR files into the `tanzu` directory.
     ```
@@ -258,7 +258,7 @@ To install the Tanzu CLI and package plugin on a Mac operating system:
 
 7. From the `tanzu` directory, install the package plugin by running:
    ```
-   tanzu plugin install --local ./cli package 
+   tanzu plugin install --local ./cli package
    ```
 
 8. Confirm the installation of the Tanzu CLI package plugin by running:
@@ -271,29 +271,29 @@ To install the Tanzu CLI and package plugin on a Mac operating system:
 To install the Tanzu CLI and package plugin on a Windows operating system:
 
 1. Create a local directory called `tanzu-bundle`.
-    
-2. Sign in to [Tanzu Network](https://network.pivotal.io).
 
-3. Navigate to [Tanzu Application Platform](https://network.pivotal.io/products/tanzu-application-platform/) on Tanzu Network.
+2. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
+
+3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/) on Tanzu Network.
 
 4. Download `tanzu-cli-bundle-windows` under the tanzu-cli folder and unpack the TAR files into the `tanzu-bundle` directory.
-   
+
 5. Create a new `Program Files\tanzu` folder.
-   
+
 6. In the unpacked CLI folder tanzu-bundle, locate and copy the `core/v1.4.0/tanzu-core-windows_amd64.exe`
    into the new `Program Files\tanzu` folder.
-       
+
 7. Rename `tanzu-core-windows_amd64.exe` to `tanzu.exe`.
-    
+
 8. Right-click the `tanzu` folder, select **Properties > Security**,
    and make sure that your user account has the **Full Control** permission.
-       
+
 9. Use Windows Search to search for `env`.
-    
+
 10. Select **Edit the system environment variables**, and click **Environment Variables**.
-    
+
 11. Select the **Path** row under **System variables**, and click **Edit**.
-    
+
 12. Click **New** to add a new row, and enter the path to the Tanzu CLI.
 
 13. Confirm the installation of the Tanzu CLI by running in a terminal window:
@@ -304,7 +304,7 @@ To install the Tanzu CLI and package plugin on a Windows operating system:
 
 14. From the command prompt, navigate to the `tanzu-bundle` directory that contains the package plugin,
     and install the plugin by running:
-   
+
     ```
     tanzu plugin install --local .\cli package
     ```
@@ -333,13 +333,13 @@ To add the TAP package repository:
     --docker-username=TANZU-NET-USER \
     --docker-password=TANZU-NET-PASSWORD
     ```
-    
+
     Where `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for Tanzu Network.
 
     > **Note:** You must name the secret `tap-registry`.
 
 3. Create the TAP package repository custom resource by downloading the `sample-package-repo.yaml` file
-   from [Tanzu Network](https://network.pivotal.io/products/tanzu-application-platform/).
+   from [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
 
    Alternatively, you can create a file named `tap-package-repo.yaml` with the following contents:
 
@@ -500,7 +500,7 @@ To install Cloud Native Runtimes:
 
     For a local Kubernetes cluster, set `provider: "local"`.
     For other infrastructures, do not set `provider`.
-    
+
 4. Install the package by running:
 
     ```
@@ -638,4 +638,3 @@ To verify that the packages are installed:
       app-live-view         appliveview.tanzu.vmware.com        0.1.0            Reconcile succeeded
       cloud-native-runtimes  cnrs.tanzu.vmware.com              1.0.1            Reconcile succeeded
     ```
-
