@@ -1,4 +1,4 @@
-# <a id='overview'></a> About Tanzu Application Platform v0.1 (Beta)
+# <a id='overview'></a> About Tanzu Application Platform v0.2 (Beta-2)
 
 ## <a id='overview'></a> Overview of Tanzu Application Platform
 
@@ -41,9 +41,9 @@ This reduces the complexity of deploying apps on Kubernetes
 by enabling operators to better automate and standardize the outer loop,
 while allowing developers more time to focus on code.
 
-## <a id='components'></a> Tanzu Application Platform v0.1 (Beta) Components
+## <a id='components'></a> Tanzu Application Platform v0.2 (Beta-2) Components
 
-Tanzu Application Platform v0.1 (Beta) includes the following components: 
+Tanzu Application Platform v0.2 (Beta) includes the following components:
 
 | Component Name | Version | Link to Documentation |
 |--------------------------------|-------------------------------|------|
@@ -52,7 +52,7 @@ Tanzu Application Platform v0.1 (Beta) includes the following components:
 | Cloud Native Runtimes for VMware Tanzu | v1.0.2 | [Cloud Native Runtimes](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-cnr-overview.html) |
 | VMware Tanzu Build Service | v1.2.2 | [Tanzu Build Service](https://docs.pivotal.io/build-service/1-2/) |
 
-## <a id='install'></a> Install Tanzu Application Platform v0.1 (Beta) Components
+## <a id='install'></a> Install Tanzu Application Platform v0.2 (Beta-2) Components
 
 You can install the Tanzu Application Platform components in one of two ways:
 
@@ -66,8 +66,8 @@ an existing Kubernetes platform. For information about how to install
 and use each component, see the documentation for the components listed
 in the table above.
 
-## <a id='use'></a> Use Tanzu Application Platform v0.1 (Beta) Components
+## <a id='use'></a> Use Tanzu Application Platform v0.2 (Beta-2) Components
 
 To follow a tutorial that shows how to use Tanzu Application Platform
-v0.1 (Beta) components to deploy a sample app,
+v0.2 (Beta-2) components to deploy a sample app,
 see [Tutorial: Install and Deploy the Spring Pet Clinic App](tutorial.html).

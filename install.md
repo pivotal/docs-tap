@@ -137,7 +137,7 @@ To set and verify the Kubernetes cluster configurations:
     ```
 
 
-## Packages in Tanzu Application Platform v0.1
+## Packages in Tanzu Application Platform v0.2
 
 The following packages are available in Tanzu Application Platform:
 
@@ -351,7 +351,7 @@ To add the TAP package repository:
    spec:
      fetch:
        imgpkgBundle:
-         image: registry.pivotal.io/tanzu-application-platform/tap-packages:0.1.0 #image location
+         image: registry.pivotal.io/tanzu-application-platform/tap-packages:0.2.0 #image location
          secretRef:
            name: tap-registry
    ```
@@ -372,7 +372,7 @@ To add the TAP package repository:
     $ tanzu package repository list -n tap-install
     - Retrieving repositories...
       NAME                  REPOSITORY                                                         STATUS               DETAILS
-      tanzu-tap-repository  registry.pivotal.io/tanzu-application-platform/tap-packages:0.1.0  Reconcile succeeded
+      tanzu-tap-repository  registry.pivotal.io/tanzu-application-platform/tap-packages:0.2.0  Reconcile succeeded
     ```
 
 6. List the available packages by running:
