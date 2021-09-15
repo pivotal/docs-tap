@@ -12,7 +12,7 @@ This repo publishes to:
 
 | Branch | Usage |
 |--------|-------|
-| main | Development branch for beta-1 docs |
+| main | Development branch for pre-release beta-2 docs staged at https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-overview.html |
 | beta-1 | Branch that is published to https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.1/tap-0-1/GUID-overview.html |
 
 ## Product Names
