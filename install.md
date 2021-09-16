@@ -24,8 +24,8 @@ The following prerequisites are required to install Tanzu Application Platform:
     * For Azure Kubernetes Service, Amazon Elastic Kubernetes Service, kind, and minikube,
       see [Install](https://carvel.dev/kapp-controller/docs/latest/install/) in the Carvel documentation.
 
-    * For Tanzu Kubernetes Grid, ensure that you are using Tanzu Kubernetes Grid v1.14.0 or later.
-      Clusters of this version have kapp-controller v0.20.0 pre-installed.
+    * For Tanzu Kubernetes Grid, ensure that you are using Tanzu Kubernetes Grid v1.4.0 or later.
+      Clusters of this version have kapp-controller v0.23.0 pre-installed.
 
 * The Kubernetes command line tool, kubectl, v1.19 or later, installed and authenticated with administrator rights for your target cluster.
 
