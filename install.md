@@ -152,7 +152,7 @@ see [Add PackageRepositories](#add-package-repositories) and [Install Packages](
 
 You can install Tanzu Build Service v1.2.2 from VMware Tanzu Network.
 For production environment installation instructions, see [Installing Tanzu Build Service](https://docs.pivotal.io/build-service/installing.html) in the Tanzu Build Service documentation.
-For quick start installation instructions that may not include all configurations necessary for your production environment, see [Getting Started with Tanzu Build Service](https://docs.pivotal.io/build-service/getting-started.html) in the Tanzu Build Service documentation.
+For quick-start installation instructions, suitable for most test environments, see [Getting Started with Tanzu Build Service](https://docs.pivotal.io/build-service/getting-started.html) in the Tanzu Build Service documentation.
 
 ## Accept the EULAs
 
