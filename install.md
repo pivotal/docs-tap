@@ -173,7 +173,7 @@ To set and verify the Kubernetes cluster configurations:
 
 5. Verify kapp-controller is running by running:
    ```
-   kubectl get pods -n kapp-controller
+   kubectl get pods -A | grep kapp-controller
    ```
    Pod status should be Running.
 ## Packages in Tanzu Application Platform v0.2
