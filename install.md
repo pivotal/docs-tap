@@ -170,6 +170,7 @@ To set and verify the Kubernetes cluster configurations:
 
     To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
     ```
+
 5. Verify kapp-controller is running by running:
    ```
    kubectl get pods -n kapp-controller
