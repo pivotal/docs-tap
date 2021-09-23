@@ -27,7 +27,7 @@ The following prerequisites are required to install Tanzu Application Platform:
       kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/KC-VERSION/release.yml
       ```
       Where `KC-VERSION` is the kapp-controller version being installed. Please find sutable kapp-controller version from the [Releases page](https://github.com/vmware-tanzu/carvel-kapp-controller/releases).
-      
+
       For example:
       ```
       kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v0.20.0/release.yml
@@ -39,7 +39,7 @@ The following prerequisites are required to install Tanzu Application Platform:
     * To Verify installed kapp-controller version:
 
       1. Get kapp-controller deployment and namespace by running:
-  
+
         ```
         kubectl get deployments -A | grep kapp-controller
         ```
@@ -63,7 +63,7 @@ The following prerequisites are required to install Tanzu Application Platform:
         kapp-controller.carvel.dev/version: v0.20.0
         kapp.k14s.io/original: '{"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{"kapp-controller.carvel.dev/version":"v0.20.0","kbld.k14s.io/images":"-
         ```
-        
+
 * The Kubernetes command line tool, kubectl, v1.19 or later, installed and authenticated with administrator rights for your target cluster.
 
 * For Tanzu Kubernetes Grid, the minimum cluster configuration is as follows:
