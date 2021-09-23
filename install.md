@@ -26,7 +26,7 @@ The following prerequisites are required to install Tanzu Application Platform:
       ```
       kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/KC-VERSION/release.yml
       ```
-      Where `KC-VERSION` is the kapp-controller version being installed. Please find sutable kapp-controller version from the [Releases page](https://github.com/vmware-tanzu/carvel-kapp-controller/releases).
+      Where `KC-VERSION` is the kapp-controller version being installed. Use a suitable kapp-controller version from [carvel-kapp-controller releases](https://github.com/vmware-tanzu/carvel-kapp-controller/releases).
       
       For example:
       ```
