@@ -12,8 +12,10 @@ The process for uninstalling Tanzu Application Platform is made up of two tasks:
 
 To delete the installed packages:
 
-1. List the installed packages.
-   See [Verify the Installed Packages](./install.html#verify).
+1. List the installed packages by running:
+    ```
+    tanzu package installed list -n tap-install
+    ```
 
 2. Remove a package by running:
 

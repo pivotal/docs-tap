@@ -22,10 +22,47 @@ The following prerequisites are required to install Tanzu Application Platform:
 * kapp-controller v0.20.0 or later:
 
     * For Azure Kubernetes Service, Amazon Elastic Kubernetes Service, kind, and minikube,
-      see [Install](https://carvel.dev/kapp-controller/docs/latest/install/) in the Carvel documentation.
+      Install kapp-controller by running:
+      ```
+      kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/KC-VERSION/release.yml
+      ```
+      Where `KC-VERSION` is the kapp-controller version being installed. Please find sutable kapp-controller version from the [Releases page](https://github.com/vmware-tanzu/carvel-kapp-controller/releases).
+      
+      For example:
+      ```
+      kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v0.20.0/release.yml
+      ```
 
     * For Tanzu Kubernetes Grid, ensure that you are using Tanzu Kubernetes Grid v1.4.0 or later.
       Clusters of this version have kapp-controller v0.23.0 pre-installed.
+
+    * To Verify installed kapp-controller version:
+
+      1. Get kapp-controller deployment and namespace by running:
+  
+        ```
+        kubectl get deployments -A | grep kapp-controller
+        ```
+        For example:
+        ```
+        kubectl get deployments -A | grep kapp-controller
+        NAMESPACE                NAME                             READY   UP-TO-DATE   AVAILABLE   AGE
+        kapp-controller          kapp-controller                  1/1     1            1           25h   
+        ```
+      2. Get kapp controller version by running:
+
+        ```
+        kubectl get deployment KC-DEPLOYMENT -n KC-NAMESPACE -o yaml | grep kapp-controller.carvel.dev/version
+        ```
+        Where `KC-DEPLOYMENT` and `KC-NAMESPACE` are kapp-controller deployment name and kapp-controller namespace name respectively from the output of step 1.
+
+        For example:
+
+        ```
+        kubectl get deployment kapp-controller -n kapp-controller  -o yaml | grep kapp-controller.carvel.dev/version
+        kapp-controller.carvel.dev/version: v0.20.0
+        kapp.k14s.io/original: '{"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{"kapp-controller.carvel.dev/version":"v0.20.0","kbld.k14s.io/images":"-
+        ```
 
 * The Kubernetes command line tool, kubectl, v1.19 or later, installed and authenticated with administrator rights for your target cluster.
 
@@ -135,6 +172,14 @@ To set and verify the Kubernetes cluster configurations:
 
     To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
     ```
+
+5. Verify kapp-controller is running by running:
+
+    ```
+    kubectl get pods -A | grep kapp-controller
+    ```
+    Pod status should be Running.
+
 
 
 ## Packages in Tanzu Application Platform v0.1
