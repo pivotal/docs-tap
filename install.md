@@ -22,10 +22,47 @@ The following prerequisites are required to install Tanzu Application Platform:
 * kapp-controller v0.20.0 or later:
 
     * For Azure Kubernetes Service, Amazon Elastic Kubernetes Service, kind, and minikube,
-      see [Install](https://carvel.dev/kapp-controller/docs/latest/install/) in the Carvel documentation.
+      Install kapp-controller by running:
+      ```
+      kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/KC-VERSION/release.yml
+      ```
+      Where `KC-VERSION` is the kapp-controller version being installed. Please find sutable kapp-controller version from the [Releases page](https://github.com/vmware-tanzu/carvel-kapp-controller/releases).
+      
+      For example:
+      ```
+      kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v0.20.0/release.yml
+      ```
 
     * For Tanzu Kubernetes Grid, ensure that you are using Tanzu Kubernetes Grid v1.4.0 or later.
       Clusters of this version have kapp-controller v0.23.0 pre-installed.
+
+    * To Verify installed kapp-controller version:
+
+      a. Get kapp-controller deployment and namespace by running:
+  
+        ```
+        kubectl get deployments -A | grep kapp-controller
+        ```
+        For example:
+        ```
+        kubectl get deployments -A | grep kapp-controller
+        NAMESPACE                NAME                             READY   UP-TO-DATE   AVAILABLE   AGE
+        kapp-controller          kapp-controller                  1/1     1            1           25h   
+        ```
+      b. Get kapp controller version by running:
+
+        ```
+        kubectl get deployment KC-DEPLOYMENT -n KC-NAMESPACE -o yaml | grep kapp-controller.carvel.dev/version
+        ```
+        Where `KC-DEPLOYMENT` and `KC-NAMESPACE` are kapp-controller deployment name and kapp-controller namespace name respectively from the output of step a.
+
+        For example:
+
+        ```
+        kubectl get deployment kapp-controller -n kapp-controller  -o yaml | grep kapp-controller.carvel.dev/version
+        kapp-controller.carvel.dev/version: v0.20.0
+        kapp.k14s.io/original: '{"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{"kapp-controller.carvel.dev/version":"v0.20.0","kbld.k14s.io/images":"-
+        ```
 
 * The Kubernetes command line tool, kubectl, v1.19 or later, installed and authenticated with administrator rights for your target cluster.
 
@@ -135,6 +172,14 @@ To set and verify the Kubernetes cluster configurations:
 
     To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
     ```
+
+5. Verify kapp-controller is running by running:
+
+    ```
+    kubectl get pods -A | grep kapp-controller
+    ```
+    Pod status should be Running.
+
 
 
 ## Packages in Tanzu Application Platform v0.1
@@ -390,6 +435,8 @@ To add the TAP package repository:
       appliveview.tanzu.vmware.com       Application Live View for VMware Tanzu    App for monitoring and troubleshooting running apps                                  
       cnrs.tanzu.vmware.com              Cloud Native Runtimes                     Cloud Native Runtimes is a serverless runtime based on Knative
     ```
+    Note: If using a Tanzu Kubernetes Grid cluster above output will show some other Tanzu packages as well.
+
 
 7. List version information for the `cnrs.tanzu.vmware.com` package by running:
     ```
@@ -490,8 +537,9 @@ To install Cloud Native Runtimes:
 
     local_dns:
     ```
+    Where TANZU-NET-USER and TANZU-NET-PASSWORD are your credentials for Tanzu Network.
 
-    In TKG environments, Contour addons that are already be present might conflict
+    In Tanzu Kubernetes Grid environments, Contour packages that are already been present might conflict
     with the Cloud Native Runtimes installation.
     For how to prevent conflicts,
     see [Installing Cloud Native Runtimes for Tanzu with an Existing Contour Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-contour.html) in the Cloud Native Runtimes documentation.
