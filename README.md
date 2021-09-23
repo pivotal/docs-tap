@@ -60,6 +60,10 @@ Use this table to keep a running list of terms used and how they should be defin
 | `PACKAGE-REPO-NAME`| Where `PACKAGE-REPO-NAME` is the name of the packageRepository from step 1 above.|
 | `VERSION` | Where `VERSION` is the version of the package listed in step 7|
 
+## Creating a Pull Request
+
+For instructions on how to create a pull request on a branch and instructions on how to create a pull request using a fork, see [Creating a PR](https://docs-wiki.sc2-04-pcf1-apps.oc.vmware.com/wiki/external/create-pr.html) in the documentation team wiki.
+
 ## Publishing Docs
 
 v0.1 Staging docs:  
