@@ -93,6 +93,7 @@ git pull ; rm docs.zip ; zip -r docs.zip images/ VMwarePub.yaml *.md
 
 ### Form Fields
 
+Form fields for beta-1: 
 |field|value|
 |---|---|
 |Publication name:   |`VMware Tanzu Application Platform`|
@@ -108,27 +109,44 @@ git pull ; rm docs.zip ; zip -r docs.zip images/ VMwarePub.yaml *.md
 |PDF link            |`tanzu-application-platform-0-1`|
 |ZIP File            |(choose the file)|
 
+For beta-2, change `1` to `2`.
+
 ### In Docsdash
-- Wait about 1 minute for processing to complete after uploading.
-- Go to https://docsdash.vmware.com/deployment-stage
-- There should be an entry with a blue link which says `Documentation` and points to staging
+
+1. Wait about 1 minute for processing to complete after uploading.
+2. Go to https://docsdash.vmware.com/deployment-stage
+   
+   There should be an entry with a blue link which says `Documentation` and points to staging.
 
 ### Promoting to Pre-Prod and Prod
-- This may require additional privileges - reach out to Paige Calvert on the docs team [#tanzu-docs](https://vmware.slack.com/archives/C055V2M0H).
-- Go to Staging publications in docsdash  
+
+**Prerequisite** Needs additional privileges - reach out to Paige Calvert on the docs team [#tanzu-docs](https://vmware.slack.com/archives/C055V2M0H) or ask a writer to do this step for you.
+
+1. Go to Staging publications in docsdash  
   https://docsdash.vmware.com/deployment-stage
-- Select a publication (make sure it's the latest version)
-- Click "Deploy selected to Pre-Prod" and wait for the pop to turn green (refresh if necessary after about 10s)
-- Go to Pre-Prod list  
+
+2. Select a publication (make sure it's the latest version)
+
+3. Click "Deploy selected to Pre-Prod" and wait for the pop to turn green (refresh if necessary after about 10s)
+
+4. Go to Pre-Prod list  
   https://docsdash.vmware.com/deployment-pre-prod
-- Select a publication
-- Click "Sign off for Release"
-- Wait for your username to show up in the "Signed off by" column
-- Select the publication again
-- Click "Deploy selected to Prod"
+
+5. Select a publication
+
+6. Click "Sign off for Release"
+
+7. Wait for your username to show up in the "Signed off by" column
+
+8. Select the publication again
+
+9. Click "Deploy selected to Prod"
 
 ### Landing Page and Publications
-- Every product has a landing page
+
+General information about landing pages:
+
+- Every product has a landing page (Not exactly true: every umbrella product, such as Tanzu Application Platform should have a landing page.)
 - The landing page is a container for all the "publications" for a product. Our first publication will be our combined docs for our first Beta, including installation, and user docs.
 - Typically there will be a new docs publication for each minor release but not each point release. This version number become part of the URL e.g. Our first release was version `0.1` (see form section above for the current release).
 - Some products like [TKG](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/index.html) publish separate release notes publications for each point release.
