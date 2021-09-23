@@ -38,7 +38,7 @@ The following prerequisites are required to install Tanzu Application Platform:
 
     * To Verify installed kapp-controller version:
 
-      1. Get kapp-controller deployment and namespace by running:
+      a. Get kapp-controller deployment and namespace by running:
   
         ```
         kubectl get deployments -A | grep kapp-controller
@@ -49,12 +49,12 @@ The following prerequisites are required to install Tanzu Application Platform:
         NAMESPACE                NAME                             READY   UP-TO-DATE   AVAILABLE   AGE
         kapp-controller          kapp-controller                  1/1     1            1           25h   
         ```
-      2. Get kapp controller version by running:
+      b. Get kapp controller version by running:
 
         ```
         kubectl get deployment KC-DEPLOYMENT -n KC-NAMESPACE -o yaml | grep kapp-controller.carvel.dev/version
         ```
-        Where `KC-DEPLOYMENT` and `KC-NAMESPACE` are kapp-controller deployment name and kapp-controller namespace name respectively from the output of step 1.
+        Where `KC-DEPLOYMENT` and `KC-NAMESPACE` are kapp-controller deployment name and kapp-controller namespace name respectively from the output of step a.
 
         For example:
 
