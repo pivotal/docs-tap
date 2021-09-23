@@ -435,6 +435,8 @@ To add the TAP package repository:
       appliveview.tanzu.vmware.com       Application Live View for VMware Tanzu    App for monitoring and troubleshooting running apps                                  
       cnrs.tanzu.vmware.com              Cloud Native Runtimes                     Cloud Native Runtimes is a serverless runtime based on Knative
     ```
+    Note: If using a Tanzu Kubernetes Grid cluster above output will show some other Tanzu packages as well.
+
 
 7. List version information for the `cnrs.tanzu.vmware.com` package by running:
     ```
@@ -535,8 +537,9 @@ To install Cloud Native Runtimes:
 
     local_dns:
     ```
+    Where TANZU-NET-USER and TANZU-NET-PASSWORD are your credentials for Tanzu Network.
 
-    In TKG environments, Contour addons that are already be present might conflict
+    In Tanzu Kubernetes Grid environments, Contour packages that are already been present might conflict
     with the Cloud Native Runtimes installation.
     For how to prevent conflicts,
     see [Installing Cloud Native Runtimes for Tanzu with an Existing Contour Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-contour.html) in the Cloud Native Runtimes documentation.
