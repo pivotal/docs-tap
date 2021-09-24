@@ -253,6 +253,8 @@ The following packages are available in Tanzu Application Platform:
 * Tanzu Source Controller
 * Service Bindings for Kubernetes
 * API Portal
+* Supply Chain Security Tools - Store
+* Supply Chain Security Tools - Scan
 
 For instructions on how to add the Tanzu Application Platform package repository and install packages from the repository,
 see [Add PackageRepositories](#add-package-repositories) and [Install Packages](#install-packages) below.
@@ -280,6 +282,7 @@ To accept EULAs:
     + [Cloud Native Runtimes](https://network.tanzu.vmware.com/products/serverless/)
     + [Application Accelerator](https://network.tanzu.vmware.com/products/app-accelerator/)
     + [Application Live View](https://network.tanzu.vmware.com/products/app-live-view/)
+    + Supply Chain Security Tools
 
   ![Screenshot of page on Tanzu Network from where you download Tanzu Application Platform packages shows the EULA warning](./images/tap-on-tanzu-net.png)
 
@@ -529,6 +532,8 @@ To install any package from the Tanzu Application Platform package repository:
     + [Install Cloud Native Runtimes](#install-cnr)
     + [Install Application Accelerator](#install-app-accelerator)
     + [Install Application Live View](#install-app-live-view)
+    + [Install Supply Chain Security Tools - Store](#install-scst-store)
+    + [Install Supply Chain Security Tools - Scan](#install-scst-scan)
 
 
 ### <a id='install-cnr'></a> Install Cloud Native Runtimes
@@ -833,6 +838,150 @@ To install SCST - Store:
     Added installed package 'metadata-store' in namespace 'tap-install'
     ```
 
+### <a id='install-scst-scan'></a> Install Supply Chain Security Tools - Scan
+
+The installation for SCST - Scan involves installing 2 packages, Scan Controller and Grype Scanner. Ensure both are installed.
+
+To install SCST - Scan (Scan Controller):
+1. Follow the instructions in [Install Packages](#install-packages) above.
+```bash
+tanzu package available get scanning.apps.tanzu.vmware.com/1.0.0-beta.0 --values-schema -n tap-install
+```
+For example:
+```console
+$ tanzu package available get scanning.apps.tanzu.vmware.com/1.0.0-beta.0 --values-schema -n tap-install
+| Retrieving package details for scanning.apps.tanzu.vmware.com/1.0.0-beta.0...
+  KEY                        DEFAULT                                                           TYPE    DESCRIPTION
+  metadataStoreTokenSecret                                                                     string  Token Secret of the Insight Metadata Store deployed in the cluster
+  metadataStoreUrl           https://metadata-store-app.metadata-store.svc.cluster.local:8443  string  Url of the Insight Metadata Store deployed in the cluster
+  namespace                  canal-system                                                      string  Deployment namespace for the Scan Controller
+  resources.limits.cpu       250m                                                              <nil>   Limits describes the maximum amount of cpu resources allowed.
+  resources.limits.memory    256Mi                                                             <nil>   Limits describes the maximum amount of memory resources allowed.
+  resources.requests.cpu     100m                                                              <nil>   Requests describes the minimum amount of cpu resources required.
+  resources.requests.memory  128Mi                                                             <nil>   Requests describes the minimum amount of memory resources required.
+  metadataStoreCa                                                                              string  CA Cert of the Insight Metadata Store deployed in the cluster
+```
+2. Gather the values schema.
+3. Create a `scst-scan-controller-values.yaml` using the following sample as a guide:
+Sample `scst-scan-controller-values.yaml` for Scan Controller:
+```yaml
+---
+metadataStoreUrl: https://metadata-store-app.metadata-store.svc.cluster.local:8443
+metadataStoreCa: |-
+  -----BEGIN CERTIFICATE-----
+  MIIC8TCCAdmgAwIBAgIRAIGDgx7Dk/2unVKuT9KXetUwDQYJKoZIhvcNAQELBQAw
+  ...
+  hOSbQ50VLo+YPF9NtTPRaS7QaIcFWot0EPwBMOCZR6Dd1HU6Qg==
+  -----END CERTIFICATE-----
+metadataStoreTokenSecret: metadata-store-secret
+```
+
+These values require the [Supply Chain Security Tools - Store](#install-scst-store) to have already been installed. The following code snippets show how to determine what these values are:
+
+The `metadataStoreUrl` value can be determined by:
+```bash
+kubectl -n metadata-store get service -o name |
+  grep app |
+  xargs kubectl -n metadata-store get -o jsonpath='{.spec.ports[].name}{"://"}{.metadata.name}{"."}{.metadata.namespace}{".svc.cluster.local:"}{.spec.ports[].port}'
+```
+
+The `metadataStoreCa` value can be determined by:
+```bash
+kubectl get secret app-tls-cert -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d
+```
+
+The `metadataStoreTokenSecret` is a reference to a secret that we will create and contains the Metadata Store token. The name of the secret is arbitrary, and for example, we will set it as "metadata-store-secret".
+
+The secret to be created and applied into the cluster is (ensure the namespace is created in the cluster before applying):
+```yaml
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: <metadataStoreTokenSecret>
+  namespace: canal-system
+type: kubernetes.io/opaque
+stringData:
+  token: <METADATA_STORE_TOKEN>
+```
+
+The `METADATA_STORE_TOKEN` value can be determined by:
+```bash
+kubectl get secrets -n metadata-store -o jsonpath="{.items[?(@.metadata.annotations['kubernetes\.io/service-account\.name']=='metadata-store-read-write-client')].data.token}" | base64 -d
+```
+
+4. Install the package by running:
+```bash
+tanzu package install scan-controller \
+  --package-name scanning.apps.tanzu.vmware.com \
+  --version 1.0.0-beta.0 \
+  --namespace tap-install \
+  --values-file scst-scan-controller-values.yaml
+```
+
+For example:
+```console
+$ tanzu package install scan-controller \
+  --package-name scanning.apps.tanzu.vmware.com \
+  --version 1.0.0-beta.0 \
+  --namespace tap-install \
+  --values-file scst-scan-controller-values.yaml
+| Installing package 'scanning.apps.tanzu.vmware.com'
+| Getting namespace 'tap-install'
+| Getting package metadata for 'scanning.apps.tanzu.vmware.com'
+| Creating service account 'scan-controller-tap-install-sa'
+| Creating cluster admin role 'scan-controller-tap-install-cluster-role'
+| Creating cluster role binding 'scan-controller-tap-install-cluster-rolebinding'
+| Creating secret 'scan-controller-tap-install-values'
+/ Creating package resource
+/ Package install status: Reconciling
+
+ Added installed package 'scan-controller' in namespace 'tap-install'
+```
+
+To install SCST - Scan (Grype Scanner):
+1. Follow the instructions in [Install Packages](#install-packages) above.
+```bash
+tanzu package available get grype.scanning.apps.tanzu.vmware.com/1.0.0-beta.0 --values-schema -n tap-install
+```
+For example:
+```console
+$ tanzu package available get grype.scanning.apps.tanzu.vmware.com/1.0.0-beta.0 --values-schema -n tap-install
+| Retrieving package details for grype.scanning.apps.tanzu.vmware.com/1.0.0-beta.0...
+  KEY                        DEFAULT  TYPE    DESCRIPTION
+  namespace                  default  string  Deployment namespace for the Scan Templates
+  resources.limits.cpu       1000m    <nil>   Limits describes the maximum amount of cpu resources allowed.
+  resources.requests.cpu     250m     <nil>   Requests describes the minimum amount of cpu resources required.
+  resources.requests.memory  128Mi    <nil>   Requests describes the minimum amount of memory resources required.
+```
+
+2. The default values are appropriate for this package. If you wish to change, use the Scan Controller instructions as a guide.
+
+3. Install the package by running:
+```bash
+tanzu package install grype-scanner \
+  --package-name grype.scanning.apps.tanzu.vmware.com \
+  --version 1.0.0-beta.0 \
+  --namespace tap-install
+```
+
+For example:
+```console
+$ tanzu package install grype-scanner \
+  --package-name grype.scanning.apps.tanzu.vmware.com \
+  --version 1.0.0-beta.0 \
+  --namespace tap-install
+/ Installing package 'grype.scanning.apps.tanzu.vmware.com'
+| Getting namespace 'tap-install'
+| Getting package metadata for 'grype.scanning.apps.tanzu.vmware.com'
+| Creating service account 'grype-scanner-tap-install-sa'
+| Creating cluster admin role 'grype-scanner-tap-install-cluster-role'
+| Creating cluster role binding 'grype-scanner-tap-install-cluster-rolebinding'
+/ Creating package resource
+- Package install status: Reconciling
+
+ Added installed package 'grype-scanner' in namespace 'tap-install'
+```
 
 ## <a id='verify'></a> Verify the Installed Packages
 
