@@ -837,6 +837,52 @@ To install Supply Chain Security Tools - Store:
 
     Added installed package 'metadata-store' in namespace 'tap-install'
     ```
+### <a id='install-scst-sign'></a> Install Supply Chain Security Tools - Sign
+
+1. Follow the instructions in [Install Packages](#install-packages) above.
+1. Create a file named values.yaml with the following format and fill out:
+   - Add the `warn_on_unmatched` flag with a value of `true` if you wish to
+     warn the operator if images are unsigned, but still allow them into the
+     cluster. If you omit this configuration, no unsigned images will be
+     allowed to run.
+   ```yaml
+   ---
+   warn_on_unmatched: true # optional; turns on warning when an unmatched pattern is found
+   ```
+1. Install the package:
+   ```bash
+   tanzu package install webhook \
+     --package-name image-policy-webhook.signing.run.tanzu.vmware.com \
+     --version 1.0.0-beta.0 \
+     -f values.yaml
+   ```
+
+#### Create the service account to add credentials to your private registries
+
+If the registry or registries that hold your images and signatures are private,
+you will need to provide the webhook with credentials to access your artifacts.
+
+Create your secrets to access those registries in the `image-policy-system`
+namespace.
+
+Once this is done, create a service account named `registry-credentials` on the
+`image-policy-system` namespace with the secrets set as `imagePullSecrets`,
+similar to the following example:
+```yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: registry-credentials
+  namespace: image-policy-system
+imagePullSecrets:
+- name: secret1
+- name: secret2
+...
+- name: secretn
+```
+
+Apply this manifest to the cluster. The webhook should now be able to contact
+your private registry and verify signatures.
 
 ### <a id='install-scst-scan'></a> Install Supply Chain Security Tools - Scan
 
