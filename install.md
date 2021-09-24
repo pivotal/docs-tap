@@ -418,41 +418,26 @@ To add the Tanzu Application Platform package repository:
 
     This namespace is to keep the objects grouped together logically.
 
-2. Create a secret for the namespace:
+2. Create a imagepullsecret:
     ```
-    kubectl create secret docker-registry tap-registry \
-    -n tap-install \
-    --docker-server='registry.pivotal.io' \
-    --docker-username=TANZU-NET-USER \
-    --docker-password=TANZU-NET-PASSWORD
+    tanzu imagepullsecret add tap-registry --username TANZU-NET-USER --password TANZU-NET-PASSWORD --registry registry.tanzu.vmware.com --export-to-all-namespaces -n tap-install
     ```
 
     Where `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for Tanzu Network.
 
-    > **Note:** You must name the secret `tap-registry`.
-
-3. Create the Tanzu Application Platform package repository custom resource by downloading the `sample-package-repo.yaml` file
-   from [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
-
-   Alternatively, you can create a file named `tap-package-repo.yaml` with the following contents:
-
-   ```
-   apiVersion: packaging.carvel.dev/v1alpha1
-   kind: PackageRepository
-   metadata:
-     name: tanzu-tap-repository
-   spec:
-     fetch:
-       imgpkgBundle:
-         image: registry.pivotal.io/tanzu-application-platform/tap-packages:0.2.0 #image location
-         secretRef:
-           name: tap-registry
-   ```
-
-4. Add Tanzu Application Platform package repository to the cluster by applying the `tap-package-repo.yaml` to the cluster:
+3. Add Tanzu Application Platform package repository to the cluster by running:
 
     ```
-    kapp deploy -a tap-package-repo -n tap-install -f ./tap-package-repo.yaml -y
+    tanzu package repository add tanzu-tap-repository --url TAP-REPO-IMGPKG -n tap-install
+    ```
+
+    Where TAP-REPO-IMGPKG is the Tanzu Application Platform repo bundle artifact reference.
+
+    For example:
+    ```
+    $ tanzu package repository add tanzu-tap-repository --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.2.0 -n tap-install
+    \ Adding package repository 'tanzu-tap-repository'... 
+    Added package repository 'tanzu-tap-repository'
     ```
 
 5. Get status of the Tanzu Application Platform package repository, and ensure the status updates to `Reconcile succeeded` by running:
@@ -465,7 +450,7 @@ To add the Tanzu Application Platform package repository:
     $ tanzu package repository list -n tap-install
     - Retrieving repositories...
       NAME                  REPOSITORY                                                         STATUS               DETAILS
-      tanzu-tap-repository  registry.pivotal.io/tanzu-application-platform/tap-packages:0.2.0  Reconcile succeeded
+      tanzu-tap-repository  registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.2.0  Reconcile succeeded
     ```
 
 6. List the available packages by running:
@@ -583,6 +568,7 @@ To install Cloud Native Runtimes:
 
     local_dns:
     ```
+    Where `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for Tanzu Network.
 
     In Tanzu Kubernetes Grid environments, Contour packages that are already been present might conflict
     with the Cloud Native Runtimes installation.
@@ -643,6 +629,7 @@ in the Application Accelerator documentation.
     engine:
       service_type: "ClusterIP"
     ```
+  Where `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for Tanzu Network.
 
 4. Install the package by running:
 
@@ -695,6 +682,7 @@ To install Application Live View:
       username: "TANZU-NET-USER"
       password: "TANZU-NET-PASSWORD"
     ```
+    Where `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for Tanzu Network.
 
 4. Install the package by running:
 
