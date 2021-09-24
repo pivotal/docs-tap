@@ -690,18 +690,6 @@ in the Application Accelerator documentation.
     ```
     STATUS should be Reconcile succeeded.
 
-6. Download and apply sample accelerators:
-
-    1. Download the `sample-accelerators-0-2.yaml` file for Application Accelerator
-       from [Tanzu Network](https://network.tanzu.vmware.com/products/app-accelerator).
-
-    2. Apply the manifest file using kubectl by running:
-
-        ```
-        kubectl apply -f sample-accelerators-0-2.yaml
-        ```
-
-
 ### <a id="install-app-live-view"></a>Install Application Live View
 
 To install Application Live View:
