@@ -854,7 +854,7 @@ $ tanzu package available get scanning.apps.tanzu.vmware.com/1.0.0-beta.0 --valu
   KEY                        DEFAULT                                                           TYPE    DESCRIPTION
   metadataStoreTokenSecret                                                                     string  Token Secret of the Insight Metadata Store deployed in the cluster
   metadataStoreUrl           https://metadata-store-app.metadata-store.svc.cluster.local:8443  string  Url of the Insight Metadata Store deployed in the cluster
-  namespace                  canal-system                                                      string  Deployment namespace for the Scan Controller
+  namespace                  scan-link-system                                                  string  Deployment namespace for the Scan Controller
   resources.limits.cpu       250m                                                              <nil>   Limits describes the maximum amount of cpu resources allowed.
   resources.limits.memory    256Mi                                                             <nil>   Limits describes the maximum amount of memory resources allowed.
   resources.requests.cpu     100m                                                              <nil>   Requests describes the minimum amount of cpu resources required.
@@ -899,7 +899,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: <metadataStoreTokenSecret>
-  namespace: canal-system
+  namespace: scan-link-system
 type: kubernetes.io/opaque
 stringData:
   token: <METADATA_STORE_TOKEN>
