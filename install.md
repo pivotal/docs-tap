@@ -1,6 +1,6 @@
 # <a id='installing'></a> Installing Tanzu Application Platform
 
-This document describes how to install Tanzu Application Platform packages from the TAP package repository.
+This document describes how to install Tanzu Application Platform packages from the Tanzu Application Platform package repository.
 
 
 ## <a id='prereqs'></a>Prerequisites
@@ -19,18 +19,18 @@ The following prerequisites are required to install Tanzu Application Platform:
 
 * The [kapp Carvel command line tool](https://github.com/vmware-tanzu/carvel-kapp/releases) (v0.37.0 or later)
 
-* kapp-controller v0.20.0 or later:
+* kapp-controller v0.24.0 or later:
 
     * For Azure Kubernetes Service, Amazon Elastic Kubernetes Service, kind, and minikube,
       Install kapp-controller by running:
       ```
       kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/KC-VERSION/release.yml
       ```
-      Where `KC-VERSION` is the kapp-controller version being installed. Please find sutable kapp-controller version from the [Releases page](https://github.com/vmware-tanzu/carvel-kapp-controller/releases).
+      Where `KC-VERSION` is the kapp-controller version being installed. Please select v0.24.0+ kapp-controller version from the [Releases page](https://github.com/vmware-tanzu/carvel-kapp-controller/releases).
 
       For example:
       ```
-      kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v0.20.0/release.yml
+      kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v0.24.0/release.yml
       ```
 
     * For Tanzu Kubernetes Grid, ensure that you are using Tanzu Kubernetes Grid v1.4.0 or later.
@@ -39,6 +39,7 @@ The following prerequisites are required to install Tanzu Application Platform:
     * To Verify installed kapp-controller version:
 
       1. Get kapp-controller deployment and namespace by running:
+
 
         ```
         kubectl get deployments -A | grep kapp-controller
@@ -49,20 +50,71 @@ The following prerequisites are required to install Tanzu Application Platform:
         NAMESPACE                NAME                             READY   UP-TO-DATE   AVAILABLE   AGE
         kapp-controller          kapp-controller                  1/1     1            1           25h   
         ```
+
+
       2. Get kapp controller version by running:
+
 
         ```
         kubectl get deployment KC-DEPLOYMENT -n KC-NAMESPACE -o yaml | grep kapp-controller.carvel.dev/version
         ```
-        Where `KC-DEPLOYMENT` and `KC-NAMESPACE` are kapp-controller deployment name and kapp-controller namespace name respectively from the output of step 1.
+
+        Where `KC-DEPLOYMENT` and `KC-NAMESPACE` are kapp-controller deployment name and kapp-controller namespace name respectively from the output of step a.
 
         For example:
 
         ```
         kubectl get deployment kapp-controller -n kapp-controller  -o yaml | grep kapp-controller.carvel.dev/version
-        kapp-controller.carvel.dev/version: v0.20.0
-        kapp.k14s.io/original: '{"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{"kapp-controller.carvel.dev/version":"v0.20.0","kbld.k14s.io/images":"-
+        kapp-controller.carvel.dev/version: v0.24.0
+        kapp.k14s.io/original: '{"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{"kapp-controller.carvel.dev/version":"v0.24.0","kbld.k14s.io/images":"-
         ```
+
+
+* secretgen-controller v0.5.0 or later:
+
+    * Install secretgen-controller by running:
+
+      ```
+      kapp deploy -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/download/SG-VERSION/release.yml
+      ```
+
+      Where `SG-VERSION` is the secretgen-controller version being installed. Please select v0.5.0+ secretgen-controller version from the [Releases page](https://github.com/vmware-tanzu/carvel-secretgen-controller/releases).
+
+      For example:
+      ```
+      kapp deploy -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/download/v0.5.0/release.yml
+      ```
+
+    * To Verify installed secretgen-controller version:
+
+      1. Get secretgen-controller deployment and namespace by running:
+
+
+        ```
+        kubectl get deployments -A | grep secretgen-controller
+        ```
+        For example:
+        ```
+        kubectl get deployments -A | grep secretgen-controller
+        NAMESPACE                NAME                             READY   UP-TO-DATE   AVAILABLE   AGE
+        secretgen-controller     secretgen-controller             1/1     1            1           22d   
+        ```
+
+      2. Get secretgen-controller version by running:
+
+
+        ```
+        kubectl get deployment SG-DEPLOYMENT -n SG-NAMESPACE -o yaml | grep secretgen-controller.carvel.dev/version
+        ```
+        Where `SG-DEPLOYMENT` and `SG-NAMESPACE` are secretgen-controller deployment name and secretgen-controller namespace name respectively from the output of step a.
+
+        For example:
+
+        ```
+        kubectl get deployment secretgen-controller -n secretgen-controller -oyaml | grep secretgen-controller.carvel.dev/version
+        secretgen-controller.carvel.dev/version: v0.5.0
+        ```
+
 
 * The Kubernetes command line tool, kubectl, v1.19 or later, installed and authenticated with administrator rights for your target cluster.
 
@@ -136,7 +188,8 @@ To set and verify the Kubernetes cluster configurations:
               tkg-vc-antrea-admin@tkg-vc-antrea   tkg-vc-antrea     tkg-vc-antrea-admin
     ```
 
-2. Set the context to the `aks-tap-cluster` context by running:
+2.  Set the context to the desired cluster to be used for TAP packages install. 
+    For example set the context to the `aks-tap-cluster` context by running:
 
     ```
     kubectl config use-context aks-tap-cluster
@@ -178,6 +231,14 @@ To set and verify the Kubernetes cluster configurations:
    kubectl get pods -A | grep kapp-controller
    ```
    Pod status should be Running.
+
+6. Verify secretgen-controller is running by running:
+   ```
+   kubectl get pods -A | grep secretgen-controller
+   ```
+   Pod status should be Running.
+
+
 ## Packages in Tanzu Application Platform v0.2
 
 The following packages are available in Tanzu Application Platform:
@@ -186,9 +247,14 @@ The following packages are available in Tanzu Application Platform:
 * Application Accelerator for VMware Tanzu
 * Application Live View for VMware Tanzu
 * VMware Tanzu Build Service
+* SCP Toolkit
+* Supply Chain Choreographer for VMware Tanzu
+* Convention Service for VMware Tanzu
+* Tanzu Source Controller
+* Service Bindings for Kubernetes
+* API Portal
 
-Cloud Native Runtimes, Application Accelerator, and Application Live View are available as a package in the TAP repo bundle.
-For instructions on how to add the TAP package repository and install packages from the repository,
+For instructions on how to add the Tanzu Application Platform package repository and install packages from the repository,
 see [Add PackageRepositories](#add-package-repositories) and [Install Packages](#install-packages) below.
 
 You can install Tanzu Build Service v1.2.2 from VMware Tanzu Network.
@@ -355,9 +421,9 @@ To install the Tanzu CLI and package plugin on a Windows operating system:
     tanzu package version
     ```
 
-## <a id='add-package-repositories'></a> Add the TAP Package Repository
+## <a id='add-package-repositories'></a> Add the Tanzu Application Platform Package Repository
 
-To add the TAP package repository:
+To add the Tanzu Application Platform package repository:
 
 1. Create a namespace called `tap-install` for deploying the packages of the components by running:
     ```
@@ -366,44 +432,29 @@ To add the TAP package repository:
 
     This namespace is to keep the objects grouped together logically.
 
-2. Create a secret for the namespace:
+2. Create a imagepullsecret:
     ```
-    kubectl create secret docker-registry tap-registry \
-    -n tap-install \
-    --docker-server='registry.pivotal.io' \
-    --docker-username=TANZU-NET-USER \
-    --docker-password=TANZU-NET-PASSWORD
+    tanzu imagepullsecret add tap-registry --username TANZU-NET-USER --password TANZU-NET-PASSWORD --registry registry.tanzu.vmware.com --export-to-all-namespaces -n tap-install
     ```
 
     Where `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for Tanzu Network.
 
-    > **Note:** You must name the secret `tap-registry`.
-
-3. Create the TAP package repository custom resource by downloading the `sample-package-repo.yaml` file
-   from [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
-
-   Alternatively, you can create a file named `tap-package-repo.yaml` with the following contents:
-
-   ```
-   apiVersion: packaging.carvel.dev/v1alpha1
-   kind: PackageRepository
-   metadata:
-     name: tanzu-tap-repository
-   spec:
-     fetch:
-       imgpkgBundle:
-         image: registry.pivotal.io/tanzu-application-platform/tap-packages:0.2.0 #image location
-         secretRef:
-           name: tap-registry
-   ```
-
-4. Add TAP package repository to the cluster by applying the `tap-package-repo.yaml` to the cluster:
+3. Add Tanzu Application Platform package repository to the cluster by running:
 
     ```
-    kapp deploy -a tap-package-repo -n tap-install -f ./tap-package-repo.yaml -y
+    tanzu package repository add tanzu-tap-repository --url TAP-REPO-IMGPKG -n tap-install
     ```
 
-5. Get status of the TAP package repository, and ensure the status updates to `Reconcile succeeded` by running:
+    Where TAP-REPO-IMGPKG is the Tanzu Application Platform repo bundle artifact reference.
+
+    For example:
+    ```
+    $ tanzu package repository add tanzu-tap-repository --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.2.0 -n tap-install
+    \ Adding package repository 'tanzu-tap-repository'... 
+    Added package repository 'tanzu-tap-repository'
+    ```
+
+5. Get status of the Tanzu Application Platform package repository, and ensure the status updates to `Reconcile succeeded` by running:
 
     ```
     tanzu package repository list -n tap-install
@@ -413,7 +464,7 @@ To add the TAP package repository:
     $ tanzu package repository list -n tap-install
     - Retrieving repositories...
       NAME                  REPOSITORY                                                         STATUS               DETAILS
-      tanzu-tap-repository  registry.pivotal.io/tanzu-application-platform/tap-packages:0.2.0  Reconcile succeeded
+      tanzu-tap-repository  registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.2.0  Reconcile succeeded
     ```
 
 6. List the available packages by running:
@@ -454,7 +505,7 @@ that are defined in the package.
 You can get these parameters by running the command
 as described in the procedure below.
 
-To install any package from the TAP package repository:
+To install any package from the Tanzu Application Platform package repository:
 
 1. Run:
     ```
@@ -464,9 +515,9 @@ To install any package from the TAP package repository:
      Where:
 
      + `PACKAGE-NAME` is the name of the package listed in step 6 of
-     [Add the TAP Package Repository](#add-package-repositories) above.
+     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
      + `VERSION-NUMBER` is the version of the package listed in step 7 of
-     [Add the TAP Package Repository](#add-package-repositories) above.
+     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
 
     For example:
     ```
@@ -495,14 +546,11 @@ To install Cloud Native Runtimes:
     $ tanzu package available get cnrs.tanzu.vmware.com/1.0.1 --values-schema -n tap-install
     | Retrieving package details for cnrs.tanzu.vmware.com/1.0.1...
       KEY                         DEFAULT  TYPE             DESCRIPTION
-      registry.server             <nil>    registry server  <nil>
-      registry.username           <nil>    string           registry username
       ingress.external.namespace  <nil>    string           external namespace
       ingress.internal.namespace  <nil>    string           internal namespace
       ingress.reuse_crds          false    string           set true to reuse existing Contour instance
       local_dns                   <nil>    string           <nil>
       provider                    <nil>    string           Kubernetes cluster provider
-      registry.password           <nil>    string           registry password
     ```
 
 2. Gather the values schema.
@@ -513,11 +561,6 @@ To install Cloud Native Runtimes:
 
     ```
     ---
-    registry:
-     server: "registry.pivotal.io"
-     username: "TANZU-NET-USER"
-     password: "TANZU-NET-PASSWORD"
-
     provider:
     pdb:
      enable: "true"
@@ -532,7 +575,7 @@ To install Cloud Native Runtimes:
     local_dns:
     ```
 
-    In TKG environments, Contour addons that are already be present might conflict
+    In Tanzu Kubernetes Grid environments, Contour packages that are already been present might conflict
     with the Cloud Native Runtimes installation.
     For how to prevent conflicts,
     see [Installing Cloud Native Runtimes for Tanzu with an Existing Contour Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-contour.html) in the Cloud Native Runtimes documentation.
@@ -560,7 +603,23 @@ To install Cloud Native Runtimes:
 
      Added installed package 'cloud-native-runtimes' in namespace 'tap-install'
     ```
-
+5. Verify the package install by running:
+    
+    ```
+    tanzu package installed get cloud-native-runtimes -n tap-install
+    ```
+    For example:
+    ```
+    tanzu package installed get cloud-native-runtimes -n tap-install
+    | Retrieving installation details for cc... 
+    NAME:                    cloud-native-runtimes
+    PACKAGE-NAME:            cnrs.tanzu.vmware.com
+    PACKAGE-VERSION:         1.0.1
+    STATUS:                  Reconcile succeeded
+    CONDITIONS:              [{ReconcileSucceeded True  }]
+    USEFUL-ERROR-MESSAGE:    
+    ```
+    STATUS should be Reconcile succeeded.
 
 
 ### <a id='install-app-accelerator'></a> Install Application Accelerator
@@ -579,10 +638,6 @@ in the Application Accelerator documentation.
 3. Create an `app-accelerator-values.yaml` using the following sample as a guide:
 
     ```
-    registry:
-      server: "registry.pivotal.io"
-      username: "TANZU-NET-USER"
-      password: "TANZU-NET-PASSWORD"
     server:
       # Set this service_type to "NodePort" for local clusters like minikube.
       service_type: "LoadBalancer"
@@ -595,11 +650,11 @@ in the Application Accelerator documentation.
 4. Install the package by running:
 
     ```
-    tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.2.0 -n tap-install -f app-accelerator-values.yaml
+    tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.3.0 -n tap-install -f app-accelerator-values.yaml
     ```
     For example:
     ```
-    $ tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.2.0 -n tap-install -f app-accelerator-values.yaml
+    $ tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.3.0 -n tap-install -f app-accelerator-values.yaml
     - Installing package 'accelerator.apps.tanzu.vmware.com'
     | Getting package metadata for 'accelerator.apps.tanzu.vmware.com'
     | Creating service account 'app-accelerator-tap-install-sa'
@@ -612,7 +667,25 @@ in the Application Accelerator documentation.
      Added installed package 'app-accelerator' in namespace 'tap-install'
     ```
 
-5. Download and apply sample accelerators:
+5. Verify the package install by running:
+    
+    ```
+    tanzu package installed get app-accelerator -n tap-install
+    ```
+    For example:
+    ```
+    tanzu package installed get app-accelerator -n tap-install
+    | Retrieving installation details for cc... 
+    NAME:                    app-accelerator
+    PACKAGE-NAME:            accelerator.apps.tanzu.vmware.com
+    PACKAGE-VERSION:         0.3.0
+    STATUS:                  Reconcile succeeded
+    CONDITIONS:              [{ReconcileSucceeded True  }]
+    USEFUL-ERROR-MESSAGE:    
+    ```
+    STATUS should be Reconcile succeeded.
+
+6. Download and apply sample accelerators:
 
     1. Download the `sample-accelerators-0-2.yaml` file for Application Accelerator
        from [Tanzu Network](https://network.tanzu.vmware.com/products/app-accelerator).
@@ -638,20 +711,19 @@ To install Application Live View:
 
     ```
     ---
-    registry:
-      server: "registry.pivotal.io"
-      username: "TANZU-NET-USER"
-      password: "TANZU-NET-PASSWORD"
+    connector_namespaces: [foo, bar]
+    server_namespace: tap-install
     ```
+    The server_namespace is the namespace to which the Application Live View server is deployed. Typically you should pick the namespace you created earlier, tap-install. The connector_namespaces should be a list of namespaces in which you want Application Live View to monitor your apps. To each of those namespace an instance of the Application Live View Connector will be deployed.
 
 4. Install the package by running:
 
     ```
-    tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.1.0 -n tap-install -f app-live-view-values.yaml
+    tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.2.0 -n tap-install -f app-live-view-values.yaml
     ```
     For example:
     ```
-    $ tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.1.0 -n tap-install -f app-live-view-values.yaml
+    $ tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.2.0 -n tap-install -f app-live-view-values.yaml
     - Installing package 'appliveview.tanzu.vmware.com'
     | Getting package metadata for 'appliveview.tanzu.vmware.com'
     | Creating service account 'app-live-view-tap-install-sa'
@@ -667,6 +739,24 @@ To install Application Live View:
     For more information about Application Live View,
     see the [Application Live View documentation](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.1/docs/GUID-index.html).
 
+5. Verify the package install by running:
+    
+    ```
+    tanzu package installed get app-live-view -n tap-install
+    ```
+    For example:
+    ```
+    tanzu package installed get app-live-view -n tap-install
+    | Retrieving installation details for cc... 
+    NAME:                    app-live-view
+    PACKAGE-NAME:            appliveview.tanzu.vmware.com
+    PACKAGE-VERSION:         0.2.0
+    STATUS:                  Reconcile succeeded
+    CONDITIONS:              [{ReconcileSucceeded True  }]
+    USEFUL-ERROR-MESSAGE:    
+    ```
+    STATUS should be Reconcile succeeded.
+
 
 ## <a id='verify'></a> Verify the Installed Packages
 
@@ -681,7 +771,7 @@ To verify that the packages are installed:
     $ tanzu package installed list -n tap-install
     \ Retrieving installed packages...
       NAME                   PACKAGE-NAME                       PACKAGE-VERSION  STATUS
-      app-accelerator        accelerator.apps.tanzu.vmware.com  0.2.0            Reconcile succeeded
-      app-live-view         appliveview.tanzu.vmware.com        0.1.0            Reconcile succeeded
+      app-accelerator        accelerator.apps.tanzu.vmware.com  0.3.0            Reconcile succeeded
+      app-live-view         appliveview.tanzu.vmware.com        0.2.0            Reconcile succeeded
       cloud-native-runtimes  cnrs.tanzu.vmware.com              1.0.1            Reconcile succeeded
     ```
