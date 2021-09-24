@@ -840,49 +840,65 @@ To install Supply Chain Security Tools - Store:
 ### <a id='install-scst-sign'></a> Install Supply Chain Security Tools - Sign
 
 1. Follow the instructions in [Install Packages](#install-packages) above.
-1. Create a file named values.yaml with the following format and fill out:
-   - Add the `warn_on_unmatched` flag with a value of `true` if you wish to
-     warn the operator if images are unsigned, but still allow them into the
-     cluster. If you omit this configuration, no unsigned images will be
-     allowed to run.
+1. Gather the values schema
+    ```
+    tanzu package available get image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.0 --values-schema
+    | Retrieving package details for image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.0...
+      KEY                DEFAULT  TYPE     DESCRIPTION
+      warn_on_unmatched  false    boolean  Feature flag for enabling admission of images that do not match 
+                                           any patterns in the image policy configuration.
+                                           Set to true to allow images that do not match any patterns into
+                                           the cluster with a warning.
+
+    ```
+1. Create a file named `values.yaml` with `warn_on_unmatched` property.
+   To warn the user when images do not match any pattern in the policy, but still allow them into the cluster,  set it to `true`.
+   To deny images that do not match any pattern in the policy, set it to `false`
+
    ```yaml
    ---
-   warn_on_unmatched: true # optional; turns on warning when an unmatched pattern is found
+   warn_on_unmatched: true 
    ```
+
 1. Install the package:
    ```bash
    tanzu package install webhook \
      --package-name image-policy-webhook.signing.run.tanzu.vmware.com \
      --version 1.0.0-beta.0 \
      -f values.yaml
+    
+    | Installing package 'image-policy-webhook.signing.run.tanzu.vmware.com'
+    | Getting namespace 'default'
+    | Getting package metadata for 'image-policy-webhook.signing.run.tanzu.vmware.com'
+    | Creating service account 'webhook-default-sa'
+    | Creating cluster admin role 'webhook-default-cluster-role'
+    | Creating cluster role binding 'webhook-default-cluster-rolebinding'
+    | Creating secret 'webhook-default-values'
+    / Creating package resource
+    - Package install status: Reconciling
+
+    Added installed package 'webhook' in namespace 'default'
    ```
+1. After the webhook is up and running, create a service account named `registry-credentials` in the `image-policy-system` namespace. This is a required configuration even if the images and signatures are in public registries. 
 
-#### Create the service account to add credentials to your private registries
+1. If the registry or registries that hold your images and signatures are private,
+you will need to provide the webhook with credentials to access your artifacts. Create your secrets to access those registries in the `image-policy-system`
+namespace. These secrets should be added to the `registry-credentials` service account created above.
 
-If the registry or registries that hold your images and signatures are private,
-you will need to provide the webhook with credentials to access your artifacts.
+    For example:
 
-Create your secrets to access those registries in the `image-policy-system`
-namespace.
-
-Once this is done, create a service account named `registry-credentials` on the
-`image-policy-system` namespace with the secrets set as `imagePullSecrets`,
-similar to the following example:
-```yaml
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: registry-credentials
-  namespace: image-policy-system
-imagePullSecrets:
-- name: secret1
-- name: secret2
-...
-- name: secretn
-```
-
-Apply this manifest to the cluster. The webhook should now be able to contact
-your private registry and verify signatures.
+    ```yaml
+    apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      name: registry-credentials
+      namespace: image-policy-system
+    imagePullSecrets:
+    - name: secret1
+    - name: secret2
+    ...
+    - name: secretn
+    ```
 
 ### <a id='install-scst-scan'></a> Install Supply Chain Security Tools - Scan
 
