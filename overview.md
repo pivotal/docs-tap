@@ -52,7 +52,7 @@ Tanzu Application Platform v0.2 (Beta) includes the following components:
 | Cloud Native Runtimes for VMware Tanzu | v1.0.2 | [Cloud Native Runtimes](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-cnr-overview.html) |
 | VMware Tanzu Build Service | v1.2.2 | [Tanzu Build Service](https://docs.pivotal.io/build-service/1-2/) |
 
-## <a id='install'></a> Install Tanzu Application Platform v0.2 (Beta-2) Components
+## <a id='install'></a> About Installing Tanzu Application Platform v0.2 (Beta-2) Components
 
 You can install the Tanzu Application Platform components in one of two ways:
 
@@ -66,7 +66,7 @@ an existing Kubernetes platform. For information about how to install
 and use each component, see the documentation for the components listed
 in the table above.
 
-## <a id='use'></a> Use Tanzu Application Platform v0.2 (Beta-2) Components
+## <a id='use'></a> About Using Tanzu Application Platform v0.2 (Beta-2) Components
 
 To follow a tutorial that shows how to use Tanzu Application Platform
 v0.2 (Beta-2) components to deploy a sample app,
