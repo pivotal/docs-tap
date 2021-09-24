@@ -532,14 +532,11 @@ To install Cloud Native Runtimes:
     $ tanzu package available get cnrs.tanzu.vmware.com/1.0.1 --values-schema -n tap-install
     | Retrieving package details for cnrs.tanzu.vmware.com/1.0.1...
       KEY                         DEFAULT  TYPE             DESCRIPTION
-      registry.server             <nil>    registry server  <nil>
-      registry.username           <nil>    string           registry username
       ingress.external.namespace  <nil>    string           external namespace
       ingress.internal.namespace  <nil>    string           internal namespace
       ingress.reuse_crds          false    string           set true to reuse existing Contour instance
       local_dns                   <nil>    string           <nil>
       provider                    <nil>    string           Kubernetes cluster provider
-      registry.password           <nil>    string           registry password
     ```
 
 2. Gather the values schema.
@@ -550,11 +547,6 @@ To install Cloud Native Runtimes:
 
     ```
     ---
-    registry:
-     server: "registry.pivotal.io"
-     username: "TANZU-NET-USER"
-     password: "TANZU-NET-PASSWORD"
-
     provider:
     pdb:
      enable: "true"
@@ -568,7 +560,6 @@ To install Cloud Native Runtimes:
 
     local_dns:
     ```
-    Where `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for Tanzu Network.
 
     In Tanzu Kubernetes Grid environments, Contour packages that are already been present might conflict
     with the Cloud Native Runtimes installation.
@@ -617,10 +608,6 @@ in the Application Accelerator documentation.
 3. Create an `app-accelerator-values.yaml` using the following sample as a guide:
 
     ```
-    registry:
-      server: "registry.pivotal.io"
-      username: "TANZU-NET-USER"
-      password: "TANZU-NET-PASSWORD"
     server:
       # Set this service_type to "NodePort" for local clusters like minikube.
       service_type: "LoadBalancer"
@@ -629,16 +616,15 @@ in the Application Accelerator documentation.
     engine:
       service_type: "ClusterIP"
     ```
-  Where `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for Tanzu Network.
 
 4. Install the package by running:
 
     ```
-    tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.2.0 -n tap-install -f app-accelerator-values.yaml
+    tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.3.0 -n tap-install -f app-accelerator-values.yaml
     ```
     For example:
     ```
-    $ tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.2.0 -n tap-install -f app-accelerator-values.yaml
+    $ tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.3.0 -n tap-install -f app-accelerator-values.yaml
     - Installing package 'accelerator.apps.tanzu.vmware.com'
     | Getting package metadata for 'accelerator.apps.tanzu.vmware.com'
     | Creating service account 'app-accelerator-tap-install-sa'
@@ -677,17 +663,15 @@ To install Application Live View:
 
     ```
     ---
-    registry:
-      server: "registry.pivotal.io"
-      username: "TANZU-NET-USER"
-      password: "TANZU-NET-PASSWORD"
+    connector_namespaces: [bar, bar1]
+    server_namespace: tap-install
     ```
-    Where `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for Tanzu Network.
+    The server_namespace is the namespace to which the Application Live View server is deployed. Typically you should pick the namespace you created earlier, tap-install. The connector_namespaces should be a list of namespaces in which you want Application Live View to monitor your apps. To each of those namespace an instance of the Application Live View Connector will be deployed.
 
 4. Install the package by running:
 
     ```
-    tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.1.0 -n tap-install -f app-live-view-values.yaml
+    tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.2.0 -n tap-install -f app-live-view-values.yaml
     ```
     For example:
     ```
@@ -721,7 +705,7 @@ To verify that the packages are installed:
     $ tanzu package installed list -n tap-install
     \ Retrieving installed packages...
       NAME                   PACKAGE-NAME                       PACKAGE-VERSION  STATUS
-      app-accelerator        accelerator.apps.tanzu.vmware.com  0.2.0            Reconcile succeeded
-      app-live-view         appliveview.tanzu.vmware.com        0.1.0            Reconcile succeeded
+      app-accelerator        accelerator.apps.tanzu.vmware.com  0.3.0            Reconcile succeeded
+      app-live-view         appliveview.tanzu.vmware.com        0.2.0            Reconcile succeeded
       cloud-native-runtimes  cnrs.tanzu.vmware.com              1.0.1            Reconcile succeeded
     ```

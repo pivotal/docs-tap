@@ -54,10 +54,11 @@ To delete the TAP package repository:
     For example:
     ```
     $ tanzu package repository list -n tap-install
-    / Retrieving repositories...
-      NAME                                           REPOSITORY                                                         STATUS               DETAILS  
-      tanzu-application-platform-package-repository  registry.pivotal.io/tanzu-application-platform/tap-packages:0.2.0  Reconcile succeeded
+    - Retrieving repositories...
+      NAME                  REPOSITORY                                                         STATUS               DETAILS
+      tanzu-tap-repository  registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.2.0  Reconcile succeeded
     ```
+    
 
 2. Remove the TAP package repository by running:
 
