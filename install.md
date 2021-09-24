@@ -40,6 +40,7 @@ The following prerequisites are required to install Tanzu Application Platform:
 
       1. Get kapp-controller deployment and namespace by running:
 
+
         ```
         kubectl get deployments -A | grep kapp-controller
         ```
@@ -49,11 +50,15 @@ The following prerequisites are required to install Tanzu Application Platform:
         NAMESPACE                NAME                             READY   UP-TO-DATE   AVAILABLE   AGE
         kapp-controller          kapp-controller                  1/1     1            1           25h   
         ```
+
+
       2. Get kapp controller version by running:
+
 
         ```
         kubectl get deployment KC-DEPLOYMENT -n KC-NAMESPACE -o yaml | grep kapp-controller.carvel.dev/version
         ```
+
         Where `KC-DEPLOYMENT` and `KC-NAMESPACE` are kapp-controller deployment name and kapp-controller namespace name respectively from the output of step a.
 
         For example:
@@ -63,12 +68,16 @@ The following prerequisites are required to install Tanzu Application Platform:
         kapp-controller.carvel.dev/version: v0.24.0
         kapp.k14s.io/original: '{"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{"kapp-controller.carvel.dev/version":"v0.24.0","kbld.k14s.io/images":"-
         ```
+
+
 * secretgen-controller v0.5.0 or later:
 
     * Install secretgen-controller by running:
+
       ```
       kapp deploy -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/download/SG-VERSION/release.yml
       ```
+
       Where `SG-VERSION` is the secretgen-controller version being installed. Please select v0.5.0+ secretgen-controller version from the [Releases page](https://github.com/vmware-tanzu/carvel-secretgen-controller/releases).
 
       For example:
@@ -80,6 +89,7 @@ The following prerequisites are required to install Tanzu Application Platform:
 
       1. Get secretgen-controller deployment and namespace by running:
 
+
         ```
         kubectl get deployments -A | grep secretgen-controller
         ```
@@ -89,7 +99,9 @@ The following prerequisites are required to install Tanzu Application Platform:
         NAMESPACE                NAME                             READY   UP-TO-DATE   AVAILABLE   AGE
         secretgen-controller     secretgen-controller             1/1     1            1           22d   
         ```
+
       2. Get secretgen-controller version by running:
+
 
         ```
         kubectl get deployment SG-DEPLOYMENT -n SG-NAMESPACE -o yaml | grep secretgen-controller.carvel.dev/version
@@ -102,6 +114,7 @@ The following prerequisites are required to install Tanzu Application Platform:
         kubectl get deployment secretgen-controller -n secretgen-controller -oyaml | grep secretgen-controller.carvel.dev/version
         secretgen-controller.carvel.dev/version: v0.5.0
         ```
+
 
 * The Kubernetes command line tool, kubectl, v1.19 or later, installed and authenticated with administrator rights for your target cluster.
 
