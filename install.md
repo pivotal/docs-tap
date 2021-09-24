@@ -758,6 +758,82 @@ To install Application Live View:
     STATUS should be Reconcile succeeded.
 
 
+### <a id='install-scst-store'></a> Install Supply Chain Security Tools - Store
+
+To install SCST - Store:
+
+1. Follow the instructions in [Install Packages](#install-packages) above.
+
+
+    ```sh
+    $ tanzu package available get scst-store.tanzu.vmware.com/1.0.0-beta.0 --values-schema -n tap-install
+    ```
+
+    For example:
+    ```sh
+    $ tanzu package available get scst-store.tanzu.vmware.com/1.0.0-beta.0 --values-schema -n tap-install
+    | Retrieving package details for scst-store.tanzu.vmware.com/1.0.0-beta.0...
+      KEY               DEFAULT              TYPE     DESCRIPTION
+      auth_proxy_host   0.0.0.0              string   The binding ip address of the kube-rbac-proxy sidecar
+      db_name           metadata-store       string   The name of the database to use.
+      db_password                            string   The database user password.
+      db_port           5432                 string   The database port to use. This is the port to use when connecting to the database pod.
+      db_sslmode        verify-full          string   Determines the security connection between API server and Postgres database. This can be set to 'verify-ca' or 'verify-full'
+      db_user           metadata-store-user  string   The database user to create and use for updating and querying. The metadata postgres section create this user. The metadata api server uses this username to connect to the database.
+      api_host          localhost            string   The internal hostname for the metadata api endpoint. This will be used by the kube-rbac-proxy sidecar.
+      api_port          9443                 integer  The internal port for the metadata app api endpoint. This will be used by the kube-rbac-proxy sidecar.
+      app_service_type  NodePort             string   The type of service to use for the metadata app service. This can be set to 'Nodeport' or 'LoadBalancer'.
+      auth_proxy_port   8443                 integer  The external port address of the of the kube-rbac-proxy sidecar
+      db_host           metadata-postgres    string   The database hostname
+      storageClassName  manual               string   The storage class name of the persistent volume used by Postgres database for storing data. The default value will use the default class name defined on the cluster.
+      use_cert_manager  true                 string   Cert manager is required to be installed to use this flag. When true, this creates certificates object to be signed by cert manager for the API server and Postgres database. If false, the certificate object have to be provided by the user.
+    ```
+
+2. Gather the values schema.
+
+3. Create a `scst-store-values.yaml` using the following sample as a guide:
+
+    Sample `scst-store-values.yaml` for SCST - Store:
+
+    ```yaml
+    db_password: "password0123456"
+    app_service_type: "LoadBalancer"
+    ```
+
+    Here, `app_service_type` has been set to `LoadBalancer`. If your environment does not support `LoadBalancer`, you can omit this line and it will use the default value `NodePort`.
+
+4. Install the package by running:
+
+    ```sh
+    $ tanzu package install metadata-store \
+      --package-name scst-store.tanzu.vmware.com \
+      --version 1.0.0-beta.0 \
+      --namespace tap-install \
+      --values-file scst-store-values.yaml
+    ```
+
+    For example:
+    ```sh
+    $ tanzu package install metadata-store \
+      --package-name scst-store.tanzu.vmware.com \
+      --version 1.0.0-beta.0 \
+      --namespace tap-install \
+      --values-file scst-store-values.yaml
+
+    - Installing package 'scst-store.tanzu.vmware.com'
+    / Getting namespace 'tap-install'
+    - Getting package metadata for 'scst-store.tanzu.vmware.com'
+    / Creating service account 'metadata-store-tap-install-sa'
+    / Creating cluster admin role 'metadata-store-tap-install-cluster-role'
+    / Creating cluster role binding 'metadata-store-tap-install-cluster-rolebinding'
+    / Creating secret 'metadata-store-tap-install-values'
+    | Creating package resource
+    - Package install status: Reconciling
+
+    Added installed package 'metadata-store' in namespace 'tap-install'
+    ```
+
+
 ## <a id='verify'></a> Verify the Installed Packages
 
 To verify that the packages are installed:
