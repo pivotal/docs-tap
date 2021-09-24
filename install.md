@@ -188,7 +188,8 @@ To set and verify the Kubernetes cluster configurations:
               tkg-vc-antrea-admin@tkg-vc-antrea   tkg-vc-antrea     tkg-vc-antrea-admin
     ```
 
-2. Set the context to the `aks-tap-cluster` context by running:
+2.  Set the context to the desired cluster to be used for TAP packages install. 
+    For example set the context to the `aks-tap-cluster` context by running:
 
     ```
     kubectl config use-context aks-tap-cluster
@@ -602,7 +603,23 @@ To install Cloud Native Runtimes:
 
      Added installed package 'cloud-native-runtimes' in namespace 'tap-install'
     ```
-
+5. Verify the package install by running:
+    
+    ```
+    tanzu package installed get cloud-native-runtimes -n tap-install
+    ```
+    For example:
+    ```
+    tanzu package installed get cloud-native-runtimes -n tap-install
+    | Retrieving installation details for cc... 
+    NAME:                    cloud-native-runtimes
+    PACKAGE-NAME:            cnrs.tanzu.vmware.com
+    PACKAGE-VERSION:         1.0.1
+    STATUS:                  Reconcile succeeded
+    CONDITIONS:              [{ReconcileSucceeded True  }]
+    USEFUL-ERROR-MESSAGE:    
+    ```
+    STATUS should be Reconcile succeeded.
 
 
 ### <a id='install-app-accelerator'></a> Install Application Accelerator
@@ -650,7 +667,25 @@ in the Application Accelerator documentation.
      Added installed package 'app-accelerator' in namespace 'tap-install'
     ```
 
-5. Download and apply sample accelerators:
+5. Verify the package install by running:
+    
+    ```
+    tanzu package installed get app-accelerator -n tap-install
+    ```
+    For example:
+    ```
+    tanzu package installed get app-accelerator -n tap-install
+    | Retrieving installation details for cc... 
+    NAME:                    app-accelerator
+    PACKAGE-NAME:            accelerator.apps.tanzu.vmware.com
+    PACKAGE-VERSION:         0.3.0
+    STATUS:                  Reconcile succeeded
+    CONDITIONS:              [{ReconcileSucceeded True  }]
+    USEFUL-ERROR-MESSAGE:    
+    ```
+    STATUS should be Reconcile succeeded.
+
+6. Download and apply sample accelerators:
 
     1. Download the `sample-accelerators-0-2.yaml` file for Application Accelerator
        from [Tanzu Network](https://network.tanzu.vmware.com/products/app-accelerator).
@@ -676,7 +711,7 @@ To install Application Live View:
 
     ```
     ---
-    connector_namespaces: [bar, bar1]
+    connector_namespaces: [foo, bar]
     server_namespace: tap-install
     ```
     The server_namespace is the namespace to which the Application Live View server is deployed. Typically you should pick the namespace you created earlier, tap-install. The connector_namespaces should be a list of namespaces in which you want Application Live View to monitor your apps. To each of those namespace an instance of the Application Live View Connector will be deployed.
@@ -688,7 +723,7 @@ To install Application Live View:
     ```
     For example:
     ```
-    $ tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.1.0 -n tap-install -f app-live-view-values.yaml
+    $ tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.2.0 -n tap-install -f app-live-view-values.yaml
     - Installing package 'appliveview.tanzu.vmware.com'
     | Getting package metadata for 'appliveview.tanzu.vmware.com'
     | Creating service account 'app-live-view-tap-install-sa'
@@ -703,6 +738,24 @@ To install Application Live View:
 
     For more information about Application Live View,
     see the [Application Live View documentation](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.1/docs/GUID-index.html).
+
+5. Verify the package install by running:
+    
+    ```
+    tanzu package installed get app-live-view -n tap-install
+    ```
+    For example:
+    ```
+    tanzu package installed get app-live-view -n tap-install
+    | Retrieving installation details for cc... 
+    NAME:                    app-live-view
+    PACKAGE-NAME:            appliveview.tanzu.vmware.com
+    PACKAGE-VERSION:         0.2.0
+    STATUS:                  Reconcile succeeded
+    CONDITIONS:              [{ReconcileSucceeded True  }]
+    USEFUL-ERROR-MESSAGE:    
+    ```
+    STATUS should be Reconcile succeeded.
 
 
 ## <a id='verify'></a> Verify the Installed Packages
