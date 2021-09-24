@@ -57,8 +57,8 @@ Tanzu Application Platform v0.2 (Beta) includes the following components:
 You can install the Tanzu Application Platform components in one of two ways:
 
 * **Install as a package bundle (Recommended)**: Installing the components
-as part of the TAP repo bundle allows you to use the default, recommended
-Tanzu Application Platform experience. To install the TAP repo bundle, see
+as part of the Tanzu Application Platform repo bundle allows you to use the default, recommended
+Tanzu Application Platform experience. To install the Tanzu Application Platform repo bundle, see
 [Installing Tanzu Application Platform](install.html).
 * **Install components individually**: You can also choose to use the
 Tanzu Application Platform components independently of one another on
