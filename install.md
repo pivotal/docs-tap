@@ -59,7 +59,7 @@ The following prerequisites are required to install Tanzu Application Platform:
         kubectl get deployment KC-DEPLOYMENT -n KC-NAMESPACE -o yaml | grep kapp-controller.carvel.dev/version
         ```
 
-        Where `KC-DEPLOYMENT` and `KC-NAMESPACE` are kapp-controller deployment name and kapp-controller namespace name respectively from the output of step a.
+        Where `KC-DEPLOYMENT` and `KC-NAMESPACE` are kapp-controller deployment name and kapp-controller namespace name respectively from the output of step 1.
 
         For example:
 
@@ -106,7 +106,7 @@ The following prerequisites are required to install Tanzu Application Platform:
         ```
         kubectl get deployment SG-DEPLOYMENT -n SG-NAMESPACE -o yaml | grep secretgen-controller.carvel.dev/version
         ```
-        Where `SG-DEPLOYMENT` and `SG-NAMESPACE` are secretgen-controller deployment name and secretgen-controller namespace name respectively from the output of step a.
+        Where `SG-DEPLOYMENT` and `SG-NAMESPACE` are secretgen-controller deployment name and secretgen-controller namespace name respectively from the output of step 1.
 
         For example:
 
@@ -283,21 +283,21 @@ To accept EULAs:
 
   ![Screenshot of page on Tanzu Network from where you download Tanzu Application Platform packages shows the EULA warning](./images/tap-on-tanzu-net.png)
 
-## Install the Tanzu CLI and Package Plugin
+## Install the Tanzu CLI
 
 Before you can install Tanzu Application Platform,
 you need to download and install the Tanzu CLI and the package plugin for the Tanzu CLI.
 
 Follow the procedure for your operating system:
 
-+ [Linux: Install the Tanzu CLI and Package Plugin](#linux-cli)
-+ [Mac: Install the Tanzu CLI and Package Plugin](#mac-cli)
-+ [Windows: Install the Tanzu CLI and Package Plugin](#windows-cli)
++ [Linux: Install the Tanzu CLI](#linux-cli)
++ [Mac: Install the Tanzu CLI](#mac-cli)
++ [Windows: Install the Tanzu CLI](#windows-cli)
 
 
-### <a id='linux-cli'></a> Linux: Install the Tanzu CLI and Package Plugin
+### <a id='linux-cli'></a> Linux: Install the Tanzu CLI
 
-To install the Tanzu CLI and package plugin on a Linux operating system:
+To install the Tanzu CLI on a Linux operating system:
 
 1. Create a local directory called `tanzu`.
     ```
@@ -324,19 +324,10 @@ To install the Tanzu CLI and package plugin on a Linux operating system:
    tanzu version
    ```
 
-7. From the `tanzu` directory, install the package plugin by running:
-   ```
-   tanzu plugin install --local ./cli package
-   ```
 
-8. Confirm the installation of the Tanzu CLI package plugin by running:
-   ```
-   tanzu package version
-   ```
+### <a id='mac-cli'></a> MacOS: Install the Tanzu CLI
 
-### <a id='mac-cli'></a> MacOS: Install the Tanzu CLI and Package Plugin
-
-To install the Tanzu CLI and package plugin on a Mac operating system:
+To install the Tanzu CLI on a Mac operating system:
 
 1. Create a local directory called `tanzu`.
     ```
@@ -363,19 +354,10 @@ To install the Tanzu CLI and package plugin on a Mac operating system:
    tanzu version
    ```
 
-7. From the `tanzu` directory, install the package plugin by running:
-   ```
-   tanzu plugin install --local ./cli package
-   ```
 
-8. Confirm the installation of the Tanzu CLI package plugin by running:
-   ```
-   tanzu package version
-   ```
+### <a id='windows-cli'></a> Windows: Install the Tanzu CLI
 
-### <a id='windows-cli'></a> Windows: Install the Tanzu CLI and Package Plugin
-
-To install the Tanzu CLI and package plugin on a Windows operating system:
+To install the Tanzu CLI on a Windows operating system:
 
 1. Create a local directory called `tanzu-bundle`.
 
@@ -409,16 +391,27 @@ To install the Tanzu CLI and package plugin on a Windows operating system:
     tanzu version
     ```
 
-14. From the command prompt, navigate to the `tanzu-bundle` directory that contains the package plugin,
-    and install the plugin by running:
+## Install the Tanzu CLI Plugins
+
+After you have installed the tanzu core executable, you must install package, imagepullsecret, apps and app-accelerator CLI plugins.
+
+1. (Optional) Remove existing plugins from any previous CLI installations.
 
     ```
-    tanzu plugin install --local .\cli package
+    tanzu plugin clean
     ```
 
-15. Confirm the installation of the Tanzu CLI by running:
+2. Navigate to the tanzu folder that contains the cli folder.
+
+3. Run the following command from the tanzu directory to install all the plugins for this release.
+
     ```
-    tanzu package version
+    tanzu plugin install --local cli all
+    ```
+4. Check plugin installation status.
+
+    ```
+    tanzu plugin list
     ```
 
 ## <a id='add-package-repositories'></a> Add the Tanzu Application Platform Package Repository
@@ -434,7 +427,10 @@ To add the Tanzu Application Platform package repository:
 
 2. Create a imagepullsecret:
     ```
-    tanzu imagepullsecret add tap-registry --username TANZU-NET-USER --password TANZU-NET-PASSWORD --registry registry.tanzu.vmware.com --export-to-all-namespaces -n tap-install
+    tanzu imagepullsecret add tap-registry2 \
+      --username TANZU-NET-USER --password TANZU-NET-PASSWORD \
+      --registry registry.tanzu.vmware.com \
+      --export-to-all-namespaces -n tap-install
     ```
 
     Where `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for Tanzu Network.
@@ -449,7 +445,9 @@ To add the Tanzu Application Platform package repository:
 
     For example:
     ```
-    $ tanzu package repository add tanzu-tap-repository --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.2.0 -n tap-install
+    $ tanzu package repository add tanzu-tap-repository \
+        --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.2.0 \
+        --namespace tap-install
     \ Adding package repository 'tanzu-tap-repository'... 
     Added package repository 'tanzu-tap-repository'
     ```
