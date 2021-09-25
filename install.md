@@ -904,7 +904,7 @@ To install Supply Chain Security Tools - Scan (Scan Controller):
 
     The `METADATA_STORE_TOKEN` value can be determined by:
     ```bash
-    kubectl get secrets -n metadata-store -o jsonpath="{.items[?(@.metadata.annotations['kubernetes\.io/service-account\.name']=='metadata-store-read-write-client')].data.token}" | base64 -d
+    kubectl get secrets -n tap-install -o jsonpath="{.items[?(@.metadata.annotations['kubernetes\.io/service-account\.name']=='metadata-store-tap-install-sa')].data.token}" | base64 -d
     ```
 
 4. Install the package by running:
