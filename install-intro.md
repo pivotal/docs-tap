@@ -20,6 +20,7 @@ The following packages are available in Tanzu Application Platform:
 * API Portal
 * Supply Chain Security Tools - Store
 * Supply Chain Security Tools - Scan
+* Supply Chain Security Tools - Sign
 
 For instructions on how to add the Tanzu Application Platform package repository and install packages from the repository,
 see [Add PackageRepositories](#add-package-repositories) and [Install Packages](#install-packages) below.
