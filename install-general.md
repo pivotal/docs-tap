@@ -1,8 +1,12 @@
-# <a id='installing'></a> Installing Part I: EULA, CLI, and Package Repository
+# <a id='installing'></a> Installing Part I: Cluster Configurations, EULA, and CLI
 
-This document describes how to install Tanzu Application Platform things
+This document describes the first part of the installation process for Tanzu Application Platform:
 
-## Set and Verify the Kubernetes Cluster Configurations
++ [Set and Verify the Kubernetes Cluster Configurations](#set-and-verify)
++ [Accept the EULAs](#eulas)
++ [Install the Tanzu CLI and Package Plugin](#cli-and-plugin)
+
+##<a id='set-and-verify'></a> Set and Verify the Kubernetes Cluster Configurations
 
 To set and verify the Kubernetes cluster configurations:
 
@@ -21,7 +25,7 @@ To set and verify the Kubernetes cluster configurations:
               tkg-vc-antrea-admin@tkg-vc-antrea   tkg-vc-antrea     tkg-vc-antrea-admin
     ```
 
-2.  Set the context to the desired cluster to be used for TAP packages install. 
+2.  Set the context to the cluster that you want to use for the TAP packages install. 
     For example set the context to the `aks-tap-cluster` context by running:
 
     ```
@@ -73,7 +77,7 @@ To set and verify the Kubernetes cluster configurations:
 
 
 
-## Accept the EULAs
+##<a id="eulas"></a> Accept the EULAs
 
 Before you can install packages, you have to accept the End User License Agreements (EULAs)
 for each component separately.
@@ -96,7 +100,7 @@ To accept EULAs:
 
   ![Screenshot of page on Tanzu Network from where you download Tanzu Application Platform packages shows the EULA warning](./images/tap-on-tanzu-net.png)
 
-## Install the Tanzu CLI and Package Plugin
+##<a id='cli-and-plugin'></a> Install the Tanzu CLI and Package Plugin
 
 Before you can install Tanzu Application Platform,
 you need to download and install the Tanzu CLI and the package plugin for the Tanzu CLI.
@@ -233,79 +237,4 @@ To install the Tanzu CLI and package plugin on a Windows operating system:
     ```
     tanzu package version
     ```
-
-## <a id='add-package-repositories'></a> Add the Tanzu Application Platform Package Repository
-
-To add the Tanzu Application Platform package repository:
-
-1. Create a namespace called `tap-install` for deploying the packages of the components by running:
-    ```
-    kubectl create ns tap-install
-    ```
-
-    This namespace is to keep the objects grouped together logically.
-
-2. Create a imagepullsecret:
-    ```
-    tanzu imagepullsecret add tap-registry --username TANZU-NET-USER --password TANZU-NET-PASSWORD --registry registry.tanzu.vmware.com --export-to-all-namespaces -n tap-install
-    ```
-
-    Where `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for Tanzu Network.
-
-3. Add Tanzu Application Platform package repository to the cluster by running:
-
-    ```
-    tanzu package repository add tanzu-tap-repository --url TAP-REPO-IMGPKG -n tap-install
-    ```
-
-    Where TAP-REPO-IMGPKG is the Tanzu Application Platform repo bundle artifact reference.
-
-    For example:
-    ```
-    $ tanzu package repository add tanzu-tap-repository --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.2.0 -n tap-install
-    \ Adding package repository 'tanzu-tap-repository'... 
-    Added package repository 'tanzu-tap-repository'
-    ```
-
-5. Get status of the Tanzu Application Platform package repository, and ensure the status updates to `Reconcile succeeded` by running:
-
-    ```
-    tanzu package repository list -n tap-install
-    ```
-    For example:
-    ```
-    $ tanzu package repository list -n tap-install
-    - Retrieving repositories...
-      NAME                  REPOSITORY                                                         STATUS               DETAILS
-      tanzu-tap-repository  registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.2.0  Reconcile succeeded
-    ```
-
-6. List the available packages by running:
-
-
-    ```
-    tanzu package available list -n tap-install
-    ```
-    For example:
-    ```
-    $ tanzu package available list -n tap-install
-    / Retrieving available packages...
-      NAME                               DISPLAY-NAME                              SHORT-DESCRIPTION
-      accelerator.apps.tanzu.vmware.com  Application Accelerator for VMware Tanzu  Used to create new projects and configurations.                                      
-      appliveview.tanzu.vmware.com       Application Live View for VMware Tanzu    App for monitoring and troubleshooting running apps                                  
-      cnrs.tanzu.vmware.com              Cloud Native Runtimes                     Cloud Native Runtimes is a serverless runtime based on Knative
-    ```
-
-7. List version information for the `cnrs.tanzu.vmware.com` package by running:
-    ```
-    tanzu package available list cnrs.tanzu.vmware.com -n tap-install
-    ```
-    For example:
-    ```
-    $ tanzu package available list cnrs.tanzu.vmware.com -n tap-install
-    - Retrieving package versions for cnrs.tanzu.vmware.com...
-      NAME                   VERSION  RELEASED-AT
-      cnrs.tanzu.vmware.com  1.0.1    2021-07-30T15:18:46Z
-    ```
-
 

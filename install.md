@@ -8,9 +8,15 @@ This document describes how to install Tanzu Application Platform packages from 
 
 Before you install the packages, ensure that you have done the following:
 
-+ Read about installing Tanzu Application Platform. See [Installing Tanzu Application Platform](install-intro.md)
++ Read about installing Tanzu Application Platform.
+  See [Installing Tanzu Application Platform](install-intro.md).
 
-+ Installed and completed all the prerequisites. See [Prequisites](install-prereqs.md)
++ Installed and completed all the prerequisites.
+  See [Prequisites](install-prereqs.md).
+
++ Installed and completed all the prerequisites.
+  See [Installing Part I](install-general.md).
+
 
 ## <a id='install-packages'></a> About Installing Packages
 
@@ -21,7 +27,81 @@ that are defined in the package.
 You can get these parameters by running the command
 as described in the procedure below.
 
-## General Procedure to Install a Package
+## <a id='add-package-repositories'></a> Add the Tanzu Application Platform Package Repository
+
+To add the Tanzu Application Platform package repository:
+
+1. Create a namespace called `tap-install` for deploying the packages of the components by running:
+    ```
+    kubectl create ns tap-install
+    ```
+
+    This namespace is to keep the objects grouped together logically.
+
+2. Create a imagepullsecret:
+    ```
+    tanzu imagepullsecret add tap-registry --username TANZU-NET-USER --password TANZU-NET-PASSWORD --registry registry.tanzu.vmware.com --export-to-all-namespaces -n tap-install
+    ```
+
+    Where `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for Tanzu Network.
+
+3. Add Tanzu Application Platform package repository to the cluster by running:
+
+    ```
+    tanzu package repository add tanzu-tap-repository --url TAP-REPO-IMGPKG -n tap-install
+    ```
+
+    Where TAP-REPO-IMGPKG is the Tanzu Application Platform repo bundle artifact reference.
+
+    For example:
+    ```
+    $ tanzu package repository add tanzu-tap-repository --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.2.0 -n tap-install
+    \ Adding package repository 'tanzu-tap-repository'... 
+    Added package repository 'tanzu-tap-repository'
+    ```
+
+5. Get status of the Tanzu Application Platform package repository, and ensure the status updates to `Reconcile succeeded` by running:
+
+    ```
+    tanzu package repository list -n tap-install
+    ```
+    For example:
+    ```
+    $ tanzu package repository list -n tap-install
+    - Retrieving repositories...
+      NAME                  REPOSITORY                                                         STATUS               DETAILS
+      tanzu-tap-repository  registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.2.0  Reconcile succeeded
+    ```
+
+6. List the available packages by running:
+
+    ```
+    tanzu package available list -n tap-install
+    ```
+    For example:
+    ```
+    $ tanzu package available list -n tap-install
+    / Retrieving available packages...
+      NAME                               DISPLAY-NAME                              SHORT-DESCRIPTION
+      accelerator.apps.tanzu.vmware.com  Application Accelerator for VMware Tanzu  Used to create new projects and configurations.                                      
+      appliveview.tanzu.vmware.com       Application Live View for VMware Tanzu    App for monitoring and troubleshooting running apps                                  
+      cnrs.tanzu.vmware.com              Cloud Native Runtimes                     Cloud Native Runtimes is a serverless runtime based on Knative
+    ```
+
+7. List version information for the `cnrs.tanzu.vmware.com` package by running:
+    ```
+    tanzu package available list cnrs.tanzu.vmware.com -n tap-install
+    ```
+    For example:
+    ```
+    $ tanzu package available list cnrs.tanzu.vmware.com -n tap-install
+    - Retrieving package versions for cnrs.tanzu.vmware.com...
+      NAME                   VERSION  RELEASED-AT
+      cnrs.tanzu.vmware.com  1.0.1    2021-07-30T15:18:46Z
+    ```
+
+
+##<a id='general-procedure'></a> General Procedure to Install a Package
 
 To install any package from the Tanzu Application Platform package repository:
 
