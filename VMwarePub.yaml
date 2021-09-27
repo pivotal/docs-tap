@@ -7,9 +7,9 @@ publication:
     PublicationVersion: 0.1
     PublicationVersionComments:
     Language: en
-    PublicationGuid: tanzu-application-platform-0-1
+    PublicationGuid: tap-0-1
     PublicationKeywords:
     BatchProcessingInstruction:
-    PDFLink: tanzu-application-platform-0-1
+    PDFLink: tap-0-1
     WordLink:
     PublicationAuthor: ecalvert@vmware.com
