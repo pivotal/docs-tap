@@ -441,7 +441,7 @@ To add the Tanzu Application Platform package repository:
 3. Add Tanzu Application Platform package repository to the cluster by running:
 
     ```
-    tanzu package repository add tanzu-tap-repository --url TAP-REPO-IMGPKG -n tap-install
+    tanzu package repository add tanzu-tap-repository --url TAP-REPO-IMGPKG --namespace tap-install
     ```
 
     Where TAP-REPO-IMGPKG is the Tanzu Application Platform repo bundle artifact reference.
@@ -765,11 +765,11 @@ To verify that the packages are installed:
 
 1. List the installed packages by running:
     ```
-    tanzu package installed list -n tap-install
+    tanzu package installed list --namespace tap-install
     ```
     For example:
     ```
-    $ tanzu package installed list -n tap-install
+    $ tanzu package installed list --namespace tap-install
     \ Retrieving installed packages...
       NAME                   PACKAGE-NAME                       PACKAGE-VERSION  STATUS
       app-accelerator        accelerator.apps.tanzu.vmware.com  0.3.0            Reconcile succeeded
