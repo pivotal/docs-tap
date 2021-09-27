@@ -533,6 +533,7 @@ To install any package from the Tanzu Application Platform package repository:
     + [Install Application Accelerator](#install-app-accelerator)
     + [Install Application Live View](#install-app-live-view)
     + [Install Supply Chain Security Tools - Store](#install-scst-store)
+    + [Install Supply Chain Security Tools - Sign](#install-scst-sign)
     + [Install Supply Chain Security Tools - Scan](#install-scst-scan)
 
 
@@ -826,6 +827,8 @@ To install Supply Chain Security Tools - Store:
     Added installed package 'metadata-store' in namespace 'tap-install'
     ```
 ### <a id='install-scst-sign'></a> Install Supply Chain Security Tools - Sign
+
+To install Supply Chain Security Tools - Sign:
 
 1. Follow the instructions in [Install Packages](#install-packages) above.
 1. Gather the values schema
