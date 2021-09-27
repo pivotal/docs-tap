@@ -96,7 +96,7 @@ To accept EULAs:
     + [Cloud Native Runtimes](https://network.tanzu.vmware.com/products/serverless/)
     + [Application Accelerator](https://network.tanzu.vmware.com/products/app-accelerator/)
     + [Application Live View](https://network.tanzu.vmware.com/products/app-live-view/)
-    + Supply Chain Security Tools
+    + [Supply Chain Security Tools](https://network.tanzu.vmware.com/products/supply-chain-security-tools)
 
   ![Screenshot of page on Tanzu Network from where you download Tanzu Application Platform packages shows the EULA warning](./images/tap-on-tanzu-net.png)
 
@@ -133,7 +133,7 @@ To install the Tanzu CLI and package plugin on a Linux operating system:
 5. Install the Tanzu CLI from the `tanzu` directory by running:
     ```
     cd $HOME/tanzu
-    sudo install cli/core/v1.4.0/tanzu-core-linux_amd64 /usr/local/bin/tanzu
+    sudo install cli/core/v0.4.0/tanzu-core-linux_amd64 /usr/local/bin/tanzu
     ```
 
 6. Confirm the installation of the Tanzu CLI by running:
@@ -172,7 +172,7 @@ To install the Tanzu CLI and package plugin on a Mac operating system:
 5.  Install the Tanzu CLI from the `tanzu` directory by running:
     ```
     cd $HOME/tanzu
-    sudo install cli/core/v1.4.0/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
+    sudo install cli/core/v0.4.0/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
     ```
 
 6. Confirm the installation of the Tanzu CLI by running:
@@ -204,7 +204,7 @@ To install the Tanzu CLI and package plugin on a Windows operating system:
 
 5. Create a new `Program Files\tanzu` folder.
 
-6. In the unpacked CLI folder tanzu-bundle, locate and copy the `core/v1.4.0/tanzu-core-windows_amd64.exe`
+6. In the unpacked CLI folder tanzu-bundle, locate and copy the `core/v0.4.0/tanzu-core-windows_amd64.exe`
    into the new `Program Files\tanzu` folder.
 
 7. Rename `tanzu-core-windows_amd64.exe` to `tanzu.exe`.

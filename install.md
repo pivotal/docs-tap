@@ -451,7 +451,8 @@ To install Supply Chain Security Tools - Sign:
    tanzu package install webhook \
      --package-name image-policy-webhook.signing.run.tanzu.vmware.com \
      --version 1.0.0-beta.0 \
-     -f values.yaml
+     --namespace tap-install \
+     --values-file values.yaml
     
     | Installing package 'image-policy-webhook.signing.run.tanzu.vmware.com'
     | Getting namespace 'default'
