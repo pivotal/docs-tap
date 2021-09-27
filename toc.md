@@ -6,7 +6,7 @@ This is the table of contents from which the Tanzu Application Platform Document
 - [Release Notes](release-notes.md)
 - [Installing Tanzu Application Platform](install-intro.md)
     - [Prerequisites for Tanzu Application Platform](install-prereqs.md)
-    - [Installing Part I: EULA, CLI, and Package Repository](install-general.md)
+    - [Installing Part I: Cluster Configurations, EULA, and CLI](install-general.md)
     - [Installing Part II: Packages](install.md)
 - [Troubleshooting Tanzu Application Platform](troubleshooting.md)
 - [Tutorial: Install and Deploy the Spring Pet Clinic App](tutorial.md)
