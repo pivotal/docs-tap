@@ -249,10 +249,13 @@ The following packages are available in Tanzu Application Platform:
 * VMware Tanzu Build Service
 * SCP Toolkit
 * Supply Chain Choreographer for VMware Tanzu
+* Default Supply Chain with Testing
+* Supply Chain Security Tools for VMware Tanzu
 * Convention Service for VMware Tanzu
 * Tanzu Source Controller
 * Service Bindings for Kubernetes
 * API Portal
+* 
 
 For instructions on how to add the Tanzu Application Platform package repository and install packages from the repository,
 see [Add PackageRepositories](#add-package-repositories) and [Install Packages](#install-packages) below.
