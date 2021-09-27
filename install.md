@@ -427,10 +427,10 @@ To add the Tanzu Application Platform package repository:
 
 2. Create a imagepullsecret:
     ```
-    tanzu imagepullsecret add tap-registry2 \
+    tanzu imagepullsecret add tap-registry \
       --username TANZU-NET-USER --password TANZU-NET-PASSWORD \
       --registry registry.tanzu.vmware.com \
-      --export-to-all-namespaces -n tap-install
+      --export-to-all-namespaces --namespace tap-install
     ```
 
     Where `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for Tanzu Network.
@@ -455,11 +455,11 @@ To add the Tanzu Application Platform package repository:
 5. Get status of the Tanzu Application Platform package repository, and ensure the status updates to `Reconcile succeeded` by running:
 
     ```
-    tanzu package repository list -n tap-install
+    tanzu package repository list --namespace tap-install
     ```
     For example:
     ```
-    $ tanzu package repository list -n tap-install
+    $ tanzu package repository list --namespace tap-install
     - Retrieving repositories...
       NAME                  REPOSITORY                                                         STATUS               DETAILS
       tanzu-tap-repository  registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.2.0  Reconcile succeeded
@@ -469,11 +469,11 @@ To add the Tanzu Application Platform package repository:
 
 
     ```
-    tanzu package available list -n tap-install
+    tanzu package available list --namespace tap-install
     ```
     For example:
     ```
-    $ tanzu package available list -n tap-install
+    $ tanzu package available list --namespace tap-install
     / Retrieving available packages...
       NAME                               DISPLAY-NAME                              SHORT-DESCRIPTION
       accelerator.apps.tanzu.vmware.com  Application Accelerator for VMware Tanzu  Used to create new projects and configurations.                                      
@@ -483,11 +483,11 @@ To add the Tanzu Application Platform package repository:
 
 7. List version information for the `cnrs.tanzu.vmware.com` package by running:
     ```
-    tanzu package available list cnrs.tanzu.vmware.com -n tap-install
+    tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
     ```
     For example:
     ```
-    $ tanzu package available list cnrs.tanzu.vmware.com -n tap-install
+    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for cnrs.tanzu.vmware.com...
       NAME                   VERSION  RELEASED-AT
       cnrs.tanzu.vmware.com  1.0.1    2021-07-30T15:18:46Z
@@ -507,7 +507,7 @@ To install any package from the Tanzu Application Platform package repository:
 
 1. Run:
     ```
-    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema -n tap-install
+    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
     ```
 
      Where:
@@ -519,7 +519,7 @@ To install any package from the Tanzu Application Platform package repository:
 
     For example:
     ```
-    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.1 --values-schema -n tap-install
+    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.1 --values-schema --namespace tap-install
     ```
 
 2. Follow the specific installation instructions for each package:
