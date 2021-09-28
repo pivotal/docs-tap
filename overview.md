@@ -45,12 +45,23 @@ while allowing developers more time to focus on code.
 
 Tanzu Application Platform v0.2 (Beta) includes the following components:
 
-| Component Name | Version | Link to Documentation |
-|--------------------------------|-------------------------------|------|
-| Application Accelerator for VMware Tanzu (Beta) | v0.2.0 | [Application Accelerator for VMware Tanzu](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/index.html) |
-| Application Live View for VMware Tanzu (Beta) | v0.1.0 | [Application Live View for VMware Tanzu](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.1/docs/GUID-index.html)|
-| Cloud Native Runtimes for VMware Tanzu | v1.0.2 | [Cloud Native Runtimes](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-cnr-overview.html) |
-| VMware Tanzu Build Service | v1.2.2 | [Tanzu Build Service](https://docs.pivotal.io/build-service/1-2/) |
+## Packages in Tanzu Application Platform v0.2
+
+The following packages are available in Tanzu Application Platform:
+
+* API Portal
+* Application Accelerator for VMware Tanzu
+* Application Live View for VMware Tanzu
+* Cloud Native Runtimes for VMware Tanzu
+* Convention Service for VMware Tanzu
+* SCP Toolkit
+* Service Bindings for Kubernetes
+* Supply Chain Choreographer for VMware Tanzu
+* Supply Chain Security Tools - Scan
+* Supply Chain Security Tools - Sign
+* Supply Chain Security Tools - Store
+* Tanzu Source Controller
+* VMware Tanzu Build Service
 
 ## <a id='install'></a> About Installing Tanzu Application Platform v0.2 (Beta-2) Components
 
