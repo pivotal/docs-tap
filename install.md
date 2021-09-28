@@ -3,9 +3,6 @@
 This document describes how to install Tanzu Application Platform packages from the Tanzu Application Platform package repository.
 
 
-
-## <a id='prereqs'></a>Prerequisites
-
 Before you install the packages, ensure that you have done the following:
 
 + Installed and completed all the prerequisites.

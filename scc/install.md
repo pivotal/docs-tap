@@ -13,7 +13,7 @@ To install Cartographer you must have:
 - A v1.17 or later Kubernetes cluster connected to the VMware network. <!-- Missing xref -->
 Container images are currently hosted under `harbor-repo.vmware.com`.
 To try an experimental approach to installing Cartographer that is based on kapp-controller packaging
-CRDs, see [INSERT-LINK-HERE](). <!-- Missing a link -->
+CRDs, see INSERT-LINK-HERE(). <!-- Missing a link -->
 - cert-manager. To install cert-manager, see the [cert-manager documentation](https://cert-manager.io/docs/installation/).
 
 ## Install Cartographer in a Kubernetes Cluster
