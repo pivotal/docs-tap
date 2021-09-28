@@ -10,4 +10,4 @@
 | reference.md | Yes | |
 | uninstallation.md | Yes | |
 | release_notes.md | Yes | |
-| toc.md | Yes | Used to structure the TOC |
+| scc-toc.md | Yes | Used to structure the TOC |
