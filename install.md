@@ -8,9 +8,6 @@ This document describes how to install Tanzu Application Platform packages from 
 
 Before you install the packages, ensure that you have done the following:
 
-+ Read about installing Tanzu Application Platform.
-  See [Installing Tanzu Application Platform](install-intro.md).
-
 + Installed and completed all the prerequisites.
   See [Prequisites](install-prereqs.md).
 
@@ -101,7 +98,7 @@ To add the Tanzu Application Platform package repository:
     ```
 
 
-##<a id='general-procedure'></a> General Procedure to Install a Package
+## <a id='general-procedure-to-install-a-package'></a> General Procedure to Install a Package
 
 To install any package from the Tanzu Application Platform package repository:
 
