@@ -1,15 +1,11 @@
 # <a id='installing'></a> Installing the Packages
 
-This document describes how to install Tanzu Application Platform packages from the Tanzu Application Platform package repository.
+This document describes how to install Tanzu Application Platform packages
+from the Tanzu Application Platform package repository.
 
-
-Before you install the packages, ensure that you have done the following:
-
-+ Installed and completed all the prerequisites.
-  See [Prequisites](install-prereqs.md).
-
-+ Installed and completed all the prerequisites.
-  See [Installing Part I](install-general.md).
+Before you install the packages, ensure that you have completed the prerequisites, configured
+and verified the cluster, accepted the EULA, and installed the Tanzu CLI and the package plugin.
+For information, see [Installing Part I: Prerequisites, Cluster Configurations, EULA, and CLI](install-general.md).
 
 
 ## <a id='install-packages'></a> About Installing Packages
