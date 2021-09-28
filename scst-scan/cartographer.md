@@ -47,7 +47,7 @@ ytt \
     -v docker.username="${REGISTRY_USERNAME}" \
     -v docker.password="${REGISTRY_PASSWORD}" \
   | kbld -f /tmp/scan-controller/.imgpkg/images.yml -f- \
-  | kapp deploy -a canal -f- -y
+  | kapp deploy -a scan-link -f- -y
 
 # deploy grype templates
 ytt \
@@ -313,6 +313,8 @@ spec:
       interval: 1m
       url: $(workload.spec.source.git.url)$
       ref: $(workload.spec.source.git.ref)$
+      ignore: |
+        !.git
       secretRef:
         name: repository-credentials
 
@@ -420,7 +422,7 @@ spec:
         kind: ClusterSourceTemplate
         name: source
 
-    # Use Canal to scan the source code from the repository.
+    # Use scan-link to scan the source code from the repository.
     # Source Scanner
     #   Input: Source
     #   Output: Scanned Source
@@ -444,7 +446,7 @@ spec:
         - component: source-scanner
           name: scanned-source
 
-    # Use Canal to scan the container image from the kpack build.
+    # Use scan-link to scan the container image from the kpack build.
     # Image Scanner
     #   Input: Image
     #   Output: Scanned Image
