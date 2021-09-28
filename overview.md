@@ -41,10 +41,6 @@ This reduces the complexity of deploying apps on Kubernetes
 by enabling operators to better automate and standardize the outer loop,
 while allowing developers more time to focus on code.
 
-## <a id='components'></a> Tanzu Application Platform v0.2 (Beta-2) Components
-
-Tanzu Application Platform v0.2 (Beta) includes the following components:
-
 ## Packages in Tanzu Application Platform v0.2
 
 The following packages are available in Tanzu Application Platform:
