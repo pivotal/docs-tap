@@ -61,20 +61,4 @@ The following packages are available in Tanzu Application Platform:
 
 ## <a id='install'></a> About Installing Tanzu Application Platform v0.2 (Beta-2) Components
 
-You can install the Tanzu Application Platform components in one of two ways:
-
-* **Install as a package bundle (Recommended)**: Installing the components
-as part of the Tanzu Application Platform repo bundle allows you to use the default, recommended
-Tanzu Application Platform experience. To install the Tanzu Application Platform repo bundle, see
-[Installing Tanzu Application Platform](install.html).
-* **Install components individually**: You can also choose to use the
-Tanzu Application Platform components independently of one another on
-an existing Kubernetes platform. For information about how to install
-and use each component, see the documentation for the components listed
-in the table above.
-
-## <a id='use'></a> About Using Tanzu Application Platform v0.2 (Beta-2) Components
-
-To follow a tutorial that shows how to use Tanzu Application Platform
-v0.2 (Beta-2) components to deploy a sample app,
-see [Tutorial: Install and Deploy the Spring Pet Clinic App](tutorial.html).
+To install the Tanzu Application Platform repo bundle, see [Installing Tanzu Application Platform](install-intro.md).
