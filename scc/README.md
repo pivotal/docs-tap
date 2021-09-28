@@ -9,5 +9,5 @@
 | install.md | Yes |  |
 | reference.md | Yes | |
 | uninstallation.md | Yes | |
-| release_notes.md | Yes | |
+| release-notes.md | Yes | |
 | scc-toc.md | Yes | Used to structure the TOC |
