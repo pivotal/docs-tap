@@ -1,5 +1,5 @@
 publication:
-    RootMapFile: toc.md
+    RootMapFile: scc-toc.md
     OutputFileName: supply-chain-choreographer-for-vmware-tanzu-0-1
     PublicationName: Supply Chain Choreographer for VMware Tanzu
     ProductName: Supply Chain Choreographer for VMware Tanzu
