@@ -523,13 +523,13 @@ To install Supply Chain Security Tools - Scan (Scan Controller):
 1. Follow the instructions in [Install Packages](#install-packages) above.
 
     ```bash
-    tanzu package available get scanning.apps.tanzu.vmware.com/1.0.0-beta.0 --values-schema -n tap-install
+    tanzu package available get scanning.apps.tanzu.vmware.com/1.0.0-beta --values-schema -n tap-install
     ```
     
     For example:
     ```console
-    $ tanzu package available get scanning.apps.tanzu.vmware.com/1.0.0-beta.0 --values-schema -n tap-install
-    | Retrieving package details for scanning.apps.tanzu.vmware.com/1.0.0-beta.0...
+    $ tanzu package available get scanning.apps.tanzu.vmware.com/1.0.0-beta --values-schema -n tap-install
+    | Retrieving package details for scanning.apps.tanzu.vmware.com/1.0.0-beta...
       KEY                        DEFAULT                                                           TYPE    DESCRIPTION
       metadataStoreTokenSecret                                                                     string  Token Secret of the Insight Metadata Store deployed in the cluster
       metadataStoreUrl           https://metadata-store-app.metadata-store.svc.cluster.local:8443  string  Url of the Insight Metadata Store deployed in the cluster
@@ -599,7 +599,7 @@ To install Supply Chain Security Tools - Scan (Scan Controller):
     ```bash
     tanzu package install scan-controller \
       --package-name scanning.apps.tanzu.vmware.com \
-      --version 1.0.0-beta.0 \
+      --version 1.0.0-beta \
       --namespace tap-install \
       --values-file scst-scan-controller-values.yaml
     ```
@@ -608,7 +608,7 @@ To install Supply Chain Security Tools - Scan (Scan Controller):
     ```console
     $ tanzu package install scan-controller \
       --package-name scanning.apps.tanzu.vmware.com \
-      --version 1.0.0-beta.0 \
+      --version 1.0.0-beta \
       --namespace tap-install \
       --values-file scst-scan-controller-values.yaml
     | Installing package 'scanning.apps.tanzu.vmware.com'
@@ -629,12 +629,12 @@ To install Supply Chain Security Tools - Scan (Grype Scanner):
 1. Follow the instructions in [Install Packages](#install-packages) above.
 
     ```bash
-    tanzu package available get grype.scanning.apps.tanzu.vmware.com/1.0.0-beta.0 --values-schema -n tap-install
+    tanzu package available get grype.scanning.apps.tanzu.vmware.com/1.0.0-beta --values-schema -n tap-install
     ```
     For example:
     ```console
-    $ tanzu package available get grype.scanning.apps.tanzu.vmware.com/1.0.0-beta.0 --values-schema -n tap-install
-    | Retrieving package details for grype.scanning.apps.tanzu.vmware.com/1.0.0-beta.0...
+    $ tanzu package available get grype.scanning.apps.tanzu.vmware.com/1.0.0-beta --values-schema -n tap-install
+    | Retrieving package details for grype.scanning.apps.tanzu.vmware.com/1.0.0-beta...
       KEY                        DEFAULT  TYPE    DESCRIPTION
       namespace                  default  string  Deployment namespace for the Scan Templates
       resources.limits.cpu       1000m    <nil>   Limits describes the maximum amount of cpu resources allowed.
@@ -650,7 +650,7 @@ To install Supply Chain Security Tools - Scan (Grype Scanner):
     ```bash
     tanzu package install grype-scanner \
       --package-name grype.scanning.apps.tanzu.vmware.com \
-      --version 1.0.0-beta.0 \
+      --version 1.0.0-beta \
       --namespace tap-install
     ```
 
@@ -658,7 +658,7 @@ To install Supply Chain Security Tools - Scan (Grype Scanner):
     ```console
     $ tanzu package install grype-scanner \
       --package-name grype.scanning.apps.tanzu.vmware.com \
-      --version 1.0.0-beta.0 \
+      --version 1.0.0-beta \
       --namespace tap-install
     / Installing package 'grype.scanning.apps.tanzu.vmware.com'
     | Getting namespace 'tap-install'
