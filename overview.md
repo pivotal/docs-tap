@@ -41,33 +41,24 @@ This reduces the complexity of deploying apps on Kubernetes
 by enabling operators to better automate and standardize the outer loop,
 while allowing developers more time to focus on code.
 
-## <a id='components'></a> Tanzu Application Platform v0.2 (Beta-2) Components
+## Packages in Tanzu Application Platform v0.2
 
-Tanzu Application Platform v0.2 (Beta) includes the following components:
+The following packages are available in Tanzu Application Platform:
 
-| Component Name | Version | Link to Documentation |
-|--------------------------------|-------------------------------|------|
-| Application Accelerator for VMware Tanzu (Beta) | v0.2.0 | [Application Accelerator for VMware Tanzu](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/index.html) |
-| Application Live View for VMware Tanzu (Beta) | v0.1.0 | [Application Live View for VMware Tanzu](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.1/docs/GUID-index.html)|
-| Cloud Native Runtimes for VMware Tanzu | v1.0.2 | [Cloud Native Runtimes](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-cnr-overview.html) |
-| VMware Tanzu Build Service | v1.2.2 | [Tanzu Build Service](https://docs.pivotal.io/build-service/1-2/) |
+* API Portal
+* Application Accelerator for VMware Tanzu
+* Application Live View for VMware Tanzu
+* Cloud Native Runtimes for VMware Tanzu
+* Convention Service for VMware Tanzu
+* SCP Toolkit
+* Service Bindings for Kubernetes
+* Supply Chain Choreographer for VMware Tanzu
+* Supply Chain Security Tools - Scan
+* Supply Chain Security Tools - Sign
+* Supply Chain Security Tools - Store
+* Tanzu Source Controller
+* VMware Tanzu Build Service
 
-## <a id='install'></a> Install Tanzu Application Platform v0.2 (Beta-2) Components
+## <a id='install'></a> About Installing Tanzu Application Platform v0.2 (Beta-2) Components
 
-You can install the Tanzu Application Platform components in one of two ways:
-
-* **Install as a package bundle (Recommended)**: Installing the components
-as part of the Tanzu Application Platform repo bundle allows you to use the default, recommended
-Tanzu Application Platform experience. To install the Tanzu Application Platform repo bundle, see
-[Installing Tanzu Application Platform](install.html).
-* **Install components individually**: You can also choose to use the
-Tanzu Application Platform components independently of one another on
-an existing Kubernetes platform. For information about how to install
-and use each component, see the documentation for the components listed
-in the table above.
-
-## <a id='use'></a> Use Tanzu Application Platform v0.2 (Beta-2) Components
-
-To follow a tutorial that shows how to use Tanzu Application Platform
-v0.2 (Beta-2) components to deploy a sample app,
-see [Tutorial: Install and Deploy the Spring Pet Clinic App](tutorial.html).
+To install the Tanzu Application Platform repo bundle, see [Installing Tanzu Application Platform](install-intro.md).

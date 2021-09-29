@@ -11,5 +11,5 @@ watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
 ## Troubleshooting
 If you run into any problem or face a non-expected behavior, you can always address the logs to get some more feedback on what's going on.
 ```bash
-kubectl -n canal-system logs -f deployment/canal-controller-manager -c manager
+kubectl -n scan-link-system logs -f deployment/scan-link-controller-manager -c manager
 ```

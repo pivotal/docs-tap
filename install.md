@@ -1,12 +1,16 @@
-# <a id='installing'></a> Installing Tanzu Application Platform
+# <a id='installing'></a> Installing Part II: Packages
 
-This document describes how to install Tanzu Application Platform packages from the Tanzu Application Platform package repository.
+This document describes how to install Tanzu Application Platform packages
+from the Tanzu Application Platform package repository.
+
+Before you install the packages, ensure that you have completed the prerequisites, configured
+and verified the cluster, accepted the EULA, and installed the Tanzu CLI and the package plugin.
+For information, see [Installing Part I: Prerequisites, Cluster Configurations, EULA, and CLI](install-general.md).
 
 
-## <a id='prereqs'></a>Prerequisites
+## <a id='install-packages'></a> About Installing Packages
 
-The following prerequisites are required to install Tanzu Application Platform:
-
+<<<<<<< HEAD
 * A Kubernetes cluster (v1.19 or later) on one of the following Kubernetes providers:
 
     * Azure Kubernetes Service
@@ -455,6 +459,14 @@ After you have installed the tanzu core executable, you must install package, im
     ```
     tanzu plugin list
     ```
+=======
+The parameters that are required for the installation need to be defined in a YAML file.
+
+The required parameters for the individual packages can be identified by the values schema
+that are defined in the package.
+You can get these parameters by running the command
+as described in the procedure below.
+>>>>>>> main
 
 ## <a id='add-package-repositories'></a> Add the Tanzu Application Platform Package Repository
 
@@ -509,7 +521,6 @@ To add the Tanzu Application Platform package repository:
 
 6. List the available packages by running:
 
-
     ```
     tanzu package available list --namespace tap-install
     ```
@@ -536,14 +547,7 @@ To add the Tanzu Application Platform package repository:
     ```
 
 
-## <a id='install-packages'></a> Install Packages
-
-The parameters that are required for the installation need to be defined in a YAML file.
-
-The required parameters for the individual packages can be identified by the values schema
-that are defined in the package.
-You can get these parameters by running the command
-as described in the procedure below.
+## <a id='general-procedure-to-install-a-package'></a> General Procedure to Install a Package
 
 To install any package from the Tanzu Application Platform package repository:
 
@@ -569,9 +573,13 @@ To install any package from the Tanzu Application Platform package repository:
     + [Install Cloud Native Runtimes](#install-cnr)
     + [Install Application Accelerator](#install-app-accelerator)
     + [Install Application Live View](#install-app-live-view)
+    + [Install Supply Chain Security Tools - Store](#install-scst-store)
+    + [Install Supply Chain Security Tools - Sign](#install-scst-sign)
+    + [Install Supply Chain Security Tools - Scan](#install-scst-scan)
+    + [Install API portal](#install-api-portal)
 
 
-### <a id='install-cnr'></a> Install Cloud Native Runtimes
+## <a id='install-cnr'></a> Install Cloud Native Runtimes
 
 To install Cloud Native Runtimes:
 
@@ -662,7 +670,7 @@ To install Cloud Native Runtimes:
     STATUS should be Reconcile succeeded.
 
 
-### <a id='install-app-accelerator'></a> Install Application Accelerator
+## <a id='install-app-accelerator'></a> Install Application Accelerator
 
 To install Application Accelerator:
 
@@ -725,19 +733,7 @@ in the Application Accelerator documentation.
     ```
     STATUS should be Reconcile succeeded.
 
-6. Download and apply sample accelerators:
-
-    1. Download the `sample-accelerators-0-2.yaml` file for Application Accelerator
-       from [Tanzu Network](https://network.tanzu.vmware.com/products/app-accelerator).
-
-    2. Apply the manifest file using kubectl by running:
-
-        ```
-        kubectl apply -f sample-accelerators-0-2.yaml
-        ```
-
-
-### <a id="install-app-live-view"></a>Install Application Live View
+## <a id="install-app-live-view"></a>Install Application Live View
 
 To install Application Live View:
 
@@ -797,6 +793,431 @@ To install Application Live View:
     ```
     STATUS should be Reconcile succeeded.
 
+
+## <a id='install-scst-store'></a> Install Supply Chain Security Tools - Store
+
+To install Supply Chain Security Tools - Store:
+
+1. Follow the instructions in [Install Packages](#install-packages) above.
+
+    ```sh
+    tanzu package available get scst-store.tanzu.vmware.com/1.0.0-beta.0 --values-schema -n tap-install
+    ```
+
+    For example:
+    ```sh
+    $ tanzu package available get scst-store.tanzu.vmware.com/1.0.0-beta.0 --values-schema -n tap-install
+    | Retrieving package details for scst-store.tanzu.vmware.com/1.0.0-beta.0...
+      KEY               DEFAULT              TYPE     DESCRIPTION
+      auth_proxy_host   0.0.0.0              string   The binding ip address of the kube-rbac-proxy sidecar
+      db_name           metadata-store       string   The name of the database to use.
+      db_password                            string   The database user password.
+      db_port           5432                 string   The database port to use. This is the port to use when connecting to the database pod.
+      db_sslmode        verify-full          string   Determines the security connection between API server and Postgres database. This can be set to 'verify-ca' or 'verify-full'
+      db_user           metadata-store-user  string   The database user to create and use for updating and querying. The metadata postgres section create this user. The metadata api server uses this username to connect to the database.
+      api_host          localhost            string   The internal hostname for the metadata api endpoint. This will be used by the kube-rbac-proxy sidecar.
+      api_port          9443                 integer  The internal port for the metadata app api endpoint. This will be used by the kube-rbac-proxy sidecar.
+      app_service_type  NodePort             string   The type of service to use for the metadata app service. This can be set to 'Nodeport' or 'LoadBalancer'.
+      auth_proxy_port   8443                 integer  The external port address of the of the kube-rbac-proxy sidecar
+      db_host           metadata-postgres    string   The database hostname
+      storageClassName  manual               string   The storage class name of the persistent volume used by Postgres database for storing data. The default value will use the default class name defined on the cluster.
+      use_cert_manager  true                 string   Cert manager is required to be installed to use this flag. When true, this creates certificates object to be signed by cert manager for the API server and Postgres database. If false, the certificate object have to be provided by the user.
+    ```
+
+2. Gather the values schema.
+
+3. Create a `scst-store-values.yaml` using the following sample as a guide:
+
+    Sample `scst-store-values.yaml` for Supply Chain Security Tools - Store:
+
+    ```yaml
+    db_password: "password0123456"
+    app_service_type: "LoadBalancer"
+    ```
+
+    Here, `app_service_type` has been set to `LoadBalancer`.
+    If your environment does not support `LoadBalancer`, omit this line and it will use the default value `NodePort`.
+
+4. Install the package by running:
+
+    ```sh
+    tanzu package install metadata-store \
+      --package-name scst-store.tanzu.vmware.com \
+      --version 1.0.0-beta.0 \
+      --namespace tap-install \
+      --values-file scst-store-values.yaml
+    ```
+
+    For example:
+    ```sh
+    $ tanzu package install metadata-store \
+      --package-name scst-store.tanzu.vmware.com \
+      --version 1.0.0-beta.0 \
+      --namespace tap-install \
+      --values-file scst-store-values.yaml
+
+    - Installing package 'scst-store.tanzu.vmware.com'
+    / Getting namespace 'tap-install'
+    - Getting package metadata for 'scst-store.tanzu.vmware.com'
+    / Creating service account 'metadata-store-tap-install-sa'
+    / Creating cluster admin role 'metadata-store-tap-install-cluster-role'
+    / Creating cluster role binding 'metadata-store-tap-install-cluster-rolebinding'
+    / Creating secret 'metadata-store-tap-install-values'
+    | Creating package resource
+    - Package install status: Reconciling
+
+    Added installed package 'metadata-store' in namespace 'tap-install'
+    ```
+## <a id='install-scst-sign'></a> Install Supply Chain Security Tools - Sign
+
+To install Supply Chain Security Tools - Sign:
+
+1. Follow the instructions in [Install Packages](#install-packages) above.
+1. Gather the values schema
+    ```
+    tanzu package available get image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.0 --values-schema
+    | Retrieving package details for image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.0...
+      KEY                DEFAULT  TYPE     DESCRIPTION
+      warn_on_unmatched  false    boolean  Feature flag for enabling admission of images that do not match 
+                                           any patterns in the image policy configuration.
+                                           Set to true to allow images that do not match any patterns into
+                                           the cluster with a warning.
+
+    ```
+1. Create a file named `values.yaml` with `warn_on_unmatched` property.
+   To warn the user when images do not match any pattern in the policy, but still allow them into the cluster,  set it to `true`.
+   To deny images that do not match any pattern in the policy, set it to `false`
+
+   ```yaml
+   ---
+   warn_on_unmatched: true 
+   ```
+
+1. Install the package:
+   ```bash
+   tanzu package install webhook \
+     --package-name image-policy-webhook.signing.run.tanzu.vmware.com \
+     --version 1.0.0-beta.0 \
+     --namespace tap-install \
+     --values-file values.yaml
+    
+    | Installing package 'image-policy-webhook.signing.run.tanzu.vmware.com'
+    | Getting namespace 'default'
+    | Getting package metadata for 'image-policy-webhook.signing.run.tanzu.vmware.com'
+    | Creating service account 'webhook-default-sa'
+    | Creating cluster admin role 'webhook-default-cluster-role'
+    | Creating cluster role binding 'webhook-default-cluster-rolebinding'
+    | Creating secret 'webhook-default-values'
+    / Creating package resource
+    - Package install status: Reconciling
+
+    Added installed package 'webhook' in namespace 'default'
+   ```
+1. After the webhook is up and running, create a service account named `registry-credentials` in the `image-policy-system` namespace. This is a required configuration even if the images and signatures are in public registries. 
+
+1. If the registry or registries that hold your images and signatures are private,
+you will need to provide the webhook with credentials to access your artifacts. Create your secrets to access those registries in the `image-policy-system`
+namespace. These secrets should be added to the `registry-credentials` service account created above.
+
+    For example:
+
+    ```yaml
+    apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      name: registry-credentials
+      namespace: image-policy-system
+    imagePullSecrets:
+    - name: secret1
+    - name: secret2
+    ...
+    - name: secretn
+    ```
+
+1. You must also create a `ClusterImagePolicy` to inform the webhook which images it should validate.
+   The cluster image policy is a custom resource definition containing the following information:
+   - A list of namespaces to which the policy should not be enforced.
+   - A list of public keys complementary to the private keys that were used to sign the images.
+   - A list of image name patterns to which we want to enforce the policy, mapping to the public keys to use for each pattern.
+
+   An example policy would look like this:
+   ```yaml
+   ---
+   apiVersion: signing.run.tanzu.vmware.com/v1alpha1
+   kind: ClusterImagePolicy
+   metadata:
+     name: image-policy
+   spec:
+     verification:
+       exclude:
+         resources:
+           namespaces:
+           - kube-system
+       keys:
+       - name: first-key
+         publicKey: |
+           -----BEGIN PUBLIC KEY-----
+           <content ...>
+           -----END PUBLIC KEY-----
+       images:
+       - namePattern: registry.example.org/myproject/*
+         keys:
+         - name: first-key
+   ```
+
+   As of this writing, the custom resource for the policy must have a name of `image-policy`.
+
+   The platform operator should add to the `verification.exclude.resources.namespaces` section any namespaces that are known to run container images that are not currently signed, such as `kube-system`.
+
+## <a id='install-scst-scan'></a> Install Supply Chain Security Tools - Scan
+
+The installation for Supply Chain Security Tools – Scan involves installing two packages: Scan Controller and Grype Scanner.
+Ensure both are installed.
+
+To install Supply Chain Security Tools - Scan (Scan Controller):
+
+1. Follow the instructions in [Install Packages](#install-packages) above.
+
+    ```bash
+    tanzu package available get scanning.apps.tanzu.vmware.com/1.0.0-beta.0 --values-schema -n tap-install
+    ```
+    
+    For example:
+    ```console
+    $ tanzu package available get scanning.apps.tanzu.vmware.com/1.0.0-beta.0 --values-schema -n tap-install
+    | Retrieving package details for scanning.apps.tanzu.vmware.com/1.0.0-beta.0...
+      KEY                        DEFAULT                                                           TYPE    DESCRIPTION
+      metadataStoreTokenSecret                                                                     string  Token Secret of the Insight Metadata Store deployed in the cluster
+      metadataStoreUrl           https://metadata-store-app.metadata-store.svc.cluster.local:8443  string  Url of the Insight Metadata Store deployed in the cluster
+      namespace                  scan-link-system                                                  string  Deployment namespace for the Scan Controller
+      resources.limits.cpu       250m                                                              <nil>   Limits describes the maximum amount of cpu resources allowed.
+      resources.limits.memory    256Mi                                                             <nil>   Limits describes the maximum amount of memory resources allowed.
+      resources.requests.cpu     100m                                                              <nil>   Requests describes the minimum amount of cpu resources required.
+      resources.requests.memory  128Mi                                                             <nil>   Requests describes the minimum amount of memory resources required.
+      metadataStoreCa                                                                              string  CA Cert of the Insight Metadata Store deployed in the cluster
+    ```
+    
+2. Gather the values schema.
+3. Create a `scst-scan-controller-values.yaml` using the following sample as a guide: 
+    
+    Sample `scst-scan-controller-values.yaml` for Scan Controller:
+
+    ```yaml
+    ---
+    metadataStoreUrl: https://metadata-store-app.metadata-store.svc.cluster.local:8443
+    metadataStoreCa: |-
+      -----BEGIN CERTIFICATE-----
+      MIIC8TCCAdmgAwIBAgIRAIGDgx7Dk/2unVKuT9KXetUwDQYJKoZIhvcNAQELBQAw
+      ...
+      hOSbQ50VLo+YPF9NtTPRaS7QaIcFWot0EPwBMOCZR6Dd1HU6Qg==
+      -----END CERTIFICATE-----
+    metadataStoreTokenSecret: metadata-store-secret
+    ```
+
+    These values require the [Supply Chain Security Tools - Store](#install-scst-store) to have already been installed.
+    The following code snippets show how to determine what these values are:
+
+    The `metadataStoreUrl` value can be determined by:
+    ```bash
+    kubectl -n metadata-store get service -o name |
+      grep app |
+      xargs kubectl -n metadata-store get -o jsonpath='{.spec.ports[].name}{"://"}{.metadata.name}{"."}{.metadata.namespace}{".svc.cluster.local:"}{.spec.ports[].port}'
+    ```
+
+    The `metadataStoreCa` value can be determined by:
+    ```bash
+    kubectl get secret app-tls-cert -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d
+    ```
+
+    The `metadataStoreTokenSecret` is a reference to a secret that you will create and contains the Metadata Store token.
+    The name of the secret is arbitrary, and for example, we will set it as "metadata-store-secret".
+
+    The secret to be created and applied into the cluster is (ensure the namespace is created in the cluster before applying):
+    ```yaml
+    ---
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: <metadataStoreTokenSecret>
+      namespace: scan-link-system
+    type: kubernetes.io/opaque
+    stringData:
+      token: <METADATA_STORE_TOKEN>
+    ```
+
+    The `METADATA_STORE_TOKEN` value can be determined by:
+    ```bash
+    kubectl get secrets -n tap-install -o jsonpath="{.items[?(@.metadata.annotations['kubernetes\.io/service-account\.name']=='metadata-store-tap-install-sa')].data.token}" | base64 -d
+    ```
+
+4. Install the package by running:
+
+    ```bash
+    tanzu package install scan-controller \
+      --package-name scanning.apps.tanzu.vmware.com \
+      --version 1.0.0-beta.0 \
+      --namespace tap-install \
+      --values-file scst-scan-controller-values.yaml
+    ```
+
+    For example:
+    ```console
+    $ tanzu package install scan-controller \
+      --package-name scanning.apps.tanzu.vmware.com \
+      --version 1.0.0-beta.0 \
+      --namespace tap-install \
+      --values-file scst-scan-controller-values.yaml
+    | Installing package 'scanning.apps.tanzu.vmware.com'
+    | Getting namespace 'tap-install'
+    | Getting package metadata for 'scanning.apps.tanzu.vmware.com'
+    | Creating service account 'scan-controller-tap-install-sa'
+    | Creating cluster admin role 'scan-controller-tap-install-cluster-role'
+    | Creating cluster role binding 'scan-controller-tap-install-cluster-rolebinding'
+    | Creating secret 'scan-controller-tap-install-values'
+    / Creating package resource
+    / Package install status: Reconciling
+
+     Added installed package 'scan-controller' in namespace 'tap-install'
+    ```
+
+To install Supply Chain Security Tools - Scan (Grype Scanner):
+
+1. Follow the instructions in [Install Packages](#install-packages) above.
+
+    ```bash
+    tanzu package available get grype.scanning.apps.tanzu.vmware.com/1.0.0-beta.0 --values-schema -n tap-install
+    ```
+    For example:
+    ```console
+    $ tanzu package available get grype.scanning.apps.tanzu.vmware.com/1.0.0-beta.0 --values-schema -n tap-install
+    | Retrieving package details for grype.scanning.apps.tanzu.vmware.com/1.0.0-beta.0...
+      KEY                        DEFAULT  TYPE    DESCRIPTION
+      namespace                  default  string  Deployment namespace for the Scan Templates
+      resources.limits.cpu       1000m    <nil>   Limits describes the maximum amount of cpu resources allowed.
+      resources.requests.cpu     250m     <nil>   Requests describes the minimum amount of cpu resources required.
+      resources.requests.memory  128Mi    <nil>   Requests describes the minimum amount of memory resources required.
+    ```
+
+2. The default values are appropriate for this package.
+   If you want to change from the default values, use the Scan Controller instructions as a guide.
+
+3. Install the package by running:
+
+    ```bash
+    tanzu package install grype-scanner \
+      --package-name grype.scanning.apps.tanzu.vmware.com \
+      --version 1.0.0-beta.0 \
+      --namespace tap-install
+    ```
+
+    For example:
+    ```console
+    $ tanzu package install grype-scanner \
+      --package-name grype.scanning.apps.tanzu.vmware.com \
+      --version 1.0.0-beta.0 \
+      --namespace tap-install
+    / Installing package 'grype.scanning.apps.tanzu.vmware.com'
+    | Getting namespace 'tap-install'
+    | Getting package metadata for 'grype.scanning.apps.tanzu.vmware.com'
+    | Creating service account 'grype-scanner-tap-install-sa'
+    | Creating cluster admin role 'grype-scanner-tap-install-cluster-role'
+    | Creating cluster role binding 'grype-scanner-tap-install-cluster-rolebinding'
+    / Creating package resource
+    - Package install status: Reconciling
+
+     Added installed package 'grype-scanner' in namespace 'tap-install'
+    ```
+
+## <a id='install-api-portal'></a> Install API portal
+
+First, follow the instructions in [Install Packages](#install-packages) above.
+
+You can check what versions of API portal are available to install by running:
+```bash
+tanzu package available list -n tap-install api-portal.tanzu.vmware.com
+```
+
+For example:
+```console
+$ tanzu package available list -n tap-install api-portal.tanzu.vmware.com
+- Retrieving package versions for api-portal.tanzu.vmware.com...
+  NAME                         VERSION           RELEASED-AT
+  api-portal.tanzu.vmware.com  1.0.2             2021-09-27T00:00:00Z
+```
+
+The API portal has several configurations that can be overridden during installation. 
+To see the values, along with their defaults, run:
+
+```bash
+tanzu package available get -n tap-install api-portal.tanzu.vmware.com/{version} --values-schema
+```
+- where `{version}`  is the version you wish to install, e.g. `1.0.2`
+
+For example:
+```console
+tanzu package available get -n tap-install api-portal.tanzu.vmware.com/1.0.2 --values-schema
+| Retrieving package details for api-portal.tanzu.vmware.com/1.0.2...
+  KEY                                    DEFAULT                                                                                       TYPE     DESCRIPTION
+  apiPortalServer.sourceUrlsCacheTtlSec  300                                                                                           string   Time after which they will be refreshed (in seconds)
+  apiPortalServer.sourceUrlsTimeoutSec   10                                                                                            string   Timeout for remote OpenAPI retrieval (in seconds)
+  apiPortalServer.replicaCount           1                                                                                             integer  Number of replicas
+  apiPortalServer.sourceUrls             https://petstore.swagger.io/v2/swagger.json,https://petstore3.swagger.io/api/v3/openapi.json  string   OpenAPI urls to load
+  ```
+
+To override these defaults, check out [Installing API portal with Overrides](#install-api-portal-overrides).
+
+### Adding the image pull secret
+The API portal requires a container registry secret named `api-portal-image-pull-secret`. 
+You can use the same Tanzu Network credentials used when creating your `tap-registry` secret.
+
+
+### <a id='install-api-portal-defaults'></a> Installing API portal with defaults
+
+To install the API portal with default values, run:
+
+```bash
+tanzu package install api-portal -n tap-install -p api-portal.tanzu.vmware.com -v {version}
+```
+- where `{version}`  is the version you wish to install, e.g. `1.0.2`
+
+You should see a result similar to:
+```console
+/ Installing package 'api-portal.tanzu.vmware.com'
+| Getting namespace 'api-portal'
+| Getting package metadata for 'api-portal.tanzu.vmware.com'
+| Creating service account 'api-portal-api-portal-sa'
+| Creating cluster admin role 'api-portal-api-portal-cluster-role'
+| Creating cluster role binding 'api-portal-api-portal-cluster-rolebinding'
+/ Creating package resource
+- Package install status: Reconciling
+
+
+ Added installed package 'api-portal' in namespace 'tap-install'
+```
+
+### <a id='install-api-portal-overrides'></a> Installing API portal with overrides
+
+To install the API portal with overridden values, create a `values.yaml` file with your values. 
+For example here we require two replicas:
+
+```yaml
+---
+apiPortalServer:
+  replicaCount: 2
+```
+
+Then run the install command with the `values.yaml`:
+```bash
+tanzu package install api-portal -n tap-install -p api-portal.tanzu.vmware.com -v {version} -f values.yaml
+```
+- where `{version}`  is the version you wish to install, e.g. `1.0.2`
+
+You will see an output result similar to [installing with defaults](#install-api-portal-defaults). 
+However, you should see two `api-portal-server` pods in your namespace.
+
+### Further Reading
+
+For more information on API portal, check out the documentation [here](https://docs.pivotal.io/api-portal/1-0/).
 
 ## <a id='verify'></a> Verify the Installed Packages
 

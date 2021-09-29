@@ -1,13 +1,13 @@
-# Uninstalling Vulnerability Scanning Enablement
+# Uninstalling the Scan Controller and Grype Scanner
 
 This document describes how to uninstall.
 
 ## Remove the Scan Controller and CRDs
 ```bash
-kapp delete -a canal
+tanzu installed delete scan-controller
 ```
 
 ## Remove the Grype Scanner and ScanTemplates
 ```bash
-kapp delete -a grype-templates
+tanzu installed delete grype-scanner
 ```
