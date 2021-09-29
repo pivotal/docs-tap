@@ -515,7 +515,7 @@ namespace. These secrets should be added to the `registry-credentials` service a
 
    The platform operator should add to the `verification.exclude.resources.namespaces` section any namespaces that are known to run container images that are not currently signed, such as `kube-system`.
 
-   **Note**: If this is the first time installing this webhook, we recommend you use the following yaml to create your `ClusterImagePolicy`, it includes a cosign public key which will validate the specified cosign image. You may still want to add additional namespaces to exclude, for example any system namespaces.
+   **Note**: If this is the first time installing this webhook, we recommend you use the following yaml to create your `ClusterImagePolicy`, it includes a cosign public key which signed the cosign image at v1.2.1 which will validate the specified cosign image. You may still want to add additional namespaces to exclude, for example any system namespaces.
    ```yaml
    ---
    apiVersion: signing.run.tanzu.vmware.com/v1alpha1
@@ -536,11 +536,25 @@ namespace. These secrets should be added to the `registry-credentials` service a
            IqozONbbdbqz11hlRJy9c7SG+hdcFl9jE9uE/dwtuwU2MqU9T/cN0YkWww==
            -----END PUBLIC KEY-----
        images:
-       - namePattern: gcr.io/projectsigstore/cosign@sha256:68801416e6ae0a48820baa3f071146d18846d8cd26ca8ec3a1e87fca8a735498
+       - namePattern: gcr.io/projectsigstore/cosign*
          keys:
          - name: cosign-key
    ```
    You can then edit this at a later time to add in your specific cosign public keys and image name patterns.
+
+   Quick tests you can try:
+
+   ```bash
+   $ kubectl run cosign --image=gcr.io/projectsigstore/cosign:v1.2.1 --restart=Never --command -- sleep 900
+   pod/cosign created
+
+   $ kubectl run bb --image=busybox --restart=Never
+   Warning: busybox didn\'t match any pattern in policy. Pod will be created as WarnOnUnmatched flag is true
+   pod/bb created
+
+   $ kubectl run cosign-fail --image=gcr.io/projectsigstore/cosign:v0.3.0 --command -- sleep 900
+   Error from server (The image: gcr.io/projectsigstore/cosign:v0.3.0 is not signed): admission webhook "image-policy-webhook.signing.run.tanzu.vmware.com" denied the request: The image: gcr.io/projectsigstore/cosign:v0.3.0 is not signed
+   ```
 
 ## <a id='install-scst-scan'></a> Install Supply Chain Security Tools - Scan
 
