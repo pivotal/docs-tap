@@ -213,7 +213,7 @@ The following prerequisites are required to install Tanzu Application Platform:
       </table>
 
 
-## Set and Verify the Kubernetes Cluster Configurations
+##<a id='set-and-verify'></a> Set and Verify the Kubernetes Cluster Configurations
 
 To set and verify the Kubernetes cluster configurations:
 
@@ -232,7 +232,7 @@ To set and verify the Kubernetes cluster configurations:
               tkg-vc-antrea-admin@tkg-vc-antrea   tkg-vc-antrea     tkg-vc-antrea-admin
     ```
 
-2.  Set the context to the desired cluster to be used for TAP packages install. 
+2.  Set the context to the cluster that you want to use for the TAP packages install. . 
     For example set the context to the `aks-tap-cluster` context by running:
 
     ```
@@ -308,7 +308,7 @@ You can install Tanzu Build Service v1.2.2 from VMware Tanzu Network.
 For production environment installation instructions, see [Installing Tanzu Build Service](https://docs.pivotal.io/build-service/installing.html) in the Tanzu Build Service documentation.
 For quick-start installation instructions, suitable for most test environments, see [Getting Started with Tanzu Build Service](https://docs.pivotal.io/build-service/getting-started.html) in the Tanzu Build Service documentation.
 
-## Accept the EULAs
+##<a id="eulas"></a> Accept the EULAs
 
 Before you can install packages, you have to accept the End User License Agreements (EULAs)
 for each component separately.
@@ -327,10 +327,10 @@ To accept EULAs:
     + [Cloud Native Runtimes](https://network.tanzu.vmware.com/products/serverless/)
     + [Application Accelerator](https://network.tanzu.vmware.com/products/app-accelerator/)
     + [Application Live View](https://network.tanzu.vmware.com/products/app-live-view/)
-
+    + [Supply Chain Security Tools](https://network.tanzu.vmware.com/products/supply-chain-security-tools)
   ![Screenshot of page on Tanzu Network from where you download Tanzu Application Platform packages shows the EULA warning](./images/tap-on-tanzu-net.png)
 
-## Install the Tanzu CLI
+##<a id='cli-and-plugin'></a> Install the Tanzu CLI
 
 Before you can install Tanzu Application Platform,
 you need to download and install the Tanzu CLI and the package plugin for the Tanzu CLI.
@@ -363,7 +363,7 @@ To install the Tanzu CLI on a Linux operating system:
 5. Install the Tanzu CLI from the `tanzu` directory by running:
     ```
     cd $HOME/tanzu
-    sudo install cli/core/v1.4.0/tanzu-core-linux_amd64 /usr/local/bin/tanzu
+    sudo install cli/core/v0.4.0/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
     ```
 
 6. Confirm the installation of the Tanzu CLI by running:
@@ -393,7 +393,7 @@ To install the Tanzu CLI on a Mac operating system:
 5.  Install the Tanzu CLI from the `tanzu` directory by running:
     ```
     cd $HOME/tanzu
-    sudo install cli/core/v1.4.0/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
+    sudo install cli/core/v0.4.0/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
     ```
 
 6. Confirm the installation of the Tanzu CLI by running:
@@ -416,7 +416,7 @@ To install the Tanzu CLI on a Windows operating system:
 
 5. Create a new `Program Files\tanzu` folder.
 
-6. In the unpacked CLI folder tanzu-bundle, locate and copy the `core/v1.4.0/tanzu-core-windows_amd64.exe`
+6. In the unpacked CLI folder tanzu-bundle, locate and copy the `core/v0.4.0/tanzu-core-windows_amd64.exe`
    into the new `Program Files\tanzu` folder.
 
 7. Rename `tanzu-core-windows_amd64.exe` to `tanzu.exe`.
