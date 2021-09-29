@@ -6,25 +6,17 @@ weight: 2
 
 # Default Supply Chains
 
-Default supply chains are provided out of the box with Tanzu Application Platform. The two default supply chains that are included are:
+Default supply chains are provided out of the box with Tanzu Application
+Platform. The two default supply chains that are included are:
 
 - Source to URL
 - Source & Test to URL
 
-## Source to URL
+Regardless of the supply chain chosen, we need to first set credentials for a
+registry where Tanzu Build Service should push the images that it builds.
 
-Source to URL is the most basic supply chain allowing you to:
 
-- Watch a git repository
-- Build the code into an image
-- Apply some conventions to the K8s YAML
-- Deploy the application to the same cluster
-
-![Source to URL Supply Chain](images/source-to-url.png)
-
-### Example usage
-
-#### Credentials for pushing app images to a registry
+### Credentials for pushing app images to a registry
 
 As the supply chain builds a container image based of the source code and
 pushes it to a registry, we need to provide to the systems the credentials for
@@ -66,101 +58,117 @@ tanzu imagepullsecret add registry-credentials \
 _ps.: note that the REGISTRY here _must_ be the same as the one set in the
 values file above._
 
-## Source & Test to URL
 
-The source & test to URL supply chain builds on the ability of the source to url supply chain and adds the ability to perform testing using Tekton.
+## Source to URL
 
-![Source Test to URL](images/source-test-to-url.png)
+Source to URL is the most basic supply chain allowing you to:
+
+- Watch a git repository
+- Build the code into an image
+- Apply some conventions to the K8s YAML
+- Deploy the application to the same cluster
+
+![Source to URL Supply Chain](images/source-to-url.png)
+
 
 ### Example usage
 
-#### Tanzu Build Service cluster objects
-
-In order for Tanzu Build Service to build container images based on the
-appplication source code, we need for first configure a few cluster-wide
-objects.
+1. ensure that the supply chain has been installed
 
 ```bash
-ytt --ignore-unknown-comments \
-  -f ./examples/values.yaml \
-  -f ./examples/cluster \
-	--data-value registry=$REGISTRY |
-  kapp deploy --yes -a kpack-cluster-setup -f-
+tanzu apps cluster-supply-chain list
 ```
 ```console
-Target cluster 'https://127.0.0.1:41255' (nodes: cartographer-control-plane)
-
-Changes
-
-Namespace  Name                          Kind             Op       Wait to  
-(cluster)  builder                       ClusterBuilder   create   reconcile
-^          go-store                      ClusterStore     create   reconcile
-^          stack                         ClusterStack     create   reconcile
-default    private-registry-credentials  Secret           create   reconcile
-^          service-account               ServiceAccount   create   reconcile
-
-Op:      5 create, 0 delete, 0 update, 0 noop
-Wait to: 5 reconcile, 0 delete, 0 noop
-
-8:28:37PM: ---- applying 5 changes [0/5 done] ----
-...
-8:28:38PM: ---- applying complete [5/5 done] ----
-8:28:38PM: ---- waiting complete [5/5 done] ----
-
-Succeeded
+NAME              READY   AGE     LABEL SELECTOR
+source-to-url     Ready   2m20s   apps.tanzu.vmware.com/workload-type=web
 ```
 
-we can make sure that everything went well by looking at the status of the
-clusterbuilder that we just submitted:
+
+2. setup a service account and placeholder secret for registry credentials
+
+```yaml
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: registry-credentials
+  annotations:
+    secretgen.carvel.dev/image-pull-secret: ""
+type: kubernetes.io/dockerconfigjson
+data:
+  .dockerconfigjson: e30K
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: default   # must match the name configured in the supply chain
+                  # installation (defaults to `default`)
+secrets:
+  - name: registry-credentials
+imagePullSecrets:
+  - name: registry-credentials
+```
+
+3. create the workload
 
 ```bash
-kubectl describe clusterbuilder builder
+tanzu workload create ... ?
 ```
 ```console
-...
-  Conditions:
-    Last Transition Time:     2021-09-28T21:22:02Z
-    Status:                   True
-    Type:                     Ready
-  Latest Image:               10.188.0.3:5000/go-builder@sha256:481a496fa4e1785537811808349863f009fd96704a6234007c069f19b5a8aecc
+?
 ```
 
+
+## Source & Test to URL
+
+The source & test to URL supply chain builds on the ability of the source to
+url supply chain and adds the ability to perform testing using Tekton.
+
+![Source Test to URL](images/source-test-to-url.png)
+
+
+### Example usage
 
 #### Developer Workload
 
-Finaly, having set up the cluster, what's left is for the developer to submit a
-Workload whose selector matches the supplychain:
+1. ensure that the supply chain has been installed
 
 ```bash
-kubectl get clustersupplychains.carto.run source-test-to-url \
-  -o jsonpath='{.spec.selector}'
+tanzu apps cluster-supply-chain list
 ```
 ```console
-{"apps.tanzu.vmware.com/workload-type": "web"}
+NAME                 READY   AGE     LABEL SELECTOR
+source-test-to-url   Ready   2m20s   apps.tanzu.vmware.com/workload-type=web
 ```
 
-For instance:
+2. setup a service account and placeholder secret for registry credentials
 
 ```yaml
-apiVersion: carto.run/v1alpha1
-kind: Workload
+---
+apiVersion: v1
+kind: Secret
 metadata:
-  name: dev
-  labels:
-    apps.tanzu.vmware.com/workload-type: web
-    app.kubernetes.io/part-of: hello-world
-spec:
-  params:
-    - name: tekton-pipeline-name
-      value: developer-defined-tekton-pipeline
-  source:
-    git:
-      url: https://github.com/kontinue/hello-world
-      ref:
-        branch: main
+  name: registry-credentials
+  annotations:
+    secretgen.carvel.dev/image-pull-secret: ""
+type: kubernetes.io/dockerconfigjson
+data:
+  .dockerconfigjson: e30K
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: default   # must match the name configured in the supply chain
+                  # installation (defaults to `default`)
+secrets:
+  - name: registry-credentials
+imagePullSecrets:
+  - name: registry-credentials
 ```
 
-and a Tekton pipeline object:
+2. configure a Tekton pipeline for running the tests
 
 ```yaml
 apiVersion: tekton.dev/v1beta1
@@ -190,4 +198,65 @@ spec:
 
               wget -qO- $(params.source-url) | tar xvz
               go test -v ./...
+```
+
+
+3. submit a workload
+
+```bash
+tanzu apps workload create hello-world \
+	--label apps.tanzu.vmware.com/workload-type=web \
+  --git-branch main \
+  --git-repo https://github.com/kontinue/hello-world \
+  --param tekton-pipeline-name=developer-defined-tekton-pipeline
+```
+```console
+Create workload:
+      1 + |apiVersion: carto.run/v1alpha1
+      2 + |kind: Workload
+      3 + |metadata:
+      4 + |  name: my-workload
+      5 + |  namespace: default
+      6 + |spec:
+      7 + |  params:
+      8 + |  - name: tekton-pipeline-name
+      9 + |    value: developer-defined-tekton-pipeline
+     10 + |  source:
+     11 + |    git:
+     12 + |      ref:
+     13 + |        branch: main
+     14 + |      url: https://github.com/kontinue/hello-world
+
+? Do you want to create this workload? Yes
+Created workload "my-workload"
+```
+
+4. observe that we went from source code to a deployed application
+
+```bash
+kubectl get workload,gitrepository,pipelinerun,images.kpack,podintent,app,services.serving
+```
+```console
+NAME                             AGE
+workload.carto.run/hello-world   3m11s
+
+NAME                                                 URL                                       READY   STATUS                                                            AGE
+gitrepository.source.toolkit.fluxcd.io/hello-world   https://github.com/kontinue/hello-world   True    Fetched revision: main/3d42c19a618bb8fc13f72178b8b5e214a2f989c4   3m9s
+
+NAME                                       SUCCEEDED   REASON      STARTTIME   COMPLETIONTIME
+pipelinerun.tekton.dev/hello-world-pvmjx   True        Succeeded   3m4s        2m36s
+
+NAME                         LATESTIMAGE                                                                                               READY
+image.kpack.io/hello-world   10.188.0.3:5000/foo/hello-world@sha256:efe687cee98b47e8def40361017b8823fcf669298b1b95f2a3806858b65545b5   True
+
+NAME                                                      READY   REASON   AGE
+podintent.conventions.apps.tanzu.vmware.com/hello-world   True             85s
+
+NAME                                                    DESCRIPTION           SINCE-DEPLOY   AGE
+app.kappctrl.k14s.io/cartographer.carto.run.0.0.0-dev   Reconcile succeeded   31s            16m
+app.kappctrl.k14s.io/convention-controller              Reconcile succeeded   17s            119s
+app.kappctrl.k14s.io/hello-world                        Reconcile succeeded   2s             79s
+
+NAME                                      URL                                      LATESTCREATED       LATESTREADY         READY     REASON
+service.serving.knative.dev/hello-world   http://hello-world.default.example.com   hello-world-00001   hello-world-00001   Unknown   IngressNotConfigured
 ```
