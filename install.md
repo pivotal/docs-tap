@@ -357,7 +357,6 @@ To install Application Live View:
 
 #### Base Kubernetes Prerequisites
 
-
 - **[cert-manager]**, for provisioning certificates for the webhook
   servers that some controllers register with Kubernetes' API server to
   validate and modify objects when update
@@ -392,47 +391,17 @@ kapp deploy --yes -a secretgen-controller \
   -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/download/v$SECRETGEN_CONTROLLER_VERSION/release.yml
 ```
 
+- **flux2 source-controller**, for bringing the capability of making source
+  code changes available to the components in the supply chain. As _Application
+  Accelerator_ already depends on it too, see [#install-app-accelerator].
+
+
 #### TAP Prerequisites
 
-The following base TAP prerequisites must be met:
-- `tanzu cli` must be installed
-- The user must have appropriate credentials for fetching packages from TanzuNet
-
-Additionally the following TAP products must already be installed on the cluster:
 - [Cloud Native Runtimes](#-install-cloud-native-runtimes)
 - [Convention Service](#convention-service) TODO: where is the convention service install doc?
 - [Tanzu Build Service](#tanzu-build-service) TODO: point to the TBS install docs
 
-### Cartographer Dependency Installation
-
-TODO: Dedupe source controller installation - App Accelerator is also installing flux.
-
-#### Source Controller
-
-[source-controller] brings the capability of making source code changes
-available to the components in the supply chain.
-
-
-```bash
-# create the namespace where gitops should land
-#
-kubectl create namespace gitops-toolkit
-
-# fixme - i think we can do better
-#
-kubectl create clusterrolebinding gitops-toolkit-admin \
-  --clusterrole=cluster-admin \
-  --serviceaccount=gitops-toolkit:default
-
-SOURCE_CONTROLLER_VERSION=0.15.4
-
-# deploy the controller
-#
-kapp deploy --yes -a gitops-toolkit \
-  --into-ns gitops-toolkit \
-  -f https://github.com/fluxcd/source-controller/releases/download/v$SOURCE_CONTROLLER_VERSION/source-controller.crds.yaml \
-  -f https://github.com/fluxcd/source-controller/releases/download/v$SOURCE_CONTROLLER_VERSION/source-controller.deployment.yaml
-```
 
 #### Tekton
 
@@ -465,6 +434,7 @@ CARTOGRAPHER_VERSION=0.0.6
 # package naming the installation as `cartographer`.
 #
 tanzu package install cartographer \
+  --namespace tap-install \
   --package-name cartographer.tanzu.vmware.com \
   --version $CARTOGRAPHER_VERSION
 ```
@@ -483,17 +453,56 @@ Added installed package 'cartographer' in namespace 'default'
 
 ### <a id='install-default-supply-chains'></a> Install Default Supply Chains
 
+Cartographer and all of its dependencies must be installed in order to install
+either default supply chain.
+
+**Note: Only one supply chain can be installed at a time. In order to install a
+different supply chain, the currently installed one must be first uninstalled**
+
+As the supply chains  produce container images using Tanzu Build Service, thus,
+having to push them to a container image registry, we must tell the supply
+chain what the default registry location is.
+
+
+```bash
+tanzu package available get \
+  default-supply-chain.tanzu.vmware.com/$SUPPLY_CHAIN_VERSION \
+  --values-schema
+```
+```console
+KEY                  DEFAULT          TYPE    DESCRIPTION
+registry.repository  <nil>            string  Name of the repository in the image registry server 
+                                              where the application images from the workloads should
+                                              be pushed to. (required)
+
+registry.server      index.docker.io  string  Name of the registry server where application
+                                              images should be pushed to. (required)
+
+cluster_builder      default          string  Name of the Tanzu Build Service (TBS) ClusterBuilder to 
+                                              use by default on image objects managed by the supply chain.
+
+service_account      default          string  Name of the service account in the namespace where the 
+                                              Workload is submitted to utilize for providing registry 
+                                              credentials to Tanzu Build Service (TBS) Image objects 
+                                              as well as deploying the application.
+```
+
+As only `registry.server` and `registry.repository` are required, for any of
+the supply chains that we install we can we move on with configuring just those
+two to point at the registry and repository in the registry where we want the
+app images to be pushed to.
+
 #### Source to URL
 
-Cartographer and all of its dependencies must be installed in order to install either default supply chain.
-
-**Note: Only one supply chain can be installed at a time. In order to install a different supply chain, the currently installed one must be first uninstalled**
+**Reminder: Only one supply chain can be installed at a time. In order to install a
+different supply chain, the currently installed one must be first uninstalled**
 
 ```bash
 SUPPLY_CHAIN_VERSION=0.2.0
 
 tanzu package install default-supply-chain \
   --package-name default-supply-chain.tanzu.vmware.com \
+  --namespace tap-install \
   --version $SUPPLY_CHAIN_VERSION \
   --values-file <(echo "---
 registry:
@@ -501,41 +510,24 @@ registry:
   repository: myorg")
 ```
 ```console
-| Installing package 'default-supply-chain-testing.tanzu.vmware.com'
+| Installing package 'default-supply-chain.tanzu.vmware.com'
 ..
- Added installed package 'default-supply-chain-testing' in namespace 'default'
+ Added installed package 'default-supply-chain' in namespace 'default'
 ```
 
-Note that here we're providing a values file with a few fields defined. Because
-the supply chain produces container images using Tanzu Build Service, thus,
-having to push them to a container image registry, we must tell the supply chain
-what the default registry location is.
-
-You can find out what the possible values for this version are by using the
-`tanzu cli`:
-
-```bash
-tanzu package available get \
-  default-supply-chain-testing.tanzu.vmware.com/$SUPPLY_CHAIN_VERSION \
-  --values-schema
-```
-```console
-| Retrieving package details for default-supply-chain-testing.tanzu.vmware.com/0.2.0...
-  KEY                  DEFAULT  TYPE    DESCRIPTION
-  registry.repository           string  Repository where app images should be pushed to
-  registry.server               string  Image registry where app images should be pushed to
-```
-
-With the supply chain submitted to the cluster, all we have left is configuring
-Tanzu Build Service to be capable of pushing those container images.
 
 #### Source & Test to URL
+
+**Reminder: Only one supply chain can be installed at a time. In order to install a
+different supply chain, the currently installed one must be first uninstalled**
+
 
 ```bash
 SUPPLY_CHAIN_VERSION=0.2.0
 
-tanzu package install default-supply-chain-testing \
-  --package-name default-supply-chain-testing.tanzu.vmware.com \
+tanzu package install default-supply-chain \
+  --package-name default-supply-chain.tanzu.vmware.com \
+  --namespace tap-install \
   --version $SUPPLY_CHAIN_VERSION \
   --values-file <(echo "---
 registry:
@@ -543,12 +535,10 @@ registry:
   repository: myorg")
 ```
 ```console
-| Installing package 'default-supply-chain-testing.tanzu.vmware.com'
+| Installing package 'default-supply-chain.tanzu.vmware.com'
 ..
- Added installed package 'default-supply-chain-testing' in namespace 'default'
+ Added installed package 'default-supply-chain' in namespace 'default'
 ```
-
-The same note as above applies to both the Source & Test to URL and the Source to URL: we must still specify the default registry location.
 
 ## <a id='install-scst-store'></a> Install Supply Chain Security Tools - Store
 
