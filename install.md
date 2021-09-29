@@ -478,6 +478,41 @@ namespace. These secrets should be added to the `registry-credentials` service a
     - name: secretn
     ```
 
+1. You must also create a ClusterImagePolicy to inform the webhook which images it should validate.
+   The cluster image policy is a custom resource definition containing the following information:
+   - A list of namespaces to which the policy should not be enforced.
+   - A list of public keys complementary to the private keys that were used to sign the images.
+   - A list of image name patterns to which we want to enforce the policy, mapping to the public keys to use for each pattern.
+
+   An example policy would look like this:
+   ```yaml
+   ---
+   apiVersion: signing.run.tanzu.vmware.com/v1alpha1
+   kind: ClusterImagePolicy
+   metadata:
+     name: image-policy
+   spec:
+     verification:
+       exclude:
+         resources:
+           namespaces:
+           - kube-system
+       keys:
+       - name: first-key
+         publicKey: |
+           -----BEGIN PUBLIC KEY-----
+           <content ...>
+           -----END PUBLIC KEY-----
+       images:
+       - namePattern: registry.example.org/myproject/*
+         keys:
+         - name: first-key
+   ```
+
+   As of this writing, the custom resource for the policy must have a name of image-policy.
+
+   The platform operator should add to the `verification.exclude.resources.namespaces` section any namespaces that are known to run container images that are not currently signed, such as kube-system.
+
 ## <a id='install-scst-scan'></a> Install Supply Chain Security Tools - Scan
 
 The installation for Supply Chain Security Tools – Scan involves installing two packages: Scan Controller and Grype Scanner.
