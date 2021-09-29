@@ -10,6 +10,7 @@ Default supply chains are provided out of the box with Tanzu Application Platfor
 
 - Source to URL
 - Source & Test to URL
+- Source & Scan to URL
 
 ## Source to URL
 
@@ -26,7 +27,7 @@ Source to URL is the most basic supply chain allowing you to:
 
 #### Credentials for pushing app images to a registry
 
-As the supply chain builds a container image based of the source code and
+As the supply chain builds a container image based off the source code and
 pushes it to a registry, we need to provide to the systems the credentials for
 doing so.
 
@@ -77,7 +78,7 @@ The source & test to URL supply chain builds on the ability of the source to url
 #### Tanzu Build Service cluster objects
 
 In order for Tanzu Build Service to build container images based on the
-appplication source code, we need for first configure a few cluster-wide
+appplication source code, we need to first configure a few cluster-wide
 objects.
 
 ```bash
@@ -191,3 +192,33 @@ spec:
               wget -qO- $(params.source-url) | tar xvz
               go test -v ./...
 ```
+
+## Source & Scan to URL
+
+The source & scan to URL supply chain builds on the ability of the source to url supply chain and adds the ability to perform source and image scanning using Grype.
+
+- Watch a git repository
+- Run tests using Tekton
+- Scan the code for known vulnerabilities
+- Build the code into an image
+- Scan the image for known vulnerabilities
+- Apply some conventions to the K8s YAML
+- Deploy the application to the same cluster
+
+![Source Scan to URL](images/source-scan-to-url.png)
+
+### Example usage
+
+This example builds on the previous supply chain examples, so refer to them for details about those parts (Test, TBS etc) In particular, this example adds Source and Image Scanning capabilities.
+
+#### Tanzu Supply Chain Security Tools - Scan cluster objects
+
+The notable addition is a Scan Policy, which enables policy enforcement on Vulnerabilities found. The Scan Policy can be added with the following:
+
+```bash
+ytt --ignore-unknown-comments \
+    -f ./example/scanner.yaml \
+  | kapp deploy --yes -a scan-cluster-setup -f-
+```
+
+The next step would be to then submit a workload like in the other examples.
