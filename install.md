@@ -138,6 +138,23 @@ The following prerequisites are required to install Tanzu Application Platform:
         "app.kubernetes.io/version": v0.5.0
         ```
 
+* Flux-SourceController:
+
+        * Create clusterrolebinding by running:
+
+        ```
+        kubectl create clusterrolebinding default-admin \
+        --clusterrole=cluster-admin \
+        --serviceaccount=default:default
+        ```
+        * Install Flux-SourceController by running:
+        ```
+        kapp deploy --yes -a flux-source-controller \
+        -f https://github.com/fluxcd/source-controller/releases/download/v0.15.4/source-controller.crds.yaml \
+        -f https://github.com/fluxcd/source-controller/releases/download/v0.15.4/source-controller.deployment.yaml
+        ```
+
+
 * The Kubernetes command line tool, kubectl, v1.19 or later, installed and authenticated with administrator rights for your target cluster.
 
 * For Tanzu Kubernetes Grid, the minimum cluster configuration is as follows:
