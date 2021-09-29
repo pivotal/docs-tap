@@ -639,94 +639,51 @@ To install Supply Chain Security Tools - Scan (Grype Scanner):
 
 ## <a id='install-api-portal'></a> Install API portal
 
-First, follow the instructions in [Install Packages](#install-packages) above.
+1. Follow the instructions in [Install Packages](#install-packages) above.
 
-You can check what versions of API portal are available to install by running:
-```bash
-tanzu package available list -n tap-install api-portal.tanzu.vmware.com
-```
+2. Check what versions of API portal are available to install by running:
+   ```bash
+   tanzu package available list -n tap-install api-portal.tanzu.vmware.com
+   ```
 
-For example:
-```console
-$ tanzu package available list -n tap-install api-portal.tanzu.vmware.com
-- Retrieving package versions for api-portal.tanzu.vmware.com...
-  NAME                         VERSION           RELEASED-AT
-  api-portal.tanzu.vmware.com  1.0.2             2021-09-27T00:00:00Z
-```
+   For example:
+   ```console
+   $ tanzu package available list -n tap-install api-portal.tanzu.vmware.com
+   - Retrieving package versions for api-portal.tanzu.vmware.com...
+     NAME                         VERSION           RELEASED-AT
+     api-portal.tanzu.vmware.com  1.0.2             2021-09-27T00:00:00Z
+   ```
 
-The API portal has several configurations that can be overridden during installation. 
-To see the values, along with their defaults, run:
+3. Create a container registry secret named `api-portal-image-pull-secret`.
 
-```bash
-tanzu package available get -n tap-install api-portal.tanzu.vmware.com/{version} --values-schema
-```
-- where `{version}`  is the version you wish to install, e.g. `1.0.2`
+   ```console
+   $ kubectl create secret docker-registry api-portal-image-pull-secret -n tap-install \
+     --docker-server=registry.tanzu.vmware.com \
+     --docker-username=TANZU-NET-USER \
+     --docker-password=TANZU-NET-PASSWORD
+   secret/api-portal-image-pull-secret created
+   ```
+   - where `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for Tanzu Network.
 
-For example:
-```console
-tanzu package available get -n tap-install api-portal.tanzu.vmware.com/1.0.2 --values-schema
-| Retrieving package details for api-portal.tanzu.vmware.com/1.0.2...
-  KEY                                    DEFAULT                                                                                       TYPE     DESCRIPTION
-  apiPortalServer.sourceUrlsCacheTtlSec  300                                                                                           string   Time after which they will be refreshed (in seconds)
-  apiPortalServer.sourceUrlsTimeoutSec   10                                                                                            string   Timeout for remote OpenAPI retrieval (in seconds)
-  apiPortalServer.replicaCount           1                                                                                             integer  Number of replicas
-  apiPortalServer.sourceUrls             https://petstore.swagger.io/v2/swagger.json,https://petstore3.swagger.io/api/v3/openapi.json  string   OpenAPI urls to load
-  ```
+4. Install API portal.
+   
+   ```console
+   $ tanzu package install api-portal -n tap-install -p api-portal.tanzu.vmware.com -v 1.0.2
+   
+   / Installing package 'api-portal.tanzu.vmware.com'
+   | Getting namespace 'api-portal'
+   | Getting package metadata for 'api-portal.tanzu.vmware.com'
+   | Creating service account 'api-portal-api-portal-sa'
+   | Creating cluster admin role 'api-portal-api-portal-cluster-role'
+   | Creating cluster role binding 'api-portal-api-portal-cluster-rolebinding'
+   / Creating package resource
+   - Package install status: Reconciling
+   
+   
+    Added installed package 'api-portal' in namespace 'tap-install'
+   ```
 
-To override these defaults, check out [Installing API portal with Overrides](#install-api-portal-overrides).
-
-### Adding the image pull secret
-The API portal requires a container registry secret named `api-portal-image-pull-secret`. 
-You can use the same Tanzu Network credentials used when creating your `tap-registry` secret.
-
-
-### <a id='install-api-portal-defaults'></a> Installing API portal with defaults
-
-To install the API portal with default values, run:
-
-```bash
-tanzu package install api-portal -n tap-install -p api-portal.tanzu.vmware.com -v {version}
-```
-- where `{version}`  is the version you wish to install, e.g. `1.0.2`
-
-You should see a result similar to:
-```console
-/ Installing package 'api-portal.tanzu.vmware.com'
-| Getting namespace 'api-portal'
-| Getting package metadata for 'api-portal.tanzu.vmware.com'
-| Creating service account 'api-portal-api-portal-sa'
-| Creating cluster admin role 'api-portal-api-portal-cluster-role'
-| Creating cluster role binding 'api-portal-api-portal-cluster-rolebinding'
-/ Creating package resource
-- Package install status: Reconciling
-
-
- Added installed package 'api-portal' in namespace 'tap-install'
-```
-
-### <a id='install-api-portal-overrides'></a> Installing API portal with overrides
-
-To install the API portal with overridden values, create a `values.yaml` file with your values. 
-For example here we require two replicas:
-
-```yaml
----
-apiPortalServer:
-  replicaCount: 2
-```
-
-Then run the install command with the `values.yaml`:
-```bash
-tanzu package install api-portal -n tap-install -p api-portal.tanzu.vmware.com -v {version} -f values.yaml
-```
-- where `{version}`  is the version you wish to install, e.g. `1.0.2`
-
-You will see an output result similar to [installing with defaults](#install-api-portal-defaults). 
-However, you should see two `api-portal-server` pods in your namespace.
-
-### Further Reading
-
-For more information on API portal, check out the documentation [here](https://docs.pivotal.io/api-portal/1-0/).
+5. Visit [API portal for VMware Tanzu](https://docs.pivotal.io/api-portal/1-0/) for more information about API portal.
 
 ## <a id='verify'></a> Verify the Installed Packages
 
