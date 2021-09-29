@@ -116,6 +116,28 @@ The following prerequisites are required to install Tanzu Application Platform:
         ```
 
 
+* cert-manager v1.5.3:
+
+        * Install cert-manager by running:
+
+        ```
+        kapp deploy --yes -a cert-manager -f https://github.com/jetstack/cert-manager/releases/download/v1.5.3/cert-manager.yaml
+        ```
+        We have Qualified TAP repo bundle packages installation with cert-manager version v1.5.3.
+        
+        * Verify installed cert-manager version by running:
+
+        ```
+        kubectl get deployment cert-manager -n cert-manager -o yaml | grep app.kubernetes.io/version
+        ```
+
+        For example:
+
+        ```
+        kubectl get deployment cert-manager -n cert-manager -o yaml | grep app.kubernetes.io/version
+        "app.kubernetes.io/version": v0.5.0
+        ```
+
 * The Kubernetes command line tool, kubectl, v1.19 or later, installed and authenticated with administrator rights for your target cluster.
 
 * For Tanzu Kubernetes Grid, the minimum cluster configuration is as follows:
