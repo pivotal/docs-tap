@@ -429,6 +429,8 @@ To install Supply Chain Security Tools - Sign:
    warn_on_unmatched: true 
    ```
 
+   **Note**: If this is the first time installing this webhook, we recommend you use the above yaml for your values.yaml file so the webhook does not prevent unsigned images from running. When ready for production, re-install the webhook with this value set to `false`.
+
 1. Install the package:
    ```bash
    tanzu package install webhook \
@@ -466,9 +468,17 @@ namespace. These secrets should be added to the `registry-credentials` service a
     imagePullSecrets:
     - name: secret1
     - name: secret2
-    ...
-    - name: secretn
     ```
+
+    **Note**: If this is the first time installing this webhook, we recommend you use the following yaml to create your ServiceAccount:
+    ```yaml
+    apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      name: registry-credentials
+      namespace: image-policy-system
+    ```
+    You can then edit this at a later time to add in your `imagePullSecrets`
 
 1. You must also create a `ClusterImagePolicy` to inform the webhook which images it should validate.
    The cluster image policy is a custom resource definition containing the following information:
@@ -493,7 +503,7 @@ namespace. These secrets should be added to the `registry-credentials` service a
        - name: first-key
          publicKey: |
            -----BEGIN PUBLIC KEY-----
-           <content ...>
+           ...
            -----END PUBLIC KEY-----
        images:
        - namePattern: registry.example.org/myproject/*
@@ -504,6 +514,33 @@ namespace. These secrets should be added to the `registry-credentials` service a
    As of this writing, the custom resource for the policy must have a name of `image-policy`.
 
    The platform operator should add to the `verification.exclude.resources.namespaces` section any namespaces that are known to run container images that are not currently signed, such as `kube-system`.
+
+   **Note**: If this is the first time installing this webhook, we recommend you use the following yaml to create your `ClusterImagePolicy`, it includes a cosign public key which will validate the specified cosign image. You may still want to add additional namespaces to exclude, for example any system namespaces.
+   ```yaml
+   ---
+   apiVersion: signing.run.tanzu.vmware.com/v1alpha1
+   kind: ClusterImagePolicy
+   metadata:
+     name: image-policy
+   spec:
+     verification:
+       exclude:
+         resources:
+           namespaces:
+           - kube-system
+       keys:
+       - name: cosign-key
+         publicKey: |
+           -----BEGIN PUBLIC KEY-----
+           MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEhyQCx0E9wQWSFI9ULGwy3BuRklnt
+           IqozONbbdbqz11hlRJy9c7SG+hdcFl9jE9uE/dwtuwU2MqU9T/cN0YkWww==
+           -----END PUBLIC KEY-----
+       images:
+       - namePattern: gcr.io/projectsigstore/cosign@sha256:68801416e6ae0a48820baa3f071146d18846d8cd26ca8ec3a1e87fca8a735498
+         keys:
+         - name: cosign-key
+   ```
+   You can then edit this at a later time to add in your specific cosign public keys and image name patterns.
 
 ## <a id='install-scst-scan'></a> Install Supply Chain Security Tools - Scan
 
