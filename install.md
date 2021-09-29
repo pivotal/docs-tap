@@ -138,11 +138,13 @@ To install Cloud Native Runtimes:
     $ tanzu package available get cnrs.tanzu.vmware.com/1.0.1 --values-schema -n tap-install
     | Retrieving package details for cnrs.tanzu.vmware.com/1.0.1...
       KEY                         DEFAULT  TYPE             DESCRIPTION
-      ingress.external.namespace  <nil>    string           external namespace
-      ingress.internal.namespace  <nil>    string           internal namespace
-      ingress.reuse_crds          false    string           set true to reuse existing Contour instance
-      local_dns                   <nil>    string           <nil>
-      provider                    <nil>    string           Kubernetes cluster provider
+      pdb.enable                  true     boolean  Optional: Set to true to enable Pod Disruption Budget. If provider local is set to "local", the PDB will be disabled automatically.
+      provider                    <nil>    string   Optional: Kubernetes cluster provider. To be specified if deploying CNR on TKGs or on a local Kubernetes cluster provider.
+      ingress.external.namespace  <nil>    string   Optional: Only valid if a Contour instance already present in the cluster. Specify a namespace where an existing Contour is installed on your cluster (for external services) if you want CNR to use your Contour instance.
+      ingress.internal.namespace  <nil>    string   Optional: Only valid if a Contour instance already present in the cluster. Specify a namespace where an existing Contour is installed on your cluster (for internal services) if you want CNR to use your Contour instance.
+      ingress.reuse_crds          false    boolean  Optional: Only valid if a Contour instance already present in the cluster. Set to "true" if you want CNR to re-use the cluster's existing Contour CRDs.
+      local_dns.enable            false    boolean  Optional: Only for when "provider" is set to "local" and running on Kind. Set to true to enable local DNS.
+      local_dns.domain            <nil>    string   Optional: Set a custom domain for the Knative services.
     ```
 
 2. Gather the values schema.
@@ -153,18 +155,8 @@ To install Cloud Native Runtimes:
 
     ```
     ---
-    provider:
-    pdb:
-     enable: "true"
-
-    ingress:
-     reuse_crds:
-     external:
-       namespace:
-     internal:
-       namespace:    
-
-    local_dns:
+    # if deploying on a local cluster such as Kind. Otherwise, you can use the defaults values to install CNR.
+    provider: local
     ```
 
     In Tanzu Kubernetes Grid environments, Contour packages that are already been present might conflict
