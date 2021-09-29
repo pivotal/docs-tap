@@ -478,7 +478,7 @@ namespace. These secrets should be added to the `registry-credentials` service a
     - name: secretn
     ```
 
-1. You must also create a ClusterImagePolicy to inform the webhook which images it should validate.
+1. You must also create a `ClusterImagePolicy` to inform the webhook which images it should validate.
    The cluster image policy is a custom resource definition containing the following information:
    - A list of namespaces to which the policy should not be enforced.
    - A list of public keys complementary to the private keys that were used to sign the images.
@@ -509,9 +509,9 @@ namespace. These secrets should be added to the `registry-credentials` service a
          - name: first-key
    ```
 
-   As of this writing, the custom resource for the policy must have a name of image-policy.
+   As of this writing, the custom resource for the policy must have a name of `image-policy`.
 
-   The platform operator should add to the `verification.exclude.resources.namespaces` section any namespaces that are known to run container images that are not currently signed, such as kube-system.
+   The platform operator should add to the `verification.exclude.resources.namespaces` section any namespaces that are known to run container images that are not currently signed, such as `kube-system`.
 
 ## <a id='install-scst-scan'></a> Install Supply Chain Security Tools - Scan
 
