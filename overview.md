@@ -45,7 +45,7 @@ while allowing developers more time to focus on code.
 
 The following packages are available in Tanzu Application Platform:
 
-* API Portal
+* API portal
 * Application Accelerator for VMware Tanzu
 * Application Live View for VMware Tanzu
 * Cloud Native Runtimes for VMware Tanzu

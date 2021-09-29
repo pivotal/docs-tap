@@ -5,7 +5,7 @@ Documentation for the components of Tanzu Application Platform is available as f
 Some of the documentation is hosted on separate sites and some is incorporated into this 
 Tanzu Application Platform documentation site.
 
-+ API Portal
++ API portal
 
 + [Application Accelerator for VMware Tanzu](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/index.html)
 
