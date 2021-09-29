@@ -1,5 +1,7 @@
 ## Uninstalling
 
+TODO: Update uninstall docs with uninstallation using `tanzu package uninstall`?
+
 With plain `kubectl`:
 
 ```bash

@@ -117,6 +117,8 @@ To install any package from the Tanzu Application Platform package repository:
     + [Install Cloud Native Runtimes](#install-cnr)
     + [Install Application Accelerator](#install-app-accelerator)
     + [Install Application Live View](#install-app-live-view)
+    + [Install Supply Chain Choreographer](#-install-supply-chain-choreographer)
+    + [Install Default Supply Chains](#-install-default-supply-chains) 
     + [Install Supply Chain Security Tools - Store](#install-scst-store)
     + [Install Supply Chain Security Tools - Sign](#install-scst-sign)
     + [Install Supply Chain Security Tools - Scan](#install-scst-scan)
@@ -337,6 +339,216 @@ To install Application Live View:
     ```
     STATUS should be Reconcile succeeded.
 
+
+## <a id='install-scc'></a> Install Supply Chain Choreographer
+
+[cartographer]: https://github.com/vmware-tanzu/cartographer
+[cert-manager]: https://github.com/jetstack/cert-manager
+[convention-controller]: https://github.com/vmware-tanzu/convention-controller
+[kapp-controller]: https://github.com/vmware-tanzu/carvel-kapp-controller
+[knative-serving]: https://knative.dev/docs/serving/
+[kpack]: https://github.com/pivotal/kpack
+[secretgen-controller]: https://github.com/vmware-tanzu/carvel-secretgen-controller
+[source-controller]: https://github.com/fluxcd/source-controller
+[tanzu cli]: https://github.com/vmware-tanzu/tanzu-framework/tree/main/cmd/cli#installation
+[tekton]: https://github.com/tektoncd/pipeline
+
+### Prerequisites
+
+#### Base Kubernetes Prerequisites
+
+
+- **[cert-manager]**, for provisioning certificates for the webhook
+  servers that some controllers register with Kubernetes' API server to
+  validate and modify objects when update
+
+```bash
+CERT_MANAGER_VERSION=1.5.3
+
+kapp deploy --yes -a cert-manager \
+  -f https://github.com/jetstack/cert-manager/releases/download/v$CERT_MANAGER_VERSION/cert-manager.yaml
+```
+
+- **[kapp-controller]**, for providing to Kubernetes both packaging and
+  application primitives (i.e., used for installing some of the
+  dependencies here as well as deploying the applications that go
+  through this supplychain)
+
+```bash
+KAPP_CONTROLLER_VERSION=0.25.0
+
+kapp deploy --yes -a kapp-controller \
+    -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v$KAPP_CONTROLLER_VERSION/release.yml
+```
+
+- **[secretgen-controller]**, for filling placeholder secrets with the
+  contents of shared credentials that we can define once and keep in
+  sync everywhere we want.
+
+```bash
+SECRETGEN_CONTROLLER_VERSION=0.5.0
+
+kapp deploy --yes -a secretgen-controller \
+  -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/download/v$SECRETGEN_CONTROLLER_VERSION/release.yml
+```
+
+#### TAP Prerequisites
+
+The following base TAP prerequisites must be met:
+- `tanzu cli` must be installed
+- The user must have appropriate credentials for fetching packages from TanzuNet
+
+Additionally the following TAP products must already be installed on the cluster:
+- [Cloud Native Runtimes](#-install-cloud-native-runtimes)
+- [Convention Service](#convention-service) TODO: where is the convention service install doc?
+- [Tanzu Build Service](#tanzu-build-service) TODO: point to the TBS install docs
+
+### Cartographer Dependency Installation
+
+TODO: Dedupe source controller installation - App Accelerator is also installing flux.
+
+#### Source Controller
+
+[source-controller] brings the capability of making source code changes
+available to the components in the supply chain.
+
+
+```bash
+# create the namespace where gitops should land
+#
+kubectl create namespace gitops-toolkit
+
+# fixme - i think we can do better
+#
+kubectl create clusterrolebinding gitops-toolkit-admin \
+  --clusterrole=cluster-admin \
+  --serviceaccount=gitops-toolkit:default
+
+SOURCE_CONTROLLER_VERSION=0.15.4
+
+# deploy the controller
+#
+kapp deploy --yes -a gitops-toolkit \
+  --into-ns gitops-toolkit \
+  -f https://github.com/fluxcd/source-controller/releases/download/v$SOURCE_CONTROLLER_VERSION/source-controller.crds.yaml \
+  -f https://github.com/fluxcd/source-controller/releases/download/v$SOURCE_CONTROLLER_VERSION/source-controller.deployment.yaml
+```
+
+#### Tekton
+
+[tekton] is used by the supply chain to run tests defined by the developers
+before we get to the point of producing a container image for the source code,
+effectively preventing code that fails tests to being promoted all the way to a
+deployment.
+
+```bash
+TEKTON_VERSION=0.28.0
+
+kapp deploy --yes -a tekton \
+  -f https://storage.googleapis.com/tekton-releases/pipeline/previous/v$TEKTON_VERSION/release.yaml
+```
+
+### Cartographer Installation
+
+Cartographer is what provides the custom resource definitions that this
+supply chain makes use of, bringing the capability of choreographing the
+components that form the software supply chain, passing the results of,
+say, fetching source code, to the component that knows how to build a
+container image out of it, to then a component that knows how to deploy
+it ... so on and so forth.
+
+
+```bash
+CARTOGRAPHER_VERSION=0.0.6
+
+# Install the version 0.0.6 of the `cartographer.tanzu.vmware.com`
+# package naming the installation as `cartographer`.
+#
+tanzu package install cartographer \
+  --package-name cartographer.tanzu.vmware.com \
+  --version $CARTOGRAPHER_VERSION
+```
+```console
+| Installing package 'cartographer.tanzu.vmware.com'
+| Getting namespace 'default'
+| Getting package metadata for 'cartographer.tanzu.vmware.com'
+| Creating service account 'cartographer-default-sa'
+| Creating cluster admin role 'cartographer-default-cluster-role'
+| Creating cluster role binding 'cartographer-default-cluster-rolebinding'
+- Creating package resource
+\ Package install status: Reconciling
+
+Added installed package 'cartographer' in namespace 'default'
+```
+
+### <a id='install-default-supply-chains'></a> Install Default Supply Chains
+
+#### Source to URL
+
+Cartographer and all of its dependencies must be installed in order to install either default supply chain.
+
+**Note: Only one supply chain can be installed at a time. In order to install a different supply chain, the currently installed one must be first uninstalled**
+
+```bash
+SUPPLY_CHAIN_VERSION=0.2.0
+
+tanzu package install default-supply-chain \
+  --package-name default-supply-chain.tanzu.vmware.com \
+  --version $SUPPLY_CHAIN_VERSION \
+  --values-file <(echo "---
+registry:
+  server: 10.188.0.3:5000
+  repository: myorg")
+```
+```console
+| Installing package 'default-supply-chain-testing.tanzu.vmware.com'
+..
+ Added installed package 'default-supply-chain-testing' in namespace 'default'
+```
+
+Note that here we're providing a values file with a few fields defined. Because
+the supply chain produces container images using Tanzu Build Service, thus,
+having to push them to a container image registry, we must tell the supply chain
+what the default registry location is.
+
+You can find out what the possible values for this version are by using the
+`tanzu cli`:
+
+```bash
+tanzu package available get \
+  default-supply-chain-testing.tanzu.vmware.com/$SUPPLY_CHAIN_VERSION \
+  --values-schema
+```
+```console
+| Retrieving package details for default-supply-chain-testing.tanzu.vmware.com/0.2.0...
+  KEY                  DEFAULT  TYPE    DESCRIPTION
+  registry.repository           string  Repository where app images should be pushed to
+  registry.server               string  Image registry where app images should be pushed to
+```
+
+With the supply chain submitted to the cluster, all we have left is configuring
+Tanzu Build Service to be capable of pushing those container images.
+
+#### Source & Test to URL
+
+```bash
+SUPPLY_CHAIN_VERSION=0.2.0
+
+tanzu package install default-supply-chain-testing \
+  --package-name default-supply-chain-testing.tanzu.vmware.com \
+  --version $SUPPLY_CHAIN_VERSION \
+  --values-file <(echo "---
+registry:
+  server: 10.188.0.3:5000
+  repository: myorg")
+```
+```console
+| Installing package 'default-supply-chain-testing.tanzu.vmware.com'
+..
+ Added installed package 'default-supply-chain-testing' in namespace 'default'
+```
+
+The same note as above applies to both the Source & Test to URL and the Source to URL: we must still specify the default registry location.
 
 ## <a id='install-scst-store'></a> Install Supply Chain Security Tools - Store
 
