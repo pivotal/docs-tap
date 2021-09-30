@@ -1171,27 +1171,6 @@ To install SCP Toolkit:
     ```
     STATUS should be `Running`.
 
-## <a id='verify'></a> Verify the Installed Packages
-
-Use the following procedure to verify that the packages are installed.
-
-1. List the installed packages by running:
-    ```
-    tanzu package installed list --namespace tap-install
-    ```
-    For example:
-    ```
-    $ tanzu package installed list --namespace tap-install
-    \ Retrieving installed packages...
-      NAME                   PACKAGE-NAME                                        PACKAGE-VERSION  STATUS
-      app-accelerator        accelerator.apps.tanzu.vmware.com                   0.3.0            Reconcile succeeded
-      app-live-view          appliveview.tanzu.vmware.com                        0.2.0            Reconcile succeeded
-      cloud-native-runtimes  cnrs.tanzu.vmware.com                               1.0.1            Reconcile succeeded
-      service-bindings       service-bindings.labs.vmware.com                    0.5.0            Reconcile succeeded
-      source-controller      controller.source.apps.tanzu.vmware.com             0.1.2            Reconcile succeeded
-      convention-controller  controller.conventions.apps.tanzu.vmware.com        0.4.2            Reconcile succeeded
-    ```
-
 ## <a id='install-tbs'></a> Install Tanzu Build Service 
 
 This section provides a guide for installing Tanzu Build Service as part of Tanzu Application Platform using the Tanzu CLI. This procedure might not include some configurations required for your specific environment. For more advanced details on installing Tanzu Build Service, see [Installing Tanzu Build Service](https://docs.pivotal.io/build-service/installing.html).
@@ -1270,4 +1249,25 @@ To install Tanzu Build Service using the Tanzu CLI:
     full      my-registry.com/tbs@sha256:f7cdac8b2d97790276821ee3f54c497fba4ec71752eec9a87d22905344471ed8      True
     tiny      my-registry.com/tbs@sha256:b9c5348da4c1527c356d2d8b9d48462ea9bf97a98eb379e925bec69c6dd918a5      True
 
+    ```
+
+## <a id='verify'></a> Verify the Installed Packages
+
+Use the following procedure to verify that the packages are installed.
+
+1. List the installed packages by running:
+    ```
+    tanzu package installed list --namespace tap-install
+    ```
+    For example:
+    ```
+    $ tanzu package installed list --namespace tap-install
+    \ Retrieving installed packages...
+      NAME                   PACKAGE-NAME                                        PACKAGE-VERSION  STATUS
+      app-accelerator        accelerator.apps.tanzu.vmware.com                   0.3.0            Reconcile succeeded
+      app-live-view          appliveview.tanzu.vmware.com                        0.2.0            Reconcile succeeded
+      cloud-native-runtimes  cnrs.tanzu.vmware.com                               1.0.1            Reconcile succeeded
+      service-bindings       service-bindings.labs.vmware.com                    0.5.0            Reconcile succeeded
+      source-controller      controller.source.apps.tanzu.vmware.com             0.1.2            Reconcile succeeded
+      convention-controller  controller.conventions.apps.tanzu.vmware.com        0.4.2            Reconcile succeeded
     ```
