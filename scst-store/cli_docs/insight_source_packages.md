@@ -1,10 +1,10 @@
-## insight source packages
+## Insight Source Packages
 
-Get source packages
+Get source packages.
 
 ### Synopsis
 
-Get source packages
+Get source packages.
 
 ```
 insight source packages [--commit <commit-hash>] [--repo <repo-url>] [--format <format>] [flags]
@@ -25,7 +25,7 @@ insight sources packages --commit 0b1b659907 --format json
   -r, --repo string     source repository url
 ```
 
-### SEE ALSO
+### See Also
 
 * [insight source](insight_source.md)	 - Source commands
 
