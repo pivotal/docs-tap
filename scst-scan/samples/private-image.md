@@ -37,7 +37,7 @@ For more information, refer to [Observing and Troubleshooting](../observing.md).
 kubectl apply -f private-image-example.yaml
 ```
 
-## See the Results
+## See the Scan Status
 Once the scan has completed, perform:
 ```bash
 kubectl describe imagescan private-image-example
@@ -50,3 +50,6 @@ For more information, refer to [Viewing and Understanding Scan Status Conditions
 ```bash
 kubectl delete -f private-image-example.yaml
 ```
+
+## Viewing Vulnerability Reports
+See [Viewing Vulnerability Reports](../viewing-reports.md) section

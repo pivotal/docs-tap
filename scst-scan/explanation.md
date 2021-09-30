@@ -16,7 +16,8 @@ To view the pre-installed Scan Template CRs, run:
 $ kubectl get scantemplates
 ```
 
-And you will see the following scan templates:
+And you will see the following scan templates:  
+
 | CR Name | Use Case|
 |---|---|
 |`public-source-scan-template`|Will clone and scan source code from a public repository.|
