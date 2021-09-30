@@ -19,9 +19,9 @@ Tanzu Application Platform documentation site.
 
 + Service Bindings for Kubernetes
 
-+ [Supply Chain Choreographer for VMware Tanzu](scc/scc-about.html)
++ [Supply Chain Choreographer for VMware Tanzu](scc/about.html)
 
-+ [Supply Chain Security Tools - Scan](scst-scan/scst-scan-overview.md)
++ [Supply Chain Security Tools - Scan](scst-scan/overview.md)
 
 + Supply Chain Security Tools - Sign
 
