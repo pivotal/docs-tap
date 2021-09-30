@@ -218,7 +218,6 @@ The following packages are available in Tanzu Application Platform:
 * Tanzu Source Controller
 * Service Bindings for Kubernetes
 * API Portal
-* 
 
 For instructions on how to add the Tanzu Application Platform package repository and install packages from the repository,
 see [Add PackageRepositories](#add-package-repositories) and [Install Packages](#install-packages) below.
@@ -254,7 +253,7 @@ To accept EULAs:
 ##<a id='cli-and-plugin'></a> Install the Tanzu CLI
 
 Before you can install Tanzu Application Platform,
-you need to download and install the Tanzu CLI and the package plugin for the Tanzu CLI.
+you need to download and install the Tanzu CLI and the Tanzu CLI plugins.
 
 Follow the procedure for your operating system:
 
@@ -276,18 +275,20 @@ To install the Tanzu CLI on a Linux operating system:
 
 3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/) on Tanzu Network.
 
-4. Download `tanzu-cli-bundle-linux` under the tanzu-cli folder and unpack the TAR file into the `tanzu` directory:
+4. Click on the `tanzu-cli` folder.
+
+5. Download `tanzu-cli-bundle-linux` and unpack the TAR file into the `tanzu` directory:
     ```
     tar -xvf tanzu-cli-bundle-linux-amd64.tar -C $HOME/tanzu
     ```
 
-5. Install the Tanzu CLI from the `tanzu` directory by running:
+6. Install the Tanzu CLI from the `tanzu` directory by running:
     ```
     cd $HOME/tanzu
     sudo install cli/core/v0.4.0/tanzu-core-linux_amd64 /usr/local/bin/tanzu
     ```
 
-6. Confirm the installation of the Tanzu CLI by running:
+7. Confirm the installation of the Tanzu CLI by running:
    ```
    tanzu version
    ```
@@ -306,18 +307,20 @@ To install the Tanzu CLI on a Mac operating system:
 
 3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/) on Tanzu Network.
 
-4. Download `tanzu-cli-bundle-mac` under the tanzu-cli folder and unpack the TAR files into the `tanzu` directory.
+4. Click on the `tanzu-cli` folder.
+
+5. Download `tanzu-cli-bundle-mac` and unpack the TAR file into the `tanzu` directory:
     ```
     tar -xvf tanzu-cli-bundle-darwin-amd64.tar -C $HOME/tanzu
     ```
 
-5.  Install the Tanzu CLI from the `tanzu` directory by running:
+6.  Install the Tanzu CLI from the `tanzu` directory by running:
     ```
     cd $HOME/tanzu
     sudo install cli/core/v0.4.0/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
     ```
 
-6. Confirm the installation of the Tanzu CLI by running:
+7. Confirm the installation of the Tanzu CLI by running:
    ```
    tanzu version
    ```
@@ -333,7 +336,9 @@ To install the Tanzu CLI on a Windows operating system:
 
 3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/) on Tanzu Network.
 
-4. Download `tanzu-cli-bundle-windows` under the tanzu-cli folder and unpack the TAR files into the `tanzu-bundle` directory.
+4. Click on the `tanzu-cli` folder.
+
+5. Download `tanzu-cli-bundle-windows` and unpack the TAR files into the `tanzu-bundle` directory.
 
 5. Create a new `Program Files\tanzu` folder.
 
@@ -381,3 +386,8 @@ After you have installed the tanzu core executable, you must install package, im
     ```
     tanzu plugin list
     ```
+
+**A note regarding the installed plugins:**
+The `package`, `imgpullsecret`, `accelerator`, and `apps` plugins will be used to install and/or interact with the Tanzu Application Platform.
+Running any other plugin commands (for example, a `cluster` plugin command) is not recommended and doing so may have unintended effects.
+    
