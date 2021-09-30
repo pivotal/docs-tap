@@ -2,10 +2,10 @@
 
 This is the table of contents from which the Supply Chain Security Tools – Scan Documentation site on docs.vmware.com is built.
 
-* [Overview](overview.md)
+* [Supply Chain Security Tools for VMware Tanzu – Scan](overview.md)
 * [Release Notes](release-notes.md)
-* [About Scans and Policies](explanation.md)
-* [Running Source Code and Image Scans with Policy Enforcement](#running-source-and-image-scans)
+* [Spec Reference](explanation.md)
+* [Running Source Code and Image Scans with Policy Enforcement](running-scans.md)
 * [Viewing Vulnerability Reports](#viewing-vulnerability-reports)
 * [Samples](samples/README.md)
   * [Running a Sample Public Source Scan of a Blob](samples/blob.md)
