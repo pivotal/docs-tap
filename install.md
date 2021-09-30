@@ -789,7 +789,7 @@ To install SCP Toolkit:
  1. Follow the instructions in [Install Packages](#install-packages) above.
 
  2. Install the package:
- 
+
     ```bash
     $ tanzu package install convention-controller -p controller.conventions.apps.tanzu.vmware.com -v 0.4.2 -n tap-install
     / Installing package 'controller.conventions.apps.tanzu.vmware.com'
@@ -836,7 +836,7 @@ To install SCP Toolkit:
 
  **Prerequisite**: Fluxcd Source Controller installed on the cluster.
  For how to install fluxcd source controller,
- see [Install Prerequisites](nstall-general.md#prereqs)
+ see [Install Prerequisites](install-general.md#prereqs)
 
  1. Follow the instructions in [Install Packages](#install-packages) above.
 
@@ -905,7 +905,7 @@ To install SCP Toolkit:
  3. Verify the package install by running:
 
     ```bash
-    $ tanzu package installed get service-bindiings -n tap-install
+    $ tanzu package installed get service-bindings -n tap-install
     - Retrieving installation details for service-bindings...
     NAME:                    service-bindings
     PACKAGE-NAME:            service-bindings.labs.vmware.com
