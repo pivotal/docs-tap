@@ -1,10 +1,10 @@
-## insight package images
+## Insight Package Images
 
-Get images that contain the given package by name
+Get images that contain the given package by name.
 
 ### Synopsis
 
-Get images that contain the given package by name
+Get images that contain the given package by name.
 
 ```
 insight package images --name <package name> [flags]
@@ -24,7 +24,7 @@ insight package images --name client
   -n, --name string     name of the package
 ```
 
-### SEE ALSO
+### See Also
 
 * [insight package](insight_package.md)	 - Package commands
 
