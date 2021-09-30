@@ -30,7 +30,10 @@ To add the Tanzu Application Platform package repository:
 
 2. Create a imagepullsecret:
     ```
-    tanzu imagepullsecret add tap-registry --username TANZU-NET-USER --password TANZU-NET-PASSWORD --registry registry.tanzu.vmware.com --export-to-all-namespaces -n tap-install
+    tanzu imagepullsecret add tap-registry \
+      --username TANZU-NET-USER --password TANZU-NET-PASSWORD \
+      --registry registry.tanzu.vmware.com \
+      --export-to-all-namespaces --namespace tap-install
     ```
 
     Where `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for Tanzu Network.
@@ -38,26 +41,29 @@ To add the Tanzu Application Platform package repository:
 3. Add Tanzu Application Platform package repository to the cluster by running:
 
     ```
-    tanzu package repository add tanzu-tap-repository --url TAP-REPO-IMGPKG -n tap-install
+    tanzu package repository add tanzu-tap-repository --url TAP-REPO-IMGPKG --namespace tap-install
     ```
 
     Where TAP-REPO-IMGPKG is the Tanzu Application Platform repo bundle artifact reference.
 
     For example:
     ```
-    $ tanzu package repository add tanzu-tap-repository --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.2.0 -n tap-install
+    $ tanzu package repository add tanzu-tap-repository \
+        --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.2.0 \
+        --namespace tap-install
     \ Adding package repository 'tanzu-tap-repository'... 
+
     Added package repository 'tanzu-tap-repository'
     ```
 
 5. Get status of the Tanzu Application Platform package repository, and ensure the status updates to `Reconcile succeeded` by running:
 
     ```
-    tanzu package repository list -n tap-install
+    tanzu package repository list --namespace tap-install
     ```
     For example:
     ```
-    $ tanzu package repository list -n tap-install
+    $ tanzu package repository list --namespace tap-install
     - Retrieving repositories...
       NAME                  REPOSITORY                                                         STATUS               DETAILS
       tanzu-tap-repository  registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.2.0  Reconcile succeeded
@@ -66,11 +72,11 @@ To add the Tanzu Application Platform package repository:
 6. List the available packages by running:
 
     ```
-    tanzu package available list -n tap-install
+    tanzu package available list --namespace tap-install
     ```
     For example:
     ```
-    $ tanzu package available list -n tap-install
+    $ tanzu package available list --namespace tap-install
     / Retrieving available packages...
       NAME                               DISPLAY-NAME                              SHORT-DESCRIPTION
       accelerator.apps.tanzu.vmware.com  Application Accelerator for VMware Tanzu  Used to create new projects and configurations.                                      
@@ -80,11 +86,11 @@ To add the Tanzu Application Platform package repository:
 
 7. List version information for the `cnrs.tanzu.vmware.com` package by running:
     ```
-    tanzu package available list cnrs.tanzu.vmware.com -n tap-install
+    tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
     ```
     For example:
     ```
-    $ tanzu package available list cnrs.tanzu.vmware.com -n tap-install
+    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for cnrs.tanzu.vmware.com...
       NAME                   VERSION  RELEASED-AT
       cnrs.tanzu.vmware.com  1.0.1    2021-07-30T15:18:46Z
@@ -97,7 +103,7 @@ To install any package from the Tanzu Application Platform package repository:
 
 1. Run:
     ```
-    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema -n tap-install
+    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
     ```
 
      Where:
@@ -109,7 +115,7 @@ To install any package from the Tanzu Application Platform package repository:
 
     For example:
     ```
-    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.1 --values-schema -n tap-install
+    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.1 --values-schema --namespace tap-install
     ```
 
 2. Follow the specific installation instructions for each package:
@@ -117,6 +123,8 @@ To install any package from the Tanzu Application Platform package repository:
     + [Install Cloud Native Runtimes](#install-cnr)
     + [Install Application Accelerator](#install-app-accelerator)
     + [Install Application Live View](#install-app-live-view)
+    + [Install Supply Chain Choreographer](#-install-supply-chain-choreographer)
+    + [Install Default Supply Chains](#-install-default-supply-chains) 
     + [Install Supply Chain Security Tools - Store](#install-scst-store)
     + [Install Supply Chain Security Tools - Sign](#install-scst-sign)
     + [Install Supply Chain Security Tools - Scan](#install-scst-scan)
@@ -192,14 +200,14 @@ To install Cloud Native Runtimes:
      Added installed package 'cloud-native-runtimes' in namespace 'tap-install'
     ```
 5. Verify the package install by running:
-    
+
     ```
     tanzu package installed get cloud-native-runtimes -n tap-install
     ```
     For example:
     ```
     tanzu package installed get cloud-native-runtimes -n tap-install
-    | Retrieving installation details for cc... 
+    | Retrieving installation details for cc...
     NAME:                    cloud-native-runtimes
     PACKAGE-NAME:            cnrs.tanzu.vmware.com
     PACKAGE-VERSION:         1.0.1
@@ -256,14 +264,14 @@ in the Application Accelerator documentation.
     ```
 
 5. Verify the package install by running:
-    
+
     ```
     tanzu package installed get app-accelerator -n tap-install
     ```
     For example:
     ```
     tanzu package installed get app-accelerator -n tap-install
-    | Retrieving installation details for cc... 
+    | Retrieving installation details for cc...
     NAME:                    app-accelerator
     PACKAGE-NAME:            accelerator.apps.tanzu.vmware.com
     PACKAGE-VERSION:         0.3.0
@@ -316,14 +324,14 @@ To install Application Live View:
     see the [Application Live View documentation](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.1/docs/GUID-index.html).
 
 5. Verify the package install by running:
-    
+
     ```
     tanzu package installed get app-live-view -n tap-install
     ```
     For example:
     ```
     tanzu package installed get app-live-view -n tap-install
-    | Retrieving installation details for cc... 
+    | Retrieving installation details for cc...
     NAME:                    app-live-view
     PACKAGE-NAME:            appliveview.tanzu.vmware.com
     PACKAGE-VERSION:         0.2.0
@@ -333,6 +341,206 @@ To install Application Live View:
     ```
     STATUS should be Reconcile succeeded.
 
+
+## <a id='install-scc'></a> Install Supply Chain Choreographer
+
+[cartographer]: https://github.com/vmware-tanzu/cartographer
+[cert-manager]: https://github.com/jetstack/cert-manager
+[convention-controller]: https://github.com/vmware-tanzu/convention-controller
+[kapp-controller]: https://github.com/vmware-tanzu/carvel-kapp-controller
+[knative-serving]: https://knative.dev/docs/serving/
+[kpack]: https://github.com/pivotal/kpack
+[secretgen-controller]: https://github.com/vmware-tanzu/carvel-secretgen-controller
+[source-controller]: https://github.com/fluxcd/source-controller
+[tanzu cli]: https://github.com/vmware-tanzu/tanzu-framework/tree/main/cmd/cli#installation
+[tekton]: https://github.com/tektoncd/pipeline
+
+### Prerequisites
+
+#### Base Kubernetes Prerequisites
+
+- **[cert-manager]**, for provisioning certificates for the webhook
+  servers that some controllers register with Kubernetes' API server to
+  validate and modify objects when update
+
+```bash
+CERT_MANAGER_VERSION=1.5.3
+
+kapp deploy --yes -a cert-manager \
+  -f https://github.com/jetstack/cert-manager/releases/download/v$CERT_MANAGER_VERSION/cert-manager.yaml
+```
+
+- **[kapp-controller]**, for providing to Kubernetes both packaging and
+  application primitives (i.e., used for installing some of the
+  dependencies here as well as deploying the applications that go
+  through this supplychain)
+
+```bash
+KAPP_CONTROLLER_VERSION=0.25.0
+
+kapp deploy --yes -a kapp-controller \
+    -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v$KAPP_CONTROLLER_VERSION/release.yml
+```
+
+- **[secretgen-controller]**, for filling placeholder secrets with the
+  contents of shared credentials that we can define once and keep in
+  sync everywhere we want.
+
+```bash
+SECRETGEN_CONTROLLER_VERSION=0.5.0
+
+kapp deploy --yes -a secretgen-controller \
+  -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/download/v$SECRETGEN_CONTROLLER_VERSION/release.yml
+```
+
+- **flux2 source-controller**, for bringing the capability of making source
+  code changes available to the components in the supply chain. As _Application
+  Accelerator_ already depends on it too, see [#install-app-accelerator].
+
+
+#### TAP Prerequisites
+
+- [Cloud Native Runtimes](#-install-cloud-native-runtimes)
+- [Convention Service](#convention-service) TODO: where is the convention service install doc?
+- [Tanzu Build Service](#tanzu-build-service) TODO: point to the TBS install docs
+
+
+#### Tekton
+
+[tekton] is used by the supply chain to run tests defined by the developers
+before we get to the point of producing a container image for the source code,
+effectively preventing code that fails tests to being promoted all the way to a
+deployment.
+
+```bash
+TEKTON_VERSION=0.28.0
+
+kapp deploy --yes -a tekton \
+  -f https://storage.googleapis.com/tekton-releases/pipeline/previous/v$TEKTON_VERSION/release.yaml
+```
+
+### Cartographer Installation
+
+Cartographer is what provides the custom resource definitions that this
+supply chain makes use of, bringing the capability of choreographing the
+components that form the software supply chain, passing the results of,
+say, fetching source code, to the component that knows how to build a
+container image out of it, to then a component that knows how to deploy
+it ... so on and so forth.
+
+
+```bash
+CARTOGRAPHER_VERSION=0.0.6
+
+# Install the version 0.0.6 of the `cartographer.tanzu.vmware.com`
+# package naming the installation as `cartographer`.
+#
+tanzu package install cartographer \
+  --namespace tap-install \
+  --package-name cartographer.tanzu.vmware.com \
+  --version $CARTOGRAPHER_VERSION
+```
+```console
+| Installing package 'cartographer.tanzu.vmware.com'
+| Getting namespace 'default'
+| Getting package metadata for 'cartographer.tanzu.vmware.com'
+| Creating service account 'cartographer-default-sa'
+| Creating cluster admin role 'cartographer-default-cluster-role'
+| Creating cluster role binding 'cartographer-default-cluster-rolebinding'
+- Creating package resource
+\ Package install status: Reconciling
+
+Added installed package 'cartographer' in namespace 'default'
+```
+
+### <a id='install-default-supply-chains'></a> Install Default Supply Chains
+
+Cartographer and all of its dependencies must be installed in order to install
+either default supply chain.
+
+**Note: Only one supply chain can be installed at a time. In order to install a
+different supply chain, the currently installed one must be first uninstalled**
+
+As the supply chains  produce container images using Tanzu Build Service, thus,
+having to push them to a container image registry, we must tell the supply
+chain what the default registry location is.
+
+
+```bash
+tanzu package available get \
+  default-supply-chain.tanzu.vmware.com/$SUPPLY_CHAIN_VERSION \
+  --values-schema
+```
+```console
+KEY                  DEFAULT          TYPE    DESCRIPTION
+registry.repository  <nil>            string  Name of the repository in the image registry server 
+                                              where the application images from the workloads should
+                                              be pushed to. (required)
+
+registry.server      index.docker.io  string  Name of the registry server where application
+                                              images should be pushed to. (required)
+
+cluster_builder      default          string  Name of the Tanzu Build Service (TBS) ClusterBuilder to 
+                                              use by default on image objects managed by the supply chain.
+
+service_account      default          string  Name of the service account in the namespace where the 
+                                              Workload is submitted to utilize for providing registry 
+                                              credentials to Tanzu Build Service (TBS) Image objects 
+                                              as well as deploying the application.
+```
+
+As only `registry.server` and `registry.repository` are required, for any of
+the supply chains that we install we can we move on with configuring just those
+two to point at the registry and repository in the registry where we want the
+app images to be pushed to.
+
+#### Source to URL
+
+**Reminder: Only one supply chain can be installed at a time. In order to install a
+different supply chain, the currently installed one must be first uninstalled**
+
+```bash
+SUPPLY_CHAIN_VERSION=0.2.0
+
+tanzu package install default-supply-chain \
+  --package-name default-supply-chain.tanzu.vmware.com \
+  --namespace tap-install \
+  --version $SUPPLY_CHAIN_VERSION \
+  --values-file <(echo "---
+registry:
+  server: 10.188.0.3:5000
+  repository: myorg")
+```
+```console
+| Installing package 'default-supply-chain.tanzu.vmware.com'
+..
+ Added installed package 'default-supply-chain' in namespace 'default'
+```
+
+
+#### Source & Test to URL
+
+**Reminder: Only one supply chain can be installed at a time. In order to install a
+different supply chain, the currently installed one must be first uninstalled**
+
+
+```bash
+SUPPLY_CHAIN_VERSION=0.2.0
+
+tanzu package install default-supply-chain \
+  --package-name default-supply-chain.tanzu.vmware.com \
+  --namespace tap-install \
+  --version $SUPPLY_CHAIN_VERSION \
+  --values-file <(echo "---
+registry:
+  server: 10.188.0.3:5000
+  repository: myorg")
+```
+```console
+| Installing package 'default-supply-chain.tanzu.vmware.com'
+..
+ Added installed package 'default-supply-chain' in namespace 'default'
+```
 
 ## <a id='install-scst-store'></a> Install Supply Chain Security Tools - Store
 
@@ -418,7 +626,7 @@ To install Supply Chain Security Tools - Sign:
     tanzu package available get image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.0 --values-schema
     | Retrieving package details for image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.0...
       KEY                DEFAULT  TYPE     DESCRIPTION
-      warn_on_unmatched  false    boolean  Feature flag for enabling admission of images that do not match 
+      warn_on_unmatched  false    boolean  Feature flag for enabling admission of images that do not match
                                            any patterns in the image policy configuration.
                                            Set to true to allow images that do not match any patterns into
                                            the cluster with a warning.
@@ -430,8 +638,10 @@ To install Supply Chain Security Tools - Sign:
 
    ```yaml
    ---
-   warn_on_unmatched: true 
+   warn_on_unmatched: true
    ```
+
+   **Note**: If this is the first time installing this webhook, we recommend you use the above yaml for your values.yaml file so the webhook does not prevent unsigned images from running. When ready for production, re-install the webhook with this value set to `false`.
 
 1. Install the package:
    ```bash
@@ -440,7 +650,7 @@ To install Supply Chain Security Tools - Sign:
      --version 1.0.0-beta.0 \
      --namespace tap-install \
      --values-file values.yaml
-    
+
     | Installing package 'image-policy-webhook.signing.run.tanzu.vmware.com'
     | Getting namespace 'default'
     | Getting package metadata for 'image-policy-webhook.signing.run.tanzu.vmware.com'
@@ -453,7 +663,7 @@ To install Supply Chain Security Tools - Sign:
 
     Added installed package 'webhook' in namespace 'default'
    ```
-1. After the webhook is up and running, create a service account named `registry-credentials` in the `image-policy-system` namespace. This is a required configuration even if the images and signatures are in public registries. 
+1. After the webhook is up and running, create a service account named `registry-credentials` in the `image-policy-system` namespace. This is a required configuration even if the images and signatures are in public registries.
 
 1. If the registry or registries that hold your images and signatures are private,
 you will need to provide the webhook with credentials to access your artifacts. Create your secrets to access those registries in the `image-policy-system`
@@ -470,9 +680,17 @@ namespace. These secrets should be added to the `registry-credentials` service a
     imagePullSecrets:
     - name: secret1
     - name: secret2
-    ...
-    - name: secretn
     ```
+
+    **Note**: If this is the first time installing this webhook, we recommend you use the following yaml to create your ServiceAccount:
+    ```yaml
+    apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      name: registry-credentials
+      namespace: image-policy-system
+    ```
+    You can then edit this at a later time to add in your `imagePullSecrets`
 
 1. You must also create a `ClusterImagePolicy` to inform the webhook which images it should validate.
    The cluster image policy is a custom resource definition containing the following information:
@@ -497,7 +715,7 @@ namespace. These secrets should be added to the `registry-credentials` service a
        - name: first-key
          publicKey: |
            -----BEGIN PUBLIC KEY-----
-           <content ...>
+           ...
            -----END PUBLIC KEY-----
        images:
        - namePattern: registry.example.org/myproject/*
@@ -509,6 +727,47 @@ namespace. These secrets should be added to the `registry-credentials` service a
 
    The platform operator should add to the `verification.exclude.resources.namespaces` section any namespaces that are known to run container images that are not currently signed, such as `kube-system`.
 
+   **Note**: If this is the first time installing this webhook, we recommend you use the following yaml to create your `ClusterImagePolicy`, it includes a cosign public key which signed the cosign image at v1.2.1 which will validate the specified cosign image. You may still want to add additional namespaces to exclude, for example any system namespaces.
+   ```yaml
+   ---
+   apiVersion: signing.run.tanzu.vmware.com/v1alpha1
+   kind: ClusterImagePolicy
+   metadata:
+     name: image-policy
+   spec:
+     verification:
+       exclude:
+         resources:
+           namespaces:
+           - kube-system
+       keys:
+       - name: cosign-key
+         publicKey: |
+           -----BEGIN PUBLIC KEY-----
+           MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEhyQCx0E9wQWSFI9ULGwy3BuRklnt
+           IqozONbbdbqz11hlRJy9c7SG+hdcFl9jE9uE/dwtuwU2MqU9T/cN0YkWww==
+           -----END PUBLIC KEY-----
+       images:
+       - namePattern: gcr.io/projectsigstore/cosign*
+         keys:
+         - name: cosign-key
+   ```
+   You can then edit this at a later time to add in your specific cosign public keys and image name patterns.
+
+   Quick tests you can try:
+
+   ```bash
+   $ kubectl run cosign --image=gcr.io/projectsigstore/cosign:v1.2.1 --restart=Never --command -- sleep 900
+   pod/cosign created
+
+   $ kubectl run bb --image=busybox --restart=Never
+   Warning: busybox didn\'t match any pattern in policy. Pod will be created as WarnOnUnmatched flag is true
+   pod/bb created
+
+   $ kubectl run cosign-fail --image=gcr.io/projectsigstore/cosign:v0.3.0 --command -- sleep 900
+   Error from server (The image: gcr.io/projectsigstore/cosign:v0.3.0 is not signed): admission webhook "image-policy-webhook.signing.run.tanzu.vmware.com" denied the request: The image: gcr.io/projectsigstore/cosign:v0.3.0 is not signed
+   ```
+
 ## <a id='install-scst-scan'></a> Install Supply Chain Security Tools - Scan
 
 The installation for Supply Chain Security Tools – Scan involves installing two packages: Scan Controller and Grype Scanner.
@@ -519,13 +778,13 @@ To install Supply Chain Security Tools - Scan (Scan Controller):
 1. Follow the instructions in [Install Packages](#install-packages) above.
 
     ```bash
-    tanzu package available get scanning.apps.tanzu.vmware.com/1.0.0-beta.0 --values-schema -n tap-install
+    tanzu package available get scanning.apps.tanzu.vmware.com/1.0.0-beta --values-schema -n tap-install
     ```
-    
+
     For example:
     ```console
-    $ tanzu package available get scanning.apps.tanzu.vmware.com/1.0.0-beta.0 --values-schema -n tap-install
-    | Retrieving package details for scanning.apps.tanzu.vmware.com/1.0.0-beta.0...
+    $ tanzu package available get scanning.apps.tanzu.vmware.com/1.0.0-beta --values-schema -n tap-install
+    | Retrieving package details for scanning.apps.tanzu.vmware.com/1.0.0-beta...
       KEY                        DEFAULT                                                           TYPE    DESCRIPTION
       metadataStoreTokenSecret                                                                     string  Token Secret of the Insight Metadata Store deployed in the cluster
       metadataStoreUrl           https://metadata-store-app.metadata-store.svc.cluster.local:8443  string  Url of the Insight Metadata Store deployed in the cluster
@@ -536,10 +795,10 @@ To install Supply Chain Security Tools - Scan (Scan Controller):
       resources.requests.memory  128Mi                                                             <nil>   Requests describes the minimum amount of memory resources required.
       metadataStoreCa                                                                              string  CA Cert of the Insight Metadata Store deployed in the cluster
     ```
-    
+
 2. Gather the values schema.
-3. Create a `scst-scan-controller-values.yaml` using the following sample as a guide: 
-    
+3. Create a `scst-scan-controller-values.yaml` using the following sample as a guide:
+
     Sample `scst-scan-controller-values.yaml` for Scan Controller:
 
     ```yaml
@@ -595,7 +854,7 @@ To install Supply Chain Security Tools - Scan (Scan Controller):
     ```bash
     tanzu package install scan-controller \
       --package-name scanning.apps.tanzu.vmware.com \
-      --version 1.0.0-beta.0 \
+      --version 1.0.0-beta \
       --namespace tap-install \
       --values-file scst-scan-controller-values.yaml
     ```
@@ -604,7 +863,7 @@ To install Supply Chain Security Tools - Scan (Scan Controller):
     ```console
     $ tanzu package install scan-controller \
       --package-name scanning.apps.tanzu.vmware.com \
-      --version 1.0.0-beta.0 \
+      --version 1.0.0-beta \
       --namespace tap-install \
       --values-file scst-scan-controller-values.yaml
     | Installing package 'scanning.apps.tanzu.vmware.com'
@@ -625,12 +884,12 @@ To install Supply Chain Security Tools - Scan (Grype Scanner):
 1. Follow the instructions in [Install Packages](#install-packages) above.
 
     ```bash
-    tanzu package available get grype.scanning.apps.tanzu.vmware.com/1.0.0-beta.0 --values-schema -n tap-install
+    tanzu package available get grype.scanning.apps.tanzu.vmware.com/1.0.0-beta --values-schema -n tap-install
     ```
     For example:
     ```console
-    $ tanzu package available get grype.scanning.apps.tanzu.vmware.com/1.0.0-beta.0 --values-schema -n tap-install
-    | Retrieving package details for grype.scanning.apps.tanzu.vmware.com/1.0.0-beta.0...
+    $ tanzu package available get grype.scanning.apps.tanzu.vmware.com/1.0.0-beta --values-schema -n tap-install
+    | Retrieving package details for grype.scanning.apps.tanzu.vmware.com/1.0.0-beta...
       KEY                        DEFAULT  TYPE    DESCRIPTION
       namespace                  default  string  Deployment namespace for the Scan Templates
       resources.limits.cpu       1000m    <nil>   Limits describes the maximum amount of cpu resources allowed.
@@ -646,7 +905,7 @@ To install Supply Chain Security Tools - Scan (Grype Scanner):
     ```bash
     tanzu package install grype-scanner \
       --package-name grype.scanning.apps.tanzu.vmware.com \
-      --version 1.0.0-beta.0 \
+      --version 1.0.0-beta \
       --namespace tap-install
     ```
 
@@ -654,7 +913,7 @@ To install Supply Chain Security Tools - Scan (Grype Scanner):
     ```console
     $ tanzu package install grype-scanner \
       --package-name grype.scanning.apps.tanzu.vmware.com \
-      --version 1.0.0-beta.0 \
+      --version 1.0.0-beta \
       --namespace tap-install
     / Installing package 'grype.scanning.apps.tanzu.vmware.com'
     | Getting namespace 'tap-install'
@@ -697,10 +956,10 @@ To install Supply Chain Security Tools - Scan (Grype Scanner):
    - where `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for Tanzu Network.
 
 4. Install API portal.
-   
+
    ```console
    $ tanzu package install api-portal -n tap-install -p api-portal.tanzu.vmware.com -v 1.0.2
-   
+
    / Installing package 'api-portal.tanzu.vmware.com'
    | Getting namespace 'api-portal'
    | Getting package metadata for 'api-portal.tanzu.vmware.com'
@@ -709,57 +968,45 @@ To install Supply Chain Security Tools - Scan (Grype Scanner):
    | Creating cluster role binding 'api-portal-api-portal-cluster-rolebinding'
    / Creating package resource
    - Package install status: Reconciling
-   
-   
+
+
     Added installed package 'api-portal' in namespace 'tap-install'
    ```
 
 5. Visit [API portal for VMware Tanzu](https://docs.pivotal.io/api-portal/1-0/) for more information about API portal.
 
-## <a id='install-scp-toolkit'></a> Install SCP Toolkit
-
-**Prerequisite**: cert-manager installed on the cluster.
-Please refer to the cert-manager [documentation](https://cert-manager.io/docs/) for information on how to install cert-manager.
+## Install SCP Toolkit
 
 To install SCP Toolkit:
 
-1. Check what versions of SCP Toolkit are available to install by running:
+1. See what versions of SCP Toolkit are available to install by running:
 
-   ```console
-   tanzu package available list -n tap-install scp-toolkit.tanzu.vmware.com
-   ```
+    ```console
+    tanzu package available list -n tap-install scp-toolkit.tanzu.vmware.com
+    ```
 
-   For example:
+    For example:
 
-   ```console
-   $ tanzu package available list -n tap-install scp-toolkit.tanzu.vmware.com
-   - Retrieving package versions for scp-toolkit.tanzu.vmware.com...
-     NAME                          VERSION           RELEASED-AT
-     scp-toolkit.tanzu.vmware.com  0.3.0             2021-09-17T13:53:29Z
-   ```
+    ```console
+    $ tanzu package available list -n tap-install scp-toolkit.tanzu.vmware.com
+    - Retrieving package versions for scp-toolkit.tanzu.vmware.com...
+      NAME                          VERSION           RELEASED-AT
+      scp-toolkit.tanzu.vmware.com  0.3.0             2021-09-17T13:53:29Z
+    ```
 
-2. Install SCP Toolkit.
+1. Install SCP Toolkit by running:
 
-   ```console
-   $ tanzu package install scp-toolkit -n tap-install -p scp-toolkit.tanzu.vmware.com -v 0.3.0
-   / Installing package 'scp-toolkit.tanzu.vmware.com'
-   | Getting namespace 'scp-toolkit'
-   | Getting package metadata for 'scp-toolkit.tanzu.vmware.com'
-   | Creating service account 'scp-toolkit-scp-toolkit-sa'
-   | Creating cluster admin role 'scp-toolkit-scp-toolkit-cluster-role'
-   | Creating cluster role binding 'scp-toolkit-scp-toolkit-cluster-rolebinding'
-   / Creating package resource
-   - Package install status: Reconciling
+    ```console
+    $ tanzu package install scp-toolkit -n tap-install -p scp-toolkit.tanzu.vmware.com -v 0.3.0
+    ```
 
-
-    Added installed package 'scp-toolkit' in namespace 'tap-install'
-   ```
-
-3. Verify the package install by running:
+1. Verify that the package installed by running:
 
     ```console
     tanzu package installed get scp-toolkit -n tap-install
     ```
+
+    and checking that the `STATUS` value is `Reconcile succeeded`.
 
     For example:
 
@@ -775,8 +1022,6 @@ To install SCP Toolkit:
     ```
 
     STATUS should be Reconcile succeeded.
-
-
 
 ## <a id='install-convention-service'></a> Install Convention Service 
 
@@ -932,11 +1177,11 @@ To verify that the packages are installed:
 
 1. List the installed packages by running:
     ```
-    tanzu package installed list -n tap-install
+    tanzu package installed list --namespace tap-install
     ```
     For example:
     ```
-    $ tanzu package installed list -n tap-install
+    $ tanzu package installed list --namespace tap-install
     \ Retrieving installed packages...
       NAME                   PACKAGE-NAME                                        PACKAGE-VERSION  STATUS
       app-accelerator        accelerator.apps.tanzu.vmware.com                   0.3.0            Reconcile succeeded
