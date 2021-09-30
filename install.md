@@ -121,6 +121,7 @@ To install any package from the Tanzu Application Platform package repository:
     + [Install Supply Chain Security Tools - Sign](#install-scst-sign)
     + [Install Supply Chain Security Tools - Scan](#install-scst-scan)
     + [Install API portal](#install-api-portal)
+    + [Install SCP Toolkit](#install-scp-toolkit)
 
 
 ## <a id='install-cnr'></a> Install Cloud Native Runtimes
@@ -711,6 +712,66 @@ To install Supply Chain Security Tools - Scan (Grype Scanner):
    ```
 
 5. Visit [API portal for VMware Tanzu](https://docs.pivotal.io/api-portal/1-0/) for more information about API portal.
+
+## <a id='install-scp-toolkit'></a> Install SCP Toolkit
+
+**Prerequisite**: cert-manager installed on the cluster.
+Please refer to the cert-manager [documentation](https://cert-manager.io/docs/) for information on how to install cert-manager.
+
+To install SCP Toolkit:
+
+1. Check what versions of SCP Toolkit are available to install by running:
+
+   ```console
+   tanzu package available list -n tap-install scp-toolkit.tanzu.vmware.com
+   ```
+
+   For example:
+
+   ```console
+   $ tanzu package available list -n tap-install scp-toolkit.tanzu.vmware.com
+   - Retrieving package versions for scp-toolkit.tanzu.vmware.com...
+     NAME                          VERSION           RELEASED-AT
+     scp-toolkit.tanzu.vmware.com  0.3.0             2021-09-17T13:53:29Z
+   ```
+
+2. Install SCP Toolkit.
+
+   ```console
+   $ tanzu package install scp-toolkit -n tap-install -p scp-toolkit.tanzu.vmware.com -v 0.3.0
+   / Installing package 'scp-toolkit.tanzu.vmware.com'
+   | Getting namespace 'scp-toolkit'
+   | Getting package metadata for 'scp-toolkit.tanzu.vmware.com'
+   | Creating service account 'scp-toolkit-scp-toolkit-sa'
+   | Creating cluster admin role 'scp-toolkit-scp-toolkit-cluster-role'
+   | Creating cluster role binding 'scp-toolkit-scp-toolkit-cluster-rolebinding'
+   / Creating package resource
+   - Package install status: Reconciling
+
+
+    Added installed package 'scp-toolkit' in namespace 'tap-install'
+   ```
+
+3. Verify the package install by running:
+
+    ```console
+    tanzu package installed get scp-toolkit -n tap-install
+    ```
+
+    For example:
+
+    ```console
+    $ tanzu package installed get scp-toolkit -n tap-install
+    | Retrieving installation details for cc...
+    NAME:                    scp-toolkit
+    PACKAGE-NAME:            scp-toolkit.tanzu.vmware.com
+    PACKAGE-VERSION:         0.3.0
+    STATUS:                  Reconcile succeeded
+    CONDITIONS:              [{ReconcileSucceeded True  }]
+    USEFUL-ERROR-MESSAGE:
+    ```
+
+    STATUS should be Reconcile succeeded.
 
 ## <a id='verify'></a> Verify the Installed Packages
 
