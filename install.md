@@ -938,8 +938,11 @@ To verify that the packages are installed:
     ```
     $ tanzu package installed list -n tap-install
     \ Retrieving installed packages...
-      NAME                   PACKAGE-NAME                       PACKAGE-VERSION  STATUS
-      app-accelerator        accelerator.apps.tanzu.vmware.com  0.3.0            Reconcile succeeded
-      app-live-view         appliveview.tanzu.vmware.com        0.2.0            Reconcile succeeded
-      cloud-native-runtimes  cnrs.tanzu.vmware.com              1.0.1            Reconcile succeeded
+      NAME                   PACKAGE-NAME                                        PACKAGE-VERSION  STATUS
+      app-accelerator        accelerator.apps.tanzu.vmware.com                   0.3.0            Reconcile succeeded
+      app-live-view          appliveview.tanzu.vmware.com                        0.2.0            Reconcile succeeded
+      cloud-native-runtimes  cnrs.tanzu.vmware.com                               1.0.1            Reconcile succeeded
+      service-bindings       service-bindings.labs.vmware.com                    0.5.0            Reconcile succeeded
+      source-controller      controller.source.apps.tanzu.vmware.com             0.1.2            Reconcile succeeded
+      convention-controller  controller.conventions.apps.tanzu.vmware.com        0.4.2            Reconcile succeeded
     ```
