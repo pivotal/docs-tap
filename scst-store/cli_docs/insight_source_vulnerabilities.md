@@ -1,10 +1,10 @@
-## insight source vulnerabilities
+## Insight Source Vulnerabilities
 
-Get source vulnerabilities
+Get source vulnerabilities.
 
 ### Synopsis
 
-Get soruce vulnerabilities. You can specify either commit or repo.
+Get source vulnerabilities. You can specify either commit or repo.
 
 ```
 insight source vulnerabilities [--commit <commit-hash>] [--repo <repo-url>] [--format <format>] [flags]
@@ -25,7 +25,7 @@ insight sources vulnerabilities --commit eb55fc13
   -r, --repo string     source repository url
 ```
 
-### SEE ALSO
+### See Also
 
 * [insight source](insight_source.md)	 - Source commands
 
