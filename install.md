@@ -1198,18 +1198,14 @@ This section provides a guide for installing Tanzu Build Service as part of Tanz
 
 ### Prerequisites
 
-* Ensure you have access to a docker registry that Tanzu Build Service can use to create Builder images. Approximately 5gb of registry space is required.
-* You have successfully added the TAP package repository to your Cluster
-* Your registry is accesible with username and password credentials. 
-* You have accepted the necessary TanzuNet EULAs specified in the pre-requisites
+* You have access to a Docker registry that Tanzu Build Service can use to create Builder images. Approximately 5GB of registry space is required.
+* Your Docker registry is accesible with username and password credentials.
 
 ### Install Tanzu Build Service Using the Tanzu CLI
 
 To install Tanzu Build Service using the Tanzu CLI:
 
-1. Follow instructions in Install Packages above.
-
-2. Gather values schema.
+1. Gather values schema.
     ```bash
     tanzu package available get buildservice.tanzu.vmware.com/1.3.0 --values-schema --namespace tap-install
     ```
@@ -1227,7 +1223,7 @@ To install Tanzu Build Service using the Tanzu CLI:
       ca_cert_data                    <nil>    string  tbs registry ca certificate
     ```
 
-3. Create a `tbs-values.yaml` file using the following sample as a guide:
+1. Create a `tbs-values.yaml` file using the following sample as a guide:
     ```yaml
     ---
     kp_default_repository: <some-registry.com/some-path-to-install>
@@ -1242,7 +1238,7 @@ To install Tanzu Build Service using the Tanzu CLI:
 
     The optional values not included in this sample provide additional configuration for production use cases. For more information, see  [Installing Tanzu Build Service](https://docs.pivotal.io/build-service/installing.html).
 
-4.  Install the package by running:
+1.  Install the package by running:
     ```bash
     tanzu package install tbs -p buildservice.tanzu.vmware.com -v 1.3.0 -n tap-install -f tbs-values.yaml --poll-interval 15s
     ```
@@ -1264,20 +1260,7 @@ To install Tanzu Build Service using the Tanzu CLI:
      Added installed package 'tbs' in namespace 'tap-install'
     ```
 
-5. Verify the package install by running:
-    ```bash
-    $ tanzu package installed get tbs -n tap-install
-    - Retrieving installation details for tbs...
-    NAME:                    tbs
-    PACKAGE-NAME:            buildservice.tanzu.vmware.com
-    PACKAGE-VERSION:         1.3.0
-    STATUS:                  Reconcile succeeded
-    CONDITIONS:              [{ReconcileSucceeded True  }]
-    USEFUL-ERROR-MESSAGE:
-    ```
-
-    You should also be able to see the clusterbuilders created by the TBS install
-
+1. (Optional) Run the following command to see the clusterbuilders created by the Tanzu Build Service install:
     ```bash
     $ kubectl get clusterbuilders
 
@@ -1288,4 +1271,3 @@ To install Tanzu Build Service using the Tanzu CLI:
     tiny      my-registry.com/tbs@sha256:b9c5348da4c1527c356d2d8b9d48462ea9bf97a98eb379e925bec69c6dd918a5      True
 
     ```
-
