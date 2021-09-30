@@ -1,10 +1,10 @@
-## insight image packages
+## Insight Image Packages
 
-Get image packages
+Get image packages.
 
 ### Synopsis
 
-Get image packages
+Get image packages.
 
 ```
 insight image packages --digest <image-digest> [--format <image-format>] [flags]
@@ -24,7 +24,7 @@ insight image packages --digest sha256:a86859ac1946065d93df9ecb5cb7060adeeb0288f
   -h, --help            help for packages
 ```
 
-### SEE ALSO
+### See Also
 
 * [insight image](insight_image.md)	 - Image commands
 
