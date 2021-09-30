@@ -789,19 +789,19 @@ To install SCP Toolkit:
  1. Follow the instructions in [Install Packages](#install-packages) above.
 
  2. Install the package:
-     ```bash
-     $ tanzu package install convention-controller -p controller.conventions.apps.tanzu.vmware.com -v 0.4.2 -n tap-install
-     / Installing package 'controller.conventions.apps.tanzu.vmware.com'
-     | Getting namespace 'tap-install'
-     - Getting package metadata for 'controller.conventions.apps.tanzu.vmware.com'
-     | Creating service account 'convention-controller-tap-install-sa'
-     | Creating cluster admin role 'convention-controller-tap-install-cluster-role'
-     | Creating cluster role binding 'convention-controller-tap-install-cluster-rolebinding'
-     \ Creating package resource
-     | Package install status: Reconciling
-     
-      Added installed package 'convention-controller' in namespace 'tap-install'
-      ```
+ 
+    ```bash
+    $ tanzu package install convention-controller -p controller.conventions.apps.tanzu.vmware.com -v 0.4.2 -n tap-install
+    / Installing package 'controller.conventions.apps.tanzu.vmware.com'
+    | Getting namespace 'tap-install'
+    - Getting package metadata for 'controller.conventions.apps.tanzu.vmware.com'
+    | Creating service account 'convention-controller-tap-install-sa'
+    | Creating cluster admin role 'convention-controller-tap-install-cluster-role'
+    | Creating cluster role binding 'convention-controller-tap-install-cluster-rolebinding'
+    \ Creating package resource
+    | Package install status: Reconciling
+    Added installed package 'convention-controller' in namespace 'tap-install'
+    ```
 
  3. Verify the package install by running:
 
@@ -816,16 +816,17 @@ To install SCP Toolkit:
     USEFUL-ERROR-MESSAGE:
     ```
 
-     ```bash
-     kubectl get pods -n conventions-system 
-     ```
-     For example:
-     ```bash
-     $ kubectl get pods -n conventions-system
-     NAME                                             READY   STATUS    RESTARTS   AGE
-     conventions-controller-manager-596c65f75-j9dmn   1/1     Running   0          72s
-     ```
-     STATUS should be `Running`.
+    ```bash
+    kubectl get pods -n conventions-system 
+    ```
+    
+    For example:
+    ```bash
+    $ kubectl get pods -n conventions-system
+    NAME                                             READY   STATUS    RESTARTS   AGE
+    conventions-controller-manager-596c65f75-j9dmn   1/1     Running   0          72s
+    ```
+    STATUS should be `Running`.
 
 
 
@@ -841,43 +842,43 @@ To install SCP Toolkit:
 
  2. Install the package:
 
-     ```bash
-     $ tanzu package install source-controller -p controller.source.apps.tanzu.vmware.com -v 0.1.2 -n tap-install
-     / Installing package 'controller.source.apps.tanzu.vmware.com'
-     | Getting namespace 'tap-install'
-     - Getting package metadata for 'controller.source.apps.tanzu.vmware.com'
-     | Creating service account 'source-controller-tap-install-sa'
-     | Creating cluster admin role 'source-controller-tap-install-cluster-role'
-     | Creating cluster role binding 'source-controller-tap-install-cluster-rolebinding'
-     \ Creating package resource
-     | Package install status: Reconciling
-     
-      Added installed package 'source-controller' in namespace 'tap-install'
-     ```
+    ```bash
+    $ tanzu package install source-controller -p controller.source.apps.tanzu.vmware.com -v 0.1.2 -n tap-install
+    / Installing package 'controller.source.apps.tanzu.vmware.com'
+    | Getting namespace 'tap-install'
+    - Getting package metadata for 'controller.source.apps.tanzu.vmware.com'
+    | Creating service account 'source-controller-tap-install-sa'
+    | Creating cluster admin role 'source-controller-tap-install-cluster-role'
+    | Creating cluster role binding 'source-controller-tap-install-cluster-rolebinding'
+    \ Creating package resource
+    | Package install status: Reconciling
+    
+     Added installed package 'source-controller' in namespace 'tap-install'
+    ```
 
  3. Verify the package install by running:
-
-     ```bash
-     $ tanzu package installed get source-controller -n tap-install
-      Retrieving installation details for sourcer-controller...
-      NAME:                    sourcer-controller
-      PACKAGE-NAME:            controller.source.apps.tanzu.vmware.com
-      PACKAGE-VERSION:         0.1.2
-      STATUS:                  Reconcile succeeded
-      CONDITIONS:              [{ReconcileSucceeded True  }]
-      USEFUL-ERROR-MESSAGE:
-      ```
-
-     ```bash
-     kubectl get pods -n source-system 
-     ```
-     For example:
-     ```bash
-     $ kubectl get pods -n source-system
-     NAME                                        READY   STATUS    RESTARTS   AGE
-     source-controller-manager-f68dc7bb6-4lrn6   1/1     Running   0          45h
-     ```
-     STATUS should be `Running`.
+ 
+    ```bash
+    $ tanzu package installed get source-controller -n tap-install
+    Retrieving installation details for sourcer-controller...
+    NAME:                    sourcer-controller
+    PACKAGE-NAME:            controller.source.apps.tanzu.vmware.com
+    PACKAGE-VERSION:         0.1.2
+    STATUS:                  Reconcile succeeded
+    CONDITIONS:              [{ReconcileSucceeded True  }]
+    USEFUL-ERROR-MESSAGE:
+    ```
+    
+    ```bash
+    kubectl get pods -n source-system
+    ```
+    For example:
+    ```bash
+    $ kubectl get pods -n source-system
+    NAME                                        READY   STATUS    RESTARTS   AGE
+    source-controller-manager-f68dc7bb6-4lrn6   1/1     Running   0          45h
+    ```
+    STATUS should be `Running`.
 
 ## <a id='install-service-bindings'></a> Install Service Bindings 
 
@@ -887,43 +888,43 @@ To install SCP Toolkit:
 
  2. Install the package:
 
-     ```bash
-     $ tanzu package install service-bindings -p service-bindings.labs.vmware.com -v 0.5.0 -n tap-install
-     / Installing package 'service-bindings.labs.vmware.com'
-     | Getting namespace 'tap-install'
-     - Getting package metadata for 'service-bindings.labs.vmware.com'
-     | Creating service account 'service-bindings-tap-install-sa'
-     | Creating cluster admin role 'service-bindings-tap-install-cluster-role'
-     | Creating cluster role binding 'service-bindings-tap-install-cluster-rolebinding'
-     \ Creating package resource
-     | Package install status: Reconciling
-     
-      Added installed package 'service-bindings' in namespace 'tap-install'
-     ```
+    ```bash
+    $ tanzu package install service-bindings -p service-bindings.labs.vmware.com -v 0.5.0 -n tap-install
+    / Installing package 'service-bindings.labs.vmware.com'
+    | Getting namespace 'tap-install'
+    - Getting package metadata for 'service-bindings.labs.vmware.com'
+    | Creating service account 'service-bindings-tap-install-sa'
+    | Creating cluster admin role 'service-bindings-tap-install-cluster-role'
+    | Creating cluster role binding 'service-bindings-tap-install-cluster-rolebinding'
+    \ Creating package resource
+    | Package install status: Reconciling
+    
+     Added installed package 'service-bindings' in namespace 'tap-install'
+    ```
 
  3. Verify the package install by running:
 
-     ```bash
-     $ tanzu package installed get service-bindiings -n tap-install
-     - Retrieving installation details for service-bindings...
-     NAME:                    service-bindings
-     PACKAGE-NAME:            service-bindings.labs.vmware.com
-     PACKAGE-VERSION:         0.5.0
-     STATUS:                  Reconcile succeeded
-     CONDITIONS:              [{ReconcileSucceeded True  }]
-     USEFUL-ERROR-MESSAGE:
-     ```
+    ```bash
+    $ tanzu package installed get service-bindiings -n tap-install
+    - Retrieving installation details for service-bindings...
+    NAME:                    service-bindings
+    PACKAGE-NAME:            service-bindings.labs.vmware.com
+    PACKAGE-VERSION:         0.5.0
+    STATUS:                  Reconcile succeeded
+    CONDITIONS:              [{ReconcileSucceeded True  }]
+    USEFUL-ERROR-MESSAGE:
+    ```
 
-     ```bash
-     kubectl get pods -n service-bindings 
-     ```
-     For example:
-     ```bash
-     $ kubectl get pods -n source-system
-     NAME                       READY   STATUS    RESTARTS   AGE
-     manager-6d85fffbcd-j4gvs   1/1     Running   0          22s
-     ```
-     STATUS should be `Running`.
+    ```bash
+    kubectl get pods -n service-bindings 
+    ```
+    For example:
+    ```bash
+    $ kubectl get pods -n source-system
+    NAME                       READY   STATUS    RESTARTS   AGE
+    manager-6d85fffbcd-j4gvs   1/1     Running   0          22s
+    ```
+    STATUS should be `Running`.
 
 ## <a id='verify'></a> Verify the Installed Packages
 
