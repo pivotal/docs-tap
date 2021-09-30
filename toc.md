@@ -17,7 +17,6 @@ This is the table of contents from which the Tanzu Application Platform Document
     - [Supply Chain Tools for VMware Tanzu – Scan](scst-scan/overview.md)
         * [Release Notes](scst-scan/release-notes.md)
         * [Spec Reference](scst-scan/explanation.md)
-        * [Running Source Code and Image Scans with Policy Enforcement](running-scans.md)
         * [Samples](scst-scan/samples/README.md)
           * [Running a Sample Public Source Scan of a Blob](scst-scan/samples/blob.md)
           * [Running a Sample Private Image Scan](scst-scan/samples/private-image.md)
