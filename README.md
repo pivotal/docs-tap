@@ -103,7 +103,7 @@ git pull ; rm docs.zip ; zip -r docs.zip images/ VMwarePub.yaml *.md
 Form fields for beta-1: 
 |field|value|
 |---|---|
-|Publication name:   |`VMware Tanzu Application Platform`|
+|Publication name:   |`VMware Tanzu Application Platform v0.1`|
 |Product name:       |`VMware Tanzu Application Platform`|
 |Version:            |`0.1`|
 |Publication GUID:   |`tap-0-1`|
