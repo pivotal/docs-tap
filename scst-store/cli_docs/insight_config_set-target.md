@@ -1,10 +1,10 @@
-## insight config set-target
+## Insight Config Set-Target
 
-Set metadata store endpoint
+Set the metadata store endpoint.
 
 ### Synopsis
 
-Set the target endpoint for the metadata store
+Set the target endpoint for the metadata store.
 
 ```
 insight config set-target <endpoint> [--ca-cert <ca certificate path to verify peer against>] [--access-token <kubernetes service account access token>] [flags]
