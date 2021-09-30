@@ -171,6 +171,16 @@ To install the Tanzu CLI and package plugin on a Linux operating system:
    tanzu package version
    ```
 
+9. From the `tanzu` directory, install the accelerator plugin by running:
+   ```
+   tanzu plugin install --local ./cli accelerator
+   ```
+
+10. Confirm the installation of the Tanzu CLI accelerator plugin by running:
+   ```
+   tanzu accelerator version
+   ```
+
 ### <a id='mac-cli'></a> MacOS: Install the Tanzu CLI and Package Plugin
 
 To install the Tanzu CLI and package plugin on a Mac operating system:
@@ -208,6 +218,16 @@ To install the Tanzu CLI and package plugin on a Mac operating system:
 8. Confirm the installation of the Tanzu CLI package plugin by running:
    ```
    tanzu package version
+   ```
+
+9. From the `tanzu` directory, install the accelerator plugin by running:
+   ```
+   tanzu plugin install --local ./cli accelerator
+   ```
+
+10. Confirm the installation of the Tanzu CLI accelerator plugin by running:
+   ```
+   tanzu accelerator version
    ```
 
 ### <a id='windows-cli'></a> Windows: Install the Tanzu CLI and Package Plugin
@@ -258,3 +278,13 @@ To install the Tanzu CLI and package plugin on a Windows operating system:
     tanzu package version
     ```
 
+16. From the command prompt, navigate to the `tanzu-bundle` directory that contains the accelerator plugin,
+    and install the plugin by running:
+   ```
+   tanzu plugin install --local .\cli accelerator
+   ```
+
+17. Confirm the installation of the Tanzu CLI accelerator plugin by running:
+   ```
+   tanzu accelerator version
+   ```
