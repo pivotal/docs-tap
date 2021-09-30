@@ -1,6 +1,6 @@
-## insight image
+## Insight Image
 
-Image commands
+Image commands.
 
 ### Options
 
@@ -8,7 +8,7 @@ Image commands
   -h, --help   help for image
 ```
 
-### SEE ALSO
+### See Also
 
 * [insight](insight.md)	 - 
 * [insight image create](insight_image_create.md)	 - Create an image report
