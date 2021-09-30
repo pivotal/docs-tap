@@ -5,7 +5,7 @@ Documentation for the components of Tanzu Application Platform is available as f
 Some of the documentation is hosted on separate sites and some is incorporated into this 
 Tanzu Application Platform documentation site.
 
-+ API Portal
++ API portal
 
 + [Application Accelerator for VMware Tanzu](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/index.html)
 
@@ -19,9 +19,9 @@ Tanzu Application Platform documentation site.
 
 + Service Bindings for Kubernetes
 
-+ [Supply Chain Choreographer for VMware Tanzu](scc/scc-about.html)
++ [Supply Chain Choreographer for VMware Tanzu](scc/about.html)
 
-+ [Supply Chain Security Tools - Scan](scst-scan/scst-scan-overview.md)
++ [Supply Chain Security Tools - Scan](scst-scan/overview.md)
 
 + Supply Chain Security Tools - Sign
 

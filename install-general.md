@@ -18,10 +18,7 @@ The following prerequisites are required to install Tanzu Application Platform:
     * Amazon Elastic Kubernetes Service
     * kind
     * minikube
-    * Tanzu Kubernetes Grid v1.4.0 and later.
-      > **Note:** Tanzu Kubernetes Grid v1.3 is not supported.
-      If you want support for v1.3, please send feedback.
-
+  
 * The [kapp Carvel command line tool](https://github.com/vmware-tanzu/carvel-kapp/releases) (v0.37.0 or later)
 
 * kapp-controller v0.24.0 or later:
@@ -36,6 +33,7 @@ The following prerequisites are required to install Tanzu Application Platform:
       For example:
       ```
       kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v0.24.0/release.yml
+<<<<<<< HEAD
       ```
 
     * For Tanzu Kubernetes Grid, ensure that you are using Tanzu Kubernetes Grid v1.4.0 or later.
@@ -75,6 +73,10 @@ The following prerequisites are required to install Tanzu Application Platform:
         ```
 
 
+=======
+      ```    
+    
+>>>>>>> main
 * secretgen-controller v0.5.0 or later:
 
     * Install secretgen-controller by running:
@@ -89,6 +91,7 @@ The following prerequisites are required to install Tanzu Application Platform:
       ```
       kapp deploy -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/download/v0.5.0/release.yml
       ```
+<<<<<<< HEAD
 
     * To Verify installed secretgen-controller version:
 
@@ -214,6 +217,12 @@ The following prerequisites are required to install Tanzu Application Platform:
 
 
 ##<a id='set-and-verify'></a> Set and Verify the Kubernetes Cluster Configurations
+=======
+   
+* The Kubernetes command line tool, kubectl, v1.19 or later, installed and authenticated with administrator rights for your target cluster.
+
+## <a id='set-and-verify'></a> Set and Verify the Kubernetes Cluster Configurations
+>>>>>>> main
 
 To set and verify the Kubernetes cluster configurations:
 
@@ -244,39 +253,13 @@ To set and verify the Kubernetes cluster configurations:
     Switched to context "aks-tap-cluster".
     ```
 
-3. Confirm that the context is set by running:
-
-    ```
-    kubectl config current-context
-    ```
-    For example:
-    ```
-    $ kubectl config current-context
-    aks-tap-cluster
-    ```
-
-4. List the parameters that are in use by running:
-    ```
-    kubectl cluster-info
-    ```
-    For example:
-    ```{ .bash .no-copy }
-    $ kubectl cluster-info
-    Kubernetes control plane is running at https://aks-tap-cluster-dns-eec0876a.hcp.eastus.azmk8s.io:443
-    healthmodel-replicaset-service is running at https://aks-tap-cluster-dns-eec0876a.hcp.eastus.azmk8s.io:443/api/v1/namespaces/kube-system/services/healthmodel-replicaset-service/proxy
-    CoreDNS is running at https://aks-tap-cluster-dns-eec0876a.hcp.eastus.azmk8s.io:443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
-    Metrics-server is running at https://aks-tap-cluster-dns-eec0876a.hcp.eastus.azmk8s.io:443/api/v1/namespaces/kube-system/services/https:metrics-server:/proxy
-
-    To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
-    ```
-
-5. Verify kapp-controller is running by running:
+3. Verify kapp-controller is running by running:
    ```
    kubectl get pods -A | grep kapp-controller
    ```
    Pod status should be Running.
 
-6. Verify secretgen-controller is running by running:
+4. Verify secretgen-controller is running by running:
    ```
    kubectl get pods -A | grep secretgen-controller
    ```
@@ -308,7 +291,7 @@ You can install Tanzu Build Service v1.2.2 from VMware Tanzu Network.
 For production environment installation instructions, see [Installing Tanzu Build Service](https://docs.pivotal.io/build-service/installing.html) in the Tanzu Build Service documentation.
 For quick-start installation instructions, suitable for most test environments, see [Getting Started with Tanzu Build Service](https://docs.pivotal.io/build-service/getting-started.html) in the Tanzu Build Service documentation.
 
-##<a id="eulas"></a> Accept the EULAs
+## <a id="eulas"></a> Accept the EULAs
 
 Before you can install packages, you have to accept the End User License Agreements (EULAs)
 for each component separately.
