@@ -1,10 +1,10 @@
-## insight source create
+## Insight Source Create
 
-Create an source report
+Create an source report.
 
 ### Synopsis
 
-Create source report from a report file
+Create source report from a report file.
 
 ```
 insight source create [flags]
@@ -23,7 +23,7 @@ insight source create --cyclonedx /path/to/file.xml
   -h, --help               help for create
 ```
 
-### SEE ALSO
+### See Also
 
 * [insight source](insight_source.md)	 - Source commands
 
