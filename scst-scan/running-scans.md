@@ -120,6 +120,7 @@ kubectl describe sourcescan policy-enforcement-example
 `Status.Conditions` now includes a `Reason: EvaluationPassed` and `No noncompliant vulnerabilities found`.
 
 You can also update the `violatingSeverities` array in the ScanPolicy if desired. For reference, the Grype scan returns the following Severity spread of vulnerabilities:
+
 * Critical: 2
 * High: 31
 * Medium: 26
