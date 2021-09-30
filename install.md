@@ -640,17 +640,16 @@ To install Supply Chain Security Tools - Sign:
        ---
        warn_on_unmatched: true
        ```
-       **Note**: For a quicker installation process, VMware recommends that you set
-       `warn_on_unmatched` to `true`. This means that the webhook does not prevent unsigned images
-       from running. To promote to a production environment, VMware recommends that you re-install
-       the webhook with `warn_on_unmatched` set to `false`.
    * **For production environments**: To deny images that do not match any pattern in the
    policy, set `warn_on_unmatched` to `false`.
        ```yaml
        ---
        warn_on_unmatched: false
        ```
-
+   **Note**: For a quicker installation process, VMware recommends that you set `warn_on_unmatched`
+   to `true`. This means that the webhook does not prevent unsigned images from running. To promote
+   to a production environment, VMware recommends that you re-install the webhook with `warn_on_unmatched`
+   set to `false`.
 1. Install the package:
    ```bash
    tanzu package install webhook \
@@ -680,8 +679,7 @@ To install Supply Chain Security Tools - Sign:
       namespace: image-policy-system
     ```
 
-1. If the registry or registries that hold your images and signatures are private,
-you must provide the webhook with credentials to access them. Provide the secrets to access the registries in the `image-policy-system` namespace by adding them to the `registry-credentials` service account created above.
+1. If the registry or registries that hold your images and signatures are private, provide the webhook with credentials to access them. You provide these credentials by adding them to the `registry-credentials` service account created above.
     ```yaml
     apiVersion: v1
     kind: ServiceAccount
@@ -691,9 +689,9 @@ you must provide the webhook with credentials to access them. Provide the secret
     imagePullSecrets:
     - name: SECRET
     ```
-    * Where `SECRET` is a secret that allows the webhook to access the private regristries. Add additional secrets to this list as required.
+    Where `SECRET` is a secret that allows the webhook to access the private registry. Add additional secrets to `imagePullSecrets` as required.
 
-1. Create a `ClusterImagePolicy` to inform the webhook which images to validate.
+1. Create a `ClusterImagePolicy` to specify the images that the webhook validates.
    The cluster image policy is a custom resource definition containing the following information:
    - A list of namespaces to which the policy should not be enforced.
    - A list of public keys complementary to the private keys that were used to sign the images.
@@ -726,7 +724,7 @@ you must provide the webhook with credentials to access them. Provide the secret
 
    Notes:
    * The `name` for the `ClusterImagePolicy` must be `image-policy`.
-   * Add to the `verification.exclude.resources.namespaces` section any namespaces that run container images that are not currently signed, such as `kube-system`.
+   * In the `verification.exclude.resources.namespaces` section, add any namespaces that run container images that are unsigned, such as `kube-system`.
    * For a quicker installation process in a non-production environment, VMware recommends you use the following YAML to create the `ClusterImagePolicy`. This YAML includes a cosign public key, which signed the cosign image at v1.2.1. The cosign public key validates the specified cosign image. You can also add additional namespaces to exclude in the `verification.exclude.resources.namespaces` section, such as any system namespaces.
        ```yaml
        ---
@@ -758,11 +756,13 @@ you must provide the webhook with credentials to access them. Provide the secret
        ```bash
        $ kubectl run cosign --image=gcr.io/projectsigstore/cosign:v1.2.1 --restart=Never --command -- sleep 900
        pod/cosign created
-
+       ```
+       ```bash
        $ kubectl run bb --image=busybox --restart=Never
        Warning: busybox didn\'t match any pattern in policy. Pod will be created as WarnOnUnmatched flag is true
        pod/bb created
-
+       ```
+       ```bash
        $ kubectl run cosign-fail --image=gcr.io/projectsigstore/cosign:v0.3.0 --command -- sleep 900
        Error from server (The image: gcr.io/projectsigstore/cosign:v0.3.0 is not signed): admission webhook "image-policy-webhook.signing.run.tanzu.vmware.com" denied the request: The image: gcr.io/projectsigstore/cosign:v0.3.0 is not signed
        ```
