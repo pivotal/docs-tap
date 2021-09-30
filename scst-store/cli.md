@@ -1,26 +1,43 @@
 # CLI
 
-The SCST - Store CLI, called `insight`, is the easiest way to query the store. With the CLI, you can query for information about images, packages, and vulnerabilities that's been submitted to the store.
+The Supply Chain Security Tools - Store CLI, called `insight`, allows you to query the store. 
+With the Command Line Interface (CLI), you can query for information about images, packages, and vulnerabilities that have been submitted to the store.
 
-## Installation
+## Installing the CLI
 
-1. Go to Tanzu Network and find the [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/). Select the release of TAP you're using. In the list of released files, select *insight-metadata-cli-v1.0.0-beta0*. Then choose the file for the operating system platform you're targetting. Note: MacOS is a Darwin-based platform.
-2. Put the binary in a location that is either already in your PATH environment variable, OR add the location of the CLI to your PATH variable.
-3. Rename the binary to make it easier to invoke via command line, e.g. `mv insight-1.0.0-alpha_darwin insight`.
+To install the CLI:
+
+1. Sign in to [Tanzu Network](https://network.tanzu.vmware.com/).
+2. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/). 
+3. Select the TAP release. In the list of released files, select *insight-metadata-cli-v1.0.0-beta0*. 
+4. Choose the file for your operating system. 
+    >**Note:** MacOS is a Darwin-based platform.
+  
+5. Put the binary in a location that is either already in your `PATH` environment variable, 
+or add the location of the CLI to your `PATH` variable.
+6. Rename the binary to make it easier to invoke with your command line. 
+For example, `mv insight-1.0.0-alpha_darwin insight`.
 
 <details><summary>MacOS only:</summary>
 <br/>
-MacOS will not recognize that the insight binary is safe to run because it hasn't been signed by Apple. To allow your computer to run it anyways, perform the following steps:
+MacOS does not recognize that the insight binary is safe to run because it has not been signed by Apple. 
 
-1. Invoke the insight binary from the command line, e.g. `insight version`
-2. A pop-up will appear notifying you that the program is not trusted
-3. Open the System Preferences 'settings' 
-4. Go to 'Security and Privacy' -> 'General' tab
-5. Under the 'Allow apps identified from', make sure the 'App store and other identified developers' radio button is selected
-6. re-run the insight binary until an 'Allow' button appears under the 'Allow apps identified from' section, then click 'Allow'
+To allow your computer to run the binary, perform the following steps:
+
+1. In the command line, run: 
+    ```
+    insight version
+    ```
+    A pop-up appears to notify you that the program is not trusted.
+3. Open **System Preferences** > **Security & Privacy** > **General**.
+5. Under **Allow apps identified from**, make sure the **App store and identified developers** radio button is selected.
+6. Re-run the insight binary until an **Allow** button appears under the **Allow apps identified from** section, and then click **Allow**.
 </details>
+<br>
+<br>
 
 # Setup
+To set up the CLI:
 
 * [Enable an encrypted connection to the store](enable_encrypted_connection.md)
 * [Create a user and get an access token](create_service_account_access_token.md)
