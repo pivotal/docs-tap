@@ -1,6 +1,6 @@
-## insight vulnerabilities
+## Insight Vulnerabilities
 
-Vulnerabilities commands
+Vulnerabilities commands.
 
 ### Options
 
@@ -8,7 +8,7 @@ Vulnerabilities commands
   -h, --help   help for vulnerabilities
 ```
 
-### SEE ALSO
+### See Also
 
 * [insight](insight.md)	 - 
 * [insight vulnerabilities get](insight_vulnerabilities_get.md)	 - Get vulnerability by CVE id.
