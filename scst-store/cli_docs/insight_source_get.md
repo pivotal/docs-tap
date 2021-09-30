@@ -1,10 +1,10 @@
-## insight source get
+## Insight Source Get
 
-Get sources by repository, commit or organization
+Get sources by repository, commit or organization.
 
 ### Synopsis
 
-Get sources by repository, commit or organization
+Get sources by repository, commit or organization.
 
 ```
 insight source get --repo <repository> --commit <commit-hash> --org <organization-name> [--format <format>] [flags]
@@ -26,7 +26,7 @@ insight source get --repo github.com/org/example --commit b33dfee51 --org compan
   -r, --repo string     repository name
 ```
 
-### SEE ALSO
+### See Also
 
 * [insight source](insight_source.md)	 - Source commands
 
