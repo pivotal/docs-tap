@@ -688,10 +688,9 @@ you must provide the webhook with credentials to access them. Provide the secret
       name: registry-credentials
       namespace: image-policy-system
     imagePullSecrets:
-    - name: FIRST-SECRET
-    - name: SECOND-SECRET
+    - name: SECRET
     ```
-    * Where `FIRST-SECRET` and `SECOND-SECRET` are the secrets that allow the webhook to access the private regristries.
+    * Where `SECRET` is a secret that allows the webhook to access the private regristries. Add additional secrets to this list as required.
 
 1. Create a `ClusterImagePolicy` to inform the webhook which images to validate.
    The cluster image policy is a custom resource definition containing the following information:
@@ -727,45 +726,45 @@ you must provide the webhook with credentials to access them. Provide the secret
    Notes:
    * The `name` for the `ClusterImagePolicy` must be `image-policy`.
    * Add to the `verification.exclude.resources.namespaces` section any namespaces that run container images that are not currently signed, such as `kube-system`.
-   * For a quicker installation process in a non-production environment, VMware recommends you use the following YAML to create the `ClusterImagePolicy`. This YAML includes a cosign public key, which signed the cosign image at v1.2.1. The cosign public key validates the specified cosign image. You can also add additional namespaces to exclude to the `verification.exclude.resources.namespaces` section, such as any system namespaces.
-   ```yaml
-   ---
-   apiVersion: signing.run.tanzu.vmware.com/v1alpha1
-   kind: ClusterImagePolicy
-   metadata:
-     name: image-policy
-   spec:
-     verification:
-       exclude:
-         resources:
-           namespaces:
-           - kube-system
-       keys:
-       - name: cosign-key
-         publicKey: |
-           -----BEGIN PUBLIC KEY-----
-           MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEhyQCx0E9wQWSFI9ULGwy3BuRklnt
-           IqozONbbdbqz11hlRJy9c7SG+hdcFl9jE9uE/dwtuwU2MqU9T/cN0YkWww==
-           -----END PUBLIC KEY-----
-       images:
-       - namePattern: gcr.io/projectsigstore/cosign*
-         keys:
-         - name: cosign-key
-   ```
+   * For a quicker installation process in a non-production environment, VMware recommends you use the following YAML to create the `ClusterImagePolicy`. This YAML includes a cosign public key, which signed the cosign image at v1.2.1. The cosign public key validates the specified cosign image. You can also add additional namespaces to exclude in the `verification.exclude.resources.namespaces` section, such as any system namespaces.
+       ```yaml
+       ---
+       apiVersion: signing.run.tanzu.vmware.com/v1alpha1
+       kind: ClusterImagePolicy
+       metadata:
+         name: image-policy
+       spec:
+         verification:
+           exclude:
+             resources:
+               namespaces:
+               - kube-system
+           keys:
+           - name: cosign-key
+             publicKey: |
+               -----BEGIN PUBLIC KEY-----
+               MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEhyQCx0E9wQWSFI9ULGwy3BuRklnt
+               IqozONbbdbqz11hlRJy9c7SG+hdcFl9jE9uE/dwtuwU2MqU9T/cN0YkWww==
+               -----END PUBLIC KEY-----
+           images:
+           - namePattern: gcr.io/projectsigstore/cosign*
+             keys:
+             - name: cosign-key
+       ```
 
-   Quick tests you can try:
+       (Optional) Run the following commands to test the webhook if you are using the `cosign-key`:
 
-   ```bash
-   $ kubectl run cosign --image=gcr.io/projectsigstore/cosign:v1.2.1 --restart=Never --command -- sleep 900
-   pod/cosign created
+       ```bash
+       $ kubectl run cosign --image=gcr.io/projectsigstore/cosign:v1.2.1 --restart=Never --command -- sleep 900
+       pod/cosign created
 
-   $ kubectl run bb --image=busybox --restart=Never
-   Warning: busybox didn\'t match any pattern in policy. Pod will be created as WarnOnUnmatched flag is true
-   pod/bb created
+       $ kubectl run bb --image=busybox --restart=Never
+       Warning: busybox didn\'t match any pattern in policy. Pod will be created as WarnOnUnmatched flag is true
+       pod/bb created
 
-   $ kubectl run cosign-fail --image=gcr.io/projectsigstore/cosign:v0.3.0 --command -- sleep 900
-   Error from server (The image: gcr.io/projectsigstore/cosign:v0.3.0 is not signed): admission webhook "image-policy-webhook.signing.run.tanzu.vmware.com" denied the request: The image: gcr.io/projectsigstore/cosign:v0.3.0 is not signed
-   ```
+       $ kubectl run cosign-fail --image=gcr.io/projectsigstore/cosign:v0.3.0 --command -- sleep 900
+       Error from server (The image: gcr.io/projectsigstore/cosign:v0.3.0 is not signed): admission webhook "image-policy-webhook.signing.run.tanzu.vmware.com" denied the request: The image: gcr.io/projectsigstore/cosign:v0.3.0 is not signed
+       ```
 
 ## <a id='install-scst-scan'></a> Install Supply Chain Security Tools - Scan
 
