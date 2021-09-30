@@ -1,18 +1,18 @@
-## insight
-
-
+## Insight
 
 ### Synopsis
 
-insight does a lot of things
+Insight has many capabilities. 
 
 ### Options
+
+To get help for Insight commands, run:
 
 ```
   -h, --help   help for insight
 ```
 
-### SEE ALSO
+### See Also
 
 * [insight config](insight_config.md)	 - Config commands
 * [insight image](insight_image.md)	 - Image commands
