@@ -1,4 +1,6 @@
-# Running a Sample Public Source Scan with Policy Enforcement
+# Running a Sample Public Source Scan and Image Scan with Policy Enforcement
+
+## <a id="public-source-scan"></a> Public Source Scan
 This example will perform a source scan on a public repository. The source revision in question has 61 known vulnerabilities (CVEs), spanning a number of severities. The Source Scan will use the Scan Policy to run a compliance check against the CVEs.
 
 The policy in this example has been set to only consider `Critical` severity CVEs as violations, which returns 2 Critical Vulnerabilities.
@@ -10,7 +12,7 @@ For this example, the scan will (at the time of writing):
 * ignore any CVEs that have severities that are not critical,
 * indicate in the `Status.Conditions` that 2 CVEs have violated policy compliance.
 
-## Define the Scan Policy and Source Scan
+### Define the Scan Policy and Source Scan
 Create `policy-enforcement-example.yaml`:
 ```yaml
 ---
@@ -57,7 +59,7 @@ spec:
   scanPolicy: scan-policy
 ```
 
-## (Optional) Setup a Watch
+### (Optional) Setup a Watch
 Before deploying, set up a watch in another terminal to see things process... it will be quick!
 ```bash
 watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
@@ -65,12 +67,12 @@ watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
 
 For more information, refer to [Observing and Troubleshooting](observing.md).
 
-## Deploy the Resources
+### Deploy the Resources
 ```bash
 kubectl apply -f policy-enforcement-example.yaml
 ```
 
-## See the Results
+### See the Results
 Once the scan has completed, perform:
 ```bash
 kubectl describe sourcescan policy-enforcement-example
@@ -79,7 +81,7 @@ and notice the `Status.Conditions` includes a `Reason: EvaluationFailed` and `Me
 
 For more information, refer to [Viewing and Understanding Scan Status Conditions](results.md).
 
-## Modifying the Scan Policy
+### Modifying the Scan Policy
 Let us say that these failing CVEs are actually acceptable or the build just needs to be deployed... and the app will be patched tomorrow to remove the vulnerabilities... so... (it should be said, we are not advocating for ignoring Critical Severity Vulnerabilities, but for example's sake...)
 
 Update the `ignoreCVEs` array in the ScanPolicy to include the CVEs to ignore:
@@ -124,3 +126,8 @@ You can also update the `violatingSeverities` array in the ScanPolicy if desired
 * Low: 2
 * Negligible: 0
 * UnknownSeverity: 0
+
+### Clean Up
+```bash
+kubectl delete -f policy-enforcement-example.yaml
+```
