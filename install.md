@@ -287,9 +287,11 @@ To install Application Live View:
 
 1. Follow the instructions in [Install Packages](#install-packages) above.
 
-2. Gather the values schema.
+2. Follow the instructions in [Install Convention Service](#install-convention-service).
 
-3. Create a `app-live-view-values.yaml` using the following sample as a guide:
+3. Gather the values schema.
+
+4. Create a `app-live-view-values.yaml` using the following sample as a guide:
 
     Sample `app-live-view-values.yaml` for Application Live View:
 
@@ -300,7 +302,7 @@ To install Application Live View:
     ```
     The server_namespace is the namespace to which the Application Live View server is deployed. Typically you should pick the namespace you created earlier, tap-install. The connector_namespaces should be a list of namespaces in which you want Application Live View to monitor your apps. To each of those namespace an instance of the Application Live View Connector will be deployed.
 
-4. Install the package by running:
+5. Install the package by running:
 
     ```
     tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.2.0 -n tap-install -f app-live-view-values.yaml
@@ -323,7 +325,7 @@ To install Application Live View:
     For more information about Application Live View,
     see the [Application Live View documentation](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.1/docs/GUID-index.html).
 
-5. Verify the package install by running:
+6. Verify the package install by running:
 
     ```
     tanzu package installed get app-live-view -n tap-install
@@ -340,7 +342,6 @@ To install Application Live View:
     USEFUL-ERROR-MESSAGE:    
     ```
     STATUS should be Reconcile succeeded.
-
 
 ## <a id='install-scc'></a> Install Supply Chain Choreographer
 
