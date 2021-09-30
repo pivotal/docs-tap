@@ -1,7 +1,8 @@
 # Creating Users and Access Tokens
+This topic explains how to create users and access tokens.
 
 ## Creating Users
-To create a read only user run the following command:
+To create a read only user, run:
 ```
 $ kubectl apply -f - -o yaml << EOF
 apiVersion: rbac.authorization.k8s.io/v1
@@ -37,12 +38,14 @@ automountServiceAccountToken: false
 EOF
 ```
 
-To retrieve the read-only access token run the following command:
+To retrieve the read-only access token, run:
 ```
 $ kubectl get secret $(kubectl get sa -n metadata-store metadata-store-read-client -o json | jq -r '.secrets[0].name') -n metadata-store -o json | jq -r '.data.token' | base64 -d
 ```
 
-To create a read write user run the following command (replace metadata-store with the targetted namespace):
+To create a read write user, run:
+Replace metadata-store with the namespace you want to target.
+  
 ```
 $ kubectl apply -f - -o yaml << EOF
 apiVersion: rbac.authorization.k8s.io/v1
@@ -79,9 +82,13 @@ EOF
 ```
 
 ## Getting the Access Token
-To retrieve the read-write access token run the following command:
+To retrieve the read-write access token, run:
 ```
 $ kubectl get secret $(kubectl get sa -n metadata-store metadata-store-read-write-client -o json | jq -r '.secrets[0].name') -n metadata-store -o json | jq -r '.data.token' | base64 -d
 ```
 
-The access token is a "Bearer" token used in the http request header "Authorization". (ex. `Authorization: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjhMV0...`)
+The access token is a  `Bearer` token used in the http request header `Authorization`.
+For example:
+```
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjhMV0...
+```
