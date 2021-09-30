@@ -1,6 +1,6 @@
-## insight version
+## Insight Version
 
-Display insight version
+Display insight version.
 
 ```
 insight version [flags]
@@ -12,7 +12,7 @@ insight version [flags]
   -h, --help   help for version
 ```
 
-### SEE ALSO
+### See Also
 
 * [insight](insight.md)	 - 
 
