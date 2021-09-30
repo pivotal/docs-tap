@@ -1,6 +1,6 @@
-## insight source
+## Insight Source
 
-Source commands
+Source commands.
 
 ### Options
 
@@ -8,7 +8,7 @@ Source commands
   -h, --help   help for source
 ```
 
-### SEE ALSO
+### See Also
 
 * [insight](insight.md)	 - 
 * [insight source create](insight_source_create.md)	 - Create an source report
