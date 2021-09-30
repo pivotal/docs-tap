@@ -1,41 +1,45 @@
 # Configuring the CLI
 
-Before using CLI commands, it needs be configured to know three things:
-1. The location of an access token
-1. Target endpoint — must be `https://metadata-store-app.metadata-store.svc.cluster.local:<port>`
-1. The location of the CA Cert
+Before using CLI commands, configure the following:
+1. The location of an access token.
+1. Target endpoint — must be `https://metadata-store-app.metadata-store.svc.cluster.local:<port>`.
+1. The location of the Certificate Authority Cert.
 
 ## Setting the Access Token with `METADATA_STORE_ACCESS_TOKEN`
 
-If you don't already have a service account, see [Creating Service Accounts and Access Tokens](create_service_account_access_token.md). The following is from that page.
+To set the access token with `METADATA_STORE_ACCESS_TOKEN`:
 
-When using the CLI, you'll need to either set the `METADATA_STORE_ACCESS_TOKEN` environment variable, or use the `--access-token` flag. It is not recommended to use the `--access-token` flag as the token will appear in your shell history. We recommend using `METADATA_STORE_ACCESS_TOKEN`.
+1. Create a service account, if you don't already have one. See [Creating Service Accounts and Access Tokens](create_service_account_access_token.md).
 
-The follow command will retrieve the access token from Kubernetes and store it in `METADATA_STORE_ACCESS_TOKEN`:
+1. Set the `METADATA_STORE_ACCESS_TOKEN` environment variable, or use the `--access-token` flag. VMware does not recommended using the `--access-token` flag, as the token will appear in your shell history. VMware recommends using `METADATA_STORE_ACCESS_TOKEN`.
 
-```sh
-$ export METADATA_STORE_ACCESS_TOKEN=$(kubectl get secrets -n metadata-store -o jsonpath="{.items[?(@.metadata.annotations['kubernetes\.io/service-account\.name']=='metadata-store-read-write-client')].data.token}" | base64 -d)
-```
+1. Run the following command to retrieve the access token from Kubernetes and store it in `METADATA_STORE_ACCESS_TOKEN`:
 
-Replace `metadata-store-read-write-client` with name of the service account you plan to use.
+    ```sh
+    $ export METADATA_STORE_ACCESS_TOKEN=$(kubectl get secrets -n metadata-store -o jsonpath="{.items[?(@.metadata.annotations['kubernetes\.io/service-account\.name']=='metadata-store-read-write-client')].data.token}" | base64 -d)
+    ```
 
-## Set Target and CA Cert
+1.  Replace `metadata-store-read-write-client` with name of the service account you plan to use.
 
-Use `insight config set-target` to point the CLI to the right endpoint and where to look for the CA certificate:
+## Setting the Target and Certificate Authority Cert
 
-```sh
-$ insight config set-target https://metadata-store-app.metadata-store.svc.cluster.local:8443 [--ca-cert <path to CA certificate file>]
-```
+To set the target and certificate authority cert: 
 
-For example, if your CA certificate file is located at `/tmp/ca.crt` then use
+1. Use `insight config set-target` to point the CLI to the endpoint where to the CA certificate lives:
 
-```sh
-$ insight config set-target https://metadata-store-app.metadata-store.svc.cluster.local:8443 --ca-cert /tmp/ca.crt
+    ```sh
+    $ insight config set-target https://metadata-store-app.metadata-store.svc.cluster.local:8443 [--ca-cert <path to CA certificate file>]
+    ```
 
-Using config file: /Users/username/.insight/config.yaml
-Setting endpoint in config to: https://metadata-store-app.metadata-store.svc.cluster.local:8443
+    For example, if your CA certificate file is located at `/tmp/ca.crt` use the following code sample:
 
-$ insight image get --digest example-digest
-Error: {"message":"Image not found"}
-...
-```
+    ```sh
+    $ insight config set-target https://metadata-store-app.metadata-store.svc.cluster.local:8443 --ca-cert /tmp/ca.crt
+
+    Using config file: /Users/username/.insight/config.yaml
+    Setting endpoint in config to: https://metadata-store-app.metadata-store.svc.cluster.local:8443
+
+    $ insight image get --digest example-digest
+    Error: {"message":"Image not found"}
+    ...
+    ```
