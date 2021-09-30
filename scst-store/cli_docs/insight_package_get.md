@@ -1,10 +1,10 @@
-## insight package get
+## Insight Package Get
 
-Get package by name, version, and package manager
+Get package by name, version, and package manager.
 
 ### Synopsis
 
-Get package by name, version, and package manager
+Get package by name, version, and package manager.
 
 ```
 insight package get --name <package name> --version <package version> --pkgmngr Unknown [--format <format>] [flags]
@@ -26,7 +26,7 @@ insight package get --name client --version 1.0.0a --pkgmngr Unknown
   -v, --version string   version of the package
 ```
 
-### SEE ALSO
+### See Also
 
 * [insight package](insight_package.md)	 - Package commands
 
