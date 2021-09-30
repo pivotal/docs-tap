@@ -19,7 +19,7 @@ The following prerequisites are required to install Tanzu Application Platform:
     * kind
     * minikube
   
-* The [kapp Carvel command line tool](https://github.com/vmware-tanzu/carvel-kapp/releases) (v0.37.0 or later)
+* **[kapp Carvel command line tool](https://github.com/vmware-tanzu/carvel-kapp/releases)** (v0.37.0 or later)
 
 * kapp-controller v0.24.0 or later:
 
@@ -70,7 +70,7 @@ The following prerequisites are required to install Tanzu Application Platform:
         ```
 
 
-* secretgen-controller v0.5.0 or later:
+* **secretgen-controller v0.5.0** or later:
 
     * Install secretgen-controller by running:
 
@@ -116,9 +116,10 @@ The following prerequisites are required to install Tanzu Application Platform:
         ```
 
 
-* cert-manager v1.5.3:
 
-        * Install cert-manager by running:
+* **cert-manager v1.5.3**:
+
+    * Install cert-manager by running:
 
         ```
         kapp deploy --yes -a cert-manager -f https://github.com/jetstack/cert-manager/releases/download/v1.5.3/cert-manager.yaml
@@ -138,16 +139,18 @@ The following prerequisites are required to install Tanzu Application Platform:
         "app.kubernetes.io/version": v0.5.0
         ```
 
-* Flux-SourceController:
 
-        * Create clusterrolebinding by running:
+
+* **Flux-SourceController**:
+
+     * Create clusterrolebinding by running:
 
         ```
         kubectl create clusterrolebinding default-admin \
         --clusterrole=cluster-admin \
         --serviceaccount=default:default
         ```
-        * Install Flux-SourceController by running:
+     * Install Flux-SourceController by running:
         ```
         kapp deploy --yes -a flux-source-controller \
         -f https://github.com/fluxcd/source-controller/releases/download/v0.15.4/source-controller.crds.yaml \
@@ -155,7 +158,7 @@ The following prerequisites are required to install Tanzu Application Platform:
         ```
 
 
-* The Kubernetes command line tool, kubectl, v1.19 or later, installed and authenticated with administrator rights for your target cluster.
+* **The Kubernetes CLI, kubectl, v1.19** or later, installed and authenticated with administrator rights for your target cluster.
 
 
 ## <a id='set-and-verify'></a> Set and Verify the Kubernetes Cluster Configurations
