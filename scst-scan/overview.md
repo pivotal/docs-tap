@@ -10,7 +10,8 @@ With Supply Chain Security Tools (SCST) for Tanzu - Scan, Tanzu customers can bu
 * Produce vulnerability scan results and post them to the Metadata Store from where they can be queried.
 
 ## What We Built
-To deliver on the use cases, we have:  
+To deliver on the use cases, we have:
+
 * Built Kubernetes controllers to run scan jobs.  
 * Built Custom Resource Definitions (CRDs) for Image and Source Scan.  
 * Created a CRD for a scanner plugin. Provided example using: Anchore's Syft and Grype.  
