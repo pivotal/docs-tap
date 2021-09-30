@@ -1,10 +1,10 @@
-## insight image vulnerabilities
+## Insight Image Vulnerabilities
 
-Get image vulnerabilities
+Get image vulnerabilities.
 
 ### Synopsis
 
-Get image vulnerabilities
+Get image vulnerabilities.
 
 ```
 insight image vulnerabilities --digest <image-digest> [--format <image-format>] [flags]
@@ -24,7 +24,7 @@ insight image vulnerabilities --digest sha256:a86859ac1946065d93df9ecb5cb7060ade
   -h, --help            help for vulnerabilities
 ```
 
-### SEE ALSO
+### See Also
 
 * [insight image](insight_image.md)	 - Image commands
 
