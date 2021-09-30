@@ -1,6 +1,6 @@
-## insight package
+## Insight Package
 
-Package commands
+Package commands.
 
 ### Options
 
@@ -8,7 +8,7 @@ Package commands
   -h, --help   help for package
 ```
 
-### SEE ALSO
+### See Also
 
 * [insight](insight.md)	 - 
 * [insight package get](insight_package_get.md)	 - Get package by name, version, and package manager
