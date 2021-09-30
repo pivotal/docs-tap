@@ -1,4 +1,4 @@
-## insight vulnerabilities images
+## Insight Vulnerabilities Images
 
 Get images with a given vulnerability.
 
@@ -24,7 +24,7 @@ insight vulnerabilities images --cveid CVE-123123-2021
   -h, --help            help for images
 ```
 
-### SEE ALSO
+### See Also
 
 * [insight vulnerabilities](insight_vulnerabilities.md)	 - Vulnerabilities commands
 
