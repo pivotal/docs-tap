@@ -158,7 +158,7 @@ The following prerequisites are required to install Tanzu Application Platform:
 * The Kubernetes command line tool, kubectl, v1.19 or later, installed and authenticated with administrator rights for your target cluster.
 
 
-##<a id='set-and-verify'></a> Set and Verify the Kubernetes Cluster Configurations
+## <a id='set-and-verify'></a> Set and Verify the Kubernetes Cluster Configurations
 
 To set and verify the Kubernetes cluster configurations:
 
@@ -177,7 +177,7 @@ To set and verify the Kubernetes cluster configurations:
               tkg-vc-antrea-admin@tkg-vc-antrea   tkg-vc-antrea     tkg-vc-antrea-admin
     ```
 
-2.  Set the context to the cluster that you want to use for the TAP packages install. . 
+2.  Set the context to the cluster that you want to use for the TAP packages install.
     For example set the context to the `aks-tap-cluster` context by running:
 
     ```
@@ -282,7 +282,7 @@ To install the Tanzu CLI on a Linux operating system:
 5. Install the Tanzu CLI from the `tanzu` directory by running:
     ```
     cd $HOME/tanzu
-    sudo install cli/core/v0.4.0/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
+    sudo install cli/core/v0.4.0/tanzu-core-linux_amd64 /usr/local/bin/tanzu
     ```
 
 6. Confirm the installation of the Tanzu CLI by running:
