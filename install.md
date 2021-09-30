@@ -52,6 +52,7 @@ To add the Tanzu Application Platform package repository:
         --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.2.0 \
         --namespace tap-install
     \ Adding package repository 'tanzu-tap-repository'... 
+
     Added package repository 'tanzu-tap-repository'
     ```
 
@@ -126,6 +127,7 @@ To install any package from the Tanzu Application Platform package repository:
     + [Install Supply Chain Security Tools - Sign](#install-scst-sign)
     + [Install Supply Chain Security Tools - Scan](#install-scst-scan)
     + [Install API portal](#install-api-portal)
+    + [Install SCP Toolkit](#install-scp-toolkit)
 
 
 ## <a id='install-cnr'></a> Install Cloud Native Runtimes
@@ -193,14 +195,14 @@ To install Cloud Native Runtimes:
      Added installed package 'cloud-native-runtimes' in namespace 'tap-install'
     ```
 5. Verify the package install by running:
-    
+
     ```
     tanzu package installed get cloud-native-runtimes -n tap-install
     ```
     For example:
     ```
     tanzu package installed get cloud-native-runtimes -n tap-install
-    | Retrieving installation details for cc... 
+    | Retrieving installation details for cc...
     NAME:                    cloud-native-runtimes
     PACKAGE-NAME:            cnrs.tanzu.vmware.com
     PACKAGE-VERSION:         1.0.1
@@ -257,14 +259,14 @@ in the Application Accelerator documentation.
     ```
 
 5. Verify the package install by running:
-    
+
     ```
     tanzu package installed get app-accelerator -n tap-install
     ```
     For example:
     ```
     tanzu package installed get app-accelerator -n tap-install
-    | Retrieving installation details for cc... 
+    | Retrieving installation details for cc...
     NAME:                    app-accelerator
     PACKAGE-NAME:            accelerator.apps.tanzu.vmware.com
     PACKAGE-VERSION:         0.3.0
@@ -317,14 +319,14 @@ To install Application Live View:
     see the [Application Live View documentation](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.1/docs/GUID-index.html).
 
 5. Verify the package install by running:
-    
+
     ```
     tanzu package installed get app-live-view -n tap-install
     ```
     For example:
     ```
     tanzu package installed get app-live-view -n tap-install
-    | Retrieving installation details for cc... 
+    | Retrieving installation details for cc...
     NAME:                    app-live-view
     PACKAGE-NAME:            appliveview.tanzu.vmware.com
     PACKAGE-VERSION:         0.2.0
@@ -419,7 +421,7 @@ To install Supply Chain Security Tools - Sign:
     tanzu package available get image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.0 --values-schema
     | Retrieving package details for image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.0...
       KEY                DEFAULT  TYPE     DESCRIPTION
-      warn_on_unmatched  false    boolean  Feature flag for enabling admission of images that do not match 
+      warn_on_unmatched  false    boolean  Feature flag for enabling admission of images that do not match
                                            any patterns in the image policy configuration.
                                            Set to true to allow images that do not match any patterns into
                                            the cluster with a warning.
@@ -431,7 +433,7 @@ To install Supply Chain Security Tools - Sign:
 
    ```yaml
    ---
-   warn_on_unmatched: true 
+   warn_on_unmatched: true
    ```
 
 1. Install the package:
@@ -441,7 +443,7 @@ To install Supply Chain Security Tools - Sign:
      --version 1.0.0-beta.0 \
      --namespace tap-install \
      --values-file values.yaml
-    
+
     | Installing package 'image-policy-webhook.signing.run.tanzu.vmware.com'
     | Getting namespace 'default'
     | Getting package metadata for 'image-policy-webhook.signing.run.tanzu.vmware.com'
@@ -454,7 +456,7 @@ To install Supply Chain Security Tools - Sign:
 
     Added installed package 'webhook' in namespace 'default'
    ```
-1. After the webhook is up and running, create a service account named `registry-credentials` in the `image-policy-system` namespace. This is a required configuration even if the images and signatures are in public registries. 
+1. After the webhook is up and running, create a service account named `registry-credentials` in the `image-policy-system` namespace. This is a required configuration even if the images and signatures are in public registries.
 
 1. If the registry or registries that hold your images and signatures are private,
 you will need to provide the webhook with credentials to access your artifacts. Create your secrets to access those registries in the `image-policy-system`
@@ -522,7 +524,7 @@ To install Supply Chain Security Tools - Scan (Scan Controller):
     ```bash
     tanzu package available get scanning.apps.tanzu.vmware.com/1.0.0-beta.0 --values-schema -n tap-install
     ```
-    
+
     For example:
     ```console
     $ tanzu package available get scanning.apps.tanzu.vmware.com/1.0.0-beta.0 --values-schema -n tap-install
@@ -537,10 +539,10 @@ To install Supply Chain Security Tools - Scan (Scan Controller):
       resources.requests.memory  128Mi                                                             <nil>   Requests describes the minimum amount of memory resources required.
       metadataStoreCa                                                                              string  CA Cert of the Insight Metadata Store deployed in the cluster
     ```
-    
+
 2. Gather the values schema.
-3. Create a `scst-scan-controller-values.yaml` using the following sample as a guide: 
-    
+3. Create a `scst-scan-controller-values.yaml` using the following sample as a guide:
+
     Sample `scst-scan-controller-values.yaml` for Scan Controller:
 
     ```yaml
@@ -698,10 +700,10 @@ To install Supply Chain Security Tools - Scan (Grype Scanner):
    - where `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for Tanzu Network.
 
 4. Install API portal.
-   
+
    ```console
    $ tanzu package install api-portal -n tap-install -p api-portal.tanzu.vmware.com -v 1.0.2
-   
+
    / Installing package 'api-portal.tanzu.vmware.com'
    | Getting namespace 'api-portal'
    | Getting package metadata for 'api-portal.tanzu.vmware.com'
@@ -710,12 +712,58 @@ To install Supply Chain Security Tools - Scan (Grype Scanner):
    | Creating cluster role binding 'api-portal-api-portal-cluster-rolebinding'
    / Creating package resource
    - Package install status: Reconciling
-   
-   
+
+
     Added installed package 'api-portal' in namespace 'tap-install'
    ```
 
 5. Visit [API portal for VMware Tanzu](https://docs.pivotal.io/api-portal/1-0/) for more information about API portal.
+
+## Install SCP Toolkit
+
+To install SCP Toolkit:
+
+1. See what versions of SCP Toolkit are available to install by running:
+
+    ```console
+    tanzu package available list -n tap-install scp-toolkit.tanzu.vmware.com
+    ```
+
+    For example:
+
+    ```console
+    $ tanzu package available list -n tap-install scp-toolkit.tanzu.vmware.com
+    - Retrieving package versions for scp-toolkit.tanzu.vmware.com...
+      NAME                          VERSION           RELEASED-AT
+      scp-toolkit.tanzu.vmware.com  0.3.0             2021-09-17T13:53:29Z
+    ```
+
+1. Install SCP Toolkit by running:
+
+    ```console
+    $ tanzu package install scp-toolkit -n tap-install -p scp-toolkit.tanzu.vmware.com -v 0.3.0
+    ```
+
+1. Verify that the package installed by running:
+
+    ```console
+    tanzu package installed get scp-toolkit -n tap-install
+    ```
+
+    and checking that the `STATUS` value is `Reconcile succeeded`.
+
+    For example:
+
+    ```console
+    $ tanzu package installed get scp-toolkit -n tap-install
+    | Retrieving installation details for cc...
+    NAME:                    scp-toolkit
+    PACKAGE-NAME:            scp-toolkit.tanzu.vmware.com
+    PACKAGE-VERSION:         0.3.0
+    STATUS:                  Reconcile succeeded
+    CONDITIONS:              [{ReconcileSucceeded True  }]
+    USEFUL-ERROR-MESSAGE:
+    ```
 
 ## <a id='verify'></a> Verify the Installed Packages
 
