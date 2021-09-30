@@ -2,6 +2,10 @@
 
 ## <a id='overview'></a> Overview of Tanzu Application Platform
 
+<p class="note warning">
+<strong>Warning:</strong> Tanzu Application Platform is currently in beta and is intended for evaluation and test purposes.
+</p>
+
 Tanzu Application Platform is a packaged set of components that helps
 developers and operators to more easily build, deploy, and manage apps
 on a Kubernetes platform.
