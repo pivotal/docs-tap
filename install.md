@@ -1173,7 +1173,9 @@ To install SCP Toolkit:
 
 ## <a id='install-tbs'></a> Install Tanzu Build Service 
 
-This section provides a guide for installing Tanzu Build Service as part of Tanzu Application Platform using the Tanzu CLI. This procedure might not include some configurations required for your specific environment. For more advanced details on installing Tanzu Build Service, see [Installing Tanzu Build Service](https://docs.pivotal.io/build-service/installing.html).
+This section provides a quick-start guide for installing Tanzu Build Service as part of Tanzu Application Platform using the Tanzu CLI.
+
+**Note**: This procedure might not include some configurations required for your specific environment. For more advanced details on installing Tanzu Build Service, see [Installing Tanzu Build Service](https://docs.pivotal.io/build-service/installing.html).
 
 ### Prerequisites
 
@@ -1202,20 +1204,22 @@ To install Tanzu Build Service using the Tanzu CLI:
       ca_cert_data                    <nil>    string  tbs registry ca certificate
     ```
 
-1. Create a `tbs-values.yaml` file using the following sample as a guide:
+1. Create a `tbs-values.yaml` file.
     ```yaml
     ---
-    kp_default_repository: <some-registry.com/some-path-to-install>
-    kp_default_repository_password: <registry-username>
-    kp_default_repository_username: <registry-username>
-    tanzunet_username: <tanzunet_username@email.com>
-    tanzunet_password: <tanzunet_password>
+    kp_default_repository: EXAMPLE-REGISTRY.com/PATH-TO-INSTALL
+    kp_default_repository_password: REGISTRY-PASSWORD
+    kp_default_repository_username: REGISTRY-USERNAME
+    tanzunet_username: TANZUNET-USERNAME
+    tanzunet_password: TANZUNET-PASSWORD
     ```
-    The `kp_default_repository` is the registry location that all TBS dependencies and builder images are written. The install requires a `kp_default_repository_username` and `kp_default_repository_password` in order to write to the repository location.
+    Where:
 
-    The TanzuNet credentials allow for configuration of the Dependencies Updater.  This resource accesses and installs the build dependencies (buildpacks and stacks) Tanzu Build Service needs on your Cluster.  It will also keep these dependencies up-to-date as new versions are released on TanzuNet.
-
-    The optional values not included in this sample provide additional configuration for production use cases. For more information, see  [Installing Tanzu Build Service](https://docs.pivotal.io/build-service/installing.html).
+    * `EXAMPLE-REGISTRY` is the URL of the Docker registry.
+    * `PATH-TO-INSTALL` is the path to the registry install location. `kp_default_repository` is the registry location where all Tanzu Build Services dependencies and builder images are written.
+    * `REGISTRY-PASSWORD` and `REGISTRY-USERNAME` and the password and username for the registry. The install requires a `kp_default_repository_username` and `kp_default_repository_password` in order to write to the repository location.
+    * `TANZUNET-USERNAME` and `TANZUNET-PASSWORD` are the email address and password that you use to log in to Tanzu Net. The TanzuNet credentials allow for configuration of the Dependencies Updater.  This resource accesses and installs the build dependencies (buildpacks and stacks) Tanzu Build Service needs on your Cluster.  It also keeps these dependencies up-to-date as new versions are released on TanzuNet.
+    * **Optional values**: There are optional values not included in this sample file that provide additional configuration for production use cases. For more information, see [Installing Tanzu Build Service](https://docs.pivotal.io/build-service/installing.html).
 
 1.  Install the package by running:
     ```bash
