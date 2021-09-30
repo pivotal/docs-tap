@@ -33,11 +33,8 @@ The following prerequisites are required to install Tanzu Application Platform:
       For example:
       ```
       kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v0.24.0/release.yml
-<<<<<<< HEAD
       ```
-
-    * For Tanzu Kubernetes Grid, ensure that you are using Tanzu Kubernetes Grid v1.4.0 or later.
-      Clusters of this version have kapp-controller v0.23.0 pre-installed.
+      
 
     * To Verify installed kapp-controller version:
 
@@ -73,10 +70,6 @@ The following prerequisites are required to install Tanzu Application Platform:
         ```
 
 
-=======
-      ```    
-    
->>>>>>> main
 * secretgen-controller v0.5.0 or later:
 
     * Install secretgen-controller by running:
@@ -91,7 +84,6 @@ The following prerequisites are required to install Tanzu Application Platform:
       ```
       kapp deploy -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/download/v0.5.0/release.yml
       ```
-<<<<<<< HEAD
 
     * To Verify installed secretgen-controller version:
 
@@ -165,64 +157,8 @@ The following prerequisites are required to install Tanzu Application Platform:
 
 * The Kubernetes command line tool, kubectl, v1.19 or later, installed and authenticated with administrator rights for your target cluster.
 
-* For Tanzu Kubernetes Grid, the minimum cluster configuration is as follows:
-
-    * Tanzu Kubernetes Grid on vSphere:
-      <table class="nice">
-        <tr>
-          <td>Deployment Type:</td>
-          <td>Dev, Prod</td>
-        </tr>
-        <tr>
-          <td>Instance type:</td>
-          <td>Medium (2 vCPUs, 8&nbsp;GiB memory)</td>
-        </tr>
-        <tr>
-          <td>Number of worker nodes:</td>
-          <td>3</td>
-        </tr>
-       </table>
-
-    * Tanzu Kubernetes Grid on Azure:
-      <table class="nice">
-        <tr>
-          <td>Deployment Type:</td>
-          <td>Dev, Prod</td>
-        </tr>
-        <tr>
-          <td>Instance type:</td>
-          <td>Standard D2s v3 (2 vCPUs, 8&nbsp;GiB memory)</td>
-        </tr>
-        <tr>
-          <td>Number of worker nodes:</td>
-          <td>3</td>
-        </tr>
-        </table>
-
-    * Tanzu Kubernetes Grid on AWS:
-      <table class="nice">
-        <tr>
-          <td>Deployment Type:</td>
-          <td>Dev, Prod</td>
-          </tr>
-        <tr>
-          <td>Instance type:</td>
-          <td>t2.large (2 vCPUs, 8&nbsp;GiB memory)</td>
-        </tr>
-        <tr>
-          <td>Number of worker nodes:</td>
-          <td>3</td>
-        </tr>
-      </table>
-
 
 ##<a id='set-and-verify'></a> Set and Verify the Kubernetes Cluster Configurations
-=======
-   
-* The Kubernetes command line tool, kubectl, v1.19 or later, installed and authenticated with administrator rights for your target cluster.
-
-## <a id='set-and-verify'></a> Set and Verify the Kubernetes Cluster Configurations
->>>>>>> main
 
 To set and verify the Kubernetes cluster configurations:
 
