@@ -427,16 +427,26 @@ To install Supply Chain Security Tools - Sign:
                                            the cluster with a warning.
 
     ```
-1. Create a file named `values.yaml` with `warn_on_unmatched` property.
-   To warn the user when images do not match any pattern in the policy, but still allow them into the cluster,  set it to `true`.
-   To deny images that do not match any pattern in the policy, set it to `false`
-
+1. Create a file named `values.yaml` with a `warn_on_unmatched` property.
+   * **For non-production environments**: To warn the user when images do not match any pattern in the policy, but still allow them into the cluster, set `warn_on_unmatched`
+   to `true`.
    ```yaml
    ---
    warn_on_unmatched: true
    ```
 
-   **Note**: If this is the first time installing this webhook, we recommend you use the above yaml for your values.yaml file so the webhook does not prevent unsigned images from running. When ready for production, re-install the webhook with this value set to `false`.
+   **Note**: If this is the first time installing this webhook, VMware recommends that you set
+   `warn_on_unmatched` to `true`. This means that the webhook does not prevent unsigned images
+   from running. To promote to a production environment, VMware recommends that you re-install
+   the webhook with `warn_on_unmatched` set to `false`.
+   
+   * **For production environments**: To deny images that do not match any pattern in the
+   policy, set `warn_on_unmatched` to `false`.
+   ```yaml
+   ---
+   warn_on_unmatched: false
+   ```
+
 
 1. Install the package:
    ```bash
