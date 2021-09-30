@@ -1,10 +1,10 @@
-## insight package vulnerabilities
+## Insight Package Vulnerabilities
 
-Get package vulnerabilities
+Get package vulnerabilities.
 
 ### Synopsis
 
-Get package vulnerabilities
+Get package vulnerabilities.
 
 ```
 insight package vulnerabilities --name <package name> [flags]
@@ -24,7 +24,7 @@ insight package vulnerabilities --name client
   -n, --name string     name of the package
 ```
 
-### SEE ALSO
+### See Also
 
 * [insight package](insight_package.md)	 - Package commands
 
