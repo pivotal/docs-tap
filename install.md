@@ -1186,6 +1186,8 @@ This section provides a quick-start guide for installing Tanzu Build Service as 
 
 To install Tanzu Build Service using the Tanzu CLI:
 
+1. Follow the instructions in [Install Packages](#install-packages) above.
+
 1. Gather values schema.
     ```bash
     tanzu package available get buildservice.tanzu.vmware.com/1.3.0 --values-schema --namespace tap-install
