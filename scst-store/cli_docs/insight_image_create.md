@@ -1,10 +1,10 @@
-## insight image create
+## Insight Image Create
 
-Create an image report
+Create an image report.
 
 ### Synopsis
 
-Create image report from a report file
+Create image report from a report file.
 
 ```
 insight image create [flags]
@@ -23,7 +23,7 @@ insight image create --cyclonedx /path/to/file.xml
   -h, --help               help for create
 ```
 
-### SEE ALSO
+### See Also
 
 * [insight image](insight_image.md)	 - Image commands
 
