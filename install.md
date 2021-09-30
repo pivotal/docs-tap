@@ -130,6 +130,9 @@ To install any package from the Tanzu Application Platform package repository:
     + [Install Supply Chain Security Tools - Scan](#install-scst-scan)
     + [Install API portal](#install-api-portal)
     + [Install SCP Toolkit](#install-scp-toolkit)
+    + [Install Convention Service](#install-convention-service)
+    + [Install Source Controller](#install-source-controller)
+    + [Install Service Bindings](#install-service-bindings)
 
 
 ## <a id='install-cnr'></a> Install Cloud Native Runtimes
@@ -1028,6 +1031,156 @@ To install SCP Toolkit:
     USEFUL-ERROR-MESSAGE:
     ```
 
+    STATUS should be Reconcile succeeded.
+
+## <a id='install-convention-service'></a> Install Convention Service 
+
+ To install Convention Service:
+
+ **Prerequisite**: Cert-manager installed on the cluster.
+ For how to install cert-manager,
+ see [Install Prerequisites](install-general.md#prereqs)
+
+ 1. Follow the instructions in [Install Packages](#install-packages) above.
+
+ 2. Install the package:
+
+    ```bash
+    $ tanzu package install convention-controller -p controller.conventions.apps.tanzu.vmware.com -v 0.4.2 -n tap-install
+    / Installing package 'controller.conventions.apps.tanzu.vmware.com'
+    | Getting namespace 'tap-install'
+    - Getting package metadata for 'controller.conventions.apps.tanzu.vmware.com'
+    | Creating service account 'convention-controller-tap-install-sa'
+    | Creating cluster admin role 'convention-controller-tap-install-cluster-role'
+    | Creating cluster role binding 'convention-controller-tap-install-cluster-rolebinding'
+    \ Creating package resource
+    | Package install status: Reconciling
+    Added installed package 'convention-controller' in namespace 'tap-install'
+    ```
+
+ 3. Verify the package install by running:
+
+    ```bash
+    $ tanzu package installed get convention-controller -n tap-install
+    Retrieving installation details for convention-controller...
+    NAME:                    convention-controller
+    PACKAGE-NAME:            controller.conventions.apps.tanzu.vmware.com
+    PACKAGE-VERSION:         0.4.2
+    STATUS:                  Reconcile succeeded
+    CONDITIONS:              [{ReconcileSucceeded True  }]
+    USEFUL-ERROR-MESSAGE:
+    ```
+
+    ```bash
+    kubectl get pods -n conventions-system 
+    ```
+    
+    For example:
+    ```bash
+    $ kubectl get pods -n conventions-system
+    NAME                                             READY   STATUS    RESTARTS   AGE
+    conventions-controller-manager-596c65f75-j9dmn   1/1     Running   0          72s
+    ```
+    STATUS should be `Running`.
+
+
+
+## <a id='install-source-controller'></a> Install Source Controller 
+
+ To install Source Controller:
+
+ **Prerequisite**: Fluxcd Source Controller installed on the cluster.
+ For how to install fluxcd source controller,
+ see [Install Prerequisites](install-general.md#prereqs)
+
+ 1. Follow the instructions in [Install Packages](#install-packages) above.
+
+ 2. Install the package:
+
+    ```bash
+    $ tanzu package install source-controller -p controller.source.apps.tanzu.vmware.com -v 0.1.2 -n tap-install
+    / Installing package 'controller.source.apps.tanzu.vmware.com'
+    | Getting namespace 'tap-install'
+    - Getting package metadata for 'controller.source.apps.tanzu.vmware.com'
+    | Creating service account 'source-controller-tap-install-sa'
+    | Creating cluster admin role 'source-controller-tap-install-cluster-role'
+    | Creating cluster role binding 'source-controller-tap-install-cluster-rolebinding'
+    \ Creating package resource
+    | Package install status: Reconciling
+    
+     Added installed package 'source-controller' in namespace 'tap-install'
+    ```
+
+ 3. Verify the package install by running:
+ 
+    ```bash
+    $ tanzu package installed get source-controller -n tap-install
+    Retrieving installation details for sourcer-controller...
+    NAME:                    sourcer-controller
+    PACKAGE-NAME:            controller.source.apps.tanzu.vmware.com
+    PACKAGE-VERSION:         0.1.2
+    STATUS:                  Reconcile succeeded
+    CONDITIONS:              [{ReconcileSucceeded True  }]
+    USEFUL-ERROR-MESSAGE:
+    ```
+    
+    ```bash
+    kubectl get pods -n source-system
+    ```
+    For example:
+    ```bash
+    $ kubectl get pods -n source-system
+    NAME                                        READY   STATUS    RESTARTS   AGE
+    source-controller-manager-f68dc7bb6-4lrn6   1/1     Running   0          45h
+    ```
+    STATUS should be `Running`.
+
+## <a id='install-service-bindings'></a> Install Service Bindings 
+
+ To install Service Bindings:
+
+ 1. Follow the instructions in [Install Packages](#install-packages) above.
+
+ 2. Install the package:
+
+    ```bash
+    $ tanzu package install service-bindings -p service-bindings.labs.vmware.com -v 0.5.0 -n tap-install
+    / Installing package 'service-bindings.labs.vmware.com'
+    | Getting namespace 'tap-install'
+    - Getting package metadata for 'service-bindings.labs.vmware.com'
+    | Creating service account 'service-bindings-tap-install-sa'
+    | Creating cluster admin role 'service-bindings-tap-install-cluster-role'
+    | Creating cluster role binding 'service-bindings-tap-install-cluster-rolebinding'
+    \ Creating package resource
+    | Package install status: Reconciling
+    
+     Added installed package 'service-bindings' in namespace 'tap-install'
+    ```
+
+ 3. Verify the package install by running:
+
+    ```bash
+    $ tanzu package installed get service-bindings -n tap-install
+    - Retrieving installation details for service-bindings...
+    NAME:                    service-bindings
+    PACKAGE-NAME:            service-bindings.labs.vmware.com
+    PACKAGE-VERSION:         0.5.0
+    STATUS:                  Reconcile succeeded
+    CONDITIONS:              [{ReconcileSucceeded True  }]
+    USEFUL-ERROR-MESSAGE:
+    ```
+
+    ```bash
+    kubectl get pods -n service-bindings 
+    ```
+    For example:
+    ```bash
+    $ kubectl get pods -n source-system
+    NAME                       READY   STATUS    RESTARTS   AGE
+    manager-6d85fffbcd-j4gvs   1/1     Running   0          22s
+    ```
+    STATUS should be `Running`.
+
 ## <a id='verify'></a> Verify the Installed Packages
 
 To verify that the packages are installed:
@@ -1040,8 +1193,11 @@ To verify that the packages are installed:
     ```
     $ tanzu package installed list --namespace tap-install
     \ Retrieving installed packages...
-      NAME                   PACKAGE-NAME                       PACKAGE-VERSION  STATUS
-      app-accelerator        accelerator.apps.tanzu.vmware.com  0.3.0            Reconcile succeeded
-      app-live-view         appliveview.tanzu.vmware.com        0.2.0            Reconcile succeeded
-      cloud-native-runtimes  cnrs.tanzu.vmware.com              1.0.1            Reconcile succeeded
+      NAME                   PACKAGE-NAME                                        PACKAGE-VERSION  STATUS
+      app-accelerator        accelerator.apps.tanzu.vmware.com                   0.3.0            Reconcile succeeded
+      app-live-view          appliveview.tanzu.vmware.com                        0.2.0            Reconcile succeeded
+      cloud-native-runtimes  cnrs.tanzu.vmware.com                               1.0.1            Reconcile succeeded
+      service-bindings       service-bindings.labs.vmware.com                    0.5.0            Reconcile succeeded
+      source-controller      controller.source.apps.tanzu.vmware.com             0.1.2            Reconcile succeeded
+      convention-controller  controller.conventions.apps.tanzu.vmware.com        0.4.2            Reconcile succeeded
     ```
