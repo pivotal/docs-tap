@@ -639,7 +639,7 @@ To install Supply Chain Security Tools - Sign:
        ---
        warn_on_unmatched: true
        ```
-       **Note**: If this is the first time you are installing this webhook, VMware recommends that you set
+       **Note**: For a quicker installation process, VMware recommends that you set
        `warn_on_unmatched` to `true`. This means that the webhook does not prevent unsigned images
        from running. To promote to a production environment, VMware recommends that you re-install
        the webhook with `warn_on_unmatched` set to `false`.
@@ -670,14 +670,17 @@ To install Supply Chain Security Tools - Sign:
 
     Added installed package 'webhook' in namespace 'default'
    ```
-1. After the webhook is up and running, create a service account named `registry-credentials` in the `image-policy-system` namespace. This is a required configuration even if the images and signatures are in public registries.
+1. After the webhook is installed and running, create a service account named `registry-credentials` in the `image-policy-system` namespace. This is a required configuration even if the images and signatures are in public registries.
+   ```yaml
+    apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      name: registry-credentials
+      namespace: image-policy-system
+    ```
 
 1. If the registry or registries that hold your images and signatures are private,
-you must provide the webhook with credentials to access your artifacts. Create your secrets to access those registries in the `image-policy-system`
-namespace. Then, you add these secrets to the `registry-credentials` service account created above.
-
-    For example:
-
+you must provide the webhook with credentials to access them. Provide the secrets to access the registries in the `image-policy-system` namespace by adding them to the `registry-credentials` service account created above.
     ```yaml
     apiVersion: v1
     kind: ServiceAccount
@@ -685,25 +688,16 @@ namespace. Then, you add these secrets to the `registry-credentials` service acc
       name: registry-credentials
       namespace: image-policy-system
     imagePullSecrets:
-    - name: secret1
-    - name: secret2
+    - name: FIRST-SECRET
+    - name: SECOND-SECRET
     ```
-
-    **Note**: If this is the first time installing this webhook, VMware recommends you use the following yaml to create your ServiceAccount:
-    ```yaml
-    apiVersion: v1
-    kind: ServiceAccount
-    metadata:
-      name: registry-credentials
-      namespace: image-policy-system
-    ```
-    You can then edit this at a later time to add in your `imagePullSecrets`
+    * Where `FIRST-SECRET` and `SECOND-SECRET` are the secrets that allow the webhook to access the private regristries.
 
 1. Create a `ClusterImagePolicy` to inform the webhook which images to validate.
    The cluster image policy is a custom resource definition containing the following information:
    - A list of namespaces to which the policy should not be enforced.
    - A list of public keys complementary to the private keys that were used to sign the images.
-   - A list of image name patterns to which we want to enforce the policy, mapping to the public keys to use for each pattern.
+   - A list of image name patterns against which the policy is enforced. Each image name pattern is mapped to the required public keys.
 
    The following is an example `ClusterImagePolicy`:
    ```yaml
@@ -730,11 +724,10 @@ namespace. Then, you add these secrets to the `registry-credentials` service acc
          - name: first-key
    ```
 
-   The custom resource for the policy must be named `image-policy`.
-
-   Add to the `verification.exclude.resources.namespaces` section any namespaces that are known to run container images that are not currently signed, such as `kube-system`.
-
-   **Note**: If this is the first time installing this webhook, we recommend you use the following yaml to create your `ClusterImagePolicy`, it includes a cosign public key which signed the cosign image at v1.2.1 which will validate the specified cosign image. You may still want to add additional namespaces to exclude, for example any system namespaces. You can then edit this at a later time to add in your specific cosign public keys and image name patterns.
+   Notes:
+   * The `name` for the `ClusterImagePolicy` must be `image-policy`.
+   * Add to the `verification.exclude.resources.namespaces` section any namespaces that run container images that are not currently signed, such as `kube-system`.
+   * For a quicker installation process in a non-production environment, VMware recommends you use the following YAML to create the `ClusterImagePolicy`. This YAML includes a cosign public key, which signed the cosign image at v1.2.1. The cosign public key validates the specified cosign image. You can also add additional namespaces to exclude to the `verification.exclude.resources.namespaces` section, such as any system namespaces.
    ```yaml
    ---
    apiVersion: signing.run.tanzu.vmware.com/v1alpha1
