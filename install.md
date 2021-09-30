@@ -215,7 +215,7 @@ To install Cloud Native Runtimes:
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:    
     ```
-    STATUS should be Reconcile succeeded.
+    STATUS should be `Reconcile succeeded`.
 
 
 ## <a id='install-app-accelerator'></a> Install Application Accelerator
@@ -1035,15 +1035,14 @@ To install SCP Toolkit:
 
 ## <a id='install-convention-service'></a> Install Convention Service 
 
- To install Convention Service:
+ Use the following procedure to install Convention Service.
 
- **Prerequisite**: Cert-manager installed on the cluster.
- For how to install cert-manager,
- see [Install Prerequisites](install-general.md#prereqs)
+ **Prerequisite**: 
+    - Cert-manager installed on the cluster. See [Install Prerequisites](install-general.md#prereqs).
 
  1. Follow the instructions in [Install Packages](#install-packages) above.
 
- 2. Install the package:
+ 2. Install the package. Run:
 
     ```bash
     $ tanzu package install convention-controller -p controller.conventions.apps.tanzu.vmware.com -v 0.4.2 -n tap-install
@@ -1084,18 +1083,16 @@ To install SCP Toolkit:
     STATUS should be `Running`.
 
 
-
 ## <a id='install-source-controller'></a> Install Source Controller 
 
- To install Source Controller:
+ Use the following procedure to install Source Controller.
 
- **Prerequisite**: Fluxcd Source Controller installed on the cluster.
- For how to install fluxcd source controller,
- see [Install Prerequisites](install-general.md#prereqs)
+ **Prerequisite**: 
+    - Fluxcd Source Controller installed on the cluster. See [Install Prerequisites](install-general.md#prereqs).
 
  1. Follow the instructions in [Install Packages](#install-packages) above.
 
- 2. Install the package:
+ 2. Install the package. Run:
 
     ```bash
     $ tanzu package install source-controller -p controller.source.apps.tanzu.vmware.com -v 0.1.2 -n tap-install
@@ -1137,11 +1134,11 @@ To install SCP Toolkit:
 
 ## <a id='install-service-bindings'></a> Install Service Bindings 
 
- To install Service Bindings:
+ Use the following procedure to install Service Bindings:
 
  1. Follow the instructions in [Install Packages](#install-packages) above.
 
- 2. Install the package:
+ 2. Install the package. Run:
 
     ```bash
     $ tanzu package install service-bindings -p service-bindings.labs.vmware.com -v 0.5.0 -n tap-install
@@ -1183,7 +1180,7 @@ To install SCP Toolkit:
 
 ## <a id='verify'></a> Verify the Installed Packages
 
-To verify that the packages are installed:
+Use the following procedure to verify that the packages are installed.
 
 1. List the installed packages by running:
     ```
