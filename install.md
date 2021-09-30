@@ -133,6 +133,7 @@ To install any package from the Tanzu Application Platform package repository:
     + [Install Convention Service](#install-convention-service)
     + [Install Source Controller](#install-source-controller)
     + [Install Service Bindings](#install-service-bindings)
+    + [Install Tanzu Build Service](#install-tbs)
 
 
 ## <a id='install-cnr'></a> Install Cloud Native Runtimes
@@ -1190,3 +1191,112 @@ Use the following procedure to verify that the packages are installed.
       source-controller      controller.source.apps.tanzu.vmware.com             0.1.2            Reconcile succeeded
       convention-controller  controller.conventions.apps.tanzu.vmware.com        0.4.2            Reconcile succeeded
     ```
+
+## <a id='install-tbs'></a> Install Tanzu Build Service 
+
+This topic is meant to serve as a quick-start guide for TAP installs of Tanzu Build Service using the tanzu cli and may not include some configurations required for your specific environment. For more advanced details on installation, see [Installing Tanzu Build Service](https://docs.pivotal.io/build-service/installing.html).
+
+### Prerequisites
+
+* Ensure you have access to a docker registry that Tanzu Build Service can use to create Builder images. Approximately 5gb of registry space is required.
+
+### Assumptions
+
+For this example setup, we will make the following assumptions:
+
+* You have successfully added the TAP package repository to your Cluster
+* Your registry is accesible with username and password credentials. 
+* You have accepted the necessary TanzuNet EULAs specified in the TAP pre-requisites
+
+### Installing Using the Tanzu CLI
+
+1. Follow instructions in Install Packages above
+
+2. Gather values schema
+```bash
+tanzu package available get buildservice.tanzu.vmware.com/1.3.0 --values-schema --namespace tap-install
+```
+
+For example:
+```bash
+$ tanzu package available get buildservice.tanzu.vmware.com/1.3.0 --values-schema --namespace tap-install
+| Retrieving package details for buildservice.tanzu.vmware.com/1.3.0...
+  KEY                             DEFAULT  TYPE    DESCRIPTION
+  kp_default_repository           <nil>    string  docker repository
+  kp_default_repository_password  <nil>    string  registry password
+  kp_default_repository_username  <nil>    string  registry username
+  tanzunet_username               <nil>    string  tanzunet registry username required for dependency updater feature
+  tanzunet_password               <nil>    string  tanzunet registry password required for dependency updater feature
+  ca_cert_data                    <nil>    string  tbs registry ca certificate
+```
+
+3. Create a `tbs-values.yaml` using the following sample as a guide
+
+Sample `tbs-values.yaml` for Tanzu Build Service:
+
+```yaml
+---
+kp_default_repository: <some-registry.com/some-path-to-install>
+kp_default_repository_password: <registry-username>
+kp_default_repository_username: <registry-username>
+tanzunet_username: <tanzunet_username@email.com>
+tanzunet_password: <tanzunet_password>
+```
+The `kp_default_repository` is the registry location that all TBS dependencies and builder images will be written. The install requires a `kp_default_repository_username` and `kp_default_repository_password` in order to write to the repository location.
+
+The TanzuNet credentials allow for configuration of the Dependencies Updater.  This resource will access and install the build dependencies (buildpacks and stacks) TBS needs on your Cluster.  It will also keep these dependencies up to date as new versions are released on TanzuNet.
+
+The optional values not included in this sample provide additional configuration for production use cases.
+
+Check  [Installing Tanzu Build Service](https://docs.pivotal.io/build-service/installing.html) for more information.
+
+4.  Install the package by running
+
+Installing the `buildservice.tanzu.vmware.com` package with tanzunet credentials will automatically relocate buildpack dependencies to your cluster. This install process may take some time. 
+
+```bash
+tanzu package install tbs -p buildservice.tanzu.vmware.com -v 1.3.0 -n tap-install -f tbs-values.yaml --poll-interval 15s
+```
+For example:
+```bash
+$ tanzu package install tbs -p buildservice.tanzu.vmware.com -v 1.3.0 -n tap-install -f tbs-values.yaml
+| Installing package 'buildservice.tanzu.vmware.com'
+| Getting namespace 'tap-install'
+| Getting package metadata for 'buildservice.tanzu.vmware.com'
+| Creating service account 'tbs-tap-install-sa'
+| Creating cluster admin role 'tbs-tap-install-cluster-role'
+| Creating cluster role binding 'tbs-tap-install-cluster-rolebinding'
+| Creating secret 'tbs-tap-install-values'
+- Creating package resource
+- Package install status: Reconciling
+
+ Added installed package 'tbs' in namespace 'tap-install'
+```
+
+
+5. Verify the package install by running
+
+```bash
+$ tanzu package installed get tbs -n tap-install
+- Retrieving installation details for tbs...
+NAME:                    tbs
+PACKAGE-NAME:            buildservice.tanzu.vmware.com
+PACKAGE-VERSION:         1.3.0
+STATUS:                  Reconcile succeeded
+CONDITIONS:              [{ReconcileSucceeded True  }]
+USEFUL-ERROR-MESSAGE:
+```
+
+You should also be able to see the clusterbuilders created by the TBS install
+
+```bash
+$ kubectl get clusterbuilders
+
+NAME      LATESTIMAGE                                                                                      READY
+base      my-registry.com/tbs@sha256:8732fadb92d8afa40bcef2d885e9730b372484a39b4a7f718291f574645f4bf2      True
+default   my-registry.com/tbs@sha256:8732fadb92d8afa40bcef2d885e9730b372484a39b4a7f718291f574645f4bf2      True
+full      my-registry.com/tbs@sha256:f7cdac8b2d97790276821ee3f54c497fba4ec71752eec9a87d22905344471ed8      True
+tiny      my-registry.com/tbs@sha256:b9c5348da4c1527c356d2d8b9d48462ea9bf97a98eb379e925bec69c6dd918a5      True
+
+```
+
