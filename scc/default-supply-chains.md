@@ -6,15 +6,14 @@ weight: 2
 
 # Default Supply Chains
 
-Default supply chains are provided out of the box with Tanzu Application
-Platform. The two default supply chains that are included are:
+Default supply chains are provided out of the box with Tanzu Application Platform. The two default supply chains that are included are:
 
 - Source to URL
 - Source & Test to URL
+- Source & Scan to URL
 
 Regardless of the supply chain chosen, we need to first set credentials for a
 registry where Tanzu Build Service should push the images that it builds.
-
 
 ### Credentials for pushing app images to a registry
 
@@ -57,7 +56,6 @@ tanzu imagepullsecret add registry-credentials \
 
 _ps.: note that the REGISTRY here _must_ be the same as the one set in the
 values file above._
-
 
 ## Source to URL
 
@@ -118,7 +116,6 @@ tanzu workload create ... ?
 ```console
 ?
 ```
-
 
 ## Source & Test to URL
 
@@ -200,6 +197,36 @@ spec:
               go test -v ./...
 ```
 
+## Source & Scan to URL
+
+The source & scan to URL supply chain builds on the ability of the source to url supply chain and adds the ability to perform source and image scanning using Grype.
+
+- Watch a git repository
+- Run tests using Tekton
+- Scan the code for known vulnerabilities
+- Build the code into an image
+- Scan the image for known vulnerabilities
+- Apply some conventions to the K8s YAML
+- Deploy the application to the same cluster
+
+![Source Scan to URL](images/source-scan-to-url.png)
+
+### Example usage
+
+This example builds on the previous supply chain examples, so refer to them for details about those parts (Test, TBS etc) In particular, this example adds Source and Image Scanning capabilities.
+
+#### Tanzu Supply Chain Security Tools - Scan cluster objects
+
+The notable addition is a Scan Policy, which enables policy enforcement on Vulnerabilities found. The Scan Policy can be added with the following:
+
+```bash
+ytt --ignore-unknown-comments \
+    -f ./example/scanner.yaml \
+  | kapp deploy --yes -a scan-cluster-setup -f-
+```
+
+The next step would be to then submit a workload like in the other examples.
+=======
 
 3. submit a workload
 
