@@ -225,10 +225,6 @@ The following packages are available in Tanzu Application Platform:
 For instructions on how to add the Tanzu Application Platform package repository and install packages from the repository,
 see [Add PackageRepositories](#add-package-repositories) and [Install Packages](#install-packages) below.
 
-You can install Tanzu Build Service v1.2.2 from VMware Tanzu Network.
-For production environment installation instructions, see [Installing Tanzu Build Service](https://docs.pivotal.io/build-service/installing.html) in the Tanzu Build Service documentation.
-For quick-start installation instructions, suitable for most test environments, see [Getting Started with Tanzu Build Service](https://docs.pivotal.io/build-service/getting-started.html) in the Tanzu Build Service documentation.
-
 ## <a id="eulas"></a> Accept the EULAs
 
 Before you can install packages, you have to accept the End User License Agreements (EULAs).
