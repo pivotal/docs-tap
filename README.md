@@ -24,6 +24,7 @@ JD suggests the following list:
 * Application Accelerator
 * Application Live View
 * Tanzu Build Service (not Service**s**)
+* Tanzu Application Platform (not TAP)
 
 But use the complete product name at first use:
 
