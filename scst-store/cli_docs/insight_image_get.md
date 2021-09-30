@@ -1,10 +1,10 @@
-## insight image get
+## Insight Image Get
 
-Get image by digest
+Get image by digest.
 
 ### Synopsis
 
-Get image by digest
+Get image by digest.
 
 ```
 insight image get --digest <image-digest> [--format <image-format>] [flags]
@@ -24,7 +24,7 @@ insight image get --digest sha256:a86859ac1946065d93df9ecb5cb7060adeeb0288fad610
   -h, --help            help for get
 ```
 
-### SEE ALSO
+### See Also
 
 * [insight image](insight_image.md)	 - Image commands
 
