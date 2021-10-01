@@ -880,8 +880,11 @@ To install Supply Chain Security Tools - Sign:
 
 1. Follow the instructions in [Install Packages](#install-packages) above.
 1. Gather the values schema
-    ```
+    ```bash
     tanzu package available get image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.0 --values-schema
+    ```
+    Output:
+    ```bash
     | Retrieving package details for image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.0...
       KEY                DEFAULT  TYPE     DESCRIPTION
       warn_on_unmatched  false    boolean  Feature flag for enabling admission of images that do not match
@@ -914,7 +917,9 @@ To install Supply Chain Security Tools - Sign:
      --version 1.0.0-beta.0 \
      --namespace tap-install \
      --values-file scst-sign-values.yaml
-
+   ```
+   Output:
+   ```bash
     | Installing package 'image-policy-webhook.signing.run.tanzu.vmware.com'
     | Getting namespace 'default'
     | Getting package metadata for 'image-policy-webhook.signing.run.tanzu.vmware.com'
@@ -928,7 +933,7 @@ To install Supply Chain Security Tools - Sign:
     Added installed package 'image-policy-webhook' in namespace 'tap-install'
    ```
 1. After the webhook is installed and running, create a service account named `registry-credentials` in the `image-policy-system` namespace. This is a required configuration even if the images and signatures are in public registries.
-   ```yaml
+   ```bash
     cat <<EOF | kubectl apply -f -
     apiVersion: v1
     kind: ServiceAccount
@@ -939,7 +944,7 @@ To install Supply Chain Security Tools - Sign:
     ```
 
 1. If the registry or registries that hold your images and signatures are private, provide the webhook with credentials to access them. You provide these credentials by adding them to the `registry-credentials` service account created above.
-    ```yaml
+    ```bash
     cat <<EOF | kubectl apply -f -
     apiVersion: v1
     kind: ServiceAccount
@@ -988,8 +993,7 @@ To install Supply Chain Security Tools - Sign:
    * The `name` for the `ClusterImagePolicy` must be `image-policy`.
    * In the `verification.exclude.resources.namespaces` section, add any namespaces that run container images that are unsigned, such as `kube-system`.
    * For a quicker installation process in a non-production environment, VMware recommends you use the following YAML to create the `ClusterImagePolicy`. This YAML includes a cosign public key, which signed the cosign image at v1.2.1. The cosign public key validates the specified cosign image. You can also add additional namespaces to exclude in the `verification.exclude.resources.namespaces` section, such as any system namespaces.
-       ```yaml
-       ---
+       ```bash
        cat <<EOF | kubectl apply -f -
        apiVersion: signing.run.tanzu.vmware.com/v1alpha1
        kind: ClusterImagePolicy
@@ -1018,16 +1022,25 @@ To install Supply Chain Security Tools - Sign:
        (Optional) Run the following commands to test the webhook if you are using the `cosign-key`:
 
        ```bash
-       $ kubectl run cosign --image=gcr.io/projectsigstore/cosign:v1.2.1 --restart=Never --command -- sleep 900
+       kubectl run cosign --image=gcr.io/projectsigstore/cosign:v1.2.1 --restart=Never --command -- sleep 900
+       ```
+       Output:
+       ```bash
        pod/cosign created
        ```
        ```bash
-       $ kubectl run bb --image=busybox --restart=Never
+       kubectl run bb --image=busybox --restart=Never
+       ```
+       Output:
+       ```bash
        Warning: busybox didn\'t match any pattern in policy. Pod will be created as WarnOnUnmatched flag is true
        pod/bb created
        ```
        ```bash
-       $ kubectl run cosign-fail --image=gcr.io/projectsigstore/cosign:v0.3.0 --command -- sleep 900
+       kubectl run cosign-fail --image=gcr.io/projectsigstore/cosign:v0.3.0 --command -- sleep 900
+       ```
+       Output:
+       ```bash
        Error from server (The image: gcr.io/projectsigstore/cosign:v0.3.0 is not signed): admission webhook "image-policy-webhook.signing.run.tanzu.vmware.com" denied the request: The image: gcr.io/projectsigstore/cosign:v0.3.0 is not signed
        ```
 
