@@ -1,5 +1,7 @@
 # Creating Service Accounts and Access Tokens
 
+This topic explains how to create service accounts and access tokens for Supply Chain Security Tools - Store.
+
 ## Creating Service
 
 You can create two types of service accounts:
@@ -9,7 +11,7 @@ You can create two types of service accounts:
 
 ### Read-Only Service Account
 
-To create a read-only service account run the following command. The command creates a service account named `metadata-store-read-client`:
+To create a read-only service account, run the following command. The command creates a service account named `metadata-store-read-client`:
 
 ```sh
 $ kubectl apply -f - -o yaml << EOF
@@ -48,7 +50,7 @@ EOF
 
 ### Read-Write Service Account
 
-To create a read-write service account run the following command. The command create a service account called `metadata-store-read-write-client`:
+To create a read-write service account, run the following command. The command create a service account called `metadata-store-read-write-client`:
 
 ```sh
 $ kubectl apply -f - -o yaml << EOF
@@ -86,7 +88,7 @@ EOF
 ```
 
 ## Getting the Access Token
-To retrieve the read-only access token run the following command:
+To retrieve the read-only access token, run the following command:
 
 ```sh
 $ kubectl get secret $(kubectl get sa -n metadata-store metadata-store-read-client -o json | jq -r '.secrets[0].name') -n metadata-store -o json | jq -r '.data.token' | base64 -d
