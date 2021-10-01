@@ -84,18 +84,6 @@ To add the Tanzu Application Platform package repository:
       cnrs.tanzu.vmware.com              Cloud Native Runtimes                     Cloud Native Runtimes is a serverless runtime based on Knative
     ```
 
-7. List version information for the `cnrs.tanzu.vmware.com` package by running:
-    ```
-    tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
-    ```
-    For example:
-    ```
-    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
-    - Retrieving package versions for cnrs.tanzu.vmware.com...
-      NAME                   VERSION  RELEASED-AT
-      cnrs.tanzu.vmware.com  1.0.1    2021-07-30T15:18:46Z
-    ```
-
 
 ## <a id='general-procedure-to-install-a-package'></a> General Procedure to Install a Package
 
@@ -295,7 +283,7 @@ To install Application Live View:
 
     ```
     ---
-    connector_namespaces: [foo, bar]
+    connector_namespaces: [default]
     server_namespace: tap-install
     ```
     The server_namespace is the namespace to which the Application Live View server is deployed. Typically you should pick the namespace you created earlier, tap-install. The connector_namespaces should be a list of namespaces in which you want Application Live View to monitor your apps. To each of those namespace an instance of the Application Live View Connector will be deployed.
@@ -1010,7 +998,7 @@ To install SCP Toolkit:
 
     ```console
     $ tanzu package installed get scp-toolkit -n tap-install
-    | Retrieving installation details for cc...
+    | Retrieving installation details for scp-toolkit...
     NAME:                    scp-toolkit
     PACKAGE-NAME:            scp-toolkit.tanzu.vmware.com
     PACKAGE-VERSION:         0.3.0
