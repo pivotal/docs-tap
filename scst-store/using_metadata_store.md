@@ -7,10 +7,11 @@
 * [Install the CLI](cli.md)
 * [Configure the CLI](configure_cli.md)
 
-## Getting Started
+## Walkthroughs
 
-You can can started with using the store using three different methods:
+The following pages include step-by-step walkthroughs and examples of the SCST - Store use cases.
 
-1. [Use SCST - Scan to scan and send reports, then use the CLI](getting_started_together_with_scst_scan.md)
-1. [Manually create scan reports, then use the CLI](getting_started_manual_scan_cli.md)
-1. [Use the store API](getting_started_api.md)
+* [Querying the Metadata Store](querying_the_metadata_store.md) - query to understand vulnerability, image, and dependency relationships
+* [Add CycloneDX reports to the Metadata Store](add_cyclonedx_to_store.md) - manually add CycloneDX reports to the Metadata Store
+* [Use the Metadata Store API directly](getting_started_api.md).
+

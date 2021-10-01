@@ -3,10 +3,12 @@
 ## Creating Service
 
 You can create two types of service accounts:
+
 1. Read-only service account
 1. Read-write service account
 
 ### Read-Only Service Account
+
 To create a read-only service account run the following command. The command creates a service account named `metadata-store-read-client`:
 
 ```sh
