@@ -21,6 +21,7 @@ See the following pages to begin:
 ## Installed Resources
 
 The installation will create the following in your k8s cluster:
+
 * 2 components — an API backend, and a database. Each component includes:
     * service
     * deployment
