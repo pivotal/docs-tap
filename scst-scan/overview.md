@@ -26,5 +26,5 @@ More to come in FY23! Let us know if there's a scanner you'd like us to support.
 
 ## Prerequisites
 
-* Supply Chain Security Tools - Store to store CVE results. See installation instructions from [Installing Part II: Packages](../install.md#install-supply-chain-security-tools--store-16) and usage instructions from [Using the Supply Chain Security Tools - Store](../scst-store/using_metadata_store.md).
+* Supply Chain Security Tools - Store to store CVE results. See installation instructions from [Installing Part II: Packages](../install.md#install-scst-store) and usage instructions from [Using the Supply Chain Security Tools - Store](../scst-store/using_metadata_store.md).
 * Supply Chain Security Tools - Store CLI to query the Supply Chain Security Tools - Store for CVE results. See [installation instructions here](../scst-store/cli.md).
