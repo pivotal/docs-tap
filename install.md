@@ -475,7 +475,7 @@ You install Convention Servers are part of separate installation procedures. For
 2. Create a imagepullsecret:
 
     ```
-    tanzu imagepullsecret add registry-credentials --registry <REGISTRY> --username <REGISTRY_USERNAME> --password <REGISTRY_PASSWORD> --export-to-all-namespaces || true
+    tanzu imagepullsecret add registry-credentials --registry <REGISTRY_SERVER> --username <REGISTRY_USERNAME> --password <REGISTRY_PASSWORD> --export-to-all-namespaces || true
     ```
     You need to create a secret called registry-credentials with the credentials for the registry that you want the supply chain to use.
 
