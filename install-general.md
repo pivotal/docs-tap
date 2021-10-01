@@ -252,7 +252,7 @@ To accept EULAs:
 ##<a id='cli-and-plugin'></a> Install the Tanzu CLI
 
 Before you can install Tanzu Application Platform,
-you need to download and install the Tanzu CLI and the Tanzu CLI plugins.
+you need to download and install the Tanzu CLI and the Tanzu CLI plugins. If you have tanzu cli present in the system, jump to Update the Tanzu CLI section.
 
 Follow the procedure for your operating system:
 
@@ -306,11 +306,7 @@ To install the Tanzu CLI on a Mac operating system:
 
 3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/) on Tanzu Network.
 
-<<<<<<< HEAD
-4. Click on the `tanzu-framework` folder.
-=======
 4. Click on the `tanzu-cli-0.5.0-dev` folder.
->>>>>>> b8a41d6792d856a2aeeb4bc14aec831783f642fc
 
 5. Download `tanzu-framework-bundle-mac` and unpack the TAR file into the `tanzu` directory:
     ```
@@ -339,11 +335,7 @@ To install the Tanzu CLI on a Windows operating system:
 
 3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/) on Tanzu Network.
 
-<<<<<<< HEAD
-4. Click on the `tanzu-framework` folder.
-=======
 4. Click on the `tanzu-cli-0.5.0-dev` folder.
->>>>>>> b8a41d6792d856a2aeeb4bc14aec831783f642fc
 
 5. Download `tanzu-framework-bundle-windows` and unpack the TAR files into the `tanzu-bundle` directory.
 
@@ -373,9 +365,11 @@ To install the Tanzu CLI on a Windows operating system:
 ## Update the Tanzu CLI
 
 If you have any previous Tanzu CLI installed please run below steps before moving on to [Install the Tanzu CLI Plugins](#Install the Tanzu CLI Plugins).
-1.  Set TANZU_CLI_NO_INIT=true
-2.  export TANZU_CLI_NO_INIT=true
-3.  Run this command to make sure the default plugin repo points to the right path 
+1.  Create a directory named tanzu
+2.  Download `tanzu-framework-bundle-*` for your operating system and unpack the TAR file into the tanzu directory
+3.  Set TANZU_CLI_NO_INIT=true
+4.  export TANZU_CLI_NO_INIT=true
+5.  Run this command to make sure the default plugin repo points to the right path 
     ```
     tanzu plugin repo update -b tanzu-cli-framework core
     ```
