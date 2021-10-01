@@ -1,14 +1,12 @@
 # Querying SCST - Store
 
-After adding scan reports or SBoMs to the Metadata Store from the [SCST - Scan](../scst-scan/create-scan-template.md) or [manually](add_cyclonedx_to_store.md), query the Metadata Store to understand vulnerability, image, and dependency relationships
-​
-Note - the Metadata Store does not currently support policy decisions; [policy is handled separately](../scst-scan/create-scan-template.md) for now.
+After adding scan reports or SBoMs to the store from the [SCST - Scan](../scst-scan/running-scans.md) or [manually](add_cyclonedx_to_store.md), query the store to understand vulnerability, image, and dependency relationships.
 ​
 ## Prerequisites
 
-Besides the prerequisites from the page [Supply Chain Security Tools - Store](using_metadata_store.md), make sure you've installed SCST - Scan.
+Besides the prerequisites from the page [SCST - Store](using_metadata_store.md), make sure you've [installed SCST - Scan](../install.md#install-scst-scan).
 
-### Different methods of querying
+## Different methods of querying
 There are two different ways of querying the database
 
 * CLI
@@ -16,7 +14,7 @@ There are two different ways of querying the database
 
 The following instructions follow the CLI, as it is the easiest way to query
 ​
-### Example use cases supported by the Metadata Store queries
+## Example use cases supported by the Metadata Store queries
 
 * What images contain a specific dependency?
 * What dependencies are affected by a specific CVE?

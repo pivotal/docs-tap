@@ -11,7 +11,7 @@
 
 The following pages include step-by-step walkthroughs and examples of the SCST - Store use cases.
 
-* [Querying the Metadata Store](querying_the_metadata_store.md) - query to understand vulnerability, image, and dependency relationships
-* [Add CycloneDX reports to the Metadata Store](add_cyclonedx_to_store.md) - manually add CycloneDX reports to the Metadata Store
+* [Querying SCST - Store](querying_the_metadata_store.md) - query to understand vulnerability, image, and dependency relationships
+* [Add CycloneDX reports to the SCST - Store](add_cyclonedx_to_store.md) - manually add CycloneDX reports to the Metadata Store
 * [Use the Metadata Store API directly](getting_started_api.md).
 

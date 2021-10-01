@@ -26,7 +26,7 @@ This is the table of contents from which the Tanzu Application Platform Document
         * [Observing and Troubleshooting](scst-scan/observing.md)
         * [Uninstall](scst-scan/uninstall.md)
     * [Supply Chain Tools for Tanzu – Store](scst-store/overview.md)
-        * [Using the Metadata Store](scst-store/using_metadata_store.md)
+        * [Using SCST - Store](scst-store/using_metadata_store.md)
             * [Enable an encrypted connection to the store](scst-store/enable_encrypted_connection.md)
             * [Create a service account and get the access token](scst-store/create_service_account_access_token.md)
         * [CLI](scst-store/cli.md)
