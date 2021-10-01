@@ -54,6 +54,9 @@ The following packages are available in Tanzu Application Platform:
 * Application Live View for VMware Tanzu
 * Cloud Native Runtimes for VMware Tanzu
 * Convention Service for VMware Tanzu
+* Default Supply Chain
+* Default Supply Chain with Testing
+* Developer Conventions 
 * SCP Toolkit
 * Service Bindings for Kubernetes
 * Supply Chain Choreographer for VMware Tanzu
