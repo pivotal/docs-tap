@@ -89,17 +89,6 @@ To add the Tanzu Application Platform package repository:
       cnrs.tanzu.vmware.com              Cloud Native Runtimes                     Cloud Native Runtimes is a serverless runtime based on Knative
     ```
 
-7. List version information for the `cnrs.tanzu.vmware.com` package by running:
-    ```
-    tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
-    ```
-    For example:
-    ```
-    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
-    - Retrieving package versions for cnrs.tanzu.vmware.com...
-      NAME                   VERSION  RELEASED-AT
-      cnrs.tanzu.vmware.com  1.0.1    2021-07-30T15:18:46Z
-    ```
 
 
 ## <a id='general-procedure-to-install-a-package'></a> General Procedure to Install a Package
@@ -137,25 +126,10 @@ To install any package from the Tanzu Application Platform package repository:
     ```
     $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
     ```
-
-2. Follow the specific installation instructions for each package:
-
-    + [Install Cloud Native Runtimes](#install-cnr)
-    + [Install Application Accelerator](#install-app-accelerator)
-    + [Install Application Live View](#install-app-live-view)
-    + [Install Supply Chain Choreographer](#-install-supply-chain-choreographer)
-    + [Install Default Supply Chains](#-install-default-supply-chains) 
-    + [Install Supply Chain Security Tools - Store](#install-scst-store)
-    + [Install Supply Chain Security Tools - Sign](#install-scst-sign)
-    + [Install Supply Chain Security Tools - Scan](#install-scst-scan)
-    + [Install API portal](#install-api-portal)
-    + [Install SCP Toolkit](#install-scp-toolkit)
-    + [Install Convention Service](#install-convention-service)
-    + [Install Source Controller](#install-source-controller)
-    + [Install Service Bindings](#install-service-bindings)
-    + [Install Tanzu Build Service](#install-tbs)
-
-
+    
+    Note:  This step is required only if you want to make changes to the default installation settings. Please refer to the individual product documentation to know more above values schema options.
+    
+    
 ## <a id='install-cnr'></a> Install Cloud Native Runtimes
 
 To install Cloud Native Runtimes:
