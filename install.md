@@ -469,7 +469,7 @@ You install Convention Servers are part of separate installation procedures. For
     ---
     registry:
       server: ${registry_server}
-      repository: ${registry_repository}"
+      repository: ${registry_repository}
     ```
 
 2. Create a imagepullsecret:
