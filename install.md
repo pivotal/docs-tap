@@ -56,7 +56,7 @@ To add the Tanzu Application Platform package repository:
     Added package repository 'tanzu-tap-repository'
     ```
 
-5. Get status of the Tanzu Application Platform package repository, and ensure the status updates to `Reconcile succeeded` by running:
+4. Get status of the Tanzu Application Platform package repository, and ensure the status updates to `Reconcile succeeded` by running:
 
     ```
     tanzu package repository list --namespace tap-install
@@ -69,7 +69,7 @@ To add the Tanzu Application Platform package repository:
       tanzu-tap-repository  registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.2.0  Reconcile succeeded
     ```
 
-6. List the available packages by running:
+5. List the available packages by running:
 
     ```
     tanzu package available list --namespace tap-install
@@ -78,13 +78,27 @@ To add the Tanzu Application Platform package repository:
     ```
     $ tanzu package available list --namespace tap-install
     / Retrieving available packages...
-      NAME                               DISPLAY-NAME                              SHORT-DESCRIPTION
-      accelerator.apps.tanzu.vmware.com  Application Accelerator for VMware Tanzu  Used to create new projects and configurations.                                      
-      appliveview.tanzu.vmware.com       Application Live View for VMware Tanzu    App for monitoring and troubleshooting running apps                                  
-      cnrs.tanzu.vmware.com              Cloud Native Runtimes                     Cloud Native Runtimes is a serverless runtime based on Knative
+    NAME                                               DISPLAY-NAME                                                           SHORT-DESCRIPTION
+    accelerator.apps.tanzu.vmware.com                  Application Accelerator for VMware Tanzu                               Used to create new projects and configurations.
+    api-portal.tanzu.vmware.com                        API portal                                                             A unified user interface to enable search, discovery and try-out of API endpoints at ease.
+    appliveview.tanzu.vmware.com                       Application Live View for VMware Tanzu                                 App for monitoring and troubleshooting running apps
+    buildservice.tanzu.vmware.com                      Tanzu Build Service                                                    Tanzu Build Service enables the building and automation of containerized software workflows securely and at scale.
+    cartographer.tanzu.vmware.com                      Cartographer                                                           Kubernetes native Supply Chain Choreographer.
+    cnrs.tanzu.vmware.com                              Cloud Native Runtimes                                                  Cloud Native Runtimes is a serverless runtime based on Knative
+    controller.conventions.apps.tanzu.vmware.com       Convention Service for VMware Tanzu                                    Convention Service enables app operators to consistently apply desired runtime configurations to fleets of workloads.
+    controller.source.apps.tanzu.vmware.com            Tanzu Source Controller                                                Tanzu Source Controller enables workload create/update from source code.
+    default-supply-chain-testing.tanzu.vmware.com      Tanzu App Platform Default Supply Chain with Testing                   Default Software Supply Chain with testing.
+    default-supply-chain.tanzu.vmware.com              Tanzu App Platform Default Supply Chain                                Default Supply Chain
+    developer-conventions.tanzu.vmware.com             Tanzu App Platform Develooper Conventions                              Developer Conventions
+    grype.scanning.apps.tanzu.vmware.com               Grype Scanner for Supply Chain Security Tools for VMware Tanzu - Scan  Default scan templates using Anchore Grype
+    image-policy-webhook.signing.run.tanzu.vmware.com  Image Policy Webhook                                                   The Image Policy Webhook allows platform operators to define a policy that will use cosign to verify signatures of container images
+    scanning.apps.tanzu.vmware.com                     Supply Chain Security Tools for VMware Tanzu - Scan                    Scan for vulnerabilities and enforce policies directly within Kubernetes native Supply Chains.
+    scp-toolkit.tanzu.vmware.com                       SCP Toolkit                                                            The SCP Toolkit
+    scst-store.tanzu.vmware.com                        Tanzu Supply Chain Security Tools - Store                              The Metadata Store enables saving and querying image, package, and vulnerability data.
+    service-bindings.labs.vmware.com                   Service Bindings for Kubernetes                                        Service Bindings for Kubernetes implements the Service Binding Specification.
     ```
 
-7. List version information for the `cnrs.tanzu.vmware.com` package by running:
+6. List version information for one of the packages, `cnrs.tanzu.vmware.com`, by running:
     ```
     tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
     ```
@@ -93,7 +107,7 @@ To add the Tanzu Application Platform package repository:
     $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for cnrs.tanzu.vmware.com...
       NAME                   VERSION  RELEASED-AT
-      cnrs.tanzu.vmware.com  1.0.1    2021-07-30T15:18:46Z
+      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
     ```
 
 
@@ -108,14 +122,14 @@ To install any package from the Tanzu Application Platform package repository:
 
      Where:
 
-     + `PACKAGE-NAME` is the name of the package listed in step 6 of
+     + `PACKAGE-NAME` is the name of the package listed in step 5 of
      [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
-     + `VERSION-NUMBER` is the version of the package listed in step 7 of
+     + `VERSION-NUMBER` is the version of the package listed in step 6 of
      [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
 
     For example:
     ```
-    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.1 --values-schema --namespace tap-install
+    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
     ```
 
 2. Follow the specific installation instructions for each package:
