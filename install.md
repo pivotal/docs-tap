@@ -972,30 +972,36 @@ To install Supply Chain Security Tools - Sign:
 
     Added installed package 'image-policy-webhook' in namespace 'tap-install'
    ```
-1. After the webhook is installed and running, create a service account named `registry-credentials` in the `image-policy-system` namespace. This is a required configuration even if the images and signatures are in public registries.
-   ```bash
-    cat <<EOF | kubectl apply -f -
-    apiVersion: v1
-    kind: ServiceAccount
-    metadata:
-      name: registry-credentials
-      namespace: image-policy-system
-    EOF
-    ```
+   The webhook should be up and running
+1. Create a service account named `registry-credentials` in the `image-policy-system` namespace
+    1. **If the images and signatures are in public registries:** No extra configuration is needed. Apply the following:
+        ```bash
+        cat <<EOF | kubectl apply -f -
+        apiVersion: v1
+        kind: ServiceAccount
+        metadata:
+          name: registry-credentials
+          namespace: image-policy-system
+        EOF
+        ```
 
-1. If the registry or registries that hold your images and signatures are private, provide the webhook with credentials to access them. You provide these credentials by adding them to the `registry-credentials` service account created above.
-    ```bash
-    cat <<EOF | kubectl apply -f -
-    apiVersion: v1
-    kind: ServiceAccount
-    metadata:
-      name: registry-credentials
-      namespace: image-policy-system
-    imagePullSecrets:
-    - name: SECRET
-    EOF
-    ```
-    Where `SECRET` is a secret that allows the webhook to access the private registry. Add additional secrets to `imagePullSecrets` as required.
+    1. **If the images and signatures are in private registries:**  Add secrets to the `imagePullSecrets` property of the service account. 
+        ```bash
+        cat <<EOF | kubectl apply -f -
+        apiVersion: v1
+        kind: ServiceAccount
+        metadata:
+          name: registry-credentials
+          namespace: image-policy-system
+        imagePullSecrets:
+        - name: secret-1
+        EOF
+        ```
+        Where `secret-1` is a secret that allows the webhook to access the private registry. This secret can be created using the following command:
+        ```bash
+        kubectl create secret docker-registry secret-1 --docker-server=<server> --docker-username=<username> --docker-password=<password> --namespace image-policy-system
+        ```
+        Add additional secrets to `imagePullSecrets` as required.
 
 1. Create a `ClusterImagePolicy` to specify the images that the webhook validates.
    The cluster image policy is a custom resource definition containing the following information:
