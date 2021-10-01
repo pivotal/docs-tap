@@ -41,11 +41,12 @@ To add the Tanzu Application Platform package repository:
 3. Add Tanzu Application Platform package repository to the cluster by running:
 
     ```
-    tanzu package repository add tanzu-tap-repository --url TAP-REPO-IMGPKG --namespace tap-install
+    tanzu package repository add tanzu-tap-repository \
+        --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:TAP-VERSION \
+        --namespace tap-install
     ```
 
-    Where TAP-REPO-IMGPKG is the Tanzu Application Platform repo bundle artifact reference.
-
+    Where `TAP-VERSION` is the version of Tanzu Application Platform you want to install. 
     For example:
     ```
     $ tanzu package repository add tanzu-tap-repository \
@@ -59,14 +60,18 @@ To add the Tanzu Application Platform package repository:
 5. Get status of the Tanzu Application Platform package repository, and ensure the status updates to `Reconcile succeeded` by running:
 
     ```
-    tanzu package repository list --namespace tap-install
+    tanzu package repository get tanzu-tap-repository --namespace tap-install
     ```
     For example:
     ```
-    $ tanzu package repository list --namespace tap-install
-    - Retrieving repositories...
-      NAME                  REPOSITORY                                                         STATUS               DETAILS
-      tanzu-tap-repository  registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.2.0  Reconcile succeeded
+    $ tanzu package repository get tanzu-tap-repository --namespace tap-install
+    - Retrieving repository tap... 
+    NAME:          tanzu-tap-repository
+    VERSION:       5712276
+    REPOSITORY:    registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.2.0
+    STATUS:        Reconcile succeeded
+    REASON:        
+
     ```
 
 6. List the available packages by running:
@@ -89,41 +94,45 @@ To add the Tanzu Application Platform package repository:
 
 To install any package from the Tanzu Application Platform package repository:
 
+<<<<<<< HEAD
 1. Run:
+=======
+1. List version information for the package by running:
+    ```
+    tanzu package available list PACKAGE-NAME --namespace tap-install
+    ```
+    Where:
+    
+     + `PACKAGE-NAME` is the name of the package listed in step 6 of
+     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
+    For example:
+    ```
+    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for cnrs.tanzu.vmware.com...
+      NAME                   VERSION  RELEASED-AT
+      cnrs.tanzu.vmware.com  1.0.2    2021-07-30T15:18:46Z
+    ```
+
+2. Run:
+>>>>>>> b8a41d6792d856a2aeeb4bc14aec831783f642fc
     ```
     tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
     ```
 
      Where:
 
-     + `PACKAGE-NAME` is the name of the package listed in step 6 of
-     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
-     + `VERSION-NUMBER` is the version of the package listed in step 7 of
-     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
+     + `PACKAGE-NAME` is same as step 1 above.
+     
+     + `VERSION-NUMBER` is the version of the package listed in step 1 above.
 
     For example:
     ```
-    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.1 --values-schema --namespace tap-install
+    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
     ```
-
-2. Follow the specific installation instructions for each package:
-
-    + [Install Cloud Native Runtimes](#install-cnr)
-    + [Install Application Accelerator](#install-app-accelerator)
-    + [Install Application Live View](#install-app-live-view)
-    + [Install Supply Chain Choreographer](#-install-supply-chain-choreographer)
-    + [Install Default Supply Chains](#-install-default-supply-chains) 
-    + [Install Supply Chain Security Tools - Store](#install-scst-store)
-    + [Install Supply Chain Security Tools - Sign](#install-scst-sign)
-    + [Install Supply Chain Security Tools - Scan](#install-scst-scan)
-    + [Install API portal](#install-api-portal)
-    + [Install SCP Toolkit](#install-scp-toolkit)
-    + [Install Convention Service](#install-convention-service)
-    + [Install Source Controller](#install-source-controller)
-    + [Install Service Bindings](#install-service-bindings)
-    + [Install Tanzu Build Service](#install-tbs)
-
-
+    
+    Note:  This step is required only if you want to make changes to the default installation settings. Please refer to the individual product documentation to know more above values schema options.
+    
+    
 ## <a id='install-cnr'></a> Install Cloud Native Runtimes
 
 To install Cloud Native Runtimes:
