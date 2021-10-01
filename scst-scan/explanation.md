@@ -1,5 +1,5 @@
 # Reference
-With the Scan Controller and Scanner installed (see Install Supply Chain Security Tools - Scan from [Installing Part II: Packages](../install.md#install-supply-chain-security-tools--scan-8)), the following Custom Resource Definitions (CRDs) are now available.
+With the Scan Controller and Scanner installed (see Install Supply Chain Security Tools - Scan from [Installing Part II: Packages](../install.md#install-scst-scan)), the following Custom Resource Definitions (CRDs) are now available.
 ```console
 $ kubectl get crds | grep scanning.apps.tanzu.vmware.com
 imagescans.scanning.apps.tanzu.vmware.com                2021-09-09T15:22:07Z
