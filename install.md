@@ -252,11 +252,24 @@ To install Application Accelerator:
 
 **Prerequisite**: Flux SourceController installed on the cluster. See [Install Prerequisites](install-general.md#prereqs).
 
+The following optional properties are configurable:
+
+| Property | Default | Description |
+| --- | --- | --- |
+| registry.secret_ref | registry.tanzu.vmware.com | The secret used for accessing the registry where the App-Accelerator images are located |
+| server.service_type | LoadBalancer | The service type for the acc-ui-server service (LoadBalancer, NodePort or ClusterIP) |
+| server.watched_namespace | default | The namespace that the server watches for accelerator resources |
+| server.engine_invocation_url | http://acc-engine.accelerator-system.svc.cluster.local/invocations | The URL to use for invoking the accelerator engine |
+| engine.service_type | ClusterIP | The service type for the acc-engine service (LoadBalancer, NodePort or ClusterIP) |
+
+> **Note:** For clusters that do not support the `LoadBalancer` service type you should override the default value for `server.service_type`.
+
+In general you should not override the defaults for `registry.secret_ref`, `server.engine_invocation_url` or `engine.service_type`.
+They are only used for configuration of non-standard installs.
+
 1. Follow the instructions in [Install Packages](#install-packages) above.
 
-2. Gather the values schema.
-
-3. Create an `app-accelerator-values.yaml` using the following sample as a guide:
+2. Create an `app-accelerator-values.yaml` using the following sample as a guide:
 
     ```
     server:
@@ -265,7 +278,9 @@ To install Application Accelerator:
       watched_namespace: "default"
     ```
 
-4. Install the package by running:
+    Modify the values if needed or leave the default values.
+
+3. Install the package by running:
 
     ```
     tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.3.0 -n tap-install -f app-accelerator-values.yaml
@@ -285,7 +300,7 @@ To install Application Accelerator:
      Added installed package 'app-accelerator' in namespace 'tap-install'
     ```
 
-5. Verify the package install by running:
+4. Verify the package install by running:
 
     ```
     tanzu package installed get app-accelerator -n tap-install
