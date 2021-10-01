@@ -911,7 +911,7 @@ To install Supply Chain Security Tools - Sign:
 1. Follow the instructions in [Install Packages](#install-packages) above.
 1. Gather the values schema
     ```bash
-    tanzu package available get image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.0 --values-schema
+    tanzu package available get image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.0 --values-schema -n tap-install
     ```
     Output:
     ```bash
@@ -982,10 +982,14 @@ To install Supply Chain Security Tools - Sign:
       name: registry-credentials
       namespace: image-policy-system
     imagePullSecrets:
-    - name: SECRET
+    - name: secret-1
     EOF
     ```
-    Where `SECRET` is a secret that allows the webhook to access the private registry. Add additional secrets to `imagePullSecrets` as required.
+    Where `secret-1` is a secret that allows the webhook to access the private registry. This secret can be created using the following command:
+    ```bash
+    kubectl create secret docker-registry secret-1 --docker-server=<server> --docker-username=<username> --docker-password=<password> --namespace image-policy-system
+    ```
+    Add additional secrets to `imagePullSecrets` as required.
 
 1. Create a `ClusterImagePolicy` to specify the images that the webhook validates.
    The cluster image policy is a custom resource definition containing the following information:
