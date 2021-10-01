@@ -567,9 +567,9 @@ To install Tanzu Build Service using the Tanzu CLI:
 
 1.  Install the package by running:
     ```bash
-    tanzu package install tbs -p buildservice.tanzu.vmware.com -v 1.3.0 -n tap-install -f tbs-values.yaml --poll-interval 15s
+    tanzu package install tbs -p buildservice.tanzu.vmware.com -v 1.3.0 -n tap-install -f tbs-values.yaml --poll-duration 30m
     ```
-    **Note**: Installing the `buildservice.tanzu.vmware.com` package with Tanzu Net credentials automatically relocates buildpack dependencies to your cluster. This install process can take some time.
+    **Note**: Installing the `buildservice.tanzu.vmware.com` package with Tanzu Net credentials automatically relocates buildpack dependencies to your cluster. This install process can take some time.  The command provided above increases the timeout duration to account for this.  If the command still times out, periodically run the installation verification step provided below because image relocation will continue in the background.   
 
     For example:
     ```bash
@@ -587,7 +587,7 @@ To install Tanzu Build Service using the Tanzu CLI:
      Added installed package 'tbs' in namespace 'tap-install'
     ```
 
-1. (Optional) Run the following command to see the clusterbuilders created by the Tanzu Build Service install:
+1. (Optional) Run the following command to verify the clusterbuilders created by the Tanzu Build Service install:
     ```bash
     $ kubectl get clusterbuilders
 
