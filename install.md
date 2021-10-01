@@ -323,7 +323,17 @@ They are only used for configuration of non-standard installs.
 
 ## <a id='install-convention-service'></a> Install Convention Service 
 
- Convention Service is made of Convention Controller and Convention Server. Convention server defines function to enrich Pod Template Spec by applying set of conventions. Use the following procedure to install Convention Service.
+The Convention Service enables application operators to enrich Pod Template Specs with operational knowledge based on specific conventions they define.
+The service is comprised of two components:
+
++ The Convention Controller: Provides the metadata to the Convention Server and executes the updates the Convention Server requests.
+
++ The Convention Server: Recieves and evaluates metadata associated with a workload and requests updates
+  to the Pod Template Spec associated with that workload.
+  There can be one or more Convention Servers for a single Convention Controller instance. 
+
+In the following procedure, the Convention Controller is installed.
+Convention Servers are installed separately, for example, an `app-live-view` convention server is installed as part of the `app-live-view` installation. 
 
  **Prerequisite**: 
  
@@ -911,7 +921,7 @@ To install Supply Chain Security Tools - Sign:
 1. Follow the instructions in [Install Packages](#install-packages) above.
 1. Gather the values schema
     ```bash
-    tanzu package available get image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.0 --values-schema -n tap-install
+    tanzu package available get image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.0 --values-schema
     ```
     Output:
     ```bash
@@ -982,14 +992,10 @@ To install Supply Chain Security Tools - Sign:
       name: registry-credentials
       namespace: image-policy-system
     imagePullSecrets:
-    - name: secret-1
+    - name: SECRET
     EOF
     ```
-    Where `secret-1` is a secret that allows the webhook to access the private registry. This secret can be created using the following command:
-    ```bash
-    kubectl create secret docker-registry secret-1 --docker-server=<server> --docker-username=<username> --docker-password=<password> --namespace image-policy-system
-    ```
-    Add additional secrets to `imagePullSecrets` as required.
+    Where `SECRET` is a secret that allows the webhook to access the private registry. Add additional secrets to `imagePullSecrets` as required.
 
 1. Create a `ClusterImagePolicy` to specify the images that the webhook validates.
    The cluster image policy is a custom resource definition containing the following information:
