@@ -459,9 +459,9 @@ You install Convention Servers are part of separate installation procedures. For
       registry.server      https://yourregistry.io  string  registry hostname 
     ```
 
-2. Gather the values schema.
+1. Gather the values schema.
 
-3. Create a `default-supply-chain-values.yaml` using the following sample as a guide:
+1. Create a `default-supply-chain-values.yaml` using the following sample as a guide:
     
     Sample `default-supply-chain-values.yaml` for Default Supply Chain:
 
@@ -472,14 +472,20 @@ You install Convention Servers are part of separate installation procedures. For
       repository: REGISTRY_REPOSITORY
     ```
 
-2. Create a imagepullsecret:
+1. Create a secret called `registry-credentials` with the credentials for the registry that you want the supply chain to use.
+
+1. Create an `imagepullsecret`:
 
     ```
     tanzu imagepullsecret add registry-credentials --registry <REGISTRY_SERVER> --username <REGISTRY_USERNAME> --password <REGISTRY_PASSWORD> --export-to-all-namespaces || true
     ```
-    You need to create a secret called registry-credentials with the credentials for the registry that you want the supply chain to use.
 
-4. Install the package by running:
+    Where:
+    * `REGISTRY_SERVER` is the server of the registry.
+    * `REGISTRY_USERNAME` is the username for the registry.
+    * `REGISTRY_PASSWORD` is the password for the registry.
+
+1. Install the package by running:
 
      ```bash
     tanzu package install default-supply-chain \
