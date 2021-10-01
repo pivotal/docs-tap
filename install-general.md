@@ -377,14 +377,15 @@ To install the Tanzu CLI on a Windows operating system:
 If you have any previous Tanzu CLI installed please run below steps before moving on to [Install the Tanzu CLI Plugins](#Install the Tanzu CLI Plugins).
 1.  Create a directory named tanzu
 2.  Download `tanzu-framework-bundle-*` for your operating system from tanzunet and unpack the TAR file into the tanzu directory
-3.  Set TANZU_CLI_NO_INIT=true
-4.  export TANZU_CLI_NO_INIT=true
-5.  Run this command to make sure the default plugin repo points to the right path 
+3.  Set the environment variable `TANZU_CLI_NO_INIT`.
+     ```
+     export TANZU_CLI_NO_INIT=true
+     ```
+4.  Run this command to make sure the default plugin repo points to the right path:
     ```
     tanzu plugin repo update -b tanzu-cli-framework core
     ```
-
-4.  Remove existing plugins from any previous CLI installations.
+5.  Remove existing plugins from any previous CLI installations.
     ```
     tanzu plugin clean
     ```
