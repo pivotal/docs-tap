@@ -100,8 +100,8 @@ data:
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: default   # must match the name configured in the supply chain
-                  # installation (defaults to `default`)
+  name: service-account   # must match the name configured in the supply chain
+                          # for source-to-url, must be "service-account"
 secrets:
   - name: registry-credentials
 imagePullSecrets:
