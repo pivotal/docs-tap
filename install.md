@@ -144,12 +144,12 @@ To install Cloud Native Runtimes:
 
 
     ```
-    tanzu package available get cnrs.tanzu.vmware.com/1.0.1 --values-schema -n tap-install
+    tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema -n tap-install
     ```
     For example:
     ```
-    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.1 --values-schema -n tap-install
-    | Retrieving package details for cnrs.tanzu.vmware.com/1.0.1...
+    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema -n tap-install
+    | Retrieving package details for cnrs.tanzu.vmware.com/1.0.2...
       KEY                         DEFAULT  TYPE             DESCRIPTION
       pdb.enable                  true     boolean  Optional: Set to true to enable Pod Disruption Budget. If provider local is set to "local", the PDB will be disabled automatically.
       provider                    <nil>    string   Optional: Kubernetes cluster provider. To be specified if deploying CNR on TKGs or on a local Kubernetes cluster provider.
@@ -185,11 +185,11 @@ To install Cloud Native Runtimes:
 4. Install the package by running:
 
     ```
-    tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 1.0.1 -n tap-install -f cnr-values.yaml
+    tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 1.0.2 -n tap-install -f cnr-values.yaml
     ```
     For example:
     ```
-    $ tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 1.0.1 -n tap-install -f cnr-values.yaml
+    $ tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 1.0.2 -n tap-install -f cnr-values.yaml
     - Installing package 'cnrs.tanzu.vmware.com'
     | Getting package metadata for 'cnrs.tanzu.vmware.com'
     | Creating service account 'cloud-native-runtimes-tap-install-sa'
@@ -211,7 +211,7 @@ To install Cloud Native Runtimes:
     | Retrieving installation details for cc...
     NAME:                    cloud-native-runtimes
     PACKAGE-NAME:            cnrs.tanzu.vmware.com
-    PACKAGE-VERSION:         1.0.1
+    PACKAGE-VERSION:         1.0.2
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:    
@@ -233,7 +233,7 @@ To install Application Accelerator:
 
     ```
     server:
-      # Set this service_type to "NodePort" for local clusters like minikube.
+      # Set the engine.service_type to "NodePort" for local clusters like minikube or kind.
       service_type: "LoadBalancer"
       watched_namespace: "default"
       engine_invocation_url: "http://acc-engine.accelerator-system.svc.cluster.local/invocations"
@@ -400,8 +400,8 @@ kapp deploy --yes -a secretgen-controller \
 #### TAP Prerequisites
 
 - [Cloud Native Runtimes](#-install-cloud-native-runtimes)
-- [Convention Service](#convention-service) TODO: where is the convention service install doc?
-- [Tanzu Build Service](#tanzu-build-service) TODO: point to the TBS install docs
+- [Convention Service](#install-convention-service)
+- [Tanzu Build Service](#install-tbs)
 
 
 #### Tekton
