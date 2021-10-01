@@ -8,12 +8,16 @@ This topic explains how to use the Tanzu Developer Tools extension for VSCode.
 
 # Usage
 
-### Extension Settings
-Some VSCode settings will have to be configured for your app. Go into `Preferences -> Settings -> Extensions -> Tanzu` to set the following:
+### Configure Extension Settings
 
-- Source Image (required): Destination for an image containing source code to be
-  published
-- Local Path (required): Path on the local filesytem to a directory of code to build
+You must configure the following required VSCode settings for your app.
+
+To confiugre VSCode settings for your app:
+
+1. Go to `Preferences -> Settings -> Extensions -> Tanzu`.
+1. For Source Image, enter the destination for an image containing source code to be
+  published.
+1. For Local Path, enter the path on the local filesytem to a directory of code to build.
 
 ## Live Update
 
