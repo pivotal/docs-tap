@@ -241,7 +241,13 @@ To accept EULAs:
       [Tanzu Build Service Dependencies](https://network.tanzu.vmware.com/products/tbs-dependencies/),
       [Buildpacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-buildpacks-suite), and
       [Stacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-stacks-suite)
-
+<!---
+    + [API Portal for VMWare Tanzu](https://network.tanzu.vmware.com/products/api-portal/)
+    + [Cloud Native Runtimes](https://network.tanzu.vmware.com/products/serverless/)
+    + [Application Accelerator](https://network.tanzu.vmware.com/products/app-accelerator/)
+    + [Application Live View](https://network.tanzu.vmware.com/products/app-live-view/)
+    + [Supply Chain Security Tools](https://network.tanzu.vmware.com/products/supply-chain-security-tools)
+-->
   ![Screenshot of page on Tanzu Network from where you download Tanzu Application Platform packages shows the EULA warning](./images/tap-on-tanzu-net.png)
 
 ### <a id='cli-and-plugin'></a> Install the Tanzu CLI
@@ -368,18 +374,21 @@ To install the Tanzu CLI on a Windows operating system:
     ```
 ## Update the Tanzu CLI
 
-If you have any previous Tanzu CLI installed please run below steps before moving on to [Install the Tanzu CLI Plugins](#Install the Tanzu CLI Plugins).
+If you have any previous Tanzu CLI installed please run below steps before moving on to [Install the Tanzu CLI Plugins](#install-the-tanzu-cli-plugins).
+
 1.  Create a directory named tanzu
-2.  Download `tanzu-framework-bundle-*` for your operating system from tanzunet and unpack the TAR file into the tanzu directory
+2.  Download `tanzu-framework-bundle-*` for your operating system from Tanzu Network, [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/) (it is in the tanzu-cli-*-dev folder) and unpack the TAR file into the tanzu directory
 3.  Set the environment variable `TANZU_CLI_NO_INIT`.
      ```
      export TANZU_CLI_NO_INIT=true
      ```
-4.  Run this command to make sure the default plugin repo points to the right path:
+<!-- This command makes sense on GA, but for the beta's the user is doing a local installation and doesn't need to validate the remote.
+ 4.  Run this command to make sure the default plugin repo points to the right path:
     ```
     tanzu plugin repo update -b tanzu-cli-framework core
     ```
-5.  Remove existing plugins from any previous CLI installations.
+-->
+4.  Remove existing plugins from any previous CLI installations.
     ```
     tanzu plugin clean
     ```
@@ -390,17 +399,29 @@ After you have installed the tanzu core executable, you must install package, im
 1. Navigate to the tanzu folder that contains the cli folder.
 
 2. Run the following command from the tanzu directory to install all the plugins for this release.
-
     ```
     tanzu plugin install --local cli all
     ```
 3. Check plugin installation status.
-
     ```
     tanzu plugin list
     ```
-
+    The versions should mostly reflect the downloaded file version numbers (not all plugins are going to match the exact same download version - i.e. `v0.5.0` below). For example:
+    ```
+    tanzu plugin list
+    NAME                LATEST VERSION  DESCRIPTION                                                                                                                                         REPOSITORY  VERSION  STATUS
+    accelerator                         Manage accelerators in a Kubernetes cluster                                                                                                                     v0.3.0   installed
+    apps                                Applications on Kubernetes                                                                                                                                      v0.2.0   installed
+    cluster                             Kubernetes cluster operations                                                                                                                                   v0.5.0   installed
+    imagepullsecret                     Manage image pull secret operations. Image pull secrets enable the package and package repository consumers to authenticate to private registries.              v0.5.0   installed
+    kubernetes-release                  Kubernetes release operations                                                                                                                                   v0.5.0   installed
+    login                               Login to the platform                                                                                                                                           v0.5.0   installed
+    management-cluster                  Kubernetes management cluster operations                                                                                                                        v0.5.0   installed
+    package                             Tanzu package management                                                                                                                                        v0.5.0   installed
+    pinniped-auth                       Pinniped authentication operations (usually not directly invoked)                                                                                               v0.5.0   installed
+    ```
+  
 **A note regarding the installed plugins:**
 The `package`, `imgpullsecret`, `accelerator`, and `apps` plugins will be used to install and/or interact with the Tanzu Application Platform.
-Running any other plugin commands (for example, a `cluster` plugin command) is not recommended and doing so may have unintended effects.
+Should you choose to use any of the other plugin commands (for example, a `cluster` plugin command) there could be unintended effects and it is not recommended.
     
