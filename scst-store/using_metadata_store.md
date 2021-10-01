@@ -9,9 +9,9 @@ This topic includes walkthroughs for how to use Supply Chain Security Tools - St
 
 ## Walkthroughs
 
-The following pages include step-by-step walkthroughs and examples of the SCST - Store use cases:
+The following pages include step-by-step walkthroughs and examples of the Supply Chain Security Tools - Store use cases:
 
-* [Querying SCST - Store](querying_the_metadata_store.md) - query to understand vulnerability, image, and dependency relationships
-* [Add CycloneDX reports to the SCST - Store](add_cyclonedx_to_store.md) - manually add CycloneDX reports to the store
-* [Use the store API directly](getting_started_api.md).
+* [Querying Supply Chain Security Tools - Store](querying_the_metadata_store.md) - query to understand vulnerability, image, and dependency relationships
+* [Add CycloneDX reports to the Supply Chain Security Tools - Store](add_cyclonedx_to_store.md) - manually add CycloneDX reports to the store
+* [Use the Store API directly](getting_started_api.md).
 
