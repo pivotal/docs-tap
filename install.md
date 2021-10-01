@@ -263,9 +263,6 @@ To install Application Accelerator:
       # Set the engine.service_type to "NodePort" for local clusters like minikube or kind.
       service_type: "LoadBalancer"
       watched_namespace: "default"
-      engine_invocation_url: "http://acc-engine.accelerator-system.svc.cluster.local/invocations"
-    engine:
-      service_type: "ClusterIP"
     ```
 
 4. Install the package by running:
