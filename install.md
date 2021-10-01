@@ -90,11 +90,15 @@ To add the Tanzu Application Platform package repository:
     ```
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> Tanzu CLI updates
 ## <a id='general-procedure-to-install-a-package'></a> General Procedure to Install a Package
 
 To install any package from the Tanzu Application Platform package repository:
 
+<<<<<<< HEAD
 1. List version information for the package by running:
     ```
     tanzu package available list PACKAGE-NAME --namespace tap-install
@@ -112,6 +116,9 @@ To install any package from the Tanzu Application Platform package repository:
     ```
 
 2. Run:
+=======
+1. Run:
+>>>>>>> Tanzu CLI updates
     ```
     tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
     ```
@@ -289,7 +296,7 @@ To install Application Live View:
 
     ```
     ---
-    connector_namespaces: [foo, bar]
+    connector_namespaces: [default]
     server_namespace: tap-install
     ```
     The server_namespace is the namespace to which the Application Live View server is deployed. Typically you should pick the namespace you created earlier, tap-install. The connector_namespaces should be a list of namespaces in which you want Application Live View to monitor your apps. To each of those namespace an instance of the Application Live View Connector will be deployed.
@@ -1004,7 +1011,7 @@ To install SCP Toolkit:
 
     ```console
     $ tanzu package installed get scp-toolkit -n tap-install
-    | Retrieving installation details for cc...
+    | Retrieving installation details for scp-toolkit...
     NAME:                    scp-toolkit
     PACKAGE-NAME:            scp-toolkit.tanzu.vmware.com
     PACKAGE-VERSION:         0.3.0
