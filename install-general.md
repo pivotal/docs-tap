@@ -241,13 +241,7 @@ To accept EULAs:
       [Tanzu Build Service Dependencies](https://network.tanzu.vmware.com/products/tbs-dependencies/),
       [Buildpacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-buildpacks-suite), and
       [Stacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-stacks-suite)
-<!---
-    + [API Portal for VMWare Tanzu](https://network.tanzu.vmware.com/products/api-portal/)
-    + [Cloud Native Runtimes](https://network.tanzu.vmware.com/products/serverless/)
-    + [Application Accelerator](https://network.tanzu.vmware.com/products/app-accelerator/)
-    + [Application Live View](https://network.tanzu.vmware.com/products/app-live-view/)
-    + [Supply Chain Security Tools](https://network.tanzu.vmware.com/products/supply-chain-security-tools)
--->
+
   ![Screenshot of page on Tanzu Network from where you download Tanzu Application Platform packages shows the EULA warning](./images/tap-on-tanzu-net.png)
 
 ### <a id='cli-and-plugin'></a> Install the Tanzu CLI
@@ -374,10 +368,9 @@ To install the Tanzu CLI on a Windows operating system:
     ```
 ## Update the Tanzu CLI
 
-If you have any previous Tanzu CLI installed please run below steps before moving on to [Install the Tanzu CLI Plugins](#install-the-tanzu-cli-plugins).
-
+If you have any previous Tanzu CLI installed please run below steps before moving on to [Install the Tanzu CLI Plugins](#Install the Tanzu CLI Plugins).
 1.  Create a directory named tanzu
-2.  Download `tanzu-framework-bundle-*` for your operating system from Tanzu Network, [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/) (it is in the tanzu-cli-*-dev folder) and unpack the TAR file into the tanzu directory
+2.  Download `tanzu-framework-bundle-*` for your operating system from tanzunet and unpack the TAR file into the tanzu directory
 3.  Set the environment variable `TANZU_CLI_NO_INIT`.
      ```
      export TANZU_CLI_NO_INIT=true
