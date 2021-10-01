@@ -911,7 +911,7 @@ To install Supply Chain Security Tools - Sign:
    set to `false`.
 1. Install the package:
    ```bash
-   tanzu package install webhook \
+   tanzu package install image-policy-webhook \
      --package-name image-policy-webhook.signing.run.tanzu.vmware.com \
      --version 1.0.0-beta.0 \
      --namespace tap-install \
@@ -920,14 +920,14 @@ To install Supply Chain Security Tools - Sign:
     | Installing package 'image-policy-webhook.signing.run.tanzu.vmware.com'
     | Getting namespace 'default'
     | Getting package metadata for 'image-policy-webhook.signing.run.tanzu.vmware.com'
-    | Creating service account 'webhook-default-sa'
-    | Creating cluster admin role 'webhook-default-cluster-role'
-    | Creating cluster role binding 'webhook-default-cluster-rolebinding'
-    | Creating secret 'webhook-default-values'
+    | Creating service account 'image-policy-webhook-default-sa'
+    | Creating cluster admin role 'image-policy-webhook-default-cluster-role'
+    | Creating cluster role binding 'image-policy-webhook-default-cluster-rolebinding'
+    | Creating secret 'image-policy-webhook-default-values'
     / Creating package resource
     - Package install status: Reconciling
 
-    Added installed package 'webhook' in namespace 'default'
+    Added installed package 'image-policy-webhook' in namespace 'tap-install'
    ```
 1. After the webhook is installed and running, create a service account named `registry-credentials` in the `image-policy-system` namespace. This is a required configuration even if the images and signatures are in public registries.
    ```yaml
