@@ -468,16 +468,16 @@ You install Convention Servers are part of separate installation procedures. For
     ```yaml
     ---
     registry:
-      server: ${registry_server}
-      repository: ${registry_repository}
+      server: REGISTRY_SERVER
+      repository: REGISTRY_REPOSITORY
     ```
 
 2. Create a imagepullsecret:
 
     ```
-    tanzu imagepullsecret add tanzunet-credentials --registry registry.tanzu.vmware.com --username TANZU-NET-USER --password TANZU-NET-PASSWORD --export-to-all-namespaces || true
+    tanzu imagepullsecret add registry-credentials --registry <REGISTRY> --username <REGISTRY_USERNAME> --password <REGISTRY_PASSWORD> --export-to-all-namespaces || true
     ```
-    Where `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for Tanzu Network.
+    You need to create a secret called registry-credentials with the credentials for the registry that you want the supply chain to use.
 
 4. Install the package by running:
 
