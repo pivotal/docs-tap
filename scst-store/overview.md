@@ -1,10 +1,10 @@
 # Supply Chain Security Tools for VMware Tanzu – Store
 
-SCST - Store’s enables faster identification of vulnerable software packages by providing a CLI to query image, package, and vulnerability relationships after the [SCST - Scan] has run source code and image vulnerability scans.
+Supply Chain Security Tools - Store’s identifies vulnerable software packages by providing a CLI to query image, package, and vulnerability relationships after Supply Chain Security Tools - Scan runs source code and image vulnerability scans.
 ​
-The SCST - Store component is designed to integrate seamlessly with the [SCST - Scan component](../scst-scan/overview.md). 
+The Supply Chain Security Tools - Store component is designed to integrate seamlessly with the [Supply Chain Security Tools - Scan component](../scst-scan/overview.md). 
 ​
-The SCST - Store has four components:
+The Supply Chain Security Tools - Store has four components:
 
 * Postgres database
 * API
@@ -20,17 +20,17 @@ See the following pages to begin:
 
 ## Installed Resources
 
-The installation will create the following in your k8s cluster:
+The installation will create the following in your Kubernetes cluster:
 
 * 2 components — an API backend, and a database. Each component includes:
     * service
     * deployment
     * replicaset
     * pod
-* Persistent volume, and persistent volume claim
-* External IP (if you've [customized the deployment configuration](../install.md#install-scst-store) to use `LoadBalancer`)
-* A k8s secret to allow pulling SCST - Store images from a registry
-* A namespace called `metadata-store`
+* Persistent volume, and persistent volume claim.
+* External IP (if you've [customized the deployment configuration](../install.md#install-scst-store) to use `LoadBalancer`).
+* A Kubernetes secret to allow pulling SCST - Store images from a registry.
+* A namespace called `metadata-store`.
 
 # CLI
 
