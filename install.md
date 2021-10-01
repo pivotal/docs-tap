@@ -931,15 +931,18 @@ To install Supply Chain Security Tools - Sign:
    ```
 1. After the webhook is installed and running, create a service account named `registry-credentials` in the `image-policy-system` namespace. This is a required configuration even if the images and signatures are in public registries.
    ```yaml
+    cat <<EOF | kubectl apply -f -
     apiVersion: v1
     kind: ServiceAccount
     metadata:
       name: registry-credentials
       namespace: image-policy-system
+    EOF
     ```
 
 1. If the registry or registries that hold your images and signatures are private, provide the webhook with credentials to access them. You provide these credentials by adding them to the `registry-credentials` service account created above.
     ```yaml
+    cat <<EOF | kubectl apply -f -
     apiVersion: v1
     kind: ServiceAccount
     metadata:
@@ -947,6 +950,7 @@ To install Supply Chain Security Tools - Sign:
       namespace: image-policy-system
     imagePullSecrets:
     - name: SECRET
+    EOF
     ```
     Where `SECRET` is a secret that allows the webhook to access the private registry. Add additional secrets to `imagePullSecrets` as required.
 
@@ -988,6 +992,7 @@ To install Supply Chain Security Tools - Sign:
    * For a quicker installation process in a non-production environment, VMware recommends you use the following YAML to create the `ClusterImagePolicy`. This YAML includes a cosign public key, which signed the cosign image at v1.2.1. The cosign public key validates the specified cosign image. You can also add additional namespaces to exclude in the `verification.exclude.resources.namespaces` section, such as any system namespaces.
        ```yaml
        ---
+       cat <<EOF | kubectl apply -f -
        apiVersion: signing.run.tanzu.vmware.com/v1alpha1
        kind: ClusterImagePolicy
        metadata:
@@ -1009,6 +1014,7 @@ To install Supply Chain Security Tools - Sign:
            - namePattern: gcr.io/projectsigstore/cosign*
              keys:
              - name: cosign-key
+        EOF
        ```
 
        (Optional) Run the following commands to test the webhook if you are using the `cosign-key`:
