@@ -240,13 +240,13 @@ To accept EULAs:
       [Tanzu Build Service Dependencies](https://network.tanzu.vmware.com/products/tbs-dependencies/),
       [Buildpacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-buildpacks-suite), and
       [Stacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-stacks-suite)
-
+<!---
     + [API Portal for VMWare Tanzu](https://network.tanzu.vmware.com/products/api-portal/)
     + [Cloud Native Runtimes](https://network.tanzu.vmware.com/products/serverless/)
     + [Application Accelerator](https://network.tanzu.vmware.com/products/app-accelerator/)
     + [Application Live View](https://network.tanzu.vmware.com/products/app-live-view/)
     + [Supply Chain Security Tools](https://network.tanzu.vmware.com/products/supply-chain-security-tools)
-
+-->
   ![Screenshot of page on Tanzu Network from where you download Tanzu Application Platform packages shows the EULA warning](./images/tap-on-tanzu-net.png)
 
 ##<a id='cli-and-plugin'></a> Install the Tanzu CLI
