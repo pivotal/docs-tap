@@ -45,7 +45,7 @@ If a source report has a local path as the name (ex: `/path/to/code`), the leadi
 { "message": "Not found" }`.
 ```
 
-The URL of the resulting HTTP request is properly escaped. For example, `/api/sources/%2Fpath%2Fto%2Fdir/vulnerabilities`. The rbac-proxy used for authentication, handles this URL in a way that the response is a redirect (ex: `HTTP 301\nLocation: /api/sources/path/to/dir/vulnerabilities`). The Client Lib follows the redirect, making a request to the new URL which does not exist in the store API, resulting in the error message above.
+The URL of the resulting HTTP request is properly escaped. For example, `/api/sources/%2Fpath%2Fto%2Fdir/vulnerabilities`. The rbac-proxy used for authentication, handles this URL in a way that the response is a redirect (ex: `HTTP 301\nLocation: /api/sources/path/to/dir/vulnerabilities`). The Client Lib follows the redirect, making a request to the new URL which does not exist in the Supply Chain Security Tools - Store API, resulting in the error message above.
 
 ## No support for installing in custom namespaces
 

@@ -1,6 +1,6 @@
 # Querying Supply Chain Security Tools - Store
 
-After adding scan reports or SBoMs to the store from the [Supply Chain Security Tools - Scan](../scst-scan/running-scans.md) or [manually](add_cyclonedx_to_store.md), query the store to understand vulnerability, image, and dependency relationships.
+After adding scan reports or SBoMs to the Supply Chain Security Tools - Store from the [Supply Chain Security Tools - Scan](../scst-scan/running-scans.md) or [manually](add_cyclonedx_to_store.md), query the Supply Chain Security Tools - Store to understand vulnerability, image, and dependency relationships.
 ​
 ## Prerequisites
 
@@ -20,7 +20,7 @@ The following instructions follow the CLI, as it is the easiest way to query
 * What dependencies are affected by a specific CVE?
 * How many CVEs does a specific image or dependency contain?
 ​
-## Query the Store
+## Query the Supply Chain Security Tools - Store
 
 Once the CVE report has been created, you can query information about the image using `image get`. We'll need the image's component version from the earlier CycloneDX report. Pass that as a parameter to the `--digest` flag.
 

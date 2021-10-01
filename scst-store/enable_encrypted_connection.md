@@ -1,11 +1,11 @@
-# Enabling an Encrypted Connection to the Store
+# Enabling an Encrypted Connection to the Supply Chain Security Tools - Store
 
 You can enable an encrypted connection using one of the following methods, depending on your service environment:
 
 1. Using `LoadBalancer` 
 1. Using `NodePort` — commonly used with local clusters such as kind, or minikube
 
-After setting the connection, you will get a CA certificate to connect to the store using the CLI or API.
+After setting the connection, you will get a CA certificate to connect to the Supply Chain Security Tools - Store using the CLI or API.
 
 ## Using `LoadBalancer`
 
@@ -67,7 +67,7 @@ Where:
 - `PATH` is the location where you want to save the CA certificate. This file is used later when you [configure the CLI](configure_cli.md).
 
 ### Configuring Portforwarding
-When using `NodePort`, you need to configure port forwarding for the service in order for the CLI to access the store. Run:
+When using `NodePort`, you need to configure port forwarding for the service in order for the CLI to access the Supply Chain Security Tools - Store. Run:
 
 ```sh
 $ kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store
