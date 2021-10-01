@@ -151,6 +151,8 @@ To install any package from the Tanzu Application Platform package repository:
     + [Install Application Accelerator](#install-app-accelerator)
     + [Install Convention Service](#install-convention-service)
     + [Install Source Controller](#install-source-controller)
+    + [Install Default Supply Chain](#install-default-supply-chain)
+    + [Install Developer Conventions](#install-developer-conventions)
     + [Install Application Live View](#install-app-live-view)
     + [Install Service Bindings](#install-service-bindings)
     + [Install Tanzu Build Service](#install-tbs)
@@ -440,6 +442,86 @@ You install Convention Servers are part of separate installation procedures. For
     ```
     STATUS should be `Running`.
     
+## <a id='install-default-supply-chain'></a> Install Default Supply Chain
+
+1. Follow the instructions in [Install Packages](#install-packages) above.
+
+    ```bash
+    tanzu package available get default-supply-chain.tanzu.vmware.com/0.2.0 --values-schema -n tap-install
+    ```
+
+    For example:
+    ```console
+    $ tanzu package available get default-supply-chain.tanzu.vmware.com/0.2.0 --values-schema -n tap-install
+    | Retrieving package details for default-supply-chain.tanzu.vmware.com/0.2.0... 
+      KEY                  DEFAULT                  TYPE    DESCRIPTION          
+      registry.repository  sample-repo              string  Registry repository  
+      registry.server      https://yourregistry.io  string  registry hostname 
+    ```
+
+2. Gather the values schema.
+
+3. Create a `default-supply-chain-values.yaml` using the following sample as a guide:
+    
+    Sample `default-supply-chain-values.yaml` for Default Supply Chain:
+
+    ```yaml
+    registry:
+      server: ${registry_server}
+      repository: ${registry_repository}")
+    ```
+
+2. Create a imagepullsecret:
+
+    ```
+    tanzu imagepullsecret add tanzunet-credentials --registry registry.tanzu.vmware.com --username TANZU-NET-USER --password TANZU-NET-PASSWORD --export-to-all-namespaces || true
+    ```
+    Where `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for Tanzu Network.
+
+4. Install the package by running:
+
+     ```bash
+    tanzu package install default-supply-chain \
+      --package-name default-supply-chain.tanzu.vmware.com \
+      --version 0.2.0 \
+      --namespace tap-install \
+      --values-file default-supply-chain-values.yaml
+    ```
+
+## <a id='install-developer-conventions'></a> Install Developer Conventions
+
+1. Follow the instructions in [Install Packages](#install-packages) above.
+
+    ```bash
+    tanzu package available get developer-conventions.tanzu.vmware.com/0.2.0 -n tap-install
+    ```
+    For example:
+    ```console
+    $ tanzu package available get developer-conventions.tanzu.vmware.com/0.2.0 -n tap-install
+    \ Retrieving package details for developer-conventions.tanzu.vmware.com/0.2.0... 
+    NAME:                             developer-conventions.tanzu.vmware.com
+    VERSION:                          0.2.0
+    RELEASED-AT:                      
+    DISPLAY-NAME:                     Tanzu App Platform Develooper Conventions
+    SHORT-DESCRIPTION:                Developer Conventions
+    PACKAGE-PROVIDER:                 VMware
+    MINIMUM-CAPACITY-REQUIREMENTS:    
+    LONG-DESCRIPTION:                 Tanzu App Platform Developer Conventions
+    MAINTAINERS:                      [{Lisa Burns} {Paul Warren} {Harsha Nandiwada} {Kiwi Bui} {Ming Xiao} {Anthony Pensiero}]
+    RELEASE-NOTES:                    Developer Conventions contents package
+
+    LICENSE:                          []
+    SUPPORT:                          https://tanzu.vmware.com/support
+    CATEGORY:                         []
+    ```
+
+2. Install the package by running:
+     ```bash
+    tanzu package install developer-conventions \
+      --package-name developer-conventions.tanzu.vmware.com \
+      --version 0.2.0 \
+      --namespace tap-install
+    ```
 
 ## <a id="install-app-live-view"></a>Install Application Live View
 
