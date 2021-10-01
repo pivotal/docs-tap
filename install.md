@@ -141,7 +141,8 @@ To install any package from the Tanzu Application Platform package repository:
     $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
     ```
     
-    Note:  This step is required only if you want to make changes to the default installation settings. Please refer to the individual product documentation to know more above values schema options.
+    Note:  This step is required only if you want to make changes to the default installation settings.
+    For more information about values schema options, see the individual product documentation.
     
     
 
@@ -317,6 +318,8 @@ They are only used for configuration of non-standard installs.
     USEFUL-ERROR-MESSAGE:    
     ```
     STATUS should be Reconcile succeeded.
+
+5. To access the Application Accelerator UI, please refer to the [Application Accelerator for VMware Tanzu documentation](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.3/acc-docs/GUID-installation-install.html#using-application-accelerator-for-vmware-tanzu-0).
 
 ## <a id='install-convention-service'></a> Install Convention Service 
 
@@ -594,7 +597,7 @@ To install Tanzu Build Service using the Tanzu CLI:
 
 1.  Install the package by running:
     ```bash
-    tanzu package install tbs -p buildservice.tanzu.vmware.com -v 1.3.0 -n tap-install -f tbs-values.yaml --poll-duration 30m
+    tanzu package install tbs -p buildservice.tanzu.vmware.com -v 1.3.0 -n tap-install -f tbs-values.yaml --poll-timeout 30m
     ```
     **Note**: Installing the `buildservice.tanzu.vmware.com` package with Tanzu Net credentials automatically relocates buildpack dependencies to your cluster. This install process can take some time.  The command provided above increases the timeout duration to account for this.  If the command still times out, periodically run the installation verification step provided below because image relocation will continue in the background.   
 
