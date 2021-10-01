@@ -1,12 +1,13 @@
 # Release Notes
 
-This topic contains release notes for Supply Chain Security Tools for VMware Tanzu – Scan
+This topic contains release notes for Supply Chain Security Tools for Tanzu – Scan
 
-**Releases**
+## Releases
 
-v1.0.0-beta.0
+### v1.0.0-beta.1
 
-**Release Date**: October XX, 2021
+**Release Date:** October 07, 2021
 
-Initial release.
+## Additional Considerations
 
+* Our scanner templates require internet access to download the vulnerability database at scan time.

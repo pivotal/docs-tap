@@ -4,5 +4,7 @@ This is the table of contents from which the Supply Chain Choreographer (SCC) fo
 
 - [About SCC](about.md)
 - [Installing SCC](install.md)
+- [Uninstalling SCC](uninstall.md)
 - [Spec Reference](reference.md)
-- [SCC Examples](examples.md)
+- [Default Supply Chains](default-supply-chains.md)
+- [Release Notes](release-notes.md)

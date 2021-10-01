@@ -64,7 +64,7 @@ For more information, refer to [Observing and Troubleshooting](../observing.md).
 kubectl apply -f public-blob-source-example.yaml
 ```
 
-## See the Results
+## See the Scan Status
 Once the scan has completed, perform:
 ```bash
 kubectl describe sourcescan public-blob-source-example
@@ -77,3 +77,6 @@ For more information, refer to [Viewing and Understanding Scan Status Conditions
 ```bash
 kubectl delete -f public-blob-source-example.yaml
 ```
+
+## Viewing Vulnerability Reports
+See [Viewing Vulnerability Reports](../viewing-reports.md) section

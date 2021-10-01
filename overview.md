@@ -2,6 +2,10 @@
 
 ## <a id='overview'></a> Overview of Tanzu Application Platform
 
+<p class="note warning">
+<strong>Warning:</strong> Tanzu Application Platform is currently in beta and is intended for evaluation and test purposes.
+</p>
+
 Tanzu Application Platform is a packaged set of components that helps
 developers and operators to more easily build, deploy, and manage apps
 on a Kubernetes platform.
@@ -41,19 +45,18 @@ This reduces the complexity of deploying apps on Kubernetes
 by enabling operators to better automate and standardize the outer loop,
 while allowing developers more time to focus on code.
 
-## <a id='components'></a> Tanzu Application Platform v0.2 (Beta-2) Components
-
-Tanzu Application Platform v0.2 (Beta) includes the following components:
-
 ## Packages in Tanzu Application Platform v0.2
 
 The following packages are available in Tanzu Application Platform:
 
-* API Portal
+* API portal
 * Application Accelerator for VMware Tanzu
 * Application Live View for VMware Tanzu
 * Cloud Native Runtimes for VMware Tanzu
 * Convention Service for VMware Tanzu
+* Default Supply Chain
+* Default Supply Chain with Testing
+* Developer Conventions 
 * SCP Toolkit
 * Service Bindings for Kubernetes
 * Supply Chain Choreographer for VMware Tanzu
@@ -65,20 +68,4 @@ The following packages are available in Tanzu Application Platform:
 
 ## <a id='install'></a> About Installing Tanzu Application Platform v0.2 (Beta-2) Components
 
-You can install the Tanzu Application Platform components in one of two ways:
-
-* **Install as a package bundle (Recommended)**: Installing the components
-as part of the Tanzu Application Platform repo bundle allows you to use the default, recommended
-Tanzu Application Platform experience. To install the Tanzu Application Platform repo bundle, see
-[Installing Tanzu Application Platform](install.html).
-* **Install components individually**: You can also choose to use the
-Tanzu Application Platform components independently of one another on
-an existing Kubernetes platform. For information about how to install
-and use each component, see the documentation for the components listed
-in the table above.
-
-## <a id='use'></a> About Using Tanzu Application Platform v0.2 (Beta-2) Components
-
-To follow a tutorial that shows how to use Tanzu Application Platform
-v0.2 (Beta-2) components to deploy a sample app,
-see [Tutorial: Install and Deploy the Spring Pet Clinic App](tutorial.html).
+To install the Tanzu Application Platform repo bundle, see [Installing Tanzu Application Platform](install-intro.md).

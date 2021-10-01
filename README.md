@@ -24,6 +24,7 @@ JD suggests the following list:
 * Application Accelerator
 * Application Live View
 * Tanzu Build Service (not Service**s**)
+* Tanzu Application Platform (not TAP)
 
 But use the complete product name at first use:
 
@@ -40,11 +41,14 @@ Use this table to keep a running list of terms used and how they should be defin
 
 | Word or phrase | Explanation |
 |----------------|-------------|
+| API portal | The p _is_ supposed to be lowercase. [Pull request #73](https://github.com/pivotal/docs-tap/pull/73#issue-1011334602).|
 | components | The individual products available in the TAP SKU. For example, Cloud Native Runtimes is a component of TAP. Not: add-ons or capabilities.|
 | packageRepository | Is a definition. Variations found in original doc (Package repository, PackageRepository, packagerepository) but standardize on the one shown. 2021.08.26 |
 | PackageRepositories | Don't use. There is really only one packageRepository of interest for this page. |
 | packageRepository custom resource | Because we don't use CR in other Kubernetes docs, spell out custom resource here too. An example of the packageRepository custom resource is given in the YAML file named `tap-package-repo.yaml`.|
 | packageRepository pull | Just means pulling the packages from the repository|
+| Supply Chain Security Tools - Store | Not SCST - Store |
+| Supply Chain Security Tools - Scan | Not SCST - Scan |
 | Tanzu Kubernetes Grid | Never use TKGm in customer facing documentation. |
 | TAP repo bundle | Decided on lowercase and not "TAP Repo Bundle".|
 | TAP packages | Right now there are three packages: one for each component. The three packages make up the bundle. The bundle is stored in the the TAP package repository. Although "Tanzu Application Platform packages" is in the original google doc, let's use "TAP packages" for consistency.|
@@ -100,7 +104,7 @@ git pull ; rm docs.zip ; zip -r docs.zip images/ VMwarePub.yaml *.md
 Form fields for beta-1: 
 |field|value|
 |---|---|
-|Publication name:   |`VMware Tanzu Application Platform`|
+|Publication name:   |`VMware Tanzu Application Platform v0.1`|
 |Product name:       |`VMware Tanzu Application Platform`|
 |Version:            |`0.1`|
 |Publication GUID:   |`tap-0-1`|
