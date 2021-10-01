@@ -15,7 +15,7 @@ $ kubectl logs pod/metadata-store-app-* -n metadata-store -c metadata-store-app
 ### Solution
 
 If you see the error above, you have changed the database password between deployments, which is not supported. If you need to change the password, follow the steps to [remove the delete the data in the volume](known_issues.md#persistent-volume-retains-data). 
-> **Warning:** Changing the database password will delete your SCST - Store data.
+> **Warning:** Changing the database password will delete your Supply Chain Security Tools - Store data.
 
 ## <a id='persistent-volume-retains-data'></a> Persistent Volume Retains Data
 

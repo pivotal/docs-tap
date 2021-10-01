@@ -16,7 +16,7 @@ Currently, there is support for the Cyclone DX XML SBoM formats.
 See the following pages to begin:
 
 * [TAP instructions for installing packages](../install.md#install-scst-store)
-* [Using SCST - Store](using_metadata_store.md)
+* [Using Supply Chain Security Tools - Store](using_metadata_store.md)
 
 ## Installed Resources
 
@@ -29,7 +29,7 @@ The installation will create the following in your Kubernetes cluster:
     * pod
 * Persistent volume, and persistent volume claim.
 * External IP (if you've [customized the deployment configuration](../install.md#install-scst-store) to use `LoadBalancer`).
-* A Kubernetes secret to allow pulling SCST - Store images from a registry.
+* A Kubernetes secret to allow pulling Supply Chain Security Tools - Store images from a registry.
 * A namespace called `metadata-store`.
 
 # CLI
