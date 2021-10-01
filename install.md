@@ -312,7 +312,7 @@ To install Application Accelerator:
 
  **Prerequisite**: 
  
-    - Cert-manager installed on the cluster. See [Install Prerequisites](install-general.md#prereqs).
+  Cert-manager installed on the cluster. See [Install Prerequisites](install-general.md#prereqs).
 
  1. Follow the instructions in [Install Packages](#install-packages) above.
 
@@ -363,7 +363,7 @@ To install Application Accelerator:
 
  **Prerequisite**: 
  
-    - Fluxcd Source Controller installed on the cluster. See [Install Prerequisites](install-general.md#prereqs).
+  Fluxcd Source Controller installed on the cluster. See [Install Prerequisites](install-general.md#prereqs).
 
  1. Follow the instructions in [Install Packages](#install-packages) above.
 
