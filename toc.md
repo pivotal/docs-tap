@@ -39,3 +39,6 @@ This is the table of contents from which the Tanzu Application Platform Document
             * [`insight` commands](scst-store/cli_docs/insight.md)
         * [API docs](scst-store/api.md)
         * [Troubleshooting and Known Issues](scst-store/known_issues.md)
+    * [Tanzu Developer Tools for VSCode](vscode-extension/about.md)
+        * [How to Install the VSCode Tanzu Extension](vscode-extension/install.md)
+        * [Using Tanzu Developer Tools for VSCode](vscode-extension/usage.md)
