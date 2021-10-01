@@ -318,6 +318,8 @@ They are only used for configuration of non-standard installs.
     ```
     STATUS should be Reconcile succeeded.
 
+5. To access the Application Accelerator UI, please refer to the [Application Accelerator for VMware Tanzu documentation](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.3/acc-docs/GUID-installation-install.html#using-application-accelerator-for-vmware-tanzu-0).
+
 ## <a id='install-convention-service'></a> Install Convention Service 
 
  Use the following procedure to install Convention Service.
