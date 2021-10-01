@@ -1,11 +1,10 @@
 # Getting Started with the API
 
-See [full API documentation](api.md).
-
+This topic includes an example API call. For information about using the Supply Chain Security Tools - Store API, see [full API documentation](api.md).
 
 ## Example API Call
 
-To POST a new image report to the store using the endpoint `/api/imageReport`, the raw body would look as follows:
+To POST a new image report to the store using the endpoint `/api/imageReport`, the raw body would look like the following example:
 ```json
 {
   "Name" : "burger-image-2",
