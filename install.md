@@ -60,14 +60,18 @@ To add the Tanzu Application Platform package repository:
 5. Get status of the Tanzu Application Platform package repository, and ensure the status updates to `Reconcile succeeded` by running:
 
     ```
-    tanzu package repository list --namespace tap-install
+    tanzu package repository get tanzu-tap-repository --namespace tap-install
     ```
     For example:
     ```
-    $ tanzu package repository list --namespace tap-install
-    - Retrieving repositories...
-      NAME                  REPOSITORY                                                         STATUS               DETAILS
-      tanzu-tap-repository  registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.2.0  Reconcile succeeded
+    $ tanzu package repository get tanzu-tap-repository --namespace tap-install
+    - Retrieving repository tap... 
+    NAME:          tanzu-tap-repository
+    VERSION:       5712276
+    REPOSITORY:    registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.2.0
+    STATUS:        Reconcile succeeded
+    REASON:        
+
     ```
 
 6. List the available packages by running:
