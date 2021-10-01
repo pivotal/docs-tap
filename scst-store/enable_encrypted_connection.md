@@ -5,7 +5,7 @@ Depending on how your service's environment, you can enable an encrypted connect
 1. Using `LoadBalancer` 
 1. Using `NodePort` — commonly used with local clusters such as kind, or minikube
 
-After setting the connection, you'll get a CA certificate with which you can use to connect to the metadata store using the CLI or API.
+After setting the connection, you'll get a CA certificate with which you can use to connect to the store using the CLI or API.
 
 ## Using `LoadBalancer`
 
