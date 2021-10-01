@@ -5,7 +5,7 @@ See [full API documentation](api.md).
 
 ## Example API Call
 
-To POST a new image report to the metadata store using the endpoint `/api/imageReport`, the raw body would look as follows:
+To POST a new image report to the store using the endpoint `/api/imageReport`, the raw body would look as follows:
 ```json
 {
   "Name" : "burger-image-2",

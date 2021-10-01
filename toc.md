@@ -33,7 +33,7 @@ This is the table of contents from which the Tanzu Application Platform Document
             * [Prerequisite - Configure the CLI](scst-store/configure_cli.md)
             * [Querying SCST - Store](scst-store/querying_the_metadata_store.md)
             * [Add CycloneDX reports to the SCST - Store](scst-store/add_cyclonedx_to_store.md)
-            * [Use the Metadata Store API directly](scst-store/getting_started_api.md)
+            * [Use the store API directly](scst-store/getting_started_api.md)
         * [CLI](scst-store/cli.md)
             * [Configure the CLI](scst-store/configure_cli.md)
             * [`insight` commands](scst-store/cli_docs/insight.md)

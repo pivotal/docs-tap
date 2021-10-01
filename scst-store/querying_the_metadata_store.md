@@ -6,7 +6,7 @@ After adding scan reports or SBoMs to the store from the [SCST - Scan](../scst-s
 
 Besides the prerequisites from the page [SCST - Store](using_metadata_store.md), make sure you've [installed SCST - Scan](../install.md#install-scst-scan).
 
-## Different methods of querying
+## Different Methods of Querying
 There are two different ways of querying the database
 
 * CLI
@@ -14,13 +14,13 @@ There are two different ways of querying the database
 
 The following instructions follow the CLI, as it is the easiest way to query
 ​
-## Example use cases supported by the Metadata Store queries
+## Example Use Cases Supported by SCST - Store Queries
 
 * What images contain a specific dependency?
 * What dependencies are affected by a specific CVE?
 * How many CVEs does a specific image or dependency contain?
 ​
-## Query the Metadata Store
+## Query the Store
 
 Once the CVE report has been created, you can query information about the image using `image get`. We'll need the image's component version from the earlier CycloneDX report. Pass that as a parameter to the `--digest` flag.
 

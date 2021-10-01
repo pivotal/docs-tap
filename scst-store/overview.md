@@ -16,7 +16,7 @@ Currently, there is support for the Cyclone DX XML SBoM formats.
 See the following pages to begin:
 
 * [TAP instructions for installing packages](../install.md#install-scst-store)
-* [Using the Metadata Store](using_metadata_store.md)
+* [Using SCST - Store](using_metadata_store.md)
 
 ## Installed Resources
 
@@ -29,7 +29,7 @@ The installation will create the following in your k8s cluster:
     * pod
 * Persistent volume, and persistent volume claim
 * External IP (if you've [customized the deployment configuration](../install.md#install-scst-store) to use `LoadBalancer`)
-* A k8s secret to allow pulling metadata store images from a registry
+* A k8s secret to allow pulling SCST - Store images from a registry
 * A namespace called `metadata-store`
 
 # CLI
