@@ -10,7 +10,7 @@ This is the table of contents from which the Supply Chain Security Tools – Sca
     * [Running a Sample Public Source Scan of a Blob](samples/blob.md)
     * [Running a Sample Private Image Scan](samples/private-image.md)
     * [Running a Sample Private Source Scan](samples/private-source.md)
-* [Viewing Vulnerability Reports](viewing-reports.md)
+* [Viewing Vulnerability Results](viewing-reports.md)
 * [Observing and Troubleshooting](observing.md)
 * [Incorporating into CI/CD Pipelines](#incorporating-into-cicd-pipelines)
 * [Next Steps and Further Information](#next-steps-and-further-information)
