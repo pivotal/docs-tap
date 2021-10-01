@@ -41,11 +41,12 @@ To add the Tanzu Application Platform package repository:
 3. Add Tanzu Application Platform package repository to the cluster by running:
 
     ```
-    tanzu package repository add tanzu-tap-repository --url TAP-REPO-IMGPKG --namespace tap-install
+    tanzu package repository add tanzu-tap-repository \
+        --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:TAP-VERSION \
+        --namespace tap-install
     ```
 
-    Where TAP-REPO-IMGPKG is the Tanzu Application Platform repo bundle artifact reference.
-
+    Where `TAP-VERSION` is the version of Tanzu Application Platform you want to install. 
     For example:
     ```
     $ tanzu package repository add tanzu-tap-repository \
