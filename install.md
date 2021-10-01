@@ -906,8 +906,8 @@ different supply chain, the currently installed one must be first uninstalled**
 ```bash
 SUPPLY_CHAIN_VERSION=0.2.0
 
-tanzu package install default-supply-chain \
-  --package-name default-supply-chain.tanzu.vmware.com \
+tanzu package install default-supply-chain-testing \
+  --package-name default-supply-chain-testing.tanzu.vmware.com \
   --namespace tap-install \
   --version $SUPPLY_CHAIN_VERSION \
   --values-file <(echo "---
@@ -916,9 +916,9 @@ registry:
   repository: myorg")
 ```
 ```console
-| Installing package 'default-supply-chain.tanzu.vmware.com'
+| Installing package 'default-supply-chain-testing.tanzu.vmware.com'
 ..
- Added installed package 'default-supply-chain' in namespace 'default'
+ Added installed package 'default-supply-chain-testing' in namespace 'default'
 ```
 
 ## <a id='install-scst-store'></a> Install Supply Chain Security Tools - Store
