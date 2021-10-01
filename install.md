@@ -160,7 +160,7 @@ To install any package from the Tanzu Application Platform package repository:
     + [Install Supply Chain Security Tools - Sign](#install-scst-sign)
     + [Install Supply Chain Security Tools - Scan](#install-scst-scan)
     + [Install API portal](#install-api-portal)
-    + [Install SCP Toolkit](#install-scp-toolkit)
+    + [Install Services Control Plane (SCP) Toolkit](#install-scp-toolkit)
 
 
 ## <a id='install-cnr'></a> Install Cloud Native Runtimes
@@ -1241,7 +1241,7 @@ To install Supply Chain Security Tools - Scan (Grype Scanner):
 
 5. Visit [API portal for VMware Tanzu](https://docs.pivotal.io/api-portal/1-0/) for more information about API portal.
 
-## Install SCP Toolkit
+## Install Services Control Plane (SCP) Toolkit
 
 To install SCP Toolkit:
 
