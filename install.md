@@ -316,7 +316,9 @@ To install Application Accelerator:
  2. Install the package. Run:
 
     ```bash
-    $ tanzu package install convention-controller -p controller.conventions.apps.tanzu.vmware.com -v 0.4.2 -n tap-install
+    tanzu package install convention-controller -p controller.conventions.apps.tanzu.vmware.com -v 0.4.2 -n tap-install
+    ```
+    ```bash
     / Installing package 'controller.conventions.apps.tanzu.vmware.com'
     | Getting namespace 'tap-install'
     - Getting package metadata for 'controller.conventions.apps.tanzu.vmware.com'
@@ -331,7 +333,9 @@ To install Application Accelerator:
  3. Verify the package install by running:
 
     ```bash
-    $ tanzu package installed get convention-controller -n tap-install
+    tanzu package installed get convention-controller -n tap-install
+    ```
+    ```bash
     Retrieving installation details for convention-controller...
     NAME:                    convention-controller
     PACKAGE-NAME:            controller.conventions.apps.tanzu.vmware.com
@@ -367,7 +371,9 @@ To install Application Accelerator:
  2. Install the package. Run:
 
     ```bash
-    $ tanzu package install source-controller -p controller.source.apps.tanzu.vmware.com -v 0.1.2 -n tap-install
+    tanzu package install source-controller -p controller.source.apps.tanzu.vmware.com -v 0.1.2 -n tap-install
+    ```
+    ```bash
     / Installing package 'controller.source.apps.tanzu.vmware.com'
     | Getting namespace 'tap-install'
     - Getting package metadata for 'controller.source.apps.tanzu.vmware.com'
@@ -383,7 +389,9 @@ To install Application Accelerator:
  3. Verify the package install by running:
  
     ```bash
-    $ tanzu package installed get source-controller -n tap-install
+    tanzu package installed get source-controller -n tap-install
+    ```
+    ```bash
     Retrieving installation details for sourcer-controller...
     NAME:                    sourcer-controller
     PACKAGE-NAME:            controller.source.apps.tanzu.vmware.com
@@ -476,7 +484,9 @@ To install Application Live View:
  2. Install the package. Run:
 
     ```bash
-    $ tanzu package install service-bindings -p service-bindings.labs.vmware.com -v 0.5.0 -n tap-install
+    tanzu package install service-bindings -p service-bindings.labs.vmware.com -v 0.5.0 -n tap-install
+    ```
+    ```bash
     / Installing package 'service-bindings.labs.vmware.com'
     | Getting namespace 'tap-install'
     - Getting package metadata for 'service-bindings.labs.vmware.com'
@@ -492,7 +502,9 @@ To install Application Live View:
  3. Verify the package install by running:
 
     ```bash
-    $ tanzu package installed get service-bindings -n tap-install
+    tanzu package installed get service-bindings -n tap-install
+    ```
+    ```bash
     - Retrieving installation details for service-bindings...
     NAME:                    service-bindings
     PACKAGE-NAME:            service-bindings.labs.vmware.com
@@ -507,7 +519,7 @@ To install Application Live View:
     ```
     For example:
     ```bash
-    $ kubectl get pods -n source-system
+    $ kubectl get pods -n service-bindings
     NAME                       READY   STATUS    RESTARTS   AGE
     manager-6d85fffbcd-j4gvs   1/1     Running   0          22s
     ```
