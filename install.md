@@ -223,10 +223,7 @@ To install Cloud Native Runtimes:
 
 To install Application Accelerator:
 
-**Prerequisite**: Flux installed on the cluster.
-For how to install Flux,
-see [Install Flux2](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.2/acc-docs/GUID-installation-install.html#install-flux2-2)
-in the Application Accelerator documentation.
+**Prerequisite**: Flux SourceController installed on the cluster. See [Install Prerequisites](install-general.md#prereqs).
 
 1. Follow the instructions in [Install Packages](#install-packages) above.
 
