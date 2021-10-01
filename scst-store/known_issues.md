@@ -2,7 +2,7 @@
 
 ## `CrashLoopBackOff` from `password authentication failed`
 
-If the metadata store doesn't start up, look for the following error in the logs of the `metadata-store-app` pod:
+If SCST - Store doesn't start up, look for the following error in the logs of the `metadata-store-app` pod:
 
 ```sh
 $ kubectl logs pod/metadata-store-app-* -n metadata-store -c metadata-store-app
@@ -14,7 +14,7 @@ If that's the case, it might be because you've changed the database password bet
 
 ## <a id='persistent-volume-retains-data'></a> Persistent Volume Retains Data
 
-If the Metadata Store is deployed, deleted and redeployed, the `metadata-store-db` pod may fail to start up if the database password changed during redeployment. This is due to the persistent volume used by postgres retaining old data, even though the retention policy is set to `DELETE`.
+If SCST - Store is deployed, deleted and redeployed, the `metadata-store-db` pod may fail to start up if the database password changed during redeployment. This is due to the persistent volume used by postgres retaining old data, even though the retention policy is set to `DELETE`.
 
 In the meantime, to prevent this issue, if the app needs to be redeployed, either use the same database password, or follow these steps to erase the data on the volume:
 
@@ -33,7 +33,7 @@ where:
 
 If a source report has a local path as the name (ex: `/path/to/code`), the leading `/` on the resulting repository name will cause the querying (packages & vulnerabilities) to return an error from the client lib and the CLI. The error message is `{ "message": "Not found" }`.
 
-The URL of the resulting HTTP request is properly escaped (ex: `/api/sources/%2Fpath%2Fto%2Fdir/vulnerabilities`), but the rbac-proxy used for authentication, handles this URL in a way that the response is a redirect (ex: `HTTP 301\nLocation: /api/sources/path/to/dir/vulnerabilities`). The Client Lib follows the redirect, making a request to the new URL which does not exist in the Metadata Store API, thus resulting in the mentioned error message.
+The URL of the resulting HTTP request is properly escaped (ex: `/api/sources/%2Fpath%2Fto%2Fdir/vulnerabilities`), but the rbac-proxy used for authentication, handles this URL in a way that the response is a redirect (ex: `HTTP 301\nLocation: /api/sources/path/to/dir/vulnerabilities`). The Client Lib follows the redirect, making a request to the new URL which does not exist in the store API, thus resulting in the mentioned error message.
 
 ## No support for installing in custom namespaces
 

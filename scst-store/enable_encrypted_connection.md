@@ -5,7 +5,11 @@ You can enable an encrypted connection using one of the following methods, depen
 1. Using `LoadBalancer` 
 1. Using `NodePort` — commonly used with local clusters such as kind, or minikube
 
+<<<<<<< HEAD
 After you set the connection, you will get a CA certificate to connect to the metadata store using the CLI or API.
+=======
+After setting the connection, you'll get a CA certificate with which you can use to connect to the store using the CLI or API.
+>>>>>>> b51c3cba284169f8c8e830a8cf6e1f2d806bd36e
 
 ## Using `LoadBalancer`
 

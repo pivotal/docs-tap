@@ -37,37 +37,31 @@ The following prerequisites are required to install Tanzu Application Platform:
       
 
     * To Verify installed kapp-controller version:
-
+      
       1. Get kapp-controller deployment and namespace by running:
-
-
-        ```
-        kubectl get deployments -A | grep kapp-controller
-        ```
-        For example:
-        ```
-        kubectl get deployments -A | grep kapp-controller
-        NAMESPACE                NAME                             READY   UP-TO-DATE   AVAILABLE   AGE
-        kapp-controller          kapp-controller                  1/1     1            1           25h   
-        ```
-
-
+         ```
+         kubectl get deployments -A | grep kapp-controller
+         ```
+         
+         For example:
+         ```
+         kubectl get deployments -A | grep kapp-controller
+         NAMESPACE                NAME                             READY   UP-TO-DATE   AVAILABLE   AGE
+         kapp-controller          kapp-controller                  1/1     1            1           25h   
+         ```
       2. Get kapp controller version by running:
+         ```
+         kubectl get deployment KC-DEPLOYMENT -n KC-NAMESPACE -o yaml | grep kapp-controller.carvel.dev/version
+         ```
 
+         Where `KC-DEPLOYMENT` and `KC-NAMESPACE` are kapp-controller deployment name and kapp-controller namespace name respectively from the output of step 1.
 
-        ```
-        kubectl get deployment KC-DEPLOYMENT -n KC-NAMESPACE -o yaml | grep kapp-controller.carvel.dev/version
-        ```
-
-        Where `KC-DEPLOYMENT` and `KC-NAMESPACE` are kapp-controller deployment name and kapp-controller namespace name respectively from the output of step 1.
-
-        For example:
-
-        ```
-        kubectl get deployment kapp-controller -n kapp-controller  -o yaml | grep kapp-controller.carvel.dev/version
-        kapp-controller.carvel.dev/version: v0.24.0
-        kapp.k14s.io/original: '{"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{"kapp-controller.carvel.dev/version":"v0.24.0","kbld.k14s.io/images":"-
-        ```
+         For example:
+         ```
+         kubectl get deployment kapp-controller -n kapp-controller  -o yaml | grep kapp-controller.carvel.dev/version
+         kapp-controller.carvel.dev/version: v0.24.0
+         kapp.k14s.io/original: '{"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{"kapp-controller.carvel.dev/version":"v0.24.0","kbld.k14s.io/images":"-
+         ```
 
 
 * **secretgen-controller v0.5.0** or later:
@@ -88,32 +82,28 @@ The following prerequisites are required to install Tanzu Application Platform:
     * To Verify installed secretgen-controller version:
 
       1. Get secretgen-controller deployment and namespace by running:
-
-
-        ```
-        kubectl get deployments -A | grep secretgen-controller
-        ```
-        For example:
-        ```
-        kubectl get deployments -A | grep secretgen-controller
-        NAMESPACE                NAME                             READY   UP-TO-DATE   AVAILABLE   AGE
-        secretgen-controller     secretgen-controller             1/1     1            1           22d   
-        ```
+         ```
+         kubectl get deployments -A | grep secretgen-controller
+         ```
+         For example:
+         ```
+         kubectl get deployments -A | grep secretgen-controller
+         NAMESPACE                NAME                             READY   UP-TO-DATE   AVAILABLE   AGE
+         secretgen-controller     secretgen-controller             1/1     1            1           22d   
+         ```
 
       2. Get secretgen-controller version by running:
+         ```
+         kubectl get deployment SG-DEPLOYMENT -n SG-NAMESPACE -o yaml | grep secretgen-controller.carvel.dev/version
+         ```
+         Where `SG-DEPLOYMENT` and `SG-NAMESPACE` are secretgen-controller deployment name and secretgen-controller namespace name respectively from the output of step 1.
 
+         For example:
 
-        ```
-        kubectl get deployment SG-DEPLOYMENT -n SG-NAMESPACE -o yaml | grep secretgen-controller.carvel.dev/version
-        ```
-        Where `SG-DEPLOYMENT` and `SG-NAMESPACE` are secretgen-controller deployment name and secretgen-controller namespace name respectively from the output of step 1.
-
-        For example:
-
-        ```
-        kubectl get deployment secretgen-controller -n secretgen-controller -oyaml | grep secretgen-controller.carvel.dev/version
-        secretgen-controller.carvel.dev/version: v0.5.0
-        ```
+         ```
+         kubectl get deployment secretgen-controller -n secretgen-controller -oyaml | grep secretgen-controller.carvel.dev/version
+         secretgen-controller.carvel.dev/version: v0.5.0
+         ```
 
 
 
@@ -144,16 +134,22 @@ The following prerequisites are required to install Tanzu Application Platform:
 
 * **Flux-SourceController**:
 
+     * Create namespace `flux-system`
+        
+        ```
+        kubectl create namespace flux-system
+        ```
+     
      * Create clusterrolebinding by running:
 
         ```
         kubectl create clusterrolebinding default-admin \
         --clusterrole=cluster-admin \
-        --serviceaccount=default:default
+        --serviceaccount=flux-system:default
         ```
      * Install Flux-SourceController by running:
         ```
-        kapp deploy --yes -a flux-source-controller \
+        kapp deploy --yes -a flux-source-controller -n flux-system \
         -f https://github.com/fluxcd/source-controller/releases/download/v0.15.4/source-controller.crds.yaml \
         -f https://github.com/fluxcd/source-controller/releases/download/v0.15.4/source-controller.deployment.yaml
         ```
@@ -241,13 +237,8 @@ To accept EULAs:
       [Tanzu Build Service Dependencies](https://network.tanzu.vmware.com/products/tbs-dependencies/),
       [Buildpacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-buildpacks-suite), and
       [Stacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-stacks-suite)
-<!---
-    + [API Portal for VMWare Tanzu](https://network.tanzu.vmware.com/products/api-portal/)
-    + [Cloud Native Runtimes](https://network.tanzu.vmware.com/products/serverless/)
-    + [Application Accelerator](https://network.tanzu.vmware.com/products/app-accelerator/)
-    + [Application Live View](https://network.tanzu.vmware.com/products/app-live-view/)
-    + [Supply Chain Security Tools](https://network.tanzu.vmware.com/products/supply-chain-security-tools)
--->
+    + [API portal for VMware Tanzu](https://network.tanzu.vmware.com/products/api-portal/)
+
   ![Screenshot of page on Tanzu Network from where you download Tanzu Application Platform packages shows the EULA warning](./images/tap-on-tanzu-net.png)
 
 ### <a id='cli-and-plugin'></a> Install the Tanzu CLI
