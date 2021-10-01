@@ -27,9 +27,10 @@ This is the table of contents from which the Tanzu Application Platform Document
         * [Uninstall](scst-scan/uninstall.md)
     * [Supply Chain Tools for Tanzu – Store](scst-store/overview.md)
         * [Using SCST - Store](scst-store/using_metadata_store.md)
-            * Prerequisites
-                * [Enable an encrypted connection to the store](scst-store/enable_encrypted_connection.md)
-                * [Create a service account and get the access token](scst-store/create_service_account_access_token.md)
+            * [Prerequisite - Enable an encrypted connection to the store](scst-store/enable_encrypted_connection.md)
+            * [Prerequisite - Create a service account and get the access token](scst-store/create_service_account_access_token.md)
+            * [Prerequisite- Install the CLI](scst-store/cli.md)
+            * [Prerequisite - Configure the CLI](scst-store/configure_cli.md)
             * [Querying SCST - Store](scst-store/querying_the_metadata_store.md)
             * [Add CycloneDX reports to the SCST - Store](scst-store/add_cyclonedx_to_store.md)
             * [Use the Metadata Store API directly](scst-store/getting_started_api.md)
