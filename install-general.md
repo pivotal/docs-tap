@@ -134,16 +134,22 @@ The following prerequisites are required to install Tanzu Application Platform:
 
 * **Flux-SourceController**:
 
+     * Create namespace `flux-system`
+        
+        ```
+        kubectl create namespace flux-system
+        ```
+     
      * Create clusterrolebinding by running:
 
         ```
         kubectl create clusterrolebinding default-admin \
         --clusterrole=cluster-admin \
-        --serviceaccount=default:default
+        --serviceaccount=flux-system:default
         ```
      * Install Flux-SourceController by running:
         ```
-        kapp deploy --yes -a flux-source-controller \
+        kapp deploy --yes -a flux-source-controller -n flux-system \
         -f https://github.com/fluxcd/source-controller/releases/download/v0.15.4/source-controller.crds.yaml \
         -f https://github.com/fluxcd/source-controller/releases/download/v0.15.4/source-controller.deployment.yaml
         ```
