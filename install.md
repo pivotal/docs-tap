@@ -320,7 +320,7 @@ They are only used for configuration of non-standard installs.
 
 ## <a id='install-convention-service'></a> Install Convention Service 
 
- Use the following procedure to install Convention Service.
+ Convention Service is made of Convention Controller and Convention Server. Convention server defines function to enrich Pod Template Spec by applying set of conventions. Use the following procedure to install Convention Service.
 
  **Prerequisite**: 
  
