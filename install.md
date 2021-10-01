@@ -170,7 +170,9 @@ To install any package from the Tanzu Application Platform package repository:
 To install Cloud Native Runtimes:
 
 1. Follow the instructions in [Install Packages](#install-packages) above.
-
+   If you are running on a multi-node cluster, the defaults should work fine.
+   If you are running on a single-node cluster like kind or minikube, we recommend the `provider: local` option,
+   which reduces resource requirements by using a HostPort service instead of a LoadBalancer and reducing the number of replicas.
 
     ```
     tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema -n tap-install
@@ -189,9 +191,7 @@ To install Cloud Native Runtimes:
       local_dns.domain            <nil>    string   Optional: Set a custom domain for the Knative services.
     ```
 
-2. Gather the values schema.
-
-3. Create a `cnr-values.yaml` using the following sample as a guide:
+2. Create a `cnr-values.yaml` using the following sample as a guide:
 
     Sample `cnr-values.yaml` for Cloud Native Runtimes:
 
@@ -208,10 +208,10 @@ To install Cloud Native Runtimes:
     Then, in the `values.yaml` file, specify values for `ingress.reuse_crds`, `ingress.external.namespace`,
     and `ingress.internal.namespace` as appropriate.
 
-    For a local Kubernetes cluster, set `provider: "local"`.
+    For a local Kubernetes cluster, set `provider: "local"`. You may also want to follow the [local kind configuration guide for Cloud Native Runtimes](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-local-dns.html#configure-your-local-kind-cluster-1).
     For other infrastructures, do not set `provider`.
 
-4. Install the package by running:
+3. Install the package by running:
 
     ```
     tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 1.0.2 -n tap-install -f cnr-values.yaml
@@ -229,7 +229,7 @@ To install Cloud Native Runtimes:
 
      Added installed package 'cloud-native-runtimes' in namespace 'tap-install'
     ```
-5. Verify the package install by running:
+4. Verify the package install by running:
 
     ```
     tanzu package installed get cloud-native-runtimes -n tap-install
