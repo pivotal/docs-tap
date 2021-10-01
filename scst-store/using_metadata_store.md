@@ -1,5 +1,5 @@
 # Using Supply Chain Security Tools - Store
-
+This topic includes walkthroughs for how to use Supply Chain Security Tools - Store.
 ## Prerequisites
 
 * [Enable an encrypted connection to the store](enable_encrypted_connection.md)
@@ -9,7 +9,7 @@
 
 ## Walkthroughs
 
-The following pages include step-by-step walkthroughs and examples of the SCST - Store use cases.
+The following pages include step-by-step walkthroughs and examples of the SCST - Store use cases:
 
 * [Querying SCST - Store](querying_the_metadata_store.md) - query to understand vulnerability, image, and dependency relationships
 * [Add CycloneDX reports to the SCST - Store](add_cyclonedx_to_store.md) - manually add CycloneDX reports to the store
