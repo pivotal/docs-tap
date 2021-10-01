@@ -466,9 +466,10 @@ You install Convention Servers are part of separate installation procedures. For
     Sample `default-supply-chain-values.yaml` for Default Supply Chain:
 
     ```yaml
+    ---
     registry:
       server: ${registry_server}
-      repository: ${registry_repository}")
+      repository: ${registry_repository}"
     ```
 
 2. Create a imagepullsecret:
