@@ -37,4 +37,4 @@ See [CLI](cli.md).
 
 # Known Issues
 
-See [Known Issues](known_issues.md).
+See [Troubleshooting and Known Issues](known_issues.md).
