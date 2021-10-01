@@ -90,15 +90,10 @@ To add the Tanzu Application Platform package repository:
     ```
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> Tanzu CLI updates
 ## <a id='general-procedure-to-install-a-package'></a> General Procedure to Install a Package
 
 To install any package from the Tanzu Application Platform package repository:
 
-<<<<<<< HEAD
 1. List version information for the package by running:
     ```
     tanzu package available list PACKAGE-NAME --namespace tap-install
@@ -116,9 +111,6 @@ To install any package from the Tanzu Application Platform package repository:
     ```
 
 2. Run:
-=======
-1. Run:
->>>>>>> Tanzu CLI updates
     ```
     tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
     ```
