@@ -125,7 +125,7 @@ To install any package from the Tanzu Application Platform package repository:
       cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
     ```
 
-2. Run:
+2. (Optional) To make changes to the default installation settings, run:
     ```
     tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
     ```
@@ -141,7 +141,6 @@ To install any package from the Tanzu Application Platform package repository:
     $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
     ```
     
-    Note:  This step is required only if you want to make changes to the default installation settings.
     For more information about values schema options, see the individual product documentation.
     
     
