@@ -328,18 +328,21 @@ Convention Service allows app operators to enrich Pod Template Specs with operat
 
 Convention Service includes the following components:
 
-+ Convention Controller: Provides metadata to the Convention Server. Implements the update requests from Convention Server.
++ Convention Controller: Provides metadata to Convention Server.
+  Implements the update requests from Convention Server.
 
-+ Convention Server: Receives and evaluates metadata associated with a workload from Convention Controller. Requests updates to the Pod Template Spec associated with that workload.
-There can be one or more Convention Servers for a single Convention Controller instance. 
++ Convention Server: Receives and evaluates metadata associated with a workload from Convention Controller.
+  Requests updates to the Pod Template Spec associated with that workload.
+  There can be one or more Convention Servers for a single Convention Controller instance. 
 
 In the following procedure, you install Convention Controller.
 
 You install Convention Servers are part of separate installation procedures. For example, you install an `app-live-view` Convention Server as part of the `app-live-view` installation. 
 
- **Prerequisite**: 
- 
-  Cert-manager installed on the cluster. See [Install Prerequisites](install-general.md#prereqs).
+ **Prerequisite**: Cert-manager installed on the cluster.
+ See [Install Prerequisites](install-general.md#prereqs).
+
+To install Convention Controller: 
 
  1. Follow the instructions in [Install Packages](#install-packages) above.
 
