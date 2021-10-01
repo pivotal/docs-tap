@@ -323,17 +323,18 @@ They are only used for configuration of non-standard installs.
 
 ## <a id='install-convention-service'></a> Install Convention Service 
 
-The Convention Service enables application operators to enrich Pod Template Specs with operational knowledge based on specific conventions they define.
-The service is comprised of two components:
+Convention Service allows app operators to enrich Pod Template Specs with operational knowledge based on specific conventions they define.
 
-+ The Convention Controller: Provides the metadata to the Convention Server and executes the updates the Convention Server requests.
+Convention Service includes the following components:
 
-+ The Convention Server: Recieves and evaluates metadata associated with a workload and requests updates
-  to the Pod Template Spec associated with that workload.
-  There can be one or more Convention Servers for a single Convention Controller instance. 
++ Convention Controller: Provides metadata to the Convention Server. Implements the update requests from Convention Server.
 
-In the following procedure, the Convention Controller is installed.
-Convention Servers are installed separately, for example, an `app-live-view` convention server is installed as part of the `app-live-view` installation. 
++ Convention Server: Receives and evaluates metadata associated with a workload from Convention Controller. Requests updates to the Pod Template Spec associated with that workload.
+There can be one or more Convention Servers for a single Convention Controller instance. 
+
+In the following procedure, you install Convention Controller.
+
+You install Convention Servers are part of separate installation procedures. For example, you install an `app-live-view` Convention Server as part of the `app-live-view` installation. 
 
  **Prerequisite**: 
  
