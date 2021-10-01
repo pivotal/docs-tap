@@ -1,27 +1,22 @@
 # Configuring the CLI
 
-Before using CLI commands, configure the following:
-1. The location of an access token.
-1. Target endpoint — must be `https://metadata-store-app.metadata-store.svc.cluster.local:<port>`.
-1. The location of the Certificate Authority Cert.
+Before using CLI commands, you need to follow these steps:
+
+1. Get location of an access token
+1. Get location of the Certificate Authority Cert
+1. Setting the Target and Certificate Authority Cert
 
 ## Setting the Access Token with `METADATA_STORE_ACCESS_TOKEN`
 
 To set the access token with `METADATA_STORE_ACCESS_TOKEN`:
 
-1. Create a service account, if you don't already have one. See [Creating Service Accounts and Access Tokens](create_service_account_access_token.md).
+## Certificate Authority Cert
 
-1. Set the `METADATA_STORE_ACCESS_TOKEN` environment variable, or use the `--access-token` flag. VMware does not recommended using the `--access-token` flag, as the token will appear in your shell history. VMware recommends using `METADATA_STORE_ACCESS_TOKEN`.
-
-1. Run the following command to retrieve the access token from Kubernetes and store it in `METADATA_STORE_ACCESS_TOKEN`:
-
-    ```sh
-    $ export METADATA_STORE_ACCESS_TOKEN=$(kubectl get secrets -n metadata-store -o jsonpath="{.items[?(@.metadata.annotations['kubernetes\.io/service-account\.name']=='metadata-store-read-write-client')].data.token}" | base64 -d)
-    ```
-
-1.  Replace `metadata-store-read-write-client` with name of the service account you plan to use.
+See [Enabling an Encrypted Connection](enable_encrypted_connection) for how to obtain the CA certificate
 
 ## Setting the Target and Certificate Authority Cert
+
+The target endpoint must be  — must be `https://metadata-store-app.metadata-store.svc.cluster.local:<port>`.
 
 To set the target and certificate authority cert: 
 

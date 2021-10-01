@@ -39,13 +39,14 @@ To allow your computer to run the binary, perform the following steps:
 # Setup
 To set up the CLI:
 
+Be sure to have the prerequisites from [Using Supply Chain Security Tools - Store](using_metadata_store.md#prerequisites):
 * [Enable an encrypted connection to the store](enable_encrypted_connection.md)
 * [Create a user and get an access token](create_service_account_access_token.md)
 * [Configure the CLI](configure_cli.md)
 
 # Usage
 
-See [Using Supply Chain Security Tools - Store](using_metadata_store.md)
+See [Using Supply Chain Security Tools - Store](using_metadata_store.md#getting-started) for different ways to incorporate the CLI into a workflow.
 
 After the setup, you should be able to run use the CLI and get information that is stored in the database. Use `--help` option to get the available commands.
 
