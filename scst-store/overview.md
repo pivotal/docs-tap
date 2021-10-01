@@ -1,8 +1,8 @@
-# Supply Chain Tools for Tanzu – Store
+# Supply Chain Security Tools for VMware Tanzu – Store
 
 SCST - Store’s enables faster identification of vulnerable software packages by providing a CLI to query image, package, and vulnerability relationships after the [SCST - Scan] has run source code and image vulnerability scans.
 ​
-The SCST - Store component is designed to integrate seamlessly with the SCST - Scan component <add link>. 
+The SCST - Store component is designed to integrate seamlessly with the [SCST - Scan component](../scst-scan/overview.md). 
 ​
 The SCST - Store has four components:
 
@@ -10,11 +10,11 @@ The SCST - Store has four components:
 * API
 * client library
 * CLI
-​
+
 Currently, there is support for the Cyclone DX XML SBoM formats.
-​
+
 See the following pages to begin:
-​
+
 * [TAP instructions for installing packages](../install.md#install-scst-store)
 * [Using the Metadata Store](using_metadata_store.md)
 
