@@ -892,7 +892,7 @@ To install Supply Chain Security Tools - Sign:
                                            the cluster with a warning.
 
     ```
-1. Create a file named `values.yaml` with a `warn_on_unmatched` property.
+1. Create a file named `scst-sign-values.yaml` with a `warn_on_unmatched` property.
    * **For non-production environments**: To warn the user when images do not match any pattern in the policy, but still allow them into the cluster, set `warn_on_unmatched`
    to `true`.
        ```yaml
@@ -915,7 +915,7 @@ To install Supply Chain Security Tools - Sign:
      --package-name image-policy-webhook.signing.run.tanzu.vmware.com \
      --version 1.0.0-beta.0 \
      --namespace tap-install \
-     --values-file values.yaml
+     --values-file scst-sign-values.yaml
 
     | Installing package 'image-policy-webhook.signing.run.tanzu.vmware.com'
     | Getting namespace 'default'
