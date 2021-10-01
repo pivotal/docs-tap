@@ -106,21 +106,36 @@ To add the Tanzu Application Platform package repository:
 
 To install any package from the Tanzu Application Platform package repository:
 
-1. Run:
+1. List version information for the package by running:
+    ```
+    tanzu package available list PACKAGE-NAME --namespace tap-install
+    ```
+    Where:
+    
+     + `PACKAGE-NAME` is the name of the package listed in step 6 of
+     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
+    For example:
+    ```
+    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for cnrs.tanzu.vmware.com...
+      NAME                   VERSION  RELEASED-AT
+      cnrs.tanzu.vmware.com  1.0.2    2021-07-30T15:18:46Z
+    ```
+
+2. Run:
     ```
     tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
     ```
 
      Where:
 
-     + `PACKAGE-NAME` is the name of the package listed in step 6 of
-     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
-     + `VERSION-NUMBER` is the version of the package listed in step 7 of
-     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
+     + `PACKAGE-NAME` is same as step 1 above.
+     
+     + `VERSION-NUMBER` is the version of the package listed in step 1 above.
 
     For example:
     ```
-    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.1 --values-schema --namespace tap-install
+    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
     ```
 
 2. Follow the specific installation instructions for each package:
