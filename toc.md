@@ -18,7 +18,7 @@ This is the table of contents from which the Tanzu Application Platform Document
         * [Release Notes](scst-scan/release-notes.md)
         * [Spec Reference](scst-scan/explanation.md)
         * [Running Public Source Code and Image Scans with Policy Enforcement](scst-scan/running-scans.md)
-          * [Additional Samples](scst-scan/samples/README.md)
+        * [Running Additional Samples](scst-scan/samples/README.md)
             * [Running a Sample Public Source Scan of a Blob](scst-scan/samples/blob.md)
             * [Running a Sample Private Image Scan](scst-scan/samples/private-image.md)
             * [Running a Sample Private Source Scan](scst-scan/samples/private-source.md)
