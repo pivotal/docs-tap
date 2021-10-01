@@ -843,7 +843,8 @@ To install Supply Chain Security Tools - Store:
     app_service_type: "LoadBalancer"
     ```
 
-    Here, `app_service_type` has been set to `LoadBalancer`.
+    * `db_password` should be signifcantly complex. Furthermore, you should use the same password between deployment. This is a known limitation (see [Known Issues - Persistent Volume Retains Data](scst-store/known_issues.md#persistent-volume-retains-data)).
+    * `app_service_type` has been set to `LoadBalancer`.
     If your environment does not support `LoadBalancer`, omit this line and it will use the default value `NodePort`.
 
 4. Install the package by running:
