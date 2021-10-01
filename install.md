@@ -141,7 +141,8 @@ To install any package from the Tanzu Application Platform package repository:
     $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
     ```
     
-    Note:  This step is required only if you want to make changes to the default installation settings. Please refer to the individual product documentation to know more above values schema options.
+    Note:  This step is required only if you want to make changes to the default installation settings.
+    For more information about values schema options, see the individual product documentation.
     
     
 
@@ -317,6 +318,8 @@ They are only used for configuration of non-standard installs.
     USEFUL-ERROR-MESSAGE:    
     ```
     STATUS should be Reconcile succeeded.
+
+5. To access the Application Accelerator UI, please refer to the [Application Accelerator for VMware Tanzu documentation](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.3/acc-docs/GUID-installation-install.html#using-application-accelerator-for-vmware-tanzu-0).
 
 ## <a id='install-convention-service'></a> Install Convention Service 
 
