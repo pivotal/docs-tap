@@ -1,6 +1,6 @@
 # Viewing Vulnerability Results
 
-After completing the scans from the previous step, query the [SCST - Store](../scst-store/overview.md) to view your vulnerability results. The SCST - Store is a Tanzu component that stores image, package, and vulnerability metadata about your dependencies. Use the SCST - Store CLI, called `insight`, to query metadata that have been submitted to the store after the scan step.
+After completing the scans from the previous step, query the [Supply Chain Security Tools - Store](../scst-store/overview.md) to view your vulnerability results. The Supply Chain Security Tools - Store is a Tanzu component that stores image, package, and vulnerability metadata about your dependencies. Use the Supply Chain Security Tools - Store CLI, called `insight`, to query metadata that have been submitted to the store after the scan step.
 
 For example, to query Vulnerability data relating to an Image Scan:
 ```bash
@@ -13,6 +13,6 @@ insight image get \
   --format json
 ```
 
-**NOTE:** You must have the [SCST - Store prerequisites](../scst-store/using_metadata_store.md) in place for the above example to work.
+**NOTE:** You must have the [Supply Chain Security Tools - Store prerequisites](../scst-store/using_metadata_store.md) in place for the above example to work.
 
-For a complete guide on how to query the store, see [Querying SCST - Store](../scst-store/querying_the_metadata_store.md).
+For a complete guide on how to query the store, see [Querying Supply Chain Security Tools - Store](../scst-store/querying_the_metadata_store.md).
