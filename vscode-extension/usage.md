@@ -8,9 +8,15 @@ This topic explains how to use the Tanzu Developer Tools extension for VSCode.
 
 # Usage
 
+### Extension Settings
+Some VSCode settings will have to be configured for your app. Go into `Preferences -> Settings -> Extensions -> Tanzu` to set the following:
+
+- Source Image (required): Destination for an image containing source code to be
+  published
+- Local Path (required): Path on the local filesytem to a directory of code to build
+
 ## Live Update
 
----
 
 ### Starting Live Update
 
@@ -36,10 +42,8 @@ Launch the Command Palette (⇧⌘P) and run the `Tanzu: Live Update Disable` co
 
 > Note: This will redeploy your workload to the cluster and remove the live update capability.
 
----
 
 ## Debug
 
----
 
 Right click on your `workload.yaml` and select `Tanzu: Java Debug Start`
