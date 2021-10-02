@@ -69,4 +69,4 @@ A common cause of this error is that the `tanzu package install` command is bein
 
 To fix this problem:
 
-1. Use `tanzu package update` command after the first use of `tanzu package install` command if you want to update the package.
+1. Use `tanzu package installed update` command after the first use of `tanzu package install` command if you want to update the package.
