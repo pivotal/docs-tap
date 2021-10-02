@@ -16,7 +16,12 @@ The following prerequisites are required to install Tanzu Application Platform:
 
     * Azure Kubernetes Service
     * Amazon Elastic Kubernetes Service
-    * kind (if using Cloud Native Runtimes, you may want to [configure kind according to this guide](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-local-dns.html#configure-your-local-kind-cluster-1))
+    * kind
+      
+        If you are using Cloud Native Runtimes, see [Configure Your Local Kind
+        Cluster](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-local-dns.html#configure-your-local-kind-cluster-1)
+        in the Cloud Native Runtimes documentation to configure kind.
+
     * Google Kubernetes Engine (note that GKE Autopilot clusters do not have required features enabled)
     * minikube
   
