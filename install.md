@@ -925,6 +925,10 @@ To install Tanzu Build Service using the Tanzu CLI:
 
 1. (Optional) Run the following command to verify the clusterbuilders created by the Tanzu Build Service install:
     ```bash
+    kubectl get clusterbuilders
+    ```
+    For example:
+    ```bash
     $ kubectl get clusterbuilders
 
     NAME      LATESTIMAGE                                                                                      READY
@@ -1366,16 +1370,29 @@ To install Supply Chain Security Tools - Scan (Grype Scanner):
 3. Create a container registry secret named `api-portal-image-pull-secret`.
 
    ```console
-   $ kubectl create secret docker-registry api-portal-image-pull-secret -n tap-install \
+   kubectl create secret docker-registry api-portal-image-pull-secret -n tap-install \
      --docker-server=registry.tanzu.vmware.com \
      --docker-username=TANZU-NET-USER \
      --docker-password=TANZU-NET-PASSWORD
-   secret/api-portal-image-pull-secret created
    ```
    - where `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for Tanzu Network.
+   
+   For example:
+   ```console
+   $ kubectl create secret docker-registry api-portal-image-pull-secret -n tap-install \
+   --docker-server=registry.tanzu.vmware.com \
+   --docker-username=TANZU-NET-USER \
+   --docker-password=TANZU-NET-PASSWORD
+   secret/api-portal-image-pull-secret created
+   ```
+   
 
 4. Install API portal.
+   ```console
+   tanzu package install api-portal -n tap-install -p api-portal.tanzu.vmware.com -v 1.0.2
+   ```
 
+   For example:
    ```console
    $ tanzu package install api-portal -n tap-install -p api-portal.tanzu.vmware.com -v 1.0.2
 
@@ -1416,7 +1433,7 @@ To install SCP Toolkit:
 1. Install SCP Toolkit by running:
 
     ```console
-    $ tanzu package install scp-toolkit -n tap-install -p scp-toolkit.tanzu.vmware.com -v 0.3.0
+    tanzu package install scp-toolkit -n tap-install -p scp-toolkit.tanzu.vmware.com -v 0.3.0
     ```
 
 1. Verify that the package installed by running:
@@ -1454,11 +1471,18 @@ Use the following procedure to verify that the packages are installed.
     ```
     $ tanzu package installed list --namespace tap-install
     \ Retrieving installed packages...
-      NAME                   PACKAGE-NAME                                        PACKAGE-VERSION  STATUS
-      app-accelerator        accelerator.apps.tanzu.vmware.com                   0.3.0            Reconcile succeeded
-      app-live-view          appliveview.tanzu.vmware.com                        0.2.0            Reconcile succeeded
-      cloud-native-runtimes  cnrs.tanzu.vmware.com                               1.0.1            Reconcile succeeded
-      service-bindings       service-bindings.labs.vmware.com                    0.5.0            Reconcile succeeded
-      source-controller      controller.source.apps.tanzu.vmware.com             0.1.2            Reconcile succeeded
-      convention-controller  controller.conventions.apps.tanzu.vmware.com        0.4.2            Reconcile succeeded
+    NAME                   PACKAGE-NAME                                       PACKAGE-VERSION  STATUS
+    api-portal             api-portal.tanzu.vmware.com                        1.0.2            Reconcile succeeded
+    app-accelerator        accelerator.apps.tanzu.vmware.com                  0.3.0            Reconcile succeeded
+    app-live-view          appliveview.tanzu.vmware.com                       0.2.0            Reconcile succeeded
+    cloud-native-runtimes  cnrs.tanzu.vmware.com                              1.0.2            Reconcile succeeded
+    convention-controller  controller.conventions.apps.tanzu.vmware.com       0.4.2            Reconcile succeeded
+    grype-scanner          grype.scanning.apps.tanzu.vmware.com               1.0.0-beta       Reconcile succeeded
+    image-policy-webhook   image-policy-webhook.signing.run.tanzu.vmware.com  1.0.0-beta.0     Reconcile succeeded
+    metadata-store         scst-store.tanzu.vmware.com                        1.0.0-beta.0     Reconcile succeeded
+    scan-controller        scanning.apps.tanzu.vmware.com                     1.0.0-beta       Reconcile succeeded
+    scp-toolkit            scp-toolkit.tanzu.vmware.com                       0.3.0            Reconcile succeeded
+    service-bindings       service-bindings.labs.vmware.com                   0.5.0            Reconcile succeeded
+    source-controller      controller.source.apps.tanzu.vmware.com            0.1.2            Reconcile succeeded
+    tbs                    buildservice.tanzu.vmware.com                      1.3.0            Reconcile succeeded
     ```
