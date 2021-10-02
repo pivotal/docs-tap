@@ -17,13 +17,14 @@ The following prerequisites are required to install Tanzu Application Platform:
     * Azure Kubernetes Service
     * Amazon Elastic Kubernetes Service
     * kind (if using Cloud Native Runtimes, you may want to [configure kind according to this guide](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-local-dns.html#configure-your-local-kind-cluster-1))
+    * Google Kubernetes Engine (note that GKE Autopilot clusters do not have required features enabled)
     * minikube
   
 * **[kapp Carvel command line tool](https://github.com/vmware-tanzu/carvel-kapp/releases)** (v0.37.0 or later)
 
 * kapp-controller v0.24.0 or later:
 
-    * For Azure Kubernetes Service, Amazon Elastic Kubernetes Service, kind, and minikube,
+    * For Azure Kubernetes Service, Amazon Elastic Kubernetes Service, Google Kubernetes Engine, kind, and minikube,
       Install kapp-controller by running:
       ```
       kapp deploy --yes -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/KC-VERSION/release.yml
