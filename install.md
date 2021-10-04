@@ -1033,6 +1033,7 @@ To install Supply Chain Security Tools - Sign:
 1. Create a `ClusterImagePolicy` to specify the images that the webhook validates.
 
     The cluster image policy is a custom resource definition containing the following information:
+
     - A list of namespaces to which the policy should not be enforced.
     - A list of public keys complementary to the private keys that were used to sign the images.
     - A list of image name patterns against which the policy is enforced. Each image name pattern is mapped to the required public keys.
@@ -1062,9 +1063,10 @@ To install Supply Chain Security Tools - Sign:
          - name: first-key
     ```
     Notes:
-    * The `name` for the `ClusterImagePolicy` must be `image-policy`.
-    * In the `verification.exclude.resources.namespaces` section, add any namespaces that run container images that are unsigned, such as `kube-system`.
-    * For a quicker installation process in a non-production environment, VMware recommends you use the following YAML to create the `ClusterImagePolicy`. This YAML includes a cosign public key, which signed the cosign image at v1.2.1. The cosign public key validates the specified cosign image. You can also add additional namespaces to exclude in the `verification.exclude.resources.namespaces` section, such as any system namespaces.
+
+    - The `name` for the `ClusterImagePolicy` must be `image-policy`.
+    - In the `verification.exclude.resources.namespaces` section, add any namespaces that run container images that are unsigned, such as `kube-system`.
+    - For a quicker installation process in a non-production environment, VMware recommends you use the following YAML to create the `ClusterImagePolicy`. This YAML includes a cosign public key, which signed the cosign image at v1.2.1. The cosign public key validates the specified cosign image. You can also add additional namespaces to exclude in the `verification.exclude.resources.namespaces` section, such as any system namespaces.
         ```console
         cat <<EOF | kubectl apply -f -
         apiVersion: signing.run.tanzu.vmware.com/v1alpha1
