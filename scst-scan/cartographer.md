@@ -6,7 +6,7 @@ From the [Cartographer](https://github.com/vmware-tanzu/cartographer) project pa
 
 > Cartographer also allows for separation of controls between a user who is responsible for defining a Supply Chain (known as a App Operator) and a user who is focused on creating applications (Developer). These roles are not necessarily mutually exclusive, but provide the ability to create a separation concern.
 
-The following example supply chain is an extension of the [Cartographer: Source to Knative Service Example](https://github.com/vmware-tanzu/cartographer/tree/main/examples/source-to-knative-service) provided by the Cartographer team.
+The following example supply chain is an extension of the [Cartographer: Source to Knative Service Example](https://github.com/vmware-tanzu/cartographer/tree/main/examples/source-to-knative-service).
 
 The Source to Knative Service example takes every source code commit, rebuilds and redeploys the application. This example will inject a source code scan before building and then perform an image scan after building. Additionally, this example will use a private source code repository instead of a public one.
 
@@ -211,7 +211,7 @@ spec:
 
 ## App Operator Deployments for Defining the Supply Chain
 
-Create `app-operator/supply-chain-templates.yaml` to configure each of the components in the Supply Chain. Each Cartographer template references the cluster resources we already defined. And as mentioned above, the pre-installed Scan Templates will be used along with the Scan Policy we defined above.
+Create `app-operator/supply-chain-templates.yaml` to configure each of the components in the Supply Chain. Each Cartographer template references the cluster resources we already defined. And as mentioned above, the pre-installed Scan Templates are used along with the Scan Policy defined above.
 
 ```yaml
 #@ load("@ytt:data", "data")
@@ -466,12 +466,12 @@ During processing and upon completion, try performing `kubectl describe` on the 
 
 ## Querying the Metadata Store for Vulnerability Results using the Insight CLI
 
-In a separate terminal, set up a port-forwarding to the Metadata Store running in the cluster:
+1. In a separate terminal, set up a port-forwarding to the Metadata Store running in the cluster, by running:
 ```bash
 kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store
 ```
 
-Using the `MetadataURL` field in the `kubectl describe` `sourcescan` or `imagescan` output, we can make use of the `insight` CLI to query the Metadata Store for the scan results that were outputted by the Grype Scanner.
+2. Using the `MetadataURL` field in the `kubectl describe` `sourcescan` or `imagescan` output, use the `insight` CLI to query the Metadata Store for the scan results that were outputted by the Grype Scanner. Run:
 
 ```bash
 # Configure Insight CLI to Authenticate to Metadata Store
