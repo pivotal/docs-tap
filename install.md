@@ -931,7 +931,7 @@ To install Tanzu Build Service using the Tanzu CLI:
 
     ```yaml
     ---
-    kp_default_repository: EXAMPLE-REGISTRY.com/PATH-TO-INSTALL
+    kp_default_repository: EXAMPLE-REGISTRY/PATH-TO-INSTALL
     kp_default_repository_username: REGISTRY-USERNAME
     kp_default_repository_password: REGISTRY-PASSWORD
     tanzunet_username: TANZUNET-USERNAME
