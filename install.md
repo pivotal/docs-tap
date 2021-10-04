@@ -1375,9 +1375,9 @@ To install the API portal:
 
 ## Install Services Control Plane (SCP) Toolkit
 
-To install SCP Toolkit:
+To install Services Control Plane Toolkit:
 
-1. See what versions of SCP Toolkit are available to install by running:
+1. See what versions of Services Control Plane Toolkit are available to install by running:
 
     ```console
     tanzu package available list -n tap-install scp-toolkit.tanzu.vmware.com
@@ -1392,7 +1392,7 @@ To install SCP Toolkit:
       scp-toolkit.tanzu.vmware.com  0.3.0             2021-09-17T13:53:29Z
     ```
 
-1. Install SCP Toolkit by running:
+1. Install Services Control Plane Toolkit by running:
 
     ```console
     tanzu package install scp-toolkit -n tap-install -p scp-toolkit.tanzu.vmware.com -v 0.3.0
