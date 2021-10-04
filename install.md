@@ -335,7 +335,7 @@ They are only used for configuration of non-standard installs.
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:    
     ```
-    STATUS should be Reconcile succeeded.
+    STATUS should be `Reconcile succeeded`.
 
 1. To access the Application Accelerator UI, please refer to the [Application Accelerator for VMware Tanzu documentation](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.3/acc-docs/GUID-installation-install.html#using-application-accelerator-for-vmware-tanzu-0).
 
@@ -494,39 +494,37 @@ To install Source Controller:
 - **[cert-manager]**, for provisioning certificates for the webhook servers that some controllers
 register with Kubernetes' API server to validate and modify objects when update
 
-```bash
-CERT_MANAGER_VERSION=1.5.3
+    ```bash
+    CERT_MANAGER_VERSION=1.5.3
 
-kapp deploy --yes -a cert-manager \
-  -f https://github.com/jetstack/cert-manager/releases/download/v$CERT_MANAGER_VERSION/cert-manager.yaml
-```
+    kapp deploy --yes -a cert-manager \
+      -f https://github.com/jetstack/cert-manager/releases/download/v$CERT_MANAGER_VERSION/cert-manager.yaml
+    ```
 
-- **[kapp-controller]**, for providing to Kubernetes both packaging and
-  application primitives (i.e., used for installing some of the
-  dependencies here as well as deploying the applications that go
-  through this supplychain)
+- **[kapp-controller]**, for providing to Kubernetes both packaging and application primitives.
+These are used for installing some of the dependencies here as well as deploying the applications
+that go through this supplychain.
 
-```bash
-KAPP_CONTROLLER_VERSION=0.25.0
+    ```bash
+    KAPP_CONTROLLER_VERSION=0.25.0
 
-kapp deploy --yes -a kapp-controller \
-    -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v$KAPP_CONTROLLER_VERSION/release.yml
-```
+    kapp deploy --yes -a kapp-controller \
+        -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v$KAPP_CONTROLLER_VERSION/release.yml
+    ```
 
-- **[secretgen-controller]**, for filling placeholder secrets with the
-  contents of shared credentials that we can define once and keep in
-  sync everywhere we want.
+- **[secretgen-controller]**, for filling placeholder secrets with the contents of shared credentials
+that we can define once and keep in sync everywhere we want.
 
-```bash
-SECRETGEN_CONTROLLER_VERSION=0.5.0
+    ```bash
+    SECRETGEN_CONTROLLER_VERSION=0.5.0
 
-kapp deploy --yes -a secretgen-controller \
-  -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/download/v$SECRETGEN_CONTROLLER_VERSION/release.yml
-```
+    kapp deploy --yes -a secretgen-controller \
+      -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/download/v$SECRETGEN_CONTROLLER_VERSION/release.yml
+    ```
 
-- **flux2 source-controller**, for bringing the capability of making source
-  code changes available to the components in the supply chain. As _Application
-  Accelerator_ already depends on it too, see [#install-app-accelerator].
+- **flux2 source-controller**, for bringing the capability of making source code changes available to
+the components in the supply chain. As ApplicationAccelerator already depends on it too, see
+[Install Application Accelerator](#install-app-accelerator).
 
 
 #### TAP Prerequisites
@@ -538,10 +536,9 @@ kapp deploy --yes -a secretgen-controller \
 
 #### Tekton
 
-[tekton] is used by the supply chain to run tests defined by the developers
-before we get to the point of producing a container image for the source code,
-effectively preventing code that fails tests to being promoted all the way to a
-deployment.
+[tekton] is used by the supply chain to run tests defined by the developers before we get to the point
+of producing a container image for the source code, effectively preventing code that fails tests to
+being promoted all the way to a deployment.
 
 ```bash
 TEKTON_VERSION=0.28.0
@@ -552,12 +549,11 @@ kapp deploy --yes -a tekton \
 
 ### Cartographer Installation
 
-Cartographer is what provides the custom resource definitions that this
-supply chain makes use of, bringing the capability of choreographing the
-components that form the software supply chain, passing the results of,
-say, fetching source code, to the component that knows how to build a
-container image out of it, to then a component that knows how to deploy
-it ... so on and so forth.
+Cartographer is what provides the custom resource definitions that this supply chain makes use of.
+It enables choreography of components that form the software supply chain, such as
+passing the results of fetching source code to the component that knows how to build a
+container image out of it, and then passing to a component that knows how to deploy it, and so on
+and so forth.
 
 ```bash
 CARTOGRAPHER_VERSION=0.0.6
@@ -625,6 +621,7 @@ As only `registry.server` and `registry.repository` are required, for any of
 the supply chains that we install we can we move on with configuring just those
 two to point at the registry and repository in the registry where we want the
 app images to be pushed to.
+
 
 #### Source to URL
 
@@ -727,7 +724,10 @@ registry:
       --values-file default-supply-chain-values.yaml
     ```
 
+
 ## <a id='install-developer-conventions'></a> Install Developer Conventions
+
+To install developer conventions:
 
 1. Follow the instructions in [Install Packages](#install-packages) above.
 
@@ -764,6 +764,7 @@ registry:
       --version 0.2.0 \
       --namespace tap-install
     ```
+
 
 ## <a id="install-app-live-view"></a>Install Application Live View
 
@@ -829,7 +830,8 @@ To install Application Live View:
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:    
     ```
-    STATUS should be Reconcile succeeded.
+    STATUS should be `Reconcile succeeded`.
+
 
 ## <a id='install-service-bindings'></a> Install Service Bindings
 
@@ -885,16 +887,19 @@ To install Application Live View:
     ```
     STATUS should be `Running`.
 
+
 ## <a id='install-tbs'></a> Install Tanzu Build Service
 
 This section provides a quick-start guide for installing Tanzu Build Service as part of Tanzu Application Platform using the Tanzu CLI.
 
 **Note**: This procedure might not include some configurations required for your specific environment. For more advanced details on installing Tanzu Build Service, see [Installing Tanzu Build Service](https://docs.pivotal.io/build-service/installing.html).
 
+
 ### Prerequisites
 
 * You have access to a Docker registry that Tanzu Build Service can use to create Builder images. Approximately 5GB of registry space is required.
 * Your Docker registry is accesible with username and password credentials.
+
 
 ### Install Tanzu Build Service Using the Tanzu CLI
 
@@ -1059,6 +1064,7 @@ To install Supply Chain Security Tools - Store:
 
     Added installed package 'metadata-store' in namespace 'tap-install'
     ```
+
 
 ## <a id='install-scst-sign'></a> Install Supply Chain Security Tools - Sign
 
@@ -1261,6 +1267,7 @@ The cluster image policy is a custom resource definition containing the followin
         Error from server (The image: gcr.io/projectsigstore/cosign:v0.3.0 is not signed): admission webhook "image-policy-webhook.signing.run.tanzu.vmware.com" denied the request: The image: gcr.io/projectsigstore/cosign:v0.3.0 is not signed
         ```
 
+
 ## <a id='install-scst-scan'></a> Install Supply Chain Security Tools - Scan
 
 The installation for Supply Chain Security Tools – Scan involves installing two packages:
@@ -1430,6 +1437,7 @@ If you want to change from the default values, use the Scan Controller instructi
      Added installed package 'grype-scanner' in namespace 'tap-install'
     ```
 
+
 ## <a id='install-api-portal'></a> Install API portal
 
 1. Follow the instructions in [Install Packages](#install-packages) above.
@@ -1495,6 +1503,7 @@ If you want to change from the default values, use the Scan Controller instructi
 
 5. Visit [API portal for VMware Tanzu](https://docs.pivotal.io/api-portal/1-0/) for more information about API portal.
 
+
 ## Install Services Control Plane (SCP) Toolkit
 
 To install SCP Toolkit:
@@ -1541,7 +1550,8 @@ To install SCP Toolkit:
     USEFUL-ERROR-MESSAGE:
     ```
 
-    STATUS should be Reconcile succeeded.
+    STATUS should be `Reconcile succeeded`.
+
 
 ## <a id='verify'></a> Verify the Installed Packages
 
