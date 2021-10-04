@@ -10,6 +10,7 @@ This is the table of contents from which the Tanzu Application Platform Document
 - [Troubleshooting Tanzu Application Platform](troubleshooting.md)
 - [Uninstalling Tanzu Application Platform](uninstall.md)
 - [Component Documentation](components.md)
+    * [Apps Plugin for Tanzu CLI](apps-plugin/apps-plugin.md)
     - [Supply Chain Choreographer for Tanzu](scc/about.md)
         - [Installing SCC](scc/install.md)
         - [Spec Reference](scc/reference.md)
