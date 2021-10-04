@@ -226,8 +226,6 @@ The following packages are available in Tanzu Application Platform:
 * Service Bindings for Kubernetes
 * API Portal
 
-For instructions on how to add the Tanzu Application Platform package repository and install packages from the repository,
-see [Add PackageRepositories](#add-package-repositories) and [Install Packages](#install-packages) below.
 
 ## <a id="eulas"></a> Accept the EULAs
 
