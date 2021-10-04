@@ -1,25 +1,17 @@
-# <a id='Creating'></a> Creating a workload 
+# Usage and Examples
+
+## <a id='Creating'></a> Creating a workload 
 
 This document describes how to create a workload from example source code with the Tanzu Application Platform.
 
-## <a id='prereqs'></a>Before you begin
+### <a id='prereqs'></a>Before you begin
 
 + Kubectl has been installed [guide](https://kubernetes.io/docs/tasks/tools/)
-+ TAP components have been installed on a k8s cluster [guide](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.1/tap-0-1/GUID-install.html)
++ TAP components have been installed on a k8s cluster [guide](../../install-intro.md)
 + Your kubeconfig context has been set to the prepared cluster `kubectl config use-context CONTEXT_NAME`
-+ You have the Tanzu CLI installed [guide](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.1/tap-0-1/GUID-install.html#install-the-tanzu-cli-and-package-plugin-4),
-with the apps plugin (guide)()
++ You have the Tanzu CLI installed [guide](../../install-general.md#cli-and-plugin), with the apps plugin [guide](overview-installation.md#Installation)
 
-## <a id='create-workload'></a> About workloads
-
-The Tanzu Application Platform beta includes tools that enable developers to quickly begin building and testing applications regardless of their familiarity with Kubernetes. Developers can turn source code into a workload running in a container with a URL in minutes. 
-
-The platform can support range of possible workloads, from a stand-alone serverless process that spins up on demand, to one of a constellation of microservice that work together as a logical application or even a small hello-world test app.
-
-The options available for specifying the workload are available in the command reference
-for (`workload create`)(tanzu_apps_workload_create.md) or by running `tanzu apps workload create --help`
-
-## Getting started with an example workload
+### Getting started with an example workload
 
 Start by naming the workload and specifying a source code location for the workload to be created from.
 
@@ -38,8 +30,10 @@ Start by naming the workload and specifying a source code location for the workl
      + `--type` is used to distinguish the workload type
      
 
+    The options available for specifying the workload are available in the command reference for [`workload create`](command-reference/tanzu_apps_workload_create.md) or by running `tanzu apps workload create --help`
 
-## <a id='workload-tail'></a> Check the build logs
+
+### <a id='workload-tail'></a> Check the build logs
 
 Once the workload has been successfully created, you can tail the workload to view the build and runtime logs:
 
@@ -55,7 +49,7 @@ Once the workload has been successfully created, you can tail the workload to vi
      + `--since` (optional) is how long ago to start streaming logs from (default 1s)
      + `--timestamp` (optional) prints the timestamp with each log line
 
-## <a id='workload-get'></a> Get the workload status and details
+### <a id='workload-get'></a> Get the workload status and details
 
 Once the workload build process has completed, a knative service will be created to run the workload.
 You can view workload details at anytime in the process but some details such as the workload URL will only be available once the workload is running:
@@ -76,7 +70,7 @@ Depending on the terminal you use you may be able to <ctrl>+click on the URL to 
     
 ## <a id='next-steps'></a> Next Steps
 
-Keep exploring:
+Keep exploring with these [commands](command-reference.md), for example:
 
 1. Add some environment variables
 
@@ -89,7 +83,7 @@ Keep exploring:
     tanzu apps workload get pet-clinic --export
     ```
 
- 3. Check out the flags available for the workload commands   
+3. Check out the flags available for the workload commands   
     ```
     tanzu apps workload -h
     tanzu apps workload get -h
