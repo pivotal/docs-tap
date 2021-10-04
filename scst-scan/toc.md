@@ -13,6 +13,7 @@ This is the table of contents from which the Supply Chain Security Tools – Sca
 * [Viewing Vulnerability Results](viewing-reports.md)
 * [Observing and Troubleshooting](observing.md)
 * [Incorporating into CI/CD Pipelines](#incorporating-into-cicd-pipelines)
+* [Example Cartographer Supply Chain including Source and Image Scans](cartographer.md)
 * [Next Steps and Further Information](#next-steps-and-further-information)
 * [Uninstall](uninstall.md)
 * [Contact Us](#contact-us)

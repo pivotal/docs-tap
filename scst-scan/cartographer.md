@@ -6,61 +6,20 @@ From the [Cartographer](https://github.com/vmware-tanzu/cartographer) project pa
 
 > Cartographer also allows for separation of controls between a user who is responsible for defining a Supply Chain (known as a App Operator) and a user who is focused on creating applications (Developer). These roles are not necessarily mutually exclusive, but provide the ability to create a separation concern.
 
-## Prerequisites
-
-The following is an extension of the [Cartographer: Source to Knative Service Example](https://github.com/vmware-tanzu/cartographer/tree/main/examples/source-to-knative-service) and makes use of the same prerequisites. As such, follow the prerequisite instructions in that example to ensure the following are setup (excluding `knative-serving`, but note the inclusion of `imgpkg`):
-
-  - kind cluster (or alternative Kubernetes (v1.19+) cluster)
-  - carvel tools (`imgpkg`, `ytt` and `kapp`)
-  - `cert-manager`
-  - `cartographer`
-  - `kpack`
-  - `source-controller`
-  - `kapp-controller`
-  - (Optional) `kubectl tree`
-
-## Install the Scan controller and Grype scanner
+The following example supply chain is an extension of the [Cartographer: Source to Knative Service Example](https://github.com/vmware-tanzu/cartographer/tree/main/examples/source-to-knative-service) provided by the Cartographer team.
 
 The Source to Knative Service example takes every source code commit, rebuilds and redeploys the application. This example will inject a source code scan before building and then perform an image scan after building. Additionally, this example will use a private source code repository instead of a public one.
 
-To install the scan controller and scanner into the cluster, perform the following steps:
+## Prerequisites
 
-```bash
-# pull the bundles
-imgpkg pull \
-  -b harbor-repo.vmware.com/supply_chain_security_tools/scan-controller:v1.0.0-alpha.1 \
-  -o /tmp/scan-controller
+Follow the steps listed in [Installing Part I: Prerequisites, Cluster Configurations, EULA, and CLI](https://github.com/pivotal/docs-tap/blob/main/install-general.md).
 
-imgpkg pull \
-  -b harbor-repo.vmware.com/supply_chain_security_tools/grype-templates:v1.0.0-alpha.1 \
-  -o /tmp/grype-templates
-
-# set image pull creds
-echo "$(tput setaf 3)Please enter your VMware credentials to access https://harbor-repo.vmware.com$(tput sgr0)"
-read -p "Username: " REGISTRY_USERNAME
-read -p "Password: " -s REGISTRY_PASSWORD
-
-# deploy scan controller
-ytt \
-    -f /tmp/scan-controller/config \
-    -v docker.server=harbor-repo.vmware.com \
-    -v docker.username="${REGISTRY_USERNAME}" \
-    -v docker.password="${REGISTRY_PASSWORD}" \
-  | kbld -f /tmp/scan-controller/.imgpkg/images.yml -f- \
-  | kapp deploy -a scan-link -f- -y
-
-# deploy grype templates
-ytt \
-    -f /tmp/grype-templates/config \
-    -v docker.server=harbor-repo.vmware.com \
-    -v docker.username="${REGISTRY_USERNAME}" \
-    -v docker.password="${REGISTRY_PASSWORD}" \
-  | kbld -f /tmp/grype-templates/.imgpkg/images.yml -f- \
-  | kapp deploy -a grype-templates -f- -y
-
-# verify templates deployed
-kubectl get scantemplates
-```
+Next, in [Installing Part II: Packages](https://github.com/pivotal/docs-tap/blob/main/install.md), ensure the following packages and their dependencies are installed:
+- [Supply Chain Choreographer](https://github.com/pivotal/docs-tap/blob/main/install.md#-install-supply-chain-choreographer)
+- [Tanzu Build Service](https://github.com/pivotal/docs-tap/blob/main/install.md#install-tbs)
+- [Supply Chain Security Tools - Store](https://github.com/pivotal/docs-tap/blob/main/install.md#install-scst-store)
+- [Supply Chain Security Tools - Scan](https://github.com/pivotal/docs-tap/blob/main/install.md#install-scst-scan)
+- (Optional) [Kubectl `tree` Plugin](https://github.com/ahmetb/kubectl-tree)
 
 ## Configure the Example
 
@@ -220,45 +179,9 @@ imagePullSecrets:
 
 ---
 apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
-kind: ScanTemplate
-metadata:
-  name: blob-source-scan-template
-spec:
-  template:
-    restartPolicy: Never
-    volumes:
-      - name: workspace
-        emptyDir: {}
-    initContainers:
-      - name: repo
-        image: harbor-repo.vmware.com/supply_chain_security_tools/grype-templates@sha256:6d69a83d24e0ffbe2e527d8d414da7393137f00dd180437930a36251376a7912
-        imagePullPolicy: IfNotPresent
-        volumeMounts:
-          - name: workspace
-            mountPath: /workspace
-            readOnly: false
-        command: ["/bin/bash"]
-        args:
-          - "-c"
-          - "./source/untar-gitrepository.sh $REPOSITORY /workspace"
-    containers:
-      - name: scanner
-        image: harbor-repo.vmware.com/supply_chain_security_tools/grype-templates@sha256:6d69a83d24e0ffbe2e527d8d414da7393137f00dd180437930a36251376a7912
-        imagePullPolicy: IfNotPresent
-        volumeMounts:
-          - name: workspace
-            mountPath: /workspace
-            readOnly: false
-        command: ["/bin/bash"]
-        args:
-          - "-c"
-          - "./source/scan-source.sh /workspace/source scan.xml"
-
----
-apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
 kind: ScanPolicy
 metadata:
-  name: sample-scan-policy
+  name: scan-policy
 spec:
   regoFile: |
     package policies
@@ -266,7 +189,7 @@ spec:
     default isCompliant = false
 
     # Accepted Values: "Critical", "High", "Medium", "Low", "Negligible", "UnknownSeverity"
-    violatingSeverities := ["Critical","High"]
+    violatingSeverities := ["Critical","High","UnknownSeverity"]
     ignoreCVEs := []
 
     contains(array, elem) = true {
@@ -288,7 +211,7 @@ spec:
 
 ## App Operator Deployments for Defining the Supply Chain
 
-Create `app-operator/supply-chain-templates.yaml` to configure each of the components in the Supply Chain. Each Cartographer template references the cluster resources we already defined. And as mentioned above, the pre-installed Scan Template for the Image Scan will be used instead.
+Create `app-operator/supply-chain-templates.yaml` to configure each of the components in the Supply Chain. Each Cartographer template references the cluster resources we already defined. And as mentioned above, the pre-installed Scan Templates will be used along with the Scan Policy we defined above.
 
 ```yaml
 #@ load("@ytt:data", "data")
@@ -298,7 +221,7 @@ Create `app-operator/supply-chain-templates.yaml` to configure each of the compo
 apiVersion: carto.run/v1alpha1
 kind: ClusterSourceTemplate
 metadata:
-  name: source
+  name: source-code
 spec:
   # Outputs
   urlPath: .status.artifact.url
@@ -339,16 +262,17 @@ spec:
       name: $(workload.metadata.name)$-source-scan
     spec: # Inputs
       blob:
-        url: $(sources[0].url)$
+        url: $(sources.source-code.url)$
+        revision: $(sources.source-code.revision)$
       scanTemplate: blob-source-scan-template
-      scanPolicy: sample-scan-policy
+      scanPolicy: scan-policy
 
 ---
 # Define an Image
 apiVersion: carto.run/v1alpha1
 kind: ClusterImageTemplate
 metadata:
-  name: image
+  name: built-image
 spec:
   # Outputs
   imagePath: .status.latestImage
@@ -366,7 +290,7 @@ spec:
         name: java-builder
       source:
         blob:
-          url: $(sources[0].url)$
+          url: $(sources.scanned-source.url)$
 
 ---
 # Define an Image Scan
@@ -388,9 +312,9 @@ spec:
       name: $(workload.metadata.name)$-image-scan
     spec: # Inputs
       registry:
-        image: $(images[0].image)$
+        image: $(images.built-image.image)$
       scanTemplate: private-image-scan-template
-      scanPolicy: sample-scan-policy
+      scanPolicy: scan-policy
 ```
 
 Create `app-operator/supply-chain.yaml` to configure the Supply Chain.
@@ -420,9 +344,9 @@ spec:
     - name: source-provider
       templateRef:
         kind: ClusterSourceTemplate
-        name: source
+        name: source-code
 
-    # Use scan-link to scan the source code from the repository.
+    # Use the Scan Controller and Grype Scanner to scan the source code from the repository.
     # Source Scanner
     #   Input: Source
     #   Output: Scanned Source
@@ -432,7 +356,7 @@ spec:
         name: scanned-source
       sources:
       - component: source-provider
-        name: source
+        name: source-code
 
     # Use kpack to build the source blob and output a container image to Harbor.
     # Image Builder
@@ -441,12 +365,12 @@ spec:
     - name: image-builder
       templateRef:
         kind: ClusterImageTemplate
-        name: image
+        name: built-image
       sources:
         - component: source-scanner
           name: scanned-source
 
-    # Use scan-link to scan the container image from the kpack build.
+    # Use the Scan Controller and Grype Scanner to scan the container image from the kpack build.
     # Image Scanner
     #   Input: Image
     #   Output: Scanned Image
@@ -456,7 +380,7 @@ spec:
         name: scanned-image
       images:
         - component: image-builder
-          name: image
+          name: built-image
 ```
 
 ## Developer Deployment for Defining the Workload
@@ -539,6 +463,41 @@ Notice the resources be created:
 During processing and upon completion, try performing `kubectl describe` on the `sourcescan` and `imagescan` resources to see the `Status` section.
 
 **NOTE:** Information pertaining to vulnerabilities found will not display in the output from `kubectl describe`, it is instead sent to the Metadata Store, where it can be queried there.
+
+## Querying the Metadata Store for Vulnerability Results using the Insight CLI
+
+In a separate terminal, set up a port-forwarding to the Metadata Store running in the cluster:
+```bash
+kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store
+```
+
+Using the `MetadataURL` field in the `kubectl describe` `sourcescan` or `imagescan` output, we can make use of the `insight` CLI to query the Metadata Store for the scan results that were outputted by the Grype Scanner.
+
+```bash
+# Configure Insight CLI to Authenticate to Metadata Store
+export METADATA_STORE_TOKEN=$(kubectl get secrets -n tap-install -o jsonpath="{.items[?(@.metadata.annotations['kubernetes\.io/service-account\.name']=='metadata-store-tap-install-sa')].data.token}" | base64 -d)
+insight config set-target https://metadata-store-app.metadata-store.svc.cluster.local:8443 \
+  --ca-cert /tmp/storeca.crt \
+  --access-token $METADATA_STORE_TOKEN
+
+# Query Source Scan
+kubectl describe sourcescan spring-petclinic-source-scan
+insight source get \
+  --repo <insert repo here> \
+  --commit <insert sha here> \
+  --org <insert org here>
+
+# Query Image Scan
+kubectl describe imagescan spring-petclinic-image-scan
+# Note: the `digest` flag has the form: sha256:841abf253a244adba79844219a045958ce3a6da2671deea3910ea773de4631e1
+insight image get \
+  --digest <insert digest here>
+
+# Query By CVE
+# Note: the `cveid` flag has the form: CVE-2021-3711
+insight vulnerabilities get \
+  --cveid <insert CVE here>
+```
 
 ## Tearing Down the Example
 
