@@ -160,8 +160,8 @@ To install any package from the Tanzu Application Platform package repository:
     + [Install Application Live View](#install-app-live-view)
     + [Install Service Bindings](#install-service-bindings)
     + [Install Tanzu Build Service](#install-tbs)
-    + [Install Supply Chain Choreographer](#-install-scc)
-    + [Install Default Supply Chains](#-install-default-supply-chains)
+    + [Install Supply Chain Choreographer](#install-scc)
+    + [Install Default Supply Chains](#install-default-supply-chains)
     + [Install Supply Chain Security Tools - Store](#install-scst-store)
     + [Install Supply Chain Security Tools - Sign](#install-scst-sign)
     + [Install Supply Chain Security Tools - Scan](#install-scst-scan)
@@ -1365,7 +1365,7 @@ To install the API portal:
 5. For more information about API portal, see [API portal for VMware Tanzu](https://docs.pivotal.io/api-portal).
 
 
-## Install Services Control Plane (SCP) Toolkit
+## <a id='install-scp-toolkit'></a> Install Services Control Plane (SCP) Toolkit
 
 To install Services Control Plane Toolkit:
 
