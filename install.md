@@ -1331,18 +1331,16 @@ To install Supply Chain Security Tools - Scan (Scan Controller):
     kubectl get secret app-tls-cert -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d
     ```
 
-    The `metadataStoreTokenSecret` is a reference to a secret that you will create and contains the
-    Metadata Store token.
-    The name of the secret is arbitrary, and for example, we will set it as "metadata-store-secret".
+    The `metadataStoreTokenSecret` is the name of the secret for the metadata store token that we will also need to create.
 
-    The secret to be created and applied into the cluster is (ensure the namespace is created in the cluster before applying):
+    Create a `metadata-store-secret.yaml` for this secret:
 
     ```yaml
     ---
     apiVersion: v1
     kind: Secret
     metadata:
-      name: <metadataStoreTokenSecret>
+      name: metadata-store-secret
       namespace: scan-link-system
     type: kubernetes.io/opaque
     stringData:
@@ -1353,6 +1351,12 @@ To install Supply Chain Security Tools - Scan (Scan Controller):
 
     ```bash
     kubectl get secrets -n tap-install -o jsonpath="{.items[?(@.metadata.annotations['kubernetes\.io/service-account\.name']=='metadata-store-tap-install-sa')].data.token}" | base64 -d
+    ```
+
+    Create namespace and deploy secret:
+    ```bash
+    kubectl create namespace scan-link-system
+    kubectl apply -f metadata-store-secret.yaml
     ```
 
 4. Install the package by running:
