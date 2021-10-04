@@ -370,24 +370,38 @@ To install the Tanzu CLI on a Windows operating system:
     ```
 ## <a id='update-cli'> Update the Tanzu CLI
 
-If you have any previous Tanzu CLI installed please run below steps before moving on to [Install the Tanzu CLI Plugins](#install-the-tanzu-cli-plugins).
+If you have any earlier version of the Tanzu CLI installed,
+do the following before you install the plugins.
+For instructions on installing plugins, see [Install the Tanzu CLI Plugins](#install-the-tanzu-cli-plugins).
 
-1.  Create a directory named tanzu
-2.  Download `tanzu-framework-bundle-*` for your operating system from Tanzu Network, [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/) (it is in the tanzu-cli-*-dev folder) and unpack the TAR file into the tanzu directory
-3.  Set the environment variable `TANZU_CLI_NO_INIT`.
+To remove plugins from earlier versions of the Tanzu CLI:
+
+1. Create a directory named `tanzu`.
+
+2. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/) on Tanzu Network.
+
+3. Click the `tanzu-cli-0.5.0` folder. 
+
+4.  Download `tanzu-framework-bundle-*` for your operating system and unpack the TAR file
+    into the `tanzu` directory.
+
+3.  Set the environment variable `TANZU_CLI_NO_INIT` by running:
+
      ```
      export TANZU_CLI_NO_INIT=true
      ```
 <!-- This command makes sense on GA, but for the beta's the user is doing a local installation and doesn't need to validate the remote.
+
  4.  Run this command to make sure the default plugin repo points to the right path:
     ```
     tanzu plugin repo update -b tanzu-cli-framework core
     ```
 -->
-4.  Remove existing plugins from any previous CLI installations.
+5.  Remove existing plugins from any previous CLI installations.
     ```
     tanzu plugin clean
     ```
+
 ## Install the Tanzu CLI Plugins
 
 After you have installed the tanzu core executable, you must install package, imagepullsecret, apps and app-accelerator CLI plugins.
