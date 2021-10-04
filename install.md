@@ -1093,6 +1093,7 @@ To install Supply Chain Security Tools - Sign:
         EOF
         ```
         (Optional) Run the following commands to test the webhook if you are using the `cosign-key`:
+
         1. Verify a signed image which validates with a configured public key will launch
             ```bash
             kubectl run cosign --image=gcr.io/projectsigstore/cosign:v1.2.1 --restart=Never --command -- sleep 900
