@@ -10,7 +10,7 @@ Default supply chains are provided out of the box with Tanzu Application Platfor
 
 - Source to URL
 - Source & Test to URL
-- Source & Scan to URL
+<!-- - Source & Scan to URL -->
 
 Regardless of the supply chain chosen, we need to first set credentials for a
 registry where Tanzu Build Service should push the images that it builds.
@@ -111,10 +111,27 @@ imagePullSecrets:
 3. create the workload
 
 ```bash
-tanzu workload create ... ?
+tanzu apps workload create hello-world \
+	--label apps.tanzu.vmware.com/workload-type=web \
+  --git-branch main \
+  --git-repo https://github.com/kontinue/hello-world
 ```
 ```console
-?
+Create workload:
+      1 + |apiVersion: carto.run/v1alpha1
+      2 + |kind: Workload
+      3 + |metadata:
+      4 + |  name: my-workload
+      5 + |  namespace: default
+      6 + |spec:
+      7 + |  source:
+      8 + |    git:
+      9 + |      ref:
+     10 + |        branch: main
+     11 + |      url: https://github.com/kontinue/hello-world
+
+? Do you want to create this workload? Yes
+Created workload "my-workload"
 ```
 
 ## Source & Test to URL
@@ -157,8 +174,8 @@ data:
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: default   # must match the name configured in the supply chain
-                  # installation (defaults to `default`)
+  name: service-account   # must match the name configured in the supply chain
+                  # installation (defaults to `service-account`)
 secrets:
   - name: registry-credentials
 imagePullSecrets:
@@ -197,7 +214,7 @@ spec:
               go test -v ./...
 ```
 
-## Source & Scan to URL
+<!-- ## Source & Scan to URL
 
 The source & scan to URL supply chain builds on the ability of the source to url supply chain and adds the ability to perform source and image scanning using Grype.
 
@@ -229,7 +246,7 @@ The next step would be to then submit a workload like in the other examples.
 =======
 
 3. submit a workload
-
+-->
 ```bash
 tanzu apps workload create hello-world \
 	--label apps.tanzu.vmware.com/workload-type=web \
