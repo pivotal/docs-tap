@@ -1,5 +1,5 @@
 # Reference
-With the Scan Controller and Scanner installed (see Install Supply Chain Security Tools - Scan from [Installing Part II: Packages](../install.md#install-scst-scan)), the following Custom Resource Definitions (CRDs) are now available.
+With the Scan Controller and Scanner installed (see Install Supply Chain Security Tools - Scan from [Installing Part II: Packages](../install.md#install-scst-scan), the following Custom Resource Definitions (CRDs) are now available.
 ```console
 $ kubectl get crds | grep scanning.apps.tanzu.vmware.com
 imagescans.scanning.apps.tanzu.vmware.com                2021-09-09T15:22:07Z
@@ -27,8 +27,6 @@ And you will see the following scan templates:
 |`blob-source-scan-template`|To be used in a Supply Chain. It will get a `.tar.gz` available file with `wget`, uncompress it and scan the source code inside it.|
 
 The private scan templates are referencing secrets created using the docker server and credentials you provided, so they are ready to use out-of-the-box. We will make use of them when running the samples.
-
-For more information, refer to [How to Create a ScanTemplate](create-scan-template.md).
 
 For more detailed information on the `SourceScan` and `ImageScan` CRDs and how to customize your own, refer to [Configuring Code Repositories and Image Artifacts to be Scanned](scan-crs.md).
 

@@ -14,9 +14,7 @@ Tanzu Application Platform simplifies workflows in both the
 _inner loop_ and _outer loop_ of Kubernetes-based app development:
 
 * **Inner Loop**: The _inner loop_ describes a developer’s personal
-development cycle to quickly iterate on code. The activities that take
-place in the inner loop include coding, testing, and debugging until
-they are happy with their code changes and finally make a commit. Rinse and repeat.
+development cycle to quickly iterate on code before committing any changes. These inner loop development activities include coding, testing, and debugging until the code is ready to commit. 
 
 * **Outer Loop**: The _outer loop_ describes the steps to deploy apps
 to production and maintain them over time. For example, on a cloud-native
