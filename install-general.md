@@ -252,7 +252,7 @@ To accept EULAs:
 
 Before you install Tanzu Application Platform,
 download and install the Tanzu CLI and the Tanzu CLI plugins. 
-If you have earlier versions of the Tanzu CLI, follow the instructions in [Update the Tanzu CLI](#update-the-tanzu-cli).
+If you have earlier versions of the Tanzu CLI, follow the instructions in [Update the Tanzu CLI](#update-cli).
 
 Follow the procedure for your operating system:
 
@@ -371,7 +371,7 @@ To install the Tanzu CLI on a Windows operating system:
     ```
     tanzu version
     ```
-## Update the Tanzu CLI
+## <a id='update-cli'> Update the Tanzu CLI
 
 If you have any previous Tanzu CLI installed please run below steps before moving on to [Install the Tanzu CLI Plugins](#install-the-tanzu-cli-plugins).
 
