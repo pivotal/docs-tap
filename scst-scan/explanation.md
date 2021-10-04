@@ -28,8 +28,6 @@ And you will see the following scan templates:
 
 The private scan templates are referencing secrets created using the docker server and credentials you provided, so they are ready to use out-of-the-box. We will make use of them when running the samples.
 
-For more information, refer to [How to Create a ScanTemplate](create-scan-template.md).
-
 For more detailed information on the `SourceScan` and `ImageScan` CRDs and how to customize your own, refer to [Configuring Code Repositories and Image Artifacts to be Scanned](scan-crs.md).
 
 ## About Policy Enforcement around Vulnerabilities Found
