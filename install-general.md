@@ -122,7 +122,7 @@ The following prerequisites are required to install Tanzu Application Platform:
         ```
         kapp deploy --yes -a cert-manager -f https://github.com/jetstack/cert-manager/releases/download/v1.5.3/cert-manager.yaml
         ```
-        We have verified the TAP repo bundle packages installation with cert-manager version v1.5.3.
+        We have verified the Tanzu Application Platform repo bundle packages installation with cert-manager version v1.5.3.
         
         * Verify installed cert-manager version by running:
 
@@ -320,7 +320,12 @@ To install the Tanzu CLI on a Mac operating system:
    ```
    tanzu version
    ```
-**If running `tanzu version` causes the following macOS warning to be displayed:** "tanzu" cannot be opened because the developer cannot be verified:
+**If you see the following warning when running `tanzu version` on macOS:** 
+```
+"tanzu" cannot be opened because the developer cannot be verified
+```
+
+To resolve this error, do the following:
   1. Click the Cancel button in the macOS prompt window.
   2. Open the “Security & Privacy” control panel from System Preferences.
   3. Click on the “General” tab.
