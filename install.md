@@ -744,11 +744,11 @@ To install Application Live View:
     connector_namespaces: [default]
     server_namespace: tap-install
     ```
-    The server_namespace is the namespace to which the Application Live View server is deployed.
-    Typically you should pick the namespace you created earlier, tap-install.
-    The connector_namespaces should be a list of existing namespaces in which you want
-    Application Live View to monitor your apps. To each of those namespace an instance of the
-    Application Live View Connector will be deployed.
+    The `server_namespace` is the namespace where the Application Live View server is deployed.
+    You should use the namespace you created earlier, named `tap-install`.
+    The `connector_namespaces` is a list of existing namespaces where you want
+    Application Live View to monitor your apps. An instance of the
+    Application Live View Connector will be deployed to each of those namespaces.
 
 1. Install the package by running:
 
