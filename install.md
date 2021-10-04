@@ -858,7 +858,7 @@ To install Application Live View:
      Added installed package 'service-bindings' in namespace 'tap-install'
     ```
 
- 1. Verify the package install by running:
+1. Verify the package install by running:
 
     ```bash
     tanzu package installed get service-bindings -n tap-install
@@ -938,11 +938,11 @@ To install Tanzu Build Service using the Tanzu CLI:
     tanzunet_password: TANZUNET-PASSWORD
     ```
     Where:
-    * `EXAMPLE-REGISTRY` is the URL of the Docker registry.
-    * `PATH-TO-INSTALL` is the path to the registry install location. `kp_default_repository` is the registry location where all Tanzu Build Services dependencies and builder images are written.
-    * `REGISTRY-USERNAME` and `REGISTRY-PASSWORD` are the username and password for the registry. The install requires a `kp_default_repository_username` and `kp_default_repository_password` in order to write to the repository location.
-    * `TANZUNET-USERNAME` and `TANZUNET-PASSWORD` are the email address and password that you use to log in to Tanzu Network. The Tanzu Network credentials allow for configuration of the Dependencies Updater.  This resource accesses and installs the build dependencies (buildpacks and stacks) Tanzu Build Service needs on your Cluster.  It also keeps these dependencies up-to-date as new versions are released on Tanzu Network.
-    * **Optional values**: There are optional values not included in this sample file that provide additional configuration for production use cases. For more information, see [Installing Tanzu Build Service](https://docs.pivotal.io/build-service/installing.html).
+        * `EXAMPLE-REGISTRY` is the URL of the Docker registry.
+        * `PATH-TO-INSTALL` is the path to the registry install location. `kp_default_repository` is the registry location where all Tanzu Build Services dependencies and builder images are written.
+        * `REGISTRY-USERNAME` and `REGISTRY-PASSWORD` are the username and password for the registry. The install requires a `kp_default_repository_username` and `kp_default_repository_password` in order to write to the repository location.
+        * `TANZUNET-USERNAME` and `TANZUNET-PASSWORD` are the email address and password that you use to log in to Tanzu Network. The Tanzu Network credentials allow for configuration of the Dependencies Updater.  This resource accesses and installs the build dependencies (buildpacks and stacks) Tanzu Build Service needs on your Cluster.  It also keeps these dependencies up-to-date as new versions are released on Tanzu Network.
+        * **Optional values**: There are optional values not included in this sample file that provide additional configuration for production use cases. For more information, see [Installing Tanzu Build Service](https://docs.pivotal.io/build-service/installing.html).
 
 1. Install the package by running:
 
@@ -1138,7 +1138,7 @@ To install Supply Chain Security Tools - Sign:
 
 1. Create a service account named `registry-credentials` in the `image-policy-system` namespace
 
-    1. **If the images and signatures are in public registries:** No extra configuration is needed. Apply the following:
+    * **If the images and signatures are in public registries:** No extra configuration is needed. Apply the following:
 
         ```console
         cat <<EOF | kubectl apply -f -
@@ -1150,7 +1150,7 @@ To install Supply Chain Security Tools - Sign:
         EOF
         ```
 
-    1. **If the images and signatures are in private registries:** Add secrets to the `imagePullSecrets` property of the service account.
+    * **If the images and signatures are in private registries:** Add secrets to the `imagePullSecrets` property of the service account.
 
         ```console
         cat <<EOF | kubectl apply -f -
@@ -1202,11 +1202,10 @@ The cluster image policy is a custom resource definition containing the followin
          keys:
          - name: first-key
     ```
-
     Notes:
-    * The `name` for the `ClusterImagePolicy` must be `image-policy`.
-    * In the `verification.exclude.resources.namespaces` section, add any namespaces that run container images that are unsigned, such as `kube-system`.
-    * For a quicker installation process in a non-production environment, VMware recommends you use the following YAML to create the `ClusterImagePolicy`. This YAML includes a cosign public key, which signed the cosign image at v1.2.1. The cosign public key validates the specified cosign image. You can also add additional namespaces to exclude in the `verification.exclude.resources.namespaces` section, such as any system namespaces.
+        * The `name` for the `ClusterImagePolicy` must be `image-policy`.
+        * In the `verification.exclude.resources.namespaces` section, add any namespaces that run container images that are unsigned, such as `kube-system`.
+        * For a quicker installation process in a non-production environment, VMware recommends you use the following YAML to create the `ClusterImagePolicy`. This YAML includes a cosign public key, which signed the cosign image at v1.2.1. The cosign public key validates the specified cosign image. You can also add additional namespaces to exclude in the `verification.exclude.resources.namespaces` section, such as any system namespaces.
 
     ```console
     cat <<EOF | kubectl apply -f -
@@ -1234,7 +1233,7 @@ The cluster image policy is a custom resource definition containing the followin
     EOF
     ```
 
-        (Optional) Run the following commands to test the webhook if you are using the `cosign-key`:
+    (Optional) Run the following commands to test the webhook if you are using the `cosign-key`:
 
         ```bash
         kubectl run cosign --image=gcr.io/projectsigstore/cosign:v1.2.1 --restart=Never --command -- sleep 900
