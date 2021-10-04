@@ -12,7 +12,6 @@ This is the table of contents from which the Tanzu Application Platform Document
 - [Component Documentation](components.md)
     * [Apps Plugin for Tanzu CLI](apps-plugin/apps-plugin.md)
     - [Supply Chain Choreographer for Tanzu](scc/about.md)
-        - [Installing SCC](scc/install.md)
         - [Spec Reference](scc/reference.md)
         - [SCC Examples](scc/examples.md)
     - [Supply Chain Security Tools for VMware Tanzu – Scan](scst-scan/overview.md)
