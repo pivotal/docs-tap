@@ -951,6 +951,7 @@ To install Tanzu Build Service using the Tanzu CLI:
     ```
 
     **Note**: Installing the `buildservice.tanzu.vmware.com` package with Tanzu Net credentials automatically relocates buildpack dependencies to your cluster. This install process can take some time.  The command provided above increases the timeout duration to account for this.  If the command still times out, periodically run the installation verification step provided below because image relocation will continue in the background.   
+    `kubectl get clusterbuilders`
 
     For example:
 
