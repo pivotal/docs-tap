@@ -216,7 +216,8 @@ The following packages are available in Tanzu Application Platform:
 * Cloud Native Runtimes for VMware Tanzu
 * Application Accelerator for VMware Tanzu
 * Application Live View for VMware Tanzu
-* VMware Tanzu Build Service
+* VMware Tanzu Build Service 
+    * Tanzu Build Service uses the open-source <a href="https://buildpacks.io/">Cloud Native Buildpacks</a> project to turn application source code into container images
 * SCP Toolkit
 * Supply Chain Choreographer for VMware Tanzu
 * Default Supply Chain with Testing
