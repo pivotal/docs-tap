@@ -25,6 +25,8 @@ The following prerequisites are required to install Tanzu Application Platform:
     * Google Kubernetes Engine (note that GKE Autopilot clusters do not have required features enabled)
     * minikube
   
+* **The Kubernetes CLI, kubectl, v1.19** or later, installed and authenticated with administrator rights for your target cluster.
+
 * **[kapp Carvel command line tool](https://github.com/vmware-tanzu/carvel-kapp/releases)** (v0.37.0 or later)
 
 * kapp-controller v0.24.0 or later:
@@ -161,7 +163,6 @@ The following prerequisites are required to install Tanzu Application Platform:
         ```
 
 
-* **The Kubernetes CLI, kubectl, v1.19** or later, installed and authenticated with administrator rights for your target cluster.
 
 
 ## <a id='set-and-verify'></a> Set and Verify the Kubernetes Cluster Configurations
