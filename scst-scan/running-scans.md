@@ -135,17 +135,17 @@ kubectl delete -f policy-enforcement-example.yaml
 ```
 
 ## <a id="public-image-scan"></a> Public Image Scan
-This example will perform an image scan on a image found in a public registry. The image revision in question has 226 known vulnerabilities (CVEs), spanning a number of severities. The ImageScan will use the ScanPolicy to run a compliance check against the CVEs.
+The following example performs an image scan on a image found in a public registry. This image revision has 226 known vulnerabilities (CVEs), spanning a number of severities. ImageScan uses the ScanPolicy to run a compliance check against the CVEs.
 
-The policy in this example has been set to only consider `Unknown` severity CVEs as violations, which returns 1 Unknown Severity Vulnerability.
+The policy in this example is set to only consider `Unknown` severity CVEs as a violation, which returns 1 Unknown Severity Vulnerability.
 
-**NOTE:** This example ScanPolicy has been deliberately constructed to showcase the features available, and as such should not be considered an acceptable base policy.
+**NOTE:** This example ScanPolicy has been deliberately constructed to showcase the features available, and should not be considered an acceptable base policy.
 
-For this example, the scan will (at the time of writing):
+In this example, the scan does the following (at the time of writing):
 
-* find all 226 of the CVEs,
-* ignore any CVEs that have severities that are not unknown severities,
-* indicate in the `Status.Conditions` that 1 CVE have violated policy compliance.
+* Find all 226 of the CVEs.
+* Ignore any CVEs with severities that are not unknown severities.
+* Indicate in the `Status.Conditions` that 1 CVE have violated policy compliance.
 
 ### Define the ScanPolicy and ImageScan
 Create `image-policy-enforcement-example.yaml`:
@@ -194,31 +194,32 @@ spec:
 ```
 
 ### (Optional) Setup a Watch
-Before deploying, set up a watch in another terminal to see things process... it will be quick!
+Before deploying, set up a watch in another terminal to view the process.
 ```bash
 watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
 ```
 
-For more information, refer to [Observing and Troubleshooting](observing.md).
+For more information about setting up a watch, see [Observing and Troubleshooting](observing.md).
 
 ### Deploy the Resources
+To deploy the sources, run:
 ```bash
 kubectl apply -f image-policy-enforcement-example.yaml
 ```
 
 ### See the Results
-Once the scan has completed, perform:
+Once the scan has completed, run:
 ```bash
 kubectl describe imagescan image-policy-enforcement-example
 ```
-and notice the `Status.Conditions` includes a `Reason: EvaluationFailed` and `Message: Vulnerabilities that failed OPA policy: CVE-2021-3618`.
+Note that the `Status.Conditions` includes a `Reason: EvaluationFailed` and `Message: Vulnerabilities that failed OPA policy: CVE-2021-3618`.
 
-For more information, refer to [Viewing and Understanding Scan Status Conditions](results.md).
+For more information about scan status conditions, see [Viewing and Understanding Scan Status Conditions](results.md).
 
 ### Modifying the ScanPolicy
-Let us say that this failing CVE is actually acceptable or the build just needs to be deployed... and the app will be patched tomorrow to remove the vulnerability... so... (it should be said, we are not advocating for ignoring vulnerabilities, but for example's sake...)
+If the failing CVE is acceptable or the build needs to be deployed, and the app will be patched tomorrow to remove the vulnerability, see the following example.
 
-Update the `ignoreCVEs` array in the ScanPolicy to include the CVEs to ignore:
+Update the `ignoreCVEs` array in the ScanPolicy to include the CVEs to ignore, run:
 ```yaml
 ...
 spec:
@@ -234,26 +235,26 @@ spec:
 ...
 ```
 
-**NOTE:** Currently, the ScanPolicy CRD will not re-trigger a scan if it is updated, so one way to re-trigger the scan is to delete and re-apply the ImageScan CR.
+**NOTE:** The ScanPolicy CRD will not re-trigger a scan if it is updated, so one way to re-trigger the scan is to delete and re-apply the ImageScan CR.
 
-So, go ahead and delete just the ImageScan CR:
+Delete only the ImageScan CR. Run:
 ```bash
 kubectl delete imagescan image-policy-enforcement-example
 ```
 
-Re-apply the resources:
+Re-apply the resources. Run:
 ```bash
 kubectl apply -f image-policy-enforcement-example.yaml
 ```
-Re-describe the Scan CR:
+Re-describe the Scan CR. Run:
 ```bash 
 kubectl describe imagescan image-policy-enforcement-example
 ```
-...and now you can see:
+You will see the following output:
 
 `Status.Conditions` now includes a `Reason: EvaluationPassed` and `No noncompliant vulnerabilities found`.
 
-You can also update the `violatingSeverities` array in the ScanPolicy if desired. For reference, the Grype scan returns the following Severity spread of vulnerabilities:
+You can update the `violatingSeverities` array in the ScanPolicy.. For reference, the Grype scan returns the following Severity spread of vulnerabilities:
 
 * Critical: 21
 * High: 59
@@ -263,6 +264,7 @@ You can also update the `violatingSeverities` array in the ScanPolicy if desired
 * UnknownSeverity: 1
 
 ### Clean Up
+To clean up, run:
 ```bash
 kubectl delete -f image-policy-enforcement-example.yaml
 ```
