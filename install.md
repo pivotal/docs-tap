@@ -998,11 +998,11 @@ To install Supply Chain Security Tools - Sign:
     Added installed package 'image-policy-webhook' in namespace 'tap-install'
     ```
 
-   The webhook should be up and running
+   After you run the code above, the webhook is running. 
 
-1. Create a service account named `registry-credentials` in the `image-policy-system` namespace
+1. Create a service account named `registry-credentials` in the `image-policy-system` namespace. Run one of the following code options.
 
-    * **If the images and signatures are in public registries:** No extra configuration is needed. Apply the following:
+    * **If the images and signatures are in public registries:** No additional configuration is needed. Run:
 
         ```console
         cat <<EOF | kubectl apply -f -
@@ -1014,7 +1014,7 @@ To install Supply Chain Security Tools - Sign:
         EOF
         ```
 
-    * **If the images and signatures are in private registries:** Add secrets to the `imagePullSecrets` property of the service account.
+    * **If the images and signatures are in private registries:** Add secrets to the `imagePullSecrets` property of the service account. Run:
 
         ```console
         cat <<EOF | kubectl apply -f -
