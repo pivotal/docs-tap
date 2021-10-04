@@ -577,7 +577,7 @@ Added installed package 'cartographer' in namespace 'default'
       -f https://storage.googleapis.com/tekton-releases/pipeline/previous/v0.28.0/release.yaml
     ```
 
-1. Then install the new supply chain:
+1. Then install the new supply chain that now includes testing with Tekton:
 
     ```bash
     tanzu package install default-supply-chain-testing \
