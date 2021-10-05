@@ -11,7 +11,7 @@ For information, see [Installing Part I: Prerequisites, Cluster Configurations, 
 
 The parameters that are required for the installation need to be defined in a YAML file.
 
-The required parameters for the individual packages can be identified by the values schema
+The available parameters for the individual packages can be identified by the values schema
 that are defined in the package.
 You can get these parameters by running the command
 as described in the procedure below.
