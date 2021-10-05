@@ -28,14 +28,14 @@ The installation will create the following in your Kubernetes cluster:
     * replicaset
     * pod
 * Persistent volume, and persistent volume claim.
-* External IP (if you've [customized the deployment configuration](../install.md#install-scst-store) to use `LoadBalancer`).
+* External IP (if you have [customized the deployment configuration](../install.md#install-scst-store) to use `LoadBalancer`).
 * A Kubernetes secret to allow pulling Supply Chain Security Tools - Store images from a registry.
 * A namespace called `metadata-store`.
 
 # CLI
 
-See [CLI](cli.md).
+For information about using the CLI, see [CLI](cli.md).
 
 # Known Issues
 
-See [Troubleshooting and Known Issues](known_issues.md).
+For information about known issues, see [Troubleshooting and Known Issues](known_issues.md).
