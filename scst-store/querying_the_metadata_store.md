@@ -1,28 +1,31 @@
 # Querying Supply Chain Security Tools - Store
 
-After adding scan reports or SBoMs to the Supply Chain Security Tools - Store from the [Supply Chain Security Tools - Scan](../scst-scan/running-scans.md) or [manually](add_cyclonedx_to_store.md), query the Supply Chain Security Tools - Store to understand vulnerability, image, and dependency relationships.
+You can query the Supply Chain Security Tools - Store to understand vulnerability, image, and dependency relationships. Before you query, you must add scan reports or SBoMs to the Supply Chain Security Tools - Store from the [Supply Chain Security Tools - Scan](../scst-scan/running-scans.md) or [manually](add_cyclonedx_to_store.md).
 ​
 ## Prerequisites
 
-Besides the prerequisites from the page [Supply Chain Security Tools - Store](using_metadata_store.md), make sure you've [installed Supply Chain Security Tools - Scan](../install.md#install-scst-scan).
+The following prerequisites are required to query Supply Chain Security Tools - Store:
+- Prerequisites included in [Supply Chain Security Tools - Store](using_metadata_store.md).
+- [Supply Chain Security Tools - Scan installed](../install.md#install-scst-scan).
 
-## Different Methods of Querying
-There are two different ways of querying the database
+## Querying Methods
+There are two different ways of querying the database:
 
 * CLI
 * API
-
-The following instructions follow the CLI, as it is the easiest way to query
 ​
-## Example Use Cases Supported by Supply Chain Security Tools - Store Queries
+## Example Use Cases for Supply Chain Security Tools - Store Queries
 
+The following example instructions use the CLI to query.
+
+The following use cases apply to Supply Chain Security Tools - Store:
 * What images contain a specific dependency?
 * What dependencies are affected by a specific CVE?
 * How many CVEs does a specific image or dependency contain?
 ​
-## Query the Supply Chain Security Tools - Store
+## Querying the Supply Chain Security Tools - Store
 
-Once the CVE report has been created, you can query information about the image using `image get`. We'll need the image's component version from the earlier CycloneDX report. Pass that as a parameter to the `--digest` flag.
+Once the CVE report is created, you can query information about the image using `image get`. You need the image's component version from the earlier CycloneDX report. Pass the component version as a parameter to the `--digest` flag. Run:
 
 ```sh
 $ insight image get --digest sha256:407d7099d6ce7e3632b6d00682a43028d75d3b088600797a833607bd629d1ed5
