@@ -648,7 +648,7 @@ Added installed package 'cartographer' in namespace 'default'
 
 ## <a id='install-default-supply-chain'></a> Install Default Supply Chain
 
-1. Follow the instructions in [Install Packages](#install-packages) above.
+1. Follow the instructions in [Install Packages](#install-packages) above to gather the values schema.
 
     ```bash
     tanzu package available get default-supply-chain.tanzu.vmware.com/0.2.0 --values-schema -n tap-install
@@ -669,8 +669,6 @@ Added installed package 'cartographer' in namespace 'default'
    ```
 
 
-1. Gather the values schema.
-
 1. Create a `default-supply-chain-values.yaml` using the following sample as a guide:
 
     Sample `default-supply-chain-values.yaml` for Default Supply Chain:
@@ -685,10 +683,7 @@ Added installed package 'cartographer' in namespace 'default'
    templates_namespace: tap-install
    ```
 
-
-1. Create a secret called `registry-credentials` with the credentials for the registry that you want the supply chain to use.
-
-1. Create an `imagepullsecret`:
+1. Export a secret for storing container images to all namespaces:
 
     ```console
     tanzu imagepullsecret add registry-credentials --registry <REGISTRY_SERVER> --username <REGISTRY_USERNAME> --password <REGISTRY_PASSWORD> --export-to-all-namespaces || true
@@ -707,6 +702,8 @@ Added installed package 'cartographer' in namespace 'default'
       --namespace tap-install \
       --values-file default-supply-chain-values.yaml
     ```
+
+Note: The `service-account` service account and needed secrets are created at the end of this guide, in <a id='setup'>Set Up Developer Namespaces to Use Installed Packages</a>.
 
 ## <a id='install-developer-conventions'></a> Install Developer Conventions
 
