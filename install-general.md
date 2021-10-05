@@ -47,13 +47,13 @@ The following prerequisites are required to install Tanzu Application Platform:
     * For Azure Kubernetes Service, Amazon Elastic Kubernetes Service, Google Kubernetes Engine, kind, and minikube,
       Install kapp-controller by running:
       ```
-      kapp deploy --yes -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/KC-VERSION/release.yml
+      kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/KC-VERSION/release.yml
       ```
       Where `KC-VERSION` is the kapp-controller version being installed. Please select v0.24.0+ kapp-controller version from the [Releases page](https://github.com/vmware-tanzu/carvel-kapp-controller/releases).
 
       For example:
       ```
-      kapp deploy --yes -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v0.24.0/release.yml
+      kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v0.24.0/release.yml
       ```
       
 
@@ -90,14 +90,14 @@ The following prerequisites are required to install Tanzu Application Platform:
     * Install secretgen-controller by running:
 
       ```
-      kapp deploy --yes -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/download/SG-VERSION/release.yml
+      kapp deploy -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/download/SG-VERSION/release.yml
       ```
 
       Where `SG-VERSION` is the secretgen-controller version being installed. Please select v0.5.0+ secretgen-controller version from the [Releases page](https://github.com/vmware-tanzu/carvel-secretgen-controller/releases).
 
       For example:
       ```
-      kapp deploy --yes -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/download/v0.5.0/release.yml
+      kapp deploy -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/download/v0.5.0/release.yml
       ```
 
     * To Verify installed secretgen-controller version:
@@ -133,7 +133,7 @@ The following prerequisites are required to install Tanzu Application Platform:
     * Install cert-manager by running:
 
         ```
-        kapp deploy --yes -a cert-manager -f https://github.com/jetstack/cert-manager/releases/download/v1.5.3/cert-manager.yaml
+        kapp deploy -a cert-manager -f https://github.com/jetstack/cert-manager/releases/download/v1.5.3/cert-manager.yaml
         ```
         We have verified the Tanzu Application Platform repo bundle packages installation with cert-manager version v1.5.3.
         
@@ -170,7 +170,7 @@ The following prerequisites are required to install Tanzu Application Platform:
         ```
      * Install Flux-SourceController by running:
         ```
-        kapp deploy --yes -a flux-source-controller -n flux-system \
+        kapp deploy -a flux-source-controller -n flux-system \
         -f https://github.com/fluxcd/source-controller/releases/download/v0.15.4/source-controller.crds.yaml \
         -f https://github.com/fluxcd/source-controller/releases/download/v0.15.4/source-controller.deployment.yaml
         ```
