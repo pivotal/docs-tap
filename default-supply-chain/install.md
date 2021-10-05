@@ -23,4 +23,4 @@ You will need:
 The Default Supply Chain is released as a Tanzu Package. Please follow the instructions [here](../install.md).
 
 ## Installing from source.
-You can also install as part of the Tanzu Application Platform from source(https://github.com/vmware-tanzu-private/inner-loop-supplychain).
+You can also install as part of the Tanzu Application Platform from [source](https://github.com/vmware-tanzu-private/inner-loop-supplychain).
