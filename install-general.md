@@ -18,7 +18,7 @@ The following prerequisites are required to install Tanzu Application Platform:
 
 * Network access to https://registry.tanzu.vmware.com as well as your chosen container image registry.
 
-* A Kubernetes cluster (v1.19 or later) on one of the following Kubernetes providers:
+* A Kubernetes cluster (v1.19, v1.20, or v1.21) on one of the following Kubernetes providers:
 
     * Azure Kubernetes Service
     * Amazon Elastic Kubernetes Service
@@ -263,7 +263,7 @@ To accept EULAs:
 Before you install Tanzu Application Platform,
 download and install the Tanzu CLI and the Tanzu CLI plugins. 
 If you have earlier versions of the Tanzu CLI, follow the instructions in [Update the Tanzu CLI](#update-cli).
-If you have installed a tanzu CLI for TCE or TKG in the past, please uninstall it and remove the `~/.config/tanzu` directory before trying out TAP.
+If you have installed a Tanzu CLI for Tanzu Community Edition or Tanzu Kubernetes Grid in the past, please uninstall it and remove the `~/.config/tanzu` directory before trying out Tanzu Application Platform.
 
 Follow the procedure for your operating system:
 
