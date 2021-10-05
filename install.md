@@ -1109,6 +1109,8 @@ To install Supply Chain Security Tools - Sign:
 
     - The `name` for the `ClusterImagePolicy` must be `image-policy`.
     - In the `verification.exclude.resources.namespaces` section, add any namespaces that run container images that are unsigned, such as `kube-system`.
+    - If no `ClusterImagePolicy` is created, images are permitted into the cluster
+      with the following warning: `Warning: clusterimagepolicies.signing.run.tanzu.vmware.com "image-policy" not found`.
     - For a quicker installation process in a non-production environment, VMware recommends you use the following YAML to create the `ClusterImagePolicy`. This YAML includes a cosign public key, which signed the cosign image at v1.2.1. The cosign public key validates the specified cosign image. You can also add additional namespaces to exclude in the `verification.exclude.resources.namespaces` section, such as any system namespaces.
         ```console
         cat <<EOF | kubectl apply -f -

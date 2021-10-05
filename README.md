@@ -102,23 +102,9 @@ git pull ; rm docs.zip ; zip -r tap2beta *.md VMwarePub.yaml images/ scc/ scst-s
 
 ### Form Fields
 
-Form fields for beta-1: 
-|field|value|
-|---|---|
-|Publication name:   |`VMware Tanzu Application Platform v0.1`|
-|Product name:       |`VMware Tanzu Application Platform`|
-|Version:            |`0.1`|
-|Publication GUID:   |`tap-0-1`|
-|Output filename:    |`tap-0-1`|
-|Output format:      |`HTML` (default)|
-|Publication author  |`YOUREMAIL@vmware.com`|
-|Publication language|`English`|
-|Publish destination |`VMwareDocs` (default)|
-|Publication audience|`None` (default)|
-|PDF link            |`tanzu-application-platform-0-1`|
-|ZIP File            |(choose the file)|
+Form fields for beta-1: [VMwarePub.yaml](https://github.com/pivotal/docs-tap/blob/beta-1/VMwarePub.yaml)
+Form fields for main (beta-2?): [VMwarePub.yaml](https://github.com/pivotal/docs-tap/blob/main/VMwarePub.yaml)
 
-For beta-2, change `1` to `2`.
 
 ### In Docsdash
 
