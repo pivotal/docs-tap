@@ -9,56 +9,43 @@ There are two high level workflows described within this document:
 
 1. The application development experience with the Developer Toolkit components
 
-2. The administration, set up and management of Supply Chains, Security Tools and Application Accelerators
+2. The administration, set up and management of Supply Chains, Security Tools, Services and Application Accelerators
 
 
 ### Prerequisites
 
-In order to take full advantage of this document,
-ensure you have followed the Tanzu Application Platform Beta 2 Installation process
+In order to take full advantage of this document,please ensure you have followed the Tanzu Application Platform Beta 2 Installation process
 found on [Tanzunet](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-overview.html).
-
 
 ---
 
+## Section 1: Developing Your First Application on Tanzu Application Platform
 
-## Section 1: Developing Your First Application on TAP
-
-In this section you’ll deploy a simple web-application to the platform,
-enable debugging and see your code updates added to the running application as you save them.
+In this section you’ll deploy a simple web-application to the platform, enable debugging and see your code updates added to the running application as you save them.
 
 Before getting started, ensure the following prerequisites are in place:
 
-1. TAP has been installed on the target Kubernetes cluster
+1. Tanzu Application Platform has been installed on the target Kubernetes cluster
    (install instructions [here](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-install-general.html)
    and [here](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-install.html))
 
 2. The Default Supply Chain has been installed on the target Kubernetes cluster
    (install instructions [here](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-install.html#install-default-supply-chain-11))
 
-3. Default kube config context is set to the target TAP-enabled Kubernetes cluster
+3. Default kube config context is set to the target Kubernetes cluster
 
 4. Follow [these instructions](https://github.com/pivotal/docs-tap/blob/947c6dfeb14ee2673110018ed6f6c8e995a10427/scc/default-supply-chains.md)
    to create a service account for pushing images
 
-5. You can now use the default namespace to deploy a new workload.
-   If you want to do it in a new namespace then follow these instructions
+You can now use the existing namespace to deploy a new workload. If you want to do it in a new namespace then follow these additional instructions
 
-A note about Application Accelerators…
+#### A note about Application Accelerators
 
-The Application Accelerator component helps app developers and app operators through the creation
-and generation of application accelerators (accelerators for short).
-Accelerators are templates which codify best practices and/or ensure important configuration
-and structures are in place from the start. \
- \
-Developers can bootstrap their applications and get started with feature development right away.
+The Application Accelerator component helps app developers and app operators through the creation and generation of application accelerators (accelerators for short). Accelerators are templates that codify best practices and/or ensure important configuration and structures are in place from the start. 
+ 
+Developers can bootstrap their applications and get started with feature development right away. Application Operators can create custom accelerators that reflect their desired architectures and configurations and enable fleets of developers to utilize them, decreasing operator concerns about whether developers are implementing their desired best practices.
 
-Application Operators can create custom accelerators which reflect their desired architectures
-and configurations and enable fleets of developers to utilize them,
-decreasing operator concerns about whether developers are implementing their desired best practices.
-
-Application Accelerator templates are available as a quickstart
-from [Tanzunet](https://network.tanzu.vmware.com/products/app-accelerator).
+Application Accelerator templates are available as a quickstart from [Tanzunet](https://network.tanzu.vmware.com/products/app-accelerator). To create your own Application Accelerator, see here.
 
 
 ### Deploy your Application
@@ -69,22 +56,20 @@ You’ll use an accelerator called Tanzu-Java-Web-App to get started.
 Visit your Application Accelerator (view instructions to do so
 [here](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.3/acc-docs/GUID-installation-install.html#using-application-accelerator-for-vmware-tanzu-0))
 
-![Screenshot of Application Accelerator that shows a search field and two accelerators](images/app-acc.png)
+<img src="images/app-acc.png" alt="Screenshot of Application Accelerator that shows a search field and two accelerators" width="600">
 
-Select the "Tanzu Java Web App" accelerator (a sample Spring Boot web-app)
+Select the "Tanzu Java Web App" accelerator (a sample Spring Boot web-app).
 
-![Screenshot of the Tanzu Java Web App within Application Accelerator. It includes empty fields for new project information.](images/tanzu-java-web-app.png)
+<img src="images/tanzu-java-web-app.png" alt="Screenshot of the Tanzu Java Web App within Application Accelerator. It includes empty fields for new project information." width="600">
 
 Replace the default value, `dev.local`, in the _"prefix for container image registry"_ field
-with the url to your registry.
-The URL you enter should match what you specified while deploying the
+with the url to your registry. The URL you enter should match what you specified while deploying the
 [Tanzu Build Service](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-install.html#install-tanzu-build-service-7)
-(use the value you provided for `kp_default_repository`)
+(use the value you provided for `kp_default_repository`).
 
-![Screenshot of the Tanzu Java Web App within Application Accelerator. It includes empty fields for new project information, and buttons labeled "Generate Project", "Explore Files", and "Cancel".](images/store-image-on-server.png)
+<img src="images/store-image-on-server.png" alt="Screenshot of the Tanzu Java Web App within Application Accelerator. It includes empty fields for new project information, and buttons labeled 'Generate Project', 'Explore Files', and 'Cancel'." width="600">
 
-Click the “Generate Project” button to download the accelerator zip file
-(you’ll use the VScode extension later to debug and see live-updates of this code later later in this guide)
+Click the “Generate Project” button to download the accelerator zip file (you’ll use the VScode extension later to debug and see live-updates of this code later later in this guide).
 
 Deploy the ‘Tanzu Java Web App’ accelerator using the `create` command
 <code>tanzu apps workload create tanzu-java-web-app\
@@ -107,33 +92,30 @@ Once the workload has been built and is running you can grab the web-app URL \
 
 #### Set up your IDE
 
-Now that you have a skeleton workload working, you are ready to iterate on your application
-and test code changes on the cluster.
-Tanzu Developer Tools for VSCode, VMware Tanzu’s official IDE extension for VSCode,
-helps you develop & receive fast feedback on the Tanzu Application Platform.
+
+Now that you have a skeleton workload working, you are ready to iterate on your application and test code changes on the cluster. Tanzu Developer Tools for VSCode, VMware Tanzu’s official IDE extension for VSCode, helps you develop & receive fast feedback on the Tanzu Application Platform.
 
 The VSCode extension enables live updates of your application while it’s running on the cluster and provides the ability to debug your application directly on the cluster.
 
 Start by installing the pre-requisites and the Tanzu Developer Tools extension by following [these instructions](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-vscode-extension-install.html).
+
 Open the ‘Tanzu Java Web App’ as a project within your VSCode IDE.
 
 In order to ensure your extension helps you iterate on the correct project, you’ll need to configure its settings:
 
-1. Within VSCode, go to Preferences -> Settings -> Extensions -> Tanzu.
+1. Within VSCode, go to Preferences -> Settings -> Extensions -> Tanzu
 
 2. In the “Local Path” field, enter the path to the directory containing the ‘Tanzu Java Web App’
 
-3. In the “Source Image” field, enter the destination image repository where you’d like to publish
-  an image containing your workload’s source code. For example “harbor.vmware.com/myteam/tanzu-java-web-app-source”.
+3. In the “Source Image” field, enter the destination image repository where you’d like to publish an image containing your workload’s source code. For example “harbor.vmware.com/myteam/tanzu-java-web-app-source”
 
 You’re now ready to iterate on your application!
 
 
 #### Live Update your Application
 
-Let’s deploy the application and see it live update on the cluster.
-Doing so allows you to understand how your code changes will behave on a production-like cluster
-much earlier in the development process.
+Let’s deploy the application and see it live update on the cluster. Doing so allows you to understand how your code changes will behave on a production-like cluster much earlier in the development process.
+
 
 Follow these steps:
 1. From the Command Palette (⇧⌘P), type in & select “Tanzu: Live Update Start”.
@@ -145,6 +127,7 @@ Follow these steps:
 2. Once you see output indicating that the workload is ready, navigate to http://localhost:8080 in your browser and view your application running.
 3. Return to the IDE and make a change to the source code. For example, in HelloController.java, modify the string returned to say “Hello!” and press save.
 4. If you look in the Tanzu Logs section of the Output tab, You should see the container has updated. Navigate back to your browser and refresh the page.
+
 
 You should see your changes on the cluster!
 
