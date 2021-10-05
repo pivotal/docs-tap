@@ -69,11 +69,11 @@ You’ll use an accelerator called Tanzu-Java-Web-App to get started.
 Visit your Application Accelerator (view instructions to do so
 [here](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.3/acc-docs/GUID-installation-install.html#using-application-accelerator-for-vmware-tanzu-0))
 
-![Screenshot of Application Accelerator that shows a search field and two accelerators](images/app-acc.png){width=400px}
+<img src="images/app-acc.png" alt="Screenshot of Application Accelerator that shows a search field and two accelerators" width="600">
 
 Select the "Tanzu Java Web App" accelerator (a sample Spring Boot web-app)
 
-![Screenshot of the Tanzu Java Web App within Application Accelerator. It includes empty fields for new project information.](images/tanzu-java-web-app.png){width=400px}
+<img src="images/tanzu-java-web-app.png" alt="Screenshot of the Tanzu Java Web App within Application Accelerator. It includes empty fields for new project information." width="600">
 
 Replace the default value, `dev.local`, in the _"prefix for container image registry"_ field
 with the url to your registry.
@@ -81,7 +81,7 @@ The URL you enter should match what you specified while deploying the
 [Tanzu Build Service](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-install.html#install-tanzu-build-service-7)
 (use the value you provided for `kp_default_repository`)
 
-![Screenshot of the Tanzu Java Web App within Application Accelerator. It includes empty fields for new project information, and buttons labeled "Generate Project", "Explore Files", and "Cancel".](images/store-image-on-server.png){width=400px}
+<img src="images/store-image-on-server.png" alt="Screenshot of the Tanzu Java Web App within Application Accelerator. It includes empty fields for new project information, and buttons labeled 'Generate Project', 'Explore Files', and 'Cancel'." width="600">
 
 Click the “Generate Project” button to download the accelerator zip file
 (you’ll use the VScode extension later to debug and see live-updates of this code later later in this guide)
