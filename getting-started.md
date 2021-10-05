@@ -58,18 +58,20 @@ Visit your Application Accelerator (view instructions to do so
 
 <img src="images/app-acc.png" alt="Screenshot of Application Accelerator that shows a search field and two accelerators" width="600">
 
-Select the "Tanzu Java Web App" accelerator (a sample Spring Boot web-app).
+Select the "Tanzu Java Web App" accelerator (a sample Spring Boot web-app)
 
 <img src="images/tanzu-java-web-app.png" alt="Screenshot of the Tanzu Java Web App within Application Accelerator. It includes empty fields for new project information." width="600">
 
 Replace the default value, `dev.local`, in the _"prefix for container image registry"_ field
-with the url to your registry. The URL you enter should match what you specified while deploying the
+with the url to your registry.
+The URL you enter should match what you specified while deploying the
 [Tanzu Build Service](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-install.html#install-tanzu-build-service-7)
-(use the value you provided for `kp_default_repository`).
+(use the value you provided for `kp_default_repository`)
 
 <img src="images/store-image-on-server.png" alt="Screenshot of the Tanzu Java Web App within Application Accelerator. It includes empty fields for new project information, and buttons labeled 'Generate Project', 'Explore Files', and 'Cancel'." width="600">
 
-Click the “Generate Project” button to download the accelerator zip file (you’ll use the VScode extension later to debug and see live-updates of this code later later in this guide).
+Click the “Generate Project” button to download the accelerator zip file
+(you’ll use the VScode extension later to debug and see live-updates of this code later later in this guide)
 
 Deploy the ‘Tanzu Java Web App’ accelerator using the `create` command
 <code>tanzu apps workload create tanzu-java-web-app\
@@ -93,9 +95,14 @@ Once the workload has been built and is running you can grab the web-app URL \
 #### Set up your IDE
 
 
-Now that you have a skeleton workload working, you are ready to iterate on your application and test code changes on the cluster. Tanzu Developer Tools for VSCode, VMware Tanzu’s official IDE extension for VSCode, helps you develop & receive fast feedback on the Tanzu Application Platform.
 
-The VSCode extension enables live updates of your application while it’s running on the cluster and provides the ability to debug your application directly on the cluster.
+Now that you have a skeleton workload working, you are ready to iterate on your application
+and test code changes on the cluster.
+Tanzu Developer Tools for VSCode, VMware Tanzu’s official IDE extension for VSCode,
+helps you develop & receive fast feedback on the Tanzu Application Platform.
+
+The VSCode extension enables live updates of your application while it’s running on the cluster
+and provides the ability to debug your application directly on the cluster.
 
 Start by installing the pre-requisites and the Tanzu Developer Tools extension by following [these instructions](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-vscode-extension-install.html).
 
@@ -103,18 +110,21 @@ Open the ‘Tanzu Java Web App’ as a project within your VSCode IDE.
 
 In order to ensure your extension helps you iterate on the correct project, you’ll need to configure its settings:
 
-1. Within VSCode, go to Preferences -> Settings -> Extensions -> Tanzu
+1. Within VSCode, go to Preferences -> Settings -> Extensions -> Tanzu.
 
 2. In the “Local Path” field, enter the path to the directory containing the ‘Tanzu Java Web App’
 
-3. In the “Source Image” field, enter the destination image repository where you’d like to publish an image containing your workload’s source code. For example “harbor.vmware.com/myteam/tanzu-java-web-app-source”
+3. In the “Source Image” field, enter the destination image repository where you’d like to publish
+  an image containing your workload’s source code. For example “harbor.vmware.com/myteam/tanzu-java-web-app-source”.
 
 You’re now ready to iterate on your application!
 
 
 #### Live Update your Application
 
-Let’s deploy the application and see it live update on the cluster. Doing so allows you to understand how your code changes will behave on a production-like cluster much earlier in the development process.
+Let’s deploy the application and see it live update on the cluster.
+Doing so allows you to understand how your code changes will behave on a production-like cluster
+much earlier in the development process.
 
 
 Follow these steps:
@@ -127,6 +137,7 @@ Follow these steps:
 2. Once you see output indicating that the workload is ready, navigate to http://localhost:8080 in your browser and view your application running.
 3. Return to the IDE and make a change to the source code. For example, in HelloController.java, modify the string returned to say “Hello!” and press save.
 4. If you look in the Tanzu Logs section of the Output tab, You should see the container has updated. Navigate back to your browser and refresh the page.
+
 
 
 You should see your changes on the cluster!
@@ -143,43 +154,39 @@ Follow the steps below:
 2. Right click on the file `workload.yaml` within the `config` folder, and select `Tanzu: Java Debug Start`. In a few moments, the workload will be redeployed with debugging enabled.
 3. Return to your browser and navigate to http://localhost:8080. This will hit the breakpoint within VSCode. You can now step through or play to the end of the debug session using VSCode debugging controls.
 
+
 ### Troubleshooting a Running Application
 
-Now that your application is developed you may be interested in inspecting the run time
-characteristics of the running application. You can use Application Live View UI to look
-into the running application to monitor resource consumption, JVM status, incoming traffic
-as well as change log level, environment variables to troubleshoot and fine-tune the running application.
-Currently, Spring Boot based applications can be diagnosed using Application Live View.
+
+Now that your application is developed you may be interested in inspecting the run time characteristics of the running application. You can use Application Live View UI to look into the running application to monitor resource consumption, JVM status, incoming traffic
+as well as change log level, environment variables to troubleshoot and fine-tune the running application. Currently, Spring Boot based applications can be diagnosed using Application Live View.
 
 Make sure that you have installed Application Live View components successfully.
 
-Access Application Live View UI following the instruction
+Access Application Live View UI by following the instructions
 [here](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.2/docs/GUID-installing.html?hWord=N4IghgNiBcIJIDsDOAXSECWCDmACAggA6GYDGYKGA9grgDIYBuAprgGobMDuIAvkA#access-the-application-live-view-ui-6).
 Select your application to look inside the running application and
 [explore](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.1/docs/GUID-product-features.html)
 the various diagnostic capabilities.
 
-
 ---
-
 
 ## Section 2: Creating an Accelerator
 
-You can use any git repository to create an Accelerator.
-You need the URL for the repository to create an Accelerator.
+You can use any git repository to create an Accelerator. You need the URL for the repository to create an Accelerator.
 
 Use the following procedure to create an accelerator:
 
-1. Select the **New Accelerator **from the shown accelerators in the Application Accelerator web UI.
+1. Select the **New Accelerator** from the shown accelerators in the Application Accelerator web UI.
 
 2. Fill in the new project form with the following information:
 
-    * Name: Your Accelerator name.
-    * (Optional) Description: A description of your accelerator.
-    * K8s Resource Name: A Kubernetes resource name.
-    * Git Repository URL: The git repository URL you use to create an accelerator.
-    * Git Branch: the name of your git branch.
-    * (Optional) Tags: Any associated tags.
+    * Name: Your Accelerator name
+    * (Optional) Description: A description of your accelerator
+    * K8s Resource Name: A Kubernetes resource name
+    * Git Repository URL: The git repository URL you use to create an accelerator
+    * Git Branch: the name of your git branch
+    * (Optional) Tags: Any associated tags
 
 3. Download and expand the zip file.
 
@@ -192,62 +199,35 @@ Use the following procedure to create an accelerator:
 
 #### Using application.yaml
 
-The Accelerator zip file contains a file called `new-accelerator.yaml`.
-This file contains additional information about the Accelerator.
-
-Copy this file into your git repo as `accelerator.yaml` to have additional attributes rendered in the web UI.
-([https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.3/acc-docs/GUID-creating-accelerators-index.html](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.2/acc-docs/GUID-creating-accelerators-index.html))
+The Accelerator zip file contains a file called `new-accelerator.yaml`. This file contains additional information about the Accelerator. Copy this file into your git repo as `accelerator.yaml` to have additional attributes rendered in the web UI.
 
 
 ## Section 3: Add test to your application
 
 ### What is a Supply Chain?
 
-Supply Chains provide a way of codifying all of the steps of your path to production
-(or what is more commonly known as CI/CD).
-A supply chain differs from CI/CD in that any and every step that is necessary
-for an application to reach production (or a lower environment) can be added.
+Supply Chains provide a way of codifying all of the steps of your path to production (or what is more commonly known as CI/CD).
+A supply chain differs from CI/CD in that any and every step that is necessary for an application to reach production (or a lower environment) can be added.
 
 ![Diagram depicting a simple path to production: CI to Security Scan to Build Image to Image Scan to CAB Approval to Deployment.](images/path-to-production.png)
-<!-- Change CI to Continuous Integration if that's what it means, not least because a screen reader probably struggles to say "CI" -->
 
-A simple path to production
+#### A simple path to production
 
-A path to production allows users to create a unified access point for all of the tools
-required for their applications to reach a customer-facing environment.
-Instead of having four tools that are loosely coupled to each other,
-a path to production defines all four tools in a single, unified layer of abstraction.
-Where tools typically aren't able to integrate with one another and additional scripting
-or webhooks are necessary, there would be a unified automation tool to codify all the interactions
-between each of the tools.
-Supply chains which are used to codify the organization's path to production are configurable,
-allowing their authors to add any and all of the steps of their applications path to production.
+A path to production allows users to create a unified access point for all of the tools required for their applications to reach a customer-facing environment. Instead of having four tools that are loosely coupled to each other, a path to production defines all four tools in a single, unified layer of abstraction. Where tools typically aren't able to integrate with one another and additional scripting or webhooks are necessary, there would be a unified automation tool to codify all the interactions between each of the tools. Supply chains which are used to codify the organization's path to production are configurable, allowing their authors to add any and all of the steps of their applications path to production.
 
-Out of the box, Tanzu Application Platform provides 2 default supply chains
-(with more to be included with future releases) which are designed to work with Tanzu Application Platform components.
+Out of the box, Tanzu Application Platform provides 2 default supply chains (with more to be included with future releases) that are designed to work with Tanzu Application Platform components.
 
 
 #### Supply Chains included in Beta 2
 
-The Tanzu Application Platform installation steps details installing the default supply chain,
-but others are available.
-If you follow the installation docs, the **Source to URL ** supply chain chain will be installed on your cluster
-(as well as all of its dependencies).
-The table below and the following figures show the 2 supply chains that are included in
-Tanzu Application Platform Beta 2, as well as their descriptions and dependencies.
+The Tanzu Application Platform installation steps details installing the default supply chain, but others are available.
+If you follow the installation docs, the **Source to URL** supply chain will be installed on your cluster (as well as all of its dependencies).
+The table below and the following figures show the 2 supply chains that are included in Tanzu Application Platform Beta 2, as well as their descriptions and dependencies.
 
-The biggest difference between the two supply chains is that the second **Source & Test to URL **
-includes the ability to run a Tekton pipeline within the supply chain.
-It therefore has a dependency on [Tekton](https://tekton.dev/), which has not yet been installed on your cluster.
-The next section of the documentation walks you through installing Tekton and
-provides a sample Tekton pipeline that once included will test the sample application.
-The pipeline is, like the supply chain, completely configurable and therefore the steps
-within it can be customized to perform additional testing, or any other tasks
-that can be performed with a Tekton pipeline.
+The biggest difference between the two supply chains is that the second **Source & Test to URL** includes the ability to run a Tekton pipeline within the supply chain. It therefore has a dependency on [Tekton](https://tekton.dev/), which has not yet been installed on your cluster. The next section of the documentation walks you through installing Tekton and provides a sample Tekton pipeline that once included will test the sample application.
+The pipeline is, like the supply chain, completely configurable and therefore the steps within it can be customized to perform additional testing, or any other tasks that can be performed with a Tekton pipeline.
 
-A limitation of Tanzu Application Platform Beta 2 is that only one of the two supply chains
-can be installed at any given time. If you have already installed the default - source to URL supply
-chain, it will first need to be uninstalled before installing the Source & Test to URL supply chain.
+A limitation of Tanzu Application Platform Beta 2 is that only one of the two supply chains can be installed at any given time. If you have already installed the default - source to URL supply chain, it will first need to be uninstalled before installing the Source & Test to URL supply chain.
 
 ![Diagram depicting the Source-to-URL chain: Watch Repo (Flux) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](images/source-to-url-chain.png)
 
@@ -285,11 +265,11 @@ chain, it will first need to be uninstalled before installing the Source & Test 
 
 <li>Flux/Source Controller
 
-<li>TBS
+<li>Tanzu Build Service
 
 <li>Convention Service
 
-<li>CNR
+<li>Cloud Native Runtimes
 </li>
 </ul>
    </td>
@@ -340,14 +320,10 @@ chain, it will first need to be uninstalled before installing the Source & Test 
 </table>
 
 
-### Uninstall Default supply
+### Uninstalling the Default Supply Chain
 
-**<span style="text-decoration:underline;">Due to a limitation of Beta 2,</span>** at this time,
-only one supply chain can be installed at any given time.
-As a result, if the installation docs have been followed, there will already be a supply chain
- - the default **Source to URL** supply chain - installed on your cluster.
-To add the ability to test your application using Tekton, the default supply chain will first need to be uninstalled:
-
+**<span style="text-decoration:underline;">Due to a limitation of Beta 2,</span>** at this time, only one supply chain can be installed at any given time.
+As a result, if the installation docs have been followed, there will already be a supply chain - the default **Source to URL** supply chain - installed on your cluster. To add the ability to test your application using Tekton, the default supply chain will first need to be uninstalled:
 
 ```bash
 tanzu package installed delete default-supply-chain \
