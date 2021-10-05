@@ -7,6 +7,7 @@ This is the table of contents from which the Tanzu Application Platform Document
 - [Installing Tanzu Application Platform](install-intro.md)
     - [Installing Part I: Prerequisites, Cluster Configurations, EULA, and CLI](install-general.md)
     - [Installing Part II: Packages](install.md)
+- [Getting Started with Tanzu Application Platform](getting-started.md)
 - [Troubleshooting Tanzu Application Platform](troubleshooting.md)
 - [Uninstalling Tanzu Application Platform](uninstall.md)
 - [Component Documentation](components.md)
