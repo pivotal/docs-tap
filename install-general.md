@@ -263,7 +263,8 @@ To accept EULAs:
 Before you install Tanzu Application Platform,
 download and install the Tanzu CLI and the Tanzu CLI plugins. 
 If you have earlier versions of the Tanzu CLI, follow the instructions in [Update the Tanzu CLI](#update-cli).
-If you have installed a Tanzu CLI for Tanzu Community Edition or Tanzu Kubernetes Grid in the past, please uninstall it and remove the `~/.config/tanzu` directory before trying out Tanzu Application Platform.
+If you have installed a Tanzu CLI for Tanzu Community Edition or Tanzu Kubernetes Grid in the past,
+uninstall it and remove the `~/.config/tanzu` directory before trying out Tanzu Application Platform.
 
 Follow the procedure for your operating system:
 
