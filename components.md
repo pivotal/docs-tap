@@ -13,6 +13,8 @@ Tanzu Application Platform documentation site.
 
 + [Cloud Native Runtimes for VMware Tanzu](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-cnr-overview.html)
 
++ [Tanzu Developer Tools for Visual Studio Code](vscode-extension/about.md)
+
 + Convention Service for VMware Tanzu
 
 + SCP Toolkit
