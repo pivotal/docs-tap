@@ -12,7 +12,7 @@ This is the table of contents from which the Supply Chain Security Tools – Sca
   * [Running a Sample Private Source Scan](samples/private-source.md)
 * [Viewing Vulnerability Results](viewing-reports.md)
 * [Observing and Troubleshooting](observing.md)
-* [Example Cartographer Supply Chain including Source and Image Scans](cartographer.md)
+* [Example Supply Chain Choreographer for Tanzu including Source and Image Scans](choreographer.md)
 * [Uninstall](uninstall.md)
 * Additional Resources
   * [Configure Code Repositories and Image Artifacts to be Scanned](scan-crs.md)
