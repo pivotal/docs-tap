@@ -15,7 +15,7 @@ Next, in [Installing Part II: Packages](https://github.com/pivotal/docs-tap/blob
 
 ## Configure the Example
 
-To make the example easy to set up, ytt is used for templating Kubernetes objects.
+To make the example easy to set up, `ytt` is used for templating Kubernetes objects.
 
 Create `values.yaml` with credentials for the source code repository, kpack image builder and image registry. This example is set to use the Java Buildpack, so point the source repository url at something like a Spring Boot app.
 
@@ -143,7 +143,7 @@ stringData:
   known_hosts: gitlab.eng.vmware.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBIW3CobFtjtaGAbNvW1w7Z1+nOV131I2GQ4T/v6elt8caUxo+NK8w4R0ywLc5FiIa3RQ6CuyHfkO6cnJGQm3n3Q=
 ```
 
-Create `00-cluster/scanner.yaml` to configure a Kubernetes secret and service account to access the artifact registry. An additional Scan Template is configured for the Source Scan to work within the context of a Supply Chain (as opposed to using a Scan Template included in the Grype Templates bundle). The pre-installed Scan Template for the Image Scan will be used though. Also, we add a Scan Policy to show some vulnerabilities found.
+Create `00-cluster/scanner.yaml` to configure a Kubernetes secret and service account to access the artifact registry. When installing the Grype Scanner, five scan templates were pre-installed for various use cases. This example will use two of them, one for performing a source scan within the context of a supply chain (where the source code is delivered as a tar file) and another for performing an image scan. Additionally, the following yaml will define a Scan Policy to show vulnerabilities found.
 
 ```yaml
 #@ load("@ytt:data", "data")
@@ -203,7 +203,7 @@ spec:
 
 ## App Operator Deployments for Defining the Supply Chain
 
-Create `app-operator/supply-chain-templates.yaml` to configure each of the components in the Supply Chain. Each Cartographer template references the cluster resources we already defined. And as mentioned above, the pre-installed Scan Templates will be used along with the Scan Policy we defined above.
+Create `app-operator/supply-chain-templates.yaml` to configure each of the components in the Supply Chain. Each Cartographer template references the cluster resources we already defined. And as mentioned above, the pre-installed Scan Templates are used along with the Scan Policy defined above.
 
 ```yaml
 #@ load("@ytt:data", "data")
@@ -457,12 +457,12 @@ During processing and upon completion, try performing `kubectl describe` on the 
 
 ## Querying the Metadata Store for Vulnerability Results using the Insight CLI
 
-In a separate terminal, set up a port-forwarding to the Metadata Store running in the cluster:
+1. In a separate terminal, set up a port-forwarding to the Metadata Store by running:
 ```bash
 kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store
 ```
 
-Using the `MetadataURL` field in the `kubectl describe` `sourcescan` or `imagescan` output, we can make use of the `insight` CLI to query the Metadata Store for the scan results that were outputted by the Grype Scanner.
+1. Using the `MetadataURL` field in the `kubectl describe` `sourcescan` or `imagescan` output, we can make use of the `insight` CLI to query the Metadata Store for the scan results that were outputted by the Grype Scanner. Run:
 
 ```bash
 # Configure Insight CLI to Authenticate to Metadata Store
