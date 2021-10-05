@@ -175,22 +175,27 @@ You need the URL for the repository to create an Accelerator.
 
 Use the following procedure to create an accelerator:
 
-1. Select the **New Accelerator **from the shown accelerators in the Application Accelerator web UI.
+1. Select the **New Accelerator** tile from the shown accelerators in the Application Accelerator web UI.
 
 2. Fill in the new project form with the following information:
 
-    * Name: Your Accelerator name.
+    * Name: Your Accelerator name. This will also be the name of the generated ZIP file.
     * (Optional) Description: A description of your accelerator.
-    * K8s Resource Name: A Kubernetes resource name.
-    * Git Repository URL: The git repository URL you use to create an accelerator.
-    * Git Branch: the name of your git branch.
-    * (Optional) Tags: Any associated tags.
+    * K8s Resource Name: A Kubernetes resource name to use for the Accelerator.
+    * Git Repository URL: The URL for the git repository that contains the source code of the accelerator.
+    * Git Branch: the branch for the git repository.
+    * (Optional) Tags: Any associated tags that can be used for searches in the UI.
 
 3. Download and expand the zip file.
 
-4. To apply the k8s-resource.yml, run the following command in your terminal in the folder where you expanded the zip file: `kubectl apply -f k8s-resource.yaml`
+    * The output contains a YAML file for an Accelerator resource, pointing to the git repository.
+    * It also contains a file named `new-accelerator.yaml` which defines the metadata for your new accelerator.
 
-    * The output file contains YAML for an Accelerator resource, pointing to the git repository.
+4. To apply the k8s-resource.yml, run the following command in your terminal in the folder where you expanded the zip file:
+
+    ```bash
+    kubectl apply -f k8s-resource.yaml
+    ```
 
 5. Refresh the Accelerator web UI to reveal the newly published accelerator.
 
@@ -198,11 +203,17 @@ Use the following procedure to create an accelerator:
 #### Using application.yaml
 
 The Accelerator zip file contains a file called `new-accelerator.yaml`.
-This file contains additional information about the Accelerator.
+This file is a starting point for defining the metadata for your new accelerator and the associated options and file processing instructions.
+This `new-accelerator.yaml` file should be copied to the root directory of your git repo and named `accelerator.yaml`.
 
 Copy this file into your git repo as `accelerator.yaml` to have additional attributes rendered in the web UI.
 ([https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.3/acc-docs/GUID-creating-accelerators-index.html](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.2/acc-docs/GUID-creating-accelerators-index.html))
 
+After you push that change to your git repo the Accelerator in the UI will be refreshed based on the `git.interval` setting for the Accelerator resource. The default is 10 minutes. If you are impatient, you can run the following command to force an immediate reconciliation:
+
+```bash
+tanzu accelerator update <accelerator-name> --reconcile
+```
 
 ## Section 3: Add test to your application
 
