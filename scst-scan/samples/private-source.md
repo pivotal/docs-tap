@@ -1,6 +1,6 @@
 # Running a Sample Private Source Scan
 
-## Define the Resources
+## Defining the Resources
 Create `private-source-example.yaml` and ensure you enter a valid private ssh key value in the secret:
 ```yaml
 ---
@@ -29,7 +29,7 @@ spec:
   scanTemplate: private-source-scan-template
 ```
 
-## (Optional) Setup a Watch
+## (Optional) Setting Up a Watch
 Before deploying, set up a watch in another terminal to see things process... it will be quick!
 ```bash
 watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
@@ -37,12 +37,12 @@ watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
 
 For more information, refer to [Observing and Troubleshooting](../observing.md).
 
-## Deploy the Resources
+## Deploying the Resources
 ```bash
 kubectl apply -f private-source-example.yaml
 ```
 
-## See the Scan Status
+## Viewing the Scan Status
 Once the scan has completed, perform:
 ```bash
 kubectl describe sourcescan private-source-example
@@ -51,7 +51,7 @@ and notice the `Status.Conditions` includes a `Reason: JobFinished` and `Message
 
 For more information, refer to [Viewing and Understanding Scan Status Conditions](../results.md).
 
-## Clean Up
+## Cleaning Up
 ```bash
 kubectl delete -f private-source-example.yaml
 ```
