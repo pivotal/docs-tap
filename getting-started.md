@@ -194,51 +194,28 @@ The Accelerator zip file contains a file called `new-accelerator.yaml`. This fil
 
 ### What is a Supply Chain?
 
-Supply Chains provide a way of codifying all of the steps of your path to production
-(or what is more commonly known as CI/CD).
-A supply chain differs from CI/CD in that any and every step that is necessary
-for an application to reach production (or a lower environment) can be added.
+Supply Chains provide a way of codifying all of the steps of your path to production (or what is more commonly known as CI/CD).
+A supply chain differs from CI/CD in that any and every step that is necessary for an application to reach production (or a lower environment) can be added.
 
 ![Diagram depicting a simple path to production: CI to Security Scan to Build Image to Image Scan to CAB Approval to Deployment.](images/path-to-production.png)
-<!-- Change CI to Continuous Integration if that's what it means, not least because a screen reader probably struggles to say "CI" -->
 
-A simple path to production
+#### A simple path to production
 
-A path to production allows users to create a unified access point for all of the tools
-required for their applications to reach a customer-facing environment.
-Instead of having four tools that are loosely coupled to each other,
-a path to production defines all four tools in a single, unified layer of abstraction.
-Where tools typically aren't able to integrate with one another and additional scripting
-or webhooks are necessary, there would be a unified automation tool to codify all the interactions
-between each of the tools.
-Supply chains which are used to codify the organization's path to production are configurable,
-allowing their authors to add any and all of the steps of their applications path to production.
+A path to production allows users to create a unified access point for all of the tools required for their applications to reach a customer-facing environment. Instead of having four tools that are loosely coupled to each other, a path to production defines all four tools in a single, unified layer of abstraction. Where tools typically aren't able to integrate with one another and additional scripting or webhooks are necessary, there would be a unified automation tool to codify all the interactions between each of the tools. Supply chains which are used to codify the organization's path to production are configurable, allowing their authors to add any and all of the steps of their applications path to production.
 
-Out of the box, Tanzu Application Platform provides 2 default supply chains
-(with more to be included with future releases) which are designed to work with Tanzu Application Platform components.
+Out of the box, Tanzu Application Platform provides 2 default supply chains (with more to be included with future releases) that are designed to work with Tanzu Application Platform components.
 
 
 #### Supply Chains included in Beta 2
 
-The Tanzu Application Platform installation steps details installing the default supply chain,
-but others are available.
-If you follow the installation docs, the **Source to URL ** supply chain chain will be installed on your cluster
-(as well as all of its dependencies).
-The table below and the following figures show the 2 supply chains that are included in
-Tanzu Application Platform Beta 2, as well as their descriptions and dependencies.
+The Tanzu Application Platform installation steps details installing the default supply chain, but others are available.
+If you follow the installation docs, the **Source to URL** supply chain will be installed on your cluster (as well as all of its dependencies).
+The table below and the following figures show the 2 supply chains that are included in Tanzu Application Platform Beta 2, as well as their descriptions and dependencies.
 
-The biggest difference between the two supply chains is that the second **Source & Test to URL **
-includes the ability to run a Tekton pipeline within the supply chain.
-It therefore has a dependency on [Tekton](https://tekton.dev/), which has not yet been installed on your cluster.
-The next section of the documentation walks you through installing Tekton and
-provides a sample Tekton pipeline that once included will test the sample application.
-The pipeline is, like the supply chain, completely configurable and therefore the steps
-within it can be customized to perform additional testing, or any other tasks
-that can be performed with a Tekton pipeline.
+The biggest difference between the two supply chains is that the second **Source & Test to URL** includes the ability to run a Tekton pipeline within the supply chain. It therefore has a dependency on [Tekton](https://tekton.dev/), which has not yet been installed on your cluster. The next section of the documentation walks you through installing Tekton and provides a sample Tekton pipeline that once included will test the sample application.
+The pipeline is, like the supply chain, completely configurable and therefore the steps within it can be customized to perform additional testing, or any other tasks that can be performed with a Tekton pipeline.
 
-A limitation of Tanzu Application Platform Beta 2 is that only one of the two supply chains
-can be installed at any given time. If you have already installed the default - source to URL supply
-chain, it will first need to be uninstalled before installing the Source & Test to URL supply chain.
+A limitation of Tanzu Application Platform Beta 2 is that only one of the two supply chains can be installed at any given time. If you have already installed the default - source to URL supply chain, it will first need to be uninstalled before installing the Source & Test to URL supply chain.
 
 ![Diagram depicting the Source-to-URL chain: Watch Repo (Flux) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](images/source-to-url-chain.png)
 
@@ -276,11 +253,11 @@ chain, it will first need to be uninstalled before installing the Source & Test 
 
 <li>Flux/Source Controller
 
-<li>TBS
+<li>Tanzu Build Service
 
 <li>Convention Service
 
-<li>CNR
+<li>Cloud Native Runtimes
 </li>
 </ul>
    </td>
@@ -331,14 +308,10 @@ chain, it will first need to be uninstalled before installing the Source & Test 
 </table>
 
 
-### Uninstall Default supply
+### Uninstalling the Default Supply Chain
 
-**<span style="text-decoration:underline;">Due to a limitation of Beta 2,</span>** at this time,
-only one supply chain can be installed at any given time.
-As a result, if the installation docs have been followed, there will already be a supply chain
- - the default **Source to URL** supply chain - installed on your cluster.
-To add the ability to test your application using Tekton, the default supply chain will first need to be uninstalled:
-
+**<span style="text-decoration:underline;">Due to a limitation of Beta 2,</span>** at this time, only one supply chain can be installed at any given time.
+As a result, if the installation docs have been followed, there will already be a supply chain - the default **Source to URL** supply chain - installed on your cluster. To add the ability to test your application using Tekton, the default supply chain will first need to be uninstalled:
 
 ```bash
 tanzu package installed delete default-supply-chain \
