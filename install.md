@@ -155,13 +155,12 @@ To install any package from the Tanzu Application Platform package repository:
     + [Install Application Accelerator](#install-app-accelerator)
     + [Install Convention Service](#install-convention-service)
     + [Install Source Controller](#install-source-controller)
-    + [Install Default Supply Chain](#install-default-supply-chain)
     + [Install Developer Conventions](#install-developer-conventions)
     + [Install Application Live View](#install-app-live-view)
     + [Install Service Bindings](#install-service-bindings)
     + [Install Tanzu Build Service](#install-tbs)
     + [Install Supply Chain Choreographer](#install-scc)
-    + [Install Default Supply Chains](#install-default-supply-chains)
+    + [Install Default Supply Chain](#install-default-supply-chain)
     + [Install Supply Chain Security Tools - Store](#install-scst-store)
     + [Install Supply Chain Security Tools - Sign](#install-scst-sign)
     + [Install Supply Chain Security Tools - Scan](#install-scst-scan)
@@ -660,29 +659,6 @@ Added installed package 'cartographer' in namespace 'default'
      ```bash
     tanzu package install default-supply-chain \
       --package-name default-supply-chain.tanzu.vmware.com \
-      --version 0.2.0 \
-      --namespace tap-install \
-      --values-file default-supply-chain-values.yaml
-    ```
-
-1. You have now installed the default supply chain. There are other supply chains available. **Note: A limitation of Beta 2 is that only one can be installed at a time**
-1. If you would like to install a new supply chain first remove the previously one:
-    ```bash
-    tanzu package installed delete default-supply-chain \
-     --namespace tap-install
-    ```
-1. Alternatively if you'd like to install a supply chain that includes the capability to test your code, there is a second supply chain that is included out of the box. We'll first need to install [tekton]. It's used by the supply chain to run tests defined by the developers before we get to the point of producing a container image for the source code, effectively preventing code that fails tests from being promoted all the way to deployment.
-
-    ```bash
-    kapp deploy --yes -a tekton \
-      -f https://storage.googleapis.com/tekton-releases/pipeline/previous/v0.28.0/release.yaml
-    ```
-
-1. Then install the new supply chain that now includes testing with Tekton:
-
-    ```bash
-    tanzu package install default-supply-chain-testing \
-      --package-name default-supply-chain-testing.tanzu.vmware.com \
       --version 0.2.0 \
       --namespace tap-install \
       --values-file default-supply-chain-values.yaml
