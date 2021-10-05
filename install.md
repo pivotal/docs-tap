@@ -1212,7 +1212,7 @@ To install Supply Chain Security Tools - Scan (Scan Controller):
       xargs kubectl -n metadata-store get -o jsonpath='{.spec.ports[].name}{"://"}{.metadata.name}{"."}{.metadata.namespace}{".svc.cluster.local:"}{.spec.ports[].port}'
     ```
 
-    The `metadataStoreCa` value can be determined by (when pasting, ensure the certificate is indented by two spaces):
+    The `metadataStoreCa` value can be determined by (when pasting this output into the `scst-scan-controller-values.yaml`, ensure the certificate is indented by two spaces as shown in the `scst-scan-controller-values.yaml` sample above):
 
     ```bash
     kubectl get secret app-tls-cert -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d
