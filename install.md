@@ -713,10 +713,12 @@ To install Application Live View:
 1. Follow the instructions in [Install Packages](#install-packages) above.
 1. Follow the instructions in [Install Convention Service](#install-convention-service).
 1. Gather the values schema.
-1. Create namespace `app-live-view` to deploy Application Live View components by running
+1. Create namespace app-live-view to deploy Application Live View components by running
+
    ```bash
    kubectl create ns app-live-view
    ```
+
 1. Create a `app-live-view-values.yaml` using the following sample as a guide:
    Sample `app-live-view-values.yaml` for Application Live View:
 
@@ -726,7 +728,7 @@ To install Application Live View:
    server_namespace: app-live-view
    ```
 
-   The `server_namespace` is the namespace where the Application Live View and its components are deployed.
+   The `server_namespace` is the namespace where the Application Live View server is deployed.
    You should use the namespace you created earlier, named `app-live-view`.
    The `connector_namespaces` is a list of existing namespaces where you want
    Application Live View to monitor your apps. An instance of the
