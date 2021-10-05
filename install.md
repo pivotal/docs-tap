@@ -12,7 +12,7 @@ For information, see [Installing Part I: Prerequisites, Cluster Configurations, 
 
 The parameters that are required for the installation need to be defined in a YAML file.
 
-The required parameters for the individual packages can be identified by the values schema
+The available parameters for the individual packages can be identified by the values schema
 that are defined in the package.
 You can get these parameters by running the command
 as described in the procedure below.
@@ -29,7 +29,7 @@ To add the Tanzu Application Platform package repository:
 
     This namespace is to keep the objects grouped together logically.
 
-2. Create a imagepullsecret:
+2. Create an imagepullsecret:
 
     ```bash
     tanzu imagepullsecret add tap-registry \
@@ -302,6 +302,7 @@ of a LoadBalancer and reduces the number of replicas. You may also want to follo
 
    Note that the service account has access to the `pull-secret` image pull secret.
 
+To learn more about using Cloud Native Runtimes, see [Verify your Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-verify-installation.html) in the Cloud Native Runtimes documentation.
 
 ## <a id='install-app-accelerator'></a> Install Application Accelerator
 
