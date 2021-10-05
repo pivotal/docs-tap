@@ -387,7 +387,7 @@ To install the Tanzu CLI on a Windows operating system:
     ```
     tanzu version
     ```
-## <a id='update-cli'> Update the Tanzu CLI
+## <a id='update-cli'></a> Update the Tanzu CLI
 
 If you have any earlier version of the Tanzu CLI installed,
 do the following before you install the plugins.
@@ -409,13 +409,12 @@ To remove plugins from earlier versions of the Tanzu CLI:
      ```
      export TANZU_CLI_NO_INIT=true
      ```
-<!-- This command makes sense on GA, but for the beta's the user is doing a local installation and doesn't need to validate the remote.
 
  4.  Run this command to make sure the default plugin repo points to the right path:
     ```
     tanzu plugin repo update -b tanzu-cli-framework core
     ```
--->
+    
 5.  Remove existing plugins from any previous CLI installations.
     ```
     tanzu plugin clean
