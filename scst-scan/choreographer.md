@@ -1,14 +1,6 @@
-# Example Cartographer Supply Chain including Source and Image Scans
+# Example Supply Chain Choreographer for Tanzu including Source and Image Scans
 
-From the [Cartographer](https://github.com/vmware-tanzu/cartographer) project page:
-
-> Cartographer is a Kubernetes native Choreographer. It allows users to configure K8s resources into re-usable Supply Chains that can be used to define all of the stages that an Application Workload must go through to get to an environment.
-
-> Cartographer also allows for separation of controls between a user who is responsible for defining a Supply Chain (known as a App Operator) and a user who is focused on creating applications (Developer). These roles are not necessarily mutually exclusive, but provide the ability to create a separation concern.
-
-The following example supply chain is an extension of the [Cartographer: Source to Knative Service Example](https://github.com/vmware-tanzu/cartographer/tree/main/examples/source-to-knative-service).
-
-The Source to Knative Service example takes every source code commit, rebuilds and redeploys the application. This example will inject a source code scan before building and then perform an image scan after building. Additionally, this example will use a private source code repository instead of a public one.
+This example takes every source code commit, scans the source code for vulnerabilities, builds an image, and then scans the image for vulnerabilities.
 
 ## Prerequisites
 
@@ -23,7 +15,7 @@ Next, in [Installing Part II: Packages](https://github.com/pivotal/docs-tap/blob
 
 ## Configure the Example
 
-To make the example easy to set up, ytt is used for templating Kubernetes objects.
+To make the example easy to set up, `ytt` is used for templating Kubernetes objects.
 
 Create `values.yaml` with credentials for the source code repository, kpack image builder and image registry. This example is set to use the Java Buildpack, so point the source repository url at something like a Spring Boot app.
 
@@ -151,7 +143,7 @@ stringData:
   known_hosts: gitlab.eng.vmware.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBIW3CobFtjtaGAbNvW1w7Z1+nOV131I2GQ4T/v6elt8caUxo+NK8w4R0ywLc5FiIa3RQ6CuyHfkO6cnJGQm3n3Q=
 ```
 
-Create `00-cluster/scanner.yaml` to configure a Kubernetes secret and service account to access the artifact registry. An additional Scan Template is configured for the Source Scan to work within the context of a Supply Chain (as opposed to using a Scan Template included in the Grype Templates bundle). The pre-installed Scan Template for the Image Scan will be used though. Also, we add a Scan Policy to show some vulnerabilities found.
+Create `00-cluster/scanner.yaml` to configure a Kubernetes secret and service account to access the artifact registry. When installing the Grype Scanner, five scan templates were pre-installed for various use cases. This example will use two of them, one for performing a source scan within the context of a supply chain (where the source code is delivered as a tar file) and another for performing an image scan. Additionally, the following yaml will define a Scan Policy to show vulnerabilities found.
 
 ```yaml
 #@ load("@ytt:data", "data")
@@ -425,8 +417,7 @@ $ tree
 └── values.yaml
 ```
 
-Similar to the Source to Knative Service example, the three directories: `00-cluster`, for cluster-wide configuration, `app-operator`, with cartographer-specific files that an App Operator would submit, and `developer`, containing Kubernetes objects that a developer
-would submit (yes, just a [Workload](https://github.com/vmware-tanzu/cartographer/blob/main/site/content/docs/reference.md#Workload)!)
+The three directories are organized as: `00-cluster`, for cluster-wide configuration, `app-operator`, with supply chain-specific files that an App Operator would submit, and `developer`, containing Kubernetes objects that a developer would submit (yes, just a Workload!)
 
 **NOTE:** If you updated the `workload` name in the `values.yaml` file, then do so in both the `kapp deploy` and `kubectl tree` commands. (And the `kapp delete` command when tearing down the example.)
 
@@ -466,12 +457,12 @@ During processing and upon completion, try performing `kubectl describe` on the 
 
 ## Querying the Metadata Store for Vulnerability Results using the Insight CLI
 
-1. In a separate terminal, set up a port-forwarding to the Metadata Store running in the cluster, by running:
+1. In a separate terminal, set up a port-forwarding to the Metadata Store by running:
 ```bash
 kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store
 ```
 
-2. Using the `MetadataURL` field in the `kubectl describe` `sourcescan` or `imagescan` output, use the `insight` CLI to query the Metadata Store for the scan results that were outputted by the Grype Scanner. Run:
+1. Using the `MetadataURL` field in the `kubectl describe` `sourcescan` or `imagescan` output, use the `insight` CLI to query the Metadata Store for the scan results that were outputted by the Grype Scanner. Run:
 
 ```bash
 # Configure Insight CLI to Authenticate to Metadata Store
@@ -504,7 +495,3 @@ insight vulnerabilities get \
 ```bash
 kapp delete -a spring-petclinic
 ```
-
-## Uninstalling the Dependencies
-
-Refer to the [Cartographer: Source to Knative Service Example](https://github.com/vmware-tanzu/cartographer/tree/main/examples/source-to-knative-service)
