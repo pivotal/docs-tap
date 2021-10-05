@@ -692,6 +692,8 @@ Added installed package 'cartographer' in namespace 'default'
 
 To install developer conventions:
 
+**Prerequisite**: Convention Service installed on the cluster, see [Install Convention Service](#install-convention-service).
+
 1. Follow the instructions in [Install Packages](#install-packages) above.
 
     ```bash
