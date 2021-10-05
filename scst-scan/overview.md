@@ -9,8 +9,8 @@ With Supply Chain Security Tools for VMware Tanzu - Scan, Tanzu customers can bu
 * Analyze scan results against user-defined policies using Open Policy Agent.
 * Produce vulnerability scan results and post them to the Supply Chain Security Tools - Store from where they can be queried.
 
-## What We Built
-To deliver on the use cases, we have:
+## Supply Chain Security Tools for Tanzu - Scan Features
+The following Supply Chain Security Tools for Tanzu - Scan features make the use cases available:
 
 * Built Kubernetes controllers to run scan jobs.  
 * Built Custom Resource Definitions (CRDs) for Image and Source Scan.  
