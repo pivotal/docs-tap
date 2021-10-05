@@ -1529,7 +1529,7 @@ rules:
     verbs: ['*']
   - apiGroups: [""]
     resources: ['configmaps']
-    verbs: ['get', 'watch', 'list']
+    verbs: ['get', 'watch', 'list', 'create', 'update', 'patch', 'delete']
 
 ---
 apiVersion: rbac.authorization.k8s.io/v1
