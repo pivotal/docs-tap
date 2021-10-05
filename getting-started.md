@@ -416,12 +416,12 @@ spec:
           - name: source-revision
         steps:
           - name: test
-            image: golang
+            image: gradle
             script: |-
               cd `mktemp -d`
 
               wget -qO- $(params.source-url) | tar xvz
-              gradelw test
+              ./mvnw test
 ```
 
 The YAML above defines a Tekton Pipeline with a single step.
@@ -447,29 +447,32 @@ the workload needs to be updated to point at the newly created Tekton pipeline.
 The workload can be updated using the Tanzu CLI as follows:
 
 ```bash
-tanzu apps workload create tanzu-java-web-app\
---git-repo  https://github.com/sample-accelerators/tanzu-java-web-app\
---git-branch main
---type web --yes
---param tekton-pipeline-name=developer-defined-tekton-pipeline
+tanzu apps workload create tanzu-java-web-app \
+  --git-repo  https://github.com/sample-accelerators/tanzu-java-web-app \
+  --git-branch main \
+  --type web \
+  --param tekton-pipeline-name=developer-defined-tekton-pipeline \
+  --yes
 ```
 
-```bash
+```console
 Create workload:
       1 + |apiVersion: carto.run/v1alpha1
       2 + |kind: Workload
       3 + |metadata:
-      4 + |  name: my-workload
-      5 + |  namespace: default
-      6 + |spec:
-      7 + |  params:
-      8 + |  - name: tekton-pipeline-name
-      9 + |    value: developer-defined-tekton-pipeline
-     10 + |  source:
-     11 + |    git:
-     12 + |      ref:
-     13 + |        branch: main
-     14 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
+      4 + |  labels:
+      5 + |    apps.tanzu.vmware.com/workload-type: web
+      6 + |  name: tanzu-java-web-app
+      7 + |  namespace: default
+      8 + |spec:
+      9 + |  params:
+     10 + |  - name: tekton-pipeline-name
+     11 + |    value: developer-defined-tekton-pipeline
+     12 + |  source:
+     13 + |    git:
+     14 + |      ref:
+     15 + |        branch: main
+     16 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
 
 ? Do you want to create this workload? Yes
 Created workload "tanzu-java-web-app"
@@ -485,28 +488,26 @@ Which should result in an output which will show all of the objects that have be
 
 
 ```bash
-NAME                             AGE
-workload.carto.run/hello-world   3m11s
+NAME                                    AGE
+workload.carto.run/tanzu-java-web-app   109s
 
-NAME                                                 URL                                       READY   STATUS                                                            AGE
-gitrepository.source.toolkit.fluxcd.io/hello-world   https://github.com/kontinue/hello-world   True    Fetched revision: main/3d42c19a618bb8fc13f72178b8b5e214a2f989c4   3m9s
+NAME                                                        URL                                                         READY   STATUS                                                            AGE
+gitrepository.source.toolkit.fluxcd.io/tanzu-java-web-app   https://github.com/sample-accelerators/tanzu-java-web-app   True    Fetched revision: main/872ff44c8866b7805fb2425130edb69a9853bfdf   109s
 
-NAME                                       SUCCEEDED   REASON      STARTTIME   COMPLETIONTIME
-pipelinerun.tekton.dev/hello-world-pvmjx   True        Succeeded   3m4s        2m36s
+NAME                                              SUCCEEDED   REASON      STARTTIME   COMPLETIONTIME
+pipelinerun.tekton.dev/tanzu-java-web-app-4ftlb   True        Succeeded   104s        77s
 
-NAME                         LATESTIMAGE                                                                                               READY
-image.kpack.io/hello-world   10.188.0.3:5000/foo/hello-world@sha256:efe687cee98b47e8def40361017b8823fcf669298b1b95f2a3806858b65545b5   True
+NAME                                LATESTIMAGE                                                                                                      READY
+image.kpack.io/tanzu-java-web-app   10.188.0.3:5000/foo/tanzu-java-web-app@sha256:1d5bc4d3d1ffeb8629fbb721fcd1c4d28b896546e005f1efd98fbc4e79b7552c   True
 
-NAME                                                      READY   REASON   AGE
-podintent.conventions.apps.tanzu.vmware.com/hello-world   True             85s
+NAME                                                             READY   REASON   AGE
+podintent.conventions.apps.tanzu.vmware.com/tanzu-java-web-app   True             7s
 
-NAME                                                    DESCRIPTION           SINCE-DEPLOY   AGE
-app.kappctrl.k14s.io/cartographer.carto.run.0.0.0-dev   Reconcile succeeded   31s            16m
-app.kappctrl.k14s.io/convention-controller              Reconcile succeeded   17s            119s
-app.kappctrl.k14s.io/hello-world                        Reconcile succeeded   2s             79s
+NAME                                      DESCRIPTION           SINCE-DEPLOY   AGE
+app.kappctrl.k14s.io/tanzu-java-web-app   Reconcile succeeded   1s             2s
 
-NAME                                      URL                                      LATESTCREATED       LATESTREADY         READY     REASON
-service.serving.knative.dev/hello-world   http://hello-world.default.example.com   hello-world-00001   hello-world-00001   Unknown   IngressNotConfigured
+NAME                                             URL                                               LATESTCREATED              LATESTREADY                READY     REASON
+service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.developer.example.com   tanzu-java-web-app-00001   tanzu-java-web-app-00001   Unknown   IngressNotConfigured
 ```
 
 
