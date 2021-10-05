@@ -335,7 +335,7 @@ tanzu package installed delete default-supply-chain \
 
 Now that the default supply chain has been uninstalled the **Source & Test to URL** supply chain can be installed on the cluster.
 The first step is to install Tekton, which was not installed in the installation docs as
-it is only a requirement for the **Source & Test to URL **supply chain.
+it is only a requirement for the **Source & Test to URL** supply chain.
 The next section walks you through installing Tekton onto your cluster.
 
 
@@ -352,8 +352,8 @@ kapp deploy --yes -a tekton \
   -f https://storage.googleapis.com/tekton-releases/pipeline/previous/v0.28.0/release.yaml
 ```
 
-Thoroughly documenting Tekton and its use is outside of the scope of this document,
-we’ll be primarily using it to run a simple unit test on the sample that we’ve been using so far.
+Thoroughly documenting Tekton and its use is outside of the scope of this document.
+We will be primarily using it to run a simple unit test on the sample that we’ve been using so far.
 For more details on Tekton itself and what is possible, refer to the [Tekton documentation](https://tekton.dev/docs/) itself
 and its [github repository](https://github.com/tektoncd/pipeline).
 Two other starting points for getting up to speed with Tekton are its
@@ -415,7 +415,7 @@ spec:
 ```
 
 The YAML above defines a Tekton Pipeline with a single step.
-The step itself contained in the `steps` will pull the code form the repository indicated
+The step itself contained in the `steps` will pull the code from the repository indicated
 in the developers `workload` and run the tests within the repository.
 The steps of the Tekton pipeline are configurable and allow the developer to add any additional items
 that they may need to test their code.
@@ -471,7 +471,7 @@ After accepting the creation of the new workload, we can monitor the creation of
 kubectl get workload,gitrepository,pipelinerun,images.kpack,podintent,app,services.serving
 ```
 
-Which should result in an output which will show all of the objects that have been created by the Supply Chain Choreographer:
+That should result in an output which will show all of the objects that have been created by the Supply Chain Choreographer:
 
 
 ```bash
@@ -507,7 +507,6 @@ service.serving.knative.dev/hello-world   http://hello-world.default.example.com
 
 There are two new supply chain security use cases that we support in Beta 2:
 
-
 1. **Sign**: Introducing image signing and verification to your supply chain
 
 2. **Scan & Store**: Introducing vulnerability scanning and metadata storage to your supply chain
@@ -519,10 +518,11 @@ In this section, we will provide an overview of these two new use cases and how 
 
 **Overview**
 
-This feature-set allows an application operator to define a policy that will restrict unsigned images
-from running on clusters. This is done using a dynamic admission control component on Kubernetes clusters.
+This feature-set allows an application operator to define a policy that will restrict unsigned images from running on clusters.
+This is done using a dynamic admission control component on Kubernetes clusters.
 This component contains logic to communicate with external registries and verify signatures on container images,
-making a decision based on the results of this verification. Currently, this component supports cosign signatures and its key formats.
+making a decision based on the results of this verification.
+Currently, this component supports cosign signatures and its key formats.
 It will work with open source cosign, kpack and Tanzu Build Service (which is what we will overview in this document).
 
 Signing an artifact creates metadata about it that allows consumers to verify its origin and integrity.
@@ -535,9 +535,8 @@ this allows operators to increase their confidence that trusted software is runn
 
 **Signing Container Images**
 
-TAP supports verifying container image signatures that follow the `cosign` format.
+Tanzu Application Platform supports verifying container image signatures that follow the `cosign` format.
 Application operators may apply image signatures and store them in the registry in one of several ways:
-
 
 * Using Tanzu Build Service v1.3
 
@@ -548,8 +547,7 @@ Application operators may apply image signatures and store them in the registry 
 
 **Configure the Image Policy Webhook**
 
-After the image policy webhook is installed in the cluster,
-it is time to configure the image policy to be enforced and the credentials to access private registries.
+After the image policy webhook is installed in the cluster, it is time to configure the image policy to be enforced and the credentials to access private registries.
 
 **Create a Cluster Image Policy**
 
@@ -600,12 +598,11 @@ In the situation when the platform operator is expecting to verify signatures st
 it is required to configure a service account with all the secrets for those private registries.
 There is a set of requirements for this service account:
 
+* It must be created in the `image-policy-system` namespace
 
-* It must be created in the `image-policy-system` namespace.
+* It must be called `registry-credentials`
 
-* It must be called `registry-credentials`.
-
-* All secrets for accessing private registries must be added to the `imagePullSecrets` section of the service account.
+* All secrets for accessing private registries must be added to the `imagePullSecrets` section of the service account
 
 The manifest for this service account would look like this:
 
