@@ -670,28 +670,38 @@ Added installed package 'cartographer' in namespace 'default'
 
     For example:
 
-    ```console
-    $ tanzu package available get default-supply-chain.tanzu.vmware.com/0.2.0 --values-schema -n tap-install
-    | Retrieving package details for default-supply-chain.tanzu.vmware.com/0.2.0...
-      KEY                  DEFAULT                  TYPE    DESCRIPTION          
-      registry.repository  sample-repo              string  Registry repository  
-      registry.server      https://yourregistry.io  string  registry hostname
-    ```
+   ```console
+   $ tanzu package available get default-supply-chain.tanzu.vmware.com/0.2.0 --values-schema -n tap-install
+   | Retrieving package details for default-supply-chain.tanzu.vmware.com/0.2.0...
+
+    KEY                  DEFAULT          TYPE    DESCRIPTION
+    registry.repository  <nil>            string  Name of the repository in the image registry server where the application images from the workloads should be pushed to (required).
+    registry.server      index.docker.io  string  Name of the registry server where application images should be pushed to.
+    service_account      default          string  Name of the service account in the namespace where the Workload is submitted to utilize for providing registry credentials to Tanzu Build Service (TBS) Image objects as well as deploying the application.
+    templates_namespace  tap-install      string  Name of the namespace where shared templates are installed to. This variable should point to the namespace where this package is being installed into.
+    cluster_builder      default          string  Name of the Tanzu Build Service (TBS) ClusterBuilder to use by default on image objects managed by the supply chain.
+   ```
+
 
 1. Gather the values schema.
+
 1. Create a `default-supply-chain-values.yaml` using the following sample as a guide:
 
     Sample `default-supply-chain-values.yaml` for Default Supply Chain:
 
-    ```yaml
-    ---
-    registry:
-      server: REGISTRY_SERVER
-      repository: REGISTRY_REPOSITORY
-    service_account: service-account
-    ```
+
+   ```yaml
+   ---
+   registry:
+     server: REGISTRY_SERVER
+     repository: REGISTRY_REPOSITORY
+   service_account: service-account
+   templates_namespace: tap-install
+   ```
+
 
 1. Create a secret called `registry-credentials` with the credentials for the registry that you want the supply chain to use.
+
 1. Create an `imagepullsecret`:
 
     ```console
