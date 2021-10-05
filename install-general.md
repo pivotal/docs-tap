@@ -258,7 +258,7 @@ To accept EULAs:
       [Stacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-stacks-suite)
     + [API portal for VMware Tanzu](https://network.tanzu.vmware.com/products/api-portal/)
 
-### <a id='cli-and-plugin'></a> Install the Tanzu CLI
+## <a id='cli-and-plugin'></a> Install the Tanzu CLI
 
 Before you install Tanzu Application Platform,
 download and install the Tanzu CLI and the Tanzu CLI plugins. 
@@ -272,7 +272,7 @@ Follow the procedure for your operating system:
 + [Windows: Install the Tanzu CLI](#windows-cli)
 
 
-### <a id='linux-cli'></a> Linux: Install the Tanzu CLI
+## <a id='linux-cli'></a> Linux: Install the Tanzu CLI
 
 To install the Tanzu CLI on a Linux operating system:
 
@@ -304,7 +304,7 @@ To install the Tanzu CLI on a Linux operating system:
    ```
 
 
-### <a id='mac-cli'></a> MacOS: Install the Tanzu CLI
+## <a id='mac-cli'></a> MacOS: Install the Tanzu CLI
 
 To install the Tanzu CLI on a Mac operating system:
 
@@ -350,7 +350,7 @@ To resolve this error, do the following:
 
 After completing the steps above, there should be no more security issues while running Tanzu CLI commands.
 
-### <a id='windows-cli'></a> Windows: Install the Tanzu CLI
+## <a id='windows-cli'></a> Windows: Install the Tanzu CLI
 
 To install the Tanzu CLI on a Windows operating system:
 
@@ -414,7 +414,7 @@ To remove plugins from earlier versions of the Tanzu CLI:
     ```
     tanzu plugin repo update -b tanzu-cli-framework core
     ```
-    
+
 5.  Remove existing plugins from any previous CLI installations.
     ```
     tanzu plugin clean
