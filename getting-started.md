@@ -58,20 +58,18 @@ Visit your Application Accelerator (view instructions to do so
 
 <img src="images/app-acc.png" alt="Screenshot of Application Accelerator that shows a search field and two accelerators" width="600">
 
-Select the "Tanzu Java Web App" accelerator (a sample Spring Boot web-app)
+Select the "Tanzu Java Web App" accelerator (a sample Spring Boot web-app).
 
 <img src="images/tanzu-java-web-app.png" alt="Screenshot of the Tanzu Java Web App within Application Accelerator. It includes empty fields for new project information." width="600">
 
 Replace the default value, `dev.local`, in the _"prefix for container image registry"_ field
-with the url to your registry.
-The URL you enter should match what you specified while deploying the
+with the url to your registry. The URL you enter should match what you specified while deploying the
 [Tanzu Build Service](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-install.html#install-tanzu-build-service-7)
-(use the value you provided for `kp_default_repository`)
+(use the value you provided for `kp_default_repository`).
 
 <img src="images/store-image-on-server.png" alt="Screenshot of the Tanzu Java Web App within Application Accelerator. It includes empty fields for new project information, and buttons labeled 'Generate Project', 'Explore Files', and 'Cancel'." width="600">
 
-Click the “Generate Project” button to download the accelerator zip file
-(you’ll use the VScode extension later to debug and see live-updates of this code later later in this guide)
+Click the “Generate Project” button to download the accelerator zip file (you’ll use the VScode extension later to debug and see live-updates of this code later later in this guide).
 
 Deploy the ‘Tanzu Java Web App’ accelerator using the `create` command
 <code>tanzu apps workload create tanzu-java-web-app\
@@ -95,7 +93,6 @@ Once the workload has been built and is running you can grab the web-app URL \
 #### Set up your IDE
 
 
-
 Now that you have a skeleton workload working, you are ready to iterate on your application
 and test code changes on the cluster.
 Tanzu Developer Tools for VSCode, VMware Tanzu’s official IDE extension for VSCode,
@@ -106,26 +103,23 @@ and provides the ability to debug your application directly on the cluster.
 
 Start by installing the pre-requisites and the Tanzu Developer Tools extension by following [these instructions](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-vscode-extension-install.html).
 
+
 Open the ‘Tanzu Java Web App’ as a project within your VSCode IDE.
 
 In order to ensure your extension helps you iterate on the correct project, you’ll need to configure its settings:
 
-1. Within VSCode, go to Preferences -> Settings -> Extensions -> Tanzu.
+1. Within VSCode, go to Preferences -> Settings -> Extensions -> Tanzu
 
 2. In the “Local Path” field, enter the path to the directory containing the ‘Tanzu Java Web App’
 
-3. In the “Source Image” field, enter the destination image repository where you’d like to publish
-  an image containing your workload’s source code. For example “harbor.vmware.com/myteam/tanzu-java-web-app-source”.
+3. In the “Source Image” field, enter the destination image repository where you’d like to publish an image containing your workload’s source code. For example “harbor.vmware.com/myteam/tanzu-java-web-app-source”
 
 You’re now ready to iterate on your application!
 
 
 #### Live Update your Application
 
-Let’s deploy the application and see it live update on the cluster.
-Doing so allows you to understand how your code changes will behave on a production-like cluster
-much earlier in the development process.
-
+Let’s deploy the application and see it live update on the cluster. Doing so allows you to understand how your code changes will behave on a production-like cluster much earlier in the development process.
 
 Follow these steps:
 1. From the Command Palette (⇧⌘P), type in & select “Tanzu: Live Update Start”.
@@ -137,7 +131,6 @@ Follow these steps:
 2. Once you see output indicating that the workload is ready, navigate to http://localhost:8080 in your browser and view your application running.
 3. Return to the IDE and make a change to the source code. For example, in HelloController.java, modify the string returned to say “Hello!” and press save.
 4. If you look in the Tanzu Logs section of the Output tab, You should see the container has updated. Navigate back to your browser and refresh the page.
-
 
 
 You should see your changes on the cluster!
@@ -155,38 +148,43 @@ Follow the steps below:
 3. Return to your browser and navigate to http://localhost:8080. This will hit the breakpoint within VSCode. You can now step through or play to the end of the debug session using VSCode debugging controls.
 
 
-### Troubleshooting a Running Application
+#### Troubleshooting a Running Application
 
-
-Now that your application is developed you may be interested in inspecting the run time characteristics of the running application. You can use Application Live View UI to look into the running application to monitor resource consumption, JVM status, incoming traffic
-as well as change log level, environment variables to troubleshoot and fine-tune the running application. Currently, Spring Boot based applications can be diagnosed using Application Live View.
+Now that your application is developed you may be interested in inspecting the run time
+characteristics of the running application. You can use Application Live View UI to look
+into the running application to monitor resource consumption, JVM status, incoming traffic
+as well as change log level, environment variables to troubleshoot and fine-tune the running application.
+Currently, Spring Boot based applications can be diagnosed using Application Live View.
 
 Make sure that you have installed Application Live View components successfully.
 
-Access Application Live View UI by following the instructions
+Access Application Live View UI following the instruction
 [here](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.2/docs/GUID-installing.html?hWord=N4IghgNiBcIJIDsDOAXSECWCDmACAggA6GYDGYKGA9grgDIYBuAprgGobMDuIAvkA#access-the-application-live-view-ui-6).
 Select your application to look inside the running application and
 [explore](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.1/docs/GUID-product-features.html)
 the various diagnostic capabilities.
 
+
 ---
+
 
 ## Section 2: Creating an Accelerator
 
-You can use any git repository to create an Accelerator. You need the URL for the repository to create an Accelerator.
+You can use any git repository to create an Accelerator.
+You need the URL for the repository to create an Accelerator.
 
 Use the following procedure to create an accelerator:
 
-1. Select the **New Accelerator** from the shown accelerators in the Application Accelerator web UI.
+1. Select the **New Accelerator **from the shown accelerators in the Application Accelerator web UI.
 
 2. Fill in the new project form with the following information:
 
-    * Name: Your Accelerator name
-    * (Optional) Description: A description of your accelerator
-    * K8s Resource Name: A Kubernetes resource name
-    * Git Repository URL: The git repository URL you use to create an accelerator
-    * Git Branch: the name of your git branch
-    * (Optional) Tags: Any associated tags
+    * Name: Your Accelerator name.
+    * (Optional) Description: A description of your accelerator.
+    * K8s Resource Name: A Kubernetes resource name.
+    * Git Repository URL: The git repository URL you use to create an accelerator.
+    * Git Branch: the name of your git branch.
+    * (Optional) Tags: Any associated tags.
 
 3. Download and expand the zip file.
 
@@ -199,7 +197,11 @@ Use the following procedure to create an accelerator:
 
 #### Using application.yaml
 
-The Accelerator zip file contains a file called `new-accelerator.yaml`. This file contains additional information about the Accelerator. Copy this file into your git repo as `accelerator.yaml` to have additional attributes rendered in the web UI.
+The Accelerator zip file contains a file called `new-accelerator.yaml`.
+This file contains additional information about the Accelerator.
+
+Copy this file into your git repo as `accelerator.yaml` to have additional attributes rendered in the web UI.
+([https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.3/acc-docs/GUID-creating-accelerators-index.html](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.2/acc-docs/GUID-creating-accelerators-index.html))
 
 
 ## Section 3: Add test to your application
@@ -406,12 +408,12 @@ spec:
           - name: source-revision
         steps:
           - name: test
-            image: golang
+            image: gradle
             script: |-
               cd `mktemp -d`
 
               wget -qO- $(params.source-url) | tar xvz
-              gradelw test
+              ./mvnw test
 ```
 
 The YAML above defines a Tekton Pipeline with a single step.
@@ -437,29 +439,32 @@ the workload needs to be updated to point at the newly created Tekton pipeline.
 The workload can be updated using the Tanzu CLI as follows:
 
 ```bash
-tanzu apps workload create tanzu-java-web-app\
---git-repo  https://github.com/sample-accelerators/tanzu-java-web-app\
---git-branch main
---type web --yes
---param tekton-pipeline-name=developer-defined-tekton-pipeline
+tanzu apps workload create tanzu-java-web-app \
+  --git-repo  https://github.com/sample-accelerators/tanzu-java-web-app \
+  --git-branch main \
+  --type web \
+  --param tekton-pipeline-name=developer-defined-tekton-pipeline \
+  --yes
 ```
 
-```bash
+```console
 Create workload:
       1 + |apiVersion: carto.run/v1alpha1
       2 + |kind: Workload
       3 + |metadata:
-      4 + |  name: my-workload
-      5 + |  namespace: default
-      6 + |spec:
-      7 + |  params:
-      8 + |  - name: tekton-pipeline-name
-      9 + |    value: developer-defined-tekton-pipeline
-     10 + |  source:
-     11 + |    git:
-     12 + |      ref:
-     13 + |        branch: main
-     14 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
+      4 + |  labels:
+      5 + |    apps.tanzu.vmware.com/workload-type: web
+      6 + |  name: tanzu-java-web-app
+      7 + |  namespace: default
+      8 + |spec:
+      9 + |  params:
+     10 + |  - name: tekton-pipeline-name
+     11 + |    value: developer-defined-tekton-pipeline
+     12 + |  source:
+     13 + |    git:
+     14 + |      ref:
+     15 + |        branch: main
+     16 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
 
 ? Do you want to create this workload? Yes
 Created workload "tanzu-java-web-app"
@@ -475,28 +480,26 @@ That should result in an output which will show all of the objects that have bee
 
 
 ```bash
-NAME                             AGE
-workload.carto.run/hello-world   3m11s
+NAME                                    AGE
+workload.carto.run/tanzu-java-web-app   109s
 
-NAME                                                 URL                                       READY   STATUS                                                            AGE
-gitrepository.source.toolkit.fluxcd.io/hello-world   https://github.com/kontinue/hello-world   True    Fetched revision: main/3d42c19a618bb8fc13f72178b8b5e214a2f989c4   3m9s
+NAME                                                        URL                                                         READY   STATUS                                                            AGE
+gitrepository.source.toolkit.fluxcd.io/tanzu-java-web-app   https://github.com/sample-accelerators/tanzu-java-web-app   True    Fetched revision: main/872ff44c8866b7805fb2425130edb69a9853bfdf   109s
 
-NAME                                       SUCCEEDED   REASON      STARTTIME   COMPLETIONTIME
-pipelinerun.tekton.dev/hello-world-pvmjx   True        Succeeded   3m4s        2m36s
+NAME                                              SUCCEEDED   REASON      STARTTIME   COMPLETIONTIME
+pipelinerun.tekton.dev/tanzu-java-web-app-4ftlb   True        Succeeded   104s        77s
 
-NAME                         LATESTIMAGE                                                                                               READY
-image.kpack.io/hello-world   10.188.0.3:5000/foo/hello-world@sha256:efe687cee98b47e8def40361017b8823fcf669298b1b95f2a3806858b65545b5   True
+NAME                                LATESTIMAGE                                                                                                      READY
+image.kpack.io/tanzu-java-web-app   10.188.0.3:5000/foo/tanzu-java-web-app@sha256:1d5bc4d3d1ffeb8629fbb721fcd1c4d28b896546e005f1efd98fbc4e79b7552c   True
 
-NAME                                                      READY   REASON   AGE
-podintent.conventions.apps.tanzu.vmware.com/hello-world   True             85s
+NAME                                                             READY   REASON   AGE
+podintent.conventions.apps.tanzu.vmware.com/tanzu-java-web-app   True             7s
 
-NAME                                                    DESCRIPTION           SINCE-DEPLOY   AGE
-app.kappctrl.k14s.io/cartographer.carto.run.0.0.0-dev   Reconcile succeeded   31s            16m
-app.kappctrl.k14s.io/convention-controller              Reconcile succeeded   17s            119s
-app.kappctrl.k14s.io/hello-world                        Reconcile succeeded   2s             79s
+NAME                                      DESCRIPTION           SINCE-DEPLOY   AGE
+app.kappctrl.k14s.io/tanzu-java-web-app   Reconcile succeeded   1s             2s
 
-NAME                                      URL                                      LATESTCREATED       LATESTREADY         READY     REASON
-service.serving.knative.dev/hello-world   http://hello-world.default.example.com   hello-world-00001   hello-world-00001   Unknown   IngressNotConfigured
+NAME                                             URL                                               LATESTCREATED              LATESTREADY                READY     REASON
+service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.developer.example.com   tanzu-java-web-app-00001   tanzu-java-web-app-00001   Unknown   IngressNotConfigured
 ```
 
 
@@ -679,31 +682,24 @@ $ kubectl logs -n image-policy-system -l "signing.run.tanzu.vmware.com/applicati
 **Overview**
 
 This feature-set allows an application operator to introduce source code and image vulnerability scanning,
-as well as scan-time rules, to their TAP Supply Chain.
-The scan-time rules prevent critical vulnerabilities from flowing through the supply chain unresolved.
+as well as scan-time rules, to their Tanzu Application Platform Supply Chain. The scan-time rules prevent critical vulnerabilities from flowing through the supply chain unresolved. 
+
 All vulnerability scan results are stored over time in a metadata store that allows a team
 to easily reference historical scan results, and provides querying functionality to support the following use cases:
 
 * What images and packages are affected by a specific vulnerability?
-
 * What source code repos are affected by a specific vulnerability?
-
 * What packages and vulnerabilities does a particular image have?
-
 * What images are using a given package?
 
-The Store accepts any CycloneDX input and outputs in both human-readable and machine-readable
-(JSON, text, CycloneDX) formats. Querying can be performed via a CLI, or directly from the API.
+The Store accepts any CycloneDX input and outputs in both human-readable and machine-readable (JSON, text, CycloneDX) formats. Querying can be performed via a CLI, or directly from the API.
 
 **Use Cases**
 
-* Scan source code repositories and images for known CVEs prior to deploying to a cluster.
-
-* Identify CVEs by scanning continuously on each new code commit and/or each new image built.
-
-* Analyze scan results against user-defined policies using Open Policy Agent.
-
-* Produce vulnerability scan results and post them to the Metadata Store from where they can be queried.
+* Scan source code repositories and images for known CVEs prior to deploying to a cluster
+* Identify CVEs by scanning continuously on each new code commit and/or each new image built
+* Analyze scan results against user-defined policies using Open Policy Agent
+* Produce vulnerability scan results and post them to the Metadata Store from where they can be queried
 
 
 #### Running Public Source Code and Image Scans with Policy Enforcement
@@ -712,7 +708,6 @@ Follow the instructions [here](https://docs-staging.vmware.com/en/VMware-Tanzu-A
 to try the following two types of public scans:
 
 1. Source code scan on a public repository
-
 2. Image scan on a image found in a public registry
 
 Both examples include a policy to consider CVEs with Critical severity ratings as violations.
@@ -720,34 +715,23 @@ Both examples include a policy to consider CVEs with Critical severity ratings a
 
 #### Running Private Source Code and Image Scans with Policy Enforcement
 
-Follow the instructions [here](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-scst-scan-samples-private-source.html)
-to perform a source code scan against a private registry or
+Follow the instructions [here](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-scst-scan-samples-private-source.html) to perform a source code scan against a private registry or
 [here](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-scst-scan-samples-private-image.html)
 to do an image scan on a private image.
 
 
 #### Viewing Vulnerability Reports using Supply Chain Security Tools - Store Capabilities
 
-After completing the scans from the previous step, query the
-[Supply Chain Security Tools - Store](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-scst-store-overview.html)
-to view your vulnerability results.
-The Supply Chain Security Tools - Store is a Tanzu component that stores image, package,
-and vulnerability metadata about your dependencies.
-Use the Supply Chain Security Tools - Store CLI, called `insight`,
-to query metadata that have been submitted to the store after the scan step.
+After completing the scans from the previous step, query the [Supply Chain Security Tools - Store](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-scst-store-overview.html)to view your vulnerability results. The Supply Chain Security Tools - Store is a Tanzu component that stores image, package, and vulnerability metadata about your dependencies. Use the Supply Chain Security Tools - Store CLI, called `insight`, to query metadata that have been submitted to the store after the scan step.
 
-For a complete guide on how to query the store,
-see [Querying Supply Chain Security Tools - Store](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-scst-store-querying_the_metadata_store.html).
+For a complete guide on how to query the store, see [Querying Supply Chain Security Tools - Store](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-scst-store-querying_the_metadata_store.html).
 
-**NOTE**: You must have the [Supply Chain Security Tools - Store prerequisites](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-scst-store-using_metadata_store.html)
-in place to be able to query the store successfully.
+**NOTE**: You must have the [Supply Chain Security Tools - Store prerequisites](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-scst-store-using_metadata_store.html) in place to be able to query the store successfully.
 
 
 #### Example Supply Chain including Source and Image Scans
 
-One of the out-of-the-box supply chains we are working on for a future release will include
-image and source code vulnerability scanning and metadata storage into a preset Tanzu Application Platform supply chain.
-Until then, you can use this example to see how to try this out:
+One of the out-of-the-box supply chains we are working on for a future release will include image and source code vulnerability scanning and metadata storage into a preset Tanzu Application Platform supply chain. Until then, you can use this example to see how to try this out:
 [Example Supply Chain including Source and Image Scans](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-scst-scan-cartographer.html).
 
 **Next Steps and Further Information**
@@ -768,16 +752,11 @@ Until then, you can use this example to see how to try this out:
 
 ### Overview:
 
-Tanzu Application Platform makes it easy to discover, curate, consume and manage services
-in a single or multi-cluster environment so that app developers can only focus on consuming
-the service in their app without worrying about the configuration and plumbing needed.
+Tanzu Application Platform makes it easy to discover, curate, consume and manage services in a single or multi-cluster environment so that app developers can only focus on consuming the service in their app without worrying about the configuration and plumbing needed.
 
 This experience is made possible by the Services Toolkit component of Tanzu Application Platform.
 
-Services Toolkit comes with a logical set of APIs that can be composed to provide easy access
-to Kubernetes Native resources (like Secrets) as well as Custom resources (ex RabbitMQ clusters)
-in a single/multi cluster environment.
-These APIs are listed below
+Services Toolkit comes with a logical set of APIs that can be composed to provide easy access to Kubernetes Native resources (like Secrets) as well as Custom resources (ex RabbitMQ clusters) in a single/multi cluster environment. These APIs are listed below.
 
 
 ##### Services ToolKit APIs:
