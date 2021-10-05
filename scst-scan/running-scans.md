@@ -13,7 +13,7 @@ For this example, the scan will (at the time of writing):
 * ignore any CVEs that have severities that are not critical,
 * indicate in the `Status.Conditions` that 2 CVEs have violated policy compliance.
 
-### Define the ScanPolicy and SourceScan
+### Defining the ScanPolicy and SourceScan
 Create `policy-enforcement-example.yaml`:
 ```yaml
 ---
@@ -60,7 +60,7 @@ spec:
   scanPolicy: scan-policy
 ```
 
-### (Optional) Setup a Watch
+### (Optional) Setting Up a Watch
 Before deploying, set up a watch in another terminal to see things process... it will be quick!
 ```bash
 watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
@@ -68,12 +68,12 @@ watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
 
 For more information, refer to [Observing and Troubleshooting](observing.md).
 
-### Deploy the Resources
+### Deploying the Resources
 ```bash
 kubectl apply -f policy-enforcement-example.yaml
 ```
 
-### See the Results
+### Viewing the Results
 Once the scan has completed, perform:
 ```bash
 kubectl describe sourcescan policy-enforcement-example
@@ -129,7 +129,7 @@ You can also update the `violatingSeverities` array in the ScanPolicy if desired
 * Negligible: 0
 * UnknownSeverity: 0
 
-### Clean Up
+### Cleaning Up
 ```bash
 kubectl delete -f policy-enforcement-example.yaml
 ```
