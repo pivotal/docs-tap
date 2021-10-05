@@ -220,13 +220,13 @@ of a LoadBalancer and reduces the number of replicas. You may also want to follo
 1. Install the package by running:
 
     ```console
-    tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 1.0.2 -n tap-install -f cnr-values.yaml
+    tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 1.0.2 -n tap-install -f cnr-values.yaml --poll-timeout 30m
     ```
 
     For example:
 
     ```console
-    $ tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 1.0.2 -n tap-install -f cnr-values.yaml
+    $ tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 1.0.2 -n tap-install -f cnr-values.yaml --poll-timeout 30m
     - Installing package 'cnrs.tanzu.vmware.com'
     | Getting package metadata for 'cnrs.tanzu.vmware.com'
     | Creating service account 'cloud-native-runtimes-tap-install-sa'
