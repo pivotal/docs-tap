@@ -583,13 +583,10 @@ To install Tanzu Build Service using the Tanzu CLI:
     tanzu package install tbs -p buildservice.tanzu.vmware.com -v 1.3.0 -n tap-install -f tbs-values.yaml --poll-timeout 30m
     ```
 
-    **Note**: Installing the `buildservice.tanzu.vmware.com` package with Tanzu Net credentials automatically relocates buildpack dependencies to your cluster. This install process can take some time.  The command provided above increases the timeout duration to account for this.  If the command still times out, periodically run the installation verification step provided below because image relocation will continue in the background.   
-    `kubectl get clusterbuilders`
-
     For example:
 
     ```bash
-    $ tanzu package install tbs -p buildservice.tanzu.vmware.com -v 1.3.0 -n tap-install -f tbs-values.yaml
+    $ tanzu package install tbs -p buildservice.tanzu.vmware.com -v 1.3.0 -n tap-install -f tbs-values.yaml --poll-timeout 30m
     | Installing package 'buildservice.tanzu.vmware.com'
     | Getting namespace 'tap-install'
     | Getting package metadata for 'buildservice.tanzu.vmware.com'
@@ -603,24 +600,13 @@ To install Tanzu Build Service using the Tanzu CLI:
      Added installed package 'tbs' in namespace 'tap-install'
     ```
 
+    **Note**: Installing the `buildservice.tanzu.vmware.com` package with Tanzu Net credentials automatically relocates buildpack dependencies to your cluster. This install process can take some time.  The command provided above increases the timeout duration to account for this.  If the command still times out, periodically run the installation verification step provided in the optional step below because image relocation will continue in the background.   
+
 1. (Optional) Run the following command to verify the clusterbuilders created by the Tanzu Build Service install:
 
     ```bash
-    kubectl get clusterbuilders
+    tanzu package installed get buildservice.tanzu.vmware.com -n tap-install
     ```
-
-    For example:
-
-    ```bash
-    $ kubectl get clusterbuilders
-
-    NAME      LATESTIMAGE                                                                                      READY
-    base      my-registry.com/tbs@sha256:8732fadb92d8afa40bcef2d885e9730b372484a39b4a7f718291f574645f4bf2      True
-    default   my-registry.com/tbs@sha256:8732fadb92d8afa40bcef2d885e9730b372484a39b4a7f718291f574645f4bf2      True
-    full      my-registry.com/tbs@sha256:f7cdac8b2d97790276821ee3f54c497fba4ec71752eec9a87d22905344471ed8      True
-    tiny      my-registry.com/tbs@sha256:b9c5348da4c1527c356d2d8b9d48462ea9bf97a98eb379e925bec69c6dd918a5      True
-    ```
-
 
 ## <a id='install-scc'></a> Install Supply Chain Choreographer
 
