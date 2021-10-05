@@ -42,18 +42,18 @@ The following prerequisites are required to install Tanzu Application Platform:
 
 * **[kapp Carvel command line tool](https://github.com/vmware-tanzu/carvel-kapp/releases)** (v0.37.0 or later)
 
-* kapp-controller v0.24.0 or later:
+* kapp-controller v0.25.0 or later:
 
     * For Azure Kubernetes Service, Amazon Elastic Kubernetes Service, Google Kubernetes Engine, kind, and minikube,
       Install kapp-controller by running:
       ```
       kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/KC-VERSION/release.yml
       ```
-      Where `KC-VERSION` is the kapp-controller version being installed. Please select v0.24.0+ kapp-controller version from the [Releases page](https://github.com/vmware-tanzu/carvel-kapp-controller/releases).
+      Where `KC-VERSION` is the kapp-controller version being installed. Please select v0.25.0+ kapp-controller version from the [Releases page](https://github.com/vmware-tanzu/carvel-kapp-controller/releases).
 
       For example:
       ```
-      kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v0.24.0/release.yml
+      kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v0.25.0/release.yml
       ```
       
 
@@ -80,8 +80,8 @@ The following prerequisites are required to install Tanzu Application Platform:
          For example:
          ```
          kubectl get deployment kapp-controller -n kapp-controller  -o yaml | grep kapp-controller.carvel.dev/version
-         kapp-controller.carvel.dev/version: v0.24.0
-         kapp.k14s.io/original: '{"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{"kapp-controller.carvel.dev/version":"v0.24.0","kbld.k14s.io/images":"-
+         kapp-controller.carvel.dev/version: v0.25.0
+         kapp.k14s.io/original: '{"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{"kapp-controller.carvel.dev/version":"v0.25.0","kbld.k14s.io/images":"-
          ```
 
 
