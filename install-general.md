@@ -36,7 +36,7 @@ The following prerequisites are required to install Tanzu Application Platform:
   
   For a single node cluster, such as KIND, we recommend **4 vCPU** be available, along with **70 GB** disk.
   
-  For this beta release, Pod Security Policies must be configured so that TAP controller pods may run as root.
+  For this beta release, [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) must be configured so that TAP controller pods may run as root.
   
 * **The Kubernetes CLI, kubectl, v1.19** or later, installed and authenticated with administrator rights for your target cluster.
 
