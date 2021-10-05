@@ -58,7 +58,7 @@ and configurations and enable fleets of developers to utilize them,
 decreasing operator concerns about whether developers are implementing their desired best practices.
 
 Application Accelerator templates are available as a quickstart
-from [Tanzunet](https://network.tanzu.vmware.com/products/app-accelerator). 
+from [Tanzunet](https://network.tanzu.vmware.com/products/app-accelerator).
 
 
 ### Deploy your Application
@@ -69,33 +69,25 @@ You’ll use an accelerator called Tanzu-Java-Web-App to get started.
 Visit your Application Accelerator (view instructions to do so
 [here](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.3/acc-docs/GUID-installation-install.html#using-application-accelerator-for-vmware-tanzu-0))
 
-<p id="gdcalert1" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image1.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert2">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
+![Screenshot of Application Accelerator that shows a search field and two accelerators](images/app-acc.png)
 
-![alt_text](images/image1.png "image_tooltip")
- 
 Select the "Tanzu Java Web App" accelerator (a sample Spring Boot web-app)
 
+![Screenshot of the Tanzu Java Web App within Application Accelerator. It includes empty fields for new project information.](images/tanzu-java-web-app.png)
 
-<p id="gdcalert2" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image2.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert3">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-![alt_text](images/image2.png "image_tooltip")
- 
-Replace the default value, `dev.local`,  in the “_prefix for container image registry”_ field
+Replace the default value, `dev.local`, in the _"prefix for container image registry"_ field
 with the url to your registry.
 The URL you enter should match what you specified while deploying the
 [Tanzu Build Service](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-install.html#install-tanzu-build-service-7)
-(use the value you provided for `kp_default_repository)
+(use the value you provided for `kp_default_repository`)
 
-<p id="gdcalert3" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image3.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert4">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-![alt_text](images/image3.png "image_tooltip")
-`
+![Screenshot of the Tanzu Java Web App within Application Accelerator. It includes empty fields for new project information, and buttons labeled "Generate Project", "Explore Files", and "Cancel".](images/store-image-on-server.png)
 
 Click the “Generate Project” button to download the accelerator zip file
 (you’ll use the VScode extension later to debug and see live-updates of this code later later in this guide)
 
-Deploy the ‘Tanzu Java Web App’ accelerator using the `create` command 
-<code>tanzu apps workload create tanzu-java-web-app\ 
+Deploy the ‘Tanzu Java Web App’ accelerator using the `create` command
+<code>tanzu apps workload create tanzu-java-web-app\
 --git-repo  [https://github.com/sample-accelerators/tanzu-java-web-app\](https://github.com/sample-accelerators/tanzu-java-web-app\) \
 --git-branch main --type web --yes</code>
 * note this first deploy uses accelerator source from git, but you’ll debug and live-update the version you downloaded in later steps
@@ -121,10 +113,10 @@ Tanzu Developer Tools for VSCode, VMware Tanzu’s official IDE extension for VS
 helps you develop & receive fast feedback on the Tanzu Application Platform.
 
 The VSCode extension enables live updates of your application while it’s running,
-and provides the ability to debug your application, directly on the cluster. 
+and provides the ability to debug your application, directly on the cluster.
 
 Start by installing the pre-requisites and the Tanzu Developer Tools extension by following these instructions.
-Open the ‘Tanzu Java Web App’ as a project within your VSCode IDE. 
+Open the ‘Tanzu Java Web App’ as a project within your VSCode IDE.
 
 In order to ensure your extension helps you iterate on the correct project, you’ll need to configure its settings:
 
@@ -188,7 +180,7 @@ the various diagnostic capabilities.
 ## Section 2: Creating an Accelerator
 
 You can use any git repository to create an Accelerator.
-You need the URL for the repository to create an Accelerator. 
+You need the URL for the repository to create an Accelerator.
 
 Use the following procedure to create an accelerator:
 
@@ -223,21 +215,15 @@ Copy this file into your git repo as `accelerator.yaml` to have additional attri
 
 ## Section 3: Add test to your application
 
-<p id="gdcalert4" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image4.jpg). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert5">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-![alt_text](images/image4.jpg "image_tooltip")
-
-
-### What is a Supply Chain? 
+### What is a Supply Chain?
 
 Supply Chains provide a way of codifying all of the steps of your path to production
 (or what is more commonly known as CI/CD).
 A supply chain differs from CI/CD in that any and every step that is necessary
-for an application to reach production (or a lower environment) can be added. 
+for an application to reach production (or a lower environment) can be added.
 
-<p id="gdcalert5" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image5.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert6">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-![alt_text](images/image5.png "image_tooltip")
+![Diagram depicting a simple path to production: CI to Security Scan to Build Image to Image Scan to CAB Approval to Deployment.](images/path-to-production.png)
+<!-- Change CI to Continuous Integration if that's what it means, not least because a screen reader probably struggles to say "CI" -->
 
 A simple path to production
 
@@ -259,10 +245,10 @@ Out of the box, Tanzu Application Platform provides 2 default supply chains
 
 The Tanzu Application Platform installation steps details installing the default supply chain,
 but others are available.
-If you follow the installation docs, the **Source to URL **supply chain chain will be installed on your cluster
+If you follow the installation docs, the **Source to URL ** supply chain chain will be installed on your cluster
 (as well as all of its dependencies).
 The table below and the following figures show the 2 supply chains that are included in
-Tanzu Application Platform Beta 2, as well as their descriptions and dependencies. 
+Tanzu Application Platform Beta 2, as well as their descriptions and dependencies.
 
 The biggest difference between the two supply chains is that the second **Source & Test to URL **
 includes the ability to run a Tekton pipeline within the supply chain.
@@ -274,12 +260,10 @@ within it can be customized to perform additional testing, or any other tasks
 that can be performed with a Tekton pipeline.
 
 A limitation of Tanzu Application Platform Beta 2 is that only one of the two supply chains
-can be installed at any given time.If you have already installed the default - source to URL supply chain,
-it will first need to be uninstalled before installing the Source & Test to URL supply chain.
+can be installed at any given time. If you have already installed the default - source to URL supply
+chain, it will first need to be uninstalled before installing the Source & Test to URL supply chain.
 
-<p id="gdcalert6" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image6.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert7">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-![alt_text](images/image6.png "image_tooltip")
+![Diagram depicting the Source-to-URL chain: Watch Repo (Flux) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](images/source-to-url-chain.png)
 
 **Source to URL**
 
@@ -326,9 +310,7 @@ it will first need to be uninstalled before installing the Source & Test to URL 
   </tr>
 </table>
 
-<p id="gdcalert7" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image7.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert8">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-![alt_text](images/image7.png "image_tooltip")
+![Diagram depicting the Source-and-Test-to-URL chain: Watch Repo (Flux) to Test Code (Tekton) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](images/source-and-test-to-url-chain.png)
 
 **Source & Test to URL**
 
@@ -361,7 +343,7 @@ it will first need to be uninstalled before installing the Source & Test to URL 
 </li>
 </ul>
    </td>
-   <td>All of the Source to URL dependencies, as well as: 
+   <td>All of the Source to URL dependencies, as well as:
 <ul>
 
 <li>Tekton
@@ -410,7 +392,7 @@ kapp deploy --yes -a tekton \
 
 Thoroughly documenting Tekton and its use is outside of the scope of this document,
 we’ll be primarily using it to run a simple unit test on the sample that we’ve been using so far.
-For more details on Tekton itself and what is possible, refer to the Te[kton documentation](https://tekton.dev/docs/) itself
+For more details on Tekton itself and what is possible, refer to the [Tekton documentation](https://tekton.dev/docs/) itself
 and its [github repository](https://github.com/tektoncd/pipeline).
 Two other starting points for getting up to speed with Tekton are its
 [tutorial](https://github.com/tektoncd/pipeline/blob/main/docs/tutorial.md)
@@ -436,7 +418,7 @@ we’ll update the workload to point to the pipeline and resolve any of the curr
 
 The next step is to add a Tekton pipeline to our cluster.
 Because a developer knows how their application needs to be tested this step could be performed by the developer.
-The Operator could also add these to a cluster prior to the developer getting access to it. 
+The Operator could also add these to a cluster prior to the developer getting access to it.
 
 In order to add the Tekton supply chain to the cluster, we’ll apply the following YAML to the cluster:
 
@@ -478,7 +460,7 @@ that they may need to test their code.
 Because this step is just one in the supply chain (and the next step is an image build in this case),
 the developer is free to focus on just testing their code.
 Any additional steps that the developer adds to the Tekton pipeline will be independent
-for the image being built and any subsequent steps of the supply chain being executed. 
+for the image being built and any subsequent steps of the supply chain being executed.
 
 The `params` are templated by the Supply Chain Choreographer.
 Additionally, Tekton pipelines require a Tekton `pipelineRun` in order to execute on the cluster.
@@ -495,7 +477,7 @@ The workload can be updated using the Tanzu CLI as follows:
 ```bash
 tanzu apps workload create tanzu-java-web-app\
 --git-repo  https://github.com/sample-accelerators/tanzu-java-web-app\
---git-branch main 
+--git-branch main
 --type web --yes
 --param tekton-pipeline-name=developer-defined-tekton-pipeline
 ```
@@ -564,11 +546,11 @@ service.serving.knative.dev/hello-world   http://hello-world.default.example.com
 There are two new supply chain security use cases that we support in Beta 2:
 
 
-1. **Sign**: Introducing image signing and verification to your supply chain 
+1. **Sign**: Introducing image signing and verification to your supply chain
 
-2. **Scan & Store**: Introducing vulnerability scanning and metadata storage to your supply chain 
+2. **Scan & Store**: Introducing vulnerability scanning and metadata storage to your supply chain
 
-In this section, we will provide an overview of these two new use cases and how to integrate them into your supply chain. 
+In this section, we will provide an overview of these two new use cases and how to integrate them into your supply chain.
 
 
 ### Sign: Introducing Image Signing & Verification to your Supply Chain
@@ -752,7 +734,7 @@ to easily reference historical scan results, and provides querying functionality
 * What images are using a given package?
 
 The Store accepts any CycloneDX input and outputs in both human-readable and machine-readable
-(JSON, text, CycloneDX) formats. Querying can be performed via a CLI, or directly from the API. 
+(JSON, text, CycloneDX) formats. Querying can be performed via a CLI, or directly from the API.
 
 **Use Cases**
 
@@ -825,11 +807,11 @@ Until then, you can use this example to see how to try this out:
 ## Section 5: Advanced Use Cases - Services Journey
 
 
-### Overview: 
+### Overview:
 
 Tanzu Application Platform makes it easy to discover, curate, consume and manage services
 in a single or multi-cluster environment so that app developers can only focus on consuming
-the service in their app without worrying about the configuration and plumbing needed. 
+the service in their app without worrying about the configuration and plumbing needed.
 
 This experience is made possible by the Services Toolkit component of Tanzu Application Platform.
 
@@ -845,7 +827,7 @@ These APIs are listed below
 
     Lets you replicate K8s resources like Secret, Namespaces across multiple K8s clusters in a secure way.
 
-2. Services API Projection 
+2. Services API Projection
 
     Lets you _project_ Custom Kubernetes Resources from one cluster (say Services Cluster) to the other (Workload Cluster).
     You can use this API if you want to maintain a RabbitMQ (or any other Resource Type) operator
@@ -858,7 +840,7 @@ These APIs are listed below
 4. Resources Claims
 
     Lets apps declare and consume services on demand without worrying about provisioning,
-    binding or maintenance of the service instance. 
+    binding or maintenance of the service instance.
 
 
 #### Use Case 1 - App and Service are in the same Kubernetes Cluster.
@@ -901,7 +883,7 @@ Creating and Provisioning Services
 
 Here are some additional CLI commands to explore using the same app that you deployed and debugged earlier in this guide.
 
-Add some envars 
+Add some envars
 
 ```
 tanzu apps workload update tanzu-java-web-app --env foo=bar
@@ -923,7 +905,7 @@ tanzu apps workload create -h
 Create a simple java app from source code on your local file system
 
 ```
-git clone git@github.com:spring-projects/spring-petclinic.git 
+git clone git@github.com:spring-projects/spring-petclinic.git
 tanzu apps workload create pet-clinic --source-image <YOUR-REGISTRY.COM>/pet-clinic --local-path ./spring-petclinic
 ```
 
@@ -931,4 +913,4 @@ tanzu apps workload create pet-clinic --source-image <YOUR-REGISTRY.COM>/pet-cli
 ## Notes
 
 [^1]:
-     [https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.3/acc-docs/GUID-creating-accelerators-index.html](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.2/acc-docs/GUID-creating-accelerators-index.html) 
+     [https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.3/acc-docs/GUID-creating-accelerators-index.html](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.2/acc-docs/GUID-creating-accelerators-index.html)
