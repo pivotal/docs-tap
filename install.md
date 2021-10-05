@@ -28,7 +28,7 @@ To add the Tanzu Application Platform package repository:
 
    This namespace is to keep the objects grouped together logically.
 
-2. Create a imagepullsecret:
+2. Create an imagepullsecret:
 
    ```bash
    tanzu imagepullsecret add tap-registry \
