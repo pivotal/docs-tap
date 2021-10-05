@@ -794,7 +794,7 @@ and the cluster running the service (Services Cluster) are different.
 
 To enable this use case there are few things that have to be done first.
 
-Creating and Provisioning Services
+##### Creating and Provisioning Services
 
 1. Follow the documentation to install Tanzu Application Platform onto a Kubernetes cluster
 
@@ -846,9 +846,3 @@ Create a simple java app from source code on your local file system
 git clone git@github.com:spring-projects/spring-petclinic.git
 tanzu apps workload create pet-clinic --source-image <YOUR-REGISTRY.COM>/pet-clinic --local-path ./spring-petclinic
 ```
-
-<!-- Footnotes themselves at the bottom. -->
-## Notes
-
-[^1]:
-     [https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.3/acc-docs/GUID-creating-accelerators-index.html](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.2/acc-docs/GUID-creating-accelerators-index.html)
