@@ -302,7 +302,9 @@ of a LoadBalancer and reduces the number of replicas. You may also want to follo
 
    Note that the service account has access to the `pull-secret` image pull secret.
 
-To learn more about using Cloud Native Runtimes, see [Verify your Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-verify-installation.html) in the Cloud Native Runtimes documentation.
+To learn more about using Cloud Native Runtimes,
+see [Verify your Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-verify-installation.html)
+in the Cloud Native Runtimes documentation.
 
 ## <a id='install-app-accelerator'></a> Install Application Accelerator
 
