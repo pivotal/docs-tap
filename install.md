@@ -258,6 +258,48 @@ of a LoadBalancer and reduces the number of replicas. You may also want to follo
     ```
     STATUS should be `Reconcile succeeded`.
 
+1. Configuring a namespace to use Cloud Native Runtimes:
+
+   Service accounts which run workloads using Cloud Native Runtimes need to have access to the image pull secrets for the Tanzu package.
+   This includes the `default` service account in a namespace, which is created automatically but not associated with any image pull secrets.
+   Without these credentials, attempts to launch a service will fail with a timeout and the underlying Pods will report that they were unable to pull the `queue-proxy` image.
+
+   To create an image pull secret in the current namespace and fill it from [the `tap-registry` secret](#add-package-repositories),
+   run the following commands to create an empty secret and annotate it as a target of the secretgen controller:
+
+   ```console
+   kubectl create secret generic pull-secret --from-literal=.dockerconfigjson={} --type=kubernetes.io/dockerconfigjson
+   kubectl annotate secret pull-secret secretgen.carvel.dev/image-pull-secret=""
+   ```
+
+   Once you have a `pull-secret` secret in the same namespace as the service account,
+   run the following command to add the secret to the service account:
+   
+   ```console
+   kubectl patch serviceaccount SERVICEACCOUNT -p '{"imagePullSecrets": [{"name": "pull-secret"}]}'
+   ```
+
+   You can verify that a service account is correctly configured by running:
+
+   ```console
+   kubectl describe serviceaccount SERVICEACCOUNT
+   ```
+
+   For example:
+
+   ```console
+   kubectl describe sa default
+   Name:                default
+   Namespace:           default
+   Labels:              <none>
+   Annotations:         <none>
+   Image pull secrets:  pull-secret
+   Mountable secrets:   default-token-xh6p4
+   Tokens:              default-token-xh6p4
+   Events:              <none>
+   ```
+
+   Note that the service account has access to the `pull-secret` image pull secret.
 
 ## <a id='install-app-accelerator'></a> Install Application Accelerator
 
