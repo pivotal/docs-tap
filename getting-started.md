@@ -343,16 +343,13 @@ tanzu package installed delete default-supply-chain \
 
 ### Install Source & Test to URL
 
-Now that the default supply chain has been uninstalled the **Source & Test to URL** supply chain can be installed on the cluster.
-The first step is to install Tekton, which was not installed in the installation docs as
-it is only a requirement for the **Source & Test to URL **supply chain.
+Now that the default supply chain has been uninstalled the **Source & Test to URL** supply chain can be installed on the cluster. The first step is to install Tekton, which was not installed in the installation docs as it is only a requirement for the **Source & Test to URL** supply chain.
 The next section walks you through installing Tekton onto your cluster.
 
 
 #### Install Tekton
 
-Tekton is used by the supply chain to run tests defined by the developers
-before we get to the point of producing a container image for the source code,
+Tekton is used by the supply chain to run tests defined by the developers before we get to the point of producing a container image for the source code,
 effectively preventing code that fails tests from being promoted all the way to deployment.
 
 For Beta 2, we’re relying on the open source version of Tekton which can be installed using `kapp` as follows:
@@ -362,13 +359,9 @@ kapp deploy --yes -a tekton \
   -f https://storage.googleapis.com/tekton-releases/pipeline/previous/v0.28.0/release.yaml
 ```
 
-Thoroughly documenting Tekton and its use is outside of the scope of this document,
-we’ll be primarily using it to run a simple unit test on the sample that we’ve been using so far.
-For more details on Tekton itself and what is possible, refer to the [Tekton documentation](https://tekton.dev/docs/) itself
-and its [github repository](https://github.com/tektoncd/pipeline).
-Two other starting points for getting up to speed with Tekton are its
-[tutorial](https://github.com/tektoncd/pipeline/blob/main/docs/tutorial.md)
-and [getting started guide](https://tekton.dev/docs/getting-started/).
+Thoroughly documenting Tekton and its use is outside of the scope of this document. We will be primarily using it to run a simple unit test on the sample that we’ve been using so far. For more details on Tekton itself and what is possible, refer to the [Tekton documentation](https://tekton.dev/docs/) itself
+and its [github repository](https://github.com/tektoncd/pipeline). Two other starting points for getting up to speed with Tekton are its
+[tutorial](https://github.com/tektoncd/pipeline/blob/main/docs/tutorial.md) and [getting started guide](https://tekton.dev/docs/getting-started/).
 
 Now that Tekton has been installed, the **Source & Test to URL** supply chain can be installed on your cluster:
 
@@ -383,14 +376,10 @@ tanzu package install default-supply-chain-testing \
 
 ### Example Tekton Pipeline Config
 
-With the new supply chain installed, the previously applied workload will fail as it is missing parameters
-which are required for the Tekton pipeline.
-In this section, we’ll add a Tekton pipeline to our cluster and in the following section,
-we’ll update the workload to point to the pipeline and resolve any of the current errors.
+With the new supply chain installed, the previously applied workload will fail as it is missing parameters which are required for the Tekton pipeline.
+In this section, we’ll add a Tekton pipeline to our cluster and in the following section, we’ll update the workload to point to the pipeline and resolve any of the current errors.
 
-The next step is to add a Tekton pipeline to our cluster.
-Because a developer knows how their application needs to be tested this step could be performed by the developer.
-The Operator could also add these to a cluster prior to the developer getting access to it.
+The next step is to add a Tekton pipeline to our cluster. Because a developer knows how their application needs to be tested this step could be performed by the developer. The Operator could also add these to a cluster prior to the developer getting access to it.
 
 In order to add the Tekton supply chain to the cluster, we’ll apply the following YAML to the cluster:
 
@@ -424,26 +413,16 @@ spec:
               gradelw test
 ```
 
-The YAML above defines a Tekton Pipeline with a single step.
-The step itself contained in the `steps` will pull the code form the repository indicated
-in the developers `workload` and run the tests within the repository.
-The steps of the Tekton pipeline are configurable and allow the developer to add any additional items
-that they may need to test their code.
-Because this step is just one in the supply chain (and the next step is an image build in this case),
-the developer is free to focus on just testing their code.
-Any additional steps that the developer adds to the Tekton pipeline will be independent
+The YAML above defines a Tekton Pipeline with a single step. The step itself contained in the `steps` will pull the code from the repository indicated
+in the developers `workload` and run the tests within the repository. The steps of the Tekton pipeline are configurable and allow the developer to add any additional items that they may need to test their code. Because this step is just one in the supply chain (and the next step is an image build in this case), the developer is free to focus on just testing their code. Any additional steps that the developer adds to the Tekton pipeline will be independent
 for the image being built and any subsequent steps of the supply chain being executed.
 
-The `params` are templated by the Supply Chain Choreographer.
-Additionally, Tekton pipelines require a Tekton `pipelineRun` in order to execute on the cluster.
-The Supply Chain Choreographer handles creating the `pipelineRun` dynamically each time
-that step of the supply requires execution.
+The `params` are templated by the Supply Chain Choreographer. Additionally, Tekton pipelines require a Tekton `pipelineRun` in order to execute on the cluster. The Supply Chain Choreographer handles creating the `pipelineRun` dynamically each time that step of the supply requires execution.
 
 
 ### Workload update
 
-Finally, in order to have the new supply chain connected to the workload,
-the workload needs to be updated to point at the newly created Tekton pipeline.
+Finally, in order to have the new supply chain connected to the workload, the workload needs to be updated to point at the newly created Tekton pipeline.
 The workload can be updated using the Tanzu CLI as follows:
 
 ```bash
@@ -481,7 +460,7 @@ After accepting the creation of the new workload, we can monitor the creation of
 kubectl get workload,gitrepository,pipelinerun,images.kpack,podintent,app,services.serving
 ```
 
-Which should result in an output which will show all of the objects that have been created by the Supply Chain Choreographer:
+That should result in an output which will show all of the objects that have been created by the Supply Chain Choreographer:
 
 
 ```bash
@@ -517,7 +496,6 @@ service.serving.knative.dev/hello-world   http://hello-world.default.example.com
 
 There are two new supply chain security use cases that we support in Beta 2:
 
-
 1. **Sign**: Introducing image signing and verification to your supply chain
 
 2. **Scan & Store**: Introducing vulnerability scanning and metadata storage to your supply chain
@@ -529,15 +507,10 @@ In this section, we will provide an overview of these two new use cases and how 
 
 **Overview**
 
-This feature-set allows an application operator to define a policy that will restrict unsigned images
-from running on clusters. This is done using a dynamic admission control component on Kubernetes clusters.
-This component contains logic to communicate with external registries and verify signatures on container images,
-making a decision based on the results of this verification. Currently, this component supports cosign signatures and its key formats.
+This feature-set allows an application operator to define a policy that will restrict unsigned images from running on clusters. This is done using a dynamic admission control component on Kubernetes clusters. This component contains logic to communicate with external registries and verify signatures on container images, making a decision based on the results of this verification. Currently, this component supports cosign signatures and its key formats.
 It will work with open source cosign, kpack and Tanzu Build Service (which is what we will overview in this document).
 
-Signing an artifact creates metadata about it that allows consumers to verify its origin and integrity.
-By verifying signatures on artifacts prior to their deployment,
-this allows operators to increase their confidence that trusted software is running on their clusters.
+Signing an artifact creates metadata about it that allows consumers to verify its origin and integrity. By verifying signatures on artifacts prior to their deployment, this allows operators to increase their confidence that trusted software is running on their clusters.
 
 **Use Cases**
 
@@ -545,9 +518,7 @@ this allows operators to increase their confidence that trusted software is runn
 
 **Signing Container Images**
 
-TAP supports verifying container image signatures that follow the `cosign` format.
-Application operators may apply image signatures and store them in the registry in one of several ways:
-
+Tanzu Application Platform supports verifying container image signatures that follow the `cosign` format. Application operators may apply image signatures and store them in the registry in one of several ways:
 
 * Using Tanzu Build Service v1.3
 
@@ -558,8 +529,7 @@ Application operators may apply image signatures and store them in the registry 
 
 **Configure the Image Policy Webhook**
 
-After the image policy webhook is installed in the cluster,
-it is time to configure the image policy to be enforced and the credentials to access private registries.
+After the image policy webhook is installed in the cluster, it is time to configure the image policy to be enforced and the credentials to access private registries.
 
 **Create a Cluster Image Policy**
 
@@ -601,21 +571,17 @@ spec:
 
 As of this writing, the custom resource for the policy must have a name of image-policy.
 
-The platform operator should add to the `verification.exclude.resources.namespaces`
-section any namespaces that are known to run container images that are not currently signed, such as `kube-system`.
+The platform operator should add to the `verification.exclude.resources.namespaces` section any namespaces that are known to run container images that are not currently signed, such as `kube-system`.
 
 **(Optional) Create a service account to hold private registry secrets**
 
-In the situation when the platform operator is expecting to verify signatures stored in a private registry,
-it is required to configure a service account with all the secrets for those private registries.
-There is a set of requirements for this service account:
+In the situation when the platform operator is expecting to verify signatures stored in a private registry, it is required to configure a service account with all the secrets for those private registries. There is a set of requirements for this service account:
 
+* It must be created in the `image-policy-system` namespace
 
-* It must be created in the `image-policy-system` namespace.
+* It must be called `registry-credentials`
 
-* It must be called `registry-credentials`.
-
-* All secrets for accessing private registries must be added to the `imagePullSecrets` section of the service account.
+* All secrets for accessing private registries must be added to the `imagePullSecrets` section of the service account
 
 The manifest for this service account would look like this:
 
@@ -679,8 +645,7 @@ When a developer deploys an application with an image from an unmatched pattern 
 
 * **Expected result**: resource is not created and an error message is shown in the CLI output.
 
-The Sign add on will output logs for the above scenarios.
-To have a look at the logs, the platform operator may issue the following command:
+The Sign add on will output logs for the above scenarios. To have a look at the logs, the platform operator may issue the following command:
 
 ```
 $ kubectl logs -n image-policy-system -l "signing.run.tanzu.vmware.com/application-name=image-policy-webhook" -f
