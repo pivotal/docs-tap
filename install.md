@@ -1359,27 +1359,6 @@ To install the API portal:
      api-portal.tanzu.vmware.com  1.0.2             2021-09-27T00:00:00Z
    ```
 
-1. Create a container registry secret named `api-portal-image-pull-secret` by running:
-
-   ```console
-   kubectl create secret docker-registry api-portal-image-pull-secret -n tap-install \
-    --docker-server=registry.tanzu.vmware.com \
-    --docker-username=TANZU-NET-USER \
-    --docker-password=TANZU-NET-PASSWORD
-   ```
-
-   Where `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for Tanzu Network.
-
-   For example:
-
-   ```console
-   $ kubectl create secret docker-registry api-portal-image-pull-secret -n tap-install \
-   --docker-server=registry.tanzu.vmware.com \
-   --docker-username=TANZU-NET-USER \
-   --docker-password=TANZU-NET-PASSWORD
-   secret/api-portal-image-pull-secret created
-   ```
-
 1. Install API portal by running:
 
    ```console
