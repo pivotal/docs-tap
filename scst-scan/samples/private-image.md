@@ -1,7 +1,7 @@
 # Running a Sample Private Image Scan
 This example will perform a scan against a private image of `spring-petclinic` located in the `dev.registry.pivotal.io` registry. The image is publicly available at [Docker Hub](https://hub.docker.com/r/arey/springboot-petclinic/) should you need to upload it to a private registry you have access to.
 
-## Define the Resources
+## Defining the Resources
 Create `private-image-example.yaml` and ensure you enter a valid docker config.json value in the secret:
 ```yaml
 ---
@@ -24,7 +24,7 @@ spec:
   scanTemplate: private-image-scan-template
 ```
 
-## (Optional) Setup a Watch
+## (Optional) Setting Up a Watch
 Before deploying, set up a watch in another terminal to see things process... it will be quick!
 ```bash
 watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
@@ -32,12 +32,12 @@ watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
 
 For more information, refer to [Observing and Troubleshooting](../observing.md).
 
-## Deploy the Resources
+## Deploying the Resources
 ```bash
 kubectl apply -f private-image-example.yaml
 ```
 
-## See the Scan Status
+## Viewing the Scan Status
 Once the scan has completed, perform:
 ```bash
 kubectl describe imagescan private-image-example
@@ -46,7 +46,7 @@ and notice the `Status.Conditions` includes a `Reason: JobFinished` and `Message
 
 For more information, refer to [Viewing and Understanding Scan Status Conditions](../results.md).
 
-## Clean Up
+## Cleaning Up
 ```bash
 kubectl delete -f private-image-example.yaml
 ```
