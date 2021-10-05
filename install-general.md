@@ -75,7 +75,9 @@ The following prerequisites are required to install Tanzu Application Platform:
          kubectl get deployment KC-DEPLOYMENT -n KC-NAMESPACE -o yaml | grep kapp-controller.carvel.dev/version
          ```
 
-         Where `KC-DEPLOYMENT` and `KC-NAMESPACE` are kapp-controller deployment name and kapp-controller namespace name respectively from the output of step 1.
+         Where:
+         - `KC-DEPLOYMENT` is the `kapp-controller` deployment name.
+         - `KC-NAMESPACE` is the `kapp-controller` namespace name.
 
          For example:
          ```
@@ -87,7 +89,7 @@ The following prerequisites are required to install Tanzu Application Platform:
 
 * **secretgen-controller v0.5.0** or later:
 
-    * Install secretgen-controller by running:
+    * Install the secretgen-controller by running:
 
       ```
       kapp deploy -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/download/SG-VERSION/release.yml
@@ -100,9 +102,9 @@ The following prerequisites are required to install Tanzu Application Platform:
       kapp deploy -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/download/v0.5.0/release.yml
       ```
 
-    * To Verify installed secretgen-controller version:
+    * To Verify the secretgen-controller version you installed:
 
-      1. Get secretgen-controller deployment and namespace by running:
+      1. Get the secretgen-controller deployment and namespace by running:
          ```
          kubectl get deployments -A | grep secretgen-controller
          ```
@@ -113,11 +115,13 @@ The following prerequisites are required to install Tanzu Application Platform:
          secretgen-controller     secretgen-controller             1/1     1            1           22d   
          ```
 
-      2. Get secretgen-controller version by running:
+      2. Get the secretgen-controller version by running:
          ```
          kubectl get deployment SG-DEPLOYMENT -n SG-NAMESPACE -o yaml | grep secretgen-controller.carvel.dev/version
          ```
-         Where `SG-DEPLOYMENT` and `SG-NAMESPACE` are secretgen-controller deployment name and secretgen-controller namespace name respectively from the output of step 1.
+         Where:
+         - `SG-DEPLOYMENT` is the `secretgen-controller` deployment name.
+         - `SG-NAMESPACE` is the `secretgen-controller` namespace name. 
 
          For example:
 
@@ -137,7 +141,7 @@ The following prerequisites are required to install Tanzu Application Platform:
         ```
         We have verified the Tanzu Application Platform repo bundle packages installation with cert-manager version v1.5.3.
         
-        * Verify installed cert-manager version by running:
+        * Verify the cert-manager version you installed by running:
 
         ```
         kubectl get deployment cert-manager -n cert-manager -o yaml | grep 'app.kubernetes.io/version: v'
@@ -155,13 +159,13 @@ The following prerequisites are required to install Tanzu Application Platform:
 
 * **FluxCD source-controller v0.15.4**:
 
-     * Create namespace `flux-system`
+     * Create the namespace `flux-system`
         
         ```
         kubectl create namespace flux-system
         ```
      
-     * Create clusterrolebinding by running:
+     * Create the clusterrolebinding by running:
 
         ```
         kubectl create clusterrolebinding default-admin \
@@ -422,7 +426,7 @@ To remove plugins from earlier versions of the Tanzu CLI:
 
 ## Install the Tanzu CLI Plugins
 
-After you have installed the tanzu core executable, you must install package, imagepullsecret, apps and app-accelerator CLI plugins.
+After you have installed the tanzu core executable, you must install package, imagepullsecret, apps, and app-accelerator CLI plugins.
 
 1. Navigate to the tanzu folder that contains the cli folder.
 
