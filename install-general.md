@@ -12,6 +12,12 @@ This document describes the first part of the installation process for Tanzu App
 
 The following prerequisites are required to install Tanzu Application Platform:
 
+* A [TanzuNet](https://network.tanzu.vmware.com/) account to download TAP packages.
+
+* A container image registry, such as [Harbor](https://goharbor.io/) or [Docker Hub](https://hub.docker.com/) with at least **10 GB** of available storage for application images, base images, and runtime dependencies. Registry credentials with push/write access must be made available to TAP to store images. Note that registry credentials are required for components that pull/read public images from Docker Hub, in order to avoid rate limiting.
+
+* Network access to https://registry.tanzu.vmware.com as well as your chosen container image registry.
+
 * A Kubernetes cluster (v1.19 or later) on one of the following Kubernetes providers:
 
     * Azure Kubernetes Service
@@ -24,6 +30,13 @@ The following prerequisites are required to install Tanzu Application Platform:
 
     * Google Kubernetes Engine (note that GKE Autopilot clusters do not have required features enabled)
     * minikube
+
+  To deploy all TAP packages, your cluster must have at least **8 GB** of RAM across all nodes available to TAP.
+  However, we recommend at least **16 GB** of RAM be available to build and deploy applications.
+  
+  For a single node cluster, such as KIND, we recommend **4 vCPU** be available, along with **70 GB** disk.
+  
+  For this beta release, [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) must be configured so that TAP controller pods may run as root.
   
 * **The Kubernetes CLI, kubectl, v1.19** or later, installed and authenticated with administrator rights for your target cluster.
 
@@ -34,13 +47,13 @@ The following prerequisites are required to install Tanzu Application Platform:
     * For Azure Kubernetes Service, Amazon Elastic Kubernetes Service, Google Kubernetes Engine, kind, and minikube,
       Install kapp-controller by running:
       ```
-      kapp deploy --yes -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/KC-VERSION/release.yml
+      kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/KC-VERSION/release.yml
       ```
       Where `KC-VERSION` is the kapp-controller version being installed. Please select v0.24.0+ kapp-controller version from the [Releases page](https://github.com/vmware-tanzu/carvel-kapp-controller/releases).
 
       For example:
       ```
-      kapp deploy --yes -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v0.24.0/release.yml
+      kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v0.24.0/release.yml
       ```
       
 
@@ -77,14 +90,14 @@ The following prerequisites are required to install Tanzu Application Platform:
     * Install secretgen-controller by running:
 
       ```
-      kapp deploy --yes -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/download/SG-VERSION/release.yml
+      kapp deploy -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/download/SG-VERSION/release.yml
       ```
 
       Where `SG-VERSION` is the secretgen-controller version being installed. Please select v0.5.0+ secretgen-controller version from the [Releases page](https://github.com/vmware-tanzu/carvel-secretgen-controller/releases).
 
       For example:
       ```
-      kapp deploy --yes -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/download/v0.5.0/release.yml
+      kapp deploy -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/download/v0.5.0/release.yml
       ```
 
     * To Verify installed secretgen-controller version:
@@ -120,7 +133,7 @@ The following prerequisites are required to install Tanzu Application Platform:
     * Install cert-manager by running:
 
         ```
-        kapp deploy --yes -a cert-manager -f https://github.com/jetstack/cert-manager/releases/download/v1.5.3/cert-manager.yaml
+        kapp deploy -a cert-manager -f https://github.com/jetstack/cert-manager/releases/download/v1.5.3/cert-manager.yaml
         ```
         We have verified the Tanzu Application Platform repo bundle packages installation with cert-manager version v1.5.3.
         
@@ -157,7 +170,7 @@ The following prerequisites are required to install Tanzu Application Platform:
         ```
      * Install Flux-SourceController by running:
         ```
-        kapp deploy --yes -a flux-source-controller -n flux-system \
+        kapp deploy -a flux-source-controller -n flux-system \
         -f https://github.com/fluxcd/source-controller/releases/download/v0.15.4/source-controller.crds.yaml \
         -f https://github.com/fluxcd/source-controller/releases/download/v0.15.4/source-controller.deployment.yaml
         ```
@@ -250,6 +263,7 @@ To accept EULAs:
 Before you install Tanzu Application Platform,
 download and install the Tanzu CLI and the Tanzu CLI plugins. 
 If you have earlier versions of the Tanzu CLI, follow the instructions in [Update the Tanzu CLI](#update-cli).
+If you have installed a tanzu CLI for TCE or TKG in the past, please uninstall it and remove the `~/.config/tanzu` directory before trying out TAP.
 
 Follow the procedure for your operating system:
 
