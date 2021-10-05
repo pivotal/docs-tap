@@ -12,6 +12,8 @@ This topic contains release notes for Tanzu Application Platform beta.
 
 The following components are new in TAP v0.2.0:
 
+Tanzu Packages:
+
 - Supply Chain Choreographer for VMware Tanzu
   - Cartographer v0.0.6
   - Default Supply Chain v0.2.0
@@ -27,6 +29,13 @@ The following components are new in TAP v0.2.0:
 - API Portal for VMware Tanzu v1.0.2
 - Service Control Plane Toolkit v0.3.0
 - Service Bindings for Kubernetes v0.5.0
+
+Tanzu CLI Plugins:
+
+- Tanzu Accelerator CLI Plugin v0.3.0
+- Tanzu App CLI Plugin v0.2.0
+- Tanzu ImagePullSecret CLI Plugin v0.5.0
+- Tanzu Package CLI Plugin v0.5.0
 
 The following components have been updated in TAP v0.2.0
 
