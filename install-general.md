@@ -153,7 +153,7 @@ The following prerequisites are required to install Tanzu Application Platform:
 
 
 
-* **Flux-SourceController**:
+* **FluxCD source-controller v0.15.4**:
 
      * Create namespace `flux-system`
         
@@ -168,7 +168,7 @@ The following prerequisites are required to install Tanzu Application Platform:
         --clusterrole=cluster-admin \
         --serviceaccount=flux-system:default
         ```
-     * Install Flux-SourceController by running:
+     * Install FluxCD Source Controller by running:
         ```
         kapp deploy -a flux-source-controller -n flux-system \
         -f https://github.com/fluxcd/source-controller/releases/download/v0.15.4/source-controller.crds.yaml \
