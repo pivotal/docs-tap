@@ -28,7 +28,6 @@ The following prerequisites are required to install Tanzu Application Platform:
         Cluster](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-local-dns.html#configure-your-local-kind-cluster-1)
         in the Cloud Native Runtimes documentation to configure kind.
 
-    * Google Kubernetes Engine (note that GKE Autopilot clusters do not have required features enabled)
     * minikube
 
   To deploy all TAP packages, your cluster must have at least **8 GB** of RAM across all nodes available to TAP.
