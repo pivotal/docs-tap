@@ -58,18 +58,20 @@ Visit your Application Accelerator (view instructions to do so
 
 <img src="images/app-acc.png" alt="Screenshot of Application Accelerator that shows a search field and two accelerators" width="600">
 
-Select the "Tanzu Java Web App" accelerator (a sample Spring Boot web-app).
+Select the "Tanzu Java Web App" accelerator (a sample Spring Boot web-app)
 
 <img src="images/tanzu-java-web-app.png" alt="Screenshot of the Tanzu Java Web App within Application Accelerator. It includes empty fields for new project information." width="600">
 
 Replace the default value, `dev.local`, in the _"prefix for container image registry"_ field
-with the url to your registry. The URL you enter should match what you specified while deploying the
+with the url to your registry.
+The URL you enter should match what you specified while deploying the
 [Tanzu Build Service](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-install.html#install-tanzu-build-service-7)
-(use the value you provided for `kp_default_repository`).
+(use the value you provided for `kp_default_repository`)
 
 <img src="images/store-image-on-server.png" alt="Screenshot of the Tanzu Java Web App within Application Accelerator. It includes empty fields for new project information, and buttons labeled 'Generate Project', 'Explore Files', and 'Cancel'." width="600">
 
-Click the “Generate Project” button to download the accelerator zip file (you’ll use the VScode extension later to debug and see live-updates of this code later later in this guide).
+Click the “Generate Project” button to download the accelerator zip file
+(you’ll use the VScode extension later to debug and see live-updates of this code later later in this guide)
 
 Deploy the ‘Tanzu Java Web App’ accelerator using the `create` command
 <code>tanzu apps workload create tanzu-java-web-app\
@@ -92,35 +94,48 @@ Once the workload has been built and is running you can grab the web-app URL \
 
 #### Set up your IDE
 
-Now that you have a skeleton workload working, you are ready to iterate on your application and test your code changes on the cluster. Tanzu Developer Tools for VSCode, VMware Tanzu’s official IDE extension for VSCode, helps you develop & receive fast feedback on the Tanzu Application Platform.
+Now that you have a skeleton workload working, you are ready to iterate on your application
+and test your code changes on the cluster.
+Tanzu Developer Tools for VSCode, VMware Tanzu’s official IDE extension for VSCode,
+helps you develop & receive fast feedback on the Tanzu Application Platform.
 
-The VSCode extension enables live updates of your application while it’s running, and provides the ability to debug your application, directly on the cluster.
+The VSCode extension enables live updates of your application while it’s running,
+and provides the ability to debug your application, directly on the cluster.
 
-Start by installing the pre-requisites and the Tanzu Developer Tools extension by following these instructions. 
-
+Start by installing the pre-requisites and the Tanzu Developer Tools extension by following these instructions.
 Open the ‘Tanzu Java Web App’ as a project within your VSCode IDE.
 
 In order to ensure your extension helps you iterate on the correct project, you’ll need to configure its settings:
 
-1. Within VSCode, go to Preferences -> Settings -> Extensions -> Tanzu
+1. Within VSCode, go to Preferences -> Settings -> Extensions -> Tanzu.
 
 2. In the “Local Path” field, enter the path to the directory containing the ‘Tanzu Java Web App’
 
-3. In the “Source Image” field, enter the destination image repository where you’d like to publish an image containing your workload’s source code. For example “harbor.vmware.com/myteam/tanzu-java-web-app-source”
+3. In the “Source Image” field, enter the destination image repository where you’d like to publish
+  an image containing your workload’s source code. For example “harbor.vmware.com/myteam/tanzu-java-web-app-source”.
 
 You’re now ready to iterate on your application!
 
 
 #### Live Update your Application
 
-Let’s deploy the application and see it live update on the cluster. Doing so allows you to understand how your code changes will behave on a production-like cluster much earlier in the development process.
+Let’s deploy the application and see it live update on the cluster.
+Doing so allows you to understand how your code changes will behave on a production-like cluster
+much earlier in the development process.
 
-From the Command Palette (⇧⌘P), type in & select “Tanzu: Live Update Start”. Tanzu Logs should open up in the Output tab and you should see output from the Tanzu Application Platform & from Tilt indicating that the container is being built and deployed. Since this is your first time starting live update for this application, it may take 1-3 minutes for the workload to be deployed and the knative service to become available.
+From the Command Palette (⇧⌘P), type in & select “Tanzu: Live Update Start”.
+Tanzu Logs should open up in the Output tab and you should see output from the Tanzu Application Platform &
+from Tilt indicating that the container is being built and deployed.
+Since this is your first time starting live update for this application,
+it may take 1-3 minutes for the workload to be deployed and the knative service to become available.
 
-Once you see output indicating that the workload is ready, navigate to localhost:8080 in your browser and view your application running.
+Once you see output indicating that the workload is ready,
+navigate to localhost:8080 in your browser and view your application running.
 
-Return to the IDE and make a change to the source code. For example, in HelloController.java, modify the string returned to say “Hello!” and press save.
-You should see the container updated as indicated in the Tanzu Logs section of the Output tab. Navigate back to your browser and refresh the page.
+Return to the IDE and make a change to the source code.
+For example, in HelloController.java, modify the string returned to say “Hello!” and press save.
+You should see the container updated as indicated in the Tanzu Logs section of the Output tab.
+Navigate back to your browser and refresh the page.
 You should see your changes on the cluster!
 
 You can now make more changes, stop live update, or disable it altogether.
@@ -129,43 +144,37 @@ You can now make more changes, stop live update, or disable it altogether.
 #### Debug your Application
 
 
-#### Troubleshooting Running Application
+#### Troubleshooting a Running Application
 
-Now that your application is developed you may be interested in inspecting the run time
-characteristics of the running application. You can use Application Live View UI to look
-into the running application to monitor resource consumption, JVM status, incoming traffic
-as well as change log level, environment variables to troubleshoot and fine-tune the running application.
-Currently, Spring Boot based applications can be diagnosed using Application Live View.
+Now that your application is developed you may be interested in inspecting the run time characteristics of the running application. You can use Application Live View UI to look into the running application to monitor resource consumption, JVM status, incoming traffic
+as well as change log level, environment variables to troubleshoot and fine-tune the running application. Currently, Spring Boot based applications can be diagnosed using Application Live View.
 
 Make sure that you have installed Application Live View components successfully.
 
-Access Application Live View UI following the instruction
+Access Application Live View UI by following the instructions
 [here](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.2/docs/GUID-installing.html?hWord=N4IghgNiBcIJIDsDOAXSECWCDmACAggA6GYDGYKGA9grgDIYBuAprgGobMDuIAvkA#access-the-application-live-view-ui-6).
 Select your application to look inside the running application and
 [explore](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.1/docs/GUID-product-features.html)
 the various diagnostic capabilities.
 
-
 ---
-
 
 ## Section 2: Creating an Accelerator
 
-You can use any git repository to create an Accelerator.
-You need the URL for the repository to create an Accelerator.
+You can use any git repository to create an Accelerator. You need the URL for the repository to create an Accelerator.
 
 Use the following procedure to create an accelerator:
 
-1. Select the **New Accelerator **from the shown accelerators in the Application Accelerator web UI.
+1. Select the **New Accelerator** from the shown accelerators in the Application Accelerator web UI.
 
 2. Fill in the new project form with the following information:
 
-    * Name: Your Accelerator name.
-    * (Optional) Description: A description of your accelerator.
-    * K8s Resource Name: A Kubernetes resource name.
-    * Git Repository URL: The git repository URL you use to create an accelerator.
-    * Git Branch: the name of your git branch.
-    * (Optional) Tags: Any associated tags.
+    * Name: Your Accelerator name
+    * (Optional) Description: A description of your accelerator
+    * K8s Resource Name: A Kubernetes resource name
+    * Git Repository URL: The git repository URL you use to create an accelerator
+    * Git Branch: the name of your git branch
+    * (Optional) Tags: Any associated tags
 
 3. Download and expand the zip file.
 
@@ -178,11 +187,7 @@ Use the following procedure to create an accelerator:
 
 #### Using application.yaml
 
-The Accelerator zip file contains a file called `new-accelerator.yaml`.
-This file contains additional information about the Accelerator.
-
-Copy this file into your git repo as `accelerator.yaml` to have additional attributes rendered in the web UI.
-([https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.3/acc-docs/GUID-creating-accelerators-index.html](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.2/acc-docs/GUID-creating-accelerators-index.html))
+The Accelerator zip file contains a file called `new-accelerator.yaml`. This file contains additional information about the Accelerator. Copy this file into your git repo as `accelerator.yaml` to have additional attributes rendered in the web UI.
 
 
 ## Section 3: Add test to your application
