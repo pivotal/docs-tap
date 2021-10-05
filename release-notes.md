@@ -4,37 +4,44 @@ This topic contains release notes for Tanzu Application Platform beta.
 
 **Releases**
 
-## <a id='0-2-0'></a> v0.2.0 Beta-2
+## <a id='0-2-0'></a> v0.2.0 Beta
 
-**Release Date**: October XX, 2021
-
-### Breaking Changes
-
-Breaking changes in this release:
-
-- STATE any breaking changes here, or delete this section.
+**Release Date**: October 07, 2021
 
 ### New Features
 
-New features in this release:
+The following components are new in TAP v0.2.0:
 
-- **Short description of NEW feature:**
-  More detailed information about NEW feature.
+- Supply Chain Choreographer for VMware Tanzu
+  - Cartographer v0.0.6
+  - Default Supply Chain v0.2.0
+  - Default Supply Chain with Testing v0.2.0
+- Supply Chain Security Tools for VMware Tanzu
+  - Scanning v1.0.0-beta
+  - Image Policy Webhook v1.0.0-beta.0
+  - Store v1.0.0-beta.0
+- Convention Service for VMware Tanzu
+  - Conventions Controller v0.4.2
+  - Image Source Controller v0.1.2
+  - Developer Conventions v0.2.0
+- API Portal for VMware Tanzu v1.0.2
+- Service Control Plane Toolkit v0.3.0
+- Service Bindings for Kubernetes v0.5.0
 
-### Bug Fixes
+The following components have been updated in TAP v0.2.0
 
-This release has the following bug fixes:
+- [VMware Tanzu Build Service v1.3](https://docs.pivotal.io/build-service/1-3/)
+- [Cloud Native Runtimes v1.0.2](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-cnr-overview.html)
+- [Application Accelerator for VMware Tanzu v0.3.0](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/index.html)
+- [Application Live View for VMware Tanzu v0.2.0](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.2/docs/GUID-index.html)
 
-- **Bold run-in heading for fIX:** Description of FIX.
 
 ### Known Issues
 
 This release has the following issues:
 
-- **Short description of KNOWN issue:**
-  More details about the KNOWN issue.
-
-
+- If your install workflow involves [Carvel imgpkg](https://github.com/vmware-tanzu/carvel-imgpkg), please use version. v0.19.0 or later to avoid auth errors.
+- If package installation fails, use `tanzu package installed update` with the `--install` flag to continue installation.
 
 ## <a id='0-2-0'></a> v0.1.0 Beta
 
