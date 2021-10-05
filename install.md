@@ -1423,3 +1423,73 @@ Use the following procedure to verify that the packages are installed.
     source-controller      controller.source.apps.tanzu.vmware.com            0.1.2            Reconcile succeeded
     tbs                    buildservice.tanzu.vmware.com                      1.3.0            Reconcile succeeded
     ```
+    
+## <a id='setup'></a> Setup Developer Namespaces to use Installed Packages
+
+To create a Cartographer `Workload` for your application that uses the registry credentials specified in the steps above, please add the following resources to your namespace before creating the `Workload`:
+
+```
+apiVersion: v1
+kind: Secret
+metadata:
+  name: tap-registry
+  annotations:
+    secretgen.carvel.dev/image-pull-secret: ""
+type: kubernetes.io/dockerconfigjson
+data:
+  .dockerconfigjson: e30K
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: registry-credentials
+  annotations:
+    secretgen.carvel.dev/image-pull-secret: ""
+type: kubernetes.io/dockerconfigjson
+data:
+  .dockerconfigjson: e30K
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: service-account # use value from "Install Default Supply Chain"
+secrets:
+  - name: registry-credentials
+imagePullSecrets:
+  - name: registry-credentials
+  - name: tap-registry
+  
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: kapp-permissions
+  annotations:
+    kapp.k14s.io/change-group: "role"
+rules:
+  - apiGroups:
+      - serving.knative.dev
+    resources: ['services']
+    verbs: ['*']
+  - apiGroups: [""]
+    resources: ['configmaps']
+    verbs: ['get', 'watch', 'list']
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: kapp-permissions
+  annotations:
+    kapp.k14s.io/change-rule: "upsert after upserting role"
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: kapp-permissions
+subjects:
+  - kind: ServiceAccount
+    name: service-account # use value from "Install Default Supply Chain"
+
+```
