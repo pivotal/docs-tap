@@ -9,56 +9,43 @@ There are two high level workflows described within this document:
 
 1. The application development experience with the Developer Toolkit components
 
-2. The administration, set up and management of Supply Chains, Security Tools and Application Accelerators
+2. The administration, set up and management of Supply Chains, Security Tools, Services and Application Accelerators
 
 
 ### Prerequisites
 
-In order to take full advantage of this document,
-ensure you have followed the Tanzu Application Platform Beta 2 Installation process
+In order to take full advantage of this document,please ensure you have followed the Tanzu Application Platform Beta 2 Installation process
 found on [Tanzunet](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-overview.html).
-
 
 ---
 
+## Section 1: Developing Your First Application on Tanzu Application Platform
 
-## Section 1: Developing Your First Application on TAP
-
-In this section you’ll deploy a simple web-application to the platform,
-enable debugging and see your code updates added to the running application as you save them.
+In this section you’ll deploy a simple web-application to the platform, enable debugging and see your code updates added to the running application as you save them.
 
 Before getting started, ensure the following prerequisites are in place:
 
-1. TAP has been installed on the target Kubernetes cluster
+1. Tanzu Application Platform has been installed on the target Kubernetes cluster
    (install instructions [here](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-install-general.html)
    and [here](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-install.html))
 
 2. The Default Supply Chain has been installed on the target Kubernetes cluster
    (install instructions [here](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-install.html#install-default-supply-chain-11))
 
-3. Default kube config context is set to the target TAP-enabled Kubernetes cluster
+3. Default kube config context is set to the target Kubernetes cluster
 
 4. Follow [these instructions](https://github.com/pivotal/docs-tap/blob/947c6dfeb14ee2673110018ed6f6c8e995a10427/scc/default-supply-chains.md)
    to create a service account for pushing images
 
-5. You can now use the default namespace to deploy a new workload.
-   If you want to do it in a new namespace then follow these instructions
+You can now use the existing namespace to deploy a new workload. If you want to do it in a new namespace then follow these additional instructions
 
-A note about Application Accelerators…
+#### A note about Application Accelerators
 
-The Application Accelerator component helps app developers and app operators through the creation
-and generation of application accelerators (accelerators for short).
-Accelerators are templates which codify best practices and/or ensure important configuration
-and structures are in place from the start. \
- \
-Developers can bootstrap their applications and get started with feature development right away.
+The Application Accelerator component helps app developers and app operators through the creation and generation of application accelerators (accelerators for short). Accelerators are templates that codify best practices and/or ensure important configuration and structures are in place from the start. 
+ 
+Developers can bootstrap their applications and get started with feature development right away. Application Operators can create custom accelerators that reflect their desired architectures and configurations and enable fleets of developers to utilize them, decreasing operator concerns about whether developers are implementing their desired best practices.
 
-Application Operators can create custom accelerators which reflect their desired architectures
-and configurations and enable fleets of developers to utilize them,
-decreasing operator concerns about whether developers are implementing their desired best practices.
-
-Application Accelerator templates are available as a quickstart
-from [Tanzunet](https://network.tanzu.vmware.com/products/app-accelerator).
+Application Accelerator templates are available as a quickstart from [Tanzunet](https://network.tanzu.vmware.com/products/app-accelerator). To create your own Application Accelerator, see here.
 
 
 ### Deploy your Application
