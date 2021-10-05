@@ -92,11 +92,17 @@ Once the workload has been built and is running you can grab the web-app URL \
 
 #### Set up your IDE
 
-Now that you have a skeleton workload working, you are ready to iterate on your application and test your code changes on the cluster. Tanzu Developer Tools for VSCode, VMware Tanzu’s official IDE extension for VSCode, helps you develop & receive fast feedback on the Tanzu Application Platform.
 
-The VSCode extension enables live updates of your application while it’s running, and provides the ability to debug your application, directly on the cluster.
+Now that you have a skeleton workload working, you are ready to iterate on your application
+and test code changes on the cluster.
+Tanzu Developer Tools for VSCode, VMware Tanzu’s official IDE extension for VSCode,
+helps you develop & receive fast feedback on the Tanzu Application Platform.
 
-Start by installing the pre-requisites and the Tanzu Developer Tools extension by following these instructions. 
+The VSCode extension enables live updates of your application while it’s running on the cluster
+and provides the ability to debug your application directly on the cluster.
+
+Start by installing the pre-requisites and the Tanzu Developer Tools extension by following [these instructions](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-vscode-extension-install.html).
+
 
 Open the ‘Tanzu Java Web App’ as a project within your VSCode IDE.
 
@@ -115,21 +121,34 @@ You’re now ready to iterate on your application!
 
 Let’s deploy the application and see it live update on the cluster. Doing so allows you to understand how your code changes will behave on a production-like cluster much earlier in the development process.
 
-From the Command Palette (⇧⌘P), type in & select “Tanzu: Live Update Start”. Tanzu Logs should open up in the Output tab and you should see output from the Tanzu Application Platform & from Tilt indicating that the container is being built and deployed. Since this is your first time starting live update for this application, it may take 1-3 minutes for the workload to be deployed and the knative service to become available.
+Follow these steps:
+1. From the Command Palette (⇧⌘P), type in & select “Tanzu: Live Update Start”.
 
-Once you see output indicating that the workload is ready, navigate to localhost:8080 in your browser and view your application running.
+    Tanzu Logs should open up in the Output tab and you should see output from the Tanzu Application Platform & from Tilt indicating that the container is being built and deployed. 
+    
+    Since this is your first time starting live update for this application, it may take 1-3 minutes for the workload to be deployed and the knative service to become available.
 
-Return to the IDE and make a change to the source code. For example, in HelloController.java, modify the string returned to say “Hello!” and press save.
-You should see the container updated as indicated in the Tanzu Logs section of the Output tab. Navigate back to your browser and refresh the page.
+2. Once you see output indicating that the workload is ready, navigate to http://localhost:8080 in your browser and view your application running.
+3. Return to the IDE and make a change to the source code. For example, in HelloController.java, modify the string returned to say “Hello!” and press save.
+4. If you look in the Tanzu Logs section of the Output tab, You should see the container has updated. Navigate back to your browser and refresh the page.
+
+
 You should see your changes on the cluster!
 
-You can now make more changes, stop live update, or disable it altogether.
+You can now continue to make more changes. If you're finished, you can stop live update or disable it altogether. Open the command palette once again (⇧⌘P), type in Tanzu, and select either option.
 
 
 #### Debug your Application
 
+Debugging your application on the cluster is as simple as debugging it in your local environment. 
 
-#### Troubleshooting Running Application
+Follow the steps below:
+1. Set a breakpoint in your code.
+2. Right click on the file `workload.yaml` within the `config` folder, and select `Tanzu: Java Debug Start`. In a few moments, the workload will be redeployed with debugging enabled.
+3. Return to your browser and navigate to http://localhost:8080. This will hit the breakpoint within VSCode. You can now step through or play to the end of the debug session using VSCode debugging controls.
+
+
+#### Troubleshooting a Running Application
 
 Now that your application is developed you may be interested in inspecting the run time
 characteristics of the running application. You can use Application Live View UI to look
@@ -189,51 +208,28 @@ Copy this file into your git repo as `accelerator.yaml` to have additional attri
 
 ### What is a Supply Chain?
 
-Supply Chains provide a way of codifying all of the steps of your path to production
-(or what is more commonly known as CI/CD).
-A supply chain differs from CI/CD in that any and every step that is necessary
-for an application to reach production (or a lower environment) can be added.
+Supply Chains provide a way of codifying all of the steps of your path to production (or what is more commonly known as CI/CD).
+A supply chain differs from CI/CD in that any and every step that is necessary for an application to reach production (or a lower environment) can be added.
 
 ![Diagram depicting a simple path to production: CI to Security Scan to Build Image to Image Scan to CAB Approval to Deployment.](images/path-to-production.png)
-<!-- Change CI to Continuous Integration if that's what it means, not least because a screen reader probably struggles to say "CI" -->
 
-A simple path to production
+#### A simple path to production
 
-A path to production allows users to create a unified access point for all of the tools
-required for their applications to reach a customer-facing environment.
-Instead of having four tools that are loosely coupled to each other,
-a path to production defines all four tools in a single, unified layer of abstraction.
-Where tools typically aren't able to integrate with one another and additional scripting
-or webhooks are necessary, there would be a unified automation tool to codify all the interactions
-between each of the tools.
-Supply chains which are used to codify the organization's path to production are configurable,
-allowing their authors to add any and all of the steps of their applications path to production.
+A path to production allows users to create a unified access point for all of the tools required for their applications to reach a customer-facing environment. Instead of having four tools that are loosely coupled to each other, a path to production defines all four tools in a single, unified layer of abstraction. Where tools typically aren't able to integrate with one another and additional scripting or webhooks are necessary, there would be a unified automation tool to codify all the interactions between each of the tools. Supply chains which are used to codify the organization's path to production are configurable, allowing their authors to add any and all of the steps of their applications path to production.
 
-Out of the box, Tanzu Application Platform provides 2 default supply chains
-(with more to be included with future releases) which are designed to work with Tanzu Application Platform components.
+Out of the box, Tanzu Application Platform provides 2 default supply chains (with more to be included with future releases) that are designed to work with Tanzu Application Platform components.
 
 
 #### Supply Chains included in Beta 2
 
-The Tanzu Application Platform installation steps details installing the default supply chain,
-but others are available.
-If you follow the installation docs, the **Source to URL ** supply chain chain will be installed on your cluster
-(as well as all of its dependencies).
-The table below and the following figures show the 2 supply chains that are included in
-Tanzu Application Platform Beta 2, as well as their descriptions and dependencies.
+The Tanzu Application Platform installation steps details installing the default supply chain, but others are available.
+If you follow the installation docs, the **Source to URL** supply chain will be installed on your cluster (as well as all of its dependencies).
+The table below and the following figures show the 2 supply chains that are included in Tanzu Application Platform Beta 2, as well as their descriptions and dependencies.
 
-The biggest difference between the two supply chains is that the second **Source & Test to URL **
-includes the ability to run a Tekton pipeline within the supply chain.
-It therefore has a dependency on [Tekton](https://tekton.dev/), which has not yet been installed on your cluster.
-The next section of the documentation walks you through installing Tekton and
-provides a sample Tekton pipeline that once included will test the sample application.
-The pipeline is, like the supply chain, completely configurable and therefore the steps
-within it can be customized to perform additional testing, or any other tasks
-that can be performed with a Tekton pipeline.
+The biggest difference between the two supply chains is that the second **Source & Test to URL** includes the ability to run a Tekton pipeline within the supply chain. It therefore has a dependency on [Tekton](https://tekton.dev/), which has not yet been installed on your cluster. The next section of the documentation walks you through installing Tekton and provides a sample Tekton pipeline that once included will test the sample application.
+The pipeline is, like the supply chain, completely configurable and therefore the steps within it can be customized to perform additional testing, or any other tasks that can be performed with a Tekton pipeline.
 
-A limitation of Tanzu Application Platform Beta 2 is that only one of the two supply chains
-can be installed at any given time. If you have already installed the default - source to URL supply
-chain, it will first need to be uninstalled before installing the Source & Test to URL supply chain.
+A limitation of Tanzu Application Platform Beta 2 is that only one of the two supply chains can be installed at any given time. If you have already installed the default - source to URL supply chain, it will first need to be uninstalled before installing the Source & Test to URL supply chain.
 
 ![Diagram depicting the Source-to-URL chain: Watch Repo (Flux) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](images/source-to-url-chain.png)
 
@@ -271,11 +267,11 @@ chain, it will first need to be uninstalled before installing the Source & Test 
 
 <li>Flux/Source Controller
 
-<li>TBS
+<li>Tanzu Build Service
 
 <li>Convention Service
 
-<li>CNR
+<li>Cloud Native Runtimes
 </li>
 </ul>
    </td>
@@ -326,14 +322,10 @@ chain, it will first need to be uninstalled before installing the Source & Test 
 </table>
 
 
-### Uninstall Default supply
+### Uninstalling the Default Supply Chain
 
-**<span style="text-decoration:underline;">Due to a limitation of Beta 2,</span>** at this time,
-only one supply chain can be installed at any given time.
-As a result, if the installation docs have been followed, there will already be a supply chain
- - the default **Source to URL** supply chain - installed on your cluster.
-To add the ability to test your application using Tekton, the default supply chain will first need to be uninstalled:
-
+**<span style="text-decoration:underline;">Due to a limitation of Beta 2,</span>** at this time, only one supply chain can be installed at any given time.
+As a result, if the installation docs have been followed, there will already be a supply chain - the default **Source to URL** supply chain - installed on your cluster. To add the ability to test your application using Tekton, the default supply chain will first need to be uninstalled:
 
 ```bash
 tanzu package installed delete default-supply-chain \
@@ -345,7 +337,7 @@ tanzu package installed delete default-supply-chain \
 
 Now that the default supply chain has been uninstalled the **Source & Test to URL** supply chain can be installed on the cluster.
 The first step is to install Tekton, which was not installed in the installation docs as
-it is only a requirement for the **Source & Test to URL **supply chain.
+it is only a requirement for the **Source & Test to URL** supply chain.
 The next section walks you through installing Tekton onto your cluster.
 
 
@@ -362,8 +354,8 @@ kapp deploy --yes -a tekton \
   -f https://storage.googleapis.com/tekton-releases/pipeline/previous/v0.28.0/release.yaml
 ```
 
-Thoroughly documenting Tekton and its use is outside of the scope of this document,
-we’ll be primarily using it to run a simple unit test on the sample that we’ve been using so far.
+Thoroughly documenting Tekton and its use is outside of the scope of this document.
+We will be primarily using it to run a simple unit test on the sample that we’ve been using so far.
 For more details on Tekton itself and what is possible, refer to the [Tekton documentation](https://tekton.dev/docs/) itself
 and its [github repository](https://github.com/tektoncd/pipeline).
 Two other starting points for getting up to speed with Tekton are its
@@ -416,16 +408,16 @@ spec:
           - name: source-revision
         steps:
           - name: test
-            image: golang
+            image: gradle
             script: |-
               cd `mktemp -d`
 
               wget -qO- $(params.source-url) | tar xvz
-              gradelw test
+              ./mvnw test
 ```
 
 The YAML above defines a Tekton Pipeline with a single step.
-The step itself contained in the `steps` will pull the code form the repository indicated
+The step itself contained in the `steps` will pull the code from the repository indicated
 in the developers `workload` and run the tests within the repository.
 The steps of the Tekton pipeline are configurable and allow the developer to add any additional items
 that they may need to test their code.
@@ -447,29 +439,32 @@ the workload needs to be updated to point at the newly created Tekton pipeline.
 The workload can be updated using the Tanzu CLI as follows:
 
 ```bash
-tanzu apps workload create tanzu-java-web-app\
---git-repo  https://github.com/sample-accelerators/tanzu-java-web-app\
---git-branch main
---type web --yes
---param tekton-pipeline-name=developer-defined-tekton-pipeline
+tanzu apps workload create tanzu-java-web-app \
+  --git-repo  https://github.com/sample-accelerators/tanzu-java-web-app \
+  --git-branch main \
+  --type web \
+  --param tekton-pipeline-name=developer-defined-tekton-pipeline \
+  --yes
 ```
 
-```bash
+```console
 Create workload:
       1 + |apiVersion: carto.run/v1alpha1
       2 + |kind: Workload
       3 + |metadata:
-      4 + |  name: my-workload
-      5 + |  namespace: default
-      6 + |spec:
-      7 + |  params:
-      8 + |  - name: tekton-pipeline-name
-      9 + |    value: developer-defined-tekton-pipeline
-     10 + |  source:
-     11 + |    git:
-     12 + |      ref:
-     13 + |        branch: main
-     14 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
+      4 + |  labels:
+      5 + |    apps.tanzu.vmware.com/workload-type: web
+      6 + |  name: tanzu-java-web-app
+      7 + |  namespace: default
+      8 + |spec:
+      9 + |  params:
+     10 + |  - name: tekton-pipeline-name
+     11 + |    value: developer-defined-tekton-pipeline
+     12 + |  source:
+     13 + |    git:
+     14 + |      ref:
+     15 + |        branch: main
+     16 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
 
 ? Do you want to create this workload? Yes
 Created workload "tanzu-java-web-app"
@@ -481,32 +476,30 @@ After accepting the creation of the new workload, we can monitor the creation of
 kubectl get workload,gitrepository,pipelinerun,images.kpack,podintent,app,services.serving
 ```
 
-Which should result in an output which will show all of the objects that have been created by the Supply Chain Choreographer:
+That should result in an output which will show all of the objects that have been created by the Supply Chain Choreographer:
 
 
 ```bash
-NAME                             AGE
-workload.carto.run/hello-world   3m11s
+NAME                                    AGE
+workload.carto.run/tanzu-java-web-app   109s
 
-NAME                                                 URL                                       READY   STATUS                                                            AGE
-gitrepository.source.toolkit.fluxcd.io/hello-world   https://github.com/kontinue/hello-world   True    Fetched revision: main/3d42c19a618bb8fc13f72178b8b5e214a2f989c4   3m9s
+NAME                                                        URL                                                         READY   STATUS                                                            AGE
+gitrepository.source.toolkit.fluxcd.io/tanzu-java-web-app   https://github.com/sample-accelerators/tanzu-java-web-app   True    Fetched revision: main/872ff44c8866b7805fb2425130edb69a9853bfdf   109s
 
-NAME                                       SUCCEEDED   REASON      STARTTIME   COMPLETIONTIME
-pipelinerun.tekton.dev/hello-world-pvmjx   True        Succeeded   3m4s        2m36s
+NAME                                              SUCCEEDED   REASON      STARTTIME   COMPLETIONTIME
+pipelinerun.tekton.dev/tanzu-java-web-app-4ftlb   True        Succeeded   104s        77s
 
-NAME                         LATESTIMAGE                                                                                               READY
-image.kpack.io/hello-world   10.188.0.3:5000/foo/hello-world@sha256:efe687cee98b47e8def40361017b8823fcf669298b1b95f2a3806858b65545b5   True
+NAME                                LATESTIMAGE                                                                                                      READY
+image.kpack.io/tanzu-java-web-app   10.188.0.3:5000/foo/tanzu-java-web-app@sha256:1d5bc4d3d1ffeb8629fbb721fcd1c4d28b896546e005f1efd98fbc4e79b7552c   True
 
-NAME                                                      READY   REASON   AGE
-podintent.conventions.apps.tanzu.vmware.com/hello-world   True             85s
+NAME                                                             READY   REASON   AGE
+podintent.conventions.apps.tanzu.vmware.com/tanzu-java-web-app   True             7s
 
-NAME                                                    DESCRIPTION           SINCE-DEPLOY   AGE
-app.kappctrl.k14s.io/cartographer.carto.run.0.0.0-dev   Reconcile succeeded   31s            16m
-app.kappctrl.k14s.io/convention-controller              Reconcile succeeded   17s            119s
-app.kappctrl.k14s.io/hello-world                        Reconcile succeeded   2s             79s
+NAME                                      DESCRIPTION           SINCE-DEPLOY   AGE
+app.kappctrl.k14s.io/tanzu-java-web-app   Reconcile succeeded   1s             2s
 
-NAME                                      URL                                      LATESTCREATED       LATESTREADY         READY     REASON
-service.serving.knative.dev/hello-world   http://hello-world.default.example.com   hello-world-00001   hello-world-00001   Unknown   IngressNotConfigured
+NAME                                             URL                                               LATESTCREATED              LATESTREADY                READY     REASON
+service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.developer.example.com   tanzu-java-web-app-00001   tanzu-java-web-app-00001   Unknown   IngressNotConfigured
 ```
 
 
@@ -516,7 +509,6 @@ service.serving.knative.dev/hello-world   http://hello-world.default.example.com
 ### Supply Chain Security Tools Overview
 
 There are two new supply chain security use cases that we support in Beta 2:
-
 
 1. **Sign**: Introducing image signing and verification to your supply chain
 
@@ -529,10 +521,11 @@ In this section, we will provide an overview of these two new use cases and how 
 
 **Overview**
 
-This feature-set allows an application operator to define a policy that will restrict unsigned images
-from running on clusters. This is done using a dynamic admission control component on Kubernetes clusters.
+This feature-set allows an application operator to define a policy that will restrict unsigned images from running on clusters.
+This is done using a dynamic admission control component on Kubernetes clusters.
 This component contains logic to communicate with external registries and verify signatures on container images,
-making a decision based on the results of this verification. Currently, this component supports cosign signatures and its key formats.
+making a decision based on the results of this verification.
+Currently, this component supports cosign signatures and its key formats.
 It will work with open source cosign, kpack and Tanzu Build Service (which is what we will overview in this document).
 
 Signing an artifact creates metadata about it that allows consumers to verify its origin and integrity.
@@ -545,9 +538,8 @@ this allows operators to increase their confidence that trusted software is runn
 
 **Signing Container Images**
 
-TAP supports verifying container image signatures that follow the `cosign` format.
+Tanzu Application Platform supports verifying container image signatures that follow the `cosign` format.
 Application operators may apply image signatures and store them in the registry in one of several ways:
-
 
 * Using Tanzu Build Service v1.3
 
@@ -558,8 +550,7 @@ Application operators may apply image signatures and store them in the registry 
 
 **Configure the Image Policy Webhook**
 
-After the image policy webhook is installed in the cluster,
-it is time to configure the image policy to be enforced and the credentials to access private registries.
+After the image policy webhook is installed in the cluster, it is time to configure the image policy to be enforced and the credentials to access private registries.
 
 **Create a Cluster Image Policy**
 
@@ -610,12 +601,11 @@ In the situation when the platform operator is expecting to verify signatures st
 it is required to configure a service account with all the secrets for those private registries.
 There is a set of requirements for this service account:
 
+* It must be created in the `image-policy-system` namespace
 
-* It must be created in the `image-policy-system` namespace.
+* It must be called `registry-credentials`
 
-* It must be called `registry-credentials`.
-
-* All secrets for accessing private registries must be added to the `imagePullSecrets` section of the service account.
+* All secrets for accessing private registries must be added to the `imagePullSecrets` section of the service account
 
 The manifest for this service account would look like this:
 
