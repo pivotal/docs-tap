@@ -12,6 +12,12 @@ This document describes the first part of the installation process for Tanzu App
 
 The following prerequisites are required to install Tanzu Application Platform:
 
+* A [TanzuNet](https://network.tanzu.vmware.com/) account to download TAP packages.
+
+* A container image registry, such as [Harbor](https://goharbor.io/) or [Docker Hub](https://hub.docker.com/) with at least **10 GB** of available storage for application images, base images, and runtime dependencies. Registry credentials with push/write access must be made available to TAP to store images. Note that registry credentials are required for components that pull/read public images from Docker Hub, in order to avoid rate limiting.
+
+* Network access to https://registry.tanzu.vmware.com as well as your chosen container image registry.
+
 * A Kubernetes cluster (v1.19 or later) on one of the following Kubernetes providers:
 
     * Azure Kubernetes Service
@@ -24,6 +30,11 @@ The following prerequisites are required to install Tanzu Application Platform:
 
     * Google Kubernetes Engine (note that GKE Autopilot clusters do not have required features enabled)
     * minikube
+
+  To deploy all TAP packages, your cluster must have at least **8 GB** of RAM across all nodes available to TAP.
+  However, we recommend at least **16 GB** of RAM be available to build and deploy applications.
+  
+  For a single node cluster, such as KIND, we recommend **4 vCPU** be available, along with **70 GB** disk.
   
 * **The Kubernetes CLI, kubectl, v1.19** or later, installed and authenticated with administrator rights for your target cluster.
 
@@ -250,6 +261,7 @@ To accept EULAs:
 Before you install Tanzu Application Platform,
 download and install the Tanzu CLI and the Tanzu CLI plugins. 
 If you have earlier versions of the Tanzu CLI, follow the instructions in [Update the Tanzu CLI](#update-cli).
+If you have installed a tanzu CLI for TCE or TKG in the past, please uninstall it before trying out TAP.
 
 Follow the procedure for your operating system:
 
