@@ -452,8 +452,6 @@ After you have installed the tanzu core executable, you must install package, im
     package                             Tanzu package management                                                                                                                                        v0.5.0   installed
     pinniped-auth                       Pinniped authentication operations (usually not directly invoked)                                                                                               v0.5.0   installed
     ```
-  
-**A note regarding the installed plugins:**
-The `package`, `imgpullsecret`, `accelerator`, and `apps` plugins will be used to install and/or interact with the Tanzu Application Platform.
+> **Note:** The `package`, `imgpullsecret`, `accelerator`, and `apps` plugins are used to install and interact with the Tanzu Application Platform.
     
 The installation of this beta product requires cluster-admin privileges. There are additional plugin/commands included with the Tanzu CLI which could have unintended side-effects. For the purposes of installing this beta, VMware recommends against running commands for the following CLI plugins: `cluster`, `kubernetes-release`, `login`, `management-cluster`, and `pinniped-auth`.
