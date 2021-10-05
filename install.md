@@ -1424,9 +1424,10 @@ Use the following procedure to verify that the packages are installed.
     tbs                    buildservice.tanzu.vmware.com                      1.3.0            Reconcile succeeded
     ```
     
-## <a id='setup'></a> Setup Developer Namespaces to use Installed Packages
+## <a id='setup'></a> Set Up Developer Namespaces to Use Installed Packages
 
-To create a Cartographer `Workload` for your application that uses the registry credentials specified in the steps above, please add the following resources to your namespace before creating the `Workload`:
+To create a Cartographer `Workload` for your application that uses the registry credentials specified in the steps above,
+add the following resources to your namespace before creating the `Workload`:
 
 ```
 apiVersion: v1
