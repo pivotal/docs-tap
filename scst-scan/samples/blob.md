@@ -1,7 +1,7 @@
 # Running a Sample Public Source Scan of a Blob
 This example will perform a scan against a source code in a `.tar.gz` file. This can be helpful in a Supply Chain, where there can be a `GitRepository` step that handles cloning a repository and outputting the source code as a compressed archive.
 
-## Define the Resources
+## Defining the Resources
 Create `public-blob-source-example.yaml`:
 ```yaml
 ---
@@ -51,7 +51,7 @@ spec:
   scanTemplate: public-blob-source-scan-template
 ```
 
-## (Optional) Setup a Watch
+## (Optional) Setting Up a Watch
 Before deploying, set up a watch in another terminal to see things process... it will be quick!
 ```bash
 watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
@@ -59,12 +59,12 @@ watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
 
 For more information, refer to [Observing and Troubleshooting](../observing.md).
 
-## Deploy the Resources
+## Deploying the Resources
 ```bash
 kubectl apply -f public-blob-source-example.yaml
 ```
 
-## See the Scan Status
+## Viewing the Scan Status
 Once the scan has completed, perform:
 ```bash
 kubectl describe sourcescan public-blob-source-example
@@ -73,7 +73,7 @@ and notice the `Status.Conditions` includes a `Reason: JobFinished` and `Message
 
 For more information, refer to [Viewing and Understanding Scan Status Conditions](../results.md).
 
-## Clean Up
+## Cleaning Up
 ```bash
 kubectl delete -f public-blob-source-example.yaml
 ```
