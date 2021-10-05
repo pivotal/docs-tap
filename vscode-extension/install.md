@@ -26,7 +26,9 @@ Launch VSCode and navigate to the `Extensions` menu (⇧⌘X), then from the `Vi
 
 > Note: Upon installation, you should be prompted to install the [Extension Pack for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack). These are required dependencies for debugging and live-reloading. Ensure Language Support for Java is running in [Standard Mode](https://code.visualstudio.com/docs/java/java-project#_lightweight-mode).
 
-The Java extension pack will prompt you to install a JDK if you do not already have one installed. If the JDK and Language Support for Java are configured correctly, you should see that IDE creates a directory "target" where the code is compiled.
+If you do not already have a JDK installed, the Java extension pack prompts you to install one.
+If the JDK and Language Support for Java are configured correctly,
+you see that IDE creates a directory "target" where the code is compiled.
 
 > Note: `Extensions: Install from VSIX...` can also be launched via the `Command Palette` (⇧⌘P)
 
