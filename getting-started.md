@@ -14,8 +14,7 @@ There are two high level workflows described within this document:
 
 ### Prerequisites
 
-In order to take full advantage of this document,please ensure you have followed the Tanzu Application Platform Beta 2 Installation process
-found on [Tanzunet](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-overview.html).
+In order to take full advantage of this document, please ensure you have followed [Installing Tanzu Application Platform](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-overview.html).
 
 ---
 
