@@ -577,8 +577,8 @@ To install Tanzu Build Service using the Tanzu CLI:
     - `REPOSITORY` is the fully qualified path to the repository that TBS will be written to. (This path must be writable)
 
        Examples:
-       * Dockerhub `my-dockerhub-account/build-service`
-       * GCR `gcr.io/my-project/build-service`
+       * Docker Hub `my-dockerhub-account/build-service`
+       * Google Container Registry `gcr.io/my-project/build-service`
        * Artifactory `artifactory.com/my-project/build-service`
        * Harbor `harbor.io/my-project/build-service`
     - `REGISTRY-USERNAME` and `REGISTRY-PASSWORD` are the username and password for the registry. The install requires a `kp_default_repository_username` and `kp_default_repository_password` in order to write to the repository location.
