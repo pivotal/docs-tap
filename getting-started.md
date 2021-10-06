@@ -26,11 +26,11 @@ In this section you’ll deploy a simple web-application to the platform, enable
 Before getting started, ensure the following prerequisites are in place:
 
 1. Tanzu Application Platform has been installed on the target Kubernetes cluster
-   (install instructions [here](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-install-general.html)
-   and [here](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-install.html))
+   (install instructions [here](/install-general.html)
+   and [here](/install.html))
 
 2. The Default Supply Chain has been installed on the target Kubernetes cluster
-   (install instructions [here](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-install.html#install-default-supply-chain-11))
+   (install instructions [here](/install.html#install-default-supply-chain))
 
 3. Default kube config context is set to the target Kubernetes cluster
 
@@ -45,53 +45,54 @@ The Application Accelerator component helps app developers and app operators thr
  
 Developers can bootstrap their applications and get started with feature development right away. Application Operators can create custom accelerators that reflect their desired architectures and configurations and enable fleets of developers to utilize them, decreasing operator concerns about whether developers are implementing their desired best practices.
 
-Application Accelerator templates are available as a quickstart from [Tanzunet](https://network.tanzu.vmware.com/products/app-accelerator). To create your own Application Accelerator, see here.
+Application Accelerator templates are available as a quickstart from [Tanzunet](https://network.tanzu.vmware.com/products/app-accelerator). To create your own Application Accelerator, see [here](#creating-an-accelerator).
 
 
 ### Deploy your Application
 
-You’ll use an accelerator called Tanzu-Java-Web-App to get started.
+You’ll use an accelerator called `Tanzu-Java-Web-App` to get started.
 
 
-Visit your Application Accelerator (view instructions to do so
+**1. Visit your Application Accelerator** (view instructions to do so
 [here](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.3/acc-docs/GUID-installation-install.html#using-application-accelerator-for-vmware-tanzu-0))
 
 <img src="images/app-acc.png" alt="Screenshot of Application Accelerator that shows a search field and two accelerators" width="600">
 
-Select the "Tanzu Java Web App" accelerator (a sample Spring Boot web-app).
+**2. Select the "Tanzu Java Web App" accelerator** (a sample Spring Boot web-app).
 
 <img src="images/tanzu-java-web-app.png" alt="Screenshot of the Tanzu Java Web App within Application Accelerator. It includes empty fields for new project information." width="600">
 
-Replace the default value, `dev.local`, in the _"prefix for container image registry"_ field
-with the url to your registry. The URL you enter should match what you specified while deploying the
-[Tanzu Build Service](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-install.html#install-tanzu-build-service-7)
-(use the value you provided for `kp_default_repository`).
+**3. Replace the default value, `dev.local`** in the _"prefix for container image registry"_ field
+with the url to your registry. The URL you enter should match the `REGISTRY_SERVER` value you provided when you installed the
+[Default Supply Chain](/install.md#install-default-supply-chain).
 
 <img src="images/store-image-on-server.png" alt="Screenshot of the Tanzu Java Web App within Application Accelerator. It includes empty fields for new project information, and buttons labeled 'Generate Project', 'Explore Files', and 'Cancel'." width="600">
 
-Click the “Generate Project” button to download the accelerator zip file (you’ll use the VScode extension later to debug and see live-updates of this code later later in this guide).
+**4. Click the “Generate Project” button** to download the accelerator zip file (you’ll use this accelerator code in the [Iterate on your Application](#iterate) section below).
 
-Deploy the ‘Tanzu Java Web App’ accelerator using the `create` command
-<code>tanzu apps workload create tanzu-java-web-app\
---git-repo  [https://github.com/sample-accelerators/tanzu-java-web-app\](https://github.com/sample-accelerators/tanzu-java-web-app\) \
---git-branch main --type web --yes</code>
-* note this first deploy uses accelerator source from git, but you’ll debug and live-update the version you downloaded in later steps
+**5. Deploy the ‘Tanzu Java Web App’ accelerator using the `create` command**
+```
+tanzu apps workload create tanzu-java-web-app\
+--git-repo https://github.com/sample-accelerators/tanzu-java-web-app\
+--git-branch main --type web --yes
+```
+***note** this first deploy uses accelerator source from git, but you’ll use the VScode extension to debug and live-update this app in later steps.
+
+**6. View the build and runtime logs** for your app using the `tail` command:
+```
+tanzu apps workload tail tanzu-java-web-app --since 10m --timestamp
+```
+
+**7. Once the workload has been built and is running** you can grab the web-app URL via the `get` command:
+```
+tanzu apps workload get tanzu-java-web-app
+```
+<cntrl>-click the `Workload Knative Services URL` at the bottom of the command output.
 
 
-View the build and runtime logs for your app using the `tail` command: \
-`tanzu apps workload tail tanzu-java-web-app --since 10m --timestamp \
-`
-
-Once the workload has been built and is running you can grab the web-app URL \
-`tanzu apps workload get tanzu-java-web-app \
-`&lt;cntrl> click the `Workload Knative Services URL`
-
-
-### Iterate on your Application
-
+### <a id='iterate'></a>Iterate on your Application
 
 #### Set up your IDE
-
 
 Now that you have a skeleton workload working, you are ready to iterate on your application
 and test code changes on the cluster.
@@ -101,7 +102,8 @@ helps you develop & receive fast feedback on the Tanzu Application Platform.
 The VSCode extension enables live updates of your application while it’s running on the cluster
 and provides the ability to debug your application directly on the cluster.
 
-Start by installing the pre-requisites and the Tanzu Developer Tools extension by following [these instructions](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-vscode-extension-install.html).
+Start by installing the pre-requisites and the Tanzu Developer Tools extension by following 
+[these instructions](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-vscode-extension-install.html).
 
 
 Open the ‘Tanzu Java Web App’ as a project within your VSCode IDE.
@@ -168,7 +170,7 @@ the various diagnostic capabilities.
 ---
 
 
-## Section 2: Creating an Accelerator
+## <a id='creating-an-accelerator'></a>Section 2: Creating an Accelerator
 
 You can use any git repository to create an Accelerator.
 You need the URL for the repository to create an Accelerator.
@@ -761,13 +763,14 @@ One of the out-of-the-box supply chains we are working on for a future release w
 ## Section 5: Advanced Use Cases - Services Journey
 
 
-### Overview :
+### Overview:
 
-Tanzu Application Platform makes it easy to discover, curate, consume and manage services in a single or multi-cluster environment so that app developers can only focus on consuming services in their app without worrying about provisioning, configuration and operations of the services.
+Tanzu Application Platform makes it easy to discover, curate, consume and manage services in a single or multi-cluster environment so that app developers can only focus on consuming the service in their app without worrying about the configuration and plumbing needed.
 
 This experience is made possible by the Services Toolkit component of Tanzu Application Platform.
 
-Services Toolkit comes with a logical set of APIs that can be composed to provide easy access to Kubernetes Native resources (like Secrets) as well as Custom resources (ex RabbitMQ clusters) across a single or multi cluster environments. By using SCP toolkit APIs you can run commands to create a service in the local cluster while the actual services gets created in a differnt cluster as configured by platform operator, thus enabling decoupling of workload and service clusters. APIs also provide a way to curate and make different ResourceTypes discoverable in other clusters.
+Services Toolkit comes with a logical set of APIs that can be composed to provide easy access to Kubernetes Native resources (like Secrets) as well as Custom resources (ex RabbitMQ clusters) in a single/multi cluster environment. These APIs are listed below.
+
 
 ##### Services ToolKit APIs:
 
@@ -777,7 +780,7 @@ Services Toolkit comes with a logical set of APIs that can be composed to provid
 
 2. Services API Projection
 
-    Lets you _project_ Custom Kubernetes Resources from one cluster (say Services Cluster) to the other (say Workload Cluster).
+    Lets you _project_ Custom Kubernetes Resources from one cluster (say Services Cluster) to the other (Workload Cluster).
     You can use this API if you want to maintain a RabbitMQ (or any other Resource Type) operator
     in one cluster but want to give developers the ability to create RabbitMQ clusters from other K8s clusters.
 
@@ -791,8 +794,20 @@ Services Toolkit comes with a logical set of APIs that can be composed to provid
     binding or maintenance of the service instance.
 
 
-### Prerequisite:
-The Service Resource Replication and Service API Projection APIs mentioned above are applicable in a multi cluster environment. As these APIs let you replicate Kubernetes native resources as well as Custom Resources to be replicated between multiple Kubernetes Clusters. So we will need SCP toolkit to be installed on both the clusters (Workload cluster - Where your workloads run and Services Cluster - where your services run) and we need to link both the clusters together so that resources can be replicated. Below are the steps
+#### Use Case 1 - App and Service are in the same Kubernetes Cluster.
+
+In this use case the K8s cluster running the app (Workload Cluster) and the K8s cluster
+running the service (Services Cluster) are one and the same.
+
+
+#### Use Case 2 - App and Service are in the different Kubernetes Clusters.
+
+In this use case the cluster running the application (Workload Cluster)
+and the cluster running the service (Services Cluster) are different.
+
+To enable this use case there are few things that have to be done first.
+
+##### Creating and Provisioning Services
 
 1. Follow the documentation to install Tanzu Application Platform onto a Kubernetes cluster
 
@@ -810,192 +825,6 @@ The Service Resource Replication and Service API Projection APIs mentioned above
     * All other packages can be skipped over
 
     * This cluster will henceforth be referred to as the **Service Cluster**
-
-3. Download and install the kubectl-scp plugin from [SCP Toolkit Tanzu Network Page](https://network.pivotal.io/products/scp-toolkit#/releases/959198). 
-To install the plugin you must place it in your PATH and ensure it is executable. For example:
-
-            
-          sudo cp path/to/kubectl-scp /usr/local/bin/kubectl-scp
-          sudo chmod +x /usr/local/bin/kubectl-scp
-            
-
-4. Link the 2 clusters by running
-            
-          kubectl scp link \
-            --workload-kubeconfig-context=kind-workload \
-            --service-kubeconfig-context=kind-service
-    where `kind-workload` and `kind-service` are the 2 cluster names. 
-
-Now we have 2 Kubernetes clusters
-- **Workload Cluster** where Tanzu Application Platform is installed (including SCP toolkit).
-- **Services Cluster** where only the SCP toolkit is installed.
-
-Now let us see the different usecases where SCP toolkit makes the Services Journey easy.
-
-## Use Case 1 - **Binding an App Workload to a Service Resource on a single cluster**
-
-Most applications require backing services such as Databases, Queues, Caches, etc. in order to run successfully. 
-This first use case demonstrates how it is possible to bind such a service to an Application Workload in Tanzu Application Platform. We will be using the RabbitMQ Cluster Operator for Kubernetes for this demonstration along with a very basic sample application that depends on RabbitMQ.
-
-To begin, the RabbitMQ Cluster Operator will be installed and running on the same Kubernetes cluster as Tanzu Application Platform. We will then see how it is possible to use one of the capabilities of the SCP Toolkit to move the Operator onto a separate, dedicated “Service” cluster, while still allowing the service to be consumed from the application “Workload” cluster.
-
-### Steps
-
-Let’s start by playing the role of a Service Operator, who is responsible for installing the RabbitMQ Cluster Operator onto the cluster:
-
-1. Install the RabbitMQ Operator
-    ```
-    kapp -y deploy --app rmq-operator --file https://raw.githubusercontent.com/rabbitmq/cluster-operator/lb-binding/hack/deploy.yml
-    ``` 
-2. Next, we will need to create a ClusterRole that grants relevant permissions to the ServiceBinding controller. Note that while this is a manual step at the moment, we are planning to automate this step in the near future.
-
-    ```yaml
-    #service-binding-rmq.yaml
-    ---
-    apiVersion: rbac.authorization.k8s.io/v1
-    kind: ClusterRole
-    metadata:
-      name: service-binding-rmq
-      labels:
-        servicebinding.io/controller: "true"
-    rules:
-    - apiGroups: ["rabbitmq.com"]
-      resources: ["rabbitmqclusters"]
-      verbs: ["get", "list", "watch"]
-    ```
-    ```
-    kubectl apply -f service-binding-rmq.yaml
-    ```
-
-3. Ensure that the namespace is enabled to install packages so that  Cartographer Workloads can be created in it. See this [documentation](install.md#-set-up-developer-namespaces-to-use-installed-packages).
-
-4. Let’s now switch hats to the Application Operator role and create a RabbitmqCluster instance we can use to bind to our application workload.
-    ```yaml
-    #rmq-1.yaml
-    ---
-    apiVersion: rabbitmq.com/v1beta1
-    kind: RabbitmqCluster
-    metadata:
-      name: rmq-1
-    ```
-    ```
-    kubectl apply -f rmq-1.yaml
-    ```
-5. Next, let’s create our application Workload binding to our referenced Rabbitmqcluster instance.
-    ```
-    tanzu apps workload create rmq-sample-app --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch main --type web --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:rmq-1"
-    ```
-6. Once the workload has been built and is running you can confirm it is up and running by grabbing the  grab the web-app URL
-    ```
-    tanzu apps workload get rmq-sample-app
-    ```
-7. Visit the URL and confirm the app is working by refreshing the page and noting the new message IDs.
-
-## Use Case 2 - **Binding an App Workload to a Service Resource across multiple clusters**
-
-This use case is similar to the above in that we will be binding a sample application workload to a RabbitMQ cluster resource, however this time round the RabbitMQ Cluster Operator will be running on a completely separate kubernetes cluster. The Workloads need not know where the service instances are running. This enables decoupling of Workloads and Services thus protecting Workloads from Day2 operations in the services cluster.
-
-### Prerequisites
-
-There are a couple of prerequisites for this particular use case, namely that you will need a second, separate kubernetes cluster. In order to get a second cluster setup:
-
-- Follow the documentation to install Tanzu Application Platform onto a second, separate Kubernetes cluster. We will use this as our Services Cluster.
-  -  This new cluster MUST allow LoadBalanced services to be created.
-  -  This time when it comes to Installing Part II: Packages, you only need to install the SCP Toolkit package 
-  - All other packages can be skipped over
-- You will also need to uninstall the RabbitMQ Cluster Operator from your Tanzu Application Platform cluster if you followed the steps in the previous section.
-- Download and install the kubectl-scp plugin from SCP Toolkit Tanzu Network Page. To install the plugin you must place it in your PATH and ensure it is executable. For example:
-  ```
-  sudo cp path/to/kubectl-scp /usr/local/bin/kubectl-scp
-  sudo chmod +x /usr/local/bin/kubectl-scp
-  ```
-  *Note:* This plugin is experimental and likely to be replaced by a Tanzu CLI plugin in the near future.
-
-  In summary the prerequisite setup for this particular use case is as follows:
-  1. “Workload” Cluster with all of the TAP packages installed
-      -  And confirmation that the Rabbitmq Cluster Operator is not installed on this cluster.
-  2. “Service” Cluster with only the scp-toolkit package installed.
-  3. The kubectl-scp plugin installed
- 
-### Steps
-
-*Note*: The following steps have placeholder values `WORKLOAD_CONTEXT` and `SERVICE_CONTEXT` that you will need to update accordingly.
-
-1. Playing the Service Operator role, Install RabbitMQ Operator in the Services Cluster using kapp. Note that the Operator will not be installed in Workload Cluster, but developers will create RabbitMQ service instances from Workload Cluster in the last step.
-
-    ```
-    kapp -y deploy --app rmq-operator \
-        --file https://raw.githubusercontent.com/rabbitmq/cluster-operator/lb-binding/hack/deploy.yml  --kubeconfig-context SERVICE_CONTEXT
-    ```
-
-2. You can verify that the Operator has been installed with the following:
-    ```
-     kubectl --context SERVICE_CONTEXT get crds rabbitmqclusters.rabbitmq.com
-    ```
-3. Next we will federate the rabbitmq.com/v1beta1 API Group into the Application Workload Cluster. The act of API federation can be split into two halves - projection and replication. Projection applies to custom API Groups whereas replication applies to core Kubernetes resources (such as Secrets). Before federating we will need to create a pair of target namespaces where instances of RabbitmqCluster will be created. For now, the namespace name needs to be identical in the Application Workload and Service Cluster.
-
-    ```
-    kubectl --context WORKLOAD_CONTEXT create namespace my-project-1
-    kubectl --context SERVICE_CONTEXT create namespace my-project-1
-    ```
-4. Ensure that the namespace is enabled to install packages so that  Cartographer Workloads can be created in it. See this [documentation](install.md#-set-up-developer-namespaces-to-use-installed-packages).
-
-5. Federate using `kubectl-scp` plugin.
-    ```
-    kubectl scp federate \
-      --workload-kubeconfig-context=WORKLOAD_CONTEXT \
-      --service-kubeconfig-context=SERVICE_CONTEXT \
-      --namespace=my-project-1 \
-      --api-group=rabbitmq.com \
-      --api-version=v1beta1 \
-      --api-resource=rabbitmqclusters
-    ```
-6. Make RabbitMQ discoverable in Workload Cluster so that developers can create RabbitMQ clusters.
-
-    ```
-    kubectl scp make-discoverable \
-      --workload-kubeconfig-context=WORKLOAD_CONTEXT \
-      --api-group=rabbitmq.com \
-      --api-resource-kind=RabbitmqCluster
-    ```
-7. Now we will switch hats to the Application Developer. In the Workload Cluster create a service instance of RabbitMQ.
-
-    ```yaml
-    # rabbitmq-cluster.yaml
-    ---
-    apiVersion: rabbitmq.com/v1beta1
-    kind: RabbitmqCluster
-    metadata:
-      name: example-rabbitmq-cluster-1
-    spec:
-      service:
-        type: LoadBalancer
-    ```
-    ```
-    kubectl --context WORKLOAD_CONTEXT -n my-project-1 apply -f rabbitmq-cluster.yaml
-    ```
-
-8. Confirm that the RabbitmqCluster resource reconciles successfully from the Workload cluster:
-    ```
-    kubectl --context WORKLOAD_CONTEXT -n my-project-1 get -f rabbitmq-cluster.yaml
-    ```
-9. See that no rabbit pods are running in the Workload cluster:
-    ```
-    kubectl --context WORKLOAD_CONTEXT -n my-project-1 get pods
-    ```
-10. But that they are running in the service cluster:
-    ```
-    kubectl --context SERVICE_CONTEXT -n my-project-1 get pods
-    ```
-11. The remaining steps are now exactly the same as the single cluster use case above - we simply need to create an application workload in Workload cluster but this time we referenced our API Projected Rabbitmq instance.
-    ```
-    tanzu apps workload create -n my-project-1 rmq-sample-app --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch main --type web --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:example-rabbitmq-cluster-1"
-    ```
-12. Once the workload has been built and is running you can confirm it is up and running by grabbing the  grab the web-app URL
-    ```
-    tanzu apps workload get -n my-project-1 rmq-sample-app
-    ```
-13. Visit the URL and confirm the app is working by refreshing the page and noting the new message IDs.
 
 
 ## Appendix
