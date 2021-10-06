@@ -263,6 +263,12 @@ To install Cloud Native Runtimes:
 
 1. Configuring a namespace to use Cloud Native Runtimes:
 
+   **Note:** This step covers configuring a namespace to run Knative services.
+   If you rely on a SupplyChain to deploy Knative services into your cluster,
+   then skip this step because namespace configuration is covered in
+   [Set Up Developer Namespaces to Use Installed Packages](#setup) below.
+
+
    Service accounts which run workloads using Cloud Native Runtimes need to have access to the image pull secrets for the Tanzu package.
    This includes the `default` service account in a namespace, which is created automatically but not associated with any image pull secrets.
    Without these credentials, attempts to launch a service will fail with a timeout and the underlying Pods will report that they were unable to pull the `queue-proxy` image.
