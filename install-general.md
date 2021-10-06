@@ -35,10 +35,8 @@ The following prerequisites are required to install Tanzu Application Platform:
         * On Mac OS only hyperkit driver is supported. Docker driver is not supported.
     
 
-  To deploy all TAP packages, your cluster must have at least **8 GB** of RAM across all nodes available to TAP.
-  However, we recommend at least **16 GB** of RAM be available to build and deploy applications.
-  
-  For a single node cluster, such as KIND, we recommend **4 vCPU** be available, along with **70 GB** disk.
+  To deploy all TAP packages, your cluster must have at least **8 GB** of available RAM across all nodes and **70 GB** of disk per node.
+  We recommend at least **16 GB** of RAM be available in total in order to build and deploy applications.
   
   For this beta release, [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) must be configured so that TAP controller pods may run as root.
   
