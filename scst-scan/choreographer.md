@@ -4,9 +4,10 @@ This example takes every source code commit, scans the source code for vulnerabi
 
 ## Prerequisites
 
-Follow the steps listed in [Installing Part I: Prerequisites, Cluster Configurations, EULA, and CLI](https://github.com/pivotal/docs-tap/blob/main/install-general.md).
+Follow the steps listed in [Installing Part I: Prerequisites, EULA, and CLI](https://github.com/pivotal/docs-tap/blob/main/install-general.md).
 
 Next, in [Installing Part II: Packages](https://github.com/pivotal/docs-tap/blob/main/install.md), ensure the following packages and their dependencies are installed:
+
 - [Supply Chain Choreographer](https://github.com/pivotal/docs-tap/blob/main/install.md#-install-supply-chain-choreographer)
 - [Tanzu Build Service](https://github.com/pivotal/docs-tap/blob/main/install.md#install-tbs)
 - [Supply Chain Security Tools - Store](https://github.com/pivotal/docs-tap/blob/main/install.md#install-scst-store)

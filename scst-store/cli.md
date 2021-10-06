@@ -1,6 +1,6 @@
 # CLI
 
-The Supply Chain Security Tools - Store Command Line Interface (CLI), called `insight`, allows you to query the store. With it, you can query for information about images, packages, and vulnerabilities that have been submitted to the store.
+The Supply Chain Security Tools - Store Command Line Interface (CLI), called `insight`, allows you to query the store. You can query for information about images, packages, and vulnerabilities that have been submitted to the store.
 
 ## Installing the CLI
 

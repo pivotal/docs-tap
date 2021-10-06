@@ -1,62 +1,114 @@
-# <a id='installing'></a> Installing Part I: Prerequisites, Cluster Configurations, EULA, and CLI
+# <a id='installing'></a> Installing Part I: Prerequisites, EULA, and CLI
 
 This document describes the first part of the installation process for Tanzu Application Platform:
 
 + [Prerequisites](#prereqs)
-+ [Set and Verify the Kubernetes Cluster Configurations](#set-and-verify)
 + [Accept the EULAs](#eulas)
 + [Install the Tanzu CLI and Package Plugin](#cli-and-plugin)
 
 
+
 ## <a id='prereqs'></a>Prerequisites
 
-The following prerequisites are required to install Tanzu Application Platform:
+The following are required to install Tanzu Application Platform:
 
-* A [TanzuNet](https://network.tanzu.vmware.com/) account to download TAP packages.
+* A [TanzuNet](https://network.tanzu.vmware.com/) account to download TAP packages
 
-* A container image registry, such as [Harbor](https://goharbor.io/) or [Docker Hub](https://hub.docker.com/) with at least **10 GB** of available storage for application images, base images, and runtime dependencies. Registry credentials with push/write access must be made available to TAP to store images. Note that registry credentials are required for components that pull/read public images from Docker Hub, in order to avoid rate limiting.
+* A container image registry, such as [Harbor](https://goharbor.io/) or [Docker Hub] (https://hub.docker.com/) 
+with at least **10 GB** of available storage for application images, base images, and runtime 
+dependencies 
 
-* Network access to https://registry.tanzu.vmware.com as well as your chosen container image registry.
+* Registry credentials with push/write access made available to Tanzu Application Platform to store 
+images 
 
-* A Kubernetes cluster (v1.19, v1.20, or v1.21) on one of the following Kubernetes providers:
+* Registry credentials for components that pull/read public images from Docker Hub to avoid rate limiting 
+
+* Network access to https://registry.tanzu.vmware.com 
+
+* Network access to your chosen container image registry
+
+* **Kubernetes cluster** v1.19 or later on one of the following Kubernetes providers:
 
     * Azure Kubernetes Service
     * Amazon Elastic Kubernetes Service
+    * Google Kubernetes Engine
     * kind
+        * Supported only on Linux operating system. Minimum requirements: 8 CPUs, 8 GB Memory, 120 GB Disk space.
       
-        If you are using Cloud Native Runtimes, see [Configure Your Local Kind
+        * If you are using Cloud Native Runtimes, see [Configure Your Local Kind
         Cluster](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-local-dns.html#configure-your-local-kind-cluster-1)
-        in the Cloud Native Runtimes documentation to configure kind.
-
+    * Google Kubernetes Engine (GKE Autopilot clusters do not have required features enabled)
     * minikube
+        * Minimum requirements: 8 CPUs, 8 GB Memory, 120 GB Disk space.
+        * On Mac OS only hyperkit driver is supported. Docker driver is not supported.
 
-  To deploy all TAP packages, your cluster must have at least **8 GB** of RAM across all nodes available to TAP.
-  However, we recommend at least **16 GB** of RAM be available to build and deploy applications.
+    To deploy all Tanzu Application Platform packages, your cluster must have at least **8 GB** of RAM across all nodes available to Tanzu Application
+    Platform. 
+    However, VMware recommends at least **16 GB** of RAM be available to build and deploy applications, including for kind/minikube.
+
+    Your cluster must also have at least **70 GB** of disk per node.
   
-  For a single node cluster, such as KIND, we recommend **4 vCPU** be available, along with **70 GB** disk.
-  
-  For this beta release, [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) must be configured so that TAP controller pods may run as root.
-  
-* **The Kubernetes CLI, kubectl, v1.19** or later, installed and authenticated with administrator rights for your target cluster.
+* For this beta release, [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) must be configured so that TAP controller 
+pods may run as root
 
-* **[kapp Carvel command line tool](https://github.com/vmware-tanzu/carvel-kapp/releases)** (v0.37.0 or later)
+* **[kapp Carvel command line tool](https://github.com/vmware-tanzu/carvel-kapp/releases)** v0.37.0 or later
+ 
+* **The Kubernetes CLI, kubectl, v1.19, v1.20 or v1.21**, installed and authenticated with administrator rights for your target cluster.
 
-* kapp-controller v0.25.0 or later:
 
-    * For Azure Kubernetes Service, Amazon Elastic Kubernetes Service, kind, and minikube,
-      Install kapp-controller by running:
+
+* To set the Kubernetes cluster context:
+
+    1. List the existing contexts by running:
+
+        ```
+        kubectl config get-contexts
+        ```
+        For example:
+        ```
+        $ kubectl config get-contexts
+        CURRENT   NAME                                CLUSTER           AUTHINFO                                NAMESPACE
+                aks-repo-trial                      aks-repo-trial    clusterUser_aks-rg-01_aks-repo-trial
+        *       aks-tap-cluster                     aks-tap-cluster   clusterUser_aks-rg-01_aks-tap-cluster
+                tkg-mgmt-vc-admin@tkg-mgmt-vc       tkg-mgmt-vc       tkg-mgmt-vc-admin
+                tkg-vc-antrea-admin@tkg-vc-antrea   tkg-vc-antrea     tkg-vc-antrea-admin
+        ```
+
+    2.  Set the context to the cluster that you want to use for the TAP packages install.
+        For example set the context to the `aks-tap-cluster` context by running:
+
+        ```
+        kubectl config use-context aks-tap-cluster
+        ```
+        For example:
+        ```
+        $ kubectl config use-context aks-tap-cluster
+        Switched to context "aks-tap-cluster".
+        
+* **kapp-controller** v0.25.0 or later:
+
+    * Install kapp-controller by running:
+
       ```
       kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/KC-VERSION/release.yml
       ```
-      Where `KC-VERSION` is the kapp-controller version being installed. Please select v0.25.0+ kapp-controller version from the [Releases page](https://github.com/vmware-tanzu/carvel-kapp-controller/releases).
+      Where `KC-VERSION` is the kapp-controller version being installed.
+
+      Please select v0.25.0+ kapp-controller version for Azure Kubernetes Service, Amazon Elastic Kubernetes Service, kind, and minikube from the [Releases page](https://github.com/vmware-tanzu/carvel-kapp-controller/releases).
+
+      Please select v0.27.0+ kapp-controller version for Google Kubernetes Engine from the [Releases page](https://github.com/vmware-tanzu/carvel-kapp-controller/releases).
 
       For example:
       ```
       kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v0.25.0/release.yml
       ```
-      
+    * Verify kapp-controller is running by running:
+         ```
+         kubectl get pods -A | grep kapp-controller
+         ```
+         Pod status should be Running.
 
-    * To Verify installed kapp-controller version:
+    * (Optinal) To Verify installed kapp-controller version:
       
       1. Get kapp-controller deployment and namespace by running:
          ```
@@ -74,9 +126,7 @@ The following prerequisites are required to install Tanzu Application Platform:
          kubectl get deployment KC-DEPLOYMENT -n KC-NAMESPACE -o yaml | grep kapp-controller.carvel.dev/version
          ```
 
-         Where:
-         - `KC-DEPLOYMENT` is the `kapp-controller` deployment name.
-         - `KC-NAMESPACE` is the `kapp-controller` namespace name.
+         Where `KC-DEPLOYMENT` and `KC-NAMESPACE` are kapp-controller deployment name and kapp-controller namespace name respectively from the output of step 1.
 
          For example:
          ```
@@ -86,9 +136,9 @@ The following prerequisites are required to install Tanzu Application Platform:
          ```
 
 
-* **secretgen-controller v0.5.0** or later:
+* **secretgen-controller**:
 
-    * Install the secretgen-controller by running:
+    * Install secretgen-controller by running:
 
       ```
       kapp deploy -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/download/SG-VERSION/release.yml
@@ -100,10 +150,15 @@ The following prerequisites are required to install Tanzu Application Platform:
       ```
       kapp deploy -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/download/v0.5.0/release.yml
       ```
+    * Verify secretgen-controller is running by running:
+         ```
+         kubectl get pods -A | grep secretgen-controller
+         ```
+        Pod status should be Running.
 
-    * To Verify the secretgen-controller version you installed:
+    * (Optinal) To Verify the secretgen-controller version you installed:
 
-      1. Get the secretgen-controller deployment and namespace by running:
+      1. Get secretgen-controller deployment and namespace by running:
          ```
          kubectl get deployments -A | grep secretgen-controller
          ```
@@ -114,13 +169,11 @@ The following prerequisites are required to install Tanzu Application Platform:
          secretgen-controller     secretgen-controller             1/1     1            1           22d   
          ```
 
-      2. Get the secretgen-controller version by running:
+      2. Get secretgen-controller version by running:
          ```
          kubectl get deployment SG-DEPLOYMENT -n SG-NAMESPACE -o yaml | grep secretgen-controller.carvel.dev/version
          ```
-         Where:
-         - `SG-DEPLOYMENT` is the `secretgen-controller` deployment name.
-         - `SG-NAMESPACE` is the `secretgen-controller` namespace name. 
+         Where `SG-DEPLOYMENT` and `SG-NAMESPACE` are secretgen-controller deployment name and secretgen-controller namespace name respectively from the output of step 1.
 
          For example:
 
@@ -131,7 +184,7 @@ The following prerequisites are required to install Tanzu Application Platform:
 
 
 
-* **cert-manager v1.5.3**:
+* **cert-manager**:
 
     * Install cert-manager by running:
 
@@ -140,7 +193,7 @@ The following prerequisites are required to install Tanzu Application Platform:
         ```
         We have verified the Tanzu Application Platform repo bundle packages installation with cert-manager version v1.5.3.
         
-        * Verify the cert-manager version you installed by running:
+        * Verify installed cert-manager version by running:
 
         ```
         kubectl get deployment cert-manager -n cert-manager -o yaml | grep 'app.kubernetes.io/version: v'
@@ -156,15 +209,15 @@ The following prerequisites are required to install Tanzu Application Platform:
 
 
 
-* **FluxCD source-controller v0.15.4**:
+* **FluxCD source-controller**:
 
-     * Create the namespace `flux-system`
+     * Create namespace `flux-system`
         
         ```
         kubectl create namespace flux-system
         ```
      
-     * Create the clusterrolebinding by running:
+     * Create clusterrolebinding by running:
 
         ```
         kubectl create clusterrolebinding default-admin \
@@ -177,52 +230,8 @@ The following prerequisites are required to install Tanzu Application Platform:
         -f https://github.com/fluxcd/source-controller/releases/download/v0.15.4/source-controller.crds.yaml \
         -f https://github.com/fluxcd/source-controller/releases/download/v0.15.4/source-controller.deployment.yaml
         ```
+        We have verified the Tanzu Application Platform repo bundle packages installation with FluxCD source-controller version v0.15.4.
 
-
-
-
-## <a id='set-and-verify'></a> Set and Verify the Kubernetes Cluster Configurations
-
-To set and verify the Kubernetes cluster configurations:
-
-1. List the existing contexts by running:
-
-    ```
-    kubectl config get-contexts
-    ```
-    For example:
-    ```
-    $ kubectl config get-contexts
-    CURRENT   NAME                                CLUSTER           AUTHINFO                                NAMESPACE
-              aks-repo-trial                      aks-repo-trial    clusterUser_aks-rg-01_aks-repo-trial
-    *         aks-tap-cluster                     aks-tap-cluster   clusterUser_aks-rg-01_aks-tap-cluster
-              tkg-mgmt-vc-admin@tkg-mgmt-vc       tkg-mgmt-vc       tkg-mgmt-vc-admin
-              tkg-vc-antrea-admin@tkg-vc-antrea   tkg-vc-antrea     tkg-vc-antrea-admin
-    ```
-
-2.  Set the context to the cluster that you want to use for the TAP packages install.
-    For example set the context to the `aks-tap-cluster` context by running:
-
-    ```
-    kubectl config use-context aks-tap-cluster
-    ```
-    For example:
-    ```
-    $ kubectl config use-context aks-tap-cluster
-    Switched to context "aks-tap-cluster".
-    ```
-
-3. Verify kapp-controller is running by running:
-   ```
-   kubectl get pods -A | grep kapp-controller
-   ```
-   Pod status should be Running.
-
-4. Verify secretgen-controller is running by running:
-   ```
-   kubectl get pods -A | grep secretgen-controller
-   ```
-   Pod status should be Running.
 
 
 ## Packages in Tanzu Application Platform v0.2
@@ -266,8 +275,7 @@ To accept EULAs:
 Before you install Tanzu Application Platform,
 download and install the Tanzu CLI and the Tanzu CLI plugins. 
 If you have earlier versions of the Tanzu CLI, follow the instructions in [Update the Tanzu CLI](#update-cli).
-If you have installed a Tanzu CLI for Tanzu Community Edition or Tanzu Kubernetes Grid in the past,
-uninstall it and remove the `~/.config/tanzu` directory before trying out Tanzu Application Platform.
+If you have installed a Tanzu CLI for TCE or TKG in the past, uninstall and remove the `~/.config/tanzu` directory before using Tanzu Application Platform.
 
 Follow the procedure for your operating system:
 
@@ -393,7 +401,7 @@ To install the Tanzu CLI on a Windows operating system:
     ```
 ## <a id='update-cli'></a> Update the Tanzu CLI
 
-If you have any earlier version of the Tanzu CLI installed,
+If you have an earlier version of the Tanzu CLI installed,
 do the following before you install the plugins.
 For instructions on installing plugins, see [Install the Tanzu CLI Plugins](#install-the-tanzu-cli-plugins).
 
@@ -426,9 +434,9 @@ To remove plugins from earlier versions of the Tanzu CLI:
 
 ## Install the Tanzu CLI Plugins
 
-After you have installed the tanzu core executable, you must install package, imagepullsecret, apps, and app-accelerator CLI plugins.
+After you have installed the Tanzu core executable, you must install the package, imagepullsecret, apps, and app-accelerator CLI plugins.
 
-1. Navigate to the tanzu folder that contains the cli folder.
+1. Navigate to the Tanzu folder that contains the cli folder.
 
 2. Run the following command from the tanzu directory to install all the plugins for this release.
     ```
@@ -452,6 +460,8 @@ After you have installed the tanzu core executable, you must install package, im
     package                             Tanzu package management                                                                                                                                        v0.5.0   installed
     pinniped-auth                       Pinniped authentication operations (usually not directly invoked)                                                                                               v0.5.0   installed
     ```
-> **Note:** The `package`, `imgpullsecret`, `accelerator`, and `apps` plugins are used to install and interact with the Tanzu Application Platform.
+  
+**A note regarding the installed plugins:**
+The `package`, `imgpullsecret`, `accelerator`, and `apps` plugins will be used to install and/or interact with the Tanzu Application Platform.
     
 The installation of this beta product requires cluster-admin privileges. There are additional plugin/commands included with the Tanzu CLI which could have unintended side-effects. For the purposes of installing this beta, VMware recommends against running commands for the following CLI plugins: `cluster`, `kubernetes-release`, `login`, `management-cluster`, and `pinniped-auth`.
