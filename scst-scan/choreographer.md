@@ -4,93 +4,84 @@ This example takes every source code commit, scans the source code for vulnerabi
 
 ## Prerequisites
 
-Follow the steps listed in [Installing Part I: Prerequisites, EULA, and CLI](https://github.com/pivotal/docs-tap/blob/main/install-general.md).
+Follow the steps listed in [Installing Part I: Prerequisites, EULA, and CLI](install-general.md).
 
-Next, in [Installing Part II: Packages](https://github.com/pivotal/docs-tap/blob/main/install.md), ensure the following packages and their dependencies are installed:
+Next, in [Installing Part II: Packages](install.md), ensure the following packages and their dependencies are installed:
 
-- [Supply Chain Choreographer](https://github.com/pivotal/docs-tap/blob/main/install.md#-install-supply-chain-choreographer)
-- [Tanzu Build Service](https://github.com/pivotal/docs-tap/blob/main/install.md#install-tbs)
-- [Supply Chain Security Tools - Store](https://github.com/pivotal/docs-tap/blob/main/install.md#install-scst-store)
-- [Supply Chain Security Tools - Scan](https://github.com/pivotal/docs-tap/blob/main/install.md#install-scst-scan)
+- [Supply Chain Choreographer](install.md#-install-supply-chain-choreographer)
+- [Tanzu Build Service](install.md#install-tbs)
+- [Supply Chain Security Tools - Store](install.md#install-scst-store)
+- [Supply Chain Security Tools - Scan](install.md#install-scst-scan)
 - (Optional) [Kubectl `tree` Plugin](https://github.com/ahmetb/kubectl-tree)
+
+The following versions were used in preparing this example:
+```console
+$ tanzu package installed list -n tap-install
+| Retrieving installed packages...
+  NAME             PACKAGE-NAME                          PACKAGE-VERSION  STATUS
+  cartographer     cartographer.tanzu.vmware.com         0.0.6            Reconcile succeeded
+  grype-scanner    grype.scanning.apps.tanzu.vmware.com  1.0.0-beta       Reconcile succeeded
+  metadata-store   scst-store.tanzu.vmware.com           1.0.0-beta.0     Reconcile succeeded
+  scan-controller  scanning.apps.tanzu.vmware.com        1.0.0-beta       Reconcile succeeded
+  tbs              buildservice.tanzu.vmware.com         1.3.0            Reconcile succeeded
+```
 
 ## Configure the Example
 
-To make the example easy to set up, `ytt` is used for templating Kubernetes objects.
+The following environment variables are required to set configuration for the image registry where Tanzu Build Service will push images. The Image Scan will also pull from the same registry.
 
-Create `values.yaml` with credentials for the source code repository, kpack image builder and image registry. This example is set to use the Java Buildpack, so point the source repository url at something like a Spring Boot app.
-
-These values will be interpolated into the subsequent yaml files.
-
-```yaml
-#@data/values
-
----
-workload: spring-petclinic
-source:
-  repository:
-    url: ssh://gitlab.eng.vmware.com/vulnerability-scanning-enablement/spring-petclinic.git
-    branch: test-branch
-    # ssh keys for pulling from the source repository specified in developer/workload.yaml
-    privatekey: |+
-      <private-key-content>
-    publickey: <public-key-content>
-image:
-  # the workload (app) name, registry server and prefix settings will result in the app image being pushed to something like: dev.registry.pivotal.io/nedenwalker/demo-spring-petclinic
-  prefix: /<harbor-project>/demo-
-  registry:
-    # eg harbor-repo.vmware.com, dev.registry.pivotal.io, https://index.docker.io/v1/, gcr.io
-    server: dev.registry.pivotal.io
-    dockerconfigjson: <docker-config-json>
-kpack:
-  builder:
-    # the registry server setting will result in kpack pulling the buildpack from something like: harbor-repo.vmware.com/kontinuedemo/java-builder
-    registry:
-      # eg harbor-repo.vmware.com, dev.registry.pivotal.io, https://index.docker.io/v1/, gcr.io
-      server: harbor-repo.vmware.com
-      username: <username>
-      password: <password>
+```bash
+REGISTRY_SERVER=
+REGISTRY_USERNAME=
+REGISTRY_PASSWORD=
+REGISTRY_PROJECT=
 ```
 
-## Cluster-Wide Deployments for Configuring Secrets, Service Accounts and an Image Builder
+## Cluster-Wide Resources
 
-Create `00-cluster/kpack.yaml` to configure `kpack` for building the image.
+### Tanzu Network Image Pull Secret
 
-```yaml
-#@ load("@ytt:data", "data")
+The following secrets will be used by each product to pull from Tanzu Network. This secret will be replicated into necessary namespaces where it will overwrite the empty placeholder secrets that were defined by each product.
 
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: builder-registry-credentials
-  namespace: kpack
-  annotations:
-    kpack.io/docker: #@ data.values.kpack.builder.registry.server
-type: kubernetes.io/basic-auth
-stringData:
-  username: #@ data.values.kpack.builder.registry.username
-  password: #@ data.values.kpack.builder.registry.password
+```bash
+tanzu imagepullsecret add registry-credentials \
+  --registry ${REGISTRY_SERVER} \
+  --username ${REGISTRY_USERNAME} \
+  --password "${REGISTRY_PASSWORD}" \
+  --export-to-all-namespaces
 
+tanzu imagepullsecret add image-secret \
+  --registry ${REGISTRY_SERVER} \
+  --username ${REGISTRY_USERNAME} \
+  --password "${REGISTRY_PASSWORD}" \
+  --export-to-all-namespaces
+```
+
+### Tanzu Build Service
+
+Deploy the following to configure Tanzu Build Service to build an image and push it to a registry. `registry-credentials` is an empty placeholder secret that will be populated with the credentials used to access the registry.
+
+```bash
+kubectl apply -f - -o yaml << EOF
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: builder-service-account
-  namespace: kpack
+  name: default
 secrets:
-  - name: builder-registry-credentials
+  - name: registry-credentials
 imagePullSecrets:
-  - name: builder-registry-credentials
+  - name: registry-credentials
 
 ---
 apiVersion: kpack.io/v1alpha1
 kind: ClusterStore
 metadata:
-  name: java-store
+  name: default
 spec:
   sources:
-    - image: gcr.io/paketo-buildpacks/java:5.8.0
+    - image: gcr.io/paketo-buildpacks/go
+    - image: gcr.io/paketo-buildpacks/java
 
 ---
 apiVersion: kpack.io/v1alpha1
@@ -100,76 +91,44 @@ metadata:
 spec:
   id: "io.buildpacks.stacks.bionic"
   buildImage:
-    image: "harbor-repo.vmware.com/dockerhub-proxy-cache/paketobuildpacks/build:1.0.24-base-cnb"
+    image: "paketobuildpacks/build:base-cnb"
   runImage:
-    image: "harbor-repo.vmware.com/dockerhub-proxy-cache/paketobuildpacks/run:1.0.24-base-cnb"
+    image: "paketobuildpacks/run:base-cnb"
 
 ---
 apiVersion: kpack.io/v1alpha1
 kind: ClusterBuilder
 metadata:
-  name: java-builder
+  name: default
 spec:
   serviceAccountRef:
-    name: builder-service-account
-    namespace: kpack
-  tag: harbor-repo.vmware.com/kontinuedemo/java-builder
+    name: default
+    namespace: default
+  tag: ${REGISTRY_SERVER}/${REGISTRY_PROJECT}/tbs
   stack:
     name: stack
     kind: ClusterStack
   store:
-    name: java-store
+    name: default
     kind: ClusterStore
   order:
     - group:
+        - id: paketo-buildpacks/go
+    - group:
         - id: paketo-buildpacks/java
+EOF
 ```
 
-Create `00-cluster/repository.yaml` to configure a Kubernetes secret to access the source repository.
+### Supply Chain Security Tools for VMware Tanzu - Scan
 
-```yaml
-#@ load("@ytt:data", "data")
+Deploy the following to configure the source and image scans. `image-secret` is an empty placeholder secret that will be populated with the credentials used to access the registry where TBS will push built images.
 
----
-# secret for fluxcd source controller to clone the repo
-apiVersion: v1
-kind: Secret
-metadata:
-  name: repository-credentials
-stringData:
-  identity: #@ data.values.source.repository.privatekey
-  identity.pub: #@ data.values.source.repository.publickey
+When installing the Grype Scanner, five scan templates were pre-installed for various use cases. This example will use two of them, `blob-source-scan-template` for performing a source scan within the context of a supply chain (where the source code is delivered as a tar file) and `private-image-scan-template` for performing an image scan against a private registry. Since they were pre-installed, they are not defined here, but will be referenced later in the supply chain templates.
 
-  # run ssh-keyscan to get host fingerprint
-  known_hosts: gitlab.eng.vmware.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBIW3CobFtjtaGAbNvW1w7Z1+nOV131I2GQ4T/v6elt8caUxo+NK8w4R0ywLc5FiIa3RQ6CuyHfkO6cnJGQm3n3Q=
-```
+What is defined here other than the placeholder secret is a Scan Policy indicating how to perform a policy compliance check against severity of vulnerabilities found. This particular Scan Policy will fail compliance if a `Critical`, `High` or `UnknownSeverity` vulnerability is found in either the Source or Image Scan. As it is, this Supply Chain is naive in that it will continue to the next supply chain step regardless of the compliance check.
 
-Create `00-cluster/scanner.yaml` to configure a Kubernetes secret and service account to access the artifact registry. When installing the Grype Scanner, five scan templates were pre-installed for various use cases. This example will use two of them, one for performing a source scan within the context of a supply chain (where the source code is delivered as a tar file) and another for performing an image scan. Additionally, the following yaml will define a Scan Policy to show vulnerabilities found.
-
-```yaml
-#@ load("@ytt:data", "data")
-
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: image-secret
-  annotations:
-    kpack.io/docker: #@ data.values.image.registry.server
-type: kubernetes.io/dockerconfigjson
-data:
-  .dockerconfigjson: #@ data.values.image.registry.dockerconfigjson
-
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: service-account
-secrets:
-  - name: image-secret
-imagePullSecrets:
-  - name: image-secret
-
+```bash
+kubectl apply -f - -o yaml << EOF
 ---
 apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
 kind: ScanPolicy
@@ -200,23 +159,21 @@ spec:
     }
 
     isCompliant = isSafe(input.currentVulnerability)
+EOF
 ```
 
 ## App Operator Deployments for Defining the Supply Chain
 
-Create `app-operator/supply-chain-templates.yaml` to configure each of the components in the Supply Chain. Each Cartographer template references the cluster resources we already defined. And as mentioned above, the pre-installed Scan Templates are used along with the Scan Policy defined above.
+Configure and deploy the following Supply Chain Components. Some components will reference cluster resources deployed above. The scanning components will make use of the Scan Policy but will also reference pre-installed Scan Templates installed with the Grype Scanner.
 
-```yaml
-#@ load("@ytt:data", "data")
-
+```bash
+kubectl apply -f - -o yaml << EOF
 ---
-# Define a Git Repository to watch for new code commits
 apiVersion: carto.run/v1alpha1
 kind: ClusterSourceTemplate
 metadata:
   name: source-code
 spec:
-  # Outputs
   urlPath: .status.artifact.url
   revisionPath: .status.artifact.revision
 
@@ -225,26 +182,19 @@ spec:
     kind: GitRepository
     metadata:
       name: $(workload.metadata.name)$-source
-    spec: # Inputs
+    spec:
       interval: 1m
       url: $(workload.spec.source.git.url)$
       ref: $(workload.spec.source.git.ref)$
       ignore: |
         !.git
-      secretRef:
-        name: repository-credentials
 
 ---
-# Define a Source Code Scan
-# - Accepts a URL to scan and
-# - Accepts a Scan Template defining the Scanner to use
-# - Outputs the URL and digest if the scan passed
 apiVersion: carto.run/v1alpha1
 kind: ClusterSourceTemplate
 metadata:
   name: scanned-source
 spec:
-  # Outputs
   urlPath: .status.artifact.blob.url
   revisionPath: .status.artifact.blob.url
 
@@ -253,7 +203,7 @@ spec:
     kind: SourceScan
     metadata:
       name: $(workload.metadata.name)$-source-scan
-    spec: # Inputs
+    spec:
       blob:
         url: $(sources.source-code.url)$
         revision: $(sources.source-code.revision)$
@@ -261,13 +211,11 @@ spec:
       scanPolicy: scan-policy
 
 ---
-# Define an Image
 apiVersion: carto.run/v1alpha1
 kind: ClusterImageTemplate
 metadata:
   name: built-image
 spec:
-  # Outputs
   imagePath: .status.latestImage
 
   template:
@@ -275,45 +223,45 @@ spec:
     kind: Image
     metadata:
       name: $(workload.metadata.name)$-image
-    spec: # Inputs
-      tag: #@ data.values.image.registry.server + data.values.image.prefix + "$(workload.metadata.name)$"
-      serviceAccount: service-account
+    spec:
+      tag: ${REGISTRY_SERVER}/${REGISTRY_PROJECT}/$(workload.metadata.name)$
+      serviceAccount: default
       builder:
         kind: ClusterBuilder
-        name: java-builder
+        name: default
       source:
         blob:
           url: $(sources.scanned-source.url)$
+      build:
+        env:
+        - name: BP_OCI_SOURCE
+          value: $(sources.scanned-source.revision)$
 
 ---
-# Define an Image Scan
-# - Accepts an Image Path to scan and
-# - Accepts a Scan Template defining the Scanner to use
-# - Outputs the Image Path if the scan passed
 apiVersion: carto.run/v1alpha1
 kind: ClusterImageTemplate
 metadata:
   name: scanned-image
 spec:
-  # Outputs
-  imagePath: .status.scannedImage
+  imagePath: .status.artifact.registry.image
 
   template:
     apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
     kind: ImageScan
     metadata:
       name: $(workload.metadata.name)$-image-scan
-    spec: # Inputs
+    spec:
       registry:
         image: $(images.built-image.image)$
       scanTemplate: private-image-scan-template
       scanPolicy: scan-policy
+EOF
 ```
 
-Create `app-operator/supply-chain.yaml` to configure the Supply Chain.
+Configure and deploy the Supply Chain connecting all the components in series.
 
-```yaml
-# Define Supply Chain
+```bash
+kubectl apply -f - -o yaml << EOF
 apiVersion: carto.run/v1alpha1
 kind: ClusterSupplyChain
 metadata:
@@ -322,27 +270,13 @@ spec:
   selector:
     app.tanzu.vmware.com/workload-type: web
 
-  #
-  #
-  # source-provider <--[src]-- source-scanner <--[src]-- image-builder <--[img]--- image-scanner
-  #  GitRepository               SourceScan                  Image                   ImageScan
-  #
-  #
   components:
 
-    # Get the source from a source code repository and output a blob.
-    # Source Provider
-    #   Input: Url (defined in template)
-    #   Output: Source
     - name: source-provider
       templateRef:
         kind: ClusterSourceTemplate
         name: source-code
 
-    # Use the Scan Controller and Grype Scanner to scan the source code from the repository.
-    # Source Scanner
-    #   Input: Source
-    #   Output: Scanned Source
     - name: source-scanner
       templateRef:
         kind: ClusterSourceTemplate
@@ -351,10 +285,6 @@ spec:
       - component: source-provider
         name: source-code
 
-    # Use kpack to build the source blob and output a container image to Harbor.
-    # Image Builder
-    #   Input: Scanned Source
-    #   Output: Image
     - name: image-builder
       templateRef:
         kind: ClusterImageTemplate
@@ -363,10 +293,6 @@ spec:
         - component: source-scanner
           name: scanned-source
 
-    # Use the Scan Controller and Grype Scanner to scan the container image from the kpack build.
-    # Image Scanner
-    #   Input: Image
-    #   Output: Scanned Image
     - name: image-scanner
       templateRef:
         kind: ClusterImageTemplate
@@ -374,87 +300,56 @@ spec:
       images:
         - component: image-builder
           name: built-image
+EOF
 ```
 
 ## Developer Deployment for Defining the Workload
 
-Create `developer/workload.yaml` to configure the Workload to process through the Supply Chain.
+With all the Supply Chain components in place, it is time for a Developer to deploy a workload through the Supply Chain!
 
-```yaml
-#@ load("@ytt:data", "data")
+But first, set up a couple watches to see different views into the supply chain progressing. In one terminal (if the optional [Kubectl `tree` Plugin](https://github.com/ahmetb/kubectl-tree) is installed):
+```bash
+watch kubectl tree workload tanzu-java-web-app
+```
 
+And in another terminal using `kubectl get`:
+```bash
+watch kubectl get workload,scantemplate,scanpolicy,gitrepository,sourcescan,image.kpack,imagescan,pod
+```
+
+Deploy a workload that references a public code repository:
+```bash
+kubectl apply -f - -o yaml << EOF
 ---
-# Sample Workload to process through Supply Chain
 apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
-  name: #@ data.values.workload
+  name: tanzu-java-web-app
   labels:
     app.tanzu.vmware.com/workload-type: web
 spec:
   source:
     git:
-      url: #@ data.values.source.repository.url
+      url: https://github.com/sample-accelerators/tanzu-java-web-app
       ref:
-        branch: #@ data.values.source.repository.branch
+        branch: main
+EOF
 ```
 
-## Deploy Everything!
-
-At this point, executing `tree` at the command line should display the following directories and files:
-
-```bash
-$ tree
-.
-├── 00-cluster
-│   ├── kpack.yaml
-│   ├── repository.yaml
-│   └── scanner.yaml
-├── app-operator
-│   ├── supply-chain-templates.yaml
-│   └── supply-chain.yaml
-├── developer
-│   └── workload.yaml
-└── values.yaml
-```
-
-The three directories are organized as: `00-cluster`, for cluster-wide configuration, `app-operator`, with supply chain-specific files that an App Operator would submit, and `developer`, containing Kubernetes objects that a developer would submit (yes, just a Workload!)
-
-**NOTE:** If you updated the `workload` name in the `values.yaml` file, then do so in both the `kapp deploy` and `kubectl tree` commands. (And the `kapp delete` command when tearing down the example.)
-
-We will deploy all the cluster resources, the supply chain and the workload all at once, however we could also do so in steps (as would be the real world experience... where cluster resources and supply chains would be deployed and available for different teams to deploy workloads to).
-
-```bash
-ytt \
-  --ignore-unknown-comments \
-  -f 00-cluster/ \
-  -f app-operator/ \
-  -f developer/ \
-  -f values.yaml \
-  | kapp deploy -a spring-petclinic -f- -y
-
-watch kubectl tree workload spring-petclinic
-```
-
-Or watch using `kubectl get`:
-```bash
-watch kubectl get workload,scantemplate,scanpolicy,gitrepository,sourcescan,image.kpack.io,imagescan,pod
-```
-
-**NOTE:** There will be some periods where resources take some time to run to completion. In particular, the build image step with kpack will take a number of minutes to build the non-trivial spring boot application.
+**NOTE:** There will be some periods where resources take some time to run to completion. In particular, the build image step with Tanzu Build Service will take some minutes to build.
 
 Notice the resources be created:
 1. `workload`: Workload is defined
 1. `scantemplate`: Scan Templates will display as each scan type occurs
 1. `gitrepository`: `STATUS` Fetched revision fills in
-1. `sourcescan`: The source scan displays `SCANNEDREPOSITORY` once completed
+1. `sourcescan`: The source scan displays `SCANNEDREPOSITORY` and `SCANNEDREVISION` once completed
 1. `image.kpack.io`: The build image appears in `LATESTIMAGE`
 1. `imagescan`: The image scan displays `SCANNEDIMAGE` once completed
 1. `pod`: Pods appear during scans and when the image is being built
 
 During processing and upon completion, try performing `kubectl describe` on the `sourcescan` and `imagescan` resources to see the `Status` section.
 
-**NOTE:** Information pertaining to vulnerabilities found will not display in the output from `kubectl describe`, it is instead sent to the Metadata Store, where it can be queried there.
+**NOTE:** Detailed information pertaining to vulnerabilities found will not display in the output from `kubectl describe`, it is instead sent to the Metadata Store, where it can be queried there.
 
 ## Querying the Metadata Store for Vulnerability Results using the Insight CLI
 
@@ -473,14 +368,14 @@ insight config set-target https://metadata-store-app.metadata-store.svc.cluster.
   --access-token $METADATA_STORE_TOKEN
 
 # Query Source Scan
-kubectl describe sourcescan spring-petclinic-source-scan
+kubectl describe sourcescan tanzu-java-web-app-source-scan
 insight source get \
   --repo <insert repo here> \
   --commit <insert sha here> \
   --org <insert org here>
 
 # Query Image Scan
-kubectl describe imagescan spring-petclinic-image-scan
+kubectl describe imagescan tanzu-java-web-app-image-scan
 # Note: the `digest` flag has the form: sha256:841abf253a244adba79844219a045958ce3a6da2671deea3910ea773de4631e1
 insight image get \
   --digest <insert digest here>
@@ -489,10 +384,4 @@ insight image get \
 # Note: the `cveid` flag has the form: CVE-2021-3711
 insight vulnerabilities get \
   --cveid <insert CVE here>
-```
-
-## Tearing Down the Example
-
-```bash
-kapp delete -a spring-petclinic
 ```

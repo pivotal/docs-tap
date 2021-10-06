@@ -699,7 +699,7 @@ Added installed package 'cartographer' in namespace 'default'
 1. Export a secret for storing container images to all namespaces:
 
     ```console
-    tanzu imagepullsecret add registry-credentials --registry <REGISTRY_SERVER> --username <REGISTRY_USERNAME> --password <REGISTRY_PASSWORD> --export-to-all-namespaces || true
+    tanzu imagepullsecret add registry-credentials --registry <REGISTRY_SERVER> --username <REGISTRY_USERNAME> --password <REGISTRY_PASSWORD> --export-to-all-namespaces --namespace tap-install
     ```
     Where:
 
