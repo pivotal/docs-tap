@@ -608,7 +608,7 @@ To install Tanzu Build Service using the Tanzu CLI:
 1. (Optional) Run the following command to verify the clusterbuilders created by the Tanzu Build Service install:
 
     ```bash
-    tanzu package installed get buildservice.tanzu.vmware.com -n tap-install
+    tanzu package installed get tbs -n tap-install
     ```
 
 ## <a id='install-scc'></a> Install Supply Chain Choreographer
