@@ -1,6 +1,6 @@
-## tanzu apps workload list
+## Tanzu Apps Workload List
 
-Table listing of workloads
+Table listing of workloads.
 
 ### Synopsis
 
@@ -26,7 +26,7 @@ tanzu apps workload list --all-namespaces
   -n, --namespace name   kubernetes namespace (defaulted from kube config)
 ```
 
-### Options inherited from parent commands
+### Options Inherited from Parent Commands
 
 ```
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
@@ -35,7 +35,7 @@ tanzu apps workload list --all-namespaces
   -v, --verbose int32     number for the log level verbosity (default 1)
 ```
 
-### SEE ALSO
+### See Also
 
 * [tanzu apps workload](tanzu_apps_workload.md)	 - Workload lifecycle management
 
