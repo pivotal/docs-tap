@@ -5,7 +5,7 @@ from the Tanzu Application Platform package repository.
 
 Before you install the packages, ensure that you have completed the prerequisites, configured
 and verified the cluster, accepted the EULA, and installed the Tanzu CLI with any required plugins.
-For information, see [Installing Part I: Prerequisites, Cluster Configurations, EULA, and CLI](install-general.md).
+For information, see [Installing Part I: Prerequisites, EULA, and CLI](install-general.md).
 
 
 ## <a id='install-packages'></a> About Installing Packages
