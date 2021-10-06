@@ -72,8 +72,8 @@ with the url to your registry. The URL you enter should match the `REGISTRY_SERV
 
 **5. Deploy the ‘Tanzu Java Web App’ accelerator using the `create` command**
 ```
-tanzu apps workload create tanzu-java-web-app\
---git-repo https://github.com/sample-accelerators/tanzu-java-web-app\
+tanzu apps workload create tanzu-java-web-app \
+--git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
 --git-branch main --type web --yes
 ```
 ***note** this first deploy uses accelerator source from git, but you’ll use the VScode extension to debug and live-update this app in later steps.
