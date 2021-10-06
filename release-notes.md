@@ -51,6 +51,15 @@ This release has the following issues:
 
 - If your install workflow involves [Carvel imgpkg](https://github.com/vmware-tanzu/carvel-imgpkg), please use version. v0.19.0 or later to avoid auth errors.
 - If package installation fails, use `tanzu package installed update` with the `--install` flag to continue installation.
+- When using the `Tanzu Developer Tools for VSCode` extension, please delete the workload before performing any of the following steps to avoid workload update errors:
+    - Switching between the `Live Update` & `Debug` capabilities
+    - Disabling `Live Update` & re-starting `Live Update`
+    
+    
+    You can do so by performing the following steps:
+    1. Click on the `Terminal` menu and select the `Run Task` option
+    2. Type `tanzuWorkload delete` in the command palette that appears and hit enter
+    3. View the Terminal tab to confirm that the Workload has been deleted
 
 ## <a id='0-2-0'></a> v0.1.0 Beta
 
