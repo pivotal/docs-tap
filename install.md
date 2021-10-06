@@ -1195,6 +1195,8 @@ To install Supply Chain Security Tools - Scan (Scan Controller):
 
     Ensure that the certificate is indented by two spaces as shown in the sample.
 
+    Ensure the certificate is indented by two spaces as shown in the sample below.
+
     Sample `scst-scan-controller-values.yaml` for Scan Controller:
 
     ```yaml

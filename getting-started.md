@@ -743,7 +743,7 @@ For a complete guide on how to query the store, see [Querying Supply Chain Secur
 #### Example Supply Chain including Source and Image Scans
 
 One of the out-of-the-box supply chains we are working on for a future release will include image and source code vulnerability scanning and metadata storage into a preset Tanzu Application Platform supply chain. Until then, you can use this example to see how to try this out:
-[Example Supply Chain including Source and Image Scans](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-scst-scan-cartographer.html).
+[Example Supply Chain including Source and Image Scans](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-scst-scan-choreographer.html).
 
 **Next Steps and Further Information**
 
