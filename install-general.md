@@ -41,11 +41,12 @@ images
     * minikube
         * Minimum requirements: 12 CPUs, 12 GB Memory, 120 GB Disk space.
         * On Mac OS only hyperkit driver is supported. Docker driver is not supported.
-    
 
-* Cluster must have at least **8 GB** of RAM across all nodes available to Tanzu Application 
-Platform. However, we recommend at least **16 GB** of RAM be available to build and deploy 
-applications
+* To deploy all Tanzu Application Platform packages, your cluster must have at least **8 GB** of RAM across all nodes available to Tanzu Application
+  Platform. 
+  However, VMware recommends at least **16 GB** of RAM be available to build and deploy applications.
+
+    Your cluster must also have **70 GB** of disk per node.
   
 * For a single node cluster, such as KIND, we recommend **4 vCPU** be available, along with 
 **70 GB** disk
