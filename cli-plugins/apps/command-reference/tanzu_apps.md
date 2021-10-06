@@ -1,6 +1,6 @@
-## tanzu apps
+## Tanzu Applications
 
-Applications on Kubernetes
+This topic includes a description of applications available on Kubernetes.
 
 ### Options
 
