@@ -1179,6 +1179,9 @@ Ensure both are installed.
 
 To install Supply Chain Security Tools - Scan (Scan Controller):
 
+**Prerequisite**: Supply Chain Security Tools - Store installed on the cluster.
+See [Install Supply Chain Security Tools - Store](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-install.html#install-supply-chain-security-tools--store-15).
+
 1. Follow the instructions in [Install Packages](#install-packages) above.
 
     ```bash
@@ -1203,8 +1206,6 @@ To install Supply Chain Security Tools - Scan (Scan Controller):
 
 1. Gather the values schema.
 1. Create a `scst-scan-controller-values.yaml` using the following sample as a guide.
-
-    Ensure that the certificate is indented by two spaces as shown in the sample.
 
     Ensure the certificate is indented by two spaces as shown in the sample below.
 
