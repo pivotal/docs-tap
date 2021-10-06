@@ -72,8 +72,7 @@ The following prerequisites are required to install Tanzu Application Platform:
         
 * **kapp-controller**:
 
-    * For Azure Kubernetes Service, Amazon Elastic Kubernetes Service, kind, and minikube,
-      Install kapp-controller by running:
+    * Install kapp-controller by running:
       ```
       kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/KC-VERSION/release.yml
       ```
