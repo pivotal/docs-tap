@@ -5,7 +5,7 @@ Documentation for some of the components of Tanzu Application Platform is availa
 Some of the documentation is hosted on separate sites and some is incorporated into this 
 Tanzu Application Platform documentation site.
 
-+ [API portal](https://docs.pivotal.io/api-portal)
++ [API portal for VMware Tanzu](https://docs.pivotal.io/api-portal)
 
 + [Application Accelerator for VMware Tanzu](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/index.html)
 
