@@ -1059,7 +1059,8 @@ To install Supply Chain Security Tools - Sign:
         EOF
         ```
         Where `SECRET-1` is a secret that allows the webhook to access the private registry.
-        This secret can be created using the following command:
+        You can specify existing `imagePullSecrets` that are part of the `image-policy-system` namespace,
+        or you can create new ones by using the following command:
         ```bash
         kubectl create secret docker-registry SECRET-1 --docker-server=<server> --docker-username=<username> --docker-password=<password> --namespace image-policy-system
         ```
