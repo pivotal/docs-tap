@@ -60,7 +60,7 @@ To add the Tanzu Application Platform package repository:
     Added package repository 'tanzu-tap-repository'
     ```
 
-4. Get status of the Tanzu Application Platform package repository, and ensure the status updates to `Reconcile succeeded` by running:
+4. Get the status of the Tanzu Application Platform package repository, and ensure the status updates to `Reconcile succeeded` by running:
 
     ```bash
     tanzu package repository get tanzu-tap-repository --namespace tap-install
