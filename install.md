@@ -118,8 +118,7 @@ To install any package from the Tanzu Application Platform package repository:
     ```bash
     tanzu package available list PACKAGE-NAME --namespace tap-install
     ```
-    Where:
-     + `PACKAGE-NAME` is the name of the package listed in step 5 of
+    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
      [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
      For example:
 
@@ -135,9 +134,10 @@ To install any package from the Tanzu Application Platform package repository:
     ```bash
     tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
     ```
-     Where:
-       + `PACKAGE-NAME` is same as step 1 above.
-       + `VERSION-NUMBER` is the version of the package listed in step 1 above.
+    Where:
+
+    - `PACKAGE-NAME` is same as step 1 above.
+    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
 
     For example:
 
@@ -573,6 +573,7 @@ To install Tanzu Build Service using the Tanzu CLI:
     tanzunet_password: TANZUNET-PASSWORD
     ```
     Where:
+
       * `EXAMPLE-REGISTRY` is the URL of the Docker registry.
       * `PATH-TO-INSTALL` is the path to the registry install location. `kp_default_repository` is the registry location where all Tanzu Build Services dependencies and builder images are written.
       * `REGISTRY-USERNAME` and `REGISTRY-PASSWORD` are the username and password for the registry. The install requires a `kp_default_repository_username` and `kp_default_repository_password` in order to write to the repository location.
