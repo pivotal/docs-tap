@@ -1,11 +1,11 @@
 # <a id='components'></a> Component Documentation
 
-Documentation for the components of Tanzu Application Platform is available as follows.
+Documentation for some of the components of Tanzu Application Platform is available as follows.
 
 Some of the documentation is hosted on separate sites and some is incorporated into this 
 Tanzu Application Platform documentation site.
 
-+ API portal
++ [API portal](https://docs.pivotal.io/api-portal)
 
 + [Application Accelerator for VMware Tanzu](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/index.html)
 
@@ -15,20 +15,14 @@ Tanzu Application Platform documentation site.
 
 + [Tanzu Developer Tools for Visual Studio Code](vscode-extension/about.md)
 
-+ Convention Service for VMware Tanzu
++ [Convention Service for VMware Tanzu](convention-service/about.md)
 
-+ SCP Toolkit
-
-+ Service Bindings for Kubernetes
++ [SCP Toolkit](https://docs.vmware.com/en/SCP-Toolkit/0.3/scp-toolkit-0-3/GUID-overview.html)
 
 + [Supply Chain Choreographer for VMware Tanzu](scc/about.html)
 
 + [Supply Chain Security Tools - Scan](scst-scan/overview.md)
 
-+ Supply Chain Security Tools - Sign
-
-+ Supply Chain Security Tools - Store
-
-+ Tanzu Source Controller
++ [Supply Chain Security Tools - Store](scst-store/overview.md)
 
 + [VMware Tanzu Build Service](https://docs.pivotal.io/build-service)
