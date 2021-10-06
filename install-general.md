@@ -278,7 +278,7 @@ To accept EULAs:
 Before you install Tanzu Application Platform,
 download and install the Tanzu CLI and the Tanzu CLI plugins. 
 If you have earlier versions of the Tanzu CLI, follow the instructions in [Update the Tanzu CLI](#update-cli).
-If you have installed a tanzu CLI for TCE or TKG in the past, please uninstall it and remove the `~/.config/tanzu` directory before trying out TAP.
+If you have installed a Tanzu CLI for TCE or TKG in the past, uninstall and remove the `~/.config/tanzu` directory before using Tanzu Application Platform.
 
 Follow the procedure for your operating system:
 
@@ -404,7 +404,7 @@ To install the Tanzu CLI on a Windows operating system:
     ```
 ## <a id='update-cli'></a> Update the Tanzu CLI
 
-If you have any earlier version of the Tanzu CLI installed,
+If you have an earlier version of the Tanzu CLI installed,
 do the following before you install the plugins.
 For instructions on installing plugins, see [Install the Tanzu CLI Plugins](#install-the-tanzu-cli-plugins).
 
@@ -437,9 +437,9 @@ To remove plugins from earlier versions of the Tanzu CLI:
 
 ## Install the Tanzu CLI Plugins
 
-After you have installed the tanzu core executable, you must install package, imagepullsecret, apps and app-accelerator CLI plugins.
+After you have installed the Tanzu core executable, you must install the package, imagepullsecret, apps, and app-accelerator CLI plugins.
 
-1. Navigate to the tanzu folder that contains the cli folder.
+1. Navigate to the Tanzu folder that contains the cli folder.
 
 2. Run the following command from the tanzu directory to install all the plugins for this release.
     ```
