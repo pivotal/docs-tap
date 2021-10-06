@@ -22,14 +22,18 @@ The following prerequisites are required to install Tanzu Application Platform:
 
     * Azure Kubernetes Service
     * Amazon Elastic Kubernetes Service
+    * Google Kubernetes Engine
     * kind
+        * Supported only on Linux operating system. Minimum requirements: 12 CPUs, 12 GB Memory, 120 GB Disk space.
       
-        If you are using Cloud Native Runtimes, see [Configure Your Local Kind
+        * If you are using Cloud Native Runtimes, see [Configure Your Local Kind
         Cluster](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-local-dns.html#configure-your-local-kind-cluster-1)
         in the Cloud Native Runtimes documentation to configure kind.
 
     * minikube
-    * Google Kubernetes Engine
+        * Minimum requirements: 12 CPUs, 12 GB Memory, 120 GB Disk space.
+        * On Mac OS only hyperkit driver is supported. Docker driver is not supported.
+    
 
   To deploy all TAP packages, your cluster must have at least **8 GB** of RAM across all nodes available to TAP.
   However, we recommend at least **16 GB** of RAM be available to build and deploy applications.
