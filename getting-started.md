@@ -14,7 +14,7 @@ There are two high level workflows described within this document:
 
 ### Prerequisites
 
-In order to take full advantage of this document, please ensure you have followed [Installing Tanzu Application Platform](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-overview.html).
+In order to take full advantage of this document, please ensure you have followed [Installing Tanzu Application Platform](overview.md).
 
 ---
 
@@ -25,15 +25,15 @@ In this section you’ll deploy a simple web-application to the platform, enable
 Before getting started, ensure the following prerequisites are in place:
 
 1. Tanzu Application Platform has been installed on the target Kubernetes cluster
-   (install instructions [here](/install-general.html)
-   and [here](/install.html))
+   (install instructions [here](install-general.md)
+   and [here](/install.md))
 
 2. The Default Supply Chain has been installed on the target Kubernetes cluster
-   (install instructions [here](/install.html#install-default-supply-chain))
+   (install instructions [here](install.md#install-default-supply-chain))
 
 3. Default kube config context is set to the target Kubernetes cluster
 
-4. Follow [these instructions](https://github.com/pivotal/docs-tap/blob/947c6dfeb14ee2673110018ed6f6c8e995a10427/scc/default-supply-chains.md)
+4. Follow [these instructions](scc/default-supply-chains.md)
    to create a service account for pushing images
 
 You can now use the existing namespace to deploy a new workload. If you want to do it in a new namespace then follow these additional instructions
@@ -102,7 +102,7 @@ The VSCode extension enables live updates of your application while it’s runni
 and provides the ability to debug your application directly on the cluster.
 
 Start by installing the pre-requisites and the Tanzu Developer Tools extension by following 
-[these instructions](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-vscode-extension-install.html).
+[these instructions](vscode-extension/install.md).
 
 
 Open the ‘Tanzu Java Web App’ as a project within your VSCode IDE.
@@ -160,9 +160,9 @@ Currently, Spring Boot based applications can be diagnosed using Application Liv
 Make sure that you have installed Application Live View components successfully.
 
 Access Application Live View UI following the instruction
-[here](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.2/docs/GUID-installing.html?hWord=N4IghgNiBcIJIDsDOAXSECWCDmACAggA6GYDGYKGA9grgDIYBuAprgGobMDuIAvkA#access-the-application-live-view-ui-6).
+[here](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.2/docs/GUID-installing.html#access-the-application-live-view-ui-6).
 Select your application to look inside the running application and
-[explore](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.1/docs/GUID-product-features.html)
+[explore](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.2/docs/GUID-product-features.html)
 the various diagnostic capabilities.
 
 
@@ -716,7 +716,7 @@ The Store accepts any CycloneDX input and outputs in both human-readable and mac
 
 #### Running Public Source Code and Image Scans with Policy Enforcement
 
-Follow the instructions [here](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-scst-scan-running-scans.html)
+Follow the instructions [here](scst-scan/running-scans.md)
 to try the following two types of public scans:
 
 1. Source code scan on a public repository
@@ -727,36 +727,42 @@ Both examples include a policy to consider CVEs with Critical severity ratings a
 
 #### Running Private Source Code and Image Scans with Policy Enforcement
 
-Follow the instructions [here](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-scst-scan-samples-private-source.html) to perform a source code scan against a private registry or
-[here](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-scst-scan-samples-private-image.html)
+Follow the instructions [here](scst-scan/samples/private-source.md) to perform a source code scan against a private registry or
+[here](scst-scan/samples/private-image.md)
 to do an image scan on a private image.
 
 
 #### Viewing Vulnerability Reports using Supply Chain Security Tools - Store Capabilities
 
-After completing the scans from the previous step, query the [Supply Chain Security Tools - Store](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-scst-store-overview.html)to view your vulnerability results. The Supply Chain Security Tools - Store is a Tanzu component that stores image, package, and vulnerability metadata about your dependencies. Use the Supply Chain Security Tools - Store CLI, called `insight`, to query metadata that have been submitted to the store after the scan step.
+After completing the scans from the previous step,
+query the [Supply Chain Security Tools - Store](scst-store/overview.md) to view your vulnerability results.
+The Supply Chain Security Tools - Store is a Tanzu component that stores image, package, and vulnerability metadata about your dependencies.
+Use the Supply Chain Security Tools - Store CLI, called `insight`,
+to query metadata that have been submitted to the store after the scan step.
 
-For a complete guide on how to query the store, see [Querying Supply Chain Security Tools - Store](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-scst-store-querying_the_metadata_store.html).
+For a complete guide on how to query the store,
+see [Querying Supply Chain Security Tools - Store](scst-store/querying_the_metadata_store.md).
 
-**NOTE**: You must have the [Supply Chain Security Tools - Store prerequisites](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-scst-store-using_metadata_store.html) in place to be able to query the store successfully.
+> **Note**: You must have the [Supply Chain Security Tools - Store prerequisites](scst-store/using_metadata_store.md)
+in place to be able to query the store successfully.
 
 
 #### Example Supply Chain including Source and Image Scans
 
 One of the out-of-the-box supply chains we are working on for a future release will include image and source code vulnerability scanning and metadata storage into a preset Tanzu Application Platform supply chain. Until then, you can use this example to see how to try this out:
-[Example Supply Chain including Source and Image Scans](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-scst-scan-choreographer.html).
+[Example Supply Chain including Source and Image Scans](scst-scan/choreographer.md).
 
 **Next Steps and Further Information**
 
-* [Configure Code Repositories and Image Artifacts to be Scanned](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-scst-scan-scan-crs.html)
+* [Configure Code Repositories and Image Artifacts to be Scanned](scst-scan/scan-crs.md)
 
-* [Code and Image Compliance Policy Enforcement using Open Policy Agent (OPA)](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-scst-scan-policies.html)
+* [Code and Image Compliance Policy Enforcement Using Open Policy Agent (OPA)](scst-scan/policies.md)
 
-* [How to Create a ScanTemplate](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-scst-scan-create-scan-template.html)
+* [How to Create a ScanTemplate](scst-scan/create-scan-template.md)
 
-* [Viewing and Understanding Scan Status Conditions](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-scst-scan-results.html)
+* [Viewing and Understanding Scan Status Conditions](scst-scan-results.md)
 
-* [Observing and Troubleshooting](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-scst-scan-observing.html)
+* [Observing and Troubleshooting](scst-scan-observing.md)
 
 
 ## Section 5: Advanced Use Cases - Services Journey
@@ -810,16 +816,14 @@ To enable this use case there are few things that have to be done first.
 
 1. Follow the documentation to install Tanzu Application Platform onto a Kubernetes cluster
 
-    * Make sure that when it comes [Installing Part II: Packages
-     (NB: staging docs link)](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-install.html)
+    * Make sure that when it comes [Installing Part II: Packages](install.md)
      that _all_ of the listed packages are installed
 
     * This cluster will henceforth be referred to as the **Workload Cluster**
 
 2. Follow the documentation to install Tanzu Application Platform onto a second, separate Kubernetes cluster
 
-    * This time when it comes to [Installing Part II: Packages
-      (NB: staging docs link)](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-install.html), you only need to install the SCP Toolkit package
+    * This time when it comes to [Installing Part II: Packages](install.md), you only need to install the SCP Toolkit package
 
     * All other packages can be skipped over
 
