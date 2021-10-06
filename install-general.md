@@ -1,4 +1,4 @@
-# <a id='installing'></a> Installing Part I: Cluster Configurations, Prerequisites, EULA, and CLI
+# <a id='installing'></a> Installing Part I: Prerequisites, EULA, and CLI
 
 This document describes the first part of the installation process for Tanzu Application Platform:
 
@@ -38,7 +38,7 @@ The following prerequisites are required to install Tanzu Application Platform:
   
   For this beta release, [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) must be configured so that TAP controller pods may run as root.
   
-* **The Kubernetes CLI, kubectl, v1.19, v1.20 or v1.21, installed and authenticated with administrator rights for your target cluster.
+* **The Kubernetes CLI, kubectl, v1.19, v1.20 or v1.21**, installed and authenticated with administrator rights for your target cluster.
 
 * **[kapp Carvel command line tool](https://github.com/vmware-tanzu/carvel-kapp/releases)** (v0.37.0 or later)
 
@@ -219,7 +219,7 @@ The following prerequisites are required to install Tanzu Application Platform:
         -f https://github.com/fluxcd/source-controller/releases/download/v0.15.4/source-controller.crds.yaml \
         -f https://github.com/fluxcd/source-controller/releases/download/v0.15.4/source-controller.deployment.yaml
         ```
-        We have verified the Tanzu Application Platform repo bundle packages installation with version v0.15.4.
+        We have verified the Tanzu Application Platform repo bundle packages installation with FluxCD source-controller version v0.15.4.
 
 
 
