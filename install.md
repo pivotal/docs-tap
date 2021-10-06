@@ -5,7 +5,7 @@ from the Tanzu Application Platform package repository.
 
 Before you install the packages, ensure that you have completed the prerequisites, configured
 and verified the cluster, accepted the EULA, and installed the Tanzu CLI with any required plugins.
-For information, see [Installing Part I: Prerequisites, Cluster Configurations, EULA, and CLI](install-general.md).
+For information, see [Installing Part I: Prerequisites, EULA, and CLI](install-general.md).
 
 
 ## <a id='install-packages'></a> About Installing Packages
@@ -754,8 +754,9 @@ To install developer conventions:
 
 To install Application Live View:
 
+**Prerequisite**: Convention Service installed on the cluster, see [Install Convention Service](#install-convention-service).
+
 1. Follow the instructions in [Install Packages](#install-packages) above.
-1. Follow the instructions in [Install Convention Service](#install-convention-service).
 1. Gather the values schema.
 1. Create namespace app-live-view to deploy Application Live View components by running
 

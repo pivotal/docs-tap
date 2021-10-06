@@ -5,7 +5,7 @@ This is the table of contents from which the Tanzu Application Platform Document
 - [Tanzu Application Platform v0.2 (Beta-2)](overview.md)
 - [Release Notes](release-notes.md)
 - [Installing Tanzu Application Platform](install-intro.md)
-    - [Installing Part I: Prerequisites, Cluster Configurations, EULA, and CLI](install-general.md)
+    - [Installing Part I: Prerequisites, EULA, and CLI](install-general.md)
     - [Installing Part II: Packages](install.md)
 - [Getting Started with Tanzu Application Platform](getting-started.md)
 - [Troubleshooting Tanzu Application Platform](troubleshooting.md)
