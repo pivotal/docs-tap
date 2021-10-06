@@ -210,21 +210,22 @@ pods may run as root
 
 
 * **FluxCD source-controller**:
-
-     * Create namespace `flux-system`
+    Install FluxCD source-controller using the following procedure.
+    
+     1. Create the namespace `flux-system`.
         
         ```
         kubectl create namespace flux-system
         ```
      
-     * Create clusterrolebinding by running:
+     2. Create the `clusterrolebinding` by running:
 
         ```
         kubectl create clusterrolebinding default-admin \
         --clusterrole=cluster-admin \
         --serviceaccount=flux-system:default
         ```
-     * Install FluxCD Source Controller by running:
+     3. Install FluxCD Source Controller by running:
         ```
         kapp deploy -a flux-source-controller -n flux-system \
         -f https://github.com/fluxcd/source-controller/releases/download/v0.15.4/source-controller.crds.yaml \
