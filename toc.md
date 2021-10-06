@@ -34,7 +34,7 @@ This is the table of contents from which the Tanzu Application Platform Document
         * [Example Supply Chain Choreographer for Tanzu including Source and Image Scans](scst-scan/choreographer.md)
         * [Additional Resources](scst-scan/additional.md)
             * [Configure Code Repositories and Image Artifacts to be Scanned](scst-scan/scan-crs.md)
-            * [Code and Image Compliance Policy Enforcement using Open Policy Agent (OPA)](scst-scan/policies.md)
+            * [Code and Image Compliance Policy Enforcement Using Open Policy Agent (OPA)](scst-scan/policies.md)
             * [How to Create a ScanTemplate](scst-scan/create-scan-template.md)
             * [Viewing and Understanding Scan Status Conditions](scst-scan/results.md)
     * [Supply Chain Security Tools for Tanzu – Store](scst-store/overview.md)
