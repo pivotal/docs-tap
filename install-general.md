@@ -1,11 +1,11 @@
-# <a id='installing'></a> Installing Part I: Prerequisites, Cluster Configurations, EULA, and CLI
+# <a id='installing'></a> Installing Part I: Prerequisites, EULA, and CLI
 
 This document describes the first part of the installation process for Tanzu Application Platform:
 
 + [Prerequisites](#prereqs)
-+ [Set and Verify the Kubernetes Cluster Configurations](#set-and-verify)
 + [Accept the EULAs](#eulas)
 + [Install the Tanzu CLI and Package Plugin](#cli-and-plugin)
+
 
 
 ## <a id='prereqs'></a>Prerequisites
@@ -31,11 +31,17 @@ images
 
     * Azure Kubernetes Service
     * Amazon Elastic Kubernetes Service
-    * kind 
-    If you are using Cloud Native Runtimes, see [Configure Your Local Kind Cluster](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-local-dns.html#configure-your-local-kind-cluster-1)
-        in the Cloud Native Runtimes documentation to configure kind.
+    * Google Kubernetes Engine
+    * kind
+        * Supported only on Linux operating system. Minimum requirements: 12 CPUs, 12 GB Memory, 120 GB Disk space.
+      
+        * If you are using Cloud Native Runtimes, see [Configure Your Local Kind
+        Cluster](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-local-dns.html#configure-your-local-kind-cluster-1)
     * Google Kubernetes Engine (GKE Autopilot clusters do not have required features enabled)
     * minikube
+        * Minimum requirements: 12 CPUs, 12 GB Memory, 120 GB Disk space.
+        * On Mac OS only hyperkit driver is supported. Docker driver is not supported.
+    
 
 * Cluster must have at least **8 GB** of RAM across all nodes available to Tanzu Application 
 Platform. However, we recommend at least **16 GB** of RAM be available to build and deploy 
@@ -46,29 +52,65 @@ applications
   
 * For this beta release, [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) must be configured so that TAP controller 
 pods may run as root
-  
-* **Kubernetes CLI, kubectl** v1.19 or later, installed and authenticated with administrator 
-rights for your target cluster
 
 * **[kapp Carvel command line tool](https://github.com/vmware-tanzu/carvel-kapp/releases)** v0.37.0 or later
+ 
+* **The Kubernetes CLI, kubectl, v1.19, v1.20 or v1.21**, installed and authenticated with administrator rights for your target cluster.
 
-* **kapp-controller** v0.25.0 or later
 
 
+* To set the Kubernetes cluster context:
 
-      Install kapp-controller by running:
+    1. List the existing contexts by running:
+
+        ```
+        kubectl config get-contexts
+        ```
+        For example:
+        ```
+        $ kubectl config get-contexts
+        CURRENT   NAME                                CLUSTER           AUTHINFO                                NAMESPACE
+                aks-repo-trial                      aks-repo-trial    clusterUser_aks-rg-01_aks-repo-trial
+        *       aks-tap-cluster                     aks-tap-cluster   clusterUser_aks-rg-01_aks-tap-cluster
+                tkg-mgmt-vc-admin@tkg-mgmt-vc       tkg-mgmt-vc       tkg-mgmt-vc-admin
+                tkg-vc-antrea-admin@tkg-vc-antrea   tkg-vc-antrea     tkg-vc-antrea-admin
+        ```
+
+    2.  Set the context to the cluster that you want to use for the TAP packages install.
+        For example set the context to the `aks-tap-cluster` context by running:
+
+        ```
+        kubectl config use-context aks-tap-cluster
+        ```
+        For example:
+        ```
+        $ kubectl config use-context aks-tap-cluster
+        Switched to context "aks-tap-cluster".
+        
+* **kapp-controller** v0.25.0 or later:
+
+    * Install kapp-controller by running:
+
       ```
       kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/KC-VERSION/release.yml
       ```
-      Where `KC-VERSION` is the kapp-controller version being installed. Please select v0.25.0+ kapp-controller version from the [Releases page](https://github.com/vmware-tanzu/carvel-kapp-controller/releases).
+      Where `KC-VERSION` is the kapp-controller version being installed.
+
+      Please select v0.25.0+ kapp-controller version for Azure Kubernetes Service, Amazon Elastic Kubernetes Service, kind, and minikube from the [Releases page](https://github.com/vmware-tanzu/carvel-kapp-controller/releases).
+
+      Please select v0.27.0+ kapp-controller version for Google Kubernetes Engine from the [Releases page](https://github.com/vmware-tanzu/carvel-kapp-controller/releases).
 
       For example:
       ```
       kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v0.25.0/release.yml
       ```
-      
+    * Verify kapp-controller is running by running:
+         ```
+         kubectl get pods -A | grep kapp-controller
+         ```
+         Pod status should be Running.
 
-    * To Verify installed kapp-controller version:
+    * (Optinal) To Verify installed kapp-controller version:
       
       1. Get kapp-controller deployment and namespace by running:
          ```
@@ -96,7 +138,7 @@ rights for your target cluster
          ```
 
 
-* **secretgen-controller v0.5.0** or later:
+* **secretgen-controller**:
 
     * Install secretgen-controller by running:
 
@@ -110,8 +152,13 @@ rights for your target cluster
       ```
       kapp deploy -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/download/v0.5.0/release.yml
       ```
+    * Verify secretgen-controller is running by running:
+         ```
+         kubectl get pods -A | grep secretgen-controller
+         ```
+        Pod status should be Running.
 
-    * To Verify installed secretgen-controller version:
+    * (Optinal) To Verify the secretgen-controller version you installed:
 
       1. Get secretgen-controller deployment and namespace by running:
          ```
@@ -139,7 +186,7 @@ rights for your target cluster
 
 
 
-* **cert-manager v1.5.3**:
+* **cert-manager**:
 
     * Install cert-manager by running:
 
@@ -164,7 +211,7 @@ rights for your target cluster
 
 
 
-* **FluxCD source-controller v0.15.4**:
+* **FluxCD source-controller**:
 
      * Create namespace `flux-system`
         
@@ -185,52 +232,8 @@ rights for your target cluster
         -f https://github.com/fluxcd/source-controller/releases/download/v0.15.4/source-controller.crds.yaml \
         -f https://github.com/fluxcd/source-controller/releases/download/v0.15.4/source-controller.deployment.yaml
         ```
+        We have verified the Tanzu Application Platform repo bundle packages installation with FluxCD source-controller version v0.15.4.
 
-
-
-
-## <a id='set-and-verify'></a> Set and Verify the Kubernetes Cluster Configurations
-
-To set and verify the Kubernetes cluster configurations:
-
-1. List the existing contexts by running:
-
-    ```
-    kubectl config get-contexts
-    ```
-    For example:
-    ```
-    $ kubectl config get-contexts
-    CURRENT   NAME                                CLUSTER           AUTHINFO                                NAMESPACE
-              aks-repo-trial                      aks-repo-trial    clusterUser_aks-rg-01_aks-repo-trial
-    *         aks-tap-cluster                     aks-tap-cluster   clusterUser_aks-rg-01_aks-tap-cluster
-              tkg-mgmt-vc-admin@tkg-mgmt-vc       tkg-mgmt-vc       tkg-mgmt-vc-admin
-              tkg-vc-antrea-admin@tkg-vc-antrea   tkg-vc-antrea     tkg-vc-antrea-admin
-    ```
-
-2.  Set the context to the cluster that you want to use for the TAP packages install.
-    For example set the context to the `aks-tap-cluster` context by running:
-
-    ```
-    kubectl config use-context aks-tap-cluster
-    ```
-    For example:
-    ```
-    $ kubectl config use-context aks-tap-cluster
-    Switched to context "aks-tap-cluster".
-    ```
-
-3. Verify kapp-controller is running by running:
-   ```
-   kubectl get pods -A | grep kapp-controller
-   ```
-   Pod status should be Running.
-
-4. Verify secretgen-controller is running by running:
-   ```
-   kubectl get pods -A | grep secretgen-controller
-   ```
-   Pod status should be Running.
 
 
 ## Packages in Tanzu Application Platform v0.2

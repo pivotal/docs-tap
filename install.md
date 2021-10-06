@@ -5,7 +5,7 @@ from the Tanzu Application Platform package repository.
 
 Before you install the packages, ensure that you have completed the prerequisites, configured
 and verified the cluster, accepted the EULA, and installed the Tanzu CLI with any required plugins.
-For information, see [Installing Part I: Prerequisites, Cluster Configurations, EULA, and CLI](install-general.md).
+For information, see [Installing Part I: Prerequisites, EULA, and CLI](install-general.md).
 
 
 ## <a id='install-packages'></a> About Installing Packages
@@ -118,11 +118,9 @@ To install any package from the Tanzu Application Platform package repository:
     ```bash
     tanzu package available list PACKAGE-NAME --namespace tap-install
     ```
-    Where:
-
-     + `PACKAGE-NAME` is the name of the package listed in step 5 of
+    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
      [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
-    For example:
+     For example:
 
     ```bash
     $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
@@ -136,10 +134,10 @@ To install any package from the Tanzu Application Platform package repository:
     ```bash
     tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
     ```
+    Where:
 
-     Where:
-     + `PACKAGE-NAME` is same as step 1 above.
-     + `VERSION-NUMBER` is the version of the package listed in step 1 above.
+    - `PACKAGE-NAME` is same as step 1 above.
+    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
 
     For example:
 
@@ -207,12 +205,16 @@ To install Cloud Native Runtimes:
 
     **Note**: For most installations, you can leave the `cnr-values.yaml` empty and use the default values.
 
-    If you are running on a single-node cluster like kind or minikube, set the
-`provider: local` option. This option reduces resource requirements by using a HostPort service instead
-of a LoadBalancer and reduces the number of replicas. You may also want to follow the [local kind configuration guide for Cloud Native Runtimes](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-local-dns.html#configure-your-local-kind-cluster-1).
+    If you are running on a single-node cluster like kind or minikube, set the `provider: local`
+    option. This option reduces resource requirements by using a HostPort service instead of a
+    LoadBalancer and reduces the number of replicas.
+
+    You may also want to follow the
+    [local kind configuration guide for Cloud Native Runtimes](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-local-dns.html#configure-your-local-kind-cluster-1).
     If you are running on a multi-node cluster, do not set `provider`.
 
     If your environment has Contour packages present, they might conflict with the Cloud Native Runtimes installation.
+
     For information on how to prevent conflicts, see [Installing Cloud Native Runtimes for Tanzu with an Existing Contour Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-contour.html) in the Cloud Native Runtimes documentation.
     Then, in the `cnr-values.yaml` file, specify values for `ingress.reuse_crds`,
     `ingress.external.namespace`, and `ingress.internal.namespace` as appropriate.
@@ -571,11 +573,12 @@ To install Tanzu Build Service using the Tanzu CLI:
     tanzunet_password: TANZUNET-PASSWORD
     ```
     Where:
-        * `EXAMPLE-REGISTRY` is the URL of the Docker registry.
-        * `PATH-TO-INSTALL` is the path to the registry install location. `kp_default_repository` is the registry location where all Tanzu Build Services dependencies and builder images are written.
-        * `REGISTRY-USERNAME` and `REGISTRY-PASSWORD` are the username and password for the registry. The install requires a `kp_default_repository_username` and `kp_default_repository_password` in order to write to the repository location.
-        * `TANZUNET-USERNAME` and `TANZUNET-PASSWORD` are the email address and password that you use to log in to Tanzu Network. The Tanzu Network credentials allow for configuration of the Dependencies Updater.  This resource accesses and installs the build dependencies (buildpacks and stacks) Tanzu Build Service needs on your Cluster.  It also keeps these dependencies up-to-date as new versions are released on Tanzu Network.
-        * **Optional values**: There are optional values not included in this sample file that provide additional configuration for production use cases. For more information, see [Installing Tanzu Build Service](https://docs.pivotal.io/build-service/installing.html).
+
+    - `EXAMPLE-REGISTRY` is the URL of the Docker registry.
+    - `PATH-TO-INSTALL` is the path to the registry install location. `kp_default_repository` is the registry location where all Tanzu Build Services dependencies and builder images are written.
+    - `REGISTRY-USERNAME` and `REGISTRY-PASSWORD` are the username and password for the registry. The install requires a `kp_default_repository_username` and `kp_default_repository_password` in order to write to the repository location.
+    - `TANZUNET-USERNAME` and `TANZUNET-PASSWORD` are the email address and password that you use to log in to Tanzu Network. The Tanzu Network credentials allow for configuration of the Dependencies Updater. This resource accesses and installs the build dependencies (buildpacks and stacks) Tanzu Build Service needs on your Cluster.  It also keeps these dependencies up-to-date as new versions are released on Tanzu Network.
+    - **Optional values**: There are optional values not included in this sample file that provide additional configuration for production use cases. For more information, see [Installing Tanzu Build Service](https://docs.pivotal.io/build-service/installing.html).
 
 1. Install the package by running:
 
@@ -605,7 +608,7 @@ To install Tanzu Build Service using the Tanzu CLI:
 1. (Optional) Run the following command to verify the clusterbuilders created by the Tanzu Build Service install:
 
     ```bash
-    tanzu package installed get buildservice.tanzu.vmware.com -n tap-install
+    tanzu package installed get tbs -n tap-install
     ```
 
 ## <a id='install-scc'></a> Install Supply Chain Choreographer
@@ -673,15 +676,13 @@ Added installed package 'cartographer' in namespace 'default'
 
     Sample `default-supply-chain-values.yaml` for Default Supply Chain:
 
-
-   ```yaml
-   ---
-   registry:
-     server: REGISTRY_SERVER
-     repository: REGISTRY_REPOSITORY
-   service_account: service-account
-   templates_namespace: tap-install
-   ```
+    ```yaml
+    ---
+    registry:
+      server: REGISTRY_SERVER
+      repository: REGISTRY_REPOSITORY
+    service_account: service-account
+    ```
 
 1. Export a secret for storing container images to all namespaces:
 
@@ -689,9 +690,10 @@ Added installed package 'cartographer' in namespace 'default'
     tanzu imagepullsecret add registry-credentials --registry <REGISTRY_SERVER> --username <REGISTRY_USERNAME> --password <REGISTRY_PASSWORD> --export-to-all-namespaces || true
     ```
     Where:
-    * `REGISTRY_SERVER` is the server of the registry.
-    * `REGISTRY_USERNAME` is the username for the registry.
-    * `REGISTRY_PASSWORD` is the password for the registry.
+
+    - `REGISTRY_SERVER` is the server of the registry.
+    - `REGISTRY_USERNAME` is the username for the registry.
+    - `REGISTRY_PASSWORD` is the password for the registry.
 
 1. Install the package by running:
 
@@ -752,8 +754,9 @@ To install developer conventions:
 
 To install Application Live View:
 
+**Prerequisite**: Convention Service installed on the cluster, see [Install Convention Service](#install-convention-service).
+
 1. Follow the instructions in [Install Packages](#install-packages) above.
-1. Follow the instructions in [Install Convention Service](#install-convention-service).
 1. Gather the values schema.
 1. Create namespace app-live-view to deploy Application Live View components by running
 
@@ -915,13 +918,13 @@ To install Supply Chain Security Tools - Store:
     Sample `scst-store-values.yaml` for Supply Chain Security Tools - Store:
 
     ```yaml
-    db_password: "password0123456"
+    db_password: "PASSWORD-0123"
     app_service_type: "LoadBalancer"
     ```
+    Where `PASSWORD-0123` is the same password used between deployments. For more information, see [Known Issues - Persistent Volume Retains Data](scst-store/known_issues.md#persistent-volume-retains-data).
 
-    * `db_password` should be significantly complex. You must use the same password between deployments. For more information about this known issue, see [Known Issues - Persistent Volume Retains Data](scst-store/known_issues.md#persistent-volume-retains-data).
-    * `app_service_type` has been set to `LoadBalancer`.
-    If your environment does not support `LoadBalancer`, omit this line and it will use the default value `NodePort`.
+    If your environment does not support `LoadBalancer`, omit the `app_service_type` line so that
+    the default value `NodePort` is used instead.
 
 1. Install the package by running:
 
@@ -957,15 +960,18 @@ To install Supply Chain Security Tools - Store:
 
 
 ## <a id='install-scst-sign'></a> Install Supply Chain Security Tools - Sign
+
 **Prerequsites**: As part of the install instructions, we will ask you to provide a cosign public key to use to validate signed images. We will provide an example cosign public key that will be able to validate an image from cosign, but if you wish to provide your own key and images, you can follow the [cosign quick start guide](https://github.com/sigstore/cosign#quick-start) to generate your own keys and sign an image.
 
 To install Supply Chain Security Tools - Sign:
 
 1. Follow the instructions in [Install Packages](#install-packages) above.
 1. Gather the values schema
+
     ```bash
     tanzu package available get image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.0 --values-schema --namespace tap-install
     ```
+
     For example:
     ```bash
     $ tanzu package available get image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.0 --values-schema --namespace tap-install
@@ -975,7 +981,6 @@ To install Supply Chain Security Tools - Sign:
                                            any patterns in the image policy configuration.
                                            Set to true to allow images that do not match any patterns into
                                            the cluster with a warning.
-
     ```
 
 1. Create a file named `scst-sign-values.yaml` with a `warn_on_unmatched` property.
@@ -996,6 +1001,7 @@ To install Supply Chain Security Tools - Sign:
         with `warn_on_unmatched` set to `false`.
 
 1. Install the package:
+
     ```bash
     tanzu package install image-policy-webhook \
       --package-name image-policy-webhook.signing.run.tanzu.vmware.com \
@@ -1003,6 +1009,7 @@ To install Supply Chain Security Tools - Sign:
       --namespace tap-install \
       --values-file scst-sign-values.yaml
     ```
+
     For example:
     ```bash
     $ tanzu package install image-policy-webhook \
@@ -1027,6 +1034,7 @@ To install Supply Chain Security Tools - Sign:
    After you run the code above, the webhook is running.
 
 1. Create a service account named `registry-credentials` in the `image-policy-system` namespace. Run one of the following code options.
+
     * **If the images and signatures are in public registries:** No additional configuration is needed. Run:
         ```console
         cat <<EOF | kubectl apply -f -
@@ -1051,7 +1059,8 @@ To install Supply Chain Security Tools - Sign:
         EOF
         ```
         Where `SECRET-1` is a secret that allows the webhook to access the private registry.
-        This secret can be created using the following command:
+        You can specify existing `imagePullSecrets` that are part of the `image-policy-system` namespace,
+        or you can create new ones by using the following command:
         ```bash
         kubectl create secret docker-registry SECRET-1 --docker-server=<server> --docker-username=<username> --docker-password=<password> --namespace image-policy-system
         ```
@@ -1138,7 +1147,7 @@ To install Supply Chain Security Tools - Sign:
             For example:
             ```bash
             $ kubectl run bb --image=busybox --restart=Never
-            Warning: busybox didn't match any pattern in policy. Pod will be created as WarnOnUnmatched flag is true
+            Warning: busybox didn\'t match any pattern in policy. Pod will be created as WarnOnUnmatched flag is true
             pod/bb created
             ```
         1. Verify a signed image which does not validate with a configured public key will not launch
