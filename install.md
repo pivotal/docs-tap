@@ -1354,7 +1354,7 @@ If you want to change from the default values, use the Scan Controller instructi
 To install the API portal:
 
 1. Follow the instructions in [Install Packages](#install-packages) above.
-1. Check what versions of API portal are available to install by running:
+2. Check what versions of API portal are available to install by running:
 
     ```bash
     tanzu package available list -n tap-install api-portal.tanzu.vmware.com
@@ -1369,17 +1369,7 @@ To install the API portal:
       api-portal.tanzu.vmware.com  1.0.2             2021-09-27T00:00:00Z
     ```
 
-3. Create a container registry secret named `api-portal-image-pull-secret` by running:
-
-    ```console
-    kubectl create secret docker-registry api-portal-image-pull-secret -n tap-install \
-     --docker-server=registry.tanzu.vmware.com \
-     --docker-username=TANZU-NET-USER \
-     --docker-password=TANZU-NET-PASSWORD
-    ```
-    Where `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for Tanzu Network.
-
-1. Install API portal by running:
+3. Install API portal by running:
 
     ```console
     tanzu package install api-portal -n tap-install -p api-portal.tanzu.vmware.com -v 1.0.2
@@ -1403,7 +1393,7 @@ To install the API portal:
     Added installed package 'api-portal' in namespace 'tap-install'
     ```
 
-5. For more information about API portal, see [API portal for VMware Tanzu](https://docs.pivotal.io/api-portal).
+4. For more information about API portal, see [API portal for VMware Tanzu](https://docs.pivotal.io/api-portal).
 
 
 ## <a id='install-scp-toolkit'></a> Install Services Control Plane (SCP) Toolkit
