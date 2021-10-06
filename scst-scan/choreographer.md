@@ -38,23 +38,30 @@ REGISTRY_PROJECT=
 
 ## Cluster-Wide Resources
 
+### Tanzu Network Image Pull Secret
+
+The following secrets will be used by each product to pull from Tanzu Network. This secret will be replicated into necessary namespaces where it will overwrite the empty placeholder secrets that were defined by each product.
+
+```bash
+tanzu imagepullsecret add registry-credentials \
+  --registry ${REGISTRY_SERVER} \
+  --username ${REGISTRY_USERNAME} \
+  --password "${REGISTRY_PASSWORD}" \
+  --export-to-all-namespaces
+
+tanzu imagepullsecret add image-secret \
+  --registry ${REGISTRY_SERVER} \
+  --username ${REGISTRY_USERNAME} \
+  --password "${REGISTRY_PASSWORD}" \
+  --export-to-all-namespaces
+```
+
 ### Tanzu Build Service
 
 Deploy the following to configure Tanzu Build Service to build an image and push it to a registry. `registry-credentials` is an empty placeholder secret that will be populated with the credentials used to access the registry.
 
 ```bash
 kubectl apply -f - -o yaml << EOF
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: registry-credentials
-  annotations:
-    secretgen.carvel.dev/image-pull-secret: ""
-type: kubernetes.io/dockerconfigjson
-data:
-  .dockerconfigjson: e30K
-
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -122,17 +129,6 @@ What is defined here other than the placeholder secret is a Scan Policy indicati
 ```bash
 kubectl apply -f - -o yaml << EOF
 ---
-apiVersion: v1
-kind: Secret
-metadata:
-  name: image-secret
-  annotations:
-    secretgen.carvel.dev/image-pull-secret: ""
-type: kubernetes.io/dockerconfigjson
-data:
-  .dockerconfigjson: e30K
-
----
 apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
 kind: ScanPolicy
 metadata:
@@ -163,24 +159,6 @@ spec:
 
     isCompliant = isSafe(input.currentVulnerability)
 EOF
-```
-
-### Tanzu Network Image Pull Secret
-
-The following secrets will be used by each product to pull from Tanzu Network. This secret will be replicated into necessary namespaces where it will overwrite the empty placeholder secrets that were defined by each product.
-
-```bash
-tanzu imagepullsecret add registry-credentials \
-  --registry ${REGISTRY_SERVER} \
-  --username ${REGISTRY_USERNAME} \
-  --password "${REGISTRY_PASSWORD}" \
-  --export-to-all-namespaces
-
-tanzu imagepullsecret add image-secret \
-  --registry ${REGISTRY_SERVER} \
-  --username ${REGISTRY_USERNAME} \
-  --password "${REGISTRY_PASSWORD}" \
-  --export-to-all-namespaces
 ```
 
 ## App Operator Deployments for Defining the Supply Chain
