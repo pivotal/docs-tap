@@ -25,3 +25,9 @@ Configures the following modifications to workloads for Live Update and Debug:
 - Debug
 
   - Set breakpoints to help you debug your running application on your cluster.
+
+---
+
+## Installing
+
+Developer Conventions is released as a Tanzu Package. Please follow the instructions [here](../install.md).
