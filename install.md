@@ -1181,7 +1181,7 @@ Ensure both are installed.
 To install Supply Chain Security Tools - Scan (Scan Controller):
 
 **Prerequisite**: Supply Chain Security Tools - Store installed on the cluster.
-See [Install Supply Chain Security Tools - Store](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-install.html#install-supply-chain-security-tools--store-15).
+See [Install Supply Chain Security Tools - Store](#install-scst-store).
 
 1. Follow the instructions in [Install Packages](#install-packages) above.
 

@@ -73,7 +73,7 @@ For more information, refer to [Observing and Troubleshooting](observing.md).
 kubectl apply -f policy-enforcement-example.yaml
 ```
 
-### View the Results
+### View the Scan Results
 Once the scan has completed, perform:
 ```bash
 kubectl describe sourcescan policy-enforcement-example
@@ -205,7 +205,7 @@ For more information about setting up a watch, see [Observing and Troubleshootin
 kubectl apply -f image-policy-enforcement-example.yaml
 ```
 
-### View the Results
+### View the Scan Results
 ```bash
 kubectl describe imagescan image-policy-enforcement-example
 ```
