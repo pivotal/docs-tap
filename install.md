@@ -699,7 +699,7 @@ Added installed package 'cartographer' in namespace 'default'
 1. Export a secret for storing container images to all namespaces:
 
     ```console
-    tanzu imagepullsecret add registry-credentials --registry <REGISTRY_SERVER> --username <REGISTRY_USERNAME> --password <REGISTRY_PASSWORD> --export-to-all-namespaces || true
+    tanzu imagepullsecret add registry-credentials --registry <REGISTRY_SERVER> --username <REGISTRY_USERNAME> --password <REGISTRY_PASSWORD> --export-to-all-namespaces --namespace tap-install
     ```
     Where:
 
@@ -1181,7 +1181,7 @@ Ensure both are installed.
 To install Supply Chain Security Tools - Scan (Scan Controller):
 
 **Prerequisite**: Supply Chain Security Tools - Store installed on the cluster.
-See [Install Supply Chain Security Tools - Store](#install-scst-store).
+See [Install Supply Chain Security Tools - Store](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-install.html#install-supply-chain-security-tools--store-15).
 
 1. Follow the instructions in [Install Packages](#install-packages) above.
 
