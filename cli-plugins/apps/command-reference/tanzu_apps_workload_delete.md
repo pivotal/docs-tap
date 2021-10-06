@@ -1,6 +1,6 @@
-## tanzu apps workload delete
+## Tanzu Apps Workload Delete
 
-Delete workload(s)
+Delete workload(s).
 
 ### Synopsis
 
@@ -32,7 +32,7 @@ tanzu apps workload delete --all
   -y, --yes                     accept all prompts
 ```
 
-### Options inherited from parent commands
+### Options Inherited from Parent Commands
 
 ```
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
@@ -41,7 +41,7 @@ tanzu apps workload delete --all
   -v, --verbose int32     number for the log level verbosity (default 1)
 ```
 
-### SEE ALSO
+### See Also
 
 * [tanzu apps workload](tanzu_apps_workload.md)	 - Workload lifecycle management
 
