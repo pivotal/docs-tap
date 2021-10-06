@@ -203,21 +203,21 @@ To install Cloud Native Runtimes:
     provider: local
     ```
 
-    **Note**: For most installations, you can leave the `cnr-values.yaml` empty and use the default values.
+    **Note**: For most installations, you can leave the `cnr-values.yaml` empty, and use the default values.
 
-    If you are running on a single-node cluster like kind or minikube, set the `provider: local`
+    If you are running on a single-node cluster, like kind or minikube, set the `provider: local`
     option. This option reduces resource requirements by using a HostPort service instead of a
-    LoadBalancer and reduces the number of replicas.
+    LoadBalancer, and reduces the number of replicas.
 
-    You may also want to follow the
+    For more information about using Cloud Native Runtimes with kin, see
     [local kind configuration guide for Cloud Native Runtimes](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-local-dns.html#configure-your-local-kind-cluster-1).
     If you are running on a multi-node cluster, do not set `provider`.
 
-    If your environment has Contour packages present, they might conflict with the Cloud Native Runtimes installation.
+    If your environment has Contour packages, Contour might conflict with the Cloud Native Runtimes installation.
 
     For information on how to prevent conflicts, see [Installing Cloud Native Runtimes for Tanzu with an Existing Contour Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-contour.html) in the Cloud Native Runtimes documentation.
-    Then, in the `cnr-values.yaml` file, specify values for `ingress.reuse_crds`,
-    `ingress.external.namespace`, and `ingress.internal.namespace` as appropriate.
+    Specify values for `ingress.reuse_crds`,
+    `ingress.external.namespace`, and `ingress.internal.namespace` in the `cnr-values.yaml` file.
 
 1. Install the package by running:
 
