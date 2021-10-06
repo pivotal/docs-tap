@@ -1,6 +1,6 @@
-## tanzu apps cluster-supply-chain
+## Tanzu Apps cluster-supply-chain
 
-patterns for building and configuring workloads
+Patterns for building and configuring workloads.
 
 ### Options
 
@@ -8,7 +8,7 @@ patterns for building and configuring workloads
   -h, --help   help for cluster-supply-chain
 ```
 
-### Options inherited from parent commands
+### Options Inherited from Parent Commands
 
 ```
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
@@ -17,7 +17,7 @@ patterns for building and configuring workloads
   -v, --verbose int32     number for the log level verbosity (default 1)
 ```
 
-### SEE ALSO
+### See Also
 
 * [tanzu apps](tanzu_apps.md)	 - Applications on Kubernetes
 * [tanzu apps cluster-supply-chain list](tanzu_apps_cluster-supply-chain_list.md)	 - table listing of cluster supply chains
