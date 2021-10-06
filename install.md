@@ -752,8 +752,9 @@ To install developer conventions:
 
 To install Application Live View:
 
+**Prerequisite**: Convention Service installed on the cluster, see [Install Convention Service](#install-convention-service).
+
 1. Follow the instructions in [Install Packages](#install-packages) above.
-1. Follow the instructions in [Install Convention Service](#install-convention-service).
 1. Gather the values schema.
 1. Create namespace app-live-view to deploy Application Live View components by running
 
