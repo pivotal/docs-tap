@@ -832,141 +832,172 @@ Now we have 2 Kubernetes clusters
 
 Now let us see the different usecases where SCP toolkit makes the Services Journey easy.
 
+## Use Case 1 - **Binding an App Workload to a Service Resource on a single cluster**
 
-## Use Case 1 - Replicate a Kubernetes Secret between 2 Kubernetes Clusters.
+Most applications require backing services such as Databases, Queues, Caches, etc. in order to run successfully. 
+This first use case demonstrates how it is possible to bind such a service to an Application Workload in Tanzu Application Platform. We will be using the RabbitMQ Cluster Operator for Kubernetes for this demonstration along with a very basic sample application that depends on RabbitMQ.
 
-To replicate secrets between 2 clusters (say from Services Cluster to Workload Cluster) we 
-1. Create a Resource of type  `SecretExport` in the Services Cluster. `SecretExport` is a namespaced resource indicating that the named Secret will be exported.
+To begin, the RabbitMQ Cluster Operator will be installed and running on the same Kubernetes cluster as Tanzu Application Platform. We will then see how it is possible to use one of the capabilities of the SCP Toolkit to move the Operator onto a separate, dedicated “Service” cluster, while still allowing the service to be consumed from the application “Workload” cluster.
 
+### Steps
+
+Let’s start by playing the role of a Service Operator, who is responsible for installing the RabbitMQ Cluster Operator onto the cluster:
+
+1. Install the RabbitMQ Operator
     ```
-    # postgres-secret-export.yaml
-    apiVersion: replication.services.tanzu.vmware.com/v1alpha1
-    kind: SecretExport
+    kapp -y deploy --app rmq-operator --file https://raw.githubusercontent.com/rabbitmq/cluster-operator/lb-binding/hack/deploy.yml
+    ``` 
+2. Next, we will need to create a ClusterRole that grants relevant permissions to the ServiceBinding controller. Note that while this is a manual step at the moment, we are planning to automate this step in the near future.
+
+    ```yaml
+    #service-binding-rmq.yaml
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRole
     metadata:
-      name: small-postgres-23.status.binding.name
-      namespace: project-1
+      name: service-binding-rmq
       labels:
-        # The following labels will be applied automatically
-        # to help with filtering and searching of SecretExport resources
-        secret-owner-group: sql.tanzu.vmware.com
-        secret-owner-version: v1
-        secret-owner-kind: Postgres
-        secret-owner-name: small-postgres-23
-        secret-owner-uid: cafe0123d09e
-        monitor-binding-uid: 0ff1ceca5cade
-    spec:
-      secret:
-        # The name of the secret in the current namespace to be replicated 
-        name: pg-binding
-      serviceAccount:
-        # The name of the service account in the current namespace that will be used for replication
-        name: upstream-replication-sa
-
+        servicebinding.io/controller: "true"
+    rules:
+    - apiGroups: ["rabbitmq.com"]
+      resources: ["rabbitmqclusters"]
+      verbs: ["get", "list", "watch"]
     ```
     ```
-    kubectl apply -f postgres-secret-export.yaml
+    kubectl apply -f service-binding-rmq.yaml
     ```
 
-2. Create a Resource of type `SecretImport` in the **Workload cluster** so that secret can be imported from Services Cluster.
-Currently, the namespace on the Service Cluster has to match the namespace on the Workload Cluster.
+3. Ensure that the namespace is enabled to install packages so that  Cartographer Workloads can be created in it. See this [documentation](install.md#-set-up-developer-namespaces-to-use-installed-packages).
 
-    ```
-    # postgres-secret-import.yaml
-    apiVersion: replication.services.tanzu.vmware.com/v1alpha1
-    kind: SecretImport
+4. Let’s now switch hats to the Application Operator role and create a RabbitmqCluster instance we can use to bind to our application workload.
+    ```yaml
+    #rmq-1.yaml
+    ---
+    apiVersion: rabbitmq.com/v1beta1
+    kind: RabbitmqCluster
     metadata:
-      namespace: project-1
-      name: small-postgres-23.status.binding.name
-      labels:
-        # The following labels will be applied automatically
-        # to help with filtering and searching of SecretImport resources
-        secret-owner-group: sql.tanzu.vmware.com
-        secret-owner-version: v1
-        secret-owner-kind: Postgres
-        secret-owner-name: small-postgres-23
-        secret-owner-uid: cafe0123d09e
-        monitor-binding-uid: 0b5e55ed90dde55
-    spec:
-      secret:
-        # The name of the secret in the current namespace to be replicated 
-        name: dumbo
-      remoteKubeconfig:
-        # The name of a secret in the current namespace holding a kubeconfig for the Service Cluster
-        name: energy-source
+      name: rmq-1
+    ```
+    ```
+    kubectl apply -f rmq-1.yaml
+    ```
+5. Next, let’s create our application Workload binding to our referenced Rabbitmqcluster instance.
+    ```
+    tanzu apps workload create rmq-sample-app --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch main --type web --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:rmq-1"
+    ```
+6. Once the workload has been built and is running you can confirm it is up and running by grabbing the  grab the web-app URL
+    ```
+    tanzu apps workload get rmq-sample-app
+    ```
+7. Visit the URL and confirm the app is working by refreshing the page and noting the new message IDs.
+
+## Use Case 2 - **Binding an App Workload to a Service Resource across multiple clusters**
+
+This use case is similar to the above in that we will be binding a sample application workload to a RabbitMQ cluster resource, however this time round the RabbitMQ Cluster Operator will be running on a completely separate kubernetes cluster. The Workloads need not know where the service instances are running. This enables decoupling of Workloads and Services thus protecting Workloads from Day2 operations in the services cluster.
+
+### Prerequisites
+
+There are a couple of prerequisites for this particular use case, namely that you will need a second, separate kubernetes cluster. In order to get a second cluster setup:
+
+- Follow the documentation to install Tanzu Application Platform onto a second, separate Kubernetes cluster. We will use this as our Services Cluster.
+  -  This new cluster MUST allow LoadBalanced services to be created.
+  -  This time when it comes to Installing Part II: Packages, you only need to install the SCP Toolkit package 
+  - All other packages can be skipped over
+- You will also need to uninstall the RabbitMQ Cluster Operator from your Tanzu Application Platform cluster if you followed the steps in the previous section.
+- Download and install the kubectl-scp plugin from SCP Toolkit Tanzu Network Page. To install the plugin you must place it in your PATH and ensure it is executable. For example:
+  ```
+  sudo cp path/to/kubectl-scp /usr/local/bin/kubectl-scp
+  sudo chmod +x /usr/local/bin/kubectl-scp
+  ```
+  *Note:* This plugin is experimental and likely to be replaced by a Tanzu CLI plugin in the near future.
+
+  In summary the prerequisite setup for this particular use case is as follows:
+  1. “Workload” Cluster with all of the TAP packages installed
+      -  And confirmation that the Rabbitmq Cluster Operator is not installed on this cluster.
+  2. “Service” Cluster with only the scp-toolkit package installed.
+  3. The kubectl-scp plugin installed
+ 
+### Steps
+
+*Note*: The following steps have placeholder values `WORKLOAD_CONTEXT` and `SERVICE_CONTEXT` that you will need to update accordingly.
+
+1. Playing the Service Operator role, Install RabbitMQ Operator in the Services Cluster using kapp. Note that the Operator will not be installed in Workload Cluster, but developers will create RabbitMQ service instances from Workload Cluster in the last step.
 
     ```
-
-    ```
-    kubectl apply -f postgres-secret-export.yaml
-    ```
-
-With the above 2 steps the secret will be replicated from **Services Cluster** to **Workload Cluster**.
-There are other APIs available in the toolkit that lets you automatically set up replication of the
-specified secrets for every service instance of a given type (using `ClusterResourceImportMonitor` and `ClusterResourceExportMonitor`).Additionally, `ResourceImportMonitorBinding` and `ResourceExportMonitorBinding` are used to enable automatic replication in a given namespace,
-
-## Use Case 2 - Create RabbitMQ service instances in the Workload Cluster (While RabbitMQ Operator is actually installed in a different Services Cluster).
-
-In this use case we enable developers in different Kubernetes clusters to create RabbitMQ service instances while the RabbitMQ Operator and service instances are actually maintained in a different Services Cluster. The Workloads need not know where the service instances are running. This enables decoupling of Workloads and Services thus protecting Workloads from Day2 operations in the services cluster.
-
-1. Install RabbitMQ Operator in **Services Cluster** using `kapp`. Note that the Operator will not be installed in **Workload Cluster**, but developers will create RabbitMQ service instances from **Workload Cluster** in the last step.
-
-    ```
-    kapp --kubeconfig-context kind-service -y deploy --app rmq-operator \
-        --file https://raw.githubusercontent.com/rabbitmq/cluster-operator/lb-binding/hack/deploy.yml
-    ```
-    You can verify that the Operator has been installed with the following:
-    
-    ```
-     kubectl --context=kind-service get crds rabbitmqclusters.rabbitmq.com
+    kapp -y deploy --app rmq-operator \
+        --file https://raw.githubusercontent.com/rabbitmq/cluster-operator/lb-binding/hack/deploy.yml  --kubeconfig-context SERVICE_CONTEXT
     ```
 
-2. Next we will federate the rabbitmq.com/v1beta1 API Group into the Application Workload Cluster. 
-The act of API federation can be split into two halves - projection and replication.
-Projection applies to custom API Groups whereas replication applies to core Kubernetes resources (such as Secrets).
-Before federating we will need to create a pair of target namespaces where instances of RabbitmqCluster will be created.
-For now, the namespace name needs to be identical in the Application Workload and Service Cluster.
+2. You can verify that the Operator has been installed with the following:
+    ```
+     kubectl --context SERVICE_CONTEXT get crds rabbitmqclusters.rabbitmq.com
+    ```
+3. Next we will federate the rabbitmq.com/v1beta1 API Group into the Application Workload Cluster. The act of API federation can be split into two halves - projection and replication. Projection applies to custom API Groups whereas replication applies to core Kubernetes resources (such as Secrets). Before federating we will need to create a pair of target namespaces where instances of RabbitmqCluster will be created. For now, the namespace name needs to be identical in the Application Workload and Service Cluster.
 
     ```
-    kubectl --context kind-workload create namespace my-project-1
-    kubectl --context kind-service create namespace my-project-1
+    kubectl --context WORKLOAD_CONTEXT create namespace my-project-1
+    kubectl --context SERVICE_CONTEXT create namespace my-project-1
     ```
+4. Ensure that the namespace is enabled to install packages so that  Cartographer Workloads can be created in it. See this [documentation](install.md#-set-up-developer-namespaces-to-use-installed-packages).
 
-3. Federate using `kubectl-scp` plugin
-
+5. Federate using `kubectl-scp` plugin.
     ```
     kubectl scp federate \
-      --workload-kubeconfig-context=kind-workload \
-      --service-kubeconfig-context=kind-service \
+      --workload-kubeconfig-context=WORKLOAD_CONTEXT \
+      --service-kubeconfig-context=SERVICE_CONTEXT \
       --namespace=my-project-1 \
       --api-group=rabbitmq.com \
       --api-version=v1beta1 \
       --api-resource=rabbitmqclusters
-
     ```
-4. Make RabbitMQ discoverable in **Workload Cluster** so that developers can create RabbitMQ clusters.
+6. Make RabbitMQ discoverable in Workload Cluster so that developers can create RabbitMQ clusters.
 
     ```
     kubectl scp make-discoverable \
-      --workload-kubeconfig-context=kind-workload \
+      --workload-kubeconfig-context=WORKLOAD_CONTEXT \
       --api-group=rabbitmq.com \
       --api-resource-kind=RabbitmqCluster
-
     ```
+7. Now we will switch hats to the Application Developer. In the Workload Cluster create a service instance of RabbitMQ.
 
-5. In the **Workload Cluster** create service instance of RabbitMQ
-
-    ```
+    ```yaml
     # rabbitmq-cluster.yaml
     ---
     apiVersion: rabbitmq.com/v1beta1
     kind: RabbitmqCluster
     metadata:
       name: example-rabbitmq-cluster-1
+    spec:
+      service:
+        type: LoadBalancer
+    ```
+    ```
+    kubectl --context WORKLOAD_CONTEXT -n my-project-1 apply -f rabbitmq-cluster.yaml
+    ```
 
+8. Confirm that the RabbitmqCluster resource reconciles successfully from the Workload cluster:
     ```
+    kubectl --context WORKLOAD_CONTEXT -n my-project-1 get -f rabbitmq-cluster.yaml
     ```
-    kubectl --context kind-workload -n my-project-1 apply -f rabbitmq-cluster.yaml
+9. See that no rabbit pods are running in the Workload cluster:
     ```
+    kubectl --context WORKLOAD_CONTEXT -n my-project-1 get pods
+    ```
+10. But that they are running in the service cluster:
+    ```
+    kubectl --context SERVICE_CONTEXT -n my-project-1 get pods
+    ```
+11. The remaining steps are now exactly the same as the single cluster use case above - we simply need to create an application workload in Workload cluster but this time we referenced our API Projected Rabbitmq instance.
+    ```
+    tanzu apps workload create -n my-project-1 rmq-sample-app --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch main --type web --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:example-rabbitmq-cluster-1"
+    ```
+12. Once the workload has been built and is running you can confirm it is up and running by grabbing the  grab the web-app URL
+    ```
+    tanzu apps workload get -n my-project-1 rmq-sample-app
+    ```
+13. Visit the URL and confirm the app is working by refreshing the page and noting the new message IDs.
+
+
 ## Appendix
 
 
