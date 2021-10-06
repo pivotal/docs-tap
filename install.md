@@ -1520,6 +1520,10 @@ metadata:
     kapp.k14s.io/change-group: "role"
 rules:
   - apiGroups:
+      - servicebinding.io
+    resources: ['servicebindings']
+    verbs: ['*']
+  - apiGroups:
       - serving.knative.dev
     resources: ['services']
     verbs: ['*']
