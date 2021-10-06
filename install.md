@@ -74,7 +74,7 @@ To add the Tanzu Application Platform package repository:
     VERSION:       5712276
     REPOSITORY:    registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.2.0
     STATUS:        Reconcile succeeded
-    REASON:        
+    REASON:
     ```
 
 5. List the available packages by running:
@@ -256,7 +256,7 @@ To install Cloud Native Runtimes:
     PACKAGE-VERSION:         1.0.2
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
-    USEFUL-ERROR-MESSAGE:    
+    USEFUL-ERROR-MESSAGE:
     ```
 
     STATUS should be `Reconcile succeeded`.
@@ -382,7 +382,7 @@ They are only used for configuration of non-standard installs.
     PACKAGE-VERSION:         0.3.0
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
-    USEFUL-ERROR-MESSAGE:    
+    USEFUL-ERROR-MESSAGE:
     ```
     STATUS should be `Reconcile succeeded`.
 
@@ -608,7 +608,7 @@ To install Tanzu Build Service using the Tanzu CLI:
      Added installed package 'tbs' in namespace 'tap-install'
     ```
 
-    **Note**: Installing the `buildservice.tanzu.vmware.com` package with Tanzu Net credentials automatically relocates buildpack dependencies to your cluster. This install process can take some time.  The command provided above increases the timeout duration to account for this.  If the command still times out, periodically run the installation verification step provided in the optional step below because image relocation will continue in the background.   
+    **Note**: Installing the `buildservice.tanzu.vmware.com` package with Tanzu Net credentials automatically relocates buildpack dependencies to your cluster. This install process can take some time.  The command provided above increases the timeout duration to account for this.  If the command still times out, periodically run the installation verification step provided in the optional step below because image relocation will continue in the background.
 
 1. (Optional) Run the following command to verify the clusterbuilders created by the Tanzu Build Service install:
 
@@ -731,11 +731,11 @@ To install developer conventions:
     \ Retrieving package details for developer-conventions.tanzu.vmware.com/0.2.0...
     NAME:                             developer-conventions.tanzu.vmware.com
     VERSION:                          0.2.0
-    RELEASED-AT:                      
+    RELEASED-AT:
     DISPLAY-NAME:                     Tanzu App Platform Develooper Conventions
     SHORT-DESCRIPTION:                Developer Conventions
     PACKAGE-PROVIDER:                 VMware
-    MINIMUM-CAPACITY-REQUIREMENTS:    
+    MINIMUM-CAPACITY-REQUIREMENTS:
     LONG-DESCRIPTION:                 Tanzu App Platform Developer Conventions
     MAINTAINERS:                      [{Lisa Burns} {Paul Warren} {Harsha Nandiwada} {Kiwi Bui} {Ming Xiao} {Anthony Pensiero}]
     RELEASE-NOTES:                    Developer Conventions contents package
@@ -825,7 +825,7 @@ To install Application Live View:
     PACKAGE-VERSION:         0.2.0
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
-    USEFUL-ERROR-MESSAGE:    
+    USEFUL-ERROR-MESSAGE:
     ```
     STATUS should be `Reconcile succeeded`.
 
@@ -1527,6 +1527,10 @@ metadata:
     kapp.k14s.io/change-group: "role"
 rules:
   - apiGroups:
+      - servicebinding.io
+    resources: ['servicebindings']
+    verbs: ['*']
+  - apiGroups:
       - serving.knative.dev
     resources: ['services']
     verbs: ['*']
@@ -1548,5 +1552,4 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: service-account # use value from "Install Default Supply Chain"
-
 ```
