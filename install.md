@@ -286,13 +286,13 @@ To install Cloud Native Runtimes:
    run the following command to add the secret to the service account:
 
    ```console
-   kubectl patch serviceaccount SERVICEACCOUNT -p '{"imagePullSecrets": [{"name": "pull-secret"}]}'
+   kubectl patch serviceaccount default -p '{"imagePullSecrets": [{"name": "pull-secret"}]}'
    ```
 
    You can verify that a service account is correctly configured by running:
 
    ```console
-   kubectl describe serviceaccount SERVICEACCOUNT
+   kubectl describe serviceaccount default
    ```
 
    For example:
