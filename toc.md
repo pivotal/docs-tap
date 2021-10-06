@@ -30,7 +30,6 @@ This is the table of contents from which the Tanzu Application Platform Document
         * [Viewing Vulnerability Results](scst-scan/viewing-reports.md)
         * [Observing and Troubleshooting](scst-scan/observing.md)
         * [Example Cartographer Supply Chain including Source and Image Scans](scst-scan/choreographer.md)
-        * [Uninstall](scst-scan/uninstall.md)
         * [Additional Resources](scst-scan/additional.md)
             * [Configure Code Repositories and Image Artifacts to be Scanned](scst-scan/scan-crs.md)
             * [Code and Image Compliance Policy Enforcement using Open Policy Agent (OPA)](scst-scan/policies.md)
