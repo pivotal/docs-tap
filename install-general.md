@@ -33,23 +33,20 @@ images
     * Amazon Elastic Kubernetes Service
     * Google Kubernetes Engine
     * kind
-        * Supported only on Linux operating system. Minimum requirements: 12 CPUs, 12 GB Memory, 120 GB Disk space.
+        * Supported only on Linux operating system. Minimum requirements: 8 CPUs, 8 GB Memory, 120 GB Disk space.
       
         * If you are using Cloud Native Runtimes, see [Configure Your Local Kind
         Cluster](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-local-dns.html#configure-your-local-kind-cluster-1)
     * Google Kubernetes Engine (GKE Autopilot clusters do not have required features enabled)
     * minikube
-        * Minimum requirements: 12 CPUs, 12 GB Memory, 120 GB Disk space.
+        * Minimum requirements: 8 CPUs, 8 GB Memory, 120 GB Disk space.
         * On Mac OS only hyperkit driver is supported. Docker driver is not supported.
 
-* To deploy all Tanzu Application Platform packages, your cluster must have at least **8 GB** of RAM across all nodes available to Tanzu Application
-  Platform. 
-  However, VMware recommends at least **16 GB** of RAM be available to build and deploy applications.
+    To deploy all Tanzu Application Platform packages, your cluster must have at least **8 GB** of RAM across all nodes available to Tanzu Application
+    Platform. 
+    However, VMware recommends at least **16 GB** of RAM be available to build and deploy applications, including for kind/minikube.
 
-    Your cluster must also have **70 GB** of disk per node.
-  
-* For a single node cluster, such as KIND, we recommend **4 vCPU** be available, along with 
-**70 GB** disk
+    Your cluster must also have at least **70 GB** of disk per node.
   
 * For this beta release, [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) must be configured so that TAP controller 
 pods may run as root
