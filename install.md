@@ -322,25 +322,25 @@ To install Application Accelerator:
 **Prerequisite**: Flux SourceController installed on the cluster.
 See [Install Prerequisites](install-general.md#prereqs).
 
-The following optional properties are configurable:
+You can configure the following optional properties:
 
 | Property | Default | Description |
 | --- | --- | --- |
-| registry.secret_ref | registry.tanzu.vmware.com | The secret used for accessing the registry where the App-Accelerator images are located |
-| server.service_type | LoadBalancer | The service type for the acc-ui-server service (LoadBalancer, NodePort or ClusterIP) |
-| server.watched_namespace | default | The namespace that the server watches for accelerator resources |
-| server.engine_invocation_url | http://acc-engine.accelerator-system.svc.cluster.local/invocations | The URL to use for invoking the accelerator engine |
-| engine.service_type | ClusterIP | The service type for the acc-engine service (LoadBalancer, NodePort or ClusterIP) |
+| registry.secret_ref | registry.tanzu.vmware.com | The secret used for accessing the registry where the App-Accelerator images are located. |
+| server.service_type | LoadBalancer | The service type for the acc-ui-server service including, LoadBalancer, NodePort, or ClusterIP. |
+| server.watched_namespace | default | The namespace the server watches for accelerator resources. |
+| server.engine_invocation_url | http://acc-engine.accelerator-system.svc.cluster.local/invocations | The URL to use for invoking the accelerator engine. |
+| engine.service_type | ClusterIP | The service type for the acc-engine service including, LoadBalancer, NodePort, or ClusterIP. |
 
 > **Note:** For clusters that do not support the `LoadBalancer` service type you should override the default value for `server.service_type`.
 
-In general you should not override the defaults for `registry.secret_ref`,
+Vmware recommends not overriding the defaults for `registry.secret_ref`,
 `server.engine_invocation_url` or `engine.service_type`.
-They are only used for configuration of non-standard installs.
+These properties are only used for configuration of non-standard installs.
 
 1. Follow the instructions in [Install Packages](#install-packages) above.
 
-1. Create an `app-accelerator-values.yaml` using the following sample as a guide:
+1. Create an `app-accelerator-values.yaml` using the following example code:
 
     ```yaml
     server:
