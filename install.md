@@ -119,10 +119,9 @@ To install any package from the Tanzu Application Platform package repository:
     tanzu package available list PACKAGE-NAME --namespace tap-install
     ```
     Where:
-
      + `PACKAGE-NAME` is the name of the package listed in step 5 of
      [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
-    For example:
+     For example:
 
     ```bash
     $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
@@ -137,9 +136,8 @@ To install any package from the Tanzu Application Platform package repository:
     tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
     ```
      Where:
-
-     + `PACKAGE-NAME` is same as step 1 above.
-     + `VERSION-NUMBER` is the version of the package listed in step 1 above.
+       + `PACKAGE-NAME` is same as step 1 above.
+       + `VERSION-NUMBER` is the version of the package listed in step 1 above.
 
     For example:
 
@@ -575,12 +573,11 @@ To install Tanzu Build Service using the Tanzu CLI:
     tanzunet_password: TANZUNET-PASSWORD
     ```
     Where:
-
-    * `EXAMPLE-REGISTRY` is the URL of the Docker registry.
-    * `PATH-TO-INSTALL` is the path to the registry install location. `kp_default_repository` is the registry location where all Tanzu Build Services dependencies and builder images are written.
-    * `REGISTRY-USERNAME` and `REGISTRY-PASSWORD` are the username and password for the registry. The install requires a `kp_default_repository_username` and `kp_default_repository_password` in order to write to the repository location.
-    * `TANZUNET-USERNAME` and `TANZUNET-PASSWORD` are the email address and password that you use to log in to Tanzu Network. The Tanzu Network credentials allow for configuration of the Dependencies Updater. This resource accesses and installs the build dependencies (buildpacks and stacks) Tanzu Build Service needs on your Cluster.  It also keeps these dependencies up-to-date as new versions are released on Tanzu Network.
-    * **Optional values**: There are optional values not included in this sample file that provide additional configuration for production use cases. For more information, see [Installing Tanzu Build Service](https://docs.pivotal.io/build-service/installing.html).
+      * `EXAMPLE-REGISTRY` is the URL of the Docker registry.
+      * `PATH-TO-INSTALL` is the path to the registry install location. `kp_default_repository` is the registry location where all Tanzu Build Services dependencies and builder images are written.
+      * `REGISTRY-USERNAME` and `REGISTRY-PASSWORD` are the username and password for the registry. The install requires a `kp_default_repository_username` and `kp_default_repository_password` in order to write to the repository location.
+      * `TANZUNET-USERNAME` and `TANZUNET-PASSWORD` are the email address and password that you use to log in to Tanzu Network. The Tanzu Network credentials allow for configuration of the Dependencies Updater. This resource accesses and installs the build dependencies (buildpacks and stacks) Tanzu Build Service needs on your Cluster.  It also keeps these dependencies up-to-date as new versions are released on Tanzu Network.
+      * **Optional values**: There are optional values not included in this sample file that provide additional configuration for production use cases. For more information, see [Installing Tanzu Build Service](https://docs.pivotal.io/build-service/installing.html).
 
 1. Install the package by running:
 
