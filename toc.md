@@ -16,6 +16,7 @@ This is the table of contents from which the Tanzu Application Platform Document
         - [Usage and examples](cli-plugins/apps/usage-and-examples.md)
         - [Known Issues](cli-plugins/apps/known-issues.md)
     - [Default Supply Chain](default-supply-chain/about.md)
+    - [Developer Conventions](developer-conventions/about.md)
     - [Supply Chain Choreographer for Tanzu](scc/about.md)
         - [Spec Reference](scc/reference.md)
         - [SCC Examples](scc/examples.md)
