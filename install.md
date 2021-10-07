@@ -971,6 +971,20 @@ To install Supply Chain Security Tools - Store:
 
 ## <a id='install-scst-sign'></a> Install Supply Chain Security Tools - Sign
 
+*Note*: **This component will reject pods from being started if the webhook fails or is misconfigured**. If the webhook is preventing the cluster from functioning, you can delete the configuration by running:
+
+```bash
+kubectl delete MutatingWebhookConfiguration image-policy-mutating-webhook-configuration
+```
+This situation can happen, for example, if all nodes that are running the
+webhook are scaled down and the webhook is forced to restart at the same time as
+other system components.  A deadlock can occur when some components expect the
+webhook to run in order to verify their image signatures and the webhook is not
+running yet.  By deleting the `MutatingWebhookConfiguration` resource you can
+resolve the deadlock and enable the system to start up again.  Once the system
+is stable you can restore the `MutatingWebhookConfiguration` resource to
+re-enable image signing enforcement.
+
 **Prerequsites**: As part of the install instructions, we will ask you to provide a cosign public key to use to validate signed images. We will provide an example cosign public key that will be able to validate an image from cosign, but if you wish to provide your own key and images, you can follow the [cosign quick start guide](https://github.com/sigstore/cosign#quick-start) to generate your own keys and sign an image.
 
 To install Supply Chain Security Tools - Sign:
@@ -1043,7 +1057,7 @@ To install Supply Chain Security Tools - Sign:
 
    After you run the code above, the webhook is running.
 
-1. Create a service account named `registry-credentials` in the `image-policy-system` namespace. Run one of the following code options.
+1. Create a service account named `registry-credentials` in the `image-policy-system` namespace. When cosign `signs` an image, it generates a signature in an OCI-compliant format and pushes it to the registry alongside the image with the tag `<image-digest>.sig` To access this signature, the webhook needs the credentials of the registry that holds it. 
 
     * **If the images and signatures are in public registries:** No additional configuration is needed. Run:
         ```console
