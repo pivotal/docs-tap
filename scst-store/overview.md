@@ -1,24 +1,22 @@
 # Supply Chain Security Tools for VMware Tanzu – Store
 
-Supply Chain Security Tools - Store’s identifies vulnerable software packages by providing a CLI to query image, package, and vulnerability relationships after Supply Chain Security Tools - Scan runs source code and image vulnerability scans.
-​
-The Supply Chain Security Tools - Store component is designed to integrate seamlessly with the [Supply Chain Security Tools - Scan component](../scst-scan/overview.md). 
-​
-The Supply Chain Security Tools - Store has four components:
+Supply Chain Security Tools - Store saves software bills of materials (SBoMs) to a database and allows you to query for image, source, package, and vulnerability relationships.  Currently, there is support for the Cyclone DX XML SBoM formats.  It helps answer questions such as:
+
+* What images contain a specific dependency?
+* What dependencies are affected by a specific CVE?
+* How many CVEs does a specific image or dependency contain?
+
+Supply Chain Security Tools - Store integrates with [Supply Chain Security Tools - Scan](../scst-scan/overview.md) to automatically store the resulting source and image vulnerability reports.
+
+Supply Chain Security Tools - Store has three components:
 
 * Postgres database
 * API
-* client library
-* CLI
+* CLI (`insight`)
 
-Currently, there is support for the Cyclone DX XML SBoM formats.
+# Installation
 
-See the following pages to begin:
-
-* [TAP instructions for installing packages](../install.md#install-scst-store)
-* [Using Supply Chain Security Tools - Store](using_metadata_store.md)
-
-## Installed Resources
+See [TAP instructions for installing the Supply Chain Security Tools - Store](../install.md#install-scst-store)
 
 The installation will create the following in your Kubernetes cluster:
 
@@ -32,10 +30,10 @@ The installation will create the following in your Kubernetes cluster:
 * A Kubernetes secret to allow pulling Supply Chain Security Tools - Store images from a registry.
 * A namespace called `metadata-store`.
 
-# CLI
+# Usage
 
-For information about using the CLI, see [CLI](cli.md).
+Once installed, see [Using Supply Chain Security Tools - Store](using_metadata_store.md) for walkthroughs of querying, adding SBoMs manually, and using the API directly.
 
 # Known Issues
 
-For information about known issues, see [Troubleshooting and Known Issues](known_issues.md).
+See [Troubleshooting and Known Issues](known_issues.md).
