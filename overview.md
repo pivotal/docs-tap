@@ -8,14 +8,13 @@
 </p>
 
 Tanzu Application Platform is a packaged set of components that helps developers and operators to 
-build, deploy, and manage apps on a Kubernetes platform more easily.
+build, deploy, and manage apps on a Kubernetes platform.
 
 Simplify workflows in both the _inner loop_ and _outer loop_ of Kubernetes-based app development with 
-Tanzu Application Platform:
+Tanzu Application Platform.
 
 * **Inner Loop**: 
-    - The inner loop describes a developer’s personal development cycle of 
-    quickly iterating on code. 
+    - The inner loop describes a developer’s personal development cycle of iterating on code. 
     - Inner loop activities include coding, testing, and debugging, up to the 
     point of making a commit.
     - On cloud-native or Kubernetes platforms, developers in the inner loop often 
@@ -29,12 +28,12 @@ Tanzu Application Platform:
     container security, and configuring continuous integration and continuous delivery (CI/CD) 
     pipelines.
     - Outer loop activities are difficult in a Kubernetes-based development environment due to app 
-    delivery platforms being constructed from various third-party and open source components, each 
+    delivery platforms being constructed from various third-party and open source components  
     with numerous configuration options.
 
 Tanzu Application Platform provides a default set of components that automate the steps to push an 
 app to staging and production on Kubernetes, solving pains for both the inner loop and outer loop. 
-Operators can still customize the platform as needed by replacing Tanzu Application Platform 
+Operators can customize the platform as needed by replacing Tanzu Application Platform 
 components with other products.
 
 Reduce the complexity of deploying apps on Kubernetes for operators with better automation and 
