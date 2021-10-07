@@ -226,7 +226,6 @@ The source & scan to URL supply chain builds on the ability of the source to url
 - Apply some conventions to the K8s YAML
 - Deploy the application to the same cluster
 
-![Source Scan to URL](images/source-scan-to-url.png)
 
 ### Example usage
 
