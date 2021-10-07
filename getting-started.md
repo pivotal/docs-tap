@@ -42,7 +42,7 @@ The Application Accelerator component helps app developers and app operators thr
  
 Developers can bootstrap their applications and get started with feature development right away. Application Operators can create custom accelerators that reflect their desired architectures and configurations and enable fleets of developers to utilize them, decreasing operator concerns about whether developers are implementing their desired best practices.
 
-Application Accelerator templates are available as a quickstart from [Tanzunet](https://network.tanzu.vmware.com/products/app-accelerator). To create your own Application Accelerator, see [here](#creating-an-accelerator).
+Application Accelerator templates are available as a quickstart from [Tanzu Network](https://network.tanzu.vmware.com/products/app-accelerator). To create your own Application Accelerator, see [here](#creating-an-accelerator).
 
 
 ### Deploy your Application
