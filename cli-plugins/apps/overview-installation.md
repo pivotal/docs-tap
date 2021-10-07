@@ -50,7 +50,7 @@ See [Command Reference](command-reference.md)
 
 ## <a id='usage-and-examples'></a>Usage and Examples
 
-See [Usage and examples](usage-and-examples.md)
+See [Usage and examples](#usage-and-examples.md).
 
 ## <a id='known-issues'></a>Known Issues
 
