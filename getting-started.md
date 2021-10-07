@@ -33,10 +33,8 @@ Before getting started, ensure the following prerequisites are in place:
 
 3. Default kube config context is set to the target Kubernetes cluster
 
-4. Follow [these instructions](scc/default-supply-chains.md)
-   to create a service account for pushing images
-
-You can now use the existing namespace to deploy a new workload. If you want to do it in a new namespace then follow these additional instructions
+4. Follow [these instructions](install.md#-set-up-developer-namespaces-to-use-installed-packages)
+   to setup the namespace that you plan to create the `Workload` in.
 
 #### A note about Application Accelerators
 
