@@ -689,8 +689,8 @@ Added installed package 'cartographer' in namespace 'default'
     ```yaml
     ---
     registry:
-      server: REGISTRY_SERVER
-      repository: REGISTRY_REPOSITORY
+      server: REGISTRY-SERVER
+      repository: REGISTRY-REPOSITORY
     service_account: service-account
     ```
 
@@ -1554,5 +1554,5 @@ run the following commands to add credentials and Role-Based Access Control (RBA
 
     EOF
     ```
-    Where `YOUR-NAMEPACE` is the namespace you want to use.
+    Where `YOUR-NAMESPACE` is the namespace you want to use.
     Use `-n default` for the default namespace.
