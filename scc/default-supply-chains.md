@@ -66,6 +66,7 @@ Source to URL is the most basic supply chain allowing you to:
 - Apply some conventions to the K8s YAML
 - Deploy the application to the same cluster
 
+![Source to URL Supply Chain](images/source-to-url.png)
 
 
 ### Example usage
