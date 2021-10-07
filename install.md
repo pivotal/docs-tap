@@ -1481,82 +1481,78 @@ Use the following procedure to verify that the packages are installed.
 
 ## <a id='setup'></a> Set Up Developer Namespaces to Use Installed Packages
 
-Cartographer `Workload` for your application that uses the registry credentials specified in the steps above.
-Run the following command to add credentials and Role-Based Access Control (RBAC) rules to the namespace that you plan to create the `Workload` in:
+To create a Cartographer `Workload` for your application that uses the registry credentials specified in the steps above,
+run the following commands to add credentials and Role-Based Access Control (RBAC) rules to the namespace that you plan to create the `Workload` in:
 
-```
-cat <<EOF | kubectl -n YOUR-NAMESPACE apply -f -
 
-apiVersion: v1
-kind: Secret
-metadata:
-  name: tap-registry
-  annotations:
-    secretgen.carvel.dev/image-pull-secret: ""
-type: kubernetes.io/dockerconfigjson
-data:
-  .dockerconfigjson: e30K
+1. Add read/write registry credentials to the developer namespace:
+    ```bash
+    $ tanzu imagepullsecret add registry-credentials --registry REGISTRY-SERVER --username REGISTRY-USERNAME --password REGISTRY-PASSWORD --namespace YOUR-NAMESPACE
+    ```
+    Where `YOUR-NAMESPACE` is the name you want for the developer namespace.
+    For example, use `default` for the default namespace.
+    
+2. Add placeholder read secrets, a service account, and RBAC rules to the developer namespace: 
+    ```bash
+    $ cat <<EOF | kubectl -n YOUR-NAMESPACE apply -f -
 
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: registry-credentials
-  annotations:
-    secretgen.carvel.dev/image-pull-secret: ""
-type: kubernetes.io/dockerconfigjson
-data:
-  .dockerconfigjson: e30K
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: tap-registry
+      annotations:
+        secretgen.carvel.dev/image-pull-secret: ""
+    type: kubernetes.io/dockerconfigjson
+    data:
+      .dockerconfigjson: e30K
 
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: service-account # use value from "Install Default Supply Chain"
-secrets:
-  - name: registry-credentials
-imagePullSecrets:
-  - name: registry-credentials
-  - name: tap-registry
+    ---
+    apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      name: service-account # use value from "Install Default Supply Chain"
+    secrets:
+      - name: registry-credentials
+    imagePullSecrets:
+      - name: registry-credentials
+      - name: tap-registry
 
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  name: kapp-permissions
-  annotations:
-    kapp.k14s.io/change-group: "role"
-rules:
-  - apiGroups:
-      - servicebinding.io
-    resources: ['servicebindings']
-    verbs: ['*']
-  - apiGroups:
-      - serving.knative.dev
-    resources: ['services']
-    verbs: ['*']
-  - apiGroups: [""]
-    resources: ['configmaps']
-    verbs: ['get', 'watch', 'list', 'create', 'update', 'patch', 'delete']
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: Role
+    metadata:
+      name: kapp-permissions
+      annotations:
+        kapp.k14s.io/change-group: "role"
+    rules:
+      - apiGroups:
+          - servicebinding.io
+        resources: ['servicebindings']
+        verbs: ['*']
+      - apiGroups:
+          - serving.knative.dev
+        resources: ['services']
+        verbs: ['*']
+      - apiGroups: [""]
+        resources: ['configmaps']
+        verbs: ['get', 'watch', 'list', 'create', 'update', 'patch', 'delete']
 
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
-metadata:
-  name: kapp-permissions
-  annotations:
-    kapp.k14s.io/change-rule: "upsert after upserting role"
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: Role
-  name: kapp-permissions
-subjects:
-  - kind: ServiceAccount
-    name: service-account # use value from "Install Default Supply Chain"
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: RoleBinding
+    metadata:
+      name: kapp-permissions
+      annotations:
+        kapp.k14s.io/change-rule: "upsert after upserting role"
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
+      kind: Role
+      name: kapp-permissions
+    subjects:
+      - kind: ServiceAccount
+        name: service-account # use value from "Install Default Supply Chain"
 
-EOF
-```
-
-Where:
-
-- `YOUR-NAMEPACE` is the namespace you want to use. Use `-n default` for the default namespace.
+    EOF
+    ```
+    Where `YOUR-NAMEPACE` is the namespace you want to use.
+    Use `-n default` for the default namespace.
