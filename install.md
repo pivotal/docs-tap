@@ -60,7 +60,7 @@ To add the Tanzu Application Platform package repository:
     Added package repository 'tanzu-tap-repository'
     ```
 
-4. Get status of the Tanzu Application Platform package repository, and ensure the status updates to `Reconcile succeeded` by running:
+4. Get the status of the Tanzu Application Platform package repository, and ensure the status updates to `Reconcile succeeded` by running:
 
     ```bash
     tanzu package repository get tanzu-tap-repository --namespace tap-install
@@ -74,7 +74,7 @@ To add the Tanzu Application Platform package repository:
     VERSION:       5712276
     REPOSITORY:    registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.2.0
     STATUS:        Reconcile succeeded
-    REASON:        
+    REASON:
     ```
 
 5. List the available packages by running:
@@ -203,21 +203,21 @@ To install Cloud Native Runtimes:
     provider: local
     ```
 
-    **Note**: For most installations, you can leave the `cnr-values.yaml` empty and use the default values.
+    **Note**: For most installations, you can leave the `cnr-values.yaml` empty, and use the default values.
 
-    If you are running on a single-node cluster like kind or minikube, set the `provider: local`
+    If you are running on a single-node cluster, like kind or minikube, set the `provider: local`
     option. This option reduces resource requirements by using a HostPort service instead of a
-    LoadBalancer and reduces the number of replicas.
+    LoadBalancer, and reduces the number of replicas.
 
-    You may also want to follow the
+    For more information about using Cloud Native Runtimes with kin, see
     [local kind configuration guide for Cloud Native Runtimes](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-local-dns.html#configure-your-local-kind-cluster-1).
     If you are running on a multi-node cluster, do not set `provider`.
 
-    If your environment has Contour packages present, they might conflict with the Cloud Native Runtimes installation.
+    If your environment has Contour packages, Contour might conflict with the Cloud Native Runtimes installation.
 
     For information on how to prevent conflicts, see [Installing Cloud Native Runtimes for Tanzu with an Existing Contour Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-contour.html) in the Cloud Native Runtimes documentation.
-    Then, in the `cnr-values.yaml` file, specify values for `ingress.reuse_crds`,
-    `ingress.external.namespace`, and `ingress.internal.namespace` as appropriate.
+    Specify values for `ingress.reuse_crds`,
+    `ingress.external.namespace`, and `ingress.internal.namespace` in the `cnr-values.yaml` file.
 
 1. Install the package by running:
 
@@ -256,12 +256,17 @@ To install Cloud Native Runtimes:
     PACKAGE-VERSION:         1.0.2
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
-    USEFUL-ERROR-MESSAGE:    
+    USEFUL-ERROR-MESSAGE:
     ```
 
     STATUS should be `Reconcile succeeded`.
 
 1. Configuring a namespace to use Cloud Native Runtimes:
+
+   **Note:** This step covers configuring a namespace to run Knative services.
+   If you rely on a SupplyChain to deploy Knative services into your cluster,
+   then skip this step because namespace configuration is covered in
+   [Set Up Developer Namespaces to Use Installed Packages](#setup) below. Otherwise, you must complete following steps for each namespace where you create Knative services.
 
    Service accounts which run workloads using Cloud Native Runtimes need to have access to the image pull secrets for the Tanzu package.
    This includes the `default` service account in a namespace, which is created automatically but not associated with any image pull secrets.
@@ -279,13 +284,13 @@ To install Cloud Native Runtimes:
    run the following command to add the secret to the service account:
 
    ```console
-   kubectl patch serviceaccount SERVICEACCOUNT -p '{"imagePullSecrets": [{"name": "pull-secret"}]}'
+   kubectl patch serviceaccount default -p '{"imagePullSecrets": [{"name": "pull-secret"}]}'
    ```
 
    You can verify that a service account is correctly configured by running:
 
    ```console
-   kubectl describe serviceaccount SERVICEACCOUNT
+   kubectl describe serviceaccount default
    ```
 
    For example:
@@ -315,25 +320,25 @@ To install Application Accelerator:
 **Prerequisite**: Flux SourceController installed on the cluster.
 See [Install Prerequisites](install-general.md#prereqs).
 
-The following optional properties are configurable:
+You can configure the following optional properties:
 
 | Property | Default | Description |
 | --- | --- | --- |
-| registry.secret_ref | registry.tanzu.vmware.com | The secret used for accessing the registry where the App-Accelerator images are located |
-| server.service_type | LoadBalancer | The service type for the acc-ui-server service (LoadBalancer, NodePort or ClusterIP) |
-| server.watched_namespace | default | The namespace that the server watches for accelerator resources |
-| server.engine_invocation_url | http://acc-engine.accelerator-system.svc.cluster.local/invocations | The URL to use for invoking the accelerator engine |
-| engine.service_type | ClusterIP | The service type for the acc-engine service (LoadBalancer, NodePort or ClusterIP) |
+| registry.secret_ref | registry.tanzu.vmware.com | The secret used for accessing the registry where the App-Accelerator images are located. |
+| server.service_type | LoadBalancer | The service type for the acc-ui-server service including, LoadBalancer, NodePort, or ClusterIP. |
+| server.watched_namespace | default | The namespace the server watches for accelerator resources. |
+| server.engine_invocation_url | http://acc-engine.accelerator-system.svc.cluster.local/invocations | The URL to use for invoking the accelerator engine. |
+| engine.service_type | ClusterIP | The service type for the acc-engine service including, LoadBalancer, NodePort, or ClusterIP. |
 
 > **Note:** For clusters that do not support the `LoadBalancer` service type you should override the default value for `server.service_type`.
 
-In general you should not override the defaults for `registry.secret_ref`,
+Vmware recommends not overriding the defaults for `registry.secret_ref`,
 `server.engine_invocation_url` or `engine.service_type`.
-They are only used for configuration of non-standard installs.
+These properties are only used for configuration of non-standard installs.
 
 1. Follow the instructions in [Install Packages](#install-packages) above.
 
-1. Create an `app-accelerator-values.yaml` using the following sample as a guide:
+1. Create an `app-accelerator-values.yaml` using the following example code:
 
     ```yaml
     server:
@@ -382,7 +387,7 @@ They are only used for configuration of non-standard installs.
     PACKAGE-VERSION:         0.3.0
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
-    USEFUL-ERROR-MESSAGE:    
+    USEFUL-ERROR-MESSAGE:
     ```
     STATUS should be `Reconcile succeeded`.
 
@@ -566,7 +571,7 @@ To install Tanzu Build Service using the Tanzu CLI:
 
     ```yaml
     ---
-    kp_default_repository: EXAMPLE-REGISTRY/PATH-TO-INSTALL
+    kp_default_repository: REPOSITORY
     kp_default_repository_username: REGISTRY-USERNAME
     kp_default_repository_password: REGISTRY-PASSWORD
     tanzunet_username: TANZUNET-USERNAME
@@ -574,8 +579,13 @@ To install Tanzu Build Service using the Tanzu CLI:
     ```
     Where:
 
-    - `EXAMPLE-REGISTRY` is the URL of the Docker registry.
-    - `PATH-TO-INSTALL` is the path to the registry install location. `kp_default_repository` is the registry location where all Tanzu Build Services dependencies and builder images are written.
+    - `REPOSITORY` is the fully qualified path to the repository that TBS will be written to. (This path must be writable)
+
+       Examples:
+       * Docker Hub `my-dockerhub-account/build-service`
+       * Google Container Registry `gcr.io/my-project/build-service`
+       * Artifactory `artifactory.com/my-project/build-service`
+       * Harbor `harbor.io/my-project/build-service`
     - `REGISTRY-USERNAME` and `REGISTRY-PASSWORD` are the username and password for the registry. The install requires a `kp_default_repository_username` and `kp_default_repository_password` in order to write to the repository location.
     - `TANZUNET-USERNAME` and `TANZUNET-PASSWORD` are the email address and password that you use to log in to Tanzu Network. The Tanzu Network credentials allow for configuration of the Dependencies Updater. This resource accesses and installs the build dependencies (buildpacks and stacks) Tanzu Build Service needs on your Cluster.  It also keeps these dependencies up-to-date as new versions are released on Tanzu Network.
     - **Optional values**: There are optional values not included in this sample file that provide additional configuration for production use cases. For more information, see [Installing Tanzu Build Service](https://docs.pivotal.io/build-service/installing.html).
@@ -603,12 +613,12 @@ To install Tanzu Build Service using the Tanzu CLI:
      Added installed package 'tbs' in namespace 'tap-install'
     ```
 
-    **Note**: Installing the `buildservice.tanzu.vmware.com` package with Tanzu Net credentials automatically relocates buildpack dependencies to your cluster. This install process can take some time.  The command provided above increases the timeout duration to account for this.  If the command still times out, periodically run the installation verification step provided in the optional step below because image relocation will continue in the background.   
+    **Note**: Installing the `buildservice.tanzu.vmware.com` package with Tanzu Net credentials automatically relocates buildpack dependencies to your cluster. This install process can take some time.  The command provided above increases the timeout duration to account for this.  If the command still times out, periodically run the installation verification step provided in the optional step below because image relocation will continue in the background.
 
 1. (Optional) Run the following command to verify the clusterbuilders created by the Tanzu Build Service install:
 
     ```bash
-    tanzu package installed get buildservice.tanzu.vmware.com -n tap-install
+    tanzu package installed get tbs -n tap-install
     ```
 
 ## <a id='install-scc'></a> Install Supply Chain Choreographer
@@ -687,7 +697,7 @@ Added installed package 'cartographer' in namespace 'default'
 1. Export a secret for storing container images to all namespaces:
 
     ```console
-    tanzu imagepullsecret add registry-credentials --registry <REGISTRY_SERVER> --username <REGISTRY_USERNAME> --password <REGISTRY_PASSWORD> --export-to-all-namespaces || true
+    tanzu imagepullsecret add registry-credentials --registry <REGISTRY_SERVER> --username <REGISTRY_USERNAME> --password <REGISTRY_PASSWORD> --export-to-all-namespaces --namespace tap-install
     ```
     Where:
 
@@ -726,11 +736,11 @@ To install developer conventions:
     \ Retrieving package details for developer-conventions.tanzu.vmware.com/0.2.0...
     NAME:                             developer-conventions.tanzu.vmware.com
     VERSION:                          0.2.0
-    RELEASED-AT:                      
+    RELEASED-AT:
     DISPLAY-NAME:                     Tanzu App Platform Develooper Conventions
     SHORT-DESCRIPTION:                Developer Conventions
     PACKAGE-PROVIDER:                 VMware
-    MINIMUM-CAPACITY-REQUIREMENTS:    
+    MINIMUM-CAPACITY-REQUIREMENTS:
     LONG-DESCRIPTION:                 Tanzu App Platform Developer Conventions
     MAINTAINERS:                      [{Lisa Burns} {Paul Warren} {Harsha Nandiwada} {Kiwi Bui} {Ming Xiao} {Anthony Pensiero}]
     RELEASE-NOTES:                    Developer Conventions contents package
@@ -820,7 +830,7 @@ To install Application Live View:
     PACKAGE-VERSION:         0.2.0
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
-    USEFUL-ERROR-MESSAGE:    
+    USEFUL-ERROR-MESSAGE:
     ```
     STATUS should be `Reconcile succeeded`.
 
@@ -960,12 +970,12 @@ To install Supply Chain Security Tools - Store:
 
 
 ## <a id='install-scst-sign'></a> Install Supply Chain Security Tools - Sign
+
 *Note*: **This component will reject pods from being started if the webhook fails or is misconfigured**. If the webhook is preventing the cluster from functioning, you can delete the configuration by running:
 
 ```bash
 kubectl delete MutatingWebhookConfiguration image-policy-mutating-webhook-configuration
 ```
-
 This situation can happen, for example, if all nodes that are running the
 webhook are scaled down and the webhook is forced to restart at the same time as
 other system components.  A deadlock can occur when some components expect the
@@ -980,7 +990,7 @@ re-enable image signing enforcement.
 To install Supply Chain Security Tools - Sign:
 
 1. Follow the instructions in [Install Packages](#install-packages) above.
-1. Gather the values schema to view configuration options
+1. Gather the values schema
 
     ```bash
     tanzu package available get image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.0 --values-schema --namespace tap-install
@@ -1049,7 +1059,7 @@ To install Supply Chain Security Tools - Sign:
 
 1. Create a service account named `registry-credentials` in the `image-policy-system` namespace. When cosign `signs` an image, it generates a signature in an OCI-compliant format and pushes it to the registry alongside the image with the tag `<image-digest>.sig` To access this signature, the webhook needs the credentials of the registry that holds it. 
 
-    * **If the image and signature are in a public registry:** Create the service account by applying the following:
+    * **If the images and signatures are in public registries:** No additional configuration is needed. Run:
         ```console
         cat <<EOF | kubectl apply -f -
         apiVersion: v1
@@ -1060,7 +1070,7 @@ To install Supply Chain Security Tools - Sign:
         EOF
         ```
 
-    * **If the image and signature are in a private registry:** Add secrets to the `imagePullSecrets` property of the service account. Run:
+    * **If the images and signatures are in private registries:** Add secrets to the `imagePullSecrets` property of the service account. Run:
         ```console
         cat <<EOF | kubectl apply -f -
         apiVersion: v1
@@ -1182,6 +1192,9 @@ Ensure both are installed.
 
 To install Supply Chain Security Tools - Scan (Scan Controller):
 
+**Prerequisite**: Supply Chain Security Tools - Store installed on the cluster.
+See [Install Supply Chain Security Tools - Store](#install-scst-store).
+
 1. Follow the instructions in [Install Packages](#install-packages) above.
 
     ```bash
@@ -1207,7 +1220,7 @@ To install Supply Chain Security Tools - Scan (Scan Controller):
 1. Gather the values schema.
 1. Create a `scst-scan-controller-values.yaml` using the following sample as a guide.
 
-    Ensure that the certificate is indented by two spaces as shown in the sample.
+    Ensure the certificate is indented by two spaces as shown in the sample below.
 
     Sample `scst-scan-controller-values.yaml` for Scan Controller:
 
@@ -1355,7 +1368,7 @@ If you want to change from the default values, use the Scan Controller instructi
 To install the API portal:
 
 1. Follow the instructions in [Install Packages](#install-packages) above.
-1. Check what versions of API portal are available to install by running:
+2. Check what versions of API portal are available to install by running:
 
     ```bash
     tanzu package available list -n tap-install api-portal.tanzu.vmware.com
@@ -1370,17 +1383,7 @@ To install the API portal:
       api-portal.tanzu.vmware.com  1.0.2             2021-09-27T00:00:00Z
     ```
 
-3. Create a container registry secret named `api-portal-image-pull-secret` by running:
-
-    ```console
-    kubectl create secret docker-registry api-portal-image-pull-secret -n tap-install \
-     --docker-server=registry.tanzu.vmware.com \
-     --docker-username=TANZU-NET-USER \
-     --docker-password=TANZU-NET-PASSWORD
-    ```
-    Where `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for Tanzu Network.
-
-1. Install API portal by running:
+3. Install API portal by running:
 
     ```console
     tanzu package install api-portal -n tap-install -p api-portal.tanzu.vmware.com -v 1.0.2
@@ -1404,7 +1407,7 @@ To install the API portal:
     Added installed package 'api-portal' in namespace 'tap-install'
     ```
 
-5. For more information about API portal, see [API portal for VMware Tanzu](https://docs.pivotal.io/api-portal).
+4. For more information about API portal, see [API portal for VMware Tanzu](https://docs.pivotal.io/api-portal).
 
 
 ## <a id='install-scp-toolkit'></a> Install Services Control Plane (SCP) Toolkit
@@ -1490,9 +1493,12 @@ Use the following procedure to verify that the packages are installed.
 ## <a id='setup'></a> Set Up Developer Namespaces to Use Installed Packages
 
 To create a Cartographer `Workload` for your application that uses the registry credentials specified in the steps above,
-add the following resources to your namespace before creating the `Workload`:
+run the following command to add credentials and RBAC rules to the namespace that you plan to create the `Workload` in.
+Please replace `YOUR-NAMEPACE` with the desired namespace (e.g., use `-n default` for the default namespace).
 
 ```
+cat <<EOF | kubectl -n YOUR-NAMESPACE apply -f -
+
 apiVersion: v1
 kind: Secret
 metadata:
@@ -1534,6 +1540,10 @@ metadata:
     kapp.k14s.io/change-group: "role"
 rules:
   - apiGroups:
+      - servicebinding.io
+    resources: ['servicebindings']
+    verbs: ['*']
+  - apiGroups:
       - serving.knative.dev
     resources: ['services']
     verbs: ['*']
@@ -1556,4 +1566,5 @@ subjects:
   - kind: ServiceAccount
     name: service-account # use value from "Install Default Supply Chain"
 
+EOF
 ```

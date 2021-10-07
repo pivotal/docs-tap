@@ -10,41 +10,54 @@ This document describes the first part of the installation process for Tanzu App
 
 ## <a id='prereqs'></a>Prerequisites
 
-The following prerequisites are required to install Tanzu Application Platform:
+The following are required to install Tanzu Application Platform:
 
-* A [TanzuNet](https://network.tanzu.vmware.com/) account to download TAP packages.
+* A [Tanzu Network](https://network.tanzu.vmware.com/) account to download Tanzu Application Platform packages
 
-* A container image registry, such as [Harbor](https://goharbor.io/) or [Docker Hub](https://hub.docker.com/) with at least **10 GB** of available storage for application images, base images, and runtime dependencies. Registry credentials with push/write access must be made available to TAP to store images. Note that registry credentials are required for components that pull/read public images from Docker Hub, in order to avoid rate limiting.
+* A container image registry, such as [Harbor](https://goharbor.io/) or 
+[Docker Hub](https://hub.docker.com/) 
+with at least **10&nbsp;GB** of available storage for application images, base images, and runtime 
+dependencies 
 
-* Network access to https://registry.tanzu.vmware.com as well as your chosen container image registry.
+* Registry credentials with push and write access made available to Tanzu Application Platform to store 
+images 
 
-* A Kubernetes cluster (v1.19, v1.20, or v1.21) on one of the following Kubernetes providers:
+* Registry credentials for components that pull and read public images from Docker Hub to avoid rate limiting 
+
+* Network access to https://registry.tanzu.vmware.com 
+
+* Network access to your chosen container image registry
+
+* **Kubernetes cluster** v1.19 or later on one of the following Kubernetes providers:
 
     * Azure Kubernetes Service
     * Amazon Elastic Kubernetes Service
     * Google Kubernetes Engine
     * kind
-        * Supported only on Linux operating system. Minimum requirements: 12 CPUs, 12 GB Memory, 120 GB Disk space.
-      
+        * Supported only on Linux operating system.
+        * Minimum requirements: 8 CPUs for i9 or equivalent, 12 CPUs for i7 or equivalent, 8 GB RAM (12+ GB recommended), 120 GB disk space.
         * If you are using Cloud Native Runtimes, see [Configure Your Local Kind
         Cluster](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-local-dns.html#configure-your-local-kind-cluster-1)
-        in the Cloud Native Runtimes documentation to configure kind.
-
+    * Google Kubernetes Engine (GKE Autopilot clusters do not have required features enabled)
     * minikube
-        * Minimum requirements: 12 CPUs, 12 GB Memory, 120 GB Disk space.
+        * Minimum requirements for VM: 8 CPUs for i9 or equivalent, 12 CPUs for i7 or equivalent, 8 GB RAM (12+ GB recommended), 120 GB disk space.
+        * At least 16 GB of total host memory recommended.
         * On Mac OS only hyperkit driver is supported. Docker driver is not supported.
-    
 
-  To deploy all TAP packages, your cluster must have at least **8 GB** of RAM across all nodes available to TAP.
-  However, we recommend at least **16 GB** of RAM be available to build and deploy applications.
+    To deploy all Tanzu Application Platform packages, your cluster must have at least **8&nbsp;GB** of RAM across all nodes available to Tanzu Application Platform. 
+    VMware recommends that at least **16&nbsp;GB** of RAM is available to build and deploy applications, including for kind and minikube.
+
+    Your cluster must also have at least **70&nbsp;GB** of disk per node.
   
-  For a single node cluster, such as KIND, we recommend **4 vCPU** be available, along with **70 GB** disk.
-  
-  For this beta release, [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) must be configured so that TAP controller pods may run as root.
-  
+* [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) 
+must be configured so that Tanzu Application Platform controller 
+pods can run as root. 
+
+* **[kapp Carvel command line tool](https://github.com/vmware-tanzu/carvel-kapp/releases)** v0.37.0 or later
+ 
 * **The Kubernetes CLI, kubectl, v1.19, v1.20 or v1.21**, installed and authenticated with administrator rights for your target cluster.
 
-* **[kapp Carvel command line tool](https://github.com/vmware-tanzu/carvel-kapp/releases)** (v0.37.0 or later)
+
 
 * To set the Kubernetes cluster context:
 
@@ -74,9 +87,10 @@ The following prerequisites are required to install Tanzu Application Platform:
         $ kubectl config use-context aks-tap-cluster
         Switched to context "aks-tap-cluster".
         
-* **kapp-controller**:
+* **kapp-controller** v0.25.0 or later:
 
     * Install kapp-controller by running:
+
       ```
       kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/KC-VERSION/release.yml
       ```
@@ -114,9 +128,7 @@ The following prerequisites are required to install Tanzu Application Platform:
          kubectl get deployment KC-DEPLOYMENT -n KC-NAMESPACE -o yaml | grep kapp-controller.carvel.dev/version
          ```
 
-         Where:
-         - `KC-DEPLOYMENT` is the `kapp-controller` deployment name.
-         - `KC-NAMESPACE` is the `kapp-controller` namespace name.
+         Where `KC-DEPLOYMENT` and `KC-NAMESPACE` are kapp-controller deployment name and kapp-controller namespace name respectively from the output of step 1.
 
          For example:
          ```
@@ -128,7 +140,7 @@ The following prerequisites are required to install Tanzu Application Platform:
 
 * **secretgen-controller**:
 
-    * Install the secretgen-controller by running:
+    * Install secretgen-controller by running:
 
       ```
       kapp deploy -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/download/SG-VERSION/release.yml
@@ -148,7 +160,7 @@ The following prerequisites are required to install Tanzu Application Platform:
 
     * (Optinal) To Verify the secretgen-controller version you installed:
 
-      1. Get the secretgen-controller deployment and namespace by running:
+      1. Get secretgen-controller deployment and namespace by running:
          ```
          kubectl get deployments -A | grep secretgen-controller
          ```
@@ -159,13 +171,11 @@ The following prerequisites are required to install Tanzu Application Platform:
          secretgen-controller     secretgen-controller             1/1     1            1           22d   
          ```
 
-      2. Get the secretgen-controller version by running:
+      2. Get secretgen-controller version by running:
          ```
          kubectl get deployment SG-DEPLOYMENT -n SG-NAMESPACE -o yaml | grep secretgen-controller.carvel.dev/version
          ```
-         Where:
-         - `SG-DEPLOYMENT` is the `secretgen-controller` deployment name.
-         - `SG-NAMESPACE` is the `secretgen-controller` namespace name. 
+         Where `SG-DEPLOYMENT` and `SG-NAMESPACE` are secretgen-controller deployment name and secretgen-controller namespace name respectively from the output of step 1.
 
          For example:
 
@@ -185,7 +195,7 @@ The following prerequisites are required to install Tanzu Application Platform:
         ```
         We have verified the Tanzu Application Platform repo bundle packages installation with cert-manager version v1.5.3.
         
-        * Verify the cert-manager version you installed by running:
+        * Verify installed cert-manager version by running:
 
         ```
         kubectl get deployment cert-manager -n cert-manager -o yaml | grep 'app.kubernetes.io/version: v'
@@ -202,21 +212,22 @@ The following prerequisites are required to install Tanzu Application Platform:
 
 
 * **FluxCD source-controller**:
-
-     * Create the namespace `flux-system`
+    Install FluxCD source-controller using the following procedure.
+    
+     1. Create the namespace `flux-system`.
         
         ```
         kubectl create namespace flux-system
         ```
      
-     * Create the clusterrolebinding by running:
+     2. Create the `clusterrolebinding` by running:
 
         ```
         kubectl create clusterrolebinding default-admin \
         --clusterrole=cluster-admin \
         --serviceaccount=flux-system:default
         ```
-     * Install FluxCD Source Controller by running:
+     3. Install FluxCD Source Controller by running:
         ```
         kapp deploy -a flux-source-controller -n flux-system \
         -f https://github.com/fluxcd/source-controller/releases/download/v0.15.4/source-controller.crds.yaml \
@@ -267,8 +278,8 @@ To accept EULAs:
 Before you install Tanzu Application Platform,
 download and install the Tanzu CLI and the Tanzu CLI plugins. 
 If you have earlier versions of the Tanzu CLI, follow the instructions in [Update the Tanzu CLI](#update-cli).
-If you have installed a Tanzu CLI for Tanzu Community Edition or Tanzu Kubernetes Grid in the past,
-uninstall it and remove the `~/.config/tanzu` directory before trying out Tanzu Application Platform.
+If you have installed a Tanzu CLI for Tanzu Community Edition or Tanzu Kubernetes Grid previously,
+then uninstall and remove the `~/.config/tanzu` directory before using Tanzu Application Platform.
 
 Follow the procedure for your operating system:
 
@@ -394,7 +405,7 @@ To install the Tanzu CLI on a Windows operating system:
     ```
 ## <a id='update-cli'></a> Update the Tanzu CLI
 
-If you have any earlier version of the Tanzu CLI installed,
+If you have an earlier version of the Tanzu CLI installed,
 do the following before you install the plugins.
 For instructions on installing plugins, see [Install the Tanzu CLI Plugins](#install-the-tanzu-cli-plugins).
 
@@ -427,9 +438,9 @@ To remove plugins from earlier versions of the Tanzu CLI:
 
 ## Install the Tanzu CLI Plugins
 
-After you have installed the tanzu core executable, you must install package, imagepullsecret, apps, and app-accelerator CLI plugins.
+After you have installed the Tanzu core executable, you must install the package, imagepullsecret, apps, and app-accelerator CLI plugins.
 
-1. Navigate to the tanzu folder that contains the cli folder.
+1. Navigate to the Tanzu folder that contains the cli folder.
 
 2. Run the following command from the tanzu directory to install all the plugins for this release.
     ```
@@ -453,6 +464,8 @@ After you have installed the tanzu core executable, you must install package, im
     package                             Tanzu package management                                                                                                                                        v0.5.0   installed
     pinniped-auth                       Pinniped authentication operations (usually not directly invoked)                                                                                               v0.5.0   installed
     ```
-> **Note:** The `package`, `imgpullsecret`, `accelerator`, and `apps` plugins are used to install and interact with the Tanzu Application Platform.
+  
+**A note regarding the installed plugins:**
+The `package`, `imgpullsecret`, `accelerator`, and `apps` plugins will be used to install and/or interact with the Tanzu Application Platform.
     
 The installation of this beta product requires cluster-admin privileges. There are additional plugin/commands included with the Tanzu CLI which could have unintended side-effects. For the purposes of installing this beta, VMware recommends against running commands for the following CLI plugins: `cluster`, `kubernetes-release`, `login`, `management-cluster`, and `pinniped-auth`.

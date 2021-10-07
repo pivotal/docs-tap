@@ -1,5 +1,5 @@
 # Known Issues
-
+The CLI has the following known issues:
 * `--image`:
   - This flag isn't supported by the supply chain in Tanzu Application Platform Beta 2 release.
 * `tanzu apps workload get`:
