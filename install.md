@@ -970,17 +970,13 @@ To install Supply Chain Security Tools - Store:
 
 
 ## <a id='install-scst-sign'></a> Install Supply Chain Security Tools - Sign
-**Note**: You are installing a component that will reject pods from being spun up if the webhook fails or is misconfigured. If the webhook is preventing the cluster from functioning, you can delete the configuration by running:
-```bash
-kubectl delete MutatingWebhookConfiguration image-policy-mutating-webhook-configuration
-```
 
 **Prerequsites**: As part of the install instructions, we will ask you to provide a cosign public key to use to validate signed images. We will provide an example cosign public key that will be able to validate an image from cosign, but if you wish to provide your own key and images, you can follow the [cosign quick start guide](https://github.com/sigstore/cosign#quick-start) to generate your own keys and sign an image.
 
 To install Supply Chain Security Tools - Sign:
 
 1. Follow the instructions in [Install Packages](#install-packages) above.
-1. Gather the values schema to view configuration options
+1. Gather the values schema
 
     ```bash
     tanzu package available get image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.0 --values-schema --namespace tap-install
@@ -1047,9 +1043,9 @@ To install Supply Chain Security Tools - Sign:
 
    After you run the code above, the webhook is running.
 
-1. Create a service account named `registry-credentials` in the `image-policy-system` namespace. When cosign `signs` an image, it generates a signature in a OCI complaint format and pushes it to the registry alongside the image with the tag `<image-digest>.sig` To access this signature, the webhook needs the credentials of the registry that holds it. 
+1. Create a service account named `registry-credentials` in the `image-policy-system` namespace. Run one of the following code options.
 
-    * **If the image and signature are in a public registry:** Create the service account by applying the following:
+    * **If the images and signatures are in public registries:** No additional configuration is needed. Run:
         ```console
         cat <<EOF | kubectl apply -f -
         apiVersion: v1
@@ -1060,7 +1056,7 @@ To install Supply Chain Security Tools - Sign:
         EOF
         ```
 
-    * **If the image and signature are in a private registry:** Add secrets to the `imagePullSecrets` property of the service account. Run:
+    * **If the images and signatures are in private registries:** Add secrets to the `imagePullSecrets` property of the service account. Run:
         ```console
         cat <<EOF | kubectl apply -f -
         apiVersion: v1
