@@ -14,7 +14,7 @@ Next, in [Installing Part II: Packages](../install.md), ensure the following pac
 - [Supply Chain Security Tools - Scan](../install.md#install-scst-scan)
 - (Optional) [Kubectl `tree` Plugin](https://github.com/ahmetb/kubectl-tree)
 
-The following versions were used in preparing this example:
+This example uses the following versions:
 ```console
 $ tanzu package installed list -n tap-install
 | Retrieving installed packages...
@@ -28,7 +28,8 @@ $ tanzu package installed list -n tap-install
 
 ## Configure the Example
 
-The following environment variables are required to set configuration for the image registry where Tanzu Build Service will push images. The Image Scan will also pull from the same registry.
+Set the following environment variables to configure the image registry where Tanzu Build Service will push images. 
+The Image Scan pulls from the same registry.
 
 ```bash
 REGISTRY_SERVER=
@@ -41,7 +42,8 @@ REGISTRY_PROJECT=
 
 ### Tanzu Network Image Pull Secret
 
-The following secrets will be used by each product to pull from Tanzu Network. This secret will be replicated into necessary namespaces where it will overwrite the empty placeholder secrets that were defined by each product.
+The following secrets are used by each product to pull from Tanzu Network. These secrets 
+are replicated into namespaces where they overwrite the empty placeholder secrets that were defined by each product.
 
 ```bash
 tanzu imagepullsecret add registry-credentials \
@@ -59,7 +61,8 @@ tanzu imagepullsecret add image-secret \
 
 ### Tanzu Build Service
 
-Deploy the following to configure Tanzu Build Service to build an image and push it to a registry. `registry-credentials` is an empty placeholder secret that will be populated with the credentials used to access the registry.
+Configure Tanzu Build Service to build an image and push it to a registry. 
+`registry-credentials` is an empty placeholder secret that is populated with the credentials used to access the registry.
 
 ```bash
 kubectl apply -f - -o yaml << EOF
@@ -121,11 +124,19 @@ EOF
 
 ### Supply Chain Security Tools for VMware Tanzu - Scan
 
-Deploy the following to configure the source and image scans. `image-secret` is an empty placeholder secret that will be populated with the credentials used to access the registry where TBS will push built images.
+Configure the source and image scans. 
+`image-secret` is an empty placeholder secret that is populated with the credentials 
+that are used to access the registry where Tanzu Build Service pushes built images.
 
-When installing the Grype Scanner, five scan templates were pre-installed for various use cases. This example will use two of them, `blob-source-scan-template` for performing a source scan within the context of a supply chain (where the source code is delivered as a tar file) and `private-image-scan-template` for performing an image scan against a private registry. Since they were pre-installed, they are not defined here, but will be referenced later in the supply chain templates.
+When installing the Grype Scanner, five scan templates are preinstalled for various use cases. 
+This example uses two of them: 
 
-What is defined here other than the placeholder secret is a Scan Policy indicating how to perform a policy compliance check against severity of vulnerabilities found. This particular Scan Policy will fail compliance if a `Critical`, `High` or `UnknownSeverity` vulnerability is found in either the Source or Image Scan. As it is, this Supply Chain is naive in that it will continue to the next supply chain step regardless of the compliance check.
+- `blob-source-scan-template` for performing a source scan within the context of a supply chain where the source code is delivered as a TAR file.
+- `private-image-scan-template` for performing an image scan against a private registry. 
+
+Because these scan templates are preinstalled, they are not defined, but are referenced later in the supply chain templates.
+
+A Scan Policy is defined and indicates how to perform a policy compliance check against the severity of vulnerabilities found. This Scan Policy will fail compliance if a `Critical`, `High` or `UnknownSeverity` vulnerability is found in either the Source or Image Scan. This Supply Chain  continues to the next supply chain step regardless of the compliance check.
 
 ```bash
 kubectl apply -f - -o yaml << EOF
@@ -164,7 +175,7 @@ EOF
 
 ## App Operator Deployments for Defining the Supply Chain
 
-Configure and deploy the following Supply Chain Components. Some components will reference cluster resources deployed above. The scanning components will make use of the Scan Policy but will also reference pre-installed Scan Templates installed with the Grype Scanner.
+Configure and deploy the following Supply Chain Components. Some components reference cluster resources deployed above. The scanning components use the Scan Policy, and reference pre-installed Scan Templates installed with the Grype Scanner.
 
 ```bash
 kubectl apply -f - -o yaml << EOF
@@ -305,19 +316,19 @@ EOF
 
 ## Developer Deployment for Defining the Workload
 
-With all the Supply Chain components in place, it is time for a Developer to deploy a workload through the Supply Chain!
+With the Supply Chain components configured, a Developer can deploy a workload through the Supply Chain.
 
-But first, set up a couple watches to see different views into the supply chain progressing. In one terminal (if the optional [Kubectl `tree` Plugin](https://github.com/ahmetb/kubectl-tree) is installed):
+Set up several watches to view the supply chain progressing. In a terminal, if the optional [Kubectl `tree` Plugin](https://github.com/ahmetb/kubectl-tree) is installed, run:
 ```bash
 watch kubectl tree workload tanzu-java-web-app
 ```
 
-And in another terminal using `kubectl get`:
+In another terminal run `kubectl get`:
 ```bash
 watch kubectl get workload,scantemplate,scanpolicy,gitrepository,sourcescan,image.kpack,imagescan,pod
 ```
 
-Deploy a workload that references a public code repository:
+Deploy a workload that references a public code repository. Run:
 ```bash
 kubectl apply -f - -o yaml << EOF
 ---
@@ -336,7 +347,7 @@ spec:
 EOF
 ```
 
-**NOTE:** There will be some periods where resources take some time to run to completion. In particular, the build image step with Tanzu Build Service will take some minutes to build.
+**NOTE:** Resources can take time to run to completion. The build image step with Tanzu Build Service takes several minutes to build.
 
 Notice the resources be created:
 1. `workload`: Workload is defined
