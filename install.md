@@ -1492,9 +1492,8 @@ Use the following procedure to verify that the packages are installed.
 
 ## <a id='setup'></a> Set Up Developer Namespaces to Use Installed Packages
 
-To create a Cartographer `Workload` for your application that uses the registry credentials specified in the steps above,
-run the following command to add credentials and RBAC rules to the namespace that you plan to create the `Workload` in.
-Please replace `YOUR-NAMEPACE` with the desired namespace (e.g., use `-n default` for the default namespace).
+Cartographer `Workload` for your application that uses the registry credentials specified in the steps above.
+Run the following command to add credentials and Role-Based Access Control (RBAC) rules to the namespace that you plan to create the `Workload` in:
 
 ```
 cat <<EOF | kubectl -n YOUR-NAMESPACE apply -f -
@@ -1568,3 +1567,7 @@ subjects:
 
 EOF
 ```
+
+Where:
+
+- `YOUR-NAMEPACE` is the namespace you want to use. Use `-n default` for the default namespace.
