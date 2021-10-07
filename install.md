@@ -694,17 +694,6 @@ Added installed package 'cartographer' in namespace 'default'
     service_account: service-account
     ```
 
-1. Export a secret for pulling app container images to all namespaces:
-
-    ```console
-    tanzu imagepullsecret add registry-credentials --registry <REGISTRY_SERVER> --username <REGISTRY_USERNAME> --password <REGISTRY_PASSWORD> --export-to-all-namespaces --namespace tap-install
-    ```
-    Where:
-
-    - `REGISTRY_SERVER` is the server of the registry.
-    - `REGISTRY_USERNAME` is the username for the registry.
-    - `REGISTRY_PASSWORD` is the password for the registry.
-
 1. Install the package by running:
 
      ```bash
@@ -1492,93 +1481,12 @@ Use the following procedure to verify that the packages are installed.
 
 ## <a id='setup'></a> Set Up Developer Namespaces to Use Installed Packages
 
-<<<<<<< HEAD
-Cartographer `Workload` for your application that uses the registry credentials specified in the steps above.
-Run the following command to add credentials and Role-Based Access Control (RBAC) rules to the namespace that you plan to create the `Workload` in:
-
-```
-cat <<EOF | kubectl -n YOUR-NAMESPACE apply -f -
-
-apiVersion: v1
-kind: Secret
-metadata:
-  name: tap-registry
-  annotations:
-    secretgen.carvel.dev/image-pull-secret: ""
-type: kubernetes.io/dockerconfigjson
-data:
-  .dockerconfigjson: e30K
-
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: registry-credentials
-  annotations:
-    secretgen.carvel.dev/image-pull-secret: ""
-type: kubernetes.io/dockerconfigjson
-data:
-  .dockerconfigjson: e30K
-
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: service-account # use value from "Install Default Supply Chain"
-secrets:
-  - name: registry-credentials
-imagePullSecrets:
-  - name: registry-credentials
-  - name: tap-registry
-
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  name: kapp-permissions
-  annotations:
-    kapp.k14s.io/change-group: "role"
-rules:
-  - apiGroups:
-      - servicebinding.io
-    resources: ['servicebindings']
-    verbs: ['*']
-  - apiGroups:
-      - serving.knative.dev
-    resources: ['services']
-    verbs: ['*']
-  - apiGroups: [""]
-    resources: ['configmaps']
-    verbs: ['get', 'watch', 'list', 'create', 'update', 'patch', 'delete']
-
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
-metadata:
-  name: kapp-permissions
-  annotations:
-    kapp.k14s.io/change-rule: "upsert after upserting role"
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: Role
-  name: kapp-permissions
-subjects:
-  - kind: ServiceAccount
-    name: service-account # use value from "Install Default Supply Chain"
-
-EOF
-```
-
-Where:
-
-- `YOUR-NAMEPACE` is the namespace you want to use. Use `-n default` for the default namespace.
-=======
 To create a Cartographer `Workload` for your application that uses the registry credentials specified in the steps above,
 follow the procedure below to add credentials and RBAC rules to the namespace that you plan to create the `Workload` in.
 
-1. Add registry write credentials to the developer namespace:
+1. Add registry credentials to the developer namespace:
     ```bash
-    $ tanzu imagepullsecret add registry-write-credentials --registry REGISTRY-SERVER --username REGISTRY-USERNAME --password REGISTRY-PASSWORD --namespace YOUR-NAMESPACE
+    $ tanzu imagepullsecret add registry-credentials --registry REGISTRY-SERVER --username REGISTRY-USERNAME --password REGISTRY-PASSWORD --namespace YOUR-NAMESPACE
     ```
     Where `YOUR-NAMESPACE` is the name you want for the developer namespace.
     For example, use `default` for the default namespace.
@@ -1590,7 +1498,7 @@ follow the procedure below to add credentials and RBAC rules to the namespace th
     apiVersion: v1
     kind: Secret
     metadata:
-      name: registry-read-credentials
+      name: tap-registry
       annotations:
         secretgen.carvel.dev/image-pull-secret: ""
     type: kubernetes.io/dockerconfigjson
@@ -1603,9 +1511,10 @@ follow the procedure below to add credentials and RBAC rules to the namespace th
     metadata:
       name: service-account # use value from "Install Default Supply Chain"
     secrets:
-      - name: registry-write-credentials
+      - name: registry-credentials
     imagePullSecrets:
-      - name: registry-read-credentials
+      - name: registry-credentials
+      - name: tap-registry
 
     ---
     apiVersion: rbac.authorization.k8s.io/v1
@@ -1644,4 +1553,3 @@ follow the procedure below to add credentials and RBAC rules to the namespace th
 
     EOF
     ```
->>>>>>> a962733d526a68d948ae59a5454ef7219a8b3b21
