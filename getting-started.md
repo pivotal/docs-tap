@@ -866,7 +866,16 @@ This use case is similar to the above in that we will be binding a sample applic
 
 #### Prerequisites
 
-*Note:* If you followed previous instructions for [use case 1]() then you **MUST** remove Rabbitmq Cluster Operator from that cluster.
+*Note:* If you followed previous instructions for [use case 1]() then you **MUST** first remove Rabbitmq Cluster Operator from that cluster.
+
+*Known Issue:* Once an API has been projected from across clusters, if you try and delete a namespace in the cluster that has been projected into, the namespace deletion will be stuck in “terminating” state.  This will occur even for namespaces that aren’t involved in projection. We are aming to fix this issue in an upcoming release. Until then, you can work around the issue by removing the finalizer on the namespace you are trying to delete:
+
+```console
+NAMESPACE=<NAMESPACE-THAT-IS-HANGING>
+kubectl get namespace "$NAMESPACE" -o json > "${NAMESPACE}.json"
+# manually remove “kubernetes” finalizer from .spec.finalizers in "${NAMESPACE}.json"
+kubectl replace --raw "/api/v1/namespaces/${NAMESPACE}/finalize" -f "${NAMESPACE}.json"
+```
 
 1. Follow the documentation to install Tanzu Application Platform onto a second, separate Kubernetes cluster
 
