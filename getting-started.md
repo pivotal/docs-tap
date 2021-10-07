@@ -760,9 +760,9 @@ One of the out-of-the-box supply chains we are working on for a future release w
 
 * [How to Create a ScanTemplate](scst-scan/create-scan-template.md)
 
-* [Viewing and Understanding Scan Status Conditions](scst-scan-results.md)
+* [Viewing and Understanding Scan Status Conditions](scst-scan/results.md)
 
-* [Observing and Troubleshooting](scst-scan-observing.md)
+* [Observing and Troubleshooting](scst-scan/observing.md)
 
 
 ## Section 5: Advanced Use Cases - Services Journey
