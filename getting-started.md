@@ -26,14 +26,14 @@ Before getting started, ensure the following prerequisites are in place:
 
 1. Tanzu Application Platform has been installed on the target Kubernetes cluster
    (install instructions [here](install-general.md)
-   and [here](/install.md))
+   and [here](install.md))
 
 2. The Default Supply Chain has been installed on the target Kubernetes cluster
    (install instructions [here](install.md#install-default-supply-chain))
 
 3. Default kube config context is set to the target Kubernetes cluster
 
-4. Follow [these instructions](install.md#-set-up-developer-namespaces-to-use-installed-packages)
+4. Follow [these instructions](install.md#install-developer-conventions)
    to setup the namespace that you plan to create the `Workload` in.
 
 #### A note about Application Accelerators
@@ -73,7 +73,7 @@ tanzu apps workload create tanzu-java-web-app \
 --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
 --git-branch main --type web --yes
 ```
-***note** this first deploy uses accelerator source from git, but you’ll use the VScode extension to debug and live-update this app in later steps.
+**Note** this first deploy uses accelerator source from git, but you’ll use the VScode extension to debug and live-update this app in later steps.
 
 **6. View the build and runtime logs** for your app using the `tail` command:
 ```
