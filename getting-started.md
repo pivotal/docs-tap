@@ -33,10 +33,8 @@ Before getting started, ensure the following prerequisites are in place:
 
 3. Default kube config context is set to the target Kubernetes cluster
 
-4. Follow [these instructions](scc/default-supply-chains.md)
-   to create a service account for pushing images
-
-You can now use the existing namespace to deploy a new workload. If you want to do it in a new namespace then follow these additional instructions
+4. Follow [these instructions](install.md#-set-up-developer-namespaces-to-use-installed-packages)
+   to setup the namespace that you plan to create the `Workload` in.
 
 #### A note about Application Accelerators
 
@@ -215,6 +213,7 @@ After you push that change to your git repo the Accelerator in the UI will be re
 ```bash
 tanzu accelerator update <accelerator-name> --reconcile
 ```
+---
 
 ## Section 3: Add test to your application
 
@@ -514,6 +513,7 @@ NAME                                             URL                            
 service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.developer.example.com   tanzu-java-web-app-00001   tanzu-java-web-app-00001   Unknown   IngressNotConfigured
 ```
 
+---
 
 ## Section 4: Advanced Use Cases - Supply Chain Security Tools
 
@@ -764,6 +764,8 @@ One of the out-of-the-box supply chains we are working on for a future release w
 
 * [Observing and Troubleshooting](scst-scan/observing.md)
 
+
+          
 ## Section 5: Advanced Use Cases - Services Journey
 
 ### Overview
