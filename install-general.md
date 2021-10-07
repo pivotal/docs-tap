@@ -33,13 +33,14 @@ images
     * Amazon Elastic Kubernetes Service
     * Google Kubernetes Engine
     * kind
-        * Supported only on Linux operating system. Minimum requirements: 8 CPUs for i9 or equivalent, 12 CPUs for i7 or equivalent, 8 GB RAM, 120 GB disk space.
-      
+        * Supported only on Linux operating system.
+        * Minimum requirements: 8 CPUs for i9 or equivalent, 12 CPUs for i7 or equivalent, 8 GB RAM (12+ GB recommended), 120 GB disk space.
         * If you are using Cloud Native Runtimes, see [Configure Your Local Kind
         Cluster](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-local-dns.html#configure-your-local-kind-cluster-1)
     * Google Kubernetes Engine (GKE Autopilot clusters do not have required features enabled)
     * minikube
-        * Minimum requirements: 8 CPUs for i9 or equivalent, 12 CPUs for i7 or equivalent, 8 GB RAM, 120 GB disk space.
+        * Minimum requirements for VM: 8 CPUs for i9 or equivalent, 12 CPUs for i7 or equivalent, 8 GB RAM (12+ GB recommended), 120 GB disk space.
+        * At least 16 GB of total host memory recommended.
         * On Mac OS only hyperkit driver is supported. Docker driver is not supported.
 
     To deploy all Tanzu Application Platform packages, your cluster must have at least **8 GB** of RAM across all nodes available to Tanzu Application
