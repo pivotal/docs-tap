@@ -466,6 +466,6 @@ After you have installed the Tanzu core executable, you must install the package
     ```
   
 **A note regarding the installed plugins:**
-The `package`, `imgpullsecret`, `accelerator`, and `apps` plugins will be used to install and/or interact with the Tanzu Application Platform.
+The `package`, `imgpullsecret`, `accelerator`, and `apps` plugins will be used to install or interact with the Tanzu Application Platform.
     
-The installation of this beta product requires cluster-admin privileges. There are additional plugin/commands included with the Tanzu CLI which could have unintended side-effects. For the purposes of installing this beta, VMware recommends against running commands for the following CLI plugins: `cluster`, `kubernetes-release`, `login`, `management-cluster`, and `pinniped-auth`.
+The Tanzu Application Platform beta product requires cluster-admin privileges. There are additional plugins and commands included with the Tanzu CLI that can have unintended side-effects. VMware recommends against running commands for the following CLI plugins: `cluster`, `kubernetes-release`, `login`, `management-cluster`, and `pinniped-auth`.
