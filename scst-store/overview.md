@@ -8,7 +8,6 @@ The Supply Chain Security Tools - Store has four components:
 
 * Postgres database
 * API
-* client library
 * CLI
 
 Currently, there is support for the Cyclone DX XML SBoM formats.
