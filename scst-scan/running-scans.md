@@ -83,7 +83,8 @@ and notice the `Status.Conditions` includes a `Reason: EvaluationFailed` and `Me
 For more information, refer to [Viewing and Understanding Scan Status Conditions](results.md).
 
 ### Modify the ScanPolicy
-If these failing CVEs are acceptable or the build needs to be deployed regardless of these CVEs and the app will be patched to remove the vulnerabilities (although we are not advocating for ignoring Critical Severity Vulnerabilities):
+If these failing CVEs are acceptable or the build needs to be deployed regardless of these CVEs
+ and the app will be patched to remove the vulnerabilities:
 
 Update the `ignoreCVEs` array in the ScanPolicy to include the CVEs to ignore:
 ```yaml
@@ -192,7 +193,7 @@ spec:
   scanPolicy: image-scan-policy
 ```
 
-### (Optional) Set up a Watch
+### (Optional) Set Up a Watch
 Before deploying, set up a watch in another terminal to view the process.
 ```bash
 watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
