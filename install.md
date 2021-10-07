@@ -694,17 +694,6 @@ Added installed package 'cartographer' in namespace 'default'
     service_account: service-account
     ```
 
-1. Export a secret for pulling app container images to all namespaces:
-
-    ```console
-    tanzu imagepullsecret add registry-credentials --registry <REGISTRY_SERVER> --username <REGISTRY_USERNAME> --password <REGISTRY_PASSWORD> --export-to-all-namespaces --namespace tap-install
-    ```
-    Where:
-
-    - `REGISTRY_SERVER` is the server of the registry.
-    - `REGISTRY_USERNAME` is the username for the registry.
-    - `REGISTRY_PASSWORD` is the password for the registry.
-
 1. Install the package by running:
 
      ```bash
