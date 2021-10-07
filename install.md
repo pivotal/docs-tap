@@ -1493,17 +1493,18 @@ Use the following procedure to verify that the packages are installed.
 ## <a id='setup'></a> Set Up Developer Namespaces to Use Installed Packages
 
 To create a Cartographer `Workload` for your application that uses the registry credentials specified in the steps above,
-follow the following instructions to add credentials and RBAC rules to the namespace that you plan to create the `Workload` in.
-Please replace `<YOUR_NAMEPACE>` with the desired namespace (e.g., use `default` for the default namespace).
+follow the procedure below to add credentials and RBAC rules to the namespace that you plan to create the `Workload` in.
 
 1. Add registry write credentials to the developer namespace:
     ```bash
-    $ tanzu imagepullsecret add registry-write-credentials --registry <REGISTRY_SERVER> --username <REGISTRY_USERNAME> --password <REGISTRY_PASSWORD> --namespace <YOUR_NAMESPACE>
+    $ tanzu imagepullsecret add registry-write-credentials --registry REGISTRY-SERVER --username REGISTRY-USERNAME --password REGISTRY-PASSWORD --namespace YOUR-NAMESPACE
     ```
-
+    Where `YOUR-NAMESPACE` is the name you want for the developer namespace.
+    For example, use `default` for the default namespace.
+    
 2. Add placeholder read secrets, a service account, and RBAC rules to the developer namespace: 
     ```
-    $ cat <<EOF | kubectl -n <YOUR_NAMESPACE> apply -f -
+    $ cat <<EOF | kubectl -n YOUR-NAMESPACE apply -f -
 
     apiVersion: v1
     kind: Secret
