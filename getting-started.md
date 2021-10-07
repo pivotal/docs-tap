@@ -215,6 +215,7 @@ After you push that change to your git repo the Accelerator in the UI will be re
 ```bash
 tanzu accelerator update <accelerator-name> --reconcile
 ```
+---
 
 ## Section 3: Add test to your application
 
@@ -514,6 +515,7 @@ NAME                                             URL                            
 service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.developer.example.com   tanzu-java-web-app-00001   tanzu-java-web-app-00001   Unknown   IngressNotConfigured
 ```
 
+---
 
 ## Section 4: Advanced Use Cases - Supply Chain Security Tools
 
@@ -764,6 +766,7 @@ One of the out-of-the-box supply chains we are working on for a future release w
 
 * [Observing and Troubleshooting](scst-scan/observing.md)
 
+---
 
 ## Section 5: Advanced Use Cases - Services Journey
 
