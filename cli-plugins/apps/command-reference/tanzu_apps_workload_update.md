@@ -25,7 +25,7 @@ tanzu apps workload update my-workload --env key=value
 tanzu apps workload update --file workload.yaml
 ```
 
-### Options
+### <a id='update-options'>Options
 
 ```
       --app name                       application name the workload is a part of
