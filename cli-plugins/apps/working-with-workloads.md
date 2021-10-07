@@ -68,7 +68,7 @@ You can view workload details at anytime in the process but some details such as
 When the workload has been created, `tanzu apps workload get` will include the URL for the running workload.
 Depending on the terminal you use you may be able to `ctrl`+click on the URL to view. If that doesn't work you can copy-paste the URL into your web browser to see the workload.
 
-### <a id='workload-local-source'></a> Create a workload from local source
+### <a id='workload-local-source'></a> Create a Workload from Local Source
 
 Additionally, it is possible to create a workload using code from a local folder.
 
@@ -86,7 +86,7 @@ Additionally, it is possible to create a workload using code from a local folder
     + `--local-path` is pointing to the folder where the source code is located
     + `--source-image` is the registry path for the local source code
 
-## <a id='service-binding'></a> Bind a service to a workload
+## <a id='service-binding'></a> Bind a Service to a Workload
 
 Multiple services can be configured for each workload. The cluster supply chain is in charge of provisioning those services.
 
@@ -101,7 +101,7 @@ Multiple services can be configured for each workload. The cluster supply chain 
     + `pet-clinic` is the name of the workload to be updated
     + `--service-ref` is the reference to the service using the format {name}={apiVersion}:{kind}:{name}. For more details, refer to [update command](command-reference/tanzu_apps_workload_update.md#update-options)
 
-## <a id='next-steps'></a> Next steps
+## <a id='next-steps'></a> Next Steps
 
 You can add environment variables, export definitions, and use flags with these [commands](command-reference.md), for example:
 
