@@ -12,16 +12,17 @@ This document describes the first part of the installation process for Tanzu App
 
 The following are required to install Tanzu Application Platform:
 
-* A [TanzuNet](https://network.tanzu.vmware.com/) account to download TAP packages
+* A [Tanzu Network](https://network.tanzu.vmware.com/) account to download Tanzu Application Platform packages
 
-* A container image registry, such as [Harbor](https://goharbor.io/) or [Docker Hub] (https://hub.docker.com/) 
-with at least **10 GB** of available storage for application images, base images, and runtime 
+* A container image registry, such as [Harbor](https://goharbor.io/) or 
+[Docker Hub](https://hub.docker.com/) 
+with at least **10&nbsp;GB** of available storage for application images, base images, and runtime 
 dependencies 
 
-* Registry credentials with push/write access made available to Tanzu Application Platform to store 
+* Registry credentials with push and write access made available to Tanzu Application Platform to store 
 images 
 
-* Registry credentials for components that pull/read public images from Docker Hub to avoid rate limiting 
+* Registry credentials for components that pull and read public images from Docker Hub to avoid rate limiting 
 
 * Network access to https://registry.tanzu.vmware.com 
 
@@ -43,14 +44,14 @@ images
         * At least 16 GB of total host memory recommended.
         * On Mac OS only hyperkit driver is supported. Docker driver is not supported.
 
-    To deploy all Tanzu Application Platform packages, your cluster must have at least **8 GB** of RAM across all nodes available to Tanzu Application
-    Platform. 
-    However, VMware recommends at least **16 GB** of RAM be available to build and deploy applications, including for kind/minikube.
+    To deploy all Tanzu Application Platform packages, your cluster must have at least **8&nbsp;GB** of RAM across all nodes available to Tanzu Application Platform. 
+    VMware recommends that at least **16&nbsp;GB** of RAM is available to build and deploy applications, including for kind and minikube.
 
-    Your cluster must also have at least **70 GB** of disk per node.
+    Your cluster must also have at least **70&nbsp;GB** of disk per node.
   
-* For this beta release, [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) must be configured so that TAP controller 
-pods may run as root
+* [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) 
+must be configured so that Tanzu Application Platform controller 
+pods can run as root. 
 
 * **[kapp Carvel command line tool](https://github.com/vmware-tanzu/carvel-kapp/releases)** v0.37.0 or later
  
@@ -277,7 +278,8 @@ To accept EULAs:
 Before you install Tanzu Application Platform,
 download and install the Tanzu CLI and the Tanzu CLI plugins. 
 If you have earlier versions of the Tanzu CLI, follow the instructions in [Update the Tanzu CLI](#update-cli).
-If you have installed a Tanzu CLI for TCE or TKG in the past, uninstall and remove the `~/.config/tanzu` directory before using Tanzu Application Platform.
+If you have installed a Tanzu CLI for Tanzu Community Edition or Tanzu Kubernetes Grid previously,
+then uninstall and remove the `~/.config/tanzu` directory before using Tanzu Application Platform.
 
 Follow the procedure for your operating system:
 
