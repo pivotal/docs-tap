@@ -868,7 +868,7 @@ This use case is similar to the above in that we will be binding a sample applic
 
 #### Prerequisites
 
-*Note:* If you followed previous instructions for [use case 1]() then you **MUST** first remove Rabbitmq Cluster Operator from that cluster.
+*Note:* If you followed previous instructions for [Services Journey - Use Case 1](getting-started.md#use-case-1---binding-an-app-workload-to-a-service-resource-on-a-single-cluster) then you **MUST** first remove Rabbitmq Cluster Operator from that cluster.
 
 *Known Issue:* Once an API has been projected from across clusters, if you try and delete a namespace in the cluster that has been projected into, the namespace deletion will be stuck in “terminating” state.  This will occur even for namespaces that aren’t involved in projection. We are aming to fix this issue in an upcoming release. Until then, you can work around the issue by removing the finalizer on the namespace you are trying to delete:
 
