@@ -1,20 +1,21 @@
 # Running a Sample Public Source Scan and Image Scan with Policy Enforcement
 
 ## <a id="public-source-scan"></a> Public Source Scan
-This example will perform a source scan on a public repository. The source revision in question has 61 known vulnerabilities (CVEs), spanning a number of severities. The SourceScan will use the ScanPolicy to run a compliance check against the CVEs.
+This example performs a source scan on a public repository. The source revision has 61 known vulnerabilities (CVEs), spanning a number of severities. SourceScan uses the ScanPolicy to run a compliance check against the CVEs.
 
-The policy in this example has been set to only consider `Critical` severity CVEs as violations, which returns 2 Critical Vulnerabilities.
+The example policy is set to only consider `Critical` severity CVEs as violations, which returns 2 Critical Vulnerabilities.
 
-**NOTE:** This example ScanPolicy has been deliberately constructed to showcase the features available, and as such should not be considered an acceptable base policy.
+**NOTE:** This example ScanPolicy is deliberately constructed to showcase the features available, and should not be considered an acceptable base policy.
 
-For this example, the scan will (at the time of writing):
+For this example, the scan:
 
-* find all 61 of the CVEs,
-* ignore any CVEs that have severities that are not critical,
-* indicate in the `Status.Conditions` that 2 CVEs have violated policy compliance.
+* Finds all 61 of the CVEs
+* Ignores any CVEs that have severities that are not critical
+* Indicates in the `Status.Conditions` that 2 CVEs have violated policy compliance
 
 ### Define the ScanPolicy and SourceScan
 Create `policy-enforcement-example.yaml`:
+
 ```yaml
 ---
 apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
@@ -61,7 +62,8 @@ spec:
 ```
 
 ### (Optional) Set Up a Watch
-Before deploying, set up a watch in another terminal to see things process which will be quick.
+Before deploying, set up a watch in another terminal to view processing.
+
 ```bash
 watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
 ```
@@ -69,24 +71,27 @@ watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
 For more information, refer to [Observing and Troubleshooting](observing.md).
 
 ### Deploy the Resources
+
 ```bash
 kubectl apply -f policy-enforcement-example.yaml
 ```
 
 ### View the Scan Results
-Once the scan has completed, perform:
+Once the scan has completed, run:
+
 ```bash
 kubectl describe sourcescan policy-enforcement-example
 ```
 and notice the `Status.Conditions` includes a `Reason: EvaluationFailed` and `Message: Vulnerabilities that failed OPA policy: GHSA-f2jv-r9rf-7988, GHSA-w457-6q6x-cgp9`.
 
-For more information, refer to [Viewing and Understanding Scan Status Conditions](results.md).
+For more information, see [Viewing and Understanding Scan Status Conditions](results.md).
 
 ### Modify the ScanPolicy
-If these failing CVEs are acceptable or the build needs to be deployed regardless of these CVEs
- and the app will be patched to remove the vulnerabilities:
+If the failing CVEs are acceptable or the build needs to be deployed regardless of these CVEs, 
+the app is patched to remove the vulnerabilities:
 
 Update the `ignoreCVEs` array in the ScanPolicy to include the CVEs to ignore:
+
 ```yaml
 ...
 spec:
@@ -102,25 +107,28 @@ spec:
 ...
 ```
 
-**NOTE:** Currently, the ScanPolicy CRD will not re-trigger a scan if it is updated, so one way to re-trigger the scan is to delete and re-apply the SourceScan CR.
+**NOTE:** The ScanPolicy CRD will not re-trigger a scan if it is updated. To re-trigger the scan, delete and re-apply the SourceScan CR.
 
 #### Delete the SourceScan CR:
+
 ```bash
 kubectl delete sourcescan policy-enforcement-example
 ```
 
 #### Re-apply the Resources:
+
 ```bash
 kubectl apply -f policy-enforcement-example.yaml
 ```
 
 #### Re-describe the SourceScan CR:
+
 ```bash 
 kubectl describe sourcescan policy-enforcement-example
 ```
 Observe that `Status.Conditions` now includes a `Reason: EvaluationPassed` and `No noncompliant vulnerabilities found`.
 
-You can also update the `violatingSeverities` array in the ScanPolicy if desired. For reference, the Grype scan returns the following Severity spread of vulnerabilities:
+You can update the `violatingSeverities` array in the ScanPolicy if desired. For reference, the Grype scan returns the following Severity spread of vulnerabilities:
 
 * Critical: 2
 * High: 31
@@ -130,12 +138,13 @@ You can also update the `violatingSeverities` array in the ScanPolicy if desired
 * UnknownSeverity: 0
 
 ### Clean Up
+
 ```bash
 kubectl delete -f policy-enforcement-example.yaml
 ```
 
 ## <a id="public-image-scan"></a> Public Image Scan
-The following example performs an image scan on a image found in a public registry. This image revision has 226 known vulnerabilities (CVEs), spanning a number of severities. ImageScan uses the ScanPolicy to run a compliance check against the CVEs.
+The following example performs an image scan on a image in a public registry. This image revision has 226 known vulnerabilities (CVEs), spanning a number of severities. ImageScan uses the ScanPolicy to run a compliance check against the CVEs.
 
 The policy in this example is set to only consider `Unknown` severity CVEs as a violation, which returns 1 Unknown Severity Vulnerability.
 
