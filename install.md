@@ -614,7 +614,7 @@ To install Tanzu Build Service using the Tanzu CLI:
      Added installed package 'tbs' in namespace 'tap-install'
     ```
 
-    **Note**: Installing the `buildservice.tanzu.vmware.com` package with Tanzu Net credentials automatically relocates buildpack dependencies to your cluster. This install process can take some time.  The command provided above increases the timeout duration to account for this.  If the command still times out, periodically run the installation verification step provided in the optional step below because image relocation will continue in the background.
+    **Note**: Installing the `buildservice.tanzu.vmware.com` package with Tanzu Network credentials automatically relocates buildpack dependencies to your cluster. This install process can take some time.  The command provided above increases the timeout duration.  If the command times out, periodically run the installation verification step provided in the optional step below. Image relocation will continue in the background.
 
 1. (Optional) Run the following command to verify the clusterbuilders created by the Tanzu Build Service install:
 
