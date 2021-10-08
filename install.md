@@ -580,7 +580,7 @@ To install Tanzu Build Service using the Tanzu CLI:
     ```
     Where:
 
-    - `REPOSITORY` is the fully qualified path to the repository that TBS will be written to. (This path must be writable)
+    - `REPOSITORY` is the fully qualified path to the repository that TBS will be written to. This path must be writable.
 
        Examples:
        * Docker Hub `my-dockerhub-account/build-service`
