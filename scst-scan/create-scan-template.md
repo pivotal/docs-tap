@@ -22,15 +22,19 @@ You can define any valid [Kubernetes Pod](https://kubernetes.io/docs/concepts/wo
 
 2. **XML Extra Fields**  
     **Component Name**  
-        For the Scan Controller to keep track of your report, please provide the name of the scanned artifact (`url` for source repository, `image` name for image scans) into the `bom>metadata>component>name` field of the XML generated as an output.  
+        For the Scan Controller to keep track of your report, provide the name of the scanned artifact
+        (`url` for source repository, `image` name for image scans) into the `bom>metadata>component>name` field of the XML generated as an output.
     **Component Digest**  
-        For the Scan Controller to keep track of your report, please provide the digest or most unique identifier of your artifact into the `bom>metadata>component>version` field of the XML generated as an output.  
+        For the Scan Controller to keep track of your report, provide the digest or most unique identifier of your artifact into the `bom>metadata>component>version` field of the XML generated as an output.
     **Scanner Name**  
-        Please provide the name of the scanner you're using. This must be present in `bom>metadata>tools>tool>name` field of the XML generated as an output.  
+        Provide the name of the scanner you're using.
+        This must be present in `bom>metadata>tools>tool>name` field of the XML generated as an output.
     **Scanner Vendor**  
-        Please provide the name of the vendor from the scanner that you're using. This must be present in `bom>metadata>tools>tool>vendor` field of the XML generated as an output.  
+        Provide the name of the vendor from the scanner that you're using.
+        This must be present in `bom>metadata>tools>tool>vendor` field of the XML generated as an output.
     **Scanner Version**  
-        Please provide the version of the scanner you're using. This must be present in `bom>metadata>tools>tool>version` field of the XML generated as an output.
+        Provide the version of the scanner you are using.
+        This must be present in `bom>metadata>tools>tool>version` field of the XML generated as an output.
 
 If the `scanner` pod is not defined or the logs retrieved from the `stdout` does not have a valid format, then the scanning condition will fail.
 

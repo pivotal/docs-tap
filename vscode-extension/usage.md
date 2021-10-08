@@ -4,7 +4,8 @@ subtitle: Using Tanzu Developer Tools for VSCode
 weight: 2
 ---
 
-This topic explains how to use the Tanzu Developer Tools extension for VSCode. For a more detailed step-by-step walkthrough, please visit the [Getting Started instructions](../getting-started.md)
+This topic explains how to use the Tanzu Developer Tools extension for VSCode.
+For a more detailed step-by-step walkthrough, see Getting Started instructions](../getting-started.md).
 
 # Usage
 

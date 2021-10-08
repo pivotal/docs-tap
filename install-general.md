@@ -96,7 +96,8 @@ pods can run as root.
       ```
       Where `KC-VERSION` is the kapp-controller version being installed.
 
-      Please select v0.27.0+ kapp-controller version for Azure Kubernetes Service, Amazon Elastic Kubernetes Service, Google Kubernetes Engine, kind, and minikube from the [Releases page](https://github.com/vmware-tanzu/carvel-kapp-controller/releases).
+      Select v0.27.0+ kapp-controller version for Azure Kubernetes Service, Amazon Elastic Kubernetes Service,
+      Google Kubernetes Engine, kind, and minikube from the [Releases page](https://github.com/vmware-tanzu/carvel-kapp-controller/releases).
 
       For example:
       ```
@@ -108,7 +109,7 @@ pods can run as root.
          ```
          Pod status should be Running.
 
-    * (Optinal) To Verify installed kapp-controller version:
+    * (Optional) Verify installed kapp-controller version:
       
       1. Get kapp-controller deployment and namespace by running:
          ```
@@ -144,7 +145,8 @@ pods can run as root.
       kapp deploy -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/download/SG-VERSION/release.yml
       ```
 
-      Where `SG-VERSION` is the secretgen-controller version being installed. Please select v0.5.0+ secretgen-controller version from the [Releases page](https://github.com/vmware-tanzu/carvel-secretgen-controller/releases).
+      Where `SG-VERSION` is the secretgen-controller version being installed.
+      Select v0.5.0+ secretgen-controller version from the [Releases page](https://github.com/vmware-tanzu/carvel-secretgen-controller/releases).
 
       For example:
       ```
@@ -156,7 +158,7 @@ pods can run as root.
          ```
         Pod status should be Running.
 
-    * (Optinal) To Verify the secretgen-controller version you installed:
+    * (Optional) Verify the secretgen-controller version you installed:
 
       1. Get secretgen-controller deployment and namespace by running:
          ```

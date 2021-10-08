@@ -14,7 +14,7 @@ There are two high level workflows described within this document:
 
 ### Prerequisites
 
-In order to take full advantage of this document, please ensure you have followed [Installing Tanzu Application Platform](overview.md).
+In order to take full advantage of this document,  ensure you have followed [Installing Tanzu Application Platform](overview.md).
 
 ---
 

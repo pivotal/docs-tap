@@ -49,9 +49,11 @@ The following components have been updated in TAP v0.2.0
 
 This release has the following issues:
 
-- If your install workflow involves [Carvel imgpkg](https://github.com/vmware-tanzu/carvel-imgpkg), please use version. v0.19.0 or later to avoid auth errors.
+- If your install workflow involves [Carvel imgpkg](https://github.com/vmware-tanzu/carvel-imgpkg), use version.
+  v0.19.0 or later to avoid auth errors.
 - If package installation fails, use `tanzu package installed update` with the `--install` flag to continue installation.
-- When using the `Tanzu Developer Tools for VSCode` extension, please delete the workload before performing any of the following steps to avoid workload update errors:
+- When using the `Tanzu Developer Tools for VSCode` extension,
+  delete the workload before performing any of the following steps to avoid workload update errors:
     - Switching between the `Live Update` & `Debug` capabilities
     - Disabling `Live Update` & re-starting `Live Update`
     
