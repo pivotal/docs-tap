@@ -1481,7 +1481,7 @@ Use the following procedure to verify that the packages are installed.
 
 ## <a id='setup'></a> Set Up Developer Namespaces to Use Installed Packages
 
-To create a Cartographer `Workload` for your application that uses the registry credentials specified in the steps above,
+To create a `Workload` for your application that uses the registry credentials specified in the steps above,
 run the following commands to add credentials and Role-Based Access Control (RBAC) rules to the namespace that you plan to create the `Workload` in:
 
 
