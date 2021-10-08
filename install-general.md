@@ -87,7 +87,7 @@ pods can run as root.
         $ kubectl config use-context aks-tap-cluster
         Switched to context "aks-tap-cluster".
         
-* **kapp-controller** v0.25.0 or later:
+* **kapp-controller** v0.27.0 or later:
 
     * Install kapp-controller by running:
 
@@ -96,13 +96,11 @@ pods can run as root.
       ```
       Where `KC-VERSION` is the kapp-controller version being installed.
 
-      Please select v0.25.0+ kapp-controller version for Azure Kubernetes Service, Amazon Elastic Kubernetes Service, kind, and minikube from the [Releases page](https://github.com/vmware-tanzu/carvel-kapp-controller/releases).
-
-      Please select v0.27.0+ kapp-controller version for Google Kubernetes Engine from the [Releases page](https://github.com/vmware-tanzu/carvel-kapp-controller/releases).
+      Please select v0.27.0+ kapp-controller version for Azure Kubernetes Service, Amazon Elastic Kubernetes Service, Google Kubernetes Engine, kind, and minikube from the [Releases page](https://github.com/vmware-tanzu/carvel-kapp-controller/releases).
 
       For example:
       ```
-      kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v0.25.0/release.yml
+      kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v0.27.0/release.yml
       ```
     * Verify kapp-controller is running by running:
          ```
@@ -133,8 +131,8 @@ pods can run as root.
          For example:
          ```
          kubectl get deployment kapp-controller -n kapp-controller  -o yaml | grep kapp-controller.carvel.dev/version
-         kapp-controller.carvel.dev/version: v0.25.0
-         kapp.k14s.io/original: '{"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{"kapp-controller.carvel.dev/version":"v0.25.0","kbld.k14s.io/images":"-
+         kapp-controller.carvel.dev/version: v0.27.0
+         kapp.k14s.io/original: '{"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{"kapp-controller.carvel.dev/version":"v0.27.0","kbld.k14s.io/images":"-
          ```
 
 
