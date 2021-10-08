@@ -705,7 +705,7 @@ Added installed package 'cartographer' in namespace 'default'
       --values-file default-supply-chain-values.yaml
     ```
 
-Note: The `service-account` service account and needed secrets are created at the end of this guide, in <a id='setup'>Set Up Developer Namespaces to Use Installed Packages</a>.
+> **Note:** The `service-account` service account and required secrets are created at the end of this guide, in [Set Up Developer Namespaces to Use Installed Packages](#setup).
 
 ## <a id='install-developer-conventions'></a> Install Developer Conventions
 
