@@ -10,7 +10,7 @@ This topic contains release notes for Tanzu Application Platform beta.
 
 ### New Features
 
-The following components are new in TAP v0.2.0:
+The following components are new in Tanzu Application Platform v0.2.0:
 
 Tanzu Packages:
 
@@ -37,7 +37,7 @@ Tanzu CLI Plugins:
 - Tanzu ImagePullSecret CLI Plugin v0.5.0
 - Tanzu Package CLI Plugin v0.5.0
 
-The following components have been updated in TAP v0.2.0
+The following components have been updated in Tanzu Application Platform v0.2.0
 
 - [VMware Tanzu Build Service v1.3](https://docs.pivotal.io/build-service/1-3/)
 - [Cloud Native Runtimes v1.0.2](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-cnr-overview.html)
