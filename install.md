@@ -268,26 +268,26 @@ To install Cloud Native Runtimes:
    then skip this step because namespace configuration is covered in
    [Set Up Developer Namespaces to Use Installed Packages](#setup) below. Otherwise, you must complete following steps for each namespace where you create Knative services.
 
-   Service accounts which run workloads using Cloud Native Runtimes need to have access to the image pull secrets for the Tanzu package.
-   This includes the `default` service account in a namespace, which is created automatically but not associated with any image pull secrets.
-   Without these credentials, attempts to launch a service will fail with a timeout and the underlying Pods will report that they were unable to pull the `queue-proxy` image.
+   Service accounts that run workloads using Cloud Native Runtimes need access to the image pull secrets for the Tanzu package.
+   This includes the `default` service account in a namespace, which is created automatically, but not associated with any image pull secrets.
+   Without these credentials, attempts to launch a service fail with a timeout and the Pods report that they are unable to pull the `queue-proxy` image.
 
-   To create an image pull secret in the current namespace and fill it from [the `tap-registry` secret](#add-package-repositories),
-   run the following commands to create an empty secret and annotate it as a target of the secretgen controller:
+   Create an image pull secret in the current namespace and fill it from [the `tap-registry` secret](#add-package-repositories).
+   Run the following commands to create an empty secret and annotate it as a target of the secretgen controller:
 
    ```console
    kubectl create secret generic pull-secret --from-literal=.dockerconfigjson={} --type=kubernetes.io/dockerconfigjson
    kubectl annotate secret pull-secret secretgen.carvel.dev/image-pull-secret=""
    ```
 
-   Once you have a `pull-secret` secret in the same namespace as the service account,
+   After you create a `pull-secret` secret in the same namespace as the service account,
    run the following command to add the secret to the service account:
 
    ```console
    kubectl patch serviceaccount default -p '{"imagePullSecrets": [{"name": "pull-secret"}]}'
    ```
 
-   You can verify that a service account is correctly configured by running:
+  Verify that a service account is correctly configured by running:
 
    ```console
    kubectl describe serviceaccount default
@@ -307,7 +307,7 @@ To install Cloud Native Runtimes:
    Events:              <none>
    ```
 
-   Note that the service account has access to the `pull-secret` image pull secret.
+   > **Note:** The service account has access to the `pull-secret` image pull secret.
 
 To learn more about using Cloud Native Runtimes,
 see [Verify your Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-verify-installation.html)
