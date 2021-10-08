@@ -356,13 +356,20 @@ To install the Tanzu CLI on a Mac operating system:
 ```
 
 To resolve this error, do the following:
-  1. Click the Cancel button in the macOS prompt window.
-  2. Open the “Security & Privacy” control panel from System Preferences.
-  3. Click on the “General” tab.
-  4. Click “Allow Anyway” next to the warning message for the tanzu binary.
+
+  1. Click **Cancel** in the macOS prompt window.
+
+  2. Open the **Security & Privacy** control panel from **System Preferences**.
+
+  3. Click **General**.
+
+  4. Click **Allow Anyway** next to the warning message for the tanzu binary.
+
   5. Enter your system username and password in the macOS prompt window to confirm the changes.
-  6. Execute the `tanzu version` command in the term window again.
-  7. Click “Open” in the macOS prompt window.
+
+  6. Execute the `tanzu version` command in the terminal window again.
+
+  7. Click **Open** in the macOS prompt window.
 
 After completing the steps above, there should be no more security issues while running Tanzu CLI commands.
 
