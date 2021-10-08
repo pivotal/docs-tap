@@ -1175,14 +1175,14 @@ To install Supply Chain Security Tools - Sign:
 
 ## <a id='install-scst-scan'></a> Install Supply Chain Security Tools - Scan
 
+**Prerequisite**: Supply Chain Security Tools - Store installed on the cluster.
+See [Install Supply Chain Security Tools - Store](#install-scst-store).
+
 The installation for Supply Chain Security Tools – Scan involves installing two packages:
 Scan Controller and Grype Scanner.
 Ensure both are installed.
 
 To install Supply Chain Security Tools - Scan (Scan Controller):
-
-**Prerequisite**: Supply Chain Security Tools - Store installed on the cluster.
-See [Install Supply Chain Security Tools - Store](#install-scst-store).
 
 1. Follow the instructions in [Install Packages](#install-packages) above.
 
@@ -1207,6 +1207,52 @@ See [Install Supply Chain Security Tools - Store](#install-scst-store).
     ```
 
 1. Gather the values schema.
+1. Configure a Read-Write `ServiceAccount` within the [Supply Chain Security Tools - Store](#install-scst-store).
+
+    Scanning occurs within Supply Chain Security Tools - Scan, however scan results are persisted in the [Supply Chain Security Tools - Store](#install-scst-store). As such, these values require the [Supply Chain Security Tools - Store](#install-scst-store) to have already been installed.
+
+    In addition, the Supply Chain Security Tools - Store can, and in these installation documents, are installed into different namespaces. Therefore, a `ServiceAccount` needs to be created in the Supply Chain Security Tools - Store namespace and Supply Chain Security Tools - Scan needs to reference it.
+
+    Create the RBAC Authorization and ServiceAccount in the `metadata-store` namespace by running:
+
+    ```bash
+    kubectl apply -f - -o yaml << EOF
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: Role
+    metadata:
+      name: metadata-store-read-write
+      namespace: metadata-store
+    rules:
+    - resources: ["all"]
+      verbs: ["get", "create", "update"]
+      apiGroups: [ "metadata-store/v1" ]
+
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: RoleBinding
+    metadata:
+      name: metadata-store-read-write
+      namespace: metadata-store
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
+      kind: Role
+      name: metadata-store-read-write
+    subjects:
+    - kind: ServiceAccount
+      name: metadata-store-read-write-client
+      namespace: metadata-store
+
+    ---
+    apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      name: metadata-store-read-write-client
+      namespace: metadata-store
+    automountServiceAccountToken: false
+    EOF
+    ```
+
 1. Create a `scst-scan-controller-values.yaml` using the following sample as a guide.
 
     Ensure the certificate is indented by two spaces as shown in the sample below.
@@ -1225,7 +1271,6 @@ See [Install Supply Chain Security Tools - Store](#install-scst-store).
     metadataStoreTokenSecret: metadata-store-secret
     ```
 
-    These values require the [Supply Chain Security Tools - Store](#install-scst-store) to have already been installed.
     The following code snippets show how to determine what these values are:
 
     The `metadataStoreUrl` value can be determined by:
@@ -1261,7 +1306,7 @@ See [Install Supply Chain Security Tools - Store](#install-scst-store).
     The `METADATA_STORE_TOKEN` value can be determined by:
 
     ```bash
-    kubectl get secrets -n tap-install -o jsonpath="{.items[?(@.metadata.annotations['kubernetes\.io/service-account\.name']=='metadata-store-tap-install-sa')].data.token}" | base64 -d
+    kubectl get secret $(kubectl get sa -n metadata-store metadata-store-read-write-client -o json | jq -r '.secrets[0].name') -n metadata-store -o json | jq -r '.data.token' | base64 -d
     ```
 
     Create namespace and deploy secret:
