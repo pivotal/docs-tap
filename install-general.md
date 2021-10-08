@@ -413,25 +413,24 @@ To remove plugins from earlier versions of the Tanzu CLI:
 
 1. Create a directory named `tanzu`.
 
-2. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/) on Tanzu Network.
+1. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/) on Tanzu Network.
 
-3. Click the `tanzu-cli-0.5.0` folder. 
+1. Click the `tanzu-cli-0.5.0` folder. 
 
-4.  Download `tanzu-framework-bundle-*` for your operating system and unpack the TAR file
+1.  Download `tanzu-framework-bundle-*` for your operating system and unpack the TAR file
     into the `tanzu` directory.
 
-3.  Set the environment variable `TANZU_CLI_NO_INIT` by running:
+1.  Set the environment variable `TANZU_CLI_NO_INIT` by running:
+    ```
+    export TANZU_CLI_NO_INIT=true
+    ```
 
-     ```
-     export TANZU_CLI_NO_INIT=true
-     ```
-
- 4.  Run this command to make sure the default plugin repo points to the right path:
+1.  Run this command to make sure the default plugin repo points to the right path:
     ```
     tanzu plugin repo update -b tanzu-cli-framework core
     ```
 
-5.  Remove existing plugins from any previous CLI installations.
+1.  Remove existing plugins from any previous CLI installations.
     ```
     tanzu plugin clean
     ```
