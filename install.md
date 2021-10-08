@@ -907,7 +907,7 @@ To install Supply Chain Security Tools - Store:
       api_port          9443                 integer  The internal port for the metadata app api endpoint. This will be used by the kube-rbac-proxy sidecar.
       app_service_type  NodePort             string   The type of service to use for the metadata app service. This can be set to 'Nodeport' or 'LoadBalancer'.
       auth_proxy_port   8443                 integer  The external port address of the of the kube-rbac-proxy sidecar
-      db_host           metadata-postgres    string   The database hostname
+      db_host           metadata-store-db    string   The database hostname
       storageClassName  manual               string   The storage class name of the persistent volume used by Postgres database for storing data. The default value will use the default class name defined on the cluster.
       use_cert_manager  true                 string   Cert manager is required to be installed to use this flag. When true, this creates certificates object to be signed by cert manager for the API server and Postgres database. If false, the certificate object have to be provided by the user.
     ```
@@ -920,11 +920,14 @@ To install Supply Chain Security Tools - Store:
     ```yaml
     db_password: "PASSWORD-0123"
     app_service_type: "LoadBalancer"
+    db_host: "metadata-store-db"
     ```
     Where `PASSWORD-0123` is the same password used between deployments. For more information, see [Known Issues - Persistent Volume Retains Data](scst-store/known_issues.md#persistent-volume-retains-data).
 
     If your environment does not support `LoadBalancer`, omit the `app_service_type` line so that
     the default value `NodePort` is used instead.
+
+    **Warning**: the package declares the default value of `db_host` to be `metadata-postgres` but that is incorrect. The default is actually `metadata-store-db`. Currently, the only supported value is `metadata-store-db`.
 
 1. Install the package by running:
 
