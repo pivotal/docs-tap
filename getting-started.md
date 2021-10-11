@@ -34,7 +34,7 @@ Before getting started, ensure the following prerequisites are in place:
 3. Default kube config context is set to the target Kubernetes cluster
 
 4. Follow [these instructions](install.md#install-developer-conventions)
-   to setup the namespace that you plan to create the `Workload` in.
+   to set up the namespace that you plan to create the `Workload` in.
 
 #### A note about Application Accelerators
 
