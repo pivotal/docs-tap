@@ -964,7 +964,7 @@ To install Supply Chain Security Tools - Store:
 
 ## <a id='install-scst-sign'></a> Install Supply Chain Security Tools - Sign
 
-*Note*: **This component will reject pods from being started if the webhook fails or is misconfigured**. If the webhook is preventing the cluster from functioning, you can delete the configuration by running:
+*Note*: **This component rejects pods from starting if the webhook fails or is misconfigured**. If the webhook is preventing the cluster from functioning, you can delete the configuration by running:
 
 ```bash
 kubectl delete MutatingWebhookConfiguration image-policy-mutating-webhook-configuration
@@ -1118,7 +1118,7 @@ To install Supply Chain Security Tools - Sign:
 
     - The `name` for the `ClusterImagePolicy` must be `image-policy`.
     - In the `verification.exclude.resources.namespaces` section, add any namespaces that run container images that are unsigned, such as `kube-system`.
-    - If no `ClusterImagePolicy` is created, images are permitted into the cluster
+    - If no `ClusterImagePolicy` is created, images are permitted into the cluster.
       with the following warning: `Warning: clusterimagepolicies.signing.run.tanzu.vmware.com "image-policy" not found`.
     - For a quicker installation process in a non-production environment, VMware recommends you use the following YAML to create the `ClusterImagePolicy`. This YAML includes a cosign public key, which signed the cosign image at v1.2.1. The cosign public key validates the specified cosign image. You can also add additional namespaces to exclude in the `verification.exclude.resources.namespaces` section, such as any system namespaces.
         ```console
@@ -1148,7 +1148,7 @@ To install Supply Chain Security Tools - Sign:
         ```
         (Optional) Run the following commands to test the webhook if you are using the `cosign-key`:
 
-        1. Verify a signed image which validates with a configured public key will launch
+        1. Verify that a signed image, validated with a configured public key, launches. Run:
             ```bash
             kubectl run cosign --image=gcr.io/projectsigstore/cosign:v1.2.1 --restart=Never --command -- sleep 900
             ```
@@ -1157,7 +1157,7 @@ To install Supply Chain Security Tools - Sign:
             $ kubectl run cosign --image=gcr.io/projectsigstore/cosign:v1.2.1 --restart=Never --command -- sleep 900
             pod/cosign created
             ```
-        1. Verify an unsigned image will not launch
+        1. Verify that an unsigned image does not launch. Run:
             ```bash
             kubectl run bb --image=busybox --restart=Never
             ```
@@ -1167,7 +1167,7 @@ To install Supply Chain Security Tools - Sign:
             Warning: busybox didn\'t match any pattern in policy. Pod will be created as WarnOnUnmatched flag is true
             pod/bb created
             ```
-        1. Verify a signed image which does not validate with a configured public key will not launch
+        1. Verify that a signed image, that does not validate with a configured public key, does not launch. Run:
             ```bash
             kubectl run cosign-fail --image=gcr.io/projectsigstore/cosign:v0.3.0 --command -- sleep 900
             ```
