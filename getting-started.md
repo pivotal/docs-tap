@@ -219,16 +219,16 @@ tanzu accelerator update <accelerator-name> --reconcile
 
 ### What is a Supply Chain?
 
-Supply Chains provide a way of codifying all of the steps of your path to production (or what is more commonly known as CI/CD).
-A supply chain differs from CI/CD in that any and every step that is necessary for an application to reach production (or a lower environment) can be added.
+Supply Chains provide a way of codifying all of the steps of your path to production, or what is more commonly known as CI/CD.
+A supply chain differs from CI/CD in that any and every step that is necessary for an application to reach production, or a lower environment, can be added.
 
 ![Diagram depicting a simple path to production: CI to Security Scan to Build Image to Image Scan to CAB Approval to Deployment.](images/path-to-production.png)
 
 #### A simple path to production
 
-A path to production allows users to create a unified access point for all of the tools required for their applications to reach a customer-facing environment. Instead of having four tools that are loosely coupled to each other, a path to production defines all four tools in a single, unified layer of abstraction. Where tools typically aren't able to integrate with one another and additional scripting or webhooks are necessary, there would be a unified automation tool to codify all the interactions between each of the tools. Supply chains which are used to codify the organization's path to production are configurable, allowing their authors to add any and all of the steps of their applications path to production.
+A path to production allows users to create a unified access point for all of the tools required for their applications to reach a customer-facing environment. Instead of having four tools that are loosely coupled to each other, a path to production defines all four tools in a single, unified layer of abstraction. Where tools typically aren't able to integrate with one another and additional scripting or webhooks are necessary, there would be a unified automation tool to codify all the interactions between each of the tools. Supply chains which are used to codify the organization's path to production are configurable, allowing their authors to add all of the steps of their applications path to production.
 
-Out of the box, Tanzu Application Platform provides 2 default supply chains (with more to be included with future releases) that are designed to work with Tanzu Application Platform components.
+Out of the box, Tanzu Application Platform provides 2 default supply chains that are designed to work with Tanzu Application Platform components.
 
 
 #### Supply Chains included in Beta 2
