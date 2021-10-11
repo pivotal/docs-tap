@@ -770,7 +770,7 @@ One of the out-of-the-box supply chains we are working on for a future release w
 
 ### Overview
 
-Tanzu Application Platform makes it easy to discover, curate, consume and manage services in a single or multi-cluster environment thereby enabling app developers to focus on consuming services in their apps without having to worry about provisioning, configuration and operations of the services themselves.
+Tanzu Application Platform makes it easy to discover, curate, consume, and manage services in a single or multi-cluster environment to enable app developers to focus on consuming services without having to worry about provisioning, configuration and operations of the services themselves.
 
 This experience is made possible by the Services Toolkit component of Tanzu Application Platform. Services Toolkit comprises a number of Kubernetes native components which support the management, lifecycle, discoverability and connectivity of Service Resources (databases, message queues, DNS records, etc.) on Kubernetes. These components are:
 
@@ -785,15 +785,15 @@ Each component has value independent of the others, however the most powerful an
 
 1. Service API Projection
 
-Enables Service Operators to _project_ Custom Kubernetes APIs from one cluster (i.e. a Services Cluster) into another (i.e. a Workload Cluster). The act of API Projection makes use of Kubernetes API Aggregation to proxy requests from one cluster to another. Setup and configuration of the proxy and API Aggregation machinery is automated leading to a less manual and error-prone user experience.
+Enables Service Operators to _project_ Custom Kubernetes APIs from one cluster into another cluster. For example, from a Services Cluster into a Workload cluster. The act of API Projection makes use of Kubernetes API Aggregation to proxy requests from one cluster to another. Setup and configuration of the proxy and API Aggregation machinery is automated leading to a less manual and error-prone user experience.
 
 When might you want to make use of API Projection? Let's image that a Service Operator has installed the [RabbitMQ Cluster Operator for Kubernetes](https://www.rabbitmq.com/kubernetes/operator/operator-overview.html) onto a cluster that has been highly tuned and configured to the running of RabbitMQ Clusters. They would like to make the rabbitmq.com Custom Kubernetes API that ships with the operator available to developers so that they can provision RabbitMQ Clusters themselves. However, they do not want developers to have direct access to the Service cluster. They also don't want application workloads running in the same cluster as the RabbitMQ Cluster Operator. In this case they can make use of API Projection to project the rabbitmq.com API from the Service Cluster and into an Application Workload cluster, where developers can interact with it as they would any other Kubernetes API.
 
 2. Service Resource Replication
 
-Service Resource Replication automates the replication of core Kubernetes resources (namely Secrets) across clusters in a secure way. The main use case for this right now is to help support API Projection of Service Resource Lifecycle APIs (such as the rabbitmq.com API mentioned above).
+Service Resource Replication automates the replication of core Kubernetes resources (namely Secrets) across clusters in a secure way. The main use case for this is to help support API Projection of Service Resource Lifecycle APIs (such as the rabbitmq.com API mentioned above).
 
-Typically when creating service resources (such as `RabbitmqCluster`) on such APIs, credentials to access the service resource are stored in Secrets. If using API Projection then the Secrets containing such credentials would be end up being created on the Service clusters, and therefore not available for apps to consume in application workload clusters. Resource Replication is used to replicate such Secretes from Service Clusters and into Application Workload clusters so that they can be consumed.
+Typically, when creating service resources (such as `RabbitmqCluster`) on such APIs, credentials to access the service resource are stored in Secrets. If using API Projection then the Secrets containing such credentials would be end up being created on the Service clusters, and therefore not available for apps to consume in application workload clusters. Resource Replication is used to replicate such Secretes from Service Clusters and into Application Workload clusters so that they can be consumed.
 
 3. Service Offering
 
