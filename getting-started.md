@@ -349,7 +349,7 @@ tanzu package installed delete default-supply-chain \
 Now that the default supply chain has been uninstalled the **Source & Test to URL** supply chain can be installed on the cluster.
 The first step is to install Tekton, which was not installed in the installation docs as
 it is only a requirement for the **Source & Test to URL** supply chain.
-The next section walks you through installing Tekton onto your cluster.
+The next section walks you through installing Tekton on your cluster.
 
 
 #### Install Tekton
@@ -366,7 +366,7 @@ kapp deploy --yes -a tekton \
 ```
 
 Thoroughly documenting Tekton and its use is outside of the scope of this document.
-We will be primarily using it to run a simple unit test on the sample that we’ve been using so far.
+We are primarily using it to run a simple unit test on the sample that we’ve been using so far.
 For more details on Tekton itself and what is possible, refer to the [Tekton documentation](https://tekton.dev/docs/) itself
 and its [github repository](https://github.com/tektoncd/pipeline).
 Two other starting points for getting up to speed with Tekton are its
@@ -562,7 +562,7 @@ Application operators may apply image signatures and store them in the registry 
 
 **Configure the Image Policy Webhook**
 
-After the image policy webhook is installed in the cluster, it is time to configure the image policy to be enforced and the credentials to access private registries.
+After the image policy webhook is installed in the cluster, configure the image policy you want to enforce and the credentials to access private registries.
 
 **Create a Cluster Image Policy**
 
@@ -611,11 +611,11 @@ section any namespaces that are known to run container images that are not curre
 
 In the situation when the platform operator is expecting to verify signatures stored in a private registry,
 it is required to configure a service account with all the secrets for those private registries.
-There is a set of requirements for this service account:
+This service account:
 
-* It must be created in the `image-policy-system` namespace
+* Must be created in the `image-policy-system` namespace
 
-* It must be called `registry-credentials`
+* Must be called `registry-credentials`
 
 * All secrets for accessing private registries must be added to the `imagePullSecrets` section of the service account
 
