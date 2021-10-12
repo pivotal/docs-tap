@@ -8,7 +8,7 @@ Follow the steps listed in [Installing Part I: Prerequisites, EULA, and CLI](../
 
 Next, in [Installing Part II: Packages](../install.md), ensure the following packages and their dependencies are installed:
 
-- [Supply Chain Choreographer](../install.md#-install-supply-chain-choreographer)
+- [Supply Chain Choreographer](../install.md#install-scc)
 - [Tanzu Build Service](../install.md#install-tbs)
 - [Supply Chain Security Tools - Store](../install.md#install-scst-store)
 - [Supply Chain Security Tools - Scan](../install.md#install-scst-scan)
