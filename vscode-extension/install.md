@@ -13,7 +13,7 @@ Prior to installing the VSCode Tanzu Extension, you must have:
 - The Kubernetes command-line tool, [kubectl](https://kubernetes.io/docs/tasks/tools/)
 - [Tilt](https://docs.tilt.dev/install.html) version >= v0.22.6
 - The [Tanzu CLI and apps plugin](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.1/tap-0-1/GUID-install.html#install-the-tanzu-cli-and-package-plugin-4)
-- A cluster with Tanzu Application Platform, the Default Supply Chain, and their dependencies. Download these from Tanzu Network. Follow the instructions [here](../install-general.md) to install.
+- A cluster with Tanzu Application Platform, the Default Supply Chain, and their dependencies. Download these from Tanzu Network. For installation instructions, see [Installing Part I: Prerequisites, EULA, and CLI](../install-general.md).
 - [VSCode](https://code.visualstudio.com/download)
 
 ---
@@ -40,7 +40,7 @@ Start by ensuring that you're targeted to the right cluster by following [these 
 
 ### Quickstart
 
-Get up and running quickly by using Application Accelerator and bootstrapping your development with the [Tanzu Java Web App](https://github.com/sample-accelerators/tanzu-java-web-app). You can find instructions to use Application Accelerator [here](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.3/acc-docs/GUID-installation-install.html#using-application-accelerator-for-vmware-tanzu-0). This accelerator will require you to specify a name for your application and an image repository, and will handle other configuration.
+Get up and running quickly by using Application Accelerator and bootstrapping your development with the [Tanzu Java Web App](https://github.com/sample-accelerators/tanzu-java-web-app). For information about how use Application Accelerator, see [Installing Application Accelerator for VMware Tanzu](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.3/acc-docs/GUID-installation-install.html#using-application-accelerator-for-vmware-tanzu-0). This accelerator will require you to specify a name for your application and an image repository, and will handle other configuration.
 
 
 > Note: For this beta, we recommend that you use this accelerator to bootstrap your application for the smoothest experience with the extension.
@@ -49,4 +49,4 @@ Get up and running quickly by using Application Accelerator and bootstrapping yo
 
 Create a `workload.yaml` file in your project. For reference, take a look at `config/workload.yaml` in the Tanzu Java Web App [here](https://github.com/sample-accelerators/tanzu-java-web-app).
 
-Create a `Tiltfile` for your project. For reference, take a look at `Tiltfile` in the Tanzu Java Web App [here](https://github.com/sample-accelerators/tanzu-java-web-app). Tiltfile documentation can be found [here](https://docs.tilt.dev/api.html).
+Create a `Tiltfile` for your project. For reference, take a look at `Tiltfile` in the Tanzu Java Web App [here](https://github.com/sample-accelerators/tanzu-java-web-app). For information about Tiltfile, see [Tiltfile API Reference](https://docs.tilt.dev/api.html).
