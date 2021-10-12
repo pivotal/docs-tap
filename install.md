@@ -969,7 +969,7 @@ To install Supply Chain Security Tools - Store:
 ```bash
 kubectl delete MutatingWebhookConfiguration image-policy-mutating-webhook-configuration
 ```
-This situation can happen, for example, if all nodes that are running the
+For example, pods can be rejected from starting if all nodes running the
 webhook are scaled down and the webhook is forced to restart at the same time as
 other system components.  A deadlock can occur when some components expect the
 webhook to run in order to verify their image signatures and the webhook is not
