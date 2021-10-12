@@ -38,8 +38,8 @@ Before getting started, ensure the following prerequisites are in place:
 
 #### A note about Application Accelerators
 
-The Application Accelerator component helps app developers and app operators through the creation and generation of application accelerators (accelerators for short). Accelerators are templates that codify best practices and/or ensure important configuration and structures are in place from the start. 
- 
+The Application Accelerator component helps app developers and app operators through the creation and generation of application accelerators (accelerators for short). Accelerators are templates that codify best practices and/or ensure important configuration and structures are in place from the start.
+
 Developers can bootstrap their applications and get started with feature development right away. Application Operators can create custom accelerators that reflect their desired architectures and configurations and enable fleets of developers to utilize them, decreasing operator concerns about whether developers are implementing their desired best practices.
 
 Application Accelerator templates are available as a quickstart from [Tanzu Network](https://network.tanzu.vmware.com/products/app-accelerator). To create your own Application Accelerator, see [here](#creating-an-accelerator).
@@ -99,7 +99,7 @@ helps you develop & receive fast feedback on the Tanzu Application Platform.
 The VSCode extension enables live updates of your application while it’s running on the cluster
 and provides the ability to debug your application directly on the cluster.
 
-Start by installing the pre-requisites and the Tanzu Developer Tools extension by following 
+Start by installing the pre-requisites and the Tanzu Developer Tools extension by following
 [these instructions](vscode-extension/install.md).
 
 
@@ -123,8 +123,8 @@ Let’s deploy the application and see it live update on the cluster. Doing so a
 Follow these steps:
 1. From the Command Palette (⇧⌘P), type in & select “Tanzu: Live Update Start”.
 
-    Tanzu Logs should open up in the Output tab and you should see output from the Tanzu Application Platform & from Tilt indicating that the container is being built and deployed. 
-    
+    Tanzu Logs should open up in the Output tab and you should see output from the Tanzu Application Platform & from Tilt indicating that the container is being built and deployed.
+
     Since this is your first time starting live update for this application, it may take 1-3 minutes for the workload to be deployed and the knative service to become available.
 
 2. Once you see output indicating that the workload is ready, navigate to http://localhost:8080 in your browser and view your application running.
@@ -139,7 +139,7 @@ You can now continue to make more changes. If you're finished, you can stop live
 
 #### Debug your Application
 
-Debugging your application on the cluster is as simple as debugging it in your local environment. 
+Debugging your application on the cluster is as simple as debugging it in your local environment.
 
 Follow the steps below:
 1. Set a breakpoint in your code.
@@ -219,28 +219,52 @@ tanzu accelerator update <accelerator-name> --reconcile
 
 ### What is a Supply Chain?
 
-Supply Chains provide a way of codifying all of the steps of your path to production, or what is more commonly known as CI/CD.
-A supply chain differs from CI/CD in that any and every step that is necessary for an application to reach production, or a lower environment, can be added.
+Supply Chains provide a way of codifying all of the steps of your path to production, or what is
+more commonly known as CI/CD.
+A supply chain differs from CI/CD in that you can add any and every step that is necessary for an
+application to reach production, or a lower environment.
 
 ![Diagram depicting a simple path to production: CI to Security Scan to Build Image to Image Scan to CAB Approval to Deployment.](images/path-to-production.png)
 
 #### A simple path to production
 
-A path to production allows users to create a unified access point for all of the tools required for their applications to reach a customer-facing environment. Instead of having four tools that are loosely coupled to each other, a path to production defines all four tools in a single, unified layer of abstraction. Where tools typically aren't able to integrate with one another and additional scripting or webhooks are necessary, there would be a unified automation tool to codify all the interactions between each of the tools. Supply chains which are used to codify the organization's path to production are configurable, allowing their authors to add all of the steps of their applications path to production.
+A path to production allows users to create a unified access point for all of the tools required
+for their applications to reach a customer-facing environment.
+Instead of having four tools that are loosely coupled to each other, a path to production defines
+all four tools in a single, unified layer of abstraction.
 
-Out of the box, Tanzu Application Platform provides 2 default supply chains that are designed to work with Tanzu Application Platform components.
+Where tools typically are not able to integrate with one another and additional scripting or
+webhooks are necessary, there would be a unified automation tool to codify all the interactions
+between each of the tools.
+Supply chains used to codify the organization's path to production are configurable, allowing their
+authors to add all of the steps of their application's path to production.
+
+Out of the box, Tanzu Application Platform provides two default supply chains that are designed to
+work with Tanzu Application Platform components.
 
 
 #### Supply Chains included in Beta 2
 
-The Tanzu Application Platform installation steps details installing the default supply chain, but others are available.
-If you follow the installation docs, the **Source to URL** supply chain will be installed on your cluster (as well as all of its dependencies).
-The table below and the following figures show the 2 supply chains that are included in Tanzu Application Platform Beta 2, as well as their descriptions and dependencies.
+The Tanzu Application Platform installation steps cover installing the default supply chain, but
+others are available.
+If you follow the installation documentation, the **Source to URL** supply chain and all of its
+dependencies are installed on your cluster.
+The table and diagrams below describe the two supply chains included in Tanzu Application Platform
+Beta 2 as well as their dependencies.
 
-The biggest difference between the two supply chains is that the second **Source & Test to URL** includes the ability to run a Tekton pipeline within the supply chain. It therefore has a dependency on [Tekton](https://tekton.dev/), which has not yet been installed on your cluster. The next section of the documentation walks you through installing Tekton and provides a sample Tekton pipeline that once included will test the sample application.
-The pipeline is, like the supply chain, completely configurable and therefore the steps within it can be customized to perform additional testing, or any other tasks that can be performed with a Tekton pipeline.
+The biggest difference between the two supply chains is that the second, **Source & Test to URL**,
+can run a Tekton pipeline within the supply chain. It therefore has a dependency on
+[Tekton](https://tekton.dev/), which has not yet been installed on your cluster.
 
-A limitation of Tanzu Application Platform Beta 2 is that only one of the two supply chains can be installed at any given time. If you have already installed the default - source to URL supply chain, it will first need to be uninstalled before installing the Source & Test to URL supply chain.
+The next section is about installing Tekton and provides a sample Tekton pipeline that tests the
+sample application.
+The pipeline is, like the supply chain, completely configurable and therefore the steps within it
+can be customized to perform additional testing, or any other tasks that can be performed with a
+Tekton pipeline.
+
+A limitation of Tanzu Application Platform Beta 2 is that only one of the two supply chains can be
+installed at any given time. If you have already installed the default supply chain,
+**Source to URL**, you must uninstall it before installing **Source & Test to URL**.
 
 ![Diagram depicting the Source-to-URL chain: Watch Repo (Flux) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](images/source-to-url-chain.png)
 
@@ -694,7 +718,7 @@ $ kubectl logs -n image-policy-system -l "signing.run.tanzu.vmware.com/applicati
 **Overview**
 
 This feature-set allows an application operator to introduce source code and image vulnerability scanning,
-as well as scan-time rules, to their Tanzu Application Platform Supply Chain. The scan-time rules prevent critical vulnerabilities from flowing through the supply chain unresolved. 
+as well as scan-time rules, to their Tanzu Application Platform Supply Chain. The scan-time rules prevent critical vulnerabilities from flowing through the supply chain unresolved.
 
 All vulnerability scan results are stored over time in a metadata store that allows a team
 to easily reference historical scan results, and provides querying functionality to support the following use cases:
@@ -765,7 +789,7 @@ One of the out-of-the-box supply chains we are working on for a future release w
 * [Observing and Troubleshooting](scst-scan/observing.md)
 
 
-          
+
 ## Section 5: Advanced Use Cases - Services Journey
 
 ### Overview
@@ -805,7 +829,7 @@ Enables developers to declare and consume services on demand without worrying ab
 
 ### <a id='use-case-1'></a> Use Case 1 - **Binding an App Workload to a Service Resource on a single cluster**
 
-Most applications require backing services such as Databases, Queues, Caches, etc. in order to run successfully. 
+Most applications require backing services such as Databases, Queues, Caches, etc. in order to run successfully.
 This first use case demonstrates how it is possible to bind such a service to an Application Workload in Tanzu Application Platform. We will be using the RabbitMQ Cluster Operator for Kubernetes for this demonstration along with a very basic sample application that depends on RabbitMQ.
 
 To begin, the RabbitMQ Cluster Operator will be installed and running on the same Kubernetes cluster as Tanzu Application Platform. We will then see how it is possible to use one of the capabilities of the SCP Toolkit to move the Operator onto a separate, dedicated “Service” cluster, while still allowing the service to be consumed from the application “Workload” cluster.
@@ -817,7 +841,7 @@ Let’s start by playing the role of a Service Operator, who is responsible for 
 1. Install the RabbitMQ Operator
     ```
     kapp -y deploy --app rmq-operator --file https://github.com/rabbitmq/cluster-operator/releases/download/v1.9.0/cluster-operator.yml
-    ``` 
+    ```
 2. Next, we will need to create a ClusterRole that grants relevant permissions to the ServiceBinding controller. Note that while this is a manual step at the moment, but will be automated in the near future.
 
     ```yaml
@@ -881,22 +905,22 @@ kubectl replace --raw "/api/v1/namespaces/${NAMESPACE}/finalize" -f "${NAMESPACE
 
 1. Follow the documentation to install Tanzu Application Platform onto a second, separate Kubernetes cluster
 
-    * This cluster **MUST** have the ability to create LoadBalanced services. 
-    
+    * This cluster **MUST** have the ability to create LoadBalanced services.
+
     * This time when it comes to [Installing Part II: Packages](install.md#-installing-part-ii-packages), you only need to install the SCP Toolkit package
 
     * All other packages can be skipped over
 
     * This cluster will henceforth be referred to as the **Service Cluster**
 
-2. Download and install the kubectl-scp plugin from [SCP Toolkit Tanzu Network Page](https://network.pivotal.io/products/scp-toolkit#/releases/959198). 
+2. Download and install the kubectl-scp plugin from [SCP Toolkit Tanzu Network Page](https://network.pivotal.io/products/scp-toolkit#/releases/959198).
 To install the plugin you must place it in your PATH and ensure it is executable. For example:
 
-            
+
           sudo cp path/to/kubectl-scp /usr/local/bin/kubectl-scp
           sudo chmod +x /usr/local/bin/kubectl-scp
 
-            
+
 Now we have 2 Kubernetes clusters
 - **Workload Cluster** where Tanzu Application Platform is installed (including SCP toolkit).
   - And confirmation that the Rabbitmq Cluster Operator is not installed on this cluster.
@@ -914,7 +938,7 @@ Now let us see the different usecases where SCP toolkit makes the Services Journ
     kubectl scp link --workload-kubeconfig-context=WORKLOAD_CONTEXT --service-kubeconfig-context=SERVICE_CONTEXT
     ```
 
-2. Next, we will install the RabbitMQ Operator in the Services Cluster using kapp. This Operator will not be installed in Workload Cluster, but developers will have the ability to create RabbitMQ service instances from Workload Cluster. 
+2. Next, we will install the RabbitMQ Operator in the Services Cluster using kapp. This Operator will not be installed in Workload Cluster, but developers will have the ability to create RabbitMQ service instances from Workload Cluster.
 
     *Note:* that this RabbitMQ Operator deployment has specific changes in it to enable cross cluster Service Binding. Use the exact `deploy.yml` specified here.
 
@@ -923,7 +947,7 @@ Now let us see the different usecases where SCP toolkit makes the Services Journ
         --file https://raw.githubusercontent.com/rabbitmq/cluster-operator/lb-binding/hack/deploy.yml  \
         --kubeconfig-context SERVICE_CONTEXT
     ```
-    
+
 3. You can verify that the Operator has been installed with the following:
     ```
      kubectl --context SERVICE_CONTEXT get crds rabbitmqclusters.rabbitmq.com
