@@ -927,7 +927,7 @@ To install Supply Chain Security Tools - Store:
     If your environment does not support `LoadBalancer`, omit the `app_service_type` line so that
     the default value `NodePort` is used instead.
 
-    **Warning**: the package declares the default value of `db_host` to be `metadata-postgres` but that is incorrect. The default is actually `metadata-store-db`. Currently, the only supported value is `metadata-store-db`.
+    > **Warning**: The package incorrectly declares the default value of `db_host` as `metadata-postgres`. The default is `metadata-store-db`. The only supported value is `metadata-store-db`.
 
 1. Install the package by running:
 
