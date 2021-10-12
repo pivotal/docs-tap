@@ -44,7 +44,7 @@ images
         * VMware recommends at least 16 GB of total host memory.
         * On Mac OS only hyperkit driver is supported. Docker driver is not supported.
 
-    To deploy all Tanzu Application Platform packages, your cluster must have at least **8&nbsp;GB** of RAM across all nodes available to Tanzu Application Platform. 
+    To deploy all Tanzu Application Platform packages, your cluster must have at least **8&nbsp;GB** of RAM across all nodes available to Tanzu Application Platform. At least 8 CPUs for i9 or equivalent, or 12 CPUs for i7 or equivalent must be avaliable to Tanzu Application Platform components.
     VMware recommends that at least **16&nbsp;GB** of RAM is available to build and deploy applications, including for kind and minikube.
 
     Your cluster must also have at least **70&nbsp;GB** of disk per node.
