@@ -6,13 +6,13 @@ This topic includes an example API call. For information about using the Supply 
 
 Port Forward the metadata-store-app
 
-`kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store`
+`kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store`:
 
-Retrieve the metadata-store-read-write-client access token. Ensure the Service Account is [created](create_service_account_access_token.md) first.
+Retrieve the metadata-store-read-write-client access token. Ensure the Service Account is [created](create_service_account_access_token.md) first:
 
 `export METADATA_STORE_ACCESS_TOKEN=$(kubectl get secrets -n metadata-store -o jsonpath="{.items[?(@.metadata.annotations['kubernetes\.io/service-account\.name']=='metadata-store-read-write-client')].data.token}" | base64 -d)`
 
-Retrieve the CA Certificate and store it locally
+Retrieve the CA Certificate and store it locally:
 
 `kubectl get secret app-tls-cert -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d > /tmp/ca.crt`
 
