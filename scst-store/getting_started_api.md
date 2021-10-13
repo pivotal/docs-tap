@@ -2,9 +2,27 @@
 
 This topic includes an example API call. For information about using the Supply Chain Security Tools - Store API, see [full API documentation](api.md).
 
-## Example API Call
+## Using CURL to POST an image report
 
-To POST a new image report to the store using the endpoint `/api/imageReport`, the raw body would look like the following example:
+Port Forward the metadata-store-app
+
+`kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store`
+
+Retrieve the metadata-store-read-write-client access token. Ensure the Service Account is [created](create_service_account_access_token.md) first.
+
+`export METADATA_STORE_ACCESS_TOKEN=$(kubectl get secrets -n metadata-store -o jsonpath="{.items[?(@.metadata.annotations['kubernetes\.io/service-account\.name']=='metadata-store-read-write-client')].data.token}" | base64 -d)`
+
+Retrieve the CA Certificate and store it locally
+
+`kubectl get secret app-tls-cert -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d > /tmp/ca.crt`
+
+Run the Curl POST Command:
+
+`curl https://metadata-store-app:8443/api/imageReport --resolve metadata-store-app:8443:127.0.0.1 --cacert /tmp/ca.crt -H "Authorization: Bearer ${METADATA_STORE_ACCESS_TOKEN}" -H "Content-Type: application/json" -X POST --data "@<ABSOLUTE PATH TO THE POST BODY>"`
+
+Replace <ABSOLUTE PATH TO THE POST BODY> with the absolute path of the POST body.
+
+Sample POST body of a image report:
 ```json
 {
   "Name" : "burger-image-2",
