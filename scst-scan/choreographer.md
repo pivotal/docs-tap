@@ -279,7 +279,7 @@ metadata:
   name: supply-chain
 spec:
   selector:
-    app.tanzu.vmware.com/workload-type: web
+    apps.tanzu.vmware.com/workload-type: web
 
   components:
 
@@ -337,7 +337,7 @@ kind: Workload
 metadata:
   name: tanzu-java-web-app
   labels:
-    app.tanzu.vmware.com/workload-type: web
+    apps.tanzu.vmware.com/workload-type: web
 spec:
   source:
     git:
