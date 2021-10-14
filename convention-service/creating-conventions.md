@@ -5,8 +5,8 @@ This document describes how to create a convention server with example conventio
 ## <a id='prereqs'></a>Before you begin
 
 + Kubectl has been installed [guide](https://kubernetes.io/docs/tasks/tools/)
-+ TAP components have been installed on a k8s cluster [guide](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.1/tap-0-1/GUID-install.html)
-+ The [default supplychain](https://network.tanzu.vmware.com/products/default-supply-chain/) is installed
++ Tanzu Application Platform components have been installed on a k8s cluster [guide](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.1/tap-0-1/GUID-install.html)
++ The [default supply chain](https://network.tanzu.vmware.com/products/default-supply-chain/) is installed
 + Your kubeconfig context has been set to the prepared cluster `kubectl config use-context CONTEXT_NAME`
 
 
@@ -18,7 +18,7 @@ The Tanzu Application Platform beta includes tools that enable developers to qui
 
 With the convention controller installed, a convention can be defined.
 
-The current version of the convention controller supports `webhook`conventions, then it will run as a webserver.
+The current version of the convention controller supports `webhook` conventions, then it will run as a webserver.
 
 _NOTE: this example covers developing conventions with [GOLANG](https://golang.org/) but it can be done in other languages by following the specs._
 
