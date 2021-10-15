@@ -43,6 +43,8 @@ images
         * Minimum requirements for VM: 8 CPUs for i9 or equivalent, 12 CPUs for i7 or equivalent, 8 GB RAM (12+ GB recommended), and 120 GB disk space.
         * VMware recommends at least 16 GB of total host memory.
         * On Mac OS only hyperkit driver is supported. Docker driver is not supported.
+   * Tanzu Kubernetes Grid 1.4 (**BETA ONLY SUPPORT**)
+         For installing TAP on TKG 1.4, follow the steps mentioned in [Installing with Tanzu Kubernetes Grid v1.4](install-tkg.md) to prepare the cluster.
 
     To deploy all Tanzu Application Platform packages, your cluster must have at least **8&nbsp;GB** of RAM across all nodes available to Tanzu Application Platform. At least 8 CPUs for i9 or equivalent, or 12 CPUs for i7 or equivalent must be available to Tanzu Application Platform components.
     VMware recommends that at least **16&nbsp;GB** of RAM is available to build and deploy applications, including for kind and minikube.
