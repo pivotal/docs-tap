@@ -451,6 +451,8 @@ To remove plugins from earlier versions of the Tanzu CLI:
 
 After you have installed the Tanzu core executable, you must install the package, imagepullsecret, apps, and app-accelerator CLI plugins.
 
+TKG 1.4 users follow [these instructions](install-tkg.md#tanzucli) to install plugins
+
 1. Navigate to the Tanzu folder that contains the cli folder.
 
 2. Run the following command from the tanzu directory to install all the plugins for this release.
