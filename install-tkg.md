@@ -4,9 +4,11 @@ This topic provides prerequisities and installation instructions for installing 
 
 **Warning**: VMware does not recommend installing Tanzu Application Platform on a Tanzu Kubernetes Grid v1.4 cluster in production environments. This procedure includes a workaround for installing kapp-controller v0.27.0 on Tanzu Kubernetes Grid v1.4, which is not a supported workflow. VMware recommends that you follow this procedure for beta purposes only. 
 
-+ [Prerequisites](#prereqs)
-
 ## <a id='prereqs'></a>Prerequisites
++ [Installing kapp-controller](#kapp-controller)
++ [Installing Tanzu Cli Plugins](#tanzucli)
+
+## <a id='kapp-controller'></a>Installing kapp-controller
 
 Before you install Tanzu Application Platform on a Tanzu Kubernetes Grid v1.4 cluster, you must do the following:
 - Create a new workload cluster. Do not install any packages in the cluster.
@@ -35,6 +37,15 @@ Before you install Tanzu Application Platform on a Tanzu Kubernetes Grid v1.4 cl
 	kubectl config use-context <WORKLOAD-CLUSTER-CONTEXT>
 	```
 	where `WORKLOAD-CLUSTER-CONTEXT` is the kubeconfig context imported in the previous step
+	5. Delete the `kapp-controller` present
+	```
+	kubectl delete deployment kapp-controller -n tkg-system
+	```
+	6. Install `kapp-controller` version `v0.27.0`
+	```
+	kubectl apply -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v0.27.0/release.yml
+	```
+## <a id='tanzucli'></a>Installing Tanzu Cli Plugins
 - Install the tanzu cli plugins required for TAP
 	1. Create a directory named `tanzu-framework`.
 	   ```
