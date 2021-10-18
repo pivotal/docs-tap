@@ -465,7 +465,7 @@ TKG 1.4 users follow [these instructions](install-tkg.md#tanzucli) to install pl
      ```
      Then, remove plugins from previous Tanzu CLI installations and
      run the `tanzu plugin install` command again.
-     For instructions, see [Update the Tanzu CLI](#update-cli) below.
+     For instructions, see [Update the Tanzu CLI](#update-cli) above.
 
 3. Check plugin installation status.
     ```
