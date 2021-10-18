@@ -43,6 +43,8 @@ images
         * Minimum requirements for VM: 8 CPUs for i9 or equivalent, 12 CPUs for i7 or equivalent, 8 GB RAM (12+ GB recommended), and 120 GB disk space.
         * VMware recommends at least 16 GB of total host memory.
         * On Mac OS only hyperkit driver is supported. Docker driver is not supported.
+   * Tanzu Kubernetes Grid 1.4 (**BETA ONLY SUPPORT**)
+        * For installing TAP on TKG 1.4, follow the steps mentioned in [Installing with Tanzu Kubernetes Grid v1.4](install-tkg.md) to prepare the cluster.
 
     To deploy all Tanzu Application Platform packages, your cluster must have at least **8&nbsp;GB** of RAM across all nodes available to Tanzu Application Platform. At least 8 CPUs for i9 or equivalent, or 12 CPUs for i7 or equivalent must be available to Tanzu Application Platform components.
     VMware recommends that at least **16&nbsp;GB** of RAM is available to build and deploy applications, including for kind and minikube.
@@ -88,7 +90,8 @@ pods can run as root.
         Switched to context "aks-tap-cluster".
         
 * **kapp-controller** v0.27.0 or later:
-
+    
+    **NOTE**: TKG 1.4 users follow [these instructions](install-tkg.md#kapp-controller) to install kapp-controller. 
     * Install kapp-controller by running:
 
       ```
@@ -275,18 +278,20 @@ To accept EULAs:
 
 ## <a id='cli-and-plugin'></a> Install the Tanzu CLI
 
-Before you install Tanzu Application Platform,
-download and install the Tanzu CLI and the Tanzu CLI plugins. 
+Before you install Tanzu Application Platform,download and install the Tanzu CLI and the Tanzu CLI plugins.
+
 If you have earlier versions of the Tanzu CLI, follow the instructions in [Update the Tanzu CLI](#update-cli).
-If you have installed a Tanzu CLI for Tanzu Community Edition or Tanzu Kubernetes Grid previously,
+
+If you have installed a Tanzu CLI for Tanzu Community Edition previously,
 then uninstall and remove the `~/.config/tanzu` directory before using Tanzu Application Platform.
+
+If you have Tanzu CLI for TKG 1.4, follow [these instructions](install-tkg.md#tanzucli) to install plugins 
 
 Follow the procedure for your operating system:
 
 + [Linux: Install the Tanzu CLI](#linux-cli)
 + [Mac: Install the Tanzu CLI](#mac-cli)
 + [Windows: Install the Tanzu CLI](#windows-cli)
-
 
 ## <a id='linux-cli'></a> Linux: Install the Tanzu CLI
 
@@ -445,6 +450,8 @@ To remove plugins from earlier versions of the Tanzu CLI:
 ## Install the Tanzu CLI Plugins
 
 After you have installed the Tanzu core executable, you must install the package, imagepullsecret, apps, and app-accelerator CLI plugins.
+
+TKG 1.4 users follow [these instructions](install-tkg.md#tanzucli) to install plugins
 
 1. Navigate to the Tanzu folder that contains the cli folder.
 
