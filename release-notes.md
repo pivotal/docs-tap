@@ -4,6 +4,54 @@ This topic contains release notes for Tanzu Application Platform beta.
 
 **Releases**
 
+
+## <a id='0-3-0'></a> v0.3.0 Beta
+
+**Release Date**: November, XX, 2021
+
+### New Features
+
+The following components are new in Tanzu Application Platform v0.3.0:
+
+Tanzu Packages:
+
+- Supply Chain Choreographer for VMware Tanzu
+  - Cartographer v
+  - Default Supply Chain v
+  - Default Supply Chain with Testing v
+- Supply Chain Security Tools for VMware Tanzu
+  - Scanning v
+  - Image Policy Webhook v
+  - Store v
+- Convention Service for VMware Tanzu
+  - Conventions Controller v
+  - Image Source Controller v
+  - Developer Conventions v
+- API Portal for VMware Tanzu v
+- Service Control Plane Toolkit v
+- Service Bindings for Kubernetes v
+
+Tanzu CLI Plugins:
+
+- Tanzu Accelerator CLI Plugin v
+- Tanzu App CLI Plugin v
+- Tanzu ImagePullSecret CLI Plugin v
+- Tanzu Package CLI Plugin v
+
+The following components have been updated in Tanzu Application Platform v
+
+- [VMware Tanzu Build Service v1.3](https://docs.pivotal.io/build-service/1-3/)
+- [Cloud Native Runtimes v1.0.2](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-cnr-overview.html)
+- [Application Accelerator for VMware Tanzu v0.3.0](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/index.html)
+- [Application Live View for VMware Tanzu v0.2.0](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.2/docs/GUID-index.html)
+
+
+### Known Issues
+
+This release has the following issues:
+
+- Issue 1
+
 ## <a id='0-2-0'></a> v0.2.0 Beta
 
 **Release Date**: October 07, 2021
@@ -63,7 +111,7 @@ This release has the following issues:
     2. Type `tanzuWorkload delete` in the command palette that appears and hit enter
     3. View the Terminal tab to confirm that the Workload has been deleted
 
-## <a id='0-2-0'></a> v0.1.0 Beta
+## <a id='0-1-0'></a> v0.1.0 Beta
 
 **Release Date**: September 1, 2021
 

@@ -240,7 +240,7 @@ pods can run as root.
 
 
 
-## Packages in Tanzu Application Platform v0.2
+## Packages in Tanzu Application Platform v0.3
 
 The following packages are available in Tanzu Application Platform:
 

@@ -1,15 +1,15 @@
 publication: 
     RootMapFile: toc.md
-    OutputFileName: tap-0-2
-    PublicationName: VMware Tanzu Application Platform v0.2
+    OutputFileName: tap-0-3
+    PublicationName: VMware Tanzu Application Platform v0.3
     ProductName: VMware Tanzu Application Platform
-    ProductVersion: 0.2
-    PublicationVersion: 0.2
+    ProductVersion: 0.3
+    PublicationVersion: 0.3
     PublicationVersionComments:
     Language: en
-    PublicationGuid: tap-0-2
+    PublicationGuid: tap-0-3
     PublicationKeywords:
     BatchProcessingInstruction:
-    PDFLink: tap-0-2
+    PDFLink: tap-0-3
     WordLink:
-    PublicationAuthor: ecalvert@vmware.com
+    PublicationAuthor: apeek@vmware.com
