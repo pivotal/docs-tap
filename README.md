@@ -4,15 +4,16 @@
 
 This repo publishes to:
 
-+ Staging:  https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.1/tap-0-1/GUID-overview.html
-+ Production: https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.1/tap-0-1/GUID-overview.html
++ Staging:  https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-overview.html
++ Production: https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-overview.html
 
 
 ## Branches
 
 | Branch | Usage |
 |--------|-------|
-| main | Development branch for pre-release beta-2 docs staged at https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-overview.html |
+| main | Development branch for pre-release beta-3 docs staged at https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.3/tap-0-3/GUID-overview.html |
+| beta-2 | Branch that is published to https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-overview.html |
 | beta-1 | Branch that is published to https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.1/tap-0-1/GUID-overview.html |
 
 ## Product Names
