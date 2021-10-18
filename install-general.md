@@ -459,6 +459,12 @@ TKG 1.4 users follow [these instructions](install-tkg.md#tanzucli) to install pl
     ```
     tanzu plugin install --local cli all
     ```
+    If a message similar to the following is displayed:
+     ```
+     Warning: Failed to initialize plugin '"package"' after installation
+     ```
+      - Follow the [Update the Tanzu CLI](#update-cli) instructions to remove plugins from previous Tanzu CLI installs and then repeat the `tanzu plugin install` command.
+
 3. Check plugin installation status.
     ```
     tanzu plugin list
