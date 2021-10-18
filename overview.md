@@ -1,4 +1,4 @@
-# <a id='overview'></a> About Tanzu Application Platform v0.2 (Beta-2)
+# <a id='overview'></a> About Tanzu Application Platform v0.3 (Beta-3)
 
 ## <a id='overview'></a> Overview of Tanzu Application Platform
 
@@ -39,7 +39,7 @@ components with other products.
 Reduce the complexity of deploying apps on Kubernetes for operators with better automation and 
 standardization of the outer loop, which also gives developers more time to focus on code.
 
-## Packages in Tanzu Application Platform v0.2
+## Packages in Tanzu Application Platform v0.3
 
 The following packages are available in Tanzu Application Platform:
 
@@ -60,6 +60,6 @@ The following packages are available in Tanzu Application Platform:
 * Tanzu Source Controller
 * VMware Tanzu Build Service
 
-## <a id='install'></a> About Installing Tanzu Application Platform v0.2 (Beta-2) Components
+## <a id='install'></a> About Installing Tanzu Application Platform v0.3 (Beta-3) Components
 
 To install the Tanzu Application Platform repo bundle, see [Installing Tanzu Application Platform](install-intro.md).
