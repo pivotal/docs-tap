@@ -1,10 +1,10 @@
-# Installing with Tanzu Kubernetes Grid v1.4
+# Installing on a Tanzu Kubernetes Grid v1.4 Cluster
 
 This topic lists prerequisites and instructions for installing Tanzu Application Platform on a
 Tanzu Kubernetes Grid v1.4 cluster.
 
-> **Warning**: VMware discourages installing Tanzu Application Platform on a Tanzu Kubernetes Grid v1.4
-cluster in production environments.
+> **Warning**: VMware discourages installing Tanzu Application Platform on a Tanzu Kubernetes Grid
+v1.4 cluster in production environments.
 This procedure includes a workaround for installing kapp-controller v0.27.0 on Tanzu Kubernetes Grid
 v1.4, which is not a supported workflow. VMware recommends that you follow this procedure for beta
 purposes only.
@@ -12,7 +12,7 @@ purposes only.
 the workaround or putting kapp-controller v0.27.0 on Tanzu Kubernetes Grid v1.4? -->
 
 
-## Prerequisites
+## Install Tanzu Kubernetes Grid v1.4
 
 To install Tanzu Kubernetes Grid v1.4, you must:
 
@@ -20,7 +20,7 @@ To install Tanzu Kubernetes Grid v1.4, you must:
 + [Install Tanzu CLI Plugins](#tanzucli)
 
 
-## Install kapp-controller
+### Install kapp-controller
 
 To install kapp-controller v0.27.0 or later on Tanzu Kubernetes Grid v1.4:
 
@@ -69,9 +69,9 @@ To install kapp-controller v0.27.0 or later on Tanzu Kubernetes Grid v1.4:
     ```
 
 
-## Install Tanzu CLI Plugins
+### Install the Tanzu CLI Plugins for Tanzu Application Platform
 
-To install the Tanzu CLI plugins required for TAP:
+To install the Tanzu CLI plugins required for Tanzu Application Platform:
 
 1. Create a directory named `tanzu-framework` by running:
 
@@ -120,13 +120,13 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
     ```
 
 
-## Install Tanzu Application Platform with Tanzu Kubernetes Grid v1.4
+## Install Tanzu Application Platform
 
-1. Ensure you meet all the Prerequisites for Tanzu Application Platform installation.
+1. Ensure you meet all the prerequisites to install Tanzu Application Platform.
 See [Prerequisites](install-general.html#prerequisites-0) in _Installing Part I: Prerequisites, EULA, and CLI_.
 
     > **Note**: Do not attempt to install the cert-manager package from Tanzu Standard Repository:
     follow the instructions in TAP documentation to meet all the prerequisites.
 
-1. Follow the steps in [Installing Part II: Packages](install.md) to install on a
-Tanzu Kubernetes Grid v1.4 cluster.
+1. Follow the steps in [Installing Part II: Packages](install.md) to install
+Tanzu Application Platform on a Tanzu Kubernetes Grid v1.4 cluster.
