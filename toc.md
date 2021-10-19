@@ -8,6 +8,7 @@ This is the table of contents from which the Tanzu Application Platform Document
     - [Installing Part I: Prerequisites, EULA, and CLI](install-general.md)
     - [Installing Part II: Packages](install.md)
     - [Installing on a Tanzu Community Edition v0.9.1 Cluster](install-tce.md)
+    - [Installing on a Tanzu Kubernetes Grid v1.4 Cluster](install-tkg.md)
 - [Getting Started with Tanzu Application Platform](getting-started.md)
 - [Troubleshooting Tanzu Application Platform](troubleshooting.md)
 - [Uninstalling Tanzu Application Platform](uninstall.md)
