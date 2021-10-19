@@ -32,7 +32,7 @@ To install kapp-controller v0.27.0 or later on Tanzu Community Edition v0.9.1:
           ...
     ```
 
-1. Prevent the Management/Standalone cluster from reconciling the kapp-controller in the workload cluster by running:
+1. Prevent the Management cluster from reconciling the kapp-controller in the workload cluster by running: (skip this step if you're using Tanzu Community Edition v0.9.1 Standalone Cluster)
 
     ```console
     kubectl patch app/<WORKLOAD-CLUSTER>-kapp-controller -n default -p '{"spec":{"paused":true}}' --type=merge
