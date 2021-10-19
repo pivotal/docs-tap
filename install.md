@@ -449,15 +449,8 @@ To install Source Controller:
 
 ## <a id='install-app-accelerator'></a> Install Application Accelerator
 
-To install Application Accelerator:
-
-**Prerequisite**: Flux SourceController installed on the cluster.
-See [Install Prerequisites](install-general.md#prereqs).
-
-**Prerequisite**: Source Controller installed on the cluster.
-See [Install Source Controller](#install-source-controller).
-
-You can configure the following optional properties:
+When you install the Application Accelerator,
+you can configure the following optional properties:
 
 | Property | Default | Description |
 | --- | --- | --- |
@@ -469,11 +462,27 @@ You can configure the following optional properties:
 | engine.max_direct_memory_size | 32M | The max size for the Java -XX:MaxDirectMemorySize setting |
 | samples.include | True | Whether to include the bundled sample Accelerators in the install |
 
-> **Note:** For clusters that do not support the `LoadBalancer` service type you should override the default value for `server.service_type`.
+> **Note:** For clusters that do not support the `LoadBalancer` service type,
+            override the default value for `server.service_type`.
 
-Vmware recommends not overriding the defaults for `registry.secret_ref`,
-`server.engine_invocation_url` or `engine.service_type`.
-These properties are only used for configuration of non-standard installs.
+VMware recommends that you do not override the defaults for `registry.secret_ref`,
+`server.engine_invocation_url`, or `engine.service_type`.
+These properties are only used to configure non-standard installations.
+
+### Prerequisites
+
+Before you install Application Accelerator,
+you must have:
+
+- Flux SourceController installed on the cluster.
+See [Install Prerequisites](install-general.md#prereqs).
+
+-  Source Controller installed on the cluster.
+See [Install Source Controller](#install-source-controller).
+
+### Procedure
+
+To install Application Accelerator:
 
 1. Follow the instructions in [Install Packages](#install-packages) above.
 
@@ -521,7 +530,7 @@ These properties are only used for configuration of non-standard installs.
     For example:
 
     ```console
-    tanzu package installed get app-accelerator -n tap-install
+    $ tanzu package installed get app-accelerator -n tap-install
     | Retrieving installation details for cc...
     NAME:                    app-accelerator
     PACKAGE-NAME:            accelerator.apps.tanzu.vmware.com
@@ -533,7 +542,7 @@ These properties are only used for configuration of non-standard installs.
     STATUS should be `Reconcile succeeded`.
 
 1. To access the Application Accelerator UI,
-see the [Application Accelerator for VMware Tanzu documentation](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.4/acc-docs/GUID-installation-install.html#using-application-accelerator-for-vmware-tanzu-0).
+   see the [Application Accelerator for VMware Tanzu documentation](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.4/acc-docs/GUID-installation-install.html#using-application-accelerator-for-vmware-tanzu-0).
 
 ## <a id='install-tbs'></a> Install Tanzu Build Service
 
@@ -545,7 +554,7 @@ This section provides a quick-start guide for installing Tanzu Build Service as 
 ### Prerequisites
 
 * You have access to a Docker registry that Tanzu Build Service can use to create Builder images. Approximately 5GB of registry space is required.
-* Your Docker registry is accesible with username and password credentials.
+* Your Docker registry is accessible with username and password credentials.
 
 
 ### Install Tanzu Build Service Using the Tanzu CLI
@@ -984,7 +993,7 @@ resolve the deadlock and enable the system to start up again.  Once the system
 is stable you can restore the `MutatingWebhookConfiguration` resource to
 re-enable image signing enforcement.
 
-**Prerequsites**: As part of the install instructions, we will ask you to provide a cosign public key to use to validate signed images. We will provide an example cosign public key that will be able to validate an image from cosign, but if you wish to provide your own key and images, you can follow the [cosign quick start guide](https://github.com/sigstore/cosign#quick-start) to generate your own keys and sign an image.
+**Prerequisites**: As part of the install instructions, we will ask you to provide a cosign public key to use to validate signed images. We will provide an example cosign public key that will be able to validate an image from cosign, but if you wish to provide your own key and images, you can follow the [cosign quick start guide](https://github.com/sigstore/cosign#quick-start) to generate your own keys and sign an image.
 
 To install Supply Chain Security Tools - Sign:
 
