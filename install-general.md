@@ -480,7 +480,7 @@ see [Install Tanzu CLI Plugins](install-tkg.md#install-tanzu-cli-plugins-2).
     ```
     The versions should mostly reflect the downloaded file version numbers (not all plugins are going to match the exact same download version - i.e. `v0.5.0` below). For example:
     ```
-    tanzu plugin list
+    $ tanzu plugin list
     NAME                LATEST VERSION  DESCRIPTION                                                                                                                                         REPOSITORY  VERSION  STATUS
     accelerator                         Manage accelerators in a Kubernetes cluster                                                                                                                     v0.3.0   installed
     apps                                Applications on Kubernetes                                                                                                                                      v0.2.0   installed
@@ -493,7 +493,8 @@ see [Install Tanzu CLI Plugins](install-tkg.md#install-tanzu-cli-plugins-2).
     pinniped-auth                       Pinniped authentication operations (usually not directly invoked)                                                                                               v0.5.0   installed
     ```
   
-**A note regarding the installed plugins:**
-The `package`, `imgpullsecret`, `accelerator`, and `apps` plugins will be used to install or interact with the Tanzu Application Platform.
+**Note:**
+The `package`, `imgpullsecret`, `accelerator`, and `apps` plugins are used to install or
+interact with the Tanzu Application Platform.
     
 The Tanzu Application Platform beta product requires cluster-admin privileges. There are additional plugins and commands included with the Tanzu CLI that can have unintended side-effects. VMware recommends against running commands for the following CLI plugins: `cluster`, `kubernetes-release`, `login`, `management-cluster`, and `pinniped-auth`.
