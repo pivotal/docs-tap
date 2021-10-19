@@ -28,8 +28,8 @@ To install kapp-controller v0.27.0 or later on Tanzu Community Edition v0.9.1:
     ```console
     kubectl config get-contexts
     CURRENT   NAME                          CLUSTER            AUTHINFO           NAMESPACE
-          az-standalone-tce-admin@az-standalone-tce              az-standalone-tce                                      az-standalone-tce-admin                       *     az-tanzu-ce-workload-admin@az-tanzu-ce-workload        az-tanzu-ce-workload                                   az-tanzu-ce-workload-admin               
-          ...
+   *         az-standalone-tce-admin@az-standalone-tce              az-standalone-tce                                      az-standalone-tce-admin   
+          az-tanzu-ce-workload-admin@az-tanzu-ce-workload        az-tanzu-ce-workload                                   az-tanzu-ce-workload-admin
     ```
 
 1. Prevent the Management cluster from reconciling the kapp-controller in the workload cluster by running: (skip this step if you're using Tanzu Community Edition v0.9.1 Standalone Cluster)
