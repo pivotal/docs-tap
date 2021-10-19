@@ -22,10 +22,10 @@ To install Tanzu Kubernetes Grid v1.4, you must:
 
 ## Install kapp-controller
 
-To install kapp-controller v0.27.0 or later on TKG v1.4:
+To install kapp-controller v0.27.0 or later on Tanzu Kubernetes Grid v1.4:
 
 1. Create a new workload cluster. Do not install any packages in the cluster.
-1. Ensure the kubectl context is set to the TKG Management cluster by running:
+1. Ensure the kubectl context is set to the Tanzu Kubernetes Grid Management cluster by running:
 
     ```console
     kubectl config get-contexts
