@@ -313,87 +313,6 @@ To learn more about using Cloud Native Runtimes,
 see [Verify your Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-verify-installation.html)
 in the Cloud Native Runtimes documentation.
 
-## <a id='install-app-accelerator'></a> Install Application Accelerator
-
-To install Application Accelerator:
-
-**Prerequisite**: Flux SourceController installed on the cluster.
-See [Install Prerequisites](install-general.md#prereqs).
-
-You can configure the following optional properties:
-
-| Property | Default | Description |
-| --- | --- | --- |
-| registry.secret_ref | registry.tanzu.vmware.com | The secret used for accessing the registry where the App-Accelerator images are located. |
-| server.service_type | LoadBalancer | The service type for the acc-ui-server service including, LoadBalancer, NodePort, or ClusterIP. |
-| server.watched_namespace | default | The namespace the server watches for accelerator resources. |
-| server.engine_invocation_url | http://acc-engine.accelerator-system.svc.cluster.local/invocations | The URL to use for invoking the accelerator engine. |
-| engine.service_type | ClusterIP | The service type for the acc-engine service including, LoadBalancer, NodePort, or ClusterIP. |
-
-> **Note:** For clusters that do not support the `LoadBalancer` service type you should override the default value for `server.service_type`.
-
-Vmware recommends not overriding the defaults for `registry.secret_ref`,
-`server.engine_invocation_url` or `engine.service_type`.
-These properties are only used for configuration of non-standard installs.
-
-1. Follow the instructions in [Install Packages](#install-packages) above.
-
-1. Create an `app-accelerator-values.yaml` using the following example code:
-
-    ```yaml
-    server:
-      # Set the engine.service_type to "NodePort" for local clusters like minikube or kind.
-      service_type: "LoadBalancer"
-      watched_namespace: "default"
-    ```
-
-    Modify the values if needed or leave the default values.
-
-1. Install the package by running:
-
-    ```console
-    tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.3.0 -n tap-install -f app-accelerator-values.yaml
-    ```
-
-    For example:
-
-    ```console
-    $ tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.3.0 -n tap-install -f app-accelerator-values.yaml
-    - Installing package 'accelerator.apps.tanzu.vmware.com'
-    | Getting package metadata for 'accelerator.apps.tanzu.vmware.com'
-    | Creating service account 'app-accelerator-tap-install-sa'
-    | Creating cluster admin role 'app-accelerator-tap-install-cluster-role'
-    | Creating cluster role binding 'app-accelerator-tap-install-cluster-rolebinding'
-    | Creating secret 'app-accelerator-tap-install-values'
-    - Creating package resource
-    - Package install status: Reconciling
-
-     Added installed package 'app-accelerator' in namespace 'tap-install'
-    ```
-
-1. Verify the package install by running:
-
-    ```console
-    tanzu package installed get app-accelerator -n tap-install
-    ```
-
-    For example:
-
-    ```console
-    tanzu package installed get app-accelerator -n tap-install
-    | Retrieving installation details for cc...
-    NAME:                    app-accelerator
-    PACKAGE-NAME:            accelerator.apps.tanzu.vmware.com
-    PACKAGE-VERSION:         0.3.0
-    STATUS:                  Reconcile succeeded
-    CONDITIONS:              [{ReconcileSucceeded True  }]
-    USEFUL-ERROR-MESSAGE:
-    ```
-    STATUS should be `Reconcile succeeded`.
-
-1. To access the Application Accelerator UI,
-   ee the [Application Accelerator for VMware Tanzu documentation](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.3/acc-docs/GUID-installation-install.html#using-application-accelerator-for-vmware-tanzu-0).
-
 ## <a id='install-convention-service'></a> Install Convention Service
 
 Convention Service allows app operators to enrich Pod Template Specs with operational knowledge
@@ -528,6 +447,93 @@ To install Source Controller:
 
     STATUS should be `Running`.
 
+## <a id='install-app-accelerator'></a> Install Application Accelerator
+
+To install Application Accelerator:
+
+**Prerequisite**: Flux SourceController installed on the cluster.
+See [Install Prerequisites](install-general.md#prereqs).
+
+**Prerequisite**: Source Controller installed on the cluster.
+See [Install Source Controller](#install-source-controller).
+
+You can configure the following optional properties:
+
+| Property | Default | Description |
+| --- | --- | --- |
+| registry.secret_ref | registry.tanzu.vmware.com | The secret used for accessing the registry where the App-Accelerator images are located. |
+| server.service_type | LoadBalancer | The service type for the acc-ui-server service including, LoadBalancer, NodePort, or ClusterIP. |
+| server.watched_namespace | default | The namespace the server watches for accelerator resources. |
+| server.engine_invocation_url | http://acc-engine.accelerator-system.svc.cluster.local/invocations | The URL to use for invoking the accelerator engine. |
+| engine.service_type | ClusterIP | The service type for the acc-engine service including, LoadBalancer, NodePort, or ClusterIP. |
+| engine.max_direct_memory_size | 32M | The max size for the Java -XX:MaxDirectMemorySize setting |
+| samples.include | True | Whether to include the bundled sample Accelerators in the install |
+
+> **Note:** For clusters that do not support the `LoadBalancer` service type you should override the default value for `server.service_type`.
+
+Vmware recommends not overriding the defaults for `registry.secret_ref`,
+`server.engine_invocation_url` or `engine.service_type`.
+These properties are only used for configuration of non-standard installs.
+
+1. Follow the instructions in [Install Packages](#install-packages) above.
+
+1. Create an `app-accelerator-values.yaml` using the following example code:
+
+    ```yaml
+    server:
+      # Set the engine.service_type to "NodePort" for local clusters like minikube or kind.
+      service_type: "LoadBalancer"
+      watched_namespace: "default"
+    samples:
+      include: true
+    ```
+
+    Modify the values if needed or leave the default values.
+
+1. Install the package by running:
+
+    ```console
+    tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.4.0 -n tap-install -f app-accelerator-values.yaml
+    ```
+
+    For example:
+
+    ```console
+    $ tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.4.0 -n tap-install -f app-accelerator-values.yaml
+    - Installing package 'accelerator.apps.tanzu.vmware.com'
+    | Getting package metadata for 'accelerator.apps.tanzu.vmware.com'
+    | Creating service account 'app-accelerator-tap-install-sa'
+    | Creating cluster admin role 'app-accelerator-tap-install-cluster-role'
+    | Creating cluster role binding 'app-accelerator-tap-install-cluster-rolebinding'
+    | Creating secret 'app-accelerator-tap-install-values'
+    - Creating package resource
+    - Package install status: Reconciling
+
+     Added installed package 'app-accelerator' in namespace 'tap-install'
+    ```
+
+1. Verify the package install by running:
+
+    ```console
+    tanzu package installed get app-accelerator -n tap-install
+    ```
+
+    For example:
+
+    ```console
+    tanzu package installed get app-accelerator -n tap-install
+    | Retrieving installation details for cc...
+    NAME:                    app-accelerator
+    PACKAGE-NAME:            accelerator.apps.tanzu.vmware.com
+    PACKAGE-VERSION:         0.4.0
+    STATUS:                  Reconcile succeeded
+    CONDITIONS:              [{ReconcileSucceeded True  }]
+    USEFUL-ERROR-MESSAGE:
+    ```
+    STATUS should be `Reconcile succeeded`.
+
+1. To access the Application Accelerator UI,
+see the [Application Accelerator for VMware Tanzu documentation](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.4/acc-docs/GUID-installation-install.html#using-application-accelerator-for-vmware-tanzu-0).
 
 ## <a id='install-tbs'></a> Install Tanzu Build Service
 
