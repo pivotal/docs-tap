@@ -35,7 +35,7 @@ To install kapp-controller v0.27.0 or later on Tanzu Kubernetes Grid v1.4:
         tkg4tapwld-admin@tkg4tapwld   tkg4tapwld         tkg4tapwld-admin
     ```
 
-1. Prevent the Management cluster from reconciling <!-- reconciling with what? --> the kapp-controller in the workload cluster by running:
+1. Prevent the Management cluster from reconciling the kapp-controller in the workload cluster by running:
 
     ```console
     kubectl patch app/<WORKLOAD-CLUSTER>-kapp-controller -n default -p '{"spec":{"paused":true}}' --type=merge
@@ -113,10 +113,10 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
     tanzu plugin install accelerator --local ./cli
     ```
 
-1. Install the `apps` plugin by running: <!-- this should read install apps, right? -->
+1. Install the `apps` plugin by running:
 
     ```console
-    tanzu plugin install imagepullsecret --local ./cli
+    tanzu plugin install apps --local ./cli
     ```
 
 
