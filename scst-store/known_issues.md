@@ -108,6 +108,7 @@ repository.
     imgpkg copy -b <bundle-image-registry>:<bundle-version-tag> --to-repo <target-image-registry-repo>/
     ```
     Where:
-    + `<bundle-image-registry>` is the registry where you copy the image bundle.
-    + `<bundle-version-tag>` is the image bundle version tag to copy.
-    + `<target-image-registry-repo>` is where you paste the image bundle and all associated images.
+
+    - `<bundle-image-registry>` is the registry where you copy the image bundle.
+    - `<bundle-version-tag>` is the image bundle version tag to copy.
+    - `<target-image-registry-repo>` is where you paste the image bundle and all associated images.
