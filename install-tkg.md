@@ -116,7 +116,7 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
 1. Install the `apps` plugin by running: <!-- this should read install apps, right? -->
 
     ```console
-    tanzu plugin install imagepullsecret --local ./cli
+    tanzu plugin install apps --local ./cli
     ```
 
 
