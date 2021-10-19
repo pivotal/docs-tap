@@ -1,4 +1,4 @@
-# Installing on a Tanzu Kubernetes Grid v1.4 Cluster
+# Installing on a Tanzu Community Edition  v0.9.1 Cluster
 
 This topic lists prerequisites and instructions for installing Tanzu Application Platform on a
 Tanzu Community Edition v0.9.1 cluster.
