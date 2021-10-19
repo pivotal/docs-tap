@@ -44,6 +44,7 @@ images
         * VMware recommends at least 16 GB of total host memory.
         * On Mac OS only hyperkit driver is supported. Docker driver is not supported.
    * Tanzu Kubernetes Grid v1.4
+        * Do not use a Tanzu Kubernetes Grid cluster that runs production workloads. 
         * To install Tanzu Application Platform on Tanzu Kubernetes Grid v1.4,
           see [Installing with Tanzu Kubernetes Grid v1.4](install-tkg.md).
 
