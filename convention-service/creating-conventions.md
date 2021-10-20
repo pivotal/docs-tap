@@ -2,30 +2,32 @@
 
 This document describes how to create a convention server with example conventions. The convention server is a component of the [Convention Service](about.md). 
 
-## <a id='prereqs'></a>Before you begin
+## <a id='prereqs'></a> Before You Begin
 
-+ Kubectl has been installed [guide](https://kubernetes.io/docs/tasks/tools/)
-+ Tanzu Application Platform components have been installed on a k8s cluster [guide](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.1/tap-0-1/GUID-install.html)
+The following prerequisites are required to create a convention server:
+
++ Kubectl is installed [guide](https://kubernetes.io/docs/tasks/tools/)
++ Tanzu Application Platform components are installed on a Kubernetes cluster [guide](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.1/tap-0-1/GUID-install.html)
 + The [default supply chain](https://network.tanzu.vmware.com/products/default-supply-chain/) is installed
-+ Your kubeconfig context has been set to the prepared cluster `kubectl config use-context CONTEXT_NAME`
++ Your kubeconfig context is set to the prepared cluster `kubectl config use-context CONTEXT_NAME`
 
 
-## <a id='conventionservice'></a> About the convention servers
+## <a id='conventionservice'></a> About the Convention Servers
 
-The Tanzu Application Platform beta includes tools that enable developers to quickly begin building and testing applications regardless of their familiarity with Kubernetes. Developers can turn source code into a workload running in a container with a URL in minutes. The Convention service ensures those workloads adhere to the operational standards of an organization. A convention server can contain one or many conventions. 
+The Tanzu Application Platform beta includes tools that enable developers to quickly build and test applications regardless of their familiarity with Kubernetes. Developers can turn source code into a workload running in a container with a URL. The convention service ensures that workloads adhere to operational standards of an organization. A convention server can contain one or many conventions. 
 
-## <a id='gettingstarted'></a> Getting started 
+## <a id='gettingstarted'></a> Getting Started 
 
-With the convention controller installed, a convention can be defined.
+You can define a convention after installing the convention controller.
 
-The current version of the convention controller supports `webhook` conventions, then it will run as a webserver.
+The current version of the convention controller supports `webhook` conventions, and runs as a webserver.
 
-_NOTE: this example covers developing conventions with [GOLANG](https://golang.org/) but it can be done in other languages by following the specs._
+>**Note:** The following example covers developing conventions with [GOLANG](https://golang.org/), but you can use other languages by following the specifications.
 
-The webserver convention consumes the [PodTemplateSpec](https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#podtemplatespec-v1-core) and the collection of ImageConfig in `JSON` format and produces a collection of `string` with the name, or description of the applied conventions or `error` if something went wrong 
+The webserver convention consumes the [PodTemplateSpec](https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#podtemplatespec-v1-core), the collection of ImageConfig in `JSON` format, and produces a collection of `string` with the name, description of the applied conventions. or `error`. 
 
 
-1. <a id='create-1'></a>Start defining the ConventionHandler for the `webhook` request from the *convention controller*
+1. <a id='create-1'></a>Define the `ConventionHandler` for the `webhook` request from the *convention controller*. Run:
 
     ```go
     ...
@@ -45,7 +47,8 @@ The webserver convention consumes the [PodTemplateSpec](https://v1-18.docs.kuber
      + `template` is the predefined [PodTemplateSpec](https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#podtemplatespec-v1-core) that the convention is going to modify
      + `images` are the images defined within the given workload
 
-2. <a id='create-2'></a>Set the server to listen the request
+2. <a id='create-2'></a> Set the server to listen the request. Run:
+
     ```go
     ...
     import (
@@ -71,12 +74,12 @@ The webserver convention consumes the [PodTemplateSpec](https://v1-18.docs.kuber
 
     Where:
 
-    + `PORT` is a possible environment variable
-    + `conventionHandler` is the *handler* defined in [last step](#create-1)     
+    + `PORT` is a possible environment variable.
+    + `conventionHandler` is the *handler* defined in [last step](#create-1).     
 
-## <a id='targeting'></a> Define the convention behavior
+## <a id='targeting'></a> Define the Convention Behavior
 
-Once the convention has been defined, you can specify the attributes that determine if a convention is applied to a workload. Any property or value within the `PodTemplateSpec` or OCI image metadata associated with a [workload](../scc/reference.md#workload) can be used to define the criteria for applying conventions. The following are a few examples. 
+Once the convention is defined, you can specify the attributes that determine if a convention is applied to a workload. Any property or value within the `PodTemplateSpec` or OCI image metadata associated with a [workload](../scc/reference.md#workload) can define the criteria for applying conventions. The following are examples of ways to define convention behavior. 
 
 ### By Labels or Annotations:
 
@@ -116,14 +119,14 @@ When using labels or annotations to define whether a convention should be applie
         ```
     
  Where:
- + `conventionHandler` is the *handler*
- + `awesome-label` is the **label** that we want to validate
- + `awesome-annotation` is the **annotation** that we want to validate
- + `awesome-value` is the value that must have the **label**/**annotation**
+ + `conventionHandler` is the *handler*.
+ + `awesome-label` is the **label** that we want to validate.
+ + `awesome-annotation` is the **annotation** that we want to validate.
+ + `awesome-value` is the value that must have the **label**/**annotation**.
 
-### <a id='EnvironmentVariables'></a>By Environment variables
+### <a id='EnvironmentVariables'></a> By Environment Variables
 
-When using environment variables to define whether the convention is applicable or not, it should be present in the [PodTemplateSpec](https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#podtemplatespec-v1-core).[spec](https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#podspec-v1-core).[containers](https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#container-v1-core)[*].[env](https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#envvar-v1-core). and we can validate the value.
+When using environment variables to define whether the convention is applicable or not, the variables should be present in the [PodTemplateSpec](https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#podtemplatespec-v1-core).[spec](https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#podspec-v1-core).[containers](https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#container-v1-core)[*].[env](https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#envvar-v1-core).
 
    + PodTemplateSpec
         ```yaml
@@ -152,10 +155,11 @@ When using environment variables to define whether the convention is applicable 
         }
         ```
 
-### <a id='ImageMetadata'></a>By Image metadata
-The convention controller should be used with [OCI Image](https://github.com/opencontainers/image-spec) so it can be used to get metadate information. The ImageConfig is an struct that contains the configuration of an image, similar to the output of `docker inspect hello-world`.
+### <a id='ImageMetadata'></a> By Image Metadata
 
-## <a id='install'></a> Configure and install the new convention server
+The convention controller should be used with [OCI Image](https://github.com/opencontainers/image-spec) so you can get metadata information. The ImageConfig is a struct that contains the configuration of an image, similar to the output of `docker inspect hello-world`.
+
+## <a id='install'></a> Configure and Install the New Convention Server
 
 Once the convention has been written, define the following components in `server.yaml`. 
 
@@ -307,15 +311,15 @@ Once the convention has been written, define the following components in `server
             namespace: awesome-convention
     ```
 
-7. **Build and install the convention**
+7. Build and install the convention by running:
 
-    + If the convention needs to be built and deployed, use the [ko](https://github.com/google/ko) tool to do so
+    + If the convention needs to be built and deployed, use the [ko](https://github.com/google/ko) tool. Run:
     
         ```bash
         ko apply -f server.yaml
         ```
 
-    + If you are using a previously built image, apply the configuration using either 
+    + If you are using a previously built image, apply the configuration by running one of the following commands:
     
        kubectl
         ```bash
@@ -326,9 +330,9 @@ Once the convention has been written, define the following components in `server
         kapp deploy -a awesome-convention -f server.yaml 
         ```
 
-8. **Verify the convention server is running by checking for the convention pods**
+8. Verify the convention server is running by checking for the convention pods.
     
-    + Running `kubectl get all -n awesome-app` should return something like ...
+    + Running `kubectl get all -n awesome-app` will return output similar to the following:
         ```text
         NAME                                       READY   STATUS    RESTARTS   AGE
         pod/awesome-webhook-1234567890-12345       1/1     Running   0          8h
