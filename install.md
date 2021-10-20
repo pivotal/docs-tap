@@ -156,6 +156,7 @@ To install any package from the Tanzu Application Platform package repository:
     + [Install Developer Conventions](#install-developer-conventions)
     + [Install Application Live View](#install-app-live-view)
     + [Install TAP GUI](#install-tap-gui)
+    + [Install Learning Center](#install-learning-center)
     + [Install Service Bindings](#install-service-bindings)
     + [Install Tanzu Build Service](#install-tbs)
     + [Install Supply Chain Choreographer](#install-scc)
@@ -986,6 +987,17 @@ To install the Tanzu Application Platform UI:
 
 1. To access TAP UI, use the service you exposed above in the `service_type` field in the values file.
 
+## <a id='install-learning-center'></a> Install Learning Center
+
+**Prerequisites (in addition to TAP requirements)**
+
+**Required**
+
+- 
+
+**Optional**
+
+-
 
 ## <a id='install-service-bindings'></a> Install Service Bindings
 
