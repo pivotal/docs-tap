@@ -7,7 +7,8 @@ This document describes how to create a convention server with example conventio
 The following prerequisites are required to create a convention server:
 
 + Kubectl is installed [guide](https://kubernetes.io/docs/tasks/tools/)
-+ Tanzu Application Platform components are installed on a Kubernetes cluster [guide](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.1/tap-0-1/GUID-install.html)
++ Tanzu Application Platform components are installed on a Kubernetes cluster.
+  See [Installing Tanzu Application Platform](install-intro.md).
 + The [default supply chain](https://network.tanzu.vmware.com/products/default-supply-chain/) is installed
 + Your kubeconfig context is set to the prepared cluster `kubectl config use-context CONTEXT_NAME`
 

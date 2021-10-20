@@ -425,7 +425,7 @@ To install the Tanzu CLI on a Windows operating system:
 
 If you have an earlier version of the Tanzu CLI installed,
 do the following before you install the plugins.
-For instructions on installing plugins, see [Install the Tanzu CLI Plugins](#install-the-tanzu-cli-plugins).
+For instructions on installing plugins, see [Install the Tanzu CLI Plugins](#install-the-tanzu-cli-plugins) below.
 
 To remove plugins from earlier versions of the Tanzu CLI:
 
@@ -453,7 +453,7 @@ To remove plugins from earlier versions of the Tanzu CLI:
     tanzu plugin clean
     ```
 
-## Install the Tanzu CLI Plugins
+## <a id-'install-the-tanzu-cli-plugins'></a> Install the Tanzu CLI Plugins
 
 After you have installed the Tanzu core executable, you must install the package, imagepullsecret, apps, and app-accelerator CLI plugins.
 
