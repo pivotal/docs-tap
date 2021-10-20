@@ -847,9 +847,9 @@ To install Application Live View:
     ```
     STATUS should be `Reconcile succeeded`.
 
-## <a id='install-tap-gui'></a> Install TAP GUI
+## <a id='install-tap-gui'></a> Install Tanzu Application Platform GUI
 
-**Prerequisites (in addition to TAP requirements)**
+**Prerequisites (in addition to Tanzu Application Platform requirements)**
 
 **Required**
 
@@ -861,7 +861,7 @@ To install Application Live View:
 
 **Optional**
 
-- Tanzu Application Platform UI has plugins for the below Tanzu Application Platform tools. If you plan on running workloads with these capabilities, you need those tools installed alongside Tanzu Application Platform UI. If you choose not to deploy workloads with these tools, the UI shows menu options that you cannot click on.
+- Tanzu Application Platform GUI has plugins for the below Tanzu Application Platform tools. If you plan on running workloads with these capabilities, you need those tools installed alongside Tanzu Application Platform GUI. If you choose not to deploy workloads with these tools, the UI shows menu options that you cannot click on.
     - Tanzu Cloud Native Runtimes installed
     - Tanzu App Live View installed
 - Data Cache - Your software catalog is stored on Git infrastructure (as mentioned in the Required pre-requisites) however, you can optionally use a PostgreSQL database to cache this information. If you do not specify any values here, a SQLite in-memory database is used instead.
@@ -871,11 +871,11 @@ To install Application Live View:
 - Customer Developed Documentation
     - Techdocs object storage location (S3)
 
-To install the Tanzu Application Platform UI:
+To install the Tanzu Application Platform GUI:
 
 1. Follow the instructions in [Install Packages](#install-packages) above.
 
-1. To see a list of all the values that you can specify when configuring the Tanzu Application Platform UI, run:
+1. To see a list of all the values that you can specify when configuring the Tanzu Application Platform GUI, run:
 
     ```console
     $ tanzu package available get tap-gui.tanzu.vmware.com/0.3.0 --values-schema -n tap-install
@@ -942,7 +942,7 @@ To install the Tanzu Application Platform UI:
 1. Install the package by running:
 
     ```console
-    $ tanzu package install tap-gui \
+    tanzu package install tap-gui \
      --package-name tap-gui.tanzu.vmware.com \
      --version 0.3.0 \
      -f tap-gui-values.yaml
@@ -967,7 +967,7 @@ To install the Tanzu Application Platform UI:
 1. Verify the package install by running:
 
     ```console
-    $ tanzu package installed get tap-gui -n tap-install
+    tanzu package installed get tap-gui -n tap-install
     ```
 
     For example:
@@ -984,7 +984,7 @@ To install the Tanzu Application Platform UI:
     ```
     STATUS should be `Reconcile succeeded`.
 
-1. To access TAP UI, use the service you exposed above in the `service_type` field in the values file.
+1. To access Tanzu Application Platform GUI, use the service you exposed above in the `service_type` field in the values file.
 
 
 ## <a id='install-service-bindings'></a> Install Service Bindings
