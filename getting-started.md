@@ -842,24 +842,24 @@ Let’s start by playing the role of a Service Operator, who is responsible for 
     ```
     kapp -y deploy --app rmq-operator --file https://github.com/rabbitmq/cluster-operator/releases/download/v1.9.0/cluster-operator.yml
     ```
-2. Next, we will need to create a ClusterRole that grants relevant permissions to the ServiceBinding controller. Note that while this is a manual step at the moment, but will be automated in the near future.
+2. Next, we will need to create a ClusterRole that grants read permissions to the ResourceClaim controller to the Service resources, in this case Rabbitmq.
 
     ```yaml
-    #service-binding-rmq.yaml
+    #resource-claims-rmq.yaml
     ---
     apiVersion: rbac.authorization.k8s.io/v1
     kind: ClusterRole
     metadata:
-      name: service-binding-rmq
+      name: resource-claims-rmq
       labels:
-        servicebinding.io/controller: "true"
+        services.vmware.tanzu.com/aggregate-to-resource-claims: "true"
     rules:
     - apiGroups: ["rabbitmq.com"]
       resources: ["rabbitmqclusters"]
       verbs: ["get", "list", "watch"]
     ```
     ```
-    kubectl apply -f service-binding-rmq.yaml
+    kubectl apply -f resource-claims-rmq.yaml
     ```
 
 3. Ensure that the namespace is enabled to install packages so that  Cartographer Workloads can be created in it. See this [documentation](install.md#-set-up-developer-namespaces-to-use-installed-packages).
@@ -953,15 +953,33 @@ Now let us see the different usecases where SCP toolkit makes the Services Journ
      kubectl --context SERVICE_CONTEXT get crds rabbitmqclusters.rabbitmq.com
     ```
 
-4. Next we will federate the `rabbitmq.com/v1beta1` API Group into the Workload Cluster. The act of API federation can be split into two halves - projection and replication. Projection applies to custom API Groups whereas replication applies to core Kubernetes resources (such as Secrets). Before federating we will need to create a pair of target namespaces where instances of RabbitmqCluster will be created. For now, the namespace name needs to be identical in the Application Workload and Service Cluster.
+4. In the Workload Cluster, we will need to create a ClusterRole that grants read permissions to the ResourceClaim controller to the Service resources, in this case Rabbitmq.
+    ```yaml
+    #resource-claims-rmq.yaml
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRole
+    metadata:
+      name: resource-claims-rmq
+      labels:
+        services.vmware.tanzu.com/aggregate-to-resource-claims: "true"
+    rules:
+    - apiGroups: ["rabbitmq.com"]
+      resources: ["rabbitmqclusters"]
+      verbs: ["get", "list", "watch"]
+    ```
+    ```
+    kubectl apply -f resource-claims-rmq.yaml
+    ```
+5. Next we will federate the `rabbitmq.com/v1beta1` API Group into the Workload Cluster. The act of API federation can be split into two halves - projection and replication. Projection applies to custom API Groups whereas replication applies to core Kubernetes resources (such as Secrets). Before federating we will need to create a pair of target namespaces where instances of RabbitmqCluster will be created. For now, the namespace name needs to be identical in the Application Workload and Service Cluster.
 
     ```
     kubectl --context WORKLOAD_CONTEXT create namespace my-project-1
     kubectl --context SERVICE_CONTEXT create namespace my-project-1
     ```
-5. Ensure that the namespace is enabled to install packages so that  Cartographer Workloads can be created in it. See this [documentation](install.md#-set-up-developer-namespaces-to-use-installed-packages).
+6. Ensure that the namespace is enabled to install packages so that  Cartographer Workloads can be created in it. See this [documentation](install.md#-set-up-developer-namespaces-to-use-installed-packages).
 
-6. Federate using `kubectl-scp` plugin.
+7. Federate using `kubectl-scp` plugin.
     ```
     kubectl scp federate \
       --workload-kubeconfig-context=WORKLOAD_CONTEXT \
@@ -971,7 +989,7 @@ Now let us see the different usecases where SCP toolkit makes the Services Journ
       --api-version=v1beta1 \
       --api-resource=rabbitmqclusters
     ```
-7. Make RabbitMQ discoverable in Workload Cluster so that developers can create RabbitMQ clusters.
+8. Make RabbitMQ discoverable in Workload Cluster so that developers can create RabbitMQ clusters.
 
     ```
     kubectl scp make-discoverable \
@@ -980,7 +998,7 @@ Now let us see the different usecases where SCP toolkit makes the Services Journ
       --api-resource-kind=RabbitmqCluster
     ```
 
-8. Now we will switch hats to the Application Developer and discover what services are available in the Workload Cluster. We can see that there is one service resource available.
+9. Now we will switch hats to the Application Developer and discover what services are available in the Workload Cluster. We can see that there is one service resource available.
 
     *Note*: In the future we hope to provide more contexual metadata about these service resources as part of improvements to Service Offering.
 
@@ -991,7 +1009,7 @@ Now let us see the different usecases where SCP toolkit makes the Services Journ
     rabbitmq.com-rabbitmqcluster   RabbitmqCluster   rabbitmq.com
     ```
 
-9. In the Workload Cluster create a service instance of RabbitMQ.
+10. In the Workload Cluster create a service instance of RabbitMQ.
 
     ```yaml
     # rabbitmq-cluster.yaml
@@ -1008,25 +1026,25 @@ Now let us see the different usecases where SCP toolkit makes the Services Journ
     kubectl --context WORKLOAD_CONTEXT -n my-project-1 apply -f rabbitmq-cluster.yaml
     ```
 
-10. Confirm that the RabbitmqCluster resource reconciles successfully from the Workload cluster:
+11. Confirm that the RabbitmqCluster resource reconciles successfully from the Workload cluster:
     ```
     kubectl --context WORKLOAD_CONTEXT -n my-project-1 get -f rabbitmq-cluster.yaml
     ```
-11. See that no rabbit pods are running in the Workload cluster but are instead running in the service cluster:
+12. See that no rabbit pods are running in the Workload cluster but are instead running in the service cluster:
     ```
     kubectl --context WORKLOAD_CONTEXT -n my-project-1 get pods
 
     kubectl --context SERVICE_CONTEXT -n my-project-1 get pods
     ```
-12. The remaining steps are now exactly the same as the single cluster use case above - we simply need to create an application workload in Workload cluster but this time we referenced our API Projected Rabbitmq instance.
+13. The remaining steps are now exactly the same as the single cluster use case above - we simply need to create an application workload in Workload cluster but this time we referenced our API Projected Rabbitmq instance.
     ```
     tanzu apps workload create -n my-project-1 rmq-sample-app-usecase2 --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch v0.1.0 --type web --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:projected-rmq"
     ```
-13. Once the workload has been built and is running you can confirm it is up and running by grabbing the  grab the web-app URL
+14. Once the workload has been built and is running you can confirm it is up and running by grabbing the  grab the web-app URL
     ```
     tanzu apps workload get -n my-project-1 rmq-sample-app-usecase2
     ```
-14. Visit the URL and confirm the app is working by refreshing the page and noting the new message IDs.
+15. Visit the URL and confirm the app is working by refreshing the page and noting the new message IDs.
 
 
 ## Appendix
