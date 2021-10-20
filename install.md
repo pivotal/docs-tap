@@ -155,6 +155,7 @@ To install any package from the Tanzu Application Platform package repository:
     + [Install Source Controller](#install-source-controller)
     + [Install Developer Conventions](#install-developer-conventions)
     + [Install Application Live View](#install-app-live-view)
+    + [Install TAP GUI](#install-tap-gui)
     + [Install Service Bindings](#install-service-bindings)
     + [Install Tanzu Build Service](#install-tbs)
     + [Install Supply Chain Choreographer](#install-scc)
@@ -845,6 +846,146 @@ To install Application Live View:
     USEFUL-ERROR-MESSAGE:
     ```
     STATUS should be `Reconcile succeeded`.
+
+## <a id='install-tap-gui'></a> Install TAP GUI
+
+**Prerequisites (in addition to TAP requirements)**
+
+**Required**
+
+- Git repository for the software catalog(s) and a token allowing read access. Supported Git infrastructure includes:
+  - Github
+  - GitLab
+  - Azure DevOps
+- Blank Software Catalog from Tanzu Application section of Tanzu Network
+
+**Optional**
+
+- TAP GUI has plugins for the below TAP tools. If you plan on running workloads with these capabilities, you'll need those tools installed alongside TAP GUI. If you choose to not deploy workloads with these tools, the GUI will show menu options that you won't be able to click on.
+  - Tanzu Cloud Native Runtimes installed
+  - Tanzu App Live View installed
+- Data Cache - Your software catalog is stored on Git infrastructure (as mentioned in the Required pre-requisites) however, you can optionally use a PostgreSQL database to cache this information. If you don't specify any values here, a SQLite in-memory database will be used instead.
+  - PostgreSQL database and connection information
+- Authentication
+  - OIDC Identity Provider connection information
+- Customer Developed Documentation
+  - Techdocs object storage location (S3)
+
+To install TAP GUI:
+
+1. Follow the instructions in [Install Packages](#install-packages) above.
+
+1. To see a list of all the values that you can specify when configuriung TAP GUI, issue the below command:
+
+    ```console
+    $ tanzu package available get tap-gui.tanzu.vmware.com/0.3.0 --values-schema -n tap-install
+    ```
+
+1. Create an `tap-gui-values.yaml` using the following example code, replacing all occurances of `<VALUE>` with your respective values:
+
+    ```yaml
+    namespace: tap-gui
+    service_type: <SERVICE_TYPE> # Replace with your inbound traffic mechanism. Supported values are LoadBalancer and Ingress
+    app-config: # The below section follows the same configuration model that Backstage uses, documented here: https://backstage.io/docs/conf/
+      app:
+        baseUrl: <EXTERNAL_IP>:<PORT> # Replace with your Ingress hostname or Loadbalancer information
+      integrations: #This example uses Gitlab, if you'd like additional integrations see the format here: https://backstage.io/docs/integrations/
+        gitlab:
+          - host: <GITLAB_HOST> 
+            apiBaseUrl: https://<GITLAB_URL>/api/v4 
+            token: <GITLAB_TOKEN> 
+      techdocs:
+        builder: 'external'
+        generator:
+          runIn: 'docker'
+        publisher:
+          type: 'awsS3'
+          awsS3:
+            bucketName: '<S3_BUCKET_NAME>'
+            credentials:
+              accessKeyId: '<S3_ACCESS_KEY>'
+              secretAccessKey: '<S3_SECRET_KEY>'
+            region: '<S3_REGION>'
+            s3ForcePathStyle: false # Set value to true if using local S3 solution (Minio)
+      auth:
+        environment: development
+        session:
+          secret: custom session secret # Unique string required by auth-backend to save browser session state
+        providers:
+          oidc: # Detailed configuration of the OIDC auth capabilities are documented here: https://backstage.io/docs/auth/oauth
+            development:
+              # metadataUrl is a json file with generic oidc provider config. It contains the authorizationUrl and tokenUrl. These values are read from the metadataUrl file by Backstage and so they do not need to be specified explicitly here.
+              metadataUrl: <AUTH_OIDC_METADATA_URL> 
+              clientId: <AUTH_OIDC_CLIENT_ID>
+              clientSecret: <AUTH_OIDC_CLIENT_SECRET>
+              tokenSignedResponseAlg: <AUTH_OIDC_TOKEN_SIGNED_RESPONSE_ALG> # default='RS256'
+              scope: <AUTH_OIDC_SCOPE> # default='openid profile email'
+              prompt: auto # default=none (allowed values: auto, none, consent, login)
+      catalog:
+        locations:
+          - type: url
+            target: https://<GIT_CATALOG_URL>/catalog-info.yaml
+      backend:
+          baseUrl: <EXTERNAL_IP>:<PORT> # Replace with your Ingress hostname or Loadbalancer information
+          cors:
+              origin: <EXTERNAL_IP>:<PORT> # Replace with your Ingress hostname or Loadbalancer information
+      # database: # Only needed if you intend to support with an existing PostgreSQL database (Catalog is still refreshed from Git)
+      #     client: pg
+      #      connection:
+      #        host: <PGSQL_HOST>
+      #        port: <PGSQL_PORT>
+      #        user: <PGSQL_USER>
+      #        password: <PGSQL_PWD>
+      #        ssl: {rejectUnauthorized: false} # May be needed if using self-signed certs
+    ```
+
+1. Install the package by running:
+
+    ```console
+    $ tanzu package install tap-gui \
+     --package-name tap-gui.tanzu.vmware.com \
+     --version 0.3.0 \
+     -f tap-gui-values.yaml
+    ```
+
+    For example:
+
+    ```console
+    $ tanzu package install tap-gui -p tap-gui.tanzu.vmware.com -v 0.3.0 -n tap-install -f tap-gui-values.yaml
+    - Installing package 'tap-gui.tanzu.vmware.com'
+    | Getting package metadata for 'tap-gui.tanzu.vmware.com'
+    | Creating service account 'tap-gui-default-sa'
+    | Creating cluster admin role 'tap-gui-default-cluster-role'
+    | Creating cluster role binding 'tap-gui-default-cluster-rolebinding'
+    | Creating secret 'tap-gui-default-values'
+    - Creating package resource
+    - Package install status: Reconciling
+
+     Added installed package 'tap-gui' in namespace 'tap-install'
+    ```
+
+1. Verify the package install by running:
+
+    ```console
+    $ tanzu package installed get tap-gui -n tap-install
+    ```
+
+    For example:
+
+    ```console
+    $ tanzu package installed get tap-gui -n tap-install
+    | Retrieving installation details for cc...
+    NAME:                    tap-gui
+    PACKAGE-NAME:            tap-gui.tanzu.vmware.com
+    PACKAGE-VERSION:         0.3.0
+    STATUS:                  Reconcile succeeded
+    CONDITIONS:              [{ReconcileSucceeded True  }]
+    USEFUL-ERROR-MESSAGE:
+    ```
+    STATUS should be `Reconcile succeeded`.
+
+1. To access TAP UI, use the service you exposed above in the `service_type` field in the values file.
+
 
 
 ## <a id='install-service-bindings'></a> Install Service Bindings
