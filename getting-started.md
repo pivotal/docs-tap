@@ -377,26 +377,25 @@ The next section walks you through installing Tekton on your cluster.
 
 #### Install Tekton
 
-Tekton is used by the supply chain to run tests defined by the developers
-before we get to the point of producing a container image for the source code,
-effectively preventing code that fails tests from being promoted all the way to deployment.
+The supply chain uses Tekton to run tests defined by developers
+before you produce a container image for the source code, 
+preventing code that fails tests from being promoted to deployment.
 
-For Beta 2, we’re relying on the open source version of Tekton which can be installed using `kapp` as follows:
+For Beta 2, we are using the open source version of Tekton. To install Tekton with `kapp`, run:
 
 ```bash
 kapp deploy --yes -a tekton \
   -f https://storage.googleapis.com/tekton-releases/pipeline/previous/v0.28.0/release.yaml
 ```
 
-Thoroughly documenting Tekton and its use is outside of the scope of this document.
-We are primarily using it to run a simple unit test on the sample that we’ve been using so far.
-For more details on Tekton itself and what is possible, refer to the [Tekton documentation](https://tekton.dev/docs/) itself
-and its [github repository](https://github.com/tektoncd/pipeline).
-Two other starting points for getting up to speed with Tekton are its
+We are using Tekton to run a unit test on the sample that we have been using in this document.
+For more details on Tekton, see the [Tekton documentation](https://tekton.dev/docs/)
+and the [github repository](https://github.com/tektoncd/pipeline).
+You can also view the Tekton
 [tutorial](https://github.com/tektoncd/pipeline/blob/main/docs/tutorial.md)
 and [getting started guide](https://tekton.dev/docs/getting-started/).
 
-Now that Tekton has been installed, the **Source & Test to URL** supply chain can be installed on your cluster:
+Now that you have installed Tekton, the **Source & Test to URL** supply chain can be installed on your cluster. Run:
 
 ```bash
 tanzu package install default-supply-chain-testing \
