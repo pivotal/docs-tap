@@ -96,12 +96,11 @@ and test code changes on the cluster.
 Tanzu Developer Tools for VSCode, VMware Tanzu’s official IDE extension for VSCode,
 helps you develop & receive fast feedback on the Tanzu Application Platform.
 
-The VSCode extension enables live updates of your application while it’s running on the cluster
-and provides the ability to debug your application directly on the cluster.
+The VSCode extension enables live updates of your application while it runs on the cluster
+and lets you debug your application directly on the cluster.
 
-Start by installing the pre-requisites and the Tanzu Developer Tools extension by following
-[these instructions](vscode-extension/install.md).
-
+For information about installing the pre-requisites and the Tanzu Developer Tools extension, see
+[How to Install the VSCode Tanzu Extension](vscode-extension/install.md).
 
 Open the ‘Tanzu Java Web App’ as a project within your VSCode IDE.
 
@@ -123,25 +122,25 @@ Let’s deploy the application and see it live update on the cluster. Doing so a
 Follow these steps:
 1. From the Command Palette (⇧⌘P), type in & select “Tanzu: Live Update Start”.
 
-    Tanzu Logs should open up in the Output tab and you should see output from the Tanzu Application Platform & from Tilt indicating that the container is being built and deployed.
+    Tanzu Logs opens up in the Output tab and you will see output from the Tanzu Application Platform and from Tilt indicating that the container is being built and deployed.
 
     Since this is your first time starting live update for this application, it may take 1-3 minutes for the workload to be deployed and the knative service to become available.
 
 2. Once you see output indicating that the workload is ready, navigate to http://localhost:8080 in your browser and view your application running.
-3. Return to the IDE and make a change to the source code. For example, in HelloController.java, modify the string returned to say “Hello!” and press save.
-4. If you look in the Tanzu Logs section of the Output tab, You should see the container has updated. Navigate back to your browser and refresh the page.
+3. Return to the IDE and make a change to the source code. For example, in HelloController.java, modify the string returned to say `Hello!` and save.
+4. If you look in the Tanzu Logs section of the Output tab, you will see the container has updated. Navigate back to your browser and refresh the page.
 
 
-You should see your changes on the cluster!
+You will see your changes on the cluster.
 
-You can now continue to make more changes. If you're finished, you can stop live update or disable it altogether. Open the command palette once again (⇧⌘P), type in Tanzu, and select either option.
+You can now continue to make more changes. If you are finished, you can stop or disable live update. Open the command palette (⇧⌘P), type in Tanzu, and select either option.
 
 
 #### Debug your Application
 
-Debugging your application on the cluster is as simple as debugging it in your local environment.
+You can debug your cluster on your application or in your local environment.
 
-Follow the steps below:
+Follow the steps below to debug your cluster:
 1. Set a breakpoint in your code.
 2. Right click on the file `workload.yaml` within the `config` folder, and select `Tanzu: Java Debug Start`. In a few moments, the workload will be redeployed with debugging enabled.
 3. Return to your browser and navigate to http://localhost:8080. This will hit the breakpoint within VSCode. You can now step through or play to the end of the debug session using VSCode debugging controls.
