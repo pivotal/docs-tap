@@ -854,34 +854,34 @@ To install Application Live View:
 **Required**
 
 - Git repository for the software catalog(s) and a token allowing read access. Supported Git infrastructure includes:
-  - Github
-  - GitLab
-  - Azure DevOps
+    - GitHub
+    - GitLab
+    - Azure DevOps
 - Blank Software Catalog from Tanzu Application section of Tanzu Network
 
 **Optional**
 
-- TAP GUI has plugins for the below TAP tools. If you plan on running workloads with these capabilities, you'll need those tools installed alongside TAP GUI. If you choose to not deploy workloads with these tools, the GUI will show menu options that you won't be able to click on.
-  - Tanzu Cloud Native Runtimes installed
-  - Tanzu App Live View installed
-- Data Cache - Your software catalog is stored on Git infrastructure (as mentioned in the Required pre-requisites) however, you can optionally use a PostgreSQL database to cache this information. If you don't specify any values here, a SQLite in-memory database will be used instead.
-  - PostgreSQL database and connection information
+- Tanzu Application Platform UI has plugins for the below Tanzu Application Platform tools. If you plan on running workloads with these capabilities, you need those tools installed alongside Tanzu Application Platform UI. If you choose not to deploy workloads with these tools, the UI shows menu options that you cannot click on.
+    - Tanzu Cloud Native Runtimes installed
+    - Tanzu App Live View installed
+- Data Cache - Your software catalog is stored on Git infrastructure (as mentioned in the Required pre-requisites) however, you can optionally use a PostgreSQL database to cache this information. If you do not specify any values here, a SQLite in-memory database is used instead.
+    - PostgreSQL database and connection information
 - Authentication
-  - OIDC Identity Provider connection information
+    - OIDC Identity Provider connection information
 - Customer Developed Documentation
-  - Techdocs object storage location (S3)
+    - Techdocs object storage location (S3)
 
-To install TAP GUI:
+To install the Tanzu Application Platform UI:
 
 1. Follow the instructions in [Install Packages](#install-packages) above.
 
-1. To see a list of all the values that you can specify when configuriung TAP GUI, issue the below command:
+1. To see a list of all the values that you can specify when configuring the Tanzu Application Platform UI, run:
 
     ```console
     $ tanzu package available get tap-gui.tanzu.vmware.com/0.3.0 --values-schema -n tap-install
     ```
 
-1. Create an `tap-gui-values.yaml` using the following example code, replacing all occurances of `<VALUE>` with your respective values:
+1. Create a `tap-gui-values.yaml` using the following example code, replacing all occurrences of `<VALUE>` with your respective values:
 
     ```yaml
     namespace: tap-gui
@@ -889,11 +889,11 @@ To install TAP GUI:
     app-config: # The below section follows the same configuration model that Backstage uses, documented here: https://backstage.io/docs/conf/
       app:
         baseUrl: <EXTERNAL_IP>:<PORT> # Replace with your Ingress hostname or Loadbalancer information
-      integrations: #This example uses Gitlab, if you'd like additional integrations see the format here: https://backstage.io/docs/integrations/
+      integrations: #This example uses Gitlab. If you want additional integrations see the format here: https://backstage.io/docs/integrations/
         gitlab:
-          - host: <GITLAB_HOST> 
-            apiBaseUrl: https://<GITLAB_URL>/api/v4 
-            token: <GITLAB_TOKEN> 
+          - host: <GITLAB_HOST>
+            apiBaseUrl: https://<GITLAB_URL>/api/v4
+            token: <GITLAB_TOKEN>
       techdocs:
         builder: 'external'
         generator:
@@ -914,8 +914,8 @@ To install TAP GUI:
         providers:
           oidc: # Detailed configuration of the OIDC auth capabilities are documented here: https://backstage.io/docs/auth/oauth
             development:
-              # metadataUrl is a json file with generic oidc provider config. It contains the authorizationUrl and tokenUrl. These values are read from the metadataUrl file by Backstage and so they do not need to be specified explicitly here.
-              metadataUrl: <AUTH_OIDC_METADATA_URL> 
+              # metadataUrl is a JSON file with generic oidc provider config. It contains the authorizationUrl and tokenUrl. These values are read from the metadataUrl file by Backstage and so they do not need to be specified explicitly here.
+              metadataUrl: <AUTH_OIDC_METADATA_URL>
               clientId: <AUTH_OIDC_CLIENT_ID>
               clientSecret: <AUTH_OIDC_CLIENT_SECRET>
               tokenSignedResponseAlg: <AUTH_OIDC_TOKEN_SIGNED_RESPONSE_ALG> # default='RS256'
@@ -985,7 +985,6 @@ To install TAP GUI:
     STATUS should be `Reconcile succeeded`.
 
 1. To access TAP UI, use the service you exposed above in the `service_type` field in the values file.
-
 
 
 ## <a id='install-service-bindings'></a> Install Service Bindings
@@ -1213,7 +1212,7 @@ To install Supply Chain Security Tools - Sign:
 
    After you run the code above, the webhook is running.
 
-1. Create a service account named `registry-credentials` in the `image-policy-system` namespace. When cosign `signs` an image, it generates a signature in an OCI-compliant format and pushes it to the registry alongside the image with the tag `<image-digest>.sig` To access this signature, the webhook needs the credentials of the registry that holds it. 
+1. Create a service account named `registry-credentials` in the `image-policy-system` namespace. When cosign `signs` an image, it generates a signature in an OCI-compliant format and pushes it to the registry alongside the image with the tag `<image-digest>.sig` To access this signature, the webhook needs the credentials of the registry that holds it.
 
     * **If the images and signatures are in public registries:** No additional configuration is needed. Run:
         ```console
@@ -1703,8 +1702,8 @@ run the following commands to add credentials and Role-Based Access Control (RBA
     ```
     Where `YOUR-NAMESPACE` is the name you want for the developer namespace.
     For example, use `default` for the default namespace.
-    
-2. Add placeholder read secrets, a service account, and RBAC rules to the developer namespace: 
+
+2. Add placeholder read secrets, a service account, and RBAC rules to the developer namespace:
     ```bash
     $ cat <<EOF | kubectl -n YOUR-NAMESPACE apply -f -
 
