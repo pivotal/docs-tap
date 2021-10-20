@@ -1537,18 +1537,18 @@ Use the following procedure to verify that the packages are installed.
 
 ## <a id='setup'></a> Set Up Developer Namespaces to Use Installed Packages
 
-To create a `Workload` for your application that uses the registry credentials specified in the steps above,
+To create a `Workload` for your application using the registry credentials specified above,
 run the following commands to add credentials and Role-Based Access Control (RBAC) rules to the namespace that you plan to create the `Workload` in:
 
 
-1. Add read/write registry credentials to the developer namespace:
+1. Add read/write registry credentials to the developer namespace. Run:
     ```bash
     $ tanzu imagepullsecret add registry-credentials --registry REGISTRY-SERVER --username REGISTRY-USERNAME --password REGISTRY-PASSWORD --namespace YOUR-NAMESPACE
     ```
     Where `YOUR-NAMESPACE` is the name you want for the developer namespace.
     For example, use `default` for the default namespace.
-    
-2. Add placeholder read secrets, a service account, and RBAC rules to the developer namespace: 
+
+2. Add placeholder read secrets, a service account, and RBAC rules to the developer namespace. Run:
     ```bash
     $ cat <<EOF | kubectl -n YOUR-NAMESPACE apply -f -
 
