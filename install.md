@@ -635,7 +635,11 @@ To install Tanzu Build Service using the Tanzu CLI:
 [tanzu cli]: https://github.com/vmware-tanzu/tanzu-framework/tree/main/cmd/cli#installation
 [tekton]: https://github.com/tektoncd/pipeline
 
-Supply Chain Choreographer is what provides the custom resource definitions that this supply chain makes use of. It enables choreography of components that form the software supply chain, such as passing the results of fetching source code to the component that knows how to build a container image out of it, and then passing to a component that knows how to deploy it, and so on and so forth.
+Supply Chain Choreographer provides the custom resource definitions that the supply chain uses.
+It enables choreography of the components that form the software supply chain.
+For example, Supply Chain Choreographer passes the results of fetching source code to the component
+that knows how to build a container image from of it and then passes the container image
+to a component that knows how to deploy the image.
 
 ```bash
 # Install the version 0.0.6 of the `cartographer.tanzu.vmware.com`
