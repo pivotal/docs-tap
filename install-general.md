@@ -453,7 +453,7 @@ To remove plugins from earlier versions of the Tanzu CLI:
     tanzu plugin clean
     ```
 
-## <a id-'install-the-tanzu-cli-plugins'></a> Install the Tanzu CLI Plugins
+## <a id='install-the-tanzu-cli-plugins'></a> Install the Tanzu CLI Plugins
 
 After you have installed the Tanzu core executable, you must install the package, imagepullsecret, apps, and app-accelerator CLI plugins.
 
