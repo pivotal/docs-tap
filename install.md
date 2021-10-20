@@ -666,6 +666,8 @@ Added installed package 'cartographer' in namespace 'default'
 
 ## <a id='install-default-supply-chain'></a> Install Default Supply Chain
 
+To install Default Supply Chain:
+
 1. Follow the instructions in [Install Packages](#install-packages) above to gather the values schema.
 
     ```bash
@@ -709,7 +711,8 @@ Added installed package 'cartographer' in namespace 'default'
       --values-file default-supply-chain-values.yaml
     ```
 
-> **Note:** The `service-account` service account and required secrets are created at the end of this guide, in [Set Up Developer Namespaces to Use Installed Packages](#setup).
+> **Note:** The `service-account` service account and required secrets are created
+  in [Set Up Developer Namespaces to Use Installed Packages](#setup) below.
 
 ## <a id='install-developer-conventions'></a> Install Developer Conventions
 
