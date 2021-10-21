@@ -781,7 +781,7 @@ To install Application Live View:
 
 1. Follow the instructions in [Install Packages](#install-packages) above.
 1. Gather the values schema.
-1. Create namespace app-live-view to deploy Application Live View components by running
+1. Create a namespace to deploy the Application Live View server and its components. For example:
 
    ```bash
    kubectl create ns app-live-view
@@ -794,13 +794,18 @@ To install Application Live View:
    ---
    connector_namespaces: [default]
    server_namespace: app-live-view
+   service_type: LoadBalancer
    ```
 
-   The `server_namespace` is the namespace where the Application Live View server is deployed.
-   You should use the namespace you created earlier, named `app-live-view`.
-   The `connector_namespaces` is a list of existing namespaces where you want
+   The `connector_namespaces` is a list of namespaces where you want
    Application Live View to monitor your apps. An instance of the
    Application Live View Connector will be deployed to each of those namespaces.
+
+   The `server_namespace` is the namespace where the Application Live View server and its components are deployed.
+   Typically you should pick the namespace you created earlier, named `app-live-view`.
+   
+   The `service_type` is the Kubernetes service type for the Application Live View server.
+   This can be LoadBalancer, NodePort, or ClusterIP.
 
 1. Install the package by running:
 
@@ -847,6 +852,9 @@ To install Application Live View:
     ```
     STATUS should be `Reconcile succeeded`.
 
+1. To access the Application Live View UI,
+   see the [Application Live View for VMware Tanzu documentation](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.3/docs/GUID-installing.html#access-the-application-live-view-ui-6).
+   
 ## <a id='install-tap-gui'></a> Install Tanzu Application Platform GUI
 
 **Prerequisites (in addition to Tanzu Application Platform requirements)**
