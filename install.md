@@ -847,53 +847,67 @@ To install Application Live View:
     ```
     STATUS should be `Reconcile succeeded`.
 
-## <a id='install-tap-gui'></a> Install Tanzu Application Platform GUI
+## <a id='install-tap-gui'></a> Install the Tanzu Application Platform GUI
 
-**Prerequisites (in addition to Tanzu Application Platform requirements)**
+To install the Tanzu Application Platform GUI, see the sections below.
+
+### Prerequisites in Addition to Tanzu Application Platform Requirements
 
 **Required**
 
-- Git repository for the software catalog(s) and a token allowing read access. Supported Git infrastructure includes:
+- Git repository for the software catalogs and a token allowing read access.
+Supported Git infrastructure includes:
     - GitHub
     - GitLab
     - Azure DevOps
-- Blank Software Catalog from Tanzu Application section of Tanzu Network
+- Blank Software Catalog from the Tanzu Application section of Tanzu Network
 
 **Optional**
 
-- Tanzu Application Platform GUI has plugins for the below Tanzu Application Platform tools. If you plan on running workloads with these capabilities, you need those tools installed alongside Tanzu Application Platform GUI. If you choose not to deploy workloads with these tools, the UI shows menu options that you cannot click on.
+- **Tanzu Application Platform tools:** the Tanzu Application Platform GUI has plugins for the
+below Tanzu Application Platform tools. If you plan on running workloads with these capabilities,
+you need these tools installed alongside Tanzu Application Platform GUI.
+If you choose not to deploy workloads with these tools, the GUI shows menu options that you cannot
+click on.
     - Tanzu Cloud Native Runtimes installed
     - Tanzu App Live View installed
-- Data Cache - Your software catalog is stored on Git infrastructure (as mentioned in the Required pre-requisites) however, you can optionally use a PostgreSQL database to cache this information. If you do not specify any values here, a SQLite in-memory database is used instead.
+- **Data cache:** Your software catalog is stored on Git infrastructure -- as mentioned in the
+required prerequisites above -- however, you also have the option to use a PostgreSQL database to
+cache this information. If you do not specify any values here, a SQLite in-memory database is used
+instead.
     - PostgreSQL database and connection information
-- Authentication
+- **Authentication:**
     - OIDC Identity Provider connection information
-- Customer Developed Documentation
+- **Customer Developed Documentation:**
     - Techdocs object storage location (S3)
+
+### Procedure
 
 To install the Tanzu Application Platform GUI:
 
 1. Follow the instructions in [Install Packages](#install-packages) above.
 
-1. To see a list of all the values that you can specify when configuring the Tanzu Application Platform GUI, run:
+1. See a list of all the values that you can specify when configuring the
+Tanzu Application Platform GUI by running:
 
     ```console
     $ tanzu package available get tap-gui.tanzu.vmware.com/0.3.0 --values-schema -n tap-install
     ```
 
-1. Create a `tap-gui-values.yaml` using the following example code, replacing all occurrences of `<VALUE>` with your respective values:
+1. Create a `tap-gui-values.yaml` using the following example code, replacing all `<PLACEHOLDERS>`
+with your relevant values. The meanings of some placeholders are explained below this example.
 
     ```yaml
     namespace: tap-gui
-    service_type: <SERVICE_TYPE> # Replace with your inbound traffic mechanism. Supported values are LoadBalancer and Ingress
-    app-config: # The below section follows the same configuration model that Backstage uses, documented here: https://backstage.io/docs/conf/
+    service_type: <SERVICE-TYPE>
+    app-config:
       app:
-        baseUrl: <EXTERNAL_IP>:<PORT> # Replace with your Ingress hostname or Loadbalancer information
-      integrations: #This example uses Gitlab. If you want additional integrations see the format here: https://backstage.io/docs/integrations/
+        baseUrl: <EXTERNAL-IP>:<PORT>
+      integrations:
         gitlab:
-          - host: <GITLAB_HOST>
-            apiBaseUrl: https://<GITLAB_URL>/api/v4
-            token: <GITLAB_TOKEN>
+          - host: <GITLAB-HOST>
+            apiBaseUrl: https://<GITLAB-URL>/api/v4
+            token: <GITLAB-TOKEN>
       techdocs:
         builder: 'external'
         generator:
@@ -901,43 +915,59 @@ To install the Tanzu Application Platform GUI:
         publisher:
           type: 'awsS3'
           awsS3:
-            bucketName: '<S3_BUCKET_NAME>'
+            bucketName: '<S3-BUCKET-NAME>'
             credentials:
-              accessKeyId: '<S3_ACCESS_KEY>'
-              secretAccessKey: '<S3_SECRET_KEY>'
-            region: '<S3_REGION>'
+              accessKeyId: '<S3-ACCESS-KEY>'
+              secretAccessKey: '<S3-SECRET-KEY>'
+            region: '<S3-REGION>'
             s3ForcePathStyle: false # Set value to true if using local S3 solution (Minio)
       auth:
         environment: development
         session:
           secret: custom session secret # Unique string required by auth-backend to save browser session state
         providers:
-          oidc: # Detailed configuration of the OIDC auth capabilities are documented here: https://backstage.io/docs/auth/oauth
+          oidc:
             development:
-              # metadataUrl is a JSON file with generic oidc provider config. It contains the authorizationUrl and tokenUrl. These values are read from the metadataUrl file by Backstage and so they do not need to be specified explicitly here.
-              metadataUrl: <AUTH_OIDC_METADATA_URL>
-              clientId: <AUTH_OIDC_CLIENT_ID>
-              clientSecret: <AUTH_OIDC_CLIENT_SECRET>
-              tokenSignedResponseAlg: <AUTH_OIDC_TOKEN_SIGNED_RESPONSE_ALG> # default='RS256'
-              scope: <AUTH_OIDC_SCOPE> # default='openid profile email'
-              prompt: auto # default=none (allowed values: auto, none, consent, login)
+              metadataUrl: <AUTH-OIDC-METADATA-URL>
+              clientId: <AUTH-OIDC-CLIENT-ID>
+              clientSecret: <AUTH-OIDC-CLIENT-SECRET>
+              tokenSignedResponseAlg: <AUTH-OIDC-TOKEN-SIGNED-RESPONSE-ALG>
+              scope: <AUTH-OIDC-SCOPE>
+              prompt: <TYPE>
       catalog:
         locations:
           - type: url
-            target: https://<GIT_CATALOG_URL>/catalog-info.yaml
+            target: https://<GIT-CATALOG-URL>/catalog-info.yaml
       backend:
-          baseUrl: <EXTERNAL_IP>:<PORT> # Replace with your Ingress hostname or Loadbalancer information
+          baseUrl: <EXTERNAL-IP>:<PORT>
           cors:
-              origin: <EXTERNAL_IP>:<PORT> # Replace with your Ingress hostname or Loadbalancer information
-      # database: # Only needed if you intend to support with an existing PostgreSQL database (Catalog is still refreshed from Git)
+              origin: <EXTERNAL-IP>:<PORT>
+      # database: # Only needed if you intend to support with an existing PostgreSQL database. The catalog is still refreshed from Git.
       #     client: pg
       #      connection:
-      #        host: <PGSQL_HOST>
-      #        port: <PGSQL_PORT>
-      #        user: <PGSQL_USER>
-      #        password: <PGSQL_PWD>
+      #        host: <PGSQL-HOST>
+      #        port: <PGSQL-PORT>
+      #        user: <PGSQL-USER>
+      #        password: <PGSQL-PWD>
       #        ssl: {rejectUnauthorized: false} # May be needed if using self-signed certs
     ```
+    Where:
+
+    - `<SERVICE-TYPE>` is your inbound traffic mechanism: LoadBalancer or Ingress.
+    - `<EXTERNAL-IP>:<PORT>` is your Ingress hostname or LoadBalancer information.
+    - `<AUTH-OIDC-METADATA-URL>` points to a JSON file with generic OIDC provider config.
+    It contains `authorizationUrl` and `tokenUrl`. Backstage reads these values from the
+    `metadataUrl` file, so you do not need to explicitly specify them here.
+    - `<AUTH-OIDC-TOKEN-SIGNED-RESPONSE-ALG>` is `RS256` by default.
+    - `<AUTH-OIDC-SCOPE>` is the OpenID profile email address by default.
+    - `<TYPE>` is `none` by default. Permitted values are `auto`, `none`, `consent`, and `login`.
+
+    > **Note:** The `app-config` section follows the same configuration model that Backstage uses.
+    For more information, see the [Backstage documentation](https://backstage.io/docs/conf/).
+    Detailed configuration of the OIDC auth capabilities are in this [Backstage OAuth documentation](https://backstage.io/docs/auth/oauth).
+
+    > **Note:** The `integrations` section uses GitLab. If you want additional integrations see the
+    format in this [Backstage integration documentation](https://backstage.io/docs/integrations/).
 
 1. Install the package by running:
 
@@ -964,7 +994,7 @@ To install the Tanzu Application Platform GUI:
      Added installed package 'tap-gui' in namespace 'tap-install'
     ```
 
-1. Verify the package install by running:
+1. Verify that the package installed by running:
 
     ```console
     tanzu package installed get tap-gui -n tap-install
@@ -982,9 +1012,10 @@ To install the Tanzu Application Platform GUI:
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
     ```
-    STATUS should be `Reconcile succeeded`.
+    `STATUS` should be `Reconcile succeeded`.
 
-1. To access Tanzu Application Platform GUI, use the service you exposed above in the `service_type` field in the values file.
+1. To access Tanzu Application Platform GUI, use the service you exposed above in the
+`service_type` field in the values file.
 
 
 ## <a id='install-service-bindings'></a> Install Service Bindings
