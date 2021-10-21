@@ -584,6 +584,8 @@ Application operators may apply image signatures and store them in the registry 
 
 **Configure the Image Policy Webhook**
 
+After the webhook is up and running, create a service account named `image-policy-registry-credentials` in the `image-policy-system` namespace. This is a required configuration even if the images and signatures are in public registries.
+
 After the image policy webhook is installed in the cluster, configure the image policy you want to enforce and the credentials to access private registries.
 
 **Create a Cluster Image Policy**
@@ -629,7 +631,7 @@ As of this writing, the custom resource for the policy must have a name of image
 The platform operator should add to the `verification.exclude.resources.namespaces`
 section any namespaces that are known to run container images that are not currently signed, such as `kube-system`.
 
-**(Optional) Create a service account to hold private registry secrets**
+**Configure a service account to hold private registry secrets**
 
 In the situation when the platform operator is expecting to verify signatures stored in a private registry,
 it is required to configure a service account with all the secrets for those private registries.
