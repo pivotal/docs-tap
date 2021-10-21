@@ -951,32 +951,33 @@ with your relevant values. The meanings of some placeholders are explained below
           - host: <GITLAB-HOST>
             apiBaseUrl: https://<GITLAB-URL>/api/v4
             token: <GITLAB-TOKEN>
-      techdocs:
-        builder: 'external'
-        generator:
-          runIn: 'docker'
-        publisher:
-          type: 'awsS3'
-          awsS3:
-            bucketName: '<S3-BUCKET-NAME>'
-            credentials:
-              accessKeyId: '<S3-ACCESS-KEY>'
-              secretAccessKey: '<S3-SECRET-KEY>'
-            region: '<S3-REGION>'
-            s3ForcePathStyle: false # Set value to true if using local S3 solution (Minio)
-      auth:
-        environment: development
-        session:
-          secret: custom session secret # Unique string required by auth-backend to save browser session state
-        providers:
-          oidc:
-            development:
-              metadataUrl: <AUTH-OIDC-METADATA-URL>
-              clientId: <AUTH-OIDC-CLIENT-ID>
-              clientSecret: <AUTH-OIDC-CLIENT-SECRET>
-              tokenSignedResponseAlg: <AUTH-OIDC-TOKEN-SIGNED-RESPONSE-ALG>
-              scope: <AUTH-OIDC-SCOPE>
-              prompt: <TYPE>
+      # techdocs: # Only needed if you want to enable TechDocs capability. Requires running the TechDoc CLI to generate TechDocs from catalog Markdown to S3 compatible bucket called out in Additional Resources documentation.
+      #  builder: 'external'
+      #  generator:
+      #    runIn: 'docker'
+      #  publisher:
+      #    type: 'awsS3'
+      #    awsS3:
+      #      bucketName: '<S3-BUCKET-NAME>'
+      #      credentials:
+      #        accessKeyId: '<S3-ACCESS-KEY>'
+      #        secretAccessKey: '<S3-SECRET-KEY>'
+      #      region: '<S3-REGION>'
+      #      s3ForcePathStyle: false # Set value to true if using local S3 solution (Minio)  
+     
+      # auth: # Only needed if you want to enable OIDC login integration, otherwise only Guest mode is enabled
+      #  environment: development
+      #  session:
+      #    secret: custom session secret # Unique string required by auth-backend to save browser session state
+      #  providers:
+      #    oidc: # Detailed configuration of the OIDC auth capabilities are documented here: https://backstage.io/docs/auth/oauth
+      #      development:
+      #        metadataUrl: <AUTH-OIDC-METADATA-URL> # metadataUrl is a json file with generic oidc provider config. It contains the authorizationUrl and tokenUrl. These values are read from the metadataUrl file by Backstage and so they do not need to be specified explicitly here.
+      #        clientId: <AUTH-OIDC-CLIENT-ID>
+      #        clientSecret: <AUTH-OIDC-CLIENT-SECRET>
+      #        tokenSignedResponseAlg: <AUTH-OIDC-TOKEN-SIGNED-RESPONSE-ALG> # default='RS256'
+      #        scope: <AUTH-OIDC-SCOPE> # default='openid profile email'
+      #        prompt: <TYPE> # default=none (allowed values: auto, none, consent, login)
       catalog:
         locations:
           - type: url
@@ -998,12 +999,7 @@ with your relevant values. The meanings of some placeholders are explained below
 
     - `<SERVICE-TYPE>` is your inbound traffic mechanism: LoadBalancer or Ingress.
     - `<EXTERNAL-IP>:<PORT>` is your Ingress hostname or LoadBalancer information.
-    - `<AUTH-OIDC-METADATA-URL>` points to a JSON file with generic OIDC provider config.
-    It contains `authorizationUrl` and `tokenUrl`. Backstage reads these values from the
-    `metadataUrl` file, so you do not need to explicitly specify them here.
-    - `<AUTH-OIDC-TOKEN-SIGNED-RESPONSE-ALG>` is `RS256` by default.
-    - `<AUTH-OIDC-SCOPE>` is the OpenID profile email address by default.
-    - `<TYPE>` is `none` by default. Permitted values are `auto`, `none`, `consent`, and `login`.
+    - `<GIT-CATALOG-URL>` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download) or a Backstage compliant catalog that you've already built and posted on the Git infrastucture that you specified in the Integration section.
 
     > **Note:** The `app-config` section follows the same configuration model that Backstage uses.
     For more information, see the [Backstage documentation](https://backstage.io/docs/conf/).
