@@ -1243,7 +1243,7 @@ To install Supply Chain Security Tools - Sign:
 
    After you run the code above, the webhook is running.
 
-1. Create a service account named `registry-credentials` in the `image-policy-system` namespace. When cosign `signs` an image, it generates a signature in an OCI-compliant format and pushes it to the registry alongside the image with the tag `<image-digest>.sig` To access this signature, the webhook needs the credentials of the registry that holds it.
+1. Create a service account named `image-policy-registry-credentials` in the `image-policy-system` namespace. When cosign `signs` an image, it generates a signature in an OCI-compliant format and pushes it to the registry alongside the image with the tag `<image-digest>.sig` To access this signature, the webhook needs the credentials of the registry that holds it.
 
     * **If the images and signatures are in public registries:** No additional configuration is needed. Run:
         ```console
@@ -1251,7 +1251,7 @@ To install Supply Chain Security Tools - Sign:
         apiVersion: v1
         kind: ServiceAccount
         metadata:
-          name: registry-credentials
+          name: image-policy-registry-credentials
           namespace: image-policy-system
         EOF
         ```
@@ -1262,7 +1262,7 @@ To install Supply Chain Security Tools - Sign:
         apiVersion: v1
         kind: ServiceAccount
         metadata:
-          name: registry-credentials
+          name: image-policy-registry-credentials
           namespace: image-policy-system
         imagePullSecrets:
         - name: SECRET-1

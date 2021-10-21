@@ -378,7 +378,7 @@ The next section walks you through installing Tekton on your cluster.
 #### Install Tekton
 
 The supply chain uses Tekton to run tests defined by developers
-before you produce a container image for the source code, 
+before you produce a container image for the source code,
 preventing code that fails tests from being promoted to deployment.
 
 For Beta 2, we are using the open source version of Tekton. To install Tekton with `kapp`, run:
@@ -637,7 +637,7 @@ This service account:
 
 * Must be created in the `image-policy-system` namespace
 
-* Must be called `registry-credentials`
+* Must be called `image-policy-registry-credentials`
 
 * All secrets for accessing private registries must be added to the `imagePullSecrets` section of the service account
 
@@ -648,7 +648,7 @@ The manifest for this service account would look like this:
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: registry-credentials
+  name: image-policy-registry-credentials
   namespace: image-policy-system
 imagePullSecrets:
 - name: secret1
