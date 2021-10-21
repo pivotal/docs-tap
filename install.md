@@ -852,8 +852,45 @@ To install Application Live View:
     ```
     STATUS should be `Reconcile succeeded`.
 
-1. To access the Application Live View UI,
-   see the [Application Live View for VMware Tanzu documentation](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.3/docs/GUID-installing.html#access-the-application-live-view-ui-6).
+To access the Application Live View UI:
+    
+1. List the resources deployed in the namespace on which the Application Live View server and its components are deployed:
+
+    ```bash
+    kubectl get -n app-live-view service,deploy,pod
+    ```
+
+    You should see something like this:
+
+    ```
+    NAME                                 TYPE           CLUSTER-IP       EXTERNAL-IP                                                              PORT(S)        AGE
+    service/application-live-view-5112   LoadBalancer   10.103.108.215   a031c3c2d27334cf1857546e59a5b42c-305213456.us-east-2.elb.amazonaws.com   80:31999/TCP   28h
+    service/application-live-view-7000   ClusterIP      10.104.55.249    <none>                                                                   7000/TCP       28h
+    service/appliveview-webhook          ClusterIP      10.98.15.167     <none>                                                                   443/TCP        28h
+
+    NAME                                                   READY   UP-TO-DATE   AVAILABLE   AGE
+    deployment.apps/application-live-view-crd-controller   1/1     1            1           28h
+    deployment.apps/application-live-view-server           1/1     1            1           28h
+    deployment.apps/appliveview-webhook                    1/1     1            1           28h
+
+    NAME                                                        READY   STATUS    RESTARTS   AGE
+    pod/application-live-view-crd-controller-69bcb99d7f-dkqlf   1/1     Running   0          28h
+    pod/application-live-view-server-866dc675d9-2mkh4           1/1     Running   0          27h
+    pod/appliveview-webhook-6479f7986-pvjfp                     1/1     Running   0          28h
+    ```
+
+1. If the service type of application-live-view-5112 is `LoadBalancer`, you can access the Application Live View UI using the listed EXTERNAL-IP address for the service application-live-view-5112 
+
+    In the above scenario, you can access the server at: http://ae27a3a69e8e34e35835619eb13ed59f-1054315375.ap-south-1.elb.amazonaws.com
+
+1. If your cluster doesn't support LoadBalancer and you installed using `NodePort`, then you can use port-forwarding with kubectl. To port-forward the UI server, run the following command in a separate terminal:
+
+    ```bash
+    kubectl -n app-live-view port-forward service/application-live-view-5112 5112:80
+    ```
+    Then you can access the server at http://localhost:5112
+
+1. If the service type of application-live-view-5112 is `ClusterIP`, you can access the Application Live View UI using an ingress controller.
 
 ## <a id='install-tap-gui'></a> Install Tanzu Application Platform GUI
 
