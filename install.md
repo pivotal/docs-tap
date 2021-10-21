@@ -788,7 +788,6 @@ To install Application Live View:
    ```
 
 1. Create a `app-live-view-values.yaml` using the following sample as a guide:
-    Sample `app-live-view-values.yaml` for Application Live View:
 
    ```yaml
    ---
@@ -796,15 +795,15 @@ To install Application Live View:
    server_namespace: app-live-view
    service_type: LoadBalancer
    ```
-
-   The `connector_namespaces` is a list of namespaces where you want
+   
+   Where:
+   
+   - `connector_namespaces` is a list of namespaces where you want
    Application Live View to monitor your apps. An instance of the
    Application Live View Connector will be deployed to each of those namespaces.
-
-   The `server_namespace` is the namespace where the Application Live View server and its components are deployed.
-   Typically you should pick the namespace you created earlier, named `app-live-view`.
-   
-   The `service_type` is the Kubernetes service type for the Application Live View server.
+   - `server_namespace` is the namespace where the Application Live View server and its components are deployed. 
+   VMware reccommends using the namespace you created earlier, named `app-live-view`.
+   - `service_type` is the Kubernetes service type for the Application Live View server.
    This can be LoadBalancer, NodePort, or ClusterIP.
 
 1. Install the package by running:
@@ -855,13 +854,13 @@ To install Application Live View:
 
 To access the Application Live View UI:
     
-1. List the resources deployed in the namespace on which the Application Live View server and its components are deployed:
+1. List the resources deployed in the namespace where the Application Live View server and its components are deployed by running:
 
     ```bash
     kubectl get -n app-live-view service,deploy,pod
     ```
 
-    You should see something like this:
+    The output will be similar to the following:
 
     ```
     NAME                                 TYPE           CLUSTER-IP       EXTERNAL-IP                                                              PORT(S)        AGE
@@ -880,16 +879,14 @@ To access the Application Live View UI:
     pod/appliveview-webhook-6479f7986-pvjfp                     1/1     Running   0          28h
     ```
 
-1. If the service type of application-live-view-5112 is `LoadBalancer`, you can access the Application Live View UI using the listed EXTERNAL-IP address for the service application-live-view-5112 
+1. If the service type of application-live-view-5112 is `LoadBalancer`, you can access the Application Live View UI using the listed EXTERNAL-IP address for the service application-live-view-5112. Access the server at: http://ae27a3a69e8e34e35835619eb13ed59f-1054315375.ap-south-1.elb.amazonaws.com
 
-    In the above scenario, you can access the server at: http://ae27a3a69e8e34e35835619eb13ed59f-1054315375.ap-south-1.elb.amazonaws.com
-
-1. If your cluster doesn't support LoadBalancer and you installed using `NodePort`, then you can use port-forwarding with kubectl. To port-forward the UI server, run the following command in a separate terminal:
+1. If your cluster does not support LoadBalancer and you use `NodePort`, you can port-forward with kubectl. To port-forward the UI server, run the following command in a separate terminal:
 
     ```bash
     kubectl -n app-live-view port-forward service/application-live-view-5112 5112:80
     ```
-    Then you can access the server at http://localhost:5112
+    You can access the server at http://localhost:5112.
 
 1. If the service type of application-live-view-5112 is `ClusterIP`, you can access the Application Live View UI using an ingress controller.
 
