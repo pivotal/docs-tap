@@ -810,13 +810,13 @@ To install Application Live View:
 1. Install the package by running:
 
     ```console
-    tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.2.0 -n tap-install -f app-live-view-values.yaml
+    tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.3.0 -n tap-install -f app-live-view-values.yaml
     ```
 
     For example:
 
     ```console
-    $ tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.2.0 -n tap-install -f app-live-view-values.yaml
+    $ tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.3.0 -n tap-install -f app-live-view-values.yaml
     - Installing package 'appliveview.tanzu.vmware.com'
     | Getting package metadata for 'appliveview.tanzu.vmware.com'
     | Creating service account 'app-live-view-tap-install-sa'
@@ -830,7 +830,7 @@ To install Application Live View:
     ```
 
     For more information about Application Live View,
-    see the [Application Live View documentation](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.1/docs/GUID-index.html).
+    see the [Application Live View documentation](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.3/docs/GUID-index.html).
 
 1. Verify the package install by running:
 
@@ -845,7 +845,7 @@ To install Application Live View:
     | Retrieving installation details for cc...
     NAME:                    app-live-view
     PACKAGE-NAME:            appliveview.tanzu.vmware.com
-    PACKAGE-VERSION:         0.2.0
+    PACKAGE-VERSION:         0.3.0
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
@@ -854,7 +854,7 @@ To install Application Live View:
 
 1. To access the Application Live View UI,
    see the [Application Live View for VMware Tanzu documentation](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.3/docs/GUID-installing.html#access-the-application-live-view-ui-6).
-   
+
 ## <a id='install-tap-gui'></a> Install Tanzu Application Platform GUI
 
 **Prerequisites (in addition to Tanzu Application Platform requirements)**
@@ -1685,7 +1685,7 @@ Use the following procedure to verify that the packages are installed.
     NAME                   PACKAGE-NAME                                       PACKAGE-VERSION  STATUS
     api-portal             api-portal.tanzu.vmware.com                        1.0.2            Reconcile succeeded
     app-accelerator        accelerator.apps.tanzu.vmware.com                  0.3.0            Reconcile succeeded
-    app-live-view          appliveview.tanzu.vmware.com                       0.2.0            Reconcile succeeded
+    app-live-view          appliveview.tanzu.vmware.com                       0.3.0            Reconcile succeeded
     cloud-native-runtimes  cnrs.tanzu.vmware.com                              1.0.2            Reconcile succeeded
     convention-controller  controller.conventions.apps.tanzu.vmware.com       0.4.2            Reconcile succeeded
     grype-scanner          grype.scanning.apps.tanzu.vmware.com               1.0.0-beta       Reconcile succeeded
