@@ -3,6 +3,4 @@
 This is the table of contents from which the Supply Chain Choreographer (SCC) for VMware Tanzu Documentation site on docs.vmware.com is built.
 
 - [About SCC](about.md)
-- [Spec Reference](reference.md)
 - [Default Supply Chains](default-supply-chains.md)
-- [Release Notes](release-notes.md)
