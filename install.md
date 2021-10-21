@@ -869,8 +869,8 @@ below Tanzu Application Platform tools. If you plan on running workloads with th
 you need these tools installed alongside Tanzu Application Platform GUI.
 If you choose not to deploy workloads with these tools, the GUI shows menu options that you cannot
 click on.
-    - Tanzu Cloud Native Runtimes installed
-    - Tanzu App Live View installed
+    - Tanzu Cloud Native Runtimes
+    - Tanzu App Live View
 - **Data cache:** Your software catalog is stored on Git infrastructure -- as mentioned in the
 required prerequisites above -- however, you also have the option to use a PostgreSQL database to
 cache this information. If you do not specify any values here, a SQLite in-memory database is used
@@ -878,7 +878,7 @@ instead.
     - PostgreSQL database and connection information
 - **Authentication:**
     - OIDC Identity Provider connection information
-- **Customer Developed Documentation:**
+- **Customer-developed Documentation:**
     - Techdocs object storage location (S3)
 
 ### Procedure
@@ -894,7 +894,7 @@ Tanzu Application Platform GUI by running:
     $ tanzu package available get tap-gui.tanzu.vmware.com/0.3.0 --values-schema -n tap-install
     ```
 
-1. Create a `tap-gui-values.yaml` using the following example code, replacing all `<PLACEHOLDERS>`
+1. Create `tap-gui-values.yaml` using the following example code, replacing all `<PLACEHOLDERS>`
 with your relevant values. The meanings of some placeholders are explained below this example.
 
     ```yaml
