@@ -1203,7 +1203,8 @@ To install Supply Chain Security Tools - Store:
 
 ## <a id='install-scst-sign'></a> Install Supply Chain Security Tools - Sign
 
-*Note*: **This component rejects pods from starting if the webhook fails or is misconfigured**. If the webhook is preventing the cluster from functioning, you can delete the configuration by running:
+Install Supply Chain Security Tools - Sign rejects pods from starting if the webhook fails or is misconfigured. 
+If the webhook is preventing the cluster from functioning, you can delete the configuration by running:
 
 ```bash
 kubectl delete MutatingWebhookConfiguration image-policy-mutating-webhook-configuration
@@ -1222,7 +1223,7 @@ re-enable image signing enforcement.
 To install Supply Chain Security Tools - Sign:
 
 1. Follow the instructions in [Install Packages](#install-packages) above.
-1. Gather the values schema
+1. Gather the values schema:
 
     ```bash
     tanzu package available get image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.0 --values-schema --namespace tap-install
