@@ -7,6 +7,16 @@ Before you install the packages, ensure that you have completed the prerequisite
 and verified the cluster, accepted the EULA, and installed the Tanzu CLI with any required plugins.
 For information, see [Installing Part I: Prerequisites, EULA, and CLI](install-general.md).
 
+
+## <a id='install-packages'></a> About Installing Packages
+
+The parameters that are required for the installation need to be defined in a YAML file.
+
+The available parameters for the individual packages can be identified by the values schema
+that are defined in the package.
+You can get these parameters by running the command
+as described in the procedure below.
+
 ## <a id='add-package-repositories'></a> Add the Tanzu Application Platform Package Repository
 
 To add the Tanzu Application Platform package repository:
@@ -99,13 +109,6 @@ To add the Tanzu Application Platform package repository:
     ```
 
 ## <a id='general-procedure-to-install-a-package'></a> General Procedure to Install a Package
-
-The parameters that are required for the installation need to be defined in a YAML file.
-
-The available parameters for the individual packages can be identified by the values schema
-that are defined in the package.
-You can get these parameters by running the command
-as described in the procedure below.
 
 To install any package from the Tanzu Application Platform package repository:
 
