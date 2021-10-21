@@ -781,7 +781,7 @@ To install Application Live View:
 
 1. Follow the instructions in [Install Packages](#install-packages) above.
 1. Gather the values schema.
-1. Create namespace app-live-view to deploy Application Live View components by running
+1. Create a namespace to deploy the Application Live View server and its components. For example:
 
    ```bash
    kubectl create ns app-live-view
@@ -794,24 +794,29 @@ To install Application Live View:
    ---
    connector_namespaces: [default]
    server_namespace: app-live-view
+   service_type: LoadBalancer
    ```
 
-   The `server_namespace` is the namespace where the Application Live View server is deployed.
-   You should use the namespace you created earlier, named `app-live-view`.
-   The `connector_namespaces` is a list of existing namespaces where you want
+   The `connector_namespaces` is a list of namespaces where you want
    Application Live View to monitor your apps. An instance of the
    Application Live View Connector will be deployed to each of those namespaces.
+
+   The `server_namespace` is the namespace where the Application Live View server and its components are deployed.
+   Typically you should pick the namespace you created earlier, named `app-live-view`.
+   
+   The `service_type` is the Kubernetes service type for the Application Live View server.
+   This can be LoadBalancer, NodePort, or ClusterIP.
 
 1. Install the package by running:
 
     ```console
-    tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.2.0 -n tap-install -f app-live-view-values.yaml
+    tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.3.0 -n tap-install -f app-live-view-values.yaml
     ```
 
     For example:
 
     ```console
-    $ tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.2.0 -n tap-install -f app-live-view-values.yaml
+    $ tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.3.0 -n tap-install -f app-live-view-values.yaml
     - Installing package 'appliveview.tanzu.vmware.com'
     | Getting package metadata for 'appliveview.tanzu.vmware.com'
     | Creating service account 'app-live-view-tap-install-sa'
@@ -825,7 +830,7 @@ To install Application Live View:
     ```
 
     For more information about Application Live View,
-    see the [Application Live View documentation](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.1/docs/GUID-index.html).
+    see the [Application Live View documentation](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.3/docs/GUID-index.html).
 
 1. Verify the package install by running:
 
@@ -840,12 +845,53 @@ To install Application Live View:
     | Retrieving installation details for cc...
     NAME:                    app-live-view
     PACKAGE-NAME:            appliveview.tanzu.vmware.com
-    PACKAGE-VERSION:         0.2.0
+    PACKAGE-VERSION:         0.3.0
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
     ```
     STATUS should be `Reconcile succeeded`.
+
+
+To access the Application Live View UI:
+    
+1. List the resources deployed in the namespace on which the Application Live View server and its components are deployed:
+
+    ```bash
+    kubectl get -n app-live-view service,deploy,pod
+    ```
+
+    You should see something like this:
+
+    ```
+    NAME                                 TYPE           CLUSTER-IP       EXTERNAL-IP                                                              PORT(S)        AGE
+    service/application-live-view-5112   LoadBalancer   10.103.108.215   a031c3c2d27334cf1857546e59a5b42c-305213456.us-east-2.elb.amazonaws.com   80:31999/TCP   28h
+    service/application-live-view-7000   ClusterIP      10.104.55.249    <none>                                                                   7000/TCP       28h
+    service/appliveview-webhook          ClusterIP      10.98.15.167     <none>                                                                   443/TCP        28h
+
+    NAME                                                   READY   UP-TO-DATE   AVAILABLE   AGE
+    deployment.apps/application-live-view-crd-controller   1/1     1            1           28h
+    deployment.apps/application-live-view-server           1/1     1            1           28h
+    deployment.apps/appliveview-webhook                    1/1     1            1           28h
+
+    NAME                                                        READY   STATUS    RESTARTS   AGE
+    pod/application-live-view-crd-controller-69bcb99d7f-dkqlf   1/1     Running   0          28h
+    pod/application-live-view-server-866dc675d9-2mkh4           1/1     Running   0          27h
+    pod/appliveview-webhook-6479f7986-pvjfp                     1/1     Running   0          28h
+    ```
+
+1. If the service type of application-live-view-5112 is `LoadBalancer`, you can access the Application Live View UI using the listed EXTERNAL-IP address for the service application-live-view-5112 
+
+    In the above scenario, you can access the server at: http://ae27a3a69e8e34e35835619eb13ed59f-1054315375.ap-south-1.elb.amazonaws.com
+
+1. If your cluster doesn't support LoadBalancer and you installed using `NodePort`, then you can use port-forwarding with kubectl. To port-forward the UI server, run the following command in a separate terminal:
+
+    ```bash
+    kubectl -n app-live-view port-forward service/application-live-view-5112 5112:80
+    ```
+    Then you can access the server at http://localhost:5112
+
+1. If the service type of application-live-view-5112 is `ClusterIP`, you can access the Application Live View UI using an ingress controller.
 
 ## <a id='install-tap-gui'></a> Install the Tanzu Application Platform GUI
 
@@ -1708,7 +1754,7 @@ Use the following procedure to verify that the packages are installed.
     NAME                   PACKAGE-NAME                                       PACKAGE-VERSION  STATUS
     api-portal             api-portal.tanzu.vmware.com                        1.0.2            Reconcile succeeded
     app-accelerator        accelerator.apps.tanzu.vmware.com                  0.3.0            Reconcile succeeded
-    app-live-view          appliveview.tanzu.vmware.com                       0.2.0            Reconcile succeeded
+    app-live-view          appliveview.tanzu.vmware.com                       0.3.0            Reconcile succeeded
     cloud-native-runtimes  cnrs.tanzu.vmware.com                              1.0.2            Reconcile succeeded
     convention-controller  controller.conventions.apps.tanzu.vmware.com       0.4.2            Reconcile succeeded
     grype-scanner          grype.scanning.apps.tanzu.vmware.com               1.0.0-beta       Reconcile succeeded
