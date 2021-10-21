@@ -34,8 +34,6 @@ This is the table of contents from which the Tanzu Application Platform Document
     - [Default Supply Chain](default-supply-chain/about.md)
     - [Developer Conventions](developer-conventions/about.md)
     - [Supply Chain Choreographer for Tanzu](scc/about.md)
-        - [Spec Reference](scc/reference.md)
-        - [SCC Examples](scc/examples.md)
     - [Supply Chain Security Tools for VMware Tanzu – Scan](scst-scan/overview.md)
         * [Release Notes](scst-scan/release-notes.md)
         * [Spec Reference](scst-scan/explanation.md)
