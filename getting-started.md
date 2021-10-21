@@ -378,7 +378,7 @@ The next section walks you through installing Tekton on your cluster.
 #### Install Tekton
 
 The supply chain uses Tekton to run tests defined by developers
-before you produce a container image for the source code, 
+before you produce a container image for the source code,
 preventing code that fails tests from being promoted to deployment.
 
 For Beta 2, we are using the open source version of Tekton. To install Tekton with `kapp`, run:
@@ -584,6 +584,8 @@ Application operators may apply image signatures and store them in the registry 
 
 **Configure the Image Policy Webhook**
 
+After the webhook is up and running, create a service account named `image-policy-registry-credentials` in the `image-policy-system` namespace. This is a required configuration even if the images and signatures are in public registries.
+
 After the image policy webhook is installed in the cluster, configure the image policy you want to enforce and the credentials to access private registries.
 
 **Create a Cluster Image Policy**
@@ -629,7 +631,7 @@ As of this writing, the custom resource for the policy must have a name of image
 The platform operator should add to the `verification.exclude.resources.namespaces`
 section any namespaces that are known to run container images that are not currently signed, such as `kube-system`.
 
-**(Optional) Create a service account to hold private registry secrets**
+**Configure a service account to hold private registry secrets**
 
 In the situation when the platform operator is expecting to verify signatures stored in a private registry,
 it is required to configure a service account with all the secrets for those private registries.
@@ -637,7 +639,7 @@ This service account:
 
 * Must be created in the `image-policy-system` namespace
 
-* Must be called `registry-credentials`
+* Must be called `image-policy-registry-credentials`
 
 * All secrets for accessing private registries must be added to the `imagePullSecrets` section of the service account
 
@@ -648,7 +650,7 @@ The manifest for this service account would look like this:
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: registry-credentials
+  name: image-policy-registry-credentials
   namespace: image-policy-system
 imagePullSecrets:
 - name: secret1

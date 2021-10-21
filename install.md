@@ -1232,29 +1232,27 @@ To install Supply Chain Security Tools - Sign:
     ```bash
     $ tanzu package available get image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.0 --values-schema --namespace tap-install
     | Retrieving package details for image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.0...
-      KEY                DEFAULT  TYPE     DESCRIPTION
-      warn_on_unmatched  false    boolean  Feature flag for enabling admission of images that do not match
-                                           any patterns in the image policy configuration.
-                                           Set to true to allow images that do not match any patterns into
-                                           the cluster with a warning.
+      KEY                     DEFAULT  TYPE     DESCRIPTION
+      allow_unmatched_images  false    boolean  Feature flag for enabling admission of images that do not match
+                                                any patterns in the image policy configuration.
+                                                Set to true to allow images that do not match any patterns into
+                                                the cluster with a warning.
     ```
 
-1. Create a file named `scst-sign-values.yaml` with a `warn_on_unmatched` property.
-    * **For non-production environments**: To warn the user when images do not match any pattern in the policy, but still allow them into the cluster, set `warn_on_unmatched` to `true`.
+1. Create a file named `scst-sign-values.yaml` with a `allow_unmatched_images` property.
+    * **For non-production environments**: To warn the user when images do not match any pattern in the policy, but still allow them into the cluster, set `allow_unmatched_images` to `true`.
         ```yaml
         ---
-        warn_on_unmatched: true
+        allow_unmatched_images: true
         ```
-    * **For production environments**: To deny images that do not match any pattern in the policy, set `warn_on_unmatched` to `false`.
+    * **For production environments**: To deny images that do not match any pattern in the policy, set `allow_unmatched_images` to `false`.
         ```yaml
         ---
-        warn_on_unmatched: false
+        allow_unmatched_images: false
         ```
-        **Note**: For a quicker installation process, VMware recommends that you set
-        `warn_on_unmatched` to `true`.
+        **Note**: For a quicker installation process, VMware recommends that you set `allow_unmatched_images` to `true`.
         This means that the webhook does not prevent unsigned images from running.
-        To promote to a production environment, VMware recommends that you re-install the webhook
-        with `warn_on_unmatched` set to `false`.
+        To promote to a production environment, VMware recommends that you re-install the webhook with `allow_unmatched_images` set to `false`.
 
 1. Install the package:
 
@@ -1289,7 +1287,7 @@ To install Supply Chain Security Tools - Sign:
 
    After you run the code above, the webhook is running.
 
-1. Create a service account named `registry-credentials` in the `image-policy-system` namespace. When cosign `signs` an image, it generates a signature in an OCI-compliant format and pushes it to the registry alongside the image with the tag `<image-digest>.sig` To access this signature, the webhook needs the credentials of the registry that holds it.
+1. Create a service account named `image-policy-registry-credentials` in the `image-policy-system` namespace. When cosign `signs` an image, it generates a signature in an OCI-compliant format and pushes it to the registry alongside the image with the tag `<image-digest>.sig` To access this signature, the webhook needs the credentials of the registry that holds it.
 
     * **If the images and signatures are in public registries:** No additional configuration is needed. Run:
         ```console
@@ -1297,7 +1295,7 @@ To install Supply Chain Security Tools - Sign:
         apiVersion: v1
         kind: ServiceAccount
         metadata:
-          name: registry-credentials
+          name: image-policy-registry-credentials
           namespace: image-policy-system
         EOF
         ```
@@ -1308,7 +1306,7 @@ To install Supply Chain Security Tools - Sign:
         apiVersion: v1
         kind: ServiceAccount
         metadata:
-          name: registry-credentials
+          name: image-policy-registry-credentials
           namespace: image-policy-system
         imagePullSecrets:
         - name: SECRET-1
