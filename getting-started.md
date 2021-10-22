@@ -395,6 +395,172 @@ Tekton pipeline.
   </tr>
 </table>
 
+### Install Out of the Box Testing
+
+Now that the default supply chain has been uninstalled the **Out of the Box Basic** supply chain can be installed on the cluster.
+The first step is to install Tekton, which was not installed in the installation docs as
+it is only a requirement for the **Out of the Box Basic** supply chain.
+The next section walks you through installing Tekton on your cluster.
+
+
+#### Install Tekton
+
+The supply chain uses Tekton to run tests defined by developers
+before you produce a container image for the source code,
+preventing code that fails tests from being promoted to deployment.
+
+For Beta 2, we are using the open source version of Tekton. To install Tekton with `kapp`, run:
+
+```bash
+kapp deploy --yes -a tekton \
+  -f https://storage.googleapis.com/tekton-releases/pipeline/previous/v0.28.0/release.yaml
+```
+
+We are using Tekton to run a unit test on the sample that we have been using in this document.
+For more details on Tekton, see the [Tekton documentation](https://tekton.dev/docs/)
+and the [github repository](https://github.com/tektoncd/pipeline).
+You can also view the Tekton
+[tutorial](https://github.com/tektoncd/pipeline/blob/main/docs/tutorial.md)
+and [getting started guide](https://tekton.dev/docs/getting-started/).
+
+Now that you have installed Tekton, the **Source & Test to URL** supply chain can be installed on your cluster. Run:
+
+```bash
+tanzu package install ootb-supply-chain-testing \
+  --package-name ootb-supply-chain-testing.tanzu.vmware.com \
+  --version 0.3.0 \
+  --namespace tap-install \
+  --values-file default-supply-chain-values.yaml
+```
+
+### Example Tekton Pipeline Config
+
+With the new supply chain installed, the previously applied workload will fail as it is missing parameters
+which are required for the Tekton pipeline.
+In this section, we’ll add a Tekton pipeline to our cluster and in the following section,
+we’ll update the workload to point to the pipeline and resolve any of the current errors.
+
+The next step is to add a Tekton pipeline to our cluster.
+Because a developer knows how their application needs to be tested this step could be performed by the developer.
+The Operator could also add these to a cluster prior to the developer getting access to it.
+
+In order to add the Tekton supply chain to the cluster, we’ll apply the following YAML to the cluster:
+
+```yaml
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: developer-defined-tekton-pipeline
+spec:
+  params:
+    - name: source-url
+    - name: source-revision
+  tasks:
+    - name: test
+      params:
+        - name: source-url
+          value: $(params.source-url)
+        - name: source-revision
+          value: $(params.source-revision)
+      taskSpec:
+        params:
+          - name: source-url
+          - name: source-revision
+        steps:
+          - name: test
+            image: gradle
+            script: |-
+              cd `mktemp -d`
+
+              wget -qO- $(params.source-url) | tar xvz
+              ./mvnw test
+```
+
+The YAML above defines a Tekton Pipeline with a single step.
+The step itself contained in the `steps` will pull the code from the repository indicated
+in the developers `workload` and run the tests within the repository.
+The steps of the Tekton pipeline are configurable and allow the developer to add any additional items
+that they may need to test their code.
+Because this step is just one in the supply chain (and the next step is an image build in this case),
+the developer is free to focus on just testing their code.
+Any additional steps that the developer adds to the Tekton pipeline will be independent
+for the image being built and any subsequent steps of the supply chain being executed.
+
+The `params` are templated by the Supply Chain Choreographer.
+Additionally, Tekton pipelines require a Tekton `pipelineRun` in order to execute on the cluster.
+The Supply Chain Choreographer handles creating the `pipelineRun` dynamically each time
+that step of the supply requires execution.
+
+### Workload update
+
+Finally, in order to have the new supply chain connected to the workload,
+the workload needs to be updated to point at the newly created Tekton pipeline.
+The workload can be updated using the Tanzu CLI as follows:
+
+```bash
+tanzu apps workload create tanzu-java-web-app \
+  --git-repo  https://github.com/sample-accelerators/tanzu-java-web-app \
+  --git-branch main \
+  --type web \
+  --param tekton-pipeline-name=developer-defined-tekton-pipeline \
+  --yes
+```
+
+```console
+Create workload:
+      1 + |apiVersion: carto.run/v1alpha1
+      2 + |kind: Workload
+      3 + |metadata:
+      4 + |  labels:
+      5 + |    apps.tanzu.vmware.com/workload-type: web
+      6 + |  name: tanzu-java-web-app
+      7 + |  namespace: default
+      8 + |spec:
+      9 + |  params:
+     10 + |  - name: tekton-pipeline-name
+     11 + |    value: developer-defined-tekton-pipeline
+     12 + |  source:
+     13 + |    git:
+     14 + |      ref:
+     15 + |        branch: main
+     16 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
+
+? Do you want to create this workload? Yes
+Created workload "tanzu-java-web-app"
+```
+
+After accepting the creation of the new workload, we can monitor the creation of new resources by the workload using:
+
+```bash
+kubectl get workload,gitrepository,pipelinerun,images.kpack,podintent,app,services.serving
+```
+
+That should result in an output which will show all of the objects that have been created by the Supply Chain Choreographer:
+
+
+```bash
+NAME                                    AGE
+workload.carto.run/tanzu-java-web-app   109s
+
+NAME                                                        URL                                                         READY   STATUS                                                            AGE
+gitrepository.source.toolkit.fluxcd.io/tanzu-java-web-app   https://github.com/sample-accelerators/tanzu-java-web-app   True    Fetched revision: main/872ff44c8866b7805fb2425130edb69a9853bfdf   109s
+
+NAME                                              SUCCEEDED   REASON      STARTTIME   COMPLETIONTIME
+pipelinerun.tekton.dev/tanzu-java-web-app-4ftlb   True        Succeeded   104s        77s
+
+NAME                                LATESTIMAGE                                                                                                      READY
+image.kpack.io/tanzu-java-web-app   10.188.0.3:5000/foo/tanzu-java-web-app@sha256:1d5bc4d3d1ffeb8629fbb721fcd1c4d28b896546e005f1efd98fbc4e79b7552c   True
+
+NAME                                                             READY   REASON   AGE
+podintent.conventions.apps.tanzu.vmware.com/tanzu-java-web-app   True             7s
+
+NAME                                      DESCRIPTION           SINCE-DEPLOY   AGE
+app.kappctrl.k14s.io/tanzu-java-web-app   Reconcile succeeded   1s             2s
+
+NAME                                             URL                                               LATESTCREATED              LATESTREADY                READY     REASON
+service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.developer.example.com   tanzu-java-web-app-00001   tanzu-java-web-app-00001   Unknown   IngressNotConfigured
+```
+
 ### Install Out of the Box Testing and Scanning
 
 The first step is to install the additional scanning templates which define how the source and image should be scanned:
