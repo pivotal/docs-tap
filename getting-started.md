@@ -409,7 +409,7 @@ The supply chain uses Tekton to run tests defined by developers
 before you produce a container image for the source code,
 preventing code that fails tests from being promoted to deployment.
 
-For Beta 2, we are using the open source version of Tekton. To install Tekton with `kapp`, run:
+For Beta 3, we are using the open source version of Tekton. To install Tekton with `kapp`, run:
 
 ```bash
 kapp deploy --yes -a tekton \
