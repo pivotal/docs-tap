@@ -103,7 +103,7 @@ To add the Tanzu Application Platform package repository:
       grype.scanning.apps.tanzu.vmware.com               Grype Scanner for Supply Chain Security Tools for VMware Tanzu - Scan  Default scan templates using Anchore Grype
       image-policy-webhook.signing.run.tanzu.vmware.com  Image Policy Webhook                                                   The Image Policy Webhook allows platform operators to define a policy that will use cosign to verify signatures of container images
       scanning.apps.tanzu.vmware.com                     Supply Chain Security Tools for VMware Tanzu - Scan                    Scan for vulnerabilities and enforce policies directly within Kubernetes native Supply Chains.
-      scp-toolkit.tanzu.vmware.com                       SCP Toolkit                                                            The SCP Toolkit
+      services-toolkit.tanzu.vmware.com                  Services Toolkit                                                       The Services Toolkit enables the management, lifecycle, discoverability and connectivity of Service Resources (databases, message queues, DNS records, etc.).
       scst-store.tanzu.vmware.com                        Tanzu Supply Chain Security Tools - Store                              The Metadata Store enables saving and querying image, package, and vulnerability data.
       service-bindings.labs.vmware.com                   Service Bindings for Kubernetes                                        Service Bindings for Kubernetes implements the Service Binding Specification.
     ```
@@ -164,7 +164,7 @@ To install any package from the Tanzu Application Platform package repository:
     + [Install Supply Chain Security Tools - Sign](#install-scst-sign)
     + [Install Supply Chain Security Tools - Scan](#install-scst-scan)
     + [Install API portal](#install-api-portal)
-    + [Install Services Control Plane (SCP) Toolkit](#install-scp-toolkit)
+    + [Install Services Toolkit](#install-services-toolkit)
 
 
 ## <a id='install-cnr'></a> Install Cloud Native Runtimes
@@ -1679,35 +1679,35 @@ To install the API portal:
 4. For more information about API portal, see [API portal for VMware Tanzu](https://docs.pivotal.io/api-portal).
 
 
-## <a id='install-scp-toolkit'></a> Install Services Control Plane (SCP) Toolkit
+## <a id='install-services-toolkit'></a> Install Services Toolkit
 
-To install Services Control Plane Toolkit:
+To install Services Toolkit:
 
-1. See what versions of Services Control Plane Toolkit are available to install by running:
+1. See what versions of Services Toolkit are available to install by running:
 
     ```console
-    tanzu package available list -n tap-install scp-toolkit.tanzu.vmware.com
+    tanzu package available list -n tap-install services-toolkit.tanzu.vmware.com
     ```
 
     For example:
 
     ```console
-    $ tanzu package available list -n tap-install scp-toolkit.tanzu.vmware.com
-    - Retrieving package versions for scp-toolkit.tanzu.vmware.com...
-      NAME                          VERSION           RELEASED-AT
-      scp-toolkit.tanzu.vmware.com  0.3.0             2021-09-17T13:53:29Z
+    $ tanzu package available list -n tap-install services-toolkit.tanzu.vmware.com
+    - Retrieving package versions for services-toolkit.tanzu.vmware.com...
+      NAME                               VERSION           RELEASED-AT
+      services-toolkit.tanzu.vmware.com  0.4.0-rc.1        2021-09-17T13:53:29Z
     ```
 
 1. Install Services Control Plane Toolkit by running:
 
     ```console
-    tanzu package install scp-toolkit -n tap-install -p scp-toolkit.tanzu.vmware.com -v 0.3.0
+    tanzu package install services-toolkit -n tap-install -p services-toolkit.tanzu.vmware.com -v 0.4.0-rc.1
     ```
 
 1. Verify that the package installed by running:
 
     ```console
-    tanzu package installed get scp-toolkit -n tap-install
+    tanzu package installed get services-toolkit -n tap-install
     ```
 
     and checking that the `STATUS` value is `Reconcile succeeded`.
@@ -1715,11 +1715,11 @@ To install Services Control Plane Toolkit:
     For example:
 
     ```console
-    $ tanzu package installed get scp-toolkit -n tap-install
-    | Retrieving installation details for scp-toolkit...
-    NAME:                    scp-toolkit
-    PACKAGE-NAME:            scp-toolkit.tanzu.vmware.com
-    PACKAGE-VERSION:         0.3.0
+    $ tanzu package installed get services-toolkit -n tap-install
+    | Retrieving installation details for services-toolkit...
+    NAME:                    services-toolkit
+    PACKAGE-NAME:            services-toolkit.tanzu.vmware.com
+    PACKAGE-VERSION:         0.4.0-rc.1
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
@@ -1753,7 +1753,7 @@ Use the following procedure to verify that the packages are installed.
     image-policy-webhook   image-policy-webhook.signing.run.tanzu.vmware.com  1.0.0-beta.0     Reconcile succeeded
     metadata-store         scst-store.tanzu.vmware.com                        1.0.0-beta.0     Reconcile succeeded
     scan-controller        scanning.apps.tanzu.vmware.com                     1.0.0-beta       Reconcile succeeded
-    scp-toolkit            scp-toolkit.tanzu.vmware.com                       0.3.0            Reconcile succeeded
+    services-toolkit       services-toolkit.tanzu.vmware.com                  0.4.0-rc.1       Reconcile succeeded
     service-bindings       service-bindings.labs.vmware.com                   0.5.0            Reconcile succeeded
     source-controller      controller.source.apps.tanzu.vmware.com            0.1.2            Reconcile succeeded
     tbs                    buildservice.tanzu.vmware.com                      1.3.0            Reconcile succeeded
