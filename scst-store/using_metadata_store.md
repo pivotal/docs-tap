@@ -1,5 +1,7 @@
 # Using Supply Chain Security Tools - Store
+
 This topic includes walkthroughs for how to use Supply Chain Security Tools - Store.
+
 ## Prerequisites
 
 * [Enable an encrypted connection to the Supply Chain Security Tools - Store](enable_encrypted_connection.md)

@@ -14,7 +14,7 @@ You can create two types of service accounts:
 To create a read-only service account, run the following command. The command creates a service account named `metadata-store-read-client`:
 
 ```sh
-$ kubectl apply -f - -o yaml << EOF
+kubectl apply -f - -o yaml << EOF
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
@@ -53,7 +53,7 @@ EOF
 To create a read-write service account, run the following command. The command create a service account called `metadata-store-read-write-client`:
 
 ```sh
-$ kubectl apply -f - -o yaml << EOF
+kubectl apply -f - -o yaml << EOF
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
@@ -91,25 +91,25 @@ EOF
 To retrieve the read-only access token, run the following command:
 
 ```sh
-$ kubectl get secret $(kubectl get sa -n metadata-store metadata-store-read-client -o json | jq -r '.secrets[0].name') -n metadata-store -o json | jq -r '.data.token' | base64 -d
+kubectl get secret $(kubectl get sa -n metadata-store metadata-store-read-client -o json | jq -r '.secrets[0].name') -n metadata-store -o json | jq -r '.data.token' | base64 -d
 ```
 
 To retrieve the read-write access token run the following command:
 
 ```sh
-$ kubectl get secret $(kubectl get sa -n metadata-store metadata-store-read-write-client -o json | jq -r '.secrets[0].name') -n metadata-store -o json | jq -r '.data.token' | base64 -d
+kubectl get secret $(kubectl get sa -n metadata-store metadata-store-read-write-client -o json | jq -r '.secrets[0].name') -n metadata-store -o json | jq -r '.data.token' | base64 -d
 ```
 
 The access token is a "Bearer" token used in the http request header "Authorization". (ex. `Authorization: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjhMV0...`)
 
-## Setting `METADATA_STORE_ACCESS_TOKEN`
+## <a id='set-access-token'></a> Setting `METADATA_STORE_ACCESS_TOKEN`
 
 When using the CLI, you'll need to either set the `METADATA_STORE_ACCESS_TOKEN` environment variable, or use the `--access-token` flag. It is not recommended to use the `--access-token` flag as the token will appear in your shell history. We recommend using `METADATA_STORE_ACCESS_TOKEN`.
 
 The follow command will retrieve the access token from Kubernetes and store it in `METADATA_STORE_ACCESS_TOKEN`:
 
 ```sh
-$ export METADATA_STORE_ACCESS_TOKEN=$(kubectl get secrets -n metadata-store -o jsonpath="{.items[?(@.metadata.annotations['kubernetes\.io/service-account\.name']=='metadata-store-read-write-client')].data.token}" | base64 -d)
+export METADATA_STORE_ACCESS_TOKEN=$(kubectl get secrets -n metadata-store -o jsonpath="{.items[?(@.metadata.annotations['kubernetes\.io/service-account\.name']=='metadata-store-read-write-client')].data.token}" | base64 -d)
 ```
 
 Replace `metadata-store-read-write-client` with name of the service account you plan to use.
