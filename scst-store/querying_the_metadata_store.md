@@ -28,6 +28,16 @@ The following use cases apply to Supply Chain Security Tools - Store:
 Once the CVE report is created, you can query information about the image using `image get`. You need the image's component version from the earlier CycloneDX report. Pass the component version as a parameter to the `--digest` flag. Run:
 
 ```sh
+insight image get --digest <digest>
+```
+
+Where:
+
+- `digest` is the digest of the image you're interested in.
+
+For example:
+
+```sh
 $ insight image get --digest sha256:407d7099d6ce7e3632b6d00682a43028d75d3b088600797a833607bd629d1ed5
 Registry:	docker.io
 Image Name:	checkr/flagr:1.1.12
