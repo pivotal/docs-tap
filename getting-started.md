@@ -214,7 +214,7 @@ tanzu accelerator update <accelerator-name> --reconcile
 ```
 ---
 
-## Section 3: Add test to your application
+## Section 3: Add testing and security scanning to your application
 
 ### What is a Supply Chain?
 
@@ -242,32 +242,27 @@ Out of the box, Tanzu Application Platform provides two default supply chains th
 work with Tanzu Application Platform components.
 
 
-#### Supply Chains included in Beta 2
+#### Supply Chains included in Beta 3
 
 The Tanzu Application Platform installation steps cover installing the default supply chain, but
 others are available.
-If you follow the installation documentation, the **Source to URL** supply chain and all of its
+If you follow the installation documentation, the **Out of the Box Basic** supply chain and all of its
 dependencies are installed on your cluster.
 The table and diagrams below describe the two supply chains included in Tanzu Application Platform
-Beta 2 as well as their dependencies.
+Beta 3 as well as their dependencies.
 
-The biggest difference between the two supply chains is that the second, **Source & Test to URL**,
-can run a Tekton pipeline within the supply chain. It therefore has a dependency on
-[Tekton](https://tekton.dev/), which has not yet been installed on your cluster.
+The second, **Out of the Box Test**, can run a Tekton pipeline within the supply chain. It therefore has a dependency on
+[Tekton](https://tekton.dev/), which has not yet been installed on your cluster. The third supply chain **Out of the Box Test and Scan** that is available with TAP includes integrations to the secure scanning tools.
 
-The next section is about installing Tekton and provides a sample Tekton pipeline that tests the
+The next section, which installs the second supply chain, is about installing Tekton and provides a sample Tekton pipeline that tests the
 sample application.
 The pipeline is, like the supply chain, completely configurable and therefore the steps within it
 can be customized to perform additional testing, or any other tasks that can be performed with a
 Tekton pipeline.
 
-A limitation of Tanzu Application Platform Beta 2 is that only one of the two supply chains can be
-installed at any given time. If you have already installed the default supply chain,
-**Source to URL**, you must uninstall it before installing **Source & Test to URL**.
-
 ![Diagram depicting the Source-to-URL chain: Watch Repo (Flux) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](images/source-to-url-chain.png)
 
-**Source to URL**
+**Out of the Box Basic - Default Supply Chain**
 
 <table>
   <tr>
@@ -281,9 +276,9 @@ installed at any given time. If you have already installed the default supply ch
    </td>
   </tr>
   <tr>
-   <td><strong>Source to URL (Default - Installed during Installing Part 2)</strong>
+   <td><strong>Out of the Box Basic (Default - Installed during Installing Part 2)</strong>
    </td>
-   <td><code>default-supply-chain.tanzu.vmware.com</code>
+   <td><code>ootb-supply-chain-basic.tanzu.vmware.com</code>
    </td>
    <td>This supply chain monitors a repository that is identified in the developer’s `workload.yaml` file. When any new commits are made to the application, the supply chain will:
 <ul>
@@ -314,7 +309,7 @@ installed at any given time. If you have already installed the default supply ch
 
 ![Diagram depicting the Source-and-Test-to-URL chain: Watch Repo (Flux) to Test Code (Tekton) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](images/source-and-test-to-url-chain.png)
 
-**Source & Test to URL**
+**Out of the Box Testing**
 
 <table>
   <tr>
@@ -328,11 +323,11 @@ installed at any given time. If you have already installed the default supply ch
    </td>
   </tr>
   <tr>
-   <td><strong>Source & Test to URL</strong>
+   <td><strong>Out of the Box Testing</strong>
    </td>
-   <td><code>default-supply-chain-testing.tanzu.vmware.com</code>
+   <td><code>ootb-supply-chain-testing.tanzu.vmware.com</code>
    </td>
-   <td>The Source & Test to URL contains all of the same elements as the Source to URL. It also allows the developer to specify a Tekton pipeline that will be ran as part of the “CI” step of the supply chain.
+   <td>The Out of the Box Testing contains all of the same elements as the Source to URL. It also allows the developer to specify a Tekton pipeline that will be ran as part of the “CI” step of the supply chain.
 <ul>
 
 <li>The application will be testing using the provided tekton pipeline
@@ -355,115 +350,70 @@ installed at any given time. If you have already installed the default supply ch
   </tr>
 </table>
 
+![Diagram depicting the Source-and-Test-to-URL chain: Watch Repo (Flux) to Test Code (Tekton) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](images/source-test-scan-to-url.png)
 
-### Uninstalling the Default Supply Chain
+**Out of the Box Testing and Scanning**
 
-**<span style="text-decoration:underline;">Due to a limitation of Beta 2,</span>** at this time, only one supply chain can be installed at any given time.
-As a result, if the installation docs have been followed, there will already be a supply chain - the default **Source to URL** supply chain - installed on your cluster. To add the ability to test your application using Tekton, the default supply chain will first need to be uninstalled:
+<table>
+  <tr>
+   <td><strong>Name</strong>
+   </td>
+   <td><strong>Package Name</strong>
+   </td>
+   <td><strong>Description</strong>
+   </td>
+   <td><strong>Dependencies</strong>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Out of the Box Testing and Scanning</strong>
+   </td>
+   <td><code>ootb-supply-chain-testing-scanning.tanzu.vmware.com</code>
+   </td>
+   <td>The Out of the Box Testing and Scanning contains all of the same elements as the Out of the Box Testing supply chiains but it also includes integrations out of the box with the secure scanning components of TAP.
+<ul>
+
+<li>The application will be testing using the provided tekton pipeline
+<li>The application source code will be scanned for vulnerabilities
+
+<li>A new image will be automatically created
+<li>The image will be scanned for vulnerabilities
+
+<li>Any predefined conventions will be applied
+
+<li>The application will be deployed to the cluster
+</li>
+</ul>
+   </td>
+   <td>All of the Source to URL dependencies, as well as:
+<ul>
+
+<li>The secure scanning components included with TAP
+</li>
+</ul>
+   </td>
+  </tr>
+</table>
+
+### Install Out of the Box Testing and Scanning
+
+The first step is to install the additional scanning templates which define how the source and image should be scanned:
+
+<ul>
+<li><a href="https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.3/tap-0-3/GUID-scst-scan-choreographer.html#supply-chain-security-tools-for-vmware-tanzu--scan-5">Scan Policy</a></li>
+<li><a href="https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.3/tap-0-3/GUID-scst-scan-choreographer.html#supply-chain-security-tools-for-vmware-tanzu--scan-5">Source Scan Policy</a></li>
+<li><a href="https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.3/tap-0-3/GUID-scst-scan-choreographer.html#supply-chain-security-tools-for-vmware-tanzu--scan-5">Image Scan Policy</a></li>
+</ul>
+
+Next the Out of the Box Testing and Scanning supply chain can be installed.
 
 ```bash
-tanzu package installed delete default-supply-chain \
- --namespace tap-install
-```
-
-
-### Install Source & Test to URL
-
-Now that the default supply chain has been uninstalled the **Source & Test to URL** supply chain can be installed on the cluster.
-The first step is to install Tekton, which was not installed in the installation docs as
-it is only a requirement for the **Source & Test to URL** supply chain.
-The next section walks you through installing Tekton on your cluster.
-
-
-#### Install Tekton
-
-The supply chain uses Tekton to run tests defined by developers
-before you produce a container image for the source code,
-preventing code that fails tests from being promoted to deployment.
-
-For Beta 2, we are using the open source version of Tekton. To install Tekton with `kapp`, run:
-
-```bash
-kapp deploy --yes -a tekton \
-  -f https://storage.googleapis.com/tekton-releases/pipeline/previous/v0.28.0/release.yaml
-```
-
-We are using Tekton to run a unit test on the sample that we have been using in this document.
-For more details on Tekton, see the [Tekton documentation](https://tekton.dev/docs/)
-and the [github repository](https://github.com/tektoncd/pipeline).
-You can also view the Tekton
-[tutorial](https://github.com/tektoncd/pipeline/blob/main/docs/tutorial.md)
-and [getting started guide](https://tekton.dev/docs/getting-started/).
-
-Now that you have installed Tekton, the **Source & Test to URL** supply chain can be installed on your cluster. Run:
-
-```bash
-tanzu package install default-supply-chain-testing \
-  --package-name default-supply-chain-testing.tanzu.vmware.com \
-  --version 0.2.0 \
+tanzu package install ootb-supply-chain-testing-scanning \
+  --package-name ootb-supply-chain-testing-scanning.tanzu.vmware.com \
+  --version 0.3.0 \
   --namespace tap-install \
   --values-file default-supply-chain-values.yaml
 ```
-
-
-### Example Tekton Pipeline Config
-
-With the new supply chain installed, the previously applied workload will fail as it is missing parameters
-which are required for the Tekton pipeline.
-In this section, we’ll add a Tekton pipeline to our cluster and in the following section,
-we’ll update the workload to point to the pipeline and resolve any of the current errors.
-
-The next step is to add a Tekton pipeline to our cluster.
-Because a developer knows how their application needs to be tested this step could be performed by the developer.
-The Operator could also add these to a cluster prior to the developer getting access to it.
-
-In order to add the Tekton supply chain to the cluster, we’ll apply the following YAML to the cluster:
-
-```yaml
-apiVersion: tekton.dev/v1beta1
-kind: Pipeline
-metadata:
-  name: developer-defined-tekton-pipeline
-spec:
-  params:
-    - name: source-url
-    - name: source-revision
-  tasks:
-    - name: test
-      params:
-        - name: source-url
-          value: $(params.source-url)
-        - name: source-revision
-          value: $(params.source-revision)
-      taskSpec:
-        params:
-          - name: source-url
-          - name: source-revision
-        steps:
-          - name: test
-            image: gradle
-            script: |-
-              cd `mktemp -d`
-
-              wget -qO- $(params.source-url) | tar xvz
-              ./mvnw test
-```
-
-The YAML above defines a Tekton Pipeline with a single step.
-The step itself contained in the `steps` will pull the code from the repository indicated
-in the developers `workload` and run the tests within the repository.
-The steps of the Tekton pipeline are configurable and allow the developer to add any additional items
-that they may need to test their code.
-Because this step is just one in the supply chain (and the next step is an image build in this case),
-the developer is free to focus on just testing their code.
-Any additional steps that the developer adds to the Tekton pipeline will be independent
-for the image being built and any subsequent steps of the supply chain being executed.
-
-The `params` are templated by the Supply Chain Choreographer.
-Additionally, Tekton pipelines require a Tekton `pipelineRun` in order to execute on the cluster.
-The Supply Chain Choreographer handles creating the `pipelineRun` dynamically each time
-that step of the supply requires execution.
-
 
 ### Workload update
 
