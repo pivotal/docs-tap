@@ -238,7 +238,7 @@ between each of the tools.
 Supply chains used to codify the organization's path to production are configurable, allowing their
 authors to add all of the steps of their application's path to production.
 
-Out of the box, Tanzu Application Platform provides two default supply chains that are designed to
+Out of the box, Tanzu Application Platform provides three out of the box supply chains that are designed to
 work with Tanzu Application Platform components.
 
 
