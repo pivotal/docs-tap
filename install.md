@@ -171,7 +171,7 @@ To install any package from the Tanzu Application Platform package repository:
 
 To install Cloud Native Runtimes:
 
-1. Follow the instructions in [Install Packages](#install-packages) above.
+1. Follow the instructions in [About Installing Packages](#install-packages) above.
 
 1. Gather values schema.
 
@@ -337,7 +337,7 @@ installation.
 
 To install Convention Controller:
 
-1. Follow the instructions in [Install Packages](#install-packages) above.
+1. Follow the instructions in [About Installing Packages](#install-packages) above.
 
 1. Install the package by running:
 
@@ -397,7 +397,7 @@ See [Install Prerequisites](install-general.md#prereqs).
 
 To install Source Controller:
 
-1. Follow the instructions in [Install Packages](#install-packages) above.
+1. Follow the instructions in [About Installing Packages](#install-packages) above.
 
 1. Install the package. Run:
 
@@ -485,7 +485,7 @@ See [Install Source Controller](#install-source-controller).
 
 To install Application Accelerator:
 
-1. Follow the instructions in [Install Packages](#install-packages) above.
+1. Follow the instructions in [About Installing Packages](#install-packages) above.
 
 1. Create an `app-accelerator-values.yaml` using the following example code:
 
@@ -562,7 +562,7 @@ This section provides a quick-start guide for installing Tanzu Build Service as 
 
 To install Tanzu Build Service using the Tanzu CLI:
 
-1. Follow the instructions in [Install Packages](#install-packages) above.
+1. Follow the instructions in [About Installing Packages](#install-packages) above.
 
 1. Gather values schema.
 
@@ -736,7 +736,7 @@ To install developer conventions:
 
 **Prerequisite**: Convention Service installed on the cluster, see [Install Convention Service](#install-convention-service).
 
-1. Follow the instructions in [Install Packages](#install-packages) above.
+1. Follow the instructions in [About Installing Packages](#install-packages) above.
 
     ```bash
     tanzu package available get developer-conventions.tanzu.vmware.com/0.2.0 -n tap-install
@@ -779,7 +779,7 @@ To install Application Live View:
 
 **Prerequisite**: Convention Service installed on the cluster, see [Install Convention Service](#install-convention-service).
 
-1. Follow the instructions in [Install Packages](#install-packages) above.
+1. Follow the instructions in [About Installing Packages](#install-packages) above.
 1. Gather the values schema.
 1. Create a namespace to deploy the Application Live View server and its components. For example:
 
@@ -928,7 +928,7 @@ instead.
 
 To install the Tanzu Application Platform GUI:
 
-1. Follow the instructions in [Install Packages](#install-packages) above.
+1. Follow the instructions in [About Installing Packages](#install-packages) above.
 
 1. See a list of all the values that you can specify when configuring the
 Tanzu Application Platform GUI by running:
@@ -1061,7 +1061,7 @@ with your relevant values. The meanings of some placeholders are explained below
 
  Use the following procedure to install Service Bindings:
 
-1. Follow the instructions in [Install Packages](#install-packages) above.
+1. Follow the instructions in [About Installing Packages](#install-packages) above.
 
 1. Install the package. Run:
 
@@ -1117,7 +1117,7 @@ with your relevant values. The meanings of some placeholders are explained below
 
 To install Supply Chain Security Tools - Store:
 
-1. Follow the instructions in [Install Packages](#install-packages) above.
+1. Follow the instructions in [About Installing Packages](#install-packages) above.
 
     ```sh
     tanzu package available get scst-store.tanzu.vmware.com/1.0.0-beta.1 --values-schema -n tap-install
@@ -1222,7 +1222,7 @@ re-enable image signing enforcement.
 
 To install Supply Chain Security Tools - Sign:
 
-1. Follow the instructions in [Install Packages](#install-packages) above.
+1. Follow the instructions in [About Installing Packages](#install-packages) above.
 1. Gather the values schema:
 
     ```bash
@@ -1430,7 +1430,7 @@ Ensure both are installed.
 
 To install Supply Chain Security Tools - Scan (Scan Controller):
 
-1. Follow the instructions in [Install Packages](#install-packages) above.
+1. Follow the instructions in [About Installing Packages](#install-packages) above.
 
     ```bash
     tanzu package available get scanning.apps.tanzu.vmware.com/1.0.0-beta --values-schema -n tap-install
@@ -1594,7 +1594,7 @@ To install Supply Chain Security Tools - Scan (Scan Controller):
 
 To install Supply Chain Security Tools - Scan (Grype Scanner):
 
-1. Follow the instructions in [Install Packages](#install-packages) above.
+1. Follow the instructions in [About Installing Packages](#install-packages) above.
 
     ```bash
     tanzu package available get grype.scanning.apps.tanzu.vmware.com/1.0.0-beta --values-schema -n tap-install
@@ -1647,7 +1647,7 @@ If you want to change from the default values, use the Scan Controller instructi
 
 To install the API portal:
 
-1. Follow the instructions in [Install Packages](#install-packages) above.
+1. Follow the instructions in [About Installing Packages](#install-packages) above.
 2. Check what versions of API portal are available to install by running:
 
     ```bash
