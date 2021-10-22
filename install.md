@@ -10,12 +10,67 @@ For information, see [Installing Part I: Prerequisites, EULA, and CLI](install-g
 
 ## <a id='install-packages'></a> About Installing Packages
 
-The parameters that are required for the installation need to be defined in a YAML file.
+The parameters required for the installation need to be defined in a YAML file.
 
-The available parameters for the individual packages can be identified by the values schema
-that are defined in the package.
+The available parameters for the individual packages can be identified by the values schema 
+defined in the package.
 You can get these parameters by running the command
 as described in the procedure below.
+
+To install any package from the Tanzu Application Platform package repository:
+
+1. List version information for the package by running:
+
+    ```bash
+    tanzu package available list PACKAGE-NAME --namespace tap-install
+    ```
+    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
+     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
+     For example:
+
+    ```bash
+    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for cnrs.tanzu.vmware.com...
+      NAME                   VERSION  RELEASED-AT
+      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    ```
+
+2. (Optional) To make changes to the default installation settings, run:
+
+    ```bash
+    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
+    ```
+    Where:
+
+    - `PACKAGE-NAME` is same as step 1 above.
+    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
+
+    For example:
+
+    ```bash
+    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
+    ```
+
+    For more information about values schema options, see the individual product documentation.
+
+3. Follow the specific installation instructions for each package:
+
+    + [Install Cloud Native Runtimes](#install-cnr)
+    + [Install Application Accelerator](#install-app-accelerator)
+    + [Install Convention Service](#install-convention-service)
+    + [Install Source Controller](#install-source-controller)
+    + [Install Developer Conventions](#install-developer-conventions)
+    + [Install Application Live View](#install-app-live-view)
+    + [Install TAP GUI](#install-tap-gui)
+    + [Install Service Bindings](#install-service-bindings)
+    + [Install Tanzu Build Service](#install-tbs)
+    + [Install Supply Chain Choreographer](#install-scc)
+    + [Install Default Supply Chain](#install-default-supply-chain)
+    + [Install Supply Chain Security Tools - Store](#install-scst-store)
+    + [Install Supply Chain Security Tools - Sign](#install-scst-sign)
+    + [Install Supply Chain Security Tools - Scan](#install-scst-scan)
+    + [Install API portal](#install-api-portal)
+    + [Install Services Toolkit](#install-services-toolkit)
 
 ## <a id='add-package-repositories'></a> Add the Tanzu Application Platform Package Repository
 
@@ -107,65 +162,6 @@ To add the Tanzu Application Platform package repository:
       scst-store.tanzu.vmware.com                        Tanzu Supply Chain Security Tools - Store                              The Metadata Store enables saving and querying image, package, and vulnerability data.
       service-bindings.labs.vmware.com                   Service Bindings for Kubernetes                                        Service Bindings for Kubernetes implements the Service Binding Specification.
     ```
-
-## <a id='general-procedure-to-install-a-package'></a> General Procedure to Install a Package
-
-To install any package from the Tanzu Application Platform package repository:
-
-
-1. List version information for the package by running:
-
-    ```bash
-    tanzu package available list PACKAGE-NAME --namespace tap-install
-    ```
-    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
-     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
-     For example:
-
-    ```bash
-    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
-    - Retrieving package versions for cnrs.tanzu.vmware.com...
-      NAME                   VERSION  RELEASED-AT
-      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
-    ```
-
-2. (Optional) To make changes to the default installation settings, run:
-
-    ```bash
-    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
-    ```
-    Where:
-
-    - `PACKAGE-NAME` is same as step 1 above.
-    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
-
-    For example:
-
-    ```bash
-    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
-    ```
-
-    For more information about values schema options, see the individual product documentation.
-
-3. Follow the specific installation instructions for each package:
-
-    + [Install Cloud Native Runtimes](#install-cnr)
-    + [Install Application Accelerator](#install-app-accelerator)
-    + [Install Convention Service](#install-convention-service)
-    + [Install Source Controller](#install-source-controller)
-    + [Install Developer Conventions](#install-developer-conventions)
-    + [Install Application Live View](#install-app-live-view)
-    + [Install TAP GUI](#install-tap-gui)
-    + [Install Service Bindings](#install-service-bindings)
-    + [Install Tanzu Build Service](#install-tbs)
-    + [Install Supply Chain Choreographer](#install-scc)
-    + [Install Default Supply Chain](#install-default-supply-chain)
-    + [Install Supply Chain Security Tools - Store](#install-scst-store)
-    + [Install Supply Chain Security Tools - Sign](#install-scst-sign)
-    + [Install Supply Chain Security Tools - Scan](#install-scst-scan)
-    + [Install API portal](#install-api-portal)
-    + [Install Services Toolkit](#install-services-toolkit)
-
 
 ## <a id='install-cnr'></a> Install Cloud Native Runtimes
 
