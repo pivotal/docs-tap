@@ -30,6 +30,10 @@ Tanzu Packages:
 - API Portal for VMware Tanzu v
 - Service Control Plane Toolkit v
 - Service Bindings for Kubernetes v
+- Tanzu Application Platform GUI
+  - Workload Visibility Plugin v
+  - Application Live View Plugin v
+- Tanzu Learning Center
 
 Tanzu CLI Plugins:
 
