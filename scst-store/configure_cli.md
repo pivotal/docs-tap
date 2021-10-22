@@ -12,7 +12,7 @@ See [instructions on setting the access token](create_service_account_access_tok
 
 ## Get the location of the Certificate Authority Cert
 
-For information about obtaining the CA certificate, see [Enabling an Encrypted Connection](enable_encrypted_connection.md).
+For information about obtaining the CA certificate, see [Enable Encryption and Connecting](enable_encrypted_connection.md).
 
 ## Setting the Target and Certificate Authority Cert
 

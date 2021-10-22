@@ -4,7 +4,7 @@ This topic includes walkthroughs for how to use Supply Chain Security Tools - St
 
 ## Prerequisites
 
-* [Enable an encrypted connection to the Supply Chain Security Tools - Store](enable_encrypted_connection.md)
+* [Enable encryption and connectin](enable_encrypted_connection.md)
 * [Create a service account and get the access token](create_service_account_access_token.md)
 * [Install the CLI](cli.md)
 * [Configure the CLI](configure_cli.md)

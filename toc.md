@@ -52,7 +52,7 @@ This is the table of contents from which the Tanzu Application Platform Document
             * [Viewing and Understanding Scan Status Conditions](scst-scan/results.md)
     * [Supply Chain Security Tools for Tanzu – Store](scst-store/overview.md)
         * [Using SCST - Store](scst-store/using_metadata_store.md)
-            * [Prerequisite - Enable an encrypted connection to the store](scst-store/enable_encrypted_connection.md)
+            * [Prerequisite - Using Encryption and Connecting](scst-store/enable_encrypted_connection.md)
             * [Prerequisite - Create a service account and get the access token](scst-store/create_service_account_access_token.md)
             * [Prerequisite- Install the CLI](scst-store/cli.md)
             * [Prerequisite - Configure the CLI](scst-store/configure_cli.md)
