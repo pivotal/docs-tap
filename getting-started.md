@@ -423,7 +423,7 @@ You can also view the Tekton
 [tutorial](https://github.com/tektoncd/pipeline/blob/main/docs/tutorial.md)
 and [getting started guide](https://tekton.dev/docs/getting-started/).
 
-Now that you have installed Tekton, the **Source & Test to URL** supply chain can be installed on your cluster. Run:
+Now that you have installed Tekton, the **Out of the Box Testing** supply chain can be installed on your cluster. Run:
 
 ```bash
 tanzu package install ootb-supply-chain-testing \
