@@ -588,6 +588,32 @@ After the webhook is up and running, create a service account named `image-polic
 
 After the image policy webhook is installed in the cluster, configure the image policy you want to enforce and the credentials to access private registries.
 
+**Configure a service account to hold private registry secrets**
+
+In the situation when the platform operator is expecting to verify signatures stored in a private registry,
+it is required to configure a service account with all the secrets for those private registries.
+This service account:
+
+* Must be created in the `image-policy-system` namespace
+
+* Must be called `image-policy-registry-credentials`
+
+* All secrets for accessing private registries must be added to the `imagePullSecrets` section of the service account
+
+The manifest for this service account would look like this:
+
+```
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: image-policy-registry-credentials
+  namespace: image-policy-system
+imagePullSecrets:
+- name: secret1
+- name: secret2
+```
+
 **Create a Cluster Image Policy**
 
 The cluster image policy is a custom resource definition containing the following information:
@@ -630,32 +656,6 @@ As of this writing, the custom resource for the policy must have a name of image
 
 The platform operator should add to the `verification.exclude.resources.namespaces`
 section any namespaces that are known to run container images that are not currently signed, such as `kube-system`.
-
-**Configure a service account to hold private registry secrets**
-
-In the situation when the platform operator is expecting to verify signatures stored in a private registry,
-it is required to configure a service account with all the secrets for those private registries.
-This service account:
-
-* Must be created in the `image-policy-system` namespace
-
-* Must be called `image-policy-registry-credentials`
-
-* All secrets for accessing private registries must be added to the `imagePullSecrets` section of the service account
-
-The manifest for this service account would look like this:
-
-```
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: image-policy-registry-credentials
-  namespace: image-policy-system
-imagePullSecrets:
-- name: secret1
-- name: secret2
-```
 
 
 **Examples and Expected Results**

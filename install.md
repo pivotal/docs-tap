@@ -1196,7 +1196,7 @@ To install Supply Chain Security Tools - Store:
 
 ## <a id='install-scst-sign'></a> Install Supply Chain Security Tools - Sign
 
-Install Supply Chain Security Tools - Sign rejects pods from starting if the webhook fails or is misconfigured. 
+Install Supply Chain Security Tools - Sign rejects pods from starting if the webhook fails or is misconfigured.
 If the webhook is preventing the cluster from functioning, you can delete the configuration by running:
 
 ```bash
@@ -1204,14 +1204,14 @@ kubectl delete MutatingWebhookConfiguration image-policy-mutating-webhook-config
 ```
 For example, pods can be rejected from starting if all nodes running the
 webhook are scaled down and the webhook is forced to restart at the same time as
-other system components.  A deadlock can occur when some components expect the
+other system components. A deadlock can occur when some components expect the
 webhook to run in order to verify their image signatures and the webhook is not
-running yet.  By deleting the `MutatingWebhookConfiguration` resource you can
-resolve the deadlock and enable the system to start up again.  Once the system
-is stable you can restore the `MutatingWebhookConfiguration` resource to
+running yet. By deleting the `MutatingWebhookConfiguration` resource, you can
+resolve the deadlock and enable the system to start up again. Once the system
+is stable, you can restore the `MutatingWebhookConfiguration` resource to
 re-enable image signing enforcement.
 
-**Prerequisites**: As part of the install instructions, we will ask you to provide a cosign public key to use to validate signed images. We will provide an example cosign public key that will be able to validate an image from cosign, but if you wish to provide your own key and images, you can follow the [cosign quick start guide](https://github.com/sigstore/cosign#quick-start) to generate your own keys and sign an image.
+**Prerequisites**: As part of the install instructions, we will ask you to provide a cosign public key to use to validate signed images. We will provide an example cosign public key that will be able to validate an image from the public cosign registry. If you wish to provide your own key and images, you can follow the [cosign quick start guide](https://github.com/sigstore/cosign#quick-start) to generate your own keys and sign an image.
 
 To install Supply Chain Security Tools - Sign:
 
@@ -1219,13 +1219,13 @@ To install Supply Chain Security Tools - Sign:
 1. Gather the values schema:
 
     ```bash
-    tanzu package available get image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.0 --values-schema --namespace tap-install
+    tanzu package available get image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.1 --values-schema --namespace tap-install
     ```
 
     For example:
     ```bash
-    $ tanzu package available get image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.0 --values-schema --namespace tap-install
-    | Retrieving package details for image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.0...
+    $ tanzu package available get image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.1 --values-schema --namespace tap-install
+    | Retrieving package details for image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.1...
       KEY                     DEFAULT  TYPE     DESCRIPTION
       allow_unmatched_images  false    boolean  Feature flag for enabling admission of images that do not match
                                                 any patterns in the image policy configuration.
@@ -1244,8 +1244,8 @@ To install Supply Chain Security Tools - Sign:
         ---
         allow_unmatched_images: false
         ```
-        **Note**: For a quicker installation process, VMware recommends that you set `allow_unmatched_images` to `true`.
-        This means that the webhook does not prevent unsigned images from running.
+        **Note**: For a quicker installation process, VMware recommends that you set `allow_unmatched_images` to `true` initially.
+        This means that the webhook does not prevent unsigned images from running if the image do not match any pattern in the policy.
         To promote to a production environment, VMware recommends that you re-install the webhook with `allow_unmatched_images` set to `false`.
 
 1. Install the package:
@@ -1253,7 +1253,7 @@ To install Supply Chain Security Tools - Sign:
     ```bash
     tanzu package install image-policy-webhook \
       --package-name image-policy-webhook.signing.run.tanzu.vmware.com \
-      --version 1.0.0-beta.0 \
+      --version 1.0.0-beta.1 \
       --namespace tap-install \
       --values-file scst-sign-values.yaml
     ```
@@ -1262,7 +1262,7 @@ To install Supply Chain Security Tools - Sign:
     ```bash
     $ tanzu package install image-policy-webhook \
         --package-name image-policy-webhook.signing.run.tanzu.vmware.com \
-        --version 1.0.0-beta.0 \
+        --version 1.0.0-beta.1 \
         --namespace tap-install \
         --values-file scst-sign-values.yaml
 
@@ -1281,7 +1281,7 @@ To install Supply Chain Security Tools - Sign:
 
    After you run the code above, the webhook is running.
 
-1. Create a service account named `image-policy-registry-credentials` in the `image-policy-system` namespace. When cosign `signs` an image, it generates a signature in an OCI-compliant format and pushes it to the registry alongside the image with the tag `<image-digest>.sig` To access this signature, the webhook needs the credentials of the registry that holds it.
+1. Create a service account named `image-policy-registry-credentials` in the `image-policy-system` namespace. When cosign `signs` an image, it generates a signature in an OCI-compliant format and pushes it to the registry alongside the image with the tag `sha256-<image-digest>.sig`. To access this signature, the webhook needs the credentials of the registry where the signature and image reside.
 
     * **If the images and signatures are in public registries:** No additional configuration is needed. Run:
         ```console
@@ -1310,7 +1310,11 @@ To install Supply Chain Security Tools - Sign:
         You can specify existing `imagePullSecrets` that are part of the `image-policy-system` namespace,
         or you can create new ones by running:
         ```bash
-        kubectl create secret docker-registry SECRET-1 --docker-server=<server> --docker-username=<username> --docker-password=<password> --namespace image-policy-system
+        kubectl create secret docker-registry SECRET-1 \
+          --namespace image-policy-system \
+          --docker-server=<server> \
+          --docker-username=<username> \
+          --docker-password=<password>
         ```
         Add additional secrets to `imagePullSecrets` as required.
 1. Create a `ClusterImagePolicy` to specify the images that the webhook validates.
@@ -1351,7 +1355,7 @@ To install Supply Chain Security Tools - Sign:
     - In the `verification.exclude.resources.namespaces` section, add any namespaces that run container images that are unsigned, such as `kube-system`.
     - If no `ClusterImagePolicy` is created, images are permitted into the cluster.
       with the following warning: `Warning: clusterimagepolicies.signing.run.tanzu.vmware.com "image-policy" not found`.
-    - For a quicker installation process in a non-production environment, VMware recommends you use the following YAML to create the `ClusterImagePolicy`. This YAML includes a cosign public key, which signed the cosign image at v1.2.1. The cosign public key validates the specified cosign image. You can also add additional namespaces to exclude in the `verification.exclude.resources.namespaces` section, such as any system namespaces.
+    - For a quicker installation process in a non-production environment, VMware recommends you use the following YAML to create the `ClusterImagePolicy`. This YAML includes a cosign public key, which signed the public cosign image for v1.2.1. The cosign public key validates the specified cosign image. You can also add additional namespaces to exclude in the `verification.exclude.resources.namespaces` section, such as any system namespaces.
         ```console
         cat <<EOF | kubectl apply -f -
         apiVersion: signing.run.tanzu.vmware.com/v1alpha1
@@ -1395,7 +1399,7 @@ To install Supply Chain Security Tools - Sign:
             For example:
             ```bash
             $ kubectl run bb --image=busybox --restart=Never
-            Warning: busybox didn\'t match any pattern in policy. Pod will be created as WarnOnUnmatched flag is true
+            Warning: busybox didn\'t match any pattern in policy. Pod will be created as AllowOnUnmatched flag is true
             pod/bb created
             ```
         1. Verify that a signed image, that does not validate with a configured public key, does not launch. Run:
@@ -1750,7 +1754,7 @@ Use the following procedure to verify that the packages are installed.
     cloud-native-runtimes  cnrs.tanzu.vmware.com                              1.0.2            Reconcile succeeded
     convention-controller  controller.conventions.apps.tanzu.vmware.com       0.4.2            Reconcile succeeded
     grype-scanner          grype.scanning.apps.tanzu.vmware.com               1.0.0-beta       Reconcile succeeded
-    image-policy-webhook   image-policy-webhook.signing.run.tanzu.vmware.com  1.0.0-beta.0     Reconcile succeeded
+    image-policy-webhook   image-policy-webhook.signing.run.tanzu.vmware.com  1.0.0-beta.1     Reconcile succeeded
     metadata-store         scst-store.tanzu.vmware.com                        1.0.0-beta.0     Reconcile succeeded
     scan-controller        scanning.apps.tanzu.vmware.com                     1.0.0-beta       Reconcile succeeded
     scp-toolkit            scp-toolkit.tanzu.vmware.com                       0.3.0            Reconcile succeeded
