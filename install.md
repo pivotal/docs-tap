@@ -1120,28 +1120,38 @@ To install Supply Chain Security Tools - Store:
 1. Follow the instructions in [Install Packages](#install-packages) above.
 
     ```sh
-    tanzu package available get scst-store.tanzu.vmware.com/1.0.0-beta.0 --values-schema -n tap-install
+    tanzu package available get scst-store.tanzu.vmware.com/1.0.0-beta.1 --values-schema -n tap-install
     ```
 
     For example:
 
     ```sh
-    $ tanzu package available get scst-store.tanzu.vmware.com/1.0.0-beta.0 --values-schema -n tap-install
-    | Retrieving package details for scst-store.tanzu.vmware.com/1.0.0-beta.0...
-      KEY               DEFAULT              TYPE     DESCRIPTION
-      auth_proxy_host   0.0.0.0              string   The binding ip address of the kube-rbac-proxy sidecar
-      db_name           metadata-store       string   The name of the database to use.
-      db_password                            string   The database user password.
-      db_port           5432                 string   The database port to use. This is the port to use when connecting to the database pod.
-      db_sslmode        verify-full          string   Determines the security connection between API server and Postgres database. This can be set to 'verify-ca' or 'verify-full'
-      db_user           metadata-store-user  string   The database user to create and use for updating and querying. The metadata postgres section create this user. The metadata api server uses this username to connect to the database.
-      api_host          localhost            string   The internal hostname for the metadata api endpoint. This will be used by the kube-rbac-proxy sidecar.
-      api_port          9443                 integer  The internal port for the metadata app api endpoint. This will be used by the kube-rbac-proxy sidecar.
-      app_service_type  NodePort             string   The type of service to use for the metadata app service. This can be set to 'Nodeport' or 'LoadBalancer'.
-      auth_proxy_port   8443                 integer  The external port address of the of the kube-rbac-proxy sidecar
-      db_host           metadata-store-db    string   The database hostname
-      storageClassName  manual               string   The storage class name of the persistent volume used by Postgres database for storing data. The default value will use the default class name defined on the cluster.
-      use_cert_manager  true                 string   Cert manager is required to be installed to use this flag. When true, this creates certificates object to be signed by cert manager for the API server and Postgres database. If false, the certificate object have to be provided by the user.
+    $ tanzu package available get scst-store.tanzu.vmware.com/1.0.0-beta.1 --values-schema -n tap-install
+    | Retrieving package details for scst-store.tanzu.vmware.com/1.0.0-beta.1...
+      KEY                     DEFAULT              TYPE     DESCRIPTION
+      app_service_type        NodePort             string   The type of service to use for the metadata app service. This can be set to 'Nodeport' or 'LoadBalancer'.
+      auth_proxy_host         0.0.0.0              string   The binding ip address of the kube-rbac-proxy sidecar
+      db_host                 metadata-store-db    string   The address to the postgres database host that the metdata-store app uses to connect. The default is set to metadata-store-db which is the postgres service name. Changing this does not change the postgres service name
+      db_replicas             1                    integer  The number of replicas for the metadata-store-db
+      db_sslmode              verify-full          string   Determines the security connection between API server and Postgres database. This can be set to 'verify-ca' or 'verify-full'
+      pg_limit_memory         4Gi                  string   Memory limit for postgres container in metadata-store-db deployment
+      app_req_cpu             100m                 string   CPU request for metadata-store-app container
+      app_limit_memory        512Mi                string   Memory limit for metadata-store-app container
+      app_req_memory          128Mi                string   Memory request for metadata-store-app container
+      auth_proxy_port         8443                 integer  The external port address of the of the kube-rbac-proxy sidecar
+      db_name                 metadata-store       string   The name of the database to use.
+      db_port                 5432                 string   The database port to use. This is the port to use when connecting to the database pod.
+      api_port                9443                 integer  The internal port for the metadata app api endpoint. This will be used by the kube-rbac-proxy sidecar.
+      app_limit_cpu           250m                 string   CPU limit for metadata-store-app container
+      app_replicas            1                    integer  The number of replicas for the metadata-store-app
+      db_user                 metadata-store-user  string   The database user to create and use for updating and querying. The metadata postgres section create this user. The metadata api server uses this username to connect to the database.
+      pg_req_memory           1Gi                  string   Memory request for postgres container in metadata-store-db deployment
+      priority_class_name                          string   If specified, this value is the name of the desired PriorityClass for the metadata-store-db deployment
+      use_cert_manager        true                 string   Cert manager is required to be installed to use this flag. When true, this creates certificates object to be signed by cert manager for the API server and Postgres database. If false, the certificate object have to be provided by the user.
+      api_host                localhost            string   The internal hostname for the metadata api endpoint. This will be used by the kube-rbac-proxy sidecar.
+      db_password                                  string   The database user password.
+      storageClassName                             string   The storage class name of the persistent volume used by Postgres database for storing data. The default value will use the default class name defined on the cluster.
+      databaseRequestStorage  10Gi                 string   The storage requested of the persistent volume used by Postgres database for storing data.
     ```
 
 1. Gather the values schema.
@@ -1152,21 +1162,18 @@ To install Supply Chain Security Tools - Store:
     ```yaml
     db_password: "PASSWORD-0123"
     app_service_type: "LoadBalancer"
-    db_host: "metadata-store-db"
     ```
     Where `PASSWORD-0123` is the same password used between deployments. For more information, see [Known Issues - Persistent Volume Retains Data](scst-store/known_issues.md#persistent-volume-retains-data).
 
     If your environment does not support `LoadBalancer`, omit the `app_service_type` line so that
     the default value `NodePort` is used instead.
 
-    > **Warning**: The package incorrectly declares the default value of `db_host` as `metadata-postgres`. The default is `metadata-store-db`. The only supported value is `metadata-store-db`.
-
 1. Install the package by running:
 
     ```sh
     tanzu package install metadata-store \
       --package-name scst-store.tanzu.vmware.com \
-      --version 1.0.0-beta.0 \
+      --version 1.0.0-beta.1 \
       --namespace tap-install \
       --values-file scst-store-values.yaml
     ```
@@ -1176,7 +1183,7 @@ To install Supply Chain Security Tools - Store:
     ```sh
     $ tanzu package install metadata-store \
       --package-name scst-store.tanzu.vmware.com \
-      --version 1.0.0-beta.0 \
+      --version 1.0.0-beta.1 \
       --namespace tap-install \
       --values-file scst-store-values.yaml
 
