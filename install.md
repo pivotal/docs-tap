@@ -10,12 +10,31 @@ For information, see [Installing Part I: Prerequisites, EULA, and CLI](install-g
 
 ## <a id='install-packages'></a> About Installing Packages
 
-The parameters that are required for the installation need to be defined in a YAML file.
+The parameters required for the installation need to be defined in a YAML file.
 
-The available parameters for the individual packages can be identified by the values schema
-that are defined in the package.
-You can get these parameters by running the command
-as described in the procedure below.
+The available parameters for the individual packages can be identified by the values schema 
+defined in the package.
+You can get these parameters by running the `--values-schema` command
+included in the installation procedures below.
+
+Follow the specific installation instructions for each package:
+
++ [Install Cloud Native Runtimes](#install-cnr)
++ [Install Application Accelerator](#install-app-accelerator)
++ [Install Convention Service](#install-convention-service)
++ [Install Source Controller](#install-source-controller)
++ [Install Developer Conventions](#install-developer-conventions)
++ [Install Application Live View](#install-app-live-view)
++ [Install TAP GUI](#install-tap-gui)
++ [Install Service Bindings](#install-service-bindings)
++ [Install Tanzu Build Service](#install-tbs)
++ [Install Supply Chain Choreographer](#install-scc)
++ [Install Default Supply Chain](#install-default-supply-chain)
++ [Install Supply Chain Security Tools - Store](#install-scst-store)
++ [Install Supply Chain Security Tools - Sign](#install-scst-sign)
++ [Install Supply Chain Security Tools - Scan](#install-scst-scan)
++ [Install API portal](#install-api-portal)
++ [Install Services Toolkit](#install-services-toolkit)
 
 ## <a id='add-package-repositories'></a> Add the Tanzu Application Platform Package Repository
 
@@ -103,15 +122,14 @@ To add the Tanzu Application Platform package repository:
       grype.scanning.apps.tanzu.vmware.com               Grype Scanner for Supply Chain Security Tools for VMware Tanzu - Scan  Default scan templates using Anchore Grype
       image-policy-webhook.signing.run.tanzu.vmware.com  Image Policy Webhook                                                   The Image Policy Webhook allows platform operators to define a policy that will use cosign to verify signatures of container images
       scanning.apps.tanzu.vmware.com                     Supply Chain Security Tools for VMware Tanzu - Scan                    Scan for vulnerabilities and enforce policies directly within Kubernetes native Supply Chains.
-      scp-toolkit.tanzu.vmware.com                       SCP Toolkit                                                            The SCP Toolkit
+      services-toolkit.tanzu.vmware.com                  Services Toolkit                                                       The Services Toolkit enables the management, lifecycle, discoverability and connectivity of Service Resources (databases, message queues, DNS records, etc.).
       scst-store.tanzu.vmware.com                        Tanzu Supply Chain Security Tools - Store                              The Metadata Store enables saving and querying image, package, and vulnerability data.
       service-bindings.labs.vmware.com                   Service Bindings for Kubernetes                                        Service Bindings for Kubernetes implements the Service Binding Specification.
     ```
 
-## <a id='general-procedure-to-install-a-package'></a> General Procedure to Install a Package
+## <a id='install-cnr'></a> Install Cloud Native Runtimes
 
-To install any package from the Tanzu Application Platform package repository:
-
+To install Cloud Native Runtimes:
 
 1. List version information for the package by running:
 
@@ -129,7 +147,7 @@ To install any package from the Tanzu Application Platform package repository:
       cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
     ```
 
-2. (Optional) To make changes to the default installation settings, run:
+1. (Optional) To make changes to the default installation settings, run:
 
     ```bash
     tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
@@ -147,32 +165,6 @@ To install any package from the Tanzu Application Platform package repository:
 
     For more information about values schema options, see the individual product documentation.
 
-3. Follow the specific installation instructions for each package:
-
-    + [Install Cloud Native Runtimes](#install-cnr)
-    + [Install Application Accelerator](#install-app-accelerator)
-    + [Install Convention Service](#install-convention-service)
-    + [Install Source Controller](#install-source-controller)
-    + [Install Developer Conventions](#install-developer-conventions)
-    + [Install Application Live View](#install-app-live-view)
-    + [Install TAP GUI](#install-tap-gui)
-    + [Install Learning Center](#install-learning-center)
-    + [Install Service Bindings](#install-service-bindings)
-    + [Install Tanzu Build Service](#install-tbs)
-    + [Install Supply Chain Choreographer](#install-scc)
-    + [Install Default Supply Chain](#install-default-supply-chain)
-    + [Install Supply Chain Security Tools - Store](#install-scst-store)
-    + [Install Supply Chain Security Tools - Sign](#install-scst-sign)
-    + [Install Supply Chain Security Tools - Scan](#install-scst-scan)
-    + [Install API portal](#install-api-portal)
-    + [Install Services Control Plane (SCP) Toolkit](#install-scp-toolkit)
-
-
-## <a id='install-cnr'></a> Install Cloud Native Runtimes
-
-To install Cloud Native Runtimes:
-
-1. Follow the instructions in [Install Packages](#install-packages) above.
 
 1. Gather values schema.
 
@@ -338,7 +330,40 @@ installation.
 
 To install Convention Controller:
 
-1. Follow the instructions in [Install Packages](#install-packages) above.
+1. List version information for the package by running:
+
+    ```bash
+    tanzu package available list PACKAGE-NAME --namespace tap-install
+    ```
+    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
+     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
+     For example:
+
+    ```bash
+    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for cnrs.tanzu.vmware.com...
+      NAME                   VERSION  RELEASED-AT
+      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    ```
+
+2. (Optional) To make changes to the default installation settings, run:
+
+    ```bash
+    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
+    ```
+    Where:
+
+    - `PACKAGE-NAME` is same as step 1 above.
+    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
+
+    For example:
+
+    ```bash
+    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
+    ```
+
+    For more information about values schema options, see the individual product documentation.
+
 
 1. Install the package by running:
 
@@ -398,7 +423,40 @@ See [Install Prerequisites](install-general.md#prereqs).
 
 To install Source Controller:
 
-1. Follow the instructions in [Install Packages](#install-packages) above.
+1. List version information for the package by running:
+
+    ```bash
+    tanzu package available list PACKAGE-NAME --namespace tap-install
+    ```
+    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
+     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
+     For example:
+
+    ```bash
+    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for cnrs.tanzu.vmware.com...
+      NAME                   VERSION  RELEASED-AT
+      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    ```
+
+1. (Optional) To make changes to the default installation settings, run:
+
+    ```bash
+    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
+    ```
+    Where:
+
+    - `PACKAGE-NAME` is same as step 1 above.
+    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
+
+    For example:
+
+    ```bash
+    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
+    ```
+
+    For more information about values schema options, see the individual product documentation.
+
 
 1. Install the package. Run:
 
@@ -486,7 +544,40 @@ See [Install Source Controller](#install-source-controller).
 
 To install Application Accelerator:
 
-1. Follow the instructions in [Install Packages](#install-packages) above.
+1. List version information for the package by running:
+
+    ```bash
+    tanzu package available list PACKAGE-NAME --namespace tap-install
+    ```
+    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
+     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
+     For example:
+
+    ```bash
+    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for cnrs.tanzu.vmware.com...
+      NAME                   VERSION  RELEASED-AT
+      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    ```
+
+1. (Optional) To make changes to the default installation settings, run:
+
+    ```bash
+    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
+    ```
+    Where:
+
+    - `PACKAGE-NAME` is same as step 1 above.
+    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
+
+    For example:
+
+    ```bash
+    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
+    ```
+
+    For more information about values schema options, see the individual product documentation.
+
 
 1. Create an `app-accelerator-values.yaml` using the following example code:
 
@@ -563,7 +654,40 @@ This section provides a quick-start guide for installing Tanzu Build Service as 
 
 To install Tanzu Build Service using the Tanzu CLI:
 
-1. Follow the instructions in [Install Packages](#install-packages) above.
+1. List version information for the package by running:
+
+    ```bash
+    tanzu package available list PACKAGE-NAME --namespace tap-install
+    ```
+    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
+     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
+     For example:
+
+    ```bash
+    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for cnrs.tanzu.vmware.com...
+      NAME                   VERSION  RELEASED-AT
+      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    ```
+
+1. (Optional) To make changes to the default installation settings, run:
+
+    ```bash
+    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
+    ```
+    Where:
+
+    - `PACKAGE-NAME` is same as step 1 above.
+    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
+
+    For example:
+
+    ```bash
+    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
+    ```
+
+    For more information about values schema options, see the individual product documentation.
+
 
 1. Gather values schema.
 
@@ -685,7 +809,7 @@ Added installed package 'cartographer' in namespace 'default'
 
 To install Default Supply Chain:
 
-1. Follow the instructions in [Install Packages](#install-packages) above to gather the values schema.
+1. Gather the values schema:
 
     ```bash
     tanzu package available get default-supply-chain.tanzu.vmware.com/0.2.0 --values-schema -n tap-install
@@ -737,7 +861,24 @@ To install developer conventions:
 
 **Prerequisite**: Convention Service installed on the cluster, see [Install Convention Service](#install-convention-service).
 
-1. Follow the instructions in [Install Packages](#install-packages) above.
+1. List version information for the package by running:
+
+    ```bash
+    tanzu package available list PACKAGE-NAME --namespace tap-install
+    ```
+    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
+     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
+     For example:
+
+    ```bash
+    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for cnrs.tanzu.vmware.com...
+      NAME                   VERSION  RELEASED-AT
+      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    ```
+
+1. To make changes to the default installation settings, run:
+
 
     ```bash
     tanzu package available get developer-conventions.tanzu.vmware.com/0.2.0 -n tap-install
@@ -780,39 +921,76 @@ To install Application Live View:
 
 **Prerequisite**: Convention Service installed on the cluster, see [Install Convention Service](#install-convention-service).
 
-1. Follow the instructions in [Install Packages](#install-packages) above.
+1. List version information for the package by running:
+
+    ```bash
+    tanzu package available list PACKAGE-NAME --namespace tap-install
+    ```
+    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
+     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
+     For example:
+
+    ```bash
+    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for cnrs.tanzu.vmware.com...
+      NAME                   VERSION  RELEASED-AT
+      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    ```
+
+1. (Optional) To make changes to the default installation settings, run:
+
+    ```bash
+    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
+    ```
+    Where:
+
+    - `PACKAGE-NAME` is same as step 1 above.
+    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
+
+    For example:
+
+    ```bash
+    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
+    ```
+
+    For more information about values schema options, see the individual product documentation.
+
 1. Gather the values schema.
-1. Create namespace app-live-view to deploy Application Live View components by running
+1. Create a namespace to deploy the Application Live View server and its components. For example:
 
    ```bash
    kubectl create ns app-live-view
    ```
 
 1. Create a `app-live-view-values.yaml` using the following sample as a guide:
-    Sample `app-live-view-values.yaml` for Application Live View:
 
    ```yaml
    ---
    connector_namespaces: [default]
    server_namespace: app-live-view
+   service_type: LoadBalancer
    ```
-
-   The `server_namespace` is the namespace where the Application Live View server is deployed.
-   You should use the namespace you created earlier, named `app-live-view`.
-   The `connector_namespaces` is a list of existing namespaces where you want
+   
+   Where:
+   
+   - `connector_namespaces` is a list of namespaces where you want
    Application Live View to monitor your apps. An instance of the
    Application Live View Connector will be deployed to each of those namespaces.
+   - `server_namespace` is the namespace where the Application Live View server and its components are deployed. 
+   VMware reccommends using the namespace you created earlier, named `app-live-view`.
+   - `service_type` is the Kubernetes service type for the Application Live View server.
+   This can be LoadBalancer, NodePort, or ClusterIP.
 
 1. Install the package by running:
 
     ```console
-    tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.2.0 -n tap-install -f app-live-view-values.yaml
+    tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.3.0 -n tap-install -f app-live-view-values.yaml
     ```
 
     For example:
 
     ```console
-    $ tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.2.0 -n tap-install -f app-live-view-values.yaml
+    $ tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.3.0 -n tap-install -f app-live-view-values.yaml
     - Installing package 'appliveview.tanzu.vmware.com'
     | Getting package metadata for 'appliveview.tanzu.vmware.com'
     | Creating service account 'app-live-view-tap-install-sa'
@@ -826,7 +1004,7 @@ To install Application Live View:
     ```
 
     For more information about Application Live View,
-    see the [Application Live View documentation](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.1/docs/GUID-index.html).
+    see the [Application Live View documentation](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.3/docs/GUID-index.html).
 
 1. Verify the package install by running:
 
@@ -841,109 +1019,206 @@ To install Application Live View:
     | Retrieving installation details for cc...
     NAME:                    app-live-view
     PACKAGE-NAME:            appliveview.tanzu.vmware.com
-    PACKAGE-VERSION:         0.2.0
+    PACKAGE-VERSION:         0.3.0
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
     ```
     STATUS should be `Reconcile succeeded`.
 
-## <a id='install-tap-gui'></a> Install TAP GUI
 
-**Prerequisites (in addition to TAP requirements)**
+To access the Application Live View UI:
+    
+1. List the resources deployed in the namespace where the Application Live View server and its components are deployed by running:
+
+    ```bash
+    kubectl get -n app-live-view service,deploy,pod
+    ```
+
+    The output will be similar to the following:
+
+    ```
+    NAME                                 TYPE           CLUSTER-IP       EXTERNAL-IP                                                              PORT(S)        AGE
+    service/application-live-view-5112   LoadBalancer   10.103.108.215   a031c3c2d27334cf1857546e59a5b42c-305213456.us-east-2.elb.amazonaws.com   80:31999/TCP   28h
+    service/application-live-view-7000   ClusterIP      10.104.55.249    <none>                                                                   7000/TCP       28h
+    service/appliveview-webhook          ClusterIP      10.98.15.167     <none>                                                                   443/TCP        28h
+
+    NAME                                                   READY   UP-TO-DATE   AVAILABLE   AGE
+    deployment.apps/application-live-view-crd-controller   1/1     1            1           28h
+    deployment.apps/application-live-view-server           1/1     1            1           28h
+    deployment.apps/appliveview-webhook                    1/1     1            1           28h
+
+    NAME                                                        READY   STATUS    RESTARTS   AGE
+    pod/application-live-view-crd-controller-69bcb99d7f-dkqlf   1/1     Running   0          28h
+    pod/application-live-view-server-866dc675d9-2mkh4           1/1     Running   0          27h
+    pod/appliveview-webhook-6479f7986-pvjfp                     1/1     Running   0          28h
+    ```
+
+1. If the service type of application-live-view-5112 is `LoadBalancer`, you can access the Application Live View UI using the listed EXTERNAL-IP address for the service application-live-view-5112. Access the server at: http://ae27a3a69e8e34e35835619eb13ed59f-1054315375.ap-south-1.elb.amazonaws.com
+
+1. If your cluster does not support LoadBalancer and you use `NodePort`, you can port-forward with kubectl. To port-forward the UI server, run the following command in a separate terminal:
+
+    ```bash
+    kubectl -n app-live-view port-forward service/application-live-view-5112 5112:80
+    ```
+    You can access the server at http://localhost:5112.
+
+1. If the service type of application-live-view-5112 is `ClusterIP`, you can access the Application Live View UI using an ingress controller.
+
+## <a id='install-tap-gui'></a> Install the Tanzu Application Platform GUI
+
+To install the Tanzu Application Platform GUI, see the sections below.
+
+### Prerequisites in Addition to Tanzu Application Platform Requirements
 
 **Required**
 
-- Git repository for the software catalog(s) and a token allowing read access. Supported Git infrastructure includes:
+- Git repository for the software catalogs and a token allowing read access.
+Supported Git infrastructure includes:
     - GitHub
     - GitLab
     - Azure DevOps
-- Blank Software Catalog from Tanzu Application section of Tanzu Network
+- Blank Software Catalog from the Tanzu Application section of Tanzu Network
 
 **Optional**
 
-- Tanzu Application Platform UI has plugins for the below Tanzu Application Platform tools. If you plan on running workloads with these capabilities, you need those tools installed alongside Tanzu Application Platform UI. If you choose not to deploy workloads with these tools, the UI shows menu options that you cannot click on.
-    - Tanzu Cloud Native Runtimes installed
-    - Tanzu App Live View installed
-- Data Cache - Your software catalog is stored on Git infrastructure (as mentioned in the Required pre-requisites) however, you can optionally use a PostgreSQL database to cache this information. If you do not specify any values here, a SQLite in-memory database is used instead.
+- **Tanzu Application Platform tools:** the Tanzu Application Platform GUI has plugins for the
+below Tanzu Application Platform tools. If you plan on running workloads with these capabilities,
+you need these tools installed alongside Tanzu Application Platform GUI.
+If you choose not to deploy workloads with these tools, the GUI shows menu options that you cannot
+click on.
+    - Tanzu Cloud Native Runtimes
+    - Tanzu App Live View
+- **Data cache:** Your software catalog is stored on Git infrastructure -- as mentioned in the
+required prerequisites above -- however, you also have the option to use a PostgreSQL database to
+cache this information. If you do not specify any values here, a SQLite in-memory database is used
+instead.
     - PostgreSQL database and connection information
-- Authentication
+- **Authentication:**
     - OIDC Identity Provider connection information
-- Customer Developed Documentation
+- **Customer-developed Documentation:**
     - Techdocs object storage location (S3)
 
-To install the Tanzu Application Platform UI:
+### Procedure
 
-1. Follow the instructions in [Install Packages](#install-packages) above.
+To install the Tanzu Application Platform GUI:
 
-1. To see a list of all the values that you can specify when configuring the Tanzu Application Platform UI, run:
+1. List version information for the package by running:
+
+    ```bash
+    tanzu package available list PACKAGE-NAME --namespace tap-install
+    ```
+    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
+     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
+     For example:
+
+    ```bash
+    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for cnrs.tanzu.vmware.com...
+      NAME                   VERSION  RELEASED-AT
+      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    ```
+
+2. (Optional) To make changes to the default installation settings, run:
+
+    ```bash
+    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
+    ```
+    Where:
+
+    - `PACKAGE-NAME` is same as step 1 above.
+    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
+
+    For example:
+
+    ```bash
+    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
+    ```
+
+    For more information about values schema options, see the individual product documentation.
+
+1. See a list of all the values that you can specify when configuring the
+Tanzu Application Platform GUI by running:
 
     ```console
     $ tanzu package available get tap-gui.tanzu.vmware.com/0.3.0 --values-schema -n tap-install
     ```
 
-1. Create a `tap-gui-values.yaml` using the following example code, replacing all occurrences of `<VALUE>` with your respective values:
+1. Create `tap-gui-values.yaml` using the following example code, replacing all `<PLACEHOLDERS>`
+with your relevant values. The meanings of some placeholders are explained below this example.
 
     ```yaml
     namespace: tap-gui
-    service_type: <SERVICE_TYPE> # Replace with your inbound traffic mechanism. Supported values are LoadBalancer and Ingress
-    app-config: # The below section follows the same configuration model that Backstage uses, documented here: https://backstage.io/docs/conf/
+    service_type: <SERVICE-TYPE>
+    app-config:
       app:
-        baseUrl: <EXTERNAL_IP>:<PORT> # Replace with your Ingress hostname or Loadbalancer information
-      integrations: #This example uses Gitlab. If you want additional integrations see the format here: https://backstage.io/docs/integrations/
+        baseUrl: <EXTERNAL-IP>:<PORT>
+      integrations:
         gitlab:
-          - host: <GITLAB_HOST>
-            apiBaseUrl: https://<GITLAB_URL>/api/v4
-            token: <GITLAB_TOKEN>
-      techdocs:
-        builder: 'external'
-        generator:
-          runIn: 'docker'
-        publisher:
-          type: 'awsS3'
-          awsS3:
-            bucketName: '<S3_BUCKET_NAME>'
-            credentials:
-              accessKeyId: '<S3_ACCESS_KEY>'
-              secretAccessKey: '<S3_SECRET_KEY>'
-            region: '<S3_REGION>'
-            s3ForcePathStyle: false # Set value to true if using local S3 solution (Minio)
-      auth:
-        environment: development
-        session:
-          secret: custom session secret # Unique string required by auth-backend to save browser session state
-        providers:
-          oidc: # Detailed configuration of the OIDC auth capabilities are documented here: https://backstage.io/docs/auth/oauth
-            development:
-              # metadataUrl is a JSON file with generic oidc provider config. It contains the authorizationUrl and tokenUrl. These values are read from the metadataUrl file by Backstage and so they do not need to be specified explicitly here.
-              metadataUrl: <AUTH_OIDC_METADATA_URL>
-              clientId: <AUTH_OIDC_CLIENT_ID>
-              clientSecret: <AUTH_OIDC_CLIENT_SECRET>
-              tokenSignedResponseAlg: <AUTH_OIDC_TOKEN_SIGNED_RESPONSE_ALG> # default='RS256'
-              scope: <AUTH_OIDC_SCOPE> # default='openid profile email'
-              prompt: auto # default=none (allowed values: auto, none, consent, login)
+          - host: <GITLAB-HOST>
+            apiBaseUrl: https://<GITLAB-URL>/api/v4
+            token: <GITLAB-TOKEN>
+      # techdocs: # Only needed if you want to enable TechDocs capability. Requires running the TechDoc CLI to generate TechDocs from catalog Markdown to S3 compatible bucket called out in Additional Resources documentation.
+      #  builder: 'external'
+      #  generator:
+      #    runIn: 'docker'
+      #  publisher:
+      #    type: 'awsS3'
+      #    awsS3:
+      #      bucketName: '<S3-BUCKET-NAME>'
+      #      credentials:
+      #        accessKeyId: '<S3-ACCESS-KEY>'
+      #        secretAccessKey: '<S3-SECRET-KEY>'
+      #      region: '<S3-REGION>'
+      #      s3ForcePathStyle: false # Set value to true if using local S3 solution (Minio)  
+     
+      # auth: # Only needed if you want to enable OIDC login integration, otherwise only Guest mode is enabled
+      #  environment: development
+      #  session:
+      #    secret: custom session secret # Unique string required by auth-backend to save browser session state
+      #  providers:
+      #    oidc: # Detailed configuration of the OIDC auth capabilities are documented here: https://backstage.io/docs/auth/oauth
+      #      development:
+      #        metadataUrl: <AUTH-OIDC-METADATA-URL> # metadataUrl is a json file with generic oidc provider config. It contains the authorizationUrl and tokenUrl. These values are read from the metadataUrl file by Backstage and so they do not need to be specified explicitly here.
+      #        clientId: <AUTH-OIDC-CLIENT-ID>
+      #        clientSecret: <AUTH-OIDC-CLIENT-SECRET>
+      #        tokenSignedResponseAlg: <AUTH-OIDC-TOKEN-SIGNED-RESPONSE-ALG> # default='RS256'
+      #        scope: <AUTH-OIDC-SCOPE> # default='openid profile email'
+      #        prompt: <TYPE> # default=none (allowed values: auto, none, consent, login)
       catalog:
         locations:
           - type: url
-            target: https://<GIT_CATALOG_URL>/catalog-info.yaml
+            target: https://<GIT-CATALOG-URL>/catalog-info.yaml
       backend:
-          baseUrl: <EXTERNAL_IP>:<PORT> # Replace with your Ingress hostname or Loadbalancer information
+          baseUrl: <EXTERNAL-IP>:<PORT>
           cors:
-              origin: <EXTERNAL_IP>:<PORT> # Replace with your Ingress hostname or Loadbalancer information
-      # database: # Only needed if you intend to support with an existing PostgreSQL database (Catalog is still refreshed from Git)
+              origin: <EXTERNAL-IP>:<PORT>
+      # database: # Only needed if you intend to support with an existing PostgreSQL database. The catalog is still refreshed from Git.
       #     client: pg
       #      connection:
-      #        host: <PGSQL_HOST>
-      #        port: <PGSQL_PORT>
-      #        user: <PGSQL_USER>
-      #        password: <PGSQL_PWD>
+      #        host: <PGSQL-HOST>
+      #        port: <PGSQL-PORT>
+      #        user: <PGSQL-USER>
+      #        password: <PGSQL-PWD>
       #        ssl: {rejectUnauthorized: false} # May be needed if using self-signed certs
     ```
+    Where:
+
+    - `<SERVICE-TYPE>` is your inbound traffic mechanism: LoadBalancer or Ingress.
+    - `<EXTERNAL-IP>:<PORT>` is your Ingress hostname or LoadBalancer information.
+    - `<GIT-CATALOG-URL>` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download) or a Backstage compliant catalog that you've already built and posted on the Git infrastucture that you specified in the Integration section.
+
+    > **Note:** The `app-config` section follows the same configuration model that Backstage uses.
+    For more information, see the [Backstage documentation](https://backstage.io/docs/conf/).
+    Detailed configuration of the OIDC auth capabilities are in this [Backstage OAuth documentation](https://backstage.io/docs/auth/oauth).
+
+    > **Note:** The `integrations` section uses GitLab. If you want additional integrations see the
+    format in this [Backstage integration documentation](https://backstage.io/docs/integrations/).
 
 1. Install the package by running:
 
     ```console
-    $ tanzu package install tap-gui \
+    tanzu package install tap-gui \
      --package-name tap-gui.tanzu.vmware.com \
      --version 0.3.0 \
      -f tap-gui-values.yaml
@@ -965,10 +1240,10 @@ To install the Tanzu Application Platform UI:
      Added installed package 'tap-gui' in namespace 'tap-install'
     ```
 
-1. Verify the package install by running:
+1. Verify that the package installed by running:
 
     ```console
-    $ tanzu package installed get tap-gui -n tap-install
+    tanzu package installed get tap-gui -n tap-install
     ```
 
     For example:
@@ -983,9 +1258,10 @@ To install the Tanzu Application Platform UI:
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
     ```
-    STATUS should be `Reconcile succeeded`.
+    `STATUS` should be `Reconcile succeeded`.
 
-1. To access TAP UI, use the service you exposed above in the `service_type` field in the values file.
+1. To access Tanzu Application Platform GUI, use the service you exposed above in the
+`service_type` field in the values file.
 
 ## <a id='install-learning-center'></a> Install Learning Center
 
@@ -1098,7 +1374,39 @@ To install Tanzu Learning Center:
 
  Use the following procedure to install Service Bindings:
 
-1. Follow the instructions in [Install Packages](#install-packages) above.
+1. List version information for the package by running:
+
+    ```bash
+    tanzu package available list PACKAGE-NAME --namespace tap-install
+    ```
+    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
+     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
+     For example:
+
+    ```bash
+    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for cnrs.tanzu.vmware.com...
+      NAME                   VERSION  RELEASED-AT
+      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    ```
+
+2. (Optional) To make changes to the default installation settings, run:
+
+    ```bash
+    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
+    ```
+    Where:
+
+    - `PACKAGE-NAME` is same as step 1 above.
+    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
+
+    For example:
+
+    ```bash
+    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
+    ```
+
+    For more information about values schema options, see the individual product documentation.
 
 1. Install the package. Run:
 
@@ -1154,31 +1462,57 @@ To install Tanzu Learning Center:
 
 To install Supply Chain Security Tools - Store:
 
-1. Follow the instructions in [Install Packages](#install-packages) above.
+1. List version information for the package by running:
+
+    ```bash
+    tanzu package available list PACKAGE-NAME --namespace tap-install
+    ```
+    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
+     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
+     For example:
+
+    ```bash
+    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for cnrs.tanzu.vmware.com...
+      NAME                   VERSION  RELEASED-AT
+      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    ```
+
+1. (Optional) To make changes to the default installation settings, run:
 
     ```sh
-    tanzu package available get scst-store.tanzu.vmware.com/1.0.0-beta.0 --values-schema -n tap-install
+    tanzu package available get scst-store.tanzu.vmware.com/1.0.0-beta.1 --values-schema -n tap-install
     ```
 
     For example:
 
     ```sh
-    $ tanzu package available get scst-store.tanzu.vmware.com/1.0.0-beta.0 --values-schema -n tap-install
-    | Retrieving package details for scst-store.tanzu.vmware.com/1.0.0-beta.0...
-      KEY               DEFAULT              TYPE     DESCRIPTION
-      auth_proxy_host   0.0.0.0              string   The binding ip address of the kube-rbac-proxy sidecar
-      db_name           metadata-store       string   The name of the database to use.
-      db_password                            string   The database user password.
-      db_port           5432                 string   The database port to use. This is the port to use when connecting to the database pod.
-      db_sslmode        verify-full          string   Determines the security connection between API server and Postgres database. This can be set to 'verify-ca' or 'verify-full'
-      db_user           metadata-store-user  string   The database user to create and use for updating and querying. The metadata postgres section create this user. The metadata api server uses this username to connect to the database.
-      api_host          localhost            string   The internal hostname for the metadata api endpoint. This will be used by the kube-rbac-proxy sidecar.
-      api_port          9443                 integer  The internal port for the metadata app api endpoint. This will be used by the kube-rbac-proxy sidecar.
-      app_service_type  NodePort             string   The type of service to use for the metadata app service. This can be set to 'Nodeport' or 'LoadBalancer'.
-      auth_proxy_port   8443                 integer  The external port address of the of the kube-rbac-proxy sidecar
-      db_host           metadata-store-db    string   The database hostname
-      storageClassName  manual               string   The storage class name of the persistent volume used by Postgres database for storing data. The default value will use the default class name defined on the cluster.
-      use_cert_manager  true                 string   Cert manager is required to be installed to use this flag. When true, this creates certificates object to be signed by cert manager for the API server and Postgres database. If false, the certificate object have to be provided by the user.
+    $ tanzu package available get scst-store.tanzu.vmware.com/1.0.0-beta.1 --values-schema -n tap-install
+    | Retrieving package details for scst-store.tanzu.vmware.com/1.0.0-beta.1...
+      KEY                     DEFAULT              TYPE     DESCRIPTION
+      app_service_type        NodePort             string   The type of service to use for the metadata app service. This can be set to 'Nodeport' or 'LoadBalancer'.
+      auth_proxy_host         0.0.0.0              string   The binding ip address of the kube-rbac-proxy sidecar
+      db_host                 metadata-store-db    string   The address to the postgres database host that the metdata-store app uses to connect. The default is set to metadata-store-db which is the postgres service name. Changing this does not change the postgres service name
+      db_replicas             1                    integer  The number of replicas for the metadata-store-db
+      db_sslmode              verify-full          string   Determines the security connection between API server and Postgres database. This can be set to 'verify-ca' or 'verify-full'
+      pg_limit_memory         4Gi                  string   Memory limit for postgres container in metadata-store-db deployment
+      app_req_cpu             100m                 string   CPU request for metadata-store-app container
+      app_limit_memory        512Mi                string   Memory limit for metadata-store-app container
+      app_req_memory          128Mi                string   Memory request for metadata-store-app container
+      auth_proxy_port         8443                 integer  The external port address of the of the kube-rbac-proxy sidecar
+      db_name                 metadata-store       string   The name of the database to use.
+      db_port                 5432                 string   The database port to use. This is the port to use when connecting to the database pod.
+      api_port                9443                 integer  The internal port for the metadata app api endpoint. This will be used by the kube-rbac-proxy sidecar.
+      app_limit_cpu           250m                 string   CPU limit for metadata-store-app container
+      app_replicas            1                    integer  The number of replicas for the metadata-store-app
+      db_user                 metadata-store-user  string   The database user to create and use for updating and querying. The metadata postgres section create this user. The metadata api server uses this username to connect to the database.
+      pg_req_memory           1Gi                  string   Memory request for postgres container in metadata-store-db deployment
+      priority_class_name                          string   If specified, this value is the name of the desired PriorityClass for the metadata-store-db deployment
+      use_cert_manager        true                 string   Cert manager is required to be installed to use this flag. When true, this creates certificates object to be signed by cert manager for the API server and Postgres database. If false, the certificate object have to be provided by the user.
+      api_host                localhost            string   The internal hostname for the metadata api endpoint. This will be used by the kube-rbac-proxy sidecar.
+      db_password                                  string   The database user password.
+      storageClassName                             string   The storage class name of the persistent volume used by Postgres database for storing data. The default value will use the default class name defined on the cluster.
+      databaseRequestStorage  10Gi                 string   The storage requested of the persistent volume used by Postgres database for storing data.
     ```
 
 1. Gather the values schema.
@@ -1189,21 +1523,18 @@ To install Supply Chain Security Tools - Store:
     ```yaml
     db_password: "PASSWORD-0123"
     app_service_type: "LoadBalancer"
-    db_host: "metadata-store-db"
     ```
     Where `PASSWORD-0123` is the same password used between deployments. For more information, see [Known Issues - Persistent Volume Retains Data](scst-store/known_issues.md#persistent-volume-retains-data).
 
     If your environment does not support `LoadBalancer`, omit the `app_service_type` line so that
     the default value `NodePort` is used instead.
 
-    > **Warning**: The package incorrectly declares the default value of `db_host` as `metadata-postgres`. The default is `metadata-store-db`. The only supported value is `metadata-store-db`.
-
 1. Install the package by running:
 
     ```sh
     tanzu package install metadata-store \
       --package-name scst-store.tanzu.vmware.com \
-      --version 1.0.0-beta.0 \
+      --version 1.0.0-beta.1 \
       --namespace tap-install \
       --values-file scst-store-values.yaml
     ```
@@ -1213,7 +1544,7 @@ To install Supply Chain Security Tools - Store:
     ```sh
     $ tanzu package install metadata-store \
       --package-name scst-store.tanzu.vmware.com \
-      --version 1.0.0-beta.0 \
+      --version 1.0.0-beta.1 \
       --namespace tap-install \
       --values-file scst-store-values.yaml
 
@@ -1233,65 +1564,97 @@ To install Supply Chain Security Tools - Store:
 
 ## <a id='install-scst-sign'></a> Install Supply Chain Security Tools - Sign
 
-*Note*: **This component rejects pods from starting if the webhook fails or is misconfigured**. If the webhook is preventing the cluster from functioning, you can delete the configuration by running:
+Install Supply Chain Security Tools - Sign rejects pods from starting if the webhook fails or is misconfigured.
+If the webhook is preventing the cluster from functioning, you can delete the configuration by running:
 
 ```bash
 kubectl delete MutatingWebhookConfiguration image-policy-mutating-webhook-configuration
 ```
 For example, pods can be rejected from starting if all nodes running the
 webhook are scaled down and the webhook is forced to restart at the same time as
-other system components.  A deadlock can occur when some components expect the
+other system components. A deadlock can occur when some components expect the
 webhook to run in order to verify their image signatures and the webhook is not
-running yet.  By deleting the `MutatingWebhookConfiguration` resource you can
-resolve the deadlock and enable the system to start up again.  Once the system
-is stable you can restore the `MutatingWebhookConfiguration` resource to
+running yet. By deleting the `MutatingWebhookConfiguration` resource, you can
+resolve the deadlock and enable the system to start up again. Once the system
+is stable, you can restore the `MutatingWebhookConfiguration` resource to
 re-enable image signing enforcement.
 
-**Prerequisites**: As part of the install instructions, we will ask you to provide a cosign public key to use to validate signed images. We will provide an example cosign public key that will be able to validate an image from cosign, but if you wish to provide your own key and images, you can follow the [cosign quick start guide](https://github.com/sigstore/cosign#quick-start) to generate your own keys and sign an image.
+**Prerequisites**: As part of the install instructions, we will ask you to provide a cosign public key to use to validate signed images. We will provide an example cosign public key that will be able to validate an image from the public cosign registry. If you wish to provide your own key and images, you can follow the [cosign quick start guide](https://github.com/sigstore/cosign#quick-start) to generate your own keys and sign an image.
 
 To install Supply Chain Security Tools - Sign:
 
-1. Follow the instructions in [Install Packages](#install-packages) above.
-1. Gather the values schema
+1. List version information for the package by running:
 
     ```bash
-    tanzu package available get image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.0 --values-schema --namespace tap-install
+    tanzu package available list PACKAGE-NAME --namespace tap-install
+    ```
+    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
+     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
+     For example:
+
+    ```bash
+    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for cnrs.tanzu.vmware.com...
+      NAME                   VERSION  RELEASED-AT
+      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    ```
+
+2. (Optional) To make changes to the default installation settings, run:
+
+    ```bash
+    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
+    ```
+    Where:
+
+    - `PACKAGE-NAME` is same as step 1 above.
+    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
+
+    For example:
+
+    ```bash
+    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
+    ```
+
+    For more information about values schema options, see the individual product documentation.
+
+1. Gather the values schema:
+
+    ```bash
+    tanzu package available get image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.1 --values-schema --namespace tap-install
     ```
 
     For example:
     ```bash
-    $ tanzu package available get image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.0 --values-schema --namespace tap-install
-    | Retrieving package details for image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.0...
-      KEY                DEFAULT  TYPE     DESCRIPTION
-      warn_on_unmatched  false    boolean  Feature flag for enabling admission of images that do not match
-                                           any patterns in the image policy configuration.
-                                           Set to true to allow images that do not match any patterns into
-                                           the cluster with a warning.
+    $ tanzu package available get image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.1 --values-schema --namespace tap-install
+    | Retrieving package details for image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.1...
+      KEY                     DEFAULT  TYPE     DESCRIPTION
+      allow_unmatched_images  false    boolean  Feature flag for enabling admission of images that do not match
+                                                any patterns in the image policy configuration.
+                                                Set to true to allow images that do not match any patterns into
+                                                the cluster with a warning.
     ```
 
-1. Create a file named `scst-sign-values.yaml` with a `warn_on_unmatched` property.
-    * **For non-production environments**: To warn the user when images do not match any pattern in the policy, but still allow them into the cluster, set `warn_on_unmatched` to `true`.
+1. Create a file named `scst-sign-values.yaml` with a `allow_unmatched_images` property.
+    * **For non-production environments**: To warn the user when images do not match any pattern in the policy, but still allow them into the cluster, set `allow_unmatched_images` to `true`.
         ```yaml
         ---
-        warn_on_unmatched: true
+        allow_unmatched_images: true
         ```
-    * **For production environments**: To deny images that do not match any pattern in the policy, set `warn_on_unmatched` to `false`.
+    * **For production environments**: To deny images that do not match any pattern in the policy, set `allow_unmatched_images` to `false`.
         ```yaml
         ---
-        warn_on_unmatched: false
+        allow_unmatched_images: false
         ```
-        **Note**: For a quicker installation process, VMware recommends that you set
-        `warn_on_unmatched` to `true`.
-        This means that the webhook does not prevent unsigned images from running.
-        To promote to a production environment, VMware recommends that you re-install the webhook
-        with `warn_on_unmatched` set to `false`.
+        **Note**: For a quicker installation process, VMware recommends that you set `allow_unmatched_images` to `true` initially.
+        This means that the webhook does not prevent unsigned images from running if the image do not match any pattern in the policy.
+        To promote to a production environment, VMware recommends that you re-install the webhook with `allow_unmatched_images` set to `false`.
 
 1. Install the package:
 
     ```bash
     tanzu package install image-policy-webhook \
       --package-name image-policy-webhook.signing.run.tanzu.vmware.com \
-      --version 1.0.0-beta.0 \
+      --version 1.0.0-beta.1 \
       --namespace tap-install \
       --values-file scst-sign-values.yaml
     ```
@@ -1300,7 +1663,7 @@ To install Supply Chain Security Tools - Sign:
     ```bash
     $ tanzu package install image-policy-webhook \
         --package-name image-policy-webhook.signing.run.tanzu.vmware.com \
-        --version 1.0.0-beta.0 \
+        --version 1.0.0-beta.1 \
         --namespace tap-install \
         --values-file scst-sign-values.yaml
 
@@ -1319,7 +1682,7 @@ To install Supply Chain Security Tools - Sign:
 
    After you run the code above, the webhook is running.
 
-1. Create a service account named `registry-credentials` in the `image-policy-system` namespace. When cosign `signs` an image, it generates a signature in an OCI-compliant format and pushes it to the registry alongside the image with the tag `<image-digest>.sig` To access this signature, the webhook needs the credentials of the registry that holds it.
+1. Create a service account named `image-policy-registry-credentials` in the `image-policy-system` namespace. When cosign `signs` an image, it generates a signature in an OCI-compliant format and pushes it to the registry alongside the image with the tag `sha256-<image-digest>.sig`. To access this signature, the webhook needs the credentials of the registry where the signature and image reside.
 
     * **If the images and signatures are in public registries:** No additional configuration is needed. Run:
         ```console
@@ -1327,7 +1690,7 @@ To install Supply Chain Security Tools - Sign:
         apiVersion: v1
         kind: ServiceAccount
         metadata:
-          name: registry-credentials
+          name: image-policy-registry-credentials
           namespace: image-policy-system
         EOF
         ```
@@ -1338,7 +1701,7 @@ To install Supply Chain Security Tools - Sign:
         apiVersion: v1
         kind: ServiceAccount
         metadata:
-          name: registry-credentials
+          name: image-policy-registry-credentials
           namespace: image-policy-system
         imagePullSecrets:
         - name: SECRET-1
@@ -1348,7 +1711,11 @@ To install Supply Chain Security Tools - Sign:
         You can specify existing `imagePullSecrets` that are part of the `image-policy-system` namespace,
         or you can create new ones by running:
         ```bash
-        kubectl create secret docker-registry SECRET-1 --docker-server=<server> --docker-username=<username> --docker-password=<password> --namespace image-policy-system
+        kubectl create secret docker-registry SECRET-1 \
+          --namespace image-policy-system \
+          --docker-server=<server> \
+          --docker-username=<username> \
+          --docker-password=<password>
         ```
         Add additional secrets to `imagePullSecrets` as required.
 1. Create a `ClusterImagePolicy` to specify the images that the webhook validates.
@@ -1389,7 +1756,7 @@ To install Supply Chain Security Tools - Sign:
     - In the `verification.exclude.resources.namespaces` section, add any namespaces that run container images that are unsigned, such as `kube-system`.
     - If no `ClusterImagePolicy` is created, images are permitted into the cluster.
       with the following warning: `Warning: clusterimagepolicies.signing.run.tanzu.vmware.com "image-policy" not found`.
-    - For a quicker installation process in a non-production environment, VMware recommends you use the following YAML to create the `ClusterImagePolicy`. This YAML includes a cosign public key, which signed the cosign image at v1.2.1. The cosign public key validates the specified cosign image. You can also add additional namespaces to exclude in the `verification.exclude.resources.namespaces` section, such as any system namespaces.
+    - For a quicker installation process in a non-production environment, VMware recommends you use the following YAML to create the `ClusterImagePolicy`. This YAML includes a cosign public key, which signed the public cosign image for v1.2.1. The cosign public key validates the specified cosign image. You can also add additional namespaces to exclude in the `verification.exclude.resources.namespaces` section, such as any system namespaces.
         ```console
         cat <<EOF | kubectl apply -f -
         apiVersion: signing.run.tanzu.vmware.com/v1alpha1
@@ -1433,7 +1800,7 @@ To install Supply Chain Security Tools - Sign:
             For example:
             ```bash
             $ kubectl run bb --image=busybox --restart=Never
-            Warning: busybox didn\'t match any pattern in policy. Pod will be created as WarnOnUnmatched flag is true
+            Warning: busybox didn\'t match any pattern in policy. Pod will be created as AllowOnUnmatched flag is true
             pod/bb created
             ```
         1. Verify that a signed image, that does not validate with a configured public key, does not launch. Run:
@@ -1457,7 +1824,23 @@ Ensure both are installed.
 
 To install Supply Chain Security Tools - Scan (Scan Controller):
 
-1. Follow the instructions in [Install Packages](#install-packages) above.
+1. List version information for the package by running:
+
+    ```bash
+    tanzu package available list PACKAGE-NAME --namespace tap-install
+    ```
+    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
+     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
+     For example:
+
+    ```bash
+    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for cnrs.tanzu.vmware.com...
+      NAME                   VERSION  RELEASED-AT
+      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    ```
+
+2. (Optional) To make changes to the default installation settings, run:
 
     ```bash
     tanzu package available get scanning.apps.tanzu.vmware.com/1.0.0-beta --values-schema -n tap-install
@@ -1480,6 +1863,7 @@ To install Supply Chain Security Tools - Scan (Scan Controller):
     ```
 
 1. Gather the values schema.
+
 1. Configure a Read-Write `ServiceAccount` within the [Supply Chain Security Tools - Store](#install-scst-store).
 
     Scanning occurs within Supply Chain Security Tools - Scan, however scan results are persisted in the [Supply Chain Security Tools - Store](#install-scst-store). As such, these values require the [Supply Chain Security Tools - Store](#install-scst-store) to have already been installed.
@@ -1621,7 +2005,23 @@ To install Supply Chain Security Tools - Scan (Scan Controller):
 
 To install Supply Chain Security Tools - Scan (Grype Scanner):
 
-1. Follow the instructions in [Install Packages](#install-packages) above.
+1. List version information for the package by running:
+
+    ```bash
+    tanzu package available list PACKAGE-NAME --namespace tap-install
+    ```
+    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
+     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
+     For example:
+
+    ```bash
+    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for cnrs.tanzu.vmware.com...
+      NAME                   VERSION  RELEASED-AT
+      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    ```
+
+1. (Optional) To make changes to the default installation settings, run:
 
     ```bash
     tanzu package available get grype.scanning.apps.tanzu.vmware.com/1.0.0-beta --values-schema -n tap-install
@@ -1674,8 +2074,9 @@ If you want to change from the default values, use the Scan Controller instructi
 
 To install the API portal:
 
-1. Follow the instructions in [Install Packages](#install-packages) above.
-2. Check what versions of API portal are available to install by running:
+
+
+1. Check what versions of API portal are available to install by running:
 
     ```bash
     tanzu package available list -n tap-install api-portal.tanzu.vmware.com
@@ -1689,6 +2090,24 @@ To install the API portal:
       NAME                         VERSION           RELEASED-AT
       api-portal.tanzu.vmware.com  1.0.2             2021-09-27T00:00:00Z
     ```
+
+2. (Optional) To make changes to the default installation settings, run:
+
+    ```bash
+    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
+    ```
+    Where:
+
+    - `PACKAGE-NAME` is same as step 1 above.
+    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
+
+    For example:
+
+    ```bash
+    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
+    ```
+
+    For more information about values schema options, see the individual product documentation.
 
 3. Install API portal by running:
 
@@ -1717,35 +2136,35 @@ To install the API portal:
 4. For more information about API portal, see [API portal for VMware Tanzu](https://docs.pivotal.io/api-portal).
 
 
-## <a id='install-scp-toolkit'></a> Install Services Control Plane (SCP) Toolkit
+## <a id='install-services-toolkit'></a> Install Services Toolkit
 
-To install Services Control Plane Toolkit:
+To install Services Toolkit:
 
-1. See what versions of Services Control Plane Toolkit are available to install by running:
+1. See what versions of Services Toolkit are available to install by running:
 
     ```console
-    tanzu package available list -n tap-install scp-toolkit.tanzu.vmware.com
+    tanzu package available list -n tap-install services-toolkit.tanzu.vmware.com
     ```
 
     For example:
 
     ```console
-    $ tanzu package available list -n tap-install scp-toolkit.tanzu.vmware.com
-    - Retrieving package versions for scp-toolkit.tanzu.vmware.com...
-      NAME                          VERSION           RELEASED-AT
-      scp-toolkit.tanzu.vmware.com  0.3.0             2021-09-17T13:53:29Z
+    $ tanzu package available list -n tap-install services-toolkit.tanzu.vmware.com
+    - Retrieving package versions for services-toolkit.tanzu.vmware.com...
+      NAME                               VERSION           RELEASED-AT
+      services-toolkit.tanzu.vmware.com  0.4.0-rc.1        2021-09-17T13:53:29Z
     ```
 
 1. Install Services Control Plane Toolkit by running:
 
     ```console
-    tanzu package install scp-toolkit -n tap-install -p scp-toolkit.tanzu.vmware.com -v 0.3.0
+    tanzu package install services-toolkit -n tap-install -p services-toolkit.tanzu.vmware.com -v 0.4.0-rc.1
     ```
 
 1. Verify that the package installed by running:
 
     ```console
-    tanzu package installed get scp-toolkit -n tap-install
+    tanzu package installed get services-toolkit -n tap-install
     ```
 
     and checking that the `STATUS` value is `Reconcile succeeded`.
@@ -1753,11 +2172,11 @@ To install Services Control Plane Toolkit:
     For example:
 
     ```console
-    $ tanzu package installed get scp-toolkit -n tap-install
-    | Retrieving installation details for scp-toolkit...
-    NAME:                    scp-toolkit
-    PACKAGE-NAME:            scp-toolkit.tanzu.vmware.com
-    PACKAGE-VERSION:         0.3.0
+    $ tanzu package installed get services-toolkit -n tap-install
+    | Retrieving installation details for services-toolkit...
+    NAME:                    services-toolkit
+    PACKAGE-NAME:            services-toolkit.tanzu.vmware.com
+    PACKAGE-VERSION:         0.4.0-rc.1
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
@@ -1784,14 +2203,14 @@ Use the following procedure to verify that the packages are installed.
     NAME                   PACKAGE-NAME                                       PACKAGE-VERSION  STATUS
     api-portal             api-portal.tanzu.vmware.com                        1.0.2            Reconcile succeeded
     app-accelerator        accelerator.apps.tanzu.vmware.com                  0.3.0            Reconcile succeeded
-    app-live-view          appliveview.tanzu.vmware.com                       0.2.0            Reconcile succeeded
+    app-live-view          appliveview.tanzu.vmware.com                       0.3.0            Reconcile succeeded
     cloud-native-runtimes  cnrs.tanzu.vmware.com                              1.0.2            Reconcile succeeded
     convention-controller  controller.conventions.apps.tanzu.vmware.com       0.4.2            Reconcile succeeded
     grype-scanner          grype.scanning.apps.tanzu.vmware.com               1.0.0-beta       Reconcile succeeded
-    image-policy-webhook   image-policy-webhook.signing.run.tanzu.vmware.com  1.0.0-beta.0     Reconcile succeeded
+    image-policy-webhook   image-policy-webhook.signing.run.tanzu.vmware.com  1.0.0-beta.1     Reconcile succeeded
     metadata-store         scst-store.tanzu.vmware.com                        1.0.0-beta.0     Reconcile succeeded
     scan-controller        scanning.apps.tanzu.vmware.com                     1.0.0-beta       Reconcile succeeded
-    scp-toolkit            scp-toolkit.tanzu.vmware.com                       0.3.0            Reconcile succeeded
+    services-toolkit       services-toolkit.tanzu.vmware.com                  0.4.0-rc.1       Reconcile succeeded
     service-bindings       service-bindings.labs.vmware.com                   0.5.0            Reconcile succeeded
     source-controller      controller.source.apps.tanzu.vmware.com            0.1.2            Reconcile succeeded
     tbs                    buildservice.tanzu.vmware.com                      1.3.0            Reconcile succeeded

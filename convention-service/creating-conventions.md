@@ -7,7 +7,8 @@ This document describes how to create a convention server with example conventio
 The following prerequisites are required to create a convention server:
 
 + Kubectl is installed [guide](https://kubernetes.io/docs/tasks/tools/)
-+ Tanzu Application Platform components are installed on a Kubernetes cluster [guide](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.1/tap-0-1/GUID-install.html)
++ Tanzu Application Platform components are installed on a Kubernetes cluster.
+  See [Installing Tanzu Application Platform](../install-intro.md).
 + The [default supply chain](https://network.tanzu.vmware.com/products/default-supply-chain/) is installed
 + Your kubeconfig context is set to the prepared cluster `kubectl config use-context CONTEXT_NAME`
 
@@ -79,7 +80,9 @@ The webserver convention consumes the [PodTemplateSpec](https://v1-18.docs.kuber
 
 ## <a id='targeting'></a> Define the Convention Behavior
 
-Once the convention is defined, you can specify the attributes that determine if a convention is applied to a workload. Any property or value within the `PodTemplateSpec` or OCI image metadata associated with a [workload](../scc/reference.md#workload) can define the criteria for applying conventions. The following are examples of ways to define convention behavior. 
+Once the convention is defined, you can specify the attributes that determine if a convention is applied to a workload. 
+Any property or value within the `PodTemplateSpec` or OCI image metadata associated with a workload can define the criteria for applying conventions.
+The following are examples of ways to define convention behavior. 
 
 ### By Labels or Annotations:
 

@@ -12,7 +12,10 @@ Prior to installing the VSCode Tanzu Extension, you must have:
 
 - The Kubernetes command-line tool, [kubectl](https://kubernetes.io/docs/tasks/tools/)
 - [Tilt](https://docs.tilt.dev/install.html) version >= v0.22.6
-- The [Tanzu CLI and apps plugin](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.1/tap-0-1/GUID-install.html#install-the-tanzu-cli-and-package-plugin-4)
+- The Tanzu CLI.
+  See [Install the Tanzu CLI](../install-general.md#cli-and-plugin).
+- The Tanzu CLI package plugin.
+  See [Install the Tanzu CLI Plugins](../install-general.md#install-the-tanzu-cli-plugins).
 - A cluster with Tanzu Application Platform, the Default Supply Chain, and their dependencies. Download these from Tanzu Network. For installation instructions, see [Installing Part I: Prerequisites, EULA, and CLI](../install-general.md).
 - [VSCode](https://code.visualstudio.com/download)
 
