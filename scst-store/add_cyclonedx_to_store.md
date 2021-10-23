@@ -15,13 +15,13 @@ You can use many tools to generate CycloneDX files. This topic uses [Grype](http
 Use Grype to scan an image and generate an image report in CycloneDX format by running:
 
 ```sh
-grype REPO:TAG -o cyclonedx > CVE-REPORT
+grype IMAGE:TAG -o cyclonedx > CVE-REPORT
 ```
 Where:
 
-- `REPO` is the name of your repository.
-- `TAG` is the name of a tag.
-- `CVE-REPORT` is the resulting CVE report. 
+- `IMAGE` is the image you want to scan.
+- `TAG` is the tag for the image.
+- `CVE-REPORT` is path of the resulting CVE report. 
 
 For example:
 
