@@ -1,4 +1,4 @@
-# Enabling an Encrypted Connection to the Supply Chain Security Tools - Store
+# Using Encryption and Connecting to Supply Chain Security Tools - Store
 
 You can enable an encrypted connection using one of the following methods, depending on your service environment:
 

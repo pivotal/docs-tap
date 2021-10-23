@@ -5,6 +5,7 @@ You can query the Supply Chain Security Tools - Store to understand vulnerabilit
 ## Prerequisites
 
 The following prerequisites are required to query Supply Chain Security Tools - Store:
+
 - Prerequisites included in [Supply Chain Security Tools - Store](using_metadata_store.md).
 - [Supply Chain Security Tools - Scan installed](../install.md#install-scst-scan).
 
@@ -19,6 +20,7 @@ There are two different ways of querying the database:
 The following example instructions use the CLI to query.
 
 The following use cases apply to Supply Chain Security Tools - Store:
+
 * What images contain a specific dependency?
 * What dependencies are affected by a specific CVE?
 * How many CVEs does a specific image or dependency contain?
