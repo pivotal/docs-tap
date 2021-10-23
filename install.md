@@ -26,6 +26,7 @@ Follow the specific installation instructions for each package:
 + [Install Developer Conventions](#install-developer-conventions)
 + [Install Application Live View](#install-app-live-view)
 + [Install TAP GUI](#install-tap-gui)
++ [Install Learning Center](#install-learning-center)
 + [Install Service Bindings](#install-service-bindings)
 + [Install Tanzu Build Service](#install-tbs)
 + [Install Supply Chain Choreographer](#install-scc)
