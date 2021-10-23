@@ -989,15 +989,110 @@ To install the Tanzu Application Platform UI:
 
 ## <a id='install-learning-center'></a> Install Learning Center
 
-**Prerequisites (in addition to TAP requirements)**
+To install Tanzu Learning Center:
 
-**Required**
+1. Follow the instructions in [Install Packages](#install-packages) above.
 
-- 
+1. Create a configuration yaml file called `educates-config.yaml`
+ 
+   The only field required is the `ingressDomain` property, all other properties are optional.
+   
+   The operator when deploying instances of the workshop environments needs to be able to expose 
+   them via an external URL for access. To define the domain name that can be used as a suffix to 
+   hostnames for instances.
+   > **Note:** For the custom domain you are using, DNS must have been configured with a wildcard domain to forward all requests for subdomains of the custom domain, to the ingress router of the Kubernetes cluster.
+   
+   It is recommended that you avoid using a ``.dev`` domain name as such domain names have a requirement
+   to always use HTTPS and you cannot use HTTP. Although you can provide a certificate for secure connections
+   under the domain name for use by Learning Center, this doesn't extend to what a workshop may do.
+   By using a ``.dev`` domain name, if workshop instructions have you creating ingresses in Kubernetes using HTTP only, they will not work.
+   > **Note:** If you are running Kubernetes on your local machine using a system like ``minikube`` and you don't have a custom domain name which maps to the IP for the cluster, you can use a ``nip.io`` address. For example, if ``minikube ip`` returned ``192.168.64.1``, you could use the 192.168.64.1.nip.io domain. Note that you cannot use an address of form ``127.0.0.1.nip.io``, or ``subdomain.localhost``. This will cause a failure as internal services when needing to connect to each other, would end up connecting to themselves instead, since the address would resolve to the host loopback address of ``127.0.0.1``.
+   
+   Make sure you replace the educates.my-domain.com domain with the domain name for your Kubernetes cluster.
+   
+   `educates-config.yaml:`
+   ```yaml
+   ingressDomain: educates.my-domain.com
+   ```
 
-**Optional**
+   ### Optional configuration settings
+      * Enforcing secure connections:
 
--
+         By default the workshop portal and workshop sessions will be accessible over HTTP connections. If you wish to use secure 
+         HTTPS connections, you must have access to a wildcard SSL certificate for the domain under which you wish to host the workshops. 
+         You cannot use a self signed certificate.
+   
+         Wildcard certificates can be created using `letsencrypt <https://letsencrypt.org/>`_. 
+         Once you have the certificate, you can add the following to your configuration yaml:
+   
+         The easiest way to define the certificate is through the configuration passed to Tanzu CLI. So define the ``certificate`` and ``privateKey`` 
+         properties under the ``ingressSecret`` 
+         property to specify the certificate on the configuration yaml passed to Tanzu CLI
+   
+         `educates-config.yaml:`
+         ```yaml
+         ingressSecret:
+           certificate: MIIC2DCCAcCgAwIBAgIBATANBgkqh ...
+           privateKey: MIIEpgIBAAKCAQEA7yn3bRHQ5FHMQ ...
+         ```
+   
+         If you already has a TLS secret, you can copy it to the ``educates`` namespace or that one you defined, 
+         nd use the ``secretName`` property.
+
+         `educates-config.yaml:`
+         ```yaml
+         ingressSecret:
+           secretName: workshops.example.com-tls
+         ```
+
+      * Specifying the ingress class:
+
+         Any ingress routes created will use the default ingress class. If you have multiple ingress class types available, 
+         and you need to override which is used, you can:
+   
+         `educates-config.yaml:`
+         ```yaml
+         ingressClass: contour
+         ```
+   
+      * Setting image registry
+
+         Primary image registry where Educates container images are stored. It is only necessary to define the host 
+         and credentials when that image registry requires authentication to access images. This principally
+         exists to allow relocation of images through Carvel image bundles.
+
+         `educates-config.yaml:`
+         ```yaml
+         imageRegistry:
+           host:
+           username:
+           password:
+         ```
+
+1. Install Learning Center operator
+   ```shell
+   tanzu package install educates --package-name learningcenter.tanzu.vmware.com --version 1.0.8-build.1 -f educates-config.yaml
+   ```
+   
+   The command above will create a default namespace in your Kubernetes cluster called ``educates`` and the operator along with any required namespaced resources will be created in it. A set of custom resource definitions and a global cluster role binding will also be created. The list of resources you should see being created are:
+   
+   ```shell
+   customresourcedefinition.apiextensions.k8s.io/workshops.training.eduk8s.io created
+   customresourcedefinition.apiextensions.k8s.io/workshopsessions.training.eduk8s.io created
+   customresourcedefinition.apiextensions.k8s.io/workshopenvironments.training.eduk8s.io created
+   customresourcedefinition.apiextensions.k8s.io/workshoprequests.training.eduk8s.io created
+   customresourcedefinition.apiextensions.k8s.io/trainingportals.training.eduk8s.io created
+   serviceaccount/eduk8s created
+   customresourcedefinition.apiextensions.k8s.io/systemprofiles.training.eduk8s.io created
+   clusterrolebinding.rbac.authorization.k8s.io/eduk8s-cluster-admin created
+   deployment.apps/eduk8s-operator created
+   ```
+   
+   You can check that the operator deployed okay by running:
+   ```shell
+   kubectl get all -n educates
+   ```
+   The pod for the operator should be marked as running.
 
 ## <a id='install-service-bindings'></a> Install Service Bindings
 
@@ -1024,7 +1119,7 @@ To install the Tanzu Application Platform UI:
      Added installed package 'service-bindings' in namespace 'tap-install'
     ```
 
-1. Verify the package install by running:
+1. [Verify the package install by running:]()
 
     ```bash
     tanzu package installed get service-bindings -n tap-install
