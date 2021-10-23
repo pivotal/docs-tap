@@ -1119,7 +1119,7 @@ To install Tanzu Learning Center:
      Added installed package 'service-bindings' in namespace 'tap-install'
     ```
 
-1. [Verify the package install by running:]()
+1. Verify the package install by running:
 
     ```bash
     tanzu package installed get service-bindings -n tap-install
