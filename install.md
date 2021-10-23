@@ -14,63 +14,27 @@ The parameters required for the installation need to be defined in a YAML file.
 
 The available parameters for the individual packages can be identified by the values schema 
 defined in the package.
-You can get these parameters by running the command
-as described in the procedure below.
+You can get these parameters by running the `--values-schema` command
+included in the installation procedures below.
 
-To install any package from the Tanzu Application Platform package repository:
+Follow the specific installation instructions for each package:
 
-1. List version information for the package by running:
-
-    ```bash
-    tanzu package available list PACKAGE-NAME --namespace tap-install
-    ```
-    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
-     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
-     For example:
-
-    ```bash
-    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
-    - Retrieving package versions for cnrs.tanzu.vmware.com...
-      NAME                   VERSION  RELEASED-AT
-      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
-    ```
-
-2. (Optional) To make changes to the default installation settings, run:
-
-    ```bash
-    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
-    ```
-    Where:
-
-    - `PACKAGE-NAME` is same as step 1 above.
-    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
-
-    For example:
-
-    ```bash
-    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
-    ```
-
-    For more information about values schema options, see the individual product documentation.
-
-3. Follow the specific installation instructions for each package:
-
-    + [Install Cloud Native Runtimes](#install-cnr)
-    + [Install Application Accelerator](#install-app-accelerator)
-    + [Install Convention Service](#install-convention-service)
-    + [Install Source Controller](#install-source-controller)
-    + [Install Developer Conventions](#install-developer-conventions)
-    + [Install Application Live View](#install-app-live-view)
-    + [Install TAP GUI](#install-tap-gui)
-    + [Install Service Bindings](#install-service-bindings)
-    + [Install Tanzu Build Service](#install-tbs)
-    + [Install Supply Chain Choreographer](#install-scc)
-    + [Install Default Supply Chain](#install-default-supply-chain)
-    + [Install Supply Chain Security Tools - Store](#install-scst-store)
-    + [Install Supply Chain Security Tools - Sign](#install-scst-sign)
-    + [Install Supply Chain Security Tools - Scan](#install-scst-scan)
-    + [Install API portal](#install-api-portal)
-    + [Install Services Toolkit](#install-services-toolkit)
++ [Install Cloud Native Runtimes](#install-cnr)
++ [Install Application Accelerator](#install-app-accelerator)
++ [Install Convention Service](#install-convention-service)
++ [Install Source Controller](#install-source-controller)
++ [Install Developer Conventions](#install-developer-conventions)
++ [Install Application Live View](#install-app-live-view)
++ [Install TAP GUI](#install-tap-gui)
++ [Install Service Bindings](#install-service-bindings)
++ [Install Tanzu Build Service](#install-tbs)
++ [Install Supply Chain Choreographer](#install-scc)
++ [Install Default Supply Chain](#install-default-supply-chain)
++ [Install Supply Chain Security Tools - Store](#install-scst-store)
++ [Install Supply Chain Security Tools - Sign](#install-scst-sign)
++ [Install Supply Chain Security Tools - Scan](#install-scst-scan)
++ [Install API portal](#install-api-portal)
++ [Install Services Toolkit](#install-services-toolkit)
 
 ## <a id='add-package-repositories'></a> Add the Tanzu Application Platform Package Repository
 
@@ -167,7 +131,40 @@ To add the Tanzu Application Platform package repository:
 
 To install Cloud Native Runtimes:
 
-1. Follow the instructions in [About Installing Packages](#install-packages) above.
+1. List version information for the package by running:
+
+    ```bash
+    tanzu package available list PACKAGE-NAME --namespace tap-install
+    ```
+    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
+     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
+     For example:
+
+    ```bash
+    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for cnrs.tanzu.vmware.com...
+      NAME                   VERSION  RELEASED-AT
+      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    ```
+
+1. (Optional) To make changes to the default installation settings, run:
+
+    ```bash
+    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
+    ```
+    Where:
+
+    - `PACKAGE-NAME` is same as step 1 above.
+    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
+
+    For example:
+
+    ```bash
+    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
+    ```
+
+    For more information about values schema options, see the individual product documentation.
+
 
 1. Gather values schema.
 
@@ -333,7 +330,40 @@ installation.
 
 To install Convention Controller:
 
-1. Follow the instructions in [About Installing Packages](#install-packages) above.
+1. List version information for the package by running:
+
+    ```bash
+    tanzu package available list PACKAGE-NAME --namespace tap-install
+    ```
+    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
+     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
+     For example:
+
+    ```bash
+    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for cnrs.tanzu.vmware.com...
+      NAME                   VERSION  RELEASED-AT
+      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    ```
+
+2. (Optional) To make changes to the default installation settings, run:
+
+    ```bash
+    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
+    ```
+    Where:
+
+    - `PACKAGE-NAME` is same as step 1 above.
+    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
+
+    For example:
+
+    ```bash
+    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
+    ```
+
+    For more information about values schema options, see the individual product documentation.
+
 
 1. Install the package by running:
 
@@ -393,7 +423,40 @@ See [Install Prerequisites](install-general.md#prereqs).
 
 To install Source Controller:
 
-1. Follow the instructions in [About Installing Packages](#install-packages) above.
+1. List version information for the package by running:
+
+    ```bash
+    tanzu package available list PACKAGE-NAME --namespace tap-install
+    ```
+    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
+     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
+     For example:
+
+    ```bash
+    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for cnrs.tanzu.vmware.com...
+      NAME                   VERSION  RELEASED-AT
+      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    ```
+
+1. (Optional) To make changes to the default installation settings, run:
+
+    ```bash
+    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
+    ```
+    Where:
+
+    - `PACKAGE-NAME` is same as step 1 above.
+    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
+
+    For example:
+
+    ```bash
+    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
+    ```
+
+    For more information about values schema options, see the individual product documentation.
+
 
 1. Install the package. Run:
 
@@ -481,7 +544,40 @@ See [Install Source Controller](#install-source-controller).
 
 To install Application Accelerator:
 
-1. Follow the instructions in [About Installing Packages](#install-packages) above.
+1. List version information for the package by running:
+
+    ```bash
+    tanzu package available list PACKAGE-NAME --namespace tap-install
+    ```
+    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
+     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
+     For example:
+
+    ```bash
+    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for cnrs.tanzu.vmware.com...
+      NAME                   VERSION  RELEASED-AT
+      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    ```
+
+1. (Optional) To make changes to the default installation settings, run:
+
+    ```bash
+    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
+    ```
+    Where:
+
+    - `PACKAGE-NAME` is same as step 1 above.
+    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
+
+    For example:
+
+    ```bash
+    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
+    ```
+
+    For more information about values schema options, see the individual product documentation.
+
 
 1. Create an `app-accelerator-values.yaml` using the following example code:
 
@@ -558,7 +654,40 @@ This section provides a quick-start guide for installing Tanzu Build Service as 
 
 To install Tanzu Build Service using the Tanzu CLI:
 
-1. Follow the instructions in [About Installing Packages](#install-packages) above.
+1. List version information for the package by running:
+
+    ```bash
+    tanzu package available list PACKAGE-NAME --namespace tap-install
+    ```
+    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
+     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
+     For example:
+
+    ```bash
+    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for cnrs.tanzu.vmware.com...
+      NAME                   VERSION  RELEASED-AT
+      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    ```
+
+1. (Optional) To make changes to the default installation settings, run:
+
+    ```bash
+    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
+    ```
+    Where:
+
+    - `PACKAGE-NAME` is same as step 1 above.
+    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
+
+    For example:
+
+    ```bash
+    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
+    ```
+
+    For more information about values schema options, see the individual product documentation.
+
 
 1. Gather values schema.
 
@@ -680,7 +809,7 @@ Added installed package 'cartographer' in namespace 'default'
 
 To install Default Supply Chain:
 
-1. Follow the instructions in [Install Packages](#install-packages) above to gather the values schema.
+1. Gather the values schema:
 
     ```bash
     tanzu package available get default-supply-chain.tanzu.vmware.com/0.2.0 --values-schema -n tap-install
@@ -732,7 +861,24 @@ To install developer conventions:
 
 **Prerequisite**: Convention Service installed on the cluster, see [Install Convention Service](#install-convention-service).
 
-1. Follow the instructions in [About Installing Packages](#install-packages) above.
+1. List version information for the package by running:
+
+    ```bash
+    tanzu package available list PACKAGE-NAME --namespace tap-install
+    ```
+    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
+     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
+     For example:
+
+    ```bash
+    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for cnrs.tanzu.vmware.com...
+      NAME                   VERSION  RELEASED-AT
+      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    ```
+
+1. To make changes to the default installation settings, run:
+
 
     ```bash
     tanzu package available get developer-conventions.tanzu.vmware.com/0.2.0 -n tap-install
@@ -775,7 +921,40 @@ To install Application Live View:
 
 **Prerequisite**: Convention Service installed on the cluster, see [Install Convention Service](#install-convention-service).
 
-1. Follow the instructions in [About Installing Packages](#install-packages) above.
+1. List version information for the package by running:
+
+    ```bash
+    tanzu package available list PACKAGE-NAME --namespace tap-install
+    ```
+    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
+     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
+     For example:
+
+    ```bash
+    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for cnrs.tanzu.vmware.com...
+      NAME                   VERSION  RELEASED-AT
+      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    ```
+
+1. (Optional) To make changes to the default installation settings, run:
+
+    ```bash
+    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
+    ```
+    Where:
+
+    - `PACKAGE-NAME` is same as step 1 above.
+    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
+
+    For example:
+
+    ```bash
+    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
+    ```
+
+    For more information about values schema options, see the individual product documentation.
+
 1. Gather the values schema.
 1. Create a namespace to deploy the Application Live View server and its components. For example:
 
@@ -924,7 +1103,39 @@ instead.
 
 To install the Tanzu Application Platform GUI:
 
-1. Follow the instructions in [About Installing Packages](#install-packages) above.
+1. List version information for the package by running:
+
+    ```bash
+    tanzu package available list PACKAGE-NAME --namespace tap-install
+    ```
+    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
+     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
+     For example:
+
+    ```bash
+    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for cnrs.tanzu.vmware.com...
+      NAME                   VERSION  RELEASED-AT
+      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    ```
+
+2. (Optional) To make changes to the default installation settings, run:
+
+    ```bash
+    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
+    ```
+    Where:
+
+    - `PACKAGE-NAME` is same as step 1 above.
+    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
+
+    For example:
+
+    ```bash
+    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
+    ```
+
+    For more information about values schema options, see the individual product documentation.
 
 1. See a list of all the values that you can specify when configuring the
 Tanzu Application Platform GUI by running:
@@ -1057,7 +1268,39 @@ with your relevant values. The meanings of some placeholders are explained below
 
  Use the following procedure to install Service Bindings:
 
-1. Follow the instructions in [About Installing Packages](#install-packages) above.
+1. List version information for the package by running:
+
+    ```bash
+    tanzu package available list PACKAGE-NAME --namespace tap-install
+    ```
+    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
+     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
+     For example:
+
+    ```bash
+    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for cnrs.tanzu.vmware.com...
+      NAME                   VERSION  RELEASED-AT
+      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    ```
+
+2. (Optional) To make changes to the default installation settings, run:
+
+    ```bash
+    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
+    ```
+    Where:
+
+    - `PACKAGE-NAME` is same as step 1 above.
+    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
+
+    For example:
+
+    ```bash
+    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
+    ```
+
+    For more information about values schema options, see the individual product documentation.
 
 1. Install the package. Run:
 
@@ -1113,7 +1356,23 @@ with your relevant values. The meanings of some placeholders are explained below
 
 To install Supply Chain Security Tools - Store:
 
-1. Follow the instructions in [About Installing Packages](#install-packages) above.
+1. List version information for the package by running:
+
+    ```bash
+    tanzu package available list PACKAGE-NAME --namespace tap-install
+    ```
+    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
+     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
+     For example:
+
+    ```bash
+    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for cnrs.tanzu.vmware.com...
+      NAME                   VERSION  RELEASED-AT
+      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    ```
+
+1. (Optional) To make changes to the default installation settings, run:
 
     ```sh
     tanzu package available get scst-store.tanzu.vmware.com/1.0.0-beta.1 --values-schema -n tap-install
@@ -1218,7 +1477,40 @@ re-enable image signing enforcement.
 
 To install Supply Chain Security Tools - Sign:
 
-1. Follow the instructions in [About Installing Packages](#install-packages) above.
+1. List version information for the package by running:
+
+    ```bash
+    tanzu package available list PACKAGE-NAME --namespace tap-install
+    ```
+    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
+     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
+     For example:
+
+    ```bash
+    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for cnrs.tanzu.vmware.com...
+      NAME                   VERSION  RELEASED-AT
+      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    ```
+
+2. (Optional) To make changes to the default installation settings, run:
+
+    ```bash
+    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
+    ```
+    Where:
+
+    - `PACKAGE-NAME` is same as step 1 above.
+    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
+
+    For example:
+
+    ```bash
+    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
+    ```
+
+    For more information about values schema options, see the individual product documentation.
+
 1. Gather the values schema:
 
     ```bash
@@ -1426,7 +1718,23 @@ Ensure both are installed.
 
 To install Supply Chain Security Tools - Scan (Scan Controller):
 
-1. Follow the instructions in [About Installing Packages](#install-packages) above.
+1. List version information for the package by running:
+
+    ```bash
+    tanzu package available list PACKAGE-NAME --namespace tap-install
+    ```
+    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
+     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
+     For example:
+
+    ```bash
+    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for cnrs.tanzu.vmware.com...
+      NAME                   VERSION  RELEASED-AT
+      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    ```
+
+2. (Optional) To make changes to the default installation settings, run:
 
     ```bash
     tanzu package available get scanning.apps.tanzu.vmware.com/1.0.0-beta --values-schema -n tap-install
@@ -1449,6 +1757,7 @@ To install Supply Chain Security Tools - Scan (Scan Controller):
     ```
 
 1. Gather the values schema.
+
 1. Configure a Read-Write `ServiceAccount` within the [Supply Chain Security Tools - Store](#install-scst-store).
 
     Scanning occurs within Supply Chain Security Tools - Scan, however scan results are persisted in the [Supply Chain Security Tools - Store](#install-scst-store). As such, these values require the [Supply Chain Security Tools - Store](#install-scst-store) to have already been installed.
@@ -1590,7 +1899,23 @@ To install Supply Chain Security Tools - Scan (Scan Controller):
 
 To install Supply Chain Security Tools - Scan (Grype Scanner):
 
-1. Follow the instructions in [About Installing Packages](#install-packages) above.
+1. List version information for the package by running:
+
+    ```bash
+    tanzu package available list PACKAGE-NAME --namespace tap-install
+    ```
+    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
+     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
+     For example:
+
+    ```bash
+    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for cnrs.tanzu.vmware.com...
+      NAME                   VERSION  RELEASED-AT
+      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    ```
+
+1. (Optional) To make changes to the default installation settings, run:
 
     ```bash
     tanzu package available get grype.scanning.apps.tanzu.vmware.com/1.0.0-beta --values-schema -n tap-install
@@ -1643,8 +1968,9 @@ If you want to change from the default values, use the Scan Controller instructi
 
 To install the API portal:
 
-1. Follow the instructions in [About Installing Packages](#install-packages) above.
-2. Check what versions of API portal are available to install by running:
+
+
+1. Check what versions of API portal are available to install by running:
 
     ```bash
     tanzu package available list -n tap-install api-portal.tanzu.vmware.com
@@ -1658,6 +1984,24 @@ To install the API portal:
       NAME                         VERSION           RELEASED-AT
       api-portal.tanzu.vmware.com  1.0.2             2021-09-27T00:00:00Z
     ```
+
+2. (Optional) To make changes to the default installation settings, run:
+
+    ```bash
+    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
+    ```
+    Where:
+
+    - `PACKAGE-NAME` is same as step 1 above.
+    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
+
+    For example:
+
+    ```bash
+    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
+    ```
+
+    For more information about values schema options, see the individual product documentation.
 
 3. Install API portal by running:
 
