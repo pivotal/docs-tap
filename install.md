@@ -1200,7 +1200,10 @@ with your relevant values. The meanings of some placeholders are explained below
     Where:
 
     - `<SERVICE-TYPE>` is your inbound traffic mechanism: LoadBalancer or Ingress.
-    - `<EXTERNAL-IP>:<PORT>` is your Ingress hostname or LoadBalancer information. Note that if you are using a load balancer that is dynamically provisioned by the cloud provider, you can leave this value blank initially and run a subsequent `tanzu package installed update` once the install is complete.
+    - `<EXTERNAL-IP>:<PORT>` is your Ingress hostname or LoadBalancer information.
+       If you are using a load balancer that is dynamically provisioned by the cloud provider,
+       leave this value blank initially and, after the install is complete,
+       run a subsequent `tanzu package installed update`.
     - `<GIT-CATALOG-URL>` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download) or a Backstage compliant catalog that you've already built and posted on the Git infrastucture that you specified in the Integration section.
 
     > **Note:** The `app-config` section follows the same configuration model that Backstage uses.
