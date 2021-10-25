@@ -872,28 +872,28 @@ To install developer conventions:
      For example:
 
     ```bash
-    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
-    - Retrieving package versions for cnrs.tanzu.vmware.com...
-      NAME                   VERSION  RELEASED-AT
-      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    $ tanzu packageavailable list developer-conventions.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for developer-conventions.tanzu.vmware.com
+      NAME                                    VERSION        RELEASED-AT
+      developer-conventions.tanzu.vmware.com  0.3.0-build.1  2021-10-19T00:00:00Z
     ```
 
 1. To make changes to the default installation settings, run:
 
 
     ```bash
-    tanzu package available get developer-conventions.tanzu.vmware.com/0.2.0 -n tap-install
+    tanzu package available get developer-conventions.tanzu.vmware.com/0.3.0-build.1 -n tap-install
     ```
 
     For example:
 
     ```console
-    $ tanzu package available get developer-conventions.tanzu.vmware.com/0.2.0 -n tap-install
-    \ Retrieving package details for developer-conventions.tanzu.vmware.com/0.2.0...
+    $ tanzu package available get developer-conventions.tanzu.vmware.com/0.3.0-build.1 -n tap-install
+    \ Retrieving package details for developer-conventions.tanzu.vmware.com/0.3.0-build.1...
     NAME:                             developer-conventions.tanzu.vmware.com
-    VERSION:                          0.2.0
-    RELEASED-AT:
-    DISPLAY-NAME:                     Tanzu App Platform Develooper Conventions
+    VERSION:                          0.3.0-build.1
+    RELEASED-AT:                      2021-10-19T00:00:00Z
+    DISPLAY-NAME:                     Tanzu App Platform Developer Conventions
     SHORT-DESCRIPTION:                Developer Conventions
     PACKAGE-PROVIDER:                 VMware
     MINIMUM-CAPACITY-REQUIREMENTS:
@@ -911,7 +911,7 @@ To install developer conventions:
     ```bash
     tanzu package install developer-conventions \
       --package-name developer-conventions.tanzu.vmware.com \
-      --version 0.2.0 \
+      --version 0.3.0-build.1 \
       --namespace tap-install
     ```
 
