@@ -341,10 +341,10 @@ To install Convention Controller:
      For example:
 
     ```bash
-    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
-    - Retrieving package versions for cnrs.tanzu.vmware.com...
-      NAME                   VERSION  RELEASED-AT
-      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    $ tanzu package available list controller.conventions.apps.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for controller.conventions.apps.tanzu.vmware.com...
+      NAME                                          VERSION  RELEASED-AT
+      controller.conventions.apps.tanzu.vmware.com  0.4.2    2021-09-16T00:00:00Z
     ```
 
 2. (Optional) To make changes to the default installation settings, run:
@@ -360,7 +360,7 @@ To install Convention Controller:
     For example:
 
     ```bash
-    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
+    $ tanzu package available get controller.conventions.apps.tanzu.vmware.com/0.4.2 --values-schema --namespace tap-install
     ```
 
     For more information about values schema options, see the individual product documentation.
