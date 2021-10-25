@@ -214,7 +214,7 @@ tanzu accelerator update <accelerator-name> --reconcile
 ```
 ---
 
-## Section 3: Add testing and security scanning to your application
+## Section 3: Add Testing and Security Scanning to Your Application
 
 ### What is a Supply Chain?
 
@@ -238,7 +238,7 @@ between each of the tools.
 Supply chains used to codify the organization's path to production are configurable, allowing their
 authors to add all of the steps of their application's path to production.
 
-Out of the box, Tanzu Application Platform provides three out of the box supply chains that are designed to
+Tanzu Application Platform provides three out of the box supply chains designed to
 work with Tanzu Application Platform components.
 
 
@@ -246,18 +246,20 @@ work with Tanzu Application Platform components.
 
 The Tanzu Application Platform installation steps cover installing the default supply chain, but
 others are available.
-If you follow the installation documentation, the **Out of the Box Basic** supply chain and all of its
+If you follow the installation documentation, the **Out of the Box Basic** supply chain and its
 dependencies are installed on your cluster.
 The table and diagrams below describe the two supply chains included in Tanzu Application Platform
-Beta 3 as well as their dependencies.
+Beta 3, as well as their dependencies.
 
-The second, **Out of the Box Test**, can run a Tekton pipeline within the supply chain. It therefore has a dependency on
-[Tekton](https://tekton.dev/), which has not yet been installed on your cluster. The third supply chain **Out of the Box Test and Scan** that is available with TAP includes integrations to the secure scanning tools.
+The **Out of the Box Test** runs a Tekton pipeline within the supply chain. It is dependent on
+[Tekton](https://tekton.dev/) being installed on your cluster. 
 
-The next section, which installs the second supply chain, is about installing Tekton and provides a sample Tekton pipeline that tests the
+The **Out of the Box Test and Scan** supply chain includes integrations for secure scanning tools.
+
+The following section installs the second supply chain, includes steps to install Tekton and provides a sample Tekton pipeline that tests your
 sample application.
-The pipeline is, like the supply chain, completely configurable and therefore the steps within it
-can be customized to perform additional testing, or any other tasks that can be performed with a
+The pipeline is configurable, therefore you can customize the steps
+to perform additional testing, or any other tasks that can be performed with a
 Tekton pipeline.
 
 ![Diagram depicting the Source-to-URL chain: Watch Repo (Flux) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](images/source-to-url-chain.png)
@@ -327,16 +329,16 @@ Tekton pipeline.
    </td>
    <td><code>ootb-supply-chain-testing.tanzu.vmware.com</code>
    </td>
-   <td>The Out of the Box Testing contains all of the same elements as the Source to URL. It also allows the developer to specify a Tekton pipeline that will be ran as part of the “CI” step of the supply chain.
+   <td>The Out of the Box Testing contains all of the same elements as the Source to URL. It allows developers to specify a Tekton pipeline that runs as part of the CI step of the supply chain.
 <ul>
 
-<li>The application will be testing using the provided tekton pipeline
+<li>The application tests using the tekton pipeline
 
-<li>A new image will be automatically created
+<li>A new image is automatically created
 
-<li>Any predefined conventions will be applied
+<li>Any predefined conventions are applied
 
-<li>The application will be deployed to the cluster
+<li>The application is deployed to the cluster
 </li>
 </ul>
    </td>
@@ -409,7 +411,7 @@ The supply chain uses Tekton to run tests defined by developers
 before you produce a container image for the source code,
 preventing code that fails tests from being promoted to deployment.
 
-For Beta 3, we are using the open source version of Tekton. To install Tekton with `kapp`, run:
+This version uses the open source version of Tekton. To install Tekton with `kapp`, run:
 
 ```bash
 kapp deploy --yes -a tekton \
@@ -423,7 +425,7 @@ You can also view the Tekton
 [tutorial](https://github.com/tektoncd/pipeline/blob/main/docs/tutorial.md)
 and [getting started guide](https://tekton.dev/docs/getting-started/).
 
-Now that you have installed Tekton, the **Out of the Box Testing** supply chain can be installed on your cluster. Run:
+Now that Tekton is installed, you can install the **Out of the Box Testing** supply chain on your cluster. Run:
 
 ```bash
 tanzu package install ootb-supply-chain-testing \
@@ -493,73 +495,73 @@ that step of the supply requires execution.
 
 ### Workload update
 
-Finally, in order to have the new supply chain connected to the workload,
-the workload needs to be updated to point at the newly created Tekton pipeline.
-The workload can be updated using the Tanzu CLI as follows:
+To connect the new supply chain to the workload,
+the workload must be updated to point at the your Tekton pipeline.
+1. Update the workload by running the following with the Tanzu CLI:
 
-```bash
-tanzu apps workload create tanzu-java-web-app \
-  --git-repo  https://github.com/sample-accelerators/tanzu-java-web-app \
-  --git-branch main \
-  --type web \
-  --param tekton-pipeline-name=developer-defined-tekton-pipeline \
-  --yes
-```
+  ```bash
+  tanzu apps workload create tanzu-java-web-app \
+    --git-repo  https://github.com/sample-accelerators/tanzu-java-web-app \
+    --git-branch main \
+    --type web \
+    --param tekton-pipeline-name=developer-defined-tekton-pipeline \
+    --yes
+  ```
 
-```console
-Create workload:
-      1 + |apiVersion: carto.run/v1alpha1
-      2 + |kind: Workload
-      3 + |metadata:
-      4 + |  labels:
-      5 + |    apps.tanzu.vmware.com/workload-type: web
-      6 + |  name: tanzu-java-web-app
-      7 + |  namespace: default
-      8 + |spec:
-      9 + |  params:
-     10 + |  - name: tekton-pipeline-name
-     11 + |    value: developer-defined-tekton-pipeline
-     12 + |  source:
-     13 + |    git:
-     14 + |      ref:
-     15 + |        branch: main
-     16 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
+  ```console
+  Create workload:
+        1 + |apiVersion: carto.run/v1alpha1
+        2 + |kind: Workload
+        3 + |metadata:
+        4 + |  labels:
+        5 + |    apps.tanzu.vmware.com/workload-type: web
+        6 + |  name: tanzu-java-web-app
+        7 + |  namespace: default
+        8 + |spec:
+        9 + |  params:
+       10 + |  - name: tekton-pipeline-name
+       11 + |    value: developer-defined-tekton-pipeline
+       12 + |  source:
+       13 + |    git:
+       14 + |      ref:
+       15 + |        branch: main
+       16 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
 
-? Do you want to create this workload? Yes
-Created workload "tanzu-java-web-app"
-```
+  ? Do you want to create this workload? Yes
+  Created workload "tanzu-java-web-app"
+  ```
 
-After accepting the creation of the new workload, we can monitor the creation of new resources by the workload using:
+2. After accepting the workload creation, monitor the creation of new resources by the workload by running:
 
-```bash
-kubectl get workload,gitrepository,pipelinerun,images.kpack,podintent,app,services.serving
-```
+  ```bash
+  kubectl get workload,gitrepository,pipelinerun,images.kpack,podintent,app,services.serving
+  ```
 
-That should result in an output which will show all of the objects that have been created by the Supply Chain Choreographer:
+  You will see output similar to the following example that shows the objects that were created by the Supply Chain Choreographer:
 
 
-```bash
-NAME                                    AGE
-workload.carto.run/tanzu-java-web-app   109s
+  ```bash
+  NAME                                    AGE
+  workload.carto.run/tanzu-java-web-app   109s
 
-NAME                                                        URL                                                         READY   STATUS                                                            AGE
-gitrepository.source.toolkit.fluxcd.io/tanzu-java-web-app   https://github.com/sample-accelerators/tanzu-java-web-app   True    Fetched revision: main/872ff44c8866b7805fb2425130edb69a9853bfdf   109s
+  NAME                                                        URL                                                         READY   STATUS                                                            AGE
+  gitrepository.source.toolkit.fluxcd.io/tanzu-java-web-app   https://github.com/sample-accelerators/tanzu-java-web-app   True    Fetched revision: main/872ff44c8866b7805fb2425130edb69a9853bfdf   109s
 
-NAME                                              SUCCEEDED   REASON      STARTTIME   COMPLETIONTIME
-pipelinerun.tekton.dev/tanzu-java-web-app-4ftlb   True        Succeeded   104s        77s
+  NAME                                              SUCCEEDED   REASON      STARTTIME   COMPLETIONTIME
+  pipelinerun.tekton.dev/tanzu-java-web-app-4ftlb   True        Succeeded   104s        77s
 
-NAME                                LATESTIMAGE                                                                                                      READY
-image.kpack.io/tanzu-java-web-app   10.188.0.3:5000/foo/tanzu-java-web-app@sha256:1d5bc4d3d1ffeb8629fbb721fcd1c4d28b896546e005f1efd98fbc4e79b7552c   True
+  NAME                                LATESTIMAGE                                                                                                      READY
+  image.kpack.io/tanzu-java-web-app   10.188.0.3:5000/foo/tanzu-java-web-app@sha256:1d5bc4d3d1ffeb8629fbb721fcd1c4d28b896546e005f1efd98fbc4e79b7552c   True
 
-NAME                                                             READY   REASON   AGE
-podintent.conventions.apps.tanzu.vmware.com/tanzu-java-web-app   True             7s
+  NAME                                                             READY   REASON   AGE
+  podintent.conventions.apps.tanzu.vmware.com/tanzu-java-web-app   True             7s
 
-NAME                                      DESCRIPTION           SINCE-DEPLOY   AGE
-app.kappctrl.k14s.io/tanzu-java-web-app   Reconcile succeeded   1s             2s
+  NAME                                      DESCRIPTION           SINCE-DEPLOY   AGE
+  app.kappctrl.k14s.io/tanzu-java-web-app   Reconcile succeeded   1s             2s
 
-NAME                                             URL                                               LATESTCREATED              LATESTREADY                READY     REASON
-service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.developer.example.com   tanzu-java-web-app-00001   tanzu-java-web-app-00001   Unknown   IngressNotConfigured
-```
+  NAME                                             URL                                               LATESTCREATED              LATESTREADY                READY     REASON
+  service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.developer.example.com   tanzu-java-web-app-00001   tanzu-java-web-app-00001   Unknown   IngressNotConfigured
+  ```
 
 ### Install Out of the Box Testing and Scanning
 
