@@ -706,9 +706,9 @@ After the image policy webhook is installed in the cluster, configure the image 
 
 **Configure a service account to hold private registry secrets**
 
-In the situation when the platform operator is expecting to verify signatures stored in a private registry,
-it is required to configure a service account with all the secrets for those private registries.
-This service account:
+When the platform operator is expecting to verify signatures stored in a private registry,
+it is required that you configure a service account with all the secrets for those private registries.
+The service account:
 
 * Must be created in the `image-policy-system` namespace
 
@@ -716,7 +716,7 @@ This service account:
 
 * All secrets for accessing private registries must be added to the `imagePullSecrets` section of the service account
 
-The manifest for this service account would look like this:
+The manifest for the service account is similar to the following example:
 
 ```
 ---
