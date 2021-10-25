@@ -28,6 +28,6 @@ The condition with type `SendingResults` indicates the process of sending the sc
 #### PolicySucceeded
 The Condition with type `PolicySucceeded` indicates the compliance of the scanning results against the defined policies (see [Code Compliance Policy Enforcement using Open Policy Agent (OPA)](#code-compliance-policy-enforcement-using-open-policy-agent-opa). The Status field indicates whether the results are compliant or not (`Status: True` or `Status: False` respectively), or `Status: Unknown` in case an error occurred during the policy verification.
 
-The Reason field will be `EvaluationPassed` if the scan is compliant with the defined policies, `EvaluationFailed` if it's not compliant or `Error` if something went wrong.
+The Reason field is `EvaluationPassed` if the scan is compliant with the defined policies. The Reason field is `EvaluationFailed` if the scan is not compliant, or `Error` if something went wrong.
 
 The Message and Error fields will be populated with `An error has occurred` and an error message if something went wrong during policy verification. Otherwise, the Message field will have `No CVEs were found that violated the policy` if there's no non-compliant vulnerabilities found or `Policy violated because of X CVEs` indicating the count of unique vulnerabilities found.
