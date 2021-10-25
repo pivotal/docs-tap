@@ -947,6 +947,11 @@ To install Application Live View:
 
     ```bash
     $ tanzu package available get appliveview.tanzu.vmware.com/0.3.0 --values-schema --namespace tap-install
+    - Retrieving package details for appliveview.tanzu.vmware.com/0.3.0...
+      KEY                   DEFAULT        TYPE    DESCRIPTION
+      connector_namespaces  [default]      array   The namespaces in which ALV monitors the users apps 
+      server_namespace      app-live-view  string  The namespace to which ALV server is deployed
+      service_type          LoadBalancer   string  The service type for the Application Live View server can be LoadBalancer, NodePort, or ClusterIP
     ```
 
     For more information about values schema options, see the individual product documentation.
