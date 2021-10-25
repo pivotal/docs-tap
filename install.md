@@ -1114,10 +1114,10 @@ To install the Tanzu Application Platform GUI:
      For example:
 
     ```bash
-    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
-    - Retrieving package versions for cnrs.tanzu.vmware.com...
-      NAME                   VERSION  RELEASED-AT
-      tap-gui.tanzu.vmware.com  0.3.0    2021-08-30T00:00:00Z
+    $ tanzu package available list tap-gui.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for tap-gui.tanzu.vmware.com...
+      NAME                      VERSION     RELEASED-AT
+      tap-gui.tanzu.vmware.com  0.3.0-rc.1  2021-10-20T14:46:26Z
     ```
 
 2. (Optional) To make changes to the default installation settings, run:
@@ -1133,7 +1133,7 @@ To install the Tanzu Application Platform GUI:
     For example:
 
     ```bash
-    $ tanzu package available get tap-gui.tanzu.vmware.com/0.3.0 --values-schema --namespace tap-install
+    $ tanzu package available get tap-gui.tanzu.vmware.com/0.3.0-rc.1 --values-schema --namespace tap-install
     ```
 
     For more information about values schema options, see the individual product documentation.
@@ -1200,7 +1200,7 @@ with your relevant values. The meanings of some placeholders are explained below
     Where:
 
     - `<SERVICE-TYPE>` is your inbound traffic mechanism: LoadBalancer or Ingress.
-    - `<EXTERNAL-IP>:<PORT>` is your Ingress hostname or LoadBalancer information.
+    - `<EXTERNAL-IP>:<PORT>` is your Ingress hostname or LoadBalancer information. Note that if you are using a load balancer that is dynamically provisioned by the cloud provider, you can leave this value blank initially and run a subsequent `tanzu package installed update` once the install is complete.
     - `<GIT-CATALOG-URL>` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download) or a Backstage compliant catalog that you've already built and posted on the Git infrastucture that you specified in the Integration section.
 
     > **Note:** The `app-config` section follows the same configuration model that Backstage uses.
@@ -1379,10 +1379,11 @@ To install Tanzu Learning Center:
      For example:
 
     ```bash
-    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
-    - Retrieving package versions for cnrs.tanzu.vmware.com...
-      NAME                   VERSION  RELEASED-AT
-      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    $ tanzu package available list service-bindings.labs.vmware
+com --namespace tap-install
+    - Retrieving package versions for service-bindings.labs.vmware.com...
+      NAME                              VERSION  RELEASED-AT
+      service-bindings.labs.vmware.com  0.5.0    2021-09-15T00:00:00Z
     ```
 
 2. (Optional) To make changes to the default installation settings, run:
@@ -1398,7 +1399,7 @@ To install Tanzu Learning Center:
     For example:
 
     ```bash
-    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
+    $ tanzu package available get service-bindings.labs.vmware.com/0.5.0 --values-schema --namespace tap-install
     ```
 
     For more information about values schema options, see the individual product documentation.
