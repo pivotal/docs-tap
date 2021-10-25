@@ -12,7 +12,7 @@ For you to define a rego file for an Image Scan or Source Scan, you need to be c
 The Rego File must define a package in its body called `policies`, since this will be the package the system will be looking for to take the decision about the scan's results compliance.
 
 1. **Input Match**  
-For simplification purposes, the Rego File will evaluate a vulnerability match at a time, having as many iterations as different vulnerabilities are found in the scan. The structure of a match can be accessed in the `input.currentVulnerability` object inside the Rego File and it will have the [CycloneDX](https://cyclonedx.org/docs/1.3/) format structure.
+For simplification purposes, the Rego File will evaluate one vulnerability match at a time, having as many iterations as different vulnerabilities are found in the scan. The structure of a match can be accessed in the `input.currentVulnerability` object inside the Rego File and it will have the [CycloneDX](https://cyclonedx.org/docs/1.3/) format structure.
 
 1. **isCompliant Rule**  
 The Rego File must define inside its body an `isCompliant` rule, which needs to be a boolean type containing the result whether the vulnerability violates the security policy or not. If `isCompliant` is `true`, the vulnerability is found to be allowed in the Source or Image scan; `false` will be considered otherwise. Any scan that finds at least one vulnerability that evaluates to `isCompliant=false` will make the `PolicySucceeded` condition be set to `false` as well.
