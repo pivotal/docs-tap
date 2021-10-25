@@ -1,7 +1,8 @@
 # Running a Sample Private Source Scan
 
 ## Define the Resources
-Create `private-source-example.yaml` and ensure you enter a valid private ssh key value in the secret:
+Create `sample-private-source-scan.yaml` and ensure you enter a valid private ssh key value in the secret:
+
 ```yaml
 ---
 apiVersion: v1
@@ -10,22 +11,20 @@ metadata:
   name: secret-ssh-auth
 type: kubernetes.io/ssh-auth
 stringData:
-  ssh-privatekey: # insert your PEM-encoded ssh private key
+  ssh-privatekey: <insert your PEM-encoded ssh private key>
 
 ---
 apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
 kind: SourceScan
 metadata:
-  name: private-source-example
+  name: sample-private-source-scan
 spec:
   git:
-    url: "gitlab.eng.vmware.com:vulnerability-scanning-enablement/private-test-target.git"
-    revision: ""
-    # ssh-keyscan $HOST
+    url: <git clone via ssh>
+    revision: <branch, tag or commit digest>
     knownHosts: |
-      gitlab.eng.vmware.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBIW3CobFtjtaGAbNvW1w7Z1+nOV131I2GQ4T/v6elt8caUxo+NK8w4R0ywLc5FiIa3RQ6CuyHfkO6cnJGQm3n3Q=
-      gitlab.eng.vmware.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC4784G+YRcwc+pK2pmPJdADBmU0ji10OQu80mbwmNUxneeSuMFq95YyX31d+yfbRBp1JMlf9nunZ66ijUf9lH4nLlDxmzZC8ZZOV/vF7b6+MR8MjU2IucryDEfbHwIvemKv3miva297Ilbb4dIOOK2OmzZWG5VHUW5UCA2ELDn/DDGzgq1Jns5f8jIR/KIr7FJfKysohGMgSAFBTLEUSl25rRYQxppmhpYhaamk0d3jJfbXDAVXp1CMgb5GFWUGA2e7YGXUNxbqTLvGqbRXYKTxnBBnmZMAByGNMMCtXLKkdZdPuWyI3b7zKH8nKXVLvmdwAJuqHgF1L6I2WcMw17j
-      gitlab.eng.vmware.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICCmpTsIB79xM9b3a3gDRk8zgdkOkoSJeiDYUzG+TWTt
+      <known host>
+      <another host etc>
   scanTemplate: private-source-scan-template
 ```
 
@@ -39,13 +38,13 @@ For more information, refer to [Observing and Troubleshooting](../observing.md).
 
 ## Deploy the Resources
 ```bash
-kubectl apply -f private-source-example.yaml
+kubectl apply -f sample-private-source-scan.yaml
 ```
 
 ## View the Scan Status
 Once the scan has completed, perform:
 ```bash
-kubectl describe sourcescan private-source-example
+kubectl describe sourcescan sample-private-source-scan
 ```
 and notice the `Status.Conditions` includes a `Reason: JobFinished` and `Message: The scan job finished`.
 
@@ -53,7 +52,7 @@ For more information, refer to [Viewing and Understanding Scan Status Conditions
 
 ## Clean Up
 ```bash
-kubectl delete -f private-source-example.yaml
+kubectl delete -f sample-private-source-scan.yaml
 ```
 
 ## View Vulnerability Reports
