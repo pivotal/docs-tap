@@ -73,7 +73,7 @@ To add the Tanzu Application Platform package repository:
 
     ```bash
     $ tanzu package repository add tanzu-tap-repository \
-        --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.2.0 \
+        --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.3.0-build.1 \
         --namespace tap-install
     \ Adding package repository 'tanzu-tap-repository'...
 
@@ -91,8 +91,8 @@ To add the Tanzu Application Platform package repository:
     $ tanzu package repository get tanzu-tap-repository --namespace tap-install
     - Retrieving repository tap...
     NAME:          tanzu-tap-repository
-    VERSION:       5712276
-    REPOSITORY:    registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.2.0
+    VERSION:       48756
+    REPOSITORY:    registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.3.0-build.1
     STATUS:        Reconcile succeeded
     REASON:
     ```
@@ -108,24 +108,24 @@ To add the Tanzu Application Platform package repository:
     ```console
     $ tanzu package available list --namespace tap-install
     / Retrieving available packages...
-      NAME                                               DISPLAY-NAME                                                           SHORT-DESCRIPTION
-      accelerator.apps.tanzu.vmware.com                  Application Accelerator for VMware Tanzu                               Used to create new projects and configurations.
-      api-portal.tanzu.vmware.com                        API portal                                                             A unified user interface to enable search, discovery and try-out of API endpoints at ease.
-      appliveview.tanzu.vmware.com                       Application Live View for VMware Tanzu                                 App for monitoring and troubleshooting running apps
-      buildservice.tanzu.vmware.com                      Tanzu Build Service                                                    Tanzu Build Service enables the building and automation of containerized software workflows securely and at scale.
-      cartographer.tanzu.vmware.com                      Cartographer                                                           Kubernetes native Supply Chain Choreographer.
-      cnrs.tanzu.vmware.com                              Cloud Native Runtimes                                                  Cloud Native Runtimes is a serverless runtime based on Knative
-      controller.conventions.apps.tanzu.vmware.com       Convention Service for VMware Tanzu                                    Convention Service enables app operators to consistently apply desired runtime configurations to fleets of workloads.
-      controller.source.apps.tanzu.vmware.com            Tanzu Source Controller                                                Tanzu Source Controller enables workload create/update from source code.
-      default-supply-chain-testing.tanzu.vmware.com      Tanzu App Platform Default Supply Chain with Testing                   Default Software Supply Chain with testing.
-      default-supply-chain.tanzu.vmware.com              Tanzu App Platform Default Supply Chain                                Default Supply Chain
-      developer-conventions.tanzu.vmware.com             Tanzu App Platform Developer Conventions                              Developer Conventions
-      grype.scanning.apps.tanzu.vmware.com               Grype Scanner for Supply Chain Security Tools for VMware Tanzu - Scan  Default scan templates using Anchore Grype
-      image-policy-webhook.signing.run.tanzu.vmware.com  Image Policy Webhook                                                   The Image Policy Webhook allows platform operators to define a policy that will use cosign to verify signatures of container images
-      scanning.apps.tanzu.vmware.com                     Supply Chain Security Tools for VMware Tanzu - Scan                    Scan for vulnerabilities and enforce policies directly within Kubernetes native Supply Chains.
-      services-toolkit.tanzu.vmware.com                  Services Toolkit                                                       The Services Toolkit enables the management, lifecycle, discoverability and connectivity of Service Resources (databases, message queues, DNS records, etc.).
-      scst-store.tanzu.vmware.com                        Tanzu Supply Chain Security Tools - Store                              The Metadata Store enables saving and querying image, package, and vulnerability data.
-      service-bindings.labs.vmware.com                   Service Bindings for Kubernetes                                        Service Bindings for Kubernetes implements the Service Binding Specification.
+    accelerator.apps.tanzu.vmware.com                  Application Accelerator for VMware Tanzu                               Used to create new projects and configurations.
+    api-portal.tanzu.vmware.com                        API portal                                                             A unified user interface to enable search, discovery and try-out of API endpoints at ease.
+    appliveview.tanzu.vmware.com                       Application Live View for VMware Tanzu                                 App for monitoring and troubleshooting running apps
+    buildservice.tanzu.vmware.com                      Tanzu Build Service                                                    Tanzu Build Service enables the building and automation of containerized software workflows securely and at scale.
+    cartographer.tanzu.vmware.com                      Cartographer                                                           Kubernetes native Supply Chain Choreographer.
+    cnrs.tanzu.vmware.com                              Cloud Native Runtimes                                                  Cloud Native Runtimes is a serverless runtime based on Knative
+    controller.conventions.apps.tanzu.vmware.com       Convention Service for VMware Tanzu                                    Convention Service enables app operators to consistently apply desired runtime configurations to fleets of workloads.
+    controller.source.apps.tanzu.vmware.com            Tanzu Source Controller                                                Tanzu Source Controller enables workload create/update from source code.
+    default-supply-chain-testing.tanzu.vmware.com      Tanzu App Platform Default Supply Chain with Testing                   Default Software Supply Chain with testing.
+    default-supply-chain.tanzu.vmware.com              Tanzu App Platform Default Supply Chain                                Default Supply Chain
+    developer-conventions.tanzu.vmware.com             Tanzu App Platform Developer Conventions                               Developer Conventions
+    grype.scanning.apps.tanzu.vmware.com               Grype Scanner for Supply Chain Security Tools for VMware Tanzu - Scan  Default scan templates using Anchore Grype
+    image-policy-webhook.signing.run.tanzu.vmware.com  Image Policy Webhook                                                   The Image Policy Webhook allows platform operators to define a policy that will use cosign to verify signatures of container images
+    scanning.apps.tanzu.vmware.com                     Supply Chain Security Tools for VMware Tanzu - Scan                    Scan for vulnerabilities and enforce policies directly within Kubernetes native Supply Chains.
+    scst-store.tanzu.vmware.com                        Tanzu Supply Chain Security Tools - Store                              The Metadata Store enables saving and querying image, package, and vulnerability data.
+    service-bindings.labs.vmware.com                   Service Bindings for Kubernetes                                        Service Bindings for Kubernetes implements the Service Binding Specification.
+    services-toolkit.tanzu.vmware.com                  Services Toolkit                                                       The Services Toolkit enables the management, lifecycle, discoverability and connectivity of Service Resources (databases, message queues, DNS records, etc.).
+    tap-gui.tanzu.vmware.com                           Tanzu Application Platform GUI                                         web app graphical user interface for Tanzu Application Platform
     ```
 
 ## <a id='install-cnr'></a> Install Cloud Native Runtimes
@@ -145,7 +145,7 @@ To install Cloud Native Runtimes:
     $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for cnrs.tanzu.vmware.com...
       NAME                   VERSION  RELEASED-AT
-      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+      cnrs.tanzu.vmware.com  1.0.3    2021-10-20T00:00:00Z
     ```
 
 1. (Optional) To make changes to the default installation settings, run:
@@ -161,7 +161,7 @@ To install Cloud Native Runtimes:
     For example:
 
     ```bash
-    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
+    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.3 --values-schema --namespace tap-install
     ```
 
     For more information about values schema options, see the individual product documentation.
@@ -170,22 +170,22 @@ To install Cloud Native Runtimes:
 1. Gather values schema.
 
     ```bash
-    tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema -n tap-install
+    tanzu package available get cnrs.tanzu.vmware.com/1.0.3 --values-schema -n tap-install
     ```
 
     For example:
 
     ```console
-    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema -n tap-install
-    | Retrieving package details for cnrs.tanzu.vmware.com/1.0.2...
+    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.3 --values-schema -n tap-install
+    | Retrieving package details for cnrs.tanzu.vmware.com/1.0.3...
       KEY                         DEFAULT  TYPE             DESCRIPTION
-      pdb.enable                  true     boolean  Optional: Set to true to enable Pod Disruption Budget. If provider local is set to "local", the PDB will be disabled automatically.
-      provider                    <nil>    string   Optional: Kubernetes cluster provider. To be specified if deploying CNR on TKGs or on a local Kubernetes cluster provider.
       ingress.external.namespace  <nil>    string   Optional: Only valid if a Contour instance already present in the cluster. Specify a namespace where an existing Contour is installed on your cluster (for external services) if you want CNR to use your Contour instance.
       ingress.internal.namespace  <nil>    string   Optional: Only valid if a Contour instance already present in the cluster. Specify a namespace where an existing Contour is installed on your cluster (for internal services) if you want CNR to use your Contour instance.
-      ingress.reuse_crds          false    boolean  Optional: Only valid if a Contour instance already present in the cluster. Set to "true" if you want CNR to re-use the cluster\'s existing Contour CRDs.
-      local_dns.enable            false    boolean  Optional: Only for when "provider" is set to "local" and running on Kind. Set to true to enable local DNS.
+      ingress.reuse_crds          false    boolean  Optional: Only valid if a Contour instance already present in the cluster. Set to "true" if you want CNR to re-use the cluster's existing Contour CRDs.
       local_dns.domain            <nil>    string   Optional: Set a custom domain for the Knative services.
+      local_dns.enable            false    boolean  Optional: Only for when "provider" is set to "local" and running on Kind. Set to true to enable local DNS.
+      pdb.enable                  true     boolean  Optional: Set to true to enable Pod Disruption Budget. If provider local is set to "local", the PDB will be disabled automatically.
+      provider                    <nil>    string   Optional: Kubernetes cluster provider. To be specified if deploying CNR on a local Kubernetes cluster provider.
     ```
 
 1. Create a `cnr-values.yaml` using the following sample as a guide:
@@ -217,13 +217,13 @@ To install Cloud Native Runtimes:
 1. Install the package by running:
 
     ```console
-    tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 1.0.2 -n tap-install -f cnr-values.yaml --poll-timeout 30m
+    tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 1.0.3 -n tap-install -f cnr-values.yaml --poll-timeout 30m
     ```
 
     For example:
 
     ```console
-    $ tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 1.0.2 -n tap-install -f cnr-values.yaml --poll-timeout 30m
+    $ tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 1.0.3 -n tap-install -f cnr-values.yaml --poll-timeout 30m
     - Installing package 'cnrs.tanzu.vmware.com'
     | Getting package metadata for 'cnrs.tanzu.vmware.com'
     | Creating service account 'cloud-native-runtimes-tap-install-sa'
@@ -248,7 +248,7 @@ To install Cloud Native Runtimes:
     | Retrieving installation details for cc...
     NAME:                    cloud-native-runtimes
     PACKAGE-NAME:            cnrs.tanzu.vmware.com
-    PACKAGE-VERSION:         1.0.2
+    PACKAGE-VERSION:         1.0.3
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
@@ -341,10 +341,10 @@ To install Convention Controller:
      For example:
 
     ```bash
-    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
-    - Retrieving package versions for cnrs.tanzu.vmware.com...
-      NAME                   VERSION  RELEASED-AT
-      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    $ tanzu package available list controller.conventions.apps.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for controller.conventions.apps.tanzu.vmware.com...
+      NAME                                          VERSION  RELEASED-AT
+      controller.conventions.apps.tanzu.vmware.com  0.4.2    2021-09-16T00:00:00Z
     ```
 
 2. (Optional) To make changes to the default installation settings, run:
@@ -360,7 +360,7 @@ To install Convention Controller:
     For example:
 
     ```bash
-    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
+    $ tanzu package available get controller.conventions.apps.tanzu.vmware.com/0.4.2 --values-schema --namespace tap-install
     ```
 
     For more information about values schema options, see the individual product documentation.
@@ -434,10 +434,10 @@ To install Source Controller:
      For example:
 
     ```bash
-    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
-    - Retrieving package versions for cnrs.tanzu.vmware.com...
-      NAME                   VERSION  RELEASED-AT
-      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    $ tanzu package available list controller.source.apps.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for controller.source.apps.tanzu.vmware.com...
+      NAME                                     VERSION  RELEASED-AT
+      controller.source.apps.tanzu.vmware.com  0.1.2    2021-09-16T00:00:00Z
     ```
 
 1. (Optional) To make changes to the default installation settings, run:
@@ -453,7 +453,7 @@ To install Source Controller:
     For example:
 
     ```bash
-    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
+    $ tanzu package available get controller.source.apps.tanzu.vmware.com/0.1.2 --values-schema --namespace tap-install
     ```
 
     For more information about values schema options, see the individual product documentation.
@@ -555,10 +555,10 @@ To install Application Accelerator:
      For example:
 
     ```bash
-    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
-    - Retrieving package versions for cnrs.tanzu.vmware.com...
-      NAME                   VERSION  RELEASED-AT
-      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    $ tanzu package available list accelerator.apps.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for accelerator.apps.tanzu.vmware.com...
+      NAME                               VERSION  RELEASED-AT
+      accelerator.apps.tanzu.vmware.com  0.4.0    2021-10-25T00:00:00Z
     ```
 
 1. (Optional) To make changes to the default installation settings, run:
@@ -574,7 +574,7 @@ To install Application Accelerator:
     For example:
 
     ```bash
-    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
+    $ tanzu package available get accelerator.apps.tanzu.vmware.com/0.4.0 --values-schema --namespace tap-install
     ```
 
     For more information about values schema options, see the individual product documentation.
@@ -665,10 +665,10 @@ To install Tanzu Build Service using the Tanzu CLI:
      For example:
 
     ```bash
-    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
-    - Retrieving package versions for cnrs.tanzu.vmware.com...
-      NAME                   VERSION  RELEASED-AT
-      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    $ tanzu package available list buildservice.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for buildservice.tanzu.vmware.com...
+      NAME                           VERSION  RELEASED-AT
+      buildservice.tanzu.vmware.com  1.3.0    2021-09-28T00:00:00Z
     ```
 
 1. (Optional) To make changes to the default installation settings, run:
@@ -684,7 +684,7 @@ To install Tanzu Build Service using the Tanzu CLI:
     For example:
 
     ```bash
-    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
+    $ tanzu package available get buildservice.tanzu.vmware.com/1.3.0 --values-schema --namespace tap-install
     ```
 
     For more information about values schema options, see the individual product documentation.
@@ -872,28 +872,28 @@ To install developer conventions:
      For example:
 
     ```bash
-    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
-    - Retrieving package versions for cnrs.tanzu.vmware.com...
-      NAME                   VERSION  RELEASED-AT
-      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    $ tanzu packageavailable list developer-conventions.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for developer-conventions.tanzu.vmware.com
+      NAME                                    VERSION        RELEASED-AT
+      developer-conventions.tanzu.vmware.com  0.3.0-build.1  2021-10-19T00:00:00Z
     ```
 
 1. To make changes to the default installation settings, run:
 
 
     ```bash
-    tanzu package available get developer-conventions.tanzu.vmware.com/0.2.0 -n tap-install
+    tanzu package available get developer-conventions.tanzu.vmware.com/0.3.0-build.1 -n tap-install
     ```
 
     For example:
 
     ```console
-    $ tanzu package available get developer-conventions.tanzu.vmware.com/0.2.0 -n tap-install
-    \ Retrieving package details for developer-conventions.tanzu.vmware.com/0.2.0...
+    $ tanzu package available get developer-conventions.tanzu.vmware.com/0.3.0-build.1 -n tap-install
+    \ Retrieving package details for developer-conventions.tanzu.vmware.com/0.3.0-build.1...
     NAME:                             developer-conventions.tanzu.vmware.com
-    VERSION:                          0.2.0
-    RELEASED-AT:
-    DISPLAY-NAME:                     Tanzu App Platform Develooper Conventions
+    VERSION:                          0.3.0-build.1
+    RELEASED-AT:                      2021-10-19T00:00:00Z
+    DISPLAY-NAME:                     Tanzu App Platform Developer Conventions
     SHORT-DESCRIPTION:                Developer Conventions
     PACKAGE-PROVIDER:                 VMware
     MINIMUM-CAPACITY-REQUIREMENTS:
@@ -911,7 +911,7 @@ To install developer conventions:
     ```bash
     tanzu package install developer-conventions \
       --package-name developer-conventions.tanzu.vmware.com \
-      --version 0.2.0 \
+      --version 0.3.0-build.1 \
       --namespace tap-install
     ```
 
@@ -1114,10 +1114,10 @@ To install Tanzu Application Platform GUI:
      For example:
 
     ```bash
-    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
-    - Retrieving package versions for cnrs.tanzu.vmware.com...
-      NAME                   VERSION  RELEASED-AT
-      tap-gui.tanzu.vmware.com  0.3.0    2021-08-30T00:00:00Z
+    $ tanzu package available list tap-gui.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for tap-gui.tanzu.vmware.com...
+      NAME                      VERSION     RELEASED-AT
+      tap-gui.tanzu.vmware.com  0.3.0-rc.1  2021-10-20T14:46:26Z
     ```
 
 2. (Optional) To make changes to the default installation settings, run:
@@ -1133,7 +1133,7 @@ To install Tanzu Application Platform GUI:
     For example:
 
     ```bash
-    $ tanzu package available get tap-gui.tanzu.vmware.com/0.3.0 --values-schema --namespace tap-install
+    $ tanzu package available get tap-gui.tanzu.vmware.com/0.3.0-rc.1 --values-schema --namespace tap-install
     ```
 
     For more information about values schema options, see the individual product documentation.
@@ -1200,7 +1200,7 @@ with your relevant values. The meanings of some placeholders are explained below
     Where:
 
     - `<SERVICE-TYPE>` is your inbound traffic mechanism: LoadBalancer or Ingress.
-    - `<EXTERNAL-IP>:<PORT>` is your Ingress hostname or LoadBalancer information.
+    - `<EXTERNAL-IP>:<PORT>` is your Ingress hostname or LoadBalancer information. Note that if you are using a load balancer that is dynamically provisioned by the cloud provider, you can leave this value blank initially and run a subsequent `tanzu package installed update` once the install is complete.
     - `<GIT-CATALOG-URL>` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download) or a Backstage compliant catalog that you've already built and posted on the Git infrastucture that you specified in the Integration section.
 
     > **Note:** The `app-config` section follows the same configuration model that Backstage uses.
@@ -1377,10 +1377,11 @@ To install Tanzu Learning Center:
      For example:
 
     ```bash
-    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
-    - Retrieving package versions for cnrs.tanzu.vmware.com...
-      NAME                   VERSION  RELEASED-AT
-      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    $ tanzu package available list service-bindings.labs.vmware
+com --namespace tap-install
+    - Retrieving package versions for service-bindings.labs.vmware.com...
+      NAME                              VERSION  RELEASED-AT
+      service-bindings.labs.vmware.com  0.5.0    2021-09-15T00:00:00Z
     ```
 
 2. (Optional) To make changes to the default installation settings, run:
@@ -1396,7 +1397,7 @@ To install Tanzu Learning Center:
     For example:
 
     ```bash
-    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
+    $ tanzu package available get service-bindings.labs.vmware.com/0.5.0 --values-schema --namespace tap-install
     ```
 
     For more information about values schema options, see the individual product documentation.
@@ -1465,10 +1466,10 @@ To install Supply Chain Security Tools - Store:
      For example:
 
     ```bash
-    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
-    - Retrieving package versions for cnrs.tanzu.vmware.com...
-      NAME                   VERSION  RELEASED-AT
-      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    $ tanzu package available list scst-store.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for scst-store.tanzu.vmware.com...
+      NAME                         VERSION       RELEASED-AT
+      scst-store.tanzu.vmware.com  1.0.0-beta.1
     ```
 
 1. (Optional) To make changes to the default installation settings, run:
@@ -1998,10 +1999,10 @@ To install the API portal:
     For example:
 
     ```console
-    $ tanzu package available list -n tap-install api-portal.tanzu.vmware.com
+    $ tanzu package available list api-portal.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for api-portal.tanzu.vmware.com...
-      NAME                         VERSION           RELEASED-AT
-      api-portal.tanzu.vmware.com  1.0.2             2021-09-27T00:00:00Z
+      NAME                         VERSION  RELEASED-AT
+      api-portal.tanzu.vmware.com  1.0.3    2021-10-13T00:00:00Z
     ```
 
 2. (Optional) To make changes to the default installation settings, run:
@@ -2017,7 +2018,7 @@ To install the API portal:
     For example:
 
     ```bash
-    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
+    $ tanzu package available get api-portal.tanzu.vmware.com/1.0.3 --values-schema --namespace tap-install
     ```
 
     For more information about values schema options, see the individual product documentation.
@@ -2025,13 +2026,13 @@ To install the API portal:
 3. Install API portal by running:
 
     ```console
-    tanzu package install api-portal -n tap-install -p api-portal.tanzu.vmware.com -v 1.0.2
+    tanzu package install api-portal -n tap-install -p api-portal.tanzu.vmware.com -v 1.0.3
     ```
 
     For example:
 
     ```console
-    $ tanzu package install api-portal -n tap-install -p api-portal.tanzu.vmware.com -v 1.0.2
+    $ tanzu package install api-portal -n tap-install -p api-portal.tanzu.vmware.com -v 1.0.3
 
     / Installing package 'api-portal.tanzu.vmware.com'
     | Getting namespace 'api-portal'
@@ -2065,7 +2066,7 @@ To install Services Toolkit:
     $ tanzu package available list -n tap-install services-toolkit.tanzu.vmware.com
     - Retrieving package versions for services-toolkit.tanzu.vmware.com...
       NAME                               VERSION           RELEASED-AT
-      services-toolkit.tanzu.vmware.com  0.4.0-rc.1        2021-09-17T13:53:29Z
+      services-toolkit.tanzu.vmware.com  0.4.0-rc.1        2021-10-18T09:45:46Z
     ```
 
 1. Install Services Control Plane Toolkit by running:
