@@ -25,7 +25,7 @@ Follow the specific installation instructions for each package:
 + [Install Source Controller](#install-source-controller)
 + [Install Developer Conventions](#install-developer-conventions)
 + [Install Application Live View](#install-app-live-view)
-+ [Install TAP GUI](#install-tap-gui)
++ [Install Tanzu Application Platform GUI](#install-tap-gui)
 + [Install Learning Center](#install-learning-center)
 + [Install Service Bindings](#install-service-bindings)
 + [Install Tanzu Build Service](#install-tbs)
@@ -1117,7 +1117,7 @@ To install the Tanzu Application Platform GUI:
     $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for cnrs.tanzu.vmware.com...
       NAME                   VERSION  RELEASED-AT
-      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+      tap-gui.tanzu.vmware.com  0.3.0    2021-08-30T00:00:00Z
     ```
 
 2. (Optional) To make changes to the default installation settings, run:
@@ -1133,17 +1133,11 @@ To install the Tanzu Application Platform GUI:
     For example:
 
     ```bash
-    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
+    $ tanzu package available get tap-gui.tanzu.vmware.com/0.3.0 --values-schema --namespace tap-install
     ```
 
     For more information about values schema options, see the individual product documentation.
 
-1. See a list of all the values that you can specify when configuring the
-Tanzu Application Platform GUI by running:
-
-    ```console
-    $ tanzu package available get tap-gui.tanzu.vmware.com/0.3.0 --values-schema -n tap-install
-    ```
 
 1. Create `tap-gui-values.yaml` using the following example code, replacing all `<PLACEHOLDERS>`
 with your relevant values. The meanings of some placeholders are explained below this example.
