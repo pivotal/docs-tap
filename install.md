@@ -1066,9 +1066,9 @@ To access the Application Live View UI:
 
 1. If the service type of application-live-view-5112 is `ClusterIP`, you can access the Application Live View UI using an ingress controller.
 
-## <a id='install-tap-gui'></a> Install the Tanzu Application Platform GUI
+## <a id='install-tap-gui'></a> Install Tanzu Application Platform GUI
 
-To install the Tanzu Application Platform GUI, see the sections below.
+To install Tanzu Application Platform GUI, see the sections below.
 
 ### Prerequisites in Addition to Tanzu Application Platform Requirements
 
@@ -1083,7 +1083,7 @@ Supported Git infrastructure includes:
 
 **Optional**
 
-- **Tanzu Application Platform tools:** the Tanzu Application Platform GUI has plugins for the
+- **Tanzu Application Platform tools:** Tanzu Application Platform GUI has plugins for the
 below Tanzu Application Platform tools. If you plan on running workloads with these capabilities,
 you need these tools installed alongside Tanzu Application Platform GUI.
 If you choose not to deploy workloads with these tools, the GUI shows menu options that you cannot
@@ -1102,7 +1102,7 @@ instead.
 
 ### Procedure
 
-To install the Tanzu Application Platform GUI:
+To install Tanzu Application Platform GUI:
 
 1. List version information for the package by running:
 
