@@ -1790,11 +1790,11 @@ To install Supply Chain Security Tools - Sign:
 
 ## <a id='install-scst-scan'></a> Install Supply Chain Security Tools - Scan
 
-**Prerequisite**: In order for Scan Results to be persisted, the [Supply Chain Security Tools - Store](#install-scst-store) needs to be installed on the cluster. However, Supply Chain Security Tools - Scan can be installed without the [Supply Chain Security Tools - Store](#install-scst-store) already installed. In this case, skip creating a values file. Once [Supply Chain Security Tools - Store](#install-scst-store) has been installed, then Supply Chain Security Tools - Scan would need to be updated with the values file included.
+**Prerequisite**: [Supply Chain Security Tools - Store](#install-scst-store) must be installed on the cluster for Scan Results to persist. Supply Chain Security Tools - Scan can be installed without [Supply Chain Security Tools - Store](#install-scst-store) already installed. In this case, skip creating a values file. Once [Supply Chain Security Tools - Store](#install-scst-store) is installed, the Supply Chain Security Tools - Scan values file must be updated.
 
 The installation for Supply Chain Security Tools – Scan involves installing two packages:
 Scan Controller and Grype Scanner.
-The Scan Controller enables a scanner to be used and the Grype Scanner is the scanner itself. Ensure both installation steps are run.
+The Scan Controller enables you to use a scanner. The Grype Scanner is a scanner. Ensure both the Grype Scanner and the Scan Controller are installed. 
 
 To install Supply Chain Security Tools - Scan (Scan Controller):
 
