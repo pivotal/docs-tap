@@ -925,33 +925,33 @@ To install Application Live View:
 1. List version information for the package by running:
 
     ```bash
-    tanzu package available list PACKAGE-NAME --namespace tap-install
+    tanzu package available list appliveview.tanzu.vmware.com --namespace tap-install
     ```
-    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
-     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
+
      For example:
 
     ```bash
-    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
-    - Retrieving package versions for cnrs.tanzu.vmware.com...
-      NAME                   VERSION  RELEASED-AT
-      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    $ tanzu package available list appliveview.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for appliveview.tanzu.vmware.com...
+      NAME                          VERSION  RELEASED-AT
+      appliveview.tanzu.vmware.com  0.3.0    2021-10-25T00:00:00Z
     ```
 
 1. (Optional) To make changes to the default installation settings, run:
 
     ```bash
-    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
+    tanzu package available get appliveview.tanzu.vmware.com/0.3.0 --values-schema --namespace tap-install
     ```
-    Where:
-
-    - `PACKAGE-NAME` is same as step 1 above.
-    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
 
     For example:
 
     ```bash
-    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
+    $ tanzu package available get appliveview.tanzu.vmware.com/0.3.0 --values-schema --namespace tap-install
+    - Retrieving package details for appliveview.tanzu.vmware.com/0.3.0...
+      KEY                   DEFAULT        TYPE    DESCRIPTION
+      connector_namespaces  [default]      array   The namespaces in which ALV monitors the users apps 
+      server_namespace      app-live-view  string  The namespace to which ALV server is deployed
+      service_type          LoadBalancer   string  The service type for the Application Live View server can be LoadBalancer, NodePort, or ClusterIP
     ```
 
     For more information about values schema options, see the individual product documentation.
