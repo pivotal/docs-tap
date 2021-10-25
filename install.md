@@ -434,10 +434,10 @@ To install Source Controller:
      For example:
 
     ```bash
-    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
-    - Retrieving package versions for cnrs.tanzu.vmware.com...
-      NAME                   VERSION  RELEASED-AT
-      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    $ tanzu package available list controller.source.apps.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for controller.source.apps.tanzu.vmware.com...
+      NAME                                     VERSION  RELEASED-AT
+      controller.source.apps.tanzu.vmware.com  0.1.2    2021-09-16T00:00:00Z
     ```
 
 1. (Optional) To make changes to the default installation settings, run:
@@ -453,7 +453,7 @@ To install Source Controller:
     For example:
 
     ```bash
-    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
+    $ tanzu package available get controller.source.apps.tanzu.vmware.com/0.1.2 --values-schema --namespace tap-install
     ```
 
     For more information about values schema options, see the individual product documentation.
@@ -555,10 +555,10 @@ To install Application Accelerator:
      For example:
 
     ```bash
-    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
-    - Retrieving package versions for cnrs.tanzu.vmware.com...
-      NAME                   VERSION  RELEASED-AT
-      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    $ tanzu package available list accelerator.apps.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for accelerator.apps.tanzu.vmware.com...
+      NAME                               VERSION  RELEASED-AT
+      accelerator.apps.tanzu.vmware.com  0.4.0    2021-10-25T00:00:00Z
     ```
 
 1. (Optional) To make changes to the default installation settings, run:
@@ -574,7 +574,7 @@ To install Application Accelerator:
     For example:
 
     ```bash
-    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
+    $ tanzu package available get accelerator.apps.tanzu.vmware.com/0.4.0 --values-schema --namespace tap-install
     ```
 
     For more information about values schema options, see the individual product documentation.
@@ -665,10 +665,10 @@ To install Tanzu Build Service using the Tanzu CLI:
      For example:
 
     ```bash
-    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
-    - Retrieving package versions for cnrs.tanzu.vmware.com...
-      NAME                   VERSION  RELEASED-AT
-      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    $ tanzu package available list buildservice.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for buildservice.tanzu.vmware.com...
+      NAME                           VERSION  RELEASED-AT
+      buildservice.tanzu.vmware.com  1.3.0    2021-09-28T00:00:00Z
     ```
 
 1. (Optional) To make changes to the default installation settings, run:
@@ -684,7 +684,7 @@ To install Tanzu Build Service using the Tanzu CLI:
     For example:
 
     ```bash
-    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
+    $ tanzu package available get buildservice.tanzu.vmware.com/1.3.0 --values-schema --namespace tap-install
     ```
 
     For more information about values schema options, see the individual product documentation.
