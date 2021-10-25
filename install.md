@@ -1468,10 +1468,10 @@ To install Supply Chain Security Tools - Store:
      For example:
 
     ```bash
-    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
-    - Retrieving package versions for cnrs.tanzu.vmware.com...
-      NAME                   VERSION  RELEASED-AT
-      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    $ tanzu package available list scst-store.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for scst-store.tanzu.vmware.com...
+      NAME                         VERSION       RELEASED-AT
+      scst-store.tanzu.vmware.com  1.0.0-beta.1
     ```
 
 1. (Optional) To make changes to the default installation settings, run:
@@ -1589,10 +1589,10 @@ To install Supply Chain Security Tools - Sign:
      For example:
 
     ```bash
-    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
-    - Retrieving package versions for cnrs.tanzu.vmware.com...
-      NAME                   VERSION  RELEASED-AT
-      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    $ tanzu package available list image-policy-webhook.signing.run.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for image-policy-webhook.signing.run.tanzu.vmware.com...
+      NAME                                               VERSION       RELEASED-AT
+      image-policy-webhook.signing.run.tanzu.vmware.com  1.0.0-beta.0
     ```
 
 2. (Optional) To make changes to the default installation settings, run:
@@ -1608,7 +1608,7 @@ To install Supply Chain Security Tools - Sign:
     For example:
 
     ```bash
-    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
+    $ tanzu package available get image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.0 --values-schema --namespace tap-install
     ```
 
     For more information about values schema options, see the individual product documentation.
@@ -1830,10 +1830,10 @@ To install Supply Chain Security Tools - Scan (Scan Controller):
      For example:
 
     ```bash
-    $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
-    - Retrieving package versions for cnrs.tanzu.vmware.com...
-      NAME                   VERSION  RELEASED-AT
-      cnrs.tanzu.vmware.com  1.0.2    2021-08-30T00:00:00Z
+    $ tap-beta-2-install tanzu package available list scanning.apps.tanzu.vmware.com --namespace tap-install
+    | Retrieving package versions for scanning.apps.tanzu.vmware.com...
+      NAME                            VERSION     RELEASED-AT
+      scanning.apps.tanzu.vmware.com  1.0.0-beta
     ```
 
 2. (Optional) To make changes to the default installation settings, run:
@@ -2081,10 +2081,10 @@ To install the API portal:
     For example:
 
     ```console
-    $ tanzu package available list -n tap-install api-portal.tanzu.vmware.com
+    $ tanzu package available list api-portal.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for api-portal.tanzu.vmware.com...
-      NAME                         VERSION           RELEASED-AT
-      api-portal.tanzu.vmware.com  1.0.2             2021-09-27T00:00:00Z
+      NAME                         VERSION  RELEASED-AT
+      api-portal.tanzu.vmware.com  1.0.3    2021-10-13T00:00:00Z
     ```
 
 2. (Optional) To make changes to the default installation settings, run:
@@ -2100,7 +2100,7 @@ To install the API portal:
     For example:
 
     ```bash
-    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
+    $ tanzu package available get api-portal.tanzu.vmware.com/1.0.3 --values-schema --namespace tap-install
     ```
 
     For more information about values schema options, see the individual product documentation.
@@ -2108,13 +2108,13 @@ To install the API portal:
 3. Install API portal by running:
 
     ```console
-    tanzu package install api-portal -n tap-install -p api-portal.tanzu.vmware.com -v 1.0.2
+    tanzu package install api-portal -n tap-install -p api-portal.tanzu.vmware.com -v 1.0.3
     ```
 
     For example:
 
     ```console
-    $ tanzu package install api-portal -n tap-install -p api-portal.tanzu.vmware.com -v 1.0.2
+    $ tanzu package install api-portal -n tap-install -p api-portal.tanzu.vmware.com -v 1.0.3
 
     / Installing package 'api-portal.tanzu.vmware.com'
     | Getting namespace 'api-portal'
@@ -2148,7 +2148,7 @@ To install Services Toolkit:
     $ tanzu package available list -n tap-install services-toolkit.tanzu.vmware.com
     - Retrieving package versions for services-toolkit.tanzu.vmware.com...
       NAME                               VERSION           RELEASED-AT
-      services-toolkit.tanzu.vmware.com  0.4.0-rc.1        2021-09-17T13:53:29Z
+      services-toolkit.tanzu.vmware.com  0.4.0-rc.1        2021-10-18T09:45:46Z
     ```
 
 1. Install Services Control Plane Toolkit by running:
