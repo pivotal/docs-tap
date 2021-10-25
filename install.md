@@ -99,7 +99,7 @@ To add the Tanzu Application Platform package repository:
       controller.source.apps.tanzu.vmware.com            Tanzu Source Controller                                                Tanzu Source Controller enables workload create/update from source code.
       default-supply-chain-testing.tanzu.vmware.com      Tanzu App Platform Default Supply Chain with Testing                   Default Software Supply Chain with testing.
       default-supply-chain.tanzu.vmware.com              Tanzu App Platform Default Supply Chain                                Default Supply Chain
-      developer-conventions.tanzu.vmware.com             Tanzu App Platform Develooper Conventions                              Developer Conventions
+      developer-conventions.tanzu.vmware.com             Tanzu App Platform Developer Conventions                              Developer Conventions
       grype.scanning.apps.tanzu.vmware.com               Grype Scanner for Supply Chain Security Tools for VMware Tanzu - Scan  Default scan templates using Anchore Grype
       image-policy-webhook.signing.run.tanzu.vmware.com  Image Policy Webhook                                                   The Image Policy Webhook allows platform operators to define a policy that will use cosign to verify signatures of container images
       scanning.apps.tanzu.vmware.com                     Supply Chain Security Tools for VMware Tanzu - Scan                    Scan for vulnerabilities and enforce policies directly within Kubernetes native Supply Chains.
@@ -1850,4 +1850,4 @@ run the following commands to add credentials and Role-Based Access Control (RBA
     EOF
     ```
     Where `YOUR-NAMESPACE` is the namespace you want to use.
-    Use `-n default` for the default namespace.
+    Use `-n default` for the default namespace. We recommend using the `default` namespace, as Debug & Live Update features with the Tanzu Developer Tools for VSCode extension only work with the `default` namespace at this time.

@@ -61,7 +61,7 @@ You’ll use an accelerator called `Tanzu-Java-Web-App` to get started.
 
 **3. Replace the default value, `dev.local`** in the _"prefix for container image registry"_ field
 with the url to your registry. The URL you enter should match the `REGISTRY_SERVER` value you provided when you installed the
-[Default Supply Chain](/install.md#install-default-supply-chain).
+[Default Supply Chain](/install.md#install-default-supply-chain). Note that this entry should not include the project ID or image name.
 
 <img src="images/store-image-on-server.png" alt="Screenshot of the Tanzu Java Web App within Application Accelerator. It includes empty fields for new project information, and buttons labeled 'Generate Project', 'Explore Files', and 'Cancel'." width="600">
 
@@ -89,7 +89,7 @@ tanzu apps workload get tanzu-java-web-app
 
 ### <a id='iterate'></a>Iterate on your Application
 
-#### Set up your IDE
+##### Set up your IDE
 
 Now that you have a skeleton workload working, you are ready to iterate on your application
 and test code changes on the cluster.
@@ -115,7 +115,7 @@ In order to ensure your extension helps you iterate on the correct project, you�
 You’re now ready to iterate on your application!
 
 
-#### Live Update your Application
+##### Live Update your Application
 
 Let’s deploy the application and see it live update on the cluster. Doing so allows you to understand how your code changes will behave on a production-like cluster much earlier in the development process.
 
@@ -136,7 +136,7 @@ You will see your changes on the cluster.
 You can now continue to make more changes. If you are finished, you can stop or disable live update. Open the command palette (⇧⌘P), type in Tanzu, and select either option.
 
 
-#### Debug your Application
+##### Debug your Application
 
 You can debug your cluster on your application or in your local environment.
 
@@ -146,7 +146,7 @@ Follow the steps below to debug your cluster:
 3. Return to your browser and navigate to http://localhost:8080. This will hit the breakpoint within VSCode. You can now step through or play to the end of the debug session using VSCode debugging controls.
 
 
-#### Troubleshooting a Running Application
+##### Troubleshooting a Running Application
 
 Now that your application is developed you may be interested in inspecting the run time
 characteristics of the running application. You can use Application Live View UI to look
