@@ -1262,8 +1262,6 @@ with your relevant values. The meanings of some placeholders are explained below
 
 To install Tanzu Learning Center:
 
-1. Follow the instructions in [Install Packages](#install-packages) above.
-
 1. Create a configuration yaml file called `educates-config.yaml`
  
    The only field required is the `ingressDomain` property, all other properties are optional.
