@@ -700,7 +700,7 @@ Application operators may apply image signatures and store them in the registry 
 
 **Configure the Image Policy Webhook**
 
-After the webhook is up and running, create a service account named `image-policy-registry-credentials` in the `image-policy-system` namespace. This is a required configuration even if the images and signatures are in public registries.
+After the webhook is running, create a service account named `image-policy-registry-credentials` in the `image-policy-system` namespace. This is required, even if the images and signatures are in public registries.
 
 After the image policy webhook is installed in the cluster, configure the image policy you want to enforce and the credentials to access private registries.
 
