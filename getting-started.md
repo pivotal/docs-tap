@@ -252,7 +252,7 @@ The table and diagrams below describe the two supply chains included in Tanzu Ap
 Beta 3, as well as their dependencies.
 
 The **Out of the Box Test** runs a Tekton pipeline within the supply chain. It is dependent on
-[Tekton](https://tekton.dev/) being installed on your cluster. 
+[Tekton](https://tekton.dev/) being installed on your cluster.
 
 The **Out of the Box Test and Scan** supply chain includes integrations for secure scanning tools.
 
@@ -912,30 +912,68 @@ One of the out-of-the-box supply chains we are working on for a future release w
 
 ### Overview
 
-Tanzu Application Platform makes it easy to discover, curate, consume, and manage services in a single or multi-cluster environment to enable app developers to focus on consuming services without having to worry about provisioning, configuration and operations of the services themselves.
+Tanzu Application Platform makes it easy to discover, curate, consume, and manage services in a
+single- or multi-cluster environment to enable app developers to focus on consuming services
+without having to worry about provisioning, configuration, and operations of the services
+themselves.
 
-This experience is made possible by the Services Toolkit component of Tanzu Application Platform. Services Toolkit comprises a number of Kubernetes native components which support the management, lifecycle, discoverability and connectivity of Service Resources (databases, message queues, DNS records, etc.) on Kubernetes. These components are:
+This experience is made possible by the Services Toolkit component of Tanzu Application Platform.
+Services Toolkit comprises a number of Kubernetes-native components that support the management,
+lifecycle, discoverability, and connectivity of Service Resources on Kubernetes, such as databases,
+message queues, DNS records, and so on. These components are:
 
 * Service API Projection
 * Service Resource Replication
 * Service Offering
-* Service Resource Claims (coming soon!)
+* Service Resource Claims (planned for later release)
 
-Each component has value independent of the others, however the most powerful and valuable use cases can be unlocked by combining them together in unique and interesting ways. For example, one key use case enabled by the the APIs allows for the seperation of application workloads and service resources into separate Kubernetes clusters. This allows, for example, developers to create services from the same cluster that their app is running in, while underlying resources that comprise the services (pods, volumes, etc.) are created and run in separate "Service" clusters. This allows Service Operators who are responsible for the lifecycle and management of the services greater control and flexibility in the services they provide.
+Each component has value on its own, however you can unlock the most powerful and
+valuable use cases by combining them. 
+
+For example, the APIs can enable the separation of application workloads and service resources into
+separate Kubernetes clusters. This allows, for example, a developer to create services from the
+same cluster that their app is running in, while underlying resources that comprise the services
+-- Pods, volumes, and so on -- are created and run in separate "Service" clusters.
+
+This allows Service Operators, who are responsible for the lifecycle and management of the  
+services, greater control and flexibility in the services they provide.
 
 #### Component Overview
 
 1. Service API Projection
 
-Enables Service Operators to _project_ Custom Kubernetes APIs from one cluster into another cluster. For example, from a Services Cluster into a Workload cluster. The act of API Projection makes use of Kubernetes API Aggregation to proxy requests from one cluster to another. Setup and configuration of the proxy and API Aggregation machinery is automated leading to a less manual and error-prone user experience.
+Enables Service Operators to _project_ Custom Kubernetes APIs from one cluster into another
+cluster. For example, from a Services Cluster into a Workload cluster.
+API Projection makes use of Kubernetes API Aggregation to proxy requests from one
+cluster to another.
+Setup and configuration of the proxy and API Aggregation machinery is automated, leading to a less
+manual and error-prone user experience.
 
-When might you want to make use of API Projection? Let's image that a Service Operator has installed the [RabbitMQ Cluster Operator for Kubernetes](https://www.RabbitMQ.com/kubernetes/operator/operator-overview.html) onto a cluster that has been highly tuned and configured to the running of RabbitMQ Clusters. They would like to make the RabbitMQ.com Custom Kubernetes API that ships with the operator available to developers so that they can provision RabbitMQ Clusters themselves. However, they do not want developers to have direct access to the Service cluster. They also don't want application workloads running in the same cluster as the RabbitMQ Cluster Operator. In this case they can make use of API Projection to project the RabbitMQ.com API from the Service Cluster and into an Application Workload cluster, where developers can interact with it as they would any other Kubernetes API.
+When might you want to make use of API Projection?
+Imagine that a Service Operator has installed the
+[RabbitMQ Cluster Operator for Kubernetes](https://www.RabbitMQ.com/kubernetes/operator/operator-overview.html) on to a cluster that is highly tuned and configured to the running of
+RabbitMQ clusters.
+They want to make the RabbitMQ.com Custom Kubernetes API that ships with the operator available to
+developers so that they can provision RabbitMQ Clusters themselves.
+However, they do not want developers to have direct access to the Service cluster.
+They also do not want application workloads running in the same cluster as the RabbitMQ cluster
+Operator.
+In this case they can make use of API Projection to project the RabbitMQ.com API from the Service
+cluster into an Application Workload cluster, where developers can interact with it like they
+interact with any other Kubernetes API.
 
 2. Service Resource Replication
 
-Service Resource Replication automates the replication of core Kubernetes resources (namely Secrets) across clusters in a secure way. The main use case for this is to help support API Projection of Service Resource Lifecycle APIs (such as the RabbitMQ.com API mentioned above).
+Service Resource Replication automates the replication of core Kubernetes resources -- namely
+Secrets -- across clusters securely. This is mainly used to help support API Projection of Service
+Resource Lifecycle APIs, such as the RabbitMQ.com API mentioned above.
 
-Typically, when creating service resources (such as `RabbitMQCluster`) on such APIs, credentials to access the service resource are stored in Secrets. If using API Projection then the Secrets containing such credentials would be end up being created on the Service clusters, and therefore not available for apps to consume in application workload clusters. Resource Replication is used to replicate such Secretes from Service Clusters and into Application Workload clusters so that they can be consumed.
+Typically, when creating service resources, such as `RabbitMQCluster`, on such APIs, credentials to
+access the service resource are stored in Secrets.
+If using API Projection then the Secrets containing such credentials are created on the Service
+clusters, and are therefore not available for apps to consume in application workload clusters.
+Resource Replication is used to replicate such Secrets from Service Clusters into
+Application Workload clusters so that they can be consumed.
 
 3. Service Offering
 
