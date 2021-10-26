@@ -41,7 +41,42 @@ standardization of the outer loop, which also gives developers more time to focu
 
 ## Packages in Tanzu Application Platform v0.3
 
-The following packages are available in Tanzu Application Platform:
+Tanzu Application Platform is available through pre-defined profiles or individual packages.
+
+The following profiles are available in Tanzu Application Platform:
+
+### Developer Lite
+
+This profile contains packages that are intended to drive the Inner Loop developer experience of building and 
+iterating on applications. 
+
+Packages within this profile are:
+
+* App Live View
+* Tanzu Build Service.....
+
+### Operator Lite
+
+This profile contains packages that are intended to drive the Outer Loop application operator experience.
+
+Packages within this profile are:
+
+* Tanzu Build Service.....
+
+### Shared Tools
+
+This profile contains packages that are intended to support team application development activities.
+
+Packages within this profile are:
+
+* Application Accelerator
+* API Portal....
+
+### Tanzu Application Platform Full
+
+This profile contains all of the Tanzu Application Platform packages.
+
+Packages within this profile are:
 
 * API portal
 * Application Accelerator for VMware Tanzu
@@ -60,6 +95,6 @@ The following packages are available in Tanzu Application Platform:
 * Tanzu Source Controller
 * VMware Tanzu Build Service
 
-## <a id='install'></a> About Installing Tanzu Application Platform v0.3 (Beta-3) Components
+## <a id='install'></a> About Installing the Tanzu Application Platform v0.3 (Beta-3) 
 
-To install the Tanzu Application Platform repo bundle, see [Installing Tanzu Application Platform](install-intro.md).
+To install the Tanzu Application Platform profiles, see [Installing Tanzu Application Platform](install-intro.md).
