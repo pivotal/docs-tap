@@ -1,4 +1,4 @@
-# <a id='installing'></a> Installing Tanzu Application Platform
+# Installing Tanzu Application Platform
 
 This document provides an overview to installing Tanzu Application Platform.
 

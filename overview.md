@@ -1,4 +1,4 @@
-# <a id='overview'></a> About Tanzu Application Platform v0.3 (Beta-3)
+# About Tanzu Application Platform v0.3 (Beta-3)
 
 ## <a id='overview'></a> Overview of Tanzu Application Platform
 

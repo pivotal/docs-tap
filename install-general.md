@@ -1,4 +1,4 @@
-# <a id='installing'></a> Installing Part I: Prerequisites, EULA, and CLI
+# Installing Part I: Prerequisites, EULA, and CLI
 
 This document describes the first part of the installation process for Tanzu Application Platform:
 

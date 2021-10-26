@@ -1,4 +1,4 @@
-# <a id='components'></a> Component Documentation
+# Component Documentation
 
 Documentation for some of the components of Tanzu Application Platform is available as follows.
 
