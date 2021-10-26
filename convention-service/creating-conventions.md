@@ -18,12 +18,13 @@ The Tanzu Application Platform beta includes tools that enable developers to qui
 
 With the convention controller installed, a convention can be defined.
 
-The current version of the convention controller supports `webhook` conventions, then it will run as a webserver.
+The convention server runs a webserver and communicate with the convention controller via webhook.
 
 _NOTE: this example covers developing conventions with [GOLANG](https://golang.org/) but it can be done in other languages by following the specs._
 
-The webserver convention consumes the [PodTemplateSpec](https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#podtemplatespec-v1-core) and the collection of ImageConfig in `JSON` format and produces a collection of `string` with the name, or description of the applied conventions or `error` if something went wrong 
+Convention Webhook are sent a POST request, with `Content-Type: application/json`, with an PodConventionContext API object in the `webhooks.conventions.apps.tanzu.vmware.com` API group serialized to JSON as the body.
 
+The output PodTemplateSpec is available at `.status.template`, which can be watched by the owner of the PodIntent resource. If the PodTemplateSpec had conventions applied the field `.status.appliedConventions` is populated with name of any conventions applied.
 
 1. <a id='create-1'></a>Start defining the ConventionHandler for the `webhook` request from the *convention controller*
 
