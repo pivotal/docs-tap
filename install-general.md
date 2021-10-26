@@ -199,24 +199,6 @@ See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes d
          secretgen-controller.carvel.dev/version: v0.5.0
          ```
 
-## Packages in Tanzu Application Platform v0.3
-
-The following packages are available in Tanzu Application Platform:
-
-* Cloud Native Runtimes for VMware Tanzu
-* Application Accelerator for VMware Tanzu
-* Application Live View for VMware Tanzu
-* VMware Tanzu Build Service 
-    * Tanzu Build Service uses the open-source <a href="https://buildpacks.io/">Cloud Native Buildpacks</a> project to turn application source code into container images
-* SCP Toolkit
-* Supply Chain Choreographer for VMware Tanzu
-* Default Supply Chain with Testing
-* Supply Chain Security Tools for VMware Tanzu
-* Convention Service for VMware Tanzu
-* Tanzu Source Controller
-* Service Bindings for Kubernetes
-* API Portal
-
 
 ## <a id="eulas"></a> Accept the EULAs
 
