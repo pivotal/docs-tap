@@ -12,6 +12,8 @@ This document describes the first part of the installation process for Tanzu App
 
 The following are required to install Tanzu Application Platform:
 
+### Tanzu Network and Container Image Registry Requirements
+Installation requires:
 * A [Tanzu Network](https://network.tanzu.vmware.com/) account to download Tanzu Application Platform packages
 
 * A container image registry, such as [Harbor](https://goharbor.io/) or 
@@ -28,7 +30,10 @@ images
 
 * Network access to your chosen container image registry
 
-* **Kubernetes cluster** v1.19 or later on one of the following Kubernetes providers:
+### Kubernetes Cluster Requirements
+Installation requires:
+
+* Kubernetes cluster v1.19 or later on one of the following Kubernetes providers:
 
     * Azure Kubernetes Service
     * Amazon Elastic Kubernetes Service
@@ -47,6 +52,7 @@ images
         * Do not use a Tanzu Kubernetes Grid cluster that runs production workloads. 
         * To install Tanzu Application Platform on Tanzu Kubernetes Grid v1.4,
           see [Installing with Tanzu Kubernetes Grid v1.4](install-tkg.md).
+   * Tanzu Community Edition x.x
 
     To deploy all Tanzu Application Platform packages, your cluster must have at least **8&nbsp;GB** of RAM across all nodes available to Tanzu Application Platform. At least 8 CPUs for i9 or equivalent, or 12 CPUs for i7 or equivalent must be available to Tanzu Application Platform components.
     VMware recommends that at least **16&nbsp;GB** of RAM is available to build and deploy applications, including for kind and minikube.
@@ -57,11 +63,13 @@ images
 must be configured so that Tanzu Application Platform controller 
 pods can run as root. 
 
-* **[kapp Carvel command line tool](https://github.com/vmware-tanzu/carvel-kapp/releases)** v0.37.0 or later
- 
-* **The Kubernetes CLI, kubectl, v1.19, v1.20 or v1.21**, installed and authenticated with administrator rights for your target cluster. See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the kubernetes documentation.
+### Tools and CLI Requirements
+Installation requires:
 
+* [kapp Carvel command line tool](https://github.com/vmware-tanzu/carvel-kapp/releases) v0.37.0 or later
 
+* The Kubernetes CLI, kubectl, v1.19, v1.20 or v1.21, installed and authenticated with administrator rights for your target cluster. 
+See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes documentation.
 
 * To set the Kubernetes cluster context:
 
