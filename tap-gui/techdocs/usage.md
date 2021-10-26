@@ -92,7 +92,7 @@ The TechDocs will be published to the S3 bucket that was just created. You will 
 
 TechDocs are generated for catalogs that have markdown source files for TechDocs.
 
-1. The catalogs that will appear in the Tanzu Application Platform GUI are listed in the `app-config.yaml` under `catalog.locations`
+1. The catalogs that will appear in the Tanzu Application Platform GUI are listed in the `tap-gui-values.yaml` under `catalog.locations`
 1. For a given catalog, clone the catalog's repo to the local filesystem
 1. Find the `mkdocs.yml` that is at the root of the catalog. There should be a yaml file describing the catalog at the same level. It may be called `catalog-info.yaml`
     - Note the values for `namespace`, `kind`, and `metadata.name` as well as the directory path containing the yaml file
@@ -134,9 +134,9 @@ We will use `npx` to run the TechDocs CLI, which requires `Node.js` and `npm`.
 
 ## Update app-config.yaml techdocs section to point to the AWS S3 bucket
 
-We will update `app-config.yaml` to point to the AWS S3 bucket that has the published TechDocs files.
+We will update the `tap-gui-values.yaml` you used at install-time to point to the AWS S3 bucket that has the published TechDocs files.
 
-1. Replace the `techdocs` section in `app-config.yaml` with the following yaml, substituting appropriate values for the placeholders.
+1. Replace the `techdocs` section in `tap-gui-values.yaml` with the following yaml, substituting appropriate values for the placeholders.
     ```yaml
     techdocs:
       builder: 'external'
@@ -151,11 +151,17 @@ We will update `app-config.yaml` to point to the AWS S3 bucket that has the publ
           s3ForcePathStyle: false
     ```
 
-1. Run Tanzu Application Platform GUI and verify that it was able to connect to the S3 bucket.
-    ```shell
-    techdocs info Creating AWS S3 Bucket publisher for TechDocs type=plugin
-    techdocs info Successfully connected to the AWS S3 bucket <BUCKET_NAME>. type=plugin
-    ```
+1. Update your installation using the `tanzu` CLI:
 
-1. Navigate to the `Docs` section and view the TechDocs pages to verify that the content is being loaded from the S3 bucket successfully.
+```shell
+$ tanzu package installed update backstage \
+  --version <package-version> \
+  -f <values-file>
+```
+You can check the status of this update with:
+```shell
+$ tanzu package installed list
+```
+
+1. Navigate to the `Docs` section of your catalog and view the TechDocs pages to verify that the content is being loaded from the S3 bucket successfully.
 
