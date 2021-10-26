@@ -7,14 +7,20 @@ The Apps CLI plugin uses the default context that you set in the kubeconfig file
 
 ## <a id='checking-update-status'></a>Checking Update Status
 
-You can use the Apps CLI plugin to create or update a workload. Once you've successfully submitted your changes to the platform, the CLI command exits. Depending on the changes you submitted, it may take time for them to be executed on the platform.
+You can use the Apps CLI plugin to create or update a workload.
+After you've successfully submitted your changes to the platform, the CLI command exits.
+Depending on the changes you submitted, it may take time for them to be executed on the platform.
 Run [`tanzu apps workload get`](command-reference/tanzu_apps_workload_get.md) to check the status of your changes.
 
 ## <a id='yaml-files'></a> Working with YAML Files
 
-In many cases, workload lifecycles can be managed through CLI commands, but there may be cases where you want to manage a workload using a `yaml` file. The Apps plugin supports using `yaml` files. 
+In many cases, workload lifecycles can be managed through CLI commands,
+but there may be cases where you want to manage a workload by using a `yaml` file.
+The Apps CLI plugin supports using `yaml` files. 
 
-The plugin is designed to manage **one workload** at a time. When a workload is managed via a `yaml` file, that file must contain a single workload definition. Plugin commands support only one file per command.
+The plugin is designed to manage **one workload** at a time.
+When you manage a workload by using a `yaml` file, that file must contain a single workload definition.
+Plugin commands support only one file per command.
 
 For example, a valid file looks similar to the following example:
 
