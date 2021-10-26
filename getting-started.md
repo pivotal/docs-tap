@@ -397,6 +397,14 @@ Tekton pipeline.
   </tr>
 </table>
 
+### Uninstalling the Default Supply Chain
+
+The TAP Beta currently has a limitation that only one supply chain can be installed at a time.  Before installing other supply chains, we must first uninstall the default supply chain that was installed as part of the install guide.  To do so, run the following commmand:
+
+```bash
+tanzu package installed delete default-supply-chain -n tap-install
+```
+
 ### Install Out of the Box Testing
 
 Now that the default supply chain has been uninstalled the **Out of the Box Basic** supply chain can be installed on the cluster.
