@@ -99,7 +99,7 @@ See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes d
         $ kubectl config use-context aks-tap-cluster
         Switched to context "aks-tap-cluster".
         
-* **kapp-controller** v0.27.0 or later:
+* kapp-controller v0.27.0 or later:
     
     **Note:** If you are using Tanzu Kubernetes Grid v1.4,
       see [Install kapp-controller](install-tkg.md#install-kappcontroller-1).
@@ -152,7 +152,7 @@ See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes d
          ```
 
 
-* **secretgen-controller**:
+* secretgen-controller:
 
     * Install secretgen-controller by running:
 
@@ -198,59 +198,6 @@ See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes d
          kubectl get deployment secretgen-controller -n secretgen-controller -oyaml | grep secretgen-controller.carvel.dev/version
          secretgen-controller.carvel.dev/version: v0.5.0
          ```
-
-
-
-* **cert-manager**:
-
-    * Install cert-manager by running:
-
-        ```
-        kapp deploy -a cert-manager -f https://github.com/jetstack/cert-manager/releases/download/v1.5.3/cert-manager.yaml
-        ```
-        We have verified the Tanzu Application Platform repo bundle packages installation with cert-manager version v1.5.3.
-        
-        * Verify installed cert-manager version by running:
-
-        ```
-        kubectl get deployment cert-manager -n cert-manager -o yaml | grep 'app.kubernetes.io/version: v'
-        ```
-
-        For example:
-
-        ```
-        kubectl get deployment cert-manager -n cert-manager -o yaml | grep 'app.kubernetes.io/version: v'
-           app.kubernetes.io/version: v1.5.3
-              app.kubernetes.io/version: v1.5.3
-        ```
-
-
-
-* **FluxCD source-controller**:
-    Install FluxCD source-controller using the following procedure.
-    
-     1. Create the namespace `flux-system`.
-        
-        ```
-        kubectl create namespace flux-system
-        ```
-     
-     2. Create the `clusterrolebinding` by running:
-
-        ```
-        kubectl create clusterrolebinding default-admin \
-        --clusterrole=cluster-admin \
-        --serviceaccount=flux-system:default
-        ```
-     3. Install FluxCD Source Controller by running:
-        ```
-        kapp deploy -a flux-source-controller -n flux-system \
-        -f https://github.com/fluxcd/source-controller/releases/download/v0.15.4/source-controller.crds.yaml \
-        -f https://github.com/fluxcd/source-controller/releases/download/v0.15.4/source-controller.deployment.yaml
-        ```
-        We have verified the Tanzu Application Platform repo bundle packages installation with FluxCD source-controller version v0.15.4.
-
-
 
 ## Packages in Tanzu Application Platform v0.3
 
