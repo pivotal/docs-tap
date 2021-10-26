@@ -286,7 +286,6 @@ To accept EULAs:
       [Tanzu Build Service Dependencies](https://network.tanzu.vmware.com/products/tbs-dependencies/),
       [Buildpacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-buildpacks-suite), and
       [Stacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-stacks-suite)
-    + [API portal for VMware Tanzu](https://network.tanzu.vmware.com/products/api-portal/)
 
 ## <a id='cli-and-plugin'></a> Install the Tanzu CLI
 
