@@ -706,7 +706,7 @@ To install Out of the Box Templates:
     tanzu package install ootb-templates \
       --package-name ootb-templates.tanzu.vmware.com \
       --version 0.3.0 \
-      --namespace tap-install \
+      --namespace tap-install
     ```
    
 

@@ -116,7 +116,6 @@ imagePullSecrets:
 
 ```bash
 tanzu apps workload create hello-world \
-	--label apps.tanzu.vmware.com/workload-type=web \
   --git-branch main \
   --git-repo https://github.com/kontinue/hello-world \
   --type web
@@ -223,7 +222,6 @@ spec:
 
 ```bash
 tanzu apps workload create hello-world \
-	--label apps.tanzu.vmware.com/workload-type=web \
   --git-branch main \
   --git-repo https://github.com/kontinue/hello-world \
   --param tekton-pipeline-name=developer-defined-tekton-pipeline \
@@ -438,7 +436,6 @@ spec:
 1. The next step would be to then submit a workload like in the other examples:
 ```bash
 tanzu apps workload create hello-world \
---label apps.tanzu.vmware.com/workload-type=web \
 --git-branch main \
 --git-repo https://github.com/kontinue/hello-world \
 --param tekton-pipeline-name=developer-defined-tekton-pipeline \

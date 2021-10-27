@@ -17,10 +17,10 @@ Tanzu Packages:
 
 - Supply Chain Choreographer for VMware Tanzu
   - Cartographer v0.0.7
-  - Out of the Box Supply Chain Basic v0.0.3
-  - Out of the Box Supply Chain with Testing v0.0.3
-  - Out of the Box Supply Chain with Testing and Scanning v0.0.3
-  - Out of the Box Templates v0.0.3
+  - Out of the Box Supply Chain Basic v0.3.0
+  - Out of the Box Supply Chain with Testing v0.3.0
+  - Out of the Box Supply Chain with Testing and Scanning v0.3.0
+  - Out of the Box Templates v0.3.0
 - Supply Chain Security Tools for VMware Tanzu
   - Scanning v
   - Image Policy Webhook v
