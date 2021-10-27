@@ -24,12 +24,11 @@ In this section you’ll deploy a simple web-application to the platform, enable
 
 Before getting started, ensure the following prerequisites are in place:
 
-1. Tanzu Application Platform has been installed on the target Kubernetes cluster
+1. Tanzu Application Platform is installed on the target Kubernetes cluster
    (install instructions [here](install-general.md)
    and [here](install.md))
 
-2. The default Supply Chain has been installed on the target Kubernetes cluster
-   (install instructions [here](install-components.md#install-ootb-supply-chain-basic))
+2. The default Supply Chain is installed on the target Kubernetes cluster. See [Install default Supply Chain](install-components.md#install-ootb-supply-chain-basic).
 
 3. Default kube config context is set to the target Kubernetes cluster
 
@@ -61,7 +60,8 @@ You’ll use an accelerator called `Tanzu-Java-Web-App` to get started.
 
 **3. Replace the default value, `dev.local`** in the _"prefix for container image registry"_ field
 with the url to your registry. The URL you enter should match the `REGISTRY_SERVER` value you provided when you installed the
-[default Supply Chain](/install-components.md#install-ootb-supply-chain-basic). Note that this entry should not include the project ID or image name.
+[default Supply Chain](/install-components.md#install-ootb-supply-chain-basic). 
+>**Note:** This entry should not include the project ID or image name.
 
 <img src="images/store-image-on-server.png" alt="Screenshot of the Tanzu Java Web App within Application Accelerator. It includes empty fields for new project information, and buttons labeled 'Generate Project', 'Explore Files', and 'Cancel'." width="600">
 
