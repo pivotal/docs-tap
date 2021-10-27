@@ -135,5 +135,5 @@ The [Yelb](https://github.com/mreferre/yelb/tree/master/deployments/platformdepl
 
 
 #### Install Yelb Catalog
-1. Save [PLACEHOLDER FILENAME](https://gitlab.eng.vmware.com/project-star/pstar-backstage-poc/-/blob/master/demo-app/yelb/yelb-k8s-loadbalancer.yaml) file and extract to your Git repository of choice.
+1. Save the **Tanzu Application Platform GUI Yelb Catalog** from the Tanzu Network's Tanzu Application Platform downloads, and extract to your Git repository of choice.
 2. Using the steps for [Adding an Additional Catalog Location](#adding-an-additional-catalog-location), add the `catalog-info.yaml` 
