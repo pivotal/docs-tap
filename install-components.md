@@ -661,10 +661,9 @@ To install Tanzu Build Service using the Tanzu CLI:
 [tekton]: https://github.com/tektoncd/pipeline
 
 Supply Chain Choreographer provides the custom resource definitions that the supply chain uses.
-Each pre-approved supply chain creates a paved road to production; orchestrating supply chain resources
-- test, build, scan, and deploy - allowing developers to be able to focus on delivering value to their
-users while also providing App Operators with the peace of mind that all code in production has passed
-through all the steps of an approved workflow.
+Each pre-approved supply chain creates a paved road to production and orchestrates supply chain resources. You can test, build, scan, and deploy. Developers can focus on delivering value to
+users. App Operators can have peace of mind that all code in production has passed
+through an approved workflow.
 
 For example, Supply Chain Choreographer passes the results of fetching source code to the component
 that knows how to build a container image from of it and then passes the container image
@@ -695,8 +694,8 @@ Added installed package 'cartographer' in namespace 'default'
 
 ## <a id='install-ootb-templates'></a> Install Out of the Box Templates
 
-The Out of the Box Templates are used by all of the Out of the Box Supply Chains.
-In the supply chain, there is a list of resources. Each resource points to an Out of the Box Template.
+The Out of the Box Templates are used by all Out of the Box Supply Chains.
+There is a list of resources in each supply chain. Each resource points to an Out of the Box Template.
 
 To install Out of the Box Templates:
 
@@ -706,13 +705,13 @@ To install Out of the Box Templates:
     tanzu package install ootb-templates \
       --package-name ootb-templates.tanzu.vmware.com \
       --version 0.3.0 \
-      --namespace tap-install \
+      --namespace tap-install 
     ```
    
 
 ## <a id='install-ootb-supply-chain-basic'></a> Install default Supply Chain
 
-To install the default Supply Chain (which is called Out of the Box Supply Chain Basic):
+Install the default Supply Chain, called Out of the Box Supply Chain Basic, by running:
 
 1. Gather the values schema:
 
@@ -734,7 +733,7 @@ To install the default Supply Chain (which is called Out of the Box Supply Chain
    ```
 
 
-1. Create an `supply-chain-values.yaml` using the following sample as a guide:
+1. Create a `supply-chain-values.yaml` using the following sample as a guide.
 
     Sample `supply-chain-values.yaml` for the default Supply Chain:
 
