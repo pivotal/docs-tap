@@ -46,15 +46,15 @@ REGISTRY_PASSWORD=admin
 # placeholder secret can be found.
 #
 #
-tanzu imagepullsecret add registry-credentials \
+tanzu imagepullsecret add scc-registry-credentials \
   --export-to-all-namespaces \
   --registry $REGISTRY \
   --username $REGISTRY_USERNAME \
   --password $REGISTRY_PASSWORD
 ```
 ```console
-- Adding image pull secret 'registry-credentials'...
- Added image pull secret 'registry-credentials' into namespace 'default'
+- Adding image pull secret 'scc-registry-credentials'...
+ Added image pull secret 'scc-registry-credentials' into namespace 'default'
 ```
 
 _ps.: note that the REGISTRY here _must_ be the same as the one set in the
@@ -93,7 +93,7 @@ source-to-url     Ready   2m20s   apps.tanzu.vmware.com/workload-type=web
 apiVersion: v1
 kind: Secret
 metadata:
-  name: registry-credentials
+  name: scc-registry-credentials
   annotations:
     secretgen.carvel.dev/image-pull-secret: ""
 type: kubernetes.io/dockerconfigjson
@@ -107,9 +107,9 @@ metadata:
   name: service-account   # must match the name configured in the supply chain
                           # for source-to-url, must be "service-account"
 secrets:
-  - name: registry-credentials
+  - name: scc-registry-credentials
 imagePullSecrets:
-  - name: registry-credentials
+  - name: scc-registry-credentials
 ```
 
 3. create the workload
@@ -167,7 +167,7 @@ source-test-to-url   Ready   2m20s   apps.tanzu.vmware.com/workload-type=web
 apiVersion: v1
 kind: Secret
 metadata:
-  name: registry-credentials
+  name: scc-registry-credentials
   annotations:
     secretgen.carvel.dev/image-pull-secret: ""
 type: kubernetes.io/dockerconfigjson
@@ -181,9 +181,9 @@ metadata:
   name: service-account   # must match the name configured in the supply chain
                   # installation (defaults to `service-account`)
 secrets:
-  - name: registry-credentials
+  - name: scc-registry-credentials
 imagePullSecrets:
-  - name: registry-credentials
+  - name: scc-registry-credentials
 ```
 
 3. Configure a Tekton pipeline for running the tests

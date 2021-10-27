@@ -8,10 +8,11 @@ This document describes how to create a workload from example source code with t
 
 The following prerequisites are required to use workloads with Tanzu Application Service:
 
-+ Kubectl is installed [guide](https://kubernetes.io/docs/tasks/tools/)
-+ TAP components are installed on a Kubernetes cluster [guide](../../install-intro.md)
++ Kubectl is [installed](https://kubernetes.io/docs/tasks/tools/)
++ TAP components are [installed](../../install-intro.md) on a Kubernetes cluster 
 + Your kubeconfig context is set to the prepared cluster `kubectl config use-context CONTEXT_NAME`
-+ Tanzu CLI installed [guide](../../install-general.md#cli-and-plugin) with the apps plugin [guide](overview-installation.md#Installation)
++ Tanzu CLI is [installed](../../install-general.md#cli-and-plugin)  
+  + The apps plugin is [installed](overview-installation.md#Installation)
 
 ### Getting Started with an Example Workload
 

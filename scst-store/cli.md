@@ -40,7 +40,7 @@ To set up the CLI:
 
 Make sure you have the prerequisites from [Using Supply Chain Security Tools - Store](using_metadata_store.md#prerequisites) before you set up the CLI. To set up the CLI, do the following:
 
-1. [Enable an encrypted connection to the store](enable_encrypted_connection.md).
+1. [Using encryption and connecting](enable_encrypted_connection.md).
 2. [Create a user and get an access token](create_service_account_access_token.md).
 3. [Configure the CLI](configure_cli.md).
 

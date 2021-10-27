@@ -80,7 +80,9 @@ The webserver convention consumes the [PodTemplateSpec](https://v1-18.docs.kuber
 
 ## <a id='targeting'></a> Define the Convention Behavior
 
-Once the convention is defined, you can specify the attributes that determine if a convention is applied to a workload. Any property or value within the `PodTemplateSpec` or OCI image metadata associated with a [workload](../scc/reference.md#workload) can define the criteria for applying conventions. The following are examples of ways to define convention behavior. 
+Once the convention is defined, you can specify the attributes that determine if a convention is applied to a workload. 
+Any property or value within the `PodTemplateSpec` or OCI image metadata associated with a workload can define the criteria for applying conventions.
+The following are examples of ways to define convention behavior. 
 
 ### By Labels or Annotations:
 

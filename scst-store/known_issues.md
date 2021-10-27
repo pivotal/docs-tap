@@ -68,6 +68,7 @@ This issue could be occurring because the cluster where Store is deployed does n
     ```sh
     # This is the storageclass that Kind uses
     kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml
+    
     # set the storage class as default
     kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
     ```

@@ -1,4 +1,4 @@
-# <a id='overview'></a> About Tanzu Application Platform v0.3 (Beta-3)
+# About Tanzu Application Platform v0.3 (Beta-3)
 
 ## <a id='overview'></a> Overview of Tanzu Application Platform
 
@@ -41,25 +41,12 @@ standardization of the outer loop, which also gives developers more time to focu
 
 ## Packages in Tanzu Application Platform v0.3
 
-The following packages are available in Tanzu Application Platform:
+Tanzu Application Platform is available through pre-defined profiles or individual packages.
 
-* API portal
-* Application Accelerator for VMware Tanzu
-* Application Live View for VMware Tanzu
-* Cloud Native Runtimes for VMware Tanzu
-* Convention Service for VMware Tanzu
-* Default Supply Chain
-* Default Supply Chain with Testing
-* Developer Conventions 
-* SCP Toolkit
-* Service Bindings for Kubernetes
-* Supply Chain Choreographer for VMware Tanzu
-* Supply Chain Security Tools - Scan
-* Supply Chain Security Tools - Sign
-* Supply Chain Security Tools - Store
-* Tanzu Source Controller
-* VMware Tanzu Build Service
+The following profiles are available in Tanzu Application Platform:
 
-## <a id='install'></a> About Installing Tanzu Application Platform v0.3 (Beta-3) Components
+[Insert table here]
 
-To install the Tanzu Application Platform repo bundle, see [Installing Tanzu Application Platform](install-intro.md).
+## <a id='install'></a> About Installing the Tanzu Application Platform v0.3 (Beta-3) 
+
+To install the Tanzu Application Platform profiles, see [Installing Tanzu Application Platform](install-intro.md).
