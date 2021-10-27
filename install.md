@@ -1299,10 +1299,10 @@ To install Tanzu Learning Center:
       
       `educates-config.yaml:`
       ```yaml
-      imageRegistry:
-        host:
-        username:
-        password:
+      imageRegistry: <IMAGE-REGISTRY-URL>
+        host: <HOST-DOMAIN>
+        username: <USERNAME>
+        password: <PASSWORD>
       ```
    
      ### Optional configuration settings
