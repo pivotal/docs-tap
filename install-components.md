@@ -824,9 +824,11 @@ To install developer conventions:
 
 ## <a id='install-spring-boot-convention'></a> Install Spring Boot Conventions
 
+To install Spring Boot conventions:
+
 **Prerequisite**: Convention Service installed on the cluster, see [Install Convention Service](#install-convention-service).
 
-1. Get the exact name and version information for the spring boot conventions package to be installed by running:
+1. Get the exact name and version information for the Spring Boot conventions package to be installed by running:
 
     ```bash
     tanzu package available list spring-boot-conventions.tanzu.vmware.com --namespace tap-install
