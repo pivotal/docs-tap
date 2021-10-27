@@ -959,14 +959,14 @@ manual and error-prone user experience.
 
 When might you want to make use of API Projection?
 Imagine that a Service Operator has installed the
-[RabbitMQ Cluster Operator for Kubernetes](https://www.RabbitMQ.com/kubernetes/operator/operator-overview.html) on to a cluster that is highly tuned and configured to the running of
+[RabbitMQ Cluster Operator for Kubernetes](https://www.rabbitmq.com/kubernetes/operator/operator-overview.html) on to a cluster that is highly tuned and configured to the running of
 RabbitMQ clusters.
-They want to make the RabbitMQ.com Custom Kubernetes API that ships with the operator available to
+They want to make the `rabbitmq.com` Custom Kubernetes API that ships with the operator available to
 developers so that they can provision RabbitMQ Clusters themselves.
 However, they do not want developers to have direct access to the Service cluster.
 They also do not want application workloads running in the same cluster as the RabbitMQ cluster
 Operator.
-In this case they can make use of API Projection to project the RabbitMQ.com API from the Service
+In this case they can make use of API Projection to project the `rabbitmq.com` API from the Service
 cluster into an Application Workload cluster, where developers can interact with it like they
 interact with any other Kubernetes API.
 
@@ -974,9 +974,9 @@ interact with any other Kubernetes API.
 
 Service Resource Replication automates the replication of core Kubernetes resources -- namely
 Secrets -- across clusters securely. This is mainly used to help support API Projection of Service
-Resource Lifecycle APIs, such as the RabbitMQ.com API mentioned above.
+Resource Lifecycle APIs, such as the `rabbitmq.com` API mentioned above.
 
-Typically, when creating service resources, such as `RabbitMQCluster`, on such APIs, credentials to
+Typically, when creating service resources, such as `RabbitmqCluster`, on such APIs, credentials to
 access the service resource are stored in Secrets.
 If using API Projection then the Secrets containing such credentials are created on the Service
 clusters, and are therefore not available for apps to consume in application workload clusters.
@@ -1004,7 +1004,7 @@ Let’s start by playing the role of a Service Operator, who is responsible for 
 
 1. Install the RabbitMQ Operator by running:
     ```
-    kapp -y deploy --app rmq-operator --file https://github.com/RabbitMQ/cluster-operator/releases/download/v1.9.0/cluster-operator.yml
+    kapp -y deploy --app rmq-operator --file https://github.com/rabbitmq/cluster-operator/releases/download/v1.9.0/cluster-operator.yml
     ```
 2. Create a ClusterRole that grants read permissions to the ResourceClaim controller to the Service resources, in this case RabbitMQ. Run:
 
@@ -1018,8 +1018,8 @@ Let’s start by playing the role of a Service Operator, who is responsible for 
       labels:
         services.vmware.tanzu.com/aggregate-to-resource-claims: "true"
     rules:
-    - apiGroups: ["RabbitMQ.com"]
-      resources: ["RabbitMQclusters"]
+    - apiGroups: ["rabbitmq.com"]
+      resources: ["rabbitmqclusters"]
       verbs: ["get", "list", "watch"]
     ```
     ```
@@ -1028,21 +1028,21 @@ Let’s start by playing the role of a Service Operator, who is responsible for 
 
 3. Ensure that the namespace is enabled to install packages so that Cartographer Workloads can be created. See [Set Up Developer Namespaces to Use Installed Packages](install.md#-set-up-developer-namespaces-to-use-installed-packages).
 
-4. Let’s now switch hats to the Application Operator role and create a RabbitMQCluster instance we can use to bind to our application workload.
+4. Let’s now switch hats to the Application Operator role and create a RabbitmqCluster instance we can use to bind to our application workload.
     ```yaml
     #rmq-1.yaml
     ---
-    apiVersion: RabbitMQ.com/v1beta1
-    kind: RabbitMQCluster
+    apiVersion: rabbitmq.com/v1beta1
+    kind: RabbitmqCluster
     metadata:
       name: rmq-1
     ```
     ```
     kubectl apply -f rmq-1.yaml
     ```
-5. Next, create an application Workload to our previously created RabbitMQcluster instance. We will use an example Spring application that sends and receives messages to itself. Both the Workload and RabbitMQCluster instance must be in the same namespace.
+5. Next, create an application Workload to our previously created RabbitmqCluster instance. We will use an example Spring application that sends and receives messages to itself. Both the Workload and RabbitmqCluster instance must be in the same namespace.
     ```
-    tanzu apps workload create rmq-sample-app-usecase-1 --git-repo https://github.com/jhvhs/RabbitMQ-sample --git-branch v0.1.0 --type web --service-ref "rmq=RabbitMQ.com/v1beta1:RabbitMQCluster:rmq-1"
+    tanzu apps workload create rmq-sample-app-usecase-1 --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch v0.1.0 --type web --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:rmq-1"
     ```
 6. Once the workload has been built and is running you can confirm it is up and running by grabbing the knative web-app URL.
     ```
@@ -1108,13 +1108,13 @@ Now let us see the different use cases where SCP toolkit makes the Services Jour
 
     ```
     kapp -y deploy --app rmq-operator \
-        --file https://raw.githubusercontent.com/RabbitMQ/cluster-operator/lb-binding/hack/deploy.yml  \
+        --file https://raw.githubusercontent.com/rabbitmq/cluster-operator/lb-binding/hack/deploy.yml  \
         --kubeconfig-context SERVICE_CONTEXT
     ```
 
 3. You can verify that the Operator has been installed with the following:
     ```
-     kubectl --context SERVICE_CONTEXT get crds RabbitMQclusters.RabbitMQ.com
+     kubectl --context SERVICE_CONTEXT get crds rabbitmqclusters.rabbitmq.com
     ```
 
 4. In the Workload Cluster, create a ClusterRole that grants read permissions to the ResourceClaim controller to the Service resources, in this case RabbitMQ.
@@ -1128,14 +1128,14 @@ Now let us see the different use cases where SCP toolkit makes the Services Jour
       labels:
         services.vmware.tanzu.com/aggregate-to-resource-claims: "true"
     rules:
-    - apiGroups: ["RabbitMQ.com"]
-      resources: ["RabbitMQclusters"]
+    - apiGroups: ["rabbitmq.com"]
+      resources: ["rabbitmqclusters"]
       verbs: ["get", "list", "watch"]
     ```
     ```
     kubectl apply -f resource-claims-rmq.yaml
     ```
-5. Federate the `RabbitMQ.com/v1beta1` API Group into the Workload Cluster. API federation is split into two parts - projection and replication. Projection applies to custom API Groups. Replication applies to core Kubernetes resources, such as Secrets. Before federating, create a pair of target namespaces where you will create RabbitMQCluster instances. The namespace name needs to be identical in the Application Workload and Service Cluster.
+5. Federate the `rabbitmq.com/v1beta1` API Group into the Workload Cluster. API federation is split into two parts - projection and replication. Projection applies to custom API Groups. Replication applies to core Kubernetes resources, such as Secrets. Before federating, create a pair of target namespaces where you will create RabbitmqCluster instances. The namespace name needs to be identical in the Application Workload and Service Cluster.
 
     ```
     kubectl --context WORKLOAD_CONTEXT create namespace my-project-1
@@ -1149,17 +1149,17 @@ Now let us see the different use cases where SCP toolkit makes the Services Jour
       --workload-kubeconfig-context=WORKLOAD_CONTEXT \
       --service-kubeconfig-context=SERVICE_CONTEXT \
       --namespace=my-project-1 \
-      --api-group=RabbitMQ.com \
+      --api-group=rabbitmq.com \
       --api-version=v1beta1 \
-      --api-resource=RabbitMQclusters
+      --api-resource=rabbitmqclusters
     ```
 8. Make RabbitMQ discoverable in the Workload Cluster so that developers can create RabbitMQ clusters. Run:
 
     ```
     kubectl scp make-discoverable \
       --workload-kubeconfig-context=WORKLOAD_CONTEXT \
-      --api-group=RabbitMQ.com \
-      --api-resource-kind=RabbitMQCluster
+      --api-group=rabbitmq.com \
+      --api-resource-kind=RabbitmqCluster
     ```
 
 9. An Application Developer uses services available in the Workload Cluster. There is one service resource available in the example below.
@@ -1168,16 +1168,16 @@ Now let us see the different use cases where SCP toolkit makes the Services Jour
     kubectl --context=WORKLOAD_CONTEXT get clusterserviceresources
 
     NAME                           API KIND          API GROUP      DESCRIPTION
-    RabbitMQ.com-RabbitMQcluster   RabbitMQCluster   RabbitMQ.com
+    rabbitmq.com-rabbitmqcluster   RabbitmqCluster   rabbitmq.com
     ```
 
-10. Create a service instance of RabbitMQ in the Workload Cluster. Run:
+10. Create a service instance of RabbitmqCluster in the Workload Cluster. Run:
 
     ```yaml
-    # RabbitMQ-cluster.yaml
+    # rabbitmq-cluster.yaml
     ---
-    apiVersion: RabbitMQ.com/v1beta1
-    kind: RabbitMQCluster
+    apiVersion: rabbitmq.com/v1beta1
+    kind: RabbitmqCluster
     metadata:
       name: projected-rmq
     spec:
@@ -1185,14 +1185,14 @@ Now let us see the different use cases where SCP toolkit makes the Services Jour
         type: LoadBalancer
     ```
     ```
-    kubectl --context WORKLOAD_CONTEXT -n my-project-1 apply -f RabbitMQ-cluster.yaml
+    kubectl --context WORKLOAD_CONTEXT -n my-project-1 apply -f rabbitmq-cluster.yaml
     ```
 
-11. Confirm that the RabbitMQCluster resource reconciles successfully from the Workload cluster by running:
+11. Confirm that the RabbitmqCluster resource reconciles successfully from the Workload cluster by running:
     ```
-    kubectl --context WORKLOAD_CONTEXT -n my-project-1 get -f RabbitMQ-cluster.yaml
+    kubectl --context WORKLOAD_CONTEXT -n my-project-1 get -f rabbitmq-cluster.yaml
     ```
-12. Confirm that rabbit pods are not running in the Workload cluster, but are running in the service cluster.
+12. Confirm that RabbitMQ pods are not running in the Workload cluster, but are running in the service cluster.
     ```
     kubectl --context WORKLOAD_CONTEXT -n my-project-1 get pods
 
@@ -1200,7 +1200,7 @@ Now let us see the different use cases where SCP toolkit makes the Services Jour
     ```
 13. Create an application workload in Workload cluster that references your API Projected RabbitMQ instance. Run:
     ```
-    tanzu apps workload create -n my-project-1 rmq-sample-app-usecase2 --git-repo https://github.com/jhvhs/RabbitMQ-sample --git-branch v0.1.0 --type web --service-ref "rmq=RabbitMQ.com/v1beta1:RabbitMQCluster:projected-rmq"
+    tanzu apps workload create -n my-project-1 rmq-sample-app-usecase2 --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch v0.1.0 --type web --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:projected-rmq"
     ```
 14. Confirm that the workload is running by getting web-app URL. Run:
     ```
