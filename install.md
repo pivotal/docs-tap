@@ -1116,13 +1116,13 @@ To install Tanzu Application Platform GUI:
     $ tanzu package available list tap-gui.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for tap-gui.tanzu.vmware.com...
       NAME                      VERSION     RELEASED-AT
-      tap-gui.tanzu.vmware.com  0.3.0      2021-10-20T14:46:26Z
+      tap-gui.tanzu.vmware.com  0.3.0-rc.1  2021-10-20T14:46:26Z
     ```
 
 2. (Optional) To make changes to the default installation settings, run:
 
     ```bash
-    tanzu package available get tap-gui.tanzu.vmware.com/0.3.0 --values-schema --namespace tap-install
+    tanzu package available get tap-gui.tanzu.vmware.com/0.3.0-rc.1 --values-schema --namespace tap-install
     ```
 
     For more information about values schema options, see the individual product documentation.
@@ -1136,7 +1136,7 @@ with your relevant values. The meanings of some placeholders are explained in th
     service_type: <SERVICE-TYPE>
     app-config:
       app:
-        baseUrl: <EXTERNAL-IP>:<PORT>
+        baseUrl: https://<EXTERNAL-IP>:<PORT>
       integrations:
         gitlab:
           - host: <GITLAB-HOST>
@@ -1174,9 +1174,9 @@ with your relevant values. The meanings of some placeholders are explained in th
           - type: url
             target: https://<GIT-CATALOG-URL>/catalog-info.yaml
       backend:
-          baseUrl: <EXTERNAL-IP>:<PORT>
+          baseUrl: https://<EXTERNAL-IP>:<PORT>
           cors:
-              origin: <EXTERNAL-IP>:<PORT>
+              origin: https://<EXTERNAL-IP>:<PORT>
       # database: # Only needed if you intend to support with an existing PostgreSQL database. The catalog is still refreshed from Git.
       #     client: pg
       #      connection:
@@ -1207,7 +1207,7 @@ with your relevant values. The meanings of some placeholders are explained in th
     ```console
     tanzu package install tap-gui \
      --package-name tap-gui.tanzu.vmware.com \
-     --version 0.3.0 -n tap-install \
+     --version 0.3.0-rc.1 -n tap-install \
      -f tap-gui-values.yaml
     ```
 
@@ -1240,7 +1240,7 @@ with your relevant values. The meanings of some placeholders are explained in th
     | Retrieving installation details for cc...
     NAME:                    tap-gui
     PACKAGE-NAME:            tap-gui.tanzu.vmware.com
-    PACKAGE-VERSION:         0.3.0
+    PACKAGE-VERSION:         0.3.0-rc.1
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
