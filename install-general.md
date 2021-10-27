@@ -420,20 +420,21 @@ see [Install Tanzu CLI Plugins](install-tkg.md#install-tanzu-cli-plugins-2).
     ```
 4. Install the `secret` plugin
    ```
-   tanzu plugin install secret --local ./cli_
+   tanzu plugin install secret --local ./cli
    ```
     The versions should mostly reflect the downloaded file version numbers (not all plugins are going to match the exact same download version - i.e. `v0.8.0` below). For example:
     ```
-   NAME                LATEST VERSION  DESCRIPTION                                                        REPOSITORY  VERSION      STATUS
-  accelerator                         Manage accelerators in a Kubernetes cluster                                    v0.4.0       installed
-  apps                                Applications on Kubernetes                                                     v0.2.0       installed
-  cluster             v0.8.0          Kubernetes cluster operations                                      core        v0.8.0       installed
-  kubernetes-release  v0.8.0          Kubernetes release operations                                      core        v0.8.0       installed
-  login               v0.8.0          Login to the platform                                              core        v0.8.0       installed
-  management-cluster  v0.8.0          Kubernetes management cluster operations                           core        v0.8.0       installed
-  package             v0.8.0          Tanzu package management                                           core        v0.8.0       installed
-  pinniped-auth       v0.8.0          Pinniped authentication operations (usually not directly invoked)  core        v0.8.0       installed
-  secret              v0.8.0          Tanzu secret management                                            core        v0.8.0       installed
+     tanzu plugin list
+     NAME                LATEST VERSION  DESCRIPTION                                                        REPOSITORY  VERSION      STATUS
+     accelerator                         Manage accelerators in a Kubernetes cluster                                    v0.4.0-rc.2  installed
+     apps                                Applications on Kubernetes                                                     v0.2.0       installed
+     cluster             v0.8.0          Kubernetes cluster operations                                      core        v0.8.0       installed
+     kubernetes-release  v0.8.0          Kubernetes release operations                                      core        v0.8.0       installed
+     login               v0.8.0          Login to the platform                                              core        v0.8.0       installed
+     management-cluster  v0.8.0          Kubernetes management cluster operations                           core        v0.8.0       installed
+     package             v0.8.0          Tanzu package management                                           core        v0.8.0       installed
+     pinniped-auth       v0.8.0          Pinniped authentication operations (usually not directly invoked)  core        v0.8.0       installed
+     secret              v0.8.0          Tanzu secret management                                            core        v0.8.0       installed
     ```
   
 **Note:**
