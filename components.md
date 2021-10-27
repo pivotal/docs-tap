@@ -1,4 +1,4 @@
-# <a id='components'></a> Component Documentation
+# Component Documentation
 
 Documentation for some of the components of Tanzu Application Platform is available as follows.
 
@@ -17,7 +17,7 @@ Tanzu Application Platform documentation site.
 
 + [Convention Service for VMware Tanzu](convention-service/about.md)
 
-+ [SCP Toolkit](https://docs.vmware.com/en/SCP-Toolkit/0.3/scp-toolkit-0-3/GUID-overview.html)
++ [Services Toolkit](https://docs.vmware.com/en/SCP-Toolkit/0.4/scp-toolkit-0-4/GUID-overview.html)
 
 + [Supply Chain Choreographer for VMware Tanzu](scc/about.html)
 

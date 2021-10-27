@@ -1,4 +1,4 @@
-# <a id='uninstalling'></a> Uninstalling Tanzu Application Platform
+# Uninstalling Tanzu Application Platform
 
 This document describes how to uninstall Tanzu Application Platform packages from the TAP package repository.
 

@@ -1,4 +1,4 @@
-# <a id='installing'></a> Installing Part I: Prerequisites, EULA, and CLI
+# Installing Part I: Prerequisites, EULA, and CLI
 
 This document describes the first part of the installation process for Tanzu Application Platform:
 
@@ -12,6 +12,8 @@ This document describes the first part of the installation process for Tanzu App
 
 The following are required to install Tanzu Application Platform:
 
+### Tanzu Network and Container Image Registry Requirements
+Installation requires:
 * A [Tanzu Network](https://network.tanzu.vmware.com/) account to download Tanzu Application Platform packages
 
 * A container image registry, such as [Harbor](https://goharbor.io/) or 
@@ -28,7 +30,10 @@ images
 
 * Network access to your chosen container image registry
 
-* **Kubernetes cluster** v1.19 or later on one of the following Kubernetes providers:
+### Kubernetes Cluster Requirements
+Installation requires:
+
+* Kubernetes cluster v1.19 or later on one of the following Kubernetes providers:
 
     * Azure Kubernetes Service
     * Amazon Elastic Kubernetes Service
@@ -47,6 +52,7 @@ images
         * Do not use a Tanzu Kubernetes Grid cluster that runs production workloads. 
         * To install Tanzu Application Platform on Tanzu Kubernetes Grid v1.4,
           see [Installing with Tanzu Kubernetes Grid v1.4](install-tkg.md).
+   * Tanzu Community Edition x.x
 
     To deploy all Tanzu Application Platform packages, your cluster must have at least **8&nbsp;GB** of RAM across all nodes available to Tanzu Application Platform. At least 8 CPUs for i9 or equivalent, or 12 CPUs for i7 or equivalent must be available to Tanzu Application Platform components.
     VMware recommends that at least **16&nbsp;GB** of RAM is available to build and deploy applications, including for kind and minikube.
@@ -57,11 +63,13 @@ images
 must be configured so that Tanzu Application Platform controller 
 pods can run as root. 
 
-* **[kapp Carvel command line tool](https://github.com/vmware-tanzu/carvel-kapp/releases)** v0.37.0 or later
- 
-* **The Kubernetes CLI, kubectl, v1.19, v1.20 or v1.21**, installed and authenticated with administrator rights for your target cluster. See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the kubernetes documentation.
+### Tools and CLI Requirements
+Installation requires:
 
+* [kapp Carvel command line tool](https://github.com/vmware-tanzu/carvel-kapp/releases) v0.37.0 or later
 
+* The Kubernetes CLI, kubectl, v1.19, v1.20 or v1.21, installed and authenticated with administrator rights for your target cluster. 
+See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes documentation.
 
 * To set the Kubernetes cluster context:
 
@@ -91,7 +99,7 @@ pods can run as root.
         $ kubectl config use-context aks-tap-cluster
         Switched to context "aks-tap-cluster".
         
-* **kapp-controller** v0.27.0 or later:
+* kapp-controller v0.27.0 or later:
     
     **Note:** If you are using Tanzu Kubernetes Grid v1.4,
       see [Install kapp-controller](install-tkg.md#install-kappcontroller-1).
@@ -144,7 +152,7 @@ pods can run as root.
          ```
 
 
-* **secretgen-controller**:
+* secretgen-controller:
 
     * Install secretgen-controller by running:
 
@@ -192,77 +200,6 @@ pods can run as root.
          ```
 
 
-
-* **cert-manager**:
-
-    * Install cert-manager by running:
-
-        ```
-        kapp deploy -a cert-manager -f https://github.com/jetstack/cert-manager/releases/download/v1.5.3/cert-manager.yaml
-        ```
-        We have verified the Tanzu Application Platform repo bundle packages installation with cert-manager version v1.5.3.
-        
-        * Verify installed cert-manager version by running:
-
-        ```
-        kubectl get deployment cert-manager -n cert-manager -o yaml | grep 'app.kubernetes.io/version: v'
-        ```
-
-        For example:
-
-        ```
-        kubectl get deployment cert-manager -n cert-manager -o yaml | grep 'app.kubernetes.io/version: v'
-           app.kubernetes.io/version: v1.5.3
-              app.kubernetes.io/version: v1.5.3
-        ```
-
-
-
-* **FluxCD source-controller**:
-    Install FluxCD source-controller using the following procedure.
-    
-     1. Create the namespace `flux-system`.
-        
-        ```
-        kubectl create namespace flux-system
-        ```
-     
-     2. Create the `clusterrolebinding` by running:
-
-        ```
-        kubectl create clusterrolebinding default-admin \
-        --clusterrole=cluster-admin \
-        --serviceaccount=flux-system:default
-        ```
-     3. Install FluxCD Source Controller by running:
-        ```
-        kapp deploy -a flux-source-controller -n flux-system \
-        -f https://github.com/fluxcd/source-controller/releases/download/v0.15.4/source-controller.crds.yaml \
-        -f https://github.com/fluxcd/source-controller/releases/download/v0.15.4/source-controller.deployment.yaml
-        ```
-        We have verified the Tanzu Application Platform repo bundle packages installation with FluxCD source-controller version v0.15.4.
-
-
-
-## Packages in Tanzu Application Platform v0.3
-
-The following packages are available in Tanzu Application Platform:
-
-* Cloud Native Runtimes for VMware Tanzu
-* Application Accelerator for VMware Tanzu
-* Application Live View for VMware Tanzu
-* VMware Tanzu Build Service 
-    * Tanzu Build Service uses the open-source <a href="https://buildpacks.io/">Cloud Native Buildpacks</a> project to turn application source code into container images
-* SCP Toolkit
-* Supply Chain Choreographer for VMware Tanzu
-* Default Supply Chain with Testing
-* Supply Chain Security Tools for VMware Tanzu
-* Convention Service for VMware Tanzu
-* Tanzu Source Controller
-* Service Bindings for Kubernetes
-* API Portal
-
-
 ## <a id="eulas"></a> Accept the EULAs
 
 Before you can install packages, you have to accept the End User License Agreements (EULAs).
@@ -278,7 +215,6 @@ To accept EULAs:
       [Tanzu Build Service Dependencies](https://network.tanzu.vmware.com/products/tbs-dependencies/),
       [Buildpacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-buildpacks-suite), and
       [Stacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-stacks-suite)
-    + [API portal for VMware Tanzu](https://network.tanzu.vmware.com/products/api-portal/)
 
 ## <a id='cli-and-plugin'></a> Install the Tanzu CLI
 
@@ -312,7 +248,7 @@ To install the Tanzu CLI on a Linux operating system:
 
 3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/) on Tanzu Network.
 
-4. Click on the `tanzu-cli-0.5.0` folder.
+4. Click on the `tanzu-cli-0.8.0` folder.
 
 5. Download `tanzu-framework-bundle-linux` and unpack the TAR file into the `tanzu` directory:
     ```
@@ -322,7 +258,7 @@ To install the Tanzu CLI on a Linux operating system:
 6. Install the Tanzu CLI from the `tanzu` directory by running:
     ```
     cd $HOME/tanzu
-    sudo install cli/core/v0.5.0/tanzu-core-linux_amd64 /usr/local/bin/tanzu
+    sudo install cli/core/v0.8.0/tanzu-core-linux_amd64 /usr/local/bin/tanzu
     ```
 
 7. Confirm the installation of the Tanzu CLI by running:
@@ -344,7 +280,7 @@ To install the Tanzu CLI on a Mac operating system:
 
 3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/) on Tanzu Network.
 
-4. Click on the `tanzu-cli-0.5.0` folder.
+4. Click on the `tanzu-cli-0.8.0` folder.
 
 5. Download `tanzu-framework-bundle-mac` and unpack the TAR file into the `tanzu` directory:
     ```
@@ -354,7 +290,7 @@ To install the Tanzu CLI on a Mac operating system:
 6.  Install the Tanzu CLI from the `tanzu` directory by running:
     ```
     cd $HOME/tanzu
-    sudo install cli/core/v0.5.0/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
+    sudo install cli/core/v0.8.0/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
     ```
 
 7. Confirm the installation of the Tanzu CLI by running:
@@ -394,13 +330,13 @@ To install the Tanzu CLI on a Windows operating system:
 
 3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/) on Tanzu Network.
 
-4. Click on the `tanzu-cli-0.5.0` folder.
+4. Click on the `tanzu-cli-0.8.0` folder.
 
 5. Download `tanzu-framework-bundle-windows` and unpack the TAR files into the `tanzu-bundle` directory.
 
 5. Create a new `Program Files\tanzu` folder.
 
-6. In the unpacked CLI folder tanzu-bundle, locate and copy the `core/v0.5.0/tanzu-core-windows_amd64.exe`
+6. In the unpacked CLI folder tanzu-bundle, locate and copy the `core/v0.8.0/tanzu-core-windows_amd64.exe`
    into the new `Program Files\tanzu` folder.
 
 7. Rename `tanzu-core-windows_amd64.exe` to `tanzu.exe`.
@@ -427,13 +363,15 @@ If you have an earlier version of the Tanzu CLI installed,
 do the following before you install the plugins.
 For instructions on installing plugins, see [Install the Tanzu CLI Plugins](#install-the-tanzu-cli-plugins) below.
 
+**Note:** `imagepullsecret` plugin is deprecated in tanzu-framework version v0.8.0 and replaced with `secret` plugin.
+
 To remove plugins from earlier versions of the Tanzu CLI:
 
 1. Create a directory named `tanzu`.
 
 1. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/) on Tanzu Network.
 
-1. Click the `tanzu-cli-0.5.0` folder. 
+1. Click the `tanzu-cli-0.8.0` folder. 
 
 1.  Download `tanzu-framework-bundle-*` for your operating system and unpack the TAR file
     into the `tanzu` directory.
@@ -452,19 +390,21 @@ To remove plugins from earlier versions of the Tanzu CLI:
     ```
     tanzu plugin clean
     ```
+2. Remove the `imagepullsecret` plugin
+   ```
+   tanzu plugin delete imagepullsecret
+   ```
 
-## <a id='install-the-tanzu-cli-plugins'></a> Install the Tanzu CLI Plugins
-
-After you have installed the Tanzu core executable, you must install the package, imagepullsecret, apps, and app-accelerator CLI plugins.
+## <a id='install-the-tanzu-cli-plugins'></a> Update the tanzu cli
 
 If you use Tanzu Kubernetes Grid v1.4,
 see [Install Tanzu CLI Plugins](install-tkg.md#install-tanzu-cli-plugins-2).
 
 1. Navigate to the Tanzu folder that contains the cli folder.
 
-2. Run the following command from the tanzu directory to install all the plugins for this release.
+2. Run the following command from the tanzu directory to update core cli and all the plugins for this release.
     ```
-    tanzu plugin install --local cli all
+    tanzu update --local ./cli
     ```
     If a message similar to the following is displayed:
      ```
@@ -478,23 +418,27 @@ see [Install Tanzu CLI Plugins](install-tkg.md#install-tanzu-cli-plugins-2).
     ```
     tanzu plugin list
     ```
-    The versions should mostly reflect the downloaded file version numbers (not all plugins are going to match the exact same download version - i.e. `v0.5.0` below). For example:
+4. Install the `secret` plugin
+   ```
+   tanzu plugin install secret --local ./cli
+   ```
+    The versions should mostly reflect the downloaded file version numbers (not all plugins are going to match the exact same download version - i.e. `v0.8.0` below). For example:
     ```
-    $ tanzu plugin list
-    NAME                LATEST VERSION  DESCRIPTION                                                                                                                                         REPOSITORY  VERSION  STATUS
-    accelerator                         Manage accelerators in a Kubernetes cluster                                                                                                                     v0.3.0   installed
-    apps                                Applications on Kubernetes                                                                                                                                      v0.2.0   installed
-    cluster                             Kubernetes cluster operations                                                                                                                                   v0.5.0   installed
-    imagepullsecret                     Manage image pull secret operations. Image pull secrets enable the package and package repository consumers to authenticate to private registries.              v0.5.0   installed
-    kubernetes-release                  Kubernetes release operations                                                                                                                                   v0.5.0   installed
-    login                               Login to the platform                                                                                                                                           v0.5.0   installed
-    management-cluster                  Kubernetes management cluster operations                                                                                                                        v0.5.0   installed
-    package                             Tanzu package management                                                                                                                                        v0.5.0   installed
-    pinniped-auth                       Pinniped authentication operations (usually not directly invoked)                                                                                               v0.5.0   installed
+     tanzu plugin list
+     NAME                LATEST VERSION  DESCRIPTION                                                        REPOSITORY  VERSION      STATUS
+     accelerator                         Manage accelerators in a Kubernetes cluster                                    v0.4.0-rc.2  installed
+     apps                                Applications on Kubernetes                                                     v0.2.0       installed
+     cluster             v0.8.0          Kubernetes cluster operations                                      core        v0.8.0       installed
+     kubernetes-release  v0.8.0          Kubernetes release operations                                      core        v0.8.0       installed
+     login               v0.8.0          Login to the platform                                              core        v0.8.0       installed
+     management-cluster  v0.8.0          Kubernetes management cluster operations                           core        v0.8.0       installed
+     package             v0.8.0          Tanzu package management                                           core        v0.8.0       installed
+     pinniped-auth       v0.8.0          Pinniped authentication operations (usually not directly invoked)  core        v0.8.0       installed
+     secret              v0.8.0          Tanzu secret management                                            core        v0.8.0       installed
     ```
   
 **Note:**
-The `package`, `imgpullsecret`, `accelerator`, and `apps` plugins are used to install or
+The `package`, `secret`, `accelerator`, and `apps` plugins are used to install or
 interact with the Tanzu Application Platform.
     
 The Tanzu Application Platform beta product requires cluster-admin privileges. There are additional plugins and commands included with the Tanzu CLI that can have unintended side-effects. VMware recommends against running commands for the following CLI plugins: `cluster`, `kubernetes-release`, `login`, `management-cluster`, and `pinniped-auth`.
