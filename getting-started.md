@@ -61,7 +61,7 @@ You’ll use an accelerator called `Tanzu-Java-Web-App` to get started.
 
 **3. Replace the default value, `dev.local`** in the _"prefix for container image registry"_ field
 with the url to your registry. The URL you enter should match the `REGISTRY_SERVER` value you provided when you installed the
-[Default Supply Chain](/install.md#install-default-supply-chain).
+[Default Supply Chain](/install.md#install-default-supply-chain). Note that this entry should not include the project ID or image name.
 
 <img src="images/store-image-on-server.png" alt="Screenshot of the Tanzu Java Web App within Application Accelerator. It includes empty fields for new project information, and buttons labeled 'Generate Project', 'Explore Files', and 'Cancel'." width="600">
 
@@ -89,7 +89,7 @@ tanzu apps workload get tanzu-java-web-app
 
 ### <a id='iterate'></a>Iterate on your Application
 
-#### Set up your IDE
+##### Set up your IDE
 
 Now that you have a skeleton workload working, you are ready to iterate on your application
 and test code changes on the cluster.
@@ -115,7 +115,7 @@ In order to ensure your extension helps you iterate on the correct project, you�
 You’re now ready to iterate on your application!
 
 
-#### Live Update your Application
+##### Live Update your Application
 
 Let’s deploy the application and see it live update on the cluster. Doing so allows you to understand how your code changes will behave on a production-like cluster much earlier in the development process.
 
@@ -136,7 +136,7 @@ You will see your changes on the cluster.
 You can now continue to make more changes. If you are finished, you can stop or disable live update. Open the command palette (⇧⌘P), type in Tanzu, and select either option.
 
 
-#### Debug your Application
+##### Debug your Application
 
 You can debug your cluster on your application or in your local environment.
 
@@ -146,7 +146,7 @@ Follow the steps below to debug your cluster:
 3. Return to your browser and navigate to http://localhost:8080. This will hit the breakpoint within VSCode. You can now step through or play to the end of the debug session using VSCode debugging controls.
 
 
-#### Troubleshooting a Running Application
+##### Troubleshooting a Running Application
 
 Now that your application is developed you may be interested in inspecting the run time
 characteristics of the running application. You can use Application Live View UI to look
@@ -214,7 +214,7 @@ tanzu accelerator update <accelerator-name> --reconcile
 ```
 ---
 
-## Section 3: Add testing and security scanning to your application
+## Section 3: Add Testing and Security Scanning to Your Application
 
 ### What is a Supply Chain?
 
@@ -238,7 +238,7 @@ between each of the tools.
 Supply chains used to codify the organization's path to production are configurable, allowing their
 authors to add all of the steps of their application's path to production.
 
-Out of the box, Tanzu Application Platform provides three out of the box supply chains that are designed to
+Tanzu Application Platform provides three out of the box supply chains designed to
 work with Tanzu Application Platform components.
 
 
@@ -246,18 +246,20 @@ work with Tanzu Application Platform components.
 
 The Tanzu Application Platform installation steps cover installing the default supply chain, but
 others are available.
-If you follow the installation documentation, the **Out of the Box Basic** supply chain and all of its
+If you follow the installation documentation, the **Out of the Box Basic** supply chain and its
 dependencies are installed on your cluster.
 The table and diagrams below describe the two supply chains included in Tanzu Application Platform
-Beta 3 as well as their dependencies.
+Beta 3, as well as their dependencies.
 
-The second, **Out of the Box Test**, can run a Tekton pipeline within the supply chain. It therefore has a dependency on
-[Tekton](https://tekton.dev/), which has not yet been installed on your cluster. The third supply chain **Out of the Box Test and Scan** that is available with TAP includes integrations to the secure scanning tools.
+The **Out of the Box Test** runs a Tekton pipeline within the supply chain. It is dependent on
+[Tekton](https://tekton.dev/) being installed on your cluster.
 
-The next section, which installs the second supply chain, is about installing Tekton and provides a sample Tekton pipeline that tests the
+The **Out of the Box Test and Scan** supply chain includes integrations for secure scanning tools.
+
+The following section installs the second supply chain, includes steps to install Tekton and provides a sample Tekton pipeline that tests your
 sample application.
-The pipeline is, like the supply chain, completely configurable and therefore the steps within it
-can be customized to perform additional testing, or any other tasks that can be performed with a
+The pipeline is configurable, therefore you can customize the steps
+to perform additional testing, or any other tasks that can be performed with a
 Tekton pipeline.
 
 ![Diagram depicting the Source-to-URL chain: Watch Repo (Flux) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](images/source-to-url-chain.png)
@@ -327,16 +329,16 @@ Tekton pipeline.
    </td>
    <td><code>ootb-supply-chain-testing.tanzu.vmware.com</code>
    </td>
-   <td>The Out of the Box Testing contains all of the same elements as the Source to URL. It also allows the developer to specify a Tekton pipeline that will be ran as part of the “CI” step of the supply chain.
+   <td>The Out of the Box Testing contains all of the same elements as the Source to URL. It allows developers to specify a Tekton pipeline that runs as part of the CI step of the supply chain.
 <ul>
 
-<li>The application will be testing using the provided tekton pipeline
+<li>The application tests using the tekton pipeline
 
-<li>A new image will be automatically created
+<li>A new image is automatically created
 
-<li>Any predefined conventions will be applied
+<li>Any predefined conventions are applied
 
-<li>The application will be deployed to the cluster
+<li>The application is deployed to the cluster
 </li>
 </ul>
    </td>
@@ -409,7 +411,7 @@ The supply chain uses Tekton to run tests defined by developers
 before you produce a container image for the source code,
 preventing code that fails tests from being promoted to deployment.
 
-For Beta 3, we are using the open source version of Tekton. To install Tekton with `kapp`, run:
+This version uses the open source version of Tekton. To install Tekton with `kapp`, run:
 
 ```bash
 kapp deploy --yes -a tekton \
@@ -423,7 +425,7 @@ You can also view the Tekton
 [tutorial](https://github.com/tektoncd/pipeline/blob/main/docs/tutorial.md)
 and [getting started guide](https://tekton.dev/docs/getting-started/).
 
-Now that you have installed Tekton, the **Out of the Box Testing** supply chain can be installed on your cluster. Run:
+Now that Tekton is installed, you can install the **Out of the Box Testing** supply chain on your cluster. Run:
 
 ```bash
 tanzu package install ootb-supply-chain-testing \
@@ -493,73 +495,73 @@ that step of the supply requires execution.
 
 ### Workload update
 
-Finally, in order to have the new supply chain connected to the workload,
-the workload needs to be updated to point at the newly created Tekton pipeline.
-The workload can be updated using the Tanzu CLI as follows:
+To connect the new supply chain to the workload,
+the workload must be updated to point at the your Tekton pipeline.
+1. Update the workload by running the following with the Tanzu CLI:
 
-```bash
-tanzu apps workload create tanzu-java-web-app \
-  --git-repo  https://github.com/sample-accelerators/tanzu-java-web-app \
-  --git-branch main \
-  --type web \
-  --param tekton-pipeline-name=developer-defined-tekton-pipeline \
-  --yes
-```
+  ```bash
+  tanzu apps workload create tanzu-java-web-app \
+    --git-repo  https://github.com/sample-accelerators/tanzu-java-web-app \
+    --git-branch main \
+    --type web \
+    --param tekton-pipeline-name=developer-defined-tekton-pipeline \
+    --yes
+  ```
 
-```console
-Create workload:
-      1 + |apiVersion: carto.run/v1alpha1
-      2 + |kind: Workload
-      3 + |metadata:
-      4 + |  labels:
-      5 + |    apps.tanzu.vmware.com/workload-type: web
-      6 + |  name: tanzu-java-web-app
-      7 + |  namespace: default
-      8 + |spec:
-      9 + |  params:
-     10 + |  - name: tekton-pipeline-name
-     11 + |    value: developer-defined-tekton-pipeline
-     12 + |  source:
-     13 + |    git:
-     14 + |      ref:
-     15 + |        branch: main
-     16 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
+  ```console
+  Create workload:
+        1 + |apiVersion: carto.run/v1alpha1
+        2 + |kind: Workload
+        3 + |metadata:
+        4 + |  labels:
+        5 + |    apps.tanzu.vmware.com/workload-type: web
+        6 + |  name: tanzu-java-web-app
+        7 + |  namespace: default
+        8 + |spec:
+        9 + |  params:
+       10 + |  - name: tekton-pipeline-name
+       11 + |    value: developer-defined-tekton-pipeline
+       12 + |  source:
+       13 + |    git:
+       14 + |      ref:
+       15 + |        branch: main
+       16 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
 
-? Do you want to create this workload? Yes
-Created workload "tanzu-java-web-app"
-```
+  ? Do you want to create this workload? Yes
+  Created workload "tanzu-java-web-app"
+  ```
 
-After accepting the creation of the new workload, we can monitor the creation of new resources by the workload using:
+2. After accepting the workload creation, monitor the creation of new resources by the workload by running:
 
-```bash
-kubectl get workload,gitrepository,pipelinerun,images.kpack,podintent,app,services.serving
-```
+  ```bash
+  kubectl get workload,gitrepository,pipelinerun,images.kpack,podintent,app,services.serving
+  ```
 
-That should result in an output which will show all of the objects that have been created by the Supply Chain Choreographer:
+  You will see output similar to the following example that shows the objects that were created by the Supply Chain Choreographer:
 
 
-```bash
-NAME                                    AGE
-workload.carto.run/tanzu-java-web-app   109s
+  ```bash
+  NAME                                    AGE
+  workload.carto.run/tanzu-java-web-app   109s
 
-NAME                                                        URL                                                         READY   STATUS                                                            AGE
-gitrepository.source.toolkit.fluxcd.io/tanzu-java-web-app   https://github.com/sample-accelerators/tanzu-java-web-app   True    Fetched revision: main/872ff44c8866b7805fb2425130edb69a9853bfdf   109s
+  NAME                                                        URL                                                         READY   STATUS                                                            AGE
+  gitrepository.source.toolkit.fluxcd.io/tanzu-java-web-app   https://github.com/sample-accelerators/tanzu-java-web-app   True    Fetched revision: main/872ff44c8866b7805fb2425130edb69a9853bfdf   109s
 
-NAME                                              SUCCEEDED   REASON      STARTTIME   COMPLETIONTIME
-pipelinerun.tekton.dev/tanzu-java-web-app-4ftlb   True        Succeeded   104s        77s
+  NAME                                              SUCCEEDED   REASON      STARTTIME   COMPLETIONTIME
+  pipelinerun.tekton.dev/tanzu-java-web-app-4ftlb   True        Succeeded   104s        77s
 
-NAME                                LATESTIMAGE                                                                                                      READY
-image.kpack.io/tanzu-java-web-app   10.188.0.3:5000/foo/tanzu-java-web-app@sha256:1d5bc4d3d1ffeb8629fbb721fcd1c4d28b896546e005f1efd98fbc4e79b7552c   True
+  NAME                                LATESTIMAGE                                                                                                      READY
+  image.kpack.io/tanzu-java-web-app   10.188.0.3:5000/foo/tanzu-java-web-app@sha256:1d5bc4d3d1ffeb8629fbb721fcd1c4d28b896546e005f1efd98fbc4e79b7552c   True
 
-NAME                                                             READY   REASON   AGE
-podintent.conventions.apps.tanzu.vmware.com/tanzu-java-web-app   True             7s
+  NAME                                                             READY   REASON   AGE
+  podintent.conventions.apps.tanzu.vmware.com/tanzu-java-web-app   True             7s
 
-NAME                                      DESCRIPTION           SINCE-DEPLOY   AGE
-app.kappctrl.k14s.io/tanzu-java-web-app   Reconcile succeeded   1s             2s
+  NAME                                      DESCRIPTION           SINCE-DEPLOY   AGE
+  app.kappctrl.k14s.io/tanzu-java-web-app   Reconcile succeeded   1s             2s
 
-NAME                                             URL                                               LATESTCREATED              LATESTREADY                READY     REASON
-service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.developer.example.com   tanzu-java-web-app-00001   tanzu-java-web-app-00001   Unknown   IngressNotConfigured
-```
+  NAME                                             URL                                               LATESTCREATED              LATESTREADY                READY     REASON
+  service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.developer.example.com   tanzu-java-web-app-00001   tanzu-java-web-app-00001   Unknown   IngressNotConfigured
+  ```
 
 ### Install Out of the Box Testing and Scanning
 
@@ -700,15 +702,15 @@ Application operators may apply image signatures and store them in the registry 
 
 **Configure the Image Policy Webhook**
 
-After the webhook is up and running, create a service account named `image-policy-registry-credentials` in the `image-policy-system` namespace. This is a required configuration even if the images and signatures are in public registries.
+After the webhook is running, create a service account named `image-policy-registry-credentials` in the `image-policy-system` namespace. This is required, even if the images and signatures are in public registries.
 
 After the image policy webhook is installed in the cluster, configure the image policy you want to enforce and the credentials to access private registries.
 
 **Configure a service account to hold private registry secrets**
 
-In the situation when the platform operator is expecting to verify signatures stored in a private registry,
-it is required to configure a service account with all the secrets for those private registries.
-This service account:
+When the platform operator is expecting to verify signatures stored in a private registry,
+it is required that you configure a service account with all the secrets for those private registries.
+The service account:
 
 * Must be created in the `image-policy-system` namespace
 
@@ -716,7 +718,7 @@ This service account:
 
 * All secrets for accessing private registries must be added to the `imagePullSecrets` section of the service account
 
-The manifest for this service account would look like this:
+The manifest for the service account is similar to the following example:
 
 ```
 ---
@@ -910,30 +912,68 @@ One of the out-of-the-box supply chains we are working on for a future release w
 
 ### Overview
 
-Tanzu Application Platform makes it easy to discover, curate, consume, and manage services in a single or multi-cluster environment to enable app developers to focus on consuming services without having to worry about provisioning, configuration and operations of the services themselves.
+Tanzu Application Platform makes it easy to discover, curate, consume, and manage services in a
+single- or multi-cluster environment to enable app developers to focus on consuming services
+without having to worry about provisioning, configuration, and operations of the services
+themselves.
 
-This experience is made possible by the Services Toolkit component of Tanzu Application Platform. Services Toolkit comprises a number of Kubernetes native components which support the management, lifecycle, discoverability and connectivity of Service Resources (databases, message queues, DNS records, etc.) on Kubernetes. These components are:
+This experience is made possible by the Services Toolkit component of Tanzu Application Platform.
+Services Toolkit comprises a number of Kubernetes-native components that support the management,
+lifecycle, discoverability, and connectivity of Service Resources on Kubernetes, such as databases,
+message queues, DNS records, and so on. These components are:
 
 * Service API Projection
 * Service Resource Replication
 * Service Offering
-* Service Resource Claims (coming soon!)
+* Service Resource Claims (planned for later release)
 
-Each component has value independent of the others, however the most powerful and valuable use cases can be unlocked by combining them together in unique and interesting ways. For example, one key use case enabled by the the APIs allows for the seperation of application workloads and service resources into separate Kubernetes clusters. This allows, for example, developers to create services from the same cluster that their app is running in, while underlying resources that comprise the services (pods, volumes, etc.) are created and run in separate "Service" clusters. This allows Service Operators who are responsible for the lifecycle and management of the services greater control and flexibility in the services they provide.
+Each component has value on its own, however you can unlock the most powerful and
+valuable use cases by combining them. 
+
+For example, the APIs can enable the separation of application workloads and service resources into
+separate Kubernetes clusters. This allows, for example, a developer to create services from the
+same cluster that their app is running in, while underlying resources that comprise the services
+-- Pods, volumes, and so on -- are created and run in separate "Service" clusters.
+
+This allows Service Operators, who are responsible for the lifecycle and management of the  
+services, greater control and flexibility in the services they provide.
 
 #### Component Overview
 
 1. Service API Projection
 
-Enables Service Operators to _project_ Custom Kubernetes APIs from one cluster into another cluster. For example, from a Services Cluster into a Workload cluster. The act of API Projection makes use of Kubernetes API Aggregation to proxy requests from one cluster to another. Setup and configuration of the proxy and API Aggregation machinery is automated leading to a less manual and error-prone user experience.
+Enables Service Operators to _project_ Custom Kubernetes APIs from one cluster into another
+cluster. For example, from a Services Cluster into a Workload cluster.
+API Projection makes use of Kubernetes API Aggregation to proxy requests from one
+cluster to another.
+Setup and configuration of the proxy and API Aggregation machinery is automated, leading to a less
+manual and error-prone user experience.
 
-When might you want to make use of API Projection? Let's image that a Service Operator has installed the [RabbitMQ Cluster Operator for Kubernetes](https://www.RabbitMQ.com/kubernetes/operator/operator-overview.html) onto a cluster that has been highly tuned and configured to the running of RabbitMQ Clusters. They would like to make the RabbitMQ.com Custom Kubernetes API that ships with the operator available to developers so that they can provision RabbitMQ Clusters themselves. However, they do not want developers to have direct access to the Service cluster. They also don't want application workloads running in the same cluster as the RabbitMQ Cluster Operator. In this case they can make use of API Projection to project the RabbitMQ.com API from the Service Cluster and into an Application Workload cluster, where developers can interact with it as they would any other Kubernetes API.
+When might you want to make use of API Projection?
+Imagine that a Service Operator has installed the
+[RabbitMQ Cluster Operator for Kubernetes](https://www.RabbitMQ.com/kubernetes/operator/operator-overview.html) on to a cluster that is highly tuned and configured to the running of
+RabbitMQ clusters.
+They want to make the RabbitMQ.com Custom Kubernetes API that ships with the operator available to
+developers so that they can provision RabbitMQ Clusters themselves.
+However, they do not want developers to have direct access to the Service cluster.
+They also do not want application workloads running in the same cluster as the RabbitMQ cluster
+Operator.
+In this case they can make use of API Projection to project the RabbitMQ.com API from the Service
+cluster into an Application Workload cluster, where developers can interact with it like they
+interact with any other Kubernetes API.
 
 2. Service Resource Replication
 
-Service Resource Replication automates the replication of core Kubernetes resources (namely Secrets) across clusters in a secure way. The main use case for this is to help support API Projection of Service Resource Lifecycle APIs (such as the RabbitMQ.com API mentioned above).
+Service Resource Replication automates the replication of core Kubernetes resources -- namely
+Secrets -- across clusters securely. This is mainly used to help support API Projection of Service
+Resource Lifecycle APIs, such as the RabbitMQ.com API mentioned above.
 
-Typically, when creating service resources (such as `RabbitMQCluster`) on such APIs, credentials to access the service resource are stored in Secrets. If using API Projection then the Secrets containing such credentials would be end up being created on the Service clusters, and therefore not available for apps to consume in application workload clusters. Resource Replication is used to replicate such Secretes from Service Clusters and into Application Workload clusters so that they can be consumed.
+Typically, when creating service resources, such as `RabbitMQCluster`, on such APIs, credentials to
+access the service resource are stored in Secrets.
+If using API Projection then the Secrets containing such credentials are created on the Service
+clusters, and are therefore not available for apps to consume in application workload clusters.
+Resource Replication is used to replicate such Secrets from Service Clusters into
+Application Workload clusters so that they can be consumed.
 
 3. Service Offering
 
