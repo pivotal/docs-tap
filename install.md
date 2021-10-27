@@ -12,10 +12,10 @@ For information, see [Installing Part I: Prerequisites, EULA, and CLI](install-g
 
 The parameters required for the installation need to be defined in a YAML file.
 
-The available parameters for the individual packages can be identified by the values schema 
+The available parameters for the individual packages can be identified by the values schema
 defined in the package.
-You can get these parameters by running the `--values-schema` command
-included in the installation procedures below.
+You can get these parameters by running the `--values-schema` command included in the following
+installation procedures.
 
 Follow the specific installation instructions for each package:
 
@@ -261,7 +261,7 @@ To install Cloud Native Runtimes:
    **Note:** This step covers configuring a namespace to run Knative services.
    If you rely on a SupplyChain to deploy Knative services into your cluster,
    then skip this step because namespace configuration is covered in
-   [Set Up Developer Namespaces to Use Installed Packages](#setup) below. Otherwise, you must complete the following steps for each namespace where you create Knative services.
+   [Set Up Developer Namespaces to Use Installed Packages](#setup). Otherwise, you must complete the following steps for each namespace where you create Knative services.
 
    Service accounts that run workloads using Cloud Native Runtimes need access to the image pull secrets for the Tanzu package.
    This includes the `default` service account in a namespace, which is created automatically, but not associated with any image pull secrets.
@@ -756,7 +756,7 @@ To install Tanzu Build Service using the Tanzu CLI:
      Added installed package 'tbs' in namespace 'tap-install'
     ```
 
-    **Note**: Installing the `buildservice.tanzu.vmware.com` package with Tanzu Network credentials automatically relocates buildpack dependencies to your cluster. This install process can take some time.  The command provided above increases the timeout duration.  If the command times out, periodically run the installation verification step provided in the optional step below. Image relocation will continue in the background.
+    **Note**: Installing the `buildservice.tanzu.vmware.com` package with Tanzu Network credentials automatically relocates buildpack dependencies to your cluster. This install process can take some time.  The command provided above increases the timeout duration.  If the command times out, periodically run the installation verification step provided in the following optional step. Image relocation will continue in the background.
 
 1. (Optional) Run the following command to verify the clusterbuilders created by the Tanzu Build Service install:
 
@@ -853,8 +853,8 @@ To install Default Supply Chain:
       --values-file default-supply-chain-values.yaml
     ```
 
-> **Note:** The `service-account` service account and required secrets are created
-  in [Set Up Developer Namespaces to Use Installed Packages](#setup) below.
+> **Note:** The `service-account` service account and required secrets are created in
+[Set Up Developer Namespaces to Use Installed Packages](#setup).
 
 ## <a id='install-developer-conventions'></a> Install Developer Conventions
 
@@ -949,7 +949,7 @@ To install Application Live View:
     $ tanzu package available get appliveview.tanzu.vmware.com/0.3.0 --values-schema --namespace tap-install
     - Retrieving package details for appliveview.tanzu.vmware.com/0.3.0...
       KEY                   DEFAULT        TYPE    DESCRIPTION
-      connector_namespaces  [default]      array   The namespaces in which ALV monitors the users apps 
+      connector_namespaces  [default]      array   The namespaces in which ALV monitors the users apps
       server_namespace      app-live-view  string  The namespace to which ALV server is deployed
       service_type          LoadBalancer   string  The service type for the Application Live View server can be LoadBalancer, NodePort, or ClusterIP
     ```
@@ -971,13 +971,13 @@ To install Application Live View:
    server_namespace: app-live-view
    service_type: LoadBalancer
    ```
-   
+
    Where:
-   
+
    - `connector_namespaces` is a list of namespaces where you want
    Application Live View to monitor your apps. An instance of the
    Application Live View Connector will be deployed to each of those namespaces.
-   - `server_namespace` is the namespace where the Application Live View server and its components are deployed. 
+   - `server_namespace` is the namespace where the Application Live View server and its components are deployed.
    VMware reccommends using the namespace you created earlier, named `app-live-view`.
    - `service_type` is the Kubernetes service type for the Application Live View server.
    This can be LoadBalancer, NodePort, or ClusterIP.
@@ -1029,7 +1029,7 @@ To install Application Live View:
 
 
 To access the Application Live View UI:
-    
+
 1. List the resources deployed in the namespace where the Application Live View server and its components are deployed by running:
 
     ```bash
@@ -1068,7 +1068,7 @@ To access the Application Live View UI:
 
 ## <a id='install-tap-gui'></a> Install Tanzu Application Platform GUI
 
-To install Tanzu Application Platform GUI, see the sections below.
+To install Tanzu Application Platform GUI, see the following sections.
 
 ### Prerequisites in Addition to Tanzu Application Platform Requirements
 
@@ -1084,7 +1084,7 @@ Supported Git infrastructure includes:
 **Optional**
 
 - **Tanzu Application Platform tools:** Tanzu Application Platform GUI has plugins for the
-below Tanzu Application Platform tools. If you plan on running workloads with these capabilities,
+following Tanzu Application Platform tools. If you plan on running workloads with these capabilities,
 you need these tools installed alongside Tanzu Application Platform GUI.
 If you choose not to deploy workloads with these tools, the GUI shows menu options that you cannot
 click on.
@@ -1140,7 +1140,7 @@ To install Tanzu Application Platform GUI:
 
 
 1. Create `tap-gui-values.yaml` using the following example code, replacing all `<PLACEHOLDERS>`
-with your relevant values. The meanings of some placeholders are explained below this example.
+with your relevant values. The meanings of some placeholders are explained in this example:
 
     ```yaml
     namespace: tap-gui
@@ -1166,7 +1166,7 @@ with your relevant values. The meanings of some placeholders are explained below
       #        secretAccessKey: '<S3-SECRET-KEY>'
       #      region: '<S3-REGION>'
       #      s3ForcePathStyle: false # Set value to true if using local S3 solution (Minio)  
-     
+
       # auth: # Only needed if you want to enable OIDC login integration, otherwise only Guest mode is enabled
       #  environment: development
       #  session:
@@ -1261,110 +1261,134 @@ with your relevant values. The meanings of some placeholders are explained below
 1. To access Tanzu Application Platform GUI, use the service you exposed above in the
 `service_type` field in the values file.
 
-## <a id='install-learning-center'></a> Install Learning Center
+
+## Install Learning Center
 
 To install Tanzu Learning Center:
 
-1. Create a configuration yaml file called `educates-config.yaml`
- 
-   The only field required is the `ingressDomain` property, all other properties are optional.
-   
-   The operator when deploying instances of the workshop environments needs to be able to expose 
-   them via an external URL for access. To define the domain name that can be used as a suffix to 
-   hostnames for instances.
-   > **Note:** For the custom domain you are using, DNS must have been configured with a wildcard domain to forward all requests for subdomains of the custom domain, to the ingress router of the Kubernetes cluster.
-   
-   It is recommended that you avoid using a ``.dev`` domain name as such domain names have a requirement
-   to always use HTTPS and you cannot use HTTP. Although you can provide a certificate for secure connections
-   under the domain name for use by Learning Center, this doesn't extend to what a workshop may do.
-   By using a ``.dev`` domain name, if workshop instructions have you creating ingresses in Kubernetes using HTTP only, they will not work.
-   > **Note:** If you are running Kubernetes on your local machine using a system like ``minikube`` and you don't have a custom domain name which maps to the IP for the cluster, you can use a ``nip.io`` address. For example, if ``minikube ip`` returned ``192.168.64.1``, you could use the 192.168.64.1.nip.io domain. Note that you cannot use an address of form ``127.0.0.1.nip.io``, or ``subdomain.localhost``. This will cause a failure as internal services when needing to connect to each other, would end up connecting to themselves instead, since the address would resolve to the host loopback address of ``127.0.0.1``.
-   
-   Make sure you replace the educates.my-domain.com domain with the domain name for your Kubernetes cluster.
-   
-   `educates-config.yaml:`
-   ```yaml
-   ingressDomain: educates.my-domain.com
-   ```
+* Create a configuration yaml file called `educates-config.yaml`:
 
-   ### Optional configuration settings
-      * Enforcing secure connections:
+    ```yaml
+    ingressDomain: <educates.my-domain.com>
+    ```
+    Where `<educates.my-domain.com>` is the domain name for your Kubernetes cluster.
 
-         By default the workshop portal and workshop sessions will be accessible over HTTP connections. If you wish to use secure 
-         HTTPS connections, you must have access to a wildcard SSL certificate for the domain under which you wish to host the workshops. 
-         You cannot use a self signed certificate.
-   
-         Wildcard certificates can be created using `letsencrypt <https://letsencrypt.org/>`_. 
-         Once you have the certificate, you can add the following to your configuration yaml:
-   
-         The easiest way to define the certificate is through the configuration passed to Tanzu CLI. So define the ``certificate`` and ``privateKey`` 
-         properties under the ``ingressSecret`` 
-         property to specify the certificate on the configuration yaml passed to Tanzu CLI
-   
-         `educates-config.yaml:`
-         ```yaml
-         ingressSecret:
-           certificate: MIIC2DCCAcCgAwIBAgIBATANBgkqh ...
-           privateKey: MIIEpgIBAAKCAQEA7yn3bRHQ5FHMQ ...
-         ```
-   
-         If you already has a TLS secret, you can copy it to the ``educates`` namespace or that one you defined, 
-         nd use the ``secretName`` property.
+The only field required is the `ingressDomain` property: all other properties are optional.
 
-         `educates-config.yaml:`
-         ```yaml
-         ingressSecret:
-           secretName: workshops.example.com-tls
-         ```
+When deploying workshop environment instances, the operator must be able to expose the instances
+through an external URL. This access is needed to discover the domain name that can be used as a
+suffix to hostnames for instances.
 
-      * Specifying the ingress class:
+> **Note:** For the custom domain you are using, DNS must have been configured with a wildcard
+domain. This is necessary to forward all requests for subdomains of the custom domain to the
+ingress router of the Kubernetes cluster.
 
-         Any ingress routes created will use the default ingress class. If you have multiple ingress class types available, 
-         and you need to override which is used, you can:
-   
-         `educates-config.yaml:`
-         ```yaml
-         ingressClass: contour
-         ```
-   
-      * Setting image registry
+`.dev` domain names are discouraged because they can only use HTTPS, not HTTP.
+Although you can provide a certificate for secure connections under the domain name that
+Learning Center uses, a workshop might function differently.
+For example, workshop instructions might tell you to create ingresses in Kubernetes using HTTP
+only, and these will not work if the domain name is `.dev`.
 
-         Primary image registry where Educates container images are stored. It is only necessary to define the host 
-         and credentials when that image registry requires authentication to access images. This principally
-         exists to allow relocation of images through Carvel image bundles.
+> **Note:** If you are running Kubernetes on your local machine using a system such as `minikube`,  
+and you do not have a custom domain name that maps to the IP for the cluster, you can use a
+`nip.io` address.
+For example, if `minikube ip` returns `192.168.64.1`, you can use the `192.168.64.1.nip.io`
+domain. You cannot use an address of the forms `127.0.0.1.nip.io` or `subdomain.localhost`.
+Doing so causes a failure because internal services, when trying to connect to each other, would
+connect to themselves instead -- the address would resolve to the host loopback address of
+`127.0.0.1`.
 
-         `educates-config.yaml:`
-         ```yaml
-         imageRegistry:
-           host:
-           username:
-           password:
-         ```
 
-1. Install Learning Center operator
-   ```shell
-   tanzu package install educates --package-name learningcenter.tanzu.vmware.com --version 1.0.8-build.1 -f educates-config.yaml
-   ```
-   
-   The command above will create a default namespace in your Kubernetes cluster called ``educates`` and the operator along with any required namespaced resources will be created in it. A set of custom resource definitions and a global cluster role binding will also be created. The list of resources you should see being created are:
-   
-   ```shell
-   customresourcedefinition.apiextensions.k8s.io/workshops.training.eduk8s.io created
-   customresourcedefinition.apiextensions.k8s.io/workshopsessions.training.eduk8s.io created
-   customresourcedefinition.apiextensions.k8s.io/workshopenvironments.training.eduk8s.io created
-   customresourcedefinition.apiextensions.k8s.io/workshoprequests.training.eduk8s.io created
-   customresourcedefinition.apiextensions.k8s.io/trainingportals.training.eduk8s.io created
-   serviceaccount/eduk8s created
-   customresourcedefinition.apiextensions.k8s.io/systemprofiles.training.eduk8s.io created
-   clusterrolebinding.rbac.authorization.k8s.io/eduk8s-cluster-admin created
-   deployment.apps/eduk8s-operator created
-   ```
-   
-   You can check that the operator deployed okay by running:
-   ```shell
-   kubectl get all -n educates
-   ```
-   The pod for the operator should be marked as running.
+### Optional Configuration Settings
+
+The following procedures configure optional settings.
+
+#### Enforce Secure Connections
+
+By default, the workshop portal and workshop sessions are accessible over HTTP connections.
+To use HTTPS connections, you need access to a wildcard SSL certificate for the domain in
+which you want to host the workshops. You cannot use a self-signed certificate.
+
+* **If you already have a TLS secret:**
+
+    * If you have a TLS secret, copy it to the `educates` namespace or the one you defined, and use
+    the `secretName` property in `educates-config.yaml`:
+
+    ```yaml
+    ingressSecret:
+     secretName: workshops.example.com-tls
+    ```
+
+* **If you do not already have a TLS secret:**
+
+1. Create a wildcard certificate. [Let's Encrypt](https://letsencrypt.org/) is one option for doing so.
+
+1. After you have your certificate, add the following to `educates-config.yaml`:
+
+    ```yaml
+    ingressSecret:
+     certificate: <CERTIFICATE-VALUE>
+     privateKey: <PRIVATE-KEY>
+    ```
+
+
+#### Specify the Ingress Class
+
+Any ingress routes created use the default ingress class.
+If you have multiple ingress class types available, and you need to override the one used, add the
+following to `educates-config.yaml`:
+
+    ```yaml
+    ingressClass: <TYPE>
+    ```
+    Where `<TYPE>` is your chosen type, such as `contour`.
+
+#### Set the Image Registry
+
+Primary image registry where Educates container images are stored.
+It is only necessary to define the host and credentials when that image registry requires
+authentication to access images.
+This principally exists to allow relocation of images through Carvel image bundles.
+
+    `educates-config.yaml:`
+    ```yaml
+    imageRegistry:
+     host:
+     username:
+     password:
+    ```
+
+1. Install Learning Center operator by running:
+
+    ```shell
+    tanzu package install educates --package-name learningcenter.tanzu.vmware.com --version 1.0.8-build.1 -f educates-config.yaml
+    ```
+
+    The command above will create a default namespace in your Kubernetes cluster called `educates`
+    and the operator along with any required namespaced resources will be created in it.
+    A set of custom resource definitions and a global cluster role binding will also be created.
+    The list of resources you should see being created are:
+
+    ```shell
+    customresourcedefinition.apiextensions.k8s.io/workshops.training.eduk8s.io created
+    customresourcedefinition.apiextensions.k8s.io/workshopsessions.training.eduk8s.io created
+    customresourcedefinition.apiextensions.k8s.io/workshopenvironments.training.eduk8s.io created
+    customresourcedefinition.apiextensions.k8s.io/workshoprequests.training.eduk8s.io created
+    customresourcedefinition.apiextensions.k8s.io/trainingportals.training.eduk8s.io created
+    serviceaccount/eduk8s created
+    customresourcedefinition.apiextensions.k8s.io/systemprofiles.training.eduk8s.io created
+    clusterrolebinding.rbac.authorization.k8s.io/eduk8s-cluster-admin created
+    deployment.apps/eduk8s-operator created
+    ```
+
+    You can check that the operator deployed okay by running:
+
+    ```shell
+    kubectl get all -n educates
+    ```
+
+1. Verify that the Pod for the operator is marked as running.
+
 
 ## <a id='install-service-bindings'></a> Install Service Bindings
 
@@ -1380,8 +1404,7 @@ To install Tanzu Learning Center:
      For example:
 
     ```bash
-    $ tanzu package available list service-bindings.labs.vmware
-com --namespace tap-install
+    $ tanzu package available list service-bindings.labs.vmware.com --namespace tap-install
     - Retrieving package versions for service-bindings.labs.vmware.com...
       NAME                              VERSION  RELEASED-AT
       service-bindings.labs.vmware.com  0.5.0    2021-09-15T00:00:00Z
@@ -1796,7 +1819,7 @@ To install Supply Chain Security Tools - Sign:
 
 The installation for Supply Chain Security Tools – Scan involves installing two packages:
 Scan Controller and Grype Scanner.
-The Scan Controller enables you to use a scanner. The Grype Scanner is a scanner. Ensure both the Grype Scanner and the Scan Controller are installed. 
+The Scan Controller enables you to use a scanner. The Grype Scanner is a scanner. Ensure both the Grype Scanner and the Scan Controller are installed.
 
 To install Supply Chain Security Tools - Scan (Scan Controller):
 
