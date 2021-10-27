@@ -363,7 +363,7 @@ If you have an earlier version of the Tanzu CLI installed,
 do the following before you install the plugins.
 For instructions on installing plugins, see [Install the Tanzu CLI Plugins](#install-the-tanzu-cli-plugins) below.
 
-**Note:** `imagesecretpull` plugin is deprecated and replaced with `secret` plugin.
+**Note:** `imagepullsecret` plugin is deprecated in tanzu-framework version v0.8.0 and replaced with `secret` plugin.
 
 To remove plugins from earlier versions of the Tanzu CLI:
 
