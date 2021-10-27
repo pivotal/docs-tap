@@ -362,7 +362,9 @@ To install the Tanzu CLI on a Windows operating system:
 If you have an earlier version of the Tanzu CLI installed,
 do the following before you install the plugins.
 For instructions on installing plugins, see [Install the Tanzu CLI Plugins](#install-the-tanzu-cli-plugins) below.
+
 **Note:** `imagesecretpull` plugin is deprecated and replaced with `secret` plugin.
+
 To remove plugins from earlier versions of the Tanzu CLI:
 
 1. Create a directory named `tanzu`.
