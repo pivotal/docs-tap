@@ -4,24 +4,24 @@ subtitle: How to install Cartographer in a Kubernetes cluster
 weight: 2
 ---
 
-# Default Supply Chains
+# Out of the Box Supply Chains
 
-Default supply chains are provided out of the box with Tanzu Application Platform.
-The three default supply chains that are included are:
-- Default Supply Chain (source-to-url)
-- Default Supply Chain with Testing (source-test-to-url)
-- Default Supply Chain with Testing and Scanning (source-test-scan-to-url)
+Out of the Box Supply Chains are provided with Tanzu Application Platform.
+The three supply chains that are included are:
+- Out of the Box Supply Chain Basic (source-to-url)
+- Out of the Box Supply Chain with Testing (source-test-to-url)
+- Out of the Box Supply Chain with Testing and Scanning (source-test-scan-to-url)
 
-Also provided out of the box with Tanzu Application Platform are the:
-- Default Supply Chain Templates
+Also provided with Tanzu Application Platform are the:
+- Out of the Box Templates
 
-Each of the supply chain's makes use of the Default Supply Chain Templates.
+Each of the supply chain's makes use of the Out of the Box Templates.
 
-Regardless of the Supply Chain chosen, we need to first set credentials for a
+Regardless of the supply chain chosen, we need to first set credentials for a
 registry where Tanzu Build Service should push the images that it builds.
 
 ### Credentials for pushing app images to a registry
-The Supply Chain builds a container image based off of the source code and
+The supply chain builds a container image based off of the source code and
 pushes it to a registry. We need to provide to the systems the credentials for
 doing so.
 
@@ -58,19 +58,19 @@ tanzu imagepullsecret add scc-registry-credentials \
 ```
 
 _ps.: note that the REGISTRY here _must_ be the same as the one set in the
-values file during [Install Default Supply Chain](./../install.md#install-default-supply-chain-sub)._
+values file during [Install default Supply Chain](./../install.md#install-ootb-supply-chain-basic)._
 
 
-## Default Supply Chain (source-to-url)
+## Out of the Box Supply Chain Basic (source-to-url)
 
-Default Supply Chain (source-to-url) is the most basic supply chain allowing you to:
+Out of the Box Supply Chain Basic (source-to-url) is the most basic supply chain allowing you to:
 
 - Watch a git repository
 - Build the code into an image
 - Apply some conventions to the K8s YAML
 - Deploy the application to the same cluster
 
-![Default Supply Chain](images/source-to-url.png)
+![Out of the Box Supply Chain Basic](images/source-to-url.png)
 
 
 ### Example usage
@@ -118,7 +118,8 @@ imagePullSecrets:
 tanzu apps workload create hello-world \
 	--label apps.tanzu.vmware.com/workload-type=web \
   --git-branch main \
-  --git-repo https://github.com/kontinue/hello-world
+  --git-repo https://github.com/kontinue/hello-world \
+  --type web
 ```
 ```console
 Create workload:
@@ -138,12 +139,12 @@ Create workload:
 Created workload "my-workload"
 ```
 
-## Default Supply Chain with Testing (source-test-to-url)
+## Out of the Box Supply Chain with Testing (source-test-to-url)
 
-The Default Supply Chain with Testing (source-test-to-url) builds on the ability of the Default 
-Supply Chain (source-to-url) and adds the ability to perform testing using Tekton.
+The Out of the Box Supply Chain with Testing(source-test-to-url) builds on the ability of the Out of the Box 
+Supply Chain Basic (source-to-url) and adds the ability to perform testing using Tekton.
 
-![The Default Supply Chain with Testing](images/source-test-to-url.png)
+![Out of the Box Supply Chain with Testing](images/source-test-to-url.png)
 
 
 ### Example usage
@@ -225,7 +226,8 @@ tanzu apps workload create hello-world \
 	--label apps.tanzu.vmware.com/workload-type=web \
   --git-branch main \
   --git-repo https://github.com/kontinue/hello-world \
-  --param tekton-pipeline-name=developer-defined-tekton-pipeline
+  --param tekton-pipeline-name=developer-defined-tekton-pipeline \
+  --type web-test
 ```
 ```console
 Create workload:
@@ -278,9 +280,9 @@ NAME                                      URL                                   
 service.serving.knative.dev/hello-world   http://hello-world.default.example.com   hello-world-00001   hello-world-00001   Unknown   IngressNotConfigured
 ```
 
-## Default Supply Chain with Testing and Scanning (source-test-scan-to-url)
+## Out of the Box Supply Chain with Testing and Scanning (source-test-scan-to-url)
 
-The Default Supply Chain with Testing and Scanning (source-test-scan-to-url) builds on the ability of the Default 
+The Out of the Box Supply Chain with Testing and Scanning (source-test-scan-to-url) builds on the ability of the Out of the Box 
 Supply Chain with Testing (source-test-to-url) and adds the ability to perform source and image scanning using Grype.
 
 - Watch a git repository
@@ -291,7 +293,7 @@ Supply Chain with Testing (source-test-to-url) and adds the ability to perform s
 - Apply some conventions to the K8s YAML
 - Deploy the application to the same cluster
 
-![The Default Supply Chain with Testing and Scanning](images/source-test-scan-to-url.png)
+![Out of the Box Supply Chain with Testing and Scanning](images/source-test-scan-to-url.png)
 
 
 ### Example usage
@@ -433,4 +435,32 @@ spec:
 ```
 
 #### Developer Workload
-1. The next step would be to then submit a workload like in the other examples
+1. The next step would be to then submit a workload like in the other examples:
+```bash
+tanzu apps workload create hello-world \
+--label apps.tanzu.vmware.com/workload-type=web \
+--git-branch main \
+--git-repo https://github.com/kontinue/hello-world \
+--param tekton-pipeline-name=developer-defined-tekton-pipeline \
+--type web-scan
+```
+```console
+Create workload:
+      1 + |apiVersion: carto.run/v1alpha1
+      2 + |kind: Workload
+      3 + |metadata:
+      4 + |  name: my-workload
+      5 + |  namespace: default
+      6 + |spec:
+      7 + |  params:
+      8 + |  - name: tekton-pipeline-name
+      9 + |    value: developer-defined-tekton-pipeline
+     10 + |  source:
+     11 + |    git:
+     12 + |      ref:
+     13 + |        branch: main
+     14 + |      url: https://github.com/kontinue/hello-world
+
+? Do you want to create this workload? Yes
+Created workload "my-workload"
+```

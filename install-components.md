@@ -661,19 +661,23 @@ To install Tanzu Build Service using the Tanzu CLI:
 [tekton]: https://github.com/tektoncd/pipeline
 
 Supply Chain Choreographer provides the custom resource definitions that the supply chain uses.
-It enables choreography of the components that form the software supply chain.
+Each pre-approved supply chain creates a paved road to production; orchestrating supply chain resources
+- test, build, scan, and deploy - allowing developers to be able to focus on delivering value to their
+users while also providing App Operators with the peace of mind that all code in production has passed
+through all the steps of an approved workflow.
+
 For example, Supply Chain Choreographer passes the results of fetching source code to the component
 that knows how to build a container image from of it and then passes the container image
 to a component that knows how to deploy the image.
 
 ```bash
-# Install the version 0.0.6 of the `cartographer.tanzu.vmware.com`
-# package naming the installation as `cartographer`.
+# Install the version 0.0.7 of the `cartographer.tanzu.vmware.com`
+# package. Naming the installation as `cartographer`.
 #
 tanzu package install cartographer \
   --namespace tap-install \
   --package-name cartographer.tanzu.vmware.com \
-  --version 0.0.6
+  --version 0.0.7
 ```
 
 ```console
@@ -689,34 +693,50 @@ tanzu package install cartographer \
 Added installed package 'cartographer' in namespace 'default'
 ```
 
-## <a id='install-default-supply-chain'></a> Install Default Supply Chain
+## <a id='install-ootb-templates'></a> Install Out of the Box Templates
 
-To install Default Supply Chain:
+The Out of the Box Templates are used by all of the Out of the Box Supply Chains.
+In the supply chain, there is a list of resources. Each resource points to an Out of the Box Template.
+
+To install Out of the Box Templates:
+
+1. Install the package by running:
+
+   ```bash
+    tanzu package install ootb-templates \
+      --package-name ootb-templates.tanzu.vmware.com \
+      --version 0.3.0 \
+      --namespace tap-install \
+    ```
+   
+
+## <a id='install-ootb-supply-chain-basic'></a> Install default Supply Chain
+
+To install the default Supply Chain (which is called Out of the Box Supply Chain Basic):
 
 1. Gather the values schema:
 
     ```bash
-    tanzu package available get default-supply-chain.tanzu.vmware.com/0.2.0 --values-schema -n tap-install
+    tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.3.0 --values-schema -n tap-install
     ```
 
     For example:
 
    ```console
-   $ tanzu package available get default-supply-chain.tanzu.vmware.com/0.2.0 --values-schema -n tap-install
-   | Retrieving package details for default-supply-chain.tanzu.vmware.com/0.2.0...
+   $ tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.3.0 --values-schema -n tap-install
+   | Retrieving package details for ootb-supply-chain-basic.tanzu.vmware.com/0.3.0...
 
     KEY                  DEFAULT          TYPE    DESCRIPTION
     registry.repository  <nil>            string  Name of the repository in the image registry server where the application images from the workloads should be pushed to (required).
     registry.server      index.docker.io  string  Name of the registry server where application images should be pushed to.
     service_account      default          string  Name of the service account in the namespace where the Workload is submitted to utilize for providing registry credentials to Tanzu Build Service (TBS) Image objects as well as deploying the application.
-    templates_namespace  tap-install      string  Name of the namespace where shared templates are installed to. This variable should point to the namespace where this package is being installed into.
     cluster_builder      default          string  Name of the Tanzu Build Service (TBS) ClusterBuilder to use by default on image objects managed by the supply chain.
    ```
 
 
-1. Create a `default-supply-chain-values.yaml` using the following sample as a guide:
+1. Create an `supply-chain-values.yaml` using the following sample as a guide:
 
-    Sample `default-supply-chain-values.yaml` for Default Supply Chain:
+    Sample `supply-chain-values.yaml` for the default Supply Chain:
 
     ```yaml
     ---
@@ -729,11 +749,11 @@ To install Default Supply Chain:
 1. Install the package by running:
 
      ```bash
-    tanzu package install default-supply-chain \
-      --package-name default-supply-chain.tanzu.vmware.com \
-      --version 0.2.0 \
+    tanzu package install ootb-supply-chain-basic \
+      --package-name ootb-supply-chain-basic.tanzu.vmware.com \
+      --version 0.3.0 \
       --namespace tap-install \
-      --values-file default-supply-chain-values.yaml
+      --values-file ootb-supply-chain-basic-values.yaml
     ```
 
 > **Note:** The `service-account` service account and required secrets are created in
@@ -2036,7 +2056,7 @@ run the following commands to add credentials and Role-Based Access Control (RBA
     apiVersion: v1
     kind: ServiceAccount
     metadata:
-      name: service-account # use value from "Install Default Supply Chain"
+      name: service-account # use value from "Install default Supply Chain"
     secrets:
       - name: registry-credentials
     imagePullSecrets:
@@ -2080,7 +2100,7 @@ run the following commands to add credentials and Role-Based Access Control (RBA
       name: kapp-permissions
     subjects:
       - kind: ServiceAccount
-        name: service-account # use value from "Install Default Supply Chain"
+        name: service-account # use value from "Install default Supply Chain"
 
     EOF
     ```
