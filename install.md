@@ -98,4 +98,26 @@ To add the Tanzu Application Platform package repository:
     services-toolkit.tanzu.vmware.com                  Services Toolkit                                                       The Services Toolkit enables the management, lifecycle, discoverability and connectivity of Service Resources (databases, message queues, DNS records, etc.).
     tap-gui.tanzu.vmware.com                           Tanzu Application Platform GUI                                         web app graphical user interface for Tanzu Application Platform
     ```
+## <a id='add-package-repositories'></a> About Tanzu Application Platform Package Profiles
+[there are 4 you can choose from... blah blah, choose one]
+The following table lists the packages that are contained in each profile:
+[table]
 
+## <a id='add-package-repositories'></a> Install a Tanzu Application Platform Profile
+To install a profile:
+
+1. List version information by running....
+
+2. Gather values schema
+
+3. Create values yaml file
+
+[blah blah blah]
+
+4. Install profile 
+
+[blah blah blah]
+
+5. Validate profile
+
+[blah blah blah]
