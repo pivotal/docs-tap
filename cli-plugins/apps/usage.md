@@ -2,21 +2,24 @@
 
 ## <a id='changing-clusters'></a> Changing Clusters
 
-The Apps CLI plugin uses the default context that you set in the kubeconfig file to connect to the cluster. To switch clusters, use kubectl to set the [default context](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/).
+The Apps CLI plugin uses the default context that you set in the kubeconfig file to connect to the cluster.
+To switch clusters, use kubectl to set the default context.
+For more information, see [Configure Access to Multiple Clusters](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/).
 
 
 ## <a id='checking-update-status'></a>Checking Update Status
 
 You can use the Apps CLI plugin to create or update a workload.
 After you've successfully submitted your changes to the platform, the CLI command exits.
-Depending on the changes you submitted, it may take time for them to be executed on the platform.
-Run [`tanzu apps workload get`](command-reference/tanzu_apps_workload_get.md) to check the status of your changes.
+Depending on the changes you submitted, it might take time for them to be executed on the platform.
+Run `tanzu apps workload get` to check the status of your changes.
+For more information on this command, see [Tanzu Apps Workload Get](command-reference/tanzu_apps_workload_get.md).
 
 ## <a id='yaml-files'></a> Working with YAML Files
 
-In many cases, workload lifecycles can be managed through CLI commands,
-but there may be cases where you want to manage a workload by using a `yaml` file.
-The Apps CLI plugin supports using `yaml` files. 
+In many cases, you can manage workload lifecycles through CLI commands,
+but there might be cases where you want to manage a workload by using a `yaml` file.
+The Apps CLI plugin supports using `yaml` files.
 
 The plugin is designed to manage **one workload** at a time.
 When you manage a workload by using a `yaml` file, that file must contain a single workload definition.
