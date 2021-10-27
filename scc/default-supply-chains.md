@@ -7,17 +7,17 @@ weight: 2
 # Out of the Box Supply Chains
 
 Out of the Box Supply Chains are provided with Tanzu Application Platform.
-The three supply chains that are included are:
+The following three supply chains that are included:
 - Out of the Box Supply Chain Basic (source-to-url)
 - Out of the Box Supply Chain with Testing (source-test-to-url)
 - Out of the Box Supply Chain with Testing and Scanning (source-test-scan-to-url)
 
-Also provided with Tanzu Application Platform are the:
+Tanzu Application Platform also includes:
 - Out of the Box Templates
 
-Each of the supply chain's makes use of the Out of the Box Templates.
+Each of the supply chains use Out of the Box Templates.
 
-Regardless of the supply chain chosen, we need to first set credentials for a
+Regardless of the supply chain you choose, you need to set credentials for a
 registry where Tanzu Build Service should push the images that it builds.
 
 ### Credentials for pushing app images to a registry
@@ -63,7 +63,7 @@ values file during [Install default Supply Chain](./../install.md#install-ootb-s
 
 ## Out of the Box Supply Chain Basic (source-to-url)
 
-Out of the Box Supply Chain Basic (source-to-url) is the most basic supply chain allowing you to:
+Out of the Box Supply Chain Basic (source-to-url) is the most basic supply chain. This supply chain allows you to:
 
 - Watch a git repository
 - Build the code into an image
@@ -140,8 +140,8 @@ Created workload "my-workload"
 
 ## Out of the Box Supply Chain with Testing (source-test-to-url)
 
-The Out of the Box Supply Chain with Testing(source-test-to-url) builds on the ability of the Out of the Box 
-Supply Chain Basic (source-to-url) and adds the ability to perform testing using Tekton.
+The Out of the Box Supply Chain with Testing (source-test-to-url) includes all abilities of the Out of the Box 
+Supply Chain Basic (source-to-url), and the ability to perform testing using Tekton.
 
 ![Out of the Box Supply Chain with Testing](images/source-test-to-url.png)
 
@@ -150,7 +150,7 @@ Supply Chain Basic (source-to-url) and adds the ability to perform testing using
 
 #### Developer Workload
 
-1. Ensure that the supply chain has been installed
+1. Ensure that the supply chain has been installed by running:
 
 ```bash
 tanzu apps cluster-supply-chain list
@@ -186,7 +186,7 @@ imagePullSecrets:
   - name: scc-registry-credentials
 ```
 
-3. Configure a Tekton pipeline for running the tests
+3. Configure a Tekton pipeline for testing. Run:
 
 ```yaml
 apiVersion: tekton.dev/v1beta1
@@ -218,7 +218,7 @@ spec:
               go test -v ./...
 ```
 
-4. Create a workload that matches has a label that matches the supply chain's selector
+4. Create a workload that matches the supply chain's selector by running:
 
 ```bash
 tanzu apps workload create hello-world \
@@ -248,7 +248,7 @@ Create workload:
 Created workload "my-workload"
 ```
 
-5. Observe that we went from source code to a deployed application
+5. Observe that you progressed from source code to a deployed application by running:
 
 ```bash
 kubectl get workload,gitrepository,pipelinerun,images.kpack,podintent,app,services.serving
@@ -280,9 +280,10 @@ service.serving.knative.dev/hello-world   http://hello-world.default.example.com
 
 ## Out of the Box Supply Chain with Testing and Scanning (source-test-scan-to-url)
 
-The Out of the Box Supply Chain with Testing and Scanning (source-test-scan-to-url) builds on the ability of the Out of the Box 
-Supply Chain with Testing (source-test-to-url) and adds the ability to perform source and image scanning using Grype.
+The Out of the Box Supply Chain with Testing and Scanning (source-test-scan-to-url) includes the abilities of the Out of the Box 
+Supply Chain with Testing (source-test-to-url), and adds source and image scanning using Grype.
 
+Supply Chain with Testing and Scanning (source-test-scan-to-url) includes the following abilities:
 - Watch a git repository
 - Run tests using Tekton
 - Scan the code for known vulnerabilities
