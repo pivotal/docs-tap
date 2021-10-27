@@ -86,6 +86,45 @@ tanzu apps workload get tanzu-java-web-app
 ```
 <cntrl>-click the `Workload Knative Services URL` at the bottom of the command output.
 
+### Add Your Application to the Tanzu Application Platform GUI
+
+In order to see this application in Your Organization Catalog, you'll need to create a catalog definition file. Assuming that you've already installed the Blank Software Catalog as defined in the component installation instructions, you can add the below file, named `tanzu-java-web-app.yaml` to your `components` folder:
+```yaml
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: tanzu-java-web-app
+  description: Tanzu Application Platform Getting Started
+  tags:
+    - app-accelerator
+  annotations:
+    'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=tanzu-java-web-app'
+spec:
+  type: service
+  lifecycle: demo
+  owner: default-team
+  system: 
+```
+You'll now need to add a reference to this file in your catalog's `catalog-info.yaml`
+```yaml
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: backstage-catalog-info
+  description: A sample catalog for Backstage
+  annotations:
+    'backstage.io/techdocs-ref': dir:.
+spec:
+  targets:
+    - ./components/backstage.yaml
+    - ./groups/default-org.yaml
+    - ./systems/backstage-system.yaml
+    - ./domains/backstage-domain.yaml
+    - ./components/tanzu-java-web-app.yaml # Update this line with the file's name and location that you created above
+```
+Now once your catalog refreshes (default refresh is 200 seconds) you should be able to see the entry in the catalog and interact with it.
+
+   
 
 ### <a id='iterate'></a>Iterate on your Application
 
