@@ -996,7 +996,7 @@ Enables developers to declare and consume services on demand without worrying ab
 Most applications require backing services such as Databases, Queues, Caches, etc. in order to run successfully.
 This first use case demonstrates how it is possible to bind such a service to an Application Workload in Tanzu Application Platform. We will be using the RabbitMQ Cluster Operator for Kubernetes for this demonstration along with a very basic sample application that depends on RabbitMQ.
 
-To begin, the RabbitMQ Cluster Operator will be installed and running on the same Kubernetes cluster as Tanzu Application Platform. We will then see how it is possible to use one of the capabilities of the SCP Toolkit to move the Operator onto a separate, dedicated “Service” cluster, while still allowing the service to be consumed from the application “Workload” cluster.
+To begin, the RabbitMQ Cluster Operator will be installed and running on the same Kubernetes cluster as Tanzu Application Platform. We will then see how it is possible to use one of the capabilities of the Services Toolkit to move the Operator onto a separate, dedicated “Service” cluster, while still allowing the service to be consumed from the application “Workload” cluster.
 
 #### Steps
 
@@ -1058,26 +1058,17 @@ This use case is similar to the above in that we will be binding a sample applic
 
 *Note:* If you followed previous instructions for [Services Journey - Use Case 1](#use-case-1) then you **MUST** first remove RabbitMQ Cluster Operator from that cluster.
 
-*Known Issue:* Once an API has been projected from across clusters, if you try and delete a namespace in the cluster that has been projected into, the namespace deletion will be stuck in “terminating” state.  This will occur even for namespaces that aren’t involved in projection. We are aming to fix this issue in an upcoming release. Until then, you can work around the issue by removing the finalizer on the namespace you are trying to delete:
-
-```console
-NAMESPACE=<NAMESPACE-THAT-IS-HANGING>
-kubectl get namespace "$NAMESPACE" -o json > "${NAMESPACE}.json"
-# manually remove “kubernetes” finalizer from .spec.finalizers in "${NAMESPACE}.json"
-kubectl replace --raw "/api/v1/namespaces/${NAMESPACE}/finalize" -f "${NAMESPACE}.json"
-```
-
 1. Follow the documentation to install Tanzu Application Platform onto a second, separate Kubernetes cluster
 
     * This cluster **MUST** have the ability to create LoadBalanced services.
 
-    * This time when it comes to [Installing Part II: Packages](install.md#-installing-part-ii-packages), you only need to install the SCP Toolkit package
+    * This time when it comes to [Installing Part II: Packages](install.md#-installing-part-ii-packages), you only need to install the Services Toolkit package
 
     * All other packages can be skipped over
 
     * This cluster will henceforth be referred to as the **Service Cluster**
 
-2. Download and install the kubectl-scp plugin from [SCP Toolkit Tanzu Network Page](https://network.pivotal.io/products/scp-toolkit#/releases/959198).
+2. Download and install the kubectl-scp plugin from [TAP Tanzu Network Page](https://network.tanzu.vmware.com/products/tanzu-application-platform).
 To install the plugin you must place it in your PATH and ensure it is executable. For example:
 
 
@@ -1086,11 +1077,11 @@ To install the plugin you must place it in your PATH and ensure it is executable
 
 
 Now we have 2 Kubernetes clusters
-- **Workload Cluster** where Tanzu Application Platform is installed (including SCP toolkit).
+- **Workload Cluster** where Tanzu Application Platform is installed (including Services toolkit).
   - And confirmation that the RabbitMQ Cluster Operator is not installed on this cluster.
-- **Services Cluster** where only the SCP toolkit is installed.
+- **Services Cluster** where only the Services toolkit is installed.
 
-Now let us see the different use cases where SCP toolkit makes the Services Journey easy.
+Now let us see the different use cases where Services toolkit makes the Services Journey easy.
 
 #### Steps
 
