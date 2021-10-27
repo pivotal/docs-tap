@@ -2072,7 +2072,7 @@ To install Services Toolkit:
       services-toolkit.tanzu.vmware.com  0.4.0-rc.2        2021-10-18T09:45:46Z
     ```
 
-1. Install Services Control Plane Toolkit by running:
+1. Install Services Toolkit by running:
 
     ```console
     tanzu package install services-toolkit -n tap-install -p services-toolkit.tanzu.vmware.com -v 0.4.0-rc.2
