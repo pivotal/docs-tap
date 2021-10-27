@@ -950,26 +950,19 @@ To install Application Live View:
     - Retrieving package details for appliveview.tanzu.vmware.com/0.3.0...
       KEY                   DEFAULT        TYPE    DESCRIPTION
       connector_namespaces  [default]      array   The namespaces in which ALV monitors the users apps
-      server_namespace      app-live-view  string  The namespace to which ALV server is deployed
-      service_type          LoadBalancer   string  The service type for the Application Live View server can be LoadBalancer, NodePort, or ClusterIP
+      service_type          ClusterIP      string  The service type for the Application Live View server can be LoadBalancer, NodePort, or ClusterIP
     ```
 
     For more information about values schema options, see the individual product documentation.
 
 1. Gather the values schema.
-1. Create a namespace to deploy the Application Live View server and its components. For example:
-
-   ```bash
-   kubectl create ns app-live-view
-   ```
 
 1. Create a `app-live-view-values.yaml` using the following sample as a guide:
 
    ```yaml
    ---
    connector_namespaces: [default]
-   server_namespace: app-live-view
-   service_type: LoadBalancer
+   service_type: ClusterIP
    ```
 
    Where:
@@ -977,10 +970,10 @@ To install Application Live View:
    - `connector_namespaces` is a list of namespaces where you want
    Application Live View to monitor your apps. An instance of the
    Application Live View Connector will be deployed to each of those namespaces.
-   - `server_namespace` is the namespace where the Application Live View server and its components are deployed.
-   VMware reccommends using the namespace you created earlier, named `app-live-view`.
    - `service_type` is the Kubernetes service type for the Application Live View server.
    This can be LoadBalancer, NodePort, or ClusterIP.
+
+   The application live view server and its components are deployed in `app-live-view` namespace by default.
 
 1. Install the package by running:
 
@@ -1030,7 +1023,7 @@ To install Application Live View:
 
 To access the Application Live View UI:
 
-1. List the resources deployed in the namespace where the Application Live View server and its components are deployed by running:
+1. List the resources deployed in the `app-live-view` namespace by running:
 
     ```bash
     kubectl get -n app-live-view service,deploy,pod
