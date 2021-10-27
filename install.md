@@ -1107,33 +1107,21 @@ To install Tanzu Application Platform GUI:
 1. List version information for the package by running:
 
     ```bash
-    tanzu package available list PACKAGE-NAME --namespace tap-install
+    tanzu package available list tap-gui.tanzu.vmware.com --namespace tap-install
     ```
-    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
-     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
-     For example:
+    For example:
 
     ```bash
     $ tanzu package available list tap-gui.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for tap-gui.tanzu.vmware.com...
       NAME                      VERSION     RELEASED-AT
-      tap-gui.tanzu.vmware.com  0.3.0-rc.1  2021-10-20T14:46:26Z
+      tap-gui.tanzu.vmware.com  0.3.0      2021-10-20T14:46:26Z
     ```
 
 2. (Optional) To make changes to the default installation settings, run:
 
     ```bash
-    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
-    ```
-    Where:
-
-    - `PACKAGE-NAME` is same as step 1 above.
-    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
-
-    For example:
-
-    ```bash
-    $ tanzu package available get tap-gui.tanzu.vmware.com/0.3.0-rc.1 --values-schema --namespace tap-install
+    tanzu package available get tap-gui.tanzu.vmware.com/0.3.0 --values-schema --namespace tap-install
     ```
 
     For more information about values schema options, see the individual product documentation.
@@ -1218,14 +1206,14 @@ with your relevant values. The meanings of some placeholders are explained in th
     ```console
     tanzu package install tap-gui \
      --package-name tap-gui.tanzu.vmware.com \
-     --version 0.3.0 \
+     --version 0.3.0 -n tap-install \
      -f tap-gui-values.yaml
     ```
 
     For example:
 
     ```console
-    $ tanzu package install tap-gui -p tap-gui.tanzu.vmware.com -v 0.3.0 -n tap-install -f tap-gui-values.yaml
+    $ tanzu package install tap-gui -package-name tap-gui.tanzu.vmware.com --version 0.3.0 -n tap-install -f tap-gui-values.yaml
     - Installing package 'tap-gui.tanzu.vmware.com'
     | Getting package metadata for 'tap-gui.tanzu.vmware.com'
     | Creating service account 'tap-gui-default-sa'
