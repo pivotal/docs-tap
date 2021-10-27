@@ -23,7 +23,7 @@ To view the list of your running workloads:<br/>
 
 In this screen, you can view the list of running workloads, along with their overall status, type, namespace and cluster they belong to, age and the public URL (if any).
 
-<img width="1879" alt="workload-visibility-workloadlist" src="https://user-images.githubusercontent.com/55402754/139098340-819054fc-220e-4075-9c5f-cd92675a81e1.png">
+<img width="1879" alt="workload-visibility-workloadlist" src="../images/workload-visibility-workloadlist.png">
 
 ## Resource Details Pages
 
@@ -38,7 +38,7 @@ In order to view further details of your workloads, you can click on your desire
 * Revisions (you can view more details of each revision by clicking on them)
 * Pods (you can view each pod details by clicking on them
 
-<img width="1682" alt="workload-visibility-knative-details" src="https://user-images.githubusercontent.com/55402754/139098617-13387c68-7c70-4050-becb-fd7309ca611a.png">
+<img width="1682" alt="workload-visibility-knative-details" src="../images/workload-visibility-knative-details.png">
 
 ### Pod Detail Page
 
@@ -50,4 +50,4 @@ You can gain further information about the pods associated with a service by cli
 * Labels
 * Containers: provides details like Container ID, Image and Ready Status
 
-<img width="1533" alt="workload-visibility-pod-details" src="https://user-images.githubusercontent.com/55402754/139098678-09eb69ac-2bab-4a7f-87e3-bb0ea239365e.png">
+<img width="1533" alt="workload-visibility-pod-details" src="../images/workload-visibility-pod-details.png">
