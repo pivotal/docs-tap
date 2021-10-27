@@ -1193,7 +1193,7 @@ with your relevant values. The meanings of some placeholders are explained in th
        If you are using a load balancer that is dynamically provisioned by the cloud provider,
        leave this value blank initially and, after the install is complete,
        run a subsequent `tanzu package installed update`.
-    - `<GIT-CATALOG-URL>` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download) or a Backstage compliant catalog that you've already built and posted on the Git infrastucture that you specified in the Integration section.
+    - `<GIT-CATALOG-URL>` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage compliant catalog that you've already built and posted on the Git infrastucture that you specified in the Integration section.
 
     > **Note:** The `app-config` section follows the same configuration model that Backstage uses.
     For more information, see the [Backstage documentation](https://backstage.io/docs/conf/).
