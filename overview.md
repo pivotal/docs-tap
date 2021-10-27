@@ -86,7 +86,7 @@ Packages within this profile are:
 * Default Supply Chain
 * Default Supply Chain with Testing
 * Developer Conventions 
-* SCP Toolkit
+* Services Toolkit for VMware Tanzu
 * Service Bindings for Kubernetes
 * Supply Chain Choreographer for VMware Tanzu
 * Supply Chain Security Tools - Scan

@@ -996,7 +996,7 @@ Enables developers to declare and consume services on demand without worrying ab
 Most applications require backing services such as Databases, Queues, Caches, etc. in order to run successfully.
 This first use case demonstrates how it is possible to bind such a service to an Application Workload in Tanzu Application Platform. We will be using the RabbitMQ Cluster Operator for Kubernetes for this demonstration along with a very basic sample application that depends on RabbitMQ.
 
-To begin, the RabbitMQ Cluster Operator will be installed and running on the same Kubernetes cluster as Tanzu Application Platform. We will then see how it is possible to use one of the capabilities of the SCP Toolkit to move the Operator onto a separate, dedicated “Service” cluster, while still allowing the service to be consumed from the application “Workload” cluster.
+To begin, the RabbitMQ Cluster Operator will be installed and running on the same Kubernetes cluster as Tanzu Application Platform. We will then see how it is possible to use one of the capabilities of the Services Toolkit to move the Operator onto a separate, dedicated “Service” cluster, while still allowing the service to be consumed from the application “Workload” cluster.
 
 #### Steps
 
@@ -1062,7 +1062,7 @@ This use case is similar to the above in that we will be binding a sample applic
 
     * This cluster **MUST** have the ability to create LoadBalanced services.
 
-    * This time when it comes to [Installing Part II: Packages](install.md#-installing-part-ii-packages), you only need to install the SCP Toolkit package
+    * This time when it comes to [Installing Part II: Packages](install.md#-installing-part-ii-packages), you only need to install the Services Toolkit package
 
     * All other packages can be skipped over
 
@@ -1077,11 +1077,11 @@ To install the plugin you must place it in your PATH and ensure it is executable
 
 
 Now we have 2 Kubernetes clusters
-- **Workload Cluster** where Tanzu Application Platform is installed (including SCP toolkit).
+- **Workload Cluster** where Tanzu Application Platform is installed (including Services toolkit).
   - And confirmation that the RabbitMQ Cluster Operator is not installed on this cluster.
-- **Services Cluster** where only the SCP toolkit is installed.
+- **Services Cluster** where only the Services toolkit is installed.
 
-Now let us see the different use cases where SCP toolkit makes the Services Journey easy.
+Now let us see the different use cases where Services toolkit makes the Services Journey easy.
 
 #### Steps
 
