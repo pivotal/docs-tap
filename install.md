@@ -49,12 +49,12 @@ To add the Tanzu Application Platform package repository:
 
     This namespace is to keep the objects grouped together logically.
 
-2. Create an imagepullsecret:
+2. Create a registry secret:
 
     ```bash
     tanzu secret registry add tap-registry \
       --username TANZU-NET-USER --password TANZU-NET-PASSWORD \
-      --registry registry.tanzu.vmware.com \
+      --server registry.tanzu.vmware.com \
       --export-to-all-namespaces --namespace tap-install
     ```
 
