@@ -28,8 +28,8 @@ Before getting started, ensure the following prerequisites are in place:
    (install instructions [here](install-general.md)
    and [here](install.md))
 
-2. The Default Supply Chain has been installed on the target Kubernetes cluster
-   (install instructions [here](install.md#install-default-supply-chain))
+2. The default Supply Chain has been installed on the target Kubernetes cluster
+   (install instructions [here](install-components.md#install-ootb-supply-chain-basic))
 
 3. Default kube config context is set to the target Kubernetes cluster
 
@@ -61,7 +61,7 @@ You’ll use an accelerator called `Tanzu-Java-Web-App` to get started.
 
 **3. Replace the default value, `dev.local`** in the _"prefix for container image registry"_ field
 with the url to your registry. The URL you enter should match the `REGISTRY_SERVER` value you provided when you installed the
-[Default Supply Chain](/install.md#install-default-supply-chain). Note that this entry should not include the project ID or image name.
+[default Supply Chain](/install-components.md#install-ootb-supply-chain-basic). Note that this entry should not include the project ID or image name.
 
 <img src="images/store-image-on-server.png" alt="Screenshot of the Tanzu Java Web App within Application Accelerator. It includes empty fields for new project information, and buttons labeled 'Generate Project', 'Explore Files', and 'Cancel'." width="600">
 
@@ -244,17 +244,17 @@ work with Tanzu Application Platform components.
 
 #### Supply Chains included in Beta 3
 
-The Tanzu Application Platform installation steps cover installing the default supply chain, but
+The Tanzu Application Platform installation steps cover installing the default Supply Chain, but
 others are available.
-If you follow the installation documentation, the **Out of the Box Basic** supply chain and its
+If you follow the installation documentation, the **Out of the Box Basic** Supply Chain and its
 dependencies are installed on your cluster.
 The table and diagrams below describe the two supply chains included in Tanzu Application Platform
 Beta 3, as well as their dependencies.
 
-The **Out of the Box Test** runs a Tekton pipeline within the supply chain. It is dependent on
+The **Out of the Box with Testing** runs a Tekton pipeline within the supply chain. It is dependent on
 [Tekton](https://tekton.dev/) being installed on your cluster.
 
-The **Out of the Box Test and Scan** supply chain includes integrations for secure scanning tools.
+The **Out of the Box with Testing and Scanning** supply chain includes integrations for secure scanning tools.
 
 The following section installs the second supply chain, includes steps to install Tekton and provides a sample Tekton pipeline that tests your
 sample application.
@@ -264,7 +264,7 @@ Tekton pipeline.
 
 ![Diagram depicting the Source-to-URL chain: Watch Repo (Flux) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](images/source-to-url-chain.png)
 
-**Out of the Box Basic - Default Supply Chain**
+**Out of the Box Basic - default Supply Chain**
 
 <table>
   <tr>
@@ -397,17 +397,8 @@ Tekton pipeline.
   </tr>
 </table>
 
-### Uninstalling the Default Supply Chain
+### Install Out of the Box with Testing
 
-The TAP Beta currently has a limitation that only one supply chain can be installed at a time.  Before installing other supply chains, we must first uninstall the default supply chain that was installed as part of the install guide.  To do so, run the following commmand:
-
-```bash
-tanzu package installed delete default-supply-chain -n tap-install
-```
-
-### Install Out of the Box Testing
-
-Now that the default supply chain has been uninstalled the **Out of the Box Basic** supply chain can be installed on the cluster.
 The first step is to install Tekton, which was not installed in the installation docs as
 it is only a requirement for the **Out of the Box Basic** supply chain.
 The next section walks you through installing Tekton on your cluster.
@@ -433,7 +424,7 @@ You can also view the Tekton
 [tutorial](https://github.com/tektoncd/pipeline/blob/main/docs/tutorial.md)
 and [getting started guide](https://tekton.dev/docs/getting-started/).
 
-Now that Tekton is installed, you can install the **Out of the Box Testing** supply chain on your cluster. Run:
+Now that Tekton is installed, you can install the **Out of the Box with Testing** supply chain on your cluster. Run:
 
 ```bash
 tanzu package install ootb-supply-chain-testing \
@@ -445,8 +436,6 @@ tanzu package install ootb-supply-chain-testing \
 
 ### Example Tekton Pipeline Config
 
-With the new supply chain installed, the previously applied workload will fail as it is missing parameters
-which are required for the Tekton pipeline.
 In this section, we’ll add a Tekton pipeline to our cluster and in the following section,
 we’ll update the workload to point to the pipeline and resolve any of the current errors.
 
@@ -511,7 +500,7 @@ the workload must be updated to point at the your Tekton pipeline.
   tanzu apps workload create tanzu-java-web-app \
     --git-repo  https://github.com/sample-accelerators/tanzu-java-web-app \
     --git-branch main \
-    --type web \
+    --type web-test \
     --param tekton-pipeline-name=developer-defined-tekton-pipeline \
     --yes
   ```
@@ -571,7 +560,7 @@ the workload must be updated to point at the your Tekton pipeline.
   service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.developer.example.com   tanzu-java-web-app-00001   tanzu-java-web-app-00001   Unknown   IngressNotConfigured
   ```
 
-### Install Out of the Box Testing and Scanning
+### Install Out of the Box with Testing and Scanning
 
 The first step is to install the additional scanning templates which define how the source and image should be scanned:
 
@@ -601,7 +590,7 @@ The workload can be updated using the Tanzu CLI as follows:
 tanzu apps workload create tanzu-java-web-app \
   --git-repo  https://github.com/sample-accelerators/tanzu-java-web-app \
   --git-branch main \
-  --type web \
+  --type web-scan \
   --param tekton-pipeline-name=developer-defined-tekton-pipeline \
   --yes
 ```
