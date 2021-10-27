@@ -775,7 +775,7 @@ To install developer conventions:
      For example:
 
     ```bash
-    $ tanzu packageavailable list developer-conventions.tanzu.vmware.com --namespace tap-install
+    $ tanzu package available list developer-conventions.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for developer-conventions.tanzu.vmware.com
       NAME                                    VERSION        RELEASED-AT
       developer-conventions.tanzu.vmware.com  0.3.0-build.1  2021-10-19T00:00:00Z
@@ -817,6 +817,57 @@ To install developer conventions:
       --version 0.3.0-build.1 \
       --namespace tap-install
     ```
+
+
+## <a id='install-spring-boot-convention'></a> Install Spring Boot Conventions
+
+**Prerequisite**: Convention Service installed on the cluster, see [Install Convention Service](#install-convention-service).
+
+1. Get the exact name and version information for the spring boot conventions package to be installed by running:
+
+    ```bash
+    tanzu package available list spring-boot-conventions.tanzu.vmware.com --namespace tap-install
+    ```
+     For example:
+
+    ```bash
+    $ tanzu package available list spring-boot-conventions.tanzu.vmware.com --namespace tap-install
+    / Retrieving package versions for spring-boot-conventions.tanzu.vmware.com...
+      NAME                                       VERSION   RELEASED-AT
+      ...
+      spring-boot-conventions.tanzu.vmware.com   0.1.1     2021-10-27T00:00:00Z
+      ...
+    ```
+
+1. Install the package by running:
+
+    ```bash
+    tanzu package install spring-boot-conventions \
+      --package-name spring-boot-conventions.tanzu.vmware.com \
+      --version 0.1.1 \
+      --namespace tap-install
+    ```
+
+1. Verify the package install by running:
+
+    ```bash
+    tanzu package installed get spring-boot-conventions --namespace tap-install
+    ```
+
+    For example:
+
+    ```bash
+    tanzu package installed get spring-boot-conventions -n tap-install
+    | Retrieving installation details for spring-boot-conventions...
+    NAME:                    spring-boot-conventions
+    PACKAGE-NAME:            spring-boot-conventions.tanzu.vmware.com
+    PACKAGE-VERSION:         0.1.1
+    STATUS:                  Reconcile succeeded
+    CONDITIONS:              [{ReconcileSucceeded True  }]
+    USEFUL-ERROR-MESSAGE:
+    ```
+    STATUS should be `Reconcile succeeded`.
+
 
 
 ## <a id="install-app-live-view"></a>Install Application Live View
