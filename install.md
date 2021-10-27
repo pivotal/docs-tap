@@ -101,25 +101,60 @@ To add the Tanzu Application Platform package repository:
     tap-gui.tanzu.vmware.com                             Tanzu Application Platform GUI                                            web app graphical user interface for Tanzu Application Platform
     ```
 ## <a id='add-package-repositories'></a> About Tanzu Application Platform Package Profiles
-[there are 4 you can choose from... blah blah, choose one]
-The following table lists the packages that are contained in each profile:
-[table]
+Tanzu Application Platform can be installed through pre-defined profiles or through individual packages. This section explains how you can install a profile.
+There are four profiles to choose from - Full, Developer Light, Shared Tools, and Operator Light. The following table lists the packages that are contained in each profile:
+[ToDo: Add table for profiles]
 
 ## <a id='install-profile'></a> Install a Tanzu Application Platform Profile
 To install a profile:
 
-1. List version information by running....
+1. List version information for the package by running:
 
-2. Gather values schema
+    ```bash
+    $ tanzu package available list tap.tanzu.vmware.com --namespace tap-install
+    ```
 
-3. Create values yaml file
+1. To view possible configuration settings, run:
 
-[blah blah blah]
+    ```bash
+    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
+    ```
+    Where:
 
-4. Install profile 
+    - `PACKAGE-NAME` is same as step 5 above.
+    - `VERSION-NUMBER` is the version of the package listed in step 5 above.
 
-[blah blah blah]
+    For example:
 
-5. Validate profile
+    ```bash
+    $ tanzu package available get tap.tanzu.vmware.com/0.3.0 --values-schema --namespace tap-install
+    ```
 
-[blah blah blah]
+1. Create a `tap-values.yml` using the following sample as a guide. 
+    ```yaml
+    profile: full
+    buildservice:
+      tanzunet_username: "TANZUNET-USERNAME"
+      tanzunet_password: "TANZUNET-PASSWORD"
+    rw_app_registry:
+      server_repo: "SERVER-REPO"
+      username: "USERNAME"
+      password: "PASSWORD"
+    ```
+
+1. Install the package by running:
+
+    ```bash
+    tanzu package install tap -p tap.tanzu.vmware.com -v 0.3.0 --values tap-values.yml -n tap-install
+    ```
+
+1. Verify the package install by running:
+
+    ```bash
+    tanzu package installed get tap -n tap-install
+    ```
+
+1. Verify all the necessary packages in the profile are installed by running:
+    ```bash
+    tanzu package installed list -A
+    ```
