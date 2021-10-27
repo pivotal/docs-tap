@@ -819,6 +819,59 @@ To install developer conventions:
     ```
 
 
+## <a id='install-spring-boot-convention'></a> Install Spring Boot Convention
+
+**Spring Boot Convention Install Instructions are PENDING FINALIZATION**
+
+**Prerequisite**: Convention Service installed on the cluster, see [Install Convention Service](#install-convention-service).
+
+1. Get the exact name and version information for the spring boot convention package to be installed by running:
+
+    ```bash
+    tanzu package available list --namespace tap-install
+    ```
+     For example:
+
+    ```bash
+    $ tanzu package available list --namespace tap-install
+    - Retrieving package versions for developer-conventions.tanzu.vmware.com
+      NAME                                    VERSION   RELEASED-AT
+      ...
+      spring-boot-convention.tanzu.vmware.com  0.1.1    <DATE-HERE>
+      ...
+    ```
+
+1. Install the package by running:
+
+    ```bash
+    tanzu package install spring-boot-convention \
+      --package-name spring-boot-convention.tanzu.vmware.com \
+      --version 0.1.1 \
+      --namespace tap-install
+    ```
+
+1. Verify the package install by running:
+
+    ```console
+    tanzu package installed get spring-boot-convention -n tap-install
+    ```
+
+    For example:
+
+    ```console
+    tanzu package installed get spring-boot-convention -n tap-install
+    | Retrieving installation details for...
+    NAME:                    spring-boot-convention
+    PACKAGE-NAME:            spring-boot-convention.tanzu.vmware.com
+    PACKAGE-VERSION:         0.1.1
+    STATUS:                  Reconcile succeeded
+    CONDITIONS:              [{ReconcileSucceeded True  }]
+    USEFUL-ERROR-MESSAGE:
+    ```
+    STATUS should be `Reconcile succeeded`.
+
+
+
 ## <a id="install-app-live-view"></a>Install Application Live View
 
 To install Application Live View:
