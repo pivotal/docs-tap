@@ -45,55 +45,7 @@ Tanzu Application Platform is available through pre-defined profiles or individu
 
 The following profiles are available in Tanzu Application Platform:
 
-### Developer Lite
-
-This profile contains packages that are intended to drive the Inner Loop developer experience of building and 
-iterating on applications. 
-
-Packages within this profile are:
-
-* App Live View
-* Tanzu Build Service.....
-
-### Operator Lite
-
-This profile contains packages that are intended to drive the Outer Loop application operator experience.
-
-Packages within this profile are:
-
-* Tanzu Build Service.....
-
-### Shared Tools
-
-This profile contains packages that are intended to support team application development activities.
-
-Packages within this profile are:
-
-* Application Accelerator
-* API Portal....
-
-### Tanzu Application Platform Full
-
-This profile contains all of the Tanzu Application Platform packages.
-
-Packages within this profile are:
-
-* API portal
-* Application Accelerator for VMware Tanzu
-* Application Live View for VMware Tanzu
-* Cloud Native Runtimes for VMware Tanzu
-* Convention Service for VMware Tanzu
-* Default Supply Chain
-* Default Supply Chain with Testing
-* Developer Conventions 
-* Services Toolkit for VMware Tanzu
-* Service Bindings for Kubernetes
-* Supply Chain Choreographer for VMware Tanzu
-* Supply Chain Security Tools - Scan
-* Supply Chain Security Tools - Sign
-* Supply Chain Security Tools - Store
-* Tanzu Source Controller
-* VMware Tanzu Build Service
+[Insert table here]
 
 ## <a id='install'></a> About Installing the Tanzu Application Platform v0.3 (Beta-3) 
 
