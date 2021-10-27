@@ -17,8 +17,8 @@ For more information on this command, see [Tanzu Apps Workload Get](command-refe
 
 ## <a id='yaml-files'></a> Working with YAML Files
 
-In many cases, you can manage workload lifecycles through CLI commands,
-but there might be cases where you want to manage a workload by using a `yaml` file.
+In many cases, you can manage workload lifecycles through CLI commands;
+however, you might find cases where you want to manage a workload by using a `yaml` file.
 The Apps CLI plugin supports using `yaml` files.
 
 The plugin is designed to manage **one workload** at a time.
