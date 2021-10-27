@@ -1,4 +1,4 @@
-# Installing Part II: Packages
+# <a id='installing'></a> Installing Part II: Packages
 
 This document describes how to install Tanzu Application Platform packages
 from the Tanzu Application Platform package repository.
@@ -1084,20 +1084,21 @@ Supported Git infrastructure includes:
 **Optional**
 
 - **Tanzu Application Platform tools:** Tanzu Application Platform GUI has plugins for the
-following Tanzu Application Platform tools. If you plan on running workloads with these capabilities,
-you need these tools installed alongside Tanzu Application Platform GUI.
+following Tanzu Application Platform tools.
+If you plan on running workloads with these capabilities, you need these tools installed alongside
+Tanzu Application Platform GUI.
 If you choose not to deploy workloads with these tools, the GUI shows menu options that you cannot
 click on.
     - Tanzu Cloud Native Runtimes
     - Tanzu App Live View
-- **Data cache:** Your software catalog is stored on Git infrastructure -- as mentioned in the
-required prerequisites above -- however, you also have the option to use a PostgreSQL database to
+- **Data cache:** Your software catalog is stored on Git infrastructure, as mentioned in the
+required prerequisites. However, you also have the option to use a PostgreSQL database to
 cache this information. If you do not specify any values here, a SQLite in-memory database is used
 instead.
     - PostgreSQL database and connection information
 - **Authentication:**
     - OIDC Identity Provider connection information
-- **Customer-developed Documentation:**
+- **Customer-developed documentation:**
     - Techdocs object storage location (S3)
 
 ### Procedure
@@ -1198,7 +1199,7 @@ with your relevant values. The meanings of some placeholders are explained in th
     For more information, see the [Backstage documentation](https://backstage.io/docs/conf/).
     Detailed configuration of the OIDC auth capabilities are in this [Backstage OAuth documentation](https://backstage.io/docs/auth/oauth).
 
-    > **Note:** The `integrations` section uses GitLab. If you want additional integrations see the
+    > **Note:** The `integrations` section uses GitLab. If you want additional integrations, see the
     format in this [Backstage integration documentation](https://backstage.io/docs/integrations/).
 
 1. Install the package by running:
@@ -1246,15 +1247,15 @@ with your relevant values. The meanings of some placeholders are explained in th
     ```
     `STATUS` should be `Reconcile succeeded`.
 
-1. To access Tanzu Application Platform GUI, use the service you exposed above in the
-`service_type` field in the values file.
+1. To access Tanzu Application Platform GUI, use the service you exposed in the `service_type`
+field in the values file.
 
 
 ## Install Learning Center
 
 To install Tanzu Learning Center:
 
-* Create a configuration yaml file called `educates-config.yaml`:
+* Create a configuration YAML file called `educates-config.yaml`:
 
     ```yaml
     ingressDomain: <educates.my-domain.com>
@@ -1291,21 +1292,24 @@ connect to themselves instead -- the address would resolve to the host loopback 
 
 The following procedures configure optional settings.
 
+
 #### Enforce Secure Connections
 
 By default, the workshop portal and workshop sessions are accessible over HTTP connections.
-To use HTTPS connections, you need access to a wildcard SSL certificate for the domain in
-which you want to host the workshops. You cannot use a self-signed certificate.
+To use HTTPS connections, you need access to a wildcard SSL certificate for the domain that hosts
+the workshops. You cannot use a self-signed certificate.
 
-* **If you already have a TLS secret:**
+* **If you have a TLS secret:**
 
-    * If you have a TLS secret, copy it to the `educates` namespace or the one you defined, and use
+    * Copy the TLS secret to the `educates` namespace or the one you defined, and use
     the `secretName` property in `educates-config.yaml`:
 
     ```yaml
     ingressSecret:
-     secretName: workshops.example.com-tls
+     secretName: <SECRET-NAME>
     ```
+
+    Where `<SECRET-NAME>` is your secret name, such as `workshops.example.com-tls`.
 
 * **If you do not already have a TLS secret:**
 
@@ -1329,33 +1333,37 @@ following to `educates-config.yaml`:
     ```yaml
     ingressClass: <TYPE>
     ```
+
     Where `<TYPE>` is your chosen type, such as `contour`.
 
-#### Set the Image Registry
 
-Primary image registry where Educates container images are stored.
+#### Select the Primary Image Registry
+
+`educates` container images are stored in the primary image registry.
 It is only necessary to define the host and credentials when that image registry requires
 authentication to access images.
-This principally exists to allow relocation of images through Carvel image bundles.
+This principally exists to enable relocation of images through Carvel image bundles.
 
-    `educates-config.yaml:`
+* Select the primary image registry by adding the following to `educates-config.yaml`:
+
     ```yaml
-    imageRegistry:
-     host:
-     username:
-     password:
+    imageRegistry: <IMAGE-REGISTRY>
+     host: <HOST>
+     username: <USERNAME>
+     password: <PASSWORD>
     ```
 
-1. Install Learning Center operator by running:
+1. Install the Learning Center operator by running:
 
     ```shell
     tanzu package install educates --package-name learningcenter.tanzu.vmware.com --version 1.0.8-build.1 -f educates-config.yaml
     ```
 
-    The command above will create a default namespace in your Kubernetes cluster called `educates`
-    and the operator along with any required namespaced resources will be created in it.
-    A set of custom resource definitions and a global cluster role binding will also be created.
-    The list of resources you should see being created are:
+    This command creates a default namespace in your Kubernetes cluster called `educates`
+    and includes the operator along with any required namespaced resources within it.
+    It also creates a set of custom resource definitions and a global cluster role binding.
+
+1. Verify that you see this list of created resources:
 
     ```shell
     customresourcedefinition.apiextensions.k8s.io/workshops.training.eduk8s.io created
@@ -1369,13 +1377,13 @@ This principally exists to allow relocation of images through Carvel image bundl
     deployment.apps/eduk8s-operator created
     ```
 
-    You can check that the operator deployed okay by running:
+1. Verify that the operator deployed successfully by running:
 
     ```shell
     kubectl get all -n educates
     ```
 
-1. Verify that the Pod for the operator is marked as running.
+    and check that the Pod for the operator is marked as running.
 
 
 ## <a id='install-service-bindings'></a> Install Service Bindings
@@ -1387,8 +1395,8 @@ This principally exists to allow relocation of images through Carvel image bundl
     ```bash
     tanzu package available list PACKAGE-NAME --namespace tap-install
     ```
-    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
-     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
+    Where `PACKAGE-NAME` is the name of the package listed earlier in
+     [Add the Tanzu Application Platform Package Repository](#add-package-repositories).
      For example:
 
     ```bash
