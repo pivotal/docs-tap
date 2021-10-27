@@ -105,7 +105,7 @@ To add the Tanzu Application Platform package repository:
 The following table lists the packages that are contained in each profile:
 [table]
 
-## <a id='add-package-repositories'></a> Install a Tanzu Application Platform Profile
+## <a id='install-profile'></a> Install a Tanzu Application Platform Profile
 To install a profile:
 
 1. List version information by running....
