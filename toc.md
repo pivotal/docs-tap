@@ -13,6 +13,7 @@ This is the table of contents from which the Tanzu Application Platform Document
 - [Troubleshooting Tanzu Application Platform](troubleshooting.md)
 - [Uninstalling Tanzu Application Platform](uninstall.md)
 - [Component Documentation](components.md)
+    - [Installing Individual Packages](install-components.md)
     - [Apps CLI Plugin](cli-plugins/apps/overview-installation.md)
         - [Working with Workloads](cli-plugins/apps/working-with-workloads.md)
         - [Command Reference](cli-plugins/apps/command-reference.md)
