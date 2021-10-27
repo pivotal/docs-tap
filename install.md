@@ -52,7 +52,7 @@ To add the Tanzu Application Platform package repository:
 2. Create an imagepullsecret:
 
     ```bash
-    tanzu imagepullsecret add tap-registry \
+    tanzu secret registry add tap-registry \
       --username TANZU-NET-USER --password TANZU-NET-PASSWORD \
       --registry registry.tanzu.vmware.com \
       --export-to-all-namespaces --namespace tap-install
@@ -2164,7 +2164,7 @@ run the following commands to add credentials and Role-Based Access Control (RBA
 
 1. Add read/write registry credentials to the developer namespace. Run:
     ```bash
-    $ tanzu imagepullsecret add registry-credentials --registry REGISTRY-SERVER --username REGISTRY-USERNAME --password REGISTRY-PASSWORD --namespace YOUR-NAMESPACE
+    $ tanzu secret registry add registry-credentials --registry REGISTRY-SERVER --username REGISTRY-USERNAME --password REGISTRY-PASSWORD --namespace YOUR-NAMESPACE
     ```
     Where `YOUR-NAMESPACE` is the name you want for the developer namespace.
     For example, use `default` for the default namespace.

@@ -71,6 +71,8 @@ To install kapp-controller v0.27.0 or later on Tanzu Kubernetes Grid v1.4:
 
 ### Install the Tanzu CLI Plugins for Tanzu Application Platform
 
+**Note** `imagepullsecret` plugin is deprecated in tanzu-framework version v0.8.0 and replaced with `secret` plugin.
+
 To install the Tanzu CLI plugins required for Tanzu Application Platform:
 
 1. Create a directory named `tanzu-framework` by running:
@@ -84,7 +86,7 @@ To install the Tanzu CLI plugins required for Tanzu Application Platform:
 1. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/)
 on VMware Tanzu Network.
 
-1. Click on the **tanzu-cli-0.5.0** directory.
+1. Click on the **tanzu-cli-0.8.0** directory.
 
 1. Download the CLI bundle corresponding to your operating system. For example, if your client
 operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle.
@@ -101,10 +103,18 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
     cd $HOME/tanzu-framework
     ```
 
-1. Install the `imagepullsecret` plugin by running:
-
+1. Check `imagepullsecret` is present already:
+   ```console
+    tanzu plugin list
+    ```
+    If present, delete the `imagepullsecret` plugin by running:
     ```console
-    tanzu plugin install imagepullsecret --local ./cli
+    tanzu plugin delete imagepullsecret
+    ```
+
+1. Install the `secret` plugin by running:
+    ```console
+    tanzu plugin install secret --local ./cli
     ```
 
 1. Install the `accelerator` plugin by running:
