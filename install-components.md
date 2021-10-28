@@ -10,6 +10,69 @@ Before you install the packages, ensure that you have completed the prerequisite
 and verified the cluster, accepted the EULA, and installed the Tanzu CLI with any required plugins.
 For information, see [Installing Part I: Prerequisites, EULA, and CLI](install-general.md).
 
++ [Install cert-manager and FluxCD source controller](#install-prereqs)
++ [Install Cloud Native Runtimes](#install-cnr)
++ [Install Application Accelerator](#install-app-accelerator)
++ [Install Convention Service](#install-convention-service)
++ [Install Source Controller](#install-source-controller)
++ [Install Developer Conventions](#install-developer-conventions)
++ [Install Application Live View](#install-app-live-view)
++ [Install Tanzu Application Platform GUI](#install-tap-gui)
++ [Install Learning Center](#install-learning-center)
++ [Install Service Bindings](#install-service-bindings)
++ [Install Tanzu Build Service](#install-tbs)
++ [Install Supply Chain Choreographer](#install-scc)
++ [Install Default Supply Chain](#install-default-supply-chain)
++ [Install Supply Chain Security Tools - Store](#install-scst-store)
++ [Install Supply Chain Security Tools - Sign](#install-scst-sign)
++ [Install Supply Chain Security Tools - Scan](#install-scst-scan)
++ [Install API portal](#install-api-portal)
++ [Install Services Toolkit](#install-services-toolkit)
+
+
+## <a id='install-prereqs'></a> Install cert-manager and FluxCD source controller
+
+cert-managet and FluxCD source controller are installed as part of all profiles. If you do not want to use a profile, install them manually.
+
+Note: In future versions both cert-manager and FluxCD source controller will be shipped as packages.
+
+* **cert-manager**:
+    * Install cert-manager by running:
+        ```
+        kapp deploy -a cert-manager -f https://github.com/jetstack/cert-manager/releases/download/v1.5.3/cert-manager.yaml
+        ```
+        We have verified the Tanzu Application Platform repo bundle packages installation with cert-manager version v1.5.3.
+        
+        * Verify installed cert-manager version by running:
+        For example:
+        ```
+        kubectl get deployment cert-manager -n cert-manager -o yaml | grep 'app.kubernetes.io/version: v'
+           app.kubernetes.io/version: v1.5.3
+              app.kubernetes.io/version: v1.5.3
+        ```
+* **FluxCD source-controller**:
+    Install FluxCD source-controller using the following procedure.
+    
+     1. Create the namespace `flux-system`.
+        
+        ```
+        kubectl create namespace flux-system
+        ```
+     
+     2. Create the `clusterrolebinding` by running:
+        ```
+        kubectl create clusterrolebinding default-admin \
+        --clusterrole=cluster-admin \
+        --serviceaccount=flux-system:default
+        ```
+     3. Install FluxCD Source Controller by running:
+        ```
+        kapp deploy -a flux-source-controller -n flux-system \
+        -f https://github.com/fluxcd/source-controller/releases/download/v0.15.4/source-controller.crds.yaml \
+        -f https://github.com/fluxcd/source-controller/releases/download/v0.15.4/source-controller.deployment.yaml
+        ```
+        We have verified the Tanzu Application Platform repo bundle packages installation with FluxCD source-controller version v0.15.4.
+
 
 ## <a id='install-cnr'></a> Install Cloud Native Runtimes
 
