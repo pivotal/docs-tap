@@ -1,4 +1,4 @@
-# <a id='installing'></a> Installing Individual Packages
+# Installing Individual Packages
 
 This document describes how to install individual Tanzu Application Platform packages
 from the Tanzu Application Platform package repository.

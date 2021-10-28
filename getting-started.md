@@ -1090,7 +1090,7 @@ This use case is similar to the above in that we will be binding a sample applic
 
     * This cluster **MUST** have the ability to create LoadBalanced services.
 
-    * This time when it comes to [Installing Part II: Packages](install.md#-installing-part-ii-packages), you only need to install the Services Toolkit package
+    * This time when it comes to [Installing Part II: Profiles](install.md#-installing-part-ii-packages), you only need to install the Services Toolkit package
 
     * All other packages can be skipped over
 

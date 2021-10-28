@@ -138,5 +138,5 @@ See [Prerequisites](install-general.html#prerequisites-0) in _Installing Part I:
     > **Note**: Do not attempt to install the cert-manager package from Tanzu Standard Repository:
     follow the instructions in TAP documentation to meet all the prerequisites.
 
-1. Follow the steps in [Installing Part II: Packages](install.md) to install
+1. Follow the steps in [Installing Part II: Profiles](install.md) to install
 Tanzu Application Platform on a Tanzu Kubernetes Grid v1.4 cluster.

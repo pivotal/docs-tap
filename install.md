@@ -1,4 +1,4 @@
-# <a id='installing'></a> Installing Part II: Packages
+# Installing Part II: Profiles
 
 This document describes how to install Tanzu Application Platform packages
 from the Tanzu Application Platform package repository.
