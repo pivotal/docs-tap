@@ -1,53 +1,37 @@
-# Workload Visibility Plugin User Guide for Application Developers
+# Workload Visibility User Guide
 
-This document describes how to utilize the Workload Visibility plugin.
-
-## Overview
-
-The Workload Visibility plugin enables developers to view their running Kubernetes workloads and learn about their details and statuses. Gaining visibility helps developers debug and troubleshoot issues associated with their workloads.
+The Workload Visibility screen enables developers to view the details and status of their running Kubernetes
+workloads, to understand their structure, and debug any issues affecting them.
 
 ## Before you begin
 
-The developer needs to perform the below actions in order to see their running workloads on the dashboard:<br/>
+The developer needs to perform the below actions in order to see their running workloads on the dashboard:
 
-* Create a YAML file specifying the components and label/s used to identify the workloads.
-* Push the YAML file to the repo that is registered with Backstage. (The system operator must already have registered the company/org-wide repository in the Backstage configuration.)
+* Define a [Backstage System](../catalog/catalog-operations.md#systems).
+* Define a [Backstage Component](../catalog/catalog-operations.md#components) that:
+  * Refers to the System from the previous step (at `.spec.system`).
+  * Specifies a `backstage.io/kubernetes-label-selector` annotation (at `.metadata.annotations`).
+* Commit and push the System and Component definitions to a Git repository that's been [registered
+  as a Catalog Location](../catalog/catalog-operations.md#adding-catalog-entities).
+* Create a Kubernetes Workload:
+  * In a cluster available to the TAP GUI.
+  * With labels that satisfy the new Component's label selector.
 
 
-## Navigate to the Workload Visibility Plugin
+## Navigate to the Workload Visibility screen
 
-To view the list of your running workloads:<br/>
+To view the list of your running workloads:
 
-* Click on the component that you want to see from the catalog on the landing page.
-* Once you are in the component page, click on the ‘Workloads’ tab on the top navigation menu.<br/>
+* Select the Component from the Catalog index page.
+* Select the Workloads tab.
 
-In this screen, you can view the list of running workloads, along with their overall status, type, namespace and cluster they belong to, age and the public URL (if any).
+You can view the list of running workloads and details about their status, type, namespace/cluster, and public URL
+(if applicable for that workload type).
 
-<img width="1879" alt="workload-visibility-workloadlist" src="../images/workload-visibility-workloadlist.png">
+![Workload index table](./images/workload-visibility-workloads.png)
 
-## Resource Details Pages
+## Resource Details
 
-### Knative Service Details
+Each resource has a dedicated page showing its detailed status, metadata, ownership, related resources, etc.
 
-In order to view further details of your workloads, you can click on your desired workload from the list. In the screenshot below, Knative service details are displayed such as:<br/>
-
-* Status Conditions
-* Annotations
-* Labels
-* Incoming Routes
-* Revisions (you can view more details of each revision by clicking on them)
-* Pods (you can view each pod details by clicking on them
-
-<img width="1682" alt="workload-visibility-knative-details" src="../images/workload-visibility-knative-details.png">
-
-### Pod Detail Page
-
-You can gain further information about the pods associated with a service by clicking on the Pod name. The Pod page includes details such as:<br/>
-
-* Status Conditions
-* Ownership: provides a detailed hierarchy of the pod belonging to which component
-* Annotations
-* Labels
-* Containers: provides details like Container ID, Image and Ready Status
-
-<img width="1533" alt="workload-visibility-pod-details" src="../images/workload-visibility-pod-details.png">
+![Resource detail page](./images/workload-visibility-resource-detail.png)
