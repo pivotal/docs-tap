@@ -1,4 +1,4 @@
-# <a id='installing'></a> Installing Part II: Packages
+# Installing Part II: Profiles
 
 This document describes how to install Tanzu Application Platform packages
 from the Tanzu Application Platform package repository.
@@ -79,23 +79,334 @@ To add the Tanzu Application Platform package repository:
     ```console
     $ tanzu package available list --namespace tap-install
     / Retrieving available packages...
-    accelerator.apps.tanzu.vmware.com                  Application Accelerator for VMware Tanzu                               Used to create new projects and configurations.
-    api-portal.tanzu.vmware.com                        API portal                                                             A unified user interface to enable search, discovery and try-out of API endpoints at ease.
-    appliveview.tanzu.vmware.com                       Application Live View for VMware Tanzu                                 App for monitoring and troubleshooting running apps
-    buildservice.tanzu.vmware.com                      Tanzu Build Service                                                    Tanzu Build Service enables the building and automation of containerized software workflows securely and at scale.
-    cartographer.tanzu.vmware.com                      Cartographer                                                           Kubernetes native Supply Chain Choreographer.
-    cnrs.tanzu.vmware.com                              Cloud Native Runtimes                                                  Cloud Native Runtimes is a serverless runtime based on Knative
-    controller.conventions.apps.tanzu.vmware.com       Convention Service for VMware Tanzu                                    Convention Service enables app operators to consistently apply desired runtime configurations to fleets of workloads.
-    controller.source.apps.tanzu.vmware.com            Tanzu Source Controller                                                Tanzu Source Controller enables workload create/update from source code.
-    default-supply-chain-testing.tanzu.vmware.com      Tanzu App Platform Default Supply Chain with Testing                   Default Software Supply Chain with testing.
-    default-supply-chain.tanzu.vmware.com              Tanzu App Platform Default Supply Chain                                Default Supply Chain
-    developer-conventions.tanzu.vmware.com             Tanzu App Platform Developer Conventions                               Developer Conventions
-    grype.scanning.apps.tanzu.vmware.com               Grype Scanner for Supply Chain Security Tools for VMware Tanzu - Scan  Default scan templates using Anchore Grype
-    image-policy-webhook.signing.run.tanzu.vmware.com  Image Policy Webhook                                                   The Image Policy Webhook allows platform operators to define a policy that will use cosign to verify signatures of container images
-    scanning.apps.tanzu.vmware.com                     Supply Chain Security Tools for VMware Tanzu - Scan                    Scan for vulnerabilities and enforce policies directly within Kubernetes native Supply Chains.
-    scst-store.tanzu.vmware.com                        Tanzu Supply Chain Security Tools - Store                              The Metadata Store enables saving and querying image, package, and vulnerability data.
-    service-bindings.labs.vmware.com                   Service Bindings for Kubernetes                                        Service Bindings for Kubernetes implements the Service Binding Specification.
-    services-toolkit.tanzu.vmware.com                  Services Toolkit                                                       The Services Toolkit enables the management, lifecycle, discoverability and connectivity of Service Resources (databases, message queues, DNS records, etc.).
-    tap-gui.tanzu.vmware.com                           Tanzu Application Platform GUI                                         web app graphical user interface for Tanzu Application Platform
+    accelerator.apps.tanzu.vmware.com                    Application Accelerator for VMware Tanzu                                  Used to create new projects and configurations.
+    api-portal.tanzu.vmware.com                          API portal                                                                A unified user interface to enable search, discovery and try-out of API endpoints at ease.
+    appliveview.tanzu.vmware.com                         Application Live View for VMware Tanzu                                    App for monitoring and troubleshooting running apps
+    buildservice.tanzu.vmware.com                        Tanzu Build Service                                                       Tanzu Build Service enables the building and automation of containerized software workflows securely and at scale.
+    cartographer.tanzu.vmware.com                        Cartographer                                                              Kubernetes native Supply Chain Choreographer.
+    cnrs.tanzu.vmware.com                                Cloud Native Runtimes                                                     Cloud Native Runtimes is a serverless runtime based on Knative
+    controller.conventions.apps.tanzu.vmware.com         Convention Service for VMware Tanzu                                       Convention Service enables app operators to consistently apply desired runtime configurations to fleets of workloads.
+    controller.source.apps.tanzu.vmware.com              Tanzu Source Controller                                                   Tanzu Source Controller enables workload create/update from source code.
+    developer-conventions.tanzu.vmware.com               Tanzu App Platform Developer Conventions                                  Developer Conventions
+    grype.scanning.apps.tanzu.vmware.com                 Grype Scanner for Supply Chain Security Tools for VMware Tanzu - Scan     Default scan templates using Anchore Grype
+    image-policy-webhook.signing.run.tanzu.vmware.com    Image Policy Webhook                                                      The Image Policy Webhook allows platform operators to define a policy that will use cosign to verify signatures of container images
+    ootb-supply-chain-basic.tanzu.vmware.com             Tanzu App Platform Out of the Box Supply Chain Basic                      Out of the Box Supply Chain Basic
+    ootb-supply-chain-testing.tanzu.vmware.com           Tanzu App Platform Out of the Box Supply Chain with Testing               Out of the Box Supply Chain with Testing
+    ootb-supply-chain-testing-scanning.tanzu.vmware.com  Tanzu App Platform Out of the Box Supply Chain with Testing and Scanning  Out of the Box Supply Chain with Testing and Scanning
+    ootb-templates.tanzu.vmware.com                      Tanzu App Platform Out of the Box Templates                               Out of the Box Templates  
+    scanning.apps.tanzu.vmware.com                       Supply Chain Security Tools for VMware Tanzu - Scan                       Scan for vulnerabilities and enforce policies directly within Kubernetes native Supply Chains.
+    scst-store.tanzu.vmware.com                          Tanzu Supply Chain Security Tools - Store                                 The Metadata Store enables saving and querying image, package, and vulnerability data.
+    service-bindings.labs.vmware.com                     Service Bindings for Kubernetes                                           Service Bindings for Kubernetes implements the Service Binding Specification.
+    services-toolkit.tanzu.vmware.com                    Services Toolkit                                                          The Services Toolkit enables the management, lifecycle, discoverability and connectivity of Service Resources (databases, message queues, DNS records, etc.).
+    tap-gui.tanzu.vmware.com                             Tanzu Application Platform GUI                                            web app graphical user interface for Tanzu Application Platform
+    ```
+## <a id='add-package-repositories'></a> About Tanzu Application Platform Package Profiles
+Tanzu Application Platform can be installed through pre-defined profiles or through individual packages. This section explains how you can install a profile.
+There are four profiles:
+
+- Full
+
+- Developer Light
+
+- Shared Tools
+
+- Operator Light.
+
+This table lists the packages that are contained in each profile:
+
+<table>
+  <tr>
+   <td><strong>Product Name</strong>
+   </td>
+   <td><strong>Full</strong>
+   </td>
+   <td><strong>Developer Light</strong>
+   </td>
+   <td><strong>Shared Tools</strong>
+   </td>
+   <td><strong>Operator Light</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>API Portal
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Application Accelerator
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>App Live View
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Cartographer
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+   <td>Cloud Native Runtime
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+   <td>Convention Controller
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+   <td>Default Supply Chain
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+   <td>Default Supply Chain - Testing
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Developer Conventions
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Flux Source Controller
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+   <td>Image Policy Webhook
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+   <td>Learning Center
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Services Control Plane Toolkit
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+   <td>Service Bindings
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+   <td>Source Controller
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+   <td>Spring Boot Convention
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+   <td>Tanzu Build Service
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+   <td>TAP GUI
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Tekton
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+</table>
+
+## <a id='install-profile'></a> Install a Tanzu Application Platform Profile
+To install a profile:
+
+1. List version information for the package by running:
+
+    ```bash
+    $ tanzu package available list tap.tanzu.vmware.com --namespace tap-install
     ```
 
+1. To view possible configuration settings, run:
+
+    ```bash
+    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
+    ```
+    Where:
+
+    - `PACKAGE-NAME` is same as step 5 above.
+    - `VERSION-NUMBER` is the version of the package listed in step 5 above.
+
+    For example:
+
+    ```bash
+    $ tanzu package available get tap.tanzu.vmware.com/0.3.0 --values-schema --namespace tap-install
+    ```
+
+1. Create a `tap-values.yml` using the following sample as a guide. 
+    ```yaml
+    profile: full
+    buildservice:
+      tanzunet_username: "TANZUNET-USERNAME"
+      tanzunet_password: "TANZUNET-PASSWORD"
+    rw_app_registry:
+      server_repo: "SERVER-REPO"
+      username: "USERNAME"
+      password: "PASSWORD"
+    ```
+
+1. Install the package by running:
+
+    ```bash
+    tanzu package install tap -p tap.tanzu.vmware.com -v 0.3.0 --values tap-values.yml -n tap-install
+    ```
+
+1. Verify the package install by running:
+
+    ```bash
+    tanzu package installed get tap -n tap-install
+    ```
+
+1. Verify all the necessary packages in the profile are installed by running:
+    ```bash
+    tanzu package installed list -A
+    ```

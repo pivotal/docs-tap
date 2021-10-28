@@ -1,4 +1,4 @@
-# <a id='installing'></a> Installing Individual Packages
+# Installing Individual Packages
 
 This document describes how to install individual Tanzu Application Platform packages
 from the Tanzu Application Platform package repository.
@@ -661,19 +661,22 @@ To install Tanzu Build Service using the Tanzu CLI:
 [tekton]: https://github.com/tektoncd/pipeline
 
 Supply Chain Choreographer provides the custom resource definitions that the supply chain uses.
-It enables choreography of the components that form the software supply chain.
+Each pre-approved supply chain creates a paved road to production and orchestrates supply chain resources. You can test, build, scan, and deploy. Developers can focus on delivering value to
+users. App Operators can have peace of mind that all code in production has passed
+through an approved workflow.
+
 For example, Supply Chain Choreographer passes the results of fetching source code to the component
 that knows how to build a container image from of it and then passes the container image
 to a component that knows how to deploy the image.
 
 ```bash
-# Install the version 0.0.6 of the `cartographer.tanzu.vmware.com`
-# package naming the installation as `cartographer`.
+# Install the version 0.0.7 of the `cartographer.tanzu.vmware.com`
+# package. Naming the installation as `cartographer`.
 #
 tanzu package install cartographer \
   --namespace tap-install \
   --package-name cartographer.tanzu.vmware.com \
-  --version 0.0.6
+  --version 0.0.7
 ```
 
 ```console
@@ -689,34 +692,50 @@ tanzu package install cartographer \
 Added installed package 'cartographer' in namespace 'default'
 ```
 
-## <a id='install-default-supply-chain'></a> Install Default Supply Chain
+## <a id='install-ootb-templates'></a> Install Out of the Box Templates
 
-To install Default Supply Chain:
+The Out of the Box Templates are used by all Out of the Box Supply Chains.
+There is a list of resources in each supply chain. Each resource points to an Out of the Box Template.
+
+To install Out of the Box Templates:
+
+1. Install the package by running:
+
+   ```bash
+    tanzu package install ootb-templates \
+      --package-name ootb-templates.tanzu.vmware.com \
+      --version 0.3.0 \
+      --namespace tap-install
+    ```
+   
+
+## <a id='install-ootb-supply-chain-basic'></a> Install default Supply Chain
+
+Install the default Supply Chain, called Out of the Box Supply Chain Basic, by running:
 
 1. Gather the values schema:
 
     ```bash
-    tanzu package available get default-supply-chain.tanzu.vmware.com/0.2.0 --values-schema -n tap-install
+    tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.3.0 --values-schema -n tap-install
     ```
 
     For example:
 
    ```console
-   $ tanzu package available get default-supply-chain.tanzu.vmware.com/0.2.0 --values-schema -n tap-install
-   | Retrieving package details for default-supply-chain.tanzu.vmware.com/0.2.0...
+   $ tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.3.0 --values-schema -n tap-install
+   | Retrieving package details for ootb-supply-chain-basic.tanzu.vmware.com/0.3.0...
 
     KEY                  DEFAULT          TYPE    DESCRIPTION
     registry.repository  <nil>            string  Name of the repository in the image registry server where the application images from the workloads should be pushed to (required).
     registry.server      index.docker.io  string  Name of the registry server where application images should be pushed to.
     service_account      default          string  Name of the service account in the namespace where the Workload is submitted to utilize for providing registry credentials to Tanzu Build Service (TBS) Image objects as well as deploying the application.
-    templates_namespace  tap-install      string  Name of the namespace where shared templates are installed to. This variable should point to the namespace where this package is being installed into.
     cluster_builder      default          string  Name of the Tanzu Build Service (TBS) ClusterBuilder to use by default on image objects managed by the supply chain.
    ```
 
 
-1. Create a `default-supply-chain-values.yaml` using the following sample as a guide:
+1. Create a `supply-chain-values.yaml` using the following sample as a guide.
 
-    Sample `default-supply-chain-values.yaml` for Default Supply Chain:
+    Sample `supply-chain-values.yaml` for the default Supply Chain:
 
     ```yaml
     ---
@@ -729,11 +748,11 @@ To install Default Supply Chain:
 1. Install the package by running:
 
      ```bash
-    tanzu package install default-supply-chain \
-      --package-name default-supply-chain.tanzu.vmware.com \
-      --version 0.2.0 \
+    tanzu package install ootb-supply-chain-basic \
+      --package-name ootb-supply-chain-basic.tanzu.vmware.com \
+      --version 0.3.0 \
       --namespace tap-install \
-      --values-file default-supply-chain-values.yaml
+      --values-file ootb-supply-chain-basic-values.yaml
     ```
 
 > **Note:** The `service-account` service account and required secrets are created in
@@ -755,7 +774,7 @@ To install developer conventions:
      For example:
 
     ```bash
-    $ tanzu packageavailable list developer-conventions.tanzu.vmware.com --namespace tap-install
+    $ tanzu package available list developer-conventions.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for developer-conventions.tanzu.vmware.com
       NAME                                    VERSION        RELEASED-AT
       developer-conventions.tanzu.vmware.com  0.3.0-build.1  2021-10-19T00:00:00Z
@@ -799,6 +818,59 @@ To install developer conventions:
     ```
 
 
+## <a id='install-spring-boot-convention'></a> Install Spring Boot Conventions
+
+To install Spring Boot conventions:
+
+**Prerequisite**: Convention Service installed on the cluster, see [Install Convention Service](#install-convention-service).
+
+1. Get the exact name and version information for the Spring Boot conventions package to be installed by running:
+
+    ```bash
+    tanzu package available list spring-boot-conventions.tanzu.vmware.com --namespace tap-install
+    ```
+     For example:
+
+    ```bash
+    $ tanzu package available list spring-boot-conventions.tanzu.vmware.com --namespace tap-install
+    / Retrieving package versions for spring-boot-conventions.tanzu.vmware.com...
+      NAME                                       VERSION   RELEASED-AT
+      ...
+      spring-boot-conventions.tanzu.vmware.com   0.1.1     2021-10-27T00:00:00Z
+      ...
+    ```
+
+1. Install the package by running:
+
+    ```bash
+    tanzu package install spring-boot-conventions \
+      --package-name spring-boot-conventions.tanzu.vmware.com \
+      --version 0.1.1 \
+      --namespace tap-install
+    ```
+
+1. Verify the package install by running:
+
+    ```bash
+    tanzu package installed get spring-boot-conventions --namespace tap-install
+    ```
+
+    For example:
+
+    ```bash
+    tanzu package installed get spring-boot-conventions -n tap-install
+    | Retrieving installation details for spring-boot-conventions...
+    NAME:                    spring-boot-conventions
+    PACKAGE-NAME:            spring-boot-conventions.tanzu.vmware.com
+    PACKAGE-VERSION:         0.1.1
+    STATUS:                  Reconcile succeeded
+    CONDITIONS:              [{ReconcileSucceeded True  }]
+    USEFUL-ERROR-MESSAGE:
+    ```
+    STATUS should be `Reconcile succeeded`.
+
+
+
 ## <a id="install-app-live-view"></a>Install Application Live View
 
 To install Application Live View:
@@ -833,26 +905,19 @@ To install Application Live View:
     - Retrieving package details for appliveview.tanzu.vmware.com/0.3.0...
       KEY                   DEFAULT        TYPE    DESCRIPTION
       connector_namespaces  [default]      array   The namespaces in which ALV monitors the users apps
-      server_namespace      app-live-view  string  The namespace to which ALV server is deployed
-      service_type          LoadBalancer   string  The service type for the Application Live View server can be LoadBalancer, NodePort, or ClusterIP
+      service_type          ClusterIP      string  The service type for the Application Live View server can be LoadBalancer, NodePort, or ClusterIP
     ```
 
     For more information about values schema options, see the individual product documentation.
 
 1. Gather the values schema.
-1. Create a namespace to deploy the Application Live View server and its components. For example:
-
-   ```bash
-   kubectl create ns app-live-view
-   ```
 
 1. Create a `app-live-view-values.yaml` using the following sample as a guide:
 
    ```yaml
    ---
    connector_namespaces: [default]
-   server_namespace: app-live-view
-   service_type: LoadBalancer
+   service_type: ClusterIP
    ```
 
    Where:
@@ -860,10 +925,10 @@ To install Application Live View:
    - `connector_namespaces` is a list of namespaces where you want
    Application Live View to monitor your apps. An instance of the
    Application Live View Connector will be deployed to each of those namespaces.
-   - `server_namespace` is the namespace where the Application Live View server and its components are deployed.
-   VMware reccommends using the namespace you created earlier, named `app-live-view`.
    - `service_type` is the Kubernetes service type for the Application Live View server.
    This can be LoadBalancer, NodePort, or ClusterIP.
+
+   The application live view server and its components are deployed in `app-live-view` namespace by default.
 
 1. Install the package by running:
 
@@ -913,7 +978,7 @@ To install Application Live View:
 
 To access the Application Live View UI:
 
-1. List the resources deployed in the namespace where the Application Live View server and its components are deployed by running:
+1. List the resources deployed in the `app-live-view` namespace by running:
 
     ```bash
     kubectl get -n app-live-view service,deploy,pod
@@ -1020,11 +1085,28 @@ with your relevant values. The meanings of some placeholders are explained in th
     app-config:
       app:
         baseUrl: https://<EXTERNAL-IP>:<PORT>
-      integrations:
-        gitlab:
+      integrations: 
+        gitlab: # Other integrations available
           - host: <GITLAB-HOST>
             apiBaseUrl: https://<GITLAB-URL>/api/v4
             token: <GITLAB-TOKEN>
+      catalog:
+        locations:
+          - type: url
+            target: https://<GIT-CATALOG-URL>/catalog-info.yaml
+      backend:
+          baseUrl: https://<EXTERNAL-IP>:<PORT>
+          cors:
+              origin: https://<EXTERNAL-IP>:<PORT>
+      # database: # Only needed if you intend to support with an existing PostgreSQL database. The catalog is still refreshed from Git.
+      #     client: pg
+      #      connection:
+      #        host: <PGSQL-HOST>
+      #        port: <PGSQL-PORT>
+      #        user: <PGSQL-USER>
+      #        password: <PGSQL-PWD>
+      #        ssl: {rejectUnauthorized: false} # May be needed if using self-signed certs
+      
       # techdocs: # Only needed if you want to enable TechDocs capability. Requires running the TechDoc CLI to generate TechDocs from catalog Markdown to S3 compatible bucket called out in Additional Resources documentation.
       #  builder: 'external'
       #  generator:
@@ -1051,23 +1133,7 @@ with your relevant values. The meanings of some placeholders are explained in th
       #        clientSecret: <AUTH-OIDC-CLIENT-SECRET>
       #        tokenSignedResponseAlg: <AUTH-OIDC-TOKEN-SIGNED-RESPONSE-ALG> # default='RS256'
       #        scope: <AUTH-OIDC-SCOPE> # default='openid profile email'
-      #        prompt: <TYPE> # default=none (allowed values: auto, none, consent, login)
-      catalog:
-        locations:
-          - type: url
-            target: https://<GIT-CATALOG-URL>/catalog-info.yaml
-      backend:
-          baseUrl: https://<EXTERNAL-IP>:<PORT>
-          cors:
-              origin: https://<EXTERNAL-IP>:<PORT>
-      # database: # Only needed if you intend to support with an existing PostgreSQL database. The catalog is still refreshed from Git.
-      #     client: pg
-      #      connection:
-      #        host: <PGSQL-HOST>
-      #        port: <PGSQL-PORT>
-      #        user: <PGSQL-USER>
-      #        password: <PGSQL-PWD>
-      #        ssl: {rejectUnauthorized: false} # May be needed if using self-signed certs
+      #        prompt: <TYPE> # default=none (allowed values: auto, none, consent, login)      
     ```
     Where:
 
@@ -2009,7 +2075,7 @@ run the following commands to add credentials and Role-Based Access Control (RBA
 
 1. Add read/write registry credentials to the developer namespace. Run:
     ```bash
-    $ tanzu secret registry add registry-credentials --registry REGISTRY-SERVER --username REGISTRY-USERNAME --password REGISTRY-PASSWORD --namespace YOUR-NAMESPACE
+    $ tanzu secret registry add registry-credentials --server REGISTRY-SERVER --username REGISTRY-USERNAME --password REGISTRY-PASSWORD --namespace YOUR-NAMESPACE
     ```
     Where `YOUR-NAMESPACE` is the name you want for the developer namespace.
     For example, use `default` for the default namespace.
@@ -2032,7 +2098,7 @@ run the following commands to add credentials and Role-Based Access Control (RBA
     apiVersion: v1
     kind: ServiceAccount
     metadata:
-      name: service-account # use value from "Install Default Supply Chain"
+      name: service-account # use value from "Install default Supply Chain"
     secrets:
       - name: registry-credentials
     imagePullSecrets:
@@ -2076,7 +2142,7 @@ run the following commands to add credentials and Role-Based Access Control (RBA
       name: kapp-permissions
     subjects:
       - kind: ServiceAccount
-        name: service-account # use value from "Install Default Supply Chain"
+        name: service-account # use value from "Install default Supply Chain"
 
     EOF
     ```

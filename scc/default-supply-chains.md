@@ -4,27 +4,30 @@ subtitle: How to install Cartographer in a Kubernetes cluster
 weight: 2
 ---
 
-# Default Supply Chains
+# Out of the Box Supply Chains
 
-Default supply chains are provided out of the box with Tanzu Application Platform. The two default supply chains that are included are:
+Out of the Box Supply Chains are provided with Tanzu Application Platform.
+The following three supply chains that are included:
+- Out of the Box Supply Chain Basic (source-to-url)
+- Out of the Box Supply Chain with Testing (source-test-to-url)
+- Out of the Box Supply Chain with Testing and Scanning (source-test-scan-to-url)
 
-- Source to URL
-- Source & Test to URL
-<!-- - Source & Scan to URL -->
+Tanzu Application Platform also includes:
+- Out of the Box Templates
 
-Regardless of the supply chain chosen, we need to first set credentials for a
+Each of the supply chains use Out of the Box Templates.
+
+Regardless of the supply chain you choose, you need to set credentials for a
 registry where Tanzu Build Service should push the images that it builds.
 
 ### Credentials for pushing app images to a registry
-
-As the supply chain builds a container image based of the source code and
-pushes it to a registry, we need to provide to the systems the credentials for
+The supply chain builds a container image based off of the source code and
+pushes it to a registry. We need to provide to the systems the credentials for
 doing so.
 
 Using the `imagepullsecret` command from the [tanzu cli] we're able to
 provision a base secret that contains such credentials and then export the
 contents of that secret to the namespaces where it should be consumed.
-
 
 ```bash
 # define details about the registry that we want to create a secret
@@ -55,18 +58,19 @@ tanzu imagepullsecret add scc-registry-credentials \
 ```
 
 _ps.: note that the REGISTRY here _must_ be the same as the one set in the
-values file above._
+values file during [Install default Supply Chain](./../install.md#install-ootb-supply-chain-basic)._
 
-## Source to URL
 
-Source to URL is the most basic supply chain allowing you to:
+## Out of the Box Supply Chain Basic (source-to-url)
+
+Out of the Box Supply Chain Basic (source-to-url) is the most basic supply chain. This supply chain allows you to:
 
 - Watch a git repository
 - Build the code into an image
 - Apply some conventions to the K8s YAML
 - Deploy the application to the same cluster
 
-![Source to URL Supply Chain](images/source-to-url.png)
+![Out of the Box Supply Chain Basic](images/source-to-url.png)
 
 
 ### Example usage
@@ -112,9 +116,9 @@ imagePullSecrets:
 
 ```bash
 tanzu apps workload create hello-world \
-	--label apps.tanzu.vmware.com/workload-type=web \
   --git-branch main \
-  --git-repo https://github.com/kontinue/hello-world
+  --git-repo https://github.com/kontinue/hello-world \
+  --type web
 ```
 ```console
 Create workload:
@@ -134,19 +138,19 @@ Create workload:
 Created workload "my-workload"
 ```
 
-## Source & Test to URL
+## Out of the Box Supply Chain with Testing (source-test-to-url)
 
-The source & test to URL supply chain builds on the ability of the source to
-url supply chain and adds the ability to perform testing using Tekton.
+The Out of the Box Supply Chain with Testing (source-test-to-url) includes all abilities of the Out of the Box 
+Supply Chain Basic (source-to-url), and the ability to perform testing using Tekton.
 
-![Source Test to URL](images/source-test-to-url.png)
+![Out of the Box Supply Chain with Testing](images/source-test-to-url.png)
 
 
 ### Example usage
 
 #### Developer Workload
 
-1. ensure that the supply chain has been installed
+1. Ensure that the supply chain has been installed by running:
 
 ```bash
 tanzu apps cluster-supply-chain list
@@ -156,7 +160,7 @@ NAME                 READY   AGE     LABEL SELECTOR
 source-test-to-url   Ready   2m20s   apps.tanzu.vmware.com/workload-type=web
 ```
 
-2. setup a service account and placeholder secret for registry credentials
+2. Setup a service account and placeholder secret for registry credentials
 
 ```yaml
 ---
@@ -182,7 +186,7 @@ imagePullSecrets:
   - name: scc-registry-credentials
 ```
 
-2. configure a Tekton pipeline for running the tests
+3. Configure a Tekton pipeline for testing. Run:
 
 ```yaml
 apiVersion: tekton.dev/v1beta1
@@ -214,44 +218,14 @@ spec:
               go test -v ./...
 ```
 
-<!-- ## Source & Scan to URL
+4. Create a workload that matches the supply chain's selector by running:
 
-The source & scan to URL supply chain builds on the ability of the source to url supply chain and adds the ability to perform source and image scanning using Grype.
-
-- Watch a git repository
-- Run tests using Tekton
-- Scan the code for known vulnerabilities
-- Build the code into an image
-- Scan the image for known vulnerabilities
-- Apply some conventions to the K8s YAML
-- Deploy the application to the same cluster
-
-
-### Example usage
-
-This example builds on the previous supply chain examples, so refer to them for details about those parts (Test, TBS etc) In particular, this example adds Source and Image Scanning capabilities.
-
-#### Tanzu Supply Chain Security Tools - Scan cluster objects
-
-The notable addition is a Scan Policy, which enables policy enforcement on Vulnerabilities found. The Scan Policy can be added with the following:
-
-```bash
-ytt --ignore-unknown-comments \
-    -f ./example/scanner.yaml \
-  | kapp deploy --yes -a scan-cluster-setup -f-
-```
-
-The next step would be to then submit a workload like in the other examples.
-=======
-
-3. submit a workload
--->
 ```bash
 tanzu apps workload create hello-world \
-	--label apps.tanzu.vmware.com/workload-type=web \
   --git-branch main \
   --git-repo https://github.com/kontinue/hello-world \
-  --param tekton-pipeline-name=developer-defined-tekton-pipeline
+  --param tekton-pipeline-name=developer-defined-tekton-pipeline \
+  --type web-test
 ```
 ```console
 Create workload:
@@ -274,7 +248,7 @@ Create workload:
 Created workload "my-workload"
 ```
 
-4. observe that we went from source code to a deployed application
+5. Observe that you progressed from source code to a deployed application by running:
 
 ```bash
 kubectl get workload,gitrepository,pipelinerun,images.kpack,podintent,app,services.serving
@@ -302,4 +276,189 @@ app.kappctrl.k14s.io/hello-world                        Reconcile succeeded   2s
 
 NAME                                      URL                                      LATESTCREATED       LATESTREADY         READY     REASON
 service.serving.knative.dev/hello-world   http://hello-world.default.example.com   hello-world-00001   hello-world-00001   Unknown   IngressNotConfigured
+```
+
+## Out of the Box Supply Chain with Testing and Scanning (source-test-scan-to-url)
+
+The Out of the Box Supply Chain with Testing and Scanning (source-test-scan-to-url) includes the abilities of the Out of the Box 
+Supply Chain with Testing (source-test-to-url), and adds source and image scanning using Grype.
+
+Supply Chain with Testing and Scanning (source-test-scan-to-url) includes the following abilities:
+- Watch a git repository
+- Run tests using Tekton
+- Scan the code for known vulnerabilities
+- Build the code into an image
+- Scan the image for known vulnerabilities
+- Apply some conventions to the K8s YAML
+- Deploy the application to the same cluster
+
+![Out of the Box Supply Chain with Testing and Scanning](images/source-test-scan-to-url.png)
+
+
+### Example usage
+
+This example builds on the previous supply chain examples, so refer to them for details about those parts (Test, TBS etc). 
+In particular, this example adds Source and Image Scanning capabilities.
+
+#### Tanzu Supply Chain Security Tools - Scan cluster objects
+
+The notable addition is a Scan Policy, which enables policy enforcement on vulnerabilities found. 
+
+1. Add a scan policy
+
+```yaml
+apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
+kind: ScanPolicy
+metadata:
+  name: scan-policy
+spec:
+  regoFile: |
+    package policies
+
+    default isCompliant = false
+
+    # Accepted Values: "Critical", "High", "Medium", "Low", "Negligible", "UnknownSeverity"
+    violatingSeverities := ["Critical","High","UnknownSeverity"]
+    ignoreCVEs := []
+
+    contains(array, elem) = true {
+      array[_] = elem
+    } else = false { true }
+
+    isSafe(match) {
+      fails := contains(violatingSeverities, match.Ratings.Rating[_].Severity)
+      not fails
+    }
+
+    isSafe(match) {
+      ignore := contains(ignoreCVEs, match.Id)
+      ignore
+    }
+
+    isCompliant = isSafe(input.currentVulnerability)
+```
+
+2. Add a source scan template
+```yaml
+apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
+kind: ScanTemplate
+metadata:
+  name: blob-source-scan-template
+spec:
+  template:
+    containers:
+    - args:
+      - -c
+      - ./source/scan-source.sh /workspace/source scan.xml
+      command:
+      - /bin/bash
+      image: registry.tanzu.vmware.com/supply-chain-security-tools/grype-templates-image@sha256:36d947257ffd5d962d09e61dc9083f5d0db57dbbde5f5d7c7cd91caa323a2c43
+      imagePullPolicy: IfNotPresent
+      name: scanner
+      resources:
+        limits:
+          cpu: 1000m
+        requests:
+          cpu: 250m
+          memory: 128Mi
+      volumeMounts:
+      - mountPath: /workspace
+        name: workspace
+        readOnly: false
+    imagePullSecrets:
+    - name: image-secret
+    initContainers:
+    - args:
+      - -c
+      - ./source/untar-gitrepository.sh $REPOSITORY /workspace
+      command:
+      - /bin/bash
+      image: registry.tanzu.vmware.com/supply-chain-security-tools/grype-templates-image@sha256:36d947257ffd5d962d09e61dc9083f5d0db57dbbde5f5d7c7cd91caa323a2c43
+      imagePullPolicy: IfNotPresent
+      name: repo
+      volumeMounts:
+      - mountPath: /workspace
+        name: workspace
+        readOnly: false
+    restartPolicy: Never
+    volumes:
+    - emptyDir: {}
+      name: workspace
+```
+3. Add an image scan template
+```yaml
+apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
+kind: ScanTemplate
+metadata:
+  name: private-image-scan-template
+spec:
+  template:
+    containers:
+    - args:
+      - -c
+      - ./image/copy-docker-config.sh /secret-data && ./image/scan-image.sh /workspace
+        scan.xml true
+      command:
+      - /bin/bash
+      image: registry.tanzu.vmware.com/supply-chain-security-tools/grype-templates-image@sha256:36d947257ffd5d962d09e61dc9083f5d0db57dbbde5f5d7c7cd91caa323a2c43
+      imagePullPolicy: IfNotPresent
+      name: scanner
+      resources:
+        limits:
+          cpu: 1000m
+        requests:
+          cpu: 250m
+          memory: 128Mi
+      volumeMounts:
+      - mountPath: /.docker
+        name: docker
+        readOnly: false
+      - mountPath: /workspace
+        name: workspace
+        readOnly: false
+      - mountPath: /secret-data
+        name: registry-cred
+        readOnly: true
+    imagePullSecrets:
+    - name: image-secret
+    restartPolicy: Never
+    volumes:
+    - emptyDir: {}
+      name: docker
+    - emptyDir: {}
+      name: workspace
+    - name: registry-cred
+      secret:
+        secretName: image-secret
+
+```
+
+#### Developer Workload
+1. The next step would be to then submit a workload like in the other examples:
+```bash
+tanzu apps workload create hello-world \
+--git-branch main \
+--git-repo https://github.com/kontinue/hello-world \
+--param tekton-pipeline-name=developer-defined-tekton-pipeline \
+--type web-scan
+```
+```console
+Create workload:
+      1 + |apiVersion: carto.run/v1alpha1
+      2 + |kind: Workload
+      3 + |metadata:
+      4 + |  name: my-workload
+      5 + |  namespace: default
+      6 + |spec:
+      7 + |  params:
+      8 + |  - name: tekton-pipeline-name
+      9 + |    value: developer-defined-tekton-pipeline
+     10 + |  source:
+     11 + |    git:
+     12 + |      ref:
+     13 + |        branch: main
+     14 + |      url: https://github.com/kontinue/hello-world
+
+? Do you want to create this workload? Yes
+Created workload "my-workload"
 ```

@@ -24,12 +24,11 @@ In this section you’ll deploy a simple web-application to the platform, enable
 
 Before getting started, ensure the following prerequisites are in place:
 
-1. Tanzu Application Platform has been installed on the target Kubernetes cluster
+1. Tanzu Application Platform is installed on the target Kubernetes cluster
    (install instructions [here](install-general.md)
    and [here](install.md))
 
-2. The Default Supply Chain has been installed on the target Kubernetes cluster
-   (install instructions [here](install.md#install-default-supply-chain))
+2. The default Supply Chain is installed on the target Kubernetes cluster. See [Install default Supply Chain](install-components.md#install-ootb-supply-chain-basic).
 
 3. Default kube config context is set to the target Kubernetes cluster
 
@@ -61,7 +60,8 @@ You’ll use an accelerator called `Tanzu-Java-Web-App` to get started.
 
 **3. Replace the default value, `dev.local`** in the _"prefix for container image registry"_ field
 with the url to your registry. The URL you enter should match the `REGISTRY_SERVER` value you provided when you installed the
-[Default Supply Chain](/install.md#install-default-supply-chain). Note that this entry should not include the project ID or image name.
+[default Supply Chain](/install-components.md#install-ootb-supply-chain-basic). 
+>**Note:** This entry should not include the project ID or image name.
 
 <img src="images/store-image-on-server.png" alt="Screenshot of the Tanzu Java Web App within Application Accelerator. It includes empty fields for new project information, and buttons labeled 'Generate Project', 'Explore Files', and 'Cancel'." width="600">
 
@@ -86,6 +86,45 @@ tanzu apps workload get tanzu-java-web-app
 ```
 <cntrl>-click the `Workload Knative Services URL` at the bottom of the command output.
 
+### Add Your Application to the Tanzu Application Platform GUI
+
+In order to see this application in Your Organization Catalog, you'll need to create a catalog definition file. Assuming that you've already installed the Blank Software Catalog as defined in the component installation instructions, you can add the below file, named `tanzu-java-web-app.yaml` to your `components` folder:
+```yaml
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: tanzu-java-web-app
+  description: Tanzu Application Platform Getting Started
+  tags:
+    - app-accelerator
+  annotations:
+    'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=tanzu-java-web-app'
+spec:
+  type: service
+  lifecycle: demo
+  owner: default-team
+  system: 
+```
+You'll now need to add a reference to this file in your catalog's `catalog-info.yaml`
+```yaml
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: backstage-catalog-info
+  description: A sample catalog for Backstage
+  annotations:
+    'backstage.io/techdocs-ref': dir:.
+spec:
+  targets:
+    - ./components/backstage.yaml
+    - ./groups/default-org.yaml
+    - ./systems/backstage-system.yaml
+    - ./domains/backstage-domain.yaml
+    - ./components/tanzu-java-web-app.yaml # Update this line with the file's name and location that you created above
+```
+Now once your catalog refreshes (default refresh is 200 seconds) you should be able to see the entry in the catalog and interact with it.
+
+   
 
 ### <a id='iterate'></a>Iterate on your Application
 
@@ -156,10 +195,10 @@ Currently, Spring Boot based applications can be diagnosed using Application Liv
 
 Make sure that you have installed Application Live View components successfully.
 
-Access Application Live View UI following the instruction
-[here](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.2/docs/GUID-installing.html#access-the-application-live-view-ui-6).
+Access Application Live View TAP GUI following the instruction
+[here](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.3/tap-0-3/GUID-tap-gui-plugins-app-live-view.html).
 Select your application to look inside the running application and
-[explore](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.2/docs/GUID-product-features.html)
+[explore](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.3/docs/GUID-product-features.html)
 the various diagnostic capabilities.
 
 
@@ -244,17 +283,17 @@ work with Tanzu Application Platform components.
 
 #### Supply Chains included in Beta 3
 
-The Tanzu Application Platform installation steps cover installing the default supply chain, but
+The Tanzu Application Platform installation steps cover installing the default Supply Chain, but
 others are available.
-If you follow the installation documentation, the **Out of the Box Basic** supply chain and its
+If you follow the installation documentation, the **Out of the Box Basic** Supply Chain and its
 dependencies are installed on your cluster.
 The table and diagrams below describe the two supply chains included in Tanzu Application Platform
 Beta 3, as well as their dependencies.
 
-The **Out of the Box Test** runs a Tekton pipeline within the supply chain. It is dependent on
+The **Out of the Box with Testing** runs a Tekton pipeline within the supply chain. It is dependent on
 [Tekton](https://tekton.dev/) being installed on your cluster.
 
-The **Out of the Box Test and Scan** supply chain includes integrations for secure scanning tools.
+The **Out of the Box with Testing and Scanning** supply chain includes integrations for secure scanning tools.
 
 The following section installs the second supply chain, includes steps to install Tekton and provides a sample Tekton pipeline that tests your
 sample application.
@@ -264,7 +303,7 @@ Tekton pipeline.
 
 ![Diagram depicting the Source-to-URL chain: Watch Repo (Flux) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](images/source-to-url-chain.png)
 
-**Out of the Box Basic - Default Supply Chain**
+**Out of the Box Basic - default Supply Chain**
 
 <table>
   <tr>
@@ -397,17 +436,8 @@ Tekton pipeline.
   </tr>
 </table>
 
-### Uninstalling the Default Supply Chain
+### Install Out of the Box with Testing
 
-The TAP Beta currently has a limitation that only one supply chain can be installed at a time.  Before installing other supply chains, we must first uninstall the default supply chain that was installed as part of the install guide.  To do so, run the following commmand:
-
-```bash
-tanzu package installed delete default-supply-chain -n tap-install
-```
-
-### Install Out of the Box Testing
-
-Now that the default supply chain has been uninstalled the **Out of the Box Basic** supply chain can be installed on the cluster.
 The first step is to install Tekton, which was not installed in the installation docs as
 it is only a requirement for the **Out of the Box Basic** supply chain.
 The next section walks you through installing Tekton on your cluster.
@@ -433,7 +463,7 @@ You can also view the Tekton
 [tutorial](https://github.com/tektoncd/pipeline/blob/main/docs/tutorial.md)
 and [getting started guide](https://tekton.dev/docs/getting-started/).
 
-Now that Tekton is installed, you can install the **Out of the Box Testing** supply chain on your cluster. Run:
+Now that Tekton is installed, you can install the **Out of the Box with Testing** supply chain on your cluster. Run:
 
 ```bash
 tanzu package install ootb-supply-chain-testing \
@@ -445,8 +475,6 @@ tanzu package install ootb-supply-chain-testing \
 
 ### Example Tekton Pipeline Config
 
-With the new supply chain installed, the previously applied workload will fail as it is missing parameters
-which are required for the Tekton pipeline.
 In this section, we’ll add a Tekton pipeline to our cluster and in the following section,
 we’ll update the workload to point to the pipeline and resolve any of the current errors.
 
@@ -511,7 +539,7 @@ the workload must be updated to point at the your Tekton pipeline.
   tanzu apps workload create tanzu-java-web-app \
     --git-repo  https://github.com/sample-accelerators/tanzu-java-web-app \
     --git-branch main \
-    --type web \
+    --type web-test \
     --param tekton-pipeline-name=developer-defined-tekton-pipeline \
     --yes
   ```
@@ -571,7 +599,7 @@ the workload must be updated to point at the your Tekton pipeline.
   service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.developer.example.com   tanzu-java-web-app-00001   tanzu-java-web-app-00001   Unknown   IngressNotConfigured
   ```
 
-### Install Out of the Box Testing and Scanning
+### Install Out of the Box with Testing and Scanning
 
 The first step is to install the additional scanning templates which define how the source and image should be scanned:
 
@@ -601,7 +629,7 @@ The workload can be updated using the Tanzu CLI as follows:
 tanzu apps workload create tanzu-java-web-app \
   --git-repo  https://github.com/sample-accelerators/tanzu-java-web-app \
   --git-branch main \
-  --type web \
+  --type web-scan \
   --param tekton-pipeline-name=developer-defined-tekton-pipeline \
   --yes
 ```
@@ -1062,7 +1090,7 @@ This use case is similar to the above in that we will be binding a sample applic
 
     * This cluster **MUST** have the ability to create LoadBalanced services.
 
-    * This time when it comes to [Installing Part II: Packages](install.md#-installing-part-ii-packages), you only need to install the Services Toolkit package
+    * This time when it comes to [Installing Part II: Profiles](install.md#-installing-part-ii-packages), you only need to install the Services Toolkit package
 
     * All other packages can be skipped over
 
