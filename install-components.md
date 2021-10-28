@@ -1,4 +1,4 @@
-# <a id='installing'></a> Installing Individual Packages
+# Installing Individual Packages
 
 This document describes how to install individual Tanzu Application Platform packages
 from the Tanzu Application Platform package repository.
@@ -705,11 +705,7 @@ To install Out of the Box Templates:
     tanzu package install ootb-templates \
       --package-name ootb-templates.tanzu.vmware.com \
       --version 0.3.0 \
-<<<<<<< HEAD
-      --namespace tap-install 
-=======
       --namespace tap-install
->>>>>>> 0d45e3d122ae1cada3a3c5b0808d534ad10fbe49
     ```
    
 
@@ -824,9 +820,11 @@ To install developer conventions:
 
 ## <a id='install-spring-boot-convention'></a> Install Spring Boot Conventions
 
+To install Spring Boot conventions:
+
 **Prerequisite**: Convention Service installed on the cluster, see [Install Convention Service](#install-convention-service).
 
-1. Get the exact name and version information for the spring boot conventions package to be installed by running:
+1. Get the exact name and version information for the Spring Boot conventions package to be installed by running:
 
     ```bash
     tanzu package available list spring-boot-conventions.tanzu.vmware.com --namespace tap-install
@@ -907,26 +905,19 @@ To install Application Live View:
     - Retrieving package details for appliveview.tanzu.vmware.com/0.3.0...
       KEY                   DEFAULT        TYPE    DESCRIPTION
       connector_namespaces  [default]      array   The namespaces in which ALV monitors the users apps
-      server_namespace      app-live-view  string  The namespace to which ALV server is deployed
-      service_type          LoadBalancer   string  The service type for the Application Live View server can be LoadBalancer, NodePort, or ClusterIP
+      service_type          ClusterIP      string  The service type for the Application Live View server can be LoadBalancer, NodePort, or ClusterIP
     ```
 
     For more information about values schema options, see the individual product documentation.
 
 1. Gather the values schema.
-1. Create a namespace to deploy the Application Live View server and its components. For example:
-
-   ```bash
-   kubectl create ns app-live-view
-   ```
 
 1. Create a `app-live-view-values.yaml` using the following sample as a guide:
 
    ```yaml
    ---
    connector_namespaces: [default]
-   server_namespace: app-live-view
-   service_type: LoadBalancer
+   service_type: ClusterIP
    ```
 
    Where:
@@ -934,10 +925,10 @@ To install Application Live View:
    - `connector_namespaces` is a list of namespaces where you want
    Application Live View to monitor your apps. An instance of the
    Application Live View Connector will be deployed to each of those namespaces.
-   - `server_namespace` is the namespace where the Application Live View server and its components are deployed.
-   VMware reccommends using the namespace you created earlier, named `app-live-view`.
    - `service_type` is the Kubernetes service type for the Application Live View server.
    This can be LoadBalancer, NodePort, or ClusterIP.
+
+   The application live view server and its components are deployed in `app-live-view` namespace by default.
 
 1. Install the package by running:
 
@@ -987,7 +978,7 @@ To install Application Live View:
 
 To access the Application Live View UI:
 
-1. List the resources deployed in the namespace where the Application Live View server and its components are deployed by running:
+1. List the resources deployed in the `app-live-view` namespace by running:
 
     ```bash
     kubectl get -n app-live-view service,deploy,pod
@@ -1094,11 +1085,28 @@ with your relevant values. The meanings of some placeholders are explained in th
     app-config:
       app:
         baseUrl: https://<EXTERNAL-IP>:<PORT>
-      integrations:
-        gitlab:
+      integrations: 
+        gitlab: # Other integrations available
           - host: <GITLAB-HOST>
             apiBaseUrl: https://<GITLAB-URL>/api/v4
             token: <GITLAB-TOKEN>
+      catalog:
+        locations:
+          - type: url
+            target: https://<GIT-CATALOG-URL>/catalog-info.yaml
+      backend:
+          baseUrl: https://<EXTERNAL-IP>:<PORT>
+          cors:
+              origin: https://<EXTERNAL-IP>:<PORT>
+      # database: # Only needed if you intend to support with an existing PostgreSQL database. The catalog is still refreshed from Git.
+      #     client: pg
+      #      connection:
+      #        host: <PGSQL-HOST>
+      #        port: <PGSQL-PORT>
+      #        user: <PGSQL-USER>
+      #        password: <PGSQL-PWD>
+      #        ssl: {rejectUnauthorized: false} # May be needed if using self-signed certs
+      
       # techdocs: # Only needed if you want to enable TechDocs capability. Requires running the TechDoc CLI to generate TechDocs from catalog Markdown to S3 compatible bucket called out in Additional Resources documentation.
       #  builder: 'external'
       #  generator:
@@ -1125,23 +1133,7 @@ with your relevant values. The meanings of some placeholders are explained in th
       #        clientSecret: <AUTH-OIDC-CLIENT-SECRET>
       #        tokenSignedResponseAlg: <AUTH-OIDC-TOKEN-SIGNED-RESPONSE-ALG> # default='RS256'
       #        scope: <AUTH-OIDC-SCOPE> # default='openid profile email'
-      #        prompt: <TYPE> # default=none (allowed values: auto, none, consent, login)
-      catalog:
-        locations:
-          - type: url
-            target: https://<GIT-CATALOG-URL>/catalog-info.yaml
-      backend:
-          baseUrl: https://<EXTERNAL-IP>:<PORT>
-          cors:
-              origin: https://<EXTERNAL-IP>:<PORT>
-      # database: # Only needed if you intend to support with an existing PostgreSQL database. The catalog is still refreshed from Git.
-      #     client: pg
-      #      connection:
-      #        host: <PGSQL-HOST>
-      #        port: <PGSQL-PORT>
-      #        user: <PGSQL-USER>
-      #        password: <PGSQL-PWD>
-      #        ssl: {rejectUnauthorized: false} # May be needed if using self-signed certs
+      #        prompt: <TYPE> # default=none (allowed values: auto, none, consent, login)      
     ```
     Where:
 
@@ -1210,90 +1202,66 @@ field in the values file.
 
 ## <a id='install-learning-center'></a> Install Learning Center
 
-To install Tanzu Learning Center:
+To install Tanzu Learning Center, see the following sections
 
-1. Follow the instructions in [Install Packages](#install-packages) above.
-1. Create a configuration yaml file called `educates-config.yaml`. The following properties are required for a minimal install.
+### Prerequisites in Addition to Tanzu Application Platform [Requirements](install-general.md#prereqs)
+**Required**
+- Make sure you have a proper Ingress Controller configured with a wild card domain name
 
-   **Setting the ingress domain:**
+### Procedure to install Learning Center
+1. List version information for the package by running
+   
+   ```shell
+   $ tanzu package available list learningcenter.tanzu.vmware.com --namespace tap-install
+   ```
+
+   Example output:
+   ```shell
+     NAME                             VERSION        RELEASED-AT
+     learningcenter.tanzu.vmware.com  1.0.8-build.1  2021-10-22 17:02:13 -0400 EDT
+   ```
+2. (Optional) If you want to see all the configurable parameters on this package you can run the following command
+   ```shell
+   $ tanzu package available get learningcenter.tanzu.vmware.com/1.0.8-build.1 --values-schema --namespace tap-install
+   ```
+3. Create a config file (e.g. learning-center-config.yaml) with the following parameters
+     ```yaml
+     ingressDomain: <INGRESS_DOMAIN>
+     imageRegistry: <IMAGE-REGISTRY-URL>
+       host: <HOST-DOMAIN>
+       username: <USERNAME>
+       password: <PASSWORD>
+     ```
+   #### Setting the ingress domain
 
    When deploying workshop environment instances, the operator must be able to expose the instances
    through an external URL. This access is needed to discover the domain name that can be used as a
    suffix to hostnames for instances.
-   > **Note:** For the custom domain you are using, DNS must have been configured with a wildcard domain to forward all requests for subdomains of the custom domain, to the ingress router of the Kubernetes cluster.
+   * Make sure to replace the <INGRESS_DOMAIN> domain with the domain name for your Kubernetes cluster.
 
-   It is recommended that you avoid using a ``.dev`` domain name as such domain names have a requirement
-   to always use HTTPS and you cannot use HTTP. Although you can provide a certificate for secure connections
-   under the domain name for use by Learning Center, this doesn't extend to what a workshop may do.
-   By using a ``.dev`` domain name, if workshop instructions have you creating ingresses in Kubernetes using HTTP only, they will not work.
-   > **Note:** If you are running Kubernetes on your local machine using a system like ``minikube`` and you don't have a custom domain name which maps to the IP for the cluster, you can use a ``nip.io`` address. For example, if ``minikube ip`` returned ``192.168.64.1``, you could use the 192.168.64.1.nip.io domain. Note that you cannot use an address of form ``127.0.0.1.nip.io``, or ``subdomain.localhost``. This will cause a failure as internal services when needing to connect to each other, would end up connecting to themselves instead, since the address would resolve to the host loopback address of ``127.0.0.1``.
+   > **Note:** For the custom domain you are using, DNS must have been configured with a wildcard domain to forward 
+   > all requests for subdomains of the custom domain, to the ingress router of the Kubernetes cluster.
 
-   Make sure you replace the educates.my-domain.com domain with the domain name for your Kubernetes cluster.
+   > **Note:** If you are running Kubernetes on your local machine using a system like ``minikube`` and you don't 
+   > have a custom domain name which maps to the IP for the cluster, you can use a ``nip.io`` address. 
+   > For example, if ``minikube ip`` returned ``192.168.64.1``, you could use the 192.168.64.1.nip.io domain. 
+   > Note that you cannot use an address of form ``127.0.0.1.nip.io``, or ``subdomain.localhost``. This will cause a 
+   > failure as internal services when needing to connect to each other, would end up connecting to themselves instead, 
+   > since the address would resolve to the host loopback address of ``127.0.0.1``.
 
-   `educates-config.yaml:`
-     ```yaml
-     ingressDomain: educates.my-domain.com
-     ```
+   #### Setting image registry credentials
 
-   **Setting image registry credentials:**
+   Primary image registry where Learning Center container images are stored. 
+   * Make sure to replace `<HOST-DOMAIN>, <USERNAME> and <PASSWORD>` with your registry settings
 
-   Primary image registry where Educates container images are stored. It is only necessary to define the host
-   and credentials when that image registry requires authentication to access images. This principally
-   exists to allow relocation of images through Carvel image bundles.
-
-   `educates-config.yaml:`
-      ```yaml
-      imageRegistry: <IMAGE-REGISTRY-URL>
-        host: <HOST-DOMAIN>
-        username: <USERNAME>
-        password: <PASSWORD>
-      ```
-
-   ### Optional configuration settings
-   **Enforcing secure connections:**
-
-        By default the workshop portal and workshop sessions will be accessible over HTTP connections. If you wish to use secure 
-        HTTPS connections, you must have access to a wildcard SSL certificate for the domain under which you wish to host the workshops. 
-        You cannot use a self signed certificate.
-
-        Wildcard certificates can be created using `letsencrypt <https://letsencrypt.org/>`_. 
-        Once you have the certificate, you can add the following to your configuration yaml:
-
-        The easiest way to define the certificate is through the configuration passed to Tanzu CLI. So define the ``certificate`` and ``privateKey`` 
-        properties under the ``ingressSecret`` 
-        property to specify the certificate on the configuration yaml passed to Tanzu CLI
-
-        `educates-config.yaml:`
-        ```yaml
-        ingressSecret:
-          certificate: MIIC2DCCAcCgAwIBAgIBATANBgkqh ...
-          privateKey: MIIEpgIBAAKCAQEA7yn3bRHQ5FHMQ ...
-        ```
-
-        If you already have a TLS secret, you can copy it to the ``educates`` namespace or use the ``secretName`` property.
-
-        `educates-config.yaml:`
-        ```yaml
-        ingressSecret:
-          secretName: workshops.example.com-tls
-        ```
-
-   **Specifying the ingress class:**
-
-        Any ingress routes created will use the default ingress class. If you have multiple ingress class types available, 
-        and you need to override which is used, you can:
-
-        `educates-config.yaml:`
-        ```yaml
-        ingressClass: contour
-        ```
-
-1. Install Learning Center operator
+4. Install Learning Center Operator
    ```shell
-   tanzu package install educates --package-name learningcenter.tanzu.vmware.com --version 1.0.8-build.1 -f educates-config.yaml
+   $ tanzu package install learning-center --package-name learningcenter.tanzu.vmware.com --version 1.0.8-build.1 -f learning-center-config.yaml
    ```
 
-   The command above will create a default namespace in your Kubernetes cluster called ``educates`` and the operator along with any required namespaced resources will be created in it. A set of custom resource definitions and a global cluster role binding will also be created. The list of resources you should see being created are:
+   The command above will create a default namespace in your Kubernetes cluster called ``educates`` and the operator along with any 
+   required namespaced resources will be created in it. A set of custom resource definitions and a global cluster role binding will also be created. 
+   The list of resources you should see being created are:
 
    ```shell
    customresourcedefinition.apiextensions.k8s.io/workshops.training.eduk8s.io created
@@ -1309,9 +1277,29 @@ To install Tanzu Learning Center:
 
    You can check that the operator deployed okay by running:
    ```shell
-   kubectl get all -n educates
+   $ kubectl get all -n educates
    ```
    The pod for the operator should be marked as running.
+
+### Procedure to install the Self-Guided Tour Training Portal and Workshop
+1. Make sure you have the workshop package installed
+   ```shell
+   $ tanzu package available list workshops.learningcenter.tanzu.vmware.com --namespace tap-install
+   ```
+2. Installing the Learning Center Training Portal with the Self Guided Tour workshop
+   ```shell
+   $ tanzu package install learning-center-workshop --package-name workshops.learningcenter.tanzu.vmware.com --version 1.0.4-build.1 -n tap-install
+   ```
+3. You can check the Training Portals available in your environment running the following command
+   ```shell
+   $ kubectl get trainingportals
+   ```
+   Example output:
+   ```shell
+   NAME                 URL                                                ADMINUSERNAME   ADMINPASSWORD                      STATUS
+   educates-tutorials   http://educates-tutorials.example.com   educates        QGBaM4CF01toPiZLW5NrXTcIYSpw2UJK   Running
+   ```
+
 
 ## <a id='install-service-bindings'></a> Install Service Bindings
 
@@ -2087,7 +2075,7 @@ run the following commands to add credentials and Role-Based Access Control (RBA
 
 1. Add read/write registry credentials to the developer namespace. Run:
     ```bash
-    $ tanzu secret registry add registry-credentials --registry REGISTRY-SERVER --username REGISTRY-USERNAME --password REGISTRY-PASSWORD --namespace YOUR-NAMESPACE
+    $ tanzu secret registry add registry-credentials --server REGISTRY-SERVER --username REGISTRY-USERNAME --password REGISTRY-PASSWORD --namespace YOUR-NAMESPACE
     ```
     Where `YOUR-NAMESPACE` is the name you want for the developer namespace.
     For example, use `default` for the default namespace.
