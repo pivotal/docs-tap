@@ -4,11 +4,13 @@ This Tanzu CLI plugin provides the ability to create, view, update, and delete a
 
 ## <a id='About'></a>About Workloads
 
-Tanzu Application Platform enables developers to quickly build and test applications regardless of their familiarity with Kubernetes. Developers can turn source code into a workload running in a container with a URL. 
+Tanzu Application Platform enables developers to quickly build and test applications regardless of their familiarity with Kubernetes.
+Developers can turn source code into a workload that runs in a container with a URL.
 
-A Workload enables developers to choose application specifications such as the location of their repository, environment variables, bind a service and more (see [Command Reference](command-reference.md) for `workload create/update/apply` for full details).
+A workload enables developers to choose application specifications, such as repository location, environment variables, service binding, and more.
+For more information on workload creation and management, see [Command Reference](command-reference.md).
 
-Tanzu Application Platform can support range of possible workloads including a serverless process that spins up on demand, a constellation of microservices that work together as a logical application or a small hello-world test app.
+Tanzu Application Platform can support a range of workloads, including a serverless process that starts on demand, a constellation of microservices that functions as a logical application, or a small hello-world test app.
 
 
 ## <a id='Installation'></a>Installation
@@ -58,4 +60,4 @@ See [Known Issues](known-issues.md)
 
 ## <a id='feedback'></a>Feedback
 
-For questions or feeadback you can reach us at tanzu-application-platform-beta@vmware.com
+For questions or feedback, contact us at tanzu-application-platform-beta@vmware.com.
