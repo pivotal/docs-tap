@@ -1202,90 +1202,66 @@ field in the values file.
 
 ## <a id='install-learning-center'></a> Install Learning Center
 
-To install Tanzu Learning Center:
+To install Tanzu Learning Center, see the following sections
 
-1. Follow the instructions in [Install Packages](#install-packages) above.
-1. Create a configuration yaml file called `educates-config.yaml`. The following properties are required for a minimal install.
+### Prerequisites in Addition to Tanzu Application Platform [Requirements](install-general.md#prereqs)
+**Required**
+- Make sure you have a proper Ingress Controller configured with a wild card domain name
 
-   **Setting the ingress domain:**
+### Procedure to install Learning Center
+1. List version information for the package by running
+   
+   ```shell
+   $ tanzu package available list learningcenter.tanzu.vmware.com --namespace tap-install
+   ```
+
+   Example output:
+   ```shell
+     NAME                             VERSION        RELEASED-AT
+     learningcenter.tanzu.vmware.com  1.0.8-build.1  2021-10-22 17:02:13 -0400 EDT
+   ```
+2. (Optional) If you want to see all the configurable parameters on this package you can run the following command
+   ```shell
+   $ tanzu package available get learningcenter.tanzu.vmware.com/1.0.8-build.1 --values-schema --namespace tap-install
+   ```
+3. Create a config file (e.g. learning-center-config.yaml) with the following parameters
+     ```yaml
+     ingressDomain: <INGRESS_DOMAIN>
+     imageRegistry: <IMAGE-REGISTRY-URL>
+       host: <HOST-DOMAIN>
+       username: <USERNAME>
+       password: <PASSWORD>
+     ```
+   #### Setting the ingress domain
 
    When deploying workshop environment instances, the operator must be able to expose the instances
    through an external URL. This access is needed to discover the domain name that can be used as a
    suffix to hostnames for instances.
-   > **Note:** For the custom domain you are using, DNS must have been configured with a wildcard domain to forward all requests for subdomains of the custom domain, to the ingress router of the Kubernetes cluster.
+   * Make sure to replace the <INGRESS_DOMAIN> domain with the domain name for your Kubernetes cluster.
 
-   It is recommended that you avoid using a ``.dev`` domain name as such domain names have a requirement
-   to always use HTTPS and you cannot use HTTP. Although you can provide a certificate for secure connections
-   under the domain name for use by Learning Center, this doesn't extend to what a workshop may do.
-   By using a ``.dev`` domain name, if workshop instructions have you creating ingresses in Kubernetes using HTTP only, they will not work.
-   > **Note:** If you are running Kubernetes on your local machine using a system like ``minikube`` and you don't have a custom domain name which maps to the IP for the cluster, you can use a ``nip.io`` address. For example, if ``minikube ip`` returned ``192.168.64.1``, you could use the 192.168.64.1.nip.io domain. Note that you cannot use an address of form ``127.0.0.1.nip.io``, or ``subdomain.localhost``. This will cause a failure as internal services when needing to connect to each other, would end up connecting to themselves instead, since the address would resolve to the host loopback address of ``127.0.0.1``.
+   > **Note:** For the custom domain you are using, DNS must have been configured with a wildcard domain to forward 
+   > all requests for subdomains of the custom domain, to the ingress router of the Kubernetes cluster.
 
-   Make sure you replace the educates.my-domain.com domain with the domain name for your Kubernetes cluster.
+   > **Note:** If you are running Kubernetes on your local machine using a system like ``minikube`` and you don't 
+   > have a custom domain name which maps to the IP for the cluster, you can use a ``nip.io`` address. 
+   > For example, if ``minikube ip`` returned ``192.168.64.1``, you could use the 192.168.64.1.nip.io domain. 
+   > Note that you cannot use an address of form ``127.0.0.1.nip.io``, or ``subdomain.localhost``. This will cause a 
+   > failure as internal services when needing to connect to each other, would end up connecting to themselves instead, 
+   > since the address would resolve to the host loopback address of ``127.0.0.1``.
 
-   `educates-config.yaml:`
-     ```yaml
-     ingressDomain: educates.my-domain.com
-     ```
+   #### Setting image registry credentials
 
-   **Setting image registry credentials:**
+   Primary image registry where Learning Center container images are stored. 
+   * Make sure to replace `<HOST-DOMAIN>, <USERNAME> and <PASSWORD>` with your registry settings
 
-   Primary image registry where Educates container images are stored. It is only necessary to define the host
-   and credentials when that image registry requires authentication to access images. This principally
-   exists to allow relocation of images through Carvel image bundles.
-
-   `educates-config.yaml:`
-      ```yaml
-      imageRegistry: <IMAGE-REGISTRY-URL>
-        host: <HOST-DOMAIN>
-        username: <USERNAME>
-        password: <PASSWORD>
-      ```
-
-   ### Optional configuration settings
-   **Enforcing secure connections:**
-
-        By default the workshop portal and workshop sessions will be accessible over HTTP connections. If you wish to use secure 
-        HTTPS connections, you must have access to a wildcard SSL certificate for the domain under which you wish to host the workshops. 
-        You cannot use a self signed certificate.
-
-        Wildcard certificates can be created using `letsencrypt <https://letsencrypt.org/>`_. 
-        Once you have the certificate, you can add the following to your configuration yaml:
-
-        The easiest way to define the certificate is through the configuration passed to Tanzu CLI. So define the ``certificate`` and ``privateKey`` 
-        properties under the ``ingressSecret`` 
-        property to specify the certificate on the configuration yaml passed to Tanzu CLI
-
-        `educates-config.yaml:`
-        ```yaml
-        ingressSecret:
-          certificate: MIIC2DCCAcCgAwIBAgIBATANBgkqh ...
-          privateKey: MIIEpgIBAAKCAQEA7yn3bRHQ5FHMQ ...
-        ```
-
-        If you already have a TLS secret, you can copy it to the ``educates`` namespace or use the ``secretName`` property.
-
-        `educates-config.yaml:`
-        ```yaml
-        ingressSecret:
-          secretName: workshops.example.com-tls
-        ```
-
-   **Specifying the ingress class:**
-
-        Any ingress routes created will use the default ingress class. If you have multiple ingress class types available, 
-        and you need to override which is used, you can:
-
-        `educates-config.yaml:`
-        ```yaml
-        ingressClass: contour
-        ```
-
-1. Install Learning Center operator
+4. Install Learning Center Operator
    ```shell
-   tanzu package install educates --package-name learningcenter.tanzu.vmware.com --version 1.0.8-build.1 -f educates-config.yaml
+   $ tanzu package install learning-center --package-name learningcenter.tanzu.vmware.com --version 1.0.8-build.1 -f learning-center-config.yaml
    ```
 
-   The command above will create a default namespace in your Kubernetes cluster called ``educates`` and the operator along with any required namespaced resources will be created in it. A set of custom resource definitions and a global cluster role binding will also be created. The list of resources you should see being created are:
+   The command above will create a default namespace in your Kubernetes cluster called ``educates`` and the operator along with any 
+   required namespaced resources will be created in it. A set of custom resource definitions and a global cluster role binding will also be created. 
+   The list of resources you should see being created are:
 
    ```shell
    customresourcedefinition.apiextensions.k8s.io/workshops.training.eduk8s.io created
@@ -1301,9 +1277,29 @@ To install Tanzu Learning Center:
 
    You can check that the operator deployed okay by running:
    ```shell
-   kubectl get all -n educates
+   $ kubectl get all -n educates
    ```
    The pod for the operator should be marked as running.
+
+### Procedure to install the Self-Guided Tour Training Portal and Workshop
+1. Make sure you have the workshop package installed
+   ```shell
+   $ tanzu package available list workshops.learningcenter.tanzu.vmware.com --namespace tap-install
+   ```
+2. Installing the Learning Center Training Portal with the Self Guided Tour workshop
+   ```shell
+   $ tanzu package install learning-center-workshop --package-name workshops.learningcenter.tanzu.vmware.com --version 1.0.4-build.1 -n tap-install
+   ```
+3. You can check the Training Portals available in your environment running the following command
+   ```shell
+   $ kubectl get trainingportals
+   ```
+   Example output:
+   ```shell
+   NAME                 URL                                                ADMINUSERNAME   ADMINPASSWORD                      STATUS
+   educates-tutorials   http://educates-tutorials.example.com   educates        QGBaM4CF01toPiZLW5NrXTcIYSpw2UJK   Running
+   ```
+
 
 ## <a id='install-service-bindings'></a> Install Service Bindings
 
