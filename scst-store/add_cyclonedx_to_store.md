@@ -1,10 +1,6 @@
 # Add Data
 
-Add Software Bill of Materials (SBoM) files to the database to understand your dependencies via [querying](../scst-store/querying_the_metadata_store.md)
-
-## Prerequisites
-
-See Prerequisites in [Using Supply Chain Security Tools - Store](using_metadata_store.md) 
+Add Software Bill of Materials (SBoM) files to understand your dependencies via [querying](../scst-store/querying_the_metadata_store.md)
 
 ## Methods
 
@@ -16,9 +12,9 @@ Data may be added by posting CycloneDX files through the following methods:
 
 ## Supported Formats
 
-Currently, CycloneDX XML and CycloneDX JSON files are accepted.
+Currently, only CycloneDX XML files are accepted.
 
-> Additional format support (e.g., SPDX) is planned for future releases
+> **Note:** Additional format support (e.g., SPDX, CycloneDX JSON) is planned for future releases
 
 ## Generate a CycloneDX File
 
@@ -45,8 +41,6 @@ $ grype docker.io/checkr/flagr:1.1.12 -o cyclonedx > image-cve-report
  ✔ Scanned image           [8 vulnerabilities]
 ```
 
-In the example above, image's *component version* is reported as `sha256:407d7099d6ce7e3632b6d00682a43028d75d3b088600797a833607bd629d1ed5` in the `cve-report`.
-
 ## Adding Data with `insight` CLI
 
 The following commands are designed for adding data
@@ -69,10 +63,10 @@ Where:
 For example:
 
 ```sh
-$ insight image create --cyclonedx cve-report
+$ insight image create --cyclonedx image-cve-report
 Image report created.
 ```
-> **Note:** The Metadata Store only stores a subset of a CycloneDX file’s data.  Support for more data may be added in the future.
+> **Note:** The Metadata Store only stores a subset of a CycloneDX file’s data.  Support for more data may be added in a future release
 
 ## Example #2: Create a Source Report
 
@@ -89,7 +83,7 @@ Where:
 For example:
 
 ```sh
-$ insight source create --cyclonedx cve-report
+$ insight source create --cyclonedx source-cve-report
 Source report created.
 ```
-> **Note:** The Metadata Store only stores a subset of a CycloneDX file’s data.  Support for more data may be added in the future.
+> **Note:** The Metadata Store only stores a subset of a CycloneDX file’s data.  Support for more data may be added in a future release

@@ -1,18 +1,24 @@
 # Using Supply Chain Security Tools - Store
 
-This topic includes walkthroughs for how to use Supply Chain Security Tools - Store.
+Once you've installed Supply Chain Security Tools - Store, follow the additional configuration and walkthroughs to use it.
 
-## Prerequisites
+## <a id='using-prerequisites'></a> Prerequisites
 
-* [Enable encryption and connectin](enable_encrypted_connection.md)
+* [Enable encryption and connection](enable_encrypted_connection.md)
 * [Create a service account and get the access token](create_service_account_access_token.md)
+
+## `insight` CLI
+
+The CLI is not required but may provide an easier-to-use interface.  
+
+> **Note:** the `insight` CLI is separate from the `tanzu` CLI.  It will be added as a `tanzu` CLI plugin in a future release
+
 * [Install the CLI](cli.md)
 * [Configure the CLI](configure_cli.md)
 
 ## Walkthroughs
 
-The following pages include step-by-step walkthroughs and examples of the Supply Chain Security Tools - Store use cases:
+The following pages include use cases and examples:
 
-* [Querying Supply Chain Security Tools - Store](querying_the_metadata_store.md) - query to understand vulnerability, image, and dependency relationships
-* [Add CycloneDX reports to the Supply Chain Security Tools - Store](add_cyclonedx_to_store.md) - manually add CycloneDX reports to the Supply Chain Security Tools - Store
-* [Use the Supply Chain Security Tools - Store API directly](getting_started_api.md).
+* [Add data](add_cyclonedx_to_store.md) - add CycloneDX scan reports to the Supply Chain Security Tools - Store
+* [Query data](querying_the_metadata_store.md) - query to understand vulnerability, image, and dependency relationships

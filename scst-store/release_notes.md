@@ -2,7 +2,33 @@
 
 This topic contains release notes for Supply Chain Security Tools - Store.
 
-## Release v1.0.0-beta.0
+
+## v1.0.0-beta.1
+
+**Release Date**: November 8, 2021
+
+### Software Component Versions
+
+* PostgresSQL 13.4
+
+### New Features
+
+* Added a /health endpoint and `insight health` command
+* Upgraded to golang 1.17
+* Added support for query parameters
+* Added support for json cyclonedx reports
+* Updated repository parsing logic
+* Squashed some minor bugs
+
+### Known Issues
+
+See [Troubleshooting and Known Issues](known_issues.md).
+
+### Limitations
+
+- Air gapped environments are not supported
+
+## v1.0.0-beta.0
 
 **Release Date**: October 07, 2021
 
@@ -10,7 +36,7 @@ This topic contains release notes for Supply Chain Security Tools - Store.
 
 * PostgresSQL 13.4
 
-### Features
+### New Features
 
 * Store SBOM, CVE, and metadata about images and source code
 * Query relationships between images, packages, and CVEs, and source code
@@ -26,5 +52,4 @@ See [Troubleshooting and Known Issues](known_issues.md).
 
 ### Limitations
 
-- **Air Gap Not Supported:**
-  Supply Chain Security Tools - Store does not support air gapping. 
+- Air gapped environments are not supported

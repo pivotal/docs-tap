@@ -102,14 +102,16 @@ kubectl get secret $(kubectl get sa -n metadata-store metadata-store-read-write-
 
 The access token is a "Bearer" token used in the http request header "Authorization". (ex. `Authorization: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjhMV0...`)
 
-## <a id='set-access-token'></a> Setting `METADATA_STORE_ACCESS_TOKEN`
+## <a id='set-access-token'></a> Setting the Access Token
 
-When using the CLI, you'll need to either set the `METADATA_STORE_ACCESS_TOKEN` environment variable, or use the `--access-token` flag. It is not recommended to use the `--access-token` flag as the token will appear in your shell history. We recommend using `METADATA_STORE_ACCESS_TOKEN`.
+When using the CLI, you'll need to either set the `METADATA_STORE_ACCESS_TOKEN` environment variable, or use the `--access-token` flag. It is not recommended to use the `--access-token` flag as the token will appear in your shell history.
 
 The follow command will retrieve the access token from Kubernetes and store it in `METADATA_STORE_ACCESS_TOKEN`:
 
 ```sh
-export METADATA_STORE_ACCESS_TOKEN=$(kubectl get secrets -n metadata-store -o jsonpath="{.items[?(@.metadata.annotations['kubernetes\.io/service-account\.name']=='metadata-store-read-write-client')].data.token}" | base64 -d)
+export METADATA_STORE_ACCESS_TOKEN=$(kubectl get secrets -n metadata-store -o jsonpath="{.items[?(@.metadata.annotations['kubernetes\.io/service-account\.name']=='METADATA-STORE-READ-WRITE-CLIENT')].data.token}" | base64 -d)
 ```
 
-Replace `metadata-store-read-write-client` with name of the service account you plan to use.
+Where
+
+- `METADATA-STORE-READ-WRITE-CLIENT` is the name of the service account you plan to use
