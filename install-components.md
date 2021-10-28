@@ -551,7 +551,7 @@ To install Tanzu Build Service using the Tanzu CLI:
     $ tanzu package available list buildservice.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for buildservice.tanzu.vmware.com...
       NAME                           VERSION  RELEASED-AT
-      buildservice.tanzu.vmware.com  1.3.0    2021-09-28T00:00:00Z
+      buildservice.tanzu.vmware.com  1.3.1    2021-10-25T00:00:00Z
     ```
 
 1. (Optional) To make changes to the default installation settings, run:
@@ -567,7 +567,7 @@ To install Tanzu Build Service using the Tanzu CLI:
     For example:
 
     ```bash
-    $ tanzu package available get buildservice.tanzu.vmware.com/1.3.0 --values-schema --namespace tap-install
+    $ tanzu package available get buildservice.tanzu.vmware.com/1.3.1 --values-schema --namespace tap-install
     ```
 
     For more information about values schema options, see the individual product documentation.
@@ -576,14 +576,14 @@ To install Tanzu Build Service using the Tanzu CLI:
 1. Gather values schema.
 
     ```bash
-    tanzu package available get buildservice.tanzu.vmware.com/1.3.0 --values-schema --namespace tap-install
+    tanzu package available get buildservice.tanzu.vmware.com/1.3.1 --values-schema --namespace tap-install
     ```
 
     For example:
 
     ```bash
-    $ tanzu package available get buildservice.tanzu.vmware.com/1.3.0 --values-schema --namespace tap-install
-    | Retrieving package details for buildservice.tanzu.vmware.com/1.3.0...
+    $ tanzu package available get buildservice.tanzu.vmware.com/1.3.1 --values-schema --namespace tap-install
+    | Retrieving package details for buildservice.tanzu.vmware.com/1.3.1...
       KEY                             DEFAULT  TYPE    DESCRIPTION
       kp_default_repository           <nil>    string  docker repository
       kp_default_repository_password  <nil>    string  registry password
@@ -619,13 +619,13 @@ To install Tanzu Build Service using the Tanzu CLI:
 1. Install the package by running:
 
     ```bash
-    tanzu package install tbs -p buildservice.tanzu.vmware.com -v 1.3.0 -n tap-install -f tbs-values.yaml --poll-timeout 30m
+    tanzu package install tbs -p buildservice.tanzu.vmware.com -v 1.3.1 -n tap-install -f tbs-values.yaml --poll-timeout 30m
     ```
 
     For example:
 
     ```bash
-    $ tanzu package install tbs -p buildservice.tanzu.vmware.com -v 1.3.0 -n tap-install -f tbs-values.yaml --poll-timeout 30m
+    $ tanzu package install tbs -p buildservice.tanzu.vmware.com -v 1.3.1 -n tap-install -f tbs-values.yaml --poll-timeout 30m
     | Installing package 'buildservice.tanzu.vmware.com'
     | Getting namespace 'tap-install'
     | Getting package metadata for 'buildservice.tanzu.vmware.com'
@@ -704,7 +704,7 @@ To install Out of the Box Templates:
    ```bash
     tanzu package install ootb-templates \
       --package-name ootb-templates.tanzu.vmware.com \
-      --version 0.3.0 \
+      --version 0.3.0-build.3 \
       --namespace tap-install
     ```
    
@@ -716,13 +716,13 @@ Install the default Supply Chain, called Out of the Box Supply Chain Basic, by r
 1. Gather the values schema:
 
     ```bash
-    tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.3.0 --values-schema -n tap-install
+    tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.3.0-build.3 --values-schema -n tap-install
     ```
 
     For example:
 
    ```console
-   $ tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.3.0 --values-schema -n tap-install
+   $ tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.3.0-build.3 --values-schema -n tap-install
    | Retrieving package details for ootb-supply-chain-basic.tanzu.vmware.com/0.3.0...
 
     KEY                  DEFAULT          TYPE    DESCRIPTION
@@ -733,9 +733,9 @@ Install the default Supply Chain, called Out of the Box Supply Chain Basic, by r
    ```
 
 
-1. Create a `supply-chain-values.yaml` using the following sample as a guide.
+1. Create a `ootb-supply-chain-values.yaml` using the following sample as a guide.
 
-    Sample `supply-chain-values.yaml` for the default Supply Chain:
+    Sample `ootb-supply-chain-values.yaml` for the default Supply Chain:
 
     ```yaml
     ---
@@ -750,7 +750,7 @@ Install the default Supply Chain, called Out of the Box Supply Chain Basic, by r
      ```bash
     tanzu package install ootb-supply-chain-basic \
       --package-name ootb-supply-chain-basic.tanzu.vmware.com \
-      --version 0.3.0 \
+      --version 0.3.0-build.3 \
       --namespace tap-install \
       --values-file ootb-supply-chain-basic-values.yaml
     ```
@@ -889,20 +889,20 @@ To install Application Live View:
     $ tanzu package available list appliveview.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for appliveview.tanzu.vmware.com...
       NAME                          VERSION  RELEASED-AT
-      appliveview.tanzu.vmware.com  0.3.0    2021-10-25T00:00:00Z
+      appliveview.tanzu.vmware.com  0.3.0-build6  2021-10-26T00:00:00Z
     ```
 
 1. (Optional) To make changes to the default installation settings, run:
 
     ```bash
-    tanzu package available get appliveview.tanzu.vmware.com/0.3.0 --values-schema --namespace tap-install
+    tanzu package available get appliveview.tanzu.vmware.com/0.3.0-build6 --values-schema --namespace tap-install
     ```
 
     For example:
 
     ```bash
-    $ tanzu package available get appliveview.tanzu.vmware.com/0.3.0 --values-schema --namespace tap-install
-    - Retrieving package details for appliveview.tanzu.vmware.com/0.3.0...
+    $ tanzu package available get appliveview.tanzu.vmware.com/0.3.0-build6 --values-schema --namespace tap-install
+    - Retrieving package details for appliveview.tanzu.vmware.com/0.3.0-build6...
       KEY                   DEFAULT        TYPE    DESCRIPTION
       connector_namespaces  [default]      array   The namespaces in which ALV monitors the users apps
       service_type          ClusterIP      string  The service type for the Application Live View server can be LoadBalancer, NodePort, or ClusterIP
@@ -933,13 +933,13 @@ To install Application Live View:
 1. Install the package by running:
 
     ```console
-    tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.3.0 -n tap-install -f app-live-view-values.yaml
+    tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.3.0-build6 -n tap-install -f app-live-view-values.yaml
     ```
 
     For example:
 
     ```console
-    $ tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.3.0 -n tap-install -f app-live-view-values.yaml
+    $ tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.3.0-build6 -n tap-install -f app-live-view-values.yaml
     - Installing package 'appliveview.tanzu.vmware.com'
     | Getting package metadata for 'appliveview.tanzu.vmware.com'
     | Creating service account 'app-live-view-tap-install-sa'
@@ -1064,13 +1064,13 @@ To install Tanzu Application Platform GUI:
     $ tanzu package available list tap-gui.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for tap-gui.tanzu.vmware.com...
       NAME                      VERSION     RELEASED-AT
-      tap-gui.tanzu.vmware.com  0.3.0-rc.1  2021-10-20T14:46:26Z
+      tap-gui.tanzu.vmware.com  0.3.0-rc.4  2021-10-28T13:14:23Z
     ```
 
 2. (Optional) To make changes to the default installation settings, run:
 
     ```bash
-    tanzu package available get tap-gui.tanzu.vmware.com/0.3.0-rc.1 --values-schema --namespace tap-install
+    tanzu package available get tap-gui.tanzu.vmware.com/0.3.0-rc.4 --values-schema --namespace tap-install
     ```
 
     For more information about values schema options, see the individual product documentation.
@@ -1156,7 +1156,7 @@ with your relevant values. The meanings of some placeholders are explained in th
     ```console
     tanzu package install tap-gui \
      --package-name tap-gui.tanzu.vmware.com \
-     --version 0.3.0-rc.1 -n tap-install \
+     --version 0.3.0-rc.4 -n tap-install \
      -f tap-gui-values.yaml
     ```
 
@@ -1189,7 +1189,7 @@ with your relevant values. The meanings of some placeholders are explained in th
     | Retrieving installation details for cc...
     NAME:                    tap-gui
     PACKAGE-NAME:            tap-gui.tanzu.vmware.com
-    PACKAGE-VERSION:         0.3.0-rc.1
+    PACKAGE-VERSION:         0.3.0-rc.4
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
@@ -2055,20 +2055,25 @@ Use the following procedure to verify that the packages are installed.
     ```bash
     $ tanzu package installed list --namespace tap-install
     \ Retrieving installed packages...
-    NAME                   PACKAGE-NAME                                       PACKAGE-VERSION  STATUS
-    api-portal             api-portal.tanzu.vmware.com                        1.0.2            Reconcile succeeded
-    app-accelerator        accelerator.apps.tanzu.vmware.com                  0.3.0            Reconcile succeeded
-    app-live-view          appliveview.tanzu.vmware.com                       0.3.0            Reconcile succeeded
-    cloud-native-runtimes  cnrs.tanzu.vmware.com                              1.0.2            Reconcile succeeded
-    convention-controller  controller.conventions.apps.tanzu.vmware.com       0.4.2            Reconcile succeeded
-    grype-scanner          grype.scanning.apps.tanzu.vmware.com               1.0.0-beta.2     Reconcile succeeded
-    image-policy-webhook   image-policy-webhook.signing.run.tanzu.vmware.com  1.0.0-beta.1     Reconcile succeeded
-    metadata-store         scst-store.tanzu.vmware.com                        1.0.0-beta.0     Reconcile succeeded
-    scan-controller        scanning.apps.tanzu.vmware.com                     1.0.0-beta.2     Reconcile succeeded
-    services-toolkit       services-toolkit.tanzu.vmware.com                  0.4.0-rc.2       Reconcile succeeded
-    service-bindings       service-bindings.labs.vmware.com                   0.5.0            Reconcile succeeded
-    source-controller      controller.source.apps.tanzu.vmware.com            0.1.2            Reconcile succeeded
-    tbs                    buildservice.tanzu.vmware.com                      1.3.0            Reconcile succeeded
+    NAME                     PACKAGE-NAME                                       PACKAGE-VERSION  STATUS
+    api-portal               api-portal.tanzu.vmware.com                        1.0.3            Reconcile succeeded
+    app-accelerator          accelerator.apps.tanzu.vmware.com                  0.4.0            Reconcile succeeded
+    app-live-view            appliveview.tanzu.vmware.com                       0.3.0-build6     Reconcile succeeded
+    cartographer             cartographer.tanzu.vmware.com                      0.0.7            Reconcile succeeded
+    cloud-native-runtimes    cnrs.tanzu.vmware.com                              1.0.3            Reconcile succeeded
+    convention-controller    controller.conventions.apps.tanzu.vmware.com       0.4.2            Reconcile succeeded
+    developer-conventions    developer-conventions.tanzu.vmware.com             0.3.0-build.1    Reconcile succeeded
+    grype-scanner            grype.scanning.apps.tanzu.vmware.com               1.0.0-beta.2     Reconcile succeeded
+    image-policy-webhook     image-policy-webhook.signing.run.tanzu.vmware.com  1.0.0-beta.1     Reconcile succeeded
+    metadata-store           scst-store.tanzu.vmware.com                        1.0.0-beta.1     Reconcile succeeded
+    ootb-supply-chain-basic  ootb-supply-chain-basic.tanzu.vmware.com           0.3.0-build.3    Reconcile succeeded
+    ootb-templates           ootb-templates.tanzu.vmware.com                    0.3.0-build.3    Reconcile succeeded
+    scan-controller          scanning.apps.tanzu.vmware.com                     1.0.0-beta.2     Reconcile succeeded
+    service-bindings         service-bindings.labs.vmware.com                   0.5.0            Reconcile succeeded
+    services-toolkit         services-toolkit.tanzu.vmware.com                  0.4.0-rc.2       Reconcile succeeded
+    source-controller        controller.source.apps.tanzu.vmware.com            0.1.2            Reconcile succeeded
+    tap-gui                  tap-gui.tanzu.vmware.com                           0.3.0-rc.4       Reconcile succeeded
+    tbs                      buildservice.tanzu.vmware.com                      1.3.1            Reconcile succeeded
     ```
 
 ## <a id='setup'></a> Set Up Developer Namespaces to Use Installed Packages
