@@ -1085,11 +1085,28 @@ with your relevant values. The meanings of some placeholders are explained in th
     app-config:
       app:
         baseUrl: https://<EXTERNAL-IP>:<PORT>
-      integrations:
-        gitlab:
+      integrations: 
+        gitlab: # Other integrations available
           - host: <GITLAB-HOST>
             apiBaseUrl: https://<GITLAB-URL>/api/v4
             token: <GITLAB-TOKEN>
+      catalog:
+        locations:
+          - type: url
+            target: https://<GIT-CATALOG-URL>/catalog-info.yaml
+      backend:
+          baseUrl: https://<EXTERNAL-IP>:<PORT>
+          cors:
+              origin: https://<EXTERNAL-IP>:<PORT>
+      # database: # Only needed if you intend to support with an existing PostgreSQL database. The catalog is still refreshed from Git.
+      #     client: pg
+      #      connection:
+      #        host: <PGSQL-HOST>
+      #        port: <PGSQL-PORT>
+      #        user: <PGSQL-USER>
+      #        password: <PGSQL-PWD>
+      #        ssl: {rejectUnauthorized: false} # May be needed if using self-signed certs
+      
       # techdocs: # Only needed if you want to enable TechDocs capability. Requires running the TechDoc CLI to generate TechDocs from catalog Markdown to S3 compatible bucket called out in Additional Resources documentation.
       #  builder: 'external'
       #  generator:
@@ -1116,23 +1133,7 @@ with your relevant values. The meanings of some placeholders are explained in th
       #        clientSecret: <AUTH-OIDC-CLIENT-SECRET>
       #        tokenSignedResponseAlg: <AUTH-OIDC-TOKEN-SIGNED-RESPONSE-ALG> # default='RS256'
       #        scope: <AUTH-OIDC-SCOPE> # default='openid profile email'
-      #        prompt: <TYPE> # default=none (allowed values: auto, none, consent, login)
-      catalog:
-        locations:
-          - type: url
-            target: https://<GIT-CATALOG-URL>/catalog-info.yaml
-      backend:
-          baseUrl: https://<EXTERNAL-IP>:<PORT>
-          cors:
-              origin: https://<EXTERNAL-IP>:<PORT>
-      # database: # Only needed if you intend to support with an existing PostgreSQL database. The catalog is still refreshed from Git.
-      #     client: pg
-      #      connection:
-      #        host: <PGSQL-HOST>
-      #        port: <PGSQL-PORT>
-      #        user: <PGSQL-USER>
-      #        password: <PGSQL-PWD>
-      #        ssl: {rejectUnauthorized: false} # May be needed if using self-signed certs
+      #        prompt: <TYPE> # default=none (allowed values: auto, none, consent, login)      
     ```
     Where:
 
