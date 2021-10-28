@@ -2085,7 +2085,7 @@ run the following commands to add credentials and Role-Based Access Control (RBA
 
 1. Add read/write registry credentials to the developer namespace. Run:
     ```bash
-    $ tanzu secret registry add registry-credentials --registry REGISTRY-SERVER --username REGISTRY-USERNAME --password REGISTRY-PASSWORD --namespace YOUR-NAMESPACE
+    $ tanzu secret registry add registry-credentials --server REGISTRY-SERVER --username REGISTRY-USERNAME --password REGISTRY-PASSWORD --namespace YOUR-NAMESPACE
     ```
     Where `YOUR-NAMESPACE` is the name you want for the developer namespace.
     For example, use `default` for the default namespace.
