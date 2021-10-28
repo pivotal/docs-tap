@@ -468,9 +468,9 @@ Now that Tekton is installed, you can install the **Out of the Box with Testing*
 ```bash
 tanzu package install ootb-supply-chain-testing \
   --package-name ootb-supply-chain-testing.tanzu.vmware.com \
-  --version 0.3.0 \
+  --version 0.3.0-build.3  \
   --namespace tap-install \
-  --values-file default-supply-chain-values.yaml
+  --values-file ootb-supply-chain-basic-values.yaml
 ```
 
 ### Example Tekton Pipeline Config
@@ -614,9 +614,9 @@ Next the Out of the Box Testing and Scanning supply chain can be installed.
 ```bash
 tanzu package install ootb-supply-chain-testing-scanning \
   --package-name ootb-supply-chain-testing-scanning.tanzu.vmware.com \
-  --version 0.3.0 \
+  --version 0.3.0-build.3  \
   --namespace tap-install \
-  --values-file default-supply-chain-values.yaml
+  --values-file ootb-supply-chain-basic-values.yaml
 ```
 
 ### Workload update
