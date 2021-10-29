@@ -68,9 +68,5 @@ Find this line:
 2. Since the TAP-GUI pods aren't stateful (config is held in ConfigMaps, Git catalog, or Secrets), you can always trying killing the pod and allowing it to be re-instantiated:
 
 ```bash
-$ kubectl get pods -n tap-gui
-NAME                      READY   STATUS    RESTARTS   AGE
-server-6b9ff657bd-hllq9   1/1     Running   0          13m
-
-$ kubectl delete pod server-6b9ff657bd-hllq9 -n tap-gui
+$ kubectl delete pod -l app=backstage -n tap-gui
 ```
