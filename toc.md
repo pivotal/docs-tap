@@ -73,3 +73,4 @@ This is the table of contents from which the Tanzu Application Platform Document
         * [Tanzu Application Platform GUI Plugins](tap-gui/plugins/about.md)
             * [Workload Visibility](tap-gui/plugins/workload-visibility.md)
             * [Application Live View](tap-gui/plugins/app-live-view.md)
+        * [Troubleshooting and Known Issues](tap-gui/troubleshooting.md)
