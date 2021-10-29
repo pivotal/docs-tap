@@ -102,9 +102,10 @@ See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes d
         
 * kapp-controller v0.29.0 or later:
     
-    **Note:** If you are using Tanzu Kubernetes Grid v1.4,
-      see [Install kapp-controller](install-tkg.md#install-kappcontroller-1).
-
+    **Note:** 
+    
+     *  If you are using Tanzu Kubernetes Grid v1.4, see [Install kapp-controller](install-tkg.md#install-kappcontroller-1).
+     *  If you are using Tanzu Community Edition , see [Install kapp-controller](install-tce.md#install-kappcontroller-1).
     * Install kapp-controller by running:
 
       ```
@@ -224,11 +225,11 @@ download and install the Tanzu CLI and the Tanzu CLI plugins.
 
 If you have earlier versions of the Tanzu CLI, follow the instructions in [Update the Tanzu CLI](#update-cli).
 
-If you have previously installed a Tanzu CLI for Tanzu Community Edition,
-then uninstall and remove the `~/.config/tanzu` directory before using Tanzu Application Platform.
-
-If you have Tanzu CLI for Tanzu Kubernetes Grid v1.4,
-see [Install Tanzu CLI Plugins](install-tkg.md#install-tanzu-cli-plugins-2).
+**Note**
+ 
+ * If you have Tanzu CLI for Tanzu Kubernetes Grid v1.4, see [Install Tanzu CLI Plugins for TKG](install-tkg.md#install-tanzu-cli-plugins-2).
+ 
+ * If you have Tanzu CLI for Tanzu Community Editions, see [Install Tanzu CLI Plugins for TCE](install-tce.md#install-tanzu-cli-plugins-2).
 
 Follow the procedure for your operating system:
 
@@ -360,9 +361,14 @@ To install the Tanzu CLI on a Windows operating system:
     ```
 ## <a id='update-cli'></a> Update the Tanzu CLI
 
-If you have an earlier version of the Tanzu CLI installed,
-do the following before you install the plugins.
+If you have an earlier version of the Tanzu CLI installed, do the following before you install the plugins.
 For instructions on installing plugins, see [Install the Tanzu CLI Plugins](#install-the-tanzu-cli-plugins) below.
+
+**Note:**
+ 
+ * If you have Tanzu CLI for Tanzu Kubernetes Grid v1.4, see [Install Tanzu CLI Plugins for TKG](install-tkg.md#install-tanzu-cli-plugins-2).
+ 
+ * If you have Tanzu CLI for Tanzu Community Editions, see [Install Tanzu CLI Plugins for TCE](install-tce.md#install-tanzu-cli-plugins-2).
 
 **Note:** `imagepullsecret` plugin is deprecated in tanzu-framework version v0.8.0 and replaced with `secret` plugin.
 
@@ -391,15 +397,13 @@ To remove plugins from earlier versions of the Tanzu CLI:
     ```
     tanzu plugin clean
     ```
-2. Remove the `imagepullsecret` plugin
+1. Remove the `imagepullsecret` plugin
    ```
    tanzu plugin delete imagepullsecret
    ```
-
+   Proceed with the following instructions to [update the tanzu cli](#install-the-tanzu-cli-plugins)
+   
 ## <a id='install-the-tanzu-cli-plugins'></a> Update the tanzu cli
-
-If you use Tanzu Kubernetes Grid v1.4,
-see [Install Tanzu CLI Plugins](install-tkg.md#install-tanzu-cli-plugins-2).
 
 1. Navigate to the Tanzu folder that contains the cli folder.
 

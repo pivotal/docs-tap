@@ -83,7 +83,7 @@ To install the Tanzu CLI plugins required for Tanzu Application Platform:
 1. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/)
 on Tanzu Network.
 
-1. Click the **tanzu-cli-0.5.0** directory.
+1. Click the **tanzu-cli-0.8.0** directory.
 
 1. Download the CLI bundle corresponding with your operating system. For example, if your client
 operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle.
@@ -100,10 +100,18 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
     cd $HOME/tanzu-framework
     ```
 
-1. Install the `imagepullsecret` plugin by running:
-
+1. Check `imagepullsecret` is present already:
+   ```console
+    tanzu plugin list
+    ```
+    If present, delete the `imagepullsecret` plugin by running:
     ```console
-    tanzu plugin install imagepullsecret --local ./cli
+    tanzu plugin delete imagepullsecret
+    ```
+
+1. Install the `secret` plugin by running:
+    ```console
+    tanzu plugin install secret --local ./cli
     ```
 
 1. Install the `accelerator` plugin by running:
