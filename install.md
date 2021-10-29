@@ -364,16 +364,18 @@ To install a profile:
     # e.g. full, dev-light, shared-tools, operator-light
     profile: full
     buildservice:
-      tanzunet_username: "TANZUNET-USERNAME"
-      tanzunet_password: "TANZUNET-PASSWORD"
+      tanzunet_username: "<TANZUNET-USERNAME>"
+      tanzunet_password: "<TANZUNET-PASSWORD>"
     rw_app_registry:
       # e.g. index.docker.io/some-user/apps
       # e.g. us-east4-docker.pkg.dev/some-project-id/test-private-repo/apps
-      server_repo: "SERVER-REPO"
-      username: "USERNAME"
-      password: "PASSWORD"
+      server_repo: "<SERVER-REPO>"
+      username: "<USERNAME>"
+      password: "<PASSWORD>"
+    ootb_supply_chain_basic:
+      service_account: service-account
     learning_center:
-      ingressDomain: "DOMAIN-NAME" # e.g. educates.example.com
+      ingressDomain: "<DOMAIN-NAME>" # e.g. educates.example.com
     ```
 
     To view possible configuration settings, run:
