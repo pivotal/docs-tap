@@ -101,9 +101,10 @@ See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes d
         
 * kapp-controller v0.29.0 or later:
     
-    **Note:** If you are using Tanzu Kubernetes Grid v1.4,
-      see [Install kapp-controller](install-tkg.md#install-kappcontroller-1).
-
+    **Note:** 
+    
+     *  If you are using Tanzu Kubernetes Grid v1.4, see [Install kapp-controller](install-tkg.md#install-kappcontroller-1).
+     *  If you are using Tanzu Community Edition , see [Install kapp-controller](install-tce.md#install-kappcontroller-1).
     * Install kapp-controller by running:
 
       ```
@@ -223,11 +224,11 @@ download and install the Tanzu CLI and the Tanzu CLI plugins.
 
 If you have earlier versions of the Tanzu CLI, follow the instructions in [Update the Tanzu CLI](#update-cli).
 
-If you have previously installed a Tanzu CLI for Tanzu Community Edition,
-then uninstall and remove the `~/.config/tanzu` directory before using Tanzu Application Platform.
-
-If you have Tanzu CLI for Tanzu Kubernetes Grid v1.4,
-see [Install Tanzu CLI Plugins](install-tkg.md#install-tanzu-cli-plugins-2).
+**Note**
+ 
+ * If you have Tanzu CLI for Tanzu Kubernetes Grid v1.4, see [Install Tanzu CLI Plugins for TKG](install-tkg.md#install-tanzu-cli-plugins-2).
+ 
+ * If you have Tanzu CLI for Tanzu Community Editions, see [Install Tanzu CLI Plugins for TCE](install-tce.md#install-tanzu-cli-plugins-2).
 
 Follow the procedure for your operating system:
 
