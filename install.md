@@ -402,7 +402,7 @@ To install a profile:
 1. Install the package by running:
 
     ```bash
-    tanzu package install tap -p tap.tanzu.vmware.com -v 0.3.0-build.4 --values tap-values.yml -n tap-install
+    tanzu package install tap -p tap.tanzu.vmware.com -v 0.3.0-build.4 --values-file tap-values.yml -n tap-install
     ```
 
 1. Verify the package install by running:
