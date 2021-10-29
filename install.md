@@ -359,7 +359,7 @@ To install a profile:
     tanzu package available list tap.tanzu.vmware.com --namespace tap-install
     ```
 
-1. Create a `tap-values.yml` using the following sample as a guide. 
+1. Create a `tap-values.yml` using the following sample as a guide. Select a profile to install by changing the `profile` value. 
     ```yaml
     # e.g. full, dev-light, shared-tools, operator-light
     profile: full
