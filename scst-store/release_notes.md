@@ -16,7 +16,6 @@ This topic contains release notes for Supply Chain Security Tools - Store.
 * Added a /health endpoint and `insight health` command
 * Upgraded to golang 1.17
 * Added support for query parameters
-* Added support for json cyclonedx reports
 * Updated repository parsing logic
 * Squashed some minor bugs
 
