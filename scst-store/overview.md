@@ -5,38 +5,38 @@ Supply Chain Security Tools - Store saves software bills of materials (SBoMs) to
 Supply Chain Security Tools - Store has three components:
 
 * Postgres database
-* API
+* [API](api.md)
 * CLI (`insight`)
 
-## Installation
+## Install
 
-Supply Chain Security Tools - Store is released as an individual Tanzu Application Platform component.  
+Supply Chain Security Tools - Store is released as an individual Tanzu Application Platform component.
 
-To install, see [Install Supply Chain Security Tools - Store](../install-components.md#install-scst-store)
+To install, see [Install Supply Chain Security Tools - Store](../install-components.md#install-scst-store).  It will install the Postgres database and an [API](api.md) backend.
 
-> **Note:** the `insight` CLI requires a [separate installation](../scst-store/cli.md)
+> **Note:** the `insight` CLI requires a [separate installation](install_cli.md)
 
-For more information, see [Installation Details](../scst-store/install_details.md).
+For more information, see [Installation Details](install_details.md).
 
-## Set Up
+## <a id='required-set-up'></a>Set Up
 
-### <a id='required-set-up'></a> Required
+### Required
 
 The following steps are required to use the API or CLI:
 
-* [Enable encryption and connection](enable_encrypted_connection.md)
+* [Enable encryption and connection](using_encryption_and_connection.md)
 * [Create a service account and get the access token](create_service_account_access_token.md)
 
 ### Recommended
 
-The `insight` CLI is not required but may provide an easier-to-use interface than the API.  
+The `insight` CLI is not required but may provide an easier-to-use interface than the [API](api.md).  
 
 > **Note:** the `insight` CLI is separate from the `tanzu` CLI.  It will be added as a `tanzu` CLI plugin in a future release
 
-* [Install the CLI](cli.md)
+* [Install the CLI](install_cli.md)
 * [Configure the CLI](configure_cli.md)
 
-## Usage
+## <a id='usage'></a>Usage
 
 ### Adding Data
 
