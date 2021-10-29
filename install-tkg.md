@@ -20,7 +20,7 @@ To install Tanzu Kubernetes Grid v1.4, you must:
 + [Install Tanzu CLI Plugins](#tanzucli)
 
 
-### Install kapp-controller
+### <a id='kapp-controller'></a> Install kapp-controller
 
 To install kapp-controller v0.29.0 or later on Tanzu Kubernetes Grid v1.4:
 
@@ -69,7 +69,7 @@ To install kapp-controller v0.29.0 or later on Tanzu Kubernetes Grid v1.4:
     ```
 
 
-### Install the Tanzu CLI Plugins for Tanzu Application Platform
+### <a id='tanzucli'></a>Install the Tanzu CLI and Plugins for Tanzu Application Platform
 
 **Note** `imagepullsecret` plugin is deprecated in tanzu-framework version v0.8.0 and replaced with `secret` plugin.
 
