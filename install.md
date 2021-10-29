@@ -414,7 +414,8 @@ To install a profile:
     ```
 
     Note that currently `tap.tanzu.vmware.com` package does not show all configuration settings for packages it plans to install. To find them out, look at individual package configuration settings via same `tanzu package available get` command (e.g. for CNRs use `tanzu package available get -n tap-install cnrs.tanzu.vmware.com/1.0.3 --values-schema`).
-    Replace dashes with underscores. For example, if the package name is cloud-native-runtimes, use cloud_native_runtimes in the tap-values YAML file.
+    Replace dashes with underscores.
+    For example, if the package name is `cloud-native-runtimes`, use `cloud_native_runtimes` in the `tap-values` YAML file.
 
     ```yaml
     profile: full
