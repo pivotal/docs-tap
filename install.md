@@ -198,7 +198,7 @@ This table lists the packages that are contained in each profile:
    </td>
   </tr>
   <tr>
-   <td>Default Supply Chain
+   <td>Out of the Box Supply Chain - Basic
    </td>
    <td>&check;
    </td>
@@ -210,7 +210,31 @@ This table lists the packages that are contained in each profile:
    </td>
   </tr>
   <tr>
-   <td>Default Supply Chain - Testing
+   <td>Out of the Box Supply Chain - Testing
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Out of the Box Supply Chain - Testing and Scanning
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Out of the Box Templates
    </td>
    <td>&check;
    </td>
