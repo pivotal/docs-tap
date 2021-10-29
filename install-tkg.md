@@ -5,11 +5,11 @@ Tanzu Kubernetes Grid v1.4 cluster.
 
 > **Warning**: VMware discourages installing Tanzu Application Platform on a Tanzu Kubernetes Grid
 v1.4 cluster in production environments.
-This procedure includes a workaround for installing kapp-controller v0.27.0 on Tanzu Kubernetes Grid
+This procedure includes a workaround for installing kapp-controller v0.29.0 on Tanzu Kubernetes Grid
 v1.4, which is not a supported workflow. VMware recommends that you follow this procedure for beta
 purposes only.
 <!-- What is meant by a "supported workflow"? And which isn't the supported workflow,
-the workaround or putting kapp-controller v0.27.0 on Tanzu Kubernetes Grid v1.4? -->
+the workaround or putting kapp-controller v0.29.0 on Tanzu Kubernetes Grid v1.4? -->
 
 
 ## Install Tanzu Kubernetes Grid v1.4
@@ -22,7 +22,7 @@ To install Tanzu Kubernetes Grid v1.4, you must:
 
 ### Install kapp-controller
 
-To install kapp-controller v0.27.0 or later on Tanzu Kubernetes Grid v1.4:
+To install kapp-controller v0.29.0 or later on Tanzu Kubernetes Grid v1.4:
 
 1. Create a new workload cluster. Do not install any packages in the cluster.
 1. Ensure the kubectl context is set to the Tanzu Kubernetes Grid Management cluster by running:
@@ -62,10 +62,10 @@ To install kapp-controller v0.27.0 or later on Tanzu Kubernetes Grid v1.4:
     kubectl delete deployment kapp-controller -n tkg-system
     ```
 
-1. Install kapp-controller v0.27.0 by running:
+1. Install kapp-controller v0.29.0 by running:
 
     ```console
-    kubectl apply -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v0.27.0/release.yml
+    kubectl apply -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v0.29.0/release.yml
     ```
 
 

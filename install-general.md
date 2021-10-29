@@ -99,7 +99,7 @@ See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes d
         $ kubectl config use-context aks-tap-cluster
         Switched to context "aks-tap-cluster".
         
-* kapp-controller v0.27.0 or later:
+* kapp-controller v0.29.0 or later:
     
     **Note:** If you are using Tanzu Kubernetes Grid v1.4,
       see [Install kapp-controller](install-tkg.md#install-kappcontroller-1).
@@ -111,12 +111,12 @@ See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes d
       ```
       Where `KC-VERSION` is the kapp-controller version being installed.
 
-      Select v0.27.0+ kapp-controller version for Azure Kubernetes Service, Amazon Elastic Kubernetes Service,
+      Select v0.29.0+ kapp-controller version for Azure Kubernetes Service, Amazon Elastic Kubernetes Service,
       Google Kubernetes Engine, kind, and minikube from the [Releases page](https://github.com/vmware-tanzu/carvel-kapp-controller/releases).
 
       For example:
       ```
-      kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v0.27.0/release.yml
+      kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v0.29.0/release.yml
       ```
     * Verify kapp-controller is running by running:
          ```
@@ -147,8 +147,8 @@ See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes d
          For example:
          ```
          kubectl get deployment kapp-controller -n kapp-controller  -o yaml | grep kapp-controller.carvel.dev/version
-         kapp-controller.carvel.dev/version: v0.27.0
-         kapp.k14s.io/original: '{"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{"kapp-controller.carvel.dev/version":"v0.27.0","kbld.k14s.io/images":"-
+         kapp-controller.carvel.dev/version: v0.29.0
+         kapp.k14s.io/original: '{"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{"kapp-controller.carvel.dev/version":"v0.29.0","kbld.k14s.io/images":"-
          ```
 
 
@@ -161,11 +161,11 @@ See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes d
       ```
 
       Where `SG-VERSION` is the secretgen-controller version being installed.
-      Select v0.5.0+ secretgen-controller version from the [Releases page](https://github.com/vmware-tanzu/carvel-secretgen-controller/releases).
+      Select v0.6.0+ secretgen-controller version from the [Releases page](https://github.com/vmware-tanzu/carvel-secretgen-controller/releases).
 
       For example:
       ```
-      kapp deploy -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/download/v0.5.0/release.yml
+      kapp deploy -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/download/v0.6.0/release.yml
       ```
     * Verify secretgen-controller is running by running:
          ```
@@ -196,7 +196,7 @@ See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes d
 
          ```
          kubectl get deployment secretgen-controller -n secretgen-controller -oyaml | grep secretgen-controller.carvel.dev/version
-         secretgen-controller.carvel.dev/version: v0.5.0
+         secretgen-controller.carvel.dev/version: v0.6.0
          ```
 
 
