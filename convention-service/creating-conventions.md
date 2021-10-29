@@ -330,7 +330,7 @@ Once the convention has been written, define the following components in `server
         ```
        kapp
         ```bash
-        kapp deploy -a awesome-convention -f server.yaml 
+        kapp deploy -y -a awesome-convention -f server.yaml 
         ```
 
 8. Verify the convention server is running by checking for the convention pods.

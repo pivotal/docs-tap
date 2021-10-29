@@ -40,7 +40,7 @@ Note: In future versions both cert-manager and FluxCD source controller will be 
 * **cert-manager**:
     * Install cert-manager by running:
         ```
-        kapp deploy -a cert-manager -f https://github.com/jetstack/cert-manager/releases/download/v1.5.3/cert-manager.yaml
+        kapp deploy -y -a cert-manager -f https://github.com/jetstack/cert-manager/releases/download/v1.5.3/cert-manager.yaml
         ```
         We have verified the Tanzu Application Platform repo bundle packages installation with cert-manager version v1.5.3.
         
@@ -68,7 +68,7 @@ Note: In future versions both cert-manager and FluxCD source controller will be 
         ```
      3. Install FluxCD Source Controller by running:
         ```
-        kapp deploy -a flux-source-controller -n flux-system \
+        kapp deploy -y -a flux-source-controller -n flux-system \
         -f https://github.com/fluxcd/source-controller/releases/download/v0.15.4/source-controller.crds.yaml \
         -f https://github.com/fluxcd/source-controller/releases/download/v0.15.4/source-controller.deployment.yaml
         ```

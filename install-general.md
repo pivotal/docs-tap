@@ -108,7 +108,7 @@ See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes d
     * Install kapp-controller by running:
 
       ```
-      kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/KC-VERSION/release.yml
+      kapp deploy -y -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/KC-VERSION/release.yml
       ```
       Where `KC-VERSION` is the kapp-controller version being installed.
 
@@ -117,7 +117,7 @@ See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes d
 
       For example:
       ```
-      kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v0.29.0/release.yml
+      kapp deploy -y -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v0.29.0/release.yml
       ```
     * Verify kapp-controller is running by running:
          ```
@@ -158,7 +158,7 @@ See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes d
     * Install secretgen-controller by running:
 
       ```
-      kapp deploy -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/download/SG-VERSION/release.yml
+      kapp deploy -y -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/download/SG-VERSION/release.yml
       ```
 
       Where `SG-VERSION` is the secretgen-controller version being installed.
@@ -166,7 +166,7 @@ See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes d
 
       For example:
       ```
-      kapp deploy -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/download/v0.6.0/release.yml
+      kapp deploy -y -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/download/v0.6.0/release.yml
       ```
     * Verify secretgen-controller is running by running:
          ```
