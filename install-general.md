@@ -161,11 +161,11 @@ See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes d
       ```
 
       Where `SG-VERSION` is the secretgen-controller version being installed.
-      Select v0.5.0+ secretgen-controller version from the [Releases page](https://github.com/vmware-tanzu/carvel-secretgen-controller/releases).
+      Select v0.6.0+ secretgen-controller version from the [Releases page](https://github.com/vmware-tanzu/carvel-secretgen-controller/releases).
 
       For example:
       ```
-      kapp deploy -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/download/v0.5.0/release.yml
+      kapp deploy -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/download/v0.6.0/release.yml
       ```
     * Verify secretgen-controller is running by running:
          ```
@@ -196,7 +196,7 @@ See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes d
 
          ```
          kubectl get deployment secretgen-controller -n secretgen-controller -oyaml | grep secretgen-controller.carvel.dev/version
-         secretgen-controller.carvel.dev/version: v0.5.0
+         secretgen-controller.carvel.dev/version: v0.6.0
          ```
 
 
