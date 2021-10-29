@@ -16,6 +16,7 @@ For information, see [Installing Part I: Prerequisites, EULA, and CLI](install-g
 + [Install Convention Service](#install-convention-service)
 + [Install Source Controller](#install-source-controller)
 + [Install Developer Conventions](#install-developer-conventions)
++ [Install Spring Boot Conventions](#install-spring-boot-convention)
 + [Install Application Live View](#install-app-live-view)
 + [Install Tanzu Application Platform GUI](#install-tap-gui)
 + [Install Learning Center](#install-learning-center)
@@ -899,7 +900,7 @@ To install Spring Boot conventions:
     / Retrieving package versions for spring-boot-conventions.tanzu.vmware.com...
       NAME                                       VERSION   RELEASED-AT
       ...
-      spring-boot-conventions.tanzu.vmware.com   0.1.1     2021-10-27T00:00:00Z
+      spring-boot-conventions.tanzu.vmware.com   0.1.2     2021-10-28T00:00:00Z
       ...
     ```
 
@@ -908,7 +909,7 @@ To install Spring Boot conventions:
     ```bash
     tanzu package install spring-boot-conventions \
       --package-name spring-boot-conventions.tanzu.vmware.com \
-      --version 0.1.1 \
+      --version 0.1.2 \
       --namespace tap-install
     ```
 
@@ -925,7 +926,7 @@ To install Spring Boot conventions:
     | Retrieving installation details for spring-boot-conventions...
     NAME:                    spring-boot-conventions
     PACKAGE-NAME:            spring-boot-conventions.tanzu.vmware.com
-    PACKAGE-VERSION:         0.1.1
+    PACKAGE-VERSION:         0.1.2
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
