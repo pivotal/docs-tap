@@ -365,7 +365,7 @@ To install the Tanzu CLI on a Windows operating system:
     ```
     Expect `version: v0.8.0`
 
-14. Proceed to [Instructions for a clean install of Tanzu CLI Plugins](cli-plugin-clean-install) 
+14. Proceed to [Instructions for a clean install of Tanzu CLI Plugins](#cli-plugin-clean-install) 
 
 
 ## <a id='cli-plugin-clean-install'></a>Instructions for a clean install of Tanzu CLI Plugins 
