@@ -34,6 +34,13 @@ To add the Tanzu Application Platform package repository:
 3. Add Tanzu Application Platform package repository to the cluster by running:
 
     ```bash
+    tanzu package repository add tanzu-tap-repository \
+      --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.3.0-build.4 \
+      --namespace tap-install
+    ```
+    For example:
+
+    ```bash
     $ tanzu package repository add tanzu-tap-repository \
         --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.3.0-build.5 \
         --namespace tap-install
