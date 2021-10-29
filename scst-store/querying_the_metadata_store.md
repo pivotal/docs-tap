@@ -1,29 +1,31 @@
-# Query Data
+# Querying Data
 
-Query the database to understand vulnerability, image, and dependency relationships. 
+This topic describes how to query the database to understand vulnerability, image, and dependency relationships.
 
 ## Add Data
 
-Data must be added before querying; see [Add Data](../scst-store/add_cyclone_dx_to_store.md)
+Data must be added before querying, see [Add Data](add_cyclonedx_to_store.md).
 
 ## Methods
 
 There are two different ways of querying the database:
 
 * [Supply Chain Security Tools - Store API](../scst-store/getting_started_api.md)
-* `insight` CLI - see below
-​
+* [Query with insight CLI](#query-with-insight) below
+
+
 ## Supported Use Cases
 
 The following are a few examples supported by the Supply Chain Security Tools - Store API and CLI:
 
-1. What images contain a specific dependency?
-1. What dependencies are affected by a specific CVE?
-1. How many CVEs does a specific image or dependency contain?
-​
-## Querying with `insight` CLI
++  What images contain a specific dependency?
++  What dependencies are affected by a specific CVE?
++  How many CVEs does a specific image or dependency contain?
 
-The following commands are designed for querying:
+
+## <a id='query-with-insight'></a> Query with insight CLI
+
+Use the following commands for querying:
 
 - `image get`
 - `image package`
@@ -42,7 +44,7 @@ The following commands are designed for querying:
 
 Use `insight -h` in the terminal or see the [full CLI documentation](cli_docs/insight.md) for more information.
 
-### Example #1: What images contain a specific dependency?
+## Example #1: What images contain a specific dependency?
 
 Use the following command:
 
@@ -50,9 +52,7 @@ Use the following command:
 insight image get --digest DIGEST
 ```
 
-Where:
-
-- `DIGEST` is the component's version or image's digest
+Where `DIGEST` is the component version or image digest.
 
 For example:
 
@@ -73,17 +73,15 @@ Packages:
 		1. CVE-2021-28831 (High)
 ...
 ```
-### Example #2: What dependencies are affected by a specific CVE?
+## Example #2: What dependencies are affected by a specific CVE?
 
 Use the following command:
 
 ```sh
-insight vulnerability get --cveid CVE-IDENTIFIER 
+insight vulnerability get --cveid CVE-IDENTIFIER
 ```
 
-Where:
-
-- `CVE-IDENTIFIER` is the CVE identifier, such as CVE-2021-30139
+Where `CVE-IDENTIFIER` is the CVE identifier, for example, CVE-2021-30139.
 
 For example:
 

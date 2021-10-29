@@ -20,5 +20,5 @@ The CLI is not required but may provide an easier-to-use interface.
 
 The following pages include use cases and examples:
 
-* [Add data](add_cyclonedx_to_store.md) - add CycloneDX scan reports to the Supply Chain Security Tools - Store
-* [Query data](querying_the_metadata_store.md) - query to understand vulnerability, image, and dependency relationships
+* [Adding Data](add_cyclonedx_to_store.md): Add CycloneDX scan reports to the Supply Chain Security Tools - Store.
+* [Querying Data](querying_the_metadata_store.md): Query to understand vulnerability, image, and dependency relationships.
