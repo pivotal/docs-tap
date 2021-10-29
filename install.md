@@ -372,7 +372,8 @@ To install a profile:
       server_repo: "SERVER-REPO"
       username: "USERNAME"
       password: "PASSWORD"
-    ingressDomain: "DOMAIN-NAME" # e.g. educates.example.com
+    learning_center:
+      ingressDomain: "DOMAIN-NAME" # e.g. educates.example.com
     ```
 
     To view possible configuration settings, run:
