@@ -35,7 +35,7 @@ To add the Tanzu Application Platform package repository:
 
     ```bash
     tanzu package repository add tanzu-tap-repository \
-      --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.3.0-build.4 \
+      --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.3.0-build.5 \
       --namespace tap-install
     ```
     For example:
