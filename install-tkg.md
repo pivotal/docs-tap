@@ -71,66 +71,12 @@ To install kapp-controller v0.29.0 or later on Tanzu Kubernetes Grid v1.4:
 
 ### <a id='tanzucli'></a>Install the Tanzu CLI and Plugins for Tanzu Application Platform
 
-**Note** `imagepullsecret` plugin is deprecated in tanzu-framework version v0.8.0 and replaced with `secret` plugin.
+Follow the **[instructions for updating Tanzu CLI which was originally installed for TKG/TCE](install-general.html#udpate-tkg-tce-tanzu-cli)**
 
-To install the Tanzu CLI plugins required for Tanzu Application Platform:
-
-1. Create a directory named `tanzu-framework` by running:
-
-    ```console
-    mkdir $HOME/tanzu-framework
-    ```
-
-1. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
-
-1. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/)
-on VMware Tanzu Network.
-
-1. Click on the **tanzu-cli-0.8.0** directory.
-
-1. Download the CLI bundle corresponding to your operating system. For example, if your client
-operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle.
-
-1. Unpack the TAR file in the `tanzu-framework` directory by running:
-
-    ```console
-    tar -xvf tanzu-framework-linux-amd64.tar -C $HOME/tanzu-framework
-    ```
-
-1. Navigate to the `tanzu-framework` directory by running:
-
-    ```console
-    cd $HOME/tanzu-framework
-    ```
-
-1. Check `imagepullsecret` is present already:
-   ```console
-    tanzu plugin list
-    ```
-    If present, delete the `imagepullsecret` plugin by running:
-    ```console
-    tanzu plugin delete imagepullsecret
-    ```
-
-1. Install the `secret` plugin by running:
-    ```console
-    tanzu plugin install secret --local ./cli
-    ```
-
-1. Install the `accelerator` plugin by running:
-
-    ```console
-    tanzu plugin install accelerator --local ./cli
-    ```
-
-1. Install the `apps` plugin by running:
-
-    ```console
-    tanzu plugin install apps --local ./cli
-    ```
+Once completed, you may proceed to the next section.
 
 
-## Install Tanzu Application Platform
+## <a id='install-tap'></a>Install Tanzu Application Platform
 
 1. Ensure you meet all the prerequisites to install Tanzu Application Platform.
 See [Prerequisites](install-general.html#prerequisites-0) in _Installing Part I: Prerequisites, EULA, and CLI_.
