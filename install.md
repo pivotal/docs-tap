@@ -66,8 +66,6 @@ To add the Tanzu Application Platform package repository:
     REASON:
     ```
 
-    This currently may take around 1min (TanzuNet team is actively working on supporting imgpkg caching mechanism that should cut this down back to 10s).
-
 5. List the available packages by running:
 
     ```bash
