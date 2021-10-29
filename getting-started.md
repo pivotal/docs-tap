@@ -601,13 +601,7 @@ the workload must be updated to point at the your Tekton pipeline.
 
 ### Install Out of the Box with Testing and Scanning
 
-The first step is to install the additional scanning templates which define how the source and image should be scanned:
-
-<ul>
-<li><a href="https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.3/tap-0-3/GUID-scst-scan-choreographer.html#supply-chain-security-tools-for-vmware-tanzu--scan-5">Scan Policy</a></li>
-<li><a href="https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.3/tap-0-3/GUID-scst-scan-choreographer.html#supply-chain-security-tools-for-vmware-tanzu--scan-5">Source Scan Policy</a></li>
-<li><a href="https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.3/tap-0-3/GUID-scst-scan-choreographer.html#supply-chain-security-tools-for-vmware-tanzu--scan-5">Image Scan Policy</a></li>
-</ul>
+The first step is to install [Supply Chain Security Tools - Scan](../install-components.html#install-scst-scan) which includes the additional scanning templates which define how the source and image should be scanned.
 
 Next the Out of the Box Testing and Scanning supply chain can be installed.
 
