@@ -53,6 +53,7 @@ Installation requires:
         * To install Tanzu Application Platform on Tanzu Kubernetes Grid v1.4,
           see [Installing with Tanzu Kubernetes Grid v1.4](install-tkg.md).
    * Tanzu Community Edition x.x
+        * Please visit the Tanzu Community Edition installation page to follow installation instructions. [Tanzu Community Edition](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.3/tap-0-3/GUID-install-tce.html)
 
     To deploy all Tanzu Application Platform packages, your cluster must have at least **8&nbsp;GB** of RAM across all nodes available to Tanzu Application Platform. At least 8 CPUs for i9 or equivalent, or 12 CPUs for i7 or equivalent must be available to Tanzu Application Platform components.
     VMware recommends that at least **16&nbsp;GB** of RAM is available to build and deploy applications, including for kind and minikube.
