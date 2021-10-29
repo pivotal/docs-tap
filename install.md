@@ -378,7 +378,7 @@ This table lists the packages that are contained in each profile:
 </table>
 
 ## <a id='install-profile'></a> Install a Tanzu Application Platform Profile
-Installation of a profile happens via `tap.tanzu.vmware.com` package. `tap.tanzu.vmware.com` package installs predefined sets of packages based on chosen profile setting.
+Installation of a profile happens via the `tap.tanzu.vmware.com` package. The `tap.tanzu.vmware.com` package installs predefined sets of packages based on the chosen profile setting.
 
 To install a profile:
 
