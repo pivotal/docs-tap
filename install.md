@@ -26,7 +26,7 @@ To add the Tanzu Application Platform package repository:
     tanzu secret registry add tap-registry \
       --username TANZU-NET-USER --password TANZU-NET-PASSWORD \
       --server registry.tanzu.vmware.com \
-      --export-to-all-namespaces --namespace tap-install
+      --export-to-all-namespaces --yes --namespace tap-install
     ```
 
     Where `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for Tanzu Network.
