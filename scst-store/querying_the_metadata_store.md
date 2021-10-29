@@ -2,15 +2,11 @@
 
 Query the database to understand vulnerability, image, and dependency relationships. 
 
-## Prerequisites
-
-See Prerequisites in [Using Supply Chain Security Tools - Store](using_metadata_store.md) 
-
 ## Add Data
 
 Data must be added before querying; see [Add Data](../scst-store/add_cyclone_dx_to_store.md)
 
-## Querying Methods
+## Methods
 
 There are two different ways of querying the database:
 
@@ -19,7 +15,7 @@ There are two different ways of querying the database:
 ​
 ## Supported Use Cases
 
-The following examples are supported by the Supply Chain Security Tools - Store API and CLI:
+The following are a few examples supported by the Supply Chain Security Tools - Store API and CLI:
 
 1. What images contain a specific dependency?
 1. What dependencies are affected by a specific CVE?
@@ -44,7 +40,7 @@ The following commands are designed for querying:
 - `vulnerabilities package`
 - `vulnerabilities source`
 
-Use `insight -h` for the full list of commands and for additional examples.
+Use `insight -h` in the terminal or see the [full CLI documentation](cli_docs/insight.md) for more information.
 
 ### Example #1: What images contain a specific dependency?
 
@@ -87,24 +83,16 @@ insight vulnerability get --cveid CVE-IDENTIFIER
 
 Where:
 
-- `CVE-IDENTIFIER` is xxxxxxxxxxxx
+- `CVE-IDENTIFIER` is the CVE identifier, such as CVE-2021-30139
 
 For example:
 
 ```sh
-$ insight image get --digest sha256:407d7099d6ce7e3632b6d00682a43028d75d3b088600797a833607bd629d1ed5
-Registry:	docker.io
-Image Name:	checkr/flagr:1.1.12
-Digest:    	sha256:407d7099d6ce7e3632b6d00682a43028d75d3b088600797a833607bd629d1ed5
+$ insight vulnerabilities get --cveid CVE-2010-4051
+1. CVE-2010-4051 (Low)
 Packages:
-	1. alpine-baselayout@3.1.2-r0
-	2. alpine-keys@2.1-r2
-	3. apk-tools@2.10.4-r2
-	CVEs:
-		1. CVE-2021-30139 (High)
-		2. CVE-2021-36159 (Critical)
-	4. busybox@1.30.1-r3
-	CVEs:
-		1. CVE-2021-28831 (High)
-...
+	1. libc-bin@2.28-10
+	2. libc-l10n@2.28-10
+	3. libc6@2.28-10
+	4. locales@2.28-10
 ```
