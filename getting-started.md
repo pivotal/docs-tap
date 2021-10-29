@@ -601,7 +601,7 @@ the workload must be updated to point at the your Tekton pipeline.
 
 ### Install Out of the Box with Testing and Scanning
 
-The first step is to install [Supply Chain Security Tools - Scan](../install-components.html#install-scst-scan) which includes the additional scanning templates which define how the source and image should be scanned.
+The first step is to install [Supply Chain Security Tools - Scan](install-components.md#install-scst-scan) which includes the additional scanning templates which define how the source and image should be scanned.
 
 Next the Out of the Box Testing and Scanning supply chain can be installed.
 
