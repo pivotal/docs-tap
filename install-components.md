@@ -367,7 +367,7 @@ To install Convention Controller:
 Use the following procedure to install Source Controller.
 
 **Prerequisite**: Fluxcd Source Controller installed on the cluster.
-See [Install Prerequisites](install-general.md#prereqs).
+See [Install cert-manager and FluxCD source controller](#install-prereqs).
 
 To install Source Controller:
 
@@ -483,7 +483,7 @@ Before you install Application Accelerator,
 you must have:
 
 - Flux SourceController installed on the cluster.
-See [Install Prerequisites](install-general.md#prereqs).
+See [Install cert-manager and FluxCD source controller](#install-prereqs).
 
 -  Source Controller installed on the cluster.
 See [Install Source Controller](#install-source-controller).
