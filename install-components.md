@@ -274,19 +274,16 @@ You install Convention Servers as part of separate installation procedures.
 For example, you install an `app-live-view` Convention Server as part of the `app-live-view`
 installation.
 
- **Prerequisite**: Cert-manager installed on the cluster. See [Install Prerequisites](install-general.md#prereqs).
+ **Prerequisite**: Cert-manager installed on the cluster. See [Install Prerequisites](#install-prereqs).
 
 To install Convention Controller:
 
 1. List version information for the package by running:
-
     ```bash
-    tanzu package available list PACKAGE-NAME --namespace tap-install
+    tanzu package available list controller.conventions.apps.tanzu.vmware.com --namespace tap-install
     ```
-    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
-     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
-     For example:
-
+    
+    For example:
     ```bash
     $ tanzu package available list controller.conventions.apps.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for controller.conventions.apps.tanzu.vmware.com...
@@ -318,8 +315,10 @@ To install Convention Controller:
     ```bash
     tanzu package install convention-controller -p controller.conventions.apps.tanzu.vmware.com -v 0.4.2 -n tap-install
     ```
-
-    ```bash
+    
+    For example:
+    ```
+    tanzu package install convention-controller -p controller.conventions.apps.tanzu.vmware.com -v 0.4.2 -n tap-install
     / Installing package 'controller.conventions.apps.tanzu.vmware.com'
     | Getting namespace 'tap-install'
     - Getting package metadata for 'controller.conventions.apps.tanzu.vmware.com'
@@ -336,8 +335,10 @@ To install Convention Controller:
     ```bash
     tanzu package installed get convention-controller -n tap-install
     ```
-
-    ```bash
+    
+    For example: 
+    ```
+    tanzu package installed get convention-controller -n tap-install
     Retrieving installation details for convention-controller...
     NAME:                    convention-controller
     PACKAGE-NAME:            controller.conventions.apps.tanzu.vmware.com
@@ -346,20 +347,21 @@ To install Convention Controller:
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
     ```
-
+    
+    STATUS should be 'Reconcile succeeded.'
+    
     ```bash
     kubectl get pods -n conventions-system
     ```
 
     For example:
-
     ```bash
     $ kubectl get pods -n conventions-system
     NAME                                             READY   STATUS    RESTARTS   AGE
     conventions-controller-manager-596c65f75-j9dmn   1/1     Running   0          72s
     ```
 
-    STATUS should be `Running`.
+    STATUS should be 'Running.'
 
 
 ## <a id='install-source-controller'></a> Install Source Controller
@@ -367,19 +369,17 @@ To install Convention Controller:
 Use the following procedure to install Source Controller.
 
 **Prerequisite**: Fluxcd Source Controller installed on the cluster.
-See [Install Prerequisites](install-general.md#prereqs).
+See [Install Prerequisites](#install-prereqs).
 
 To install Source Controller:
 
 1. List version information for the package by running:
 
     ```bash
-    tanzu package available list PACKAGE-NAME --namespace tap-install
+    tanzu package available list controller.source.apps.tanzu.vmware.com --namespace tap-install
     ```
-    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
-     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
-     For example:
-
+    
+    For example:
     ```bash
     $ tanzu package available list controller.source.apps.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for controller.source.apps.tanzu.vmware.com...
@@ -398,7 +398,6 @@ To install Source Controller:
     - `VERSION-NUMBER` is the version of the package listed in step 1 above.
 
     For example:
-
     ```bash
     $ tanzu package available get controller.source.apps.tanzu.vmware.com/0.1.2 --values-schema --namespace tap-install
     ```
@@ -412,7 +411,9 @@ To install Source Controller:
     tanzu package install source-controller -p controller.source.apps.tanzu.vmware.com -v 0.1.2 -n tap-install
     ```
 
-    ```bash
+    For example:
+    ```
+    tanzu package install source-controller -p controller.source.apps.tanzu.vmware.com -v 0.1.2 -n tap-install
     / Installing package 'controller.source.apps.tanzu.vmware.com'
     | Getting namespace 'tap-install'
     - Getting package metadata for 'controller.source.apps.tanzu.vmware.com'
@@ -430,8 +431,10 @@ To install Source Controller:
     ```bash
     tanzu package installed get source-controller -n tap-install
     ```
-
-    ```bash
+    
+    For example:
+    ```
+    tanzu package installed get source-controller -n tap-install
     Retrieving installation details for sourcer-controller...
     NAME:                    sourcer-controller
     PACKAGE-NAME:            controller.source.apps.tanzu.vmware.com
@@ -441,19 +444,20 @@ To install Source Controller:
     USEFUL-ERROR-MESSAGE:
     ```
 
+    STATUS should be 'Reconcile succeeded.'
+    
     ```bash
     kubectl get pods -n source-system
     ```
 
     For example:
-
     ```bash
     $ kubectl get pods -n source-system
     NAME                                        READY   STATUS    RESTARTS   AGE
     source-controller-manager-f68dc7bb6-4lrn6   1/1     Running   0          45h
     ```
 
-    STATUS should be `Running`.
+    STATUS should be 'Running.'
 
 ## <a id='install-app-accelerator'></a> Install Application Accelerator
 
@@ -886,16 +890,16 @@ To install developer conventions:
 
 To install Spring Boot conventions:
 
-**Prerequisite**: Convention Service installed on the cluster, see [Install Convention Service](#install-convention-service).
+**Prerequisite**: Convention Service installed on the cluster, see [Install Convention Service](#install-prereqs).
 
 1. Get the exact name and version information for the Spring Boot conventions package to be installed by running:
 
     ```bash
     tanzu package available list spring-boot-conventions.tanzu.vmware.com --namespace tap-install
     ```
-     For example:
-
-    ```bash
+     
+    For example:
+    ```
     $ tanzu package available list spring-boot-conventions.tanzu.vmware.com --namespace tap-install
     / Retrieving package versions for spring-boot-conventions.tanzu.vmware.com...
       NAME                                       VERSION   RELEASED-AT
@@ -920,7 +924,6 @@ To install Spring Boot conventions:
     ```
 
     For example:
-
     ```bash
     tanzu package installed get spring-boot-conventions -n tap-install
     | Retrieving installation details for spring-boot-conventions...
@@ -931,7 +934,8 @@ To install Spring Boot conventions:
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
     ```
-    STATUS should be `Reconcile succeeded`.
+    
+    STATUS should be 'Reconcile succeeded.'
 
 
 
