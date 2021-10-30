@@ -30,4 +30,5 @@ More to come in FY23! Let us know if there's a scanner you'd like us to support.
   For installation instructions see [Installing Part II: Profiles](../install.md#install-scst-store).
   For usage instructions see [Using the Supply Chain Security Tools - Store](../scst-store/using_metadata_store.md).
 
-* Supply Chain Security Tools - Store CLI to query the Supply Chain Security Tools - Store for CVE results. See [Installing the CLI](../scst-store/cli.md).
+* Supply Chain Security Tools - Store CLI to query the Supply Chain Security Tools - Store for CVE results.
+  See [Installing the CLI](../scst-store/install_cli.md).
