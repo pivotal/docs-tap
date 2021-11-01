@@ -1,4 +1,4 @@
-# Installation Details
+# Deployment Details
 
 The installation creates the following in your Kubernetes cluster:
 
