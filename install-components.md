@@ -1463,6 +1463,20 @@ To install Tanzu Learning Center, see the following sections
 
 To install Supply Chain Security Tools - Store:
 
+1. The deployment assumes the user has set up the k8s cluster to provision persistent volumes on demand. Make sure a default storage class is be available in your cluster. Check whether default storage class is set in your cluster by running:
+
+    ```
+    kubect get storageClass
+    ```
+
+    For example:
+
+    ```
+    $ kubectl get storageClass
+    NAME                 PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+    standard (default)   rancher.io/local-path   Delete          WaitForFirstConsumer   false                  7s
+    ```
+
 1. List version information for the package by running:
 
     ```bash
