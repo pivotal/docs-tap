@@ -58,7 +58,7 @@ tanzu imagepullsecret add scc-registry-credentials \
 ```
 
 _ps.: note that the REGISTRY here _must_ be the same as the one set in the
-values file during [Install default Supply Chain](./../install.md#install-ootb-supply-chain-basic)._
+values file during [Install default Supply Chain](./../install-components.md#install-ootb-supply-chain-basic)._
 
 
 ## Out of the Box Supply Chain Basic (source-to-url)
