@@ -73,7 +73,7 @@ The page includes the below features:
 ### Threads Page
     
 To navigate to the Threads page, the user should select the Threads option from the Information Category dropdown.
-This page displays all the details related to JVM threads and running processes of the application.
+This page displays all details related to JVM threads and running processes of the application.
 This tracks live threads and daemon threads real-time. It is a snapshot of different thread states.
 Navigating to a thread state displays all the information about a particular thread and its stack trace.
 The page also has a feature to download thread dump for analysis purposes.
