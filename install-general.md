@@ -91,7 +91,7 @@ See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes d
                 tkg-vc-antrea-admin@tkg-vc-antrea   tkg-vc-antrea     tkg-vc-antrea-admin
         ```
 
-    2.  Set the context to the cluster that you want to use for the TAP packages install.
+    2.  Set the context to the cluster that you want to use for the Tanzu Application Platform packages install.
         For example set the context to the `aks-tap-cluster` context by running:
 
         ```
@@ -398,9 +398,9 @@ To install the Tanzu CLI on a Windows operating system:
    
    **Note regarding the output from `tanzu plugin list`:**
    The `package`, `secret`, `accelerator` and `apps` plugins are required 
-   to install or interact with the Tanzu Application Platform (TAP). 
+   to install or interact with the Tanzu Application Platform. 
    The additional plugins you see in the list can be ignored (you will not need to use 
-   them to interact with TAP).
+   them to interact with Tanzu Application Platform).
     
    The Tanzu Application Platform beta product requires cluster-admin privileges. 
    Running commands associated with the additional plugins can 
@@ -408,9 +408,9 @@ To install the Tanzu CLI on a Windows operating system:
    `management-cluster` and `pinniped-auth` commands.
 
 
-## <a id='udpate-previous-tap-tanzu-cli'></a>Instructions for updating Tanzu CLI that was installed for a previous TAP release
+## <a id='udpate-previous-tap-tanzu-cli'></a>Instructions for updating Tanzu CLI that was installed for a previous Tanzu Application Platform release
 
-If you'd like to the update the Tanzu CLI core and plugins you installed previously for TAP Beta 2:
+If you'd like to the update the Tanzu CLI core and plugins you installed previously for Tanzu Application Platform Beta 2:
 
 1.  Create a directory named `tanzu` by running:
     ```console
@@ -477,12 +477,12 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
     secret              v0.9.0          Tanzu secret management                                            core        v0.8.0   upgrade available
     ```
     
-1. You may now proceed with installing TAP via **[Installing Part II: Profiles](install.md)**.
+1. You may now proceed with installing Tanzu Application Platform via **[Installing Part II: Profiles](install.md)**.
 
 ## <a id='udpate-tkg-tce-tanzu-cli'></a>Instructions for updating Tanzu CLI that was previously installed for Tanzu Kubernetes Grid and Tanzu Community Edition
 
 If you'd like to maintain the Tanzu CLI core and plugins you installed previously 
-for interacting with Tanzu Kubernetes Grid or Tanzu Community Edition, you only need to update/add the TAP-specific plugins as follows:
+for interacting with Tanzu Kubernetes Grid or Tanzu Community Edition, you only need to update/add the Tanzu Application Platform specific plugins as follows:
 
 1. Create a directory named `tanzu` by running:
     ```console
@@ -542,7 +542,7 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
     tanzu plugin install package --local ./cli
     ```
     
-1. Verify the TAP plugins present:
+1. Verify the Tanzu Application Platform plugins present:
     ```bash
     tanzu plugin list
     ```
