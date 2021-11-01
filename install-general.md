@@ -16,24 +16,24 @@ The following are required to install Tanzu Application Platform:
 Installation requires:
 * A [Tanzu Network](https://network.tanzu.vmware.com/) account to download Tanzu Application Platform packages
 
-* A container image registry, such as [Harbor](https://goharbor.io/) or 
-[Docker Hub](https://hub.docker.com/) 
-with at least **10&nbsp;GB** of available storage for application images, base images, and runtime 
-dependencies 
+* A container image registry, such as [Harbor](https://goharbor.io/) or
+[Docker Hub](https://hub.docker.com/)
+with at least **10&nbsp;GB** of available storage for application images, base images, and runtime
+dependencies
 
-* Registry credentials with push and write access made available to Tanzu Application Platform to store 
-images 
+* Registry credentials with push and write access made available to Tanzu Application Platform to store
+images
 
-* Registry credentials for components that pull and read public images from Docker Hub to avoid rate limiting 
+* Registry credentials for components that pull and read public images from Docker Hub to avoid rate limiting
 
-* Network access to https://registry.tanzu.vmware.com 
+* Network access to https://registry.tanzu.vmware.com
 
 * Network access to your chosen container image registry
 
 * Latest version of Chrome, Firefox, or Edge
 
-    **Note:** 
-    
+    **Note:**
+
      *  Tanzu Application Platform GUI currently does not support Safari browser.
 
 ### Kubernetes Cluster Requirements
@@ -55,7 +55,7 @@ Installation requires:
         * VMware recommends at least 16 GB of total host memory.
         * On Mac OS only hyperkit driver is supported. Docker driver is not supported.
    * Tanzu Kubernetes Grid v1.4
-        * Do not use a Tanzu Kubernetes Grid cluster that runs production workloads. 
+        * Do not use a Tanzu Kubernetes Grid cluster that runs production workloads.
         * To install Tanzu Application Platform on Tanzu Kubernetes Grid v1.4,
           see [Installing with Tanzu Kubernetes Grid v1.4](install-tkg.md).
    * Tanzu Community Edition x.x
@@ -67,17 +67,17 @@ Installation requires:
     Your cluster must support the creation of Services of type `LoadBalancer` to install Cloud Native Runtimes package. The exception is [`provider: local` installation](#install-cnr), which removes container replication and uses `NodePort` Services for HTTP ingress. For information about services of type `LoadBalancer`, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer) and your cloud provider documentation. For information about Tanzu Kubernetes Grid support for Service type `LoadBalancer`, see [Install VMware NSX Advanced Load Balancer on a vSphere Distributed Switch](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.3/vmware-tanzu-kubernetes-grid-13/GUID-mgmt-clusters-install-nsx-adv-lb.html#nsx-advanced-load-balancer-deployment-topology-0).
 
     Your cluster must also have at least **70&nbsp;GB** of disk per node.
-  
-* [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) 
-must be configured so that Tanzu Application Platform controller 
-pods can run as root. 
+
+* [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/)
+must be configured so that Tanzu Application Platform controller
+pods can run as root.
 
 ### Tools and CLI Requirements
 Installation requires:
 
 * [kapp Carvel command line tool](https://github.com/vmware-tanzu/carvel-kapp/releases) v0.37.0 or later
 
-* The Kubernetes CLI, kubectl, v1.19, v1.20 or v1.21, installed and authenticated with administrator rights for your target cluster. 
+* The Kubernetes CLI, kubectl, v1.19, v1.20 or v1.21, installed and authenticated with administrator rights for your target cluster.
 See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes documentation.
 
 * To set the Kubernetes cluster context:
@@ -107,11 +107,11 @@ See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes d
         ```
         $ kubectl config use-context aks-tap-cluster
         Switched to context "aks-tap-cluster".
-        
+
 * kapp-controller v0.29.0 or later:
-    
-    **Note:** 
-    
+
+    **Note:**
+
      *  If you are using Tanzu Kubernetes Grid v1.4, see [Install kapp-controller](install-tkg.md#install-kappcontroller-1).
      *  If you are using Tanzu Community Edition , see [Install kapp-controller](install-tce.md#install-kappcontroller-1).
     * Install kapp-controller by running:
@@ -135,12 +135,12 @@ See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes d
          Pod status should be Running.
 
     * (Optional) Verify installed kapp-controller version:
-      
+
       1. Get kapp-controller deployment and namespace by running:
          ```
          kubectl get deployments -A | grep kapp-controller
          ```
-         
+
          For example:
          ```
          kubectl get deployments -A | grep kapp-controller
@@ -229,7 +229,7 @@ To accept EULAs:
 
 ## <a id='cli-and-plugin'></a> Install or Update the Tanzu CLI and Plugins
 
-**_Choose the install scenario that is right for you:_** 
+**_Choose the install scenario that is right for you:_**
 * **[Instructions for a clean install of Tanzu CLI](#tanzu-cli-clean-install)**
 * **[Instructions for updating Tanzu CLI that was installed for a previous Tanzu Application Platform release](#udpate-previous-tap-tanzu-cli)**
 * **[Instructions for updating Tanzu CLI that was previously installed for Tanzu Kubernetes Grid and Tanzu Community Edition](#udpate-tkg-tce-tanzu-cli)**  
@@ -273,7 +273,7 @@ To install the Tanzu CLI on a Linux operating system:
    tanzu version
    ```
    Expect `version: v0.8.0`
-   
+
 8. Proceed to [Instructions for a clean install of Tanzu CLI Plugins](#cli-plugin-clean-install).
 
 
@@ -309,7 +309,7 @@ To install the Tanzu CLI on a Mac operating system:
    ```
    Expect `version: v0.8.0`
 
-   **If you see the following warning when running `tanzu version` on macOS:** 
+   **If you see the following warning when running `tanzu version` on macOS:**
    ```
    "tanzu" cannot be opened because the developer cannot be verified
    ```
@@ -332,7 +332,7 @@ To install the Tanzu CLI on a Mac operating system:
 
    After completing the steps above, there should be no more security issues while running Tanzu CLI commands.
 
-8. Proceed to [Instructions for a clean install of Tanzu CLI Plugins](#cli-plugin-clean-install). 
+8. Proceed to [Instructions for a clean install of Tanzu CLI Plugins](#cli-plugin-clean-install).
 
 
 #### <a id='windows-cli'></a>Windows: Install the Tanzu CLI
@@ -373,10 +373,10 @@ To install the Tanzu CLI on a Windows operating system:
     ```
     Expect `version: v0.8.0`
 
-14. Proceed to [Instructions for a clean install of Tanzu CLI Plugins](#cli-plugin-clean-install) 
+14. Proceed to [Instructions for a clean install of Tanzu CLI Plugins](#cli-plugin-clean-install)
 
 
-## <a id='cli-plugin-clean-install'></a>Instructions for a clean install of Tanzu CLI Plugins 
+## <a id='cli-plugin-clean-install'></a>Instructions for a clean install of Tanzu CLI Plugins
 1. Run the following command from the `tanzu` directory:
     ```bash
     tanzu plugin install --local cli all
@@ -401,16 +401,16 @@ To install the Tanzu CLI on a Windows operating system:
      secret              v0.8.0          Tanzu secret management                                            core        v0.8.0       installed
     ```   
 3. You may now proceed with installing Tanzu Application Platform. For more information, see **[Installing Part II: Profiles](install.md)**.     
-   
+
    **Note regarding the output from `tanzu plugin list`:**
-   The `package`, `secret`, `accelerator` and `apps` plugins are required 
-   to install or interact with the Tanzu Application Platform. 
-   The additional plugins you see in the list can be ignored (you will not need to use 
+   The `package`, `secret`, `accelerator` and `apps` plugins are required
+   to install or interact with the Tanzu Application Platform.
+   The additional plugins you see in the list can be ignored (you will not need to use
    them to interact with Tanzu Application Platform).
-    
-   The Tanzu Application Platform beta product requires cluster-admin privileges. 
-   Running commands associated with the additional plugins can 
-   have unintended side-effects. VMware recommends against running `cluster`, `kubernetes-release`, `login`, 
+
+   The Tanzu Application Platform beta product requires cluster-admin privileges.
+   Running commands associated with the additional plugins can
+   have unintended side-effects. VMware recommends against running `cluster`, `kubernetes-release`, `login`,
    `management-cluster` and `pinniped-auth` commands.
 
 
@@ -453,18 +453,18 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
     tanzu update --local ./cli
     ```
     Expect to see a user prompt - submit "y"
-    
+
 1. Manually install the new `secret` plugin
     ```
     tanzu plugin install secret --local ./cli   
     ```
-    
+
 1. Check installation status for Tanzu CLI Core
     ```bash
     tanzu version
     ```
     Expect `version: v0.8.0`
-    
+
 1. Check installation status for Tanzu CLI Core
     ```bash
     tanzu plugin list
@@ -482,19 +482,19 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
     pinniped-auth       v0.9.0          Pinniped authentication operations (usually not directly invoked)  core        v0.8.0   upgrade available
     secret              v0.9.0          Tanzu secret management                                            core        v0.8.0   upgrade available
     ```
-    
+
 1. You may now proceed with installing Tanzu Application Platform via **[Installing Part II: Profiles](install.md)**.
 
 ## <a id='udpate-tkg-tce-tanzu-cli'></a>Instructions for updating Tanzu CLI that was previously installed for Tanzu Kubernetes Grid and Tanzu Community Edition
 
-If you'd like to maintain the Tanzu CLI core and plugins you installed previously 
+If you'd like to maintain the Tanzu CLI core and plugins you installed previously
 for interacting with Tanzu Kubernetes Grid or Tanzu Community Edition, you only need to update/add the Tanzu Application Platform specific plugins as follows:
 
 1. Create a directory named `tanzu` by running:
     ```console
     mkdir $HOME/tanzu
     ```
-    
+
 1. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
 
 1. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/)
@@ -527,7 +527,7 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
     ```bash
     tanzu plugin delete package
     ```
-    
+
 1. Install the `secret` plugin by running:
     ```bash
     tanzu plugin install secret --local ./cli
@@ -542,12 +542,12 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
     ```bash
     tanzu plugin install apps --local ./cli
     ```
-    
+
 1. Install the updated `package` plugin by running:
     ```bash
     tanzu plugin install package --local ./cli
     ```
-    
+
 1. Verify the Tanzu Application Platform plugins present:
     ```bash
     tanzu plugin list
@@ -564,3 +564,5 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
  1. You may now proceed with installing Tanzu Application Platform on Tanzu Kubernetes Grid or Tanzu Community Edition. For more information, see:
     * **[Installing Tanzu Application Platform on a Tanzu Community Edition v0.9.1 Cluster](install-tce.html#install-tap)**
     * **[Installing Tanzu Application Platform on a Tanzu Kubernetes Grid v1.4 Cluster](install-tkg.html#install-tap)**
+
+Now you are ready to proceed to [Installing Part II: Profiles](GUID-install.html#installingpartII:profiles)
