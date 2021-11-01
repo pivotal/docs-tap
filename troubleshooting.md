@@ -32,7 +32,7 @@ are missing or incorrect.
 
 To fix this problem:
 
-1. Repeat the step to create a secret for the namespace, see [Add the TAP Package Repository](install.md#add-package-repositories).
+1. Repeat the step to create a secret for the namespace, see [Add the Tanzu Application Platform Package Repository](install.md#add-package-repositories).
    Ensure that you provide the correct credentials.
 
    When the secret has the correct credentials,
