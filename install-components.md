@@ -1272,14 +1272,14 @@ field in the values file.
 
 ## <a id='install-learning-center'></a> Install Learning Center
 
-To install Tanzu Learning Center, see the following sections
+To install Tanzu Learning Center, see the following sections.
 
 ### Prerequisites in Addition to Tanzu Application Platform [Requirements](install-general.md#prereqs)
 **Required**
-- Make sure you have a proper Ingress Controller configured with a wild card domain name
+- Make sure you have a proper Ingress Controller configured with a wild card domain name.
 
 ### Procedure to install Learning Center
-1. List version information for the package by running
+1. List version information for the package by running:
    
    ```shell
    $ tanzu package available list learningcenter.tanzu.vmware.com --namespace tap-install
@@ -1290,11 +1290,11 @@ To install Tanzu Learning Center, see the following sections
      NAME                             VERSION        RELEASED-AT
      learningcenter.tanzu.vmware.com  1.0.8-build.1  2021-10-22 17:02:13 -0400 EDT
    ```
-2. (Optional) If you want to see all the configurable parameters on this package you can run the following command
+2. (Optional) If you want to see all the configurable parameters on this package you can run the following command:
    ```shell
    $ tanzu package available get learningcenter.tanzu.vmware.com/1.0.8-build.1 --values-schema --namespace tap-install
    ```
-3. Create a config file (e.g. learning-center-config.yaml) with the following parameters
+3. Create a config file (e.g. learning-center-config.yaml) with the following parameters:
      ```yaml
      ingressDomain: <INGRESS_DOMAIN>
      ```
@@ -1306,21 +1306,21 @@ To install Tanzu Learning Center, see the following sections
    * Make sure to replace the <INGRESS_DOMAIN> domain with the domain name for your Kubernetes cluster.
 
    > **Note:** For the custom domain you are using, DNS must have been configured with a wildcard domain to forward 
-   > all requests for subdomains of the custom domain, to the ingress router of the Kubernetes cluster.
+   > all requests for subdomains of the custom domain to the ingress router of the Kubernetes cluster.
 
-   > **Note:** If you are running Kubernetes on your local machine using a system like ``minikube`` and you don't 
-   > have a custom domain name which maps to the IP for the cluster, you can use a ``nip.io`` address. 
+   > **Note:** If you are running Kubernetes on your local machine using a system like ``minikube``, and you don't 
+   > have a custom domain name that maps to the IP for the cluster, you can use a ``nip.io`` address. 
    > For example, if ``minikube ip`` returned ``192.168.64.1``, you could use the 192.168.64.1.nip.io domain. 
-   > Note that you cannot use an address of form ``127.0.0.1.nip.io``, or ``subdomain.localhost``. This will cause a 
-   > failure as internal services when needing to connect to each other, would end up connecting to themselves instead, 
+   > Note that you cannot use an address of form ``127.0.0.1.nip.io`` or ``subdomain.localhost``. This will cause a 
+   > failure. Internal services needing to connect to each other will connect to themselves instead, 
    > since the address would resolve to the host loopback address of ``127.0.0.1``.
 
-4. Install Learning Center Operator
+4. Install Learning Center Operator:
    ```shell
    $ tanzu package install learning-center --package-name learningcenter.tanzu.vmware.com --version 1.0.8-build.1 -f learning-center-config.yaml
    ```
 
-   The command above will create a default namespace in your Kubernetes cluster called ``educates`` and the operator along with any 
+   The command above will create a default namespace in your Kubernetes cluster called ``educates``, and the operator along with any 
    required namespaced resources will be created in it. A set of custom resource definitions and a global cluster role binding will also be created. 
    The list of resources you should see being created are:
 
