@@ -195,7 +195,7 @@ Currently, Spring Boot based applications can be diagnosed using Application Liv
 
 Make sure that you have installed Application Live View components successfully.
 
-Access Application Live View TAP GUI following the instruction
+Access Application Live View Tanzu Application Platform GUI following the instruction
 [here](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.3/tap-0-3/GUID-tap-gui-plugins-app-live-view.html).
 Select your application to look inside the running application and
 [explore](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.3/docs/GUID-product-features.html)
@@ -417,7 +417,7 @@ Tekton pipeline.
    </td>
    <td><code>ootb-supply-chain-testing-scanning.tanzu.vmware.com</code>
    </td>
-   <td>The Out of the Box Testing and Scanning contains all of the same elements as the Out of the Box Testing supply chiains but it also includes integrations out of the box with the secure scanning components of TAP.
+   <td>The Out of the Box Testing and Scanning contains all of the same elements as the Out of the Box Testing supply chiains but it also includes integrations out of the box with the secure scanning components of Tanzu Application Platform.
 <ul>
 
 <li>The application will be testing using the provided tekton pipeline
@@ -435,7 +435,7 @@ Tekton pipeline.
    <td>All of the Source to URL dependencies, as well as:
 <ul>
 
-<li>The secure scanning components included with TAP
+<li>The secure scanning components included with Tanzu Application Platform
 </li>
 </ul>
    </td>
@@ -1094,7 +1094,7 @@ This use case is similar to the above in that we will be binding a sample applic
 
     * This cluster will henceforth be referred to as the **Service Cluster**
 
-2. Download and install the kubectl-scp plugin from [TAP Tanzu Network Page](https://network.tanzu.vmware.com/products/tanzu-application-platform).
+2. Download and install the kubectl-scp plugin from [Tanzu Application Platform Tanzu Network Page](https://network.tanzu.vmware.com/products/tanzu-application-platform).
 To install the plugin you must place it in your PATH and ensure it is executable. For example:
 
 
