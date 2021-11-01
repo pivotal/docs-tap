@@ -1,12 +1,12 @@
 # Uninstalling Tanzu Application Platform
 
-This document describes how to uninstall Tanzu Application Platform packages from the TAP package repository.
+This document describes how to uninstall Tanzu Application Platform packages from the Tanzu Application Platform package repository.
 
 The process for uninstalling Tanzu Application Platform is made up of two tasks:
 
 + [Delete the Packages](#del-packages)
 
-+ [Delete the TAP Package Repository](#del-repo)
++ [Delete the Tanzu Application Platform Package Repository](#del-repo)
 
 ## <a id='del-packages'></a> Delete the Packages
 
@@ -43,11 +43,11 @@ To delete the installed packages:
 3. Repeat step 2 for each package installed.
 
 
-## <a id='del-repo'></a>Delete the TAP Package Repository
+## <a id='del-repo'></a>Delete the Tanzu Application Platform Package Repository
 
-To delete the TAP package repository:
+To delete the Tanzu Application Platform package repository:
 
-1. Retrieve the name of the TAP package repository by running the command:
+1. Retrieve the name of the Tanzu Application Platform package repository by running the command:
     ```
     tanzu package repository list --namespace tap-install
     ```
@@ -60,7 +60,7 @@ To delete the TAP package repository:
     ```
     
 
-2. Remove the TAP package repository by running:
+2. Remove the Tanzu Application Platform package repository by running:
 
     ```
     tanzu package repository delete PACKAGE-REPO-NAME --namespace tap-install
