@@ -226,7 +226,7 @@ To accept EULAs:
 **_Choose the install scenario that is right for you:_** 
 * **[Instructions for a clean install of Tanzu CLI](#tanzu-cli-clean-install)**
 * **[Instructions for updating Tanzu CLI that was installed for a previous TAP release](#udpate-previous-tap-tanzu-cli)**
-* **[Instructions for updating Tanzu CLI that was previously installed for TKG/TCE](#udpate-tkg-tce-tanzu-cli)**  
+* **[Instructions for updating Tanzu CLI that was previously installed for Tanzu Kubernetes Grid and Tanzu Community Edition](#udpate-tkg-tce-tanzu-cli)**  
 
 
 ### <a id='tanzu-cli-clean-install'></a>Instructions for a Clean Install of Tanzu CLI
@@ -479,10 +479,10 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
     
 1. You may now proceed with installing TAP via **[Installing Part II: Profiles](install.md)**.
 
-## <a id='udpate-tkg-tce-tanzu-cli'></a>Instructions for updating Tanzu CLI that was previously installed for TKG/TCE
+## <a id='udpate-tkg-tce-tanzu-cli'></a>Instructions for updating Tanzu CLI that was previously installed for Tanzu Kubernetes Grid and Tanzu Community Edition
 
 If you'd like to maintain the Tanzu CLI core and plugins you installed previously 
-for interacting with TKG or TCE, you only need to update/add the TAP-specific plugins as follows:
+for interacting with Tanzu Kubernetes Grid or Tanzu Community Edition, you only need to update/add the TAP-specific plugins as follows:
 
 1. Create a directory named `tanzu` by running:
     ```console
@@ -555,6 +555,6 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
     secret              v0.9.0          Tanzu secret management                                            core        v0.8.0   upgrade available
     ```
 
- 1. You may now proceed with installing TAP on TCE or TKG:
+ 1. You may now proceed with installing TAP on Tanzu Kubernetes Grid or Tanzu Community Edition:
     * **[Installing TAP on a Tanzu Community Edition v0.9.1 Cluster](install-tce.html#install-tap)**
     * **[Installing TAP on a Tanzu Kubernetes Grid v1.4 Cluster](install-tkg.html#install-tap)**
