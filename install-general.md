@@ -225,7 +225,7 @@ To accept EULAs:
 
 **_Choose the install scenario that is right for you:_** 
 * **[Instructions for a clean install of Tanzu CLI](#tanzu-cli-clean-install)**
-* **[Instructions for updating Tanzu CLI that was installed for a previous TAP release](#udpate-previous-tap-tanzu-cli)**
+* **[Instructions for updating Tanzu CLI that was installed for a previous Tanzu Application Platform release](#udpate-previous-tap-tanzu-cli)**
 * **[Instructions for updating Tanzu CLI that was previously installed for Tanzu Kubernetes Grid and Tanzu Community Edition](#udpate-tkg-tce-tanzu-cli)**  
 
 
@@ -394,7 +394,7 @@ To install the Tanzu CLI on a Windows operating system:
      pinniped-auth       v0.8.0          Pinniped authentication operations (usually not directly invoked)  core        v0.8.0       installed
      secret              v0.8.0          Tanzu secret management                                            core        v0.8.0       installed
     ```   
-3. You may now proceed with installing TAP via **[Installing Part II: Profiles](install.md)**.     
+3. You may now proceed with installing Tanzu Application Platform via **[Installing Part II: Profiles](install.md)**.     
    
    **Note regarding the output from `tanzu plugin list`:**
    The `package`, `secret`, `accelerator` and `apps` plugins are required 
@@ -555,6 +555,6 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
     secret              v0.9.0          Tanzu secret management                                            core        v0.8.0   upgrade available
     ```
 
- 1. You may now proceed with installing TAP on Tanzu Kubernetes Grid or Tanzu Community Edition:
-    * **[Installing TAP on a Tanzu Community Edition v0.9.1 Cluster](install-tce.html#install-tap)**
-    * **[Installing TAP on a Tanzu Kubernetes Grid v1.4 Cluster](install-tkg.html#install-tap)**
+ 1. You may now proceed with installing Tanzu Application Platform on Tanzu Kubernetes Grid or Tanzu Community Edition:
+    * **[Installing Tanzu Application Platform on a Tanzu Community Edition v0.9.1 Cluster](install-tce.html#install-tap)**
+    * **[Installing Tanzu Application Platform on a Tanzu Kubernetes Grid v1.4 Cluster](install-tkg.html#install-tap)**
