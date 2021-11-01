@@ -1297,10 +1297,6 @@ To install Tanzu Learning Center, see the following sections
 3. Create a config file (e.g. learning-center-config.yaml) with the following parameters
      ```yaml
      ingressDomain: <INGRESS_DOMAIN>
-     imageRegistry: <IMAGE-REGISTRY-URL>
-       host: <HOST-DOMAIN>
-       username: <USERNAME>
-       password: <PASSWORD>
      ```
    #### Setting the ingress domain
 
@@ -1318,11 +1314,6 @@ To install Tanzu Learning Center, see the following sections
    > Note that you cannot use an address of form ``127.0.0.1.nip.io``, or ``subdomain.localhost``. This will cause a 
    > failure as internal services when needing to connect to each other, would end up connecting to themselves instead, 
    > since the address would resolve to the host loopback address of ``127.0.0.1``.
-
-   #### Setting image registry credentials
-
-   Primary image registry where Learning Center container images are stored. 
-   * Make sure to replace `<HOST-DOMAIN>, <USERNAME> and <PASSWORD>` with your registry settings
 
 4. Install Learning Center Operator
    ```shell
