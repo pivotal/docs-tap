@@ -15,7 +15,7 @@ This issue is caused because the catalog plugin can't read the Git location of y
 
 There are a number of potential causes:
 
-1. Make sure you've either built your own [Backstage Compatible](http://backstage.io) catalog, or that you've downloaded one of the Tanzu Application Platform GUI catalogs from the Tanzu Network (the same place you download Tanzu Application Platform itself from). Make sure that you define the catalog in the values file that you input as part of installation. If you need to update this location, you can change the definition file (Either the TAP profile one if you used the profile method to install or the standalone TAP GUI values file if you're only installing that package on it's own)
+1. Make sure you've either built your own [Backstage Compatible](http://backstage.io) catalog, or that you've downloaded one of the Tanzu Application Platform GUI catalogs from the Tanzu Network (the same place you download Tanzu Application Platform itself from). Make sure that you define the catalog in the values file that you input as part of installation. If you need to update this location, you can change the definition file (Either the Tanzu Application Platform profile one if you used the profile method to install or the standalone Tanzu Application Platform GUI values file if you're only installing that package on it's own)
 
 ```yaml
     namespace: tap-gui
@@ -46,7 +46,7 @@ Other integrations can be substituted here as defined in the [Backstage document
 ## <a id='updating-tap-gui-values'></a> Issues Updating the Values File
 ### Symptom
 
-When you need to update the configuration of TAP GUI (either through the profiles method or as a standalone package install), how can you tell if the configuration has been reloaded?
+When you need to update the configuration of Tanzu Application Platform GUI (either through the profiles method or as a standalone package install), how can you tell if the configuration has been reloaded?
 
 ### Suggestions
 
@@ -65,7 +65,7 @@ Find this line:
 ```
 
 
-2. Since the TAP-GUI pods aren't stateful (config is held in ConfigMaps, Git catalog, or Secrets), you can always trying killing the pod and allowing it to be re-instantiated:
+2. Since the `tap-gui` pods aren't stateful (config is held in ConfigMaps, Git catalog, or Secrets), you can always trying killing the pod and allowing it to be re-instantiated:
 
 ```bash
 $ kubectl delete pod -l app=backstage -n tap-gui
