@@ -30,7 +30,7 @@ Tanzu Packages:
   - Image Source Controller v
   - Developer Conventions v
 - API Portal for VMware Tanzu v
-- Service Control Plane Toolkit v
+- Services Toolkit v
 - Service Bindings for Kubernetes v
 - Tanzu Application Platform GUI v0.3.0
   - Workload Visibility Plugin v1.0.0

@@ -292,7 +292,7 @@ This table lists the packages that are contained in each profile:
    </td>
   </tr>
   <tr>
-   <td>Services Control Plane Toolkit
+   <td>Services Toolkit
    </td>
    <td>&check;
    </td>
