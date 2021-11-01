@@ -104,7 +104,7 @@ data:
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: service-account   # must match the name configured in the supply chain
+  name: default   # must match the name configured in the supply chain
                           # for source-to-url, must be "service-account"
 secrets:
   - name: scc-registry-credentials
@@ -178,7 +178,7 @@ data:
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: service-account   # must match the name configured in the supply chain
+  name: default   # must match the name configured in the supply chain
                   # installation (defaults to `service-account`)
 secrets:
   - name: scc-registry-credentials

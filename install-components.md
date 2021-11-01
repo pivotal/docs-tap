@@ -2178,7 +2178,7 @@ run the following commands to add credentials and Role-Based Access Control (RBA
     apiVersion: v1
     kind: ServiceAccount
     metadata:
-      name: service-account # use value from "Install default Supply Chain"
+      name: default # use value from "Install default Supply Chain"
     secrets:
       - name: registry-credentials
     imagePullSecrets:
@@ -2222,7 +2222,7 @@ run the following commands to add credentials and Role-Based Access Control (RBA
       name: kapp-permissions
     subjects:
       - kind: ServiceAccount
-        name: service-account # use value from "Install default Supply Chain"
+        name: default # use value from "Install default Supply Chain"
 
     EOF
     ```
