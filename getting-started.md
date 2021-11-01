@@ -438,9 +438,7 @@ Tekton pipeline.
 
 ### Install Out of the Box with Testing
 
-The first step is to install Tekton, which was not installed in the installation docs as
-it is only a requirement for the **Out of the Box Basic** supply chain.
-The next section walks you through installing Tekton on your cluster.
+The first step is to install Tekton, which was only installed if you added `install_tekton: true` to your `tap-values.yaml`. If you did not, this next section walks you through installing Tekton on your cluster.
 
 
 #### Install Tekton
