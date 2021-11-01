@@ -565,4 +565,4 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
     * **[Installing Tanzu Application Platform on a Tanzu Community Edition v0.9.1 Cluster](install-tce.html#install-tap)**
     * **[Installing Tanzu Application Platform on a Tanzu Kubernetes Grid v1.4 Cluster](install-tkg.html#install-tap)**
 
-Now you are ready to proceed to [Installing Part II: Profiles](GUID-install.html)
+Now you are ready to proceed to **[Installing Part II: Profiles](install.md#installingpartII:profiles)**
