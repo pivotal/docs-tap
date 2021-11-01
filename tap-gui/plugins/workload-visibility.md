@@ -26,7 +26,7 @@ Developers need to perform the following actions to see their running Workloads 
 
 * Commit and push the Component definition to a Git repository that is registered as a Catalog Location. See [Adding
   Catalog Entities](../catalog/catalog-operations.md#adding-catalog-entities) in the Catalog Operations documentation.
-* Create a Kubernetes Workload, with a label matching the Component's selector, in a cluster available to the TAP
+* Create a Kubernetes Workload, with a label matching the Component's selector, in a cluster available to the Tanzu Application Platform
   GUI. A Workload is one of:
   * `v1/Service`
   * `apps/v1/Deployment`
