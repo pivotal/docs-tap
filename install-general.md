@@ -30,6 +30,12 @@ images
 
 * Network access to your chosen container image registry
 
+* Latest version of Chrome, Firefox, or Edge
+
+    **Note:** 
+    
+     *  Tanzu Application Platform GUI currently does not support Safari browser.
+
 ### Kubernetes Cluster Requirements
 Installation requires:
 
