@@ -834,48 +834,18 @@ To install developer conventions:
 
 **Prerequisite**: Convention Service installed on the cluster, see [Install Convention Service](#install-convention-service).
 
-1. List version information for the package by running:
+1. Get the exact name and version information for the Developer Conventions package to be installed by running:
 
     ```bash
-    tanzu package available list PACKAGE-NAME --namespace tap-install
+    $ tanzu package available list developer-conventions.tanzu.vmware.com --namespace tap-install
     ```
-    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
-     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
-     For example:
 
+    For example:
     ```bash
     $ tanzu package available list developer-conventions.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for developer-conventions.tanzu.vmware.com
       NAME                                    VERSION        RELEASED-AT
       developer-conventions.tanzu.vmware.com  0.3.0-build.1  2021-10-19T00:00:00Z
-    ```
-
-1. To make changes to the default installation settings, run:
-
-
-    ```bash
-    tanzu package available get developer-conventions.tanzu.vmware.com/0.3.0-build.1 -n tap-install
-    ```
-
-    For example:
-
-    ```console
-    $ tanzu package available get developer-conventions.tanzu.vmware.com/0.3.0-build.1 -n tap-install
-    \ Retrieving package details for developer-conventions.tanzu.vmware.com/0.3.0-build.1...
-    NAME:                             developer-conventions.tanzu.vmware.com
-    VERSION:                          0.3.0-build.1
-    RELEASED-AT:                      2021-10-19T00:00:00Z
-    DISPLAY-NAME:                     Tanzu App Platform Developer Conventions
-    SHORT-DESCRIPTION:                Developer Conventions
-    PACKAGE-PROVIDER:                 VMware
-    MINIMUM-CAPACITY-REQUIREMENTS:
-    LONG-DESCRIPTION:                 Tanzu App Platform Developer Conventions
-    MAINTAINERS:                      [{Lisa Burns} {Paul Warren} {Harsha Nandiwada} {Kiwi Bui} {Ming Xiao} {Anthony Pensiero}]
-    RELEASE-NOTES:                    Developer Conventions contents package
-
-    LICENSE:                          []
-    SUPPORT:                          https://tanzu.vmware.com/support
-    CATEGORY:                         []
     ```
 
 1. Install the package by running:
@@ -886,6 +856,26 @@ To install developer conventions:
       --version 0.3.0-build.1 \
       --namespace tap-install
     ```
+
+1. Verify the package install by running:
+
+    ```bash
+    tanzu package installed get developer-conventions --namespace tap-install
+    ```
+
+    For example:
+    ```bash
+    tanzu package installed get developer-conventions -n tap-install
+    | Retrieving installation details for developer-conventions...
+    NAME:                    developer-conventions
+    PACKAGE-NAME:            developer-conventions.tanzu.vmware.com
+    PACKAGE-VERSION:         0.3.0-build.1
+    STATUS:                  Reconcile succeeded
+    CONDITIONS:              [{ReconcileSucceeded True  }]
+    USEFUL-ERROR-MESSAGE:
+    ```
+    
+    STATUS should be 'Reconcile succeeded.'
 
 
 ## <a id='install-spring-boot-convention'></a> Install Spring Boot Conventions
