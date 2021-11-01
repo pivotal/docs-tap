@@ -131,7 +131,7 @@ If you want to set up one of our demos, you can choose between a blank or a samp
 The [Yelb](https://github.com/mreferre/yelb/tree/master/deployments/platformdeployment/Kubernetes/yaml) demo catalog includes all the components that make up the Yelb system as well as the default Backstage components. 
 #### Install Yelb
 1. Download the appropriate file for running the Yelb application itself from [here](https://github.com/mreferre/yelb/tree/master/deployments/platformdeployment/Kubernetes/yaml)
-2. Install the application on the Kubernetes cluster that you've used for Tanzau Application Platform. It's important to preserve the metadata labels on the Yelb application's objects.
+2. Install the application on the Kubernetes cluster that you've used for Tanzu Application Platform. It's important to preserve the metadata labels on the Yelb application's objects.
 
 
 #### Install Yelb Catalog
