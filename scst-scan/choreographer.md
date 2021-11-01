@@ -6,12 +6,12 @@ This example takes every source code commit, scans the source code for vulnerabi
 
 Follow the steps listed in [Installing Part I: Prerequisites, EULA, and CLI](../install-general.md).
 
-Next, in [Installing Part II: Profiles](../install.md), ensure the following packages and their dependencies are installed:
+Next, in [Installing Individual Packages](../install-components.md), ensure the following packages and their dependencies are installed:
 
-- [Supply Chain Choreographer](../install.md#install-scc)
-- [Tanzu Build Service](../install.md#install-tbs)
-- [Supply Chain Security Tools - Store](../install.md#install-scst-store)
-- [Supply Chain Security Tools - Scan](../install.md#install-scst-scan)
+- [Supply Chain Choreographer](../install-components.md#install-scc)
+- [Tanzu Build Service](../install-components.md#install-tbs)
+- [Supply Chain Security Tools - Store](../install-components.md#install-scst-store)
+- [Supply Chain Security Tools - Scan](../install-components.md#install-scst-scan)
 - (Optional) [Kubectl `tree` Plugin](https://github.com/ahmetb/kubectl-tree)
 
 This example uses the following versions:

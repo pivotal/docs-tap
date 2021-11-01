@@ -5,8 +5,6 @@ You can enable an encrypted connection using one of the following methods, depen
 1. Using `LoadBalancer` 
 1. Using `NodePort` — commonly used with local clusters such as kind, or minikube
 
-After setting the connection, you will get a CA certificate to connect to the Supply Chain Security Tools - Store using the CLI or API.
-
 ## Using `LoadBalancer`
 
 If you are using a `LoadBalancer` configuration, you need to find the external IP of the `metadata-store-app` service. You can use `kubectl` to do this.
@@ -85,7 +83,7 @@ Where:
 
 - `PATH` is the location where you want to save the CA certificate. This file is used later when you [configure the CLI](configure_cli.md).
 
-### Configuring Portforwarding
+### Configuring Port Forwarding
 When using `NodePort`, you need to configure port forwarding for the service in order for the CLI to access the Supply Chain Security Tools - Store. Run:
 
 ```sh

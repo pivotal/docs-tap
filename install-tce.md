@@ -4,10 +4,10 @@ This topic lists prerequisites and instructions for installing Tanzu Application
 Tanzu Community Edition v0.9.1 cluster.
 
 > **Warning**: VMware discourages installing Tanzu Application Platform on a Tanzu Community Edition v0.9.1 cluster in production environments.
-This procedure includes a workaround for installing kapp-controller v0.27.0 on Tanzu Community Edition v0.9.1 however, this is not a supported workflow. VMware recommends that you follow this procedure for beta
+This procedure includes a workaround for installing kapp-controller v0.29.0 on Tanzu Community Edition v0.9.1 however, this is not a supported workflow. VMware recommends that you follow this procedure for beta
 environments only.
 <!-- What is meant by a "supported workflow"? And which isn't the supported workflow,
-the workaround or putting kapp-controller v0.27.0 on Tanzu Community Edition v0.9.1? -->
+the workaround or putting kapp-controller v0.29.0 on Tanzu Community Edition v0.9.1? -->
 
 ## Install Tanzu Community Edition v0.9.1 
 
@@ -19,7 +19,7 @@ To install on Tanzu Community Edition v0.9.1, follow the instructions in these t
 
 ### <a id='kapp-controller'></a> Install kapp-controller
 
-To install kapp-controller v0.27.0 or later on Tanzu Community Edition v0.9.1, do the following:
+To install kapp-controller v0.29.0 or later on Tanzu Community Edition v0.9.1, do the following:
 
 1. Create a new workload or cluster. Do not install any packages on the cluster.
 1. Set the kubectl context to the Tanzu Community Edition Management cluster or Tanzu Community Edition Standalone cluster by running:
@@ -61,65 +61,21 @@ To install kapp-controller v0.27.0 or later on Tanzu Community Edition v0.9.1, d
     kubectl delete deployment kapp-controller -n tkg-system
     ```
 
-1. Install kapp-controller v0.27.0 by running:
+1. Install kapp-controller v0.29.0 by running:
 
     ```console
-    kubectl apply -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v0.27.0/release.yml
+    kubectl apply -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v0.29.0/release.yml
     ```
 
 
 ### <a id='tanzucli'></a> Install the Tanzu CLI Plugins for Tanzu Application Platform
 
-To install the Tanzu CLI plugins required for Tanzu Application Platform:
+Follow the **[instructions for updating Tanzu CLI which was originally installed for TKG/TCE](install-general.html#udpate-tkg-tce-tanzu-cli)**
 
-1. Create a directory named `tanzu-framework` by running:
-
-    ```console
-    mkdir $HOME/tanzu-framework
-    ```
-
-1. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
-
-1. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/)
-on Tanzu Network.
-
-1. Click the **tanzu-cli-0.5.0** directory.
-
-1. Download the CLI bundle corresponding with your operating system. For example, if your client
-operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle.
-
-1. Unpack the TAR file in the `tanzu-framework` directory by running:
-
-    ```console
-    tar -xvf tanzu-framework-linux-amd64.tar -C $HOME/tanzu-framework
-    ```
-
-1. Navigate to the `tanzu-framework` directory by running:
-
-    ```console
-    cd $HOME/tanzu-framework
-    ```
-
-1. Install the `imagepullsecret` plugin by running:
-
-    ```console
-    tanzu plugin install imagepullsecret --local ./cli
-    ```
-
-1. Install the `accelerator` plugin by running:
-
-    ```console
-    tanzu plugin install accelerator --local ./cli
-    ```
-
-1. Install the `apps` plugin by running:
-
-    ```console
-    tanzu plugin install apps --local ./cli
-    ```
+Once completed, you may proceed to the "Install Tanzu Application Platform" section below.
 
 
-## Install Tanzu Application Platform
+## <a id='install-tap'></a>Install Tanzu Application Platform
 
 1. Ensure you meet all the prerequisites to install Tanzu Application Platform.
 See [Prerequisites](install-general.html#prerequisites-0) in _Installing Part I: Prerequisites, EULA, and CLI_.

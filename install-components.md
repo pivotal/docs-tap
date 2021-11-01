@@ -10,6 +10,70 @@ Before you install the packages, ensure that you have completed the prerequisite
 and verified the cluster, accepted the EULA, and installed the Tanzu CLI with any required plugins.
 For information, see [Installing Part I: Prerequisites, EULA, and CLI](install-general.md).
 
++ [Install cert-manager and FluxCD source controller](#install-prereqs)
++ [Install Cloud Native Runtimes](#install-cnr)
++ [Install Application Accelerator](#install-app-accelerator)
++ [Install Convention Service](#install-convention-service)
++ [Install Source Controller](#install-source-controller)
++ [Install Developer Conventions](#install-developer-conventions)
++ [Install Spring Boot Conventions](#install-spring-boot-convention)
++ [Install Application Live View](#install-app-live-view)
++ [Install Tanzu Application Platform GUI](#install-tap-gui)
++ [Install Learning Center](#install-learning-center)
++ [Install Service Bindings](#install-service-bindings)
++ [Install Tanzu Build Service](#install-tbs)
++ [Install Supply Chain Choreographer](#install-scc)
++ [Install Default Supply Chain](#install-default-supply-chain)
++ [Install Supply Chain Security Tools - Store](#install-scst-store)
++ [Install Supply Chain Security Tools - Sign](#install-scst-sign)
++ [Install Supply Chain Security Tools - Scan](#install-scst-scan)
++ [Install API portal](#install-api-portal)
++ [Install Services Toolkit](#install-services-toolkit)
+
+
+## <a id='install-prereqs'></a> Install cert-manager and FluxCD source controller
+
+cert-managet and FluxCD source controller are installed as part of all profiles. If you do not want to use a profile, install them manually.
+
+Note: In future versions both cert-manager and FluxCD source controller will be shipped as packages.
+
+* **cert-manager**:
+    * Install cert-manager by running:
+        ```
+        kapp deploy -y -a cert-manager -f https://github.com/jetstack/cert-manager/releases/download/v1.5.3/cert-manager.yaml
+        ```
+        We have verified the Tanzu Application Platform repo bundle packages installation with cert-manager version v1.5.3.
+        
+        * Verify installed cert-manager version by running:
+        For example:
+        ```
+        kubectl get deployment cert-manager -n cert-manager -o yaml | grep 'app.kubernetes.io/version: v'
+           app.kubernetes.io/version: v1.5.3
+              app.kubernetes.io/version: v1.5.3
+        ```
+* **FluxCD source-controller**:
+    Install FluxCD source-controller using the following procedure.
+    
+     1. Create the namespace `flux-system`.
+        
+        ```
+        kubectl create namespace flux-system
+        ```
+     
+     2. Create the `clusterrolebinding` by running:
+        ```
+        kubectl create clusterrolebinding default-admin \
+        --clusterrole=cluster-admin \
+        --serviceaccount=flux-system:default
+        ```
+     3. Install FluxCD Source Controller by running:
+        ```
+        kapp deploy -y -a flux-source-controller -n flux-system \
+        -f https://github.com/fluxcd/source-controller/releases/download/v0.15.4/source-controller.crds.yaml \
+        -f https://github.com/fluxcd/source-controller/releases/download/v0.15.4/source-controller.deployment.yaml
+        ```
+        We have verified the Tanzu Application Platform repo bundle packages installation with FluxCD source-controller version v0.15.4.
+
 
 ## <a id='install-cnr'></a> Install Cloud Native Runtimes
 
@@ -210,19 +274,16 @@ You install Convention Servers as part of separate installation procedures.
 For example, you install an `app-live-view` Convention Server as part of the `app-live-view`
 installation.
 
- **Prerequisite**: Cert-manager installed on the cluster. See [Install Prerequisites](install-general.md#prereqs).
+ **Prerequisite**: Cert-manager installed on the cluster. See [Install Prerequisites](#install-prereqs).
 
 To install Convention Controller:
 
 1. List version information for the package by running:
-
     ```bash
-    tanzu package available list PACKAGE-NAME --namespace tap-install
+    tanzu package available list controller.conventions.apps.tanzu.vmware.com --namespace tap-install
     ```
-    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
-     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
-     For example:
-
+    
+    For example:
     ```bash
     $ tanzu package available list controller.conventions.apps.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for controller.conventions.apps.tanzu.vmware.com...
@@ -254,8 +315,10 @@ To install Convention Controller:
     ```bash
     tanzu package install convention-controller -p controller.conventions.apps.tanzu.vmware.com -v 0.4.2 -n tap-install
     ```
-
-    ```bash
+    
+    For example:
+    ```
+    tanzu package install convention-controller -p controller.conventions.apps.tanzu.vmware.com -v 0.4.2 -n tap-install
     / Installing package 'controller.conventions.apps.tanzu.vmware.com'
     | Getting namespace 'tap-install'
     - Getting package metadata for 'controller.conventions.apps.tanzu.vmware.com'
@@ -272,8 +335,10 @@ To install Convention Controller:
     ```bash
     tanzu package installed get convention-controller -n tap-install
     ```
-
-    ```bash
+    
+    For example: 
+    ```
+    tanzu package installed get convention-controller -n tap-install
     Retrieving installation details for convention-controller...
     NAME:                    convention-controller
     PACKAGE-NAME:            controller.conventions.apps.tanzu.vmware.com
@@ -282,20 +347,21 @@ To install Convention Controller:
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
     ```
-
+    
+    STATUS should be 'Reconcile succeeded.'
+    
     ```bash
     kubectl get pods -n conventions-system
     ```
 
     For example:
-
     ```bash
     $ kubectl get pods -n conventions-system
     NAME                                             READY   STATUS    RESTARTS   AGE
     conventions-controller-manager-596c65f75-j9dmn   1/1     Running   0          72s
     ```
 
-    STATUS should be `Running`.
+    STATUS should be 'Running.'
 
 
 ## <a id='install-source-controller'></a> Install Source Controller
@@ -303,19 +369,19 @@ To install Convention Controller:
 Use the following procedure to install Source Controller.
 
 **Prerequisite**: Fluxcd Source Controller installed on the cluster.
-See [Install Prerequisites](install-general.md#prereqs).
+
+See [Install cert-manager and FluxCD source controller](#install-prereqs).
+
 
 To install Source Controller:
 
 1. List version information for the package by running:
 
     ```bash
-    tanzu package available list PACKAGE-NAME --namespace tap-install
+    tanzu package available list controller.source.apps.tanzu.vmware.com --namespace tap-install
     ```
-    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
-     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
-     For example:
-
+    
+    For example:
     ```bash
     $ tanzu package available list controller.source.apps.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for controller.source.apps.tanzu.vmware.com...
@@ -334,7 +400,6 @@ To install Source Controller:
     - `VERSION-NUMBER` is the version of the package listed in step 1 above.
 
     For example:
-
     ```bash
     $ tanzu package available get controller.source.apps.tanzu.vmware.com/0.1.2 --values-schema --namespace tap-install
     ```
@@ -348,7 +413,9 @@ To install Source Controller:
     tanzu package install source-controller -p controller.source.apps.tanzu.vmware.com -v 0.1.2 -n tap-install
     ```
 
-    ```bash
+    For example:
+    ```
+    tanzu package install source-controller -p controller.source.apps.tanzu.vmware.com -v 0.1.2 -n tap-install
     / Installing package 'controller.source.apps.tanzu.vmware.com'
     | Getting namespace 'tap-install'
     - Getting package metadata for 'controller.source.apps.tanzu.vmware.com'
@@ -366,8 +433,10 @@ To install Source Controller:
     ```bash
     tanzu package installed get source-controller -n tap-install
     ```
-
-    ```bash
+    
+    For example:
+    ```
+    tanzu package installed get source-controller -n tap-install
     Retrieving installation details for sourcer-controller...
     NAME:                    sourcer-controller
     PACKAGE-NAME:            controller.source.apps.tanzu.vmware.com
@@ -377,19 +446,20 @@ To install Source Controller:
     USEFUL-ERROR-MESSAGE:
     ```
 
+    STATUS should be 'Reconcile succeeded.'
+    
     ```bash
     kubectl get pods -n source-system
     ```
 
     For example:
-
     ```bash
     $ kubectl get pods -n source-system
     NAME                                        READY   STATUS    RESTARTS   AGE
     source-controller-manager-f68dc7bb6-4lrn6   1/1     Running   0          45h
     ```
 
-    STATUS should be `Running`.
+    STATUS should be 'Running.'
 
 ## <a id='install-app-accelerator'></a> Install Application Accelerator
 
@@ -419,7 +489,7 @@ Before you install Application Accelerator,
 you must have:
 
 - Flux SourceController installed on the cluster.
-See [Install Prerequisites](install-general.md#prereqs).
+See [Install cert-manager and FluxCD source controller](#install-prereqs).
 
 -  Source Controller installed on the cluster.
 See [Install Source Controller](#install-source-controller).
@@ -551,7 +621,7 @@ To install Tanzu Build Service using the Tanzu CLI:
     $ tanzu package available list buildservice.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for buildservice.tanzu.vmware.com...
       NAME                           VERSION  RELEASED-AT
-      buildservice.tanzu.vmware.com  1.3.0    2021-09-28T00:00:00Z
+      buildservice.tanzu.vmware.com  1.3.1    2021-10-25T00:00:00Z
     ```
 
 1. (Optional) To make changes to the default installation settings, run:
@@ -567,7 +637,7 @@ To install Tanzu Build Service using the Tanzu CLI:
     For example:
 
     ```bash
-    $ tanzu package available get buildservice.tanzu.vmware.com/1.3.0 --values-schema --namespace tap-install
+    $ tanzu package available get buildservice.tanzu.vmware.com/1.3.1 --values-schema --namespace tap-install
     ```
 
     For more information about values schema options, see the individual product documentation.
@@ -576,14 +646,14 @@ To install Tanzu Build Service using the Tanzu CLI:
 1. Gather values schema.
 
     ```bash
-    tanzu package available get buildservice.tanzu.vmware.com/1.3.0 --values-schema --namespace tap-install
+    tanzu package available get buildservice.tanzu.vmware.com/1.3.1 --values-schema --namespace tap-install
     ```
 
     For example:
 
     ```bash
-    $ tanzu package available get buildservice.tanzu.vmware.com/1.3.0 --values-schema --namespace tap-install
-    | Retrieving package details for buildservice.tanzu.vmware.com/1.3.0...
+    $ tanzu package available get buildservice.tanzu.vmware.com/1.3.1 --values-schema --namespace tap-install
+    | Retrieving package details for buildservice.tanzu.vmware.com/1.3.1...
       KEY                             DEFAULT  TYPE    DESCRIPTION
       kp_default_repository           <nil>    string  docker repository
       kp_default_repository_password  <nil>    string  registry password
@@ -619,13 +689,13 @@ To install Tanzu Build Service using the Tanzu CLI:
 1. Install the package by running:
 
     ```bash
-    tanzu package install tbs -p buildservice.tanzu.vmware.com -v 1.3.0 -n tap-install -f tbs-values.yaml --poll-timeout 30m
+    tanzu package install tbs -p buildservice.tanzu.vmware.com -v 1.3.1 -n tap-install -f tbs-values.yaml --poll-timeout 30m
     ```
 
     For example:
 
     ```bash
-    $ tanzu package install tbs -p buildservice.tanzu.vmware.com -v 1.3.0 -n tap-install -f tbs-values.yaml --poll-timeout 30m
+    $ tanzu package install tbs -p buildservice.tanzu.vmware.com -v 1.3.1 -n tap-install -f tbs-values.yaml --poll-timeout 30m
     | Installing package 'buildservice.tanzu.vmware.com'
     | Getting namespace 'tap-install'
     | Getting package metadata for 'buildservice.tanzu.vmware.com'
@@ -704,7 +774,7 @@ To install Out of the Box Templates:
    ```bash
     tanzu package install ootb-templates \
       --package-name ootb-templates.tanzu.vmware.com \
-      --version 0.3.0 \
+      --version 0.3.0-build.3 \
       --namespace tap-install
     ```
    
@@ -716,13 +786,13 @@ Install the default Supply Chain, called Out of the Box Supply Chain Basic, by r
 1. Gather the values schema:
 
     ```bash
-    tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.3.0 --values-schema -n tap-install
+    tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.3.0-build.3 --values-schema -n tap-install
     ```
 
     For example:
 
    ```console
-   $ tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.3.0 --values-schema -n tap-install
+   $ tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.3.0-build.3 --values-schema -n tap-install
    | Retrieving package details for ootb-supply-chain-basic.tanzu.vmware.com/0.3.0...
 
     KEY                  DEFAULT          TYPE    DESCRIPTION
@@ -733,9 +803,9 @@ Install the default Supply Chain, called Out of the Box Supply Chain Basic, by r
    ```
 
 
-1. Create a `supply-chain-values.yaml` using the following sample as a guide.
+1. Create a `ootb-supply-chain-values.yaml` using the following sample as a guide.
 
-    Sample `supply-chain-values.yaml` for the default Supply Chain:
+    Sample `ootb-supply-chain-values.yaml` for the default Supply Chain:
 
     ```yaml
     ---
@@ -750,7 +820,7 @@ Install the default Supply Chain, called Out of the Box Supply Chain Basic, by r
      ```bash
     tanzu package install ootb-supply-chain-basic \
       --package-name ootb-supply-chain-basic.tanzu.vmware.com \
-      --version 0.3.0 \
+      --version 0.3.0-build.3 \
       --namespace tap-install \
       --values-file ootb-supply-chain-basic-values.yaml
     ```
@@ -822,21 +892,21 @@ To install developer conventions:
 
 To install Spring Boot conventions:
 
-**Prerequisite**: Convention Service installed on the cluster, see [Install Convention Service](#install-convention-service).
+**Prerequisite**: Convention Service installed on the cluster, see [Install Convention Service](#install-prereqs).
 
 1. Get the exact name and version information for the Spring Boot conventions package to be installed by running:
 
     ```bash
     tanzu package available list spring-boot-conventions.tanzu.vmware.com --namespace tap-install
     ```
-     For example:
-
-    ```bash
+     
+    For example:
+    ```
     $ tanzu package available list spring-boot-conventions.tanzu.vmware.com --namespace tap-install
     / Retrieving package versions for spring-boot-conventions.tanzu.vmware.com...
       NAME                                       VERSION   RELEASED-AT
       ...
-      spring-boot-conventions.tanzu.vmware.com   0.1.1     2021-10-27T00:00:00Z
+      spring-boot-conventions.tanzu.vmware.com   0.1.2     2021-10-28T00:00:00Z
       ...
     ```
 
@@ -845,7 +915,7 @@ To install Spring Boot conventions:
     ```bash
     tanzu package install spring-boot-conventions \
       --package-name spring-boot-conventions.tanzu.vmware.com \
-      --version 0.1.1 \
+      --version 0.1.2 \
       --namespace tap-install
     ```
 
@@ -856,18 +926,18 @@ To install Spring Boot conventions:
     ```
 
     For example:
-
     ```bash
     tanzu package installed get spring-boot-conventions -n tap-install
     | Retrieving installation details for spring-boot-conventions...
     NAME:                    spring-boot-conventions
     PACKAGE-NAME:            spring-boot-conventions.tanzu.vmware.com
-    PACKAGE-VERSION:         0.1.1
+    PACKAGE-VERSION:         0.1.2
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
     ```
-    STATUS should be `Reconcile succeeded`.
+    
+    STATUS should be 'Reconcile succeeded.'
 
 
 
@@ -889,20 +959,20 @@ To install Application Live View:
     $ tanzu package available list appliveview.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for appliveview.tanzu.vmware.com...
       NAME                          VERSION  RELEASED-AT
-      appliveview.tanzu.vmware.com  0.3.0    2021-10-25T00:00:00Z
+      appliveview.tanzu.vmware.com  0.3.0-build6  2021-10-26T00:00:00Z
     ```
 
 1. (Optional) To make changes to the default installation settings, run:
 
     ```bash
-    tanzu package available get appliveview.tanzu.vmware.com/0.3.0 --values-schema --namespace tap-install
+    tanzu package available get appliveview.tanzu.vmware.com/0.3.0-build6 --values-schema --namespace tap-install
     ```
 
     For example:
 
     ```bash
-    $ tanzu package available get appliveview.tanzu.vmware.com/0.3.0 --values-schema --namespace tap-install
-    - Retrieving package details for appliveview.tanzu.vmware.com/0.3.0...
+    $ tanzu package available get appliveview.tanzu.vmware.com/0.3.0-build6 --values-schema --namespace tap-install
+    - Retrieving package details for appliveview.tanzu.vmware.com/0.3.0-build6...
       KEY                   DEFAULT        TYPE    DESCRIPTION
       connector_namespaces  [default]      array   The namespaces in which ALV monitors the users apps
       service_type          ClusterIP      string  The service type for the Application Live View server can be LoadBalancer, NodePort, or ClusterIP
@@ -933,13 +1003,13 @@ To install Application Live View:
 1. Install the package by running:
 
     ```console
-    tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.3.0 -n tap-install -f app-live-view-values.yaml
+    tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.3.0-build6 -n tap-install -f app-live-view-values.yaml
     ```
 
     For example:
 
     ```console
-    $ tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.3.0 -n tap-install -f app-live-view-values.yaml
+    $ tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.3.0-build6 -n tap-install -f app-live-view-values.yaml
     - Installing package 'appliveview.tanzu.vmware.com'
     | Getting package metadata for 'appliveview.tanzu.vmware.com'
     | Creating service account 'app-live-view-tap-install-sa'
@@ -1064,13 +1134,13 @@ To install Tanzu Application Platform GUI:
     $ tanzu package available list tap-gui.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for tap-gui.tanzu.vmware.com...
       NAME                      VERSION     RELEASED-AT
-      tap-gui.tanzu.vmware.com  0.3.0-rc.1  2021-10-20T14:46:26Z
+      tap-gui.tanzu.vmware.com  0.3.0-rc.4  2021-10-28T13:14:23Z
     ```
 
 2. (Optional) To make changes to the default installation settings, run:
 
     ```bash
-    tanzu package available get tap-gui.tanzu.vmware.com/0.3.0-rc.1 --values-schema --namespace tap-install
+    tanzu package available get tap-gui.tanzu.vmware.com/0.3.0-rc.4 --values-schema --namespace tap-install
     ```
 
     For more information about values schema options, see the individual product documentation.
@@ -1128,7 +1198,7 @@ with your relevant values. The meanings of some placeholders are explained in th
       #  providers:
       #    oidc: # Detailed configuration of the OIDC auth capabilities are documented here: https://backstage.io/docs/auth/oauth
       #      development:
-      #        metadataUrl: <AUTH-OIDC-METADATA-URL> # metadataUrl is a json file with generic oidc provider config. It contains the authorizationUrl and tokenUrl. These values are read from the metadataUrl file by Backstage and so they do not need to be specified explicitly here.
+      #        metadataUrl: <AUTH-OIDC-METADATA-URL> # metadataUrl is a json file with generic oidc provider config. It contains the authorizationUrl and tokenUrl. These values are read from the metadataUrl file by Backstage and so they do not need to be specified explicitly here. To support OIDC authentication, you must create an OAuth client in your upstream provider, when setting up the client make sure to include the authorized redirect URI as: https://[BASE_URL]/api/auth/oidc/handler/frame
       #        clientId: <AUTH-OIDC-CLIENT-ID>
       #        clientSecret: <AUTH-OIDC-CLIENT-SECRET>
       #        tokenSignedResponseAlg: <AUTH-OIDC-TOKEN-SIGNED-RESPONSE-ALG> # default='RS256'
@@ -1156,7 +1226,7 @@ with your relevant values. The meanings of some placeholders are explained in th
     ```console
     tanzu package install tap-gui \
      --package-name tap-gui.tanzu.vmware.com \
-     --version 0.3.0-rc.1 -n tap-install \
+     --version 0.3.0-rc.4 -n tap-install \
      -f tap-gui-values.yaml
     ```
 
@@ -1189,7 +1259,7 @@ with your relevant values. The meanings of some placeholders are explained in th
     | Retrieving installation details for cc...
     NAME:                    tap-gui
     PACKAGE-NAME:            tap-gui.tanzu.vmware.com
-    PACKAGE-VERSION:         0.3.0-rc.1
+    PACKAGE-VERSION:         0.3.0-rc.4
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
@@ -1383,6 +1453,20 @@ To install Tanzu Learning Center, see the following sections
 ## <a id='install-scst-store'></a> Install Supply Chain Security Tools - Store
 
 To install Supply Chain Security Tools - Store:
+
+1. The deployment assumes the user has set up the k8s cluster to provision persistent volumes on demand. Make sure a default storage class is be available in your cluster. Check whether default storage class is set in your cluster by running:
+
+    ```
+    kubect get storageClass
+    ```
+
+    For example:
+
+    ```
+    $ kubectl get storageClass
+    NAME                 PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+    standard (default)   rancher.io/local-path   Delete          WaitForFirstConsumer   false                  7s
+    ```
 
 1. List version information for the package by running:
 
@@ -2042,20 +2126,25 @@ Use the following procedure to verify that the packages are installed.
     ```bash
     $ tanzu package installed list --namespace tap-install
     \ Retrieving installed packages...
-    NAME                   PACKAGE-NAME                                       PACKAGE-VERSION  STATUS
-    api-portal             api-portal.tanzu.vmware.com                        1.0.2            Reconcile succeeded
-    app-accelerator        accelerator.apps.tanzu.vmware.com                  0.3.0            Reconcile succeeded
-    app-live-view          appliveview.tanzu.vmware.com                       0.3.0            Reconcile succeeded
-    cloud-native-runtimes  cnrs.tanzu.vmware.com                              1.0.2            Reconcile succeeded
-    convention-controller  controller.conventions.apps.tanzu.vmware.com       0.4.2            Reconcile succeeded
-    grype-scanner          grype.scanning.apps.tanzu.vmware.com               1.0.0-beta.2     Reconcile succeeded
-    image-policy-webhook   image-policy-webhook.signing.run.tanzu.vmware.com  1.0.0-beta.1     Reconcile succeeded
-    metadata-store         scst-store.tanzu.vmware.com                        1.0.0-beta.0     Reconcile succeeded
-    scan-controller        scanning.apps.tanzu.vmware.com                     1.0.0-beta.2     Reconcile succeeded
-    services-toolkit       services-toolkit.tanzu.vmware.com                  0.4.0-rc.2       Reconcile succeeded
-    service-bindings       service-bindings.labs.vmware.com                   0.5.0            Reconcile succeeded
-    source-controller      controller.source.apps.tanzu.vmware.com            0.1.2            Reconcile succeeded
-    tbs                    buildservice.tanzu.vmware.com                      1.3.0            Reconcile succeeded
+    NAME                     PACKAGE-NAME                                       PACKAGE-VERSION  STATUS
+    api-portal               api-portal.tanzu.vmware.com                        1.0.3            Reconcile succeeded
+    app-accelerator          accelerator.apps.tanzu.vmware.com                  0.4.0            Reconcile succeeded
+    app-live-view            appliveview.tanzu.vmware.com                       0.3.0-build6     Reconcile succeeded
+    cartographer             cartographer.tanzu.vmware.com                      0.0.7            Reconcile succeeded
+    cloud-native-runtimes    cnrs.tanzu.vmware.com                              1.0.3            Reconcile succeeded
+    convention-controller    controller.conventions.apps.tanzu.vmware.com       0.4.2            Reconcile succeeded
+    developer-conventions    developer-conventions.tanzu.vmware.com             0.3.0-build.1    Reconcile succeeded
+    grype-scanner            grype.scanning.apps.tanzu.vmware.com               1.0.0-beta.2     Reconcile succeeded
+    image-policy-webhook     image-policy-webhook.signing.run.tanzu.vmware.com  1.0.0-beta.1     Reconcile succeeded
+    metadata-store           scst-store.tanzu.vmware.com                        1.0.0-beta.1     Reconcile succeeded
+    ootb-supply-chain-basic  ootb-supply-chain-basic.tanzu.vmware.com           0.3.0-build.3    Reconcile succeeded
+    ootb-templates           ootb-templates.tanzu.vmware.com                    0.3.0-build.3    Reconcile succeeded
+    scan-controller          scanning.apps.tanzu.vmware.com                     1.0.0-beta.2     Reconcile succeeded
+    service-bindings         service-bindings.labs.vmware.com                   0.5.0            Reconcile succeeded
+    services-toolkit         services-toolkit.tanzu.vmware.com                  0.4.0-rc.2       Reconcile succeeded
+    source-controller        controller.source.apps.tanzu.vmware.com            0.1.2            Reconcile succeeded
+    tap-gui                  tap-gui.tanzu.vmware.com                           0.3.0-rc.4       Reconcile succeeded
+    tbs                      buildservice.tanzu.vmware.com                      1.3.1            Reconcile succeeded
     ```
 
 ## <a id='setup'></a> Set Up Developer Namespaces to Use Installed Packages

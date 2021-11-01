@@ -1,30 +1,21 @@
-# Configuring the CLI
+# Configure the CLI
 
-This topic explains how to configure the following before using the CLI:
+This topic explains how to configure the `insight` CLI:
 
-1. Setting the Access Token.
-1. Get the location of the Certificate Authority Cert.
-1. Setting the Target and Certificate Authority Cert.
+> **Note:** All [required set up](../scst-store/overview.md#required-set-up) must be completed in addition to configuring the CLI
 
-## Setting the Access Token
 
-See [instructions on setting the access token](create_service_account_access_token.md#set-access-token).
+## Set the Target and Certificate Authority Cert
 
-## Get the location of the Certificate Authority Cert
-
-For information about obtaining the CA certificate, see [Enable Encryption and Connecting](enable_encrypted_connection.md).
-
-## Setting the Target and Certificate Authority Cert
-
-The target endpoint must be: `https://metadata-store-app.metadata-store.svc.cluster.local:<port>`.
-
-To set the target endpoint and CA certificate: 
-
-Use `insight config set-target` to point the CLI to the endpoint where to the CA certificate lives. Replace `/tmp/ca.crt` with where you want to put the CA cert:
+Set the target endpoint and CA certificate by running: 
 
 ```sh
-insight config set-target https://metadata-store-app.metadata-store.svc.cluster.local:8443 --ca-cert /tmp/ca.crt
+insight config set-target https://metadata-store-app.metadata-store.svc.cluster.local:PORT --ca-cert PATH
 ```
+Where
+
+- `PORT` is the target endpoint port
+- `PATH` is direct path to the CA certificate
 
 For example:
 

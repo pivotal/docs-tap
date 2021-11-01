@@ -2,7 +2,7 @@
 
 
 # Metadata Store API.
-  
+
 
 ## Informations
 
@@ -13,14 +13,14 @@
 ## Content negotiation
 
 ### URI Schemes
-  * http
-  * https
+* http
+* https
 
 ### Consumes
-  * application/json
+* application/json
 
 ### Produces
-  * application/json
+* application/json
 
 ## All endpoints
 
@@ -32,7 +32,15 @@
 | GET | /api/images | [get images](#get-images) | Search image by id or digest. |
 | GET | /api/packages/{IDorName}/images | [get package images](#get-package-images) | List the images that contain the given package. |
 | GET | /api/vulnerabilities/{CVEID}/images | [get vulnerability images](#get-vulnerability-images) | List the images that contain the given vulnerability. |
-  
+
+
+
+###  operations
+
+| Method  | URI     | Name   | Summary |
+|---------|---------|--------|---------|
+| GET | /api/health | [health check](#health-check) |  |
+
 
 
 ###  packages
@@ -44,7 +52,7 @@
 | GET | /api/sources/{IDorRepoorSha}/packages | [get source packages](#get-source-packages) |  |
 | GET | /api/sources/packages | [get source packages query](#get-source-packages-query) | List packages of the given source. |
 | GET | /api/vulnerabilities/{CVEID}/packages | [get vulnerability packages](#get-vulnerability-packages) | List packages that contain the given CVE id. |
-  
+
 
 
 ###  sources
@@ -55,7 +63,7 @@
 | GET | /api/packages/{IDorName}/sources | [get package sources](#get-package-sources) | List the sources containing the given package. |
 | GET | /api/sources | [get sourcs](#get-sourcs) | Search for sources by ID, repository, commit sha and/or organization. |
 | GET | /api/vulnerabiltities/{CVEID}/sources | [get vulnerability sources](#get-vulnerability-sources) | List sources that contain the given vulnerability. |
-  
+
 
 
 ###  vulnerabilities
@@ -67,7 +75,7 @@
 | GET | /api/sources/{IDorRepoorSha}/vulnerabilitites | [get source vulnerabilities](#get-source-vulnerabilities) |  |
 | GET | /api/sources/vulnerabilitites | [get source vulnerabilities query](#get-source-vulnerabilities-query) | List vulnerabilities of the given source. |
 | GET | /api/vulnerabilities | [get vulnerabilities](#get-vulnerabilities) | Search for vulnerabilities by CVE id. |
-  
+
 
 
 ## Paths
@@ -97,8 +105,8 @@ POST /api/imageReport
 Status: OK
 
 ###### <span id="create-image-report-200-schema"></span> Schema
-   
-  
+
+
 
 [Image](#image)
 
@@ -107,7 +115,7 @@ ErrorMessage
 
 ###### <span id="create-image-report-default-schema"></span> Schema
 
-  
+
 
 [ErrorMessage](#error-message)
 
@@ -136,8 +144,8 @@ POST /api/sourceReport
 Status: OK
 
 ###### <span id="create-source-report-200-schema"></span> Schema
-   
-  
+
+
 
 [Source](#source)
 
@@ -146,7 +154,7 @@ ErrorMessage
 
 ###### <span id="create-source-report-default-schema"></span> Schema
 
-  
+
 
 [ErrorMessage](#error-message)
 
@@ -175,8 +183,8 @@ GET /api/images/{IDorDigest}/packages
 Status: OK
 
 ###### <span id="get-image-packages-200-schema"></span> Schema
-   
-  
+
+
 
 [][Package](#package)
 
@@ -185,7 +193,7 @@ ErrorMessage
 
 ###### <span id="get-image-packages-default-schema"></span> Schema
 
-  
+
 
 [ErrorMessage](#error-message)
 
@@ -214,8 +222,8 @@ GET /api/images/{IDorDigest}/vulnerabilities
 Status: OK
 
 ###### <span id="get-image-vulnerabilities-200-schema"></span> Schema
-   
-  
+
+
 
 [][Vulnerability](#vulnerability)
 
@@ -224,7 +232,7 @@ ErrorMessage
 
 ###### <span id="get-image-vulnerabilities-default-schema"></span> Schema
 
-  
+
 
 [ErrorMessage](#error-message)
 
@@ -254,8 +262,8 @@ GET /api/images
 Status: OK
 
 ###### <span id="get-images-200-schema"></span> Schema
-   
-  
+
+
 
 [Image](#image)
 
@@ -264,7 +272,7 @@ ErrorMessage
 
 ###### <span id="get-images-default-schema"></span> Schema
 
-  
+
 
 [ErrorMessage](#error-message)
 
@@ -293,8 +301,8 @@ GET /api/packages/{IDorName}/images
 Status: OK
 
 ###### <span id="get-package-images-200-schema"></span> Schema
-   
-  
+
+
 
 [][Image](#image)
 
@@ -303,7 +311,7 @@ ErrorMessage
 
 ###### <span id="get-package-images-default-schema"></span> Schema
 
-  
+
 
 [ErrorMessage](#error-message)
 
@@ -332,8 +340,8 @@ GET /api/packages/{IDorName}/sources
 Status: OK
 
 ###### <span id="get-package-sources-200-schema"></span> Schema
-   
-  
+
+
 
 [][Source](#source)
 
@@ -342,7 +350,7 @@ ErrorMessage
 
 ###### <span id="get-package-sources-default-schema"></span> Schema
 
-  
+
 
 [ErrorMessage](#error-message)
 
@@ -371,8 +379,8 @@ GET /api/packages/{IDorName}/vulnerabilities
 Status: OK
 
 ###### <span id="get-package-vulnerabilities-200-schema"></span> Schema
-   
-  
+
+
 
 [][Vulnerability](#vulnerability)
 
@@ -381,7 +389,7 @@ ErrorMessage
 
 ###### <span id="get-package-vulnerabilities-default-schema"></span> Schema
 
-  
+
 
 [ErrorMessage](#error-message)
 
@@ -412,8 +420,8 @@ GET /api/packages
 Status: OK
 
 ###### <span id="get-packages-200-schema"></span> Schema
-   
-  
+
+
 
 [][Package](#package)
 
@@ -422,7 +430,7 @@ ErrorMessage
 
 ###### <span id="get-packages-default-schema"></span> Schema
 
-  
+
 
 [ErrorMessage](#error-message)
 
@@ -451,8 +459,8 @@ GET /api/sources/{IDorRepoorSha}/packages
 Status: OK
 
 ###### <span id="get-source-packages-200-schema"></span> Schema
-   
-  
+
+
 
 [][Package](#package)
 
@@ -461,7 +469,7 @@ ErrorMessage
 
 ###### <span id="get-source-packages-default-schema"></span> Schema
 
-  
+
 
 [ErrorMessage](#error-message)
 
@@ -492,8 +500,8 @@ GET /api/sources/packages
 Status: OK
 
 ###### <span id="get-source-packages-query-200-schema"></span> Schema
-   
-  
+
+
 
 [][Package](#package)
 
@@ -502,7 +510,7 @@ ErrorMessage
 
 ###### <span id="get-source-packages-query-default-schema"></span> Schema
 
-  
+
 
 [ErrorMessage](#error-message)
 
@@ -531,8 +539,8 @@ GET /api/sources/{IDorRepoorSha}/vulnerabilitites
 Status: OK
 
 ###### <span id="get-source-vulnerabilities-200-schema"></span> Schema
-   
-  
+
+
 
 [][Vulnerability](#vulnerability)
 
@@ -541,7 +549,7 @@ ErrorMessage
 
 ###### <span id="get-source-vulnerabilities-default-schema"></span> Schema
 
-  
+
 
 [ErrorMessage](#error-message)
 
@@ -572,8 +580,8 @@ GET /api/sources/vulnerabilitites
 Status: OK
 
 ###### <span id="get-source-vulnerabilities-query-200-schema"></span> Schema
-   
-  
+
+
 
 [][Vulnerability](#vulnerability)
 
@@ -582,7 +590,7 @@ ErrorMessage
 
 ###### <span id="get-source-vulnerabilities-query-default-schema"></span> Schema
 
-  
+
 
 [ErrorMessage](#error-message)
 
@@ -605,8 +613,8 @@ GET /api/sources
 Status: OK
 
 ###### <span id="get-sourcs-200-schema"></span> Schema
-   
-  
+
+
 
 [][Source](#source)
 
@@ -615,7 +623,7 @@ ErrorMessage
 
 ###### <span id="get-sourcs-default-schema"></span> Schema
 
-  
+
 
 [ErrorMessage](#error-message)
 
@@ -644,8 +652,8 @@ GET /api/vulnerabilities
 Status: OK
 
 ###### <span id="get-vulnerabilities-200-schema"></span> Schema
-   
-  
+
+
 
 [][Vulnerability](#vulnerability)
 
@@ -654,7 +662,7 @@ ErrorMessage
 
 ###### <span id="get-vulnerabilities-default-schema"></span> Schema
 
-  
+
 
 [ErrorMessage](#error-message)
 
@@ -683,8 +691,8 @@ GET /api/vulnerabilities/{CVEID}/images
 Status: OK
 
 ###### <span id="get-vulnerability-images-200-schema"></span> Schema
-   
-  
+
+
 
 [][Image](#image)
 
@@ -693,7 +701,7 @@ ErrorMessage
 
 ###### <span id="get-vulnerability-images-default-schema"></span> Schema
 
-  
+
 
 [ErrorMessage](#error-message)
 
@@ -722,8 +730,8 @@ GET /api/vulnerabilities/{CVEID}/packages
 Status: OK
 
 ###### <span id="get-vulnerability-packages-200-schema"></span> Schema
-   
-  
+
+
 
 [][Package](#package)
 
@@ -732,7 +740,7 @@ ErrorMessage
 
 ###### <span id="get-vulnerability-packages-default-schema"></span> Schema
 
-  
+
 
 [ErrorMessage](#error-message)
 
@@ -761,8 +769,8 @@ GET /api/vulnerabiltities/{CVEID}/sources
 Status: OK
 
 ###### <span id="get-vulnerability-sources-200-schema"></span> Schema
-   
-  
+
+
 
 [][Source](#source)
 
@@ -771,7 +779,36 @@ ErrorMessage
 
 ###### <span id="get-vulnerability-sources-default-schema"></span> Schema
 
-  
+
+
+[ErrorMessage](#error-message)
+
+### <span id="health-check"></span> health check (*HealthCheck*)
+
+```
+GET /api/health
+```
+
+#### All responses
+| Code | Status | Description | Has headers | Schema |
+|------|--------|-------------|:-----------:|--------|
+| [200](#health-check-200) | OK |  |  | [schema](#health-check-200-schema) |
+| [default](#health-check-default) | | ErrorMessage |  | [schema](#health-check-default-schema) |
+
+#### Responses
+
+
+##### <span id="health-check-200"></span> 200
+Status: OK
+
+###### <span id="health-check-200-schema"></span> Schema
+
+##### <span id="health-check-default"></span> Default Response
+ErrorMessage
+
+###### <span id="health-check-default-schema"></span> Schema
+
+
 
 [ErrorMessage](#error-message)
 
@@ -780,7 +817,7 @@ ErrorMessage
 ### <span id="deleted-at"></span> DeletedAt
 
 
-  
+
 
 
 * composed type [NullTime](#null-time)
@@ -790,7 +827,7 @@ ErrorMessage
 
 > ErrorMessage wraps an error message in a struct so responses are properly
 marshalled as a JSON object.
-  
+
 
 
 
@@ -807,7 +844,7 @@ marshalled as a JSON object.
 ### <span id="image"></span> Image
 
 
-  
+
 
 
 
@@ -827,7 +864,7 @@ marshalled as a JSON object.
 ### <span id="method-type"></span> MethodType
 
 
-  
+
 
 
 
@@ -852,7 +889,7 @@ It may be embedded into your model or you may build your own model without it
 type User struct {
 gorm.Model
 }
-  
+
 
 
 
@@ -874,7 +911,7 @@ gorm.Model
 
 > NullTime implements the Scanner interface so
 it can be used as a scan destination, similar to NullString.
-  
+
 
 
 
@@ -892,7 +929,7 @@ it can be used as a scan destination, similar to NullString.
 ### <span id="package"></span> Package
 
 
-  
+
 
 
 
@@ -914,7 +951,7 @@ it can be used as a scan destination, similar to NullString.
 ### <span id="rating"></span> Rating
 
 
-  
+
 
 
 
@@ -934,7 +971,7 @@ it can be used as a scan destination, similar to NullString.
 ### <span id="source"></span> Source
 
 
-  
+
 
 
 
@@ -956,14 +993,14 @@ it can be used as a scan destination, similar to NullString.
 ### <span id="string-array"></span> StringArray
 
 
-  
+
 
 []string
 
 ### <span id="vulnerability"></span> Vulnerability
 
 
-  
+
 
 
 

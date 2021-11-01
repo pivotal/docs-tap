@@ -154,7 +154,7 @@ We will update the `tap-gui-values.yaml` you used at install-time to point to th
 1. Update your installation using the `tanzu` CLI:
 
 ```shell
-$ tanzu package installed update backstage \
+$ tanzu package installed update tap-gui \
   --version <package-version> \
   -f <values-file>
 ```

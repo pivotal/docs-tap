@@ -40,7 +40,7 @@ To fix this problem:
    Do not reinstall the package.
 
 2. List the status of the installed packages to confirm that the reconcile has succeeded.
-   For instructions, see [Verify the Installed Packages](install.md#verify).
+   For instructions, see [Verify the Installed Packages](install-components.md#verify).
 
 ## <a id='existing-service-account'></a> Already Existing Service Account Error
 
