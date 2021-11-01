@@ -342,7 +342,13 @@ Tekton pipeline.
 <li>Convention Service
 
 <li>Cloud Native Runtimes
-</li>
+<li>If using Service References:
+   </li>   
+<ul>
+<li>Service Bindings
+<li>Services Toolkit
+   </li>
+   </ul>
 </ul>
    </td>
   </tr>
