@@ -81,7 +81,7 @@ Once completed, you may proceed to the "Install Tanzu Application Platform" sect
 See [Prerequisites](install-general.html#prerequisites-0) in _Installing Part I: Prerequisites, EULA, and CLI_.
 
     > **Note**: Do not attempt to install the cert-manager package from Tanzu Standard Repository.
-    Follow the instructions in TAP documentation to meet all the prerequisites.
+    Follow the instructions in Tanzu Application Platform documentation to meet all the prerequisites.
 
 1. Follow the steps in [Installing Part II: Profiles](install.md) to install
 Tanzu Application Platform on a Tanzu Community Edition v0.9.1 cluster.
