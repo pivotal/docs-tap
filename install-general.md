@@ -4,7 +4,7 @@ This document describes the first part of the installation process for Tanzu App
 
 + [Prerequisites](#prereqs)
 + [Accept the EULAs](#eulas)
-+ [Install the Tanzu CLI and Package Plugin](#cli-and-plugin)
++ [Install or Update the Tanzu CLI and Plugins](#cli-and-plugin)
 
 
 
@@ -219,12 +219,12 @@ To accept EULAs:
       + [Stacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-stacks-suite)
 
 
-## <a id='cli-and-plugin'></a> Install the Tanzu CLI
+## <a id='cli-and-plugin'></a> Install or Update the Tanzu CLI and Plugins
 
 **_Choose the install scenario that is right for you:_** 
 * **[Instructions for a clean install of Tanzu CLI](#tanzu-cli-clean-install)**
-* **[Instructions for updating Tanzu CLI originally installed for TAP Beta 2](#udpate-beta2-tanzu-cli)**
-* **[Instructions for updating Tanzu CLI originally installed for TKG/TCE](#udpate-tkg-tce-tanzu-cli)**  
+* **[Instructions for updating Tanzu CLI that was installed for a previous TAP release](#udpate-previous-tap-tanzu-cli)**
+* **[Instructions for updating Tanzu CLI that was previously installed for TKG/TCE](#udpate-tkg-tce-tanzu-cli)**  
 
 
 ### <a id='tanzu-cli-clean-install'></a>Instructions for a Clean Install of Tanzu CLI
@@ -406,7 +406,7 @@ To install the Tanzu CLI on a Windows operating system:
    `management-cluster` and `pinniped-auth` commands.
 
 
-## <a id='udpate-beta2-tanzu-cli'></a>Instructions for updating Tanzu CLI originally installed as part of TAP Beta 2
+## <a id='udpate-previous-tap-tanzu-cli'></a>Instructions for updating Tanzu CLI that was installed for a previous TAP release
 
 If you'd like to the update the Tanzu CLI core and plugins you installed previously for TAP Beta 2:
 
@@ -477,7 +477,7 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
     
 1. You may now proceed with installing TAP via **[Installing Part II: Profiles](install.md)**.
 
-## <a id='udpate-tkg-tce-tanzu-cli'></a>Instructions for updating Tanzu CLI which was originally installed for TKG/TCE
+## <a id='udpate-tkg-tce-tanzu-cli'></a>Instructions for updating Tanzu CLI that was previously installed for TKG/TCE
 
 If you'd like to maintain the Tanzu CLI core and plugins you installed previously 
 for interacting with TKG or TCE, you only need to update/add the TAP-specific plugins as follows:

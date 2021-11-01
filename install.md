@@ -24,7 +24,7 @@ To add the Tanzu Application Platform package repository:
 
     ```bash
     tanzu secret registry add tap-registry \
-      --username TANZU-NET-USER --password TANZU-NET-PASSWORD \
+      --username "TANZU-NET-USER" --password "TANZU-NET-PASSWORD" \
       --server registry.tanzu.vmware.com \
       --export-to-all-namespaces --yes --namespace tap-install
     ```
