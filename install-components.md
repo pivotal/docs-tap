@@ -837,7 +837,7 @@ To install developer conventions:
 1. Get the exact name and version information for the Developer Conventions package to be installed by running:
 
     ```bash
-    $ tanzu package available list developer-conventions.tanzu.vmware.com --namespace tap-install
+    tanzu package available list developer-conventions.tanzu.vmware.com --namespace tap-install
     ```
 
     For example:
