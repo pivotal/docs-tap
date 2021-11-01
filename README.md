@@ -156,5 +156,5 @@ General information about landing pages:
 - Every product has a landing page (Not exactly true: every umbrella product, such as Tanzu Application Platform should have a landing page.)
 - The landing page is a container for all the "publications" for a product. Our first publication will be our combined docs for our first Beta, including installation, and user docs.
 - Typically there will be a new docs publication for each minor release but not each point release. This version number become part of the URL e.g. Our first release was version `0.1` (see form section above for the current release).
-- Some products like [TKG](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/index.html) publish separate release notes publications for each point release.
+- Some products like [Tanzu Kubernetes Grid](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/index.html) publish separate release notes publications for each point release.
 - For comparison see https://docs.vmware.com/en/VMware-Tanzu-Application-Catalog/index.html
