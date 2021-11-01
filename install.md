@@ -97,7 +97,7 @@ To add the Tanzu Application Platform package repository:
     service-bindings.labs.vmware.com                     Service Bindings for Kubernetes                                           Service Bindings for Kubernetes implements the Service Binding Specification.
     services-toolkit.tanzu.vmware.com                    Services Toolkit                                                          The Services Toolkit enables the management, lifecycle, discoverability and connectivity of Service Resources (databases, message queues, DNS records, etc.).
     tap-gui.tanzu.vmware.com                             Tanzu Application Platform GUI                                            web app graphical user interface for Tanzu Application Platform
-    tap.tanzu.vmware.com                                 Tanzu Application Platform                                                Package to install a set of TAP components to get you started based on your use case.
+    tap.tanzu.vmware.com                                 Tanzu Application Platform                                                Package to install a set of Tanzu Application Platform components to get you started based on your use case.
     ```
 ## <a id='add-package-repositories'></a> About Tanzu Application Platform Package Profiles
 Tanzu Application Platform can be installed through pre-defined profiles or through individual packages. This section explains how you can install a profile.
@@ -352,7 +352,7 @@ This table lists the packages that are contained in each profile:
    </td>
   </tr>
   <tr>
-   <td>TAP GUI
+   <td>Tanzu Application Platform GUI
    </td>
    <td>&check;
    </td>

@@ -92,18 +92,18 @@ The TechDocs will be published to the S3 bucket that was just created. You will 
 
 TechDocs are generated for catalogs that have markdown source files for TechDocs.
 
-1. The catalogs that will appear in the Tanzu Application Platform GUI are listed in the `tap-gui-values.yaml` under `catalog.locations`
-1. For a given catalog, clone the catalog's repo to the local filesystem
-1. Find the `mkdocs.yml` that is at the root of the catalog. There should be a yaml file describing the catalog at the same level. It may be called `catalog-info.yaml`
-    - Note the values for `namespace`, `kind`, and `metadata.name` as well as the directory path containing the yaml file
-1. Note the `spec.targets` in that file
+1. The catalogs that will appear in Tanzu Application Platform GUI are listed in the `tap-gui-values.yaml` under `catalog.locations`.
+1. For a given catalog, clone the catalog's repo to the local filesystem.
+1. Find the `mkdocs.yml` that is at the root of the catalog. There should be a yaml file describing the catalog at the same level. It may be called `catalog-info.yaml`.
+    - Note the values for `namespace`, `kind`, and `metadata.name`, as well as the directory path containing the yaml file.
+1. Note the `spec.targets` in that file.
     - For each of the targets, determine the namespace/kind/name.
-        - Navigate to the target's yaml file
-        - The `namespace` value is the value of `namespace`
-            - if it isn't specified then it will have the value `default`
-        - The `kind` value is the value of `kind`
-        - The `name` value is the value of `metadata.name`
-        - Note the directory path containing the yaml file
+        - Navigate to the target's yaml file.
+        - The `namespace` value is the value of `namespace`.
+            - if it isn't specified, it will have the value `default`.
+        - The `kind` value is the value of `kind`.
+        - The `name` value is the value of `metadata.name`.
+        - Note the directory path containing the yaml file.
 
 ## Use the TechDocs CLI to generate and publish TechDocs
 

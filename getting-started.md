@@ -86,7 +86,7 @@ tanzu apps workload get tanzu-java-web-app
 ```
 <cntrl>-click the `Workload Knative Services URL` at the bottom of the command output.
 
-### Add Your Application to the Tanzu Application Platform GUI
+### Add Your Application to Tanzu Application Platform GUI
 
 In order to see this application in Your Organization Catalog, you'll need to create a catalog definition file. Assuming that you've already installed the Blank Software Catalog as defined in the component installation instructions, you can add the below file, named `tanzu-java-web-app.yaml` to your `components` folder:
 ```yaml

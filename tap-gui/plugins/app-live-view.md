@@ -1,22 +1,27 @@
-# Application Live View in TAP GUI
+# Application Live View in Tanzu Application Platform GUI
 
-## What is Application Live View
+## What is Application Live View?
 
-The Application Live View features of TAP encompasses sophisticated components to let developers and operators look into their running workloads on Kubernetes.
+The Application Live View features of the Tanzu Application Platform include sophisticated components to give developers and operators a view into their running workloads on Kubernetes.
 
-The unit of interest that the Application Live View features are built around is an individual running process, for example a Spring Boot application that got deployed as a workload and resulted in a JVM process running inside of a pod. This is an important concept of Application Live View: only running processes do show up and can be recognized by Application Live View. If there is no running process inside of a running pod, Application Live View does not show anything.
+Application Live View will show an individual running process, for example a Spring Boot application deployed as a workload resulting in a JVM process running inside of a pod.
+This is an important concept of Application Live View: only running processes are recognized by Application Live View.
+If there is not a running process inside of a running pod, Application Live View does not show anything.
 
-Under the hood, Application Live View uses the concept of Spring Boot Actuators to gather data from those running processes, visualizing them in a semantically meaningful way and allow users to interact with the inner workings of the running processes (in certain limited boundaries).
+Under the hood, Application Live View uses the concept of Spring Boot Actuators to gather data from those running processes.
+It visualizes them in a semantically meaningful way and allows users to interact with the inner workings of the running processes (within limited boundaries).
 
-The actuator data serves as the source of truth. Application Live View provides a live view of the data from inside of the running processes only. Application Live View does not store any of that data for further analysis or historical views. This easy-to-use interface provides ways to troubleshoot, learn, and maintain an overview of certain aspects of the running processes. It gives a certain level of control to the users to change some parameters such as environment properties without a restart (in case the Spring Boot application, for example, supports that).
+The actuator data serves as the source of truth. Application Live View provides a live view of the data from inside of the running processes only.
+Application Live View does not store any of that data for further analysis or historical views.
+This easy-to-use interface provides ways to troubleshoot, learn, and maintain an overview of certain aspects of the running processes.
+It gives a level of control to the users to change some parameters, such as environment properties, without a restart (where the Spring Boot application, for example, supports that).
 
-To learn more about the underlying architecture, how to install the features and how to enable and connect workloads on your cluster to this Application Live View, take a look at the App Live View section of the TAP documentation. (LINK!!!!!)
+## Landing Page and Instance List Page (the temporary entry point in Tanzu Application Platform Beta 3)
 
-## Landing Page and Instance List Page (the temporary entry point in TAP Beta 3)
+The temporary main page of App Live View in Tanzu Application Platform GUI, and the following list of individual instances (when you click on the application entries on the first page),
+gives you an overview of all running processes recognized by the underlying Application Live View infrastructure.
 
-The temporary main page of the App Live View part in the TAP GUI and the following list of individual instances (when you click on the application entries on the first page) gives you an overview of all running processes that are recognized by the underlying Application Live View infrastructure.
-
-__IMPORTANT: The landing and instance list page as well as the overall visual appearance is a very temporary experience at the moment, since the entry points as well as many of the visuals are not yet aligned and/or embedded into the main TAP GUI experience. This is under construction at the moment and will change in future versions. Therefore, some details on the overview pages and where they appear (like name of the application, number of instances, framework, version, build version and health alerts, etc.) will likely change as well in future versions.__
+__IMPORTANT: The landing and instance list page, as well as the overall visual appearance, is a temporary experience at the moment. The entry points, as well as many of the visuals, are not yet aligned and/or embedded into the main Tanzu Application Platform GUI experience. This is will change in future versions. Therefore, some details on the overview pages and where they appear (like name of the application, number of instances, framework, version, build version and health alerts, and so on) will likely change as well in future versions.__
 
 ## Connected instances (on the level of a process running inside of a pods)
 
@@ -33,14 +38,19 @@ This is the default page loaded when the user clicks on any of the instances in 
 
 ### Health Page
 
-To navigate to the health page, the user should select the Health option from the Information Category dropdown. The health page provides detailed information about the health of the application. It lists all the components that make up the health of the application like readiness, liveness and disk space. It displays the status, details associated with each of the components. 
+To navigate to the health page, the user should select the Health option from the Information Category dropdown.
+The health page provides detailed information about the health of the application.
+It lists all the components that make up the health of the application like readiness, liveness and disk space.
+It displays the status, details associated with each of the components. 
 
 ![Health Page in UI](./images/health-page.png)
 
 
 ### Environment Page
 
-To navigate to the Environment page, the user should select the Environment option from the Information Category dropdown. The Environment page contains details of the applications' environment. It contains properties including, but not limited to, system properties, environment variables, and configuration properties (like application.properties) in a Spring Boot application.
+To navigate to the Environment page, the user should select the Environment option from the Information Category dropdown.
+The Environment page contains details of the applications' environment.
+It contains properties including, but not limited to, system properties, environment variables, and configuration properties (like application.properties) in a Spring Boot application.
   
 The page includes the below features:
   
@@ -62,7 +72,11 @@ The page includes the below features:
 
 ### Threads Page
     
-To navigate to the Threads page, the user should select the Threads option from the Information Category dropdown. This page displays all the details related to JVM threads and running processes of the application. This tracks live threads and daemon threads real-time. It is a snapshot of different thread states. Navigating to a thread state displays all the information about a particular thread and its stack trace. The page also has a feature to download thread dump for analysis purposes.
+To navigate to the Threads page, the user should select the Threads option from the Information Category dropdown.
+This page displays all the details related to JVM threads and running processes of the application.
+This tracks live threads and daemon threads real-time. It is a snapshot of different thread states.
+Navigating to a thread state displays all the information about a particular thread and its stack trace.
+The page also has a feature to download thread dump for analysis purposes.
 
 ![Threads Page in UI](./images/threads-page.png)
 
@@ -79,12 +93,18 @@ _Please keep in mind that this graphical visualization happens in real-time and 
 ### HTTP Requests Page
 
 To navigate to the HTTP Requests page, the user should select the HTTP Requests option from the Information Category dropdown.
-The HTTP Requests page provides information about HTTP request-response exchanges to the application. The graph visualizes the requests per second indicating the response status of all the requests. The response statuses include info, success, redirects, client-errors, server-errors. The search feature filters the traces based on the search field value. The trace data is captured in detail in a tabular format with metrics such as timestamp, method, path, status, content-type, length, time. 
+The HTTP Requests page provides information about HTTP request-response exchanges to the application.
+The graph visualizes the requests per second indicating the response status of all the requests.
+The response statuses include info, success, redirects, client-errors, server-errors.
+The search feature filters the traces based on the search field value.
+The trace data is captured in detail in a tabular format with metrics such as timestamp, method, path, status, content-type, length, time. 
   
-The refresh icon above the graph loads the latest traces of the application. The toggle '/actuator/**' on the top right corner of the page displays the actuator related traces of the application.
+The refresh icon above the graph loads the latest traces of the application.
+The toggle '/actuator/**' on the top right corner of the page displays the actuator related traces of the application.
 
 ![Http Requests Page in UI](./images/http-requests-page.png)
 
 ## Troubleshoot
 
-You might run into cases where a workload that is running on your cluster does not show up in the Application Live View overview, the detail pages do not load any information from the running process, or similar issues. Please refer to the troubleshooting section of the Application Live View documentation for details on how to solve these issues.
+You might run into cases where a workload running on your cluster does not show up in the Application Live View overview, the detail pages do not load any information from the running process, or similar issues.
+Please refer to the troubleshooting section of the Application Live View documentation for details on how to solve these issues.
