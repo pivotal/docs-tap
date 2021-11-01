@@ -1,8 +1,8 @@
-# Application Live View in TAP GUI
+# Application Live View in Tanzu Application Platform GUI
 
 ## What is Application Live View
 
-The Application Live View features of TAP encompasses sophisticated components to let developers and operators look into their running workloads on Kubernetes.
+The Application Live View features of Tanzu Application Platform encompasses sophisticated components to let developers and operators look into their running workloads on Kubernetes.
 
 The unit of interest that the Application Live View features are built around is an individual running process, for example a Spring Boot application that got deployed as a workload and resulted in a JVM process running inside of a pod. This is an important concept of Application Live View: only running processes do show up and can be recognized by Application Live View. If there is no running process inside of a running pod, Application Live View does not show anything.
 
@@ -10,13 +10,13 @@ Under the hood, Application Live View uses the concept of Spring Boot Actuators 
 
 The actuator data serves as the source of truth. Application Live View provides a live view of the data from inside of the running processes only. Application Live View does not store any of that data for further analysis or historical views. This easy-to-use interface provides ways to troubleshoot, learn, and maintain an overview of certain aspects of the running processes. It gives a certain level of control to the users to change some parameters such as environment properties without a restart (in case the Spring Boot application, for example, supports that).
 
-To learn more about the underlying architecture, how to install the features and how to enable and connect workloads on your cluster to this Application Live View, take a look at the App Live View section of the TAP documentation. (LINK!!!!!)
+To learn more about the underlying architecture, how to install the features and how to enable and connect workloads on your cluster to this Application Live View, take a look at the App Live View section of the Tanzu Application Platform documentation. (LINK!!!!!)
 
-## Landing Page and Instance List Page (the temporary entry point in TAP Beta 3)
+## Landing Page and Instance List Page (the temporary entry point in Tanzu Application Platform Beta 3)
 
-The temporary main page of the App Live View part in the TAP GUI and the following list of individual instances (when you click on the application entries on the first page) gives you an overview of all running processes that are recognized by the underlying Application Live View infrastructure.
+The temporary main page of the App Live View part in the Tanzu Application Platform GUI and the following list of individual instances (when you click on the application entries on the first page) gives you an overview of all running processes that are recognized by the underlying Application Live View infrastructure.
 
-__IMPORTANT: The landing and instance list page as well as the overall visual appearance is a very temporary experience at the moment, since the entry points as well as many of the visuals are not yet aligned and/or embedded into the main TAP GUI experience. This is under construction at the moment and will change in future versions. Therefore, some details on the overview pages and where they appear (like name of the application, number of instances, framework, version, build version and health alerts, etc.) will likely change as well in future versions.__
+__IMPORTANT: The landing and instance list page as well as the overall visual appearance is a very temporary experience at the moment, since the entry points as well as many of the visuals are not yet aligned and/or embedded into the main Tanzu Application Platform GUI experience. This is under construction at the moment and will change in future versions. Therefore, some details on the overview pages and where they appear (like name of the application, number of instances, framework, version, build version and health alerts, etc.) will likely change as well in future versions.__
 
 ## Connected instances (on the level of a process running inside of a pods)
 
