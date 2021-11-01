@@ -16,7 +16,7 @@ To install, see [Install Supply Chain Security Tools - Store](../install-compone
 
 > **Note:** the `insight` CLI requires a [separate installation](install_cli.md)
 
-For more information, see [Installation Details](install_details.md).
+For more information, see [Deployment Details](deployment_details.md).
 
 ## <a id='required-set-up'></a>Set Up
 
