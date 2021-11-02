@@ -23,7 +23,8 @@ For information, see [Installing Part I: Prerequisites, EULA, and CLI](install-g
 + [Install Service Bindings](#install-service-bindings)
 + [Install Tanzu Build Service](#install-tbs)
 + [Install Supply Chain Choreographer](#install-scc)
-+ [Install Default Supply Chain](#install-default-supply-chain)
++ [Install Out of the Box Templates](#install-ootb-templates)
++ [Install Default Supply Chain](#install-ootb-supply-chain-basic)
 + [Install Supply Chain Security Tools - Store](#install-scst-store)
 + [Install Supply Chain Security Tools - Sign](#install-scst-sign)
 + [Install Supply Chain Security Tools - Scan](#install-scst-scan)
@@ -774,7 +775,7 @@ To install Out of the Box Templates:
    ```bash
     tanzu package install ootb-templates \
       --package-name ootb-templates.tanzu.vmware.com \
-      --version 0.3.0-build.3 \
+      --version 0.3.0-build.4 \
       --namespace tap-install
     ```
    
@@ -786,13 +787,13 @@ Install the default Supply Chain, called Out of the Box Supply Chain Basic, by r
 1. Gather the values schema:
 
     ```bash
-    tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.3.0-build.3 --values-schema -n tap-install
+    tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.3.0-build.4 --values-schema -n tap-install
     ```
 
     For example:
 
    ```console
-   $ tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.3.0-build.3 --values-schema -n tap-install
+   $ tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.3.0-build.4 --values-schema -n tap-install
    | Retrieving package details for ootb-supply-chain-basic.tanzu.vmware.com/0.3.0...
 
     KEY                  DEFAULT          TYPE    DESCRIPTION
@@ -812,7 +813,7 @@ Install the default Supply Chain, called Out of the Box Supply Chain Basic, by r
     registry:
       server: REGISTRY-SERVER
       repository: REGISTRY-REPOSITORY
-    service_account: service-account
+    service_account: default
     ```
 
 1. Install the package by running:
@@ -820,12 +821,12 @@ Install the default Supply Chain, called Out of the Box Supply Chain Basic, by r
      ```bash
     tanzu package install ootb-supply-chain-basic \
       --package-name ootb-supply-chain-basic.tanzu.vmware.com \
-      --version 0.3.0-build.3 \
+      --version 0.3.0-build.4 \
       --namespace tap-install \
       --values-file ootb-supply-chain-basic-values.yaml
     ```
 
-> **Note:** The `service-account` service account and required secrets are created in
+> **Note:** The `default` service account and required secrets are created in
 [Set Up Developer Namespaces to Use Installed Packages](#setup).
 
 ## <a id='install-developer-conventions'></a> Install Developer Conventions
@@ -2109,8 +2110,8 @@ Use the following procedure to verify that the packages are installed.
     grype-scanner            grype.scanning.apps.tanzu.vmware.com               1.0.0-beta.2     Reconcile succeeded
     image-policy-webhook     image-policy-webhook.signing.run.tanzu.vmware.com  1.0.0-beta.1     Reconcile succeeded
     metadata-store           scst-store.tanzu.vmware.com                        1.0.0-beta.1     Reconcile succeeded
-    ootb-supply-chain-basic  ootb-supply-chain-basic.tanzu.vmware.com           0.3.0-build.3    Reconcile succeeded
-    ootb-templates           ootb-templates.tanzu.vmware.com                    0.3.0-build.3    Reconcile succeeded
+    ootb-supply-chain-basic  ootb-supply-chain-basic.tanzu.vmware.com           0.3.0-build.4    Reconcile succeeded
+    ootb-templates           ootb-templates.tanzu.vmware.com                    0.3.0-build.4    Reconcile succeeded
     scan-controller          scanning.apps.tanzu.vmware.com                     1.0.0-beta.2     Reconcile succeeded
     service-bindings         service-bindings.labs.vmware.com                   0.5.0            Reconcile succeeded
     services-toolkit         services-toolkit.tanzu.vmware.com                  0.4.0-rc.2       Reconcile succeeded
@@ -2150,7 +2151,7 @@ run the following commands to add credentials and Role-Based Access Control (RBA
     apiVersion: v1
     kind: ServiceAccount
     metadata:
-      name: service-account # use value from "Install default Supply Chain"
+      name: default
     secrets:
       - name: registry-credentials
     imagePullSecrets:
@@ -2194,7 +2195,7 @@ run the following commands to add credentials and Role-Based Access Control (RBA
       name: kapp-permissions
     subjects:
       - kind: ServiceAccount
-        name: service-account # use value from "Install default Supply Chain"
+        name: default
 
     EOF
     ```

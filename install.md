@@ -212,11 +212,11 @@ This table lists the packages that are contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>
+   <td>&check;
    </td>
    <td>
    </td>
-   <td>
+   <td>&check;
    </td>
   </tr>
   <tr>
@@ -224,11 +224,11 @@ This table lists the packages that are contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>
+   <td>&check;
    </td>
    <td>
    </td>
-   <td>
+   <td>&check;
    </td>
   </tr>
   <tr>
@@ -236,11 +236,11 @@ This table lists the packages that are contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>
+   <td>&check;
    </td>
    <td>
    </td>
-   <td>
+   <td>&check;
    </td>
   </tr>
   <tr>
@@ -401,8 +401,6 @@ To install a profile:
       server_repo: "<SERVER-REPO>"
       username: "<USERNAME>"
       password: "<PASSWORD>"
-    ootb_supply_chain_basic:
-      service_account: service-account
     learning_center:
       ingressDomain: "<DOMAIN-NAME>" # e.g. educates.example.com
     tap_gui:

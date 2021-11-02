@@ -28,12 +28,11 @@ Before getting started, ensure the following prerequisites are in place:
    (install instructions [here](install-general.md)
    and [here](install.md))
 
-2. The default Supply Chain is installed on the target Kubernetes cluster. See [Install default Supply Chain](install-components.md#install-ootb-supply-chain-basic).
+2. Default kube config context is set to the target Kubernetes cluster
 
-3. Default kube config context is set to the target Kubernetes cluster
+3. A developer namespace has been setup to accomodate the developer's Workload.
+   See [Set Up Developer Namespaces to Use Installed Packages](install-components.md#-set-up-developer-namespaces-to-use-installed-packages).
 
-4. Follow [these instructions](install-components.md#install-developer-conventions)
-   to set up the namespace that you plan to create the `Workload` in.
 
 #### A note about Application Accelerators
 
