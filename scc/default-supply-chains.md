@@ -7,6 +7,7 @@ weight: 2
 # Out of the Box Supply Chains
 
 Out of the Box Supply Chains are provided with Tanzu Application Platform.
+
 The following three supply chains that are included:
 - Out of the Box Supply Chain Basic (source-to-url)
 - Out of the Box Supply Chain with Testing (source-test-to-url)
@@ -25,7 +26,7 @@ The supply chain builds a container image based off of the source code and
 pushes it to a registry. We need to provide to the systems the credentials for
 doing so.
 
-Using the `imagepullsecret` command from the [tanzu cli] we're able to
+Using the `secret registry add` command from the [tanzu cli] we're able to
 provision a base secret that contains such credentials and then export the
 contents of that secret to the namespaces where it should be consumed.
 
@@ -46,9 +47,9 @@ REGISTRY_PASSWORD=admin
 # placeholder secret can be found.
 #
 #
-tanzu imagepullsecret add scc-registry-credentials \
+tanzu secret registry add scc-registry-credentials \
   --export-to-all-namespaces \
-  --registry $REGISTRY \
+  --server $REGISTRY \
   --username $REGISTRY_USERNAME \
   --password $REGISTRY_PASSWORD
 ```
@@ -104,8 +105,8 @@ data:
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: service-account   # must match the name configured in the supply chain
-                          # for source-to-url, must be "service-account"
+  name: default           # must match the name configured in the supply chain
+                          # for source-to-url, must be "default"
 secrets:
   - name: scc-registry-credentials
 imagePullSecrets:
@@ -178,8 +179,8 @@ data:
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: service-account   # must match the name configured in the supply chain
-                  # installation (defaults to `service-account`)
+  name: default   # must match the name configured in the supply chain
+                  # installation (defaults to `default`)
 secrets:
   - name: scc-registry-credentials
 imagePullSecrets:
