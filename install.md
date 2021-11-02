@@ -401,8 +401,6 @@ To install a profile:
       server_repo: "<SERVER-REPO>"
       username: "<USERNAME>"
       password: "<PASSWORD>"
-    ootb_supply_chain_basic:
-      service_account: service-account
     learning_center:
       ingressDomain: "<DOMAIN-NAME>" # e.g. educates.example.com
     tap_gui:

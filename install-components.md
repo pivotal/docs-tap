@@ -813,7 +813,7 @@ Install the default Supply Chain, called Out of the Box Supply Chain Basic, by r
     registry:
       server: REGISTRY-SERVER
       repository: REGISTRY-REPOSITORY
-    service_account: service-account
+    service_account: default
     ```
 
 1. Install the package by running:
@@ -826,7 +826,7 @@ Install the default Supply Chain, called Out of the Box Supply Chain Basic, by r
       --values-file ootb-supply-chain-basic-values.yaml
     ```
 
-> **Note:** The `service-account` service account and required secrets are created in
+> **Note:** The `default` service account and required secrets are created in
 [Set Up Developer Namespaces to Use Installed Packages](#setup).
 
 ## <a id='install-developer-conventions'></a> Install Developer Conventions
@@ -2151,7 +2151,7 @@ run the following commands to add credentials and Role-Based Access Control (RBA
     apiVersion: v1
     kind: ServiceAccount
     metadata:
-      name: service-account # use value from "Install default Supply Chain"
+      name: default
     secrets:
       - name: registry-credentials
     imagePullSecrets:
@@ -2195,7 +2195,7 @@ run the following commands to add credentials and Role-Based Access Control (RBA
       name: kapp-permissions
     subjects:
       - kind: ServiceAccount
-        name: service-account # use value from "Install default Supply Chain"
+        name: default
 
     EOF
     ```
