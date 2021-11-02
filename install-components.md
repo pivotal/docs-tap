@@ -1359,7 +1359,7 @@ To install Tanzu Learning Center, see the following sections.
 1. List version information for the package by running:
 
     ```bash
-    tanzu package available list PACKAGE-NAME --namespace tap-install
+    tanzu package available list service-bindings.labs.vmware.com --namespace tap-install
     ```
     Where `PACKAGE-NAME` is the name of the package listed earlier in
      [Add the Tanzu Application Platform Package Repository](#add-package-repositories).
@@ -1371,24 +1371,6 @@ To install Tanzu Learning Center, see the following sections.
       NAME                              VERSION  RELEASED-AT
       service-bindings.labs.vmware.com  0.5.0    2021-09-15T00:00:00Z
     ```
-
-2. (Optional) To make changes to the default installation settings, run:
-
-    ```bash
-    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
-    ```
-    Where:
-
-    - `PACKAGE-NAME` is same as step 1 above.
-    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
-
-    For example:
-
-    ```bash
-    $ tanzu package available get service-bindings.labs.vmware.com/0.5.0 --values-schema --namespace tap-install
-    ```
-
-    For more information about values schema options, see the individual product documentation.
 
 1. Install the package. Run:
 
