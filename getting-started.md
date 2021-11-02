@@ -44,49 +44,57 @@ Developers can bootstrap their applications and get started with feature develop
 Application Accelerator templates are available as a quickstart from [Tanzu Network](https://network.tanzu.vmware.com/products/app-accelerator). To create your own Application Accelerator, see [here](#creating-an-accelerator).
 
 
-### Deploy your Application
+### Deploy Your Application
 
-You’ll use an accelerator called `Tanzu-Java-Web-App` to get started.
+Follow the steps below to get started with an accelerator called `Tanzu-Java-Web-App`.
 
-
-**1. Visit your Application Accelerator** (view instructions to do so
-[here](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.3/acc-docs/GUID-installation-install.html#using-application-accelerator-for-vmware-tanzu-0))
+1. Visit your Application Accelerator by following the steps in
+[Using Application Accelerator for VMware Tanzu](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.3/acc-docs/GUID-installation-install.html#using-application-accelerator-for-vmware-tanzu-0).
 
 <img src="images/app-acc.png" alt="Screenshot of Application Accelerator that shows a search field and two accelerators" width="600">
 
-**2. Select the "Tanzu Java Web App" accelerator** (a sample Spring Boot web-app).
+1. Select the **Tanzu Java Web App** accelerator, which is a sample Spring Boot web app.
 
 <img src="images/tanzu-java-web-app.png" alt="Screenshot of the Tanzu Java Web App within Application Accelerator. It includes empty fields for new project information." width="600">
 
-**3. Replace the default value, `dev.local`** in the _"prefix for container image registry"_ field
-with the url to your registry. The URL you enter should match the `REGISTRY_SERVER` value you provided when you installed the
-[default Supply Chain](/install-components.md#install-ootb-supply-chain-basic). 
+1. Replace the default value `dev.local` in the _"prefix for container image registry"_ field
+with the URL to your registry. The URL you enter must match the `REGISTRY_SERVER` value you
+provided when you installed the default Supply Chain.
+For more information, see
+[Install default Supply Chain](install-components.md#install-ootb-supply-chain-basic).
+
 >**Note:** This entry should not include the project ID or image name.
 
 <img src="images/store-image-on-server.png" alt="Screenshot of the Tanzu Java Web App within Application Accelerator. It includes empty fields for new project information, and buttons labeled 'Generate Project', 'Explore Files', and 'Cancel'." width="600">
 
-**4. Click the “Generate Project” button** to download the accelerator zip file (you’ll use this accelerator code in the [Iterate on your Application](#iterate) section below).
+1. Click the “Generate Project” button to download the accelerator zip file.
+You use this accelerator code in the [Iterate on your Application](#iterate) section later.
 
-**5. Deploy the ‘Tanzu Java Web App’ accelerator using the [`tanzu apps workload create`](/cli-plugins/apps/command-reference/tanzu_apps_workload_create.html) command**
-```
-tanzu apps workload create tanzu-java-web-app \
---git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
---git-branch main --type \ 
---label app.kubernetes.io/part-of=tanzu-java-web-appweb \
---yes
-```
-**Note** this first deploy uses accelerator source from git, but you’ll use the VScode extension to debug and live-update this app in later steps.
+1. Deploy the Tanzu Java Web App accelerator by running the `tanzu apps workload create` command:
 
-**6. View the build and runtime logs** for your app using the `tail` command:
-```
-tanzu apps workload tail tanzu-java-web-app --since 10m --timestamp
-```
+    ```console
+    tanzu apps workload create tanzu-java-web-app \
+    --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
+    --git-branch main --type \
+    --label app.kubernetes.io/part-of=tanzu-java-web-appweb \
+    --yes
+    ```
 
-**7. Once the workload has been built and is running** you can grab the web-app URL via the `get` command:
-```
-tanzu apps workload get tanzu-java-web-app
-```
-<cntrl>-click the `Workload Knative Services URL` at the bottom of the command output.
+For more information, see [Tanzu Apps Workload Create](cli-plugins/apps/command-reference/tanzu_apps_workload_create.md).
+
+>**Note:** This first deploy uses accelerator source from git, but you use the VScode extension to
+debug and live-update this app in later steps.
+
+1. View the build and runtime logs for your app by running the `tail` command:
+
+    ```console
+    tanzu apps workload tail tanzu-java-web-app --since 10m --timestamp
+    ```
+
+1. After the workload is built and running, get the web-app URL by running
+`tanzu apps workload get tanzu-java-web-app` and then using **<cntrl>-click** on the
+Workload Knative Services URL at the bottom of the command output.
+
 
 ### Add Your Application to Tanzu Application Platform GUI
 
@@ -105,7 +113,7 @@ spec:
   type: service
   lifecycle: demo
   owner: default-team
-  system: 
+  system:
 ```
 You'll now need to add a reference to this file in your catalog's `catalog-info.yaml`
 ```yaml
@@ -126,7 +134,7 @@ spec:
 ```
 Now once your catalog refreshes (default refresh is 200 seconds) you should be able to see the entry in the catalog and interact with it.
 
-   
+
 
 ### <a id='iterate'></a>Iterate on your Application
 
@@ -964,7 +972,7 @@ message queues, DNS records, and so on. These components are:
 * Service Resource Claims (planned for later release)
 
 Each component has value on its own, however you can unlock the most powerful and
-valuable use cases by combining them. 
+valuable use cases by combining them.
 
 For example, the APIs can enable the separation of application workloads and service resources into
 separate Kubernetes clusters. This allows, for example, a developer to create services from the
