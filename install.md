@@ -402,7 +402,6 @@ To install a profile:
       tanzunet_password: "<TANZUNET-PASSWORD>"
 
     ootb_supply_chain_basic:
-      service_account: service-account
       registry:
         # e.g. us-east4-docker.pkg.dev
         server: "..."
