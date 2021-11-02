@@ -51,11 +51,11 @@ Follow the steps below to get started with an accelerator called `Tanzu-Java-Web
 1. Visit your Application Accelerator by following the steps in
 [Using Application Accelerator for VMware Tanzu](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.3/acc-docs/GUID-installation-install.html#using-application-accelerator-for-vmware-tanzu-0).
 
-<img src="images/app-acc.png" alt="Screenshot of Application Accelerator that shows a search field and two accelerators" width="600">
+    <img src="images/app-acc.png" alt="Screenshot of Application Accelerator that shows a search field and two accelerators" width="600">
 
 1. Select the **Tanzu Java Web App** accelerator, which is a sample Spring Boot web app.
 
-<img src="images/tanzu-java-web-app.png" alt="Screenshot of the Tanzu Java Web App within Application Accelerator. It includes empty fields for new project information." width="600">
+    <img src="images/tanzu-java-web-app.png" alt="Screenshot of the Tanzu Java Web App within Application Accelerator. It includes empty fields for new project information." width="600">
 
 1. Replace the default value `dev.local` in the _"prefix for container image registry"_ field
 with the URL to your registry. The URL you enter must match the `REGISTRY_SERVER` value you
@@ -63,9 +63,9 @@ provided when you installed the default Supply Chain.
 For more information, see
 [Install default Supply Chain](install-components.md#install-ootb-supply-chain-basic).
 
->**Note:** This entry should not include the project ID or image name.
+    >**Note:** This entry should not include the project ID or image name.
 
-<img src="images/store-image-on-server.png" alt="Screenshot of the Tanzu Java Web App within Application Accelerator. It includes empty fields for new project information, and buttons labeled 'Generate Project', 'Explore Files', and 'Cancel'." width="600">
+    <img src="images/store-image-on-server.png" alt="Screenshot of the Tanzu Java Web App within Application Accelerator. It includes empty fields for new project information, and buttons labeled 'Generate Project', 'Explore Files', and 'Cancel'." width="600">
 
 1. Click the “Generate Project” button to download the accelerator zip file.
 You use this accelerator code in the [Iterate on your Application](#iterate) section later.
@@ -80,10 +80,10 @@ You use this accelerator code in the [Iterate on your Application](#iterate) sec
     --yes
     ```
 
-For more information, see [Tanzu Apps Workload Create](cli-plugins/apps/command-reference/tanzu_apps_workload_create.md).
+    For more information, see [Tanzu Apps Workload Create](cli-plugins/apps/command-reference/tanzu_apps_workload_create.md).
 
->**Note:** This first deploy uses accelerator source from git, but you use the VScode extension to
-debug and live-update this app in later steps.
+    >**Note:** This first deploy uses accelerator source from git, but you use the VScode extension
+    to debug and live-update this app in later steps.
 
 1. View the build and runtime logs for your app by running the `tail` command:
 
@@ -92,7 +92,7 @@ debug and live-update this app in later steps.
     ```
 
 1. After the workload is built and running, get the web-app URL by running
-`tanzu apps workload get tanzu-java-web-app` and then using **<cntrl>-click** on the
+`tanzu apps workload get tanzu-java-web-app` and then using **<ctrl>-click** on the
 Workload Knative Services URL at the bottom of the command output.
 
 
