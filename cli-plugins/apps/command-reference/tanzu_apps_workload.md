@@ -7,10 +7,11 @@ Workload lifecycle management.
 A workload may run as a knative service, kubernetes deployment, or other runtime. Workloads can be grouped together with other related resources such as storage or credential objects as a logical application for easier management.
 
 Workload configuration includes:
-- source code to build
-- runtime resource limits
-- environment variables
-- services to bind
+
+- Source code to build
+- Runtime resource limits
+- Environment variables
+- Services to bind
 
 ### Options
 

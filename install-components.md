@@ -23,7 +23,8 @@ For information, see [Installing Part I: Prerequisites, EULA, and CLI](install-g
 + [Install Service Bindings](#install-service-bindings)
 + [Install Tanzu Build Service](#install-tbs)
 + [Install Supply Chain Choreographer](#install-scc)
-+ [Install Default Supply Chain](#install-default-supply-chain)
++ [Install Out of the Box Templates](#install-ootb-templates)
++ [Install Default Supply Chain](#install-ootb-supply-chain-basic)
 + [Install Supply Chain Security Tools - Store](#install-scst-store)
 + [Install Supply Chain Security Tools - Sign](#install-scst-sign)
 + [Install Supply Chain Security Tools - Scan](#install-scst-scan)
@@ -129,7 +130,7 @@ To install Cloud Native Runtimes:
       ingress.external.namespace  <nil>    string   Optional: Only valid if a Contour instance already present in the cluster. Specify a namespace where an existing Contour is installed on your cluster (for external services) if you want CNR to use your Contour instance.
       ingress.internal.namespace  <nil>    string   Optional: Only valid if a Contour instance already present in the cluster. Specify a namespace where an existing Contour is installed on your cluster (for internal services) if you want CNR to use your Contour instance.
       ingress.reuse_crds          false    boolean  Optional: Only valid if a Contour instance already present in the cluster. Set to "true" if you want CNR to re-use the cluster's existing Contour CRDs.
-      local_dns.domain            <nil>    string   Optional: Set a custom domain for the Knative services.
+      local_dns.domain            <nil>    string   Optional: Set a custom domain for CoreDNS. Only applicable when "local_dns.enable" is set to "true", "provider" is set to "local" and running on Kind.
       local_dns.enable            false    boolean  Optional: Only for when "provider" is set to "local" and running on Kind. Set to true to enable local DNS.
       pdb.enable                  true     boolean  Optional: Set to true to enable Pod Disruption Budget. If provider local is set to "local", the PDB will be disabled automatically.
       provider                    <nil>    string   Optional: Kubernetes cluster provider. To be specified if deploying CNR on a local Kubernetes cluster provider.
@@ -774,7 +775,7 @@ To install Out of the Box Templates:
    ```bash
     tanzu package install ootb-templates \
       --package-name ootb-templates.tanzu.vmware.com \
-      --version 0.3.0-build.3 \
+      --version 0.3.0-build.4 \
       --namespace tap-install
     ```
    
@@ -786,13 +787,13 @@ Install the default Supply Chain, called Out of the Box Supply Chain Basic, by r
 1. Gather the values schema:
 
     ```bash
-    tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.3.0-build.3 --values-schema -n tap-install
+    tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.3.0-build.4 --values-schema -n tap-install
     ```
 
     For example:
 
    ```console
-   $ tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.3.0-build.3 --values-schema -n tap-install
+   $ tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.3.0-build.4 --values-schema -n tap-install
    | Retrieving package details for ootb-supply-chain-basic.tanzu.vmware.com/0.3.0...
 
     KEY                  DEFAULT          TYPE    DESCRIPTION
@@ -812,7 +813,7 @@ Install the default Supply Chain, called Out of the Box Supply Chain Basic, by r
     registry:
       server: REGISTRY-SERVER
       repository: REGISTRY-REPOSITORY
-    service_account: service-account
+    service_account: default
     ```
 
 1. Install the package by running:
@@ -820,12 +821,12 @@ Install the default Supply Chain, called Out of the Box Supply Chain Basic, by r
      ```bash
     tanzu package install ootb-supply-chain-basic \
       --package-name ootb-supply-chain-basic.tanzu.vmware.com \
-      --version 0.3.0-build.3 \
+      --version 0.3.0-build.4 \
       --namespace tap-install \
       --values-file ootb-supply-chain-basic-values.yaml
     ```
 
-> **Note:** The `service-account` service account and required secrets are created in
+> **Note:** The `default` service account and required secrets are created in
 [Set Up Developer Namespaces to Use Installed Packages](#setup).
 
 ## <a id='install-developer-conventions'></a> Install Developer Conventions
@@ -834,48 +835,18 @@ To install developer conventions:
 
 **Prerequisite**: Convention Service installed on the cluster, see [Install Convention Service](#install-convention-service).
 
-1. List version information for the package by running:
+1. Get the exact name and version information for the Developer Conventions package to be installed by running:
 
     ```bash
-    tanzu package available list PACKAGE-NAME --namespace tap-install
+    tanzu package available list developer-conventions.tanzu.vmware.com --namespace tap-install
     ```
-    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
-     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
-     For example:
 
+    For example:
     ```bash
     $ tanzu package available list developer-conventions.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for developer-conventions.tanzu.vmware.com
       NAME                                    VERSION        RELEASED-AT
       developer-conventions.tanzu.vmware.com  0.3.0-build.1  2021-10-19T00:00:00Z
-    ```
-
-1. To make changes to the default installation settings, run:
-
-
-    ```bash
-    tanzu package available get developer-conventions.tanzu.vmware.com/0.3.0-build.1 -n tap-install
-    ```
-
-    For example:
-
-    ```console
-    $ tanzu package available get developer-conventions.tanzu.vmware.com/0.3.0-build.1 -n tap-install
-    \ Retrieving package details for developer-conventions.tanzu.vmware.com/0.3.0-build.1...
-    NAME:                             developer-conventions.tanzu.vmware.com
-    VERSION:                          0.3.0-build.1
-    RELEASED-AT:                      2021-10-19T00:00:00Z
-    DISPLAY-NAME:                     Tanzu App Platform Developer Conventions
-    SHORT-DESCRIPTION:                Developer Conventions
-    PACKAGE-PROVIDER:                 VMware
-    MINIMUM-CAPACITY-REQUIREMENTS:
-    LONG-DESCRIPTION:                 Tanzu App Platform Developer Conventions
-    MAINTAINERS:                      [{Lisa Burns} {Paul Warren} {Harsha Nandiwada} {Kiwi Bui} {Ming Xiao} {Anthony Pensiero}]
-    RELEASE-NOTES:                    Developer Conventions contents package
-
-    LICENSE:                          []
-    SUPPORT:                          https://tanzu.vmware.com/support
-    CATEGORY:                         []
     ```
 
 1. Install the package by running:
@@ -886,6 +857,26 @@ To install developer conventions:
       --version 0.3.0-build.1 \
       --namespace tap-install
     ```
+
+1. Verify the package install by running:
+
+    ```bash
+    tanzu package installed get developer-conventions --namespace tap-install
+    ```
+
+    For example:
+    ```bash
+    tanzu package installed get developer-conventions -n tap-install
+    | Retrieving installation details for developer-conventions...
+    NAME:                    developer-conventions
+    PACKAGE-NAME:            developer-conventions.tanzu.vmware.com
+    PACKAGE-VERSION:         0.3.0-build.1
+    STATUS:                  Reconcile succeeded
+    CONDITIONS:              [{ReconcileSucceeded True  }]
+    USEFUL-ERROR-MESSAGE:
+    ```
+    
+    STATUS should be 'Reconcile succeeded.'
 
 
 ## <a id='install-spring-boot-convention'></a> Install Spring Boot Conventions
@@ -1272,14 +1263,14 @@ field in the values file.
 
 ## <a id='install-learning-center'></a> Install Learning Center
 
-To install Tanzu Learning Center, see the following sections
+To install Tanzu Learning Center, see the following sections.
 
 ### Prerequisites in Addition to Tanzu Application Platform [Requirements](install-general.md#prereqs)
 **Required**
-- Make sure you have a proper Ingress Controller configured with a wild card domain name
+- Make sure you have a proper Ingress Controller configured with a wild card domain name.
 
 ### Procedure to install Learning Center
-1. List version information for the package by running
+1. List version information for the package by running:
    
    ```shell
    $ tanzu package available list learningcenter.tanzu.vmware.com --namespace tap-install
@@ -1290,11 +1281,11 @@ To install Tanzu Learning Center, see the following sections
      NAME                             VERSION        RELEASED-AT
      learningcenter.tanzu.vmware.com  1.0.8-build.1  2021-10-22 17:02:13 -0400 EDT
    ```
-2. (Optional) If you want to see all the configurable parameters on this package you can run the following command
+2. (Optional) If you want to see all the configurable parameters on this package you can run the following command:
    ```shell
    $ tanzu package available get learningcenter.tanzu.vmware.com/1.0.8-build.1 --values-schema --namespace tap-install
    ```
-3. Create a config file (e.g. learning-center-config.yaml) with the following parameters
+3. Create a config file (e.g. learning-center-config.yaml) with the following parameters:
      ```yaml
      ingressDomain: <INGRESS_DOMAIN>
      ```
@@ -1306,21 +1297,21 @@ To install Tanzu Learning Center, see the following sections
    * Make sure to replace the <INGRESS_DOMAIN> domain with the domain name for your Kubernetes cluster.
 
    > **Note:** For the custom domain you are using, DNS must have been configured with a wildcard domain to forward 
-   > all requests for subdomains of the custom domain, to the ingress router of the Kubernetes cluster.
+   > all requests for subdomains of the custom domain to the ingress router of the Kubernetes cluster.
 
-   > **Note:** If you are running Kubernetes on your local machine using a system like ``minikube`` and you don't 
-   > have a custom domain name which maps to the IP for the cluster, you can use a ``nip.io`` address. 
+   > **Note:** If you are running Kubernetes on your local machine using a system like ``minikube``, and you don't 
+   > have a custom domain name that maps to the IP for the cluster, you can use a ``nip.io`` address. 
    > For example, if ``minikube ip`` returned ``192.168.64.1``, you could use the 192.168.64.1.nip.io domain. 
-   > Note that you cannot use an address of form ``127.0.0.1.nip.io``, or ``subdomain.localhost``. This will cause a 
-   > failure as internal services when needing to connect to each other, would end up connecting to themselves instead, 
+   > Note that you cannot use an address of form ``127.0.0.1.nip.io`` or ``subdomain.localhost``. This will cause a 
+   > failure. Internal services needing to connect to each other will connect to themselves instead, 
    > since the address would resolve to the host loopback address of ``127.0.0.1``.
 
-4. Install Learning Center Operator
+4. Install Learning Center Operator:
    ```shell
    $ tanzu package install learning-center --package-name learningcenter.tanzu.vmware.com --version 1.0.8-build.1 -f learning-center-config.yaml
    ```
 
-   The command above will create a default namespace in your Kubernetes cluster called ``educates`` and the operator along with any 
+   The command above will create a default namespace in your Kubernetes cluster called ``educates``, and the operator along with any 
    required namespaced resources will be created in it. A set of custom resource definitions and a global cluster role binding will also be created. 
    The list of resources you should see being created are:
 
@@ -1369,7 +1360,7 @@ To install Tanzu Learning Center, see the following sections
 1. List version information for the package by running:
 
     ```bash
-    tanzu package available list PACKAGE-NAME --namespace tap-install
+    tanzu package available list service-bindings.labs.vmware.com --namespace tap-install
     ```
     Where `PACKAGE-NAME` is the name of the package listed earlier in
      [Add the Tanzu Application Platform Package Repository](#add-package-repositories).
@@ -1381,24 +1372,6 @@ To install Tanzu Learning Center, see the following sections
       NAME                              VERSION  RELEASED-AT
       service-bindings.labs.vmware.com  0.5.0    2021-09-15T00:00:00Z
     ```
-
-2. (Optional) To make changes to the default installation settings, run:
-
-    ```bash
-    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
-    ```
-    Where:
-
-    - `PACKAGE-NAME` is same as step 1 above.
-    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
-
-    For example:
-
-    ```bash
-    $ tanzu package available get service-bindings.labs.vmware.com/0.5.0 --values-schema --namespace tap-install
-    ```
-
-    For more information about values schema options, see the individual product documentation.
 
 1. Install the package. Run:
 
@@ -2137,8 +2110,8 @@ Use the following procedure to verify that the packages are installed.
     grype-scanner            grype.scanning.apps.tanzu.vmware.com               1.0.0-beta.2     Reconcile succeeded
     image-policy-webhook     image-policy-webhook.signing.run.tanzu.vmware.com  1.0.0-beta.1     Reconcile succeeded
     metadata-store           scst-store.tanzu.vmware.com                        1.0.0-beta.1     Reconcile succeeded
-    ootb-supply-chain-basic  ootb-supply-chain-basic.tanzu.vmware.com           0.3.0-build.3    Reconcile succeeded
-    ootb-templates           ootb-templates.tanzu.vmware.com                    0.3.0-build.3    Reconcile succeeded
+    ootb-supply-chain-basic  ootb-supply-chain-basic.tanzu.vmware.com           0.3.0-build.4    Reconcile succeeded
+    ootb-templates           ootb-templates.tanzu.vmware.com                    0.3.0-build.4    Reconcile succeeded
     scan-controller          scanning.apps.tanzu.vmware.com                     1.0.0-beta.2     Reconcile succeeded
     service-bindings         service-bindings.labs.vmware.com                   0.5.0            Reconcile succeeded
     services-toolkit         services-toolkit.tanzu.vmware.com                  0.4.0-rc.2       Reconcile succeeded
@@ -2178,7 +2151,7 @@ run the following commands to add credentials and Role-Based Access Control (RBA
     apiVersion: v1
     kind: ServiceAccount
     metadata:
-      name: service-account # use value from "Install default Supply Chain"
+      name: default
     secrets:
       - name: registry-credentials
     imagePullSecrets:
@@ -2222,7 +2195,7 @@ run the following commands to add credentials and Role-Based Access Control (RBA
       name: kapp-permissions
     subjects:
       - kind: ServiceAccount
-        name: service-account # use value from "Install default Supply Chain"
+        name: default
 
     EOF
     ```

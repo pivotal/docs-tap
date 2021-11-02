@@ -28,12 +28,11 @@ Before getting started, ensure the following prerequisites are in place:
    (install instructions [here](install-general.md)
    and [here](install.md))
 
-2. The default Supply Chain is installed on the target Kubernetes cluster. See [Install default Supply Chain](install-components.md#install-ootb-supply-chain-basic).
+2. Default kube config context is set to the target Kubernetes cluster
 
-3. Default kube config context is set to the target Kubernetes cluster
+3. A developer namespace has been setup to accomodate the developer's Workload.
+   See [Set Up Developer Namespaces to Use Installed Packages](install-components.md#setup).
 
-4. Follow [these instructions](install-components.md#install-developer-conventions)
-   to set up the namespace that you plan to create the `Workload` in.
 
 #### A note about Application Accelerators
 
@@ -44,87 +43,91 @@ Developers can bootstrap their applications and get started with feature develop
 Application Accelerator templates are available as a quickstart from [Tanzu Network](https://network.tanzu.vmware.com/products/app-accelerator). To create your own Application Accelerator, see [here](#creating-an-accelerator).
 
 
-### Deploy your Application
+### Deploy Your Application
 
-You’ll use an accelerator called `Tanzu-Java-Web-App` to get started.
+Follow these steps to get started with an accelerator called `Tanzu-Java-Web-App`.
+
+1. Visit your Application Accelerator by following the steps in
+[Using Application Accelerator for VMware Tanzu](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.3/acc-docs/GUID-installation-install.html#using-application-accelerator-for-vmware-tanzu-0).
+
+    <img src="images/app-acc.png" alt="Screenshot of Application Accelerator that shows a search field and two accelerators" width="600">
+
+1. Select the **Tanzu Java Web App** accelerator, which is a sample Spring Boot web app.
+
+    <img src="images/tanzu-java-web-app.png" alt="Screenshot of the Tanzu Java Web App within Application Accelerator. It includes empty text boxes for new project information." width="600">
+
+1. Replace the default value `dev.local` in the _"prefix for container image registry"_ field
+with the URL to your registry. The URL you enter must match the `REGISTRY_SERVER` value you
+provided when you installed the default Supply Chain.
+For more information, see
+[Install default Supply Chain](install-components.md#install-ootb-supply-chain-basic).
+
+    >**Note:** This entry should not include the project ID or image name.
+
+    <img src="images/store-image-on-server.png" alt="Screenshot of the Tanzu Java Web App within Application Accelerator. It includes empty text boxes for new project information, and buttons labeled 'Generate Project', 'Explore Files', and 'Cancel'." width="600">
+
+1. Click the **Generate Project** button to download the accelerator zip file.
+You use this accelerator code in the [Iterate on your Application](#iterate) section later.
+
+1. Deploy the Tanzu Java Web App accelerator by running the `tanzu apps workload create` command:
+
+    ```console
+    tanzu apps workload create tanzu-java-web-app \
+    --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
+    --git-branch main \
+    --type web \
+    --label app.kubernetes.io/part-of=tanzu-java-web-appweb \
+    --yes
+    ```
+
+    For more information, see [Tanzu Apps Workload Create](cli-plugins/apps/command-reference/tanzu_apps_workload_create.md).
+
+    >**Note:** This first deploy uses accelerator source from Git, but you use the VScode extension
+    to debug and live-update this app in later steps.
+
+1. View the build and runtime logs for your app by running the `tail` command:
+
+    ```console
+    tanzu apps workload tail tanzu-java-web-app --since 10m --timestamp
+    ```
+
+1. After the workload is built and running, get the web-app URL by running
+`tanzu apps workload get tanzu-java-web-app` and then pressing **ctrl-click** on the
+Workload Knative Services URL at the bottom of the command output.
 
 
-**1. Visit your Application Accelerator** (view instructions to do so
-[here](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.3/acc-docs/GUID-installation-install.html#using-application-accelerator-for-vmware-tanzu-0))
+### Add Your Application to Tanzu Application Platform GUI
 
-<img src="images/app-acc.png" alt="Screenshot of Application Accelerator that shows a search field and two accelerators" width="600">
+To see this application in your organization catalog, you must point to the catalog definition file
+included in the accelerator zip file.
 
-**2. Select the "Tanzu Java Web App" accelerator** (a sample Spring Boot web-app).
+1. Ensure you have already installed the Blank Software Catalog. For installation information, see
+[Configure the Tanzu Application Platform GUI](install.md#configure-tap-gui).
 
-<img src="images/tanzu-java-web-app.png" alt="Screenshot of the Tanzu Java Web App within Application Accelerator. It includes empty fields for new project information." width="600">
+1. Add the path to the application in the `catalog-info.yaml` file for your catalog, as seen in
+this example:
 
-**3. Replace the default value, `dev.local`** in the _"prefix for container image registry"_ field
-with the url to your registry. The URL you enter should match the `REGISTRY_SERVER` value you provided when you installed the
-[default Supply Chain](/install-components.md#install-ootb-supply-chain-basic). 
->**Note:** This entry should not include the project ID or image name.
+    ```yaml
+    apiVersion: backstage.io/v1alpha1
+    kind: Location
+    metadata:
+      name: backstage-catalog-info
+      description: A sample catalog for Backstage
+      annotations:
+        'backstage.io/techdocs-ref': dir:.
+    spec:
+      targets:
+        - ./components/backstage.yaml
+        - ./groups/default-org.yaml
+        - ./systems/backstage-system.yaml
+        - ./domains/backstage-domain.yaml
+        - https://<GIT-LOCATION-OF-ACCELERATOR>/catalog-info.yaml
+    ```
+    Where `<GIT-LOCATION-OF-ACCELERATOR>` is the location of the accelerator's catalog definition file.
 
-<img src="images/store-image-on-server.png" alt="Screenshot of the Tanzu Java Web App within Application Accelerator. It includes empty fields for new project information, and buttons labeled 'Generate Project', 'Explore Files', and 'Cancel'." width="600">
+The default catalog refresh is 200 seconds.
+After your catalog refreshes you can see the entry in the catalog and interact with it.
 
-**4. Click the “Generate Project” button** to download the accelerator zip file (you’ll use this accelerator code in the [Iterate on your Application](#iterate) section below).
-
-**5. Deploy the ‘Tanzu Java Web App’ accelerator using the `create` command**
-```
-tanzu apps workload create tanzu-java-web-app \
---git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
---git-branch main --type web --yes
-```
-**Note** this first deploy uses accelerator source from git, but you’ll use the VScode extension to debug and live-update this app in later steps.
-
-**6. View the build and runtime logs** for your app using the `tail` command:
-```
-tanzu apps workload tail tanzu-java-web-app --since 10m --timestamp
-```
-
-**7. Once the workload has been built and is running** you can grab the web-app URL via the `get` command:
-```
-tanzu apps workload get tanzu-java-web-app
-```
-<cntrl>-click the `Workload Knative Services URL` at the bottom of the command output.
-
-### Add Your Application to the Tanzu Application Platform GUI
-
-In order to see this application in Your Organization Catalog, you'll need to create a catalog definition file. Assuming that you've already installed the Blank Software Catalog as defined in the component installation instructions, you can add the below file, named `tanzu-java-web-app.yaml` to your `components` folder:
-```yaml
-apiVersion: backstage.io/v1alpha1
-kind: Component
-metadata:
-  name: tanzu-java-web-app
-  description: Tanzu Application Platform Getting Started
-  tags:
-    - app-accelerator
-  annotations:
-    'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=tanzu-java-web-app'
-spec:
-  type: service
-  lifecycle: demo
-  owner: default-team
-  system: 
-```
-You'll now need to add a reference to this file in your catalog's `catalog-info.yaml`
-```yaml
-apiVersion: backstage.io/v1alpha1
-kind: Location
-metadata:
-  name: backstage-catalog-info
-  description: A sample catalog for Backstage
-  annotations:
-    'backstage.io/techdocs-ref': dir:.
-spec:
-  targets:
-    - ./components/backstage.yaml
-    - ./groups/default-org.yaml
-    - ./systems/backstage-system.yaml
-    - ./domains/backstage-domain.yaml
-    - ./components/tanzu-java-web-app.yaml # Update this line with the file's name and location that you created above
-```
-Now once your catalog refreshes (default refresh is 200 seconds) you should be able to see the entry in the catalog and interact with it.
-
-   
 
 ### <a id='iterate'></a>Iterate on your Application
 
@@ -195,7 +198,7 @@ Currently, Spring Boot based applications can be diagnosed using Application Liv
 
 Make sure that you have installed Application Live View components successfully.
 
-Access Application Live View TAP GUI following the instruction
+Access Application Live View Tanzu Application Platform GUI following the instruction
 [here](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.3/tap-0-3/GUID-tap-gui-plugins-app-live-view.html).
 Select your application to look inside the running application and
 [explore](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.3/docs/GUID-product-features.html)
@@ -417,7 +420,7 @@ Tekton pipeline.
    </td>
    <td><code>ootb-supply-chain-testing-scanning.tanzu.vmware.com</code>
    </td>
-   <td>The Out of the Box Testing and Scanning contains all of the same elements as the Out of the Box Testing supply chiains but it also includes integrations out of the box with the secure scanning components of TAP.
+   <td>The Out of the Box Testing and Scanning contains all of the same elements as the Out of the Box Testing supply chiains but it also includes integrations out of the box with the secure scanning components of Tanzu Application Platform.
 <ul>
 
 <li>The application will be testing using the provided tekton pipeline
@@ -435,7 +438,7 @@ Tekton pipeline.
    <td>All of the Source to URL dependencies, as well as:
 <ul>
 
-<li>The secure scanning components included with TAP
+<li>The secure scanning components included with Tanzu Application Platform
 </li>
 </ul>
    </td>
@@ -962,7 +965,7 @@ message queues, DNS records, and so on. These components are:
 * Service Resource Claims (planned for later release)
 
 Each component has value on its own, however you can unlock the most powerful and
-valuable use cases by combining them. 
+valuable use cases by combining them.
 
 For example, the APIs can enable the separation of application workloads and service resources into
 separate Kubernetes clusters. This allows, for example, a developer to create services from the
@@ -1052,7 +1055,7 @@ Let’s start by playing the role of a Service Operator, who is responsible for 
     kubectl apply -f resource-claims-rmq.yaml
     ```
 
-3. Ensure that the namespace is enabled to install packages so that Cartographer Workloads can be created. See [Set Up Developer Namespaces to Use Installed Packages](install-components.md#-set-up-developer-namespaces-to-use-installed-packages).
+3. Ensure that the namespace is enabled to install packages so that Cartographer Workloads can be created. See [Set Up Developer Namespaces to Use Installed Packages](install-components.md#setup).
 
 4. Let’s now switch hats to the Application Operator role and create a RabbitmqCluster instance we can use to bind to our application workload.
     ```yaml
@@ -1094,7 +1097,7 @@ This use case is similar to the above in that we will be binding a sample applic
 
     * This cluster will henceforth be referred to as the **Service Cluster**
 
-2. Download and install the kubectl-scp plugin from [TAP Tanzu Network Page](https://network.tanzu.vmware.com/products/tanzu-application-platform).
+2. Download and install the kubectl-scp plugin from [Tanzu Application Platform Tanzu Network Page](https://network.tanzu.vmware.com/products/tanzu-application-platform).
 To install the plugin you must place it in your PATH and ensure it is executable. For example:
 
 
@@ -1158,7 +1161,7 @@ Now let us see the different use cases where Services toolkit makes the Services
     kubectl --context WORKLOAD_CONTEXT create namespace my-project-1
     kubectl --context SERVICE_CONTEXT create namespace my-project-1
     ```
-6. Ensure that the namespace is enabled to install packages so that Cartographer Workloads can be created. See [Set Up Developer Namespaces to Use Installed Packages](install-components.md#-set-up-developer-namespaces-to-use-installed-packages).
+6. Ensure that the namespace is enabled to install packages so that Cartographer Workloads can be created. See [Set Up Developer Namespaces to Use Installed Packages](install-components.md#setup).
 
 7. Federate using the `kubectl-scp` plugin. Run:
     ```
