@@ -405,6 +405,8 @@ To install a profile:
       service_account: service-account
     learning_center:
       ingressDomain: "<DOMAIN-NAME>" # e.g. educates.example.com
+    tap_gui:
+      service_type: LoadBalancer
     ```
 
     To view possible configuration settings, run:
@@ -454,3 +456,85 @@ To install a profile:
     ```
 
 1. (Optional) [Install any additional packages](install-components.md) that were not included in your profile.
+
+## <a id='configure-tap-gui'></a> Configure the Tanzu Application Platform GUI
+To install Tanzu Application Platform GUI, see the following sections.
+
+#### Prerequisites
+
+- Git repository for the software catalogs and a token allowing read access.
+Supported Git infrastructure includes:
+    - GitHub
+    - GitLab
+    - Azure DevOps
+- Blank Software Catalog from the Tanzu Application section of Tanzu Network
+
+#### Procedure
+
+To install Tanzu Application Platform GUI:
+
+1. Extract the Blank Software Catalog from the Tanzu Application Network on your Git repository of choice. You'll link to that `catalog-info.yaml` file when you configure your catalog below.
+
+1. Obtain you the `External IP` of your LoadBalancer via `kubectl get svc -n tap-gui`. 
+
+2. Add the below section to your `tap-values.yml` using the below template. Replace all `<PLACEHOLDERS>`
+with your relevant values. 
+
+    ```yaml
+     tap_gui:
+      service_type: LoadBalancer
+      # Existing tap-values.yml above  
+      app-config:
+        app:
+          baseUrl: http://<EXTERNAL-IP>:7000
+        integrations: 
+          github: # Other integrations available see NOTE below
+            - host: github.com
+              token: <GITHUB-TOKEN>
+        catalog:
+          locations:
+            - type: url
+              target: https://<GIT-CATALOG-URL>/catalog-info.yaml
+        backend:
+            baseUrl: http://<EXTERNAL-IP>:7000
+            cors:
+                origin: http://<EXTERNAL-IP>:7000
+   ```
+    Where:
+
+    - `<EXTERNAL-IP>` is your LoadBalancer's address.
+    - `<GITHUB-TOKEN>` is a valid token generated from your Git infrastructure of choice with the necessary read permissions for the catalog definition files you extracted from the Blank Software Catalog.
+    - `<GIT-CATALOG-URL>` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage compliant catalog that you've already built and posted on the Git infrastucture that you specified in the Integration section.
+
+    > **Note:** The `integrations` section uses Github. If you want additional integrations, see the
+    format in this [Backstage integration documentation](https://backstage.io/docs/integrations/).
+
+1. Update the package profile by running:
+
+    ```console
+    tanzu package installed update tap \
+     --package-name tap.tanzu.vmware.com \
+     --version 0.3.0 -n tap-install \
+     -f tap-values.yml
+    ```
+
+    For example:
+
+    ```console
+ 
+    $ tanzu package installed update  tap -p tap.tanzu.vmware.com -v 0.3.0 --values-file tap-values-file.yml -n tap-install
+    | Updating package 'tap'
+    | Getting package install for 'tap'
+    | Getting package metadata for 'tap.tanzu.vmware.com'
+    | Updating secret 'tap-tap-install-values'
+    | Updating package install for 'tap'
+    / Waiting for 'PackageInstall' reconciliation for 'tap'
+
+
+    Updated package install 'tap' in namespace 'tap-install'
+    ```
+
+1. To access Tanzu Application Platform GUI, use the `<EXTERNAL-IP>` you exposed in the `service_type` above. If you have any issues, please try re-creating the Tanzu Application Platform pod with:
+    ```
+    kubectl delete pod -l app=backstage -n tap-gui
+    ```
