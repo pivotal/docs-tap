@@ -392,17 +392,26 @@ To install a profile:
     ```yaml
     # e.g. full, dev-light, shared-tools, operator-light
     profile: full
+
     buildservice:
+      # e.g. us-east4-docker.pkg.dev/some-project-id/test-private-repo/apps
+      kp_default_repository: "..."
+      kp_default_repository_username: "..."
+      kp_default_repository_password: "..."
       tanzunet_username: "<TANZUNET-USERNAME>"
       tanzunet_password: "<TANZUNET-PASSWORD>"
-    rw_app_registry:
-      # e.g. index.docker.io/some-user/apps
-      # e.g. us-east4-docker.pkg.dev/some-project-id/test-private-repo/apps
-      server_repo: "<SERVER-REPO>"
-      username: "<USERNAME>"
-      password: "<PASSWORD>"
+
+    ootb_supply_chain_basic:
+      service_account: service-account
+      registry:
+        # e.g. us-east4-docker.pkg.dev
+        server: "..."
+        # e.g. some-project-id/test-private-repo/apps
+        repository: "..."
+
     learning_center:
       ingressDomain: "<DOMAIN-NAME>" # e.g. educates.example.com
+
     tap_gui:
       service_type: LoadBalancer
     ```
@@ -413,22 +422,19 @@ To install a profile:
     tanzu package available get tap.tanzu.vmware.com/0.3.0-build.5 --values-schema --namespace tap-install
     ```
 
-    Note that currently `tap.tanzu.vmware.com` package does not show all configuration settings for packages it plans to install. To find them out, look at individual package configuration settings via same `tanzu package available get` command (e.g. for CNRs use `tanzu package available get -n tap-install cnrs.tanzu.vmware.com/1.0.3 --values-schema`).
-    Replace dashes with underscores.
-    For example, if the package name is `cloud-native-runtimes`, use `cloud_native_runtimes` in the `tap-values` YAML file.
+    Note that currently `tap.tanzu.vmware.com` package does not show all configuration settings for packages it plans to install. It only shows top level keys. To find them out, look at individual package configuration settings via same `tanzu package available get` command (e.g. for CNRs use `tanzu package available get -n tap-install cnrs.tanzu.vmware.com/1.0.3 --values-schema`). Replace dashes with underscores. For example, if the package name is `tap-gui`, use `tap_gui` in the `tap-values.yml` file.
 
     ```yaml
     profile: full
-    buildservice:
-      # ...
-    rw_app_registry:
-      # ...
+
+    # ...
 
     # e.g. CNRs specific values would go under its name
-    cloud_native_runtimes:
+    cnrs:
       provider: local
+
     # e.g. App Accelerator specific values would go under its name
-    app_accelerator:
+    accelerator:
       service_type: "ClusterIP"
     ```
 
@@ -479,7 +485,7 @@ To install Tanzu Application Platform GUI:
 with your relevant values.
 
     ```yaml
-     tap_gui:
+    tap_gui:
       service_type: LoadBalancer
       # Existing tap-values.yml above  
       app-config:
