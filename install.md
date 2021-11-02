@@ -538,3 +538,5 @@ with your relevant values.
     ```
     kubectl delete pod -l app=backstage -n tap-gui
     ```
+
+1. You're now ready to start using the Tanzu Application Platform GUI. You can choose to go through the [Getting Started](./getting-started.md) guide or by looking through the [Tanzu Application Platform GUI - Catalog Operations](./tap-gui/catalog-operations.md) section of the manual.
