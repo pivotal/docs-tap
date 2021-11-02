@@ -408,7 +408,7 @@ To install a profile:
         # e.g. some-project-id/test-private-repo/apps
         repository: "..."
 
-    learning_center:
+    learningcenter:
       ingressDomain: "<DOMAIN-NAME>" # e.g. educates.example.com
 
     tap_gui:
