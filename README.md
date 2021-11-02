@@ -96,10 +96,7 @@ v0.1 Staging docs:
 ### Create the ZIP File
 Starting from the repo root, this will create a new `docs.zip` with no root folder and show its contents.
 
-```sh
-rm docs.zip ; cd docs && zip -r ../docs.zip * && cd .. && unzip -l docs.zip
-```
-or
+
 ```sh
 git pull ; rm *.zip ; zip -r tap3beta *
 ```
