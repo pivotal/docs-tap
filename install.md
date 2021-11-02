@@ -35,14 +35,14 @@ To add the Tanzu Application Platform package repository:
 
     ```bash
     tanzu package repository add tanzu-tap-repository \
-      --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.3.0-build.5 \
+      --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.3.0-build.6 \
       --namespace tap-install
     ```
     For example:
 
     ```bash
     $ tanzu package repository add tanzu-tap-repository \
-        --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.3.0-build.5 \
+        --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.3.0-build.6 \
         --namespace tap-install
     \ Adding package repository 'tanzu-tap-repository'...
 
@@ -61,7 +61,7 @@ To add the Tanzu Application Platform package repository:
     - Retrieving repository tap...
     NAME:          tanzu-tap-repository
     VERSION:       48756
-    REPOSITORY:    registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.3.0-build.5
+    REPOSITORY:    registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.3.0-build.6
     STATUS:        Reconcile succeeded
     REASON:
     ```
@@ -419,7 +419,7 @@ To install a profile:
     To view possible configuration settings, run:
 
     ```bash
-    tanzu package available get tap.tanzu.vmware.com/0.3.0-build.5 --values-schema --namespace tap-install
+    tanzu package available get tap.tanzu.vmware.com/0.3.0-build.6 --values-schema --namespace tap-install
     ```
 
     Note that currently `tap.tanzu.vmware.com` package does not show all configuration settings for packages it plans to install. It only shows top level keys. To find them out, look at individual package configuration settings via same `tanzu package available get` command (e.g. for CNRs use `tanzu package available get -n tap-install cnrs.tanzu.vmware.com/1.0.3 --values-schema`). Replace dashes with underscores. For example, if the package name is `tap-gui`, use `tap_gui` in the `tap-values.yml` file.
@@ -443,7 +443,7 @@ To install a profile:
 1. Install the package by running:
 
     ```bash
-    tanzu package install tap -p tap.tanzu.vmware.com -v 0.3.0-build.5 --values-file tap-values.yml -n tap-install
+    tanzu package install tap -p tap.tanzu.vmware.com -v 0.3.0-build.6 --values-file tap-values.yml -n tap-install
     ```
 
 1. Verify the package install by running:
