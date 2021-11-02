@@ -230,6 +230,7 @@ To accept EULAs:
 ## <a id='cli-and-plugin'></a> Install or Update the Tanzu CLI and Plugins
 
 **_Choose the install scenario that is right for you:_**
+
    + **[Instructions for a clean install of Tanzu CLI](#tanzu-cli-clean-install)**
    + **[Instructions for updating Tanzu CLI that was installed for a previous Tanzu Application Platform release](#udpate-previous-tap-tanzu-cli)**
    + **[Instructions for updating Tanzu CLI that was previously installed for Tanzu Kubernetes Grid and Tanzu Community Edition](#udpate-tkg-tce-tanzu-cli)**  
@@ -239,6 +240,7 @@ To accept EULAs:
 ### <a id='tanzu-cli-clean-install'></a>Instructions for a Clean Install of Tanzu CLI
 
 Follow the procedure for your OS:
+
    + [Linux: Install the Tanzu CLI](#linux-cli)
    + [Mac: Install the Tanzu CLI](#mac-cli)
    + [Windows: Install the Tanzu CLI](#windows-cli)
