@@ -96,26 +96,38 @@ You use this accelerator code in the [Iterate on your Application](#iterate) sec
 Workload Knative Services URL at the bottom of the command output.
 
 
-### Add Your Application to the Tanzu Application Platform GUI
+### Add Your Application to Tanzu Application Platform GUI
 
-In order to see this application in Your Organization Catalog, you'll need to point to the catalog definition file included in the accelerator zip file. Assuming that you've already installed the Blank Software Catalog as defined in the component installation instructions, you can add the path to the application in your catalog's `catalog-info.yaml` 
-```yaml
-apiVersion: backstage.io/v1alpha1
-kind: Location
-metadata:
-  name: backstage-catalog-info
-  description: A sample catalog for Backstage
-  annotations:
-    'backstage.io/techdocs-ref': dir:.
-spec:
-  targets:
-    - ./components/backstage.yaml
-    - ./groups/default-org.yaml
-    - ./systems/backstage-system.yaml
-    - ./domains/backstage-domain.yaml
-    - https://<GIT-LOCATION-OF-ACCELERATOR>/catalog-info.yaml # Update this line with the location of the accelerator's catalog definition file
-```
-Now once your catalog refreshes (default refresh is 200 seconds) you should be able to see the entry in the catalog and interact with it.
+To see this application in your organization catalog, you must point to the catalog definition file
+included in the accelerator zip file.
+
+1. Ensure you have already installed the Blank Software Catalog. For installation information, see
+[Configure the Tanzu Application Platform GUI](install.md#configure-tap-gui).
+
+1. Add the path to the application in the `catalog-info.yaml` file for your catalog, as seen in
+this example:
+
+    ```yaml
+    apiVersion: backstage.io/v1alpha1
+    kind: Location
+    metadata:
+      name: backstage-catalog-info
+      description: A sample catalog for Backstage
+      annotations:
+        'backstage.io/techdocs-ref': dir:.
+    spec:
+      targets:
+        - ./components/backstage.yaml
+        - ./groups/default-org.yaml
+        - ./systems/backstage-system.yaml
+        - ./domains/backstage-domain.yaml
+        - https://<GIT-LOCATION-OF-ACCELERATOR>/catalog-info.yaml
+    ```
+    Where `<GIT-LOCATION-OF-ACCELERATOR>` is the location of the accelerator's catalog definition file.
+
+The default catalog refresh is 200 seconds.
+After your catalog refreshes you can see the entry in the catalog and interact with it.
+
 
 ### <a id='iterate'></a>Iterate on your Application
 
