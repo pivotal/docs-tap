@@ -101,7 +101,7 @@ rm docs.zip ; cd docs && zip -r ../docs.zip * && cd .. && unzip -l docs.zip
 ```
 or
 ```sh
-git pull ; rm docs.zip ; zip -r tap2beta *.md VMwarePub.yaml images/ scc/ scst-scan/ scst-store/ vscode-extension/  apps-plugin/ cli-plugins/
+git pull ; rm *.zip ; zip -r tap3beta *
 ```
 
 
