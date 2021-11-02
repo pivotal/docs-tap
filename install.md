@@ -388,7 +388,7 @@ To install a profile:
     tanzu package available list tap.tanzu.vmware.com --namespace tap-install
     ```
 
-1. Create a `tap-values.yml` using the following sample as a guide. Select a profile to install by changing the `profile` value. 
+1. Create a `tap-values.yml` using the following sample as a guide. Select a profile to install by changing the `profile` value.
     ```yaml
     # e.g. full, dev-light, shared-tools, operator-light
     profile: full
@@ -475,10 +475,10 @@ To install Tanzu Application Platform GUI:
 
 1. Extract the Blank Software Catalog from the Tanzu Application Network on your Git repository of choice. You'll link to that `catalog-info.yaml` file when you configure your catalog below.
 
-1. Obtain you the `External IP` of your LoadBalancer via `kubectl get svc -n tap-gui`. 
+1. Obtain you the `External IP` of your LoadBalancer via `kubectl get svc -n tap-gui`.
 
 2. Add the below section to your `tap-values.yml` using the below template. Replace all `<PLACEHOLDERS>`
-with your relevant values. 
+with your relevant values.
 
     ```yaml
      tap_gui:
@@ -487,7 +487,7 @@ with your relevant values.
       app-config:
         app:
           baseUrl: http://<EXTERNAL-IP>:7000
-        integrations: 
+        integrations:
           github: # Other integrations available see NOTE below
             - host: github.com
               token: <GITHUB-TOKEN>
@@ -521,7 +521,7 @@ with your relevant values.
     For example:
 
     ```console
- 
+
     $ tanzu package installed update  tap -p tap.tanzu.vmware.com -v 0.3.0 --values-file tap-values-file.yml -n tap-install
     | Updating package 'tap'
     | Getting package install for 'tap'
@@ -534,9 +534,14 @@ with your relevant values.
     Updated package install 'tap' in namespace 'tap-install'
     ```
 
-1. To access Tanzu Application Platform GUI, use the `<EXTERNAL-IP>` you exposed in the `service_type` above. If you have any issues, please try re-creating the Tanzu Application Platform pod with:
-    ```
+1. To access Tanzu Application Platform GUI, use the `<EXTERNAL-IP>` you exposed in the
+`service_type` above.
+If you have any issues, try re-creating the Tanzu Application Platform Pod by running:
+
+    ```console
     kubectl delete pod -l app=backstage -n tap-gui
     ```
 
-1. You're now ready to start using the Tanzu Application Platform GUI. You can choose to go through the [Getting Started](./getting-started.md) guide or by looking through the [Tanzu Application Platform GUI - Catalog Operations](./tap-gui/catalog-operations.md) section of the manual.
+You're now ready to start using Tanzu Application Platform GUI.
+Proceed to the [Getting Started](getting-started.md) topic or the
+[Tanzu Application Platform GUI - Catalog Operations](tap-gui/catalog-operations.md) topic.
