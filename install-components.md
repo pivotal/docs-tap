@@ -775,7 +775,7 @@ To install Out of the Box Templates:
    ```bash
     tanzu package install ootb-templates \
       --package-name ootb-templates.tanzu.vmware.com \
-      --version 0.3.0-build.3 \
+      --version 0.3.0-build.4 \
       --namespace tap-install
     ```
    
@@ -787,13 +787,13 @@ Install the default Supply Chain, called Out of the Box Supply Chain Basic, by r
 1. Gather the values schema:
 
     ```bash
-    tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.3.0-build.3 --values-schema -n tap-install
+    tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.3.0-build.4 --values-schema -n tap-install
     ```
 
     For example:
 
    ```console
-   $ tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.3.0-build.3 --values-schema -n tap-install
+   $ tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.3.0-build.4 --values-schema -n tap-install
    | Retrieving package details for ootb-supply-chain-basic.tanzu.vmware.com/0.3.0...
 
     KEY                  DEFAULT          TYPE    DESCRIPTION
@@ -821,7 +821,7 @@ Install the default Supply Chain, called Out of the Box Supply Chain Basic, by r
      ```bash
     tanzu package install ootb-supply-chain-basic \
       --package-name ootb-supply-chain-basic.tanzu.vmware.com \
-      --version 0.3.0-build.3 \
+      --version 0.3.0-build.4 \
       --namespace tap-install \
       --values-file ootb-supply-chain-basic-values.yaml
     ```
@@ -2110,8 +2110,8 @@ Use the following procedure to verify that the packages are installed.
     grype-scanner            grype.scanning.apps.tanzu.vmware.com               1.0.0-beta.2     Reconcile succeeded
     image-policy-webhook     image-policy-webhook.signing.run.tanzu.vmware.com  1.0.0-beta.1     Reconcile succeeded
     metadata-store           scst-store.tanzu.vmware.com                        1.0.0-beta.1     Reconcile succeeded
-    ootb-supply-chain-basic  ootb-supply-chain-basic.tanzu.vmware.com           0.3.0-build.3    Reconcile succeeded
-    ootb-templates           ootb-templates.tanzu.vmware.com                    0.3.0-build.3    Reconcile succeeded
+    ootb-supply-chain-basic  ootb-supply-chain-basic.tanzu.vmware.com           0.3.0-build.4    Reconcile succeeded
+    ootb-templates           ootb-templates.tanzu.vmware.com                    0.3.0-build.4    Reconcile succeeded
     scan-controller          scanning.apps.tanzu.vmware.com                     1.0.0-beta.2     Reconcile succeeded
     service-bindings         service-bindings.labs.vmware.com                   0.5.0            Reconcile succeeded
     services-toolkit         services-toolkit.tanzu.vmware.com                  0.4.0-rc.2       Reconcile succeeded
