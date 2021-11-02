@@ -2,9 +2,18 @@
 
 ## <a id='changing-clusters'></a> Changing Clusters
 
-The Apps CLI plugin uses the default context that you set in the kubeconfig file to connect to the cluster.
-To switch clusters, use kubectl to set the default context.
-For more information, see [Configure Access to Multiple Clusters](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/).
+The Apps CLI plugin referes to the default kubeconfig file to access a Kubernetes cluster.
+When a `tanzu apps` command is run, the plugin uses the default context that's defined in that kubeconfig file (located by default at `$HOME/.kube/config`).
+
+There are two ways to change the target cluster:
+1. use `kubectl config use-context <context-name>` to change the default context (all subsequent `tanzu apps` commands will target the cluster defined in the new default kubeconfig context)*
+1. include the `--context <context-name>` flag when running any `tanzu apps` command (all subsequent `tanzu apps` commands that do not have the `--context <context-name>` flag will continue to use the default context set in the kubeconfig)
+
+There are also two ways to override the default kubeconfig:
+1. set the env var `KUBECONFIG=<path>` to change the kubeconfig the Apps CLI plugin should reference (all subsequent `tanzu apps` commands will reference the non-default kubeconfig assigned to the env var)
+1. include the  `--kubeconfig <path>` flag when running any `tanzu apps` command (all subsequent `tanzu apps` commands that do not have the `--kubeconfig <path>` flag will continue to use the default kubeconfig)
+
+NOTE: For more information about kubeconfig, see [Configure Access to Multiple Clusters](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/).
 
 
 ## <a id='checking-update-status'></a>Checking Update Status

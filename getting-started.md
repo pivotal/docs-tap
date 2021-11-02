@@ -31,7 +31,7 @@ Before getting started, ensure the following prerequisites are in place:
 2. Default kube config context is set to the target Kubernetes cluster
 
 3. A developer namespace has been setup to accomodate the developer's Workload.
-   See [Set Up Developer Namespaces to Use Installed Packages](install-components.md#-set-up-developer-namespaces-to-use-installed-packages).
+   See [Set Up Developer Namespaces to Use Installed Packages](install-components.md#setup).
 
 
 #### A note about Application Accelerators
@@ -1055,7 +1055,7 @@ Let’s start by playing the role of a Service Operator, who is responsible for 
     kubectl apply -f resource-claims-rmq.yaml
     ```
 
-3. Ensure that the namespace is enabled to install packages so that Cartographer Workloads can be created. See [Set Up Developer Namespaces to Use Installed Packages](install-components.md#-set-up-developer-namespaces-to-use-installed-packages).
+3. Ensure that the namespace is enabled to install packages so that Cartographer Workloads can be created. See [Set Up Developer Namespaces to Use Installed Packages](install-components.md#setup).
 
 4. Let’s now switch hats to the Application Operator role and create a RabbitmqCluster instance we can use to bind to our application workload.
     ```yaml
@@ -1161,7 +1161,7 @@ Now let us see the different use cases where Services toolkit makes the Services
     kubectl --context WORKLOAD_CONTEXT create namespace my-project-1
     kubectl --context SERVICE_CONTEXT create namespace my-project-1
     ```
-6. Ensure that the namespace is enabled to install packages so that Cartographer Workloads can be created. See [Set Up Developer Namespaces to Use Installed Packages](install-components.md#-set-up-developer-namespaces-to-use-installed-packages).
+6. Ensure that the namespace is enabled to install packages so that Cartographer Workloads can be created. See [Set Up Developer Namespaces to Use Installed Packages](install-components.md#setup).
 
 7. Federate using the `kubectl-scp` plugin. Run:
     ```
