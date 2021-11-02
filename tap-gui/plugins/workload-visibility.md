@@ -24,9 +24,10 @@ Developers must perform the following actions to see their Workloads on the dash
     system:
   ```
 
-1. Commit and push the Component definition to a Git repository that is registered as a Catalog Location. See [Adding Catalog Entities](../catalog/catalog-operations.md#adding-catalog-entities) in the Catalog Operations documentation.
-1. Create a Kubernetes Workload with a label matching the Component's selector, in a cluster available to the Tanzu Application Platform
-  GUI. A Workload is one of the following:
+1. Commit and push the Component definition to a Git repository that is registered as a Catalog Location. See [Adding
+  Catalog Entities](../catalog/catalog-operations.md#adding-catalog-entities) in the Catalog Operations documentation.
+2. Create a Kubernetes Workload with a label matching the Component's selector, in a cluster available to the Tanzu
+  Application Platform GUI. A Workload is one of the following:
   - `v1/Service`
   - `apps/v1/Deployment`
   - `serving.knative.dev/v1/Service`
@@ -54,7 +55,8 @@ Developers must perform the following actions to see their Workloads on the dash
 
 ## Navigate to the Workload Visibility Screen
 
-You can view the list of running Workloads and details about their status, type, namespace, cluster, and public URL if applicable for the Workload type.
+You can view the list of running Workloads and details about their status, type, namespace, cluster, and public URL if
+applicable for the Workload type.
 
 To view the list of your running Workloads:
 
@@ -63,8 +65,11 @@ To view the list of your running Workloads:
 
 ![Workload index table](./images/workload-visibility-workloads.png)
 
-## Resource Details
+## Knative Service Details page
 
-Each resource has a dedicated page showing its detailed status, metadata, ownership, and related resources.
+To view the Knative services details of your Workloads, select the Workload with 'Knative Service' type.
+In this page, additional information is available for Knative workloads including status, an ownership hierarchy,
+incoming routes, revisions, and pod details.
+
 
 ![Resource detail page](./images/workload-visibility-resource-detail.png)
