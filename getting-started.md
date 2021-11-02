@@ -67,11 +67,13 @@ with the url to your registry. The URL you enter should match the `REGISTRY_SERV
 
 **4. Click the “Generate Project” button** to download the accelerator zip file (you’ll use this accelerator code in the [Iterate on your Application](#iterate) section below).
 
-**5. Deploy the ‘Tanzu Java Web App’ accelerator using the `create` command**
+**5. Deploy the ‘Tanzu Java Web App’ accelerator using the [`tanzu apps workload create`](/cli-plugins/apps/command-reference/tanzu_apps_workload_create.html) command**
 ```
 tanzu apps workload create tanzu-java-web-app \
 --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
---git-branch main --type web --yes
+--git-branch main --type \ 
+--label app.kubernetes.io/part-of=tanzu-java-web-appweb \
+--yes
 ```
 **Note** this first deploy uses accelerator source from git, but you’ll use the VScode extension to debug and live-update this app in later steps.
 
