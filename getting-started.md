@@ -74,7 +74,8 @@ You use this accelerator code in the [Iterate on your Application](#iterate) sec
     ```console
     tanzu apps workload create tanzu-java-web-app \
     --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
-    --git-branch main --type \
+    --git-branch main \
+    --type web \
     --label app.kubernetes.io/part-of=tanzu-java-web-appweb \
     --yes
     ```
