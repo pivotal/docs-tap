@@ -544,4 +544,4 @@ If you have any issues, try re-creating the Tanzu Application Platform Pod by ru
 
 You're now ready to start using Tanzu Application Platform GUI.
 Proceed to the [Getting Started](getting-started.md) topic or the
-[Tanzu Application Platform GUI - Catalog Operations](tap-gui/catalog-operations.md) topic.
+[Tanzu Application Platform GUI - Catalog Operations](tap-gui/catalog/catalog-operations.md) topic.
