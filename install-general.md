@@ -230,19 +230,20 @@ To accept EULAs:
 ## <a id='cli-and-plugin'></a> Install or Update the Tanzu CLI and Plugins
 
 **_Choose the install scenario that is right for you:_**
-* **[Instructions for a clean install of Tanzu CLI](#tanzu-cli-clean-install)**
-* **[Instructions for updating Tanzu CLI that was installed for a previous Tanzu Application Platform release](#udpate-previous-tap-tanzu-cli)**
-* **[Instructions for updating Tanzu CLI that was previously installed for Tanzu Kubernetes Grid and Tanzu Community Edition](#udpate-tkg-tce-tanzu-cli)**  
+   + **[Instructions for a clean install of Tanzu CLI](#tanzu-cli-clean-install)**
+   + **[Instructions for updating Tanzu CLI that was installed for a previous Tanzu Application Platform release](#udpate-previous-tap-tanzu-cli)**
+   + **[Instructions for updating Tanzu CLI that was previously installed for Tanzu Kubernetes Grid and Tanzu Community Edition](#udpate-tkg-tce-tanzu-cli)**  
 
+***
 
 ### <a id='tanzu-cli-clean-install'></a>Instructions for a Clean Install of Tanzu CLI
 
 Follow the procedure for your OS:
-+ [Linux: Install the Tanzu CLI](#linux-cli)
-+ [Mac: Install the Tanzu CLI](#mac-cli)
-+ [Windows: Install the Tanzu CLI](#windows-cli)
+   + [Linux: Install the Tanzu CLI](#linux-cli)
+   + [Mac: Install the Tanzu CLI](#mac-cli)
+   + [Windows: Install the Tanzu CLI](#windows-cli)
 
-
+<br/><br/>
 #### <a id='linux-cli'></a>Linux: Install the Tanzu CLI
 To install the Tanzu CLI on a Linux operating system:
 
@@ -375,7 +376,7 @@ To install the Tanzu CLI on a Windows operating system:
 
 14. Proceed to [Instructions for a clean install of Tanzu CLI Plugins](#cli-plugin-clean-install)
 
-
+<br/><br/>
 ## <a id='cli-plugin-clean-install'></a>Instructions for a clean install of Tanzu CLI Plugins
 1. Run the following command from the `tanzu` directory:
     ```bash
@@ -413,7 +414,7 @@ To install the Tanzu CLI on a Windows operating system:
    have unintended side-effects. VMware recommends against running `cluster`, `kubernetes-release`, `login`,
    `management-cluster` and `pinniped-auth` commands.
 
-
+<br/><br/>
 ## <a id='udpate-previous-tap-tanzu-cli'></a>Instructions for updating Tanzu CLI that was installed for a previous Tanzu Application Platform release
 
 If you'd like to the update the Tanzu CLI core and plugins you installed previously for Tanzu Application Platform Beta 2:
@@ -485,6 +486,7 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
 
 1. You may now proceed with installing Tanzu Application Platform via **[Installing Part II: Profiles](install.md)**.
 
+<br/><br/>
 ## <a id='udpate-tkg-tce-tanzu-cli'></a>Instructions for updating Tanzu CLI that was previously installed for Tanzu Kubernetes Grid and Tanzu Community Edition
 
 If you'd like to maintain the Tanzu CLI core and plugins you installed previously
@@ -564,5 +566,3 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
  1. You may now proceed with installing Tanzu Application Platform on Tanzu Kubernetes Grid or Tanzu Community Edition. For more information, see:
     * **[Installing Tanzu Application Platform on a Tanzu Community Edition v0.9.1 Cluster](install-tce.html#install-tap)**
     * **[Installing Tanzu Application Platform on a Tanzu Kubernetes Grid v1.4 Cluster](install-tkg.html#install-tap)**
-
-Now you are ready to proceed to **[Installing Part II: Profiles](install.md#installingpartII:profiles)**
