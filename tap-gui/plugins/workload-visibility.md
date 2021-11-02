@@ -1,53 +1,71 @@
-# Workload Visibility Plugin User Guide for Application Developers
+# Workload Visibility User Guide
 
-This document describes how to utilize the Workload Visibility plugin.
+The Workload Visibility screen enables developers to view the details and status of their Kubernetes
+Workloads, to understand their structure, and debug any issues.
 
-## Overview
+## Before You Begin
 
-The Workload Visibility plugin enables developers to view their running Kubernetes workloads and learn about their details and statuses. Gaining visibility helps developers debug and troubleshoot issues associated with their workloads.
+Developers need to perform the following actions to see their running Workloads on the dashboard:
 
-## Before you begin
+* Define a Backstage Component with a `backstage.io/kubernetes-label-selector` annotation. See
+  [Components](../catalog/catalog-operations.md#components) in the Catalog Operations documentation.
+  ```yaml
+  apiVersion: backstage.io/v1alpha1
+  kind: Component
+  metadata:
+    name: petclinic
+    description: Spring PetClinic
+    annotations:
+      'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=petclinic-server'
+  spec:
+    type: service
+    lifecycle: demo
+    owner: default-team
+    system:
+  ```
 
-The developer needs to perform the below actions in order to see their running workloads on the dashboard:<br/>
+* Commit and push the Component definition to a Git repository that is registered as a Catalog Location. See [Adding
+  Catalog Entities](../catalog/catalog-operations.md#adding-catalog-entities) in the Catalog Operations documentation.
+* Create a Kubernetes Workload, with a label matching the Component's selector, in a cluster available to the TAP
+  GUI. A Workload is one of:
+  * `v1/Service`
+  * `apps/v1/Deployment`
+  * `serving.knative.dev/v1/Service`
 
-* Create a YAML file specifying the components and label/s used to identify the workloads.
-* Push the YAML file to the repo that is registered with Backstage. (The system operator must already have registered the company/org-wide repository in the Backstage configuration.)
+  ```shell
+  $ cat <<EOF | kubectl apply -f -
+  ---
+  apiVersion: serving.knative.dev/v1
+  kind: Service
+  metadata:
+    name: petclinic
+    namespace: default
+    labels:
+      'app.kubernetes.io/part-of': petclinic-server
+  spec:
+    template:
+      metadata:
+        labels:
+          'app.kubernetes.io/part-of': petclinic-server
+      spec:
+        containers:
+          - image: springcommunity/spring-framework-petclinic
+  EOF
+  ```
 
+## Navigate to the Workload Visibility Screen
 
-## Navigate to the Workload Visibility Plugin
+You can view the list of running Workloads and details about their status, type, namespace, cluster, and public URL if applicable for the Workload type.
 
-To view the list of your running workloads:<br/>
+To view the list of your running Workloads:
 
-* Click on the component that you want to see from the catalog on the landing page.
-* Once you are in the component page, click on the ‘Workloads’ tab on the top navigation menu.<br/>
+1. Select the Component from the Catalog index page.
+1. Select the Workloads tab.
 
-In this screen, you can view the list of running workloads, along with their overall status, type, namespace and cluster they belong to, age and the public URL (if any).
+![Workload index table](./images/workload-visibility-workloads.png)
 
-<img width="1879" alt="workload-visibility-workloadlist" src="../images/workload-visibility-workloadlist.png">
+## Resource Details
 
-## Resource Details Pages
+Each resource has a dedicated page showing its detailed status, metadata, ownership, and related resources.
 
-### Knative Service Details
-
-In order to view further details of your workloads, you can click on your desired workload from the list. In the screenshot below, Knative service details are displayed such as:<br/>
-
-* Status Conditions
-* Annotations
-* Labels
-* Incoming Routes
-* Revisions (you can view more details of each revision by clicking on them)
-* Pods (you can view each pod details by clicking on them
-
-<img width="1682" alt="workload-visibility-knative-details" src="../images/workload-visibility-knative-details.png">
-
-### Pod Detail Page
-
-You can gain further information about the pods associated with a service by clicking on the Pod name. The Pod page includes details such as:<br/>
-
-* Status Conditions
-* Ownership: provides a detailed hierarchy of the pod belonging to which component
-* Annotations
-* Labels
-* Containers: provides details like Container ID, Image and Ready Status
-
-<img width="1533" alt="workload-visibility-pod-details" src="../images/workload-visibility-pod-details.png">
+![Resource detail page](./images/workload-visibility-resource-detail.png)

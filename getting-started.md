@@ -32,7 +32,7 @@ Before getting started, ensure the following prerequisites are in place:
 
 3. Default kube config context is set to the target Kubernetes cluster
 
-4. Follow [these instructions](install.md#install-developer-conventions)
+4. Follow [these instructions](install-components.md#install-developer-conventions)
    to set up the namespace that you plan to create the `Workload` in.
 
 #### A note about Application Accelerators
@@ -342,7 +342,13 @@ Tekton pipeline.
 <li>Convention Service
 
 <li>Cloud Native Runtimes
-</li>
+<li>If using Service References:
+   </li>   
+<ul>
+<li>Service Bindings
+<li>Services Toolkit
+   </li>
+   </ul>
 </ul>
    </td>
   </tr>
@@ -438,9 +444,7 @@ Tekton pipeline.
 
 ### Install Out of the Box with Testing
 
-The first step is to install Tekton, which was not installed in the installation docs as
-it is only a requirement for the **Out of the Box Basic** supply chain.
-The next section walks you through installing Tekton on your cluster.
+The first step is to install Tekton, which was only installed if you added `install_tekton: true` to your `tap-values.yaml`. If you did not, this next section walks you through installing Tekton on your cluster.
 
 
 #### Install Tekton
@@ -468,9 +472,9 @@ Now that Tekton is installed, you can install the **Out of the Box with Testing*
 ```bash
 tanzu package install ootb-supply-chain-testing \
   --package-name ootb-supply-chain-testing.tanzu.vmware.com \
-  --version 0.3.0 \
+  --version 0.3.0-build.3  \
   --namespace tap-install \
-  --values-file default-supply-chain-values.yaml
+  --values-file ootb-supply-chain-basic-values.yaml
 ```
 
 ### Example Tekton Pipeline Config
@@ -601,22 +605,16 @@ the workload must be updated to point at the your Tekton pipeline.
 
 ### Install Out of the Box with Testing and Scanning
 
-The first step is to install the additional scanning templates which define how the source and image should be scanned:
-
-<ul>
-<li><a href="https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.3/tap-0-3/GUID-scst-scan-choreographer.html#supply-chain-security-tools-for-vmware-tanzu--scan-5">Scan Policy</a></li>
-<li><a href="https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.3/tap-0-3/GUID-scst-scan-choreographer.html#supply-chain-security-tools-for-vmware-tanzu--scan-5">Source Scan Policy</a></li>
-<li><a href="https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.3/tap-0-3/GUID-scst-scan-choreographer.html#supply-chain-security-tools-for-vmware-tanzu--scan-5">Image Scan Policy</a></li>
-</ul>
+The first step is to install [Supply Chain Security Tools - Scan](install-components.md#install-scst-scan) which includes the additional scanning templates which define how the source and image should be scanned.
 
 Next the Out of the Box Testing and Scanning supply chain can be installed.
 
 ```bash
 tanzu package install ootb-supply-chain-testing-scanning \
   --package-name ootb-supply-chain-testing-scanning.tanzu.vmware.com \
-  --version 0.3.0 \
+  --version 0.3.0-build.3  \
   --namespace tap-install \
-  --values-file default-supply-chain-values.yaml
+  --values-file ootb-supply-chain-basic-values.yaml
 ```
 
 ### Workload update
@@ -1054,7 +1052,7 @@ Let’s start by playing the role of a Service Operator, who is responsible for 
     kubectl apply -f resource-claims-rmq.yaml
     ```
 
-3. Ensure that the namespace is enabled to install packages so that Cartographer Workloads can be created. See [Set Up Developer Namespaces to Use Installed Packages](install.md#-set-up-developer-namespaces-to-use-installed-packages).
+3. Ensure that the namespace is enabled to install packages so that Cartographer Workloads can be created. See [Set Up Developer Namespaces to Use Installed Packages](install-components.md#-set-up-developer-namespaces-to-use-installed-packages).
 
 4. Let’s now switch hats to the Application Operator role and create a RabbitmqCluster instance we can use to bind to our application workload.
     ```yaml
@@ -1090,7 +1088,7 @@ This use case is similar to the above in that we will be binding a sample applic
 
     * This cluster **MUST** have the ability to create LoadBalanced services.
 
-    * This time when it comes to [Installing Part II: Profiles](install.md#-installing-part-ii-packages), you only need to install the Services Toolkit package
+    * This time when it comes to [Installing Part II: Profiles](install.md), you only need to install the Services Toolkit package
 
     * All other packages can be skipped over
 
@@ -1160,7 +1158,7 @@ Now let us see the different use cases where Services toolkit makes the Services
     kubectl --context WORKLOAD_CONTEXT create namespace my-project-1
     kubectl --context SERVICE_CONTEXT create namespace my-project-1
     ```
-6. Ensure that the namespace is enabled to install packages so that Cartographer Workloads can be created. See [Set Up Developer Namespaces to Use Installed Packages](install.md#-set-up-developer-namespaces-to-use-installed-packages).
+6. Ensure that the namespace is enabled to install packages so that Cartographer Workloads can be created. See [Set Up Developer Namespaces to Use Installed Packages](install-components.md#-set-up-developer-namespaces-to-use-installed-packages).
 
 7. Federate using the `kubectl-scp` plugin. Run:
     ```

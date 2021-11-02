@@ -24,9 +24,9 @@ To add the Tanzu Application Platform package repository:
 
     ```bash
     tanzu secret registry add tap-registry \
-      --username TANZU-NET-USER --password TANZU-NET-PASSWORD \
+      --username "TANZU-NET-USER" --password "TANZU-NET-PASSWORD" \
       --server registry.tanzu.vmware.com \
-      --export-to-all-namespaces --namespace tap-install
+      --export-to-all-namespaces --yes --namespace tap-install
     ```
 
     Where `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for Tanzu Network.
@@ -35,16 +35,14 @@ To add the Tanzu Application Platform package repository:
 
     ```bash
     tanzu package repository add tanzu-tap-repository \
-        --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:TAP-VERSION \
-        --namespace tap-install
+      --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.3.0-build.5 \
+      --namespace tap-install
     ```
-
-    Where `TAP-VERSION` is the version of Tanzu Application Platform you want to install.
     For example:
 
     ```bash
     $ tanzu package repository add tanzu-tap-repository \
-        --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.3.0-build.1 \
+        --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.3.0-build.5 \
         --namespace tap-install
     \ Adding package repository 'tanzu-tap-repository'...
 
@@ -63,7 +61,7 @@ To add the Tanzu Application Platform package repository:
     - Retrieving repository tap...
     NAME:          tanzu-tap-repository
     VERSION:       48756
-    REPOSITORY:    registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.3.0-build.1
+    REPOSITORY:    registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.3.0-build.5
     STATUS:        Reconcile succeeded
     REASON:
     ```
@@ -99,18 +97,16 @@ To add the Tanzu Application Platform package repository:
     service-bindings.labs.vmware.com                     Service Bindings for Kubernetes                                           Service Bindings for Kubernetes implements the Service Binding Specification.
     services-toolkit.tanzu.vmware.com                    Services Toolkit                                                          The Services Toolkit enables the management, lifecycle, discoverability and connectivity of Service Resources (databases, message queues, DNS records, etc.).
     tap-gui.tanzu.vmware.com                             Tanzu Application Platform GUI                                            web app graphical user interface for Tanzu Application Platform
+    tap.tanzu.vmware.com                                 Tanzu Application Platform                                                Package to install a set of TAP components to get you started based on your use case.
     ```
 ## <a id='add-package-repositories'></a> About Tanzu Application Platform Package Profiles
 Tanzu Application Platform can be installed through pre-defined profiles or through individual packages. This section explains how you can install a profile.
+
 There are four profiles:
-
-- Full
-
-- Developer Light
-
-- Shared Tools
-
-- Operator Light.
+- Full (`full`)
+- Developer Light (`dev-light`)
+- Shared Tools (`shared-tools`)
+- Operator Light (`operator-light`)
 
 This table lists the packages that are contained in each profile:
 
@@ -200,7 +196,7 @@ This table lists the packages that are contained in each profile:
    </td>
   </tr>
   <tr>
-   <td>Default Supply Chain
+   <td>Out of the Box Supply Chain - Basic
    </td>
    <td>&check;
    </td>
@@ -212,7 +208,31 @@ This table lists the packages that are contained in each profile:
    </td>
   </tr>
   <tr>
-   <td>Default Supply Chain - Testing
+   <td>Out of the Box Supply Chain - Testing
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Out of the Box Supply Chain - Testing and Scanning
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Out of the Box Templates
    </td>
    <td>&check;
    </td>
@@ -272,7 +292,7 @@ This table lists the packages that are contained in each profile:
    </td>
   </tr>
   <tr>
-   <td>Services Control Plane Toolkit
+   <td>Services Toolkit
    </td>
    <td>&check;
    </td>
@@ -358,46 +378,66 @@ This table lists the packages that are contained in each profile:
 </table>
 
 ## <a id='install-profile'></a> Install a Tanzu Application Platform Profile
+Installation of a profile happens via the `tap.tanzu.vmware.com` package. The `tap.tanzu.vmware.com` package installs predefined sets of packages based on the chosen profile setting.
+
 To install a profile:
 
 1. List version information for the package by running:
 
     ```bash
-    $ tanzu package available list tap.tanzu.vmware.com --namespace tap-install
+    tanzu package available list tap.tanzu.vmware.com --namespace tap-install
     ```
 
-1. To view possible configuration settings, run:
+1. Create a `tap-values.yml` using the following sample as a guide. Select a profile to install by changing the `profile` value. 
+    ```yaml
+    # e.g. full, dev-light, shared-tools, operator-light
+    profile: full
+    buildservice:
+      tanzunet_username: "<TANZUNET-USERNAME>"
+      tanzunet_password: "<TANZUNET-PASSWORD>"
+    rw_app_registry:
+      # e.g. index.docker.io/some-user/apps
+      # e.g. us-east4-docker.pkg.dev/some-project-id/test-private-repo/apps
+      server_repo: "<SERVER-REPO>"
+      username: "<USERNAME>"
+      password: "<PASSWORD>"
+    ootb_supply_chain_basic:
+      service_account: service-account
+    learning_center:
+      ingressDomain: "<DOMAIN-NAME>" # e.g. educates.example.com
+    ```
+
+    To view possible configuration settings, run:
 
     ```bash
-    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
-    ```
-    Where:
-
-    - `PACKAGE-NAME` is same as step 5 above.
-    - `VERSION-NUMBER` is the version of the package listed in step 5 above.
-
-    For example:
-
-    ```bash
-    $ tanzu package available get tap.tanzu.vmware.com/0.3.0 --values-schema --namespace tap-install
+    tanzu package available get tap.tanzu.vmware.com/0.3.0-build.5 --values-schema --namespace tap-install
     ```
 
-1. Create a `tap-values.yml` using the following sample as a guide. 
+    Note that currently `tap.tanzu.vmware.com` package does not show all configuration settings for packages it plans to install. To find them out, look at individual package configuration settings via same `tanzu package available get` command (e.g. for CNRs use `tanzu package available get -n tap-install cnrs.tanzu.vmware.com/1.0.3 --values-schema`).
+    Replace dashes with underscores.
+    For example, if the package name is `cloud-native-runtimes`, use `cloud_native_runtimes` in the `tap-values` YAML file.
+
     ```yaml
     profile: full
     buildservice:
-      tanzunet_username: "TANZUNET-USERNAME"
-      tanzunet_password: "TANZUNET-PASSWORD"
+      # ...
     rw_app_registry:
-      server_repo: "SERVER-REPO"
-      username: "USERNAME"
-      password: "PASSWORD"
+      # ...
+
+    # e.g. CNRs specific values would go under its name
+    cloud_native_runtimes:
+      provider: local
+    # e.g. App Accelerator specific values would go under its name
+    app_accelerator:
+      service_type: "ClusterIP"
     ```
+
+    (Refer to [Install components](install-components.md) document for package specific configuration.)
 
 1. Install the package by running:
 
     ```bash
-    tanzu package install tap -p tap.tanzu.vmware.com -v 0.3.0 --values tap-values.yml -n tap-install
+    tanzu package install tap -p tap.tanzu.vmware.com -v 0.3.0-build.5 --values-file tap-values.yml -n tap-install
     ```
 
 1. Verify the package install by running:
@@ -406,7 +446,11 @@ To install a profile:
     tanzu package installed get tap -n tap-install
     ```
 
+    This may take 5-10mins as it will install number of packages on your cluster.
+
 1. Verify all the necessary packages in the profile are installed by running:
     ```bash
     tanzu package installed list -A
     ```
+
+1. (Optional) [Install any additional packages](install-components.md) that were not included in your profile.
