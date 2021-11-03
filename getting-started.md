@@ -1209,7 +1209,7 @@ Now let us see the different use cases where Services toolkit makes the Services
     rabbitmq.com-rabbitmqcluster   RabbitmqCluster   rabbitmq.com
     ```
 
-10. Create a service instance of RabbitmqCluster in the Workload Cluster. Run:
+10. Create a service instance of RabbitmqCluster from the Workload Cluster. Note that while we are requesting a RabbitmqCluster from the Workload Cluster, the RabbitMQ pods will be running on the Services Cluster. Run this command on the Workload Cluster:
 
     ```yaml
     # rabbitmq-cluster.yaml
