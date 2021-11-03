@@ -1103,7 +1103,7 @@ This use case is similar to the above in that we will be binding a sample applic
 
     * This cluster **MUST** have the ability to create LoadBalanced services.
 
-    * This time when it comes to [Installing Part II: Profiles](install.md), you only need to install the Services Toolkit package
+    * This time you once you have [added the Tanzu Application Platform Package Repository](install.md#-add-the-tanzu-application-platform-package-repository), rather than installing a profile, you only need to [install the Services Toolkit package](install-components.md#install-services-toolkit).
 
     * All other packages can be skipped over
 
