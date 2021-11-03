@@ -61,7 +61,7 @@ This release has the following issues:
 
 This release has the following security issue:
 
-- **Exported registry credentials are visible across namespaces:**
+- **In Learning Center, exported registry credentials are visible across namespaces:**
 Because SecretExport CR allows you to export registry credentials to other namespaces, they are
 visible to users of those namespaces.
 VMware recommends that the registry credentials you export give read-only access to the registry and
