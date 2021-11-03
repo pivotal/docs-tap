@@ -69,7 +69,7 @@ You can view workload details at anytime in the process. Some details, such as t
 
 2. See the running workload.
 When the workload is created, `tanzu apps workload get` includes the URL for the running workload.
-Depending on your terminal, you may be able to `ctrl`+click on the URL to view. You can also copy and paste the URL into your web browser to see the workload.
+Depending on your terminal, you may be able to `ctrl`+click the URL to view. You can also copy and paste the URL into your web browser to see the workload.
 
 ### <a id='workload-local-source'></a> Create a Workload from Local Source
 
