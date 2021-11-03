@@ -608,23 +608,29 @@ the workload must be updated to point at the your Tekton pipeline.
 
 ### Install Out of the Box with Testing and Scanning
 
-The first step is to install [Supply Chain Security Tools - Scan](install-components.md#install-scst-scan), which would have been installed automatically with the Full profile. [Supply Chain Security Tools - Scan](install-components.md#install-scst-scan) includes the additional scanning templates which define how the source and image should be scanned. To verify that this is installed, run the following command.
+Follow the steps below to perform an out-of-the-box installation.
 
-```bash
-tanzu package installed get scanning -n tap-install
-```
+1. Supply Chain Security Tools - Scan is installed as part of the Full profile.
+Verify that it installed by running:
 
-If it is not installed, then see [Supply Chain Security Tools - Scan](install-components.md#install-scst-scan) that walks you through installing the required scanning components.
+    ```bash
+    tanzu package installed get scanning -n tap-install
+    ```
 
-Next the Out of the Box Testing and Scanning supply chain can be installed.
+If it is not installed, follow the steps in
+[Supply Chain Security Tools - Scan](install-components.md#install-scst-scan) to install the
+required scanning components, including the additional scanning templates that define how the
+source and image are scanned.
 
-```bash
-tanzu package install ootb-supply-chain-testing-scanning \
-  --package-name ootb-supply-chain-testing-scanning.tanzu.vmware.com \
-  --version 0.3.0-build.3  \
-  --namespace tap-install \
-  --values-file ootb-supply-chain-basic-values.yaml
-```
+1. Install the Out of the Box Testing and Scanning supply chain by running:
+
+    ```bash
+    tanzu package install ootb-supply-chain-testing-scanning \
+      --package-name ootb-supply-chain-testing-scanning.tanzu.vmware.com \
+      --version 0.3.0-build.3  \
+      --namespace tap-install \
+      --values-file ootb-supply-chain-basic-values.yaml
+    ```
 
 ### Workload update
 
