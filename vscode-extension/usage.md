@@ -13,7 +13,7 @@ For a more detailed step-by-step walkthrough, see Getting Started instructions](
 
 You must configure the following required VSCode settings for your app.
 
-To confiugre VSCode settings for your app:
+To configure VSCode settings for your app:
 
   1. Go to `Preferences -> Settings -> Extensions -> Tanzu`.
   2. For Source Image, enter the destination for an image containing source code to be
@@ -39,16 +39,15 @@ _Or_
 
 Launch the Command Palette (⇧⌘P) and run the `Tanzu: Live Update Stop` command.
 
-> Note: When Live Update is stopped, the application will continue to run, but changes will not be present in your running application unless you redeploy it.
+> **Note:** When Live Update is stopped, the application will continue to run, but changes will not be present in your running application unless you redeploy it.
 
 ### Disabling Live Update
 
 Launch the Command Palette (⇧⌘P) and run the `Tanzu: Live Update Disable` command, then enter the name of the workload you want to disable live update for.
 
-> Note: This will redeploy your workload to the cluster and remove the live update capability.
+> **Note:** This will redeploy your workload to the cluster and remove the live update capability.
 
 
 ## Debug
 
-
-Right click on your `workload.yaml` and select `Tanzu: Java Debug Start`
+Right-click on your `workload.yaml` and select `Tanzu: Java Debug Start`
