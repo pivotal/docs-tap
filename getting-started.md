@@ -608,7 +608,13 @@ the workload must be updated to point at the your Tekton pipeline.
 
 ### Install Out of the Box with Testing and Scanning
 
-The first step is to install [Supply Chain Security Tools - Scan](install-components.md#install-scst-scan) which includes the additional scanning templates which define how the source and image should be scanned.
+The first step is to install [Supply Chain Security Tools - Scan](install-components.md#install-scst-scan), which would have been installed automatically with the Full profile. [Supply Chain Security Tools - Scan](install-components.md#install-scst-scan) includes the additional scanning templates which define how the source and image should be scanned. To verify that this is installed, run the following command.
+
+```bash
+tanzu package installed get scanning -n tap-install
+```
+
+If it is not installed, then see [Supply Chain Security Tools - Scan](install-components.md#install-scst-scan) that walks you through installing the required scanning components.
 
 Next the Out of the Box Testing and Scanning supply chain can be installed.
 
