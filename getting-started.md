@@ -617,10 +617,50 @@ Verify that it installed by running:
     tanzu package installed get scanning -n tap-install
     ```
 
-If it is not installed, follow the steps in
-[Supply Chain Security Tools - Scan](install-components.md#install-scst-scan) to install the
-required scanning components, including the additional scanning templates that define how the
-source and image are scanned.
+If it is not installed, follow the steps in [Supply Chain Security Tools - Scan](install-components.md#install-scst-scan) to install the required scanning components, including the additional scanning templates that define how the source and image are scanned.
+
+Additional scanning configuration can now be applied, including scantemplates and scanpolicies.
+
+During installation of the Grype Scanner, sample scantemplates were installed into the default namespace. If the workload is to be deployed into another namespace, then these scantemplates would need to be also present in the other namespace. One way to accomplish this is to install Grype Scanner again, and provide the namespace in the values file.
+
+A scanpolicy is also required and the following can be applied into the required namespace (either add the namespace flag to the kubectl command or add the namespace field into the template itself):
+
+```bash
+kubectl apply -f - -o yaml << EOF
+---
+apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
+kind: ScanPolicy
+metadata:
+  name: scan-policy
+spec:
+  regoFile: |
+    package policies
+
+    default isCompliant = false
+
+    # Accepted Values: "Critical", "High", "Medium", "Low", "Negligible", "UnknownSeverity"
+    violatingSeverities := ["Critical","High","UnknownSeverity"]
+    ignoreCVEs := []
+
+    contains(array, elem) = true {
+      array[_] = elem
+    } else = false { true }
+
+    isSafe(match) {
+      fails := contains(violatingSeverities, match.Ratings.Rating[_].Severity)
+      not fails
+    }
+
+    isSafe(match) {
+      ignore := contains(ignoreCVEs, match.Id)
+      ignore
+    }
+
+    isCompliant = isSafe(input.currentVulnerability)
+EOF
+```
+
+Next the Out of the Box Testing and Scanning supply chain can be installed.
 
 1. Install the Out of the Box Testing and Scanning supply chain by running:
 
