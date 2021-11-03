@@ -1097,17 +1097,23 @@ This use case is similar to the above in that we will be binding a sample applic
 
 #### Prerequisites
 
-*Note:* If you followed previous instructions for [Services Journey - Use Case 1](#use-case-1) then you **MUST** first remove RabbitMQ Cluster Operator from that cluster.
+>**Note:** If you followed previous instructions for [Services Journey - Use Case 1](#use-case-1)
+then you must first remove RabbitMQ Cluster Operator from that cluster.
 
-1. Follow the documentation to install Tanzu Application Platform onto a second, separate Kubernetes cluster
+1. Follow the documentation to install Tanzu Application Platform onto a second separate Kubernetes
+cluster.
 
-    * This cluster **MUST** have the ability to create LoadBalanced services.
+    * This cluster must be able to create LoadBalanced services.
 
-    * This time you once you have [added the Tanzu Application Platform Package Repository](install.md#-add-the-tanzu-application-platform-package-repository), rather than installing a profile, you only need to [install the Services Toolkit package](install-components.md#install-services-toolkit).
+    * This time after you have added the Tanzu Application Platform package repository, instead of 
+    installing a profile, you only need to install the Services Toolkit package.
+    For installation information, see
+    [Add the Tanzu Application Platform Package Repository](install.md#add-package-repositories)
+    and [Install Services Toolkit](install-components.md#install-services-toolkit).
 
-    * All other packages can be skipped over
+    * You can skip all other packages.
 
-    * This cluster will henceforth be referred to as the **Service Cluster**
+    * This cluster is henceforth referred to as the Service Cluster.
 
 2. Download and install the kubectl-scp plugin from [Tanzu Application Platform Tanzu Network Page](https://network.tanzu.vmware.com/products/tanzu-application-platform).
 To install the plugin you must place it in your PATH and ensure it is executable. For example:
