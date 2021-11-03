@@ -1105,7 +1105,7 @@ cluster.
 
     * This cluster must be able to create LoadBalanced services.
 
-    * This time after you have added the Tanzu Application Platform package repository, instead of 
+    * This time after you have added the Tanzu Application Platform package repository, instead of
     installing a profile, you only need to install the Services Toolkit package.
     For installation information, see
     [Add the Tanzu Application Platform Package Repository](install.md#add-package-repositories)
@@ -1209,7 +1209,8 @@ Now let us see the different use cases where Services toolkit makes the Services
     rabbitmq.com-rabbitmqcluster   RabbitmqCluster   rabbitmq.com
     ```
 
-10. Create a service instance of RabbitmqCluster from the Workload Cluster. Note that while we are requesting a RabbitmqCluster from the Workload Cluster, the RabbitMQ pods will be running on the Services Cluster. Run this command on the Workload Cluster:
+10. While you request a RabbitmqCluster from the Workload Cluster, the RabbitMQ Pods run on the
+Services Cluster. `rabbitmq-cluster.yaml` is below: <!-- Is there a missing step where the reader creates this? -->
 
     ```yaml
     # rabbitmq-cluster.yaml
@@ -1222,7 +1223,11 @@ Now let us see the different use cases where Services toolkit makes the Services
       service:
         type: LoadBalancer
     ```
-    ```
+
+    Create a service instance of RabbitmqCluster from the Workload Cluster by running this command
+    on the Workload Cluster:
+
+    ```console
     kubectl --context WORKLOAD_CONTEXT -n my-project-1 apply -f rabbitmq-cluster.yaml
     ```
 
