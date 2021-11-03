@@ -67,7 +67,7 @@ To install kapp-controller v0.29.0 or later on Tanzu Community Edition v0.9.1:
 
 ### <a id='tanzucli'></a> Install the Tanzu CLI Plugins for Tanzu Application Platform
 
-Follow the **[instructions for updating Tanzu CLI](install-general.html#udpate-tkg-tce-tanzu-cli)**, which was originally installed for Tanzu Kubernetes Grid and Tanzu Community Edition.
+Follow the **[instructions for updating Tanzu CLI](install-general.html#udpate-tkg-tce-tanzu-cli)** that was originally installed for Tanzu Kubernetes Grid and Tanzu Community Edition.
 
 Once completed, you may proceed to the "Install Tanzu Application Platform" section below.
 
