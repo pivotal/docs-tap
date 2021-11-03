@@ -20,11 +20,10 @@ Installation requires:
 [Docker Hub](https://hub.docker.com/)
 with at least **10&nbsp;GB** of available storage for application images, base images, and runtime
 dependencies
-
+    * Usage of a paid registry account (if available) is encouraged to avoid potential rate limiting associated with some free registry offerings
+    
 * Registry credentials with push and write access made available to Tanzu Application Platform to store
 images
-
-* Registry credentials for components that pull and read public images from Docker Hub to avoid rate limiting
 
 * Network access to https://registry.tanzu.vmware.com
 
