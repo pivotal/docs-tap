@@ -17,7 +17,7 @@ Tanzu Application Platform documentation site.
 
 + [Convention Service for VMware Tanzu](convention-service/about.md)
 
-+ [Services Toolkit](https://docs.vmware.com/en/SCP-Toolkit/0.4/scp-toolkit-0-4/GUID-overview.html)
++ [Services Toolkit](https://docs.vmware.com/en/Services-Toolkit/0.4/services-toolkit-0-4/GUID-overview.html)
 
 + [Supply Chain Choreographer for VMware Tanzu](scc/about.html)
 
