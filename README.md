@@ -96,12 +96,9 @@ v0.1 Staging docs:
 ### Create the ZIP File
 Starting from the repo root, this will create a new `docs.zip` with no root folder and show its contents.
 
+
 ```sh
-rm docs.zip ; cd docs && zip -r ../docs.zip * && cd .. && unzip -l docs.zip
-```
-or
-```sh
-git pull ; rm docs.zip ; zip -r tap2beta *.md VMwarePub.yaml images/ scc/ scst-scan/ scst-store/ vscode-extension/  apps-plugin/ cli-plugins/
+git pull ; rm *.zip ; zip -r tap3beta *
 ```
 
 

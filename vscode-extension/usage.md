@@ -15,10 +15,10 @@ You must configure the following required VSCode settings for your app.
 
 To confiugre VSCode settings for your app:
 
-1. Go to `Preferences -> Settings -> Extensions -> Tanzu`.
-1. For Source Image, enter the destination for an image containing source code to be
+  1. Go to `Preferences -> Settings -> Extensions -> Tanzu`.
+  2. For Source Image, enter the destination for an image containing source code to be
   published.
-1. For Local Path, enter the path on the local filesytem to a directory of code to build.
+  For Local Path, enter the path on the local filesytem to a directory of code to build.
 
 ## Live Update
 

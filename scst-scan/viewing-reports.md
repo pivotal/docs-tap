@@ -48,6 +48,8 @@ Where:
 * `digest` is the sha256 digest extracted from the `SCANNEDIMAGE` column
 * `format` is the format, such as `json`
 
-> **NOTE:** You must have the [Supply Chain Security Tools - Store prerequisites](../scst-store/using_metadata_store.md) for the example to run successfully.
+> **NOTE:** You must have the Supply Chain Security Tools - Store prerequisites for the example to
+run successfully. For more information, see
+[Install Supply Chain Security Tools - Store](../install-components.md#install-scst-store).
 
 For a complete guide on how to query the store, see [Querying Supply Chain Security Tools - Store](../scst-store/querying_the_metadata_store.md).

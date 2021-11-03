@@ -39,7 +39,7 @@ you see that IDE creates a directory "target" where the code is compiled.
 
 ## Configuration
 
-Start by ensuring that you're targeted to the right cluster by following [these instructions](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/).
+Ensure that you are targeting the correct cluster. See [Configure Access to Multiple Clusters](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/).
 
 ### Quickstart
 
@@ -50,6 +50,6 @@ Get up and running quickly by using Application Accelerator and bootstrapping yo
 
 ### Manual
 
-Create a `workload.yaml` file in your project. For reference, take a look at `config/workload.yaml` in the Tanzu Java Web App [here](https://github.com/sample-accelerators/tanzu-java-web-app).
+Create a `workload.yaml` file in your project. See [config/workload.yaml](https://github.com/sample-accelerators/tanzu-java-web-app) in the Tanzu Java Web App.
 
-Create a `Tiltfile` for your project. For reference, take a look at `Tiltfile` in the Tanzu Java Web App [here](https://github.com/sample-accelerators/tanzu-java-web-app). For information about Tiltfile, see [Tiltfile API Reference](https://docs.tilt.dev/api.html).
+Create a `Tiltfile` for your project. See [Tiltfile](https://github.com/sample-accelerators/tanzu-java-web-app) in the Tanzu Java Web App. For information about Tiltfile, see [Tiltfile API Reference](https://docs.tilt.dev/api.html).

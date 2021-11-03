@@ -1,13 +1,13 @@
 # Workload Visibility User Guide
 
-The Workload Visibility screen enables developers to view the details and status of their Kubernetes
-Workloads, to understand their structure, and debug any issues.
+The Workload Visibility screen lets developers view the details and status of their Kubernetes
+Workloads to understand their structure, and debug issues.
 
 ## Before You Begin
 
-Developers need to perform the following actions to see their running Workloads on the dashboard:
+Developers must perform the following actions to see their Workloads on the dashboard:
 
-* Define a Backstage Component with a `backstage.io/kubernetes-label-selector` annotation. See
+1. Define a Backstage Component with a `backstage.io/kubernetes-label-selector` annotation. See
   [Components](../catalog/catalog-operations.md#components) in the Catalog Operations documentation.
   ```yaml
   apiVersion: backstage.io/v1alpha1
@@ -24,13 +24,13 @@ Developers need to perform the following actions to see their running Workloads 
     system:
   ```
 
-* Commit and push the Component definition to a Git repository that is registered as a Catalog Location. See [Adding
+1. Commit and push the Component definition to a Git repository that is registered as a Catalog Location. See [Adding
   Catalog Entities](../catalog/catalog-operations.md#adding-catalog-entities) in the Catalog Operations documentation.
-* Create a Kubernetes Workload, with a label matching the Component's selector, in a cluster available to the Tanzu Application Platform
-  GUI. A Workload is one of:
-  * `v1/Service`
-  * `apps/v1/Deployment`
-  * `serving.knative.dev/v1/Service`
+2. Create a Kubernetes Workload with a label matching the Component's selector, in a cluster available to the Tanzu
+  Application Platform GUI. A Workload is one of the following:
+  - `v1/Service`
+  - `apps/v1/Deployment`
+  - `serving.knative.dev/v1/Service`
 
   ```shell
   $ cat <<EOF | kubectl apply -f -
@@ -55,7 +55,8 @@ Developers need to perform the following actions to see their running Workloads 
 
 ## Navigate to the Workload Visibility Screen
 
-You can view the list of running Workloads and details about their status, type, namespace, cluster, and public URL if applicable for the Workload type.
+You can view the list of running Workloads and details about their status, type, namespace, cluster, and public URL if
+applicable for the Workload type.
 
 To view the list of your running Workloads:
 
@@ -64,8 +65,11 @@ To view the list of your running Workloads:
 
 ![Workload index table](./images/workload-visibility-workloads.png)
 
-## Resource Details
+## Knative Service Details page
 
-Each resource has a dedicated page showing its detailed status, metadata, ownership, and related resources.
+To view the Knative services details of your Workloads, select the Workload with 'Knative Service' type.
+In this page, additional information is available for Knative workloads including status, an ownership hierarchy,
+incoming routes, revisions, and pod details.
+
 
 ![Resource detail page](./images/workload-visibility-resource-detail.png)

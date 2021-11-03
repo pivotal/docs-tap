@@ -4,7 +4,7 @@ This topic lists prerequisites and instructions for installing Tanzu Application
 Tanzu Community Edition v0.9.1 cluster.
 
 > **Warning**: VMware discourages installing Tanzu Application Platform on a Tanzu Community Edition v0.9.1 cluster in production environments.
-This procedure includes a workaround for installing kapp-controller v0.29.0 on Tanzu Community Edition v0.9.1 however, this is not a supported workflow. VMware recommends that you follow this procedure for beta
+This procedure includes a workaround for installing kapp-controller v0.29.0 on Tanzu Community Edition v0.9.1; however, this is not a supported workflow. VMware recommends that you follow this procedure for beta
 environments only.
 <!-- What is meant by a "supported workflow"? And which isn't the supported workflow,
 the workaround or putting kapp-controller v0.29.0 on Tanzu Community Edition v0.9.1? -->
@@ -19,7 +19,7 @@ To install on Tanzu Community Edition v0.9.1, follow the instructions in these t
 
 ### <a id='kapp-controller'></a> Install kapp-controller
 
-To install kapp-controller v0.29.0 or later on Tanzu Community Edition v0.9.1, do the following:
+To install kapp-controller v0.29.0 or later on Tanzu Community Edition v0.9.1:
 
 1. Create a new workload or cluster. Do not install any packages on the cluster.
 1. Set the kubectl context to the Tanzu Community Edition Management cluster or Tanzu Community Edition Standalone cluster by running:
@@ -30,9 +30,8 @@ To install kapp-controller v0.29.0 or later on Tanzu Community Edition v0.9.1, d
    *         az-standalone-tce-admin@az-standalone-tce              az-standalone-tce                                      az-standalone-tce-admin   
           az-tanzu-ce-workload-admin@az-tanzu-ce-workload        az-tanzu-ce-workload                                   az-tanzu-ce-workload-admin
     ```
-
+    >**Note:** If you are using Tanzu Community Edition v0.9.1 standalone cluster, skip the following 3 steps. Go directly to step 6 to delete the current kapp-controller.
 1. Prevent the Management cluster from reconciling the kapp-controller in the workload cluster by running: 
-  >**Note:** Skip this step if you are using a Tanzu Community Edition v0.9.1 standalone cluster.
 
     ```console
     kubectl patch app/<WORKLOAD-CLUSTER>-kapp-controller -n default -p '{"spec":{"paused":true}}' --type=merge
@@ -40,7 +39,6 @@ To install kapp-controller v0.29.0 or later on Tanzu Community Edition v0.9.1, d
     Where `<WORKLOAD-CLUSTER>` is the name of the cluster you created earlier.
 
 1. Import the kubeconfig for the workload cluster by running:
-  >**Note:** Skip this step if you're using Tanzu Community Edition v0.9.1 standalone cluster.
 
     ```console
     tanzu cluster kubeconfig get <WORKLOAD-CLUSTER> --admin
@@ -48,7 +46,6 @@ To install kapp-controller v0.29.0 or later on Tanzu Community Edition v0.9.1, d
     Where `<WORKLOAD-CLUSTER>` is the name of the cluster you created earlier.
 
 1.  Switch the kubectl context to the workload cluster by running:
-  >**Note:**  Skip this step if you're using Tanzu Community Edition v0.9.1 standalone cluster.
 
     ```console
     kubectl config use-context <WORKLOAD-CLUSTER-CONTEXT>
@@ -70,7 +67,7 @@ To install kapp-controller v0.29.0 or later on Tanzu Community Edition v0.9.1, d
 
 ### <a id='tanzucli'></a> Install the Tanzu CLI Plugins for Tanzu Application Platform
 
-Follow the **[instructions for updating Tanzu CLI which was originally installed for Tanzu Kubernetes Grid and Tanzu Community Edition](install-general.html#udpate-tkg-tce-tanzu-cli)**.
+Follow the **[instructions for updating Tanzu CLI](install-general.html#udpate-tkg-tce-tanzu-cli)**, which was originally installed for Tanzu Kubernetes Grid and Tanzu Community Edition.
 
 Once completed, you may proceed to the "Install Tanzu Application Platform" section below.
 
