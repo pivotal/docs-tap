@@ -24,7 +24,7 @@ In this section you’ll deploy a simple web-application to the platform, enable
 
 Before getting started, ensure the following prerequisites are in place:
 
-1. Tanzu Application Platform is installed on the target Kubernetes cluster. For more information, see [Installing Part I: Prerequisites, EULA, and CLI](install-general.md) and [Installing Part II: Profiles](install.md).
+1. Tanzu Application Platform is installed on the target Kubernetes cluster. For installation instructions, see [Installing Part I: Prerequisites, EULA, and CLI](install-general.md) and [Installing Part II: Profiles](install.md).
 
 2. Default kube config context is set to the target Kubernetes cluster
 
