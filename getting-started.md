@@ -974,7 +974,7 @@ message queues, DNS records, and so on. These components are:
 * Service API Projection
 * Service Resource Replication
 * Service Offering
-* Service Resource Claims (planned for later release)
+* Service Resource Claims
 
 Each component has value on its own, however you can unlock the most powerful and
 valuable use cases by combining them.
