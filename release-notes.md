@@ -51,15 +51,21 @@ The following components have been updated in Tanzu Application Platform v
 - [Application Accelerator for VMware Tanzu v0.3.0](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/index.html)
 - [Application Live View for VMware Tanzu v0.2.0](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.2/docs/GUID-index.html)
 
-
 ### Known Issues
 
 This release has the following issues:
 
-- Learning Center
-  - Security Issue: Since SecretExport CR allows you to export registry credentials to other namespaces, they will 
-    become visible to users of such namespaces. We strongly recommend that the registry credentials you are 
-    exporting only allow read-only access to the registry and are minimally scoped within the registry.
+- <!-- Insert issue here -->
+
+### Security Issues
+
+This release has the following security issue:
+
+- **Exported registry credentials are visible across namespaces:**
+Because SecretExport CR allows you to export registry credentials to other namespaces, they are
+visible to users of those namespaces.
+VMware recommends that the registry credentials you export give read-only access to the registry and
+have minimal scope within the registry.
 
 ## <a id='0-2-0'></a> v0.2.0 Beta
 
@@ -113,8 +119,7 @@ This release has the following issues:
 delete the workload before performing any of the following actions. This will avoid workload update errors.
     - Switching between the `Live Update` & `Debug` capabilities
     - Disabling `Live Update` & re-starting `Live Update`
-    
-    
+
     You can do so by performing the following steps:
     1. Click on the `Terminal` menu and select the `Run Task` option
     2. Type `tanzuWorkload delete` in the command palette that appears and hit enter
@@ -125,4 +130,3 @@ delete the workload before performing any of the following actions. This will av
 **Release Date**: September 1, 2021
 
 Initial release.
-
