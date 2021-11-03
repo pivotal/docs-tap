@@ -1,22 +1,18 @@
-## Tanzu Apps Workload Create
+# Tanzu Apps Workload Create
 
-Create a workload with specified configuration.
-
-### Synopsis
-
-Create a workload with specified configuration.
+This topic will help you create a workload with a specified configuration.
 
 Workload configuration options include:
-- source code to build
-- runtime resource limits
-- environment variables
-- services to bind
+- Source code to build
+- Runtime resource limits
+- Environment variables
+- Services to bind
 
 ```
 tanzu apps workload create [name] [flags]
 ```
 
-### Examples
+## Examples
 
 ```
 tanzu apps workload create my-workload --git-repo https://example.com/my-workload.git
@@ -24,7 +20,7 @@ tanzu apps workload create my-workload --local-path . --source-image registry.ex
 tanzu apps workload create --file workload.yaml
 ```
 
-### Options
+## Options
 
 ```
       --app name                       application name the workload is a part of
@@ -55,7 +51,7 @@ tanzu apps workload create --file workload.yaml
   -y, --yes                            accept all prompts
 ```
 
-### Options Inherited from Parent Commands
+## Options Inherited from Parent Commands
 
 ```
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
@@ -64,7 +60,7 @@ tanzu apps workload create --file workload.yaml
   -v, --verbose int32     number for the log level verbosity (default 1)
 ```
 
-### See Also
+## See Also
 
-* [tanzu apps workload](tanzu_apps_workload.md)	 - Workload lifecycle management
+- [Tanzu Apps Workload](tanzu_apps_workload.md) - Workload lifecycle management
 

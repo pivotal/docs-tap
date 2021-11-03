@@ -1,8 +1,8 @@
-## Tanzu Applications
+# Tanzu Applications
 
 This topic includes a description of applications available on Kubernetes.
 
-### Options
+## Options
 
 ```
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
@@ -12,8 +12,8 @@ This topic includes a description of applications available on Kubernetes.
   -v, --verbose int32     number for the log level verbosity (default 1)
 ```
 
-### SEE ALSO
+## See Also
 
-* [tanzu apps cluster-supply-chain](tanzu_apps_cluster-supply-chain.md)	 - patterns for building and configuring workloads
-* [tanzu apps workload](tanzu_apps_workload.md)	 - Workload lifecycle management
+- [Tanzu Apps Cluster Supply Chain](tanzu_apps_cluster-supply-chain.md)	- Patterns for building and configuring workloads
+- [Tanzu Apps Workload](tanzu_apps_workload.md)	- Workload lifecycle management
 

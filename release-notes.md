@@ -107,7 +107,7 @@ This release has the following issues:
   v0.19.0 or later to avoid auth errors.
 - If package installation fails, use `tanzu package installed update` with the `--install` flag to continue installation.
 - When you use the `Tanzu Developer Tools for VSCode` extension,
-  delete the workload before performing any of the following actions to avoid workload update errors:
+delete the workload before performing any of the following actions. This will avoid workload update errors.
     - Switching between the `Live Update` & `Debug` capabilities
     - Disabling `Live Update` & re-starting `Live Update`
     
