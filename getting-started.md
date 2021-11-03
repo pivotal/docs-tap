@@ -934,8 +934,10 @@ to query metadata that have been submitted to the store after the scan step.
 For a complete guide on how to query the store,
 see [Querying Supply Chain Security Tools - Store](scst-store/querying_the_metadata_store.md).
 
-> **Note**: You must have the [Supply Chain Security Tools - Store prerequisites](scst-store/using_metadata_store.md)
-in place to be able to query the store successfully.
+> **Note**: You must have the Supply Chain Security Tools - Store prerequisites in place to query
+the store successfully. For more information, see
+[Install Supply Chain Security Tools - Store](install-components.md#install-scst-store).
+
 
 
 #### Example Supply Chain including Source and Image Scans
