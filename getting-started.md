@@ -30,7 +30,7 @@ Before getting started, ensure the following prerequisites are in place:
 
 2. Default kube config context is set to the target Kubernetes cluster
 
-3. A developer namespace has been setup to accomodate the developer's Workload.
+3. A developer namespace has been setup to accommodate the developer's Workload.
    See [Set Up Developer Namespaces to Use Installed Packages](install-components.md#setup).
 
 
@@ -40,7 +40,7 @@ The Application Accelerator component helps app developers and app operators thr
 
 Developers can bootstrap their applications and get started with feature development right away. Application Operators can create custom accelerators that reflect their desired architectures and configurations and enable fleets of developers to utilize them, decreasing operator concerns about whether developers are implementing their desired best practices.
 
-Application Accelerator templates are available as a quickstart from [Tanzu Network](https://network.tanzu.vmware.com/products/app-accelerator). To create your own Application Accelerator, see [Creating an Accelerator](#creating-an-accelerator).
+Application Accelerator templates are available as a quick start from [Tanzu Network](https://network.tanzu.vmware.com/products/app-accelerator). To create your own Application Accelerator, see [Creating an Accelerator](#creating-an-accelerator).
 
 
 ### Deploy Your Application
