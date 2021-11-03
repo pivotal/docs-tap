@@ -1232,11 +1232,11 @@ Now let us see the different use cases where Services toolkit makes the Services
     ```
 13. Create an application workload in Workload cluster that references your API Projected RabbitMQ instance. Run:
     ```
-    tanzu apps workload create -n my-project-1 rmq-sample-app-usecase2 --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch v0.1.0 --type web --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:projected-rmq"
+    tanzu apps workload create -n my-project-1 rmq-sample-app-usecase-2 --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch v0.1.0 --type web --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:projected-rmq"
     ```
 14. Confirm that the workload is running by getting web-app URL. Run:
     ```
-    tanzu apps workload get -n my-project-1 rmq-sample-app-usecase2
+    tanzu apps workload get -n my-project-1 rmq-sample-app-usecase-2
     ```
 15. Visit the URL and refresh the page to confirm the app is running by noting the new message IDs.
 
