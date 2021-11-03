@@ -56,7 +56,10 @@ The following components have been updated in Tanzu Application Platform v
 
 This release has the following issues:
 
-- Issue 1
+- Learning Center
+  - Security Issue: Since SecretExport CR allows you to export registry credentials to other namespaces, they will 
+    become visible to users of such namespaces. We strongly recommend that the registry credentials you are 
+    exporting only allow read-only access to the registry and are minimally scoped within the registry.
 
 ## <a id='0-2-0'></a> v0.2.0 Beta
 
