@@ -1,10 +1,8 @@
-## Tanzu Apps Workload Tail
+# Tanzu Apps Workload Tail
 
-Watch workload related logs.
+This topic will help you to watch workload related logs.
 
-### Synopsis
-
-Stream logs for a workload until canceled. To cancel, press Ctl-c in
+You can stream logs for a workload until canceled. To cancel, press Ctl-c in
 the shell or kill the process. As new workload pods are started, the logs
 are displayed. To show historical logs use --since.
 
@@ -12,14 +10,14 @@ are displayed. To show historical logs use --since.
 tanzu apps workload tail <name> [flags]
 ```
 
-### Examples
+## Examples
 
 ```
 tanzu apps workload tail my-workload
 tanzu apps workload tail my-workload --since 1h
 ```
 
-### Options
+## Options
 
 ```
       --component name   workload component name (e.g. build)
@@ -29,7 +27,7 @@ tanzu apps workload tail my-workload --since 1h
   -t, --timestamp        print timestamp for each log line
 ```
 
-### Options Inherited from Parent Commands
+## Options Inherited from Parent Commands
 
 ```
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
@@ -38,7 +36,7 @@ tanzu apps workload tail my-workload --since 1h
   -v, --verbose int32     number for the log level verbosity (default 1)
 ```
 
-### See Also
+## See Also
 
-* [tanzu apps workload](tanzu_apps_workload.md)	 - Workload lifecycle management
+* [Tanzu Apps Workload](tanzu_apps_workload.md) - Workload lifecycle management
 
