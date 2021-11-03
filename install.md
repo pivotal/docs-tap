@@ -408,8 +408,8 @@ To install a profile:
         # e.g. some-project-id/test-private-repo/apps
         repository: "..."
 
-    learning_center:
-      ingressDomain: "DOMAIN-NAME" # e.g. educates.example.com
+    learningcenter:
+      ingressDomain: "<DOMAIN-NAME>" # e.g. educates.example.com
 
     tap_gui:
       service_type: LoadBalancer
