@@ -3,7 +3,7 @@
 This document describes how to install Tanzu Application Platform packages
 from the Tanzu Application Platform package repository.
 
-Before you install the packages, ensure that you have completed the prerequisites, configured
+Before you install the packages, ensure you have completed the prerequisites, configured
 and verified the cluster, accepted the EULA, and installed the Tanzu CLI with any required plugins.
 See [Installing Part I: Prerequisites, EULA, and CLI](install-general.md).
 
@@ -108,7 +108,7 @@ Tanzu Application Platform contains the following four profiles:
 - Shared Tools (`shared-tools`)
 - Operator Light (`operator-light`)
 
-The following table lists the packages that are contained in each profile:
+The following table lists the packages contained in each profile:
 
 <table>
   <tr>
@@ -364,16 +364,8 @@ The following table lists the packages that are contained in each profile:
    </td>
   </tr>
   <tr>
-   <td>Tanzu Supply Chain Security Tools - Scan
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
+   <td>Tanzu Supply Chain Security Tools - Scan</td>
+   <td>&check;</td><td>&check;</td><td></td><td></td>
   </tr>
   <tr>
    <td>Tekton
@@ -390,7 +382,10 @@ The following table lists the packages that are contained in each profile:
 </table>
 
 ## <a id='install-profile'></a> Install a Tanzu Application Platform Profile
-Install a profile by using the `tap.tanzu.vmware.com` package. The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile setting.
+
+Install a profile by using the `tap.tanzu.vmware.com` package.
+The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile
+setting.
 
 To install a profile:
 
@@ -400,41 +395,46 @@ To install a profile:
     tanzu package available list tap.tanzu.vmware.com --namespace tap-install
     ```
 
-1. Create a `tap-values.yml` using the following sample as a guide. Select a profile to install by changing the `profile` value. Run:
+1. Create a `tap-values.yml` by using the following sample as a guide and select a profile to
+install by changing the `profile` value.
+
     ```yaml
-    # e.g. full, dev-light, shared-tools, operator-light
-    profile: full
+    profile: <PROFILE-VALUE>
 
     buildservice:
-      # e.g. us-east4-docker.pkg.dev/some-project-id/test-private-repo/apps
-      kp_default_repository: "..."
-      kp_default_repository_username: "..."
-      kp_default_repository_password: "..."
-      tanzunet_username: "TANZUNET-USERNAME"
-      tanzunet_password: "TANZUNET-PASSWORD"
+      kp_default_repository: "<KP-DEFAULT-REPO>"
+      kp_default_repository_username: "<KP-DEFAULT-REPO-USERNAME>"
+      kp_default_repository_password: "<KP-DEFAULT-REPO-PASSWORD>"
+      tanzunet_username: "<TANZUNET-USERNAME>"
+      tanzunet_password: "<TANZUNET-PASSWORD>"
 
     ootb_supply_chain_basic:
       registry:
-        # e.g. us-east4-docker.pkg.dev
-        server: "..."
-        # e.g. some-project-id/test-private-repo/apps
-        repository: "..."
+        server: "<SERVER-NAME>"
+        repository: "<REPO-NAME>"
 
     learningcenter:
-      ingressDomain: "<DOMAIN-NAME>" # e.g. educates.example.com
+      ingressDomain: "<DOMAIN-NAME>"
 
     tap_gui:
       service_type: LoadBalancer
     ```
+    Where:
 
-    To view possible configuration settings, run:
+    - `<PROFILE-VALUE>` is a value such as `full`, `dev-light`, `shared-tools`, or `operator-light`.
+    - `<KP-DEFAULT-REPO>` has a value such as `us-east4-docker.pkg.dev/some-project-id/test-private-repo/apps`.
+    - `<SERVER-NAME>` has a value such as `us-east4-docker.pkg.dev`.
+    - `<REPO-NAME>` has a value such as `some-project-id/test-private-repo/apps`.
+    - `<DOMAIN-NAME>` has a value such as `educates.example.com`.
+
+    To view possible configuration settings for a package, run:
 
     ```bash
     tanzu package available get tap.tanzu.vmware.com/0.3.0-build.6 --values-schema --namespace tap-install
     ```
 
-    >**Note:** The `tap.tanzu.vmware.com` package does not show all configuration settings for packages it plans to install. The package only shows top level keys. 
-    View individual package configuration settings with the same `tanzu package available get` command. For example, use `tanzu package available get -n tap-install cnrs.tanzu.vmware.com/1.0.3 --values-schema` for Cloud Native Runtimes. Replace dashes with underscores. For example, if the package name is `tap-gui`, use `tap_gui` in the `tap-values.yml` file.
+    >**Note:** The `tap.tanzu.vmware.com` package does not show all configuration settings for packages it plans to install. The package only shows top level keys.
+    View individual package configuration settings with the same `tanzu package available get` command. For example, use `tanzu package available get -n tap-install cnrs.tanzu.vmware.com/1.0.3 --values-schema` for Cloud Native Runtimes.
 
     ```yaml
     profile: full
@@ -450,7 +450,25 @@ To install a profile:
       service_type: "ClusterIP"
     ```
 
-    For information about package specific configuration, see [Install components](install-components.md).
+    The following table summarizes the top level keys used for package-specific configuration within
+    your `tap-values.yml`
+
+    |Package|Top Level Key|
+    |----|----|
+    |API portal|`api_portal`|
+    |Application Accelerator|`accelerator`|
+    |Application Live View|`appliveview`|
+    |Cartographer|`cartographer`|
+    |Cloud Native Runtimes|`cnrs`|
+    |Supply Chain Basic|`ootb_supply_chain_basic`|
+    |Supply Chain Testing|`ootb_supply_chain_testing`|
+    |Supply Chain Testing Scanning|`ootb_supply_chain_testing_scanning`|
+    |Image Policy Webhook|`image_policy_webhook`|
+    |Build Service|`buildservice`|
+    |Tanzu Application Platform GUI|`tap_gui`|
+    |Learning Center|`learningcenter`|
+
+    For information about package-specific configuration, see [Install components](install-components.md).
 
 1. Install the package by running:
 
@@ -493,7 +511,7 @@ To install Tanzu Application Platform GUI:
 
 1. Obtain you the `External IP` of your LoadBalancer via `kubectl get svc -n tap-gui`.
 
-2. Add the following section to your `tap-values.yml` using the below template. Replace all `<PLACEHOLDERS>`
+2. Add the following section to your `tap-values.yml` by using the following template. Replace all `<PLACEHOLDERS>`
 with your relevant values. Run:
 
     ```yaml
@@ -520,7 +538,7 @@ with your relevant values. Run:
 
     - `EXTERNAL-IP` is your LoadBalancer's address.
     - `GITHUB-TOKEN` is a valid token generated from your Git infrastructure of choice with the necessary read permissions for the catalog definition files you extracted from the Blank Software Catalog.
-    - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage compliant catalog that you've already built and posted on the Git infrastucture that you specified in the Integration section.
+    - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage compliant catalog you've already built and posted on the Git infrastucture you specified in the Integration section.
 
     > **Note:** The `integrations` section uses Github. If you want additional integrations, see the
     format in this [Backstage integration documentation](https://backstage.io/docs/integrations/).

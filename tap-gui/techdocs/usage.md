@@ -5,22 +5,22 @@ This guide explains how to generate and publish TechDocs for catalogs. You can a
 ## Creating an AWS S3 bucket
 
 1. Navigate to [Amazon S3](https://s3.console.aws.amazon.com/s3/home):
-    - Click `Create bucket`
-    - Give the bucket a name
-    - Select the AWS region
-    - Keep `Block all public access` checked on for now
-    - Click `Create bucket`
-1. Click the newly created bucket in the bucket list
-    - Navigate to the `Permissions` tab
-    - Click `Edit` under `Block public access`
-    - Uncheck `Block all public access`
-    - Check on `Block public access to buckets and objects granted through new access control lists (ACLs)`
-    - Check on `Block public access to buckets and objects granted through any access control lists (ACLs)`
-    - Check off `Block public access to buckets and objects granted through new public bucket or access point policies`
-    - Check off `Block public and cross-account access to buckets and objects through any public bucket or access point policies`
-    - Click `Save changes` and confirm the settings
-1. Click `Edit` under `Bucket policy`
-    - Copy this json into the policy with the bucket name replacing `<BUCKET_NAME>`
+    - Click `Create bucket`.
+    - Give the bucket a name.
+    - Select the AWS region.
+    - Keep `Block all public access` checked for now.
+    - Click `Create bucket`.
+1. Click the newly created bucket in the bucket list.
+    - Navigate to the `Permissions` tab.
+    - Click `Edit` under `Block public access`.
+    - Uncheck `Block all public access`.
+    - Check `Block public access to buckets and objects granted through new access control lists (ACLs)`.
+    - Check `Block public access to buckets and objects granted through any access control lists (ACLs)`.
+    - Uncheck `Block public access to buckets and objects granted through new public bucket or access point policies`.
+    - Uncheck `Block public and cross-account access to buckets and objects through any public bucket or access point policies`.
+    - Click `Save changes` and confirm the settings.
+1. Click `Edit` under `Bucket policy`.
+    - Copy this json into the policy with the bucket name replacing `<BUCKET_NAME>`.
     ```json
     {
         "Version": "2012-10-17",
@@ -41,10 +41,10 @@ This guide explains how to generate and publish TechDocs for catalogs. You can a
         ]
     }
     ```
-    - Click `Save changes`
-1. Click `Edit` under `Block public access`
-    - Check on `Block public access to buckets and objects granted through new public bucket or access point policies`
-    - Click `Save changes` and confirm the settings
+    - Click `Save changes`.
+1. Click `Edit` under `Block public access`.
+    - Check `Block public access to buckets and objects granted through new public bucket or access point policies`.
+    - Click `Save changes` and confirm the settings.
 
 
 ## Configuring AWS S3 access
@@ -52,12 +52,12 @@ This guide explains how to generate and publish TechDocs for catalogs. You can a
 The TechDocs will be published to the S3 bucket that was just created. You will need an AWS user's access key to read from the bucket when viewing TechDocs.
 
 1. Create an [AWS IAM User Group](https://console.aws.amazon.com/iamv2/home#/groups):
-    - Click `Create Group`
-    - Give the group a name
-    - Click `Create Group`
-    - Click the new group and navigate to `Permissions`
-    - Click `Add permissions` and click `Create Inline Policy`
-    - Click the `JSON` tab and replace contents with this json replacing `<BUCKET_NAME>` with the bucket name
+    - Click `Create Group`.
+    - Give the group a name.
+    - Click `Create Group`.
+    - Click the new group and navigate to `Permissions`.
+    - Click `Add permissions` and click `Create Inline Policy`.
+    - Click the `JSON` tab and replace contents with this json replacing `<BUCKET_NAME>` with the bucket name.
     ```json
     {
         "Version": "2012-10-17",
@@ -77,15 +77,15 @@ The TechDocs will be published to the S3 bucket that was just created. You will 
         ]
     }
     ```
-    - Click `Review policy`
-    - Give the policy a name and click `Create policy`
-1. Create an [AWS IAM User](https://console.aws.amazon.com/iamv2/home#/users) to add to this group
-   - Click `Add users`
-   - Give the user a name
-   - Check the box for `Access key - Programmatic access` and click `Next: Permissions`
-   - Check the box for the IAM Group to add the user to and click `Next: Tags`
-   - Click `Next: Review` then click `Create user`
-   - Note the `Access key ID` (`<AWS_READONLY_ACCESS_KEY_ID>`) and the `Secret access key` (`<AWS_READONLY_SECRET_ACCESS_KEY>`) and click `Close`
+    - Click `Review policy`.
+    - Give the policy a name and click `Create policy`.
+1. Create an [AWS IAM User](https://console.aws.amazon.com/iamv2/home#/users) to add to this group:
+   - Click `Add users`.
+   - Give the user a name.
+   - Check the box for `Access key - Programmatic access` and click `Next: Permissions`.
+   - Check the box for the IAM Group to add the user to and click `Next: Tags`.
+   - Click `Next: Review` then click `Create user`.
+   - Note the `Access key ID` (`<AWS_READONLY_ACCESS_KEY_ID>`) and the `Secret access key` (`<AWS_READONLY_SECRET_ACCESS_KEY>`) and click `Close`.
 
 
 ## Find the catalog locations and their entities' namespace/kind/name

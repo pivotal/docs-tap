@@ -2,7 +2,7 @@
 
 This topic will help you with workload lifecycle management.
 
-A workload may run as a native service, kubernetes deployment, or other runtime. Workloads can be grouped together with other related resources, such as storage or credential objects as a logical application for easier management.
+A workload may run as a Knative service, Kubernetes deployment, or other runtime. Workloads can be grouped together with other related resources, such as storage or credential objects as a logical application for easier management.
 
 Workload configuration includes:
 
