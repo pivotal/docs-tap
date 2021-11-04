@@ -365,7 +365,7 @@ The following table lists the packages contained in each profile:
   </tr>
   <tr>
    <td>Tanzu Supply Chain Security Tools - Scan</td>
-   <td>&check;</td><td>&check;</td><td></td><td></td>
+   <td>&check;</td><td></td><td></td><td></td>
   </tr>
   <tr>
    <td>Tekton
