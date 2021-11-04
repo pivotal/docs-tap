@@ -28,7 +28,9 @@ Before getting started, ensure the following prerequisites are in place:
 
 2. Default kubeconfig context is set to the target Kubernetes cluster
 
-3. A developer namespace has been setup to accommodate the developer's Workload.
+3. The Out of The Box Supply Chain Basic is installed: see [Install default Supply Chain](install-components.md#install-ootb-supply-chain-basic).
+
+4. A developer namespace has been setup to accommodate the developer's Workload.
    See [Set Up Developer Namespaces to Use Installed Packages](install-components.md#setup).
 
 
@@ -55,10 +57,9 @@ Follow these steps to get started with an accelerator called `Tanzu-Java-Web-App
     <img src="images/tanzu-java-web-app.png" alt="Screenshot of the Tanzu Java Web App within Application Accelerator. It includes empty text boxes for new project information." width="600">
 
 1. Replace the default value `dev.local` in the _"prefix for container image registry"_ field
-with the URL to your registry. The URL you enter must match the `REGISTRY_SERVER` value you
-provided when you installed the default Supply Chain.
-For more information, see
-[Install default Supply Chain](install-components.md#install-ootb-supply-chain-basic).
+with the URL to your registry. The URL you enter must match the registry server you want the default Supply Chain to push container images to.
+
+For more information, see [Install default Supply Chain](install-components.md#install-ootb-supply-chain-basic).
 
     >**Note:** This entry should not include the project ID or image name.
 
@@ -468,12 +469,22 @@ You can also view the Tekton
 [tutorial](https://github.com/tektoncd/pipeline/blob/main/docs/tutorial.md)
 and [getting started guide](https://tekton.dev/docs/getting-started/).
 
-Now that Tekton is installed, you can install the **Out of the Box with Testing** supply chain on your cluster. Run:
+Now that Tekton is installed, you can install the **Out of the Box with
+Testing** supply chain on your cluster. In this iteration of TAP, only one
+Supply Chain can be installed at a time, so before proceeding, make sure the
+Basic Supply Chain is not installed in the cluster:
+
+```bash
+tanzu package installed delete ootb-supply-chain-basic
+```
+
+Then, install the Out of the Box With Testing:
+
 
 ```bash
 tanzu package install ootb-supply-chain-testing \
   --package-name ootb-supply-chain-testing.tanzu.vmware.com \
-  --version 0.3.0-build.3  \
+  --version 0.3.0-build.5  \
   --namespace tap-install \
   --values-file ootb-supply-chain-basic-values.yaml
 ```
@@ -544,7 +555,7 @@ the workload must be updated to point at the your Tekton pipeline.
   tanzu apps workload create tanzu-java-web-app \
     --git-repo  https://github.com/sample-accelerators/tanzu-java-web-app \
     --git-branch main \
-    --type web-test \
+    --type web \
     --param tekton-pipeline-name=developer-defined-tekton-pipeline \
     --yes
   ```
@@ -660,11 +671,20 @@ EOF
 2. (Optional, but recommended) To persist and query the vulnerability results post-scan, [install Supply Chain Security Tools - Store](install-components.md#install-scst-store). Refer to the *Prerequisite* in [Supply Chain Security Tools - Scan](install-components.md#install-scst-scan) for more details.
 
 3. Install the Out of the Box Testing and Scanning supply chain by running:
+In the same way as in the Testing step, we have to first uninstall any
+previously installed Supply Chain:
+
+    ```bash
+    tanzu package installed delete ootb-supply-chain-basic
+    tanzu package installed delete ootb-supply-chain-testing
+    ```
+
+And then, move on with installing Out of the Box Testing and Scanning:
 
     ```bash
     tanzu package install ootb-supply-chain-testing-scanning \
       --package-name ootb-supply-chain-testing-scanning.tanzu.vmware.com \
-      --version 0.3.0-build.3  \
+      --version 0.3.0-build.5  \
       --namespace tap-install \
       --values-file ootb-supply-chain-basic-values.yaml
     ```
@@ -677,9 +697,9 @@ The workload can be updated using the Tanzu CLI as follows:
 
 ```bash
 tanzu apps workload create tanzu-java-web-app \
-  --git-repo  https://github.com/sample-accelerators/tanzu-java-web-app \
+  --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
   --git-branch main \
-  --type web-scan \
+  --type web \
   --param tekton-pipeline-name=developer-defined-tekton-pipeline \
   --yes
 ```
