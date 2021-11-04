@@ -254,7 +254,7 @@ To install the Tanzu CLI on a Linux operating system:
 
 3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/) on Tanzu Network.
 
-4. Click the `tanzu-cli-0.8.0` folder.
+4. Click the `tanzu-cli-0.9.0` folder.
 
 5. Download `tanzu-framework-bundle-linux` and unpack the TAR file into the `tanzu` directory:
     ```
@@ -264,14 +264,14 @@ To install the Tanzu CLI on a Linux operating system:
 6. Install the Tanzu CLI from the `tanzu` directory by running:
     ```
     cd $HOME/tanzu
-    sudo install cli/core/v0.8.0/tanzu-core-linux_amd64 /usr/local/bin/tanzu
+    sudo install cli/core/v0.9.0/tanzu-core-linux_amd64 /usr/local/bin/tanzu
     ```
 
 7. Confirm the installation of the Tanzu CLI by running:
    ```
    tanzu version
    ```
-   Expect `version: v0.8.0`
+   Expect `version: v0.9.0`
 
 8. Proceed to [Instructions for a clean install of Tanzu CLI Plugins](#cli-plugin-clean-install).
 
@@ -289,7 +289,7 @@ To install the Tanzu CLI on a Mac operating system:
 
 3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/) on Tanzu Network.
 
-4. Click the `tanzu-cli-0.8.0` folder.
+4. Click the `tanzu-cli-0.9.0` folder.
 
 5. Download `tanzu-framework-bundle-mac` and unpack the TAR file into the `tanzu` directory:
     ```
@@ -299,14 +299,14 @@ To install the Tanzu CLI on a Mac operating system:
 6.  Install the Tanzu CLI from the `tanzu` directory by running:
     ```
     cd $HOME/tanzu
-    sudo install cli/core/v0.8.0/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
+    sudo install cli/core/v0.9.0/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
     ```
 
 7. Confirm the installation of the Tanzu CLI by running:
    ```
    tanzu version
    ```
-   Expect `version: v0.8.0`
+   Expect `version: v0.9.0`
 
    If you see the following warning when running `Tanzu version` on macOS:
    ```
@@ -344,13 +344,13 @@ To install the Tanzu CLI on a Windows operating system:
 
   3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/) on Tanzu Network.
 
-  4. Click the `tanzu-cli-0.8.0` folder.
+  4. Click the `tanzu-cli-0.9.0` folder.
 
   5. Download `tanzu-framework-bundle-windows` and unpack the TAR files into the `tanzu-bundle` directory.
 
   6. Create a new `Program Files\tanzu` folder.
 
-  7. In the unpacked CLI folder tanzu-bundle, locate and copy the `core/v0.8.0/tanzu-core-windows_amd64.exe`
+  7. In the unpacked CLI folder tanzu-bundle, locate and copy the `core/v0.9.0/tanzu-core-windows_amd64.exe`
    into the new `Program Files\tanzu` folder.
 
   8. Rename `tanzu-core-windows_amd64.exe` to `tanzu.exe`.
@@ -370,7 +370,7 @@ To install the Tanzu CLI on a Windows operating system:
     ```
     tanzu version
     ```
-    Expect `version: v0.8.0`
+    Expect `version: v0.9.0`
 
   15. Proceed to [Instructions for a clean install of Tanzu CLI Plugins](#cli-plugin-clean-install)
 
@@ -387,16 +387,16 @@ To install the Tanzu CLI on a Windows operating system:
     Expect to see the following:
     ```
      tanzu plugin list
-     NAME                LATEST VERSION  DESCRIPTION                                                        REPOSITORY  VERSION      STATUS
-     accelerator                         Manage accelerators in a Kubernetes cluster                                    v0.4.1       installed
-     apps                                Applications on Kubernetes                                                     v0.2.0       installed
-     cluster             v0.8.0          Kubernetes cluster operations                                      core        v0.8.0       installed
-     kubernetes-release  v0.8.0          Kubernetes release operations                                      core        v0.8.0       installed
-     login               v0.8.0          Login to the platform                                              core        v0.8.0       installed
-     management-cluster  v0.8.0          Kubernetes management cluster operations                           core        v0.8.0       installed
-     package             v0.8.0          Tanzu package management                                           core        v0.8.0       installed
-     pinniped-auth       v0.8.0          Pinniped authentication operations (usually not directly invoked)  core        v0.8.0       installed
-     secret              v0.8.0          Tanzu secret management                                            core        v0.8.0       installed
+     NAME                LATEST VERSION  DESCRIPTION                                                        REPOSITORY  VERSION  STATUS
+     accelerator                         Manage accelerators in a Kubernetes cluster                                    v0.4.1   installed
+     apps                                Applications on Kubernetes                                                     v0.2.0   installed
+     cluster             v0.10.0         Kubernetes cluster operations                                      core        v0.9.0   upgrade available
+     kubernetes-release  v0.10.0         Kubernetes release operations                                      core        v0.9.0   upgrade available
+     login               v0.10.0         Login to the platform                                              core        v0.9.0   upgrade available
+     management-cluster  v0.10.0         Kubernetes management cluster operations                           core        v0.9.0   upgrade available
+     package             v0.10.0         Tanzu package management                                           core        v0.9.0   upgrade available
+     pinniped-auth       v0.10.0         Pinniped authentication operations (usually not directly invoked)  core        v0.9.0   upgrade available
+     secret              v0.10.0         Tanzu secret management                                            core        v0.9.0   upgrade available
     ```   
   3. You may now proceed with installing Tanzu Application Platform. For more information, see **[Installing Part II: Profiles](install.md)**.     
 
@@ -426,7 +426,7 @@ If you'd like to the update the Tanzu CLI core and plugins you installed previou
   3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/)
 on Tanzu Network.
 
-  4. Click the **tanzu-cli-0.8.0** directory.
+  4. Click the **tanzu-cli-0.9.0** directory.
 
   5. Download the CLI bundle corresponding with your operating system. For example, if your client
 operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle.
@@ -461,7 +461,7 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
     ```bash
     tanzu version
     ```
-    Expect `version: v0.8.0`
+    Expect `version: v0.9.0`
 
   12. Check installation status for Tanzu CLI Core
     ```bash
@@ -469,16 +469,17 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
     ```
     Expect to see the following:
     ```
-    NAME                LATEST VERSION  DESCRIPTION                                                        REPOSITORY  VERSION  STATUS
-    accelerator                         Manage accelerators in a Kubernetes cluster                                    v0.4.1   installed
-    apps                                Applications on Kubernetes                                                     v0.2.0   installed
-    cluster             v0.9.0          Kubernetes cluster operations                                      core        v0.8.0   upgrade available
-    kubernetes-release  v0.9.0          Kubernetes release operations                                      core        v0.8.0   upgrade available
-    login               v0.9.0          Login to the platform                                              core        v0.8.0   upgrade available
-    management-cluster  v0.9.0          Kubernetes management cluster operations                           core        v0.8.0   upgrade available
-    package             v0.9.0          Tanzu package management                                           core        v0.8.0   upgrade available
-    pinniped-auth       v0.9.0          Pinniped authentication operations (usually not directly invoked)  core        v0.8.0   upgrade available
-    secret              v0.9.0          Tanzu secret management                                            core        v0.8.0   upgrade available
+     tanzu plugin list
+     NAME                LATEST VERSION  DESCRIPTION                                                        REPOSITORY  VERSION  STATUS
+     accelerator                         Manage accelerators in a Kubernetes cluster                                    v0.4.1   installed
+     apps                                Applications on Kubernetes                                                     v0.2.0   installed
+     cluster             v0.10.0         Kubernetes cluster operations                                      core        v0.9.0   upgrade available
+     kubernetes-release  v0.10.0         Kubernetes release operations                                      core        v0.9.0   upgrade available
+     login               v0.10.0         Login to the platform                                              core        v0.9.0   upgrade available
+     management-cluster  v0.10.0         Kubernetes management cluster operations                           core        v0.9.0   upgrade available
+     package             v0.10.0         Tanzu package management                                           core        v0.9.0   upgrade available
+     pinniped-auth       v0.10.0         Pinniped authentication operations (usually not directly invoked)  core        v0.9.0   upgrade available
+     secret              v0.10.0         Tanzu secret management                                            core        v0.9.0   upgrade available
     ```
 
   13. You may now proceed with installing Tanzu Application Platform via **[Installing Part II: Profiles](install.md)**.
@@ -499,7 +500,7 @@ for interacting with Tanzu Kubernetes Grid or Tanzu Community Edition, you only 
   3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/)
 on Tanzu Network.
 
-  4. Click the **tanzu-cli-0.8.0** directory.
+  4. Click the **tanzu-cli-0.9.0** directory.
 
   5. Download the CLI bundle corresponding to your operating system. For example, if your client
 operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle.
@@ -556,8 +557,8 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
     NAME                LATEST VERSION  DESCRIPTION                                                        REPOSITORY  VERSION  STATUS
     accelerator                         Manage accelerators in a Kubernetes cluster                                    v0.4.1   installed
     apps                                Applications on Kubernetes                                                     v0.2.0   installed
-    package             v0.9.0          Tanzu package management                                           core        v0.8.0   upgrade available
-    secret              v0.9.0          Tanzu secret management                                            core        v0.8.0   upgrade available
+    package             v0.10.0          Tanzu package management                                           core        v0.9.0   upgrade available
+    secret              v0.10.0          Tanzu secret management                                            core        v0.9.0   upgrade available
     ```
 
   14. You may now proceed with installing Tanzu Application Platform on Tanzu Kubernetes Grid or Tanzu Community Edition. For more information, see:
