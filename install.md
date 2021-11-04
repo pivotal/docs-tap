@@ -390,7 +390,10 @@ The following table lists the packages contained in each profile:
 </table>
 
 ## <a id='install-profile'></a> Install a Tanzu Application Platform Profile
-Install a profile by using the `tap.tanzu.vmware.com` package. The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile setting.
+
+Install a profile by using the `tap.tanzu.vmware.com` package.
+The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile
+setting.
 
 To install a profile:
 
@@ -400,32 +403,37 @@ To install a profile:
     tanzu package available list tap.tanzu.vmware.com --namespace tap-install
     ```
 
-1. Create a `tap-values.yml` by using the following sample as a guide. Select a profile to install by changing the `profile` value:
+1. Create a `tap-values.yml` by using the following sample as a guide and select a profile to
+install by changing the `profile` value.
+
     ```yaml
-    # e.g. full, dev-light, shared-tools, operator-light
-    profile: full
+    profile: <PROFILE-VALUE>
 
     buildservice:
-      # e.g. us-east4-docker.pkg.dev/some-project-id/test-private-repo/apps
-      kp_default_repository: "..."
-      kp_default_repository_username: "..."
-      kp_default_repository_password: "..."
-      tanzunet_username: "TANZUNET-USERNAME"
-      tanzunet_password: "TANZUNET-PASSWORD"
+      kp_default_repository: "<KP-DEFAULT-REPO>"
+      kp_default_repository_username: "<KP-DEFAULT-REPO-USERNAME>"
+      kp_default_repository_password: "<KP-DEFAULT-REPO-PASSWORD>"
+      tanzunet_username: "<TANZUNET-USERNAME>"
+      tanzunet_password: "<TANZUNET-PASSWORD>"
 
     ootb_supply_chain_basic:
       registry:
-        # e.g. us-east4-docker.pkg.dev
-        server: "..."
-        # e.g. some-project-id/test-private-repo/apps
-        repository: "..."
+        server: "<SERVER-NAME>"
+        repository: "<REPO-NAME>"
 
     learningcenter:
-      ingressDomain: "<DOMAIN-NAME>" # e.g. educates.example.com
+      ingressDomain: "<DOMAIN-NAME>"
 
     tap_gui:
       service_type: LoadBalancer
     ```
+    Where:
+
+    - `<PROFILE-VALUE>` is a value such as `full`, `dev-light`, `shared-tools`, or `operator-light`.
+    - `<KP-DEFAULT-REPO>` has a value such as `us-east4-docker.pkg.dev/some-project-id/test-private-repo/apps`.
+    - `<SERVER-NAME>` has a value such as `us-east4-docker.pkg.dev`.
+    - `<REPO-NAME>` has a value such as `some-project-id/test-private-repo/apps`.
+    - `<DOMAIN-NAME>` has a value such as `educates.example.com`.
 
     To view possible configuration settings for a package, run:
 
@@ -433,7 +441,7 @@ To install a profile:
     tanzu package available get tap.tanzu.vmware.com/0.3.0-build.6 --values-schema --namespace tap-install
     ```
 
-    >**Note:** The `tap.tanzu.vmware.com` package does not show all configuration settings for packages it plans to install. The package only shows top level keys. 
+    >**Note:** The `tap.tanzu.vmware.com` package does not show all configuration settings for packages it plans to install. The package only shows top level keys.
     View individual package configuration settings with the same `tanzu package available get` command. For example, use `tanzu package available get -n tap-install cnrs.tanzu.vmware.com/1.0.3 --values-schema` for Cloud Native Runtimes.
 
     ```yaml
@@ -450,24 +458,25 @@ To install a profile:
       service_type: "ClusterIP"
     ```
 
-    The following table summarizes the top level keys used for package specific configuration within your `tap-values.yml`
+    The following table summarizes the top level keys used for package-specific configuration within
+    your `tap-values.yml`
 
-    |Package|top level key|
+    |Package|Top Level Key|
     |----|----|
     |API portal|`api_portal`|
     |Application Accelerator|`accelerator`|
     |Application Live View|`appliveview`|
     |Cartographer|`cartographer`|
     |Cloud Native Runtimes|`cnrs`|
-    |Supply Chain basic|`ootb_supply_chain_basic`|
-    |Supply Chain testing|`ootb_supply_chain_testing`|
-    |Supply Chain testing scaning|`ootb_supply_chain_testing_scanning`|
+    |Supply Chain Basic|`ootb_supply_chain_basic`|
+    |Supply Chain Testing|`ootb_supply_chain_testing`|
+    |Supply Chain Testing Scanning|`ootb_supply_chain_testing_scanning`|
     |Image Policy Webhook|`image_policy_webhook`|
     |Build Service|`buildservice`|
-    |TAP GUI|`tap_gui`|
+    |Tanzu Application Platform GUI|`tap_gui`|
     |Learning Center|`learningcenter`|
 
-    For information about package specific configuration, see [Install components](install-components.md).
+    For information about package-specific configuration, see [Install components](install-components.md).
 
 1. Install the package by running:
 
