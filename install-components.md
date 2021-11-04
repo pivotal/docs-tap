@@ -19,7 +19,7 @@ For information, see [Installing Part I: Prerequisites, EULA, and CLI](install-g
 + [Install Spring Boot Conventions](#install-spring-boot-convention)
 + [Install Application Live View](#install-app-live-view)
 + [Install Tanzu Application Platform GUI](#install-tap-gui)
-+ [Install Learning Center](#install-learning-center)
++ [Install Learning Center for Tanzu Application Platform](#install-learning-center)
 + [Install Service Bindings](#install-service-bindings)
 + [Install Tanzu Build Service](#install-tbs)
 + [Install Supply Chain Choreographer](#install-scc)
@@ -1263,13 +1263,14 @@ with your relevant values. The meanings of some placeholders are explained in th
 field in the values file.
 
 
-## <a id='install-learning-center'></a> Install Learning Center
+## <a id='install-learning-center'></a> Install Learning Center for Tanzu Application Platform
 
 To install Tanzu Learning Center, see the following sections.
 
-### Prerequisites in Addition to Tanzu Application Platform [Requirements](install-general.md#prereqs)
+### Prerequisites for Learning Center 
 **Required**
-- Make sure you have a proper Ingress Controller configured with a wild card domain name.
+- [Tanzu Application Platform Prerequisites](install-general.md#prereqs)
+- Make sure you have an approved Ingress Controller configured with a wild card domain name.
 
 ### Procedure to install Learning Center
 1. List version information for the package by running:

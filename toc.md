@@ -33,6 +33,7 @@ This is the table of contents from which the Tanzu Application Platform Document
     - [Convention Service](convention-service/about.md)
          - [Creating Conventions](convention-service/creating-conventions.md)
     - [Developer Conventions](developer-conventions/about.md)
+    - [Learning Center for Tanzu Application Platform](learning-center/about.md)
     - [Supply Chain Choreographer for Tanzu](scc/about.md)
         - [Out of the Box Supply Chains](scc/default-supply-chains.md)
     - [Supply Chain Security Tools for VMware Tanzu – Scan](scst-scan/overview.md)
