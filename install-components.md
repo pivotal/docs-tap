@@ -34,7 +34,7 @@ For information, see [Installing Part I: Prerequisites, EULA, and CLI](install-g
 
 ## <a id='install-prereqs'></a> Install cert-manager and FluxCD source controller
 
-cert-managet and FluxCD source controller are installed as part of all profiles. If you do not want to use a profile, install them manually.
+cert_manager and FluxCD source controller are installed as part of all profiles. If you do not want to use a profile, install them manually.
 
 Note: In future versions both cert-manager and FluxCD source controller will be shipped as packages.
 
@@ -44,7 +44,7 @@ Note: In future versions both cert-manager and FluxCD source controller will be 
         kapp deploy -y -a cert-manager -f https://github.com/jetstack/cert-manager/releases/download/v1.5.3/cert-manager.yaml
         ```
         We have verified the Tanzu Application Platform repo bundle packages installation with cert-manager version v1.5.3.
-        
+
         * Verify installed cert-manager version by running:
         For example:
         ```
@@ -54,13 +54,13 @@ Note: In future versions both cert-manager and FluxCD source controller will be 
         ```
 * **FluxCD source-controller**:
     Install FluxCD source-controller using the following procedure.
-    
+
      1. Create the namespace `flux-system`.
-        
+
         ```
         kubectl create namespace flux-system
         ```
-     
+
      2. Create the `clusterrolebinding` by running:
         ```
         kubectl create clusterrolebinding default-admin \
@@ -87,6 +87,7 @@ To install Cloud Native Runtimes:
     ```
     Where `PACKAGE-NAME` is the name of the package listed in step 5 of
      [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
+
      For example:
 
     ```bash
@@ -146,7 +147,7 @@ To install Cloud Native Runtimes:
     provider: local
     ```
 
-    **Note**: For most installations, you can leave the `cnr-values.yaml` empty, and use the default values.
+    Note: For most installations, you can leave the `cnr-values.yaml` empty, and use the default values.
 
     If you are running on a single-node cluster, like kind or minikube, set the `provider: local`
     option. This option reduces resource requirements by using a HostPort service instead of a
@@ -206,7 +207,7 @@ To install Cloud Native Runtimes:
 
 1. Configuring a namespace to use Cloud Native Runtimes:
 
-   **Note:** This step covers configuring a namespace to run Knative services.
+   Note: This step covers configuring a namespace to run Knative services.
    If you rely on a SupplyChain to deploy Knative services into your cluster,
    then skip this step because namespace configuration is covered in
    [Set Up Developer Namespaces to Use Installed Packages](#setup). Otherwise, you must complete the following steps for each namespace where you create Knative services.
@@ -250,7 +251,7 @@ To install Cloud Native Runtimes:
    Events:              <none>
    ```
 
-   > **Note:** The service account has access to the `pull-secret` image pull secret.
+   Note: The service account has access to the `pull-secret` image pull secret.
 
 To learn more about using Cloud Native Runtimes,
 see [Verify your Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-verify-installation.html)
@@ -283,7 +284,7 @@ To install Convention Controller:
     ```bash
     tanzu package available list controller.conventions.apps.tanzu.vmware.com --namespace tap-install
     ```
-    
+
     For example:
     ```bash
     $ tanzu package available list controller.conventions.apps.tanzu.vmware.com --namespace tap-install
@@ -316,7 +317,7 @@ To install Convention Controller:
     ```bash
     tanzu package install convention-controller -p controller.conventions.apps.tanzu.vmware.com -v 0.4.2 -n tap-install
     ```
-    
+
     For example:
     ```
     tanzu package install convention-controller -p controller.conventions.apps.tanzu.vmware.com -v 0.4.2 -n tap-install
@@ -336,8 +337,8 @@ To install Convention Controller:
     ```bash
     tanzu package installed get convention-controller -n tap-install
     ```
-    
-    For example: 
+
+    For example:
     ```
     tanzu package installed get convention-controller -n tap-install
     Retrieving installation details for convention-controller...
@@ -348,9 +349,9 @@ To install Convention Controller:
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
     ```
-    
+
     STATUS should be 'Reconcile succeeded.'
-    
+
     ```bash
     kubectl get pods -n conventions-system
     ```
@@ -381,7 +382,7 @@ To install Source Controller:
     ```bash
     tanzu package available list controller.source.apps.tanzu.vmware.com --namespace tap-install
     ```
-    
+
     For example:
     ```bash
     $ tanzu package available list controller.source.apps.tanzu.vmware.com --namespace tap-install
@@ -434,7 +435,7 @@ To install Source Controller:
     ```bash
     tanzu package installed get source-controller -n tap-install
     ```
-    
+
     For example:
     ```
     tanzu package installed get source-controller -n tap-install
@@ -448,7 +449,7 @@ To install Source Controller:
     ```
 
     STATUS should be 'Reconcile succeeded.'
-    
+
     ```bash
     kubectl get pods -n source-system
     ```
@@ -477,7 +478,7 @@ you can configure the following optional properties:
 | engine.max_direct_memory_size | 32M | The max size for the Java -XX:MaxDirectMemorySize setting |
 | samples.include | True | Whether to include the bundled sample Accelerators in the install |
 
-> **Note:** For clusters that do not support the `LoadBalancer` service type,
+> Note: For clusters that do not support the `LoadBalancer` service type,
             override the default value for `server.service_type`.
 
 VMware recommends that you do not override the defaults for `registry.secret_ref`,
@@ -486,8 +487,7 @@ These properties are only used to configure non-standard installations.
 
 ### Prerequisites
 
-Before you install Application Accelerator,
-you must have:
+Before you install Application Accelerator, you must have:
 
 - Flux SourceController installed on the cluster.
 See [Install cert-manager and FluxCD source controller](#install-prereqs).
@@ -596,12 +596,12 @@ To install Application Accelerator:
 
 This section provides a quick-start guide for installing Tanzu Build Service as part of Tanzu Application Platform using the Tanzu CLI.
 
-**Note**: This procedure might not include some configurations required for your specific environment. For more advanced details on installing Tanzu Build Service, see [Installing Tanzu Build Service](https://docs.pivotal.io/build-service/installing.html).
+Note: This procedure might not include some configurations required for your specific environment. For more advanced details on installing Tanzu Build Service, see [Installing Tanzu Build Service](https://docs.pivotal.io/build-service/installing.html).
 
 
 ### Prerequisites
 
-* You have access to a Docker registry that Tanzu Build Service can use to create Builder images. Approximately 5GB of registry space is required.
+* You have access to a Docker registry that Tanzu Build Service can use to create builder images. Approximately 5GB of registry space is required.
 * Your Docker registry is accessible with username and password credentials.
 
 
@@ -775,10 +775,10 @@ To install Out of the Box Templates:
    ```bash
     tanzu package install ootb-templates \
       --package-name ootb-templates.tanzu.vmware.com \
-      --version 0.3.0-build.4 \
+      --version 0.3.0-build.5 \
       --namespace tap-install
     ```
-   
+
 
 ## <a id='install-ootb-supply-chain-basic'></a> Install default Supply Chain
 
@@ -787,13 +787,13 @@ Install the default Supply Chain, called Out of the Box Supply Chain Basic, by r
 1. Gather the values schema:
 
     ```bash
-    tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.3.0-build.4 --values-schema -n tap-install
+    tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.3.0-build.5 --values-schema -n tap-install
     ```
 
     For example:
 
    ```console
-   $ tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.3.0-build.4 --values-schema -n tap-install
+   $ tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.3.0-build.5 --values-schema -n tap-install
    | Retrieving package details for ootb-supply-chain-basic.tanzu.vmware.com/0.3.0...
 
     KEY                  DEFAULT          TYPE    DESCRIPTION
@@ -821,19 +821,21 @@ Install the default Supply Chain, called Out of the Box Supply Chain Basic, by r
      ```bash
     tanzu package install ootb-supply-chain-basic \
       --package-name ootb-supply-chain-basic.tanzu.vmware.com \
-      --version 0.3.0-build.4 \
+      --version 0.3.0-build.5 \
       --namespace tap-install \
       --values-file ootb-supply-chain-basic-values.yaml
     ```
 
-> **Note:** The `default` service account and required secrets are created in
+> Note: The `default` service account and required secrets are created in
 [Set Up Developer Namespaces to Use Installed Packages](#setup).
+
+> **Note:** Only one supply chain should be installed in the cluster at a time.
 
 ## <a id='install-developer-conventions'></a> Install Developer Conventions
 
 To install developer conventions:
 
-**Prerequisite**: Convention Service installed on the cluster, see [Install Convention Service](#install-convention-service).
+**Prerequisite**: Convention Service installed on the cluster. See [Install Convention Service](#install-convention-service).
 
 1. Get the exact name and version information for the Developer Conventions package to be installed by running:
 
@@ -875,7 +877,7 @@ To install developer conventions:
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
     ```
-    
+
     STATUS should be 'Reconcile succeeded.'
 
 
@@ -883,14 +885,14 @@ To install developer conventions:
 
 To install Spring Boot conventions:
 
-**Prerequisite**: Convention Service installed on the cluster, see [Install Convention Service](#install-prereqs).
+**Prerequisite**: Convention Service installed on the cluster. See [Install Convention Service](#install-prereqs).
 
 1. Get the exact name and version information for the Spring Boot conventions package to be installed by running:
 
     ```bash
     tanzu package available list spring-boot-conventions.tanzu.vmware.com --namespace tap-install
     ```
-     
+
     For example:
     ```
     $ tanzu package available list spring-boot-conventions.tanzu.vmware.com --namespace tap-install
@@ -927,7 +929,7 @@ To install Spring Boot conventions:
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
     ```
-    
+
     STATUS should be 'Reconcile succeeded.'
 
 
@@ -936,7 +938,7 @@ To install Spring Boot conventions:
 
 To install Application Live View:
 
-**Prerequisite**: Convention Service installed on the cluster, see [Install Convention Service](#install-convention-service).
+**Prerequisite**: Convention Service installed on the cluster. See [Install Convention Service](#install-convention-service).
 
 1. List version information for the package by running:
 
@@ -1092,7 +1094,7 @@ Supported Git infrastructure includes:
 
 **Optional**
 
-- **Tanzu Application Platform tools:** Tanzu Application Platform GUI has plugins for the
+- Tanzu Application Platform tools: Tanzu Application Platform GUI has plugins for the
 following Tanzu Application Platform tools.
 If you plan on running workloads with these capabilities, you need these tools installed alongside
 Tanzu Application Platform GUI.
@@ -1100,14 +1102,14 @@ If you choose not to deploy workloads with these tools, the GUI shows menu optio
 select.
     - Tanzu Cloud Native Runtimes
     - Tanzu App Live View
-- **Data cache:** Your software catalog is stored on Git infrastructure, as mentioned in the
+- Data cache: Your software catalog is stored on Git infrastructure, as mentioned in the
 required prerequisites. However, you also have the option to use a PostgreSQL database to
 cache this information. If you do not specify any values here, a SQLite in-memory database is used
 instead.
     - PostgreSQL database and connection information
-- **Authentication:**
+- Authentication:
     - OIDC Identity Provider connection information
-- **Customer-developed documentation:**
+- Customer-developed documentation:
     - Techdocs object storage location (S3)
 
 ### Procedure
@@ -1146,7 +1148,7 @@ with your relevant values. The meanings of some placeholders are explained in th
     app-config:
       app:
         baseUrl: https://<EXTERNAL-IP>:<PORT>
-      integrations: 
+      integrations:
         gitlab: # Other integrations available
           - host: <GITLAB-HOST>
             apiBaseUrl: https://<GITLAB-URL>/api/v4
@@ -1167,7 +1169,7 @@ with your relevant values. The meanings of some placeholders are explained in th
       #        user: <PGSQL-USER>
       #        password: <PGSQL-PWD>
       #        ssl: {rejectUnauthorized: false} # May be needed if using self-signed certs
-      
+
       # techdocs: # Only needed if you want to enable TechDocs capability. Requires running the TechDoc CLI to generate TechDocs from catalog Markdown to S3 compatible bucket called out in Additional Resources documentation.
       #  builder: 'external'
       #  generator:
@@ -1203,13 +1205,13 @@ with your relevant values. The meanings of some placeholders are explained in th
        If you are using a load balancer that is dynamically provisioned by the cloud provider,
        leave this value blank initially and, after the install is complete,
        run a subsequent `tanzu package installed update`.
-    - `<GIT-CATALOG-URL>` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage compliant catalog that you've already built and posted on the Git infrastucture that you specified in the Integration section.
+    - `<GIT-CATALOG-URL>` is the path to the `catalog-info.yaml` catalog definition file from either the included  Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog that you've already built and posted on the Git infrastucture that you specified in the Integration section.
 
-    > **Note:** The `app-config` section follows the same configuration model that Backstage uses.
+    > Note: The `app-config` section follows the same configuration model that Backstage uses.
     For more information, see the [Backstage documentation](https://backstage.io/docs/conf/).
     Detailed configuration of the OIDC auth capabilities are in this [Backstage OAuth documentation](https://backstage.io/docs/auth/oauth).
 
-    > **Note:** The `integrations` section uses GitLab. If you want additional integrations, see the
+    > Note: The `integrations` section uses GitLab. If you want additional integrations, see the
     format in this [Backstage integration documentation](https://backstage.io/docs/integrations/).
 
 1. Install the package by running:
@@ -1271,7 +1273,7 @@ To install Tanzu Learning Center, see the following sections.
 
 ### Procedure to install Learning Center
 1. List version information for the package by running:
-   
+
    ```shell
    $ tanzu package available list learningcenter.tanzu.vmware.com --namespace tap-install
    ```
@@ -1296,14 +1298,14 @@ To install Tanzu Learning Center, see the following sections.
    suffix to hostnames for instances.
    * Make sure to replace the <INGRESS_DOMAIN> domain with the domain name for your Kubernetes cluster.
 
-   > **Note:** For the custom domain you are using, DNS must have been configured with a wildcard domain to forward 
+   > Note: For the custom domain you are using, DNS must have been configured with a wildcard domain to forward
    > all requests for subdomains of the custom domain to the ingress router of the Kubernetes cluster.
 
-   > **Note:** If you are running Kubernetes on your local machine using a system like ``minikube``, and you don't 
-   > have a custom domain name that maps to the IP for the cluster, you can use a ``nip.io`` address. 
-   > For example, if ``minikube ip`` returned ``192.168.64.1``, you could use the 192.168.64.1.nip.io domain. 
-   > Note that you cannot use an address of form ``127.0.0.1.nip.io`` or ``subdomain.localhost``. This will cause a 
-   > failure. Internal services needing to connect to each other will connect to themselves instead, 
+   > Note: If you are running Kubernetes on your local machine using a system like ``minikube``, and you don't
+   > have a custom domain name that maps to the IP for the cluster, you can use a ``nip.io`` address.
+   > For example, if ``minikube ip`` returned ``192.168.64.1``, you could use the 192.168.64.1.nip.io domain.
+   > Note that you cannot use an address of form ``127.0.0.1.nip.io`` or ``subdomain.localhost``. This will cause a
+   > failure. Internal services needing to connect to each other will connect to themselves instead,
    > since the address would resolve to the host loopback address of ``127.0.0.1``.
 
 4. Install Learning Center Operator:
@@ -1311,8 +1313,8 @@ To install Tanzu Learning Center, see the following sections.
    $ tanzu package install learning-center --package-name learningcenter.tanzu.vmware.com --version 1.0.8-build.1 -f learning-center-config.yaml
    ```
 
-   The command above will create a default namespace in your Kubernetes cluster called ``educates``, and the operator along with any 
-   required namespaced resources will be created in it. A set of custom resource definitions and a global cluster role binding will also be created. 
+   The command above will create a default namespace in your Kubernetes cluster called ``educates``, and the operator along with any
+   required namespaced resources will be created in it. A set of custom resource definitions and a global cluster role binding will also be created.
    The list of resources you should see being created are:
 
    ```shell
@@ -1677,6 +1679,7 @@ To install Supply Chain Security Tools - Sign:
           --docker-password=<password>
         ```
         Add additional secrets to `imagePullSecrets` as required.
+
 1. Create a `ClusterImagePolicy` to specify the images that the webhook validates.
 
     The cluster image policy is a custom resource definition containing the following information:
@@ -1973,8 +1976,6 @@ If you want to change from the default values, use the Scan Controller instructi
 
 To install the API portal:
 
-
-
 1. Check what versions of API portal are available to install by running:
 
     ```bash
@@ -2065,7 +2066,6 @@ To install Services Toolkit:
     ```console
     tanzu package installed get services-toolkit -n tap-install
     ```
-
     and checking that the `STATUS` value is `Reconcile succeeded`.
 
     For example:
@@ -2110,8 +2110,8 @@ Use the following procedure to verify that the packages are installed.
     grype-scanner            grype.scanning.apps.tanzu.vmware.com               1.0.0-beta.2     Reconcile succeeded
     image-policy-webhook     image-policy-webhook.signing.run.tanzu.vmware.com  1.0.0-beta.1     Reconcile succeeded
     metadata-store           scst-store.tanzu.vmware.com                        1.0.0-beta.1     Reconcile succeeded
-    ootb-supply-chain-basic  ootb-supply-chain-basic.tanzu.vmware.com           0.3.0-build.4    Reconcile succeeded
-    ootb-templates           ootb-templates.tanzu.vmware.com                    0.3.0-build.4    Reconcile succeeded
+    ootb-supply-chain-basic  ootb-supply-chain-basic.tanzu.vmware.com           0.3.0-build.5    Reconcile succeeded
+    ootb-templates           ootb-templates.tanzu.vmware.com                    0.3.0-build.5    Reconcile succeeded
     scan-controller          scanning.apps.tanzu.vmware.com                     1.0.0-beta.2     Reconcile succeeded
     service-bindings         service-bindings.labs.vmware.com                   0.5.0            Reconcile succeeded
     services-toolkit         services-toolkit.tanzu.vmware.com                  0.4.0            Reconcile succeeded

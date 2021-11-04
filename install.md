@@ -198,19 +198,19 @@ The following table lists the packages contained in each profile:
   <tr>
    <td>Out of the Box Supply Chain - Basic
    </td>
-   <td>&check;
-   </td>
-   <td>&check;
+   <td>
    </td>
    <td>
    </td>
-   <td>&check;
+   <td>
+   </td>
+   <td>
    </td>
   </tr>
   <tr>
    <td>Out of the Box Supply Chain - Testing
    </td>
-   <td>&check;*
+   <td>&check;<sup>*</sup>
    </td>
    <td>
    </td>
@@ -222,7 +222,7 @@ The following table lists the packages contained in each profile:
   <tr>
    <td>Out of the Box Supply Chain - Testing and Scanning
    </td>
-   <td>&check;*
+   <td>&check;<sup>*</sup>
    </td>
    <td>
    </td>
@@ -365,7 +365,7 @@ The following table lists the packages contained in each profile:
   </tr>
   <tr>
    <td>Tanzu Supply Chain Security Tools - Scan</td>
-   <td>&check;</td><td>&check;</td><td></td><td></td>
+   <td>&check;</td><td></td><td></td><td></td>
   </tr>
   <tr>
    <td>Tekton
@@ -381,7 +381,7 @@ The following table lists the packages contained in each profile:
   </tr>
 </table>
 
-Note: * only one supply chain should be installed at any given time. When installing the Full
+<sup>*</sup> Only one supply chain should be installed at any given time. When installing the Full
 Profile, if you want to override the basic supply chain, you can specify either testing or 
 scanning as the supply chain to install. See [Override Default Supply Chain](#override-default-supply-chain).
 
@@ -412,11 +412,6 @@ install by changing the `profile` value.
       tanzunet_username: "<TANZUNET-USERNAME>"
       tanzunet_password: "<TANZUNET-PASSWORD>"
 
-    ootb_supply_chain_basic:
-      registry:
-        server: "<SERVER-NAME>"
-        repository: "<REPO-NAME>"
-
     learningcenter:
       ingressDomain: "<DOMAIN-NAME>"
 
@@ -427,8 +422,6 @@ install by changing the `profile` value.
 
     - `<PROFILE-VALUE>` is a value such as `full`, `dev-light`, `shared-tools`, or `operator-light`.
     - `<KP-DEFAULT-REPO>` has a value such as `us-east4-docker.pkg.dev/some-project-id/test-private-repo/apps`.
-    - `<SERVER-NAME>` has a value such as `us-east4-docker.pkg.dev`.
-    - `<REPO-NAME>` has a value such as `some-project-id/test-private-repo/apps`.
     - `<DOMAIN-NAME>` has a value such as `educates.example.com`.
 
     To view possible configuration settings for a package, run:
