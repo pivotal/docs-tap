@@ -13,18 +13,20 @@ This document describes the first part of the installation process for Tanzu App
 The following are required to install Tanzu Application Platform:
 
 ### Tanzu Network and Container Image Registry Requirements
+
 Installation requires:
 
-* A [Tanzu Network](https://network.tanzu.vmware.com/) account to download Tanzu Application Platform packages.
+* A [Tanzu Network](https://network.tanzu.vmware.com/) account to download
+Tanzu Application Platform packages.
 
 * A container image registry, such as [Harbor](https://goharbor.io/) or
-[Docker Hub](https://hub.docker.com/)
-with at least **10&nbsp;GB** of available storage for application images, base images, and runtime dependencies
-    * Usage of a paid registry account (if available) is encouraged to avoid potential rate limiting associated with some free registry offerings 
-    dependencies.
+[Docker Hub](https://hub.docker.com/) with at least **10&nbsp;GB** of available storage for
+application images, base images, and runtime dependencies
+    * VMware recommends using a paid registry account, if available, to avoid potential
+    rate-limiting associated with some free registry offerings dependencies.
 
-* Registry credentials with push and write access made available to Tanzu Application Platform to store
-images.
+* Registry credentials with push and write access made available to Tanzu Application Platform to
+store images.
 
 * Network access to https://registry.tanzu.vmware.com
 
