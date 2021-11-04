@@ -198,37 +198,37 @@ The following table lists the packages contained in each profile:
   <tr>
    <td>Out of the Box Supply Chain - Basic
    </td>
-   <td>&check;
-   </td>
-   <td>&check;
+   <td>
    </td>
    <td>
    </td>
-   <td>&check;
+   <td>
+   </td>
+   <td>
    </td>
   </tr>
   <tr>
    <td>Out of the Box Supply Chain - Testing
    </td>
-   <td>&check;
-   </td>
-   <td>&check;
+   <td>
    </td>
    <td>
    </td>
-   <td>&check;
+   <td>
+   </td>
+   <td>
    </td>
   </tr>
   <tr>
    <td>Out of the Box Supply Chain - Testing and Scanning
    </td>
-   <td>&check;
-   </td>
-   <td>&check;
+   <td>
    </td>
    <td>
    </td>
-   <td>&check;
+   <td>
+   </td>
+   <td>
    </td>
   </tr>
   <tr>
