@@ -34,21 +34,21 @@ To install kapp-controller v0.29.0 or later on Tanzu Community Edition v0.9.1:
 1. Prevent the Management cluster from reconciling the kapp-controller in the workload cluster by running: 
 
     ```console
-    kubectl patch app/<WORKLOAD-CLUSTER>-kapp-controller -n default -p '{"spec":{"paused":true}}' --type=merge
+    kubectl patch app/WORKLOAD-CLUSTER-kapp-controller -n default -p '{"spec":{"paused":true}}' --type=merge
     ```
     Where `WORKLOAD-CLUSTER` is the name of the cluster you created earlier.
 
 1. Import the kubeconfig for the workload cluster by running:
 
     ```console
-    tanzu cluster kubeconfig get <WORKLOAD-CLUSTER> --admin
+    tanzu cluster kubeconfig get WORKLOAD-CLUSTER --admin
     ```
     Where `WORKLOAD-CLUSTER` is the name of the cluster you created earlier.
 
 1.  Switch the kubectl context to the workload cluster by running:
 
     ```console
-    kubectl config use-context <WORKLOAD-CLUSTER-CONTEXT>
+    kubectl config use-context WORKLOAD-CLUSTER-CONTEXT
     ```
     Where `WORKLOAD-CLUSTER-CONTEXT` is the kubeconfig context you imported earlier. 
 
