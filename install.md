@@ -400,7 +400,7 @@ To install a profile:
     tanzu package available list tap.tanzu.vmware.com --namespace tap-install
     ```
 
-1. Create a `tap-values.yml` by using the following sample as a guide. Select a profile to install by changing the `profile` value. Run:
+1. Create a `tap-values.yml` by using the following sample as a guide. Select a profile to install by changing the `profile` value:
     ```yaml
     # e.g. full, dev-light, shared-tools, operator-light
     profile: full
@@ -427,14 +427,14 @@ To install a profile:
       service_type: LoadBalancer
     ```
 
-    To view possible configuration settings, run:
+    To view possible configuration settings for a package, run:
 
     ```bash
     tanzu package available get tap.tanzu.vmware.com/0.3.0-build.6 --values-schema --namespace tap-install
     ```
 
     >**Note:** The `tap.tanzu.vmware.com` package does not show all configuration settings for packages it plans to install. The package only shows top level keys. 
-    View individual package configuration settings with the same `tanzu package available get` command. For example, use `tanzu package available get -n tap-install cnrs.tanzu.vmware.com/1.0.3 --values-schema` for Cloud Native Runtimes. Replace dashes with underscores. For example, if the package name is `tap-gui`, use `tap_gui` in the `tap-values.yml` file.
+    View individual package configuration settings with the same `tanzu package available get` command. For example, use `tanzu package available get -n tap-install cnrs.tanzu.vmware.com/1.0.3 --values-schema` for Cloud Native Runtimes.
 
     ```yaml
     profile: full
@@ -449,6 +449,23 @@ To install a profile:
     accelerator:
       service_type: "ClusterIP"
     ```
+
+    The following table summarizes the top level keys used for package specific configuration within your `tap-values.yml`
+
+    |Package|top level key|
+    |----|----|
+    |API portal|`api_portal`|
+    |Application Accelerator|`accelerator`|
+    |Application Live View|`appliveview`|
+    |Cartographer|`cartographer`|
+    |Cloud Native Runtimes|`cnrs`|
+    |Supply Chain basic|`ootb_supply_chain_basic`|
+    |Supply Chain testing|`ootb_supply_chain_testing`|
+    |Supply Chain testing scaning|`ootb_supply_chain_testing_scanning`|
+    |Image Policy Webhook|`image_policy_webhook`|
+    |Build Service|`buildservice`|
+    |TAP GUI|`tap_gui`|
+    |Learning Center|`learningcenter`|
 
     For information about package specific configuration, see [Install components](install-components.md).
 
