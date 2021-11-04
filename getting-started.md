@@ -5,22 +5,22 @@
 The intention of this guide is to walk you through the experience of promoting your first application using the Tanzu Application Platform!
 
 The intended user of this guide is anyone curious about Tanzu Application Platform and its parts.
-There are two high level workflows described within this document:
+There are two high-level workflows described within this document:
 
-1. The application development experience with the Developer Toolkit components
+1. The application development experience with the Developer Toolkit components.
 
-2. The administration, set up and management of Supply Chains, Security Tools, Services and Application Accelerators
+2. The administration, set up, and management of Supply Chains, Security Tools, Services, and Application Accelerators.
 
 
 ### Prerequisites
 
-In order to take full advantage of this document,  ensure you have followed [Installing Tanzu Application Platform](install-intro.md).
+In order to take full advantage of this document, ensure you have followed [Installing Tanzu Application Platform](install-intro.md).
 
 ---
 
 ## Section 1: Developing Your First Application on Tanzu Application Platform
 
-In this section you’ll deploy a simple web-application to the platform, enable debugging and see your code updates added to the running application as you save them.
+In this section, you’ll deploy a simple web application to the platform, enable debugging and see your code updates added to the running application as you save them.
 
 Before getting started, ensure the following prerequisites are in place:
 
