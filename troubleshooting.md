@@ -70,3 +70,30 @@ A common cause of this error is that the `tanzu package install` command is bein
 To fix this problem:
 
 1. Use `tanzu package installed update` command after the first use of `tanzu package install` command if you want to update the package.
+
+## <a id='workload-no-build'></a> After creating a workload there are no build logs
+
+After creating a workload there are no logs.
+
+### Symptom
+
+You create a workload but no logs appear when you check the logs with:
+
+```
+tanzu apps workload tail <workload-name> --since 10m --timestamp
+```
+
+### Cause
+
+Common causes include:
+- Misconfigured repository
+- Misconfigured service account
+- Misconfigured registry credentials
+
+### Solution
+
+To fix this problem try the following commands to get the relevant error message:
+
+- `kubectl get clusterbuilder.kpack.io -o yaml`
+- `kubectl get image.kpack.io <workload-name> -o yaml`
+- `kubectl get build.kpack.io -o yaml`
