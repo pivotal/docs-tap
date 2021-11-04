@@ -606,22 +606,21 @@ the workload must be updated to point at the your Tekton pipeline.
 
 ### Install Out of the Box with Testing and Scanning
 
-Follow the steps below to perform an out-of-the-box installation.
+Follow the steps below to install an out of the box supply chain with testing and scanning.
 
-1. Supply Chain Security Tools - Scan is installed as part of the Full profile.
-Verify that it installed by running:
+1. Supply Chain Security Tools - Scan is installed as part of the profiles.
+Verify that both Scan Link and Grype Scanner are installed by running:
 
     ```bash
     tanzu package installed get scanning -n tap-install
+    tanzu package installed get grype -n tap-install
     ```
 
-If it is not installed, follow the steps in [Supply Chain Security Tools - Scan](install-components.md#install-scst-scan) to install the required scanning components, including the additional scanning templates that define how the source and image are scanned.
+If they are not installed, follow the steps in [Supply Chain Security Tools - Scan](install-components.md#install-scst-scan) to install the required scanning components.
 
-Additional scanning configuration can now be applied, including scantemplates and scanpolicies.
+During installation of the Grype Scanner, sample ScanTemplates were installed into the `default` namespace. If the workload is to be deployed into another namespace, then these sample ScanTemplates would also need to be present in the other namespace. One way to accomplish this is to install Grype Scanner again, and provide the namespace in the values file.
 
-During installation of the Grype Scanner, sample scantemplates were installed into the default namespace. If the workload is to be deployed into another namespace, then these scantemplates would need to be also present in the other namespace. One way to accomplish this is to install Grype Scanner again, and provide the namespace in the values file.
-
-A scanpolicy is also required and the following can be applied into the required namespace (either add the namespace flag to the kubectl command or add the namespace field into the template itself):
+A ScanPolicy is also required and the following can be applied into the required namespace (either add the namespace flag to the `kubectl` command or add the namespace field into the template itself):
 
 ```bash
 kubectl apply -f - -o yaml << EOF
@@ -658,9 +657,9 @@ spec:
 EOF
 ```
 
-Next the Out of the Box Testing and Scanning supply chain can be installed.
+2. (Optional, but recommended) To persist and query the vulnerability results post-scan, [install Supply Chain Security Tools - Store](install-components.md#install-scst-store). Refer to the *Prerequisite* in [Supply Chain Security Tools - Scan](install-components.md#install-scst-scan) for more details.
 
-1. Install the Out of the Box Testing and Scanning supply chain by running:
+3. Install the Out of the Box Testing and Scanning supply chain by running:
 
     ```bash
     tanzu package install ootb-supply-chain-testing-scanning \
@@ -744,17 +743,13 @@ service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.devel
 
 ## Section 4: Advanced Use Cases - Supply Chain Security Tools
 
-
 ### Supply Chain Security Tools Overview
 
-There are two new supply chain security use cases that we support in Beta 2:
+In this section, we will provide an overview of the supply chain security use cases that are available in TAP:
 
 1. **Sign**: Introducing image signing and verification to your supply chain
 
 2. **Scan & Store**: Introducing vulnerability scanning and metadata storage to your supply chain
-
-In this section, we will provide an overview of these two new use cases and how to integrate them into your supply chain.
-
 
 ### Sign: Introducing Image Signing & Verification to your Supply Chain
 
@@ -830,7 +825,6 @@ The cluster image policy is a custom resource definition containing the followin
 * A list of image name patterns to which we want to enforce the policy, mapping to the public keys to use for each pattern.
 
 An example policy would look like this:
-
 
 ```
 ---
@@ -942,6 +936,7 @@ The Store accepts any CycloneDX input and outputs in both human-readable and mac
 * Analyze scan results against user-defined policies using Open Policy Agent
 * Produce vulnerability scan results and post them to the Metadata Store from where they can be queried
 
+To try the scan and store features in a supply chain, see [Section 3: Add Testing and Security Scanning to Your Application].
 
 #### Running Public Source Code and Image Scans with Policy Enforcement
 
@@ -980,7 +975,7 @@ the store successfully. For more information, see
 
 #### Example Supply Chain including Source and Image Scans
 
-One of the out-of-the-box supply chains we are working on for a future release will include image and source code vulnerability scanning and metadata storage into a preset Tanzu Application Platform supply chain. Until then, you can use this example to see how to try this out:
+One of the out of the box supply chains we are working on for a future release will include image and source code vulnerability scanning and metadata storage into a preset Tanzu Application Platform supply chain. Until then, you can use this example to see how to try this out:
 [Example Supply Chain including Source and Image Scans](scst-scan/choreographer.md).
 
 **Next Steps and Further Information**
