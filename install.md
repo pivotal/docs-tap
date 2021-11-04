@@ -3,7 +3,7 @@
 This document describes how to install Tanzu Application Platform packages
 from the Tanzu Application Platform package repository.
 
-Before you install the packages, ensure that you have completed the prerequisites, configured
+Before you install the packages, ensure you have completed the prerequisites, configured
 and verified the cluster, accepted the EULA, and installed the Tanzu CLI with any required plugins.
 See [Installing Part I: Prerequisites, EULA, and CLI](install-general.md).
 
@@ -108,7 +108,7 @@ Tanzu Application Platform contains the following four profiles:
 - Shared Tools (`shared-tools`)
 - Operator Light (`operator-light`)
 
-The following table lists the packages that are contained in each profile:
+The following table lists the packages contained in each profile:
 
 <table>
   <tr>
@@ -400,7 +400,7 @@ To install a profile:
     tanzu package available list tap.tanzu.vmware.com --namespace tap-install
     ```
 
-1. Create a `tap-values.yml` using the following sample as a guide. Select a profile to install by changing the `profile` value. Run:
+1. Create a `tap-values.yml` by using the following sample as a guide. Select a profile to install by changing the `profile` value. Run:
     ```yaml
     # e.g. full, dev-light, shared-tools, operator-light
     profile: full
@@ -493,7 +493,7 @@ To install Tanzu Application Platform GUI:
 
 1. Obtain you the `External IP` of your LoadBalancer via `kubectl get svc -n tap-gui`.
 
-2. Add the following section to your `tap-values.yml` using the below template. Replace all `<PLACEHOLDERS>`
+2. Add the following section to your `tap-values.yml` by using the following template. Replace all `<PLACEHOLDERS>`
 with your relevant values. Run:
 
     ```yaml
@@ -520,7 +520,7 @@ with your relevant values. Run:
 
     - `EXTERNAL-IP` is your LoadBalancer's address.
     - `GITHUB-TOKEN` is a valid token generated from your Git infrastructure of choice with the necessary read permissions for the catalog definition files you extracted from the Blank Software Catalog.
-    - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage compliant catalog that you've already built and posted on the Git infrastucture that you specified in the Integration section.
+    - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage compliant catalog you've already built and posted on the Git infrastucture you specified in the Integration section.
 
     > **Note:** The `integrations` section uses Github. If you want additional integrations, see the
     format in this [Backstage integration documentation](https://backstage.io/docs/integrations/).

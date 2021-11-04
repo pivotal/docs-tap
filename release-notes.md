@@ -121,7 +121,7 @@ delete the workload before performing any of the following actions. This will av
     - Disabling `Live Update` & re-starting `Live Update`
 
     You can do so by performing the following steps:
-    1. Click on the `Terminal` menu and select the `Run Task` option
+    1. Click the `Terminal` menu and select the `Run Task` option
     2. Type `tanzuWorkload delete` in the command palette that appears and hit enter
     3. View the Terminal tab to confirm that the Workload has been deleted
 

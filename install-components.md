@@ -1097,7 +1097,7 @@ following Tanzu Application Platform tools.
 If you plan on running workloads with these capabilities, you need these tools installed alongside
 Tanzu Application Platform GUI.
 If you choose not to deploy workloads with these tools, the GUI shows menu options that you cannot
-click on.
+select.
     - Tanzu Cloud Native Runtimes
     - Tanzu App Live View
 - **Data cache:** Your software catalog is stored on Git infrastructure, as mentioned in the

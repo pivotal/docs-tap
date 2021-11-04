@@ -5,28 +5,28 @@
 The intention of this guide is to walk you through the experience of promoting your first application using the Tanzu Application Platform!
 
 The intended user of this guide is anyone curious about Tanzu Application Platform and its parts.
-There are two high level workflows described within this document:
+There are two high-level workflows described within this document:
 
-1. The application development experience with the Developer Toolkit components
+1. The application development experience with the Developer Toolkit components.
 
-2. The administration, set up and management of Supply Chains, Security Tools, Services and Application Accelerators
+2. The administration, set up, and management of Supply Chains, Security Tools, Services, and Application Accelerators.
 
 
 ### Prerequisites
 
-In order to take full advantage of this document,  ensure you have followed [Installing Tanzu Application Platform](overview.md).
+In order to take full advantage of this document, ensure you have followed [Installing Tanzu Application Platform](install-intro.md).
 
 ---
 
 ## Section 1: Developing Your First Application on Tanzu Application Platform
 
-In this section you’ll deploy a simple web-application to the platform, enable debugging and see your code updates added to the running application as you save them.
+In this section, you’ll deploy a simple web application to the platform, enable debugging and see your code updates added to the running application as you save them.
 
 Before getting started, ensure the following prerequisites are in place:
 
 1. Tanzu Application Platform is installed on the target Kubernetes cluster. For installation instructions, see [Installing Part I: Prerequisites, EULA, and CLI](install-general.md) and [Installing Part II: Profiles](install.md).
 
-2. Default kube config context is set to the target Kubernetes cluster
+2. Default kubeconfig context is set to the target Kubernetes cluster
 
 3. A developer namespace has been setup to accommodate the developer's Workload.
    See [Set Up Developer Namespaces to Use Installed Packages](install-components.md#setup).
@@ -182,7 +182,7 @@ You can debug your cluster on your application or in your local environment.
 
 Follow the steps below to debug your cluster:
 1. Set a breakpoint in your code.
-2. Right click on the file `workload.yaml` within the `config` folder, and select `Tanzu: Java Debug Start`. In a few moments, the workload will be redeployed with debugging enabled.
+2. Right-click the file `workload.yaml` within the `config` folder, and select `Tanzu: Java Debug Start`. In a few moments, the workload will be redeployed with debugging enabled.
 3. Return to your browser and navigate to http://localhost:8080. This will hit the breakpoint within VSCode. You can now step through or play to the end of the debug session using VSCode debugging controls.
 
 
@@ -245,7 +245,7 @@ This file is a starting point for the metadata for your new accelerator and the 
 This `new-accelerator.yaml` file should be copied to the root directory of your git repo and named `accelerator.yaml`.
 
 Copy this file into your git repo as `accelerator.yaml` to have additional attributes rendered in the web UI.
-([https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.3/acc-docs/GUID-creating-accelerators-index.html](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.2/acc-docs/GUID-creating-accelerators-index.html))
+See [Creating Accelerators](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.2/acc-docs/GUID-creating-accelerators-index.html).
 
 After you push that change to your git repository, the Accelerator is refreshed based on the `git.interval` setting for the Accelerator resource. The default is 10 minutes. You can run the following command to force an immediate reconciliation:
 
@@ -378,7 +378,7 @@ Tekton pipeline.
    <td>The Out of the Box Testing contains all of the same elements as the Source to URL. It allows developers to specify a Tekton pipeline that runs as part of the CI step of the supply chain.
 <ul>
 
-<li>The application tests using the tekton pipeline
+<li>The application tests using the Tekton pipeline
 
 <li>A new image is automatically created
 
@@ -421,7 +421,7 @@ Tekton pipeline.
    <td>The Out of the Box Testing and Scanning contains all of the same elements as the Out of the Box Testing supply chiains but it also includes integrations out of the box with the secure scanning components of Tanzu Application Platform.
 <ul>
 
-<li>The application will be testing using the provided tekton pipeline
+<li>The application will be testing using the provided Tekton pipeline
 <li>The application source code will be scanned for vulnerabilities
 
 <li>A new image will be automatically created
@@ -1125,7 +1125,7 @@ Let’s start by playing the role of a Service Operator, who is responsible for 
     ```
     tanzu apps workload create rmq-sample-app-usecase-1 --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch v0.1.0 --type web --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:rmq-1"
     ```
-6. Once the workload has been built and is running you can confirm it is up and running by grabbing the knative web-app URL.
+6. Once the workload has been built and is running you can confirm it is up and running by grabbing the Knative web-app URL.
     ```
     tanzu apps workload get rmq-sample-app-usecase-1
     ```
@@ -1133,7 +1133,7 @@ Let’s start by playing the role of a Service Operator, who is responsible for 
 
 ### Use Case 2 - **Binding an App Workload to a Service Resource across multiple clusters**
 
-This use case is similar to the above in that we will be binding a sample application workload to a RabbitMQ cluster resource, however this time round the RabbitMQ Cluster Operator and instances will be running on a completely separate kubernetes cluster - a dedicated services cluster. The Workloads need not know where the service instances are running. This enables decoupling of Workloads and Services thus protecting Workloads from Day2 operations in the services cluster.
+This use case is similar to the above in that we will be binding a sample application workload to a RabbitMQ cluster resource, however this time round the RabbitMQ Cluster Operator and instances will be running on a completely separate Kubernetes cluster - a dedicated services cluster. The Workloads need not know where the service instances are running. This enables decoupling of Workloads and Services thus protecting Workloads from Day2 operations in the services cluster.
 
 #### Prerequisites
 
@@ -1299,17 +1299,18 @@ Services Cluster. `rabbitmq-cluster.yaml` is below: <!-- Is there a missing step
 
 Here are some additional CLI commands to explore using the same app that you deployed and debugged earlier in this guide.
 
-Add some envars
+Add some envars by running:
 
 ```
 tanzu apps workload update tanzu-java-web-app --env foo=bar
 ```
 
-Export the current running workload definition (to check into git, or promote to another environment)
+Export the current running workload definition, to check into git, or promote to another environment, by running:
 
 `tanzu apps workload get tanzu-java-web-app --export \
  \
-`Explore the flags available for the workload commands:
+`
+Explore the flags available for the workload commands by running:
 
 
 ```
@@ -1318,7 +1319,7 @@ tanzu apps workload get -h
 tanzu apps workload create -h
 ```
 
-Create a simple java app from source code on your local file system
+Create a simple java app from source code on your local file system by running:
 
 ```
 git clone git@github.com:spring-projects/spring-petclinic.git
