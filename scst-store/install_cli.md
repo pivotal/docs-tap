@@ -6,9 +6,10 @@ This topic explains how to install the `insight` CLI:
 1. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/). 
 1. Select the latest Tanzu Application Platform release.
 1. In the list of released files, select *insight-metadata-cli-v...*. 
-1. Choose the file for your operating system. 
+1. Choose the file for operating system. 
+    
     >**Note:** MacOS is a Darwin-based platform.
-
+    
 1. Put the binary in a location that is either already in your `PATH` environment variable, 
 or add the location of the CLI to your `PATH` variable.
 1. Rename the binary to make it easier to invoke with your command line. 
