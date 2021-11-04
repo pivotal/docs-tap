@@ -75,7 +75,7 @@ You use this accelerator code in the [Iterate on your Application](#iterate) sec
     --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
     --git-branch main \
     --type web \
-    --label app.kubernetes.io/part-of=tanzu-java-web-appweb \
+    --label app.kubernetes.io/part-of=tanzu-java-web-app-web \
     --yes
     ```
 
