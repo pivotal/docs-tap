@@ -1351,7 +1351,7 @@ To install Tanzu Learning Center, see the following sections.
    ```
 2. Installing the Learning Center Training Portal with the Self Guided Tour workshop
    ```shell
-   $ tanzu package install learning-center-workshop --package-name workshops.learningcenter.tanzu.vmware.com --version 1.0.4-build.1 -n tap-install
+   $ tanzu package install learning-center-workshop --package-name workshops.learningcenter.tanzu.vmware.com --version 1.0.7-build.1 -n tap-install
    ```
 3. You can check the Training Portals available in your environment running the following command
    ```shell
