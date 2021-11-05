@@ -68,7 +68,7 @@ This is the table of contents from which the Tanzu Application Platform Document
             - [Client Authentication](learning-center/portal-rest-api/client-authentication.md)
     - [Supply Chain Choreographer for Tanzu](scc/about.md)
         - [Out of the Box Supply Chains](scc/default-supply-chains.md)
-    - [Supply Chain Security Tools for VMware Tanzu – Scan](scst-scan/overview.md)
+    - [Supply Chain Security Tools for VMware Tanzu – Scan](scst-scan/overview.md) 
         * [Release Notes](scst-scan/release-notes.md)
         * [Spec Reference](scst-scan/explanation.md)
         * [Running Public Source Code and Image Scans with Policy Enforcement](scst-scan/running-scans.md)
