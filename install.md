@@ -422,6 +422,7 @@ install by changing the `profile` value.
 
     - `<PROFILE-VALUE>` is a value such as `full`, `dev-light`, `shared-tools`, or `operator-light`.
     - `<KP-DEFAULT-REPO>` has a value such as `us-east4-docker.pkg.dev/some-project-id/test-private-repo/apps`.
+        * The dependencies Tanzu Build Service needs will be written to this location.
     - `<DOMAIN-NAME>` has a value such as `educates.example.com`.
 
     To view possible configuration settings for a package, run:
