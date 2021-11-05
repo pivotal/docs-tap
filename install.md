@@ -381,9 +381,9 @@ The following table lists the packages contained in each profile:
   </tr>
 </table>
 
-<sup>\*</sup> Only one supply chain should be installed at any given time. When installing the Full
-Profile, if you want to override the basic supply chain, you can specify either testing or 
-scanning as the supply chain to install. See [Override Default Supply Chain](#override-default-supply-chain).
+<sup>\*</sup> Only one supply chain should be installed at any given time. More
+information about how to switch from one to another provided in the Getting
+Started guide.
 
 ## <a id='install-profile'></a> Install a Tanzu Application Platform Profile
 
@@ -497,50 +497,6 @@ install by changing the `profile` value.
     ```
 
 1. (Optional) [Install any additional packages](install-components.md) that were not included in your profile.
-
-### <a id='override-default-supply-chain'></a> Override Default Supply Chain
-
-To override the Default Supply Chain with either:
-- Out of the Box Supply Chain - Testing or
-- Out of the Box Supply Chain - Scanning
-
-modify `tap-values.yml`.
-
-For Out of the Box Supply Chain - Testing:
-
-    ```yaml
-    profile: Full
-
-    supply_chain: testing
-
-    ootb_supply_chain_testing:
-      registry:
-        server: "<SERVER-NAME>"
-        repository: "<REPO-NAME>"
-    ```
-    Where:
-
-    - `<SERVER-NAME>` has a value such as `us-east4-docker.pkg.dev`.
-    - `<REPO-NAME>` has a value such as `some-project-id/test-private-repo/apps`.
-
-
-
-Or, for Out of the Box Supply Chain - Scanning:
-
-    ```yaml
-    profile: Full
-
-    supply_chain: testing_scanning
-
-    ootb_supply_chain_testing_scanning:
-      registry:
-        server: "<SERVER-NAME>"
-        repository: "<REPO-NAME>"
-    ```
-    Where:
-
-    - `<SERVER-NAME>` has a value such as `us-east4-docker.pkg.dev`.
-    - `<REPO-NAME>` has a value such as `some-project-id/test-private-repo/apps`.
 
 
 ## <a id='configure-tap-gui'></a> Configure the Tanzu Application Platform GUI

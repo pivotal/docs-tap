@@ -30,6 +30,7 @@ For information, see [Installing Part I: Prerequisites, EULA, and CLI](install-g
 + [Install Supply Chain Security Tools - Scan](#install-scst-scan)
 + [Install API portal](#install-api-portal)
 + [Install Services Toolkit](#install-services-toolkit)
++ [Install Tekton](#install-tekton)
 
 
 ## <a id='install-prereqs'></a> Install cert-manager and FluxCD source controller
@@ -2201,3 +2202,25 @@ run the following commands to add credentials and Role-Based Access Control (RBA
     ```
     Where `YOUR-NAMESPACE` is the namespace you want to use.
     Use `-n default` for the default namespace. We recommend using the `default` namespace, as Debug & Live Update features with the Tanzu Developer Tools for VSCode extension only work with the `default` namespace at this time.
+
+
+## <a id='install-tekton'></a> Install Tekton
+
+The `testing` out of the box supply chain uses Tekton to run tests defined by
+developers before you produce a container image for the source code, preventing
+code that fails tests from being promoted to deployment.
+
+To install Tekton with `kapp`, run:
+
+```bash
+kapp deploy --yes -a tekton \
+  -f https://storage.googleapis.com/tekton-releases/pipeline/previous/v0.28.0/release.yaml
+```
+
+For more details on Tekton, see the [Tekton documentation](https://tekton.dev/docs/) and the 
+[github repository](https://github.com/tektoncd/pipeline).  
+
+You can also view the Tekton [tutorial](https://github.com/tektoncd/pipeline/blob/main/docs/tutorial.md) and
+[getting started guide](https://tekton.dev/docs/getting-started/).
+
+Note: In future versions, Tekton will be shipped as a package.
