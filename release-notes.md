@@ -22,12 +22,14 @@ Tanzu Packages:
   - Out of the Box Templates v0.3.0
 - Services Toolkit v
 - Service Bindings for Kubernetes v
-- Tanzu Application Platform GUI v0.3.0
-  - Workload Visibility Plugin v1.0.0
-  - Application Live View Plugin v0.3.0
 - Tanzu Learning Center
 
-Tanzu CLI Plugins:
+Tanzu Application Platform GUI plugins:
+
+- Workload Visibility Plugin v1.0.0
+- Application Live View Plugin v0.3.0
+
+Tanzu CLI plugins:
 
 - Tanzu Accelerator CLI Plugin v
 - Tanzu App CLI Plugin v
