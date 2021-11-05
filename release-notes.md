@@ -23,7 +23,8 @@ Tanzu Packages:
 - Services Toolkit v
 - Service Bindings for Kubernetes v
 - Tanzu Application Platform GUI v0.3.0
-
+  - Workload Visibility Plugin v1.0.0
+  - Application Live View Plugin v0.3.0
 - Tanzu Learning Center
 
 Tanzu CLI Plugins:
@@ -32,8 +33,6 @@ Tanzu CLI Plugins:
 - Tanzu App CLI Plugin v
 - Tanzu ImagePullSecret CLI Plugin v
 - Tanzu Package CLI Plugin v
-- Workload Visibility Plugin v1.0.0
-- Application Live View Plugin v0.3.0
 
 The following components have been updated in Tanzu Application Platform v0.3
 
