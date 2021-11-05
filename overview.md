@@ -47,7 +47,6 @@ The following profiles are available in Tanzu Application Platform:
 
   This profile contains all of the Tanzu Application Platform packages.
 
-
 ## <a id='install'></a> About Installing the Tanzu Application Platform v0.3 (Beta-3) 
 
 To install the Tanzu Application Platform profiles, see [Installing Tanzu Application Platform](install-intro.md).
