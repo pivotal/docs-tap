@@ -21,7 +21,12 @@ Tanzu Packages:
   - Out of the Box Supply Chain with Testing and Scanning v0.3.0
   - Out of the Box Templates v0.3.0
 - Services Toolkit v
-- Service Bindings for Kubernetes v
+- Tanzu Application Platform GUI v0.3.0
+  - Workload Visibility Plugin v1.0.0
+  - Application Live View Plugin v0.3.0
+- Convention Service for VMware Tanzu
+  - Spring Boot Convention v0.1.2
+
 - Tanzu Learning Center
 
 Tanzu Application Platform GUI plugins:
@@ -32,7 +37,6 @@ Tanzu Application Platform GUI plugins:
 Tanzu CLI plugins:
 
 - Tanzu Accelerator CLI Plugin v
-- Tanzu App CLI Plugin v
 - Tanzu ImagePullSecret CLI Plugin v
 - Tanzu Package CLI Plugin v
 
@@ -44,6 +48,8 @@ The following components have been updated in Tanzu Application Platform v0.3
   - Image Policy Webhook 1.0.0-beta.1
 - Convention Service for VMware Tanzu
   - Developer Conventions v0.3.0
+  - Store v1.0.0-beta.1
+
 - [VMware Tanzu Build Service v1.3](https://docs.pivotal.io/build-service/1-3/)
 - [Cloud Native Runtimes v1.0.2](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-cnr-overview.html)
 - [Application Accelerator for VMware Tanzu v0.3.0](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/index.html)
@@ -64,6 +70,10 @@ This release has the following issues:
     1. Click the `Terminal` menu and select the `Run Task` option
     2. Type `tanzuWorkload delete` in the command palette that appears and hit enter
     3. View the Terminal tab to confirm that the Workload has been deleted
+
+- Tanzu App CLI Plugin:
+  - *`tanzu apps workload get`*: passing in `--output json` along with and the `--export` flag will return yaml rather than json (support for honoring the `--output json` in conjunction with `--export` will be added in the next release).
+  - *`tanzu apps workload create/update/apply`*: when the `--wait` flag has been included and the "Do you want to create this workload?" prompt is declined, the command continues to wait rather exit
 
 
 ### Security Issues
