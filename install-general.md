@@ -22,7 +22,7 @@ Tanzu Application Platform packages.
 * A container image registry, such as [Harbor](https://goharbor.io/) or
 [Docker Hub](https://hub.docker.com/) with at least **10&nbsp;GB** of available storage for
 application images, base images, and runtime dependencies
-    * If available, VMware recommends using a paid registry account to avoid potential
+    * When available, VMware recommends using a paid registry account to avoid potential
     rate-limiting associated with some free registry offerings.
 application images, base images, and runtime dependencies.
     * VMware recommends using a paid registry account, if available, to avoid potential
