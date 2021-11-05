@@ -7,7 +7,7 @@ This topic contains release notes for Tanzu Application Platform beta.
 
 ## <a id='0-3-0'></a> v0.3.0 Beta
 
-**Release Date**: November, XX, 2021
+**Release Date**: November 8, 2021
 
 ### New Features
 
@@ -15,26 +15,15 @@ The following components are new in Tanzu Application Platform v0.3.0:
 
 Tanzu Packages:
 
-- Supply Chain Choreographer for VMware Tanzu
-  - Cartographer v0.0.7
+- Supply Chain Choreographer for VMware Tanzu:
   - Out of the Box Supply Chain Basic v0.3.0
   - Out of the Box Supply Chain with Testing v0.3.0
   - Out of the Box Supply Chain with Testing and Scanning v0.3.0
   - Out of the Box Templates v0.3.0
-- Supply Chain Security Tools for VMware Tanzu
-  - Scanning v
-  - Image Policy Webhook v
-  - Store v
-- Convention Service for VMware Tanzu
-  - Conventions Controller v
-  - Image Source Controller v
-  - Developer Conventions v
-- API Portal for VMware Tanzu v
 - Services Toolkit v
 - Service Bindings for Kubernetes v
 - Tanzu Application Platform GUI v0.3.0
-  - Workload Visibility Plugin v1.0.0
-  - Application Live View Plugin v0.3.0
+
 - Tanzu Learning Center
 
 Tanzu CLI Plugins:
@@ -43,8 +32,13 @@ Tanzu CLI Plugins:
 - Tanzu App CLI Plugin v
 - Tanzu ImagePullSecret CLI Plugin v
 - Tanzu Package CLI Plugin v
+- Workload Visibility Plugin v1.0.0
+- Application Live View Plugin v0.3.0
 
-The following components have been updated in Tanzu Application Platform v
+The following components have been updated in Tanzu Application Platform v0.3
+
+- Supply Chain Choreographer for VMware Tanzu
+  - Cartographer v0.0.7
 
 - [VMware Tanzu Build Service v1.3](https://docs.pivotal.io/build-service/1-3/)
 - [Cloud Native Runtimes v1.0.2](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-cnr-overview.html)
