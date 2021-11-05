@@ -102,7 +102,8 @@ To add the Tanzu Application Platform package repository:
 ## <a id='add-package-repositories'></a> About Tanzu Application Platform Package Profiles
 Tanzu Application Platform can be installed through pre-defined profiles or through individual packages. This section explains how to install a profile.
 
-Tanzu Application Platform contains the following four profiles:
+Tanzu Application Platform contains the following two profiles:
+
 - Full (`full`)
 - Developer Light (`dev-light`)
 
