@@ -10,4 +10,3 @@ This section includes information on building Learning Center Workshops.
 - [Workshop Instructions](workshop-instructions.md)
 - [Workshop Runtime](workshop-runtime.md)
 - [Workshop Slides](presenter-slides.md)
-- [Extending Workshops](extending-workshops.md)
