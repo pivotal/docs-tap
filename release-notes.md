@@ -39,7 +39,8 @@ The following components have been updated in Tanzu Application Platform v0.3
 
 - Supply Chain Choreographer for VMware Tanzu
   - Cartographer v0.0.7
-
+- Supply Chain Security Tools for VMware Tanzu
+  - Image Policy Webhook 1.0.0-beta.1
 - [VMware Tanzu Build Service v1.3](https://docs.pivotal.io/build-service/1-3/)
 - [Cloud Native Runtimes v1.0.2](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-cnr-overview.html)
 - [Application Accelerator for VMware Tanzu v0.3.0](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/index.html)
@@ -49,7 +50,7 @@ The following components have been updated in Tanzu Application Platform v0.3
 
 This release has the following issues:
 
-- <!-- Insert issue here -->
+- **Image Policy Webhook:** If all of the webhook nodes or Pods are evicted by the cluster or scaled down, the admission policy will block any Pods from being created in the cluster. To resolve the issue, the administrator needs to kubectl delete the Image Policy Webhook and reapply it once the cluster is stable.
 
 ### Security Issues
 
