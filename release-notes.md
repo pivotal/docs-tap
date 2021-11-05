@@ -40,16 +40,17 @@ Tanzu CLI plugins:
 - Tanzu ImagePullSecret CLI Plugin v
 - Tanzu Package CLI Plugin v
 
-The following components have been updated in Tanzu Application Platform v0.3
+The following components have been updated in Tanzu Application Platform v0.3.0
 
 - Supply Chain Choreographer for VMware Tanzu
   - Cartographer v0.0.7
 - Supply Chain Security Tools for VMware Tanzu
+  - Scan v1.0.0-beta.2
   - Image Policy Webhook v1.0.0-beta.1
-  - Image Policy Webhook 1.0.0-beta.1
+  - Store v1.0.0-beta.1
 - Convention Service for VMware Tanzu
   - Developer Conventions v0.3.0
-  - Store v1.0.0-beta.1
+
 
 - [VMware Tanzu Build Service v1.3](https://docs.pivotal.io/build-service/1-3/)
 - [Cloud Native Runtimes v1.0.2](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-cnr-overview.html)
@@ -102,7 +103,7 @@ Tanzu Packages:
   - Default Supply Chain v0.2.0
   - Default Supply Chain with Testing v0.2.0
 - Supply Chain Security Tools for VMware Tanzu
-  - Scanning v1.0.0-beta
+  - Scan v1.0.0-beta
   - Image Policy Webhook v1.0.0-beta.0
   - Store v1.0.0-beta.0
 - Convention Service for VMware Tanzu
