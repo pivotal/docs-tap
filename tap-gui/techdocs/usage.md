@@ -8,44 +8,8 @@ This guide explains how to generate and publish TechDocs for catalogs. You can a
     - Click `Create bucket`.
     - Give the bucket a name.
     - Select the AWS region.
-    - Keep `Block all public access` checked for now.
+    - Keep `Block all public access` checked
     - Click `Create bucket`.
-1. Click the newly created bucket in the bucket list.
-    - Navigate to the `Permissions` tab.
-    - Click `Edit` under `Block public access`.
-    - Uncheck `Block all public access`.
-    - Check `Block public access to buckets and objects granted through new access control lists (ACLs)`.
-    - Check `Block public access to buckets and objects granted through any access control lists (ACLs)`.
-    - Uncheck `Block public access to buckets and objects granted through new public bucket or access point policies`.
-    - Uncheck `Block public and cross-account access to buckets and objects through any public bucket or access point policies`.
-    - Click `Save changes` and confirm the settings.
-1. Click `Edit` under `Bucket policy`.
-    - Copy this json into the policy with the bucket name replacing `<BUCKET_NAME>`.
-    ```json
-    {
-        "Version": "2012-10-17",
-        "Statement": [
-            {
-                "Sid": "PublicRead",
-                "Effect": "Allow",
-                "Principal": "*",
-                "Action": [
-                    "s3:ListBucket",
-                    "s3:GetObject"
-                ],
-                "Resource": [
-                    "arn:aws:s3:::<BUCKET_NAME>",
-                    "arn:aws:s3:::<BUCKET_NAME>/*"
-                ]
-            }
-        ]
-    }
-    ```
-    - Click `Save changes`.
-1. Click `Edit` under `Block public access`.
-    - Check `Block public access to buckets and objects granted through new public bucket or access point policies`.
-    - Click `Save changes` and confirm the settings.
-
 
 ## Configuring AWS S3 access
 

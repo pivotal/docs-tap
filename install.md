@@ -35,14 +35,14 @@ To add the Tanzu Application Platform package repository:
 
     ```bash
     tanzu package repository add tanzu-tap-repository \
-      --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.3.0-build.6 \
+      --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.3.0-build.8 \
       --namespace tap-install
     ```
     For example:
 
     ```bash
     $ tanzu package repository add tanzu-tap-repository \
-        --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.3.0-build.6 \
+        --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.3.0-build.8 \
         --namespace tap-install
     \ Adding package repository 'tanzu-tap-repository'...
 
@@ -61,7 +61,7 @@ To add the Tanzu Application Platform package repository:
     - Retrieving repository tap...
     NAME:          tanzu-tap-repository
     VERSION:       48756
-    REPOSITORY:    registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.3.0-build.6
+    REPOSITORY:    registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.3.0-build.8
     STATUS:        Reconcile succeeded
     REASON:
     ```
@@ -102,11 +102,10 @@ To add the Tanzu Application Platform package repository:
 ## <a id='add-package-repositories'></a> About Tanzu Application Platform Package Profiles
 Tanzu Application Platform can be installed through pre-defined profiles or through individual packages. This section explains how to install a profile.
 
-Tanzu Application Platform contains the following four profiles:
+Tanzu Application Platform contains the following two profiles:
+
 - Full (`full`)
 - Developer Light (`dev-light`)
-- Shared Tools (`shared-tools`)
-- Operator Light (`operator-light`)
 
 The following table lists the packages contained in each profile:
 
@@ -118,17 +117,9 @@ The following table lists the packages contained in each profile:
    </td>
    <td><strong>Developer Light</strong>
    </td>
-   <td><strong>Shared Tools</strong>
-   </td>
-   <td><strong>Operator Light</strong>
-   </td>
   </tr>
   <tr>
    <td>API Portal
-   </td>
-   <td>&check;
-   </td>
-   <td>
    </td>
    <td>&check;
    </td>
@@ -142,10 +133,6 @@ The following table lists the packages contained in each profile:
    </td>
    <td>
    </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
   </tr>
   <tr>
    <td>App Live View
@@ -154,19 +141,11 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>
-   </td>
-   <td>
-   </td>
   </tr>
   <tr>
    <td>Cartographer
    </td>
    <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
    </td>
    <td>&check;
    </td>
@@ -178,10 +157,6 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
   </tr>
   <tr>
    <td>Convention Controller
@@ -190,21 +165,13 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
   </tr>
   <tr>
    <td>Out of the Box Supply Chain - Basic
    </td>
-   <td>
+   <td>&check;
    </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>
+   <td>&check;
    </td>
   </tr>
   <tr>
@@ -212,11 +179,7 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check; <sup>&ast;</sup>
    </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>
+   <td>&check; <sup>&ast;</sup>
    </td>
   </tr>
   <tr>
@@ -224,21 +187,13 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check; <sup>&ast;</sup>
    </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>
+   <td>&check; <sup>&ast;</sup>
    </td>
   </tr>
   <tr>
    <td>Out of the Box Templates
    </td>
    <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
    </td>
    <td>&check;
    </td>
@@ -250,10 +205,6 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>
-   </td>
-   <td>
-   </td>
   </tr>
   <tr>
    <td>Flux Source Controller
@@ -262,11 +213,15 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
   </tr>
+  <tr>
+   <td>Grype
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+  </tr>  
   <tr>
    <td>Image Policy Webhook
    </td>
@@ -274,17 +229,9 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
   </tr>
   <tr>
    <td>Learning Center
-   </td>
-   <td>&check;
-   </td>
-   <td>
    </td>
    <td>&check;
    </td>
@@ -298,19 +245,11 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
   </tr>
   <tr>
    <td>Service Bindings
    </td>
    <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
    </td>
    <td>&check;
    </td>
@@ -322,19 +261,11 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
   </tr>
   <tr>
    <td>Spring Boot Convention
    </td>
    <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
    </td>
    <td>&check;
    </td>
@@ -346,10 +277,6 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
   </tr>
   <tr>
    <td>Tanzu Application Platform GUI
@@ -358,21 +285,13 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
   </tr>
   <tr>
    <td>Tanzu Supply Chain Security Tools - Scan</td>
-   <td>&check;</td><td></td><td></td><td></td>
+   <td>&check;</td><td></td>
   </tr>
   <tr>
    <td>Tekton
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
    </td>
    <td>&check;
    </td>
@@ -420,14 +339,15 @@ install by changing the `profile` value.
     ```
     Where:
 
-    - `<PROFILE-VALUE>` is a value such as `full`, `dev-light`, `shared-tools`, or `operator-light`.
+    - `<PROFILE-VALUE>` is a value such as `full` or `dev-light`.
     - `<KP-DEFAULT-REPO>` has a value such as `us-east4-docker.pkg.dev/some-project-id/test-private-repo/apps`.
+        * The dependencies Tanzu Build Service needs will be written to this location.
     - `<DOMAIN-NAME>` has a value such as `educates.example.com`.
 
     To view possible configuration settings for a package, run:
 
     ```bash
-    tanzu package available get tap.tanzu.vmware.com/0.3.0-build.6 --values-schema --namespace tap-install
+    tanzu package available get tap.tanzu.vmware.com/0.3.0-build.8 --values-schema --namespace tap-install
     ```
 
     >**Note:** The `tap.tanzu.vmware.com` package does not show all configuration settings for packages it plans to install. The package only shows top level keys.
@@ -471,7 +391,7 @@ install by changing the `profile` value.
 1. Install the package by running:
 
     ```bash
-    tanzu package install tap -p tap.tanzu.vmware.com -v 0.3.0-build.6 --values-file tap-values.yml -n tap-install
+    tanzu package install tap -p tap.tanzu.vmware.com -v 0.3.0-build.8 --values-file tap-values.yml -n tap-install
     ```
 
 1. Verify the package install by running:

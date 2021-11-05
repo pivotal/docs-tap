@@ -36,7 +36,7 @@ For information, see [Installing Part I: Prerequisites, EULA, and CLI](install-g
 
 cert_manager and FluxCD source controller are installed as part of all profiles. If you do not want to use a profile, install them manually.
 
-Note: In future versions both cert-manager and FluxCD source controller will be shipped as packages.
+> **Note:** In future versions both cert-manager and FluxCD source controller will be shipped as packages.
 
 * **cert-manager**:
     * Install cert-manager by running:
@@ -131,7 +131,7 @@ To install Cloud Native Runtimes:
         provider: local
         ```
 
-        Note: For most installations, you can leave the `cnr-values.yaml` empty, and use the default values.
+        > **Note:** For most installations, you can leave the `cnr-values.yaml` empty, and use the default values.
 
         If you are running on a single-node cluster, like kind or minikube, set the `provider: local`
         option. This option reduces resource requirements by using a HostPort service instead of a
@@ -193,7 +193,7 @@ To install Cloud Native Runtimes:
 
 1. Configuring a namespace to use Cloud Native Runtimes:
 
-   Note: This step covers configuring a namespace to run Knative services.
+   > **Note:** This step covers configuring a namespace to run Knative services.
    If you rely on a SupplyChain to deploy Knative services into your cluster,
    then skip this step because namespace configuration is covered in
    [Set Up Developer Namespaces to Use Installed Packages](#setup). Otherwise, you must complete the following steps for each namespace where you create Knative services.
@@ -237,7 +237,7 @@ To install Cloud Native Runtimes:
    Events:              <none>
    ```
 
-   Note: The service account has access to the `pull-secret` image pull secret.
+   > **Note:** The service account has access to the `pull-secret` image pull secret.
 
 To learn more about using Cloud Native Runtimes,
 see [Verify your Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-verify-installation.html)
@@ -464,7 +464,7 @@ you can configure the following optional properties:
 | engine.max_direct_memory_size | 32M | The max size for the Java -XX:MaxDirectMemorySize setting |
 | samples.include | True | Whether to include the bundled sample Accelerators in the install |
 
-> Note: For clusters that do not support the `LoadBalancer` service type,
+> **Note:** For clusters that do not support the `LoadBalancer` service type,
             override the default value for `server.service_type`.
 
 VMware recommends that you do not override the defaults for `registry.secret_ref`,
@@ -582,7 +582,7 @@ To install Application Accelerator:
 
 This section provides a quick-start guide for installing Tanzu Build Service as part of Tanzu Application Platform using the Tanzu CLI.
 
-Note: This procedure might not include some configurations required for your specific environment. For more advanced details on installing Tanzu Build Service, see [Installing Tanzu Build Service](https://docs.pivotal.io/build-service/installing.html).
+> **Note:** This procedure might not include some configurations required for your specific environment. For more advanced details on installing Tanzu Build Service, see [Installing Tanzu Build Service](https://docs.pivotal.io/build-service/installing.html).
 
 
 ### Prerequisites
@@ -812,7 +812,7 @@ Install the default Supply Chain, called Out of the Box Supply Chain Basic, by r
       --values-file ootb-supply-chain-basic-values.yaml
     ```
 
-> Note: The `default` service account and required secrets are created in
+> **Note:** The `default` service account and required secrets are created in
 [Set Up Developer Namespaces to Use Installed Packages](#setup).
 
 > **Note:** Only one supply chain should be installed in the cluster at a time.
@@ -1193,11 +1193,11 @@ with your relevant values. The meanings of some placeholders are explained in th
        run a subsequent `tanzu package installed update`.
     - `<GIT-CATALOG-URL>` is the path to the `catalog-info.yaml` catalog definition file from either the included  Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog that you've already built and posted on the Git infrastucture that you specified in the Integration section.
 
-    > Note: The `app-config` section follows the same configuration model that Backstage uses.
+    > **Note:** The `app-config` section follows the same configuration model that Backstage uses.
     For more information, see the [Backstage documentation](https://backstage.io/docs/conf/).
     Detailed configuration of the OIDC auth capabilities are in this [Backstage OAuth documentation](https://backstage.io/docs/auth/oauth).
 
-    > Note: The `integrations` section uses GitLab. If you want additional integrations, see the
+    > **Note:** The `integrations` section uses GitLab. If you want additional integrations, see the
     format in this [Backstage integration documentation](https://backstage.io/docs/integrations/).
 
 1. Install the package by running:
@@ -1288,10 +1288,10 @@ To install Tanzu Learning Center, see the following sections.
    suffix to hostnames for instances.
    - Make sure to replace the `your-ingress-domain` domain with the domain name for your Kubernetes cluster.
 
-   > Note: For the custom domain you are using, DNS must have been configured with a wildcard domain to forward
+   > **Note:** For the custom domain you are using, DNS must have been configured with a wildcard domain to forward
    > all requests for subdomains of the custom domain to the ingress router of the Kubernetes cluster.
 
-   > Note: If you are running Kubernetes on your local machine using a system like ``minikube``, and you don't
+   > **Note:** If you are running Kubernetes on your local machine using a system like ``minikube``, and you don't
    > have a custom domain name that maps to the IP for the cluster, you can use a ``nip.io`` address.
    > For example, if ``minikube ip`` returned ``192.168.64.1``, you could use the 192.168.64.1.nip.io domain.
    > Note that you cannot use an address of form ``127.0.0.1.nip.io`` or ``subdomain.localhost``. This will cause a

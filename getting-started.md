@@ -629,9 +629,9 @@ Verify that both Scan Link and Grype Scanner are installed by running:
 
 If they are not installed, follow the steps in [Supply Chain Security Tools - Scan](install-components.md#install-scst-scan) to install the required scanning components.
 
-During installation of the Grype Scanner, sample ScanTemplates were installed into the `default` namespace. If the workload is to be deployed into another namespace, then these sample ScanTemplates would also need to be present in the other namespace. One way to accomplish this is to install Grype Scanner again, and provide the namespace in the values file.
+During installation of the Grype Scanner, sample ScanTemplates were installed into the `default` namespace. If the workload is to be deployed into another namespace, then these sample ScanTemplates will also need to be present in the other namespace. One way to accomplish this is to install Grype Scanner again, and provide the namespace in the values file.
 
-A ScanPolicy is also required and the following can be applied into the required namespace (either add the namespace flag to the `kubectl` command or add the namespace field into the template itself):
+A ScanPolicy is required and the following can be applied into the required namespace (either add the namespace flag to the `kubectl` command or add the namespace field into the template itself):
 
 ```bash
 kubectl apply -f - -o yaml << EOF
