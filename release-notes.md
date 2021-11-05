@@ -46,6 +46,7 @@ The following components have been updated in Tanzu Application Platform v0.3
   - Cartographer v0.0.7
 - Supply Chain Security Tools for VMware Tanzu
   - Image Policy Webhook 1.0.0-beta.1
+  - Store v1.0.0-beta.1
 - [VMware Tanzu Build Service v1.3](https://docs.pivotal.io/build-service/1-3/)
 - [Cloud Native Runtimes v1.0.2](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-cnr-overview.html)
 - [Application Accelerator for VMware Tanzu v0.3.0](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/index.html)
