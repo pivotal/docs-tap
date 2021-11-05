@@ -1279,14 +1279,14 @@ To install Tanzu Learning Center, see the following sections.
    ```
 3. Create a config file (e.g. learning-center-config.yaml) with the following parameters:
      ```yaml
-     ingressDomain: your-domain
+     ingressDomain: your-ingress-domain
      ```
    #### Setting the ingress domain
 
    When deploying workshop environment instances, the operator must be able to expose the instances
    through an external URL. This access is needed to discover the domain name that can be used as a
    suffix to hostnames for instances.
-   - Make sure to replace the <INGRESS_DOMAIN> domain with the domain name for your Kubernetes cluster.
+   - Make sure to replace the `your-ingress-domain` domain with the domain name for your Kubernetes cluster.
 
    > Note: For the custom domain you are using, DNS must have been configured with a wildcard domain to forward
    > all requests for subdomains of the custom domain to the ingress router of the Kubernetes cluster.
