@@ -210,7 +210,7 @@ The following table lists the packages contained in each profile:
   <tr>
    <td>Out of the Box Supply Chain - Testing
    </td>
-   <td>&check;<sup>*</sup>
+   <td>&check;<sup>\*</sup>
    </td>
    <td>
    </td>
@@ -222,7 +222,7 @@ The following table lists the packages contained in each profile:
   <tr>
    <td>Out of the Box Supply Chain - Testing and Scanning
    </td>
-   <td>&check;<sup>*</sup>
+   <td>&check;<sup>\*</sup>
    </td>
    <td>
    </td>
@@ -381,7 +381,7 @@ The following table lists the packages contained in each profile:
   </tr>
 </table>
 
-<sup>*</sup> Only one supply chain should be installed at any given time. When installing the Full
+<sup>\*</sup> Only one supply chain should be installed at any given time. When installing the Full
 Profile, if you want to override the basic supply chain, you can specify either testing or 
 scanning as the supply chain to install. See [Override Default Supply Chain](#override-default-supply-chain).
 
