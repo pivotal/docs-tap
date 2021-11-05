@@ -21,7 +21,12 @@ Tanzu Packages:
   - Out of the Box Supply Chain with Testing and Scanning v0.3.0
   - Out of the Box Templates v0.3.0
 - Services Toolkit v
-- Service Bindings for Kubernetes v
+- Tanzu Application Platform GUI v0.3.0
+  - Workload Visibility Plugin v1.0.0
+  - Application Live View Plugin v0.3.0
+- Convention Service for VMware Tanzu
+  - Spring Boot Convention v0.1.2
+
 - Tanzu Learning Center
 
 Tanzu Application Platform GUI plugins:
@@ -32,7 +37,6 @@ Tanzu Application Platform GUI plugins:
 Tanzu CLI plugins:
 
 - Tanzu Accelerator CLI Plugin v
-- Tanzu App CLI Plugin v
 - Tanzu ImagePullSecret CLI Plugin v
 - Tanzu Package CLI Plugin v
 
@@ -52,6 +56,9 @@ The following components have been updated in Tanzu Application Platform v0.3
 This release has the following issues:
 
 - **Image Policy Webhook:** If all of the webhook nodes or Pods are evicted by the cluster or scaled down, the admission policy will block any Pods from being created in the cluster. To resolve the issue, the administrator needs to kubectl delete the Image Policy Webhook and reapply it once the cluster is stable.
+- Tanzu App CLI Plugin:
+  - *`tanzu apps workload get`*: passing in `--output json` along with and the `--export` flag will return yaml rather than json (support for honoring the `--output json` in conjunction with `--export` will be added in the next release).
+  - *`tanzu apps workload create/update/apply`*: when the `--wait` flag has been included and the "Do you want to create this workload?" prompt is declined, the command continues to wait rather exit
 
 ### Security Issues
 
