@@ -128,12 +128,12 @@ $ tanzu package installed list
 If you want to set up one of our demos, you can choose between a blank or a sample catalog.
 
 ### Yelb System
-The [Yelb](https://github.com/mreferre/yelb/tree/master/deployments/platformdeployment/Kubernetes/yaml) demo catalog includes all the components that make up the Yelb system as well as the default Backstage components. 
+The [Yelb](https://github.com/mreferre/yelb/tree/master/deployments/platformdeployment/Kubernetes/yaml) demo catalog includes all the components that make up the Yelb system as well as the default Backstage components.
 #### Install Yelb
 1. Download the appropriate file for running the Yelb application itself from [here](https://github.com/mreferre/yelb/tree/master/deployments/platformdeployment/Kubernetes/yaml)
 2. Install the application on the Kubernetes cluster that you've used for Tanzu Application Platform. It's important to preserve the metadata labels on the Yelb application's objects.
 
 
 #### Install Yelb Catalog
-1. Save the **Tanzu Application Platform GUI Yelb Catalog** from the Tanzu Network's Tanzu Application Platform downloads, and extract to your Git repository of choice.
-2. Using the steps for [Adding an Additional Catalog Location](#adding-an-additional-catalog-location), add the `catalog-info.yaml` 
+1. Save the **Tanzu Application Platform GUI Yelb Catalog** from the Tanzu Network's [Tanzu Application Platform downloads](https://network.pivotal.io/products/tanzu-application-platform) under the "Tap-GUI-Catalogs" folder.
+2. Using the steps for [Adding an Additional Catalog Location](#adding-an-additional-catalog-location), add the `catalog-info.yaml`

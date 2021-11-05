@@ -97,71 +97,55 @@ To install Cloud Native Runtimes:
       cnrs.tanzu.vmware.com  1.0.3    2021-10-20T00:00:00Z
     ```
 
-1. (Optional) To make changes to the default installation settings, run:
+1. (Optional) Make changes to the default installation settings
 
-    ```bash
-    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
-    ```
-    Where:
+    1. Gather values schema.
 
-    - `PACKAGE-NAME` is same as step 1 above.
-    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
+        ```bash
+        tanzu package available get cnrs.tanzu.vmware.com/1.0.3 --values-schema -n tap-install
+        ```
 
-    For example:
+        For example:
 
-    ```bash
-    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.3 --values-schema --namespace tap-install
-    ```
+        ```console
+        $ tanzu package available get cnrs.tanzu.vmware.com/1.0.3 --values-schema -n tap-install
+        | Retrieving package details for cnrs.tanzu.vmware.com/1.0.3...
+          KEY                         DEFAULT  TYPE             DESCRIPTION
+          ingress.external.namespace  <nil>    string   Optional: Only valid if a Contour instance already present in the cluster. Specify a namespace where an existing Contour is installed on your cluster (for external services) if you want CNR to use your Contour instance.
+          ingress.internal.namespace  <nil>    string   Optional: Only valid if a Contour instance already present in the cluster. Specify a namespace where an existing Contour is installed on your cluster (for internal services) if you want CNR to use your Contour instance.
+          ingress.reuse_crds          false    boolean  Optional: Only valid if a Contour instance already present in the cluster. Set to "true" if you want CNR to re-use the cluster's existing Contour CRDs.
+          local_dns.domain            <nil>    string   Optional: Set a custom domain for CoreDNS. Only applicable when "local_dns.enable" is set to "true", "provider" is set to "local" and running on Kind.
+          local_dns.enable            false    boolean  Optional: Only for when "provider" is set to "local" and running on Kind. Set to true to enable local DNS.
+          pdb.enable                  true     boolean  Optional: Set to true to enable Pod Disruption Budget. If provider local is set to "local", the PDB will be disabled automatically.
+          provider                    <nil>    string   Optional: Kubernetes cluster provider. To be specified if deploying CNR on a local Kubernetes cluster provider.
+        ```
 
-    For more information about values schema options, see the individual product documentation.
+    1. Create a `cnr-values.yaml` using the following sample as a guide:
+
+        Sample `cnr-values.yaml` for Cloud Native Runtimes:
 
 
-1. Gather values schema.
+        ```yaml
+        ---
+        # if deploying on a local cluster such as Kind. Otherwise, you can remove this field
+        provider: local
+        ```
 
-    ```bash
-    tanzu package available get cnrs.tanzu.vmware.com/1.0.3 --values-schema -n tap-install
-    ```
+        Note: For most installations, you can leave the `cnr-values.yaml` empty, and use the default values.
 
-    For example:
+        If you are running on a single-node cluster, like kind or minikube, set the `provider: local`
+        option. This option reduces resource requirements by using a HostPort service instead of a
+        LoadBalancer, and reduces the number of replicas.
 
-    ```console
-    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.3 --values-schema -n tap-install
-    | Retrieving package details for cnrs.tanzu.vmware.com/1.0.3...
-      KEY                         DEFAULT  TYPE             DESCRIPTION
-      ingress.external.namespace  <nil>    string   Optional: Only valid if a Contour instance already present in the cluster. Specify a namespace where an existing Contour is installed on your cluster (for external services) if you want CNR to use your Contour instance.
-      ingress.internal.namespace  <nil>    string   Optional: Only valid if a Contour instance already present in the cluster. Specify a namespace where an existing Contour is installed on your cluster (for internal services) if you want CNR to use your Contour instance.
-      ingress.reuse_crds          false    boolean  Optional: Only valid if a Contour instance already present in the cluster. Set to "true" if you want CNR to re-use the cluster's existing Contour CRDs.
-      local_dns.domain            <nil>    string   Optional: Set a custom domain for CoreDNS. Only applicable when "local_dns.enable" is set to "true", "provider" is set to "local" and running on Kind.
-      local_dns.enable            false    boolean  Optional: Only for when "provider" is set to "local" and running on Kind. Set to true to enable local DNS.
-      pdb.enable                  true     boolean  Optional: Set to true to enable Pod Disruption Budget. If provider local is set to "local", the PDB will be disabled automatically.
-      provider                    <nil>    string   Optional: Kubernetes cluster provider. To be specified if deploying CNR on a local Kubernetes cluster provider.
-    ```
+        For more information about using Cloud Native Runtimes with kind, see
+        [local kind configuration guide for Cloud Native Runtimes](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-local-dns.html#configure-your-local-kind-cluster-1).
+        If you are running on a multi-node cluster, do not set `provider`.
 
-1. Create a `cnr-values.yaml` using the following sample as a guide:
+        If your environment has Contour packages, Contour might conflict with the Cloud Native Runtimes installation.
 
-    Sample `cnr-values.yaml` for Cloud Native Runtimes:
-
-    ```yaml
-    ---
-    # if deploying on a local cluster such as Kind. Otherwise, you can use the defaults values to install CNR.
-    provider: local
-    ```
-
-    Note: For most installations, you can leave the `cnr-values.yaml` empty, and use the default values.
-
-    If you are running on a single-node cluster, like kind or minikube, set the `provider: local`
-    option. This option reduces resource requirements by using a HostPort service instead of a
-    LoadBalancer, and reduces the number of replicas.
-
-    For more information about using Cloud Native Runtimes with kin, see
-    [local kind configuration guide for Cloud Native Runtimes](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-local-dns.html#configure-your-local-kind-cluster-1).
-    If you are running on a multi-node cluster, do not set `provider`.
-
-    If your environment has Contour packages, Contour might conflict with the Cloud Native Runtimes installation.
-
-    For information on how to prevent conflicts, see [Installing Cloud Native Runtimes for Tanzu with an Existing Contour Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-contour.html) in the Cloud Native Runtimes documentation.
-    Specify values for `ingress.reuse_crds`,
-    `ingress.external.namespace`, and `ingress.internal.namespace` in the `cnr-values.yaml` file.
+        For information on how to prevent conflicts, see [Installing Cloud Native Runtimes for Tanzu with an Existing Contour Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-contour.html) in the Cloud Native Runtimes documentation.
+        Specify values for `ingress.reuse_crds`,
+        `ingress.external.namespace`, and `ingress.internal.namespace` in the `cnr-values.yaml` file.
 
 1. Install the package by running:
 
@@ -183,6 +167,8 @@ To install Cloud Native Runtimes:
 
      Added installed package 'cloud-native-runtimes' in namespace 'tap-install'
     ```
+
+    Use an empty file for `cnr-values.yaml` if you want the default installation configuration. Otherwise see the previous step to learn more about setting installation configuration values.
 
 1. Verify the package install by running:
 
