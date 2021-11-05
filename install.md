@@ -412,6 +412,13 @@ install by changing the `profile` value.
       tanzunet_username: "<TANZUNET-USERNAME>"
       tanzunet_password: "<TANZUNET-PASSWORD>"
 
+    supply_chain: basic
+
+    ootb_supply_chain_basic:
+      registry:
+        server: "<SERVER-NAME>"
+        repository: "<REPO-NAME>"
+
     learningcenter:
       ingressDomain: "<DOMAIN-NAME>"
 
@@ -422,6 +429,8 @@ install by changing the `profile` value.
 
     - `<PROFILE-VALUE>` is a value such as `full`, `dev-light`, `shared-tools`, or `operator-light`.
     - `<KP-DEFAULT-REPO>` has a value such as `us-east4-docker.pkg.dev/some-project-id/test-private-repo/apps`.
+    - `<SERVER-NAME>` has a value such as `us-east4-docker.pkg.dev`.
+    - `<REPO-NAME>` has a value such as `some-project-id/test-private-repo/apps`.
     - `<DOMAIN-NAME>` has a value such as `educates.example.com`.
 
     To view possible configuration settings for a package, run:
@@ -521,7 +530,7 @@ Or, for Out of the Box Supply Chain - Scanning:
     ```yaml
     profile: Full
 
-    supply_chain: scanning
+    supply_chain: testing_scanning
 
     ootb_supply_chain_testing_scanning:
       registry:
