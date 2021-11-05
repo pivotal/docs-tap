@@ -22,12 +22,14 @@ Tanzu Packages:
   - Out of the Box Templates v0.3.0
 - Services Toolkit v
 - Service Bindings for Kubernetes v
-- Tanzu Application Platform GUI v0.3.0
-  - Workload Visibility Plugin v1.0.0
-  - Application Live View Plugin v0.3.0
 - Tanzu Learning Center
 
-Tanzu CLI Plugins:
+Tanzu Application Platform GUI plugins:
+
+- Workload Visibility Plugin v1.0.0
+- Application Live View Plugin v0.3.0
+
+Tanzu CLI plugins:
 
 - Tanzu Accelerator CLI Plugin v
 - Tanzu App CLI Plugin v
@@ -38,6 +40,8 @@ The following components have been updated in Tanzu Application Platform v0.3
 
 - Supply Chain Choreographer for VMware Tanzu
   - Cartographer v0.0.7
+- Supply Chain Security Tools for VMware Tanzu
+  - Image Policy Webhook 1.0.0-beta.1
 - Convention Service for VMware Tanzu
   - Developer Conventions v0.3.0
 - [VMware Tanzu Build Service v1.3](https://docs.pivotal.io/build-service/1-3/)
@@ -50,8 +54,9 @@ The following components have been updated in Tanzu Application Platform v0.3
 
 This release has the following issues:
 
-- When you use the `Tanzu Developer Tools for VSCode` extension,
-delete the workload before performing any of the following actions. This will avoid workload update errors.
+
+- **Image Policy Webhook:** If all of the webhook nodes or Pods are evicted by the cluster or scaled down, the admission policy will block any Pods from being created in the cluster. To resolve the issue, the administrator needs to kubectl delete the Image Policy Webhook and reapply it once the cluster is stable.
+- When you use the `Tanzu Developer Tools for VSCode` extension, delete the workload before performing any of the following actions. This will avoid workload update errors.
     - Switching between the `Live Update` & `Debug` capabilities
     - Disabling `Live Update` & re-starting `Live Update`
 
@@ -59,6 +64,7 @@ delete the workload before performing any of the following actions. This will av
     1. Click the `Terminal` menu and select the `Run Task` option
     2. Type `tanzuWorkload delete` in the command palette that appears and hit enter
     3. View the Terminal tab to confirm that the Workload has been deleted
+
 
 ### Security Issues
 
