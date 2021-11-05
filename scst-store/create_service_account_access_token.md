@@ -2,6 +2,9 @@
 
 This topic explains how to create service accounts and access tokens for Supply Chain Security Tools - Store.
 
+Supply Chain Security Tools - Store, by default, comes with `read-write` service account installed.
+This service account is cluster-wide user.
+
 ## Creating Service
 
 You can create two types of service accounts:
