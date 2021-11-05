@@ -45,6 +45,7 @@ The following components have been updated in Tanzu Application Platform v0.3
 - Supply Chain Choreographer for VMware Tanzu
   - Cartographer v0.0.7
 - Supply Chain Security Tools for VMware Tanzu
+  - Image Policy Webhook v1.0.0-beta.1
   - Image Policy Webhook 1.0.0-beta.1
 - Convention Service for VMware Tanzu
   - Developer Conventions v0.3.0
