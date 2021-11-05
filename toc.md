@@ -28,7 +28,6 @@ This is the table of contents from which the Tanzu Application Platform Document
         - [Usage](cli-plugins/apps/usage.md)
         - [Known Issues](cli-plugins/apps/known-issues.md)
     - [Convention Service](convention-service/about.md)
-         - [Creating Conventions](convention-service/creating-conventions.md)
     - [Default Supply Chain](default-supply-chain/about.md)
     - [Developer Conventions](developer-conventions/about.md)
     - [Supply Chain Choreographer for Tanzu](scc/about.md)
