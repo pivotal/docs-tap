@@ -19,7 +19,7 @@ For information, see [Installing Part I: Prerequisites, EULA, and CLI](install-g
 + [Install Spring Boot Conventions](#install-spring-boot-convention)
 + [Install Application Live View](#install-app-live-view)
 + [Install Tanzu Application Platform GUI](#install-tap-gui)
-+ [Install Learning Center](#install-learning-center)
++ [Install Learning Center for Tanzu Application Platform](#install-learning-center)
 + [Install Service Bindings](#install-service-bindings)
 + [Install Tanzu Build Service](#install-tbs)
 + [Install Supply Chain Choreographer](#install-scc)
@@ -1249,13 +1249,17 @@ with your relevant values. The meanings of some placeholders are explained in th
 field in the values file.
 
 
-## <a id='install-learning-center'></a> Install Learning Center
+## <a id='install-learning-center'></a> Install Learning Center for Tanzu Application Platform
 
 To install Tanzu Learning Center, see the following sections.
 
-### Prerequisites in Addition to Tanzu Application Platform [Requirements](install-general.md#prereqs)
+### Prerequisites for Learning Center 
 **Required**
-- Make sure you have a proper Ingress Controller configured with a wild card domain name.
+- [Tanzu Application Platform Prerequisites](install-general.md#prereqs)
+- The cluster must have an ingress router configured. Only a basic deployment of the ingress controller is usually required. 
+- The operator when deploying instances of the workshop environments needs to be able to expose them via an external URL for access. For the custom domain you are using, DNS must have been configured with a wildcard domain to forward all requests for sub domains of the custom domain, to the ingress router of the Kubernetes cluster 
+- By default the workshop portal and workshop sessions will be accessible over HTTP connections. If you wish to use secure HTTPS connections, you must have access to a wildcard SSL certificate for the domain under which you wish to host the workshops. You cannot use a self signed certificate. 
+- Any ingress routes created will use the default ingress class. If you have multiple ingress class types available, and you need to override which is used.
 
 ### Procedure to install Learning Center
 1. List version information for the package by running:
@@ -1267,7 +1271,7 @@ To install Tanzu Learning Center, see the following sections.
    Example output:
    ```shell
      NAME                             VERSION        RELEASED-AT
-     learningcenter.tanzu.vmware.com  1.0.8-build.1  2021-10-22 17:02:13 -0400 EDT
+     learningcenter.tanzu.vmware.com  1.0.14-build.1  2021-10-22 17:02:13 -0400 EDT
    ```
 2. (Optional) If you want to see all the configurable parameters on this package you can run the following command:
    ```shell
@@ -1275,14 +1279,14 @@ To install Tanzu Learning Center, see the following sections.
    ```
 3. Create a config file (e.g. learning-center-config.yaml) with the following parameters:
      ```yaml
-     ingressDomain: <INGRESS_DOMAIN>
+     ingressDomain: your-ingress-domain
      ```
    #### Setting the ingress domain
 
    When deploying workshop environment instances, the operator must be able to expose the instances
    through an external URL. This access is needed to discover the domain name that can be used as a
    suffix to hostnames for instances.
-   * Make sure to replace the <INGRESS_DOMAIN> domain with the domain name for your Kubernetes cluster.
+   - Make sure to replace the `your-ingress-domain` domain with the domain name for your Kubernetes cluster.
 
    > Note: For the custom domain you are using, DNS must have been configured with a wildcard domain to forward
    > all requests for subdomains of the custom domain to the ingress router of the Kubernetes cluster.
@@ -1294,9 +1298,28 @@ To install Tanzu Learning Center, see the following sections.
    > failure. Internal services needing to connect to each other will connect to themselves instead,
    > since the address would resolve to the host loopback address of ``127.0.0.1``.
 
+   #### Enforcing secure connections
+   By default the workshop portal and workshop sessions will be accessible over HTTP connections. If you wish to use secure HTTPS connections, you must have access to a wildcard SSL certificate for the domain under which you wish to host the workshops. You cannot use a self signed certificate.
+   Wildcard certificates can be created using letsencrypt <https://letsencrypt.org/>_. Once you have the certificate, you can define the certificate and privateKey properties under the ingressSecret property to specify the certificate on the configuration yaml.
+   ```
+   ingressSecret:
+     certificate: MIIC2DCCAcCgAwIBAgIBATANBgkqh ...
+     privateKey: MIIEpgIBAAKCAQEA7yn3bRHQ5FHMQ ...
+   ```
+   If you already has a TLS secret, you can copy it to the educates namespace or that one you defined, and use the secretName property.
+   ```
+   ingressSecret:
+     secretName: workshops.example.com-tls
+   ```
+   #### Specifying the ingress class
+   Any ingress routes created will use the default ingress class. If you have multiple ingress class types available, and you need to override which is used, so define the ingressClass property on the configuration yaml:
+   ```
+   ingressClass: contour
+   ```
+
 4. Install Learning Center Operator:
    ```shell
-   $ tanzu package install learning-center --package-name learningcenter.tanzu.vmware.com --version 1.0.8-build.1 -f learning-center-config.yaml
+   $ tanzu package install learning-center --package-name learningcenter.tanzu.vmware.com --version 1.0.14-build.1 -f learning-center-config.yaml
    ```
 
    The command above will create a default namespace in your Kubernetes cluster called ``educates``, and the operator along with any
@@ -1328,7 +1351,7 @@ To install Tanzu Learning Center, see the following sections.
    ```
 2. Installing the Learning Center Training Portal with the Self Guided Tour workshop
    ```shell
-   $ tanzu package install learning-center-workshop --package-name workshops.learningcenter.tanzu.vmware.com --version 1.0.4-build.1 -n tap-install
+   $ tanzu package install learning-center-workshop --package-name workshops.learningcenter.tanzu.vmware.com --version 1.0.7-build.1 -n tap-install
    ```
 3. You can check the Training Portals available in your environment running the following command
    ```shell
