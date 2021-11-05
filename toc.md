@@ -31,7 +31,6 @@ This is the table of contents from which the Tanzu Application Platform Document
         - [Usage and Examples](cli-plugins/apps/usage.md)
         - [Known Issues](cli-plugins/apps/known-issues.md)
     - [Convention Service](convention-service/about.md)
-         - [Creating Conventions](convention-service/creating-conventions.md)
     - [Developer Conventions](developer-conventions/about.md)
     - [Learning Center for Tanzu Application Platform](learning-center/about.md)
         - [About Learning Center](learning-center/about-learning-center/about.md)
