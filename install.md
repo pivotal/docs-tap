@@ -198,7 +198,7 @@ The following table lists the packages contained in each profile:
   <tr>
    <td>Out of the Box Supply Chain - Basic
    </td>
-   <td>
+   <td>&check;
    </td>
    <td>
    </td>
