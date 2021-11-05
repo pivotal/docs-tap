@@ -38,17 +38,27 @@ The following components have been updated in Tanzu Application Platform v0.3
 
 - Supply Chain Choreographer for VMware Tanzu
   - Cartographer v0.0.7
-
+- Convention Service for VMware Tanzu
+  - Developer Conventions v0.3.0
 - [VMware Tanzu Build Service v1.3](https://docs.pivotal.io/build-service/1-3/)
 - [Cloud Native Runtimes v1.0.2](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-cnr-overview.html)
 - [Application Accelerator for VMware Tanzu v0.3.0](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/index.html)
 - [Application Live View for VMware Tanzu v0.2.0](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.2/docs/GUID-index.html)
+- [Tanzu Developer Tools for Visual Studio Code v0.3.0](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.3/tap-0-3/GUID-vscode-extension-about.html)
 
 ### Known Issues
 
 This release has the following issues:
 
-- <!-- Insert issue here -->
+- When you use the `Tanzu Developer Tools for VSCode` extension,
+delete the workload before performing any of the following actions. This will avoid workload update errors.
+    - Switching between the `Live Update` & `Debug` capabilities
+    - Disabling `Live Update` & re-starting `Live Update`
+
+    You can do so by performing the following steps:
+    1. Click the `Terminal` menu and select the `Run Task` option
+    2. Type `tanzuWorkload delete` in the command palette that appears and hit enter
+    3. View the Terminal tab to confirm that the Workload has been deleted
 
 ### Security Issues
 
@@ -85,6 +95,7 @@ Tanzu Packages:
 - API Portal for VMware Tanzu v1.0.2
 - Service Control Plane Toolkit v0.3.0
 - Service Bindings for Kubernetes v0.5.0
+- Tanzu Developer Tools for Visual Studio Code v0.2.0
 
 Tanzu CLI Plugins:
 
