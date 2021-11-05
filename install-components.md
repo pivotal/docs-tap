@@ -1270,7 +1270,10 @@ To install Tanzu Learning Center, see the following sections.
 ### Prerequisites for Learning Center 
 **Required**
 - [Tanzu Application Platform Prerequisites](install-general.md#prereqs)
-- Make sure you have an approved Ingress Controller configured with a wild card domain name.
+- The cluster must have an ingress router configured. Only a basic deployment of the ingress controller is usually required. 
+- The operator when deploying instances of the workshop environments needs to be able to expose them via an external URL for access. For the custom domain you are using, DNS must have been configured with a wildcard domain to forward all requests for sub domains of the custom domain, to the ingress router of the Kubernetes cluster 
+- By default the workshop portal and workshop sessions will be accessible over HTTP connections. If you wish to use secure HTTPS connections, you must have access to a wildcard SSL certificate for the domain under which you wish to host the workshops. You cannot use a self signed certificate. 
+- Any ingress routes created will use the default ingress class. If you have multiple ingress class types available, and you need to override which is used.
 
 ### Procedure to install Learning Center
 1. List version information for the package by running:
@@ -1282,7 +1285,7 @@ To install Tanzu Learning Center, see the following sections.
    Example output:
    ```shell
      NAME                             VERSION        RELEASED-AT
-     learningcenter.tanzu.vmware.com  1.0.8-build.1  2021-10-22 17:02:13 -0400 EDT
+     learningcenter.tanzu.vmware.com  1.0.14-build.1  2021-10-22 17:02:13 -0400 EDT
    ```
 2. (Optional) If you want to see all the configurable parameters on this package you can run the following command:
    ```shell
@@ -1290,7 +1293,7 @@ To install Tanzu Learning Center, see the following sections.
    ```
 3. Create a config file (e.g. learning-center-config.yaml) with the following parameters:
      ```yaml
-     ingressDomain: <INGRESS_DOMAIN>
+     ingressDomain: your-domain
      ```
    #### Setting the ingress domain
 
@@ -1309,9 +1312,28 @@ To install Tanzu Learning Center, see the following sections.
    > failure. Internal services needing to connect to each other will connect to themselves instead,
    > since the address would resolve to the host loopback address of ``127.0.0.1``.
 
+   #### Enforcing secure connections
+   By default the workshop portal and workshop sessions will be accessible over HTTP connections. If you wish to use secure HTTPS connections, you must have access to a wildcard SSL certificate for the domain under which you wish to host the workshops. You cannot use a self signed certificate.
+   Wildcard certificates can be created using letsencrypt <https://letsencrypt.org/>_. Once you have the certificate, you can define the certificate and privateKey properties under the ingressSecret property to specify the certificate on the configuration yaml.
+   ```
+   ingressSecret:
+     certificate: MIIC2DCCAcCgAwIBAgIBATANBgkqh ...
+     privateKey: MIIEpgIBAAKCAQEA7yn3bRHQ5FHMQ ...
+   ```
+   If you already has a TLS secret, you can copy it to the educates namespace or that one you defined, and use the secretName property.
+   ```
+   ingressSecret:
+     secretName: workshops.example.com-tls
+   ```
+   #### Specifying the ingress class
+   Any ingress routes created will use the default ingress class. If you have multiple ingress class types available, and you need to override which is used, so define the ingressClass property on the configuration yaml:
+   ```
+   ingressClass: contour
+   ```
+
 4. Install Learning Center Operator:
    ```shell
-   $ tanzu package install learning-center --package-name learningcenter.tanzu.vmware.com --version 1.0.8-build.1 -f learning-center-config.yaml
+   $ tanzu package install learning-center --package-name learningcenter.tanzu.vmware.com --version 1.0.14-build.1 -f learning-center-config.yaml
    ```
 
    The command above will create a default namespace in your Kubernetes cluster called ``educates``, and the operator along with any
