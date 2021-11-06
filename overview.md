@@ -24,7 +24,7 @@ Tanzu Application Platform provides a default set of components that automates p
 
 Kubernetes deployment complexity is reduced for operators with better automation and standardization of the outer loop, giving developers more time to focus on code.
 
-## Packages in Tanzu Application Platform v0.3
+##<a id='profiles-and-packages'></a>  Installation Profiles and Profiles in Tanzu Application Platform v0.3
 
 Tanzu Application Platform is available through pre-defined profiles or individual packages.
 

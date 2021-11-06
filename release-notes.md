@@ -9,7 +9,20 @@ This topic contains release notes for Tanzu Application Platform beta.
 
 **Release Date**: November 8, 2021
 
-### New Features
+### Features
+
+New features and changes in this release:
+
+**Installation Profiles**
+
+You can now install Tanzu Application Platform through profiles.
+The Full profile installs all the component packages.
+The Developer Light installs the packages that a developer needs.
+
+For more informatioa,n see [Installation Profiles and Profiles in Tanzu Application Platform v0.3](overview.md#profiles-and-packages) and
+[About Tanzu Application Platform Package Profiles](install.md#about-package-profiles).
+
+**New Components**
 
 The following components are new in Tanzu Application Platform v0.3.0:
 
@@ -40,22 +53,23 @@ Tanzu CLI plugins:
 - Tanzu ImagePullSecret CLI Plugin v
 - Tanzu Package CLI Plugin v
 
-The following components have been updated in Tanzu Application Platform v0.3.0
+**Updated Components**
 
-- Supply Chain Choreographer for VMware Tanzu
+The following components have been updated in Tanzu Application Platform v0.3.0:
+
+- [Supply Chain Choreographer for VMware Tanz](scc/about.md)u
   - Cartographer v0.0.7
 - Supply Chain Security Tools for VMware Tanzu
-  - Scan v1.0.0-beta.2
+  - [Scan v1.0.0-beta.2]((scst-scan/overview.md))
   - Image Policy Webhook v1.0.0-beta.1
-  - Store v1.0.0-beta.1
-- Convention Service for VMware Tanzu
-  - Developer Conventions v0.3.0
+  - [Store v1.0.0-beta.1]((scst-store/overview.md)
+- [Convention Service for VMware Tanzu]((convention-service/about.md))
+  - [Developer Conventions](developer-conventions/about.md) v0.3.0
 
 
-- [VMware Tanzu Build Service v1.3](https://docs.pivotal.io/build-service/1-3/)
-- [Cloud Native Runtimes v1.0.2](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-cnr-overview.html)
+- [Cloud Native Runtimes v1.0.3](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-cnr-overview.html)
 - [Application Accelerator for VMware Tanzu v0.4.0](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.4/acc-docs/GUID-index.html)
-- [Application Live View for VMware Tanzu v0.2.0](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.2/docs/GUID-index.html)
+- [Application Live View for VMware Tanzu v0.3.0](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.3/docs/GUID-index.html)
 - [Tanzu Developer Tools for Visual Studio Code v0.3.0](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.3/tap-0-3/GUID-vscode-extension-about.html)
 
 ### Known Issues
@@ -124,7 +138,7 @@ Tanzu CLI Plugins:
 
 The following components have been updated in Tanzu Application Platform v0.2.0
 
-- [VMware Tanzu Build Service v1.3](https://docs.pivotal.io/build-service/1-3/)
+- [VMware Tanzu Build Service v1.3](https://docs.vmware.com/en/Tanzu-Build-Service/1.3/vmware-tanzu-build-service-v13/GUID-docs-build-service-index.html)
 - [Cloud Native Runtimes v1.0.2](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-cnr-overview.html)
 - [Application Accelerator for VMware Tanzu v0.3.0](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/index.html)
 - [Application Live View for VMware Tanzu v0.2.0](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.2/docs/GUID-index.html)

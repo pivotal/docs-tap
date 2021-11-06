@@ -99,7 +99,7 @@ To add the Tanzu Application Platform package repository:
     tap-gui.tanzu.vmware.com                             Tanzu Application Platform GUI                                            web app graphical user interface for Tanzu Application Platform
     tap.tanzu.vmware.com                                 Tanzu Application Platform                                                Package to install a set of Tanzu Application Platform components to get you started based on your use case.
     ```
-## <a id='add-package-repositories'></a> About Tanzu Application Platform Package Profiles
+## <a id='about-package-profiles'></a> About Tanzu Application Platform Package Profiles
 Tanzu Application Platform can be installed through pre-defined profiles or through individual packages. This section explains how to install a profile.
 
 Tanzu Application Platform contains the following two profiles:
