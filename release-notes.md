@@ -17,7 +17,7 @@ You can now install Tanzu Application Platform through profiles.
 The Full profile installs all the component packages.
 The Developer Light installs the packages that a developer needs.
 
-For more informatioa,n see [Installation Profiles and Profiles in Tanzu Application Platform v0.3](overview.md#profiles-and-packages) and
+For more information, see [Installation Profiles and Profiles in Tanzu Application Platform v0.3](overview.md#profiles-and-packages) and
 [About Tanzu Application Platform Package Profiles](install.md#about-package-profiles).
 
 **New Components**
@@ -86,7 +86,7 @@ This release has the following issues:
     3. View the Terminal tab to confirm that the Workload has been deleted
 
 - Tanzu App CLI Plugin:
-  - *`tanzu apps workload get`*: passing in `--output json` along with and the `--export` flag will return yaml rather than json (support for honoring the `--output json` in conjunction with `--export` will be added in the next release).
+  - *`tanzu apps workload get`*: passing in `--output json` along with and the `--export` flag will return YAML rather than JSON (support for honoring the `--output json` in conjunction with `--export` will be added in the next release).
   - *`tanzu apps workload create/update/apply`*: when the `--wait` flag has been included and the "Do you want to create this workload?" prompt is declined, the command continues to wait rather exit
 
 
