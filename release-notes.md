@@ -2,10 +2,8 @@
 
 This topic contains release notes for Tanzu Application Platform beta.
 
-**Releases**
 
-
-## <a id='0-3-0'></a> v0.3.0 Beta
+## <a id='0-3-0'></a> v0.3.0 Beta Release
 
 **Release Date**: November 8, 2021
 
@@ -33,7 +31,7 @@ Tanzu Packages:
   - Out of the Box Supply Chain with Testing v0.3.0
   - Out of the Box Supply Chain with Testing and Scanning v0.3.0
   - Out of the Box Templates v0.3.0
-- Services Toolkit v
+- Services Toolkit 
 - Tanzu Application Platform GUI v0.3.0
   - Workload Visibility Plugin v1.0.0
   - Application Live View Plugin v0.3.0
@@ -49,21 +47,21 @@ Tanzu Application Platform GUI plugins:
 
 Tanzu CLI plugins:
 
-- Tanzu Accelerator CLI Plugin v
-- Tanzu ImagePullSecret CLI Plugin v
-- Tanzu Package CLI Plugin v
+- Tanzu Accelerator CLI Plugin
+- Tanzu ImagePullSecret CLI Plugin
+- Tanzu Package CLI Plugin
 
 **Updated Components**
 
 The following components have been updated in Tanzu Application Platform v0.3.0:
 
-- [Supply Chain Choreographer for VMware Tanz](scc/about.md)u
+- [Supply Chain Choreographer for VMware Tanz](scc/about.md)
   - Cartographer v0.0.7
 - Supply Chain Security Tools for VMware Tanzu
-  - [Scan v1.0.0-beta.2]((scst-scan/overview.md))
+  - [Scan v1.0.0-beta.2](scst-scan/overview.md)
   - Image Policy Webhook v1.0.0-beta.1
-  - [Store v1.0.0-beta.1]((scst-store/overview.md)
-- [Convention Service for VMware Tanzu]((convention-service/about.md))
+  - [Store v1.0.0-beta.1](scst-store/overview.md)
+- [Convention Service for VMware Tanzu](convention-service/about.md)
   - [Developer Conventions](developer-conventions/about.md) v0.3.0
 
 
@@ -102,7 +100,7 @@ visible to users of those namespaces.
 VMware recommends that the registry credentials you export give read-only access to the registry and
 have minimal scope within the registry.
 
-## <a id='0-2-0'></a> v0.2.0 Beta
+## <a id='0-2-0'></a> v0.2.0 Beta Release
 
 **Release Date**: October 07, 2021
 
@@ -161,7 +159,7 @@ delete the workload before performing any of the following actions. This will av
     2. Type `tanzuWorkload delete` in the command palette that appears and hit enter
     3. View the Terminal tab to confirm that the Workload has been deleted
 
-## <a id='0-1-0'></a> v0.1.0 Beta
+## <a id='0-1-0'></a> v0.1.0 Beta Release
 
 **Release Date**: September 1, 2021
 
