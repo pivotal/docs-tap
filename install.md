@@ -463,7 +463,10 @@ To install Tanzu Application Platform GUI:
 
 1. Extract the Blank Software Catalog from the Tanzu Application Network on your Git repository of choice. You'll link to that `catalog-info.yaml` file when you configure your catalog below.
 
-1. Obtain you the `External IP` of your LoadBalancer via `kubectl get svc -n tap-gui`.
+1. Obtain you the `External IP` of your LoadBalancer via:
+   ```
+   kubectl get svc -n tap-gui
+   ```
 
 2. Add the following section to your `tap-values.yml` by using the following template. Replace all `<PLACEHOLDERS>`
 with your relevant values. Run:
