@@ -446,48 +446,33 @@ Tekton pipeline.
 
 ### Install Out of the Box with Testing
 
-The first step is to install Tekton, which was only installed if you added `install_tekton: true` to your `tap-values.yaml`. If you did not, this next section walks you through installing Tekton on your cluster.
+The first step is to install Tekton, installed by default when using profiles,
+but in case you chose to not use that installed method, see [Install
+Tekton](install-components.md#install-tekton).
 
+With Tekton installed, we can now activate the Out of the Box Supply Chain with
+Testing by updating our profile to use `testing` rather than `basic` as the
+selected supply chain for workloads in this cluster. Update `tap-values.yml`
+(the file used to customize the profile in `tanzu package install tap
+--values-file=...`) with the following changes:
 
-#### Install Tekton
+```diff
+- supply_chain: basic
++ supply_chain: testing
 
-The supply chain uses Tekton to run tests defined by developers
-before you produce a container image for the source code,
-preventing code that fails tests from being promoted to deployment.
-
-This version uses the open source version of Tekton. To install Tekton with `kapp`, run:
-
-```bash
-kapp deploy --yes -a tekton \
-  -f https://storage.googleapis.com/tekton-releases/pipeline/previous/v0.28.0/release.yaml
+- ootb_supply_chain_basic:
++ ootb_supply_chain_testing:
+    registry:
+      server: "<SERVER-NAME>"
+      repository: "<REPO-NAME>"
 ```
 
-We are using Tekton to run a unit test on the sample that we have been using in this document.
-For more details on Tekton, see the [Tekton documentation](https://tekton.dev/docs/)
-and the [github repository](https://github.com/tektoncd/pipeline).
-You can also view the Tekton
-[tutorial](https://github.com/tektoncd/pipeline/blob/main/docs/tutorial.md)
-and [getting started guide](https://tekton.dev/docs/getting-started/).
-
-Now that Tekton is installed, you can install the **Out of the Box with
-Testing** supply chain on your cluster. In this iteration of TAP, only one
-Supply Chain can be installed at a time, so before proceeding, make sure the
-Basic Supply Chain is not installed in the cluster:
+Then update the installed profile:
 
 ```bash
-tanzu package installed delete ootb-supply-chain-basic
+tanzu package installed update tap -p tap.tanzu.vmware.com -v 0.3.0-build.6 --values-file tap-values.yml -n tap-install
 ```
 
-Then, install the Out of the Box With Testing:
-
-
-```bash
-tanzu package install ootb-supply-chain-testing \
-  --package-name ootb-supply-chain-testing.tanzu.vmware.com \
-  --version 0.3.0-build.5  \
-  --namespace tap-install \
-  --values-file ootb-supply-chain-basic-values.yaml
-```
 
 ### Example Tekton Pipeline Config
 
@@ -670,24 +655,28 @@ EOF
 
 2. (Optional, but recommended) To persist and query the vulnerability results post-scan, [install Supply Chain Security Tools - Store](install-components.md#install-scst-store). Refer to the *Prerequisite* in [Supply Chain Security Tools - Scan](install-components.md#install-scst-scan) for more details.
 
-3. Install the Out of the Box Testing and Scanning supply chain by running:
-In the same way as in the Testing step, we have to first uninstall any
-previously installed Supply Chain:
+3. Update the profile to use the supply chain with testing and scanning by
+   updating `tap-values.yml` (the file used to customize the profile in `tanzu
+   package install tap --values-file=...`) with the following changes:
 
-    ```bash
-    tanzu package installed delete ootb-supply-chain-basic
-    tanzu package installed delete ootb-supply-chain-testing
+
+    ```diff
+    - supply_chain: testing
+    + supply_chain: testing_scanning
+
+    - ootb_supply_chain_testing:
+    + ootb_supply_chain_testing_scanning:
+        registry:
+          server: "<SERVER-NAME>"
+          repository: "<REPO-NAME>"
     ```
 
-And then, move on with installing Out of the Box Testing and Scanning:
+4. Update the `tap` package:
 
-    ```bash
-    tanzu package install ootb-supply-chain-testing-scanning \
-      --package-name ootb-supply-chain-testing-scanning.tanzu.vmware.com \
-      --version 0.3.0-build.5  \
-      --namespace tap-install \
-      --values-file ootb-supply-chain-basic-values.yaml
-    ```
+```bash
+tanzu package installed update tap -p tap.tanzu.vmware.com -v 0.3.0-build.6 --values-file tap-values.yml -n tap-install
+```
+
 
 ### Workload update
 
