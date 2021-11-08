@@ -1,9 +1,10 @@
 # Component Documentation
 
-Documentation for some of the components of Tanzu Application Platform is available as follows.
+Documentation for some of the components of Tanzu Application Platform is
+available as follows.
 
-Some of the documentation is hosted on separate sites and some is incorporated into this 
-Tanzu Application Platform documentation site.
+Some of the documentation is hosted on separate sites and some is incorporated
+into this Tanzu Application Platform documentation site.
 
 + [API portal for VMware Tanzu](https://docs.pivotal.io/api-portal)
 
