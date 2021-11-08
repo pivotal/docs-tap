@@ -809,7 +809,7 @@ Install the default Supply Chain, called Out of the Box Supply Chain Basic, by r
       --package-name ootb-supply-chain-basic.tanzu.vmware.com \
       --version 0.3.0-build.5 \
       --namespace tap-install \
-      --values-file ootb-supply-chain-basic-values.yaml
+      --values-file ootb-supply-chain-values.yaml
     ```
 
 > **Note:** The `default` service account and required secrets are created in
