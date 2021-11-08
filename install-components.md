@@ -810,7 +810,7 @@ Install the default Supply Chain, called Out of the Box Supply Chain Basic, by r
       --package-name ootb-supply-chain-basic.tanzu.vmware.com \
       --version 0.3.0-build.5 \
       --namespace tap-install \
-      --values-file ootb-supply-chain-basic-values.yaml
+      --values-file ootb-supply-chain-values.yaml
     ```
 
 > **Note:** The `default` service account and required secrets are created in
@@ -1256,10 +1256,15 @@ To install Tanzu Learning Center, see the following sections.
 
 ### Prerequisites for Learning Center 
 **Required**
+
 - [Tanzu Application Platform Prerequisites](install-general.md#prereqs)
-- The cluster must have an ingress router configured. Only a basic deployment of the ingress controller is usually required. 
+
+- The cluster must have an ingress router configured. Only a basic deployment of the ingress controller is usually required.
+
 - The operator when deploying instances of the workshop environments needs to be able to expose them via an external URL for access. For the custom domain you are using, DNS must have been configured with a wildcard domain to forward all requests for sub domains of the custom domain, to the ingress router of the Kubernetes cluster 
+
 - By default the workshop portal and workshop sessions will be accessible over HTTP connections. If you wish to use secure HTTPS connections, you must have access to a wildcard SSL certificate for the domain under which you wish to host the workshops. You cannot use a self signed certificate. 
+
 - Any ingress routes created will use the default ingress class. If you have multiple ingress class types available, and you need to override which is used.
 
 ### Procedure to install Learning Center

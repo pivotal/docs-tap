@@ -360,9 +360,25 @@ install by changing the `profile` value.
     Where:
 
     - `<PROFILE-VALUE>` is a value such as `full` or `dev-light`.
-    - `<KP-DEFAULT-REPO>` has a value such as `us-east4-docker.pkg.dev/some-project-id/test-private-repo/apps`.
-    - `<SERVER-NAME>` has a value such as `us-east4-docker.pkg.dev`.
-    - `<REPO-NAME>` has a value such as `some-project-id/test-private-repo/apps`.
+    - `<KP-DEFAULT-REPO>` is a writable repository in your registry. Tanzu Build Service dependencies are written to this location.
+      * Examples:
+        * Harbor `kp_default_repository: "my-harbor.io/my-project/build-service"`
+        * Dockerhub `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`
+        * GCR `kp_default_repository: "gcr.io/my-project/build-service"`
+    - `<KP-DEFAULT-REPO-USERNAME>` is the username that can write to the `<KP-DEFAULT-REPO>`. You should be able to `docker push` to this location with this credential.
+      * For GCR, use `kp_default_repository_username: _json_key`
+    - `<KP-DEFAULT-REPO-PASSWORD>` is the password for the user that can write to the `<KP-DEFAULT-REPO>`. You should be able to `docker push` to this location with this credential.
+      * For GCR, use the contents of the service account json key: `kp_default_repository_password: "$(cat service-account.json)"`
+    - `<SERVER-NAME>` is the hostname of the registry server.
+      * Examples:
+         * Harbor `server: "my-harbor.io"` 
+         * Dockerhub `server: "https://index.docker.io/v1/"`
+         * GCR `server: "gcr.io"`
+    - `<REPO-NAME>` is where workload images will be stored in the registry. Images will be written to `<SERVER-NAME>/<REPO-NAME>/<workload-name>`.
+       * Examples:
+          * Harbor `repository: "my-project/supply-chain"`
+          * Dockerhub `repository: "my-dockerhub-user"`
+          * GCR `repository: "my-project/supply-chain"`
     - `<DOMAIN-NAME>` has a value such as `educates.example.com`.
 
     To view possible configuration settings for a package, run:
@@ -440,7 +456,10 @@ To install Tanzu Application Platform GUI:
 
 1. Extract the Blank Software Catalog from the Tanzu Application Network on your Git repository of choice. You'll link to that `catalog-info.yaml` file when you configure your catalog below.
 
-1. Obtain you the `External IP` of your LoadBalancer via `kubectl get svc -n tap-gui`.
+1. Obtain you the `External IP` of your LoadBalancer via:
+   ```
+   kubectl get svc -n tap-gui
+   ```
 
 2. Add the following section to your `tap-values.yml` by using the following template. Replace all `<PLACEHOLDERS>`
 with your relevant values. Run:
@@ -487,7 +506,7 @@ with your relevant values. Run:
 
     ```console
 
-    $ tanzu package installed update  tap -p tap.tanzu.vmware.com -v 0.3.0 --values-file tap-values-file.yml -n tap-install
+    $ tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version 0.3.0 --values-file tap-values-file.yml -n tap-install
     | Updating package 'tap'
     | Getting package install for 'tap'
     | Getting package metadata for 'tap.tanzu.vmware.com'
@@ -499,9 +518,12 @@ with your relevant values. Run:
     Updated package install 'tap' in namespace 'tap-install'
     ```
 
-1. To access Tanzu Application Platform GUI, use the `EXTERNAL-IP` you exposed in the
-`service_type` above.
-If you have any issues, try re-creating the Tanzu Application Platform Pod by running:
+1. To access Tanzu Application Platform GUI, use the `baseURL` location you specified above. This consists of the `EXTERNAL-IP` alpng with the default port of 7000
+```
+http://EXTERNAL-IP:7000
+```
+
+1. If you have any issues, try re-creating the Tanzu Application Platform Pod by running:
 
     ```console
     kubectl delete pod -l app=backstage -n tap-gui

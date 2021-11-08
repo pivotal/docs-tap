@@ -267,7 +267,7 @@ To install the Tanzu CLI on a Linux operating system:
 
 3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/) on Tanzu Network.
 
-4. Click the `tanzu-cli-0.9.0` folder.
+4. Click the `tanzu-cli-0.10.0` folder.
 
 5. Download `tanzu-framework-bundle-linux` and unpack the TAR file into the `tanzu` directory:
     ```
@@ -302,7 +302,7 @@ To install the Tanzu CLI on a Mac operating system:
 
 3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/) on Tanzu Network.
 
-4. Click the `tanzu-cli-0.9.0` folder.
+4. Click the `tanzu-cli-0.10.0` folder.
 
 5. Download `tanzu-framework-bundle-mac` and unpack the TAR file into the `tanzu` directory:
     ```
@@ -357,7 +357,7 @@ To install the Tanzu CLI on a Windows operating system:
 
   3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/) on Tanzu Network.
 
-  4. Click the `tanzu-cli-0.9.0` folder.
+  4. Click the `tanzu-cli-0.10.0` folder.
 
   5. Download `tanzu-framework-bundle-windows` and unpack the TAR files into the `tanzu-bundle` directory.
 
@@ -445,7 +445,7 @@ If you'd like to the update the Tanzu CLI core and plugins you installed previou
   3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/)
 on Tanzu Network.
 
-  4. Click the **tanzu-cli-0.9.0** directory.
+  4. Click the **tanzu-cli-0.10.0** directory.
 
   5. Download the CLI bundle corresponding with your operating system. For example, if your client
 operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle.
@@ -519,7 +519,7 @@ for interacting with Tanzu Kubernetes Grid or Tanzu Community Edition, you only 
   3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/)
 on Tanzu Network.
 
-  4. Click the **tanzu-cli-0.9.0** directory.
+  4. Click the **tanzu-cli-0.10.0** directory.
 
   5. Download the CLI bundle corresponding to your operating system. For example, if your client
 operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle.
@@ -576,8 +576,8 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
     NAME                LATEST VERSION  DESCRIPTION                                                        REPOSITORY  VERSION  STATUS
     accelerator                         Manage accelerators in a Kubernetes cluster                                    v0.4.1   installed
     apps                                Applications on Kubernetes                                                     v0.2.0   installed
-    package             v0.10.0          Tanzu package management                                           core        v0.9.0   upgrade available
-    secret              v0.10.0          Tanzu secret management                                            core        v0.9.0   upgrade available
+    package                             Tanzu package management                                           core        v0.10.0  installed
+    secret                              Tanzu secret management                                            core        v0.10.0  installed
     ```
 
   14. You may now proceed with installing Tanzu Application Platform on Tanzu Kubernetes Grid or Tanzu Community Edition. For more information, see:

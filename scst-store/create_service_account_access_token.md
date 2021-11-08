@@ -1,13 +1,15 @@
 # Creating Service Accounts and Access Tokens
 
-This topic explains how to create service accounts and access tokens for Supply Chain Security Tools - Store.
+Service accounts are required to generate the access tokens.  
+
+The access token is a "Bearer" token used in the http request header "Authorization". (ex. `Authorization: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjhMV0...`)
 
 ## Creating Service
 
 You can create two types of service accounts:
 
-1. Read-only service account
-1. Read-write service account
+1. Read-only service account - only able to use `GET` API requests
+1. Read-write service account - full access to the API requests
 
 ### Read-Only Service Account
 
