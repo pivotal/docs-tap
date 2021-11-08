@@ -192,14 +192,14 @@ Note that some home internet gateways implement what is called rebind protection
 ## Install Learning Center package on to Cluster
 
 ```
-tanzu package install educates --package-name learningcenter.tanzu.vmware.com --version 1.0.11 -f ./educates-value.yaml --namespace tap-install
+tanzu package install educates --package-name learningcenter.tanzu.vmware.com --version 1.0.14-build.1 -f ./educates-value.yaml --namespace tap-install
 ```
 This package installation uses the installed Package repository along with a configuration educates-value.yaml to install our Learning Center Package.
 
 ## Install Workshop tutorial package on to Cluster
 
 ```
-tanzu package install educates-tutorials --package-name workshops.learningcenter.tanzu.vmware.com --version 1.0.6 --namespace tap-install
+tanzu package install educates-tutorials --package-name workshops.learningcenter.tanzu.vmware.com --version 1.0.7-build.1 --namespace tap-install
 ```
 Make sure you install the workshop package after the learning center package has reconcilled and sucessfuly installed onto your cluster. In case of new versioning you may obtain package version numbers using 
 ```

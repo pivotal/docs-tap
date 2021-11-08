@@ -762,7 +762,7 @@ To install Out of the Box Templates:
    ```bash
     tanzu package install ootb-templates \
       --package-name ootb-templates.tanzu.vmware.com \
-      --version 0.3.0 \
+      --version 0.3.0-build.5 \
       --namespace tap-install
     ```
 
@@ -774,14 +774,14 @@ Install the default Supply Chain, called Out of the Box Supply Chain Basic, by r
 1. Gather the values schema:
 
     ```bash
-    tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.3.0 --values-schema -n tap-install
+    tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.3.0-build.5 --values-schema -n tap-install
     ```
 
     For example:
 
    ```console
-   $ tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.3.0 --values-schema -n tap-install
-   | Retrieving package details for ootb-supply-chain-basic.tanzu.vmware.com/0.3.0...
+   $ tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.3.0-build.5 --values-schema -n tap-install
+   | Retrieving package details for ootb-supply-chain-basic.tanzu.vmware.com/0.3.0-build.5...
 
     KEY                  DEFAULT          TYPE    DESCRIPTION
     registry.repository  <nil>            string  Name of the repository in the image registry server where the application images from the workloads should be pushed to (required).
@@ -808,7 +808,7 @@ Install the default Supply Chain, called Out of the Box Supply Chain Basic, by r
      ```bash
     tanzu package install ootb-supply-chain-basic \
       --package-name ootb-supply-chain-basic.tanzu.vmware.com \
-      --version 0.3.0 \
+      --version 0.3.0-build.5 \
       --namespace tap-install \
       --values-file ootb-supply-chain-basic-values.yaml
     ```
@@ -1272,11 +1272,11 @@ To install Tanzu Learning Center, see the following sections.
    Example output:
    ```shell
      NAME                             VERSION        RELEASED-AT
-     learningcenter.tanzu.vmware.com  1.0.14         2021-10-22 17:02:13 -0400 EDT
+     learningcenter.tanzu.vmware.com  1.0.14-build.1         2021-10-22 17:02:13 -0400 EDT
    ```
 2. (Optional) If you want to see all the configurable parameters on this package you can run the following command:
    ```shell
-   $ tanzu package available get learningcenter.tanzu.vmware.com/1.0.14 --values-schema --namespace tap-install
+   $ tanzu package available get learningcenter.tanzu.vmware.com/1.0.14-build.1 --values-schema --namespace tap-install
    ```
 3. Create a config file (e.g. learning-center-config.yaml) with the following parameters:
      ```yaml
@@ -1320,7 +1320,7 @@ To install Tanzu Learning Center, see the following sections.
 
 4. Install Learning Center Operator:
    ```shell
-   $ tanzu package install learning-center --package-name learningcenter.tanzu.vmware.com --version 1.0.14 -f learning-center-config.yaml
+   $ tanzu package install learning-center --package-name learningcenter.tanzu.vmware.com --version 1.0.14-build.1 -f learning-center-config.yaml
    ```
 
    The command above will create a default namespace in your Kubernetes cluster called ``educates``, and the operator along with any
@@ -1352,7 +1352,7 @@ To install Tanzu Learning Center, see the following sections.
    ```
 2. Installing the Learning Center Training Portal with the Self Guided Tour workshop
    ```shell
-   $ tanzu package install learning-center-workshop --package-name workshops.learningcenter.tanzu.vmware.com --version 1.0.14 -n tap-install
+   $ tanzu package install learning-center-workshop --package-name workshops.learningcenter.tanzu.vmware.com --version 1.0.7-build.1 -n tap-install
    ```
 3. You can check the Training Portals available in your environment running the following command
    ```shell
@@ -2116,12 +2116,12 @@ Use the following procedure to verify that the packages are installed.
     cartographer             cartographer.tanzu.vmware.com                      0.0.7            Reconcile succeeded
     cloud-native-runtimes    cnrs.tanzu.vmware.com                              1.0.3            Reconcile succeeded
     convention-controller    controller.conventions.apps.tanzu.vmware.com       0.4.2            Reconcile succeeded
-    developer-conventions    developer-conventions.tanzu.vmware.com             0.3.0            Reconcile succeeded
+    developer-conventions    developer-conventions.tanzu.vmware.com             0.3.0-build.1    Reconcile succeeded
     grype-scanner            grype.scanning.apps.tanzu.vmware.com               1.0.0-beta.2     Reconcile succeeded
     image-policy-webhook     image-policy-webhook.signing.run.tanzu.vmware.com  1.0.0-beta.1     Reconcile succeeded
     metadata-store           scst-store.tanzu.vmware.com                        1.0.0-beta.1     Reconcile succeeded
-    ootb-supply-chain-basic  ootb-supply-chain-basic.tanzu.vmware.com           0.3.0            Reconcile succeeded
-    ootb-templates           ootb-templates.tanzu.vmware.com                    0.3.0            Reconcile succeeded
+    ootb-supply-chain-basic  ootb-supply-chain-basic.tanzu.vmware.com           0.3.0-build.5    Reconcile succeeded
+    ootb-templates           ootb-templates.tanzu.vmware.com                    0.3.0-build.5    Reconcile succeeded
     scan-controller          scanning.apps.tanzu.vmware.com                     1.0.0-beta.2     Reconcile succeeded
     service-bindings         service-bindings.labs.vmware.com                   0.5.0            Reconcile succeeded
     services-toolkit         services-toolkit.tanzu.vmware.com                  0.4.0            Reconcile succeeded
