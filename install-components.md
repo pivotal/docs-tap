@@ -19,7 +19,7 @@ For information, see [Installing Part I: Prerequisites, EULA, and CLI](install-g
 + [Install Spring Boot Conventions](#install-spring-boot-convention)
 + [Install Application Live View](#install-app-live-view)
 + [Install Tanzu Application Platform GUI](#install-tap-gui)
-+ [Install Learning Center](#install-learning-center)
++ [Install Learning Center for Tanzu Application Platform](#install-learning-center)
 + [Install Service Bindings](#install-service-bindings)
 + [Install Tanzu Build Service](#install-tbs)
 + [Install Supply Chain Choreographer](#install-scc)
@@ -37,7 +37,7 @@ For information, see [Installing Part I: Prerequisites, EULA, and CLI](install-g
 
 cert_manager and FluxCD source controller are installed as part of all profiles. If you do not want to use a profile, install them manually.
 
-Note: In future versions both cert-manager and FluxCD source controller will be shipped as packages.
+> **Note:** In future versions both cert-manager and FluxCD source controller will be shipped as packages.
 
 * **cert-manager**:
     * Install cert-manager by running:
@@ -98,71 +98,55 @@ To install Cloud Native Runtimes:
       cnrs.tanzu.vmware.com  1.0.3    2021-10-20T00:00:00Z
     ```
 
-1. (Optional) To make changes to the default installation settings, run:
+1. (Optional) Make changes to the default installation settings
 
-    ```bash
-    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
-    ```
-    Where:
+    1. Gather values schema.
 
-    - `PACKAGE-NAME` is same as step 1 above.
-    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
+        ```bash
+        tanzu package available get cnrs.tanzu.vmware.com/1.0.3 --values-schema -n tap-install
+        ```
 
-    For example:
+        For example:
 
-    ```bash
-    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.3 --values-schema --namespace tap-install
-    ```
+        ```console
+        $ tanzu package available get cnrs.tanzu.vmware.com/1.0.3 --values-schema -n tap-install
+        | Retrieving package details for cnrs.tanzu.vmware.com/1.0.3...
+          KEY                         DEFAULT  TYPE             DESCRIPTION
+          ingress.external.namespace  <nil>    string   Optional: Only valid if a Contour instance already present in the cluster. Specify a namespace where an existing Contour is installed on your cluster (for external services) if you want CNR to use your Contour instance.
+          ingress.internal.namespace  <nil>    string   Optional: Only valid if a Contour instance already present in the cluster. Specify a namespace where an existing Contour is installed on your cluster (for internal services) if you want CNR to use your Contour instance.
+          ingress.reuse_crds          false    boolean  Optional: Only valid if a Contour instance already present in the cluster. Set to "true" if you want CNR to re-use the cluster's existing Contour CRDs.
+          local_dns.domain            <nil>    string   Optional: Set a custom domain for CoreDNS. Only applicable when "local_dns.enable" is set to "true", "provider" is set to "local" and running on Kind.
+          local_dns.enable            false    boolean  Optional: Only for when "provider" is set to "local" and running on Kind. Set to true to enable local DNS.
+          pdb.enable                  true     boolean  Optional: Set to true to enable Pod Disruption Budget. If provider local is set to "local", the PDB will be disabled automatically.
+          provider                    <nil>    string   Optional: Kubernetes cluster provider. To be specified if deploying CNR on a local Kubernetes cluster provider.
+        ```
 
-    For more information about values schema options, see the individual product documentation.
+    1. Create a `cnr-values.yaml` using the following sample as a guide:
+
+        Sample `cnr-values.yaml` for Cloud Native Runtimes:
 
 
-1. Gather values schema.
+        ```yaml
+        ---
+        # if deploying on a local cluster such as Kind. Otherwise, you can remove this field
+        provider: local
+        ```
 
-    ```bash
-    tanzu package available get cnrs.tanzu.vmware.com/1.0.3 --values-schema -n tap-install
-    ```
+        > **Note:** For most installations, you can leave the `cnr-values.yaml` empty, and use the default values.
 
-    For example:
+        If you are running on a single-node cluster, like kind or minikube, set the `provider: local`
+        option. This option reduces resource requirements by using a HostPort service instead of a
+        LoadBalancer, and reduces the number of replicas.
 
-    ```console
-    $ tanzu package available get cnrs.tanzu.vmware.com/1.0.3 --values-schema -n tap-install
-    | Retrieving package details for cnrs.tanzu.vmware.com/1.0.3...
-      KEY                         DEFAULT  TYPE             DESCRIPTION
-      ingress.external.namespace  <nil>    string   Optional: Only valid if a Contour instance already present in the cluster. Specify a namespace where an existing Contour is installed on your cluster (for external services) if you want CNR to use your Contour instance.
-      ingress.internal.namespace  <nil>    string   Optional: Only valid if a Contour instance already present in the cluster. Specify a namespace where an existing Contour is installed on your cluster (for internal services) if you want CNR to use your Contour instance.
-      ingress.reuse_crds          false    boolean  Optional: Only valid if a Contour instance already present in the cluster. Set to "true" if you want CNR to re-use the cluster's existing Contour CRDs.
-      local_dns.domain            <nil>    string   Optional: Set a custom domain for CoreDNS. Only applicable when "local_dns.enable" is set to "true", "provider" is set to "local" and running on Kind.
-      local_dns.enable            false    boolean  Optional: Only for when "provider" is set to "local" and running on Kind. Set to true to enable local DNS.
-      pdb.enable                  true     boolean  Optional: Set to true to enable Pod Disruption Budget. If provider local is set to "local", the PDB will be disabled automatically.
-      provider                    <nil>    string   Optional: Kubernetes cluster provider. To be specified if deploying CNR on a local Kubernetes cluster provider.
-    ```
+        For more information about using Cloud Native Runtimes with kind, see
+        [local kind configuration guide for Cloud Native Runtimes](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-local-dns.html#configure-your-local-kind-cluster-1).
+        If you are running on a multi-node cluster, do not set `provider`.
 
-1. Create a `cnr-values.yaml` using the following sample as a guide:
+        If your environment has Contour packages, Contour might conflict with the Cloud Native Runtimes installation.
 
-    Sample `cnr-values.yaml` for Cloud Native Runtimes:
-
-    ```yaml
-    ---
-    # if deploying on a local cluster such as Kind. Otherwise, you can use the defaults values to install CNR.
-    provider: local
-    ```
-
-    Note: For most installations, you can leave the `cnr-values.yaml` empty, and use the default values.
-
-    If you are running on a single-node cluster, like kind or minikube, set the `provider: local`
-    option. This option reduces resource requirements by using a HostPort service instead of a
-    LoadBalancer, and reduces the number of replicas.
-
-    For more information about using Cloud Native Runtimes with kin, see
-    [local kind configuration guide for Cloud Native Runtimes](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-local-dns.html#configure-your-local-kind-cluster-1).
-    If you are running on a multi-node cluster, do not set `provider`.
-
-    If your environment has Contour packages, Contour might conflict with the Cloud Native Runtimes installation.
-
-    For information on how to prevent conflicts, see [Installing Cloud Native Runtimes for Tanzu with an Existing Contour Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-contour.html) in the Cloud Native Runtimes documentation.
-    Specify values for `ingress.reuse_crds`,
-    `ingress.external.namespace`, and `ingress.internal.namespace` in the `cnr-values.yaml` file.
+        For information on how to prevent conflicts, see [Installing Cloud Native Runtimes for Tanzu with an Existing Contour Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-contour.html) in the Cloud Native Runtimes documentation.
+        Specify values for `ingress.reuse_crds`,
+        `ingress.external.namespace`, and `ingress.internal.namespace` in the `cnr-values.yaml` file.
 
 1. Install the package by running:
 
@@ -184,6 +168,8 @@ To install Cloud Native Runtimes:
 
      Added installed package 'cloud-native-runtimes' in namespace 'tap-install'
     ```
+
+    Use an empty file for `cnr-values.yaml` if you want the default installation configuration. Otherwise see the previous step to learn more about setting installation configuration values.
 
 1. Verify the package install by running:
 
@@ -208,7 +194,7 @@ To install Cloud Native Runtimes:
 
 1. Configuring a namespace to use Cloud Native Runtimes:
 
-   Note: This step covers configuring a namespace to run Knative services.
+   > **Note:** This step covers configuring a namespace to run Knative services.
    If you rely on a SupplyChain to deploy Knative services into your cluster,
    then skip this step because namespace configuration is covered in
    [Set Up Developer Namespaces to Use Installed Packages](#setup). Otherwise, you must complete the following steps for each namespace where you create Knative services.
@@ -252,7 +238,7 @@ To install Cloud Native Runtimes:
    Events:              <none>
    ```
 
-   Note: The service account has access to the `pull-secret` image pull secret.
+   > **Note:** The service account has access to the `pull-secret` image pull secret.
 
 To learn more about using Cloud Native Runtimes,
 see [Verify your Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-verify-installation.html)
@@ -479,7 +465,7 @@ you can configure the following optional properties:
 | engine.max_direct_memory_size | 32M | The max size for the Java -XX:MaxDirectMemorySize setting |
 | samples.include | True | Whether to include the bundled sample Accelerators in the install |
 
-> Note: For clusters that do not support the `LoadBalancer` service type,
+> **Note:** For clusters that do not support the `LoadBalancer` service type,
             override the default value for `server.service_type`.
 
 VMware recommends that you do not override the defaults for `registry.secret_ref`,
@@ -597,7 +583,7 @@ To install Application Accelerator:
 
 This section provides a quick-start guide for installing Tanzu Build Service as part of Tanzu Application Platform using the Tanzu CLI.
 
-Note: This procedure might not include some configurations required for your specific environment. For more advanced details on installing Tanzu Build Service, see [Installing Tanzu Build Service](https://docs.pivotal.io/build-service/installing.html).
+> **Note:** This procedure might not include some configurations required for your specific environment. For more advanced details on installing Tanzu Build Service, see [Installing Tanzu Build Service](https://docs.pivotal.io/build-service/installing.html).
 
 
 ### Prerequisites
@@ -827,7 +813,7 @@ Install the default Supply Chain, called Out of the Box Supply Chain Basic, by r
       --values-file ootb-supply-chain-basic-values.yaml
     ```
 
-> Note: The `default` service account and required secrets are created in
+> **Note:** The `default` service account and required secrets are created in
 [Set Up Developer Namespaces to Use Installed Packages](#setup).
 
 > **Note:** Only one supply chain should be installed in the cluster at a time.
@@ -1208,11 +1194,11 @@ with your relevant values. The meanings of some placeholders are explained in th
        run a subsequent `tanzu package installed update`.
     - `<GIT-CATALOG-URL>` is the path to the `catalog-info.yaml` catalog definition file from either the included  Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog that you've already built and posted on the Git infrastucture that you specified in the Integration section.
 
-    > Note: The `app-config` section follows the same configuration model that Backstage uses.
+    > **Note:** The `app-config` section follows the same configuration model that Backstage uses.
     For more information, see the [Backstage documentation](https://backstage.io/docs/conf/).
     Detailed configuration of the OIDC auth capabilities are in this [Backstage OAuth documentation](https://backstage.io/docs/auth/oauth).
 
-    > Note: The `integrations` section uses GitLab. If you want additional integrations, see the
+    > **Note:** The `integrations` section uses GitLab. If you want additional integrations, see the
     format in this [Backstage integration documentation](https://backstage.io/docs/integrations/).
 
 1. Install the package by running:
@@ -1264,13 +1250,17 @@ with your relevant values. The meanings of some placeholders are explained in th
 field in the values file.
 
 
-## <a id='install-learning-center'></a> Install Learning Center
+## <a id='install-learning-center'></a> Install Learning Center for Tanzu Application Platform
 
 To install Tanzu Learning Center, see the following sections.
 
-### Prerequisites in Addition to Tanzu Application Platform [Requirements](install-general.md#prereqs)
+### Prerequisites for Learning Center 
 **Required**
-- Make sure you have a proper Ingress Controller configured with a wild card domain name.
+- [Tanzu Application Platform Prerequisites](install-general.md#prereqs)
+- The cluster must have an ingress router configured. Only a basic deployment of the ingress controller is usually required. 
+- The operator when deploying instances of the workshop environments needs to be able to expose them via an external URL for access. For the custom domain you are using, DNS must have been configured with a wildcard domain to forward all requests for sub domains of the custom domain, to the ingress router of the Kubernetes cluster 
+- By default the workshop portal and workshop sessions will be accessible over HTTP connections. If you wish to use secure HTTPS connections, you must have access to a wildcard SSL certificate for the domain under which you wish to host the workshops. You cannot use a self signed certificate. 
+- Any ingress routes created will use the default ingress class. If you have multiple ingress class types available, and you need to override which is used.
 
 ### Procedure to install Learning Center
 1. List version information for the package by running:
@@ -1282,7 +1272,7 @@ To install Tanzu Learning Center, see the following sections.
    Example output:
    ```shell
      NAME                             VERSION        RELEASED-AT
-     learningcenter.tanzu.vmware.com  1.0.8-build.1  2021-10-22 17:02:13 -0400 EDT
+     learningcenter.tanzu.vmware.com  1.0.14-build.1  2021-10-22 17:02:13 -0400 EDT
    ```
 2. (Optional) If you want to see all the configurable parameters on this package you can run the following command:
    ```shell
@@ -1290,28 +1280,47 @@ To install Tanzu Learning Center, see the following sections.
    ```
 3. Create a config file (e.g. learning-center-config.yaml) with the following parameters:
      ```yaml
-     ingressDomain: <INGRESS_DOMAIN>
+     ingressDomain: your-ingress-domain
      ```
    #### Setting the ingress domain
 
    When deploying workshop environment instances, the operator must be able to expose the instances
    through an external URL. This access is needed to discover the domain name that can be used as a
    suffix to hostnames for instances.
-   * Make sure to replace the <INGRESS_DOMAIN> domain with the domain name for your Kubernetes cluster.
+   - Make sure to replace the `your-ingress-domain` domain with the domain name for your Kubernetes cluster.
 
-   > Note: For the custom domain you are using, DNS must have been configured with a wildcard domain to forward
+   > **Note:** For the custom domain you are using, DNS must have been configured with a wildcard domain to forward
    > all requests for subdomains of the custom domain to the ingress router of the Kubernetes cluster.
 
-   > Note: If you are running Kubernetes on your local machine using a system like ``minikube``, and you don't
+   > **Note:** If you are running Kubernetes on your local machine using a system like ``minikube``, and you don't
    > have a custom domain name that maps to the IP for the cluster, you can use a ``nip.io`` address.
    > For example, if ``minikube ip`` returned ``192.168.64.1``, you could use the 192.168.64.1.nip.io domain.
    > Note that you cannot use an address of form ``127.0.0.1.nip.io`` or ``subdomain.localhost``. This will cause a
    > failure. Internal services needing to connect to each other will connect to themselves instead,
    > since the address would resolve to the host loopback address of ``127.0.0.1``.
 
+   #### Enforcing secure connections
+   By default the workshop portal and workshop sessions will be accessible over HTTP connections. If you wish to use secure HTTPS connections, you must have access to a wildcard SSL certificate for the domain under which you wish to host the workshops. You cannot use a self signed certificate.
+   Wildcard certificates can be created using letsencrypt <https://letsencrypt.org/>_. Once you have the certificate, you can define the certificate and privateKey properties under the ingressSecret property to specify the certificate on the configuration yaml.
+   ```
+   ingressSecret:
+     certificate: MIIC2DCCAcCgAwIBAgIBATANBgkqh ...
+     privateKey: MIIEpgIBAAKCAQEA7yn3bRHQ5FHMQ ...
+   ```
+   If you already has a TLS secret, you can copy it to the educates namespace or that one you defined, and use the secretName property.
+   ```
+   ingressSecret:
+     secretName: workshops.example.com-tls
+   ```
+   #### Specifying the ingress class
+   Any ingress routes created will use the default ingress class. If you have multiple ingress class types available, and you need to override which is used, so define the ingressClass property on the configuration yaml:
+   ```
+   ingressClass: contour
+   ```
+
 4. Install Learning Center Operator:
    ```shell
-   $ tanzu package install learning-center --package-name learningcenter.tanzu.vmware.com --version 1.0.8-build.1 -f learning-center-config.yaml
+   $ tanzu package install learning-center --package-name learningcenter.tanzu.vmware.com --version 1.0.14-build.1 -f learning-center-config.yaml
    ```
 
    The command above will create a default namespace in your Kubernetes cluster called ``educates``, and the operator along with any
@@ -1343,7 +1352,7 @@ To install Tanzu Learning Center, see the following sections.
    ```
 2. Installing the Learning Center Training Portal with the Self Guided Tour workshop
    ```shell
-   $ tanzu package install learning-center-workshop --package-name workshops.learningcenter.tanzu.vmware.com --version 1.0.4-build.1 -n tap-install
+   $ tanzu package install learning-center-workshop --package-name workshops.learningcenter.tanzu.vmware.com --version 1.0.7-build.1 -n tap-install
    ```
 3. You can check the Training Portals available in your environment running the following command
    ```shell
