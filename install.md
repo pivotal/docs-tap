@@ -364,21 +364,21 @@ install by changing the `profile` value.
       * Examples:
         * Harbor `kp_default_repository: "my-harbor.io/my-project/build-service"`
         * Dockerhub `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`
-        * GCR `kp_default_repository: "gcr.io/my-project/build-service"`
+        * Google Cloud Registry `kp_default_repository: "gcr.io/my-project/build-service"`
     - `<KP-DEFAULT-REPO-USERNAME>` is the username that can write to the `<KP-DEFAULT-REPO>`. You should be able to `docker push` to this location with this credential.
-      * For GCR, use `kp_default_repository_username: _json_key`
+      * For Google Cloud Registry, use `kp_default_repository_username: _json_key`
     - `<KP-DEFAULT-REPO-PASSWORD>` is the password for the user that can write to the `<KP-DEFAULT-REPO>`. You should be able to `docker push` to this location with this credential.
-      * For GCR, use the contents of the service account json key: `kp_default_repository_password: "$(cat service-account.json)"`
+      * For Google Cloud Registry, use the contents of the service account json key: `kp_default_repository_password: "$(cat service-account.json)"`
     - `<SERVER-NAME>` is the hostname of the registry server.
       * Examples:
          * Harbor `server: "my-harbor.io"` 
          * Dockerhub `server: "https://index.docker.io/v1/"`
-         * GCR `server: "gcr.io"`
+         * Google Cloud Registry `server: "gcr.io"`
     - `<REPO-NAME>` is where workload images will be stored in the registry. Images will be written to `<SERVER-NAME>/<REPO-NAME>/<workload-name>`.
        * Examples:
           * Harbor `repository: "my-project/supply-chain"`
           * Dockerhub `repository: "my-dockerhub-user"`
-          * GCR `repository: "my-project/supply-chain"`
+          * Google Cloud Registry `repository: "my-project/supply-chain"`
     - `<DOMAIN-NAME>` has a value such as `educates.example.com`.
 
     To view possible configuration settings for a package, run:
