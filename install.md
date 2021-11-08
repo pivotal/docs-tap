@@ -366,14 +366,14 @@ install by changing the `profile` value.
         * Google Cloud Registry `kp_default_repository: "gcr.io/my-project/build-service"`
     - `<KP-DEFAULT-REPO-USERNAME>` is the username that can write to the `<KP-DEFAULT-REPO>`. You should be able to `docker push` to this location with this credential.
       * For Google Cloud Registry, use `kp_default_repository_username: _json_key`
-    - `<KP-DEFAULT-REPO-PASSWORD>` is the password for the user that can write to the `<KP-DEFAULT-REPO>`. You should be able to `docker push` to this location with this credential.
+    - `<KP-DEFAULT-REPO-PASSWORD>` is the password for the user that can write to the `<KP-DEFAULT-REPO>`. You can `docker push` to this location with these credentials.
       * For Google Cloud Registry, use the contents of the service account json key: `kp_default_repository_password: "$(cat service-account.json)"`
     - `<SERVER-NAME>` is the hostname of the registry server.
       * Examples:
-         * Harbor `server: "my-harbor.io"` 
+         * Harbor `server: "my-harbor.io"`
          * Dockerhub `server: "https://index.docker.io/v1/"`
          * Google Cloud Registry `server: "gcr.io"`
-    - `<REPO-NAME>` is where workload images will be stored in the registry. Images will be written to `<SERVER-NAME>/<REPO-NAME>/<workload-name>`.
+    - `<REPO-NAME>` is the location workload images will be stored in the registry. Images will be written to `<SERVER-NAME>/<REPO-NAME>/<workload-name>`.
        * Examples:
           * Harbor `repository: "my-project/supply-chain"`
           * Dockerhub `repository: "my-dockerhub-user"`
@@ -455,7 +455,7 @@ To install Tanzu Application Platform GUI:
 
 1. Extract the Blank Software Catalog from the Tanzu Application Network on your Git repository of choice. You'll link to that `catalog-info.yaml` file when you configure your catalog below.
 
-1. Obtain you the `External IP` of your LoadBalancer via:
+1. Obtain the `External IP` of your LoadBalancer by running:
    ```
    kubectl get svc -n tap-gui
    ```
@@ -517,7 +517,7 @@ with your relevant values. Run:
     Updated package install 'tap' in namespace 'tap-install'
     ```
 
-1. To access Tanzu Application Platform GUI, use the `baseURL` location you specified above. This consists of the `EXTERNAL-IP` alpng with the default port of 7000
+1. To access the Tanzu Application Platform GUI, use the `baseURL` location you specified above. This consists of the `EXTERNAL-IP` with the default port of 7000. Run:
 ```
 http://EXTERNAL-IP:7000
 ```

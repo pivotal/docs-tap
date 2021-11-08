@@ -46,7 +46,7 @@ Supported Git infrastructure includes:
     - GitLab
     - Azure DevOps
 - Tanzu Application Platform GUI Blank Catalog from the Tanzu Application section of Tanzu Network 
-  - You can find this by navigating to [Tanzu Network](https://network.tanzu.vmware.com/) and selecting the Tanzu Application Platform. Under the list of available files to download, you should see a fodler titled `tap-gui-catalogs`. Inside that folder is a compressed archive titled Tanzu Application Platform Blank Catalog. You'll need to extract that catalog to the above Git repository of choice. This serves as the configuration location for your Organziation's Catalog inside Tanzu Application Platform GUI.
+  - You can find the Tanzu Application Platform GUI Blank Catalog by navigating to [Tanzu Network](https://network.tanzu.vmware.com/) and selecting the Tanzu Application Platform. Under the list of available files to download, there is a folder titled `tap-gui-catalogs`. Inside that folder is a compressed archive titled Tanzu Application Platform Blank Catalog. You Extract that catalog to the above Git repository of choice. This is the configuration location for your Organziation's Catalog inside Tanzu Application Platform GUI.
 
 ### Kubernetes Cluster Requirements
 Installation requires:

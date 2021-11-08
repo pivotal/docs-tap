@@ -2,7 +2,7 @@
 
 Service accounts are required to generate the access tokens.  
 
-The access token is a "Bearer" token used in the http request header "Authorization". (ex. `Authorization: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjhMV0...`)
+The access token is a `Bearer` token used in the http request header `Authorization`. (ex. `Authorization: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjhMV0...`)
 
 ## Creating Service
 
