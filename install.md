@@ -513,7 +513,7 @@ with your relevant values. Run:
 
     ```console
 
-    $ tanzu package installed update  tap -p tap.tanzu.vmware.com -v 0.3.0 --values-file tap-values-file.yml -n tap-install
+    $ tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version 0.3.0 --values-file tap-values-file.yml -n tap-install
     | Updating package 'tap'
     | Getting package install for 'tap'
     | Getting package metadata for 'tap.tanzu.vmware.com'
@@ -525,9 +525,12 @@ with your relevant values. Run:
     Updated package install 'tap' in namespace 'tap-install'
     ```
 
-1. To access Tanzu Application Platform GUI, use the `EXTERNAL-IP` you exposed in the
-`service_type` above.
-If you have any issues, try re-creating the Tanzu Application Platform Pod by running:
+1. To access Tanzu Application Platform GUI, use the `baseURL` location you specified above. This consists of the `EXTERNAL-IP` alpng with the default port of 7000
+```
+http://EXTERNAL-IP:7000
+```
+
+1. If you have any issues, try re-creating the Tanzu Application Platform Pod by running:
 
     ```console
     kubectl delete pod -l app=backstage -n tap-gui
