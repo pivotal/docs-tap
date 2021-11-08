@@ -79,7 +79,7 @@ After creating a workload, there are no logs.
 
 You create a workload, but no logs appear when you check the logs with:
 
-```
+```bash
 tanzu apps workload tail <workload-name> --since 10m --timestamp
 ```
 
