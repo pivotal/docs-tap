@@ -59,12 +59,12 @@ To add the Tanzu Application Platform package repository:
     ```bash
     $ tanzu package repository get tanzu-tap-repository --namespace tap-install
     - Retrieving repository tap...
-  NAME:          tanzu-tap-repository
-  VERSION:       3769
-  REPOSITORY:    registry.tanzu.vmware.com/tanzu-application-platform/tap-packages
-  TAG:           0.3.0
-  STATUS:        Reconcile succeeded
-  REASON:
+    NAME:          tanzu-tap-repository
+    VERSION:       3769
+    REPOSITORY:    registry.tanzu.vmware.com/tanzu-application-platform/tap-packages
+    TAG:           0.3.0
+    STATUS:        Reconcile succeeded
+    REASON:
     ```
 
 5. List the available packages by running:
