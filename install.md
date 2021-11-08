@@ -457,15 +457,6 @@ Or, for Out of the Box Supply Chain - Scanning:
 ## <a id='configure-tap-gui'></a> Configure the Tanzu Application Platform GUI
 To install Tanzu Application Platform GUI, see the following sections.
 
-#### Prerequisites
-
-- Git repository for the software catalogs and a token allowing read access.
-Supported Git infrastructure includes:
-    - GitHub
-    - GitLab
-    - Azure DevOps
-- Blank Software Catalog from the Tanzu Application section of Tanzu Network
-
 #### Procedure
 
 To install Tanzu Application Platform GUI:
