@@ -35,14 +35,14 @@ To add the Tanzu Application Platform package repository:
 
     ```bash
     tanzu package repository add tanzu-tap-repository \
-      --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.3.0-build.6 \
+      --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.3.0-build.8 \
       --namespace tap-install
     ```
     For example:
 
     ```bash
     $ tanzu package repository add tanzu-tap-repository \
-        --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.3.0-build.6 \
+        --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.3.0-build.8 \
         --namespace tap-install
     \ Adding package repository 'tanzu-tap-repository'...
 
@@ -61,7 +61,7 @@ To add the Tanzu Application Platform package repository:
     - Retrieving repository tap...
     NAME:          tanzu-tap-repository
     VERSION:       48756
-    REPOSITORY:    registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.3.0-build.6
+    REPOSITORY:    registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.3.0-build.8
     STATUS:        Reconcile succeeded
     REASON:
     ```
@@ -99,14 +99,13 @@ To add the Tanzu Application Platform package repository:
     tap-gui.tanzu.vmware.com                             Tanzu Application Platform GUI                                            web app graphical user interface for Tanzu Application Platform
     tap.tanzu.vmware.com                                 Tanzu Application Platform                                                Package to install a set of Tanzu Application Platform components to get you started based on your use case.
     ```
-## <a id='add-package-repositories'></a> About Tanzu Application Platform Package Profiles
+## <a id='about-package-profiles'></a> About Tanzu Application Platform Package Profiles
 Tanzu Application Platform can be installed through pre-defined profiles or through individual packages. This section explains how to install a profile.
 
-Tanzu Application Platform contains the following four profiles:
+Tanzu Application Platform contains the following two profiles:
+
 - Full (`full`)
 - Developer Light (`dev-light`)
-- Shared Tools (`shared-tools`)
-- Operator Light (`operator-light`)
 
 The following table lists the packages contained in each profile:
 
@@ -118,17 +117,9 @@ The following table lists the packages contained in each profile:
    </td>
    <td><strong>Developer Light</strong>
    </td>
-   <td><strong>Shared Tools</strong>
-   </td>
-   <td><strong>Operator Light</strong>
-   </td>
   </tr>
   <tr>
    <td>API Portal
-   </td>
-   <td>&check;
-   </td>
-   <td>
    </td>
    <td>&check;
    </td>
@@ -142,10 +133,6 @@ The following table lists the packages contained in each profile:
    </td>
    <td>
    </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
   </tr>
   <tr>
    <td>App Live View
@@ -154,31 +141,11 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>
-   </td>
-   <td>
-   </td>
   </tr>
-  <tr>
-   <td>Cartographer
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
-  </tr>
-  <tr>
+   <tr>
    <td>Cloud Native Runtimes
    </td>
    <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
    </td>
    <td>&check;
    </td>
@@ -190,55 +157,43 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>
+  </tr>
+  <tr>
+   <td>Out of the Box Supply Chain - Basic
+   </td>
+   <td>&check;
    </td>
    <td>&check;
    </td>
   </tr>
   <tr>
-   <td>Out of the Box Supply Chain - Basic
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-  </tr>
-  <tr>
    <td>Out of the Box Supply Chain - Testing
    </td>
-   <td>&check;<sup>*</sup>
+   <td>&check;<sup>\*</sup>
    </td>
    <td>
    </td>
    <td>
    </td>
-   <td>
+   <td>&check; <sup>&ast;</sup>
    </td>
   </tr>
   <tr>
    <td>Out of the Box Supply Chain - Testing and Scanning
    </td>
-   <td>&check;<sup>*</sup>
+   <td>&check;<sup>\*</sup>
    </td>
    <td>
    </td>
    <td>
    </td>
-   <td>
+   <td>&check; <sup>&ast;</sup>
    </td>
   </tr>
   <tr>
    <td>Out of the Box Templates
    </td>
    <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
    </td>
    <td>&check;
    </td>
@@ -250,10 +205,6 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>
-   </td>
-   <td>
-   </td>
   </tr>
   <tr>
    <td>Flux Source Controller
@@ -262,11 +213,15 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
   </tr>
+  <tr>
+   <td>Grype
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+  </tr>  
   <tr>
    <td>Image Policy Webhook
    </td>
@@ -274,17 +229,9 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
   </tr>
   <tr>
    <td>Learning Center
-   </td>
-   <td>&check;
-   </td>
-   <td>
    </td>
    <td>&check;
    </td>
@@ -298,19 +245,11 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
   </tr>
   <tr>
    <td>Service Bindings
    </td>
    <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
    </td>
    <td>&check;
    </td>
@@ -322,10 +261,6 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
   </tr>
   <tr>
    <td>Spring Boot Convention
@@ -334,19 +269,23 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>
+  </tr>
+  <tr>
+   <td>Supply Chain Choreographer
+   </td>
+   <td>&check;
    </td>
    <td>&check;
    </td>
   </tr>
   <tr>
+   <td>Supply Chain Security Tools - Scan</td>
+   <td>&check;</td><td></td>
+  </tr>
+  <tr>
    <td>Tanzu Build Service
    </td>
    <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
    </td>
    <td>&check;
    </td>
@@ -358,14 +297,6 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-  </tr>
-  <tr>
-   <td>Tanzu Supply Chain Security Tools - Scan</td>
-   <td>&check;</td><td></td><td></td><td></td>
   </tr>
   <tr>
    <td>Tekton
@@ -374,16 +305,12 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
   </tr>
 </table>
 
-<sup>*</sup> Only one supply chain should be installed at any given time. When installing the Full
-Profile, if you want to override the basic supply chain, you can specify either testing or 
-scanning as the supply chain to install. See [Override Default Supply Chain](#override-default-supply-chain).
+<sup>\*</sup> Only one supply chain should be installed at any given time. More
+information about how to switch from one to another provided in the Getting
+Started guide.
 
 ## <a id='install-profile'></a> Install a Tanzu Application Platform Profile
 
@@ -412,6 +339,13 @@ install by changing the `profile` value.
       tanzunet_username: "<TANZUNET-USERNAME>"
       tanzunet_password: "<TANZUNET-PASSWORD>"
 
+    supply_chain: basic
+
+    ootb_supply_chain_basic:
+      registry:
+        server: "<SERVER-NAME>"
+        repository: "<REPO-NAME>"
+
     learningcenter:
       ingressDomain: "<DOMAIN-NAME>"
 
@@ -420,14 +354,32 @@ install by changing the `profile` value.
     ```
     Where:
 
-    - `<PROFILE-VALUE>` is a value such as `full`, `dev-light`, `shared-tools`, or `operator-light`.
-    - `<KP-DEFAULT-REPO>` has a value such as `us-east4-docker.pkg.dev/some-project-id/test-private-repo/apps`.
+    - `<PROFILE-VALUE>` is a value such as `full` or `dev-light`.
+    - `<KP-DEFAULT-REPO>` is a writable repository in your registry. Tanzu Build Service dependencies are written to this location.
+      * Examples:
+        * Harbor `kp_default_repository: "my-harbor.io/my-project/build-service"`
+        * Dockerhub `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`
+        * GCR `kp_default_repository: "gcr.io/my-project/build-service"`
+    - `<KP-DEFAULT-REPO-USERNAME>` is the username that can write to the `<KP-DEFAULT-REPO>`. You should be able to `docker push` to this location with this credential.
+      * For GCR, use `kp_default_repository_username: _json_key`
+    - `<KP-DEFAULT-REPO-PASSWORD>` is the password for the user that can write to the `<KP-DEFAULT-REPO>`. You should be able to `docker push` to this location with this credential.
+      * For GCR, use the contents of the service account json key: `kp_default_repository_password: "$(cat service-account.json)"`
+    - `<SERVER-NAME>` is the hostname of the registry server.
+      * Examples:
+         * Harbor `server: "my-harbor.io"` 
+         * Dockerhub `server: "https://index.docker.io/v1/"`
+         * GCR `server: "gcr.io"`
+    - `<REPO-NAME>` is the location in the registry where workload images will be written to.
+       * Examples:
+          * Harbor `repository: "my-project/supply-chain"`
+          * Dockerhub `repository: "my-dockerhub-user/supply-chain"`
+          * GCR `repository: "my-project/supply-chain"`
     - `<DOMAIN-NAME>` has a value such as `educates.example.com`.
 
     To view possible configuration settings for a package, run:
 
     ```bash
-    tanzu package available get tap.tanzu.vmware.com/0.3.0-build.6 --values-schema --namespace tap-install
+    tanzu package available get tap.tanzu.vmware.com/0.3.0-build.8 --values-schema --namespace tap-install
     ```
 
     >**Note:** The `tap.tanzu.vmware.com` package does not show all configuration settings for packages it plans to install. The package only shows top level keys.
@@ -471,7 +423,7 @@ install by changing the `profile` value.
 1. Install the package by running:
 
     ```bash
-    tanzu package install tap -p tap.tanzu.vmware.com -v 0.3.0-build.6 --values-file tap-values.yml -n tap-install
+    tanzu package install tap -p tap.tanzu.vmware.com -v 0.3.0-build.8 --values-file tap-values.yml -n tap-install
     ```
 
 1. Verify the package install by running:
@@ -489,62 +441,9 @@ install by changing the `profile` value.
 
 1. (Optional) [Install any additional packages](install-components.md) that were not included in your profile.
 
-### <a id='override-default-supply-chain'></a> Override Default Supply Chain
-
-To override the Default Supply Chain with either:
-- Out of the Box Supply Chain - Testing or
-- Out of the Box Supply Chain - Scanning
-
-modify `tap-values.yml`.
-
-For Out of the Box Supply Chain - Testing:
-
-    ```yaml
-    profile: Full
-
-    supply_chain: testing
-
-    ootb_supply_chain_testing:
-      registry:
-        server: "<SERVER-NAME>"
-        repository: "<REPO-NAME>"
-    ```
-    Where:
-
-    - `<SERVER-NAME>` has a value such as `us-east4-docker.pkg.dev`.
-    - `<REPO-NAME>` has a value such as `some-project-id/test-private-repo/apps`.
-
-
-
-Or, for Out of the Box Supply Chain - Scanning:
-
-    ```yaml
-    profile: Full
-
-    supply_chain: scanning
-
-    ootb_supply_chain_testing_scanning:
-      registry:
-        server: "<SERVER-NAME>"
-        repository: "<REPO-NAME>"
-    ```
-    Where:
-
-    - `<SERVER-NAME>` has a value such as `us-east4-docker.pkg.dev`.
-    - `<REPO-NAME>` has a value such as `some-project-id/test-private-repo/apps`.
-
 
 ## <a id='configure-tap-gui'></a> Configure the Tanzu Application Platform GUI
 To install Tanzu Application Platform GUI, see the following sections.
-
-#### Prerequisites
-
-- Git repository for the software catalogs and a token allowing read access.
-Supported Git infrastructure includes:
-    - GitHub
-    - GitLab
-    - Azure DevOps
-- Blank Software Catalog from the Tanzu Application section of Tanzu Network
 
 #### Procedure
 
@@ -552,7 +451,10 @@ To install Tanzu Application Platform GUI:
 
 1. Extract the Blank Software Catalog from the Tanzu Application Network on your Git repository of choice. You'll link to that `catalog-info.yaml` file when you configure your catalog below.
 
-1. Obtain you the `External IP` of your LoadBalancer via `kubectl get svc -n tap-gui`.
+1. Obtain you the `External IP` of your LoadBalancer via:
+   ```
+   kubectl get svc -n tap-gui
+   ```
 
 2. Add the following section to your `tap-values.yml` by using the following template. Replace all `<PLACEHOLDERS>`
 with your relevant values. Run:
@@ -599,7 +501,7 @@ with your relevant values. Run:
 
     ```console
 
-    $ tanzu package installed update  tap -p tap.tanzu.vmware.com -v 0.3.0 --values-file tap-values-file.yml -n tap-install
+    $ tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version 0.3.0 --values-file tap-values-file.yml -n tap-install
     | Updating package 'tap'
     | Getting package install for 'tap'
     | Getting package metadata for 'tap.tanzu.vmware.com'
@@ -611,9 +513,12 @@ with your relevant values. Run:
     Updated package install 'tap' in namespace 'tap-install'
     ```
 
-1. To access Tanzu Application Platform GUI, use the `EXTERNAL-IP` you exposed in the
-`service_type` above.
-If you have any issues, try re-creating the Tanzu Application Platform Pod by running:
+1. To access Tanzu Application Platform GUI, use the `baseURL` location you specified above. This consists of the `EXTERNAL-IP` alpng with the default port of 7000
+```
+http://EXTERNAL-IP:7000
+```
+
+1. If you have any issues, try re-creating the Tanzu Application Platform Pod by running:
 
     ```console
     kubectl delete pod -l app=backstage -n tap-gui

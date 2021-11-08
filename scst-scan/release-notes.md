@@ -4,6 +4,10 @@ This topic contains release notes for Supply Chain Security Tools for Tanzu – 
 
 ## Releases
 
+### v1.0.0-beta.2
+
+**Release Date:** November 08, 2021
+
 ### v1.0.0-beta
 
 **Release Date:** October 07, 2021

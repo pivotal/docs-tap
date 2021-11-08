@@ -21,9 +21,12 @@ Tanzu Application Platform packages.
 
 * A container image registry, such as [Harbor](https://goharbor.io/) or
 [Docker Hub](https://hub.docker.com/) with at least **10&nbsp;GB** of available storage for
-application images, base images, and runtime dependencies
+application images, base images, and runtime dependencies.
+    * When available, VMware recommends using a paid registry account to avoid potential
+    rate-limiting associated with some free registry offerings.
     * VMware recommends using a paid registry account, if available, to avoid potential
     rate-limiting associated with some free registry offerings dependencies.
+
 
 * Registry credentials with push and write access made available to Tanzu Application Platform to
 store images.
@@ -35,6 +38,16 @@ store images.
 * Latest version of Chrome, Firefox, or Edge.
 Tanzu Application Platform GUI currently does not support Safari browser.
 
+#### Tanzu Application Platform GUI
+
+- Git repository for the Tanzu Application Platform GUI's software catalogs, along with a token allowing read access.
+Supported Git infrastructure includes:
+    - GitHub
+    - GitLab
+    - Azure DevOps
+- Tanzu Application Platform GUI Blank Catalog from the Tanzu Application section of Tanzu Network 
+  - You can find this by navigating to [Tanzu Network](https://network.tanzu.vmware.com/) and selecting the Tanzu Application Platform. Under the list of available files to download, you should see a fodler titled `tap-gui-catalogs`. Inside that folder is a compressed archive titled Tanzu Application Platform Blank Catalog. You'll need to extract that catalog to the above Git repository of choice. This serves as the configuration location for your Organziation's Catalog inside Tanzu Application Platform GUI.
+
 ### Kubernetes Cluster Requirements
 Installation requires:
 
@@ -43,12 +56,12 @@ Installation requires:
     * Azure Kubernetes Service
     * Amazon Elastic Kubernetes Service
     * Google Kubernetes Engine
+        * GKE Autopilot clusters do not have required features enabled
     * Kind
         * Supported only on Linux operating system.
         * Minimum requirements: 8 CPUs for i9 or equivalent, 12 CPUs for i7 or equivalent, 8 GB RAM (12+ GB recommended), and 120 GB disk space.
         * If you are using Cloud Native Runtimes, see [Configure Your Local Kind
         Cluster](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-local-dns.html#configure-your-local-kind-cluster-1).
-    * Google Kubernetes Engine (GKE Autopilot clusters do not have required features enabled)
     * Minikube
         * Minimum requirements for VM: 8 CPUs for i9 or equivalent, 12 CPUs for i7 or equivalent, 8 GB RAM (12+ GB recommended), and 120 GB disk space.
         * VMware recommends at least 16 GB of total host memory.
@@ -57,7 +70,7 @@ Installation requires:
         * Do not use a Tanzu Kubernetes Grid cluster that runs production workloads.
         * To install Tanzu Application Platform on Tanzu Kubernetes Grid v1.4,
           see [Installing with Tanzu Kubernetes Grid v1.4](install-tkg.md).
-   * Tanzu Community Edition x.x
+   * Tanzu Community Edition v0.9.1
         * Please visit the Tanzu Community Edition installation page to follow installation instructions at [Tanzu Community Edition](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.3/tap-0-3/GUID-install-tce.html)
 
     To deploy all Tanzu Application Platform packages, your cluster must have at least **8&nbsp;GB** of RAM across all nodes available to Tanzu Application Platform. At least 8 CPUs for i9 or equivalent or 12 CPUs for i7 or equivalent must be available to Tanzu Application Platform components.
@@ -372,20 +385,27 @@ To install the Tanzu CLI on a Windows operating system:
     ```
     Expect `version: v0.9.0`
 
-  15. Proceed to [Instructions for a clean install of Tanzu CLI Plugins](#cli-plugin-clean-install)
+  15. Proceed to [Clean Install Tanzu CLI Plugins](#cli-plugin-clean-install)
 
-## <a id='cli-plugin-clean-install'></a>Instructions for a clean install of Tanzu CLI Plugins
-  1. Run the following command from the `tanzu` directory:
+## <a id='cli-plugin-clean-install'></a> Clean Install Tanzu CLI Plugins
+
+To perform a clean installation of the Tanzu CLI plugins:
+
+1. Run the following command from the `tanzu` directory:
+
     ```bash
     tanzu plugin install --local cli all
     ```
 
-  2. Check plugin installation status:
-    ```bash
+2. Check the plugin installation status by running:
+
+    ```console
     tanzu plugin list
     ```
+
     Expect to see the following:
-    ```
+
+    ```console
      tanzu plugin list
      NAME                LATEST VERSION  DESCRIPTION                                                        REPOSITORY  VERSION  STATUS
      accelerator                         Manage accelerators in a Kubernetes cluster                                    v0.4.1   installed
@@ -397,19 +417,18 @@ To install the Tanzu CLI on a Windows operating system:
      package             v0.10.0         Tanzu package management                                           core        v0.9.0   upgrade available
      pinniped-auth       v0.10.0         Pinniped authentication operations (usually not directly invoked)  core        v0.9.0   upgrade available
      secret              v0.10.0         Tanzu secret management                                            core        v0.9.0   upgrade available
-    ```   
-  3. You may now proceed with installing Tanzu Application Platform. For more information, see **[Installing Part II: Profiles](install.md)**.     
+    ```       
 
-   >[!Note]
-   >Regarding the output from `tanzu plugin list`:The `package`, `secret`, `accelerator` and `apps` plugins are required to install or interact with the Tanzu Application Platform.
+You need the `package`, `secret`, `accelerator` and `apps` plugins to install or interact with the
+Tanzu Application Platform. You can ignore the rest.
 
-   The additional plugins you see in the list can be ignored (you will not need to use
-   them to interact with Tanzu Application Platform).
+Tanzu Application Platform beta requires cluster-admin privileges.
+Running commands associated with the additional plugins can have unintended side-effects.
+VMware recommends against running `cluster`, `kubernetes-release`, `login`, `management-cluster`,
+and `pinniped-auth` commands.
 
-   The Tanzu Application Platform beta product requires cluster-admin privileges.
-   Running commands associated with the additional plugins can
-   have unintended side-effects. VMware recommends against running `cluster`, `kubernetes-release`, `login`,
-   `management-cluster` and `pinniped-auth` commands.
+You can now proceed with installing Tanzu Application Platform. For more information, see
+**[Installing Part II: Profiles](install.md)**.
 
 
 ## <a id='udpate-previous-tap-tanzu-cli'></a>Instructions for updating Tanzu CLI that was installed for a previous Tanzu Application Platform release
