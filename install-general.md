@@ -38,6 +38,16 @@ store images.
 * Latest version of Chrome, Firefox, or Edge.
 Tanzu Application Platform GUI currently does not support Safari browser.
 
+#### Tanzu Application Platform GUI
+
+- Git repository for the Tanzu Application Platform GUI's software catalogs, along with a token allowing read access.
+Supported Git infrastructure includes:
+    - GitHub
+    - GitLab
+    - Azure DevOps
+- Tanzu Application Platform GUI Blank Catalog from the Tanzu Application section of Tanzu Network 
+  - You can find this by navigating to [Tanzu Network](https://network.tanzu.vmware.com/) and selecting the Tanzu Application Platform. Under the list of available files to download, you should see a fodler titled `tap-gui-catalogs`. Inside that folder is a compressed archive titled Tanzu Application Platform Blank Catalog. You'll need to extract that catalog to the above Git repository of choice. This serves as the configuration location for your Organziation's Catalog inside Tanzu Application Platform GUI.
+
 ### Kubernetes Cluster Requirements
 Installation requires:
 
