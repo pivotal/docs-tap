@@ -781,7 +781,7 @@ Install the default Supply Chain, called Out of the Box Supply Chain Basic, by r
 
    ```console
    $ tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.3.0-build.5 --values-schema -n tap-install
-   | Retrieving package details for ootb-supply-chain-basic.tanzu.vmware.com/0.3.0...
+   | Retrieving package details for ootb-supply-chain-basic.tanzu.vmware.com/0.3.0-build.5...
 
     KEY                  DEFAULT          TYPE    DESCRIPTION
     registry.repository  <nil>            string  Name of the repository in the image registry server where the application images from the workloads should be pushed to (required).
@@ -835,7 +835,7 @@ To install developer conventions:
     $ tanzu package available list developer-conventions.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for developer-conventions.tanzu.vmware.com
       NAME                                    VERSION        RELEASED-AT
-      developer-conventions.tanzu.vmware.com  0.3.0-build.1  2021-10-19T00:00:00Z
+      developer-conventions.tanzu.vmware.com  0.3.0          2021-10-19T00:00:00Z
     ```
 
 1. Install the package by running:
@@ -843,7 +843,7 @@ To install developer conventions:
     ```bash
     tanzu package install developer-conventions \
       --package-name developer-conventions.tanzu.vmware.com \
-      --version 0.3.0-build.1 \
+      --version 0.3.0 \
       --namespace tap-install
     ```
 
@@ -859,7 +859,7 @@ To install developer conventions:
     | Retrieving installation details for developer-conventions...
     NAME:                    developer-conventions
     PACKAGE-NAME:            developer-conventions.tanzu.vmware.com
-    PACKAGE-VERSION:         0.3.0-build.1
+    PACKAGE-VERSION:         0.3.0
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
@@ -1277,11 +1277,11 @@ To install Tanzu Learning Center, see the following sections.
    Example output:
    ```shell
      NAME                             VERSION        RELEASED-AT
-     learningcenter.tanzu.vmware.com  1.0.14-build.1  2021-10-22 17:02:13 -0400 EDT
+     learningcenter.tanzu.vmware.com  1.0.14-build.1 2021-10-22 17:02:13 -0400 EDT
    ```
 2. (Optional) If you want to see all the configurable parameters on this package you can run the following command:
    ```shell
-   $ tanzu package available get learningcenter.tanzu.vmware.com/1.0.8-build.1 --values-schema --namespace tap-install
+   $ tanzu package available get learningcenter.tanzu.vmware.com/1.0.14-build.1 --values-schema --namespace tap-install
    ```
 3. Create a config file (e.g. learning-center-config.yaml) with the following parameters:
      ```yaml
