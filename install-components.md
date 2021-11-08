@@ -10,41 +10,27 @@ Before you install the packages, ensure that you have completed the prerequisite
 and verified the cluster, accepted the EULA, and installed the Tanzu CLI with any required plugins.
 For information, see [Installing Part I: Prerequisites, EULA, and CLI](install-general.md).
 
-- [Installing Individual Packages](#installing-individual-packages)
-  - [<a id='install-prereqs'></a> Install cert-manager and FluxCD source controller](#-install-cert-manager-and-fluxcd-source-controller)
-  - [<a id='install-cnr'></a> Install Cloud Native Runtimes](#-install-cloud-native-runtimes)
-  - [<a id='install-convention-service'></a> Install Convention Service](#-install-convention-service)
-  - [<a id='install-source-controller'></a> Install Source Controller](#-install-source-controller)
-  - [<a id='install-app-accelerator'></a> Install Application Accelerator](#-install-application-accelerator)
-    - [Prerequisites](#prerequisites)
-    - [Procedure](#procedure)
-  - [<a id='install-tbs'></a> Install Tanzu Build Service](#-install-tanzu-build-service)
-    - [Prerequisites](#prerequisites-1)
-    - [Install Tanzu Build Service Using the Tanzu CLI](#install-tanzu-build-service-using-the-tanzu-cli)
-  - [<a id='install-scc'></a> Install Supply Chain Choreographer](#-install-supply-chain-choreographer)
-  - [<a id='install-ootb-templates'></a> Install Out of the Box Templates](#-install-out-of-the-box-templates)
-  - [<a id='install-developer-conventions'></a> Install Developer Conventions](#-install-developer-conventions)
-  - [<a id='install-spring-boot-convention'></a> Install Spring Boot Conventions](#-install-spring-boot-conventions)
-  - [<a id="install-app-live-view"></a>Install Application Live View](#install-application-live-view)
-  - [<a id='install-tap-gui'></a> Install Tanzu Application Platform GUI](#-install-tanzu-application-platform-gui)
-    - [Prerequisites in Addition to Tanzu Application Platform Requirements](#prerequisites-in-addition-to-tanzu-application-platform-requirements)
-    - [Procedure](#procedure-1)
-  - [<a id='install-learning-center'></a> Install Learning Center for Tanzu Application Platform](#-install-learning-center-for-tanzu-application-platform)
-    - [Prerequisites for Learning Center](#prerequisites-for-learning-center)
-    - [Procedure to install Learning Center](#procedure-to-install-learning-center)
-      - [Setting the ingress domain](#setting-the-ingress-domain)
-      - [Enforcing secure connections](#enforcing-secure-connections)
-      - [Specifying the ingress class](#specifying-the-ingress-class)
-    - [Procedure to install the Self-Guided Tour Training Portal and Workshop](#procedure-to-install-the-self-guided-tour-training-portal-and-workshop)
-  - [<a id='install-service-bindings'></a> Install Service Bindings](#-install-service-bindings)
-  - [<a id='install-scst-store'></a> Install Supply Chain Security Tools - Store](#-install-supply-chain-security-tools---store)
-  - [<a id='install-scst-sign'></a> Install Supply Chain Security Tools - Sign](#-install-supply-chain-security-tools---sign)
-  - [<a id='install-scst-scan'></a> Install Supply Chain Security Tools - Scan](#-install-supply-chain-security-tools---scan)
-  - [<a id='install-api-portal'></a> Install API portal](#-install-api-portal)
-  - [<a id='install-services-toolkit'></a> Install Services Toolkit](#-install-services-toolkit)
-  - [<a id='verify'></a> Verify the Installed Packages](#-verify-the-installed-packages)
-  - [<a id='setup'></a> Set Up Developer Namespaces to Use Installed Packages](#-set-up-developer-namespaces-to-use-installed-packages)
-  - [<a id='install-tekton'></a> Install Tekton](#-install-tekton)
++ [Install cert-manager and FluxCD source controller](#install-prereqs)
++ [Install Cloud Native Runtimes](#install-cnr)
++ [Install Application Accelerator](#install-app-accelerator)
++ [Install Convention Service](#install-convention-service)
++ [Install Source Controller](#install-source-controller)
++ [Install Developer Conventions](#install-developer-conventions)
++ [Install Spring Boot Conventions](#install-spring-boot-convention)
++ [Install Application Live View](#install-app-live-view)
++ [Install Tanzu Application Platform GUI](#install-tap-gui)
++ [Install Learning Center for Tanzu Application Platform](#install-learning-center)
++ [Install Service Bindings](#install-service-bindings)
++ [Install Tanzu Build Service](#install-tbs)
++ [Install Supply Chain Choreographer](#install-scc)
++ [Install Out of the Box Templates](#install-ootb-templates)
++ [Install Default Supply Chain](#install-ootb-supply-chain-basic)
++ [Install Supply Chain Security Tools - Store](#install-scst-store)
++ [Install Supply Chain Security Tools - Sign](#install-scst-sign)
++ [Install Supply Chain Security Tools - Scan](#install-scst-scan)
++ [Install API portal](#install-api-portal)
++ [Install Services Toolkit](#install-services-toolkit)
++ [Install Tekton](#install-tekton)
 
 
 ## <a id='install-prereqs'></a> Install cert-manager and FluxCD source controller
@@ -849,7 +835,7 @@ To install developer conventions:
     $ tanzu package available list developer-conventions.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for developer-conventions.tanzu.vmware.com
       NAME                                    VERSION        RELEASED-AT
-      developer-conventions.tanzu.vmware.com  0.3.0  2021-10-19T00:00:00Z
+      developer-conventions.tanzu.vmware.com  0.3.0          2021-10-19T00:00:00Z
     ```
 
 1. Install the package by running:
@@ -1286,11 +1272,11 @@ To install Tanzu Learning Center, see the following sections.
    Example output:
    ```shell
      NAME                             VERSION        RELEASED-AT
-     learningcenter.tanzu.vmware.com  1.0.14  2021-10-22 17:02:13 -0400 EDT
+     learningcenter.tanzu.vmware.com  1.0.14         2021-10-22 17:02:13 -0400 EDT
    ```
 2. (Optional) If you want to see all the configurable parameters on this package you can run the following command:
    ```shell
-   $ tanzu package available get learningcenter.tanzu.vmware.com/1.0.8 --values-schema --namespace tap-install
+   $ tanzu package available get learningcenter.tanzu.vmware.com/1.0.14 --values-schema --namespace tap-install
    ```
 3. Create a config file (e.g. learning-center-config.yaml) with the following parameters:
      ```yaml
@@ -1366,7 +1352,7 @@ To install Tanzu Learning Center, see the following sections.
    ```
 2. Installing the Learning Center Training Portal with the Self Guided Tour workshop
    ```shell
-   $ tanzu package install learning-center-workshop --package-name workshops.learningcenter.tanzu.vmware.com --version 1.0.7 -n tap-install
+   $ tanzu package install learning-center-workshop --package-name workshops.learningcenter.tanzu.vmware.com --version 1.0.14 -n tap-install
    ```
 3. You can check the Training Portals available in your environment running the following command
    ```shell
@@ -2126,7 +2112,7 @@ Use the following procedure to verify that the packages are installed.
     NAME                     PACKAGE-NAME                                       PACKAGE-VERSION  STATUS
     api-portal               api-portal.tanzu.vmware.com                        1.0.3            Reconcile succeeded
     app-accelerator          accelerator.apps.tanzu.vmware.com                  0.4.0            Reconcile succeeded
-    app-live-view            appliveview.tanzu.vmware.com                       0.3.0            Reconcile succeeded
+    app-live-view            appliveview.tanzu.vmware.com                       0.3.0-build6     Reconcile succeeded
     cartographer             cartographer.tanzu.vmware.com                      0.0.7            Reconcile succeeded
     cloud-native-runtimes    cnrs.tanzu.vmware.com                              1.0.3            Reconcile succeeded
     convention-controller    controller.conventions.apps.tanzu.vmware.com       0.4.2            Reconcile succeeded
