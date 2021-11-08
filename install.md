@@ -369,10 +369,10 @@ install by changing the `profile` value.
          * Harbor `server: "my-harbor.io"` 
          * Dockerhub `server: "https://index.docker.io/v1/"`
          * GCR `server: "gcr.io"`
-    - `<REPO-NAME>` is the location in the registry where workload images will be written to.
+    - `<REPO-NAME>` is where workload images will be stored in the registry. Images will be written to `<SERVER-NAME>/<REPO-NAME>/<workload-name>`.
        * Examples:
           * Harbor `repository: "my-project/supply-chain"`
-          * Dockerhub `repository: "my-dockerhub-user/supply-chain"`
+          * Dockerhub `repository: "my-dockerhub-user"`
           * GCR `repository: "my-project/supply-chain"`
     - `<DOMAIN-NAME>` has a value such as `educates.example.com`.
 
