@@ -470,7 +470,7 @@ selected supply chain for workloads in this cluster. Update `tap-values.yml`
 Then update the installed profile:
 
 ```bash
-tanzu package installed update tap -p tap.tanzu.vmware.com -v 0.3.0-build.6 --values-file tap-values.yml -n tap-install
+tanzu package installed update tap -p tap.tanzu.vmware.com -v 0.3.0 --values-file tap-values.yml -n tap-install
 ```
 
 
@@ -674,7 +674,7 @@ EOF
 4. Update the `tap` package:
 
 ```bash
-tanzu package installed update tap -p tap.tanzu.vmware.com -v 0.3.0-build.6 --values-file tap-values.yml -n tap-install
+tanzu package installed update tap -p tap.tanzu.vmware.com -v 0.3.0 --values-file tap-values.yml -n tap-install
 ```
 
 
