@@ -61,7 +61,7 @@ The following components have been updated in Tanzu Application Platform v0.3.0:
 This release has the following issues:
 
 
-- **Image Policy Webhook:** If all of the webhook nodes or Pods are evicted by the cluster or scaled down, the admission policy will block any Pods from being created in the cluster. To resolve the issue, the administrator needs to kubectl delete the Image Policy Webhook and reapply it once the cluster is stable.
+- **Image Policy Webhook:** If all webhook nodes or Pods are evicted by the cluster or scaled down, the admission policy blocks any Pods from being created in the cluster. To resolve the issue, the administrator needs to kubectl delete the Image Policy Webhook and reapply it once the cluster is stable.
 - When you use the `Tanzu Developer Tools for VSCode` extension, delete the workload before performing any of the following actions. This will avoid workload update errors.
     - Switching between the `Live Update` & `Debug` capabilities
     - Disabling `Live Update` & re-starting `Live Update`
