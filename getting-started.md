@@ -1135,12 +1135,11 @@ To install the plugin you must place it in your PATH and ensure it is executable
           sudo chmod +x /usr/local/bin/kubectl-scp
 
 
-Now we have 2 Kubernetes clusters
-- **Workload Cluster** where Tanzu Application Platform is installed (including Services toolkit).
-  - And confirmation that the RabbitMQ Cluster Operator is not installed on this cluster.
-- **Services Cluster** where only the Services toolkit is installed.
+Now you have two Kubernetes clusters:
+- Workload Cluster, which is where Tanzu Application Platform, including Services toolkit, is
+installed. RabbitMQ Cluster Operator is not installed on this cluster.
+- Services Cluster, which is where Services toolkit is installed. Nothing else is installed here.
 
-Now let us see the different use cases where Services toolkit makes the Services Journey easy.
 
 #### Steps
 
