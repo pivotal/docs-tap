@@ -375,20 +375,27 @@ To install the Tanzu CLI on a Windows operating system:
     ```
     Expect `version: v0.9.0`
 
-  15. Proceed to [Instructions for a clean install of Tanzu CLI Plugins](#cli-plugin-clean-install)
+  15. Proceed to [Clean Install Tanzu CLI Plugins](#cli-plugin-clean-install)
 
-## <a id='cli-plugin-clean-install'></a>Instructions for a clean install of Tanzu CLI Plugins
-  1. Run the following command from the `tanzu` directory:
+## <a id='cli-plugin-clean-install'></a> Clean Install Tanzu CLI Plugins
+
+To perform a clean installation of the Tanzu CLI plugins:
+
+1. Run the following command from the `tanzu` directory:
+
     ```bash
     tanzu plugin install --local cli all
     ```
 
-  2. Check plugin installation status:
-    ```bash
+2. Check the plugin installation status by running:
+
+    ```console
     tanzu plugin list
     ```
+
     Expect to see the following:
-    ```
+
+    ```console
      tanzu plugin list
      NAME                LATEST VERSION  DESCRIPTION                                                        REPOSITORY  VERSION  STATUS
      accelerator                         Manage accelerators in a Kubernetes cluster                                    v0.4.1   installed
@@ -400,19 +407,18 @@ To install the Tanzu CLI on a Windows operating system:
      package             v0.10.0         Tanzu package management                                           core        v0.9.0   upgrade available
      pinniped-auth       v0.10.0         Pinniped authentication operations (usually not directly invoked)  core        v0.9.0   upgrade available
      secret              v0.10.0         Tanzu secret management                                            core        v0.9.0   upgrade available
-    ```   
-  3. You may now proceed with installing Tanzu Application Platform. For more information, see **[Installing Part II: Profiles](install.md)**.     
+    ```       
 
-   >[!Note]
-   >Regarding the output from `tanzu plugin list`:The `package`, `secret`, `accelerator` and `apps` plugins are required to install or interact with the Tanzu Application Platform.
+You need the `package`, `secret`, `accelerator` and `apps` plugins to install or interact with the
+Tanzu Application Platform. You can ignore the rest.
 
-   The additional plugins you see in the list can be ignored (you will not need to use
-   them to interact with Tanzu Application Platform).
+Tanzu Application Platform beta requires cluster-admin privileges.
+Running commands associated with the additional plugins can have unintended side-effects.
+VMware recommends against running `cluster`, `kubernetes-release`, `login`, `management-cluster`,
+and `pinniped-auth` commands.
 
-   The Tanzu Application Platform beta product requires cluster-admin privileges.
-   Running commands associated with the additional plugins can
-   have unintended side-effects. VMware recommends against running `cluster`, `kubernetes-release`, `login`,
-   `management-cluster` and `pinniped-auth` commands.
+You can now proceed with installing Tanzu Application Platform. For more information, see
+**[Installing Part II: Profiles](install.md)**.
 
 
 ## <a id='udpate-previous-tap-tanzu-cli'></a>Instructions for updating Tanzu CLI that was installed for a previous Tanzu Application Platform release
