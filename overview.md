@@ -3,7 +3,7 @@
 ## <a id='overview'></a> Overview of Tanzu Application Platform
 
 <p class="note warning">
-<strong>Warning:</strong> anzu Application Platform is currently in beta (intended for evaluation and test purposes only).
+<strong>Warning:</strong> Tanzu Application Platform is currently in beta (intended for evaluation and test purposes only).
 </p>
 
 Tanzu Application Platform is a packaged set of components that helps developers and operators build, deploy, and manage apps on Kubernetes.
@@ -24,7 +24,7 @@ Tanzu Application Platform provides a default set of components that automates p
 
 Kubernetes deployment complexity is reduced for operators with better automation and standardization of the outer loop, giving developers more time to focus on code.
 
-##<a id='profiles-and-packages'></a>  Installation Profiles and Profiles in Tanzu Application Platform v0.3
+## <a id='profiles-and-packages'></a>  Installation Profiles and Profiles in Tanzu Application Platform v0.3
 
 Tanzu Application Platform is available through pre-defined profiles or individual packages.
 
