@@ -1028,8 +1028,8 @@ same cluster that their app is running in, while underlying resources that compr
 This allows Service Operators, who are responsible for the lifecycle and management of the  
 services, greater control and flexibility in the services they provide.
 
-For detailed information on each of the Services Toolkit components, including the use cases they unlock, as well as API reference guides,
-please refer to the [Services Toolkit component documentation](https://docs.vmware.com/en/Services-Toolkit/0.4/services-toolkit-0-4/GUID-overview.html).
+For information on each of the Services Toolkit components, including the use cases they unlock and API reference guides, see 
+[Services Toolkit component documentation](https://docs.vmware.com/en/Services-Toolkit/0.4/services-toolkit-0-4/GUID-overview.html).
 
 Following are a number of use cases enabled by the Services Toolkit as part of Tanzu Application Platform.
 
