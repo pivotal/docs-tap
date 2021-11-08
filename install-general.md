@@ -56,7 +56,7 @@ Installation requires:
     * Azure Kubernetes Service
     * Amazon Elastic Kubernetes Service
     * Google Kubernetes Engine
-        * GKE Autopilot clusters do not have required features enabled
+        * GKE Autopilot clusters do not have required features enabled.
     * Kind
         * Supported only on Linux operating system.
         * Minimum requirements: 8 CPUs for i9 or equivalent, 12 CPUs for i7 or equivalent, 8 GB RAM (12+ GB recommended), and 120 GB disk space.
