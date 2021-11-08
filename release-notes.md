@@ -37,19 +37,7 @@ Tanzu Packages:
   - Application Live View Plugin v0.3.0
 - Convention Service for VMware Tanzu
   - Spring Boot Convention v0.1.2
-
 - Tanzu Learning Center
-
-Tanzu Application Platform GUI plugins:
-
-- Workload Visibility Plugin v1.0.0
-- Application Live View Plugin v0.3.0
-
-Tanzu CLI plugins:
-
-- Tanzu Accelerator CLI Plugin
-- Tanzu ImagePullSecret CLI Plugin
-- Tanzu Package CLI Plugin
 
 **Updated Components**
 
@@ -63,8 +51,6 @@ The following components have been updated in Tanzu Application Platform v0.3.0:
   - [Store v1.0.0-beta.1](scst-store/overview.md)
 - [Convention Service for VMware Tanzu](convention-service/about.md)
   - [Developer Conventions](developer-conventions/about.md) v0.3.0
-
-
 - [Cloud Native Runtimes v1.0.3](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-cnr-overview.html)
 - [Application Accelerator for VMware Tanzu v0.4.0](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.4/acc-docs/GUID-index.html)
 - [Application Live View for VMware Tanzu v0.3.0](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.3/docs/GUID-index.html)
