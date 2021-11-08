@@ -142,15 +142,7 @@ The following table lists the packages contained in each profile:
    <td>&check;
    </td>
   </tr>
-  <tr>
-   <td>Cartographer
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-  </tr>
-  <tr>
+   <tr>
    <td>Cloud Native Runtimes
    </td>
    <td>&check;
@@ -271,6 +263,18 @@ The following table lists the packages contained in each profile:
    </td>
   </tr>
   <tr>
+   <td>Supply Chain Choreographer
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+   <td>Supply Chain Security Tools - Scan</td>
+   <td>&check;</td><td></td>
+  </tr>
+  <tr>
    <td>Tanzu Build Service
    </td>
    <td>&check;
@@ -285,10 +289,6 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-  </tr>
-  <tr>
-   <td>Tanzu Supply Chain Security Tools - Scan</td>
-   <td>&check;</td><td></td>
   </tr>
   <tr>
    <td>Tekton
