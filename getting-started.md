@@ -1029,7 +1029,7 @@ This allows Service Operators, who are responsible for the lifecycle and managem
 services, greater control and flexibility in the services they provide.
 
 For information on each of the Services Toolkit components, including the use cases they unlock and API reference guides, see 
-[Services Toolkit component documentation](https://docs.vmware.com/en/Services-Toolkit/0.4/services-toolkit-0-4/GUID-overview.html).
+[Services Toolkit component documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.4/services-toolkit-0-4/GUID-overview.html).
 
 Following are a number of use cases enabled by the Services Toolkit as part of Tanzu Application Platform.
 
