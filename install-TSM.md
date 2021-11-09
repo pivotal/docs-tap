@@ -2,11 +2,11 @@
 
 This topic describes the workaround for using Tanzu Service Mesh with TAP. You cannot install TAP on a cluster that has Tanzu Service Mesh attached. If you want to install TAP on a cluster where Tanzu Service Mesh is attached, follow the procedure below.
 
-This workaround describes how Tanzu Service Mesh can be configured to ignore the TAP namespaces. This allows to install TAP, while Tanzu Service Mesh continues to satisfy other connectivity concerns.
+This workaround describes how Tanzu Service Mesh can be configured to ignore the TAP namespaces. This allows you to install TAP, while Tanzu Service Mesh continues to satisfy other connectivity concerns.
 
 `Note:` TAP workloads are unable to use Tanzu Service Mesh features like Global Namespace, Mutual Transport Layer Security authentication (mTLS), retries, and timeouts.
 
-For information about Tanzu Service Mesh, see Tanzu Service Mesh Documentation.
+For information about Tanzu Service Mesh, see the [Tanzu Service Mesh Documentation](https://docs.vmware.com/en/VMware-Tanzu-Service-Mesh/index.html).
 
 ## Install on a Cluster Attached to Tanzu Service Mesh
 This procedure assumes you have a cluster attached to Tanzu Service Mesh, and that you have not yet installed TAP.
