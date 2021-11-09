@@ -18,7 +18,7 @@ into this Tanzu Application Platform documentation site.
 
 + [Learning Center for Tanzu Application Platform](learning-center/about.md)
 
-+ [Services Toolkit](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.4/services-toolkit-0-4/GUID-overview.html)
++ [Services Toolkit](https://docs.vmware.com/en/SCP-Toolkit/0.3/scp-toolkit-0-3/GUID-overview.html)
 
 + [Supply Chain Choreographer for VMware Tanzu](scc/about.html)
 
