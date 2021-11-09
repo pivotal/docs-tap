@@ -15,11 +15,10 @@ into this Tanzu Application Platform documentation site.
 + [Cloud Native Runtimes for VMware Tanzu](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-cnr-overview.html)
 
 + [Convention Service for VMware Tanzu](convention-service/about.md)
- 
+
 + [Learning Center for Tanzu Application Platform](learning-center/about.md)
 
-
-+ [Services Toolkit](https://docs.vmware.com/en/Services-Toolkit/0.4/services-toolkit-0-4/GUID-overview.html)
++ [Services Toolkit](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.4/services-toolkit-0-4/GUID-overview.html)
 
 + [Supply Chain Choreographer for VMware Tanzu](scc/about.html)
 
