@@ -518,9 +518,9 @@ with your relevant values. Run:
     ```
 
 1. To access the Tanzu Application Platform GUI, use the `baseURL` location you specified above. This consists of the `EXTERNAL-IP` with the default port of 7000. Run:
-```
-http://EXTERNAL-IP:7000
-```
+    ```
+    http://EXTERNAL-IP:7000
+    ```
 
 1. If you have any issues, try re-creating the Tanzu Application Platform Pod by running:
 
