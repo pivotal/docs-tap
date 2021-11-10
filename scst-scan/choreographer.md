@@ -352,13 +352,14 @@ EOF
 **NOTE:** Resources can take time to run to completion. The build image step with Tanzu Build Service takes several minutes to build.
 
 Notice the resources be created:
+
 1. `workload`: Workload is defined
-2. `scantemplate`: Scan Templates will display as each scan type occurs
-3. `gitrepository`: `STATUS` Fetched revision fills in
-4. `sourcescan`: The source scan displays `SCANNEDREPOSITORY` and `SCANNEDREVISION` once completed
-5. `image.kpack.io`: The build image appears in `LATESTIMAGE`
-6. `imagescan`: The image scan displays `SCANNEDIMAGE` once completed
-7. `pod`: Pods appear during scans and when the image is being built
+1. `scantemplate`: Scan Templates will display as each scan type occurs
+1. `gitrepository`: `STATUS` Fetched revision fills in
+1. `sourcescan`: The source scan displays `SCANNEDREPOSITORY` and `SCANNEDREVISION` once completed
+1. `image.kpack.io`: The build image appears in `LATESTIMAGE`
+1. `imagescan`: The image scan displays `SCANNEDIMAGE` once completed
+1. `pod`: Pods appear during scans and when the image is being built
 
 During processing and upon completion, try performing `kubectl describe` on the `sourcescan` and `imagescan` resources to see the `Status` section.
 
