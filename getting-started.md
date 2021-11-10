@@ -916,9 +916,9 @@ When a developer deploys an application with an image from an unmatched pattern 
 The Sign add-on outputs logs for the above scenarios.
 To have a look at the logs, the platform operator runs:
 
-    ```
-    kubectl logs -n image-policy-system -l "signing.run.tanzu.vmware.com/application-name=image-policy-webhook" -f
-    ```
+```console
+kubectl logs -n image-policy-system -l "signing.run.tanzu.vmware.com/application-name=image-policy-webhook" -f
+```
 
 
 ### Scan & Store: Introducing Vulnerability Scanning & Metadata Storage to your Supply Chain

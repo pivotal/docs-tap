@@ -1322,56 +1322,56 @@ suffix to hostnames for instances.
 By default the workshop portal and workshop sessions will be accessible over HTTP connections. If you wish to use secure HTTPS connections, you must have access to a wildcard SSL certificate for the domain under which you wish to host the workshops. You cannot use a self signed certificate.
 Wildcard certificates can be created using letsencrypt <https://letsencrypt.org/>_. Once you have the certificate, you can define the certificate and privateKey properties under the ingressSecret property to specify the certificate on the configuration yaml.
 
-    ```
-    ingressSecret:
-     certificate: MIIC2DCCAcCgAwIBAgIBATANBgkqh ...
-     privateKey: MIIEpgIBAAKCAQEA7yn3bRHQ5FHMQ ...
-    ```
+```
+ingressSecret:
+ certificate: MIIC2DCCAcCgAwIBAgIBATANBgkqh ...
+ privateKey: MIIEpgIBAAKCAQEA7yn3bRHQ5FHMQ ...
+```
 
-    If you already has a TLS secret, you can copy it to the educates namespace or that one you defined, and use the secretName property.
+If you already has a TLS secret, you can copy it to the educates namespace or that one you defined, and use the secretName property.
 
-    ```
-    ingressSecret:
-     secretName: workshops.example.com-tls
-    ```
+```
+ingressSecret:
+ secretName: workshops.example.com-tls
+```
 
 #### Specifying the ingress class
 
 Any ingress routes created will use the default ingress class. If you have multiple ingress class types available, and you need to override which is used, so define the ingressClass property on the configuration yaml:
 
+```
+ingressClass: contour
+```
+
+1. Install Learning Center Operator by running:
+
+    ```shell
+    tanzu package install learning-center --package-name learningcenter.tanzu.vmware.com --version 1.0.14-build.1 -f learning-center-config.yaml
     ```
-    ingressClass: contour
+
+    The command above will create a default namespace in your Kubernetes cluster called `educates`, and the operator along with any
+    required namespaced resources will be created in it. A set of custom resource definitions and a global cluster role binding will also be created.
+    The list of resources you should see being created are:
+
+    ```shell
+    customresourcedefinition.apiextensions.k8s.io/workshops.training.eduk8s.io created
+    customresourcedefinition.apiextensions.k8s.io/workshopsessions.training.eduk8s.io created
+    customresourcedefinition.apiextensions.k8s.io/workshopenvironments.training.eduk8s.io created
+    customresourcedefinition.apiextensions.k8s.io/workshoprequests.training.eduk8s.io created
+    customresourcedefinition.apiextensions.k8s.io/trainingportals.training.eduk8s.io created
+    serviceaccount/eduk8s created
+    customresourcedefinition.apiextensions.k8s.io/systemprofiles.training.eduk8s.io created
+    clusterrolebinding.rbac.authorization.k8s.io/eduk8s-cluster-admin created
+    deployment.apps/eduk8s-operator created
     ```
 
-4. Install Learning Center Operator by running:
+    You can check that the operator deployed okay by running:
 
-   ```shell
-   tanzu package install learning-center --package-name learningcenter.tanzu.vmware.com --version 1.0.14-build.1 -f learning-center-config.yaml
-   ```
+    ```shell
+    kubectl get all -n educates
+    ```
 
-   The command above will create a default namespace in your Kubernetes cluster called `educates`, and the operator along with any
-   required namespaced resources will be created in it. A set of custom resource definitions and a global cluster role binding will also be created.
-   The list of resources you should see being created are:
-
-   ```shell
-   customresourcedefinition.apiextensions.k8s.io/workshops.training.eduk8s.io created
-   customresourcedefinition.apiextensions.k8s.io/workshopsessions.training.eduk8s.io created
-   customresourcedefinition.apiextensions.k8s.io/workshopenvironments.training.eduk8s.io created
-   customresourcedefinition.apiextensions.k8s.io/workshoprequests.training.eduk8s.io created
-   customresourcedefinition.apiextensions.k8s.io/trainingportals.training.eduk8s.io created
-   serviceaccount/eduk8s created
-   customresourcedefinition.apiextensions.k8s.io/systemprofiles.training.eduk8s.io created
-   clusterrolebinding.rbac.authorization.k8s.io/eduk8s-cluster-admin created
-   deployment.apps/eduk8s-operator created
-   ```
-
-   You can check that the operator deployed okay by running:
-
-   ```shell
-   kubectl get all -n educates
-   ```
-
-   The Pod for the operator should be marked as running.
+    The Pod for the operator should be marked as running.
 
 ### Procedure to install the Self-Guided Tour Training Portal and Workshop
 

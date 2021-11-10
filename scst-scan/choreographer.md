@@ -367,34 +367,35 @@ During processing and upon completion, try performing `kubectl describe` on the 
 ## Querying the Metadata Store for Vulnerability Results using the Insight CLI
 
 1. In a separate terminal, set up a port-forwarding to the Metadata Store by running:
-```bash
-kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store
-```
 
-2. Using the `MetadataURL` field in the `kubectl describe` `sourcescan` or `imagescan` output, use the `insight` CLI to query the Metadata Store for the scan results that were outputted by the Grype Scanner. Run:
+    ```bash
+    kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store
+    ```
 
-```bash
-# Configure Insight CLI to Authenticate to Metadata Store
-export METADATA_STORE_TOKEN=$(kubectl get secrets -n tap-install -o jsonpath="{.items[?(@.metadata.annotations['kubernetes\.io/service-account\.name']=='metadata-store-tap-install-sa')].data.token}" | base64 -d)
-insight config set-target https://metadata-store-app.metadata-store.svc.cluster.local:8443 \
-  --ca-cert /tmp/storeca.crt \
-  --access-token $METADATA_STORE_TOKEN
+1. Using the `MetadataURL` field in the `kubectl describe` `sourcescan` or `imagescan` output, use the `insight` CLI to query the Metadata Store for the scan results that were outputted by the Grype Scanner. Run:
 
-# Query Source Scan
-kubectl describe sourcescan tanzu-java-web-app-source-scan
-insight source get \
-  --repo <insert repo here> \
-  --commit <insert sha here> \
-  --org <insert org here>
+    ```bash
+    # Configure Insight CLI to Authenticate to Metadata Store
+    export METADATA_STORE_TOKEN=$(kubectl get secrets -n tap-install -o jsonpath="{.items[?(@.metadata.annotations['kubernetes\.io/service-account\.name']=='metadata-store-tap-install-sa')].data.token}" | base64 -d)
+    insight config set-target https://metadata-store-app.metadata-store.svc.cluster.local:8443 \
+      --ca-cert /tmp/storeca.crt \
+      --access-token $METADATA_STORE_TOKEN
 
-# Query Image Scan
-kubectl describe imagescan tanzu-java-web-app-image-scan
-# Note: the `digest` flag has the form: sha256:841abf253a244adba79844219a045958ce3a6da2671deea3910ea773de4631e1
-insight image get \
-  --digest <insert digest here>
+    # Query Source Scan
+    kubectl describe sourcescan tanzu-java-web-app-source-scan
+    insight source get \
+      --repo <insert repo here> \
+      --commit <insert sha here> \
+      --org <insert org here>
 
-# Query By CVE
-# Note: the `cveid` flag has the form: CVE-2021-3711
-insight vulnerabilities get \
-  --cveid <insert CVE here>
-```
+    # Query Image Scan
+    kubectl describe imagescan tanzu-java-web-app-image-scan
+    # Note: the `digest` flag has the form: sha256:841abf253a244adba79844219a045958ce3a6da2671deea3910ea773de4631e1
+    insight image get \
+      --digest <insert digest here>
+
+    # Query By CVE
+    # Note: the `cveid` flag has the form: CVE-2021-3711
+    insight vulnerabilities get \
+      --cveid <insert CVE here>
+    ```
