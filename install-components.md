@@ -1318,9 +1318,15 @@ To install Tanzu Learning Center, see the following sections.
      secretName: workshops.example.com-tls
    ```
    #### Specifying the ingress class
-   Any ingress routes created will use the default ingress class. If you have multiple ingress class types available, and you need to override which is used, so define the ingressClass property on the configuration yaml:
+   Any ingress routes created will use the default ingress class. If you have multiple ingress class types available, 
+   and you need to override which is used, so define the ingressClass property on the configuration yaml:
    ```
    ingressClass: contour
+   ```
+   If you have multiple ingress controllers make sure you select the correct one. For instance, Cloud Native Runtimes (CNR)
+   deploys two ingress controllers. You will need to use contour-external for Learning Center.
+   ```
+   ingressClass: contour-external
    ```
 
 4. Install Learning Center Operator:
