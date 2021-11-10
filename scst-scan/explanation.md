@@ -2,7 +2,7 @@
 
 With the Scan Controller and Grype Scanner installed (see Install Supply Chain Security Tools - Scan
 from [Installing Individual Packages](../install-components.html#install-scst-scan),
-the following Custom Resource Definitions (CRDs) are now available.
+the following Custom Resource Definitions (CRDs) are now available:
 
 ```console
 $ kubectl get crds | grep scanning.apps.tanzu.vmware.com
@@ -13,11 +13,13 @@ sourcescans.scanning.apps.tanzu.vmware.com               2021-09-09T15:22:07Z
 ```
 
 ## About Source and Image Scans
+
 Both SourceScan (`sourcescans.scanning.apps.tanzu.vmware.com`) and ImageScan (`imagescans.scanning.apps.tanzu.vmware.com`) define what will be scanned and ScanTemplate (`scantemplates.scanning.apps.tanzu.vmware.com`) will define how to run a scan. We have provided five custom resources (CRs) pre-installed for use. You can either use them as-is, or as samples to create your own.
 
 To view the pre-installed Scan Template CRs, run:
+
 ```console
-$ kubectl get scantemplates
+kubectl get scantemplates
 ```
 
 You will see the following scan templates:

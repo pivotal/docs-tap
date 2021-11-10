@@ -35,14 +35,14 @@ To add the Tanzu Application Platform package repository:
 
     ```bash
     tanzu package repository add tanzu-tap-repository \
-      --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.3.0-build.8 \
+      --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.3.0 \
       --namespace tap-install
     ```
     For example:
 
     ```bash
     $ tanzu package repository add tanzu-tap-repository \
-        --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.3.0-build.8 \
+        --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.3.0 \
         --namespace tap-install
     \ Adding package repository 'tanzu-tap-repository'...
 
@@ -60,8 +60,9 @@ To add the Tanzu Application Platform package repository:
     $ tanzu package repository get tanzu-tap-repository --namespace tap-install
     - Retrieving repository tap...
     NAME:          tanzu-tap-repository
-    VERSION:       48756
-    REPOSITORY:    registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.3.0-build.8
+    VERSION:       3769
+    REPOSITORY:    registry.tanzu.vmware.com/tanzu-application-platform/tap-packages
+    TAG:           0.3.0
     STATUS:        Reconcile succeeded
     REASON:
     ```
@@ -77,30 +78,37 @@ To add the Tanzu Application Platform package repository:
     ```console
     $ tanzu package available list --namespace tap-install
     / Retrieving available packages...
-    accelerator.apps.tanzu.vmware.com                    Application Accelerator for VMware Tanzu                                  Used to create new projects and configurations.
-    api-portal.tanzu.vmware.com                          API portal                                                                A unified user interface to enable search, discovery and try-out of API endpoints at ease.
-    appliveview.tanzu.vmware.com                         Application Live View for VMware Tanzu                                    App for monitoring and troubleshooting running apps
-    buildservice.tanzu.vmware.com                        Tanzu Build Service                                                       Tanzu Build Service enables the building and automation of containerized software workflows securely and at scale.
-    cartographer.tanzu.vmware.com                        Cartographer                                                              Kubernetes native Supply Chain Choreographer.
-    cnrs.tanzu.vmware.com                                Cloud Native Runtimes                                                     Cloud Native Runtimes is a serverless runtime based on Knative
-    controller.conventions.apps.tanzu.vmware.com         Convention Service for VMware Tanzu                                       Convention Service enables app operators to consistently apply desired runtime configurations to fleets of workloads.
-    controller.source.apps.tanzu.vmware.com              Tanzu Source Controller                                                   Tanzu Source Controller enables workload create/update from source code.
-    developer-conventions.tanzu.vmware.com               Tanzu App Platform Developer Conventions                                  Developer Conventions
-    grype.scanning.apps.tanzu.vmware.com                 Grype Scanner for Supply Chain Security Tools for VMware Tanzu - Scan     Default scan templates using Anchore Grype
-    image-policy-webhook.signing.run.tanzu.vmware.com    Image Policy Webhook                                                      The Image Policy Webhook allows platform operators to define a policy that will use cosign to verify signatures of container images
-    ootb-supply-chain-basic.tanzu.vmware.com             Tanzu App Platform Out of the Box Supply Chain Basic                      Out of the Box Supply Chain Basic
-    ootb-supply-chain-testing.tanzu.vmware.com           Tanzu App Platform Out of the Box Supply Chain with Testing               Out of the Box Supply Chain with Testing
-    ootb-supply-chain-testing-scanning.tanzu.vmware.com  Tanzu App Platform Out of the Box Supply Chain with Testing and Scanning  Out of the Box Supply Chain with Testing and Scanning
-    ootb-templates.tanzu.vmware.com                      Tanzu App Platform Out of the Box Templates                               Out of the Box Templates  
-    scanning.apps.tanzu.vmware.com                       Supply Chain Security Tools for VMware Tanzu - Scan                       Scan for vulnerabilities and enforce policies directly within Kubernetes native Supply Chains.
-    scst-store.tanzu.vmware.com                          Tanzu Supply Chain Security Tools - Store                                 The Metadata Store enables saving and querying image, package, and vulnerability data.
-    service-bindings.labs.vmware.com                     Service Bindings for Kubernetes                                           Service Bindings for Kubernetes implements the Service Binding Specification.
-    services-toolkit.tanzu.vmware.com                    Services Toolkit                                                          The Services Toolkit enables the management, lifecycle, discoverability and connectivity of Service Resources (databases, message queues, DNS records, etc.).
-    tap-gui.tanzu.vmware.com                             Tanzu Application Platform GUI                                            web app graphical user interface for Tanzu Application Platform
-    tap.tanzu.vmware.com                                 Tanzu Application Platform                                                Package to install a set of Tanzu Application Platform components to get you started based on your use case.
+      NAME                                                 DISPLAY-NAME                                                              SHORT-DESCRIPTION
+      accelerator.apps.tanzu.vmware.com                    Application Accelerator for VMware Tanzu                                  Used to create new projects and configurations.
+      api-portal.tanzu.vmware.com                          API portal                                                                A unified user interface to enable search, discovery and try-out of API endpoints at ease.
+      appliveview.tanzu.vmware.com                         Application Live View for VMware Tanzu                                    App for monitoring and troubleshooting running apps
+      buildservice.tanzu.vmware.com                        Tanzu Build Service                                                       Tanzu Build Service enables the building and automation of containerized software workflows securely and at scale.
+      cartographer.tanzu.vmware.com                        Cartographer                                                              Kubernetes native Supply Chain Choreographer.
+      cnrs.tanzu.vmware.com                                Cloud Native Runtimes                                                     Cloud Native Runtimes is a serverless runtime based on Knative
+      controller.conventions.apps.tanzu.vmware.com         Convention Service for VMware Tanzu                                       Convention Service enables app operators to consistently apply desired runtime configurations to fleets of workloads.
+      controller.source.apps.tanzu.vmware.com              Tanzu Source Controller                                                   Tanzu Source Controller enables workload create/update from source code.
+      developer-conventions.tanzu.vmware.com               Tanzu App Platform Developer Conventions                                  Developer Conventions
+      grype.scanning.apps.tanzu.vmware.com                 Grype Scanner for Supply Chain Security Tools for VMware Tanzu - Scan     Default scan templates using Anchore Grype
+      image-policy-webhook.signing.run.tanzu.vmware.com    Image Policy Webhook                                                      The Image Policy Webhook allows platform operators to define a policy that will use cosign to verify signatures of container images
+      learningcenter.tanzu.vmware.com                      Learning Center for Tanzu Application Platform                            Guided technical workshops
+      ootb-supply-chain-basic.tanzu.vmware.com             Tanzu App Platform Out of The Box Supply Chain Basic                      Out of The Box Supply Chain Basic.
+      ootb-supply-chain-testing-scanning.tanzu.vmware.com  Tanzu App Platform Out of The Box Supply Chain with Testing and Scanning  Out of The Box Supply Chain with Testing and Scanning.
+      ootb-supply-chain-testing.tanzu.vmware.com           Tanzu App Platform Out of The Box Supply Chain with Testing               Out of The Box Supply Chain with Testing.
+      ootb-templates.tanzu.vmware.com                      Tanzu App Platform Out of The Box Templates                               Out of The Box Templates.
+      scanning.apps.tanzu.vmware.com                       Supply Chain Security Tools for VMware Tanzu - Scan                       Scan for vulnerabilities and enforce policies directly within Kubernetes native Supply Chains.
+      scst-store.tanzu.vmware.com                          Tanzu Supply Chain Security Tools - Store                                 The Metadata Store enables saving and querying image, package, and vulnerability data.
+      service-bindings.labs.vmware.com                     Service Bindings for Kubernetes                                           Service Bindings for Kubernetes implements the Service Binding Specification.
+      services-toolkit.tanzu.vmware.com                    Services Toolkit                                                          The Services Toolkit enables the management, lifecycle, discoverability and connectivity of Service Resources (databases, message queues, DNS records, etc.).
+      spring-boot-conventions.tanzu.vmware.com             Tanzu Spring Boot Conventions Server                                      Default Spring Boot convention server.
+      tap-gui.tanzu.vmware.com                             Tanzu Application Platform GUI                                            web app graphical user interface for Tanzu Application Platform
+      tap.tanzu.vmware.com                                 Tanzu Application Platform                                                Package to install a set of TAP components to get you started based on your use case.
+      workshops.learningcenter.tanzu.vmware.com            Workshop Building Tutorial                                                Workshop Building Tutorial
     ```
+
 ## <a id='about-package-profiles'></a> About Tanzu Application Platform Package Profiles
-Tanzu Application Platform can be installed through pre-defined profiles or through individual packages. This section explains how to install a profile.
+
+Tanzu Application Platform can be installed through pre-defined profiles or through individual
+packages. This section explains how to install a profile.
 
 Tanzu Application Platform contains the following two profiles:
 
@@ -308,9 +316,8 @@ The following table lists the packages contained in each profile:
   </tr>
 </table>
 
-<sup>\*</sup> Only one supply chain should be installed at any given time. More
-information about how to switch from one to another provided in the Getting
-Started guide.
+<sup>\*</sup> Only one supply chain should be installed at any given time.
+For information on switching from one supply chain to another, see [Getting Started with Tanzu Application Platform](getting-started.md).
 
 ## <a id='install-profile'></a> Install a Tanzu Application Platform Profile
 
@@ -359,27 +366,27 @@ install by changing the `profile` value.
       * Examples:
         * Harbor `kp_default_repository: "my-harbor.io/my-project/build-service"`
         * Dockerhub `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`
-        * GCR `kp_default_repository: "gcr.io/my-project/build-service"`
+        * Google Cloud Registry `kp_default_repository: "gcr.io/my-project/build-service"`
     - `<KP-DEFAULT-REPO-USERNAME>` is the username that can write to the `<KP-DEFAULT-REPO>`. You should be able to `docker push` to this location with this credential.
-      * For GCR, use `kp_default_repository_username: _json_key`
-    - `<KP-DEFAULT-REPO-PASSWORD>` is the password for the user that can write to the `<KP-DEFAULT-REPO>`. You should be able to `docker push` to this location with this credential.
-      * For GCR, use the contents of the service account json key: `kp_default_repository_password: "$(cat service-account.json)"`
+      * For Google Cloud Registry, use `kp_default_repository_username: _json_key`
+    - `<KP-DEFAULT-REPO-PASSWORD>` is the password for the user that can write to the `<KP-DEFAULT-REPO>`. You can `docker push` to this location with these credentials.
+      * For Google Cloud Registry, use the contents of the service account json key: `kp_default_repository_password: "$(cat service-account.json)"`
     - `<SERVER-NAME>` is the hostname of the registry server.
       * Examples:
-         * Harbor `server: "my-harbor.io"` 
+         * Harbor `server: "my-harbor.io"`
          * Dockerhub `server: "https://index.docker.io/v1/"`
-         * GCR `server: "gcr.io"`
-    - `<REPO-NAME>` is the location in the registry where workload images will be written to.
+         * Google Cloud Registry `server: "gcr.io"`
+    - `<REPO-NAME>` is the location workload images will be stored in the registry. Images will be written to `<SERVER-NAME>/<REPO-NAME>/<workload-name>`.
        * Examples:
           * Harbor `repository: "my-project/supply-chain"`
-          * Dockerhub `repository: "my-dockerhub-user/supply-chain"`
-          * GCR `repository: "my-project/supply-chain"`
+          * Dockerhub `repository: "my-dockerhub-user"`
+          * Google Cloud Registry `repository: "my-project/supply-chain"`
     - `<DOMAIN-NAME>` has a value such as `educates.example.com`.
 
     To view possible configuration settings for a package, run:
 
     ```bash
-    tanzu package available get tap.tanzu.vmware.com/0.3.0-build.8 --values-schema --namespace tap-install
+    tanzu package available get tap.tanzu.vmware.com/0.3.0 --values-schema --namespace tap-install
     ```
 
     >**Note:** The `tap.tanzu.vmware.com` package does not show all configuration settings for packages it plans to install. The package only shows top level keys.
@@ -423,7 +430,7 @@ install by changing the `profile` value.
 1. Install the package by running:
 
     ```bash
-    tanzu package install tap -p tap.tanzu.vmware.com -v 0.3.0-build.8 --values-file tap-values.yml -n tap-install
+    tanzu package install tap -p tap.tanzu.vmware.com -v 0.3.0 --values-file tap-values.yml -n tap-install
     ```
 
 1. Verify the package install by running:
@@ -451,7 +458,7 @@ To install Tanzu Application Platform GUI:
 
 1. Extract the Blank Software Catalog from the Tanzu Application Network on your Git repository of choice. You'll link to that `catalog-info.yaml` file when you configure your catalog below.
 
-1. Obtain you the `External IP` of your LoadBalancer via:
+1. Obtain the `External IP` of your LoadBalancer by running:
    ```
    kubectl get svc -n tap-gui
    ```
@@ -500,7 +507,6 @@ with your relevant values. Run:
     For example:
 
     ```console
-
     $ tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version 0.3.0 --values-file tap-values-file.yml -n tap-install
     | Updating package 'tap'
     | Getting package install for 'tap'
@@ -513,10 +519,10 @@ with your relevant values. Run:
     Updated package install 'tap' in namespace 'tap-install'
     ```
 
-1. To access Tanzu Application Platform GUI, use the `baseURL` location you specified above. This consists of the `EXTERNAL-IP` alpng with the default port of 7000
-```
-http://EXTERNAL-IP:7000
-```
+1. To access the Tanzu Application Platform GUI, use the `baseURL` location you specified above. This consists of the `EXTERNAL-IP` with the default port of 7000. Run:
+    ```
+    http://EXTERNAL-IP:7000
+    ```
 
 1. If you have any issues, try re-creating the Tanzu Application Platform Pod by running:
 

@@ -71,16 +71,16 @@ To fix this problem:
 
 1. Use `tanzu package installed update` command after the first use of `tanzu package install` command if you want to update the package.
 
-## <a id='workload-no-build'></a> After creating a workload there are no build logs
+## <a id='workload-no-build'></a> After creating a workload, there are no build logs
 
-After creating a workload there are no logs.
+After creating a workload, there are no logs.
 
 ### Symptom
 
-You create a workload but no logs appear when you check the logs with:
+You create a workload, but no logs appear when you check the logs with:
 
-```
-tanzu apps workload tail <workload-name> --since 10m --timestamp
+```bash
+tanzu apps workload tail workload-name --since 10m --timestamp
 ```
 
 ### Cause
@@ -92,7 +92,7 @@ Common causes include:
 
 ### Solution
 
-To fix this problem try the following commands to get the relevant error message:
+To fix this problem, try these commands to get the relevant error message:
 
 - `kubectl get clusterbuilder.kpack.io -o yaml`
 - `kubectl get image.kpack.io <workload-name> -o yaml`

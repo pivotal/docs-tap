@@ -117,15 +117,16 @@ We will update the `tap-gui-values.yaml` you used at install-time to point to th
 
 1. Update your installation using the `tanzu` CLI:
 
-```shell
-$ tanzu package installed update tap-gui \
-  --version <package-version> \
-  -f <values-file>
-```
-You can check the status of this update with:
-```shell
-$ tanzu package installed list
-```
+    ```shell
+    tanzu package installed update tap-gui \
+      --version <package-version> \
+      -f <values-file>
+    ```
+
+1. Check the status of this update by running:
+
+    ```shell
+    tanzu package installed list
+    ```
 
 1. Navigate to the `Docs` section of your catalog and view the TechDocs pages to verify that the content is being loaded from the S3 bucket successfully.
-

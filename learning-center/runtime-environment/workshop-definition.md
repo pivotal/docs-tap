@@ -1424,7 +1424,8 @@ config:
   - name: WEBDAV_PASSWORD
 ```
 
-The URL endpoint for accessing the WebDAV server is the same as the workshop session, with ``/webdav/`` path added. This can be constructed from the terminal using:
+The URL endpoint for accessing the WebDAV server is the same as the workshop session, with
+`/webdav/` path added. This can be constructed from the terminal using:
 
 ```text
 $INGRESS_PROTOCOL://$SESSION_NAMESPACE.$INGRESS_DOMAIN/webdav/

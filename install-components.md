@@ -273,6 +273,7 @@ To install Convention Controller:
     ```
 
     For example:
+
     ```bash
     $ tanzu package available list controller.conventions.apps.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for controller.conventions.apps.tanzu.vmware.com...
@@ -344,6 +345,7 @@ To install Convention Controller:
     ```
 
     For example:
+
     ```bash
     $ kubectl get pods -n conventions-system
     NAME                                             READY   STATUS    RESTARTS   AGE
@@ -371,6 +373,7 @@ To install Source Controller:
     ```
 
     For example:
+
     ```bash
     $ tanzu package available list controller.source.apps.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for controller.source.apps.tanzu.vmware.com...
@@ -389,6 +392,7 @@ To install Source Controller:
     - `VERSION-NUMBER` is the version of the package listed in step 1 above.
 
     For example:
+
     ```bash
     $ tanzu package available get controller.source.apps.tanzu.vmware.com/0.1.2 --values-schema --namespace tap-install
     ```
@@ -442,6 +446,7 @@ To install Source Controller:
     ```
 
     For example:
+
     ```bash
     $ kubectl get pods -n source-system
     NAME                                        READY   STATUS    RESTARTS   AGE
@@ -631,7 +636,7 @@ To install Tanzu Build Service using the Tanzu CLI:
     For more information about values schema options, see the individual product documentation.
 
 
-1. Gather values schema.
+1. Gather the values schema by running:
 
     ```bash
     tanzu package available get buildservice.tanzu.vmware.com/1.3.1 --values-schema --namespace tap-install
@@ -773,22 +778,22 @@ Install the default Supply Chain, called Out of the Box Supply Chain Basic, by r
 
 1. Gather the values schema:
 
-    ```bash
+    ```console
     tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.3.0-build.5 --values-schema -n tap-install
     ```
 
     For example:
 
-   ```console
-   $ tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.3.0-build.5 --values-schema -n tap-install
-   | Retrieving package details for ootb-supply-chain-basic.tanzu.vmware.com/0.3.0...
+    ```console
+    $ tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.3.0-build.5 --values-schema -n tap-install
+    | Retrieving package details for ootb-supply-chain-basic.tanzu.vmware.com/0.3.0-build.5...
 
     KEY                  DEFAULT          TYPE    DESCRIPTION
     registry.repository  <nil>            string  Name of the repository in the image registry server where the application images from the workloads should be pushed to (required).
     registry.server      index.docker.io  string  Name of the registry server where application images should be pushed to.
     service_account      default          string  Name of the service account in the namespace where the Workload is submitted to utilize for providing registry credentials to Tanzu Build Service (TBS) Image objects as well as deploying the application.
     cluster_builder      default          string  Name of the Tanzu Build Service (TBS) ClusterBuilder to use by default on image objects managed by the supply chain.
-   ```
+    ```
 
 
 1. Create a `ootb-supply-chain-values.yaml` using the following sample as a guide.
@@ -835,7 +840,7 @@ To install developer conventions:
     $ tanzu package available list developer-conventions.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for developer-conventions.tanzu.vmware.com
       NAME                                    VERSION        RELEASED-AT
-      developer-conventions.tanzu.vmware.com  0.3.0-build.1  2021-10-19T00:00:00Z
+      developer-conventions.tanzu.vmware.com  0.3.0          2021-10-19T00:00:00Z
     ```
 
 1. Install the package by running:
@@ -843,7 +848,7 @@ To install developer conventions:
     ```bash
     tanzu package install developer-conventions \
       --package-name developer-conventions.tanzu.vmware.com \
-      --version 0.3.0-build.1 \
+      --version 0.3.0 \
       --namespace tap-install
     ```
 
@@ -859,7 +864,7 @@ To install developer conventions:
     | Retrieving installation details for developer-conventions...
     NAME:                    developer-conventions
     PACKAGE-NAME:            developer-conventions.tanzu.vmware.com
-    PACKAGE-VERSION:         0.3.0-build.1
+    PACKAGE-VERSION:         0.3.0
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
@@ -876,12 +881,13 @@ To install Spring Boot conventions:
 
 1. Get the exact name and version information for the Spring Boot conventions package to be installed by running:
 
-    ```bash
+    ```console
     tanzu package available list spring-boot-conventions.tanzu.vmware.com --namespace tap-install
     ```
 
     For example:
-    ```
+
+    ```console
     $ tanzu package available list spring-boot-conventions.tanzu.vmware.com --namespace tap-install
     / Retrieving package versions for spring-boot-conventions.tanzu.vmware.com...
       NAME                                       VERSION   RELEASED-AT
@@ -1254,131 +1260,152 @@ field in the values file.
 
 To install Tanzu Learning Center, see the following sections.
 
-### Prerequisites for Learning Center 
+### Prerequisites for Learning Center
 **Required**
 
 - [Tanzu Application Platform Prerequisites](install-general.md#prereqs)
 
 - The cluster must have an ingress router configured. Only a basic deployment of the ingress controller is usually required.
 
-- The operator when deploying instances of the workshop environments needs to be able to expose them via an external URL for access. For the custom domain you are using, DNS must have been configured with a wildcard domain to forward all requests for sub domains of the custom domain, to the ingress router of the Kubernetes cluster 
+- The operator when deploying instances of the workshop environments needs to be able to expose them via an external URL for access. For the custom domain you are using, DNS must have been configured with a wildcard domain to forward all requests for sub domains of the custom domain, to the ingress router of the Kubernetes cluster
 
-- By default the workshop portal and workshop sessions will be accessible over HTTP connections. If you wish to use secure HTTPS connections, you must have access to a wildcard SSL certificate for the domain under which you wish to host the workshops. You cannot use a self signed certificate. 
+- By default the workshop portal and workshop sessions will be accessible over HTTP connections. If you wish to use secure HTTPS connections, you must have access to a wildcard SSL certificate for the domain under which you wish to host the workshops. You cannot use a self signed certificate.
 
 - Any ingress routes created will use the default ingress class. If you have multiple ingress class types available, and you need to override which is used.
 
 ### Procedure to install Learning Center
 1. List version information for the package by running:
 
-   ```shell
-   $ tanzu package available list learningcenter.tanzu.vmware.com --namespace tap-install
-   ```
+    ```shell
+    tanzu package available list learningcenter.tanzu.vmware.com --namespace tap-install
+    ```
 
-   Example output:
-   ```shell
+    Example output:
+
+    ```shell
      NAME                             VERSION        RELEASED-AT
-     learningcenter.tanzu.vmware.com  1.0.14-build.1  2021-10-22 17:02:13 -0400 EDT
-   ```
+     learningcenter.tanzu.vmware.com  1.0.14-build.1 2021-10-22 17:02:13 -0400 EDT
+    ```
+
 2. (Optional) If you want to see all the configurable parameters on this package you can run the following command:
-   ```shell
-   $ tanzu package available get learningcenter.tanzu.vmware.com/1.0.8-build.1 --values-schema --namespace tap-install
-   ```
+
+    ```shell
+    tanzu package available get learningcenter.tanzu.vmware.com/1.0.14-build.1 --values-schema -- namespace tap-install
+    ```
+
 3. Create a config file (e.g. learning-center-config.yaml) with the following parameters:
+
      ```yaml
      ingressDomain: your-ingress-domain
      ```
-   #### Setting the ingress domain
 
-   When deploying workshop environment instances, the operator must be able to expose the instances
-   through an external URL. This access is needed to discover the domain name that can be used as a
-   suffix to hostnames for instances.
-   - Make sure to replace the `your-ingress-domain` domain with the domain name for your Kubernetes cluster.
+#### Setting the ingress domain
 
-   > **Note:** For the custom domain you are using, DNS must have been configured with a wildcard domain to forward
-   > all requests for subdomains of the custom domain to the ingress router of the Kubernetes cluster.
+When deploying workshop environment instances, the operator must be able to expose the instances
+through an external URL. This access is needed to discover the domain name that can be used as a
+suffix to hostnames for instances.
 
-   > **Note:** If you are running Kubernetes on your local machine using a system like ``minikube``, and you don't
-   > have a custom domain name that maps to the IP for the cluster, you can use a ``nip.io`` address.
-   > For example, if ``minikube ip`` returned ``192.168.64.1``, you could use the 192.168.64.1.nip.io domain.
-   > Note that you cannot use an address of form ``127.0.0.1.nip.io`` or ``subdomain.localhost``. This will cause a
-   > failure. Internal services needing to connect to each other will connect to themselves instead,
-   > since the address would resolve to the host loopback address of ``127.0.0.1``.
+- Make sure to replace the `your-ingress-domain` domain with the domain name for your Kubernetes cluster.
 
-   #### Enforcing secure connections
-   By default the workshop portal and workshop sessions will be accessible over HTTP connections. If you wish to use secure HTTPS connections, you must have access to a wildcard SSL certificate for the domain under which you wish to host the workshops. You cannot use a self signed certificate.
-   Wildcard certificates can be created using letsencrypt <https://letsencrypt.org/>_. Once you have the certificate, you can define the certificate and privateKey properties under the ingressSecret property to specify the certificate on the configuration yaml.
-   ```
-   ingressSecret:
-     certificate: MIIC2DCCAcCgAwIBAgIBATANBgkqh ...
-     privateKey: MIIEpgIBAAKCAQEA7yn3bRHQ5FHMQ ...
-   ```
-   If you already has a TLS secret, you can copy it to the educates namespace or that one you defined, and use the secretName property.
-   ```
-   ingressSecret:
-     secretName: workshops.example.com-tls
-   ```
-   #### Specifying the ingress class
-   Any ingress routes created will use the default ingress class. If you have multiple ingress class types available, 
-   and you need to override which is used, so define the ingressClass property on the configuration yaml:
-   ```
-   ingressClass: contour
-   ```
-   If you have multiple ingress controllers make sure you select the correct one. For instance, Cloud Native Runtimes (CNR)
-   deploys two ingress controllers. You will need to use contour-external for Learning Center.
-   ```
-   ingressClass: contour-external
-   ```
+> **Note:** For the custom domain you are using, DNS must have been configured with a wildcard domain to forward
+> all requests for subdomains of the custom domain to the ingress router of the Kubernetes cluster.
 
-4. Install Learning Center Operator:
-   ```shell
-   $ tanzu package install learning-center --package-name learningcenter.tanzu.vmware.com --version 1.0.14-build.1 -f learning-center-config.yaml
-   ```
+> **Note:** If you are running Kubernetes on your local machine using a system like `minikube`, and you don't
+> have a custom domain name that maps to the IP for the cluster, you can use a `nip.io` address.
+> For example, if `minikube ip` returned `192.168.64.1`, you could use the `192.168.64.1.nip.io` domain.
+> Note that you cannot use an address of form `127.0.0.1.nip.io` or `subdomain.localhost`. This will cause a
+> failure. Internal services needing to connect to each other will connect to themselves instead,
+> since the address would resolve to the host loopback address of `127.0.0.1`.
 
-   The command above will create a default namespace in your Kubernetes cluster called ``educates``, and the operator along with any
-   required namespaced resources will be created in it. A set of custom resource definitions and a global cluster role binding will also be created.
-   The list of resources you should see being created are:
+#### Enforcing secure connections
 
-   ```shell
-   customresourcedefinition.apiextensions.k8s.io/workshops.training.eduk8s.io created
-   customresourcedefinition.apiextensions.k8s.io/workshopsessions.training.eduk8s.io created
-   customresourcedefinition.apiextensions.k8s.io/workshopenvironments.training.eduk8s.io created
-   customresourcedefinition.apiextensions.k8s.io/workshoprequests.training.eduk8s.io created
-   customresourcedefinition.apiextensions.k8s.io/trainingportals.training.eduk8s.io created
-   serviceaccount/eduk8s created
-   customresourcedefinition.apiextensions.k8s.io/systemprofiles.training.eduk8s.io created
-   clusterrolebinding.rbac.authorization.k8s.io/eduk8s-cluster-admin created
-   deployment.apps/eduk8s-operator created
-   ```
+By default the workshop portal and workshop sessions will be accessible over HTTP connections. If you wish to use secure HTTPS connections, you must have access to a wildcard SSL certificate for the domain under which you wish to host the workshops. You cannot use a self signed certificate.
+Wildcard certificates can be created using letsencrypt <https://letsencrypt.org/>_. Once you have the certificate, you can define the certificate and privateKey properties under the ingressSecret property to specify the certificate on the configuration yaml.
 
-   You can check that the operator deployed okay by running:
-   ```shell
-   $ kubectl get all -n educates
-   ```
-   The pod for the operator should be marked as running.
+```
+ingressSecret:
+ certificate: MIIC2DCCAcCgAwIBAgIBATANBgkqh ...
+ privateKey: MIIEpgIBAAKCAQEA7yn3bRHQ5FHMQ ...
+```
+
+If you already has a TLS secret, you can copy it to the educates namespace or that one you defined, and use the secretName property.
+
+```
+ingressSecret:
+ secretName: workshops.example.com-tls
+```
+
+#### Specifying the ingress class
+
+Any ingress routes created will use the default ingress class. If you have multiple ingress class types available, and you need to override which is used, so define the ingressClass property on the configuration yaml:
+
+```
+ingressClass: contour
+```
+
+1. Install Learning Center Operator by running:
+
+    ```shell
+    tanzu package install learning-center --package-name learningcenter.tanzu.vmware.com --version 1.0.14-build.1 -f learning-center-config.yaml
+    ```
+
+    The command above will create a default namespace in your Kubernetes cluster called `educates`, and the operator along with any
+    required namespaced resources will be created in it. A set of custom resource definitions and a global cluster role binding will also be created.
+    The list of resources you should see being created are:
+
+    ```shell
+    customresourcedefinition.apiextensions.k8s.io/workshops.training.eduk8s.io created
+    customresourcedefinition.apiextensions.k8s.io/workshopsessions.training.eduk8s.io created
+    customresourcedefinition.apiextensions.k8s.io/workshopenvironments.training.eduk8s.io created
+    customresourcedefinition.apiextensions.k8s.io/workshoprequests.training.eduk8s.io created
+    customresourcedefinition.apiextensions.k8s.io/trainingportals.training.eduk8s.io created
+    serviceaccount/eduk8s created
+    customresourcedefinition.apiextensions.k8s.io/systemprofiles.training.eduk8s.io created
+    clusterrolebinding.rbac.authorization.k8s.io/eduk8s-cluster-admin created
+    deployment.apps/eduk8s-operator created
+    ```
+
+    You can check that the operator deployed okay by running:
+
+    ```shell
+    kubectl get all -n educates
+    ```
+
+    The Pod for the operator should be marked as running.
 
 ### Procedure to install the Self-Guided Tour Training Portal and Workshop
-1. Make sure you have the workshop package installed
-   ```shell
-   $ tanzu package available list workshops.learningcenter.tanzu.vmware.com --namespace tap-install
+
+To install the Self-Guided Tour Training Portal and Workshop:
+
+1. Make sure you have the workshop package installed by running:
+
+   ```console
+   tanzu package available list workshops.learningcenter.tanzu.vmware.com --namespace tap-install
    ```
-2. Installing the Learning Center Training Portal with the Self Guided Tour workshop
+
+2. Install the Learning Center Training Portal with the Self Guided Tour workshop by running:
+
    ```shell
-   $ tanzu package install learning-center-workshop --package-name workshops.learningcenter.tanzu.vmware.com --version 1.0.7-build.1 -n tap-install
+   tanzu package install learning-center-workshop --package-name workshops.learningcenter.tanzu.vmware.com --version 1.0.7-build.1 -n tap-install
    ```
-3. You can check the Training Portals available in your environment running the following command
-   ```shell
-   $ kubectl get trainingportals
-   ```
-   Example output:
-   ```shell
-   NAME                 URL                                                ADMINUSERNAME   ADMINPASSWORD                      STATUS
-   educates-tutorials   http://educates-tutorials.example.com   educates        QGBaM4CF01toPiZLW5NrXTcIYSpw2UJK   Running
-   ```
+
+3. Check the Training Portals available in your environment by running:
+
+    ```shell
+    kubectl get trainingportals
+    ```
+
+    Example output:
+
+    ```shell
+    NAME                 URL                                                ADMINUSERNAME   ADMINPASSWORD                      STATUS
+    educates-tutorials   http://educates-tutorials.example.com   educates        QGBaM4CF01toPiZLW5NrXTcIYSpw2UJK   Running
+    ```
 
 
 ## <a id='install-service-bindings'></a> Install Service Bindings
 
- Use the following procedure to install Service Bindings:
+Use the following procedure to install Service Bindings:
 
 1. List version information for the package by running:
 
@@ -1386,8 +1413,9 @@ To install Tanzu Learning Center, see the following sections.
     tanzu package available list service-bindings.labs.vmware.com --namespace tap-install
     ```
     Where `PACKAGE-NAME` is the name of the package listed earlier in
-     [Add the Tanzu Application Platform Package Repository](#add-package-repositories).
-     For example:
+    [Add the Tanzu Application Platform Package Repository](#add-package-repositories).
+
+    For example:
 
     ```bash
     $ tanzu package available list service-bindings.labs.vmware.com --namespace tap-install
@@ -1396,11 +1424,13 @@ To install Tanzu Learning Center, see the following sections.
       service-bindings.labs.vmware.com  0.5.0    2021-09-15T00:00:00Z
     ```
 
-1. Install the package. Run:
+1. Install the package by running:
 
     ```bash
     tanzu package install service-bindings -p service-bindings.labs.vmware.com -v 0.5.0 -n tap-install
     ```
+
+    Example output:
 
     ```bash
     / Installing package 'service-bindings.labs.vmware.com'
@@ -1420,6 +1450,8 @@ To install Tanzu Learning Center, see the following sections.
     ```bash
     tanzu package installed get service-bindings -n tap-install
     ```
+
+    Example output:
 
     ```console
     - Retrieving installation details for service-bindings...
@@ -1452,13 +1484,13 @@ To install Supply Chain Security Tools - Store:
 
 1. The deployment assumes the user has set up the k8s cluster to provision persistent volumes on demand. Make sure a default storage class is be available in your cluster. Check whether default storage class is set in your cluster by running:
 
-    ```
+    ```console
     kubect get storageClass
     ```
 
     For example:
 
-    ```
+    ```console
     $ kubectl get storageClass
     NAME                 PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
     standard (default)   rancher.io/local-path   Delete          WaitForFirstConsumer   false                  7s
@@ -1488,7 +1520,7 @@ To install Supply Chain Security Tools - Store:
 
     For example:
 
-    ```sh
+    ```console
     $ tanzu package available get scst-store.tanzu.vmware.com/1.0.0-beta.1 --values-schema -n tap-install
     | Retrieving package details for scst-store.tanzu.vmware.com/1.0.0-beta.1...
       KEY                     DEFAULT              TYPE     DESCRIPTION
@@ -1518,9 +1550,7 @@ To install Supply Chain Security Tools - Store:
     ```
 
 1. Gather the values schema.
-1. Create a `scst-store-values.yaml` using the following sample as a guide:
-
-    Sample `scst-store-values.yaml` for Supply Chain Security Tools - Store:
+1. Create a `scst-store-values.yaml` using the following sample for Supply Chain Security Tools - Store as a guide:
 
     ```yaml
     db_password: "PASSWORD-0123"
@@ -1617,6 +1647,7 @@ To install Supply Chain Security Tools - Sign:
     ```
 
 1. Create a file named `scst-sign-values.yaml` with a `allow_unmatched_images` property.
+
     * **For non-production environments**: To warn the user when images do not match any pattern in the policy, but still allow them into the cluster, set `allow_unmatched_images` to `true`.
         ```yaml
         ---
@@ -1642,6 +1673,7 @@ To install Supply Chain Security Tools - Sign:
     ```
 
     For example:
+
     ```bash
     $ tanzu package install image-policy-webhook \
         --package-name image-policy-webhook.signing.run.tanzu.vmware.com \
@@ -1667,6 +1699,7 @@ To install Supply Chain Security Tools - Sign:
 1. Create a service account named `image-policy-registry-credentials` in the `image-policy-system` namespace. When cosign `signs` an image, it generates a signature in an OCI-compliant format and pushes it to the registry alongside the image with the tag `sha256-<image-digest>.sig`. To access this signature, the webhook needs the credentials of the registry where the signature and image reside.
 
     * **If the images and signatures are in public registries:** No additional configuration is needed. Run:
+
         ```console
         cat <<EOF | kubectl apply -f -
         apiVersion: v1
@@ -1678,6 +1711,7 @@ To install Supply Chain Security Tools - Sign:
         ```
 
     * **If the images and signatures are in private registries:** Add secrets to the `imagePullSecrets` property of the service account. Run:
+
         ```console
         cat <<EOF | kubectl apply -f -
         apiVersion: v1
@@ -1692,6 +1726,7 @@ To install Supply Chain Security Tools - Sign:
         Where `SECRET-1` is a secret that allows the webhook to access the private registry.
         You can specify existing `imagePullSecrets` that are part of the `image-policy-system` namespace,
         or you can create new ones by running:
+
         ```bash
         kubectl create secret docker-registry SECRET-1 \
           --namespace image-policy-system \
@@ -1710,6 +1745,7 @@ To install Supply Chain Security Tools - Sign:
     - A list of image name patterns against which the policy is enforced. Each image name pattern is mapped to the required public keys.
 
     The following is an example `ClusterImagePolicy`:
+
     ```yaml
     ---
     apiVersion: signing.run.tanzu.vmware.com/v1alpha1
@@ -1740,6 +1776,7 @@ To install Supply Chain Security Tools - Sign:
     - If no `ClusterImagePolicy` is created, images are permitted into the cluster.
       with the following warning: `Warning: clusterimagepolicies.signing.run.tanzu.vmware.com "image-policy" not found`.
     - For a quicker installation process in a non-production environment, VMware recommends you use the following YAML to create the `ClusterImagePolicy`. This YAML includes a cosign public key, which signed the public cosign image for v1.2.1. The cosign public key validates the specified cosign image. You can add additional namespaces to exclude in the `verification.exclude.resources.namespaces` section, such as a system namespace.
+
         ```console
         cat <<EOF | kubectl apply -f -
         apiVersion: signing.run.tanzu.vmware.com/v1alpha1
@@ -1768,29 +1805,40 @@ To install Supply Chain Security Tools - Sign:
         (Optional) Run the following commands to test the webhook if you are using the `cosign-key`:
 
         1. Verify that a signed image, validated with a configured public key, launches. Run:
+
             ```bash
             kubectl run cosign --image=gcr.io/projectsigstore/cosign:v1.2.1 --restart=Never --command -- sleep 900
             ```
+
             For example:
+
             ```bash
             $ kubectl run cosign --image=gcr.io/projectsigstore/cosign:v1.2.1 --restart=Never --command -- sleep 900
             pod/cosign created
             ```
+
         1. Verify that an unsigned image does not launch. Run:
+
             ```bash
             kubectl run bb --image=busybox --restart=Never
             ```
+
             For example:
+
             ```bash
             $ kubectl run bb --image=busybox --restart=Never
             Warning: busybox didn\'t match any pattern in policy. Pod will be created as AllowOnUnmatched flag is true
             pod/bb created
             ```
+
         1. Verify that a signed image, that does not validate with a configured public key, does not launch. Run:
+
             ```bash
             kubectl run cosign-fail --image=gcr.io/projectsigstore/cosign:v0.3.0 --command -- sleep 900
             ```
+
             For example:
+
             ```bash
             $ kubectl run cosign-fail --image=gcr.io/projectsigstore/cosign:v0.3.0 --command -- sleep 900
             Error from server (The image: gcr.io/projectsigstore/cosign:v0.3.0 is not signed): admission webhook "image-policy-webhook.signing.run.tanzu.vmware.com" denied the request: The image: gcr.io/projectsigstore/cosign:v0.3.0 is not signed
@@ -1858,7 +1906,7 @@ To install Supply Chain Security Tools - Scan (Scan Controller):
 
     Create the necessary `ClusterRole` for sending requests to the [Supply Chain Security Tools - Store](#install-scst-store) by running:
 
-    ```bash
+    ```console
     kubectl apply -f - -o yaml << EOF
     ---
     apiVersion: rbac.authorization.k8s.io/v1
@@ -1899,7 +1947,7 @@ To install Supply Chain Security Tools - Scan (Scan Controller):
 
 4. If [Supply Chain Security Tools - Store](#install-scst-store) is installed, install the package by running (omit the `--values-file` line if installing without [Supply Chain Security Tools - Store](#install-scst-store) already installed):
 
-    ```bash
+    ```console
     tanzu package install scan-controller \
       --package-name scanning.apps.tanzu.vmware.com \
       --version 1.0.0-beta.2 \
@@ -1936,7 +1984,7 @@ To install Supply Chain Security Tools - Scan (Grype Scanner):
     tanzu package available list grype.scanning.apps.tanzu.vmware.com --namespace tap-install
     ```
 
-     For example:
+    For example:
 
     ```console
     $ tanzu package available list grype.scanning.apps.tanzu.vmware.com --namespace tap-install
@@ -1952,6 +2000,7 @@ To install Supply Chain Security Tools - Scan (Grype Scanner):
     ```
 
     For example:
+
     ```console
     $ tanzu package available get grype.scanning.apps.tanzu.vmware.com/1.0.0-beta.2 --values-schema -n tap-install
     | Retrieving package details for grype.scanning.apps.tanzu.vmware.com/1.0.0-beta.2...
@@ -2148,15 +2197,17 @@ run the following commands to add credentials and Role-Based Access Control (RBA
 
 
 1. Add read/write registry credentials to the developer namespace. Run:
+
     ```bash
-    $ tanzu secret registry add registry-credentials --server REGISTRY-SERVER --username REGISTRY-USERNAME --password REGISTRY-PASSWORD --namespace YOUR-NAMESPACE
+    tanzu secret registry add registry-credentials --server REGISTRY-SERVER --username REGISTRY-USERNAME --password REGISTRY-PASSWORD --namespace YOUR-NAMESPACE
     ```
     Where `YOUR-NAMESPACE` is the name you want for the developer namespace.
     For example, use `default` for the default namespace.
 
 2. Add placeholder read secrets, a service account, and RBAC rules to the developer namespace. Run:
-    ```bash
-    $ cat <<EOF | kubectl -n YOUR-NAMESPACE apply -f -
+
+    ```console
+    cat <<EOF | kubectl -n YOUR-NAMESPACE apply -f -
 
     apiVersion: v1
     kind: Secret
@@ -2237,7 +2288,7 @@ kapp deploy --yes -a tekton \
   -f https://storage.googleapis.com/tekton-releases/pipeline/previous/v0.28.0/release.yaml
 ```
 
-For more details on Tekton, see the [Tekton documentation](https://tekton.dev/docs/) and the 
+For more details on Tekton, see the [Tekton documentation](https://tekton.dev/docs/) and the
 [github repository](https://github.com/tektoncd/pipeline).  
 
 You can also view the Tekton [tutorial](https://github.com/tektoncd/pipeline/blob/main/docs/tutorial.md) and

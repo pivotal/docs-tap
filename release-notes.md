@@ -30,8 +30,7 @@ Tanzu Packages:
   - Out of the Box Supply Chain Basic v0.3.0
   - Out of the Box Supply Chain with Testing v0.3.0
   - Out of the Box Supply Chain with Testing and Scanning v0.3.0
-  - Out of the Box Templates v0.3.0
-- Services Toolkit 
+  - Out of the Box Templates v0.3.0 
 - Tanzu Application Platform GUI v0.3.0
   - Workload Visibility Plugin v1.0.0
   - Application Live View Plugin v0.3.0
@@ -49,6 +48,7 @@ The following components have been updated in Tanzu Application Platform v0.3.0:
   - [Scan v1.0.0-beta.2](scst-scan/overview.md)
   - Image Policy Webhook v1.0.0-beta.1
   - [Store v1.0.0-beta.1](scst-store/overview.md)
+- Services Toolkit v0.4.0
 - [Convention Service for VMware Tanzu](convention-service/about.md)
   - [Developer Conventions](developer-conventions/about.md) v0.3.0
 - [Cloud Native Runtimes v1.0.3](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-cnr-overview.html)
@@ -61,7 +61,7 @@ The following components have been updated in Tanzu Application Platform v0.3.0:
 This release has the following issues:
 
 
-- **Image Policy Webhook:** If all of the webhook nodes or Pods are evicted by the cluster or scaled down, the admission policy will block any Pods from being created in the cluster. To resolve the issue, the administrator needs to kubectl delete the Image Policy Webhook and reapply it once the cluster is stable.
+- **Image Policy Webhook:** If all webhook nodes or Pods are evicted by the cluster or scaled down, the admission policy blocks any Pods from being created in the cluster. To resolve the issue, the administrator needs to kubectl delete the Image Policy Webhook and reapply it once the cluster is stable.
 - When you use the `Tanzu Developer Tools for VSCode` extension, delete the workload before performing any of the following actions. This will avoid workload update errors.
     - Switching between the `Live Update` & `Debug` capabilities
     - Disabling `Live Update` & re-starting `Live Update`

@@ -1,9 +1,10 @@
 # Component Documentation
 
-Documentation for some of the components of Tanzu Application Platform is available as follows.
+Documentation for some of the components of Tanzu Application Platform is
+available as follows.
 
-Some of the documentation is hosted on separate sites and some is incorporated into this 
-Tanzu Application Platform documentation site.
+Some of the documentation is hosted on separate sites and some is incorporated
+into this Tanzu Application Platform documentation site.
 
 + [API portal for VMware Tanzu](https://docs.pivotal.io/api-portal)
 
@@ -13,18 +14,18 @@ Tanzu Application Platform documentation site.
 
 + [Cloud Native Runtimes for VMware Tanzu](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-cnr-overview.html)
 
-+ [Learning Center for Tanzu Application Platform](learning-center/about.md)
-
-+ [Tanzu Developer Tools for Visual Studio Code](vscode-extension/about.md)
-
 + [Convention Service for VMware Tanzu](convention-service/about.md)
 
-+ [Services Toolkit](https://docs.vmware.com/en/Services-Toolkit/0.4/services-toolkit-0-4/GUID-overview.html)
++ [Learning Center for Tanzu Application Platform](learning-center/about.md)
+
++ [Services Toolkit](https://docs.vmware.com/en/SCP-Toolkit/0.3/scp-toolkit-0-3/GUID-overview.html)
 
 + [Supply Chain Choreographer for VMware Tanzu](scc/about.html)
 
 + [Supply Chain Security Tools - Scan](scst-scan/overview.md)
 
 + [Supply Chain Security Tools - Store](scst-store/overview.md)
+
++ [Tanzu Developer Tools for Visual Studio Code](vscode-extension/about.md)
 
 + [VMware Tanzu Build Service](https://docs.pivotal.io/build-service)

@@ -4,31 +4,33 @@ This example takes every source code commit, scans the source code for vulnerabi
 
 ## Prerequisites
 
-Follow the steps listed in [Installing Part I: Prerequisites, EULA, and CLI](../install-general.md).
+1. Follow the steps listed in [Installing Part I: Prerequisites, EULA, and CLI](../install-general.md).
 
-Next, in [Installing Individual Packages](../install-components.md), ensure the following packages and their dependencies are installed:
+1. Next, in [Installing Individual Packages](../install-components.md), ensure the following
+packages and their dependencies are installed by running `tanzu package installed list -n tap-install`:
 
-- [Supply Chain Choreographer](../install-components.md#install-scc)
-- [Tanzu Build Service](../install-components.md#install-tbs)
-- [Supply Chain Security Tools - Store](../install-components.md#install-scst-store)
-- [Supply Chain Security Tools - Scan](../install-components.md#install-scst-scan)
-- (Optional) [Kubectl `tree` Plugin](https://github.com/ahmetb/kubectl-tree)
+    - [Supply Chain Choreographer](../install-components.md#install-scc)
+    - [Tanzu Build Service](../install-components.md#install-tbs)
+    - [Supply Chain Security Tools - Store](../install-components.md#install-scst-store)
+    - [Supply Chain Security Tools - Scan](../install-components.md#install-scst-scan)
+    - (Optional) [Kubectl `tree` Plugin](https://github.com/ahmetb/kubectl-tree)
 
-This example uses the following versions:
-```console
-$ tanzu package installed list -n tap-install
-| Retrieving installed packages...
-  NAME             PACKAGE-NAME                          PACKAGE-VERSION  STATUS
-  cartographer     cartographer.tanzu.vmware.com         0.0.6            Reconcile succeeded
-  grype-scanner    grype.scanning.apps.tanzu.vmware.com  1.0.0-beta       Reconcile succeeded
-  metadata-store   scst-store.tanzu.vmware.com           1.0.0-beta.0     Reconcile succeeded
-  scan-controller  scanning.apps.tanzu.vmware.com        1.0.0-beta       Reconcile succeeded
-  tbs              buildservice.tanzu.vmware.com         1.3.0            Reconcile succeeded
-```
+    This example uses the following versions:
+
+    ```console
+    $ tanzu package installed list -n tap-install
+    | Retrieving installed packages...
+      NAME             PACKAGE-NAME                          PACKAGE-VERSION  STATUS
+      cartographer     cartographer.tanzu.vmware.com         0.0.6            Reconcile succeeded
+      grype-scanner    grype.scanning.apps.tanzu.vmware.com  1.0.0-beta       Reconcile succeeded
+      metadata-store   scst-store.tanzu.vmware.com           1.0.0-beta.0     Reconcile succeeded
+      scan-controller  scanning.apps.tanzu.vmware.com        1.0.0-beta       Reconcile succeeded
+      tbs              buildservice.tanzu.vmware.com         1.3.0            Reconcile succeeded
+    ```
 
 ## Configure the Example
 
-Set the following environment variables to configure the image registry where Tanzu Build Service will push images. 
+Set the following environment variables to configure the image registry where Tanzu Build Service will push images.
 The Image Scan pulls from the same registry.
 
 ```bash
@@ -42,7 +44,7 @@ REGISTRY_PROJECT=
 
 ### Tanzu Network Image Pull Secret
 
-The following secrets are used by each product to pull from Tanzu Network. These secrets 
+The following secrets are used by each product to pull from Tanzu Network. These secrets
 are replicated into namespaces where they overwrite the empty placeholder secrets that were defined by each product.
 
 ```bash
@@ -61,7 +63,7 @@ tanzu imagepullsecret add image-secret \
 
 ### Tanzu Build Service
 
-Configure Tanzu Build Service to build an image and push it to a registry. 
+Configure Tanzu Build Service to build an image and push it to a registry.
 `registry-credentials` is an empty placeholder secret that is populated with the credentials used to access the registry.
 
 ```bash
@@ -124,15 +126,15 @@ EOF
 
 ### Supply Chain Security Tools for VMware Tanzu - Scan
 
-Configure the source and image scans. 
-`image-secret` is an empty placeholder secret that is populated with the credentials 
+Configure the source and image scans.
+`image-secret` is an empty placeholder secret that is populated with the credentials
 that are used to access the registry where Tanzu Build Service pushes built images.
 
-When installing the Grype Scanner, five scan templates are preinstalled for various use cases. 
-This example uses two of them: 
+When installing the Grype Scanner, five scan templates are preinstalled for various use cases.
+This example uses two of them:
 
 - `blob-source-scan-template` for performing a source scan within the context of a supply chain where the source code is delivered as a TAR file.
-- `private-image-scan-template` for performing an image scan against a private registry. 
+- `private-image-scan-template` for performing an image scan against a private registry.
 
 Because these scan templates are preinstalled, they are not defined, but are referenced later in the supply chain templates.
 
@@ -350,13 +352,14 @@ EOF
 **NOTE:** Resources can take time to run to completion. The build image step with Tanzu Build Service takes several minutes to build.
 
 Notice the resources be created:
+
 1. `workload`: Workload is defined
-2. `scantemplate`: Scan Templates will display as each scan type occurs
-3. `gitrepository`: `STATUS` Fetched revision fills in
-4. `sourcescan`: The source scan displays `SCANNEDREPOSITORY` and `SCANNEDREVISION` once completed
-5. `image.kpack.io`: The build image appears in `LATESTIMAGE`
-6. `imagescan`: The image scan displays `SCANNEDIMAGE` once completed
-7. `pod`: Pods appear during scans and when the image is being built
+1. `scantemplate`: Scan Templates will display as each scan type occurs
+1. `gitrepository`: `STATUS` Fetched revision fills in
+1. `sourcescan`: The source scan displays `SCANNEDREPOSITORY` and `SCANNEDREVISION` once completed
+1. `image.kpack.io`: The build image appears in `LATESTIMAGE`
+1. `imagescan`: The image scan displays `SCANNEDIMAGE` once completed
+1. `pod`: Pods appear during scans and when the image is being built
 
 During processing and upon completion, try performing `kubectl describe` on the `sourcescan` and `imagescan` resources to see the `Status` section.
 
@@ -365,34 +368,35 @@ During processing and upon completion, try performing `kubectl describe` on the 
 ## Querying the Metadata Store for Vulnerability Results using the Insight CLI
 
 1. In a separate terminal, set up a port-forwarding to the Metadata Store by running:
-```bash
-kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store
-```
 
-2. Using the `MetadataURL` field in the `kubectl describe` `sourcescan` or `imagescan` output, use the `insight` CLI to query the Metadata Store for the scan results that were outputted by the Grype Scanner. Run:
+    ```bash
+    kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store
+    ```
 
-```bash
-# Configure Insight CLI to Authenticate to Metadata Store
-export METADATA_STORE_TOKEN=$(kubectl get secrets -n tap-install -o jsonpath="{.items[?(@.metadata.annotations['kubernetes\.io/service-account\.name']=='metadata-store-tap-install-sa')].data.token}" | base64 -d)
-insight config set-target https://metadata-store-app.metadata-store.svc.cluster.local:8443 \
-  --ca-cert /tmp/storeca.crt \
-  --access-token $METADATA_STORE_TOKEN
+1. Using the `MetadataURL` field in the `kubectl describe` `sourcescan` or `imagescan` output, use the `insight` CLI to query the Metadata Store for the scan results that were outputted by the Grype Scanner. Run:
 
-# Query Source Scan
-kubectl describe sourcescan tanzu-java-web-app-source-scan
-insight source get \
-  --repo <insert repo here> \
-  --commit <insert sha here> \
-  --org <insert org here>
+    ```bash
+    # Configure Insight CLI to Authenticate to Metadata Store
+    export METADATA_STORE_TOKEN=$(kubectl get secrets -n tap-install -o jsonpath="{.items[?(@.metadata.annotations['kubernetes\.io/service-account\.name']=='metadata-store-tap-install-sa')].data.token}" | base64 -d)
+    insight config set-target https://metadata-store-app.metadata-store.svc.cluster.local:8443 \
+      --ca-cert /tmp/storeca.crt \
+      --access-token $METADATA_STORE_TOKEN
 
-# Query Image Scan
-kubectl describe imagescan tanzu-java-web-app-image-scan
-# Note: the `digest` flag has the form: sha256:841abf253a244adba79844219a045958ce3a6da2671deea3910ea773de4631e1
-insight image get \
-  --digest <insert digest here>
+    # Query Source Scan
+    kubectl describe sourcescan tanzu-java-web-app-source-scan
+    insight source get \
+      --repo <insert repo here> \
+      --commit <insert sha here> \
+      --org <insert org here>
 
-# Query By CVE
-# Note: the `cveid` flag has the form: CVE-2021-3711
-insight vulnerabilities get \
-  --cveid <insert CVE here>
-```
+    # Query Image Scan
+    kubectl describe imagescan tanzu-java-web-app-image-scan
+    # Note: the `digest` flag has the form: sha256:841abf253a244adba79844219a045958ce3a6da2671deea3910ea773de4631e1
+    insight image get \
+      --digest <insert digest here>
+
+    # Query By CVE
+    # Note: the `cveid` flag has the form: CVE-2021-3711
+    insight vulnerabilities get \
+      --cveid <insert CVE here>
+    ```

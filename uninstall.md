@@ -13,6 +13,7 @@ The process for uninstalling Tanzu Application Platform is made up of two tasks:
 To delete the installed packages:
 
 1. List the installed packages by running:
+
     ```
     tanzu package installed list --namespace tap-install
     ```
@@ -22,7 +23,9 @@ To delete the installed packages:
     ```
     tanzu package installed delete PACKAGE-NAME --namespace tap-install
     ```
+
     For example:
+
     ```
     $ tanzu package installed delete cloud-native-runtimes --namespace tap-install
     | Uninstalling package 'cloud-native-runtimes' from namespace 'tap-install'
@@ -48,17 +51,20 @@ To delete the installed packages:
 To delete the Tanzu Application Platform package repository:
 
 1. Retrieve the name of the Tanzu Application Platform package repository by running the command:
+
     ```
     tanzu package repository list --namespace tap-install
     ```
+
     For example:
+
     ```
     $ tanzu package repository list --namespace tap-install
     - Retrieving repositories...
       NAME                  REPOSITORY                                                         STATUS               DETAILS
       tanzu-tap-repository  registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.2.0  Reconcile succeeded
     ```
-    
+
 
 2. Remove the Tanzu Application Platform package repository by running:
 
