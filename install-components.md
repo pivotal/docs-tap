@@ -1299,51 +1299,56 @@ To install Tanzu Learning Center, see the following sections.
      ingressDomain: your-ingress-domain
      ```
 
-#### Setting the ingress domain
+    **Setting the ingress domain**
 
-When deploying workshop environment instances, the operator must be able to expose the instances
-through an external URL. This access is needed to discover the domain name that can be used as a
-suffix to hostnames for instances.
+    When deploying workshop environment instances, the operator must be able to expose the instances
+    through an external URL. This access is needed to discover the domain name that can be used as a
+    suffix to hostnames for instances.
 
-- Make sure to replace the `your-ingress-domain` domain with the domain name for your Kubernetes cluster.
+    - Make sure to replace the `your-ingress-domain` domain with the domain name for your Kubernetes cluster.
 
-> **Note:** For the custom domain you are using, DNS must have been configured with a wildcard domain to forward
-> all requests for subdomains of the custom domain to the ingress router of the Kubernetes cluster.
+    > **Note:** For the custom domain you are using, DNS must have been configured with a wildcard domain to forward
+    > all requests for subdomains of the custom domain to the ingress router of the Kubernetes cluster.
 
-> **Note:** If you are running Kubernetes on your local machine using a system like `minikube`, and you don't
-> have a custom domain name that maps to the IP for the cluster, you can use a `nip.io` address.
-> For example, if `minikube ip` returned `192.168.64.1`, you could use the `192.168.64.1.nip.io` domain.
-> Note that you cannot use an address of form `127.0.0.1.nip.io` or `subdomain.localhost`. This will cause a
-> failure. Internal services needing to connect to each other will connect to themselves instead,
-> since the address would resolve to the host loopback address of `127.0.0.1`.
+    > **Note:** If you are running Kubernetes on your local machine using a system like `minikube`, and you don't
+    > have a custom domain name that maps to the IP for the cluster, you can use a `nip.io` address.
+    > For example, if `minikube ip` returned `192.168.64.1`, you could use the `192.168.64.1.nip.io` domain.
+    > Note that you cannot use an address of form `127.0.0.1.nip.io` or `subdomain.localhost`. This will cause a
+    > failure. Internal services needing to connect to each other will connect to themselves instead,
+    > since the address would resolve to the host loopback address of `127.0.0.1`.
 
-#### Enforcing secure connections
+    **Enforcing secure connections**
 
-By default the workshop portal and workshop sessions will be accessible over HTTP connections. If you wish to use secure HTTPS connections, you must have access to a wildcard SSL certificate for the domain under which you wish to host the workshops. You cannot use a self signed certificate.
-Wildcard certificates can be created using letsencrypt <https://letsencrypt.org/>_. Once you have the certificate, you can define the certificate and privateKey properties under the ingressSecret property to specify the certificate on the configuration yaml.
+    By default the workshop portal and workshop sessions will be accessible over HTTP connections. If you wish to use secure HTTPS connections, you must have access to a wildcard SSL certificate for the domain under which you wish to host the workshops. You cannot use a self signed certificate.
+    Wildcard certificates can be created using letsencrypt <https://letsencrypt.org/>_. Once you have the certificate, you can define the certificate and privateKey properties under the ingressSecret property to specify the certificate on the configuration yaml.
 
-```
-ingressSecret:
- certificate: MIIC2DCCAcCgAwIBAgIBATANBgkqh ...
- privateKey: MIIEpgIBAAKCAQEA7yn3bRHQ5FHMQ ...
-```
+    ```
+    ingressSecret:
+        certificate: MIIC2DCCAcCgAwIBAgIBATANBgkqh ...
+        privateKey: MIIEpgIBAAKCAQEA7yn3bRHQ5FHMQ ...
+   ```
 
-If you already has a TLS secret, you can copy it to the educates namespace or that one you defined, and use the secretName property.
+    If you already has a TLS secret, you can copy it to the educates namespace or that one you defined, and use the secretName property.
 
-```
-ingressSecret:
- secretName: workshops.example.com-tls
-```
+    ```
+    ingressSecret:
+     secretName: workshops.example.com-tls
+    ```
 
-#### Specifying the ingress class
+    **Specifying the ingress class**
 
-Any ingress routes created will use the default ingress class. If you have multiple ingress class types available, and you need to override which is used, so define the ingressClass property on the configuration yaml:
+    Any ingress routes created will use the default ingress class. If you have multiple ingress class types available, and you need to override which is used, so define the ingressClass property on the configuration yaml:
+    ```
+    ingressClass: contour
+    ```
 
-```
-ingressClass: contour
-```
+    If you have multiple ingress controllers make sure you select the correct one. For instance, Cloud Native Runtimes (CNR)
+    deploys two ingress controllers. You will need to use contour-external for Learning Center.
+    ```
+    ingressClass: contour-external
+    ```
 
-1. Install Learning Center Operator by running:
+4. Install Learning Center Operator by running:
 
     ```shell
     tanzu package install learning-center --package-name learningcenter.tanzu.vmware.com --version 1.0.14-build.1 -f learning-center-config.yaml
