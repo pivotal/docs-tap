@@ -4,31 +4,33 @@ This example takes every source code commit, scans the source code for vulnerabi
 
 ## Prerequisites
 
-Follow the steps listed in [Installing Part I: Prerequisites, EULA, and CLI](../install-general.md).
+1. Follow the steps listed in [Installing Part I: Prerequisites, EULA, and CLI](../install-general.md).
 
-Next, in [Installing Individual Packages](../install-components.md), ensure the following packages and their dependencies are installed:
+1. Next, in [Installing Individual Packages](../install-components.md), ensure the following
+packages and their dependencies are installed by running `tanzu package installed list -n tap-install`:
 
-- [Supply Chain Choreographer](../install-components.md#install-scc)
-- [Tanzu Build Service](../install-components.md#install-tbs)
-- [Supply Chain Security Tools - Store](../install-components.md#install-scst-store)
-- [Supply Chain Security Tools - Scan](../install-components.md#install-scst-scan)
-- (Optional) [Kubectl `tree` Plugin](https://github.com/ahmetb/kubectl-tree)
+    - [Supply Chain Choreographer](../install-components.md#install-scc)
+    - [Tanzu Build Service](../install-components.md#install-tbs)
+    - [Supply Chain Security Tools - Store](../install-components.md#install-scst-store)
+    - [Supply Chain Security Tools - Scan](../install-components.md#install-scst-scan)
+    - (Optional) [Kubectl `tree` Plugin](https://github.com/ahmetb/kubectl-tree)
 
-This example uses the following versions:
-```console
-$ tanzu package installed list -n tap-install
-| Retrieving installed packages...
-  NAME             PACKAGE-NAME                          PACKAGE-VERSION  STATUS
-  cartographer     cartographer.tanzu.vmware.com         0.0.6            Reconcile succeeded
-  grype-scanner    grype.scanning.apps.tanzu.vmware.com  1.0.0-beta       Reconcile succeeded
-  metadata-store   scst-store.tanzu.vmware.com           1.0.0-beta.0     Reconcile succeeded
-  scan-controller  scanning.apps.tanzu.vmware.com        1.0.0-beta       Reconcile succeeded
-  tbs              buildservice.tanzu.vmware.com         1.3.0            Reconcile succeeded
-```
+    This example uses the following versions:
+
+    ```console
+    $ tanzu package installed list -n tap-install
+    | Retrieving installed packages...
+      NAME             PACKAGE-NAME                          PACKAGE-VERSION  STATUS
+      cartographer     cartographer.tanzu.vmware.com         0.0.6            Reconcile succeeded
+      grype-scanner    grype.scanning.apps.tanzu.vmware.com  1.0.0-beta       Reconcile succeeded
+      metadata-store   scst-store.tanzu.vmware.com           1.0.0-beta.0     Reconcile succeeded
+      scan-controller  scanning.apps.tanzu.vmware.com        1.0.0-beta       Reconcile succeeded
+      tbs              buildservice.tanzu.vmware.com         1.3.0            Reconcile succeeded
+    ```
 
 ## Configure the Example
 
-Set the following environment variables to configure the image registry where Tanzu Build Service will push images. 
+Set the following environment variables to configure the image registry where Tanzu Build Service will push images.
 The Image Scan pulls from the same registry.
 
 ```bash
@@ -42,7 +44,7 @@ REGISTRY_PROJECT=
 
 ### Tanzu Network Image Pull Secret
 
-The following secrets are used by each product to pull from Tanzu Network. These secrets 
+The following secrets are used by each product to pull from Tanzu Network. These secrets
 are replicated into namespaces where they overwrite the empty placeholder secrets that were defined by each product.
 
 ```bash
@@ -61,7 +63,7 @@ tanzu imagepullsecret add image-secret \
 
 ### Tanzu Build Service
 
-Configure Tanzu Build Service to build an image and push it to a registry. 
+Configure Tanzu Build Service to build an image and push it to a registry.
 `registry-credentials` is an empty placeholder secret that is populated with the credentials used to access the registry.
 
 ```bash
@@ -124,15 +126,15 @@ EOF
 
 ### Supply Chain Security Tools for VMware Tanzu - Scan
 
-Configure the source and image scans. 
-`image-secret` is an empty placeholder secret that is populated with the credentials 
+Configure the source and image scans.
+`image-secret` is an empty placeholder secret that is populated with the credentials
 that are used to access the registry where Tanzu Build Service pushes built images.
 
-When installing the Grype Scanner, five scan templates are preinstalled for various use cases. 
-This example uses two of them: 
+When installing the Grype Scanner, five scan templates are preinstalled for various use cases.
+This example uses two of them:
 
 - `blob-source-scan-template` for performing a source scan within the context of a supply chain where the source code is delivered as a TAR file.
-- `private-image-scan-template` for performing an image scan against a private registry. 
+- `private-image-scan-template` for performing an image scan against a private registry.
 
 Because these scan templates are preinstalled, they are not defined, but are referenced later in the supply chain templates.
 

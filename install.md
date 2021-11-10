@@ -104,8 +104,11 @@ To add the Tanzu Application Platform package repository:
       tap.tanzu.vmware.com                                 Tanzu Application Platform                                                Package to install a set of TAP components to get you started based on your use case.
       workshops.learningcenter.tanzu.vmware.com            Workshop Building Tutorial                                                Workshop Building Tutorial
     ```
+
 ## <a id='about-package-profiles'></a> About Tanzu Application Platform Package Profiles
-Tanzu Application Platform can be installed through pre-defined profiles or through individual packages. This section explains how to install a profile.
+
+Tanzu Application Platform can be installed through pre-defined profiles or through individual
+packages. This section explains how to install a profile.
 
 Tanzu Application Platform contains the following two profiles:
 
@@ -504,7 +507,6 @@ with your relevant values. Run:
     For example:
 
     ```console
-
     $ tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version 0.3.0 --values-file tap-values-file.yml -n tap-install
     | Updating package 'tap'
     | Getting package install for 'tap'

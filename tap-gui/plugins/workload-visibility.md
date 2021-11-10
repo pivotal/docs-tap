@@ -26,32 +26,35 @@ Developers must perform the following actions to see their Workloads on the dash
 
 1. Commit and push the Component definition to a Git repository that is registered as a Catalog Location. See [Adding
   Catalog Entities](../catalog/catalog-operations.md#adding-catalog-entities) in the Catalog Operations documentation.
-2. Create a Kubernetes Workload with a label matching the Component's selector, in a cluster available to the Tanzu
-  Application Platform GUI. A Workload is one of the following:
-  - `v1/Service`
-  - `apps/v1/Deployment`
-  - `serving.knative.dev/v1/Service`
+2. Create a Kubernetes Workload with a label matching the Component's selector, in a cluster
+available to the Tanzu Application Platform GUI. A Workload is one of the following:
 
-  ```shell
-  $ cat <<EOF | kubectl apply -f -
-  ---
-  apiVersion: serving.knative.dev/v1
-  kind: Service
-  metadata:
-    name: petclinic
-    namespace: default
-    labels:
-      'app.kubernetes.io/part-of': petclinic-server
-  spec:
-    template:
-      metadata:
-        labels:
-          'app.kubernetes.io/part-of': petclinic-server
-      spec:
-        containers:
-          - image: springcommunity/spring-framework-petclinic
-  EOF
-  ```
+    - `v1/Service`
+    - `apps/v1/Deployment`
+    - `serving.knative.dev/v1/Service`
+
+    For example:
+
+    ```console
+    $ cat <<EOF | kubectl apply -f -
+    ---
+    apiVersion: serving.knative.dev/v1
+    kind: Service
+    metadata:
+      name: petclinic
+      namespace: default
+      labels:
+        'app.kubernetes.io/part-of': petclinic-server
+    spec:
+      template:
+        metadata:
+          labels:
+            'app.kubernetes.io/part-of': petclinic-server
+        spec:
+          containers:
+            - image: springcommunity/spring-framework-petclinic
+    EOF
+    ```
 
 ## Navigate to the Workload Visibility Screen
 

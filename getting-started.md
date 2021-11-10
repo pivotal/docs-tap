@@ -913,12 +913,12 @@ When a developer deploys an application with an image from an unmatched pattern 
 
 * **Expected result**: resource is not created and an error message is shown in the CLI output.
 
-The Sign add on will output logs for the above scenarios.
-To have a look at the logs, the platform operator may issue the following command:
+The Sign add-on outputs logs for the above scenarios.
+To have a look at the logs, the platform operator runs:
 
-```
-$ kubectl logs -n image-policy-system -l "signing.run.tanzu.vmware.com/application-name=image-policy-webhook" -f
-```
+    ```
+    kubectl logs -n image-policy-system -l "signing.run.tanzu.vmware.com/application-name=image-policy-webhook" -f
+    ```
 
 
 ### Scan & Store: Introducing Vulnerability Scanning & Metadata Storage to your Supply Chain
@@ -1028,7 +1028,7 @@ same cluster that their app is running in, while underlying resources that compr
 This allows Service Operators, who are responsible for the lifecycle and management of the  
 services, greater control and flexibility in the services they provide.
 
-For information on each of the Services Toolkit components, including the use cases they unlock and API reference guides, see 
+For information on each of the Services Toolkit components, including the use cases they unlock and API reference guides, see
 [Services Toolkit component documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.4/services-toolkit-0-4/GUID-overview.html).
 
 Following are a number of use cases enabled by the Services Toolkit as part of Tanzu Application Platform.

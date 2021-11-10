@@ -95,11 +95,13 @@ Installation requires:
 
     1. List the existing contexts by running:
 
-        ```
+        ```console
         kubectl config get-contexts
         ```
+
         For example:
-        ```
+
+        ```console
         $ kubectl config get-contexts
         CURRENT   NAME                                CLUSTER           AUTHINFO                                NAMESPACE
                 aks-repo-trial                      aks-repo-trial    clusterUser_aks-rg-01_aks-repo-trial
@@ -111,13 +113,16 @@ Installation requires:
     2.  Set the context to the cluster that you want to use for the Tanzu Application Platform packages install.
         For example set the context to the `aks-tap-cluster` context by running:
 
-        ```
+        ```console
         kubectl config use-context aks-tap-cluster
         ```
+
         For example:
-        ```
+
+        ```console
         $ kubectl config use-context aks-tap-cluster
         Switched to context "aks-tap-cluster".
+        ```
 
 * Kapp-controller v0.29.0 or later:
 
@@ -436,7 +441,7 @@ You can now proceed with installing Tanzu Application Platform. For more informa
 If you'd like to the update the Tanzu CLI core and plugins you installed previously for Tanzu Application Platform Beta 2:
 
   1. Create a directory named `tanzu` by running:
-     
+
      ```
      mkdir $HOME/tanzu
      ```
@@ -452,13 +457,13 @@ on Tanzu Network.
 operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle.
 
   6. Unpack the TAR file in the `tanzu` directory by running:
-     
+
      ```
      tar -xvf tanzu-framework-linux-amd64.tar -C $HOME/tanzu
      ```
 
   7. Navigate to the `tanzu` directory by running:
-    
+
      ```
      cd $HOME/tanzu
      ```
@@ -473,31 +478,31 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
          ```
 
   9. Run the following command from the tanzu directory to update core cli and the previously installed plugins:
-    
+
      ```
      tanzu update --local ./cli
      ```
      Expect to see a user prompt - submit "y"
 
   10. Manually install the new `secret` plugin
-    
+
       ```
       tanzu plugin install secret --local ./cli   
       ```
 
   11. Check installation status for Tanzu CLI Core
-    
+
       ```
       tanzu version
       ```
       Expect `version: v0.10.0`
 
   12. Check installation status for Tanzu CLI Core
-    
+
       ```
       tanzu plugin list
       ```
-    
+
       Expect to see the following:
       ```
       tanzu plugin list
@@ -522,7 +527,7 @@ If you'd like to maintain the Tanzu CLI core and plugins you installed previousl
 for interacting with Tanzu Kubernetes Grid or Tanzu Community Edition, you only need to update/add the Tanzu Application Platform specific plugins as follows:
 
   1. Create a directory named `tanzu` by running:
-    
+
      ```
      mkdir $HOME/tanzu
      ```
@@ -538,65 +543,65 @@ on Tanzu Network.
 operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle.
 
   6. Unpack the TAR file in the `tanzu` directory by running:
-     
+
      ```
      tar -xvf tanzu-framework-linux-amd64.tar -C $HOME/tanzu
      ```
 
   7. Navigate to the `tanzu` directory by running:
-    
+
      ```
      cd $HOME/tanzu
      ```
 
   8. Check to see if the `imagepullsecret` and `package` plugins are already installed:
-    
+
      ```
      tanzu plugin list
      ```
-    
+
      If either is present present, delete them by running:
-    
+
      ```
      tanzu plugin delete imagepullsecret
      ```
-    
+
      And/Or
-    
+
      ```
      tanzu plugin delete package
      ```
 
   9. Install the `secret` plugin by running:
-    
+
      ```
      tanzu plugin install secret --local ./cli
      ```
 
   10. Install the `accelerator` plugin by running:
-    
+
       ```
       tanzu plugin install accelerator --local ./cli
       ```
 
   11. Install the `apps` plugin by running:
-    
+
       ```
       tanzu plugin install apps --local ./cli
       ```
 
   12. Install the updated `package` plugin by running:
-      
+
       ```
       tanzu plugin install package --local ./cli
       ```
 
   13. Verify the Tanzu Application Platform plugins present:
-    
+
       ```
       tanzu plugin list
       ```
-    
+
       Expect the following to be included in the list:
       ```
       tanzu plugin list

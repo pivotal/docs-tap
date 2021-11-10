@@ -85,7 +85,9 @@ spec:
 More information about and examples for Components can be found in Backstage documentation [here](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component).
 
 ## Adding an Additional Catalog Location
+
 To register the components of a catalog through static configuration, add the catalog's location to the `app-config` section of `tap-gui-values.yaml` (or your existing custom values file used at installation time):
+
 ```yaml
 catalog:
   locations:
@@ -94,15 +96,19 @@ catalog:
     - type: url
       target: <Additional Catalog Location>
 ```
+
 Next, update the package to include the catalog:
+
 ```shell
-$ tanzu package installed update backstage \
+tanzu package installed update backstage \
   --version <package-version> \
   -f <values-file>
 ```
+
 You can check the status of this update with:
+
 ```shell
-$ tanzu package installed list
+tanzu package installed list
 ```
 
 ## Updating Your Organization Catalog Location
