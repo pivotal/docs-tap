@@ -2223,8 +2223,10 @@ run the following commands to add credentials and Role-Based Access Control (RBA
     ```bash
     tanzu secret registry add registry-credentials --server REGISTRY-SERVER --username REGISTRY-USERNAME --password REGISTRY-PASSWORD --namespace YOUR-NAMESPACE
     ```
-    Where `YOUR-NAMESPACE` is the name you want for the developer namespace.
-    For example, use `default` for the default namespace. We recommend using the `default` namespace, as Debug & Live Update features with the Tanzu Developer Tools for VSCode extension only work with the `default` namespace at this time.
+    Where `YOUR-NAMESPACE` is the name that you want to use for the developer namespace.
+    For example, use `default` for the default namespace.
+    If you use the Tanzu Developer Tools for VSCode Extension, you must set the namespace to `default`.
+    This is because `default` is the only namspace that the debug and live update features currently recognize.
 
 2. Add placeholder read secrets, a service account, and RBAC rules to the developer namespace. Run:
 
