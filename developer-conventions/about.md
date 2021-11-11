@@ -10,7 +10,7 @@ Developer Conventions for VMware Tanzu Application Platform configures the follo
 
 - Scales the workload to one Pod
 - Extends HTTP-based timeouts
-- Enables live-update by using JAVA_TOOL_OPTIONS and spring-boot-devtools
+- Enables live-update for Java apps
 - Enables debugging by using the Java debug buildpack
 
 ## Features
