@@ -75,7 +75,7 @@ After you've completed the update, you can proceed to the "Install Tanzu Applica
 ## <a id='install-tap'></a>Install Tanzu Application Platform
 
 1. Ensure you meet all the prerequisites to install Tanzu Application Platform.
-See [Prerequisites](install-general.html#prerequisites-0) in _Installing Part I: Prerequisites, EULA, and CLI_.
+See [Prerequisites](install-general.html#prereqs) in _Installing Part I: Prerequisites, EULA, and CLI_.
 
     > **Note:** Do not attempt to install the cert-manager package from Tanzu Standard Repository.
     Follow the instructions in the Tanzu Application Platform documentation to meet all the prerequisites.
