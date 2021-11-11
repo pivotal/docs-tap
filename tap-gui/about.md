@@ -17,6 +17,6 @@ Tanzu Application Platform GUI is comprised of two components:
   * Application Live View
 
 * **TechDocs:**
-  This plugin enables you to store your technical documentation in Markdown format in a source-code repository and displayed alongside the relevant catalog entries.
+  This plugin enables you to store your technical documentation in Markdown format in a source-code repository and display it alongside the relevant catalog entries.
 
 ![Tanzu Application Platform Catalog](./images/tap-gui-catalog.png)
