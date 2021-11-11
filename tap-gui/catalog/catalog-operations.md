@@ -86,7 +86,7 @@ More information about and examples for Components can be found in Backstage doc
 
 ## Adding an Additional Catalog Location
 
-To register the components of a catalog through static configuration, add the catalog's location to the `app-config` section of `tap-gui-values.yaml` (or your existing custom values file used at installation time):
+To register the components of a catalog through static configuration, add the catalog's location to the `app_config` section of `tap-gui-values.yaml` (or your existing custom values file used at installation time):
 
 ```yaml
 catalog:
@@ -113,7 +113,7 @@ tanzu package installed list
 
 ## Updating Your Organization Catalog Location
 
-To update the components of a catalog through static configuration, update the catalog's location to the `app-config` section of `tap-gui-values.yaml` (or your existing custom values file used at installation time):
+To update the components of a catalog through static configuration, update the catalog's location to the `app_config` section of `tap-gui-values.yaml` (or your existing custom values file used at installation time):
 
 ```yaml
 catalog:
