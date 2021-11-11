@@ -106,8 +106,6 @@ spec:
 ...
 ```
 
-**NOTE:** The ScanPolicy CRD will not re-trigger a scan if it is updated. To re-trigger the scan, delete and re-apply the SourceScan CR.
-
 #### Delete the SourceScan CR:
 
 ```bash
