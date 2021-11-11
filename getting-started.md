@@ -81,7 +81,7 @@ You use this accelerator code in the [Iterate on your Application](#iterate) sec
 
     For more information, see [Tanzu Apps Workload Create](cli-plugins/apps/command-reference/tanzu_apps_workload_create.md).
 
-    >**Note:** This first deploy uses accelerator source from Git, but you use the VScode extension
+    >**Note:** This first deploy uses accelerator source from Git, but you use the VSCode extension
     to debug and live-update this app in later steps.
 
 1. View the build and runtime logs for your app by running the `tail` command:
