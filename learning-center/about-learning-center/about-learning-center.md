@@ -1,4 +1,4 @@
-# About Learning Center
+# Learning Center Overview
 
 The Learning Center is designed to provide a platform for hosting workshops. Although Learning Center requires 
 Kubernetes to run, and is being used to teach users about Kubernetes, it could also be used to host training for other 

@@ -1274,6 +1274,9 @@ To install Tanzu Learning Center, see the following sections.
 - Any ingress routes created will use the default ingress class. If you have multiple ingress class types available, and you need to override which is used.
 
 ### Procedure to install Learning Center
+
+To install Learning Center:
+
 1. List version information for the package by running:
 
     ```shell
@@ -1287,61 +1290,79 @@ To install Tanzu Learning Center, see the following sections.
      learningcenter.tanzu.vmware.com  1.0.14-build.1 2021-10-22 17:02:13 -0400 EDT
     ```
 
-2. (Optional) If you want to see all the configurable parameters on this package you can run the following command:
+1. (Optional) See all the configurable parameters on this package by running:
 
     ```shell
     tanzu package available get learningcenter.tanzu.vmware.com/1.0.14-build.1 --values-schema -- namespace tap-install
     ```
 
-3. Create a config file (e.g. learning-center-config.yaml) with the following parameters:
+1. Create a config file named `learning-center-config.yaml`.
 
-     ```yaml
-     ingressDomain: your-ingress-domain
-     ```
+1. Add the parameter `ingressDomain` to `learning-center-config.yaml`, as in this example:
 
-#### Setting the ingress domain
+    ```yaml
+    ingressDomain: YOUR-INGRESS-DOMAIN
+    ```
 
-When deploying workshop environment instances, the operator must be able to expose the instances
-through an external URL. This access is needed to discover the domain name that can be used as a
-suffix to hostnames for instances.
+    Where `YOUR-INGRESS-DOMAIN` is the domain name for your Kubernetes cluster.
 
-- Make sure to replace the `your-ingress-domain` domain with the domain name for your Kubernetes cluster.
+    When deploying workshop environment instances, the operator must be able to expose the instances
+    through an external URL. This access is needed to discover the domain name that can be used as a
+    suffix to hostnames for instances.
 
-> **Note:** For the custom domain you are using, DNS must have been configured with a wildcard domain to forward
-> all requests for subdomains of the custom domain to the ingress router of the Kubernetes cluster.
+    For the custom domain you are using, DNS must have been configured with a wildcard domain to
+    forward all requests for subdomains of the custom domain to the ingress router of the
+    Kubernetes cluster.
 
-> **Note:** If you are running Kubernetes on your local machine using a system like `minikube`, and you don't
-> have a custom domain name that maps to the IP for the cluster, you can use a `nip.io` address.
-> For example, if `minikube ip` returned `192.168.64.1`, you could use the `192.168.64.1.nip.io` domain.
-> Note that you cannot use an address of form `127.0.0.1.nip.io` or `subdomain.localhost`. This will cause a
-> failure. Internal services needing to connect to each other will connect to themselves instead,
-> since the address would resolve to the host loopback address of `127.0.0.1`.
+    If you are running Kubernetes on your local machine using a system such as `minikube`, and you
+    don't have a custom domain name that maps to the IP for the cluster, you can use a `nip.io`
+    address.
+    For example, if `minikube ip` returns `192.168.64.1`, you can use the `192.168.64.1.nip.io`
+    domain.
+    You cannot use an address of form `127.0.0.1.nip.io` or `subdomain.localhost`. This will cause a
+    failure. Internal services needing to connect to each other will connect to themselves instead,
+    because the address would resolve to the host loopback address of `127.0.0.1`.
 
-#### Enforcing secure connections
+1. Add the `ingressSecret` to `learning-center-config.yaml`, as in this example:
 
-By default the workshop portal and workshop sessions will be accessible over HTTP connections. If you wish to use secure HTTPS connections, you must have access to a wildcard SSL certificate for the domain under which you wish to host the workshops. You cannot use a self signed certificate.
-Wildcard certificates can be created using letsencrypt <https://letsencrypt.org/>_. Once you have the certificate, you can define the certificate and privateKey properties under the ingressSecret property to specify the certificate on the configuration yaml.
+    ```yaml
+    ingressSecret:
+        certificate: MIIC2DCCAcCgAwIBAgIBATANBgkqh ...
+        privateKey: MIIEpgIBAAKCAQEA7yn3bRHQ5FHMQ ...
+    ```
 
-```
-ingressSecret:
- certificate: MIIC2DCCAcCgAwIBAgIBATANBgkqh ...
- privateKey: MIIEpgIBAAKCAQEA7yn3bRHQ5FHMQ ...
-```
+    If you already have a TLS secret, you can copy it to the `educates` namespace or the one you
+    defined, and use the `secretName` property as in this exmaple:
 
-If you already has a TLS secret, you can copy it to the educates namespace or that one you defined, and use the secretName property.
+    ```yaml
+    ingressSecret:
+     secretName: workshops.example.com-tls
+    ```
 
-```
-ingressSecret:
- secretName: workshops.example.com-tls
-```
+    By default the workshop portal and workshop sessions are accessible over HTTP connections.
 
-#### Specifying the ingress class
+    To use secure HTTPS connections, you must have access to a wildcard SSL certificate for the
+    domain under which you want to host the workshops. You cannot use a self-signed certificate.
 
-Any ingress routes created will use the default ingress class. If you have multiple ingress class types available, and you need to override which is used, so define the ingressClass property on the configuration yaml:
+    Wildcard certificates can be created using letsencrypt <https://letsencrypt.org/>_.
+    After you have the certificate, you can define the `certificate` and `privateKey` properties
+    under the `ingressSecret` property to specify the certificate on the configuration yaml.
 
-```
-ingressClass: contour
-```
+1. Any ingress routes created use the default ingress class.
+If you have multiple ingress class types available, and you need to override which is used, define
+the `ingressClass` property in `learning-center-config.yaml` as in this example:
+
+    ```yaml
+    ingressClass: contour
+    ```
+
+    If you have multiple ingress controllers, ensure you select the correct one.
+    For instance, Cloud Native Runtimes (CNR) deploys two ingress controllers.
+    In this case you use `contour-external` for Learning Center as in this example:
+
+    ```yaml
+    ingressClass: contour-external
+    ```
 
 1. Install Learning Center Operator by running:
 
@@ -1349,9 +1370,10 @@ ingressClass: contour
     tanzu package install learning-center --package-name learningcenter.tanzu.vmware.com --version 1.0.14-build.1 -f learning-center-config.yaml
     ```
 
-    The command above will create a default namespace in your Kubernetes cluster called `educates`, and the operator along with any
-    required namespaced resources will be created in it. A set of custom resource definitions and a global cluster role binding will also be created.
-    The list of resources you should see being created are:
+    The command above will create a default namespace in your Kubernetes cluster called `educates`,
+    and the operator along with any required namespaced resources is created in it.
+    A set of custom resource definitions and a global cluster role binding are also created.
+    The list of resources you see being created are:
 
     ```shell
     customresourcedefinition.apiextensions.k8s.io/workshops.training.eduk8s.io created
@@ -1365,7 +1387,7 @@ ingressClass: contour
     deployment.apps/eduk8s-operator created
     ```
 
-    You can check that the operator deployed okay by running:
+    You can check that the operator deployed successfully by running:
 
     ```shell
     kubectl get all -n educates

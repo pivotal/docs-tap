@@ -177,7 +177,7 @@ The following table lists the packages contained in each profile:
   <tr>
    <td>Out of the Box Supply Chain - Testing
    </td>
-   <td>&check;
+   <td>&check;<sup>&ast;</sup>
    </td>
    <td>
    </td>
@@ -185,7 +185,7 @@ The following table lists the packages contained in each profile:
   <tr>
    <td>Out of the Box Supply Chain - Testing and Scanning
    </td>
-   <td>&check;
+   <td>&check;<sup>&ast;</sup>
    </td>
    <td>
    </td>
@@ -362,7 +362,7 @@ install by changing the `profile` value.
     - `<KP-DEFAULT-REPO-USERNAME>` is the username that can write to the `<KP-DEFAULT-REPO>`. You should be able to `docker push` to this location with this credential.
       * For Google Cloud Registry, use `kp_default_repository_username: _json_key`
     - `<KP-DEFAULT-REPO-PASSWORD>` is the password for the user that can write to the `<KP-DEFAULT-REPO>`. You can `docker push` to this location with these credentials.
-      * For Google Cloud Registry, use the contents of the service account json key: `kp_default_repository_password: "$(cat service-account.json)"`
+      * For Google Cloud Registry, use the contents of the service account json key.
     - `<SERVER-NAME>` is the hostname of the registry server.
       * Examples:
          * Harbor `server: "my-harbor.io"`

@@ -1,4 +1,4 @@
-# Tanzu Apps cluster-supply-chain
+# Tanzu Apps Cluster Supply Chain
 
 Patterns for building and configuring workloads.
 
@@ -20,5 +20,5 @@ Patterns for building and configuring workloads.
 ## See Also
 
 - [Tanzu Applications](tanzu_apps.md)	- Applications on Kubernetes
-- [Tanzu Apps cluster-supply-chain List](tanzu_apps_cluster-supply-chain_list.md)	- table listing of cluster supply chains
+- [Tanzu Apps Cluster Supply Chain List](tanzu_apps_cluster-supply-chain_list.md)	- table listing of cluster supply chains
 

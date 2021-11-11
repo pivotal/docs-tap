@@ -1,4 +1,4 @@
-# About Learning Center Workshops
+# Learning Center Workshops
 
 The Learning Center workshop dashboard comprises a set of workshop instructions on the left-hand side and a series of 
 tabbed views on the right-hand side. For workshops requiring commands to be run, one or more terminal shells will be provided.

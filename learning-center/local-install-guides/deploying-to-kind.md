@@ -89,7 +89,7 @@ Where TANZU-NET-USER and TANZU-NET-PASSWORD are your credentials for Tanzu Netwo
 
 ```
 tanzu package repository add tanzu-tap-repository \
-  --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.3.0 \
+  --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.3.0-build.8 \
   --namespace tap-install
 ```
 Note* We are currently on build 7, if this changes we need to update the command with the correct build version after the --url flag.
