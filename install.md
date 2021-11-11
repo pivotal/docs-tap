@@ -177,7 +177,7 @@ The following table lists the packages contained in each profile:
   <tr>
    <td>Out of the Box Supply Chain - Testing
    </td>
-   <td>&check;
+   <td>&check;<sup>&ast;</sup>
    </td>
    <td>&check;
    </td>
@@ -185,9 +185,10 @@ The following table lists the packages contained in each profile:
   <tr>
    <td>Out of the Box Supply Chain - Testing and Scanning
    </td>
-   <td>&check;
+   <td>&check;<sup>&ast;</sup>
    </td>
-   <td>&check;
+
+   <td>&check; <sup>&ast;</sup>
    </td>
   </tr>
   <tr>
