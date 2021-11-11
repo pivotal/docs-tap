@@ -139,7 +139,7 @@ To install Cloud Native Runtimes:
         LoadBalancer, and reduces the number of replicas.
 
         For more information about using Cloud Native Runtimes with kind, see
-        [local kind configuration guide for Cloud Native Runtimes](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-local-dns.html#configure-your-local-kind-cluster-1).
+        [local kind configuration guide for Cloud Native Runtimes](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-local-dns.html#config-cluster).
         If you are running on a multi-node cluster, do not set `provider`.
 
         If your environment has Contour packages, Contour might conflict with the Cloud Native Runtimes installation.
