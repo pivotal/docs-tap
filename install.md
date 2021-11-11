@@ -179,7 +179,7 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;<sup>&ast;</sup>
    </td>
-   <td>&check;
+   <td>
    </td>
   </tr>
   <tr>
@@ -187,8 +187,7 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;<sup>&ast;</sup>
    </td>
-
-   <td>&check; <sup>&ast;</sup>
+   <td>
    </td>
   </tr>
   <tr>
