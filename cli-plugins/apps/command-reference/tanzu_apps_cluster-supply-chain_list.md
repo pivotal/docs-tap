@@ -1,4 +1,4 @@
-# Tanzu Apps cluster-supply-chain List
+# Tanzu Apps Cluster Supply Chain List
 
 This topic will help you list cluster supply chains.
 
@@ -29,5 +29,5 @@ tanzu apps cluster-supply-chain list
 
 ## See Also
 
-- [Tanzu Apps cluster-supply-chain](tanzu_apps_cluster-supply-chain.md)	- Patterns for building and configuring workloads
+- [Tanzu Apps Cluster Supply Chain](tanzu_apps_cluster-supply-chain.md)	- Patterns for building and configuring workloads
 
