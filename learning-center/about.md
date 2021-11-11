@@ -1,4 +1,4 @@
-# Learning Center for VMware Tanzu Application Platform <!-- omit in toc -->
+# Learning Center for Tanzu Application Platform <!-- omit in toc -->
 
 ## Overview
 The Learning Center is designed to provide a platform for hosting workshops. Although Learning Center requires
