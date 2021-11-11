@@ -582,7 +582,7 @@ To install Application Accelerator:
     STATUS should be `Reconcile succeeded`.
 
 1. To access the Application Accelerator UI,
-   see the [Application Accelerator for VMware Tanzu documentation](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.4/acc-docs/GUID-installation-install.html#using-application-accelerator-for-vmware-tanzu-0).
+   see the [Application Accelerator for VMware Tanzu documentation](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.4/acc-docs/GUID-installation-install.html).
 
 ## <a id='install-tbs'></a> Install Tanzu Build Service
 
