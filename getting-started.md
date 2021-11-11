@@ -30,7 +30,7 @@ Before getting started, ensure the following prerequisites are in place:
 
 3. The Out of The Box Supply Chain Basic is installed. See [Install default Supply Chain](install-components.md#install-ootb-supply-chain-basic).
 
-4. A developer namespace has been setup to accommodate the developer's Workload.
+4. A developer namespace is setup to accommodate the developer's Workload.
    See [Set Up Developer Namespaces to Use Installed Packages](install-components.md#setup).
 
 
@@ -57,7 +57,7 @@ Follow these steps to get started with an accelerator called `Tanzu-Java-Web-App
     <img src="images/tanzu-java-web-app.png" alt="Screenshot of the Tanzu Java Web App within Application Accelerator. It includes empty text boxes for new project information." width="600">
 
 1. Replace the default value `dev.local` in the _"prefix for container image registry"_ field
-with the URL to your registry. The URL you enter must match the registry server you want the default Supply Chain to push container images to.
+with the URL to your registry. The URL must match the registry server you want the default Supply Chain to push container images to.
 
 For more information, see [Install default Supply Chain](install-components.md#install-ootb-supply-chain-basic).
 
