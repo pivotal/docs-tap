@@ -119,7 +119,7 @@ The following table lists the packages contained in each profile:
 
 <table>
   <tr>
-   <td><strong>Product Name</strong>
+   <td><strong>Capability Name</strong>
    </td>
    <td><strong>Full</strong>
    </td>
@@ -177,25 +177,17 @@ The following table lists the packages contained in each profile:
   <tr>
    <td>Out of the Box Supply Chain - Testing
    </td>
-   <td>&check;<sup>\*</sup>
+   <td>&check;
    </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>&check; <sup>&ast;</sup>
+   <td>&check;
    </td>
   </tr>
   <tr>
    <td>Out of the Box Supply Chain - Testing and Scanning
    </td>
-   <td>&check;<sup>\*</sup>
+   <td>&check;
    </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>&check; <sup>&ast;</sup>
+   <td>&check;
    </td>
   </tr>
   <tr>
