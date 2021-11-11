@@ -75,10 +75,9 @@ kubectl create ns tap-install
 ```
 Create a registry secret:
 ```
-tanzu secret registry add tap-registry \
-  --username "TANZU-NET-USER" --password "TANZU-NET-PASSWORD" \
-  --server registry.tanzu.vmware.com \
-  --export-to-all-namespaces --yes --namespace tap-install
+tanzu package repository add tanzu-tap-repository \
+  --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.3.0-build.8 \
+  --namespace tap-install
 ```
 Where TANZU-NET-USER and TANZU-NET-PASSWORD are your credentials for Tanzu Network.
   
