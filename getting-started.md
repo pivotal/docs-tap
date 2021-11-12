@@ -48,7 +48,7 @@ Application Accelerator templates are available as a quick start from [Tanzu Net
 Follow these steps to get started with an accelerator called `Tanzu-Java-Web-App`.
 
 1. Visit your Application Accelerator by following the steps in
-[Installing Application Accelerator for VMware Tanzu](acc-docs/docs/installation/install.md).
+[Installing Application Accelerator for VMware Tanzu](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.3/acc-docs/GUID-installation-install.html).
 
     <img src="images/app-acc.png" alt="Screenshot of Application Accelerator that shows a search field and two accelerators" width="600">
 
