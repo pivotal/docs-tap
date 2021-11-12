@@ -61,7 +61,7 @@ Installation requires:
         * Supported only on Linux operating system.
         * Minimum requirements: 8 CPUs for i9 or equivalent, 12 CPUs for i7 or equivalent, 8 GB RAM (12+ GB recommended), and 120 GB disk space.
         * If you are using Cloud Native Runtimes, see [Configure Your Local Kind
-        Cluster](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-local-dns.html#config-cluster).
+        Cluster](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-local-dns.html#configure-your-local-kind-cluster-1).
     * Minikube
         * Minimum requirements for VM: 8 CPUs for i9 or equivalent, 12 CPUs for i7 or equivalent, 8 GB RAM (12+ GB recommended), and 120 GB disk space.
         * VMware recommends at least 16 GB of total host memory.
@@ -263,7 +263,7 @@ Follow the procedure for your OS:
 
 To install the Tanzu CLI on a Linux operating system:
 
-1. Create a local directory called `tanzu`.
+1. Create a directory named `tanzu`:
     ```
     mkdir $HOME/tanzu
     ```
@@ -279,13 +279,13 @@ To install the Tanzu CLI on a Linux operating system:
     tar -xvf tanzu-framework-linux-amd64.tar -C $HOME/tanzu
     ```
 
-6. Install the Tanzu CLI from the `tanzu` directory by running:
+6. Install the CLI core:
     ```
     cd $HOME/tanzu
     sudo install cli/core/v0.10.0/tanzu-core-linux_amd64 /usr/local/bin/tanzu
     ```
 
-7. Confirm the installation of the Tanzu CLI by running:
+7. Confirm installation of the CLI core:
    ```
    tanzu version
    ```
@@ -298,7 +298,7 @@ To install the Tanzu CLI on a Linux operating system:
 
 To install the Tanzu CLI on a Mac operating system:
 
-1. Create a local directory called `tanzu`.
+1. Create a directory named `tanzu`:
     ```
     mkdir $HOME/tanzu
     ```
@@ -314,13 +314,13 @@ To install the Tanzu CLI on a Mac operating system:
     tar -xvf tanzu-framework-darwin-amd64.tar -C $HOME/tanzu
     ```
 
-6.  Install the Tanzu CLI from the `tanzu` directory by running:
+6.  Install the CLI core:
     ```
     cd $HOME/tanzu
     sudo install cli/core/v0.10.0/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
     ```
 
-7. Confirm the installation of the Tanzu CLI by running:
+7. Confirm installation of the CLI core:
    ```
    tanzu version
    ```
@@ -356,7 +356,7 @@ To install the Tanzu CLI on a Mac operating system:
 
 To install the Tanzu CLI on a Windows operating system:
 
-  1. Create a local directory called `tanzu-bundle`.
+  1. Create a directory called `tanzu-bundle`.
 
   2. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
 
@@ -384,7 +384,7 @@ To install the Tanzu CLI on a Windows operating system:
 
   13. Click **New** to add a new row, and enter the path to the Tanzu CLI.
 
-  14. Confirm the installation of the Tanzu CLI by running in a terminal window:
+  14. Confirm the installation of the Tanzu CLI by running the following in a terminal window:
       ```
       tanzu version
       ```
@@ -396,13 +396,13 @@ To install the Tanzu CLI on a Windows operating system:
 
 To perform a clean installation of the Tanzu CLI plugins:
 
-1. Run the following command from the `tanzu` directory:
+1. Install the local versions of the plugins you just downloaded:
 
     ```
     tanzu plugin install --local cli all
     ```
 
-2. Check the plugin installation status by running:
+2. Check the plugin installation status:
 
     ```
     tanzu plugin list
@@ -436,11 +436,9 @@ You can now proceed with installing Tanzu Application Platform. For more informa
 **[Installing Part II: Profiles](install.md)**.
 
 
-## <a id='udpate-previous-tap-tanzu-cli'></a>Instructions for updating Tanzu CLI that was installed for a previous Tanzu Application Platform release
+## <a id='udpate-previous-tap-tanzu-cli'></a>Instructions for updating Tanzu CLI that was installed for a previous release of TAP
 
-If you'd like to the update the Tanzu CLI core and plugins you installed previously for Tanzu Application Platform Beta 2:
-
-  1. Create a directory named `tanzu` by running:
+  1. Create a directory named `tanzu`:
 
      ```
      mkdir $HOME/tanzu
@@ -456,19 +454,36 @@ on Tanzu Network.
   5. Download the CLI bundle corresponding with your operating system. For example, if your client
 operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle.
 
-  6. Unpack the TAR file in the `tanzu` directory by running:
+  6. If they exist, delete any CLI files from a previous install:
+     ```
+     rm -rf $HOME/tanzu/cli
+     ```
+
+  7. Unpack the TAR file in the `tanzu` directory:
 
      ```
      tar -xvf tanzu-framework-linux-amd64.tar -C $HOME/tanzu
      ```
 
-  7. Navigate to the `tanzu` directory by running:
+  8. Navigate to the `tanzu` directory:
 
      ```
      cd $HOME/tanzu
      ```
 
-  8. If previously installed, delete the `imagepullsecret` plugin (it will be replaced by a new `secret` plugin):
+  9. Set env var `TANZU_CLI_NO_INIT` to true to install the local plugin versions you've just downloaded:
+     
+     ```
+     export TANZU_CLI_NO_INIT=true
+     ```
+  
+  10. Remove previously installed plugin binaries:
+     
+      ```
+      rm -rf ~/Library/Application\ Support/tanzu-cli/*
+      ```
+ 
+ 12. If previously installed, delete the `imagepullsecret` plugin (it will be replaced by a new `secret` plugin):
      ```
      tanzu plugin list
      ```
@@ -477,27 +492,29 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
          tanzu plugin delete imagepullsecret
          ```
 
-  9. Run the following command from the tanzu directory to update core cli and the previously installed plugins:
-
-     ```
-     tanzu update --local ./cli
-     ```
-     Expect to see a user prompt - submit "y"
-
-  10. Manually install the new `secret` plugin
+  13. Update the core CLI:
 
       ```
-      tanzu plugin install secret --local ./cli   
+      tanzu update --local ./cli
       ```
+      Expect to see a user prompt - submit "y"
+     
 
-  11. Check installation status for Tanzu CLI Core
+  14. Check installation status for the core CLI:
 
       ```
       tanzu version
       ```
       Expect `version: v0.10.0`
 
-  12. Check installation status for Tanzu CLI Core
+
+  15. Install new plugin versions:
+      
+      ```
+      tanzu plugin install --local cli all
+      ```
+ 
+  16. Check installation status for plugins:
 
       ```
       tanzu plugin list
@@ -518,7 +535,7 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
       secret              v0.10.0         Tanzu secret management                                            core        v0.10.0  installed
       ```
 
-  13. You may now proceed with installing Tanzu Application Platform via **[Installing Part II: Profiles](install.md)**.
+  17. You may now proceed with installing Tanzu Application Platform via **[Installing Part II: Profiles](install.md)**.
 
 
 ## <a id='udpate-tkg-tce-tanzu-cli'></a>Instructions for updating Tanzu CLI that was previously installed for Tanzu Kubernetes Grid and/or Tanzu Community Edition
@@ -526,11 +543,12 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
 If you'd like to maintain the Tanzu CLI core and plugins you installed previously
 for interacting with Tanzu Kubernetes Grid or Tanzu Community Edition, you only need to update/add the Tanzu Application Platform specific plugins as follows:
 
-  1. Create a directory named `tanzu` by running:
+  1. Create a directory named `tanzu`:
 
      ```
      mkdir $HOME/tanzu
      ```
+     If `tanzu` already exists, delete the files within it.
 
   2. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
 
@@ -553,14 +571,20 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
      ```
      cd $HOME/tanzu
      ```
+     
+  8. Set env var `TANZU_CLI_NO_INIT` to true to install the local plugin versions you've just downloaded:
+     
+     ```
+     export TANZU_CLI_NO_INIT=true
+     ```
 
-  8. Check to see if the `imagepullsecret` and `package` plugins are already installed:
+  9. Check to see if the `imagepullsecret` and `package` plugins are already installed:
 
      ```
      tanzu plugin list
      ```
 
-     If either is present present, delete them by running:
+     If either is present present, delete them:
 
      ```
      tanzu plugin delete imagepullsecret
@@ -572,31 +596,31 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
      tanzu plugin delete package
      ```
 
-  9. Install the `secret` plugin by running:
+  10. Install the `secret` plugin by running:
 
      ```
      tanzu plugin install secret --local ./cli
      ```
 
-  10. Install the `accelerator` plugin by running:
+  11. Install the `accelerator` plugin by running:
 
       ```
       tanzu plugin install accelerator --local ./cli
       ```
 
-  11. Install the `apps` plugin by running:
+  12. Install the `apps` plugin by running:
 
       ```
       tanzu plugin install apps --local ./cli
       ```
 
-  12. Install the updated `package` plugin by running:
+  13. Install the updated `package` plugin by running:
 
       ```
       tanzu plugin install package --local ./cli
       ```
 
-  13. Verify the Tanzu Application Platform plugins present:
+  14. Verify the Tanzu Application Platform plugins present:
 
       ```
       tanzu plugin list
@@ -612,6 +636,6 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
       secret              v0.10.0         Tanzu secret management                                            core        v0.10.0  installed
       ```
 
-  14. You may now proceed with installing Tanzu Application Platform on Tanzu Kubernetes Grid or Tanzu Community Edition. For more information, see:
+  15. You may now proceed with installing Tanzu Application Platform on Tanzu Kubernetes Grid or Tanzu Community Edition. For more information, see:
     * **[Installing Tanzu Application Platform on a Tanzu Community Edition v0.9.1 Cluster](install-tce.html#install-tap)**
     * **[Installing Tanzu Application Platform on a Tanzu Kubernetes Grid v1.4 Cluster](install-tkg.html#install-tap)**
