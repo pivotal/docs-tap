@@ -26,7 +26,7 @@ or change the standalone Tanzu Application Platform GUI values file if you're on
     ```yaml
         namespace: tap-gui
         service_type: <SERVICE-TYPE>
-        app-config:
+        app_config:
           catalog:
             locations:
               - type: url
@@ -38,7 +38,7 @@ or change the standalone Tanzu Application Platform GUI values file if you're on
     ```yaml
         namespace: tap-gui
         service_type: <SERVICE-TYPE>
-        app-config:
+        app_config:
           app:
             baseUrl: https://<EXTERNAL-IP>:<PORT>
           integrations:
