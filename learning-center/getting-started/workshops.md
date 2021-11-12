@@ -4,7 +4,7 @@ Workshops are where you create your content. You can create a workshop for indiv
 together with a [Training Portal](training-portal.md). Below will help you get started with workshops. For more 
 detailed instructions go to [Working with Learning Center Workshops](../workshop-content/about.md)
 
-## Creating the workshop environment
+## Creating the Workshop Environment
 
 With the definition of a workshop already in existence, the first underlying step to deploying a workshop is to 
 create the workshop environment.
@@ -47,7 +47,7 @@ lab-k8s-fundamentals   lab-k8s-fundamentals   lab-k8s-fundamentals   quay.io/edu
 Additional fields give the name of the workshop environment, the namespace created for the workshop environment, and 
 the name of the workshop the environment was created from.
 
-## Requesting a workshop instance
+## Requesting a Workshop Instance
 
 To request a workshop instance, a custom resource of type ``WorkshopRequest`` needs to be created.
 
@@ -109,7 +109,7 @@ workshop request and directly creates the latter.
 The purpose of having ``WorkshopRequest`` as a separate custom resource is to allow RBAC and other controls to be used 
 to allow non cluster admins to create workshop instances.
 
-## Deleting the workshop instance
+## Deleting the Workshop Instance
 
 When you have finished with the workshop instance, you can delete it by deleting the custom resource for the workshop 
 request:
@@ -118,7 +118,7 @@ request:
 kubectl delete workshoprequest/lab-k8s-fundamentals
 ```
 
-## Deleting the workshop environment
+## Deleting the Workshop Environment
 
 If you want to delete the whole workshop environment, it is recommended to first delete all workshop instances. Once 
 this has been done, you can then delete the custom resource for the workshop environment:

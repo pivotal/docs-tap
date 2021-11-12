@@ -1,4 +1,4 @@
-# Workshop Request
+# Workshop Request Resource
 
 The ``WorkshopRequest`` custom resource defines a workshop request.
 

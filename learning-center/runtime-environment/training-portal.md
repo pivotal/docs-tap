@@ -1,4 +1,4 @@
-# Training Portal
+# Training Portal Resource
 
 The ``TrainingPortal`` custom resource triggers the deployment of a set of workshop environments and a set number of workshop instances.
 

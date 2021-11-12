@@ -1,4 +1,4 @@
-# Deploying to Minikube
+# Installing on Minikube
 
 Minikube makes for a simple local deployment of Kubernetes for developing workshop content, or for self learning when deploying other peoples workshops.
 

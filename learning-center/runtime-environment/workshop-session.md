@@ -1,4 +1,4 @@
-# Workshop Session
+# Workshop Session Resource
 
 The ``WorkshopSession`` custom resource defines a workshop session.
 

@@ -1,4 +1,4 @@
-# Workshops Catalog
+# Workshop Catalog
 
 A single training portal can hosted one or more workshops. The REST API endpoints for the workshops catalog provide a means to list the available workshops and get information on them.
 
