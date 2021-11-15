@@ -2267,7 +2267,7 @@ run the following commands to add credentials and Role-Based Access Control (RBA
         resources: ['servicebindings']
         verbs: ['*']
       - apiGroups:
-          - services.tanzu.vmware.com
+          - services.apps.tanzu.vmware.com
         resources: ['resourceclaims']
         verbs: ['*']
       - apiGroups:
