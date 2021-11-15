@@ -1,4 +1,4 @@
-# Running a Sample Private Source Scan
+# Sample Private Source Scan
 
 ## Define the Resources
 Create `sample-private-source-scan.yaml` and ensure you enter a valid private ssh key value in the secret:

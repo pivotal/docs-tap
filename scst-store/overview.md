@@ -1,4 +1,4 @@
-# Supply Chain Security Tools for VMware Tanzu – Store
+# Supply Chain Security Tools for Tanzu – Store
 
 Supply Chain Security Tools - Store saves software bills of materials (SBoMs) to a database and allows you to query for image, source, package, and vulnerability relationships.  It integrates with [Supply Chain Security Tools - Scan](../scst-scan/overview.md) to automatically store the resulting source and image vulnerability reports.
 

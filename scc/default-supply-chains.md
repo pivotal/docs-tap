@@ -1,5 +1,5 @@
 ---
-title: Install
+title: Out of the Box Supply Chains
 subtitle: How to install Cartographer in a Kubernetes cluster
 weight: 2
 ---
@@ -8,12 +8,14 @@ weight: 2
 
 Out of the Box Supply Chains are provided with Tanzu Application Platform.
 
-The following three supply chains that are included:
+The following three supply chains are included:
+
 - Out of the Box Supply Chain Basic (source-to-url)
 - Out of the Box Supply Chain with Testing (source-test-to-url)
 - Out of the Box Supply Chain with Testing and Scanning (source-test-scan-to-url)
 
 Tanzu Application Platform also includes:
+
 - Out of the Box Templates
 
 Each of the supply chains use Out of the Box Templates.

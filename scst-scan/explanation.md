@@ -1,4 +1,4 @@
-# Reference
+# Spec Reference
 
 With the Scan Controller and Grype Scanner installed (see Install Supply Chain Security Tools - Scan
 from [Installing Individual Packages](../install-components.html#install-scst-scan),

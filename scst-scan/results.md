@@ -1,9 +1,9 @@
-# Viewing and Understanding Scan Status Conditions
+# View Scan Status Conditions
 
-## Viewing Scan Status
+## View Scan Status
 You can view the Scan status by using `kubectl describe` on a `SourceScan` or `ImageScan`. You can see information about the scan status under the Status field for each scan CR.
 
-## Understanding Conditions
+## Understand Conditions
 The `Status.Conditions` array will be populated with the scan status information during and after scanning execution, and the policy validation (if defined for the scan), once the results are available.
 
 ### Condition Types for the scans

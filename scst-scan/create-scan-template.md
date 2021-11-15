@@ -1,4 +1,4 @@
-# How to Create a ScanTemplate
+# Create a ScanTemplate
 The `ScanTemplate` CR is where you define the pod with the scanner image that you will be using for your vulnerability scanning. There's a default scanner image you can use out-of-the-box.
 
 ## Structure

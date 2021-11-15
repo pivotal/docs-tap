@@ -1,4 +1,4 @@
-# Running a Sample Public Source Scan of a Blob
+# Sample Public Source Scan of a Blob
 This example will perform a scan against a source code in a `.tar.gz` file. This can be helpful in a Supply Chain, where there can be a `GitRepository` step that handles cloning a repository and outputting the source code as a compressed archive.
 
 ## Define the Resources

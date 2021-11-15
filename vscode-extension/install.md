@@ -1,10 +1,10 @@
 ---
-title: Install
+title: Install the Visual Studio Code Tanzu Extension
 subtitle: How to install the VSCode Tanzu Extension
 weight: 2
 ---
 
-This topic explains how to install the VSCode Tanzu Extension.
+This topic explains how to install the Visual Studio Code Tanzu Extension.
 
 ## Prerequisites
 

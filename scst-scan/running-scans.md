@@ -1,4 +1,4 @@
-# Running a Sample Public Source Scan and Image Scan with Policy Enforcement
+# Sample Public Source Code and Image Scans with Policy Enforcement
 
 ## <a id="public-source-scan"></a> Public Source Scan
 This example performs a source scan on a public repository. The source revision has 192 known vulnerabilities (CVEs), spanning a number of severities. SourceScan uses the ScanPolicy to run a compliance check against the CVEs.

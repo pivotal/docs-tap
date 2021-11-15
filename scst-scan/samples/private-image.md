@@ -1,4 +1,4 @@
-# Running a Sample Private Image Scan
+# Sample Private Image Scan
 This example will perform a scan against an image located in a private registry.
 
 ## Define the Resources

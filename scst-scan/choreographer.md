@@ -1,4 +1,4 @@
-# Example Supply Chain Choreographer for Tanzu including Source and Image Scans
+# Sample Supply Chain Choreographer for Tanzu
 
 This example takes every source code commit, scans the source code for vulnerabilities, builds an image, and then scans the image for vulnerabilities.
 

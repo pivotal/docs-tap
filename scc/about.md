@@ -1,10 +1,10 @@
 ---
-title: Supply Chain Choreographer for VMware Tanzu
+title: Supply Chain Choreographer for Tanzu
 subtitle: Supply Chain Choreography
 weight: 1
 ---
 
-# Supply Chain Choreographer for VMware Tanzu
+# Supply Chain Choreographer for Tanzu
 
 This topic introduces Supply Chain Choreographer.
 

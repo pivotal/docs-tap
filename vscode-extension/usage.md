@@ -1,5 +1,5 @@
 ---
-title: Usage
+title: Using Tanzu Developer Tools for Visual Studio Code
 subtitle: Using Tanzu Developer Tools for Visual Studio Code
 weight: 2
 ---

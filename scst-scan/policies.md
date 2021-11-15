@@ -1,4 +1,4 @@
-# Code and Image Compliance Policy Enforcement Using Open Policy Agent (OPA)
+# Enforce Compliance Policy Using Open Policy Agent
 
 ## Writing a Policy Template
 The Scan Policy custom resource allows you to define a Rego File for policy enforcement that you can easily reuse across Image Scan and Source Scan CRs.
