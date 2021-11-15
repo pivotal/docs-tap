@@ -71,12 +71,12 @@ Installation requires:
         * To install Tanzu Application Platform on Tanzu Kubernetes Grid v1.4,
           see [Installing with Tanzu Kubernetes Grid v1.4](install-tkg.md).
    * Tanzu Community Edition v0.9.1
-        * Visit the Tanzu Community Edition installation page to follow installation instructions at [Tanzu Community Edition](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.3/tap-0-3/GUID-install-tce.html)
+        * Visit the Tanzu Community Edition installation page to follow installation instructions at [Tanzu Community Edition](install-tce.md)
 
     To deploy all Tanzu Application Platform packages, your cluster must have at least **8&nbsp;GB** of RAM across all nodes available to Tanzu Application Platform. At least 8 CPUs for i9 or equivalent or 12 CPUs for i7 or equivalent must be available to Tanzu Application Platform components.
     VMware recommends that at least **16&nbsp;GB** of RAM is available to build and deploy applications, including for Kind and Minikube.
 
-    Your cluster must support the creation of Services of type `LoadBalancer` to install Cloud Native Runtimes package. The exception is [`provider: local` installation](#install-cnr), which removes container replication and uses `NodePort` Services for HTTP ingress. For information about services of type `LoadBalancer`, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer) and your cloud provider documentation. For information about Tanzu Kubernetes Grid support for Service type `LoadBalancer`, see [Install VMware NSX Advanced Load Balancer on a vSphere Distributed Switch](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.3/vmware-tanzu-kubernetes-grid-13/GUID-mgmt-clusters-install-nsx-adv-lb.html#nsx-advanced-load-balancer-deployment-topology-0).
+    Your cluster must support the creation of Services of type `LoadBalancer` to install Cloud Native Runtimes package. The exception is [`provider: local` installation](#install-cnr), which removes container replication and uses `NodePort` Services for HTTP ingress. For information about services of type `LoadBalancer`, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer) and your cloud provider documentation. For information about Tanzu Kubernetes Grid support for Service type `LoadBalancer`, see [Install VMware NSX Advanced Load Balancer on a vSphere Distributed Switch](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.3/vmware-tanzu-kubernetes-grid-13/GUID-mgmt-clusters-install-nsx-adv-lb.html).
 
     Your cluster must also have at least **70&nbsp;GB** of disk per node.
 

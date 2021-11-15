@@ -1054,7 +1054,7 @@ Let’s start by playing the role of a Service Operator, who is responsible for 
     metadata:
       name: resource-claims-rmq
       labels:
-        services.vmware.tanzu.com/aggregate-to-resource-claims: "true"
+        services.apps.tanzu.vmware.com/aggregate-to-resource-claims: "true"
     rules:
     - apiGroups: ["rabbitmq.com"]
       resources: ["rabbitmqclusters"]
@@ -1160,7 +1160,7 @@ installed. RabbitMQ Cluster Operator is not installed on this cluster.
     metadata:
       name: resource-claims-rmq
       labels:
-        services.vmware.tanzu.com/aggregate-to-resource-claims: "true"
+        services.apps.tanzu.vmware.com/aggregate-to-resource-claims: "true"
     rules:
     - apiGroups: ["rabbitmq.com"]
       resources: ["rabbitmqclusters"]
@@ -1199,7 +1199,7 @@ installed. RabbitMQ Cluster Operator is not installed on this cluster.
 9. An Application Developer uses services available in the Workload Cluster. There is one service resource available in the example below.
 
     ```
-    kubectl --context=WORKLOAD_CONTEXT get clusterserviceresources
+    kubectl --context=WORKLOAD_CONTEXT get clusterresources.services.apps.tanzu.vmware.com
 
     NAME                           API KIND          API GROUP      DESCRIPTION
     rabbitmq.com-rabbitmqcluster   RabbitmqCluster   rabbitmq.com
