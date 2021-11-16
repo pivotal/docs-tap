@@ -3,15 +3,21 @@
 This is the table of contents from which the Tanzu Application Platform Documentation site on docs.vmware.com is built.
 
 - [Tanzu Application Platform v0.4 (Beta-3)](overview.md)
+
 - [Release Notes](release-notes.md)
+
 - [Installing Tanzu Application Platform](install-intro.md)
     - [Installing Part I: Prerequisites, EULA, and CLI](install-general.md)
         - [Installing on a Tanzu Community Edition v0.9.1 Cluster](install-tce.md)
         - [Installing on a Tanzu Kubernetes Grid v1.4 Cluster](install-tkg.md)
     - [Installing Part II: Profiles](install.md)
+    
 - [Getting Started with Tanzu Application Platform](getting-started.md)
+
 - [Troubleshooting Tanzu Application Platform](troubleshooting.md)
+
 - [Uninstalling Tanzu Application Platform](uninstall.md)
+
 - [Component Documentation](components.md)
     - [Installing Individual Packages](install-components.md)
     - [Apps CLI Plugin Overview](cli-plugins/apps/overview-installation.md)
@@ -86,11 +92,6 @@ This is the table of contents from which the Tanzu Application Platform Document
             * [View Scan Status Conditions](scst-scan/results.md)
     * [Supply Chain Security Tools for Tanzu – Store](scst-store/overview.md)
         * [Release Notes](scst-store/release_notes.md)
-        * [Installing Individual Packages](install-components.md)
-        * [Set Up](scst-store/overview.md)
-        * [Usage](scst-store/overview.md)
-            * [Adding Data](scst-store/add_cyclonedx_to_store.md)
-            * [Querying Data](scst-store/querying_the_metadata_store.md)
         * [Troubleshooting and Known Issues](scst-store/known_issues.md)
     * [Tanzu Developer Tools for VSCode](vscode-extension/about.md)
         * [Install the VSCode Tanzu Extension](vscode-extension/install.md)
