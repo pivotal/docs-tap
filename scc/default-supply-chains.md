@@ -163,7 +163,7 @@ NAME                 READY   AGE     LABEL SELECTOR
 source-test-to-url   Ready   2m20s   apps.tanzu.vmware.com/workload-type=web
 ```
 
-2. Set up a service account and placeholder secret for registry credentials.
+2. Set up a service account and placeholder secret for registry credentials:
 
 ```yaml
 ---
@@ -307,7 +307,7 @@ In particular, this example adds Source and Image Scanning capabilities.
 
 The notable addition is a Scan Policy, which enables policy enforcement on vulnerabilities found. 
 
-1. Add a scan policy
+1. Add a scan policy:
 
 ```yaml
 apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
@@ -341,7 +341,8 @@ spec:
     isCompliant = isSafe(input.currentVulnerability)
 ```
 
-2. Add a source scan template
+2. Add a source scan template:
+
 ```yaml
 apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
 kind: ScanTemplate
@@ -388,7 +389,8 @@ spec:
     - emptyDir: {}
       name: workspace
 ```
-3. Add an image scan template
+3. Add an image scan template:
+
 ```yaml
 apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
 kind: ScanTemplate
@@ -436,7 +438,8 @@ spec:
 
 ```
 
-#### Developer Workload
+#### Developer workload
+
 1. The next step would be to then submit a workload like in the other examples:
 ```bash
 tanzu apps workload create hello-world \
