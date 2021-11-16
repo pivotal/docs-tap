@@ -2,7 +2,7 @@
 
 This is the table of contents from which the Tanzu Application Platform Documentation site on docs.vmware.com is built.
 
-- [Tanzu Application Platform v0.4 (Beta-3)](overview.md)
+- [Tanzu Application Platform v0.4 (Beta-4)](overview.md)
 
 - [Release Notes](release-notes.md)
 
