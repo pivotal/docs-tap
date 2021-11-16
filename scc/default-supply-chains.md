@@ -23,7 +23,7 @@ Each of the supply chains use Out of the Box Templates.
 Regardless of the supply chain you choose, you need to set credentials for a
 registry where Tanzu Build Service should push the images that it builds.
 
-### Credentials for pushing app images to a registry
+## Credentials for pushing app images to a registry
 The supply chain builds a container image based off of the source code and
 pushes it to a registry. We need to provide to the systems the credentials for
 doing so.

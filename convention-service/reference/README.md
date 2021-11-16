@@ -1,4 +1,4 @@
-# Conventions Resources
+# Convention Resources
 
 Convention Controller is open to extension. These resources are typically consumed by platform developers and operators rather than application developers.
 
