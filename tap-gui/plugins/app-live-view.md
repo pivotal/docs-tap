@@ -16,7 +16,7 @@ Application Live View does not store any of that data for further analysis or hi
 This easy-to-use interface provides ways to troubleshoot, learn, and maintain an overview of certain aspects of the running processes.
 It gives a level of control to the users to change some parameters, such as environment properties, without a restart (where the Spring Boot application, for example, supports that).
 
-## Landing Page and Instance List Page (the temporary entry point in Tanzu Application Platform Beta 3)
+## Landing page and instance list page (the temporary entry point in Tanzu Application Platform Beta 3)
 
 The temporary main page of App Live View in Tanzu Application Platform GUI, and the following list of individual instances (when you click on the application entries on the first page),
 gives you an overview of all running processes recognized by the underlying Application Live View infrastructure.
@@ -27,7 +27,7 @@ __IMPORTANT: The landing and instance list page, as well as the overall visual a
 
 Once you arrive on an individually running process (like a Spring Boot application that you are running inside of a pod on your cluster), you will be able to see all the details, do some lightweight troubleshooting and interact with the application in certain boundaries.
 
-### Details Page
+### Details page
 
 This is the default page loaded when the user clicks on any of the instances in the Instance List page. This page gives a tabular overview containing the application name, instance id, location, actuator location, health endpoint, direct actuator access, framework , version, new patch version, new major version, build version. The user can navigate between Information Categories by selecting from the drop down on the top right corner of the page.
 
@@ -36,7 +36,7 @@ This is the default page loaded when the user clicks on any of the instances in 
 
 ![DropDown Page in UI](./images/information-category-dropdown.png)
 
-### Health Page
+### Health page
 
 To navigate to the health page, the user should select the Health option from the Information Category dropdown.
 The health page provides detailed information about the health of the application.
@@ -46,7 +46,7 @@ It displays the status, details associated with each of the components.
 ![Health Page in UI](./images/health-page.png)
 
 
-### Environment Page
+### Environment page
 
 To navigate to the Environment page, the user should select the Environment option from the Information Category dropdown.
 The Environment page contains details of the applications' environment.
