@@ -1,4 +1,4 @@
-# Release Notes
+# Release notes
 
 This topic contains release notes for Supply Chain Security Tools - Store.
 
@@ -7,11 +7,11 @@ This topic contains release notes for Supply Chain Security Tools - Store.
 
 **Release Date**: November 8, 2021
 
-### Software Component Versions
+### Software component versions
 
 * PostgresSQL 13.4
 
-### New Features
+### New features
 
 * Added a /health endpoint and `insight health` command
 * Upgraded to golang 1.17
@@ -19,7 +19,7 @@ This topic contains release notes for Supply Chain Security Tools - Store.
 * Updated repository parsing logic
 * Squashed some minor bugs
 
-### Known Issues
+### Known issues
 
 See [Troubleshooting and Known Issues](known_issues.md).
 
@@ -31,11 +31,11 @@ See [Troubleshooting and Known Issues](known_issues.md).
 
 **Release Date**: October 07, 2021
 
-### Software Component Versions
+### Software component versions
 
 * PostgresSQL 13.4
 
-### New Features
+### New features
 
 * Store SBOM, CVE, and metadata about images and source code
 * Query relationships between images, packages, and CVEs, and source code
@@ -45,7 +45,7 @@ See [Troubleshooting and Known Issues](known_issues.md).
 * Encrypted connection between client and API server
 * Encrypted connection between API server and database
 
-### Known Issues
+### Known issues
 
 See [Troubleshooting and Known Issues](known_issues.md).
 

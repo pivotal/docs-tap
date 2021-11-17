@@ -1,9 +1,9 @@
-# Workload Visibility User Guide
+# Workload Visibility user guide
 
 The Workload Visibility screen lets developers view the details and status of their Kubernetes
 Workloads to understand their structure, and debug issues.
 
-## Before You Begin
+## Before you begin
 
 Developers must perform the following actions to see their Workloads on the dashboard:
 
@@ -56,7 +56,7 @@ available to the Tanzu Application Platform GUI. A Workload is one of the follow
     EOF
     ```
 
-## Navigate to the Workload Visibility Screen
+## Navigate to the Workload Visibility screen
 
 You can view the list of running Workloads and details about their status, type, namespace, cluster, and public URL if
 applicable for the Workload type.
@@ -68,7 +68,7 @@ To view the list of your running Workloads:
 
 ![Workload index table](./images/workload-visibility-workloads.png)
 
-## Knative Service Details page
+## Knative service details page
 
 To view the Knative services details of your Workloads, select the Workload with 'Knative Service' type.
 In this page, additional information is available for Knative workloads including status, an ownership hierarchy,

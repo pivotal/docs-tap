@@ -1,14 +1,14 @@
-#Catalog Operations
+#Catalog operations
 
 This guide will focus on how you can set up software catalogs. We recommend that you get familiar with Backstage and their software catalog system before proceeding. The [Software Catalog Overview](https://backstage.io/docs/features/software-catalog/software-catalog-overview) and [Catalog Configuration](https://backstage.io/docs/features/software-catalog/configuration) pages are good places to start.
 
-## Adding Catalog Entities
+## Adding catalog entities
 This section will describe how you can format your own catalog. Creating catalogs consists of building metadata YAML files stored together with the code. This information is read from a Git-compatible repository consisting of these YAML catalog definition files. Changes made to the catalog definitions on your Git infrastructure are automatically reflected every 200 seconds. For each catalog entity kind you create, there is a file format you must follow. Below is an overview of a few core entities, but details about all types of entities can be found [here](https://backstage.io/docs/features/software-catalog/descriptor-format). We also have an example blank catalog [here](https://gitlab.eng.vmware.com/project-star/pstar-backstage-poc/-/tree/master/sample-catalogs/blank) for now, to use as a loose guide for creating user, group, system, and main component YAML files.
 
 Relationship Diagram:
 ![Tanzu Application Platform GUI Relationships](../images/tap-gui-relationships.jpg)
 
-### Users and Groups
+### Users and groups
 A User entity describes a specific person and is used for identity purposes. A Group entity describes an organizational team or unit. Users are members of one or more Groups.
 
 The descriptor files for both require values for `apiVersion`, `kind`, `metadata.name`. Users also require `spec.memberOf`. Groups require `spec.type` and `spec.children`, where `spec.children` is another Group. To link a logged in user to a User entity, be sure to include the optional `spec.profile.email` field.
@@ -84,7 +84,7 @@ spec:
 
 More information about and examples for Components can be found in Backstage documentation [here](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component).
 
-## Adding an Additional Catalog Location
+## Adding an additional catalog location
 
 To register the components of a catalog through static configuration, add the catalog's location to the `app_config` section of `tap-gui-values.yaml` (or your existing custom values file used at installation time):
 
@@ -111,7 +111,7 @@ You can check the status of this update with:
 tanzu package installed list
 ```
 
-## Updating Your Organization Catalog Location
+## Updating your organization catalog location
 
 To update the components of a catalog through static configuration, update the catalog's location to the `app_config` section of `tap-gui-values.yaml` (or your existing custom values file used at installation time):
 
@@ -138,13 +138,13 @@ tanzu package installed list
 ## Installing demo apps and their catalogs
 If you want to set up one of our demos, you can choose between a blank or a sample catalog.
 
-### Yelb System
+### Yelb system
 The [Yelb](https://github.com/mreferre/yelb/tree/master/deployments/platformdeployment/Kubernetes/yaml) demo catalog includes all the components that make up the Yelb system as well as the default Backstage components.
 #### Install Yelb
 1. Download the appropriate file for running the Yelb application itself from [here](https://github.com/mreferre/yelb/tree/master/deployments/platformdeployment/Kubernetes/yaml)
 2. Install the application on the Kubernetes cluster that you've used for Tanzu Application Platform. It's important to preserve the metadata labels on the Yelb application's objects.
 
 
-#### Install Yelb Catalog
+#### Install Yelb catalog
 1. Save the **Tanzu Application Platform GUI Yelb Catalog** from the Tanzu Network's [Tanzu Application Platform downloads](https://network.pivotal.io/products/tanzu-application-platform) under the "Tap-GUI-Catalogs" folder.
 2. Using the steps for [Adding an Additional Catalog Location](#adding-an-additional-catalog-location), add the `catalog-info.yaml`
