@@ -24,8 +24,6 @@ Tanzu Application Platform packages.
 application images, base images, and runtime dependencies.
     * When available, VMware recommends using a paid registry account to avoid potential
     rate-limiting associated with some free registry offerings.
-    * VMware recommends using a paid registry account, if available, to avoid potential
-    rate-limiting associated with some free registry offerings dependencies.
 
 
 * Registry credentials with push and write access made available to Tanzu Application Platform to
