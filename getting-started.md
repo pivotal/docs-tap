@@ -1003,7 +1003,7 @@ Most applications require backing services, such as databases, queues, and cache
 successfully.
 
 Tanzu Application Platform makes it easy to discover, curate, consume, and manage such backing
-services across single or multi-cluster environments. 
+services across single or multi-cluster environments.
 This enables developers to spend more time focussing on developing their applications and less
 time worrying about the provision, configuration, and operations of the backing services they
 depend on.
@@ -1112,18 +1112,18 @@ The Application Developer is responsible for developing applications and creatin
 through RabbitMQ to itself.
 Both the Application Workload and RabbitmqCluster service instance must exist in the same namespace.
 
->**Note:** This requirement is expected to be removed from an upcoming release.
+    >**Note:** This requirement is expected to be removed from an upcoming release.
 
     ```console
      tanzu apps workload create rmq-sample-app-usecase-1 --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch v0.1.0 --type web --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:rmq-1"
     ```
 
-The `--service-ref` flag instructs Tanzu Application Platform to bind the Application Workload to
-the service instance.
+    The `--service-ref` flag instructs Tanzu Application Platform to bind the Application Workload
+    to the service instance.
 
->**Note:** Currently users are expected to provide a full object reference to a specific resource,
->which is `rmq-1` in this case. Improvements to this user experience are planned with anticipated
->new features for the Service Resource Claims component.
+    >**Note:** Currently users are expected to provide a full object reference to a specific
+    >resource, which is `rmq-1` in this case. Improvements to this user experience are planned with
+    >anticipated new features for the Service Resource Claims component.
 
 1. Confirm that the Application Workload is built and running by using the following command to get
 the Knative web-app URL.
@@ -1180,7 +1180,6 @@ cluster.
 1. Download and install the `kubectl-scp` plug-in from [Tanzu Application Platform Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform).
 This plug-in is for demonstration and experimentation purposes only. `tanzu` CLI UX might
 replace it in the future.
-
 To install the plug-in you must place it in your `PATH-TO-KUBECTL-SCP` and ensure it is executable. For example:
 
     ```console
@@ -1188,11 +1187,11 @@ To install the plug-in you must place it in your `PATH-TO-KUBECTL-SCP` and ensur
     sudo chmod +x /usr/local/bin/kubectl-scp
     ```
 
-You are left with two Kubernetes clusters:
+    You are left with two Kubernetes clusters:
 
-- Workload Cluster, which is where Tanzu Application Platform, including Services toolkit, is installed.
-The cluster Operator is not installed on this cluster.
-- Services Cluster, which is where only Services toolkit is installed. Nothing else is installed here.
+    - Workload Cluster, which is where Tanzu Application Platform, including Services toolkit, is installed.
+    The cluster Operator is not installed on this cluster.
+    - Services Cluster, which is where only Services toolkit is installed. Nothing else is installed here.
 
 #### Steps
 
@@ -1248,12 +1247,15 @@ controller to the Service resources, in this case RabbitMQ.
      kubectl apply -f resource-claims-rmq.yaml
     ```
 
-1. Federate the `rabbitmq.com/v1beta1` API group, which is available in the Service Cluster, into
-the Workload Cluster. This occurs in two parts: projection and replication.
+The following steps federate the `rabbitmq.com/v1beta1` API group, which is available in the
+Service Cluster, into the Workload Cluster.
+This occurs in two parts: projection and replication.
 Projection applies to custom API groups. Replication applies to core Kubernetes resources, such as
 Secrets.
-Create a pair of target namespaces in which you create `RabbitmqCluster` Service instances.
+
+1. Create a pair of target namespaces in which you create `RabbitmqCluster` Service instances.
 The namespace name must be identical in the Application Workload and Service Cluster.
+See the example below.
 
     ```console
     kubectl --context WORKLOAD-CONTEXT create namespace my-project-1
@@ -1300,14 +1302,14 @@ The application operator takes over from here:
 1. Discover this new service and provision an instance by running the following command.
 
     ```console
-     kubectl --context=WORKLOAD-CONTEXT get clusterresources.services.apps.tanzu.vmware.com
+    kubectl --context=WORKLOAD-CONTEXT get clusterresources.services.apps.tanzu.vmware.com
 
     NAME                           API KIND          API GROUP      DESCRIPTION
     rabbitmq.com-rabbitmqcluster   RabbitmqCluster   rabbitmq.com
     ```
 
-    This step currently requires the use of kubectl, but the `tanzu` CLI UX is intended to replace
-    it in the future.
+    >**Note:** This step currently requires the use of kubectl, but the `tanzu` CLI UX is intended
+    to replace it in the future.
 
 1. As done previously, provision a service instance on the Tanzu Application Platform cluster.
 See the example below.
@@ -1347,7 +1349,7 @@ by running the following command:
 
 Finally, the application developer takes over:
 
-1. Create the Application Workload. The experience is exactly the same for the application developer as with the first use case. Run:
+1. Create the Application Workload. See the example command below.
 
     ```console
      tanzu apps workload create -n my-project-1 rmq-sample-app-usecase-2 --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch v0.1.0 --type web --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:projected-rmq"
@@ -1380,27 +1382,28 @@ the Well-known Secret Entries part of the binding specifications.
 For more information, see the
 [Well-known Secret Entries specifications](https://github.com/servicebinding/spec#well-known-secret-entries) in GitHub.
 
-For example, imagine that you want to bind a new application on Tanzu Application Platform to an
-existing PostgreSQL database that exists in Azure.
-You can create a Kubernetes Secret resource similar to the following example:
+In this example, bind a new application on Tanzu Application Platform to an existing PostgreSQL
+database that exists in Azure:
 
-```yaml
-# external-azure-db-binding-compatible.yaml
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: external-azure-db-binding-compatible
-type: Opaque
-stringData:
-  type: postgresql
-  provider: azure
-  host: example.database.azure.com
-  port: "5432"
-  database: "example-db-name"
-  username: "user@example"
-  password: "example"
-```
+1. Create a Kubernetes Secret resource similar to the following example:
+
+    ```yaml
+    # external-azure-db-binding-compatible.yaml
+    ---
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: external-azure-db-binding-compatible
+    type: Opaque
+    stringData:
+      type: postgresql
+      provider: azure
+      host: EXAMPLE.DATABASE.AZURE.COM
+      port: "5432"
+      database: "EXAMPLE-DB-NAME"
+      username: "user@example"
+      password: "PASSWORD"
+    ```
 
 1. Apply the YAML file by running the following command.
 
@@ -1436,7 +1439,6 @@ tanzu apps workload get tanzu-java-web-app --export \
 ```
 
 Explore the flags available for the workload commands by running:
-
 
 ```console
 tanzu apps workload -h
