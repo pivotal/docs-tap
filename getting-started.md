@@ -1149,7 +1149,7 @@ different compliance needs.
 * Separation of permissions and access. Application teams can only access the clusters where their
 applications are running.
 
-The experience of an application developer working on their Tanzu Application Platform cluster is  
+The experience of an application developer working on their Tanzu Application Platform cluster is
 unaltered. All complexity in the setup and management of backing infrastructure is abstracted away
 from application developers, which gives them more time to focus on developing their apps.
 
@@ -1347,7 +1347,8 @@ by running the following command:
     kubectl --context SERVICE-CONTEXT -n my-project-1 get pods
     ```
 
-Finally, the application developer takes over:
+Finally, the application developer takes over. The experience is exactly the same for the 
+Application Developer as with the first use case.
 
 1. Create the Application Workload. See the example command below.
 
