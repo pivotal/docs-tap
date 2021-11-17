@@ -6,17 +6,17 @@ This document describes how to create conventions as well as a convention server
 
 ### <a id='conventionservice'></a> About Convention Servers
 
-A convention is used to to adapt or modify a [PodIntent](./reference/pod-intent.md) according to the type of an application. Conventions are defined by platform operators to automate the application of configuration and organizational best practices.
+A convention is used to to adapt or modify a [PodIntent](reference/pod-intent.md) according to the type of an application. Conventions are defined by platform operators to automate the application of configuration and organizational best practices.
 
-The convention is applied by the Convention Server. The server is called by the Convention Controller whenever a [PodIntent](./reference/pod-intent.md) is submitted.
+The convention is applied by the Convention Server. The server is called by the Convention Controller whenever a [PodIntent](reference/pod-intent.md) is submitted.
 
-1. <a id='create-1'></a>Take a look at the [convention template](TODO), which contains:
+1. <a id='create-1'></a>Take a look at the convention template<!-- add link -->, which contains:
 
     ```shell
     server.go      # Defines the workload criteria, and actions to take when the criteria is met
     server.yaml    # Defines the kubernetes resources that make up the convention server
     ```
-    
+
 ### <a id='conventionservice'></a> About Convention Controllers
 
 The Convention Controller runs on a workload cluster as a kubernetes deployment that runs a webhook which receives the workload [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) that defines how the workload should be run, as well as metadata.
@@ -38,15 +38,15 @@ There are a few things that will need to be done to create and install conventio
 _NOTE: this example covers developing conventions with [GOLANG](https://golang.org/) but it can be done in other languages by following the specs._
 ## <a id='server-behavior'></a> Define Convention Criteria and Behavior
 
-The `server.go` file contains the configuration for the server as well as the logic the server applies when a workload matches the defined criteria. 
+The `server.go` file contains the configuration for the server as well as the logic the server applies when a workload matches the defined criteria.
 For example, adding a prometheus _sidecar_ to web apps, or adding a `workload-type=spring-boot` label to any workload that has has metadata indicating that it is a spring boot app.  
-**NOTE:** For this example the package `model` is used to define [resources](./reference/README.md) types.
-1. <a id='convention-1'></a>The example `server.go` sets up the `ConventionHandler` to ingest the webhook requests([PodConventionContext](./reference/pod-convention-context.md)) from the convention controller; at this point the handler only need to deal with the existing [`PodTemplateSpec`](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) and [`ImageConfig`](./referece/image-config.md).
+**NOTE:** For this example the package `model` is used to define [resources](reference/README.md) types.
+1. <a id='convention-1'></a>The example `server.go` sets up the `ConventionHandler` to ingest the webhook requests([PodConventionContext](./reference/pod-convention-context.md)) from the convention controller; at this point the handler only need to deal with the existing [`PodTemplateSpec`](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) and [`ImageConfig`](reference/image-config.md).
     ```go
     ...
     import (
         corev1 "k8s.io/api/core/v1"
-    ) 
+    )
     ...
     func ConventionHandler(template *corev1.PodTemplateSpec, images []model.ImageConfig) ([]string, error) {
         // Create custom conventions
@@ -57,7 +57,7 @@ For example, adding a prometheus _sidecar_ to web apps, or adding a `workload-ty
      Where:
 
      + `template` is the predefined [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) that the convention is going to modify.
-     + `images` are the [`ImageConfig`](./referece/image-config.md) which will be used as reference to make decisions in the conventions. In this example the type was created within the `model` package
+     + `images` are the [`ImageConfig`](reference/image-config.md) which will be used as reference to make decisions in the conventions. In this example the type was created within the `model` package
 
 2. <a id='server-2'></a>The example `server.go` also configures the convention server to listen for requests
 
@@ -187,14 +187,14 @@ For example, adding a prometheus _sidecar_ to web apps, or adding a `workload-ty
     ```
 ## <a id='targeting'></a> Define the convention behavior
 
-Any property or value within the `PodTemplateSpec` or OCI image metadata associated with a workload can be used to define the criteria for applying conventions. The following are a few examples. 
+Any property or value within the `PodTemplateSpec` or OCI image metadata associated with a workload can be used to define the criteria for applying conventions. The following are a few examples.
 
 ### Matching Criteria By Labels or Annotations:
 
-When using labels or annotations to define whether a convention should be applied, the server will check the [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) of workloads. 
+When using labels or annotations to define whether a convention should be applied, the server will check the [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) of workloads.
 
    + PodTemplateSpec
-   
+
         ```yaml
         ...
         template:
@@ -223,12 +223,12 @@ When using labels or annotations to define whether a convention should be applie
                 // DO COOl STUFF
                 c = append(c, "awesome-annotation-convention")
             }
-            
+
             return c, nil
         }
         ...
         ```
-    
+
  Where:
  + `conventionHandler` is the *handler*
  + `awesome-label` is the **label** that we want to validate
@@ -276,7 +276,7 @@ The convention controller should be used with [OCI Image](./reference/image-conf
 The `server.yaml` defines the Kubernetes components that will make up the convention server.
 
 1. A `namespace` will be created for the convention server components
-    
+
     ```yaml
     ...
     ---
@@ -287,7 +287,7 @@ The `server.yaml` defines the Kubernetes components that will make up the conven
     ---
     ...
     ```
-    
+
 2. A cert manager [`Issuer`](https://cert-manager.io/docs/concepts/issuer/), will be created to issue the cert needed for TLS communication. (Optional)
 
     ```yaml
@@ -358,7 +358,7 @@ The `server.yaml` defines the Kubernetes components that will make up the conven
         containers:
         - name: webhook
             # Set the prebuilt image of the convention or use ko to build an image from code
-            # see https://github.com/google/ko 
+            # see https://github.com/google/ko
             image: ko://awesome-repo/awesome-user/awesome-convention
             env:
             - name: PORT
@@ -435,30 +435,30 @@ The `server.yaml` defines the Kubernetes components that will make up the conven
 1. Build and Install the Convention
 
     + If the convention needs to be built and deployed, use the [`ko`](https://github.com/google/ko) tool to do so
-    
+
         ```bash
         ko apply -f dist/server.yaml
         ```
 
     + If a different tool is being used to build the image, the configuration can be also be applied using either `kubectl` or `kapp`
-    
+
        kubectl
-       
+
         ```bash
         kubectl apply -f server.yaml
         ```
-        
+
        kapp *(Recommended)*
-       
+
         ```bash
-        kapp deploy -y -a awesome-convention -f server.yaml 
+        kapp deploy -y -a awesome-convention -f server.yaml
         ```
 
 2. Verify the Convention Server
 To check the status of the convention server, check for the running convention pods:
 
     + If the server is running, `kubectl get all -n awesome-app` will return something like ...
-    
+
         ```text
         NAME                                       READY   STATUS    RESTARTS   AGE
         pod/awesome-webhook-1234567890-12345       1/1     Running   0          8h
@@ -481,7 +481,7 @@ To check the status of the convention server, check for the running convention p
         ```
 
     + To verify the conventions are being applied, check the `PodIntent` of a workload that matches the convention criteria.
-    
+
         ```bash
         kubectl -o yaml get podintents.conventions.apps.tanzu.vmware.co awesome-app
         ```
@@ -575,5 +575,3 @@ To check the status of the convention server, check for the running convention p
 Keep Exploring:
 
 + Try to use different matching criteria for the conventions or enhance the supply chain with multiple conventions
-
-
