@@ -9,7 +9,7 @@ For a more detailed step-by-step walk-through, see Getting Started instructions]
 
 # Usage
 
-### Configure Extension Settings
+### Configure extension settings
 
 You must configure the following required Visual Studio Code settings for your app.
 
@@ -20,10 +20,10 @@ To configure Visual Studio Code settings for your app:
   published.
   For Local Path, enter the path on the local file system to a directory of code to build.
 
-## Live Update
+## Live update
 
 
-### Starting Live Update
+### Starting live update
 
 Right-click your project's `Tiltfile` and select `Tanzu: Live Update Start`
 
@@ -31,7 +31,7 @@ _Or_
 
 Launch the Command Palette (⇧⌘P) and run the `Tanzu: Live Update Start` command.
 
-### Stopping Live Update
+### Stopping live update
 
 Right-click your project's `Tiltfile` and select `Tanzu: Live Update Stop`
 
@@ -41,7 +41,7 @@ Launch the Command Palette (⇧⌘P) and run the `Tanzu: Live Update Stop` comma
 
 > **Note:** When Live Update is stopped, the application will continue to run, but changes will not be present in your running application unless you redeploy it.
 
-### Disabling Live Update
+### Disabling live update
 
 Launch the Command Palette (⇧⌘P) and run the `Tanzu: Live Update Disable` command, then enter the name of the workload you want to disable live update for.
 
