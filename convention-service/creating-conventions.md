@@ -1,14 +1,14 @@
-# <a id='Creating'></a> Creating a Convention Server
+# <a id='Creating'></a> Creating conventions
 
-The Tanzu Application Platform enables developers to turn source code into a workload running in a container with a URL in minutes. In the process the [Convention Service](about.md). examines the workloads and matches them to conventions which describe changes or additions to make to. This lets the ops team roll in infrastructure or compliance opinions without adding to the workload of the application developer.
+The Tanzu Application Platform enables developers to turn source code into a workload running in a container with a URL in minutes. In the process the [Convention Service](about.md) examines the workloads and matches them to conventions which describe changes or additions to make to. This lets the ops team roll in infrastructure or compliance opinions without adding to the workload of the application developer.
 
 This document describes how to create conventions as well as a convention server to apply them.
 
-### <a id='conventionservice'></a> About Convention Servers
+### <a id='conventionservice'></a> About convention servers
 
 A convention is used to to adapt or modify a [PodIntent](reference/pod-intent.md) according to the type of an application. Conventions are defined by platform operators to automate the application of configuration and organizational best practices.
 
-The convention is applied by the Convention Server. The server is called by the Convention Controller whenever a [PodIntent](reference/pod-intent.md) is submitted.
+The convention is applied by the convention server. The server is called by the convention controller whenever a [PodIntent](reference/pod-intent.md) is submitted.
 
 1. <a id='create-1'></a>Take a look at the convention template<!-- add link -->, which contains:
 
@@ -17,15 +17,15 @@ The convention is applied by the Convention Server. The server is called by the 
     server.yaml    # Defines the kubernetes resources that make up the convention server
     ```
 
-### <a id='conventionservice'></a> About Convention Controllers
+### <a id='conventionservice'></a> About convention controllers
 
-The Convention Controller runs on a workload cluster as a kubernetes deployment that runs a webhook which receives the workload [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) that defines how the workload should be run, as well as metadata.
+The convention controller runs on a workload cluster as a Kubernetes deployment that runs a webhook, which receives the workload [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) that defines how the workload should be run, as well as metadata.
 
-A Convention Controller is the orchestrator of the Convention Servers. It sends to each of these servers that live in the current cluster, all the workload information. If the convention's criteria are met it enriches the [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) before returning it to the supply chain to be applied.
+A convention controller is the orchestrator of the convention servers. It sends to each of these servers that live in the current cluster, all the workload information. If the convention's criteria are met it enriches the [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) before returning it to the supply chain to be applied.
 
 It also takes care of the reconciliation among conventions if the workload is updated.
 
-## <a id='prereqs'></a>Before You Begin
+## <a id='prereqs'></a>Before you begin
 
 There are a few things that will need to be done to create and install conventions:
 
@@ -192,7 +192,7 @@ For example, adding a prometheus _sidecar_ to web apps, or adding a `workload-ty
 
 Any property or value within the `PodTemplateSpec` or OCI image metadata associated with a workload can be used to define the criteria for applying conventions. The following are a few examples.
 
-### Matching Criteria By Labels or Annotations:
+### Matching criteria by labels or annotations
 
 When using labels or annotations to define whether a convention should be applied, the server will check the [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) of workloads.
 
@@ -238,7 +238,7 @@ When using labels or annotations to define whether a convention should be applie
  + `awesome-annotation` is the **annotation** that we want to validate
  + `awesome-value` is the value that must have the **label**/**annotation**
 
-### <a id='EnvironmentVariables'></a>Matching Criteria By Environment Variables
+### <a id='EnvironmentVariables'></a>Matching criteria by environment variables
 
 When using environment variables to define whether the convention is applicable or not, it should be present in the [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec).[spec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#PodSpec).[containers](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#Container)[*].[env](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#environment-variables). and we can validate the value.
 
@@ -270,11 +270,11 @@ When using environment variables to define whether the convention is applicable 
         }
         ```
 
-### <a id='ImageMetadata'></a>Matching Criteria By Image Metadata
+### <a id='ImageMetadata'></a>Matching criteria by image metadata
 
 The convention controller should be used with [OCI Image](./reference/image-config.md) so it can be used to get metadate information. The ImageConfig is an struct that contains the configuration of an image, similar to the output of `docker inspect hello-world`.
 
-## <a id='install'></a> Configure and Install the Convention Server
+## <a id='install'></a> Configure and install the convention server
 
 The `server.yaml` defines the Kubernetes components that will make up the convention server.
 
@@ -433,17 +433,17 @@ The `server.yaml` defines the Kubernetes components that will make up the conven
 
 + **_Optional_**: Only needed if self-signed certificate is being used. Otherwise, check the cert-manager documentation.
 
-## How to Deploy a Convention Server
+## How to deploy a convention server
 
-1. Build and Install the Convention
+1. Build and install the convention.
 
-    + If the convention needs to be built and deployed, use the [`ko`](https://github.com/google/ko) tool to do so
+    + If the convention needs to be built and deployed, use the [`ko`](https://github.com/google/ko) tool to do so:
 
         ```bash
         ko apply -f dist/server.yaml
         ```
 
-    + If a different tool is being used to build the image, the configuration can be also be applied using either `kubectl` or `kapp`
+    + If a different tool is being used to build the image, the configuration can be also be applied using either `kubectl` or `kapp`:
 
        kubectl
 
@@ -457,10 +457,10 @@ The `server.yaml` defines the Kubernetes components that will make up the conven
         kapp deploy -y -a awesome-convention -f server.yaml
         ```
 
-2. Verify the Convention Server
+2. Verify the convention server
 To check the status of the convention server, check for the running convention pods:
 
-    + If the server is running, `kubectl get all -n awesome-app` will return something like ...
+    + If the server is running, `kubectl get all -n awesome-app` will return something like this:
 
         ```text
         NAME                                       READY   STATUS    RESTARTS   AGE
@@ -483,7 +483,7 @@ To check the status of the convention server, check for the running convention p
         replicaset.apps/awesome-webhook-9b6957476        0         0         0       24h
         ```
 
-    + To verify the conventions are being applied, check the `PodIntent` of a workload that matches the convention criteria.
+    + To verify the conventions are being applied, check the `PodIntent` of a workload that matches the convention criteria:
 
         ```bash
         kubectl -o yaml get podintents.conventions.apps.tanzu.vmware.co awesome-app
@@ -573,8 +573,8 @@ To check the status of the convention server, check for the running convention p
                 runAsUser: 1000
         ```
 
-## <a id='next-steps'></a> Next Steps
+## <a id='next-steps'></a> Next steps
 
-Keep Exploring:
+Keep exploring:
 
-+ Try to use different matching criteria for the conventions or enhance the supply chain with multiple conventions
++ Try to use different matching criteria for the conventions or enhance the supply chain with multiple conventions.
