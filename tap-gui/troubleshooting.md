@@ -2,7 +2,7 @@
 
 This topic describes troubleshooting information for problems with installing Tanzu Application Platform GUI.
 
-## <a id='catalog-not-found'></a> Catalog Not Found
+## <a id='catalog-not-found'></a> Catalog not found
 ### Symptom
 
 When you pull up the Tanzu Application Platform UI and get the error `Catalog Not Found`
@@ -50,7 +50,7 @@ or change the standalone Tanzu Application Platform GUI values file if you're on
 
 Other integrations can be substituted here as defined in the [Backstage documentation](https://backstage.io/docs/integrations/)
 
-## <a id='updating-tap-gui-values'></a> Issues Updating the Values File
+## <a id='updating-tap-gui-values'></a> Issues updating the values file
 ### Symptom
 
 When you need to update the configuration of Tanzu Application Platform GUI (either through the profiles method or as a standalone package install), how can you tell whether the configuration has been reloaded?
