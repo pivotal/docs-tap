@@ -1,6 +1,6 @@
 # Insight source create
 
-Create a source report from a report file.
+Create a source report from a report file:
 
 ```
 insight source create [flags]
@@ -20,7 +20,7 @@ insight source create --cyclonedxtype json --path  /path/to/file.json
       --path string            path to file
 ```
 
-## See Also
+## See also
 
 * [Insight source](insight_source.md)	 - Source commands
 

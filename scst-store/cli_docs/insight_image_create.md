@@ -1,6 +1,6 @@
 # Insight image create
 
-Create an image report from a report file.
+Create an image report from a report file:
 
 ```
 insight image create [flags]
@@ -20,7 +20,7 @@ insight image create --cyclonedxtype json --path /path/to/file.json
       --path string            path to file
 ```
 
-## See Also
+## See also
 
 * [Insight image](insight_image.md)	 - Image commands
 

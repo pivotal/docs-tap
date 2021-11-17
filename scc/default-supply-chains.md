@@ -1,24 +1,24 @@
 ---
-title: Out of the Box Supply Chains
+title: Out-of-the-box supply chains
 subtitle: How to install Cartographer in a Kubernetes cluster
 weight: 2
 ---
 
-# Out of the Box Supply Chains
+# Out-of-the-box supply chains
 
-Out of the Box Supply Chains are provided with Tanzu Application Platform.
+Out-of-the-box supply chains are provided with Tanzu Application Platform.
 
 The following three supply chains are included:
 
-- Out of the Box Supply Chain Basic (source-to-url)
-- Out of the Box Supply Chain with Testing (source-test-to-url)
-- Out of the Box Supply Chain with Testing and Scanning (source-test-scan-to-url)
+- Out-of-the-box supply chain basic (source-to-url)
+- Out-of-the-box supply chain with testing (source-test-to-url)
+- Out-of-the-box supply chain with testing and scanning (source-test-scan-to-url)
 
 Tanzu Application Platform also includes:
 
-- Out of the Box Templates
+- Out-of-the-box templates
 
-Each of the supply chains use Out of the Box Templates.
+Each of the supply chains use out-of-the-box templates.
 
 Regardless of the supply chain you choose, you need to set credentials for a
 registry where Tanzu Build Service should push the images that it builds.
@@ -64,21 +64,21 @@ _ps.: note that the REGISTRY here _must_ be the same as the one set in the
 values file during [Install default Supply Chain](./../install-components.md#install-ootb-supply-chain-basic)._
 
 
-## Out of the Box Supply Chain Basic (source-to-url)
+## Out-of-the-box supply chain basic (source-to-url)
 
-Out of the Box Supply Chain Basic (source-to-url) is the most basic supply chain. This supply chain allows you to:
+Out-of-the-box supply chain basic (source-to-url) is the most basic supply chain. This supply chain allows you to:
 
 - Watch a git repository
 - Build the code into an image
 - Apply some conventions to the K8s YAML
 - Deploy the application to the same cluster
 
-![Out of the Box Supply Chain Basic](images/source-to-url.png)
+![Out-of-the-box supply chain basic](images/source-to-url.png)
 
 
 ### Example usage
 
-1. ensure that the supply chain has been installed
+1. Ensure that the supply chain has been installed:
 
 ```bash
 tanzu apps cluster-supply-chain list
@@ -89,7 +89,7 @@ source-to-url     Ready   2m20s   apps.tanzu.vmware.com/workload-type=web
 ```
 
 
-2. setup a service account and placeholder secret for registry credentials
+2. Set up a service account and placeholder secret for registry credentials:
 
 ```yaml
 ---
@@ -115,7 +115,7 @@ imagePullSecrets:
   - name: scc-registry-credentials
 ```
 
-3. create the workload
+3. Create the workload:
 
 ```bash
 tanzu apps workload create hello-world \
@@ -141,12 +141,12 @@ Create workload:
 Created workload "my-workload"
 ```
 
-## Out of the Box Supply Chain with Testing (source-test-to-url)
+## Out-of-the-box supply chain with testing (source-test-to-url)
 
-The Out of the Box Supply Chain with Testing (source-test-to-url) includes all abilities of the Out of the Box 
-Supply Chain Basic (source-to-url), and the ability to perform testing using Tekton.
+The out-of-the-box supply chain with testing (source-test-to-url) includes all abilities of the out-of-the-box 
+supply chain basic (source-to-url), and the ability to perform testing using Tekton.
 
-![Out of the Box Supply Chain with Testing](images/source-test-to-url.png)
+![Out-of-the-box supply chain with testing](images/source-test-to-url.png)
 
 
 ### Example usage
@@ -163,7 +163,7 @@ NAME                 READY   AGE     LABEL SELECTOR
 source-test-to-url   Ready   2m20s   apps.tanzu.vmware.com/workload-type=web
 ```
 
-2. Setup a service account and placeholder secret for registry credentials
+2. Set up a service account and placeholder secret for registry credentials:
 
 ```yaml
 ---
@@ -281,10 +281,10 @@ NAME                                      URL                                   
 service.serving.knative.dev/hello-world   http://hello-world.default.example.com   hello-world-00001   hello-world-00001   Unknown   IngressNotConfigured
 ```
 
-## Out of the Box Supply Chain with Testing and Scanning (source-test-scan-to-url)
+## Out-of-the-box supply chain with testing and scanning (source-test-scan-to-url)
 
-The Out of the Box Supply Chain with Testing and Scanning (source-test-scan-to-url) includes the abilities of the Out of the Box 
-Supply Chain with Testing (source-test-to-url), and adds source and image scanning using Grype.
+The out-of-the-box supply chain with testing and scanning (source-test-scan-to-url) includes the abilities of the
+out-of-the-box supply chain with testing (source-test-to-url), and adds source and image scanning using Grype.
 
 Supply Chain with Testing and Scanning (source-test-scan-to-url) includes the following abilities:
 - Watch a git repository
@@ -295,7 +295,7 @@ Supply Chain with Testing and Scanning (source-test-scan-to-url) includes the fo
 - Apply some conventions to the K8s YAML
 - Deploy the application to the same cluster
 
-![Out of the Box Supply Chain with Testing and Scanning](images/source-test-scan-to-url.png)
+![Out-of-the-box supply chain with testing and scanning](images/source-test-scan-to-url.png)
 
 
 ### Example usage
@@ -307,7 +307,7 @@ In particular, this example adds Source and Image Scanning capabilities.
 
 The notable addition is a Scan Policy, which enables policy enforcement on vulnerabilities found. 
 
-1. Add a scan policy
+1. Add a scan policy:
 
 ```yaml
 apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
@@ -341,7 +341,8 @@ spec:
     isCompliant = isSafe(input.currentVulnerability)
 ```
 
-2. Add a source scan template
+2. Add a source scan template:
+
 ```yaml
 apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
 kind: ScanTemplate
@@ -388,7 +389,8 @@ spec:
     - emptyDir: {}
       name: workspace
 ```
-3. Add an image scan template
+3. Add an image scan template:
+
 ```yaml
 apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
 kind: ScanTemplate
@@ -436,7 +438,8 @@ spec:
 
 ```
 
-#### Developer Workload
+#### Developer workload
+
 1. The next step would be to then submit a workload like in the other examples:
 ```bash
 tanzu apps workload create hello-world \

@@ -1,6 +1,6 @@
 # Insight config
 
-Config commands are as follows.
+Config commands are as follows:
 
 ## Options
 
@@ -8,7 +8,7 @@ Config commands are as follows.
   -h, --help   help for config
 ```
 
-## See Also
+## See also
 
 * [Insight](insight.md)	 - This CLI is used to post data and make queries to the metadata store.
 * [Insight config set-target](insight_config_set-target.md)	 - Set metadata store endpoint.
