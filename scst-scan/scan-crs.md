@@ -1,9 +1,9 @@
-# Configure Code Repositories and Image Artifacts to be Scanned
+# Configure code repositories and image artifacts to be scanned
 
 ## Prerequisite
 Both the Source and Image Scans require a `ScanTemplate` to be defined. Run `kubectl get scantemplates` for the ScanTemplates provided with the scanner installation. These can be referenced, or see [How to Create a ScanTemplate](create-scan-template.md).
 
-## Deploy Scan CRs
+## Deploy scan custom resources
 The Scan Controller defines two custom resources to create scanning jobs:
 * SourceScan
 * ImageScan
@@ -11,7 +11,7 @@ The Scan Controller defines two custom resources to create scanning jobs:
 ### SourceScan
 The SourceScan custom resource helps you define and trigger a scan for a given repository. This can be done with a source code existing in a public repository or in a private one.
 
-#### Step 1: Create the SourceScan Custom Resource
+#### Step 1: Create the SourceScan custom resource
 Example:
 ```yaml
 apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
@@ -43,7 +43,7 @@ spec:
   scanPolicy: my-scan-policy
 ```
 
-#### Step 2: Deploy the SourceScan CR to the Desired Namespace on Cluster
+#### Step 2: Deploy the SourceScan custom resource to the desired namespace on cluster
 
 `kubectl apply -f <path_to_the_cr>/<custom_resource_filename>.yml -n <desired_namespace>`
 
@@ -93,7 +93,7 @@ status:
 ### ImageScan
 The ImageScan custom resource helps you define and trigger a scan for a given image. This can be done with an image existing in a public registry or in a private one.
 
-#### Step 1: Create the ImageScan Custom Resource
+#### Step 1: Create the ImageScan custom resource
 
 Example:
 ```yaml
@@ -118,7 +118,7 @@ spec:
   scanPolicy: my-scan-policy
  ```
 
-#### Step 2: Deploy the ImageScan CR to the Desired Namespace on Cluster
+#### Step 2: Deploy the ImageScan custom resource to the desired namespace on cluster
 
 `kubectl apply -f <path_to_the_cr>/<custom_resource_filename>.yml -n <desired_namespace>`
 
