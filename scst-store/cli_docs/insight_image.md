@@ -1,6 +1,6 @@
 # Insight image
 
-Image commands are as follows.
+Image commands are as follows:
 
 ## Options
 
@@ -8,7 +8,7 @@ Image commands are as follows.
   -h, --help   help for image
 ```
 
-## See Also
+## See also
 
 * [Insight](insight.md)	 - This CLI is used to post data and make queries to the metadata store.
 * [Insight image create](insight_image_create.md)	 - Create an image report.

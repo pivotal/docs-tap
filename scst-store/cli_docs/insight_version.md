@@ -12,7 +12,7 @@ insight version [flags]
   -h, --help   help for version
 ```
 
-## See Also
+## See also
 
 * [Insight](insight.md)	 - This CLI is used to post data and make queries to the metadata store.
 
