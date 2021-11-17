@@ -6,7 +6,7 @@ The context is a wrapper of the individual object description in an API (TypeMet
 
 In the `PodConventionContext` API resource:
 * Object path `.spec.template` field defines the [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) to be enriched by conventions.
-* Object path `.spec.imageConfig` field defines [ImageConfig](./image-config.md). Each entry of [`imageConfig`](./reference/image-config.md) is populated with the name of the image(`.spec.imageConfig[].image`) and its OCI metadata (`.spec.imageConfig[].config`). These entries are generated for each image referenced in [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) (`.spec.template`).
+* Object path `.spec.imageConfig` field defines [ImageConfig](image-config.md). Each entry of [`imageConfig`](image-config.md) is populated with the name of the image(`.spec.imageConfig[].image`) and its OCI metadata (`.spec.imageConfig[].config`). These entries are generated for each image referenced in [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) (`.spec.template`).
 
 
 ```json
@@ -71,7 +71,7 @@ spec: # the request
         "io.buildpacks.stack.id": "io.buildpacks.stacks.bionic"
         "io.buildpacks.stack.maintainer": "Paketo Buildpacks"
         "io.buildpacks.stack.distro.name": "Ubuntu"
-        "io.buildpacks.stack.metadata": `{"app":[{"sha":"sha256:ea4ec23266a3af1204fd643de0f3572dd8dbb5697a5ef15bdae844777c19bf8f"}], 
+        "io.buildpacks.stack.metadata": `{"app":[{"sha":"sha256:ea4ec23266a3af1204fd643de0f3572dd8dbb5697a5ef15bdae844777c19bf8f"}],
         "buildpacks":[{"key":"paketo-buildpac`...,
         "io.buildpacks.build.metadata": `{"bom":[{"name":"go","metadata":{"licenses":[],"name":"Go","sha256":"7fef8ba6a0786143efcce66b0bbfbfbab02afeef522b4e09833c5b550d7`...
   template:
@@ -81,7 +81,7 @@ spec: # the request
         image: helloworld-go-mod
 ```
 
-## PodConventionContext Structure 
+## PodConventionContext Structure
 
 Let's expand more on the [OCI Image metadata](https://github.com/opencontainers/image-spec/blob/master/config.md)
 structure present in `PodConventionContext`.
