@@ -34,6 +34,8 @@ This is the table of contents from which the Tanzu Application Platform Document
       - [Creating conventions](convention-service/creating-conventions.md)
       - [Convention resources](convention-service/reference/README.md)
       - [Troubleshooting](convention-service/troubleshooting.md)
+    - [Service Bindings for Kubernetes](service-bindings/about.md)
+      - [Troubleshooting](service-bindings/troubleshooting.md)
     - [Developer conventions](developer-conventions/about.md)
     - [Learning Center](learning-center/about.md)
         - [About Learning Center](learning-center/about-learning-center/about.md)
