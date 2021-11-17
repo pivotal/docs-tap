@@ -81,3 +81,7 @@ You can use strategic naming to control the order in which the conventions are a
 After the conventions are applied, the `Ready` status condition on the `PodIntent` resource is used to indicate
 whether it is applied successfully.
 A list of all applied conventions is stored under the annotation `conventions.apps.tanzu.vmware.com/applied-conventions`.
+
+## Troubleshooting
+
+Convention Controller is a Kubernetes operator, and may be deployed in a cluster with other components. If you are having trouble, you can refer to the troubleshooting guide [here](./troubleshooting.md).
