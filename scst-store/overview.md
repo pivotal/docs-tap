@@ -18,7 +18,7 @@ To install, see [Install Supply Chain Security Tools - Store](../install-compone
 
 For more information, see [Deployment Details](deployment_details.md).
 
-## <a id='required-set-up'></a>Set Up
+## <a id='required-set-up'></a>Set up
 
 ### Required
 
@@ -38,14 +38,14 @@ The `insight` CLI is not required but may provide an easier-to-use interface tha
 
 ## <a id='usage'></a>Usage
 
-### Adding Data
+### Adding data
 
 See [adding data](add_cyclonedx_to_store.md) to post CycloneDX scan reports to the Supply Chain Security Tools - Store
 
-### Querying Data
+### Querying data
 
 See [querying data](querying_the_metadata_store.md) understand vulnerability, image, and dependency relationships
 
-## Known Issues
+## Known issues
 
 See [Troubleshooting and Known Issues](known_issues.md).
