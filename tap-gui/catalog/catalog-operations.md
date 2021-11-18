@@ -1,4 +1,4 @@
-#Catalog operations
+# Catalog operations
 
 This guide will focus on how you can set up software catalogs. We recommend that you get familiar with Backstage and their software catalog system before proceeding. The [Software Catalog Overview](https://backstage.io/docs/features/software-catalog/software-catalog-overview) and [Catalog Configuration](https://backstage.io/docs/features/software-catalog/configuration) pages are good places to start.
 
@@ -134,6 +134,16 @@ You can check the status of this update with:
 ```shell
 tanzu package installed list
 ```
+
+### Targeting catalogs hosted on GitHub
+
+When using [static catalog configuration](https://backstage.io/docs/features/software-catalog/configuration#static-location-configuration)
+targeting catalog files hosted with GitHub make sure you don't use the raw url in your app-config.yaml, but instead the url that you see
+whenever you navigate to the file through the browser, otherwise the catalog processor will be unable to properly load the files.
+
+*Example*:
+- Raw url:  https://raw.githubusercontent.com/user/repo/catalog.yaml
+- Target URL for app-config: https://github.com/user/repo/blob/main/catalog.yaml
 
 ## Installing demo apps and their catalogs
 If you want to set up one of our demos, you can choose between a blank or a sample catalog.
