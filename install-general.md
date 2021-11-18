@@ -21,7 +21,7 @@ Tanzu Application Platform packages.
 
 * A container image registry, such as [Harbor](https://goharbor.io/) or
 [Docker Hub](https://hub.docker.com/) with at least **10&nbsp;GB** of available storage for
-application images, base images, and runtime dependencies. 
+application images, base images, and runtime dependencies.
 When available, VMware recommends using a paid registry account to avoid potential rate-limiting associated with some free registry offerings.
 
 * Registry credentials with push and write access made available to Tanzu Application Platform to
@@ -432,7 +432,7 @@ You can now proceed with installing Tanzu Application Platform. For more informa
 **[Installing Part II: Profiles](install.md)**.
 
 
-## <a id='udpate-previous-tap-tanzu-cli'></a>Instructions for updating Tanzu CLI that was installed for a previous release of TAP
+## <a id='udpate-previous-tap-tanzu-cli'></a>Instructions for updating Tanzu CLI that was installed for a previous release of Tanzu Application Platform
 
   1. Create a directory named `tanzu`:
 
@@ -468,17 +468,17 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
      ```
 
   9. Set env var `TANZU_CLI_NO_INIT` to true to install the local plugin versions you've just downloaded:
-     
+
      ```
      export TANZU_CLI_NO_INIT=true
      ```
-  
+
   10. Remove previously installed plugin binaries:
-     
+
       ```
       rm -rf ~/Library/Application\ Support/tanzu-cli/*
       ```
- 
+
  12. If previously installed, delete the `imagepullsecret` plugin (it will be replaced by a new `secret` plugin):
      ```
      tanzu plugin list
@@ -494,7 +494,7 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
       tanzu update --local ./cli
       ```
       Expect to see a user prompt - submit "y"
-     
+
 
   14. Check installation status for the core CLI:
 
@@ -505,11 +505,11 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
 
 
   15. Install new plugin versions:
-      
+
       ```
       tanzu plugin install --local cli all
       ```
- 
+
   16. Check installation status for plugins:
 
       ```
@@ -567,9 +567,9 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
      ```
      cd $HOME/tanzu
      ```
-     
+
   8. Set env var `TANZU_CLI_NO_INIT` to true to install the local plugin versions you've just downloaded:
-     
+
      ```
      export TANZU_CLI_NO_INIT=true
      ```
