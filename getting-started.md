@@ -239,7 +239,7 @@ Use the following procedure to create an accelerator:
 5. Refresh the Accelerator web UI to reveal the newly published accelerator.
 
 
-#### Using application.yaml
+#### Using accelerator.yaml
 
 The Accelerator zip file contains a file called `new-accelerator.yaml`.
 This file is a starting point for the metadata for your new accelerator and the associated options and file processing instructions.
