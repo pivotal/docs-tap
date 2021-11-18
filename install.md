@@ -283,6 +283,10 @@ The following table lists the packages contained in each profile:
    <td>&check;</td><td></td>
   </tr>
   <tr>
+   <td>Supply Chain Security Tools - Store</td>
+   <td>&check;</td><td></td>
+  </tr>
+  <tr>
    <td>Tanzu Build Service
    </td>
    <td>&check;
