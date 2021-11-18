@@ -1589,6 +1589,7 @@ To install Supply Chain Security Tools - Store:
      
      To not have `read-write` service account installed by default,
      set `add_default_rw_service_account` property to `"false"`. To create custom service account, see [create service account doc](scst-store/create_service_account_access_token.md).
+   - The store supports connecting to PostgreSQL Amazon RDS. Please refer to the [AWS RDS Postgres for Metadata Store docs](scst-store/use_aws_rds.md)
 
 1. Install the package by running:
 
