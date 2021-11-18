@@ -995,7 +995,9 @@ One of the out of the box supply chains we are working on for a future release w
 
 * [Observing and Troubleshooting](scst-scan/observing.md)
 
-## Section 5: Advanced Use Cases - Services Journey
+## <a id='advanced-uses'><a/> Section 5: Advanced Use Cases - Services Journey
+
+This section has procedures for several advanced use cases, as followed by people of different roles.
 
 ### Overview
 
@@ -1008,7 +1010,7 @@ This enables developers to spend more time focussing on developing their applica
 time worrying about the provision, configuration, and operations of the backing services they
 depend on.
 
-This experience is made possible in Tanzu Application Platform through the Services Toolkit
+This experience is made possible in Tanzu Application Platform by using the Services Toolkit
 component. Services Toolkit comprises the following Kubernetes-native components:
 
 * Service Offering
@@ -1018,8 +1020,8 @@ component. Services Toolkit comprises the following Kubernetes-native components
 
 Each component has value on its own, however the most powerful and valuable use cases are unlocked
 by combining them.
-For detailed information on each of the Services Toolkit components, including the use cases they
-unlock as well as API reference guides, see the [Services Toolkit documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.4/services-toolkit-0-4/GUID-overview.html).
+For detailed information about each of the Services Toolkit components, including the use cases they
+unlock and the API reference guides, see the [Services Toolkit documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.4/services-toolkit-0-4/GUID-overview.html).
 
 Within the context of Tanzu Application Platform, one of the most important use cases
 is binding an application workload to a backing service such as a PostgreSQL database or a
@@ -1045,14 +1047,13 @@ This first use case demonstrates the binding of a sample application workload to
 provided by the RabbitMQ Cluster Operator for Kubernetes. For more information, see the
 [RabbitMQ documentation](https://www.rabbitmq.com/kubernetes/operator/operator-overview.html).
 
-The RabbitMQ Cluster Operator is installed and runs on the same Kubernetes cluster
-as Tanzu Application Platform. Then you use Services Toolkit to install and run the Operator on
-a separate dedicated “Service” cluster, while still allowing service resources to be consumed from
-Tanzu Application Platform cluster.
+The cluster Operator is installed and runs on the same Kubernetes cluster as Tanzu Application Platform.
+Then you use Services Toolkit to install and run the Operator on a separate dedicated “Service” cluster,
+while still allowing service resources to be consumed from Tanzu Application Platform cluster.
 
 #### Steps
 
-The service operator is responsible for installing and managing the RabbitMQ Cluster Operator:
+The service operator is responsible for installing and managing the cluster Operator:
 
 1. Install the RabbitMQ Operator by running:
 
@@ -1061,7 +1062,7 @@ The service operator is responsible for installing and managing the RabbitMQ Clu
     ```
 
 2. Create a ClusterRole that grants the ResourceClaim controller permission to get, list, and watch
-service resources, in this case RabbitMQ clusters. See the example below.
+service resources, in this case RabbitMQ clusters. See the following example.
 
     ```yaml
     #resource-claims-rmq.yaml
@@ -1090,7 +1091,8 @@ be created successfully. For more information, see [Set Up Developer Namespaces 
 The application operator is responsible for provisioning, upgrading, and deleting service
 resources:
 
-1.  Create a `RabbitmqCluster` Service Instance that you can use to bind to your application workload. See the example below.
+1.  Create a `RabbitmqCluster` Service Instance that you can use to bind to your application workload.
+See the following example.
 
     ```yaml
     #rmq-1.yaml
@@ -1107,7 +1109,7 @@ resources:
      kubectl apply -f rmq-1.yaml
     ```
 
-The application developer is responsible for developing applications and creating application workloads:
+The app developer is responsible for developing applications and creating application workloads:
 
 1. For this example you use a sample Spring application that simply sends and receives messages
 through RabbitMQ to itself.
@@ -1121,10 +1123,6 @@ Both the application workload and RabbitmqCluster service instance must exist in
 
     The `--service-ref` flag instructs Tanzu Application Platform to bind the application workload
     to the service instance.
-
-    >**Note:** Currently users are expected to provide a full object reference to a specific
-    >resource, which is `rmq-1` in this case. Improvements to this user experience are planned with
-    >anticipated new features for the Service Resource Claims component.
 
 1. Confirm that the application workload is built and running by using the following command to get
 the Knative web-app URL.
@@ -1150,7 +1148,7 @@ different compliance needs.
 * Separation of permissions and access. Application teams can only access the clusters where their
 applications are running.
 
-The experience of an application developer working on their Tanzu Application Platform cluster is
+The experience of an app developer working on their Tanzu Application Platform cluster is
 unaltered. All complexity in the setup and management of backing infrastructure is abstracted away
 from application developers, which gives them more time to focus on developing their apps.
 
@@ -1162,7 +1160,10 @@ For more information about network requirements and recommended topologies, see 
 
 #### Prerequisites
 
-1. If you followed previous instructions for [Services Journey - Use Case 1](#services-journey-use-case-1), uninstall the cluster Operator from that cluster.
+Meet the following prerequisites before following the steps for this use case:
+
+1. If you followed previous instructions for [Services Journey - Use Case 1](#services-journey-use-case-1),
+uninstall the cluster Operator from that cluster.
 
 1. Follow the documentation to install Tanzu Application Platform on to a second separate Kubernetes
 cluster.
@@ -1181,7 +1182,8 @@ cluster.
 1. Download and install the `kubectl-scp` plug-in from [Tanzu Application Platform Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform).
 This plug-in is for demonstration and experimentation purposes only. `tanzu` CLI UX might
 replace it in the future.
-To install the plug-in you must place it in your `PATH-TO-KUBECTL-SCP` and ensure it is executable. For example:
+To install the plug-in you must place it in your `PATH-TO-KUBECTL-SCP` and ensure it is executable.
+For example:
 
     ```console
     sudo cp PATH-TO-KUBECTL-SCP /usr/local/bin/kubectl-scp
@@ -1196,11 +1198,14 @@ To install the plug-in you must place it in your `PATH-TO-KUBECTL-SCP` and ensur
 
 #### Steps
 
->**Important:** Some of the commands listed in the following steps have placeholder values `WORKLOAD-CONTEXT` and `SERVICE-CONTEXT`. Change these values before running the commands.
+To perform this use case, follow these steps:
+
+>**Important:** Some of the commands listed in the following steps have placeholder values `WORKLOAD-CONTEXT` and `SERVICE-CONTEXT`.
+>Change these values before running the commands.
 
 1. As the Service operator, you enable API Projection and Resource Replication between the Workload
 Cluster and Service Cluster by linking the two clusters together using the `kubectl scp` plug-in.
-Run the command below.
+Run the following command.
 
     ```console
     kubectl scp link --workload-kubeconfig-context=WORKLOAD-CONTEXT --service-kubeconfig-context=SERVICE-CONTEXT
@@ -1257,7 +1262,7 @@ Secrets.
 
 1. Create a pair of target namespaces in which you create RabbitmqCluster Service instances.
 The namespace name must be identical in the application workload and Service Cluster.
-See the example below.
+See the following example.
 
     ```console
     kubectl --context WORKLOAD-CONTEXT create namespace MY-PROJECT-1
@@ -1314,11 +1319,11 @@ The application operator takes over from here:
     rabbitmq.com-rabbitmqcluster   RabbitmqCluster   rabbitmq.com
     ```
 
-    >**Note:** This step currently requires the use of kubectl, but the `tanzu` CLI UX is intended
-    to replace it in the future.
+    >**Note:** This step currently requires the use of kubectl, but the `tanzu` CLI UX is planned to
+    >replace it in the future.
 
 1. As done previously, provision a service instance on the Tanzu Application Platform cluster.
-See the example below.
+See the following example.
 
     ```yaml
     # rabbitmq-cluster.yaml
@@ -1353,10 +1358,10 @@ by running the following command:
     kubectl --context SERVICE-CONTEXT -n MY-PROJECT-1 get pods
     ```
 
-Finally, the application developer takes over. The experience is exactly the same for the
-application developer as with the first use case.
+Finally, the app developer takes over. The experience is exactly the same for the
+app developer as with the first use case.
 
-1. Create the application workload by running the command below.
+1. Create the application workload by running the following command.
 
     ```console
      tanzu apps workload create -n MY-PROJECT-1 rmq-sample-app-usecase-2 --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch v0.1.0 --type web --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:projected-rmq"
@@ -1375,7 +1380,7 @@ application developer as with the first use case.
 This use case enables developers to connect their application workloads to almost any backing
 service, including those that are running external to the platform, as well as those that do not
 adhere to the Provisioned Service part of the binding specifications.
-This is made possible through direct references to Kubernetes Secret objects.
+This is made possible by using direct references to Kubernetes Secret objects.
 
 For more information, see the
 [Provisioned Service specifications](https://github.com/servicebinding/spec#provisioned-service) in GitHub.
