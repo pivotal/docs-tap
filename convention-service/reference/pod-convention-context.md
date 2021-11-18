@@ -1,6 +1,6 @@
 # PodConventionContext
 
-The pod convention context is the main object that is passed to the server by the controller and is the one returned as well
+The pod convention context is the main object that is passed to the server by the controller and is the one returned as well.
 
 The context is a wrapper of the individual object description in an API (TypeMeta), the persistent metadata of a resource ([ObjectMeta](https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/object-meta/#ObjectMeta)), the [`PodConventionContextSpec`](pod-convention-context-spec.md) and the [`PodConventionContextStatus`](pod-convention-context-status.md).
 
