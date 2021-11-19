@@ -1,4 +1,4 @@
-# Viewing Vulnerability Results
+# Viewing vulnerability results
 
 After completing the scans, query the [Supply Chain Security Tools - Store](../scst-store/overview.md) to view your vulnerability results. The Supply Chain Security Tools - Store is a Tanzu component that stores image, package, and vulnerability metadata about your dependencies. Use the Supply Chain Security Tools - Store CLI, called `insight`, to query metadata that is submitted to the store.
 
