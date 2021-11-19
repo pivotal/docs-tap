@@ -1,4 +1,4 @@
-## Tanzu Application Platform GUI Plugins
+## Tanzu Application Platform GUI plugins
 
 ### Overview
 The Tanzu Application Platform GUI has many pre-integrated plugins. 

@@ -283,6 +283,10 @@ The following table lists the packages contained in each profile:
    <td>&check;</td><td></td>
   </tr>
   <tr>
+   <td>Supply Chain Security Tools - Store</td>
+   <td>&check;</td><td></td>
+  </tr>
+  <tr>
    <td>Tanzu Build Service
    </td>
    <td>&check;
@@ -462,7 +466,7 @@ with your relevant values. Run:
     tap_gui:
       service_type: LoadBalancer
       # Existing tap-values.yml above  
-      app-config:
+      app_config:
         app:
           baseUrl: http://EXTERNAL-IP:7000
         integrations:

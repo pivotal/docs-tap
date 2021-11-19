@@ -17,16 +17,16 @@ $ tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.1.0 -
 
 Error: package reconciliation failed: vendir: Error: Syncing directory '0':
   Syncing directory '.' with imgpkgBundle contents:
-    Imgpkg: exit status 1 (stderr: Error: Checking if image is bundle: Collecting images: Working with registry.pivotal.io/app-live-view/application-live-view-install-bundle@sha256:b13b9ba81bcc985d76607cfc04bcbb8829b4cc2820e64a99e0af840681da12aa: GET https://registry.pivotal.io/v2/app-live-view/application-live-view-install-bundle/manifests/sha256:b13b9ba81bcc985d76607cfc04bcbb8829b4cc2820e64a99e0af840681da12aa: UNAUTHORIZED: unauthorized to access repository: app-live-view/application-live-view-install-bundle, action: pull: unauthorized to access repository: app-live-view/application-live-view-install-bundle, action: pull 
+    Imgpkg: exit status 1 (stderr: Error: Checking if image is bundle: Collecting images: Working with registry.tanzu.vmware.com/app-live-view/application-live-view-install-bundle@sha256:b13b9ba81bcc985d76607cfc04bcbb8829b4cc2820e64a99e0af840681da12aa: GET https://registry.tanzu.vmware.com/v2/app-live-view/application-live-view-install-bundle/manifests/sha256:b13b9ba81bcc985d76607cfc04bcbb8829b4cc2820e64a99e0af840681da12aa: UNAUTHORIZED: unauthorized to access repository: app-live-view/application-live-view-install-bundle, action: pull: unauthorized to access repository: app-live-view/application-live-view-install-bundle, action: pull
 ```
 
 > Note: The sample above shows Application Live View as the package, however, this error can occur
  with other packages as well.
- 
+
 ### Cause
 
 A common cause of this error is that the Tanzu Network credentials needed to access the package
-are missing or incorrect. 
+are missing or incorrect.
 
 ### Solution
 
@@ -55,15 +55,15 @@ For example:
 ```
 $ tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.2.0 -n tap-install -f app-accelerator-values.yaml
 
-Error: failed to create ServiceAccount resource: serviceaccounts "app-accelerator-tap-install-sa" already exists 
+Error: failed to create ServiceAccount resource: serviceaccounts "app-accelerator-tap-install-sa" already exists
 ```
 
 > Note: The sample above shows App Accelerator as the package, however, this error can occur
  with other packges as well.
- 
+
 ### Cause
 
-A common cause of this error is that the `tanzu package install` command is being executed again after it has failed once. 
+A common cause of this error is that the `tanzu package install` command is being executed again after it has failed once.
 
 ### Solution
 

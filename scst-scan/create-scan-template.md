@@ -1,4 +1,4 @@
-# How to Create a ScanTemplate
+# Create a ScanTemplate
 The `ScanTemplate` CR is where you define the pod with the scanner image that you will be using for your vulnerability scanning. There's a default scanner image you can use out-of-the-box.
 
 ## Structure
@@ -12,7 +12,7 @@ spec:
     template: 
 ```
 
-## Pod Requirements
+## Pod requirements
 You can define any valid [Kubernetes Pod](https://kubernetes.io/docs/concepts/workloads/pods/) into the `ScanTemplate` CR as long as you follow these requirements:
 
 1. **Scanner Container**  
@@ -34,7 +34,7 @@ You can define any valid [Kubernetes Pod](https://kubernetes.io/docs/concepts/wo
 
 If the `scanner` pod is not defined or the logs retrieved from the `stdout` does not have a valid format, then the scanning condition will fail.
 
-## Best Practices
+## Best practices
 1. **SourceScan**  
    1. **Init Container**  
         If you're doing a `SourceScan`, it is encourage that you define the cloning of the repository in an init container named `repo`. Any output in `stdout` in this init container will be prompted out in case an error happens, so you can have more context about what failed inside the job.

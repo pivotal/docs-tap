@@ -1,4 +1,4 @@
-# Release Notes
+# Release notes
 
 This topic contains release notes for Supply Chain Security Tools for Tanzu – Scan
 
@@ -12,6 +12,6 @@ This topic contains release notes for Supply Chain Security Tools for Tanzu – 
 
 **Release Date:** October 07, 2021
 
-## Additional Considerations
+## Additional considerations
 
 * Our scanner templates require internet access to download the vulnerability database at scan time.

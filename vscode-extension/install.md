@@ -1,10 +1,10 @@
 ---
-title: Install
+title: Install the Visual Studio Code Tanzu Extension
 subtitle: How to install the VSCode Tanzu Extension
 weight: 2
 ---
 
-This topic explains how to install the VSCode Tanzu Extension.
+This topic explains how to install the Visual Studio Code Tanzu Extension.
 
 ## Prerequisites
 
@@ -43,7 +43,7 @@ Ensure that you are targeting the correct cluster. See [Configure Access to Mult
 
 ### Quickstart
 
-Get up and running quickly by using Application Accelerator and bootstrapping your development with the [Tanzu Java Web App](https://github.com/sample-accelerators/tanzu-java-web-app). For information about how to use Application Accelerator, see [Installing Application Accelerator for VMware Tanzu](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.3/acc-docs/GUID-installation-install.html#using-application-accelerator-for-vmware-tanzu-0). This accelerator will require you to specify a name for your application and an image repository, and will handle other configuration.
+Get up and running quickly by using Application Accelerator and bootstrapping your development with the [Tanzu Java Web App](https://github.com/sample-accelerators/tanzu-java-web-app). For information about how to use Application Accelerator, see [Installing Application Accelerator for VMware Tanzu](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.3/acc-docs/GUID-installation-install.html). This accelerator will require you to specify a name for your application and an image repository, and will handle other configuration.
 
 
 > Note: For this beta, we recommend that you use this accelerator to bootstrap your application for the smoothest experience with the extension.

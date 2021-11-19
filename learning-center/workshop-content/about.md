@@ -1,7 +1,7 @@
-# Working with Learning Center Workshops 
+# Creating Learning Center Workshops
 
 ## Overview
-This section includes information on building Learning Center Workshops.
+This section includes information on creating Learning Center Workshops.
 
 - [Workshop Configuration](workshop-config.md)
 - [Workshop Images](workshop-images.md)

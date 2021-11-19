@@ -1,4 +1,4 @@
-# Troubleshooting and Known Issues
+# Troubleshooting and known issues
 
 This topic contains troubleshooting and known issues for Supply Chain Security Tools - Store.
 
@@ -21,7 +21,7 @@ supported. To change the password, see
 [Persistent Volume Retains Data](#persistent-volume-retains-data) below.
 > **Warning:** Changing the database password deletes your Supply Chain Security Tools - Store data.
 
-## Persistent Volume Retains Data
+## Persistent volume retains data
 
 ### Symptom
 
@@ -49,7 +49,7 @@ This is the path found in `postgres-db-deployment.yaml`.
 1. Deploy the `metadata-store` app through kapp.
 
 
-## Missing Persistent Volume
+## Missing persistent volume
 
 ### Symptom
 
@@ -94,7 +94,7 @@ Supply Chain Security Tools - Store API, resulting in the error message above.
 All of our testing uses the `metadata-store` namespace.
 Using a different namespace breaks authentication and certificate validation for the metadata-store API.
 
-## Deploying for Internal/External customers
+## Deploying for internal/external customers
 
 Using `imgpkg copy` command copies the image bundle along with all images it references to a target
 repository.

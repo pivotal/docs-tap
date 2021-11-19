@@ -1,10 +1,10 @@
 ---
-title: Supply Chain Choreographer for VMware Tanzu
+title: Supply Chain Choreographer for Tanzu
 subtitle: Supply Chain Choreography
 weight: 1
 ---
 
-# Supply Chain Choreographer for VMware Tanzu
+# Supply Chain Choreographer for Tanzu
 
 This topic introduces Supply Chain Choreographer.
 
@@ -19,11 +19,11 @@ resources - test, build, scan, and deploy - allowing developers to be able to fo
 delivering value to their users while also providing App Operators with the peace of mind that 
 all code in production has passed through all of the steps of an approved workflow.
 
-## Out of the box Supply Chains
+## Out of the box supply chains
 
 VMware Tanzu ships with [Out-of-the-Box Supply Chains](default-supply-chains.md).
 
-## About Installing
+## About installing
 
 Supply Chain Choreographer is released as a Tanzu Package.
 

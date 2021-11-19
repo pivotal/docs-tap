@@ -1,4 +1,4 @@
-# Tanzu Application Platform v0.3 (Beta-3)
+# Tanzu Application Platform v0.4 (Beta-4)
 
 ## <a id='overview'></a> Overview of Tanzu Application Platform
 
@@ -24,7 +24,7 @@ Tanzu Application Platform provides a default set of components that automates p
 
 Kubernetes deployment complexity is reduced for operators with better automation and standardization of the outer loop, giving developers more time to focus on code.
 
-## <a id='profiles-and-packages'></a>  Installation Profiles and Profiles in Tanzu Application Platform v0.3
+## <a id='profiles-and-packages'></a>  Installation profiles and profiles in Tanzu Application Platform v0.4
 
 Tanzu Application Platform is available through pre-defined profiles or individual packages.
 
@@ -37,6 +37,6 @@ The following profiles are available in Tanzu Application Platform:
 - **Tanzu Application Platform Full:**
   This profile contains all of the Tanzu Application Platform packages.
 
-## <a id='install'></a> About Installing the Tanzu Application Platform v0.3 (Beta-3) 
+## <a id='install'></a> About installing the Tanzu Application Platform v0.4 (Beta-4) 
 
 To install the Tanzu Application Platform profiles, see [Installing Tanzu Application Platform](install-intro.md).

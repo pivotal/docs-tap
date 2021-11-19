@@ -1,4 +1,4 @@
-# Deploying to Kind
+# Installing on Kind
 
 Kind was developed as a means to support development and testing of Kubernetes. Despite it existing primarily for that purpose, Kind clusters are often used for local development of user applications as well. For Learning Center, a local Kind cluster can be used for developing workshop content, or for self learning when deploying other people's workshops.
 

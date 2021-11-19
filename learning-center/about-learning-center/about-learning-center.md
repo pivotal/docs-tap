@@ -1,4 +1,4 @@
-# Learning Center Overview
+# Learning Center overview
 
 The Learning Center is designed to provide a platform for hosting workshops. Although Learning Center requires 
 Kubernetes to run, and is being used to teach users about Kubernetes, it could also be used to host training for other 
@@ -6,7 +6,7 @@ purposes as well. It may for example be used to help train users in web based ap
 programming languages, where the user has no interest or need for Kubernetes.
 
 
-## Overall Goals
+## Overall goals
 
 The use case scenarios which Learning Center has been designed to support are as follows.
 
@@ -76,7 +76,7 @@ and what could be done at run time were as follows.
 
 * Ability for the workshop dashboard to display slides used by an instructor in support of the workshop.
 
-## Platform Architectural Overview
+## Platform architectural overview
 
 The Learning Center relies on a Kubernetes operator to perform the bulk of the work. The actions of the operator are 
 controlled through a set of custom resources specific to the Learning Center.
