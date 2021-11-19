@@ -28,7 +28,7 @@ packages and their dependencies are installed by running `tanzu package installe
       tbs              buildservice.tanzu.vmware.com         1.3.0            Reconcile succeeded
     ```
 
-## Configure the Example
+## Configure the example
 
 Set the following environment variables to configure the image registry where Tanzu Build Service will push images.
 The Image Scan pulls from the same registry.
@@ -40,9 +40,9 @@ REGISTRY_PASSWORD=
 REGISTRY_PROJECT=
 ```
 
-## Cluster-Wide Resources
+## Cluster-Wide resources
 
-### Tanzu Network Image Pull Secret
+### Tanzu network image pull secret
 
 The following secrets are used by each product to pull from Tanzu Network. These secrets
 are replicated into namespaces where they overwrite the empty placeholder secrets that were defined by each product.
@@ -175,7 +175,7 @@ spec:
 EOF
 ```
 
-## App Operator Deployments for Defining the Supply Chain
+## App operator deployments for defining the Supply Chain
 
 Configure and deploy the following Supply Chain Components. Some components reference cluster resources deployed above. The scanning components use the Scan Policy, and reference pre-installed Scan Templates installed with the Grype Scanner.
 
@@ -316,7 +316,7 @@ spec:
 EOF
 ```
 
-## Developer Deployment for Defining the Workload
+## Developer deployment for defining the workload
 
 With the Supply Chain components configured, a Developer can deploy a workload through the Supply Chain.
 
@@ -365,7 +365,7 @@ During processing and upon completion, try performing `kubectl describe` on the 
 
 **NOTE:** Detailed information pertaining to vulnerabilities found will not display in the output from `kubectl describe`, it is instead sent to the Metadata Store, where it can be queried there.
 
-## Querying the Metadata Store for Vulnerability Results using the Insight CLI
+## Querying the Metadata Store for vulnerability results using the Insight CLI
 
 1. In a separate terminal, set up a port-forwarding to the Metadata Store by running:
 
