@@ -1,6 +1,6 @@
 # Deploying to Minikube
 
-Minikube makes for a simple local deployment of Kubernetes for developing workshop content, or for self learning when deploying other peoples workshops.
+Minikube makes for a simple local deployment of Kubernetes for developing workshop content or for self-learning when deploying other people's workshops.
 
 As you are deploying to a local machine you are unlikely to have access to your own custom domain name and certificate you can use with the cluster, so some extra steps are required over a standard install of Minikube to ensure certain types of workshops can be run.
 
@@ -53,7 +53,7 @@ You are ready now to install the Learning Center package.
 
 Note that the ingress addons for Minikube do not work when using Minikube on top of Docker for Mac, or Docker for Windows. On macOS you must use the Hyperkit VM driver. On Windows you must use the Hyper-V VM driver.
 
-## Installing Carvel Tools
+## Installing carvel tools
 You must install the kapp controller and secret-gen controller carvel tools in order to properly install our tanzu packages.
 
 Install kapp controller using:
@@ -67,7 +67,7 @@ kapp deploy -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller
 ```
 Note* type y and enter to continue when prompted during installation of both kapp and secret-gen controller.
 
-## Installing Tanzu Package Repository
+## Installing Tanzu package repository
 
 Create a namespace using:
 ```
@@ -96,7 +96,7 @@ tanzu package repository get tanzu-tap-repository --namespace tap-install
 ```
 wait for a reconciled sucessful status before attempting to install any other packages
 
-## Create a Configuration Yaml File for Learning Center Package
+## Create a configuration yaml file for Learning Center Package
 
 Create a file called educates-value.yaml in your current directory with the data provided below.
 ```
@@ -188,14 +188,14 @@ You should now be able to start deploying workshops.
 
 Note that some home internet gateways implement what is called rebind protection. That is, they will not let DNS names from the public internet bind to local IP address ranges inside of the home network. If your home internet gateway has such a feature and it is enabled, it will block ``nip.io`` addresses from working. In this case you will need to configure your home internet gateway to allow ``*.nip.io`` names to be bound to local addresses.
 
-## Install Learning Center package on to Cluster
+## Install Learning Center package onto a minikube cluster
 
 ```
 tanzu package install educates --package-name learningcenter.tanzu.vmware.com --version 1.0.14-build.1 -f ./educates-value.yaml --namespace tap-install
 ```
 This package installation uses the installed Package repository along with a configuration educates-value.yaml to install our Learning Center Package.
 
-## Install Workshop tutorial package on to Cluster
+## Install Workshop tutorial package onto a minikube cluster
 
 ```
 tanzu package install educates-tutorials --package-name workshops.learningcenter.tanzu.vmware.com --version 1.0.7-build.1 --namespace tap-install

@@ -1,4 +1,4 @@
-# Learning Center Operator
+# Learning Center operator
 
 Before you can start deploying workshops, you need to install a Kubernetes operator for Learning Center. <br/>
 The operator manages the setup of the environment for each workshop and deploys instances of a workshop for each person.
@@ -18,21 +18,21 @@ termination of secure HTTP connections. Learning Center will create Kubernetes I
 supply any secret for use with secure HTTP connections for each ingress.
 
 For the ingress controller we strongly recommend the use of Contour over alternatives such as nginx. 
-An nginx based ingress controller has a less than optimal design whereby every time a new ingress is 
-created or deleted, the nginx config is reloaded resulting in websocket connections being terminated 
+An nginx-based ingress controller has a less than optimal design; whereby every time a new ingress is 
+created or deleted, the nginx config is reloaded, resulting in websocket connections being terminated 
 after a period of time. Learning Center terminals are implemented to reconnect automatically in the case 
 of the websocket connection being lost, but not all applications you may use with specific workshops may 
-handle loss of websocket connections so gracefully and so they may be impacted due to the use of an nginx 
-ingress controller. This problem is not specific to Learning Center and can impact any application when 
-using an nginx ingress controller and ingresses are created/deleted frequently.
+handle loss of websocket connections so gracefully and may be impacted due to the use of an nginx 
+ingress controller. This problem is not specific to Learning Center; however, it can impact any application when 
+an nginx ingress controller is used frequently and ingresses are created/deleted frequently.
 
 If using a hosted Kubernetes solution from an IaaS provider such as Google, AWS or Azure, you may need to 
 ensure that any HTTP request timeout specified on the inbound load balancer for the ingress controller is 
 increased such that long lived websocket connections can be used. Load balancers of hosted Kubernetes solutions 
-in some cases only have a 30 second timeout. If possible configure the timeout which would apply to websockets 
+in some cases only have a 30-second timeout. If possible configure the timeout which would apply to websockets 
 to be 1 hour.
 
-If deploying the web based training portal, the cluster must have available persistent volumes of type ``ReadWriteOnce (RWO)``. 
+If deploying the web-based training portal, the cluster must have available persistent volumes of type ``ReadWriteOnce (RWO)``. 
 A default storage class should have been defined so that persistent volume claims do not need to specify a storage class. 
 For some Kubernetes distributions, including from IBM, it may be necessary to configure Learning Center to know about 
 what user and group should be used for persistent volumes. If no default storage class is specified, or a specified 
@@ -177,7 +177,7 @@ to the any ingress created from a workshop as part of the workshop instructions.
 
 This may be necessary where a specific ingress provider is not as reliable in maintaining websocket connections, 
 as explained above is the case for the nginx ingress controller when there are frequent creation or deletions 
-of ingresses occuring in the cluster.
+of ingresses occurring in the cluster.
 
 ## Trusting insecure registries
 

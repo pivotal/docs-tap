@@ -2,7 +2,7 @@
 
 The training portal web interface is a quick way of providing access to a set of workshops when running a supervised training workshop. For integrating access to workshops into an existing web site, or for creating a custom web interface for accessing workshops hosted across one or more training portals, you can use can use the portal REST API.
 
-The REST API will give you access to the list of workshops hosted by a training portal instance and allow you to request and access workshop sessions. This bypasses the training portal's own user registration and login so you can implement whatever access controls you need. This could include anonymous access, or access integrated into an organisations single sign on system.
+The REST API will give you access to the list of workshops hosted by a training portal instance and allow you to request and access workshop sessions. This bypasses the training portal's own user registration and login so you can implement whatever access controls you need. This could include anonymous access, or access integrated into an organization's single sign-on system.
 
 ## Querying the credentials
 

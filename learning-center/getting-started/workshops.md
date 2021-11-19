@@ -21,7 +21,7 @@ This will result in a custom resource being created called ``WorkshopEnvironment
 workshopenvironment.training.eduk8s.io/lab-k8s-fundamentals created
 ```
 
-The custom resource created is cluster scoped, and the command needs to be run as a cluster admin or other appropriate 
+The custom resource created is cluster-scoped, and the command needs to be run as a cluster admin or other appropriate 
 user with permission to create the resource.
 
 The eduk8s operator will react to the creation of this custom resource and initialize the workshop environment.
@@ -51,7 +51,7 @@ the name of the workshop the environment was created from.
 
 To request a workshop instance, a custom resource of type ``WorkshopRequest`` needs to be created.
 
-This is a namespaced resource allowing who can create them to be delegated using role based access controls. 
+This is a namespaced resource allowing who can create them to be delegated using role-based access controls. 
 Further, in order to be able to request an instance of a specific workshop, you need to know the secret token specified 
 in the description of the workshop environment. If necessary, raising of requests against a specific workshop 
 environment can also be constrained to a specific set of namespaces on top of any defined RBAC rules.
