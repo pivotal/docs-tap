@@ -1,4 +1,4 @@
-# Source Controller <!-- omit in toc -->
+# Source Controller
 
 The controller follows the spirit of the FluxCD Source Controller. An [`ImageRepository`](#imagerepository) resource is able to resolve source from the content of an image in an image registry.
 
