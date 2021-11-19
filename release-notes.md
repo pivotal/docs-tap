@@ -68,7 +68,7 @@ Tanzu Packages:
 
 The following components have been updated in Tanzu Application Platform v0.3.0:
 
-- [Supply Chain Choreographer for VMware Tanz](scc/about.md)
+- [Supply Chain Choreographer for VMware Tanzu](scc/about.md)
   - Cartographer v0.0.7
 - Supply Chain Security Tools for VMware Tanzu
   - [Scan v1.0.0-beta.2](scst-scan/overview.md)
