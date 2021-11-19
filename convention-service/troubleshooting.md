@@ -1,8 +1,8 @@
 # Troubleshooting
 
-## Collecting logs from the controller:
+## Collecting logs from the controller
 
-1. Identify the deployed `Pod` within the convention controller in the `conventions-system` namespace using
+1. Identify the deployed `Pod` within the convention controller in the `conventions-system` namespace using:
 
     ```bash
     $ kubectl get pods -n conventions-system
@@ -10,6 +10,7 @@
       NAME                                              READY   STATUS    RESTARTS   AGE
       conventions-controller-manager-7bb95b64cf-74kdn   1/1     Running   1          10d
     ```
+
 2. Retrieve the logs from the identified `Pod`:
 
    ```bash
