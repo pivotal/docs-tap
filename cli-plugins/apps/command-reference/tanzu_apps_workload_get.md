@@ -1,4 +1,4 @@
-# Tanzu Apps Workload Get
+# Tanzu apps workload get
 
 This topic will help you get details from a workload.
 
@@ -21,7 +21,7 @@ tanzu apps workload get my-workload
   -o, --output string    output the Workload formatted. Supported formats: "json", "yaml"
 ```
 
-## Options Inherited from Parent Commands
+## Options inherited from parent commands
 
 ```
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
@@ -30,7 +30,7 @@ tanzu apps workload get my-workload
   -v, --verbose int32     number for the log level verbosity (default 1)
 ```
 
-## See Also
+## See also
 
 * [Tanzu Apps Workload](tanzu_apps_workload.md)	- Workload lifecycle management
 
