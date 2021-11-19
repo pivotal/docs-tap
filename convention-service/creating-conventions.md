@@ -41,9 +41,10 @@ _NOTE: this example covers developing conventions with [GOLANG](https://golang.o
 The `server.go` file contains the configuration for the server as well as the logic the server applies when a workload matches the defined criteria.
 For example, adding a prometheus _sidecar_ to web apps, or adding a `workload-type=spring-boot` label to any workload that has has metadata indicating that it is a spring boot app.  
 
-**NOTE:** For this example the package `model` is used to define [resources](./reference/convention-resources.md) types.
+>**NOTE:** For this example, the package `model` is used to define [resources](./reference/convention-resources.md) types.
 
-1. <a id='convention-1'></a>The example `server.go` sets up the `ConventionHandler` to ingest the webhook requests([PodConventionContext](./reference/pod-convention-context.md)) from the convention controller; at this point the handler only need to deal with the existing [`PodTemplateSpec`](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) and [`ImageConfig`](./reference/image-config.md).
+1. <a id='convention-1'></a>The example `server.go` sets up the `ConventionHandler` to ingest the webhook requests([PodConventionContext](./reference/pod-convention-context.md)) from the convention controller. At this point, the handler only needs to deal with the existing [`PodTemplateSpec`](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) and [`ImageConfig`](./reference/image-config.md).
+
     ```go
     ...
     import (
@@ -59,9 +60,9 @@ For example, adding a prometheus _sidecar_ to web apps, or adding a `workload-ty
      Where:
 
      + `template` is the predefined [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) that the convention is going to modify.
-     + `images` are the [`ImageConfig`](./reference/image-config.md) which will be used as reference to make decisions in the conventions. In this example the type was created within the `model` package
+     + `images` are the [`ImageConfig`](./reference/image-config.md) that will be used as reference to make decisions in the conventions. In this example, the type was created within the `model` package.
 
-2. <a id='server-2'></a>The example `server.go` also configures the convention server to listen for requests
+2. <a id='server-2'></a>The example `server.go` also configures the convention server to listen for requests.
 
     ```go
 
@@ -132,7 +133,7 @@ For example, adding a prometheus _sidecar_ to web apps, or adding a `workload-ty
     ...
     ```
 
-4. Configure and start the web server by defining the `NewConventionServer` function which will start the server with the defined port and current context. The server will use the `.crt` and `.key` files to handle *TLS* traffic.
+4. Configure and start the web server by defining the `NewConventionServer` function, which will start the server with the defined port and current context. The server will use the `.crt` and `.key` files to handle *TLS* traffic.
 
     ```go
     package webhook

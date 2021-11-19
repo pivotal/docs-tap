@@ -2,7 +2,7 @@
 
 ## Collecting logs from service binding manager
 
-1. Identify the `Pod` that is running the `service-binding-manager` container in the `service-bindings` namespace.
+1. Identify the `Pod` running the `service-binding-manager` container in the `service-bindings` namespace:
 
     `$kubectl -n service-bindings get pods`
 
@@ -13,7 +13,7 @@
     manager-5dbb5f584c-zvmg2   1/1     Running   0          11d
     ```
 
-2. Gather the actual logs from the `Pod` using the `kubectl` command.
+2. Gather the actual logs from the `Pod` using the `kubectl` command:
    
    `$ kubectl -n service-bindings logs manager-5dbb5f584c-zvmg2`
 
