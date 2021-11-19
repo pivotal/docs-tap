@@ -56,7 +56,7 @@ and also configuring required access through RBAC policy.
 
 ## Convention Service Resources
 
-There are several [resources](./reference/README.md) involved in the application of conventions to workloads
+There are several [resources](./reference/convention-resources.md) involved in the application of conventions to workloads
 
 ### How It Works
 

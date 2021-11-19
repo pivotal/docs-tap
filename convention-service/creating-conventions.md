@@ -40,7 +40,7 @@ _NOTE: this example covers developing conventions with [GOLANG](https://golang.o
 
 The `server.go` file contains the configuration for the server as well as the logic the server applies when a workload matches the defined criteria.
 For example, adding a prometheus _sidecar_ to web apps, or adding a `workload-type=spring-boot` label to any workload that has has metadata indicating that it is a spring boot app.  
-**NOTE:** For this example the package `model` is used to define [resources](reference/README.md) types.
+**NOTE:** For this example the package `model` is used to define [resources](reference/convention-resources.md) types.
 1. <a id='convention-1'></a>The example `server.go` sets up the `ConventionHandler` to ingest the webhook requests([PodConventionContext](./reference/pod-convention-context.md)) from the convention controller; at this point the handler only need to deal with the existing [`PodTemplateSpec`](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) and [`ImageConfig`](reference/image-config.md).
     ```go
     ...
