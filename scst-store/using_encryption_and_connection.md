@@ -1,6 +1,6 @@
 # Using Encryption and Connecting to Supply Chain Security Tools - Store
 
-You can enable an encrypted connection using one of the following methods, depending on your service environment:
+The connection to the Store requires TLS encryption. Use one of the following methods to setup the TLS connection, depending on your service environment:
 
 1. Using `LoadBalancer` 
 1. Using `NodePort` — commonly used with local clusters such as kind, or minikube
