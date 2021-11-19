@@ -16,7 +16,7 @@ The following installation prerequisites must be done prior to installation.
   As a user you currently have tanzuCLI installed on your local machine.  
   As a user you currently have kubectlCLI installed on your local machine.
 
-## Kind Cluster Creation
+## Kind cluster creation
 When initially creating the Kind cluster you will need to [configure](https://kind.sigs.k8s.io/docs/user/ingress#create-cluster) it so that the ingress controller will be exposed. The documentation provides the following command to do this, but check the documentation in case the details have changed.
 
 ```

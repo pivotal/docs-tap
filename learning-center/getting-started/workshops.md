@@ -109,7 +109,7 @@ workshop request and directly creates the latter.
 The purpose of having ``WorkshopRequest`` as a separate custom resource is to allow RBAC and other controls to be used 
 to allow non cluster admins to create workshop instances.
 
-## Deleting the Workshop Instance
+## Deleting the workshop instance
 
 When you have finished with the workshop instance, you can delete it by deleting the custom resource for the workshop 
 request:
@@ -118,7 +118,7 @@ request:
 kubectl delete workshoprequest/lab-k8s-fundamentals
 ```
 
-## Deleting the Workshop Environment
+## Deleting the workshop environment
 
 If you want to delete the whole workshop environment, it is recommended to first delete all workshop instances. Once 
 this has been done, you can then delete the custom resource for the workshop environment:

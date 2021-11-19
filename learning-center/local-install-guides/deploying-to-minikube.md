@@ -205,7 +205,7 @@ Make sure you install the workshop package after the learning center package has
 kubectl get packages -n tap-install
 ```
 
-## Run Workshop
+## Run workshop
 
 Use the following command to get our portal url:
 ```

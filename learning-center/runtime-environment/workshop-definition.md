@@ -1320,7 +1320,7 @@ The URL for accessing the image registry adopts the HTTP protocol scheme inherit
 
 If you want to use any of the variables as data variables in workshop content, use the same variable name but in lower case. Thus, ``registry_host``, ``registry_auth_file``, ``registry_username``, ``registry_password`` and ``registry_secret``.
 
-## Enabling ability to use docker
+## Enabling ability to use Docker
 
 If you need to be able to build container images in a workshop using ``docker``, it needs to be enabled first. Each workshop session will be provided with its own separate docker daemon instance running in a container.
 
