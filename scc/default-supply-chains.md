@@ -151,7 +151,7 @@ supply chain basic (source-to-url), and the ability to perform testing using Tek
 
 ### Example usage
 
-#### Developer Workload
+#### Developer workload
 
 1. Ensure that the supply chain has been installed by running:
 
