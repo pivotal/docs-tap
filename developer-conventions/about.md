@@ -21,6 +21,6 @@ Key features of Developer Conventions include:
 
 - **Debugging:** Set breakpoints to help you debug your running app on your cluster.
 
-## About Installing
+## About installing
 
 Developer Conventions is released as a Tanzu Package. For information on installing Developer Conventions, see [Installing Tanzu Application Platform](../install-intro.md).

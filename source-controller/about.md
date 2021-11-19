@@ -6,7 +6,7 @@ The controller follows the spirit of the FluxCD Source Controller. An [`ImageRep
 
 For basic troubleshooting Source Controller, please see the troubleshooting guide [here](./troubleshooting.md).
 
-## Reference Documentation
+## Reference documentation
 
 ### ImageRepository
 
