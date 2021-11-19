@@ -4,7 +4,7 @@ Workshops are where you create your content. You can create a workshop for indiv
 together with a [Training Portal](training-portal.md). Below will help you get started with workshops. For more 
 detailed instructions go to [Working with Learning Center Workshops](../workshop-content/about.md)
 
-## Creating the Workshop Environment
+## Creating the workshop environment
 
 With the definition of a workshop already in existence, the first underlying step to deploying a workshop is to 
 create the workshop environment.
@@ -47,7 +47,7 @@ lab-k8s-fundamentals   lab-k8s-fundamentals   lab-k8s-fundamentals   quay.io/edu
 Additional fields give the name of the workshop environment, the namespace created for the workshop environment, and 
 the name of the workshop the environment was created from.
 
-## Requesting a Workshop Instance
+## Requesting a workshop instance
 
 To request a workshop instance, a custom resource of type ``WorkshopRequest`` needs to be created.
 
