@@ -1,4 +1,4 @@
-# Known Issues
+# Known issues
 The Apps plugin for the Tanzu CLI has the following known issues:
 
 * **`tanzu apps workload get`**
