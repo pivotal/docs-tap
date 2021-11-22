@@ -8,7 +8,7 @@ The process for uninstalling Tanzu Application Platform is made up of two tasks:
 
 + [Delete the Tanzu Application Platform Package Repository](#del-repo)
 
-## <a id='del-packages'></a> Delete the Packages
+## <a id='del-packages'></a> Delete the packages
 
 To delete the installed packages:
 
@@ -46,7 +46,7 @@ To delete the installed packages:
 3. Repeat step 2 for each package installed.
 
 
-## <a id='del-repo'></a>Delete the Tanzu Application Platform Package Repository
+## <a id='del-repo'></a>Delete the Tanzu Application Platform package repository
 
 To delete the Tanzu Application Platform package repository:
 
