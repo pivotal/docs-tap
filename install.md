@@ -1,4 +1,4 @@
-# Installing Part II: Profiles
+# Installing part II: profiles
 
 This document describes how to install Tanzu Application Platform packages
 from the Tanzu Application Platform package repository.
@@ -8,7 +8,7 @@ and verified the cluster, accepted the EULA, and installed the Tanzu CLI with an
 See [Installing Part I: Prerequisites, EULA, and CLI](install-general.md).
 
 
-## <a id='add-package-repositories'></a> Add the Tanzu Application Platform Package Repository
+## <a id='add-package-repositories'></a> Add the Tanzu Application Platform package repository
 
 To add the Tanzu Application Platform package repository:
 
@@ -105,7 +105,7 @@ To add the Tanzu Application Platform package repository:
       workshops.learningcenter.tanzu.vmware.com            Workshop Building Tutorial                                                Workshop Building Tutorial
     ```
 
-## <a id='about-package-profiles'></a> About Tanzu Application Platform Package Profiles
+## <a id='about-package-profiles'></a> About Tanzu Application Platform package profiles
 
 Tanzu Application Platform can be installed through pre-defined profiles or through individual
 packages. This section explains how to install a profile.
@@ -315,7 +315,7 @@ The following table lists the packages contained in each profile:
 <sup>\*</sup> Only one supply chain should be installed at any given time.
 For information on switching from one supply chain to another, see [Getting Started with Tanzu Application Platform](getting-started.md).
 
-## <a id='install-profile'></a> Install a Tanzu Application Platform Profile
+## <a id='install-profile'></a> Install a Tanzu Application Platform profile
 
 Install a profile by using the `tap.tanzu.vmware.com` package.
 The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile
