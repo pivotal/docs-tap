@@ -1,4 +1,4 @@
-# Tanzu Apps Workload Apply
+# Tanzu apps workload apply
 
 This topic will help you apply configuration to a new or existing workload. If the resource does not exist, it will be created. 
 
@@ -49,7 +49,7 @@ tanzu apps workload apply --file workload.yaml
   -y, --yes                            accept all prompts
 ```
 
-## Options Inherited from Parent Commands
+## Options inherited from parent commands
 
 ```
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
@@ -58,7 +58,7 @@ tanzu apps workload apply --file workload.yaml
   -v, --verbose int32     number for the log level verbosity (default 1)
 ```
 
-## See Also
+## See also
 
 - [Tanzu Apps Workload](tanzu_apps_workload.md) - Workload lifecycle management
 
