@@ -1,4 +1,4 @@
-# Installing Part I: Prerequisites, EULA, and CLI
+# Installing Part I: prerequisites, EULA, and CLI
 
 This document describes the first part of the installation process for Tanzu Application Platform:
 
@@ -12,7 +12,7 @@ This document describes the first part of the installation process for Tanzu App
 
 The following are required to install Tanzu Application Platform:
 
-### Tanzu Network and Container Image Registry Requirements
+### Tanzu Network and container image registry requirements
 
 Installation requires:
 
@@ -44,7 +44,7 @@ Supported Git infrastructure includes:
 - Tanzu Application Platform GUI Blank Catalog from the Tanzu Application section of Tanzu Network
   - To install this navigate to [Tanzu Network](https://network.tanzu.vmware.com/) and select the Tanzu Application Platform. Under the list of available files to download, there will be a fodler titled `tap-gui-catalogs`. Inside that folder is a compressed archive titled `Tanzu Application Platform Blank Catalog`. You'll need to extract that catalog to the preceding Git repository of choice. This serves as the configuration location for your Organziation's Catalog inside Tanzu Application Platform GUI.
 
-### Kubernetes Cluster Requirements
+### Kubernetes cluster requirements
 Installation requires:
 
 * Kubernetes cluster v1.19 or later on one of the following Kubernetes providers:
@@ -80,7 +80,7 @@ Installation requires:
 must be configured so that Tanzu Application Platform controller
 pods can run as root.
 
-### Tools and CLI Requirements
+### Tools and CLI requirements
 Installation requires:
 
 * [Kapp Carvel command line tool](https://github.com/vmware-tanzu/carvel-kapp/releases) v0.37.0 or later.
@@ -237,7 +237,7 @@ To accept EULAs:
       + [Stacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-stacks-suite)
 
 
-## <a id='cli-and-plugin'></a> Install or Update the Tanzu CLI and Plugins
+## <a id='cli-and-plugin'></a> Install or update the Tanzu CLI and plugins
 
 Choose the install scenario that is right for you:
 
@@ -246,7 +246,7 @@ Choose the install scenario that is right for you:
    + [Instructions for updating Tanzu CLI that was previously installed for Tanzu Kubernetes Grid and/or Tanzu Community Edition](#udpate-tkg-tce-tanzu-cli)  
 
 
-### <a id='tanzu-cli-clean-install'></a>Instructions for a Clean Install of Tanzu CLI
+### <a id='tanzu-cli-clean-install'></a>Instructions for a clean install of Tanzu CLI
 
 Follow the procedure for your OS:
 
@@ -388,7 +388,7 @@ To install the Tanzu CLI on a Windows operating system:
 
   15. Proceed to [Clean Install Tanzu CLI Plugins](#cli-plugin-clean-install)
 
-## <a id='cli-plugin-clean-install'></a> Clean Install Tanzu CLI Plugins
+## <a id='cli-plugin-clean-install'></a> Clean install Tanzu CLI Plugins
 
 To perform a clean installation of the Tanzu CLI plugins:
 
