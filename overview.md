@@ -1,4 +1,4 @@
-# Tanzu Application Platform v0.4 (Beta-4)
+# Tanzu Application Platform v0.4 (beta-4)
 
 ## <a id='overview'></a> Overview of Tanzu Application Platform
 
@@ -37,6 +37,6 @@ The following profiles are available in Tanzu Application Platform:
 - **Tanzu Application Platform Full:**
   This profile contains all of the Tanzu Application Platform packages.
 
-## <a id='install'></a> About installing the Tanzu Application Platform v0.4 (Beta-4) 
+## <a id='install'></a> About installing the Tanzu Application Platform v0.4 (beta-4) 
 
 To install the Tanzu Application Platform profiles, see [Installing Tanzu Application Platform](install-intro.md).
