@@ -2,22 +2,13 @@
 
 ## Collecting logs from service binding manager
 
-1. Identify the `Pod` running the `service-binding-manager` container in the `service-bindings` namespace:
+Retrieve pod logs from the `manager` running in the `service-bindings` namespace.
 
-    `$kubectl -n service-bindings get pods`
-
-    For example:
-    
     ```bash
-    NAME                       READY   STATUS    RESTARTS   AGE
-    manager-5dbb5f584c-zvmg2   1/1     Running   0          11d
+    kubectl -n service-bindings logs -l role=manager
     ```
 
-2. Gather the actual logs from the `Pod` using the `kubectl` command:
-   
-   `$ kubectl -n service-bindings logs manager-5dbb5f584c-zvmg2`
-
-   For Example:
+For example:
 
    ```bash
     2021/11/05 15:25:28 Registering 3 clients
@@ -42,3 +33,4 @@
     {"severity":"ERROR","timestamp":"2021-11-17T14:43:44.56142548Z","logger":"webhook","caller":"controller/controller.go:548","message":"Reconcile error","duration":"179.203µs","error":"deployments.apps \"spring-petclinic\" not found","stacktrace":"knative.dev/pkg/controller.(*Impl).handleErr\n\tknative.dev/pkg@v0.0.0-20210331065221-952fdd90dbb0/controller/controller.go:548\nknative.dev/pkg/controller.(*Impl).processNextWorkItem\n\tknative.dev/pkg@v0.0.0-20210331065221-952fdd90dbb0/controller/controller.go:531\nknative.dev/pkg/controller.(*Impl).RunContext.func3\n\tknative.dev/pkg@v0.0.0-20210331065221-952fdd90dbb0/controller/controller.go:468"}
     {"severity":"ERROR","timestamp":"2021-11-17T15:00:24.561881861Z","logger":"webhook","caller":"controller/controller.go:548","message":"Reconcile error","duration":"167.902µs","error":"deployments.apps \"spring-petclinic\" not found","stacktrace":"knative.dev/pkg/controller.(*Impl).handleErr\n\tknative.dev/pkg@v0.0.0-20210331065221-952fdd90dbb0/controller/controller.go:548\nknative.dev/pkg/controller.(*Impl).processNextWorkItem\n\tknative.dev/pkg@v0.0.0-20210331065221-952fdd90dbb0/controller/controller.go:531\nknative.dev/pkg/controller.(*Impl).RunContext.func3\n\tknative.dev/pkg@v0.0.0-20210331065221-952fdd90dbb0/controller/controller.go:468"}
    ```
+   
