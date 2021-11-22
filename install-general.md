@@ -392,13 +392,13 @@ To install the Tanzu CLI on a Windows operating system:
 
 To perform a clean installation of the Tanzu CLI plugins:
 
-1. Disable the "context-aware CLI for plugins" feature so the downloaded versions of the plugins can be installed without errors:
+1. Disable the **context-aware CLI for plugins** feature so the downloaded plugins are installed without errors:
 
    ```
    tanzu config set features.global.context-aware-cli-for-plugins false
    ```
    
-2. Install the local versions of the plugins you just downloaded:
+2. Install the local versions of the plugins you downloaded:
 
     ```
     tanzu plugin install --local cli all
@@ -485,7 +485,7 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
       rm -rf ~/Library/Application\ Support/tanzu-cli/*
       ```
 
-  11. If previously installed, delete the `imagepullsecret` plugin (it will be replaced by a new `secret` plugin):
+  11. Delete the `imagepullsecret` plugin if it is previously installed so it is replaced by a new `secret` plugin:
       ```
       tanzu plugin list
       ```
@@ -494,7 +494,7 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
          tanzu plugin delete imagepullsecret
          ```
 
-  12. Disable the "context-aware CLI for plugins" feature so the downloaded versions of the CLI core and plugins can be installed without errors:
+  12. Disable the **context-aware CLI for plugins** feature so the downloaded the CLI core and plugins are installed without errors:
 
       ```
       tanzu config set features.global.context-aware-cli-for-plugins false
@@ -604,14 +604,14 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
      tanzu plugin delete package
      ```
 
-  10. Check to see what version of the Tanzu CLI core is installed
+  10. Check to see what version of the Tanzu CLI core is installed:
       
       ```
       tanzu version
       ```
       
   11. If the version returned is `v0.11.0+` 
-      Disable the "context-aware CLI for plugins" feature so the downloaded versions of the plugins can be installed without errors:
+      Disable the **context-aware CLI for plugins** feature so the downloaded plugins are installed without errors:
 
       ```
       tanzu config set features.global.context-aware-cli-for-plugins false
