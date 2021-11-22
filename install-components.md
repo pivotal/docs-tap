@@ -1,4 +1,4 @@
-# Installing Individual Packages
+# Installing individual packages
 
 This document describes how to install individual Tanzu Application Platform packages
 from the Tanzu Application Platform package repository.
@@ -597,7 +597,7 @@ This section provides a quick-start guide for installing Tanzu Build Service as 
 * Your Docker registry is accessible with username and password credentials.
 
 
-### Install Tanzu Build Service Using the Tanzu CLI
+### Install Tanzu Build Service using the Tanzu CLI
 
 To install Tanzu Build Service using the Tanzu CLI:
 
@@ -1074,7 +1074,7 @@ To access the Application Live View UI:
 
 To install Tanzu Application Platform GUI, see the following sections.
 
-### Prerequisites in Addition to Tanzu Application Platform Requirements
+### Prerequisites in addition to Tanzu Application Platform requirements
 
 **Required**
 
@@ -2189,7 +2189,7 @@ To install Services Toolkit:
     STATUS should be `Reconcile succeeded`.
 
 
-## <a id='verify'></a> Verify the Installed Packages
+## <a id='verify'></a> Verify the installed packages
 
 Use the following procedure to verify that the packages are installed.
 
