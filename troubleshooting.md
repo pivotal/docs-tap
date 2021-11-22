@@ -2,7 +2,7 @@
 
 This topic describes troubleshooting information for problems with installing Tanzu Application Platform.
 
-## <a id='unauthorized-to-access'></a> Unauthorized to Access Error
+## <a id='unauthorized-to-access'></a> Unauthorized to access error
 
 An authentication error when installing a package, reconciliation fails.
 
@@ -42,7 +42,7 @@ To fix this problem:
 2. List the status of the installed packages to confirm that the reconcile has succeeded.
    For instructions, see [Verify the Installed Packages](install-components.md#verify).
 
-## <a id='existing-service-account'></a> Already Existing Service Account Error
+## <a id='existing-service-account'></a> Already existing service account error
 
 A service account error when installing a package, reconciliation fails.
 
