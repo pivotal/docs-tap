@@ -1,4 +1,4 @@
-# Tanzu Apps Workload Update
+# Tanzu apps workload update
 
 This topic will help you update the configuration of an existing workload.
 
@@ -54,7 +54,7 @@ tanzu apps workload update --file workload.yaml
   -y, --yes                            accept all prompts
 ```
 
-## Options Inherited from Parent Commands
+## Options inherited from parent commands
 
 ```
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
@@ -63,7 +63,7 @@ tanzu apps workload update --file workload.yaml
   -v, --verbose int32     number for the log level verbosity (default 1)
 ```
 
-## See Also
+## See also
 
 - [Tanzu Apps Workload](tanzu_apps_workload.md)	 - Workload lifecycle management
 
