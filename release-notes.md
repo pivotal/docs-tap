@@ -1,8 +1,8 @@
-# Release Notes
+# Release notes
 
 This topic contains release notes for Tanzu Application Platform beta.
 
-## <a id='0-3-0'></a> v0.4.0 Beta Release
+## <a id='0-3-0'></a> v0.4.0 beta release
 
 **Release Date**: TBD, 2021
 
@@ -20,16 +20,16 @@ The following components are new in Tanzu Application Platform v0.4.0:
 
 The following components have been updated in Tanzu Application Platform v0.4.0:
 
-### Known Issues
+### Known issues
 
 This release has the following issues:
 
-### Security Issues
+### Security issues
 
 This release has the following security issue:
 
 
-## <a id='0-3-0'></a> v0.3.0 Beta Release
+## <a id='0-3-0'></a> v0.3.0 beta release
 
 **Release Date**: November 8, 2021
 
@@ -82,7 +82,7 @@ The following components have been updated in Tanzu Application Platform v0.3.0:
 - [Application Live View for VMware Tanzu v0.3.0](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.3/docs/GUID-index.html)
 - [Tanzu Developer Tools for Visual Studio Code v0.3.0](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.3/tap-0-3/GUID-vscode-extension-about.html)
 
-### Known Issues
+### Known issues
 
 This release has the following issues:
 
@@ -102,7 +102,7 @@ This release has the following issues:
   - *`tanzu apps workload create/update/apply`*: when the `--wait` flag has been included and the "Do you want to create this workload?" prompt is declined, the command continues to wait rather exit
 
 
-### Security Issues
+### Security issues
 
 This release has the following security issue:
 
@@ -112,11 +112,11 @@ visible to users of those namespaces.
 VMware recommends that the registry credentials you export give read-only access to the registry and
 have minimal scope within the registry.
 
-## <a id='0-2-0'></a> v0.2.0 Beta Release
+## <a id='0-2-0'></a> v0.2.0 beta release
 
 **Release Date**: October 07, 2021
 
-### New Features
+### New features
 
 The following components are new in Tanzu Application Platform v0.2.0:
 
@@ -154,7 +154,7 @@ The following components have been updated in Tanzu Application Platform v0.2.0
 - [Application Live View for VMware Tanzu v0.2.0](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.2/docs/GUID-index.html)
 
 
-### Known Issues
+### Known issues
 
 This release has the following issues:
 
@@ -171,7 +171,7 @@ delete the workload before performing any of the following actions. This will av
     2. Type `tanzuWorkload delete` in the command palette that appears and hit enter
     3. View the Terminal tab to confirm that the Workload has been deleted
 
-## <a id='0-1-0'></a> v0.1.0 Beta Release
+## <a id='0-1-0'></a> v0.1.0 beta release
 
 **Release Date**: September 1, 2021
 
