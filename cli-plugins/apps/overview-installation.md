@@ -1,8 +1,8 @@
-# Apps CLI Plugin Overview
+# Apps CLI plugin overview
 
 This Tanzu CLI plugin provides the ability to create, view, update, and delete application workloads on any Kubernetes cluster that has the Tanzu Application Platform components installed.
 
-## <a id='About'></a>About Workloads
+## <a id='About'></a>About workloads
 
 Tanzu Application Platform enables developers to quickly build and test applications regardless of their familiarity with Kubernetes.
 Developers can turn source code into a workload that runs in a container with a URL.
@@ -46,15 +46,15 @@ plugins:
       description: Applications on Kubernetes
       versions: []
 ```
-## <a id='command-reference'></a>Command Reference
+## <a id='command-reference'></a>Command reference
 
 - See [Command Reference](command-reference.md)
 
-## <a id='usage-and-examples'></a>Usage and Examples
+## <a id='usage-and-examples'></a>Usage and examples
 
 - See [Usage and Examples](usage.md)
 
-## <a id='known-issues'></a>Known Issues
+## <a id='known-issues'></a>Known issues
 
 - See [Known Issues](known-issues.md)
 
