@@ -1072,7 +1072,7 @@ service resources, in this case RabbitMQ clusters. See the following example.
     metadata:
       name: resource-claims-rmq
       labels:
-        services.apps.tanzu.vmware.com/aggregate-to-resource-claims: "true"
+        resourceclaims.services.apps.tanzu.vmware.com/controller: "true"
     rules:
     - apiGroups: ["rabbitmq.com"]
       resources: ["rabbitmqclusters"]
@@ -1241,7 +1241,7 @@ controller to the Service resources, in this case RabbitMQ.
     metadata:
       name: resource-claims-rmq
       labels:
-        services.apps.tanzu.vmware.com/aggregate-to-resource-claims: "true"
+        resourceclaims.services.apps.tanzu.vmware.com/controller: "true"
     rules:
     - apiGroups: ["rabbitmq.com"]
       resources: ["rabbitmqclusters"]
