@@ -1076,7 +1076,7 @@ service resources, in this case RabbitMQ clusters. See the following example.
     rules:
     - apiGroups: ["rabbitmq.com"]
       resources: ["rabbitmqclusters"]
-      verbs: ["get", "list", "watch"]
+      verbs: ["get", "list", "watch", "update"]
     ```
 
 1. Apply the YAML by running the following command.
@@ -1245,7 +1245,7 @@ controller to the Service resources, in this case RabbitMQ.
     rules:
     - apiGroups: ["rabbitmq.com"]
       resources: ["rabbitmqclusters"]
-      verbs: ["get", "list", "watch"]
+      verbs: ["get", "list", "watch", "update"]
     ```
 
 1. Apply the YAML file by running the following command.
