@@ -4,7 +4,7 @@
 
 The _Spring Boot Convention Server_ is a bundle of smaller conventions applied to any Spring Boot Application submitted to the supply chain in which the convention controller is configured.
 
-The _Spring Boot Convention Server_ looks inside the image similar to `docker inspect` command like this:
+The _Spring Boot Convention Server_ looks inside the image similar to `docker inspect` command, like this:
 
 `$ docker inspect springio/petclinic`
 
@@ -35,10 +35,10 @@ The _Spring Boot Convention Server_ looks inside the image similar to `docker in
 ]
 ```
 
-Then the convention search inside the image for `Config -> Labels -> io.buildpacks.build.metadata` to find the `bom` and inside it look for different metadata to evaluate if the convention is got to be applied or not
+The convention server searches inside the image for `Config -> Labels -> io.buildpacks.build.metadata` to find the `bom` file. It looks inside the `bom` file for metadata to evaluate whether the convention is going to be applied.
 
-Check the list of conventions [here](reference/CONVENTIONS.md)
+Check the list of [conventions](reference/CONVENTIONS.md)
 
 ## Troubleshooting
 
-If you are having trouble, you can refer to the troubleshooting guide [here](./troubleshooting.md).
+For basic troubleshooting, see the [troubleshooting guide](./troubleshooting.md).
