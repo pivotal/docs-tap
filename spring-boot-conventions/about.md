@@ -1,4 +1,4 @@
-# Spring Boot conventions <!-- omit in toc -->
+# Spring Boot conventions
 
 ## Overview
 
