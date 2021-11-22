@@ -1,4 +1,4 @@
-# Component Documentation
+# Component documentation
 
 Documentation for some of the components of Tanzu Application Platform is
 available as follows.
