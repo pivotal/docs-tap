@@ -1,6 +1,6 @@
-# Usage and Examples
+# Usage and examples
 
-## <a id='changing-clusters'></a> Changing Clusters
+## <a id='changing-clusters'></a> Changing clusters
 
 The Apps CLI plugin refers to the default kubeconfig file to access a Kubernetes cluster.
 When a `tanzu apps` command is run, the plugin uses the default context that's defined in that kubeconfig file (located by default at `$HOME/.kube/config`).
@@ -18,7 +18,7 @@ There are also two ways to override the default kubeconfig:
 For more information about kubeconfig, see [Configure Access to Multiple Clusters](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/).
 
 
-## <a id='checking-update-status'></a>Checking Update Status
+## <a id='checking-update-status'></a>Checking update status
 
 You can use the Apps CLI plugin to create or update a workload.
 After you've successfully submitted your changes to the platform, the CLI command exits.
@@ -26,7 +26,7 @@ Depending on the changes you submitted, it might take time for them to be execut
 Run `tanzu apps workload get` to check the status of your changes.
 For more information on this command, see [Tanzu Apps Workload Get](command-reference/tanzu_apps_workload_get.md).
 
-## <a id='yaml-files'></a> Working with YAML Files
+## <a id='yaml-files'></a> Working with YAML files
 
 In many cases, you can manage workload life cycles through CLI commands.
 However, you might find cases where you want to manage a workload by using a `yaml` file.

@@ -4,7 +4,7 @@ Workshops are where you create your content. You can create a workshop for indiv
 together with a [Training Portal](training-portal.md). Below will help you get started with workshops. For more 
 detailed instructions go to [Working with Learning Center Workshops](../workshop-content/about.md)
 
-## Creating the Workshop Environment
+## Creating the workshop environment
 
 With the definition of a workshop already in existence, the first underlying step to deploying a workshop is to 
 create the workshop environment.
@@ -21,7 +21,7 @@ This will result in a custom resource being created called ``WorkshopEnvironment
 workshopenvironment.training.eduk8s.io/lab-k8s-fundamentals created
 ```
 
-The custom resource created is cluster scoped, and the command needs to be run as a cluster admin or other appropriate 
+The custom resource created is cluster-scoped, and the command needs to be run as a cluster admin or other appropriate 
 user with permission to create the resource.
 
 The eduk8s operator will react to the creation of this custom resource and initialize the workshop environment.
@@ -47,11 +47,11 @@ lab-k8s-fundamentals   lab-k8s-fundamentals   lab-k8s-fundamentals   quay.io/edu
 Additional fields give the name of the workshop environment, the namespace created for the workshop environment, and 
 the name of the workshop the environment was created from.
 
-## Requesting a Workshop Instance
+## Requesting a workshop instance
 
 To request a workshop instance, a custom resource of type ``WorkshopRequest`` needs to be created.
 
-This is a namespaced resource allowing who can create them to be delegated using role based access controls. 
+This is a namespaced resource allowing who can create them to be delegated using role-based access controls. 
 Further, in order to be able to request an instance of a specific workshop, you need to know the secret token specified 
 in the description of the workshop environment. If necessary, raising of requests against a specific workshop 
 environment can also be constrained to a specific set of namespaces on top of any defined RBAC rules.
@@ -109,7 +109,7 @@ workshop request and directly creates the latter.
 The purpose of having ``WorkshopRequest`` as a separate custom resource is to allow RBAC and other controls to be used 
 to allow non cluster admins to create workshop instances.
 
-## Deleting the Workshop Instance
+## Deleting the workshop instance
 
 When you have finished with the workshop instance, you can delete it by deleting the custom resource for the workshop 
 request:
@@ -118,7 +118,7 @@ request:
 kubectl delete workshoprequest/lab-k8s-fundamentals
 ```
 
-## Deleting the Workshop Environment
+## Deleting the workshop environment
 
 If you want to delete the whole workshop environment, it is recommended to first delete all workshop instances. Once 
 this has been done, you can then delete the custom resource for the workshop environment:

@@ -1,8 +1,8 @@
-# Observing and Troubleshooting
+# Observing and troubleshooting
 
 This sections shows how to observe the scan job and get logs.
 
-## Watching In Flight Jobs
+## Watching in flight jobs
 The scan will run inside the job which creates a pod. Both the job and pod will be cleaned up automatically after completion. You can set a watch on the job and pod before applying a new scan to observe the job deploy.
 ```bash
 watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs

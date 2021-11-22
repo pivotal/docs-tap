@@ -1,6 +1,6 @@
 # Anonymous Access
 
-The REST API with client authentication provides a means to have the portal create and manage workshop sessions on your behalf, but have user authentication handled by a separate system.
+The REST API with client authentication provides a means to have the portal create and manage workshop sessions on your behalf but have user authentication handled by a separate system.
 
 If you do not need to have users be authenticated, but still want to provide your own front end from which users select a workshop, such as when integrating workshops into an existing web property, you can enable anonymous mode and redirect users direct to a URL for workshop session creation.
 

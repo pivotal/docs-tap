@@ -1,4 +1,4 @@
-# Convention Service <!-- omit in toc -->
+# Convention Service
 
 ## Overview
 
@@ -9,21 +9,21 @@ saving operator and developer time.
 
 The service is comprised of two components:
 
-* **The convention controller:**
-  The convention controller provides the metadata to the convention server and executes the updates Pod Template Spec as per the convention server's requests.
+* **The Convention Controller:**
+  The Convention Controller provides the metadata to the Convention Server and executes the updates Pod Template Spec as per the Convention Server's requests.
 
-* **The convention server:**
-  The convention server receives and evaluates metadata associated with a workload and
+* **The Convention Server:**
+  The Convention Server receives and evaluates metadata associated with a workload and
   requests updates to the Pod Template Spec associated with that workload. 
-  You can have one or more convention servers for a single convention controller instance.
+  You can have one or more Convention Servers for a single Convention Controller instance.
   The Convention Service currently supports defining and applying conventions for Pods.
 
 ## About applying conventions
 
-The convention server uses criteria defined in the convention to determine
+The Convention Server uses criteria defined in the convention to determine
 whether the configuration of a workload should be changed.
-The server receives the OCI metadata from the convention controller.
-If the metadata meets the criteria defined by the convention server,
+The server receives the OCI metadata from the Convention Controller.
+If the metadata meets the criteria defined by the Convention Server,
 the conventions are applied.
 It is also possible for a convention to apply to all workloads regardless of metadata.
 
@@ -38,7 +38,7 @@ Targeted conventions can ensure uniformity across specific workload types deploy
 You can use all the metadata details of an image when evaluating workloads. To see the metadata details, use the docker CLI command `docker image inspect IMAGE`.
 
 > **Note:** Depending on how the image was built, metadata might not be available to reliably identify
-the image type and match the criteria for a given convention server.
+the image type and match the criteria for a given Convention Server.
 Images built with Cloud Native Buildpacks reliably include rich descriptive metadata.
 Images built by some other process may not include the same metadata.
 
@@ -51,7 +51,7 @@ Such conventions are a great way for you to ensure infrastructure uniformity
 across workloads deployed on the cluster while reducing developer toil.
 
 > **Note:** Adding a sidecar alone does not magically make the log/metrics collection work.
-  This requires collector agents to be already deployed and accessible from the Kuberentes cluster,
+  This requires collector agents to be already deployed and accessible from the Kubernetes cluster,
 and also configuring required access through RBAC policy.
 
 ## Convention service resources
@@ -62,7 +62,7 @@ There are several [resources](./reference/convention-resources.md) involved in t
 
 #### API structure
 
-The [`PodConventionContext`](./reference/pod-convention-context.md) API object in the `webhooks.conventions.apps.tanzu.vmware.com` API group is the structure used for both request and response from the convention server.
+The [`PodConventionContext`](./reference/pod-convention-context.md) API object in the `webhooks.conventions.apps.tanzu.vmware.com` API group is the structure used for both request and response from the Convention Server.
 
 #### Template status
 
@@ -84,4 +84,4 @@ A list of all applied conventions is stored under the annotation `conventions.ap
 
 ## Troubleshooting
 
-Convention controller is a Kubernetes operator and may be deployed in a cluster with other components. If you are having trouble, you can refer to the troubleshooting guide [here](./troubleshooting.md).
+Convention Controller is a Kubernetes operator and can be deployed in a cluster with other components. If you have trouble, refer to the [Troubleshooting guide](./troubleshooting.md).

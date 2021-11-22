@@ -1,6 +1,6 @@
 # Installing on Kind
 
-Kind was developed as a means to support development and testing of Kubernetes. Despite it existing primarily for that purpose, Kind clusters are often used for local development of user applications as well. For Learning Center, a local Kind cluster can be used for developing workshop content, or for self learning when deploying other peoples workshops.
+Kind was developed as a means to support development and testing of Kubernetes. Despite it existing primarily for that purpose, Kind clusters are often used for local development of user applications as well. For Learning Center, a local Kind cluster can be used for developing workshop content, or for self learning when deploying other people's workshops.
 
 As you are deploying to a local machine you are unlikely to have access to your own custom domain name and certificate you can use with the cluster. If you don't, you may be restricted as to the sorts of workshops you can develop or run using the Learning Center in Kind. This is because Kind uses ``containerd`` and ``containerd`` lacks certain features that allows one to trust any image registries hosted within a subnet. This means you cannot run workshops which use a local image registry for each workshop session in an easy way. If you need the ability to run workshops on your own local computer which use an image registry for each session, we recommend you use Minikube with ``dockerd`` instead. You can find more details about this issue below.
 
@@ -16,7 +16,7 @@ The following installation prerequisites must be done prior to installation.
   As a user you currently have tanzuCLI installed on your local machine.  
   As a user you currently have kubectlCLI installed on your local machine.
 
-## Kind Cluster Creation
+## Kind cluster creation
 When initially creating the Kind cluster you will need to [configure](https://kind.sigs.k8s.io/docs/user/ingress#create-cluster) it so that the ingress controller will be exposed. The documentation provides the following command to do this, but check the documentation in case the details have changed.
 
 ```
@@ -56,7 +56,7 @@ If you have created a contour ingress controller please verify all pods have a r
 kubectl get pods -n projectcontour -o wide
 ```
 
-## Installing Carvel Tools
+## Installing carvel tools
 You must install the kapp controller and secret-gen controller carvel tools in order to properly install our tanzu packages.
 
 Install kapp controller using:
@@ -70,7 +70,7 @@ kapp deploy -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller
 ```
 Note* type y and enter to continue when prompted during installation of both kapp and secret-gen controller.
 
-## Installing Tanzu Package Repository
+## Installing Tanzu package repository
 
 Create a namespace using:
 ```
@@ -100,7 +100,7 @@ tanzu package repository get tanzu-tap-repository --namespace tap-install
 ```
 wait for a reconciled sucessful status before attempting to install any other packages
 
-## Create a Configuration Yaml File for Learning Center Package
+## Create a configuration yaml file for Learning Center package
 
 Create a file called educates-value.yaml in your current directory with the data provided below.
 ```
@@ -197,13 +197,13 @@ Note that some home internet gateways implement what is called rebind protection
 
 Also note that you cannot use an address of form ``127.0.0.1.nip.io``, or ``subdomain.localhost``. This will cause a failure as internal services when needing to connect to each other, would end up connecting to themselves instead, since the address would resolve to the host loopback address of ``127.0.0.1``.
 
-## Install Learning Center package on to Cluster
+## Install Learning Center package onto a Kubernetes cluster
 ```
 tanzu package install educates --package-name learningcenter.tanzu.vmware.com --version 1.0.14-build.1 -f ./educates-value.yaml --namespace tap-install
 ```
 This package installation uses the installed Package repository along with a configuration educates-value.yaml to install our Learning Center Package.
 
-## Install Workshop tutorial package on to Cluster
+## Install Workshop tutorial package onto a Kubernetes cluster
 ```
 tanzu package install educates-tutorials --package-name workshops.learningcenter.tanzu.vmware.com --version 1.0.7-build.1 --namespace tap-install
 ```
@@ -211,7 +211,7 @@ Make sure you install the workshop package after the learning center package has
 ```
 kubectl get packages -n tap-install
 ```
-## Run Workshop
+## Run the workshop
 
 Use the following command to get our portal url:
 ```

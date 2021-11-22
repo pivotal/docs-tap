@@ -1,6 +1,6 @@
 # TrainingPortal
 
-## Working with Multiple Workshops
+## Working with multiple workshops
 
 The quickest way of deploying a set of workshops is to use in a training session is to deploy a ``TrainingPortal``. 
 This results in the deployment of a set of workshops, with one instance of each workshop for each attendee. 
@@ -11,7 +11,7 @@ populating it with workshop instances. When the Learning Center operator process
 is creating other custom resources to trigger the creation of the workshop environment and the workshop instances.
 If you want more control, you can use these latter custom resources directly instead.
 
-## Loading the Workshop Definition
+## Loading the workshop definition
 
 Each workshop is described by a custom resource of type ``Workshop``. Before a workshop environment can be created, the 
 definition of the workshop must first be loaded.
@@ -190,7 +190,7 @@ session if required.
 
 ## Accessing workshops via the web portal
 
-When an attendee visits the web based portal for the training session they will be presented with a login page. Since 
+When an attendee visits the web-based portal for the training session they will be presented with a login page. Since 
 they will not have an account, they will need to instead register. From the initial login page, click on the link to 
 the registration page.
 

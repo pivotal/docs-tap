@@ -16,7 +16,8 @@ The following are not supported:
 
 ## Troubleshooting
 
-Service Bindings for Kubernetes is an implementation of the Service Binding Specification for Kubernetes, If any trouble shows up please refer to the troubleshooting guide [here](./troubleshooting.md).
+Service Bindings for Kubernetes is an implementation of the Service Binding Specification for Kubernetes.
+If you have trouble, refer to the [Troubleshooting guide](./troubleshooting.md).
 
 ## Resources
 
@@ -44,7 +45,7 @@ spec:
 
 The `ProvisionedService` exposes a resource `Secret` by implementing the upstream [Provisioned Service duck type](https://github.com/k8s-service-bindings/spec#provisioned-service), and may be the target of the `.spec.service` reference for a `ServiceBinding`. It is intended for compatibility with existing services that do not directly implement the duck type.
 
-For example to expose a service with an existing `Secret` named `account-db-service`:
+For example, to expose a service with an existing `Secret` named `account-db-service`:
 
 ```
 apiVersion: bindings.labs.vmware.com/v1alpha1
