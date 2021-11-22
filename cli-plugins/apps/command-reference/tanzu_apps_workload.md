@@ -1,4 +1,4 @@
-# Tanzu Apps Workload
+# Tanzu apps workload
 
 This topic will help you with workload lifecycle management.
 
@@ -17,7 +17,7 @@ Workload configuration includes:
   -h, --help   help for workload
 ```
 
-## Options Inherited from Parent Commands
+## Options inherited from parent commands
 
 ```
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
@@ -26,7 +26,7 @@ Workload configuration includes:
   -v, --verbose int32     number for the log level verbosity (default 1)
 ```
 
-## See Also
+## See also
 
 - [Tanzu Applications](tanzu_apps.md)	- Applications on Kubernetes
 - [Tanzu Apps Workload Apply](tanzu_apps_workload_apply.md)	- Apply configuration to a new or existing workload
