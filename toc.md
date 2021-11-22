@@ -66,6 +66,8 @@ This is the table of contents from which the Tanzu Application Platform Document
             - [Workshop Catalog](learning-center/portal-rest-api/workshops-catalog.md)
             - [Session Management](learning-center/portal-rest-api/session-management.md)
             - [Client Authentication](learning-center/portal-rest-api/client-authentication.md)
+    - [Source Controller](source-controller/about.md)
+      - [Troubleshooting](source-controller/troubleshooting.md)
     - [Supply Chain Choreographer for Tanzu](scc/about.md)
         - [Out of the Box Supply Chains](scc/default-supply-chains.md)
     - [Supply Chain Security Tools for VMware Tanzu – Scan](scst-scan/overview.md) 
