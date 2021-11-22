@@ -2,7 +2,7 @@
 
 This document provides an overview to installing Tanzu Application Platform.
 
-## Installation Process
+## Installation process
 
 The process of installing Tanzu Application Platform includes the following tasks:
 
