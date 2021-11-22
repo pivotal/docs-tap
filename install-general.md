@@ -392,13 +392,19 @@ To install the Tanzu CLI on a Windows operating system:
 
 To perform a clean installation of the Tanzu CLI plugins:
 
-1. Install the local versions of the plugins you just downloaded:
+1. Disable the "context-aware CLI for plugins" feature so the downloaded versions of the plugins can be installed without errors:
+
+   ```
+   tanzu config set features.global.context-aware-cli-for-plugins false
+   ```
+   
+2. Install the local versions of the plugins you just downloaded:
 
     ```
     tanzu plugin install --local cli all
     ```
 
-2. Check the plugin installation status:
+3. Check the plugin installation status:
 
     ```
     tanzu plugin list
@@ -479,15 +485,21 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
       rm -rf ~/Library/Application\ Support/tanzu-cli/*
       ```
 
- 12. If previously installed, delete the `imagepullsecret` plugin (it will be replaced by a new `secret` plugin):
-     ```
-     tanzu plugin list
-     ```
+  11. If previously installed, delete the `imagepullsecret` plugin (it will be replaced by a new `secret` plugin):
+      ```
+      tanzu plugin list
+      ```
        * if `imagepullsecret` is included in the list output, delete the plugin.
          ```
          tanzu plugin delete imagepullsecret
          ```
 
+  12. Disable the "context-aware CLI for plugins" feature so the downloaded versions of the CLI core and plugins can be installed without errors:
+
+      ```
+      tanzu config set features.global.context-aware-cli-for-plugins false
+      ``` 
+  
   13. Update the core CLI:
 
       ```
@@ -592,31 +604,44 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
      tanzu plugin delete package
      ```
 
-  10. Install the `secret` plugin by running:
+  10. Check to see what version of the Tanzu CLI core is installed
+      
+      ```
+      tanzu version
+      ```
+      
+  11. If the version returned is `v0.11.0+` 
+      Disable the "context-aware CLI for plugins" feature so the downloaded versions of the plugins can be installed without errors:
 
-     ```
-     tanzu plugin install secret --local ./cli
-     ```
+      ```
+      tanzu config set features.global.context-aware-cli-for-plugins false
+      ```
+  
+  12. Install the `secret` plugin by running:
 
-  11. Install the `accelerator` plugin by running:
+      ```
+      tanzu plugin install secret --local ./cli
+      ```
+
+  13. Install the `accelerator` plugin by running:
 
       ```
       tanzu plugin install accelerator --local ./cli
       ```
 
-  12. Install the `apps` plugin by running:
+  14. Install the `apps` plugin by running:
 
       ```
       tanzu plugin install apps --local ./cli
       ```
 
-  13. Install the updated `package` plugin by running:
+  15. Install the updated `package` plugin by running:
 
       ```
       tanzu plugin install package --local ./cli
       ```
 
-  14. Verify the Tanzu Application Platform plugins present:
+  16. Verify the Tanzu Application Platform plugins present:
 
       ```
       tanzu plugin list
@@ -632,6 +657,6 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
       secret              v0.10.0         Tanzu secret management                                            core        v0.10.0  installed
       ```
 
-  15. You may now proceed with installing Tanzu Application Platform on Tanzu Kubernetes Grid or Tanzu Community Edition. For more information, see:
+  17. You may now proceed with installing Tanzu Application Platform on Tanzu Kubernetes Grid or Tanzu Community Edition. For more information, see:
     * **[Installing Tanzu Application Platform on a Tanzu Community Edition v0.9.1 Cluster](install-tce.html#install-tap)**
     * **[Installing Tanzu Application Platform on a Tanzu Kubernetes Grid v1.4 Cluster](install-tkg.html#install-tap)**
