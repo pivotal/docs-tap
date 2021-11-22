@@ -1,4 +1,4 @@
-# Installing on a Tanzu Community Edition v0.9.1 Cluster
+# Installing on a Tanzu Community Edition v0.9.1 cluster
 
 This topic lists prerequisites and instructions for installing Tanzu Application Platform on a
 Tanzu Community Edition v0.9.1 cluster.
@@ -65,7 +65,7 @@ To install kapp-controller v0.29.0 or later on Tanzu Community Edition v0.9.1:
     ```
 
 
-### <a id='tanzucli'></a> Install the Tanzu CLI Plugins for Tanzu Application Platform
+### <a id='tanzucli'></a> Install the Tanzu CLI plugins for Tanzu Application Platform
 
 Follow the **[Instructions for Updating Tanzu CLI](install-general.html#udpate-tkg-tce-tanzu-cli)** previously installed for Tanzu Kubernetes Grid and Tanzu Community Edition.
 
