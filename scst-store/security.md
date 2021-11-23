@@ -4,9 +4,9 @@
 
 ### TLS Encryption
 
-The Store requires TLS connection. If certificates are not provided the store will not start. The Store supports TLS v1.2 and TLS v1.3. The Store does not support TLS 1.0, so a downgrade attack cannot happen. TLS 1.0 prohibited under Payment Card Industry Data Security Standard (PCI DSS).
+The Store requires TLS connection. If certificates are not provided the store will not start. The Store supports TLS v1.2 and TLS v1.3. The Store does not support TLS 1.0, so a downgrade attack cannot happen. TLS 1.0 is prohibited under Payment Card Industry Data Security Standard (PCI DSS).
 
-##### Cryptographic Algorthms:
+##### Cryptographic Algorithms:
 
 Elliptic Curve:
 ```
@@ -27,7 +27,7 @@ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 
 ### Access Controls
 
-The Store uses [kube-rbac-proxy](https://github.com/brancz/kube-rbac-proxy) as the only entry point to the Store's API. Authentication and Authorization must be completed successfully via the `kube-rbac-proxy` before the Store's API accessible.
+The Store uses [kube-rbac-proxy](https://github.com/brancz/kube-rbac-proxy) as the only entry point to the Store's API. Authentication and Authorization must be completed successfully via the `kube-rbac-proxy` before the Store's API is accessible.
 
 ##### Authorization
 
@@ -41,38 +41,42 @@ The `kube-rbac-proxy` uses [Subject Access Review](https://kubernetes.io/docs/re
 
 Please refer to the [Create Service Account Access Token Docs](create_service_account_access_token.md)
 
-There are only 2 roles that is supported: Read Only User and Read and Write User.
+There are only two roles that are supported: `Read Only User` and `Read and Write User`. 
+The `Read and Write User` is installed by default. This can be turned off by setting `add_default_rw_service_account` property to `"false"` in the `scst-store-values.yaml` file.
 
-*** Note: We do not have roles that limited access to resources (Ex: images, packages, vulnerabilities, etc...).
+*** Note: There is no support for roles with access to only specific types of resources (ie. images, packages, vulnerabilities, etc)
 
 ## Container Security
 
 ### Non-root User
-All containers shipped do not use root. Using Kubernetes Security Context to ensure that the start up use is not root.
+All containers shipped do not use root. Using Kubernetes Security Context to ensure that the start up user is not root.
 
 Security Context for the Store:
+```
     allowPrivilegeEscalation: false
     runAsUser: 65532
     fsGroup: 65532
-
+```
 Security Context for the Postgres DB POD:
+```
     allowPrivilegeEscalation: false
     runAsUser: 999
     fsGroup: 999
+```
 
 *** Note: 65532 is the uuid for the "nobody" user. 999 is the uuid for the "postgres" user.
 
 ## Security Scanning
 
-There are 2 types of security scans that is performed before every release.
+There are two types of security scans that are performed before every release.
 
 ### Static Application Security Testing (SAST)
 
-A Coverity Scan is ran on the source code of the Store, CLI, and all their dependencies. There are no high or critical items outstanding at the time of release.
+A Coverity Scan is run on the source code of the Store, CLI, and all their dependencies. There are no high or critical items outstanding at the time of release.
 
 ### Software Composition Analysis (SCA)
 
-A Black Duck scan is ran on the compiled binary checking for vulnerabilities and licence data. There are no high or critical items outstanding at the time of release.
+A Black Duck scan is run on the compiled binary to check for vulnerabilities and licence data. There are no high or critical items outstanding at the time of release.
 
-A Grype scan is ran against the source code and the compiled container for dependencies vulnerabilities. There are no high or critical items outstanding at the time of release.
+A Grype scan is run against the source code and the compiled container for dependencies vulnerabilities. There are no high or critical items outstanding at the time of release.
 
