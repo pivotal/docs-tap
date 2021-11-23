@@ -27,12 +27,10 @@ When submitting the following pod `Pod Intent` on each convention, the output ma
   [
   {
     "Id": "sha256:...",
-    ...
     "Config": {
       "Hostname": "",
       "Domainname": "",
       "User": "1000:1000",
-      ...
       "Labels": {
         "io.buildpacks.build.metadata": "{\"bom\":[{\"name\":\"helper\",\"metadata\":{\"layer\":\"helper\",\"names\":[\"ca-certificates-helper\"],\"version\":\"2.2.0\"},\"buildpack\":{\"id\":\"paketo-buildpacks/ca-certificates\",\"version\":\"2.2.0\"}},{\"name\":\"dependencies\",\"metadata\":{\"dependencies\":[{\"name\":\"spring-beans\",\"sha256\":\"33331abcdd8acccea43666782a5807127a0d43ffc6abf1c3252fbb27fc3367b2\",\"version\":\"5.3.6\"},{\"name\":\"spring-boot\",\"sha256\":\"2e46ae8796df9ca1b4ad74eab608b19f771255321e7d9fafb64561e7e030869e\",\"version\":\"2.4.5\"}
   ```
@@ -102,12 +100,10 @@ Convention output
   [
   {
     "Id": "sha256:...",
-    ...
     "Config": {
       "Hostname": "",
       "Domainname": "",
       "User": "1000:1000",
-      ...
       "Labels": {
         "io.buildpacks.build.metadata": "{\"bom\":[{\"name\":\"helper\",\"metadata\":{\"layer\":\"helper\",\"names\":[\"ca-certificates-helper\"],\"version\":\"2.2.0\"},\"buildpack\":{\"id\":\"paketo-buildpacks/ca-certificates\",\"version\":\"2.2.0\"}},{\"name\":\"dependencies\",\"metadata\":{\"dependencies\":[{\"name\":\"spring-beans\",\"sha256\":\"33331abcdd8acccea43666782a5807127a0d43ffc6abf1c3252fbb27fc3367b2\",\"version\":\"5.3.6\"},{\"name\":\"spring-boot\",\"sha256\":\"2e46ae8796df9ca1b4ad74eab608b19f771255321e7d9fafb64561e7e030869e\",\"version\":\"2.4.5\"},{\"name\":\"tomcat-embed-core\",\"sha256\":\"b65ee353868ffb331adbf338e55de3adc6a7907c0c5265f8ee2d7e5f7a2da92b\",\"version\":\"9.0.45\"}
   ``` 
@@ -177,12 +173,10 @@ Convention output
   [
   {
     "Id": "sha256:...",
-    ...
     "Config": {
       "Hostname": "",
       "Domainname": "",
       "User": "1000:1000",
-      ...
       "Labels": {
         "io.buildpacks.build.metadata": "{\"bom\":[{\"name\":\"helper\",\"metadata\":{\"layer\":\"helper\",\"names\":[\"ca-certificates-helper\"],\"version\":\"2.2.0\"},\"buildpack\":{\"id\":\"paketo-buildpacks/ca-certificates\",\"version\":\"2.2.0\"}},{\"name\":\"dependencies\",\"metadata\":{\"dependencies\":[{\"name\":\"spring-beans\",\"sha256\":\"33331abcdd8acccea43666782a5807127a0d43ffc6abf1c3252fbb27fc3367b2\",\"version\":\"5.3.6\"},{\"name\":\"spring-web\",\"sha256\":\"dd40db91f0ae291c451cb83b18787823249814fe9499d8333972718e9e6edbf7\",\"version\":\"5.3.6\"},{\"name\":\"spring-boot\",\"sha256\":\"2e46ae8796df9ca1b4ad74eab608b19f771255321e7d9fafb64561e7e030869e\",\"version\":\"2.4.5\"}
   ``` 
@@ -249,12 +243,10 @@ Convention output
   [
   {
     "Id": "sha256:...",
-    ...
     "Config": {
       "Hostname": "",
       "Domainname": "",
       "User": "1000:1000",
-      ...
       "Labels": {
         "io.buildpacks.build.metadata": "{\"bom\":[{\"name\":\"helper\",\"metadata\":{\"layer\":\"helper\",\"names\":[\"ca-certificates-helper\"],\"version\":\"2.2.0\"},\"buildpack\":{\"id\":\"paketo-buildpacks/ca-certificates\",\"version\":\"2.2.0\"}},{\"name\":\"dependencies\",\"metadata\":{\"dependencies\":[{\"name\":\"spring-beans\",\"sha256\":\"33331abcdd8acccea43666782a5807127a0d43ffc6abf1c3252fbb27fc3367b2\",\"version\":\"5.3.6\"},{\"name\":\"spring-web\",\"sha256\":\"dd40db91f0ae291c451cb83b18787823249814fe9499d8333972718e9e6edbf7\",\"version\":\"5.3.6\"},{\"name\":\"spring-boot\",\"sha256\":\"2e46ae8796df9ca1b4ad74eab608b19f771255321e7d9fafb64561e7e030869e\",\"version\":\"2.4.5\"},{\"name\":\"spring-boot-actuator\",\"sha256\":\"6bae019e7a8f400a1b98af65596bc742c825e2ba3851cbedde38031e9699ebc0\",\"version\":\"2.4.5\"}
   ``` 

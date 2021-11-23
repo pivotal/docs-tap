@@ -36,6 +36,7 @@ This is the table of contents from which the Tanzu Application Platform Document
       - [Troubleshooting](convention-service/troubleshooting.md)
     - [Spring Boot conventions](spring-boot-conventions/about.md)
       - [Troubleshooting](spring-boot-conventions/troubleshooting.md)
+      - [Resources](spring-boot-conventions/reference/CONVENTIONS.md)
     - [Service Bindings for Kubernetes](service-bindings/about.md)
       - [Troubleshooting](service-bindings/troubleshooting.md)
     - [Source Controller](source-controller/about.md)
