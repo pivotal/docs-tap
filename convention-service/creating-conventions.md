@@ -1,10 +1,10 @@
-# <a id='Creating'></a> Creating conventions
+# Creating conventions
 
 The Tanzu Application Platform enables developers to turn source code into a workload running in a container with a URL in minutes. In the process the [Convention Service](about.md) examines the workloads and matches them to conventions which describe changes or additions to make to. This lets the ops team roll in infrastructure or compliance opinions without adding to the workload of the application developer.
 
 This document describes how to create conventions as well as a convention server to apply them.
 
-### <a id='conventionservice'></a> About convention servers
+## <a id='conventionservice'></a> About convention servers
 
 A convention is used to to adapt or modify a [PodIntent](reference/pod-intent.md) according to the type of an application. Conventions are defined by platform operators to automate the application of configuration and organizational best practices.
 
@@ -17,7 +17,7 @@ The convention is applied by the convention server. The server is called by the 
     server.yaml    # Defines the kubernetes resources that make up the convention server
     ```
 
-### <a id='conventionservice'></a> About convention controllers
+## <a id='conventionservice'></a> About convention controllers
 
 The convention controller runs on a workload cluster as a Kubernetes deployment that runs a webhook, which receives the workload [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) that defines how the workload should be run, as well as metadata.
 
@@ -36,7 +36,7 @@ There are a few things that will need to be done to create and install conventio
 + The ko CLI has been installed [from github](https://github.com/google/ko). These instructions use `ko` to build an image. If there is an existing image or build process, `ko` is optional.
 
 _NOTE: this example covers developing conventions with [GOLANG](https://golang.org/) but it can be done in other languages by following the specs._
-## <a id='server-behavior'></a> Define Convention Criteria and Behavior
+## <a id='server-behavior'></a> Define convention criteria and behavior
 
 The `server.go` file contains the configuration for the server as well as the logic the server applies when a workload matches the defined criteria.
 For example, adding a prometheus _sidecar_ to web apps, or adding a `workload-type=spring-boot` label to any workload that has has metadata indicating that it is a spring boot app.  
@@ -193,7 +193,7 @@ For example, adding a prometheus _sidecar_ to web apps, or adding a `workload-ty
 
 Any property or value within the `PodTemplateSpec` or OCI image metadata associated with a workload can be used to define the criteria for applying conventions. The following are a few examples.
 
-### Matching criteria by labels or annotations
+## Matching criteria by labels or annotations
 
 When using labels or annotations to define whether a convention should be applied, the server will check the [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) of workloads.
 
@@ -239,7 +239,7 @@ When using labels or annotations to define whether a convention should be applie
  + `awesome-annotation` is the **annotation** that we want to validate
  + `awesome-value` is the value that must have the **label**/**annotation**
 
-### <a id='EnvironmentVariables'></a>Matching criteria by environment variables
+## <a id='EnvironmentVariables'></a>Matching criteria by environment variables
 
 When using environment variables to define whether the convention is applicable or not, it should be present in the [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec).[spec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#PodSpec).[containers](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#Container)[*].[env](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#environment-variables). and we can validate the value.
 
@@ -271,7 +271,7 @@ When using environment variables to define whether the convention is applicable 
         }
         ```
 
-### <a id='ImageMetadata'></a>Matching criteria by image metadata
+## <a id='ImageMetadata'></a>Matching criteria by image metadata
 
 The convention controller should be used with [OCI Image](./reference/image-config.md) so it can be used to get metadate information. The ImageConfig is an struct that contains the configuration of an image, similar to the output of `docker inspect hello-world`.
 

@@ -1,12 +1,12 @@
-# Creating Learning Center Workshops
+# Creating Learning Center workshops
 
 ## Overview
-This section includes information on creating Learning Center Workshops.
+This section includes information on creating Learning Center workshops.
 
-- [Workshop Configuration](workshop-config.md)
-- [Workshop Images](workshop-images.md)
-- [Workshop Content](working-on-content.md)
-- [Building an Image](building-an-image.md)
-- [Workshop Instructions](workshop-instructions.md)
-- [Workshop Runtime](workshop-runtime.md)
-- [Workshop Slides](presenter-slides.md)
+- [Workshop configuration](workshop-config.md)
+- [Workshop images](workshop-images.md)
+- [Workshop content](working-on-content.md)
+- [Building an image](building-an-image.md)
+- [Workshop instructions](workshop-instructions.md)
+- [Workshop runtime](workshop-runtime.md)
+- [Workshop slides](presenter-slides.md)

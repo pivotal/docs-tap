@@ -1,5 +1,4 @@
-# Building an Image
-
+# Building an image
 
 Bundling workshop content into an image built from the Learning Center workshop base image would be done where you need to include extra system or third party tools, and/or configuration. For this purpose, the sample workshop templates provide a ``Dockerfile``.
 
@@ -85,7 +84,7 @@ RUN HOME=/root && \
 USER 1001
 ```
 
-## Installing third party packages
+## Installing third-party packages
 
 If you are not using system packaging tools to install extra packages, but are instead manually downloading packages, and optionally compiling them to binaries, it is better to do this as the default user and not ``root``.
 

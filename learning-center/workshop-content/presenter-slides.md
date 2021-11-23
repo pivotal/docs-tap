@@ -1,4 +1,4 @@
-# Presenter Slides
+# Presenter slides
 
 If a workshop includes a presentation, slides can be included by placing them in the ``workshop/slides`` directory. Anything in this directory will be served up as static files via a HTTP web server. The default web page should be provided as ``index.html``.
 

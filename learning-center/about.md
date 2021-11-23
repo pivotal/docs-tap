@@ -1,6 +1,7 @@
-# Learning Center for Tanzu Application Platform <!-- omit in toc -->
+# Learning Center for Tanzu Application Platform
 
 ## Overview
+
 The Learning Center is designed to provide a platform for hosting workshops. Although Learning Center requires
 Kubernetes to run, and is being used to teach users about Kubernetes, it could also be used to host training for other
 purposes as well. It may for example be used to help train users in web based applications, use of databases, or

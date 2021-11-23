@@ -1,9 +1,8 @@
-# Workshop Instructions
+# Workshop instructions
 
 Individual module files making up the workshop instructions can use either [Markdown](https://github.github.com/gfm/) or [AsciiDoc](http://asciidoc.org/) markup formats. The extension used on the file should be ``.md`` or ``.adoc``, corresponding to which formatting markup style you want to use.
 
 ## Annotation of executable commands
-
 
 In conjunction with the standard Markdown and AsciiDoc, additional annotations can be applied to code blocks. The annotations are used to indicate that a user can click on the code block and have it copied to the terminal and executed.
 
@@ -59,7 +58,6 @@ When the user clicks on this code block, the running command in the correspondin
 Note that using the special string ``<ctrl+c>`` is deprecated and you should instead use the ``terminal:interrupt`` clickable action instead.
 
 ## Annotation of text to be copied
-
 
 Instead of executing a command, you wanted the content of the code block to be copied into the paste buffer, you can use:
 
@@ -230,7 +228,6 @@ command: echo "Execute command."
 
 ## Clickable actions for the dashboard
 
-
 In addition to the clickable actions related to the terminal and copying of text to the paste buffer, additional actions are available for controlling the dashboard and opening URL links.
 
 To have the action when clicked open a URL in a new browser, you can use:
@@ -303,7 +300,6 @@ You cannot delete dashboards corresponding to builtin applications provided by t
 Deleting a custom dashboard including a terminal session will not destroy the underlying terminal session and it can be connected to again by creating a new custom dashboard for the same terminal session name.
 
 ## Clickable actions for the editor
-
 
 If the embedded editor is enabled, special actions are available which control the editor.
 
