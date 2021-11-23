@@ -59,7 +59,7 @@ Follow these steps to get started with an accelerator called `Tanzu-Java-Web-App
 1. Replace the default value `dev.local` in the _"prefix for container image registry"_ field
 with the URL to your registry. The URL must match the registry server you want the default Supply Chain to push container images to.
 
-For more information, see [Install default Supply Chain](install-components.md#install-ootb-supply-chain-basic).
+    For more information, see [Install default Supply Chain](install-components.md#install-ootb-supply-chain-basic).
 
     >**Note:** This entry should not include the project ID or image name.
 
