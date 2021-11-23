@@ -529,3 +529,21 @@ with your relevant values. Run:
 You're now ready to start using Tanzu Application Platform GUI.
 Proceed to the [Getting Started](getting-started.md) topic or the
 [Tanzu Application Platform GUI - Catalog Operations](tap-gui/catalog/catalog-operations.md) topic.
+
+## <a id='exclude-packages'></a> Exclude packages from a Tanzu Application Platform profile
+
+1. If you desire to exlude packages from a given profile, first you'll need to find hte full package name:
+
+
+    ```bash
+    tanzu package available list --namespace tap-install
+    ```
+
+2. Update your tap-values file with a section listing the exclusions:
+
+ ```yaml
+    profile: <PROFILE-VALUE>
+    excluded_pacakges:
+      - tap-gui.tanzu.vmware.com
+      - service-bindings.lab.vmware.com
+    ```
