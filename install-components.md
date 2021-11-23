@@ -1577,19 +1577,15 @@ To install Supply Chain Security Tools - Store:
 
     ```yaml
     db_password: "PASSWORD-0123"
-    app_service_type: "LoadBalancer"
+    app_service_type: "NodePort"
     ```
     Where `PASSWORD-0123` is the same password used between deployments. For more information, see [Known Issues - Persistent Volume Retains Data](scst-store/known_issues.md#persistent-volume-retains-data).
 
-    If your environment does not support `LoadBalancer`, omit the `app_service_type` line so that
-    the default value `NodePort` is used instead.
+    By default, a service account with read-write privileges to the metadata store app is installed. This service account is a cluster-wide user that uses ClusterRole. If the service account and role are not desired, set the `add_default_rw_service_account` property to `"false"`. To create a custom service account, see [create service account](scst-store/create_service_account_access_token.md).
 
-   > **Note:**
-    By default, a service account with read-write privileges to the metadata store app is installed. This service account is a cluster-wide user that uses ClusterRole.
+    The store will automatically create a read-only cluster role, which may be bound to a service account via `ClusterRoleBinding`. To create service accounts to bind to this cluster role, see [create service account](scst-store/create_service_account_access_token.md). 
 
-     To not have `read-write` service account installed by default,
-     set `add_default_rw_service_account` property to `"false"`. To create custom service account, see [create service account doc](scst-store/create_service_account_access_token.md).
-   - The store supports connecting to PostgreSQL Amazon RDS. Please refer to the [AWS RDS Postgres for Metadata Store docs](scst-store/use_aws_rds.md)
+    The store supports connecting to PostgreSQL Amazon RDS. Please refer to the [AWS RDS Postgres for Metadata Store docs](scst-store/use_aws_rds.md)
 
 1. Install the package by running:
 

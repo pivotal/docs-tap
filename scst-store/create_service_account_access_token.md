@@ -7,7 +7,7 @@ The access token is a `Bearer` token used in the http request header `Authorizat
 Supply Chain Security Tools - Store, by default, comes with `read-write` service account installed.
 This service account is cluster-wide user.
 
-## Creating Service
+## Creating Service Accounts
 
 You can create two types of service accounts:
 
@@ -20,16 +20,6 @@ To create a read-only service account, run the following command. The command cr
 
 ```sh
 kubectl apply -f - -o yaml << EOF
-apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  name: metadata-store-read-only
-  namespace: metadata-store
-rules:
-- resources: ["all"]
-  verbs: ["get"]
-  apiGroups: [ "metadata-store/v1" ]
----
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
@@ -52,6 +42,8 @@ metadata:
 automountServiceAccountToken: false
 EOF
 ```
+
+The `metadata-store-read-only` role is created by default as a part of the Store installation. It allows the bound user to have `get` access to all resources. 
 
 ### Read-Write Service Account
 
