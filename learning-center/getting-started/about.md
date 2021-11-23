@@ -1,7 +1,7 @@
 # Getting started with Learning Center
 
 ## Overview
-To view general information and usages for Learning Center see [About Learning Center](../about-learning-center/about-learning-center)
+To view general information and usages for Learning Center see [About Learning Center](../about-learning-center/about-learning-center.md)
 Before you can start deploying workshops, you need to install a Kubernetes operator for Learning Center. 
 The operator manages the setup of the environment for each workshop and deploys instances of a workshop for each person.
 We have the basic instructions for installing the Operator and Workshops. 
