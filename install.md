@@ -541,9 +541,9 @@ Proceed to the [Getting Started](getting-started.md) topic or the
 
 2. Update your tap-values file with a section listing the exclusions:
 
- ```yaml
+    ```yaml
     profile: <PROFILE-VALUE>
-    excluded_pacakges:
+    excluded_packages:
       - tap-gui.tanzu.vmware.com
       - service-bindings.lab.vmware.com
- ```
+    ```
