@@ -41,15 +41,15 @@ The `kube-rbac-proxy` uses [Subject Access Review](https://kubernetes.io/docs/re
 
 Please refer to the [Create Service Account Access Token Docs](create_service_account_access_token.md)
 
-There are only two roles that are supported: `Read Only User` and `Read and Write User`. 
-The `Read and Write User` is installed by default. This can be turned off by setting `add_default_rw_service_account` property to `"false"` in the `scst-store-values.yaml` file.
+There are only two roles that are supported: `Read Only User` and `Read and Write User`. These are cluster roles that are created by default.
+Additionally, a service account is created and bound to the `Read and Write User` cluster role by default. If you do not want this service account, set `add_default_rw_service_account` property to `"false"` in the `scst-store-values.yaml` file.
 
 *** Note: There is no support for roles with access to only specific types of resources (ie. images, packages, vulnerabilities, etc)
 
 ## Container Security
 
 ### Non-root User
-All containers shipped do not use root. Using Kubernetes Security Context to ensure that the start up user is not root.
+All containers shipped do not use root user account, or accounts with root access. Using Kubernetes Security Context ensures that applications do not run with root user.
 
 Security Context for the Store:
 ```
