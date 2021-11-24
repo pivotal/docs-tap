@@ -1,44 +1,92 @@
-# Creating conventions
+# <a id='Creating'></a>Creating Conventions
+This document describes how to create and deploy custom conventions 
+to Tanzu Application Platform (TAP).
 
-The Tanzu Application Platform enables developers to turn source code into a workload running in a container with a URL in minutes. In the process the [Convention Service](about.md) examines the workloads and matches them to conventions which describe changes or additions to make to. This lets the ops team roll in infrastructure or compliance opinions without adding to the workload of the application developer.
+## <a id='intro'></a>Introduction
+TAP makes it easy for app devs to transform their code into containerized 
+workloads with a URL.
+<br/>This transformation is managed by the Supply Chain Choregrapher 
+(see [Supply Chain Choregrapher](../scc/about.html) for more information). 
+<br/>The [Convention Service](about.md) is a key component of the supply chain 
+compositions the choreographer calls into action. 
 
-This document describes how to create conventions as well as a convention server to apply them.
+The Convention Service enables people in operational roles to efficiently apply 
+their operational expertise, and specify the runtime best practices and policies 
+(or conventions) of their organization, to workloads as they are created on the platform.
+The power of this component becomes evident when the conventions of an organization 
+are applied consistently, at scale, and without hindering the velocity of app developers.
 
-## <a id='conventionservice'></a> About convention servers
+Opinions and policies vary from organization to organization, and the Convention 
+Service supports the creation of custom conventions so the unique operational needs 
+and requirements of an organization can be met. 
 
-A convention is used to to adapt or modify a [PodIntent](reference/pod-intent.md) according to the type of an application. Conventions are defined by platform operators to automate the application of configuration and organizational best practices.
+Before jumping into the details of creating a custom convention, there are two 
+distinct components of the Convention Service that must be described: 
+[convention controller](#conventioncontroller) and [convention server](#conventionserver).
 
-The convention is applied by the convention server. The server is called by the convention controller whenever a [PodIntent](reference/pod-intent.md) is submitted.
 
-1. <a id='create-1'></a>Take a look at the convention template<!-- add link -->, which contains:
+### <a id='conventionserver'></a>Convention Server
+Convention server is the component which applies a convention that has been defined on the server.
+Each convention server may host one or more conventions.
+The application of each convention by a convention server can be controlled conditionally.
+The conditional criteria governing the application of a convention is customizable and can be based 
+on the evaluation of a custom Kubernetes resource called [PodIntent](reference/pod-intent.md).
+PodIntent is the vehicle by which the Convention Service as a whole delivers its value.
 
-    ```shell
-    server.go      # Defines the workload criteria, and actions to take when the criteria is met
-    server.yaml    # Defines the kubernetes resources that make up the convention server
-    ```
+A PodIntent is created (or updated if pre-existing) when a workload is run through a TAP supply 
+chain. The custom resource includes both the [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) as well as the OCI image metadata associated with a workload. 
+The conditional criteria for a convention can be based on any property or value found in the PodTemplateSpec and/or the 
+OCI image metadata available in the PodIntent.
 
-## <a id='conventionservice'></a> About convention controllers
+If a convention's criteria are met, convention server enriches the PodTemplateSpec 
+in the PodIntent. Convention server also updates the `status` section of the PodIntent 
+with the name of the convention that's been applied so it's possible to figure out 
+which conventions have been applied to the workload after the fact.
 
-The convention controller runs on a workload cluster as a Kubernetes deployment that runs a webhook, which receives the workload [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) that defines how the workload should be run, as well as metadata.
+To provide flexibility in how the conventions are organized, multiple convention servers 
+can be deployed. Each server may contain a convention or set of conventions focused on a 
+specific class of runtime modifications or on a specific language framework, etc... How 
+the conventions are organized/grouped and deployed is up to the author and the needs of 
+their organization.
 
-A convention controller is the orchestrator of the convention servers. It sends to each of these servers that live in the current cluster, all the workload information. If the convention's criteria are met it enriches the [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) before returning it to the supply chain to be applied.
+Convention servers deployed to the cluster will not take action unless triggered to 
+do so by the second component of the Convention Service called [convention controller](#conventioncontroller).
 
-It also takes care of the reconciliation among conventions if the workload is updated.
+### <a id='conventioncontroller'></a>Convention Controller
+Convention controller is the orchestrator of one or many convention servers deployed to the cluster.
+When a PodIntent for a workload is created or updated by the Supply Chain Choreographer, convention 
+controller retrieves the OCI image metadata from the repository 
+containing the workload's image(s) and sets it in the PodIntent. 
 
-## <a id='prereqs'></a>Before you begin
+Convention controller then uses a webhook architecture to pass the PodIntent to each convention 
+server deployed to the cluster. The controller orchestrates the processing of the PodIntent by 
+the convention servers sequentially based on the `priority` value that's set on the convention server 
+(see [ClusterPodConvention](reference/cluster-pod-convention.html) for more details).
 
-There are a few things that will need to be done to create and install conventions:
+Once all convention servers are finished processing a PodIntent for a workload, convention controller updates the 
+PodIntent with the latest version of the PodTemplateSpec and sets `PodIntent.status.conditions[].status=True` 
+where `PodIntent.status.conditions[].type=Ready`. This status change signals to the 
+Supply Chain Choreographer that the Convention Service is finished with it's work
+and whatever step(s) in the supply chain are waiting that status change will execute.
+
+## <a id='prereqs'></a>Getting Started
+With a high-level understanding of the Convention Service components and how they work together within the context of the TAP supply chain, it's time describe how to create and deploy a custom convention.
+
+_**NOTE:** This document covers developing conventions using [GOLANG](https://golang.org/) but this can be done using other languages by following the specs._
+
+### <a id='prereqs'></a>Prerequisites
+The following prerequisites must be met before a convention can be developed and deployed:
 
 + The Kubectl CLI has been [installed](https://kubernetes.io/docs/tasks/tools/)
-+ Tanzu Application Platform components have been installed on a k8s cluster [installation guide](../install-general.md)
++ TAP components and prerequisites have been installed: [installation guide](../install-general.md)
 + The default supply chain is installed. See [Tanzu Network](https://network.tanzu.vmware.com/products/ootb-supply-chain-basic/).
-+ Your kubeconfig context has been set to the prepared cluster `kubectl config use-context CONTEXT_NAME`
-+ The ko CLI has been installed [from github](https://github.com/google/ko). These instructions use `ko` to build an image. If there is an existing image or build process, `ko` is optional.
++ Your kubeconfig context has been set to the TAP-enabled cluster: `kubectl config use-context CONTEXT_NAME`
++ The ko CLI has been installed [from github](https://github.com/google/ko) (These instructions use `ko` to build an image but if there is an existing image or build process, `ko` is optional).
 
-_NOTE: this example covers developing conventions with [GOLANG](https://golang.org/) but it can be done in other languages by following the specs._
-## <a id='server-behavior'></a> Define convention criteria and behavior
 
-The `server.go` file contains the configuration for the server as well as the logic the server applies when a workload matches the defined criteria.
+## <a id='server-behavior'></a>Define Convention Criteria and Behavior
+
+The `server.go` file contains the configuration for the server and the logic that evaluates whether a workload meets the criteria for a convention to be applied (see [convention server](#conventionserver) above for more details).
 For example, adding a prometheus _sidecar_ to web apps, or adding a `workload-type=spring-boot` label to any workload that has has metadata indicating that it is a spring boot app.  
 
 >**NOTE:** For this example, the package `model` is used to define [resources](./reference/convention-resources.md) types.
@@ -193,7 +241,7 @@ For example, adding a prometheus _sidecar_ to web apps, or adding a `workload-ty
 
 Any property or value within the `PodTemplateSpec` or OCI image metadata associated with a workload can be used to define the criteria for applying conventions. The following are a few examples.
 
-## Matching criteria by labels or annotations
+### Matching criteria by labels or annotations
 
 When using labels or annotations to define whether a convention should be applied, the server will check the [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) of workloads.
 
@@ -239,7 +287,7 @@ When using labels or annotations to define whether a convention should be applie
  + `awesome-annotation` is the **annotation** that we want to validate
  + `awesome-value` is the value that must have the **label**/**annotation**
 
-## <a id='EnvironmentVariables'></a>Matching criteria by environment variables
+### <a id='EnvironmentVariables'></a>Matching criteria by environment variables
 
 When using environment variables to define whether the convention is applicable or not, it should be present in the [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec).[spec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#PodSpec).[containers](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#Container)[*].[env](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#environment-variables). and we can validate the value.
 
@@ -271,9 +319,10 @@ When using environment variables to define whether the convention is applicable 
         }
         ```
 
-## <a id='ImageMetadata'></a>Matching criteria by image metadata
+### <a id='ImageMetadata'></a>Matching criteria by image metadata
 
 The convention controller should be used with [OCI Image](./reference/image-config.md) so it can be used to get metadate information. The ImageConfig is an struct that contains the configuration of an image, similar to the output of `docker inspect hello-world`.
+
 
 ## <a id='install'></a> Configure and install the convention server
 
