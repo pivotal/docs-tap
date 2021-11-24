@@ -1531,20 +1531,20 @@ To install Supply Chain Security Tools - Store:
     $ tanzu package available list scst-store.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for scst-store.tanzu.vmware.com...
       NAME                         VERSION       RELEASED-AT
-      scst-store.tanzu.vmware.com  1.0.0-beta.1
+      scst-store.tanzu.vmware.com  1.0.0-beta.4
     ```
 
 1. (Optional) To make changes to the default installation settings, run:
 
     ```sh
-    tanzu package available get scst-store.tanzu.vmware.com/1.0.0-beta.1 --values-schema -n tap-install
+    tanzu package available get scst-store.tanzu.vmware.com/1.0.0-beta.4 --values-schema -n tap-install
     ```
 
     For example:
 
     ```console
-    $ tanzu package available get scst-store.tanzu.vmware.com/1.0.0-beta.1 --values-schema -n tap-install
-    | Retrieving package details for scst-store.tanzu.vmware.com/1.0.0-beta.1...
+    $ tanzu package available get scst-store.tanzu.vmware.com/1.0.0-beta.4 --values-schema -n tap-install
+    | Retrieving package details for scst-store.tanzu.vmware.com/1.0.0-beta.4...
       KEY                               DEFAULT              TYPE     DESCRIPTION
       app_service_type                  LoadBalancer         string   The type of service to use for the metadata app service. This can be set to 'NodePort' or 'LoadBalancer'.
       auth_proxy_host                   0.0.0.0              string   The binding ip address of the kube-rbac-proxy sidecar
@@ -1573,23 +1573,15 @@ To install Supply Chain Security Tools - Store:
     ```
 
 1. Gather the values schema.
-1. **(Optional)** Create a `scst-store-values.yaml` using the following sample for Supply Chain Security Tools - Store as a guide:
+1. **(Optional)** See [Deployment Details and Configuration](scst-store/deployment_details.md#configuration) for other configuration options. Create a `scst-store-values.yaml` with custom values.
+
+    For example, if your environment does not support `LoadBalancer`, and you want to use `NodePort`, configure the `app_service_type` property:
 
     ```yaml
-    db_password: "PASSWORD-0123"
     app_service_type: "LoadBalancer"
     ```
-    Where `PASSWORD-0123` is the same password used between deployments. For more information, see [Known Issues - Persistent Volume Retains Data](scst-store/known_issues.md#persistent-volume-retains-data).
 
-    If your environment does not support `LoadBalancer`, omit the `app_service_type` line so that
-    the default value `NodePort` is used instead.
-
-   > **Note:**
-    By default, a service account with read-write privileges to the metadata store app is installed. This service account is a cluster-wide user that uses ClusterRole.
-
-     To not have `read-write` service account installed by default,
-     set `add_default_rw_service_account` property to `"false"`. To create custom service account, see [create service account doc](scst-store/create_service_account_access_token.md).
-   - The store supports connecting to PostgreSQL Amazon RDS. Please refer to the [AWS RDS Postgres for Metadata Store docs](scst-store/use_aws_rds.md)
+    By default, a service account with read-write privileges to the Supply Chain Security Tools - Store is installed. This service account is a cluster-wide user that uses ClusterRole. A read-only service account can be created, see [Deployment Details and Configuration](scst-store/deployment_details.md#configuration).
 
 1. Install the package by running:
 

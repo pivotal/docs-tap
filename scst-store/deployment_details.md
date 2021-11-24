@@ -1,4 +1,4 @@
-# Deployment Details
+# Deployment Details and Configuration
 
 ## What is Installed
 
@@ -15,6 +15,45 @@ Each component includes:
 * A Kubernetes secret to allow pulling Supply Chain Security Tools - Store images from a registry.
 * A namespace called `metadata-store`.
 
-## Database Details
+## <a id='configuration'></a> Deployment Configuration
+### Database Configuration
 
 The default database that ships with the deployment is meant to get users started with using the metadata store. The default database deployment is not meant support for many enterprise production requirements including scaling, redundancy, or failover. However, it is still a secure deployment.
+
+#### Using AWS RDS Postgres Database
+
+Users can also configure the deployment to use their own RDS database instead of the default database. See [AWS RDS Postgres Configuration](use_aws_rds.md).
+
+#### Custom Database Password
+
+By default, a database password is generated automatically upon deployment. To configure a custom password, use the `db_password` property in the `scst-store-values.yaml` during deployment.
+
+```yaml
+db_password: "PASSWORD-0123"
+```
+
+If you're deploying with TAP profiles, in `tap-values.yaml`, put:
+
+```yaml
+metadata_store:
+  db_password: "PASSWORD-0123"
+```
+
+Where `PASSWORD-0123` is the same password used between deployments.
+
+> Note: there is a known issue related to changing database passwords [Known Issues - Persistent Volume Retains Data](scst-store/known_issues.md#persistent-volume-retains-data).
+
+### App Service Type
+
+If your environment does not support `LoadBalancer`, and you want to use `NodePort`, configure the `app_service_type` property in your `scst-store-values.yaml`:
+
+```yaml
+app_service_type: "LoadBalancer"
+```
+
+### Service Accounts
+
+By default, a service account with read-write privileges to the metadata store app will be installed. This service account is cluster-wide user as it uses ClusterRole.
+    
+To not have `read-write` service account installed by default,
+set `add_default_rw_service_account` property to `"false"`. To create custom service account, see [create service account doc](scst-store/create_service_account_access_token.md).
