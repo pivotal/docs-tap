@@ -27,4 +27,4 @@ VMware Tanzu ships with [Out-of-the-Box Supply Chains](default-supply-chains.md)
 
 Supply Chain Choreographer is released as a Tanzu Package.
 
-To install Supply Chain Choreographer, see [Install Supply Chain Choreographer](../install-components#install-scc.md).
+To install Supply Chain Choreographer, see [Install Supply Chain Choreographer](../install-components.md#install-scc).

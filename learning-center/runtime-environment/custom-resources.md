@@ -1,4 +1,4 @@
-# Custom Resources
+# Custom resources
 
 
 It is possible to deploy workshop images directly to a container runtime, but for managing deployments into a Kubernetes cluster, 

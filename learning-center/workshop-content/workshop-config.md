@@ -1,4 +1,4 @@
-# Workshop Configuration
+# Workshop configuration
 
 There are two main parts to the configuration for a workshop. The first specifies the structure of the workshop content and the second defines the runtime requirements for deploying the workshop.
 
