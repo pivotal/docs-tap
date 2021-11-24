@@ -27,7 +27,7 @@ Download the extension from Tanzunet [here](https://network.tanzu.vmware.com/pro
 
 Launch VSCode and navigate to the `Extensions` menu (⇧⌘X), then from the `Views and More Actions` menu (...) select `Install from VSIX...` Select the `tanzu-vscode-extension.vsix` file downloaded from Tanzunet.
 
-> Note: Upon installation, you should be prompted to install the [Extension Pack for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack). These are required dependencies for debugging and live-reloading. Ensure Language Support for Java is running in [Standard Mode](https://code.visualstudio.com/docs/java/java-project#_lightweight-mode).
+> Note: Upon installation, you should be prompted to install the [Extension Pack for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack) and the [YAML Language Support by Red Hat](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml). These are required dependencies for debugging, live-reloading, and enabling snippets. Ensure Language Support for Java is running in [Standard Mode](https://code.visualstudio.com/docs/java/java-project#_lightweight-mode).
 
 If you do not already have a JDK installed, the Java extension pack prompts you to install one.
 If the JDK and Language Support for Java are configured correctly,
@@ -53,3 +53,9 @@ Get up and running quickly by using Application Accelerator and bootstrapping yo
 Create a `workload.yaml` file in your project. See [config/workload.yaml](https://github.com/sample-accelerators/tanzu-java-web-app) in the Tanzu Java Web App.
 
 Create a `Tiltfile` for your project. See [Tiltfile](https://github.com/sample-accelerators/tanzu-java-web-app) in the Tanzu Java Web App. For information about Tiltfile, see [Tiltfile API Reference](https://docs.tilt.dev/api.html).
+
+### Snippets
+
+If you'd like to bootstrap your own project, snippets are provided to help you write a workload.yaml, catalog-info.yaml, or Tiltfile.
+
+To trigger the `yaml` snippets, use the keywords `tanzu workload` or `tanzu catalog-info` respectively when editing a .yaml file. The Tiltfile snippet can be triggered with `tanzu tiltfile` when editing in plaintext or python.
