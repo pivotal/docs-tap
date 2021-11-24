@@ -546,4 +546,4 @@ Proceed to the [Getting Started](getting-started.md) topic or the
     excluded_pacakges:
       - tap-gui.tanzu.vmware.com
       - service-bindings.lab.vmware.com
-    ```
+ ```
