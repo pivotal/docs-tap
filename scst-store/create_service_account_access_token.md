@@ -43,7 +43,7 @@ automountServiceAccountToken: false
 EOF
 ```
 
-To create a read-only service account and a custom read-only role in the `metadata-store` namespace, run the following command. The command creates a service account named `metadata-store-read-client`:
+Alternatively, if it is not desirable to bind to a cluster role, you can create your own read-only role in the `metadata-store` namespace with a service account. The following example command creates a service account named `metadata-store-read-client`:
 
 ```sh
 kubectl apply -f - -o yaml << EOF
