@@ -1,4 +1,4 @@
-# Client Authentication
+# Client authentication
 
 The training portal web interface is a quick way of providing access to a set of workshops when running a supervised training workshop. For integrating access to workshops into an existing web site, or for creating a custom web interface for accessing workshops hosted across one or more training portals, you can use can use the portal REST API.
 

@@ -1,4 +1,4 @@
-# Workshop Environment Resource
+# Workshop environment resource
 
 
 The ``WorkshopEnvironment`` custom resource defines a workshop environment.

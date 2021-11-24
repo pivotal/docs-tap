@@ -1,4 +1,4 @@
-# System Profile Resource
+# System profile resource
 
 The ``SystemProfile`` custom resource is used to configure the Learning Center operator. The default system profile can be used to set defaults for ingress and image pull secrets, with specific deployments being able to select an alternate profile if required.
 

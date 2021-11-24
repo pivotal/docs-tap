@@ -1,4 +1,4 @@
-# Learning Center Local Install Guides
+# Learning Center local install guides
 
 ## Overview
 These guides are to help you install on your local environment

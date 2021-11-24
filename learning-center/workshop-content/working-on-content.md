@@ -1,4 +1,4 @@
-# Workshop Content
+# Workshop content
 
 Workshop content will either be embedded in a custom workshop image, or downloaded from a Git repository or web server when the workshop session is created. To speed up the iterative loop of editing and testing a workshop when developing workshop content, there are a number of best practices you can use.
 

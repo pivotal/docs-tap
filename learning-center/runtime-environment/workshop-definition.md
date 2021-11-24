@@ -1,4 +1,4 @@
-# Workshop Resource
+# Workshop resource
 
 The ``Workshop`` custom resource defines a workshop.
 

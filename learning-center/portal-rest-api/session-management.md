@@ -1,4 +1,4 @@
-# Session Management
+# Session management
 
 
 The REST API endpoints for session management allow you to request that a workshop session be allocated.

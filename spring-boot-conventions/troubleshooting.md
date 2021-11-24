@@ -16,4 +16,4 @@ $ kubectl logs -l app=spring-boot-webhook -n spring-boot-convention
 {"level":"info","timestamp":"2021-11-11T16:00:26.597Z","caller":"spring-boot-conventions/server.go:83","msg":"Succesfully applied convention: service-intent-mysql","component":"spring-boot-conventions"}
 ```
 
-2. For all the conventions that were applied succesfully a log entry will be added, and in case of an error a log entry will be added as well with a description
+2. For all the conventions that were applied successfully, a log entry will be added. In case of an error, a log entry will be added as well with a description.

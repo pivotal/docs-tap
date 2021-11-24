@@ -1,4 +1,4 @@
-# Workshop Runtime
+# Workshop runtime
 
 The workshop content can script the steps a user needs to run for a workshop. In some cases you may need to parameterize that content with information from the runtime environment. Data variables in workshop content allow this to a degree, but in some cases you may want to automate this through scripts executed in the workshop container to setup configuration files.
 
