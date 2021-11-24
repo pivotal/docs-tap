@@ -29,13 +29,13 @@ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 
 The Store uses [kube-rbac-proxy](https://github.com/brancz/kube-rbac-proxy) as the only entry point to the Store's API. Authentication and Authorization must be completed successfully via the `kube-rbac-proxy` before the Store's API is accessible.
 
-##### Authorization
+##### Authentication
 
 The `kube-rbac-proxy` uses [Token Review](https://kubernetes.io/docs/reference/access-authn-authz/authentication/) to verify if the token is valid. `Token Review` is a Kubernetes API to ensure the access token provided by the user was issued by a trusted vendor. To issue an access token using Kubernetes, the user can create a Kubernetes Service Account and retrieve the corresponding generated Secret for the access token.
 
 To create an access token, please refer to the [Create Service Account Access Token Docs](create_service_account_access_token.md)
 
-##### Authentication
+##### Authorization
 
 The `kube-rbac-proxy` uses [Subject Access Review](https://kubernetes.io/docs/reference/access-authn-authz/authorization/) to ensure the user has access to certain operations. `Subject Access Review` is a Kubernetes API that uses [Kubernetes RBAC](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) to deternmine if the user can perform the current action.
 
