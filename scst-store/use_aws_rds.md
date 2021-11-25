@@ -4,7 +4,7 @@
 * AWS Account
 
 ### AWS RDS 
-1. Create a Amazon RDS Postgres using the [Amazon RDS Getting Started Guide](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_GettingStarted.CreatingConnecting.PostgreSQL.html#CHAP_GettingStarted.Creating.PostgreSQL)
+1. Create an Amazon RDS Postgres using the [Amazon RDS Getting Started Guide](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_GettingStarted.CreatingConnecting.PostgreSQL.html#CHAP_GettingStarted.Creating.PostgreSQL)
 
 2. Once the database instance starts up retrieve the following information:
    1. DB Instance Endpoint
@@ -16,7 +16,7 @@
 
 4. Retrieve the corresponding CA Certificate that signed the Postgres TLS Certificate using the following [link](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.SSL.html)
 
-5. In the scst-store-values.yaml fill the following settings:
+5. In the `scst-store-values.yaml` fill the following settings:
 
 ```
    db_host: "<DB Instance Endpoint>"

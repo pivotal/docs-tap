@@ -28,7 +28,7 @@ For more information, see [Deployment Details](deployment_details.md).
 
 The following steps are required to use the API or CLI:
 
-* [Enable encryption and connection](using_encryption_and_connection.md)
+* [Using encryption and connection](using_encryption_and_connection.md)
 * [Create a service account and get the access token](create_service_account_access_token.md)
 
 ### Recommended
@@ -53,3 +53,7 @@ See [querying data](querying_the_metadata_store.md) understand vulnerability, im
 ## Known issues
 
 See [Troubleshooting and Known Issues](known_issues.md).
+
+## Security
+
+See [Security](security.md)
