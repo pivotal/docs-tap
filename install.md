@@ -12,7 +12,7 @@ See [Installing Part I: Prerequisites, EULA, and CLI](install-general.md).
 
 To add the Tanzu Application Platform package repository:
 
-1. Create a namespace called `tap-install` for deploying the any component packages by running:
+1. Create a namespace called `tap-install` for deploying any component packages by running:
 
     ```bash
     kubectl create ns tap-install
@@ -467,7 +467,7 @@ with your relevant values. Run:
     tap_gui:
       service_type: LoadBalancer
       # Existing tap-values.yml above  
-      app_config:
+      app-config:
         app:
           baseUrl: http://EXTERNAL-IP:7000
         integrations:

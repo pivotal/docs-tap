@@ -53,7 +53,6 @@ app_service_type: "LoadBalancer"
 
 ### Service Accounts
 
-By default, a service account with read-write privileges to the metadata store app will be installed. This service account is cluster-wide user as it uses ClusterRole.
-    
-To not have `read-write` service account installed by default,
-set `add_default_rw_service_account` property to `"false"`. To create custom service account, see [create service account doc](scst-store/create_service_account_access_token.md).
+By default, a service account with read-write privileges to the metadata store app is installed. This service account is a cluster-wide account that uses ClusterRole. If the service account and role are not desired, set the `add_default_rw_service_account` property to `"false"`. To create a custom service account, see [create service account](scst-store/create_service_account_access_token.md).
+
+The store will automatically create a read-only cluster role, which may be bound to a service account via `ClusterRoleBinding`. To create service accounts to bind to this cluster role, see [create service account](scst-store/create_service_account_access_token.md). 
