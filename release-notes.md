@@ -32,6 +32,9 @@ The following components are new in Tanzu Application Platform v0.4.0:
 
 The following components have been updated in Tanzu Application Platform v0.4.0:
 
+- Supply Chain Security Tools for VMware Tanzu
+  - [Scan v1.0.0](scst-scan/overview.md)
+
 ### Known issues
 
 This release has the following issues:

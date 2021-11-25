@@ -310,7 +310,7 @@ The notable addition is a Scan Policy, which enables policy enforcement on vulne
 1. Add a scan policy:
 
 ```yaml
-apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
+apiVersion: scst-scan.apps.tanzu.vmware.com/v1alpha1
 kind: ScanPolicy
 metadata:
   name: scan-policy
@@ -344,7 +344,7 @@ spec:
 2. Add a source scan template:
 
 ```yaml
-apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
+apiVersion: scst-scan.apps.tanzu.vmware.com/v1alpha1
 kind: ScanTemplate
 metadata:
   name: blob-source-scan-template
@@ -392,7 +392,7 @@ spec:
 3. Add an image scan template:
 
 ```yaml
-apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
+apiVersion: scst-scan.apps.tanzu.vmware.com/v1alpha1
 kind: ScanTemplate
 metadata:
   name: private-image-scan-template
