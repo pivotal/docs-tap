@@ -7,7 +7,7 @@ The access token is a `Bearer` token used in the http request header `Authorizat
 Supply Chain Security Tools - Store, by default, comes with `read-write` service account installed.
 This service account is cluster-wide user.
 
-## Creating Service
+## Service Accounts
 
 You can create two types of service accounts:
 
@@ -16,14 +16,41 @@ You can create two types of service accounts:
 
 ### Read-Only Service Account
 
-To create a read-only service account, run the following command. The command creates a service account named `metadata-store-read-client`:
+As a part of the Store installation, the `metadata-store-read-only` cluster role is created by default. It allows the bound user to have `get` access to all resources. To bind to this cluster role, the following command may be run: 
+
+```sh
+kubectl apply -f - -o yaml << EOF
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: metadata-store-ready-only
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: metadata-store-ready-only
+subjects:
+- kind: ServiceAccount
+  name: metadata-store-read-user
+  namespace: metadata-store
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: metadata-store-read-user
+  namespace: metadata-store
+automountServiceAccountToken: false
+EOF
+```
+
+Alternatively, if it is not desirable to bind to a cluster role, you can create your own read-only role in the `metadata-store` namespace with a service account. The following example command creates a service account named `metadata-store-read-client`:
 
 ```sh
 kubectl apply -f - -o yaml << EOF
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: metadata-store-read-only
+  name: metadata-store-ro
   namespace: metadata-store
 rules:
 - resources: ["all"]
@@ -33,12 +60,12 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: metadata-store-read-only
+  name: metadata-store-ro
   namespace: metadata-store
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: metadata-store-read-only
+  name: metadata-store-ro
 subjects:
 - kind: ServiceAccount
   name: metadata-store-read-client

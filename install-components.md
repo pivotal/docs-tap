@@ -1578,10 +1578,12 @@ To install Supply Chain Security Tools - Store:
     For example, if your environment does not support `LoadBalancer`, and you want to use `NodePort`, configure the `app_service_type` property:
 
     ```yaml
-    app_service_type: "LoadBalancer"
+    app_service_type: "NodePort"
     ```
 
-    By default, a service account with read-write privileges to the Supply Chain Security Tools - Store is installed. This service account is a cluster-wide user that uses ClusterRole. A read-only service account can be created, see [Deployment Details and Configuration](scst-store/deployment_details.md#configuration).
+    By default, a service account with read-write privileges to the metadata store app is installed. This service account is a cluster-wide account that uses ClusterRole. If the service account and role are not desired, set the `add_default_rw_service_account` property to `"false"`. To create a custom service account, see [create service account](scst-store/create_service_account_access_token.md).
+
+    The store will automatically create a read-only cluster role, which may be bound to a service account via `ClusterRoleBinding`. To create service accounts to bind to this cluster role, see [create service account](scst-store/create_service_account_access_token.md). 
 
 1. Install the package by running:
 
