@@ -758,20 +758,25 @@ In this section, we will provide an overview of the supply chain security use ca
 
 ### Sign: Introducing Image Signing & Verification to your Supply Chain
 
-**Overview**
+#### Overview
 
-This feature-set allows an application operator to define a policy that will restrict unsigned images from running on clusters.
+This feature-set allows an application operator to define a policy that will
+restrict unsigned images from running on clusters.
 This is done using a dynamic admission control component on Kubernetes clusters.
-This component contains logic to communicate with external registries and verify signatures on container images,
-making a decision based on the results of this verification.
+This component contains logic to communicate with external registries and verify
+signatures on container images, making a decision based on the results of this
+verification.
 Currently, this component supports cosign signatures and its key formats.
-It will work with open source cosign, kpack and Tanzu Build Service (which is what we will overview in this document).
+It will work with open source cosign, kpack and Tanzu Build Service
+(which is what we will overview in this document).
 
-Signing an artifact creates metadata about it that allows consumers to verify its origin and integrity.
-By verifying signatures on artifacts prior to their deployment,
-this allows operators to increase their confidence that trusted software is running on their clusters.
+Signing an artifact creates metadata about it that allows consumers to verify
+its origin and integrity.
+By verifying signatures on artifacts prior to their deployment, this allows
+operators to increase their confidence that trusted software is running on
+their clusters.
 
-**Use Cases**
+#### Use Cases
 
 * Validate signatures from a given registry.
 
@@ -781,53 +786,36 @@ Tanzu Application Platform supports verifying container image signatures that fo
 Application operators may apply image signatures and store them in the registry in one of several ways:
 
 * Using Tanzu Build Service v1.3
-
 * Using [kpack](https://github.com/pivotal/kpack/blob/main/docs/image.md#cosign-config) v0.4.0
-
 * Signing existing images with [cosign](https://github.com/sigstore/cosign#quick-start)
 
+**Supplying secrets for private registry authentication**
 
-**Configure the Image Policy Webhook**
+If your images and signatures reside in a private registry, you will need to
+provide the webhook with credentials to pull those signatures.
 
-After the webhook is running, create a service account named `image-policy-registry-credentials` in the `image-policy-system` namespace. This is required, even if the images and signatures are in public registries.
+If your resources already have `imagePullSecrets` configured, either directly
+in their manifests or via the `ServiceAccount` they run authenticated as,
+no further configuration is required.
 
-After the image policy webhook is installed in the cluster, configure the image policy you want to enforce and the credentials to access private registries.
+However, in situations where your cluster pulls credentials from your container
+runtime configuration, you can choose to provide secrets via:
+- The `ClusterImagePolicy` resource configuration for a given name pattern; or
+- Creating a `ServiceAccount` named `image-policy-registry-credentials` in the
+`image-policy-system` namespace and adding `imagePullSecrets` to that service
+account.
 
-**Configure a service account to hold private registry secrets**
+**Creating a Cluster Image Policy**
 
-When the platform operator is expecting to verify signatures stored in a private registry,
-it is required that you configure a service account with all the secrets for those private registries.
-The service account:
-
-* Must be created in the `image-policy-system` namespace
-
-* Must be called `image-policy-registry-credentials`
-
-* All secrets for accessing private registries must be added to the `imagePullSecrets` section of the service account
-
-The manifest for the service account is similar to the following example:
-
-```
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: image-policy-registry-credentials
-  namespace: image-policy-system
-imagePullSecrets:
-- name: secret1
-- name: secret2
-```
-
-**Create a Cluster Image Policy**
-
-The cluster image policy is a custom resource definition containing the following information:
+The cluster image policy is a custom resource definition containing the following
+information:
 
 * A list of namespaces to which the policy should not be enforced.
-
-* A list of public keys complementary to the private keys that were used to sign the images.
-
-* A list of image name patterns to which we want to enforce the policy, mapping to the public keys to use for each pattern.
+* A list of public keys complementary to the private keys that were used to sign
+  the images.
+* A list of image name patterns to which we want to enforce the policy, mapping
+  to the public keys to use for each pattern, and, optionally, a secret reference
+  to be used to authenticate to the referred registry.
 
 An example policy would look like this:
 
@@ -853,19 +841,24 @@ spec:
     - namePattern: registry.example.org/myproject/*
       keys:
       - name: first-key
+    images:
+    - namePattern: registry.example.org/otherproject/*
+      secretRef:
+        name: credential-to-other-project
+        namespace: secret-namespace
+      keys:
+      - name: first-key
 ```
 
-
-As of this writing, the custom resource for the policy must have a name of image-policy.
+As of this writing, the custom resource for the policy must have a name of `image-policy`.
 
 The platform operator should add to the `verification.exclude.resources.namespaces`
-section any namespaces that are known to run container images that are not currently signed, such as `kube-system`.
+section any namespaces that are known to run container images that are not
+currently signed, such as `kube-system`.
 
-
-**Examples and Expected Results**
+#### Examples and Expected Results
 
 Assuming a platform operator creates the following policy:
-
 
 ```
 ---
@@ -892,30 +885,36 @@ spec:
       - name: first-key
 ```
 
-
-When a developer deploys an application with a matched image name and the image is signed:
-
+When a developer deploys an application with a matched image name and the image
+is signed:
 * **Expected result**: resource is created successfully.
 
-When a developer deploys an application with a matched image name and the image is unsigned:
+When a developer deploys an application with a matched image name and the image
+is unsigned:
+* **Expected result**: resource is not created and an error message is shown in
+  the CLI output.
 
-* **Expected result**: resource is not created and an error message is shown in the CLI output.
+When a developer deploys an application with an image from an unmatched pattern
+and the `AllowUnmatchedImages` feature gate is turned on:
+* **Expected result**: resource is created successfully and a warning message
+  is shown in the CLI output.
 
-When a developer deploys an application with an image from an unmatched pattern and the warnOnUnmatched feature flag is turned on:
-
-* **Expected result**: resource is created successfully and a warning message is shown in the CLI output.
-
-When a developer deploys an application with an image from an unmatched pattern and the warnOnUnmatched feature flag is turned off:
-
-* **Expected result**: resource is not created and an error message is shown in the CLI output.
+When a developer deploys an application with an image from an unmatched pattern
+and the `AllowUnmatchedImages` feature gate is turned off:
+* **Expected result**: resource is not created and an error message is shown in
+  the CLI output.
 
 The Sign add-on outputs logs for the above scenarios.
-To have a look at the logs, the platform operator runs:
-
-```console
+To have a look at the logs, the platform operator can run:
+```shell
 kubectl logs -n image-policy-system -l "signing.run.tanzu.vmware.com/application-name=image-policy-webhook" -f
 ```
 
+#### Next Steps and Further Information
+
+- [Overview for Supply Chain Security Tools - Sign](scst-sign/overview.md)
+- [Configuring Supply Chain Security Tools - Sign](scst-sign/configuring.md)
+- [Known Issues and Troubleshooting](scst-sign/known_issues.md)
 
 ### Scan & Store: Introducing Vulnerability Scanning & Metadata Storage to your Supply Chain
 
