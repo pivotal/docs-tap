@@ -760,39 +760,46 @@ In this section, we will provide an overview of the supply chain security use ca
 
 #### Overview
 
-This feature-set allows an application operator to define a policy that will
+This component allows a platform operator to define a policy that will
 restrict unsigned images from running on clusters.
-This is done using a dynamic admission control component on Kubernetes clusters.
-This component contains logic to communicate with external registries and verify
-signatures on container images, making a decision based on the results of this
-verification.
+To enforce the configured policies this component communicates with external
+container registries to verify signatures on container images and make a
+decision based on the results of this verification. In order to make admission
+decisions this component is implemented as a dynamic admission control webhook.
+
 Currently, this component supports cosign signatures and its key formats.
-It will work with open source cosign, kpack and Tanzu Build Service
-(which is what we will overview in this document).
+Although this component does not sign container images, you could use tools such
+as the cosign CLI, kpack, and Tanzu Build Service (which is what we will overview
+in this document) to generate signatures for your images.
 
 Signing an artifact creates metadata about it that allows consumers to verify
 its origin and integrity.
-By verifying signatures on artifacts prior to their deployment, this allows
-operators to increase their confidence that trusted software is running on
-their clusters.
+Operators can increase their confidence that trusted software is running on their
+clusters by verifying signatures on artifacts prior to their deployment.
 
 #### Use Cases
 
 * Validate signatures from a given registry.
+* Deny unsigned or unverified images from being admitted in the cluster.
+
+> **Note**: this component does not verify images that are already running in a
+> cluster.
 
 **Signing Container Images**
 
-Tanzu Application Platform supports verifying container image signatures that follow the `cosign` format.
-Application operators may apply image signatures and store them in the registry in one of several ways:
+Tanzu Application Platform supports verifying container image signatures that
+follow the cosign format.
+Application operators may sign container images and store them in the registry
+in several different ways, including:
 
 * Using Tanzu Build Service v1.3
 * Using [kpack](https://github.com/pivotal/kpack/blob/main/docs/image.md#cosign-config) v0.4.0
 * Signing existing images with [cosign](https://github.com/sigstore/cosign#quick-start)
 
-**Supplying secrets for private registry authentication**
+**Supplying secrets for registries protected by authentication**
 
-If your images and signatures reside in a private registry, you will need to
-provide the webhook with credentials to pull those signatures.
+If your images and signatures are hosted in a registry protected by authentication
+you will need to provide the webhook with credentials to pull those signatures.
 
 If your resources already have `imagePullSecrets` configured, either directly
 in their manifests or via the `ServiceAccount` they run authenticated as,
@@ -800,15 +807,17 @@ no further configuration is required.
 
 However, in situations where your cluster pulls credentials from your container
 runtime configuration, you can choose to provide secrets via:
-- The `ClusterImagePolicy` resource configuration for a given name pattern; or
+- The `ClusterImagePolicy` resource configuration for a given name pattern.
 - Creating a `ServiceAccount` named `image-policy-registry-credentials` in the
 `image-policy-system` namespace and adding `imagePullSecrets` to that service
 account.
 
-**Creating a Cluster Image Policy**
+For more information on how to configure these secrets, see
+[Providing credentials for the webhook](configuring.md#proving-credentials-for-the-webhook).
 
-The cluster image policy is a custom resource definition containing the following
-information:
+**Creating a `ClusterImagePolicy`**
+
+The `ClusterImagePolicy` is a custom resource containing the following information:
 
 * A list of namespaces to which the policy should not be enforced.
 * A list of public keys complementary to the private keys that were used to sign
@@ -850,11 +859,11 @@ spec:
       - name: first-key
 ```
 
-As of this writing, the custom resource for the policy must have a name of `image-policy`.
+The custom resource for the policy must have a name of `image-policy`.
 
-The platform operator should add to the `verification.exclude.resources.namespaces`
+The platform operator should add to the `spec.verification.exclude.resources.namespaces`
 section any namespaces that are known to run container images that are not
-currently signed, such as `kube-system`.
+currently signed, such as the `kube-system` namespace.
 
 #### Examples and Expected Results
 
@@ -885,27 +894,29 @@ spec:
       - name: first-key
 ```
 
-When a developer deploys an application with a matched image name and the image
-is signed:
+When a developer deploys a runnable resource with an image name that matches a
+name pattern in the policy and the image is signed:
 * **Expected result**: resource is created successfully.
 
-When a developer deploys an application with a matched image name and the image
-is unsigned:
+When a developer deploys a runnable resources with an image name that matches a
+name pattern in the policy and the image is unsigned:
 * **Expected result**: resource is not created and an error message is shown in
   the CLI output.
 
-When a developer deploys an application with an image from an unmatched pattern
-and the `AllowUnmatchedImages` feature gate is turned on:
+When a developer deploys a runnable resource with an image name that does not
+match any patterns in the policy and the `AllowUnmatchedImages` feature gate is
+turned on:
 * **Expected result**: resource is created successfully and a warning message
   is shown in the CLI output.
 
-When a developer deploys an application with an image from an unmatched pattern
-and the `AllowUnmatchedImages` feature gate is turned off:
+When a developer deploys a runnable resource with an image name that does not
+match any patterns in the policy and the `AllowUnmatchedImages` feature gate is
+turned off:
 * **Expected result**: resource is not created and an error message is shown in
   the CLI output.
 
-The Sign add-on outputs logs for the above scenarios.
-To have a look at the logs, the platform operator can run:
+The Supply Chain Security Tools - Sign component outputs logs for the above
+scenarios. To examine the logs the platform operator can run:
 ```shell
 kubectl logs -n image-policy-system -l "signing.run.tanzu.vmware.com/application-name=image-policy-webhook" -f
 ```
@@ -914,7 +925,7 @@ kubectl logs -n image-policy-system -l "signing.run.tanzu.vmware.com/application
 
 - [Overview for Supply Chain Security Tools - Sign](scst-sign/overview.md)
 - [Configuring Supply Chain Security Tools - Sign](scst-sign/configuring.md)
-- [Known Issues and Troubleshooting](scst-sign/known_issues.md)
+- [Supply Chain Security Tools - Sign Known Issues](scst-sign/known_issues.md)
 
 ### Scan & Store: Introducing Vulnerability Scanning & Metadata Storage to your Supply Chain
 

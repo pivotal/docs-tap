@@ -1,7 +1,7 @@
 # Supply Chain Security Tools - Sign Known Issues
 
-This section aims to be a comprehensive list of known issues, along with
-troubleshooting and recovery steps for Supply Chain Security Tools - Sign.
+This section is a list of known issues with troubleshooting and recovery steps
+for Supply Chain Security Tools - Sign.
 
 ## <a id='sign-known-issues-pods-not-admitted'></a> MutatingWebhookConfiguration prevents pods from being admitted
 
@@ -12,12 +12,18 @@ cluster, it can prevent the admission of all pods.
 For example, pods can be prevented from starting if nodes in a cluster are
 scaled to zero and the webhook is forced to restart at the same time as
 other system components. A deadlock can occur when some components expect the
-webhook to run in order to verify their image signatures and the webhook is not
-running yet.
+webhook to verify their image signatures and the webhook is not running yet.
 
 ### Symptoms
 
-You may see a message similar to the following in your `ReplicaSet` statuses:
+You will see a message similar to the following in your `ReplicaSet` statuses:
+
+```bash
+Events:
+  Type     Reason            Age                   From                   Message
+  ----     ------            ----                  ----                   -------
+  Warning  FailedCreate      4m28s (x18 over 14m)  replicaset-controller  Error creating: Internal error occurred: failed calling webhook "image-policy-webhook.signing.run.tanzu.vmware.com": Post "https://image-policy-webhook-service.image-policy-system.svc:443/signing-policy-check?timeout=10s": no endpoints available for service "image-policy-webhook-service"
+```
 
 ### Solution
 
@@ -57,8 +63,13 @@ less privileged components to have their pods preempted or evicted instead.
 
 ### Symptoms
 
-You will see events similar to these in the output of `kubectl get events`:
+You will see events similar to this in the output of `kubectl get events`:
 
+```shell
+$ kubectl get events
+LAST SEEN   TYPE      REASON             OBJECT               MESSAGE
+28s         Normal    Preempted          pod/testpod          Preempted by image-policy-system/image-policy-controller-manager-59dc669d99-frwcp on node test-node
+```
 
 ### Solution
 
@@ -76,15 +87,19 @@ contents:
     where N should be the smallest amount of pods you can have for your current
     cluster configuration.
 
-1. Apply your new configuration by doing
+1. Apply your new configuration by running:
     ```shell
-    tanzu package installed update ... -f scst-sign-values.yaml
+    tanzu package installed update image-policy-webhook \
+      --package-name image-policy-webhook.signing.run.tanzu.vmware.com \
+      --version 1.0.0-beta.2 \
+      --namespace tap-install \
+      --values-file scst-sign-values.yaml
     ```
 
 1. It may take a few minutes until your configuration takes effect in the cluster.
 
 #### Increase your cluster's resources
 
-Node pressure may be caused for not enough nodes for deploying the workloads you
-have. In this case, follow your cloud provider instructions on how to scale out
-your cluster.
+Node pressure may be caused by not enough nodes or not enough resources on nodes
+for deploying the workloads you have. In this case, follow your cloud provider
+instructions on how to scale out or scale up your cluster.

@@ -1582,17 +1582,17 @@ To install Supply Chain Security Tools - Store:
 
 > **Caution**:
 >
-> **This component rejects pods if the webhook fails or is misconfigured**.
+> **This component will reject pods if the webhook fails or is misconfigured**.
 > If the webhook is preventing the cluster from functioning,
 > see [Supply Chain Security Tools - Sign Known Issues](scst-sign/known_issues.md#sign-known-issues-pods-not-admitted)
 > for recovery steps.
 
 ### Prerequisites
 
-During configuration for this component, we will ask you to provide a cosign
+During configuration for this component we will ask you to provide a cosign
 public key to use to validate signed images. We will provide an example cosign
 public key that will be able to validate an image from the public cosign
-registry. If you wish to provide your own key and images, you can follow the
+registry. If you wish to provide your own key and images you can follow the
 [cosign quick start guide](https://github.com/sigstore/cosign#quick-start) to
 generate your own keys and sign an image.
 
@@ -1638,7 +1638,7 @@ To install Supply Chain Security Tools - Sign:
                                                 value is not specified then the default value of 1 is used.
     ```
 
-1. Create a file named `scst-sign-values.yaml` and add the properties you
+1. Create a file named `scst-sign-values.yaml` and add the settings you
   would like to customize:
 
     - `allow_unmatched_images`:
@@ -1649,38 +1649,35 @@ To install Supply Chain Security Tools - Sign:
             ---
             allow_unmatched_images: true
             ```
-        * **For production environments**: To deny images that do not match
-          any pattern in the policy, set `allow_unmatched_images` to `false`.
+        * **For production environments**: To deny images that match no patterns in the policy set `allow_unmatched_images` to `false`.
             ```yaml
             ---
             allow_unmatched_images: false
             ```
 
-          > **Note**: For a quicker installation process, VMware recommends that
+          > **Note**: For a quicker installation process VMware recommends that
           > you set `allow_unmatched_images` to `true` initially.
-          > This means that the webhook does not prevent unsigned images from
-          > running if the image does not match any pattern in the policy.
-          > To promote to a production environment, VMware recommends that you
+          > This setting means that the webhook will allow unsigned images to
+          > run if the image does not match any pattern in the policy.
+          > To promote to a production environment VMware recommends that you
           > re-install the webhook with `allow_unmatched_images` set to `false`.
 
     - `quota.pod_number`:
-      This is the maximum amount of pods that will be allowed in the
+      This setting is the maximum amount of pods that will be allowed in the
       `image-policy-system` namespace with the `system-cluster-critical`
       priority class. This priority class is added to the pods to prevent
       preemption of this component's pods in case of node pressure.
-      This measure helps improve stability of the cluster when the webhook
-      is running.
 
       The default value for this property is 5. If your use case requires
-      more than 5 pods deployed of this component, adjust this value to
+      more than 5 pods deployed of this component adjust this value to
       allow the number of replicas you intend to deploy.
 
     - `replicas`:
-      This is the default amount of replicas that will get deployed by this
+      This settings controls the default amount of replicas that will get deployed by this
       component. The default value is 1.
 
       * **For production environments**: VMware recommends you increase the
-        amount of replicas to 3. This helps ensure availability of the
+        amount of replicas to 3 to ensure availability of the
         component for better admission performance.
 
 1. Install the package:
@@ -1715,11 +1712,11 @@ To install Supply Chain Security Tools - Sign:
     Added installed package 'image-policy-webhook' in namespace 'tap-install'
     ```
 
-   After you run the commands above, the webhook will be running.
+   After you run the commands above the webhook will be running.
 
-   This component requires extra configuration steps to work properly. See
-   [Configuring Supply Chain Security Tools - Sign](scst-sign/configuring.md)
-   for instructions on how to apply the required configuration.
+   > **Note**: This component requires extra configuration steps to work properly. See
+   > [Configuring Supply Chain Security Tools - Sign](scst-sign/configuring.md)
+   > for instructions on how to apply the required configuration.
 
 ## <a id='install-scst-scan'></a> Install Supply Chain Security Tools - Scan
 
