@@ -1,6 +1,6 @@
 # Deployment Details and Configuration
 
-## What is Installed
+## What is Deployed
 
 The installation creates the following in your Kubernetes cluster:
 
@@ -14,6 +14,8 @@ Each component includes:
 * External IP (based on a deployment configuration set to use `LoadBalancer`).
 * A Kubernetes secret to allow pulling Supply Chain Security Tools - Store images from a registry.
 * A namespace called `metadata-store`.
+* A service account with read-write privileges named `metadata-store-read-write-client`. It's bound to a ClusterRole named `metadata-store-read-write`.
+* A ready-only ClusterRole named `metadata-store-ready-only` that isn't bound to a service account. See [Service Accounts](#service-accounts).
 
 ## <a id='configuration'></a> Deployment Configuration
 ### Database Configuration
@@ -41,7 +43,7 @@ metadata_store:
 
 Where `PASSWORD-0123` is the same password used between deployments.
 
-> Note: there is a known issue related to changing database passwords [Known Issues - Persistent Volume Retains Data](scst-store/known_issues.md#persistent-volume-retains-data).
+> Note: there is a known issue related to changing database passwords [Known Issues - Persistent Volume Retains Data](known_issues.md#persistent-volume-retains-data).
 
 ### App Service Type
 
@@ -51,8 +53,8 @@ If your environment does not support `LoadBalancer`, and you want to use `NodePo
 app_service_type: "LoadBalancer"
 ```
 
-### Service Accounts
+### <a id='service-accounts'></a>Service Accounts
 
-By default, a service account with read-write privileges to the metadata store app is installed. This service account is a cluster-wide account that uses ClusterRole. If the service account and role are not desired, set the `add_default_rw_service_account` property to `"false"`. To create a custom service account, see [create service account](scst-store/create_service_account_access_token.md).
+By default, a service account with read-write privileges to the metadata store app is installed. This service account is a cluster-wide account that uses ClusterRole. If the service account and role are not desired, set the `add_default_rw_service_account` property to `"false"`. To create a custom service account, see [create service account](create_service_account_access_token.md).
 
-The store will automatically create a read-only cluster role, which may be bound to a service account via `ClusterRoleBinding`. To create service accounts to bind to this cluster role, see [create service account](scst-store/create_service_account_access_token.md). 
+The store will automatically create a read-only cluster role, which may be bound to a service account via `ClusterRoleBinding`. To create service accounts to bind to this cluster role, see [create service account](create_service_account_access_token.md). 
