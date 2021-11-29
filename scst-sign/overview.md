@@ -49,3 +49,7 @@ To configure your installed component properly, see
 ## Known Issues
 
 See [Supply Chain Security Tools - Sign Known Issues](known_issues.md).
+
+## Release Notes
+
+See [Supply Chain Security Tools - Sign Release Notes](release-notes.md).
