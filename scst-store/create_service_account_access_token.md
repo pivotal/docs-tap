@@ -16,7 +16,7 @@ You can create two types of service accounts:
 
 ### Read-Only Service Account
 
-As a part of the Store installation, the `metadata-store-read-only` cluster role is created by default. It allows the bound user to have `get` access to all resources. To bind to this cluster role, the following command may be run: 
+As a part of the Store installation, the `metadata-store-read-only` cluster role is created by default. This cluster role allows the bound user to have `get` access to all resources. To bind to this cluster role, run the following command: 
 
 ```sh
 kubectl apply -f - -o yaml << EOF
@@ -43,7 +43,7 @@ automountServiceAccountToken: false
 EOF
 ```
 
-Alternatively, if it is not desirable to bind to a cluster role, you can create your own read-only role in the `metadata-store` namespace with a service account. The following example command creates a service account named `metadata-store-read-client`:
+If you do not want to bind to a cluster role, create your own read-only role in the `metadata-store` namespace with a service account. The following example command creates a service account named `metadata-store-read-client`:
 
 ```sh
 kubectl apply -f - -o yaml << EOF
