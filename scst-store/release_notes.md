@@ -36,7 +36,7 @@ See [Troubleshooting and Known Issues](known_issues.md).
 
 ### Limitations
 
-- Air gapped environments are not supported
+* Air gapped environments are not supported
 
 ### CVEs
 
