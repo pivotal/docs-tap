@@ -2,6 +2,45 @@
 
 This topic contains release notes for Supply Chain Security Tools - Store.
 
+## v1.0.0-beta.2
+
+**Release Date**: November 26, 2021
+
+### Software component versions
+
+* PostgresSQL 13.4
+
+### Breaking Changes
+
+* (possibly breaking) `storageClassName` and `databaseRequestStorage` fields have been changed to `storage_class_name` and `database_request_storage` respectively. This change was made to keep the format of all available fields consistent with other available fields.
+* (possibly breaking) Change output for unhappy paths to be more consistent. Empty results due to sources not existing when searching by package or source information now returns an empty array with a 200 response. Previously it would give an error JSON with a 404.
+
+### New features
+
+* Add logs to Images, Vulnerabilities, Sources, and Package endpoints
+* Supporting AWS RDS
+* Add default read-only clusterrole
+* Manually update go dependencies
+* Export CA Cert to a specified namespace. By default, the CA Cert will be exported to the default namespace `scan-link-system`
+* `db_password` is generated with secretgen when not provided by user
+* Support cyclonedx 1.3
+
+### Fixes
+
+* Change DB and app service type
+* Containers no longer need root user to run
+
+### Known issues
+
+See [Troubleshooting and Known Issues](known_issues.md).
+
+### Limitations
+
+- Air gapped environments are not supported
+
+### CVEs
+
+See [SCA Scanning Results](sca_scans/CVE.md)
 
 ## v1.0.0-beta.1
 
