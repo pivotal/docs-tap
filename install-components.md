@@ -1502,6 +1502,10 @@ Use the following procedure to install Service Bindings:
 
 ## <a id='install-scst-store'></a> Install Supply Chain Security Tools - Store
 
+**Prerequisite**: `cert-manager` installed on the cluster. See [Install Prerequisites](#install-prereqs).
+
+Before installing, see [Deployment Details and Configuration](scst-store/deployment_details.md) to review what resources will be deployed.
+
 To install Supply Chain Security Tools - Store:
 
 1. The deployment assumes the user has set up the k8s cluster to provision persistent volumes on demand. Make sure a default storage class is be available in your cluster. Check whether default storage class is set in your cluster by running:
@@ -1521,30 +1525,28 @@ To install Supply Chain Security Tools - Store:
 1. List version information for the package by running:
 
     ```bash
-    tanzu package available list PACKAGE-NAME --namespace tap-install
+    tanzu package available list scst-store.tanzu.vmware.com --namespace tap-install
     ```
-    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
-     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
-     For example:
+    For example:
 
     ```bash
     $ tanzu package available list scst-store.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for scst-store.tanzu.vmware.com...
       NAME                         VERSION       RELEASED-AT
-      scst-store.tanzu.vmware.com  1.0.0-beta.1
+      scst-store.tanzu.vmware.com  1.0.0-beta.2
     ```
 
-1. (Optional) To make changes to the default installation settings, run:
+1. (Optional) List out all the available deployment configuration options:
 
     ```sh
-    tanzu package available get scst-store.tanzu.vmware.com/1.0.0-beta.1 --values-schema -n tap-install
+    tanzu package available get scst-store.tanzu.vmware.com/1.0.0-beta.2 --values-schema -n tap-install
     ```
 
     For example:
 
     ```console
-    $ tanzu package available get scst-store.tanzu.vmware.com/1.0.0-beta.1 --values-schema -n tap-install
-    | Retrieving package details for scst-store.tanzu.vmware.com/1.0.0-beta.1...
+    $ tanzu package available get scst-store.tanzu.vmware.com/1.0.0-beta.2 --values-schema -n tap-install
+    | Retrieving package details for scst-store.tanzu.vmware.com/1.0.0-beta.2...
       KEY                               DEFAULT              TYPE     DESCRIPTION
       app_service_type                  LoadBalancer         string   The type of service to use for the metadata app service. This can be set to 'NodePort' or 'LoadBalancer'.
       auth_proxy_host                   0.0.0.0              string   The binding ip address of the kube-rbac-proxy sidecar
@@ -1572,37 +1574,31 @@ To install Supply Chain Security Tools - Store:
       add_default_rw_service_account    true                 string   Adds a read-write service account which can be used to obtain access token to use metadata-store CLI
     ```
 
-1. Gather the values schema.
-1. **(Optional)** Create a `scst-store-values.yaml` using the following sample for Supply Chain Security Tools - Store as a guide:
+1. **(Optional)** If you want to modify one of the above deployment configurations, you can created a configuration yaml with the custom configuration values you want. For example, if your environment does not support `LoadBalancer`, and you want to use `NodePort`, then create a `scst-store-values.yaml` and configure the `app_service_type` property. This file will be used in the next step.
 
     ```yaml
-    db_password: "PASSWORD-0123"
+    ---
     app_service_type: "NodePort"
     ```
-    Where `PASSWORD-0123` is the same password used between deployments. For more information, see [Known Issues - Persistent Volume Retains Data](scst-store/known_issues.md#persistent-volume-retains-data).
 
-    By default, a service account with read-write privileges to the metadata store app is installed. This service account is a cluster-wide account that uses ClusterRole. If the service account and role are not desired, set the `add_default_rw_service_account` property to `"false"`. To create a custom service account, see [create service account](scst-store/create_service_account_access_token.md).
-
-    The store will automatically create a read-only cluster role, which may be bound to a service account via `ClusterRoleBinding`. To create service accounts to bind to this cluster role, see [create service account](scst-store/create_service_account_access_token.md). 
-
-    The store supports connecting to PostgreSQL Amazon RDS. Please refer to the [AWS RDS Postgres for Metadata Store docs](scst-store/use_aws_rds.md)
+    See [Deployment Details and Configuration](scst-store/deployment_details.md#configuration) for more detailed descriptions of configuration options. 
 
 1. Install the package by running:
 
     ```sh
     tanzu package install metadata-store \
       --package-name scst-store.tanzu.vmware.com \
-      --version 1.0.0-beta.1 \
+      --version 1.0.0-beta.2 \
       --namespace tap-install \
       --values-file scst-store-values.yaml
     ```
 
-    For example:
+    The flag `--values-file` is optional, and used only if you want to customize the deployment configuration. For example:
 
     ```sh
     $ tanzu package install metadata-store \
       --package-name scst-store.tanzu.vmware.com \
-      --version 1.0.0-beta.1 \
+      --version 1.0.0-beta.2 \
       --namespace tap-install \
       --values-file scst-store-values.yaml
 

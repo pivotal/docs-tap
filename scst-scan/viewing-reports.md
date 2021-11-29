@@ -23,6 +23,7 @@ insight source get \
 ```
 
 Where:
+
 * `repository` is the repository extracted from the `SCANNEDREPOSITORY` column
 * `commit` is the commit hash from the `SCANNEDREVISION` column
 * `organization` is the code repository project/organization extracted from the `SCANNEDREPOSITORY` column
@@ -45,6 +46,7 @@ insight image get \
 ```
 
 Where:
+
 * `digest` is the sha256 digest extracted from the `SCANNEDIMAGE` column
 * `format` is the format, such as `json`
 
