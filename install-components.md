@@ -2190,8 +2190,11 @@ run the following commands to add credentials and Role-Based Access Control (RBA
     ```bash
     tanzu secret registry add registry-credentials --server REGISTRY-SERVER --username REGISTRY-USERNAME --password REGISTRY-PASSWORD --namespace YOUR-NAMESPACE
     ```
-    Where `YOUR-NAMESPACE` is the name that you want to use for the developer namespace.
-    For example, use `default` for the default namespace.
+    Where:
+
+    * `YOUR-NAMESPACE` is the name that you want to use for the developer namespace. For example, use `default` for the default namespace.
+    * `REGISTRY-SERVER` is the URL of the registry. For Dockerhub this must be `https://index.docker.io/v1/`. Specifically it must have the leading `https://`, the `v1` path, and the trailing `/`. For GCR this is `gcr.io`.
+    
 
 2. Add placeholder read secrets, a service account, and RBAC rules to the developer namespace. Run:
 
