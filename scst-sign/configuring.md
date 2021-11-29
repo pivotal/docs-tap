@@ -110,7 +110,7 @@ the webhook using one of the following mechanisms:
 1. Create secret resources in any namespace of your preference that grants read
 access to the location of your container images and signatures and include it
 as part of your policy configuration.
-1. Create secret resources in and include them in the `image-policy-registry-credentials`
+1. Create secret resources and include them in the `image-policy-registry-credentials`
 service account. The service account and the secrets must be created in the
 `image-policy-system` namespace.
 
@@ -182,8 +182,8 @@ namespace and add the secret names from step 1 to the `imagePullSecrets` section
     apiVersion: v1
     kind: ServiceAccount
     metadata:
-    name: image-policy-registry-credentials
-    namespace: image-policy-system
+      name: image-policy-registry-credentials
+      namespace: image-policy-system
     imagePullSecrets:
     - name: SECRET-1
     EOF

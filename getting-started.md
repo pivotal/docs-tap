@@ -769,8 +769,11 @@ decisions this component is implemented as a dynamic admission control webhook.
 
 Currently, this component supports cosign signatures and its key formats.
 Although this component does not sign container images, you could use tools such
-as the cosign CLI, kpack, and Tanzu Build Service (which is what we will overview
-in this document) to generate signatures for your images.
+as the [cosign CLI](https://github.com/sigstore/cosign#quick-start),
+[kpack](https://github.com/pivotal/kpack/blob/main/docs/image.md#cosign-config),
+and [Tanzu Build Service](https://docs.vmware.com/en/Tanzu-Build-Service/1.3/vmware-tanzu-build-service-v13/GUID-index.html)
+(which is what we will overview in this document) to generate signatures for
+your images.
 
 Signing an artifact creates metadata about it that allows consumers to verify
 its origin and integrity.
@@ -792,9 +795,10 @@ follow the cosign format.
 Application operators may sign container images and store them in the registry
 in several different ways, including:
 
-* Using Tanzu Build Service v1.3
-* Using [kpack](https://github.com/pivotal/kpack/blob/main/docs/image.md#cosign-config) v0.4.0
-* Signing existing images with [cosign](https://github.com/sigstore/cosign#quick-start)
+* Using [Tanzu Build Service v1.3](https://docs.vmware.com/en/Tanzu-Build-Service/1.3/vmware-tanzu-build-service-v13/GUID-index.html).
+* Using [kpack](https://github.com/pivotal/kpack/blob/main/docs/image.md#cosign-config)
+v0.4.0 or higher.
+* Signing existing images with [cosign](https://github.com/sigstore/cosign#quick-start).
 
 **Supplying secrets for private registries**
 

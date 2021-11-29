@@ -1629,11 +1629,11 @@ To install Supply Chain Security Tools - Sign:
                                                 any patterns in the image policy configuration.
                                                 Set to true to allow images that do not match any patterns into
                                                 the cluster with a warning.
-      quota.pod_number        <nil>    string   The maximum number of Image Policy Webhook Pods allowed to be
+      quota.pod_number        5        string   The maximum number of Image Policy Webhook Pods allowed to be
                                                 created with the priority class system-cluster-critical. This
                                                 value must be enclosed in quotes (""). If this value is not
                                                 specified then the default value of 5 is used.
-      replicas                <nil>    integer  The number of replicas to be created for the Image Policy
+      replicas                1        integer  The number of replicas to be created for the Image Policy
                                                 Webhook. This value must not be enclosed in quotes. If this
                                                 value is not specified then the default value of 1 is used.
     ```
