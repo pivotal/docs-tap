@@ -2,15 +2,18 @@
 
 Supply Chain Security Tools - Store saves software bills of materials (SBoMs) to a database and allows you to query for image, source, package, and vulnerability relationships.  It integrates with [Supply Chain Security Tools - Scan](../scst-scan/overview.md) to automatically store the resulting source and image vulnerability reports.
 
+Here is a brief demo these features:
+
 <iframe width="480" height="270"
 src="https://www.youtube.com/embed/UoWSsJBjFgc"
-frameborder="0"  allow="autoplay; encrypted-media"  allowfullscreen></iframe>
+frameborder="0" allow="autoplay; encrypted-media" allowfullscreen
+alt="A demonstration of the features. First ingesting a bill of materials file. Then investigating vulnerabilities of different images."></iframe>
 
 Supply Chain Security Tools - Store has three components:
 
 * Postgres database
 * [API](api.md)
-* CLI (`insight`)
+* [CLI](install_cli.md) (`insight`)
 
 ## Install
 
@@ -20,7 +23,7 @@ To install, see [Install Supply Chain Security Tools - Store](../install-compone
 
 > **Note:** the `insight` CLI requires a [separate installation](install_cli.md)
 
-For more information, see [Deployment Details](deployment_details.md).
+For more information, see [Deployment Details and Configuration](deployment_details.md).
 
 ## <a id='required-set-up'></a>Set up
 

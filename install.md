@@ -416,6 +416,7 @@ install by changing the `profile` value.
     |Supply Chain Basic|`ootb_supply_chain_basic`|
     |Supply Chain Testing|`ootb_supply_chain_testing`|
     |Supply Chain Testing Scanning|`ootb_supply_chain_testing_scanning`|
+    |Supply Chain Security Tools - Store|`metadata_store`|
     |Image Policy Webhook|`image_policy_webhook`|
     |Build Service|`buildservice`|
     |Tanzu Application Platform GUI|`tap_gui`|
