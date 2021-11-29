@@ -370,7 +370,7 @@ install by changing the `profile` value.
     - `<SERVER-NAME>` is the hostname of the registry server.
       * Examples:
          * Harbor `server: "my-harbor.io"`
-         * Dockerhub `server: "https://index.docker.io/v1/"`
+         * Dockerhub `server: "index.docker.io"`
          * Google Cloud Registry `server: "gcr.io"`
     - `<REPO-NAME>` is the location workload images will be stored in the registry. Images will be written to `<SERVER-NAME>/<REPO-NAME>/<workload-name>`.
        * Examples:
