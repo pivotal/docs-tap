@@ -359,10 +359,7 @@ To install Convention Controller:
 
 Use the following procedure to install Source Controller.
 
-**Prerequisite**: Fluxcd Source Controller installed on the cluster.
-
-See [Install cert-manager and FluxCD source controller](#install-prereqs).
-
+**Prerequisite**: Cert-manager installed on the cluster.
 
 To install Source Controller:
 
