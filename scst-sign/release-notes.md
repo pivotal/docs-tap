@@ -13,8 +13,8 @@ This topic contains release notes for Supply Chain Security Tools - Sign.
 ### Known issues
 
 * A grype scan has reported the following false positives:
-  * CVE-2015-5237 - This is a CVE on the C implementation of protobuff. We use the Golang version.
-  * CVE-2017-7297 - This is a CVE on rancher server which is not a dependency we include.
+  * CVE-2015-5237 - This is a CVE on the C implementation of Protocol Buffers. We use the Golang version.
+  * CVE-2017-7297 - This is a CVE on Rancher Server which is not a dependency we include.
 * See [Troubleshooting and Known Issues](known_issues.md).
 
 ## v1.0.0-beta.1
