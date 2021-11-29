@@ -9,21 +9,21 @@ saving operator and developer time.
 
 The service is comprised of two components:
 
-* **The Convention Controller:**
-  The Convention Controller provides the metadata to the Convention Server and executes the updates Pod Template Spec as per the Convention Server's requests.
+* **The convention controller:**
+  The convention controller provides the metadata to the convention server and executes the updates Pod Template Spec as per the convention server's requests.
 
-* **The Convention Server:**
-  The Convention Server receives and evaluates metadata associated with a workload and
+* **The convention server:**
+  The convention server receives and evaluates metadata associated with a workload and
   requests updates to the Pod Template Spec associated with that workload. 
-  You can have one or more Convention Servers for a single Convention Controller instance.
+  You can have one or more convention servers for a single convention controller instance.
   The Convention Service currently supports defining and applying conventions for Pods.
 
 ## About applying conventions
 
-The Convention Server uses criteria defined in the convention to determine
+The convention server uses criteria defined in the convention to determine
 whether the configuration of a workload should be changed.
-The server receives the OCI metadata from the Convention Controller.
-If the metadata meets the criteria defined by the Convention Server,
+The server receives the OCI metadata from the convention controller.
+If the metadata meets the criteria defined by the convention server,
 the conventions are applied.
 It is also possible for a convention to apply to all workloads regardless of metadata.
 
@@ -38,7 +38,7 @@ Targeted conventions can ensure uniformity across specific workload types deploy
 You can use all the metadata details of an image when evaluating workloads. To see the metadata details, use the docker CLI command `docker image inspect IMAGE`.
 
 > **Note:** Depending on how the image was built, metadata might not be available to reliably identify
-the image type and match the criteria for a given Convention Server.
+the image type and match the criteria for a given convention server.
 Images built with Cloud Native Buildpacks reliably include rich descriptive metadata.
 Images built by some other process may not include the same metadata.
 
@@ -62,7 +62,7 @@ There are several [resources](./reference/convention-resources.md) involved in t
 
 #### API structure
 
-The [`PodConventionContext`](./reference/pod-convention-context.md) API object in the `webhooks.conventions.apps.tanzu.vmware.com` API group is the structure used for both request and response from the Convention Server.
+The [`PodConventionContext`](./reference/pod-convention-context.md) API object in the `webhooks.conventions.apps.tanzu.vmware.com` API group is the structure used for both request and response from the convention server.
 
 #### Template status
 
@@ -75,7 +75,7 @@ You can also apply multiple conventions to a single workload.
 
 The `PodIntent` reconciler lists all `ClusterPodConvention` resources and applies them serially.
 To ensure the consistency of enriched [`PodTemplateSpec`](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec),
-the list of ClusterPodConventions is sorted alphabetically by name before applying conventions.
+the list of `ClusterPodConventions`is sorted alphabetically by name before applying conventions.
 You can use strategic naming to control the order in which the conventions are applied.
 
 After the conventions are applied, the `Ready` status condition on the `PodIntent` resource is used to indicate
@@ -84,4 +84,4 @@ A list of all applied conventions is stored under the annotation `conventions.ap
 
 ## Troubleshooting
 
-Convention Controller is a Kubernetes operator and can be deployed in a cluster with other components. If you have trouble, refer to the [Troubleshooting guide](./troubleshooting.md).
+Convention controller is a Kubernetes operator and can be deployed in a cluster with other components. If you have trouble, refer to the [Troubleshooting guide](./troubleshooting.md).
