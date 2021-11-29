@@ -1,4 +1,4 @@
-# Installing on a Tanzu Kubernetes Grid v1.4 Cluster
+# Installing on a Tanzu Kubernetes Grid v1.4 cluster
 
 This topic lists prerequisites and instructions for installing Tanzu Application Platform on a
 Tanzu Kubernetes Grid v1.4 cluster.
@@ -69,7 +69,7 @@ To install kapp-controller v0.29.0 or later on Tanzu Kubernetes Grid v1.4:
     ```
 
 
-### <a id='tanzucli'></a>Install the Tanzu CLI and Plugins for Tanzu Application Platform
+### <a id='tanzucli'></a>Install the Tanzu CLI and plugins for Tanzu Application Platform
 
 Follow the **[instructions for updating Tanzu CLI](install-general.html#udpate-tkg-tce-tanzu-cli)** that was originally installed for Tanzu Kubernetes Grid and Tanzu Community Edition.
 

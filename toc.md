@@ -42,7 +42,7 @@ This is the table of contents from which the Tanzu Application Platform Document
       - [Troubleshooting](service-bindings/troubleshooting.md)
     - [Source Controller](source-controller/about.md)
       - [Troubleshooting](source-controller/troubleshooting.md)
-    - [Developer conventions](developer-conventions/about.md)
+    - [Developer Conventions](developer-conventions/about.md)
     - [Learning Center](learning-center/about.md)
         - [About Learning Center](learning-center/about-learning-center/about.md)
             - [Learning Center overview](learning-center/about-learning-center/about-learning-center.md)

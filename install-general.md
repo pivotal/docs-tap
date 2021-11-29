@@ -388,7 +388,7 @@ To install the Tanzu CLI on a Windows operating system:
 
   15. Proceed to [Clean Install Tanzu CLI Plugins](#cli-plugin-clean-install)
 
-## <a id='cli-plugin-clean-install'></a> Clean install Tanzu CLI Plugins
+## <a id='cli-plugin-clean-install'></a> Clean install Tanzu CLI plugins
 
 To perform a clean installation of the Tanzu CLI plugins:
 
@@ -546,7 +546,7 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
   17. You may now proceed with installing Tanzu Application Platform via **[Installing Part II: Profiles](install.md)**.
 
 
-## <a id='udpate-tkg-tce-tanzu-cli'></a>Instructions for updating Tanzu CLI that was previously installed for Tanzu Kubernetes Grid and/or Tanzu Community Edition
+## <a id='udpate-tkg-tce-tanzu-cli'></a>Instructions for updating Tanzu CLI previously installed for Tanzu Kubernetes Grid or Tanzu Community Edition
 
 If you'd like to maintain the Tanzu CLI core and plugins you installed previously
 for interacting with Tanzu Kubernetes Grid or Tanzu Community Edition, you only need to update/add the Tanzu Application Platform specific plugins as follows:
@@ -658,5 +658,5 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
       ```
 
   17. You may now proceed with installing Tanzu Application Platform on Tanzu Kubernetes Grid or Tanzu Community Edition. For more information, see:
-    * **[Installing Tanzu Application Platform on a Tanzu Community Edition v0.9.1 Cluster](install-tce.html#install-tap)**
-    * **[Installing Tanzu Application Platform on a Tanzu Kubernetes Grid v1.4 Cluster](install-tkg.html#install-tap)**
+    * **[Installing Tanzu Application Platform on a Tanzu Community Edition v0.9.1 cluster](install-tce.html#install-tap)**
+    * **[Installing Tanzu Application Platform on a Tanzu Kubernetes Grid v1.4 cluster](install-tkg.html#install-tap)**

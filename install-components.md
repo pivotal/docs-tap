@@ -33,11 +33,11 @@ For information, see [Installing Part I: Prerequisites, EULA, and CLI](install-g
 + [Install Tekton](#install-tekton)
 
 
-## <a id='install-prereqs'></a> Install cert-manager and FluxCD source controller
+## <a id='install-prereqs'></a> Install cert-manager and FluxCD Source Controller
 
-cert_manager and FluxCD source controller are installed as part of all profiles. If you do not want to use a profile, install them manually.
+cert_manager and FluxCD Source Controller are installed as part of all profiles. If you do not want to use a profile, install them manually.
 
-> **Note:** In future versions both cert-manager and FluxCD source controller will be shipped as packages.
+> **Note:** In future versions both cert-manager and FluxCD Source Controller will be shipped as packages.
 
 * **cert-manager**:
     * Install cert-manager by running:
@@ -772,9 +772,9 @@ To install Out of the Box Templates:
     ```
 
 
-## <a id='install-ootb-supply-chain-basic'></a> Install default Supply Chain
+## <a id='install-ootb-supply-chain-basic'></a> Install default supply chain
 
-Install the default Supply Chain, called Out of the Box Supply Chain Basic, by running:
+Install the default supply chain, called Out of the Box Supply Chain Basic, by running:
 
 1. Gather the values schema:
 
@@ -825,7 +825,7 @@ Install the default Supply Chain, called Out of the Box Supply Chain Basic, by r
 
 ## <a id='install-developer-conventions'></a> Install Developer Conventions
 
-To install developer conventions:
+To install Developer Conventions:
 
 **Prerequisite**: Convention Service installed on the cluster. See [Install Convention Service](#install-convention-service).
 
@@ -1223,6 +1223,7 @@ field in the values file.
 To install Tanzu Learning Center, see the following sections.
 
 ### Prerequisites for Learning Center
+
 **Required**
 
 - [Tanzu Application Platform Prerequisites](install-general.md#prereqs)
