@@ -29,7 +29,7 @@ Typically, the webhook gets credentials from running resources and their service
 accounts in order to authenticate against private registries at admission time.
 There are other mechanisms that the webhook uses for finding credentials.
 For more information on providing credentials, see
-[Providing credentials for the webhook](configuring.md#proving-credentials-for-the-webhook).
+[Providing credentials for the webhook](configuring.md#providing-credentials-package).
 
 ## Install
 

@@ -1712,7 +1712,7 @@ To install Supply Chain Security Tools - Sign:
     Added installed package 'image-policy-webhook' in namespace 'tap-install'
     ```
 
-   After you run the commands above the webhook will be running.
+   After you run the commands above your signing package will be running.
 
    > **Note**: This component requires extra configuration steps to work properly. See
    > [Configuring Supply Chain Security Tools - Sign](scst-sign/configuring.md)

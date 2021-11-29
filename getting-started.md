@@ -780,7 +780,7 @@ clusters by verifying signatures on artifacts prior to their deployment.
 #### Use Cases
 
 * Validate signatures from a given registry.
-* Deny unsigned or unverified images from being admitted in the cluster.
+* Deny unsigned images from being admitted in the cluster.
 
 > **Note**: this component does not verify images that are already running in a
 > cluster.
@@ -796,13 +796,14 @@ in several different ways, including:
 * Using [kpack](https://github.com/pivotal/kpack/blob/main/docs/image.md#cosign-config) v0.4.0
 * Signing existing images with [cosign](https://github.com/sigstore/cosign#quick-start)
 
-**Supplying secrets for registries protected by authentication**
+**Supplying secrets for private registries**
 
-If your images and signatures are hosted in a registry protected by authentication
-you will need to provide the webhook with credentials to pull those signatures.
+If your images and signatures are hosted in a private registry you will need to
+provide the package with credentials to pull those signatures.
 
-If your resources already have `imagePullSecrets` configured, either directly
-in their manifests or via the `ServiceAccount` they run authenticated as,
+If your resources already have `imagePullSecrets` configured, either
+[directly in their specs](https://kubernetes.io/docs/concepts/configuration/secret/#using-imagepullsecrets)
+or [via the `ServiceAccount` they run authenticated as](https://kubernetes.io/docs/concepts/configuration/secret/#arranging-for-imagepullsecrets-to-be-automatically-attached),
 no further configuration is required.
 
 However, in situations where your cluster pulls credentials from your container
@@ -813,7 +814,7 @@ runtime configuration, you can choose to provide secrets via:
 account.
 
 For more information on how to configure these secrets, see
-[Providing credentials for the webhook](configuring.md#proving-credentials-for-the-webhook).
+[Providing credentials for the package](configuring.md#providing-credentials-package).
 
 **Creating a `ClusterImagePolicy`**
 
@@ -861,9 +862,10 @@ spec:
 
 The custom resource for the policy must have a name of `image-policy`.
 
-The platform operator should add to the `spec.verification.exclude.resources.namespaces`
-section any namespaces that are known to run container images that are not
-currently signed, such as the `kube-system` namespace.
+> **Important**: The platform operator should add to the
+> `spec.verification.exclude.resources.namespaces` section any namespaces that
+> are known to run container images that are not currently signed, such as the
+> `kube-system` namespace.
 
 #### Examples and Expected Results
 
@@ -901,19 +903,19 @@ name pattern in the policy and the image is signed:
 When a developer deploys a runnable resources with an image name that matches a
 name pattern in the policy and the image is unsigned:
 * **Expected result**: resource is not created and an error message is shown in
-  the CLI output.
+  the CLI output or via API responses.
 
 When a developer deploys a runnable resource with an image name that does not
 match any patterns in the policy and the `AllowUnmatchedImages` feature gate is
 turned on:
 * **Expected result**: resource is created successfully and a warning message
-  is shown in the CLI output.
+  is shown in the CLI output or via API responses.
 
 When a developer deploys a runnable resource with an image name that does not
 match any patterns in the policy and the `AllowUnmatchedImages` feature gate is
 turned off:
 * **Expected result**: resource is not created and an error message is shown in
-  the CLI output.
+  the CLI output or via API responses.
 
 The Supply Chain Security Tools - Sign component outputs logs for the above
 scenarios. To examine the logs the platform operator can run:

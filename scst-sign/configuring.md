@@ -4,14 +4,15 @@ This component requires extra configuration steps to start verifying your
 container images properly.
 
 ## Create a `ClusterImagePolicy` Resource
-The cluster image policy is a custom resource containing the following information:
-- A list of namespaces where this policy will not be enforced.
-- A list of public keys complementary to the private keys that were used to sign
-the images.
-- A list of image name patterns against which the policy is enforced. Each image
-name pattern is mapped to the required public keys.
-- Optionally, a secret that grants authentication to a given name pattern in
-your policy.
+The cluster image policy is a custom resource containing the following properties:
+- `spec.verification.exclude.resources.namespaces`: a list of namespaces where
+this policy will not be enforced.
+- `spec.verification.keys`: a list of public keys complementary to the private
+keys that were used to sign the images.
+- `spec.verification.images[].namePattern`: image name patterns for which the
+policy is enforced. Each image name pattern is mapped to the required public
+keys and, optionally, a secret that grants authentication to the private
+registry where images and signatures that match a given pattern are stored.
 
 The following is an example `ClusterImagePolicy`:
 
@@ -35,6 +36,12 @@ spec:
         -----END PUBLIC KEY-----
     images:
     - namePattern: registry.example.org/myproject/*
+      keys:
+      - name: first-key
+    - namePattern: registry.example.org/authproject/*
+      secretRef:
+        name: secret-name
+        namespace: namespace-name
       keys:
       - name: first-key
 ```
@@ -84,18 +91,17 @@ spec:
 EOF
 ```
 
-## <a id='proving-credentials-for-the-webhook'></a> Providing credentials for the webhook
+## <a id='providing-credentials-package'></a> Providing credentials for the package
 
-There are four ways the webhook reads credentials to authenticate to registries
+There are four ways the package reads credentials to authenticate to registries
 protected by authentication, in order:
-1. Reading `imagePullSecrets` directly from the resource being admitted.
-1. Reading `imagePullSecrets` from the service account the resource is running
-as.
-1. Reading a `secretRef` from the `ClusterImagePolicy` resource applied to the
-cluster for the container image name pattern that matches the container being
-admitted.
-1. Reading `imagePullSecrets` from the `image-policy-registry-credentials`
-service account in the `image-policy-system` namespace.
+1. [Reading `imagePullSecrets` directly from the resource being admitted](https://kubernetes.io/docs/concepts/configuration/secret/#using-imagepullsecrets).
+1. [Reading `imagePullSecrets` from the service account the resource is running as](https://kubernetes.io/docs/concepts/configuration/secret/#arranging-for-imagepullsecrets-to-be-automatically-attached).
+1. [Reading a `secretRef` from the `ClusterImagePolicy` resource](#secret-ref-cluster-image-policy)
+applied to the cluster for the container image name pattern that matches the
+container being admitted.
+1. [Reading `imagePullSecrets` from the `image-policy-registry-credentials` service account](#secrets-registry-credentials-sa)
+in the `image-policy-system` namespace.
 
 If you use [containerd-configured registry credentials](https://github.com/containerd/containerd/blob/main/docs/cri/registry.md#configure-registry-credentials)
 or another mechanism that causes your resources and service accounts to not
@@ -155,7 +161,7 @@ spec:
 VMware suggests the use of a set of credentials with the least amount of
 privilege that will allow reading the signature stored in your registry.
 
-### Providing secrets for authentication in the `image-policy-registry-credentials` service account
+### <a id="secrets-registry-credentials-sa"></a> Providing secrets for authentication in the `image-policy-registry-credentials` service account
 
 If you prefer to provide your secrets in the `image-policy-registry-credentials`
 service account instead follow the steps below:
