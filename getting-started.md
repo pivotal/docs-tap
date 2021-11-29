@@ -901,7 +901,7 @@ spec:
 ```
 
 When a developer deploys a runnable resource with an image name that matches a
-name pattern in the policy and the image is signed:
+name pattern in the policy and that image is signed with an expected signature:
 * **Expected result**: resource is created successfully.
 
 When a developer deploys a runnable resources with an image name that matches a
