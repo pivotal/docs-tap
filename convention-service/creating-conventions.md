@@ -11,8 +11,8 @@ For more information, see [Supply Chain Choregrapher](../scc/about.html).
 The [Convention Service](about.md) is a key component of the supply chain 
 compositions the choreographer calls into action.
 The Convention Service enables people in operational roles to efficiently apply
-their operational expertise. They can specify the runtime best practices and policies
-(or conventions) of their organization to workloads as they are created on the platform.
+their operational expertise. They can specify the runtime best practices and conventions
+of their organization to workloads as they are created on the platform.
 The power of this component becomes evident when the conventions of an organization
 are applied consistently, at scale, and without hindering the velocity of app developers.
 
@@ -33,8 +33,9 @@ The conditional criteria governing the application of a convention is customizab
 on the evaluation of a custom Kubernetes resource called [PodIntent](reference/pod-intent.md).
 PodIntent is the vehicle by which the Convention Service as a whole delivers its value.
 
-A PodIntent is created (or updated if pre-existing) when a workload is run through a Tanzu Application Platform supply chain.
-The custom resource includes both the PodTemplateSpec (see the [Kubernetes documentation](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec)) as well as the OCI image metadata associated with a workload.
+A PodIntent is created, or updated if it already existed, when a workload is run through a Tanzu Application Platform supply chain.
+The custom resource includes both the PodTemplateSpec and the OCI image metadata associated with a
+workload. For more information on the PodTemplateSpec, see the [Kubernetes documentation](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec).
 The conditional criteria for a convention can be based on any property or value found in the PodTemplateSpec or the Open Containers Initiative (OCI) image metadata available in the PodIntent.
 
 If a convention's criteria are met, the convention server enriches the PodTemplateSpec
@@ -53,10 +54,10 @@ do so by the second component of the Convention Service, the [convention control
 
 ## <a id='conventioncontroller'></a>Convention controller
 
-The convention controller is the orchestrator of one or many convention servers deployed to the cluster.
+The convention controller controls one or many convention servers deployed to the cluster.
 When the Supply Chain Choreographer creates or updates a PodIntent for a workload, the convention
 controller retrieves the OCI image metadata from the repository
-containing the workload's image(s) and sets it in the PodIntent.
+containing the workload's images and sets it in the PodIntent.
 
 The convention controller then uses a webhook architecture to pass the PodIntent to each convention
 server deployed to the cluster. The controller orchestrates the processing of the PodIntent by
@@ -83,7 +84,7 @@ The following prerequisites must be met before a convention can be developed and
 + Tanzu Application Platform components and prerequisites are installed. For more information, see the [Installation guide](../install-general.md).
 + The default supply chain is installed. For more information, see [Tanzu Network](https://network.tanzu.vmware.com/products/ootb-supply-chain-basic/).
 + Your kubeconfig context is set to the Tanzu Application Platform-enabled cluster: `kubectl config use-context CONTEXT_NAME`.
-+ The ko CLI is installed [from GitHub](https://github.com/google/ko). (These instructions use `ko` to build an image, but if there is an existing image or build process, `ko` is optional.)
++ The ko CLI is installed [from GitHub](https://github.com/google/ko). These instructions use `ko` to build an image, but if there is an existing image or build process, `ko` is optional.
 
 ## <a id='server-behavior'></a>Define convention criteria and behavior
 
@@ -93,7 +94,7 @@ For example, adding a prometheus _sidecar_ to web apps, or adding a `workload-ty
 
 >**Note:** For the following example, the package `model` is used to define [resource](./reference/convention-resources.md) types.
 
-1. <a id='convention-1'></a>The example `server.go` sets up the `ConventionHandler` to ingest the webhook requests ([PodConventionContext](./reference/pod-convention-context.md)) from the convention controller. At this point, the handler only needs to deal with the existing `PodTemplateSpec` (see the [Kubernetes documentation](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec)) and [`ImageConfig`](./reference/image-config.md):
+1. <a id='convention-1'></a>The example `server.go` sets up the `ConventionHandler` to ingest the webhook requests ([PodConventionContext](./reference/pod-convention-context.md)) from the convention controller. Then the handler uses the existing `PodTemplateSpec` and [`ImageConfig`](./reference/image-config.md) to create custom conventions:
 
     ```go
     ...
@@ -110,7 +111,7 @@ For example, adding a prometheus _sidecar_ to web apps, or adding a `workload-ty
      Where:
 
      + `template` is the predefined `PodTemplateSpec` that the convention is going to modify.
-     + `images` are the `ImageConfig` that will be used as reference to make decisions in the conventions. In this example, the type was created within the `model` package.
+     + `images` are the `ImageConfig` used as a reference to make decisions in the conventions. In this example, the type was created within the `model` package.
 
 2. <a id='server-2'></a>The example `server.go` also configures the convention server to listen for requests:
 
@@ -183,12 +184,12 @@ For example, adding a prometheus _sidecar_ to web apps, or adding a `workload-ty
     ...
     ```
 
-4. Configure and start the web server by defining the `NewConventionServer` function, which will start the server with the defined port and current context. The server will use the `.crt` and `.key` files to handle *TLS* traffic:
+4. Configure and start the web server by defining the `NewConventionServer` function, which starts the server with the defined port and current context. The server uses the `.crt` and `.key` files to handle *TLS* traffic:
 
     ```go
     package webhook
     ...
-    // Watch will handle the security by certificates
+    // Watch handles the security by certificates
     type certWatcher struct {
         CrtFile string
         KeyFile string
@@ -245,7 +246,7 @@ Any property or value within the `PodTemplateSpec` or OCI image metadata associa
 
 ### Matching criteria by labels or annotations
 
-When using labels or annotations to define whether a convention should be applied, the server will check the `PodTemplateSpec` of workloads:
+When using labels or annotations to define whether a convention should be applied, the server checks the `PodTemplateSpec` of workloads:
 
    + PodTemplateSpec
 
@@ -267,12 +268,12 @@ When using labels or annotations to define whether a convention should be applie
         ...
         func conventionHandler(template *corev1.PodTemplateSpec, images []model.ImageConfig) ([]string, error) {
             c:= []string{}
-            // This convention will be appled if a specific label is present
+            // This convention is appled if a specific label is present
             if lv, le := template.Labels["awesome-label"]; le && lv == "awesome-value" {
                 // DO COOl STUFF
                 c = append(c, "awesome-label-convention")
             }
-            // This convention will be appled if a specific annotation is present
+            // This convention is appled if a specific annotation is present
             if av, ae := template.Annotations["awesome-annotation"]; ae && av == "awesome-value" {
                 // DO COOl STUFF
                 c = append(c, "awesome-annotation-convention")
@@ -323,7 +324,7 @@ When using environment variables to define whether the convention is applicable,
 
 ### <a id='ImageMetadata'></a>Matching criteria by image metadata
 
-The convention controller should be used with [OCI Image](./reference/image-config.md) so it can be used to get metadate information. The ImageConfig is an struct that contains the configuration of an image, similar to the output of `docker inspect hello-world`.
+You should use the convention controller with [OCI Image](./reference/image-config.md) in order to get metadata information. The ImageConfig is a structure that contains the configuration of an image, similar to the output of `docker inspect hello-world`.
 
 ## <a id='install'></a> Configure and install the convention server
 
@@ -490,7 +491,7 @@ To deploy a convention server:
 
 1. Build and install the convention.
 
-    + If the convention needs to be built and deployed, use the `ko` ([on GitHub](https://github.com/google/ko)) tool to do so:
+    + If the convention needs to be built and deployed, use the `ko` tool [on GitHub](https://github.com/google/ko):
 
         ```bash
         ko apply -f dist/server.yaml
