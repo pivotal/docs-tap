@@ -1,10 +1,10 @@
 # Security for Supply Chain Security Tools - Store
 
-## Application Security:
+## Application Security
 
 ### TLS Encryption
 
-The Store requires TLS connection. If certificates are not provided the store will not start. The Store supports TLS v1.2 and TLS v1.3. The Store does not support TLS 1.0, so a downgrade attack cannot happen. TLS 1.0 is prohibited under Payment Card Industry Data Security Standard (PCI DSS).
+Supply Chain Security Tools - Store requires TLS connection. If certificates are not provided the application will not start. It supports TLS v1.2 and TLS v1.3. It does not support TLS 1.0, so a downgrade attack cannot happen. TLS 1.0 is prohibited under Payment Card Industry Data Security Standard (PCI DSS).
 
 ##### Cryptographic Algorithms:
 
@@ -27,7 +27,7 @@ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 
 ### Access Controls
 
-The Store uses [kube-rbac-proxy](https://github.com/brancz/kube-rbac-proxy) as the only entry point to the Store's API. Authentication and Authorization must be completed successfully via the `kube-rbac-proxy` before the Store's API is accessible.
+Supply Chain Security Tools - Store uses [kube-rbac-proxy](https://github.com/brancz/kube-rbac-proxy) as the only entry point to its API. Authentication and Authorization must be completed successfully via the `kube-rbac-proxy` before its API is accessible.
 
 ##### Authentication
 
@@ -37,35 +37,35 @@ To create an access token, please refer to the [Create Service Account Access To
 
 ##### Authorization
 
-The `kube-rbac-proxy` uses [Subject Access Review](https://kubernetes.io/docs/reference/access-authn-authz/authorization/) to ensure the user has access to certain operations. `Subject Access Review` is a Kubernetes API that uses [Kubernetes RBAC](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) to deternmine if the user can perform the current action.
+The `kube-rbac-proxy` uses [Subject Access Review](https://kubernetes.io/docs/reference/access-authn-authz/authorization/) to ensure the user has access to certain operations. `Subject Access Review` is a Kubernetes API that uses [Kubernetes RBAC](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) to deternmine if the user can perform specific actions. Please refer to the [Create Service Account Access Token doc](create_service_account_access_token.md).
 
-Please refer to the [Create Service Account Access Token Docs](create_service_account_access_token.md)
+There are only two roles that are supported: `Read Only` cluster role and `Read and Write` cluster role. These cluster roles are deployed by default.
+Additionally, a service account is created and bound to the `Read and Write` cluster role by default. If you do not want this service account, set `add_default_rw_service_account` property to `"false"` in the `scst-store-values.yaml` file [during deployment](../install-components.md#install-scst-store).
 
-There are only two roles that are supported: `Read Only` cluster role and `Read and Write` cluster role. These cluster roles are created by default.
-Additionally, a service account is created and bound to the `Read and Write` cluster role by default. If you do not want this service account, set `add_default_rw_service_account` property to `"false"` in the `scst-store-values.yaml` file.
-There is no default service account installed with `Read Only` cluster role. The user will need to create their own service account and cluster role binding to bind to the `Read Only` role.
+There is no default service account bound to the `Read Only` cluster role. The user will need to create their own service account and cluster role binding to bind to the `Read Only` role.
 
 *** Note: There is no support for roles with access to only specific types of resources (ie. images, packages, vulnerabilities, etc)
 
 ## Container Security
 
 ### Non-root User
-All containers shipped do not use root user account, or accounts with root access. Using Kubernetes Security Context ensures that applications do not run with root user.
+All containers shipped do not use root user account, nor accounts with root access. Using Kubernetes Security Context ensures that applications do not run with root user.
 
-Security Context for the Store:
-```
-    allowPrivilegeEscalation: false
-    runAsUser: 65532
-    fsGroup: 65532
-```
-Security Context for the Postgres DB POD:
-```
-    allowPrivilegeEscalation: false
-    runAsUser: 999
-    fsGroup: 999
+Security Context for the API server:
+```yaml
+allowPrivilegeEscalation: false
+runAsUser: 65532
+fsGroup: 65532
 ```
 
-*** Note: 65532 is the uuid for the "nobody" user. 999 is the uuid for the "postgres" user.
+Security Context for the Postgres DB pod:
+```yaml
+allowPrivilegeEscalation: false
+runAsUser: 999
+fsGroup: 999
+```
+
+*** Note: `65532` is the uuid for the "nobody" user. `999` is the uuid for the "postgres" user.
 
 ## Security Scanning
 
@@ -73,7 +73,7 @@ There are two types of security scans that are performed before every release.
 
 ### Static Application Security Testing (SAST)
 
-A Coverity Scan is run on the source code of the Store, CLI, and all their dependencies. There are no high or critical items outstanding at the time of release.
+A Coverity Scan is run on the source code of the API server, CLI, and all their dependencies. There are no high or critical items outstanding at the time of release.
 
 ### Software Composition Analysis (SCA)
 
