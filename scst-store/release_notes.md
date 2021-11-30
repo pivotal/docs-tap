@@ -39,6 +39,7 @@ See [Troubleshooting and Known Issues](known_issues.md).
 ### CVEs
 
 No High or Critical CVEs found in any of the components. Scanned components using Black Duck Binary Analysis and Grype. 
+
 See [SCA Scanning Results](sca_scans/CVE.md)
 
 ## v1.0.0-beta.1
