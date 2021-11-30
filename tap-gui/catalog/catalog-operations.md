@@ -110,8 +110,23 @@ You can check the status of this update with:
 ```shell
 tanzu package installed list
 ```
+## Updating Software Catalogs
+### Registering Components
+You can update your Software Catalog with new entities without re-deploying the entire tap-gui package. To do you so, follow these steps:
+​
+1. Navigate to your Software Catalog page.
+2. Click the "Register Entity" button on the top right of the page.
+3. Link to an existing entity file to start tracking your entity. Be sure to enter the full path.
+4. Import the entities and view them in your Software Catalog page.
+​
+### Unregistering Components
+To unregister an entity, follow these steps:
+1. Navigate to your Software Catalog page.
+2. Select the entity (Component, Group, User, etc.) you would like to unregister.
+3. Click the three dots on the top right of the page, then the "Unregister ..." button.
+4. View your updated Software Catalog page.
 
-## Updating your organization catalog location
+### Updating your organization catalog location on Git
 
 To update the components of a catalog through static configuration, update the catalog's location to the `app_config` section of `tap-gui-values.yaml` (or your existing custom values file used at installation time):
 
