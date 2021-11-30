@@ -31,7 +31,7 @@ There are a few things that will need to be done to create and install conventio
 
 + The Kubectl CLI has been [installed](https://kubernetes.io/docs/tasks/tools/)
 + Tanzu Application Platform components have been installed on a k8s cluster [installation guide](../install-general.md)
-+ The default supply chain is installed. See [Tanzu Network](https://network.tanzu.vmware.com/products/ootb-supply-chain-basic/).
++ The default supply chain is installed. See [Tanzu Network](https://network.tanzu.vmware.com/products/default-supply-chain/).
 + Your kubeconfig context has been set to the prepared cluster `kubectl config use-context CONTEXT_NAME`
 + The ko CLI has been installed [from github](https://github.com/google/ko). These instructions use `ko` to build an image. If there is an existing image or build process, `ko` is optional.
 
