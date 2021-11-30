@@ -4,8 +4,6 @@ This topic contains release notes for Supply Chain Security Tools - Store.
 
 ## v1.0.0-beta.2
 
-**Release Date**: November 26, 2021
-
 ### Software component versions
 
 * PostgresSQL 13.4
@@ -40,6 +38,7 @@ See [Troubleshooting and Known Issues](known_issues.md).
 
 ### CVEs
 
+No High or Critical CVEs found in any of the components. Scanned components using Black Duck Binary Analysis and Grype. 
 See [SCA Scanning Results](sca_scans/CVE.md)
 
 ## v1.0.0-beta.1

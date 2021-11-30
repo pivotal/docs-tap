@@ -1,4 +1,6 @@
 # SCA Scanning Results
+## Date:
+November 26, 2021
 
 ## Scan Type:
 Software Composition Analysis scanning
@@ -13,18 +15,18 @@ Software Composition Analysis scanning
 * BDBA version SDL 4.2
 * Grype version 0.25.1
 
-## CVEs
+## CVEs:
 ### BDBA
-No vulnerabilities found in both the binaries of metadata-store and CLI.
+No vulnerabilities found in both the binaries of the API backend and CLI.
 
-Links to the reports on appcheck:
-* [metadata-store report](store-bdba-scan-2021-11-26.pdf)
+See BDBA reports:
+* [API backend report](store-bdba-scan-2021-11-26.pdf)
 * [CLI report](cli-bdba-scan-2021-11-26.pdf)
 
 ### Grype
-No vulnerabilities found through scanning the sources of metadata-store, client lib, and CLI
+No vulnerabilities found through scanning the sources of the API backend, client lib, and CLI
 
-The following CVEs were found through scanning the metadata-store image:
+The following CVEs were found through scanning the API backend image:
 ```
 NAME   INSTALLED        FIXED-IN  VULNERABILITY   SEVERITY   
 libc6  2.27-3ubuntu1.4            CVE-2015-8985   Negligible  
