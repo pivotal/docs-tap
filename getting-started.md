@@ -818,7 +818,7 @@ runtime configuration, you can choose to provide secrets via:
 account.
 
 For more information on how to configure these secrets, see
-[Providing credentials for the package](configuring.md#providing-credentials-package).
+[Providing credentials for the package](scst-sign/configuring.md#providing-credentials-package).
 
 **Creating a `ClusterImagePolicy`**
 
