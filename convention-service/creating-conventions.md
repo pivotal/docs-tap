@@ -3,9 +3,9 @@ This document describes how to create and deploy custom conventions to the Tanzu
 
 ## <a id='intro'></a>Introduction
 
-Tanzu Application Platform makes it easy for developers to transform their code
+Tanzu Application Platform helps developers transform their code
 into containerized workloads with a URL.
-This transformation is managed by the Supply Chain Choreographer for Tanzu.
+The Supply Chain Choreographer for Tanzu manages this transformation.
 For more information, see [Supply Chain Choregrapher](../scc/about.html). 
 
 The [Convention Service](about.md) is a key component of the supply chain 
@@ -28,29 +28,27 @@ distinct components of the Convention Service: the
 
 The convention server is the component that applies a convention that has been defined on the server.
 Each convention server can host one or more conventions.
-The application of each convention by a convention server can be controlled conditionally.
+Applying individual conventions by a convention server can be controlled conditionally.
 The conditional criteria governing the application of a convention is customizable and can be based
 on the evaluation of a custom Kubernetes resource called [PodIntent](reference/pod-intent.md).
 PodIntent is the vehicle by which the Convention Service as a whole delivers its value.
 
 A PodIntent is created, or updated if it already existed, when a workload is run through a Tanzu Application Platform supply chain.
 The custom resource includes both the PodTemplateSpec and the OCI image metadata associated with a
-workload. For more information on the PodTemplateSpec, see the [Kubernetes documentation](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec).
+workload. For more information about the PodTemplateSpec, see the [Kubernetes documentation](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec).
 The conditional criteria for a convention can be based on any property or value found in the PodTemplateSpec or the Open Containers Initiative (OCI) image metadata available in the PodIntent.
 
 If a convention's criteria are met, the convention server enriches the PodTemplateSpec
 in the PodIntent. The convention server also updates the `status` section of the PodIntent
-with the name of the convention that's been applied.
-So if needed, you can figure out which conventions have been applied to the workload after the fact.
+with the name of the applied convention.
+So if needed, you can figure out which conventions were applied to the workload after the fact.
 
-To provide flexibility in how conventions are organized, multiple convention servers
-can be deployed. Each server can contain a convention or set of conventions focused on a
+To provide flexibility in how conventions are organized, you can deploy multiple convention servers. Each server can contain a convention or set of conventions focused on a
 specific class of runtime modifications, on a specific language framework, and so on. How
 the conventions are organized/grouped and deployed is up to the author and the needs of
 their organization.
 
-Convention servers deployed to the cluster won't take action unless triggered to
-do so by the second component of the Convention Service, the [convention controller](#conventioncontroller).
+Convention servers deployed to the cluster won't take action unless triggered by the second component of the Convention Service, the [convention controller](#conventioncontroller).
 
 ## <a id='conventioncontroller'></a>Convention controller
 
@@ -61,24 +59,24 @@ containing the workload's images and sets it in the PodIntent.
 
 The convention controller then uses a webhook architecture to pass the PodIntent to each convention
 server deployed to the cluster. The controller orchestrates the processing of the PodIntent by
-the convention servers sequentially, based on the `priority` value that's set on the convention server.
+the convention servers sequentially, based on the `priority` value set on the convention server.
 For more information, see [ClusterPodConvention](reference/cluster-pod-convention.html).
 
 After all convention servers are finished processing a PodIntent for a workload,
 the convention controller updates the PodIntent with the latest version of the PodTemplateSpec and sets
 `PodIntent.status.conditions[].status=True` where `PodIntent.status.conditions[].type=Ready`.
-This status change signals the Supply Chain Choreographer that the Convention Service is finished with it's work.
+This status change signals the Supply Chain Choreographer that the Convention Service is finished with its work.
 The status change also executes whatever steps are waiting in the supply chain.
 
 ## <a id='prereqs'></a>Getting started
 
-With this high-level understanding of the Convention Service components and how they work together within the context of the Tanzu Application Platform supply chain, let's look at how to create and deploy a custom convention.
+So far we've gained a high-level understanding of the Convention Service components and how they work together within the context of the Tanzu Application Platform supply chain. Now let's look at how to create and deploy a custom convention.
 
 >**Note:** This document covers developing conventions using [GOLANG](https://golang.org/), but this can be done using other languages by following the specs.
 
 ## <a id='prereqs'></a>Prerequisites
 
-The following prerequisites must be met before a convention can be developed and deployed:
+You'll need to meet the following prerequisites before developing and deploying a convention:
 
 + The Kubernetes command line tool (Kubectl) CLI is installed. For more information, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/tools/).
 + Tanzu Application Platform components and prerequisites are installed. For more information, see the [Installation guide](../install-general.md).
@@ -361,7 +359,7 @@ The `server.yaml` defines the Kubernetes components that makes up the convention
     ...
     ```
 
-3. A self-signed [`Certificate`](https://cert-manager.io/docs/concepts/certificate/) is created (optional):
+3. A self-signed `Certificate` is created (optional). For more information on certificates, see the [cert-manager documentation](https://cert-manager.io/docs/concepts/certificate/).
 
     ```yaml
     ...
@@ -497,7 +495,7 @@ To deploy a convention server:
         ko apply -f dist/server.yaml
         ```
 
-    + If you're using a different tool to build the image, you can apply the configuration by using either `kubectl` or `kapp`:
+    + If you're using a different tool to build the image, you can apply the configuration by using either kubectl or `kapp`:
 
        kubectl
 
