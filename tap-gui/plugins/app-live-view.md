@@ -19,16 +19,18 @@ It gives a level of control to the users to change some parameters, such as envi
 
 ## Entry point to Application Live View plugin
 
-App Live View is a plugin in Tanzu Application Platform GUI. In order to use the App Live View plugin, 
-- Select the relevant component under the `Organization Catalog` in TAP GUI
-- Select the desired workload under `Workloads` tab
-- Select the desired pod from the `Pods` section under `Workloads` tab
-- The user will be able to see all the details, do some lightweight troubleshooting and interact with the application in certain boundaries under the `Live View` section
+App Live View is a plugin in Tanzu Application Platform GUI. In order to use the App Live View plugin,
+
++ Select the relevant component under the `Organization Catalog` in TAP GUI
++ Select the desired workload under `Workloads` tab
++ Select the desired pod from the `Pods` section under `Workloads` tab
++ The user will be able to see all the details, do some lightweight troubleshooting and interact with the application in certain boundaries under the `Live View` section
 
 
 ## Application Live View Pages
 
-### Details page
+
+## Details page
 
 This is the default page loaded in the `Live View` section. This page gives a tabular overview containing the application name, instance id, location, actuator location, health endpoint, direct actuator access, framework , version, new patch version, new major version, build version. The user can navigate between `Information Categories` by selecting from the drop down on the top right corner of the page.
 
@@ -65,7 +67,7 @@ The page includes the below features:
 
 ![Environment Page in UI](./images/environment-1.png)
 
-![Environment Page in UI](./images/environment-2.png)
+![Environment Page Editable in UI](./images/environment-2.png)
 
 
 ### Log Levels Page
@@ -81,7 +83,7 @@ The _Reset All_ button on top right corner of the page resets all the loggers to
 
 
 ### Threads Page
-    
+
 To navigate to the Threads page, the user should select the `Threads` option from the `Information Category` dropdown.
 This page displays all details related to JVM threads and running processes of the application.
 This tracks live threads and daemon threads real-time. It is a snapshot of different thread states.
@@ -93,7 +95,7 @@ The page also has a feature to download thread dump for analysis purposes.
 
 ![Threads Page in UI](./images/threads-1.png)
 
-![Threads Page in UI](./images/threads-2.png)
+![Thread Details Page in UI](./images/threads-2.png)
 
 
 ### Memory Page
@@ -112,11 +114,11 @@ _Please keep in mind that this graphical visualization happens in real-time and 
 To navigate to the Request Mappings page, the user should select the `Request Mappings` option from the `Information Category` dropdown.
 This page provides information about the application’s request mappings. For each of the mapping, it displays the request handler method. The user can view more details of the request mapping such as header metadata of the application, i.e produces, consumes and HTTP method by clicking on the mapping. The search feature enables the user to search on the request mapping or the method. The toggle `/actuator/** Request Mappings` displays the actuator related mappings of the application. 
 
-> **_NOTE:_** When application actuator endpoint is exposed on management.server.port, the application does not return any actuator request mappings data in the context. 
+> **_NOTE:_** When application actuator endpoint is exposed on management.server.port, the application does not return any actuator request mappings data in the context. In this case, a message is displayed when the actuator toggle is enabled.
 
 ![Request Mappings Page in UI](./images/request-mappings-1.png)
 
-![Request Mappings Page in UI](./images/request-mappings-2.png)
+![Request Mappings Details Page in UI](./images/request-mappings-2.png)
 
 
 ### HTTP Requests Page
@@ -135,7 +137,7 @@ The toggle '/actuator/**' on the top right corner of the page displays the actua
 
 ![Http Requests Page in UI](./images/http-requests-1.png)
 
-![Http Requests Page in UI](./images/http-requests-2.png)
+![Http Request Details Page in UI](./images/http-requests-2.png)
 
 
 ### Caches Page
@@ -198,4 +200,4 @@ The actuator page provides a tree view of the actuator data. The user can choose
 ## Troubleshoot
 
 You might run into cases where a workload running on your cluster does not show up in the Application Live View overview, the detail pages do not load any information from the running process, or similar issues.
-Please refer to the troubleshooting section of the Application Live View documentation for details on how to solve these issues.
+Please refer to the [Troubleshooting section](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-troubleshooting.html) of the Application Live View documentation for details on how to solve these issues.

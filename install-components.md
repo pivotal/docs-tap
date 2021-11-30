@@ -942,22 +942,21 @@ To install Application Live View:
     $ tanzu package available list appliveview.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for appliveview.tanzu.vmware.com...
       NAME                          VERSION        RELEASED-AT
-      appliveview.tanzu.vmware.com  1.0.0-build.1  2021-11-24T00:00:00Z
+      appliveview.tanzu.vmware.com  1.0.0-build.2  2021-11-29T00:00:00Z
     ```
 
 1. (Optional) To make changes to the default installation settings, run:
 
     ```bash
-    tanzu package available get appliveview.tanzu.vmware.com/1.0.0-build.1 --values-schema --namespace tap-install
+    tanzu package available get appliveview.tanzu.vmware.com/1.0.0-build.2 --values-schema --namespace tap-install
     ```
 
     For example:
 
     ```bash
-    $ tanzu package available get appliveview.tanzu.vmware.com/1.0.0-build.1 --values-schema --namespace tap-install
-    - Retrieving package details for appliveview.tanzu.vmware.com/1.0.0-build.1...
+    $ tanzu package available get appliveview.tanzu.vmware.com/1.0.0-build.2 --values-schema --namespace tap-install
+    - Retrieving package details for appliveview.tanzu.vmware.com/1.0.0-build.2...
       KEY                   DEFAULT        TYPE    DESCRIPTION
-      service_type          ClusterIP      string  The service type for the Application Live View server can be LoadBalancer, NodePort, or ClusterIP
     ```
 
     For more information about values schema options, see the individual product documentation.
@@ -968,26 +967,20 @@ To install Application Live View:
 
    ```yaml
    ---
-   service_type: ClusterIP
    ```
-
-   Where:
-
-   - `service_type` is the Kubernetes service type for the Application Live View server.
-   This can be LoadBalancer, NodePort, or ClusterIP.
 
    The application live view server and its components are deployed in `app-live-view` namespace by default. The connector is deployed as a `DaemonSet` and there is one connector instance per node in the Kubernetes cluster. This instance is responsible for observing all the apps running on that node.
 
 1. Install the package by running:
 
     ```console
-    tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 1.0.0-build.1 -n tap-install -f app-live-view-values.yaml
+    tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 1.0.0-build.2 -n tap-install -f app-live-view-values.yaml
     ```
 
     For example:
 
     ```console
-    $ tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 1.0.0-build.1 -n tap-install -f app-live-view-values.yaml
+    $ tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 1.0.0-build.2 -n tap-install -f app-live-view-values.yaml
     - Installing package 'appliveview.tanzu.vmware.com'
     | Getting package metadata for 'appliveview.tanzu.vmware.com'
     | Creating service account 'app-live-view-tap-install-sa'
@@ -1016,7 +1009,7 @@ To install Application Live View:
     | Retrieving installation details for cc...
     NAME:                    app-live-view
     PACKAGE-NAME:            appliveview.tanzu.vmware.com
-    PACKAGE-VERSION:         1.0.0-build.1
+    PACKAGE-VERSION:         1.0.0-build.2
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
@@ -1024,8 +1017,9 @@ To install Application Live View:
     STATUS should be `Reconcile succeeded`.
 
 
-The Application Live View UI plugin is part of Tanzu Application Platform GUI. To access the Application Live View UI, 
-   see the [ Application Live View in Tanzu Application Platform GUI ](https://docs-staging.vmware.com/en/Tanzu-Application-Platform/0.4/tap/GUID-tap-gui-plugins-app-live-view.html).
+The Application Live View UI plugin is part of Tanzu Application Platform GUI. 
+To access the Application Live View UI, 
+   see the [ Application Live View in Tanzu Application Platform GUI ](https://docs-staging.vmware.com/en/Tanzu-Application-Platform/0.4/tap/GUID-tap-gui-plugins-app-live-view.html#entry-point-to-ap[…]live-view-plugin-1).
 
 
 
@@ -2049,7 +2043,7 @@ Use the following procedure to verify that the packages are installed.
     NAME                     PACKAGE-NAME                                       PACKAGE-VERSION  STATUS
     api-portal               api-portal.tanzu.vmware.com                        1.0.3            Reconcile succeeded
     app-accelerator          accelerator.apps.tanzu.vmware.com                  0.4.0            Reconcile succeeded
-    app-live-view            appliveview.tanzu.vmware.com                       1.0.0-build.1     Reconcile succeeded
+    app-live-view            appliveview.tanzu.vmware.com                       1.0.0-build.2    Reconcile succeeded
     cartographer             cartographer.tanzu.vmware.com                      0.0.7            Reconcile succeeded
     cloud-native-runtimes    cnrs.tanzu.vmware.com                              1.0.3            Reconcile succeeded
     convention-controller    controller.conventions.apps.tanzu.vmware.com       0.4.2            Reconcile succeeded
