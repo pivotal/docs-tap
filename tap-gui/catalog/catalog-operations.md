@@ -3,7 +3,7 @@
 This guide will focus on how you can set up software catalogs. We recommend that you get familiar with Backstage and their software catalog system before proceeding. The [Software Catalog Overview](https://backstage.io/docs/features/software-catalog/software-catalog-overview) and [Catalog Configuration](https://backstage.io/docs/features/software-catalog/configuration) pages are good places to start.
 
 ## Adding catalog entities
-This section will describe how you can format your own catalog. Creating catalogs consists of building metadata YAML files stored together with the code. This information is read from a Git-compatible repository consisting of these YAML catalog definition files. Changes made to the catalog definitions on your Git infrastructure are automatically reflected every 200 seconds. For each catalog entity kind you create, there is a file format you must follow. Below is an overview of a few core entities, but details about all types of entities can be found [here](https://backstage.io/docs/features/software-catalog/descriptor-format). We also have an example blank catalog [here](https://gitlab.eng.vmware.com/project-star/pstar-backstage-poc/-/tree/master/sample-catalogs/blank) for now, to use as a loose guide for creating user, group, system, and main component YAML files.
+This section will describe how you can format your own catalog. Creating catalogs consists of building metadata YAML files stored together with the code. This information is read from a Git-compatible repository consisting of these YAML catalog definition files. Changes made to the catalog definitions on your Git infrastructure are automatically reflected every 200 seconds or when manually registered. For each catalog entity kind you create, there is a file format you must follow. Below is an overview of a few core entities, but details about all types of entities can be found [here](https://backstage.io/docs/features/software-catalog/descriptor-format). We also have an example blank catalog [here](https://gitlab.eng.vmware.com/project-star/pstar-backstage-poc/-/tree/master/sample-catalogs/blank) for now, to use as a loose guide for creating user, group, system, and main component YAML files.
 
 Relationship Diagram:
 ![Tanzu Application Platform GUI Relationships](../images/tap-gui-relationships.jpg)
@@ -84,32 +84,6 @@ spec:
 
 More information about and examples for Components can be found in Backstage documentation [here](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component).
 
-## Adding an additional catalog location
-
-To register the components of a catalog through static configuration, add the catalog's location to the `app_config` section of `tap-gui-values.yaml` (or your existing custom values file used at installation time):
-
-```yaml
-catalog:
-  locations:
-    - type: url
-      target: <Existing Catalog Location>
-    - type: url
-      target: <Additional Catalog Location>
-```
-
-Next, update the package to include the catalog:
-
-```shell
-tanzu package installed update backstage \
-  --version <package-version> \
-  -f <values-file>
-```
-
-You can check the status of this update with:
-
-```shell
-tanzu package installed list
-```
 ## Updating Software Catalogs
 ### Registering Components
 You can update your Software Catalog with new entities without re-deploying the entire tap-gui package. To do you so, follow these steps:
@@ -159,6 +133,34 @@ whenever you navigate to the file through the browser, otherwise the catalog pro
 *Example*:
 - Raw url:  https://raw.githubusercontent.com/user/repo/catalog.yaml
 - Target URL for app-config: https://github.com/user/repo/blob/main/catalog.yaml
+
+
+## Adding an additional catalog location
+
+To register the components of a catalog through static configuration, add the catalog's location to the `app_config` section of `tap-gui-values.yaml` (or your existing custom values file used at installation time):
+
+```yaml
+catalog:
+  locations:
+    - type: url
+      target: <Existing Catalog Location>
+    - type: url
+      target: <Additional Catalog Location>
+```
+
+Next, update the package to include the catalog:
+
+```shell
+tanzu package installed update backstage \
+  --version <package-version> \
+  -f <values-file>
+```
+
+You can check the status of this update with:
+
+```shell
+tanzu package installed list
+```
 
 ## Installing demo apps and their catalogs
 If you want to set up one of our demos, you can choose between a blank or a sample catalog.
