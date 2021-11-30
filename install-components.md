@@ -33,11 +33,11 @@ For information, see [Installing Part I: Prerequisites, EULA, and CLI](install-g
 + [Install Tekton](#install-tekton)
 
 
-## <a id='install-prereqs'></a> Install cert-manager and FluxCD source controller
+## <a id='install-prereqs'></a> Install cert-manager and FluxCD Source Controller
 
-cert_manager and FluxCD source controller are installed as part of all profiles. If you do not want to use a profile, install them manually.
+cert_manager and FluxCD Source Controller are installed as part of all profiles. If you do not want to use a profile, install them manually.
 
-> **Note:** In future versions both cert-manager and FluxCD source controller will be shipped as packages.
+> **Note:** In future versions both cert-manager and FluxCD Source Controller will be shipped as packages.
 
 * **cert-manager**:
     * Install cert-manager by running:
@@ -359,10 +359,7 @@ To install Convention Controller:
 
 Use the following procedure to install Source Controller.
 
-**Prerequisite**: Fluxcd Source Controller installed on the cluster.
-
-See [Install cert-manager and FluxCD source controller](#install-prereqs).
-
+**Prerequisite**: Cert-manager installed on the cluster.
 
 To install Source Controller:
 
@@ -772,9 +769,9 @@ To install Out of the Box Templates:
     ```
 
 
-## <a id='install-ootb-supply-chain-basic'></a> Install default Supply Chain
+## <a id='install-ootb-supply-chain-basic'></a> Install default supply chain
 
-Install the default Supply Chain, called Out of the Box Supply Chain Basic, by running:
+Install the default supply chain, called Out of the Box Supply Chain Basic, by running:
 
 1. Gather the values schema:
 
@@ -825,7 +822,7 @@ Install the default Supply Chain, called Out of the Box Supply Chain Basic, by r
 
 ## <a id='install-developer-conventions'></a> Install Developer Conventions
 
-To install developer conventions:
+To install Developer Conventions:
 
 **Prerequisite**: Convention Service installed on the cluster. See [Install Convention Service](#install-convention-service).
 
@@ -944,24 +941,22 @@ To install Application Live View:
     ```bash
     $ tanzu package available list appliveview.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for appliveview.tanzu.vmware.com...
-      NAME                          VERSION  RELEASED-AT
-      appliveview.tanzu.vmware.com  0.3.0-build6  2021-10-26T00:00:00Z
+      NAME                          VERSION        RELEASED-AT
+      appliveview.tanzu.vmware.com  1.0.0-build.2  2021-11-29T00:00:00Z
     ```
 
 1. (Optional) To make changes to the default installation settings, run:
 
     ```bash
-    tanzu package available get appliveview.tanzu.vmware.com/0.3.0-build6 --values-schema --namespace tap-install
+    tanzu package available get appliveview.tanzu.vmware.com/1.0.0-build.2 --values-schema --namespace tap-install
     ```
 
     For example:
 
     ```bash
-    $ tanzu package available get appliveview.tanzu.vmware.com/0.3.0-build6 --values-schema --namespace tap-install
-    - Retrieving package details for appliveview.tanzu.vmware.com/0.3.0-build6...
+    $ tanzu package available get appliveview.tanzu.vmware.com/1.0.0-build.2 --values-schema --namespace tap-install
+    - Retrieving package details for appliveview.tanzu.vmware.com/1.0.0-build.2...
       KEY                   DEFAULT        TYPE    DESCRIPTION
-      connector_namespaces  [default]      array   The namespaces in which ALV monitors the users apps
-      service_type          ClusterIP      string  The service type for the Application Live View server can be LoadBalancer, NodePort, or ClusterIP
     ```
 
     For more information about values schema options, see the individual product documentation.
@@ -972,30 +967,20 @@ To install Application Live View:
 
    ```yaml
    ---
-   connector_namespaces: [default]
-   service_type: ClusterIP
    ```
 
-   Where:
-
-   - `connector_namespaces` is a list of namespaces where you want
-   Application Live View to monitor your apps. An instance of the
-   Application Live View Connector will be deployed to each of those namespaces.
-   - `service_type` is the Kubernetes service type for the Application Live View server.
-   This can be LoadBalancer, NodePort, or ClusterIP.
-
-   The application live view server and its components are deployed in `app-live-view` namespace by default.
+   The application live view server and its components are deployed in `app-live-view` namespace by default. The connector is deployed as a `DaemonSet` and there is one connector instance per node in the Kubernetes cluster. This instance is responsible for observing all the apps running on that node.
 
 1. Install the package by running:
 
     ```console
-    tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.3.0-build6 -n tap-install -f app-live-view-values.yaml
+    tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 1.0.0-build.2 -n tap-install -f app-live-view-values.yaml
     ```
 
     For example:
 
     ```console
-    $ tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.3.0-build6 -n tap-install -f app-live-view-values.yaml
+    $ tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 1.0.0-build.2 -n tap-install -f app-live-view-values.yaml
     - Installing package 'appliveview.tanzu.vmware.com'
     | Getting package metadata for 'appliveview.tanzu.vmware.com'
     | Creating service account 'app-live-view-tap-install-sa'
@@ -1009,7 +994,7 @@ To install Application Live View:
     ```
 
     For more information about Application Live View,
-    see the [Application Live View documentation](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.3/docs/GUID-index.html).
+    see the [Application Live View documentation](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-index.html).
 
 1. Verify the package install by running:
 
@@ -1024,7 +1009,7 @@ To install Application Live View:
     | Retrieving installation details for cc...
     NAME:                    app-live-view
     PACKAGE-NAME:            appliveview.tanzu.vmware.com
-    PACKAGE-VERSION:         0.3.0
+    PACKAGE-VERSION:         1.0.0-build.2
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
@@ -1032,43 +1017,11 @@ To install Application Live View:
     STATUS should be `Reconcile succeeded`.
 
 
-To access the Application Live View UI:
+The Application Live View UI plugin is part of Tanzu Application Platform GUI. 
+To access the Application Live View UI, 
+   see the [ Application Live View in Tanzu Application Platform GUI ](https://docs-staging.vmware.com/en/Tanzu-Application-Platform/0.4/tap/GUID-tap-gui-plugins-app-live-view.html#entry-point-to-ap[…]live-view-plugin-1).
 
-1. List the resources deployed in the `app-live-view` namespace by running:
 
-    ```bash
-    kubectl get -n app-live-view service,deploy,pod
-    ```
-
-    The output will be similar to the following:
-
-    ```
-    NAME                                 TYPE           CLUSTER-IP       EXTERNAL-IP                                                              PORT(S)        AGE
-    service/application-live-view-5112   LoadBalancer   10.103.108.215   a031c3c2d27334cf1857546e59a5b42c-305213456.us-east-2.elb.amazonaws.com   80:31999/TCP   28h
-    service/application-live-view-7000   ClusterIP      10.104.55.249    <none>                                                                   7000/TCP       28h
-    service/appliveview-webhook          ClusterIP      10.98.15.167     <none>                                                                   443/TCP        28h
-
-    NAME                                                   READY   UP-TO-DATE   AVAILABLE   AGE
-    deployment.apps/application-live-view-crd-controller   1/1     1            1           28h
-    deployment.apps/application-live-view-server           1/1     1            1           28h
-    deployment.apps/appliveview-webhook                    1/1     1            1           28h
-
-    NAME                                                        READY   STATUS    RESTARTS   AGE
-    pod/application-live-view-crd-controller-69bcb99d7f-dkqlf   1/1     Running   0          28h
-    pod/application-live-view-server-866dc675d9-2mkh4           1/1     Running   0          27h
-    pod/appliveview-webhook-6479f7986-pvjfp                     1/1     Running   0          28h
-    ```
-
-1. If the service type of application-live-view-5112 is `LoadBalancer`, you can access the Application Live View UI using the listed EXTERNAL-IP address for the service application-live-view-5112. Access the server at: http://ae27a3a69e8e34e35835619eb13ed59f-1054315375.ap-south-1.elb.amazonaws.com
-
-1. If your cluster does not support LoadBalancer and you use `NodePort`, you can port-forward with kubectl. To port-forward the UI server, run the following command in a separate terminal:
-
-    ```bash
-    kubectl -n app-live-view port-forward service/application-live-view-5112 5112:80
-    ```
-    You can access the server at http://localhost:5112.
-
-1. If the service type of application-live-view-5112 is `ClusterIP`, you can access the Application Live View UI using an ingress controller.
 
 ## <a id='install-tap-gui'></a> Install Tanzu Application Platform GUI
 
@@ -1261,6 +1214,7 @@ field in the values file.
 To install Tanzu Learning Center, see the following sections.
 
 ### Prerequisites for Learning Center
+
 **Required**
 
 - [Tanzu Application Platform Prerequisites](install-general.md#prereqs)
@@ -1502,6 +1456,10 @@ Use the following procedure to install Service Bindings:
 
 ## <a id='install-scst-store'></a> Install Supply Chain Security Tools - Store
 
+**Prerequisite**: `cert-manager` installed on the cluster. See [Install Prerequisites](#install-prereqs).
+
+Before installing, see [Deployment Details and Configuration](scst-store/deployment_details.md) to review what resources will be deployed.
+
 To install Supply Chain Security Tools - Store:
 
 1. The deployment assumes the user has set up the k8s cluster to provision persistent volumes on demand. Make sure a default storage class is be available in your cluster. Check whether default storage class is set in your cluster by running:
@@ -1521,30 +1479,28 @@ To install Supply Chain Security Tools - Store:
 1. List version information for the package by running:
 
     ```bash
-    tanzu package available list PACKAGE-NAME --namespace tap-install
+    tanzu package available list scst-store.tanzu.vmware.com --namespace tap-install
     ```
-    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
-     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
-     For example:
+    For example:
 
     ```bash
     $ tanzu package available list scst-store.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for scst-store.tanzu.vmware.com...
       NAME                         VERSION       RELEASED-AT
-      scst-store.tanzu.vmware.com  1.0.0-beta.1
+      scst-store.tanzu.vmware.com  1.0.0-beta.2
     ```
 
-1. (Optional) To make changes to the default installation settings, run:
+1. (Optional) List out all the available deployment configuration options:
 
     ```sh
-    tanzu package available get scst-store.tanzu.vmware.com/1.0.0-beta.1 --values-schema -n tap-install
+    tanzu package available get scst-store.tanzu.vmware.com/1.0.0-beta.2 --values-schema -n tap-install
     ```
 
     For example:
 
     ```console
-    $ tanzu package available get scst-store.tanzu.vmware.com/1.0.0-beta.1 --values-schema -n tap-install
-    | Retrieving package details for scst-store.tanzu.vmware.com/1.0.0-beta.1...
+    $ tanzu package available get scst-store.tanzu.vmware.com/1.0.0-beta.2 --values-schema -n tap-install
+    | Retrieving package details for scst-store.tanzu.vmware.com/1.0.0-beta.2...
       KEY                               DEFAULT              TYPE     DESCRIPTION
       app_service_type                  LoadBalancer         string   The type of service to use for the metadata app service. This can be set to 'NodePort' or 'LoadBalancer'.
       auth_proxy_host                   0.0.0.0              string   The binding ip address of the kube-rbac-proxy sidecar
@@ -1572,37 +1528,31 @@ To install Supply Chain Security Tools - Store:
       add_default_rw_service_account    true                 string   Adds a read-write service account which can be used to obtain access token to use metadata-store CLI
     ```
 
-1. Gather the values schema.
-1. **(Optional)** Create a `scst-store-values.yaml` using the following sample for Supply Chain Security Tools - Store as a guide:
+1. **(Optional)** If you want to modify one of the above deployment configurations, you can created a configuration yaml with the custom configuration values you want. For example, if your environment does not support `LoadBalancer`, and you want to use `NodePort`, then create a `scst-store-values.yaml` and configure the `app_service_type` property. This file will be used in the next step.
 
     ```yaml
-    db_password: "PASSWORD-0123"
+    ---
     app_service_type: "NodePort"
     ```
-    Where `PASSWORD-0123` is the same password used between deployments. For more information, see [Known Issues - Persistent Volume Retains Data](scst-store/known_issues.md#persistent-volume-retains-data).
 
-    By default, a service account with read-write privileges to the metadata store app is installed. This service account is a cluster-wide account that uses ClusterRole. If the service account and role are not desired, set the `add_default_rw_service_account` property to `"false"`. To create a custom service account, see [create service account](scst-store/create_service_account_access_token.md).
-
-    The store will automatically create a read-only cluster role, which may be bound to a service account via `ClusterRoleBinding`. To create service accounts to bind to this cluster role, see [create service account](scst-store/create_service_account_access_token.md). 
-
-    The store supports connecting to PostgreSQL Amazon RDS. Please refer to the [AWS RDS Postgres for Metadata Store docs](scst-store/use_aws_rds.md)
+    See [Deployment Details and Configuration](scst-store/deployment_details.md#configuration) for more detailed descriptions of configuration options. 
 
 1. Install the package by running:
 
     ```sh
     tanzu package install metadata-store \
       --package-name scst-store.tanzu.vmware.com \
-      --version 1.0.0-beta.1 \
+      --version 1.0.0-beta.2 \
       --namespace tap-install \
       --values-file scst-store-values.yaml
     ```
 
-    For example:
+    The flag `--values-file` is optional, and used only if you want to customize the deployment configuration. For example:
 
     ```sh
     $ tanzu package install metadata-store \
       --package-name scst-store.tanzu.vmware.com \
-      --version 1.0.0-beta.1 \
+      --version 1.0.0-beta.2 \
       --namespace tap-install \
       --values-file scst-store-values.yaml
 
@@ -1622,88 +1572,122 @@ To install Supply Chain Security Tools - Store:
 
 ## <a id='install-scst-sign'></a> Install Supply Chain Security Tools - Sign
 
-Install Supply Chain Security Tools - Sign rejects pods from starting if the webhook fails or is misconfigured.
-If the webhook is preventing the cluster from functioning, you can delete the configuration by running:
+> **Caution**:
+>
+> **This component will reject pods if the webhook fails or is misconfigured**.
+> If the webhook is preventing the cluster from functioning,
+> see [Supply Chain Security Tools - Sign Known Issues](scst-sign/known_issues.md#sign-known-issues-pods-not-admitted)
+> for recovery steps.
 
-```bash
-kubectl delete MutatingWebhookConfiguration image-policy-mutating-webhook-configuration
-```
-For example, pods can be rejected from starting if all nodes running the
-webhook are scaled down and the webhook is forced to restart at the same time as
-other system components. A deadlock can occur when some components expect the
-webhook to run in order to verify their image signatures and the webhook is not
-running yet. By deleting the `MutatingWebhookConfiguration` resource, you can
-resolve the deadlock and enable the system to start up again. Once the system
-is stable, you can restore the `MutatingWebhookConfiguration` resource to
-re-enable image signing enforcement.
+### Prerequisites
 
-**Prerequisites**: As part of the install instructions, we will ask you to provide a cosign public key to use to validate signed images. We will provide an example cosign public key that will be able to validate an image from the public cosign registry. If you wish to provide your own key and images, you can follow the [cosign quick start guide](https://github.com/sigstore/cosign#quick-start) to generate your own keys and sign an image.
+During configuration for this component we will ask you to provide a cosign
+public key to use to validate signed images. We will provide an example cosign
+public key that will be able to validate an image from the public cosign
+registry. If you wish to provide your own key and images you can follow the
+[cosign quick start guide](https://github.com/sigstore/cosign#quick-start) to
+generate your own keys and sign an image.
+
+### Installation
 
 To install Supply Chain Security Tools - Sign:
 
 1. List version information for the package by running:
 
-    ```bash
+    ```shell
     tanzu package available list image-policy-webhook.signing.run.tanzu.vmware.com --namespace tap-install
     ```
     For example:
 
-    ```bash
+    ```shell
     $ tanzu package available list image-policy-webhook.signing.run.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for image-policy-webhook.signing.run.tanzu.vmware.com...
       NAME                                               VERSION         RELEASED-AT
       image-policy-webhook.signing.run.tanzu.vmware.com  1.0.0-beta.1    2021-10-25T00:00:00Z
+      image-policy-webhook.signing.run.tanzu.vmware.com  1.0.0-beta.2    2021-11-29T00:00:00Z
     ```
 
-2. (Optional) To make changes to the default installation settings, run:
-
-    ```bash
-    tanzu package available get image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.1 --values-schema --namespace tap-install
+1. (Optional) To make changes to the default installation settings, run:
+    ```shell
+    tanzu package available get image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.2 --values-schema --namespace tap-install
     ```
     For example:
 
-    ```bash
-    $ tanzu package available get image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.1 --values-schema --namespace tap-install
-    | Retrieving package details for image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.1...
+    ```shell
+    $ tanzu package available get image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.2 --values-schema --namespace tap-install
+    | Retrieving package details for image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.2...
       KEY                     DEFAULT  TYPE     DESCRIPTION
       allow_unmatched_images  false    boolean  Feature flag for enabling admission of images that do not match
                                                 any patterns in the image policy configuration.
                                                 Set to true to allow images that do not match any patterns into
                                                 the cluster with a warning.
+      quota.pod_number        5        string   The maximum number of Image Policy Webhook Pods allowed to be
+                                                created with the priority class system-cluster-critical. This
+                                                value must be enclosed in quotes (""). If this value is not
+                                                specified then the default value of 5 is used.
+      replicas                1        integer  The number of replicas to be created for the Image Policy
+                                                Webhook. This value must not be enclosed in quotes. If this
+                                                value is not specified then the default value of 1 is used.
     ```
 
-1. Create a file named `scst-sign-values.yaml` with a `allow_unmatched_images` property.
+1. Create a file named `scst-sign-values.yaml` and add the settings you
+  would like to customize:
 
-    * **For non-production environments**: To warn the user when images do not match any pattern in the policy, but still allow them into the cluster, set `allow_unmatched_images` to `true`.
-        ```yaml
-        ---
-        allow_unmatched_images: true
-        ```
-    * **For production environments**: To deny images that do not match any pattern in the policy, set `allow_unmatched_images` to `false`.
-        ```yaml
-        ---
-        allow_unmatched_images: false
-        ```
-        **Note**: For a quicker installation process, VMware recommends that you set `allow_unmatched_images` to `true` initially.
-        This means that the webhook does not prevent unsigned images from running if the image does not match any pattern in the policy.
-        To promote to a production environment, VMware recommends that you re-install the webhook with `allow_unmatched_images` set to `false`.
+    - `allow_unmatched_images`:
+        * **For non-production environments**: To warn the user when images
+          do not match any pattern in the policy, but still allow them into
+          the cluster, set `allow_unmatched_images` to `true`.
+            ```yaml
+            ---
+            allow_unmatched_images: true
+            ```
+        * **For production environments**: To deny images that match no patterns in the policy set `allow_unmatched_images` to `false`.
+            ```yaml
+            ---
+            allow_unmatched_images: false
+            ```
+
+          > **Note**: For a quicker installation process VMware recommends that
+          > you set `allow_unmatched_images` to `true` initially.
+          > This setting means that the webhook will allow unsigned images to
+          > run if the image does not match any pattern in the policy.
+          > To promote to a production environment VMware recommends that you
+          > re-install the webhook with `allow_unmatched_images` set to `false`.
+
+    - `quota.pod_number`:
+      This setting is the maximum amount of pods that will be allowed in the
+      `image-policy-system` namespace with the `system-cluster-critical`
+      priority class. This priority class is added to the pods to prevent
+      preemption of this component's pods in case of node pressure.
+
+      The default value for this property is 5. If your use case requires
+      more than 5 pods deployed of this component adjust this value to
+      allow the number of replicas you intend to deploy.
+
+    - `replicas`:
+      This settings controls the default amount of replicas that will get deployed by this
+      component. The default value is 1.
+
+      * **For production environments**: VMware recommends you increase the
+        amount of replicas to 3 to ensure availability of the
+        component for better admission performance.
 
 1. Install the package:
 
-    ```bash
+    ```shell
     tanzu package install image-policy-webhook \
       --package-name image-policy-webhook.signing.run.tanzu.vmware.com \
-      --version 1.0.0-beta.1 \
+      --version 1.0.0-beta.2 \
       --namespace tap-install \
       --values-file scst-sign-values.yaml
     ```
 
     For example:
 
-    ```bash
+    ```shell
     $ tanzu package install image-policy-webhook \
         --package-name image-policy-webhook.signing.run.tanzu.vmware.com \
-        --version 1.0.0-beta.1 \
+        --version 1.0.0-beta.2 \
         --namespace tap-install \
         --values-file scst-sign-values.yaml
 
@@ -1720,155 +1704,11 @@ To install Supply Chain Security Tools - Sign:
     Added installed package 'image-policy-webhook' in namespace 'tap-install'
     ```
 
-   After you run the code above, the webhook is running.
+   After you run the commands above your signing package will be running.
 
-1. Create a service account named `image-policy-registry-credentials` in the `image-policy-system` namespace. When cosign `signs` an image, it generates a signature in an OCI-compliant format and pushes it to the registry alongside the image with the tag `sha256-<image-digest>.sig`. To access this signature, the webhook needs the credentials of the registry where the signature and image reside.
-
-    * **If the images and signatures are in public registries:** No additional configuration is needed. Run:
-
-        ```console
-        cat <<EOF | kubectl apply -f -
-        apiVersion: v1
-        kind: ServiceAccount
-        metadata:
-          name: image-policy-registry-credentials
-          namespace: image-policy-system
-        EOF
-        ```
-
-    * **If the images and signatures are in private registries:** Add secrets to the `imagePullSecrets` property of the service account. Run:
-
-        ```console
-        cat <<EOF | kubectl apply -f -
-        apiVersion: v1
-        kind: ServiceAccount
-        metadata:
-          name: image-policy-registry-credentials
-          namespace: image-policy-system
-        imagePullSecrets:
-        - name: SECRET-1
-        EOF
-        ```
-        Where `SECRET-1` is a secret that allows the webhook to access the private registry.
-        You can specify existing `imagePullSecrets` that are part of the `image-policy-system` namespace,
-        or you can create new ones by running:
-
-        ```bash
-        kubectl create secret docker-registry SECRET-1 \
-          --namespace image-policy-system \
-          --docker-server=<server> \
-          --docker-username=<username> \
-          --docker-password=<password>
-        ```
-        Add additional secrets to `imagePullSecrets` as required.
-
-1. Create a `ClusterImagePolicy` to specify the images that the webhook validates.
-
-    The cluster image policy is a custom resource definition containing the following information:
-
-    - A list of namespaces to which the policy should not be enforced.
-    - A list of public keys complementary to the private keys that were used to sign the images.
-    - A list of image name patterns against which the policy is enforced. Each image name pattern is mapped to the required public keys.
-
-    The following is an example `ClusterImagePolicy`:
-
-    ```yaml
-    ---
-    apiVersion: signing.run.tanzu.vmware.com/v1alpha1
-    kind: ClusterImagePolicy
-    metadata:
-     name: image-policy
-    spec:
-     verification:
-       exclude:
-         resources:
-           namespaces:
-           - kube-system
-       keys:
-       - name: first-key
-         publicKey: |
-           -----BEGIN PUBLIC KEY-----
-           ...
-           -----END PUBLIC KEY-----
-       images:
-       - namePattern: registry.example.org/myproject/*
-         keys:
-         - name: first-key
-    ```
-    Notes:
-
-    - The `name` for the `ClusterImagePolicy` must be `image-policy`.
-    - In the `verification.exclude.resources.namespaces` section, add any namespaces that run container images that are unsigned, such as `kube-system`.
-    - If no `ClusterImagePolicy` is created, images are permitted into the cluster.
-      with the following warning: `Warning: clusterimagepolicies.signing.run.tanzu.vmware.com "image-policy" not found`.
-    - For a quicker installation process in a non-production environment, VMware recommends you use the following YAML to create the `ClusterImagePolicy`. This YAML includes a cosign public key, which signed the public cosign image for v1.2.1. The cosign public key validates the specified cosign image. You can add additional namespaces to exclude in the `verification.exclude.resources.namespaces` section, such as a system namespace.
-
-        ```console
-        cat <<EOF | kubectl apply -f -
-        apiVersion: signing.run.tanzu.vmware.com/v1alpha1
-        kind: ClusterImagePolicy
-        metadata:
-         name: image-policy
-        spec:
-         verification:
-           exclude:
-             resources:
-               namespaces:
-               - kube-system
-           keys:
-           - name: cosign-key
-             publicKey: |
-               -----BEGIN PUBLIC KEY-----
-               MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEhyQCx0E9wQWSFI9ULGwy3BuRklnt
-               IqozONbbdbqz11hlRJy9c7SG+hdcFl9jE9uE/dwtuwU2MqU9T/cN0YkWww==
-               -----END PUBLIC KEY-----
-           images:
-           - namePattern: gcr.io/projectsigstore/cosign*
-             keys:
-             - name: cosign-key
-        EOF
-        ```
-        (Optional) Run the following commands to test the webhook if you are using the `cosign-key`:
-
-        1. Verify that a signed image, validated with a configured public key, launches. Run:
-
-            ```bash
-            kubectl run cosign --image=gcr.io/projectsigstore/cosign:v1.2.1 --restart=Never --command -- sleep 900
-            ```
-
-            For example:
-
-            ```bash
-            $ kubectl run cosign --image=gcr.io/projectsigstore/cosign:v1.2.1 --restart=Never --command -- sleep 900
-            pod/cosign created
-            ```
-
-        1. Verify that an unsigned image does not launch. Run:
-
-            ```bash
-            kubectl run bb --image=busybox --restart=Never
-            ```
-
-            For example:
-
-            ```bash
-            $ kubectl run bb --image=busybox --restart=Never
-            Warning: busybox didn\'t match any pattern in policy. Pod will be created as AllowOnUnmatched flag is true
-            pod/bb created
-            ```
-
-        1. Verify that a signed image, that does not validate with a configured public key, does not launch. Run:
-
-            ```bash
-            kubectl run cosign-fail --image=gcr.io/projectsigstore/cosign:v0.3.0 --command -- sleep 900
-            ```
-
-            For example:
-
-            ```bash
-            $ kubectl run cosign-fail --image=gcr.io/projectsigstore/cosign:v0.3.0 --command -- sleep 900
-            Error from server (The image: gcr.io/projectsigstore/cosign:v0.3.0 is not signed): admission webhook "image-policy-webhook.signing.run.tanzu.vmware.com" denied the request: The image: gcr.io/projectsigstore/cosign:v0.3.0 is not signed
-            ```
+   > **Note**: This component requires extra configuration steps to work properly. See
+   > [Configuring Supply Chain Security Tools - Sign](scst-sign/configuring.md)
+   > for instructions on how to apply the required configuration.
 
 ## <a id='install-scst-scan'></a> Install Supply Chain Security Tools - Scan
 
@@ -2203,7 +2043,7 @@ Use the following procedure to verify that the packages are installed.
     NAME                     PACKAGE-NAME                                       PACKAGE-VERSION  STATUS
     api-portal               api-portal.tanzu.vmware.com                        1.0.3            Reconcile succeeded
     app-accelerator          accelerator.apps.tanzu.vmware.com                  0.4.0            Reconcile succeeded
-    app-live-view            appliveview.tanzu.vmware.com                       0.3.0-build6     Reconcile succeeded
+    app-live-view            appliveview.tanzu.vmware.com                       1.0.0-build.2    Reconcile succeeded
     cartographer             cartographer.tanzu.vmware.com                      0.0.7            Reconcile succeeded
     cloud-native-runtimes    cnrs.tanzu.vmware.com                              1.0.3            Reconcile succeeded
     convention-controller    controller.conventions.apps.tanzu.vmware.com       0.4.2            Reconcile succeeded
@@ -2232,8 +2072,11 @@ run the following commands to add credentials and Role-Based Access Control (RBA
     ```bash
     tanzu secret registry add registry-credentials --server REGISTRY-SERVER --username REGISTRY-USERNAME --password REGISTRY-PASSWORD --namespace YOUR-NAMESPACE
     ```
-    Where `YOUR-NAMESPACE` is the name that you want to use for the developer namespace.
-    For example, use `default` for the default namespace.
+    Where:
+
+    * `YOUR-NAMESPACE` is the name that you want to use for the developer namespace. For example, use `default` for the default namespace.
+    * `REGISTRY-SERVER` is the URL of the registry. For Dockerhub this must be `https://index.docker.io/v1/`. Specifically it must have the leading `https://`, the `v1` path, and the trailing `/`. For GCR this is `gcr.io`.
+    
 
 2. Add placeholder read secrets, a service account, and RBAC rules to the developer namespace. Run:
 

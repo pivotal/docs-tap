@@ -198,9 +198,9 @@ Currently, Spring Boot based applications can be diagnosed using Application Liv
 Make sure that you have installed Application Live View components successfully.
 
 Access Application Live View Tanzu Application Platform GUI following the instruction
-[here](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.3/tap-0-3/GUID-tap-gui-plugins-app-live-view.html).
+[here](https://docs-staging.vmware.com/en/Tanzu-Application-Platform/0.4/tap/GUID-tap-gui-plugins-app-live-view.html#entry-point-to-application-live-view-plugin-1).
 Select your application to look inside the running application and
-[explore](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.3/docs/GUID-product-features.html)
+[explore](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-product-features.html)
 the various diagnostic capabilities.
 
 
@@ -758,76 +758,78 @@ In this section, we will provide an overview of the supply chain security use ca
 
 ### Sign: Introducing Image Signing & Verification to your Supply Chain
 
-**Overview**
+#### Overview
 
-This feature-set allows an application operator to define a policy that will restrict unsigned images from running on clusters.
-This is done using a dynamic admission control component on Kubernetes clusters.
-This component contains logic to communicate with external registries and verify signatures on container images,
-making a decision based on the results of this verification.
+This component allows a platform operator to define a policy that will
+restrict unsigned images from running on clusters.
+To enforce the configured policies this component communicates with external
+container registries to verify signatures on container images and make a
+decision based on the results of this verification. In order to make admission
+decisions this component is implemented as a dynamic admission control webhook.
+
 Currently, this component supports cosign signatures and its key formats.
-It will work with open source cosign, kpack and Tanzu Build Service (which is what we will overview in this document).
+Although this component does not sign container images, you could use tools such
+as the [cosign CLI](https://github.com/sigstore/cosign#quick-start),
+[kpack](https://github.com/pivotal/kpack/blob/main/docs/image.md#cosign-config),
+and [Tanzu Build Service](https://docs.vmware.com/en/Tanzu-Build-Service/1.3/vmware-tanzu-build-service-v13/GUID-index.html)
+(which is what we will overview in this document) to generate signatures for
+your images.
 
-Signing an artifact creates metadata about it that allows consumers to verify its origin and integrity.
-By verifying signatures on artifacts prior to their deployment,
-this allows operators to increase their confidence that trusted software is running on their clusters.
+Signing an artifact creates metadata about it that allows consumers to verify
+its origin and integrity.
+Operators can increase their confidence that trusted software is running on their
+clusters by verifying signatures on artifacts prior to their deployment.
 
-**Use Cases**
+#### Use Cases
 
 * Validate signatures from a given registry.
+* Deny unsigned images from being admitted in the cluster.
+
+> **Note**: this component does not verify images that are already running in a
+> cluster.
 
 **Signing Container Images**
 
-Tanzu Application Platform supports verifying container image signatures that follow the `cosign` format.
-Application operators may apply image signatures and store them in the registry in one of several ways:
+Tanzu Application Platform supports verifying container image signatures that
+follow the cosign format.
+Application operators may sign container images and store them in the registry
+in several different ways, including:
 
-* Using Tanzu Build Service v1.3
+* Using [Tanzu Build Service v1.3](https://docs.vmware.com/en/Tanzu-Build-Service/1.3/vmware-tanzu-build-service-v13/GUID-index.html).
+* Using [kpack](https://github.com/pivotal/kpack/blob/main/docs/image.md#cosign-config)
+v0.4.0 or higher.
+* Signing existing images with [cosign](https://github.com/sigstore/cosign#quick-start).
 
-* Using [kpack](https://github.com/pivotal/kpack/blob/main/docs/image.md#cosign-config) v0.4.0
+**Supplying secrets for private registries**
 
-* Signing existing images with [cosign](https://github.com/sigstore/cosign#quick-start)
+If your images and signatures are hosted in a private registry you will need to
+provide the package with credentials to pull those signatures.
 
+If your resources already have `imagePullSecrets` configured, either
+[directly in their specs](https://kubernetes.io/docs/concepts/configuration/secret/#using-imagepullsecrets)
+or [via the `ServiceAccount` they run authenticated as](https://kubernetes.io/docs/concepts/configuration/secret/#arranging-for-imagepullsecrets-to-be-automatically-attached),
+no further configuration is required.
 
-**Configure the Image Policy Webhook**
+However, in situations where your cluster pulls credentials from your container
+runtime configuration, you can choose to provide secrets via:
+- The `ClusterImagePolicy` resource configuration for a given name pattern.
+- Creating a `ServiceAccount` named `image-policy-registry-credentials` in the
+`image-policy-system` namespace and adding `imagePullSecrets` to that service
+account.
 
-After the webhook is running, create a service account named `image-policy-registry-credentials` in the `image-policy-system` namespace. This is required, even if the images and signatures are in public registries.
+For more information on how to configure these secrets, see
+[Providing credentials for the package](scst-sign/configuring.md#providing-credentials-package).
 
-After the image policy webhook is installed in the cluster, configure the image policy you want to enforce and the credentials to access private registries.
+**Creating a `ClusterImagePolicy`**
 
-**Configure a service account to hold private registry secrets**
-
-When the platform operator is expecting to verify signatures stored in a private registry,
-it is required that you configure a service account with all the secrets for those private registries.
-The service account:
-
-* Must be created in the `image-policy-system` namespace
-
-* Must be called `image-policy-registry-credentials`
-
-* All secrets for accessing private registries must be added to the `imagePullSecrets` section of the service account
-
-The manifest for the service account is similar to the following example:
-
-```
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: image-policy-registry-credentials
-  namespace: image-policy-system
-imagePullSecrets:
-- name: secret1
-- name: secret2
-```
-
-**Create a Cluster Image Policy**
-
-The cluster image policy is a custom resource definition containing the following information:
+The `ClusterImagePolicy` is a custom resource containing the following information:
 
 * A list of namespaces to which the policy should not be enforced.
-
-* A list of public keys complementary to the private keys that were used to sign the images.
-
-* A list of image name patterns to which we want to enforce the policy, mapping to the public keys to use for each pattern.
+* A list of public keys complementary to the private keys that were used to sign
+  the images.
+* A list of image name patterns to which we want to enforce the policy, mapping
+  to the public keys to use for each pattern, and, optionally, a secret reference
+  to be used to authenticate to the referred registry.
 
 An example policy would look like this:
 
@@ -853,19 +855,25 @@ spec:
     - namePattern: registry.example.org/myproject/*
       keys:
       - name: first-key
+    images:
+    - namePattern: registry.example.org/otherproject/*
+      secretRef:
+        name: credential-to-other-project
+        namespace: secret-namespace
+      keys:
+      - name: first-key
 ```
 
+The custom resource for the policy must have a name of `image-policy`.
 
-As of this writing, the custom resource for the policy must have a name of image-policy.
+> **Important**: The platform operator should add to the
+> `spec.verification.exclude.resources.namespaces` section any namespaces that
+> are known to run container images that are not currently signed, such as the
+> `kube-system` namespace.
 
-The platform operator should add to the `verification.exclude.resources.namespaces`
-section any namespaces that are known to run container images that are not currently signed, such as `kube-system`.
-
-
-**Examples and Expected Results**
+#### Examples and Expected Results
 
 Assuming a platform operator creates the following policy:
-
 
 ```
 ---
@@ -892,30 +900,38 @@ spec:
       - name: first-key
 ```
 
-
-When a developer deploys an application with a matched image name and the image is signed:
-
+When a developer deploys a runnable resource with an image name that matches a
+name pattern in the policy and that image is signed with an expected signature:
 * **Expected result**: resource is created successfully.
 
-When a developer deploys an application with a matched image name and the image is unsigned:
+When a developer deploys a runnable resources with an image name that matches a
+name pattern in the policy and the image is unsigned:
+* **Expected result**: resource is not created and an error message is shown in
+  the CLI output or via API responses.
 
-* **Expected result**: resource is not created and an error message is shown in the CLI output.
+When a developer deploys a runnable resource with an image name that does not
+match any patterns in the policy and the `AllowUnmatchedImages` feature gate is
+turned on:
+* **Expected result**: resource is created successfully and a warning message
+  is shown in the CLI output or via API responses.
 
-When a developer deploys an application with an image from an unmatched pattern and the warnOnUnmatched feature flag is turned on:
+When a developer deploys a runnable resource with an image name that does not
+match any patterns in the policy and the `AllowUnmatchedImages` feature gate is
+turned off:
+* **Expected result**: resource is not created and an error message is shown in
+  the CLI output or via API responses.
 
-* **Expected result**: resource is created successfully and a warning message is shown in the CLI output.
-
-When a developer deploys an application with an image from an unmatched pattern and the warnOnUnmatched feature flag is turned off:
-
-* **Expected result**: resource is not created and an error message is shown in the CLI output.
-
-The Sign add-on outputs logs for the above scenarios.
-To have a look at the logs, the platform operator runs:
-
-```console
+The Supply Chain Security Tools - Sign component outputs logs for the above
+scenarios. To examine the logs the platform operator can run:
+```shell
 kubectl logs -n image-policy-system -l "signing.run.tanzu.vmware.com/application-name=image-policy-webhook" -f
 ```
 
+#### Next Steps and Further Information
+
+- [Overview for Supply Chain Security Tools - Sign](scst-sign/overview.md)
+- [Configuring Supply Chain Security Tools - Sign](scst-sign/configuring.md)
+- [Supply Chain Security Tools - Sign Known Issues](scst-sign/known_issues.md)
 
 ### Scan & Store: Introducing Vulnerability Scanning & Metadata Storage to your Supply Chain
 

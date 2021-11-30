@@ -4,7 +4,7 @@
 
 This document describes how to create a workload from example source code with the Tanzu Application Platform.
 
-### <a id='prereqs'></a> Before You begin
+### <a id='prereqs'></a> Before you begin
 
 The following prerequisites are required to use workloads with Tanzu Application Service:
 

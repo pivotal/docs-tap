@@ -254,6 +254,9 @@ Follow the procedure for your OS:
    + [Mac: Install the Tanzu CLI](#mac-cli)
    + [Windows: Install the Tanzu CLI](#windows-cli)
 
+**Want to uninstall** the Tanzu CLI, plugins, and associated files?
+   + [Run the Tanzu CLI uninstall script](#remove-tanzu-cli)
+
 
 #### <a id='linux-cli'></a>Linux: Install the Tanzu CLI
 
@@ -388,7 +391,7 @@ To install the Tanzu CLI on a Windows operating system:
 
   15. Proceed to [Clean Install Tanzu CLI Plugins](#cli-plugin-clean-install)
 
-## <a id='cli-plugin-clean-install'></a> Clean install Tanzu CLI Plugins
+## <a id='cli-plugin-clean-install'></a> Clean install Tanzu CLI plugins
 
 To perform a clean installation of the Tanzu CLI plugins:
 
@@ -546,7 +549,7 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
   17. You may now proceed with installing Tanzu Application Platform via **[Installing Part II: Profiles](install.md)**.
 
 
-## <a id='udpate-tkg-tce-tanzu-cli'></a>Instructions for updating Tanzu CLI that was previously installed for Tanzu Kubernetes Grid and/or Tanzu Community Edition
+## <a id='udpate-tkg-tce-tanzu-cli'></a>Instructions for updating Tanzu CLI previously installed for Tanzu Kubernetes Grid or Tanzu Community Edition
 
 If you'd like to maintain the Tanzu CLI core and plugins you installed previously
 for interacting with Tanzu Kubernetes Grid or Tanzu Community Edition, you only need to update/add the Tanzu Application Platform specific plugins as follows:
@@ -658,5 +661,26 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
       ```
 
   17. You may now proceed with installing Tanzu Application Platform on Tanzu Kubernetes Grid or Tanzu Community Edition. For more information, see:
-    * **[Installing Tanzu Application Platform on a Tanzu Community Edition v0.9.1 Cluster](install-tce.html#install-tap)**
-    * **[Installing Tanzu Application Platform on a Tanzu Kubernetes Grid v1.4 Cluster](install-tkg.html#install-tap)**
+    * **[Installing Tanzu Application Platform on a Tanzu Community Edition v0.9.1 cluster](install-tce.html#install-tap)**
+    * **[Installing Tanzu Application Platform on a Tanzu Kubernetes Grid v1.4 cluster](install-tkg.html#install-tap)**
+  
+  ## <a id='remove-tanzu-cli'></a>Instructions for removing existing Tanzu CLI & plugins
+  If you need to completely remove the Tanzu CLI, plugins, and associated files, run the following script:
+  ```
+  #!/bin/zsh
+  
+  #### This script is intended to remove the Tanzu CLI, plugins and config ####
+  
+  ## remove tanzu storage folder
+  rm -rf $HOME/tanzu/
+
+  ## remove CLI binary (executable)
+  sudo rm /usr/local/bin/tanzu
+
+  ## Remove config directories
+  rm -rf ~/.config/tanzu/   # current location
+  rm -rf ~/.tanzu/          # old location
+
+  ## Remove plugins
+  rm -rf ~/Library/Application\ Support/tanzu-cli/*
+  ```

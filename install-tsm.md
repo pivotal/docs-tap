@@ -1,6 +1,6 @@
 # Installing Tanzu Application Platform on clusters onboarded to Tanzu Service Mesh
 
-This topic describes the workaround for using Tanzu Service Mesh with Tanzu Application Platfor. You cannot install Tanzu Application Platfor on a cluster that has Tanzu Service Mesh attached. To install Tanzu Application Platfor on a cluster where Tanzu Service Mesh is attached, follow the procedure below.
+This topic describes the workaround for using Tanzu Service Mesh with Tanzu Application Platform. You cannot install Tanzu Application Platfor on a cluster that has Tanzu Service Mesh attached. To install Tanzu Application Platfor on a cluster where Tanzu Service Mesh is attached, follow the procedure below.
 
 This workaround describes how Tanzu Service Mesh is to be configured in order to ignore the Tanzu Application Platfor namespaces. This allows you to install Tanzu Application Platfor, while Tanzu Service Mesh continues to satisfy other connectivity concerns.
 
@@ -8,7 +8,7 @@ This workaround describes how Tanzu Service Mesh is to be configured in order to
 
 For information about Tanzu Service Mesh, see the [Tanzu Service Mesh Documentation](https://docs.vmware.com/en/VMware-Tanzu-Service-Mesh/index.html).
 
-## Install on a Cluster Attached to Tanzu Service Mesh
+## Install on a cluster attached to Tanzu Service Mesh
 This procedure assumes you have a cluster attached to Tanzu Service Mesh, and that you have not yet installed Tanzu Application Platfor.
 
 `Note:` If you installed Cloud Native Runtimes on a cluster that has Tanzu Service Mesh attached before doing the procedure below, Pods fail to start. To fix this problem, follow the procedure below and then delete all Pods in the excluded namespaces.
@@ -57,6 +57,8 @@ Configure Tanzu Service Mesh to ignore namespaces related to Tanzu Application P
     + `triggermesh`
     + `vmware-sources`
 
-The namespace or namespaces where you plan to run Tanzu Application Platfor> workloads.
-`Next Steps`
-After configuring Tanzu Service Mesh, install Tanzu Application Platform and verify your installation:
+The namespace or namespaces where you plan to run Tanzu Application Platform > workloads.
+
+## Next steps
+
+After configuring Tanzu Service Mesh, install Tanzu Application Platform and verify your installation.

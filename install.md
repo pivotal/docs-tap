@@ -370,7 +370,7 @@ install by changing the `profile` value.
     - `<SERVER-NAME>` is the hostname of the registry server.
       * Examples:
          * Harbor `server: "my-harbor.io"`
-         * Dockerhub `server: "https://index.docker.io/v1/"`
+         * Dockerhub `server: "index.docker.io"`
          * Google Cloud Registry `server: "gcr.io"`
     - `<REPO-NAME>` is the location workload images will be stored in the registry. Images will be written to `<SERVER-NAME>/<REPO-NAME>/<workload-name>`.
        * Examples:
@@ -416,6 +416,7 @@ install by changing the `profile` value.
     |Supply Chain Basic|`ootb_supply_chain_basic`|
     |Supply Chain Testing|`ootb_supply_chain_testing`|
     |Supply Chain Testing Scanning|`ootb_supply_chain_testing_scanning`|
+    |Supply Chain Security Tools - Store|`metadata_store`|
     |Image Policy Webhook|`image_policy_webhook`|
     |Build Service|`buildservice`|
     |Tanzu Application Platform GUI|`tap_gui`|
@@ -444,6 +445,25 @@ install by changing the `profile` value.
 
 1. (Optional) [Install any additional packages](install-components.md) that were not included in your profile.
 
+## <a id='configure-envoy-lb'></a> Configure LoadBalancer for Contour Ingress
+
+By default, contour will use `NodePort` as service type. To set service type to `LoadBalancer`, Add the following section to your `tap-values.yml`
+
+    ```yaml
+    contour:
+      envoy:
+        service:
+          type: LoadBalancer
+    ```
+If you are using AWS, the above section will create a classic LoadBalancer. If you want to use the Network LoadBalancer instead of the classic LoadBalancer for Ingress, Add the following section to your `tap-values.yml`
+    ```yaml
+    contour:
+      infrastructure_provider: aws
+      envoy:
+        service:
+          aws:
+            LBType: nlb
+    ```
 
 ## <a id='configure-tap-gui'></a> Configure the Tanzu Application Platform GUI
 To install Tanzu Application Platform GUI, see the following sections.
