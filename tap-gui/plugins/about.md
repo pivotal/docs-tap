@@ -7,5 +7,6 @@ you need to install the Tanzu Application Platform component.
 
 Tanzu Application Platform includes the following GUI Plugins:
 
-- [Workload Visibility](workload-visibility.md)
+- [Runtime Resource Visibility](runtime-resource-visibility.md)
 - [Application Live View](app-live-view.md)
+- [Application Accelertor](application-accelerator.md)
