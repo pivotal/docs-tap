@@ -445,6 +445,25 @@ install by changing the `profile` value.
 
 1. (Optional) [Install any additional packages](install-components.md) that were not included in your profile.
 
+## <a id='configure-envoy-lb'></a> Configure LoadBalancer for Contour Ingress
+
+By default, contour will use `NodePort` as service type. To set service type to `LoadBalancer`, Add the following section to your `tap-values.yml`
+
+    ```yaml
+    contour:
+      envoy:
+        service:
+          type: LoadBalancer
+    ```
+If you are using AWS, the above section will create a classic LoadBalancer. If you want to use the Network LoadBalancer instead of the classic LoadBalancer for Ingress, Add the following section to your `tap-values.yml`
+    ```yaml
+    contour:
+      infrastructure_provider: aws
+      envoy:
+        service:
+          aws:
+            LBType: nlb
+    ```
 
 ## <a id='configure-tap-gui'></a> Configure the Tanzu Application Platform GUI
 To install Tanzu Application Platform GUI, see the following sections.
