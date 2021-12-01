@@ -140,18 +140,31 @@ To unregister an entity, follow these steps:
 1. Select the entity to unregister, such as component, group, or user.
 1. Click the three dots at the top-right of the page and then click **Unregister...**.
 
-### Update your organization catalog location
+### Add or change organization catalog locations
 
-1. Update the components of a catalog through static configuration by changing the catalog's
-location in either the `app_config` section of `tap-gui-values.yaml` or the custom values file you
-used when installing. For example:
+1. Use static configuration to add or change catalog locations:
 
-    ```yaml
-    catalog:
-      locations:
-        - type: url
-          target: UPDATED-CATALOG-LOCATION
-    ```
+    * To update components, change the catalog location in either the `app_config` section of
+    `tap-gui-values.yaml` or the custom values file you used when installing. For example:
+
+        ```yaml
+        catalog:
+          locations:
+            - type: url
+              target: UPDATED-CATALOG-LOCATION
+        ```
+
+    * To register components, add the new catalog's location in either the `app_config` section of
+    `tap-gui-values.yaml` or the custom values file you used when installing. For example:
+
+        ```yaml
+        catalog:
+          locations:
+            - type: url
+              target: EXISTING-CATALOG-LOCATION
+            - type: url
+              target: EXTRA-CATALOG-LOCATION
+        ```
 
     When targeting GitHub, don't write the raw URL. Instead, use the URL that you see when you
     navigate to the file in the browser, otherwise the catalog processor is unable to properly load
@@ -159,12 +172,11 @@ used when installing. For example:
 
     For example:
 
-        - Raw URL: `https://raw.githubusercontent.com/user/repo/catalog.yaml`
-        - Target URL: `https://github.com/user/repo/blob/main/catalog.yaml`
+    - Raw URL: `https://raw.githubusercontent.com/user/repo/catalog.yaml`
+    - Target URL: `https://github.com/user/repo/blob/main/catalog.yaml`
 
     For more information about static catalog configuration, see the
     [Backstage documentation](https://backstage.io/docs/features/software-catalog/configuration#static-location-configuration).
-
 
 1. Update the package to include the catalog by running:
 
@@ -180,32 +192,6 @@ used when installing. For example:
     tanzu package installed list
     ```
 
-## Add extra catalog locations
-
-To register the components of a catalog through static configuration, add the catalog's location to the `app_config` section of `tap-gui-values.yaml` (or your existing custom values file used at installation time):
-
-```yaml
-catalog:
-  locations:
-    - type: url
-      target: <Existing Catalog Location>
-    - type: url
-      target: <Additional Catalog Location>
-```
-
-Next, update the package to include the catalog:
-
-```shell
-tanzu package installed update backstage \
-  --version <package-version> \
-  -f <values-file>
-```
-
-You can check the status of this update with:
-
-```shell
-tanzu package installed list
-```
 
 ## Installing demo apps and their catalogs
 
