@@ -1,5 +1,7 @@
 # Tanzu Application Platform
+
 This is the table of contents from which the Tanzu Application Platform Documentation site on docs.vmware.com is built.
+
 - [Tanzu Application Platform v0.4 (Beta-4)](overview.md)
 - [Release notes](release-notes.md)
 - [Installing Tanzu Application Platform](install-intro.md)
@@ -74,7 +76,7 @@ This is the table of contents from which the Tanzu Application Platform Document
             - [Client authentication](learning-center/portal-rest-api/client-authentication.md)
     - [Supply Chain Choreographer for Tanzu](scc/about.md)
         - [Out-of-the-box supply chains](scc/default-supply-chains.md)
-    - [Supply Chain Security Tools for Tanzu – Scan](scst-scan/overview.md) 
+    - [Supply Chain Security Tools for Tanzu – Scan](scst-scan/overview.md)
         * [Release notes](scst-scan/release-notes.md)
         * [Spec reference](scst-scan/explanation.md)
         * [Sample public source code and image scans with Policy Enforcement](scst-scan/running-scans.md)
