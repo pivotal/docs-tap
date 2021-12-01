@@ -1,4 +1,4 @@
-# Installing part II: profiles
+# Installing part II: Profiles
 
 This document describes how to install Tanzu Application Platform packages
 from the Tanzu Application Platform package repository.
@@ -113,7 +113,7 @@ packages. This section explains how to install a profile.
 Tanzu Application Platform contains the following two profiles:
 
 - Full (`full`)
-- Developer Light (`dev-light`)
+- Light (`light`)
 
 The following table lists the packages contained in each profile:
 
@@ -123,7 +123,7 @@ The following table lists the packages contained in each profile:
    </td>
    <td><strong>Full</strong>
    </td>
-   <td><strong>Developer Light</strong>
+   <td><strong>Light</strong>
    </td>
   </tr>
   <tr>
@@ -139,7 +139,7 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>
+   <td>&check;
    </td>
   </tr>
   <tr>
@@ -167,6 +167,14 @@ The following table lists the packages contained in each profile:
    </td>
   </tr>
   <tr>
+   <td>Out of the Box Delivery - Basic
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
    <td>Out of the Box Supply Chain - Basic
    </td>
    <td>&check;
@@ -179,7 +187,7 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;<sup>&ast;</sup>
    </td>
-   <td>
+   <td>&check;
    </td>
   </tr>
   <tr>
@@ -227,7 +235,7 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>&check;
+   <td>
    </td>
   </tr>
   <tr>
