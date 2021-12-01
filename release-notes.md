@@ -40,7 +40,7 @@ New features and changes in this release:
 **Installation Profiles**
 
 You can now install Tanzu Application Platform through profiles.
-The Full profile installs all the component packages.
+The Full profile installs all of the component packages.
 The Developer Light installs the packages that a developer needs.
 
 For more information, see [Installation Profiles and Profiles in Tanzu Application Platform v0.3](overview.md#profiles-and-packages) and
@@ -56,7 +56,7 @@ Tanzu Packages:
   - Out of the Box Supply Chain Basic v0.3.0
   - Out of the Box Supply Chain with Testing v0.3.0
   - Out of the Box Supply Chain with Testing and Scanning v0.3.0
-  - Out of the Box Templates v0.3.0 
+  - Out of the Box Templates v0.3.0
 - Tanzu Application Platform GUI v0.3.0
   - Workload Visibility Plugin v1.0.0
   - Application Live View Plugin v0.3.0
