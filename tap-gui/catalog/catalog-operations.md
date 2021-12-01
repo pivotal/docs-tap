@@ -4,7 +4,7 @@ The software catalog setup procedures in this topic make use of Backstage.
 For more information about Backstage, see the
 [Backstage documentation](https://backstage.io/docs/features/software-catalog/software-catalog-overview).
 
-## Adding catalog entities
+## <a id='add-cat-entities'></a> Adding catalog entities
 
 This section will describe how you can format your own catalog.
 Creating catalogs consists of building metadata YAML files stored together with the code.
@@ -22,7 +22,7 @@ for now, to use as a loose guide for creating user, group, system, and main comp
 Relationship Diagram:
 ![Tanzu Application Platform GUI Relationships](../images/tap-gui-relationships.jpg)
 
-### Users and groups
+### <a id='users-and-groups'></a> Users and groups
 
 A User entity describes a specific person and is used for identity purposes.
 A Group entity describes an organizational team or unit. Users are members of one or more Groups.
@@ -69,7 +69,7 @@ More information about and examples for these entities can be found in Backstage
 [here](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-group).
 
 
-### Systems
+### <a id='systems'></a> Systems
 
 A System entity is a collection of resources and components.
 System descriptor files require values for `apiVersion`, `kind`, `metadata.name`, and `spec.owner`,
@@ -91,7 +91,7 @@ spec:
 More information about and examples for Systems can be found in Backstage documentation
 [here](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-system).
 
-### Components
+### <a id='components'></a> Components
 
 A Component describes a software component, or a "unit of software".
 Component descriptor files require values for `apiVersion`, `kind`, `metadata.name`, `spec.type`,
@@ -118,11 +118,11 @@ spec:
 More information about and examples for Components can be found in Backstage documentation
 [here](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component).
 
-## Update software catalogs
+## <a id='update-catalogs'></a> Update software catalogs
 
 The following procedures cover updating software catalogs.
 
-### Register components
+### <a id='register-comp'></a> Register components
 
 You can update your software catalog with new entities without re-deploying the entire `tap-gui`
 package. To do so:
@@ -132,7 +132,7 @@ package. To do so:
 1. Link to an existing entity file to start tracking your entity by entering the full path.
 1. Import the entities and view them in your **Software Catalog** page.
 ​
-### Unregister components
+### <a id='unregister-comp'></a> Unregister components
 
 To unregister an entity, follow these steps:
 
@@ -140,7 +140,7 @@ To unregister an entity, follow these steps:
 1. Select the entity to unregister, such as component, group, or user.
 1. Click the three dots at the top-right of the page and then click **Unregister...**.
 
-### Add or change organization catalog locations
+### <a id='add-or-change'></a> Add or change organization catalog locations
 
 1. Use static configuration to add or change catalog locations:
 
@@ -193,17 +193,17 @@ To unregister an entity, follow these steps:
     ```
 
 
-## Installing demo apps and their catalogs
+## <a id='install-demo'></a> Installing demo apps and their catalogs
 
 If you want to set up one of our demos, you can choose between a blank or a sample catalog.
 
-### Yelb system
+### <a id='yelb-system'></a> Yelb system
 
 The [Yelb](https://github.com/mreferre/yelb/tree/master/deployments/platformdeployment/Kubernetes/yaml)
 demo catalog includes all the components that make up the Yelb system as well as the default
 Backstage components.
 
-#### Install Yelb
+#### <a id='install-yelb'></a> Install Yelb
 
 1. Download the appropriate file for running the Yelb application itself from
 [here](https://github.com/mreferre/yelb/tree/master/deployments/platformdeployment/Kubernetes/yaml)
@@ -212,7 +212,7 @@ Tanzu Application Platform. It's important to preserve the metadata labels on th
 objects.
 
 
-#### Install Yelb catalog
+#### <a id='install-yelb-cat'></a> Install Yelb catalog
 
 1. Save the **Tanzu Application Platform GUI Yelb Catalog** from the Tanzu Network's
 [Tanzu Application Platform downloads](https://network.pivotal.io/products/tanzu-application-platform)
