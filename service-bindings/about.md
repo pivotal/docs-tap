@@ -20,9 +20,9 @@ If you have trouble, you can retrieve and examine the logs from the service bind
 
 To retrieve pod logs from the `manager` running in the `service-bindings` namespace:
 
-    ```bash
-    kubectl -n service-bindings logs -l role=manager
-    ```
+  ```bash
+  kubectl -n service-bindings logs -l role=manager
+  ```
 
 For example:
 
