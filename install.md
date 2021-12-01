@@ -332,8 +332,10 @@ To install a profile:
 1. Create a `tap-values.yml` by using the following sample as a guide and select a profile to
 install by changing the `profile` value.
 
-    ```yaml
-    profile: <PROFILE-VALUE>
+#### Full Profile
+
+```yaml
+    profile: full
 
     buildservice:
       kp_default_repository: "<KP-DEFAULT-REPO>"
@@ -353,8 +355,34 @@ install by changing the `profile` value.
       ingressDomain: "<DOMAIN-NAME>"
 
     tap_gui:
-      service_type: LoadBalancer
-    ```
+      ingressEnabled: true
+	    ingressDomain: "<DOMAIN_NAME>"
+```
+
+#### Developer Light Profile
+
+```yaml
+    profile: dev-light
+
+    buildservice:
+      kp_default_repository: "<KP-DEFAULT-REPO>"
+      kp_default_repository_username: "<KP-DEFAULT-REPO-USERNAME>"
+      kp_default_repository_password: "<KP-DEFAULT-REPO-PASSWORD>"
+      tanzunet_username: "<TANZUNET-USERNAME>"
+      tanzunet_password: "<TANZUNET-PASSWORD>"
+
+    supply_chain: basic
+
+    ootb_supply_chain_basic:
+      registry:
+        server: "<SERVER-NAME>"
+        repository: "<REPO-NAME>"
+
+    tap_gui:
+      ingressEnabled: true
+	    ingressDomain: "<DOMAIN_NAME>"
+```
+
     Where:
 
     - `<PROFILE-VALUE>` is a value such as `full` or `dev-light`.
