@@ -482,13 +482,7 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
      export TANZU_CLI_NO_INIT=true
      ```
 
-  10. Remove previously installed plugin binaries:
-
-      ```
-      rm -rf ~/Library/Application\ Support/tanzu-cli/*
-      ```
-
-  11. Delete the `imagepullsecret` plugin if it is previously installed so it is replaced by a new `secret` plugin:
+  10. Delete the `imagepullsecret` plugin if it is previously installed so it is replaced by a new `secret` plugin:
       ```
       tanzu plugin list
       ```
@@ -496,14 +490,27 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
          ```
          tanzu plugin delete imagepullsecret
          ```
+  11. Remove previously installed plugin binaries:
 
-  12. Disable the **context-aware CLI for plugins** feature so the downloaded the CLI core and plugins are installed without errors:
+      ```
+      rm -rf ~/Library/Application\ Support/tanzu-cli/*
+      ```
+
+  12. Check to see what version of the Tanzu CLI core is installed:
+
+      ```
+      tanzu version
+      ```
+
+  13. If the version returned is `v0.11.0` or greater
+      Disable the **context-aware CLI for plugins** feature so the downloaded CLI core and plugins are installed without errors:
 
       ```
       tanzu config set features.global.context-aware-cli-for-plugins false
       ```
 
-  13. Update the core CLI:
+
+  14. Update the core CLI:
 
       ```
       tanzu update --local ./cli
@@ -511,7 +518,7 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
       Expect to see a user prompt - submit "y"
 
 
-  14. Check installation status for the core CLI:
+  15. Check installation status for the core CLI:
 
       ```
       tanzu version
@@ -519,13 +526,13 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
       Expect `version: v0.10.0`
 
 
-  15. Install new plugin versions:
+  16. Install new plugin versions:
 
       ```
       tanzu plugin install --local cli all
       ```
 
-  16. Check installation status for plugins:
+  17. Check installation status for plugins:
 
       ```
       tanzu plugin list
@@ -546,7 +553,7 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
       secret              v0.10.0         Tanzu secret management                                            core        v0.10.0  installed
       ```
 
-  17. You may now proceed with installing Tanzu Application Platform via **[Installing Part II: Profiles](install.md)**.
+  18. You may now proceed with installing Tanzu Application Platform via **[Installing Part II: Profiles](install.md)**.
 
 
 ## <a id='udpate-tkg-tce-tanzu-cli'></a>Instructions for updating Tanzu CLI previously installed for Tanzu Kubernetes Grid or Tanzu Community Edition
@@ -613,8 +620,8 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
       tanzu version
       ```
 
-  11. If the version returned is `v0.11.0+`
-      Disable the **context-aware CLI for plugins** feature so the downloaded plugins are installed without errors:
+  11. If the version returned is `v0.11.0` or greater
+      Disable the **context-aware CLI for plugins** feature so the downloaded plugins can be installed without errors:
 
       ```
       tanzu config set features.global.context-aware-cli-for-plugins false
