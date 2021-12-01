@@ -2,11 +2,7 @@
 
 ## Overview
 
-This repo publishes to:
-
-+ Staging:  https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.3/tap-0-3/GUID-overview.html
-+ Production: https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.3/tap-0-3/GUID-overview.html
-
+This repo contains the content for Tanzu Application Platform docs, v0.1–v0.4.
 
 ## Branches
 
