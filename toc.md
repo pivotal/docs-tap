@@ -1,7 +1,6 @@
 # Tanzu Application Platform
 
 This is the table of contents from which the Tanzu Application Platform Documentation site on docs.vmware.com is built.
-
 - [Tanzu Application Platform v0.4 (Beta-4)](overview.md)
 - [Release notes](release-notes.md)
 - [Installing Tanzu Application Platform](install-intro.md)
