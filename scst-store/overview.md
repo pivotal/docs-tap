@@ -2,7 +2,7 @@
 
 Supply Chain Security Tools - Store saves software bills of materials (SBoMs) to a database and allows you to query for image, source, package, and vulnerability relationships.  It integrates with [Supply Chain Security Tools - Scan](../scst-scan/overview.md) to automatically store the resulting source and image vulnerability reports.
 
-The following is a four-minute demo of scanning an image for CVEs and querying the metadata store for CVEs and dependencies.
+The following is a four-minute demo scanning an image for CVEs and querying the database for CVEs and dependencies.
 
 <iframe width="480" height="270"
 src="https://www.youtube.com/embed/UoWSsJBjFgc"
