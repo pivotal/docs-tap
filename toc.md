@@ -106,6 +106,6 @@ This is the table of contents from which the Tanzu Application Platform Document
         * [Catalog operations](tap-gui/catalog/catalog-operations.md)
         * [TechDocs](tap-gui/techdocs/usage.md)
         * [Tanzu Application Platform GUI Plugins](tap-gui/plugins/about.md)
-            * [Workload visibility](tap-gui/plugins/workload-visibility.md)
+            * [Workload Visibility user guide](tap-gui/plugins/runtime-resource-visibility.md)
             * [Application Live View](tap-gui/plugins/app-live-view.md)
         * [Troubleshooting Tanzu Application Platform GUI](tap-gui/troubleshooting.md)
