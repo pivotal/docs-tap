@@ -3,17 +3,24 @@
 This is the table of contents from which the Tanzu Application Platform Documentation site on docs.vmware.com is built.
 
 - [Tanzu Application Platform v0.4 (Beta-4)](overview.md)
+
 - [Release notes](release-notes.md)
+
 - [Installing Tanzu Application Platform](install-intro.md)
     - [Installing Part I: prerequisites, EULA, and CLI](install-general.md)
         - [Installing on a Tanzu Community Edition v0.9.1 cluster](install-tce.md)
         - [Installing on a Tanzu Kubernetes Grid v1.4 cluster](install-tkg.md)
         - [Installing on clusters onboarded to Tanzu Service Mesh](install-tsm.md)
     - [Installing Part II: profiles](install.md)    
+    
 - [Upgrading Tanzu Application Platform](upgrade.md)
+
 - [Getting started with Tanzu Application Platform](getting-started.md)
+
 - [Troubleshooting Tanzu Application Platform](troubleshooting.md)
+
 - [Uninstalling Tanzu Application Platform](uninstall.md)
+
 - [Component documentation](components.md)
     - [Installing individual packages](install-components.md)
     - [Apps CLI Plugin overview](cli-plugins/apps/overview-installation.md)
@@ -98,6 +105,10 @@ This is the table of contents from which the Tanzu Application Platform Document
         * [Known issues](scst-sign/known_issues.md)
     * [Supply Chain Security Tools for Tanzu – Store](scst-store/overview.md)
         * [Release notes](scst-store/release_notes.md)
+        * [Deployment](scst-store/deployment_details.md)
+        * [Security](scst-store/security.md)
+        * [Using AWS RDS Postgres configuration](scst-store/use_aws_rds.md)
+        * [Using encryption and connecting to Supply Chain Security Tools - Store](scst-store/using_encryption_and_connection.md)
         * [Troubleshooting and known issues](scst-store/known_issues.md)
     * [Tanzu Developer Tools for VSCode](vscode-extension/about.md)
         * [Install the VSCode Tanzu Extension](vscode-extension/install.md)
