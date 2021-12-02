@@ -812,8 +812,8 @@ no further configuration is required.
 
 However, in situations where your cluster pulls credentials from your container
 runtime configuration, you can choose to provide secrets via:
-- The `ClusterImagePolicy` resource configuration for a given name pattern.
-- Creating a `ServiceAccount` named `image-policy-registry-credentials` in the
+* The `ClusterImagePolicy` resource configuration for a given name pattern.
+* Creating a `ServiceAccount` named `image-policy-registry-credentials` in the
 `image-policy-system` namespace and adding `imagePullSecrets` to that service
 account.
 
@@ -929,9 +929,10 @@ kubectl logs -n image-policy-system -l "signing.run.tanzu.vmware.com/application
 
 #### Next Steps and Further Information
 
-- [Overview for Supply Chain Security Tools - Sign](scst-sign/overview.md)
-- [Configuring Supply Chain Security Tools - Sign](scst-sign/configuring.md)
-- [Supply Chain Security Tools - Sign Known Issues](scst-sign/known_issues.md)
+* [Overview for Supply Chain Security Tools - Sign](scst-sign/overview.md)
+* [Configuring Supply Chain Security Tools - Sign](scst-sign/configuring.md)
+* [Supply Chain Security Tools - Sign Known Issues](scst-sign/known_issues.md)
+
 
 ### Scan & Store: Introducing Vulnerability Scanning & Metadata Storage to your Supply Chain
 

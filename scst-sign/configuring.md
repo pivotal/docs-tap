@@ -5,11 +5,13 @@ container images properly.
 
 ## Create a `ClusterImagePolicy` Resource
 The cluster image policy is a custom resource containing the following properties:
-- `spec.verification.exclude.resources.namespaces`: a list of namespaces where
+* `spec.verification.exclude.resources.namespaces`: a list of namespaces where
 this policy will not be enforced.
-- `spec.verification.keys`: a list of public keys complementary to the private
+
+* `spec.verification.keys`: a list of public keys complementary to the private
 keys that were used to sign the images.
-- `spec.verification.images[].namePattern`: image name patterns for which the
+
+* `spec.verification.images[].namePattern`: image name patterns for which the
 policy is enforced. Each image name pattern is mapped to the required public
 keys and, optionally, a secret that grants authentication to the private
 registry where images and signatures that match a given pattern are stored.
@@ -47,16 +49,19 @@ spec:
 ```
 
 > **Note**:
->   - The `name` for the `ClusterImagePolicy` resource must be `image-policy`.
->   - Add any namespaces that run container images that are not signed in the
+>   * The `name` for the `ClusterImagePolicy` resource must be `image-policy`.
+>
+>   * Add any namespaces that run container images that are not signed in the
 >   `spec.verification.exclude.resources.namespaces` section, such as the
 >   `kube-system` namespace.
->   - If no `ClusterImagePolicy` resource is created all images are admitted into
+>
+>   * If no `ClusterImagePolicy` resource is created all images are admitted into
 >   the cluster with the following warning:
 >     ```
 >     Warning: clusterimagepolicies.signing.run.tanzu.vmware.com "image-policy" not found. Image policy enforcement was not applied.
 >     ```
->   - For a simpler installation process in a non-production environment
+>
+>   * For a simpler installation process in a non-production environment
 >   VMware recommends you use the manifest below to create the `ClusterImagePolicy`
 >   resource. This manifest includes a cosign public key which signed the public
 >   cosign v1.2.1 image. The cosign public key validates the specified cosign
@@ -95,11 +100,15 @@ EOF
 
 There are four ways the package reads credentials to authenticate to registries
 protected by authentication, in order:
+
 1. [Reading `imagePullSecrets` directly from the resource being admitted](https://kubernetes.io/docs/concepts/configuration/secret/#using-imagepullsecrets).
+
 1. [Reading `imagePullSecrets` from the service account the resource is running as](https://kubernetes.io/docs/concepts/configuration/secret/#arranging-for-imagepullsecrets-to-be-automatically-attached).
+
 1. [Reading a `secretRef` from the `ClusterImagePolicy` resource](#secret-ref-cluster-image-policy)
 applied to the cluster for the container image name pattern that matches the
 container being admitted.
+
 1. [Reading `imagePullSecrets` from the `image-policy-registry-credentials` service account](#secrets-registry-credentials-sa)
 in the `image-policy-system` namespace.
 
@@ -107,9 +116,11 @@ If you use [containerd-configured registry credentials](https://github.com/conta
 or another mechanism that causes your resources and service accounts to not
 include an `imagePullSecrets` field, you will need to provide credentials to
 the webhook using one of the following mechanisms:
+
 1. Create secret resources in any namespace of your preference that grants read
 access to the location of your container images and signatures and include it
 as part of your policy configuration.
+
 1. Create secret resources and include them in the `image-policy-registry-credentials`
 service account. The service account and the secrets must be created in the
 `image-policy-system` namespace.
@@ -117,10 +128,12 @@ service account. The service account and the secrets must be created in the
 ### <a id="secret-ref-cluster-image-policy"></a> Providing secrets for authentication in your policy
 
 If your use case matches the following conditions:
-- Your images and signatures reside in a registry protected by authentication.
-- You do not have `imagePullSecrets` configured in your runnable resources or
+* Your images and signatures reside in a registry protected by authentication.
+
+* You do not have `imagePullSecrets` configured in your runnable resources or
 in the `ServiceAccount`s your runnable resources use.
-- You would like this webhook to check these container images.
+
+* You would like this webhook to check these container images.
 
 You can provide secrets for authentication as part of the name pattern policy
 configuration, as shown in the example below:
