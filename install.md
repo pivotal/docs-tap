@@ -402,7 +402,7 @@ of Tanzu Application Platform.
     Where:
 
     - `<PROFILE-VALUE>` is a value such as `full` or `dev-light`.
-    - `<ceip-policy-disclosed> must have the value `true`. **NOTE:** install will fail if the value is not set to `true`.
+    - `<ceip-policy-disclosed>` must have the value `true`. **NOTE:** installation fails if the value is not set to `true`.
     - `<KP-DEFAULT-REPO>` is a writable repository in your registry. Tanzu Build Service dependencies are written to this location.
       * Examples:
         * Harbor `kp_default_repository: "my-harbor.io/my-project/build-service"`
