@@ -113,3 +113,8 @@ repository.
     - `<bundle-image-registry>` is the registry where you copy the image bundle.
     - `<bundle-version-tag>` is the image bundle version tag to copy.
     - `<target-image-registry-repo>` is where you paste the image bundle and all associated images.
+
+## Reviewing Logs
+
+The API server generate logs which can be useful for troubleshooting issues that may arise. Refer to [Configuring and Understanding Store Logs](logs.md)
+for more information on interpreting logs.
