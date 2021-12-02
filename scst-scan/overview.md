@@ -20,7 +20,7 @@ The following Supply Chain Security Tools - Scan features make the use cases ava
 ## Scanner support
 | Out-Of-The-Box Scanner | Version |
 | --- | --- |
-| [Anchore Grype](https://github.com/anchore/grype) | v0.20.0 |
+| [Anchore Grype](https://github.com/anchore/grype) | v0.25.1 |
 
 More to come in FY23! Let us know if there's a scanner you'd like us to support.
 
