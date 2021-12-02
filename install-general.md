@@ -83,8 +83,6 @@ pods can run as root.
 ### Tools and CLI requirements
 Installation requires:
 
-* [Kapp Carvel command line tool](https://github.com/vmware-tanzu/carvel-kapp/releases) v0.37.0 or later.
-
 * The Kubernetes CLI, kubectl, v1.19, v1.20 or v1.21, installed and authenticated with administrator rights for your target cluster. See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes documentation.
 
 * To set the Kubernetes cluster context:
@@ -120,105 +118,6 @@ Installation requires:
         Switched to context "aks-tap-cluster".
         ```
 
-* Kapp-controller v0.29.0 or later:
-
-     *  If you are using Tanzu Kubernetes Grid v1.4, see [Install kapp-controller](install-tkg.md#install-kappcontroller-1).
-     *  If you are using Tanzu Community Edition, see [Install kapp-controller](install-tce.md#install-kappcontroller-1).
-    * Install kapp-controller by running:
-
-      ```
-      kapp deploy -y -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/KC-VERSION/release.yml
-      ```
-      Where `KC-VERSION` is the Kapp-controller version being installed.
-
-      Select v0.29.0+ Kapp-controller version for Azure Kubernetes Service, Amazon Elastic Kubernetes Service,
-      Google Kubernetes Engine, Kind, and Minikube from the [Releases page](https://github.com/vmware-tanzu/carvel-kapp-controller/releases).
-
-      For example:
-      ```
-      kapp deploy -y -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v0.29.0/release.yml
-      ```
-    * Verify Kapp-controller is running by running:
-         ```
-         kubectl get pods -A | grep kapp-controller
-         ```
-         Pod status should be Running.
-
-    * (Optional) Verify installed Kapp-controller version:
-
-      1. Get Kapp-controller deployment and namespace by running:
-         ```
-         kubectl get deployments -A | grep kapp-controller
-         ```
-
-         For example:
-         ```
-         kubectl get deployments -A | grep kapp-controller
-         NAMESPACE                NAME                             READY   UP-TO-DATE   AVAILABLE   AGE
-         kapp-controller          kapp-controller                  1/1     1            1           25h   
-         ```
-      2. Get Kapp controller version by running:
-         ```
-         kubectl get deployment KC-DEPLOYMENT -n KC-NAMESPACE -o yaml | grep kapp-controller.carvel.dev/version
-         ```
-
-         Where `KC-DEPLOYMENT` and `KC-NAMESPACE` are Kapp-controller deployment name and Kapp-controller namespace name respectively from the output of step 1.
-
-         For example:
-         ```
-         kubectl get deployment kapp-controller -n kapp-controller  -o yaml | grep kapp-controller.carvel.dev/version
-         kapp-controller.carvel.dev/version: v0.29.0
-         kapp.k14s.io/original: '{"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{"kapp-controller.carvel.dev/version":"v0.29.0","kbld.k14s.io/images":"-
-         ```
-
-
-* Secretgen-controller:
-
-    * Install Secretgen-controller by running:
-
-      ```
-      kapp deploy -y -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/download/SG-VERSION/release.yml
-      ```
-
-      Where `SG-VERSION` is the Secretgen-controller version being installed.
-      Select v0.6.0+ Secretgen-controller version from the [Releases page](https://github.com/vmware-tanzu/carvel-secretgen-controller/releases).
-
-      For example:
-      ```
-      kapp deploy -y -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/download/v0.6.0/release.yml
-      ```
-    * Verify Secretgen-controller is running by running:
-         ```
-         kubectl get pods -A | grep secretgen-controller
-         ```
-        Pod status should be Running.
-
-    * (Optional) Verify the Secretgen-controller version you installed:
-
-      1. Get Secretgen-controller deployment and namespace by running:
-         ```
-         kubectl get deployments -A | grep secretgen-controller
-         ```
-         For example:
-         ```
-         kubectl get deployments -A | grep secretgen-controller
-         NAMESPACE                NAME                             READY   UP-TO-DATE   AVAILABLE   AGE
-         secretgen-controller     secretgen-controller             1/1     1            1           22d   
-         ```
-
-      2. Get Secretgen-controller version by running:
-         ```
-         kubectl get deployment SG-DEPLOYMENT -n SG-NAMESPACE -o yaml | grep secretgen-controller.carvel.dev/version
-         ```
-         Where `SG-DEPLOYMENT` and `SG-NAMESPACE` are Secretgen-controller deployment name and Secretgen-controller namespace name respectively from the output of step 1.
-
-         For example:
-
-         ```
-         kubectl get deployment secretgen-controller -n secretgen-controller -oyaml | grep secretgen-controller.carvel.dev/version
-         secretgen-controller.carvel.dev/version: v0.6.0
-         ```
-
 
 ## <a id="eulas"></a> Accept the EULAs
 
@@ -230,12 +129,18 @@ To accept EULAs:
 
 2. For each of the following components, accept or confirm that you have accepted the EULA:
 
+    + [Tanzu Prerequisites](https://network.pivotal.io/products/tanzu-prerequisites/#/releases/1006464)
     + [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/)
     + [Tanzu Build Service](https://network.tanzu.vmware.com/products/build-service/) and its associated components:
       + [Tanzu Build Service Dependencies](https://network.tanzu.vmware.com/products/tbs-dependencies/)
       + [Buildpacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-buildpacks-suite)
       + [Stacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-stacks-suite)
 
+## <a id='cli-and-plugin'></a> Install Tanzu Prerequisites
+
+If you are operating a Tanzu Kubernetes Grid or Tanzu Community Edition cluster the Tanzu Prerequisities will already be installed. 
+
+For all other Kubernetes providers,  [Mandy to insert steps here]
 
 ## <a id='cli-and-plugin'></a> Install or update the Tanzu CLI and plugins
 
