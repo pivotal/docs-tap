@@ -12,6 +12,7 @@ This is the table of contents from which the Tanzu Application Platform Document
   - [Installing Part II: profiles](install.md)
 - [Upgrading Tanzu Application Platform](upgrade.md)
 - [Getting started with Tanzu Application Platform](getting-started.md)
+- [Opting out of telemetry collection](opting-out-telemetry.md)
 - [Troubleshooting Tanzu Application Platform](troubleshooting.md)
 - [Uninstalling Tanzu Application Platform](uninstall.md)
 - [Component documentation](components.md)
