@@ -1,7 +1,7 @@
-# Supply Chain Security Tools for Tanzu - Scan
+# Supply Chain Security Tools - Scan
 
 ## Overview
-With Supply Chain Security Tools for Tanzu - Scan, Tanzu customers can build and deploy secure, trusted software that complies with their corporate security requirements. To enable this, Supply Chain Security Tools - Scan provides scanning and gatekeeping capabilities that Application and DevSecOps teams can easily incorporate earlier in their path to production as it is a known industry best practice for reducing security risk and ensuring more efficient remediation.
+With Supply Chain Security Tools - Scan, Tanzu customers can build and deploy secure, trusted software that complies with their corporate security requirements. To enable this, Supply Chain Security Tools - Scan provides scanning and gatekeeping capabilities that Application and DevSecOps teams can easily incorporate earlier in their path to production as it is a known industry best practice for reducing security risk and ensuring more efficient remediation.
 
 ## Use cases
 * Using your scanner as a plug-in, scan source code repositories and images for known CVEs prior to deploying to a cluster.
@@ -9,8 +9,8 @@ With Supply Chain Security Tools for Tanzu - Scan, Tanzu customers can build and
 * Analyze scan results against user-defined policies using Open Policy Agent.
 * Produce vulnerability scan results and post them to the Supply Chain Security Tools - Store from where they can be queried.
 
-## Supply Chain Security Tools for Tanzu - Scan features
-The following Supply Chain Security Tools for Tanzu - Scan features make the use cases available:
+## Supply Chain Security Tools - Scan features
+The following Supply Chain Security Tools - Scan features make the use cases available:
 
 * Built Kubernetes controllers to run scan jobs.  
 * Built Custom Resource Definitions (CRDs) for Image and Source Scan.  
