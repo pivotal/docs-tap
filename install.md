@@ -347,7 +347,7 @@ of Tanzu Application Platform.
 
 >**Important:** Keep this file for future use.
 
-#### Full Profile
+### Full Profile
 
 ```yaml
     profile: full
@@ -370,15 +370,14 @@ of Tanzu Application Platform.
       ingressDomain: "<DOMAIN-NAME>"
 
     tap_gui:
-      ingressEnabled: true
-	    ingressDomain: "<DOMAIN_NAME>"
+      service_type: LoadBalancer # NodePort for distributions that don't support LoadBalancer
 ```
 
-#### Light Profile
+### Light Profile
 
 ```yaml
-    profile: dev-light
-    ceip_policy_disclosed:
+    profile: light
+    ceip_policy_disclosed: true
 
     buildservice:
       kp_default_repository: "<KP-DEFAULT-REPO>"
@@ -395,14 +394,14 @@ of Tanzu Application Platform.
         repository: "<REPO-NAME>"
 
     tap_gui:
-      ingressEnabled: true
-	    ingressDomain: "<DOMAIN_NAME>"
+      service_type: LoadBalancer # NodePort for distributions that don't support LoadBalancer
 ```
+Where:
 
-    Where:
-
-    - `<PROFILE-VALUE>` is a value such as `full` or `dev-light`.
-    - `<ceip-policy-disclosed>` must have the value `true`. **NOTE:** installation fails if the value is not set to `true`.
+   - `<PROFILE-VALUE>` is a value such as `full` or `dev-light`.
+    - `<ceip-policy-disclosed>` must have the value `true`.
+    **Note:** If the value is not set to `true`, installation fails.
+       
     - `<KP-DEFAULT-REPO>` is a writable repository in your registry. Tanzu Build Service dependencies are written to this location.
       * Examples:
         * Harbor `kp_default_repository: "my-harbor.io/my-project/build-service"`
@@ -424,16 +423,16 @@ of Tanzu Application Platform.
           * Google Cloud Registry `repository: "my-project/supply-chain"`
     - `<DOMAIN-NAME>` has a value such as `educates.example.com`.
 
-    To view possible configuration settings for a package, run:
+  To view possible configuration settings for a package, run:
 
-    ```bash
-    tanzu package available get tap.tanzu.vmware.com/0.3.0 --values-schema --namespace tap-install
-    ```
+  ```bash
+    tanzu package available get tap.tanzu.vmware.com/0.4.0 --values-schema --namespace tap-install
+   ```
 
-    >**Note:** The `tap.tanzu.vmware.com` package does not show all configuration settings for packages it plans to install. The package only shows top level keys.
+   >**Note:** The `tap.tanzu.vmware.com` package does not show all configuration settings for packages it plans to install. The package only shows top level keys.
     View individual package configuration settings with the same `tanzu package available get` command. For example, use `tanzu package available get -n tap-install cnrs.tanzu.vmware.com/1.0.3 --values-schema` for Cloud Native Runtimes.
 
-    ```yaml
+   ```yaml
     profile: full
 
     # ...
@@ -445,34 +444,34 @@ of Tanzu Application Platform.
     # e.g. App Accelerator specific values would go under its name
     accelerator:
       service_type: "ClusterIP"
-    ```
+   ```
 
-    The following table summarizes the top level keys used for package-specific configuration within
+   The following table summarizes the top level keys used for package-specific configuration within
     your `tap-values.yml`
 
-    |Package|Top Level Key|
-    |----|----|
-    |API portal|`api_portal`|
-    |Application Accelerator|`accelerator`|
-    |Application Live View|`appliveview`|
-    |Cartographer|`cartographer`|
-    |Cloud Native Runtimes|`cnrs`|
-    |Supply Chain|`supply_chain`|
-    |Supply Chain Basic|`ootb_supply_chain_basic`|
-    |Supply Chain Testing|`ootb_supply_chain_testing`|
-    |Supply Chain Testing Scanning|`ootb_supply_chain_testing_scanning`|
-    |Supply Chain Security Tools - Store|`metadata_store`|
-    |Image Policy Webhook|`image_policy_webhook`|
-    |Build Service|`buildservice`|
-    |Tanzu Application Platform GUI|`tap_gui`|
-    |Learning Center|`learningcenter`|
+   |Package|Top Level Key|
+   |----|----|
+  |API portal|`api_portal`|
+  |Application Accelerator|`accelerator`|
+  |Application Live View|`appliveview`|
+  |Cartographer|`cartographer`|
+  |Cloud Native Runtimes|`cnrs`|
+  |Supply Chain|`supply_chain`|
+  |Supply Chain Basic|`ootb_supply_chain_basic`|
+  |Supply Chain Testing|`ootb_supply_chain_testing`|
+  |Supply Chain Testing Scanning|`ootb_supply_chain_testing_scanning`|
+  |Supply Chain Security Tools - Store|`metadata_store`|
+  |Image Policy Webhook|`image_policy_webhook`|
+  |Build Service|`buildservice`|
+  |Tanzu Application Platform GUI|`tap_gui`|
+  |Learning Center|`learningcenter`|
 
-    For information about package-specific configuration, see [Install components](install-components.md).
+  For information about package-specific configuration, see [Install components](install-components.md).
 
 1. Install the package by running:
 
     ```bash
-    tanzu package install tap -p tap.tanzu.vmware.com -v 0.3.0 --values-file tap-values.yml -n tap-install
+    tanzu package install tap -p tap.tanzu.vmware.com -v 0.4.0 --values-file tap-values.yml -n tap-install
     ```
 
 1. Verify the package install by running:
@@ -545,8 +544,9 @@ with your relevant values. Run:
         backend:
             baseUrl: http://EXTERNAL-IP:7000
             cors:
-                origin: http://EXTERNAL-IP:7000
+              origin: http://EXTERNAL-IP:7000
    ```
+
     Where:
 
     - `EXTERNAL-IP` is your LoadBalancer's address.
@@ -556,7 +556,31 @@ with your relevant values. Run:
     > **Note:** The `integrations` section uses Github. If you want additional integrations, see the
     format in this [Backstage integration documentation](https://backstage.io/docs/integrations/).
 
-1. Update the package profile by running:
+**Optional Tanzu Application Platform GUI Database Configuration**
+The default database mechanism for TAP-GUI is an in-memory database that is recommended for test/dev only and you can delete/comment-out this section of the configuration. However, when the TAP GUI server pod gets re-created, you'll lose all user preferences and any manually registered entities. For production or general-purpose use-cases, we recommend using a PostgreSQL database.
+
+```yaml
+    backend:
+      baseUrl: http://tap-gui.<DOMAIN_NAME>-IP:7000
+      cors:
+          origin: http://tap-gui.<DOMAIN_NAME>-IP:7000
+    # Existing tap-values.yml above 
+      database: #External database strongly recommended for production use
+        client: pg
+          connection:
+            host: <PG_SQL_HOSTNAME>
+            port: 5432
+            user: <PG_SQL_USERNAME>
+            password: <PG_SQL_PASSWORD>
+            ssl: {rejectUnauthorized: false} #Set to true if using SSL
+```
+
+Where:
+  - `PG_SQL_HOSTNAME` is the hostname of your PostgreSQL database.
+  - `PG_SQL_USERNAME` is the username of your PostgreSQL database.
+  - `PG_SQL_PASSWORD` is the password of your PostgreSQL database.
+
+4. Update the package profile by running:
 
     ```console
     tanzu package installed update tap \
@@ -580,12 +604,12 @@ with your relevant values. Run:
     Updated package install 'tap' in namespace 'tap-install'
     ```
 
-1. To access the Tanzu Application Platform GUI, use the `baseURL` location you specified above. This consists of the `EXTERNAL-IP` with the default port of 7000. Run:
+5. To access the Tanzu Application Platform GUI, use the `baseURL` location you specified above. This consists of the `EXTERNAL-IP` with the default port of 7000. Run:
     ```
     http://EXTERNAL-IP:7000
     ```
 
-1. If you have any issues, try re-creating the Tanzu Application Platform Pod by running:
+6. If you have any issues, try re-creating the Tanzu Application Platform Pod by running:
 
     ```console
     kubectl delete pod -l app=backstage -n tap-gui

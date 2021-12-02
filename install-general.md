@@ -42,6 +42,9 @@ Supported Git infrastructure includes:
     - Azure DevOps
 - Tanzu Application Platform GUI Blank Catalog from the Tanzu Application section of Tanzu Network
   - To install this navigate to [Tanzu Network](https://network.tanzu.vmware.com/) and select the Tanzu Application Platform. Under the list of available files to download, there will be a fodler titled `tap-gui-catalogs`. Inside that folder is a compressed archive titled `Tanzu Application Platform Blank Catalog`. You'll need to extract that catalog to the preceding Git repository of choice. This serves as the configuration location for your Organziation's Catalog inside Tanzu Application Platform GUI.
+  - The Tanzu Application Platform GUI catalog allows for two approaches towards storing catalog information.
+    - The default option is suitable for test/development scenarios in that an in-memory database is used. This reads the catalog data from Git URLs you specify in the tap-values.yml file. This data is ephemeral and any operations that cause the `server` pod in the `tap-gui` namespace to be re-created will cause this data to be rebuilt from the Git location. This can cause issues when you manually register entities through the UI as they ONLY exist in the database and will be lost when that in-memory database gets rebuilt.
+    - For production use-cases we recommend the use of a PostgreSQL database that exists outside the Tanzu Applicaton Platform's packaging. This stores all the catalog data persistently both from the Git locations as well as from the GUI's manual entity registrations. 
 
 ### Kubernetes cluster requirements
 Installation requires:
@@ -57,6 +60,7 @@ Installation requires:
         * Minimum requirements: 8 CPUs for i9 or equivalent, 12 CPUs for i7 or equivalent, 8 GB RAM (12+ GB recommended), and 120 GB disk space.
         * If you are using Cloud Native Runtimes, see [Configure Your Local Kind
         Cluster](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-local-dns.html#config-cluster).
+        * Since Kind doesn't support LoadBalancer make sure to use NodePort when defining service types.
     * Minikube
         * Minimum requirements for VM: 8 CPUs for i9 or equivalent, 12 CPUs for i7 or equivalent, 8 GB RAM (12+ GB recommended), and 120 GB disk space.
         * VMware recommends at least 16 GB of total host memory.
