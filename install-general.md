@@ -136,9 +136,9 @@ To accept EULAs:
       + [Buildpacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-buildpacks-suite)
       + [Stacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-stacks-suite)
 
-## <a id='cli-and-plugin'></a> Install Tanzu Prerequisites
+## <a id='cli-and-plugin'></a> Install Tanzu prerequisites
 
-If you are operating a Tanzu Kubernetes Grid or Tanzu Community Edition cluster the Tanzu Prerequisities will already be installed. 
+If you are operating a Tanzu Kubernetes Grid or Tanzu Community Edition cluster the Tanzu prerequisites are already installed. 
 
 For all other Kubernetes providers,  [Mandy to insert steps here]
 
