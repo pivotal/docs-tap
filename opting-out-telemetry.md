@@ -29,3 +29,4 @@ To turn off telemetry collection on your Tanzu Application Platform installation
 
 
 Your TAP deployment no longer emits telemetry and you are opted out of the CEIP.
+Please note that opting out of telemetry collection will mean that VMware cannot offer you proactive support or any other benefits that accompany participation in the CEIP.
