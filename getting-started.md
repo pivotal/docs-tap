@@ -617,7 +617,7 @@ A ScanPolicy is required and the following is to be applied into the required na
 ```bash
 kubectl apply -f - -o yaml << EOF
 ---
-apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
+apiVersion: scst-scan.apps.tanzu.vmware.com/v1alpha1
 kind: ScanPolicy
 metadata:
   name: scan-policy
