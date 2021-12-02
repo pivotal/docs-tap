@@ -2,7 +2,8 @@
 
 When submitting the following pod `Pod Intent` on each convention, the output may change depending on the applied convention
 
-  The submitted pod intent can be
+  The submitted pod intent can be:
+
   ```yaml
   apiVersion: conventions.apps.tanzu.vmware.com/v1alpha1
   kind: PodIntent
@@ -16,12 +17,11 @@ When submitting the following pod `Pod Intent` on each convention, the output ma
           image: springio/petclinic
   ```
 
+## Spring boot convention
 
-## Spring Boot Convention
+  In the `bom` file's metadata, under `dependencies`, there is a `dependency` named `spring-boot`. The convention `spring-boot` adds a __label__ to the `PodTemplateSpec` setting the framework used by running `conventions.apps.tanzu.vmware.com/framework", "spring-boot`. The convention `spring-boot` also adds an __annotation__ with the version of the _dependency_.
 
-  When looking inside the `bom`, it contains in the metadata `dependencies` a `dependency` named `spring-boot` then the convention `spring-boot` adds a __label__ to the `PodTemplateSpec` setting the framework used by doing `conventions.apps.tanzu.vmware.com/framework", "spring-boot` and also adds an __annotation__ with the version of the _dependency_
-
-  The `docker inspect` can looks like:
+  The `docker inspect` can look like:
   
   ```json
   [
@@ -34,7 +34,9 @@ When submitting the following pod `Pod Intent` on each convention, the output ma
       "Labels": {
         "io.buildpacks.build.metadata": "{\"bom\":[{\"name\":\"helper\",\"metadata\":{\"layer\":\"helper\",\"names\":[\"ca-certificates-helper\"],\"version\":\"2.2.0\"},\"buildpack\":{\"id\":\"paketo-buildpacks/ca-certificates\",\"version\":\"2.2.0\"}},{\"name\":\"dependencies\",\"metadata\":{\"dependencies\":[{\"name\":\"spring-beans\",\"sha256\":\"33331abcdd8acccea43666782a5807127a0d43ffc6abf1c3252fbb27fc3367b2\",\"version\":\"5.3.6\"},{\"name\":\"spring-boot\",\"sha256\":\"2e46ae8796df9ca1b4ad74eab608b19f771255321e7d9fafb64561e7e030869e\",\"version\":\"2.4.5\"}
   ```
-Convention output
+
+Convention output:
+
   ```yaml
   apiVersion: conventions.apps.tanzu.vmware.com/v1alpha1
   kind: PodIntent
@@ -81,18 +83,17 @@ Convention output
           resources: {}
   ```
 
+## Spring boot graceful shutdown convention
 
-## Spring Boot Graceful Shutdown Convention
+  In the `bom` file's metadata, under `dependencies`, there is a `dependency` with one of these names:
 
-  When looking inside the `bom`, it cointains in the metadata `dependencies` a `dependency` with any of this names:
+  - spring-boot-starter-tomcat
+  - spring-boot-starter-jetty
+  - spring-boot-starter-reactor-netty
+  - spring-boot-starter-undertow
+  - tomcat-embed-core
 
-  + spring-boot-starter-tomcat
-  + spring-boot-starter-jetty
-  + spring-boot-starter-reactor-netty
-  + spring-boot-starter-undertow
-  + tomcat-embed-core
-
-   then the convention `spring-boot-graceful-shutdown` adds a _property_ in the environment variable `JAVA_TOOL_OPTIONS` with _key_ `server.shutdown.grace-period` and _value_ the 80% of the set value in `target.Spec.TerminationGracePeriodSeconds` (or 30 seconds). 
+  The convention `spring-boot-graceful-shutdown` adds a _property_ in the environment variable `JAVA_TOOL_OPTIONS`. It adds _key_ `server.shutdown.grace-period` and _value_, which is 80% of the set value in `target.Spec.TerminationGracePeriodSeconds` (or 30 seconds).
 
   The `docker inspect` can looks like:
   
@@ -158,16 +159,16 @@ Convention output
           resources: {}
   ```
 
-## Spring Boot Web Convention
+## Spring boot web convention
 
-  When looking inside the `bom`, it contains in the metadata `dependencies` a `dependency` with all of this names:
+  In the `bom` file's metadata, under `dependencies`, there is a `dependency` with these names:
 
   + spring-boot
   + spring-boot-web
 
-   then the convention `spring-boot-web` adds the default 8080 `port` to the `PodTemplateSpec` 
+  The convention `spring-boot-web` adds the default 8080 `port` to the `PodTemplateSpec`.
 
-  The `docker inspect` can looks like:
+  The `docker inspect` can look like:
   
   ```json
   [
@@ -180,7 +181,9 @@ Convention output
       "Labels": {
         "io.buildpacks.build.metadata": "{\"bom\":[{\"name\":\"helper\",\"metadata\":{\"layer\":\"helper\",\"names\":[\"ca-certificates-helper\"],\"version\":\"2.2.0\"},\"buildpack\":{\"id\":\"paketo-buildpacks/ca-certificates\",\"version\":\"2.2.0\"}},{\"name\":\"dependencies\",\"metadata\":{\"dependencies\":[{\"name\":\"spring-beans\",\"sha256\":\"33331abcdd8acccea43666782a5807127a0d43ffc6abf1c3252fbb27fc3367b2\",\"version\":\"5.3.6\"},{\"name\":\"spring-web\",\"sha256\":\"dd40db91f0ae291c451cb83b18787823249814fe9499d8333972718e9e6edbf7\",\"version\":\"5.3.6\"},{\"name\":\"spring-boot\",\"sha256\":\"2e46ae8796df9ca1b4ad74eab608b19f771255321e7d9fafb64561e7e030869e\",\"version\":\"2.4.5\"}
   ``` 
-Convention output
+
+  Convention output:
+
   ```yaml
   apiVersion: conventions.apps.tanzu.vmware.com/v1alpha1
   kind: PodIntent
@@ -233,9 +236,10 @@ Convention output
             protocol: TCP
           resources: {}
   ```
-## Spring Boot Actuator Convention
 
-  When looking inside the `bom`, it contains in the metadata `dependencies` a `dependency` with name `spring-boot-actuator` then the convention `spring-boot-actuator` adds the management port and the base path to the the environment variable `JAVA_TOOL_OPTIONS`, it also adds an __annotation__ (`boot.spring.io/actuator`) where the actuator can be accessed.
+## Spring boot actuator convention
+
+  In the `bom` file's metadata, under `dependencies`, there is a `dependency` with the name `spring-boot-actuator`. The convention `spring-boot-actuator` adds the management port and the base path to the the environment variable `JAVA_TOOL_OPTIONS`. It also adds an __annotation__ (`boot.spring.io/actuator`) where the actuator is accessed.
 
   The `docker inspect` can looks like:
   
@@ -250,7 +254,9 @@ Convention output
       "Labels": {
         "io.buildpacks.build.metadata": "{\"bom\":[{\"name\":\"helper\",\"metadata\":{\"layer\":\"helper\",\"names\":[\"ca-certificates-helper\"],\"version\":\"2.2.0\"},\"buildpack\":{\"id\":\"paketo-buildpacks/ca-certificates\",\"version\":\"2.2.0\"}},{\"name\":\"dependencies\",\"metadata\":{\"dependencies\":[{\"name\":\"spring-beans\",\"sha256\":\"33331abcdd8acccea43666782a5807127a0d43ffc6abf1c3252fbb27fc3367b2\",\"version\":\"5.3.6\"},{\"name\":\"spring-web\",\"sha256\":\"dd40db91f0ae291c451cb83b18787823249814fe9499d8333972718e9e6edbf7\",\"version\":\"5.3.6\"},{\"name\":\"spring-boot\",\"sha256\":\"2e46ae8796df9ca1b4ad74eab608b19f771255321e7d9fafb64561e7e030869e\",\"version\":\"2.4.5\"},{\"name\":\"spring-boot-actuator\",\"sha256\":\"6bae019e7a8f400a1b98af65596bc742c825e2ba3851cbedde38031e9699ebc0\",\"version\":\"2.4.5\"}
   ``` 
-Convention output
+
+Convention output:
+
   ```yaml
   apiVersion: conventions.apps.tanzu.vmware.com/v1alpha1
   kind: PodIntent
@@ -306,8 +312,9 @@ Convention output
           resources: {}
   ```
 
-## Service intent Conventions
-The _Service intent_ conventions are those conventions that does not change the behavior of the final deployment but may be used as information to further process in the supply chain, for example when an application requires the binding of a database service. This conventions add an __annotation__ and a label to the `PodTemplateSpec` for each detected dependency AND it is added to the `conventions.apps.tanzu.vmware.com/applied-conventions` as well.
+## Service intent conventions
+
+The _Service intent_ conventions do not change the behavior of the final deployment but may be used as added information to process in the supply chain. For example, when an application requires the binding of a database service. This convention adds an __annotation__ and a label to the `PodTemplateSpec` for each detected dependency. It adds an __annotation__ and a label to the `conventions.apps.tanzu.vmware.com/applied-conventions` as well.
 
 The list of the supported intents are:
   + MySQL
@@ -339,9 +346,10 @@ The list of the supported intents are:
     - __Label__: `services.conventions.apps.tanzu.vmware.com/kafka-streams`
     - __Dependencies__: `kafka-streams`
 
-__Lets see an example__
+### Example
 
-Meaning that if you applied the `Pod Intent` and the image contains a dependency i.e. of _MySQL_, then the output of the convention will be
+When you apply the `Pod Intent` and the image contains a dependency, for example, of _MySQL_, then the output of the convention will be:
+
 ```yaml
   apiVersion: conventions.apps.tanzu.vmware.com/v1alpha1
   kind: PodIntent
