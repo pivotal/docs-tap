@@ -88,13 +88,13 @@ To completely remove the Tanzu CLI, plug-ins, and associated files, run the scri
 
 * For Linux or MacOS, run:
 
-    ```console
-    #!/bin/zsh
-    rm -rf $HOME/tanzu/ # Remove tanzu storage folder
-    sudo rm /usr/local/bin/tanzu # Remove CLI binary (executable)
-    rm -rf ~/.config/tanzu/   # current location # Remove config directory
-    rm -rf ~/.tanzu/          # old location # Remove config directory
-    rm -rf ~/Library/Application\ Support/tanzu-cli/* # Remove plug-ins
-    ```
+```console
+#!/bin/zsh
+rm -rf $HOME/tanzu/           # Remove tanzu storage folder
+sudo rm /usr/local/bin/tanzu  # Remove CLI binary (executable)
+rm -rf ~/.config/tanzu/       # current location # Remove config directory
+rm -rf ~/.tanzu/              # old location # Remove config directory
+rm -rf ~/Library/Application\ Support/tanzu-cli/*  # Remove plug-ins
+```
 
 <!-- Get engineer to add Windows script. -->
