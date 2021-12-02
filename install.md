@@ -337,15 +337,15 @@ To install a profile:
     tanzu package available list tap.tanzu.vmware.com --namespace tap-install
     ```
 
-1. Create a `tap-values.yml` file by using the applicable profile sample as a guide. 
+1. Create a `tap-values.yml` file by using the applicable profile sample as a guide.
+These samples have the minimum configuration required to deploy Tanzu Application Platform.
+The sample values file contains the necessary defaults for both the meta-package
+('parent' Tanzu Application Platform package) and subordinate packages
+(individual 'child' packages).
+The values file you provide during installation is used for further configuration
+of Tanzu Application Platform. 
 
-These samples were designed to encompass the minimal amount of configuration required to successfully deploy the Tanzu Application Platform. 
-
-The sample values file contains the necessary defaults for both the meta-package ('parent' TAP package) and subordinate packages (individual 'child' packages).
-
-The values file you provide during installation will be used for further configuration during the life of your TAP installation. 
-
-NOTE: It is important to save this file for future use.
+>**Important:** Keep this file for future use.
 
 #### Full Profile
 
@@ -593,7 +593,7 @@ You're now ready to start using Tanzu Application Platform GUI.
 Proceed to the [Getting Started](getting-started.md) topic or the
 [Tanzu Application Platform GUI - Catalog Operations](tap-gui/catalog/catalog-operations.md) topic.
 
-## <a id='exclude-packages'></a> Exclude packages from a Tanzu Application Platform profile 
+## <a id='exclude-packages'></a> Exclude packages from a Tanzu Application Platform profile
 
 1. If you desire to exlude packages from a given profile, first you'll need to find the full subordinate (child) package name:
 
