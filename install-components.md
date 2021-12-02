@@ -1746,14 +1746,13 @@ To install Supply Chain Security Tools - Scan (Scan Controller):
 
 1. Gather the values schema.
 
-1. Install the package by running (omit the `--values-file` line if installing with default configuration):
+1. Install the package with default configuration by running:
 
     ```console
     tanzu package install scan-controller \
       --package-name scst-scan.apps.tanzu.vmware.com \
       --version 1.0.0 \
-      --namespace tap-install \
-      --values-file scst-scan-controller-values.yaml
+      --namespace tap-install
     ```
 
 To install Supply Chain Security Tools - Scan (Grype Scanner):
