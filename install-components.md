@@ -536,7 +536,7 @@ To install Application Accelerator:
 
     Modify the values if needed or leave the default values.
 
-    > **Note:** If you would like to use the Tanzu CLI accelerator plugin to generate projects, then you can set the `server.service_type` to "LoadBalancer" to get an external IP address for the `acc-server` in the `accelerator-system` namespace.
+    > **Note:** To use the Tanzu CLI accelerator plugin to generate projects, set the `server.service_type` to `LoadBalancer` to get an external IP address for the `acc-server` in the `accelerator-system` namespace.
 
 1. Install the package by running:
 
