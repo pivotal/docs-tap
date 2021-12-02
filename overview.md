@@ -41,9 +41,19 @@ The following profiles are available in Tanzu Application Platform:
 
 To install the Tanzu Application Platform profiles, see [Installing Tanzu Application Platform](install-intro.md).
 
-## <a id='telemetry-notice'></a> Notice of Telemetry Collection for Tanzu Application Platform
+## <a id='telemetry-notice'></a> Notice of telemetry collection for Tanzu Application Platform
 
-In order to improve the quality of our products, Tanzu Application Platform participates in VMware’s Customer Experience Improvement Program (“CEIP”). As part of the CEIP, VMware collects technical information about your organization’s use of VMware products and services on a regular basis in association with your organization’s VMware license key(s). For additional information regarding the CEIP, please see the Trust & Assurance Center at http://www.vmware.com/trustvmware/ceip.html. You may join or leave VMware’s CEIP at any time. 
-The CEIP Standard Participation Level provides VMware with information that enables VMware to improve its products and services, identify and fix problems and to advise you on how best to deploy and use our products. For example, this information will enable a proactive product deployment discussion with your VMware account team or VMware support team to help resolve your issues. This information cannot directly identify any individual. 
+In order to improve the quality of our products, Tanzu Application Platform participates in VMware’s Customer Experience Improvement Program (“CEIP”).
+As part of the CEIP, VMware collects technical information about your organization’s use of VMware products and services on a regular basis
+in association with your organization’s VMware license key(s).
+For additional information regarding the CEIP, please see the Trust & Assurance Center at http://www.vmware.com/trustvmware/ceip.html.
+You may join or leave VMware’s CEIP at any time. 
+The CEIP Standard Participation Level provides VMware with information that enables VMware to improve its products and services,
+identify and fix problems and to advise you on how best to deploy and use our products.
+For example, this information will enable a proactive product deployment discussion with your VMware account team or
+VMware support team to help resolve your issues.
+This information cannot directly identify any individual. 
 
-Users must acknowledge CEIP policy to install Tanzu Application Platform by setting an installation value.  Doing so will opt users into telemetry participation. Opting out of telemetry participation is documented in a separate article.
+You must acknowledge CEIP policy to install Tanzu Application Platform by setting an installation value.
+Setting the value opts you into telemetry participation.
+For how to opt out of telemetry participation, see [Opting out of telemetry collection](opting-out-telemetry.md).
