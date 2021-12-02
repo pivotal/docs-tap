@@ -91,8 +91,6 @@ To completely remove the Tanzu CLI, plug-ins, and associated files, run the scri
     ```console
     #!/bin/zsh
 
-    #### This script is intended to remove the Tanzu CLI, plug-ins and config ####
-
     ## Remove tanzu storage folder
     rm -rf $HOME/tanzu/
 
