@@ -56,4 +56,4 @@ This information cannot directly identify any individual.
 
 You must acknowledge that you have read VMware’s CEIP policy before you can proceed with the installation.
 You set the `ceip-policy-disclosed` value to `true` to indicate that you have read the policy.
-For how to opt out of telemetry participation, see [Opting out of telemetry collection](opting-out-telemetry.md).
+To opt out of telemetry participation, see [Opting out of telemetry collection](opting-out-telemetry.md).
