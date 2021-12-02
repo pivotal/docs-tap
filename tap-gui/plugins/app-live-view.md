@@ -19,7 +19,7 @@ It gives a level of control to the users to change some parameters, such as envi
 
 ## Entry point to Application Live View plugin
 
-App Live View is a plugin in Tanzu Application Platform GUI. In order to use the App Live View plugin,
+The Application Live View UI plugin is part of Tanzu Application Platform GUI. To use the Application Live View plugin:
 
 + Select the relevant component under the `Organization Catalog` in TAP GUI
 + Select the desired workload under `Workloads` tab
@@ -27,7 +27,7 @@ App Live View is a plugin in Tanzu Application Platform GUI. In order to use the
 + The user will be able to see all the details, do some lightweight troubleshooting and interact with the application in certain boundaries under the `Live View` section
 
 
-## Application Live View Pages
+## Application Live View pages
 
 
 ## Details page
@@ -114,7 +114,7 @@ _Please keep in mind that this graphical visualization happens in real-time and 
 To navigate to the Request Mappings page, the user should select the `Request Mappings` option from the `Information Category` dropdown.
 This page provides information about the application’s request mappings. For each of the mapping, it displays the request handler method. The user can view more details of the request mapping such as header metadata of the application, i.e produces, consumes and HTTP method by clicking on the mapping. The search feature enables the user to search on the request mapping or the method. The toggle `/actuator/** Request Mappings` displays the actuator related mappings of the application. 
 
-> **_NOTE:_** When application actuator endpoint is exposed on management.server.port, the application does not return any actuator request mappings data in the context. In this case, a message is displayed when the actuator toggle is enabled.
+> **_NOTE:_** When application actuator endpoint is exposed on management.server.port, the application does not return any actuator request mappings data in the context. The application displays a message when the actuator toggle is enabled.
 
 ![Request Mappings Page in UI](./images/request-mappings-1.png)
 
@@ -200,4 +200,4 @@ The actuator page provides a tree view of the actuator data. The user can choose
 ## Troubleshoot
 
 You might run into cases where a workload running on your cluster does not show up in the Application Live View overview, the detail pages do not load any information from the running process, or similar issues.
-Please refer to the [Troubleshooting section](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-troubleshooting.html) of the Application Live View documentation for details on how to solve these issues.
+See [Troubleshooting](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-troubleshooting.html) in the Application Live View documentation. 
