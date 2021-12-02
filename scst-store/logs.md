@@ -1,8 +1,8 @@
-# Configuring and Understanding Logs
+# Configuring and understanding logs
 
 This topic covers how to configure the Supply Chain Security Tools - Store to output particular log information, as well on how to interpret them.
 
-## Log Levels
+## Log levels
 
 There are six log levels that the Supply Chain Security Tools - Store supports. 
 
@@ -24,19 +24,19 @@ Currently, the application logs output at these levels:
 * Default - Outputs API endpoint access information.
 * Debug - Outputs API endpoint payload information, both for requests and responses.
 
-Other log levels do not output any additional log information. However, they are there for future extensibility.
+Other log levels do not output any additional log information and are present for future extensibility.
 
 If no log level is specified when the Store is installed, the log level is set to `default`.
 
-## API Endpoint Log Output
+## API endpoint log output
 
 When an API endpoint handles a request, the Store generates between two and five log lines. They are:
 
-1. When the endpoint receives a request, it outputs a "Processing request" line. This log line is shown at the `default` log level.
-1. If the endpoint includes query or path parameters, it outputs a "Request parameters" line. This line logs the parameters being passed in the request. This line is shown at the `default` log level.
-1. If the endpoint takes in a request body, it outputs a "Request body" line. This line outputs the entire request body as a string. This line is shown at the `debug` log level.
-1. When the endpoint returns a response, it outputs a "Request response" line. This line is shown at the `default` log level.
-1. If the endpoint returns a response body, it outputs a second "Request response" line with an extra key `payload`, and its value is set to the full response body. This line is shown at the `debug` log level.
+1. When the endpoint receives a request, it outputs a `Processing request` line. This log line is shown at the `default` log level.
+1. If the endpoint includes query or path parameters, it outputs a `Request parameters` line. This line logs the parameters passed in the request. This line is shown at the `default` log level.
+1. If the endpoint takes in a request body, it outputs a `Request body` line. This line outputs the entire request body as a string. This line is shown at the `debug` log level.
+1. When the endpoint returns a response, it outputs a `Request response` line. This line is shown at the `default` log level.
+1. If the endpoint returns a response body, it outputs a second `Request response` line with an extra key `payload`, and its value is set to the full response body. This line is shown at the `debug` log level.
 
 ### Format
 When the Store handles a request, it outputs some API endpoint access information in the following format:
@@ -46,13 +46,13 @@ I1122 20:30:21.869528       1 images.go:26] MetadataStore "msg"="Processing requ
 
 The log is broken down into three sections: The header, name, and key/value pairs.
 
-#### Log Header
+#### Log header
 `I1122 20:30:21.869528       1 images.go:26]` is the logging header. The [Logging header formats](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-instrumentation/logging.md#logging-header-formats) section explains each part in more detail.
 
 #### Name
 The string that follows the header is a name that helps identify what produced the log line. For the case of the Store, the name is always `MetadataStore`.
 
-#### Key/Value Pairs
+#### Key/Value pairs
 Key/value pairs composes the rest of the log output. The tables below lists each key and the meaning of their value.
 
 ##### Common to all logs
@@ -68,7 +68,7 @@ The following key/value pairs are common for all logs.
 | code | integer | default | The HTTP response code |
 | response | string | default | The HTTP response in human readable format. For example, "OK", "Bad Request", or "Internal Server Error" |
 
-##### Logging Query and Path Parameter values
+##### Logging query and path parameter values
 
 For those endpoints that use query or path parameters, these parameters are logged on the `Request parameters` log line as key/value pairs. Afterwards, they are appended to all other log lines of the same request as key/value pairs.
 
@@ -87,10 +87,10 @@ I1122 20:30:21.878749       1 images.go:56] MetadataStore "msg"="Request respons
 
 This is done to ensure two things:
 
-1. The application interprets the values of the query/path parameters correctly.
+1. The application interprets the values of the query or path parameters correctly.
 2. Help figure out which log lines are associated with a particular API request. Since there can be a number of simultaneous endpoint calls, this is a first attempt at trying to group logs by specific calls.
 
-##### API Payload Log Output
+##### API payload log output
 As mentioned at the start of this section, by setting the log level to `debug`, the Store logs the body payload data for both the request and response of an API call.
 
 Using `debug` log level, instead of `default`, to display this information was done for the following two reasons:
