@@ -969,7 +969,7 @@ To install Application Live View:
    ---
    ```
 
-   The application live view server and its components are deployed in `app-live-view` namespace by default. The connector is deployed as a `DaemonSet` and there is one connector instance per node in the Kubernetes cluster. This instance is responsible for observing all the apps running on that node.
+   The Application Live View server and its components are deployed in `app-live-view` namespace by default. The connector is deployed as a `DaemonSet` and there is one connector instance per node in the Kubernetes cluster. This instance observes all the apps running on that node.
 
 1. Install the package by running:
 
@@ -1019,7 +1019,7 @@ To install Application Live View:
 
 The Application Live View UI plugin is part of Tanzu Application Platform GUI. 
 To access the Application Live View UI, 
-   see the [ Application Live View in Tanzu Application Platform GUI ](https://docs-staging.vmware.com/en/Tanzu-Application-Platform/0.4/tap/GUID-tap-gui-plugins-app-live-view.html#entry-point-to-ap[…]live-view-plugin-1).
+   see [Application Live View in Tanzu Application Platform GUI](https://docs-staging.vmware.com/en/Tanzu-Application-Platform/0.4/tap/GUID-tap-gui-plugins-app-live-view.html#entry-point-to-ap[…]live-view-plugin-1).
 
 
 
