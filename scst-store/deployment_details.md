@@ -61,4 +61,4 @@ The store will automatically create a read-only cluster role, which may be bound
 
 ## Exporting Certificates
 
-Supply Chain Security Tools - Store creates [Secret Export](https://github.com/vmware-tanzu/carvel-secretgen-controller/blob/develop/docs/secret-export.md) for exporting certain certificates to the `Supply Chain Security Tools - Scan` so that it can securely post scan results. These certs are exported to the namespace the `Supply Chain Security Tools - Scan` is installed to. 
+Supply Chain Security Tools - Store creates [Secret Export](https://github.com/vmware-tanzu/carvel-secretgen-controller/blob/develop/docs/secret-export.md) for exporting certificates to `Supply Chain Security Tools - Scan` so that it can securely post scan results. These certificates are exported to the namespace where `Supply Chain Security Tools - Scan` is installed. 
