@@ -756,71 +756,359 @@ Added installed package 'cartographer' in namespace 'default'
 
 ## <a id='install-ootb-templates'></a> Install Out of the Box Templates
 
-The Out of the Box Templates are used by all Out of the Box Supply Chains.
-There is a list of resources in each supply chain. Each resource points to an Out of the Box Template.
-
-To install Out of the Box Templates:
-
-1. Install the package by running:
-
-   ```bash
-    tanzu package install ootb-templates \
-      --package-name ootb-templates.tanzu.vmware.com \
-      --version 0.3.0-build.5 \
-      --namespace tap-install
-    ```
+The Out of the Box Templates package is used by all the Out of the Box Supply
+Chains to provide the templates that are used by the Supply Chains to create
+the objects that drives source code all the way to a deployed application in a
+cluster.
 
 
-## <a id='install-ootb-supply-chain-basic'></a> Install default supply chain
+### Prerequisites
 
-Install the default supply chain, called Out of the Box Supply Chain Basic, by running:
-
-1. Gather the values schema:
-
-    ```console
-    tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.3.0-build.5 --values-schema -n tap-install
-    ```
-
-    For example:
-
-    ```console
-    $ tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.3.0-build.5 --values-schema -n tap-install
-    | Retrieving package details for ootb-supply-chain-basic.tanzu.vmware.com/0.3.0-build.5...
-
-    KEY                  DEFAULT          TYPE    DESCRIPTION
-    registry.repository  <nil>            string  Name of the repository in the image registry server where the application images from the workloads should be pushed to (required).
-    registry.server      index.docker.io  string  Name of the registry server where application images should be pushed to.
-    service_account      default          string  Name of the service account in the namespace where the Workload is submitted to utilize for providing registry credentials to Tanzu Build Service (TBS) Image objects as well as deploying the application.
-    cluster_builder      default          string  Name of the Tanzu Build Service (TBS) ClusterBuilder to use by default on image objects managed by the supply chain.
-    ```
+- Tekton
+- Cartographer
 
 
-1. Create a `ootb-supply-chain-values.yaml` using the following sample as a guide.
+### Install
 
-    Sample `ootb-supply-chain-values.yaml` for the default Supply Chain:
+As this package has no extra configurations to be provided, all it takes to
+install it is the following command:
 
-    ```yaml
-    ---
-    registry:
-      server: REGISTRY-SERVER
-      repository: REGISTRY-REPOSITORY
-    service_account: default
-    ```
+```bash
+tanzu package install ootb-templates \
+  --package-name ootb-templates.tanzu.vmware.com \
+  --version 0.4.0-build.1 \
+  --namespace tap-install
+```
+```console
+\ Installing package 'ootb-templates.tanzu.vmware.com'
+| Getting package metadata for 'ootb-templates.tanzu.vmware.com'
+| Creating service account 'ootb-templates-default-sa'
+| Creating cluster admin role 'ootb-templates-default-cluster-role'
+| Creating cluster role binding 'ootb-templates-default-cluster-rolebinding'
+| Creating package resource
+/ Waiting for 'PackageInstall' reconciliation for 'ootb-templates'
+/ 'PackageInstall' resource install status: Reconciling
 
-1. Install the package by running:
 
-     ```bash
-    tanzu package install ootb-supply-chain-basic \
-      --package-name ootb-supply-chain-basic.tanzu.vmware.com \
-      --version 0.3.0-build.5 \
-      --namespace tap-install \
-      --values-file ootb-supply-chain-values.yaml
-    ```
+ Added installed package 'ootb-templates' in namespace 'tap-install'
+```
 
-> **Note:** The `default` service account and required secrets are created in
-[Set Up Developer Namespaces to Use Installed Packages](#setup).
 
-> **Note:** Only one supply chain should be installed in the cluster at a time.
+## <a id='install-ootb-supply-chain-basic'></a> Install Out of The Box Supply Chain Basic
+
+The Out of the Box Supply Chain Basic package provides the most basic
+ClusterSupplyChain that brings an application from source code to a deployed
+instance of it running in a Kubernetes environment.
+
+
+### Prerequisites
+
+- Cartographer
+
+
+### Install
+
+First familiarize yourself with the set of values of the package that can be
+configured:
+
+```bash
+tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.4.0-build.1 \
+  --values-schema \
+  -n tap-install
+```
+```console
+KEY                  TYPE    DESCRIPTION
+
+registry.repository  string  Name of the repository in the image registry server where
+                             the application images from he workloould be pushed to
+                             (required).
+
+registry.server      string  Name of the registry server where application images should
+                             be pushed to (required).
+
+cluster_builder      string  Name of the Tanzu Build Service (TBS) ClusterBuilder to 
+                             use by default on image objects managed by the supply chain.
+
+service_account      string  Name of the service account in the namespace where the Workload
+                             is submitted to utilize for providing registry credentials to 
+                             Tanzu Build Service (TBS) Image objects as well as deploying the 
+                             application.
+```
+
+Then, create a file named `ootb-supply-chain-basic-values.yaml` specifying the
+corresponding values to the properties you wish to tweak. 
+
+For instance:
+
+```yaml
+registry:
+  server: REGISTRY-SERVER
+  repository: REGISTRY-REPOSITORY
+service_account: default
+```
+
+With the configuration ready, install the package:
+
+
+```bash
+tanzu package install ootb-supply-chain-basic \
+  --package-name ootb-supply-chain-basic.tanzu.vmware.com \
+  --version 0.4.0-build.1 \
+  --namespace tap-install \
+  --values-file ootb-supply-chain-basic-values.yaml
+```
+```console
+\ Installing package 'ootb-supply-chain-basic.tanzu.vmware.com'
+| Getting package metadata for 'ootb-supply-chain-basic.tanzu.vmware.com'
+| Creating service account 'ootb-supply-chain-basic-default-sa'
+| Creating cluster admin role 'ootb-supply-chain-basic-default-cluster-role'
+| Creating cluster role binding 'ootb-supply-chain-basic-default-cluster-rolebinding'
+| Creating secret 'ootb-supply-chain-basic-default-values'
+| Creating package resource
+- Waiting for 'PackageInstall' reconciliation for 'ootb-supply-chain-basic'
+/ 'PackageInstall' resource install status: Reconciling
+
+
+ Added installed package 'ootb-supply-chain-basic' in namespace 'tap-install'
+```
+
+
+## <a id='install-ootb-supply-chain-testing'></a> Install Out of The Box Supply Chain With Testing
+
+The Out of the Box Supply Chain with Testing package provides a
+ClusterSupplyChain that brings an application from source code to a deployed
+instance of it running in a Kubernetes environment running developer-provided
+tests in the form of Tekton/Pipeline objects to validate the source code before
+building container images.
+
+
+### Prerequisites
+
+- Cartographer
+- Out of The Box Delivery Basic (`ootb-delivery-basic.tanzu.vmware.com`)
+- Out of The Box Templates (`ootb-templates.tanzu.vmware.com`)
+- **NOT** having Out of The Box Supply Chain With Testing and Scanning
+  (`ootb-supply-chain-testing-scanning.tanzu.vmware.com`) installed
+
+You can check if the unwanted `ootb-` package is installed or not with the
+following command:
+
+```bash
+tanzu package installed list --namespace tap-install
+```
+```console
+NAME                                PACKAGE-NAME
+ootb-delivery-basic                 ootb-delivery-basic.tanzu.vmware.com
+ootb-supply-chain-basic             ootb-supply-chain-basic.tanzu.vmware.com
+ootb-templates                      ootb-templates.tanzu.vmware.com
+```
+
+In case you see `ootb-supply-chain-testing-scanning` in the list above, make
+sure you uninstall it first before proceeding:
+
+
+```bash
+tanzu package installed delete ootb-supply-chain-testing-scanning --namespace tap-install
+```
+```console
+Deleting installed package 'ootb-supply-chain-testing-scanning' in namespace 'tap-install'. 
+Are you sure? [y/N]: y
+
+| Uninstalling package 'ootb-supply-chain-testing-scanning' from namespace 'tap-install'
+\ Getting package install for 'ootb-supply-chain-testing-scanning'
+- Deleting package install 'ootb-supply-chain-testing-scanning' from namespace 'tap-install'
+| Deleting admin role 'ootb-supply-chain-testing-scanning-default-cluster-role'
+| Deleting role binding 'ootb-supply-chain-testing-scanning-default-cluster-rolebinding'
+| Deleting secret 'ootb-supply-chain-testing-scanning-default-values'
+| Deleting service account 'ootb-supply-chain-testing-scanning-default-sa'
+
+ Uninstalled package 'ootb-supply-chain-testing-scanning' from namespace 'tap-install'
+```
+
+
+### Install
+
+First check the values of the package that can be configured:
+
+```bash
+tanzu package available get ootb-supply-chain-testing.tanzu.vmware.com/0.4.0-build.1 \
+  --values-schema \
+  -n tap-install
+```
+```console
+KEY                  TYPE    DESCRIPTION
+
+registry.repository  string  Name of the repository in the image registry server where
+                             the application images from he workloould be pushed to
+                             (required).
+
+registry.server      string  Name of the registry server where application images should
+                             be pushed to (required).
+
+cluster_builder      string  Name of the Tanzu Build Service (TBS) ClusterBuilder to
+                             use by default on image objects managed by the supply chain.
+
+service_account      string  Name of the service account in the namespace where the Workload
+                             is submitted to utilize for providing registry credentials to
+                             Tanzu Build Service (TBS) Image objects as well as deploying the
+                             application.
+```
+
+Then, create a file named `ootb-supply-chain-testing-values.yaml` specifying the
+corresponding values to the properties you wish to tweak.
+
+For instance:
+
+```yaml
+registry:
+  server: REGISTRY-SERVER
+  repository: REGISTRY-REPOSITORY
+service_account: default
+```
+
+With the configuration ready, install the package:
+
+
+```bash
+tanzu package install ootb-supply-chain-testing \
+  --package-name ootb-supply-chain-testing.tanzu.vmware.com \
+  --version 0.4.0-build.1 \
+  --namespace tap-install \
+  --values-file ootb-supply-chain-testing-values.yaml
+```
+```console
+\ Installing package 'ootb-supply-chain-testing.tanzu.vmware.com'
+| Getting package metadata for 'ootb-supply-chain-testing.tanzu.vmware.com'
+| Creating service account 'ootb-supply-chain-testing-default-sa'
+| Creating cluster admin role 'ootb-supply-chain-testing-default-cluster-role'
+| Creating cluster role binding 'ootb-supply-chain-testing-default-cluster-rolebinding'
+| Creating secret 'ootb-supply-chain-testing-default-values'
+| Creating package resource
+- Waiting for 'PackageInstall' reconciliation for 'ootb-supply-chain-testing'
+\ 'PackageInstall' resource install status: Reconciling
+
+Added installed package 'ootb-supply-chain-testing' in namespace 'tap-install'
+```
+
+
+## <a id='install-ootb-supply-chain-testing-scanning'></a> Install Out of The Box Supply Chain with Testing and Scanning
+
+
+The Out of the Box Supply Chain with Testing and Scanning package provides a
+ClusterSupplyChain that brings an application from source code to a deployed
+instance of it running in a Kubernetes environment performing validations not
+only in terms of running application tests, but also scanning the source code
+and image for vulnerabilities.
+
+
+## Prerequisites
+
+- Cartographer
+- Out of The Box Delivery Basic (`ootb-delivery-basic.tanzu.vmware.com`)
+- Out of The Box Templates (`ootb-templates.tanzu.vmware.com`)
+- **NOT** having Out of The Box Supply Chain With Testing
+  (`ootb-supply-chain-testing.tanzu.vmware.com`) installed
+
+You can check if the unwanted `ootb-` package is installed or not with the
+following command:
+
+
+```bash
+tanzu package installed list --namespace tap-install
+```
+```console
+NAME                                PACKAGE-NAME
+ootb-delivery-basic                 ootb-delivery-basic.tanzu.vmware.com
+ootb-supply-chain-basic             ootb-supply-chain-basic.tanzu.vmware.com
+ootb-templates                      ootb-templates.tanzu.vmware.com
+```
+
+In case you see `ootb-supply-chain-testing` in the list above, make sure you
+uninstall it first before proceeding:
+
+
+```bash
+tanzu package installed delete ootb-supply-chain-testing --namespace tap-install
+```
+```console
+Deleting installed package 'ootb-supply-chain-testing' in namespace 'tap-install'. 
+Are you sure? [y/N]: y
+
+| Uninstalling package 'ootb-supply-chain-testing' from namespace 'tap-install'
+\ Getting package install for 'ootb-supply-chain-testing'
+- Deleting package install 'ootb-supply-chain-testing' from namespace 'tap-install'
+| Deleting admin role 'ootb-supply-chain-testing-default-cluster-role'
+| Deleting role binding 'ootb-supply-chain-testing-default-cluster-rolebinding'
+| Deleting secret 'ootb-supply-chain-testing-default-values'
+| Deleting service account 'ootb-supply-chain-testing-default-sa'
+
+ Uninstalled package 'ootb-supply-chain-testing' from namespace 'tap-install'
+```
+
+
+## Install
+
+First check the values of the package that can be configured:
+
+```bash
+tanzu package available get ootb-supply-chain-testing-scanning.tanzu.vmware.com/0.4.0-build.1 \
+  --values-schema \
+  -n tap-install
+```
+```console
+KEY                  TYPE    DESCRIPTION
+
+registry.repository  string  Name of the repository in the image registry server where
+                             the application images from he workloould be pushed to
+                             (required).
+
+registry.server      string  Name of the registry server where application images should
+                             be pushed to (required).
+
+cluster_builder      string  Name of the Tanzu Build Service (TBS) ClusterBuilder to
+                             use by default on image objects managed by the supply chain.
+
+service_account      string  Name of the service account in the namespace where the Workload
+                             is submitted to utilize for providing registry credentials to
+                             Tanzu Build Service (TBS) Image objects as well as deploying the
+                             application.
+```
+
+Then, create a file named `ootb-supply-chain-testing-scanning-values.yaml` specifying the
+corresponding values to the properties you wish to tweak.
+
+For instance:
+
+```yaml
+registry:
+  server: REGISTRY-SERVER
+  repository: REGISTRY-REPOSITORY
+service_account: default
+```
+
+With the configuration ready, install the package:
+
+
+```bash
+tanzu package install ootb-supply-chain-testing-scanning \
+  --package-name ootb-supply-chain-testing-scanning.tanzu.vmware.com \
+  --version 0.4.0-build.1 \
+  --namespace tap-install \
+  --values-file ootb-supply-chain-testing-scanning-values.yaml
+```
+```console
+\ Installing package 'ootb-supply-chain-testing-scanning.tanzu.vmware.com'
+| Getting package metadata for 'ootb-supply-chain-testing-scanning.tanzu.vmware.com'
+| Creating service account 'ootb-supply-chain-testing-scanning-default-sa'
+| Creating cluster admin role 'ootb-supply-chain-testing-scanning-default-cluster-role'
+| Creating cluster role binding 'ootb-supply-chain-testing-scanning-default-cluster-rolebinding'
+| Creating secret 'ootb-supply-chain-testing-scanning-default-values'
+| Creating package resource
+- Waiting for 'PackageInstall' reconciliation for 'ootb-supply-chain-testing-scanning'
+\ 'PackageInstall' resource install status: Reconciling
+
+Added installed package 'ootb-supply-chain-testing-scanning' in namespace 'tap-install'
+```
 
 ## <a id='install-developer-conventions'></a> Install Developer Conventions
 
@@ -2022,32 +2310,55 @@ run the following commands to add credentials and Role-Based Access Control (RBA
     kind: Role
     metadata:
       name: kapp-permissions
-      annotations:
-        kapp.k14s.io/change-group: "role"
     rules:
-      - apiGroups:
-          - servicebinding.io
-        resources: ['servicebindings']
-        verbs: ['*']
-      - apiGroups:
-          - services.apps.tanzu.vmware.com
-        resources: ['resourceclaims']
-        verbs: ['*']
-      - apiGroups:
-          - serving.knative.dev
-        resources: ['services']
-        verbs: ['*']
-      - apiGroups: [""]
-        resources: ['configmaps']
-        verbs: ['get', 'watch', 'list', 'create', 'update', 'patch', 'delete']
+    - apiGroups: [source.toolkit.fluxcd.io]
+      resources: [gitrepositories]
+      verbs: ['*']
+    - apiGroups: [source.apps.tanzu.vmware.com]
+      resources: [imagerepositories]
+      verbs: ['*']
+    - apiGroups: [carto.run]
+      resources: [deliverables, runnables]
+      verbs: ['*']
+    - apiGroups: [kpack.io]
+      resources: [images]
+      verbs: ['*']
+    - apiGroups: [conventions.apps.tanzu.vmware.com]
+      resources: [podintents]
+      verbs: ['*']
+    - apiGroups: [""]
+      resources: ['configmaps']
+      verbs: ['*']
+    - apiGroups: [""]
+      resources: ['pods']
+      verbs: ['list']
+    - apiGroups: [tekton.dev]
+      resources: [taskruns, pipelineruns]
+      verbs: ['*']
+    - apiGroups: [tekton.dev]
+      resources: [pipelines]
+      verbs: ['list']
+    - apiGroups: [kappctrl.k14s.io]
+      resources: [apps]
+      verbs: ['*']
+    - apiGroups: [serving.knative.dev]
+      resources: ['services']
+      verbs: ['*']
+    - apiGroups: [servicebinding.io]
+      resources: ['servicebindings']
+      verbs: ['*']
+    - apiGroups: [services.apps.tanzu.vmware.com]
+      resources: ['resourceclaims']
+      verbs: ['*']
+    - apiGroups: [scst-scan.apps.tanzu.vmware.com]
+      resources: ['imagescans', 'sourcescans']
+      verbs: ['*']
 
     ---
     apiVersion: rbac.authorization.k8s.io/v1
     kind: RoleBinding
     metadata:
       name: kapp-permissions
-      annotations:
-        kapp.k14s.io/change-rule: "upsert after upserting role"
     roleRef:
       apiGroup: rbac.authorization.k8s.io
       kind: Role

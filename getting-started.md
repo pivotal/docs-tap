@@ -486,10 +486,12 @@ apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
   name: developer-defined-tekton-pipeline
+  labels:
+    apps.tanzu.vmware.com/pipeline: test     # (!) required
 spec:
   params:
-    - name: source-url
-    - name: source-revision
+    - name: source-url                       # (!) required
+    - name: source-revision                  # (!) required
   tasks:
     - name: test
       params:
@@ -534,31 +536,30 @@ the workload must be updated to point at the your Tekton pipeline.
 
   ```bash
   tanzu apps workload create tanzu-java-web-app \
-    --git-repo  https://github.com/sample-accelerators/tanzu-java-web-app \
+    --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
     --git-branch main \
     --type web \
-    --param tekton-pipeline-name=developer-defined-tekton-pipeline \
+    --label apps.tanzu.vmware.com/has-tests=true \
     --yes
   ```
 
   ```console
   Create workload:
-        1 + |apiVersion: carto.run/v1alpha1
-        2 + |kind: Workload
-        3 + |metadata:
-        4 + |  labels:
-        5 + |    apps.tanzu.vmware.com/workload-type: web
-        6 + |  name: tanzu-java-web-app
-        7 + |  namespace: default
-        8 + |spec:
-        9 + |  params:
-       10 + |  - name: tekton-pipeline-name
-       11 + |    value: developer-defined-tekton-pipeline
-       12 + |  source:
-       13 + |    git:
-       14 + |      ref:
-       15 + |        branch: main
-       16 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
+      1 + |---
+      2 + |apiVersion: carto.run/v1alpha1
+      3 + |kind: Workload
+      4 + |metadata:
+      5 + |  labels:
+      6 + |    apps.tanzu.vmware.com/has-tests: "true"
+      7 + |    apps.tanzu.vmware.com/workload-type: web
+      8 + |  name: tanzu-java-web-app
+      9 + |  namespace: default
+     10 + |spec:
+     11 + |  source:
+     12 + |    git:
+     13 + |      ref:
+     14 + |        branch: main
+     15 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
 
   ? Do you want to create this workload? Yes
   Created workload "tanzu-java-web-app"
@@ -685,28 +686,27 @@ tanzu apps workload create tanzu-java-web-app \
   --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
   --git-branch main \
   --type web \
-  --param tekton-pipeline-name=developer-defined-tekton-pipeline \
+  --label apps.tanzu.vmware.com/has-tests=true \
   --yes
 ```
 
 ```console
 Create workload:
-      1 + |apiVersion: carto.run/v1alpha1
-      2 + |kind: Workload
-      3 + |metadata:
-      4 + |  labels:
-      5 + |    apps.tanzu.vmware.com/workload-type: web
-      6 + |  name: tanzu-java-web-app
-      7 + |  namespace: default
-      8 + |spec:
-      9 + |  params:
-     10 + |  - name: tekton-pipeline-name
-     11 + |    value: developer-defined-tekton-pipeline
-     12 + |  source:
-     13 + |    git:
-     14 + |      ref:
-     15 + |        branch: main
-     16 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
+      1 + |---
+      2 + |apiVersion: carto.run/v1alpha1
+      3 + |kind: Workload
+      4 + |metadata:
+      5 + |  labels:
+      6 + |    apps.tanzu.vmware.com/has-tests: "true"
+      7 + |    apps.tanzu.vmware.com/workload-type: web
+      8 + |  name: tanzu-java-web-app
+      9 + |  namespace: default
+     10 + |spec:
+     11 + |  source:
+     12 + |    git:
+     13 + |      ref:
+     14 + |        branch: main
+     15 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
 
 ? Do you want to create this workload? Yes
 Created workload "tanzu-java-web-app"
