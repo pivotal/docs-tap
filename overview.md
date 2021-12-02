@@ -43,14 +43,14 @@ To install the Tanzu Application Platform profiles, see [Installing Tanzu Applic
 
 ## <a id='telemetry-notice'></a> Notice of telemetry collection for Tanzu Application Platform
 
-In order to improve the quality of our products, Tanzu Application Platform participates in VMware’s Customer Experience Improvement Program (“CEIP”).
-As part of the CEIP, VMware collects technical information about your organization’s use of VMware products and services on a regular basis
+To improve the quality of our products, Tanzu Application Platform participates in VMware’s Customer Experience Improvement Program (CEIP).
+As part of CEIP, VMware collects technical information about your organization’s use of VMware products and services on a regular basis
 in association with your organization’s VMware license key(s).
-For additional information regarding the CEIP, please see the Trust & Assurance Center at http://www.vmware.com/trustvmware/ceip.html.
+For information about CEIP, see the [Trust & Assurance Center](http://www.vmware.com/trustvmware/ceip.html).
 You may join or leave VMware’s CEIP at any time. 
 The CEIP Standard Participation Level provides VMware with information that enables VMware to improve its products and services,
-identify and fix problems and to advise you on how best to deploy and use our products.
-For example, this information will enable a proactive product deployment discussion with your VMware account team or
+identify and fix problems, and advise you on how to best deploy and use VMware products.
+For example, this information can enable a proactive product deployment discussion with your VMware account team or
 VMware support team to help resolve your issues.
 This information cannot directly identify any individual. 
 
