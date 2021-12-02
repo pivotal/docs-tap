@@ -5,8 +5,8 @@ This document describes how to uninstall Tanzu Application Platform packages fro
 The process for uninstalling Tanzu Application Platform is made up of two tasks:
 
 + [Delete the Packages](#del-packages)
-
 + [Delete the Tanzu Application Platform Package Repository](#del-repo)
++ [Remove Tanzu CLI, plug-ins, and associated files](#remove-tanzu-cli)
 
 ## <a id='del-packages'></a> Delete the packages
 
@@ -82,14 +82,14 @@ To delete the Tanzu Application Platform package repository:
      Deleted package repository 'tanzu-application-platform-package-repository' in namespace 'tap-install'
     ```
 
-## <a id='remove-tanzu-cli'></a> Remove existing Tanzu CLI, plug-ins, and associated files
+## <a id='remove-tanzu-cli'></a> Remove Tanzu CLI, plug-ins, and associated files
 
 To completely remove the Tanzu CLI, plug-ins, and associated files, run the script for your OS:
 
 * For Linux or MacOS, run:
 
     ```console
-     #!/bin/zsh
+    #!/bin/zsh
 
     #### This script is intended to remove the Tanzu CLI, plug-ins and config ####
 
