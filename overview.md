@@ -54,6 +54,6 @@ For example, this information will enable a proactive product deployment discuss
 VMware support team to help resolve your issues.
 This information cannot directly identify any individual. 
 
-You must acknowledge CEIP policy to install Tanzu Application Platform by setting an installation value.
-Setting the value opts you into telemetry participation.
+You must acknowledge that you have read VMware’s CEIP policy before you can proceed with the installation.
+You set the `ceip-policy-disclosed` value to `true` to indicate that you have read the policy.
 For how to opt out of telemetry participation, see [Opting out of telemetry collection](opting-out-telemetry.md).
