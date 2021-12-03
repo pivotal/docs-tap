@@ -20,8 +20,8 @@ Software Composition Analysis scanning
 No vulnerabilities found in both the binaries of the API backend and CLI.
 
 See BDBA reports:
-* [API backend report](store-bdba-scan-2021-11-26.png)
-* [CLI report](cli-bdba-scan-2021-11-26.png)
+* [API backend report](store-bdba-scan-2021-11-26-1.png)
+* [CLI report](cli-bdba-scan-2021-11-26-1.png)
 
 ### Grype
 No vulnerabilities found through scanning the sources of the API backend, client lib, and CLI
