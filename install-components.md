@@ -1329,7 +1329,7 @@ To install Tanzu Application Platform GUI, see the following sections.
 
 ### Prerequisites in addition to Tanzu Application Platform requirements
 
-**Required**
+**Required for basic functionality**
 
 - Git repository for the software catalogs and a token allowing read access.
 Supported Git infrastructure includes:
@@ -1338,7 +1338,7 @@ Supported Git infrastructure includes:
     - Azure DevOps
 - Blank Software Catalog from the Tanzu Application section of Tanzu Network
 
-**Optional**
+**Required for full functionality**
 
 - Tanzu Application Platform tools: Tanzu Application Platform GUI has plugins for the
 following Tanzu Application Platform tools.
