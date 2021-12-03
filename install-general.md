@@ -169,7 +169,7 @@ For other Kubernetes providers, follow the steps below:
 
     Where `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for Tanzu Network.
 
-6. Install `kapp` CLI onto your `$PATH`
+6. Install the `kapp` CLI onto your `$PATH`:
 
     ```
     sudo cp $HOME/tanzu-prereqs/kapp /usr/local/bin/kapp
