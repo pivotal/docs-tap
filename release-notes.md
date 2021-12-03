@@ -39,6 +39,10 @@ The following components have been updated in Tanzu Application Platform v0.4.0:
 
 This release has the following issues:
 
+- Convention Service support self-signed cert for private registry
+
+  - [Workaround](convention-service/self-signed-registry-workaround.md) to support self-signed cert for private registry
+
 ### Security issues
 
 This release has the following security issue:
