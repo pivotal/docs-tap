@@ -471,7 +471,7 @@ you can configure the following optional properties:
 | Property | Default | Description |
 | --- | --- | --- |
 | registry.secret_ref | registry.tanzu.vmware.com | The secret used for accessing the registry where the App-Accelerator images are located. |
-| server.service_type | ClusterIP | The service type for the acc-ui-server service including, LoadBalancer, NodePort, or ClusterIP. |
+| server.service_type | LoadBalancer | The service type for the acc-ui-server service including, LoadBalancer, NodePort, or ClusterIP. |
 | server.watched_namespace | accelerator-system | The namespace the server watches for accelerator resources. |
 | server.engine_invocation_url | http://acc-engine.accelerator-system.svc.cluster.local/invocations | The URL to use for invoking the accelerator engine. |
 | engine.service_type | ClusterIP | The service type for the acc-engine service including, LoadBalancer, NodePort, or ClusterIP. |
@@ -513,7 +513,7 @@ To install Application Accelerator:
     $ tanzu package available list accelerator.apps.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for accelerator.apps.tanzu.vmware.com...
       NAME                               VERSION  RELEASED-AT
-      accelerator.apps.tanzu.vmware.com  0.5.0    2021-11-29T00:00:00Z
+      accelerator.apps.tanzu.vmware.com  0.5.1    2021-12-02T00:00:00Z
     ```
 
 1. (Optional) To make changes to the default installation settings, run:
@@ -529,7 +529,7 @@ To install Application Accelerator:
     For example:
 
     ```bash
-    $ tanzu package available get accelerator.apps.tanzu.vmware.com/0.5.0 --values-schema --namespace tap-install
+    $ tanzu package available get accelerator.apps.tanzu.vmware.com/0.5.1 --values-schema --namespace tap-install
     ```
 
     For more information about values schema options, see the individual product documentation.
@@ -539,7 +539,7 @@ To install Application Accelerator:
 
     ```yaml
     server:
-      service_type: "ClusterIP"
+      service_type: "LoadBalancer"
       watched_namespace: "accelerator-system"
     samples:
       include: true
@@ -547,18 +547,19 @@ To install Application Accelerator:
 
     Modify the values if needed or leave the default values.
 
-    > **Note:** To use the Tanzu CLI accelerator plugin to generate projects, set the `server.service_type` to `LoadBalancer` to get an external IP address for the `acc-server` in the `accelerator-system` namespace.
+    > **Note:** For clusters that do not support the `LoadBalancer` service type,
+            override the default value for `server.service_type`.
 
 1. Install the package by running:
 
     ```console
-    tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.5.0 -n tap-install -f app-accelerator-values.yaml
+    tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.5.1 -n tap-install -f app-accelerator-values.yaml
     ```
 
     For example:
 
     ```console
-    $ tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.5.0 -n tap-install -f app-accelerator-values.yaml
+    $ tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.5.1 -n tap-install -f app-accelerator-values.yaml
     - Installing package 'accelerator.apps.tanzu.vmware.com'
     | Getting package metadata for 'accelerator.apps.tanzu.vmware.com'
     | Creating service account 'app-accelerator-tap-install-sa'
@@ -584,15 +585,20 @@ To install Application Accelerator:
     | Retrieving installation details for cc...
     NAME:                    app-accelerator
     PACKAGE-NAME:            accelerator.apps.tanzu.vmware.com
-    PACKAGE-VERSION:         0.5.0
+    PACKAGE-VERSION:         0.5.1
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
     ```
     STATUS should be `Reconcile succeeded`.
 
-1. To access the Application Accelerator UI,
-   see the [Application Accelerator for VMware Tanzu documentation](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.4/acc-docs/GUID-installation-install.html).
+1. To determine the IP address for the Application Accelerator API when the `server.service_type` was set to `LoadBalancer`, run the following command:
+
+    ```
+    kubectl get service -n accelerator-system
+    ```
+
+    This should list an external IP address to be used with the `--server-url` flag for the Tanzu CLI Accelerator plugin's generate command.
 
 ## <a id='install-tbs'></a> Install Tanzu Build Service
 
