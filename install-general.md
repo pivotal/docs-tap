@@ -138,7 +138,7 @@ To accept EULAs:
 
 2. For each of the following components, accept or confirm that you have accepted the EULA:
 
-    + [Tanzu Prerequisites](https://network.pivotal.io/products/tanzu-prerequisites/#/releases/1006464)
+    + [Tanzu Prerequisites](https://network.tanzu.vmware.com/products/tanzu-prerequisites/#/releases/1006464)
     + [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/)
     + [Tanzu Build Service](https://network.tanzu.vmware.com/products/build-service/) and its associated components:
       + [Tanzu Build Service Dependencies](https://network.tanzu.vmware.com/products/tbs-dependencies/)
