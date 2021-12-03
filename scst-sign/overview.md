@@ -1,10 +1,10 @@
 # Supply Chain Security Tools for VMware Tanzu - Sign
 
 Supply Chain Security Tools - Sign provides an admission webhook that:
-- Verifies signatures on container images used by Kubernetes resources.
-- Enforces policy by allowing or denying container images from running based
+* Verifies signatures on container images used by Kubernetes resources.
+* Enforces policy by allowing or denying container images from running based
 on configuration.
-- Adds metadata to verified resources according to their verification status.
+* Adds metadata to verified resources according to their verification status.
 
 It intercepts all resources that create pods as part of their lifecycle: `Pod`s,
 `ReplicaSet`s, `Deployment`s, `Job`s, `StatefulSet`s, `DaemonSet`s, and `CronJob`s.
