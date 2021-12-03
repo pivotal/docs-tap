@@ -114,7 +114,7 @@ packages. This section explains how to install a profile.
 Tanzu Application Platform contains the following two profiles:
 
 - Full (`full`)
-- Light (`light`)
+- Dev (`dev`)
 
 The following table lists the packages contained in each profile:
 
@@ -124,7 +124,7 @@ The following table lists the packages contained in each profile:
    </td>
    <td><strong>Full</strong>
    </td>
-   <td><strong>Light</strong>
+   <td><strong>Dev</strong>
    </td>
   </tr>
   <tr>
@@ -382,10 +382,10 @@ of Tanzu Application Platform.
       service_type: LoadBalancer # NodePort for distributions that don't support LoadBalancer
 ```
 
-### Light Profile
+### Dev Profile
 
 ```yaml
-    profile: light
+    profile: dev
     ceip_policy_disclosed: "<true/false>"
 
     buildservice:
@@ -407,7 +407,7 @@ of Tanzu Application Platform.
 ```
 Where:
 
-   - `<PROFILE-VALUE>` is a value such as `full` or `dev-light`.
+   - `<PROFILE-VALUE>` is a value such as `full` or `dev`.
     - `<ceip-policy-disclosed>` must have the value `true`.
     **Note:** If the value is not set to `true`, installation fails.
        
@@ -484,7 +484,7 @@ Where:
     tanzu package install tap -p tap.tanzu.vmware.com -v 0.4.0 --values-file tap-values.yml -n tap-install
     ```
 
-1. Verify the package install by running:
+2. Verify the package install by running:
 
     ```bash
     tanzu package installed get tap -n tap-install
@@ -492,12 +492,12 @@ Where:
 
     This may take 5-10 minutes as it installs several packages on your cluster.
 
-1. Verify all the necessary packages in the profile are installed by running:
+3. Verify all the necessary packages in the profile are installed by running:
     ```bash
     tanzu package installed list -A
     ```
 
-1. (Optional) [Install any additional packages](install-components.md) that were not included in your profile.
+4. (Optional) [Install any additional packages](install-components.md) that were not included in your profile.
 
 ## <a id='configure-envoy-lb'></a> Configure LoadBalancer for Contour ingress
 
