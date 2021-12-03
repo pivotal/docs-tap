@@ -1034,8 +1034,8 @@ component. Below are the usecases that are unlocked by Services Toolkit on TAP. 
 
 1. Usecase 1 - Binding an application to a pre-provisioned service instance running in the same namespace.
 2. Usecase 2 - Binding an application to a pre-provisioned service instance running in a different namespace on the same Kubernetes cluster.
-3. Usecase 3 - Binding an application to a service running outside K8s (e.g. external Azure DB) (Experimental).
-4. Usecase 4 - Binding an application to a service instance running on a different k8s cluster (Experimental).
+3. Usecase 3 - Binding an application to a service running outside Kubetnetes (e.g. external Azure DB) (Experimental).
+4. Usecase 4 - Binding an application to a service instance running on a different Kubetnetes cluster (Experimental).
 
 Services Toolkit comprises the following Kubernetes-native components:
 
@@ -1268,7 +1268,7 @@ The first usecase demonstrates the binding of a sample application workload to a
   ```
 - Visit the URL and confirm the app is working by refreshing the page and checking the new message IDs.
 
-### <a id='services-journey-use-case-3'></a> **Usecase 3 - Binding an application to a service running outside K8s (ex external Azure DB) (Beta)**.
+### <a id='services-journey-use-case-3'></a> **Usecase 3 - Binding an application to a service running outside Kubetnetes (ex external Azure DB) (Beta)**.
 This use case enables developers to connect their application workloads to almost any backing
 service, including those that are running external to the platform, as well as those that do not
 adhere to the Provisioned Service part of the binding specifications.
@@ -1340,7 +1340,7 @@ unaltered. All complexity in the setup and management of backing infrastructure 
 from application developers, which gives them more time to focus on developing their apps.
 
 The components of Services Toolkit that drive this experience are Service API Projection and
-Service Resource Replication. These componenets are not currently considered to be GA.
+Service Resource Replication. These components are not currently considered to be GA.
 
 For more information about network requirements and recommended topologies, see the
 [Topology section](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-reference-topologies.html) of the Services Toolkit documentation.
