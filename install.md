@@ -546,7 +546,7 @@ with your relevant values. Run:
     tap_gui:
       service_type: LoadBalancer
       # Existing tap-values.yml above  
-      app-config:
+      app_config:
         app:
           baseUrl: http://EXTERNAL-IP:7000
         integrations:
