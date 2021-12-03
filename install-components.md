@@ -10,27 +10,37 @@ Before you install the packages, ensure that you have completed the prerequisite
 and verified the cluster, accepted the EULA, and installed the Tanzu CLI with any required plugins.
 For information, see [Installing Part I: Prerequisites, EULA, and CLI](install-general.md).
 
-+ [Install cert-manager and FluxCD source controller](#install-prereqs)
-+ [Install Cloud Native Runtimes](#install-cnr)
-+ [Install Application Accelerator](#install-app-accelerator)
-+ [Install Convention Service](#install-convention-service)
-+ [Install Source Controller](#install-source-controller)
-+ [Install Developer Conventions](#install-developer-conventions)
-+ [Install Spring Boot Conventions](#install-spring-boot-convention)
-+ [Install Application Live View](#install-app-live-view)
-+ [Install Tanzu Application Platform GUI](#install-tap-gui)
-+ [Install Learning Center for Tanzu Application Platform](#install-learning-center)
-+ [Install Service Bindings](#install-service-bindings)
-+ [Install Tanzu Build Service](#install-tbs)
-+ [Install Supply Chain Choreographer](#install-scc)
-+ [Install Out of the Box Templates](#install-ootb-templates)
-+ [Install Default Supply Chain](#install-ootb-supply-chain-basic)
-+ [Install Supply Chain Security Tools - Store](#install-scst-store)
-+ [Install Supply Chain Security Tools - Sign](#install-scst-sign)
-+ [Install Supply Chain Security Tools - Scan](#install-scst-scan)
-+ [Install API portal](#install-api-portal)
-+ [Install Services Toolkit](#install-services-toolkit)
-+ [Install Tekton](#install-tekton)
+- [Installing individual packages](#installing-individual-packages)
+  - [<a id='install-prereqs'></a> Install cert-manager and FluxCD Source Controller](#-install-cert-manager-and-fluxcd-source-controller)
+  - [<a id='install-cnr'></a> Install Cloud Native Runtimes](#-install-cloud-native-runtimes)
+  - [<a id='install-convention-service'></a> Install Convention Service](#-install-convention-service)
+  - [<a id='install-source-controller'></a> Install Source Controller](#-install-source-controller)
+  - [<a id='install-app-accelerator'></a> Install Application Accelerator](#-install-application-accelerator)
+    - [Prerequisites](#prerequisites)
+    - [Procedure](#procedure)
+  - [<a id='install-tbs'></a> Install Tanzu Build Service](#-install-tanzu-build-service)
+    - [Prerequisites](#prerequisites-1)
+    - [Install Tanzu Build Service using the Tanzu CLI](#install-tanzu-build-service-using-the-tanzu-cli)
+  - [<a id='install-scc'></a> Install Supply Chain Choreographer](#-install-supply-chain-choreographer)
+  - [<a id='install-ootb-templates'></a> Install Out of the Box Templates](#-install-out-of-the-box-templates)
+  - [<a id='install-tap-gui'></a> Install Tanzu Application Platform GUI](#-install-tanzu-application-platform-gui)
+    - [Prerequisites in addition to Tanzu Application Platform requirements](#prerequisites-in-addition-to-tanzu-application-platform-requirements)
+    - [Procedure](#procedure-1)
+  - [<a id='install-learning-center'></a> Install Learning Center for Tanzu Application Platform](#-install-learning-center-for-tanzu-application-platform)
+    - [Prerequisites for Learning Center](#prerequisites-for-learning-center)
+    - [Procedure to install Learning Center](#procedure-to-install-learning-center)
+    - [Procedure to install the Self-Guided Tour Training Portal and Workshop](#procedure-to-install-the-self-guided-tour-training-portal-and-workshop)
+  - [<a id='install-service-bindings'></a> Install Service Bindings](#-install-service-bindings)
+  - [<a id='install-scst-store'></a> Install Supply Chain Security Tools - Store](#-install-supply-chain-security-tools---store)
+  - [<a id='install-scst-sign'></a> Install Supply Chain Security Tools - Sign](#-install-supply-chain-security-tools---sign)
+    - [Prerequisites](#prerequisites-2)
+    - [Installation](#installation)
+  - [<a id='install-scst-scan'></a> Install Supply Chain Security Tools - Scan](#-install-supply-chain-security-tools---scan)
+  - [<a id='install-api-portal'></a> Install API portal](#-install-api-portal)
+  - [<a id='install-services-toolkit'></a> Install Services Toolkit](#-install-services-toolkit)
+  - [<a id='verify'></a> Verify the installed packages](#-verify-the-installed-packages)
+  - [<a id='setup'></a> Set Up Developer Namespaces to Use Installed Packages](#-set-up-developer-namespaces-to-use-installed-packages)
+  - [<a id='install-tekton'></a> Install Tekton](#-install-tekton)
 
 
 ## <a id='install-prereqs'></a> Install cert-manager and FluxCD Source Controller
@@ -1347,6 +1357,9 @@ instead.
     - OIDC Identity Provider connection information
 - Customer-developed documentation:
     - Techdocs object storage location (S3)
+- The Tanzu Application Platform GUI catalog allows for two approaches towards storing catalog information.
+  - The default option is suitable for test/development scenarios in that an in-memory database is used. This reads the catalog data from Git URLs you specify in the tap-values.yml file. This data is ephemeral and any operations that cause the `server` pod in the `tap-gui` namespace to be re-created will cause this data to be rebuilt from the Git location. This can cause issues when you manually register entities through the UI as they ONLY exist in the database and will be lost when that in-memory database gets rebuilt.
+  - For production use-cases we recommend the use of a PostgreSQL database that exists outside the Tanzu Applicaton Platform's packaging. This stores all the catalog data persistently both from the Git locations as well as from the GUI's manual entity registrations. 
 
 ### Procedure
 

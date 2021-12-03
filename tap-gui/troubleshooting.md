@@ -77,3 +77,16 @@ When you need to update the configuration of Tanzu Application Platform GUI (eit
     ```
 
 >Note: `tap-gui` Pods aren't stateful. `config` is held in ConfigMaps, Git catalog, or Secrets.
+
+## <a id='tap-gui-logs'></a> Pull Logs from Tanzu Application Platform GUI
+### Symptom
+
+When you need to diagnose a problem with Tanzu Application Platform GUI (such as `Catalog: Not Found`) this command will allow you to pull the timestamped logs from the running pod.
+
+### Process
+
+1. Pull the logs using the pod label:
+
+    ```bash
+    kubectl logs -l app=backstage -n tap-gui
+    ```
