@@ -1029,14 +1029,14 @@ depend on.
 
 
 This experience is made possible in Tanzu Application Platform by using the Services Toolkit
-component. Below are the usecases that are unlocked by Services Toolkit on Tanzu Application Platform. Those marked with GA are Generally Available in version 0.5.0.
+component. Below are the use cases that are unlocked by Services Toolkit on Tanzu Application Platform. Those marked with GA are Generally Available in version 0.5.0.
 
-### Usecases unlocked by Services Toolkit on Tanzu Application Platform
+### Use cases unlocked by Services Toolkit on Tanzu Application Platform
 
-1. Usecase1 -  Binding an application to a pre-provisioned service instance running in the same namespace (GA).
-2. Usecase2 - Binding an application to a pre-provisioned service instance running in a different namespace on the same Kubernetes cluster (GA).
-3. Usecase3 - Binding an application to a service instance running on a different Kubernetes cluster (Beta).
-4. Usecase4 - Binding an application to a service running outside Kubernetes (ex external Azure DB) (Beta).
+1. Use case 1: Binding an application to a pre-provisioned service instance running in the same namespace (GA).
+2. Use case 2: Binding an application to a pre-provisioned service instance running in a different namespace on the same Kubernetes cluster (GA).
+3. Use case 3: Binding an application to a service instance running on a different Kubernetes cluster (Beta).
+4. Use case 4: Binding an application to a service running outside Kubernetes (ex external Azure DB) (Beta).
 
 
 Services Toolkit comprises the following Kubernetes-native components:
@@ -1059,7 +1059,7 @@ Any service that adheres to the [Provisioned Service](https://github.com/service
 compatible with Tanzu Application Platform.
 
 This leads to a simple, but powerful, first-class user experience for working with backing services
-as part of the development life cycle. Below we expand on the first 2 usecases listed above.
+as part of the development life cycle. Below we expand on the first two use cases listed above.
 
 <!-- * [Use Case 1 - **Binding an App Workload to a Service Resource**](#services-journey-use-case-1)
 * [Use Case 2 - **Binding an App Workload to a Service Resource across multiple clusters**](#services-journey-use-case-2)
@@ -1156,9 +1156,9 @@ In order to properly demonstrate how Application Teams can discover, provision a
   ```
 For further information about `ClusterResource`, please refer to the Services Toolkit component documentation [here](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.4/services-toolkit-0-4/GUID-service_offering-terminology_and_apis.html).
 
-To summarize, we have installed RabbitMQ Operator, created the necessary RACs, created a Services toolKit resource called `ClusterResource` for Rabbitmq so that app teams can discover RabbitMQ. Now we dig into the usecases.
+To summarize, we have installed RabbitMQ Operator, created the necessary RACs, created a Services toolKit resource called `ClusterResource` for Rabbitmq so that app teams can discover RabbitMQ. Now we dig into the use cases.
 
-### <a id='services-journey-use-case-1'></a> **Usecase1 -  Binding an app to a pre-provisioned service instance running in the same namespace (GA).**
+### <a id='services-journey-use-case-1'></a> **Use case 1 -  Binding an app to a pre-provisioned service instance running in the same namespace (GA).**
 
 ### Step1: Deploy a workload app
 - Let’s start by pushing an Application Workload for an application that requires RabbitMQ.
@@ -1219,16 +1219,16 @@ To summarize, we have installed RabbitMQ Operator, created the necessary RACs, c
 
 <!-- ### <a id='services-journey-use-case-1'></a> Use Case 1 - Binding an App Workload to a Service Resource -->
 
-### <a id='services-journey-use-case-2'></a> **Usecase2: Binding an application to a pre-provisioned service instance running in a different namespace on the same Kubernetes cluster (GA).**
+### <a id='services-journey-use-case-2'></a> **Use case 2: Binding an application to a pre-provisioned service instance running in a different namespace on the same Kubernetes cluster (GA).**
 
-The first usecase demonstrates the binding of a sample application workload to a RabbitMQ Cluster
+The first use case demonstrates the binding of a sample application workload to a RabbitMQ Cluster
 running in the same namespace. Here we will look at binding to an application workload running in a different namespace.
 
 ### Step1: Deploy a workload app
-- Same as Step1 in Usecase1.
+- Same as Step1 in Use case 1.
 
 ### Step2: Create a service instance
-- This step is very similar to the first usecase, here we create the service instance in a different namespace (Ex: `service-instances` namespace)
+- This step is very similar to the first use case, here we create the service instance in a different namespace (Ex: `service-instances` namespace)
   ```yaml
   # example-rabbitmq-cluster-service-instance.yaml
   ---
@@ -1289,7 +1289,7 @@ running in the same namespace. Here we will look at binding to an application wo
 - Visit the URL and confirm the app is working by refreshing the page and checking the new message IDs.
 
 
-### <a id='services-journey-use-case-3'></a> **Usecase3 - Binding an application to a service instance running on a different Kubernetes cluster (Beta).**
+### <a id='services-journey-use-case-3'></a> **Use case 3 - Binding an application to a service instance running on a different Kubernetes cluster (Beta).**
 
 This use case is almost identical to the one mentioned earlier but with one key difference:
 now rather than installing and running the RabbitMQ Cluster Kubernetes Operator on the same cluster
@@ -1532,7 +1532,7 @@ app developer as with the first use case.
 1. Visit the URL and refresh the page to confirm the app is running by checking the new message IDs.
 
 =================================
-### <a id='services-journey-use-case-4'></a> **Usecase4 - Binding an application to a service running outside Kubernetes (ex external Azure DB) (Beta)**.
+### <a id='services-journey-use-case-4'></a> **Use case 4 - Binding an application to a service running outside Kubernetes (ex external Azure DB) (Beta)**.
 This use case enables developers to connect their application workloads to almost any backing
 service, including those that are running external to the platform, as well as those that do not
 adhere to the Provisioned Service part of the binding specifications.
