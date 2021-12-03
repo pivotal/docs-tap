@@ -119,7 +119,7 @@ tanzu package install tap -p tap.tanzu.vmware.com -v 0.4.0 --values-file tap-val
 / 'PackageInstall' resource install status: Reconciling
 | 'PackageInstall' resource install status: ReconcileFailed
 
-Consider using `tanzu package installed update` to update the installed package with correct settings.
+Please consider using 'tanzu package installed update' to update the installed package with correct settings
 
 
 Error: resource reconciliation failed: kapp: Error: waiting on reconcile packageinstall/tap-gui (packaging.carvel.dev/v1alpha1) namespace: tap-install:
