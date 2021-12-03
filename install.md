@@ -380,6 +380,9 @@ of Tanzu Application Platform.
 
     tap_gui:
       service_type: LoadBalancer # NodePort for distributions that don't support LoadBalancer
+
+    metadata_store:
+      app_service_type: LoadBalancer # (optional) Defaults to LoadBalancer. Change to NodePort for distributions that don't support LoadBalancer
 ```
 
 ### Dev Profile
@@ -404,6 +407,9 @@ of Tanzu Application Platform.
 
     tap_gui:
       service_type: LoadBalancer # NodePort for distributions that don't support LoadBalancer
+
+    metadata_store:
+      app_service_type: LoadBalancer # (optional) Defaults to LoadBalancer. Change to NodePort for distributions that don't support LoadBalancer
 ```
 Where:
 
