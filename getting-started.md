@@ -33,10 +33,12 @@ Before getting started, ensure the following prerequisites are in place:
 4. A developer namespace is setup to accommodate the developer's Workload.
    See [Set Up Developer Namespaces to Use Installed Packages](install-components.md#setup).
 
+5. Tanzu Application Platform GUI is successfully installed.
+
 
 #### A note about Application Accelerators
 
-The Application Accelerator component helps app developers and app operators through the creation and generation of application accelerators. Accelerators are templates that codify best practices and ensure important configuration and structures are in place from the start.
+The Application Accelerator Plugin of TAP GUI (“Create” button on the left-side navigation bar) helps app developers and app operators through the creation and generation of application accelerators. Accelerators are templates that codify best practices and ensure important configuration and structures are in place from the start.
 
 Developers can bootstrap their applications and get started with feature development right away. Application Operators can create custom accelerators that reflect their desired architectures and configurations and enable fleets of developers to utilize them, decreasing operator concerns about whether developers are implementing their desired best practices.
 
@@ -47,29 +49,39 @@ Application Accelerator templates are available as a quick start from [Tanzu Net
 
 Follow these steps to get started with an accelerator called `Tanzu-Java-Web-App`.
 
-1. Visit your Application Accelerator by following the steps in
-[Installing Application Accelerator for VMware Tanzu](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.3/acc-docs/GUID-installation-install.html).
+1. From your TAP GUI portal, click on “Create” button on the left side of the navigation bar to see the list of available Accelerators.
 
-    <img src="images/app-acc.png" alt="Screenshot of Application Accelerator that shows a search field and two accelerators" width="600">
+![List of accelerators in TAP GUI](images/getting-started-tap-gui-1.png)
 
-1. Select the **Tanzu Java Web App** accelerator, which is a sample Spring Boot web app.
+2. Locate the Tanzu Java Web App accelerator, which is a sample Spring Boot web app, and click on `CHOOSE` button.
 
-    <img src="images/tanzu-java-web-app.png" alt="Screenshot of the Tanzu Java Web App within Application Accelerator. It includes empty text boxes for new project information." width="600">
+![Tile for Tanzu Java Web App](images/getting-started-tap-gui-2.png)   
 
-1. Replace the default value `dev.local` in the _"prefix for container image registry"_ field
-with the URL to your registry. The URL must match the registry server you want the default Supply Chain to push container images to.
+3. In the “Generate Accelerators” prompt, replace the default value dev.local in the "prefix for container image registry" field with the URL to your registry. The URL must match the registry server you want the default Supply Chain to push container images to. Then click on `NEXT STEP`, verify the provided information and click on `CREATE`.
 
-For more information, see [Install default Supply Chain](install-components.md#install-ootb-supply-chain-basic).
+![Generate Accelerators prompt](images/getting-started-tap-gui-3.png) 
 
-    >**Note:** This entry should not include the project ID or image name.
+4. After the Task Activity processes are complete, click on the `DOWNLOAD ZIP FILE` button
 
-    <img src="images/store-image-on-server.png" alt="Screenshot of the Tanzu Java Web App within Application Accelerator. It includes empty text boxes for new project information, and buttons labeled 'Generate Project', 'Explore Files', and 'Cancel'." width="600">
+![Task Activity progress bar](images/getting-started-tap-gui-4.png) 
 
-1. Click the **Generate Project** button to download the accelerator zip file.
-You use this accelerator code in the [Iterate on your Application](#iterate) section later.
+5. After downloading the zip file, follow your preferred procedure for uploading the Accelerator files to a Git repository.
 
-1. Deploy the Tanzu Java Web App accelerator by running the `tanzu apps workload create` command:
+6. Deploy the Tanzu Java Web App accelerator by running the `tanzu apps workload create` command:
 
+    ```console
+    tanzu apps workload create tanzu-java-web-app \
+    --git-repo <GIT_URL_TO_ACCELERATOR> \
+    --git-branch main \
+    --type web \
+    --label app.kubernetes.io/part-of=tanzu-java-web-app \
+    --yes
+    ```
+
+    Where:
+    - `<GIT_URL_TO_ACCELERATOR>` is the path you uploaded to in step 5.
+  
+    If you bypassed step 5, and weren't able to upload your accelerator to a Git repo, you can use the public version to test with:
     ```console
     tanzu apps workload create tanzu-java-web-app \
     --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
@@ -84,49 +96,38 @@ You use this accelerator code in the [Iterate on your Application](#iterate) sec
     >**Note:** This first deploy uses accelerator source from Git, but you use the VSCode extension
     to debug and live-update this app in later steps.
 
-1. View the build and runtime logs for your app by running the `tail` command:
+7. View the build and runtime logs for your app by running the `tail` command:
 
     ```console
     tanzu apps workload tail tanzu-java-web-app --since 10m --timestamp
     ```
 
-1. After the workload is built and running, get the web-app URL by running
+8. After the workload is built and running, get the web-app URL by running
 `tanzu apps workload get tanzu-java-web-app` and then pressing **ctrl-click** on the
 Workload Knative Services URL at the bottom of the command output.
 
 
-### Add Your Application to Tanzu Application Platform GUI
+### Add Your Application to Tanzu Application Platform GUI Software Catalog
 
-To see this application in your organization catalog, you must point to the catalog definition file
-included in the accelerator zip file.
+To see this application in your organization catalog, you must register new entities as described below.
+
 
 1. Ensure you have already installed the Blank Software Catalog. For installation information, see
 [Configure the Tanzu Application Platform GUI](install.md#configure-tap-gui).
 
-1. Add the path to the application in the `catalog-info.yaml` file for your catalog, as seen in
-this example:
+2. Go to the `Home` screen of TAP GUI by clicking the “Home” button on the left-side navigation bar and select `REGISTER ENTITY` button on the top.
 
-    ```yaml
-    apiVersion: backstage.io/v1alpha1
-    kind: Location
-    metadata:
-      name: backstage-catalog-info
-      description: A sample catalog for Backstage
-      annotations:
-        'backstage.io/techdocs-ref': dir:.
-    spec:
-      targets:
-        - ./components/backstage.yaml
-        - ./groups/default-org.yaml
-        - ./systems/backstage-system.yaml
-        - ./domains/backstage-domain.yaml
-        - https://<GIT-LOCATION-OF-ACCELERATOR>/catalog-info.yaml
-    ```
-    Where `<GIT-LOCATION-OF-ACCELERATOR>` is the location of the accelerator's catalog definition file.
+![REGISTER button on the right side of the header](images/getting-started-tap-gui-5.png) 
 
-The default catalog refresh is 200 seconds.
-After your catalog refreshes you can see the entry in the catalog and interact with it.
+3. In the Register an existing component prompt, provide a link to an the `catalog-info.yaml` file in the Git repo and click on `ANALYZE`
 
+![Select URL](images/getting-started-tap-gui-6.png) 
+
+4. Review the entities that will be added to the catalog and click on `IMPORT`
+
+![Review the entities to be added to the catalog](images/getting-started-tap-gui-7.png) 
+
+Once you navigate back to the `Home` screen, the catalog changes should be reflected immediately and you should be able to see the entry in the catalog and interact with it.
 
 ### <a id='iterate'></a>Iterate on your Application
 
