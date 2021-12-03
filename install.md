@@ -509,21 +509,21 @@ Where:
 
 By default, Contour uses `NodePort` as the service type. To set the service type to `LoadBalancer`, add the following to your `tap-values.yml`:
 
-    ```yaml
-    contour:
-      envoy:
-        service:
-          type: LoadBalancer
-    ```
+  ```yaml
+  contour:
+    envoy:
+      service:
+        type: LoadBalancer
+  ```
 If you are using AWS, the section above creates a classic LoadBalancer. If you want to use the Network LoadBalancer instead of the classic LoadBalancer for ingress, Add the following to your `tap-values.yml`:
-    ```yaml
-    contour:
-      infrastructure_provider: aws
-      envoy:
-        service:
-          aws:
-            LBType: nlb
-    ```
+  ```yaml
+  contour:
+    infrastructure_provider: aws
+    envoy:
+      service:
+        aws:
+          LBType: nlb
+  ```
 
 ## <a id='configure-tap-gui'></a> Configure the Tanzu Application Platform GUI
 To install Tanzu Application Platform GUI, see the following sections.
@@ -542,53 +542,53 @@ To install Tanzu Application Platform GUI:
 2. Add the following section to your `tap-values.yml` by using the following template. Replace all `<PLACEHOLDERS>`
 with your relevant values. Run:
 
-    ```yaml
-    tap_gui:
-      service_type: LoadBalancer
-      # Existing tap-values.yml above  
-      app_config:
-        app:
-          baseUrl: http://EXTERNAL-IP:7000
-        integrations:
-          github: # Other integrations available see NOTE below
-            - host: github.com
-              token: GITHUB-TOKEN
-        catalog:
-          locations:
-            - type: url
-              target: https://GIT-CATALOG-URL/catalog-info.yaml
-        backend:
-            baseUrl: http://EXTERNAL-IP:7000
-            cors:
-              origin: http://EXTERNAL-IP:7000
-   ```
+```yaml
+tap_gui:
+  service_type: LoadBalancer
+  # Existing tap-values.yml above  
+  app_config:
+    app:
+      baseUrl: http://EXTERNAL-IP:7000
+    integrations:
+      github: # Other integrations available see NOTE below
+        - host: github.com
+          token: GITHUB-TOKEN
+    catalog:
+      locations:
+        - type: url
+          target: https://GIT-CATALOG-URL/catalog-info.yaml
+    backend:
+        baseUrl: http://EXTERNAL-IP:7000
+        cors:
+          origin: http://EXTERNAL-IP:7000
+```
 
-    Where:
+  Where:
 
-    - `EXTERNAL-IP` is your LoadBalancer's address.
-    - `GITHUB-TOKEN` is a valid token generated from your Git infrastructure of choice with the necessary read permissions for the catalog definition files you extracted from the Blank Software Catalog.
-    - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage compliant catalog you've already built and posted on the Git infrastucture you specified in the Integration section.
+ - `EXTERNAL-IP` is your LoadBalancer's address.
+ - `GITHUB-TOKEN` is a valid token generated from your Git infrastructure of choice with the necessary read permissions for the catalog definition files you extracted from the Blank Software Catalog.
+ - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage compliant catalog you've already built and posted on the Git infrastucture you specified in the Integration section.
 
-    > **Note:** The `integrations` section uses Github. If you want additional integrations, see the
-    format in this [Backstage integration documentation](https://backstage.io/docs/integrations/).
+ > **Note:** The `integrations` section uses Github. If you want additional integrations, see the
+ format in this [Backstage integration documentation](https://backstage.io/docs/integrations/).
 
 **Optional Tanzu Application Platform GUI Database Configuration**
 The default database mechanism for TAP-GUI is an in-memory database that is recommended for test/dev only and you can delete/comment-out this section of the configuration. However, when the TAP GUI server pod gets re-created, you'll lose all user preferences and any manually registered entities. For production or general-purpose use-cases, we recommend using a PostgreSQL database.
 
 ```yaml
-    backend:
-      baseUrl: http://tap-gui.<DOMAIN_NAME>-IP:7000
-      cors:
-          origin: http://tap-gui.<DOMAIN_NAME>-IP:7000
-    # Existing tap-values.yml above 
-      database: #External database strongly recommended for production use
-        client: pg
-          connection:
-            host: <PG_SQL_HOSTNAME>
-            port: 5432
-            user: <PG_SQL_USERNAME>
-            password: <PG_SQL_PASSWORD>
-            ssl: {rejectUnauthorized: false} #Set to true if using SSL
+backend:
+  baseUrl: http://tap-gui.<DOMAIN_NAME>-IP:7000
+  cors:
+      origin: http://tap-gui.<DOMAIN_NAME>-IP:7000
+# Existing tap-values.yml above 
+  database: #External database strongly recommended for production use
+    client: pg
+      connection:
+        host: <PG_SQL_HOSTNAME>
+        port: 5432
+        user: <PG_SQL_USERNAME>
+        password: <PG_SQL_PASSWORD>
+        ssl: {rejectUnauthorized: false} #Set to true if using SSL
 ```
 
 Where:
@@ -620,7 +620,7 @@ Where:
     Updated package install 'tap' in namespace 'tap-install'
     ```
 
-5. To access the Tanzu Application Platform GUI, use the `baseURL` location you specified above. This consists of the `EXTERNAL-IP` with the default port of 7000. Run:
+5. To access the Tanzu Application Platform GUI, use the `baseURL` location you specified above. This consists of the `EXTERNAL-IP` with the default port of 7000. Pull up the following in browser:
     ```
     http://EXTERNAL-IP:7000
     ```
@@ -646,9 +646,9 @@ Proceed to the [Getting Started](getting-started.md) topic or the
 
 2. Update your tap-values file with a section listing the exclusions:
 
-    ```yaml
-    profile: <PROFILE-VALUE>
-    excluded_packages:
-      - tap-gui.tanzu.vmware.com
-      - service-bindings.lab.vmware.com
-    ```
+  ```yaml
+  profile: <PROFILE-VALUE>
+  excluded_packages:
+    - tap-gui.tanzu.vmware.com
+    - service-bindings.lab.vmware.com
+  ```
