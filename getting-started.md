@@ -328,7 +328,7 @@ Tekton pipeline.
 
 <li>Automatically create a new image of the application
 
-<li>Apply any predefined conventions to the K8s configuration
+<li>Apply any predefined conventions to the Kubernetes configuration
 
 <li>Deploy the application to the cluster
 </li>
@@ -1030,14 +1030,7 @@ depend on.
 This experience is made possible in Tanzu Application Platform by using the Services Toolkit
 component. Below are the usecases that are unlocked by Services Toolkit on TAP. Those marked with Experimental are subject to change.
 
-<<<<<<< HEAD
 ### Usecases unlocked by Services Toolkit on TAP
-=======
-1. Usecase1 -  Binding an application to a pre-provisioned service instance running in the same namespace (GA).
-2. Usecase2 - Binding an application to a pre-provisioned service instance running in a different namespace on the same Kubernetes cluster (GA).
-3. Usecase3 - Binding an application to a service instance running on a different k8s cluster (Beta).
-4. Usecase4 - Binding an application to a service running outside K8s (ex external Azure DB) (Beta).
->>>>>>> parent of 610e868 (k8s and K8s to Kubernetes)
 
 1. Usecase 1 - Binding an application to a pre-provisioned service instance running in the same namespace.
 2. Usecase 2 - Binding an application to a pre-provisioned service instance running in a different namespace on the same Kubernetes cluster.
@@ -1293,12 +1286,8 @@ the Well-known Secret Entries part of the binding specifications.
 For more information, see the
 [Well-known Secret Entries specifications](https://github.com/servicebinding/spec#well-known-secret-entries) in GitHub.
 
-<<<<<<< HEAD
 In this example, bind a new application on Tanzu Application Platform to an existing PostgreSQL
 database that exists in Azure:
-=======
-### <a id='services-journey-use-case-3'></a> **Usecase3 - Binding an application to a service instance running on a different k8s cluster (Beta).**
->>>>>>> parent of 610e868 (k8s and K8s to Kubernetes)
 
 1. Create a Kubernetes Secret resource similar to the following example:
 
@@ -1538,63 +1527,6 @@ app developer as with the first use case.
 
 1. Visit the URL and refresh the page to confirm the app is running by checking the new message IDs.
 
-<<<<<<< HEAD
-=======
-=================================
-### <a id='services-journey-use-case-4'></a> **Usecase4 - Binding an application to a service running outside K8s (ex external Azure DB) (Beta)**.
-This use case enables developers to connect their application workloads to almost any backing
-service, including those that are running external to the platform, as well as those that do not
-adhere to the Provisioned Service part of the binding specifications.
-This is made possible by using direct references to Kubernetes Secret objects.
-
-For more information, see the
-[Provisioned Service specifications](https://github.com/servicebinding/spec#provisioned-service) in GitHub.
-
-In the previous two use cases you saw the use of the `--service-ref` flag on the
-`tanzu apps workload create` command, and you used it to provide a reference to a Provisioned Service service instance, which is a RabbitmqCluster resource.
-
-You can also provide a reference directly to a Kubernetes Secret resource that, itself, abides by
-the Well-known Secret Entries part of the binding specifications.
-
-For more information, see the
-[Well-known Secret Entries specifications](https://github.com/servicebinding/spec#well-known-secret-entries) in GitHub.
-
-In this example, bind a new application on Tanzu Application Platform to an existing PostgreSQL
-database that exists in Azure:
-
-1. Create a Kubernetes Secret resource similar to the following example:
-
-    ```yaml
-    # external-azure-db-binding-compatible.yaml
-    ---
-    apiVersion: v1
-    kind: Secret
-    metadata:
-      name: external-azure-db-binding-compatible
-    type: Opaque
-    stringData:
-      type: postgresql
-      provider: azure
-      host: EXAMPLE.DATABASE.AZURE.COM
-      port: "5432"
-      database: "EXAMPLE-DB-NAME"
-      username: "USER@EXAMPLE"
-      password: "PASSWORD"
-    ```
-
-1. Apply the YAML file by running the following command.
-
-    ```console
-    kubectl apply -f external-azure-db-binding-compatible.yaml
-    ```
-
-1. Provide a reference to the Secret when creating your application workload. For example:
-
-    ```console
-    tanzu apps workload create pet-clinic --git-repo https://github.com/spring-projects/spring-petclinic --git-branch main --type web --service-ref db=v1:Secret:external-azure-db-binding-compatible
-    ```
-
->>>>>>> parent of 610e868 (k8s and K8s to Kubernetes)
 ## Appendix
 
 
