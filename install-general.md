@@ -170,6 +170,7 @@ For other Kubernetes providers, follow the steps below:
     export INSTALL_REGISTRY_HOSTNAME=registry.tanzu.vmware.com
     export INSTALL_REGISTRY_USERNAME=TANZU-NET-USER
     export INSTALL_REGISTRY_PASSWORD=TANZU-NET-PASSWORD
+    cd $HOME/tanzu-prereqs
     ./install.sh
     ```
 
