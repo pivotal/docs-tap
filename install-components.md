@@ -386,7 +386,7 @@ To install Source Controller:
     $ tanzu package available list controller.source.apps.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for controller.source.apps.tanzu.vmware.com...
       NAME                                     VERSION  RELEASED-AT
-      controller.source.apps.tanzu.vmware.com  0.1.2    2021-09-16T00:00:00Z
+      controller.source.apps.tanzu.vmware.com  0.2.0    2021-09-16T00:00:00Z
     ```
 
 1. (Optional) To make changes to the default installation settings, run:
@@ -402,7 +402,7 @@ To install Source Controller:
     For example:
 
     ```bash
-    $ tanzu package available get controller.source.apps.tanzu.vmware.com/0.1.2 --values-schema --namespace tap-install
+    $ tanzu package available get controller.source.apps.tanzu.vmware.com/0.2.0 --values-schema --namespace tap-install
     ```
 
     For more information about values schema options, see the individual product documentation.
@@ -411,12 +411,12 @@ To install Source Controller:
 1. Install the package. Run:
 
     ```bash
-    tanzu package install source-controller -p controller.source.apps.tanzu.vmware.com -v 0.1.2 -n tap-install
+    tanzu package install source-controller -p controller.source.apps.tanzu.vmware.com -v 0.2.0 -n tap-install
     ```
 
     For example:
     ```
-    tanzu package install source-controller -p controller.source.apps.tanzu.vmware.com -v 0.1.2 -n tap-install
+    tanzu package install source-controller -p controller.source.apps.tanzu.vmware.com -v 0.2.0 -n tap-install
     / Installing package 'controller.source.apps.tanzu.vmware.com'
     | Getting namespace 'tap-install'
     - Getting package metadata for 'controller.source.apps.tanzu.vmware.com'
@@ -441,7 +441,7 @@ To install Source Controller:
     Retrieving installation details for sourcer-controller...
     NAME:                    sourcer-controller
     PACKAGE-NAME:            controller.source.apps.tanzu.vmware.com
-    PACKAGE-VERSION:         0.1.2
+    PACKAGE-VERSION:         0.2.0
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
@@ -2316,7 +2316,7 @@ Use the following procedure to verify that the packages are installed.
     scan-controller          scst-scan.apps.tanzu.vmware.com                    1.0.0            Reconcile succeeded
     service-bindings         service-bindings.labs.vmware.com                   0.5.0            Reconcile succeeded
     services-toolkit         services-toolkit.tanzu.vmware.com                  0.4.0            Reconcile succeeded
-    source-controller        controller.source.apps.tanzu.vmware.com            0.1.2            Reconcile succeeded
+    source-controller        controller.source.apps.tanzu.vmware.com            0.2.0            Reconcile succeeded
     tap-gui                  tap-gui.tanzu.vmware.com                           0.3.0-rc.4       Reconcile succeeded
     tbs                      buildservice.tanzu.vmware.com                      1.3.1            Reconcile succeeded
     ```
