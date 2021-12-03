@@ -38,7 +38,7 @@ Before getting started, ensure the following prerequisites are in place:
 
 #### A note about Application Accelerators
 
-The Application Accelerator Plugin of TAP GUI (“Create” button on the left-side navigation bar) helps app developers and app operators through the creation and generation of application accelerators. Accelerators are templates that codify best practices and ensure important configuration and structures are in place from the start.
+The Application Accelerator Plugin of Tanzu Application Platform GUI (“Create” button on the left-side navigation bar) helps app developers and app operators through the creation and generation of application accelerators. Accelerators are templates that codify best practices and ensure important configuration and structures are in place from the start.
 
 Developers can bootstrap their applications and get started with feature development right away. Application Operators can create custom accelerators that reflect their desired architectures and configurations and enable fleets of developers to utilize them, decreasing operator concerns about whether developers are implementing their desired best practices.
 
@@ -49,9 +49,9 @@ Application Accelerator templates are available as a quick start from [Tanzu Net
 
 Follow these steps to get started with an accelerator called `Tanzu-Java-Web-App`.
 
-1. From your TAP GUI portal, click on “Create” button on the left side of the navigation bar to see the list of available Accelerators.
+1. From your Tanzu Application Platform GUI portal, click on “Create” button on the left side of the navigation bar to see the list of available Accelerators.
 
-    ![List of accelerators in TAP GUI](images/getting-started-tap-gui-1.png)
+    ![List of accelerators in Tanzu Application Platform GUI](images/getting-started-tap-gui-1.png)
 
 2. Locate the Tanzu Java Web App accelerator, which is a sample Spring Boot web app, and click on `CHOOSE` button.
 
@@ -59,11 +59,11 @@ Follow these steps to get started with an accelerator called `Tanzu-Java-Web-App
 
 3. In the “Generate Accelerators” prompt, replace the default value dev.local in the "prefix for container image registry" field with the URL to your registry. The URL must match the registry server you want the default Supply Chain to push container images to. Then click on `NEXT STEP`, verify the provided information and click on `CREATE`.
 
-    ![Generate Accelerators prompt](images/getting-started-tap-gui-3.png) 
+    ![Generate Accelerators prompt](images/getting-started-tap-gui-3.png)
 
 4. After the Task Activity processes are complete, click on the `DOWNLOAD ZIP FILE` button
 
-    ![Task Activity progress bar](images/getting-started-tap-gui-4.png) 
+    ![Task Activity progress bar](images/getting-started-tap-gui-4.png)
 
 5. After downloading the zip file, follow your preferred procedure for uploading the Accelerator files to a Git repository.
 
@@ -80,7 +80,7 @@ Follow these steps to get started with an accelerator called `Tanzu-Java-Web-App
 
     Where:
     - `<GIT_URL_TO_ACCELERATOR>` is the path you uploaded to in step 5.
-  
+
     If you bypassed step 5, and weren't able to upload your accelerator to a Git repo, you can use the public version to test with:
     ```console
     tanzu apps workload create tanzu-java-web-app \
@@ -114,17 +114,17 @@ To see this application in your organization catalog, you must register new enti
 
 1. Ensure you have already installed the Blank Software Catalog. For installation information, see [Configure the Tanzu Application Platform GUI](install.md#configure-tap-gui).
 
-2. Go to the `Home` screen of TAP GUI by clicking the “Home” button on the left-side navigation bar and select `REGISTER ENTITY` button on the top.
+2. Go to the `Home` screen of Tanzu Application Platform GUI by clicking the “Home” button on the left-side navigation bar and select `REGISTER ENTITY` button on the top.
 
-    ![REGISTER button on the right side of the header](images/getting-started-tap-gui-5.png) 
+    ![REGISTER button on the right side of the header](images/getting-started-tap-gui-5.png)
 
 3. In the Register an existing component prompt, provide a link to an the `catalog-info.yaml` file in the Git repo and click on `ANALYZE`
 
-    ![Select URL](images/getting-started-tap-gui-6.png) 
+    ![Select URL](images/getting-started-tap-gui-6.png)
 
 4. Review the entities that will be added to the catalog and click on `IMPORT`
 
-    ![Review the entities to be added to the catalog](images/getting-started-tap-gui-7.png) 
+    ![Review the entities to be added to the catalog](images/getting-started-tap-gui-7.png)
 
 Once you navigate back to the `Home` screen, the catalog changes should be reflected immediately and you should be able to see the entry in the catalog and interact with it.
 
@@ -750,7 +750,7 @@ service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.devel
 
 ### Supply Chain Security Tools Overview
 
-In this section, we will provide an overview of the supply chain security use cases that are available in TAP:
+In this section, we will provide an overview of the supply chain security use cases that are available in Tanzu Application Platform:
 
 1. **Sign**: Introducing image signing and verification to your supply chain
 
@@ -1012,11 +1012,11 @@ One of the out of the box supply chains we are working on for a future release w
 
 * [Observing and Troubleshooting](scst-scan/observing.md)
 
-## <a id='consuming-services'><a/> Section 5: Consuming Services on TAP
+## <a id='consuming-services'><a/> Section 5: Consuming Services on Tanzu Application Platform
 
-Tanzu Application Platform makes it easy to discover, curate, consume, and manage 
+Tanzu Application Platform makes it easy to discover, curate, consume, and manage
 services across single or multi-cluster environments.
-This section has procedures for several use cases regarding Services journey on TAP.
+This section has procedures for several use cases regarding Services journey on Tanzu Application Platform.
 
 ### Overview
 
@@ -1029,14 +1029,14 @@ depend on.
 
 
 This experience is made possible in Tanzu Application Platform by using the Services Toolkit
-component. Below are the usecases that are unlocked by Services Toolkit on TAP. Those marked with GA are Generally Available in version 0.5.0. 
+component. Below are the usecases that are unlocked by Services Toolkit on Tanzu Application Platform. Those marked with GA are Generally Available in version 0.5.0.
 
-### Usecases unlocked by Services Toolkit on TAP
+### Usecases unlocked by Services Toolkit on Tanzu Application Platform
 
 1. Usecase1 -  Binding an application to a pre-provisioned service instance running in the same namespace (GA).
 2. Usecase2 - Binding an application to a pre-provisioned service instance running in a different namespace on the same Kubernetes cluster (GA).
 3. Usecase3 - Binding an application to a service instance running on a different k8s cluster (Beta).
-4. Usecase4 - Binding an application to a service running outside K8s (ex external Azure DB) (Beta). 
+4. Usecase4 - Binding an application to a service running outside K8s (ex external Azure DB) (Beta).
 
 
 Services Toolkit comprises the following Kubernetes-native components:
@@ -1065,7 +1065,7 @@ as part of the development life cycle. Below we expand on the first 2 usecases l
 * [Use Case 2 - **Binding an App Workload to a Service Resource across multiple clusters**](#services-journey-use-case-2)
 * [Use Case 3 - **Binding an App Workload directly to a Secret (support for external services)**](#services-journey-use-case-3) -->
 
-In order to properly demonstrate how Application Teams can discover, provision and bind to services in TAP, we first need to install a service along with a few supporting resources to make it discoverable. This setup is typically performed by the role of the Service Operator.
+In order to properly demonstrate how Application Teams can discover, provision and bind to services in Tanzu Application Platform, we first need to install a service along with a few supporting resources to make it discoverable. This setup is typically performed by the role of the Service Operator.
 
 ### Setup
 
@@ -1162,7 +1162,7 @@ To summarize, we have installed RabbitMQ Operator, created the necessary RACs, c
 
 ### Step1: Deploy a workload app
 - Let’s start by pushing an Application Workload for an application that requires RabbitMQ.
-- Note: You must ensure that your namespace is set up to use installed TAP packages so that application workloads can be created successfully. For more information, refer [Set Up Developer Namespaces to Use Installed Packages](install-components.md#setup).
+- Note: You must ensure that your namespace is set up to use installed Tanzu Application Platform packages so that application workloads can be created successfully. For more information, refer [Set Up Developer Namespaces to Use Installed Packages](install-components.md#setup).
 - We’ll use the rabbitmq-sample application hosted at https://github.com/jhvhs/rabbitmq-sample for this particular walkthrough. Create the workload using the below steps
   ```bash
   $ git clone https://github.com/jhvhs/rabbitmq-sample /tmp/rabbitmq-sample
@@ -1193,7 +1193,7 @@ To summarize, we have installed RabbitMQ Operator, created the necessary RACs, c
   kubectl get rabbitmqclusters
   ```
 
-### Step3: Bind/claim the service instance 
+### Step3: Bind/claim the service instance
 - We can now bind the app workload to the service instance, by providing the Application Workload a reference to the Service Instance via the `--service-ref` flag on tanzu CLI or by declaring it in `workload.yaml`.
 - In order to obtain a service reference in the correct format, we can run the following command:
   ```bash
@@ -1205,9 +1205,9 @@ To summarize, we have installed RabbitMQ Operator, created the necessary RACs, c
     NAMESPACE          NAME                        KIND             SERVICE TYPE  AGE    SERVICE REF
     default  example-rabbitmq-cluster-1  RabbitmqCluster  rabbitmq      7m52s  rabbitmq.com/v1beta1:RabbitmqCluster:example-rabbitmq-cluster-1:default
   ```
-  __Note:__ In future releases, creation of services instances manually will not be required, Services Toolkit will create the service instances on-demand (dynamic provisioning) based on the intent declared by the workloads. 
+  __Note:__ In future releases, creation of services instances manually will not be required, Services Toolkit will create the service instances on-demand (dynamic provisioning) based on the intent declared by the workloads.
 - We provide the Service refer from the above output to the command below
-  
+
   ```bash
   $ tanzu apps workload update rabbitmq-sample --service-ref="ref1=rabbitmq.com/v1beta1:RabbitmqCluster:example-rabbitmq-cluster-1:default" --yes
   ```
@@ -1242,7 +1242,7 @@ running in the same namespace. Here we will look at binding to an application wo
   ```bash
   kubectl -n service-instances apply -f example-rabbitmq-cluster-service-instance.yaml
   ```
-### Step3: Bind/claim the service instance 
+### Step3: Bind/claim the service instance
 - Let’s recap where we’re at - we now have an Application Workload running in our developer namespace and a RabbitmqCluster Service Instance running in the service-instnaces namespace, but they don’t currently know anything about each other.
 - Let’s now see how we can bind the two together such that our application is able to make use of the RabbitMQ cluster.
 - This can be done by passing our Application Workload a reference to the Service Instance via the `--service-ref` flag.
