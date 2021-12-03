@@ -1028,7 +1028,7 @@ time worrying about the provision, configuration, and operations of the backing 
 depend on.
 
 This experience is made possible in Tanzu Application Platform by using the Services Toolkit
-component. Below are the usecases that are unlocked by Services Toolkit on TAP. Those marked with GA are Generally Available (GA) in version 0.5.0.
+component. Below are the usecases that are unlocked by Services Toolkit on TAP. Those marked with Experimental are subject to change.
 
 ### Usecases unlocked by Services Toolkit on TAP
 
