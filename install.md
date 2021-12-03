@@ -81,7 +81,8 @@ To add the Tanzu Application Platform package repository:
       NAME                                                 DISPLAY-NAME                                                              SHORT-DESCRIPTION
       accelerator.apps.tanzu.vmware.com                    Application Accelerator for VMware Tanzu                                  Used to create new projects and configurations.
       api-portal.tanzu.vmware.com                          API portal                                                                A unified user interface to enable search, discovery and try-out of API endpoints at ease.
-      appliveview.tanzu.vmware.com                         Application Live View for VMware Tanzu                                    App for monitoring and troubleshooting running apps
+      run.appliveview.tanzu.vmware.com                     Application Live View for VMware Tanzu                                    App for monitoring and troubleshooting running apps
+      build.appliveview.tanzu.vmware.com                   Application Live View Conventions for VMware Tanzu                        Application Live View convention server
       buildservice.tanzu.vmware.com                        Tanzu Build Service                                                       Tanzu Build Service enables the building and automation of containerized software workflows securely and at scale.
       cartographer.tanzu.vmware.com                        Cartographer                                                              Kubernetes native Supply Chain Choreographer.
       cnrs.tanzu.vmware.com                                Cloud Native Runtimes                                                     Cloud Native Runtimes is a serverless runtime based on Knative
@@ -144,6 +145,14 @@ The following table lists the packages contained in each profile:
   </tr>
   <tr>
    <td>App Live View
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+   <td>App Live View Conventions
    </td>
    <td>&check;
    </td>
@@ -454,6 +463,7 @@ Where:
   |API portal|`api_portal`|
   |Application Accelerator|`accelerator`|
   |Application Live View|`appliveview`|
+  |Application Live View Conventions|`appliveview-conventions`|
   |Cartographer|`cartographer`|
   |Cloud Native Runtimes|`cnrs`|
   |Supply Chain|`supply_chain`|

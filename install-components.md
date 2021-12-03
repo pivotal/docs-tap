@@ -15,6 +15,7 @@ For information, see [Installing Part I: Prerequisites, EULA, and CLI](install-g
   - [<a id='install-cnr'></a> Install Cloud Native Runtimes](#-install-cloud-native-runtimes)
   - [<a id='install-convention-service'></a> Install Convention Service](#-install-convention-service)
   - [<a id='install-source-controller'></a> Install Source Controller](#-install-source-controller)
+  - [<a id='install-app-live-view'></a> Install Application Live View](#-install-app-live-view)
   - [<a id='install-app-accelerator'></a> Install Application Accelerator](#-install-application-accelerator)
     - [Prerequisites](#prerequisites)
     - [Procedure](#procedure)
@@ -1226,63 +1227,59 @@ To install Spring Boot conventions:
 
 ## <a id="install-app-live-view"></a>Install Application Live View
 
-To install Application Live View:
+Application Live View installs two packages for `full` and `dev` profiles:
 
-**Prerequisite**: Convention Service installed on the cluster. See [Install Convention Service](#install-convention-service).
++ Application Live View Package (run.appliveview.tanzu.vmware.com): This contains Application Live View Backend and Connector components
 
-1. List version information for the package by running:
++ Application Live View Conventions Package (build.appliveview.tanzu.vmware.com): This contains Application Live View Convention Service only
+
+
+1. List version information for both the packages by running:
 
     ```bash
-    tanzu package available list appliveview.tanzu.vmware.com --namespace tap-install
+    tanzu package available list run.appliveview.tanzu.vmware.com --namespace tap-install
+    tanzu package available list build.appliveview.tanzu.vmware.com --namespace tap-install
     ```
 
      For example:
 
     ```bash
-    $ tanzu package available list appliveview.tanzu.vmware.com --namespace tap-install
-    - Retrieving package versions for appliveview.tanzu.vmware.com...
-      NAME                          VERSION        RELEASED-AT
-      appliveview.tanzu.vmware.com  1.0.0-build.2  2021-11-29T00:00:00Z
+    $ tanzu package available list run.appliveview.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for run.appliveview.tanzu.vmware.com...
+      NAME                              VERSION        RELEASED-AT
+      run.appliveview.tanzu.vmware.com  1.0.0-build.3  2021-12-03T00:00:00Z
+
+    $ tanzu package available list build.appliveview.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for build.appliveview.tanzu.vmware.com...
+      NAME                                VERSION        RELEASED-AT
+      build.appliveview.tanzu.vmware.com  1.0.0-build.3  2021-12-03T00:00:00Z
     ```
 
-1. (Optional) To make changes to the default installation settings, run:
 
-    ```bash
-    tanzu package available get appliveview.tanzu.vmware.com/1.0.0-build.2 --values-schema --namespace tap-install
-    ```
-
-    For example:
-
-    ```bash
-    $ tanzu package available get appliveview.tanzu.vmware.com/1.0.0-build.2 --values-schema --namespace tap-install
-    - Retrieving package details for appliveview.tanzu.vmware.com/1.0.0-build.2...
-      KEY                   DEFAULT        TYPE    DESCRIPTION
-    ```
-
-    For more information about values schema options, see the individual product documentation.
-
-1. Gather the values schema.
-
-1. Create a `app-live-view-values.yaml` using the following sample as a guide:
+1. Create a `app-live-view-values.yaml` with below details:
 
    ```yaml
    ---
    ```
+   > **Note:** The `app-live-view-values.yaml` section does not have any values schema for both packages, therefore it is empty.
 
-   The Application Live View server and its components are deployed in `app-live-view` namespace by default. The connector is deployed as a `DaemonSet` and there is one connector instance per node in the Kubernetes cluster. This instance observes all the apps running on that node.
 
-1. Install the package by running:
+   The Application Live View backend and connector are deployed in `app-live-view` namespace by default. The connector is deployed as a `DaemonSet` and there is one connector instance per node in the Kubernetes cluster. This instance observes all the apps running on that node. 
+   The Application Live View Convention Server is deployed in `alv-convention` namespace by default. The convention server enhances PodIntents with metadata such as labels, annotations or application properties.
+
+
+1. Install the Application Live View package by running:
 
     ```console
-    tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 1.0.0-build.2 -n tap-install -f app-live-view-values.yaml
+    tanzu package install appliveview -p run.appliveview.tanzu.vmware.com -v 1.0.0-build.3 -n tap-install -f app-live-view-values.yaml
     ```
 
     For example:
 
     ```console
-    $ tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 1.0.0-build.2 -n tap-install -f app-live-view-values.yaml
-    - Installing package 'appliveview.tanzu.vmware.com'
-    | Getting package metadata for 'appliveview.tanzu.vmware.com'
+    $ tanzu package install appliveview -p run.appliveview.tanzu.vmware.com -v 1.0.0-build.3 -n tap-install -f app-live-view-values.yaml
+    - Installing package 'run.appliveview.tanzu.vmware.com'
+    | Getting package metadata for 'run.appliveview.tanzu.vmware.com'
     | Creating service account 'app-live-view-tap-install-sa'
     | Creating cluster admin role 'app-live-view-tap-install-cluster-role'
     | Creating cluster role binding 'app-live-view-tap-install-cluster-role binding'
@@ -1290,26 +1287,69 @@ To install Application Live View:
     - Creating package resource
     - Package install status: Reconciling
 
-     Added installed package 'app-live-view' in namespace 'tap-install'
+     Added installed package 'appliveview' in namespace 'tap-install'
     ```
 
-    For more information about Application Live View,
-    see the [Application Live View documentation](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-index.html).
-
-1. Verify the package install by running:
+1. Install the Application Live View Conventions package by running:
 
     ```console
-    tanzu package installed get app-live-view -n tap-install
+    tanzu package install appliveview-conventions -p build.appliveview.tanzu.vmware.com -v 1.0.0-build.3 -n tap-install -f app-live-view-values.yaml
     ```
 
     For example:
 
     ```console
-    tanzu package installed get app-live-view -n tap-install
+    $ tanzu package install appliveview-conventions -p build.appliveview.tanzu.vmware.com -v 1.0.0-build.3 -n tap-install -f app-live-view-values.yaml
+    - Installing package 'build.appliveview.tanzu.vmware.com'
+    | Getting package metadata for 'build.appliveview.tanzu.vmware.com'
+    | Creating service account 'app-live-view-tap-install-sa'
+    | Creating cluster admin role 'app-live-view-tap-install-cluster-role'
+    | Creating cluster role binding 'app-live-view-tap-install-cluster-role binding'
+    | Creating secret 'app-live-view-tap-install-values'
+    - Creating package resource
+    - Package install status: Reconciling
+
+     Added installed package 'appliveview-conventions' in namespace 'tap-install'
+    ```
+
+    For more information about Application Live View,
+    see the [Application Live View documentation](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-index.html).
+
+
+1. Verify the package install for `Application Live View` package by running:
+
+    ```console
+    tanzu package installed get appliveview -n tap-install
+    ```
+
+    For example:
+
+    ```console
+    tanzu package installed get appliveview -n tap-install
     | Retrieving installation details for cc...
-    NAME:                    app-live-view
-    PACKAGE-NAME:            appliveview.tanzu.vmware.com
-    PACKAGE-VERSION:         1.0.0-build.2
+    NAME:                    appliveview
+    PACKAGE-NAME:            run.appliveview.tanzu.vmware.com
+    PACKAGE-VERSION:         1.0.0-build.3
+    STATUS:                  Reconcile succeeded
+    CONDITIONS:              [{ReconcileSucceeded True  }]
+    USEFUL-ERROR-MESSAGE:
+    ```
+    STATUS should be `Reconcile succeeded`.
+
+1. Verify the package install for `Application Live View Conventions` package by running:
+
+    ```console
+    tanzu package installed get appliveview-conventions -n tap-install
+    ```
+
+    For example:
+
+    ```console
+    tanzu package installed get appliveview-conventions -n tap-install
+    | Retrieving installation details for cc...
+    NAME:                    appliveview-conventions
+    PACKAGE-NAME:            build.appliveview.tanzu.vmware.com
+    PACKAGE-VERSION:         1.0.0-build.3
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
