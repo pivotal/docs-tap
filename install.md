@@ -35,14 +35,14 @@ To add the Tanzu Application Platform package repository:
 
     ```bash
     tanzu package repository add tanzu-tap-repository \
-      --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.3.0 \
+      --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.4.0 \
       --namespace tap-install
     ```
     For example:
 
     ```bash
     $ tanzu package repository add tanzu-tap-repository \
-        --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.3.0 \
+        --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.4.0 \
         --namespace tap-install
     \ Adding package repository 'tanzu-tap-repository'...
 
@@ -62,7 +62,7 @@ To add the Tanzu Application Platform package repository:
     NAME:          tanzu-tap-repository
     VERSION:       3769
     REPOSITORY:    registry.tanzu.vmware.com/tanzu-application-platform/tap-packages
-    TAG:           0.3.0
+    TAG:           0.4.0
     STATUS:        Reconcile succeeded
     REASON:
     ```
@@ -595,14 +595,14 @@ Where:
     ```console
     tanzu package installed update tap \
      --package-name tap.tanzu.vmware.com \
-     --version 0.3.0 -n tap-install \
+     --version 0.4.0 -n tap-install \
      -f tap-values.yml
     ```
 
     For example:
 
     ```console
-    $ tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version 0.3.0 --values-file tap-values-file.yml -n tap-install
+    $ tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version 0.4.0 --values-file tap-values-file.yml -n tap-install
     | Updating package 'tap'
     | Getting package install for 'tap'
     | Getting package metadata for 'tap.tanzu.vmware.com'
