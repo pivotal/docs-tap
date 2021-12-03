@@ -97,3 +97,82 @@ To fix this problem, try these commands to get the relevant error message:
 - `kubectl get clusterbuilder.kpack.io -o yaml`
 - `kubectl get image.kpack.io <workload-name> -o yaml`
 - `kubectl get build.kpack.io -o yaml`
+
+## <a id='failed-reconcile'></a> After package installation, one or more packages fails to reconcile
+
+After creating a workload, there are no logs.
+
+### Symptom
+
+You issue the tanzu package install command but one or more packages fails to install:
+
+```bash
+tanzu package install tap -p tap.tanzu.vmware.com -v 0.4.0 --values-file tap-values.yaml -n tap-install
+- Installing package 'tap.tanzu.vmware.com'
+\ Getting package metadata for 'tap.tanzu.vmware.com'
+| Creating service account 'tap-tap-install-sa'
+/ Creating cluster admin role 'tap-tap-install-cluster-role'
+| Creating cluster role binding 'tap-tap-install-cluster-rolebinding'
+| Creating secret 'tap-tap-install-values'
+| Creating package resource
+- Waiting for 'PackageInstall' reconciliation for 'tap'
+/ 'PackageInstall' resource install status: Reconciling
+| 'PackageInstall' resource install status: ReconcileFailed
+
+Please consider using 'tanzu package installed update' to update the installed package with correct settings
+
+
+Error: resource reconciliation failed: kapp: Error: waiting on reconcile packageinstall/tap-gui (packaging.carvel.dev/v1alpha1) namespace: tap-install:
+  Finished unsuccessfully (Reconcile failed:  (message: Error (see .status.usefulErrorMessage for details))). Reconcile failed: Error (see .status.usefulErrorMessage for details)
+Error: exit status 1
+```
+
+### Cause
+
+Often times this can be one of the following:
+- Some infrastructure providers can take longer than the timeout value allows for in order to perform tasks. 
+- There are some cases where a race-condition between components can exist. Perhaps a package that uses `Ingress` completing before the shared Tanzu ingress controller is available.
+  
+The beauty of the VMWare Carvel tools (kapp-controller) is that it will continue to try in a reconciliation loop.
+
+### Solution
+
+Verify if the installation is still continuing and in fact may complete just fine:
+
+```bash
+tanzu package installed list -A
+```
+
+```bash
+\ Retrieving installed packages...
+  NAME                      PACKAGE-NAME                                       PACKAGE-VERSION  STATUS               NAMESPACE
+  accelerator               accelerator.apps.tanzu.vmware.com                  0.5.1            Reconcile succeeded  tap-install
+  api-portal                api-portal.tanzu.vmware.com                        1.0.6            Reconcile succeeded  tap-install
+  appliveview               run.appliveview.tanzu.vmware.com                   1.0.0-build.3    Reconciling          tap-install
+  appliveview-conventions   build.appliveview.tanzu.vmware.com                 1.0.0-build.3    Reconcile succeeded  tap-install
+  buildservice              buildservice.tanzu.vmware.com                      1.4.0-build.1    Reconciling          tap-install
+  cartographer              cartographer.tanzu.vmware.com                      0.0.8-rc.7       Reconcile succeeded  tap-install
+  cert-manager              cert-manager.tanzu.vmware.com                      1.5.3+tap.1      Reconcile succeeded  tap-install
+  cnrs                      cnrs.tanzu.vmware.com                              1.1.0            Reconcile succeeded  tap-install
+  contour                   contour.tanzu.vmware.com                           1.18.2+tap.1     Reconcile succeeded  tap-install
+  conventions-controller    controller.conventions.apps.tanzu.vmware.com       0.4.2            Reconcile succeeded  tap-install
+  developer-conventions     developer-conventions.tanzu.vmware.com             0.4.0-build1     Reconcile succeeded  tap-install
+  fluxcd-source-controller  fluxcd.source.controller.tanzu.vmware.com          0.16.0           Reconcile succeeded  tap-install
+  grype                     scst-grype.apps.tanzu.vmware.com                   1.0.0            Reconcile succeeded  tap-install
+  image-policy-webhook      image-policy-webhook.signing.run.tanzu.vmware.com  1.0.0-beta.2     Reconcile succeeded  tap-install
+  learningcenter            learningcenter.tanzu.vmware.com                    0.1.0-build.6    Reconcile succeeded  tap-install
+  learningcenter-workshops  workshops.learningcenter.tanzu.vmware.com          0.1.0-build.7    Reconcile succeeded  tap-install
+  ootb-delivery-basic       ootb-delivery-basic.tanzu.vmware.com               0.4.0-build.2    Reconcile succeeded  tap-install
+  ootb-supply-chain-basic   ootb-supply-chain-basic.tanzu.vmware.com           0.4.0-build.2    Reconcile succeeded  tap-install
+  ootb-templates            ootb-templates.tanzu.vmware.com                    0.4.0-build.2    Reconcile succeeded  tap-install
+  scanning                  scst-scan.apps.tanzu.vmware.com                    1.0.0            Reconcile succeeded  tap-install
+  scst-store                scst-store.tanzu.vmware.com                        1.0.0-beta.2     Reconcile succeeded  tap-install
+  service-bindings          service-bindings.labs.vmware.com                   0.6.0            Reconcile succeeded  tap-install
+  services-toolkit          services-toolkit.tanzu.vmware.com                  0.5.0-rc.3       Reconcile succeeded  tap-install
+  source-controller         controller.source.apps.tanzu.vmware.com            0.2.0            Reconcile succeeded  tap-install
+  spring-boot-conventions   spring-boot-conventions.tanzu.vmware.com           0.2.0            Reconcile succeeded  tap-install
+  tap                       tap.tanzu.vmware.com                               0.4.0-build.12   Reconciling          tap-install
+  tap-gui                   tap-gui.tanzu.vmware.com                           1.0.0-rc.72      Reconcile succeeded  tap-install
+  tap-telemetry             tap-telemetry.tanzu.vmware.com                     0.1.0            Reconcile succeeded  tap-install
+  tekton-pipelines          tekton.tanzu.vmware.com                            0.30.0           Reconcile succeeded  tap-install
+  ```
