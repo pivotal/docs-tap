@@ -194,11 +194,11 @@ Then bind it to the ServiceAccount:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: kapp-permissions
+  name: default
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: kapp-permissions
+  name: default
 subjects:
   - kind: ServiceAccount
     name: default
