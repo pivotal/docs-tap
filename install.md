@@ -360,7 +360,7 @@ of Tanzu Application Platform.
 
 ```yaml
     profile: full
-    ceip_policy_disclosed: "<true/false>"
+    ceip_policy_disclosed: true # set true or false boolean value
     buildservice:
       kp_default_repository: "<KP-DEFAULT-REPO>"
       kp_default_repository_username: "<KP-DEFAULT-REPO-USERNAME>"
@@ -386,7 +386,7 @@ of Tanzu Application Platform.
 
 ```yaml
     profile: dev
-    ceip_policy_disclosed: "<true/false>"
+    ceip_policy_disclosed: true # set <true or false> boolean value
 
     buildservice:
       kp_default_repository: "<KP-DEFAULT-REPO>"
