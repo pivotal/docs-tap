@@ -11,24 +11,25 @@ and the other benefits that accompany participation in the CEIP.
 
 To turn off telemetry collection on your Tanzu Application Platform installation:
 
-1. Run:
+1. Ensure your kubernetes context to pointing to the cluster where TAP is installed.
+2. Run the following `kubectl` command 
 
-    ```
-     <!-- The opening code fence needs the language or |```console|. The closing code fence needs a newline beneath it. Run Style Checker again after fixing all errors of this type; it might find more problems. -->kubectl apply < <<EOF
-    apiVersion: v1
-    kind: Namespace
-    metadata:
-      name: vmware-system-telemetry
-    ---
-    apiVersion: v1
-    kind: ConfigMap
-    metadata:
-      namespace: vmware-system-telemetry
-      name: vmware-telemetry-cluster-ceip
-    data:
-      level: disabled
-    EOF
-    ```
+```
+kubectl apply < <<EOF
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: vmware-system-telemetry
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: vmware-system-telemetry
+  name: vmware-telemetry-cluster-ceip
+data:
+  level: disabled
+EOF
+```
 
 
 Your Tanzu Application Platform deployment no longer emits telemetry, and you are opted out of the CEIP.
