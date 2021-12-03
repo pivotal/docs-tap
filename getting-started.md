@@ -51,19 +51,19 @@ Follow these steps to get started with an accelerator called `Tanzu-Java-Web-App
 
 1. From your TAP GUI portal, click on “Create” button on the left side of the navigation bar to see the list of available Accelerators.
 
-![List of accelerators in TAP GUI](images/getting-started-tap-gui-1.png)
+  ![List of accelerators in TAP GUI](images/getting-started-tap-gui-1.png)
 
 2. Locate the Tanzu Java Web App accelerator, which is a sample Spring Boot web app, and click on `CHOOSE` button.
 
-![Tile for Tanzu Java Web App](images/getting-started-tap-gui-2.png)   
+  ![Tile for Tanzu Java Web App](images/getting-started-tap-gui-2.png)   
 
 3. In the “Generate Accelerators” prompt, replace the default value dev.local in the "prefix for container image registry" field with the URL to your registry. The URL must match the registry server you want the default Supply Chain to push container images to. Then click on `NEXT STEP`, verify the provided information and click on `CREATE`.
 
-![Generate Accelerators prompt](images/getting-started-tap-gui-3.png) 
+    ![Generate Accelerators prompt](images/getting-started-tap-gui-3.png) 
 
 4. After the Task Activity processes are complete, click on the `DOWNLOAD ZIP FILE` button
 
-![Task Activity progress bar](images/getting-started-tap-gui-4.png) 
+    ![Task Activity progress bar](images/getting-started-tap-gui-4.png) 
 
 5. After downloading the zip file, follow your preferred procedure for uploading the Accelerator files to a Git repository.
 
@@ -112,20 +112,19 @@ Workload Knative Services URL at the bottom of the command output.
 To see this application in your organization catalog, you must register new entities as described below.
 
 
-1. Ensure you have already installed the Blank Software Catalog. For installation information, see
-[Configure the Tanzu Application Platform GUI](install.md#configure-tap-gui).
+1. Ensure you have already installed the Blank Software Catalog. For installation information, see [Configure the Tanzu Application Platform GUI](install.md#configure-tap-gui).
 
 2. Go to the `Home` screen of TAP GUI by clicking the “Home” button on the left-side navigation bar and select `REGISTER ENTITY` button on the top.
 
-![REGISTER button on the right side of the header](images/getting-started-tap-gui-5.png) 
+    ![REGISTER button on the right side of the header](images/getting-started-tap-gui-5.png) 
 
 3. In the Register an existing component prompt, provide a link to an the `catalog-info.yaml` file in the Git repo and click on `ANALYZE`
 
-![Select URL](images/getting-started-tap-gui-6.png) 
+    ![Select URL](images/getting-started-tap-gui-6.png) 
 
 4. Review the entities that will be added to the catalog and click on `IMPORT`
 
-![Review the entities to be added to the catalog](images/getting-started-tap-gui-7.png) 
+    ![Review the entities to be added to the catalog](images/getting-started-tap-gui-7.png) 
 
 Once you navigate back to the `Home` screen, the catalog changes should be reflected immediately and you should be able to see the entry in the catalog and interact with it.
 
