@@ -43,7 +43,8 @@ To install the Tanzu Application Platform profiles, see [Installing Tanzu Applic
 
 ## <a id='telemetry-notice'></a> Notice of telemetry collection for Tanzu Application Platform
 
-[//]: # (This following text came from legal. Do no edit it.)
+[//]: # (This following text came from legal. Do not edit it.)
+
 To improve the quality of our products, Tanzu Application Platform participates in VMware’s Customer Experience Improvement Program (CEIP).
 As part of CEIP, VMware collects technical information about your organization’s use of VMware products and services on a regular basis
 in association with your organization’s VMware license key(s).
@@ -54,7 +55,8 @@ identify and fix problems, and advise you on how to best deploy and use VMware p
 For example, this information can enable a proactive product deployment discussion with your VMware account team or
 VMware support team to help resolve your issues.
 This information cannot directly identify any individual. 
-[//]: # (The text above came from legal. Do no edit it.)
+
+[//]: # (The text above came from legal. Do not edit it.)
 
 You must acknowledge that you have read VMware’s CEIP policy before you can proceed with the installation.
 For more information, see [Install a Tanzu Application Platform profile](install.md#install-profile) in
