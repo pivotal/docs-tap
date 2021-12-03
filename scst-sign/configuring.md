@@ -5,6 +5,7 @@ container images properly.
 
 ## Create a `ClusterImagePolicy` Resource
 The cluster image policy is a custom resource containing the following properties:
+
 * `spec.verification.exclude.resources.namespaces`: a list of namespaces where
 this policy will not be enforced.
 
@@ -48,27 +49,27 @@ spec:
       - name: first-key
 ```
 
-> **Note**:
->   * The `name` for the `ClusterImagePolicy` resource must be `image-policy`.
+The `name` for the `ClusterImagePolicy` resource must be `image-policy`.
+
+Add any namespaces that run container images that are not signed in the
+`spec.verification.exclude.resources.namespaces` section, such as the
+`kube-system` namespace.
 >
->   * Add any namespaces that run container images that are not signed in the
->   `spec.verification.exclude.resources.namespaces` section, such as the
->   `kube-system` namespace.
+If no `ClusterImagePolicy` resource is created all images are admitted into
+the cluster with the following warning:
+
+```
+Warning: clusterimagepolicies.signing.run.tanzu.vmware.com "image-policy" not found. Image policy enforcement was not applied.
+```
 >
->   * If no `ClusterImagePolicy` resource is created all images are admitted into
->   the cluster with the following warning:
->     ```
->     Warning: clusterimagepolicies.signing.run.tanzu.vmware.com "image-policy" not found. Image policy enforcement was not applied.
->     ```
->
->   * For a simpler installation process in a non-production environment
->   VMware recommends you use the manifest below to create the `ClusterImagePolicy`
->   resource. This manifest includes a cosign public key which signed the public
->   cosign v1.2.1 image. The cosign public key validates the specified cosign
->   images. Container images running in system namespaces are currently not
->   signed. You must configure the image policy webhook to allow these unsigned
->   images by adding system namespaces to the
->   `spec.verification.exclude.resources.namespaces` section.
+For a simpler installation process in a non-production environment,
+use the manifest below to create the `ClusterImagePolicy`
+resource. This manifest includes a cosign public key which signed the public
+cosign v1.2.1 image. The cosign public key validates the specified cosign
+images. Container images running in system namespaces are currently not
+signed. You must configure the image policy webhook to allow these unsigned
+images by adding system namespaces to the
+`spec.verification.exclude.resources.namespaces` section.
 
 ```bash
 cat <<EOF | kubectl apply -f -
