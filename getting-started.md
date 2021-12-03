@@ -51,11 +51,11 @@ Follow these steps to get started with an accelerator called `Tanzu-Java-Web-App
 
 1. From your TAP GUI portal, click on “Create” button on the left side of the navigation bar to see the list of available Accelerators.
 
-  ![List of accelerators in TAP GUI](images/getting-started-tap-gui-1.png)
+    ![List of accelerators in TAP GUI](images/getting-started-tap-gui-1.png)
 
 2. Locate the Tanzu Java Web App accelerator, which is a sample Spring Boot web app, and click on `CHOOSE` button.
 
-  ![Tile for Tanzu Java Web App](images/getting-started-tap-gui-2.png)   
+    ![Tile for Tanzu Java Web App](images/getting-started-tap-gui-2.png)   
 
 3. In the “Generate Accelerators” prompt, replace the default value dev.local in the "prefix for container image registry" field with the URL to your registry. The URL must match the registry server you want the default Supply Chain to push container images to. Then click on `NEXT STEP`, verify the provided information and click on `CREATE`.
 
