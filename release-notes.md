@@ -15,13 +15,13 @@ New features and changes in this release:
 The Full profile now includes: 
 - Supply Chain Security Tools - Store
 
-The Developer Lite profile has been renamed to 'Light'.
 
-The Light profile now includes:
+
+The Dev profile now includes:
 - Application Accelerator
 - Out of the Box Supply Chain - Testing
 
-The Light profile no longer includes:
+The Dev profile no longer includes:
 - Image Policy Webhook
 
 **New Components**
@@ -60,7 +60,7 @@ New features and changes in this release:
 
 You can now install Tanzu Application Platform through profiles.
 The Full profile installs all of the component packages.
-The Developer Light installs the packages that a developer needs.
+The Dev profile installs the packages that a developer needs.
 
 For more information, see [Installation Profiles and Profiles in Tanzu Application Platform v0.3](overview.md#profiles-and-packages) and
 [About Tanzu Application Platform Package Profiles](install.md#about-package-profiles).
