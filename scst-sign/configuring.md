@@ -5,6 +5,7 @@ container images properly.
 
 ## Create a `ClusterImagePolicy` Resource
 The cluster image policy is a custom resource containing the following properties:
+
 * `spec.verification.exclude.resources.namespaces`: a list of namespaces where
 this policy will not be enforced.
 
@@ -13,7 +14,7 @@ keys that were used to sign the images.
 
 * `spec.verification.images[].namePattern`: image name patterns for which the
 policy is enforced. Each image name pattern is mapped to the required public
-keys and, optionally, a secret that grants authentication to the private
+keys and optionally, a secret that grants authentication to the private
 registry where images and signatures that match a given pattern are stored.
 
 The following is an example `ClusterImagePolicy`:
@@ -48,7 +49,8 @@ spec:
       - name: first-key
 ```
 
-> **Note**:
+**Note**:
+
 >   * The `name` for the `ClusterImagePolicy` resource must be `image-policy`.
 >
 >   * Add any namespaces that run container images that are not signed in the
