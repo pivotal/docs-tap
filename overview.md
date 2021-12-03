@@ -55,5 +55,6 @@ VMware support team to help resolve your issues.
 This information cannot directly identify any individual. 
 
 You must acknowledge that you have read VMware’s CEIP policy before you can proceed with the installation.
-You set the `ceip-policy-disclosed` value to `true` to indicate that you have read the policy.
-To opt out of telemetry participation, see [Opting out of telemetry collection](opting-out-telemetry.md).
+For more information, see [Install a Tanzu Application Platform profile](install.md#nstall-profile) in
+_Installing part II: profiles_.
+To opt out of telemetry participation after installation, see [Opting out of telemetry collection](opting-out-telemetry.md).
