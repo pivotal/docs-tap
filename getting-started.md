@@ -31,7 +31,7 @@ Before getting started, ensure the following prerequisites are in place:
 3. The Out of The Box Supply Chain Basic is installed. See [Install default Supply Chain](install-components.md#install-ootb-supply-chain-basic).
 
 4. A developer namespace is setup to accommodate the developer's Workload.
-   See [Set Up Developer Namespaces to Use Installed Packages](install-components.md#setup).
+   See [Set Up Developer Namespaces to Use Installed Packages](install-components.md#-set-up-developer-namespaces-to-use-installed-packages).
 
 5. Tanzu Application Platform GUI is successfully installed.
 
