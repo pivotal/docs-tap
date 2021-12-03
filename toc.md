@@ -113,6 +113,7 @@ This is the table of contents from which the Tanzu Application Platform Document
       - [Using Tanzu Developer Tools for VSCode](vscode-extension/usage.md)
     - [Tanzu Application Platform GUI](tap-gui/about.md)
       - [Catalog operations](tap-gui/catalog/catalog-operations.md)
+      - [Authentication](tap-gui/auth.md)
       - [TechDocs](tap-gui/techdocs/usage.md)
       - [Tanzu Application Platform GUI Plugins](tap-gui/plugins/about.md)
       - [Workload Visibility user guide](tap-gui/plugins/runtime-resource-visibility.md)
