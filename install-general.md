@@ -143,7 +143,29 @@ To accept EULAs:
 
 If you are operating a Tanzu Kubernetes Grid or Tanzu Community Edition cluster the Tanzu prerequisites are already installed.
 
-For all other Kubernetes providers,  [Mandy to insert steps here]
+For all other Kubernetes providers, please follow the steps below:
+
+1. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
+
+3. Navigate to [Tanzu Prerequisites](https://network.pivotal.io/products/tanzu-prerequisites/) on Tanzu Network.
+
+4. Download `darwin-amd64-1.0.0-rc.2.tgz` (for OS X) or `linux-amd64-1.0.0-rc.2.tgz` (for Linux) and unpack the TAR file into `tanzu-prereqs` directory
+```
+$ mkdir $HOME/tanzu-prereqs
+$ tar -xvf darwin-amd64-1.0.0-rc.2.tgz -C $HOME/tanzu-prereqs
+```
+5. Configure and run `install.sh` which will install kapp-controller and secretgen-controller on your cluster
+```
+$ export INSTALL_BUNDLE=registry.tanzu.vmware.com/tanzu-prerequisites/prereqs-bundle@sha256:82dfaf70656b54dcba0d4def85ccae1578ff27054e7533d08320244af7fb0343
+$ export INSTALL_REGISTRY_HOSTNAME=registry.tanzu.vmware.com`
+$ export INSTALL_REGISTRY_USERNAME=<tanzunet-username>`
+$ export INSTALL_REGISTRY_PASSWORD=<tanzunet-password>`
+$ ./install.sh
+```
+6. Install `kapp` CLI onto your `$PATH`
+```
+$ sudo cp $HOME/tanzu-prereqs/kapp /usr/local/bin/kapp
+```
 
 ## <a id='cli-and-plugin'></a> Install or update the Tanzu CLI and plugins
 
