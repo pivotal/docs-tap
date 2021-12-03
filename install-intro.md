@@ -14,5 +14,5 @@ The process of installing Tanzu Application Platform includes the following task
 |4.| Create a namespace, add a secret, and add the Tanzu Application Platform package repository. |[Add the Tanzu Application Platform Package Repository](install.md#add-package-repositories)|
 |5.| Install the profile to the cluster. |[Install a Tanzu Application Profile](install.md#install-profile)|
 |6.| (Optional) Install any additional packages that were not included in the profile. |[Installing Individual Packages](install-components.md)|
-|7.| Install developer tools into your IDE. | [Installing Tanzu Developer Tools for VSCode](vscode-extension/install.md)
+|7.| Install developer tools into your integrated development environment. | [Installing Tanzu Developer Tools for VSCode](vscode-extension/install.md)
  
