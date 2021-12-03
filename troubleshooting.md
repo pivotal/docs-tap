@@ -119,7 +119,7 @@ tanzu package install tap -p tap.tanzu.vmware.com -v 0.4.0 --values-file tap-val
 / 'PackageInstall' resource install status: Reconciling
 | 'PackageInstall' resource install status: ReconcileFailed
 
-Please consider using 'tanzu package installed update' to update the installed package with correct settings
+Consider using `tanzu package installed update` to update the installed package with correct settings.
 
 
 Error: resource reconciliation failed: kapp: Error: waiting on reconcile packageinstall/tap-gui (packaging.carvel.dev/v1alpha1) namespace: tap-install:
@@ -129,15 +129,17 @@ Error: exit status 1
 
 ### Cause
 
-Often times this can be one of the following:
-- Some infrastructure providers can take longer than the timeout value allows for in order to perform tasks. 
-- There are some cases where a race-condition between components can exist. Perhaps a package that uses `Ingress` completing before the shared Tanzu ingress controller is available.
+Often, the cause is one of the following:
+
+- Some infrastructure providers take longer than the timeout value allows to perform tasks. 
+- A race-condition between components exists.
+  For example, a package that uses `Ingress` completes before the shared Tanzu ingress controller is available.
   
-The beauty of the VMWare Carvel tools (kapp-controller) is that it will continue to try in a reconciliation loop.
+The beauty of the VMWare Carvel tools kapp-controller is that it continues to try in a reconciliation loop.
 
 ### Solution
 
-Verify if the installation is still continuing and in fact may complete just fine:
+Verify if the installation is still continuing and may complete just fine:
 
 ```bash
 tanzu package installed list -A
