@@ -13,7 +13,7 @@ The SourceScan custom resource helps you define and trigger a scan for a given r
 
 #### Step 1: Create the SourceScan custom resource
 Example:
-```yaml
+```
 apiVersion: scst-scan.apps.tanzu.vmware.com/v1alpha1
 kind: SourceScan
 metadata:
@@ -48,7 +48,7 @@ spec:
 `kubectl apply -f <path_to_the_cr>/<custom_resource_filename>.yml -n <desired_namespace>`
 
 After the scanning is done, the following fields will appear in the custom resource and filled by the scanner.
-```yaml
+```
 # These fields will be populated from the source scan results
 status:
   # The source code information as provided in the CycloneDX `bom>metadata>component>*` fields
@@ -96,7 +96,7 @@ The ImageScan custom resource helps you define and trigger a scan for a given im
 #### Step 1: Create the ImageScan custom resource
 
 Example:
-```yaml
+```
 apiVersion: scst-scan.apps.tanzu.vmware.com/v1alpha1
 kind: ImageScan
 metadata:
@@ -123,7 +123,7 @@ spec:
 `kubectl apply -f <path_to_the_cr>/<custom_resource_filename>.yml -n <desired_namespace>`
 
 After the scanning is done, the following fields will appear in the custom resource and filled by the scanner.
-```yaml
+```
  # These fields will be populated from the image scan results
 status:
   artifact:

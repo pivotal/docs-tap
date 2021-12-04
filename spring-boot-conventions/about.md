@@ -8,7 +8,7 @@ The _Spring Boot Convention Server_ looks inside the image similar to `docker in
 
 `$ docker inspect springio/petclinic`
 
-```bash
+```
 [
     {
         "Id": "sha256:...",

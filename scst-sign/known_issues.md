@@ -18,7 +18,7 @@ webhook to verify their image signatures and the webhook is not running yet.
 
 You will see a message similar to the following in your `ReplicaSet` statuses:
 
-```bash
+```
 Events:
   Type     Reason            Age                   From                   Message
   ----     ------            ----                  ----                   -------
@@ -39,12 +39,12 @@ To do so:
 
 1. Backup the `MutatingWebhookConfiguration` to a file by running the following
 command:
-    ```shell
+    ```
     kubectl get MutatingWebhookConfiguration image-policy-mutating-webhook-configuration -o yaml > image-policy-mutating-webhook-configuration.yaml
     ```
 
 1. Delete the `MutatingWebhookConfiguration`:
-    ```shell
+    ```
     kubectl delete MutatingWebhookConfiguration image-policy-mutating-webhook-configuration
     ```
 
@@ -52,7 +52,7 @@ command:
 `image-policy-controller-manager` pods (namespace `image-policy-system`).
 
 1. Re-apply the `MutatingWebhookConfiguration`:
-    ```shell
+    ```
     kubectl apply -f image-policy-mutating-webhook-configuration.yaml
     ```
 
@@ -66,7 +66,7 @@ less privileged components to have their pods preempted or evicted instead.
 
 You will see events similar to this in the output of `kubectl get events`:
 
-```shell
+```
 $ kubectl get events
 LAST SEEN   TYPE      REASON             OBJECT               MESSAGE
 28s         Normal    Preempted          pod/testpod          Preempted by image-policy-system/image-policy-controller-manager-59dc669d99-frwcp on node test-node
@@ -81,7 +81,7 @@ necessary, you may scale the deployment down. To do so:
 
 1. Create a values file called `scst-sign-values.yaml` with the following
 contents:
-    ```yaml
+    ```
     ---
     replicas: N
     ```
@@ -89,7 +89,7 @@ contents:
     cluster configuration.
 
 1. Apply your new configuration by running:
-    ```shell
+    ```
     tanzu package installed update image-policy-webhook \
       --package-name image-policy-webhook.signing.run.tanzu.vmware.com \
       --version 1.0.0-beta.2 \

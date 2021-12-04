@@ -19,7 +19,7 @@ registry where images and signatures that match a given pattern are stored.
 
 The following is an example `ClusterImagePolicy`:
 
-```yaml
+```
 ---
 apiVersion: signing.run.tanzu.vmware.com/v1alpha1
 kind: ClusterImagePolicy
@@ -71,7 +71,7 @@ signed. You must configure the image policy webhook to allow these unsigned
 images by adding system namespaces to the
 `spec.verification.exclude.resources.namespaces` section.
 
-```bash
+```
 cat <<EOF | kubectl apply -f -
 apiVersion: signing.run.tanzu.vmware.com/v1alpha1
 kind: ClusterImagePolicy
@@ -139,7 +139,7 @@ in the `ServiceAccount`s your runnable resources use.
 You can provide secrets for authentication as part of the name pattern policy
 configuration, as shown in the example below:
 
-```yaml
+```
 ---
 apiVersion: signing.run.tanzu.vmware.com/v1alpha1
 kind: ClusterImagePolicy
@@ -181,7 +181,7 @@ If you prefer to provide your secrets in the `image-policy-registry-credentials`
 service account instead follow the steps below:
 
 1. Create the required secrets in the `image-policy-system` namespace (once per secret):
-    ```shell
+    ```
     kubectl create secret docker-registry SECRET-1 \
       --namespace image-policy-system \
       --docker-server=<server> \
@@ -191,7 +191,7 @@ service account instead follow the steps below:
 
 1. Create the `image-policy-registry-credentials` in the `image-policy-system`
 namespace and add the secret names from step 1 to the `imagePullSecrets` section:
-    ```shell
+    ```
     cat <<EOF | kubectl apply -f -
     apiVersion: v1
     kind: ServiceAccount
@@ -216,7 +216,7 @@ then you can run the following commands to check your configuration:
 
 1. Verify that a signed image, validated with a configured public key, launches.
 Run:
-    ```shell
+    ```
     kubectl run cosign \
       --image=gcr.io/projectsigstore/cosign:v1.2.1 \
       --restart=Never \
@@ -225,7 +225,7 @@ Run:
 
     For example:
 
-    ```shell
+    ```
     $ kubectl run cosign \
       --image=gcr.io/projectsigstore/cosign:v1.2.1 \
       --restart=Never \
@@ -234,13 +234,13 @@ Run:
     ```
 
 1. Verify that an unsigned image does not launch. Run:
-    ```shell
+    ```
     kubectl run bb --image=busybox --restart=Never
     ```
 
     For example:
 
-    ```shell
+    ```
     $ kubectl run bb --image=busybox --restart=Never
     Warning: busybox did not match any image policies. Container will be created as AllowUnmatchedImages flag is true.
     pod/bb created
@@ -248,7 +248,7 @@ Run:
 
 1. Verify that an image signed with a key that does not match the configured
 public key will not launch. Run:
-    ```shell
+    ```
     kubectl run cosign-fail \
       --image=gcr.io/projectsigstore/cosign:v0.3.0 \
       --command -- sleep 900
@@ -256,7 +256,7 @@ public key will not launch. Run:
 
     For example:
 
-    ```shell
+    ```
     $ kubectl run cosign-fail \
       --image=gcr.io/projectsigstore/cosign:v0.3.0 \
       --command -- sleep 900

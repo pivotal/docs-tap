@@ -55,10 +55,10 @@ You can verify that you have the right set of supply chains installed (i.e. the
 one with Scanning and _not_ the one with testing) by running the following
 command:
 
-```bash
+```
 tanzu apps cluster-supply-chain list
 ```
-```console
+```
 NAME                      LABEL SELECTOR
 source-test-scan-to-url   apps.tanzu.vmware.com/has-tests=true,apps.tanzu.vmware.com/workload-type=web
 source-to-url             apps.tanzu.vmware.com/workload-type=web
@@ -130,8 +130,8 @@ consider the artifacts (image or source code) either compliant or not.
 
 When a ImageScan or SourceScan is created to run a scan, those reference a
 policy whose name **must** match the one below (`scan-policy`):
- 
-```yaml
+
+```
 apiVersion: scst-scan.apps.tanzu.vmware.com/v1alpha1
 kind: ScanPolicy
 metadata:
@@ -174,7 +174,7 @@ below:
 
 - source scanning (`blob-source-scan-template`):
 
-```yaml
+```
 apiVersion: scst-scan.apps.tanzu.vmware.com/v1alpha1
 kind: ScanTemplate
 metadata:
@@ -224,7 +224,7 @@ spec:
 - image scanning (`private-image-scan-template`):
 
 
-```yaml
+```
 apiVersion: scst-scan.apps.tanzu.vmware.com/v1alpha1
 kind: ScanTemplate
 metadata:
@@ -302,14 +302,14 @@ to send through the supply chain), and a container image registry to use as the
 mean for making the source code available inside the Kubernetes cluster.
 
 
-```bash
+```
 tanzu apps workload create tanzu-java-web-app \
   --local-path . \
   --source-image $REGISTRY/source \
   --label apps.tanzu.vmware.com/has-tests=true \
   --type web
 ```
-```console
+```
 Create workload:
       1 + |---
       2 + |apiVersion: carto.run/v1alpha1
@@ -332,7 +332,7 @@ With the Workload submitted, we should be able to keep track of the resulting
 series of Kubernetes objects created to drive the source code all the way to a
 deployed application by making use of the `tail` command:
 
-```bash
+```
 tanzu apps workload tail tanzu-java-web-app
 ```
 
@@ -345,14 +345,14 @@ make use of a git repository to feed the supply chain with new changes as they
 are pushed to a branch.
 
 
-```bash
+```
 tanzu apps workload create tanzu-java-web-app \
   --git-branch main \
   --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
   --label apps.tanzu.vmware.com/has-tests=true \
   --type web
 ```
-```console
+```
 Create workload:
       1 + |---
       2 + |apiVersion: carto.run/v1alpha1
@@ -376,7 +376,7 @@ make use of a private repository instead, make sure you create a Secret in the
 same namespace as the one where the Workload is being submitted to, and add the
 `--param source_git_ssh_secret=<>` parameter to the set of parameters above.
 
-```bash
+```
 tanzu apps workload create tanzu-java-web-app \
   --git-branch main \
   --git-repo git@github.com:sample-accelerators/tanzu-java-web-app.git \
@@ -384,7 +384,7 @@ tanzu apps workload create tanzu-java-web-app \
   --label apps.tanzu.vmware.com/has-tests=true \
   --type web
 ```
-```console
+```
 Create workload:
       1 + |---
       2 + |apiVersion: carto.run/v1alpha1
@@ -422,7 +422,7 @@ delivered to.
 Before proceeding, make sure you have a secret with following shape fields and
 annotations set:
 
-```yaml
+```
 apiVersion: v1
 kind: Secret
 metadata:
@@ -440,7 +440,7 @@ stringData:
 With the Secret created, we can move on to the Workload:
 
 
-```bash
+```
 tanzu apps workload create tanzu-java-web-app \
   --git-repo git@github.com:sample-accelerators/tanzu-java-web-app.git \
   --git-branch main \
@@ -454,7 +454,7 @@ tanzu apps workload create tanzu-java-web-app \
   --label apps.tanzu.vmware.com/has-tests=true \
   --type web
 ```
-```console
+```
 Create workload:
       1 + |---
       2 + |apiVersion: carto.run/v1alpha1
@@ -491,15 +491,15 @@ Create workload:
 Created workload "tanzu-java-web-app"
 ```
 
-where:
+Where:
 
 -  `delivery_git_ssh_secret` (required): name of the secret in the same
    namespace as the Workload where SSH credentials exist for pushing the
-   configuration produced by the supply chain to a git repository. 
+   configuration produced by the supply chain to a git repository.
    e.g.: "ssh-secret"
 
 -  `delivery_git_repository` (required): SSH url of the git repository to push
-   the kubernete configuration produced by the supply chain to. 
+   the kubernete configuration produced by the supply chain to.
    e.g.: "ssh://git@foo.com/staging.git"
 
 -  `delivery_git_branch`: name of the branch to push the configuration to.
@@ -532,10 +532,10 @@ logs` to visualize them.
 For instance, assuming we want to discover the logs of an ImageScan, we can
 look at the tree of child objects:
 
-```bash
+```
 kubectl tree workload tanzu-java-web-app
 ```
-```console
+```
 NAMESPACE     NAME
 default       Workload/workload
 default       ├─ConfigMap/workload
@@ -565,10 +565,10 @@ default       └─SourceScan/workload
 And then use `kubectl logs` to look at the logs of that pod:
 
 
-```bash
+```
 kubectl logs scan-workloadw96rc-6724n
 ```
-```console
+```
 <?xml version="1.0" encoding="UTF-8"?>
 <bom xmlns="http://cyclonedx.org/schema/bom/1.2" xmlns:v="http://cyclonedx.o...
   <metadata>

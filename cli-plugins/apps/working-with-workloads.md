@@ -20,7 +20,7 @@ Use the following procedure to get started with an example workload.
 
 1. Name the workload and specify a source code location to create the workload from. Run:
 
-    ```sh
+    ```
     tanzu apps workload create pet-clinic --git-repo https://github.com/spring-projects/spring-petclinic --git-branch main --type web  
     ```
 
@@ -42,7 +42,7 @@ Once the workload is created, you can tail the workload to view the build and ru
 
 1. Check logs by running:
 
-    ```sh
+    ```
     tanzu apps workload tail pet-clinic --since 10m --timestamp
     ```
 
@@ -59,7 +59,7 @@ You can view workload details at anytime in the process. Some details, such as t
 
 1. Check the workload details by running:
 
-    ```sh
+    ```
     tanzu apps workload get pet-clinic
     ```
 
@@ -77,7 +77,7 @@ You can create a workload using code from a local folder.
 
 1. Inside the folder that contains the source code, run the following:
 
-    ```sh
+    ```
     tanzu apps workload create pet-clinic --local-path . --source-image springio/petclinic
     ```
 
@@ -95,7 +95,7 @@ Multiple services can be configured for each workload. The cluster supply chain 
 
 1. Bind a database service to a workload by running:
 
-    ```sh
+    ```
     tanzu apps workload update pet-clinic --service-ref "database=services.tanzu.vmware.com/v1alpha1:MySQL:my-prod-db"
     ```
 
@@ -110,19 +110,19 @@ You can add environment variables, export definitions, and use flags with these 
 
 1. Add environment variables by running:
 
-    ```sh
+    ```
     tanzu apps workload update pet-clinic --env foo=bar
     ```
 
 2. Export the workload definition to check into git, or migrate to another environment by running:
 
-    ```sh
+    ```
     tanzu apps workload get pet-clinic --export
     ```
 
 3. Check out the flags available for the workload commands by running:
 
-    ```sh
+    ```
     tanzu apps workload -h
     tanzu apps workload get -h
     tanzu apps workload create -h

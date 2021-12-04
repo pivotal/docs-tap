@@ -10,7 +10,7 @@ For basic troubleshooting Source Controller, see the [Troubleshooting guide](./t
 
 ### ImageRepository
 
-```yaml
+```
 apiVersion: source.apps.tanzu.vmware.com/v1alpha1
 kind: ImageRepository
 spec:

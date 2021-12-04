@@ -17,7 +17,7 @@ packages and their dependencies are installed by running `tanzu package installe
 
     This example uses the following versions:
 
-    ```console
+    ```
     $ tanzu package installed list -n tap-install
     | Retrieving installed packages...
       NAME             PACKAGE-NAME                          PACKAGE-VERSION  STATUS
@@ -33,7 +33,7 @@ packages and their dependencies are installed by running `tanzu package installe
 Set the following environment variables to configure the image registry where Tanzu Build Service will push images.
 The Image Scan pulls from the same registry.
 
-```bash
+```
 REGISTRY_SERVER=
 REGISTRY_USERNAME=
 REGISTRY_PASSWORD=
@@ -47,7 +47,7 @@ REGISTRY_PROJECT=
 The following secrets are used by each product to pull from Tanzu Network. These secrets
 are replicated into namespaces where they overwrite the empty placeholder secrets that were defined by each product.
 
-```bash
+```
 tanzu imagepullsecret add registry-credentials \
   --registry ${REGISTRY_SERVER} \
   --username ${REGISTRY_USERNAME} \
@@ -66,7 +66,7 @@ tanzu imagepullsecret add image-secret \
 Configure Tanzu Build Service to build an image and push it to a registry.
 `registry-credentials` is an empty placeholder secret that is populated with the credentials used to access the registry.
 
-```bash
+```
 kubectl apply -f - -o yaml << EOF
 ---
 apiVersion: v1
@@ -140,7 +140,7 @@ Because these scan templates are preinstalled, they are not defined, but are ref
 
 A Scan Policy is defined and indicates how to perform a policy compliance check against the severity of vulnerabilities found. This Scan Policy will fail compliance if a `Critical`, `High` or `UnknownSeverity` vulnerability is found in either the Source or Image Scan. This Supply Chain  continues to the next supply chain step regardless of the compliance check.
 
-```bash
+```
 kubectl apply -f - -o yaml << EOF
 ---
 apiVersion: scst-scan.apps.tanzu.vmware.com/v1alpha1
@@ -179,7 +179,7 @@ EOF
 
 Configure and deploy the following Supply Chain Components. Some components reference cluster resources deployed above. The scanning components use the Scan Policy, and reference pre-installed Scan Templates installed with the Grype Scanner.
 
-```bash
+```
 kubectl apply -f - -o yaml << EOF
 ---
 apiVersion: carto.run/v1alpha1
@@ -273,7 +273,7 @@ EOF
 
 Configure and deploy the Supply Chain connecting all the components in series.
 
-```bash
+```
 kubectl apply -f - -o yaml << EOF
 apiVersion: carto.run/v1alpha1
 kind: ClusterSupplyChain
@@ -321,17 +321,17 @@ EOF
 With the Supply Chain components configured, a Developer can deploy a workload through the Supply Chain.
 
 Set up several watches to view the supply chain progressing. In a terminal, if the optional [Kubectl `tree` Plugin](https://github.com/ahmetb/kubectl-tree) is installed, run:
-```bash
+```
 watch kubectl tree workload tanzu-java-web-app
 ```
 
 In another terminal run `kubectl get`:
-```bash
+```
 watch kubectl get workload,scantemplate,scanpolicy,gitrepository,sourcescan,image.kpack,imagescan,pod
 ```
 
 Deploy a workload that references a public code repository. Run:
-```bash
+```
 kubectl apply -f - -o yaml << EOF
 ---
 apiVersion: carto.run/v1alpha1
@@ -369,13 +369,13 @@ During processing and upon completion, try performing `kubectl describe` on the 
 
 1. In a separate terminal, set up a port-forwarding to the Metadata Store by running:
 
-    ```bash
+    ```
     kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store
     ```
 
 1. Using the `MetadataURL` field in the `kubectl describe` `sourcescan` or `imagescan` output, use the `insight` CLI to query the Metadata Store for the scan results that were outputted by the Grype Scanner. Run:
 
-    ```bash
+    ```
     # Configure Insight CLI to Authenticate to Metadata Store
     export METADATA_STORE_TOKEN=$(kubectl get secrets -n tap-install -o jsonpath="{.items[?(@.metadata.annotations['kubernetes\.io/service-account\.name']=='metadata-store-tap-install-sa')].data.token}" | base64 -d)
     insight config set-target https://metadata-store-app.metadata-store.svc.cluster.local:8443 \

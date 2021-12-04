@@ -22,7 +22,7 @@ The TechDocs will be published to the S3 bucket that was just created. You will 
     - Click the new group and navigate to `Permissions`.
     - Click `Add permissions` and click `Create Inline Policy`.
     - Click the `JSON` tab and replace contents with this json replacing `<BUCKET_NAME>` with the bucket name.
-    ```json
+    ```
     {
         "Version": "2012-10-17",
         "Statement": [
@@ -75,23 +75,23 @@ We will use `npx` to run the TechDocs CLI, which requires `Node.js` and `npm`.
 
 1. [Download and install Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 1. Install `npx`
-    ```shell
+    ```
     npm install -g npx
     ```
 1. Generate the TechDocs for the root of the catalog. This will create a temporary `site` directory in your current working directory that contains the generated TechDocs files.
-    ```shell
+    ```
     npx @techdocs/cli generate --source-dir <DIRECTORY_CONTAINING_THE_ROOT_YAML_FILE> --output-dir ./site
     ```
 1. Review the contents of the `site` directory to verify the TechDocs were generated successfully.
 1. Set environment variables for authenticating with AWS S3 with an account that has read/write access:
-    ```shell
+    ```
     export AWS_ACCESS_KEY_ID=<AWS_ACCESS_KEY_ID>
     export AWS_SECRET_ACCESS_KEY=<AWS_SECRET_ACCESS_KEY>
     export AWS_REGION=<AWS_REGION>
     ```
 1. Publish the TechDocs for the root of the catalog to the AWS S3 bucket you created earlier.
     - The `<NAMESPACE/KIND/NAME>` will be the values for `namespace`, `kind`, and `metadata.name` you noted earlier. For example `default/location/yelb-catalog-info`
-    ```shell
+    ```
     npx @techdocs/cli publish --publisher-type awsS3 --storage-name <BUCKET_NAME> --entity <NAMESPACE/KIND/NAME> --directory ./site
     ```
 1. For each of the `spec.targets` found earlier repeat the generate and publish commands. Note that the generate command will erase the contents of the `site` directory before creating new TechDocs files so the publish command must follow the generate command for each target.
@@ -101,7 +101,7 @@ We will use `npx` to run the TechDocs CLI, which requires `Node.js` and `npm`.
 We will update the `tap-gui-values.yaml` you used at install-time to point to the AWS S3 bucket that has the published TechDocs files.
 
 1. Replace the `techdocs` section in `tap-gui-values.yaml` with the following yaml, substituting appropriate values for the placeholders.
-    ```yaml
+    ```
     techdocs:
       builder: 'external'
       publisher:
@@ -117,7 +117,7 @@ We will update the `tap-gui-values.yaml` you used at install-time to point to th
 
 1. Update your installation using the `tanzu` CLI:
 
-    ```shell
+    ```
     tanzu package installed update tap-gui \
       --version <package-version> \
       -f <values-file>
@@ -125,7 +125,7 @@ We will update the `tap-gui-values.yaml` you used at install-time to point to th
 
 1. Check the status of this update by running:
 
-    ```shell
+    ```
     tanzu package installed list
     ```
 

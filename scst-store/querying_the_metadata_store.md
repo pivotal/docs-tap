@@ -48,7 +48,7 @@ Use `insight -h` in the terminal or see the [full CLI documentation](cli_docs/in
 
 Use the following command:
 
-```sh
+```
 insight image get --digest DIGEST
 ```
 
@@ -56,7 +56,7 @@ Where `DIGEST` is the component version or image digest.
 
 For example:
 
-```sh
+```
 $ insight image get --digest sha256:407d7099d6ce7e3632b6d00682a43028d75d3b088600797a833607bd629d1ed5
 Registry:	docker.io
 Image Name:	checkr/flagr:1.1.12
@@ -77,7 +77,7 @@ Packages:
 
 Use the following command:
 
-```sh
+```
 insight vulnerability get --cveid CVE-IDENTIFIER
 ```
 
@@ -85,7 +85,7 @@ Where `CVE-IDENTIFIER` is the CVE identifier, for example, CVE-2021-30139.
 
 For example:
 
-```sh
+```
 $ insight vulnerabilities get --cveid CVE-2010-4051
 1. CVE-2010-4051 (Low)
 Packages:

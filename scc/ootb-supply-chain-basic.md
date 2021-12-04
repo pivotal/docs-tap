@@ -81,7 +81,7 @@ contents of that Secret to the namespaces where it should be consumed (i.e.,
 the developer namespaces).
 
 
-```bash
+```
 # create a Secret object using the `dockerconfigjson` format using the
 # credentials provided, then a SecretExport (`secretgen-controller`
 # resource) so that it gets exported to all namespaces where a
@@ -94,7 +94,7 @@ tanzu secret registry add image-secret \
   --username $REGISTRY_USERNAME \
   --password $REGISTRY_PASSWORD
 ```
-```console
+```
 - Adding image pull secret 'image-secret'...
  Added image pull secret 'image-secret' into namespace 'default'
 ```
@@ -113,7 +113,7 @@ exact name of the secrets, as well as reduce the set of permissions that a
 group would have (through the use of Roles and RoleBinding objects).
 
 
-```yaml
+```
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -138,7 +138,7 @@ resources (i.e., create a Role), and then bind those permissions to an actor
 So, create a Role describing the permissions:
 
 
-```yaml
+```
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
@@ -190,7 +190,7 @@ rules:
 
 Then bind it to the ServiceAccount:
 
-```yaml
+```
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
@@ -234,13 +234,13 @@ to send through the supply chain), and a container image registry to use as the
 mean for making the source code available inside the Kubernetes cluster.
 
 
-```bash
+```
 tanzu apps workload create tanzu-java-web-app \
   --local-path . \
   --source-image $REGISTRY/source \
   --type web
 ```
-```console
+```
 Create workload:
       1 + |---
       2 + |apiVersion: carto.run/v1alpha1
@@ -262,7 +262,7 @@ With the Workload submitted, we should be able to keep track of the resulting
 series of Kubernetes objects created to drive the source code all the way to a
 deployed application by making use of the `tail` command:
 
-```bash
+```
 tanzu apps workload tail tanzu-java-web-app
 ```
 
@@ -276,13 +276,13 @@ make use of a git repository to feed the supply chain with new changes as they
 are pushed to a branch.
 
 
-```bash
+```
 tanzu apps workload create tanzu-java-web-app \
   --git-branch main \
   --git-repo https://github.com/sample-accelerators/tanzu-java-web-app
   --type web
 ```
-```console
+```
 Create workload:
       1 + |---
       2 + |apiVersion: carto.run/v1alpha1
@@ -304,7 +304,7 @@ same namespace as the one where the Workload is being submitted to, and add the
 `--param source_git_ssh_secret=<>` parameter to the set of parameters above.
 
 
-```yaml
+```
 apiVersion: v1
 kind: Secret
 metadata:
@@ -320,7 +320,7 @@ If it's your first time setting up SSH credentials for your user, the following
 steps can serve as a guide for getting it done:
 
 
-```bash
+```
 # generate a new keypair.
 #
 #   - `identity`     (private)
@@ -353,14 +353,14 @@ fetching source code from a private repository), we can move on to creating the
 Workload with the new parameter:
 
 
-```bash
+```
 tanzu apps workload create tanzu-java-web-app \
   --git-branch main \
   --git-repo git@github.com:sample-accelerators/tanzu-java-web-app.git \
   --param source_git_ssh_secret=git-ssh \
   --type web
 ```
-```console
+```
 Create workload:
       1 + |---
       2 + |apiVersion: carto.run/v1alpha1
@@ -393,7 +393,7 @@ delivered to.
 Before proceeding, make sure you have a secret with following shape fields and
 annotations set:
 
-```yaml
+```
 apiVersion: v1
 kind: Secret
 metadata:
@@ -411,7 +411,7 @@ stringData:
 With the Secret created, we can move on to the Workload:
 
 
-```bash
+```
 tanzu apps workload create tanzu-java-web-app \
   --git-repo git@github.com:sample-accelerators/tanzu-java-web-app.git \
   --git-branch main \
@@ -424,7 +424,7 @@ tanzu apps workload create tanzu-java-web-app \
   --param "source_git_ssh_secret=git-ssh" \
   --type web
 ```
-```console
+```
 Create workload:
       1 + |---
       2 + |apiVersion: carto.run/v1alpha1

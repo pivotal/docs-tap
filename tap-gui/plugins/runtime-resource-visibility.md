@@ -9,7 +9,7 @@ Developers must perform the following actions to see their Workloads on the dash
 
 1. Define a Backstage Component with a `backstage.io/kubernetes-label-selector` annotation. See
   [Components](../catalog/catalog-operations.md#components) in the Catalog Operations documentation.
-  ```yaml
+  ```
   apiVersion: backstage.io/v1alpha1
   kind: Component
   metadata:
@@ -35,7 +35,7 @@ available to the Tanzu Application Platform GUI. A Workload is one of the follow
 
     For example:
 
-    ```console
+    ```
     $ cat <<EOF | kubectl apply -f -
     ---
     apiVersion: serving.knative.dev/v1

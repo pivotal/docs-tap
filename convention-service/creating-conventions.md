@@ -94,7 +94,7 @@ For example, adding a prometheus _sidecar_ to web apps, or adding a `workload-ty
 
 1. <a id='convention-1'></a>The example `server.go` sets up the `ConventionHandler` to ingest the webhook requests ([PodConventionContext](./reference/pod-convention-context.md)) from the convention controller. Then the handler uses the existing `PodTemplateSpec` and [`ImageConfig`](./reference/image-config.md) to create custom conventions:
 
-    ```go
+    ```
     ...
     import (
         corev1 "k8s.io/api/core/v1"
@@ -113,7 +113,7 @@ For example, adding a prometheus _sidecar_ to web apps, or adding a `workload-ty
 
 2. <a id='server-2'></a>The example `server.go` also configures the convention server to listen for requests:
 
-    ```go
+    ```
 
         ...
         import (
@@ -146,7 +146,7 @@ For example, adding a prometheus _sidecar_ to web apps, or adding a `workload-ty
 
 3. Create the *Server Handler* that handles the request from the convention controller with the [PodConventionContext](./reference/pod-convention-context.md) serialized to JSON:
 
-    ```go
+    ```
     package webhook
     ...
     func ServerHandler(conventionHandler func(template *corev1.PodTemplateSpec, images []model.ImageConfig) ([]string, error)) http.HandlerFunc {
@@ -184,7 +184,7 @@ For example, adding a prometheus _sidecar_ to web apps, or adding a `workload-ty
 
 4. Configure and start the web server by defining the `NewConventionServer` function, which starts the server with the defined port and current context. The server uses the `.crt` and `.key` files to handle *TLS* traffic:
 
-    ```go
+    ```
     package webhook
     ...
     // Watch handles the security by certificates
@@ -248,7 +248,7 @@ When using labels or annotations to define whether a convention should be applie
 
    + PodTemplateSpec
 
-        ```yaml
+        ```
         ...
         template:
           metadata:
@@ -261,7 +261,7 @@ When using labels or annotations to define whether a convention should be applie
 
    + Handler
 
-        ```go
+        ```
         package convention
         ...
         func conventionHandler(template *corev1.PodTemplateSpec, images []model.ImageConfig) ([]string, error) {
@@ -293,7 +293,7 @@ When using labels or annotations to define whether a convention should be applie
 When using environment variables to define whether the convention is applicable, it should be present in the [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec).[spec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#PodSpec).[containers](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#Container)[*].[env](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#environment-variables). and we can validate the value:
 
    + PodTemplateSpec
-        ```yaml
+        ```
         ...
         template:
           spec:
@@ -304,7 +304,7 @@ When using environment variables to define whether the convention is applicable,
         ```
 
    + Handler
-        ```go
+        ```
         package convention
         ...
         func conventionHandler(template *corev1.PodTemplateSpec, images []model.ImageConfig) ([]string, error) {
@@ -330,7 +330,7 @@ The `server.yaml` defines the Kubernetes components that makes up the convention
 
 1. A `namespace` is created for the convention server components:
 
-    ```yaml
+    ```
     ...
     ---
     apiVersion: v1
@@ -343,7 +343,7 @@ The `server.yaml` defines the Kubernetes components that makes up the convention
 
 2. A certificate manager `Issuer` is created (for more information, see the [cert-manager documentation](https://cert-manager.io/docs/concepts/issuer/)) to issue the certificate needed for TLS communication (optional):
 
-    ```yaml
+    ```
     ...
     ---
     # The following manifests contain a self-signed issuer CR and a certificate CR.
@@ -361,7 +361,7 @@ The `server.yaml` defines the Kubernetes components that makes up the convention
 
 3. A self-signed `Certificate` is created (optional). For more information on certificates, see the [cert-manager documentation](https://cert-manager.io/docs/concepts/certificate/).
 
-    ```yaml
+    ```
     ...
     ---
     apiVersion: cert-manager.io/v1
@@ -390,7 +390,7 @@ The `server.yaml` defines the Kubernetes components that makes up the convention
 
 4. A Kubernetes `Deployment` is created for the webhook to run from:
 
-    ```yaml
+    ```
     ...
     ---
     apiVersion: apps/v1
@@ -444,7 +444,7 @@ The `server.yaml` defines the Kubernetes components that makes up the convention
 
 5.  A Kubernetes `Service` to expose the convention deployment is also created:
 
-    ```yaml
+    ```
     ...
     ---
     apiVersion: v1
@@ -464,7 +464,7 @@ The `server.yaml` defines the Kubernetes components that makes up the convention
     ```
 6. Finally, the `ClusterPodConvention` adds the convention certificate to the cluster to make it available for the convention controller:
 
-    ```yaml
+    ```
     ...
     ---
     apiVersion: conventions.apps.tanzu.vmware.com/v1alpha1
@@ -491,7 +491,7 @@ To deploy a convention server:
 
     + If the convention needs to be built and deployed, use the `ko` tool [on GitHub](https://github.com/google/ko):
 
-        ```bash
+        ```
         ko apply -f dist/server.yaml
         ```
 
@@ -499,13 +499,13 @@ To deploy a convention server:
 
        kubectl
 
-        ```bash
+        ```
         kubectl apply -f server.yaml
         ```
 
        kapp *(Recommended)*
 
-        ```bash
+        ```
         kapp deploy -y -a awesome-convention -f server.yaml
         ```
 
@@ -515,7 +515,7 @@ To deploy a convention server:
 
     + If the server is running, `kubectl get all -n awesome-app` returns something like this:
 
-        ```text
+        ```
         NAME                                       READY   STATUS    RESTARTS   AGE
         pod/awesome-webhook-1234567890-12345       1/1     Running   0          8h
 
@@ -538,11 +538,11 @@ To deploy a convention server:
 
     + To verify the conventions are being applied, check the `PodIntent` of a workload that matches the convention criteria:
 
-        ```bash
+        ```
         kubectl -o yaml get podintents.conventions.apps.tanzu.vmware.co awesome-app
         ```
 
-        ```yaml
+        ```
         apiVersion: conventions.apps.tanzu.vmware.com/v1alpha1
         kind: PodIntent
         metadata:

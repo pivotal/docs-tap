@@ -50,10 +50,10 @@ You can verify that you have the right set of supply chains installed (i.e. the
 one with Scanning and _not_ the one with testing) by running the following
 command:
 
-```bash
+```
 tanzu apps cluster-supply-chain list
 ```
-```console
+```
 NAME                      LABEL SELECTOR
 source-test-to-url        apps.tanzu.vmware.com/has-tests=true,apps.tanzu.vmware.com/workload-type=web
 source-to-url             apps.tanzu.vmware.com/workload-type=web
@@ -101,7 +101,7 @@ Supply Chain Basic).
 In order for source code testing to be present in the supply chain, a Tekton
 Pipeline must exist in the same namespace as the Workload so that, at the right
 moment, the Tekton PipelineRun object that gets created to run the tests can
-reference such developer-provided Pipeline. 
+reference such developer-provided Pipeline.
 
 So, aside from the objects previously defined in the Out of The Box Supply
 Chain Basic section, we need to include one more:
@@ -114,7 +114,7 @@ Chain Basic section, we need to include one more:
 
 Despite the full liberty around tasks to run, the [tekton/Pipeline] object
 **must** be labelled with `apps.tanzu.vmware.com/pipeline: test`, and define
-that it expects to take two params: 
+that it expects to take two params:
 
 - `source-url`, an HTTP address where a `.tar.gz` file containing all the
   source code to be tested can be found
@@ -123,7 +123,7 @@ that it expects to take two params:
 
 For example:
 
-```yaml
+```
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
@@ -185,14 +185,14 @@ to send through the supply chain), and a container image registry to use as the
 mean for making the source code available inside the Kubernetes cluster.
 
 
-```bash
+```
 tanzu apps workload create tanzu-java-web-app \
   --local-path . \
   --source-image $REGISTRY/source \
   --label apps.tanzu.vmware.com/has-tests=true \
   --type web
 ```
-```console
+```
 Create workload:
       1 + |---
       2 + |apiVersion: carto.run/v1alpha1
@@ -215,7 +215,7 @@ With the Workload submitted, we should be able to keep track of the resulting
 series of Kubernetes objects created to drive the source code all the way to a
 deployed application by making use of the `tail` command:
 
-```bash
+```
 tanzu apps workload tail tanzu-java-web-app
 ```
 
@@ -227,14 +227,14 @@ make use of a git repository to feed the supply chain with new changes as they
 are pushed to a branch.
 
 
-```bash
+```
 tanzu apps workload create tanzu-java-web-app \
   --git-branch main \
   --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
   --label apps.tanzu.vmware.com/has-tests=true \
   --type web
 ```
-```console
+```
 Create workload:
       1 + |---
       2 + |apiVersion: carto.run/v1alpha1
@@ -258,7 +258,7 @@ make use of a private repository instead, make sure you create a Secret in the
 same namespace as the one where the Workload is being submitted to, and add the
 `--param source_git_ssh_secret=<>` parameter to the set of parameters above.
 
-```bash
+```
 tanzu apps workload create tanzu-java-web-app \
   --git-branch main \
   --git-repo git@github.com:sample-accelerators/tanzu-java-web-app.git \
@@ -266,7 +266,7 @@ tanzu apps workload create tanzu-java-web-app \
   --label apps.tanzu.vmware.com/has-tests=true \
   --type web
 ```
-```console
+```
 Create workload:
       1 + |---
       2 + |apiVersion: carto.run/v1alpha1
@@ -303,7 +303,7 @@ delivered to.
 Before proceeding, make sure you have a secret with following shape fields and
 annotations set:
 
-```yaml
+```
 apiVersion: v1
 kind: Secret
 metadata:
@@ -321,7 +321,7 @@ stringData:
 With the Secret created, we can move on to the Workload:
 
 
-```bash
+```
 tanzu apps workload create tanzu-java-web-app \
   --git-repo git@github.com:sample-accelerators/tanzu-java-web-app.git \
   --git-branch main \
@@ -335,7 +335,7 @@ tanzu apps workload create tanzu-java-web-app \
   --label apps.tanzu.vmware.com/has-tests=true \
   --type web
 ```
-```console
+```
 Create workload:
       1 + |---
       2 + |apiVersion: carto.run/v1alpha1
@@ -413,10 +413,10 @@ logs` to visualize them.
 For instance, assuming we want to discover the logs of an ImageScan, we can
 look at the tree of child objects:
 
-```bash
+```
 kubectl tree workload tanzu-java-web-app
 ```
-```console
+```
 NAMESPACE     NAME
 default       Workload/workload
 default       ├─ConfigMap/workload
@@ -446,10 +446,10 @@ default       └─SourceScan/workload
 And then use `kubectl logs` to look at the logs of that pod:
 
 
-```bash
+```
 kubectl logs scan-workloadw96rc-6724n
 ```
-```console
+```
 <?xml version="1.0" encoding="UTF-8"?>
 <bom xmlns="http://cyclonedx.org/schema/bom/1.2" xmlns:v="http://cyclonedx.o...
   <metadata>

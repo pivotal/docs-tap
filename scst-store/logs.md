@@ -40,7 +40,7 @@ When an API endpoint handles a request, the Store generates between two and five
 
 ### Format
 When the Store handles a request, it outputs some API endpoint access information in the following format:
-```text
+```
 I1122 20:30:21.869528       1 images.go:26] MetadataStore "msg"="Processing request" "endpoint"="/api/images?digest=sha256%3A20521f76ff3d27f436e03dc666cc97a511bbe71e8e8495f851d0f4bf57b0bab6" "hostname"="metadata-store-app-564f8995c8-r8d6n" "method"="GET"
 ```
 
@@ -75,13 +75,13 @@ For those endpoints that use query or path parameters, these parameters are logg
 The key name are the name of the query or path parameter, while the value are set to the value of those parameters, in string format.
 
 For example, the following log line
-```text
+```
 I1122 20:30:21.869791       1 images.go:34] MetadataStore "msg"="Request parameters" "endpoint"="/api/images?digest=sha256%3A20521f76ff3d27f436e03dc666cc97a511bbe71e8e8495f851d0f4bf57b0bab6" "hostname"="metadata-store-app-564f8995c8-r8d6n" "method"="GET" "digest"="sha256:20521f76ff3d27f436e03dc666cc97a511bbe71e8e8495f851d0f4bf57b0bab6" "id"=0
 ```
 contains the `digest` and `id` key, which represents the respective `digest` and `id` query parameters, as well as their values. 
 
 These key/value pairs shows up in all subsequent log lines of the same call. For example:
-```text
+```
 I1122 20:30:21.878749       1 images.go:56] MetadataStore "msg"="Request response" "digest"="sha256:20521f76ff3d27f436e03dc666cc97a511bbe71e8e8495f851d0f4bf57b0bab6" "endpoint"="/api/images?digest=sha256%3A20521f76ff3d27f436e03dc666cc97a511bbe71e8e8495f851d0f4bf57b0bab6" "hostname"="metadata-store-app-564f8995c8-r8d6n" "id"=0 "method"="GET" "code"=200 "response"="OK"
 ```
 

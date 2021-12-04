@@ -10,7 +10,7 @@ Configure your harbor registry to support http instead of https.
 
 1. Export the deployment for the convention controller manager
 
-```sh
+```
 kubectl get deployment conventions-controller-manager -n conventions-system -o yaml > ccm.yml
 ```
 
@@ -18,7 +18,7 @@ kubectl get deployment conventions-controller-manager -n conventions-system -o y
 
 3. Create a patch file
 
-```sh
+```
 touch ccm.patch.yml
 ```
 
@@ -83,7 +83,7 @@ touch ccm.patch.yml
     </details>
 5. Append the following mount settings
 
-```yaml
+```
         - mountPath: /etc/ssl/certs
           name: harbor-private-cert
           readOnly: false
@@ -156,13 +156,13 @@ touch ccm.patch.yml
 
     <details>
     <summary>configmap example</summary>
-    
-    ```sh
+
+    ```
         cat <<EOF | kubectl apply -f -
         ---
         apiVersion: v1
         data:
-        ca-certificates.crt: | 
+        ca-certificates.crt: |
             -----BEGIN CERTIFICATE-----
             MIIDEzCCAfugAwIBAgIQL/LZl89VUFcD8v1qB62h8DANBgkqhkiG9w0BAQsFADAU
             MRIwEAYDVQQDEwloYXJib3ItY2EwHhcNMjExMTE2MTUyMDMxWhcNMjIxMTE2MTUy
@@ -192,14 +192,14 @@ touch ccm.patch.yml
 
 8. Apply the patch
 
-```sh
+```
 kubectl patch deployment conventions-controller-manager  -n conventions-system --patch "$(cat ccm.patch.yml)"
 ```
 
-9. At this point the conventions controller manager pod should get recreated and support your local harbor instance. 
+9. At this point the conventions controller manager pod should get recreated and support your local harbor instance.
 
 ----------
 
-### Note: 
+### Note:
 
 In **Workaround 2**, after mounting the cert data to `/etc/ssl/certs` - it overrides the base image provided `ca-certificates.crt` file. This results "x509: certificate" error from other known public & private registries. However, for this specific use case, these workarounds are the 2 best available options until we deliver the fix in the next release of Convention Controller.

@@ -14,7 +14,7 @@ The ``Workshop`` custom resource defines a workshop. It specifies the title and 
 
 A minimal example of the ``Workshop`` custom resource is:
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha2
 kind: Workshop
 metadata:
@@ -48,7 +48,7 @@ In order to deploy instances of a workshop, you first need to create a workshop 
 
 A minimal example of the ``WorkshopEnvironment`` custom resource is:
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: WorkshopEnvironment
 metadata:
@@ -82,7 +82,7 @@ The ``WorkshopRequest`` custom resource is namespaced to allow who can create it
 
 A minimal example of the ``WorkshopRequest`` custom resource is:
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: WorkshopRequest
 metadata:
@@ -119,7 +119,7 @@ The ``TrainingPortal`` custom resource provides a high level mechanism for creat
 
 A minimal example of the ``TrainingPortal`` custom resource is:
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: TrainingPortal
 metadata:
@@ -144,7 +144,7 @@ The ``SystemProfile`` custom resources provides a mechanism for configuring the 
 
 A minimal example of the ``SystemProfile`` custom resource is:
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: SystemProfile
 metadata:

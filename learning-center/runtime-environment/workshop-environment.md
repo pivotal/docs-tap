@@ -13,7 +13,7 @@ The creation of a workshop environment is performed as a separate step to loadin
 
 To specify which workshop definition is to be used for a workshop environment, set the ``workshop.name`` field of the specification for the workshop environment.
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: WorkshopEnvironment
 metadata:
@@ -31,7 +31,7 @@ When the workshop environment is created, the namespace created for the workshop
 
 A workshop definition may specify a list of environment variables that need to be set for all workshop instances. If you need to override an environment variable specified in the workshop definition, or one which is defined in the container image, you can supply a list of environment variables as ``session.env``.
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: WorkshopEnvironment
 metadata:
@@ -67,7 +67,7 @@ When setting a custom domain, DNS must have been configured with a wildcard doma
 
 To provide the ingress domain, you can set the ``session.ingress.domain`` field.
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: WorkshopEnvironment
 metadata:
@@ -82,7 +82,7 @@ spec:
 
 If overriding the domain, by default, the workshop session will be exposed using a HTTP connection. If you require a secure HTTPS connection, you will need to have access to a wildcard SSL certificate for the domain. A secret of type ``tls`` should be created for the certificate in the ``educates`` namespace or the namespace where Learning Center operator is deployed. The name of that secret should then be set in the ``session.ingress.secret`` field.
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: WorkshopEnvironment
 metadata:
@@ -98,7 +98,7 @@ spec:
 
 If HTTPS connections are being terminated using an external load balancer and not by specificying a secret for ingresses managed by the Kubernetes ingress controller, with traffic then routed into the Kubernetes cluster as HTTP connections, you can override the ingress protocol without specifying an ingress secret by setting the ``session.ingress.protocol`` field.
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: WorkshopEnvironment
 metadata:
@@ -114,7 +114,7 @@ spec:
 
 If you need to override or set the ingress class, which dictates which ingress router is used when more than one option is available, you can add ``session.ingress.class``.
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: WorkshopEnvironment
 metadata:
@@ -133,7 +133,7 @@ spec:
 
 By default, the ability to request a workshop using the ``WorkshopRequest`` custom resource is disabled and so must be enabled for a workshop environment by setting ``request.enabled`` to ``true``.
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: WorkshopEnvironment
 metadata:
@@ -149,7 +149,7 @@ With this enabled, anyone able to create a ``WorkshopRequest`` custom resource c
 
 To further control who can request a workshop instance in the workshop environment, you can first set an access token, which a user would need to know and supply with the workshop request. This can be done by setting the ``request.token`` field.
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: WorkshopEnvironment
 metadata:
@@ -168,7 +168,7 @@ As a second measure of control, you can specify what namespaces the ``WorkshopRe
 
 The list of namespaces from which workshop requests for the workshop environment is allowed can be specified by setting ``request.namespaces``.
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: WorkshopEnvironment
 metadata:
@@ -185,7 +185,7 @@ spec:
 
 If you want to add the workshop namespace in the list, rather than list the literal name, you can reference a predefined parameter specifying the workshop namespace by including ``$(workshop_namespace)``.
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: WorkshopEnvironment
 metadata:
@@ -206,7 +206,7 @@ When requesting a workshop using ``WorkshopRequest``, a login prompt for the wor
 
 If you want to override the username, you can specify the ``session.username`` field. If you want to set the same fixed password for all workshop instances, you can specify the ``session.password`` field.
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: WorkshopEnvironment
 metadata:
@@ -248,7 +248,7 @@ When creating deployments in the workshop namespace, set the ``serviceAccountNam
 
 Once a workshop environment has been created you can create the workshop instances. A workshop instance can be requested using the ``WorkshopRequest`` custom resource. This can be done as a separate step, or you can use the trick of adding them as resources under ``environment.objects``.
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: WorkshopEnvironment
 metadata:

@@ -30,13 +30,13 @@ Users can also configure the deployment to use their own RDS database instead of
 
 By default, a database password is generated automatically upon deployment. To configure a custom password, use the `db_password` property in the `scst-store-values.yaml` during deployment.
 
-```yaml
+```
 db_password: "PASSWORD-0123"
 ```
 
 If you're deploying with TAP profiles, in `tap-values.yaml`, put:
 
-```yaml
+```
 metadata_store:
   db_password: "PASSWORD-0123"
 ```
@@ -49,7 +49,7 @@ Where `PASSWORD-0123` is the same password used between deployments.
 
 If your environment does not support `LoadBalancer`, and you want to use `NodePort`, configure the `app_service_type` property in your `scst-store-values.yaml`:
 
-```yaml
+```
 app_service_type: "LoadBalancer"
 ```
 

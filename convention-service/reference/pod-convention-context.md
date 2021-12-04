@@ -9,7 +9,7 @@ In the `PodConventionContext` API resource:
 * Object path `.spec.imageConfig` field defines [ImageConfig](image-config.md). Each entry of [`imageConfig`](image-config.md) is populated with the name of the image(`.spec.imageConfig[].image`) and its OCI metadata (`.spec.imageConfig[].config`). These entries are generated for each image referenced in [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) (`.spec.template`).
 
 
-```json
+```
 {
   "apiVersion": "podconvention.k8s.io/v1alpha1",
   "kind": "PodConventionContext",
@@ -50,7 +50,7 @@ In the `PodConventionContext` API resource:
 ```
 The following is an example of a `PodConventionContext` resource request received by the convention server. This object is generated for [Go language based image](https://github.com/paketo-buildpacks/samples/tree/main/go/mod) (in GitHub) built with Cloud Native Paketo Buildpacks that uses Go mod for dependency management.
 
-```yaml
+```
 ---
 apiVersion: webhooks.conventions.apps.tanzu.vmware.com/v1alpha1
 kind: PodConventionContext
@@ -98,7 +98,7 @@ A convention server can use this bill of materials (BOM) information to enrich p
 * `io.buildpacks.build.metadata`: Contents for label with key `io.buildpacks.build.metadata` is expanded
    for the example above. The JSON is converted to YAML for readability.
 
-```yaml
+```
 "io.buildpacks.build.metadata": `{
   #  Bill of Materials for the image
   "bom":[{

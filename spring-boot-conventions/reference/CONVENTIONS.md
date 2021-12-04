@@ -4,7 +4,7 @@ When submitting the following pod `Pod Intent` on each convention, the output ma
 
   The submitted pod intent can be:
 
-  ```yaml
+  ```
   apiVersion: conventions.apps.tanzu.vmware.com/v1alpha1
   kind: PodIntent
   metadata:
@@ -23,7 +23,7 @@ When submitting the following pod `Pod Intent` on each convention, the output ma
 
   The `docker inspect` can look like:
   
-  ```json
+  ```
   [
   {
     "Id": "sha256:...",
@@ -37,7 +37,7 @@ When submitting the following pod `Pod Intent` on each convention, the output ma
 
 Convention output:
 
-  ```yaml
+  ```
   apiVersion: conventions.apps.tanzu.vmware.com/v1alpha1
   kind: PodIntent
   metadata:
@@ -97,7 +97,7 @@ Convention output:
 
   The `docker inspect` can looks like:
   
-  ```json
+  ```
   [
   {
     "Id": "sha256:...",
@@ -109,7 +109,7 @@ Convention output:
         "io.buildpacks.build.metadata": "{\"bom\":[{\"name\":\"helper\",\"metadata\":{\"layer\":\"helper\",\"names\":[\"ca-certificates-helper\"],\"version\":\"2.2.0\"},\"buildpack\":{\"id\":\"paketo-buildpacks/ca-certificates\",\"version\":\"2.2.0\"}},{\"name\":\"dependencies\",\"metadata\":{\"dependencies\":[{\"name\":\"spring-beans\",\"sha256\":\"33331abcdd8acccea43666782a5807127a0d43ffc6abf1c3252fbb27fc3367b2\",\"version\":\"5.3.6\"},{\"name\":\"spring-boot\",\"sha256\":\"2e46ae8796df9ca1b4ad74eab608b19f771255321e7d9fafb64561e7e030869e\",\"version\":\"2.4.5\"},{\"name\":\"tomcat-embed-core\",\"sha256\":\"b65ee353868ffb331adbf338e55de3adc6a7907c0c5265f8ee2d7e5f7a2da92b\",\"version\":\"9.0.45\"}
   ``` 
   Convention output
-  ```yaml
+  ```
   apiVersion: conventions.apps.tanzu.vmware.com/v1alpha1
   kind: PodIntent
   metadata:
@@ -170,7 +170,7 @@ Convention output:
 
   The `docker inspect` can look like:
   
-  ```json
+  ```
   [
   {
     "Id": "sha256:...",
@@ -184,7 +184,7 @@ Convention output:
 
   Convention output:
 
-  ```yaml
+  ```
   apiVersion: conventions.apps.tanzu.vmware.com/v1alpha1
   kind: PodIntent
   metadata:
@@ -243,7 +243,7 @@ Convention output:
 
   The `docker inspect` can looks like:
   
-  ```json
+  ```
   [
   {
     "Id": "sha256:...",
@@ -257,7 +257,7 @@ Convention output:
 
 Convention output:
 
-  ```yaml
+  ```
   apiVersion: conventions.apps.tanzu.vmware.com/v1alpha1
   kind: PodIntent
   metadata:
@@ -350,7 +350,7 @@ The list of the supported intents are:
 
 When you apply the `Pod Intent` and the image contains a dependency, for example, of _MySQL_, then the output of the convention will be:
 
-```yaml
+```
   apiVersion: conventions.apps.tanzu.vmware.com/v1alpha1
   kind: PodIntent
   metadata:

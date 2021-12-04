@@ -3,7 +3,7 @@
 The pod convention context status type is used to represent the current status of the context retrieved by the request.
 It holds the applied conventions by the server and the modified version of the [`PodTemplateSpec`](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec). The field `.template` is populated with the enriched [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec). The field `.appliedConventions` is populated with the names of any applied conventions.
 
-```json
+```
 {
     "template": {
         "metadata": {
@@ -21,7 +21,7 @@ It holds the applied conventions by the server and the modified version of the [
 }
 ```
 yaml version:
-```yaml
+```
 ---
 apiVersion: webhooks.conventions.apps.tanzu.vmware.com/v1alpha1
 kind: PodConventionContext

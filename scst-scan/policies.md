@@ -20,7 +20,7 @@ The Rego File must define inside its body an `isCompliant` rule, which needs to 
 ## Step 1: Create a scan policy with rego file
 
 ### Sample scan policy resource
-```yaml
+```
 apiVersion: scst-scan.apps.tanzu.vmware.com/v1alpha1
 kind: ScanPolicy
 metadata:

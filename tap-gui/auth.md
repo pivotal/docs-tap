@@ -16,7 +16,7 @@ Follow the [Backstage auth docs](https://backstage.io/docs/auth/) to configure a
 We also support a custom OIDC provider shown here:
 
 - Edit your tap-gui-values.yaml (or your custom configuration file) to include an OIDC auth provider. Configure the OIDC provider with your OAuth App values. Example:
-    ```yaml
+    ```
     auth:
       environment: development
       session:
@@ -39,7 +39,7 @@ We also support a custom OIDC provider shown here:
 ### Allowing guest access
 
 If you want to enable guest access along other providers, you can do it by providing the following flag under your auth configuration:
-```yaml
+```
 auth:
   allowGuestAccess: true
 ```
@@ -48,7 +48,7 @@ auth:
 
 You can change the card's title and/or description for a specific provider with the following config:
 
-```yaml
+```
 auth:
   environment: development
   providers:

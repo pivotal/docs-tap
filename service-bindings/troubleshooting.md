@@ -4,13 +4,13 @@
 
 Retrieve pod logs from the `manager` running in the `service-bindings` namespace.
 
-    ```bash
+    ```
     kubectl -n service-bindings logs -l role=manager
     ```
 
 For example:
 
-   ```bash
+   ```
     2021/11/05 15:25:28 Registering 3 clients
     2021/11/05 15:25:28 Registering 3 informer factories
     2021/11/05 15:25:28 Registering 7 informers

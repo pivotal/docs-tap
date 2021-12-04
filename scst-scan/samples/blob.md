@@ -3,7 +3,7 @@ This example will perform a scan against a source code in a `.tar.gz` file. This
 
 ## Define the resources
 Create `public-blob-source-example.yaml`:
-```yaml
+```
 ---
 apiVersion: scst-scan.apps.tanzu.vmware.com/v1alpha1
 kind: ScanTemplate
@@ -53,20 +53,20 @@ spec:
 
 ## (Optional) Set up a watch
 Before deploying, set up a watch in another terminal to see things process which will be quick.
-```bash
+```
 watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
 ```
 
 For more information, refer to [Observing and Troubleshooting](../observing.md).
 
 ## Deploy the resources
-```bash
+```
 kubectl apply -f public-blob-source-example.yaml
 ```
 
 ## View the scan results
 Once the scan has completed, perform:
-```bash
+```
 kubectl describe sourcescan public-blob-source-example
 ```
 and notice the `Status.Conditions` includes a `Reason: JobFinished` and `Message: The scan job finished`.
@@ -74,7 +74,7 @@ and notice the `Status.Conditions` includes a `Reason: JobFinished` and `Message
 For more information, refer to [Viewing and Understanding Scan Status Conditions](../results.md).
 
 ## Clean up
-```bash
+```
 kubectl delete -f public-blob-source-example.yaml
 ```
 

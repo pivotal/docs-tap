@@ -7,9 +7,9 @@ This topic explains how to configure the `insight` CLI:
 
 ## Set the Target and Certificate Authority Cert
 
-Set the target endpoint and CA certificate by running: 
+Set the target endpoint and CA certificate by running:
 
-```sh
+```
 insight config set-target https://metadata-store-app.metadata-store.svc.cluster.local:PORT --ca-cert PATH
 ```
 Where
@@ -19,7 +19,7 @@ Where
 
 For example:
 
-```sh
+```
 $ insight config set-target https://metadata-store-app.metadata-store.svc.cluster.local:8443 --ca-cert /tmp/ca.crt
 
 Using config file: /Users/username/.insight/config.yaml
@@ -30,13 +30,13 @@ Setting endpoint in config to: https://metadata-store-app.metadata-store.svc.clu
 
 Now check that you configuration is correct and you're able to make a connection.
 
-```sh
+```
 insight health
 ```
 
 For example:
 
-```sh
+```
 $ insight health
 {"message":"Successfully Reached Metadata Store!"}
 ```

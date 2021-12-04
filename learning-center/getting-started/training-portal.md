@@ -18,7 +18,7 @@ definition of the workshop must first be loaded.
 
 The ``Workshop`` custom resource we will be using is:
 Example:
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha2
 kind: Workshop
 metadata:
@@ -91,7 +91,7 @@ a set of workshops to be deployed, and the number of people who will be doing th
 
 The ``TrainingPortal`` custom resource we will use is:
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: TrainingPortal
 metadata:

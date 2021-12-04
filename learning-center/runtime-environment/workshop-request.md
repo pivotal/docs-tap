@@ -12,7 +12,7 @@ The ``WorkshopRequest`` custom resource is only used to request a workshop insta
 
 The minimum required information in the workshop request is therefore just the name of the workshop environment. This is supplied by setting the ``environment.name`` field.
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: WorkshopRequest
 metadata:
@@ -30,7 +30,7 @@ If multiple workshop requests, whether for the same workshop environment or diff
 
 Where a workshop environment has been configured to require an access token when making workshop request against that environment, it can be specified by setting the ``environment.token`` field.
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: WorkshopRequest
 metadata:
