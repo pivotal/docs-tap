@@ -14,11 +14,12 @@ To add the Tanzu Application Platform package repository:
 
 1. Setup environment variables that will be used during install
 
-```bash
-export INSTALL_REGISTRY_USERNAME=TANZU-NET-USER
-export INSTALL_REGISTRY_PASSWORD=TANZU-NET-PASSWORD
-export INSTALL_REGISTRY_HOSTNAME-registry.tanzu.vmware.com
-```
+    ```bash
+    export INSTALL_REGISTRY_USERNAME=TANZU-NET-USER
+    export INSTALL_REGISTRY_PASSWORD=TANZU-NET-PASSWORD
+    export INSTALL_REGISTRY_HOSTNAME-registry.tanzu.vmware.com
+    ```
+
 2. Create a namespace called `tap-install` for deploying any component packages by running:
 
     ```bash
