@@ -14,7 +14,7 @@ The service is comprised of two components:
 
 * **The convention server:**
   The convention server receives and evaluates metadata associated with a workload and
-  requests updates to the Pod Template Spec associated with that workload. 
+  requests updates to the Pod Template Spec associated with that workload.
   You can have one or more convention servers for a single convention controller instance.
   The Convention Service currently supports defining and applying conventions for Pods.
 

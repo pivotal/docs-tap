@@ -376,11 +376,11 @@ where:
 
 -  `delivery_git_ssh_secret` (required): name of the secret in the same
    namespace as the Workload where SSH credentials exist for pushing the
-   configuration produced by the supply chain to a git repository. 
+   configuration produced by the supply chain to a git repository.
    e.g.: "ssh-secret"
 
 -  `delivery_git_repository` (required): SSH url of the git repository to push
-   the kubernete configuration produced by the supply chain to. 
+   the kubernete configuration produced by the supply chain to.
    e.g.: "ssh://git@foo.com/staging.git"
 
 -  `delivery_git_branch`: name of the branch to push the configuration to.

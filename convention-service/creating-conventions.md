@@ -6,9 +6,9 @@ This document describes how to create and deploy custom conventions to the Tanzu
 Tanzu Application Platform helps developers transform their code
 into containerized workloads with a URL.
 The Supply Chain Choreographer for Tanzu manages this transformation.
-For more information, see [Supply Chain Choregrapher](../scc/about.html). 
+For more information, see [Supply Chain Choregrapher](../scc/about.html).
 
-The [Convention Service](about.md) is a key component of the supply chain 
+The [Convention Service](about.md) is a key component of the supply chain
 compositions the choreographer calls into action.
 The Convention Service enables people in operational roles to efficiently apply
 their operational expertise. They can specify the runtime best practices and conventions

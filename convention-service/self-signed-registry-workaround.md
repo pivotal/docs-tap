@@ -94,7 +94,7 @@ touch ccm.patch.yml
 ```
 
 6. The entire file should look like this
-        - 
+        -
         <details>
         <summary>modified spec</summary>
 

@@ -293,7 +293,7 @@ To install the Tanzu CLI on a Mac operating system:
 
    7. Click **Open** in the macOS prompt window.
 
-   After completing the steps above, there should be no more security issues while running Tanzu CLI commands.
+    After completing the steps above, there should be no more security issues while running Tanzu CLI commands.
 
    8. Proceed to [Instructions for a clean install of Tanzu CLI Plugins](#cli-plugin-clean-install).
 
