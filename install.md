@@ -600,6 +600,7 @@ The default database mechanism for TAP-GUI is an in-memory database that is reco
 ```
 
 Where:
+
   - `PG_SQL_HOSTNAME` is the hostname of your PostgreSQL database.
   - `PG_SQL_USERNAME` is the username of your PostgreSQL database.
   - `PG_SQL_PASSWORD` is the password of your PostgreSQL database.
