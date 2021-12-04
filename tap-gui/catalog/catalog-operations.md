@@ -6,18 +6,13 @@ For more information about Backstage, see the
 
 ## <a id='add-cat-entities'></a> Adding catalog entities
 
-This section will describe how you can format your own catalog.
-Creating catalogs consists of building metadata YAML files stored together with the code.
-This information is read from a Git-compatible repository consisting of these YAML catalog
-definition files.
-Changes made to the catalog definitions on your Git infrastructure are automatically reflected every
-200 seconds or when manually registered.
+This section describes how you can format your own catalog.
+Creating catalogs consists of building meta data YAML files stored together with the code.
+This information is read from a Git-compatible repository consisting of these YAML catalog definition files.
+Changes made to the catalog definitions on your Git infrastructure are automatically reflected every 200 seconds or when manually registered.
 For each catalog entity kind you create, there is a file format you must follow.
-Below is an overview of a few core entities, but details about all types of entities can be found
-[here](https://backstage.io/docs/features/software-catalog/descriptor-format).
-We also have an example blank catalog
-[here](https://gitlab.eng.vmware.com/project-star/pstar-backstage-poc/-/tree/master/sample-catalogs/blank)
-for now, to use as a loose guide for creating user, group, system, and main component YAML files.
+Below is an overview of a few core entities, here are details about all types of [entities] (https://backstage.io/docs/features/software-catalog/descriptor-format).
+We also have an example [blank catalog](https://gitlab.eng.vmware.com/project-star/pstar-backstage-poc/-/tree/master/sample-catalogs/blank), to use as a guide for creating user, group, system, and main component YAML files.
 
 Relationship Diagram:
 ![Tanzu Application Platform GUI Relationships](../images/tap-gui-relationships.jpg)
