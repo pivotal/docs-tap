@@ -30,7 +30,7 @@ Tanzu Application Platform is available through pre-defined profiles or individu
 
 The following profiles are available in Tanzu Application Platform:
 
-- **Light:**
+- **Dev:**
   Contains packages that drive the Inner Loop personal developer experience of building and 
   iterating on applications. 
 
