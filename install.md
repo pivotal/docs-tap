@@ -14,7 +14,7 @@ To add the Tanzu Application Platform package repository:
 
 1. Setup environment variables that will be used during install
 
-    ```bash
+    ```
     export INSTALL_REGISTRY_USERNAME=TANZU-NET-USER
     export INSTALL_REGISTRY_PASSWORD=TANZU-NET-PASSWORD
     export INSTALL_REGISTRY_HOSTNAME-registry.tanzu.vmware.com
@@ -22,7 +22,7 @@ To add the Tanzu Application Platform package repository:
 
 2. Create a namespace called `tap-install` for deploying any component packages by running:
 
-    ```bash
+    ```
     kubectl create ns tap-install
     ```
 
@@ -30,7 +30,7 @@ To add the Tanzu Application Platform package repository:
 
 3. Create a registry secret. Run:
 
-    ```bash
+    ```
     tanzu secret registry add tap-registry \
       --username ${INSTALL_REGISTRY_USERNAME} --password ${INSTALL_REGISTRY_PASSWORD} \
       --server ${INSTALL_REGISTRY_HOST} \
@@ -39,14 +39,14 @@ To add the Tanzu Application Platform package repository:
 
 4. Add Tanzu Application Platform package repository to the cluster by running:
 
-    ```bash
+    ```
     tanzu package repository add tanzu-tap-repository \
       --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.4.0 \
       --namespace tap-install
     ```
     For example:
 
-    ```bash
+    ```
     $ tanzu package repository add tanzu-tap-repository \
         --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.4.0 \
         --namespace tap-install
@@ -57,12 +57,12 @@ To add the Tanzu Application Platform package repository:
 
 5. Get the status of the Tanzu Application Platform package repository, and ensure the status updates to `Reconcile succeeded` by running:
 
-    ```bash
+    ```
     tanzu package repository get tanzu-tap-repository --namespace tap-install
     ```
     For example:
 
-    ```bash
+    ```
     $ tanzu package repository get tanzu-tap-repository --namespace tap-install
     - Retrieving repository tap...
     NAME:          tanzu-tap-repository
@@ -75,13 +75,13 @@ To add the Tanzu Application Platform package repository:
 
 6. List the available packages by running:
 
-    ```bash
+    ```
     tanzu package available list --namespace tap-install
     ```
 
     For example:
 
-    ```console
+    ```
     $ tanzu package available list --namespace tap-install
     / Retrieving available packages...
       NAME                                                 DISPLAY-NAME                                                              SHORT-DESCRIPTION
@@ -348,7 +348,7 @@ To install a profile:
 
 1. List version information for the package by running:
 
-    ```bash
+    ```
     tanzu package available list tap.tanzu.vmware.com --namespace tap-install
     ```
 
@@ -358,13 +358,13 @@ The sample values file contains the necessary defaults for both the meta-package
 ('parent' Tanzu Application Platform package) and subordinate packages
 (individual 'child' packages).
 The values file you provide during installation is used for further configuration
-of Tanzu Application Platform. 
+of Tanzu Application Platform.
 
 >**Important:** Keep this file for future use.
 
 ### Full Profile
 
-```yaml
+```
     profile: full
     ceip_policy_disclosed: true # Expects a true or false boolean value
     buildservice:
@@ -393,7 +393,7 @@ of Tanzu Application Platform.
 
 ### Dev Profile
 
-```yaml
+```
     profile: dev
     ceip_policy_disclosed: true # Expects a true or false boolean value
 
@@ -422,7 +422,7 @@ Where:
    - `<PROFILE-VALUE>` is a value such as `full` or `dev`.
     - `<ceip-policy-disclosed>` must have the value `true`.
     **Note:** If the value is not set to `true`, installation fails.
-       
+
     - `<KP-DEFAULT-REPO>` is a writable repository in your registry. Tanzu Build Service dependencies are written to this location.
       * Examples:
         * Harbor `kp_default_repository: "my-harbor.io/my-project/build-service"`
@@ -446,14 +446,14 @@ Where:
 
   To view possible configuration settings for a package, run:
 
-  ```bash
+  ```
     tanzu package available get tap.tanzu.vmware.com/0.4.0 --values-schema --namespace tap-install
    ```
 
    >**Note:** The `tap.tanzu.vmware.com` package does not show all configuration settings for packages it plans to install. The package only shows top level keys.
     View individual package configuration settings with the same `tanzu package available get` command. For example, use `tanzu package available get -n tap-install cnrs.tanzu.vmware.com/1.0.3 --values-schema` for Cloud Native Runtimes.
 
-   ```yaml
+   ```
     profile: full
 
     # ...
@@ -492,20 +492,20 @@ Where:
 
 1. Install the package by running:
 
-    ```bash
+    ```
     tanzu package install tap -p tap.tanzu.vmware.com -v 0.4.0 --values-file tap-values.yml -n tap-install
     ```
 
 2. Verify the package install by running:
 
-    ```bash
+    ```
     tanzu package installed get tap -n tap-install
     ```
 
     This may take 5-10 minutes as it installs several packages on your cluster.
 
 3. Verify all the necessary packages in the profile are installed by running:
-    ```bash
+    ```
     tanzu package installed list -A
     ```
 
@@ -515,14 +515,14 @@ Where:
 
 By default, Contour uses `NodePort` as the service type. To set the service type to `LoadBalancer`, add the following to your `tap-values.yml`:
 
-    ```yaml
+    ```
     contour:
       envoy:
         service:
           type: LoadBalancer
     ```
 If you are using AWS, the section above creates a classic LoadBalancer. If you want to use the Network LoadBalancer instead of the classic LoadBalancer for ingress, Add the following to your `tap-values.yml`:
-    ```yaml
+    ```
     contour:
       infrastructure_provider: aws
       envoy:
@@ -548,7 +548,7 @@ To install Tanzu Application Platform GUI:
 2. Add the following section to your `tap-values.yml` by using the following template. Replace all `<PLACEHOLDERS>`
 with your relevant values. Run:
 
-    ```yaml
+    ```
     tap_gui:
       service_type: LoadBalancer
       # Existing tap-values.yml above  
@@ -581,12 +581,12 @@ with your relevant values. Run:
 **Optional Tanzu Application Platform GUI Database Configuration**
 The default database mechanism for TAP-GUI is an in-memory database that is recommended for test/dev only and you can delete/comment-out this section of the configuration. However, when the TAP GUI server pod gets re-created, you'll lose all user preferences and any manually registered entities. For production or general-purpose use-cases, we recommend using a PostgreSQL database.
 
-```yaml
+```
     backend:
       baseUrl: http://tap-gui.<DOMAIN_NAME>-IP:7000
       cors:
           origin: http://tap-gui.<DOMAIN_NAME>-IP:7000
-    # Existing tap-values.yml above 
+    # Existing tap-values.yml above
       database: #External database strongly recommended for production use
         client: pg
           connection:
@@ -604,7 +604,7 @@ Where:
 
 4. Update the package profile by running:
 
-    ```console
+    ```
     tanzu package installed update tap \
      --package-name tap.tanzu.vmware.com \
      --version 0.4.0 -n tap-install \
@@ -613,7 +613,7 @@ Where:
 
     For example:
 
-    ```console
+    ```
     $ tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version 0.4.0 --values-file tap-values-file.yml -n tap-install
     | Updating package 'tap'
     | Getting package install for 'tap'
@@ -633,7 +633,7 @@ Where:
 
 6. If you have any issues, try re-creating the Tanzu Application Platform Pod by running:
 
-    ```console
+    ```
     kubectl delete pod -l app=backstage -n tap-gui
     ```
 
@@ -646,13 +646,13 @@ Proceed to the [Getting Started](getting-started.md) topic or the
 1. If you desire to exlude packages from a given profile, first you'll need to find the full subordinate (child) package name:
 
 
-    ```bash
+    ```
     tanzu package available list --namespace tap-install
     ```
 
 2. Update your tap-values file with a section listing the exclusions:
 
-    ```yaml
+    ```
     profile: <PROFILE-VALUE>
     excluded_packages:
       - tap-gui.tanzu.vmware.com

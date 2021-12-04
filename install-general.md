@@ -98,13 +98,13 @@ Installation requires:
 
     1. List the existing contexts by running:
 
-        ```console
+        ```
         kubectl config get-contexts
         ```
 
         For example:
 
-        ```console
+        ```
         $ kubectl config get-contexts
         CURRENT   NAME                                CLUSTER           AUTHINFO                                NAMESPACE
                 aks-repo-trial                      aks-repo-trial    clusterUser_aks-rg-01_aks-repo-trial
@@ -116,13 +116,13 @@ Installation requires:
     2.  Set the context to the cluster that you want to use for the Tanzu Application Platform packages install.
         For example set the context to the `aks-tap-cluster` context by running:
 
-        ```console
+        ```
         kubectl config use-context aks-tap-cluster
         ```
 
         For example:
 
-        ```console
+        ```
         $ kubectl config use-context aks-tap-cluster
         Switched to context "aks-tap-cluster".
         ```

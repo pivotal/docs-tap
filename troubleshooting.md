@@ -79,7 +79,7 @@ After creating a workload, there are no logs.
 
 You create a workload, but no logs appear when you check the logs with:
 
-```bash
+```
 tanzu apps workload tail workload-name --since 10m --timestamp
 ```
 
@@ -106,7 +106,7 @@ After creating a workload, there are no logs.
 
 You issue the tanzu package install command but one or more packages fails to install:
 
-```bash
+```
 tanzu package install tap -p tap.tanzu.vmware.com -v 0.4.0 --values-file tap-values.yaml -n tap-install
 - Installing package 'tap.tanzu.vmware.com'
 \ Getting package metadata for 'tap.tanzu.vmware.com'
@@ -131,21 +131,21 @@ Error: exit status 1
 
 Often, the cause is one of the following:
 
-- Some infrastructure providers take longer than the timeout value allows to perform tasks. 
+- Some infrastructure providers take longer than the timeout value allows to perform tasks.
 - A race-condition between components exists.
   For example, a package that uses `Ingress` completes before the shared Tanzu ingress controller is available.
-  
+
 The beauty of the VMWare Carvel tools kapp-controller is that it continues to try in a reconciliation loop.
 
 ### Solution
 
 Verify if the installation is still continuing and may complete just fine:
 
-```bash
+```
 tanzu package installed list -A
 ```
 
-```bash
+```
 \ Retrieving installed packages...
   NAME                      PACKAGE-NAME                                       PACKAGE-VERSION  STATUS               NAMESPACE
   accelerator               accelerator.apps.tanzu.vmware.com                  0.5.1            Reconcile succeeded  tap-install
