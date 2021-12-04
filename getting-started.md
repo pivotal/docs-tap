@@ -1028,14 +1028,14 @@ time worrying about the provision, configuration, and operations of the backing 
 depend on.
 
 This experience is made possible in Tanzu Application Platform by using the Services Toolkit
-component. Below are the usecases that are unlocked by Services Toolkit on TAP. Those marked with Experimental are subject to change.
+component. Below are the use cases that are unlocked by Services Toolkit on Tanzu Application Platform. Those marked with Experimental are subject to change.
 
-### Usecases unlocked by Services Toolkit on TAP
+### Use cases unlocked by Services Toolkit on Tanzu Application Platform
 
-1. Usecase 1 - Binding an application to a pre-provisioned service instance running in the same namespace.
-2. Usecase 2 - Binding an application to a pre-provisioned service instance running in a different namespace on the same Kubernetes cluster.
-3. Usecase 3 - Binding an application to a service running outside Kubetnetes (e.g. external Azure DB) (Experimental).
-4. Usecase 4 - Binding an application to a service instance running on a different Kubetnetes cluster (Experimental).
+* Use case 1 - Binding an application to a pre-provisioned service instance running in the same namespace.
+* Use case 2 - Binding an application to a pre-provisioned service instance running in a different namespace on the same Kubernetes cluster.
+* Use case 3 - Binding an application to a service running outside Kubetnetes (e.g. external Azure DB) (Experimental).
+* Use case 4 - Binding an application to a service instance running on a different Kubetnetes cluster (Experimental).
 
 Services Toolkit comprises the following Kubernetes-native components:
 
@@ -1054,13 +1054,13 @@ Any service that adheres to the [Provisioned Service](https://github.com/service
 compatible with Tanzu Application Platform.
 
 This leads to a simple, but powerful, first-class user experience for working with backing services
-as part of the development life cycle. Below we expand on the first two usecases listed above.
+as part of the development life cycle. Below we expand on the first two use cases listed above.
 
 <!-- * [Use Case 1 - **Binding an App Workload to a Service Resource**](#services-journey-use-case-1)
 * [Use Case 2 - **Binding an App Workload to a Service Resource across multiple clusters**](#services-journey-use-case-2)
 * [Use Case 3 - **Binding an App Workload directly to a Secret (support for external services)**](#services-journey-use-case-3) -->
 
-In order to properly demonstrate how Application Teams can discover, provision and bind to services in Tanzu Application Platform, we first need to install a service along with a few supporting resources to make it discoverable. This setup is typically performed by the role of the Service Operator.
+In order to demonstrate how Application Teams can discover, provision and bind to services in Tanzu Application Platform, we first need to install a service along with a few supporting resources to make it discoverable. This setup is typically performed by the role of the Service Operator.
 
 ### Setup
 
@@ -1151,9 +1151,9 @@ In order to properly demonstrate how Application Teams can discover, provision a
   ```
 For further information about `ClusterResource`, please refer to the Services Toolkit component documentation [here](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.4/services-toolkit-0-4/GUID-service_offering-terminology_and_apis.html).
 
-To summarize, we have installed RabbitMQ Operator, created the necessary RBAC, created a Services Toolkit resource called `ClusterResource` for RabbitmqCluster so that app teams can discover it. Now we dig into the usecases.
+To summarize, we have installed RabbitMQ Operator, created the necessary RBAC, created a Services Toolkit resource called `ClusterResource` for RabbitmqCluster so that app teams can discover it. Now we dig into the use cases.
 
-### <a id='services-journey-use-case-1'></a> **Usecase 1 -  Binding an app to a pre-provisioned service instance running in the same namespace.**
+### <a id='services-journey-use-case-1'></a> **Use case 1 -  Binding an app to a pre-provisioned service instance running in the same namespace.**
 
 ### Step 1: Create a service instance
 - Let’s start by creating a RabbitMQ
@@ -1178,7 +1178,7 @@ To summarize, we have installed RabbitMQ Operator, created the necessary RBAC, c
 
 ### Step 2: Deploy a workload app bound to the service instance
 - Now let's create an Application Workload that automatically claims and binds to that RabbitMQ instance.
-- __Note:__ You must ensure that your namespace is set up to use installed TAP packages so that application workloads can be created successfully. For more information, refer [Set Up Developer Namespaces to Use Installed Packages](install-components.md#-set-up-developer-namespaces-to-use-installed-packages).
+- __Note:__ You must ensure that your namespace is set up to use installed Tanzu Application Platform packages so that application workloads can be created successfully. For more information, refer [Set Up Developer Namespaces to Use Installed Packages](install-components.md#-set-up-developer-namespaces-to-use-installed-packages).
 - In order to obtain a service reference in the correct format, we can run the following command:
   ```
   $ tanzu service instance list -owide
@@ -1203,12 +1203,12 @@ To summarize, we have installed RabbitMQ Operator, created the necessary RBAC, c
 
 <!-- ### <a id='services-journey-use-case-1'></a> Use Case 1 - Binding an App Workload to a Service Resource -->
 
-### <a id='services-journey-use-case-2'></a> **Usecase 2: Binding an application to a pre-provisioned service instance running in a different namespace on the same Kubernetes cluster (GA).**
+### <a id='services-journey-use-case-2'></a> **Use case 2 - Binding an application to a pre-provisioned service instance running in a different namespace on the same Kubernetes cluster (GA).**
 
-The first usecase demonstrates the binding of a sample application workload to a service instance that is running in the same namespace. Here we will look at binding to a service instance that is running in a different namespace. This is likely to be a common scenario as it allows for separation of concerns between those users working with application workloads, and those who are responsible for service instances.
+The first use case demonstrates the binding of a sample application workload to a service instance that is running in the same namespace. Here we will look at binding to a service instance that is running in a different namespace. This is likely to be a common scenario as it allows for separation of concerns between those users working with application workloads, and those who are responsible for service instances.
 
 ### Step 1: Create a service instance in the service-instances namespace
-- This step is very similar to the first usecase, but here we create a new service instance in a different namespace (e.g. the `service-instances` namespace)
+- This step is very similar to the first use case, but here we create a new service instance in a different namespace (e.g. the `service-instances` namespace)
   ```
   # example-rabbitmq-cluster-service-instance-2.yaml
   ---
@@ -1268,7 +1268,7 @@ The first usecase demonstrates the binding of a sample application workload to a
   ```
 - Visit the URL and confirm the app is working by refreshing the page and checking the new message IDs.
 
-### <a id='services-journey-use-case-3'></a> **Usecase 3 - Binding an application to a service running outside Kubetnetes (ex external Azure DB) (Beta)**.
+### <a id='services-journey-use-case-3'></a> **Use case 3 - Binding an application to a service running outside Kubetnetes (ex external Azure DB) (Beta)**.
 This use case enables developers to connect their application workloads to almost any backing
 service, including those that are running external to the platform, as well as those that do not
 adhere to the Provisioned Service part of the binding specifications.
@@ -1315,7 +1315,7 @@ database that exists in Azure:
     kubectl apply -f external-azure-db-binding-compatible.yaml
     ```
 
-  __Note:__ This Secret **could** be defined a different namespace than the Workload and claimed cross namespace through the use of `ResourceClaimPolicy` resources. See [Usecase 2](#services-journey-use-case-2) for more details.
+  __Note:__ This Secret **could** be defined a different namespace than the Workload and claimed cross namespace through the use of `ResourceClaimPolicy` resources. See [Use case 2](#services-journey-use-case-2) for more details.
 
 1. Provide a reference to the Secret when creating your application workload. For example:
 
@@ -1323,7 +1323,7 @@ database that exists in Azure:
     tanzu apps workload create pet-clinic --git-repo https://github.com/spring-projects/spring-petclinic --git-branch main --type web --service-ref db=v1:Secret:external-azure-db-binding-compatible
     ```
 
-### <a id='services-journey-use-case-4'></a> **Usecase 4 - Binding an application to a service instance running on a different k8s cluster (Experimental).**
+### <a id='services-journey-use-case-4'></a> **Use case 4 - Binding an application to a service instance running on a different Kubernetes cluster (Experimental).**
 
 This use case is almost identical to the first, but now rather than installing and running the RabbitMQ Cluster Kubernetes Operator on the same cluster as Tanzu Application Platform, we will install and run it on an entirely separate dedicated Services cluster. There are several reasons why you might want to do this:
 
@@ -1351,7 +1351,7 @@ It is assumed that you have run through the previous use case prior to going thr
 
 Meet the following prerequisites before following the steps for this use case:
 
-1. You must first uninstall the RabbitMQ Cluster Operator that was installed in the preivous step.
+1. You must first uninstall the RabbitMQ Cluster Operator that was installed in the previous step.
 
 ```
 kapp delete -a rmq-operator -y
@@ -1457,7 +1457,7 @@ Verify this by running the following command.
     kubectl --context WORKLOAD-CONTEXT api-resources
     ```
 
-The application operator takes over from here (ensure you are targetting the TAP workload cluster, not the service cluster):
+The application operator takes over from here (ensure you are targetting the Tanzu Application Platform workload cluster, not the service cluster):
 
 1. Discover the new service and provision an instance by running the following command.
 
