@@ -515,21 +515,23 @@ Where:
 
 By default, Contour uses `NodePort` as the service type. To set the service type to `LoadBalancer`, add the following to your `tap-values.yml`:
 
-    ```
-    contour:
-      envoy:
-        service:
-          type: LoadBalancer
-    ```
+```
+contour:
+  envoy:
+    service:
+      type: LoadBalancer
+```
+
 If you are using AWS, the section above creates a classic LoadBalancer. If you want to use the Network LoadBalancer instead of the classic LoadBalancer for ingress, Add the following to your `tap-values.yml`:
-    ```
-    contour:
-      infrastructure_provider: aws
-      envoy:
-        service:
-          aws:
-            LBType: nlb
-    ```
+
+```
+contour:
+  infrastructure_provider: aws
+  envoy:
+    service:
+      aws:
+        LBType: nlb
+```
 
 ## <a id='configure-tap-gui'></a> Configure the Tanzu Application Platform GUI
 To install Tanzu Application Platform GUI, see the following sections.
