@@ -609,48 +609,55 @@ Verify that both Scan Link and Grype Scanner are installed by running:
     tanzu package installed get grype -n tap-install
     ```
 
-Follow the steps in [Supply Chain Security Tools - Scan](install-components.md#install-scst-scan) to install the required scanning components.
+    If the packages are not already installed, follow the steps in [Supply Chain Security Tools - Scan](install-components.md#install-scst-scan) to install the required scanning components.
 
-During installation of the Grype Scanner, sample ScanTemplates are installed into the `default` namespace. If the workload is to be deployed into another namespace, then these sample ScanTemplates also need to be present in the other namespace. One way to accomplish this is to install Grype Scanner again, and provide the namespace in the values file.
+    During installation of the Grype Scanner, sample ScanTemplates are installed into the `default` namespace. If the workload is to be deployed into another namespace, then these sample ScanTemplates also need to be present in the other namespace. One way to accomplish this is to install Grype Scanner again, and provide the namespace in the values file.
 
-A ScanPolicy is required and the following is to be applied into the required namespace (either add the namespace flag to the `kubectl` command or add the namespace field into the template itself):
+    A ScanPolicy is required and the following is to be applied into the required namespace (either add the namespace flag to the `kubectl` command or add the namespace field into the template itself):
 
-```
-kubectl apply -f - -o yaml << EOF
----
-apiVersion: scst-scan.apps.tanzu.vmware.com/v1alpha1
-kind: ScanPolicy
-metadata:
-  name: scan-policy
-spec:
-  regoFile: |
-    package policies
+    ```
+    kubectl apply -f - -o yaml << EOF
+    ---
+    apiVersion: scst-scan.apps.tanzu.vmware.com/v1alpha1
+    kind: ScanPolicy
+    metadata:
+      name: scan-policy
+    spec:
+      regoFile: |
+        package policies
 
-    default isCompliant = false
+        default isCompliant = false
 
-    # Accepted Values: "Critical", "High", "Medium", "Low", "Negligible", "UnknownSeverity"
-    violatingSeverities := ["Critical","High","UnknownSeverity"]
-    ignoreCVEs := []
+        # Accepted Values: "Critical", "High", "Medium", "Low", "Negligible", "UnknownSeverity"
+        violatingSeverities := ["Critical","High","UnknownSeverity"]
+        ignoreCVEs := []
 
-    contains(array, elem) = true {
-      array[_] = elem
-    } else = false { true }
+        contains(array, elem) = true {
+          array[_] = elem
+        } else = false { true }
 
-    isSafe(match) {
-      fails := contains(violatingSeverities, match.Ratings.Rating[_].Severity)
-      not fails
-    }
+        isSafe(match) {
+          fails := contains(violatingSeverities, match.Ratings.Rating[_].Severity)
+          not fails
+        }
 
-    isSafe(match) {
-      ignore := contains(ignoreCVEs, match.Id)
-      ignore
-    }
+        isSafe(match) {
+          ignore := contains(ignoreCVEs, match.Id)
+          ignore
+        }
 
-    isCompliant = isSafe(input.currentVulnerability)
-EOF
-```
+        isCompliant = isSafe(input.currentVulnerability)
+    EOF
+    ```
 
-2. (Optional, but recommended) To persist and query the vulnerability results post-scan, [install Supply Chain Security Tools - Store](install-components.md#install-scst-store). Refer to the *Prerequisite* in [Supply Chain Security Tools - Scan](install-components.md#install-scst-scan) for more details.
+2. (Optional, but recommended) To persist and query the vulnerability results post-scan, check that [Supply Chain Security Tools - Store](scst-store/overview.md) is installed using the follow command. TAP profiles installs the package by default.
+
+    ```
+    tanzu package installed get scst-store -n tap-install
+    ```
+
+    If the package is not installed, follow [the installation instructions](install-components.md#install-scst-store).
+
 
 3. Update the profile to use the supply chain with testing and scanning by
    updating `tap-values.yml` (the file used to customize the profile in `tanzu
@@ -670,9 +677,9 @@ EOF
 
 4. Update the `tap` package:
 
-```
-tanzu package installed update tap -p tap.tanzu.vmware.com -v 0.3.0 --values-file tap-values.yml -n tap-install
-```
+    ```
+    tanzu package installed update tap -p tap.tanzu.vmware.com -v 0.3.0 --values-file tap-values.yml -n tap-install
+    ```
 
 
 ### Workload update
