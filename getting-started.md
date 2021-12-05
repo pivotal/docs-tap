@@ -532,6 +532,7 @@ that step of the supply requires execution.
 
 To connect the new supply chain to the workload,
 the workload must be updated to point at the your Tekton pipeline.
+
 1. Update the workload by running the following with the Tanzu CLI:
 
   ```

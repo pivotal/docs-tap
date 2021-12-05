@@ -1805,16 +1805,16 @@ Use the following procedure to install Service Bindings:
 
 ## <a id='install-scst-store'></a> Install Supply Chain Security Tools - Store
 
-**Prerequisite**: `cert-manager` installed on the cluster. See [Install Prerequisites](#install-prereqs).
+**Prerequisite**: `cert-manager` installed on the cluster. If you [installed TAP profiles](install.md), then `cert-manager` should already be installed. If not, then follow the instructions in [Install cert-manager](#install-prereqs).
 
-Before installing, see [Deployment Details and Configuration](scst-store/deployment_details.md) to review what resources will be deployed.
+Before installing, see [Deployment Details and Configuration](scst-store/deployment_details.md) to review what resources will be deployed. Read the [overview](scst-store/overview.md) for more information.
 
 To install Supply Chain Security Tools - Store:
 
-1. The deployment assumes the user has set up the k8s cluster to provision persistent volumes on demand. Make sure a default storage class is be available in your cluster. Check whether default storage class is set in your cluster by running:
+1. The deployment assumes the user has set up the kubernetes cluster to provision persistent volumes on demand. Make sure a default storage class is be available in your cluster. Check whether default storage class is set in your cluster by running:
 
     ```
-    kubect get storageClass
+    kubectl get storageClass
     ```
 
     For example:
@@ -1890,7 +1890,7 @@ To install Supply Chain Security Tools - Store:
 1. Install the package by running:
 
     ```
-    tanzu package install metadata-store \
+    tanzu package install scst-store \
       --package-name scst-store.tanzu.vmware.com \
       --version 1.0.0-beta.2 \
       --namespace tap-install \
@@ -1900,7 +1900,7 @@ To install Supply Chain Security Tools - Store:
     The flag `--values-file` is optional, and used only if you want to customize the deployment configuration. For example:
 
     ```
-    $ tanzu package install metadata-store \
+    $ tanzu package install scst-store \
       --package-name scst-store.tanzu.vmware.com \
       --version 1.0.0-beta.2 \
       --namespace tap-install \
@@ -1916,7 +1916,7 @@ To install Supply Chain Security Tools - Store:
     | Creating package resource
     - Package install status: Reconciling
 
-    Added installed package 'metadata-store' in namespace 'tap-install'
+    Added installed package 'scst-store' in namespace 'tap-install'
     ```
 
 
