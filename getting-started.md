@@ -651,7 +651,7 @@ Verify that both Scan Link and Grype Scanner are installed by running:
     EOF
     ```
 
-2. (Optional, but recommended) To persist and query the vulnerability results post-scan, check that [Supply Chain Security Tools - Store](scst-store/overview.md) is installed using the follow command. TAP profiles installs the package by default.
+2. (Optional, but recommended) To persist and query the vulnerability results post-scan, ensure that [Supply Chain Security Tools - Store](scst-store/overview.md) is installed using the follow command. TAP profiles already installs the package by default.
 
     ```
     tanzu package installed get scst-store -n tap-install
@@ -996,12 +996,6 @@ to query metadata that have been submitted to the component after the scan step.
 
 For a complete guide on how to query the store,
 see [Querying Supply Chain Security Tools - Store](scst-store/querying_the_metadata_store.md).
-
-> **Note**: You must have the Supply Chain Security Tools - Store prerequisites in place to query
-the store successfully. For more information, see
-[Install Supply Chain Security Tools - Store](install-components.md#install-scst-store).
-
-
 
 #### Example Supply Chain including Source and Image Scans
 
