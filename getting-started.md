@@ -255,7 +255,7 @@ tanzu accelerator update <accelerator-name> --reconcile
 ```
 ---
 
-## Section 3: Add Testing and Security Scanning to Your Application
+## <a id='add-testing-and-scanning'></a> Section 3: Add Testing and Security Scanning to Your Application
 
 ### What is a Supply Chain?
 
@@ -957,32 +957,32 @@ to easily reference historical scan results, and provides querying functionality
 * What packages and vulnerabilities does a particular image have?
 * What images are using a given package?
 
-The Store accepts any CycloneDX input and outputs in both human-readable and machine-readable (JSON, text, CycloneDX) formats. Querying can be performed via a CLI, or directly from the API.
+[Supply Chain Security Tools - Store](scst-store/overview.md) takes the scanning results and stores them. Users can then query for information about CVEs, images, packages, and their relationships via a CLI, or directly from the API.
 
-**Use Cases**
+**Features**
 
 * Scan source code repositories and images for known CVEs prior to deploying to a cluster
 * Identify CVEs by scanning continuously on each new code commit and/or each new image built
 * Analyze scan results against user-defined policies using Open Policy Agent
-* Produce vulnerability scan results and post them to the Metadata Store from where they can be queried
+* Produce vulnerability scan results and post them to the Supply Chain Security Tools - Store where they can later be queried
 
-To try the scan and store features in a supply chain, see [Section 3: Add Testing and Security Scanning to Your Application].
+To try the scan and store features in a supply chain, see [Section 3: Add Testing and Security Scanning to Your Application](#add-testing-and-scanning).
 
 #### Running Public Source Code and Image Scans with Policy Enforcement
 
-Follow the instructions [here](scst-scan/running-scans.md)
-to try the following two types of public scans:
+Follow the instructions in [Sample public source code and image scans with policy enforcement](scst-scan/running-scans.md)
+to perform the following two types of public scans:
 
 1. Source code scan on a public repository
-2. Image scan on a image found in a public registry
+2. Image scan on a public image
 
-Both examples include a policy to consider CVEs with Critical severity ratings as violations.
+Both examples include a policy that considers CVEs with Critical severity ratings as violations.
 
 
 #### Running Private Source Code and Image Scans with Policy Enforcement
 
-Follow the instructions [here](scst-scan/samples/private-source.md) to perform a source code scan against a private registry or
-[here](scst-scan/samples/private-image.md)
+Follow the instructions in [Sample private source scan](scst-scan/samples/private-source.md) to perform a source code scan against a private registry or
+[Sample private image scan](scst-scan/samples/private-image.md)
 to do an image scan on a private image.
 
 
@@ -990,9 +990,9 @@ to do an image scan on a private image.
 
 After completing the scans from the previous step,
 query the [Supply Chain Security Tools - Store](scst-store/overview.md) to view your vulnerability results.
-The Supply Chain Security Tools - Store is a Tanzu component that stores image, package, and vulnerability metadata about your dependencies.
+It is a Tanzu component that stores image, package, and vulnerability metadata about your dependencies.
 Use the Supply Chain Security Tools - Store CLI, called `insight`,
-to query metadata that have been submitted to the store after the scan step.
+to query metadata that have been submitted to the component after the scan step.
 
 For a complete guide on how to query the store,
 see [Querying Supply Chain Security Tools - Store](scst-store/querying_the_metadata_store.md).
