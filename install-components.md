@@ -2139,6 +2139,14 @@ To install Supply Chain Security Tools - Scan (Grype Scanner):
       targetSourceSshSecret      <EMPTY>  string  Reference to the secret containing SSH credentials for cloning private repositories.
     ```
 
+    The `tap-values.yml` file to change the default installation settings would look like this: 
+
+    ```
+    grype:
+      namespace: my-dev-namespace
+      targetImagePullSecret: registry-credentials 
+    ```
+
     > **Note:** If you want to use a namespace other than the default namespace, then ensure that the namespace exists before you install.
 If the namespace does not exist, then the Grype Scanner installation fails.
 
