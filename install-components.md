@@ -26,7 +26,7 @@ For information, see [Installing Part I: Prerequisites, EULA, and CLI](install-g
   - [<a id='install-ootb-templates'></a> Install Out of the Box Templates](#-install-out-of-the-box-templates)
   - [<a id='install-ootb-delivery-basic'></a> Install Out of the Box Templates](#-install-ootb-delivery-basic)
   - [<a id='install-ootb-supply-chain-basic'></a> Install Out of The Box Supply Chain Basic](#install-ootb-supply-chain-basic)
-  - [<a id='install-ootb-supply-chain-testing'></a> Install Out of the Box Templates](#-install-ootb-supply-chain-testing)
+  - [<a id='install-ootb-supply-chain-testing'></a>Install Out of The Box Supply Chain With Testing](#install-ootb-supply-chain-testing)
   - [<a id='install-ootb-supply-chain-testing-scanning'></a> Install Out of the Box Templates](#-install-ootb-supply-chain-testing-scanning)
   - [<a id='install-tap-gui'></a> Install Tanzu Application Platform GUI](#-install-tanzu-application-platform-gui)
     - [Prerequisites in addition to Tanzu Application Platform requirements](#prerequisites-in-addition-to-tanzu-application-platform-requirements)
