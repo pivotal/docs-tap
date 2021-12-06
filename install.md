@@ -606,11 +606,11 @@ with your relevant values. Run:
               ssl: {rejectUnauthorized: false} #Set to true if using SSL
   ```
 
-Where:
+  Where:
 
-  - `PG_SQL_HOSTNAME` is the hostname of your PostgreSQL database.
-  - `PG_SQL_USERNAME` is the username of your PostgreSQL database.
-  - `PG_SQL_PASSWORD` is the password of your PostgreSQL database.
+    - `PG_SQL_HOSTNAME` is the hostname of your PostgreSQL database.
+    - `PG_SQL_USERNAME` is the username of your PostgreSQL database.
+    - `PG_SQL_PASSWORD` is the password of your PostgreSQL database.
 
 4. Update the package profile by running:
 
