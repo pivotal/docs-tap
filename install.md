@@ -586,10 +586,9 @@ with your relevant values. Run:
     - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage compliant catalog you've already built and posted on the Git infrastucture you specified in the Integration section.
 
     > **Note:** The `integrations` section uses Github. If you want additional integrations, see the
-    format in this [Backstage integration documentation](https://backstage.io/docs/integrations/).
+    format in the [Backstage integration documentation](https://backstage.io/docs/integrations/).
 
-**Optional Tanzu Application Platform GUI Database Configuration**
-The default database mechanism for TAP-GUI is an in-memory database that is recommended for test/dev only and you can delete/comment-out this section of the configuration. However, when the TAP GUI server pod gets re-created, you'll lose all user preferences and any manually registered entities. For production or general-purpose use-cases, we recommend using a PostgreSQL database.
+1. (Optional) The default database mechanism for Tanzu Application Platform GUI is an in-memory database that is recommended for testing and development only. You can delete or comment out this section of the configuration. However, when the Tanzu Application Platform GUI server pod gets re-created, you'll lose all user preferences and any manually registered entities. For production or general use-cases, VMware recommends using a PostgreSQL database. To use a PostgreSQL database, run the following:
 
 ```
     backend:
