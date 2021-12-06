@@ -24,7 +24,7 @@ For information, see [Installing Part I: Prerequisites, EULA, and CLI](install-g
     - [Install Tanzu Build Service using the Tanzu CLI](#install-tanzu-build-service-using-the-tanzu-cli)
   - [<a id='install-scc'></a> Install Supply Chain Choreographer](#-install-supply-chain-choreographer)
   - [<a id='install-ootb-templates'></a> Install Out of the Box Templates](#-install-out-of-the-box-templates)
-  - [<a id='install-ootb-delivery-basic'></a> Install Out of the Box Templates](#-install-ootb-delivery-basic)
+  - [<a id='install-ootb-delivery-basic'></a>Install Out of The Box Supply Chain Basic](#install-ootb-supply-chain-basic)
   - [<a id='install-ootb-supply-chain-basic'></a> Install Out of The Box Supply Chain Basic](#install-ootb-supply-chain-basic)
   - [<a id='install-ootb-supply-chain-testing'></a>Install Out of The Box Supply Chain With Testing](#install-ootb-supply-chain-testing)
   - [<a id='install-ootb-supply-chain-testing-scanning'></a>Install Out of The Box Supply Chain with Testing and Scanning](#install-ootb-supply-chain-testing-scanning)
