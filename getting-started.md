@@ -1037,10 +1037,35 @@ component. Below are the use cases that are unlocked by Services Toolkit on Tanz
 
 ### Use cases unlocked by Services Toolkit on Tanzu Application Platform
 
-* Use case 1 - Binding an application to a pre-provisioned service instance running in the same namespace.
-* Use case 2 - Binding an application to a pre-provisioned service instance running in a different namespace on the same Kubernetes cluster.
-* Use case 3 - Binding an application to a service running outside Kubetnetes (e.g. external Azure DB) (Experimental).
-* Use case 4 - Binding an application to a service instance running on a different Kubetnetes cluster (Experimental).
+All four use cases are for binding an application to a pre-provisioned service instance.
+The use cases vary according to where the service instance is located. The four use cases are summarized in the following table:
+<table class="nice">
+<col width="60%">
+<col width="10%">
+	<th><strong>Bind application to a service instance running:</strong></th>
+	<th><strong>Status:</strong></th>
+  <th><strong>See:</strong></th>
+	<tr>
+		<td>in the same namespace</td>
+		<td>GA</td>
+    <td><a href="#services-journey-use-case-1">Use case 1</a></td>
+	</tr>
+	<tr>
+		<td>in different namespace on the same Kubernetes cluster</td>
+    <td>GA</td>
+    <td><a href="#services-journey-use-case-2">Use case 2</a></td>
+	</tr>
+  <tr>
+    <td>outside Kubernetes, for example, on an external Azure DB</td>
+    <td>Beta</td>
+    <td><a href="#services-journey-use-case-3">Use case 3</a></td>
+  </tr>
+  <tr>
+    <td>on a different Kubernetes cluster</td>
+    <td>Beta</td>
+    <td><a href="#services-journey-use-case-4">Use case 4</a></td>
+  </tr>
+</table>
 
 Services Toolkit comprises the following Kubernetes-native components:
 
