@@ -389,6 +389,10 @@ tap_gui:
 
 metadata_store:
   app_service_type: LoadBalancer # (optional) Defaults to LoadBalancer. Change to NodePort for distributions that don't support LoadBalancer
+
+grype:
+  namespace: "<MY-DEV-NAMESPACE>" # (optional) Defaults to default namespace.
+  targetImagePullSecret: "<REGISTRY-CREDENTIALS-SECRET>"
 ```
 
 ### Dev Profile
@@ -443,6 +447,8 @@ Where:
           * Dockerhub `repository: "my-dockerhub-user"`
           * Google Cloud Registry `repository: "my-project/supply-chain"`
     - `<DOMAIN-NAME>` has a value such as `educates.example.com`.
+    - `<MY-DEV-NAMESPACE>` is the namespace where you want the `ScanTemplates` to be deployed to. This is the namespace where the scanning feature is going to run.
+    - `<REGISTRY-CREDENTIALS-SECRET>` is the name of the secret that contains the credentials to pull the scanner image from the registry.
 
   To view possible configuration settings for a package, run:
 
@@ -482,6 +488,8 @@ Where:
   |Supply Chain Basic|`ootb_supply_chain_basic`|
   |Supply Chain Testing|`ootb_supply_chain_testing`|
   |Supply Chain Testing Scanning|`ootb_supply_chain_testing_scanning`|
+  |Supply Chain Security Tools - Scan|`scanning`|
+  |Supply Chain Security Tools - Scan (Grype Scanner)|`grype`|
   |Supply Chain Security Tools - Store|`metadata_store`|
   |Image Policy Webhook|`image_policy_webhook`|
   |Build Service|`buildservice`|
