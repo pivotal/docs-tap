@@ -150,7 +150,7 @@ The following table lists the packages contained in each profile:
    </td>
   </tr>
   <tr>
-   <td>App Live View
+   <td>Application Live View
    </td>
    <td>&check;
    </td>
@@ -158,7 +158,7 @@ The following table lists the packages contained in each profile:
    </td>
   </tr>
   <tr>
-   <td>App Live View Conventions
+   <td>Application Live View Conventions
    </td>
    <td>&check;
    </td>
