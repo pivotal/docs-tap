@@ -592,13 +592,13 @@ To install Application Accelerator:
     ```
     STATUS should be `Reconcile succeeded`.
 
-1. To determine the IP address for the Application Accelerator API when the `server.service_type` was set to `LoadBalancer`, run the following command:
+1. To determine the IP address for the Application Accelerator API when the `server.service_type` is set to `LoadBalancer`, run the following command:
 
     ```
     kubectl get service -n accelerator-system
     ```
 
-    This should list an external IP address to be used with the `--server-url` flag for the Tanzu CLI Accelerator plugin's generate command.
+    This lists an external IP address for use with the `--server-url` Tanzu CLI flag for the Accelerator plugin `generate` command.
 
 ## <a id='install-tbs'></a> Install Tanzu Build Service
 
