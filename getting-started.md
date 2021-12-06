@@ -42,7 +42,7 @@ The Application Accelerator Plugin of Tanzu Application Platform GUI (“Create�
 
 Developers can bootstrap their applications and get started with feature development right away. Application Operators can create custom accelerators that reflect their desired architectures and configurations and enable fleets of developers to utilize them, decreasing operator concerns about whether developers are implementing their desired best practices.
 
-Application Accelerator templates are available as a quick start from [Tanzu Network](https://network.tanzu.vmware.com/products/app-accelerator). To create your own Application Accelerator, see [Creating an Accelerator](#creating-an-accelerator).
+Application Accelerator sample templates are installed by default as part of the Application Accelerator package. To create your own Application Accelerator, see [Creating an Accelerator](#creating-an-accelerator).
 
 
 ### Deploy Your Application
@@ -57,7 +57,7 @@ Follow these steps to get started with an accelerator called `Tanzu-Java-Web-App
 
     ![Tile for Tanzu Java Web App](images/getting-started-tap-gui-2.png)   
 
-3. In the “Generate Accelerators” prompt, replace the default value dev.local in the "prefix for container image registry" field with the URL to your registry. The URL must match the registry server you want the default Supply Chain to push container images to. Then click on `NEXT STEP`, verify the provided information and click on `CREATE`.
+3. In the “Generate Accelerators” prompt, replace the default value dev.local in the "prefix for container image registry" field with the registry in the form of `SERVER-NAME/REPO-NAME` and the SERVER-NAME/REPO-NAME must match what was specified for `registry` as part of the installation values for `ootb_supply_chain_basic`. Then click on `NEXT STEP`, verify the provided information and click on `CREATE`.
 
     ![Generate Accelerators prompt](images/getting-started-tap-gui-3.png)
 
@@ -65,13 +65,13 @@ Follow these steps to get started with an accelerator called `Tanzu-Java-Web-App
 
     ![Task Activity progress bar](images/getting-started-tap-gui-4.png)
 
-5. After downloading the zip file, follow your preferred procedure for uploading the Accelerator files to a Git repository.
+5. After downloading the zip file, expand it in a workspace directory and then follow your preferred procedure for uploading the generated project files to a Git repository for your new project.
 
 6. Deploy the Tanzu Java Web App accelerator by running the `tanzu apps workload create` command:
 
     ```
     tanzu apps workload create tanzu-java-web-app \
-    --git-repo <GIT_URL_TO_ACCELERATOR> \
+    --git-repo <GIT_URL_TO_PROJECT_REPO> \
     --git-branch main \
     --type web \
     --label app.kubernetes.io/part-of=tanzu-java-web-app \
@@ -79,13 +79,14 @@ Follow these steps to get started with an accelerator called `Tanzu-Java-Web-App
     ```
 
     Where:
-    - `<GIT_URL_TO_ACCELERATOR>` is the path you uploaded to in step 5.
+    - `<GIT_URL_TO_PROJECT_REPO>` is the path you uploaded to in step 5.
 
     If you bypassed step 5, and weren't able to upload your accelerator to a Git repo, you can use the public version to test with:
     ```
     tanzu apps workload create tanzu-java-web-app \
     --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
     --git-branch main \
+    --git-tag tap-beta4 \
     --type web \
     --label app.kubernetes.io/part-of=tanzu-java-web-app \
     --yes
@@ -142,6 +143,8 @@ and lets you debug your application directly on the cluster.
 
 For information about installing the pre-requisites and the Tanzu Developer Tools extension, see
 [How to Install the VSCode Tanzu Extension](vscode-extension/install.md).
+
+>**Note:** For this sample app, you must use Tilt v0.23.0 or later
 
 Open the ‘Tanzu Java Web App’ as a project within your VSCode IDE.
 
@@ -233,10 +236,10 @@ Use the following procedure to create an accelerator:
 4. To apply the k8s-resource.yml, run the following command in your terminal in the folder where you expanded the zip file:
 
     ```
-    kubectl apply -f k8s-resource.yaml
+    kubectl apply -f k8s-resource.yaml --namespace accelerator-system
     ```
 
-5. Refresh the Accelerator web UI to reveal the newly published accelerator.
+5. The Tanzu Application Platform GUI will refresh periodically and once the refresh happens the new accelerator should become available. After waiting a few minutes try clicking the “Create” button on the left-side navigation bar of Tanzu Application Platform GUI to see if it shows up.
 
 
 #### Using accelerator.yaml
