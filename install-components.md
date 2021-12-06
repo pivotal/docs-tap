@@ -1235,12 +1235,12 @@ To install Spring Boot conventions:
 
 Application Live View installs two packages for `full` and `dev` profiles:
 
-+ Application Live View Package (run.appliveview.tanzu.vmware.com): This contains Application Live View Backend and Connector components
++ Application Live View Package (run.appliveview.tanzu.vmware.com): This package contains Application Live View Backend and Connector components.
 
-+ Application Live View Conventions Package (build.appliveview.tanzu.vmware.com): This contains Application Live View Convention Service only
++ Application Live View Conventions Package (build.appliveview.tanzu.vmware.com): This package contains Application Live View Convention Service only.
 
 
-1. List version information for both the packages by running:
+1. List version information for both packages by running:
 
     ```
     tanzu package available list run.appliveview.tanzu.vmware.com --namespace tap-install
@@ -1262,7 +1262,7 @@ Application Live View installs two packages for `full` and `dev` profiles:
     ```
 
 
-1. Create a `app-live-view-values.yaml` with below details:
+1. Create a `app-live-view-values.yaml` with the following details:
 
    ```
    ---
@@ -1270,8 +1270,8 @@ Application Live View installs two packages for `full` and `dev` profiles:
    > **Note:** The `app-live-view-values.yaml` section does not have any values schema for both packages, therefore it is empty.
 
 
-   The Application Live View backend and connector are deployed in `app-live-view` namespace by default. The connector is deployed as a `DaemonSet` and there is one connector instance per node in the Kubernetes cluster. This instance observes all the apps running on that node.
-   The Application Live View Convention Server is deployed in `alv-convention` namespace by default. The convention server enhances PodIntents with metadata such as labels, annotations or application properties.
+   The Application Live View backend and connector are deployed in `app-live-view` namespace by default. The connector is deployed as a `DaemonSet`. There is one connector instance per node in the Kubernetes cluster. This instance observes all the apps running on that node.
+   The Application Live View Convention Server is deployed in the `alv-convention` namespace by default. The convention server enhances PodIntents with metadata including labels, annotations, or application properties.
 
 
 1. Install the Application Live View package by running:
@@ -1296,7 +1296,7 @@ Application Live View installs two packages for `full` and `dev` profiles:
      Added installed package 'appliveview' in namespace 'tap-install'
     ```
 
-1. Install the Application Live View Conventions package by running:
+1. Install the Application Live View conventions package by running:
 
     ```
     tanzu package install appliveview-conventions -p build.appliveview.tanzu.vmware.com -v 1.0.0-build.3 -n tap-install -f app-live-view-values.yaml
@@ -1322,7 +1322,7 @@ Application Live View installs two packages for `full` and `dev` profiles:
     see the [Application Live View documentation](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-index.html).
 
 
-1. Verify the package install for `Application Live View` package by running:
+1. Verify the `Application Live View` package installation by running:
 
     ```
     tanzu package installed get appliveview -n tap-install
