@@ -258,7 +258,7 @@ tanzu accelerator update <accelerator-name> --reconcile
 ```
 ---
 
-## Section 3: Add Testing and Security Scanning to Your Application
+## <a id='add-testing-and-scanning'></a> Section 3: Add Testing and Security Scanning to Your Application
 
 ### What is a Supply Chain?
 
@@ -535,6 +535,7 @@ that step of the supply requires execution.
 
 To connect the new supply chain to the workload,
 the workload must be updated to point at the your Tekton pipeline.
+
 1. Update the workload by running the following with the Tanzu CLI:
 
   ```
@@ -612,48 +613,55 @@ Verify that both Scan Link and Grype Scanner are installed by running:
     tanzu package installed get grype -n tap-install
     ```
 
-Follow the steps in [Supply Chain Security Tools - Scan](install-components.md#install-scst-scan) to install the required scanning components.
+    If the packages are not already installed, follow the steps in [Supply Chain Security Tools - Scan](install-components.md#install-scst-scan) to install the required scanning components.
 
-During installation of the Grype Scanner, sample ScanTemplates are installed into the `default` namespace. If the workload is to be deployed into another namespace, then these sample ScanTemplates also need to be present in the other namespace. One way to accomplish this is to install Grype Scanner again, and provide the namespace in the values file.
+    During installation of the Grype Scanner, sample ScanTemplates are installed into the `default` namespace. If the workload is to be deployed into another namespace, then these sample ScanTemplates also need to be present in the other namespace. One way to accomplish this is to install Grype Scanner again, and provide the namespace in the values file.
 
-A ScanPolicy is required and the following is to be applied into the required namespace (either add the namespace flag to the `kubectl` command or add the namespace field into the template itself):
+    A ScanPolicy is required and the following is to be applied into the required namespace (either add the namespace flag to the `kubectl` command or add the namespace field into the template itself):
 
-```
-kubectl apply -f - -o yaml << EOF
----
-apiVersion: scst-scan.apps.tanzu.vmware.com/v1alpha1
-kind: ScanPolicy
-metadata:
-  name: scan-policy
-spec:
-  regoFile: |
-    package policies
+    ```
+    kubectl apply -f - -o yaml << EOF
+    ---
+    apiVersion: scst-scan.apps.tanzu.vmware.com/v1alpha1
+    kind: ScanPolicy
+    metadata:
+      name: scan-policy
+    spec:
+      regoFile: |
+        package policies
 
-    default isCompliant = false
+        default isCompliant = false
 
-    # Accepted Values: "Critical", "High", "Medium", "Low", "Negligible", "UnknownSeverity"
-    violatingSeverities := ["Critical","High","UnknownSeverity"]
-    ignoreCVEs := []
+        # Accepted Values: "Critical", "High", "Medium", "Low", "Negligible", "UnknownSeverity"
+        violatingSeverities := ["Critical","High","UnknownSeverity"]
+        ignoreCVEs := []
 
-    contains(array, elem) = true {
-      array[_] = elem
-    } else = false { true }
+        contains(array, elem) = true {
+          array[_] = elem
+        } else = false { true }
 
-    isSafe(match) {
-      fails := contains(violatingSeverities, match.Ratings.Rating[_].Severity)
-      not fails
-    }
+        isSafe(match) {
+          fails := contains(violatingSeverities, match.Ratings.Rating[_].Severity)
+          not fails
+        }
 
-    isSafe(match) {
-      ignore := contains(ignoreCVEs, match.Id)
-      ignore
-    }
+        isSafe(match) {
+          ignore := contains(ignoreCVEs, match.Id)
+          ignore
+        }
 
-    isCompliant = isSafe(input.currentVulnerability)
-EOF
-```
+        isCompliant = isSafe(input.currentVulnerability)
+    EOF
+    ```
 
-2. (Optional, but recommended) To persist and query the vulnerability results post-scan, [install Supply Chain Security Tools - Store](install-components.md#install-scst-store). Refer to the *Prerequisite* in [Supply Chain Security Tools - Scan](install-components.md#install-scst-scan) for more details.
+2. (Optional, but recommended) To persist and query the vulnerability results post-scan, ensure that [Supply Chain Security Tools - Store](scst-store/overview.md) is installed using the follow command. TAP profiles already installs the package by default.
+
+    ```
+    tanzu package installed get scst-store -n tap-install
+    ```
+
+    If the package is not installed, follow [the installation instructions](install-components.md#install-scst-store).
+
 
 3. Update the profile to use the supply chain with testing and scanning by
    updating `tap-values.yml` (the file used to customize the profile in `tanzu
@@ -673,9 +681,9 @@ EOF
 
 4. Update the `tap` package:
 
-```
-tanzu package installed update tap -p tap.tanzu.vmware.com -v 0.3.0 --values-file tap-values.yml -n tap-install
-```
+    ```
+    tanzu package installed update tap -p tap.tanzu.vmware.com -v 0.3.0 --values-file tap-values.yml -n tap-install
+    ```
 
 
 ### Workload update
@@ -952,32 +960,32 @@ to easily reference historical scan results, and provides querying functionality
 * What packages and vulnerabilities does a particular image have?
 * What images are using a given package?
 
-The Store accepts any CycloneDX input and outputs in both human-readable and machine-readable (JSON, text, CycloneDX) formats. Querying can be performed via a CLI, or directly from the API.
+[Supply Chain Security Tools - Store](scst-store/overview.md) takes the scanning results and stores them. Users can then query for information about CVEs, images, packages, and their relationships via a CLI, or directly from the API.
 
-**Use Cases**
+**Features**
 
 * Scan source code repositories and images for known CVEs prior to deploying to a cluster
 * Identify CVEs by scanning continuously on each new code commit and/or each new image built
 * Analyze scan results against user-defined policies using Open Policy Agent
-* Produce vulnerability scan results and post them to the Metadata Store from where they can be queried
+* Produce vulnerability scan results and post them to the Supply Chain Security Tools - Store where they can later be queried
 
-To try the scan and store features in a supply chain, see [Section 3: Add Testing and Security Scanning to Your Application].
+To try the scan and store features in a supply chain, see [Section 3: Add Testing and Security Scanning to Your Application](#add-testing-and-scanning).
 
 #### Running Public Source Code and Image Scans with Policy Enforcement
 
-Follow the instructions [here](scst-scan/running-scans.md)
-to try the following two types of public scans:
+Follow the instructions in [Sample public source code and image scans with policy enforcement](scst-scan/running-scans.md)
+to perform the following two types of public scans:
 
 1. Source code scan on a public repository
-2. Image scan on a image found in a public registry
+2. Image scan on a public image
 
-Both examples include a policy to consider CVEs with Critical severity ratings as violations.
+Both examples include a policy that considers CVEs with Critical severity ratings as violations.
 
 
 #### Running Private Source Code and Image Scans with Policy Enforcement
 
-Follow the instructions [here](scst-scan/samples/private-source.md) to perform a source code scan against a private registry or
-[here](scst-scan/samples/private-image.md)
+Follow the instructions in [Sample private source scan](scst-scan/samples/private-source.md) to perform a source code scan against a private registry or
+[Sample private image scan](scst-scan/samples/private-image.md)
 to do an image scan on a private image.
 
 
@@ -985,18 +993,12 @@ to do an image scan on a private image.
 
 After completing the scans from the previous step,
 query the [Supply Chain Security Tools - Store](scst-store/overview.md) to view your vulnerability results.
-The Supply Chain Security Tools - Store is a Tanzu component that stores image, package, and vulnerability metadata about your dependencies.
+It is a Tanzu component that stores image, package, and vulnerability metadata about your dependencies.
 Use the Supply Chain Security Tools - Store CLI, called `insight`,
-to query metadata that have been submitted to the store after the scan step.
+to query metadata that have been submitted to the component after the scan step.
 
 For a complete guide on how to query the store,
 see [Querying Supply Chain Security Tools - Store](scst-store/querying_the_metadata_store.md).
-
-> **Note**: You must have the Supply Chain Security Tools - Store prerequisites in place to query
-the store successfully. For more information, see
-[Install Supply Chain Security Tools - Store](install-components.md#install-scst-store).
-
-
 
 #### Example Supply Chain including Source and Image Scans
 

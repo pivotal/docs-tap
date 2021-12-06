@@ -1,6 +1,7 @@
 # Supply Chain Security Tools for Tanzu – Store
 
-Supply Chain Security Tools - Store saves software bills of materials (SBoMs) to a database and allows you to query for image, source, package, and vulnerability relationships.  It integrates with [Supply Chain Security Tools - Scan](../scst-scan/overview.md) to automatically store the resulting source and image vulnerability reports.
+Supply Chain Security Tools - Store saves software bills of materials (SBoMs) to a database and allows you to query for image, source, package, and vulnerability relationships.  It integrates with [Supply Chain Security Tools - Scan](../scst-scan/overview.md) to automatically store the resulting source and image vulnerability reports. It accepts any CycloneDX input and outputs in both human-readable and machine-readable (JSON, text, CycloneDX) formats.
+
 
 The following is a four-minute demo scanning an image for CVEs and querying the database for CVEs and dependencies.
 
@@ -11,9 +12,9 @@ alt="A demonstration of the features. First ingesting a bill of materials file. 
 
 Supply Chain Security Tools - Store has three components:
 
-* Postgres database
 * [API](api.md)
 * [CLI](install_cli.md) (`insight`)
+* Postgres database
 
 ## Install
 
