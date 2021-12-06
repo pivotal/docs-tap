@@ -217,6 +217,29 @@ namespace and add the secret names from step 1 to the `imagePullSecrets` section
 
     Add additional secrets to `imagePullSecrets` as required.
 
+## Providing Image Name Patterns
+
+The container image names can be matched exactly or using a wildcard (*)
+that matches any number of characters. Here are some useful name pattern
+examples:
+
+|Description|Pattern|Matches Image Name|
+|----|----|----|
+Exact Match|registry.example.org/myproject/my-image:mytag|registry.example.org/myproject/my-image:mytag|
+Any Tag|registry.example.org/myproject/my-image|registry.example.org/myproject/my-image:mytag<br>registry.example.org/myproject/my-image:other-tag|
+Any Tag|registry.example.org/myproject/my-image:*|registry.example.org/myproject/my-image:mytag<br>registry.example.org/myproject/my-image:other-tag|
+Any Image and Tag|registry.example.org/myproject/*|registry.example.org/myproject/my-image:mytag<br>registry.example.org/myproject/anotherimage:anothertag|
+Any Project|registry.example.org/*/my-image:mytag|registry.example.org/myproject/my-image:mytag<br>registry.example.org/anotherproject/my-image:mytag|
+Any Project and Tag|registry.example.org/*/my-image|registry.example.org/myproject/my-image:mytag<br>registry.example.org/myproject/my-image:anothertag|
+Registry|registry.example.org/*|registry.example.org/myproject/my-image:mytag<br>registry.example.org/anotherproject/anotherimage:anothertag|
+Any Subdomain|\*.example.org/\*|my-registry.example.org/myproject/my-image:mytag<br>registry.example.org/anotherproject/anotherimage:anothertag|
+Anything|\*|my-registry.example.org/myproject/my-image:mytag<br>registry.example.org/anotherproject/anotherimage:anothertag<br>registry.io/project/image:tag|
+
+> **Note**: Providing a name pattern without specifying a tag acts as a
+> wildcard for the tag even if other wildcards are specified. The pattern `registry.example.org/myproject/my-image` is the same
+> as `registry.example.org/myproject/my-image:*`. In the same way,
+> `*.example.org/project/image` is equivalent to `*.example.org/project/image:*`
+
 
 ## Verify your configuration
 
