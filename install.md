@@ -590,21 +590,21 @@ with your relevant values. Run:
 
 1. (Optional) The default database mechanism for Tanzu Application Platform GUI is an in-memory database that is recommended for testing and development only. You can delete or comment out this section of the configuration. However, when the Tanzu Application Platform GUI server pod gets re-created, you'll lose all user preferences and any manually registered entities. For production or general use-cases, VMware recommends using a PostgreSQL database. To use a PostgreSQL database, run the following:
 
-```
-    backend:
-      baseUrl: http://tap-gui.<DOMAIN_NAME>-IP:7000
-      cors:
-          origin: http://tap-gui.<DOMAIN_NAME>-IP:7000
-    # Existing tap-values.yml above
-      database: #External database strongly recommended for production use
-        client: pg
-          connection:
-            host: <PG_SQL_HOSTNAME>
-            port: 5432
-            user: <PG_SQL_USERNAME>
-            password: <PG_SQL_PASSWORD>
-            ssl: {rejectUnauthorized: false} #Set to true if using SSL
-```
+  ```
+      backend:
+        baseUrl: http://tap-gui.<DOMAIN_NAME>-IP:7000
+        cors:
+            origin: http://tap-gui.<DOMAIN_NAME>-IP:7000
+      # Existing tap-values.yml above
+        database: #External database strongly recommended for production use
+          client: pg
+            connection:
+              host: <PG_SQL_HOSTNAME>
+              port: 5432
+              user: <PG_SQL_USERNAME>
+              password: <PG_SQL_PASSWORD>
+              ssl: {rejectUnauthorized: false} #Set to true if using SSL
+  ```
 
 Where:
 
