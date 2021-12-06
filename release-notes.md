@@ -34,6 +34,7 @@ The following components have been updated in Tanzu Application Platform v0.4.0:
 
 - Supply Chain Security Tools
   - [Scan v1.0.0](scst-scan/overview.md)
+- [Tanzu Application Platform GUI v1.0.0-rc.72](tap-gui/about.md)
 
 ### Known issues
 
@@ -100,6 +101,7 @@ The following components have been updated in Tanzu Application Platform v0.3.0:
 - [Application Accelerator for VMware Tanzu v0.4.0](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.4/acc-docs/GUID-index.html)
 - [Application Live View for VMware Tanzu v0.3.0](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.3/docs/GUID-index.html)
 - [Tanzu Developer Tools for Visual Studio Code v0.3.0](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.3/tap-0-3/GUID-vscode-extension-about.html)
+
 
 ### Known issues
 

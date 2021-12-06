@@ -365,57 +365,57 @@ of Tanzu Application Platform.
 ### Full Profile
 
 ```
-    profile: full
-    ceip_policy_disclosed: true # Expects a true or false boolean value
-    buildservice:
-      kp_default_repository: "<KP-DEFAULT-REPO>"
-      kp_default_repository_username: "<KP-DEFAULT-REPO-USERNAME>"
-      kp_default_repository_password: "<KP-DEFAULT-REPO-PASSWORD>"
-      tanzunet_username: "<TANZUNET-USERNAME>"
-      tanzunet_password: "<TANZUNET-PASSWORD>"
+profile: full
+ceip_policy_disclosed: true # Expects a true or false boolean value
+buildservice:
+  kp_default_repository: "<KP-DEFAULT-REPO>"
+  kp_default_repository_username: "<KP-DEFAULT-REPO-USERNAME>"
+  kp_default_repository_password: "<KP-DEFAULT-REPO-PASSWORD>"
+  tanzunet_username: "<TANZUNET-USERNAME>"
+  tanzunet_password: "<TANZUNET-PASSWORD>"
 
-    supply_chain: basic
+supply_chain: basic
 
-    ootb_supply_chain_basic:
-      registry:
-        server: "<SERVER-NAME>"
-        repository: "<REPO-NAME>"
+ootb_supply_chain_basic:
+  registry:
+    server: "<SERVER-NAME>"
+    repository: "<REPO-NAME>"
 
-    learningcenter:
-      ingressDomain: "<DOMAIN-NAME>"
+learningcenter:
+  ingressDomain: "<DOMAIN-NAME>"
 
-    tap_gui:
-      service_type: LoadBalancer # NodePort for distributions that don't support LoadBalancer
+tap_gui:
+  service_type: LoadBalancer # NodePort for distributions that don't support LoadBalancer
 
-    metadata_store:
-      app_service_type: LoadBalancer # (optional) Defaults to LoadBalancer. Change to NodePort for distributions that don't support LoadBalancer
+metadata_store:
+  app_service_type: LoadBalancer # (optional) Defaults to LoadBalancer. Change to NodePort for distributions that don't support LoadBalancer
 ```
 
 ### Dev Profile
 
 ```
-    profile: dev
-    ceip_policy_disclosed: true # Expects a true or false boolean value
+profile: dev
+ceip_policy_disclosed: true # Expects a true or false boolean value
 
-    buildservice:
-      kp_default_repository: "<KP-DEFAULT-REPO>"
-      kp_default_repository_username: "<KP-DEFAULT-REPO-USERNAME>"
-      kp_default_repository_password: "<KP-DEFAULT-REPO-PASSWORD>"
-      tanzunet_username: "<TANZUNET-USERNAME>"
-      tanzunet_password: "<TANZUNET-PASSWORD>"
+buildservice:
+  kp_default_repository: "<KP-DEFAULT-REPO>"
+  kp_default_repository_username: "<KP-DEFAULT-REPO-USERNAME>"
+  kp_default_repository_password: "<KP-DEFAULT-REPO-PASSWORD>"
+  tanzunet_username: "<TANZUNET-USERNAME>"
+  tanzunet_password: "<TANZUNET-PASSWORD>"
 
-    supply_chain: basic
+supply_chain: basic
 
-    ootb_supply_chain_basic:
-      registry:
-        server: "<SERVER-NAME>"
-        repository: "<REPO-NAME>"
+ootb_supply_chain_basic:
+  registry:
+    server: "<SERVER-NAME>"
+    repository: "<REPO-NAME>"
 
-    tap_gui:
-      service_type: LoadBalancer # NodePort for distributions that don't support LoadBalancer
+tap_gui:
+  service_type: LoadBalancer # NodePort for distributions that don't support LoadBalancer
 
-    metadata_store:
-      app_service_type: LoadBalancer # (optional) Defaults to LoadBalancer. Change to NodePort for distributions that don't support LoadBalancer
+metadata_store:
+  app_service_type: LoadBalancer # (optional) Defaults to LoadBalancer. Change to NodePort for distributions that don't support LoadBalancer
 ```
 Where:
 
