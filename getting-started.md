@@ -71,15 +71,14 @@ Follow these steps to get started with an accelerator called `Tanzu-Java-Web-App
 
     ```
     tanzu apps workload create tanzu-java-web-app \
-    --git-repo <GIT_URL_TO_PROJECT_REPO> \
+    --git-repo GIT-URL-TO-PROJECT-REPO \
     --git-branch main \
     --type web \
     --label app.kubernetes.io/part-of=tanzu-java-web-app \
     --yes
     ```
 
-    Where:
-    - `<GIT_URL_TO_PROJECT_REPO>` is the path you uploaded to in step 5.
+    Where `GIT-URL-TO-PROJECT-REPO` is the path you uploaded to in step 5.
 
     If you bypassed step 5, and weren't able to upload your accelerator to a Git repo, you can use the public version to test with:
     ```
