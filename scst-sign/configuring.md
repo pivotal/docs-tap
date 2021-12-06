@@ -15,7 +15,8 @@ keys that were used to sign the images.
 * `spec.verification.images[].namePattern`: image name patterns for which the
 policy is enforced. Each image name pattern is mapped to the required public
 keys and, optionally, a secret that grants authentication to the private
-registry where images and signatures that match a given pattern are stored.
+registry where images and signatures that match a given pattern are stored. The
+patterns specified here are evaluated from top to bottom.
 
 The following is an example `ClusterImagePolicy`:
 
@@ -61,6 +62,14 @@ the cluster with the following warning:
 ```
 Warning: clusterimagepolicies.signing.run.tanzu.vmware.com "image-policy" not found. Image policy enforcement was not applied.
 ```
+
+The patterns are evaluated using the "any of" operator to admit container
+images. Given any pod, the image policy webhook will iterate over its list of
+containers and init containers. Creation of a pod will be allowed if, for
+each container image that matches `spec.verification.images[].namePattern`,
+there is at least one key specified in `spec.verification.images[].keys[]`
+which can verify the signature found for the container image.
+
 >
 For a simpler installation process in a non-production environment,
 use the manifest below to create the `ClusterImagePolicy`
