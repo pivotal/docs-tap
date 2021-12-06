@@ -33,9 +33,9 @@ For information, see [Installing Part I: Prerequisites, EULA, and CLI](install-g
     - [Procedure to install the Self-Guided Tour Training Portal and Workshop](#procedure-to-install-the-self-guided-tour-training-portal-and-workshop)
   - [<a id='install-service-bindings'></a> Install Service Bindings](#-install-service-bindings)
   - [<a id='install-scst-store'></a> Install Supply Chain Security Tools - Store](#-install-supply-chain-security-tools---store)
-  - [<a id='install-scst-sign'></a> Install Supply Chain Security Tools - Sign](#-install-supply-chain-security-tools---sign)
-    - [Prerequisites](#prerequisites-2)
-    - [Installation](#installation)
+  - [Install Supply Chain Security Tools - Sign](#install-scst-sign)
+    - [Prerequisites](#scst-sign-prerequisites)
+    - [Installation](#scst-sign-installation)
   - [<a id='install-scst-scan'></a> Install Supply Chain Security Tools - Scan](#-install-supply-chain-security-tools---scan)
   - [<a id='install-api-portal'></a> Install API portal](#-install-api-portal)
   - [<a id='install-services-toolkit'></a> Install Services Toolkit](#-install-services-toolkit)
@@ -1477,7 +1477,7 @@ with your relevant values. The meanings of some placeholders are explained in th
       #        accessKeyId: '<S3-ACCESS-KEY>'
       #        secretAccessKey: '<S3-SECRET-KEY>'
       #      region: '<S3-REGION>'
-      #      s3ForcePathStyle: false # Set value to true if using local S3 solution (Minio)  
+      #      s3ForcePathStyle: false # Set value to true if using local S3 solution (Minio)
 
       # auth: # Only needed if you want to enable OIDC login integration, otherwise only Guest mode is enabled
       #  environment: development
@@ -1491,7 +1491,7 @@ with your relevant values. The meanings of some placeholders are explained in th
       #        clientSecret: <AUTH-OIDC-CLIENT-SECRET>
       #        tokenSignedResponseAlg: <AUTH-OIDC-TOKEN-SIGNED-RESPONSE-ALG> # default='RS256'
       #        scope: <AUTH-OIDC-SCOPE> # default='openid profile email'
-      #        prompt: <TYPE> # default=none (allowed values: auto, none, consent, login)      
+      #        prompt: <TYPE> # default=none (allowed values: auto, none, consent, login)
     ```
     Where:
 
@@ -1929,7 +1929,7 @@ To install Supply Chain Security Tools - Store:
 > see [Supply Chain Security Tools - Sign Known Issues](scst-sign/known_issues.md#sign-known-issues-pods-not-admitted)
 > for recovery steps.
 
-### Prerequisites
+### <a id='scst-sign-prerequisites'></a> Prerequisites
 
 During configuration for this component we will ask you to provide a cosign
 public key to use to validate signed images. We will provide an example cosign
@@ -1938,7 +1938,7 @@ registry. If you wish to provide your own key and images you can follow the
 [cosign quick start guide](https://github.com/sigstore/cosign#quick-start) to
 generate your own keys and sign an image.
 
-### Installation
+### <a id='scst-sign-installation'></a> Installation
 
 To install Supply Chain Security Tools - Sign:
 
@@ -2444,7 +2444,7 @@ kapp deploy --yes -a tekton \
 ```
 
 For more details on Tekton, see the [Tekton documentation](https://tekton.dev/docs/) and the
-[github repository](https://github.com/tektoncd/pipeline).  
+[github repository](https://github.com/tektoncd/pipeline).
 
 You can also view the Tekton [tutorial](https://github.com/tektoncd/pipeline/blob/main/docs/tutorial.md) and
 [getting started guide](https://tekton.dev/docs/getting-started/).
