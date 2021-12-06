@@ -614,9 +614,9 @@ Verify that both Scan Link and Grype Scanner are installed by running:
 
     If the packages are not already installed, follow the steps in [Supply Chain Security Tools - Scan](install-components.md#install-scst-scan) to install the required scanning components.
 
-    During installation of the Grype Scanner, sample ScanTemplates are installed into the `default` namespace. If the workload is to be deployed into another namespace, then these sample ScanTemplates also need to be present in the other namespace. One way to accomplish this is to install Grype Scanner again, and provide the namespace in the values file.
+    During installation of the Grype Scanner, sample ScanTemplates are installed into the `default` namespace. If the workload is deployed into another namespace, these sample ScanTemplates also need to be present in the other namespace. One way to accomplish this is to install Grype Scanner again, and provide the namespace in the values file.
 
-    A ScanPolicy is required and the following is to be applied into the required namespace (either add the namespace flag to the `kubectl` command or add the namespace field into the template itself):
+    A ScanPolicy is required and the following code must be included in the required namespace. You can either add the namespace flag to the `kubectl` command or add the namespace field to the template itself. Run:
 
     ```
     kubectl apply -f - -o yaml << EOF
@@ -653,7 +653,7 @@ Verify that both Scan Link and Grype Scanner are installed by running:
     EOF
     ```
 
-2. (Optional, but recommended) To persist and query the vulnerability results post-scan, ensure that [Supply Chain Security Tools - Store](scst-store/overview.md) is installed using the follow command. TAP profiles already installs the package by default.
+2. (Optional) To persist and query the vulnerability results post-scan, ensure that [Supply Chain Security Tools - Store](scst-store/overview.md) is installed using the following command. Tanzu Application Platform profiles already install the package by default.
 
     ```
     tanzu package installed get scst-store -n tap-install
@@ -959,7 +959,7 @@ to easily reference historical scan results, and provides querying functionality
 * What packages and vulnerabilities does a particular image have?
 * What images are using a given package?
 
-[Supply Chain Security Tools - Store](scst-store/overview.md) takes the scanning results and stores them. Users can then query for information about CVEs, images, packages, and their relationships via a CLI, or directly from the API.
+[Supply Chain Security Tools - Store](scst-store/overview.md) takes the scanning results and stores them. Users can query for information about CVEs, images, packages, and their relationships through the CLI, or directly from the API.
 
 **Features**
 
@@ -968,7 +968,7 @@ to easily reference historical scan results, and provides querying functionality
 * Analyze scan results against user-defined policies using Open Policy Agent
 * Produce vulnerability scan results and post them to the Supply Chain Security Tools - Store where they can later be queried
 
-To try the scan and store features in a supply chain, see [Section 3: Add Testing and Security Scanning to Your Application](#add-testing-and-scanning).
+To try the scan and store features in a supply chain, see [Section 3: Add testing and security scanning to your application](#add-testing-and-scanning).
 
 #### Running Public Source Code and Image Scans with Policy Enforcement
 
