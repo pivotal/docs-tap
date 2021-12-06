@@ -555,7 +555,7 @@ To install Tanzu Application Platform GUI:
    kubectl get svc -n tap-gui
    ```
 
-2. Add the following section to your `tap-values.yml` by using the following template. Replace all `<PLACEHOLDERS>`
+1. Add the following section to your `tap-values.yml` by using the following template. Replace all `<PLACEHOLDERS>`
 with your relevant values. Run:
 
     ```
@@ -612,7 +612,7 @@ with your relevant values. Run:
     - `PG_SQL_USERNAME` is the username of your PostgreSQL database.
     - `PG_SQL_PASSWORD` is the password of your PostgreSQL database.
 
-4. Update the package profile by running:
+1. Update the package profile by running:
 
     ```
     tanzu package installed update tap \
@@ -636,12 +636,12 @@ with your relevant values. Run:
     Updated package install 'tap' in namespace 'tap-install'
     ```
 
-5. To access the Tanzu Application Platform GUI, use the `baseURL` location you specified above. This consists of the `EXTERNAL-IP` with the default port of 7000. Run:
+1. To access the Tanzu Application Platform GUI, use the `baseURL` location you specified above. This consists of the `EXTERNAL-IP` with the default port of 7000. Run:
     ```
     http://EXTERNAL-IP:7000
     ```
 
-6. If you have any issues, try re-creating the Tanzu Application Platform Pod by running:
+1. If you have any issues, try re-creating the Tanzu Application Platform Pod by running:
 
     ```
     kubectl delete pod -l app=backstage -n tap-gui
