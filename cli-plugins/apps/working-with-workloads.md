@@ -12,7 +12,7 @@ The following prerequisites are required to use workloads with Tanzu Application
 + Tanzu Application Platform components are installed on a Kubernetes cluster. See [Installing Tanzu Application Platform](../../install-intro.md).
 + Your kubeconfig context is set to the prepared cluster `kubectl config use-context CONTEXT_NAME`.
 + Tanzu CLI is installed. See [Install the Tanzu CLI](../../install-general.md#cli-and-plugin).  
-  + The apps plugin is installed. See the [Apps Plugin Overview](overview-installation.md#Installation).
++ The apps plugin is installed. See the [Apps Plugin Overview](overview-installation.md#Installation).
 
 ### Getting started with an example workload
 
@@ -28,10 +28,10 @@ Use the following procedure to get started with an example workload.
 
     Where:
 
-     + `pet-clinic` is the name that will be given to the workload.
-     + `--git-repo` is the location of the code to build the workload from.
-     + `--git-branch` (optional) specifies which branch in the repo to pull the code from.
-     + `--type` is used to distinguish the workload type.
+    + `pet-clinic` is the name that will be given to the workload.
+    + `--git-repo` is the location of the code to build the workload from.
+    + `--git-branch` (optional) specifies which branch in the repo to pull the code from.
+    + `--type` is used to distinguish the workload type.
 
     The options available for specifying the workload are found in the command reference for [`workload create`](command-reference/tanzu_apps_workload_create.md) or by running `tanzu apps workload create --help`.
 
@@ -48,9 +48,9 @@ Once the workload is created, you can tail the workload to view the build and ru
 
     Where:
 
-     + `pet-clinic` is the name you gave the workload.
-     + `--since` (optional) is how long ago to start streaming logs from. The default is 1 second.
-     + `--timestamp` (optional) prints the timestamp with each log line.
+    + `pet-clinic` is the name you gave the workload.
+    + `--since` (optional) is how long ago to start streaming logs from. The default is 1 second.
+    + `--timestamp` (optional) prints the timestamp with each log line.
 
 ### <a id='workload-get'></a> Get the workload status and details
 
@@ -65,7 +65,7 @@ You can view workload details at anytime in the process. Some details, such as t
 
     Where:
 
-     + `pet-clinic` is the name of the workload you would like details from.
+    + `pet-clinic` is the name of the workload you would like details from.
 
 2. See the running workload.
 When the workload is created, `tanzu apps workload get` includes the URL for the running workload.

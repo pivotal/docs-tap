@@ -342,7 +342,8 @@ To install the Tanzu CLI on a Windows operating system:
 
 To perform a clean installation of the Tanzu CLI plugins:
 
-1. Disable the **context-aware CLI for plugins** feature so the downloaded plugins are installed without errors:
+1. Disable the **context-aware CLI for plugins** feature so that the downloaded plugins
+   can be installed without errors:
 
    ```
    tanzu config set features.global.context-aware-cli-for-plugins false
@@ -391,7 +392,10 @@ You can now proceed with installing Tanzu Application Platform. For more informa
 
 ## <a id='udpate-previous-tap-tanzu-cli'></a>Instructions for updating Tanzu CLI that was installed for a previous release of Tanzu Application Platform
 
-  1. If not already created, create a directory named `tanzu`:
+If you have an earlier version of the Tanzu CLI on your local machine,
+then follow this procedure instead of the preceeding clean install procedure:
+
+  1. If a directory called `tanzu` does not exist, create one:
 
      ```
      mkdir $HOME/tanzu
@@ -451,13 +455,12 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
       ```
 
   13. If the version returned is `v0.10.0` or later,
-      disable the **context-aware CLI for plugins** feature so the locally downloaded CLI core
+      disable the **context-aware CLI for plugins** feature so the downloaded CLI core
       and plugins can be installed without errors:
 
       ```
       tanzu config set features.global.context-aware-cli-for-plugins false
       ```
-      If the version returned is earlier than `v0.10.0`, skip this step.
 
   14. Update the core CLI:
 
@@ -476,12 +479,12 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
 
 
   16. If the version returned in step 12 above is earlier than `v0.10.0`,
-      disable the **context-aware CLI for plugins** feature so the locally downloaded plugins can be installed without errors:
+      disable the **context-aware CLI for plugins** feature so that the downloaded plugins
+      can be installed without errors:
 
       ```
       tanzu config set features.global.context-aware-cli-for-plugins false
       ```
-      If the version returned was `v0.10.0` or later, skip this step.
  
   17. Install new plugin versions:
       ```
@@ -510,7 +513,8 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
       services                            Discover Service Types and manage Service Instances (ALPHA)                    v0.1.0   installed
       ```
 
-  19. You may now proceed with installing Tanzu Application Platform via **[Installing Part II: Profiles](install.md)**.
+You can now install Tanzu Application Platform.
+See **[Installing Part II: Profiles](install.md)**.
 
 
 ## <a id='udpate-tkg-tce-tanzu-cli'></a>Instructions for updating Tanzu CLI previously installed for Tanzu Kubernetes Grid or Tanzu Community Edition
@@ -578,7 +582,8 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
       ```
 
   11. If the version returned is `v0.11.0` or later,
-      disable the **context-aware CLI for plugins** feature so the locally downloaded plugins can be installed without errors:
+      disable the **context-aware CLI for plugins** feature so that the downloaded plugins
+      can be installed without errors:
 
       ```
       tanzu config set features.global.context-aware-cli-for-plugins false
@@ -633,6 +638,8 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
       services                            Discover Service Types and manage Service Instances (ALPHA)                    v0.1.0   installed
       ```
 
-  17. You may now proceed with installing Tanzu Application Platform on Tanzu Kubernetes Grid or Tanzu Community Edition. For more information, see:
-    * **[Installing Tanzu Application Platform on a Tanzu Community Edition v0.9.1 cluster](install-tce.html#install-tap)**
-    * **[Installing Tanzu Application Platform on a Tanzu Kubernetes Grid v1.4 cluster](install-tkg.html#install-tap)**
+You can now install Tanzu Application Platform on Tanzu Kubernetes Grid or Tanzu Community Edition.
+For more information, see:
+
+* [Installing Tanzu Application Platform on a Tanzu Community Edition v0.9.1 cluster](install-tce.html#install-tap)
+* [Installing Tanzu Application Platform on a Tanzu Kubernetes Grid v1.4 cluster](install-tkg.html#install-tap)

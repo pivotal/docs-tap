@@ -33,9 +33,9 @@ For information, see [Installing Part I: Prerequisites, EULA, and CLI](install-g
     - [Procedure to install the Self-Guided Tour Training Portal and Workshop](#procedure-to-install-the-self-guided-tour-training-portal-and-workshop)
   - [<a id='install-service-bindings'></a> Install Service Bindings](#-install-service-bindings)
   - [<a id='install-scst-store'></a> Install Supply Chain Security Tools - Store](#-install-supply-chain-security-tools---store)
-  - [<a id='install-scst-sign'></a> Install Supply Chain Security Tools - Sign](#-install-supply-chain-security-tools---sign)
-    - [Prerequisites](#prerequisites-2)
-    - [Installation](#installation)
+  - [Install Supply Chain Security Tools - Sign](#install-scst-sign)
+    - [Prerequisites](#scst-sign-prerequisites)
+    - [Installation](#scst-sign-installation)
   - [<a id='install-scst-scan'></a> Install Supply Chain Security Tools - Scan](#-install-supply-chain-security-tools---scan)
   - [<a id='install-api-portal'></a> Install API portal](#-install-api-portal)
   - [<a id='install-services-toolkit'></a> Install Services Toolkit](#-install-services-toolkit)
@@ -592,13 +592,13 @@ To install Application Accelerator:
     ```
     STATUS should be `Reconcile succeeded`.
 
-1. To determine the IP address for the Application Accelerator API when the `server.service_type` was set to `LoadBalancer`, run the following command:
+1. To determine the IP address for the Application Accelerator API when the `server.service_type` is set to `LoadBalancer`, run the following command:
 
     ```
     kubectl get service -n accelerator-system
     ```
 
-    This should list an external IP address to be used with the `--server-url` flag for the Tanzu CLI Accelerator plugin's generate command.
+    This lists an external IP address for use with the `--server-url` Tanzu CLI flag for the Accelerator plugin `generate` command.
 
 ## <a id='install-tbs'></a> Install Tanzu Build Service
 
@@ -1235,12 +1235,12 @@ To install Spring Boot conventions:
 
 Application Live View installs two packages for `full` and `dev` profiles:
 
-+ Application Live View Package (run.appliveview.tanzu.vmware.com): This contains Application Live View Backend and Connector components
++ Application Live View Package (run.appliveview.tanzu.vmware.com): This package contains Application Live View Backend and Connector components.
 
-+ Application Live View Conventions Package (build.appliveview.tanzu.vmware.com): This contains Application Live View Convention Service only
++ Application Live View Conventions Package (build.appliveview.tanzu.vmware.com): This package contains Application Live View Convention Service only.
 
 
-1. List version information for both the packages by running:
+1. List version information for both packages by running:
 
     ```
     tanzu package available list run.appliveview.tanzu.vmware.com --namespace tap-install
@@ -1262,7 +1262,7 @@ Application Live View installs two packages for `full` and `dev` profiles:
     ```
 
 
-1. Create a `app-live-view-values.yaml` with below details:
+1. Create a `app-live-view-values.yaml` with the following details:
 
    ```
    ---
@@ -1270,8 +1270,8 @@ Application Live View installs two packages for `full` and `dev` profiles:
    > **Note:** The `app-live-view-values.yaml` section does not have any values schema for both packages, therefore it is empty.
 
 
-   The Application Live View backend and connector are deployed in `app-live-view` namespace by default. The connector is deployed as a `DaemonSet` and there is one connector instance per node in the Kubernetes cluster. This instance observes all the apps running on that node.
-   The Application Live View Convention Server is deployed in `alv-convention` namespace by default. The convention server enhances PodIntents with metadata such as labels, annotations or application properties.
+   The Application Live View backend and connector are deployed in `app-live-view` namespace by default. The connector is deployed as a `DaemonSet`. There is one connector instance per node in the Kubernetes cluster. This instance observes all the apps running on that node.
+   The Application Live View Convention Server is deployed in the `alv-convention` namespace by default. The convention server enhances PodIntents with metadata including labels, annotations, or application properties.
 
 
 1. Install the Application Live View package by running:
@@ -1296,7 +1296,7 @@ Application Live View installs two packages for `full` and `dev` profiles:
      Added installed package 'appliveview' in namespace 'tap-install'
     ```
 
-1. Install the Application Live View Conventions package by running:
+1. Install the Application Live View conventions package by running:
 
     ```
     tanzu package install appliveview-conventions -p build.appliveview.tanzu.vmware.com -v 1.0.0-build.3 -n tap-install -f app-live-view-values.yaml
@@ -1322,7 +1322,7 @@ Application Live View installs two packages for `full` and `dev` profiles:
     see the [Application Live View documentation](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-index.html).
 
 
-1. Verify the package install for `Application Live View` package by running:
+1. Verify the `Application Live View` package installation by running:
 
     ```
     tanzu package installed get appliveview -n tap-install
@@ -1477,7 +1477,7 @@ with your relevant values. The meanings of some placeholders are explained in th
       #        accessKeyId: '<S3-ACCESS-KEY>'
       #        secretAccessKey: '<S3-SECRET-KEY>'
       #      region: '<S3-REGION>'
-      #      s3ForcePathStyle: false # Set value to true if using local S3 solution (Minio)  
+      #      s3ForcePathStyle: false # Set value to true if using local S3 solution (Minio)
 
       # auth: # Only needed if you want to enable OIDC login integration, otherwise only Guest mode is enabled
       #  environment: development
@@ -1491,7 +1491,7 @@ with your relevant values. The meanings of some placeholders are explained in th
       #        clientSecret: <AUTH-OIDC-CLIENT-SECRET>
       #        tokenSignedResponseAlg: <AUTH-OIDC-TOKEN-SIGNED-RESPONSE-ALG> # default='RS256'
       #        scope: <AUTH-OIDC-SCOPE> # default='openid profile email'
-      #        prompt: <TYPE> # default=none (allowed values: auto, none, consent, login)      
+      #        prompt: <TYPE> # default=none (allowed values: auto, none, consent, login)
     ```
     Where:
 
@@ -1929,7 +1929,7 @@ To install Supply Chain Security Tools - Store:
 > see [Supply Chain Security Tools - Sign Known Issues](scst-sign/known_issues.md#sign-known-issues-pods-not-admitted)
 > for recovery steps.
 
-### Prerequisites
+### <a id='scst-sign-prerequisites'></a> Prerequisites
 
 During configuration for this component we will ask you to provide a cosign
 public key to use to validate signed images. We will provide an example cosign
@@ -1938,7 +1938,7 @@ registry. If you wish to provide your own key and images you can follow the
 [cosign quick start guide](https://github.com/sigstore/cosign#quick-start) to
 generate your own keys and sign an image.
 
-### Installation
+### <a id='scst-sign-installation'></a> Installation
 
 To install Supply Chain Security Tools - Sign:
 
@@ -2452,7 +2452,7 @@ kapp deploy --yes -a tekton \
 ```
 
 For more details on Tekton, see the [Tekton documentation](https://tekton.dev/docs/) and the
-[github repository](https://github.com/tektoncd/pipeline).  
+[github repository](https://github.com/tektoncd/pipeline).
 
 You can also view the Tekton [tutorial](https://github.com/tektoncd/pipeline/blob/main/docs/tutorial.md) and
 [getting started guide](https://tekton.dev/docs/getting-started/).

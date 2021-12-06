@@ -85,7 +85,7 @@ Convention output:
 
 ## Spring boot graceful shutdown convention
 
-  In the `bom` file's metadata, under `dependencies`, there is a `dependency` with one of these names:
+  In the `bom` file's metadata, under `dependencies`, if there are any of the following `dependencies`, the convention is applied to the `PodTemplateSpec` object:
 
   - spring-boot-starter-tomcat
   - spring-boot-starter-jetty
@@ -161,7 +161,7 @@ Convention output:
 
 ## Spring boot web convention
 
-  In the `bom` file's metadata, under `dependencies`, there is a `dependency` with these names:
+  In the `bom` file's metadata, under `dependencies`, if there are any of the following `dependencies`, the convention is applied to the `PodTemplateSpec` object:
 
   + spring-boot
   + spring-boot-web

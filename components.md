@@ -26,6 +26,8 @@ into this Tanzu Application Platform documentation site.
 
 + [Supply Chain Security Tools - Scan](scst-scan/overview.md)
 
++ [Supply Chain Security Tools - Sign](scst-sign/overview.md)
+
 + [Supply Chain Security Tools - Store](scst-store/overview.md)
 
 + [Tanzu Developer Tools for Visual Studio Code](vscode-extension/about.md)
