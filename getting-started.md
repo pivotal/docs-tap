@@ -57,7 +57,7 @@ Follow these steps to get started with an accelerator called `Tanzu-Java-Web-App
 
     ![Tile for Tanzu Java Web App](images/getting-started-tap-gui-2.png)   
 
-3. In the “Generate Accelerators” prompt, replace the default value dev.local in the "prefix for container image registry" field with the registry in the form of `SERVER-NAME/REPO-NAME` and the SERVER-NAME/REPO-NAME must match what was specified for `registry` as part of the installation values for `ootb_supply_chain_basic`. Then click on `NEXT STEP`, verify the provided information and click on `CREATE`.
+3. In the **Generate Accelerators** prompt, replace the default value `dev.local` in the **prefix for container image registry** field with the registry in the form of `SERVER-NAME/REPO-NAME`. The `SERVER-NAME/REPO-NAME` must match what was specified for `registry` as part of the installation values for `ootb_supply_chain_basic`. Click `NEXT STEP`, verify the provided information, and click `CREATE`.
 
     ![Generate Accelerators prompt](images/getting-started-tap-gui-3.png)
 
@@ -65,7 +65,7 @@ Follow these steps to get started with an accelerator called `Tanzu-Java-Web-App
 
     ![Task Activity progress bar](images/getting-started-tap-gui-4.png)
 
-5. After downloading the zip file, expand it in a workspace directory and then follow your preferred procedure for uploading the generated project files to a Git repository for your new project.
+5. After downloading the zip file, expand it in a workspace directory and follow your preferred procedure for uploading the generated project files to a Git repository for your new project.
 
 6. Deploy the Tanzu Java Web App accelerator by running the `tanzu apps workload create` command:
 
@@ -238,7 +238,7 @@ Use the following procedure to create an accelerator:
     kubectl apply -f k8s-resource.yaml --namespace accelerator-system
     ```
 
-5. The Tanzu Application Platform GUI will refresh periodically and once the refresh happens the new accelerator should become available. After waiting a few minutes try clicking the “Create” button on the left-side navigation bar of Tanzu Application Platform GUI to see if it shows up.
+5. The Tanzu Application Platform GUI refreshes periodically. Once the GUI refreshes, the new accelerator becomes available. After waiting a few minutes, click the **Create** button on the left-side navigation bar of the Tanzu Application Platform GUI to see if the accelerator appears.
 
 
 #### Using accelerator.yaml
