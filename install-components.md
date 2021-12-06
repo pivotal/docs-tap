@@ -1805,9 +1805,9 @@ Use the following procedure to install Service Bindings:
 
 ## <a id='install-scst-store'></a> Install Supply Chain Security Tools - Store
 
-**Prerequisite**: `cert-manager` installed on the cluster. If you [installed TAP profiles](install.md), then `cert-manager` should already be installed. If not, then follow the instructions in [Install cert-manager](#install-prereqs).
+**Prerequisite**: `cert-manager` installed on the cluster. If you [installed TAP profiles](install.md), then `cert-manager` is already installed. If not, then follow the instructions in [Install cert-manager](#install-prereqs).
 
-Before installing, see [Deployment Details and Configuration](scst-store/deployment_details.md) to review what resources will be deployed. Read the [overview](scst-store/overview.md) for more information.
+Before installing, see [Deployment Details and Configuration](scst-store/deployment_details.md) to review what resources will be deployed. For more information, see the [overview](scst-store/overview.md).
 
 To install Supply Chain Security Tools - Store:
 
