@@ -36,6 +36,7 @@ This is the table of contents from which the Tanzu Application Platform Document
     - [Convention Service](convention-service/about.md)
       - [Creating conventions](convention-service/creating-conventions.md)
       - [Convention resources](convention-service/reference/convention-resources.md)
+      - [Self-signed registry workaround](convention-service/self-signed-registry-workaround.md)
     - [Spring Boot conventions](spring-boot-conventions/about.md)
       - [Conventions](spring-boot-conventions/reference/CONVENTIONS.md)
     - [Service Bindings for Kubernetes](service-bindings/about.md)
