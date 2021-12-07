@@ -75,6 +75,8 @@ With this high-level understanding of the Convention Service components and how 
 
 >**Note:** This document covers developing conventions using [GOLANG](https://golang.org/), but this can be done using other languages by following the specs.
 
+<br/>
+
 ### <a id='prereqs'></a>Prerequisites
 
 The following prerequisites must be met before a convention can be developed and deployed:
@@ -89,6 +91,8 @@ The following prerequisites must be met before a convention can be developed and
 + The ko CLI is installed [from GitHub](https://github.com/google/ko).
   (These instructions use `ko` to build an image, but if there is an existing image or build process, `ko` is optional.)
 
+<br/>
+
 ### <a id='server-behavior'></a>Define convention criteria
 
 The `server.go` file contains the configuration for the server and the logic that evaluates whether a workload
@@ -97,6 +101,8 @@ For example, adding a prometheus _sidecar_ to all web apps, or adding a `workloa
 any workload that has metadata, indicating it is a Spring Boot app.  
 
 >**Note:** For the following example, the package `model` is used to define [resource](./reference/convention-resources.md) types.
+
+<br/>
 
 1. <a id='convention-1'></a>The example `server.go` sets up the `ConventionHandler` to ingest the webhook
    requests ([PodConventionContext](./reference/pod-convention-context.md)) from the convention controller.
@@ -120,6 +126,9 @@ any workload that has metadata, indicating it is a Spring Boot app.
 
      + `template` is the predefined `PodTemplateSpec` that the convention is going to modify.
      + `images` are the `ImageConfig` that will be used as reference to make decisions in the conventions. In this example, the type was created within the `model` package.
+
+<br/>
+
 
 2. <a id='server-2'></a>The example `server.go` also configures the convention server to listen for requests:
 
@@ -153,6 +162,8 @@ any workload that has metadata, indicating it is a Spring Boot app.
     + `ServerHandler` is the *handler* defined in [last step](#create-1).
     + `NewConventionServer` is the function in charge of configure and create the *http webhook* server.
     + Here is defined a basic web server defined listen in the defined port by the environment variable `PORT` or the default one (*9000*) and in the context path `/`.
+
+<br/>
 
 3. Create the *Server Handler* that handles the request from the convention controller with the [PodConventionContext](./reference/pod-convention-context.md) serialized to JSON:
 
@@ -191,6 +202,8 @@ any workload that has metadata, indicating it is a Spring Boot app.
     }
     ...
     ```
+
+<br/>
 
 4. Configure and start the web server by defining the `NewConventionServer` function, which will start the server with the defined port and current context. The server will use the `.crt` and `.key` files to handle *TLS* traffic:
 
@@ -249,6 +262,8 @@ any workload that has metadata, indicating it is a Spring Boot app.
     }
     ```
 
+<br/>
+
 ### <a id='targeting'></a> Define convention behavior
 
 Any property or value within the `PodTemplateSpec` or OCI image metadata associated with a workload can be used to define the criteria for applying conventions. The following are a few examples.
@@ -294,7 +309,7 @@ When using labels or annotations to define whether a convention should be applie
         ```
 
  Where:
-
+ 
  + `conventionHandler` is the *handler*.
  + `awesome-label` is the **label** that we want to validate.
  + `awesome-annotation` is the **annotation** that we want to validate.
