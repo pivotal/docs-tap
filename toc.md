@@ -111,6 +111,7 @@ This is the table of contents from which the Tanzu Application Platform Document
       - [Install the VSCode Tanzu Extension](vscode-extension/install.md)
       - [Using Tanzu Developer Tools for VSCode](vscode-extension/usage.md)
     - [Tanzu Application Platform GUI](tap-gui/about.md)
+      - [Accessing the Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md)
       - [Catalog operations](tap-gui/catalog/catalog-operations.md)
       - [Authentication](tap-gui/auth.md)
       - [TechDocs](tap-gui/techdocs/usage.md)
