@@ -1244,11 +1244,13 @@ To install Spring Boot conventions:
 
 ## <a id="install-app-live-view"></a>Install Application Live View
 
-Application Live View installs two packages for `full` and `dev` profiles:
+Application Live View installs two packages for `full` and `dev` profiles.
 
-- Application Live View Package (`run.appliveview.tanzu.vmware.com`): This package contains Application Live View Backend and Connector components.
-- Application Live View Conventions Package (`build.appliveview.tanzu.vmware.com`): This package contains Application Live View Convention Service only.
+Application Live View Package (`run.appliveview.tanzu.vmware.com`) contains Application Live View Backend
+and Connector components.
 
+Application Live View Conventions Package (`build.appliveview.tanzu.vmware.com`) contains
+Application Live View Convention Service only.
 
 1. List version information for both packages by running:
 
