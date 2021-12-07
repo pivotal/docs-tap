@@ -11,7 +11,7 @@ and the other benefits that accompany participation in the CEIP.
 
 To turn off telemetry collection on your Tanzu Application Platform installation:
 
-1. Ensure your Kubernetes context is to pointing to the cluster where Tanzu Application Platform is installed.
+1. Ensure your Kubernetes context is pointing to the cluster where Tanzu Application Platform is installed.
 
 2. Run the following `kubectl` command:
 
