@@ -37,9 +37,8 @@ The following components have been updated in Tanzu Application Platform v0.4.0:
 
 This release has the following issue:
 
-Convention Service uses a work-around for supporting a self-signed certificate for the private
-registry.
-For more information, see [Convention Service Self-Signed Registry Workaround](convention-service/self-signed-registry-workaround.md).
+Convention Service does not support self-signed certificates for the private
+registry. We are actively working on adding this support.
 
 ### Security issues
 
