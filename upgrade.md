@@ -13,3 +13,9 @@ To upgrade Tanzu Application Platform from beta-3 to beta-4:
 1. Uninstall. See [Uninstalling Tanzu Application Platform](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.3/tap-0-3/GUID-uninstall.html) in the beta-3 documentation.
 
 1. Install. See [Installing Tanzu Application Platform](install.html).
+
+NEW SECTION HERE
+
+![Text for explaining what the picture is](image/../images/screenshot-for-tap.png)
+
+Some additional text for the section
