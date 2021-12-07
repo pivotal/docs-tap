@@ -20,7 +20,7 @@ For information, see [Installing Part I: Prerequisites, EULA, and CLI](install-g
 + [Install Out of the Box Templates](#install-ootb-templates)
 + [Install Out of The Box Supply Chain Basic](#install-ootb-supply-chain-basic)
 + [Install Out of The Box Supply Chain with Testing](#install-ootb-supply-chain-testing)
-+ [Install Out of The Box Supply Chain with Testing and Scanning](#install-ootb-supply-chain-testing-scanning)
++ [Install Out of The Box Supply Chain with Testing and Scanning](#install-ootb-sc-test-scan)
 + [Install Developer Conventions](#install-developer-conventions)
 + [Install Spring Boot Conventions](#install-spring-boot-convention)
 + [Install Application Live View](#install-app-live-view)
@@ -802,7 +802,7 @@ tanzu package install ootb-templates \
 ```
 
 
-## <a id='install-ootb-sc-basic'></a> Install Out of The Box Supply Chain Basic
+## <a id='install-ootb-supply-chain-basic'></a> Install Out of The Box Supply Chain Basic
 
 The Out of the Box Supply Chain Basic package provides the most basic
 ClusterSupplyChain that brings an application from source code to a deployed
