@@ -217,7 +217,7 @@ namespace and add the secret names from step 1 to the `imagePullSecrets` section
 
     Add additional secrets to `imagePullSecrets` as required.
 
-## Providing Image Name Patterns
+## Image name patterns
 
 The container image names can be matched exactly or using a wildcard (*)
 that matches any number of characters. Here are some useful name pattern
