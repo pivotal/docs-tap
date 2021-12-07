@@ -309,6 +309,7 @@ When using labels or annotations to define whether a convention should be applie
         ```
 
  Where:
+ 
  + `conventionHandler` is the *handler*.
  + `awesome-label` is the **label** that we want to validate.
  + `awesome-annotation` is the **annotation** that we want to validate.
