@@ -32,7 +32,7 @@ It is also possible for a convention to apply to all workloads regardless of met
 You can define conventions to target workloads by using properties of their OCI metadata.
 
 Conventions can use this information to only apply changes to the configuration of workloads
-when they match specific critera (for example, Spring Boot or .Net apps, or Spring Boot v2.3+).
+when they match specific criteria (for example, Spring Boot or .Net apps, or Spring Boot v2.3+).
 Targeted conventions can ensure uniformity across specific workload types deployed on the cluster.
 
 You can use all the metadata details of an image when evaluating workloads. To see the metadata details, use the docker CLI command `docker image inspect IMAGE`.

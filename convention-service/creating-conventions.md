@@ -6,12 +6,12 @@ This document describes how to create and deploy custom conventions to the Tanzu
 Tanzu Application Platform makes it easy for developers to transform their code
 into containerized workloads with a URL.
 This transformation is managed by the Supply Chain Choreographer for Tanzu.
-For more information, see [Supply Chain Choregrapher](../scc/about.html). 
+For more information, see [Supply Chain Choreographer](../scc/about.html).
 
-The [Convention Service](about.md) is a key component of the supply chain 
+The [Convention Service](about.md) is a key component of the supply chain
 compositions the choreographer calls into action.
 The Convention Service enables people in operational roles to efficiently apply
-their operational expertise. They can specify the runtime best practices and policies
+their operational expertises They can specify the runtime best practices and policies
 (or conventions) of their organization to workloads as they are created on the platform.
 The power of this component becomes evident when the conventions of an organization
 are applied consistently, at scale, and without hindering the velocity of app developers.
@@ -97,17 +97,17 @@ The following prerequisites must be met before a convention can be developed and
 
 The `server.go` file contains the configuration for the server and the logic that evaluates whether a workload
 meets the criteria for a convention to be applied. For more information, see [convention server](#conventionserver).
-For example, adding a prometheus _sidecar_ to all web apps, or adding a `workload-type=spring-boot` label to 
+For example, adding a prometheus _sidecar_ to all web apps, or adding a `workload-type=spring-boot` label to
 any workload that has metadata, indicating it is a Spring Boot app.  
 
 >**Note:** For the following example, the package `model` is used to define [resource](./reference/convention-resources.md) types.
 
 <br/>
 
-1. <a id='convention-1'></a>The example `server.go` sets up the `ConventionHandler` to ingest the webhook 
-   requests ([PodConventionContext](./reference/pod-convention-context.md)) from the convention controller. 
-   At this point, the handler only needs to deal with the existing `PodTemplateSpec` 
-   (see the [Kubernetes documentation](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec)) 
+1. <a id='convention-1'></a>The example `server.go` sets up the `ConventionHandler` to ingest the webhook
+   requests ([PodConventionContext](./reference/pod-convention-context.md)) from the convention controller.
+   At this point, the handler only needs to deal with the existing `PodTemplateSpec`
+   (see the [Kubernetes documentation](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec))
    and [`ImageConfig`](./reference/image-config.md):
 
     ```go
@@ -348,7 +348,7 @@ When using environment variables to define whether the convention is applicable,
 
 ### <a id='ImageMetadata'></a>Matching criteria by image metadata
 
-The convention controller should be used with [OCI Image](./reference/image-config.md) so it can be used to get metadate information. The ImageConfig is an struct that contains the configuration of an image, similar to the output of `docker inspect hello-world`.
+The convention controller should be used with [OCI Image](./reference/image-config.md) so it can be used to get metadata information. The ImageConfig is an struct that contains the configuration of an image, similar to the output of `docker inspect hello-world`.
 
 ## <a id='install'></a> Configure and install the convention server
 

@@ -33,7 +33,7 @@ To add the Tanzu Application Platform package repository:
     ```
     tanzu secret registry add tap-registry \
       --username ${INSTALL_REGISTRY_USERNAME} --password ${INSTALL_REGISTRY_PASSWORD} \
-      --server ${INSTALL_REGISTRY_HOST} \
+      --server ${INSTALL_REGISTRY_HOSTNAME} \
       --export-to-all-namespaces --yes --namespace tap-install
     ```
 
@@ -389,6 +389,10 @@ tap_gui:
 
 metadata_store:
   app_service_type: LoadBalancer # (optional) Defaults to LoadBalancer. Change to NodePort for distributions that don't support LoadBalancer
+
+grype:
+  namespace: "<MY-DEV-NAMESPACE>" # (optional) Defaults to default namespace.
+  targetImagePullSecret: "<REGISTRY-CREDENTIALS-SECRET>"
 ```
 
 ### Dev Profile
@@ -443,6 +447,8 @@ Where:
           * Dockerhub `repository: "my-dockerhub-user"`
           * Google Cloud Registry `repository: "my-project/supply-chain"`
     - `<DOMAIN-NAME>` has a value such as `educates.example.com`.
+    - `<MY-DEV-NAMESPACE>` is the namespace where you want the `ScanTemplates` to be deployed to. This is the namespace where the scanning feature is going to run.
+    - `<REGISTRY-CREDENTIALS-SECRET>` is the name of the secret that contains the credentials to pull the scanner image from the registry.
 
   To view possible configuration settings for a package, run:
 
@@ -482,6 +488,8 @@ Where:
   |Supply Chain Basic|`ootb_supply_chain_basic`|
   |Supply Chain Testing|`ootb_supply_chain_testing`|
   |Supply Chain Testing Scanning|`ootb_supply_chain_testing_scanning`|
+  |Supply Chain Security Tools - Scan|`scanning`|
+  |Supply Chain Security Tools - Scan (Grype Scanner)|`grype`|
   |Supply Chain Security Tools - Store|`metadata_store`|
   |Image Policy Webhook|`image_policy_webhook`|
   |Build Service|`buildservice`|
@@ -547,7 +555,7 @@ To install Tanzu Application Platform GUI:
    kubectl get svc -n tap-gui
    ```
 
-2. Add the following section to your `tap-values.yml` by using the following template. Replace all `<PLACEHOLDERS>`
+1. Add the following section to your `tap-values.yml` by using the following template. Replace all `<PLACEHOLDERS>`
 with your relevant values. Run:
 
     ```
@@ -578,34 +586,33 @@ with your relevant values. Run:
     - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage compliant catalog you've already built and posted on the Git infrastucture you specified in the Integration section.
 
     > **Note:** The `integrations` section uses Github. If you want additional integrations, see the
-    format in this [Backstage integration documentation](https://backstage.io/docs/integrations/).
+    format in the [Backstage integration documentation](https://backstage.io/docs/integrations/).
 
-**Optional Tanzu Application Platform GUI Database Configuration**
-The default database mechanism for TAP-GUI is an in-memory database that is recommended for test/dev only and you can delete/comment-out this section of the configuration. However, when the TAP GUI server pod gets re-created, you'll lose all user preferences and any manually registered entities. For production or general-purpose use-cases, we recommend using a PostgreSQL database.
+1. (Optional) The default database mechanism for Tanzu Application Platform GUI is an in-memory database that is recommended for testing and development only. You can delete or comment out this section of the configuration. However, when the Tanzu Application Platform GUI server pod gets re-created, you'll lose all user preferences and any manually registered entities. For production or general use-cases, VMware recommends using a PostgreSQL database. To use a PostgreSQL database, run the following:
 
-```
-    backend:
-      baseUrl: http://tap-gui.<DOMAIN_NAME>-IP:7000
-      cors:
-          origin: http://tap-gui.<DOMAIN_NAME>-IP:7000
-    # Existing tap-values.yml above
-      database: #External database strongly recommended for production use
-        client: pg
-          connection:
-            host: <PG_SQL_HOSTNAME>
-            port: 5432
-            user: <PG_SQL_USERNAME>
-            password: <PG_SQL_PASSWORD>
-            ssl: {rejectUnauthorized: false} #Set to true if using SSL
-```
+  ```
+      backend:
+        baseUrl: http://tap-gui.<DOMAIN_NAME>-IP:7000
+        cors:
+            origin: http://tap-gui.<DOMAIN_NAME>-IP:7000
+      # Existing tap-values.yml above
+        database: #External database strongly recommended for production use
+          client: pg
+            connection:
+              host: <PG_SQL_HOSTNAME>
+              port: 5432
+              user: <PG_SQL_USERNAME>
+              password: <PG_SQL_PASSWORD>
+              ssl: {rejectUnauthorized: false} #Set to true if using SSL
+  ```
 
-Where:
+  Where:
 
-  - `PG_SQL_HOSTNAME` is the hostname of your PostgreSQL database.
-  - `PG_SQL_USERNAME` is the username of your PostgreSQL database.
-  - `PG_SQL_PASSWORD` is the password of your PostgreSQL database.
+    - `PG_SQL_HOSTNAME` is the hostname of your PostgreSQL database.
+    - `PG_SQL_USERNAME` is the username of your PostgreSQL database.
+    - `PG_SQL_PASSWORD` is the password of your PostgreSQL database.
 
-4. Update the package profile by running:
+1. Update the package profile by running:
 
     ```
     tanzu package installed update tap \
@@ -629,12 +636,12 @@ Where:
     Updated package install 'tap' in namespace 'tap-install'
     ```
 
-5. To access the Tanzu Application Platform GUI, use the `baseURL` location you specified above. This consists of the `EXTERNAL-IP` with the default port of 7000. Run:
+1. To access the Tanzu Application Platform GUI, use the `baseURL` location you specified above. This consists of the `EXTERNAL-IP` with the default port of 7000. Run:
     ```
     http://EXTERNAL-IP:7000
     ```
 
-6. If you have any issues, try re-creating the Tanzu Application Platform Pod by running:
+1. If you have any issues, try re-creating the Tanzu Application Platform Pod by running:
 
     ```
     kubectl delete pod -l app=backstage -n tap-gui

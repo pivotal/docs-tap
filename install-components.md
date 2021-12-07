@@ -24,6 +24,10 @@ For information, see [Installing Part I: Prerequisites, EULA, and CLI](install-g
     - [Install Tanzu Build Service using the Tanzu CLI](#install-tanzu-build-service-using-the-tanzu-cli)
   - [<a id='install-scc'></a> Install Supply Chain Choreographer](#-install-supply-chain-choreographer)
   - [<a id='install-ootb-templates'></a> Install Out of the Box Templates](#-install-out-of-the-box-templates)
+  - [<a id='install-ootb-delivery-basic'></a>Install Out of The Box Supply Chain Basic](#install-ootb-supply-chain-basic)
+  - [<a id='install-ootb-supply-chain-basic'></a> Install Out of The Box Supply Chain Basic](#install-ootb-supply-chain-basic)
+  - [<a id='install-ootb-supply-chain-testing'></a>Install Out of The Box Supply Chain With Testing](#install-ootb-supply-chain-testing)
+  - [<a id='install-ootb-supply-chain-testing-scanning'></a>Install Out of The Box Supply Chain with Testing and Scanning](#install-ootb-supply-chain-testing-scanning)
   - [<a id='install-tap-gui'></a> Install Tanzu Application Platform GUI](#-install-tanzu-application-platform-gui)
     - [Prerequisites in addition to Tanzu Application Platform requirements](#prerequisites-in-addition-to-tanzu-application-platform-requirements)
     - [Procedure](#procedure-1)
@@ -33,9 +37,9 @@ For information, see [Installing Part I: Prerequisites, EULA, and CLI](install-g
     - [Procedure to install the Self-Guided Tour Training Portal and Workshop](#procedure-to-install-the-self-guided-tour-training-portal-and-workshop)
   - [<a id='install-service-bindings'></a> Install Service Bindings](#-install-service-bindings)
   - [<a id='install-scst-store'></a> Install Supply Chain Security Tools - Store](#-install-supply-chain-security-tools---store)
-  - [<a id='install-scst-sign'></a> Install Supply Chain Security Tools - Sign](#-install-supply-chain-security-tools---sign)
-    - [Prerequisites](#prerequisites-2)
-    - [Installation](#installation)
+  - [Install Supply Chain Security Tools - Sign](#install-scst-sign)
+    - [Prerequisites](#scst-sign-prerequisites)
+    - [Installation](#scst-sign-installation)
   - [<a id='install-scst-scan'></a> Install Supply Chain Security Tools - Scan](#-install-supply-chain-security-tools---scan)
   - [<a id='install-api-portal'></a> Install API portal](#-install-api-portal)
   - [<a id='install-services-toolkit'></a> Install Services Toolkit](#-install-services-toolkit)
@@ -592,13 +596,13 @@ To install Application Accelerator:
     ```
     STATUS should be `Reconcile succeeded`.
 
-1. To determine the IP address for the Application Accelerator API when the `server.service_type` was set to `LoadBalancer`, run the following command:
+1. To determine the IP address for the Application Accelerator API when the `server.service_type` is set to `LoadBalancer`, run the following command:
 
     ```
     kubectl get service -n accelerator-system
     ```
 
-    This should list an external IP address to be used with the `--server-url` flag for the Tanzu CLI Accelerator plugin's generate command.
+    This lists an external IP address for use with the `--server-url` Tanzu CLI flag for the Accelerator plugin `generate` command.
 
 ## <a id='install-tbs'></a> Install Tanzu Build Service
 
@@ -1477,7 +1481,7 @@ with your relevant values. The meanings of some placeholders are explained in th
       #        accessKeyId: '<S3-ACCESS-KEY>'
       #        secretAccessKey: '<S3-SECRET-KEY>'
       #      region: '<S3-REGION>'
-      #      s3ForcePathStyle: false # Set value to true if using local S3 solution (Minio)  
+      #      s3ForcePathStyle: false # Set value to true if using local S3 solution (Minio)
 
       # auth: # Only needed if you want to enable OIDC login integration, otherwise only Guest mode is enabled
       #  environment: development
@@ -1491,7 +1495,7 @@ with your relevant values. The meanings of some placeholders are explained in th
       #        clientSecret: <AUTH-OIDC-CLIENT-SECRET>
       #        tokenSignedResponseAlg: <AUTH-OIDC-TOKEN-SIGNED-RESPONSE-ALG> # default='RS256'
       #        scope: <AUTH-OIDC-SCOPE> # default='openid profile email'
-      #        prompt: <TYPE> # default=none (allowed values: auto, none, consent, login)      
+      #        prompt: <TYPE> # default=none (allowed values: auto, none, consent, login)
     ```
     Where:
 
@@ -1805,9 +1809,9 @@ Use the following procedure to install Service Bindings:
 
 ## <a id='install-scst-store'></a> Install Supply Chain Security Tools - Store
 
-**Prerequisite**: `cert-manager` installed on the cluster. If you [installed TAP profiles](install.md), then `cert-manager` should already be installed. If not, then follow the instructions in [Install cert-manager](#install-prereqs).
+**Prerequisite**: `cert-manager` installed on the cluster. If you [installed TAP profiles](install.md), then `cert-manager` is already installed. If not, then follow the instructions in [Install cert-manager](#install-prereqs).
 
-Before installing, see [Deployment Details and Configuration](scst-store/deployment_details.md) to review what resources will be deployed. Read the [overview](scst-store/overview.md) for more information.
+Before installing, see [Deployment Details and Configuration](scst-store/deployment_details.md) to review what resources will be deployed. For more information, see the [overview](scst-store/overview.md).
 
 To install Supply Chain Security Tools - Store:
 
@@ -1929,7 +1933,7 @@ To install Supply Chain Security Tools - Store:
 > see [Supply Chain Security Tools - Sign Known Issues](scst-sign/known_issues.md#sign-known-issues-pods-not-admitted)
 > for recovery steps.
 
-### Prerequisites
+### <a id='scst-sign-prerequisites'></a> Prerequisites
 
 During configuration for this component we will ask you to provide a cosign
 public key to use to validate signed images. We will provide an example cosign
@@ -1938,7 +1942,7 @@ registry. If you wish to provide your own key and images you can follow the
 [cosign quick start guide](https://github.com/sigstore/cosign#quick-start) to
 generate your own keys and sign an image.
 
-### Installation
+### <a id='scst-sign-installation'></a> Installation
 
 To install Supply Chain Security Tools - Sign:
 
@@ -2137,6 +2141,14 @@ To install Supply Chain Security Tools - Scan (Grype Scanner):
       resources.requests.memory  128Mi    <nil>   Requests describes the minimum amount of memory resources required.
       targetImagePullSecret      <EMPTY>  string  Reference to the secret used for pulling images from private registry.
       targetSourceSshSecret      <EMPTY>  string  Reference to the secret containing SSH credentials for cloning private repositories.
+    ```
+
+    The `tap-values.yml` file to change the default installation settings would look like this: 
+
+    ```
+    grype:
+      namespace: my-dev-namespace
+      targetImagePullSecret: registry-credentials 
     ```
 
     > **Note:** If you want to use a namespace other than the default namespace, then ensure that the namespace exists before you install.
@@ -2444,7 +2456,7 @@ kapp deploy --yes -a tekton \
 ```
 
 For more details on Tekton, see the [Tekton documentation](https://tekton.dev/docs/) and the
-[github repository](https://github.com/tektoncd/pipeline).  
+[github repository](https://github.com/tektoncd/pipeline).
 
 You can also view the Tekton [tutorial](https://github.com/tektoncd/pipeline/blob/main/docs/tutorial.md) and
 [getting started guide](https://tekton.dev/docs/getting-started/).
