@@ -1,4 +1,4 @@
-# Supply Chain Security Tools - Sign Known Issues
+# Supply Chain Security Tools - Sign known issues
 
 This section is a list of known issues with troubleshooting and recovery steps
 for Supply Chain Security Tools - Sign.

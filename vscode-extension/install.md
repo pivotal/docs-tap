@@ -31,7 +31,7 @@ Launch VSCode and navigate to the `Extensions` menu (⇧⌘X), then from the `Vi
 
 When you do not already have a Java Development Kit installed, the Java extension pack prompts you to install one.
 When the JDK and Language Support for Java are configured correctly,
-you see that the intigrated development enviroment creates a directory "target" where the code is compiled.
+you see that the integrated development environment creates a directory "target" where the code is compiled.
 
 > Note: `Extensions: Install from VSIX...` can also be launched via the `Command Palette` (⇧⌘P)
 

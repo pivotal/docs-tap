@@ -3,7 +3,7 @@
 This component requires extra configuration steps to start verifying your
 container images properly.
 
-## Create a `ClusterImagePolicy` Resource
+## Create a `ClusterImagePolicy` resource
 The cluster image policy is a custom resource containing the following properties:
 
 * `spec.verification.exclude.resources.namespaces`: a list of namespaces where

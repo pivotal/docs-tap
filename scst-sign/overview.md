@@ -47,10 +47,10 @@ from the operator before it starts enforcing policies.
 To configure your installed component properly, see
 [Configuring Supply Chains Security Tools - Sign](configuring.md).
 
-## Known Issues
+## Known issues
 
 See [Supply Chain Security Tools - Sign Known Issues](known_issues.md).
 
-## Release Notes
+## Release notes
 
 See [Supply Chain Security Tools - Sign Release Notes](release-notes.md).

@@ -1,4 +1,4 @@
-# Supply Chain Security Tools - Sign Release Notes
+# Supply Chain Security Tools - Sign release notes
 
 This topic contains release notes for Supply Chain Security Tools - Sign.
 
@@ -21,7 +21,7 @@ This topic contains release notes for Supply Chain Security Tools - Sign.
 
 **Release Date**: October 26, 2021
 
-### Breaking Changes
+### Breaking changes
 * `warn_on_unmatched` value has been renamed to `allow_unmatched_images`.
 
 ### Known issues
