@@ -31,15 +31,19 @@ The following components have been updated in Tanzu Application Platform v0.4.0:
 
 - Supply Chain Security Tools
     - [Scan v1.0.0](scst-scan/overview.md)
+    - [Sign v1.0.0-beta.2](scst-sign/overview.md)
 - [Tanzu Application Platform GUI v1.0.0-rc.72](tap-gui/about.md)
 
 ### Known issues
 
 This release has the following issue:
 
-Convention Service uses a work-around for supporting a self-signed certificate for the private
+- Convention Service uses a work-around for supporting a self-signed certificate for the private
 registry.
 For more information, see [Convention Service Self-Signed Registry Workaround](convention-service/self-signed-registry-workaround.md).
+
+- **Supply Chain Security Tools - Sign:** If all webhook nodes or Pods are evicted by the cluster or scaled down, the admission policy blocks any Pods from being created in the cluster. To resolve the issue, the administrator needs to kubectl delete the `MutatingWebhookConfiguration` and reapply it once the cluster is stable.
+For more information, see [Supply Chain Security Tools - Sign Known Issues](scst-sign/known_issues.md).
 
 ### Security issues
 
