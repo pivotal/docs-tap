@@ -23,30 +23,30 @@ If you need to update this location, you can change the definition file.
 Change either the Tanzu Application Platform profile file if you used the profile method to install,
 or change the standalone Tanzu Application Platform GUI values file if you're only installing that package on its own.
 
-    ```
-        namespace: tap-gui
-        service_type: <SERVICE-TYPE>
-        app_config:
-          catalog:
-            locations:
-              - type: url
-                target: https://<GIT-CATALOG-URL>/catalog-info.yaml
-    ```
+  ```
+      namespace: tap-gui
+      service_type: <SERVICE-TYPE>
+      app_config:
+        catalog:
+          locations:
+            - type: url
+              target: https://<GIT-CATALOG-URL>/catalog-info.yaml
+  ```
 
 2. You need to make sure that you provide the proper integration information for the Git location you specified above.
 
-    ```
-        namespace: tap-gui
-        service_type: <SERVICE-TYPE>
-        app_config:
-          app:
-            baseUrl: https://<EXTERNAL-IP>:<PORT>
-          integrations:
-            gitlab: # Other integrations available
-              - host: <GITLAB-HOST>
-                apiBaseUrl: https://<GITLAB-URL>/api/v4
-                token: <GITLAB-TOKEN>
-    ```
+  ```
+      namespace: tap-gui
+      service_type: <SERVICE-TYPE>
+      app_config:
+        app:
+          baseUrl: https://<EXTERNAL-IP>:<PORT>
+        integrations:
+          gitlab: # Other integrations available
+            - host: <GITLAB-HOST>
+              apiBaseUrl: https://<GITLAB-URL>/api/v4
+              token: <GITLAB-TOKEN>
+  ```
 
 Other integrations can be substituted here as defined in the [Backstage documentation](https://backstage.io/docs/integrations/)
 
