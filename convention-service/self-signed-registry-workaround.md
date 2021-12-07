@@ -1,6 +1,12 @@
-# Convention Service Self Signed Registry Workaround
+# Convention Service self-signed registry workaround
 
-*Originally documented by Daniel Lynch*
+## Problem
+
+When you create a workload where the workload container image resides in a private registry that has a self-signed certificate, **conventions apply** fails.
+
+## Cause
+
+Convention controller fails to pull image metadata from the private registry with the self-signed certificate.
 
 ## Workaround 1
 
@@ -8,23 +14,25 @@ Configure your harbor registry to support http instead of https.
 
 ## Workaround 2
 
-1. Export the deployment for the convention controller manager
+Copy the RootCA file from the private registry to convention controller container's file system in this path: /etc/ssl/certs. Here are the steps:
+
+1. Export the deployment for convention controller manager:
 
 ```
 kubectl get deployment conventions-controller-manager -n conventions-system -o yaml > ccm.yml
 ```
 
-2. Note the patch strategy is replace for args in the container spec.  Referenced here so we have to copy out the entire arg block into a patch file. Please see reference [here](https://github.com/kubernetes/api/blob/b7adf12040d3399c31cde19c6ba59354d5075cb3/core/v1/types.go#L2311)
+2. The patch strategy replaces args in the container specification. You have to paste the entire arg block into a patch file. For more information, see [the contents of args from the ccm.yml](https://github.com/kubernetes/api/blob/b7adf12040d3399c31cde19c6ba59354d5075cb3/core/v1/types.go#L2311).
 
-3. Create a patch file
+3. Create a patch file:
 
 ```
 touch ccm.patch.yml
 ```
 
-4. Populate ccm.patch.yml
+4. Populate ccm.patch.yml:
 
-    - first copy the contents of args from the ccm.yml into the patch file as so
+    - First, copy the contents of args from the ccm.yml into the patch file:
     <details>
     <summary>ccm content</summary>
 
@@ -81,7 +89,8 @@ touch ccm.patch.yml
                 - mountPath: /var/cache/ggcr
                 name: cache-volume
     </details>
-5. Append the following mount settings
+
+5. Append the following mount settings:
 
 ```
         - mountPath: /etc/ssl/certs
@@ -93,7 +102,7 @@ touch ccm.patch.yml
           name: harbor-private-cert
 ```
 
-6. The entire file should look like this
+6. Confirm the entire file looks like this:
         -
         <details>
         <summary>modified spec</summary>
@@ -152,7 +161,7 @@ touch ccm.patch.yml
                     name: cache-volume
         </details>
 
-7. Create the configmap which includes the certs you want to trust
+7. Create the configmap that includes the certificates you want to trust:
 
     <details>
     <summary>configmap example</summary>
@@ -190,16 +199,12 @@ touch ccm.patch.yml
     ```
     </details>
 
-8. Apply the patch
+8. Apply the patch:
 
 ```
 kubectl patch deployment conventions-controller-manager  -n conventions-system --patch "$(cat ccm.patch.yml)"
 ```
 
-9. At this point the conventions controller manager pod should get recreated and support your local harbor instance.
+The conventions controller manager pod should now be recreated and support your local harbor instance.
 
-----------
-
-### Note:
-
-In **Workaround 2**, after mounting the cert data to `/etc/ssl/certs` - it overrides the base image provided `ca-certificates.crt` file. This results "x509: certificate" error from other known public & private registries. However, for this specific use case, these workarounds are the 2 best available options until we deliver the fix in the next release of Convention Controller.
+> **Note:** In **Workaround 2**, after mounting the cert data to `/etc/ssl/certs`, it overrides the base image provided `ca-certificates.crt` file. This results in a "x509: certificate" error from other known public & private registries. However, for this specific use case, these workarounds are the 2 best available options until we deliver the fix in the next release of convention controller.
