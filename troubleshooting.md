@@ -104,7 +104,8 @@ After creating a workload, there are no logs.
 
 ### Symptom
 
-You issue the tanzu package install command but one or more packages fails to install:
+You issue the tanzu package install command but one or more packages fails to install.
+For example:
 
 ```
 tanzu package install tap -p tap.tanzu.vmware.com -v 0.4.0 --values-file tap-values.yaml -n tap-install
@@ -135,11 +136,11 @@ Often, the cause is one of the following:
 - A race-condition between components exists.
   For example, a package that uses `Ingress` completes before the shared Tanzu ingress controller is available.
 
-The beauty of the VMWare Carvel tools kapp-controller is that it continues to try in a reconciliation loop.
+The VMWare Carvel tools kapp-controller continues to try in a reconciliation loop.
 
 ### Solution
 
-Verify if the installation is still continuing and may complete just fine:
+Verify if the installation is still continuing, and, if so, it might complete just fine:
 
 ```
 tanzu package installed list -A
