@@ -192,7 +192,7 @@ To install Cloud Native Runtimes:
     USEFUL-ERROR-MESSAGE:
     ```
 
-    STATUS should be `Reconcile succeeded`.
+    `STATUS` should be `Reconcile succeeded`.
 
 1. Configure a namespace to use Cloud Native Runtimes:
 
@@ -341,7 +341,7 @@ To install Convention Controller:
     USEFUL-ERROR-MESSAGE:
     ```
 
-    STATUS should be 'Reconcile succeeded.'
+    `STATUS` should be 'Reconcile succeeded.'
 
     ```
     kubectl get pods -n conventions-system
@@ -355,7 +355,7 @@ To install Convention Controller:
     conventions-controller-manager-596c65f75-j9dmn   1/1     Running   0          72s
     ```
 
-    STATUS should be 'Running.'
+    `STATUS` should be `Running`.
 
 
 ## <a id='install-source-controller'></a> Install Source Controller
@@ -439,7 +439,7 @@ To install Source Controller:
     USEFUL-ERROR-MESSAGE:
     ```
 
-    STATUS should be 'Reconcile succeeded.'
+    `STATUS` should be `Reconcile succeeded`.
 
     ```
     kubectl get pods -n source-system
@@ -453,7 +453,7 @@ To install Source Controller:
     source-controller-manager-f68dc7bb6-4lrn6   1/1     Running   0          45h
     ```
 
-    STATUS should be 'Running.'
+    `STATUS` should be `Running`.
 
 ## <a id='install-app-accelerator'></a> Install Application Accelerator
 
@@ -582,7 +582,8 @@ To install Application Accelerator:
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
     ```
-    STATUS should be `Reconcile succeeded`.
+
+    `STATUS` should be `Reconcile succeeded`.
 
 1. To determine the IP address for the Application Accelerator API when the `server.service_type` is set to `LoadBalancer`, run the following command:
 
@@ -1183,7 +1184,7 @@ by running:
     USEFUL-ERROR-MESSAGE:
     ```
 
-    STATUS should be `Reconcile succeeded`.
+    `STATUS` should be `Reconcile succeeded`.
 
 
 ## <a id='install-spring-boot-convention'></a> Install Spring Boot Conventions
@@ -1238,7 +1239,7 @@ To install Spring Boot conventions:
     USEFUL-ERROR-MESSAGE:
     ```
 
-    STATUS should be `Reconcile succeeded`.
+    `STATUS` should be `Reconcile succeeded`.
 
 
 ## <a id="install-app-live-view"></a>Install Application Live View
@@ -1346,7 +1347,7 @@ Application Live View installs two packages for `full` and `dev` profiles:
     USEFUL-ERROR-MESSAGE:
     ```
 
-    STATUS should be `Reconcile succeeded`.
+    `STATUS` should be `Reconcile succeeded`.
 
 1. Verify the package install for `Application Live View Conventions` package by running:
 
@@ -1367,7 +1368,7 @@ Application Live View installs two packages for `full` and `dev` profiles:
     USEFUL-ERROR-MESSAGE:
     ```
 
-    STATUS should be `Reconcile succeeded`.
+    `STATUS` should be `Reconcile succeeded`.
 
 The Application Live View UI plugin is part of Tanzu Application Platform GUI.
 To access the Application Live View UI,
@@ -1815,7 +1816,7 @@ Use the following procedure to install Service Bindings:
     manager-6d85fffbcd-j4gvs   1/1     Running   0          22s
     ```
 
-    STATUS should be `Running`.
+    `STATUS` should be `Running`.
 
 
 ## <a id='install-scst-store'></a> Install Supply Chain Security Tools - Store
@@ -2311,7 +2312,7 @@ To install Services Toolkit:
     USEFUL-ERROR-MESSAGE:
     ```
 
-    STATUS should be `Reconcile succeeded`.
+    `STATUS` should be `Reconcile succeeded`.
 
 
 ## <a id='verify'></a> Verify the installed packages
