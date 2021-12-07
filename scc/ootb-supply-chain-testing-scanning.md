@@ -3,7 +3,7 @@ title: Out of The Box Supply Chain with Testing and Scanning (ootb-supply-chain-
 weight: 2
 ---
 
-This [cartographer] Supply Chain ties a series of Kubernetes resources which,
+This Cartographer Supply Chain ties a series of Kubernetes resources which,
 when working together, drives a developer-provided Workload from source code
 all the way to a Kubernetes configuration ready to be deployed to a cluster,
 having not only passed that source code through testing and vulnerability
@@ -28,13 +28,13 @@ DELIVERY
 
 
 It includes all the capabilities of the Out of The Box Supply Chain With
-Testing, but adds on top source and image scanning using [Grype]:
+Testing, but adds on top source and image scanning using Grype:
 
 - Watching a Git Repository or local directory for changes
-- Running tests from a developer-provide tekton/Pipeline
+- Running tests from a developer-provided Tekton or Pipeline
 - Scanning the source code for known vulnerabilities using Grype
 - Building a container image out of the source code with Buildpacks
-- Scaning the image for known vulnerabilities
+- Scanning the image for known vulnerabilities
 - Applying operator-defined conventions to the container definition
 - Deploying the application to the same cluster
 
@@ -276,8 +276,8 @@ above.
 
 ##### Developer Workload
 
-With the ScanPolicy and ScanTemplate objects (with the required names set)
-submitted to the same namespace as the one where the Workload will be submitted
+With the ScanPolicy and ScanTemplate objects, with the required names set,
+submitted to the same namespace where the Workload will be submitted
 to, we're ready to submit our Workload.
 
 We can configure the Workload with two scenarios in mind:
@@ -499,7 +499,7 @@ Where:
    e.g.: "ssh-secret"
 
 -  `delivery_git_repository` (required): SSH url of the git repository to push
-   the kubernete configuration produced by the supply chain to.
+   the Kubernetes configuration produced by the supply chain to.
    e.g.: "ssh://git@foo.com/staging.git"
 
 -  `delivery_git_branch`: name of the branch to push the configuration to.
