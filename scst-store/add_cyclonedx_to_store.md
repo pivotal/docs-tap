@@ -10,7 +10,7 @@ Add data by posting CycloneDX files using the following methods:
 
 - [Supply Chain Security Tools - Scan](../scst-scan/overview.md)
 - [Supply Chain Security Tools - Store API](../scst-store/getting_started_api.md)
-- [Add Data with the `insight` CLI](#insight-cli) below
+- [Add Data with the Insight CLI](#insight-cli) below
 
 
 ## Supported Formats
@@ -47,7 +47,7 @@ To use Grype to scan an image and generate an image report in CycloneDX format:
     ```
 
 
-## <a id='insight-cli'></a>Add Data with the insight CLI
+## <a id='insight-cli'></a>Add Data with the Insight CLI
 
 Use the following commands to add data:
 

@@ -1,6 +1,6 @@
 # Configure the CLI
 
-This topic explains how to configure the `insight` CLI:
+This topic explains how to configure the Insight CLI:
 
 > **Note:** All [required set up](../scst-store/overview.md#required-set-up) must be completed in addition to configuring the CLI
 

@@ -13,7 +13,7 @@ alt="A demonstration of the features. First ingesting a bill of materials file. 
 Supply Chain Security Tools - Store has three components:
 
 * [API](api.md)
-* [CLI](install_cli.md) (`insight`)
+* [CLI](install_cli.md) (Insight)
 * Postgres database
 
 ## Install
@@ -22,7 +22,7 @@ Supply Chain Security Tools - Store is released as an individual Tanzu Applicati
 
 To install, see [Install Supply Chain Security Tools - Store](../install-components.md#install-scst-store).  It will install the Postgres database and an [API](api.md) backend.
 
-> **Note:** the `insight` CLI requires a [separate installation](install_cli.md)
+> **Note:** the Insight CLI requires a [separate installation](install_cli.md)
 
 For more information, see [Deployment Details and Configuration](deployment_details.md).
 
@@ -37,9 +37,9 @@ The following steps are required to use the API or CLI:
 
 ### Recommended
 
-The `insight` CLI is not required but may provide an easier-to-use interface than the [API](api.md).  
+The Insight CLI is not required but may provide an easier-to-use interface than the [API](api.md).  
 
-> **Note:** the `insight` CLI is in beta and is separate from the `tanzu` CLI.
+> **Note:** The Insight CLI is in beta and is separate from the Tanzu CLI.
 
 * [Install the CLI](install_cli.md)
 * [Configure the CLI](configure_cli.md)
@@ -56,7 +56,7 @@ See [querying data](querying_the_metadata_store.md) understand vulnerability, im
 
 ## Auditing
 
-The API server outputs logs when an endpoint is accessed, and can be used for auditing purposes. For information about the logs generated, see [Configuring and Understanding Store Logs](logs.md). 
+The API server outputs logs when an endpoint is accessed, and can be used for auditing purposes. For information about the logs generated, see [Configuring and Understanding Store Logs](logs.md).
 
 
 ## Known issues

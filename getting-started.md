@@ -993,7 +993,7 @@ to do an image scan on a private image.
 After completing the scans from the previous step,
 query the [Supply Chain Security Tools - Store](scst-store/overview.md) to view your vulnerability results.
 It is a Tanzu component that stores image, package, and vulnerability metadata about your dependencies.
-Use the Supply Chain Security Tools - Store CLI, called `insight`,
+Use the Supply Chain Security Tools - Store CLI, called Insight,
 to query metadata that have been submitted to the component after the scan step.
 
 For a complete guide on how to query the store,
