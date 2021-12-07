@@ -49,7 +49,10 @@ Application Accelerator sample templates are installed by default as part of the
 
 Follow these steps to get started with an accelerator called `Tanzu-Java-Web-App`.
 
-1. From your Tanzu Application Platform GUI portal, click on “Create” button on the left side of the navigation bar to see the list of available Accelerators. For assistance in connecting to your Tanzu Application Platform GUI, see the documentation [here](tap-gui/accessing-tap-gui.md)
+1. From the Tanzu Application Platform GUI portal, click on **Create** on the left side of the
+navigation bar to see the list of available accelerators.
+For information about connecting to Tanzu Application Platform GUI, see
+[Accessing Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md).
 
     ![List of accelerators in Tanzu Application Platform GUI](images/getting-started-tap-gui-1.png)
 
@@ -1180,12 +1183,12 @@ In order to demonstrate how Application Teams can discover, provision and bind t
   ```
 For further information about `ClusterResource`, please refer to the Services Toolkit component documentation [here](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.4/services-toolkit-0-4/GUID-service_offering-terminology_and_apis.html).
 
-To summarize, we have installed RabbitMQ Operator, created the necessary RBAC, and created a Services Toolkit resource called `ClusterResource` for RabbitmqCluster so that app teams can discover it. 
+To summarize, we have installed RabbitMQ Operator, created the necessary RBAC, and created a Services Toolkit resource called `ClusterResource` for RabbitmqCluster so that app teams can discover it.
 
 ### <a id='services-journey-use-case-1'></a> **Use case 1 -  Binding an app to a pre-provisioned service instance running in the same namespace.**
 
 ### Step 1: Create a service instance
-- Create a RabbitMQ service instance by running: 
+- Create a RabbitMQ service instance by running:
     ```
     # example-rabbitmq-cluster-service-instance.yaml
     ---
