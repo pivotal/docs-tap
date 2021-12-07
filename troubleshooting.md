@@ -20,8 +20,8 @@ Error: package reconciliation failed: vendir: Error: Syncing directory '0':
     Imgpkg: exit status 1 (stderr: Error: Checking if image is bundle: Collecting images: Working with registry.tanzu.vmware.com/app-live-view/application-live-view-install-bundle@sha256:b13b9ba81bcc985d76607cfc04bcbb8829b4cc2820e64a99e0af840681da12aa: GET https://registry.tanzu.vmware.com/v2/app-live-view/application-live-view-install-bundle/manifests/sha256:b13b9ba81bcc985d76607cfc04bcbb8829b4cc2820e64a99e0af840681da12aa: UNAUTHORIZED: unauthorized to access repository: app-live-view/application-live-view-install-bundle, action: pull: unauthorized to access repository: app-live-view/application-live-view-install-bundle, action: pull
 ```
 
-> Note: The sample above shows Application Live View as the package, however, this error can occur
- with other packages as well.
+> **Note:** The sample above shows Application Live View as the package, however, this error can
+> occur with other packages as well.
 
 ### Cause
 
@@ -59,7 +59,7 @@ Error: failed to create ServiceAccount resource: serviceaccounts "app-accelerato
 ```
 
 > Note: The sample above shows App Accelerator as the package, however, this error can occur
- with other packges as well.
+ with other packages as well.
 
 ### Cause
 
@@ -67,9 +67,8 @@ A common cause of this error is that the `tanzu package install` command is bein
 
 ### Solution
 
-To fix this problem:
-
-1. Use `tanzu package installed update` command after the first use of `tanzu package install` command if you want to update the package.
+If you want to update the package, use `tanzu package installed update` command after the first use
+of the `tanzu package install` command.
 
 ## <a id='workload-no-build'></a> After creating a workload, there are no build logs
 
@@ -86,13 +85,14 @@ tanzu apps workload tail workload-name --since 10m --timestamp
 ### Cause
 
 Common causes include:
+
 - Misconfigured repository
 - Misconfigured service account
 - Misconfigured registry credentials
 
 ### Solution
 
-To fix this problem, try these commands to get the relevant error message:
+To fix this problem, run each of these commands to get the relevant error message:
 
 - `kubectl get clusterbuilder.kpack.io -o yaml`
 - `kubectl get image.kpack.io <workload-name> -o yaml`
@@ -104,7 +104,7 @@ After creating a workload, there are no logs.
 
 ### Symptom
 
-You issue the tanzu package install command but one or more packages fails to install.
+You issue the `tanzu package install` command but one or more packages fails to install.
 For example:
 
 ```
@@ -140,11 +140,13 @@ The VMWare Carvel tools kapp-controller continues to try in a reconciliation loo
 
 ### Solution
 
-Verify if the installation is still continuing, and, if so, it might complete just fine:
+Verify if the installation is still continuing by running:
 
 ```
 tanzu package installed list -A
 ```
+
+If it is still running, it is likely to finish successfully and produce output similar to this:
 
 ```
 \ Retrieving installed packages...
@@ -178,4 +180,4 @@ tanzu package installed list -A
   tap-gui                   tap-gui.tanzu.vmware.com                           1.0.0-rc.72      Reconcile succeeded  tap-install
   tap-telemetry             tap-telemetry.tanzu.vmware.com                     0.1.0            Reconcile succeeded  tap-install
   tekton-pipelines          tekton.tanzu.vmware.com                            0.30.0           Reconcile succeeded  tap-install
-  ```
+```
