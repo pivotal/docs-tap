@@ -192,7 +192,7 @@ To install Cloud Native Runtimes:
     USEFUL-ERROR-MESSAGE:
     ```
 
-    STATUS should be `Reconcile succeeded`.
+    `STATUS` should be `Reconcile succeeded`.
 
 1. Configure a namespace to use Cloud Native Runtimes:
 
@@ -341,7 +341,7 @@ To install Convention Controller:
     USEFUL-ERROR-MESSAGE:
     ```
 
-    STATUS should be 'Reconcile succeeded.'
+    `STATUS` should be 'Reconcile succeeded.'
 
     ```
     kubectl get pods -n conventions-system
@@ -355,7 +355,7 @@ To install Convention Controller:
     conventions-controller-manager-596c65f75-j9dmn   1/1     Running   0          72s
     ```
 
-    STATUS should be 'Running.'
+    `STATUS` should be `Running`.
 
 
 ## <a id='install-source-controller'></a> Install Source Controller
@@ -439,7 +439,7 @@ To install Source Controller:
     USEFUL-ERROR-MESSAGE:
     ```
 
-    STATUS should be 'Reconcile succeeded.'
+    `STATUS` should be `Reconcile succeeded`.
 
     ```
     kubectl get pods -n source-system
@@ -453,7 +453,7 @@ To install Source Controller:
     source-controller-manager-f68dc7bb6-4lrn6   1/1     Running   0          45h
     ```
 
-    STATUS should be 'Running.'
+    `STATUS` should be `Running`.
 
 ## <a id='install-app-accelerator'></a> Install Application Accelerator
 
@@ -582,7 +582,8 @@ To install Application Accelerator:
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
     ```
-    STATUS should be `Reconcile succeeded`.
+
+    `STATUS` should be `Reconcile succeeded`.
 
 1. To determine the IP address for the Application Accelerator API when the `server.service_type` is set to `LoadBalancer`, run the following command:
 
@@ -819,13 +820,16 @@ Cartographer
 
 ### Install
 
-1. Familiarize yourself with the set of values of the package that can be configured:
+1. Familiarize yourself with the set of values of the package that can be configured by running:
 
     ```
     tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.4.0-build.1 \
       --values-schema \
       -n tap-install
     ```
+
+    For example:
+
     ```
     KEY                  TYPE    DESCRIPTION
 
@@ -1009,58 +1013,17 @@ values to the properties you want to tweak. For example:
 
 ## <a id='install-ootb-sc-test-scan'></a> Install Out of The Box Supply Chain with Testing and Scanning
 
-
 The Out of the Box Supply Chain with Testing and Scanning package provides a
 ClusterSupplyChain that brings an application from source code to a deployed
 instance of it running in a Kubernetes environment performing validations not
 only in terms of running application tests, but also scanning the source code
 and image for vulnerabilities.
 
-
 ### Prerequisites
 
 - Cartographer
 - Out of The Box Delivery Basic (`ootb-delivery-basic.tanzu.vmware.com`)
 - Out of The Box Templates (`ootb-templates.tanzu.vmware.com`)
-- **NOT** having Out of The Box Supply Chain With Testing
-  (`ootb-supply-chain-testing.tanzu.vmware.com`) installed
-
-You can check if the unwanted `ootb-` package is installed or not with the
-following command:
-
-
-```
-tanzu package installed list --namespace tap-install
-```
-```
-NAME                                PACKAGE-NAME
-ootb-delivery-basic                 ootb-delivery-basic.tanzu.vmware.com
-ootb-supply-chain-basic             ootb-supply-chain-basic.tanzu.vmware.com
-ootb-templates                      ootb-templates.tanzu.vmware.com
-```
-
-In case you see `ootb-supply-chain-testing` in the list above, make sure you
-uninstall it first before proceeding:
-
-
-```
-tanzu package installed delete ootb-supply-chain-testing --namespace tap-install
-```
-```
-Deleting installed package 'ootb-supply-chain-testing' in namespace 'tap-install'.
-Are you sure? [y/N]: y
-
-| Uninstalling package 'ootb-supply-chain-testing' from namespace 'tap-install'
-\ Getting package install for 'ootb-supply-chain-testing'
-- Deleting package install 'ootb-supply-chain-testing' from namespace 'tap-install'
-| Deleting admin role 'ootb-supply-chain-testing-default-cluster-role'
-| Deleting role binding 'ootb-supply-chain-testing-default-cluster-rolebinding'
-| Deleting secret 'ootb-supply-chain-testing-default-values'
-| Deleting service account 'ootb-supply-chain-testing-default-sa'
-
- Uninstalled package 'ootb-supply-chain-testing' from namespace 'tap-install'
-```
-
 
 ### Install
 
@@ -1221,7 +1184,7 @@ by running:
     USEFUL-ERROR-MESSAGE:
     ```
 
-    STATUS should be `Reconcile succeeded`.
+    `STATUS` should be `Reconcile succeeded`.
 
 
 ## <a id='install-spring-boot-convention'></a> Install Spring Boot Conventions
@@ -1276,16 +1239,15 @@ To install Spring Boot conventions:
     USEFUL-ERROR-MESSAGE:
     ```
 
-    STATUS should be 'Reconcile succeeded.'
+    `STATUS` should be `Reconcile succeeded`.
 
 
 ## <a id="install-app-live-view"></a>Install Application Live View
 
 Application Live View installs two packages for `full` and `dev` profiles:
 
-+ Application Live View Package (run.appliveview.tanzu.vmware.com): This package contains Application Live View Backend and Connector components.
-
-+ Application Live View Conventions Package (build.appliveview.tanzu.vmware.com): This package contains Application Live View Convention Service only.
+- Application Live View Package (`run.appliveview.tanzu.vmware.com`): This package contains Application Live View Backend and Connector components.
+- Application Live View Conventions Package (`build.appliveview.tanzu.vmware.com`): This package contains Application Live View Convention Service only.
 
 
 1. List version information for both packages by running:
@@ -1309,15 +1271,15 @@ Application Live View installs two packages for `full` and `dev` profiles:
       build.appliveview.tanzu.vmware.com  1.0.0-build.3  2021-12-03T00:00:00Z
     ```
 
-1. Create a `app-live-view-values.yaml` with the following details:
+1. Create `app-live-view-values.yaml` with the following details:
 
-   ```
-   ---
-   ```
-   > **Note:** The `app-live-view-values.yaml` section does not have any values schema for both packages, therefore it is empty.
+    ```
+    ---
+    ```
+    > **Note:** The `app-live-view-values.yaml` section does not have any values schema for both packages, therefore it is empty.
 
-   The Application Live View backend and connector are deployed in `app-live-view` namespace by default. The connector is deployed as a `DaemonSet`. There is one connector instance per node in the Kubernetes cluster. This instance observes all the apps running on that node.
-   The Application Live View Convention Server is deployed in the `alv-convention` namespace by default. The convention server enhances PodIntents with metadata including labels, annotations, or application properties.
+    The Application Live View backend and connector are deployed in `app-live-view` namespace by default. The connector is deployed as a `DaemonSet`. There is one connector instance per node in the Kubernetes cluster. This instance observes all the apps running on that node.
+    The Application Live View Convention Server is deployed in the `alv-convention` namespace by default. The convention server enhances PodIntents with metadata including labels, annotations, or application properties.
 
 1. Install the Application Live View package by running:
 
@@ -1385,7 +1347,7 @@ Application Live View installs two packages for `full` and `dev` profiles:
     USEFUL-ERROR-MESSAGE:
     ```
 
-    STATUS should be `Reconcile succeeded`.
+    `STATUS` should be `Reconcile succeeded`.
 
 1. Verify the package install for `Application Live View Conventions` package by running:
 
@@ -1406,7 +1368,7 @@ Application Live View installs two packages for `full` and `dev` profiles:
     USEFUL-ERROR-MESSAGE:
     ```
 
-    STATUS should be `Reconcile succeeded`.
+    `STATUS` should be `Reconcile succeeded`.
 
 The Application Live View UI plugin is part of Tanzu Application Platform GUI.
 To access the Application Live View UI,
@@ -1432,7 +1394,7 @@ Supported Git infrastructure includes:
 
 **Required for full functionality:**
 
-- Tanzu Application Platform tools: Tanzu Application Platform GUI has plugins for the
+- **Tanzu Application Platform tools:** Tanzu Application Platform GUI has plugins for the
 following Tanzu Application Platform tools.
 If you plan on running workloads with these capabilities, you need these tools installed alongside
 Tanzu Application Platform GUI.
@@ -1442,22 +1404,18 @@ select.
     - Tanzu Cloud Native Runtimes
     - Tanzu App Live View
 
-- Data cache: Your software catalog is stored on Git infrastructure, as mentioned in the
+- **Data cache:** Your software catalog is stored on Git infrastructure, as mentioned in the
 required prerequisites. However, you also have the option to use a PostgreSQL database to
 cache this information. If you do not specify any values here, a SQLite in-memory database is used
 instead.
 
     - PostgreSQL database and connection information
 
-- Authentication:
+- **Authentication:** OIDC Identity Provider connection information
 
-    - OIDC Identity Provider connection information
+- **Customer-developed documentation:** Techdocs object storage location (S3)
 
-- Customer-developed documentation:
-
-    - Techdocs object storage location (S3)
-
-- The Tanzu Application Platform GUI catalog allows for two approaches towards storing catalog information:
+- **Tanzu Application Platform GUI catalog:** This allows for two approaches towards storing catalog information:
 
     - The default option is suitable for test/development scenarios in that an in-memory database is used. This reads the catalog data from Git URLs you specify in the tap-values.yml file. This data is ephemeral and any operations that cause the `server` pod in the `tap-gui` namespace to be re-created will cause this data to be rebuilt from the Git location. This can cause issues when you manually register entities through the UI as they ONLY exist in the database and will be lost when that in-memory database gets rebuilt.
     - For production use-cases we recommend the use of a PostgreSQL database that exists outside the Tanzu Applicaton Platform's packaging. This stores all the catalog data persistently both from the Git locations as well as from the GUI's manual entity registrations.
@@ -1858,12 +1816,12 @@ Use the following procedure to install Service Bindings:
     manager-6d85fffbcd-j4gvs   1/1     Running   0          22s
     ```
 
-    STATUS should be `Running`.
+    `STATUS` should be `Running`.
 
 
 ## <a id='install-scst-store'></a> Install Supply Chain Security Tools - Store
 
-**Prerequisite**:
+**Prerequisites**
 
 * `cert-manager` installed on the cluster. If you [installed TAP profiles](install.md), then `cert-manager` is already installed. If not, then follow the instructions in [Install cert-manager](#install-prereqs).
 
@@ -1939,7 +1897,7 @@ To install Supply Chain Security Tools - Store:
       log_level                         default              string   Sets the log level. This can be set to "minimum", "less", "default", "more", "debug" or "trace". "minimum" currently does not output logs. "less" outputs log configuration options only. "default" and "more" outputs API endpoint access information. "debug" and "trace" outputs extended API endpoint access information(such as body payload) and other debug information.
     ```
 
-1. (Optional) If you want to modify one of the above deployment configurations, you can created a configuration yaml with the custom configuration values you want. For example, if your environment does not support `LoadBalancer`, and you want to use `NodePort`, then create a `scst-store-values.yaml` and configure the `app_service_type` property. This file will be used in the next step.
+1. (Optional) If you want to modify one of the above deployment configurations, you can create a configuration yaml with the custom configuration values you want. For example, if your environment does not support `LoadBalancer`, and you want to use `NodePort`, then create a `scst-store-values.yaml` and configure the `app_service_type` property. This file will be used in the next step.
 
     ```
     ---
@@ -2354,7 +2312,7 @@ To install Services Toolkit:
     USEFUL-ERROR-MESSAGE:
     ```
 
-    STATUS should be `Reconcile succeeded`.
+    `STATUS` should be `Reconcile succeeded`.
 
 
 ## <a id='verify'></a> Verify the installed packages
