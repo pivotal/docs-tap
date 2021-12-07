@@ -41,9 +41,9 @@ Use this table to keep a running list of terms used and how they should be defin
 |----------------|-------------|
 | API portal | The p _is_ supposed to be lowercase. [Pull request #73](https://github.com/pivotal/docs-tap/pull/73#issue-1011334602).|
 | components | The individual products available in the TAP SKU. For example, Cloud Native Runtimes is a component of TAP. Not: add-ons or capabilities.|
-| convention controller | Lower case; this is one of the minor components that make up Convention Service |
-| convention server | Lower case; this is one of the minor components that make up Convention Service |
-| Convention Service | Upper case; this is a component with its own TanzuNet product page |
+| convention controller | Lowercase; this is one of the minor components that make up Convention Service |
+| convention server | Lowercase; this is one of the minor components that make up Convention Service |
+| Convention Service | Title case; this is a component with its own TanzuNet product page |
 | Default Supply Chain | singular |
 | Insight CLI | There was a mix of Insight CLI and `insight` CLI. Standardized on the former. |
 | packageRepository | Is a definition. Variations found in original doc (Package repository, PackageRepository, packagerepository) but standardize on the one shown. 2021.08.26 |
@@ -52,7 +52,7 @@ Use this table to keep a running list of terms used and how they should be defin
 | packageRepository pull | Just means pulling the packages from the repository|
 | Services Toolkit for VMware Tanzu |  (First use in body text) No longer Services Control Plane Toolkit 2021.10.26 Ed Cook|
 | Services Toolkit|  (In headings and after first use in body text) No longer SCP Toolkit 2021.10.26 Ed Cook|
-| Source Controller | Upper case; this is a component with its own TanzuNet product page |
+| Source Controller | Title case; this is a component with its own TanzuNet product page |
 | Supply Chain Security Tools - Store | Not SCST - Store |
 | Supply Chain Security Tools - Scan | Not SCST - Scan |
 | Tanzu Application Platform GUI | Not Tanzu Application Platform Graphical User Interface, nor TAP GUI, nor TAP UI, etc. Also not "the Tanzu Application Platform GUI" because Tanzu Application Platform GUI is considered a product name. |
