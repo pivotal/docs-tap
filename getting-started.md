@@ -2,7 +2,7 @@
 
 ## Purpose
 
-The intention of this guide is to walk you through the experience of promoting your first application using the Tanzu Application Platform.
+This guide intends to walk you through the experience of promoting your first application using the Tanzu Application Platform.
 
 The intended user of this guide is anyone curious about Tanzu Application Platform and its parts.
 There are two high-level workflows described in this document:
@@ -14,7 +14,7 @@ There are two high-level workflows described in this document:
 
 ### Prerequisites
 
-In order to take full advantage of this document, ensure you have followed [Installing Tanzu Application Platform](install-intro.md).
+To take full advantage of this document, ensure you have followed [Installing Tanzu Application Platform](install-intro.md).
 
 ---
 
@@ -30,7 +30,7 @@ Before getting started, ensure the following prerequisites are in place:
 
 3. The Out of The Box Supply Chain Basic is installed. See [Install default Supply Chain](install-components.md#install-ootb-supply-chain-basic).
 
-4. A developer namespace is setup to accommodate the developer's Workload.
+4. A developer namespace is set up to accommodate the developer's Workload.
    See [Set Up Developer Namespaces to Use Installed Packages](install-components.md#-set-up-developer-namespaces-to-use-installed-packages).
 
 5. Tanzu Application Platform GUI is successfully installed.
@@ -38,7 +38,7 @@ Before getting started, ensure the following prerequisites are in place:
 
 #### A note about Application Accelerators
 
-The Application Accelerator Plugin of Tanzu Application Platform GUI (“Create” button on the left-side navigation bar) helps app developers and app operators through the creation and generation of application accelerators. Accelerators are templates that codify best practices and ensure important configuration and structures are in place from the start.
+The Application Accelerator Plugin of Tanzu Application Platform GUI (“Create” button on the left-side navigation bar) helps app developers and app operators create and generate application accelerators. Accelerators are templates that codify best practices and ensure important configuration and structures are in place from the start.
 
 Developers can bootstrap their applications and get started with feature development right away. Application Operators can create custom accelerators that reflect their desired architectures and configurations and enable fleets of developers to utilize them, decreasing operator concerns about whether developers are implementing their desired best practices.
 
@@ -1397,10 +1397,10 @@ cluster.
 
     * This time after you have added the Tanzu Application Platform package repository, instead of
     installing a profile, you only need to install the Services Toolkit package.
-     You can skip all other packages.
-     For installation information, see
-     [Add the Tanzu Application Platform Package Repository](install.md#add-package-repositories)
-     and [Install Services Toolkit](install-components.md#install-services-toolkit).
+       You can skip all other packages.
+       For installation information, see
+       [Add the Tanzu Application Platform Package Repository](install.md#add-package-repositories)
+       and [Install Services Toolkit](install-components.md#install-services-toolkit).
 
     * From now on this cluster is called the Service Cluster.
 
