@@ -121,7 +121,7 @@ To see this application in your organization catalog, you must register new enti
 
     ![REGISTER button on the right side of the header](images/getting-started-tap-gui-5.png)
 
-3. In the Register an existing component prompt, provide a link to an the `catalog-info.yaml` file in the Git repo and click on `ANALYZE`
+3. In the Register, an existing component prompt provides a link to the `catalog-info.yaml` file in the Git repo and click on `ANALYZE`
 
     ![Select URL](images/getting-started-tap-gui-6.png)
 
@@ -673,7 +673,7 @@ Verify that both Scan Link and Grype Scanner are installed by running:
     ```
     - supply_chain: testing
     + supply_chain: testing_scanning
-
+    
     - ootb_supply_chain_testing:
     + ootb_supply_chain_testing_scanning:
         registry:
@@ -1181,7 +1181,7 @@ In order to demonstrate how Application Teams can discover, provision and bind t
   ```
   kubectl apply -f rabbitmq-clusterresource.yaml
   ```
-For further information about `ClusterResource`, please refer to the Services Toolkit component documentation [here](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.4/services-toolkit-0-4/GUID-service_offering-terminology_and_apis.html).
+  For further information about `ClusterResource`, please refer to the Services Toolkit component documentation [here](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.4/services-toolkit-0-4/GUID-service_offering-terminology_and_apis.html).
 
 To summarize, we have installed RabbitMQ Operator, created the necessary RBAC, and created a Services Toolkit resource called `ClusterResource` for RabbitmqCluster so that app teams can discover it.
 
@@ -1215,7 +1215,7 @@ To summarize, we have installed RabbitMQ Operator, created the necessary RBAC, a
   ```
   $ tanzu service instance list -owide
     Warning: This is an ALPHA command and may change without notice.
-
+  
     NAME                        KIND             SERVICE TYPE  AGE  SERVICE REF
     example-rabbitmq-cluster-1  RabbitmqCluster  rabbitmq      50s  rabbitmq.com/v1beta1:RabbitmqCluster:example-rabbitmq-cluster-1:default
   ```
@@ -1264,7 +1264,7 @@ The first use case demonstrates binding a sample application workload to a servi
   ```
   $ tanzu service instances list --all-namespaces -owide
     Warning: This is an ALPHA command and may change without notice.
-
+  
     NAMESPACE          NAME                        KIND             SERVICE TYPE  AGE   SERVICE REF
     default            example-rabbitmq-cluster-1  RabbitmqCluster  rabbitmq      105s  rabbitmq.com/v1beta1:RabbitmqCluster:example-rabbitmq-cluster-1:default
     service-instances  example-rabbitmq-cluster-2  RabbitmqCluster  rabbitmq      14s   rabbitmq.com/v1beta1:RabbitmqCluster:example-rabbitmq-cluster-2:service-instances
@@ -1397,18 +1397,18 @@ cluster.
 
     * This time after you have added the Tanzu Application Platform package repository, instead of
     installing a profile, you only need to install the Services Toolkit package.
-    You can skip all other packages.
-    For installation information, see
-    [Add the Tanzu Application Platform Package Repository](install.md#add-package-repositories)
-    and [Install Services Toolkit](install-components.md#install-services-toolkit).
+     You can skip all other packages.
+     For installation information, see
+     [Add the Tanzu Application Platform Package Repository](install.md#add-package-repositories)
+     and [Install Services Toolkit](install-components.md#install-services-toolkit).
 
     * From now on this cluster is called the Service Cluster.
 
 1. Download and install the `kubectl-scp` plug-in from [Tanzu Application Platform Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform).
-This plug-in is for demonstration and experimentation purposes only. A `tanzu` CLI UX might
-replace it in the future.
-To install the plug-in you must place it in your PATH and ensure it is executable.
-For example:
+   This plug-in is for demonstration and experimentation purposes only. A `tanzu` CLI UX might
+   replace it in the future.
+   To install the plug-in you must place it in your PATH and ensure it is executable.
+   For example:
 
     ```
     sudo cp PATH-TO-KUBECTL-SCP /usr/local/bin/kubectl-scp
@@ -1484,7 +1484,7 @@ kubectl --context SERVICE-CONTEXT create namespace service-instances
     ```
 
 1. After federation, the `rabbitmq.com/v1beta1` API is also available in the Workload Cluster.
-Verify this by running the following command.
+   Verify this by running the following command.
 
     ```
     kubectl --context WORKLOAD-CONTEXT api-resources
@@ -1536,7 +1536,7 @@ running the following command.
     ```
 
 1. Confirm that RabbitMQ Pods are running in the Service Cluster, but not in the Workload Cluster
-by running the following command:
+   by running the following command:
 
     ```
     kubectl --context WORKLOAD-CONTEXT -n service-instances get pods
