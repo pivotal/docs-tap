@@ -477,7 +477,7 @@ VMware recommends that you do not override the defaults for `registry.secret_ref
 `server.engine_invocation_url`, or `engine.service_type`.
 These properties are only used to configure non-standard installations.
 
-### Prerequisites
+### <a id='app-acc-prereqs'></a> Prerequisites
 
 Before you install Application Accelerator, you must have:
 
@@ -487,7 +487,7 @@ See [Install cert-manager and FluxCD source controller](#install-prereqs).
 -  Source Controller installed on the cluster.
 See [Install Source Controller](#install-source-controller).
 
-### Procedure
+### <a id='app-acc-procedure'></a> Procedure
 
 To install Application Accelerator:
 
@@ -598,13 +598,13 @@ This section provides a quick-start guide for installing Tanzu Build Service as 
 > **Note:** This procedure might not include some configurations required for your specific environment. For more advanced details on installing Tanzu Build Service, see [Installing Tanzu Build Service](https://docs.vmware.com/en/VMware-Tanzu-Build-Service/index.html).
 
 
-### Prerequisites
+### <a id='tbs-prereqs'></a> Prerequisites
 
 * You have access to a Docker registry that Tanzu Build Service can use to create builder images. Approximately 5GB of registry space is required.
 * Your Docker registry is accessible with username and password credentials.
 
 
-### Install Tanzu Build Service using the Tanzu CLI
+### <a id='tbs-tcli-install'></a> Install Tanzu Build Service using the Tanzu CLI
 
 To install Tanzu Build Service using the Tanzu CLI:
 
@@ -802,7 +802,7 @@ tanzu package install ootb-templates \
 ```
 
 
-## <a id='install-ootb-supply-chain-basic'></a> Install Out of The Box Supply Chain Basic
+## <a id='install-ootb-sc-basic'></a> Install Out of The Box Supply Chain Basic
 
 The Out of the Box Supply Chain Basic package provides the most basic
 ClusterSupplyChain that brings an application from source code to a deployed
@@ -999,7 +999,7 @@ Added installed package 'ootb-supply-chain-testing' in namespace 'tap-install'
 ```
 
 
-## <a id='install-ootb-supply-chain-testing-scanning'></a> Install Out of The Box Supply Chain with Testing and Scanning
+## <a id='install-ootb-sc-test-scan'></a> Install Out of The Box Supply Chain with Testing and Scanning
 
 
 The Out of the Box Supply Chain with Testing and Scanning package provides a
@@ -1364,7 +1364,7 @@ see [Application Live View in Tanzu Application Platform GUI](https://docs-stagi
 
 To install Tanzu Application Platform GUI, see the following sections.
 
-### Prerequisites in addition to Tanzu Application Platform requirements
+### <a id='tap-gui-prereqs'></a> Prerequisites
 
 **Required for basic functionality**
 
@@ -1398,7 +1398,7 @@ instead.
   - The default option is suitable for test/development scenarios in that an in-memory database is used. This reads the catalog data from Git URLs you specify in the tap-values.yml file. This data is ephemeral and any operations that cause the `server` pod in the `tap-gui` namespace to be re-created will cause this data to be rebuilt from the Git location. This can cause issues when you manually register entities through the UI as they ONLY exist in the database and will be lost when that in-memory database gets rebuilt.
   - For production use-cases we recommend the use of a PostgreSQL database that exists outside the Tanzu Applicaton Platform's packaging. This stores all the catalog data persistently both from the Git locations as well as from the GUI's manual entity registrations.
 
-### Procedure
+### <a id='tap-gui-install-proc'></a> Procedure
 
 To install Tanzu Application Platform GUI:
 
@@ -1553,7 +1553,7 @@ field in the values file.
 
 To install Tanzu Learning Center, see the following sections.
 
-### Prerequisites for Learning Center
+### <a id='lc-prereqs'></a> Prerequisites
 
 **Required**
 
@@ -1567,7 +1567,7 @@ To install Tanzu Learning Center, see the following sections.
 
 - Any ingress routes created will use the default ingress class. If you have multiple ingress class types available, and you need to override which is used.
 
-### Procedure to install Learning Center
+### <a id='install-lc-proc'></a> Procedure to Install Learning Center
 
 To install Learning Center:
 
@@ -1689,7 +1689,7 @@ the `ingressClass` property in `learning-center-config.yaml` as in this example:
 
     The Pod for the operator should be marked as running.
 
-### Procedure to install the Self-Guided Tour Training Portal and Workshop
+### <a id='install-portal-proc'></a> Procedure to install the Self-Guided Tour Training Portal and Workshop
 
 To install the Self-Guided Tour Training Portal and Workshop:
 
@@ -1920,7 +1920,7 @@ To install Supply Chain Security Tools - Store:
 > see [Supply Chain Security Tools - Sign Known Issues](scst-sign/known_issues.md#sign-known-issues-pods-not-admitted)
 > for recovery steps.
 
-### <a id='scst-sign-prerequisites'></a> Prerequisites
+### <a id='scst-sign-prereqs'></a> Prerequisites
 
 During configuration for this component we will ask you to provide a cosign
 public key to use to validate signed images. We will provide an example cosign
@@ -1929,7 +1929,7 @@ registry. If you wish to provide your own key and images you can follow the
 [cosign quick start guide](https://github.com/sigstore/cosign#quick-start) to
 generate your own keys and sign an image.
 
-### <a id='scst-sign-installation'></a> Installation
+### <a id='install-scst-sign-proc'></a> Procedure
 
 To install Supply Chain Security Tools - Sign:
 
@@ -2130,12 +2130,12 @@ To install Supply Chain Security Tools - Scan (Grype Scanner):
       targetSourceSshSecret      <EMPTY>  string  Reference to the secret containing SSH credentials for cloning private repositories.
     ```
 
-    The `tap-values.yml` file to change the default installation settings would look like this: 
+    The `tap-values.yml` file to change the default installation settings would look like this:
 
     ```
     grype:
       namespace: my-dev-namespace
-      targetImagePullSecret: registry-credentials 
+      targetImagePullSecret: registry-credentials
     ```
 
     > **Note:** If you want to use a namespace other than the default namespace, then ensure that the namespace exists before you install.
@@ -2174,7 +2174,7 @@ If you want to change from the default values, use the Scan Controller instructi
 
 ## <a id='install-api-portal'></a> Install API portal
 
-To install the API portal:
+To install API portal:
 
 1. Check what versions of API portal are available to install by running:
 
