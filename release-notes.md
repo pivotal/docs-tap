@@ -12,17 +12,14 @@ New features and changes in this release:
 
 **Installation Profiles**
 
-The Full profile now includes: 
-- Supply Chain Security Tools - Store
-
-
+The Full profile now includes Supply Chain Security Tools - Store.
 
 The Dev profile now includes:
+
 - Application Accelerator
 - Out of the Box Supply Chain - Testing
 
-The Dev profile no longer includes:
-- Image Policy Webhook
+The Dev profile no longer includes Image Policy Webhook.
 
 **New Components**
 
@@ -33,20 +30,19 @@ The following components are new in Tanzu Application Platform v0.4.0:
 The following components have been updated in Tanzu Application Platform v0.4.0:
 
 - Supply Chain Security Tools
-  - [Scan v1.0.0](scst-scan/overview.md)
+    - [Scan v1.0.0](scst-scan/overview.md)
 - [Tanzu Application Platform GUI v1.0.0-rc.72](tap-gui/about.md)
 
 ### Known issues
 
-This release has the following issues:
+This release has the following issue:
 
-- Convention Service support self-signed cert for private registry
-
-  - [Workaround](convention-service/self-signed-registry-workaround.md) to support self-signed cert for private registry
+- Convention Service uses a work-around for supporting a self-signed certificate for the private registry.
+For more information, see [Convention Service Self-Signed Registry Workaround](convention-service/self-signed-registry-workaround.md).
 
 ### Security issues
 
-This release has the following security issue:
+<!-- This release has the following security issue: -->
 
 
 ## <a id='0-3-0'></a> v0.3.0 beta release
@@ -127,7 +123,7 @@ This release has the following issues:
 
 This release has the following security issue:
 
-- **In Learning Center, exported registry credentials are visible across namespaces:**
+**In Learning Center, exported registry credentials are visible across namespaces:**
 Because SecretExport CR allows you to export registry credentials to other namespaces, they are
 visible to users of those namespaces.
 VMware recommends that the registry credentials you export give read-only access to the registry and
@@ -196,4 +192,4 @@ delete the workload before performing any of the following actions. This will av
 
 **Release Date**: September 1, 2021
 
-Initial release.
+Initial release
