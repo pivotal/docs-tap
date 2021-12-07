@@ -10,42 +10,29 @@ Before you install the packages, ensure that you have completed the prerequisite
 and verified the cluster, accepted the EULA, and installed the Tanzu CLI with any required plugins.
 For information, see [Installing Part I: Prerequisites, EULA, and CLI](install-general.md).
 
-- [Installing individual packages](#installing-individual-packages)
-  - [<a id='install-prereqs'></a> Install cert-manager and FluxCD Source Controller](#-install-cert-manager-and-fluxcd-source-controller)
-  - [<a id='install-cnr'></a> Install Cloud Native Runtimes](#-install-cloud-native-runtimes)
-  - [<a id='install-convention-service'></a> Install Convention Service](#-install-convention-service)
-  - [<a id='install-source-controller'></a> Install Source Controller](#-install-source-controller)
-  - [<a id='install-app-live-view'></a> Install Application Live View](#-install-app-live-view)
-  - [<a id='install-app-accelerator'></a> Install Application Accelerator](#-install-application-accelerator)
-    - [Prerequisites](#prerequisites)
-    - [Procedure](#procedure)
-  - [<a id='install-tbs'></a> Install Tanzu Build Service](#-install-tanzu-build-service)
-    - [Prerequisites](#prerequisites-1)
-    - [Install Tanzu Build Service using the Tanzu CLI](#install-tanzu-build-service-using-the-tanzu-cli)
-  - [<a id='install-scc'></a> Install Supply Chain Choreographer](#-install-supply-chain-choreographer)
-  - [<a id='install-ootb-templates'></a> Install Out of the Box Templates](#-install-out-of-the-box-templates)
-  - [<a id='install-ootb-delivery-basic'></a>Install Out of The Box Supply Chain Basic](#install-ootb-supply-chain-basic)
-  - [<a id='install-ootb-supply-chain-basic'></a> Install Out of The Box Supply Chain Basic](#install-ootb-supply-chain-basic)
-  - [<a id='install-ootb-supply-chain-testing'></a>Install Out of The Box Supply Chain With Testing](#install-ootb-supply-chain-testing)
-  - [<a id='install-ootb-supply-chain-testing-scanning'></a>Install Out of The Box Supply Chain with Testing and Scanning](#install-ootb-supply-chain-testing-scanning)
-  - [<a id='install-tap-gui'></a> Install Tanzu Application Platform GUI](#-install-tanzu-application-platform-gui)
-    - [Prerequisites in addition to Tanzu Application Platform requirements](#prerequisites-in-addition-to-tanzu-application-platform-requirements)
-    - [Procedure](#procedure-1)
-  - [<a id='install-learning-center'></a> Install Learning Center for Tanzu Application Platform](#-install-learning-center-for-tanzu-application-platform)
-    - [Prerequisites for Learning Center](#prerequisites-for-learning-center)
-    - [Procedure to install Learning Center](#procedure-to-install-learning-center)
-    - [Procedure to install the Self-Guided Tour Training Portal and Workshop](#procedure-to-install-the-self-guided-tour-training-portal-and-workshop)
-  - [<a id='install-service-bindings'></a> Install Service Bindings](#-install-service-bindings)
-  - [<a id='install-scst-store'></a> Install Supply Chain Security Tools - Store](#-install-supply-chain-security-tools---store)
-  - [Install Supply Chain Security Tools - Sign](#install-scst-sign)
-    - [Prerequisites](#scst-sign-prerequisites)
-    - [Installation](#scst-sign-installation)
-  - [<a id='install-scst-scan'></a> Install Supply Chain Security Tools - Scan](#-install-supply-chain-security-tools---scan)
-  - [<a id='install-api-portal'></a> Install API portal](#-install-api-portal)
-  - [<a id='install-services-toolkit'></a> Install Services Toolkit](#-install-services-toolkit)
-  - [<a id='verify'></a> Verify the installed packages](#-verify-the-installed-packages)
-  - [<a id='setup'></a> Set Up Developer Namespaces to Use Installed Packages](#-set-up-developer-namespaces-to-use-installed-packages)
-  - [<a id='install-tekton'></a> Install Tekton](#-install-tekton)
++ [Install cert-manager and FluxCD source controller](#install-prereqs)
++ [Install Cloud Native Runtimes](#install-cnr)
++ [Install Convention Service](#install-convention-service)
++ [Install Source Controller](#install-source-controller)
++ [Install Application Accelerator](#install-app-accelerator)
++ [Install Tanzu Build Service](#install-tbs)
++ [Install Supply Chain Choreographer](#install-scc)
++ [Install Out of the Box Templates](#install-ootb-templates)
++ [Install Out of The Box Supply Chain Basic](#install-ootb-supply-chain-basic)
++ [Install Out of The Box Supply Chain with Testing](#install-ootb-supply-chain-testing)
++ [Install Out of The Box Supply Chain with Testing and Scanning](#install-ootb-supply-chain-testing-scanning)
++ [Install Developer Conventions](#install-developer-conventions)
++ [Install Spring Boot Conventions](#install-spring-boot-convention)
++ [Install Application Live View](#install-app-live-view)
++ [Install Tanzu Application Platform GUI](#install-tap-gui)
++ [Install Learning Center for Tanzu Application Platform](#install-learning-center)
++ [Install Service Bindings](#install-service-bindings)
++ [Install Supply Chain Security Tools - Store](#install-scst-store)
++ [Install Supply Chain Security Tools - Sign](#install-scst-sign)
++ [Install Supply Chain Security Tools - Scan](#install-scst-scan)
++ [Install API portal](#install-api-portal)
++ [Install Services Toolkit](#install-services-toolkit)
++ [Install Tekton](#install-tekton)
 
 
 ## <a id='install-prereqs'></a> Install cert-manager and FluxCD Source Controller
@@ -894,7 +881,7 @@ tanzu package install ootb-supply-chain-basic \
 ```
 
 
-## <a id='install-ootb-supply-chain-testing'></a> Install Out of The Box Supply Chain With Testing
+## <a id='install-ootb-supply-chain-testing'></a> Install Out of The Box Supply Chain with Testing
 
 The Out of the Box Supply Chain with Testing package provides a
 ClusterSupplyChain that brings an application from source code to a deployed
@@ -1022,7 +1009,7 @@ only in terms of running application tests, but also scanning the source code
 and image for vulnerabilities.
 
 
-## Prerequisites
+### Prerequisites
 
 - Cartographer
 - Out of The Box Delivery Basic (`ootb-delivery-basic.tanzu.vmware.com`)
@@ -1067,7 +1054,7 @@ Are you sure? [y/N]: y
 ```
 
 
-## Install
+### Install
 
 First check the values of the package that can be configured:
 
