@@ -1,5 +1,7 @@
 # Accessing Tanzu Application Platform GUI
 
+This topic covers how to access Tanzu Application Platform GUI.
+
 ## <a id="lb-method"></a> Use the default LoadBalancer method
 
 The default method is to use LoadBalancer. To do so, follow these steps.
