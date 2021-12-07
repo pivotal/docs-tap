@@ -3,7 +3,7 @@ title: Out of The Box Supply Chain with Testing and Scanning (ootb-supply-chain-
 weight: 2
 ---
 
-This Out of The Box Supply Chain with Testing and Scanning ties a series of Kubernetes resources which,
+This [cartographer] Supply Chain ties a series of Kubernetes resources which,
 when working together, drives a developer-provided Workload from source code
 all the way to a Kubernetes configuration ready to be deployed to a cluster,
 having not only passed that source code through testing and vulnerability
@@ -28,13 +28,13 @@ DELIVERY
 
 
 It includes all the capabilities of the Out of The Box Supply Chain With
-Testing, but adds on top source and image scanning using Grype:
+Testing, but adds on top source and image scanning using [Grype]:
 
 - Watching a Git Repository or local directory for changes
-- Running tests from a developer-provided Tekton or pipeline
+- Running tests from a developer-provide tekton/Pipeline
 - Scanning the source code for known vulnerabilities using Grype
 - Building a container image out of the source code with Buildpacks
-- Scanning the image for known vulnerabilities
+- Scaning the image for known vulnerabilities
 - Applying operator-defined conventions to the container definition
 - Deploying the application to the same cluster
 
@@ -45,14 +45,14 @@ To make use this supply chain, it's required that:
 
 - Out of The Box Templates is installed
 - Out of The Box Delivery Basic is installed
-- Out of The Box Supply Chain With Testing **is NOT installed** 
+- Out of The Box Supply Chain With Testing **is NOT installed** (!!)
 - Out of The Box Supply Chain With Testing and Scanning **is installed**
 - Developer namespace is configured with the objects per Out of The Box Supply
   Chain With Testing guidance (this supply chain is additive to the testing
   one)
 
 You can verify that you have the right set of supply chains installed (i.e. the
-supply chain with Scanning and _not_ the one with testing) by running the following
+one with Scanning and _not_ the one with testing) by running the following
 command:
 
 ```
@@ -126,7 +126,7 @@ Note that the names of the objects **must** match the ones in the example.
 ##### ScanPolicy
 
 The ScanPolicy defines a set of rules to evaluate for a particular scan to
-consider the artifacts, image or source code, either compliant or not.
+consider the artifacts (image or source code) either compliant or not.
 
 When a ImageScan or SourceScan is created to run a scan, those reference a
 policy whose name **must** match the one below (`scan-policy`):
@@ -276,8 +276,9 @@ above.
 
 ##### Developer Workload
 
-With the ScanPolicy and ScanTemplate objects, including the required names set,
-submitted to the same namespace where the Workload is submitted, we're ready to submit our Workload.
+With the ScanPolicy and ScanTemplate objects (with the required names set)
+submitted to the same namespace as the one where the Workload will be submitted
+to, we're ready to submit our Workload.
 
 We can configure the Workload with two scenarios in mind:
 
