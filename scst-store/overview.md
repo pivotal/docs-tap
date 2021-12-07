@@ -39,11 +39,7 @@ The following steps are required to use the API or CLI:
 
 The Insight CLI is not required but may provide an easier-to-use interface than the [API](api.md).  
 
-<<<<<<< HEAD
 > **Note:** The Insight CLI is in beta and is separate from the Tanzu CLI.
-=======
-> **Note:** The `insight` CLI is in beta and is separate from the `tanzu` CLI.
->>>>>>> 4528e29 ([#180551191]standardize on Insight CLI)
 
 * [Install the CLI](install_cli.md)
 * [Configure the CLI](configure_cli.md)
