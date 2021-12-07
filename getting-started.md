@@ -49,7 +49,7 @@ Application Accelerator sample templates are installed by default as part of the
 
 Follow these steps to get started with an accelerator called `Tanzu-Java-Web-App`.
 
-1. From your Tanzu Application Platform GUI portal, click on “Create” button on the left side of the navigation bar to see the list of available Accelerators.
+1. From your Tanzu Application Platform GUI portal, click on “Create” button on the left side of the navigation bar to see the list of available Accelerators. For assistance in connecting to your Tanzu Application Platform GUI, see the documentation [here](tap-gui/accessing-tap-gui.md)
 
     ![List of accelerators in Tanzu Application Platform GUI](images/getting-started-tap-gui-1.png)
 
