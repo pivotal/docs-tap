@@ -5,8 +5,8 @@ weight: 2
 
 This package provides a reusable ClusterDelivery object that is responsible for
 delivering to an environment the Kubernetes configuration that has been
-produced by the Out of The Box Supply Chains (Basic, Testing, and Testing With
-Scanning).
+produced by the Out of The Box Supply Chains, including Basic, Testing, and Testing With
+Scanning.
 
 It support both GitOps and local development workflows:
 
