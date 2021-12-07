@@ -1,6 +1,6 @@
 # Configuring and understanding logs
 
-This topic covers how to configure the Supply Chain Security Tools - Store to output particular log information, as well on how to interpret them.
+This topic covers how to configure the Supply Chain Security Tools - Store to output detailed log information and how to interpret them.
 
 ## Log levels
 
