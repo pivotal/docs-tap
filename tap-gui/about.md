@@ -1,4 +1,4 @@
-# Tanzu Application Platform GUI <!-- omit in toc -->
+# Tanzu Application Platform GUI 
 
 ## Overview
 
