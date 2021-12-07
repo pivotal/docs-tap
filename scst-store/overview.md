@@ -39,7 +39,7 @@ The following steps are required to use the API or CLI:
 
 The `insight` CLI is not required but may provide an easier-to-use interface than the [API](api.md).  
 
-> **Note:** the `insight` CLI is separate from the `tanzu` CLI.  It will be added as a `tanzu` CLI plugin in a future release
+> **Note:** the `insight` CLI is in beta and is separate from the `tanzu` CLI.
 
 * [Install the CLI](install_cli.md)
 * [Configure the CLI](configure_cli.md)
