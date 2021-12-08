@@ -1,6 +1,6 @@
 # Release notes
 
-This topic contains release notes for Supply Chain Security Tools – Scan
+This topic contains release notes for Supply Chain Security Tools – Scan.
 
 ## Releases
 
