@@ -16,7 +16,7 @@ spec:
 You can define any valid [Kubernetes Pod](https://kubernetes.io/docs/concepts/workloads/pods/) into the `ScanTemplate` CR as long as you follow these requirements:
 
 1. **Scanner Container**  
-    The pod scan needs to define a container named `scanner` which will have the result of the scanning.  
+    The pod scan needs to define a container named `scanner` that will have the scanning result.  
    * **`stdout` Logs**  
     The scan result must be printed in the `stdout` of the `scanner` container having a valid [CycloneDX](https://cyclonedx.org/docs/1.3/) XML format.
 
@@ -32,9 +32,9 @@ You can define any valid [Kubernetes Pod](https://kubernetes.io/docs/concepts/wo
     **Scanner Version**  
         Provide the version of the scanner you are using in `bom>metadata>tools>tool>version` field of the XML generated as an output.  
 
-If the `scanner` pod is not defined or the logs retrieved from the `stdout` does not have a valid format, then the scanning condition will fail.
+If the `scanner` pod is not defined or the logs retrieved from the `stdout` do not have a valid format, the scanning condition will fail.
 
 ## Best practices
 1. **SourceScan**  
    1. **Init Container**  
-        If you're doing a `SourceScan`, it is encourage that you define the cloning of the repository in an init container named `repo`. Any output in `stdout` in this init container will be prompted out in case an error happens, so you can have more context about what failed inside the job.
+        If you're doing a `SourceScan`, it is encouraged that you define the cloning of the repository in an init container named `repo`. Any output in `stdout` in this init container will be prompted out if an error happens, so you can have more context about what failed inside the job.
