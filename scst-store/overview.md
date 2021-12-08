@@ -39,7 +39,7 @@ The following steps are required to use the API or CLI:
 
 The Insight CLI is not required but may provide an easier-to-use interface than the [API](api.md).  
 
-> **Note:** The Insight CLI is in beta and is separate from the Tanzu CLI.
+> **Note:** The Insight CLI is in beta and is separate from the Tanzu CLI. It still works with the final 1.0.0 version of Supply Chain Security Tools - Store.
 
 * [Install the CLI](install_cli.md)
 * [Configure the CLI](configure_cli.md)
