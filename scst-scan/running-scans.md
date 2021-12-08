@@ -1,11 +1,11 @@
 # Sample public source code and image scans with policy enforcement
 
 ## <a id="public-source-scan"></a> Public source scan
-This example performs a source scan on a public repository. The source revision has 192 known vulnerabilities (CVEs), spanning a number of severities. SourceScan uses the ScanPolicy to run a compliance check against the CVEs.
+This example performs a source scan on a public repository. The source revision has 192 known vulnerabilities (CVEs), spanning several severities. SourceScan uses the ScanPolicy to run a compliance check against the CVEs.
 
 The example policy is set to only consider `Critical` severity CVEs as violations, which returns 7 Critical Vulnerabilities.
 
-**NOTE:** This example ScanPolicy is deliberately constructed to showcase the features available, and should not be considered an acceptable base policy.
+**NOTE:** This example ScanPolicy is deliberately constructed to showcase the features available and should not be considered an acceptable base policy.
 
 For this example, the scan (at the time of writing):
 
@@ -77,7 +77,7 @@ kubectl apply -f sample-public-source-scan-with-compliance-check.yaml
 ```
 
 ### View the scan results
-Once the scan has completed, run:
+When the scan completes, run:
 
 ```
 kubectl describe sourcescan sample-public-source-scan-with-compliance-check
@@ -141,11 +141,11 @@ kubectl delete -f sample-public-source-scan-with-compliance-check.yaml
 ```
 
 ## <a id="public-image-scan"></a> Public image scan
-The following example performs an image scan on a image in a public registry. This image revision has 223 known vulnerabilities (CVEs), spanning a number of severities. ImageScan uses the ScanPolicy to run a compliance check against the CVEs.
+The following example performs an image scan on an image in a public registry. This image revision has 223 known vulnerabilities (CVEs), spanning a number of severities. ImageScan uses the ScanPolicy to run a compliance check against the CVEs.
 
 The policy in this example is set to only consider `Critical` severity CVEs as a violation, which returns 21 Unknown Severity Vulnerability.
 
-**NOTE:** This example ScanPolicy has been deliberately constructed to showcase the features available, and should not be considered an acceptable base policy.
+**NOTE:** This example ScanPolicy has been deliberately constructed to showcase the features available and should not be considered an acceptable base policy.
 
 In this example, the scan does the following (at the time of writing):
 
