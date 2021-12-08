@@ -116,7 +116,7 @@ spec:
 
   # A string defining the name of an existing ScanPolicy custom resource. See "Enforcement Policies (OPA)" section.
   scanPolicy: my-scan-policy
- ```
+```
 
 #### Step 2: Deploy the ImageScan custom resource to the desired namespace on cluster
 
