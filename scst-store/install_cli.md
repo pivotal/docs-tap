@@ -17,7 +17,6 @@ For example, `mv insight-1.0.0-beta.2_darwin_amd64 insight`.
 <details><summary>macOS only:</summary>
 <br/>
 
-
 macOS does not recognize that the insight binary is safe to run because Apple has not signed it. To allow your computer to run the binary, perform the following steps:
 
 1. In the command line, run: 
