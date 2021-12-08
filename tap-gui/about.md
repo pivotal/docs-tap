@@ -24,4 +24,4 @@ Tanzu Application Platform GUI is comprised of the following components:
   This plug-in enables you to store your technical documentation in Markdown format in a source-code
   repository and display it alongside the relevant catalog entries.
 
-![Tanzu Application Platform Catalog](./images/tap-gui-catalog.png)
+  ![Tanzu Application Platform Catalog](./images/tap-gui-catalog.png)
