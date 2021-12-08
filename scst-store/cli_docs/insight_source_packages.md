@@ -1,4 +1,4 @@
-## Insight Source Packages
+## insight source packages
 
 Get source packages.
 
@@ -25,7 +25,7 @@ insight sources packages --commit 0b1b659907 --format json
   -r, --repo string     source repository url
 ```
 
-### See Also
+### See also
 
 * [insight source](insight_source.md)	 - Source commands
 

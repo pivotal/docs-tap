@@ -1,4 +1,4 @@
-# Insight source
+# insight source
 
 Source commands are as follows:
 
