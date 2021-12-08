@@ -1241,13 +1241,13 @@ To install Learning Center:
 
     ```shell
      NAME                             VERSION        RELEASED-AT
-     learningcenter.tanzu.vmware.com  1.0.14-build.1 2021-10-22 17:02:13 -0400 EDT
+     learningcenter.tanzu.vmware.com  1.0.14-build.5 2021-10-22 17:02:13 -0400 EDT
     ```
 
 1. (Optional) See all the configurable parameters on this package by running:
 
     ```shell
-    tanzu package available get learningcenter.tanzu.vmware.com/1.0.14-build.1 --values-schema -- namespace tap-install
+    tanzu package available get learningcenter.tanzu.vmware.com/1.0.14-build.5 --values-schema -- namespace tap-install
     ```
 
 1. Create a config file named `learning-center-config.yaml`.
@@ -1321,7 +1321,7 @@ the `ingressClass` property in `learning-center-config.yaml` as in this example:
 1. Install Learning Center Operator by running:
 
     ```shell
-    tanzu package install learning-center --package-name learningcenter.tanzu.vmware.com --version 1.0.14-build.1 -f learning-center-config.yaml
+    tanzu package install learning-center --package-name learningcenter.tanzu.vmware.com --version 1.0.14-build.5 -f learning-center-config.yaml
     ```
 
     The command above will create a default namespace in your Kubernetes cluster called `educates`,
@@ -1362,7 +1362,7 @@ To install the Self-Guided Tour Training Portal and Workshop:
 2. Install the Learning Center Training Portal with the Self Guided Tour workshop by running:
 
    ```shell
-   tanzu package install learning-center-workshop --package-name workshops.learningcenter.tanzu.vmware.com --version 1.0.7-build.1 -n tap-install
+   tanzu package install learning-center-workshop --package-name workshops.learningcenter.tanzu.vmware.com --version 1.0.7-build.6 -n tap-install
    ```
 
 3. Check the Training Portals available in your environment by running:
