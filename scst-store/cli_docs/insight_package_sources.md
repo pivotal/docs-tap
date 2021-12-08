@@ -1,10 +1,10 @@
 ## insight package sources
 
-Get sources that contain the given package by name
+Get sources that contain the given package by name.
 
 ### Synopsis
 
-Get sources that contain the given package by name
+Get sources that contain the given package by name.
 
 ```
 insight package sources --name <package name> [flags]
