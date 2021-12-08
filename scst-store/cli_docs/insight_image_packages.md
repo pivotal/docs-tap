@@ -1,4 +1,4 @@
-## Insight Image Packages
+## insight image packages
 
 Get image packages.
 
