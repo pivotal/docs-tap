@@ -14,7 +14,7 @@ Source, image, package, and vulnerabilities can be queried and outputted in Cycl
   -h, --help   help for insight
 ```
 
-## See Also
+## See also
 
 * [Insight config](insight_config.md)	 - Config commands
 * [Insight health](insight_health.md)	 - Checks if endpoint is reachable
