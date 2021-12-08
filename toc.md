@@ -9,7 +9,7 @@ This is the table of contents from which the Tanzu Application Platform Document
         - [Installing on a Tanzu Community Edition v0.9.1 cluster](install-tce.md)
         - [Installing on a Tanzu Kubernetes Grid v1.4 cluster](install-tkg.md)
         - [Installing on clusters onboarded to Tanzu Service Mesh](install-tsm.md)
-  - [Installing Part II: profiles](install.md)
+  - [Installing Part II: Profiles](install.md)
 - [Upgrading Tanzu Application Platform](upgrade.md)
 - [Getting started with Tanzu Application Platform](getting-started.md)
 - [Opting out of telemetry collection](opting-out-telemetry.md)

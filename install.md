@@ -1,4 +1,4 @@
-# Installing part II: profiles
+# Installing Part II: Profiles
 
 This document describes how to install Tanzu Application Platform packages
 from the Tanzu Application Platform package repository.
@@ -12,7 +12,7 @@ See [Installing Part I: Prerequisites, EULA, and CLI](install-general.md).
 
 To add the Tanzu Application Platform package repository:
 
-1. Setup environment variables that will be used during install
+1. Set up environment variables for use during the installation.
 
     ```
     export INSTALL_REGISTRY_USERNAME=TANZU-NET-USER
@@ -28,7 +28,7 @@ To add the Tanzu Application Platform package repository:
 
     This namespace keeps the objects grouped together logically.
 
-3. Create a registry secret. Run:
+3. Create a registry secret by running:
 
     ```
     tanzu secret registry add tap-registry \
