@@ -137,7 +137,8 @@ service account. The service account and the secrets must be created in the
 
 ### <a id="secret-ref-cluster-image-policy"></a> Providing secrets for authentication in your policy
 
-If your use case matches the following conditions:
+You can provide secrets for authentication as part of the name pattern policy configuration provided your use case meets the following conditions:
+
 * Your images and signatures reside in a registry protected by authentication.
 
 * You do not have `imagePullSecrets` configured in your runnable resources or
@@ -145,8 +146,7 @@ in the `ServiceAccount`s your runnable resources use.
 
 * You would like this webhook to check these container images.
 
-You can provide secrets for authentication as part of the name pattern policy
-configuration, as shown in the example below:
+See the following example:
 
 ```
 ---
@@ -187,9 +187,10 @@ privilege that will allow reading the signature stored in your registry.
 ### <a id="secrets-registry-credentials-sa"></a> Providing secrets for authentication in the `image-policy-registry-credentials` service account
 
 If you prefer to provide your secrets in the `image-policy-registry-credentials`
-service account instead follow the steps below:
+service account, follow these steps:
 
 1. Create the required secrets in the `image-policy-system` namespace (once per secret):
+
     ```
     kubectl create secret docker-registry SECRET-1 \
       --namespace image-policy-system \
@@ -200,6 +201,7 @@ service account instead follow the steps below:
 
 1. Create the `image-policy-registry-credentials` in the `image-policy-system`
 namespace and add the secret names from step 1 to the `imagePullSecrets` section:
+
     ```
     cat <<EOF | kubectl apply -f -
     apiVersion: v1
@@ -219,7 +221,7 @@ namespace and add the secret names from step 1 to the `imagePullSecrets` section
 
 ## Image name patterns
 
-The container image names can be matched exactly or using a wildcard (*)
+The container image names can be matched exactly or use a wildcard (*)
 that matches any number of characters. Here are some useful name pattern
 examples:
 
@@ -248,6 +250,7 @@ then you can run the following commands to check your configuration:
 
 1. Verify that a signed image, validated with a configured public key, launches.
 Run:
+
     ```
     kubectl run cosign \
       --image=gcr.io/projectsigstore/cosign:v1.2.1 \
@@ -266,6 +269,7 @@ Run:
     ```
 
 1. Verify that an unsigned image does not launch. Run:
+
     ```
     kubectl run bb --image=busybox --restart=Never
     ```
@@ -280,6 +284,7 @@ Run:
 
 1. Verify that an image signed with a key that does not match the configured
 public key will not launch. Run:
+
     ```
     kubectl run cosign-fail \
       --image=gcr.io/projectsigstore/cosign:v0.3.0 \
