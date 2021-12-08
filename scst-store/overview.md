@@ -56,7 +56,7 @@ See [querying data](querying_the_metadata_store.md) understand vulnerability, im
 
 ## Auditing
 
-The API server outputs logs when an endpoint is accessed, and can be used for auditing purposes. For information about the logs generated, see [Configuring and Understanding Store Logs](logs.md).
+The API server outputs logs when an endpoint is accessed and can be used for auditing purposes. For information about the logs generated, see [Configuring and Understanding Store Logs](logs.md).
 
 
 ## Known issues
