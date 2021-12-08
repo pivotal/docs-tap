@@ -99,11 +99,10 @@ any workload that has metadata, indicating it is a Spring Boot app.
 
 >**Note:** For the following example, the package `model` is used to define [resource](./reference/convention-resources.md) types.
 
-1. <a id='convention-1'></a>The example `server.go` sets up the `ConventionHandler` to ingest the webhook
-   requests ([PodConventionContext](./reference/pod-convention-context.md)) from the convention controller.
-   At this point, the handler only needs to deal with the existing `PodTemplateSpec`
-   (see the [Kubernetes documentation](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec))
-   and [`ImageConfig`](./reference/image-config.md):
+1. The example `server.go` sets up the `ConventionHandler` to ingest the webhook requests
+([PodConventionContext](./reference/pod-convention-context.md)) from the convention controller.
+At this point, the handler only needs to deal with the existing `PodTemplateSpec`
+(see the [Kubernetes documentation](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec)) and [`ImageConfig`](./reference/image-config.md):
 
     ```go
     ...
@@ -119,10 +118,10 @@ any workload that has metadata, indicating it is a Spring Boot app.
 
      Where:
 
-     + `template` is the predefined `PodTemplateSpec` that the convention is going to modify.
-     + `images` are the `ImageConfig` that will be used as reference to make decisions in the conventions. In this example, the type was created within the `model` package.
+     - `template` is the predefined `PodTemplateSpec` that the convention modifies.
+     - `images` are the `ImageConfig` that will be used as reference to make decisions in the conventions. In this example, the type was created within the `model` package.
 
-2. <a id='server-2'></a>The example `server.go` also configures the convention server to listen for requests:
+1. The example `server.go` also configures the convention server to listen for requests:
 
     ```go
 
@@ -148,12 +147,14 @@ any workload that has metadata, indicating it is a Spring Boot app.
         ...
 
     ```
+
     Where:
 
-    + `PORT` is a possible environment variable.
-    + `ServerHandler` is the *handler* defined in [last step](#create-1).
-    + `NewConventionServer` is the function in charge of configure and create the *http webhook* server.
-    + Here is defined a basic web server defined listen in the defined port by the environment variable `PORT` or the default one (*9000*) and in the context path `/`.
+    - `PORT` is a possible environment variable.
+    - `ServerHandler` is the *handler* defined in [last step](#create-1).
+    - `NewConventionServer` is the function in charge of configure and create the *http webhook* server.
+
+    Here is defined a basic web server. Listen in the defined port through the environment variable `PORT` or the default one (*9000*) and in the context path `/`.
 
 3. Create the *Server Handler* that handles the request from the convention controller with the [PodConventionContext](./reference/pod-convention-context.md) serialized to JSON:
 
