@@ -1036,15 +1036,13 @@ This section has procedures for several use cases regarding Services journey on 
 
 ### Overview
 
-Most applications require backing services, such as databases, queues, and caches, to run
-successfully.
+Most applications depend on backing services, such as databases, queues, and caches.
+As a result, developers can spend more time focusing on developing their applications and less
+time worrying about the provision, configuration, and operations of the backing services the applications
+depend on. This experience is made possible in Tanzu Application Platform by using the Services Toolkit
+component. Below are use cases that are unlocked by Services Toolkit on Tanzu Application Platform.
 
-This enables developers to spend more time focusing on developing their applications and less
-time worrying about the provision, configuration, and operations of the backing services they
-depend on.
-
-This experience is made possible in Tanzu Application Platform by using the Services Toolkit
-component. Below are use cases that are unlocked by Services Toolkit on Tanzu Application Platform. Those marked with Experimental are subject to change.
+**Note:** Use cases marked with Experimental are subject to change.
 
 ### Use cases unlocked by Services Toolkit on Tanzu Application Platform
 
@@ -1085,29 +1083,27 @@ Services Toolkit comprises the following Kubernetes-native components:
 * [Service API Projection (Experimental)](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-api_projection_and_resource_replication-terminology_and_apis.html)
 * [Service Resource Replication (Experimental)](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-api_projection_and_resource_replication-terminology_and_apis.html)
 
-Each component has value on its own, however the most powerful and valuable use cases are unlocked by combining them. For detailed information about each of the Services Toolkit components, including the use cases they unlock and the API reference guides, see the [Services Toolkit documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.4/services-toolkit-0-4/GUID-overview.html).
+Each component has its value, however the best use cases are unlocked by combining multiple components. For detailed information about each of the Services Toolkit components, including the use cases and the API reference guides, see the [Services Toolkit documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.4/services-toolkit-0-4/GUID-overview.html).
 
 Within the context of Tanzu Application Platform, one of the most important use cases
 is binding an application workload to a backing service such as a PostgreSQL database or a
-RabbitMQ queue.
-This use case is made possible by the [Service Binding Specification](https://github.com/servicebinding/spec) for Kubernetes.
-Any service that adheres to the [Provisioned Service](https://github.com/servicebinding/spec#provisioned-service) part of the specification is automatically
-compatible with Tanzu Application Platform.
+RabbitMQ queue. This leads to a powerful user experience for working with backing services
+as part of the development life cycle.
 
-This leads to a simple, but powerful, first-class user experience for working with backing services
-as part of the development life cycle. Below we expand on the first two use cases listed above.
+**Note:** The [Service Binding Specification](https://github.com/servicebinding/spec) for Kubernetes is required in this use case.
+**Note:** Any service that adheres to the [Provisioned Service](https://github.com/servicebinding/spec#provisioned-service) in the specification is compatible with Tanzu Application Platform.
 
 <!-- * [Use Case 1 - **Binding an App Workload to a Service Resource**](#services-journey-use-case-1)
 * [Use Case 2 - **Binding an App Workload to a Service Resource across multiple clusters**](#services-journey-use-case-2)
 * [Use Case 3 - **Binding an App Workload directly to a Secret (support for external services)**](#services-journey-use-case-3) -->
 
-In order to demonstrate how Application Teams can discover, provision and bind to services in Tanzu Application Platform, we first need to install a service along with a few supporting resources to make it discoverable. This setup is typically performed by the role of the Service Operator.
-
 ### Setup
+
+To demonstrate how Application Teams can discover, provision, and bind to services in Tanzu Application Platform, VMware requires to first install a service and a few supporting resources. This setup is typically performed by the Service Operator.
 
 Follow the steps below to install RabbitMQ Operator, create the necessary RBAC,
 and create a Services Toolkit resource called `ClusterResource` for
-RabbitmqCluster so that app teams can discover it.
+RabbitmqCluster so that Application Teams can discover it.
 
 1. Install RabbitMQ Operator which provides a RabbitmqCluster API Kind on the rabbitmq.com/v1beta1 API Group/Version.
 
