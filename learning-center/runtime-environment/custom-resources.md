@@ -14,7 +14,7 @@ The ``Workshop`` custom resource defines a workshop. It specifies the title and 
 
 A minimal example of the ``Workshop`` custom resource is:
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha2
 kind: Workshop
 metadata:
@@ -48,7 +48,7 @@ In order to deploy instances of a workshop, you first need to create a workshop 
 
 A minimal example of the ``WorkshopEnvironment`` custom resource is:
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: WorkshopEnvironment
 metadata:
@@ -82,7 +82,7 @@ The ``WorkshopRequest`` custom resource is namespaced to allow who can create it
 
 A minimal example of the ``WorkshopRequest`` custom resource is:
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: WorkshopRequest
 metadata:
@@ -119,7 +119,7 @@ The ``TrainingPortal`` custom resource provides a high level mechanism for creat
 
 A minimal example of the ``TrainingPortal`` custom resource is:
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: TrainingPortal
 metadata:
@@ -144,7 +144,7 @@ The ``SystemProfile`` custom resources provides a mechanism for configuring the 
 
 A minimal example of the ``SystemProfile`` custom resource is:
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: SystemProfile
 metadata:
@@ -176,12 +176,8 @@ The ``SystemProfile`` custom resource is created at cluster scope.
 
 The custom resource definitions for the custom resource described above, are created in the Kubernetes cluster when you deploy the Learning Center operator using the Tanzu CLI.
 
-Although links to the ``v1`` versions of the CRDs are given above, at this time this command will actually use the ``v1beta1`` versions of the CRDs. This is because ``v1`` versions of CRDs are only supported from Kubernetes 1.17. If for some reason you need to use the ``v1`` versions of the CRDs at this time, you will need to create a copy of the Learning Center operator deployment resources and override the configuration so that the ``v1`` versions are used.
+This is because ``v1`` versions of CRDs are only supported from Kubernetes 1.17. If for some reason you need to use the ``v1`` versions of the CRDs at this time, you will need to create a copy of the Learning Center operator deployment resources and override the configuration so that the ``v1`` versions are used.
 
-The location of the ``v1beta1`` versions of the CRDs is:
-
-* [https://github.com/eduk8s/eduk8s/tree/develop/resources/crds-v1beta1](https://github.com/eduk8s/eduk8s/tree/develop/resources/crds-v1beta1)
-
-and those for ``v1`` versions is:
+The location of the ``v1`` versions of the CRDs is:
 
 * [https://github.com/eduk8s/eduk8s/tree/develop/resources/crds-v1](https://github.com/eduk8s/eduk8s/tree/develop/resources/crds-v1)

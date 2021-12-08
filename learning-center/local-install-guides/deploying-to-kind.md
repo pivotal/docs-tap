@@ -2,7 +2,7 @@
 
 Kind was developed as a means to support development and testing of Kubernetes. Despite it existing primarily for that purpose, Kind clusters are often used for local development of user applications as well. For Learning Center, a local Kind cluster can be used for developing workshop content, or for self learning when deploying other people's workshops.
 
-As you are deploying to a local machine you are unlikely to have access to your own custom domain name and certificate you can use with the cluster. If you don't, you may be restricted as to the sorts of workshops you can develop or run using the Learning Center in Kind. This is because Kind uses ``containerd`` and ``containerd`` lacks certain features that allows one to trust any image registries hosted within a subnet. This means you cannot run workshops which use a local image registry for each workshop session in an easy way. If you need the ability to run workshops on your own local computer which use an image registry for each session, we recommend you use Minikube with ``dockerd`` instead. You can find more details about this issue below.
+As you are deploying to a local machine you are unlikely to have access to your own custom domain name and certificate you can use with the cluster. If you don't, you may be restricted as to the sorts of workshops you can develop or run using the Learning Center in Kind. This is because Kind uses ``containerd`` and ``containerd`` lacks certain features that allows one to trust any image registries hosted within a subnet. This means you cannot run workshops which use a local image registry for each workshop session in an easy way. If you need the ability to run workshops on your own local computer which use an image registry for each session, we recommend you use minikube with ``dockerd`` instead. You can find more details about this issue below.
 
 Also keep in mind that since Kind generally has limited memory resources available you may be prohibited from running workshops which have large memory requirements. Certain workshops which demonstrate use of third party applications requiring a multi node cluster will also not work unless the Kind cluster is specifically configured to be multi node rather than a single node.
 
@@ -49,7 +49,7 @@ The Kind documentation provides instructions for installing Ambassador, Contour 
 
 It is recommended that [Contour](https://kind.sigs.k8s.io/docs/user/ingress#contour) be used rather than Nginx, as the latter will drop web socket connections whenever new ingresses are created. The Learning Center workshop environments do include a workaround to re-establish websocket connections for the workshop terminals without loosing terminal state, but other applications used with workshops may not, such as terminals available through VS Code.
 
-You should avoid using the Ambassador ingress controller as it requires all ingresses created to be annotated explictly with an ingress class of "ambassador". The Learning Center operator can be configured to do this automatically for ingresses created for the training portal and workshop sessions, but any workshops which create ingresses as part of the workshop instructions will not work unless they are written to have the user manually add the ingress class when required due to the use of Ambassador.
+You should avoid using the Ambassador ingress controller as it requires all ingresses created to be annotated explicitly with an ingress class of "ambassador". The Learning Center operator can be configured to do this automatically for ingresses created for the training portal and workshop sessions, but any workshops which create ingresses as part of the workshop instructions will not work unless they are written to have the user manually add the ingress class when required due to the use of Ambassador.
 
 If you have created a contour ingress controller please verify all pods have a running status using:
 ```
@@ -98,7 +98,7 @@ Please make sure to check the package repository install status by running:
 ```
 tanzu package repository get tanzu-tap-repository --namespace tap-install
 ```
-wait for a reconciled sucessful status before attempting to install any other packages
+wait for a reconciled successful status before attempting to install any other packages
 
 ## Create a configuration yaml file for Learning Center package
 
@@ -219,17 +219,17 @@ kubectl get trainingportals
 ```
 Here we will get a url that we can then paste into our browser
 
-Congratualtions, you are now running our tutorial workshop using our Learning Center operator.
+Congratulations, you are now running our tutorial workshop using our Learning Center operator.
 
 ## Trusting insecure registries
 
 Workshops may optionally deploy an image registry for a workshop session. This image registry is secured with a password specific to the workshop session and is exposed via a Kubernetes ingress so it can be accessed from the workshop session.
 
-When using Kind, the typical scenario will be that insecure ingress routes are always going to be used. Even if you were to generate a self signed certificate to use for ingress, it will not be trusted by ``containerd`` that runs within Kind. This means you have to tell Kind to trust any insecure registry running inside of Kind.
+When using kind, the typical scenario will be that insecure ingress routes are always going to be used. Even if you were to generate a self signed certificate to use for ingress, it will not be trusted by ``containerd`` that runs within kind. This means you have to tell kind to trust any insecure registry running inside of Kind.
 
-Configuring Kind to trust insecure registries must be done when you first create the cluster. The problem with Kind though is that it uses ``containerd`` and not ``dockerd``. The ``containerd`` runtime doesn't provide a way to trust any insecure registry hosted within the IP subnet used by the Kubernetes cluster. Instead, what ``containerd`` requires is that you enumerate every single hostname or IP address on which an insecure registry is hosted. Since each workshop session created by the Learning Center for a workshop uses a different hostname, this makes it much harder to handle this situation.
+Configuring kind to trust insecure registries must be done when you first create the cluster. The problem with kind though is that it uses ``containerd`` and not ``dockerd``. The ``containerd`` runtime doesn't provide a way to trust any insecure registry hosted within the IP subnet used by the Kubernetes cluster. Instead, what ``containerd`` requires is that you enumerate every single hostname or IP address on which an insecure registry is hosted. Since each workshop session created by the Learning Center for a workshop uses a different hostname, this makes it much harder to handle this situation.
 
-If you really must used Kind and need to handle this, what you need to do is work out what the image registry hostname for a workshop deployment will be, and configure ``containerd`` to trust a set of hostnames corresponding to low numbered sessions for that workshop. This will allow it to work, but once the hostnames for sessions go beyond the range of hostnames you set up, you will need to delete the training portal and recreate it, so you go back to using the same hostnames again.
+If you really must used kind and need to handle this, what you need to do is work out what the image registry hostname for a workshop deployment will be, and configure ``containerd`` to trust a set of hostnames corresponding to low numbered sessions for that workshop. This will allow it to work, but once the hostnames for sessions go beyond the range of hostnames you set up, you will need to delete the training portal and recreate it, so you go back to using the same hostnames again.
 
 For example, if the hostname for the image registry were of the form:
 
@@ -237,7 +237,7 @@ For example, if the hostname for the image registry were of the form:
 lab-docker-testing-wMM-sNNN-registry.192.168.1.1.nip.io
 ```
 
-where ``NNN`` changes per session, you would need to use a command to create the Kind cluster something like:
+where ``NNN`` changes per session, you would need to use a command to create the kind cluster something like:
 
 ```
 cat <<EOF | kind create cluster --config=-
@@ -277,4 +277,4 @@ This would allow you to run five workshop sessions before you had to delete the 
 
 Do note that if using this, you would not be able to use the feature of the training portal to automatically update when a workshop definition is changed. This is because the ``wMM`` value identifying the workshop environment would change any time the workshop definition was updated.
 
-There is no other known workaround for this limitation of ``containerd``. As such, it is recommended that Minikube with ``dockerd`` instead be used.
+There is no other known workaround for this limitation of ``containerd``. As such, it is recommended that minikube with ``dockerd`` instead be used.

@@ -4,13 +4,13 @@
 
 Retrieve pod logs from the `controller-manager` by running the following command in the `source-system` namespace:
 
-```bash
+```
 kubectl logs -n source-system -l control-plane=controller-manager
 ```
 
 For example:
 
-```bash
+```
 kubectl logs -n source-system -l control-plane=controller-manager
 2021-11-18T17:59:43.152Z	INFO	controller.imagerepository	Starting EventSource	{"reconciler group": "source.apps.tanzu.vmware.com", "reconciler kind": "ImageRepository", "source": "kind source: /, Kind="}
 2021-11-18T17:59:43.152Z	INFO	controller.metarepository	Starting EventSource	{"reconciler group": "source.apps.tanzu.vmware.com", "reconciler kind": "MetaRepository", "source": "kind source: /, Kind="}

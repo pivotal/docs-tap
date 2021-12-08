@@ -4,7 +4,7 @@
 
 Webhook servers are the only way to define conventions currently.
 
-```yaml
+```
 apiVersion: conventions.apps.tanzu.vmware.com/v1alpha1
 kind: ClusterPodConvention
 metadata:

@@ -12,6 +12,8 @@ into this Tanzu Application Platform documentation site.
 
 + [Application Live View for VMware Tanzu](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-index.html)
 
++ [Application Live View Convention Service for VMware Tanzu](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-convention-server.html)
+
 + [Cloud Native Runtimes for VMware Tanzu](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-cnr-overview.html)
 
 + [Convention Service for VMware Tanzu](convention-service/about.md)
@@ -24,8 +26,10 @@ into this Tanzu Application Platform documentation site.
 
 + [Supply Chain Security Tools - Scan](scst-scan/overview.md)
 
++ [Supply Chain Security Tools - Sign](scst-sign/overview.md)
+
 + [Supply Chain Security Tools - Store](scst-store/overview.md)
 
 + [Tanzu Developer Tools for Visual Studio Code](vscode-extension/about.md)
 
-+ [VMware Tanzu Build Service](https://docs.pivotal.io/build-service)
++ [VMware Tanzu Build Service](https://docs.vmware.com/en/VMware-Tanzu-Build-Service/index.html)

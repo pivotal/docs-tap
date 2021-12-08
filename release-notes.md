@@ -12,6 +12,15 @@ New features and changes in this release:
 
 **Installation Profiles**
 
+The Full profile now includes Supply Chain Security Tools - Store.
+
+The Dev profile now includes:
+
+- Application Accelerator
+- Out of the Box Supply Chain - Testing
+
+The Dev profile no longer includes Image Policy Webhook.
+
 **New Components**
 
 The following components are new in Tanzu Application Platform v0.4.0:
@@ -20,13 +29,20 @@ The following components are new in Tanzu Application Platform v0.4.0:
 
 The following components have been updated in Tanzu Application Platform v0.4.0:
 
+- Supply Chain Security Tools
+    - [Scan v1.0.0](scst-scan/overview.md)
+- [Tanzu Application Platform GUI v1.0.0-rc.72](tap-gui/about.md)
+
 ### Known issues
 
-This release has the following issues:
+This release has the following issue:
+
+Convention Service does not support self-signed certificates for the private
+registry. We are actively working on adding this support.
 
 ### Security issues
 
-This release has the following security issue:
+<!-- This release has the following security issue: -->
 
 
 ## <a id='0-3-0'></a> v0.3.0 beta release
@@ -40,8 +56,8 @@ New features and changes in this release:
 **Installation Profiles**
 
 You can now install Tanzu Application Platform through profiles.
-The Full profile installs all the component packages.
-The Developer Light installs the packages that a developer needs.
+The Full profile installs all of the component packages.
+The Dev profile installs the packages that a developer needs.
 
 For more information, see [Installation Profiles and Profiles in Tanzu Application Platform v0.3](overview.md#profiles-and-packages) and
 [About Tanzu Application Platform Package Profiles](install.md#about-package-profiles).
@@ -56,7 +72,7 @@ Tanzu Packages:
   - Out of the Box Supply Chain Basic v0.3.0
   - Out of the Box Supply Chain with Testing v0.3.0
   - Out of the Box Supply Chain with Testing and Scanning v0.3.0
-  - Out of the Box Templates v0.3.0 
+  - Out of the Box Templates v0.3.0
 - Tanzu Application Platform GUI v0.3.0
   - Workload Visibility Plugin v1.0.0
   - Application Live View Plugin v0.3.0
@@ -82,6 +98,7 @@ The following components have been updated in Tanzu Application Platform v0.3.0:
 - [Application Live View for VMware Tanzu v0.3.0](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.3/docs/GUID-index.html)
 - [Tanzu Developer Tools for Visual Studio Code v0.3.0](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/0.3/tap-0-3/GUID-vscode-extension-about.html)
 
+
 ### Known issues
 
 This release has the following issues:
@@ -106,7 +123,7 @@ This release has the following issues:
 
 This release has the following security issue:
 
-- **In Learning Center, exported registry credentials are visible across namespaces:**
+**In Learning Center, exported registry credentials are visible across namespaces:**
 Because SecretExport CR allows you to export registry credentials to other namespaces, they are
 visible to users of those namespaces.
 VMware recommends that the registry credentials you export give read-only access to the registry and
@@ -175,4 +192,4 @@ delete the workload before performing any of the following actions. This will av
 
 **Release Date**: September 1, 2021
 
-Initial release.
+Initial release

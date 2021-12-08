@@ -1,6 +1,4 @@
-# Tanzu Application Platform GUI <!-- omit in toc -->
-
-## Overview
+# Tanzu Application Platform GUI
 
 Tanzu Application Platform GUI is a tool for your developers to view your organization's running
 applications and services.
@@ -10,7 +8,7 @@ documentation, and even service status.
 Tanzu Application Platform GUI is built from the
 [Cloud Native Computing Foundation's](https://www.cncf.io/) project [Backstage](https://backstage.io/).
 
-Tanzu Application Platform GUI is comprised of two components:
+Tanzu Application Platform GUI is comprised of the following components:
 
 * **Your Organization Catalog:**
   The catalog serves as the primary visual representation of your running services (Components) and

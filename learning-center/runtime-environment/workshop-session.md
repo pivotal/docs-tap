@@ -12,7 +12,7 @@ When running training for multiple people, it would be more typical to use the `
 
 To specify the workshop environment the workshop instance is created against, set the ``environment.name`` field of the specification for the workshop session. At the same time, you must specify the session ID for the workshop instance.
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: WorkshopSession
 metadata:
@@ -34,7 +34,7 @@ Access to each workshop instance can be controlled through login credentials. Th
 
 If you want to set login credentials for a workshop instance, you can set the ``session.username`` and ``session.password`` fields.
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: WorkshopSession
 metadata:
@@ -57,7 +57,7 @@ When setting a custom domain, DNS must have been configured with a wildcard doma
 
 To provide the ingress domain, you can set the ``session.ingress.domain`` field.
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: WorkshopSession
 metadata:
@@ -74,7 +74,7 @@ A full hostname for the session will be created by prefixing the ingress domain 
 
 If overriding the domain, by default, the workshop session will be exposed using a HTTP connection. If you require a secure HTTPS connection, you will need to have access to a wildcard SSL certificate for the domain. A secret of type ``tls`` should be created for the certificate in the ``educates`` namespace or the namespace where Learning Center operator is deployed. The name of that secret should then be set in the ``session.ingress.secret`` field.
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: WorkshopSession
 metadata:
@@ -90,7 +90,7 @@ spec:
 
 If HTTPS connections are being terminated using an external load balancer and not by specificying a secret for ingresses managed by the Kubernetes ingress controller, with traffic then routed into the Kubernetes cluster as HTTP connections, you can override the ingress protocol without specifying an ingress secret by setting the ``session.ingress.protocol`` field.
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: WorkshopSession
 metadata:
@@ -106,7 +106,7 @@ spec:
 
 If you need to override or set the ingress class, which dictates which ingress router is used when more than one option is available, you can add ``session.ingress.class``.
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: WorkshopSession
 metadata:
@@ -125,7 +125,7 @@ spec:
 
 If you want to set the environment variables for the workshop instance, you can provide the environment variables in the ``session.env`` field.
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: WorkshopSession
 metadata:

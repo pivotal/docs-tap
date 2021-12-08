@@ -6,7 +6,7 @@ Bundling workshop content into an image built from the Learning Center workshop 
 
 The structure of the ``Dockerfile`` provided with the sample workshop templates is:
 
-```text
+```
 FROM projects.registry.vmware.com/educates/base-environment
 
 COPY --chown=1001:0 . /home/eduk8s/
@@ -39,7 +39,7 @@ The ``base-environment`` workshop images include language run times for Node.js 
 
 Below you can see a Dockerfile example on how to create a Java JDK11 customized image:
 
-```text
+```
 ARG IMAGE_REPOSITORY=projects.registry.vmware.com/educates
 FROM ${IMAGE_REPOSITORY}/pkgs-java-tools as java-tools
 FROM ${IMAGE_REPOSITORY}/base-environment
@@ -59,7 +59,7 @@ ENV PATH=/opt/java/bin:/opt/gradle/bin:/opt/maven/bin:$PATH \
 
 Installation of extra system packages requires the installation to be run as ``root``. To do this you will need to switch the user commands are run as before running the command. You should then switch the user back to user ID of ``1001`` when done.
 
-```text
+```
 USER root
 
 RUN ... commands to install system packages
@@ -75,7 +75,7 @@ If you don't do this, because the ``HOME`` environment variable is by default se
 
 Fixing the file and group ownership and running ``fix-permissions`` may help with this problem, but not always because of the strange permissions the ``root`` user may apply and how container image layers work. It is therefore recommended instead to always use:
 
-```text
+```
 USER root
 
 RUN HOME=/root && \

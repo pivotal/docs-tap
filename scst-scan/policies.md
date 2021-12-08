@@ -9,19 +9,19 @@ The Scan Controller supports policy enforcement by using an Open Policy Agent (O
 For you to define a rego file for an Image Scan or Source Scan, you need to be compliant with the requirements that are defined for every Rego File in order for the policy verification to work properly.
 
 1. **Package Policies**  
-The Rego File must define a package in its body called `policies`, since this will be the package the system will be looking for to take the decision about the scan's results compliance.
+The Rego File must define a package in its body called `policies` since this will be the package the system will be looking for to decide on the scan's results compliance.
 
 1. **Input Match**  
-The Rego File evaluates one vulnerability match at a time, having as many iterations as different vulnerabilities are found in the scan. The structure of a match can be accessed in the `input.currentVulnerability` object inside the Rego File, and will have the [CycloneDX](https://cyclonedx.org/docs/1.3/) format.
+The Rego File evaluates one vulnerability match at a time, having as many iterations as different vulnerabilities are found in the scan. The match structure can be accessed in the `input.currentVulnerability` object inside the Rego File and will have the [CycloneDX](https://cyclonedx.org/docs/1.3/) format.
 
 1. **isCompliant Rule**  
-The Rego File must define inside its body an `isCompliant` rule, which needs to be a boolean type containing the result whether the vulnerability violates the security policy or not. If `isCompliant` is `true`, the vulnerability is found to be allowed in the Source or Image scan; `false` will be considered otherwise. Any scan that finds at least one vulnerability that evaluates to `isCompliant=false` will make the `PolicySucceeded` condition be set to `false` as well.
+The Rego File must define inside its body an `isCompliant` rule, which needs to be a boolean type containing the result whether the vulnerability violates the security policy or not. If `isCompliant` is `true`, the vulnerability is allowed in the Source or Image scan; `false` will be considered otherwise. Any scan that finds at least one vulnerability that evaluates to `isCompliant=false` will make the `PolicySucceeded` condition set to false.
 
 ## Step 1: Create a scan policy with rego file
 
 ### Sample scan policy resource
-```yaml
-apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
+```
+apiVersion: scst-scan.apps.tanzu.vmware.com/v1alpha1
 kind: ScanPolicy
 metadata:
   name: scanpolicy-sample

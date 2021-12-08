@@ -10,7 +10,7 @@ The raw custom resource definition for the ``SystemProfile`` custom resource can
 
 The Learning Center operator will by default use an instance of the ``SystemProfile`` custom resource, if it exists, named ``default-system-profile``. You can override the name of the resource used by the Learning Center operator as the default, by setting the ``SYSTEM_PROFILE`` environment variable on the deployment for the Learning Center operator.
 
-```text
+```
 kubectl set env deployment/eduk8s-operator -e SYSTEM_PROFILE=default-system-profile -n eduk8s
 ```
 
@@ -22,7 +22,7 @@ The ``SystemProfile`` custom resource replaces the use of environment variables 
 
 Instead of setting ``INGRESS_DOMAIN``, ``INGRESS_SECRET`` and ``INGRESS_CLASS`` environment variables, create an instance of the ``SystemProfile`` custom resource named ``default-system-profile``.
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: SystemProfile
 metadata:
@@ -36,7 +36,7 @@ spec:
 
 If HTTPS connections are being terminated using an external load balancer and not by specificying a secret for ingresses managed by the Kubernetes ingress controller, with traffic then routed into the Kubernetes cluster as HTTP connections, you can override the ingress protocol without specifying an ingress secret.
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: SystemProfile
 metadata:
@@ -52,7 +52,7 @@ spec:
 
 If needing to work with custom workshop images stored in a private image registry, the system profile can define a list of image pull secrets that should be added to the service accounts used to deploy and run the workshop images. The ``environment.secrets.pull`` property should be set to the list of secret names.
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: SystemProfile
 metadata:
@@ -70,7 +70,7 @@ Note that this doesn't result in any secrets being added to the namespace create
 
 For container images used as part of Learning Center itself, such as the container image for the training portal web interface, and the builtin base workshop images, if you have copied these from the public image registries and stored them in a local private registry, instead of the above setting you should use the ``registry`` section as follows.
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: SystemProfile
 metadata:
@@ -86,7 +86,7 @@ The ``registry.secret`` is the name of the secret containing the image registry 
 
 Deployments of the training portal web interface and the workshop sessions make use of persistent volumes. By default the persistent volume claims will not specify a storage class for the volume and instead rely on the Kubernetes cluster specifying a default storage class that works. If the Kubernetes cluster doesn't define a suitable default storage class, or you need to override it, you can set the ``storage.class`` property.
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: SystemProfile
 metadata:
@@ -104,7 +104,7 @@ Where persistent volumes are used by Learning Center for the training portal web
 
 In situations where the only class of persistent storage available is NFS or similar, it may be necessary to override the group ID applied and set it to an alternate ID dictated by the file system storage provider. If this is required, you can set the ``storage.group`` property.
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: SystemProfile
 metadata:
@@ -120,7 +120,7 @@ In this case it is necessary to change the owner/group and permissions of the pe
 
 To trigger this fixup of ownership and permissions, you can set the ``storage.user`` property.
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: SystemProfile
 metadata:
@@ -141,7 +141,7 @@ Any processes run from the workshop container, and any applications deployed to 
 
 If deploying to AWS, it is important to block access to the AWS endpoint for querying EC2 metadata as it can expose sensitive information that workshop users should not haves access to. The AWS endpoint in this case is a single IP address and the configuration would be:
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: SystemProfile
 metadata:
@@ -160,7 +160,7 @@ The risks of running ``docker`` in the Kubernetes cluster can be partly mediated
 
 To enable rootless mode, you can set the ``dockerd.rootless`` property to ``true``.
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: SystemProfile
 metadata:
@@ -172,7 +172,7 @@ spec:
 
 Use of ``docker`` can be made even more secure by avoiding the use of a privileged container for the ``docker`` daemon. This requires specific configuration to be setup for nodes in the Kubernetes cluster. If such configuration has been done, you can disable the use of a privileged container by setting ``dockerd.privileged`` to ``false``.
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: SystemProfile
 metadata:
@@ -197,7 +197,7 @@ If you experience problems building or running images with the ``docker`` suppor
 
 If this is required, you can set the ``dockerd.mtu`` property.
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: SystemProfile
 metadata:
@@ -209,7 +209,7 @@ spec:
 
 You can determine what the size may need to be by accessing the ``docker`` container run with a workshop and run ``ifconfig eth0``. This will yield something similar to:
 
-```text
+```
 eth0      Link encap:Ethernet  HWaddr 02:42:AC:11:00:07
           inet addr:172.17.0.7  Bcast:172.17.255.255  Mask:255.255.0.0
           UP BROADCAST RUNNING MULTICAST  MTU:1350  Metric:1
@@ -233,7 +233,7 @@ To try and avoid the impact of the limit, the first thing you can do is enable a
 
 For enabling the use of an image registry mirror against Docker Hub, use:
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: SystemProfile
 metadata:
@@ -246,7 +246,7 @@ spec:
 
 For authenticated access to Docker Hub, create an access token under your Docker Hub account. Then set the ``username`` and ``password``, using the access token as the ``password``. Do not use the password for the account itself. Using an access token makes it easier to revoke the token if necessary.
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: SystemProfile
 metadata:
@@ -273,7 +273,7 @@ If you want to override the credentials for the portals so the same set of crede
 
 To override the username and password for the admin and robot accounts use ``portal.credentials``.
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: SystemProfile
 metadata:
@@ -291,7 +291,7 @@ spec:
 
 To override the client ID and secret used for OAuth access by the robot account, use ``portal.clients``.
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: SystemProfile
 metadata:
@@ -323,7 +323,7 @@ The short versions of the names which are recognised are:
 
 If you wanted to override the version of the ``base-environment`` workshop image mapped to by the ``*`` tag, you would use:
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: SystemProfile
 metadata:
@@ -336,7 +336,7 @@ spec:
 
 It is also possible to override where images are pulled from for any arbitrary image. This could be used where you want to cache the images for a workshop in a local image registry and avoid going outside of your network, or the cluster, to get them. This means you wouldn't need to override the workshop definitions for a specific workshop to change it.
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: SystemProfile
 metadata:
@@ -351,7 +351,7 @@ spec:
 
 If you want to record analytics data on usage of workshops using Google Analytics, you can enable tracking by supplying a tracking ID for Google Analytics.
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: SystemProfile
 metadata:
@@ -366,7 +366,7 @@ Custom dimensions are used in Google Analytics to record details about the works
 
 To support use of custom dimensions in Google Analytics you must configure the Google Analytics property with the following custom dimensions. They must be added in the order shown as Google Analytics doesn't allow you to specify the index position for a custom dimension and will allocate them for you. You can't already have custom dimensions defined for the property, as the new custom dimensions must start at index of 1.
 
-```text
+```
 | Custom Dimension Name | Index |
 |-----------------------|-------|
 | workshop_name         | 1     |
@@ -389,7 +389,7 @@ Note that Google Analytics is not a reliable way to collect data. This is becaus
 
 If using the REST API to create/manage workshop sessions and the workshop dashboard is then embedded into an iframe of a separate site, it is possible to perform minor styling changes of the dashboard, workshop content and portal to match the separate site. To do this you can provide CSS styles under ``theme.dashboard.style``, ``theme.workshop.style`` and ``theme.portal.style``. For dynamic styling, or for adding hooks to report on progress through a workshop to a separate service, you can also supply Javascript as part of the theme under ``theme.dashboard.script``, ``theme.workshop.script`` and ``theme.portal.script``.
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: SystemProfile
 metadata:
@@ -423,7 +423,7 @@ spec:
 
 If the default system profile is specified, it will be used by all deployments managed by the Learning Center operator unless the system profile to use has been overridden for a specific deployment. The name of the system profile can be set for deployments by setting the ``system.profile`` property of ``TrainingPortal``, ``WorkshopEnvironment`` and ``WorkshopSession`` custom resources.
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha1
 kind: TrainingPortal
 metadata:

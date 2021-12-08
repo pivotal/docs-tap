@@ -1,6 +1,6 @@
 # Adding Data
 
-This topic describes how add Software Bill of Materials (SBoM) files to the database to understand your dependencies by querying.
+This topic describes how to add Software Bill of Materials (SBoM) files to the database to understand your dependencies by querying.
 For instructions on querying, see [Querying Data](../scst-store/querying_the_metadata_store.md).
 
 
@@ -10,7 +10,7 @@ Add data by posting CycloneDX files using the following methods:
 
 - [Supply Chain Security Tools - Scan](../scst-scan/overview.md)
 - [Supply Chain Security Tools - Store API](../scst-store/getting_started_api.md)
-- [Add Data with the `insight` CLI](#insight-cli) below
+- [Add Data with the Insight CLI](#insight-cli) below
 
 
 ## Supported Formats
@@ -27,7 +27,7 @@ To use Grype to scan an image and generate an image report in CycloneDX format:
 
 1. Run:
 
-    ```sh
+    ```
     grype REPO:TAG -o cyclonedx > IMAGE-CVE-REPORT
     ```
     Where:
@@ -38,7 +38,7 @@ To use Grype to scan an image and generate an image report in CycloneDX format:
 
     For example:
 
-    ```sh
+    ```
     $ grype docker.io/checkr/flagr:1.1.12 -o cyclonedx > image-cve-report
      ✔ Vulnerability DB        [updated]
      ✔ Parsed image
@@ -47,7 +47,7 @@ To use Grype to scan an image and generate an image report in CycloneDX format:
     ```
 
 
-## <a id='insight-cli'></a>Add Data with the insight CLI
+## <a id='insight-cli'></a>Add Data with the Insight CLI
 
 Use the following commands to add data:
 
@@ -56,11 +56,11 @@ Use the following commands to add data:
 
 ## Example #1: Create an Image Report
 
-To use an CycloneDX-formatted image report:
+To use a CycloneDX-formatted image report:
 
 1. Run:
 
-    ```sh
+    ```
     insight image create --cyclonedx IMAGE-CVE-REPORT
     ```
 
@@ -68,7 +68,7 @@ To use an CycloneDX-formatted image report:
 
     For example:
 
-    ```sh
+    ```
     $ insight image create --cyclonedx image-cve-report
     Image report created.
     ```
@@ -79,11 +79,11 @@ To use an CycloneDX-formatted image report:
 
 ## Example #2: Create a Source Report
 
-To use an CycloneDX-formatted source report:
+To use a CycloneDX-formatted source report:
 
 1. Run:
 
-    ```sh
+    ```
     insight source create --cyclonedx SOURCE-CVE-REPORT
     ```
 
@@ -91,7 +91,7 @@ To use an CycloneDX-formatted source report:
 
     For example:
 
-    ```sh
+    ```
     $ insight source create --cyclonedx source-cve-report
     Source report created.
     ```

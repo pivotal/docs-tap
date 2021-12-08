@@ -1,6 +1,7 @@
 # Supply Chain Security Tools for VMware Tanzu - Sign
 
 Supply Chain Security Tools - Sign provides an admission webhook that:
+
 - Verifies signatures on container images used by Kubernetes resources.
 - Enforces policy by allowing or denying container images from running based
 on configuration.
@@ -11,7 +12,7 @@ It intercepts all resources that create pods as part of their lifecycle: `Pod`s,
 
 This component uses [cosign](https://github.com/sigstore/cosign#cosign) as its
 backend for signature verification and is compatible only with cosign signatures.
-When cosign signs an image it generates a signature in an OCI-compliant format
+When cosign signs an image, it generates a signature in an OCI-compliant format
 and pushes it to the the same registry where the image is stored. The signature is
 identified by a tag in the format `sha256-<image-digest>.sig`, where `<image-digest>`
 is the digest of the image that this signature belongs to. The webhook needs
@@ -46,10 +47,10 @@ from the operator before it starts enforcing policies.
 To configure your installed component properly, see
 [Configuring Supply Chains Security Tools - Sign](configuring.md).
 
-## Known Issues
+## Known issues
 
 See [Supply Chain Security Tools - Sign Known Issues](known_issues.md).
 
-## Release Notes
+## Release notes
 
 See [Supply Chain Security Tools - Sign Release Notes](release-notes.md).

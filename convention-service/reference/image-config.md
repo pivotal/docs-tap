@@ -1,7 +1,7 @@
 # ImageConfig
 
 The image configuration object is used to hold the name of the image and the [OCI image configuration](https://github.com/opencontainers/image-spec/blob/main/config.md).
-```json
+```
 {
   "name": "oci-image-name",
   "config": {

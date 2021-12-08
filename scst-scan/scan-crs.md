@@ -9,12 +9,12 @@ The Scan Controller defines two custom resources to create scanning jobs:
 * ImageScan
 
 ### SourceScan
-The SourceScan custom resource helps you define and trigger a scan for a given repository. This can be done with a source code existing in a public repository or in a private one.
+The SourceScan custom resource helps you define and trigger a scan for a given repository. This can be done with source code existing in a public repository or a private one.
 
 #### Step 1: Create the SourceScan custom resource
 Example:
-```yaml
-apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
+```
+apiVersion: scst-scan.apps.tanzu.vmware.com/v1alpha1
 kind: SourceScan
 metadata:
   # set the name of the source scan CR
@@ -48,7 +48,7 @@ spec:
 `kubectl apply -f <path_to_the_cr>/<custom_resource_filename>.yml -n <desired_namespace>`
 
 After the scanning is done, the following fields will appear in the custom resource and filled by the scanner.
-```yaml
+```
 # These fields will be populated from the source scan results
 status:
   # The source code information as provided in the CycloneDX `bom>metadata>component>*` fields
@@ -91,20 +91,20 @@ status:
 ```
 
 ### ImageScan
-The ImageScan custom resource helps you define and trigger a scan for a given image. This can be done with an image existing in a public registry or in a private one.
+The ImageScan custom resource helps you define and trigger a scan for a given image. This can be done with an image existing in a public registry or a private one.
 
 #### Step 1: Create the ImageScan custom resource
 
 Example:
-```yaml
-apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
+```
+apiVersion: scst-scan.apps.tanzu.vmware.com/v1alpha1
 kind: ImageScan
 metadata:
   # set the name of the image scan CR
   name: sample-image-scan
 spec:
   registry:
-    # Required. A string containing the image name, additionally can add its tag or its digest
+    # Required. A string containing the image name can additionally add its tag or its digest
     image: nginx:1.16
 
     # A string containing the secret needed to pull the image from a private registry.
@@ -116,14 +116,14 @@ spec:
 
   # A string defining the name of an existing ScanPolicy custom resource. See "Enforcement Policies (OPA)" section.
   scanPolicy: my-scan-policy
- ```
+```
 
 #### Step 2: Deploy the ImageScan custom resource to the desired namespace on cluster
 
 `kubectl apply -f <path_to_the_cr>/<custom_resource_filename>.yml -n <desired_namespace>`
 
 After the scanning is done, the following fields will appear in the custom resource and filled by the scanner.
-```yaml
+```
  # These fields will be populated from the image scan results
 status:
   artifact:

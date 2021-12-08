@@ -1,12 +1,12 @@
 # Release notes
 
-This topic contains release notes for Supply Chain Security Tools for Tanzu – Scan
+This topic contains release notes for Supply Chain Security Tools – Scan.
 
 ## Releases
 
-### v1.0.0-beta.2
+### v1.0.0
 
-**Release Date:** November 08, 2021
+**Release Date:** November 25, 2021
 
 ### v1.0.0-beta
 

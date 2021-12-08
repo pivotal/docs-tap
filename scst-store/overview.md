@@ -1,8 +1,9 @@
 # Supply Chain Security Tools for Tanzu – Store
 
-Supply Chain Security Tools - Store saves software bills of materials (SBoMs) to a database and allows you to query for image, source, package, and vulnerability relationships.  It integrates with [Supply Chain Security Tools - Scan](../scst-scan/overview.md) to automatically store the resulting source and image vulnerability reports.
+Supply Chain Security Tools - Store saves software bills of materials (SBoMs) to a database and allows you to query for image, source, package, and vulnerability relationships.  It integrates with [Supply Chain Security Tools - Scan](../scst-scan/overview.md) to automatically store the resulting source and image vulnerability reports. It accepts any CycloneDX input and outputs in both human-readable and machine-readable formats, including JSON, text, and CycloneDX.
 
-The following is a brief SBoM demo:
+
+The following is a four-minute demo of scanning an image for CVEs and querying the database for CVEs and dependencies.
 
 <iframe width="480" height="270"
 src="https://www.youtube.com/embed/UoWSsJBjFgc"
@@ -11,9 +12,9 @@ alt="A demonstration of the features. First ingesting a bill of materials file. 
 
 Supply Chain Security Tools - Store has three components:
 
-* Postgres database
 * [API](api.md)
-* [CLI](install_cli.md) (`insight`)
+* [CLI](install_cli.md) (Insight)
+* Postgres database
 
 ## Install
 
@@ -21,7 +22,7 @@ Supply Chain Security Tools - Store is released as an individual Tanzu Applicati
 
 To install, see [Install Supply Chain Security Tools - Store](../install-components.md#install-scst-store).  It will install the Postgres database and an [API](api.md) backend.
 
-> **Note:** the `insight` CLI requires a [separate installation](install_cli.md)
+> **Note:** the Insight CLI requires a [separate installation](install_cli.md)
 
 For more information, see [Deployment Details and Configuration](deployment_details.md).
 
@@ -36,9 +37,9 @@ The following steps are required to use the API or CLI:
 
 ### Recommended
 
-The `insight` CLI is not required but may provide an easier-to-use interface than the [API](api.md).  
+The Insight CLI is not required but may provide an easier-to-use interface than the [API](api.md).  
 
-> **Note:** the `insight` CLI is separate from the `tanzu` CLI.  It will be added as a `tanzu` CLI plugin in a future release
+> **Note:** The Insight CLI is in beta and is separate from the Tanzu CLI.
 
 * [Install the CLI](install_cli.md)
 * [Configure the CLI](configure_cli.md)
@@ -52,6 +53,11 @@ See [adding data](add_cyclonedx_to_store.md) to post CycloneDX scan reports to t
 ### Querying data
 
 See [querying data](querying_the_metadata_store.md) understand vulnerability, image, and dependency relationships
+
+## Auditing
+
+The API server outputs logs when an endpoint is accessed and can be used for auditing purposes. For information about the logs generated, see [Configuring and Understanding Store Logs](logs.md).
+
 
 ## Known issues
 

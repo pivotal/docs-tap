@@ -16,7 +16,7 @@ Where you have multiple workshop files, and don't have the default ``workshop.ya
 
 The format for listing the available modules in the ``workshop/modules.yaml`` file is:
 
-```yaml
+```
 modules:
   workshop-overview:
     name: Workshop Overview
@@ -37,7 +37,7 @@ For each module, set the ``name`` field to the page title to be displayed for th
 
 The corresponding ``workshop/workshop.yaml`` file, where all available modules were being used, would have the format:
 
-```yaml
+```
 name: Markdown Sample
 modules:
   activate:
@@ -69,7 +69,7 @@ The recommendation is that for the last page the ``exit_sign`` be set to "Finish
 
 Workshop images can be deployed directly to a container runtime. To manage deployments into a Kubernetes cluster, the Learning Center operator is provided. Configuration for the Learning Center operator is defined by a ``Workshop`` custom resource definition in the ``resources/workshop.yaml`` file:
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha2
 kind: Workshop
 metadata:
@@ -94,7 +94,7 @@ spec:
 
 In this sample, a custom workshop image is used which bundles the workshop content into its own container image. This was specified by the ``content.image`` setting. If instead workshop content was to be downloaded from a GitHub repository at runtime, you would use:
 
-```yaml
+```
 apiVersion: training.eduk8s.io/v1alpha2
 kind: Workshop
 metadata:

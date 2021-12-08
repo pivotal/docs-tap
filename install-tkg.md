@@ -27,7 +27,7 @@ To install kapp-controller v0.29.0 or later on Tanzu Kubernetes Grid v1.4:
 1. Create a new workload cluster. Do not install any packages in the cluster.
 1. Ensure the kubectl context is set to the Tanzu Kubernetes Grid Management cluster by running:
 
-    ```console
+    ```
     kubectl config get-contexts
     CURRENT   NAME                          CLUSTER            AUTHINFO           NAMESPACE
         kind-dev-cluster              kind-dev-cluster   kind-dev-cluster
@@ -37,34 +37,34 @@ To install kapp-controller v0.29.0 or later on Tanzu Kubernetes Grid v1.4:
 
 1. Prevent the Management cluster from reconciling the kapp-controller in the workload cluster by running:
 
-    ```console
+    ```
     kubectl patch app/<WORKLOAD-CLUSTER>-kapp-controller -n default -p '{"spec":{"paused":true}}' --type=merge
     ```
     Where `<WORKLOAD-CLUSTER>` is the name of the cluster created earlier.
 
 1. Import the kubeconfig for the workload cluster by running:
 
-    ```console
+    ```
     tanzu cluster kubeconfig get <WORKLOAD-CLUSTER> --admin
     ```
     Where `<WORKLOAD-CLUSTER>` is the name of the cluster created earlier.
 
 1.  Switch the kubectl context to the workload cluster by running:
 
-    ```console
+    ```
     kubectl config use-context <WORKLOAD-CLUSTER-CONTEXT>
     ```
     Where `<WORKLOAD-CLUSTER-CONTEXT>` is the kubeconfig context imported earlier.
 
 1. Delete the current kapp-controller by running:
 
-    ```console
+    ```
     kubectl delete deployment kapp-controller -n tkg-system
     ```
 
 1. Install kapp-controller v0.29.0 by running:
 
-    ```console
+    ```
     kubectl apply -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v0.29.0/release.yml
     ```
 

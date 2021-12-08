@@ -1,10 +1,10 @@
 ## insight health
 
-Checks if endpoint is reachable
+Checks if endpoint is reachable.
 
 ### Synopsis
 
-Checks if endpoint is reachable
+Checks if endpoint is reachable.
 
 ```
 insight health [flags]
@@ -22,7 +22,7 @@ insight health
   -h, --help   help for health
 ```
 
-### SEE ALSO
+### See also
 
 * [insight](insight.md)	 -
 

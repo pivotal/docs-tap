@@ -38,7 +38,7 @@ Plugin commands support only one file per command.
 
 For example, a valid file looks similar to the following example:
 
-```yaml
+```
 ---
 apiVersion: carto.run/v1alpha1
 kind: Workload
@@ -62,13 +62,13 @@ Add the following command to the shell config file according to the current setu
 
 ### Bash
 
-```bash
+```
 tanzu completion bash >  $HOME/.tanzu/completion.bash.inc
 ```
 
 ### Zsh
 
-```sh
+```
 echo "autoload -U compinit; compinit" >> ~/.zshrc
 tanzu completion zsh > "${fpath[1]}/_tanzu"
 ```

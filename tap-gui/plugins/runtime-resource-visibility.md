@@ -9,20 +9,21 @@ Developers must perform the following actions to see their Workloads on the dash
 
 1. Define a Backstage Component with a `backstage.io/kubernetes-label-selector` annotation. See
   [Components](../catalog/catalog-operations.md#components) in the Catalog Operations documentation.
-  ```yaml
-  apiVersion: backstage.io/v1alpha1
-  kind: Component
-  metadata:
-    name: petclinic
-    description: Spring PetClinic
-    annotations:
-      'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=petclinic-server'
-  spec:
-    type: service
-    lifecycle: demo
-    owner: default-team
-    system:
-  ```
+
+    ```
+    apiVersion: backstage.io/v1alpha1
+    kind: Component
+    metadata:
+      name: petclinic
+      description: Spring PetClinic
+      annotations:
+        'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=petclinic-server'
+    spec:
+      type: service
+      lifecycle: demo
+      owner: default-team
+      system:
+    ```
 
 1. Commit and push the Component definition to a Git repository that is registered as a Catalog Location. See [Adding
   Catalog Entities](../catalog/catalog-operations.md#adding-catalog-entities) in the Catalog Operations documentation.
@@ -35,26 +36,26 @@ available to the Tanzu Application Platform GUI. A Workload is one of the follow
 
     For example:
 
-    ```console
-    $ cat <<EOF | kubectl apply -f -
-    ---
-    apiVersion: serving.knative.dev/v1
-    kind: Service
-    metadata:
-      name: petclinic
-      namespace: default
-      labels:
-        'app.kubernetes.io/part-of': petclinic-server
-    spec:
-      template:
-        metadata:
-          labels:
-            'app.kubernetes.io/part-of': petclinic-server
-        spec:
-          containers:
-            - image: springcommunity/spring-framework-petclinic
-    EOF
-    ```
+      ```
+      $ cat <<EOF | kubectl apply -f -
+      ---
+      apiVersion: serving.knative.dev/v1
+      kind: Service
+      metadata:
+        name: petclinic
+        namespace: default
+        labels:
+          'app.kubernetes.io/part-of': petclinic-server
+      spec:
+        template:
+          metadata:
+            labels:
+              'app.kubernetes.io/part-of': petclinic-server
+          spec:
+            containers:
+              - image: springcommunity/spring-framework-petclinic
+      EOF
+      ```
 
 ## Navigate to the Workload Visibility screen
 
@@ -66,7 +67,7 @@ To view the list of your running Workloads:
 1. Select the Component from the Catalog index page.
 1. Select the Workloads tab.
 
-![Workload index table](./images/workload-visibility-workloads.png)
+    ![Workload index table](./images/workload-visibility-workloads.png)
 
 ## Knative service details page
 

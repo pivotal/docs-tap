@@ -1,4 +1,4 @@
-# Insight version
+# insight version
 
 To display insight version:
 

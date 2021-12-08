@@ -2,7 +2,7 @@
 
 This topic will help you update the configuration of an existing workload.
 
-To export the current configuration, run 'tanzu apps workload export NAME'. 
+To export the current configuration, run 'tanzu apps workload export NAME'.
 
 Workload configuration options include:
 - source code to build
@@ -23,7 +23,7 @@ tanzu apps workload update my-workload --env key=value
 tanzu apps workload update --file workload.yaml
 ```
 
-## <a id='update-options'>Options
+## <a id='update-options'></a>Options
 
 ```
       --app name                       application name the workload is a part of
@@ -66,4 +66,3 @@ tanzu apps workload update --file workload.yaml
 ## See also
 
 - [Tanzu Apps Workload](tanzu_apps_workload.md)	 - Workload lifecycle management
-

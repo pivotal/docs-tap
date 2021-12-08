@@ -1,8 +1,9 @@
 # Tanzu apps workload apply
 
-This topic will help you apply configuration to a new or existing workload. If the resource does not exist, it will be created. 
+This topic will help you apply configuration to a new or existing workload. If the resource does not exist, it will be created.
 
 Workload configuration options include:
+
 - source code to build
 - runtime resource limits
 - environment variables
@@ -61,4 +62,3 @@ tanzu apps workload apply --file workload.yaml
 ## See also
 
 - [Tanzu Apps Workload](tanzu_apps_workload.md) - Workload lifecycle management
-
