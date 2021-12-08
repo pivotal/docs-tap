@@ -470,7 +470,8 @@ Where:
 
     # e.g. App Accelerator specific values would go under its name
     accelerator:
-      service_type: "ClusterIP"
+      server:
+        service_type: "ClusterIP"
    ```
 
    The following table summarizes the top level keys used for package-specific configuration within
