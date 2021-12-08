@@ -4,8 +4,8 @@
 
 The installation creates the following in your Kubernetes cluster:
 
-* 2 components — an API backend and a database. 
-Each component includes:
+* Two components — an API backend and a database. 
+  Each component includes:
     * service
     * deployment
     * replicaset
@@ -20,7 +20,7 @@ Each component includes:
 ## <a id='configuration'></a> Deployment configuration
 ### Database configuration
 
-The default database that ships with the deployment is meant to get users started with using the metadata store. The default database deployment is not meant support for many enterprise production requirements including scaling, redundancy, or failover. However, it is still a secure deployment.
+The default database that ships with the deployment is meant to get users started using the metadata store. The default database deployment does not support many enterprise production requirements, including scaling, redundancy, or failover. However, it is still a secure deployment.
 
 #### Using AWS RDS Postgres database
 
@@ -61,4 +61,4 @@ The store will automatically create a read-only cluster role, which may be bound
 
 ## Exporting certificates
 
-Supply Chain Security Tools - Store creates [Secret Export](https://github.com/vmware-tanzu/carvel-secretgen-controller/blob/develop/docs/secret-export.md) for exporting certificates to `Supply Chain Security Tools - Scan` so that it can securely post scan results. These certificates are exported to the namespace where `Supply Chain Security Tools - Scan` is installed. 
+Supply Chain Security Tools - Store creates [Secret Export](https://github.com/vmware-tanzu/carvel-secretgen-controller/blob/develop/docs/secret-export.md) for exporting certificates to `Supply Chain Security Tools - Scan` to securely post scan results. These certificates are exported to the namespace where `Supply Chain Security Tools - Scan` is installed. 

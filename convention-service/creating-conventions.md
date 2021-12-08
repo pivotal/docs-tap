@@ -75,8 +75,6 @@ With this high-level understanding of the Convention Service components and how 
 
 >**Note:** This document covers developing conventions using [GOLANG](https://golang.org/), but this can be done using other languages by following the specs.
 
-<br/>
-
 ### <a id='prereqs'></a>Prerequisites
 
 The following prerequisites must be met before a convention can be developed and deployed:
@@ -85,13 +83,12 @@ The following prerequisites must be met before a convention can be developed and
 + Tanzu Application Platform components and prerequisites are installed. For more information, see the [Installation guide](../install-general.md).
 + The default supply chain is installed. For more information, see [Tanzu Network](https://network.tanzu.vmware.com/products/ootb-supply-chain-basic/).
 + Your kubeconfig context is set to the Tanzu Application Platform-enabled cluster:
-  ```
-  kubectl config use-context CONTEXT_NAME
-  ```
+
+    ```
+    kubectl config use-context CONTEXT_NAME
+    ```
 + The ko CLI is installed [from GitHub](https://github.com/google/ko).
   (These instructions use `ko` to build an image, but if there is an existing image or build process, `ko` is optional.)
-
-<br/>
 
 ### <a id='server-behavior'></a>Define convention criteria
 
@@ -102,13 +99,10 @@ any workload that has metadata, indicating it is a Spring Boot app.
 
 >**Note:** For the following example, the package `model` is used to define [resource](./reference/convention-resources.md) types.
 
-<br/>
-
-1. <a id='convention-1'></a>The example `server.go` sets up the `ConventionHandler` to ingest the webhook
-   requests ([PodConventionContext](./reference/pod-convention-context.md)) from the convention controller.
-   At this point, the handler only needs to deal with the existing `PodTemplateSpec`
-   (see the [Kubernetes documentation](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec))
-   and [`ImageConfig`](./reference/image-config.md):
+1. The example `server.go` sets up the `ConventionHandler` to ingest the webhook requests
+([PodConventionContext](./reference/pod-convention-context.md)) from the convention controller.
+At this point, the handler only needs to deal with the existing `PodTemplateSpec`
+(see the [Kubernetes documentation](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec)) and [`ImageConfig`](./reference/image-config.md):
 
     ```go
     ...
@@ -124,13 +118,10 @@ any workload that has metadata, indicating it is a Spring Boot app.
 
      Where:
 
-     + `template` is the predefined `PodTemplateSpec` that the convention is going to modify.
-     + `images` are the `ImageConfig` that will be used as reference to make decisions in the conventions. In this example, the type was created within the `model` package.
+     - `template` is the predefined `PodTemplateSpec` that the convention modifies.
+     - `images` are the `ImageConfig` that will be used as reference to make decisions in the conventions. In this example, the type was created within the `model` package.
 
-<br/>
-
-
-2. <a id='server-2'></a>The example `server.go` also configures the convention server to listen for requests:
+1. The example `server.go` also configures the convention server to listen for requests:
 
     ```go
 
@@ -156,14 +147,14 @@ any workload that has metadata, indicating it is a Spring Boot app.
         ...
 
     ```
+
     Where:
 
-    + `PORT` is a possible environment variable.
-    + `ServerHandler` is the *handler* defined in [last step](#create-1).
-    + `NewConventionServer` is the function in charge of configure and create the *http webhook* server.
-    + Here is defined a basic web server defined listen in the defined port by the environment variable `PORT` or the default one (*9000*) and in the context path `/`.
+    - `PORT` is a possible environment variable.
+    - `ServerHandler` is the *handler* defined in [last step](#create-1).
+    - `NewConventionServer` is the function in charge of configure and create the *http webhook* server.
 
-<br/>
+    Here is defined a basic web server. Listen in the defined port through the environment variable `PORT` or the default one (*9000*) and in the context path `/`.
 
 3. Create the *Server Handler* that handles the request from the convention controller with the [PodConventionContext](./reference/pod-convention-context.md) serialized to JSON:
 
@@ -202,8 +193,6 @@ any workload that has metadata, indicating it is a Spring Boot app.
     }
     ...
     ```
-
-<br/>
 
 4. Configure and start the web server by defining the `NewConventionServer` function, which will start the server with the defined port and current context. The server will use the `.crt` and `.key` files to handle *TLS* traffic:
 
@@ -262,8 +251,6 @@ any workload that has metadata, indicating it is a Spring Boot app.
     }
     ```
 
-<br/>
-
 ### <a id='targeting'></a> Define convention behavior
 
 Any property or value within the `PodTemplateSpec` or OCI image metadata associated with a workload can be used to define the criteria for applying conventions. The following are a few examples.
@@ -272,80 +259,82 @@ Any property or value within the `PodTemplateSpec` or OCI image metadata associa
 
 When using labels or annotations to define whether a convention should be applied, the server will check the `PodTemplateSpec` of workloads:
 
-   + PodTemplateSpec
++ PodTemplateSpec
 
-        ```yaml
-        ...
-        template:
-          metadata:
-            labels:
-              awesome-label: awesome-value
-            annotations:
-              awesome-annotation: awesome-value
-        ...
-        ```
+    ```yaml
+    ...
+    template:
+      metadata:
+        labels:
+          awesome-label: awesome-value
+        annotations:
+          awesome-annotation: awesome-value
+    ...
+    ```
 
-   + Handler
++ Handler
 
-        ```go
-        package convention
-        ...
-        func conventionHandler(template *corev1.PodTemplateSpec, images []model.ImageConfig) ([]string, error) {
-            c:= []string{}
-            // This convention will be appled if a specific label is present
-            if lv, le := template.Labels["awesome-label"]; le && lv == "awesome-value" {
-                // DO COOl STUFF
-                c = append(c, "awesome-label-convention")
-            }
-            // This convention will be appled if a specific annotation is present
-            if av, ae := template.Annotations["awesome-annotation"]; ae && av == "awesome-value" {
-                // DO COOl STUFF
-                c = append(c, "awesome-annotation-convention")
-            }
-
-            return c, nil
+    ```go
+    package convention
+    ...
+    func conventionHandler(template *corev1.PodTemplateSpec, images []model.ImageConfig) ([]string, error) {
+        c:= []string{}
+        // This convention will be appled if a specific label is present
+        if lv, le := template.Labels["awesome-label"]; le && lv == "awesome-value" {
+            // DO COOl STUFF
+            c = append(c, "awesome-label-convention")
         }
-        ...
-        ```
+        // This convention will be appled if a specific annotation is present
+        if av, ae := template.Annotations["awesome-annotation"]; ae && av == "awesome-value" {
+            // DO COOl STUFF
+            c = append(c, "awesome-annotation-convention")
+        }
 
- Where:
- 
- + `conventionHandler` is the *handler*.
- + `awesome-label` is the **label** that we want to validate.
- + `awesome-annotation` is the **annotation** that we want to validate.
- + `awesome-value` is the value that must have the **label**/**annotation**.
+        return c, nil
+    }
+    ...
+    ```
+
+    Where:
+
+    + `conventionHandler` is the *handler*.
+    + `awesome-label` is the **label** that we want to validate.
+    + `awesome-annotation` is the **annotation** that we want to validate.
+    + `awesome-value` is the value that must have the **label**/**annotation**.
 
 ### <a id='EnvironmentVariables'></a>Matching criteria by environment variables
 
 When using environment variables to define whether the convention is applicable, it should be present in the [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec).[spec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#PodSpec).[containers](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#Container)[*].[env](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#environment-variables). and we can validate the value:
 
-   + PodTemplateSpec
-        ```yaml
-        ...
-        template:
-          spec:
-            containers:
-              - name: awesome-container
-                env:
-        ...
-        ```
++ PodTemplateSpec
 
-   + Handler
-        ```go
-        package convention
-        ...
-        func conventionHandler(template *corev1.PodTemplateSpec, images []model.ImageConfig) ([]string, error) {
-            if len(template.Spec.Containers[0].Env) == 0 {
-                template.Spec.Containers[0].Env = append(template.Spec.Containers[0].Env, corev1.EnvVar{
-                    Name: "MY_AWESOME_VAR",
-                    Value: "MY_AWESOME_VALUE",
-                })
-                return []string{"awesome-envs-convention"}, nil
-            }
-            return []string{}, nil
-            ...
+    ```yaml
+    ...
+    template:
+      spec:
+        containers:
+          - name: awesome-container
+            env:
+    ...
+    ```
+
++ Handler
+
+    ```go
+    package convention
+    ...
+    func conventionHandler(template *corev1.PodTemplateSpec, images []model.ImageConfig) ([]string, error) {
+        if len(template.Spec.Containers[0].Env) == 0 {
+            template.Spec.Containers[0].Env = append(template.Spec.Containers[0].Env, corev1.EnvVar{
+                Name: "MY_AWESOME_VAR",
+                Value: "MY_AWESOME_VALUE",
+            })
+            return []string{"awesome-envs-convention"}, nil
         }
-        ```
+        return []string{}, nil
+        ...
+    }
+    ```
 
 ### <a id='ImageMetadata'></a>Matching criteria by image metadata
 

@@ -107,7 +107,7 @@ The workshop request does actually result in a ``WorkshopSession`` being created
 workshop request and directly creates the latter.
 
 The purpose of having ``WorkshopRequest`` as a separate custom resource is to allow RBAC and other controls to be used 
-to allow non cluster admins to create workshop instances.
+to allow non-cluster admins to create workshop instances.
 
 ## Deleting the workshop instance
 

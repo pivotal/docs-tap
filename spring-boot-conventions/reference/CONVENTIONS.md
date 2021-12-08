@@ -407,3 +407,4 @@ When you apply the `Pod Intent` and the image contains a dependency, for example
             protocol: TCP
           resources: {}
   ```
+  

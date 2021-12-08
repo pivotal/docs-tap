@@ -15,7 +15,7 @@ insight config set-target https://metadata-store-app.metadata-store.svc.cluster.
 Where
 
 - `PORT` is the target endpoint port
-- `PATH` is direct path to the CA certificate
+- `PATH` is the direct path to the CA certificate
 
 For example:
 
@@ -28,7 +28,7 @@ Setting endpoint in config to: https://metadata-store-app.metadata-store.svc.clu
 
 ## Check the Connection
 
-Now check that you configuration is correct and you're able to make a connection.
+Now check that your configuration is correct and you are able to make a connection.
 
 ```
 insight health

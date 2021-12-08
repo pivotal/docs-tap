@@ -84,13 +84,13 @@ Where:
 - `PATH` is the location where you want to save the CA certificate. This file is used later when you [configure the CLI](configure_cli.md).
 
 ### Configuring Port Forwarding
-When using `NodePort`, you need to configure port forwarding for the service in order for the CLI to access the Supply Chain Security Tools - Store. Run:
+When using `NodePort`, you need to configure port forwarding for the service for the CLI to access the Supply Chain Security Tools - Store. Run:
 
 ```
 kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store
 ```
 
-Run this command in a separate terminal window, since it takes over the terminal.
+Run this command in a separate terminal window since it takes over the terminal.
 
 ### Modifying your `/etc/hosts` file
 
