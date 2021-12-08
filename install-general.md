@@ -67,6 +67,21 @@ Installation requires:
         * If you are using Cloud Native Runtimes, see [Configure Your Local Kind
         Cluster](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-local-dns.html#config-cluster).
         * Because Kind doesn't support LoadBalancer, make sure to use NodePort when defining service types.
+	* It is recommend to configure `hostPort` to `containerPort` mappings for ports 80 and 443 to enable accessing the cluster from your local machine. Here is an example:
+	  ```
+	  kind: Cluster
+	  apiVersion: kind.x-k8s.io/v1alpha4
+	  nodes:
+	  - role: control-plane
+	  - role: worker
+	    extraPortMappings:
+	    - containerPort: 30443
+	      hostPort: 443
+	    - containerPort: 30080
+	      hostPort: 80
+	  ```
+
+
     * Minikube
         * Minimum requirements for VM: 8 CPUs for i9 or equivalent, 12 CPUs for i7 or equivalent, 8 GB RAM (12+ GB recommended), and 120 GB disk space.
         * VMware recommends at least 16 GB of total host memory.
@@ -81,7 +96,7 @@ Installation requires:
     To deploy all Tanzu Application Platform packages, your cluster must have at least **8&nbsp;GB** of RAM across all nodes available to Tanzu Application Platform. At least 8 CPUs for i9 or equivalent or 12 CPUs for i7 or equivalent must be available to Tanzu Application Platform components.
     VMware recommends that at least **16&nbsp;GB** of RAM is available to build and deploy applications, including for Kind and Minikube.
 
-    Your cluster must support the creation of Services of type `LoadBalancer` to install Cloud Native Runtimes package. The exception is [`provider: local` installation](#install-cnr), which removes container replication and uses `NodePort` Services for HTTP ingress. For information about services of type `LoadBalancer`, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer) and your cloud provider documentation. For information about Tanzu Kubernetes Grid support for Service type `LoadBalancer`, see [Install VMware NSX Advanced Load Balancer on a vSphere Distributed Switch](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.3/vmware-tanzu-kubernetes-grid-13/GUID-mgmt-clusters-install-nsx-adv-lb.html).
+    For the [`full` profile](install.html#about-tanzu-application-platform-package-profiles-1) or use of the "Security Chain Security Tools - Store",  your cluster must have a configured default StorageClass. 
 
     Your cluster must also have at least **70&nbsp;GB** of disk per node.
 
