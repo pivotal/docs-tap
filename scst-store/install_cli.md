@@ -7,7 +7,6 @@ This topic explains how to install the Insight CLI:
 1. In the releases drop-down, select version *0.4.0*.
 1. In the list of released files, select *insight-metadata-cli-v1.0.0...*. 
 1. Choose the file for your operating system. 
-   
     >**Note:** macOS is a Darwin-based platform.
     
 1. Put the binary in a location that is either already in your `PATH` environment variable, 
