@@ -1105,7 +1105,7 @@ Follow the steps below to install RabbitMQ Operator, create the necessary RBAC,
 and create a Services Toolkit resource called `ClusterResource` for
 RabbitmqCluster so that Application Teams can discover it.
 
-1. Install RabbitMQ Operator which provides a RabbitmqCluster API Kind on the rabbitmq.com/v1beta1 API Group/Version.
+1. Install RabbitMQ Operator which provides a RabbitmqCluster API kind on the rabbitmq.com/v1beta1 API Group/Version.
 
     ```
     kapp -y deploy --app rmq-operator --file https://github.com/rabbitmq/cluster-operator/releases/download/v1.9.0/cluster-operator.yml
