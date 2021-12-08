@@ -366,23 +366,23 @@ of Tanzu Application Platform.
 
 ```
 profile: full
-ceip_policy_disclosed: true # Expects a true or false boolean value
+ceip_policy_disclosed: true # Installation fails if this is set to 'false'
 buildservice:
-  kp_default_repository: "<KP-DEFAULT-REPO>"
-  kp_default_repository_username: "<KP-DEFAULT-REPO-USERNAME>"
-  kp_default_repository_password: "<KP-DEFAULT-REPO-PASSWORD>"
-  tanzunet_username: "<TANZUNET-USERNAME>"
-  tanzunet_password: "<TANZUNET-PASSWORD>"
+  kp_default_repository: "KP-DEFAULT-REPO"
+  kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
+  kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
+  tanzunet_username: "TANZUNET-USERNAME"
+  tanzunet_password: "TANZUNET-PASSWORD"
 
 supply_chain: basic
 
 ootb_supply_chain_basic:
   registry:
-    server: "<SERVER-NAME>"
-    repository: "<REPO-NAME>"
+    server: "SERVER-NAME"
+    repository: "REPO-NAME"
 
 learningcenter:
-  ingressDomain: "<DOMAIN-NAME>"
+  ingressDomain: "DOMAIN-NAME"
 
 tap_gui:
   service_type: LoadBalancer # NodePort for distributions that don't support LoadBalancer
@@ -391,29 +391,53 @@ metadata_store:
   app_service_type: LoadBalancer # (optional) Defaults to LoadBalancer. Change to NodePort for distributions that don't support LoadBalancer
 
 grype:
-  namespace: "<MY-DEV-NAMESPACE>" # (optional) Defaults to default namespace.
-  targetImagePullSecret: "<REGISTRY-CREDENTIALS-SECRET>"
+  namespace: "MY-DEV-NAMESPACE" # (optional) Defaults to default namespace.
+  targetImagePullSecret: "REGISTRY-CREDENTIALS-SECRET"
 ```
+
+Where:
+
+- `KP-DEFAULT-REPO` is a writable repository in your registry. Tanzu Build Service dependencies are written to this location. Examples:
+    * Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`
+    * Dockerhub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`
+    * Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`
+- `KP-DEFAULT-REPO-USERNAME` is the username that can write to `KP-DEFAULT-REPO`. You should be able to `docker push` to this location with this credential.
+    * For Google Cloud Registry, use `kp_default_repository_username: _json_key`
+- `KP-DEFAULT-REPO-PASSWORD` is the password for the user that can write to `KP-DEFAULT-REPO`.
+You can `docker push` to this location with these credentials.
+    * For Google Cloud Registry, use the contents of the service account JSON key.
+- `SERVER-NAME` is the hostname of the registry server. Examples:
+    * Harbor has the form `server: "my-harbor.io"`
+    * Dockerhub has the form `server: "index.docker.io"`
+    * Google Cloud Registry has the form `server: "gcr.io"`
+- `REPO-NAME` is where workload images are stored in the registry.
+Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
+    * Harbor has the form `repository: "my-project/supply-chain"`
+    * Dockerhub has the form `repository: "my-dockerhub-user"`
+    * Google Cloud Registry has the form `repository: "my-project/supply-chain"`
+- `DOMAIN-NAME` has a value such as `educates.example.com`.
+- `MY-DEV-NAMESPACE` is the namespace where you want the `ScanTemplates` to be deployed to. This is the namespace where the scanning feature is going to run.
+    - `REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull the scanner image from the registry.
 
 ### Dev Profile
 
 ```
 profile: dev
-ceip_policy_disclosed: true # Expects a true or false boolean value
+ceip_policy_disclosed: true # Installation fails if this is set to 'false'
 
 buildservice:
-  kp_default_repository: "<KP-DEFAULT-REPO>"
-  kp_default_repository_username: "<KP-DEFAULT-REPO-USERNAME>"
-  kp_default_repository_password: "<KP-DEFAULT-REPO-PASSWORD>"
-  tanzunet_username: "<TANZUNET-USERNAME>"
-  tanzunet_password: "<TANZUNET-PASSWORD>"
+  kp_default_repository: "KP-DEFAULT-REPO"
+  kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
+  kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
+  tanzunet_username: "TANZUNET-USERNAME"
+  tanzunet_password: "TANZUNET-PASSWORD"
 
 supply_chain: basic
 
 ootb_supply_chain_basic:
   registry:
-    server: "<SERVER-NAME>"
-    repository: "<REPO-NAME>"
+    server: "SERVER-NAME"
+    repository: "REPO-NAME"
 
 tap_gui:
   service_type: LoadBalancer # NodePort for distributions that don't support LoadBalancer
@@ -421,82 +445,77 @@ tap_gui:
 metadata_store:
   app_service_type: LoadBalancer # (optional) Defaults to LoadBalancer. Change to NodePort for distributions that don't support LoadBalancer
 ```
+
 Where:
 
-   - `<PROFILE-VALUE>` is a value such as `full` or `dev`.
-    - `<ceip-policy-disclosed>` must have the value `true`.
-    **Note:** If the value is not set to `true`, installation fails.
+- `KP-DEFAULT-REPO` is a writable repository in your registry. Tanzu Build Service dependencies are written to this location. Examples:
+    * Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`
+    * Dockerhub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`
+    * Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`
+- `KP-DEFAULT-REPO-USERNAME` is the username that can write to `KP-DEFAULT-REPO`. You should be able to `docker push` to this location with this credential.
+    * For Google Cloud Registry, use `kp_default_repository_username: _json_key`
+- `KP-DEFAULT-REPO-PASSWORD` is the password for the user that can write to `KP-DEFAULT-REPO`.
+You can `docker push` to this location with these credentials.
+    * For Google Cloud Registry, use the contents of the service account JSON key.
+- `SERVER-NAME` is the hostname of the registry server. Examples:
+    * Harbor has the form `server: "my-harbor.io"`
+    * Dockerhub has the form `server: "index.docker.io"`
+    * Google Cloud Registry has the form `server: "gcr.io"`
+- `REPO-NAME` is where workload images are stored in the registry.
+Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
+    * Harbor has the form `repository: "my-project/supply-chain"`
+    * Dockerhub has the form `repository: "my-dockerhub-user"`
+    * Google Cloud Registry has the form `repository: "my-project/supply-chain"`
 
-    - `<KP-DEFAULT-REPO>` is a writable repository in your registry. Tanzu Build Service dependencies are written to this location.
-      * Examples:
-        * Harbor `kp_default_repository: "my-harbor.io/my-project/build-service"`
-        * Dockerhub `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`
-        * Google Cloud Registry `kp_default_repository: "gcr.io/my-project/build-service"`
-    - `<KP-DEFAULT-REPO-USERNAME>` is the username that can write to the `<KP-DEFAULT-REPO>`. You should be able to `docker push` to this location with this credential.
-      * For Google Cloud Registry, use `kp_default_repository_username: _json_key`
-    - `<KP-DEFAULT-REPO-PASSWORD>` is the password for the user that can write to the `<KP-DEFAULT-REPO>`. You can `docker push` to this location with these credentials.
-      * For Google Cloud Registry, use the contents of the service account json key.
-    - `<SERVER-NAME>` is the hostname of the registry server.
-      * Examples:
-         * Harbor `server: "my-harbor.io"`
-         * Dockerhub `server: "index.docker.io"`
-         * Google Cloud Registry `server: "gcr.io"`
-    - `<REPO-NAME>` is the location workload images will be stored in the registry. Images will be written to `<SERVER-NAME>/<REPO-NAME>/<workload-name>`.
-       * Examples:
-          * Harbor `repository: "my-project/supply-chain"`
-          * Dockerhub `repository: "my-dockerhub-user"`
-          * Google Cloud Registry `repository: "my-project/supply-chain"`
-    - `<DOMAIN-NAME>` has a value such as `educates.example.com`.
-    - `<MY-DEV-NAMESPACE>` is the namespace where you want the `ScanTemplates` to be deployed to. This is the namespace where the scanning feature is going to run.
-    - `<REGISTRY-CREDENTIALS-SECRET>` is the name of the secret that contains the credentials to pull the scanner image from the registry.
+To view possible configuration settings for a package, run:
 
-  To view possible configuration settings for a package, run:
+```
+tanzu package available get tap.tanzu.vmware.com/0.4.0 --values-schema --namespace tap-install
+```
 
-  ```
-    tanzu package available get tap.tanzu.vmware.com/0.4.0 --values-schema --namespace tap-install
-   ```
+>**Note:** The `tap.tanzu.vmware.com` package does not show all configuration settings for packages
+>it plans to install. The package only shows top level keys.
+>View individual package configuration settings with the same `tanzu package available get` command.
+>For example, use `tanzu package available get -n tap-install cnrs.tanzu.vmware.com/1.0.3 --values-schema` for Cloud Native Runtimes.
 
-   >**Note:** The `tap.tanzu.vmware.com` package does not show all configuration settings for packages it plans to install. The package only shows top level keys.
-    View individual package configuration settings with the same `tanzu package available get` command. For example, use `tanzu package available get -n tap-install cnrs.tanzu.vmware.com/1.0.3 --values-schema` for Cloud Native Runtimes.
+```
+profile: full
 
-   ```
-    profile: full
+# ...
 
-    # ...
+# e.g. CNRs specific values would go under its name
+cnrs:
+  provider: local
 
-    # e.g. CNRs specific values would go under its name
-    cnrs:
-      provider: local
+# e.g. App Accelerator specific values would go under its name
+accelerator:
+  service_type: "ClusterIP"
+```
 
-    # e.g. App Accelerator specific values would go under its name
-    accelerator:
-      service_type: "ClusterIP"
-   ```
+The following table summarizes the top-level keys used for package-specific configuration within
+your `tap-values.yml`.
 
-   The following table summarizes the top level keys used for package-specific configuration within
-    your `tap-values.yml`
+|Package|Top-level Key|
+|----|----|
+|API portal|`api_portal`|
+|Application Accelerator|`accelerator`|
+|Application Live View|`appliveview`|
+|Application Live View Conventions|`appliveview-conventions`|
+|Cartographer|`cartographer`|
+|Cloud Native Runtimes|`cnrs`|
+|Supply Chain|`supply_chain`|
+|Supply Chain Basic|`ootb_supply_chain_basic`|
+|Supply Chain Testing|`ootb_supply_chain_testing`|
+|Supply Chain Testing Scanning|`ootb_supply_chain_testing_scanning`|
+|Supply Chain Security Tools - Scan|`scanning`|
+|Supply Chain Security Tools - Scan (Grype Scanner)|`grype`|
+|Supply Chain Security Tools - Store|`metadata_store`|
+|Image Policy Webhook|`image_policy_webhook`|
+|Build Service|`buildservice`|
+|Tanzu Application Platform GUI|`tap_gui`|
+|Learning Center|`learningcenter`|
 
-   |Package|Top Level Key|
-   |----|----|
-  |API portal|`api_portal`|
-  |Application Accelerator|`accelerator`|
-  |Application Live View|`appliveview`|
-  |Application Live View Conventions|`appliveview-conventions`|
-  |Cartographer|`cartographer`|
-  |Cloud Native Runtimes|`cnrs`|
-  |Supply Chain|`supply_chain`|
-  |Supply Chain Basic|`ootb_supply_chain_basic`|
-  |Supply Chain Testing|`ootb_supply_chain_testing`|
-  |Supply Chain Testing Scanning|`ootb_supply_chain_testing_scanning`|
-  |Supply Chain Security Tools - Scan|`scanning`|
-  |Supply Chain Security Tools - Scan (Grype Scanner)|`grype`|
-  |Supply Chain Security Tools - Store|`metadata_store`|
-  |Image Policy Webhook|`image_policy_webhook`|
-  |Build Service|`buildservice`|
-  |Tanzu Application Platform GUI|`tap_gui`|
-  |Learning Center|`learningcenter`|
-
-  For information about package-specific configuration, see [Install components](install-components.md).
+For information about package-specific configuration, see [Install components](install-components.md).
 
 1. Install the package by running:
 
@@ -504,20 +523,22 @@ Where:
     tanzu package install tap -p tap.tanzu.vmware.com -v 0.4.0 --values-file tap-values.yml -n tap-install
     ```
 
-2. Verify the package install by running:
+1. Verify the package install by running:
 
     ```
     tanzu package installed get tap -n tap-install
     ```
 
-    This may take 5-10 minutes as it installs several packages on your cluster.
+    This may take 5-10 minutes because it installs several packages on your cluster.
 
-3. Verify all the necessary packages in the profile are installed by running:
+1. Verify tht all the necessary packages in the profile are installed by running:
+
     ```
     tanzu package installed list -A
     ```
 
-4. (Optional) [Install any additional packages](install-components.md) that were not included in your profile.
+1. (Optional) [Install any additional packages](install-components.md) that were not included in your profile.
+
 
 ## <a id='configure-envoy-lb'></a> Configure LoadBalancer for Contour ingress
 
@@ -530,7 +551,9 @@ contour:
       type: LoadBalancer
 ```
 
-If you are using AWS, the section above creates a classic LoadBalancer. If you want to use the Network LoadBalancer instead of the classic LoadBalancer for ingress, Add the following to your `tap-values.yml`:
+If you are using AWS, the section above creates a classic LoadBalancer.
+If you want to use the Network LoadBalancer instead of the classic LoadBalancer for ingress, add the
+following to your `tap-values.yml`:
 
 ```
 contour:
@@ -542,6 +565,7 @@ contour:
 ```
 
 ## <a id='configure-tap-gui'></a> Configure the Tanzu Application Platform GUI
+
 To install Tanzu Application Platform GUI, see the following sections.
 
 #### Procedure
@@ -551,12 +575,13 @@ To install Tanzu Application Platform GUI:
 1. Extract the Blank Software Catalog from the Tanzu Application Network on your Git repository of choice. You'll link to that `catalog-info.yaml` file when you configure your catalog below.
 
 1. Obtain the `External IP` of your LoadBalancer by running:
-   ```
-   kubectl get svc -n tap-gui
-   ```
 
-1. Add the following section to your `tap-values.yml` by using the following template. Replace all `<PLACEHOLDERS>`
-with your relevant values. Run:
+    ```
+    kubectl get svc -n tap-gui
+    ```
+
+1. Add the following section to your `tap-values.yml` by using the following template, and replace
+all placeholders with your relevant values.
 
     ```
     tap_gui:
@@ -585,32 +610,38 @@ with your relevant values. Run:
     - `GITHUB-TOKEN` is a valid token generated from your Git infrastructure of choice with the necessary read permissions for the catalog definition files you extracted from the Blank Software Catalog.
     - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage compliant catalog you've already built and posted on the Git infrastucture you specified in the Integration section.
 
-    > **Note:** The `integrations` section uses Github. If you want additional integrations, see the
-    format in the [Backstage integration documentation](https://backstage.io/docs/integrations/).
+    >**Note:** The `integrations` section uses Github. If you want additional integrations, see the
+    >format in the [Backstage integration documentation](https://backstage.io/docs/integrations/).
 
-1. (Optional) The default database mechanism for Tanzu Application Platform GUI is an in-memory database that is recommended for testing and development only. You can delete or comment out this section of the configuration. However, when the Tanzu Application Platform GUI server pod gets re-created, you'll lose all user preferences and any manually registered entities. For production or general use-cases, VMware recommends using a PostgreSQL database. To use a PostgreSQL database, run the following:
+1. (Optional) The default database mechanism for Tanzu Application Platform GUI is an in-memory
+database that is recommended for testing and development only.
+You can delete or comment out this section of the configuration.
+However, when the Tanzu Application Platform GUI server pod gets re-created, you'll lose all user
+preferences and any manually registered entities.
+For production or general use-cases, VMware recommends using a PostgreSQL database.
+To use a PostgreSQL database, run the following:
 
-  ```
-      backend:
-        baseUrl: http://tap-gui.<DOMAIN_NAME>-IP:7000
-        cors:
-            origin: http://tap-gui.<DOMAIN_NAME>-IP:7000
-      # Existing tap-values.yml above
-        database: #External database strongly recommended for production use
-          client: pg
-            connection:
-              host: <PG_SQL_HOSTNAME>
-              port: 5432
-              user: <PG_SQL_USERNAME>
-              password: <PG_SQL_PASSWORD>
-              ssl: {rejectUnauthorized: false} #Set to true if using SSL
-  ```
+    ```
+        backend:
+          baseUrl: http://tap-gui.DOMAIN-NAME-IP:7000
+          cors:
+              origin: http://tap-gui.DOMAIN-NAME-IP:7000
+        # Existing tap-values.yml above
+          database: # External database strongly recommended for production use
+            client: pg
+              connection:
+                host: PG-SQL-HOSTNAME
+                port: 5432
+                user: PG-SQL-USERNAME
+                password: PG-SQL-PASSWORD
+                ssl: {rejectUnauthorized: false} # Set to true if using SSL
+    ```
 
-  Where:
+    Where:
 
-    - `PG_SQL_HOSTNAME` is the hostname of your PostgreSQL database.
-    - `PG_SQL_USERNAME` is the username of your PostgreSQL database.
-    - `PG_SQL_PASSWORD` is the password of your PostgreSQL database.
+    - `PG-SQL-HOSTNAME` is the hostname of your PostgreSQL database.
+    - `PG-SQL-USERNAME` is the username of your PostgreSQL database.
+    - `PG-SQL-PASSWORD` is the password of your PostgreSQL database.
 
 1. Update the package profile by running:
 
@@ -637,6 +668,7 @@ with your relevant values. Run:
     ```
 
 1. To access the Tanzu Application Platform GUI, use the `baseURL` location you specified above. This consists of the `EXTERNAL-IP` with the default port of 7000. Run:
+
     ```
     http://EXTERNAL-IP:7000
     ```
@@ -651,19 +683,21 @@ You're now ready to start using Tanzu Application Platform GUI.
 Proceed to the [Getting Started](getting-started.md) topic or the
 [Tanzu Application Platform GUI - Catalog Operations](tap-gui/catalog/catalog-operations.md) topic.
 
+
 ## <a id='exclude-packages'></a> Exclude packages from a Tanzu Application Platform profile
 
-1. If you desire to exlude packages from a given profile, first you'll need to find the full subordinate (child) package name:
+To exclude packages from a Tanzu Application Platform profile:
 
+1. Find the full subordinate (child) package name:
 
     ```
     tanzu package available list --namespace tap-install
     ```
 
-2. Update your tap-values file with a section listing the exclusions:
+2. Update your `tap-values` file with a section listing the exclusions:
 
     ```
-    profile: <PROFILE-VALUE>
+    profile: PROFILE-VALUE
     excluded_packages:
       - tap-gui.tanzu.vmware.com
       - service-bindings.lab.vmware.com
