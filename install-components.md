@@ -1486,7 +1486,7 @@ with your relevant values. The meanings of some placeholders are explained in th
     ```
     Where:
 
-    - `<SERVICE-TYPE>` is your inbound traffic mechanism: LoadBalancer or Ingress.
+    - `<SERVICE-TYPE>` is your inbound traffic mechanism: LoadBalancer, NodePort, ClusterIP, or ExternalName
     - `<EXTERNAL-IP>:<PORT>` is your Ingress hostname or LoadBalancer information.
        If you are using a load balancer that is dynamically provisioned by the cloud provider,
        leave this value blank initially and, after the install is complete,
