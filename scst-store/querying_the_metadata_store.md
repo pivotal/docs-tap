@@ -4,7 +4,7 @@ This topic describes how to query the database to understand vulnerability, imag
 
 ## Add Data
 
-Data must be added before querying, see [Add Data](add_cyclonedx_to_store.md).
+Data must be added before querying. See [Add Data](add_cyclonedx_to_store.md).
 
 ## Methods
 
