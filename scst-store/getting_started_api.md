@@ -6,7 +6,7 @@ This topic includes an example API call. For information about using the Supply 
 
 The following procedure explains how to use CURL to POST an image report.
 
-1. Port Forward the metadata-store-app. Run:
+1. Port Forward the metadata-store-app. Run the following:
 
     ```
     kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store
@@ -18,7 +18,7 @@ The following procedure explains how to use CURL to POST an image report.
     export METADATA_STORE_ACCESS_TOKEN=$(kubectl get secrets -n metadata-store -o jsonpath="{.items[?(@.metadata.annotations['kubernetes\.io/service-account\.name']=='metadata-store-read-write-client')].data.token}" | base64 -d)
     ```
 
-3. Retrieve the CA Certificate and store it locally. Run:
+3. Retrieve the CA Certificate and store it locally. Run the following:
 
     ```
     kubectl get secret app-tls-cert -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d > /tmp/ca.crt

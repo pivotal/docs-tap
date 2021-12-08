@@ -41,7 +41,7 @@ Tanzu Application Platform GUI currently does not support Safari browser.
     - GitLab
     - Azure DevOps
 - Tanzu Application Platform GUI Blank Catalog from the Tanzu Application section of Tanzu Network
-  - To install this, navigate to [Tanzu Network](https://network.tanzu.vmware.com/) and select the Tanzu Application Platform. Under the list of available files to download, there will be a folder titled `tap-gui-catalogs`. Inside that folder is a compressed archive titled `Tanzu Application Platform Blank Catalog`. You'll need to extract that catalog to the preceding Git repository of choice. This serves as the configuration location for your Organziation's Catalog inside Tanzu Application Platform GUI.
+  - To install this, navigate to [Tanzu Network](https://network.tanzu.vmware.com/) and select the Tanzu Application Platform. Under the list of available files to download, there will be a folder titled `tap-gui-catalogs`. Inside that folder is a compressed archive titled `Tanzu Application Platform Blank Catalog`. You'll need to extract that catalog to the preceding Git repository of choice. This serves as the configuration location for your Organization's Catalog inside Tanzu Application Platform GUI.
   - The Tanzu Application Platform GUI catalog allows for two approaches towards storing catalog information:
         - The default option uses an in-memory database and is suitable for test and development scenarios.
           This reads the catalog data from Git URLs that you specify in the `tap-values.yml` file.
@@ -49,7 +49,7 @@ Tanzu Application Platform GUI currently does not support Safari browser.
           also cause this data to be rebuilt from the Git location.
           This can cause issues when you manually register entities through the UI because
           they only exist in the database and are lost when that in-memory database gets rebuilt.
-            - For production use-cases, use a PostgreSQL database that exists outside the Tanzu Applicaton Platform's packaging.
+            - For production use-cases, use a PostgreSQL database that exists outside the Tanzu Application Platform's packaging.
           This stores all the catalog data persistently both from the Git locations and from the GUI's manual entity registrations.
 
 ### Kubernetes cluster requirements
