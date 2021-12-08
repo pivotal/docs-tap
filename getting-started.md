@@ -146,7 +146,7 @@ and lets you debug your application directly on the cluster.
 For information about installing the pre-requisites and the Tanzu Developer Tools extension, see
 [How to Install the VSCode Tanzu Extension](vscode-extension/install.md).
 
->**Note:** For this sample app, you must use Tilt v0.23.0 or later
+>**Note:** For this sample app, you must use Tilt v0.23.2 or later
 
 Open the ‘Tanzu Java Web App’ as a project within your VSCode IDE.
 
