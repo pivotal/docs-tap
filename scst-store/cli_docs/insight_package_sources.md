@@ -24,7 +24,7 @@ insight package sources --name client
   -n, --name string     name of the package
 ```
 
-### SEE ALSO
+### See also
 
 * [insight package](insight_package.md)	 - Package commands
 
