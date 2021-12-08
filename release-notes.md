@@ -37,8 +37,11 @@ The following components have been updated in Tanzu Application Platform v0.4.0:
 
 This release has the following issue:
 
-Convention Service does not support self-signed certificates for the private
-registry. We are actively working on adding this support.
+- Convention Service does not support self-signed certificates for the private registry. We are actively working on adding this support.
+- When using "tanzu package installed update" command to only update data values, command will not wait for PackageInstall resource to start and finish reconciliation. Since PackageInstall resource is not directly modified, CLI will consider current state of PackageInstall resource as final (even though reconciliation will kick in a little bit of time). tanzu CLI will be enhanced in future versions to improve this behaviour.
+  - Suggested workaround is to observe state of PackageInstall after using update command.
+- When installing TAP on GKE, you may encounter Kubernetes control plane unavailability for several minutes during the install. This may cause package installs to enter ReconcileFailed state. Eventually when API server becomes available packages will try to be reconciled again to completion.
+  - This identified behaviour may happen on newly provisioned clusters which have not gone through GKE API server autoscaling (API server sizing in GKE is automatic and is not determined based on size or number of nodes). Once GKE scales up API server, current install will continue and any subsequent installs succeed without interruption. We are investigating how to improve this behaviour.
 
 ### Security issues
 
