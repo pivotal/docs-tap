@@ -66,7 +66,7 @@ For more information, see [ClusterPodConvention](reference/cluster-pod-conventio
 After all convention servers are finished processing a PodIntent for a workload,
 the convention controller updates the PodIntent with the latest version of the PodTemplateSpec and sets
 `PodIntent.status.conditions[].status=True` where `PodIntent.status.conditions[].type=Ready`.
-This status change signals the Supply Chain Choreographer that the Convention Service is finished with it's work.
+This status change signals the Supply Chain Choreographer that the Convention Service is finished with its work.
 The status change also executes whatever steps are waiting in the supply chain.
 
 ## <a id='prereqs'></a>Getting started
@@ -338,7 +338,7 @@ When using environment variables to define whether the convention is applicable,
 
 ### <a id='ImageMetadata'></a>Matching criteria by image metadata
 
-The convention controller should be used with [OCI Image](./reference/image-config.md) so it can be used to get metadata information. The ImageConfig is an struct that contains the configuration of an image, similar to the output of `docker inspect hello-world`.
+The convention controller should be used with [OCI Image](./reference/image-config.md) so it can be used to get metadata information. The ImageConfig is a struct that contains the configuration of an image, similar to the output of `docker inspect hello-world`.
 
 ## <a id='install'></a> Configure and install the convention server
 
