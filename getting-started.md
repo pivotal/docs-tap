@@ -1393,7 +1393,7 @@ command to get the Knative web-app URL:
 1. Visit the URL and confirm the app is working by refreshing the page and
 checking the new message IDs.
 
-### <a id='services-journey-use-case-3'></a> Use case 3 - Binding an application to a service running outside Kubernetes (Beta)
+### <a id='services-journey-use-case-3'></a> Use case 3 - Binding an application to a service running outside Kubernetes (GA)
 
 This use case enables developers to connect their application workloads to almost
 any backing service, including those that are running external to the platform,
