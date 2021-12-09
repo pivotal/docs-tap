@@ -9,7 +9,7 @@ The REST API will give you access to the list of workshops hosted by a training 
 To provide access to the REST API a robot account is automatically provisioned. The login credentials and details of the OAuth client endpoint used for authentication, can be obtained by querying the resource definition for the training portal after it has been created and the deployment completed. If using ``kubectl describe``, you would use:
 
 ```
-kubectl describe trainingportal.training.eduk8s.io/<training-portal-name>
+kubectl describe trainingportal.learningcenter.tanzu.vmware.com/<training-portal-name>
 ```
 
 In the status section of the output you will see:
@@ -24,10 +24,10 @@ Status:
     Credentials:
       Admin:
         Password:  0kGmMlYw46BZT2vCntyrRuFf1gQq5ohi
-        Username:  educates
+        Username:  learningcenter
       Robot:
         Password:  QrnY67ME9yGasNhq2OTbgWA4RzipUvo5
-        Username:  robot@educates
+        Username:  robot@learningcenter
 ```
 
 The admin login credentials is what you would use if logging into the training portal web interface to access admin pages.
@@ -43,7 +43,7 @@ This would be done from any front end web application or provisioning system, bu
 ```
 curl -v -X POST -H \
 "Content-Type: application/x-www-form-urlencoded" \
--d "grant_type=password&username=robot@educates&password=<robot-password>" \
+-d "grant_type=password&username=robot@learningcenter&password=<robot-password>" \
 -u "<robot-client-id>:<robot-client-secret>" \ 
 <training-portal-url>/oauth2/token/
 ```

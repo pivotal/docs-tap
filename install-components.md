@@ -1662,7 +1662,7 @@ To install Learning Center:
         privateKey: MIIEpgIBAAKCAQEA7yn3bRHQ5FHMQ ...
     ```
 
-    If you already have a TLS secret, you can copy it to the `educates` namespace or the one you
+    If you already have a TLS secret, you can copy it to the `learningcenter` namespace or the one you
     defined, and use the `secretName` property as in this example:
 
     ```
@@ -1701,27 +1701,27 @@ the `ingressClass` property in `learning-center-config.yaml` as in this example:
     tanzu package install learning-center --package-name learningcenter.tanzu.vmware.com --version 1.0.14-build.5 -f learning-center-config.yaml
     ```
 
-    The command above will create a default namespace in your Kubernetes cluster called `educates`,
+    The command above will create a default namespace in your Kubernetes cluster called `learningcenter`,
     and the operator along with any required namespaced resources is created in it.
     A set of custom resource definitions and a global cluster role binding are also created.
     The list of resources you see being created are:
 
     ```
-    customresourcedefinition.apiextensions.k8s.io/workshops.training.eduk8s.io created
-    customresourcedefinition.apiextensions.k8s.io/workshopsessions.training.eduk8s.io created
-    customresourcedefinition.apiextensions.k8s.io/workshopenvironments.training.eduk8s.io created
-    customresourcedefinition.apiextensions.k8s.io/workshoprequests.training.eduk8s.io created
-    customresourcedefinition.apiextensions.k8s.io/trainingportals.training.eduk8s.io created
+    customresourcedefinition.apiextensions.k8s.io/workshops.learningcenter.tanzu.vmware.com created
+    customresourcedefinition.apiextensions.k8s.io/workshopsessions.learningcenter.tanzu.vmware.com created
+    customresourcedefinition.apiextensions.k8s.io/workshopenvironments.learningcenter.tanzu.vmware.com created
+    customresourcedefinition.apiextensions.k8s.io/workshoprequests.learningcenter.tanzu.vmware.com created
+    customresourcedefinition.apiextensions.k8s.io/trainingportals.learningcenter.tanzu.vmware.com created
     serviceaccount/eduk8s created
-    customresourcedefinition.apiextensions.k8s.io/systemprofiles.training.eduk8s.io created
+    customresourcedefinition.apiextensions.k8s.io/systemprofiles.learningcenter.tanzu.vmware.com created
     clusterrolebinding.rbac.authorization.k8s.io/eduk8s-cluster-admin created
-    deployment.apps/eduk8s-operator created
+    deployment.apps/learningcenter-operator created
     ```
 
     You can check that the operator deployed successfully by running:
 
     ```
-    kubectl get all -n educates
+    kubectl get all -n learningcenter
     ```
 
     The Pod for the operator should be marked as running.
@@ -1752,7 +1752,7 @@ To install the Self-Guided Tour Training Portal and Workshop:
 
     ```
     NAME                 URL                                                ADMINUSERNAME   ADMINPASSWORD                      STATUS
-    educates-tutorials   http://educates-tutorials.example.com   educates        QGBaM4CF01toPiZLW5NrXTcIYSpw2UJK   Running
+    learningcenter-tutorials   http://learningcenter-tutorials.example.com   learningcenter        QGBaM4CF01toPiZLW5NrXTcIYSpw2UJK   Running
     ```
 
 

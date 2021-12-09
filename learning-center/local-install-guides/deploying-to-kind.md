@@ -102,10 +102,10 @@ wait for a reconciled successful status before attempting to install any other p
 
 ## Create a configuration yaml file for Learning Center package
 
-Create a file called educates-value.yaml in your current directory with the data provided below.
+Create a file called learningcenter-value.yaml in your current directory with the data provided below.
 ```
-#! The namespace in which to deploy Educates. For now must be "eduk8s" as
-namespace: educates
+#! The namespace in which to deploy Learning Center. For now must be "learningcenter" as
+namespace: learningcenter
 #! DNS parent subdomain used for training portal and workshop ingresses.
 ingressDomain: workshops.example.com
 #! Ingress class for where multiple ingress controllers exist and need to
@@ -131,12 +131,12 @@ storageGroup: null
 #! for the training portal.
 portalCredentials:
   systemAdmin:
-    username: educates
+    username: learningcenter
     password: null
   clientAccess:
-    username: robot@educates
+    username: robot@learningcenter
     password: null
-#! Primary image registry where Educates container images are stored. It
+#! Primary image registry where Larning Center container images are stored. It
 #! is only necessary to define the host and credentials when that image
 #! registry requires authentication to access images. This principally
 #! exists to allow relocation of images through Carvel image bundles.
@@ -144,7 +144,7 @@ imageRegistry:
   host: null
   username: null
   password: null
-#! Container image versions for various components of Educates. The Educates
+#! Container image versions for various components of Learning Center. The Learning Center
 #! operator will need to be modified to read names of images for the registry
 #! and docker in docker from config map to enable disconnected install.
 #!   https://github.com/eduk8s/eduk8s-operator/issues/112
@@ -162,10 +162,10 @@ dockerDaemon:
     remoteURL: null
     username: null
     password: null
-#! Override operator image. Only used during development of Educates.
+#! Override operator image. Only used during development of Learning Center.
 operatorImage: null
 ```
-Change the ingressDomain in the educates-values.yaml with ``<your-local-ip>.nip.io`` if you are using a ``nip.io`` DNS address. Details on what this are provided below.
+Change the ingressDomain in the learningcenter-values.yaml with ``<your-local-ip>.nip.io`` if you are using a ``nip.io`` DNS address. Details on what this are provided below.
 In the above example you would replace ``workshops.example.com with``  ``<your-local-ip>.nip.io``
 
 ## Using a ``nip.io`` DNS address
@@ -199,13 +199,13 @@ Also note that you cannot use an address of form ``127.0.0.1.nip.io``, or ``subd
 
 ## Install Learning Center package onto a Kubernetes cluster
 ```
-tanzu package install educates --package-name learningcenter.tanzu.vmware.com --version 1.0.14-build.5 -f ./educates-value.yaml --namespace tap-install
+tanzu package install learningcenter --package-name learningcenter.tanzu.vmware.com --version 1.0.14-build.5 -f ./learningcenter-value.yaml --namespace tap-install
 ```
-This package installation uses the installed Package repository along with a configuration educates-value.yaml to install our Learning Center Package.
+This package installation uses the installed Package repository along with a configuration learningcenter-value.yaml to install our Learning Center Package.
 
 ## Install Workshop tutorial package onto a Kubernetes cluster
 ```
-tanzu package install educates-tutorials --package-name workshops.learningcenter.tanzu.vmware.com --version 1.0.7-build.6 --namespace tap-install
+tanzu package install learningcenter-tutorials --package-name workshops.learningcenter.tanzu.vmware.com --version 1.0.7-build.6 --namespace tap-install
 ```
 Make sure you install the workshop package after the learning center package has reconcilled and sucessfuly installed onto your cluster. In case of new versioning you may obtain package version numbers using 
 ```

@@ -8,10 +8,10 @@ The REST API endpoints for session management allow you to request that a worksh
 When using the REST API to trigger creation of workshop sessions, it is recommended that user registration through the training portal web interface be disabled. This will mean that only the admin user will be able to access the web interface for the training portal directly.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1alpha1
 kind: TrainingPortal
 metadata:
-  name: educates-tutorials
+  name: learningcenter-tutorials
 spec:
   portal:
     registration:
@@ -40,10 +40,10 @@ When successful, the JSON response from the request will be of the form:
 {
     "name": "educaes-tutorials-w01-s001",
     "user": "8d2d0c8b-6ff5-4244-b136-110fd8d8431a",
-    "url": "/workshops/session/educates-tutorials-w01-s001/activate/?token=6UIW4D8Bhf0egVmsEKYlaOcTywrpQJGi&index_url=https%3A%2F%2Fhub.test%2F",
-    "workshop": "educates-tutorials",
-    "environment": "educates-tutorials-w01",
-    "namespace": "educates-tutorials-w01-s001"
+    "url": "/workshops/session/learningcenter-tutorials-w01-s001/activate/?token=6UIW4D8Bhf0egVmsEKYlaOcTywrpQJGi&index_url=https%3A%2F%2Fhub.test%2F",
+    "workshop": "learningcenter-tutorials",
+    "environment": "learningcenter-tutorials-w01",
+    "namespace": "learningcenter-tutorials-w01-s001"
 }
 ```
 
@@ -103,10 +103,10 @@ The response will be of the form:
   "user": "8d2d0c8b-6ff5-4244-b136-110fd8d8431a",
   "sessions": [
     {
-      "name": "educates-tutorials-w01-s001",
-      "workshop": "educates-tutorials",
-      "environment": "educates-tutorials-w01",
-      "namespace": "educates-tutorials-w01-s001",
+      "name": "learningcenter-tutorials-w01-s001",
+      "workshop": "learningcenter-tutorials",
+      "environment": "learningcenter-tutorials-w01",
+      "namespace": "learningcenter-tutorials-w01-s001",
       "started": "2020-07-31T03:57:33.942Z",
       "expires": "2020-07-31T04:57:33.942Z",
       "countdown": 3353,
@@ -132,7 +132,7 @@ The JSON response will be of the form:
 ```
 {
   "portal": {
-    "name": "educates-tutorials",
+    "name": "learningcenter-tutorials",
     "uid": "9b82a7b1-97db-4333-962c-97be6b5d7ee0",
     "generation": 476,
     "url": "<training-portal-url>",
@@ -145,7 +145,7 @@ The JSON response will be of the form:
   },
   "environments": [
     {
-      "name": "educates-tutorials-w01",
+      "name": "learningcenter-tutorials-w01",
       "state": "RUNNING",
       "workshop": {
         "name": "lab-et-self-guided-tour",
@@ -167,9 +167,9 @@ The JSON response will be of the form:
       "available": 0,
       "sessions": [
         {
-          "name": "educates-tutorials-w01-s002",
+          "name": "learningcenter-tutorials-w01-s002",
           "state": "RUNNING",
-          "namespace": "educates-tutorials-w01-s002",
+          "namespace": "learningcenter-tutorials-w01-s002",
           "user": "672338f3-4085-4782-8d9b-ae1637e1c28c",
           "started": "2021-11-05T15:50:04.824Z",
           "expires": "2021-11-05T16:20:04.824Z",
