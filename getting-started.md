@@ -1040,9 +1040,7 @@ Most applications depend on backing services, such as databases, queues, and cac
 As a result, developers can spend more time focusing on developing their applications and less
 time worrying about the provision, configuration, and operations of the backing services the applications
 depend on. This experience is made possible in Tanzu Application Platform by using the Services Toolkit
-component. Below are use cases that are unlocked by Services Toolkit on Tanzu Application Platform.
-
-**Note:** Use cases marked with Experimental are subject to change.
+component.
 
 ### Use cases unlocked by Services Toolkit on Tanzu Application Platform
 
@@ -1111,14 +1109,18 @@ RabbitmqCluster so that Application Teams can discover it.
     kapp -y deploy --app rmq-operator --file https://github.com/rabbitmq/cluster-operator/releases/download/v1.9.0/cluster-operator.yml
     ```
 
-1. Now that a new API has been installed and is available on the cluster, we must
-create corresponding RBAC rules to give relevant permissions to both the
-services-toolkit controller manager, as well as the users of the cluster.
-Start with the RBAC required by the services-toolkit controller-manager.
+1. After a new API is installed and available on the cluster,
+create the corresponding role-based access control (RBAC) rules to give relevant permissions to both the
+services-toolkit controller manager and the users of the cluster by configuring `resource-claims-rmq.yaml`.
+
+**Example:**
+
+In the following example, we start with the RBAC required by the services-toolkit controller-manager.
 The rules in this `ClusterRole` get aggregated to the services-toolkit controller
 manager through the label, meaning that the services-toolkit controller manager
-is then able to get, list, watch and update rabbitmqcluster resources.
-A ClusterRole like this would be required for each additional API resource
+is then able to get, list, watch and update all rabbitmqcluster resources.
+
+**Note:** A ClusterRole like this would be required for each additional API resource
 installed onto the cluster.
 
     ```
@@ -1136,15 +1138,17 @@ installed onto the cluster.
     verbs: ["get", "list", "watch", "update"]
     ```
 
-1. Apply `resource-claims-rmq.yaml` by running:
+1. Apply `resource-claims-rmq.yaml` by running the following command:
 
     ```
     kubectl apply -f resource-claims-rmq.yaml
     ```
 
-1. Ensure relevant RBAC is in place for the users. This example grants
-`get`, `list` and `watch` to all `rabbitmqcluster` resources for all authenticated
-users. The specifics of these permissions vary depending on the desired level
+1. In `rabbitmqcluster-reader.yaml`, ensure relevant RBAC is in place for the users.
+The following example grants `get`, `list` and `watch` to all `rabbitmqcluster` resources for all authenticated
+users.
+
+**Note:** The specifics of these permissions vary depending on the desired level
 of access to such resources.
 
     ```
@@ -1173,20 +1177,22 @@ of access to such resources.
     name: system:authenticated
     ```
 
-1. Apply `rabbitmqcluster-reader.yaml` by running:
+1. Apply `rabbitmqcluster-reader.yaml` by running the following command:
 
     ```
     kubectl apply -f rabbitmqcluster-reader.yaml
     ```
 
-1. Create a dedicated namespace in which to create service instances by running:
+1. Create a dedicated namespace in which to create service instances by running the following command:
 
     ```
     kubectl create namespace service-instances
     ```
 
 1. Make the API discoverable to the Application Development team by creating the
-ClusterResources. For example:
+ClusterResources in `rabbitmq-clusterresource.yaml`.
+
+**Example:**
 
     ```
     # rabbitmq-clusterresource.yaml
@@ -1207,7 +1213,7 @@ ClusterResources. For example:
     kubectl apply -f rabbitmq-clusterresource.yaml
     ```
 
-    For further information about `ClusterResource`, see the
+    For more information about `ClusterResource`, see the
     [Services Toolkit component documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.4/services-toolkit-0-4/GUID-service_offering-terminology_and_apis.html).
 
 
@@ -1450,6 +1456,8 @@ For example:
     ```
 
 ### <a id='services-journey-use-case-4'></a> **Use case 4 - Binding an application to a service instance running on a different Kubernetes cluster (Experimental).**
+
+**Note:** Use cases marked with Experimental are subject to change.
 
 This use case is almost identical to the first, but rather than installing and running the RabbitMQ Cluster Kubernetes Operator on the same cluster as Tanzu Application Platform, we install and run it on an entirely separate dedicated Services cluster. There are several reasons why you might want to do this:
 
