@@ -1290,7 +1290,7 @@ the new message IDs.
 
 <!-- ### <a id='services-journey-use-case-1'></a> Use Case 1 - Binding an App Workload to a Service Resource -->
 
-### <a id='services-journey-use-case-2'></a> Use case 2 - Binding an application to a pre-provisioned service instance running in a different namespace on the same Kubernetes cluster (GA)
+### <a id='services-journey-use-case-2'></a> Use case 2 - Binding an application to a pre-provisioned service instance running in a different namespace on the same Kubernetes cluster
 
 The first use case demonstrates binding a sample application workload to a service
 instance that is running in the same namespace.
@@ -1393,7 +1393,7 @@ command to get the Knative web-app URL:
 1. Visit the URL and confirm the app is working by refreshing the page and
 checking the new message IDs.
 
-### <a id='services-journey-use-case-3'></a> Use case 3 - Binding an application to a service running outside Kubernetes (GA)
+### <a id='services-journey-use-case-3'></a> Use case 3 - Binding an application to a service running outside Kubernetes
 
 This use case enables developers to connect their application workloads to almost
 any backing service, including those that are running external to the platform,
