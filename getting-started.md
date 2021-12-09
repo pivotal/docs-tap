@@ -1088,8 +1088,8 @@ is binding an application workload to a backing service such as a PostgreSQL dat
 RabbitMQ queue. This leads to a powerful user experience for working with backing services
 as part of the development life cycle.
 
-**Note:** The [Service Binding Specification](https://github.com/servicebinding/spec) for Kubernetes is required in this use case.
-**Note:** Any service that adheres to the [Provisioned Service](https://github.com/servicebinding/spec#provisioned-service) in the specification is compatible with Tanzu Application Platform.
+>**Note:** The [Service Binding Specification](https://github.com/servicebinding/spec) for Kubernetes is required in this use case.
+>**Note:** Any service that adheres to the [Provisioned Service](https://github.com/servicebinding/spec#provisioned-service) in the specification is compatible with Tanzu Application Platform.
 
 <!-- * [Use Case 1 - **Binding an App Workload to a Service Resource**](#services-journey-use-case-1)
 * [Use Case 2 - **Binding an App Workload to a Service Resource across multiple clusters**](#services-journey-use-case-2)
@@ -1120,7 +1120,7 @@ The rules in this `ClusterRole` get aggregated to the services-toolkit controlle
 manager through the label, meaning that the services-toolkit controller manager
 is then able to get, list, watch and update all rabbitmqcluster resources.
 
-**Note:** A ClusterRole like this would be required for each additional API resource
+>**Note:** A ClusterRole like this would be required for each additional API resource
 installed onto the cluster.
 
     ```
@@ -1148,7 +1148,7 @@ installed onto the cluster.
 The following example grants `get`, `list` and `watch` to all `rabbitmqcluster` resources for all authenticated
 users.
 
-**Note:** The specifics of these permissions vary depending on the desired level
+>**Note:** The specifics of these permissions vary depending on the desired level
 of access to such resources.
 
     ```
@@ -1235,57 +1235,50 @@ in the same namespace.
       replicas: 1
     ```
 
-1. Apply `example-rabbitmq-cluster-service-instance.yaml` by running:
+1. Apply `example-rabbitmq-cluster-service-instance.yaml` by running the following command:
 
     ```
     kubectl apply -f example-rabbitmq-cluster-service-instance.yaml
     ```
 
-1. Check on that resource by running:
+1. Check the resource by running:
 
     ```
     kubectl get rabbitmqclusters
     ```
 
-    >**Note:** In future releases, creating service instances manually will not
-    be required. Services Toolkit will create the service instances on-demand
-    based on the intent declared by the workloads.
-
-
-1. Create an Application Workload that automatically claims and binds to that
+1. Create an application workload that automatically claims and binds to the
 RabbitMQ instance.
 
-    >**Important:** You must ensure that your namespace is set up to use installed
-    Tanzu Application Platform packages so that application workloads can be created
-    successfully.
+    >**Important:** Ensure your namespace is set up to use installed
+    Tanzu Application Platform packages so that Services Toolkit can create application workloads sucessfully.
     For more information, see [Set Up Developer Namespaces to Use Installed Packages](install-components.md#setup).
 
-1. Obtain a service reference in the correct format by running:
+    1. Obtain a service reference by running the following command:
 
-    ```
-    $ tanzu service instance list -owide
-    Warning: This is an ALPHA command and may change without notice.
+        ```
+        $ tanzu service instance list -owide
+        ```
 
-    NAME                        KIND             SERVICE TYPE  AGE  SERVICE REF
-    example-rabbitmq-cluster-1  RabbitmqCluster  rabbitmq      50s  rabbitmq.com/v1beta1:RabbitmqCluster:example-rabbitmq-cluster-1:default
-    ```
+        ```
+        NAME                        KIND             SERVICE TYPE  AGE  SERVICE REF
+        example-rabbitmq-cluster-1  RabbitmqCluster  rabbitmq      50s  rabbitmq.com/v1beta1:RabbitmqCluster:example-rabbitmq-cluster-1:default
+        ```
 
-1. Use the `SERVICE REF` value from the output to create the Application Workload.
-To do so for this example, use the `rabbitmq-sample` application hosted at
-`https://github.com/jhvhs/rabbitmq-sample` by running:
+    1. Use the `SERVICE REF` value from the output to create the application workload and the `rabbitmq-sample` application hosted at
+    `https://github.com/jhvhs/rabbitmq-sample` by running the following command:
 
-    ```
-    tanzu apps workload create rmq-sample-app-usecase-1 --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch v0.1.0 --type web --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:example-rabbitmq-cluster-1:default"
-    ```
+        ```
+        tanzu apps workload create rmq-sample-app-usecase-1 --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch v0.1.0 --type web --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:example-rabbitmq-cluster-1:default"
+        ```
 
-1. Get the Knative web-app URL to confirm that the application workload is built
-and operational by running:
+1. Get the Knative web-app URL by running the following command:
 
     ```
     tanzu apps workload get rmq-sample-app-usecase-1
     ```
 
-    >**Note:** It may take some time before the workload is ready.
+    >**Note:** It can take some time before the workload is ready.
 
 1. Visit the URL and confirm the app is working by refreshing the page and checking
 the new message IDs.
