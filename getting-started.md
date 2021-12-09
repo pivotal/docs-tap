@@ -679,7 +679,7 @@ Verify that both Scan Link and Grype Scanner are installed by running:
     ```
     - supply_chain: testing
     + supply_chain: testing_scanning
-    
+
     - ootb_supply_chain_testing:
     + ootb_supply_chain_testing_scanning:
         registry:
@@ -1028,7 +1028,7 @@ One of the out of the box supply chains we are working on for a future release w
 
 * [Observing and Troubleshooting](scst-scan/observing.md)
 
-## <a id='consuming-services'></a> Section 5: consuming services on Tanzu Application Platform
+## <a id='consuming-services'></a> Section 5: Consuming Services on Tanzu Application Platform
 
 Tanzu Application Platform makes it easy to discover, curate, consume, and manage
 services across single or multi-cluster environments.
@@ -1039,7 +1039,7 @@ This section has procedures for several use cases regarding Services journey on 
 Most applications require backing services, such as databases, queues, and caches, to run
 successfully.
 
-This enables developers to spend more time focussing on developing their applications and less
+This enables developers to spend more time focusing on developing their applications and less
 time worrying about the provision, configuration, and operations of the backing services they
 depend on.
 
