@@ -15,7 +15,7 @@ The ``Workshop`` custom resource defines a workshop. It specifies the title and 
 A minimal example of the ``Workshop`` custom resource is:
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-markdown-sample
@@ -36,7 +36,7 @@ spec:
 
 The raw custom resource definition for the ``Workshop`` custom resource can be viewed at:
 
-* [https://github.com/eduk8s/eduk8s/blob/develop/resources/crds-v1/workshop.yaml](https://github.com/eduk8s/eduk8s/blob/develop/resources/crds-v1/workshop.yaml)
+* [https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/workshop.yaml](https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/workshop.yaml)
 
 When an instance of the ``Workshop`` custom resource is created it does not cause any immediate action by the Learning Center operator. This custom resource exists only to define the workshop.
 
@@ -49,7 +49,7 @@ In order to deploy instances of a workshop, you first need to create a workshop 
 A minimal example of the ``WorkshopEnvironment`` custom resource is:
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopEnvironment
 metadata:
   name: lab-markdown-sample
@@ -70,7 +70,7 @@ If the ``Workshop`` definition for the workshop to be deployed in this workshop 
 
 The raw custom resource definition for the ``WorkshopEnvironment`` custom resource can be viewed at:
 
-* [https://github.com/eduk8s/eduk8s/blob/develop/resources/crds-v1/workshop-environment.yaml](https://github.com/eduk8s/eduk8s/blob/develop/resources/crds-v1/workshop-environment.yaml)
+* [https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/workshop-environment.yaml](https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/workshop-environment.yaml)
 
 The ``WorkshopEnvironment`` custom resource is created at cluster scope.
 
@@ -83,7 +83,7 @@ The ``WorkshopRequest`` custom resource is namespaced to allow who can create it
 A minimal example of the ``WorkshopRequest`` custom resource is:
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopRequest
 metadata:
   name: lab-markdown-sample
@@ -97,7 +97,7 @@ Apart from needing to have appropriate access through RBAC, the only information
 
 The raw custom resource definition for the ``WorkshopRequest`` custom resource can be viewed at:
 
-* [https://github.com/eduk8s/eduk8s/blob/develop/resources/crds-v1/workshop-request.yaml](https://github.com/eduk8s/eduk8s/blob/develop/resources/crds-v1/workshop-request.yaml)
+* [https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/workshop-request.yaml](https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/workshop-request.yaml)
 
 Note that the ``WorkshopRequest`` resource is not used when using the ``TrainingPortal`` resource to provide a web interface for accessing workshops. The ``WorkshopRequest`` resource is only used where you were creating ``WorkshopEnvironment`` resource manually and not using the training portal.
 
@@ -109,7 +109,7 @@ The ``WorkshopSession`` custom resource is the expanded definition of what the w
 
 The raw custom resource definition for the ``WorkshopSession`` custom resource can be viewed at:
 
-* [https://github.com/eduk8s/eduk8s/blob/develop/resources/crds-v1/workshop-session.yaml](https://github.com/eduk8s/eduk8s/blob/develop/resources/crds-v1/workshop-session.yaml)
+* [https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/workshop-session.yaml](https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/workshop-session.yaml)
 
 The ``WorkshopSession`` custom resource is created at cluster scope.
 
@@ -120,7 +120,7 @@ The ``TrainingPortal`` custom resource provides a high level mechanism for creat
 A minimal example of the ``TrainingPortal`` custom resource is:
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
   name: lab-markdown-sample
@@ -134,7 +134,7 @@ You can set the capacity of the training room and that dictates how many worksho
 
 The raw custom resource definition for the ``TrainingPortal`` custom resource can be viewed at:
 
-* [https://github.com/eduk8s/eduk8s/blob/develop/resources/crds-v1/training-portal.yaml](https://github.com/eduk8s/eduk8s/blob/develop/resources/crds-v1/training-portal.yaml)
+* [https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/training-portal.yaml](https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/training-portal.yaml)
 
 The ``TrainingPortal`` custom resource is created at cluster scope.
 
@@ -145,14 +145,14 @@ The ``SystemProfile`` custom resources provides a mechanism for configuring the 
 A minimal example of the ``SystemProfile`` custom resource is:
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
   name: default-system-profile
 spec:
   ingress:
-    domain: training.eduk8s.io
-    secret: training-eduks8-io-tls
+    domain: learningcenter.tanzu.vmware.com
+    secret: learningcenter-tanzu-vmware-com-tls
     class: nginx
   environment:
     secrets:
@@ -168,7 +168,7 @@ Changes can be made to instances of the ``SystemProfile`` custom resource and th
 
 The raw custom resource definition for the ``SystemProfile`` custom resource can be viewed at:
 
-* [https://github.com/eduk8s/eduk8s/blob/develop/resources/crds-v1/system-profile.yaml](https://github.com/eduk8s/eduk8s/blob/develop/resources/crds-v1/system-profile.yaml)
+* [https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/system-profile.yaml](https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/system-profile.yaml)
 
 The ``SystemProfile`` custom resource is created at cluster scope.
 
@@ -180,4 +180,4 @@ This is because ``v1`` versions of CRDs are only supported from Kubernetes 1.17.
 
 The location of the ``v1`` versions of the CRDs is:
 
-* [https://github.com/eduk8s/eduk8s/tree/develop/resources/crds-v1](https://github.com/eduk8s/eduk8s/tree/develop/resources/crds-v1)
+* [https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1](https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1)

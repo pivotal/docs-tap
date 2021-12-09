@@ -4,7 +4,7 @@ The ``WorkshopSession`` custom resource defines a workshop session.
 
 The raw custom resource definition for the ``WorkshopSession`` custom resource can be viewed at:
 
-* [https://github.com/eduk8s/eduk8s/blob/develop/resources/crds-v1/workshop-session.yaml](https://github.com/eduk8s/eduk8s/blob/develop/resources/crds-v1/workshop-session.yaml)
+* [https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/workshop-session.yaml](https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/workshop-session.yaml)
 
 ## Specifying the session identity
 
@@ -13,7 +13,7 @@ When running training for multiple people, it would be more typical to use the `
 To specify the workshop environment the workshop instance is created against, set the ``environment.name`` field of the specification for the workshop session. At the same time, you must specify the session ID for the workshop instance.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopSession
 metadata:
   name: lab-markdown-sample-user1
@@ -35,7 +35,7 @@ Access to each workshop instance can be controlled through login credentials. Th
 If you want to set login credentials for a workshop instance, you can set the ``session.username`` and ``session.password`` fields.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopSession
 metadata:
   name: lab-markdown-sample
@@ -43,7 +43,7 @@ spec:
   environment:
     name: lab-markdown-sample-user1
   session:
-    username: eduk8s
+    username: learningcenter
     password: lab-markdown-sample
 ```
 
@@ -58,7 +58,7 @@ When setting a custom domain, DNS must have been configured with a wildcard doma
 To provide the ingress domain, you can set the ``session.ingress.domain`` field.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopSession
 metadata:
   name: lab-markdown-sample
@@ -67,15 +67,16 @@ spec:
     name: lab-markdown-sample-user1
   session:
     ingress:
-      domain: training.eduk8s.io
+      domain: training.learningcenter.tanzu.vmware.com
 ```
 
 A full hostname for the session will be created by prefixing the ingress domain with a hostname constructed from the name of the workshop environment and the session ID.
 
-If overriding the domain, by default, the workshop session will be exposed using a HTTP connection. If you require a secure HTTPS connection, you will need to have access to a wildcard SSL certificate for the domain. A secret of type ``tls`` should be created for the certificate in the ``educates`` namespace or the namespace where Learning Center operator is deployed. The name of that secret should then be set in the ``session.ingress.secret`` field.
+If overriding the domain, by default, the workshop session will be exposed using a HTTP connection. If you require a secure HTTPS connection, you will need to have access to a wildcard SSL certificate for the domain. 
+A secret of type ``tls`` should be created for the certificate in the ``learningcenter`` namespace or the namespace where Learning Center operator is deployed. The name of that secret should then be set in the ``session.ingress.secret`` field.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopSession
 metadata:
   name: lab-markdown-sample
@@ -84,14 +85,14 @@ spec:
     name: lab-markdown-sample-user1
   session:
     ingress:
-      domain: training.eduk8s.io
-      secret: training.eduk8s.io-tls
+      domain: training.learningcenter.tanzu.vmware.com
+      secret: training.learningcenter.tanzu.vmware.com-tls
 ```
 
 If HTTPS connections are being terminated using an external load balancer and not by specificying a secret for ingresses managed by the Kubernetes ingress controller, with traffic then routed into the Kubernetes cluster as HTTP connections, you can override the ingress protocol without specifying an ingress secret by setting the ``session.ingress.protocol`` field.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopSession
 metadata:
   name: lab-markdown-sample
@@ -100,14 +101,14 @@ spec:
     name: lab-markdown-sample-user1
   session:
     ingress:
-      domain: training.eduk8s.io
+      domain: training.learningcenter.tanzu.vmware.com
       protocol: https
 ```
 
 If you need to override or set the ingress class, which dictates which ingress router is used when more than one option is available, you can add ``session.ingress.class``.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopSession
 metadata:
   name: lab-markdown-sample
@@ -116,8 +117,8 @@ spec:
     name: lab-markdown-sample-user1
   session:
     ingress:
-      domain: training.eduk8s.io
-      secret: training.eduk8s.io-tls
+      domain: training.learningcenter.tanzu.vmware.com
+      secret: training.learningcenter.tanzu.vmware.com-tls
       class: nginx
 ```
 
@@ -126,7 +127,7 @@ spec:
 If you want to set the environment variables for the workshop instance, you can provide the environment variables in the ``session.env`` field.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopSession
 metadata:
   name: lab-markdown-sample

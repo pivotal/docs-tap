@@ -16,7 +16,7 @@ In the status section of the output you will see:
 
 ```
 Status:
-  eduk8s:
+  learningcenter:
     Clients:
       Robot:
         Id:      ACZpcaLIT3qr725YWmXu8et9REl4HBg1

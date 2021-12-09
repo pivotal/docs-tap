@@ -8,7 +8,7 @@ The REST API endpoints for session management allow you to request that a worksh
 When using the REST API to trigger creation of workshop sessions, it is recommended that user registration through the training portal web interface be disabled. This will mean that only the admin user will be able to access the web interface for the training portal directly.
 
 ```
-apiVersion: learningcenter.tanzu.vmware.com/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
   name: learningcenter-tutorials
