@@ -1068,7 +1068,7 @@ The use cases vary according to where the service instance is located. The four 
 	</tr>
   <tr>
     <td>outside Kubernetes, for example, on an external Azure DB</td>
-    <td>Beta</td>
+    <td>GA</td>
     <td><a href="#services-journey-use-case-3">Use case 3</a></td>
   </tr>
   <tr>
