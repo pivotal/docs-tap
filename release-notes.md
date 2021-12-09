@@ -21,10 +21,6 @@ The Dev profile now includes:
 
 The Dev profile no longer includes Image Policy Webhook.
 
-**New Components**
-
-The following components are new in Tanzu Application Platform v0.4.0:
-
 **Updated Components**
 
 The following components have been updated in Tanzu Application Platform v0.4.0:
@@ -39,10 +35,6 @@ This release has the following issue:
 
 Convention Service does not support self-signed certificates for the private
 registry. We are actively working on adding this support.
-
-### Security issues
-
-<!-- This release has the following security issue: -->
 
 
 ## <a id='0-3-0'></a> v0.3.0 beta release
