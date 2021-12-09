@@ -1588,7 +1588,8 @@ field in the values file.
 
 ## <a id='install-learning-center'></a> Install Learning Center for Tanzu Application Platform
 
-To install Tanzu Learning Center, see the following sections.
+To install Tanzu Learning Center, see the following sections. 
+>**Note:** If you have any issue updating values or deploying Learning Center, please see the [Learning Center - Known Issues](learning-center/known-issues/about.md) for recovery steps.
 
 ### <a id='lc-prereqs'></a> Prerequisites
 
@@ -1596,7 +1597,7 @@ To install Tanzu Learning Center, see the following sections.
 
 - [Tanzu Application Platform Prerequisites](install-general.md#prereqs)
 
-- The cluster must have an ingress router configured. Only a basic deployment of the ingress controller is usually required.
+- The cluster must have an ingress router configured. If you have installed the TAP package (full or dev profile), it already deploy a contour ingress controller.
 
 - The operator when deploying instances of the workshop environments needs to be able to expose them via an external URL for access. For the custom domain you are using, DNS must have been configured with a wildcard domain to forward all requests for sub domains of the custom domain, to the ingress router of the Kubernetes cluster
 
@@ -1618,14 +1619,15 @@ To install Learning Center:
 
     ```
      NAME                             VERSION        RELEASED-AT
-     learningcenter.tanzu.vmware.com  1.0.14-build.5 2021-10-22 17:02:13 -0400 EDT
+     learningcenter.tanzu.vmware.com  0.1.0          2021-12-01 08:18:48 -0500 EDT
     ```
 
 1. (Optional) See all the configurable parameters on this package by running:
 
+    **Remember to change the 0.x.x version**
     ```
-    tanzu package available get learningcenter.tanzu.vmware.com/1.0.14-build.5 --values-schema -- namespace tap-install
-    ```
+    tanzu package available get learningcenter.tanzu.vmware.com/0.x.x --values-schema --namespace tap-install 
+    ``` 
 
 1. Create a config file named `learning-center-config.yaml`.
 
@@ -1658,11 +1660,23 @@ To install Learning Center:
 
     ```
     ingressSecret:
-        certificate: MIIC2DCCAcCgAwIBAgIBATANBgkqh ...
-        privateKey: MIIEpgIBAAKCAQEA7yn3bRHQ5FHMQ ...
+      certificate: |
+        -----BEGIN CERTIFICATE-----
+        MIIFLTCCBBWgAwIBAgaSAys/V2NCTG9uXa9aAiYt7WJ3MA0GCSqGaIb3DQEBCwUA
+                                        ...
+        dHa6Ly9yMy5vamxlbmNyLm9yZzAiBggrBgEFBQawAoYWaHR0cDoaL3IzLmkubGVu
+        -----END CERTIFICATE-----
+      privateKey: |
+        -----BEGIN PRIVATE KEY-----
+        MIIEvQIBADAaBgkqhkiG9waBAQEFAASCBKcwggSjAgEAAoIBAaCx4nyc2xwaVOzf
+                                        ...
+        IY/9SatMcJZivH3F1a7SXL98PawPIOSR7986P7rLFHzNjaQQ0DWTaXBRt+oUDxpN
+        -----END PRIVATE KEY-----
     ```
 
-    If you already have a TLS secret, you can copy it to the `learningcenter` namespace or the one you
+    If you already have a TLS secret, follow these steps **before deploying any workshop**:
+    * Create the `learningcenter` namespace manually or the one you defined
+    * Copy the tls secret to the `learningcenter` namespace or the one you
     defined, and use the `secretName` property as in this example:
 
     ```
@@ -1681,42 +1695,22 @@ To install Learning Center:
 
 1. Any ingress routes created use the default ingress class.
 If you have multiple ingress class types available, and you need to override which is used, define
-the `ingressClass` property in `learning-center-config.yaml` as in this example:
+the `ingressClass` property in `learning-center-config.yaml` **before deploying any workshop**:
 
     ```
     ingressClass: contour
     ```
 
-    If you have multiple ingress controllers, ensure you select the correct one.
-    For instance, Cloud Native Runtimes (CNR) deploys two ingress controllers.
-    In this case you use `contour-external` for Learning Center as in this example:
-
-    ```
-    ingressClass: contour-external
-    ```
-
 1. Install Learning Center Operator by running:
 
+    **Remember to change the 0.x.x version**
     ```
-    tanzu package install learning-center --package-name learningcenter.tanzu.vmware.com --version 1.0.14-build.5 -f learning-center-config.yaml
+    tanzu package install learning-center --package-name learningcenter.tanzu.vmware.com --version 0.x.x -f learning-center-config.yaml
     ```
 
     The command above will create a default namespace in your Kubernetes cluster called `learningcenter`,
     and the operator along with any required namespaced resources is created in it.
     A set of custom resource definitions and a global cluster role binding are also created.
-    The list of resources you see being created are:
-
-    ```
-    customresourcedefinition.apiextensions.k8s.io/workshops.learningcenter.tanzu.vmware.com created
-    customresourcedefinition.apiextensions.k8s.io/workshopsessions.learningcenter.tanzu.vmware.com created
-    customresourcedefinition.apiextensions.k8s.io/workshopenvironments.learningcenter.tanzu.vmware.com created
-    customresourcedefinition.apiextensions.k8s.io/workshoprequests.learningcenter.tanzu.vmware.com created
-    customresourcedefinition.apiextensions.k8s.io/trainingportals.learningcenter.tanzu.vmware.com created
-    serviceaccount/eduk8s created
-    customresourcedefinition.apiextensions.k8s.io/systemprofiles.learningcenter.tanzu.vmware.com created
-    clusterrolebinding.rbac.authorization.k8s.io/eduk8s-cluster-admin created
-    deployment.apps/learningcenter-operator created
-    ```
 
     You can check that the operator deployed successfully by running:
 
@@ -1726,7 +1720,7 @@ the `ingressClass` property in `learning-center-config.yaml` as in this example:
 
     The Pod for the operator should be marked as running.
 
-### <a id='install-portal-proc'></a> Procedure to install the Self-Guided Tour Training Portal and Workshop
+## <a id='install-portal-proc'></a> Procedure to install the Self-Guided Tour Training Portal and Workshop
 
 To install the Self-Guided Tour Training Portal and Workshop:
 
@@ -1738,8 +1732,9 @@ To install the Self-Guided Tour Training Portal and Workshop:
 
 1. Install the Learning Center Training Portal with the Self Guided Tour workshop by running:
 
+    **Remember to change the 0.x.x version**
     ```
-    tanzu package install learning-center-workshop --package-name workshops.learningcenter.tanzu.vmware.com --version 1.0.7-build.6 -n tap-install
+    tanzu package install learning-center-workshop --package-name workshops.learningcenter.tanzu.vmware.com --version 0.x.x -n tap-install
     ```
 
 1. Check the Training Portals available in your environment by running:
@@ -1751,7 +1746,7 @@ To install the Self-Guided Tour Training Portal and Workshop:
     Example output:
 
     ```
-    NAME                 URL                                                ADMINUSERNAME   ADMINPASSWORD                      STATUS
+    NAME                       URL                                           ADMINUSERNAME         ADMINPASSWORD                      STATUS
     learningcenter-tutorials   http://learningcenter-tutorials.example.com   learningcenter        QGBaM4CF01toPiZLW5NrXTcIYSpw2UJK   Running
     ```
 

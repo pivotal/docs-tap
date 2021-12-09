@@ -13,3 +13,4 @@ programming languages, where the user has no interest or need for Kubernetes.
 - [Workshops](workshop-content/about.md)
 - [Runtime Environment](runtime-environment/about.md)
 - [Portal Rest API](portal-rest-api/about.md)
+- [Known Issues](known-issues/about.md)

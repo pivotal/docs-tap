@@ -121,18 +121,31 @@ The easiest way to define the certificate is through the configuration passed to
 the ``certificate`` and ``privateKey`` properties under the ``ingressSecret`` property to specify the 
 certificate on the configuration yaml passed to Tanzu CLI
 
-```
-ingressSecret:
-  certificate: MIIC2DCCAcCgAwIBAgIBATANBgkqh ...
-  privateKey: MIIEpgIBAAKCAQEA7yn3bRHQ5FHMQ ...
-```
+  ```
+  ingressSecret:
+    certificate: |
+      -----BEGIN CERTIFICATE-----
+      MIIFLTCCBBWgAwIBAgaSAys/V2NCTG9uXa9aAiYt7WJ3MA0GCSqGaIb3DQEBCwUA
+                                      ...
+      dHa6Ly9yMy5vamxlbmNyLm9yZzAiBggrBgEFBQawAoYWaHR0cDoaL3IzLmkubGVu
+      -----END CERTIFICATE-----
+    privateKey: |
+      -----BEGIN PRIVATE KEY-----
+      MIIEvQIBADAaBgkqhkiG9waBAQEFAASCBKcwggSjAgEAAoIBAaCx4nyc2xwaVOzf
+                                      ...
+      IY/9SatMcJZivH3F1a7SXL98PawPIOSR7986P7rLFHzNjaQQ0DWTaXBRt+oUDxpN
+      -----END PRIVATE KEY-----
+  ```
 
-If you already has a TLS secret, you can copy it to the ``learningcenter`` namespace or that one you defined, 
-and use the ``secretName`` property.
-```
-ingressSecret:
-  secretName: workshops.example.com-tls
-```
+If you already have a TLS secret, follow these steps **before deploying any workshop**:
+  * Create the `learningcenter` namespace manually or the one you defined
+  * Copy the tls secret to the `learningcenter` namespace or the one you
+  defined, and use the `secretName` property as in this example:
+
+  ```
+  ingressSecret:
+    secretName: workshops.example.com-tls
+  ```
 
 ### Create the TLS secret manually
 
