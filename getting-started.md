@@ -1106,7 +1106,8 @@ RabbitmqCluster so that Application Teams can discover it.
 1. Install RabbitMQ Operator which provides a RabbitmqCluster API kind on the rabbitmq.com/v1beta1 API Group/Version.
 
     ```
-    kapp -y deploy --app rmq-operator --file https://github.com/rabbitmq/cluster-operator/releases/download/v1.9.0/cluster-operator.yml
+    kapp -y deploy --app rmq-operator --file
+    https://github.com/rabbitmq/cluster-operator/releases/download/v1.9.0/cluster-operator.yml
     ```
 
 1. After a new API is installed and available on the cluster,
@@ -1120,8 +1121,8 @@ The rules in this `ClusterRole` get aggregated to the services-toolkit controlle
 manager through the label, meaning that the services-toolkit controller manager
 is then able to get, list, watch and update all rabbitmqcluster resources.
 
->**Note:** A ClusterRole like this would be required for each additional API resource
-installed onto the cluster.
+>**Note:** A ClusterRole with the RBAC required by the services-toolkit controller-manager
+ is required for each additional API resource installed onto the cluster.
 
     ```
     # resource-claims-rmq.yaml
@@ -1144,12 +1145,12 @@ installed onto the cluster.
     kubectl apply -f resource-claims-rmq.yaml
     ```
 
-1. In `rabbitmqcluster-reader.yaml`, ensure relevant RBAC is in place for the users.
+1. In `rabbitmqcluster-reader.yaml`, ensure you have RBAC enabled for all users.
 The following example grants `get`, `list` and `watch` to all `rabbitmqcluster` resources for all authenticated
 users.
 
 >**Note:** The specifics of these permissions vary depending on the desired level
-of access to such resources.
+of access to resources.
 
     ```
     # rabbitmqcluster-reader.yaml
@@ -1213,8 +1214,8 @@ ClusterResources in `rabbitmq-clusterresource.yaml`.
     kubectl apply -f rabbitmq-clusterresource.yaml
     ```
 
-    For more information about `ClusterResource`, see the
-    [Services Toolkit component documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.4/services-toolkit-0-4/GUID-service_offering-terminology_and_apis.html).
+    For information about `ClusterResource`, see the
+    [Service Offering for VMware Tanzu](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.4/services-toolkit-0-4/GUID-service_offering-terminology_and_apis.html).
 
 
 ### <a id='services-journey-use-case-1'></a> Use case 1 - Binding an app to a pre-provisioned service instance running in the same namespace
