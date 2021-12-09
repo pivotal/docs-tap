@@ -139,7 +139,7 @@ Note that both these variations on the settings only apply to the persistent vol
 
 Any processes run from the workshop container, and any applications deployed to the session namespaces associated with a workshop instance can contact any network IP addresses accessible from the cluster. If you need to add restrictions on what IP addresses or IP subnets can be accessed, you can set ``network.blockCIDRs``. This must be a CIDR block range corresponding to the subnet, or portion of a subnet you want to block. A Kubernetes ``NetworkPolicy`` will be used to enforce the restriction, so the Kubernetes cluster must use a network layer supporting network policies and the necessary Kubernetes controllers supporting network policies enabled when the cluster was installed.
 
-If deploying to AWS, it is important to block access to the AWS endpoint for querying EC2 metadata as it can expose sensitive information that workshop users should not haves access to. The AWS endpoint in this case is a single IP address and the configuration would be:
+If deploying to AWS, it is important to block access to the AWS endpoint for querying EC2 metadata as it can expose sensitive information that workshop users should not haves access to, by default Learning Center will block the AWS endpoint on the TAP SystemProfile, if you need to replicate this block to other SystemProfiles, the configuration would be:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -150,6 +150,7 @@ spec:
   network:
     blockCIDRs:
     - 169.254.169.254/32
+    - fd00:ec2::254/128
 ```
 
 ## Running docker daemon rootless
