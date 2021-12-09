@@ -331,7 +331,7 @@ metadata:
 spec:
   workshop:
     images:
-      "base-environment:*": "projects.registry.vmware.com/learningcenter/base-environment:latest"
+      "base-environment:*": "dev.registry.tanzu.vmware.com/learning-center/base-environment:latest"
 ```
 
 It is also possible to override where images are pulled from for any arbitrary image. This could be used where you want to cache the images for a workshop in a local image registry and avoid going outside of your network, or the cluster, to get them. This means you wouldn't need to override the workshop definitions for a specific workshop to change it.

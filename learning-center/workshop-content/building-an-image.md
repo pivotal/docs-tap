@@ -7,7 +7,7 @@ Bundling workshop content into an image built from the Learning Center workshop 
 The structure of the ``Dockerfile`` provided with the sample workshop templates is:
 
 ```
-FROM projects.registry.vmware.com/educates/base-environment
+FROM dev.registry.tanzu.vmware.com/learning-center/base-environment
 
 COPY --chown=1001:0 . /home/eduk8s/
 
@@ -16,7 +16,7 @@ RUN mv /home/eduk8s/workshop /opt/workshop
 RUN fix-permissions /home/eduk8s
 ```
 
-A custom workshop image needs to be built on the ``projects.registry.vmware.com/educates/base-environment`` workshop image. This could be directly, or you could also create an intermediate base image if you needed to install extra packages which were required by a number of different workshops.
+A custom workshop image needs to be built on the ``dev.registry.tanzu.vmware.com/learning-center/base-environment`` workshop image. This could be directly, or you could also create an intermediate base image if you needed to install extra packages which were required by a number of different workshops.
 
 The default action when building the container image when using the ``Dockerfile`` is to copy all files to the ``/home/eduk8s`` directory. The ``--chown=1001:0`` option ensures that files are owned by the appropriate user and group. The ``workshop`` subdirectory is then moved to ``/opt/workshop`` so that it is out of the way and not visible to the user. This is a special location which will be searched for workshop content, in addition to ``/home/eduk8s/workshop``. To have other files or directories from the repository ignored, list them in the ``.dockerignore`` file.
 
@@ -27,7 +27,7 @@ It is possible to include ``RUN`` statements in the ``Dockerfile`` to run custom
 The sample ``Dockerfile`` provided above and with the GitHub repository workshop templates references the workshop base image as:
 
 ```
-projects.registry.vmware.com/educates/base-environment
+http://dev.registry.tanzu.vmware.com/learning-center/base-environment
 ```
 
 This has the ``latest`` tag implicit to it that will follow the most up to date image made available for production use, but what actual version is used will depend on when the last time the base image was pulled using that tag into the platform you are building images.
@@ -40,7 +40,7 @@ The ``base-environment`` workshop images include language run times for Node.js 
 Below you can see a Dockerfile example on how to create a Java JDK11 customized image:
 
 ```
-ARG IMAGE_REPOSITORY=projects.registry.vmware.com/educates
+ARG IMAGE_REPOSITORY=dev.registry.tanzu.vmware.com/learning-center
 FROM ${IMAGE_REPOSITORY}/pkgs-java-tools as java-tools
 FROM ${IMAGE_REPOSITORY}/base-environment
 COPY --from=java-tools --chown=1001:0 /opt/jdk11 /opt/java

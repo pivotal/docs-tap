@@ -184,7 +184,7 @@ spec:
   title: Spring Testing
   description: Playground for testing Spring development
   content:
-    image: projects.registry.vmware.com/learningcenter/jdk11-environment:latest
+    image: dev.registry.tanzu.vmware.com/learning-center/jdk11-environment:latest
     files: github.com/eduk8s-tests/lab-spring-testing
 ```
 
