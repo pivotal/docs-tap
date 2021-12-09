@@ -1,7 +1,7 @@
 # Workload Visibility user guide
 
 The Workload Visibility screen lets developers view the details and status of their Kubernetes
-Workloads to understand their structure, and debug issues.
+Workloads to understand their structure and debug issues.
 
 ## Before you begin
 

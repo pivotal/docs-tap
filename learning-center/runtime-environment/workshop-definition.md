@@ -4,14 +4,14 @@ The ``Workshop`` custom resource defines a workshop.
 
 The raw custom resource definition for the ``Workshop`` custom resource can be viewed at:
 
-* [https://github.com/eduk8s/eduk8s/blob/develop/resources/crds-v1/workshop.yaml](https://github.com/eduk8s/eduk8s/blob/develop/resources/crds-v1/workshop.yaml)
+* [https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/workshop.yaml](https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/workshop.yaml)
 
 ## Workshop title and description
 
 Each workshop is required to provide the ``title`` and ``description`` fields. If the fields are not supplied, the ``Workshop`` resource will be rejected when you attempt to load it into the Kubernetes cluster.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-markdown-sample
@@ -29,7 +29,7 @@ The ``description`` field should be a longer description of the workshop.
 The following optional information can also be supplied for the workshop.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-markdown-sample
@@ -39,7 +39,7 @@ spec:
   url: https://github.com/eduk8s/lab-markdown-sample
   difficulty: beginner
   duration: 15m
-  vendor: eduk8s.io
+  vendor: learningcenter.tanzu.vmware.com
   authors:
   - John Smith
   tags:
@@ -72,7 +72,7 @@ Workshop content can be downloaded at the time the workshop instance is created.
 To download workshop content at the time the workshop instance is started, set the ``content.files`` field to the location of the workshop content.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-markdown-sample
@@ -140,7 +140,8 @@ The OCI image artficact can be created using ``imgpkg`` from the Carvel tool set
 imgpkg push -i harbor.example.com/organisation/project:version -f .
 ```
 
-In all cases for downloading workshop content, the ``workshop`` sub directory holding the actual workshop content, will be relocated to ``/opt/workshop`` so that it is not visible to a user. If you want other files ignored and not included in what the user can see, you can supply a ``.eduk8signore`` file in your repository or tarball and list patterns for the files in it.
+In all cases for downloading workshop content, the ``workshop`` sub directory holding the actual workshop content, will be relocated to ``/opt/workshop`` so that it is not visible to a user. 
+If you want other files ignored and not included in what the user can see, you can supply a ``.eduk8signore`` file in your repository or tarball and list patterns for the files in it.
 
 Note that the contents of the ``.eduk8signore`` file is processed as a list of patterns and each will be applied recursively to subdirectories. To ensure that a file is only ignored if it resides in the root directory, you need to prefix it with ``./``.
 
@@ -159,7 +160,7 @@ Note that the contents of the ``.eduk8signore`` file is processed as a list of p
 When workshop content is bundled into a container image, the ``content.image`` field should specify the image reference identifying the location of the container image to be deployed for the workshop instance.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-markdown-sample
@@ -175,7 +176,7 @@ Even if using the ability to download workshop content when the workshop environ
 For example, if running a Java workshop, you could specify the ``jdk11-environment`` workshop image, with workshop content still pulled down from GitHub.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-spring-testing
@@ -183,7 +184,7 @@ spec:
   title: Spring Testing
   description: Playground for testing Spring development
   content:
-    image: projects.registry.vmware.com/educates/jdk11-environment:latest
+    image: dev.registry.tanzu.vmware.com/learning-center/jdk11-environment:latest
     files: github.com/eduk8s-tests/lab-spring-testing
 ```
 
@@ -192,7 +193,7 @@ Note that if wanting to use the latest version of an image, always include the `
 Where special custom workshop base images are available as part of the Learning Center project, instead of specifying the full location for the image, including the image registry, you can specify a short name. The Learning Center operator will then fill in the rest of the details.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-spring-testing
@@ -220,7 +221,7 @@ Note that if required, the short names can be remapped in the ``SystemProfile`` 
 If you want to set or override environment variables for the workshop instance, you can supply the ``session.env`` field.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-markdown-sample
@@ -258,7 +259,7 @@ By default the container the workshop environment is running in is allocated 512
 Where the purpose of the workshop is mainly aimed at deploying workloads into the Kubernetes cluster, this would generally be sufficient. If you are running workloads in the workshop environment container itself and need more memory, the default can be overridden by setting ``memory`` under ``session.resources``.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-markdown-sample
@@ -277,7 +278,7 @@ spec:
 In circumstances where a workshop needs persistent storage to ensure no loss of work if the workshop environment container were killed and restarted, you can request a persistent volume be mounted into the workshop container.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-markdown-sample
@@ -291,20 +292,25 @@ spec:
       storage: 5Gi
 ```
 
-The persistent volume will be mounted on top of the ``/home/eduk8s`` directory. Because this would hide any workshop content bundled with the image, an init container is automatically configured and run, which will copy the contents of the home directory to the persistent volume, before the persistent volume is then mounted on top of the home directory.
+The persistent volume will be mounted on top of the ``/home/eduk8s`` directory. Because this would hide any workshop content bundled with the image, 
+an init container is automatically configured and run, which will copy the contents of the home directory to the persistent volume, 
+before the persistent volume is then mounted on top of the home directory.
 
 ## Resource budget for namespaces
 
-In conjunction with each workshop instance, a namespace will be created for use during the workshop. That is, from the terminal of the workshop dashboard applications can be deployed into the namespace via the Kubernetes REST API using tools such as ``kubectl``.
+In conjunction with each workshop instance, a namespace will be created for use during the workshop. That is, from the terminal of the 
+workshop dashboard applications can be deployed into the namespace via the Kubernetes REST API using tools such as ``kubectl``.
 
-By default this namespace will have whatever limit ranges and resource quota may be enforced by the Kubernetes cluster. In most case this will mean there are no limits or quotas.
+By default this namespace will have whatever limit ranges and resource quota may be enforced by the Kubernetes cluster. In most case this 
+will mean there are no limits or quotas.
 
-To control how much resources can be used where no limit ranges and resource quotas are set, or to override any default limit ranges and resource quota, you can set a resource budget for any namespaces created for the workshop instance.
+To control how much resources can be used where no limit ranges and resource quotas are set, or to override any default limit ranges and 
+resource quota, you can set a resource budget for any namespaces created for the workshop instance.
 
 To set the resource budget, set the ``session.namespaces.budget`` field.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-markdown-sample
@@ -368,7 +374,7 @@ The request and limit values are the defaults applied to a container when no res
 If a budget sizing for CPU and memory is sufficient, but you need to override the limit ranges and defaults for request and limit values when none is given in a pod specification, you can supply overrides in ``session.namespaces.limits``.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-markdown-sample
@@ -410,7 +416,7 @@ In order to set or override environment variables you can provide ``session.env`
 The patches are provided by setting ``session.patches``. The patch will be applied to the ``spec`` field of the pod template.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-resource-testing
@@ -445,7 +451,7 @@ For each workshop instance, a separate empty namespace is created with name corr
 If you want to pre-create additional resources within the namespace for a workshop instance, you can supply a list of the resources against the ``session.objects`` field within the workshop definition. You might use this to add additional custom roles to the service account for the workshop instance when working in that namespace, or to deploy a distinct instance of an application for just that workshop instance, such as a private image registry.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-registry-testing
@@ -522,7 +528,7 @@ By default the service account created for the workshop instance, has ``admin`` 
 Where a workshop doesn't require ``admin`` access for the namespace, you can reduce the level of access it has to ``edit`` or ``view`` by setting the ``session.namespaces.role`` field.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-role-testing
@@ -539,7 +545,7 @@ spec:
 If you need to add additional roles to the service account, such as the ability to work with custom resource types which have been added to the cluster, you can add the appropriate ``Role`` and ``RoleBinding`` definitions to the ``session.objects`` field described previously.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-kpack-testing
@@ -589,7 +595,7 @@ Because the subject of a ``RoleBinding`` needs to specify the service account na
 Adding additional resources via ``session.objects`` can also be used to grant cluster level roles, which would be necessary if you need to grant the service account ``cluster-admin`` role.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-admin-testing
@@ -625,7 +631,7 @@ By default the deployments that can be created by a workshop user are only allow
 If you are creating a workshop where a user needs to be able to run containers as the root user, you need to override the default ``nonroot`` security policy and select the ``anyuid`` security policy using the ``session.namespaces.security.policy`` setting.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-policy-testing
@@ -651,7 +657,7 @@ If you need more than one namespace per workshop instance, you can create second
 If the secondary namespaces are to be created empty, you can list the details of the namespaces under the property ``session.namespaces.secondary``.
 
 ```
-    apiVersion: training.eduk8s.io/v1alpha2
+    apiVersion: learningcenter.tanzu.vmware.com/v1beta1
     kind: Workshop
     metadata:
       name: lab-namespace-testing
@@ -682,7 +688,7 @@ Similarly, you can override the security policy for secondary namespaces on a ca
 If you also need to create resources in the namespaces you want to create, you may prefer creating the namespaces by adding an appropriate ``Namespace`` resource to ``session.objects``, along with the definitions of the resources you want to create in the namespaces.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-namespace-testing
@@ -701,10 +707,10 @@ spec:
 
 When listing any other resources to be created within the additional namespace, such as deployments, ensure that the ``namespace`` is set in the ``metadata`` of the resource, e.g., ``$(session_namespace)-apps``.
 
-If you need to override what role the service account for the workshop instance has in the additional namespace, you can set the ``training.eduk8s.io/session.role`` annotation on the ``Namespace`` resource.
+If you need to override what role the service account for the workshop instance has in the additional namespace, you can set the ``learningcenter.tanzu.vmware.com/session.role`` annotation on the ``Namespace`` resource.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-namespace-testing
@@ -720,13 +726,13 @@ spec:
       metadata:
         name: $(session_namespace)-apps
         annotations:
-          training.eduk8s.io/session.role: view
+          learningcenter.tanzu.vmware.com/session.role: view
 ```
 
-If you need to have a different resource budget set for the additional namespace, you can add the annotation ``training.eduk8s.io/session.budget`` in the ``Namespace`` resource metadata and set the value to the required resource budget.
+If you need to have a different resource budget set for the additional namespace, you can add the annotation ``learningcenter.tanzu.vmware.com/session.budget`` in the ``Namespace`` resource metadata and set the value to the required resource budget.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-namespace-testing
@@ -742,13 +748,13 @@ spec:
       metadata:
         name: $(session_namespace)-apps
         annotations:
-          training.eduk8s.io/session.budget: large
+          learningcenter.tanzu.vmware.com/session.budget: large
 ```
 
-In order to override the limit range values applied corresponding to the budget applied, you can add annotations starting with ``training.eduk8s.io/session.limits.`` for each entry.
+In order to override the limit range values applied corresponding to the budget applied, you can add annotations starting with ``learningcenter.tanzu.vmware.com/session.limits.`` for each entry.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-namespace-testing
@@ -764,14 +770,14 @@ spec:
       metadata:
         name: $(session_namespace)-apps
         annotations:
-          training.eduk8s.io/session.limits.min.cpu: 50m
-          training.eduk8s.io/session.limits.min.memory: 32Mi
-          training.eduk8s.io/session.limits.max.cpu: 1
-          training.eduk8s.io/session.limits.max.memory: 1Gi
-          training.eduk8s.io/session.limits.defaultrequest.cpu: 50m
-          training.eduk8s.io/session.limits.defaultrequest.memory: 128Mi
-          training.eduk8s.io/session.limits.request.cpu: 500m
-          training.eduk8s.io/session.limits.request.memory: 1Gi
+          learningcenter.tanzu.vmware.com/session.limits.min.cpu: 50m
+          learningcenter.tanzu.vmware.com/session.limits.min.memory: 32Mi
+          learningcenter.tanzu.vmware.com/session.limits.max.cpu: 1
+          learningcenter.tanzu.vmware.com/session.limits.max.memory: 1Gi
+          learningcenter.tanzu.vmware.com/session.limits.defaultrequest.cpu: 50m
+          learningcenter.tanzu.vmware.com/session.limits.defaultrequest.memory: 128Mi
+          learningcenter.tanzu.vmware.com/session.limits.request.cpu: 500m
+          learningcenter.tanzu.vmware.com/session.limits.request.memory: 1Gi
 ```
 
 You only need to supply annotations for the values you want to override.
@@ -780,7 +786,7 @@ If you need more fine grained control over the limit ranges and resource quotas,
 
 In this case you must set the ``namespace`` for the ``LimitRange`` and ``ResourceQuota`` resource to the name of the namespace, e.g., ``$(session_namespace)-apps`` so they are only applied to that namespace.
 
-If you need to set the security policy for a specific namespace different to the primary session namespace, you can add the annotation ``training.eduk8s.io/session.security.policy`` in the ``Namespace`` resource metadata and set the value to ``nonroot`` or ``anyuid`` as necessary.
+If you need to set the security policy for a specific namespace different to the primary session namespace, you can add the annotation ``learningcenter.tanzu.vmware.com/session.security.policy`` in the ``Namespace`` resource metadata and set the value to ``nonroot`` or ``anyuid`` as necessary.
 
 ## Shared workshop resources
 
@@ -818,7 +824,7 @@ If you are customising the workshop by patching the pod specification using ``se
 In the case where you need to allow a side car container to run as the root user and no extra privileges are required, you can override the default ``nonroot`` security policy and set it to ``anyuid``.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-policy-testing
@@ -837,7 +843,7 @@ Note that this is a different setting than that described previously for changin
 If you need more fine grained control of the security policy you will need to provide your own resources for defining the pod security policy and map it so it is used. The details of the pod security policy will need to be included in ``environment.objects`` and mapped by definitions added to ``session.objects``. For this to be used, you will need to disable the application of the inbuilt pod security policies. This can be done by setting ``session.security.policy`` to ``custom``.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-policy-testing
@@ -920,7 +926,7 @@ If running additional background applications, by default they are only accessib
 You can do this by supplying a list of the ingress points, and the internal container port they map to, by setting the ``session.ingresses`` field in the workshop definition.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-application-testing
@@ -946,7 +952,7 @@ Note that you should not use as the name, the name of any builtin dashboards, ``
 In addition to specifying ingresses for proxying to internal ports within the same pod, you can specify a ``host``, ``protocol`` and ``port`` corresponding to a separate service running in the Kubernetes cluster.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-application-testing
@@ -966,7 +972,7 @@ spec:
 Variables providing information about the current session can be used within the ``host`` property if required.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-application-testing
@@ -995,7 +1001,7 @@ If the service uses standard ``http`` or ``https`` ports, you can leave out the 
 When a request is being proxied, you can specify additional request headers that should be passed to the service.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-application-testing
@@ -1026,7 +1032,7 @@ Accessing any service via the ingress will be protected by any access controls e
 In place of using workshop instructions provided with the workshop content, you can use externally hosted instructions instead. To do this set ``sessions.applications.workshop.url`` to the URL of an external web site.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-application-testing
@@ -1054,7 +1060,7 @@ The URL value can reference a number of pre-defined parameters. The available pa
 These could be used for example to reference workshops instructions hosted as part of the workshop environment.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-application-testing
@@ -1079,7 +1085,7 @@ In this case ``environment.objects`` of the workshop ``spec`` would need to incl
 The aim of the workshop environment is to provide instructions for a workshop which users can follow. If you want instead to use the workshop environment as a development environment, or use it as an admistration console which provides access to a Kubernetes cluster, you can disable the display of workshop instructions provided with the workshop content. In this case only the workarea with the terminals, console etc, will be displayed. To disable display of workshop instructions, add a ``session.applications.workshop`` section and set the ``enabled`` property to ``false``.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-application-testing
@@ -1099,7 +1105,7 @@ spec:
 By default the Kubernetes console is not enabled. If you want to enable it and make it available through the web browser when accessing a workshop, you need to add a ``session.applications.console`` section to the workshop definition, and set the ``enabled`` property to ``true``.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-application-testing
@@ -1117,7 +1123,7 @@ spec:
 The Kubernetes dashboard provided by the Kubernetes project will be used. If you would rather use Octant as the console, you can set the ``vendor`` property to ``octant``.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-application-testing
@@ -1140,7 +1146,7 @@ When ``vendor`` is not set, ``kubernetes`` is assumed.
 By default the integrated web based editor is not enabled. If you want to enable it and make it available through the web browser when accessing a workshop, you need to add a ``session.applications.editor`` section to the workshop definition, and set the ``enabled`` property to ``true``.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-application-testing
@@ -1176,7 +1182,7 @@ If downloading extensions yourself and unpacking them, or you have them as part 
 At times you may want to provide a way for a workshop user to download files which are provided as part of the workshop content. This capability can be enabled by adding the ``session.applications.files`` section to the workshop definition, and setting the ``enabled`` property to ``true``.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-application-testing
@@ -1196,7 +1202,7 @@ The recommended way of providing access to files from workshop instructions is u
 By default any files located under the home directory of the workshop user account can be accessed. To restrict where files can be download from, set the ``directory`` setting.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-application-testing
@@ -1219,7 +1225,7 @@ When the specified directory is a relative path, it is evaluated relative to the
 The test examiner is a feature which allows a workshop to have verification checks which can be triggered from the workshop instructions. The test examiner is disabled by default. If you want to enable it, you need to add a ``session.applications.examiner`` section to the workshop definition, and set the ``enabled`` property to ``true``.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-application-testing
@@ -1249,7 +1255,7 @@ Note that the image registry is only currently fully usable if workshops are dep
 To enable the deployment of an image registry per workshop session you need to add a ``session.applications.registry`` section to the workshop definition, and set the ``enabled`` property to ``true``.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-application-testing
@@ -1267,7 +1273,7 @@ spec:
 The image registry will mount a persistent volume for storing of images. By default the size of that persistent volume is 5Gi. If you need to override the size of the persistent volume add the ``storage`` property under the ``registry`` section.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-application-testing
@@ -1286,7 +1292,7 @@ spec:
 The amount of memory provided to the image registry will default to 768Mi. If you need to increase this, add the ``memory`` property under the ``registry`` section.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-application-testing
@@ -1329,7 +1335,7 @@ Note that enabling of support for running ``docker`` requires the use of a privi
 To enable support for being able to use ``docker`` add a ``session.applications.docker`` section to the workshop definition, and set the ``enabled`` property to ``true``.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-application-testing
@@ -1347,7 +1353,7 @@ spec:
 The container which runs the docker daemon will mount a persistent volume for storing of images which are pulled down or built locally. By default the size of that persistent volume is 5Gi. If you need to override the size of the persistent volume add the ``storage`` property under the ``docker`` section.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-application-testing
@@ -1366,7 +1372,7 @@ spec:
 The amount of memory provided to the container running the docker daemon will default to 768Mi. If you need to increase this, add the ``memory`` property under the ``registry`` section.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-application-testing
@@ -1395,7 +1401,7 @@ If there is a need to be able to access the files remotely, it is possible to en
 To enable support for being able to access files over WebDAV add a ``session.applications.webdav`` section to the workshop definition, and set the ``enabled`` property to ``true``.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-application-testing
@@ -1446,7 +1452,7 @@ Using WebDAV can make it easier if you need to transfer files to or from the wor
 By default a single terminal is provided in the web browser when accessing the workshop. If required, you can enable alternate layouts which provide additional terminals. To set the layout, you need to add the ``session.applications.terminal`` section and include the ``layout`` property with the desired layout.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-application-testing
@@ -1479,7 +1485,7 @@ If you didn't want a terminal displayed, and also wanted to disable the ability 
 Exposed applications, external sites and additional terminals, can be given their own custom dashboard tab. This is done by specifying the list of dashboard panels and the target URL.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-application-testing
@@ -1512,7 +1518,7 @@ The URL can reference an external web site, however, that web site must not proh
 In the case of wanting to have a custom dashboard tab provide an additional terminal, the ``url`` property should use the form ``terminal:<session>``, where ``<session>`` is replaced with the name of the terminal session. The name of the terminal session can be any name you choose, but should be restricted to lower case letters, numbers and '-'. You should avoid using numeric terminal session names such as "1", "2" and "3" as these are use for the default terminal sessions.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-application-testing

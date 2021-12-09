@@ -1,17 +1,17 @@
-# System profile resource
+# SystemProfile resource
 
 The ``SystemProfile`` custom resource is used to configure the Learning Center operator. The default system profile can be used to set defaults for ingress and image pull secrets, with specific deployments being able to select an alternate profile if required.
 
 The raw custom resource definition for the ``SystemProfile`` custom resource can be viewed at:
 
-* [https://github.com/eduk8s/eduk8s/blob/develop/resources/crds-v1/system-profile.yaml](https://github.com/eduk8s/eduk8s/blob/develop/resources/crds-v1/system-profile.yaml)
+* [https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/system-profile.yaml](https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/system-profile.yaml)
 
 ## Operator default system profile
 
 The Learning Center operator will by default use an instance of the ``SystemProfile`` custom resource, if it exists, named ``default-system-profile``. You can override the name of the resource used by the Learning Center operator as the default, by setting the ``SYSTEM_PROFILE`` environment variable on the deployment for the Learning Center operator.
 
 ```
-kubectl set env deployment/eduk8s-operator -e SYSTEM_PROFILE=default-system-profile -n eduk8s
+kubectl set env deployment/learningcenter-operator -e SYSTEM_PROFILE=default-system-profile -n learningcenter
 ```
 
 Any changes to an instance of the ``SystemProfile`` custom will be automatically detected and used by the Learning Center operator and there is no need to redeploy the operator when changes are made.
@@ -23,27 +23,27 @@ The ``SystemProfile`` custom resource replaces the use of environment variables 
 Instead of setting ``INGRESS_DOMAIN``, ``INGRESS_SECRET`` and ``INGRESS_CLASS`` environment variables, create an instance of the ``SystemProfile`` custom resource named ``default-system-profile``.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
   name: default-system-profile
 spec:
   ingress:
-    domain: training.eduk8s.io
-    secret: training.eduks8.io-tls
+    domain: learningcenter.tanzu.vmware.com
+    secret: learningcenter.tanzu.vmware.com-tls
     class: nginx
 ```
 
 If HTTPS connections are being terminated using an external load balancer and not by specificying a secret for ingresses managed by the Kubernetes ingress controller, with traffic then routed into the Kubernetes cluster as HTTP connections, you can override the ingress protocol without specifying an ingress secret.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
   name: default-system-profile
 spec:
   ingress:
-    domain: training.eduk8s.io
+    domain: learningcenter.tanzu.vmware.com
     protocol: https
     class: nginx
 ```
@@ -53,7 +53,7 @@ spec:
 If needing to work with custom workshop images stored in a private image registry, the system profile can define a list of image pull secrets that should be added to the service accounts used to deploy and run the workshop images. The ``environment.secrets.pull`` property should be set to the list of secret names.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
   name: default-system-profile
@@ -64,30 +64,30 @@ spec:
       - private-image-registry-pull
 ```
 
-The secrets containing the image registry credentials must exist within the ``educates`` namespace or the namespace where the Learning Center operator is deployed. The secret resources must be of type ``kubernetes.io/dockerconfigjson``.
+The secrets containing the image registry credentials must exist within the ``learningcenter`` namespace or the namespace where the Learning Center operator is deployed. The secret resources must be of type ``kubernetes.io/dockerconfigjson``.
 
 Note that this doesn't result in any secrets being added to the namespace created for each workshop session. The secrets are only added to the workshop namespace and are not visible to a user.
 
 For container images used as part of Learning Center itself, such as the container image for the training portal web interface, and the builtin base workshop images, if you have copied these from the public image registries and stored them in a local private registry, instead of the above setting you should use the ``registry`` section as follows.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
   name: default-system-profile
 spec:
   registry:
-    secret: eduk8s-image-registry-pull
+    secret: learningcenter-image-registry-pull
 ```
 
-The ``registry.secret`` is the name of the secret containing the image registry credentials. This must be present in the ``educates`` namespace or the namespace where the Learning Center operator is deployed.
+The ``registry.secret`` is the name of the secret containing the image registry credentials. This must be present in the ``learningcenter`` namespace or the namespace where the Learning Center operator is deployed.
 
 ## Defining storage class for volumes
 
 Deployments of the training portal web interface and the workshop sessions make use of persistent volumes. By default the persistent volume claims will not specify a storage class for the volume and instead rely on the Kubernetes cluster specifying a default storage class that works. If the Kubernetes cluster doesn't define a suitable default storage class, or you need to override it, you can set the ``storage.class`` property.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
   name: default-system-profile
@@ -105,7 +105,7 @@ Where persistent volumes are used by Learning Center for the training portal web
 In situations where the only class of persistent storage available is NFS or similar, it may be necessary to override the group ID applied and set it to an alternate ID dictated by the file system storage provider. If this is required, you can set the ``storage.group`` property.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
   name: default-system-profile
@@ -121,7 +121,7 @@ In this case it is necessary to change the owner/group and permissions of the pe
 To trigger this fixup of ownership and permissions, you can set the ``storage.user`` property.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
   name: default-system-profile
@@ -142,7 +142,7 @@ Any processes run from the workshop container, and any applications deployed to 
 If deploying to AWS, it is important to block access to the AWS endpoint for querying EC2 metadata as it can expose sensitive information that workshop users should not haves access to. The AWS endpoint in this case is a single IP address and the configuration would be:
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
   name: default-system-profile
@@ -161,7 +161,7 @@ The risks of running ``docker`` in the Kubernetes cluster can be partly mediated
 To enable rootless mode, you can set the ``dockerd.rootless`` property to ``true``.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
   name: default-system-profile
@@ -173,7 +173,7 @@ spec:
 Use of ``docker`` can be made even more secure by avoiding the use of a privileged container for the ``docker`` daemon. This requires specific configuration to be setup for nodes in the Kubernetes cluster. If such configuration has been done, you can disable the use of a privileged container by setting ``dockerd.privileged`` to ``false``.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
   name: default-system-profile
@@ -198,7 +198,7 @@ If you experience problems building or running images with the ``docker`` suppor
 If this is required, you can set the ``dockerd.mtu`` property.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
   name: default-system-profile
@@ -234,7 +234,7 @@ To try and avoid the impact of the limit, the first thing you can do is enable a
 For enabling the use of an image registry mirror against Docker Hub, use:
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
   name: default-system-profile
@@ -247,7 +247,7 @@ spec:
 For authenticated access to Docker Hub, create an access token under your Docker Hub account. Then set the ``username`` and ``password``, using the access token as the ``password``. Do not use the password for the account itself. Using an access token makes it easier to revoke the token if necessary.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
   name: default-system-profile
@@ -274,7 +274,7 @@ If you want to override the credentials for the portals so the same set of crede
 To override the username and password for the admin and robot accounts use ``portal.credentials``.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
   name: default-system-profile
@@ -282,17 +282,17 @@ spec:
   portal:
     credentials:
       admin:
-        username: eduk8s
+        username: learningcenter
         password: admin-password
       robot:
-        username: robot@eduk8s
+        username: robot@learningcenter
         password: robot-password
 ```
 
 To override the client ID and secret used for OAuth access by the robot account, use ``portal.clients``.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
   name: default-system-profile
@@ -324,20 +324,20 @@ The short versions of the names which are recognised are:
 If you wanted to override the version of the ``base-environment`` workshop image mapped to by the ``*`` tag, you would use:
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
   name: default-system-profile
 spec:
   workshop:
     images:
-      "base-environment:*": "projects.registry.vmware.com/educates/base-environment:latest"
+      "base-environment:*": "dev.registry.tanzu.vmware.com/learning-center/base-environment:latest"
 ```
 
 It is also possible to override where images are pulled from for any arbitrary image. This could be used where you want to cache the images for a workshop in a local image registry and avoid going outside of your network, or the cluster, to get them. This means you wouldn't need to override the workshop definitions for a specific workshop to change it.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
   name: default-system-profile
@@ -352,7 +352,7 @@ spec:
 If you want to record analytics data on usage of workshops using Google Analytics, you can enable tracking by supplying a tracking ID for Google Analytics.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
   name: default-system-profile
@@ -390,7 +390,7 @@ Note that Google Analytics is not a reliable way to collect data. This is becaus
 If using the REST API to create/manage workshop sessions and the workshop dashboard is then embedded into an iframe of a separate site, it is possible to perform minor styling changes of the dashboard, workshop content and portal to match the separate site. To do this you can provide CSS styles under ``theme.dashboard.style``, ``theme.workshop.style`` and ``theme.portal.style``. For dynamic styling, or for adding hooks to report on progress through a workshop to a separate service, you can also supply Javascript as part of the theme under ``theme.dashboard.script``, ``theme.workshop.script`` and ``theme.portal.script``.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
   name: default-system-profile
@@ -424,13 +424,13 @@ spec:
 If the default system profile is specified, it will be used by all deployments managed by the Learning Center operator unless the system profile to use has been overridden for a specific deployment. The name of the system profile can be set for deployments by setting the ``system.profile`` property of ``TrainingPortal``, ``WorkshopEnvironment`` and ``WorkshopSession`` custom resources.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
   name: lab-markdown-sample
 spec:
   system:
-    profile: training-eduk8s-io-profile
+    profile: learningcenter-tanzu-vmware-com-profile
   workshops:
   - name: lab-markdown-sample
     capacity: 1

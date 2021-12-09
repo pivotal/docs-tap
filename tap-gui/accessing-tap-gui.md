@@ -1,10 +1,10 @@
 # Accessing Tanzu Application Platform GUI
 
-This topic covers how to access Tanzu Application Platform GUI.
+To access Tanzu Application Platform GUI, use the default LoadBalancer method.
 
-## <a id="lb-method"></a> Use the default LoadBalancer method
+## <a id="lb-method"></a> LoadBalancer method
 
-The default method is to use LoadBalancer. To do so, follow these steps.
+Follow these steps:
 
 1. Obtain the external IP of your LoadBalancer by running:
 
