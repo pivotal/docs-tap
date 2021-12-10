@@ -2,10 +2,6 @@
 
 The ``TrainingPortal`` custom resource triggers the deployment of a set of workshop environments and a set number of workshop instances.
 
-The raw custom resource definition for the ``TrainingPortal`` custom resource can be viewed at:
-
-* [https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/training-portal.yaml](https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/training-portal.yaml)
-
 ## Specifying the workshop definitions
 
 Running multiple workshop instances to perform training to a group of people can be done by following the step wise process of creating the workshop environment, and then creating each workshop instance. The ``TrainingPortal`` workshop resource bundles that up as one step.

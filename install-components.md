@@ -1591,6 +1591,8 @@ field in the values file.
 To install Tanzu Learning Center, see the following sections. 
 >**Note:** If you have any issue updating values or deploying Learning Center, please see the [Learning Center - Known Issues](learning-center/known-issues/about.md) for recovery steps.
 
+For general information about Learning Center go here: [Learning Center](learning-center)
+
 ### <a id='lc-prereqs'></a> Prerequisites
 
 **Required**

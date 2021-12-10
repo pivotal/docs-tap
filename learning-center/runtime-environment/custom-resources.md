@@ -34,10 +34,6 @@ spec:
         enabled: true
 ```
 
-The raw custom resource definition for the ``Workshop`` custom resource can be viewed at:
-
-* [https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/workshop.yaml](https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/workshop.yaml)
-
 When an instance of the ``Workshop`` custom resource is created it does not cause any immediate action by the Learning Center operator. This custom resource exists only to define the workshop.
 
 The ``Workshop`` custom resource is created at cluster scope.
@@ -68,10 +64,6 @@ The ``spec.request.token`` field defines a token which must be supplied with a r
 
 If the ``Workshop`` definition for the workshop to be deployed in this workshop environment defines a set of common resources which must exist for the workshop, these will be created by the Learning Center operator after the namespace for the workshop environment is created. Where such resources are namespaced, they will be created in the namespace for the workshop environment. If necessary, these resources can include creation of separate namespaces with specific resources created in those namespaces instead.
 
-The raw custom resource definition for the ``WorkshopEnvironment`` custom resource can be viewed at:
-
-* [https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/workshop-environment.yaml](https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/workshop-environment.yaml)
-
 The ``WorkshopEnvironment`` custom resource is created at cluster scope.
 
 ## Workshop request resource
@@ -95,10 +87,6 @@ spec:
 
 Apart from needing to have appropriate access through RBAC, the only information that the user requesting a workshop instance needs to know is the the name of the workshop environment for the workshop, and the secret token which permits workshop requests against that specific workshop environment.
 
-The raw custom resource definition for the ``WorkshopRequest`` custom resource can be viewed at:
-
-* [https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/workshop-request.yaml](https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/workshop-request.yaml)
-
 Note that the ``WorkshopRequest`` resource is not used when using the ``TrainingPortal`` resource to provide a web interface for accessing workshops. The ``WorkshopRequest`` resource is only used where you were creating ``WorkshopEnvironment`` resource manually and not using the training portal.
 
 ## Workshop session resource
@@ -106,10 +94,6 @@ Note that the ``WorkshopRequest`` resource is not used when using the ``Training
 Although ``WorkshopRequest`` would be the typical way that workshop instances would be requested, upon the request being granted, the Learning Center operator will itself create an instance of a ``WorkshopSession`` custom resource.
 
 The ``WorkshopSession`` custom resource is the expanded definition of what the workshop instance should look like. It combines details from ``Workshop`` and ``WorkshopEnvironment``, and also links back to the ``WorkshopRequest`` resource object which triggered the request. The Learning Center operator reacts to an instance of ``WorkshopSession`` and creates the workshop instance based on that definition.
-
-The raw custom resource definition for the ``WorkshopSession`` custom resource can be viewed at:
-
-* [https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/workshop-session.yaml](https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/workshop-session.yaml)
 
 The ``WorkshopSession`` custom resource is created at cluster scope.
 
@@ -131,10 +115,6 @@ spec:
 ```
 
 You can set the capacity of the training room and that dictates how many workshop instances are created for each workshop.
-
-The raw custom resource definition for the ``TrainingPortal`` custom resource can be viewed at:
-
-* [https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/training-portal.yaml](https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/training-portal.yaml)
 
 The ``TrainingPortal`` custom resource is created at cluster scope.
 
@@ -165,10 +145,6 @@ The operator by default will look for a default system profile called ``default-
 As only a global deployment of the operator is supported, the ``SystemProfile`` custom resource is created at cluster scope.
 
 Changes can be made to instances of the ``SystemProfile`` custom resource and they will be automatically used by the Learning Center operator without needing to redeploy it.
-
-The raw custom resource definition for the ``SystemProfile`` custom resource can be viewed at:
-
-* [https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/system-profile.yaml](https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/system-profile.yaml)
 
 The ``SystemProfile`` custom resource is created at cluster scope.
 
