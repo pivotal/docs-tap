@@ -4,7 +4,7 @@ This topic contains release notes for Tanzu Application Platform beta.
 
 ## <a id='0-3-0'></a> v0.4.0 beta release
 
-**Release Date**: December 9, 2021
+**Release Date**: December 10, 2021
 
 ### Features
 
