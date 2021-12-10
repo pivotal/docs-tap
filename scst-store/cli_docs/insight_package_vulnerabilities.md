@@ -24,7 +24,7 @@ insight package vulnerabilities --name client
   -n, --name string     name of the package
 ```
 
-### See Also
+### See also
 
 * [insight package](insight_package.md)	 - Package commands
 

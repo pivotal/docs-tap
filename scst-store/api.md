@@ -4,7 +4,7 @@
 # Metadata Store API.
 
 
-## Informations
+## Information
 
 ### Version
 
@@ -35,7 +35,7 @@
 
 
 
-###  operations
+###  Operations
 
 | Method  | URI     | Name   | Summary |
 |---------|---------|--------|---------|
@@ -43,7 +43,7 @@
 
 
 
-###  packages
+###  Packages
 
 | Method  | URI     | Name   | Summary |
 |---------|---------|--------|---------|
@@ -55,7 +55,7 @@
 
 
 
-###  sources
+###  Sources
 
 | Method  | URI     | Name   | Summary |
 |---------|---------|--------|---------|
@@ -66,7 +66,7 @@
 
 
 
-###  vulnerabilities
+###  Vulnerabilities
 
 | Method  | URI     | Name   | Summary |
 |---------|---------|--------|---------|
@@ -1016,5 +1016,4 @@ it can be used as a scan destination, similar to NullString.
 | Ratings | [][Rating](#rating)| `[]*Rating` |  | |  |  |
 | References | [StringArray](#string-array)| `StringArray` |  | |  |  |
 | URL | string| `string` |  | |  |  |
-
 

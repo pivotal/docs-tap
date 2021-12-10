@@ -18,6 +18,7 @@ definition of the workshop must first be loaded.
 
 The ``Workshop`` custom resource we will be using is:
 Example:
+
 ```
 apiVersion: training.eduk8s.io/v1alpha2
 kind: Workshop

@@ -1,4 +1,4 @@
-## Insight Source Vulnerabilities
+## insight source vulnerabilities
 
 Get source vulnerabilities.
 
@@ -25,7 +25,7 @@ insight sources vulnerabilities --commit eb55fc13
   -r, --repo string     source repository url
 ```
 
-### See Also
+### See also
 
 * [insight source](insight_source.md)	 - Source commands
 

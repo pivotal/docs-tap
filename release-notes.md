@@ -1,10 +1,36 @@
 # Release notes
 
-This topic contains release notes for Tanzu Application Platform beta.
+This topic contains release notes for Tanzu Application Platform v1.0.
 
-## <a id='0-3-0'></a> v0.4.0 beta release
+## <a id='1-0'></a> v1.0
 
-**Release Date**: TBD, 2021
+**Release Date**: MMMM DD, 2022
+
+### Features
+
+New features and changes in this release:
+
+* Feature 1
+* Feature 2
+
+### Known issues
+
+This release has the following issue:
+
+* Known issue 1
+* Known issue 2
+
+### Security issues
+
+This release has the following security issues:
+
+* Security issue 1
+* Security issue 2
+
+
+## <a id='0-4-0'></a> v0.4.0 beta release
+
+**Release Date**: December 10, 2021
 
 ### Features
 
@@ -21,10 +47,6 @@ The Dev profile now includes:
 
 The Dev profile no longer includes Image Policy Webhook.
 
-**New Components**
-
-The following components are new in Tanzu Application Platform v0.4.0:
-
 **Updated Components**
 
 The following components have been updated in Tanzu Application Platform v0.4.0:
@@ -39,10 +61,6 @@ This release has the following issue:
 
 Convention Service does not support self-signed certificates for the private
 registry. We are actively working on adding this support.
-
-### Security issues
-
-<!-- This release has the following security issue: -->
 
 
 ## <a id='0-3-0'></a> v0.3.0 beta release

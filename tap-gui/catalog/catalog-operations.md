@@ -30,34 +30,34 @@ field.
 
 Example User and Group entities:
 
-```
-apiVersion: backstage.io/v1alpha1
-kind: User
-metadata:
-  name: default-user
-spec:
-  profile:
-    displayName: Default User
-    email: guest@example.com
-    picture: https://avatars.dicebear.com/api/avataaars/guest@example.com.svg?background=%23fff
-  memberOf: [default-team]
-```
+  ```
+  apiVersion: backstage.io/v1alpha1
+  kind: User
+  metadata:
+    name: default-user
+  spec:
+    profile:
+      displayName: Default User
+      email: guest@example.com
+      picture: https://avatars.dicebear.com/api/avataaars/guest@example.com.svg?background=%23fff
+    memberOf: [default-team]
+  ```
 
-```
-apiVersion: backstage.io/v1alpha1
-kind: Group
-metadata:
-  name: default-team
-  description: Default Team
-spec:
-  type: team
-  profile:
-    displayName: Default Team
-    email: team-a@example.com
-    picture: https://avatars.dicebear.com/api/identicon/team-a@example.com.svg?background=%23fff
-  parent: default-org
-  children: []
-```
+  ```
+  apiVersion: backstage.io/v1alpha1
+  kind: Group
+  metadata:
+    name: default-team
+    description: Default Team
+  spec:
+    type: team
+    profile:
+      displayName: Default Team
+      email: team-a@example.com
+      picture: https://avatars.dicebear.com/api/identicon/team-a@example.com.svg?background=%23fff
+    parent: default-org
+    children: []
+  ```
 
 More information about and examples for these entities can be found in Backstage documentation
 [here](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-group) and
@@ -73,15 +73,15 @@ specifies the System name in the field `spec.system`.
 
 Example System entity
 
-```
-apiVersion: backstage.io/v1alpha1
-kind: System
-metadata:
-  name: backstage
-  description: Tanzu Application Platform GUI System
-spec:
-  owner: default-team
-```
+  ```
+  apiVersion: backstage.io/v1alpha1
+  kind: System
+  metadata:
+    name: backstage
+    description: Tanzu Application Platform GUI System
+  spec:
+    owner: default-team
+  ```
 
 More information about and examples for Systems can be found in Backstage documentation
 [here](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-system).
@@ -93,21 +93,21 @@ Component descriptor files require values for `apiVersion`, `kind`, `metadata.na
 `spec.lifecycle`, and `spec.owner`. Some useful optional fields are `spec.system` and
 `spec.subcomponentOf`, both of which links a Component to an entity it is a part of.
 
-```
-apiVersion: backstage.io/v1alpha1
-kind: Component
-metadata:
-  name: backstage-component
-  description: Tanzu Application Platform GUI Component
-  annotations:
-    'backstage.io/kubernetes-label-selector': 'app=backstage' #Identifies the Kubernetes objects that make up this component
-    'backstage.io/techdocs-ref': dir:. #TechDocs label
-spec:
-  type: service
-  lifecycle: alpha
-  owner: default-team
-  system: backstage
-```
+  ```
+  apiVersion: backstage.io/v1alpha1
+  kind: Component
+  metadata:
+    name: backstage-component
+    description: Tanzu Application Platform GUI Component
+    annotations:
+      'backstage.io/kubernetes-label-selector': 'app=backstage' #Identifies the Kubernetes objects that make up this component
+      'backstage.io/techdocs-ref': dir:. #TechDocs label
+  spec:
+    type: service
+    lifecycle: alpha
+    owner: default-team
+    system: backstage
+  ```
 
 
 More information about and examples for Components can be found in Backstage documentation
