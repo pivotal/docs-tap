@@ -10,9 +10,6 @@ This topic contains release notes for Supply Chain Security Tools – Scan.
 * Enhanced scanning coverage is now available for Node.js apps.
 * CA certificates are now automatically imported from the Metadata Store namespace
 
-### Coming Soon
-Enhanced scanning coverage for Java apps.
-
 ### v1.0.0-beta.2
 
 **Release Date:** November 25, 2021
