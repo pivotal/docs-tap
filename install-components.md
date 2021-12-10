@@ -58,26 +58,78 @@ cert_manager and FluxCD Source Controller are installed as part of all profiles.
         ```
 * **FluxCD source-controller**:
 
-     1. Create the namespace `flux-system`.
+    1. List version information for the package by running:
 
         ```
-        kubectl create namespace flux-system
+        tanzu package available list fluxcd.source.controller.tanzu.vmware.com -n tap-install
         ```
 
-     2. Create the `clusterrolebinding` by running:
-        ```
-        kubectl create clusterrolebinding default-admin \
-        --clusterrole=cluster-admin \
-        --serviceaccount=flux-system:default
-        ```
-     3. Install FluxCD Source Controller by running:
-        ```
-        kapp deploy -y -a flux-source-controller -n flux-system \
-        -f https://github.com/fluxcd/source-controller/releases/download/v0.15.4/source-controller.crds.yaml \
-        -f https://github.com/fluxcd/source-controller/releases/download/v0.15.4/source-controller.deployment.yaml
-        ```
-        We have verified the Tanzu Application Platform repo bundle packages installation with FluxCD source-controller version v0.15.4.
+         For example:
 
+        ```
+        $ tanzu package available list fluxcd.source.controller.tanzu.vmware.com -n tap-install
+            \ Retrieving package versions for fluxcd.source.controller.tanzu.vmware.com...
+              NAME                                       VERSION  RELEASED-AT
+              fluxcd.source.controller.tanzu.vmware.com  0.16.0   2021-10-27 19:00:00 -0500 -05
+        ```
+
+     2. Install the package by running:
+
+        ```
+        tanzu package install fluxcd-source-controller -p fluxcd.source.controller.tanzu.vmware.com -v VERSION-NUMBER -n tap-install
+        ```
+
+        Where:
+
+        - `VERSION-NUMBER` is the version of the package listed in step 1 above.
+
+        For example:
+        ```
+        tanzu package install fluxcd-source-controller -p fluxcd.source.controller.tanzu.vmware.com -v 0.16.0 -n tap-install
+        \ Installing package 'fluxcd.source.controller.tanzu.vmware.com'
+        | Getting package metadata for 'fluxcd.source.controller.tanzu.vmware.com'
+        | Creating service account 'fluxcd-source-controller-tap-install-sa'
+        | Creating cluster admin role 'fluxcd-source-controller-tap-install-cluster-role'
+        | Creating cluster role binding 'fluxcd-source-controller-tap-install-cluster-rolebinding'
+        | Creating package resource
+        - Waiting for 'PackageInstall' reconciliation for 'fluxcd-source-controller'
+        | 'PackageInstall' resource install status: Reconciling
+
+         Added installed package 'fluxcd-source-controller'
+        ```
+
+    3. Verify the package install by running:
+
+        ```
+        tanzu package installed get fluxcd-source-controller -n tap-install
+        ```
+        For example:
+        ```
+        tanzu package installed get fluxcd-source-controller -n tap-install
+        \ Retrieving installation details for fluxcd-source-controller...
+        NAME:                    fluxcd-source-controller
+        PACKAGE-NAME:            fluxcd.source.controller.tanzu.vmware.com
+        PACKAGE-VERSION:         0.16.0
+        STATUS:                  Reconcile succeeded
+        CONDITIONS:              [{ReconcileSucceeded True  }]
+        USEFUL-ERROR-MESSAGE:
+        ```
+
+        STATUS should be 'Reconcile succeeded.'
+
+        ```
+        kubectl get pods -n flux-system
+        ```
+
+        For example:
+
+        ```
+        $ kubectl get pods -n flux-system
+        NAME                                 READY   STATUS    RESTARTS   AGE
+        source-controller-69859f545d-ll8fj   1/1     Running   0          3m38s
+        ```
+
+        STATUS should be 'Running.'
 
 ## <a id='install-cnr'></a> Install Cloud Native Runtimes
 
@@ -138,7 +190,7 @@ To install Cloud Native Runtimes:
 
         If you are running on a single-node cluster, like kind or minikube, set the `provider: local`
         option. This option reduces resource requirements by using a HostPort service instead of a
-        LoadBalancer, and reduces the number of replicas.
+        LoadBalancer and reduces the number of replicas.
 
         For more information about using Cloud Native Runtimes with kind, see
         [local kind configuration guide for Cloud Native Runtimes](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-local-dns.html#config-cluster).
@@ -686,7 +738,7 @@ To install Tanzu Build Service using the Tanzu CLI:
         * Harbor: `harbor.io/my-project/build-service`
 
     - `REGISTRY-USERNAME` and `REGISTRY-PASSWORD` are the username and password for the registry. The install requires a `kp_default_repository_username` and `kp_default_repository_password` in order to write to the repository location.
-    - `TANZUNET-USERNAME` and `TANZUNET-PASSWORD` are the email address and password that you use to log in to Tanzu Network. The Tanzu Network credentials allow for configuration of the Dependencies Updater. This resource accesses and installs the build dependencies (buildpacks and stacks) Tanzu Build Service needs on your Cluster.  It also keeps these dependencies up-to-date as new versions are released on Tanzu Network.
+    - `TANZUNET-USERNAME` and `TANZUNET-PASSWORD` are the email address and password that you use to log in to Tanzu Network. The Tanzu Network credentials allow for configuration of the Dependencies Updater. This resource accesses and installs the build dependencies (buildpacks and stacks) Tanzu Build Service needs on your Cluster.  It also keeps these dependencies up to date as new versions are released on Tanzu Network.
 
     There are optional values not included in this sample file that provide additional configuration for production use cases. For more information, see [Installing Tanzu Build Service](https://docs.pivotal.io/build-service/installing.html).
 
@@ -770,7 +822,7 @@ Added installed package 'cartographer' in namespace 'default'
 
 The Out of the Box Templates package is used by all the Out of the Box Supply
 Chains to provide the templates that are used by the Supply Chains to create
-the objects that drives source code all the way to a deployed application in a
+the objects that drive source code all the way to a deployed application in a
 cluster.
 
 
@@ -834,7 +886,7 @@ Cartographer
     KEY                  TYPE    DESCRIPTION
 
     registry.repository  string  Name of the repository in the image registry server where
-                                 the application images from he workloould be pushed to
+                                 the application images from the workload be pushed to
                                  (required).
 
     registry.server      string  Name of the registry server where application images should
@@ -959,7 +1011,7 @@ You must have installed:
     KEY                  TYPE    DESCRIPTION
 
     registry.repository  string  Name of the repository in the image registry server where
-                                 the application images from he workloould be pushed to
+                                 the application images from the workload be pushed to
                                  (required).
 
     registry.server      string  Name of the registry server where application images should
@@ -1082,7 +1134,7 @@ and image for vulnerabilities.
     KEY                  TYPE    DESCRIPTION
 
     registry.repository  string  Name of the repository in the image registry server where
-                                 the application images from he workloould be pushed to
+                                 the application images from the workload be pushed to
                                  (required).
 
     registry.server      string  Name of the registry server where application images should
@@ -1374,7 +1426,7 @@ Application Live View Convention Service only.
 
 The Application Live View UI plugin is part of Tanzu Application Platform GUI.
 To access the Application Live View UI,
-see [Application Live View in Tanzu Application Platform GUI](https://docs-staging.vmware.com/en/Tanzu-Application-Platform/0.4/tap/GUID-tap-gui-plugins-app-live-view.html#entry-point-to-ap[…]live-view-plugin-1).
+see [Application Live View in Tanzu Application Platform GUI](https://docs-staging.vmware.com/en/Tanzu-Application-Platform/1.0/tap/GUID-tap-gui-plugins-app-live-view.html#entry-point-to-ap[…]live-view-plugin-1).
 
 
 ## <a id='install-tap-gui'></a> Install Tanzu Application Platform GUI
@@ -1419,8 +1471,20 @@ instead.
 
 - **Tanzu Application Platform GUI catalog:** This allows for two approaches towards storing catalog information:
 
-    - The default option is suitable for test/development scenarios in that an in-memory database is used. This reads the catalog data from Git URLs you specify in the tap-values.yml file. This data is ephemeral and any operations that cause the `server` pod in the `tap-gui` namespace to be re-created will cause this data to be rebuilt from the Git location. This can cause issues when you manually register entities through the UI as they ONLY exist in the database and will be lost when that in-memory database gets rebuilt.
-    - For production use-cases we recommend the use of a PostgreSQL database that exists outside the Tanzu Applicaton Platform's packaging. This stores all the catalog data persistently both from the Git locations as well as from the GUI's manual entity registrations.
+    - The default option is suitable for test/development scenarios in that an
+    in-memory database is used.
+    This reads the catalog data from Git URLs you specify in the tap-values.yml
+    file.
+    This data is ephemeral and any operations that cause the `server` pod in the
+    `tap-gui` namespace to be re-created will cause this data to be rebuilt from
+    the Git location. This can cause issues when you manually register entities
+    through the UI as they ONLY exist in the database and will be lost when that
+    in-memory database gets rebuilt.
+
+    - For production use-cases we recommend the use of a PostgreSQL database that
+    exists outside the Tanzu Application Platform's packaging.
+    This stores all the catalog data persistently both from the Git locations as
+    well as from the GUI's manual entity registrations.
 
 ### <a id='tap-gui-install-proc'></a> Procedure
 
@@ -1454,44 +1518,44 @@ with your relevant values. The meanings of some placeholders are explained in th
 
     ```
     namespace: tap-gui
-    service_type: <SERVICE-TYPE>
+    service_type: SERVICE-TYPE
     app_config:
       app:
-        baseUrl: https://<EXTERNAL-IP>:<PORT>
+        baseUrl: https://EXTERNAL-IP:PORT
       integrations:
         gitlab: # Other integrations available
-          - host: <GITLAB-HOST>
-            apiBaseUrl: https://<GITLAB-URL>/api/v4
-            token: <GITLAB-TOKEN>
+          - host: GITLAB-HOST
+            apiBaseUrl: https://GITLAB-URL/api/v4
+            token: GITLAB-TOKEN
       catalog:
         locations:
           - type: url
-            target: https://<GIT-CATALOG-URL>/catalog-info.yaml
+            target: https://GIT-CATALOG-URL/catalog-info.yaml
       backend:
-          baseUrl: https://<EXTERNAL-IP>:<PORT>
+          baseUrl: https://EXTERNAL-IP:PORT
           cors:
-              origin: https://<EXTERNAL-IP>:<PORT>
+              origin: https://EXTERNAL-IP:PORT
       # database: # Only needed if you intend to support with an existing PostgreSQL database. The catalog is still refreshed from Git.
       #     client: pg
       #      connection:
-      #        host: <PGSQL-HOST>
-      #        port: <PGSQL-PORT>
-      #        user: <PGSQL-USER>
-      #        password: <PGSQL-PWD>
+      #        host: PGSQL-HOST
+      #        port: PGSQL-PORT
+      #        user: PGSQL-USER
+      #        password: PGSQL-PWD
       #        ssl: {rejectUnauthorized: false} # May be needed if using self-signed certs
 
-      # techdocs: # Only needed if you want to enable TechDocs capability. Requires running the TechDoc CLI to generate TechDocs from catalog Markdown to S3 compatible bucket called out in Additional Resources documentation.
+      # techdocs: # Only needed if you want to enable TechDocs capability. Requires running the TechDoc CLI to generate TechDocs from catalog Markdown to S3-compatible bucket called out in Additional Resources documentation.
       #  builder: 'external'
       #  generator:
       #    runIn: 'docker'
       #  publisher:
       #    type: 'awsS3'
       #    awsS3:
-      #      bucketName: '<S3-BUCKET-NAME>'
+      #      bucketName: 'S3-BUCKET-NAME'
       #      credentials:
-      #        accessKeyId: '<S3-ACCESS-KEY>'
-      #        secretAccessKey: '<S3-SECRET-KEY>'
-      #      region: '<S3-REGION>'
+      #        accessKeyId: 'S3-ACCESS-KEY'
+      #        secretAccessKey: 'S3-SECRET-KEY'
+      #      region: 'S3-REGION'
       #      s3ForcePathStyle: false # Set value to true if using local S3 solution (Minio)
 
       # auth: # Only needed if you want to enable OIDC login integration, otherwise only Guest mode is enabled
@@ -1501,22 +1565,22 @@ with your relevant values. The meanings of some placeholders are explained in th
       #  providers:
       #    oidc: # Detailed configuration of the OIDC auth capabilities are documented here: https://backstage.io/docs/auth/oauth
       #      development:
-      #        metadataUrl: <AUTH-OIDC-METADATA-URL> # metadataUrl is a json file with generic oidc provider config. It contains the authorizationUrl and tokenUrl. These values are read from the metadataUrl file by Backstage and so they do not need to be specified explicitly here. To support OIDC authentication, you must create an OAuth client in your upstream provider, when setting up the client make sure to include the authorized redirect URI as: https://[BASE_URL]/api/auth/oidc/handler/frame
-      #        clientId: <AUTH-OIDC-CLIENT-ID>
-      #        clientSecret: <AUTH-OIDC-CLIENT-SECRET>
-      #        tokenSignedResponseAlg: <AUTH-OIDC-TOKEN-SIGNED-RESPONSE-ALG> # default='RS256'
-      #        scope: <AUTH-OIDC-SCOPE> # default='openid profile email'
-      #        prompt: <TYPE> # default=none (allowed values: auto, none, consent, login)
+      #        metadataUrl: AUTH-OIDC-METADATA-URL # metadataUrl is a JSON file with generic OIDC provider config. It contains the authorizationUrl and tokenUrl. These values are read from the metadataUrl file by Backstage and so they do not need to be specified explicitly here. To support OIDC authentication, you must create an OAuth client in your upstream provider, when setting up the client make sure to include the authorized redirect URI as: https://[BASE_URL]/api/auth/oidc/handler/frame
+      #        clientId: AUTH-OIDC-CLIENT-ID
+      #        clientSecret: AUTH-OIDC-CLIENT-SECRET
+      #        tokenSignedResponseAlg: AUTH-OIDC-TOKEN-SIGNED-RESPONSE-ALG # default='RS256'
+      #        scope: AUTH-OIDC-SCOPE # default='openid profile email'
+      #        prompt: TYPE # default=none (allowed values: auto, none, consent, login)
     ```
 
     Where:
 
-    - `<SERVICE-TYPE>` is your inbound traffic mechanism: LoadBalancer or Ingress.
-    - `<EXTERNAL-IP>:<PORT>` is your Ingress hostname or LoadBalancer information.
+    - `SERVICE-TYPE` is your inbound traffic mechanism: LoadBalancer or Ingress.
+    - `EXTERNAL-IP:PORT` is your Ingress hostname or LoadBalancer information.
        If you are using a load balancer that is dynamically provisioned by the cloud provider,
        leave this value blank initially and, after the install is complete,
        run a subsequent `tanzu package installed update`.
-    - `<GIT-CATALOG-URL>` is the path to the `catalog-info.yaml` catalog definition file from either the included  Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog that you've already built and posted on the Git infrastucture that you specified in the Integration section.
+    - `<GIT-CATALOG-URL>` is the path to the `catalog-info.yaml` catalog definition file from either the included  Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog that you've already built and posted on the Git infrastructure that you specified in the Integration section.
 
     > **Note:** The `app_config` section follows the same configuration model that Backstage uses.
     For more information, see the [Backstage documentation](https://backstage.io/docs/conf/).
@@ -1588,7 +1652,7 @@ To install Tanzu Learning Center, see the following sections.
 
 - The operator when deploying instances of the workshop environments needs to be able to expose them via an external URL for access. For the custom domain you are using, DNS must have been configured with a wildcard domain to forward all requests for sub domains of the custom domain, to the ingress router of the Kubernetes cluster
 
-- By default the workshop portal and workshop sessions will be accessible over HTTP connections. If you wish to use secure HTTPS connections, you must have access to a wildcard SSL certificate for the domain under which you wish to host the workshops. You cannot use a self signed certificate.
+- By default, the workshop portal and workshop sessions will be accessible over HTTP connections. If you wish to use secure HTTPS connections, you must have access to a wildcard SSL certificate for the domain under which you wish to host the workshops. You cannot use a self-signed certificate.
 
 - Any ingress routes created will use the default ingress class. If you have multiple ingress class types available, and you need to override which is used.
 
@@ -1658,7 +1722,7 @@ To install Learning Center:
      secretName: workshops.example.com-tls
     ```
 
-    By default the workshop portal and workshop sessions are accessible over HTTP connections.
+    By default, the workshop portal and workshop sessions are accessible over HTTP connections.
 
     To use secure HTTPS connections, you must have access to a wildcard SSL certificate for the
     domain under which you want to host the workshops. You cannot use a self-signed certificate.
@@ -1831,7 +1895,7 @@ Use the following procedure to install Service Bindings:
 
 To install Supply Chain Security Tools - Store:
 
-1. The deployment assumes the user has set up the kubernetes cluster to provision persistent volumes on demand. Make sure a default storage class is be available in your cluster. Check whether default storage class is set in your cluster by running:
+1. The deployment assumes the user has set up the Kubernetes cluster to provision persistent volumes on demand. Make sure a default storage class is available in your cluster. Check whether default storage class is set in your cluster by running:
 
     ```
     kubectl get storageClass
@@ -1899,7 +1963,7 @@ To install Supply Chain Security Tools - Store:
       log_level                         default              string   Sets the log level. This can be set to "minimum", "less", "default", "more", "debug" or "trace". "minimum" currently does not output logs. "less" outputs log configuration options only. "default" and "more" outputs API endpoint access information. "debug" and "trace" outputs extended API endpoint access information(such as body payload) and other debug information.
     ```
 
-1. (Optional) If you want to modify one of the above deployment configurations, you can create a configuration yaml with the custom configuration values you want. For example, if your environment does not support `LoadBalancer`, and you want to use `NodePort`, then create a `scst-store-values.yaml` and configure the `app_service_type` property. This file will be used in the next step.
+1. (Optional) If you want to modify one of the above deployment configurations, you can create a configuration YAML with the custom configuration values you want. For example, if your environment does not support `LoadBalancer`, and you want to use `NodePort`, then create a `scst-store-values.yaml` and configure the `app_service_type` property. This file will be used in the next step.
 
     ```
     ---
@@ -1918,7 +1982,7 @@ To install Supply Chain Security Tools - Store:
       --values-file scst-store-values.yaml
     ```
 
-    The flag `--values-file` is optional, and used only if you want to customize the deployment configuration. For example:
+    The flag `--values-file` is optional and used only if you want to customize the deployment configuration. For example:
 
     ```
     $ tanzu package install scst-store \
@@ -1943,7 +2007,7 @@ To install Supply Chain Security Tools - Store:
 
 ## <a id='install-scst-sign'></a> Install Supply Chain Security Tools - Sign
 
-> **Caution:** This component rejects Pods if the webhook fails or is misconfigured.
+> **Caution:** This component rejects Pods if the webhook fails or is incorrectly configured.
 > If the webhook is preventing the cluster from functioning,
 > see [Supply Chain Security Tools - Sign Known Issues](scst-sign/known_issues.md#sign-known-issues-pods-not-admitted)
 > for recovery steps.
@@ -1951,7 +2015,7 @@ To install Supply Chain Security Tools - Store:
 ### <a id='scst-sign-prereqs'></a> Prerequisites
 
 During configuration for this component, you are asked to provide a cosign public key to use to validate
-signed images. An example cosign public key is provided that is able to validate an image from the
+signed images. An example cosign public key is provided that can validate an image from the
 public cosign registry. If you want to provide your own key and images, follow the
 [cosign quick start guide](https://github.com/sigstore/cosign#quick-start) to
 generate your own keys and sign an image.
@@ -2029,7 +2093,7 @@ To install Supply Chain Security Tools - Sign:
             > re-install the webhook with `allow_unmatched_images` set to `false`.
 
     - `quota.pod_number`:
-      This setting is the maximum amount of pods that will be allowed in the
+      This setting is the maximum number of Pods that are allowed in the
       `image-policy-system` namespace with the `system-cluster-critical`
       priority class. This priority class is added to the pods to prevent
       preemption of this component's pods in case of node pressure.
@@ -2039,10 +2103,10 @@ To install Supply Chain Security Tools - Sign:
       allow the number of replicas you intend to deploy.
 
     - `replicas`:
-      This settings controls the default amount of replicas that will get deployed by this
+      These settings controls the default amount of replicas that will get deployed by this
       component. The default value is 1.
 
-        * **For production environments**: VMware recommends you increase the amount of replicas to
+        * **For production environments**: VMware recommends you increase the number of replicas to
         3 to ensure availability of the component for better admission performance.
 
 1. Install the package:
@@ -2367,7 +2431,7 @@ run the following commands to add credentials and Role-Based Access Control (RBA
     Where:
 
     * `YOUR-NAMESPACE` is the name that you want to use for the developer namespace. For example, use `default` for the default namespace.
-    * `REGISTRY-SERVER` is the URL of the registry. For Dockerhub this must be `https://index.docker.io/v1/`. Specifically it must have the leading `https://`, the `v1` path, and the trailing `/`. For GCR this is `gcr.io`.
+    * `REGISTRY-SERVER` is the URL of the registry. For Dockerhub this must be `https://index.docker.io/v1/`. Specifically, it must have the leading `https://`, the `v1` path, and the trailing `/`. For GCR this is `gcr.io`.
 
 
 1. Add placeholder read secrets, a service account, and RBAC rules to the developer namespace by running:

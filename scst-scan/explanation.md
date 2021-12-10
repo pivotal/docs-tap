@@ -14,7 +14,7 @@ sourcescans.scst-scan.apps.tanzu.vmware.com               2021-09-09T15:22:07Z
 
 ## About source and image scans
 
-Both SourceScan (`sourcescans.scst-scan.apps.tanzu.vmware.com`) and ImageScan (`imagescans.scst-scan.apps.tanzu.vmware.com`) define what will be scanned and ScanTemplate (`scantemplates.scst-scan.apps.tanzu.vmware.com`) will define how to run a scan. We have provided five custom resources (CRs) pre-installed for use. You can either use them as-is, or as samples to create your own.
+Both SourceScan (`sourcescans.scst-scan.apps.tanzu.vmware.com`) and ImageScan (`imagescans.scst-scan.apps.tanzu.vmware.com`) define what will be scanned, and ScanTemplate (`scantemplates.scst-scan.apps.tanzu.vmware.com`) will define how to run a scan. We have provided five custom resources (CRs) pre-installed for use. You can either use them as-is or as samples to create your own.
 
 To view the pre-installed Scan Template CRs, run:
 

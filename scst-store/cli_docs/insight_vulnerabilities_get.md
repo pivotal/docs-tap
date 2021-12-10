@@ -1,4 +1,4 @@
-## Insight Vulnerabilities Get
+## insight vulnerabilities get
 
 Get vulnerability by CVE id.
 
@@ -24,7 +24,7 @@ insight vulnerabilities get --cveid CVE-123123-2021
   -h, --help            help for get
 ```
 
-### See Also
+### See also
 
 * [insight vulnerabilities](insight_vulnerabilities.md)	 - Vulnerabilities commands
 

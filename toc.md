@@ -2,14 +2,14 @@
 
 This is the table of contents from which the Tanzu Application Platform Documentation site on docs.vmware.com is built.
 
-- [Tanzu Application Platform v0.4 (Beta-4)](overview.md)
+- [Tanzu Application Platform v1.0](overview.md)
 - [Release notes](release-notes.md)
 - [Installing Tanzu Application Platform](install-intro.md)
   - [Installing Part I: prerequisites, EULA, and CLI](install-general.md)
         - [Installing on a Tanzu Community Edition v0.9.1 cluster](install-tce.md)
         - [Installing on a Tanzu Kubernetes Grid v1.4 cluster](install-tkg.md)
         - [Installing on clusters onboarded to Tanzu Service Mesh](install-tsm.md)
-  - [Installing Part II: profiles](install.md)
+  - [Installing Part II: Profiles](install.md)
 - [Upgrading Tanzu Application Platform](upgrade.md)
 - [Getting started with Tanzu Application Platform](getting-started.md)
 - [Opting out of telemetry collection](opting-out-telemetry.md)
@@ -119,4 +119,5 @@ This is the table of contents from which the Tanzu Application Platform Document
       - [Tanzu Application Platform GUI Plugins](tap-gui/plugins/about.md)
       - [Workload Visibility user guide](tap-gui/plugins/runtime-resource-visibility.md)
       - [Application Live View](tap-gui/plugins/app-live-view.md)
+      - [Application Accelerator](tap-gui/plugins/application-accelerator.md)
       - [Troubleshooting Tanzu Application Platform GUI](tap-gui/troubleshooting.md)
