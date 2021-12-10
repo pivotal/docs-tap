@@ -104,7 +104,7 @@ For instructions on how to create a pull request on a branch and instructions on
 
 ## Publishing Docs
 
-v0.1 Staging docs:  
+v1.0 Staging docs:  
 
 - [docworks](https://docworks.vmware.com/) is the main tool for managing docs used by writers.
 - [docsdash](https://docsdash.vmware.com/) is a deployment UI which manages the promotion from staging to pre-prod to production. The process below describes how to upload our docs to staging, replacing the publication with the same version.
@@ -119,7 +119,7 @@ Starting from the repo root, this will create a new `docs.zip` with no root fold
 
 
 ```sh
-git pull ; rm *.zip ; zip -r tap3beta *
+git pull ; rm *.zip ; zip -r tap-1-0 *
 ```
 
 
