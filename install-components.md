@@ -17,6 +17,7 @@ For information, see [Installing Part I: Prerequisites, EULA, and CLI](install-g
 + [Install Application Accelerator](#install-app-accelerator)
 + [Install Tanzu Build Service](#install-tbs)
 + [Install Supply Chain Choreographer](#install-scc)
++ [Install Out of the Delivery Basic](#install-delivery-basic)
 + [Install Out of the Box Templates](#install-ootb-templates)
 + [Install Out of The Box Supply Chain Basic](#install-ootb-supply-chain-basic)
 + [Install Out of The Box Supply Chain with Testing](#install-ootb-supply-chain-testing)
@@ -744,27 +745,85 @@ that knows how to build a container image from of it and then passes the contain
 to a component that knows how to deploy the image.
 
 ```
-# Install the version 0.0.7 of the `cartographer.tanzu.vmware.com`
+# Install the version 0.0.8-rc.8 of the `cartographer.tanzu.vmware.com`
 # package. Naming the installation as `cartographer`.
 #
 tanzu package install cartographer \
   --namespace tap-install \
   --package-name cartographer.tanzu.vmware.com \
-  --version 0.0.7
+  --version 0.0.8-rc.8
 ```
 
 ```
 | Installing package 'cartographer.tanzu.vmware.com'
-| Getting namespace 'default'
+| Getting namespace 'tap-install'
 | Getting package metadata for 'cartographer.tanzu.vmware.com'
-| Creating service account 'cartographer-default-sa'
-| Creating cluster admin role 'cartographer-default-cluster-role'
-| Creating cluster role binding 'cartographer-default-cluster-rolebinding'
+| Creating service account 'cartographer-tap-install-sa'
+| Creating cluster admin role 'cartographer-tap-install-cluster-role'
+| Creating cluster role binding 'cartographer-tap-install-cluster-rolebinding'
 - Creating package resource
 \ Package install status: Reconciling
 
-Added installed package 'cartographer' in namespace 'default'
+Added installed package 'cartographer' in namespace 'tap-install'
 ```
+
+## <a id='install-ootb-delivery-basic'></a> Install Out of the Box Delivery Basic
+
+The Out of the Box Delivery Basic package is used by all the Out of the Box
+Supply Chains to deliver to a Kubernetes environment the objects that have been
+produced by the them.
+
+1. Familiarize yourself with the set of values of the package that can be
+   configured by running:
+
+    ```
+    tanzu package available get ootb-delivery-basic.tanzu.vmware.com/0.4.0-build.3 \
+      --values-schema \
+      -n tap-install
+    ```
+
+    For example:
+
+    ```
+    KEY                  DEFAULT  TYPE    DESCRIPTION
+    service_account      default  string  Name of the service account in the 
+                                          namespace where the Deliverable is 
+                                          submitted to.
+    ```
+
+1. Create a file named `ootb-delivery-basic-values.yaml` that specifies the
+   corresponding values to the properties you want to tweak. For example:
+
+    ```
+    service_account: default
+    ```
+
+1. With the configuration ready, install the package by running:
+
+
+    ```
+    tanzu package install ootb-delivery-basic \
+      --package-name ootb-delivery-basic.tanzu.vmware.com \
+      --version 0.4.0-build.3 \
+      --namespace tap-install \
+      --values-file ootb-delivery-basic-values.yaml
+    ```
+
+    Example output:
+
+    ```
+    \ Installing package 'ootb-delivery-basic.tanzu.vmware.com'
+    | Getting package metadata for 'ootb-delivery-basic.tanzu.vmware.com'
+    | Creating service account 'ootb-delivery-basic-default-sa'
+    | Creating cluster admin role 'ootb-delivery-basic-default-cluster-role'
+    | Creating cluster role binding 'ootb-delivery-basic-default-cluster-rolebinding'
+    | Creating secret 'ootb-delivery-basic-default-values'
+    | Creating package resource
+    - Waiting for 'PackageInstall' reconciliation for 'ootb-delivery-basic'
+    / 'PackageInstall' resource install status: Reconciling
+
+     Added installed package 'ootb-delivery-basic' in namespace 'tap-install'
+    ```
 
 ## <a id='install-ootb-templates'></a> Install Out of the Box Templates
 
@@ -788,7 +847,7 @@ install it is the following command:
 ```
 tanzu package install ootb-templates \
   --package-name ootb-templates.tanzu.vmware.com \
-  --version 0.4.0-build.1 \
+  --version 0.4.0-build.4 \
   --namespace tap-install
 ```
 ```
@@ -931,100 +990,130 @@ building container images.
 
 ### Prerequisites
 
-You must have installed:
-
 - Cartographer
 - Out of The Box Delivery Basic (`ootb-delivery-basic.tanzu.vmware.com`)
 - Out of The Box Templates (`ootb-templates.tanzu.vmware.com`)
+- **NOT** having Out of The Box Supply Chain With Testing and Scanning
+  (`ootb-supply-chain-testing-scanning.tanzu.vmware.com`) installed
+
+You can check if the unwanted `ootb-` package is installed or not with the
+following command:
+
+```
+tanzu package installed list --namespace tap-install
+```
+```
+NAME                                PACKAGE-NAME
+ootb-delivery-basic                 ootb-delivery-basic.tanzu.vmware.com
+ootb-supply-chain-basic             ootb-supply-chain-basic.tanzu.vmware.com
+ootb-templates                      ootb-templates.tanzu.vmware.com
+```
+
+In case you see `ootb-supply-chain-testing-scanning` in the list above, make
+sure you uninstall it first before proceeding:
+
+
+```
+tanzu package installed delete ootb-supply-chain-testing-scanning --namespace tap-install
+```
+```
+Deleting installed package 'ootb-supply-chain-testing-scanning' in namespace 'tap-install'. 
+Are you sure? [y/N]: y
+
+| Uninstalling package 'ootb-supply-chain-testing-scanning' from namespace 'tap-install'
+\ Getting package install for 'ootb-supply-chain-testing-scanning'
+- Deleting package install 'ootb-supply-chain-testing-scanning' from namespace 'tap-install'
+| Deleting admin role 'ootb-supply-chain-testing-scanning-default-cluster-role'
+| Deleting role binding 'ootb-supply-chain-testing-scanning-default-cluster-rolebinding'
+| Deleting secret 'ootb-supply-chain-testing-scanning-default-values'
+| Deleting service account 'ootb-supply-chain-testing-scanning-default-sa'
+
+ Uninstalled package 'ootb-supply-chain-testing-scanning' from namespace 'tap-install'
+```
+
 
 ### Install
 
-1. Ensure you do not have Out of The Box Supply Chain With Testing and Scanning
-(`ootb-supply-chain-testing-scanning.tanzu.vmware.com`) installed:
+1. Familiarize yourself with the set of values of the package that can be
+   configured by running:
 
-    1. Run the following command:
+```
+tanzu package available get ootb-supply-chain-testing.tanzu.vmware.com/0.4.0-build.3 \
+  --values-schema \
+  -n tap-install
+```
 
-        ```
-        tanzu package installed list --namespace tap-install
-        ```
-
-    1. Check for `ootb-supply-chain-testing-scanning` in the output:
-
-        ```
-        NAME                                PACKAGE-NAME
-        ootb-delivery-basic                 ootb-delivery-basic.tanzu.vmware.com
-        ootb-supply-chain-basic             ootb-supply-chain-basic.tanzu.vmware.com
-        ootb-templates                      ootb-templates.tanzu.vmware.com
-        ```
-
-    1. If you see `ootb-supply-chain-testing-scanning` in the list, uninstall it by running:
-
-        ```
-        tanzu package installed delete ootb-supply-chain-testing-scanning --namespace tap-install
-        ```
-
-        Example output:
-
-        ```
-        Deleting installed package 'ootb-supply-chain-testing-scanning' in namespace 'tap-install'.
-        Are you sure? [y/N]: y
-
-        | Uninstalling package 'ootb-supply-chain-testing-scanning' from namespace 'tap-install'
-        \ Getting package install for 'ootb-supply-chain-testing-scanning'
-        - Deleting package install 'ootb-supply-chain-testing-scanning' from namespace 'tap-install'
-        | Deleting admin role 'ootb-supply-chain-testing-scanning-default-cluster-role'
-        | Deleting role binding 'ootb-supply-chain-testing-scanning-default-cluster-rolebinding'
-        | Deleting secret 'ootb-supply-chain-testing-scanning-default-values'
-        | Deleting service account 'ootb-supply-chain-testing-scanning-default-sa'
-
-         Uninstalled package 'ootb-supply-chain-testing-scanning' from namespace 'tap-install'
-        ```
-
-1. Check the values of the package that can be configured by running:
+    For example:
 
     ```
-    tanzu package available get ootb-supply-chain-testing.tanzu.vmware.com/0.4.0-build.1 \
-      --values-schema \
-      -n tap-install
+    KEY                       DESCRIPTION
+
+    registry.repository       Name of the repository in the image registry server where
+                              the application images from he workloould be pushed to
+                              (required).
+
+    registry.server           Name of the registry server where application images should
+                              be pushed to (required).
+
+
+
+    gitops.username           Default user name to be used for the commits produced by the
+                              supply chain.
+
+    gitops.branch             Default branch to use for pushing Kubernetes configuration files
+                              produced by the supply chain.
+
+    gitops.commit_message     Default git commit message to write when publishing Kubernetes
+                              configuration files produces by the supply chain to git.
+
+    gitops.email              Default user email to be used for the commits produced by the
+                              supply chain.
+
+    gitops.repository_prefix  Default prefix to be used for forming Git SSH URLs for pushing
+                              Kubernetes configuration produced by the supply chain.
+
+    gitops.ssh_secret         Name of the default Secret containing SSH credentials to lookup
+                              in the developer namespace for the supply chain to fetch source
+                              code from and push configuration to.
+
+
+
+    cluster_builder           Name of the Tanzu Build Service (TBS) ClusterBuilder to
+                              use by default on image objects managed by the supply chain.
+
+    service_account           Name of the service account in the namespace where the Workload
+                              is submitted to utilize for providing registry credentials to
+                              Tanzu Build Service (TBS) Image objects as well as deploying the
+                              application.
     ```
 
-    Example output:
-
-    ```
-    KEY                  TYPE    DESCRIPTION
-
-    registry.repository  string  Name of the repository in the image registry server where
-                                 the application images from the workload be pushed to
-                                 (required).
-
-    registry.server      string  Name of the registry server where application images should
-                                 be pushed to (required).
-
-    cluster_builder      string  Name of the Tanzu Build Service (TBS) ClusterBuilder to
-                                 use by default on image objects managed by the supply chain.
-
-    service_account      string  Name of the service account in the namespace where the Workload
-                                 is submitted to utilize for providing registry credentials to
-                                 Tanzu Build Service (TBS) Image objects as well as deploying the
-                                 application.
-    ```
-
-1. Create a file named `ootb-supply-chain-testing-values.yaml` that specifies the corresponding
-values to the properties you want to tweak. For example:
+1. Create a file named `ootb-supply-chain-testing-values.yaml` that specifies the
+   corresponding values to the properties you want to tweak. For example:
 
     ```
     registry:
       server: REGISTRY-SERVER
       repository: REGISTRY-REPOSITORY
+
+    gitops:
+      repository_prefix: git@github.com:vmware-tanzu/
+      branch: main
+      user_name: supplychain
+      user_email: supplychain
+      commit_message: supplychain@cluster.local
+      ssh_secret: git-ssh
+
+    cluster_builder: default
     service_account: default
     ```
 
 1. With the configuration ready, install the package by running:
 
+
     ```
     tanzu package install ootb-supply-chain-testing \
       --package-name ootb-supply-chain-testing.tanzu.vmware.com \
-      --version 0.4.0-build.1 \
+      --version 0.4.0-build.3 \
       --namespace tap-install \
       --values-file ootb-supply-chain-testing-values.yaml
     ```
@@ -1046,6 +1135,8 @@ values to the properties you want to tweak. For example:
     ```
 
 
+
+
 ## <a id='install-ootb-sc-test-scan'></a> Install Out of The Box Supply Chain with Testing and Scanning
 
 The Out of the Box Supply Chain with Testing and Scanning package provides a
@@ -1054,100 +1145,134 @@ instance of it running in a Kubernetes environment performing validations not
 only in terms of running application tests, but also scanning the source code
 and image for vulnerabilities.
 
+
 ### Prerequisites
 
 - Cartographer
 - Out of The Box Delivery Basic (`ootb-delivery-basic.tanzu.vmware.com`)
 - Out of The Box Templates (`ootb-templates.tanzu.vmware.com`)
+- **NOT** having Out of The Box Supply Chain With Testing
+  (`ootb-supply-chain-testing.tanzu.vmware.com`) installed
+
+You can check if the unwanted `ootb-` package is installed or not with the
+following command:
+
+
+```bash
+tanzu package installed list --namespace tap-install
+```
+```console
+NAME                                PACKAGE-NAME
+ootb-delivery-basic                 ootb-delivery-basic.tanzu.vmware.com
+ootb-supply-chain-basic             ootb-supply-chain-basic.tanzu.vmware.com
+ootb-templates                      ootb-templates.tanzu.vmware.com
+```
+
+In case you see `ootb-supply-chain-testing` in the list above, make sure you
+uninstall it first before proceeding:
+
+
+```bash
+tanzu package installed delete ootb-supply-chain-testing --namespace tap-install
+```
+```console
+Deleting installed package 'ootb-supply-chain-testing' in namespace 'tap-install'. 
+Are you sure? [y/N]: y
+
+| Uninstalling package 'ootb-supply-chain-testing' from namespace 'tap-install'
+\ Getting package install for 'ootb-supply-chain-testing'
+- Deleting package install 'ootb-supply-chain-testing' from namespace 'tap-install'
+| Deleting admin role 'ootb-supply-chain-testing-default-cluster-role'
+| Deleting role binding 'ootb-supply-chain-testing-default-cluster-rolebinding'
+| Deleting secret 'ootb-supply-chain-testing-default-values'
+| Deleting service account 'ootb-supply-chain-testing-default-sa'
+
+ Uninstalled package 'ootb-supply-chain-testing' from namespace 'tap-install'
+```
+
 
 ### Install
 
-1. Ensure you do not have Out of The Box Supply Chain With Testing
-(`ootb-supply-chain-testing.tanzu.vmware.com`) installed:
-
-    1. Run the following command:
-
-        ```
-        tanzu package installed list --namespace tap-install
-        ```
-
-    1. Check for `ootb-supply-chain-testing` in the output:
-
-        ```
-        NAME                                PACKAGE-NAME
-        ootb-delivery-basic                 ootb-delivery-basic.tanzu.vmware.com
-        ootb-supply-chain-basic             ootb-supply-chain-basic.tanzu.vmware.com
-        ootb-templates                      ootb-templates.tanzu.vmware.com
-        ```
-
-    1. If you see `ootb-supply-chain-testing` in the list, uninstall it by running:
-
-        ```
-        tanzu package installed delete ootb-supply-chain-testing --namespace tap-install
-        ```
-
-        Example output:
-
-        ```
-        Deleting installed package 'ootb-supply-chain-testing' in namespace 'tap-install'.
-        Are you sure? [y/N]: y
-
-        | Uninstalling package 'ootb-supply-chain-testing' from namespace 'tap-install'
-        \ Getting package install for 'ootb-supply-chain-testing'
-        - Deleting package install 'ootb-supply-chain-testing' from namespace 'tap-install'
-        | Deleting admin role 'ootb-supply-chain-testing-default-cluster-role'
-        | Deleting role binding 'ootb-supply-chain-testing-default-cluster-rolebinding'
-        | Deleting secret 'ootb-supply-chain-testing-default-values'
-        | Deleting service account 'ootb-supply-chain-testing-default-sa'
-
-         Uninstalled package 'ootb-supply-chain-testing' from namespace 'tap-install'
-        ```
-
-1. Check the values of the package that can be configured by running:
+1. Familiarize yourself with the set of values of the package that can be
+   configured by running:
 
     ```
-    tanzu package available get ootb-supply-chain-testing-scanning.tanzu.vmware.com/0.4.0-build.1 \
+    tanzu package available get ootb-supply-chain-testing-scanning.tanzu.vmware.com/0.4.0-build.3 \
       --values-schema \
       -n tap-install
     ```
 
-    Example output:
+    For example:
 
     ```
-    KEY                  TYPE    DESCRIPTION
+    KEY                       DESCRIPTION
 
-    registry.repository  string  Name of the repository in the image registry server where
-                                 the application images from the workload be pushed to
-                                 (required).
+    registry.repository       Name of the repository in the image registry server where
+                              the application images from he workloould be pushed to
+                              (required).
 
-    registry.server      string  Name of the registry server where application images should
-                                 be pushed to (required).
+    registry.server           Name of the registry server where application images should
+                              be pushed to (required).
 
-    cluster_builder      string  Name of the Tanzu Build Service (TBS) ClusterBuilder to
-                                 use by default on image objects managed by the supply chain.
 
-    service_account      string  Name of the service account in the namespace where the Workload
-                                 is submitted to utilize for providing registry credentials to
-                                 Tanzu Build Service (TBS) Image objects as well as deploying the
-                                 application.
+    gitops.username           Default user name to be used for the commits produced by the
+                              supply chain.
+
+    gitops.branch             Default branch to use for pushing Kubernetes configuration files
+                              produced by the supply chain.
+
+    gitops.commit_message     Default git commit message to write when publishing Kubernetes
+                              configuration files produces by the supply chain to git.
+
+    gitops.email              Default user email to be used for the commits produced by the
+                              supply chain.
+
+    gitops.repository_prefix  Default prefix to be used for forming Git SSH URLs for pushing
+                              Kubernetes configuration produced by the supply chain.
+
+    gitops.ssh_secret         Name of the default Secret containing SSH credentials to lookup
+                              for the supply chain to push configuration to.
+
+
+    cluster_builder           Name of the Tanzu Build Service (TBS) ClusterBuilder to
+                              use by default on image objects managed by the supply chain.
+
+    service_account           Name of the service account in the namespace where the Workload
+                              is submitted to utilize for providing registry credentials to
+                              Tanzu Build Service (TBS) Image objects as well as deploying the
+                              application.
+
+    cluster_builder           Name of the Tanzu Build Service (TBS) ClusterBuilder to use by
+                              default on image objects managed by the supply chain.
     ```
 
-1. Create a file named `ootb-supply-chain-testing-scanning-values.yaml` that specifies the
-corresponding values to the properties you want to tweak. For example:
+1. Create a file named `ootb-supply-chain-testing-values.yaml` that specifies
+   the corresponding values to the properties you want to tweak. For example:
 
     ```
     registry:
       server: REGISTRY-SERVER
       repository: REGISTRY-REPOSITORY
+
+    gitops:
+      repository_prefix: git@github.com:vmware-tanzu/
+      branch: main
+      user_name: supplychain
+      user_email: supplychain
+      commit_message: supplychain@cluster.local
+      ssh_secret: git-ssh
+
+    cluster_builder: default
     service_account: default
     ```
 
 1. With the configuration ready, install the package by running:
 
+
     ```
     tanzu package install ootb-supply-chain-testing-scanning \
       --package-name ootb-supply-chain-testing-scanning.tanzu.vmware.com \
-      --version 0.4.0-build.1 \
+      --version 0.4.0-build.3 \
       --namespace tap-install \
       --values-file ootb-supply-chain-testing-scanning-values.yaml
     ```
@@ -1167,6 +1292,7 @@ corresponding values to the properties you want to tweak. For example:
 
     Added installed package 'ootb-supply-chain-testing-scanning' in namespace 'tap-install'
     ```
+
 
 ## <a id='install-developer-conventions'></a> Install Developer Conventions
 
