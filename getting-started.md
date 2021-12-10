@@ -1274,10 +1274,10 @@ RabbitMQ instance:
     `https://github.com/jhvhs/rabbitmq-sample` by running:
 
         ```
-        tanzu apps workload create rmq-sample-app-usecase-1 --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch v0.1.0 --type web --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:example-rabbitmq-cluster-1:default"
+        tanzu apps workload create rmq-sample-app-usecase-1 --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch v0.1.0 --type web --service-ref "rmq=SERVICE REF"
         ```
 
-        Where `service-ref`is the value of `SERVICE REF` from the earlier output in step 1.
+        Where: `SERVICE REF`is the value of `SERVICE REF` from the output in the last step.
 
 1. Get the Knative web-app URL by running:
 
@@ -1294,7 +1294,7 @@ the new message IDs.
 
 ### <a id='services-journey-use-case-2'></a> Use case 2 - Binding an application to a pre-provisioned service instance running in a different namespace on the same Kubernetes cluster (GA)
 
-[Use case 1](#services-journey-use-case-1) demonstrates binding a sample application workload to a service
+[Use case 1](#services-journey-use-case-1) introduces binding a sample application workload to a service
 instance that is running in the same namespace.
 This use case is for binding a sample application workload to a service instance that is running in a different
 namespace. This is a common scenario as it separates concerns
@@ -1322,13 +1322,7 @@ for service instances.
     kubectl -n service-instances apply -f example-rabbitmq-cluster-service-instance-2.yaml
     ```
 
-    You now have an application workload running in the developer namespace and a
-    RabbitmqCluster service instance running in the `service-instances` namespace,
-    The next step is to bind them together so that your application can use the RabbitMQ cluster as the backing service.
-
-1. Pass the application workload a reference to the service
-instance by using the `--service-ref` flag.
-To obtain a service reference in the correct format, run:
+1. Obtain a service reference by running:
 
     ```
     $ tanzu service instances list --all-namespaces -owide
@@ -1342,13 +1336,7 @@ To obtain a service reference in the correct format, run:
     service-instances  example-rabbitmq-cluster-2  RabbitmqCluster  rabbitmq      14s   rabbitmq.com/v1beta1:RabbitmqCluster:example-rabbitmq-cluster-2:service-instances
     ```
 
-1. The service instance is in a different namespace to the one the
-Application Workload is running in.
-By default, it is impossible to bind an Application Workload to a service instance
-that resides in a different namespace as this would break tenancy of the
-Kubernetes namespace model. However, you can create a `ResourceClaimPolicy`
-(API provided by Services Toolkit), which you can configure to allow a
-cross-namespace binding to take place.
+1. Create a `ResourceClaimPolicy`(API provided by Services Toolkit) to enable cross-namespace binding.
 
     ```
     # resource-claim-policy.yaml
@@ -1363,7 +1351,9 @@ cross-namespace binding to take place.
     subject:
       group: rabbitmq.com
       kind: RabbitmqCluster
-  ```
+    ```
+    Where `*` indicates this policy permits any namespace to claim a RabbitmqCluster resource from
+    the service-instances namespace.
 
 1. Apply `resource-claim-policy.yaml` by running:
 
@@ -1371,55 +1361,44 @@ cross-namespace binding to take place.
     kubectl -n service-instances apply -f resource-claim-policy.yaml
     ```
 
-    This policy permits any namespace to claim a RabbitmqCluster resource from
-    the service-instances namespace.
-    For information about how policies work, see the
+    For more information about `ResourceClaimPolicy`, see the
     [ResourceClaimPolicy documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-service_resource_claims-terminology_and_apis.html#resourceclaimpolicy-4).
 
-1. With an appropriate policy in place, you can now bind the Application Workload
-to the RabbitmqCluster Service Instance using the SERVICE REF value from an earlier
-step. Associate the SERVICE REF value with a name as part of the following command:
+1. Bind the application workload to the RabbitmqCluster Service Instance using the `SERVICE REF` value from step 3.
+Associate the SERVICE REF value with a name as part of the following command:
 
     ```
-    $ tanzu apps workload update rmq-sample-app-usecase-1 --service-ref="rmq=rabbitmq.com/v1beta1:RabbitmqCluster:example-rabbitmq-cluster-2:service-instances" --yes
+    $ tanzu apps workload update rmq-sample-app-usecase-2 --service-ref="rmq=SERVICE REF" --yes
     ```
 
-1. Confirm that the application workload is built and running by using the following
-command to get the Knative web-app URL:
+    Where: `SERVICE REF`is the value of `SERVICE REF` from the output in the step 3.
+
+1. Get the Knative web-app URL by running:
 
     ```
-    tanzu apps workload get rmq-sample-app-usecase-1
+    tanzu apps workload get rmq-sample-app-usecase-2
     ```
 
-    >**Note:** It might take a while.
+    >**Note:** It can take some time before the workload is ready.
 
 1. Visit the URL and confirm the app is working by refreshing the page and
 checking the new message IDs.
 
 ### <a id='services-journey-use-case-3'></a> Use case 3 - Binding an application to a service running outside Kubernetes (Beta)
 
-This use case enables developers to connect their application workloads to almost
-any backing service, including those that are running external to the platform,
-as well as those that do not adhere to the Provisioned Service part of the binding
-specifications.
-This is made possible by using direct references to Kubernetes Secret objects.
+This use case leverages direct references to Kubernetes Secret resources to enable developers to connect their application workloads to almost
+any backing service, including backing services that
 
-For more information, see the
-[Provisioned Service specifications](https://github.com/servicebinding/spec#provisioned-service) in GitHub.
+* are running external to the platform
+* do not adhere to the [Provisioned Service specifications](https://github.com/servicebinding/spec#provisioned-service)
 
-In the previous two use cases you saw the use of the `--service-ref` flag on the
-`tanzu apps workload create` command, and you used it to provide a reference to a Provisioned Service service instance, for example the RabbitmqCluster.
+>**Note:** Kubernetes Secret resource must abide by
+the [Well-known Secret Entries specifications](https://github.com/servicebinding/spec#well-known-secret-entries).
 
-You can also provide a reference directly to a Kubernetes Secret resource that abides by
-the Well-known Secret Entries part of the binding specifications.
-
-For more information, see the
-[Well-known Secret Entries specifications](https://github.com/servicebinding/spec#well-known-secret-entries) in GitHub.
-
-In this example, bind a new application on Tanzu Application Platform to an
+The following example demonstrates the procedures to bind a new application on Tanzu Application Platform to an
 existing PostgreSQL database that exists in Azure:
 
-1. Create a Kubernetes Secret resource similar to the following example:
+1. Create a Kubernetes `Secret` resource similar to the following example:
 
     ```
     # external-azure-db-binding-compatible.yaml
@@ -1444,9 +1423,8 @@ existing PostgreSQL database that exists in Azure:
     ```
     kubectl apply -f external-azure-db-binding-compatible.yaml
     ```
-
-    >**Note:** This Secret can be defined in a different namespace than the Workload
-    >and claimed cross namespace through the use of `ResourceClaimPolicy` resources.
+    >**Note:** The `Secret` can be defined in a different namespace than the Workload
+    >and claimed cross namespace by using `ResourceClaimPolicy` resources.
     >For more information, see [Use case 2](#services-journey-use-case-2).
 
 1. Provide a reference to the Secret when creating your application workload.
