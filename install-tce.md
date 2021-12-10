@@ -9,7 +9,7 @@ environments only.
 <!-- What is meant by a "supported workflow"? And which isn't the supported workflow,
 the workaround or putting kapp-controller v0.29.0 on Tanzu Community Edition v0.9.1? -->
 
-## Install Tanzu Community Edition v0.9.1 
+## Install Tanzu Community Edition v0.9.1
 
 To install on Tanzu Community Edition v0.9.1, follow the instructions in these two sections:
 
@@ -22,7 +22,7 @@ To install on Tanzu Community Edition v0.9.1, follow the instructions in these t
 To install kapp-controller v0.29.0 or later on Tanzu Community Edition v0.9.1:
 
 1. Create a new workload or cluster. Do not install any packages on the cluster.
-1. Set the kubectl context to the Tanzu Community Edition Management cluster or Tanzu Community Edition Standalone cluster by running:
+1. Ensure the kubectl context is set to the Tanzu Community Edition Management cluster or Tanzu Community Edition Standalone cluster by running:
 
     ```
     kubectl config get-contexts
