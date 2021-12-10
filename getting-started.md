@@ -1360,8 +1360,8 @@ cross-namespace binding to take place.
     subject:
       group: rabbitmq.com
       kind: RabbitmqCluster
-  ```
-
+      ```
+  
 1. Apply `resource-claim-policy.yaml` by running:
 
     ```
@@ -1659,7 +1659,7 @@ Workload Cluster by running:
 the new message IDs.
 
 
-## Appendix
+## Next Steps
 
 ### Exploring more Tanzu apps CLI commands
 
