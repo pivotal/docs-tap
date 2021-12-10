@@ -138,39 +138,39 @@ To accept EULAs:
 
 2. For each of the following components, accept or confirm that you have accepted the EULA:
 
-    + [Tanzu Prerequisites](https://network.tanzu.vmware.com/products/tanzu-prerequisites/#/releases/1006464)
+    + [Cluster Essentials for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-cluster-essentials/#/releases/1011100)
     + [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/)
     + [Tanzu Build Service](https://network.tanzu.vmware.com/products/build-service/) and its associated components:
       + [Tanzu Build Service Dependencies](https://network.tanzu.vmware.com/products/tbs-dependencies/)
       + [Buildpacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-buildpacks-suite)
       + [Stacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-stacks-suite)
 
-## <a id='tanzu-prereqs'></a> Install Tanzu prerequisites
+## <a id='tanzu-cluster-essentials'></a> Install Cluster Essentials for VMware Tanzu
 
-If you are operating a Tanzu Kubernetes Grid or Tanzu Community Edition cluster, the Tanzu prerequisites are already installed.
+If you are operating a Tanzu Kubernetes Grid or Tanzu Community Edition cluster, the Cluster Essentials are already installed.
 
 For other Kubernetes providers, follow the steps below:
 
 1. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
 
-3. Navigate to [Tanzu Prerequisites](https://network.tanzu.vmware.com/products/tanzu-prerequisites/) on Tanzu Network.
+3. Navigate to [Cluster Essentials for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-cluster-essentials/) on Tanzu Network.
 
-4. Download `darwin-amd64-1.0.0-rc.2.tgz` (for OS X) or `linux-amd64-1.0.0-rc.2.tgz` (for Linux)
-   and unpack the TAR file into `tanzu-prereqs` directory:
+4. Download `tanzu-cluster-essentials-darwin-amd64-1.0.0.tgz` (for OS X) or `tanzu-cluster-essentials-linux-amd64-1.0.0.tgz` (for Linux)
+   and unpack the TAR file into `tanzu-cluster-essentials` directory:
 
     ```
-    mkdir $HOME/tanzu-prereqs
-    tar -xvf darwin-amd64-1.0.0-rc.2.tgz -C $HOME/tanzu-prereqs
+    mkdir $HOME/tanzu-cluster-essentials
+    tar -xvf tanzu-cluster-essentials-darwin-amd64-1.0.0.tgz -C $HOME/tanzu-cluster-essentials
     ```
 
 5. Configure and run `install.sh`, which installs kapp-controller and secretgen-controller on your cluster:
 
     ```
-    export INSTALL_BUNDLE=registry.tanzu.vmware.com/tanzu-prerequisites/prereqs-bundle@sha256:82dfaf70656b54dcba0d4def85ccae1578ff27054e7533d08320244af7fb0343
+    export INSTALL_BUNDLE=registry.tanzu.vmware.com/tanzu-cluster-essentials/cluster-essentials-bundle@sha256:82dfaf70656b54dcba0d4def85ccae1578ff27054e7533d08320244af7fb0343
     export INSTALL_REGISTRY_HOSTNAME=registry.tanzu.vmware.com
     export INSTALL_REGISTRY_USERNAME=TANZU-NET-USER
     export INSTALL_REGISTRY_PASSWORD=TANZU-NET-PASSWORD
-    cd $HOME/tanzu-prereqs
+    cd $HOME/tanzu-cluster-essentials
     ./install.sh
     ```
 
@@ -179,7 +179,7 @@ For other Kubernetes providers, follow the steps below:
 6. Install the `kapp` CLI onto your `$PATH`:
 
     ```
-    sudo cp $HOME/tanzu-prereqs/kapp /usr/local/bin/kapp
+    sudo cp $HOME/tanzu-cluster-essentials/kapp /usr/local/bin/kapp
     ```
 
 ## <a id='cli-and-plugin'></a> Install or update the Tanzu CLI and plugins
