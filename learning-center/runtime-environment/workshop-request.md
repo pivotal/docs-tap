@@ -2,10 +2,6 @@
 
 The ``WorkshopRequest`` custom resource defines a workshop request.
 
-The raw custom resource definition for the ``WorkshopRequest`` custom resource can be viewed at:
-
-* [https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/workshop-request.yaml](https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/workshop-request.yaml)
-
 ## Specifying workshop environment
 
 The ``WorkshopRequest`` custom resource is only used to request a workshop instance. It does not specify actual details needed to perform the deployment of the workshop instance. That information is instead sourced by the Learning Center operator from the ``WorkshopEnvironment`` and ``Workshop`` custom resources.

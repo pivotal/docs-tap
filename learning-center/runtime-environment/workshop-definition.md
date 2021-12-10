@@ -2,10 +2,6 @@
 
 The ``Workshop`` custom resource defines a workshop.
 
-The raw custom resource definition for the ``Workshop`` custom resource can be viewed at:
-
-* [https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/workshop.yaml](https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/workshop.yaml)
-
 ## Workshop title and description
 
 Each workshop is required to provide the ``title`` and ``description`` fields. If the fields are not supplied, the ``Workshop`` resource will be rejected when you attempt to load it into the Kubernetes cluster.

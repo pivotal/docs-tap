@@ -2,10 +2,6 @@
 
 The ``WorkshopSession`` custom resource defines a workshop session.
 
-The raw custom resource definition for the ``WorkshopSession`` custom resource can be viewed at:
-
-* [https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/workshop-session.yaml](https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/workshop-session.yaml)
-
 ## Specifying the session identity
 
 When running training for multiple people, it would be more typical to use the ``TrainingPortal`` custom resource to set up a training environment. Alternatively you would set up a workshop environment using the ``WorkshopEnvironment`` custom resource, then create requests for workshop instances using the ``WorkshopRequest`` custom resource. If doing the latter and you need more control over how the workshop instances are set up, you can use ``WorkshopSession`` custom resource instead of ``WorkshopRequest``.

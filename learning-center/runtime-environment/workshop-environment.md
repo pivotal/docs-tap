@@ -3,9 +3,6 @@
 
 The ``WorkshopEnvironment`` custom resource defines a workshop environment.
 
-The raw custom resource definition for the ``WorkshopEnvironment`` custom resource can be viewed at:
-
-* [https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/workshop-environment.yaml](https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/workshop-environment.yaml)
 
 ## Specifying the workshop definition
 

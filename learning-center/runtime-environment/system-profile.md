@@ -2,10 +2,6 @@
 
 The ``SystemProfile`` custom resource is used to configure the Learning Center operator. The default system profile can be used to set defaults for ingress and image pull secrets, with specific deployments being able to select an alternate profile if required.
 
-The raw custom resource definition for the ``SystemProfile`` custom resource can be viewed at:
-
-* [https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/system-profile.yaml](https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1/system-profile.yaml)
-
 ## Operator default system profile
 
 The Learning Center operator will by default use an instance of the ``SystemProfile`` custom resource, if it exists, named ``default-system-profile``. You can override the name of the resource used by the Learning Center operator as the default, by setting the ``SYSTEM_PROFILE`` environment variable on the deployment for the Learning Center operator.
