@@ -362,7 +362,7 @@ Notice the resources be created:
 
 During processing and upon completion, try performing `kubectl describe` on the `sourcescan` and `imagescan` resources to see the `Status` section.
 
-**NOTE:** Detailed information about vulnerabilities found will not display in the output from `kubectl describe; it is instead sent to the Metadata Store, where it can be queried there.
+**Note:** Detailed information about vulnerabilities found will not display in the output from `kubectl describe; it is instead sent to the Metadata Store, where it can be queried there.
 
 ## Querying the Metadata Store for vulnerability results using the Insight CLI
 
@@ -372,7 +372,8 @@ During processing and upon completion, try performing `kubectl describe` on the 
     kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store
     ```
 
-1. Using the `MetadataURL` field in the `kubectl describe sourcescan` or `imagescan` output,
+1. Using the `MetadataURL` field in the `kubectl describe sourcescan`
+   or `kubectl describe imagescan` output,
    use the Insight CLI to query the Metadata Store for the scan results that were output
    by the Grype Scanner. Run:
 
