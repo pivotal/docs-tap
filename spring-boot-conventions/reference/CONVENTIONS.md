@@ -318,31 +318,31 @@ The _Service intent_ conventions do not change the behavior of the final deploym
 
 The list of the supported intents are:
 
-  + MySQL
+  - MySQL
     - __Name__: `service-intent-mysql` 
     - __Label__: `services.conventions.apps.tanzu.vmware.com/mysql`
     - __Dependencies__: `mysql-connector-java`, `r2dbc-mysql`
-  + PostreSql
+  - PostreSql
     - __Name__: `service-intent-postgres`
     - __Label__: `services.conventions.apps.tanzu.vmware.com/postgres`
     - __Dependencies__: `postgresql`, `r2dbc-postgresql`
-  + MongoDB
+  - MongoDB
     - __Name__: `service-intent-mongodb`
     - __Label__: `services.conventions.apps.tanzu.vmware.com/mongodb`
     - __Dependencies__: `mongodb-driver-core`
-  + RabbitMQ
+  - RabbitMQ
     - __Name__: `service-intent-rabbitmq`
     - __Label__: `services.conventions.apps.tanzu.vmware.com/rabbitmq`
     - __Dependencies__: `amqp-client`
-  + Redis
+  - Redis
     - __Name__: `service-intent-redis`
     - __Label__: `services.conventions.apps.tanzu.vmware.com/redis`
     - __Dependencies__: `jedis`
-  + Kafka
+  - Kafka
     - __Name__: `service-intent-kafka`
     - __Label__: `services.conventions.apps.tanzu.vmware.com/kafka`
     - __Dependencies__: `kafka-clients`
-  + Kafka-streams
+  - Kafka-streams
     - __Name__: `service-intent-kafka-streams`
     - __Label__: `services.conventions.apps.tanzu.vmware.com/kafka-streams`
     - __Dependencies__: `kafka-streams`
