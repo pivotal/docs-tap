@@ -136,7 +136,7 @@ portalCredentials:
   clientAccess:
     username: robot@learningcenter
     password: null
-#! Primary image registry where Larning Center container images are stored. It
+#! Primary image registry where Learning Center container images are stored. It
 #! is only necessary to define the host and credentials when that image
 #! registry requires authentication to access images. This principally
 #! exists to allow relocation of images through Carvel image bundles.

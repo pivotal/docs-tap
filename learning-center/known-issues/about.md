@@ -23,7 +23,8 @@ ERROR:kopf.objects:Handler 'learningcenter' failed temporarily: TLS secret tls i
 ```
 
 #### Solution:
-To recover from this issue, you can follow [these steps](../getting-started/learningcenter-operator.md#enforcing-secure-connections) to create the TLS Secret, once the TLS is created, **you need to redeploy the TrainingPortal resource.** 
+To recover from this issue, you can follow [these steps](../getting-started/learningcenter-operator.md#enforcing-secure-connections) 
+to create the TLS Secret, once the TLS is created **you need to redeploy the TrainingPortal resource.** 
 
 ### image-policy-webhook-service not found
 
@@ -38,7 +39,8 @@ This is a race condition error among some packages, to recover from this error y
 
 ## Updating parameters don't work
 
-Normally you will need to update some parameters provided to the Learning Center Operartor (E.g. ingressDomain, TLS secret, ingressClass etc), depending the way you used to change the values, you can execute these commands to validate if the parameters were changed:
+Normally you will need to update some parameters provided to the Learning Center Operartor (E.g. ingressDomain, TLS secret, ingressClass etc), 
+depending the way you used to change the values, you can execute these commands to validate if the parameters were changed:
 
 ```
 kubectl describe systemprofile
@@ -51,7 +53,9 @@ kubectl describe pod  -n learningcenter
 But the Training Portals doesn't work or get the updated values.
 
 #### Solution:
-By design, the Training Portal resources will not react to any changes on the parameters provided when the training portals were created, this is because any change on the trainingportal resource will affect to any online user who is running a workshop. To get the new values, you will need to redeploy the trainingportal in a maintenance window where learning center is unavailable while the systemprofile gets updated.
+By design, the Training Portal resources will not react to any changes on the parameters provided when the training portals were created. 
+This is because any change on the trainingportal resource will affect to any online user who is running a workshop. 
+To get the new values, you will need to redeploy the trainingportal in a maintenance window where learning center is unavailable while the systemprofile gets updated.
 
 ## Increase your cluster's resources
 
