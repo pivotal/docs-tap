@@ -1,6 +1,32 @@
 # Release notes
 
-This topic contains release notes for Tanzu Application Platform beta.
+This topic contains release notes for Tanzu Application Platform v1.0.
+
+## <a id='1-0'></a> v1.0
+
+**Release Date**: MMMM DD, 2022
+
+### Features
+
+New features and changes in this release:
+
+* Feature 1
+* Feature 2
+
+### Known issues
+
+This release has the following issue:
+
+* Known issue 1
+* Known issue 2
+
+### Security issues
+
+This release has the following security issues:
+
+* Security issue 1
+* Security issue 2
+
 
 ## <a id='0-4-0'></a> v0.4.0 beta release
 
