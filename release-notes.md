@@ -58,16 +58,16 @@ The following components have been updated in Tanzu Application Platform v0.4.0:
 
 ### Known issues
 
-This release has the following issue:
+This release has the following issues:
 
-- Convention Service uses a work-around for supporting a self-signed certificate for the private
+- **Convention Service:** Convention Service uses a workaround for supporting a self-signed certificate for the private
 registry.
-For more information, see [Convention Service Self-Signed Registry Workaround](convention-service/self-signed-registry-workaround.md).
+For more information, see [Convention Service self-signed registry workaround](convention-service/self-signed-registry-workaround.md).
 
 - **Supply Chain Security Tools - Sign:** If all webhook nodes or Pods are evicted by the cluster or scaled down,
 the admission policy blocks any Pods from being created in the cluster.
-To resolve the issue, run `kubectl delete` the `MutatingWebhookConfiguration` and reapply it when the cluster is stable.
-For more information, see [Supply Chain Security Tools - Sign Known Issues](scst-sign/known_issues.md).
+To resolve the issue, delete the `MutatingWebhookConfiguration` and reapply it when the cluster is stable.
+For more information, see [Supply Chain Security Tools - Sign known issues](scst-sign/known_issues.md).
 
 
 
