@@ -3,6 +3,7 @@
 This topic will help you create a workload with a specified configuration.
 
 Workload configuration options include:
+
 - Source code to build
 - Runtime resource limits
 - Environment variables
@@ -63,4 +64,3 @@ tanzu apps workload create --file workload.yaml
 ## See also
 
 - [Tanzu Apps Workload](tanzu_apps_workload.md) - Workload lifecycle management
-

@@ -1,4 +1,4 @@
-# Insight package
+# insight package
 
 Package commands are as follows:
 
@@ -10,7 +10,7 @@ Package commands are as follows:
 
 ## See also
 
-* [Insight](insight.md)	 - This CLI is used to post data and make queries to the metadata store.
+* [Insight](insight.md)	 - This CLI is used to post data and query the metadata store.
 * [Insight package get](insight_package_get.md)	 - Get package by name, version, and package manager.
 * [Insight package images](insight_package_images.md)	 - Get images that contain the given package by name.
 * [Insight package sources](insight_package_sources.md)	 - Get sources that contain the given package by name.

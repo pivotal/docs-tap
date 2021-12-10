@@ -1,4 +1,4 @@
-## Insight Vulnerabilities Packages
+## insight vulnerabilities packages
 
 Get packages with a given vulnerability.
 
@@ -24,7 +24,7 @@ insight vulnerabilities packages --cveid CVE-123123-2021
   -h, --help            help for packages
 ```
 
-### See Also
+### See also
 
 * [insight vulnerabilities](insight_vulnerabilities.md)	 - Vulnerabilities commands
 

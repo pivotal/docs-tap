@@ -1,13 +1,13 @@
 ---
-title: Out of The Box Supply Chain with Testing and Scanning (ootb-supply-chain-testing)
+title: Out of The Box Supply Chain with Testing (ootb-supply-chain-testing)
 weight: 2
 ---
 
-This [cartographer] Supply Chain ties a series of Kubernetes resources which,
+This Cartographer Supply Chain ties a series of Kubernetes resources which,
 when working together, drives a developer-provided Workload from source code
 all the way to a Kubernetes configuration ready to be deployed to a cluster,
 passing forward the source code to image building if and only if the testing
-pipeline supplied by the developers run succesfully.
+pipeline supplied by the developers run successfully.
 
 
 ```
@@ -29,7 +29,7 @@ It includes all the capabilities of the Out of The Box Supply Chain Basic, but
 adds on top testing with Tekton:
 
 - Watching a Git Repository or local directory for changes
-- Running tests from a developer-provide tekton/Pipeline
+- Running tests from a developer-provided Tekton orPipeline
 - Building a container image out of the source code with Buildpacks
 - Applying operator-defined conventions to the container definition
 - Deploying the application to the same cluster
@@ -88,12 +88,12 @@ supplychain is responsible for (see Supply Chain Basic for details)
 - **rolebinding**: binds the role to the service account, i.e., grants the
   capabilities to the identity (see Supply Chain Basic for details)
 
-- **tekton pipeline** (_new_): a pipeline to be ran whenever the supply chain
-  hits the stage of testing the source code (see below)
+- **Tekton pipeline** (_new_): a pipeline to be ran whenever the supply chain
+  hits the stage of testing the source code
 
 
-Below you'll find details about the new objects (compared to Out of The Box
-Supply Chain Basic).
+Below you'll find details about the new objects compared to Out of The Box
+Supply Chain Basic.
 
 
 #### Updates to the developer namespace
@@ -110,9 +110,9 @@ Chain Basic section, we need to include one more:
   source code that has been found by earlier resources in the Supply Chain.
 
 
-##### tekton/Pipeline
+##### Tekton/Pipeline
 
-Despite the full liberty around tasks to run, the [tekton/Pipeline] object
+Despite the full liberty around tasks to run, the Tekton or pipeline object
 **must** be labelled with `apps.tanzu.vmware.com/pipeline: test`, and define
 that it expects to take two params:
 
@@ -154,18 +154,18 @@ spec:
               ./mvnw test
 ```
 
-ps.: at this point, changes to the developer-provided [tekton/Pipeline] _will
+ps.: at this point, changes to the developer-provided Tekton or pipeline _will
 not_ automatically trigger a re-run of the pipeline (i.e., a new
 [tekton/PipelineRun] will not be automatically created if a field in the
 tekton/Pipeline object is changed). As a workaround, the latest
 tekton/PipelineRun created can be deleted, which will trigger a re-run.
 
 
-##### Developer Workload
+##### Developer workload
 
-With the tekton/Pipeline object (following the label and parameter requirements
-mentioned above) submitted to the same namespace as the one where the Workload
-will be submitted to, we're ready to submit our Workload.
+With the Tekton or pipeline object, following the label and parameter requirements
+mentioned above, submitted to the same namespace where the Workload
+is submitted to, we're ready to submit our Workload.
 
 We can configure the Workload with two scenarios in mind:
 
@@ -173,7 +173,7 @@ We can configure the Workload with two scenarios in mind:
   external git repositories,
 
 - gitops: source code is provided by an external git repository (public _or_
-  private), and the final kubernetes configuration to deploy the application is
+  private), and the final Kubernetes configuration to deploy the application is
   persisted in a repository.
 
 
@@ -380,7 +380,7 @@ where:
    e.g.: "ssh-secret"
 
 -  `delivery_git_repository` (required): SSH url of the git repository to push
-   the kubernete configuration produced by the supply chain to.
+   the Kubernetes configuration produced by the supply chain to.
    e.g.: "ssh://git@foo.com/staging.git"
 
 -  `delivery_git_branch`: name of the branch to push the configuration to.
@@ -401,7 +401,7 @@ where:
    fetching the source code of `workload.spec.source.git`.
 
 
-### Known Issues
+### Known issues
 
 #### Scanning logs
 

@@ -52,7 +52,7 @@ spec:
 ```
 
 ## (Optional) Set up a watch
-Before deploying, set up a watch in another terminal to see things process which will be quick.
+Before deploying, set up a watch in another terminal to see things process.
 ```
 watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
 ```
@@ -65,7 +65,7 @@ kubectl apply -f public-blob-source-example.yaml
 ```
 
 ## View the scan results
-Once the scan has completed, perform:
+When the scan completes, perform:
 ```
 kubectl describe sourcescan public-blob-source-example
 ```

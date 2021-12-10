@@ -1,10 +1,10 @@
 ## insight package sources
 
-Get sources that contain the given package by name
+Get sources that contain the given package by name.
 
 ### Synopsis
 
-Get sources that contain the given package by name
+Get sources that contain the given package by name.
 
 ```
 insight package sources --name <package name> [flags]
@@ -24,7 +24,7 @@ insight package sources --name client
   -n, --name string     name of the package
 ```
 
-### SEE ALSO
+### See also
 
 * [insight package](insight_package.md)	 - Package commands
 

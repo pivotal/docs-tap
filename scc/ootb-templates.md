@@ -12,5 +12,5 @@ definition of the shape of such resources defined by templates.
 In this package, you'll find a series of reusable templates used by  Out of The
 Box Supply Chain Basic, Testing, and Testing with Scanning.
 
-As a prerequisite of the Out of The Box SupplyChains (the three of them), it
+As a prerequisite of the Out of The Box SupplyChains, it
 must be installed in order to have Workloads being properly delivered.

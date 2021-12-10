@@ -35,7 +35,7 @@ As auxiliary components, Tanzu Application Platform also includes:
   to perform common tasks like fetching source code, running tests, and
   building container images.
 
-- Out of The Box Delivery Basic, for deliverying to a Kubernetes cluster the
+- Out of The Box Delivery Basic, for delivering to a Kubernetes cluster the
   configuration built throughout a supply chain
 
 Note that both Templates and Delivery Basic are requirements for the Supply

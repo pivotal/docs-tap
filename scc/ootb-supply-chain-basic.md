@@ -3,7 +3,7 @@ title: Out of The Box Supply Chain Basic (ootb-supply-chain-basic)
 weight: 2
 ---
 
-This [cartographer] Supply Chain ties a series of Kubernetes resources which,
+This Cartographe] Supply Chain ties a series of Kubernetes resources which,
 when working together, drives a developer-provided Workload from source code
 all the way to a Kubernetes configuration ready to be deployed to a cluster.
 
@@ -73,12 +73,12 @@ Regardless of the supply chain that a Workload goes through, there must be in
 the developer namespace a Secret that contains the credentials to be passed to
 resources that push container images to image registries (like Tanzu Build
 Service) as well as for those resources that must pull container images from
-such image registry (like [Convention Service], [Knative], etc).
+such image registry, such as Convention Service and Knative.
 
-Using the `tanzu secret registry add` command from the [tanzu cli], we're able
+Using the `tanzu secret registry add` command from the Tanzu CLI, we're able
 to provision a base secret that contains such credentials and then export the
-contents of that Secret to the namespaces where it should be consumed (i.e.,
-the developer namespaces).
+contents of that Secret to the namespaces where it should be consumed. For example,
+the developer namespaces.
 
 
 ```
@@ -110,7 +110,7 @@ developer / development team.
 To it, we can directly attach secrets as bind roles so that we can provide ways
 of indirectly letting resources find credentials without having to know the
 exact name of the secrets, as well as reduce the set of permissions that a
-group would have (through the use of Roles and RoleBinding objects).
+group would have, through the use of Roles and RoleBinding objects.
 
 
 ```
@@ -132,8 +132,8 @@ created the Workload, it needs permissions within Kubernetes' RBAC system to do
 so.
 
 To achieve that, we need to first describe a set of permissions for particular
-resources (i.e., create a Role), and then bind those permissions to an actor
-(i.e., create a RoleBinding that binds the Role to the ServiceAccount).
+resources, meaning create a Role, and then bind those permissions to an actor.
+For example, creating a RoleBinding that binds the Role to the ServiceAccount.
 
 So, create a Role describing the permissions:
 
@@ -205,10 +205,10 @@ subjects:
 ```
 
 
-### Developer Workload
+### Developer workload
 
-With the developer namespace setup with the objects above (image secret,
-serviceaccount, role, and rolebinding), we can move on to creating the Workload
+With the developer namespace setup with the objects above including, image secret,
+serviceaccount, role, and rolebinding. We can move on to creating the Workload
 object.
 
 We can configure the Workload with two scenarios in mind:
@@ -348,8 +348,8 @@ kubectl create secret generic git-ssh \
     --from-file=./known_hosts
 ```
 
-With the namespace configured (i.e., having added the secret to be used for
-fetching source code from a private repository), we can move on to creating the
+With the namespace configured, having added the secret to be used for
+fetching source code from a private repository, we can move on to creating the
 Workload with the new parameter:
 
 
@@ -385,7 +385,7 @@ Create workload:
 ###### GitOps
 
 Differently from local iteration, the GitOps approach requires a secret
-containing credentials to a git provider (e.g., GitHub) to be exist in the same
+containing credentials to a git provider to be exist in the same
 namespace as the Workload, and a couple parameters to be set with details about
 the commit to be pushed to the repository where Kubernetes configuration is
 delivered to.
@@ -467,7 +467,7 @@ where:
    e.g.: "ssh-secret"
 
 -  `delivery_git_repository` (required): SSH url of the git repository to push
-   the kubernete configuration produced by the supply chain to.
+   the Kubernetes configuration produced by the supply chain to.
    e.g.: "ssh://git@foo.com/staging.git"
 
 -  `delivery_git_branch`: name of the branch to push the configuration to.

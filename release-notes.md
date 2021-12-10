@@ -1,10 +1,36 @@
 # Release notes
 
-This topic contains release notes for Tanzu Application Platform beta.
+This topic contains release notes for Tanzu Application Platform v1.0.
 
-## <a id='0-3-0'></a> v0.4.0 beta release
+## <a id='1-0'></a> v1.0
 
-**Release Date**: TBD, 2021
+**Release Date**: MMMM DD, 2022
+
+### Features
+
+New features and changes in this release:
+
+* Feature 1
+* Feature 2
+
+### Known issues
+
+This release has the following issue:
+
+* Known issue 1
+* Known issue 2
+
+### Security issues
+
+This release has the following security issues:
+
+* Security issue 1
+* Security issue 2
+
+
+## <a id='0-4-0'></a> v0.4.0 beta release
+
+**Release Date**: December 10, 2021
 
 ### Features
 
@@ -20,10 +46,6 @@ The Dev profile now includes:
 - Out of the Box Supply Chain - Testing
 
 The Dev profile no longer includes Image Policy Webhook.
-
-**New Components**
-
-The following components are new in Tanzu Application Platform v0.4.0:
 
 **Updated Components**
 
@@ -42,12 +64,11 @@ This release has the following issue:
 registry.
 For more information, see [Convention Service Self-Signed Registry Workaround](convention-service/self-signed-registry-workaround.md).
 
-- **Supply Chain Security Tools - Sign:** If all webhook nodes or Pods are evicted by the cluster or scaled down, the admission policy blocks any Pods from being created in the cluster. To resolve the issue, the administrator needs to kubectl delete the `MutatingWebhookConfiguration` and reapply it once the cluster is stable.
+- **Supply Chain Security Tools - Sign:** If all webhook nodes or Pods are evicted by the cluster or scaled down,
+the admission policy blocks any Pods from being created in the cluster.
+To resolve the issue, run `kubectl delete` the `MutatingWebhookConfiguration` and reapply it when the cluster is stable.
 For more information, see [Supply Chain Security Tools - Sign Known Issues](scst-sign/known_issues.md).
 
-### Security issues
-
-<!-- This release has the following security issue: -->
 
 
 ## <a id='0-3-0'></a> v0.3.0 beta release
