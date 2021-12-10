@@ -317,6 +317,7 @@ Convention output:
 The _Service intent_ conventions do not change the behavior of the final deployment but may be used as added information to process in the supply chain. For example, when an application requires the binding of a database service. This convention adds an __annotation__ and a label to the `PodTemplateSpec` for each detected dependency. It adds an __annotation__ and a label to the `conventions.apps.tanzu.vmware.com/applied-conventions` as well.
 
 The list of the supported intents are:
+
   + MySQL
     - __Name__: `service-intent-mysql` 
     - __Label__: `services.conventions.apps.tanzu.vmware.com/mysql`
