@@ -372,7 +372,7 @@ During processing and upon completion, try performing `kubectl describe` on the 
     kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store
     ```
 
-1. Using the `MetadataURL` field in the `kubectl describe`, `sourcescan`, or `imagescan` output,
+1. Using the `MetadataURL` field in the `kubectl describe sourcescan` or `imagescan` output,
    use the Insight CLI to query the Metadata Store for the scan results that were output
    by the Grype Scanner. Run:
 
