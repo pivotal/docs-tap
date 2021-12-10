@@ -820,10 +820,11 @@ Cartographer
 
 ### Install
 
-1. Familiarize yourself with the set of values of the package that can be configured by running:
+1. Familiarize yourself with the set of values of the package that can be
+   configured by running:
 
     ```
-    tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.4.0-build.1 \
+    tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.4.0-build.3 \
       --values-schema \
       -n tap-install
     ```
@@ -831,31 +832,64 @@ Cartographer
     For example:
 
     ```
-    KEY                  TYPE    DESCRIPTION
+    KEY                       DESCRIPTION
 
-    registry.repository  string  Name of the repository in the image registry server where
-                                 the application images from the workload be pushed to
-                                 (required).
+    registry.repository       Name of the repository in the image registry server where
+                              the application images from he workloould be pushed to
+                              (required).
 
-    registry.server      string  Name of the registry server where application images should
-                                 be pushed to (required).
+    registry.server           Name of the registry server where application images should
+                              be pushed to (required).
 
-    cluster_builder      string  Name of the Tanzu Build Service (TBS) ClusterBuilder to
-                                 use by default on image objects managed by the supply chain.
 
-    service_account      string  Name of the service account in the namespace where the Workload
-                                 is submitted to utilize for providing registry credentials to
-                                 Tanzu Build Service (TBS) Image objects as well as deploying the
-                                 application.
+
+    gitops.username           Default user name to be used for the commits produced by the
+                              supply chain.
+
+    gitops.branch             Default branch to use for pushing Kubernetes configuration files
+                              produced by the supply chain.
+
+    gitops.commit_message     Default git commit message to write when publishing Kubernetes
+                              configuration files produces by the supply chain to git.
+
+    gitops.email              Default user email to be used for the commits produced by the
+                              supply chain.
+
+    gitops.repository_prefix  Default prefix to be used for forming Git SSH URLs for pushing
+                              Kubernetes configuration produced by the supply chain.
+
+    gitops.ssh_secret         Name of the default Secret containing SSH credentials to lookup
+                              in the developer namespace for the supply chain to fetch source
+                              code from and push configuration to.
+
+
+
+    cluster_builder           Name of the Tanzu Build Service (TBS) ClusterBuilder to
+                              use by default on image objects managed by the supply chain.
+
+    service_account           Name of the service account in the namespace where the Workload
+                              is submitted to utilize for providing registry credentials to
+                              Tanzu Build Service (TBS) Image objects as well as deploying the
+                              application.
     ```
 
-1. Create a file named `ootb-supply-chain-basic-values.yaml` that specifies the corresponding values
-to the properties you want to tweak. For example:
+1. Create a file named `ootb-supply-chain-basic-values.yaml` that specifies the
+   corresponding values to the properties you want to tweak. For example:
 
     ```
     registry:
       server: REGISTRY-SERVER
       repository: REGISTRY-REPOSITORY
+
+    gitops:
+      repository_prefix: git@github.com:vmware-tanzu/
+      branch: main
+      user_name: supplychain
+      user_email: supplychain
+      commit_message: supplychain@cluster.local
+      ssh_secret: git-ssh
+
+    cluster_builder: default
     service_account: default
     ```
 
@@ -864,10 +898,11 @@ to the properties you want to tweak. For example:
     ```
     tanzu package install ootb-supply-chain-basic \
       --package-name ootb-supply-chain-basic.tanzu.vmware.com \
-      --version 0.4.0-build.1 \
+      --version 0.4.0-build.3 \
       --namespace tap-install \
       --values-file ootb-supply-chain-basic-values.yaml
     ```
+
     Example output:
 
     ```

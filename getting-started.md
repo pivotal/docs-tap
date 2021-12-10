@@ -83,6 +83,11 @@ For information about connecting to Tanzu Application Platform GUI, see
 
     Where `GIT-URL-TO-PROJECT-REPO` is the path you uploaded to in step 5.
 
+    >**Note:** If git repository is private, a secret must be placed in the
+    developer namespace to provide the credentials to access it. For more
+    information, see [Private Source Git Repository](scc/ootb-supply-chain-basic.md#private-source-git-repository).
+
+
     If you bypassed step 5, and weren't able to upload your accelerator to a Git repo, you can use the public version to test with:
     ```
     tanzu apps workload create tanzu-java-web-app \
@@ -1676,8 +1681,7 @@ earlier in this guide.
 to another environment, by running:
 
     ```
-    tanzu apps workload get tanzu-java-web-app --export \
-     \
+    tanzu apps workload get tanzu-java-web-app --export
     ```
 
 * Explore the flags available for the workload commands by running:
