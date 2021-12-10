@@ -2,13 +2,14 @@
 
 ## Overview
 
-This repo contains the content for Tanzu Application Platform docs, v0.1–v0.4.
+This repo contains the content for Tanzu Application Platform docs, v0.1–v1.0
 
 ## Branches
 
 | Branch | Usage |
 |--------|-------|
-| main | Development branch for pre-release beta-4 docs staged at https://docs-staging.vmware.com/en/Tanzu-Application-Platform/0.4/tap/GUID-overview.html |
+| main | Development branch for pre-release v1.0 docs staged at https://docs-staging.vmware.com/en/Tanzu-Application-Platform/1.0/tap/GUID-overview.html |
+| beta-4 | Branch that is published to https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/index.html |
 | beta-3 | Branch that is published to https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.3/tap-0-3/GUID-overview.html |
 | beta-2 | Branch that is published to https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-overview.html |
 | beta-1 | Branch that is published to https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.1/tap-0-1/GUID-overview.html |
@@ -103,7 +104,7 @@ For instructions on how to create a pull request on a branch and instructions on
 
 ## Publishing Docs
 
-v0.1 Staging docs:  
+v1.0 Staging docs:  
 
 - [docworks](https://docworks.vmware.com/) is the main tool for managing docs used by writers.
 - [docsdash](https://docsdash.vmware.com/) is a deployment UI which manages the promotion from staging to pre-prod to production. The process below describes how to upload our docs to staging, replacing the publication with the same version.
@@ -118,7 +119,7 @@ Starting from the repo root, this will create a new `docs.zip` with no root fold
 
 
 ```sh
-git pull ; rm *.zip ; zip -r tap3beta *
+git pull ; rm *.zip ; zip -r tap-1-0 *
 ```
 
 
