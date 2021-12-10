@@ -2,13 +2,14 @@
 
 ## Overview
 
-This repo contains the content for Tanzu Application Platform docs, v0.1–v0.4.
+This repo contains the content for Tanzu Application Platform docs, v0.1–v1.0
 
 ## Branches
 
 | Branch | Usage |
 |--------|-------|
-| main | Development branch for pre-release beta-4 docs staged at https://docs-staging.vmware.com/en/Tanzu-Application-Platform/0.4/tap/GUID-overview.html |
+| main | Development branch for pre-release v1.0 docs staged at https://docs-staging.vmware.com/en/Tanzu-Application-Platform/1.0/tap/GUID-overview.html |
+| beta-4 | Branch that is published to https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/index.html |
 | beta-3 | Branch that is published to https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.3/tap-0-3/GUID-overview.html |
 | beta-2 | Branch that is published to https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-overview.html |
 | beta-1 | Branch that is published to https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.1/tap-0-1/GUID-overview.html |
