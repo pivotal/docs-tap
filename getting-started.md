@@ -1661,26 +1661,23 @@ the new message IDs.
 
 ## Next Steps
 
-### Exploring more Tanzu apps CLI commands
+### Explore Tanzu Application CLI Commands
 
-Here are some additional CLI commands for the app that you deployed and debugged
-earlier in this guide.
-
-* Add some envars by running:
+To add ENVARS, run the following:
 
     ```
     tanzu apps workload update tanzu-java-web-app --env foo=bar
     ```
 
-* Export the current running workload definition, to check into git, or promote
-to another environment, by running:
+To export the current running workload definition, check into Git, or promote
+to another environment, run the following:
 
     ```
     tanzu apps workload get tanzu-java-web-app --export \
      \
     ```
 
-* Explore the flags available for the workload commands by running:
+To explore available flags for the workload commands, run the following:
 
     ```
     tanzu apps workload -h
@@ -1688,7 +1685,7 @@ to another environment, by running:
     tanzu apps workload create -h
     ```
 
-* Create a simple Java app from source code on your local file system by running:
+To create a Java application from source code on your local file system, run the following:
 
     ```
     git clone git@github.com:spring-projects/spring-petclinic.git
