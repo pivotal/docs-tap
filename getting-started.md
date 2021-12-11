@@ -1278,7 +1278,7 @@ RabbitMQ instance:
         tanzu apps workload create rmq-sample-app-usecase-1 --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch v0.1.0 --type web --service-ref "rmq=SERVICE REF"
         ```
 
-        Where: `SERVICE REF`is the value of `SERVICE REF` from the output in the last step.
+        Where `SERVICE REF`is the value of `SERVICE REF` from the output in the last step.
 
 1. Get the Knative web-app URL by running:
 
@@ -1353,7 +1353,7 @@ for service instances.
       group: rabbitmq.com
       kind: RabbitmqCluster
     ```
-    Where: `*` indicates this policy permits any namespace to claim a RabbitmqCluster resource from
+    Where `*` indicates this policy permits any namespace to claim a RabbitmqCluster resource from
     the service-instances namespace.
 
 1. Apply `resource-claim-policy.yaml` by running:
@@ -1372,7 +1372,7 @@ Associate the SERVICE REF value with a name as part of the following command:
     $ tanzu apps workload update rmq-sample-app-usecase-2 --service-ref="rmq=SERVICE REF" --yes
     ```
 
-    Where: `SERVICE REF`is the value of `SERVICE REF` from the output in the step 3.
+    Where `SERVICE REF`is the value of `SERVICE REF` from the output in the step 3.
 
 1. Get the Knative web-app URL by running:
 
