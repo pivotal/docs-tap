@@ -103,7 +103,9 @@ cert_manager and FluxCD Source Controller are installed as part of all profiles.
         ```
         tanzu package installed get fluxcd-source-controller -n tap-install
         ```
+
         For example:
+
         ```
         tanzu package installed get fluxcd-source-controller -n tap-install
         \ Retrieving installation details for fluxcd-source-controller...
@@ -115,7 +117,7 @@ cert_manager and FluxCD Source Controller are installed as part of all profiles.
         USEFUL-ERROR-MESSAGE:
         ```
 
-        STATUS should be 'Reconcile succeeded.'
+        Verify that `STATUS` is `Reconcile succeeded`
 
         ```
         kubectl get pods -n flux-system
@@ -129,7 +131,7 @@ cert_manager and FluxCD Source Controller are installed as part of all profiles.
         source-controller-69859f545d-ll8fj   1/1     Running   0          3m38s
         ```
 
-        STATUS should be 'Running.'
+        Verify that `STATUS` is `Running`
 
 ## <a id='install-cnr'></a> Install Cloud Native Runtimes
 
@@ -244,7 +246,7 @@ To install Cloud Native Runtimes:
     USEFUL-ERROR-MESSAGE:
     ```
 
-    `STATUS` is `Reconcile succeeded`
+    Verify that `STATUS` is `Reconcile succeeded`
 
 1. Configure a namespace to use Cloud Native Runtimes:
 
@@ -385,6 +387,7 @@ To install Convention Controller:
     ```
 
     For example:
+
     ```
     tanzu package installed get convention-controller -n tap-install
     Retrieving installation details for convention-controller...
@@ -396,7 +399,7 @@ To install Convention Controller:
     USEFUL-ERROR-MESSAGE:
     ```
 
-    `STATUS` should be 'Reconcile succeeded.'
+    Verify that `STATUS` is `Reconcile succeeded`
 
     ```
     kubectl get pods -n conventions-system
@@ -410,7 +413,7 @@ To install Convention Controller:
     conventions-controller-manager-596c65f75-j9dmn   1/1     Running   0          72s
     ```
 
-    `STATUS` is `Running`.
+    Verify that `STATUS` is `Running`
 
 
 ## <a id='install-source-controller'></a> Install Source Controller
@@ -494,7 +497,7 @@ To install Source Controller:
     USEFUL-ERROR-MESSAGE:
     ```
 
-    `STATUS` is `Reconcile succeeded`.
+    Verify that `STATUS` is `Reconcile succeeded`
 
     ```
     kubectl get pods -n source-system
@@ -508,7 +511,7 @@ To install Source Controller:
     source-controller-manager-f68dc7bb6-4lrn6   1/1     Running   0          45h
     ```
 
-    `STATUS` is `Running`
+    Verify that `STATUS` is `Running`
 
 ## <a id='install-app-accelerator'></a> Install Application Accelerator
 
@@ -638,7 +641,7 @@ To install Application Accelerator:
     USEFUL-ERROR-MESSAGE:
     ```
 
-    `STATUS` is `Reconcile succeeded`.
+    Verify that `STATUS` is `Reconcile succeeded`
 
 1. To see the IP address for the Application Accelerator API when the `server.service_type` is set to `LoadBalancer`, run the following command:
 
@@ -1246,7 +1249,7 @@ by running:
     USEFUL-ERROR-MESSAGE:
     ```
 
-    `STATUS` is `Reconcile succeeded`
+    Verify that `STATUS` is `Reconcile succeeded`
 
 
 ## <a id='install-spring-boot-convention'></a> Install Spring Boot Conventions
@@ -1301,7 +1304,7 @@ To install Spring Boot conventions:
     USEFUL-ERROR-MESSAGE:
     ```
 
-    `STATUS` is `Reconcile succeeded`
+    Verify that `STATUS` is `Reconcile succeeded`
 
 
 ## <a id="install-app-live-view"></a>Install Application Live View
@@ -1412,7 +1415,7 @@ Application Live View Convention Service only.
     USEFUL-ERROR-MESSAGE:
     ```
 
-    `STATUS` is `Reconcile succeeded`
+    Verify that `STATUS` is `Reconcile succeeded`
 
 1. Verify the package install for `Application Live View Conventions` package by running:
 
@@ -1433,7 +1436,7 @@ Application Live View Convention Service only.
     USEFUL-ERROR-MESSAGE:
     ```
 
-    `STATUS` is `Reconcile succeeded`
+    Verify that `STATUS` is `Reconcile succeeded`
 
 The Application Live View UI plug-in is part of Tanzu Application Platform GUI.
 To access the Application Live View UI,
@@ -1644,7 +1647,8 @@ with your relevant values. The meanings of some placeholders are explained in th
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
     ```
-    `STATUS` is `Reconcile succeeded`
+
+    Verify that `STATUS` is `Reconcile succeeded`
 
 1. To access Tanzu Application Platform GUI, use the service you exposed in the `service_type`
 field in the values file.
@@ -1894,7 +1898,7 @@ Use the following procedure to install Service Bindings:
     manager-6d85fffbcd-j4gvs   1/1     Running   0          22s
     ```
 
-    `STATUS` is `Running`
+    Verify that `STATUS` is `Running`
 
 
 ## <a id='install-scst-store'></a> Install Supply Chain Security Tools - Store
@@ -2383,7 +2387,8 @@ To install Services Toolkit:
     ```
     tanzu package installed get services-toolkit -n tap-install
     ```
-    and checking that the `STATUS` value is `Reconcile succeeded`.
+
+    and checking that the `STATUS` value is `Reconcile succeeded`
 
     For example:
 
@@ -2397,8 +2402,6 @@ To install Services Toolkit:
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
     ```
-
-    `STATUS` is `Reconcile succeeded`.
 
 
 ## <a id='verify'></a> Verify the installed packages
