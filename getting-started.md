@@ -1466,7 +1466,7 @@ For more information about network requirements and recommended topologies, see 
 
 #### Prerequisites
 
->**Important:** It is assumed that you are familiar with the previous use cases prior to going through use case 4.
+>**Important:** You must complete the previous use cases prior to continuing with use case 4.
 
 Ensure you have met the following prerequisites before starting the [procedures of use case 4](#steps-use-case-4):
 
@@ -1491,7 +1491,7 @@ cluster.
 1. Download and install the `kubectl-scp` plug-in from [Tanzu Application Platform Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform).
 
     **Note:** This plug-in is for demonstration and experimentation purposes only.
-    
+
     **Note:** To install the plug-in you must place it in your PATH and ensure it is executable.
 
     For example:
