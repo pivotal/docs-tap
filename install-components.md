@@ -58,26 +58,81 @@ cert_manager and FluxCD Source Controller are installed as part of all profiles.
         ```
 * **FluxCD source-controller**:
 
-     1. Create the namespace `flux-system`.
+    1. Create the namespace `flux-system`.
 
         ```
         kubectl create namespace flux-system
         ```
 
-     2. Create the `clusterrolebinding` by running:
+    1. Create the `clusterrolebinding` by running:
         ```
         kubectl create clusterrolebinding default-admin \
         --clusterrole=cluster-admin \
         --serviceaccount=flux-system:default
         ```
-     3. Install FluxCD Source Controller by running:
+
+    1. Install FluxCD Source Controller by running:
+
+        ```
+        tanzu package install fluxcd-source-controller -p fluxcd.source.controller.tanzu.vmware.com -v VERSION-NUMBER -n tap-install
+        ```
+
+        Where:
+
+        - `VERSION-NUMBER` is the version of the package listed in step 1 above.
+
+        For example:
+        ```
+        tanzu package install fluxcd-source-controller -p fluxcd.source.controller.tanzu.vmware.com -v 0.16.0 -n tap-install
+        \ Installing package 'fluxcd.source.controller.tanzu.vmware.com'
+        | Getting package metadata for 'fluxcd.source.controller.tanzu.vmware.com'
+        | Creating service account 'fluxcd-source-controller-tap-install-sa'
+        | Creating cluster admin role 'fluxcd-source-controller-tap-install-cluster-role'
+        | Creating cluster role binding 'fluxcd-source-controller-tap-install-cluster-rolebinding'
+        | Creating package resource
+        - Waiting for 'PackageInstall' reconciliation for 'fluxcd-source-controller'
+        | 'PackageInstall' resource install status: Reconciling
+
+         Added installed package 'fluxcd-source-controller'
+        ```
+
+    1. Verify the package install by running:
+
+        ```
+        tanzu package installed get fluxcd-source-controller -n tap-install
+        ```
+
+        For example:
+
+        ```
+        tanzu package installed get fluxcd-source-controller -n tap-install
+        \ Retrieving installation details for fluxcd-source-controller...
+        NAME:                    fluxcd-source-controller
+        PACKAGE-NAME:            fluxcd.source.controller.tanzu.vmware.com
+        PACKAGE-VERSION:         0.16.0
+        STATUS:                  Reconcile succeeded
+        CONDITIONS:              [{ReconcileSucceeded True  }]
+        USEFUL-ERROR-MESSAGE:
+        ```
+
+        Verify that `STATUS` is `Reconcile succeeded`
+
+        ```
+        kubectl get pods -n flux-system
+        ```
+
+        For example:
+
         ```
         kapp deploy -y -a flux-source-controller -n flux-system \
         -f https://github.com/fluxcd/source-controller/releases/download/v0.15.4/source-controller.crds.yaml \
         -f https://github.com/fluxcd/source-controller/releases/download/v0.15.4/source-controller.deployment.yaml
         ```
-        We have verified the Tanzu Application Platform repo bundle packages installation with FluxCD source-controller version v0.15.4.
 
+        We have verified the Tanzu Application Platform repo bundle packages installation with
+        FluxCD source-controller version v0.15.4.
+
+        Verify that `STATUS` is `Running`
 
 ## <a id='install-cnr'></a> Install Cloud Native Runtimes
 
@@ -192,7 +247,7 @@ To install Cloud Native Runtimes:
     USEFUL-ERROR-MESSAGE:
     ```
 
-    `STATUS` is `Reconcile succeeded`
+    Verify that `STATUS` is `Reconcile succeeded`
 
 1. Configure a namespace to use Cloud Native Runtimes:
 
@@ -333,6 +388,7 @@ To install Convention Controller:
     ```
 
     For example:
+
     ```
     tanzu package installed get convention-controller -n tap-install
     Retrieving installation details for convention-controller...
@@ -344,7 +400,7 @@ To install Convention Controller:
     USEFUL-ERROR-MESSAGE:
     ```
 
-    `STATUS` should be 'Reconcile succeeded.'
+    Verify that `STATUS` is `Reconcile succeeded`
 
     ```
     kubectl get pods -n conventions-system
@@ -358,7 +414,7 @@ To install Convention Controller:
     conventions-controller-manager-596c65f75-j9dmn   1/1     Running   0          72s
     ```
 
-    `STATUS` is `Running`.
+    Verify that `STATUS` is `Running`
 
 
 ## <a id='install-source-controller'></a> Install Source Controller
@@ -442,7 +498,7 @@ To install Source Controller:
     USEFUL-ERROR-MESSAGE:
     ```
 
-    `STATUS` is `Reconcile succeeded`.
+    Verify that `STATUS` is `Reconcile succeeded`
 
     ```
     kubectl get pods -n source-system
@@ -456,7 +512,7 @@ To install Source Controller:
     source-controller-manager-f68dc7bb6-4lrn6   1/1     Running   0          45h
     ```
 
-    `STATUS` is `Running`
+    Verify that `STATUS` is `Running`
 
 ## <a id='install-app-accelerator'></a> Install Application Accelerator
 
@@ -586,7 +642,7 @@ To install Application Accelerator:
     USEFUL-ERROR-MESSAGE:
     ```
 
-    `STATUS` is `Reconcile succeeded`.
+    Verify that `STATUS` is `Reconcile succeeded`
 
 1. To see the IP address for the Application Accelerator API when the `server.service_type` is set to `LoadBalancer`, run the following command:
 
@@ -1194,7 +1250,7 @@ by running:
     USEFUL-ERROR-MESSAGE:
     ```
 
-    `STATUS` is `Reconcile succeeded`
+    Verify that `STATUS` is `Reconcile succeeded`
 
 
 ## <a id='install-spring-boot-convention'></a> Install Spring Boot Conventions
@@ -1249,7 +1305,7 @@ To install Spring Boot conventions:
     USEFUL-ERROR-MESSAGE:
     ```
 
-    `STATUS` is `Reconcile succeeded`
+    Verify that `STATUS` is `Reconcile succeeded`
 
 
 ## <a id="install-app-live-view"></a>Install Application Live View
@@ -1360,7 +1416,7 @@ Application Live View Convention Service only.
     USEFUL-ERROR-MESSAGE:
     ```
 
-    `STATUS` is `Reconcile succeeded`
+    Verify that `STATUS` is `Reconcile succeeded`
 
 1. Verify the package install for `Application Live View Conventions` package by running:
 
@@ -1381,7 +1437,7 @@ Application Live View Convention Service only.
     USEFUL-ERROR-MESSAGE:
     ```
 
-    `STATUS` is `Reconcile succeeded`
+    Verify that `STATUS` is `Reconcile succeeded`
 
 The Application Live View UI plug-in is part of Tanzu Application Platform GUI.
 To access the Application Live View UI,
@@ -1592,7 +1648,8 @@ with your relevant values. The meanings of some placeholders are explained in th
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
     ```
-    `STATUS` is `Reconcile succeeded`
+
+    Verify that `STATUS` is `Reconcile succeeded`
 
 1. To access Tanzu Application Platform GUI, use the service you exposed in the `service_type`
 field in the values file.
@@ -1842,7 +1899,7 @@ Use the following procedure to install Service Bindings:
     manager-6d85fffbcd-j4gvs   1/1     Running   0          22s
     ```
 
-    `STATUS` is `Running`
+    Verify that `STATUS` is `Running`
 
 
 ## <a id='install-scst-store'></a> Install Supply Chain Security Tools - Store
@@ -2331,7 +2388,8 @@ To install Services Toolkit:
     ```
     tanzu package installed get services-toolkit -n tap-install
     ```
-    and checking that the `STATUS` value is `Reconcile succeeded`.
+
+    and checking that the `STATUS` value is `Reconcile succeeded`
 
     For example:
 
@@ -2345,8 +2403,6 @@ To install Services Toolkit:
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
     ```
-
-    `STATUS` is `Reconcile succeeded`.
 
 
 ## <a id='verify'></a> Verify the installed packages
