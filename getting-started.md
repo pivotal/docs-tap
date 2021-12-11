@@ -1221,7 +1221,7 @@ ClusterResources in `rabbitmq-clusterresource.yaml`.
     [Service Offering for VMware Tanzu](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.4/services-toolkit-0-4/GUID-service_offering-terminology_and_apis.html).
 
 
-### <a id='services-journey-use-case-1'></a> Use case 1 - Binding an application to a pre-provisioned service instance running in the same namespace
+### <a id='services-journey-use-case-1'></a> Use case 1: Binding an application to a pre-provisioned service instance running in the same namespace
 
 Follow these steps to bind an application to a pre-provisioned service instance running
 in the same namespace.
@@ -1293,7 +1293,7 @@ the new message IDs.
 
 <!-- ### <a id='services-journey-use-case-1'></a> Use Case 1 - Binding an App Workload to a Service Resource -->
 
-### <a id='services-journey-use-case-2'></a> Use case 2 - Binding an application to a pre-provisioned service instance running in a different namespace on the same Kubernetes cluster (GA)
+### <a id='services-journey-use-case-2'></a> Use case 2: Binding an application to a pre-provisioned service instance running in a different namespace on the same Kubernetes cluster (GA)
 
 [Use case 1](#services-journey-use-case-1) introduces binding a sample application workload to a service
 instance that is running in the same namespace.
@@ -1385,7 +1385,7 @@ Associate the SERVICE REF value with a name as part of the following command:
 1. Visit the URL and confirm the app is working by refreshing the page and
 checking the new message IDs.
 
-### <a id='services-journey-use-case-3'></a> Use case 3 - Binding an application to a service running outside Kubernetes (Beta)
+### <a id='services-journey-use-case-3'></a> Use case 3: Binding an application to a service running outside Kubernetes (Beta)
 
 This use case leverages direct references to Kubernetes Secret resources to enable developers to connect their application workloads to almost
 any backing service, including backing services that
@@ -1435,7 +1435,7 @@ For example:
     tanzu apps workload create pet-clinic --git-repo https://github.com/spring-projects/spring-petclinic --git-branch main --type web --service-ref db=v1:Secret:external-azure-db-binding-compatible
     ```
 
-### <a id='services-journey-use-case-4'></a> **Use case 4 - Binding an application to a service instance running on a different Kubernetes cluster (Experimental).**
+### <a id='services-journey-use-case-4'></a> **Use case 4: Binding an application to a service instance running on a different Kubernetes cluster (Experimental).**
 
 >**Note:** Use cases marked with Experimental are subject to change.
 
