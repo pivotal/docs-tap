@@ -1090,6 +1090,9 @@ is binding an application workload to a backing service such as a PostgreSQL dat
 RabbitMQ queue. This leads to a powerful user experience for working with backing services
 as part of the development life cycle.
 
+Before exploring the cases, we need to first install a service and a few supporting resources so Application Teams can discover, provision, and bind to services in Tanzu Application Platform.
+The [setup procedure](#consuming-services-setup) is typically performed by the Service Operator.
+
 >**Note:** The [Service Binding Specification](https://github.com/servicebinding/spec) for Kubernetes is required in this use case.
 >**Note:** Any service that adheres to the [Provisioned Service](https://github.com/servicebinding/spec#provisioned-service) in the specification is compatible with Tanzu Application Platform.
 
@@ -1097,13 +1100,11 @@ as part of the development life cycle.
 * [Use Case 2 - **Binding an App Workload to a Service Resource across multiple clusters**](#services-journey-use-case-2)
 * [Use Case 3 - **Binding an App Workload directly to a Secret (support for external services)**](#services-journey-use-case-3) -->
 
-### Setup
+### <a id='consuming-services-setup'></a> Setup
 
-To demonstrate how Application Teams can discover, provision, and bind to services in Tanzu Application Platform, VMware requires to first install a service and a few supporting resources. This setup is typically performed by the Service Operator.
-
-Follow the steps below to install RabbitMQ Operator, create the necessary RBAC,
+Follow these steps to install RabbitMQ Operator, create the necessary role-based access control (RBAC),
 and create a Services Toolkit resource called `ClusterResource` for
-RabbitmqCluster so that Application Teams can discover it.
+RabbitmqCluster so that Application Teams can discover the RabbitMQ service.
 
 1. Install RabbitMQ Operator which provides a RabbitmqCluster API kind on the rabbitmq.com/v1beta1 API Group/Version.
 
@@ -1113,18 +1114,18 @@ RabbitmqCluster so that Application Teams can discover it.
     ```
 
 1. After a new API is installed and available on the cluster,
-create the corresponding role-based access control (RBAC) rules to give relevant permissions to both the
+create the corresponding RBAC rules to give relevant permissions to both the
 services-toolkit controller manager and the users of the cluster by configuring `resource-claims-rmq.yaml`.
 
-**Example:**
+    **Example:**
 
-In the following example, we start with the RBAC required by the services-toolkit controller-manager.
-The rules in this `ClusterRole` get aggregated to the services-toolkit controller
-manager through the label, meaning that the services-toolkit controller manager
-is then able to get, list, watch and update all rabbitmqcluster resources.
+    In the following example, we start with the RBAC required by the services-toolkit controller-manager.
+    The rules in this `ClusterRole` get aggregated to the services-toolkit controller
+    manager through the label, meaning that the services-toolkit controller manager
+    is then able to get, list, watch and update all rabbitmqcluster resources.
 
->**Note:** A ClusterRole with the RBAC required by the services-toolkit controller-manager
- is required for each additional API resource installed onto the cluster.
+    >**Note:** A ClusterRole with the RBAC required by the services-toolkit controller-manager
+     is required for each additional API resource installed onto the cluster.
 
     ```
     # resource-claims-rmq.yaml
@@ -1151,8 +1152,8 @@ is then able to get, list, watch and update all rabbitmqcluster resources.
 The following example grants `get`, `list` and `watch` to all `rabbitmqcluster` resources for all authenticated
 users.
 
->**Note:** The specifics of these permissions vary depending on the desired level
-of access to resources.
+    >**Note:** The specifics of these permissions vary depending on the desired level
+    of access to resources.
 
     ```
     # rabbitmqcluster-reader.yaml
@@ -1195,7 +1196,7 @@ of access to resources.
 1. Make the API discoverable to the Application Development team by creating the
 ClusterResources in `rabbitmq-clusterresource.yaml`.
 
-**Example:**
+    **Example:**
 
     ```
     # rabbitmq-clusterresource.yaml
@@ -1352,7 +1353,7 @@ for service instances.
       group: rabbitmq.com
       kind: RabbitmqCluster
     ```
-    Where `*` indicates this policy permits any namespace to claim a RabbitmqCluster resource from
+    Where: `*` indicates this policy permits any namespace to claim a RabbitmqCluster resource from
     the service-instances namespace.
 
 1. Apply `resource-claim-policy.yaml` by running:
