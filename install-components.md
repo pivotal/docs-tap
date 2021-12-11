@@ -1472,7 +1472,7 @@ To install Tanzu Application Platform GUI:
 
     For more information about values schema options, see the individual product documentation.
 
-1. Create `tap-gui-values.yaml` using the following example code, replacing all `<PLACEHOLDERS>`
+1. Create `tap-gui-values.yaml` using the following example code, replacing all placeholders
 with your relevant values. The meanings of some placeholders are explained in this example:
 
     ```
@@ -1539,7 +1539,7 @@ with your relevant values. The meanings of some placeholders are explained in th
        If you are using a load balancer that is dynamically provisioned by the cloud provider,
        leave this value blank initially and, after the installation is complete,
        run a subsequent `tanzu package installed update`.
-    - `<GIT-CATALOG-URL>` is the path to the `catalog-info.yaml` catalog definition file from either the included  Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog that you've already built and posted on the Git infrastructure that you specified in the Integration section.
+    - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included  Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog that you've already built and posted on the Git infrastructure that you specified in the Integration section.
 
     >**Note:** The `app_config` section follows the same configuration model that Backstage uses.
     >For more information, see the [Backstage documentation](https://backstage.io/docs/conf/).
