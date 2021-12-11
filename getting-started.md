@@ -1489,7 +1489,9 @@ cluster.
     * From now on this cluster is called the **Service Cluster**.
 
 1. Download and install the `kubectl-scp` plug-in from [Tanzu Application Platform Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform).
+
     **Note:** This plug-in is for demonstration and experimentation purposes only.
+    
     **Note:** To install the plug-in you must place it in your PATH and ensure it is executable.
 
     For example:
