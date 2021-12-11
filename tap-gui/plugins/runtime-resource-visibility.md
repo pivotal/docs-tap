@@ -3,7 +3,6 @@
 The Runtime Resources Visibility screen lets developers view the details and status of their Kubernetes
 resources to understand their structure and debug issues.
 
->**Note:** Runtime Resources Visibility is the new name for the Workload Visibility plugin.
 
 ## Before you begin
 
