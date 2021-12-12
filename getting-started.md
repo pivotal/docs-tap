@@ -1031,18 +1031,17 @@ One of the out of the box supply chains we are working on for a future release w
 ## <a id='consuming-services'></a> Section 5: Consuming Services on Tanzu Application Platform
 
 Tanzu Application Platform makes it easy to discover, curate, consume, and manage
-services across single or multi-cluster environments.
-This section has procedures for several use cases regarding Services journey on Tanzu Application Platform.
+services across single-cluster or multi-cluster environments.
+This section introduces procedures for implementing several use cases regarding services journey on Tanzu Application Platform.
 
 ### Overview
 
-Most applications depend on backing services, such as databases, queues, and caches.
-As a result, developers can spend more time focusing on developing their applications and less
-time worrying about the provision, configuration, and operations of the backing services the applications
-depend on. This experience is made possible in Tanzu Application Platform by using the Services Toolkit
-component.
+Nowadays most applications depend on backing services such as databases, queues, and caches.
+Developers spend more time focusing on developing their applications and less
+time worrying about the provision, configuration, and operations of the backing services.
+In Tanzu Application Platform, Services Toolkit is the component that enables this experience.
 
-### Use cases unlocked by Services Toolkit on Tanzu Application Platform
+### Use cases enabled by Services Toolkit on Tanzu Application Platform
 
 All four use cases are for binding an application to a pre-provisioned service instance.
 The use cases vary according to where the service instance is located. The four use cases are summarized in the following table:
@@ -1083,14 +1082,17 @@ Services Toolkit comprises the following Kubernetes-native components:
 
 >**Note:** Services marked with Experimental are subject to change.
 
-Each component has its value, however the best use cases are unlocked by combining multiple components. For information about each of the Services Toolkit components, including the use cases and the API reference guides, see the [About Services Toolkit](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.4/services-toolkit-0-4/GUID-overview.html).
+Each component has its value, however the best use cases are enabled by combining multiple components together.
+For information about each of the Services Toolkit components, including the use cases and the API reference guides,
+see the [About Services Toolkit](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.4/services-toolkit-0-4/GUID-overview.html).
 
 Within the context of Tanzu Application Platform, one of the most important use cases
 is binding an application workload to a backing service such as a PostgreSQL database or a
-RabbitMQ queue. This leads to a powerful user experience for working with backing services
+RabbitMQ queue. This ensures the best user experience for working with backing services
 as part of the development life cycle.
 
-Before exploring the cases, we need to first install a service and a few supporting resources so Application Teams can discover, provision, and bind to services in Tanzu Application Platform.
+Before exploring the cases, we need to first install a service and a few supporting resources
+so Application Teams can discover, provision, and bind to services in Tanzu Application Platform.
 The [setup procedure](#consuming-services-setup) is typically performed by the Service Operator.
 
 >**Note:** The [Service Binding Specification](https://github.com/servicebinding/spec) for Kubernetes is required in this use case.
@@ -1103,10 +1105,9 @@ The [setup procedure](#consuming-services-setup) is typically performed by the S
 ### <a id='consuming-services-setup'></a> Setup
 
 Follow these steps to install RabbitMQ Operator, create the necessary role-based access control (RBAC),
-and create a Services Toolkit resource called `ClusterResource` for
-RabbitmqCluster so that Application Teams can discover the RabbitMQ service.
+and create a Services Toolkit resource called `ClusterResource` for RabbitmqCluster.
 
-1. Install RabbitMQ Operator which provides a RabbitmqCluster API kind on the rabbitmq.com/v1beta1 API Group/Version.
+1. Install RabbitMQ Operator which provides a RabbitmqCluster API kind on the `rabbitmq.com/v1beta1 API Group/Version`.
 
     ```
     kapp -y deploy --app rmq-operator --file
@@ -1121,11 +1122,11 @@ services-toolkit controller manager and the users of the cluster by configuring 
 
     In the following example, we start with the RBAC required by the services-toolkit controller-manager.
     The rules in this `ClusterRole` get aggregated to the services-toolkit controller
-    manager through the label, meaning that the services-toolkit controller manager
-    is then able to get, list, watch and update all rabbitmqcluster resources.
+    manager through the label, so the services-toolkit controller manager
+    is able to get, list, watch and update all rabbitmqcluster resources.
 
     >**Note:** A ClusterRole with the RBAC required by the services-toolkit controller-manager
-     is required for each additional API resource installed onto the cluster.
+     must be enabled for each additional API resource installed onto the cluster.
 
     ```
     # resource-claims-rmq.yaml
@@ -1442,7 +1443,7 @@ For example:
 This use case is identical to [use case 1](#services-journey-use-case-1),
 but rather than installing and running the RabbitMQ Cluster Kubernetes Operator on the same cluster
 as Tanzu Application Platform, we install and run it on an entirely separate dedicated services cluster.
-There are several reasons why you will benefit from this use case:
+There are several reasons why you want to implement this use case:
 
 - **Dedicated cluster requirements for Workload or Service clusters:** service clusters, for instance,
 might need access to more powerful SSDs.
@@ -1451,7 +1452,7 @@ might need access to more powerful SSDs.
 - **Separation of permissions and access:** application teams can only access the clusters where their
 applications are running.
 
-The benefits of this use case include:
+The benefits of implementing this use case include:
 
 - The experience of application developers working on their Tanzu Application Platform cluster is
 unaltered.
