@@ -1466,7 +1466,7 @@ For more information about network requirements and recommended topologies, see 
 
 >**Important:** Ensure you have completed the previous use cases prior to continuing with use case 4.
 
-Ensure you have met the following prerequisites before starting the [procedures of use case 4](#steps-use-case-4):
+Ensure you have met the following prerequisites before starting the [procedures of use case 4](#steps-use-case-4).
 
 1. Uninstall the RabbitMQ Cluster Operator that was installed in [consuming services setup procedures](#consuming-services-setup).
 
