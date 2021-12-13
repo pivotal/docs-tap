@@ -1227,7 +1227,7 @@ ClusterResources in `rabbitmq-clusterresource.yaml`.
 Follow these steps to bind an application to a pre-provisioned service instance running
 in the same namespace.
 
-1. Create a RabbitMQ service instance.
+1. Create a RabbitMQ service instance with the following YAML:
 
     ```
     # example-rabbitmq-cluster-service-instance.yaml
@@ -1255,7 +1255,7 @@ in the same namespace.
 1. Follow these steps to create an application workload that automatically claims and binds to the
 RabbitMQ instance:
 
-    >**Important:** Ensure your namespace can use the installed Tanzu Application Platform packages so that Services Toolkit can create application workloads.
+    >**Note:** Ensure your namespace can use the installed Tanzu Application Platform packages so that Services Toolkit can create application workloads.
     For more information, see [Set Up Developer Namespaces to Use Installed Packages](install-components.md#setup).
 
     1. Obtain a service reference by running:
@@ -1291,13 +1291,11 @@ RabbitMQ instance:
 1. Visit the URL and confirm the app is working by refreshing the page and checking
 the new message IDs.
 
-<!-- ### <a id='services-journey-use-case-1'></a> Use Case 1 - Binding an App Workload to a Service Resource -->
-
 ### <a id='services-journey-use-case-2'></a> Use case 2: Binding an application to a pre-provisioned service instance running in a different namespace on the same Kubernetes cluster (GA)
 
 [Use case 1](#services-journey-use-case-1) introduces binding a sample application workload to a service
 instance that is running in the same namespace.
-This use case is for binding a sample application workload to a service instance that is running in a different
+Use case 2 is for binding a sample application workload to a service instance that is running in a different
 namespace. This is a common scenario as it separates concerns
 between those users working with application workloads, and those who are responsible
 for service instances.
@@ -1337,7 +1335,7 @@ for service instances.
     service-instances  example-rabbitmq-cluster-2  RabbitmqCluster  rabbitmq      14s   rabbitmq.com/v1beta1:RabbitmqCluster:example-rabbitmq-cluster-2:service-instances
     ```
 
-1. Create a `ResourceClaimPolicy` (API provided by Services Toolkit) to enable cross-namespace binding.
+1. Create a `ResourceClaimPolicy` to enable cross-namespace binding.
 
     ```
     # resource-claim-policy.yaml
@@ -1379,15 +1377,13 @@ for service instances.
     tanzu apps workload get rmq-sample-app-usecase-2
     ```
 
-    >**Note:** It can take some time before the workload is ready.
-
 1. Visit the URL and confirm the app is working by refreshing the page and
 checking the new message IDs.
 
 ### <a id='services-journey-use-case-3'></a> Use case 3: Binding an application to a service running outside Kubernetes (Beta)
 
 This use case leverages direct references to Kubernetes Secret resources to enable developers to connect their application workloads to almost
-any backing service, including backing services that
+any backing service, including backing services that:
 
 * are running external to the platform
 * do not adhere to the [Provisioned Service specifications](https://github.com/servicebinding/spec#provisioned-service)
@@ -1396,7 +1392,7 @@ any backing service, including backing services that
 the [Well-known Secret Entries specifications](https://github.com/servicebinding/spec#well-known-secret-entries).
 
 The following example demonstrates the procedures to bind a new application on Tanzu Application Platform to an
-existing PostgreSQL database that exists in Azure:
+existing PostgreSQL database that exists in Azure.
 
 1. Create a Kubernetes `Secret` resource similar to the following example:
 
@@ -1427,7 +1423,7 @@ existing PostgreSQL database that exists in Azure:
     >and claimed cross namespace by using `ResourceClaimPolicy` resources.
     >For more information, see [Use case 2](#services-journey-use-case-2).
 
-1. Create your application workload.
+1. Create your application workload by running:
 
     Example:
 
