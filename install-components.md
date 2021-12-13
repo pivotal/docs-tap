@@ -2528,7 +2528,7 @@ You can also view the Tekton [tutorial](https://github.com/tektoncd/pipeline/blo
 
 > **Note:** Windows workloads have been disabled and will error if any Tasks tries to use Windows scripts.
 
->>>>>>> 5c9e55b ([#180564123])
+
 ## <a id='verify'></a> Verify the installed packages
 
 Use the following procedure to verify that the packages are installed.
@@ -2676,26 +2676,3 @@ that you plan to create the `Workload` in:
     
     EOF
     ```
-
-
-## <a id='install-tekton'></a> Install Tekton
-
-The `testing` out of the box supply chain uses Tekton to run tests defined by
-developers before you produce a container image for the source code, preventing
-code that fails tests from being promoted to deployment.
-
-Install Tekton with `kapp` by running:
-
-```
-kapp deploy --yes -a tekton \
-  -f https://storage.googleapis.com/tekton-releases/pipeline/previous/v0.28.0/release.yaml
-```
-
-For more details about Tekton, see the [Tekton documentation](https://tekton.dev/docs/) and the
-[GitHub repository](https://github.com/tektoncd/pipeline).
-
-You can also view the Tekton [tutorial](https://github.com/tektoncd/pipeline/blob/main/docs/tutorial.md)
-in GitHub and the
-[Getting Started guide](https://tekton.dev/docs/getting-started/).
-
->**Note:** In future versions, Tekton is planned to be shipped as a package.
