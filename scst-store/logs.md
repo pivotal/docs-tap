@@ -1,4 +1,4 @@
-# Configuring and understanding logs
+# Log configuration and usage
 
 This topic covers how to configure the Supply Chain Security Tools - Store to output detailed log information and interpret them.
 

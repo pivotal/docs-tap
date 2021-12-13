@@ -56,6 +56,11 @@ The following components have been updated in Tanzu Application Platform v0.4.0:
     - [Sign v1.0.0-beta.2](scst-sign/overview.md)
 - [Tanzu Application Platform GUI v1.0.0-rc.72](tap-gui/about.md)
 
+**Renamed Components**
+
+Workload Visibility Plugin is renamed Runtime Visibility Plugin.
+
+
 ### Known issues
 
 This release has the following issues:
