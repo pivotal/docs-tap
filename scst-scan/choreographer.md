@@ -15,19 +15,6 @@ This example takes every source code commit, scans the source code for vulnerabi
     - [Supply Chain Security Tools - Scan](../install-components.md#install-scst-scan)
     - (Optional) [Kubectl `tree` Plugin](https://github.com/ahmetb/kubectl-tree)
 
-    This example uses the following versions:
-
-    ```
-    $ tanzu package installed list -n tap-install
-    | Retrieving installed packages...
-      NAME             PACKAGE-NAME                          PACKAGE-VERSION  STATUS
-      cartographer     cartographer.tanzu.vmware.com         0.0.6            Reconcile succeeded
-      grype-scanner    scst-grype.apps.tanzu.vmware.com      1.0.0            Reconcile succeeded
-      metadata-store   scst-store.tanzu.vmware.com           1.0.0-beta.0     Reconcile succeeded
-      scan-controller  scst-scan.apps.tanzu.vmware.com       1.0.0            Reconcile succeeded
-      tbs              buildservice.tanzu.vmware.com         1.3.0            Reconcile succeeded
-    ```
-
 ## Configure the example
 
 Set the following environment variables to configure the image registry where Tanzu Build Service will push images.
@@ -142,7 +129,7 @@ A Scan Policy is defined and indicates how to perform a policy compliance check 
 ```
 kubectl apply -f - -o yaml << EOF
 ---
-apiVersion: scst-scan.apps.tanzu.vmware.com/v1alpha1
+apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
 kind: ScanPolicy
 metadata:
   name: scan-policy
@@ -211,7 +198,7 @@ spec:
   revisionPath: .status.artifact.blob.url
 
   template:
-    apiVersion: scst-scan.apps.tanzu.vmware.com/v1alpha1
+    apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
     kind: SourceScan
     metadata:
       name: $(workload.metadata.name)$-source-scan
@@ -258,7 +245,7 @@ spec:
   imagePath: .status.artifact.registry.image
 
   template:
-    apiVersion: scst-scan.apps.tanzu.vmware.com/v1alpha1
+    apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
     kind: ImageScan
     metadata:
       name: $(workload.metadata.name)$-image-scan

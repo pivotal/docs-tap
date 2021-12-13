@@ -5,7 +5,7 @@ This example will perform a scan against a source code in a `.tar.gz` file. This
 Create `public-blob-source-example.yaml`:
 ```
 ---
-apiVersion: scst-scan.apps.tanzu.vmware.com/v1alpha1
+apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
 kind: ScanTemplate
 metadata:
   name: public-blob-source-scan-template
@@ -41,7 +41,7 @@ spec:
         args: ["-c", "grype dir:/workspace/source -o cyclonedx"]
 
 ---
-apiVersion: scst-scan.apps.tanzu.vmware.com/v1alpha1
+apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
 kind: SourceScan
 metadata:
   name: public-blob-source-example
