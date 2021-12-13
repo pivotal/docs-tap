@@ -1,4 +1,4 @@
-# Getting Started with the API
+# API walkthrough
 
 This topic includes an example API call. For information about using the Supply Chain Security Tools - Store API, see [full API documentation](api.md).
 

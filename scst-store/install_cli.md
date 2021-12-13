@@ -1,4 +1,4 @@
-# Install the CLI
+# CLI installation
 
 This topic explains how to install the Insight CLI:
 

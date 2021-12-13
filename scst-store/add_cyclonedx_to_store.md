@@ -1,4 +1,4 @@
-# Adding Data
+# Adding data
 
 This topic describes how to add Software Bill of Materials (SBoM) files to the database to understand your dependencies by querying.
 For instructions on querying, see [Querying Data](../scst-store/querying_the_metadata_store.md).
