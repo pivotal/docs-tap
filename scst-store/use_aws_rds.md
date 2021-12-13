@@ -1,4 +1,4 @@
-# AWS RDS Postgres Configuration
+# AWS RDS postgres configuration
 
 ## Prerequisites
 

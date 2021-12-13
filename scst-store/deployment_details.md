@@ -22,7 +22,7 @@ The installation creates the following in your Kubernetes cluster:
 
 The default database that ships with the deployment is meant to get users started using the metadata store. The default database deployment does not support many enterprise production requirements, including scaling, redundancy, or failover. However, it is still a secure deployment.
 
-#### Using AWS RDS Postgres database
+#### Using AWS RDS postgres database
 
 Users can also configure the deployment to use their own RDS database instead of the default database. See [AWS RDS Postgres Configuration](use_aws_rds.md).
 
