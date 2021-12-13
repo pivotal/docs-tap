@@ -2404,6 +2404,131 @@ To install Services Toolkit:
     ```
 
 
+## <a id='install-tekton'></a> Install Tekton
+
+To install Tekton:
+
+1. See what versions of Tekton are available to install by running:
+
+    ```
+    tanzu package available list -n tap-install tekton.tanzu.vmware.com
+    ```
+
+    For example:
+
+    ```
+    $ tanzu package available list -n tap-install tekton.tanzu.vmware.com
+    \ Retrieving package versions for tekton.tanzu.vmware.com...
+      NAME                     VERSION  RELEASED-AT
+      tekton.tanzu.vmware.com  0.30.0   2021-11-18 17:05:37Z
+    ```
+
+1. Install Tekton by running:
+
+    ```
+    tanzu package install tekton -n tap-install -p tekton.tanzu.vmware.com -v 0.30.0
+    ```
+
+    For example:
+
+    ```
+    $ tanzu package install tekton -n tap-install -p tekton.tanzu.vmware.com -v 0.30.0
+    - Installing package 'tekton.tanzu.vmware.com'
+    \ Getting package metadata for 'tekton.tanzu.vmware.com'
+    / Creating service account 'tekton-tap-install-sa'
+    / Creating cluster admin role 'tekton-tap-install-cluster-role'
+    / Creating cluster role binding 'tekton-tap-install-cluster-rolebinding'
+    / Creating package resource
+    - Waiting for 'PackageInstall' reconciliation for 'tekton'
+    - 'PackageInstall' resource install status: Reconciling
+
+
+     Added installed package 'tekton'
+    ```
+
+1. Verify that the package installed by running:
+
+    ```
+    tanzu package installed get tekton -n tap-install
+    ```
+
+    For example:
+
+    ```
+    $ tanzu package installed get tekton -n tap-install
+    \ Retrieving installation details for tekton...
+    NAME:                    tekton
+    PACKAGE-NAME:            tekton.tanzu.vmware.com
+    PACKAGE-VERSION:         0.30.0
+    STATUS:                  Reconcile succeeded
+    CONDITIONS:              [{ReconcileSucceeded True  }]
+    USEFUL-ERROR-MESSAGE:
+    ```
+
+    STATUS should be `Reconcile succeeded`.
+
+1. Configuring a namespace to use Tekton:
+
+   > **Note:** This step covers configuring a namespace to run Tekton pipelines.
+   If you rely on a SupplyChain to create Tekton PipelineRuns in your cluster,
+   then skip this step because namespace configuration is covered in
+   [Set Up Developer Namespaces to Use Installed Packages](#setup). Otherwise,
+   you must complete the following steps for each namespace where you create
+   Tekton Pipeline/Tasks.
+
+   Service accounts that run Tekton workloads need access to the image pull
+   secrets for the Tanzu package.  This includes the `default` service account
+   in a namespace, which is created automatically, but not associated with any
+   image pull secrets.  Without these credentials, PipelineRuns fail with a
+   timeout and the Pods report that they are unable to pull images.
+
+   Create an image pull secret in the current namespace and fill it from [the
+   `tap-registry` secret](#add-package-repositories).  Run the following
+   commands to create an empty secret and annotate it as a target of the
+   secretgen controller:
+
+   ```
+   kubectl create secret generic pull-secret --from-literal=.dockerconfigjson={} --type=kubernetes.io/dockerconfigjson
+   kubectl annotate secret pull-secret secretgen.carvel.dev/image-pull-secret=""
+   ```
+
+   After you create a `pull-secret` secret in the same namespace as the service account,
+   run the following command to add the secret to the service account:
+
+   ```
+   kubectl patch serviceaccount default -p '{"imagePullSecrets": [{"name": "pull-secret"}]}'
+   ```
+
+    Verify that a service account is correctly configured by running:
+
+   ```
+   kubectl describe serviceaccount default
+   ```
+
+   For example:
+
+   ```
+   kubectl describe sa default
+   Name:                default
+   Namespace:           default
+   Labels:              <none>
+   Annotations:         <none>
+   Image pull secrets:  pull-secret
+   Mountable secrets:   default-token-xh6p4
+   Tokens:              default-token-xh6p4
+   Events:              <none>
+   ```
+
+   > **Note:** The service account has access to the `pull-secret` image pull secret.
+
+For more details on Tekton, see the [Tekton documentation](https://tekton.dev/docs/) and the
+[github repository](https://github.com/tektoncd/pipeline).
+
+You can also view the Tekton [tutorial](https://github.com/tektoncd/pipeline/blob/main/docs/tutorial.md) and
+[getting started guide](https://tekton.dev/docs/getting-started/).
+
+> **Note:** Windows workloads have been disabled and will error if any Tasks tries to use Windows scripts
+
 ## <a id='verify'></a> Verify the installed packages
 
 Use the following procedure to verify that the packages are installed.
@@ -2437,6 +2562,7 @@ Use the following procedure to verify that the packages are installed.
     services-toolkit         services-toolkit.tanzu.vmware.com                  0.4.0            Reconcile succeeded
     source-controller        controller.source.apps.tanzu.vmware.com            0.2.0            Reconcile succeeded
     tap-gui                  tap-gui.tanzu.vmware.com                           0.3.0-rc.4       Reconcile succeeded
+    tekton                   tekton.tanzu.vmware.com                            0.30.0           Reconcile succeeded
     tbs                      buildservice.tanzu.vmware.com                      1.3.1            Reconcile succeeded
     ```
 
@@ -2551,26 +2677,3 @@ that you plan to create the `Workload` in:
 
     EOF
     ```
-
-
-## <a id='install-tekton'></a> Install Tekton
-
-The `testing` out of the box supply chain uses Tekton to run tests defined by
-developers before you produce a container image for the source code, preventing
-code that fails tests from being promoted to deployment.
-
-Install Tekton with `kapp` by running:
-
-```
-kapp deploy --yes -a tekton \
-  -f https://storage.googleapis.com/tekton-releases/pipeline/previous/v0.28.0/release.yaml
-```
-
-For more details about Tekton, see the [Tekton documentation](https://tekton.dev/docs/) and the
-[GitHub repository](https://github.com/tektoncd/pipeline).
-
-You can also view the Tekton [tutorial](https://github.com/tektoncd/pipeline/blob/main/docs/tutorial.md)
-in GitHub and the
-[Getting Started guide](https://tekton.dev/docs/getting-started/).
-
->**Note:** In future versions, Tekton is planned to be shipped as a package.
