@@ -1,6 +1,6 @@
-# Adding Data
+# Adding data
 
-This topic describes how add Software Bill of Materials (SBoM) files to the database to understand your dependencies by querying.
+This topic describes how to add Software Bill of Materials (SBoM) files to the database to understand your dependencies by querying.
 For instructions on querying, see [Querying Data](../scst-store/querying_the_metadata_store.md).
 
 
@@ -56,7 +56,7 @@ Use the following commands to add data:
 
 ## Example #1: Create an Image Report
 
-To use an CycloneDX-formatted image report:
+To use a CycloneDX-formatted image report:
 
 1. Run:
 
@@ -79,7 +79,7 @@ To use an CycloneDX-formatted image report:
 
 ## Example #2: Create a Source Report
 
-To use an CycloneDX-formatted source report:
+To use a CycloneDX-formatted source report:
 
 1. Run:
 

@@ -1,11 +1,11 @@
-# Configure the CLI
+# CLI configuration
 
 This topic explains how to configure the Insight CLI:
 
 > **Note:** All [required set up](../scst-store/overview.md#required-set-up) must be completed in addition to configuring the CLI
 
 
-## Set the Target and Certificate Authority Cert
+## Set the target and certificate authority certificate
 
 Set the target endpoint and CA certificate by running:
 
@@ -15,7 +15,7 @@ insight config set-target https://metadata-store-app.metadata-store.svc.cluster.
 Where
 
 - `PORT` is the target endpoint port
-- `PATH` is direct path to the CA certificate
+- `PATH` is the direct path to the CA certificate
 
 For example:
 
@@ -26,9 +26,9 @@ Using config file: /Users/username/.insight/config.yaml
 Setting endpoint in config to: https://metadata-store-app.metadata-store.svc.cluster.local:8443
 ```
 
-## Check the Connection
+## Check the connection
 
-Now check that you configuration is correct and you're able to make a connection.
+Now check that your configuration is correct and you are able to make a connection.
 
 ```
 insight health

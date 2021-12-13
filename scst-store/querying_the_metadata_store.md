@@ -1,20 +1,19 @@
-# Querying Data
+# Querying data
 
 This topic describes how to query the database to understand vulnerability, image, and dependency relationships.
 
-## Add Data
+## Add data
 
-Data must be added before querying, see [Add Data](add_cyclonedx_to_store.md).
+Data must be added before querying. See [Add Data](add_cyclonedx_to_store.md).
 
 ## Methods
 
 There are two different ways of querying the database:
 
-* [Supply Chain Security Tools - Store API](../scst-store/getting_started_api.md)
-* [Query with the Insight CLI](#query-with-insight) below
+* [API](api.md)
+* [CLI](install_cli.md) 
 
-
-## Supported Use Cases
+## Supported use cases
 
 The following are a few examples supported by the Supply Chain Security Tools - Store API and CLI:
 
@@ -23,10 +22,9 @@ The following are a few examples supported by the Supply Chain Security Tools - 
 +  How many CVEs does a specific image or dependency contain?
 
 
-## <a id='query-with-insight'></a> Query with the Insight CLI
+## <a id='query-with-insight'></a> Query using the Insight CLI
 
-Make sure you have installed the Insight CLI.
-For how to install the CLI, see [Install the Insight CLI](install_cli.md).
+See [CLI installation](install_cli.md) if you have not previously installed the Insight CLI.
 
 Use the following commands for querying:
 

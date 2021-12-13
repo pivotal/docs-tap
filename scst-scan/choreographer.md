@@ -7,7 +7,7 @@ This example takes every source code commit, scans the source code for vulnerabi
 1. Follow the steps listed in [Installing Part I: Prerequisites, EULA, and CLI](../install-general.md).
 
 1. Next, in [Installing Individual Packages](../install-components.md), ensure the following
-packages and their dependencies are installed by running `tanzu package installed list -n tap-install`:
+   packages and their dependencies are installed by running `tanzu package installed list -n tap-install`:
 
     - [Supply Chain Choreographer](../install-components.md#install-scc)
     - [Tanzu Build Service](../install-components.md#install-tbs)
@@ -44,8 +44,8 @@ REGISTRY_PROJECT=
 
 ### Tanzu network image pull secret
 
-The following secrets are used by each product to pull from Tanzu Network. These secrets
-are replicated into namespaces where they overwrite the empty placeholder secrets that were defined by each product.
+Each product uses the following secrets to pull from Tanzu Network. These secrets
+are replicated into namespaces where they overwrite the empty placeholder secrets defined by each product.
 
 ```
 tanzu imagepullsecret add registry-credentials \
@@ -127,8 +127,7 @@ EOF
 ### Supply Chain Security Tools for VMware Tanzu - Scan
 
 Configure the source and image scans.
-`image-secret` is an empty placeholder secret that is populated with the credentials
-that are used to access the registry where Tanzu Build Service pushes built images.
+`image-secret` is an empty placeholder secret populated with credentials to access the registry where Tanzu Build Service pushes built images.
 
 When installing the Grype Scanner, five scan templates are preinstalled for various use cases.
 This example uses two of them:
@@ -136,9 +135,9 @@ This example uses two of them:
 - `blob-source-scan-template` for performing a source scan within the context of a supply chain where the source code is delivered as a TAR file.
 - `private-image-scan-template` for performing an image scan against a private registry.
 
-Because these scan templates are preinstalled, they are not defined, but are referenced later in the supply chain templates.
+Because these scan templates are preinstalled, they are not defined but are referenced later in the supply chain templates.
 
-A Scan Policy is defined and indicates how to perform a policy compliance check against the severity of vulnerabilities found. This Scan Policy will fail compliance if a `Critical`, `High` or `UnknownSeverity` vulnerability is found in either the Source or Image Scan. This Supply Chain  continues to the next supply chain step regardless of the compliance check.
+A Scan Policy is defined and indicates how to perform a policy compliance check against the severity of vulnerabilities found. This Scan Policy will fail compliance if a `Critical`, `High` or `UnknownSeverity` vulnerability is found in either the Source or Image Scan. This Supply Chain continues to the next supply chain step regardless of the compliance check.
 
 ```
 kubectl apply -f - -o yaml << EOF
@@ -177,7 +176,7 @@ EOF
 
 ## App operator deployments for defining the Supply Chain
 
-Configure and deploy the following Supply Chain Components. Some components reference cluster resources deployed above. The scanning components use the Scan Policy, and reference pre-installed Scan Templates installed with the Grype Scanner.
+Configure and deploy the following Supply Chain Components. Some components reference cluster resources deployed above. The scanning components use the Scan Policy and reference pre-installed Scan Templates installed with the Grype Scanner.
 
 ```
 kubectl apply -f - -o yaml << EOF
@@ -363,7 +362,7 @@ Notice the resources be created:
 
 During processing and upon completion, try performing `kubectl describe` on the `sourcescan` and `imagescan` resources to see the `Status` section.
 
-**NOTE:** Detailed information pertaining to vulnerabilities found will not display in the output from `kubectl describe`, it is instead sent to the Metadata Store, where it can be queried there.
+**Note:** Detailed information about vulnerabilities found will not display in the output from `kubectl describe; it is instead sent to the Metadata Store, where it can be queried there.
 
 ## Querying the Metadata Store for vulnerability results using the Insight CLI
 
@@ -373,8 +372,10 @@ During processing and upon completion, try performing `kubectl describe` on the 
     kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store
     ```
 
-1. Using the `MetadataURL` field in the `kubectl describe` `sourcescan` or `imagescan` output,
-   use the Insight CLI to query the Metadata Store for the scan results that were outputted by the Grype Scanner. Run:
+1. Using the `MetadataURL` field in the `kubectl describe sourcescan`
+   or `kubectl describe imagescan` output,
+   use the Insight CLI to query the Metadata Store for the scan results that were output
+   by the Grype Scanner. Run:
 
     ```
     # Configure Insight CLI to Authenticate to Metadata Store
@@ -382,20 +383,20 @@ During processing and upon completion, try performing `kubectl describe` on the 
     insight config set-target https://metadata-store-app.metadata-store.svc.cluster.local:8443 \
       --ca-cert /tmp/storeca.crt \
       --access-token $METADATA_STORE_TOKEN
-
+   
     # Query Source Scan
     kubectl describe sourcescan tanzu-java-web-app-source-scan
     insight source get \
       --repo <insert repo here> \
       --commit <insert sha here> \
       --org <insert org here>
-
+   
     # Query Image Scan
     kubectl describe imagescan tanzu-java-web-app-image-scan
     # Note: the `digest` flag has the form: sha256:841abf253a244adba79844219a045958ce3a6da2671deea3910ea773de4631e1
     insight image get \
       --digest <insert digest here>
-
+   
     # Query By CVE
     # Note: the `cveid` flag has the form: CVE-2021-3711
     insight vulnerabilities get \

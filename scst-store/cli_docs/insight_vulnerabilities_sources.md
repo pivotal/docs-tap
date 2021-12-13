@@ -1,4 +1,4 @@
-## Insight Vulnerabilities Sources
+## insight vulnerabilities sources
 
 Get sources with a given vulnerability.
 
@@ -24,7 +24,7 @@ insight vulnerabilities sources --cveid CVE-123123-2021
   -h, --help            help for sources
 ```
 
-### See Also
+### See also
 
 * [insight vulnerabilities](insight_vulnerabilities.md)	 - Vulnerabilities commands
 

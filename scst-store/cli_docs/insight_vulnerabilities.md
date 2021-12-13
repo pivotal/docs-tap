@@ -1,6 +1,6 @@
-# Insight vulnerabilities
+# insight vulnerabilities
 
-Vulnerabilities commands are as follows.
+Vulnerabilities commands are as follows:
 
 ## Options
 
@@ -8,9 +8,9 @@ Vulnerabilities commands are as follows.
   -h, --help   help for vulnerabilities
 ```
 
-## See Also
+## See also
 
-* [Insight](insight.md)	 - This CLI is used to post data and make queries to the metadata store.
+* [Insight](insight.md)	 - This CLI is used to post data and query the metadata store.
 * [Insight vulnerabilities get](insight_vulnerabilities_get.md)	 - Get vulnerability by CVE id.
 * [Insight vulnerabilities images](insight_vulnerabilities_images.md)	 - Get images with a given vulnerability.
 * [Insight vulnerabilities packages](insight_vulnerabilities_packages.md)	 - Get packages with a given vulnerability.

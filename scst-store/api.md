@@ -1,10 +1,11 @@
 
 
 
-# Metadata Store API.
+# API details
 
+See [Getting Started with the API](getting_starated_api.md) for a walkthrough and example.
 
-## Informations
+## Information
 
 ### Version
 
@@ -35,7 +36,7 @@
 
 
 
-###  operations
+###  Operations
 
 | Method  | URI     | Name   | Summary |
 |---------|---------|--------|---------|
@@ -43,7 +44,7 @@
 
 
 
-###  packages
+###  Packages
 
 | Method  | URI     | Name   | Summary |
 |---------|---------|--------|---------|
@@ -55,7 +56,7 @@
 
 
 
-###  sources
+###  Sources
 
 | Method  | URI     | Name   | Summary |
 |---------|---------|--------|---------|
@@ -66,7 +67,7 @@
 
 
 
-###  vulnerabilities
+###  Vulnerabilities
 
 | Method  | URI     | Name   | Summary |
 |---------|---------|--------|---------|
@@ -1016,5 +1017,4 @@ it can be used as a scan destination, similar to NullString.
 | Ratings | [][Rating](#rating)| `[]*Rating` |  | |  |  |
 | References | [StringArray](#string-array)| `StringArray` |  | |  |  |
 | URL | string| `string` |  | |  |  |
-
 

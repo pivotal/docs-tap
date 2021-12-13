@@ -1,4 +1,4 @@
-# Install the CLI
+# CLI installation
 
 This topic explains how to install the Insight CLI:
 
@@ -7,18 +7,17 @@ This topic explains how to install the Insight CLI:
 1. In the releases drop-down, select version *0.4.0*.
 1. In the list of released files, select *insight-metadata-cli-v1.0.0...*. 
 1. Choose the file for your operating system. 
-    
-    >**Note:** MacOS is a Darwin-based platform.
+    >**Note:** macOS is a Darwin-based platform.
     
 1. Put the binary in a location that is either already in your `PATH` environment variable, 
 or add the location of the CLI to your `PATH` variable.
 1. Rename the binary to make it easier to invoke with your command line. 
 For example, `mv insight-1.0.0-beta.2_darwin_amd64 insight`.
 
-<details><summary>MacOS only:</summary>
+<details><summary>macOS only:</summary>
 <br/>
 
-MacOS does not recognize that the insight binary is safe to run because it has not been signed by Apple. To allow your computer to run the binary, perform the following steps:
+macOS does not recognize that the insight binary is safe to run because Apple has not signed it. To allow your computer to run the binary, perform the following steps:
 
 1. In the command line, run: 
 
@@ -28,7 +27,7 @@ MacOS does not recognize that the insight binary is safe to run because it has n
     A pop-up appears to notify you that the program is not trusted.
 
 1. Open **System Preferences** > **Security & Privacy** > **General**.
-1. Under **Allow apps identified from**, make sure the **App store and identified developers** radio button is selected.
+1. Under **Allow apps identified from**, ensure the **App store and identified developers** radio button is selected.
 1. Re-run the insight binary until an **Allow** button appears under the **Allow apps identified from** section, and then click **Allow**.
 </details>
 <br>

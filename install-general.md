@@ -36,12 +36,12 @@ Tanzu Application Platform GUI currently does not support Safari browser.
 #### Tanzu Application Platform GUI
 
 - Git repository for the Tanzu Application Platform GUI's software catalogs, along with a token allowing read access.
-Supported Git infrastructure includes:
+  Supported Git infrastructure includes:
     - GitHub
     - GitLab
     - Azure DevOps
 - Tanzu Application Platform GUI Blank Catalog from the Tanzu Application section of Tanzu Network
-  - To install this navigate to [Tanzu Network](https://network.tanzu.vmware.com/) and select the Tanzu Application Platform. Under the list of available files to download, there will be a folder titled `tap-gui-catalogs`. Inside that folder is a compressed archive titled `Tanzu Application Platform Blank Catalog`. You'll need to extract that catalog to the preceding Git repository of choice. This serves as the configuration location for your Organziation's Catalog inside Tanzu Application Platform GUI.
+  - To install this, navigate to [Tanzu Network](https://network.tanzu.vmware.com/) and select the Tanzu Application Platform. Under the list of available files to download, there will be a folder titled `tap-gui-catalogs`. Inside that folder is a compressed archive titled `Tanzu Application Platform Blank Catalog`. You'll need to extract that catalog to the preceding Git repository of choice. This serves as the configuration location for your Organization's Catalog inside Tanzu Application Platform GUI.
   - The Tanzu Application Platform GUI catalog allows for two approaches towards storing catalog information:
         - The default option uses an in-memory database and is suitable for test and development scenarios.
           This reads the catalog data from Git URLs that you specify in the `tap-values.yml` file.
@@ -49,7 +49,7 @@ Supported Git infrastructure includes:
           also cause this data to be rebuilt from the Git location.
           This can cause issues when you manually register entities through the UI because
           they only exist in the database and are lost when that in-memory database gets rebuilt.
-        - For production use-cases, use a PostgreSQL database that exists outside the Tanzu Applicaton Platform's packaging.
+            - For production use-cases, use a PostgreSQL database that exists outside the Tanzu Application Platform's packaging.
           This stores all the catalog data persistently both from the Git locations and from the GUI's manual entity registrations.
 
 ### Kubernetes cluster requirements
@@ -138,39 +138,39 @@ To accept EULAs:
 
 2. For each of the following components, accept or confirm that you have accepted the EULA:
 
-    + [Tanzu Prerequisites](https://network.tanzu.vmware.com/products/tanzu-prerequisites/#/releases/1006464)
+    + [Cluster Essentials for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-cluster-essentials/#/releases/1011100)
     + [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/)
     + [Tanzu Build Service](https://network.tanzu.vmware.com/products/build-service/) and its associated components:
       + [Tanzu Build Service Dependencies](https://network.tanzu.vmware.com/products/tbs-dependencies/)
       + [Buildpacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-buildpacks-suite)
       + [Stacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-stacks-suite)
 
-## <a id='tanzu-prereqs'></a> Install Tanzu prerequisites
+## <a id='tanzu-cluster-essentials'></a> Install Cluster Essentials for VMware Tanzu
 
-If you are operating a Tanzu Kubernetes Grid or Tanzu Community Edition cluster, the Tanzu prerequisites are already installed.
+If you are operating a Tanzu Kubernetes Grid or Tanzu Community Edition cluster, the Cluster Essentials are already installed.
 
 For other Kubernetes providers, follow the steps below:
 
 1. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
 
-3. Navigate to [Tanzu Prerequisites](https://network.tanzu.vmware.com/products/tanzu-prerequisites/) on Tanzu Network.
+3. Navigate to [Cluster Essentials for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-cluster-essentials/) on Tanzu Network.
 
-4. Download `darwin-amd64-1.0.0-rc.2.tgz` (for OS X) or `linux-amd64-1.0.0-rc.2.tgz` (for Linux)
-   and unpack the TAR file into `tanzu-prereqs` directory:
+4. Download `tanzu-cluster-essentials-darwin-amd64-1.0.0.tgz` (for OS X) or `tanzu-cluster-essentials-linux-amd64-1.0.0.tgz` (for Linux)
+   and unpack the TAR file into `tanzu-cluster-essentials` directory:
 
     ```
-    mkdir $HOME/tanzu-prereqs
-    tar -xvf darwin-amd64-1.0.0-rc.2.tgz -C $HOME/tanzu-prereqs
+    mkdir $HOME/tanzu-cluster-essentials
+    tar -xvf tanzu-cluster-essentials-darwin-amd64-1.0.0.tgz -C $HOME/tanzu-cluster-essentials
     ```
 
 5. Configure and run `install.sh`, which installs kapp-controller and secretgen-controller on your cluster:
 
     ```
-    export INSTALL_BUNDLE=registry.tanzu.vmware.com/tanzu-prerequisites/prereqs-bundle@sha256:82dfaf70656b54dcba0d4def85ccae1578ff27054e7533d08320244af7fb0343
+    export INSTALL_BUNDLE=registry.tanzu.vmware.com/tanzu-cluster-essentials/cluster-essentials-bundle@sha256:82dfaf70656b54dcba0d4def85ccae1578ff27054e7533d08320244af7fb0343
     export INSTALL_REGISTRY_HOSTNAME=registry.tanzu.vmware.com
     export INSTALL_REGISTRY_USERNAME=TANZU-NET-USER
     export INSTALL_REGISTRY_PASSWORD=TANZU-NET-PASSWORD
-    cd $HOME/tanzu-prereqs
+    cd $HOME/tanzu-cluster-essentials
     ./install.sh
     ```
 
@@ -179,7 +179,7 @@ For other Kubernetes providers, follow the steps below:
 6. Install the `kapp` CLI onto your `$PATH`:
 
     ```
-    sudo cp $HOME/tanzu-prereqs/kapp /usr/local/bin/kapp
+    sudo cp $HOME/tanzu-cluster-essentials/kapp /usr/local/bin/kapp
     ```
 
 ## <a id='cli-and-plugin'></a> Install or update the Tanzu CLI and plugins
@@ -263,7 +263,7 @@ To install the Tanzu CLI on a Mac operating system:
 6.  Install the CLI core:
     ```
     cd $HOME/tanzu
-    sudo install cli/core/v0.12.0/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
+    install cli/core/v0.12.0/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
     ```
 
 7. Confirm installation of the CLI core:
@@ -291,9 +291,7 @@ To install the Tanzu CLI on a Mac operating system:
 
    6. Execute the `Tanzu version` command in the terminal window again.
 
-   7. Click **Open** in the macOS prompt window.
-
-    After completing the steps above, there should be no more security issues while running Tanzu CLI commands.
+   7. Click **Open** in the macOS prompt window. After completing the steps above, there should be no more security issues while running Tanzu CLI commands.
 
    8. Proceed to [Instructions for a clean install of Tanzu CLI Plugins](#cli-plugin-clean-install).
 
@@ -376,7 +374,7 @@ To perform a clean installation of the Tanzu CLI plugins:
     pinniped-auth       v0.12.0         Pinniped authentication operations (usually not directly invoked)  core        v0.12.0  installed
     secret              v0.12.0         Tanzu secret management                                            core        v0.12.0  installed
     services                            Discover Service Types and manage Service Instances (ALPHA)                    v0.1.0   installed
-    ```       
+    ```
 
     Ensure that you have the `package`, `secret`, `accelerator`, `services`, and `apps` plugins.
     You need these plugins to install and interact with the Tanzu Application Platform.
@@ -485,7 +483,7 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
       ```
       tanzu config set features.global.context-aware-cli-for-plugins false
       ```
- 
+
   17. Install new plugin versions:
       ```
       tanzu plugin install --local cli all
@@ -612,15 +610,15 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
       ```
       tanzu plugin install package --local ./cli
       ```
-  
-  
+
+
   16. Install the `services` plugin by running:
 
       ```
       tanzu plugin install services --local ./cli
       ```
 
-  
+
   17. Verify that the Tanzu Application Platform plugins are present:
 
       ```
