@@ -1,8 +1,9 @@
 
 
 
-# Metadata Store API.
+# API details
 
+See [Getting Started with the API](getting_starated_api.md) for a walkthrough and example.
 
 ## Information
 
