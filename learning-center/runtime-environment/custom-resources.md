@@ -15,7 +15,7 @@ The ``Workshop`` custom resource defines a workshop. It specifies the title and 
 A minimal example of the ``Workshop`` custom resource is:
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-markdown-sample
@@ -34,10 +34,6 @@ spec:
         enabled: true
 ```
 
-The raw custom resource definition for the ``Workshop`` custom resource can be viewed at:
-
-* [https://github.com/eduk8s/eduk8s/blob/develop/resources/crds-v1/workshop.yaml](https://github.com/eduk8s/eduk8s/blob/develop/resources/crds-v1/workshop.yaml)
-
 When an instance of the ``Workshop`` custom resource is created it does not cause any immediate action by the Learning Center operator. This custom resource exists only to define the workshop.
 
 The ``Workshop`` custom resource is created at cluster scope.
@@ -49,7 +45,7 @@ In order to deploy instances of a workshop, you first need to create a workshop 
 A minimal example of the ``WorkshopEnvironment`` custom resource is:
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopEnvironment
 metadata:
   name: lab-markdown-sample
@@ -68,10 +64,6 @@ The ``spec.request.token`` field defines a token which must be supplied with a r
 
 If the ``Workshop`` definition for the workshop to be deployed in this workshop environment defines a set of common resources which must exist for the workshop, these will be created by the Learning Center operator after the namespace for the workshop environment is created. Where such resources are namespaced, they will be created in the namespace for the workshop environment. If necessary, these resources can include creation of separate namespaces with specific resources created in those namespaces instead.
 
-The raw custom resource definition for the ``WorkshopEnvironment`` custom resource can be viewed at:
-
-* [https://github.com/eduk8s/eduk8s/blob/develop/resources/crds-v1/workshop-environment.yaml](https://github.com/eduk8s/eduk8s/blob/develop/resources/crds-v1/workshop-environment.yaml)
-
 The ``WorkshopEnvironment`` custom resource is created at cluster scope.
 
 ## Workshop request resource
@@ -83,7 +75,7 @@ The ``WorkshopRequest`` custom resource is namespaced to allow who can create it
 A minimal example of the ``WorkshopRequest`` custom resource is:
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopRequest
 metadata:
   name: lab-markdown-sample
@@ -95,10 +87,6 @@ spec:
 
 Apart from needing to have appropriate access through RBAC, the only information that the user requesting a workshop instance needs to know is the the name of the workshop environment for the workshop, and the secret token which permits workshop requests against that specific workshop environment.
 
-The raw custom resource definition for the ``WorkshopRequest`` custom resource can be viewed at:
-
-* [https://github.com/eduk8s/eduk8s/blob/develop/resources/crds-v1/workshop-request.yaml](https://github.com/eduk8s/eduk8s/blob/develop/resources/crds-v1/workshop-request.yaml)
-
 Note that the ``WorkshopRequest`` resource is not used when using the ``TrainingPortal`` resource to provide a web interface for accessing workshops. The ``WorkshopRequest`` resource is only used where you were creating ``WorkshopEnvironment`` resource manually and not using the training portal.
 
 ## Workshop session resource
@@ -106,10 +94,6 @@ Note that the ``WorkshopRequest`` resource is not used when using the ``Training
 Although ``WorkshopRequest`` would be the typical way that workshop instances would be requested, upon the request being granted, the Learning Center operator will itself create an instance of a ``WorkshopSession`` custom resource.
 
 The ``WorkshopSession`` custom resource is the expanded definition of what the workshop instance should look like. It combines details from ``Workshop`` and ``WorkshopEnvironment``, and also links back to the ``WorkshopRequest`` resource object which triggered the request. The Learning Center operator reacts to an instance of ``WorkshopSession`` and creates the workshop instance based on that definition.
-
-The raw custom resource definition for the ``WorkshopSession`` custom resource can be viewed at:
-
-* [https://github.com/eduk8s/eduk8s/blob/develop/resources/crds-v1/workshop-session.yaml](https://github.com/eduk8s/eduk8s/blob/develop/resources/crds-v1/workshop-session.yaml)
 
 The ``WorkshopSession`` custom resource is created at cluster scope.
 
@@ -120,7 +104,7 @@ The ``TrainingPortal`` custom resource provides a high level mechanism for creat
 A minimal example of the ``TrainingPortal`` custom resource is:
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
   name: lab-markdown-sample
@@ -132,10 +116,6 @@ spec:
 
 You can set the capacity of the training room and that dictates how many workshop instances are created for each workshop.
 
-The raw custom resource definition for the ``TrainingPortal`` custom resource can be viewed at:
-
-* [https://github.com/eduk8s/eduk8s/blob/develop/resources/crds-v1/training-portal.yaml](https://github.com/eduk8s/eduk8s/blob/develop/resources/crds-v1/training-portal.yaml)
-
 The ``TrainingPortal`` custom resource is created at cluster scope.
 
 ## System profile resource
@@ -145,14 +125,14 @@ The ``SystemProfile`` custom resources provides a mechanism for configuring the 
 A minimal example of the ``SystemProfile`` custom resource is:
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
   name: default-system-profile
 spec:
   ingress:
-    domain: training.eduk8s.io
-    secret: training-eduks8-io-tls
+    domain: learningcenter.tanzu.vmware.com
+    secret: learningcenter-tanzu-vmware-com-tls
     class: nginx
   environment:
     secrets:
@@ -166,10 +146,6 @@ As only a global deployment of the operator is supported, the ``SystemProfile`` 
 
 Changes can be made to instances of the ``SystemProfile`` custom resource and they will be automatically used by the Learning Center operator without needing to redeploy it.
 
-The raw custom resource definition for the ``SystemProfile`` custom resource can be viewed at:
-
-* [https://github.com/eduk8s/eduk8s/blob/develop/resources/crds-v1/system-profile.yaml](https://github.com/eduk8s/eduk8s/blob/develop/resources/crds-v1/system-profile.yaml)
-
 The ``SystemProfile`` custom resource is created at cluster scope.
 
 ## Loading the workshop CRDs
@@ -180,4 +156,4 @@ This is because ``v1`` versions of CRDs are only supported from Kubernetes 1.17.
 
 The location of the ``v1`` versions of the CRDs is:
 
-* [https://github.com/eduk8s/eduk8s/tree/develop/resources/crds-v1](https://github.com/eduk8s/eduk8s/tree/develop/resources/crds-v1)
+* [https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1](https://gitlab.eng.vmware.com/educates/educates-operator/-/blob/main/resources/crds-v1)
