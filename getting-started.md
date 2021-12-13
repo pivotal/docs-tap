@@ -1255,8 +1255,7 @@ in the same namespace.
 1. Follow these steps to create an application workload that automatically claims and binds to the
 RabbitMQ instance:
 
-    >**Important:** Ensure your namespace is set up to use installed
-    Tanzu Application Platform packages so that Services Toolkit can create application workloads successfully.
+    >**Important:** Ensure your namespace can use the installed Tanzu Application Platform packages so that Services Toolkit can create application workloads.
     For more information, see [Set Up Developer Namespaces to Use Installed Packages](install-components.md#setup).
 
     1. Obtain a service reference by running:
@@ -1279,7 +1278,7 @@ RabbitMQ instance:
         tanzu apps workload create rmq-sample-app-usecase-1 --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch v0.1.0 --type web --service-ref "rmq=SERVICE REF"
         ```
 
-        Where `SERVICE REF`is the value of `SERVICE REF` from the output in the last step.
+        Where `SERVICE REF` is the value of `SERVICE REF` from the output in the last step.
 
 1. Get the Knative web-app URL by running:
 
@@ -1338,7 +1337,7 @@ for service instances.
     service-instances  example-rabbitmq-cluster-2  RabbitmqCluster  rabbitmq      14s   rabbitmq.com/v1beta1:RabbitmqCluster:example-rabbitmq-cluster-2:service-instances
     ```
 
-1. Create a `ResourceClaimPolicy`(API provided by Services Toolkit) to enable cross-namespace binding.
+1. Create a `ResourceClaimPolicy` (API provided by Services Toolkit) to enable cross-namespace binding.
 
     ```
     # resource-claim-policy.yaml
@@ -1366,14 +1365,13 @@ for service instances.
     For more information about `ResourceClaimPolicy`, see the
     [ResourceClaimPolicy documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-service_resource_claims-terminology_and_apis.html#resourceclaimpolicy-4).
 
-1. Bind the application workload to the RabbitmqCluster Service Instance using the `SERVICE REF` value from step 3.
-Associate the SERVICE REF value with a name as part of the following command:
+1. Bind the application workload to the RabbitmqCluster Service Instance:
 
     ```
     $ tanzu apps workload update rmq-sample-app-usecase-2 --service-ref="rmq=SERVICE REF" --yes
     ```
 
-    Where `SERVICE REF`is the value of `SERVICE REF` from the output in the step 3.
+    Where `SERVICE REF` is the value of `SERVICE REF` from the output in the step 3.
 
 1. Get the Knative web-app URL by running:
 
@@ -1429,12 +1427,15 @@ existing PostgreSQL database that exists in Azure:
     >and claimed cross namespace by using `ResourceClaimPolicy` resources.
     >For more information, see [Use case 2](#services-journey-use-case-2).
 
-1. Provide a reference to the Secret when creating your application workload.
-For example:
+1. Create your application workload.
+
+    Example:
 
     ```
     tanzu apps workload create pet-clinic --git-repo https://github.com/spring-projects/spring-petclinic --git-branch main --type web --service-ref db=v1:Secret:external-azure-db-binding-compatible
     ```
+
+    Where `pet-clinic` is a reference to the `Secret`.
 
 ### <a id='services-journey-use-case-4'></a> **Use case 4: Binding an application to a service instance running on a different Kubernetes cluster (Experimental).**
 
@@ -1443,7 +1444,7 @@ For example:
 This use case is identical to [use case 1](#services-journey-use-case-1),
 but rather than installing and running the RabbitMQ Cluster Kubernetes Operator on the same cluster
 as Tanzu Application Platform, we install and run it on an entirely separate dedicated services cluster.
-There are several reasons why you want to implement this use case:
+There are several reasons why we want to implement this use case:
 
 - **Dedicated cluster requirements for Workload or Service clusters:** service clusters, for instance,
 might need access to more powerful SSDs.
@@ -1467,11 +1468,11 @@ For more information about network requirements and recommended topologies, see 
 
 #### Prerequisites
 
->**Important:** You must complete the previous use cases prior to continuing with use case 4.
+>**Important:** Ensure you have completed the previous use cases prior to continuing with use case 4.
 
 Ensure you have met the following prerequisites before starting the [procedures of use case 4](#steps-use-case-4):
 
-1. Uninstall the RabbitMQ Cluster Operator that was installed in an earlier step.
+1. Uninstall the RabbitMQ Cluster Operator that was installed in [consuming services setup procedures](#consuming-services-setup).
 
     ```
     kapp delete -a rmq-operator -y
@@ -1482,7 +1483,7 @@ cluster.
 
     * This cluster must be able to create LoadBalanced services.
 
-    * This time after you have added the Tanzu Application Platform package repository, instead of
+    * After adding the Tanzu Application Platform package repository, instead of
     installing all packages, you only need to install the Services Toolkit package.
     For installation information, see [Add the Tanzu Application Platform Package Repository](install.md#add-package-repositories)
     and [Install Services Toolkit](install-components.md#install-services-toolkit).
@@ -1493,7 +1494,7 @@ cluster.
 
     **Note:** This plug-in is for demonstration and experimentation purposes only.
 
-    **Note:** To install the plug-in you must place it in your PATH and ensure it is executable.
+    **Note:** To install the plug-in you must place it in your `PATH` and ensure it is executable.
 
     For example:
 
@@ -1502,11 +1503,11 @@ cluster.
     sudo chmod +x /usr/local/bin/kubectl-scp
     ```
 
-    You are left with two Kubernetes clusters:
+    Now you have two Kubernetes clusters:
 
-    - Workload Cluster, which is where Tanzu Application Platform, including Services Toolkit, is installed.
+    - **Workload Cluster**, which is where Tanzu Application Platform, including Services Toolkit, is installed.
     The RabbitMQ Cluster Operator is not installed on this cluster.
-    - Services Cluster, which is where only Services Toolkit is installed. No other component is installed in this cluster.
+    - **Services Cluster**, which is where only Services Toolkit is installed. No other component is installed in this cluster.
 
 #### <a id='steps-use-case-4'></a> Steps
 
@@ -1515,7 +1516,7 @@ Follow these steps to bind an application to a service instance running on a dif
 >**Important:** Some of the commands listed in the following steps have placeholder values `WORKLOAD-CONTEXT` and `SERVICE-CONTEXT`.
 >Change these values before running the commands.
 
-1. As the Service operator, run the following command to link the Workload Cluster and Service Cluster together by using the `kubectl scp` plug-in:
+1. As the Service Operator, run the following command to link the Workload Cluster and Service Cluster together by using the `kubectl scp` plug-in:
 
     ```
     kubectl scp link --workload-kubeconfig-context=WORKLOAD-CONTEXT --service-kubeconfig-context=SERVICE-CONTEXT
@@ -1570,8 +1571,7 @@ we created a namespace named `service-instances`, we must now create a namespace
       --api-resource=rabbitmqclusters
     ```
 
-1. After federation, the `rabbitmq.com/v1beta1` API is also available in the Workload Cluster.
-   Verify this by running:
+1. After federation, verify the `rabbitmq.com/v1beta1` API is also available in the Workload Cluster by running:
 
     ```
     kubectl --context WORKLOAD-CONTEXT api-resources
@@ -1634,18 +1634,18 @@ Workload Cluster by running:
     ```
 
     Finally, the app developer takes over. The experience is the same for
-    the app developer as in [use case 1](#services-journey-use-case-1).
+    the application developer as in [use case 1](#services-journey-use-case-1).
 
 1. Create the application workload by running:
 
     ```
-    tanzu apps workload create rmq-sample-app-usecase-2 --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch v0.1.0 --type web --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:projected-rmq:service-instances"
+    tanzu apps workload create rmq-sample-app-usecase-4 --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch v0.1.0 --type web --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:projected-rmq:service-instances"
     ```
 
 1. Get the web-app URL by running:
 
     ```
-    tanzu apps workload get rmq-sample-app-usecase-2
+    tanzu apps workload get rmq-sample-app-usecase-4
     ```
 
 1. Visit the URL and refresh the page to confirm the app is running by checking
