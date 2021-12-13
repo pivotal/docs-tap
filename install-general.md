@@ -263,7 +263,7 @@ To install the Tanzu CLI on a Mac operating system:
 6.  Install the CLI core:
     ```
     cd $HOME/tanzu
-    sudo install cli/core/v0.12.0/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
+    install cli/core/v0.12.0/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
     ```
 
 7. Confirm installation of the CLI core:
