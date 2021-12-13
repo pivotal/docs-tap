@@ -15,7 +15,7 @@ data:
   .dockerconfigjson: <~/.docker/config.json base64 data>
 
 ---
-apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
+apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: ImageScan
 metadata:
   name: sample-image-source-scan

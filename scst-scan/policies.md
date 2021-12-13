@@ -21,7 +21,7 @@ The Rego File must define inside its body an `isCompliant` rule, which needs to 
 
 ### Sample scan policy resource
 ```
-apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
+apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: ScanPolicy
 metadata:
   name: scanpolicy-sample

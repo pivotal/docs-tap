@@ -129,7 +129,7 @@ A Scan Policy is defined and indicates how to perform a policy compliance check 
 ```
 kubectl apply -f - -o yaml << EOF
 ---
-apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
+apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: ScanPolicy
 metadata:
   name: scan-policy
@@ -198,7 +198,7 @@ spec:
   revisionPath: .status.artifact.blob.url
 
   template:
-    apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
+    apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
     kind: SourceScan
     metadata:
       name: $(workload.metadata.name)$-source-scan
@@ -245,7 +245,7 @@ spec:
   imagePath: .status.artifact.registry.image
 
   template:
-    apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
+    apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
     kind: ImageScan
     metadata:
       name: $(workload.metadata.name)$-image-scan

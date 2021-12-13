@@ -18,7 +18,7 @@ Create `sample-public-source-scan-with-compliance-check.yaml`:
 
 ```
 ---
-apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
+apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: ScanPolicy
 metadata:
   name: sample-scan-policy
@@ -49,7 +49,7 @@ spec:
     isCompliant = isSafe(input.currentVulnerability)
 
 ---
-apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
+apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: SourceScan
 metadata:
   name: sample-public-source-scan-with-compliance-check
@@ -158,7 +158,7 @@ Create `sample-public-image-scan-with-compliance-check.yaml`:
 
 ```
 ---
-apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
+apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: ScanPolicy
 metadata:
   name: sample-scan-policy
@@ -189,7 +189,7 @@ spec:
     isCompliant = isSafe(input.currentVulnerability)
 
 ---
-apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
+apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: ImageScan
 metadata:
   name: sample-public-image-scan-with-compliance-check

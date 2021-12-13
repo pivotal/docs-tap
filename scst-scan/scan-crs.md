@@ -14,7 +14,7 @@ The SourceScan custom resource helps you define and trigger a scan for a given r
 #### Step 1: Create the SourceScan custom resource
 Example:
 ```
-apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
+apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: SourceScan
 metadata:
   # set the name of the source scan CR
@@ -97,7 +97,7 @@ The ImageScan custom resource helps you define and trigger a scan for a given im
 
 Example:
 ```
-apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
+apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: ImageScan
 metadata:
   # set the name of the image scan CR

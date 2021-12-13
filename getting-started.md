@@ -630,7 +630,7 @@ Verify that both Scan Link and Grype Scanner are installed by running:
     ```
     kubectl apply -f - -o yaml << EOF
     ---
-    apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
+    apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
     kind: ScanPolicy
     metadata:
       name: scan-policy

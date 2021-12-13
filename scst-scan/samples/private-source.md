@@ -14,7 +14,7 @@ stringData:
   ssh-privatekey: <insert your PEM-encoded ssh private key>
 
 ---
-apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
+apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: SourceScan
 metadata:
   name: sample-private-source-scan
