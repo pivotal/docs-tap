@@ -1110,8 +1110,7 @@ and create a Services Toolkit resource called `ClusterResource` for RabbitmqClus
 1. Install RabbitMQ Operator which provides a RabbitmqCluster API kind on the `rabbitmq.com/v1beta1 API Group/Version`.
 
     ```
-    kapp -y deploy --app rmq-operator --file
-    https://github.com/rabbitmq/cluster-operator/releases/download/v1.9.0/cluster-operator.yml
+    kapp -y deploy --app rmq-operator --file https://github.com/rabbitmq/cluster-operator/releases/download/v1.9.0/cluster-operator.yml
     ```
 
 1. After a new API is installed and available on the cluster,
@@ -1275,10 +1274,10 @@ RabbitMQ instance:
     `https://github.com/jhvhs/rabbitmq-sample` by running:
 
         ```
-        tanzu apps workload create rmq-sample-app-usecase-1 --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch v0.1.0 --type web --service-ref "rmq=SERVICE REF"
+        tanzu apps workload create rmq-sample-app-usecase-1 --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch v0.1.0 --type web --service-ref "rmq=SERVICE-REF"
         ```
 
-        Where `SERVICE REF` is the value of `SERVICE REF` from the output in the last step.
+        Where `SERVICE-REF` is the value of `SERVICE REF` from the output in the last step.
 
 1. Get the Knative web-app URL by running:
 
@@ -1366,10 +1365,10 @@ for service instances.
 1. Bind the application workload to the RabbitmqCluster Service Instance:
 
     ```
-    $ tanzu apps workload update rmq-sample-app-usecase-2 --service-ref="rmq=SERVICE REF" --yes
+    $ tanzu apps workload update rmq-sample-app-usecase-2 --service-ref="rmq=SERVICE-REF" --yes
     ```
 
-    Where `SERVICE REF` is the value of `SERVICE REF` from the output in the step 3.
+    Where `SERVICE-REF` is the value of `SERVICE REF` from the output in the step 3.
 
 1. Get the Knative web-app URL by running:
 
