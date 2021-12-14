@@ -433,7 +433,7 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
      ```
 
   10. List the plugins to see if the `imagepullsecret` plugin was previously installed.
-      If installed, then delete it:
+      If installed, delete it:
 
       ```
       tanzu plugin list
