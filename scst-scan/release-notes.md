@@ -15,6 +15,9 @@ This topic contains release notes for Supply Chain Security Tools – Scan.
 * Blob Source Scans have an edge case when a compressed file without a `.git` directory is provided. Sending results to metadata store will fail and the scanned revision value will not be set.
     * The current workaround is to add the `.git` directory to the compressed file.
     * This issue will be fixed post GA.
+* Events show `SaveScanResultsSuccess` when the Supply Chain Security Tools - Store is not configured.
+    * The `.status.conditions` output does correctly reflect `SendingResults=False`.
+    * This issue will be fixed post GA.
 
 ### v1.0.0-beta.2
 
