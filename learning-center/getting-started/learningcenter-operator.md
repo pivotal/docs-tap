@@ -1,8 +1,9 @@
-# Learning Center operator
+# Learning Center Operator
 
 Before you can start deploying workshops, you need to install a Kubernetes operator for Learning Center. <br/>
 The operator manages the setup of the environment for each workshop and deploys instances of a workshop for each person.
-We have the basic instructions for installing the Operator and Workshops. This 
+We have the basic instructions for installing the Operator and Workshops. 
+
 * Basic instructions for [Installing the Learning Center Operator](https://github.com/pivotal/docs-tap/blob/main/install-components.md#install-learning-center) 
 
 **Below is additional information on installing and setting up the Learning Center Operator** 
