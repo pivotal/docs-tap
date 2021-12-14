@@ -2134,7 +2134,7 @@ To install Supply Chain Security Tools - Sign:
     ```
     tanzu package install image-policy-webhook \
       --package-name image-policy-webhook.signing.run.tanzu.vmware.com \
-      --version 1.0.0-beta.2 \
+      --version 1.0.0-beta.3 \
       --namespace tap-install \
       --values-file scst-sign-values.yaml
     ```
@@ -2144,10 +2144,10 @@ To install Supply Chain Security Tools - Sign:
     ```
     $ tanzu package install image-policy-webhook \
         --package-name image-policy-webhook.signing.run.tanzu.vmware.com \
-        --version 1.0.0-beta.2 \
+        --version 1.0.0-beta.3 \
         --namespace tap-install \
         --values-file scst-sign-values.yaml
-   
+
     | Installing package 'image-policy-webhook.signing.run.tanzu.vmware.com'
     | Getting namespace 'default'
     | Getting package metadata for 'image-policy-webhook.signing.run.tanzu.vmware.com'
@@ -2157,7 +2157,7 @@ To install Supply Chain Security Tools - Sign:
     | Creating secret 'image-policy-webhook-default-values'
     / Creating package resource
     - Package install status: Reconciling
-   
+
     Added installed package 'image-policy-webhook' in namespace 'tap-install'
     ```
 
