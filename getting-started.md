@@ -1009,7 +1009,7 @@ Use the Supply Chain Security Tools - Store CLI, called Insight,
 to query metadata that have been submitted to the component after the scan step.
 
 For a complete guide on how to query the store,
-see [Querying Supply Chain Security Tools - Store](scst-store/querying_the_metadata_store.md).
+see [Querying Supply Chain Security Tools - Store](scst-store/query_data.md).
 
 #### Example Supply Chain including Source and Image Scans
 
