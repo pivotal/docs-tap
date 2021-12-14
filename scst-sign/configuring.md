@@ -12,15 +12,15 @@ this policy will not be enforced.
 * `spec.verification.keys`: a list of public keys complementary to the private
 keys that were used to sign the images.
 
-* `spec.verification.images[].namePattern`: image name patterns that the policy enforces. 
+* `spec.verification.images[].namePattern`: image name patterns that the policy enforces.
 Each image name pattern maps to the required public keys. Optionally,
-use a secret to authenticate the private registry where images and signatures matching a name pattern are stored. 
+use a secret to authenticate the private registry where images and signatures matching a name pattern are stored.
 
 The following is an example `ClusterImagePolicy`:
 
 ```
 ---
-apiVersion: signing.run.tanzu.vmware.com/v1alpha1
+apiVersion: signing.run.tanzu.vmware.com/v1beta1
 kind: ClusterImagePolicy
 metadata:
     name: image-policy
@@ -63,8 +63,8 @@ Warning: clusterimagepolicies.signing.run.tanzu.vmware.com "image-policy" not fo
 
 The patterns are evaluated using the any of operator to admit container
 images. For each pod, the image policy webhook iterates over the list of
-containers and init containers. The pod is verified when there is at least 
-one key specified in `spec.verification.images[].keys[]` for each container image 
+containers and init containers. The pod is verified when there is at least
+one key specified in `spec.verification.images[].keys[]` for each container image
 that matches `spec.verification.images[].namePattern`.
 
 >
@@ -79,7 +79,7 @@ images by adding system namespaces to the
 
 ```
 cat <<EOF | kubectl apply -f -
-apiVersion: signing.run.tanzu.vmware.com/v1alpha1
+apiVersion: signing.run.tanzu.vmware.com/v1beta1
 kind: ClusterImagePolicy
 metadata:
   name: image-policy
@@ -147,7 +147,7 @@ See the following example:
 
 ```
 ---
-apiVersion: signing.run.tanzu.vmware.com/v1alpha1
+apiVersion: signing.run.tanzu.vmware.com/v1beta1
 kind: ClusterImagePolicy
 metadata:
   name: image-policy
