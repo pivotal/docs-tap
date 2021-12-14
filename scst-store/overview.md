@@ -37,7 +37,7 @@ The following steps are required to use the API or CLI:
 
 The Insight CLI is the recommended means to query the database.
 
-> **Note:** The Insight CLI is in beta and is separate from the Tanzu CLI.
+> **Note:** The Insight CLI is in beta and is separate from the Tanzu CLI. It still works with the final 1.0.0 version of Supply Chain Security Tools - Store.
 
 * [CLI installation](install_cli.md)
 * [CLI configuration](configure_cli.md)

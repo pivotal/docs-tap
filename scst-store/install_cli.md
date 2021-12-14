@@ -1,6 +1,8 @@
 # CLI installation
 
-This topic explains how to install the Insight CLI:
+> **Note:** The Insight CLI is in beta and is separate from the Tanzu CLI.
+
+This topic explains how to install the `insight` CLI:
 
 1. Sign in to [Tanzu Network](https://network.tanzu.vmware.com/).
 1. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/). 
