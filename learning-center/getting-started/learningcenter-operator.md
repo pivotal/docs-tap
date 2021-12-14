@@ -92,13 +92,13 @@ Set the ``INGRESS_DOMAIN`` environment variable on the operator deployment. To s
 environment variable, run:
 
 ```
-kubectl set env deployment/eduk8s-operator -n educates INGRESS_DOMAIN=test
+kubectl set env deployment/learningcenter-operator -n learningcenter INGRESS_DOMAIN=test
 ```
 Replace ``test`` with the domain name for your Kubernetes cluster.
 
 or if using a ``nip.io`` address
 ```
-kubectl set env deployment/eduk8s-operator -n educates INGRESS_DOMAIN=192.168.64.1.nip.io
+kubectl set env deployment/learningcenter-operator -n learningcenter INGRESS_DOMAIN=192.168.64.1.nip.io
 ```
 
 Note that use of environment variables to configure the operator is a short cut to cater for the 
@@ -121,26 +121,39 @@ The easiest way to define the certificate is through the configuration passed to
 the ``certificate`` and ``privateKey`` properties under the ``ingressSecret`` property to specify the 
 certificate on the configuration yaml passed to Tanzu CLI
 
-```
-ingressSecret:
-  certificate: MIIC2DCCAcCgAwIBAgIBATANBgkqh ...
-  privateKey: MIIEpgIBAAKCAQEA7yn3bRHQ5FHMQ ...
-```
+  ```
+  ingressSecret:
+    certificate: |
+      -----BEGIN CERTIFICATE-----
+      MIIFLTCCBBWgAwIBAgaSAys/V2NCTG9uXa9aAiYt7WJ3MA0GCSqGaIb3DQEBCwUA
+                                      ...
+      dHa6Ly9yMy5vamxlbmNyLm9yZzAiBggrBgEFBQawAoYWaHR0cDoaL3IzLmkubGVu
+      -----END CERTIFICATE-----
+    privateKey: |
+      -----BEGIN PRIVATE KEY-----
+      MIIEvQIBADAaBgkqhkiG9waBAQEFAASCBKcwggSjAgEAAoIBAaCx4nyc2xwaVOzf
+                                      ...
+      IY/9SatMcJZivH3F1a7SXL98PawPIOSR7986P7rLFHzNjaQQ0DWTaXBRt+oUDxpN
+      -----END PRIVATE KEY-----
+  ```
 
-If you already has a TLS secret, you can copy it to the ``educates`` namespace or that one you defined, 
-and use the ``secretName`` property.
-```
-ingressSecret:
-  secretName: workshops.example.com-tls
-```
+If you already have a TLS secret, follow these steps **before deploying any workshop**:
+  * Create the `learningcenter` namespace manually or the one you defined
+  * Copy the tls secret to the `learningcenter` namespace or the one you
+  defined, and use the `secretName` property as in this example:
+
+  ```
+  ingressSecret:
+    secretName: workshops.example.com-tls
+  ```
 
 ### Create the TLS secret manually
 
-If you want to add the certificate as a secret in the ``educates`` namespace or that one you defined, the 
+If you want to add the certificate as a secret in the ``learningcenter`` namespace or that one you defined, the 
 secret needs to be of type ``tls``. You can create it using the ``kubectl create secret tls`` command.
 
 ```
-kubectl create secret tls -n educates workshops.example.com-tls --cert=workshops.example.com/fullchain.pem --key=workshops.example.com/privkey.pem
+kubectl create secret tls -n learningcenter workshops.example.com-tls --cert=workshops.example.com/fullchain.pem --key=workshops.example.com/privkey.pem
 ```
 
 Having created the secret, if it is the secret corresponding to the default ingress domain you specified 
@@ -148,12 +161,12 @@ above, set the ``INGRESS_SECRET`` environment variable (if you don't want to use
 on the operator deployment. This will ensure that it is applied automatically to any ingress created.
 
 ```
-kubectl set env deployment/eduk8s-operator -n eduk8s INGRESS_SECRET=workshops.example.com-tls
+kubectl set env deployment/learningcenter-operator -n learningcenter INGRESS_SECRET=workshops.example.com-tls
 ```
 
 If the certificate isn't that of the default ingress domain, you can supply the domain name and name of the 
 secret when creating a workshop environment or training portal. In either case, secrets for the wildcard 
-certificates must be created in the ``educates`` namespace or that one you defined.
+certificates must be created in the ``learningcenter`` namespace or that one you defined.
 
 ## Specifying the ingress class
 
@@ -167,9 +180,9 @@ ingressClass: contour
 ```
 
 ### Set the environment variable manually
-Set the ``INGRESS_CLASS`` environment variable for the eduk8s operator.
+Set the ``INGRESS_CLASS`` environment variable for the learningcenter operator.
 ```
-kubectl set env deployment/eduk8s-operator -n educates INGRESS_CLASS=contour
+kubectl set env deployment/learningcenter-operator -n learningcenter INGRESS_CLASS=contour
 ```
 
 This only applies to the ingress created for the training portal and workshop sessions. It does not apply 

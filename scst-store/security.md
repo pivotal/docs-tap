@@ -1,12 +1,12 @@
-# Security for Supply Chain Security Tools - Store
+# Security details
 
-## Application Security
+## Application security
 
-### TLS Encryption
+### TLS encryption
 
 Supply Chain Security Tools - Store requires TLS connection. If certificates are not provided, the application will not start. It supports TLS v1.2 and TLS v1.3. It does not support TLS 1.0, so a downgrade attack cannot happen. TLS 1.0 is prohibited under Payment Card Industry Data Security Standard (PCI DSS).
 
-##### Cryptographic Algorithms:
+##### Cryptographic algorithms:
 
 Elliptic Curve:
 ```
@@ -25,7 +25,7 @@ TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
 TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 ```
 
-### Access Controls
+### Access controls
 
 Supply Chain Security Tools - Store uses [kube-rbac-proxy](https://github.com/brancz/kube-rbac-proxy) as the only entry point to its API. Authentication and Authorization must be completed successfully via the `kube-rbac-proxy` before its API is accessible.
 
@@ -46,9 +46,9 @@ There is no default service account bound to the `Read Only` cluster role. The u
 
 *** Note: There is no support for roles with access to only specific types of resources (i.e., images, packages, vulnerabilities, etc.)
 
-## Container Security
+## Container security
 
-### Non-root User
+### Non-root user
 All containers shipped do not use root user account, nor accounts with root access. Using Kubernetes Security Context ensures that applications do not run with root user.
 
 Security Context for the API server:
@@ -67,7 +67,7 @@ fsGroup: 999
 
 *** Note: `65532` is the uuid for the "nobody" user. `999` is the uuid for the "postgres" user.
 
-## Security Scanning
+## Security scanning
 
 There are two types of security scans that are performed before every release.
 
