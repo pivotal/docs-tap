@@ -183,7 +183,7 @@ rules:
 - apiGroups: [services.apps.tanzu.vmware.com]
   resources: ['resourceclaims']
   verbs: ['*']
-- apiGroups: [scst-scan.apps.tanzu.vmware.com]
+- apiGroups: [scanning.apps.tanzu.vmware.com]
   resources: ['imagescans', 'sourcescans']
   verbs: ['*']
 ```

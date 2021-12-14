@@ -2180,22 +2180,22 @@ To install Supply Chain Security Tools - Scan (Scan Controller):
 1. List version information for the package by running:
 
     ```
-    tanzu package available list scst-scan.apps.tanzu.vmware.com --namespace tap-install
+    tanzu package available list scanning.apps.tanzu.vmware.com --namespace tap-install
     ```
 
      For example:
 
     ```
-    $ tanzu package available list scst-scan.apps.tanzu.vmware.com --namespace tap-install
-    / Retrieving package versions for scst-scan.apps.tanzu.vmware.com...
+    $ tanzu package available list scanning.apps.tanzu.vmware.com --namespace tap-install
+    / Retrieving package versions for scanning.apps.tanzu.vmware.com...
       NAME                             VERSION       RELEASED-AT
-      scst-scan.apps.tanzu.vmware.com  1.0.0
+      scanning.apps.tanzu.vmware.com   1.0.0
     ```
 
 1. (Optional) Make changes to the default installation settings by running:
 
     ```
-    tanzu package available get scst-scan.apps.tanzu.vmware.com/1.0.0 --values-schema -n tap-install
+    tanzu package available get scanning.apps.tanzu.vmware.com/1.0.0 --values-schema -n tap-install
     ```
 
 1. Gather the values schema.
@@ -2204,7 +2204,7 @@ To install Supply Chain Security Tools - Scan (Scan Controller):
 
     ```
     tanzu package install scan-controller \
-      --package-name scst-scan.apps.tanzu.vmware.com \
+      --package-name scanning.apps.tanzu.vmware.com \
       --version 1.0.0 \
       --namespace tap-install
     ```
@@ -2214,29 +2214,29 @@ To install Supply Chain Security Tools - Scan (Grype Scanner):
 1. List version information for the package by running:
 
     ```
-    tanzu package available list scst-grype.apps.tanzu.vmware.com --namespace tap-install
+    tanzu package available list grype.scanning.apps.tanzu.vmware.com --namespace tap-install
     ```
 
     For example:
 
     ```
-    $ tanzu package available list scst-grype.apps.tanzu.vmware.com --namespace tap-install
-    / Retrieving package versions for scst-grype.apps.tanzu.vmware.com...
+    $ tanzu package available list grype.scanning.apps.tanzu.vmware.com --namespace tap-install
+    / Retrieving package versions for grype.scanning.apps.tanzu.vmware.com...
       NAME                                  VERSION       RELEASED-AT
-      scst-grype.apps.tanzu.vmware.com  1.0.0
+      grype.scanning.apps.tanzu.vmware.com  1.0.0
     ```
 
 1. (Optional) Make changes to the default installation settings by running:
 
     ```
-    tanzu package available get scst-grype.apps.tanzu.vmware.com/1.0.0 --values-schema -n tap-install
+    tanzu package available get grype.scanning.apps.tanzu.vmware.com/1.0.0 --values-schema -n tap-install
     ```
 
     For example:
 
     ```
-    $ tanzu package available get scst-grype.apps.tanzu.vmware.com/1.0.0 --values-schema -n tap-install
-    | Retrieving package details for scst-grype.apps.tanzu.vmware.com/1.0.0...
+    $ tanzu package available get grype.scanning.apps.tanzu.vmware.com/1.0.0 --values-schema -n tap-install
+    | Retrieving package details for grype.scanning.apps.tanzu.vmware.com/1.0.0...
       KEY                        DEFAULT  TYPE    DESCRIPTION
       namespace                  default  string  Deployment namespace for the Scan Templates
       resources.limits.cpu       1000m    <nil>   Limits describes the maximum amount of cpu resources allowed.
@@ -2265,7 +2265,7 @@ If you want to change from the default values, use the Scan Controller instructi
 
     ```
     tanzu package install grype-scanner \
-      --package-name scst-grype.apps.tanzu.vmware.com \
+      --package-name grype.scanning.apps.tanzu.vmware.com \
       --version 1.0.0 \
       --namespace tap-install
     ```
@@ -2274,12 +2274,12 @@ If you want to change from the default values, use the Scan Controller instructi
 
     ```
     $ tanzu package install grype-scanner \
-      --package-name scst-grype.apps.tanzu.vmware.com \
+      --package-name grype.scanning.apps.tanzu.vmware.com \
       --version 1.0.0 \
       --namespace tap-install
-    / Installing package 'scst-grype.apps.tanzu.vmware.com'
+    / Installing package 'grype.scanning.apps.tanzu.vmware.com'
     | Getting namespace 'tap-install'
-    | Getting package metadata for 'scst-grype.apps.tanzu.vmware.com'
+    | Getting package metadata for 'grype.scanning.apps.tanzu.vmware.com'
     | Creating service account 'grype-scanner-tap-install-sa'
     | Creating cluster admin role 'grype-scanner-tap-install-cluster-role'
     | Creating cluster role binding 'grype-scanner-tap-install-cluster-rolebinding'
@@ -2549,12 +2549,12 @@ Use the following procedure to verify that the packages are installed.
     cloud-native-runtimes    cnrs.tanzu.vmware.com                              1.0.3            Reconcile succeeded
     convention-controller    controller.conventions.apps.tanzu.vmware.com       0.4.2            Reconcile succeeded
     developer-conventions    developer-conventions.tanzu.vmware.com             0.3.0-build.1    Reconcile succeeded
-    grype-scanner            scst-grype.apps.tanzu.vmware.com                   1.0.0            Reconcile succeeded
+    grype-scanner            grype.scanning.apps.tanzu.vmware.com               1.0.0            Reconcile succeeded
     image-policy-webhook     image-policy-webhook.signing.run.tanzu.vmware.com  1.0.0-beta.1     Reconcile succeeded
     metadata-store           scst-store.tanzu.vmware.com                        1.0.0-beta.1     Reconcile succeeded
     ootb-supply-chain-basic  ootb-supply-chain-basic.tanzu.vmware.com           0.3.0-build.5    Reconcile succeeded
     ootb-templates           ootb-templates.tanzu.vmware.com                    0.3.0-build.5    Reconcile succeeded
-    scan-controller          scst-scan.apps.tanzu.vmware.com                    1.0.0            Reconcile succeeded
+    scan-controller          scanning.apps.tanzu.vmware.com                     1.0.0            Reconcile succeeded
     service-bindings         service-bindings.labs.vmware.com                   0.5.0            Reconcile succeeded
     services-toolkit         services-toolkit.tanzu.vmware.com                  0.5.0            Reconcile succeeded
     source-controller        controller.source.apps.tanzu.vmware.com            0.2.0            Reconcile succeeded
@@ -2655,7 +2655,7 @@ that you plan to create the `Workload` in:
     - apiGroups: [services.apps.tanzu.vmware.com]
       resources: ['resourceclaims']
       verbs: ['*']
-    - apiGroups: [scst-scan.apps.tanzu.vmware.com]
+    - apiGroups: [scanning.apps.tanzu.vmware.com]
       resources: ['imagescans', 'sourcescans']
       verbs: ['*']
     
