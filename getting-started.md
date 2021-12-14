@@ -16,7 +16,6 @@ There are two high-level workflows described in this document:
 
 To take full advantage of this document, ensure you have followed [Installing Tanzu Application Platform](install-intro.md).
 
----
 
 ## Section 1: Developing Your First Application on Tanzu Application Platform
 
@@ -1654,25 +1653,29 @@ Workload Cluster by running:
 the new message IDs.
 
 
-## Next Steps
+## (Optional) Explore Tanzu Application CLI Commands
 
-### Explore Tanzu Application CLI Commands
+To add ENVARS:
 
-To add ENVARS, run the following:
+1. Run the following:
 
     ```
     tanzu apps workload update tanzu-java-web-app --env foo=bar
     ```
 
 To export the current running workload definition, check into Git, or promote
-to another environment, run the following:
+to another environment:
+
+1. Run the following:
 
     ```
     tanzu apps workload get tanzu-java-web-app --export \
      \
     ```
 
-To explore available flags for the workload commands, run the following:
+To explore available flags for the workload commands:
+
+1. Run the following:
 
     ```
     tanzu apps workload -h
@@ -1680,7 +1683,9 @@ To explore available flags for the workload commands, run the following:
     tanzu apps workload create -h
     ```
 
-To create a Java application from source code on your local file system, run the following:
+To create a Java application from source code on your local file system:
+
+1. Run the following:
 
     ```
     git clone git@github.com:spring-projects/spring-petclinic.git
