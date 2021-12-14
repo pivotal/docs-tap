@@ -82,7 +82,7 @@ For information about connecting to Tanzu Application Platform GUI, see
 
     Where `GIT-URL-TO-PROJECT-REPO` is the path you uploaded to in step 5.
 
-    If you bypassed step 5, and weren't able to upload your accelerator to a Git repo, you can use the public version to test with:
+    If you bypassed step 5 and weren't able to upload your accelerator to a Git repo, you can use the public version to test with:
     ```
     tanzu apps workload create tanzu-java-web-app \
     --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
