@@ -8,7 +8,7 @@ This topic contains release notes for Supply Chain Security Tools - Store.
 
 * PostgresSQL 13.4
 
-### Breaking Changes
+### Breaking changes
 
 * (possibly breaking) `storageClassName` and `databaseRequestStorage` fields have been changed to `storage_class_name` and `database_request_storage` respectively. This change was made to keep the format of all available fields consistent with other available fields.
 * (possibly breaking) Change output for unhappy paths to be more consistent. Empty results due to sources not existing when searching by package or source information now returns an empty array with a 200 response. Previously it would give an error JSON with a 404.

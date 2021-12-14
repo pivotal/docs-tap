@@ -17,7 +17,7 @@ Tanzu Application Platform GUI is comprised of the following components:
 * **Tanzu Application Platform GUI Plug-ins:**
   These plug-ins expose capabilities regarding specific Tanzu Application Platform tools.
   Initially the included plug-ins are:
-  * Workload Visibility
+  * Runtime Resources Visibility
   * Application Live View
 
 * **TechDocs:**

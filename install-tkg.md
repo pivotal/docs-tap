@@ -68,6 +68,12 @@ To install kapp-controller v0.29.0 or later on Tanzu Kubernetes Grid v1.4:
     kubectl apply -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v0.29.0/release.yml
     ```
 
+1. Install secretgen-controller v0.7.1 or greater by running:
+
+    ```
+    kubectl create ns secretgen-controller
+    kubectl apply -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/latest/download/release.yml
+    ```
 
 ### <a id='tanzucli'></a>Install the Tanzu CLI and plugins for Tanzu Application Platform
 
