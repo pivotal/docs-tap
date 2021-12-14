@@ -3,7 +3,7 @@ This document describes how to create and deploy custom conventions to the Tanzu
 
 ## <a id='intro'></a>Introduction
 
-Tanzu Application Platform helps developers transform their code
+Tanzu Application Platform makes it easy for developers to transform their code
 into containerized workloads with a URL.
 This transformation is managed by the Supply Chain Choreographer for Tanzu.
 For more information, see [Supply Chain Choreographer](../scc/about.html).
