@@ -3,7 +3,7 @@ The `ScanTemplate` CR is where you define the pod with the scanner image that yo
 
 ## Structure
 ```
-apiVersion: scst-scan.apps.tanzu.vmware.com/v1alpha1
+apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: ScanTemplate
 spec:
     # Required. This field must specify a valid pod.spec. 

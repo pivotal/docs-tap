@@ -132,7 +132,7 @@ When a ImageScan or SourceScan is created to run a scan, those reference a
 policy whose name **must** match the one below (`scan-policy`):
 
 ```
-apiVersion: scst-scan.apps.tanzu.vmware.com/v1alpha1
+apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: ScanPolicy
 metadata:
   name: scan-policy
@@ -175,7 +175,7 @@ below:
 - source scanning (`blob-source-scan-template`):
 
 ```
-apiVersion: scst-scan.apps.tanzu.vmware.com/v1alpha1
+apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: ScanTemplate
 metadata:
   name: blob-source-scan-template
@@ -225,7 +225,7 @@ spec:
 
 
 ```
-apiVersion: scst-scan.apps.tanzu.vmware.com/v1alpha1
+apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: ScanTemplate
 metadata:
   name: private-image-scan-template

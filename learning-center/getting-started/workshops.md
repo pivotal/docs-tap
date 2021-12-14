@@ -18,13 +18,13 @@ kubectl apply -f https://raw.githubusercontent.com/eduk8s-labs/lab-k8s-fundament
 This will result in a custom resource being created called ``WorkshopEnvironment``:
 
 ```
-workshopenvironment.training.eduk8s.io/lab-k8s-fundamentals created
+workshopenvironment.learningcenter.tanzu.vmware.com/lab-k8s-fundamentals created
 ```
 
 The custom resource created is cluster-scoped, and the command needs to be run as a cluster admin or other appropriate 
 user with permission to create the resource.
 
-The eduk8s operator will react to the creation of this custom resource and initialize the workshop environment.
+The learningcenter operator will react to the creation of this custom resource and initialize the workshop environment.
 
 For each distinct workshop environment, a separate namespace is created. This namespace will be used to hold the 
 workshop instances. The namespace may also be used to provision any shared application services the workshop definition 
@@ -78,7 +78,7 @@ This will display output similar to:
 
 ```
 NAME                   URL                                      USERNAME   PASSWORD
-lab-k8s-fundamentals   http://lab-k8s-fundamentals-cvh51.test   eduk8s     buQOgZvfHM7m
+lab-k8s-fundamentals   http://lab-k8s-fundamentals-cvh51.test   learningcenter     buQOgZvfHM7m
 ```
 
 The additional fields provide the URL the workshop instance can be accessed as, as well as the username and password to

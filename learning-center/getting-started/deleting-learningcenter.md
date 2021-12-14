@@ -21,4 +21,4 @@ To uninstall the Learning Center operator, then run:
 kubectl delete -k "github.com/eduk8s/eduk8s?ref=master"
 ```
 
-This will also remove the custom resource definitions which were added, and the educates namespace.
+This will also remove the custom resource definitions which were added, and the learningcenter namespace.
