@@ -27,8 +27,8 @@ Configure Tanzu Service Mesh to ignore namespaces related to Tanzu Application P
     + `contour-internal`
     + `conventions-system`
     + `developer-conventions`
-    + `educates`
-    + `educates-tutorials-ui`
+    + `learningcenter`
+    + `learningcenter-tutorials-ui`
     + `flux-system`
     + `image-policy-system`
     + `kapp-controller`

@@ -1,4 +1,4 @@
-# Learning Center operator
+# Learning Center Operator
 
 Before you can start deploying workshops, you need to install a Kubernetes operator for Learning Center. <br/>
 The operator manages the setup of the environment for each workshop and deploys instances of a workshop for each person.
