@@ -1,7 +1,11 @@
+<<<<<<< HEAD:scst-store/add_cyclonedx_to_store.md
 # Adding Data
+=======
+# Add data
+>>>>>>> 3c0268d (Updated TOC to include CLI detailed docs and re-named files to reflect headers):scst-store/add_data.md
 
 This topic describes how to add Software Bill of Materials (SBoM) files to the database to understand your dependencies by querying.
-For instructions on querying, see [Querying Data](../scst-store/querying_the_metadata_store.md).
+For instructions on querying, see [Query Data](../scst-store/query_data.md).
 
 
 ## Methods
@@ -9,7 +13,7 @@ For instructions on querying, see [Querying Data](../scst-store/querying_the_met
 Add data by posting CycloneDX files using the following methods:
 
 - [Supply Chain Security Tools - Scan](../scst-scan/overview.md)
-- [Supply Chain Security Tools - Store API](../scst-store/getting_started_api.md)
+- [Supply Chain Security Tools - Store API](../scst-store/api_walkthrough.md)
 - [Add Data with the Insight CLI](#insight-cli) below
 
 
@@ -53,6 +57,8 @@ Use the following commands to add data:
 
 - `image create`
 - `source create`
+
+Use `insight -h` in the terminal or see [CLI details](cli_docs/insight.md) for more information.
 
 ## Example #1: Create an Image Report
 

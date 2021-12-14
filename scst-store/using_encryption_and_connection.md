@@ -48,7 +48,7 @@ kubectl get secret app-tls-cert -n metadata-store -o json | jq -r '.data."ca.crt
 
 Where:
 
-- `PATH` is the location where you want to save the CA certificate. This file is used later when you [configure the CLI](configure_cli.md).
+- `PATH` is the location where you want to save the CA certificate. This file is used later when you [configure the CLI](cli_configuration.md).
 
 ### Editing `/etc/hosts`
 
@@ -81,7 +81,7 @@ kubectl get secret app-tls-cert -n metadata-store -o json | jq -r '.data."ca.crt
 
 Where:
 
-- `PATH` is the location where you want to save the CA certificate. This file is used later when you [configure the CLI](configure_cli.md).
+- `PATH` is the location where you want to save the CA certificate. This file is used later when you [configure the CLI](cli_configuration.md).
 
 ### Configuring Port Forwarding
 When using `NodePort`, you need to configure port forwarding for the service for the CLI to access the Supply Chain Security Tools - Store. Run:
