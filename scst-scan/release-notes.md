@@ -11,6 +11,10 @@ This topic contains release notes for Supply Chain Security Tools – Scan.
 ### New in this Release
 * Enhanced scanning coverage is now available for Node.js apps.
 * CA certificates are now automatically imported from the Metadata Store namespace
+### Known Issues
+* Blob Source Scans have an edge case when a compressed file without a `.git` directory is provided. Sending results to metadata store will fail and the scanned revision value will not be set.
+    * The current workaround is to add the `.git` directory to the compressed file.
+    * This issue will be fixed post GA.
 
 ### v1.0.0-beta.2
 
