@@ -1689,7 +1689,7 @@ To create a Java application from source code on your local file system:
 
     ```
     git clone git@github.com:spring-projects/spring-petclinic.git
-    tanzu apps workload create pet-clinic --source-image <YOUR-REGISTRY.COM>/pet-clinic --local-path ./spring-petclinic
+    tanzu apps workload create pet-clinic --source-image YOUR-REGISTRY.COM/pet-clinic --local-path ./spring-petclinic
     ```
 <br>
 <br>
