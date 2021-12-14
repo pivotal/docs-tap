@@ -1,4 +1,4 @@
-# Getting started with Learning Center 
+# Getting started with Learning Center
 
 To view information about Learning Center, see [About Learning Center](../about-learning-center/about-learning-center.md).
 Before deploying workshops, install a Kubernetes Operator for Learning Center.

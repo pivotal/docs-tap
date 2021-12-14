@@ -2370,13 +2370,13 @@ To install Services Toolkit:
     $ tanzu package available list -n tap-install services-toolkit.tanzu.vmware.com
     - Retrieving package versions for services-toolkit.tanzu.vmware.com...
       NAME                               VERSION           RELEASED-AT
-      services-toolkit.tanzu.vmware.com  0.5.0-rc.2        2021-10-18T09:45:46Z
+      services-toolkit.tanzu.vmware.com  0.5.0             2021-10-18T09:45:46Z
     ```
 
 1. Install Services Toolkit by running:
 
     ```
-    tanzu package install services-toolkit -n tap-install -p services-toolkit.tanzu.vmware.com -v 0.5.0-rc.2
+    tanzu package install services-toolkit -n tap-install -p services-toolkit.tanzu.vmware.com -v 0.5.0
     ```
 
 1. Verify that the package installed by running:
@@ -2394,7 +2394,7 @@ To install Services Toolkit:
     | Retrieving installation details for services-toolkit...
     NAME:                    services-toolkit
     PACKAGE-NAME:            services-toolkit.tanzu.vmware.com
-    PACKAGE-VERSION:         0.5.0-rc.2
+    PACKAGE-VERSION:         0.5.0
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
@@ -2556,7 +2556,7 @@ Use the following procedure to verify that the packages are installed.
     ootb-templates           ootb-templates.tanzu.vmware.com                    0.3.0-build.5    Reconcile succeeded
     scan-controller          scst-scan.apps.tanzu.vmware.com                    1.0.0            Reconcile succeeded
     service-bindings         service-bindings.labs.vmware.com                   0.5.0            Reconcile succeeded
-    services-toolkit         services-toolkit.tanzu.vmware.com                  0.4.0            Reconcile succeeded
+    services-toolkit         services-toolkit.tanzu.vmware.com                  0.5.0            Reconcile succeeded
     source-controller        controller.source.apps.tanzu.vmware.com            0.2.0            Reconcile succeeded
     tap-gui                  tap-gui.tanzu.vmware.com                           0.3.0-rc.4       Reconcile succeeded
     tekton                   tekton.tanzu.vmware.com                            0.30.0           Reconcile succeeded
