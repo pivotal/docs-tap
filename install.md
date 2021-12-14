@@ -483,13 +483,14 @@ profile: full
 
 # ...
 
-# e.g. CNRs specific values would go under its name
+# e.g. CNRs specific values go under its name
 cnrs:
   provider: local
 
-# e.g. App Accelerator specific values would go under its name
+# e.g. App Accelerator specific values go under its name
 accelerator:
-  service_type: "ClusterIP"
+  server:
+    service_type: "ClusterIP"
 ```
 
 The following table summarizes the top-level keys used for package-specific configuration within
