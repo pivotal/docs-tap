@@ -9,15 +9,24 @@ This topic contains release notes for Supply Chain Security Tools – Scan.
 **Release Date:** December 10, 2021
 
 ### New in this Release
+
 * Enhanced scanning coverage is now available for Node.js apps.
 * CA certificates are now automatically imported from the Metadata Store namespace
+
 ### Known Issues
-* Blob Source Scans have an edge case where when a compressed file without a `.git` directory is provided, sending results to the Supply Chain Security Tools - Store will fail and the scanned revision value will not be set.
-    * The current workaround is to add the `.git` directory to the compressed file.
-    * This issue will be fixed post GA.
-* Events show `SaveScanResultsSuccess` when the Supply Chain Security Tools - Store is not configured.
-    * The `.status.conditions` output does correctly reflect `SendingResults=False`.
-    * This issue will be fixed post GA.
+
+* **Failing Blob source scans:** Blob Source Scans have an edge case where, when a compressed file
+without a `.git` directory is provided, sending results to the Supply Chain Security Tools - Store
+fails and the scanned revision value is not set.
+The current workaround is to add the `.git` directory to the compressed file.
+The fix for this issue is planned for after Supply Chain Security Tools – Scan reaches general
+availability.
+
+* **Events show `SaveScanResultsSuccess` incorrectly** `SaveScanResultsSuccess` appears in the events
+when the Supply Chain Security Tools - Store is not configured.
+The `.status.conditions` output, however, correctly reflects `SendingResults=False`.
+The fix for this issue is planned for after Supply Chain Security Tools – Scan reaches general  
+availability.
 
 ### v1.0.0-beta.2
 
