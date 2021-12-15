@@ -1656,7 +1656,10 @@ field in the values file.
 
 ## <a id='install-learning-center'></a> Install Learning Center for Tanzu Application Platform
 
-To install Tanzu Learning Center, see the following sections.
+To install Tanzu Learning Center, see the following sections. 
+>**Note:** If you have any issue updating values or deploying Learning Center, please see the [Learning Center - Known Issues](learning-center/known-issues/about.md) for recovery steps.
+
+For general information about Learning Center go here: [Learning Center](learning-center)
 
 ### <a id='lc-prereqs'></a> Prerequisites
 
@@ -1664,7 +1667,7 @@ To install Tanzu Learning Center, see the following sections.
 
 - [Tanzu Application Platform Prerequisites](install-general.md#prereqs)
 
-- The cluster must have an ingress router configured. Only a basic deployment of the ingress controller is usually required.
+- The cluster must have an ingress router configured. If you have installed the TAP package (full or dev profile), it already deploy a contour ingress controller.
 
 - The operator when deploying instances of the workshop environments needs to be able to expose them via an external URL for access. For the custom domain you are using, DNS must have been configured with a wildcard domain to forward all requests for sub domains of the custom domain, to the ingress router of the Kubernetes cluster
 
@@ -1686,7 +1689,7 @@ To install Learning Center:
 
     ```
      NAME                             VERSION        RELEASED-AT
-     learningcenter.tanzu.vmware.com  1.0.14-build.1 2021-10-22 17:02:13 -0400 EDT
+     learningcenter.tanzu.vmware.com  0.1.0          2021-12-01 08:18:48 -0500 EDT
     ```
 
 1. (Optional) See all the configurable parameters on this package by running:
@@ -1707,7 +1710,7 @@ To install Learning Center:
 
     When deploying workshop environment instances, the operator must be able to expose the instances
     through an external URL. This access is needed to discover the domain name that can be used as a
-    suffix to host names for instances.
+    suffix to hostnames for instances.
 
     For the custom domain you are using, DNS must have been configured with a wildcard domain to
     forward all requests for subdomains of the custom domain to the ingress router of the
@@ -1718,7 +1721,7 @@ To install Learning Center:
     address.
     For example, if `minikube ip` returns `192.168.64.1`, you can use the `192.168.64.1.nip.io`
     domain.
-    You cannot use an address of form `127.0.0.1.nip.io` or `subdomain.localhost`. This causes a
+    You cannot use an address of form `127.0.0.1.nip.io` or `subdomain.localhost`. This will cause a
     failure. Internal services needing to connect to each other will connect to themselves instead,
     because the address would resolve to the host loopback address of `127.0.0.1`.
 
@@ -1726,11 +1729,23 @@ To install Learning Center:
 
     ```
     ingressSecret:
-        certificate: MIIC2DCCAcCgAwIBAgIBATANBgkqh ...
-        privateKey: MIIEpgIBAAKCAQEA7yn3bRHQ5FHMQ ...
+      certificate: |
+        -----BEGIN CERTIFICATE-----
+        MIIFLTCCBBWgAwIBAgaSAys/V2NCTG9uXa9aAiYt7WJ3MA0GCSqGaIb3DQEBCwUA
+                                        ...
+        dHa6Ly9yMy5vamxlbmNyLm9yZzAiBggrBgEFBQawAoYWaHR0cDoaL3IzLmkubGVu
+        -----END CERTIFICATE-----
+      privateKey: |
+        -----BEGIN PRIVATE KEY-----
+        MIIEvQIBADAaBgkqhkiG9waBAQEFAASCBKcwggSjAgEAAoIBAaCx4nyc2xwaVOzf
+                                        ...
+        IY/9SatMcJZivH3F1a7SXL98PawPIOSR7986P7rLFHzNjaQQ0DWTaXBRt+oUDxpN
+        -----END PRIVATE KEY-----
     ```
 
-    If you already have a TLS secret, you can copy it to the `educates` namespace or the one you
+    If you already have a TLS secret, follow these steps **before deploying any workshop**:
+    * Create the `learningcenter` namespace manually or the one you defined
+    * Copy the tls secret to the `learningcenter` namespace or the one you
     defined, and use the `secretName` property as in this example:
 
     ```
@@ -1743,58 +1758,39 @@ To install Learning Center:
     To use secure HTTPS connections, you must have access to a wildcard SSL certificate for the
     domain under which you want to host the workshops. You cannot use a self-signed certificate.
 
-    You can create wildcard certificates using letsencrypt <https://letsencrypt.org/>_.
+    Wildcard certificates can be created using letsencrypt <https://letsencrypt.org/>_.
     After you have the certificate, you can define the `certificate` and `privateKey` properties
-    under the `ingressSecret` property to specify the certificate on the configuration YAML.
+    under the `ingressSecret` property to specify the certificate on the configuration yaml.
 
 1. Any ingress routes created use the default ingress class.
 If you have multiple ingress class types available, and you need to override which is used, define
-the `ingressClass` property in `learning-center-config.yaml` as in this example:
+the `ingressClass` property in `learning-center-config.yaml` **before deploying any workshop**:
 
     ```
     ingressClass: contour
     ```
 
-    If you have multiple ingress controllers, ensure you select the correct one.
-    For example, Cloud Native Runtimes (CNR) deploys two ingress controllers.
-    In this case you use `contour-external` for Learning Center as in this example:
-
-    ```
-    ingressClass: contour-external
-    ```
-
 1. Install Learning Center Operator by running:
 
+    **Remember to change the 0.x.x version**
+
     ```
-    tanzu package install learning-center --package-name learningcenter.tanzu.vmware.com --version 1.0.14-build.1 -f learning-center-config.yaml
+    tanzu package install learning-center --package-name learningcenter.tanzu.vmware.com --version 0.x.x -f learning-center-config.yaml
     ```
 
-    This command creates a default namespace in your Kubernetes cluster called `educates`,
+    The command above will create a default namespace in your Kubernetes cluster called `learningcenter`,
     and the operator along with any required namespaced resources is created in it.
     A set of custom resource definitions and a global cluster role binding are also created.
-    The list of resources you see being created are:
-
-    ```
-    customresourcedefinition.apiextensions.k8s.io/workshops.training.eduk8s.io created
-    customresourcedefinition.apiextensions.k8s.io/workshopsessions.training.eduk8s.io created
-    customresourcedefinition.apiextensions.k8s.io/workshopenvironments.training.eduk8s.io created
-    customresourcedefinition.apiextensions.k8s.io/workshoprequests.training.eduk8s.io created
-    customresourcedefinition.apiextensions.k8s.io/trainingportals.training.eduk8s.io created
-    serviceaccount/eduk8s created
-    customresourcedefinition.apiextensions.k8s.io/systemprofiles.training.eduk8s.io created
-    clusterrolebinding.rbac.authorization.k8s.io/eduk8s-cluster-admin created
-    deployment.apps/eduk8s-operator created
-    ```
 
     You can check that the operator deployed successfully by running:
 
     ```
-    kubectl get all -n educates
+    kubectl get all -n learningcenter
     ```
 
     The Pod for the operator should be marked as running.
 
-### <a id='install-portal-proc'></a> Procedure to install the Self-Guided Tour Training Portal and Workshop
+## <a id='install-portal-proc'></a> Procedure to install the Self-Guided Tour Training Portal and Workshop
 
 To install the Self-Guided Tour Training Portal and Workshop:
 
@@ -1806,8 +1802,9 @@ To install the Self-Guided Tour Training Portal and Workshop:
 
 1. Install the Learning Center Training Portal with the Self Guided Tour workshop by running:
 
+    **Remember to change the 0.x.x version**
     ```
-    tanzu package install learning-center-workshop --package-name workshops.learningcenter.tanzu.vmware.com --version 1.0.7-build.1 -n tap-install
+    tanzu package install learning-center-workshop --package-name workshops.learningcenter.tanzu.vmware.com --version 0.x.x -n tap-install
     ```
 
 1. Check the Training Portals available in your environment by running:
@@ -1819,8 +1816,8 @@ To install the Self-Guided Tour Training Portal and Workshop:
     Example output:
 
     ```
-    NAME                 URL                                                ADMINUSERNAME   ADMINPASSWORD                      STATUS
-    educates-tutorials   http://educates-tutorials.example.com   educates        QGBaM4CF01toPiZLW5NrXTcIYSpw2UJK   Running
+    NAME                       URL                                           ADMINUSERNAME         ADMINPASSWORD                      STATUS
+    learningcenter-tutorials   http://learningcenter-tutorials.example.com   learningcenter        QGBaM4CF01toPiZLW5NrXTcIYSpw2UJK   Running
     ```
 
 
