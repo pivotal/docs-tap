@@ -35,18 +35,22 @@ The Message and Error fields will be populated with `An error has occurred` and 
 ## Understand CVECount
 The `status.CVECount` will be populated with the number of CVEs in each category (CRITICAL, HIGH, MEDIUM, LOW, UNKNOWN) as well as the total (CVETOTAL).
 
-NOTE: You can also view scan CVE summary in print columns with `kubectl get` on a `SourceScan` or `ImageScan`.
+>**Note:** You can also view scan CVE summary in print columns with `kubectl get` on a `SourceScan` or `ImageScan`.
+
 ## Understand MetadataURL
 The `status.metadataURL` will be populated with the url of the vulnerability scan results in the metadata store integration. This is only available when the integration is configured.
+
 ## Understand Phase
 The `status.phase` field will be populated with the current phase of the scan. The phases are: Pending, Scanning, Completed, Failed, and Error.
-* `Pending`: intitial phase of the scan.
+
+* `Pending`: initial phase of the scan.
 * `Scanning`: execution of the scan job is running.
 * `Completed`: scan completed and no CVEs were found that violated the scanpolicy.
 * `Failed`: scan completed but CVEs were found that violated the scan policy.
 * `Error`: indication of an error (e.g. an invalid scantemplate or scanpolicy).
 
-Note: The PHASE print column also shows this with `kubectl get` on a `SourceScan` or `ImageScan`.
+>**Note:** The PHASE print column also shows this with `kubectl get` on a `SourceScan` or `ImageScan`.
+
 ## Understand ScannedBy
 The `status.scannedby` field will be populated with the name, vendor, and version of the scanner that is generating the security assessment report.
 
