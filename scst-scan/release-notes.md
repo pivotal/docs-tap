@@ -36,19 +36,15 @@ availability.
 When scanning a Java source code directory, Grype does not use the `pom.xml` or `build.gradle` files
 to determine packages to scan for vulnerabilities.
 Instead, it scans the built binary (`.jar` or `.war` files) directly.
-
 The ScanLink Source Scan either clones a Git repository or downloads a compressed archived and then
 scans without building in between. As such, vulnerabilities are not found in the Source Scan unless
 the built binary is provided in the code repository or compressed archive.
-
 The fix for this issue is planned for after Supply Chain Security Tools – Scan reaches general
 availability.
-
-**Possible Workarounds:**
-
-* Include the built binary in the source code repository or compressed archive.
-* Update the `ScanTemplate` to include an InitContainer after the `repo` InitContainer to build the
-binary.
+Possible workarounds are:
+    * Include the built binary in the source code repository or compressed archive.
+    * Update the `ScanTemplate` to include an InitContainer after the `repo` InitContainer to build
+    the binary.
 
 
 ## v1.0.0-beta.2
@@ -63,4 +59,4 @@ binary.
 
 ### Additional considerations
 
-* Scanner templates require internet access to download the vulnerability database at scan time.
+Scanner templates require internet access to download the vulnerability database at scan time.
