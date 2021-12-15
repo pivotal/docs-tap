@@ -21,7 +21,53 @@ To configure Visual Studio Code settings for your app:
   For Local Path, enter the path on the local file system to a directory of code to build.
 
 ## Live update
+Live update requires a workload.yaml file and a Tiltfile.
+You can generate a sample java app that includes these files using the [application accelerator](../accelerator). Alternately, you can create them manually as follows:
 
+### Creating a Workload.yaml file
+The easiest way to create a workload.yaml file is to use the tanzu CLI, for example:
+```
+tanzu apps workload create my-workload --git-repo https://example.com/my-workload.git > workload.yaml
+```
+See the [tanzu cli docs](../cli-plugins/apps/command-reference/tanzu_apps_workload_create.md) for all CLI options.
+
+### Creating a Tiltfile
+A Tiltfile example is below:
+
+```
+SOURCE_IMAGE = os.getenv("SOURCE_IMAGE", default='<source-image>')
+LOCAL_PATH = os.getenv("LOCAL_PATH", default='.')
+NAMESPACE = os.getenv("NAMESPACE", default='default')
+
+k8s_custom_deploy(
+    '<app-name>',
+    apply_cmd="tanzu apps workload apply -f <path-to-workload> --live-update" +
+               " --local-path " + LOCAL_PATH +
+               " --source-image " + SOURCE_IMAGE +
+               " --namespace " + NAMESPACE +
+               " --yes >/dev/null" +
+               " && kubectl get workload <app-name> --namespace " + NAMESPACE + " -o yaml",
+    delete_cmd="tanzu apps workload delete -f <path-to-workload> --namespace " + NAMESPACE + " --yes",
+    deps=['pom.xml', './target/classes'],
+    container_selector='workload',
+    live_update=[
+      sync('./target/classes', '/workspace/BOOT-INF/classes')
+    ]
+)
+
+k8s_resource(<app-name>, port_forwards=["8080:8080"],
+            extra_pod_selectors=[{'serving.knative.dev/service': <app-name>}])
+```
+You will need to update the following parameters in the example:
+  1. <source-image>: Destination for an image containing source code to be published.
+  2. <app-name>: the name of the application
+  3. <path-to-workload>: path to a file containing the Workload resource for your application.
+
+If you are targeting a remote cluster, you will also need to add the following to the Tiltfile.
+```
+allow_k8s_contexts('context-name')
+```
+See [Tilt docs](https://docs.tilt.dev/api.html#api.allow_k8s_contexts)
 
 ### Starting live update
 
