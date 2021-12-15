@@ -86,8 +86,8 @@ To install Cloud Native Runtimes:
     ```bash
     tanzu package available list PACKAGE-NAME --namespace tap-install
     ```
-    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
-     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
+    Where `PACKAGE-NAME` is the name of the package listed in step 3 of
+     [Add the Tanzu Application Platform Package Repository](install.md#add-package-repositories) above.
 
      For example:
 
@@ -203,7 +203,7 @@ To install Cloud Native Runtimes:
    This includes the `default` service account in a namespace, which is created automatically, but not associated with any image pull secrets.
    Without these credentials, attempts to launch a service fail with a timeout and the Pods report that they are unable to pull the `queue-proxy` image.
 
-   Create an image pull secret in the current namespace and fill it from [the `tap-registry` secret](#add-package-repositories).
+   Create an image pull secret in the current namespace and fill it from [the `tap-registry` secret](install.md#add-package-repositories).
    Run the following commands to create an empty secret and annotate it as a target of the secretgen controller:
 
    ```console
@@ -496,8 +496,8 @@ To install Application Accelerator:
     ```bash
     tanzu package available list PACKAGE-NAME --namespace tap-install
     ```
-    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
-     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
+    Where `PACKAGE-NAME` is the name of the package listed in step 3 of
+     [Add the Tanzu Application Platform Package Repository](install.md#add-package-repositories) above.
      For example:
 
     ```bash
@@ -606,8 +606,8 @@ To install Tanzu Build Service using the Tanzu CLI:
     ```bash
     tanzu package available list PACKAGE-NAME --namespace tap-install
     ```
-    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
-     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
+    Where `PACKAGE-NAME` is the name of the package listed in step 3 of
+     [Add the Tanzu Application Platform Package Repository](install.md#add-package-repositories) above.
      For example:
 
     ```bash
@@ -1434,8 +1434,8 @@ Use the following procedure to install Service Bindings:
     ```bash
     tanzu package available list service-bindings.labs.vmware.com --namespace tap-install
     ```
-    Where `PACKAGE-NAME` is the name of the package listed earlier in
-    [Add the Tanzu Application Platform Package Repository](#add-package-repositories).
+    Where `PACKAGE-NAME` is the name of the package listed in step 3 of
+    [Add the Tanzu Application Platform Package Repository](install.md#add-package-repositories).
 
     For example:
 
@@ -1523,8 +1523,8 @@ To install Supply Chain Security Tools - Store:
     ```bash
     tanzu package available list PACKAGE-NAME --namespace tap-install
     ```
-    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
-     [Add the Tanzu Application Platform Package Repository](#add-package-repositories) above.
+    Where `PACKAGE-NAME` is the name of the package listed in step 3 of
+     [Add the Tanzu Application Platform Package Repository](install.md#add-package-repositories) above.
      For example:
 
     ```bash
