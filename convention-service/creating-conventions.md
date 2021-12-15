@@ -346,7 +346,7 @@ The `server.yaml` defines the Kubernetes components that makes up the convention
 
 1. A `namespace` is created for the convention server components:
 
-    ```yaml
+    ```
     ...
     ---
     apiVersion: v1
@@ -359,7 +359,7 @@ The `server.yaml` defines the Kubernetes components that makes up the convention
 
 2. A certificate manager `Issuer` is created (for more information, see the [cert-manager documentation](https://cert-manager.io/docs/concepts/issuer/)) to issue the certificate needed for TLS communication (optional):
 
-    ```yaml
+    ```
     ...
     ---
     # The following manifests contain a self-signed issuer CR and a certificate CR.
@@ -377,7 +377,7 @@ The `server.yaml` defines the Kubernetes components that makes up the convention
 
 3. A self-signed [`Certificate`](https://cert-manager.io/docs/concepts/certificate/) is created (optional):
 
-    ```yaml
+    ```
     ...
     ---
     apiVersion: cert-manager.io/v1
@@ -406,7 +406,7 @@ The `server.yaml` defines the Kubernetes components that makes up the convention
 
 4. A Kubernetes `Deployment` is created for the webhook to run from:
 
-    ```yaml
+    ```
     ...
     ---
     apiVersion: apps/v1
@@ -460,7 +460,7 @@ The `server.yaml` defines the Kubernetes components that makes up the convention
 
 5.  A Kubernetes `Service` to expose the convention deployment is also created:
 
-    ```yaml
+    ```
     ...
     ---
     apiVersion: v1
@@ -478,9 +478,10 @@ The `server.yaml` defines the Kubernetes components that makes up the convention
     ---
     ...
     ```
-6. Finally, the `ClusterPodConvention` adds the convention certificate to the cluster to make it available for the convention controller:
+6. Finally, the `ClusterPodConvention` adds the convention certificate to the cluster to make it available for the convention controller:<br/>
+   >**Note:** The `annotations` block is only needed if you use a self-signed certificate. Otherwise, check the [cert-manager documentation](https://cert-manager.io/docs/).
 
-    ```yaml
+    ```
     ...
     ---
     apiVersion: conventions.apps.tanzu.vmware.com/v1alpha1
