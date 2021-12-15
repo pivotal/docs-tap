@@ -71,7 +71,7 @@ Update the following parameters in the preceding example:
   2. <app-name>: The name of the application.
   3. <path-to-workload>: Path to a file containing the workload resource for your application.
 
-If you are targeting a remote cluster, add the following to the Tiltfile:
+If you're targeting a remote cluster, add the following to the Tiltfile:
 
 ```
 allow_k8s_contexts('context-name')
@@ -101,7 +101,7 @@ Start the Command Palette (⇧⌘P) and run the `Tanzu: Live Update Stop` comman
 
 Start the Command Palette (⇧⌘P) and run the `Tanzu: Live Update Disable` command, then enter the name of the workload you want to disable live update for.
 
-> **Note:** This redeploys your workload to the cluster and removes the live update capability.
+>**Note:** This redeploys your workload to the cluster and removes the live update capability.
 
 ## Debug
 
