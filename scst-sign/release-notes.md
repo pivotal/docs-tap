@@ -2,6 +2,19 @@
 
 This topic contains release notes for Supply Chain Security Tools - Sign.
 
+## v1.0.0-beta.3
+
+**Release Date**: December 14, 2021
+
+### New features
+* Upgraded API version to v1beta1.
+
+### Known issues
+
+* A grype scan has reported the following false positives:
+  * CVE-2015-5237 - This is a CVE on the C implementation of Protocol Buffers. We use the Golang version.
+* See [Troubleshooting and Known Issues](known_issues.md).
+
 ## v1.0.0-beta.2
 
 **Release Date**: November 29, 2021

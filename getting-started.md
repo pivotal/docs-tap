@@ -57,7 +57,7 @@ For information about connecting to Tanzu Application Platform GUI, see
 
 2. Locate the Tanzu Java Web App accelerator, which is a sample Spring Boot web app, and click on `CHOOSE` button.
 
-    ![Tile for Tanzu Java Web App](images/getting-started-tap-gui-2.png)   
+    ![Tile for Tanzu Java Web App](images/getting-started-tap-gui-2.png)
 
 3. In the **Generate Accelerators** prompt, replace the default value `dev.local` in the **prefix for container image registry** field with the registry in the form of `SERVER-NAME/REPO-NAME`. The `SERVER-NAME/REPO-NAME` must match what was specified for `registry` as part of the installation values for `ootb_supply_chain_basic`. Click `NEXT STEP`, verify the provided information, and click `CREATE`.
 
@@ -355,7 +355,7 @@ Tekton pipeline.
 
 <li>Cloud Native Runtimes
 <li>If using Service References:
-   </li>   
+   </li>
 <ul>
 <li>Service Bindings
 <li>Services Toolkit
@@ -854,7 +854,7 @@ An example policy would look like this:
 
 ```
 ---
-apiVersion: signing.run.tanzu.vmware.com/v1alpha1
+apiVersion: signing.run.tanzu.vmware.com/v1beta1
 kind: ClusterImagePolicy
 metadata:
   name: image-policy
@@ -897,7 +897,7 @@ and expected outcomes:
 
 ```
 ---
-apiVersion: signing.run.tanzu.vmware.com/v1alpha1
+apiVersion: signing.run.tanzu.vmware.com/v1beta1
 kind: ClusterImagePolicy
 metadata:
   name: image-policy
