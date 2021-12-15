@@ -1,13 +1,13 @@
-# Getting Started with Tanzu Application Platform
+# Getting started with the Tanzu Application Platform
 
 ## Purpose
 
-This guide intends to walk you through the experience of promoting your first application using the Tanzu Application Platform.
+Welcome to the Tanzu Application Platform. This document guides you through getting started with the platform. Specifically, you will learn how to:
 
-The intended user of this guide is anyone curious about Tanzu Application Platform and its parts.
-There are two high-level workflows described in this document:
-
-Before getting started, you will need to complete the prerequisites in the next section.
+* Develop and promote an application
+* Create an application accelerator
+* Add testing and security scanning to an application
+* Administer, set up, and manage supply chains
 
 
 ## Prerequisites
