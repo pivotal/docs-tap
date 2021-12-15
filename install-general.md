@@ -409,7 +409,7 @@ on Tanzu Network.
   5. Download the CLI bundle corresponding with your operating system. For example, if your client
 operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle.
 
-  6. If they exist, delete any CLI files from a previous install:
+  6. If they exist, delete any CLI files from previous installs:
      ```
      rm -rf $HOME/tanzu/cli
      ```
@@ -432,8 +432,8 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
      export TANZU_CLI_NO_INIT=true
      ```
 
-  10. List the plugins to find out if the `imagepullsecret` plugin if it was previously installed,
-      and if it was installed delete it:
+  10. List the plugins to see if the `imagepullsecret` plugin was previously installed.
+      If installed, delete it:
 
       ```
       tanzu plugin list
@@ -525,7 +525,7 @@ for interacting with Tanzu Kubernetes Grid or Tanzu Community Edition, you only 
      ```
      mkdir $HOME/tanzu
      ```
-     If `tanzu` already exists, delete the files within it.
+     If `tanzu` already exists, delete the files in the directory.
 
   2. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
 

@@ -16,7 +16,6 @@ There are two high-level workflows described in this document:
 
 To take full advantage of this document, ensure you have followed [Installing Tanzu Application Platform](install-intro.md).
 
----
 
 ## Section 1: Developing Your First Application on Tanzu Application Platform
 
@@ -58,7 +57,7 @@ For information about connecting to Tanzu Application Platform GUI, see
 
 2. Locate the Tanzu Java Web App accelerator, which is a sample Spring Boot web app, and click on `CHOOSE` button.
 
-    ![Tile for Tanzu Java Web App](images/getting-started-tap-gui-2.png)   
+    ![Tile for Tanzu Java Web App](images/getting-started-tap-gui-2.png)
 
 3. In the **Generate Accelerators** prompt, replace the default value `dev.local` in the **prefix for container image registry** field with the registry in the form of `SERVER-NAME/REPO-NAME`. The `SERVER-NAME/REPO-NAME` must match what was specified for `registry` as part of the installation values for `ootb_supply_chain_basic`. Click `NEXT STEP`, verify the provided information, and click `CREATE`.
 
@@ -356,7 +355,7 @@ Tekton pipeline.
 
 <li>Cloud Native Runtimes
 <li>If using Service References:
-   </li>   
+   </li>
 <ul>
 <li>Service Bindings
 <li>Services Toolkit
@@ -855,7 +854,7 @@ An example policy would look like this:
 
 ```
 ---
-apiVersion: signing.run.tanzu.vmware.com/v1alpha1
+apiVersion: signing.run.tanzu.vmware.com/v1beta1
 kind: ClusterImagePolicy
 metadata:
   name: image-policy
@@ -898,7 +897,7 @@ and expected outcomes:
 
 ```
 ---
-apiVersion: signing.run.tanzu.vmware.com/v1alpha1
+apiVersion: signing.run.tanzu.vmware.com/v1beta1
 kind: ClusterImagePolicy
 metadata:
   name: image-policy
@@ -1009,7 +1008,7 @@ Use the Supply Chain Security Tools - Store CLI, called Insight,
 to query metadata that have been submitted to the component after the scan step.
 
 For a complete guide on how to query the store,
-see [Querying Supply Chain Security Tools - Store](scst-store/querying_the_metadata_store.md).
+see [Querying Supply Chain Security Tools - Store](scst-store/query_data.md).
 
 #### Example Supply Chain including Source and Image Scans
 
@@ -1080,7 +1079,7 @@ Services Toolkit comprises the following Kubernetes-native components:
 * [Service API Projection (Experimental)](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-api_projection_and_resource_replication-terminology_and_apis.html)
 * [Service Resource Replication (Experimental)](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-api_projection_and_resource_replication-terminology_and_apis.html)
 
->**Note:** Services marked with Experimental are subject to change.
+>**Note:** Services marked with Experimental/Beta are subject to change.
 
 Each component has its value, however the best use cases are enabled by combining multiple components together.
 For information about each of the Services Toolkit components, including the use cases and the API reference guides,
@@ -1096,6 +1095,7 @@ so Application Teams can discover, provision, and bind to services in Tanzu Appl
 The [setup procedure](#consuming-services-setup) is typically performed by the Service Operator.
 
 >**Note:** The [Service Binding Specification](https://github.com/servicebinding/spec) for Kubernetes is required in this use case.
+
 >**Note:** Any service that adheres to the [Provisioned Service](https://github.com/servicebinding/spec#provisioned-service) in the specification is compatible with Tanzu Application Platform.
 
 <!-- * [Use Case 1 - **Binding an App Workload to a Service Resource**](#services-journey-use-case-1)
@@ -1274,10 +1274,10 @@ RabbitMQ instance:
     `https://github.com/jhvhs/rabbitmq-sample` by running:
 
         ```
-        tanzu apps workload create rmq-sample-app-usecase-1 --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch v0.1.0 --type web --service-ref "rmq=SERVICE-REF"
+        tanzu apps workload create rmq-sample-app-usecase-1 --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch v0.1.0 --type web --service-ref "rmq=<SERVICE-REF>"
         ```
 
-        Where `SERVICE-REF` is the value of `SERVICE REF` from the output in the last step.
+        Where `<SERVICE-REF>` is the value of `SERVICE REF` from the output in the last step.
 
 1. Get the Knative web-app URL by running:
 
@@ -1309,9 +1309,9 @@ for service instances.
     apiVersion: rabbitmq.com/v1beta1
     kind: RabbitmqCluster
     metadata:
-    name: example-rabbitmq-cluster-2
+      name: example-rabbitmq-cluster-2
     spec:
-    replicas: 1
+      replicas: 1
     ```
 
 1. Apply `example-rabbitmq-cluster-service-instance-2.yaml` by running:
@@ -1335,6 +1335,8 @@ for service instances.
     ```
 
 1. Create a `ResourceClaimPolicy` to enable cross-namespace binding.
+
+    >**Note:** The service instance is in a different namespace to the one the application workload is running in. By default, it is impossible to bind an application workload to a service instance that resides in a different namespace as this would break tenancy of the Kubernetes namespace model.
 
     ```
     # resource-claim-policy.yaml
@@ -1366,10 +1368,10 @@ for service instances.
 1. Bind the application workload to the RabbitmqCluster Service Instance:
 
     ```
-    $ tanzu apps workload update rmq-sample-app-usecase-2 --service-ref="rmq=SERVICE-REF" --yes
+    $ tanzu apps workload update rmq-sample-app-usecase-2 --service-ref="rmq=<SERVICE-REF>" --yes
     ```
 
-    Where `SERVICE-REF` is the value of `SERVICE REF` from the output in the step 3.
+    Where `<SERVICE-REF>` is the value of `SERVICE REF` from the output in the step 3.
 
 1. Get the Knative web-app URL by running:
 
@@ -1382,7 +1384,7 @@ checking the new message IDs.
 
 ### <a id='services-journey-use-case-3'></a> Use case 3 - Binding an application to a service running outside Kubernetes
 
-This use case leverages direct references to Kubernetes Secret resources to enable developers to connect their application workloads to almost
+This use case leverages direct references to Kubernetes `Secret` resources to enable developers to connect their application workloads to almost
 any backing service, including backing services that:
 
 * are running external to the platform
@@ -1428,10 +1430,13 @@ existing PostgreSQL database that exists in Azure.
     Example:
 
     ```
-    tanzu apps workload create pet-clinic --git-repo https://github.com/spring-projects/spring-petclinic --git-branch main --type web --service-ref db=v1:Secret:external-azure-db-binding-compatible
+    tanzu apps workload create <WORKLOAD-NAME> --git-repo https://github.com/spring-projects/spring-petclinic --git-branch main --type web --service-ref db=<REFERENCE>
     ```
 
-    Where `pet-clinic` is a reference to the `Secret`.
+    Where:
+
+    - `<WORKLOAD-NAME>` is the name of the application workload. For example, `pet-clinic`.
+    - `<REFERENCE>` is a reference provided to the `Secret`. For example, `v1:Secret:external-azure-db-binding-compatible`.
 
 ### <a id='services-journey-use-case-4'></a> **Use case 4: Binding an application to a service instance running on a different Kubernetes cluster (Experimental).**
 
@@ -1488,7 +1493,7 @@ cluster.
 
 1. Download and install the `kubectl-scp` plug-in from [Tanzu Application Platform Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform).
 
-    **Note:** This plug-in is for demonstration and experimentation purposes only.
+    **Note:** This plug-in is in Beta phase.
 
     **Note:** To install the plug-in you must place it in your `PATH` and ensure it is executable.
 
@@ -1509,13 +1514,13 @@ cluster.
 
 Follow these steps to bind an application to a service instance running on a different Kubernetes cluster:
 
->**Important:** Some of the commands listed in the following steps have placeholder values `WORKLOAD-CONTEXT` and `SERVICE-CONTEXT`.
+>**Important:** Some of the commands listed in the following steps have placeholder values `<WORKLOAD-CONTEXT>` and `<SERVICE-CONTEXT>`.
 >Change these values before running the commands.
 
 1. As the Service Operator, run the following command to link the Workload Cluster and Service Cluster together by using the `kubectl scp` plug-in:
 
     ```
-    kubectl scp link --workload-kubeconfig-context=WORKLOAD-CONTEXT --service-kubeconfig-context=SERVICE-CONTEXT
+    kubectl scp link --workload-kubeconfig-context=<WORKLOAD-CONTEXT> --service-kubeconfig-context=<SERVICE-CONTEXT>
     ```
 
 1. Install the RabbitMQ Kubernetes Operator in the Services Cluster using kapp.
@@ -1529,13 +1534,13 @@ Follow these steps to bind an application to a service instance running on a dif
     ```
      kapp -y deploy --app rmq-operator \
         --file https://raw.githubusercontent.com/rabbitmq/cluster-operator/lb-binding/hack/deploy.yml  \
-        --kubeconfig-context SERVICE-CONTEXT
+        --kubeconfig-context <SERVICE-CONTEXT>
     ```
 
 1. Verify that the Operator is installed by running:
 
     ```
-    kubectl --context SERVICE-CONTEXT get crds rabbitmqclusters.rabbitmq.com
+    kubectl --context <SERVICE-CONTEXT> get crds rabbitmqclusters.rabbitmq.com
     ```
 
     The following steps federate the `rabbitmq.com/v1beta1` API group, which is available in the
@@ -1552,15 +1557,15 @@ we created a namespace named `service-instances`, we must now create a namespace
     For example:
 
     ```
-    kubectl --context SERVICE-CONTEXT create namespace service-instances
+    kubectl --context <SERVICE-CONTEXT> create namespace service-instances
     ```
 
 1. Federate using the `kubectl-scp` plug-in by running:
 
     ```
      kubectl scp federate \
-      --workload-kubeconfig-context=WORKLOAD-CONTEXT \
-      --service-kubeconfig-context=SERVICE-CONTEXT \
+      --workload-kubeconfig-context=<WORKLOAD-CONTEXT> \
+      --service-kubeconfig-context=<SERVICE-CONTEXT> \
       --namespace=service-instances \
       --api-group=rabbitmq.com \
       --api-version=v1beta1 \
@@ -1570,7 +1575,7 @@ we created a namespace named `service-instances`, we must now create a namespace
 1. After federation, verify the `rabbitmq.com/v1beta1` API is also available in the Workload Cluster by running:
 
     ```
-    kubectl --context WORKLOAD-CONTEXT api-resources
+    kubectl --context <WORKLOAD-CONTEXT> api-resources
     ```
 
     The application operator takes over from here.
@@ -1611,22 +1616,22 @@ we created a namespace named `service-instances`, we must now create a namespace
 1. Apply the YAML file by running:
 
     ```
-    kubectl --context WORKLOAD-CONTEXT -n service-instances apply -f rabbitmq-cluster.yaml
+    kubectl --context <WORKLOAD-CONTEXT> -n service-instances apply -f rabbitmq-cluster.yaml
     ```
 
 1. Confirm that the RabbitmqCluster resource reconciles successfully from the
 Workload Cluster by running:
 
     ```
-    kubectl --context WORKLOAD-CONTEXT -n service-instances get -f rabbitmq-cluster.yaml
+    kubectl --context <WORKLOAD-CONTEXT> -n service-instances get -f rabbitmq-cluster.yaml
     ```
 
 1. Confirm that RabbitMQ Pods are running in the Service Cluster, but not in the
 Workload Cluster by running:
 
     ```
-    kubectl --context WORKLOAD-CONTEXT -n service-instances get pods
-    kubectl --context SERVICE-CONTEXT -n service-instances get pods
+    kubectl --context <WORKLOAD-CONTEXT> -n service-instances get pods
+    kubectl --context <SERVICE-CONTEXT> -n service-instances get pods
     ```
 
     Finally, the app developer takes over. The experience is the same for
@@ -1648,25 +1653,29 @@ Workload Cluster by running:
 the new message IDs.
 
 
-## Next Steps
+## (Optional) Explore Tanzu Application CLI Commands
 
-### Explore Tanzu Application CLI Commands
+To add ENVARS:
 
-To add ENVARS, run the following:
+1. Run the following:
 
     ```
     tanzu apps workload update tanzu-java-web-app --env foo=bar
     ```
 
 To export the current running workload definition, check into Git, or promote
-to another environment, run the following:
+to another environment:
+
+1. Run the following:
 
     ```
     tanzu apps workload get tanzu-java-web-app --export \
      \
     ```
 
-To explore available flags for the workload commands, run the following:
+To explore available flags for the workload commands:
+
+1. Run the following:
 
     ```
     tanzu apps workload -h
@@ -1674,11 +1683,13 @@ To explore available flags for the workload commands, run the following:
     tanzu apps workload create -h
     ```
 
-To create a Java application from source code on your local file system, run the following:
+To create a Java application from source code on your local file system:
+
+1. Run the following:
 
     ```
     git clone git@github.com:spring-projects/spring-petclinic.git
-    tanzu apps workload create pet-clinic --source-image <YOUR-REGISTRY.COM>/pet-clinic --local-path ./spring-petclinic
+    tanzu apps workload create pet-clinic --source-image YOUR-REGISTRY.COM/pet-clinic --local-path ./spring-petclinic
     ```
 <br>
 <br>

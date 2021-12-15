@@ -573,9 +573,9 @@ To install Tanzu Application Platform GUI, see the following sections.
 
 To install Tanzu Application Platform GUI:
 
->**Note:** the below instructions will configure Tanzu Application Platform GUI for use via a LoadBalancer. If you'd like to use the shared `tanzu-system-ingress` you can find more information [here](tap-gui/accessing-tap-gui.md)
+>**Note:** these instructions configure Tanzu Application Platform GUI for use with a LoadBalancer. For information about using the shared `tanzu-system-ingress`, see [Accessing Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md).
 
-1. Extract the Blank Software Catalog from the Tanzu Application Network on your Git repository of choice. You'll link to that `catalog-info.yaml` file when you configure your catalog below.
+1. On your Git repository of choice, extract the Blank Software Catalog from VMware Tanzu Network. You link to that `catalog-info.yaml` file when you configure your catalog later.
 
 1. Obtain the `External IP` of your LoadBalancer by running:
 
