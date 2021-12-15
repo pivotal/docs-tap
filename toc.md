@@ -48,7 +48,7 @@ This is the table of contents from which the Tanzu Application Platform Document
             - [Learning Center overview](learning-center/about-learning-center/about-learning-center.md)
             - [Learning Center workshops](learning-center/about-learning-center/about-workshops.md)
         - [Getting started](learning-center/getting-started/about.md)
-          - [Learning Center operator](learning-center/getting-started/learningcenter-operator.md)
+          - [Learning Center Operator](learning-center/getting-started/learningcenter-operator.md)
             - [Deleting Learning Center](learning-center/getting-started/deleting-learningcenter.md)
             - [Learning Center workshops](learning-center/getting-started/workshops.md)
             - [TrainingPortal](learning-center/getting-started/training-portal.md)
