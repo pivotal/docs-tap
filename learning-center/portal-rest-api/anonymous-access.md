@@ -11,7 +11,7 @@ Note that using this is only recommended for temporary deployments and not for a
 To enable full anonymous access to the training portal, you need to set the registration type to anonymous.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
   name: lab-markdown-sample

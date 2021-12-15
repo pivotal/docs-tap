@@ -20,7 +20,7 @@ The ``Workshop`` custom resource we will be using is:
 Example:
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1alpha2
 kind: Workshop
 metadata:
   name: lab-k8s-fundamentals
@@ -36,7 +36,7 @@ spec:
   tags:
   - kubernetes
   content:
-    image: projects.registry.vmware.com/educates/lab-k8s-fundamentals:latest
+    image: projects.registry.vmware.com/learningcenter/lab-k8s-fundamentals:latest
   session:
     namespaces:
       budget: medium
@@ -62,7 +62,7 @@ user with permission to create the resource.
 If successfully loaded, the command will output:
 
 ```
-workshop.training.eduk8s.io/lab-k8s-fundamentals created
+workshop.learningcenter.tanzu.vmware.com/lab-k8s-fundamentals created
 ```
 
 You can list the workshop definitions which have been loaded, and which can be deployed by running:
@@ -93,7 +93,7 @@ a set of workshops to be deployed, and the number of people who will be doing th
 The ``TrainingPortal`` custom resource we will use is:
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1alpha1
 kind: TrainingPortal
 metadata:
   name: lab-k8s-fundamentals
@@ -118,7 +118,7 @@ user with permission to create the resource.
 This will output:
 
 ```
-trainingportal.training.eduk8s.io/lab-k8s-fundamentals created
+trainingportal.learningcenter.tanzu.vmware.com/lab-k8s-fundamentals created
 ```
 
 but there is a lot more going on under the covers than this. To see all the resources created, run:
@@ -130,10 +130,10 @@ kubectl get eduk8s-training -o name
 You should see:
 
 ```
-workshop.training.eduk8s.io/lab-k8s-fundamentals
-trainingportal.training.eduk8s.io/lab-k8s-fundamentals
-workshopenvironment.training.eduk8s.io/lab-k8s-fundamentals-w01
-workshopsession.training.eduk8s.io/lab-k8s-fundamentals-w01-s001
+workshop.learningcenter.tanzu.vmware.com/lab-k8s-fundamentals
+trainingportal.learningcenter.tanzu.vmware.com/lab-k8s-fundamentals
+workshopenvironment.learningcenter.tanzu.vmware.comlab-k8s-fundamentals-w01
+workshopsession.learningcenter.tanzu.vmware.com/lab-k8s-fundamentals-w01-s001
 ```
 
 In addition to the original ``Workshop`` custom resource providing the definition of the workshop, and the 
@@ -183,7 +183,7 @@ This should yield output similar to:
 
 ```
 NAME                  URL                                   ADMINUSERNAME  ADMINPASSWORD
-lab-k8s-fundamentals  https://lab-k8s-fundamentals-ui.test  eduk8s         mGI2C1TkHEBoFgKiZetxMnwAldRU80aN
+lab-k8s-fundamentals  https://lab-k8s-fundamentals-ui.test  learningcenter         mGI2C1TkHEBoFgKiZetxMnwAldRU80aN
 ```
 
 Attendees should only be given the URL. The password listed is only for use by the instructor of the training 
