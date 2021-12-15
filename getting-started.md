@@ -1,4 +1,4 @@
-procedure# Getting Started with Tanzu Application Platform
+# Getting Started with Tanzu Application Platform
 
 ## Purpose
 
