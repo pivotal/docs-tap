@@ -11,7 +11,7 @@ This topic explains how to install the Visual Studio Code Tanzu Extension.
 Prior to installing the VSCode Tanzu Extension, you must have:
 
 - The Kubernetes command-line tool, [kubectl](https://kubernetes.io/docs/tasks/tools/)
-- [Tilt](https://docs.tilt.dev/install.html) version >= v0.22.6
+- [Tilt](https://docs.tilt.dev/install.html) version >= v0.23.2
 - The Tanzu CLI.
   See [Install the Tanzu CLI](../install-general.md#cli-and-plugin).
 - The Tanzu CLI package plugin.
