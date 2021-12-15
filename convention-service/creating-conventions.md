@@ -478,7 +478,8 @@ The `server.yaml` defines the Kubernetes components that makes up the convention
     ---
     ...
     ```
-6. Finally, the `ClusterPodConvention` adds the convention certificate to the cluster to make it available for the convention controller:
+6. Finally, the `ClusterPodConvention` adds the convention certificate to the cluster to make it available for the convention controller:<br/>
+   **_Note_**: The `annotations` block is only needed if a self-signed certificate is used. Otherwise, check the cert-manager documentation.
 
     ```yaml
     ...
@@ -487,7 +488,7 @@ The `server.yaml` defines the Kubernetes components that makes up the convention
     kind: ClusterPodConvention
     metadata:
     name: awesome-convention
-    annotations:
+    annotations: #optional
         conventions.apps.tanzu.vmware.com/inject-ca-from: "awesome-convention/awesome-webhook-cert"
     spec:
     webhook:
@@ -497,7 +498,6 @@ The `server.yaml` defines the Kubernetes components that makes up the convention
             namespace: awesome-convention
     ```
 
-+ **_Optional_**: Only needed if a self-signed certificate is used. Otherwise, check the cert-manager documentation.
 
 ## Deploy a convention server
 
