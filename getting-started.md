@@ -1448,7 +1448,7 @@ There are several reasons why we want to implement this use case:
 - **Dedicated cluster requirements for Workload or Service clusters:** service clusters, for instance,
 might need access to more powerful SSDs.
 - **Different cluster life cycle management:** upgrades to Service clusters can occur more cautiously.
-- **Unique compliance requirements:** data is stored on a Service cluster which might have different compliance needs.
+- **Unique compliance requirements:** data is stored on a Service cluster, which might have different compliance needs.
 - **Separation of permissions and access:** application teams can only access the clusters where their
 applications are running.
 
@@ -1459,7 +1459,7 @@ unaltered.
 - All complexity in the setup and management of backing infrastructure is abstracted away
 from application developers, which gives them more time to focus on developing their applications.
 
-> **Note:** The components of Services Toolkit that drive this experience are Service API Projection and
+>**Note:** The components of Services Toolkit that drive this experience are Service API Projection and
 Service Resource Replication. These components are not currently considered to be GA.
 
 For more information about network requirements and recommended topologies, see the
