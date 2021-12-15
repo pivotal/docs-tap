@@ -573,6 +573,8 @@ To install Tanzu Application Platform GUI, see the following sections.
 
 To install Tanzu Application Platform GUI:
 
+>**Note:** these instructions configure Tanzu Application Platform GUI for use with a LoadBalancer. For information about using the shared `tanzu-system-ingress`, see [Accessing Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md).
+
 1. On your Git repository of choice, extract the Blank Software Catalog from VMware Tanzu Network. You link to that `catalog-info.yaml` file when you configure your catalog later.
 
 1. Obtain the `External IP` of your LoadBalancer by running:
@@ -584,7 +586,7 @@ To install Tanzu Application Platform GUI:
 1. Add the following section to your `tap-values.yml` by using the following template, and replace
 all placeholders with your relevant values.
 
-    ```
+    ```yaml
     tap_gui:
       service_type: LoadBalancer
       # Existing tap-values.yml above  
@@ -620,7 +622,7 @@ You can delete or comment out this section of the configuration.
 However, when the Tanzu Application Platform GUI server pod gets re-created, you'll lose all user
 preferences and any manually registered entities.
 For production or general use-cases, VMware recommends using a PostgreSQL database.
-To use a PostgreSQL database, run the following:
+To use a PostgreSQL database, use the following values:
 
     ```
         backend:
