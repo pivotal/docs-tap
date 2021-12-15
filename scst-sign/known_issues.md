@@ -92,7 +92,7 @@ contents:
     ```
     tanzu package installed update image-policy-webhook \
       --package-name image-policy-webhook.signing.run.tanzu.vmware.com \
-      --version 1.0.0-beta.2 \
+      --version 1.0.0-beta.3 \
       --namespace tap-install \
       --values-file scst-sign-values.yaml
     ```

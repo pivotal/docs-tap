@@ -16,7 +16,7 @@ The JSON response will be of the form:
 ```
 {
   "portal": {
-    "name": "educates-tutorials",
+    "name": "learningcenter-tutorials",
     "uid": "9b82a7b1-97db-4333-962c-97be6b5d7ee0",
     "generation": 451,
     "url": "<training_portal_url>",
@@ -29,7 +29,7 @@ The JSON response will be of the form:
   },
   "environments": [
     {
-      "name": "educates-tutorials-w01",
+      "name": "learningcenter-tutorials-w01",
       "state": "RUNNING",
       "workshop": {
         "name": "lab-et-self-guided-tour",

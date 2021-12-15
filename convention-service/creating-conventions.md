@@ -66,7 +66,7 @@ For more information, see [ClusterPodConvention](reference/cluster-pod-conventio
 After all convention servers are finished processing a PodIntent for a workload,
 the convention controller updates the PodIntent with the latest version of the PodTemplateSpec and sets
 `PodIntent.status.conditions[].status=True` where `PodIntent.status.conditions[].type=Ready`.
-This status change signals the Supply Chain Choreographer that the Convention Service is finished with it's work.
+This status change signals the Supply Chain Choreographer that the Convention Service is finished with its work.
 The status change also executes whatever steps are waiting in the supply chain.
 
 ## <a id='prereqs'></a>Getting started
@@ -338,7 +338,7 @@ When using environment variables to define whether the convention is applicable,
 
 ### <a id='ImageMetadata'></a>Matching criteria by image metadata
 
-The convention controller should be used with [OCI Image](./reference/image-config.md) so it can be used to get metadata information. The ImageConfig is an struct that contains the configuration of an image, similar to the output of `docker inspect hello-world`.
+The convention controller should be used with [OCI Image](./reference/image-config.md) so it can be used to get metadata information. The ImageConfig is a struct that contains the configuration of an image, similar to the output of `docker inspect hello-world`.
 
 ## <a id='install'></a> Configure and install the convention server
 
@@ -346,7 +346,7 @@ The `server.yaml` defines the Kubernetes components that makes up the convention
 
 1. A `namespace` is created for the convention server components:
 
-    ```yaml
+    ```
     ...
     ---
     apiVersion: v1
@@ -359,7 +359,7 @@ The `server.yaml` defines the Kubernetes components that makes up the convention
 
 2. A certificate manager `Issuer` is created (for more information, see the [cert-manager documentation](https://cert-manager.io/docs/concepts/issuer/)) to issue the certificate needed for TLS communication (optional):
 
-    ```yaml
+    ```
     ...
     ---
     # The following manifests contain a self-signed issuer CR and a certificate CR.
@@ -377,7 +377,7 @@ The `server.yaml` defines the Kubernetes components that makes up the convention
 
 3. A self-signed [`Certificate`](https://cert-manager.io/docs/concepts/certificate/) is created (optional):
 
-    ```yaml
+    ```
     ...
     ---
     apiVersion: cert-manager.io/v1
@@ -406,7 +406,7 @@ The `server.yaml` defines the Kubernetes components that makes up the convention
 
 4. A Kubernetes `Deployment` is created for the webhook to run from:
 
-    ```yaml
+    ```
     ...
     ---
     apiVersion: apps/v1
@@ -460,7 +460,7 @@ The `server.yaml` defines the Kubernetes components that makes up the convention
 
 5.  A Kubernetes `Service` to expose the convention deployment is also created:
 
-    ```yaml
+    ```
     ...
     ---
     apiVersion: v1
@@ -478,16 +478,17 @@ The `server.yaml` defines the Kubernetes components that makes up the convention
     ---
     ...
     ```
-6. Finally, the `ClusterPodConvention` adds the convention certificate to the cluster to make it available for the convention controller:
+6. Finally, the `ClusterPodConvention` adds the convention certificate to the cluster to make it available for the convention controller:<br/>
+   >**Note:** The `annotations` block is only needed if you use a self-signed certificate. Otherwise, check the [cert-manager documentation](https://cert-manager.io/docs/).
 
-    ```yaml
+    ```
     ...
     ---
     apiVersion: conventions.apps.tanzu.vmware.com/v1alpha1
     kind: ClusterPodConvention
     metadata:
     name: awesome-convention
-    annotations:
+    annotations: #optional
         conventions.apps.tanzu.vmware.com/inject-ca-from: "awesome-convention/awesome-webhook-cert"
     spec:
     webhook:
@@ -497,7 +498,6 @@ The `server.yaml` defines the Kubernetes components that makes up the convention
             namespace: awesome-convention
     ```
 
-+ **_Optional_**: Only needed if a self-signed certificate is used. Otherwise, check the cert-manager documentation.
 
 ## Deploy a convention server
 
