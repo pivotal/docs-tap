@@ -46,15 +46,17 @@ Possible workarounds are:
     * Update the `ScanTemplate` to include an InitContainer after the `repo` InitContainer to build
     the binary.
 
-* **Network Error during Scan may result in "hanging" scan:**
-When scanning, `kubectl get sourcescan` or `kubectl get imagescan` may appear to hang with Phase set
-to "Scanning". The pod logs instead may show an HTTP error. This is an error state that is not
-properly propogating to the `sourcescan` or `imagescan` resource, which should instead have the Phase
-set to "Error". The fix for this issue is planned for after Supply Chain Security Tools – Scan
-reaches general availability. Since this is a normal error state that is not propogating, there is no
-particular remediation. The error itself in the pod logs should provide some help in remediating,
-which if it is a network flake, may include just deleting and reapplying the `sourcescan` or
-`imagescan` resources.
+* **Network errors might cause scans to fail:**
+When scanning, `kubectl get sourcescan` or `kubectl get imagescan` might appear to fail with the
+phase set as `Scanning`. The Pod logs instead might show an HTTP error.
+This is an error state that is not properly propagating to the `sourcescan` or `imagescan` resource,
+which should instead have the phase set as `Error`.
+The fix for this issue is planned for after Supply Chain Security Tools – Scan reaches general
+availability.
+Because this is a normal error state that is not propagating, there is no specific solution.
+In most cases, an error in the Pod logs offers some suggestion to fix the issue it mentions.
+When that issue is a network flake, the suggestion might be to just delete and reapply the
+`sourcescan` or `imagescan` resources.
 
 
 ## v1.0.0-beta.2

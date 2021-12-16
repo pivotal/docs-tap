@@ -693,8 +693,8 @@ Verify that both Scan Link and Grype Scanner are installed by running:
 
 ### Workload update
 
-To connect the new supply chain to the workload,
-the workload must be updated to point at your Tekton pipeline.
+To connect the new supply chain to the workload, update the workload to point at your Tekton
+pipeline:
 
 1. Update the workload by running the following with the Tanzu CLI:
 
@@ -706,6 +706,8 @@ the workload must be updated to point at your Tekton pipeline.
       --label apps.tanzu.vmware.com/has-tests=true \
       --yes
     ```
+
+    Example output:
 
     ```
     Create workload:
@@ -729,13 +731,13 @@ the workload must be updated to point at your Tekton pipeline.
     Created workload "tanzu-java-web-app"
     ```
 
-2. After accepting the workload creation, monitor the creation of new resources by the workload by running:
+1. After accepting the workload creation, see the new resources that the workload created by running:
 
     ```
     kubectl get workload,gitrepository,sourcescan,pipelinerun,images.kpack,imagescan,podintent,app,services.serving
     ```
 
-    You will see output similar to the following example that shows the objects that were created by the Supply Chain Choreographer:
+    Example output, which shows the objects that Supply Chain Choreographer created:
 
     ```
     NAME                                    AGE
@@ -766,7 +768,6 @@ the workload must be updated to point at your Tekton pipeline.
     service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.developer.example.com   tanzu-java-web-app-00001   tanzu-java-web-app-00001   Unknown   IngressNotConfigured
     ```
 
----
 
 ## Section 4: Advanced Use Cases - Supply Chain Security Tools
 
