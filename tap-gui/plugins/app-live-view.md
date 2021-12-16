@@ -22,8 +22,8 @@ It gives a level of control to the users to change some parameters, such as envi
 The Application Live View UI plug-in is part of Tanzu Application Platform GUI. To use the Application Live View plug-in:
 
 + Select the relevant component under the `Organization Catalog` in TAP GUI
-+ Select the desired workload under `Workloads` tab
-+ Select the desired pod from the `Pods` section under `Workloads` tab
++ Select the desired service under `Runtime Resources` tab
++ Select the desired pod from the `Pods` section under `Runtime Resources` tab
 + The user will be able to see all the details, do some lightweight troubleshooting and interact with the application in certain boundaries under the `Live View` section
 
 

@@ -67,29 +67,48 @@ Installation requires:
         * If you are using Cloud Native Runtimes, see [Configure Your Local Kind
         Cluster](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-local-dns.html#config-cluster).
         * Because Kind doesn't support LoadBalancer, make sure to use NodePort when defining service types.
+
+* Configure `hostPort` to `containerPort` mappings for ports 80 and 443 to enable access to the
+cluster from your local machine. For example:
+
+    ```
+    kind: Cluster
+    apiVersion: kind.x-k8s.io/v1alpha4
+    nodes:
+    - role: control-plane
+    - role: worker
+      extraPortMappings:
+      - containerPort: 30443
+        hostPort: 443
+      - containerPort: 30080
+        hostPort: 80
+    ```
+
     * Minikube
         * Minimum requirements for VM: 8 CPUs for i9 or equivalent, 12 CPUs for i7 or equivalent, 8 GB RAM (12+ GB recommended), and 120 GB disk space.
         * VMware recommends at least 16 GB of total host memory.
         * On MacOS only Hyperkit driver is supported; Docker driver is not supported.
-   * Tanzu Kubernetes Grid v1.4
+    * Tanzu Kubernetes Grid v1.4
         * Do not use a Tanzu Kubernetes Grid cluster that runs production workloads.
         * To install Tanzu Application Platform on Tanzu Kubernetes Grid v1.4,
           see [Installing with Tanzu Kubernetes Grid v1.4](install-tkg.md).
-   * Tanzu Community Edition v0.9.1
+    * Tanzu Community Edition v0.9.1
         * Visit the Tanzu Community Edition installation page to follow installation instructions at [Tanzu Community Edition](install-tce.md)
 
-    To deploy all Tanzu Application Platform packages, your cluster must have at least **8&nbsp;GB** of RAM across all nodes available to Tanzu Application Platform. At least 8 CPUs for i9 or equivalent or 12 CPUs for i7 or equivalent must be available to Tanzu Application Platform components.
-    VMware recommends that at least **16&nbsp;GB** of RAM is available to build and deploy applications, including for Kind and Minikube.
+    To deploy all Tanzu Application Platform packages, your cluster must have at least 8&nbsp;GB of RAM across all nodes available to Tanzu Application Platform. At least 8 CPUs for i9 or equivalent or 12 CPUs for i7 or equivalent must be available to Tanzu Application Platform components.
+    VMware recommends that at least 16&nbsp;GB of RAM is available to build and deploy applications, including for Kind and Minikube.
 
-    Your cluster must support the creation of Services of type `LoadBalancer` to install Cloud Native Runtimes package. The exception is [`provider: local` installation](#install-cnr), which removes container replication and uses `NodePort` Services for HTTP ingress. For information about services of type `LoadBalancer`, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer) and your cloud provider documentation. For information about Tanzu Kubernetes Grid support for Service type `LoadBalancer`, see [Install VMware NSX Advanced Load Balancer on a vSphere Distributed Switch](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.3/vmware-tanzu-kubernetes-grid-13/GUID-mgmt-clusters-install-nsx-adv-lb.html).
+    For the [`full` profile](install.html#about-tanzu-application-platform-package-profiles-1), or
+    use of Security Chain Security Tools - Store, your cluster must have a configured default StorageClass.
 
-    Your cluster must also have at least **70&nbsp;GB** of disk per node.
+    Your cluster must also have at least 70&nbsp;GB of disk per node.
 
 * [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/)
 must be configured so that Tanzu Application Platform controller
 pods can run as root.
 
 ### Tools and CLI requirements
+
 Installation requires:
 
 * The Kubernetes CLI, kubectl, v1.19, v1.20 or v1.21, installed and authenticated with administrator rights for your target cluster. See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes documentation.
@@ -409,7 +428,7 @@ on Tanzu Network.
   5. Download the CLI bundle corresponding with your operating system. For example, if your client
 operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle.
 
-  6. If they exist, delete any CLI files from a previous install:
+  6. If they exist, delete any CLI files from previous installs:
      ```
      rm -rf $HOME/tanzu/cli
      ```
@@ -432,8 +451,8 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
      export TANZU_CLI_NO_INIT=true
      ```
 
-  10. List the plugins to find out if the `imagepullsecret` plugin if it was previously installed,
-      and if it was installed delete it:
+  10. List the plugins to see if the `imagepullsecret` plugin was previously installed.
+      If installed, delete it:
 
       ```
       tanzu plugin list
@@ -525,7 +544,7 @@ for interacting with Tanzu Kubernetes Grid or Tanzu Community Edition, you only 
      ```
      mkdir $HOME/tanzu
      ```
-     If `tanzu` already exists, delete the files within it.
+     If `tanzu` already exists, delete the files in the directory.
 
   2. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
 

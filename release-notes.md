@@ -13,9 +13,16 @@ New features and changes in this release:
 * Feature 1
 * Feature 2
 
+**Updated Components**
+
+The following components have been updated in Tanzu Application Platform v1.0:
+
+- Supply Chain Security Tools
+    - **Sign v1.0.0-beta.3:** For more information, see the [Supply Chain Security Tools - Sign release notes](scst-sign/release-notes.md).
+
 ### Known issues
 
-This release has the following issue:
+This release has the following issues:
 
 * Known issue 1
 * Known issue 2
