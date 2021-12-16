@@ -693,72 +693,78 @@ Verify that both Scan Link and Grype Scanner are installed by running:
 
 ### Workload update
 
-Finally, in order to have the new supply chain connected to the workload,
-the workload needs to be updated to point at the newly created Tekton pipeline.
-The workload can be updated using the Tanzu CLI as follows:
+To connect the new supply chain to the workload,
+the workload must be updated to point at your Tekton pipeline.
 
-```
-tanzu apps workload create tanzu-java-web-app \
-  --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
-  --git-branch main \
-  --type web \
-  --label apps.tanzu.vmware.com/has-tests=true \
-  --yes
-```
+1. Update the workload by running the following with the Tanzu CLI:
 
-```
-Create workload:
-      1 + |---
-      2 + |apiVersion: carto.run/v1alpha1
-      3 + |kind: Workload
-      4 + |metadata:
-      5 + |  labels:
-      6 + |    apps.tanzu.vmware.com/has-tests: "true"
-      7 + |    apps.tanzu.vmware.com/workload-type: web
-      8 + |  name: tanzu-java-web-app
-      9 + |  namespace: default
-     10 + |spec:
-     11 + |  source:
-     12 + |    git:
-     13 + |      ref:
-     14 + |        branch: main
-     15 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
+    ```
+    tanzu apps workload create tanzu-java-web-app \
+      --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
+      --git-branch main \
+      --type web \
+      --label apps.tanzu.vmware.com/has-tests=true \
+      --yes
+    ```
 
-? Do you want to create this workload? Yes
-Created workload "tanzu-java-web-app"
-```
+    ```
+    Create workload:
+          1 + |---
+          2 + |apiVersion: carto.run/v1alpha1
+          3 + |kind: Workload
+          4 + |metadata:
+          5 + |  labels:
+          6 + |    apps.tanzu.vmware.com/has-tests: "true"
+          7 + |    apps.tanzu.vmware.com/workload-type: web
+          8 + |  name: tanzu-java-web-app
+          9 + |  namespace: default
+        10 + |spec:
+        11 + |  source:
+        12 + |    git:
+        13 + |      ref:
+        14 + |        branch: main
+        15 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
 
-After accepting the creation of the new workload, we can monitor the creation of new resources by the workload using:
+    ? Do you want to create this workload? Yes
+    Created workload "tanzu-java-web-app"
+    ```
 
-```
-kubectl get workload,gitrepository,pipelinerun,images.kpack,podintent,app,services.serving
-```
+2. After accepting the workload creation, monitor the creation of new resources by the workload by running:
 
-That should result in an output which will show all of the objects that have been created by the Supply Chain Choreographer:
+    ```
+    kubectl get workload,gitrepository,sourcescan,pipelinerun,images.kpack,imagescan,podintent,app,services.serving
+    ```
 
+    You will see output similar to the following example that shows the objects that were created by the Supply Chain Choreographer:
 
-```
-NAME                                    AGE
-workload.carto.run/tanzu-java-web-app   109s
+    ```
+    NAME                                    AGE
+    workload.carto.run/tanzu-java-web-app   109s
 
-NAME                                                        URL                                                         READY   STATUS                                                            AGE
-gitrepository.source.toolkit.fluxcd.io/tanzu-java-web-app   https://github.com/sample-accelerators/tanzu-java-web-app   True    Fetched revision: main/872ff44c8866b7805fb2425130edb69a9853bfdf   109s
+    NAME                                                        URL                                                         READY   STATUS                                                            AGE
+    gitrepository.source.toolkit.fluxcd.io/tanzu-java-web-app   https://github.com/sample-accelerators/tanzu-java-web-app   True    Fetched revision: main/872ff44c8866b7805fb2425130edb69a9853bfdf   109s
 
-NAME                                              SUCCEEDED   REASON      STARTTIME   COMPLETIONTIME
-pipelinerun.tekton.dev/tanzu-java-web-app-4ftlb   True        Succeeded   104s        77s
+    NAME                                                           PHASE       SCANNEDREVISION                            SCANNEDREPOSITORY                                           AGE    CRITICAL   HIGH   MEDIUM   LOW   UNKNOWN   CVETOTAL
+    sourcescan.scanning.apps.tanzu.vmware.com/tanzu-java-web-app   Completed   187850b39b754e425621340787932759a0838795   https://github.com/sample-accelerators/tanzu-java-web-app   90s
 
-NAME                                LATESTIMAGE                                                                                                      READY
-image.kpack.io/tanzu-java-web-app   10.188.0.3:5000/foo/tanzu-java-web-app@sha256:1d5bc4d3d1ffeb8629fbb721fcd1c4d28b896546e005f1efd98fbc4e79b7552c   True
+    NAME                                              SUCCEEDED   REASON      STARTTIME   COMPLETIONTIME
+    pipelinerun.tekton.dev/tanzu-java-web-app-4ftlb   True        Succeeded   104s        77s
 
-NAME                                                             READY   REASON   AGE
-podintent.conventions.apps.tanzu.vmware.com/tanzu-java-web-app   True             7s
+    NAME                                LATESTIMAGE                                                                                                      READY
+    image.kpack.io/tanzu-java-web-app   10.188.0.3:5000/foo/tanzu-java-web-app@sha256:1d5bc4d3d1ffeb8629fbb721fcd1c4d28b896546e005f1efd98fbc4e79b7552c   True
 
-NAME                                      DESCRIPTION           SINCE-DEPLOY   AGE
-app.kappctrl.k14s.io/tanzu-java-web-app   Reconcile succeeded   1s             2s
+    NAME                                                          PHASE       SCANNEDIMAGE                                                                                                AGE   CRITICAL   HIGH   MEDIUM   LOW   UNKNOWN   CVETOTAL
+    imagescan.scanning.apps.tanzu.vmware.com/tanzu-java-web-app   Completed   10.188.0.3:5000/foo/tanzu-java-web-app@sha256:1d5bc4d3d1ffeb8629fbb721fcd1c4d28b896546e005f1efd98fbc4e79b7552c   14s
 
-NAME                                             URL                                               LATESTCREATED              LATESTREADY                READY     REASON
-service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.developer.example.com   tanzu-java-web-app-00001   tanzu-java-web-app-00001   Unknown   IngressNotConfigured
-```
+    NAME                                                             READY   REASON   AGE
+    podintent.conventions.apps.tanzu.vmware.com/tanzu-java-web-app   True             7s
+
+    NAME                                      DESCRIPTION           SINCE-DEPLOY   AGE
+    app.kappctrl.k14s.io/tanzu-java-web-app   Reconcile succeeded   1s             2s
+
+    NAME                                             URL                                               LATESTCREATED              LATESTREADY                READY     REASON
+    service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.developer.example.com   tanzu-java-web-app-00001   tanzu-java-web-app-00001   Unknown   IngressNotConfigured
+    ```
 
 ---
 
