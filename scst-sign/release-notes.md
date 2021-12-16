@@ -43,7 +43,7 @@ This topic contains release notes for Supply Chain Security Tools - Sign.
 
 ### Known issues
 
-See [Troubleshooting and Known Issues](known_issues.md).
+See [Supply Chain Security Tools - Sign known issues](known_issues.md).
 
 
 ## v1.0.0-beta.0
@@ -52,4 +52,4 @@ See [Troubleshooting and Known Issues](known_issues.md).
 
 ### Known issues
 
-See [Troubleshooting and Known Issues](known_issues.md).
+See [Supply Chain Security Tools - Sign known issues](known_issues.md).
