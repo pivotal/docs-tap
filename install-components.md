@@ -140,10 +140,8 @@ To install Cloud Native Runtimes:
 1. List version information for the package by running:
 
     ```
-    tanzu package available list PACKAGE-NAME --namespace tap-install
+    tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
     ```
-    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
-     [Add the Tanzu Application Platform Package Repository](install.md#add-package-repositories) above.
 
      For example:
 
@@ -187,19 +185,19 @@ To install Cloud Native Runtimes:
         # if deploying on a local cluster such as Kind. Otherwise, you can remove this field
         provider: local
         ```
-    
+
         >**Note:** For most installations, you can leave the `cnr-values.yaml` empty, and use the default values.
-    
+
         If you are running on a single-node cluster, such as kind or minikube, set the `provider: local`
         option. This option reduces resource requirements by using a HostPort service instead of a
         LoadBalancer and reduces the number of replicas.
-    
+
         For more information about using Cloud Native Runtimes with kind, see the
         [Cloud Native Runtimes documentation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-local-dns.html#config-cluster).
         If you are running on a multi-node cluster, do not set `provider`.
-    
+
         If your environment has Contour packages, Contour might conflict with the Cloud Native Runtimes installation.
-    
+
         For information about how to prevent conflicts, see [Installing Cloud Native Runtimes for Tanzu with an Existing Contour Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-contour.html) in the Cloud Native Runtimes documentation.
         Specify values for `ingress.reuse_crds`,
         `ingress.external.namespace`, and `ingress.internal.namespace` in the `cnr-values.yaml` file.
@@ -344,12 +342,9 @@ To install Convention Controller:
 2. (Optional) Make changes to the default installation settings by running:
 
     ```
-    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
+    tanzu package available get controller.conventions.apps.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
-    Where:
-
-    - `PACKAGE-NAME` is same as step 1.
-    - `VERSION-NUMBER` is the version of the package listed in step 1.
+    Where `VERSION-NUMBER` is the version of the package listed in step 1.
 
     For example:
 
@@ -442,12 +437,9 @@ To install Source Controller:
 1. (Optional) Make changes to the default installation settings by running:
 
     ```
-    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
+    tanzu package available get controller.source.apps.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
-    Where:
-
-    - `PACKAGE-NAME` is same as step 1.
-    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
+    Where `VERSION-NUMBER` is the version of the package listed in step 1 above.
 
     For example:
 
@@ -553,10 +545,9 @@ To install Application Accelerator:
 1. List version information for the package by running:
 
     ```
-    tanzu package available list PACKAGE-NAME --namespace tap-install
+    tanzu package available list accelerator.apps.tanzu.vmware.com --namespace tap-install
     ```
-    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
-     [Add the Tanzu Application Platform Package Repository](install.md#add-package-repositories) above.
+
      For example:
 
     ```
@@ -569,12 +560,9 @@ To install Application Accelerator:
 1. (Optional) To make changes to the default installation settings, run:
 
     ```
-    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
+    tanzu package available get accelerator.apps.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
-    Where:
-
-    - `PACKAGE-NAME` is same as step 1.
-    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
+    Where `VERSION-NUMBER` is the version of the package listed in step 1 above.
 
     For example:
 
@@ -673,10 +661,9 @@ To install Tanzu Build Service using the Tanzu CLI:
 1. List version information for the package by running:
 
     ```
-    tanzu package available list PACKAGE-NAME --namespace tap-install
+    tanzu package available list buildservice.tanzu.vmware.com --namespace tap-install
     ```
-    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
-     [Add the Tanzu Application Platform Package Repository](install.md#add-package-repositories) above.
+
      For example:
 
     ```
@@ -689,12 +676,9 @@ To install Tanzu Build Service using the Tanzu CLI:
 1. (Optional) To make changes to the default installation settings, run:
 
     ```
-    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
+    tanzu package available get buildservice.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
-    Where:
-
-    - `PACKAGE-NAME` is same as in step 1.
-    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
+    Where `VERSION-NUMBER` is the version of the package listed in step 1 above.
 
     For example:
 
@@ -827,7 +811,7 @@ to a component that knows how to deploy the image.
     | Creating cluster role binding 'cartographer-default-cluster-rolebinding'
     - Creating package resource
     \ Package install status: Reconciling
-    
+
     Added installed package 'cartographer' in namespace 'default'
     ```
 
@@ -998,7 +982,7 @@ You must have installed:
         ```
         Deleting installed package 'ootb-supply-chain-testing-scanning' in namespace 'tap-install'.
         Are you sure? [y/N]: y
-       
+
         | Uninstalling package 'ootb-supply-chain-testing-scanning' from namespace 'tap-install'
         \ Getting package install for 'ootb-supply-chain-testing-scanning'
         - Deleting package install 'ootb-supply-chain-testing-scanning' from namespace 'tap-install'
@@ -1006,7 +990,7 @@ You must have installed:
         | Deleting role binding 'ootb-supply-chain-testing-scanning-default-cluster-rolebinding'
         | Deleting secret 'ootb-supply-chain-testing-scanning-default-values'
         | Deleting service account 'ootb-supply-chain-testing-scanning-default-sa'
-       
+
          Uninstalled package 'ootb-supply-chain-testing-scanning' from namespace 'tap-install'
         ```
 
@@ -1071,7 +1055,7 @@ values to the properties you want to tweak. For example:
     | Creating package resource
     - Waiting for 'PackageInstall' reconciliation for 'ootb-supply-chain-testing'
     \ 'PackageInstall' resource install status: Reconciling
-    
+
     Added installed package 'ootb-supply-chain-testing' in namespace 'tap-install'
     ```
 
@@ -1121,7 +1105,7 @@ and image for vulnerabilities.
         ```
         Deleting installed package 'ootb-supply-chain-testing' in namespace 'tap-install'.
         Are you sure? [y/N]: y
-       
+
         | Uninstalling package 'ootb-supply-chain-testing' from namespace 'tap-install'
         \ Getting package install for 'ootb-supply-chain-testing'
         - Deleting package install 'ootb-supply-chain-testing' from namespace 'tap-install'
@@ -1129,7 +1113,7 @@ and image for vulnerabilities.
         | Deleting role binding 'ootb-supply-chain-testing-default-cluster-rolebinding'
         | Deleting secret 'ootb-supply-chain-testing-default-values'
         | Deleting service account 'ootb-supply-chain-testing-default-sa'
-       
+
          Uninstalled package 'ootb-supply-chain-testing' from namespace 'tap-install'
         ```
 
@@ -1194,7 +1178,7 @@ corresponding values to the properties you want to tweak. For example:
     | Creating package resource
     - Waiting for 'PackageInstall' reconciliation for 'ootb-supply-chain-testing-scanning'
     \ 'PackageInstall' resource install status: Reconciling
-    
+
     Added installed package 'ootb-supply-chain-testing-scanning' in namespace 'tap-install'
     ```
 
@@ -1656,7 +1640,7 @@ field in the values file.
 
 ## <a id='install-learning-center'></a> Install Learning Center for Tanzu Application Platform
 
-To install Tanzu Learning Center, see the following sections. 
+To install Tanzu Learning Center, see the following sections.
 >**Note:** If you have any issue updating values or deploying Learning Center, please see the [Learning Center - Known Issues](learning-center/known-issues/about.md) for recovery steps.
 
 For general information about Learning Center go here: [Learning Center](learning-center)
@@ -1830,8 +1814,6 @@ Use the following procedure to install Service Bindings:
     ```
     tanzu package available list service-bindings.labs.vmware.com --namespace tap-install
     ```
-    Where `PACKAGE-NAME` is the name of the package listed earlier in
-    [Add the Tanzu Application Platform Package Repository](install.md#add-package-repositories).
 
     For example:
 
@@ -2010,7 +1992,7 @@ and you want to use `NodePort`, then create a `scst-store-values.yaml` and confi
       --version 1.0.0-beta.2 \
       --namespace tap-install \
       --values-file scst-store-values.yaml
-    
+
     - Installing package 'scst-store.tanzu.vmware.com'
     / Getting namespace 'tap-install'
     - Getting package metadata for 'scst-store.tanzu.vmware.com'
@@ -2020,7 +2002,7 @@ and you want to use `NodePort`, then create a `scst-store-values.yaml` and confi
     / Creating secret 'metadata-store-tap-install-values'
     | Creating package resource
     - Package install status: Reconciling
-    
+
     Added installed package 'scst-store' in namespace 'tap-install'
     ```
 
@@ -2147,7 +2129,7 @@ To install Supply Chain Security Tools - Sign:
         --version 1.0.0-beta.2 \
         --namespace tap-install \
         --values-file scst-sign-values.yaml
-      
+
     | Installing package 'image-policy-webhook.signing.run.tanzu.vmware.com'
     | Getting namespace 'default'
     | Getting package metadata for 'image-policy-webhook.signing.run.tanzu.vmware.com'
@@ -2157,7 +2139,7 @@ To install Supply Chain Security Tools - Sign:
     | Creating secret 'image-policy-webhook-default-values'
     / Creating package resource
     - Package install status: Reconciling
-      
+
     Added installed package 'image-policy-webhook' in namespace 'tap-install'
     ```
 
@@ -2285,7 +2267,7 @@ If you want to change from the default values, use the Scan Controller instructi
     | Creating cluster role binding 'grype-scanner-tap-install-cluster-rolebinding'
     / Creating package resource
     - Package install status: Reconciling
-    
+
      Added installed package 'grype-scanner' in namespace 'tap-install'
     ```
 
@@ -2311,13 +2293,10 @@ To install API portal:
 2. (Optional) Make changes to the default installation settings by running:
 
     ```
-    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
+    tanzu package available get api-portal.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
 
-    Where:
-
-    - `PACKAGE-NAME` is same as step 1.
-    - `VERSION-NUMBER` is the version of the package listed in step 1.
+    Where `VERSION-NUMBER` is the version of the package listed in step 1.
 
     For example:
 
@@ -2337,7 +2316,7 @@ To install API portal:
 
     ```
     $ tanzu package install api-portal -n tap-install -p api-portal.tanzu.vmware.com -v 1.0.3
-    
+
     / Installing package 'api-portal.tanzu.vmware.com'
     | Getting namespace 'api-portal'
     | Getting package metadata for 'api-portal.tanzu.vmware.com'
@@ -2350,7 +2329,7 @@ To install API portal:
 
     Added installed package 'api-portal' in namespace 'tap-install'
     ```
-    
+
     For more information about API portal, see [API portal for VMware Tanzu](https://docs.pivotal.io/api-portal).
 
 
@@ -2587,7 +2566,7 @@ that you plan to create the `Workload` in:
 
     ```
     cat <<EOF | kubectl -n YOUR-NAMESPACE apply -f -
-    
+
     apiVersion: v1
     kind: Secret
     metadata:
@@ -2597,7 +2576,7 @@ that you plan to create the `Workload` in:
     type: kubernetes.io/dockerconfigjson
     data:
       .dockerconfigjson: e30K
-    
+
     ---
     apiVersion: v1
     kind: ServiceAccount
@@ -2608,7 +2587,7 @@ that you plan to create the `Workload` in:
     imagePullSecrets:
       - name: registry-credentials
       - name: tap-registry
-    
+
     ---
     apiVersion: rbac.authorization.k8s.io/v1
     kind: Role
@@ -2657,7 +2636,7 @@ that you plan to create the `Workload` in:
     - apiGroups: [scst-scan.apps.tanzu.vmware.com]
       resources: ['imagescans', 'sourcescans']
       verbs: ['*']
-    
+
     ---
     apiVersion: rbac.authorization.k8s.io/v1
     kind: RoleBinding
@@ -2670,6 +2649,6 @@ that you plan to create the `Workload` in:
     subjects:
       - kind: ServiceAccount
         name: default
-    
+
     EOF
     ```
