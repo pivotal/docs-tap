@@ -84,10 +84,8 @@ To install Cloud Native Runtimes:
 1. List version information for the package by running:
 
     ```bash
-    tanzu package available list PACKAGE-NAME --namespace tap-install
+    tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
     ```
-    Where `PACKAGE-NAME` is the name of the package listed in step 3 of
-     [Add the Tanzu Application Platform Package Repository](install.md#add-package-repositories) above.
 
      For example:
 
@@ -284,12 +282,9 @@ To install Convention Controller:
 2. (Optional) To make changes to the default installation settings, run:
 
     ```bash
-    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
+    tanzu package available get controller.conventions.apps.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
-    Where:
-
-    - `PACKAGE-NAME` is same as step 1 above.
-    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
+    Where `VERSION-NUMBER` is the version of the package listed in step 1 above.
 
     For example:
 
@@ -384,12 +379,9 @@ To install Source Controller:
 1. (Optional) To make changes to the default installation settings, run:
 
     ```bash
-    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
+    tanzu package available get controller.source.apps.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
-    Where:
-
-    - `PACKAGE-NAME` is same as step 1 above.
-    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
+    Where `VERSION-NUMBER` is the version of the package listed in step 1 above.
 
     For example:
 
@@ -494,10 +486,9 @@ To install Application Accelerator:
 1. List version information for the package by running:
 
     ```bash
-    tanzu package available list PACKAGE-NAME --namespace tap-install
+    tanzu package available list accelerator.apps.tanzu.vmware.com --namespace tap-install
     ```
-    Where `PACKAGE-NAME` is the name of the package listed in step 3 of
-     [Add the Tanzu Application Platform Package Repository](install.md#add-package-repositories) above.
+
      For example:
 
     ```bash
@@ -510,12 +501,9 @@ To install Application Accelerator:
 1. (Optional) To make changes to the default installation settings, run:
 
     ```bash
-    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
+    tanzu package available get accelerator.apps.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
-    Where:
-
-    - `PACKAGE-NAME` is same as step 1 above.
-    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
+    Where `VERSION-NUMBER` is the version of the package listed in step 1 above.
 
     For example:
 
@@ -604,10 +592,9 @@ To install Tanzu Build Service using the Tanzu CLI:
 1. List version information for the package by running:
 
     ```bash
-    tanzu package available list PACKAGE-NAME --namespace tap-install
+    tanzu package available list buildservice.tanzu.vmware.com --namespace tap-install
     ```
-    Where `PACKAGE-NAME` is the name of the package listed in step 3 of
-     [Add the Tanzu Application Platform Package Repository](install.md#add-package-repositories) above.
+
      For example:
 
     ```bash
@@ -620,12 +607,9 @@ To install Tanzu Build Service using the Tanzu CLI:
 1. (Optional) To make changes to the default installation settings, run:
 
     ```bash
-    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
+    tanzu package available get buildservice.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
-    Where:
-
-    - `PACKAGE-NAME` is same as step 1 above.
-    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
+    Where `VERSION-NUMBER` is the version of the package listed in step 1 above.
 
     For example:
 
@@ -1434,8 +1418,6 @@ Use the following procedure to install Service Bindings:
     ```bash
     tanzu package available list service-bindings.labs.vmware.com --namespace tap-install
     ```
-    Where `PACKAGE-NAME` is the name of the package listed in step 3 of
-    [Add the Tanzu Application Platform Package Repository](install.md#add-package-repositories).
 
     For example:
 
@@ -1521,10 +1503,9 @@ To install Supply Chain Security Tools - Store:
 1. List version information for the package by running:
 
     ```bash
-    tanzu package available list PACKAGE-NAME --namespace tap-install
+    tanzu package available list scst-store.tanzu.vmware.com --namespace tap-install
     ```
-    Where `PACKAGE-NAME` is the name of the package listed in step 3 of
-     [Add the Tanzu Application Platform Package Repository](install.md#add-package-repositories) above.
+
      For example:
 
     ```bash
@@ -2086,12 +2067,9 @@ To install the API portal:
 2. (Optional) To make changes to the default installation settings, run:
 
     ```bash
-    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
+    tanzu package available get api-portal.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
-    Where:
-
-    - `PACKAGE-NAME` is same as step 1 above.
-    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
+    Where `VERSION-NUMBER` is the version of the package listed in step 1 above.
 
     For example:
 
