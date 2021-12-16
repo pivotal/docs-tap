@@ -12,7 +12,7 @@ Software Composition Analysis scanning
 
 ## Version of Source:
 
-* BDBA version SDL 4.2
+* BDBA version 2021.9.0
 * Grype version 0.25.1
 
 ## CVEs:
