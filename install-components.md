@@ -1695,7 +1695,7 @@ To install Learning Center:
 1. (Optional) See all the configurable parameters on this package by running:
 
     ```
-    tanzu package available get learningcenter.tanzu.vmware.com/1.0.14-build.1 --values-schema -- namespace tap-install
+    tanzu package available get learningcenter.tanzu.vmware.com/0.x.x --values-schema -- namespace tap-install
     ```
 
 1. Create a config file named `learning-center-config.yaml`.
