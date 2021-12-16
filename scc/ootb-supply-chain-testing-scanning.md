@@ -210,7 +210,7 @@ Tools - Scan](install-components.md#install-scst-scan) ():
 
 
 **note**: Although the templates can be customized, we recommend sticking with
-what's provided by the instalation of `grype.scanning.apps.tanzu.vmware.com`
+what's provided by the installation of `grype.scanning.apps.tanzu.vmware.com`
 (created in the same namespace as configured via `grype.namespace` in either
 TAP profiles or individual component installation as in the example above). See
 [Creating a ScanTemplate](scst-scan/create-scan-template.md) for more details.
