@@ -24,7 +24,7 @@ To configure Visual Studio Code settings for your app:
 
 Live update requires a workload.yaml file and a Tiltfile.
 You can generate a sample Java app that includes these files by using
-[Application Accelerator](../accelerator). Alternately, you can create them manually as follows.
+Application Accelerator. Alternately, you can create them manually as follows.
 
 ### Creating a workload.yaml file
 
