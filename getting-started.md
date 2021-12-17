@@ -38,7 +38,7 @@ In this section, you will deploy a simple web application to the platform, enabl
 
 ### A note about Application Accelerators
 
-The Application Accelerator Plugin of Tanzu Application Platform GUI is located on the left-hand side navigation bar (**Create** button). It helps application developers and administrators to create and generate application accelerators. Accelerators are templates that codify best practices and ensure important configuration and structures are in place.
+The Application Accelerator Plugin of Tanzu Application Platform GUI is located on the left-hand side navigation bar (`Create` button). It helps application developers and administrators to create and generate application accelerators. Accelerators are templates that codify best practices and ensure important configuration and structures are in place.
 
 Developers can bootstrap their applications and get started with feature development. Application administrators can create custom accelerators that reflect their desired architectures and configurations, and enable fleets of developers to utilize them instantly. This decreases administrator concerns about whether developers are implementing their desired best practices.
 
@@ -50,7 +50,7 @@ Application Accelerator templates are available as a quick start from [Tanzu Net
 To deploy your application, you need to download an accelerator, upload it on your Git repository of choice, and run a CLI command. We recommend using the accelerator called `Tanzu-Java-Web-App`.
 
 
-1. From the Tanzu Application Platform GUI portal, click on **Create** located on the left-hand side of the
+1. From the Tanzu Application Platform GUI portal, click on `Create` located on the left-hand side of the
 navigation bar to see the list of available accelerators.
 For information about connecting to Tanzu Application Platform GUI, see
 [Accessing Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md).
