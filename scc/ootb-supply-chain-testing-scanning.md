@@ -69,7 +69,6 @@ have the _source-test-to-url_ installed** at the same time as
 _source-test-scan-to-url_.
 
 
-
 ## Developer namespace
 
 As mentioned in the prerequisites section, this example builds on the previous
@@ -79,39 +78,35 @@ To make sure you have configured the namespace correctly, it's important that
 the namespace has the following objects in it (including the ones marked with
 '_new_' whose explanation and details are provided below):
 
-- **image secret**: a Kubernetes secret of type
-  `kubernetes.io/dockerconfigjson` filled with credentials for pushing the
-container images built by the supply chain (see Supply Chain Basic for details)
+- **image secret**: A Kubernetes secret of type `kubernetes.io/dockerconfigjson` filled with
+credentials for pushing the container images built by the supply chain. For more information, see
+[Supply Chain Basic](ootb-supply-chain-basic.md).
 
-- **service account**: the identity to be used for any interaction with the
-  Kubernetes API made by the supply chain (see Supply Chain Basic for details)
+- **service account**: The identity to be used for any interaction with the Kubernetes API made by
+the supply chain. For more information, see [Supply Chain Basic](ootb-supply-chain-basic.md).
 
-- **role**: the set of capabilities that we want to assign to the service
-  account - it must provide the ability to manage all of the resources that the
-supplychain is responsible for (see Supply Chain Basic for details)
+- **role**: The set of capabilities that we want to assign to the service account. It must provide
+the ability to manage all of the resources that the supplychain is responsible for.
+For more information, see [Supply Chain Basic](ootb-supply-chain-basic.md).
 
-- **rolebinding**: binds the role to the service account, i.e., grants the
-  capabilities to the identity (see Supply Chain Basic for details)
+- **rolebinding**: Binds the role to the service account, which grants the capabilities to the
+identity. For more information, see [Supply Chain Basic](ootb-supply-chain-basic.md).
 
-- (optional) **git credentials secret**: when using GitOps for managing the
-  delivery of applications (or a private git source), provides the required
-  credentials for interacting with the git repository (see Supply Chain Basic
-  for details).
+- (Optional) **git credentials secret**: When using GitOps for managing the delivery of applications
+or a private Git source, provides the required credentials for interacting with the Git repository.
+For more information, see [Supply Chain Basic](ootb-supply-chain-basic.md).
 
-- **tekton pipeline**: a pipeline to be ran whenever the supply chain hits the
-  stage of testing the source code (see Supply Chain With Testing for details)
+- **tekton pipeline**: A pipeline to be ran whenever the supply chain hits the stage of testing the
+source code. For more information, see [Supply Chain with Testing](ootb-supply-chain-testing.md).
 
-- **scan policy** (_new_): defines what to do with the results taken from
-  scanning the source code and image produced (see below)
+- **scan policy** (new): Defines what to do with the results taken from scanning the source code and
+image produced. For more information, see [ScanPolicy section](#scan-policy).
 
-- **source scan template** (_new_): a template of how Jobs should be created
-  for scanning the source code (see below)
+- **source scan template** (new): A template of how Jobs should be created for scanning the source
+code. For more information, see [ScanTemplate section](#scan-template).
 
-- **image scan template** (_new_): a template of how Jobs should be created for
-  scanning the image produced by the supply chain (see below)
-
-Below you'll find details about the new objects (compared to Out of The Box
-Supply Chain With Testing).
+- **image scan template** (new): A template of how Jobs should be created for scanning the image
+produced by the supply chain. For more information, see [ScanTemplate section](#scan-template).
 
 
 ### Updates to the developer namespace
@@ -129,7 +124,7 @@ vulnerabilities found.
 Note that the names of the objects **must** match the ones in the example.
 
 
-#### ScanPolicy
+#### <a id="scan-policy"></a> ScanPolicy
 
 The ScanPolicy defines a set of rules to evaluate for a particular scan to
 consider the artifacts (image or source code) either compliant or not.
@@ -172,7 +167,7 @@ spec:
 See [Writing Policy Templates](scst-scan/policies.md) for more details]).
 
 
-#### ScanTemplate
+#### <a id="scan-template"></a> ScanTemplate
 
 A ScanTemplate defines the PodTemplateSpec to be used by a Job to run a
 particular scan (image or source). When an ImageScan or SourceScan is
@@ -183,39 +178,37 @@ below:
 - source scanning (`blob-source-scan-template`)
 - image scanning (`private-image-scan-template`)
 
-If you're targetting a namespace that doesn't match the one configured in the
-TAP Profiles (i.e, `grype.namespace` is not the same as the one you're writing
-the Workload to) these can be installed in such namespace by making use of the
+If you're targeting a namespace that doesn't match the one configured in the
+Tanzu Application Platform profiles, for example if `grype.namespace` is not the same as the one
+you're writing the workload to, you can install these in such namespace by making use of the
 `tanzu package install` command as described in [Install Supply Chain Security
-Tools - Scan](install-components.md#install-scst-scan) ():
+Tools - Scan](install-components.md#install-scst-scan):
 
 
--  Create a file named `ootb-supply-chain-basic-values.yaml` that specifies the
-   corresponding values to the properties you want to tweak. For example:
+1. Create a file named `ootb-supply-chain-basic-values.yaml` that specifies the corresponding values
+to the properties you want to tweak. For example:
 
     ```
     grype:
-      namespace: my-dev-namespace
+      namespace: YOUR-DEV-NAMESPACE
       targetImagePullSecret: registry-credentials
     ```
 
-- With the configuration ready, install the templates:
+1. With the configuration ready, install the templates by running:
 
     ```
     tanzu package install grype-scanner \
       --package-name grype.scanning.apps.tanzu.vmware.com \
       --version 1.0.0 \
-      --namespace my-dev-namespace
+      --namespace YOUR-DEV-NAMESPACE
     ```
 
-
-**note**: Although the templates can be customized, we recommend sticking with
-what's provided by the installation of `grype.scanning.apps.tanzu.vmware.com`
-(created in the same namespace as configured via `grype.namespace` in either
-TAP profiles or individual component installation as in the example above) if
-you're just following the Getting Started guide. See [About Source and Image
-Scans](/scst-scan/explanation.md#about-source-and-image-scans) to know more
-about them.
+>**Note:** Although you can customize the templates, if you're just following the Getting Started
+>guide then it's recommended you stick with what is provided in the installation of
+>`grype.scanning.apps.tanzu.vmware.com`. This is created in the same namespace as configured by
+>using `grype.namespace` in either Tanzu Application Platform profiles or individual component
+>installation as in the earlier example. For more information, see
+>[About Source and Image Scans](scst-scan/explanation.md#about-source-and-image-scans).
 
 
 ### Developer Workload
