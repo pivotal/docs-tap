@@ -32,9 +32,10 @@ Before getting started, ensure the following prerequisites are in place:
 
 
 
-## Section 1: Developing Your First Application on Tanzu Application Platform
+## Section 1: Develop your first application on Tanzu Application Platform
 
-In this section, you will deploy a simple web application to the platform, enable debugging and see your code updates added to the running application as you save them.
+In this section, you deploy a simple web application to the platform, enable debugging,
+and see your code updates added to the running application as you save them.
 
 ### A note about Application Accelerators
 
@@ -42,15 +43,15 @@ The Application Accelerator Plugin of Tanzu Application Platform GUI is located 
 
 Developers can bootstrap their applications and get started with feature development. Application administrators can create custom accelerators that reflect their desired architectures and configurations, and enable fleets of developers to utilize them instantly. This decreases administrator concerns about whether developers are implementing their desired best practices.
 
-Application Accelerator templates are available as a quick start from [Tanzu Network](https://network.tanzu.vmware.com/products/app-accelerator). To create your own Application Accelerator, see [Creating an Accelerator](#creating-an-accelerator).
+Application Accelerator templates are available as a quick start from [Tanzu Network](https://network.tanzu.vmware.com/products/app-accelerator). To create your own Application Accelerator, see [Creating an accelerator](#creating-an-accelerator).
 
 
-### Deploy Your Application
+### Deploy your application
 
 To deploy your application, you need to download an accelerator, upload it on your Git repository of choice, and run a CLI command. We recommend using the accelerator called `Tanzu-Java-Web-App`.
 
 
-1. From the Tanzu Application Platform GUI portal, click on **Create** located on the left-hand side of the
+1. From the Tanzu Application Platform GUI portal, click **Create** located on the left-hand side of the
 navigation bar to see the list of available accelerators.
 For information about connecting to Tanzu Application Platform GUI, see
 [Accessing Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md).
@@ -97,8 +98,8 @@ For information about connecting to Tanzu Application Platform GUI, see
 
     For more information, see [Tanzu Apps Workload Create](cli-plugins/apps/command-reference/tanzu_apps_workload_create.md).
 
-    >**Note:** This first deployment uses accelerator source from Git, but you will use the VSCode extension
-    to debug and live-update this application in later steps.
+    >**Note:** This first deployment uses accelerator source from Git, but in later steps you use the VSCode extension
+    to debug and live-update this application.
 
 7. View the build and runtime logs for your app by running the `tail` command:
 
@@ -114,7 +115,7 @@ Workload Knative Services URL at the bottom of the command output.
     ```
 
 
-### Add Your Application to Tanzu Application Platform GUI Software Catalog
+### Add your application to Tanzu Application Platform GUI Software Catalog
 
 To see this application in your organization catalog, you must register new entities as described below.
 
@@ -167,7 +168,7 @@ For example `harbor.vmware.com/myteam/tanzu-java-web-app-source`.
 You are now ready to iterate on your application.
 
 
-##### Live Update your Application
+##### Live update your application
 
 Deploy the application and see it live update on the cluster. Doing so allows you to understand how your code changes will behave on a production-like cluster much earlier in the development process.
 
@@ -191,7 +192,7 @@ You will see your changes on the cluster.
 You can now continue to make more changes. If you are finished, you can stop or disable live update. Open the command palette (⇧⌘P), type in Tanzu, and select either option.
 
 
-##### Debug your Application
+##### Debug your application
 
 You can debug your cluster on your application or in your local environment.
 
@@ -202,7 +203,7 @@ Follow the steps below to debug your cluster:
 3. Return to your browser and navigate to `http://localhost:8080`. This will hit the breakpoint within VSCode. You can now step through or play to the end of the debug session using VSCode debugging controls.
 
 
-##### Troubleshooting a Running Application
+##### Troubleshoot a running application
 
 Now that your application is developed you may be interested in inspecting the run time
 characteristics of the running application. You can use Application Live View UI to look
@@ -222,7 +223,7 @@ the various diagnostic capabilities.
 ---
 
 
-## <a id='creating-an-accelerator'></a>Section 2: Creating an Accelerator
+## <a id='creating-an-accelerator'></a>Section 2: Creating an accelerator
 
 You can use any git repository to create an Accelerator.
 You need the URL for the repository to create an Accelerator.
@@ -459,7 +460,7 @@ Tekton pipeline.
   </tr>
 </table>
 
-### Install Out of the Box with Testing
+### Install Out of the Box with testing
 
 When you chose not to use the preceding install method, see [Install
 Tekton](install-components.md#install-tekton).
@@ -485,7 +486,7 @@ tanzu package installed update tap -p tap.tanzu.vmware.com -v 0.3.0 --values-fil
 ```
 
 
-### Example Tekton Pipeline Config
+### Example Tekton pipeline config
 
 In this section, we’ll add a Tekton pipeline to our cluster and in the following section,
 we’ll update the workload to point to the pipeline and resolve any of the current errors.
@@ -776,9 +777,9 @@ pipeline:
     ```
 
 
-## Section 4: Advanced Use Cases - Supply Chain Security Tools
+## Section 4: Advanced use cases - Supply Chain Security Tools
 
-### Supply Chain Security Tools Overview
+### Supply Chain Security Tools overview
 
 In this section, we will provide an overview of the supply chain security use cases that are available in Tanzu Application Platform:
 
@@ -786,7 +787,7 @@ In this section, we will provide an overview of the supply chain security use ca
 
 2. **Scan & Store**: Introducing vulnerability scanning and metadata storage to your supply chain
 
-### Sign: Introducing Image Signing & Verification to your Supply Chain
+### Sign: introducing image signing and verification to your Supply Chain
 
 #### Overview
 
@@ -810,7 +811,7 @@ its origin and integrity.
 Operators can increase their confidence that trusted software is running on their
 clusters by verifying signatures on artifacts prior to their deployment.
 
-#### Use Cases
+#### Use cases
 
 * Validate signatures from a given registry.
 * Deny unsigned images from being admitted in the cluster.
@@ -818,7 +819,7 @@ clusters by verifying signatures on artifacts prior to their deployment.
 > **Note**: this component does not verify images that are already running in a
 > cluster.
 
-**Signing Container Images**
+**Signing container images**
 
 Tanzu Application Platform supports verifying container image signatures that
 follow the cosign format.
@@ -902,7 +903,7 @@ The custom resource for the policy must have a name of `image-policy`.
 > are known to run container images that are not currently signed, such as the
 > `kube-system` namespace.
 
-#### Examples and Expected Results
+#### Examples and expected results
 
 If a platform operator creates the following policy, there are different scenarios
 and expected outcomes:
@@ -960,14 +961,14 @@ scenarios. To examine the logs the platform operator can run:
 kubectl logs -n image-policy-system -l "signing.run.tanzu.vmware.com/application-name=image-policy-webhook" -f
 ```
 
-#### Next Steps and Further Information
+#### Next steps and further information
 
 * [Overview for Supply Chain Security Tools - Sign](scst-sign/overview.md)
 * [Configuring Supply Chain Security Tools - Sign](scst-sign/configuring.md)
 * [Supply Chain Security Tools - Sign Known Issues](scst-sign/known_issues.md)
 
 
-### Scan & Store: Introducing Vulnerability Scanning and Metadata Storage to your Supply Chain
+### Scan and Store: Introducing vulnerability scanning and metadata storage to your Supply Chain
 
 **Overview**
 
@@ -993,7 +994,7 @@ to easily reference historical scan results, and provides querying functionality
 
 To try the scan and store features in a supply chain, see [Section 3: Add testing and security scanning to your application](#add-testing-and-scanning).
 
-#### Running Public Source Code and Image Scans with Policy Enforcement
+#### Running Public source code and image scans with policy enforcement
 
 Follow the instructions in [Sample public source code and image scans with policy enforcement](scst-scan/running-scans.md)
 to perform the following two types of public scans:
@@ -1004,14 +1005,14 @@ to perform the following two types of public scans:
 Both examples include a policy that considers CVEs with Critical severity ratings as violations.
 
 
-#### Running Private Source Code and Image Scans with Policy Enforcement
+#### Running private source code and image scans with policy enforcement
 
 Follow the instructions in [Sample private source scan](scst-scan/samples/private-source.md) to perform a source code scan against a private registry or
 [Sample private image scan](scst-scan/samples/private-image.md)
 to do an image scan on a private image.
 
 
-#### Viewing Vulnerability Reports using Supply Chain Security Tools - Store Capabilities
+#### Viewing vulnerability reports using Supply Chain Security Tools - Store capabilities
 
 After completing the scans from the previous step,
 query the [Supply Chain Security Tools - Store](scst-store/overview.md) to view your vulnerability results.
@@ -1022,12 +1023,12 @@ to query metadata that have been submitted to the component after the scan step.
 For a complete guide on how to query the store,
 see [Querying Supply Chain Security Tools - Store](scst-store/query_data.md).
 
-#### Example Supply Chain including Source and Image Scans
+#### Example Supply Chain including source and image scans
 
 One of the out of the box supply chains we are working on for a future release will include image and source code vulnerability scanning and metadata storage into a preset Tanzu Application Platform supply chain. Until then, you can use this example to see how to try this out:
 [Example Supply Chain including Source and Image Scans](scst-scan/choreographer.md).
 
-**Next Steps and Further Information**
+**Next steps and further information**
 
 * [Configure Code Repositories and Image Artifacts to be Scanned](scst-scan/scan-crs.md)
 
