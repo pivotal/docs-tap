@@ -51,7 +51,9 @@ Tanzu Application Platform GUI currently does not support Safari browser.
           they only exist in the database and are lost when that in-memory database gets rebuilt.
     - For production use-cases, use a PostgreSQL database that exists outside the Tanzu Application Platform's packaging.
           This stores all the catalog data persistently both from the Git locations and from the GUI's manual entity registrations.
-- Fully Qualified Domain Name (FQDN) that can be pointed at the `tanzu-shared-ingress` service. The default hostname will consist of `tap-gui` plus an `IngressDomain` of your choice. (e.g. `tap-gui.example.com`)
+- Fully Qualified Domain Name (FQDN) that can be pointed at the `tanzu-shared-ingress` service.
+The default host name consists of `tap-gui` plus an `IngressDomain` of your choice. For example,
+`tap-gui.example.com`.
 
 ### Kubernetes cluster requirements
 Installation requires:

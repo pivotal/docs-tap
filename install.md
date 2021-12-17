@@ -398,7 +398,7 @@ tap_gui:
     backend:
         baseUrl: http://tap-gui.INGRESS-DOMAIN
         cors:
-            origin: http://tap-gui.INGRESS-DOMAIN 
+            origin: http://tap-gui.INGRESS-DOMAIN
 
 metadata_store:
   app_service_type: LoadBalancer # (optional) Defaults to LoadBalancer. Change to NodePort for distributions that don't support LoadBalancer
@@ -429,8 +429,9 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
     * Dockerhub has the form `repository: "my-dockerhub-user"`
     * Google Cloud Registry has the form `repository: "my-project/supply-chain"`
 - `DOMAIN-NAME` has a value such as `learningcenter.example.com`.
-- `INGRESS-DOMAIN` is the subdomain for the hostname that you will point at the `tanzu-shared-ingress` service's External IP address.
-- `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage compliant catalog you've already built and posted on the Git infrastucture you specified in the Integration section.
+- `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
+service's External IP address.
+- `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog that you've already built and posted on the Git infrastucture you specified in the Integration section.
 - `MY-DEV-NAMESPACE` is the namespace where you want the `ScanTemplates` to be deployed to. This is the namespace where the scanning feature is going to run.
 - `REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull the scanner image from the registry.
 
@@ -470,7 +471,7 @@ tap_gui:
     backend:
         baseUrl: http://tap-gui.INGRESS-DOMAIN
         cors:
-            origin: http://tap-gui.INGRESS-DOMAIN 
+            origin: http://tap-gui.INGRESS-DOMAIN
 
 metadata_store:
   app_service_type: LoadBalancer # (optional) Defaults to LoadBalancer. Change to NodePort for distributions that don't support LoadBalancer
@@ -497,7 +498,7 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
     * Dockerhub has the form `repository: "my-dockerhub-user"`
     * Google Cloud Registry has the form `repository: "my-project/supply-chain"`
 - `INGRESS-DOMAIN` is the subdomain for the hostname that you will point at the `tanzu-shared-ingress` service's External IP address
-- `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage compliant catalog you've already built and posted on the Git infrastucture you specified in the Integration section.
+- `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog you've already built and posted on the Git infrastucture you specified in the Integration section.
 
 
 To view possible configuration settings for a package, run:
