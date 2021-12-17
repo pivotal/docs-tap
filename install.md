@@ -355,8 +355,8 @@ To install a profile:
 1. Create a `tap-values.yml` file by using the applicable profile sample as a guide.
 These samples have the minimum configuration required to deploy Tanzu Application Platform.
 The sample values file contains the necessary defaults for both the meta-package
-('parent' Tanzu Application Platform package) and subordinate packages
-(individual 'child' packages).
+(parent Tanzu Application Platform package) and subordinate packages
+(individual child packages).
 The values file you provide during installation is used for further configuration
 of Tanzu Application Platform.
 
