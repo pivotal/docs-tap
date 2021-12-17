@@ -7,14 +7,15 @@ This topic contains release notes for Supply Chain Security Tools - Sign.
 
 **Release Date**: December 14, 2021
 
-### New features
+### New feature
 
-* Upgraded API version to v1beta1.
+The API version is upgraded to v1beta1.
 
 ### Known issues
 
-* A Grype scan has reported the following false positive:
-    * [CVE-2015-5237](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-5237) is on the C implementation of Protocol Buffers. Supply Chain Security Tools - Sign uses the golang version.
+* A Grype scan has reported the following false positive result:
+    * [CVE-2015-5237](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-5237) is on the C
+    implementation of Protocol Buffers. Supply Chain Security Tools - Sign uses the golang version.
 
 
 ## v1.0.0-beta.2
@@ -23,12 +24,12 @@ This topic contains release notes for Supply Chain Security Tools - Sign.
 
 ### New features
 
-* Added configuration for ResourceQuotas. See `quota.pod_number`
-* Number of replicas can be configured via `replicas` value
+* Added configuration for ResourceQuotas. See `quota.pod_number`.
+* The number of replicas can be configured through the `replicas` value.
 
 ### Known issues
 
-* A Grype scan has reported the following false positives:
+* A Grype scan has reported the following false positive results:
     * [CVE-2015-5237](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-5237) is on the C implementation of Protocol Buffers. Supply Chain Security Tools - Sign uses the golang version.
     * [CVE-2017-7297](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-7297) is on Rancher Server. Supply Chain Security Tools - Sign does not have this dependency.
 
@@ -37,13 +38,13 @@ This topic contains release notes for Supply Chain Security Tools - Sign.
 
 **Release Date**: October 26, 2021
 
-### Breaking changes
+### Breaking change
 
-* `warn_on_unmatched` value has been renamed to `allow_unmatched_images`.
+The `warn_on_unmatched` value is renamed as `allow_unmatched_images`.
 
 ### Known issues
 
-See [Troubleshooting and Known Issues](known_issues.md).
+See [Supply Chain Security Tools - Sign known issues](known_issues.md).
 
 
 ## v1.0.0-beta.0
@@ -52,4 +53,4 @@ See [Troubleshooting and Known Issues](known_issues.md).
 
 ### Known issues
 
-See [Troubleshooting and Known Issues](known_issues.md).
+See [Supply Chain Security Tools - Sign known issues](known_issues.md).

@@ -40,7 +40,7 @@ To create an access token, please refer to the [Create Service Account Access To
 The `kube-rbac-proxy` uses [Subject Access Review](https://kubernetes.io/docs/reference/access-authn-authz/authorization/) to ensure the user has access to certain operations. `Subject Access Review` is a Kubernetes API that uses [Kubernetes RBAC](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) to determine if the user can perform specific actions. Please refer to the [Create Service Account Access Token doc](create_service_account_access_token.md).
 
 There are only two supported roles: `Read Only` cluster role and `Read and Write` cluster role. These cluster roles are deployed by default.
-Additionally, a service account is created and bound to the `Read and Write` cluster role by default. If you do not want this service account, set `add_default_rw_service_account` property to `"false"` in the `scst-store-values.yaml` file [during deployment](../install-components.md#install-scst-store).
+Additionally, a service account is created and bound to the `Read and Write` cluster role by default. If you do not want this service account, set `add_default_rw_service_account` property to `"false"` in the `metadata-store-values.yaml` file [during deployment](../install-components.md#install-scst-store).
 
 There is no default service account bound to the `Read Only` cluster role. The user will need to create their own service account and cluster role binding to bind to the `Read Only` role.
 

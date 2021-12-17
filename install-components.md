@@ -3,10 +3,10 @@
 This document describes how to install individual Tanzu Application Platform packages
 from the Tanzu Application Platform package repository.
 
-Use the instructions to this page if you do not want to use a profile to install packages
+Use the instructions on this page if you do not want to use a profile to install packages
 or if you want to install additional packages after installing a profile.
 
-Before you install the packages, ensure that you have completed the prerequisites, configured
+Before installing the packages, ensure that you have completed the prerequisites, configured
 and verified the cluster, accepted the EULA, and installed the Tanzu CLI with any required plugins.
 For information, see [Installing Part I: Prerequisites, EULA, and CLI](install-general.md).
 
@@ -39,7 +39,7 @@ For information, see [Installing Part I: Prerequisites, EULA, and CLI](install-g
 
 cert_manager and FluxCD Source Controller are installed as part of all profiles. If you do not want to use a profile, install them manually.
 
->**Note:** In future versions both cert-manager and FluxCD Source Controller will be shipped as packages.
+>**Note:** In future versions, both cert-manager and FluxCD Source Controller will be shipped as packages.
 
 * **cert-manager**:
 
@@ -51,6 +51,7 @@ cert_manager and FluxCD Source Controller are installed as part of all profiles.
 
     * Verify installed cert-manager version by running:
       For example:
+
         ```
         kubectl get deployment cert-manager -n cert-manager -o yaml | grep 'app.kubernetes.io/version: v'
            app.kubernetes.io/version: v1.5.3
@@ -140,10 +141,8 @@ To install Cloud Native Runtimes:
 1. List version information for the package by running:
 
     ```
-    tanzu package available list PACKAGE-NAME --namespace tap-install
+    tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
     ```
-    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
-     [Add the Tanzu Application Platform Package Repository](install.md#add-package-repositories) above.
 
      For example:
 
@@ -230,7 +229,7 @@ To install Cloud Native Runtimes:
      Added installed package 'cloud-native-runtimes' in namespace 'tap-install'
     ```
 
-    Use an empty file for `cnr-values.yaml` if you want the default installation configuration. Otherwise see the previous step to learn more about setting installation configuration values.
+    Use an empty file for `cnr-values.yaml` if you want the default installation configuration. Otherwise, see the previous step to learn more about setting installation configuration values.
 
 1. Verify the package install by running:
 
@@ -267,9 +266,9 @@ To install Cloud Native Runtimes:
 
     1. Create an image pull secret in the current namespace and fill it from the `tap-registry`
     secret mentioned in
-     [Add the Tanzu Application Platform package repository](install.md#add-package-repositories).
-     Run the following commands to create an empty secret and annotate it as a target of the secretgen
-     controller:
+       [Add the Tanzu Application Platform package repository](install.md#add-package-repositories).
+       Run the following commands to create an empty secret and annotate it as a target of the secretgen
+       controller:
 
         ```
         kubectl create secret generic pull-secret --from-literal=.dockerconfigjson={} --type=kubernetes.io/dockerconfigjson
@@ -349,12 +348,10 @@ To install Convention Controller:
 2. (Optional) Make changes to the default installation settings by running:
 
     ```
-    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
+    tanzu package available get controller.conventions.apps.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
-    Where:
 
-    - `PACKAGE-NAME` is same as step 1.
-    - `VERSION-NUMBER` is the version of the package listed in step 1.
+    Where `VERSION-NUMBER` is the version of the package listed in step 1.
 
     For example:
 
@@ -447,12 +444,10 @@ To install Source Controller:
 1. (Optional) Make changes to the default installation settings by running:
 
     ```
-    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
+    tanzu package available get controller.source.apps.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
-    Where:
 
-    - `PACKAGE-NAME` is same as step 1.
-    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
+    Where `VERSION-NUMBER` is the version of the package listed in step 1 above.
 
     For example:
 
@@ -558,11 +553,10 @@ To install Application Accelerator:
 1. List version information for the package by running:
 
     ```
-    tanzu package available list PACKAGE-NAME --namespace tap-install
+    tanzu package available list accelerator.apps.tanzu.vmware.com --namespace tap-install
     ```
-    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
-     [Add the Tanzu Application Platform Package Repository](install.md#add-package-repositories) above.
-     For example:
+
+    For example:
 
     ```
     $ tanzu package available list accelerator.apps.tanzu.vmware.com --namespace tap-install
@@ -574,12 +568,10 @@ To install Application Accelerator:
 1. (Optional) To make changes to the default installation settings, run:
 
     ```
-    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
+    tanzu package available get accelerator.apps.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
-    Where:
 
-    - `PACKAGE-NAME` is same as step 1.
-    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
+    Where `VERSION-NUMBER` is the version of the package listed in step 1 above.
 
     For example:
 
@@ -678,11 +670,10 @@ To install Tanzu Build Service using the Tanzu CLI:
 1. List version information for the package by running:
 
     ```
-    tanzu package available list PACKAGE-NAME --namespace tap-install
+    tanzu package available list buildservice.tanzu.vmware.com --namespace tap-install
     ```
-    Where `PACKAGE-NAME` is the name of the package listed in step 5 of
-     [Add the Tanzu Application Platform Package Repository](install.md#add-package-repositories) above.
-     For example:
+
+    For example:
 
     ```
     $ tanzu package available list buildservice.tanzu.vmware.com --namespace tap-install
@@ -694,12 +685,10 @@ To install Tanzu Build Service using the Tanzu CLI:
 1. (Optional) To make changes to the default installation settings, run:
 
     ```
-    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
+    tanzu package available get buildservice.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
-    Where:
 
-    - `PACKAGE-NAME` is same as in step 1.
-    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
+    Where `VERSION-NUMBER` is the version of the package listed in step 1 above.
 
     For example:
 
@@ -1335,12 +1324,12 @@ Application Live View Convention Service only.
     $ tanzu package available list run.appliveview.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for run.appliveview.tanzu.vmware.com...
       NAME                              VERSION        RELEASED-AT
-      run.appliveview.tanzu.vmware.com  1.0.0-build.3  2021-12-03T00:00:00Z
+      run.appliveview.tanzu.vmware.com  1.0.1          2021-12-17T00:00:00Z
 
     $ tanzu package available list build.appliveview.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for build.appliveview.tanzu.vmware.com...
       NAME                                VERSION        RELEASED-AT
-      build.appliveview.tanzu.vmware.com  1.0.0-build.3  2021-12-03T00:00:00Z
+      build.appliveview.tanzu.vmware.com  1.0.1          2021-12-17T00:00:00Z
     ```
 
 1. Create `app-live-view-values.yaml` with the following details:
@@ -1357,13 +1346,13 @@ Application Live View Convention Service only.
 1. Install the Application Live View package by running:
 
     ```
-    tanzu package install appliveview -p run.appliveview.tanzu.vmware.com -v 1.0.0-build.3 -n tap-install -f app-live-view-values.yaml
+    tanzu package install appliveview -p run.appliveview.tanzu.vmware.com -v 1.0.1 -n tap-install -f app-live-view-values.yaml
     ```
 
     For example:
 
     ```
-    $ tanzu package install appliveview -p run.appliveview.tanzu.vmware.com -v 1.0.0-build.3 -n tap-install -f app-live-view-values.yaml
+    $ tanzu package install appliveview -p run.appliveview.tanzu.vmware.com -v 1.0.1 -n tap-install -f app-live-view-values.yaml
     - Installing package 'run.appliveview.tanzu.vmware.com'
     | Getting package metadata for 'run.appliveview.tanzu.vmware.com'
     | Creating service account 'app-live-view-tap-install-sa'
@@ -1379,13 +1368,13 @@ Application Live View Convention Service only.
 1. Install the Application Live View conventions package by running:
 
     ```
-    tanzu package install appliveview-conventions -p build.appliveview.tanzu.vmware.com -v 1.0.0-build.3 -n tap-install -f app-live-view-values.yaml
+    tanzu package install appliveview-conventions -p build.appliveview.tanzu.vmware.com -v 1.0.1 -n tap-install -f app-live-view-values.yaml
     ```
 
     For example:
 
     ```
-    $ tanzu package install appliveview-conventions -p build.appliveview.tanzu.vmware.com -v 1.0.0-build.3 -n tap-install -f app-live-view-values.yaml
+    $ tanzu package install appliveview-conventions -p build.appliveview.tanzu.vmware.com -v 1.0.1 -n tap-install -f app-live-view-values.yaml
     - Installing package 'build.appliveview.tanzu.vmware.com'
     | Getting package metadata for 'build.appliveview.tanzu.vmware.com'
     | Creating service account 'app-live-view-tap-install-sa'
@@ -1414,7 +1403,7 @@ Application Live View Convention Service only.
     | Retrieving installation details for cc...
     NAME:                    appliveview
     PACKAGE-NAME:            run.appliveview.tanzu.vmware.com
-    PACKAGE-VERSION:         1.0.0-build.3
+    PACKAGE-VERSION:         1.0.1
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
@@ -1435,7 +1424,7 @@ Application Live View Convention Service only.
     | Retrieving installation details for cc...
     NAME:                    appliveview-conventions
     PACKAGE-NAME:            build.appliveview.tanzu.vmware.com
-    PACKAGE-VERSION:         1.0.0-build.3
+    PACKAGE-VERSION:         1.0.1
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
@@ -1664,7 +1653,7 @@ field in the values file.
 To install Tanzu Learning Center, see the following sections.
 >**Note:** If you have any issue updating values or deploying Learning Center, please see the [Learning Center - Known Issues](learning-center/known-issues/about.md) for recovery steps.
 
-For general information about Learning Center go here: [Learning Center](learning-center)
+For general information about Learning Center, see [Learning Center](learning-center/about.md).
 
 ### <a id='lc-prereqs'></a> Prerequisites
 
@@ -1835,8 +1824,6 @@ Use the following procedure to install Service Bindings:
     ```
     tanzu package available list service-bindings.labs.vmware.com --namespace tap-install
     ```
-    Where `PACKAGE-NAME` is the name of the package listed earlier in
-    [Add the Tanzu Application Platform Package Repository](install.md#add-package-repositories).
 
     For example:
 
@@ -1932,29 +1919,29 @@ To install Supply Chain Security Tools - Store:
 1. List version information for the package by running:
 
     ```
-    tanzu package available list scst-store.tanzu.vmware.com --namespace tap-install
+    tanzu package available list metadata-store.apps.tanzu.vmware.com --namespace tap-install
     ```
 
     For example:
 
     ```
-    $ tanzu package available list scst-store.tanzu.vmware.com --namespace tap-install
-    - Retrieving package versions for scst-store.tanzu.vmware.com...
+    $ tanzu package available list metadata-store.apps.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for metadata-store.apps.tanzu.vmware.com...
       NAME                         VERSION       RELEASED-AT
-      scst-store.tanzu.vmware.com  1.0.0-beta.2
+      metadata-store.apps.tanzu.vmware.com  1.0.1
     ```
 
 1. (Optional) List out all the available deployment configuration options:
 
     ```
-    tanzu package available get scst-store.tanzu.vmware.com/1.0.0-beta.2 --values-schema -n tap-install
+    tanzu package available get metadata-store.apps.tanzu.vmware.com/1.0.1 --values-schema -n tap-install
     ```
 
     For example:
 
     ```
-    $ tanzu package available get scst-store.tanzu.vmware.com/1.0.0-beta.2 --values-schema -n tap-install
-    | Retrieving package details for scst-store.tanzu.vmware.com/1.0.0-beta.2...
+    $ tanzu package available get metadata-store.apps.tanzu.vmware.com/1.0.1 --values-schema -n tap-install
+    | Retrieving package details for metadata-store.apps.tanzu.vmware.com/1.0.1...
       KEY                               DEFAULT              TYPE     DESCRIPTION
       app_service_type                  LoadBalancer         string   The type of service to use for the metadata app service. This can be set to 'NodePort' or 'LoadBalancer'.
       auth_proxy_host                   0.0.0.0              string   The binding ip address of the kube-rbac-proxy sidecar
@@ -1985,7 +1972,7 @@ To install Supply Chain Security Tools - Store:
 
 1. (Optional) Modify one of the deployment configurations by creating a configuration YAML with the
 custom configuration values you want. For example, if your environment does not support `LoadBalancer`,
-and you want to use `NodePort`, then create a `scst-store-values.yaml` and configure the
+and you want to use `NodePort`, then create a `metadata-store-values.yaml` and configure the
 `app_service_type` property.
 
     ```
@@ -1999,26 +1986,26 @@ and you want to use `NodePort`, then create a `scst-store-values.yaml` and confi
 1. Install the package by running:
 
     ```
-    tanzu package install scst-store \
-      --package-name scst-store.tanzu.vmware.com \
-      --version 1.0.0-beta.2 \
+    tanzu package install metadata-store \
+      --package-name metadata-store.apps.tanzu.vmware.com \
+      --version 1.0.1 \
       --namespace tap-install \
-      --values-file scst-store-values.yaml
+      --values-file metadata-store-values.yaml
     ```
 
     The flag `--values-file` is optional and used only if you want to customize the deployment
     configuration. For example:
 
     ```
-    $ tanzu package install scst-store \
-      --package-name scst-store.tanzu.vmware.com \
-      --version 1.0.0-beta.2 \
+    $ tanzu package install metadata-store \
+      --package-name metadata-store.apps.tanzu.vmware.com \
+      --version 1.0.1 \
       --namespace tap-install \
-      --values-file scst-store-values.yaml
+      --values-file metadata-store-values.yaml
 
-    - Installing package 'scst-store.tanzu.vmware.com'
+    - Installing package 'metadata-store.apps.tanzu.vmware.com'
     / Getting namespace 'tap-install'
-    - Getting package metadata for 'scst-store.tanzu.vmware.com'
+    - Getting package metadata for 'metadata-store.apps.tanzu.vmware.com'
     / Creating service account 'metadata-store-tap-install-sa'
     / Creating cluster admin role 'metadata-store-tap-install-cluster-role'
     / Creating cluster role binding 'metadata-store-tap-install-cluster-rolebinding'
@@ -2026,7 +2013,7 @@ and you want to use `NodePort`, then create a `scst-store-values.yaml` and confi
     | Creating package resource
     - Package install status: Reconciling
 
-    Added installed package 'scst-store' in namespace 'tap-install'
+    Added installed package 'metadata-store' in namespace 'tap-install'
     ```
 
 
@@ -2317,13 +2304,10 @@ To install API portal:
 2. (Optional) Make changes to the default installation settings by running:
 
     ```
-    tanzu package available get PACKAGE-NAME/VERSION-NUMBER --values-schema --namespace tap-install
+    tanzu package available get api-portal.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
 
-    Where:
-
-    - `PACKAGE-NAME` is same as step 1.
-    - `VERSION-NUMBER` is the version of the package listed in step 1.
+    Where `VERSION-NUMBER` is the version of the package listed in step 1.
 
     For example:
 
@@ -2557,7 +2541,7 @@ Use the following procedure to verify that the packages are installed.
     developer-conventions    developer-conventions.tanzu.vmware.com             0.3.0-build.1    Reconcile succeeded
     grype-scanner            grype.scanning.apps.tanzu.vmware.com               1.0.0            Reconcile succeeded
     image-policy-webhook     image-policy-webhook.signing.run.tanzu.vmware.com  1.0.0-beta.1     Reconcile succeeded
-    metadata-store           scst-store.tanzu.vmware.com                        1.0.0-beta.1     Reconcile succeeded
+    metadata-store           metadata-store.apps.tanzu.vmware.com               1.0.1            Reconcile succeeded
     ootb-supply-chain-basic  ootb-supply-chain-basic.tanzu.vmware.com           0.3.0-build.5    Reconcile succeeded
     ootb-templates           ootb-templates.tanzu.vmware.com                    0.3.0-build.5    Reconcile succeeded
     scan-controller          scanning.apps.tanzu.vmware.com                     1.0.0            Reconcile succeeded

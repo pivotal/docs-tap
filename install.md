@@ -103,7 +103,7 @@ To add the Tanzu Application Platform package repository:
       ootb-supply-chain-testing.tanzu.vmware.com           Tanzu App Platform Out of The Box Supply Chain with Testing               Out of The Box Supply Chain with Testing.
       ootb-templates.tanzu.vmware.com                      Tanzu App Platform Out of The Box Templates                               Out of The Box Templates.
       scanning.apps.tanzu.vmware.com                       Supply Chain Security Tools - Scan                                        Scan for vulnerabilities and enforce policies directly within Kubernetes native Supply Chains.
-      scst-store.tanzu.vmware.com                          Tanzu Supply Chain Security Tools - Store                                 The Metadata Store enables saving and querying image, package, and vulnerability data.
+      metadata-store.apps.tanzu.vmware.com                          Tanzu Supply Chain Security Tools - Store                                 The Metadata Store enables saving and querying image, package, and vulnerability data.
       service-bindings.labs.vmware.com                     Service Bindings for Kubernetes                                           Service Bindings for Kubernetes implements the Service Binding Specification.
       services-toolkit.tanzu.vmware.com                    Services Toolkit                                                          The Services Toolkit enables the management, lifecycle, discoverability and connectivity of Service Resources (databases, message queues, DNS records, etc.).
       spring-boot-conventions.tanzu.vmware.com             Tanzu Spring Boot Conventions Server                                      Default Spring Boot convention server.
@@ -355,8 +355,8 @@ To install a profile:
 1. Create a `tap-values.yml` file by using the applicable profile sample as a guide.
 These samples have the minimum configuration required to deploy Tanzu Application Platform.
 The sample values file contains the necessary defaults for both the meta-package
-('parent' Tanzu Application Platform package) and subordinate packages
-(individual 'child' packages).
+(parent Tanzu Application Platform package) and subordinate packages
+(individual child packages).
 The values file you provide during installation is used for further configuration
 of Tanzu Application Platform.
 
@@ -385,7 +385,20 @@ learningcenter:
   ingressDomain: "DOMAIN-NAME"
 
 tap_gui:
-  service_type: LoadBalancer # NodePort for distributions that don't support LoadBalancer
+  service_type: ClusterIP
+  ingressEnabled: "true"
+  ingressDomain: "INGRESS-DOMAIN"
+  app_config:
+    app:
+        baseUrl: http://tap-gui.INGRESS-DOMAIN
+    catalog:
+        locations:
+        - type: url
+            target: https://GIT-CATALOG-URL/catalog-info.yaml
+    backend:
+        baseUrl: http://tap-gui.INGRESS-DOMAIN
+        cors:
+            origin: http://tap-gui.INGRESS-DOMAIN
 
 metadata_store:
   app_service_type: LoadBalancer # (optional) Defaults to LoadBalancer. Change to NodePort for distributions that don't support LoadBalancer
@@ -416,8 +429,13 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
     * Dockerhub has the form `repository: "my-dockerhub-user"`
     * Google Cloud Registry has the form `repository: "my-project/supply-chain"`
 - `DOMAIN-NAME` has a value such as `learningcenter.example.com`.
+- `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
+service's External IP address.
+- `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog that you've already built and posted on the Git infrastucture you specified in the Integration section.
 - `MY-DEV-NAMESPACE` is the namespace where you want the `ScanTemplates` to be deployed to. This is the namespace where the scanning feature is going to run.
-    - `REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull the scanner image from the registry.
+- `REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull the scanner image from the registry.
+
+
 
 ### Dev Profile
 
@@ -440,7 +458,20 @@ ootb_supply_chain_basic:
     repository: "REPO-NAME"
 
 tap_gui:
-  service_type: LoadBalancer # NodePort for distributions that don't support LoadBalancer
+  service_type: ClusterIP
+  ingressEnabled: "true"
+  ingressDomain: "INGRESS-DOMAIN"
+  app_config:
+    app:
+        baseUrl: http://tap-gui.INGRESS-DOMAIN
+    catalog:
+        locations:
+        - type: url
+            target: https://GIT-CATALOG-URL/catalog-info.yaml
+    backend:
+        baseUrl: http://tap-gui.INGRESS-DOMAIN
+        cors:
+            origin: http://tap-gui.INGRESS-DOMAIN
 
 metadata_store:
   app_service_type: LoadBalancer # (optional) Defaults to LoadBalancer. Change to NodePort for distributions that don't support LoadBalancer
@@ -466,6 +497,9 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
     * Harbor has the form `repository: "my-project/supply-chain"`
     * Dockerhub has the form `repository: "my-dockerhub-user"`
     * Google Cloud Registry has the form `repository: "my-project/supply-chain"`
+- `INGRESS-DOMAIN` is the subdomain for the hostname that you will point at the `tanzu-shared-ingress` service's External IP address
+- `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog you've already built and posted on the Git infrastucture you specified in the Integration section.
+
 
 To view possible configuration settings for a package, run:
 
@@ -565,122 +599,10 @@ contour:
         LBType: nlb
 ```
 
-## <a id='configure-tap-gui'></a> Configure the Tanzu Application Platform GUI
+## <a id='access-tap-gui'></a> Access the Tanzu Application Platform GUI
 
-To install Tanzu Application Platform GUI, see the following sections.
+To access Tanzu Application Platform GUI, you'll be able to use the hostname that is pointed at the shared ingress you configure above. If you'd prefer a LoadBalancer for Tanzu Application Platform GUI then you can see how to configure that in the [Accessing Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md) section.
 
-#### Procedure
-
-To install Tanzu Application Platform GUI:
-
->**Note:** these instructions configure Tanzu Application Platform GUI for use with a LoadBalancer. For information about using the shared `tanzu-system-ingress`, see [Accessing Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md).
-
-1. On your Git repository of choice, extract the Blank Software Catalog from VMware Tanzu Network. You link to that `catalog-info.yaml` file when you configure your catalog later.
-
-1. Obtain the `External IP` of your LoadBalancer by running:
-
-    ```
-    kubectl get svc -n tap-gui
-    ```
-
-1. Add the following section to your `tap-values.yml` by using the following template, and replace
-all placeholders with your relevant values.
-
-    ```yaml
-    tap_gui:
-      service_type: LoadBalancer
-      # Existing tap-values.yml above  
-      app_config:
-        app:
-          baseUrl: http://EXTERNAL-IP:7000
-        integrations:
-          github: # Other integrations available see NOTE below
-            - host: github.com
-              token: GITHUB-TOKEN
-        catalog:
-          locations:
-            - type: url
-              target: https://GIT-CATALOG-URL/catalog-info.yaml
-        backend:
-            baseUrl: http://EXTERNAL-IP:7000
-            cors:
-              origin: http://EXTERNAL-IP:7000
-   ```
-
-    Where:
-
-    - `EXTERNAL-IP` is your LoadBalancer's address.
-    - `GITHUB-TOKEN` is a valid token generated from your Git infrastructure of choice with the necessary read permissions for the catalog definition files you extracted from the Blank Software Catalog.
-    - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage compliant catalog you've already built and posted on the Git infrastucture you specified in the Integration section.
-
-    >**Note:** The `integrations` section uses Github. If you want additional integrations, see the
-    >format in the [Backstage integration documentation](https://backstage.io/docs/integrations/).
-
-1. (Optional) The default database mechanism for Tanzu Application Platform GUI is an in-memory
-database that is recommended for testing and development only.
-You can delete or comment out this section of the configuration.
-However, when the Tanzu Application Platform GUI server pod gets re-created, you'll lose all user
-preferences and any manually registered entities.
-For production or general use-cases, VMware recommends using a PostgreSQL database.
-To use a PostgreSQL database, use the following values:
-
-    ```
-        backend:
-          baseUrl: http://tap-gui.DOMAIN-NAME-IP:7000
-          cors:
-              origin: http://tap-gui.DOMAIN-NAME-IP:7000
-        # Existing tap-values.yml above
-          database: # External database strongly recommended for production use
-            client: pg
-              connection:
-                host: PG-SQL-HOSTNAME
-                port: 5432
-                user: PG-SQL-USERNAME
-                password: PG-SQL-PASSWORD
-                ssl: {rejectUnauthorized: false} # Set to true if using SSL
-    ```
-
-    Where:
-
-    - `PG-SQL-HOSTNAME` is the hostname of your PostgreSQL database.
-    - `PG-SQL-USERNAME` is the username of your PostgreSQL database.
-    - `PG-SQL-PASSWORD` is the password of your PostgreSQL database.
-
-1. Update the package profile by running:
-
-    ```
-    tanzu package installed update tap \
-     --package-name tap.tanzu.vmware.com \
-     --version 0.4.0 -n tap-install \
-     -f tap-values.yml
-    ```
-
-    For example:
-
-    ```
-    $ tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version 0.4.0 --values-file tap-values-file.yml -n tap-install
-    | Updating package 'tap'
-    | Getting package install for 'tap'
-    | Getting package metadata for 'tap.tanzu.vmware.com'
-    | Updating secret 'tap-tap-install-values'
-    | Updating package install for 'tap'
-    / Waiting for 'PackageInstall' reconciliation for 'tap'
-
-
-    Updated package install 'tap' in namespace 'tap-install'
-    ```
-
-1. To access the Tanzu Application Platform GUI, use the `baseURL` location you specified above. This consists of the `EXTERNAL-IP` with the default port of 7000. Run:
-
-    ```
-    http://EXTERNAL-IP:7000
-    ```
-
-1. If you have any issues, try re-creating the Tanzu Application Platform Pod by running:
-
-    ```
-    kubectl delete pod -l app=backstage -n tap-gui
-    ```
 
 You're now ready to start using Tanzu Application Platform GUI.
 Proceed to the [Getting Started](getting-started.md) topic or the

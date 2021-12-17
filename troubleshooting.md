@@ -171,7 +171,7 @@ If it is still running, it is likely to finish successfully and produce output s
     ootb-supply-chain-basic   ootb-supply-chain-basic.tanzu.vmware.com           0.4.0-build.2    Reconcile succeeded  tap-install
     ootb-templates            ootb-templates.tanzu.vmware.com                    0.4.0-build.2    Reconcile succeeded  tap-install
     scanning                  scanning.apps.tanzu.vmware.com                     1.0.0            Reconcile succeeded  tap-install
-    scst-store                scst-store.tanzu.vmware.com                        1.0.0-beta.2     Reconcile succeeded  tap-install
+    metadata-store                metadata-store.apps.tanzu.vmware.com            1.0.1            Reconcile succeeded  tap-install
     service-bindings          service-bindings.labs.vmware.com                   0.6.0            Reconcile succeeded  tap-install
     services-toolkit          services-toolkit.tanzu.vmware.com                  0.5.0-rc.3       Reconcile succeeded  tap-install
     source-controller         controller.source.apps.tanzu.vmware.com            0.2.0            Reconcile succeeded  tap-install
