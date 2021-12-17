@@ -82,7 +82,7 @@ credentials for pushing the container images built by the supply chain. For more
 - **service account**: The identity to be used for any interaction with the Kubernetes API made by
 the supply chain. For more information, see [Supply Chain Basic](ootb-supply-chain-basic.md).
 
-- **role**: The set of capabilities that we want to assign to the service account. It must provide
+- **role**: The set of capabilities that you want to assign to the service account. It must provide
 the ability to manage all of the resources that the supplychain is responsible for.
 For more information, see [Supply Chain Basic](ootb-supply-chain-basic.md).
 
@@ -99,10 +99,10 @@ source code. For more information, see [Supply Chain with Testing](ootb-supply-c
 - **scan policy**: Defines what to do with the results taken from scanning the source code and
 image produced. For more information, see [ScanPolicy section](#scan-policy).
 
-- **source scan template**: A template of how Jobs should be created for scanning the source
+- **source scan template**: A template of how jobs are created for scanning the source
 code. For more information, see [ScanTemplate section](#scan-template).
 
-- **image scan template**: A template of how Jobs should be created for scanning the image
+- **image scan template**: A template of how jobs are created for scanning the image
 produced by the supply chain. For more information, see [ScanTemplate section](#scan-template).
 
 
