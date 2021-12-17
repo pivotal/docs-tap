@@ -20,7 +20,7 @@
 
 4. Retrieve the corresponding CA Certificate that signed the Postgres TLS Certificate using the following [link](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.SSL.html)
 
-5. In the `scst-store-values.yaml` fill the following settings:
+5. In the `metadata-store-values.yaml` fill the following settings:
 
    ```
    db_host: "<DB Instance Endpoint>"

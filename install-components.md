@@ -1919,29 +1919,29 @@ To install Supply Chain Security Tools - Store:
 1. List version information for the package by running:
 
     ```
-    tanzu package available list scst-store.tanzu.vmware.com --namespace tap-install
+    tanzu package available list metadata-store.apps.tanzu.vmware.com --namespace tap-install
     ```
 
     For example:
 
     ```
-    $ tanzu package available list scst-store.tanzu.vmware.com --namespace tap-install
-    - Retrieving package versions for scst-store.tanzu.vmware.com...
+    $ tanzu package available list metadata-store.apps.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for metadata-store.apps.tanzu.vmware.com...
       NAME                         VERSION       RELEASED-AT
-      scst-store.tanzu.vmware.com  1.0.0-beta.2
+      metadata-store.apps.tanzu.vmware.com  1.0.1
     ```
 
 1. (Optional) List out all the available deployment configuration options:
 
     ```
-    tanzu package available get scst-store.tanzu.vmware.com/1.0.0-beta.2 --values-schema -n tap-install
+    tanzu package available get metadata-store.apps.tanzu.vmware.com/1.0.1 --values-schema -n tap-install
     ```
 
     For example:
 
     ```
-    $ tanzu package available get scst-store.tanzu.vmware.com/1.0.0-beta.2 --values-schema -n tap-install
-    | Retrieving package details for scst-store.tanzu.vmware.com/1.0.0-beta.2...
+    $ tanzu package available get metadata-store.apps.tanzu.vmware.com/1.0.1 --values-schema -n tap-install
+    | Retrieving package details for metadata-store.apps.tanzu.vmware.com/1.0.1...
       KEY                               DEFAULT              TYPE     DESCRIPTION
       app_service_type                  LoadBalancer         string   The type of service to use for the metadata app service. This can be set to 'NodePort' or 'LoadBalancer'.
       auth_proxy_host                   0.0.0.0              string   The binding ip address of the kube-rbac-proxy sidecar
@@ -1972,7 +1972,7 @@ To install Supply Chain Security Tools - Store:
 
 1. (Optional) Modify one of the deployment configurations by creating a configuration YAML with the
 custom configuration values you want. For example, if your environment does not support `LoadBalancer`,
-and you want to use `NodePort`, then create a `scst-store-values.yaml` and configure the
+and you want to use `NodePort`, then create a `metadata-store-values.yaml` and configure the
 `app_service_type` property.
 
     ```
@@ -1986,26 +1986,26 @@ and you want to use `NodePort`, then create a `scst-store-values.yaml` and confi
 1. Install the package by running:
 
     ```
-    tanzu package install scst-store \
-      --package-name scst-store.tanzu.vmware.com \
-      --version 1.0.0-beta.2 \
+    tanzu package install metadata-store \
+      --package-name metadata-store.apps.tanzu.vmware.com \
+      --version 1.0.1 \
       --namespace tap-install \
-      --values-file scst-store-values.yaml
+      --values-file metadata-store-values.yaml
     ```
 
     The flag `--values-file` is optional and used only if you want to customize the deployment
     configuration. For example:
 
     ```
-    $ tanzu package install scst-store \
-      --package-name scst-store.tanzu.vmware.com \
-      --version 1.0.0-beta.2 \
+    $ tanzu package install metadata-store \
+      --package-name metadata-store.apps.tanzu.vmware.com \
+      --version 1.0.1 \
       --namespace tap-install \
-      --values-file scst-store-values.yaml
+      --values-file metadata-store-values.yaml
 
-    - Installing package 'scst-store.tanzu.vmware.com'
+    - Installing package 'metadata-store.apps.tanzu.vmware.com'
     / Getting namespace 'tap-install'
-    - Getting package metadata for 'scst-store.tanzu.vmware.com'
+    - Getting package metadata for 'metadata-store.apps.tanzu.vmware.com'
     / Creating service account 'metadata-store-tap-install-sa'
     / Creating cluster admin role 'metadata-store-tap-install-cluster-role'
     / Creating cluster role binding 'metadata-store-tap-install-cluster-rolebinding'
@@ -2013,7 +2013,7 @@ and you want to use `NodePort`, then create a `scst-store-values.yaml` and confi
     | Creating package resource
     - Package install status: Reconciling
 
-    Added installed package 'scst-store' in namespace 'tap-install'
+    Added installed package 'metadata-store' in namespace 'tap-install'
     ```
 
 
@@ -2541,7 +2541,7 @@ Use the following procedure to verify that the packages are installed.
     developer-conventions    developer-conventions.tanzu.vmware.com             0.3.0-build.1    Reconcile succeeded
     grype-scanner            grype.scanning.apps.tanzu.vmware.com               1.0.0            Reconcile succeeded
     image-policy-webhook     image-policy-webhook.signing.run.tanzu.vmware.com  1.0.0-beta.1     Reconcile succeeded
-    metadata-store           scst-store.tanzu.vmware.com                        1.0.0-beta.1     Reconcile succeeded
+    metadata-store           metadata-store.apps.tanzu.vmware.com               1.0.1            Reconcile succeeded
     ootb-supply-chain-basic  ootb-supply-chain-basic.tanzu.vmware.com           0.3.0-build.5    Reconcile succeeded
     ootb-templates           ootb-templates.tanzu.vmware.com                    0.3.0-build.5    Reconcile succeeded
     scan-controller          scanning.apps.tanzu.vmware.com                     1.0.0            Reconcile succeeded
