@@ -14,11 +14,6 @@ Welcome to the Tanzu Application Platform. This document guides you through gett
 
 To take full advantage of this document, ensure you have followed [Installing Tanzu Application Platform](install-intro.md).
 
-
-## Section 1: Developing Your First Application on Tanzu Application Platform
-
-In this section, you will deploy a simple web application to the platform, enable debugging and see your code updates added to the running application as you save them.
-
 Before getting started, ensure the following prerequisites are in place:
 
 1. Tanzu Application Platform is installed on the target Kubernetes cluster. For installation instructions, see [Installing Part I: Prerequisites, EULA, and CLI](install-general.md) and [Installing Part II: Profiles](install.md).
@@ -32,28 +27,37 @@ Before getting started, ensure the following prerequisites are in place:
 
 5. Tanzu Application Platform GUI is successfully installed.
 
+6. Install the VSCode Tanzu Extension.
+   See [How to Install the VSCode Tanzu Extension](vscode-extension/install.md). 
 
-#### A note about Application Accelerators
 
-The Application Accelerator Plugin of Tanzu Application Platform GUI (“Create” button on the left-side navigation bar) helps app developers and app operators create and generate application accelerators. Accelerators are templates that codify best practices and ensure important configuration and structures are in place from the start.
 
-Developers can bootstrap their applications and get started with feature development right away. Application Operators can create custom accelerators that reflect their desired architectures and configurations and enable fleets of developers to utilize them, decreasing operator concerns about whether developers are implementing their desired best practices.
+## Section 1: Developing Your First Application on Tanzu Application Platform
 
-Application Accelerator sample templates are installed by default as part of the Application Accelerator package. To create your own Application Accelerator, see [Creating an Accelerator](#creating-an-accelerator).
+In this section, you will deploy a simple web application to the platform, enable debugging and see your code updates added to the running application as you save them.
+
+### A note about Application Accelerators
+
+The Application Accelerator Plugin of Tanzu Application Platform GUI is located on the left-hand side navigation bar (**Create** button). It helps application developers and administrators to create and generate application accelerators. Accelerators are templates that codify best practices and ensure important configuration and structures are in place.
+
+Developers can bootstrap their applications and get started with feature development. Application administrators can create custom accelerators that reflect their desired architectures and configurations, and enable fleets of developers to utilize them instantly. This decreases administrator concerns about whether developers are implementing their desired best practices.
+
+Application Accelerator templates are available as a quick start from [Tanzu Network](https://network.tanzu.vmware.com/products/app-accelerator). To create your own Application Accelerator, see [Creating an Accelerator](#creating-an-accelerator).
 
 
 ### Deploy Your Application
 
-Follow these steps to get started with an accelerator called `Tanzu-Java-Web-App`.
+To deploy your application, you need to download an accelerator, upload it on your Git repository of choice, and run a CLI command. We recommend using the accelerator called `Tanzu-Java-Web-App`.
 
-1. From the Tanzu Application Platform GUI portal, click on **Create** on the left side of the
+
+1. From the Tanzu Application Platform GUI portal, click on **Create** located on the left-hand side of the
 navigation bar to see the list of available accelerators.
 For information about connecting to Tanzu Application Platform GUI, see
 [Accessing Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md).
 
     ![List of accelerators in Tanzu Application Platform GUI](images/getting-started-tap-gui-1.png)
 
-2. Locate the Tanzu Java Web App accelerator, which is a sample Spring Boot web app, and click on `CHOOSE` button.
+2. Locate the Tanzu Java Web App accelerator, which is a Spring Boot web app, and click on `CHOOSE` button.
 
     ![Tile for Tanzu Java Web App](images/getting-started-tap-gui-2.png)
 
@@ -65,7 +69,7 @@ For information about connecting to Tanzu Application Platform GUI, see
 
     ![Task Activity progress bar](images/getting-started-tap-gui-4.png)
 
-5. After downloading the zip file, expand it in a workspace directory and follow your preferred procedure for uploading the generated project files to a Git repository for your new project.
+5. After downloading the ZIP file, expand it in a workspace directory and follow your preferred procedure for uploading the generated project files to a Git repository for your new project.
 
 6. Deploy the Tanzu Java Web App accelerator by running the `tanzu apps workload create` command:
 
@@ -80,7 +84,7 @@ For information about connecting to Tanzu Application Platform GUI, see
 
     Where `GIT-URL-TO-PROJECT-REPO` is the path you uploaded to in step 5.
 
-    If you bypassed step 5, and weren't able to upload your accelerator to a Git repo, you can use the public version to test with:
+    If you bypassed step 5 and were unable to upload your accelerator to a Git repository, then you can use the public version to test with:
     ```
     tanzu apps workload create tanzu-java-web-app \
     --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
@@ -93,8 +97,8 @@ For information about connecting to Tanzu Application Platform GUI, see
 
     For more information, see [Tanzu Apps Workload Create](cli-plugins/apps/command-reference/tanzu_apps_workload_create.md).
 
-    >**Note:** This first deploy uses accelerator source from Git, but you use the VSCode extension
-    to debug and live-update this app in later steps.
+    >**Note:** This first deployment uses accelerator source from Git, but you will use the VSCode extension
+    to debug and live-update this application in later steps.
 
 7. View the build and runtime logs for your app by running the `tail` command:
 
@@ -102,9 +106,12 @@ For information about connecting to Tanzu Application Platform GUI, see
     tanzu apps workload tail tanzu-java-web-app --since 10m --timestamp
     ```
 
-8. After the workload is built and running, get the web-app URL by running
-`tanzu apps workload get tanzu-java-web-app` and then pressing **ctrl-click** on the
+8. After the workload is built and running, you can view the web-app in your browser. View the URL of the web-app by running the command below, and then press **ctrl-click** on the
 Workload Knative Services URL at the bottom of the command output.
+
+    ```
+    tanzu apps workload get tanzu-java-web-app
+    ```
 
 
 ### Add Your Application to Tanzu Application Platform GUI Software Catalog
