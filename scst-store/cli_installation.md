@@ -1,6 +1,6 @@
 # CLI installation
 
-> **Note:** The Insight CLI is in beta and is separate from the Tanzu CLI. It still works with the final 1.0.0 version of Supply Chain Security Tools - Store.
+> **Note:** The `insight` CLI is in beta and is separate from the Tanzu CLI. It still works with the final production version of Supply Chain Security Tools - Store.
 
 This topic explains how to install the `insight` CLI:
 
