@@ -1,7 +1,4 @@
----
-title: Out of The Box Supply Chain with Testing and Scanning (ootb-supply-chain-testing-scanning)
-weight: 2
----
+# Out of The Box Supply Chain with Testing and Scanning
 
 This Cartographer Supply Chain ties a series of Kubernetes resources which,
 when working together, drives a developer-provided Workload from source code
@@ -99,13 +96,13 @@ For more information, see [Supply Chain Basic](ootb-supply-chain-basic.md).
 - **tekton pipeline**: A pipeline to be ran whenever the supply chain hits the stage of testing the
 source code. For more information, see [Supply Chain with Testing](ootb-supply-chain-testing.md).
 
-- **scan policy** (new): Defines what to do with the results taken from scanning the source code and
+- **scan policy**: Defines what to do with the results taken from scanning the source code and
 image produced. For more information, see [ScanPolicy section](#scan-policy).
 
-- **source scan template** (new): A template of how Jobs should be created for scanning the source
+- **source scan template**: A template of how Jobs should be created for scanning the source
 code. For more information, see [ScanTemplate section](#scan-template).
 
-- **image scan template** (new): A template of how Jobs should be created for scanning the image
+- **image scan template**: A template of how Jobs should be created for scanning the image
 produced by the supply chain. For more information, see [ScanTemplate section](#scan-template).
 
 
@@ -183,7 +180,6 @@ Tanzu Application Platform profiles, for example if `grype.namespace` is not the
 you're writing the workload to, you can install these in such namespace by making use of the
 `tanzu package install` command as described in [Install Supply Chain Security
 Tools - Scan](install-components.md#install-scst-scan):
-
 
 1. Create a file named `ootb-supply-chain-basic-values.yaml` that specifies the corresponding values
 to the properties you want to tweak. For example:
