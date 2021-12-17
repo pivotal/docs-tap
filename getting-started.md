@@ -1658,44 +1658,7 @@ Workload Cluster by running:
 the new message IDs.
 
 
-## (Optional) Explore Tanzu Application CLI Commands
 
-To add ENVARS:
-
-1. Run the following:
-
-    ```
-    tanzu apps workload update tanzu-java-web-app --env foo=bar
-    ```
-
-To export the current running workload definition, check into Git, or promote
-to another environment:
-
-1. Run the following:
-
-    ```
-    tanzu apps workload get tanzu-java-web-app --export \
-     \
-    ```
-
-To explore available flags for the workload commands:
-
-1. Run the following:
-
-    ```
-    tanzu apps workload -h
-    tanzu apps workload get -h
-    tanzu apps workload create -h
-    ```
-
-To create a Java application from source code on your local file system:
-
-1. Run the following:
-
-    ```
-    git clone git@github.com:spring-projects/spring-petclinic.git
-    tanzu apps workload create pet-clinic --source-image YOUR-REGISTRY.COM/pet-clinic --local-path ./spring-petclinic
-    ```
 <br>
 <br>
 <br>
