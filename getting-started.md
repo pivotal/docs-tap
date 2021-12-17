@@ -160,7 +160,7 @@ For example `harbor.vmware.com/myteam/tanzu-java-web-app-source`.
 You are now ready to iterate on your application.
 
 
-##### Live Update your Application
+### Live Update your Application
 
 Deploy the application and see it live update on the cluster. Doing so allows you to understand how your code changes will behave on a production-like cluster much earlier in the development process.
 
@@ -184,7 +184,7 @@ You will see your changes on the cluster.
 You can now continue to make more changes. If you are finished, you can stop or disable live update. Open the command palette (⇧⌘P), type in Tanzu, and select either option.
 
 
-##### Debug your Application
+### Debug your Application
 
 You can debug your cluster on your application or in your local environment.
 
@@ -195,21 +195,18 @@ Follow the steps below to debug your cluster:
 3. Return to your browser and navigate to `http://localhost:8080`. This will hit the breakpoint within VSCode. You can now step through or play to the end of the debug session using VSCode debugging controls.
 
 
-##### Troubleshooting a Running Application
+### Monitor your Running Application
 
-Now that your application is developed you may be interested in inspecting the run time
-characteristics of the running application. You can use Application Live View UI to look
-into the running application to monitor resource consumption, JVM status, incoming traffic
-as well as change log level, environment variables to troubleshoot and fine-tune the running application.
-Currently, Spring Boot based applications can be diagnosed using Application Live View.
+Now that your application is deployed, you may want to inspect the run time
+characteristics of the running application. You can use the Application Live View UI to look
+into the running application to monitor resource consumption, Java Virtual Machine (JVM) status, incoming traffic,
+change log level, as well as troubleshoot environment variables and fine-tune the running application.
 
-Make sure that you have installed Application Live View components successfully.
+Currently, Spring Boot-based applications can be diagnosed using Application Live View. Check that you have installed the [Application Live View](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.4/tap/GUID-install-components.html?hWord=N4IghgNiBcIJYDsDOAXSEAEYAO2JwGMwU4B7BDfANwFMMq4aB3EAXyA#install-app-live-view) components successfully, and follow the steps below:
 
-Access Application Live View Tanzu Application Platform GUI following the
-[Entry point to Application Live View plug-in](tap-gui/plugins/app-live-view.html#entry-point-to-application-live-view-plugin-1).
-Select your application to look inside the running application and
-[explore](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-product-features.html)
-the various diagnostic capabilities.
+1. Access the Application Live View Tanzu Application Platform GUI by following the
+[Entry point to Application Live View plug-in](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.4/tap/GUID-tap-gui-plugins-app-live-view.html#entry-point-to-application-live-view-plugin-1).
+2. Select your application to view inside the running application, and [explore](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-product-features.html) the various diagnostic capabilities.
 
 
 ---
