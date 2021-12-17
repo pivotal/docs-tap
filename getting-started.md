@@ -1115,7 +1115,7 @@ The [setup procedure](#consuming-services-setup) is typically performed by the S
 * [Use Case 2 - **Binding an App Workload to a Service Resource across multiple clusters**](#services-journey-use-case-2)
 * [Use Case 3 - **Binding an App Workload directly to a Secret (support for external services)**](#services-journey-use-case-3) -->
 
-### <a id='consuming-services-setup'></a> Setup
+### <a id='consuming-services-setup'></a> Set Up
 
 Follow these steps to install RabbitMQ Operator, create the necessary role-based access control (RBAC),
 and create a Services Toolkit resource called `ClusterResource` for RabbitmqCluster.
