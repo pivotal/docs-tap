@@ -225,14 +225,17 @@ the various diagnostic capabilities.
 
 ## <a id='creating-an-accelerator'></a>Section 2: Creating an accelerator
 
-You can use any git repository to create an Accelerator.
-You need the URL for the repository to create an Accelerator.
+In this section, you will create a New Application Accelerator by using the Tanzu Application Platform GUI.
+
+### Create a New Application Accelerator ###
 
 Use the following procedure to create an accelerator:
 
-1. Select the **New Accelerator** tile from the accelerators in the Application Accelerator web UI.
+1. From the Tanzu Application Platform GUI portal, click on the `Create` button on the left-hand side of the navigation bar to see the list of available accelerators. Select the **New Accelerator** tile by pressing on the `CHOOSE` button.
 
-2. Fill in the new project form with the following information:
+    ![New Accelerator tile](images/getting-started-section2-1.png)
+
+2. Fill in the new project form with the information below. To browse the files of the accelerator, click on the `EXPLORE` button (optional). When finished, click on the `NEXT STEP` button.
 
     * Name: Your Accelerator name. This is the name of the generated ZIP file.
     * (Optional) Description: A description of your accelerator.
@@ -241,23 +244,38 @@ Use the following procedure to create an accelerator:
     * Git Branch: The branch for the git repository.
     * (Optional) Tags: Any associated tags that can be used for searches in the UI.
 
-3. Download and expand the zip file.
 
-    * The output contains a YAML file for an Accelerator resource, pointing to the git repository.
+    ![Generate Accelerators first prompt](images/getting-started-section2-2.png)
+
+    ![Explore project dialog box](images/getting-started-section2-3.png)
+
+
+3. Verify the provided information and click on `CREATE`
+
+    ![Verify information for creating an accelerator](images/getting-started-section2-4.png)
+
+
+4. Download and expand the ZIP file by clicking on the `DOWNLOAD ZIP FILE` and expand it.
+
+    * The output contains a YAML file for an Accelerator resource, pointing to the Git repository.
     * The output contains a file named `new-accelerator.yaml` which defines the metadata for your new accelerator.
 
-4. To apply the k8s-resource.yml, run the following command in your terminal in the folder where you expanded the zip file:
+
+    ![Download ZIP file with the accelerator](images/getting-started-section2-5.png)
+
+
+5. To apply the k8s-resource.yml, run the following command in your terminal in the folder where you expanded the zip file:
 
     ```
     kubectl apply -f k8s-resource.yaml --namespace accelerator-system
     ```
 
-5. The Tanzu Application Platform GUI refreshes periodically. Once the GUI refreshes, the new accelerator becomes available. After waiting a few minutes, click the **Create** button on the left-side navigation bar of the Tanzu Application Platform GUI to see if the accelerator appears.
+6. The Tanzu Application Platform GUI refreshes periodically. Once the GUI refreshes, the new accelerator becomes available. After waiting a few minutes, click the `Create` button on the left-hand side navigation bar of the Tanzu Application Platform GUI to see if the accelerator appears.
 
 
-#### Using accelerator.yaml
+### Using accelerator.yaml
 
-The Accelerator zip file contains a file called `new-accelerator.yaml`.
+The Accelerator ZIP file contains a file called `new-accelerator.yaml`.
 This file is a starting point for the metadata for your new accelerator and the associated options and file processing instructions.
 This `new-accelerator.yaml` file should be copied to the root directory of your git repo and named `accelerator.yaml`.
 
