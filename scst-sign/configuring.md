@@ -20,7 +20,7 @@ The following is an example `ClusterImagePolicy`:
 
 ```
 ---
-apiVersion: signing.run.tanzu.vmware.com/v1beta1
+apiVersion: signing.apps.tanzu.vmware.com/v1beta1
 kind: ClusterImagePolicy
 metadata:
     name: image-policy
@@ -58,7 +58,7 @@ If no `ClusterImagePolicy` resource is created all images are admitted into
 the cluster with the following warning:
 
 ```
-Warning: clusterimagepolicies.signing.run.tanzu.vmware.com "image-policy" not found. Image policy enforcement was not applied.
+Warning: clusterimagepolicies.signing.apps.tanzu.vmware.com "image-policy" not found. Image policy enforcement was not applied.
 ```
 
 The patterns are evaluated using the any of operator to admit container
@@ -79,7 +79,7 @@ images by adding system namespaces to the
 
 ```
 cat <<EOF | kubectl apply -f -
-apiVersion: signing.run.tanzu.vmware.com/v1beta1
+apiVersion: signing.apps.tanzu.vmware.com/v1beta1
 kind: ClusterImagePolicy
 metadata:
   name: image-policy
@@ -147,7 +147,7 @@ See the following example:
 
 ```
 ---
-apiVersion: signing.run.tanzu.vmware.com/v1beta1
+apiVersion: signing.apps.tanzu.vmware.com/v1beta1
 kind: ClusterImagePolicy
 metadata:
   name: image-policy
@@ -294,5 +294,5 @@ public key will not launch. Run:
     $ kubectl run cosign-fail \
       --image=gcr.io/projectsigstore/cosign:v0.3.0 \
       --command -- sleep 900
-    Error from server (The image: gcr.io/projectsigstore/cosign:v0.3.0 is not signed.): admission webhook "image-policy-webhook.signing.run.tanzu.vmware.com" denied the request: The image: gcr.io/projectsigstore/cosign:v0.3.0 is not signed.
+    Error from server (The image: gcr.io/projectsigstore/cosign:v0.3.0 is not signed.): admission webhook "image-policy-webhook.signing.apps.tanzu.vmware.com" denied the request: The image: gcr.io/projectsigstore/cosign:v0.3.0 is not signed.
     ```
