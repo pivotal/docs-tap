@@ -5,7 +5,7 @@ weight: 2
 ---
 
 This topic explains how to use the Tanzu Developer Tools extension for Visual Studio Code.
-For a more detailed step-by-step walk-through, see Getting Started instructions](../getting-started.md).
+For a more detailed step-by-step walk-through, see [Getting Started instructions](../getting-started.md).
 
 # Usage
 
