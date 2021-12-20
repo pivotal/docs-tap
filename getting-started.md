@@ -317,7 +317,7 @@ application to reach production, or a lower environment.
 
 ![Diagram depicting a simple path to production: CI to Security Scan to Build Image to Image Scan to CAB Approval to Deployment.](images/path-to-production.png)
 
-#### A simple path to production
+### A simple path to production
 
 A path to production allows users to create a unified access point for all of the tools required
 for their applications to reach a customer-facing environment.
@@ -330,33 +330,17 @@ between each of the tools.
 Supply chains used to codify the organization's path to production are configurable, allowing their
 authors to add all of the steps of their application's path to production.
 
-Tanzu Application Platform provides three out of the box supply chains designed to
-work with Tanzu Application Platform components.
+### Available Supply Chains
 
+The Tanzu Application Platform provides three OOTB supply chains designed to
+work with the Tanzu Application Platform components, and they include:
 
-#### Supply Chains included in Beta 3
+### 1: **OOTB Basic Supply Chain (default)**
 
-The Tanzu Application Platform installation steps cover installing the default Supply Chain, but
-others are available.
-If you follow the installation documentation, the **Out of the Box Basic** Supply Chain and its
-dependencies are installed on your cluster.
-The table and diagrams below describe the two supply chains included in Tanzu Application Platform
-Beta 3 and their dependencies.
-
-The **Out of the Box with Testing** runs a Tekton pipeline within the supply chain. It is dependent on
-[Tekton](https://tekton.dev/) being installed on your cluster.
-
-The **Out of the Box with Testing and Scanning** supply chain includes integrations for secure scanning tools.
-
-The following section installs the second supply chain, includes steps to install Tekton and provides a sample Tekton pipeline that tests your
-sample application.
-The pipeline is configurable, therefore you can customize the steps
-to perform additional testing, or any other tasks that can be performed with a
-Tekton pipeline.
+The default **OOTB Basic** supply chain and its dependencies were installed on your cluster during the Tanzu Application Platform install.
+The table and diagrams below provide descriptions for each of the supply chains and dependencies provided with the Tanzu Application Platform.
 
 ![Diagram depicting the Source-to-URL chain: Watch Repo (Flux) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](images/source-to-url-chain.png)
-
-**Out of the Box Basic - default Supply Chain**
 
 <table>
   <tr>
@@ -407,9 +391,12 @@ Tekton pipeline.
   </tr>
 </table>
 
-![Diagram depicting the Source-and-Test-to-URL chain: Watch Repo (Flux) to Test Code (Tekton) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](images/source-and-test-to-url-chain.png)
+### 2: **OOTB Testing**
 
-**Out of the Box Testing**
+The **OOTB Testing** supply chain runs a Tekton pipeline within the supply chain. It is dependent on
+[Tekton](https://tekton.dev/) being installed on your cluster.
+
+![Diagram depicting the Source-and-Test-to-URL chain: Watch Repo (Flux) to Test Code (Tekton) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](images/source-and-test-to-url-chain.png)
 
 <table>
   <tr>
@@ -450,9 +437,11 @@ Tekton pipeline.
   </tr>
 </table>
 
-![Diagram depicting the Source-and-Test-to-URL chain: Watch Repo (Flux) to Test Code (Tekton) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](images/source-test-scan-to-url.png)
+### 3: **OOTB Testing+Scanning**
 
-**Out of the Box Testing and Scanning**
+The **OOTB Testing+Scanning** supply chain includes integrations for secure scanning tools.
+
+![Diagram depicting the Source-and-Test-to-URL chain: Watch Repo (Flux) to Test Code (Tekton) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](images/source-test-scan-to-url.png)
 
 <table>
   <tr>
@@ -495,12 +484,16 @@ Tekton pipeline.
   </tr>
 </table>
 
-### Install Out of the Box with testing
+### Install OOTB Testing
 
-When you chose not to use the preceding install method, see [Install
-Tekton](install-components.md#install-tekton).
+In this section, you will install the OOTB Testing supply chain, which includes the steps required to install Tekton and provides a sample Tekton pipeline that tests your sample application.
+The pipeline is configurable; therefore, you can customize the steps
+to perform either additional testing or other tasks with the
+Tekton pipeline. To apply this install method, complete the following steps:
 
-With Tekton installed, you can activate the Out of the Box Supply Chain with Testing by updating our profile to use `testing` rather than `basic` as the selected supply chain for workloads in this cluster. Update `tap-values.yml`(the file used to customize the profile in `Tanzu package install tap
+1. Install Tekton (see [Install Tekton](install-components.md#install-tekton) for instructions.
+
+2. With Tekton installed, you can activate the Out of the Box Supply Chain with Testing by updating our profile to use `testing` rather than `basic` as the selected supply chain for workloads in this cluster. Update `tap-values.yml`(the file used to customize the profile in `Tanzu package install tap
 --values-file=...`) with the following changes:
 
 ```
@@ -514,23 +507,18 @@ With Tekton installed, you can activate the Out of the Box Supply Chain with Tes
       repository: "<REPO-NAME>"
 ```
 
-Then update the installed profile:
+3. Update the installed profile:
 
 ```
 tanzu package installed update tap -p tap.tanzu.vmware.com -v 0.3.0 --values-file tap-values.yml -n tap-install
 ```
 
 
-### Example Tekton pipeline config
+#### Tekton pipeline config example
 
-In this section, we’ll add a Tekton pipeline to our cluster and in the following section,
-we’ll update the workload to point to the pipeline and resolve any of the current errors.
+In this section, a Tekton pipeline will be added to the cluster. In the next section, the workload will be updated to point to the pipeline and resolve any of the current errors.
 
-The next step is to add a Tekton pipeline to our cluster.
-Because a developer knows how their application needs to be tested this step could be performed by the developer.
-The Operator could also add these to a cluster prior to the developer getting access to it.
-
-In order to add the Tekton supply chain to the cluster, we’ll apply the following YAML to the cluster:
+1. To add the Tekton supply chain to the cluster, apply the following YAML to the cluster (this step could be performed by a developer since a developer knows how their application needs to be tested; the operator could also add these to a cluster prior to the developer having access):
 
 ```
 apiVersion: tekton.dev/v1beta1
@@ -579,7 +567,7 @@ Additionally, Tekton pipelines require a Tekton `pipelineRun` in order to execut
 The Supply Chain Choreographer handles creating the `pipelineRun` dynamically each time
 that step of the supply requires execution.
 
-### Workload update
+#### Workload update
 
 To connect the new supply chain to the workload,
 the workload must be updated to point at your Tekton pipeline.
@@ -649,9 +637,12 @@ the workload must be updated to point at your Tekton pipeline.
   service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.developer.example.com   tanzu-java-web-app-00001   tanzu-java-web-app-00001   Unknown   IngressNotConfigured
   ```
 
-### Install Out of the Box with Testing and Scanning
+### Install OOTB Testing+Scanning
 
-Follow the steps below to install an out of the box supply chain with testing and scanning.
+In this section, you will install the OOTB Testing+Scanning supply chain. 
+**Important:** The grype must be installed for scanning. 
+
+To apply this install method, complete the following steps:
 
 1. Supply Chain Security Tools - Scan is installed as part of the profiles.
 Verify that both Scan Link and Grype Scanner are installed by running:
@@ -734,7 +725,7 @@ Verify that both Scan Link and Grype Scanner are installed by running:
     ```
 
 
-### Workload update
+#### Workload update
 
 To connect the new supply chain to the workload, update the workload to point at your Tekton
 pipeline:
