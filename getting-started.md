@@ -903,7 +903,7 @@ An example policy would look like this:
 
 ```
 ---
-apiVersion: signing.run.tanzu.vmware.com/v1beta1
+apiVersion: signing.apps.tanzu.vmware.com/v1beta1
 kind: ClusterImagePolicy
 metadata:
   name: image-policy
@@ -946,7 +946,7 @@ and expected outcomes:
 
 ```
 ---
-apiVersion: signing.run.tanzu.vmware.com/v1beta1
+apiVersion: signing.apps.tanzu.vmware.com/v1beta1
 kind: ClusterImagePolicy
 metadata:
   name: image-policy
@@ -994,7 +994,7 @@ The Supply Chain Security Tools - Sign component outputs logs for the above
 scenarios. To examine the logs the platform operator can run:
 
 ```
-kubectl logs -n image-policy-system -l "signing.run.tanzu.vmware.com/application-name=image-policy-webhook" -f
+kubectl logs -n image-policy-system -l "signing.apps.tanzu.vmware.com/application-name=image-policy-webhook" -f
 ```
 
 #### Next steps and further information

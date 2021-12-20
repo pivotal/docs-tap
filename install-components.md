@@ -2052,6 +2052,9 @@ and you want to use `NodePort`, then create a `metadata-store-values.yaml` and c
 >see [Supply Chain Security Tools - Sign Known Issues](scst-sign/known_issues.md#sign-known-issues-pods-not-admitted)
 >for recovery steps.
 
+**Note:** v1alpha1 api version of the ClusterImagePolicy is no longer supported as the group name has been renamed from 
+`signing.run.tanzu.vmware.com` to `signing.apps.vmware.com`.
+
 ### <a id='scst-sign-prereqs'></a> Prerequisites
 
 During configuration for this component, you are asked to provide a cosign public key to use to
@@ -2067,31 +2070,31 @@ To install Supply Chain Security Tools - Sign:
 1. List version information for the package by running:
 
     ```
-    tanzu package available list image-policy-webhook.signing.run.tanzu.vmware.com --namespace tap-install
+    tanzu package available list image-policy-webhook.signing.apps.tanzu.vmware.com --namespace tap-install
     ```
 
     For example:
 
     ```
-    $ tanzu package available list image-policy-webhook.signing.run.tanzu.vmware.com --namespace tap-install
-    - Retrieving package versions for image-policy-webhook.signing.run.tanzu.vmware.com...
+    $ tanzu package available list image-policy-webhook.signing.apps.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for image-policy-webhook.signing.apps.tanzu.vmware.com...
       NAME                                               VERSION         RELEASED-AT
-      image-policy-webhook.signing.run.tanzu.vmware.com  1.0.0-beta.1    2021-10-25T00:00:00Z
-      image-policy-webhook.signing.run.tanzu.vmware.com  1.0.0-beta.2    2021-11-29T00:00:00Z
-      image-policy-webhook.signing.run.tanzu.vmware.com  1.0.0-beta.3    2021-12-14T00:00:00Z
+      image-policy-webhook.signing.apps.tanzu.vmware.com  1.0.0-beta.1    2021-10-25T00:00:00Z
+      image-policy-webhook.signing.apps.tanzu.vmware.com  1.0.0-beta.2    2021-11-29T00:00:00Z
+      image-policy-webhook.signing.apps.tanzu.vmware.com  1.0.0-beta.3    2021-12-14T00:00:00Z
     ```
 
 1. (Optional) Make changes to the default installation settings by running:
 
     ```
-    tanzu package available get image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.3 --values-schema --namespace tap-install
+    tanzu package available get image-policy-webhook.signing.apps.tanzu.vmware.com/1.0.0-beta.3 --values-schema --namespace tap-install
     ```
 
     For example:
 
     ```
-    $ tanzu package available get image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.3 --values-schema --namespace tap-install
-    | Retrieving package details for image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.3...
+    $ tanzu package available get image-policy-webhook.signing.apps.tanzu.vmware.com/1.0.0-beta.3 --values-schema --namespace tap-install
+    | Retrieving package details for image-policy-webhook.signing.apps.tanzu.vmware.com/1.0.0-beta.3...
       KEY                     DEFAULT  TYPE     DESCRIPTION
       allow_unmatched_images  false    boolean  Feature flag for enabling admission of images that do not match
                                                 any patterns in the image policy configuration.
@@ -2154,7 +2157,7 @@ To install Supply Chain Security Tools - Sign:
 
     ```
     tanzu package install image-policy-webhook \
-      --package-name image-policy-webhook.signing.run.tanzu.vmware.com \
+      --package-name image-policy-webhook.signing.apps.tanzu.vmware.com \
       --version 1.0.0-beta.3 \
       --namespace tap-install \
       --values-file scst-sign-values.yaml
@@ -2164,14 +2167,14 @@ To install Supply Chain Security Tools - Sign:
 
     ```
     $ tanzu package install image-policy-webhook \
-        --package-name image-policy-webhook.signing.run.tanzu.vmware.com \
+        --package-name image-policy-webhook.signing.apps.tanzu.vmware.com \
         --version 1.0.0-beta.3 \
         --namespace tap-install \
         --values-file scst-sign-values.yaml
 
-    | Installing package 'image-policy-webhook.signing.run.tanzu.vmware.com'
+    | Installing package 'image-policy-webhook.signing.apps.tanzu.vmware.com'
     | Getting namespace 'default'
-    | Getting package metadata for 'image-policy-webhook.signing.run.tanzu.vmware.com'
+    | Getting package metadata for 'image-policy-webhook.signing.apps.tanzu.vmware.com'
     | Creating service account 'image-policy-webhook-default-sa'
     | Creating cluster admin role 'image-policy-webhook-default-cluster-role'
     | Creating cluster role binding 'image-policy-webhook-default-cluster-rolebinding'
@@ -2568,7 +2571,7 @@ Use the following procedure to verify that the packages are installed.
     convention-controller    controller.conventions.apps.tanzu.vmware.com       0.4.2            Reconcile succeeded
     developer-conventions    developer-conventions.tanzu.vmware.com             0.3.0-build.1    Reconcile succeeded
     grype-scanner            grype.scanning.apps.tanzu.vmware.com               1.0.0            Reconcile succeeded
-    image-policy-webhook     image-policy-webhook.signing.run.tanzu.vmware.com  1.0.0-beta.1     Reconcile succeeded
+    image-policy-webhook     image-policy-webhook.signing.apps.tanzu.vmware.com  1.0.0-beta.1     Reconcile succeeded
     metadata-store           metadata-store.apps.tanzu.vmware.com               1.0.1            Reconcile succeeded
     ootb-supply-chain-basic  ootb-supply-chain-basic.tanzu.vmware.com           0.3.0-build.5    Reconcile succeeded
     ootb-templates           ootb-templates.tanzu.vmware.com                    0.3.0-build.5    Reconcile succeeded
