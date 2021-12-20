@@ -1,8 +1,8 @@
 # Anonymous access
 
-The REST API with client authentication provides a means to have the portal create and manage workshop sessions on your behalf but have user authentication handled by a separate system.
+The REST API with client authentication provides a means to have the portal create and manage workshop sessions on your behalf but allow a separate system handle user authentication.
 
-If you do not need to have users be authenticated, but still want to provide your own front end from which users select a workshop, such as when integrating workshops into an existing web property, you can enable anonymous mode and redirect users direct to a URL for workshop session creation.
+If you do not need to authenticate users but still want to provide your own front end from which users select a workshop, such as when integrating workshops into an existing web property, you can enable anonymous mode and redirect users to a URL for workshop session creation.
 
 Note that using this is only recommended for temporary deployments and not for a permanent web site providing access to workshops.
 
@@ -11,7 +11,7 @@ Note that using this is only recommended for temporary deployments and not for a
 To enable full anonymous access to the training portal, you need to set the registration type to anonymous.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
   name: lab-markdown-sample
@@ -23,7 +23,7 @@ spec:
   ...
 ```
 
-Note that users will still be able to visit the training portal directly and view the catalog of available workshops. You therefore shouldn't link to the main page of the training portal. Instead you need to link from your custom index page, to the individual links for creating each workshop.
+Note that users will still be able to visit the training portal directly and view the catalog of available workshops. You therefore shouldn't link to the main page of the training portal. Instead you need to link from your custom index page and to the individual links for creating each workshop.
 
 ## Triggering workshop creation
 
@@ -35,9 +35,9 @@ To trigger creation and allocation of a workshop to a user, you need to direct u
 
 The value ``<name>`` should be replaced with the name of the workshop environment corresponding to the workshop which needs to be created.
 
-The value ``<index>`` should be replaced with the URL for your custom index page where you list the workshops available. When the workshop is completed by a user, they will be redirected back to this index page. They will also be redirected back to this index page when an error occurs.
+The value ``<index>`` should be replaced with the URL for your custom index page where you list the workshops available. When the workshop is completed by a user, that user is  redirected back to this index page and also back to this index page when an error occurs.
 
-When a user is redirected back to the index page, a query string parameter will be supplied to notify of the reason the user is being returned. This can be used to display a banner or other indication as to why they were returned.
+When a user is redirected back to the index page, a query string parameter will be supplied to notify of the reason the user is being returned. This can be used to display a banner or other indication as to why the user was returned.
 
 The name of the query string parameter is ``notification`` and the possible values are:
 

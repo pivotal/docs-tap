@@ -22,13 +22,13 @@ The installation creates the following in your Kubernetes cluster:
 
 The default database that ships with the deployment is meant to get users started using the metadata store. The default database deployment does not support many enterprise production requirements, including scaling, redundancy, or failover. However, it is still a secure deployment.
 
-#### Using AWS RDS Postgres database
+#### Using AWS RDS postgres database
 
 Users can also configure the deployment to use their own RDS database instead of the default database. See [AWS RDS Postgres Configuration](use_aws_rds.md).
 
 #### Custom database password
 
-By default, a database password is generated automatically upon deployment. To configure a custom password, use the `db_password` property in the `scst-store-values.yaml` during deployment.
+By default, a database password is generated automatically upon deployment. To configure a custom password, use the `db_password` property in the `metadata-store-values.yaml` during deployment.
 
 ```
 db_password: "PASSWORD-0123"
@@ -47,7 +47,7 @@ Where `PASSWORD-0123` is the same password used between deployments.
 
 ### App service type
 
-If your environment does not support `LoadBalancer`, and you want to use `NodePort`, configure the `app_service_type` property in your `scst-store-values.yaml`:
+If your environment does not support `LoadBalancer`, and you want to use `NodePort`, configure the `app_service_type` property in your `metadata-store-values.yaml`:
 
 ```
 app_service_type: "LoadBalancer"

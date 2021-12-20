@@ -43,14 +43,17 @@ Tanzu Application Platform GUI currently does not support Safari browser.
 - Tanzu Application Platform GUI Blank Catalog from the Tanzu Application section of Tanzu Network
   - To install this, navigate to [Tanzu Network](https://network.tanzu.vmware.com/) and select the Tanzu Application Platform. Under the list of available files to download, there will be a folder titled `tap-gui-catalogs`. Inside that folder is a compressed archive titled `Tanzu Application Platform Blank Catalog`. You'll need to extract that catalog to the preceding Git repository of choice. This serves as the configuration location for your Organization's Catalog inside Tanzu Application Platform GUI.
   - The Tanzu Application Platform GUI catalog allows for two approaches towards storing catalog information:
-        - The default option uses an in-memory database and is suitable for test and development scenarios.
+    - The default option uses an in-memory database and is suitable for test and development scenarios.
           This reads the catalog data from Git URLs that you specify in the `tap-values.yml` file.
           This data is ephemeral and any operations that cause the `server` pod in the `tap-gui` namespace to be re-created
           also cause this data to be rebuilt from the Git location.
           This can cause issues when you manually register entities through the UI because
           they only exist in the database and are lost when that in-memory database gets rebuilt.
-            - For production use-cases, use a PostgreSQL database that exists outside the Tanzu Application Platform's packaging.
+    - For production use-cases, use a PostgreSQL database that exists outside the Tanzu Application Platform's packaging.
           This stores all the catalog data persistently both from the Git locations and from the GUI's manual entity registrations.
+- Fully Qualified Domain Name (FQDN) that can be pointed at the `tanzu-shared-ingress` service.
+The default host name consists of `tap-gui` plus an `IngressDomain` of your choice. For example,
+`tap-gui.example.com`.
 
 ### Kubernetes cluster requirements
 Installation requires:
@@ -67,29 +70,48 @@ Installation requires:
         * If you are using Cloud Native Runtimes, see [Configure Your Local Kind
         Cluster](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-local-dns.html#config-cluster).
         * Because Kind doesn't support LoadBalancer, make sure to use NodePort when defining service types.
+
+* Configure `hostPort` to `containerPort` mappings for ports 80 and 443 to enable access to the
+cluster from your local machine. For example:
+
+    ```
+    kind: Cluster
+    apiVersion: kind.x-k8s.io/v1alpha4
+    nodes:
+    - role: control-plane
+    - role: worker
+      extraPortMappings:
+      - containerPort: 30443
+        hostPort: 443
+      - containerPort: 30080
+        hostPort: 80
+    ```
+
     * Minikube
         * Minimum requirements for VM: 8 CPUs for i9 or equivalent, 12 CPUs for i7 or equivalent, 8 GB RAM (12+ GB recommended), and 120 GB disk space.
         * VMware recommends at least 16 GB of total host memory.
         * On MacOS only Hyperkit driver is supported; Docker driver is not supported.
-   * Tanzu Kubernetes Grid v1.4
+    * Tanzu Kubernetes Grid v1.4
         * Do not use a Tanzu Kubernetes Grid cluster that runs production workloads.
         * To install Tanzu Application Platform on Tanzu Kubernetes Grid v1.4,
           see [Installing with Tanzu Kubernetes Grid v1.4](install-tkg.md).
-   * Tanzu Community Edition v0.9.1
+    * Tanzu Community Edition v0.9.1
         * Visit the Tanzu Community Edition installation page to follow installation instructions at [Tanzu Community Edition](install-tce.md)
 
-    To deploy all Tanzu Application Platform packages, your cluster must have at least **8&nbsp;GB** of RAM across all nodes available to Tanzu Application Platform. At least 8 CPUs for i9 or equivalent or 12 CPUs for i7 or equivalent must be available to Tanzu Application Platform components.
-    VMware recommends that at least **16&nbsp;GB** of RAM is available to build and deploy applications, including for Kind and Minikube.
+    To deploy all Tanzu Application Platform packages, your cluster must have at least 8&nbsp;GB of RAM across all nodes available to Tanzu Application Platform. At least 8 CPUs for i9 or equivalent or 12 CPUs for i7 or equivalent must be available to Tanzu Application Platform components.
+    VMware recommends that at least 16&nbsp;GB of RAM is available to build and deploy applications, including for Kind and Minikube.
 
-    Your cluster must support the creation of Services of type `LoadBalancer` to install Cloud Native Runtimes package. The exception is [`provider: local` installation](#install-cnr), which removes container replication and uses `NodePort` Services for HTTP ingress. For information about services of type `LoadBalancer`, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer) and your cloud provider documentation. For information about Tanzu Kubernetes Grid support for Service type `LoadBalancer`, see [Install VMware NSX Advanced Load Balancer on a vSphere Distributed Switch](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.3/vmware-tanzu-kubernetes-grid-13/GUID-mgmt-clusters-install-nsx-adv-lb.html).
+    For the [`full` profile](install.html#about-tanzu-application-platform-package-profiles-1), or
+    use of Security Chain Security Tools - Store, your cluster must have a configured default StorageClass.
 
-    Your cluster must also have at least **70&nbsp;GB** of disk per node.
+    Your cluster must also have at least 70&nbsp;GB of disk per node.
 
 * [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/)
 must be configured so that Tanzu Application Platform controller
 pods can run as root.
 
 ### Tools and CLI requirements
+
 Installation requires:
 
 * The Kubernetes CLI, kubectl, v1.19, v1.20 or v1.21, installed and authenticated with administrator rights for your target cluster. See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes documentation.
@@ -138,39 +160,39 @@ To accept EULAs:
 
 2. For each of the following components, accept or confirm that you have accepted the EULA:
 
-    + [Tanzu Prerequisites](https://network.tanzu.vmware.com/products/tanzu-prerequisites/#/releases/1006464)
+    + [Cluster Essentials for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-cluster-essentials/#/releases/1011100)
     + [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/)
     + [Tanzu Build Service](https://network.tanzu.vmware.com/products/build-service/) and its associated components:
       + [Tanzu Build Service Dependencies](https://network.tanzu.vmware.com/products/tbs-dependencies/)
       + [Buildpacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-buildpacks-suite)
       + [Stacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-stacks-suite)
 
-## <a id='tanzu-prereqs'></a> Install Tanzu prerequisites
+## <a id='tanzu-cluster-essentials'></a> Install Cluster Essentials for VMware Tanzu
 
-If you are operating a Tanzu Kubernetes Grid or Tanzu Community Edition cluster, the Tanzu prerequisites are already installed.
+If you are operating a Tanzu Kubernetes Grid or Tanzu Community Edition cluster, the Cluster Essentials are already installed.
 
 For other Kubernetes providers, follow the steps below:
 
 1. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
 
-3. Navigate to [Tanzu Prerequisites](https://network.tanzu.vmware.com/products/tanzu-prerequisites/) on Tanzu Network.
+3. Navigate to [Cluster Essentials for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-cluster-essentials/) on Tanzu Network.
 
-4. Download `darwin-amd64-1.0.0-rc.2.tgz` (for OS X) or `linux-amd64-1.0.0-rc.2.tgz` (for Linux)
-   and unpack the TAR file into `tanzu-prereqs` directory:
+4. Download `tanzu-cluster-essentials-darwin-amd64-1.0.0.tgz` (for OS X) or `tanzu-cluster-essentials-linux-amd64-1.0.0.tgz` (for Linux)
+   and unpack the TAR file into `tanzu-cluster-essentials` directory:
 
     ```
-    mkdir $HOME/tanzu-prereqs
-    tar -xvf darwin-amd64-1.0.0-rc.2.tgz -C $HOME/tanzu-prereqs
+    mkdir $HOME/tanzu-cluster-essentials
+    tar -xvf tanzu-cluster-essentials-darwin-amd64-1.0.0.tgz -C $HOME/tanzu-cluster-essentials
     ```
 
 5. Configure and run `install.sh`, which installs kapp-controller and secretgen-controller on your cluster:
 
     ```
-    export INSTALL_BUNDLE=registry.tanzu.vmware.com/tanzu-prerequisites/prereqs-bundle@sha256:82dfaf70656b54dcba0d4def85ccae1578ff27054e7533d08320244af7fb0343
+    export INSTALL_BUNDLE=registry.tanzu.vmware.com/tanzu-cluster-essentials/cluster-essentials-bundle@sha256:82dfaf70656b54dcba0d4def85ccae1578ff27054e7533d08320244af7fb0343
     export INSTALL_REGISTRY_HOSTNAME=registry.tanzu.vmware.com
     export INSTALL_REGISTRY_USERNAME=TANZU-NET-USER
     export INSTALL_REGISTRY_PASSWORD=TANZU-NET-PASSWORD
-    cd $HOME/tanzu-prereqs
+    cd $HOME/tanzu-cluster-essentials
     ./install.sh
     ```
 
@@ -179,7 +201,7 @@ For other Kubernetes providers, follow the steps below:
 6. Install the `kapp` CLI onto your `$PATH`:
 
     ```
-    sudo cp $HOME/tanzu-prereqs/kapp /usr/local/bin/kapp
+    sudo cp $HOME/tanzu-cluster-essentials/kapp /usr/local/bin/kapp
     ```
 
 ## <a id='cli-and-plugin'></a> Install or update the Tanzu CLI and plugins
@@ -263,7 +285,7 @@ To install the Tanzu CLI on a Mac operating system:
 6.  Install the CLI core:
     ```
     cd $HOME/tanzu
-    sudo install cli/core/v0.12.0/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
+    install cli/core/v0.12.0/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
     ```
 
 7. Confirm installation of the CLI core:
@@ -291,9 +313,7 @@ To install the Tanzu CLI on a Mac operating system:
 
    6. Execute the `Tanzu version` command in the terminal window again.
 
-   7. Click **Open** in the macOS prompt window.
-
-    After completing the steps above, there should be no more security issues while running Tanzu CLI commands.
+   7. Click **Open** in the macOS prompt window. After completing the steps above, there should be no more security issues while running Tanzu CLI commands.
 
    8. Proceed to [Instructions for a clean install of Tanzu CLI Plugins](#cli-plugin-clean-install).
 
@@ -411,7 +431,7 @@ on Tanzu Network.
   5. Download the CLI bundle corresponding with your operating system. For example, if your client
 operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle.
 
-  6. If they exist, delete any CLI files from a previous install:
+  6. If they exist, delete any CLI files from previous installs:
      ```
      rm -rf $HOME/tanzu/cli
      ```
@@ -434,8 +454,8 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
      export TANZU_CLI_NO_INIT=true
      ```
 
-  10. List the plugins to find out if the `imagepullsecret` plugin if it was previously installed,
-      and if it was installed delete it:
+  10. List the plugins to see if the `imagepullsecret` plugin was previously installed.
+      If installed, delete it:
 
       ```
       tanzu plugin list
@@ -527,7 +547,7 @@ for interacting with Tanzu Kubernetes Grid or Tanzu Community Edition, you only 
      ```
      mkdir $HOME/tanzu
      ```
-     If `tanzu` already exists, delete the files within it.
+     If `tanzu` already exists, delete the files in the directory.
 
   2. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
 

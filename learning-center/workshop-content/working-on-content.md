@@ -7,7 +7,7 @@ Workshop content will either be embedded in a custom workshop image, or download
 An instance of a training portal should be used when developing content where reserved sessions are disabled.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
   name: lab-sample-workshop
@@ -73,7 +73,7 @@ Note that updating workshop content in a live session in this way isn't going to
 If your workshop is using a custom workshop image because of the need to provide additional tools, and you have as a result also included the workshop instructions as part of the workshop image, during development of workshop content always use an image tag of ``main``, ``master``, ``develop`` or ``latest``, do not use a version image reference. For example:
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-sample-workshop
@@ -91,7 +91,7 @@ When an image tag of ``main``, ``master``, ``develop`` or ``latest`` is used, th
 Even where you have a custom workshop image, setup the workshop definition to also pull down the workshop content from the hosted Git repository or web server. As the follow example shows:
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-sample-workshop
@@ -110,7 +110,7 @@ Using this method, as the location of the workshop files is known you can then a
 If the additional set of tools required for a workshop is not too specific to a workshop, it is recommended to create a standalone workshop base image where just the tools are added. Content for a specific workshop would then always be pulled down from a Git repository or web server when the workshop session is started.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-sample-workshop
@@ -131,7 +131,7 @@ By default, if you need to modify the definition for a workshop, you would need 
 During development of workshop content, when working on the workshop definition itself to change things like resource allocations, role access, or what resource objects are automatically created for the workshop environment or a specific workshop session, you can in the training portal definition enable automatic updates on changes to the workshop definition.
 
 ```
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
   name: lab-sample-workshop

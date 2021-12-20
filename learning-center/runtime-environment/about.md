@@ -2,7 +2,7 @@
 
 ## Overview
 This section includes information on the Custom Resource Definitions (CRDs) that are
-part of Learning Center.
+part of the Learning Center.
 
 - [Custom resource overview](custom-resources.md)
 - [Workshop resource](workshop-definition.md)

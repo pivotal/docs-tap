@@ -15,19 +15,6 @@ This example takes every source code commit, scans the source code for vulnerabi
     - [Supply Chain Security Tools - Scan](../install-components.md#install-scst-scan)
     - (Optional) [Kubectl `tree` Plugin](https://github.com/ahmetb/kubectl-tree)
 
-    This example uses the following versions:
-
-    ```
-    $ tanzu package installed list -n tap-install
-    | Retrieving installed packages...
-      NAME             PACKAGE-NAME                          PACKAGE-VERSION  STATUS
-      cartographer     cartographer.tanzu.vmware.com         0.0.6            Reconcile succeeded
-      grype-scanner    scst-grype.apps.tanzu.vmware.com      1.0.0            Reconcile succeeded
-      metadata-store   scst-store.tanzu.vmware.com           1.0.0-beta.0     Reconcile succeeded
-      scan-controller  scst-scan.apps.tanzu.vmware.com       1.0.0            Reconcile succeeded
-      tbs              buildservice.tanzu.vmware.com         1.3.0            Reconcile succeeded
-    ```
-
 ## Configure the example
 
 Set the following environment variables to configure the image registry where Tanzu Build Service will push images.
@@ -142,7 +129,7 @@ A Scan Policy is defined and indicates how to perform a policy compliance check 
 ```
 kubectl apply -f - -o yaml << EOF
 ---
-apiVersion: scst-scan.apps.tanzu.vmware.com/v1alpha1
+apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: ScanPolicy
 metadata:
   name: scan-policy
@@ -211,7 +198,7 @@ spec:
   revisionPath: .status.artifact.blob.url
 
   template:
-    apiVersion: scst-scan.apps.tanzu.vmware.com/v1alpha1
+    apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
     kind: SourceScan
     metadata:
       name: $(workload.metadata.name)$-source-scan
@@ -258,7 +245,7 @@ spec:
   imagePath: .status.artifact.registry.image
 
   template:
-    apiVersion: scst-scan.apps.tanzu.vmware.com/v1alpha1
+    apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
     kind: ImageScan
     metadata:
       name: $(workload.metadata.name)$-image-scan
@@ -362,7 +349,7 @@ Notice the resources be created:
 
 During processing and upon completion, try performing `kubectl describe` on the `sourcescan` and `imagescan` resources to see the `Status` section.
 
-**NOTE:** Detailed information about vulnerabilities found will not display in the output from `kubectl describe; it is instead sent to the Metadata Store, where it can be queried there.
+**Note:** Detailed information about vulnerabilities found will not display in the output from `kubectl describe; it is instead sent to the Metadata Store, where it can be queried there.
 
 ## Querying the Metadata Store for vulnerability results using the Insight CLI
 
@@ -372,8 +359,10 @@ During processing and upon completion, try performing `kubectl describe` on the 
     kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store
     ```
 
-1. Using the `MetadataURL` field in the `kubectl describe` `sourcescan` or `imagescan` output,
-   use the Insight CLI to query the Metadata Store for the scan results that were outputted by the Grype Scanner. Run:
+1. Using the `MetadataURL` field in the `kubectl describe sourcescan`
+   or `kubectl describe imagescan` output,
+   use the Insight CLI to query the Metadata Store for the scan results that were output
+   by the Grype Scanner. Run:
 
     ```
     # Configure Insight CLI to Authenticate to Metadata Store
