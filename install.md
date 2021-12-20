@@ -571,7 +571,7 @@ For information about package-specific configuration, see [Install components](i
 
     This may take 5-10 minutes because it installs several packages on your cluster.
 
-1. Verify tht all the necessary packages in the profile are installed by running:
+1. Verify that all the necessary packages in the profile are installed by running:
 
     ```
     tanzu package installed list -A
@@ -579,6 +579,7 @@ For information about package-specific configuration, see [Install components](i
 
 1. (Optional) [Install any additional packages](install-components.md) that were not included in your profile.
 
+Once you have installed the Dev Profile onto your cluster, you may want to install the Tanzu Developer Tools for VSCode extension to help you develop against it. View Tanzu Dev Tools install instructions [here](vscode-extension/install.md).
 
 ## <a id='configure-envoy-lb'></a> Configure LoadBalancer for Contour ingress
 
