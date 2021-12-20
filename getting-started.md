@@ -14,11 +14,6 @@ Welcome to the Tanzu Application Platform. This document guides you through gett
 
 To take full advantage of this document, ensure you have followed [Installing Tanzu Application Platform](install-intro.md).
 
-
-## Section 1: Developing Your First Application on Tanzu Application Platform
-
-In this section, you will deploy a simple web application to the platform, enable debugging and see your code updates added to the running application as you save them.
-
 Before getting started, ensure the following prerequisites are in place:
 
 1. Tanzu Application Platform is installed on the target Kubernetes cluster. For installation instructions, see [Installing Part I: Prerequisites, EULA, and CLI](install-general.md) and [Installing Part II: Profiles](install.md).
@@ -32,28 +27,38 @@ Before getting started, ensure the following prerequisites are in place:
 
 5. Tanzu Application Platform GUI is successfully installed.
 
-
-#### A note about Application Accelerators
-
-The Application Accelerator Plugin of Tanzu Application Platform GUI (“Create” button on the left-side navigation bar) helps app developers and app operators create and generate application accelerators. Accelerators are templates that codify best practices and ensure important configuration and structures are in place from the start.
-
-Developers can bootstrap their applications and get started with feature development right away. Application Operators can create custom accelerators that reflect their desired architectures and configurations and enable fleets of developers to utilize them, decreasing operator concerns about whether developers are implementing their desired best practices.
-
-Application Accelerator sample templates are installed by default as part of the Application Accelerator package. To create your own Application Accelerator, see [Creating an Accelerator](#creating-an-accelerator).
+6. Install the VSCode Tanzu Extension.
+   See [How to Install the VSCode Tanzu Extension](vscode-extension/install.md). 
 
 
-### Deploy Your Application
 
-Follow these steps to get started with an accelerator called `Tanzu-Java-Web-App`.
+## Section 1: Develop your first application on Tanzu Application Platform
 
-1. From the Tanzu Application Platform GUI portal, click on **Create** on the left side of the
+In this section, you deploy a simple web application to the platform, enable debugging,
+and see your code updates added to the running application as you save them.
+
+### A note about Application Accelerators
+
+The Application Accelerator Plugin of Tanzu Application Platform GUI is located on the left-hand side navigation bar (**Create** button). It helps application developers and administrators to create and generate application accelerators. Accelerators are templates that codify best practices and ensure important configuration and structures are in place.
+
+Developers can bootstrap their applications and get started with feature development. Application administrators can create custom accelerators that reflect their desired architectures and configurations, and enable fleets of developers to utilize them instantly. This decreases administrator concerns about whether developers are implementing their desired best practices.
+
+Application Accelerator templates are available as a quick start from [Tanzu Network](https://network.tanzu.vmware.com/products/app-accelerator). To create your own Application Accelerator, see [Creating an accelerator](#creating-an-accelerator).
+
+
+### Deploy your application
+
+To deploy your application, you need to download an accelerator, upload it on your Git repository of choice, and run a CLI command. We recommend using the accelerator called `Tanzu-Java-Web-App`.
+
+
+1. From the Tanzu Application Platform GUI portal, click **Create** located on the left-hand side of the
 navigation bar to see the list of available accelerators.
 For information about connecting to Tanzu Application Platform GUI, see
 [Accessing Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md).
 
     ![List of accelerators in Tanzu Application Platform GUI](images/getting-started-tap-gui-1.png)
 
-2. Locate the Tanzu Java Web App accelerator, which is a sample Spring Boot web app, and click on `CHOOSE` button.
+2. Locate the Tanzu Java Web App accelerator, which is a Spring Boot web app, and click on `CHOOSE` button.
 
     ![Tile for Tanzu Java Web App](images/getting-started-tap-gui-2.png)
 
@@ -65,7 +70,7 @@ For information about connecting to Tanzu Application Platform GUI, see
 
     ![Task Activity progress bar](images/getting-started-tap-gui-4.png)
 
-5. After downloading the zip file, expand it in a workspace directory and follow your preferred procedure for uploading the generated project files to a Git repository for your new project.
+5. After downloading the ZIP file, expand it in a workspace directory and follow your preferred procedure for uploading the generated project files to a Git repository for your new project.
 
 6. Deploy the Tanzu Java Web App accelerator by running the `tanzu apps workload create` command:
 
@@ -80,7 +85,7 @@ For information about connecting to Tanzu Application Platform GUI, see
 
     Where `GIT-URL-TO-PROJECT-REPO` is the path you uploaded to in step 5.
 
-    If you bypassed step 5, and weren't able to upload your accelerator to a Git repo, you can use the public version to test with:
+    If you bypassed step 5 and were unable to upload your accelerator to a Git repository, then you can use the public version to test with:
     ```
     tanzu apps workload create tanzu-java-web-app \
     --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
@@ -93,8 +98,8 @@ For information about connecting to Tanzu Application Platform GUI, see
 
     For more information, see [Tanzu Apps Workload Create](cli-plugins/apps/command-reference/tanzu_apps_workload_create.md).
 
-    >**Note:** This first deploy uses accelerator source from Git, but you use the VSCode extension
-    to debug and live-update this app in later steps.
+    >**Note:** This first deployment uses accelerator source from Git, but in later steps you use the VSCode extension
+    to debug and live-update this application.
 
 7. View the build and runtime logs for your app by running the `tail` command:
 
@@ -102,12 +107,15 @@ For information about connecting to Tanzu Application Platform GUI, see
     tanzu apps workload tail tanzu-java-web-app --since 10m --timestamp
     ```
 
-8. After the workload is built and running, get the web-app URL by running
-`tanzu apps workload get tanzu-java-web-app` and then pressing **ctrl-click** on the
+8. After the workload is built and running, you can view the web-app in your browser. View the URL of the web-app by running the command below, and then press **ctrl-click** on the
 Workload Knative Services URL at the bottom of the command output.
 
+    ```
+    tanzu apps workload get tanzu-java-web-app
+    ```
 
-### Add Your Application to Tanzu Application Platform GUI Software Catalog
+
+### Add your application to Tanzu Application Platform GUI Software Catalog
 
 To see this application in your organization catalog, you must register new entities as described below.
 
@@ -160,7 +168,7 @@ For example `harbor.vmware.com/myteam/tanzu-java-web-app-source`.
 You are now ready to iterate on your application.
 
 
-### Live Update your Application
+##### Live update your application
 
 Deploy the application and see it live update on the cluster. Doing so allows you to understand how your code changes will behave on a production-like cluster much earlier in the development process.
 
@@ -184,7 +192,7 @@ You will see your changes on the cluster.
 You can now continue to make more changes. If you are finished, you can stop or disable live update. Open the command palette (⇧⌘P), type in Tanzu, and select either option.
 
 
-### Debug your Application
+##### Debug your application
 
 You can debug your cluster on your application or in your local environment.
 
@@ -195,7 +203,7 @@ Follow the steps below to debug your cluster:
 3. Return to your browser and navigate to `http://localhost:8080`. This will hit the breakpoint within VSCode. You can now step through or play to the end of the debug session using VSCode debugging controls.
 
 
-### Monitor your Running Application
+### Monitor your running application
 
 Now that your application is deployed, you may want to inspect the run time
 characteristics of the running application. You can use the Application Live View UI to look
@@ -212,16 +220,19 @@ Currently, Spring Boot-based applications can be diagnosed using Application Liv
 ---
 
 
-## <a id='creating-an-accelerator'></a>Section 2: Creating an Accelerator
+## <a id='creating-an-accelerator'></a>Section 2: Creating an accelerator
 
-You can use any git repository to create an Accelerator.
-You need the URL for the repository to create an Accelerator.
+In this section, you will create a New Application Accelerator by using the Tanzu Application Platform GUI.
+
+### Create a New Application Accelerator ###
 
 Use the following procedure to create an accelerator:
 
-1. Select the **New Accelerator** tile from the accelerators in the Application Accelerator web UI.
+1. From the Tanzu Application Platform GUI portal, click on the `Create` button on the left-hand side of the navigation bar to see the list of available accelerators. Select the **New Accelerator** tile by pressing on the `CHOOSE` button.
 
-2. Fill in the new project form with the following information:
+    ![New Accelerator tile](images/getting-started-section2-1.png)
+
+2. Fill in the new project form with the information below. To browse the files of the accelerator, click on the `EXPLORE` button (optional). When finished, click on the `NEXT STEP` button.
 
     * Name: Your Accelerator name. This is the name of the generated ZIP file.
     * (Optional) Description: A description of your accelerator.
@@ -230,23 +241,38 @@ Use the following procedure to create an accelerator:
     * Git Branch: The branch for the git repository.
     * (Optional) Tags: Any associated tags that can be used for searches in the UI.
 
-3. Download and expand the zip file.
 
-    * The output contains a YAML file for an Accelerator resource, pointing to the git repository.
+    ![Generate Accelerators first prompt](images/getting-started-section2-2.png)
+
+    ![Explore project dialog box](images/getting-started-section2-3.png)
+
+
+3. Verify the provided information and click on `CREATE`
+
+    ![Verify information for creating an accelerator](images/getting-started-section2-4.png)
+
+
+4. Download and expand the ZIP file by clicking on the `DOWNLOAD ZIP FILE` and expand it.
+
+    * The output contains a YAML file for an Accelerator resource, pointing to the Git repository.
     * The output contains a file named `new-accelerator.yaml` which defines the metadata for your new accelerator.
 
-4. To apply the k8s-resource.yml, run the following command in your terminal in the folder where you expanded the zip file:
+
+    ![Download ZIP file with the accelerator](images/getting-started-section2-5.png)
+
+
+5. To apply the k8s-resource.yml, run the following command in your terminal in the folder where you expanded the zip file:
 
     ```
     kubectl apply -f k8s-resource.yaml --namespace accelerator-system
     ```
 
-5. The Tanzu Application Platform GUI refreshes periodically. Once the GUI refreshes, the new accelerator becomes available. After waiting a few minutes, click the **Create** button on the left-side navigation bar of the Tanzu Application Platform GUI to see if the accelerator appears.
+6. The Tanzu Application Platform GUI refreshes periodically. Once the GUI refreshes, the new accelerator becomes available. After waiting a few minutes, click the `Create` button on the left-hand side navigation bar of the Tanzu Application Platform GUI to see if the accelerator appears.
 
 
-#### Using accelerator.yaml
+### Using accelerator.yaml
 
-The Accelerator zip file contains a file called `new-accelerator.yaml`.
+The Accelerator ZIP file contains a file called `new-accelerator.yaml`.
 This file is a starting point for the metadata for your new accelerator and the associated options and file processing instructions.
 This `new-accelerator.yaml` file should be copied to the root directory of your git repo and named `accelerator.yaml`.
 
@@ -449,7 +475,7 @@ Tekton pipeline.
   </tr>
 </table>
 
-### Install Out of the Box with Testing
+### Install Out of the Box with testing
 
 When you chose not to use the preceding install method, see [Install
 Tekton](install-components.md#install-tekton).
@@ -475,7 +501,7 @@ tanzu package installed update tap -p tap.tanzu.vmware.com -v 0.3.0 --values-fil
 ```
 
 
-### Example Tekton Pipeline Config
+### Example Tekton pipeline config
 
 In this section, we’ll add a Tekton pipeline to our cluster and in the following section,
 we’ll update the workload to point to the pipeline and resolve any of the current errors.
@@ -766,9 +792,9 @@ pipeline:
     ```
 
 
-## Section 4: Advanced Use Cases - Supply Chain Security Tools
+## Section 4: Advanced use cases - Supply Chain Security Tools
 
-### Supply Chain Security Tools Overview
+### Supply Chain Security Tools overview
 
 In this section, we will provide an overview of the supply chain security use cases that are available in Tanzu Application Platform:
 
@@ -776,7 +802,7 @@ In this section, we will provide an overview of the supply chain security use ca
 
 2. **Scan & Store**: Introducing vulnerability scanning and metadata storage to your supply chain
 
-### Sign: Introducing Image Signing & Verification to your Supply Chain
+### Sign: introducing image signing and verification to your Supply Chain
 
 #### Overview
 
@@ -791,7 +817,7 @@ Currently, this component supports cosign signatures and its key formats.
 Although this component does not sign container images, you could use tools such
 as the [cosign CLI](https://github.com/sigstore/cosign#quick-start),
 [kpack](https://github.com/pivotal/kpack/blob/main/docs/image.md#cosign-config),
-and [Tanzu Build Service](https://docs.vmware.com/en/Tanzu-Build-Service/1.3/vmware-tanzu-build-service-v13/GUID-index.html)
+and [Tanzu Build Service](https://docs.vmware.com/en/VMware-Tanzu-Build-Service/index.html)
 (which is what we will overview in this document) to generate signatures for
 your images.
 
@@ -800,7 +826,7 @@ its origin and integrity.
 Operators can increase their confidence that trusted software is running on their
 clusters by verifying signatures on artifacts prior to their deployment.
 
-#### Use Cases
+#### Use cases
 
 * Validate signatures from a given registry.
 * Deny unsigned images from being admitted in the cluster.
@@ -808,14 +834,14 @@ clusters by verifying signatures on artifacts prior to their deployment.
 > **Note**: this component does not verify images that are already running in a
 > cluster.
 
-**Signing Container Images**
+**Signing container images**
 
 Tanzu Application Platform supports verifying container image signatures that
 follow the cosign format.
 Application operators may sign container images and store them in the registry
 in several different ways, including:
 
-* Using [Tanzu Build Service v1.3](https://docs.vmware.com/en/Tanzu-Build-Service/1.3/vmware-tanzu-build-service-v13/GUID-index.html).
+* Using [Tanzu Build Service v1.4](https://docs.vmware.com/en/Tanzu-Build-Service/1.4/vmware-tanzu-build-service-v14/GUID-index.html).
 * Using [kpack](https://github.com/pivotal/kpack/blob/main/docs/image.md#cosign-config)
 v0.4.0 or higher.
 * Signing existing images with [cosign](https://github.com/sigstore/cosign#quick-start).
@@ -892,7 +918,7 @@ The custom resource for the policy must have a name of `image-policy`.
 > are known to run container images that are not currently signed, such as the
 > `kube-system` namespace.
 
-#### Examples and Expected Results
+#### Examples and expected results
 
 If a platform operator creates the following policy, there are different scenarios
 and expected outcomes:
@@ -950,14 +976,14 @@ scenarios. To examine the logs the platform operator can run:
 kubectl logs -n image-policy-system -l "signing.run.tanzu.vmware.com/application-name=image-policy-webhook" -f
 ```
 
-#### Next Steps and Further Information
+#### Next steps and further information
 
 * [Overview for Supply Chain Security Tools - Sign](scst-sign/overview.md)
 * [Configuring Supply Chain Security Tools - Sign](scst-sign/configuring.md)
 * [Supply Chain Security Tools - Sign Known Issues](scst-sign/known_issues.md)
 
 
-### Scan & Store: Introducing Vulnerability Scanning and Metadata Storage to your Supply Chain
+### Scan and Store: Introducing vulnerability scanning and metadata storage to your Supply Chain
 
 **Overview**
 
@@ -983,7 +1009,7 @@ to easily reference historical scan results, and provides querying functionality
 
 To try the scan and store features in a supply chain, see [Section 3: Add testing and security scanning to your application](#add-testing-and-scanning).
 
-#### Running Public Source Code and Image Scans with Policy Enforcement
+#### Running Public source code and image scans with policy enforcement
 
 Follow the instructions in [Sample public source code and image scans with policy enforcement](scst-scan/running-scans.md)
 to perform the following two types of public scans:
@@ -994,14 +1020,14 @@ to perform the following two types of public scans:
 Both examples include a policy that considers CVEs with Critical severity ratings as violations.
 
 
-#### Running Private Source Code and Image Scans with Policy Enforcement
+#### Running private source code and image scans with policy enforcement
 
 Follow the instructions in [Sample private source scan](scst-scan/samples/private-source.md) to perform a source code scan against a private registry or
 [Sample private image scan](scst-scan/samples/private-image.md)
 to do an image scan on a private image.
 
 
-#### Viewing Vulnerability Reports using Supply Chain Security Tools - Store Capabilities
+#### Viewing vulnerability reports using Supply Chain Security Tools - Store capabilities
 
 After completing the scans from the previous step,
 query the [Supply Chain Security Tools - Store](scst-store/overview.md) to view your vulnerability results.
@@ -1012,12 +1038,12 @@ to query metadata that have been submitted to the component after the scan step.
 For a complete guide on how to query the store,
 see [Querying Supply Chain Security Tools - Store](scst-store/query_data.md).
 
-#### Example Supply Chain including Source and Image Scans
+#### Example Supply Chain including source and image scans
 
 One of the out of the box supply chains we are working on for a future release will include image and source code vulnerability scanning and metadata storage into a preset Tanzu Application Platform supply chain. Until then, you can use this example to see how to try this out:
 [Example Supply Chain including Source and Image Scans](scst-scan/choreographer.md).
 
-**Next Steps and Further Information**
+**Next steps and further information**
 
 * [Configure Code Repositories and Image Artifacts to be Scanned](scst-scan/scan-crs.md)
 
@@ -1104,7 +1130,7 @@ The [setup procedure](#consuming-services-setup) is typically performed by the S
 * [Use Case 2 - **Binding an App Workload to a Service Resource across multiple clusters**](#services-journey-use-case-2)
 * [Use Case 3 - **Binding an App Workload directly to a Secret (support for external services)**](#services-journey-use-case-3) -->
 
-### <a id='consuming-services-setup'></a> Setup
+### <a id='consuming-services-setup'></a> Set Up
 
 Follow these steps to install RabbitMQ Operator, create the necessary role-based access control (RBAC),
 and create a Services Toolkit resource called `ClusterResource` for RabbitmqCluster.
