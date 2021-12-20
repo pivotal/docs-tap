@@ -2052,6 +2052,9 @@ and you want to use `NodePort`, then create a `metadata-store-values.yaml` and c
 >see [Supply Chain Security Tools - Sign Known Issues](scst-sign/known_issues.md#sign-known-issues-pods-not-admitted)
 >for recovery steps.
 
+**Note:** v1alpha1 api version of the ClusterImagePolicy is no longer supported as the group name has been renamed from 
+`signing.run.tanzu.vmware.com` to `signing.apps.vmware.com`.
+
 ### <a id='scst-sign-prereqs'></a> Prerequisites
 
 During configuration for this component, you are asked to provide a cosign public key to use to
