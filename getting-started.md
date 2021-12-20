@@ -297,33 +297,32 @@ tanzu accelerator update <accelerator-name> --reconcile
 
 ## <a id='add-testing-and-scanning'></a> Section 3: Add Testing and Security Scanning to Your Application
 
-### What is a Supply Chain?
+#### About Supply Chains
 
-Supply Chains provide a way of codifying all of the steps of your path to production, or what is
-more commonly known as CI/CD.
-A supply chain differs from CI/CD in that you can add any and every step that is necessary for an
-application to reach production, or a lower environment.
+Supply Chains provide a way of codifying all of the steps of your path to production. 
+A supply chain differs from continuous integration (CI)/continuous delivery (CD), because it allows you to add any steps necessary for an
+application to reach production, or a different environment such as staging.
 
 ![Diagram depicting a simple path to production: CI to Security Scan to Build Image to Image Scan to CAB Approval to Deployment.](images/path-to-production.png)
 
 #### A simple path to production
 
-A path to production allows users to create a unified access point for all of the tools required
-for their applications to reach a customer-facing environment.
+A path to production allows you to create a unified access point for all of the tools required
+for your applications to reach a customer-facing environment.
 Instead of having four tools that are loosely coupled to each other, a path to production defines
-all four tools in a single, unified layer of abstraction.
+all four tools into a single layer, which can be automated and repeatable between teams for applications at scale.
 
-Where tools typically are not able to integrate with one another and additional scripting or
-webhooks are necessary, there would be a unified automation tool to codify all the interactions
+Tools typically unable to integrate with one another, and additional scripting or
+webhooks are necessary, instead have a unified automation tool to codify all of the interactions
 between each of the tools.
-Supply chains used to codify the organization's path to production are configurable, allowing their
-authors to add all of the steps of their application's path to production.
+Supply chains used to codify the organization's path to production are configurable, which allows
+its authors to add all of the steps of the application's path to production.
 
-Tanzu Application Platform provides three out of the box supply chains designed to
+The Tanzu Application Platform provides three OOTB supply chains designed to
 work with Tanzu Application Platform components.
 
 
-#### Supply Chains included in Beta 3
+#### Available OOTB supply chains
 
 The Tanzu Application Platform installation steps cover installing the default Supply Chain, but
 others are available.
