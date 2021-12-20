@@ -2604,7 +2604,7 @@ that you plan to create the `Workload` in:
     `https://index.docker.io/v1/`. Specifically, it must have the leading `https://`, the `v1` path,
     and the trailing `/`. For GCR, this is `gcr.io`.
 
-   **Note:** If you observe following issue with the above command
+   **Note:** If you observe the following issue with the above command
    
    ```
    panic: runtime error: invalid memory address or nil pointer dereference
