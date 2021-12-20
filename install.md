@@ -20,42 +20,50 @@ To add the Tanzu Application Platform package repository:
     export INSTALL_REGISTRY_HOSTNAME=registry.tanzu.vmware.com
     ```
 
-2. Create a registry secret by running:
+2. Create a namespace called `tap-install` for deploying any component packages by running:
+
+    ```
+    kubectl create ns tap-install
+    ```
+
+    This namespace keeps the objects grouped together logically.
+
+3. Create a registry secret by running:
 
     ```
     tanzu secret registry add tap-registry \
       --username ${INSTALL_REGISTRY_USERNAME} --password ${INSTALL_REGISTRY_PASSWORD} \
       --server ${INSTALL_REGISTRY_HOSTNAME} \
-      --export-to-all-namespaces --yes --namespace tanzu-package-repo-global
+      --export-to-all-namespaces --yes --namespace tap-install
     ```
 
-3. Add Tanzu Application Platform package repository to the cluster by running:
+4. Add Tanzu Application Platform package repository to the cluster by running:
 
     ```
     tanzu package repository add tanzu-tap-repository \
       --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.4.0 \
-      --namespace tanzu-package-repo-global
+      --namespace tap-install
     ```
     For example:
 
     ```
     $ tanzu package repository add tanzu-tap-repository \
         --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.4.0 \
-        --namespace tanzu-package-repo-global
+        --namespace tap-install
     \ Adding package repository 'tanzu-tap-repository'...
 
     Added package repository 'tanzu-tap-repository'
     ```
 
-4. Get the status of the Tanzu Application Platform package repository, and ensure the status updates to `Reconcile succeeded` by running:
+5. Get the status of the Tanzu Application Platform package repository, and ensure the status updates to `Reconcile succeeded` by running:
 
     ```
-    tanzu package repository get tanzu-tap-repository --namespace tanzu-package-repo-global
+    tanzu package repository get tanzu-tap-repository --namespace tap-install
     ```
     For example:
 
     ```
-    $ tanzu package repository get tanzu-tap-repository --namespace tanzu-package-repo-global
+    $ tanzu package repository get tanzu-tap-repository --namespace tap-install
     - Retrieving repository tap...
     NAME:          tanzu-tap-repository
     VERSION:       3769
@@ -64,14 +72,6 @@ To add the Tanzu Application Platform package repository:
     STATUS:        Reconcile succeeded
     REASON:
     ```
-
-5. Create a namespace called `tap-install` for deploying any component packages by running:
-
-    ```
-    kubectl create ns tap-install
-    ```
-
-    This namespace will keep installed package objects grouped together.
 
 6. List the available packages by running:
 
