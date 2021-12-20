@@ -9,26 +9,31 @@ Welcome to the Tanzu Application Platform. This document guides you through gett
 * Add testing and security scanning to an application
 * Administer, set up, and manage supply chains
 
+Before getting started, you will need to complete the prerequisites in the next section.
 
-### Prerequisites
 
-To take full advantage of this document, ensure you have followed [Installing Tanzu Application Platform](install-intro.md).
+## Prerequisites
 
-Before getting started, ensure the following prerequisites are in place:
+Please check you have successfully:
 
-1. Tanzu Application Platform is installed on the target Kubernetes cluster. For installation instructions, see [Installing Part I: Prerequisites, EULA, and CLI](install-general.md) and [Installing Part II: Profiles](install.md).
+* **Installed the Tanzu Application Platform**<br>
+(see [Installing Tanzu Application Platform](install-intro.md) for instructions)
 
-2. Default kubeconfig context is set to the target Kubernetes cluster.
+* **Installed the Tanzu Application Platform on the target Kubernetes cluster**<br>
+(see [Installing Part I: Prerequisites, EULA, and CLI](install-general.md) and [Installing Part II: Profiles](install.md) for instructions)
 
-3. The Out of The Box Supply Chain Basic is installed. See [Install default Supply Chain](install-components.md#install-ootb-supply-chain-basic).
+* **Set the default kubeconfig context to the target Kubernetes cluster**<br>
 
-4. A developer namespace is set up to accommodate the developer's Workload.
-   See [Set Up Developer Namespaces to Use Installed Packages](install-components.md#-set-up-developer-namespaces-to-use-installed-packages).
+* **Installed Out of The Box (OOTB) Supply Chain Basic**<br>
+(see [Install default Supply Chain](install-components.md#install-ootb-supply-chain-basic) for instructions)
 
-5. Tanzu Application Platform GUI is successfully installed.
+* **Set up a developer namespace to accommodate the developer Workload**<br>
+(see [Set Up Developer Namespaces to Use Installed Packages](install-components.md#-set-up-developer-namespaces-to-use-installed-packages) for instructions)
 
-6. Install the VSCode Tanzu Extension.
-   See [How to Install the VSCode Tanzu Extension](vscode-extension/install.md).
+* **Installed the Tanzu Application Platform GUI**<br>
+
+* **Installed the VSCode Tanzu Extension**<br>
+(see [How to Install the VSCode Tanzu Extension](vscode-extension/install.md) for instructions)
 
 If you have completed the prerequisites, then you're ready to get started!
 
