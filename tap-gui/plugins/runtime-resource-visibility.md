@@ -71,51 +71,47 @@ To view the list of your running resources:
 
 ### Seeing details for a specific resource
 
-The index table will show Deployments, Pods, ReplicaSets and Services that matches with the label indicated in the component's definition; you will see a master-detail structure between all the different objects using the owners and dependents relationships stablished between them; those resources without an owner will be listed in the table as independent elements.
+The index table shows Deployments, Pods, ReplicaSets, and Services that match the label indicated in the component's definition. You can view a master-detail structure for all the objects using the owners and dependents relationships established between them. Resources without an owner are listed in the table as independent elements.
 
-> For additional information about owners and dependants please visit [the official documentation](https://kubernetes.io/docs/concepts/overview/working-with-objects/owners-dependents/)
+For information about owners and dependents, see [the official documentation](https://kubernetes.io/docs/concepts/overview/working-with-objects/owners-dependents/).
 
-Following, you can see an example of an expanded view for the index table.
+The following image is an example of an expanded view for the index table.
 
 ![Runtime resources index table collapsed](images/runtime-resources-expanded.png)
 
 ## Detail pages
 
-Currently, we provide pages for many resources to allows users to see the most relevant characteristics of each one, including direct links to other resources.
-These are the common sections included in all pages:
+The Runtime Runtime Resources Visibility plugin provides pages for many resources to allow users to view the most relevant characteristics of each one, including direct links to other resources.
+
+These following sections explain the sections included on all pages:
 
 ### Overview section
 
-It is the first card in all details pages, most of the information included in it came from the `metadata` attribute in each object. Some attributes displayed here are:
+The overview section is the first card in every details page. Wost of the information included in it comes from the `metadata` attribute in each object. 
+Some attributes displayed here include:
 
-1. **.YAML** button: Show the current object's definition in yaml; you can copy the full content using the icon in the top-right corner.
-2. Name
-3. Namespace
-4. Age / Creation date
-5. Cluster*
-6. URL**
-
-**Cluster: the value displayed corresponds to the name used in the cluster's configuration.*
-
-** _URL: Available for knative services and K8s services_
-
-E.g:
+  1. **.YAML** button: Show the current object's definition in yaml; you can copy the full content using the icon in the top-right corner.
+  2. Name
+  3. Namespace
+  4. Age or Creation date
+  5. Cluster: The value displayed corresponds to the name used in the cluster's configuration.
+  6. URL: URL is available for Knative services and Kubernetes services.
 
 ![Overview section](images/runtime-resources-overview.png)
 
 ### Status section
 
-This section displays the all the conditions included in the resource's attribute `status.conditions`; not all resources has conditions, they could be different between each one.
+The status section displays all of the conditions included in the resource's attribute `status.conditions`. Not all resources have conditions, and they could be different for each resource.
 
-For a better understanding about status please visit [Concepts - Object Spec and Status](https://kubernetes.io/docs/concepts/_print/#object-spec-and-status).
+See [Concepts - Object Spec and Status](https://kubernetes.io/docs/concepts/_print/#object-spec-and-status) in the Kubernetes documentation.
 
 ![Status section](images/runtime-resources-status.png)
 
 ### Ownership section
 
-Depending on the resource that you are currently viewing, this section presents all the resources specified in the `metadata.ownerReferences`.
+Depending on the resource that you are viewing, the ownership section presents all the resources specified in the `metadata.ownerReferences`.
 
-> For additional information about owners and dependants please visit [the official documentation](https://kubernetes.io/docs/concepts/overview/working-with-objects/owners-dependents/)
+See [Owners and Dependents](https://kubernetes.io/docs/concepts/overview/working-with-objects/owners-dependents/) in the Kubernetes documentation.
 
 ![Ownership section](images/runtime-resources-ownership.png)
 
@@ -127,15 +123,13 @@ Shows information on `metadata.annotations` and`metadata.labels`
 
 ## Navigating to pods
 
-You can go to pod's details page looking for the desired pod in the index table available in the first view by opening each of the resources there, like this:
+On the pod's details page, you can view a pod in the index table available in the first view by opening each of the resources there.
 
 ![Accessing pod from home](images/runtime-resources-index-pod.png)
 
-Or, you can use the table listing Pods in each detail page for components with a higher level in the Ownership hierarchy*, e.g:
+You can use the table listing Pods in each detail page for components with a higher level in the Ownership hierarchy. Columns can be different on each detail page.
 
 ![Accessing pod from home](images/runtime-resources-pods.png)
-
-**Columns could be different on each detail page.*
 
 ## Knative Service Details page
 
