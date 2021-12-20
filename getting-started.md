@@ -7,34 +7,35 @@ This guide intends to walk you through the experience of promoting your first ap
 The intended user of this guide is anyone curious about Tanzu Application Platform and its parts.
 There are two high-level workflows described in this document:
 
-1. The application development experience with the Developer Toolkit components.
-
-2. The administration, set up, and management of Supply Chains, Security Tools, Services, and Application Accelerators.
+Before getting started, you will need to complete the prerequisites in the next section.
 
 
 ## Prerequisites
 
-To take full advantage of this document, ensure you have followed [Installing Tanzu Application Platform](install-intro.md).
+Please check you have successfully:
 
----
+* **Installed the Tanzu Application Platform**<br>
+(see [Installing Tanzu Application Platform](install-intro.md) for instructions)
 
-## Section 1: Developing Your First Application on Tanzu Application Platform
+* **Installed the Tanzu Application Platform on the target Kubernetes cluster**<br>
+(see [Installing Part I: Prerequisites, EULA, and CLI](install-general.md) and [Installing Part II: Profiles](install.md) for instructions)
 
-In this section, you will deploy a simple web application to the platform, enable debugging and see your code updates added to the running application as you save them.
+* **Set the default kubeconfig context to the target Kubernetes cluster**<br>
 
-Before getting started, ensure the following prerequisites are in place:
+* **Installed Out of The Box (OOTB) Supply Chain Basic**<br>
+(see [Install default Supply Chain](install-components.md#install-ootb-supply-chain-basic) for instructions)
 
-1. Tanzu Application Platform is installed on the target Kubernetes cluster. For installation instructions, see [Installing Part I: Prerequisites, EULA, and CLI](install-general.md) and [Installing Part II: Profiles](install.md).
+* **Set up a developer namespace to accommodate the developer Workload**<br>
+(see [Set Up Developer Namespaces to Use Installed Packages](install-components.md#-set-up-developer-namespaces-to-use-installed-packages) for instructions)
 
-2. Default kubeconfig context is set to the target Kubernetes cluster.
+* **Installed the Tanzu Application Platform GUI**<br>
 
-3. The Out of The Box Supply Chain Basic is installed. See [Install default Supply Chain](install-components.md#install-ootb-supply-chain-basic).
+* **Installed the VSCode Tanzu Extension**<br>
+(see [How to Install the VSCode Tanzu Extension](vscode-extension/install.md) for instructions)
 
-4. A developer namespace is set up to accommodate the developer's Workload.
-   See [Set Up Developer Namespaces to Use Installed Packages](install-components.md#-set-up-developer-namespaces-to-use-installed-packages).
+If you have completed the prerequisites, then you're ready to get started!
 
-5. Tanzu Application Platform GUI is successfully installed.
-
+## Section 1: Develop your first application on the Tanzu Application Platform
 
 ### About Application Accelerators
 
