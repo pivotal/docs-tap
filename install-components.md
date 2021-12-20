@@ -37,26 +37,36 @@ For information, see [Installing Part I: Prerequisites, EULA, and CLI](install-g
 
 ## <a id='install-prereqs'></a> Install cert-manager and FluxCD Source Controller
 
-cert_manager and FluxCD Source Controller are installed as part of all profiles. If you do not want to use a profile, install them manually.
+cert_manager and FluxCD Source Controller are installed as part of all profiles.
+If you do not want to use a profile, install them manually.
 
 >**Note:** In future versions, both cert-manager and FluxCD Source Controller will be shipped as packages.
 
 * **cert-manager**:
 
-    * Install cert-manager by running:
+    1. Install cert-manager by running:
+
         ```
         kapp deploy -y -a cert-manager -f https://github.com/jetstack/cert-manager/releases/download/v1.5.3/cert-manager.yaml
         ```
-        We have verified the Tanzu Application Platform repo bundle packages installation with cert-manager version v1.5.3.
 
-    * Verify installed cert-manager version by running:
-      For example:
+        We have verified the Tanzu Application Platform repo bundle packages installation with
+        cert-manager version v1.5.3.
+
+    2. Verify installed cert-manager version by running:
 
         ```
         kubectl get deployment cert-manager -n cert-manager -o yaml | grep 'app.kubernetes.io/version: v'
+        ```
+
+        Example output:
+
+        ```
+        $ kubectl get deployment cert-manager -n cert-manager -o yaml | grep 'app.kubernetes.io/version: v'
            app.kubernetes.io/version: v1.5.3
               app.kubernetes.io/version: v1.5.3
         ```
+
 * **FluxCD source-controller**:
 
     1. List version information for the package by running:
@@ -65,7 +75,7 @@ cert_manager and FluxCD Source Controller are installed as part of all profiles.
         tanzu package available list fluxcd.source.controller.tanzu.vmware.com -n tap-install
         ```
 
-         For example:
+        For example:
 
         ```
         $ tanzu package available list fluxcd.source.controller.tanzu.vmware.com -n tap-install
@@ -74,7 +84,7 @@ cert_manager and FluxCD Source Controller are installed as part of all profiles.
               fluxcd.source.controller.tanzu.vmware.com  0.16.0   2021-10-27 19:00:00 -0500 -05
         ```
 
-     2. Install the package by running:
+    2. Install the package by running:
 
         ```
         tanzu package install fluxcd-source-controller -p fluxcd.source.controller.tanzu.vmware.com -v VERSION-NUMBER -n tap-install
@@ -85,6 +95,7 @@ cert_manager and FluxCD Source Controller are installed as part of all profiles.
         - `VERSION-NUMBER` is the version of the package listed in step 1 above.
 
         For example:
+
         ```
         tanzu package install fluxcd-source-controller -p fluxcd.source.controller.tanzu.vmware.com -v 0.16.0 -n tap-install
         \ Installing package 'fluxcd.source.controller.tanzu.vmware.com'
@@ -977,6 +988,8 @@ You must have installed:
 - Out of The Box Templates (`ootb-templates.tanzu.vmware.com`)
 
 ### Install
+
+Install by following these steps:
 
 1. Ensure you do not have Out of The Box Supply Chain With Testing and Scanning
 (`ootb-supply-chain-testing-scanning.tanzu.vmware.com`) installed:
