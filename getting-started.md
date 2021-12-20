@@ -126,7 +126,7 @@ Workload Knative Services URL at the bottom of the command output.
 
 ### Add your application to the Tanzu Application Platform GUI Software Catalog
 
-To see this application in your organization catalog, you must register new entities as described below.
+To see this application in your organization catalog, you must register new entities as described below:
 
 
 1. Confirm you have installed the Blank Software Catalog (see [Configure the Tanzu Application Platform GUI](install.md#configure-tap-gui) for instructions).
@@ -194,8 +194,10 @@ to become available.
 
 You will see your changes on the cluster.
 
-You can now continue to make more changes. If you are finished, you can stop or disable live update. Open the command palette (⇧⌘P), type in Tanzu, and select either option.
-
+You can continue to make more changes. If you are finished, you can stop or disable live update:
+	1. Open the command palette (⇧⌘P).
+	1. Type in Tanzu.
+	1. Select stop or disable.
 
 #### Debug your application
 
@@ -212,12 +214,11 @@ Follow the steps below to debug your cluster:
 
 Now that your application is deployed, you can inspect the runtime characteristics of the running
 application.
-You can use the Application Live View UI to look into the running application to monitor resource
-consumption, Java Virtual Machine (JVM) status, incoming traffic, and change log level.
+You can use the Application Live View UI to monitor resource
+consumption, Java Virtual Machine (JVM) status, incoming traffic, and change log level for your running application.
 You can also troubleshoot environment variables and fine-tune the running application.
 
-Currently, Spring Boot-based applications can be diagnosed using Application Live View.
-To do so:
+To diagnosed Spring Boot-based applications using Application Live View:
 
 1. Follow the
 [Verify the Application Live View components](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-installing.html#verify-the-application-live-view-components-5) procedure
@@ -227,8 +228,7 @@ to ensure the Application Live View components are successfully installed.
 [Entry point to Application Live View plug-in](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.4/tap/GUID-tap-gui-plugins-app-live-view.html#entry-point-to-application-live-view-plugin-1) procedure.
 
 1. Select your application to view inside the running application and see the diagnostic options.
-For more information, see
-[Product Features](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-product-features.html).
+See [Product Features](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-product-features.html).
 
 
 ---
