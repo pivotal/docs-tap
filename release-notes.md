@@ -1,10 +1,62 @@
 # Release notes
 
-This topic contains release notes for Tanzu Application Platform beta.
+This topic contains release notes for Tanzu Application Platform v1.0.
 
-## <a id='0-3-0'></a> v0.4.0 beta release
+## <a id='1-0'></a> v1.0
 
-**Release Date**: TBD, 2021
+**Release Date**: MMMM DD, 2022
+
+### Features
+
+New features and changes in this release:
+
+* Feature 1
+* Feature 2
+
+**Updated Components**
+
+The following components have been updated in Tanzu Application Platform v1.0:
+
+- Supply Chain Security Tools
+    - **Sign v1.0.0-beta.3:** For more information, see the [Supply Chain Security Tools - Sign release notes](scst-sign/release-notes.md).
+
+### Known issues
+
+This release has the following issues:
+
+- **Convention Service:** Convention Service does not currently support self-signed certificates for integrating with a private registry. Support for self-signed certs will be available shortly.
+
+- **Installing Tanzu Application Platform on Google Kubernetes Engine (GKE):** When installing Tanzu Application Platform on GKE, Kubernetes control plane may be unavailable for several minutes during the install. Package installs can enter the ReconcileFailed state. When API server becomes available, packages try to reconcile to completion. This can happen on newly provisioned clusters which have not gone through GKE API server autoscaling. When GKE scales up an API server, the current Tanzu Application install continues, and any subsequent installs succeed without interruption.
+
+- **Supply Chain Security Tools - Sign:** If all webhook nodes or Pods are evicted by the cluster or scaled down, the admission policy blocks any Pods from being created in the cluster. To resolve the issue, delete the MutatingWebhookConfiguration and reapply it when the cluster is stable. For more information, see Supply Chain Security Tools - Sign known issues.
+
+### Security issues
+
+This release has the following security issues:
+
+* Customers should note that the installation will specify that the installer's Tanzu Network credentails be exported to all namespaces. Customers can optionally choose to mitigate this concern via one of two methods:
+  *  Create a Tanzu Network account with their own credentials and use this for the installation exclusively.
+  *  Using [Carvel tool's imgpkg](https://carvel.dev/imgpkg/) customers can create a dedicated OCI registry on their own infrastructure that can comply with any required security policies that may exist.
+* Security issue 2
+
+### Component release notes
+
+The following components have separate release notes. 
+
+| Component                                | Release notes                                                |
+| ---------------------------------------- | ------------------------------------------------------------ |
+| Application Accelerator for VMware Tanzu | [Release notes](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.5/acc-docs/GUID-release-notes.html) |
+| Application Live View for VMware Tanzu   | [Release notes](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-release-notes.html) |
+| Cloud Native Runtimes for VMware Tanzu   | [Release notes](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-release-notes.html) |
+| Supply Chain Security Tools - Scan   | [Release notes](scst-scan/release-notes.md)                  |
+| Supply Chain Security Tools - Sign       | [Release notes](scst-sign/release-notes.md)                  |
+| Supply Chain Security Tools - Store      | [Release notes](scst-store/release_notes.md)                 |
+| VMware Tanzu Build Service               | [Release notes](https://docs.vmware.com/en/Tanzu-Build-Service/1.3/vmware-tanzu-build-service-v13/GUID-release-notes.html) |
+
+
+## <a id='0-4-0'></a> v0.4.0 beta release
+
+**Release Date**: December 10, 2021
 
 ### Features
 
@@ -21,28 +73,31 @@ The Dev profile now includes:
 
 The Dev profile no longer includes Image Policy Webhook.
 
-**New Components**
-
-The following components are new in Tanzu Application Platform v0.4.0:
-
 **Updated Components**
 
 The following components have been updated in Tanzu Application Platform v0.4.0:
 
 - Supply Chain Security Tools
     - [Scan v1.0.0](scst-scan/overview.md)
+    - [Sign v1.0.0-beta.2](scst-sign/overview.md)
 - [Tanzu Application Platform GUI v1.0.0-rc.72](tap-gui/about.md)
+
+**Renamed Components**
+
+Workload Visibility Plugin is renamed Runtime Visibility Plugin.
+
 
 ### Known issues
 
-This release has the following issue:
+This release has the following issues:
 
-Convention Service does not support self-signed certificates for the private
-registry. We are actively working on adding this support.
-
-### Security issues
-
-<!-- This release has the following security issue: -->
+- **Convention Service:** Convention Service does not currently support self-signed certificates for integrating with a private registry. Support for self-signed certs will be available shortly.
+- **Installing Tanzu Application Platform on Google Kubernetes Engine (GKE):** When installing Tanzu Application Platform on GKE, Kubernetes control plane may be unavailable for several minutes during the install. Package installs can enter the ReconcileFailed state. When API server becomes available, packages try to reconcile to completion.
+  - This can happen on newly provisioned clusters which have not gone through GKE API server autoscaling. When GKE scales up an API server, the current Tanzu Application install continues, and any subsequent installs succeed without interruption.
+- **Supply Chain Security Tools - Sign:** If all webhook nodes or Pods are evicted by the cluster or scaled down,
+the admission policy blocks any Pods from being created in the cluster.
+To resolve the issue, delete the `MutatingWebhookConfiguration` and reapply it when the cluster is stable.
+For more information, see [Supply Chain Security Tools - Sign known issues](scst-sign/known_issues.md).
 
 
 ## <a id='0-3-0'></a> v0.3.0 beta release
@@ -179,7 +234,7 @@ This release has the following issues:
   v0.19.0 or later to avoid auth errors.
 - If package installation fails, use `tanzu package installed update` with the `--install` flag to continue installation.
 - When you use the `Tanzu Developer Tools for VSCode` extension,
-delete the workload before performing any of the following actions. This will avoid workload update errors.
+  delete the workload before performing any of the following actions. This will avoid workload update errors.
     - Switching between the `Live Update` & `Debug` capabilities
     - Disabling `Live Update` & re-starting `Live Update`
 

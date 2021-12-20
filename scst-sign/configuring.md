@@ -12,17 +12,15 @@ this policy will not be enforced.
 * `spec.verification.keys`: a list of public keys complementary to the private
 keys that were used to sign the images.
 
-* `spec.verification.images[].namePattern`: image name patterns for which the
-policy is enforced. Each image name pattern is mapped to the required public
-keys and, optionally, a secret that grants authentication to the private
-registry where images and signatures that match a given pattern are stored. The
-patterns specified here are evaluated from top to bottom.
+* `spec.verification.images[].namePattern`: image name patterns that the policy enforces.
+Each image name pattern maps to the required public keys. Optionally,
+use a secret to authenticate the private registry where images and signatures matching a name pattern are stored.
 
 The following is an example `ClusterImagePolicy`:
 
 ```
 ---
-apiVersion: signing.run.tanzu.vmware.com/v1alpha1
+apiVersion: signing.apps.tanzu.vmware.com/v1beta1
 kind: ClusterImagePolicy
 metadata:
     name: image-policy
@@ -60,15 +58,14 @@ If no `ClusterImagePolicy` resource is created all images are admitted into
 the cluster with the following warning:
 
 ```
-Warning: clusterimagepolicies.signing.run.tanzu.vmware.com "image-policy" not found. Image policy enforcement was not applied.
+Warning: clusterimagepolicies.signing.apps.tanzu.vmware.com "image-policy" not found. Image policy enforcement was not applied.
 ```
 
-The patterns are evaluated using the "any of" operator to admit container
-images. Given any pod, the image policy webhook will iterate over its list of
-containers and init containers. Creation of a pod will be allowed if, for
-each container image that matches `spec.verification.images[].namePattern`,
-there is at least one key specified in `spec.verification.images[].keys[]`
-which can verify the signature found for the container image.
+The patterns are evaluated using the any of operator to admit container
+images. For each pod, the image policy webhook iterates over the list of
+containers and init containers. The pod is verified when there is at least
+one key specified in `spec.verification.images[].keys[]` for each container image
+that matches `spec.verification.images[].namePattern`.
 
 >
 For a simpler installation process in a non-production environment,
@@ -82,7 +79,7 @@ images by adding system namespaces to the
 
 ```
 cat <<EOF | kubectl apply -f -
-apiVersion: signing.run.tanzu.vmware.com/v1alpha1
+apiVersion: signing.apps.tanzu.vmware.com/v1beta1
 kind: ClusterImagePolicy
 metadata:
   name: image-policy
@@ -137,7 +134,8 @@ service account. The service account and the secrets must be created in the
 
 ### <a id="secret-ref-cluster-image-policy"></a> Providing secrets for authentication in your policy
 
-If your use case matches the following conditions:
+You can provide secrets for authentication as part of the name pattern policy configuration provided your use case meets the following conditions:
+
 * Your images and signatures reside in a registry protected by authentication.
 
 * You do not have `imagePullSecrets` configured in your runnable resources or
@@ -145,12 +143,11 @@ in the `ServiceAccount`s your runnable resources use.
 
 * You would like this webhook to check these container images.
 
-You can provide secrets for authentication as part of the name pattern policy
-configuration, as shown in the example below:
+See the following example:
 
 ```
 ---
-apiVersion: signing.run.tanzu.vmware.com/v1alpha1
+apiVersion: signing.apps.tanzu.vmware.com/v1beta1
 kind: ClusterImagePolicy
 metadata:
   name: image-policy
@@ -187,9 +184,10 @@ privilege that will allow reading the signature stored in your registry.
 ### <a id="secrets-registry-credentials-sa"></a> Providing secrets for authentication in the `image-policy-registry-credentials` service account
 
 If you prefer to provide your secrets in the `image-policy-registry-credentials`
-service account instead follow the steps below:
+service account, follow these steps:
 
 1. Create the required secrets in the `image-policy-system` namespace (once per secret):
+
     ```
     kubectl create secret docker-registry SECRET-1 \
       --namespace image-policy-system \
@@ -200,6 +198,7 @@ service account instead follow the steps below:
 
 1. Create the `image-policy-registry-credentials` in the `image-policy-system`
 namespace and add the secret names from step 1 to the `imagePullSecrets` section:
+
     ```
     cat <<EOF | kubectl apply -f -
     apiVersion: v1
@@ -219,7 +218,7 @@ namespace and add the secret names from step 1 to the `imagePullSecrets` section
 
 ## Image name patterns
 
-The container image names can be matched exactly or using a wildcard (*)
+The container image names can be matched exactly or use a wildcard (*)
 that matches any number of characters. Here are some useful name pattern
 examples:
 
@@ -248,6 +247,7 @@ then you can run the following commands to check your configuration:
 
 1. Verify that a signed image, validated with a configured public key, launches.
 Run:
+
     ```
     kubectl run cosign \
       --image=gcr.io/projectsigstore/cosign:v1.2.1 \
@@ -266,6 +266,7 @@ Run:
     ```
 
 1. Verify that an unsigned image does not launch. Run:
+
     ```
     kubectl run bb --image=busybox --restart=Never
     ```
@@ -280,6 +281,7 @@ Run:
 
 1. Verify that an image signed with a key that does not match the configured
 public key will not launch. Run:
+
     ```
     kubectl run cosign-fail \
       --image=gcr.io/projectsigstore/cosign:v0.3.0 \
@@ -292,5 +294,5 @@ public key will not launch. Run:
     $ kubectl run cosign-fail \
       --image=gcr.io/projectsigstore/cosign:v0.3.0 \
       --command -- sleep 900
-    Error from server (The image: gcr.io/projectsigstore/cosign:v0.3.0 is not signed.): admission webhook "image-policy-webhook.signing.run.tanzu.vmware.com" denied the request: The image: gcr.io/projectsigstore/cosign:v0.3.0 is not signed.
+    Error from server (The image: gcr.io/projectsigstore/cosign:v0.3.0 is not signed.): admission webhook "image-policy-webhook.signing.apps.tanzu.vmware.com" denied the request: The image: gcr.io/projectsigstore/cosign:v0.3.0 is not signed.
     ```
