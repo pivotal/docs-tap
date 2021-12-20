@@ -85,7 +85,7 @@ For information about connecting to Tanzu Application Platform GUI, see
 
     Where `GIT-URL-TO-PROJECT-REPO` is the path you uploaded to in step 5.
 
-    If you bypassed step 5 and were unable to upload your accelerator to a Git repository, then you can use the public version to test with:
+    If you bypassed step 5 or were unable to upload your accelerator to a Git repository, then you can use the public version to test with:
     ```
     tanzu apps workload create tanzu-java-web-app \
     --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
@@ -107,7 +107,7 @@ For information about connecting to Tanzu Application Platform GUI, see
     tanzu apps workload tail tanzu-java-web-app --since 10m --timestamp
     ```
 
-8. After the workload is built and running, you can view the web-app in your browser. View the URL of the web-app by running the command below, and then press **ctrl-click** on the
+8. After the workload is built and running, you can view the Web App in your browser. View the URL of the Web App by running the command below, and then press **ctrl-click** on the
 Workload Knative Services URL at the bottom of the command output.
 
     ```
@@ -120,57 +120,55 @@ Workload Knative Services URL at the bottom of the command output.
 To see this application in your organization catalog, you must register new entities as described below.
 
 
-1. Ensure you have already installed the Blank Software Catalog. For installation information, see [Configure the Tanzu Application Platform GUI](install.md#configure-tap-gui).
+1. Confirm you have installed the Blank Software Catalog (see [Configure the Tanzu Application Platform GUI](install.md#configure-tap-gui) for instructions).
 
-2. Go to the `Home` screen of Tanzu Application Platform GUI by clicking the “Home” button on the left-side navigation bar and select `REGISTER ENTITY` button on the top.
+2. Navigate to the homepage of the Tanzu Application Platform GUI and click Home (located on the left-side navigation bar). Then click `REGISTER ENTITY`.
 
     ![REGISTER button on the right side of the header](images/getting-started-tap-gui-5.png)
 
-3. In the Register, an existing component prompt provides a link to the `catalog-info.yaml` file in the Git repo and click on `ANALYZE`
+3. "Register an existing component" prompts you to enter a repository URL. Type the link to the `catalog-info.yaml` file in the Git repository field and click `ANALYZE`.
 
     ![Select URL](images/getting-started-tap-gui-6.png)
 
-4. Review the entities that will be added to the catalog and click on `IMPORT`
+4. Review the catalog entities to be added and click `IMPORT`.
 
     ![Review the entities to be added to the catalog](images/getting-started-tap-gui-7.png)
 
-Once you navigate back to the `Home` screen, the catalog changes should be reflected immediately and you should be able to see the entry in the catalog and interact with it.
+5. Navigate back to the homepage, and the catalog changes and entries will be visible for further inspection.
 
-### <a id='iterate'></a>Iterate on your Application
+### <a id='iterate'></a>Iterate on your application
 
-Now that you have a skeleton workload working, you are ready to iterate on your application
-and test code changes on the cluster.
-Tanzu Developer Tools for VSCode, VMware Tanzu’s official IDE extension for VSCode,
-helps you develop & receive fast feedback on the Tanzu Application Platform.
+#### **Set up your integrated development environment (IDE)**
+With your basic application workload working, you are ready to iterate on your application
+and test your code changes on the cluster.
+Tanzu Developer Tools for VSCode and VMware Tanzu’s official IDE extension for VSCode
+will assist you in developing and receiving feedback on the Tanzu Application Platform.
 
-The VSCode extension enables live updates of your application while it runs on the cluster
-and lets you debug your application directly on the cluster.
+The VSCode extension enables live updates of your application while running on the cluster,
+and allows you to debug your application directly on the cluster.
 
-For information about installing the pre-requisites and the Tanzu Developer Tools extension, see
-[How to Install the VSCode Tanzu Extension](vscode-extension/install.md).
+For information about installing the prerequisites and the Tanzu Developer Tools extension, see
+[How to Install the VSCode Tanzu Extension](vscode-extension/install.md) for instructions.
 
->**Note:** For this sample app, you must use Tilt v0.23.2 or later
+>**Note:** For this sample application, you must use Tilt v0.23.2 or a later version.
 
-Open the ‘Tanzu Java Web App’ as a project within your VSCode IDE.
+1. Open the ‘Tanzu Java Web App’ as a project within your VSCode IDE.
 
-In order to ensure your extension helps you iterate on the correct project, you will need to configure its settings:
+2. To ensure your extension assists you with iterating on the correct project, you will need to configure its settings:
 
-1. Within VSCode, go to Preferences > Settings > Extensions > Tanzu.
-
-1. In the **Local Path** field, enter the path to the directory containing the Tanzu Java Web App.
-
-1. In the **Source Image** field, enter the destination image repository where
-you’d like to publish an image containing your workload source code.
-For example `harbor.vmware.com/myteam/tanzu-java-web-app-source`.
+ 	* Within VSCode, go to Preferences > Settings > Extensions > Tanzu.
+ 	* In the **Local Path** field, provide the path to the directory containing the Tanzu Java Web App.
+ 	* In the **Source Image** field, provide the destination image repository to publish an image containing your workload source code.
+	For example, `harbor.vmware.com/myteam/tanzu-java-web-app-source`.
 
 You are now ready to iterate on your application.
 
 
-### Live update your application
+#### Live update your application
 
-Deploy the application and see it live update on the cluster. Doing so allows you to understand how your code changes will behave on a production-like cluster much earlier in the development process.
+Deploy the application to view it updating live on the cluster. This will demonstrate how your code changes will behave on a production-like cluster early in the development process.
 
-Follow these steps:
+To live update your application, follow the steps below:
 
 1. From the Command Palette (⇧⌘P), type in and select **Tanzu: Live Update Start**.
 Tanzu Logs opens up in the Output tab and you will see output from the
@@ -180,8 +178,8 @@ Because this is your first time starting live update for this application, it
 might take 1-3 minutes for the workload to be deployed and the Knative service
 to become available.
 
-1. Once you see output indicating that the workload is ready, navigate to `http://localhost:8080` in your browser and view your application running.
-1. Return to the IDE and make a change to the source code. For example, in `HelloController.java`, modify the string returned to say `Hello!` and save.
+1. When the output indicates the workload is ready, navigate to `http://localhost:8080` in your browser and view your running application.
+1. Return to the IDE and make a change to the source code. For example, in `HelloController.java`, you can modify the string returned with `Hello!`. Save when finished.
 1. If you look in the Tanzu Logs section of the Output tab, you will see the container has updated. Navigate back to your browser and refresh the page.
 
 
@@ -190,7 +188,7 @@ You will see your changes on the cluster.
 You can now continue to make more changes. If you are finished, you can stop or disable live update. Open the command palette (⇧⌘P), type in Tanzu, and select either option.
 
 
-### Debug your application
+#### Debug your application
 
 You can debug your cluster on your application or in your local environment.
 
