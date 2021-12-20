@@ -9,11 +9,15 @@ This topic contains release notes for Supply Chain Security Tools – Scan.
 
 ### New in this release
 
-* Enhanced scanning coverage is now available for Node.js apps.
-* CA certificates are now automatically imported from the Metadata Store namespace
+Changes in this release include:
+
+* Enhanced scanning coverage is available for Node.js apps
+* CA certificates are automatically imported from the Metadata Store namespace
 
 
 ### Known issues
+
+This release has these known issues:
 
 * **Failing Blob source scans:**
 Blob Source Scans have an edge case where, when a compressed file without a `.git` directory is
@@ -26,20 +30,23 @@ configured. The `.status.conditions` output, however, correctly reflects `Sendin
 
 * **Scan Phase indicates `Scanning` incorrectly:**
 Scans have an edge case where, when an error has occurred during scanning, the Scan Phase field does
-not get updated to `Error` and instead remains in the `Scanning` phase. Check the scan pod logs to
-verify if there was an error.
+not get updated to `Error` and instead remains in the `Scanning` phase.
+Read the scan Pod logs to verify that there was an error.
+
 
 ### Known limitations with Grype scanner
 
 * **Scanning Java source code may not reveal vulnerabilities:**
-Source Code Scanning will only scan files present in the source code repository (ie they will not
-make network calls to fetch dependencies). For languages that make use of dependency lock files (eg
-Golang and Node.js), Grype will use these lock files to check the dependencies for vulnerabilities.
-In the case of Java, dependency lock files are not guaranteed, so Grype will instead use the
-dependencies present in the built binaries (`.jar` or `.war` files). Since best practices do not
-include committing binaries to source code repositories, Grype will fail to find vulnerabilities
-during a Source Scan. The vulnerabilities will still be found during the Image Scan, after the
-binaries are built and packaged as images.
+Source Code Scanning only scans files present in the source code repository.
+No network calls are made to fetch dependencies.
+For languages that make use of dependency lock files, such as Golang and Node.js, Grype uses the lock
+files to check the dependencies for vulnerabilities.
+In the case of Java, dependency lock files are not guaranteed, so Grype instead uses the
+dependencies present in the built binaries (`.jar` or `.war` files).
+Because best practices do not include committing binaries to source code repositories, Grype fails to
+find vulnerabilities during a Source Scan.
+The vulnerabilities are still found during the Image Scan, after the binaries are built and
+packaged as images.
 
 
 ## v1.0.0-beta.2
