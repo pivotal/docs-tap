@@ -35,6 +35,7 @@ If you have completed the prerequisites, then you're ready to get started!
 ## Section 1: Develop your first application on the Tanzu Application Platform
 
 In this section, you will:
+
 * Learn about application accelerators
 * Deploy your application
 * Add your application to the Tanzu Application Platform GUI Software Catalog
@@ -811,21 +812,22 @@ pipeline:
     NAME                                             URL                                               LATESTCREATED              LATESTREADY                READY     REASON
     service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.developer.example.com   tanzu-java-web-app-00001   tanzu-java-web-app-00001   Unknown   IngressNotConfigured
     ```
+#### Congratulations! You have successfully deployed your application on the Tanzu Application Platform.
+Continue through the next two sections, and you will not only have an opportunity to learn about recommended supply chain security best practices, but also have access to a powerful Services Journey experience on the Tanzu Application Platform utilizing several advanced use cases. 
 
+## Section 4: Configuring image signing and verification in your supply chain
 
-## Section 4: Advanced use cases - Supply Chain Security Tools
+In this section, you will:
+* Configure your supply chain to sign your image builds
+* Configure an admission control policy to verify image signatures before admitting Pods to the cluster
 
-### Supply Chain Security Tools overview
+### Configure your supply chain to sign your image builds
 
-In this section, we will provide an overview of the supply chain security use cases that are available in Tanzu Application Platform:
-
-1. **Sign**: Introducing image signing and verification to your supply chain
-
-2. **Scan & Store**: Introducing vulnerability scanning and metadata storage to your supply chain
-
-### Sign: introducing image signing and verification to your Supply Chain
-
-#### Overview
+1. Configure Tanzu Build Service to sign your container image builds using cosign. See [Managing Image Resources and Builds](https://docs.vmware.com/en/Tanzu-Build-Service/1.3/vmware-tanzu-build-service-v13/GUID-managing-images.html) for instructions.
+2. Create a `values.yaml` file, and install the sign supply chain security tools and image policy webhook. See [Install Supply Chain Security Tools - Sign](https://docs-staging.vmware.com/en/Tanzu-Application-Platform/0.4/tap/GUID-install-components.html#install-scst-sign) for instructions.
+3. Configure a `ClusterImagePolicy` resource to verify image signatures when deploying resources. The resource must be named `image-policy`. For example:
+	
+	![Cluster Image Policy Resource](images/cluster-image-policy-resource.png)
 
 This component allows a platform operator to define a policy that will
 restrict unsigned images from running on clusters.

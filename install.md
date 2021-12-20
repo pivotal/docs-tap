@@ -120,7 +120,7 @@ packages. This section explains how to install a profile.
 Tanzu Application Platform contains the following two profiles:
 
 - Full (`full`)
-- Dev (`dev`)
+- Light (`light`)
 
 The following table lists the packages contained in each profile:
 
@@ -130,7 +130,7 @@ The following table lists the packages contained in each profile:
    </td>
    <td><strong>Full</strong>
    </td>
-   <td><strong>Dev</strong>
+   <td><strong>Light</strong>
    </td>
   </tr>
   <tr>
@@ -182,46 +182,6 @@ The following table lists the packages contained in each profile:
    </td>
   </tr>
   <tr>
-   <td>Out of the Box Delivery - Basic
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-  </tr>
-  <tr>
-   <td>Out of the Box Supply Chain - Basic
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-  </tr>
-  <tr>
-   <td>Out of the Box Supply Chain - Testing
-   </td>
-   <td>&check;<sup>&ast;</sup>
-   </td>
-   <td>&check;
-   </td>
-  </tr>
-  <tr>
-   <td>Out of the Box Supply Chain - Testing and Scanning
-   </td>
-   <td>&check;<sup>&ast;</sup>
-   </td>
-   <td>
-   </td>
-  </tr>
-  <tr>
-   <td>Out of the Box Templates
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-  </tr>
-  <tr>
    <td>Developer Conventions
    </td>
    <td>&check;
@@ -261,7 +221,45 @@ The following table lists the packages contained in each profile:
    <td>
    </td>
   </tr>
+   <td>Out of the Box Delivery - Basic
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+  </tr>
   <tr>
+   <td>Out of the Box Supply Chain - Basic
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+   <td>Out of the Box Supply Chain - Testing
+   </td>
+   <td>&check;<sup>&ast;</sup>
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+   <td>Out of the Box Supply Chain - Testing and Scanning
+   </td>
+   <td>&check;<sup>&ast;</sup>
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Out of the Box Templates
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+  </tr>
    <td>Services Toolkit
    </td>
    <td>&check;
@@ -442,10 +440,10 @@ service's External IP address.
 >`buildservice.enable_automatic_dependency_updates: false` can be used to pause the automatic update
 >of Build Service dependencies.
 
-### Dev Profile
+### Light Profile
 
 ```
-profile: dev
+profile: light
 ceip_policy_disclosed: true # Installation fails if this is set to 'false'
 
 buildservice:
