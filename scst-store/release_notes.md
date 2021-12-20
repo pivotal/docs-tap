@@ -6,9 +6,9 @@ This topic contains release notes for Supply Chain Security Tools - Store.
 
 ### Breaking changes
 
-* Changed package name to `metadata-store.apps.tanzu.vmware.com`
+Changed package name to `metadata-store.apps.tanzu.vmware.com`
 
-### Fixes
+### Resolved issues
 
 Upgrade golang version from `1.17.1` to `1.17.5`
 
@@ -18,13 +18,13 @@ See [Troubleshooting and Known Issues](known_issues.md).
 
 ### Limitations
 
-Air gapped environments are not supported
+Air-gapped environments are not supported.
 
 ### CVEs
 
-No High or Critical CVEs found in any of the components. Scanned components using Black Duck Binary Analysis and Grype. 
-
-See [SCA Scanning Results](sca_scans/CVE.md)
+No High or Critical CVEs were found in any of the components.
+Components were scanned with Black Duck Binary Analysis and Grype.
+For more information, see [SCA Scanning Results](sca_scans/CVE.md)
 
 ## v1.0.0-beta.2
 
@@ -80,7 +80,7 @@ See [SCA Scanning Results](sca_scans/CVE.md)
 
 * Store SBOM, CVE, and metadata about images and source code
 * Query relationships between images, packages, and CVEs, and source code
-* Support for CycloneDX SBOM format.
+* Support for CycloneDX SBOM format
 * Command Line Interface (CLI)
 * Authentication using Kubernetes Service Accounts
 * Encrypted connection between client and API server
