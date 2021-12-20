@@ -117,7 +117,7 @@ Workload Knative Services URL at the bottom of the command output.
 
 ### Add your application to the Tanzu Application Platform GUI Software Catalog
 
-To see this application in your organization catalog, you must register new entities as described below.
+To see this application in your organization catalog, you must register new entities as described in the following:
 
 
 1. Confirm you have installed the Blank Software Catalog (see [Configure the Tanzu Application Platform GUI](install.md#configure-tap-gui) for instructions).
@@ -168,7 +168,7 @@ You are now ready to iterate on your application.
 
 Deploy the application to view it updating live on the cluster. This will demonstrate how your code changes will behave on a production-like cluster early in the development process.
 
-To live update your application, follow the steps below:
+To live update your application, complete the following steps:
 
 1. From the Command Palette (⇧⌘P), type in and select **Tanzu: Live Update Start**.
 Tanzu Logs opens up in the Output tab and you will see output from the
@@ -185,41 +185,43 @@ to become available.
 
 You will see your changes on the cluster.
 
-You can now continue to make more changes. If you are finished, you can stop or disable live update. Open the command palette (⇧⌘P), type in Tanzu, and select either option.
+Either continue to make more changes, or if you are finished, you can stop or disable live update. Open the command palette (⇧⌘P), type in Tanzu, and select either option.
 
 
 #### Debug your application
 
-You can debug your cluster on your application or in your local environment.
-
-Follow the steps below to debug your cluster:
+You can debug your cluster on your application or in your local environment.  To debug your cluster, complete the following the steps:
 
 1. Set a breakpoint in your code.
-2. Right-click the file `workload.yaml` within the `config` folder, and select `Tanzu: Java Debug Start`. In a few moments, the workload will be redeployed with debugging enabled.
-3. Return to your browser and navigate to `http://localhost:8080`. This will hit the breakpoint within VSCode. You can now step through or play to the end of the debug session using VSCode debugging controls.
+2. Right-click the file `workload.yaml` within the `config` folder, and select `Tanzu: Java Debug Start`. The workload will redeploy with debugging enabled.
+3. Navigate using your browser to `http://localhost:8080`. This will hit the breakpoint within VSCode. 
+4. Using the VSCode debugging controls, step through or play to the end of the debug session.
 
 
 ### Monitor your running application
 
-Now that your application is deployed, you can inspect the runtime characteristics of the running
-application.
-You can use the Application Live View UI to look into the running application to monitor resource
-consumption, Java Virtual Machine (JVM) status, incoming traffic, and change log level.
-You can also troubleshoot environment variables and fine-tune the running application.
+To inspect the runtime characteristics of the application, complete the following steps:
 
-Currently, Spring Boot-based applications can be diagnosed using Application Live View.
-To do so:
+1. Use the Application Live View UI to inspect the running application to monitor:
+	* resource consumption
+	* Java Virtual Machine (JVM) status
+	* incoming traffic
+	* change log level
+
+Troubleshooting environment variables and fine-tuning the running application is also available.
+
+Spring Boot-based applications can be diagnosed using Application Live View by completing the following steps:
 
 1. Follow the
-[Verify the Application Live View components](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-installing.html#verify-the-application-live-view-components-5) procedure
+[Verify the Application Live View components](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-installing.html#verify-the-application-live-view-components-5) instructions
 to ensure the Application Live View components are successfully installed.
 
 1. Access the Application Live View Tanzu Application Platform GUI by following the
-[Entry point to Application Live View plug-in](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.4/tap/GUID-tap-gui-plugins-app-live-view.html#entry-point-to-application-live-view-plugin-1) procedure.
+[Entry point to Application Live View plug-in](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.4/tap/GUID-tap-gui-plugins-app-live-view.html#entry-point-to-application-live-view-plugin-1) instructions.
 
-1. Select your application to view inside the running application and see the diagnostic options.
-For more information, see
-[Product Features](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-product-features.html).
+1. Select your application and view what the application is running and the diagnostic options.
+See
+[Product Features](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-product-features.html) for more information.
 
 
 ---
