@@ -30,20 +30,23 @@ Before getting started, ensure the following prerequisites are in place:
 6. Install the VSCode Tanzu Extension.
    See [How to Install the VSCode Tanzu Extension](vscode-extension/install.md).
 
+If you have completed the prerequisites, then you're ready to get started!
 
+## Section 1: Develop your first application on the Tanzu Application Platform
 
-## Section 1: Develop your first application on Tanzu Application Platform
+In this section, you will:
+* Learn about application accelerators
+* Deploy your application
+* Add your application to the Tanzu Application Platform GUI Software Catalog
+* Set up your integrated development environment (IDE)
+	* Iterate on your application
+	* Live update your application
+	* Debug your application
+* Monitor your running application 
 
-In this section, you deploy a simple web application to the platform, enable debugging,
-and see your code updates added to the running application as you save them.
+### About application accelerators
 
-#### About application accelerators
-
-The Application Accelerator Plugin of Tanzu Application Platform GUI is located on the left-hand side navigation bar (**Create** button). It helps application developers and administrators to create and generate application accelerators. Accelerators are templates that codify best practices and ensure important configuration and structures are in place.
-
-Developers can bootstrap their applications and get started with feature development. Application administrators can create custom accelerators that reflect their desired architectures and configurations, and enable fleets of developers to utilize them instantly. This decreases administrator concerns about whether developers are implementing their desired best practices.
-
-Application Accelerator templates are available as a quick start from [Tanzu Network](https://network.tanzu.vmware.com/products/app-accelerator). To create your own Application Accelerator, see [Creating an accelerator](#creating-an-accelerator).
+Application accelerators are templates that not only codify best practices, but also provide important configuration and structures ready and available for use. Developers can create applications and get started with feature development immediately. Administrators can create custom application accelerators that reflect desired architectures and configurations, enabling developer use according to the best practices defined. The Application Accelerator Plugin of TAP GUI assists both application developers and administrators when creating and generating application accelerators. To create your own application accelerator, see [Create your accelerator](#creating-an-accelerator) for instructions.
 
 
 ### Deploy your application
@@ -227,11 +230,12 @@ For more information, see
 ---
 
 
-## <a id='creating-an-accelerator'></a>Section 2: Creating an accelerator
+## <a id='creating-an-accelerator'></a>Section 2: Create your accelerator
 
-In this section, you will create a New Application Accelerator by using the Tanzu Application Platform GUI.
+In this section, you will:
+* Create a new application accelerator using the Tanzu Application Platform GUI
 
-### Create a New Application Accelerator ###
+### Create a new application accelerator ###
 
 Use the following procedure to create an accelerator:
 
@@ -294,6 +298,16 @@ tanzu accelerator update <accelerator-name> --reconcile
 ---
 
 ## <a id='add-testing-and-scanning'></a> Section 3: Add Testing and Security Scanning to Your Application
+
+In this section, you will:
+* Learn about supply chains
+* Discover available out of the box (OOTB) supply chains
+	*  OOTB Basic (default)
+	*  OOTB Testing
+	*  OOTB Testing+Scanning
+* Install OOTB Testing (optional)
+* Install OOTB Testing+Scanning (optional)
+
 
 ### What is a Supply Chain?
 
