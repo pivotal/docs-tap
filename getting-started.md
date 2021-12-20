@@ -28,7 +28,7 @@ Before getting started, ensure the following prerequisites are in place:
 5. Tanzu Application Platform GUI is successfully installed.
 
 6. Install the VSCode Tanzu Extension.
-   See [How to Install the VSCode Tanzu Extension](vscode-extension/install.md). 
+   See [How to Install the VSCode Tanzu Extension](vscode-extension/install.md).
 
 
 
@@ -205,16 +205,25 @@ Follow the steps below to debug your cluster:
 
 ### Monitor your running application
 
-Now that your application is deployed, you may want to inspect the run time
-characteristics of the running application. You can use the Application Live View UI to look
-into the running application to monitor resource consumption, Java Virtual Machine (JVM) status, incoming traffic,
-change log level, as well as troubleshoot environment variables and fine-tune the running application.
+Now that your application is deployed, you can inspect the runtime characteristics of the running
+application.
+You can use the Application Live View UI to look into the running application to monitor resource
+consumption, Java Virtual Machine (JVM) status, incoming traffic, and change log level.
+You can also troubleshoot environment variables and fine-tune the running application.
 
-Currently, Spring Boot-based applications can be diagnosed using Application Live View. Check that you have installed the [Application Live View](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.4/tap/GUID-install-components.html?hWord=N4IghgNiBcIJYDsDOAXSEAEYAO2JwGMwU4B7BDfANwFMMq4aB3EAXyA#install-app-live-view) components successfully, and follow the steps below:
+Currently, Spring Boot-based applications can be diagnosed using Application Live View.
+To do so:
+
+1. Follow the
+[Verify the Application Live View components](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-installing.html#verify-the-application-live-view-components-5) procedure
+to ensure the Application Live View components are successfully installed.
 
 1. Access the Application Live View Tanzu Application Platform GUI by following the
-[Entry point to Application Live View plug-in](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.4/tap/GUID-tap-gui-plugins-app-live-view.html#entry-point-to-application-live-view-plugin-1).
-2. Select your application to view inside the running application, and [explore](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-product-features.html) the various diagnostic capabilities.
+[Entry point to Application Live View plug-in](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.4/tap/GUID-tap-gui-plugins-app-live-view.html#entry-point-to-application-live-view-plugin-1) procedure.
+
+1. Select your application to view inside the running application and see the diagnostic options.
+For more information, see
+[Product Features](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-product-features.html).
 
 
 ---
