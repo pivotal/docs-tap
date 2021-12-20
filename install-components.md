@@ -726,7 +726,7 @@ To install Tanzu Build Service using the Tanzu CLI:
       no_proxy                             <nil>    string  Optional: A comma-separated list of hostnames, IP addresses, or IP ranges in CIDR format that should not use a proxy.
     ```
 
-2. Create a `tbs-values.yaml` file.
+1. Create a `tbs-values.yaml` file.
 
     ```
     ---
@@ -758,7 +758,7 @@ To install Tanzu Build Service using the Tanzu CLI:
     >`enable_automatic_dependency_updates: false` can be used to pause the automatic update of
     >Build Service dependencies.
 
-3. Install the package by running:
+1. Install the package by running:
 
     ```
     tanzu package install tbs -p buildservice.tanzu.vmware.com -v 1.4.2 -n tap-install -f tbs-values.yaml --poll-timeout 30m
@@ -788,7 +788,7 @@ To install Tanzu Build Service using the Tanzu CLI:
     >If the command times out, periodically run the installation verification step provided in the
     >following optional step. Image relocation continues in the background.
 
-4. (Optional) Verify the clusterbuilders created by the Tanzu Build Service install by running:
+1. (Optional) Verify the clusterbuilders created by the Tanzu Build Service install by running:
 
     ```
     tanzu package installed get tbs -n tap-install
