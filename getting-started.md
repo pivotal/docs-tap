@@ -224,12 +224,12 @@ You need the URL for the repository to create an Accelerator.
 
 To create a new application accelerator, complete the following steps:
 
-1. Click `Create` located on the left-hand side of the navigation bar on the Tanzu Application Platform GUI portal to view the list of available accelerators.
+1. Click `Create` on the left-hand side of the navigation bar on the Tanzu Application Platform GUI portal to view the list of available accelerators.
 2. Click `CHOOSE` to select the **New Accelerator** tile.
 
     ![New Accelerator tile](images/getting-started-section2-1.png)
 
-3. Complete the new project form with the following information:
+3. Complete the **New Project** form with the following information:
 
     * **Name**: `Your accelerator name` This is the name of the generated ZIP file
     * Description (Optional): A description of your accelerator
@@ -244,7 +244,7 @@ To create a new application accelerator, complete the following steps:
 
     ![Explore project dialog box](images/getting-started-section2-3.png)
 
-	To browse the files of the accelerator, click on the `EXPLORE` button (optional). When finished, click on the `NEXT STEP` button.
+	(Optional) To browse the accelerator files, click `EXPLORE`. When finished, click the `NEXT STEP` button.
 
 3. Verify the provided information and click on `CREATE`
 
