@@ -15,48 +15,31 @@ This topic contains release notes for Supply Chain Security Tools – Scan.
 
 ### Known issues
 
-This release has these known issues:
-
 * **Failing Blob source scans:**
 Blob Source Scans have an edge case where, when a compressed file without a `.git` directory is
 provided, sending results to the Supply Chain Security Tools - Store fails and the scanned revision
-value is not set.
-The current workaround is to add the `.git` directory to the compressed file.
-The fix for this issue is planned for after Supply Chain Security Tools – Scan reaches general
-availability.
+value is not set. The current workaround is to add the `.git` directory to the compressed file.
 
 * **Events show `SaveScanResultsSuccess` incorrectly:**
 `SaveScanResultsSuccess` appears in the events when the Supply Chain Security Tools - Store is not
-configured.
-The `.status.conditions` output, however, correctly reflects `SendingResults=False`.
-The fix for this issue is planned for after Supply Chain Security Tools – Scan reaches general
-availability.
+configured. The `.status.conditions` output, however, correctly reflects `SendingResults=False`.
 
-* **Scanning Java source code does not reveal vulnerabilities unless binary is included:**
-When scanning a Java source code directory, Grype does not use the `pom.xml` or `build.gradle` files
-to determine packages to scan for vulnerabilities.
-Instead, it scans the built binary (`.jar` or `.war` files) directly.
-The ScanLink Source Scan either clones a Git repository or downloads a compressed archived and then
-scans without building in between. As such, vulnerabilities are not found in the Source Scan unless
-the built binary is provided in the code repository or compressed archive.
-The fix for this issue is planned for after Supply Chain Security Tools – Scan reaches general
-availability.
-Possible workarounds are:
-    * Include the built binary in the source code repository or compressed archive.
-    * Update the `ScanTemplate` to include an InitContainer after the `repo` InitContainer to build
-    the binary.
+* **Scan Phase indicates `Scanning` incorrectly:**
+Scans have an edge case where, when an error has occurred during scanning, the Scan Phase field does
+not get updated to `Error` and instead remains in the `Scanning` phase. Check the scan pod logs to
+verify if there was an error.
 
-* **Network errors might cause scans to fail:**
-When scanning, `kubectl get sourcescan` or `kubectl get imagescan` might appear to fail with the
-phase set as `Scanning`. The Pod logs instead might show an HTTP error.
-This is an error state that is not properly propagating to the `sourcescan` or `imagescan` resource,
-which should instead have the phase set as `Error`.
-The fix for this issue is planned for after Supply Chain Security Tools – Scan reaches general
-availability.
-Because this is a normal error state that is not propagating, there is no specific solution.
-In most cases, an error in the Pod logs offers some suggestion to fix the issue it mentions.
-When that issue is a network flake, the suggestion might be to just delete and reapply the
-`sourcescan` or `imagescan` resources.
+### Known limitations with Grype scanner
+
+* **Scanning Java source code may not reveal vulnerabilities:**
+Source Code Scanning will only scan files present in the source code repository (ie they will not
+make network calls to fetch dependencies). For languages that make use of dependency lock files (eg
+Golang and Node.js), Grype will use these lock files to check the dependencies for vulnerabilities.
+In the case of Java, dependency lock files are not guaranteed, so Grype will instead use the
+dependencies present in the built binaries (`.jar` or `.war` files). Since best practices do not
+include committing binaries to source code repositories, Grype will fail to find vulnerabilities
+during a Source Scan. The vulnerabilities will still be found during the Image Scan, after the
+binaries are built and packaged as images.
 
 
 ## v1.0.0-beta.2
