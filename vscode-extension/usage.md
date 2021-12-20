@@ -1,10 +1,10 @@
 ---
-title: Using Tanzu Developer Tools for Visual Studio Code
-subtitle: Using Tanzu Developer Tools for Visual Studio Code
+title: Using VMware Tanzu Developer Tools for Visual Studio Code
+subtitle: Using VMware Tanzu Developer Tools for Visual Studio Code
 weight: 2
 ---
 
-This topic explains how to use the Tanzu Developer Tools extension for Visual Studio Code.
+This topic explains how to use the VMware Tanzu Developer Tools for Visual Studio Code.
 For a more detailed step-by-step walk-through, see [Getting Started instructions](../getting-started.md).
 
 # Usage
@@ -67,9 +67,9 @@ k8s_resource(<app-name>, port_forwards=["8080:8080"],
 
 Update the following parameters in the preceding example:
 
-  1. <source-image>: Destination for an image containing source code to be published.
-  2. <app-name>: The name of the application.
-  3. <path-to-workload>: Path to a file containing the workload resource for your application.
+  1. `<source-image>`: Destination for an image containing source code to be published.
+  2. `<app-name>`: The name of the application.
+  3. `<path-to-workload>`: Path to a file containing the workload resource for your application.
 
 If you're targeting a remote cluster, add the following to the Tiltfile:
 
@@ -77,7 +77,7 @@ If you're targeting a remote cluster, add the following to the Tiltfile:
 allow_k8s_contexts('context-name')
 ```
 
-See [Tilt docs](https://docs.tilt.dev/api.html#api.allow_k8s_contexts)
+See [Tilt docs](https://docs.tilt.dev/api.html#api.allow_k8s_contexts) for more information.
 
 ### Starting live update
 
