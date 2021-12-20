@@ -10,7 +10,7 @@ weight: 2
 
 ## Debugging your Workload
 
-Debugging requires a `workload.yaml` file in your project. View instructions for how to create a `workload.yaml` file [here](usage-getting-started#workload.yaml).
+Debugging requires a `workload.yaml` file in your project. View instructions for how to create a `workload.yaml` file [here](usage-getting-started#snippets-workload).
 
 Once you have a `workload.yaml` file in your project, you can debug by doing the following:
 
@@ -20,7 +20,7 @@ Once you have a `workload.yaml` file in your project, you can debug by doing the
 
 ## Live Update your Workload
 
-Live update requires a `workload.yaml` file and a `Tiltfile` in your project. View instructions for how to create them [here](usage-getting-started#Getting-set-up-with-Snippets).
+Live update requires a `workload.yaml` file and a `Tiltfile` in your project. View instructions for how to create them [here](usage-getting-started#snippets).
 
 
 ### Starting live update
