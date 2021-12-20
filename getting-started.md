@@ -236,26 +236,28 @@ In this section, you will:
 
 ### Create a new application accelerator ###
 
-Use the following procedure to create an accelerator:
+To create a new application accelerator, complete the following steps:
 
-1. From the Tanzu Application Platform GUI portal, click on the `Create` button on the left-hand side of the navigation bar to see the list of available accelerators. Select the **New Accelerator** tile by pressing on the `CHOOSE` button.
+1. Click `Create` located on the left-hand side of the navigation bar on the Tanzu Application Platform GUI portal to view the list of available accelerators.
+2. Click `CHOOSE` to select the **New Accelerator** tile.
 
     ![New Accelerator tile](images/getting-started-section2-1.png)
 
-2. Fill in the new project form with the information below. To browse the files of the accelerator, click on the `EXPLORE` button (optional). When finished, click on the `NEXT STEP` button.
+3. Complete the new project form with the following information:
 
-    * Name: Your Accelerator name. This is the name of the generated ZIP file.
-    * (Optional) Description: A description of your accelerator.
-    * K8s Resource Name: A Kubernetes resource name to use for the Accelerator.
-    * Git Repository URL: The URL for the git repository that contains the accelerator source code.
-    * Git Branch: The branch for the git repository.
-    * (Optional) Tags: Any associated tags that can be used for searches in the UI.
+    * **Name**: `Your accelerator name` This is the name of the generated ZIP file
+    * Description (Optional): A description of your accelerator
+    	*	**K8s Resource Name**: A Kubernetes resource name to use for the accelerator
+    	*	**Git Repository URL**: The URL for the Git repository that contains the accelerator source code
+    	*	**Git Branch**: The branch for the Git repository
+    * **Tags** (Optional): Associated tags that can be used for searches in the UI
 
 
     ![Generate Accelerators first prompt](images/getting-started-section2-2.png)
 
     ![Explore project dialog box](images/getting-started-section2-3.png)
 
+	To browse the files of the accelerator, click on the `EXPLORE` button (optional). When finished, click on the `NEXT STEP` button.
 
 3. Verify the provided information and click on `CREATE`
 
