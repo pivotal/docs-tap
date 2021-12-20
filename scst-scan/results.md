@@ -1,9 +1,9 @@
 # View scan status conditions
 
-## View scan status
+## Viewing scan status
 You can view the scan status by using `kubectl describe` on a `SourceScan` or `ImageScan`. You can see information about the scan status under the Status field for each scan CR.
 
-## Understand conditions
+## Understanding conditions
 The `Status.Conditions` array will be populated with the scan status information during and after scanning execution, and the policy validation (if defined for the scan) once the results are available.
 
 ### Condition types for the scans
@@ -31,3 +31,28 @@ The Condition with type `PolicySucceeded` indicates the compliance of the scanni
 The Reason field is `EvaluationPassed` if the scan complies with the defined policies. The Reason field is `EvaluationFailed` if the scan is not compliant, or `Error` if something went wrong.
 
 The Message and Error fields will be populated with `An error has occurred` and an error message if something went wrong during policy verification. Otherwise, the Message field will have `No CVEs were found that violated the policy` if there are no non-compliant vulnerabilities found or `Policy violated because of X CVEs` indicating the count of unique vulnerabilities found.
+
+## Understanding CVECount
+The `status.CVECount` will be populated with the number of CVEs in each category (CRITICAL, HIGH, MEDIUM, LOW, UNKNOWN) as well as the total (CVETOTAL).
+
+>**Note:** You can also view scan CVE summary in print columns with `kubectl get` on a `SourceScan` or `ImageScan`.
+
+## Understanding MetadataURL
+The `status.metadataURL` will be populated with the url of the vulnerability scan results in the metadata store integration. This is only available when the integration is configured.
+
+## Understanding Phase
+The `status.phase` field will be populated with the current phase of the scan. The phases are: Pending, Scanning, Completed, Failed, and Error.
+
+* `Pending`: initial phase of the scan.
+* `Scanning`: execution of the scan job is running.
+* `Completed`: scan completed and no CVEs were found that violated the scanpolicy.
+* `Failed`: scan completed but CVEs were found that violated the scan policy.
+* `Error`: indication of an error (e.g. an invalid scantemplate or scanpolicy).
+
+>**Note:** The PHASE print column also shows this with `kubectl get` on a `SourceScan` or `ImageScan`.
+
+## Understanding ScannedBy
+The `status.scannedBy` field will be populated with the name, vendor, and version of the scanner that is generating the security assessment report.
+
+## Understanding ScannedAt
+The `status.scannedAt` field will be populated with the latest datetime when the scanning was successfully finished.

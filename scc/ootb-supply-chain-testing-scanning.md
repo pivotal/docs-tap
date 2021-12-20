@@ -1,7 +1,4 @@
----
-title: Out of The Box Supply Chain with Testing and Scanning (ootb-supply-chain-testing-scanning)
-weight: 2
----
+# Out of The Box Supply Chain with Testing and Scanning
 
 This Cartographer Supply Chain ties a series of Kubernetes resources which,
 when working together, drives a developer-provided Workload from source code
@@ -39,7 +36,7 @@ Testing, but adds on top source and image scanning using Grype:
 - Deploying the application to the same cluster
 
 
-### Prerequisites
+## Prerequisites
 
 To make use this supply chain, it's required that:
 
@@ -69,8 +66,7 @@ have the _source-test-to-url_ installed** at the same time as
 _source-test-scan-to-url_.
 
 
-
-#### Developer namespace
+## Developer namespace
 
 As mentioned in the prerequisites section, this example builds on the previous
 Out of The Box Supply Chain examples, so only additions are included here.
@@ -79,51 +75,53 @@ To make sure you have configured the namespace correctly, it's important that
 the namespace has the following objects in it (including the ones marked with
 '_new_' whose explanation and details are provided below):
 
-- **image secret**: a Kubernetes secret of type
-  `kubernetes.io/dockerconfigjson` filled with credentials for pushing the
-container images built by the supply chain (see Supply Chain Basic for details)
+- **image secret**: A Kubernetes secret of type `kubernetes.io/dockerconfigjson` filled with
+credentials for pushing the container images built by the supply chain. For more information, see
+[Supply Chain Basic](ootb-supply-chain-basic.md).
 
-- **service account**: the identity to be used for any interaction with the
-  Kubernetes API made by the supply chain (see Supply Chain Basic for details)
+- **service account**: The identity to be used for any interaction with the Kubernetes API made by
+the supply chain. For more information, see [Supply Chain Basic](ootb-supply-chain-basic.md).
 
-- **role**: the set of capabilities that we want to assign to the service
-  account - it must provide the ability to manage all of the resources that the
-supplychain is responsible for (see Supply Chain Basic for details)
+- **role**: The set of capabilities that you want to assign to the service account. It must provide
+the ability to manage all of the resources that the supplychain is responsible for.
+For more information, see [Supply Chain Basic](ootb-supply-chain-basic.md).
 
-- **rolebinding**: binds the role to the service account, i.e., grants the
-  capabilities to the identity (see Supply Chain Basic for details)
+- **rolebinding**: Binds the role to the service account, which grants the capabilities to the
+identity. For more information, see [Supply Chain Basic](ootb-supply-chain-basic.md).
 
-- **tekton pipeline**: a pipeline to be ran whenever the supply chain hits the
-  stage of testing the source code (see Supply Chain With Testing for details)
+- (Optional) **git credentials secret**: When using GitOps for managing the delivery of applications
+or a private Git source, provides the required credentials for interacting with the Git repository.
+For more information, see [Supply Chain Basic](ootb-supply-chain-basic.md).
 
-- **scan policy** (_new_): defines what to do with the results taken from
-  scanning the source code and image produced (see below)
+- **tekton pipeline**: A pipeline to be ran whenever the supply chain hits the stage of testing the
+source code. For more information, see [Supply Chain with Testing](ootb-supply-chain-testing.md).
 
-- **source scan template** (_new_): a template of how Jobs should be created
-  for scanning the source code (see below)
+- **scan policy**: Defines what to do with the results taken from scanning the source code and
+image produced. For more information, see [ScanPolicy section](#scan-policy).
 
-- **image scan template** (_new_): a template of how Jobs should be created for
-  scanning the image produced by the supply chain (see below)
+- **source scan template**: A template of how jobs are created for scanning the source
+code. For more information, see [ScanTemplate section](#scan-template).
 
-Below you'll find details about the new objects (compared to Out of The Box
-Supply Chain With Testing).
+- **image scan template**: A template of how jobs are created for scanning the image
+produced by the supply chain. For more information, see [ScanTemplate section](#scan-template).
 
 
-#### Updates to the developer namespace
+### Updates to the developer namespace
 
 In order for source and image scans to happen, scan templates and scan policies
 must exist in the same namespace as the Workload. These define:
 
 - `ScanTemplate`: how to run a scan, allowing one to tweak details about the
   execution of the scan (either for images or source code)
+
 - `ScanPolicy`: how to evaluate whether the artifacts scanned are compliant,
   e.g., allowing one to be either very strict, or restrictive about particular
-  vulnerabilities found.
+vulnerabilities found.
 
 Note that the names of the objects **must** match the ones in the example.
 
 
-##### ScanPolicy
+#### <a id="scan-policy"></a> ScanPolicy
 
 The ScanPolicy defines a set of rules to evaluate for a particular scan to
 consider the artifacts (image or source code) either compliant or not.
@@ -132,7 +130,7 @@ When a ImageScan or SourceScan is created to run a scan, those reference a
 policy whose name **must** match the one below (`scan-policy`):
 
 ```
-apiVersion: scst-scan.apps.tanzu.vmware.com/v1alpha1
+apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: ScanPolicy
 metadata:
   name: scan-policy
@@ -163,118 +161,53 @@ spec:
     isCompliant = isSafe(input.currentVulnerability)
 ```
 
+See [Writing Policy Templates](scst-scan/policies.md) for more details]).
 
-##### ScanTemplate
+
+#### <a id="scan-template"></a> ScanTemplate
 
 A ScanTemplate defines the PodTemplateSpec to be used by a Job to run a
-particular scan (image or source). When an ImageScan our SourceScan is
+particular scan (image or source). When an ImageScan or SourceScan is
 instantiated by the supply chain, they reference these templates which must
 live in the same namespace as the Workload with the names matching the ones
 below:
 
-- source scanning (`blob-source-scan-template`):
+- source scanning (`blob-source-scan-template`)
+- image scanning (`private-image-scan-template`)
 
-```
-apiVersion: scst-scan.apps.tanzu.vmware.com/v1alpha1
-kind: ScanTemplate
-metadata:
-  name: blob-source-scan-template
-spec:
-  template:
-    containers:
-    - args:
-      - -c
-      - ./source/scan-source.sh /workspace/source scan.xml
-      command:
-      - /bin/bash
-      image: registry.tanzu.vmware.com/supply-chain-security-tools/grype-templates-image@sha256:36d947257ffd5d962d09e61dc9083f5d0db57dbbde5f5d7c7cd91caa323a2c43
-      imagePullPolicy: IfNotPresent
-      name: scanner
-      resources:
-        limits:
-          cpu: 1000m
-        requests:
-          cpu: 250m
-          memory: 128Mi
-      volumeMounts:
-      - mountPath: /workspace
-        name: workspace
-        readOnly: false
-    imagePullSecrets:
-    - name: image-secret
-    initContainers:
-    - args:
-      - -c
-      - ./source/untar-gitrepository.sh $REPOSITORY /workspace
-      command:
-      - /bin/bash
-      image: registry.tanzu.vmware.com/supply-chain-security-tools/grype-templates-image@sha256:36d947257ffd5d962d09e61dc9083f5d0db57dbbde5f5d7c7cd91caa323a2c43
-      imagePullPolicy: IfNotPresent
-      name: repo
-      volumeMounts:
-      - mountPath: /workspace
-        name: workspace
-        readOnly: false
-    restartPolicy: Never
-    volumes:
-    - emptyDir: {}
-      name: workspace
-```
+If you're targeting a namespace that doesn't match the one configured in the
+Tanzu Application Platform profiles, for example if `grype.namespace` is not the same as the one
+you're writing the workload to, you can install these in such namespace by making use of the
+`tanzu package install` command as described in [Install Supply Chain Security
+Tools - Scan](install-components.md#install-scst-scan):
 
-- image scanning (`private-image-scan-template`):
+1. Create a file named `ootb-supply-chain-basic-values.yaml` that specifies the corresponding values
+to the properties you want to tweak. For example:
+
+    ```
+    grype:
+      namespace: YOUR-DEV-NAMESPACE
+      targetImagePullSecret: registry-credentials
+    ```
+
+1. With the configuration ready, install the templates by running:
+
+    ```
+    tanzu package install grype-scanner \
+      --package-name grype.scanning.apps.tanzu.vmware.com \
+      --version 1.0.0 \
+      --namespace YOUR-DEV-NAMESPACE
+    ```
+
+>**Note:** Although you can customize the templates, if you're just following the Getting Started
+>guide then it's recommended you stick with what is provided in the installation of
+>`grype.scanning.apps.tanzu.vmware.com`. This is created in the same namespace as configured by
+>using `grype.namespace` in either Tanzu Application Platform profiles or individual component
+>installation as in the earlier example. For more information, see
+>[About Source and Image Scans](scst-scan/explanation.md#about-source-and-image-scans).
 
 
-```
-apiVersion: scst-scan.apps.tanzu.vmware.com/v1alpha1
-kind: ScanTemplate
-metadata:
-  name: private-image-scan-template
-spec:
-  template:
-    containers:
-    - args:
-      - -c
-      - ./image/copy-docker-config.sh /secret-data && ./image/scan-image.sh /workspace
-        scan.xml true
-      command:
-      - /bin/bash
-      image: registry.tanzu.vmware.com/supply-chain-security-tools/grype-templates-image@sha256:36d947257ffd5d962d09e61dc9083f5d0db57dbbde5f5d7c7cd91caa323a2c43
-      imagePullPolicy: IfNotPresent
-      name: scanner
-      resources:
-        limits:
-          cpu: 1000m
-        requests:
-          cpu: 250m
-          memory: 128Mi
-      volumeMounts:
-      - mountPath: /.docker
-        name: docker
-        readOnly: false
-      - mountPath: /workspace
-        name: workspace
-        readOnly: false
-      - mountPath: /secret-data
-        name: registry-cred
-        readOnly: true
-    imagePullSecrets:
-    - name: image-secret
-    restartPolicy: Never
-    volumes:
-    - emptyDir: {}
-      name: docker
-    - emptyDir: {}
-      name: workspace
-    - name: registry-cred
-      secret:
-        secretName: image-secret
-```
-
-Although they can be customized, we recommend sticking with the examples
-above.
-
-
-##### Developer Workload
+### Developer Workload
 
 With the ScanPolicy and ScanTemplate objects, with the required names set,
 submitted to the same namespace where the Workload will be submitted
@@ -294,7 +227,7 @@ configuration in git
   persisted in a repository
 
 
-###### Local iteration
+#### Local iteration
 
 For local iteration, all we need is the source code (in the example below,
 assuming the current directory `.` as the location of the source code we want
@@ -337,7 +270,7 @@ tanzu apps workload tail tanzu-java-web-app
 ```
 
 
-###### Local iteration with code from git
+#### Local iteration with code from git
 
 Similar to local iteration with local code, here we make use of the same type
 (`web`), but instead of pointing at source code that we have locally, we can
@@ -411,7 +344,7 @@ Out of The Box Supply Chain Basic.
 
 
 
-###### gitops
+#### gitops
 
 Differently from local iteration, the GitOps approach requires a secret
 containing credentials to a git provider (e.g., GitHub) to be exist in the same

@@ -1,4 +1,4 @@
-# Configuring and understanding logs
+# Log configuration and usage
 
 This topic covers how to configure the Supply Chain Security Tools - Store to output detailed log information and interpret them.
 
@@ -27,6 +27,41 @@ Currently, the application logs output at these levels:
 Other log levels do not output any additional log information and are present for future extensibility.
 
 If no log level is specified when the Store is installed, the log level is set to `default`.
+
+## Obtaining logs
+
+Logs are emitted by the k8s pods. The deploymet has two pods, one for the database, and one for the API backend. First, use `kubectl get pods` to obtain the names of the pods.
+
+```sh
+kubectl get pods -n metadata-store
+```
+
+For example:
+
+```sh
+$ kubectl get pods -n metadata-store
+NAME                                  READY   STATUS    RESTARTS   AGE
+metadata-store-app-67659bbc66-2rc6k   2/2     Running   0          4d3h
+metadata-store-db-64d5b88587-8dns7    1/1     Running   0          4d3h
+```
+
+The database pod has prefix `metadata-store-db-` and the API backend pod has prefix `metadata-store-app-`. Use `kubectl logs` to get the logs from the pod you're interested in. For example, if you wanted to see the logs of the database pod from the above example:
+
+```
+$ kubectl logs metadata-store-db-64d5b88587-8dns7 -n metadata-store
+The files belonging to this database system will be owned by user "postgres".
+This user must also own the server process.
+...
+```
+
+For the API backend, it's pod has two containers, one for `kube-rbac-proxy`, and the other for the API server. Use the `--all-containers` flag to see logs from both containers. For example:
+
+```
+$ kubectl logs metadata-store-app-67659bbc66-2rc6k --all-containers -n metadata-store
+I1206 18:34:17.686135       1 main.go:150] Reading config file: /etc/kube-rbac-proxy/config-file.yaml
+I1206 18:34:17.784900       1 main.go:180] Valid token audiences:
+...
+```
 
 ## API endpoint log output
 

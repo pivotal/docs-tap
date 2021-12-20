@@ -1,10 +1,43 @@
 # Release notes
 
-This topic contains release notes for Tanzu Application Platform beta.
+This topic contains release notes for Tanzu Application Platform v1.0.
 
-## <a id='0-3-0'></a> v0.4.0 beta release
+## <a id='1-0'></a> v1.0
 
-**Release Date**: TBD, 2021
+**Release Date**: MMMM DD, 2022
+
+### Features
+
+New features and changes in this release:
+
+* Feature 1
+* Feature 2
+
+**Updated Components**
+
+The following components have been updated in Tanzu Application Platform v1.0:
+
+- Supply Chain Security Tools
+    - **Sign v1.0.0-beta.3:** For more information, see the [Supply Chain Security Tools - Sign release notes](scst-sign/release-notes.md).
+
+### Known issues
+
+This release has the following issues:
+
+* Known issue 1
+* Known issue 2
+
+### Security issues
+
+This release has the following security issues:
+
+* Security issue 1
+* Security issue 2
+
+
+## <a id='0-4-0'></a> v0.4.0 beta release
+
+**Release Date**: December 10, 2021
 
 ### Features
 
@@ -21,31 +54,33 @@ The Dev profile now includes:
 
 The Dev profile no longer includes Image Policy Webhook.
 
-**New Components**
-
-The following components are new in Tanzu Application Platform v0.4.0:
-
 **Updated Components**
 
 The following components have been updated in Tanzu Application Platform v0.4.0:
 
 - Supply Chain Security Tools
     - [Scan v1.0.0](scst-scan/overview.md)
+    - [Sign v1.0.0-beta.2](scst-sign/overview.md)
 - [Tanzu Application Platform GUI v1.0.0-rc.72](tap-gui/about.md)
+
+**Renamed Components**
+
+Workload Visibility Plugin is renamed Runtime Visibility Plugin.
+
 
 ### Known issues
 
-This release has the following issue:
+This release has the following issues:
 
-- Convention Service does not support self-signed certificates for the private registry. We are actively working on adding this support.
-- When using "tanzu package installed update" command to only update data values, command will not wait for PackageInstall resource to start and finish reconciliation. Since PackageInstall resource is not directly modified, CLI will consider current state of PackageInstall resource as final (even though reconciliation will kick in a little bit of time). tanzu CLI will be enhanced in future versions to improve this behaviour.
-  - Suggested workaround is to observe state of PackageInstall after using update command.
-- When installing TAP on GKE, you may encounter Kubernetes control plane unavailability for several minutes during the install. This may cause package installs to enter ReconcileFailed state. Eventually when API server becomes available packages will try to be reconciled again to completion.
-  - This identified behaviour may happen on newly provisioned clusters which have not gone through GKE API server autoscaling (API server sizing in GKE is automatic and is not determined based on size or number of nodes). Once GKE scales up API server, current install will continue and any subsequent installs succeed without interruption. We are investigating how to improve this behaviour.
-
-### Security issues
-
-<!-- This release has the following security issue: -->
+- **Convention Service:** Convention Service uses a workaround for supporting a self-signed certificate for the private
+registry.
+For more information, see [Convention Service self-signed registry workaround](convention-service/self-signed-registry-workaround.md).
+- **Installing Tanzu Application Platform on Google Kubernetes Engine (GKE):** When installing Tanzu Application Platform on GKE, Kubernetes control plane may be unavailable for several minutes during the install. Package installs can enter the ReconcileFailed state. When API server becomes available, packages try to reconcile to completion.
+  - This can happen on newly provisioned clusters which have not gone through GKE API server autoscaling. When GKE scales up an API server, the current Tanzu Application install continues, and any subsequent installs succeed without interruption.
+- **Supply Chain Security Tools - Sign:** If all webhook nodes or Pods are evicted by the cluster or scaled down,
+the admission policy blocks any Pods from being created in the cluster.
+To resolve the issue, delete the `MutatingWebhookConfiguration` and reapply it when the cluster is stable.
+For more information, see [Supply Chain Security Tools - Sign known issues](scst-sign/known_issues.md).
 
 
 ## <a id='0-3-0'></a> v0.3.0 beta release

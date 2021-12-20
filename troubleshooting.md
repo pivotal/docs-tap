@@ -163,15 +163,15 @@ If it is still running, it is likely to finish successfully and produce output s
     conventions-controller    controller.conventions.apps.tanzu.vmware.com       0.4.2            Reconcile succeeded  tap-install
     developer-conventions     developer-conventions.tanzu.vmware.com             0.4.0-build1     Reconcile succeeded  tap-install
     fluxcd-source-controller  fluxcd.source.controller.tanzu.vmware.com          0.16.0           Reconcile succeeded  tap-install
-    grype                     scst-grype.apps.tanzu.vmware.com                   1.0.0            Reconcile succeeded  tap-install
-    image-policy-webhook      image-policy-webhook.signing.run.tanzu.vmware.com  1.0.0-beta.2     Reconcile succeeded  tap-install
+    grype                     grype.scanning.apps.tanzu.vmware.com               1.0.0            Reconcile succeeded  tap-install
+    image-policy-webhook      image-policy-webhook.signing.run.tanzu.vmware.com  1.0.0-beta.3     Reconcile succeeded  tap-install
     learningcenter            learningcenter.tanzu.vmware.com                    0.1.0-build.6    Reconcile succeeded  tap-install
     learningcenter-workshops  workshops.learningcenter.tanzu.vmware.com          0.1.0-build.7    Reconcile succeeded  tap-install
     ootb-delivery-basic       ootb-delivery-basic.tanzu.vmware.com               0.4.0-build.2    Reconcile succeeded  tap-install
     ootb-supply-chain-basic   ootb-supply-chain-basic.tanzu.vmware.com           0.4.0-build.2    Reconcile succeeded  tap-install
     ootb-templates            ootb-templates.tanzu.vmware.com                    0.4.0-build.2    Reconcile succeeded  tap-install
-    scanning                  scst-scan.apps.tanzu.vmware.com                    1.0.0            Reconcile succeeded  tap-install
-    scst-store                scst-store.tanzu.vmware.com                        1.0.0-beta.2     Reconcile succeeded  tap-install
+    scanning                  scanning.apps.tanzu.vmware.com                     1.0.0            Reconcile succeeded  tap-install
+    metadata-store                metadata-store.apps.tanzu.vmware.com            1.0.1            Reconcile succeeded  tap-install
     service-bindings          service-bindings.labs.vmware.com                   0.6.0            Reconcile succeeded  tap-install
     services-toolkit          services-toolkit.tanzu.vmware.com                  0.5.0-rc.3       Reconcile succeeded  tap-install
     source-controller         controller.source.apps.tanzu.vmware.com            0.2.0            Reconcile succeeded  tap-install
