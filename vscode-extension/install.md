@@ -54,7 +54,7 @@ To quickly get you started, we've created a sample application with all the nece
 
 **You're all set. Time to get developing!**
 
->Note: For getting started with existing applications, see [Code Snippets](usage#code-snippets) in the Tanzu Dev Tools Usage documentation.
+>Note: For getting started with existing applications, see [Code Snippets](usage-getting-started#snippets) in the Tanzu Dev Tools Usage documentation.
 
 ## Uninstall
 To uninstall the Tanzu Dev Tools extension:
