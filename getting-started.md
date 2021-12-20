@@ -37,7 +37,7 @@ Before getting started, ensure the following prerequisites are in place:
 In this section, you deploy a simple web application to the platform, enable debugging,
 and see your code updates added to the running application as you save them.
 
-### A note about Application Accelerators
+#### About application accelerators
 
 The Application Accelerator Plugin of Tanzu Application Platform GUI is located on the left-hand side navigation bar (**Create** button). It helps application developers and administrators to create and generate application accelerators. Accelerators are templates that codify best practices and ensure important configuration and structures are in place.
 
@@ -115,7 +115,7 @@ Workload Knative Services URL at the bottom of the command output.
     ```
 
 
-### Add your application to Tanzu Application Platform GUI Software Catalog
+### Add your application to the Tanzu Application Platform GUI Software Catalog
 
 To see this application in your organization catalog, you must register new entities as described below.
 
@@ -137,8 +137,6 @@ To see this application in your organization catalog, you must register new enti
 Once you navigate back to the `Home` screen, the catalog changes should be reflected immediately and you should be able to see the entry in the catalog and interact with it.
 
 ### <a id='iterate'></a>Iterate on your Application
-
-##### Set up your IDE
 
 Now that you have a skeleton workload working, you are ready to iterate on your application
 and test code changes on the cluster.
@@ -168,7 +166,7 @@ For example `harbor.vmware.com/myteam/tanzu-java-web-app-source`.
 You are now ready to iterate on your application.
 
 
-##### Live update your application
+### Live update your application
 
 Deploy the application and see it live update on the cluster. Doing so allows you to understand how your code changes will behave on a production-like cluster much earlier in the development process.
 
@@ -192,7 +190,7 @@ You will see your changes on the cluster.
 You can now continue to make more changes. If you are finished, you can stop or disable live update. Open the command palette (⇧⌘P), type in Tanzu, and select either option.
 
 
-##### Debug your application
+### Debug your application
 
 You can debug your cluster on your application or in your local environment.
 
