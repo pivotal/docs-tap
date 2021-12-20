@@ -222,22 +222,38 @@ the various diagnostic capabilities.
 You can use any git repository to create an Accelerator.
 You need the URL for the repository to create an Accelerator.
 
-Use the following procedure to create an accelerator:
+To create a new application accelerator, complete the following steps:
 
-1. Select the **New Accelerator** tile from the accelerators in the Application Accelerator web UI.
+1. Click `Create` located on the left-hand side of the navigation bar on the Tanzu Application Platform GUI portal to view the list of available accelerators.
+2. Click `CHOOSE` to select the **New Accelerator** tile.
 
-2. Fill in the new project form with the following information:
+    ![New Accelerator tile](images/getting-started-section2-1.png)
 
-    * Name: Your Accelerator name. This is the name of the generated ZIP file.
-    * (Optional) Description: A description of your accelerator.
-    * K8s Resource Name: A Kubernetes resource name to use for the Accelerator.
-    * Git Repository URL: The URL for the git repository that contains the accelerator source code.
-    * Git Branch: The branch for the git repository.
-    * (Optional) Tags: Any associated tags that can be used for searches in the UI.
+3. Complete the new project form with the following information:
+
+    * **Name**: `Your accelerator name` This is the name of the generated ZIP file
+    * Description (Optional): A description of your accelerator
+    	*	**K8s Resource Name**: A Kubernetes resource name to use for the accelerator
+    	*	**Git Repository URL**: The URL for the Git repository that contains the accelerator source code
+    	*	**Git Branch**: The branch for the Git repository
+    * **Tags** (Optional): Associated tags that can be used for searches in the UI
 
 3. Download and expand the zip file.
 
-    * The output contains a YAML file for an Accelerator resource, pointing to the git repository.
+    ![Generate Accelerators first prompt](images/getting-started-section2-2.png)
+
+    ![Explore project dialog box](images/getting-started-section2-3.png)
+
+	To browse the files of the accelerator, click on the `EXPLORE` button (optional). When finished, click on the `NEXT STEP` button.
+
+3. Verify the provided information and click on `CREATE`
+
+    ![Verify information for creating an accelerator](images/getting-started-section2-4.png)
+
+
+4. Download and expand the ZIP file by clicking on the `DOWNLOAD ZIP FILE` and expand it.
+
+    * The output contains a YAML file for an Accelerator resource, pointing to the Git repository.
     * The output contains a file named `new-accelerator.yaml` which defines the metadata for your new accelerator.
 
 4. To apply the k8s-resource.yml, run the following command in your terminal in the folder where you expanded the zip file:
