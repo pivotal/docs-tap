@@ -1,31 +1,39 @@
 ---
-title: Using VMware Tanzu Developer Tools for Visual Studio Code
-subtitle: Using VMware Tanzu Developer Tools for Visual Studio Code
+title: Using Tanzu Dev Tools to Get Started
+subtitle: Using Tanzu Dev Tools to Get Started
 weight: 2
 ---
 
 This topic explains how to use the VMware Tanzu Developer Tools for Visual Studio Code.
 For a more detailed step-by-step walk-through, see [Getting Started instructions](../getting-started.md).
 
-# Usage
+# Usage - Get Started
 
-### Configure extension settings
+## Getting set up with Snippets
 
-You must configure the following required Visual Studio Code settings for your app.
+Code snippets allow you to add the config files necessary to develop against the Tanzu Application Platform (TAP) to existing projects. There are three files you will need to create. Once you select a file, you will be guided through the values requiring user input. You can use the `Tab` key to move through those values.
 
-To configure Visual Studio Code settings for your app:
+### `workload.yaml`
+The workload.yaml file provides instructions to the [Supply Chain Choreographer](../scc/about) for how a workload should be built and managed.
 
-  1. Go to **Preferences -> Settings -> Extensions -> Tanzu**.
-  2. For Source Image, enter the destination for an image containing source code to be
-  published.
-  For Local Path, enter the path on the local file system to a directory of code to build.
+It can be triggered by creating a new file of type "YAML" and typing the keywords `tanzu workload`.
 
-## Live update
+>Note: If you would like to create your `workload.yaml` file manually, see the [manual configuration steps](#Creating-a-workload.yaml-file) below.
 
-Live update requires a workload.yaml file and a Tiltfile.
-You can generate a sample Java app that includes these files by using
-Application Accelerator. Alternately, you can create them manually as follows.
+### `catalog-info.yaml`
+The catalog-info.yaml file enables the workload(s) created with this project to be visible in the [TAP GUI](../tap-gui/about.md).
 
+It can be triggered by creating a new file of type "YAML" and typing the keywords `tanzu catalog-info` or `component`.
+
+### `Tiltfile`
+
+The Tiltfile provides the configuration for Tilt to enable your project to live update on the Tanzu Application Platform.
+
+It can be triggered by typing the keywords `Tiltfile` or `tanzu tiltfile`. This file should start as a plaintext file, *not* a YAML file.
+
+>Note: If you would like to create your Tiltfile manually, see the [manual configuration steps](#Creating-a-Tiltfile) below.
+
+## Getting set up - manually
 ### Creating a workload.yaml file
 
 The easiest way to create a workload.yaml file is to use the Tanzu CLI, for example:
@@ -78,31 +86,3 @@ allow_k8s_contexts('context-name')
 ```
 
 See [Tilt docs](https://docs.tilt.dev/api.html#api.allow_k8s_contexts) for more information.
-
-### Starting live update
-
-Right-click your project's **Tiltfile** and select **Tanzu: Live Update Start**.
-
-_Or_
-
-Start the Command Palette (⇧⌘P) and run the `Tanzu: Live Update Start` command.
-
-### Stopping live update
-
-Right-click your project's **Tiltfile** and select **Tanzu: Live Update Stop**.
-
-_Or_
-
-Start the Command Palette (⇧⌘P) and run the `Tanzu: Live Update Stop` command.
-
-> **Note:** When Live update stops, the application continues to run, but changes won't be present in your running application unless you redeploy it.
-
-### Disabling live update
-
-Start the Command Palette (⇧⌘P) and run the `Tanzu: Live Update Disable` command, then enter the name of the workload you want to disable live update for.
-
->**Note:** This redeploys your workload to the cluster and removes the live update capability.
-
-## Debug
-
-Right-click your workload.yaml and select **Tanzu: Java Debug Start**.
