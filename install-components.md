@@ -982,7 +982,7 @@ You must have installed:
         ```
         Deleting installed package 'ootb-supply-chain-testing-scanning' in namespace 'tap-install'.
         Are you sure? [y/N]: y
-     
+       
         | Uninstalling package 'ootb-supply-chain-testing-scanning' from namespace 'tap-install'
         \ Getting package install for 'ootb-supply-chain-testing-scanning'
         - Deleting package install 'ootb-supply-chain-testing-scanning' from namespace 'tap-install'
@@ -990,7 +990,7 @@ You must have installed:
         | Deleting role binding 'ootb-supply-chain-testing-scanning-default-cluster-rolebinding'
         | Deleting secret 'ootb-supply-chain-testing-scanning-default-values'
         | Deleting service account 'ootb-supply-chain-testing-scanning-default-sa'
-     
+       
          Uninstalled package 'ootb-supply-chain-testing-scanning' from namespace 'tap-install'
         ```
 
@@ -1105,7 +1105,7 @@ and image for vulnerabilities.
         ```
         Deleting installed package 'ootb-supply-chain-testing' in namespace 'tap-install'.
         Are you sure? [y/N]: y
-     
+       
         | Uninstalling package 'ootb-supply-chain-testing' from namespace 'tap-install'
         \ Getting package install for 'ootb-supply-chain-testing'
         - Deleting package install 'ootb-supply-chain-testing' from namespace 'tap-install'
@@ -1113,7 +1113,7 @@ and image for vulnerabilities.
         | Deleting role binding 'ootb-supply-chain-testing-default-cluster-rolebinding'
         | Deleting secret 'ootb-supply-chain-testing-default-values'
         | Deleting service account 'ootb-supply-chain-testing-default-sa'
-     
+       
          Uninstalled package 'ootb-supply-chain-testing' from namespace 'tap-install'
         ```
 
@@ -2129,7 +2129,7 @@ To install Supply Chain Security Tools - Sign:
         --version 1.0.0-beta.2 \
         --namespace tap-install \
         --values-file scst-sign-values.yaml
-   
+      
     | Installing package 'image-policy-webhook.signing.run.tanzu.vmware.com'
     | Getting namespace 'default'
     | Getting package metadata for 'image-policy-webhook.signing.run.tanzu.vmware.com'
@@ -2139,7 +2139,7 @@ To install Supply Chain Security Tools - Sign:
     | Creating secret 'image-policy-webhook-default-values'
     / Creating package resource
     - Package install status: Reconciling
-   
+      
     Added installed package 'image-policy-webhook' in namespace 'tap-install'
     ```
 
@@ -2562,14 +2562,14 @@ that you plan to create the `Workload` in:
     and the trailing `/`. For GCR, this is `gcr.io`.
 
    **Note:** If you observe the following issue with the above command:
-   ```
+>```
    panic: runtime error: invalid memory address or nil pointer dereference
    [signal SIGSEGV: segmentation violation code=0x1 addr=0x128 pc=0x2bcce00]
    ```
    Use `kubectl` to create the secret.
    ```
    kubectl create secret docker-registry registry-credentials --docker-server=REGISTRY-SERVER --docker-username=REGISTRY-USERNAME --docker-password=REGISTRY-PASSWORD -n YOUR-NAMESPACE
-   
+
 1. Add placeholder read secrets, a service account, and RBAC rules to the developer namespace by running:
 
    ```
@@ -2659,4 +2659,4 @@ that you plan to create the `Workload` in:
         name: default
     
     EOF
-    ```
+   ```
