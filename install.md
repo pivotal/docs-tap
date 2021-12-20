@@ -373,7 +373,8 @@ buildservice:
   kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
   tanzunet_username: "TANZUNET-USERNAME"
   tanzunet_password: "TANZUNET-PASSWORD"
-
+  descriptor_name: "DESCRIPTOR-NAME"
+  enable_automatic_dependency_updates: true
 supply_chain: basic
 
 ootb_supply_chain_basic:
@@ -416,9 +417,11 @@ Where:
     * Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`
 - `KP-DEFAULT-REPO-USERNAME` is the username that can write to `KP-DEFAULT-REPO`. You should be able to `docker push` to this location with this credential.
     * For Google Cloud Registry, use `kp_default_repository_username: _json_key`
-- `KP-DEFAULT-REPO-PASSWORD` is the password for the user that can write to `KP-DEFAULT-REPO`.
-You can `docker push` to this location with these credentials.
+- `KP-DEFAULT-REPO-PASSWORD` is the password for the user that can write to `KP-DEFAULT-REPO`. You should be able to `docker push` to this location with this credential.
     * For Google Cloud Registry, use the contents of the service account JSON key.
+- `DESCRIPTOR-NAME` is the name of the descriptor to import automatically. Current available options at time of release:
+    * `tap-1.0.0-full` contains all dependencies - for production use.
+    * `tap-1.0.0-lite` smaller footprint used for speeding up installs. Requires internet access on the cluster.
 - `SERVER-NAME` is the hostname of the registry server. Examples:
     * Harbor has the form `server: "my-harbor.io"`
     * Dockerhub has the form `server: "index.docker.io"`
@@ -436,6 +439,8 @@ service's External IP address.
 - `REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull the scanner image from the registry.
 
 
+
+>**Note:** Using the tap-values.yaml configuration 'buildservice.enable_automatic_dependency_updates: false' can be used to pause the automatic update of Build Service dependencies.
 
 ### Dev Profile
 
