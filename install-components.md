@@ -73,7 +73,7 @@ cert_manager and FluxCD Source Controller are installed as part of all profiles.
               fluxcd.source.controller.tanzu.vmware.com  0.16.0   2021-10-27 19:00:00 -0500 -05
         ```
 
-     2. Install the package by running:
+    2. Install the package by running:
 
         ```
         tanzu package install fluxcd-source-controller -p fluxcd.source.controller.tanzu.vmware.com -v VERSION-NUMBER -n tap-install
