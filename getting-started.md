@@ -1364,7 +1364,7 @@ users.
     rules:
     - apiGroups: ["bindings.labs.vmware.com"]
       resources: ["provisionedservices"]
-      verbs: ["get", "list", "watch"]
+      verbs: ["get", "list", "watch", "update"]
     ---
     apiVersion: rbac.authorization.k8s.io/v1
     kind: ClusterRoleBinding
@@ -1457,7 +1457,7 @@ users.
 
 ### <a id='services-journey-use-case-2'></a> Use case 2 - Binding an application to a pre-provisioned service instance running in a different namespace on the same Kubernetes cluster
 
->**Note:** Cross-namespace consumption of a single service resource by more than one workload is currently not possible and will be fixed in a futrue release.
+>**Note:** Consumption of a single service resource by multiple workloads from a different namespace is currently not possible and will be fixed in a future release.
 
 [Use case 1](#services-journey-use-case-1) introduces binding a sample application workload to a service
 instance that is running in the same namespace.
