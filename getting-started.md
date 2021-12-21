@@ -151,9 +151,11 @@ To see this application in your organization catalog, you must register new enti
 
 5. Navigate back to the homepage, and the catalog changes and entries will be visible for further inspection.
 
-### <a id='iterate'></a>Iterate on your application
 
-#### **Set up your integrated development environment (IDE)**
+### **Set up your integrated development environment (IDE)**
+
+#### <a id='iterate'></a>Iterate on your application
+
 With your basic application workload working, you are ready to iterate on your application
 and test your code changes on the cluster.
 Tanzu Developer Tools for VSCode and VMware Tanzu’s official IDE extension for VSCode
