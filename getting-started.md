@@ -110,7 +110,7 @@ To deploy your application, download an accelerator, upload it on your Git repos
 
     See [Tanzu Apps Workload Create](cli-plugins/apps/command-reference/tanzu_apps_workload_create.md) for more information.
 
-    > **Note:** This first deployment uses accelerator source from Git, but in later steps you use the VSCode extension
+    > **Note:** This deployment uses an accelerator source from Git, but in later steps you use the VSCode extension
     to debug and live-update this application.
 
 7. View the build and runtime logs for your application by running the following `tail` command:
@@ -132,7 +132,7 @@ To view this application in your organization catalog, register new entities as 
 
 1. Confirm the Blank Software Catalog is installed (see [Configure the Tanzu Application Platform GUI](install.md#configure-tap-gui) for instructions).
 
-    > Note: Add a line to the `catalog-info.yaml` of the `tanzu-java-web-app` component.
+    >**Note:** Add a line to the `catalog-info.yaml` of the `tanzu-java-web-app` component.
     The added line is the `spec.system: tanzu-java-web-app` statement in the following example:
 
     ```
@@ -161,7 +161,7 @@ To view this application in your organization catalog, register new entities as 
 
     ![REGISTER button on the right side of the header](images/getting-started-tap-gui-5.png)
 
-3. "Register an existing component" prompts you to type a repository URL.
+3. **Register an existing component** prompts you to type a repository URL.
     Type the link to the `catalog-info.yaml` file in the Git repository field and click **ANALYZE**.
 
     ![Select URL](images/getting-started-tap-gui-6.png)
