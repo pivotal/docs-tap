@@ -12,7 +12,7 @@ There are two high-level workflows described in this document:
 2. The administration, set up, and management of Supply Chains, Security Tools, Services, and Application Accelerators.
 
 
-### Prerequisites
+## Prerequisites
 
 To take full advantage of this document, ensure you have followed [Installing Tanzu Application Platform](install-intro.md).
 
@@ -216,7 +216,7 @@ the various diagnostic capabilities.
 ---
 
 
-## <a id='creating-an-accelerator'></a>Section 2: Creating an Accelerator
+## <a id='creating-an-accelerator'></a>Section 2: Creating an accelerator
 
 You can use any git repository to create an Accelerator.
 You need the URL for the repository to create an Accelerator.
