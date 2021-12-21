@@ -38,9 +38,7 @@ Workload Visibility Plugin is renamed Runtime Visibility Plugin.
 
 This release has the following issues:
 
-- **Convention Service:** Convention Service uses a workaround for supporting a self-signed certificate for the private
-registry.
-For more information, see [Convention Service self-signed registry workaround](convention-service/self-signed-registry-workaround.md).
+- **Convention Service:** Convention Service does not currently support self-signed certificates for integrating with a private registry. Support for self-signed certificates will be available in an upcoming release.
 
 - **Supply Chain Security Tools - Sign:** If all webhook nodes or Pods are evicted by the cluster or scaled down,
 the admission policy blocks any Pods from being created in the cluster.
