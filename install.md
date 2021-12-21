@@ -380,7 +380,7 @@ ootb_supply_chain_basic:
     server: "SERVER-NAME"
     repository: "REPO-NAME"
   git_ops:
-    ssh_secret:""
+    ssh_secret: ""
 
 learningcenter:
   ingressDomain: "DOMAIN-NAME"
@@ -462,7 +462,7 @@ ootb_supply_chain_basic:
     server: "SERVER-NAME"
     repository: "REPO-NAME"
   git_ops:
-    ssh_secret:""
+    ssh_secret: ""
 
 tap_gui:
   service_type: ClusterIP
