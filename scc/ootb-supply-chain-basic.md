@@ -49,22 +49,22 @@ particular development team.
 
 These include:
 
-- **image secret**: a Kubernetes secret of type
-  `kubernetes.io/dockerconfigjson` filled with credentials for pushing the
+- **image secret**: A Kubernetes secret of type
+  `kubernetes.io/dockerconfigjson` containing credentials for pushing the
 container images built by the supply chain
 
-- **service account**: the identity to be used for any interaction with the
+- **service account**: The identity to be used for any interaction with the
   Kubernetes API made by the supply chain
 
-- **role**: the set of capabilities that we want to assign to the service
-  account - it must provide the ability to manage all of the resources that the
-supplychain is responsible for
+- **role**: The set of capabilities that you want to assign to the service
+  account. It must provide the ability to manage all of the resources that the
+supplychain is responsible for.
 
-- **rolebinding**: binds the role to the service account, i.e., grants the
-  capabilities to the identity
+- **rolebinding**: Binds the role to the service account. It grants the
+  capabilities to the identity.
 
-- (optional) **git credentials secret**: when using GitOps for managing the
-  delivery of applications (or a private git source), provides the required
+- (Optional) **git credentials secret**: When using GitOps for managing the
+  delivery of applications or a private git source, this secret provides the 
   credentials for interacting with the git repository.
 
 
@@ -76,8 +76,8 @@ resources that push container images to image registries (like Tanzu Build
 Service) as well as for those resources that must pull container images from
 such image registry, such as Convention Service and Knative.
 
-Using the `tanzu secret registry add` command from the Tanzu CLI, we're able to
-provision one that contains such credentials.
+Using the `tanzu secret registry add` command from the Tanzu CLI, you
+provision a secret that contains such credentials.
 
 
 ```
@@ -98,10 +98,10 @@ tanzu secret registry add image-secret \
 ```
 
 With the command above, the secret `image-secret` of type
-`kubernetes.io/dockerconfigjson` is created in the namespace, thus being
-available for Workloads in this same namespace.
+`kubernetes.io/dockerconfigjson` is created in the namespace.
+This makes it available for Workloads in this same namespace.
 
-To export it to all namespaces, make use of the `--export-to-all-namespaces`
+To export it to all namespaces, use the `--export-to-all-namespaces`
 flag.
 
 
@@ -129,7 +129,7 @@ imagePullSecrets:
   - name: image-secret
 ```
 
-Note that the ServiceAccount **must**  have the secret created above linked to
+The ServiceAccount must have the secret created above linked to
 it, otherwise services like Tanzu Build Service (used in the supply chain)
 won't have the necessary credentials for pushing the images it builds for that
 Workload.
@@ -218,10 +218,10 @@ subjects:
 ### Developer workload
 
 With the developer namespace setup with the objects above (image, secret,
-serviceaccount, role, and rolebinding) we can move on to creating the Workload
+serviceaccount, role, and rolebinding), you can create the Workload
 object.
 
-We can configure the Workload with three scenarios in mind:
+Configure the Workload with three scenarios in mind:
 
 - **local iteration**: takes source code from the filesystem and drives is
   through the supply chain making no use of external git repositories
@@ -238,8 +238,8 @@ We can configure the Workload with three scenarios in mind:
 
 #### Local iteration with local code
 
-In this scenario, all we need is the source code (in the example below,
-assuming the current directory `.` as the location of the source code we want
+In this scenario, you need the source code (in the example below,
+assuming the current directory `.` as the location of the source code you want
 to send through the supply chain), and a container image registry to use as the
 mean for making the source code available inside the Kubernetes cluster.
 
@@ -286,7 +286,7 @@ Similar to local iteration with local code, here we make use of the same type
 make use of a git repository to feed the supply chain with new changes as they
 are pushed to a branch.
 
-**note**: If you're planning to use a private git repository, make sure to skip
+>**Note**: If you're planning to use a private git repository, skip
 to the next section (Private Source Git Repository).
 
 
@@ -316,7 +316,7 @@ Create workload:
      15 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
 ```
 
-Note that this scenario is only possible if the installation of the supply
+This scenario is only possible if the installation of the supply
 chain didn't include a default git repository prefix
 (`gitops.repository_prefix`).
 
@@ -341,8 +341,8 @@ stringData:
   identity.pub: string            # public of the `identity` private key
 ```
 
-**note**: for a particular Workload, the name of the secret can be overriden by
-making use of the `gitops_ssh_secret` parameter (`--param gitops_ssh_secret`)
+>**Note**: For a particular Workload, you can override the name of the secret
+by using the `gitops_ssh_secret` parameter (`--param gitops_ssh_secret`)
 in the Workload.
 
 If it's your first time setting up SSH credentials for your user, the following
@@ -376,15 +376,15 @@ kubectl create secret generic git-ssh \
     --from-file=./known_hosts
 ```
 
-**note**: when creating a Secret that provides credentials for accessing your
+>**Note**: When you create a Secret that provides credentials for accessing your
 private git repository, you can create a deploy key if your Git Provider
-supports it (GitHub does). Please be aware that any Git secrets you apply to
-your cluster could potentially be viewed by others that have access to that
-cluster. So using Deploy keys or shared bot accounts should be preferred over
+supports it (GitHub does). Any Git secrets you apply to
+your cluster can potentially be viewed by others who have access to that
+cluster. So, it is better to use Deploy keys or shared bot accounts instead of
 adding personal Git Credentials.
 
-With the namespace configured, having added the secret to be used for
-fetching source code from a private repository, we can move on to creating the
+With the namespace configured and having added the secret to be used for
+fetching source code from a private repository, you can create the
 Workload:
 
 
@@ -440,12 +440,11 @@ DELIVERY
 
 ```
 
-Given the extra capability of pushing to git, here we have an extra requirement:
-
-- there must be in the developer namespace (i.e., same namespace as the one
-  where the Workload is submitted to) a Secret containing credentials to a git
-  provider (e.g., GitHub), regardless of whether the source code comes from a
-  private git repository or not.
+Given the extra capability of pushing to git,
+there must be in the developer namespace (i.e., same namespace as the one
+where the Workload is submitted to) a Secret containing credentials to a git
+provider (e.g., GitHub), regardless of whether the source code comes from a
+private git repository or not.
 
 Before proceeding, make sure you have a secret with following shape fields and
 annotations set:
@@ -467,8 +466,8 @@ stringData:
   identity.pub: string            # public of the `identity` private key
 ```
 
-**note**: yes, at the moment `ssh-privatekeys` must be set to the same value as
-`identity` due to incompatibilities between Kubernetes resources.
+>**Note**: Because of incompatibilities between Kubernetes resources
+ `ssh-privatekeys` must be set to the same value as `identity`.
 
 With the Secret created, we can move on to the Workload.
 
@@ -514,18 +513,18 @@ Create workload:
      15 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
 ```
 
-we'd see kubernetes configuration being pushed to
+ You see the Kubernetes configuration pushed to
 `git@github.com/foo/tanzu-java-web-app.git`.
 
 Regardless of the setup, the repository where configuration is pushed to can be
-also manually overriden by the developers by tweaking the following parameters:
+also manually overridden by the developers by tweaking the following parameters:
 
 -  `gitops_ssh_secret`: name of the secret in the same namespace as the
    Workload where SSH credentials exist for pushing the configuration produced
    by the supply chain to a git repository.
    e.g.: "ssh-secret"
 
--  `gitops_repository`: SSH url of the git repository to push the kubernete
+-  `gitops_repository`: SSH URL of the git repository to push the Kubernetes
    configuration produced by the supply chain to.
    e.g.: "ssh://git@foo.com/staging.git"
 
