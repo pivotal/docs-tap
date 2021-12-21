@@ -474,7 +474,7 @@ tanzu package available get tap.tanzu.vmware.com/0.4.0 --values-schema --namespa
 ```
 
 >**Note:** The `tap.tanzu.vmware.com` package does not show all configuration settings for packages
->it plans to install. The package only shows top level keys.
+>it plans to install. The package only shows top-level keys.
 >View individual package configuration settings with the same `tanzu package available get` command.
 >For example, use `tanzu package available get -n tap-install cnrs.tanzu.vmware.com/1.0.3 --values-schema` for Cloud Native Runtimes.
 
@@ -703,3 +703,7 @@ To exclude packages from a Tanzu Application Platform profile:
       - tap-gui.tanzu.vmware.com
       - service-bindings.lab.vmware.com
     ```
+
+>**Note:** If you decide to exclude a package after performing a profile installation which included that package, you cannot see the the accurate package states immediately after running `tap package installed list -n tap-install`.
+
+>**Note:** You can break package dependencies by removing a package. Allow 20 minutes to verify that all packages have reconciled correctly while troubleshooting.
