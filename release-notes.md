@@ -13,7 +13,7 @@ This topic contains release notes for Tanzu Application Platform v1.0.
 The following components have been updated in Tanzu Application Platform v1.0:
 
 - Supply Chain Security Tools
-    - **Sign v1.0.0-beta.3:** For more information, see the [Supply Chain Security Tools - Sign release notes](scst-sign/release-notes.md).
+    - **Sign v1.0.0-beta.4:** For more information, see the [Supply Chain Security Tools - Sign release notes](scst-sign/release-notes.md).
 
 ### Known issues
 
@@ -36,7 +36,7 @@ This release has the following security issues:
 
 ### Component release notes
 
-The following components have separate release notes. 
+The following components have separate release notes.
 
 | Component                                | Release notes                                                |
 | ---------------------------------------- | ------------------------------------------------------------ |
