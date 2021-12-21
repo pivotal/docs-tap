@@ -109,6 +109,10 @@ The following packages are part of the Tanzu Application Platform:
 
 - **Tanzu Application Platform GUI**
 
+  Tanzu Application Platform GUI is a tool for your developers to view your organization's running applications and services. This portal provides a central location in which you can view dependencies, relationships, technical documentation, and even service status.
+
+  Tanzu Application Platform GUI is built from the Cloud Native Computing Foundation's project Backstage.
+
 ## <a id='profiles-and-packages'></a>  Installation profiles and profiles in Tanzu Application Platform v1.0
 
 Tanzu Application Platform is available through pre-defined profiles or individual packages.
