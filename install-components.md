@@ -272,7 +272,7 @@ To install Cloud Native Runtimes:
    >Otherwise, you must complete the following steps for each namespace where you create Knative services.
 
    Service accounts that run workloads using Cloud Native Runtimes need access to the image pull secrets for the Tanzu package.
-   This includes the `default` service account in a namespace, which is created automatically, but not associated with any image pull secrets.
+   This includes the `default` service account in a namespace, which is created automatically but not associated with any image pull secrets.
    Without these credentials, attempts to start a service fail with a timeout and the Pods report that they are unable to pull the `queue-proxy` image.
 
     1. Create an image pull secret in the current namespace and fill it from the `tap-registry`
@@ -760,9 +760,9 @@ To install Tanzu Build Service using the Tanzu CLI:
         * Harbor: `harbor.io/my-project/build-service`
 
     - `REGISTRY-USERNAME` and `REGISTRY-PASSWORD` are the user name and password for the registry. The install requires a `kp_default_repository_username` and `kp_default_repository_password` to write to the repository location.
-    - `TANZUNET-USERNAME` and `TANZUNET-PASSWORD` are the email address and password that you use to log in to Tanzu Network. The Tanzu Network credentials allow for configuration of the Dependencies Updater. This resource accesses and installs the build dependencies (buildpacks and stacks) Tanzu Build Service needs on your Cluster. It also keeps these dependencies up to date as new versions are released on Tanzu Network.
+    - `TANZUNET-USERNAME` and `TANZUNET-PASSWORD` are the email address and password that you use to log in to Tanzu Network. The Tanzu Network credentials allow for configuration of the Dependencies Updater. This resource accesses and installs the build dependencies (buildpacks and stacks) Tanzu Build Service needs on your cluster. It also keeps these dependencies up to date as new versions are released on Tanzu Network.
     - `DESCRIPTOR-NAME` is the name of the descriptor to import automatically. Current available options at time of release:
-        - `tap-1.0.0-full` contains all dependencies, and is for production use.
+        - `tap-1.0.0-full` contains all dependencies and is for production use.
         - `tap-1.0.0-lite` smaller footprint used for speeding up installs. Requires Internet access on the cluster.
 
     >**Note:** Using the `tbs-values.yaml` configuration,
@@ -851,7 +851,7 @@ to a component that knows how to deploy the image.
     Added installed package 'cartographer' in namespace 'default'
     ```
 
-## <a id='install-ootb-templates'></a> Install Out of the Box Templates
+## <a id='install-ootb-templates'></a> Install Out of the Box templates
 
 The Out of the Box Templates package is used by all the Out of the Box Supply
 Chains to provide the templates that are used by the Supply Chains to create
@@ -1368,7 +1368,7 @@ Application Live View Convention Service only.
     >**Note:** The `app-live-view-values.yaml` section does not have any values schema for both
     >packages, therefore it is empty.
 
-    The Application Live View back end and connector are deployed in `app-live-view` namespace by default. The connector is deployed as a `DaemonSet`. There is one connector instance per node in the Kubernetes cluster. This instance observes all the apps running on that node.
+    The Application Live View back-end and connector are deployed in `app-live-view` namespace by default. The connector is deployed as a `DaemonSet`. There is one connector instance per node in the Kubernetes cluster. This instance observes all the apps running on that node.
     The Application Live View Convention Server is deployed in the `alv-convention` namespace by default. The convention server enhances PodIntents with metadata including labels, annotations, or application properties.
 
 1. Install the Application Live View package by running:
@@ -1460,7 +1460,7 @@ Application Live View Convention Service only.
 
     Verify that `STATUS` is `Reconcile succeeded`
 
-The Application Live View UI plug-in is part of Tanzu Application Platform GUI.
+The Application Live View UI plugin is part of Tanzu Application Platform GUI.
 To access the Application Live View UI,
 see [Application Live View in Tanzu Application Platform GUI](https://docs-staging.vmware.com/en/Tanzu-Application-Platform/1.0/tap/GUID-tap-gui-plugins-app-live-view.html#entry-point-to-ap[…]live-view-plugin-1).
 
@@ -1484,7 +1484,7 @@ Supported Git infrastructure includes:
 
 **Required for full functionality:**
 
-- **Tanzu Application Platform tools:** Tanzu Application Platform GUI has plug-ins for the
+- **Tanzu Application Platform tools:** Tanzu Application Platform GUI has plugins for the
 following Tanzu Application Platform tools.
 If you plan on running workloads with these capabilities, you need these tools installed alongside
 Tanzu Application Platform GUI.
@@ -1689,13 +1689,13 @@ For general information about Learning Center, see [Learning Center](learning-ce
 
 - [Tanzu Application Platform Prerequisites](install-general.md#prereqs)
 
-- The cluster must have an ingress router configured. If you have installed the TAP package (full or dev profile), it already deploy a contour ingress controller.
+- The cluster must have an ingress router configured. If you have installed the TAP package (full or dev profile), it already deploys a contour ingress controller.
 
-- The operator when deploying instances of the workshop environments needs to be able to expose them via an external URL for access. For the custom domain you are using, DNS must have been configured with a wildcard domain to forward all requests for sub domains of the custom domain, to the ingress router of the Kubernetes cluster
+- The operator, when deploying instances of the workshop environments, needs to be able to expose them via an external URL for access. For the custom domain you are using, DNS must have been configured with a wildcard domain to forward all requests for sub-domains of the custom domain to the ingress router of the Kubernetes cluster
 
-- By default, the workshop portal and workshop sessions will be accessible over HTTP connections. If you wish to use secure HTTPS connections, you must have access to a wildcard SSL certificate for the domain under which you wish to host the workshops. You cannot use a self-signed certificate.
+- By default, the workshop portal and workshop sessions are accessible over HTTP connections. If you wish to use secure HTTPS connections, you must have access to a wildcard SSL certificate for the domain under which you wish to host the workshops. You cannot use a self-signed certificate.
 
-- Any ingress routes created will use the default ingress class. If you have multiple ingress class types available, and you need to override which is used.
+- Any ingress routes created use the default ingress class if you have multiple ingress class types available and you need to override which is used.
 
 ### <a id='install-lc-proc'></a> Procedure to Install Learning Center
 
@@ -1736,16 +1736,16 @@ To install Learning Center:
     suffix to hostnames for instances.
 
     For the custom domain you are using, DNS must have been configured with a wildcard domain to
-    forward all requests for subdomains of the custom domain to the ingress router of the
+    forward all requests for sub-domains of the custom domain to the ingress router of the
     Kubernetes cluster.
 
-    If you are running Kubernetes on your local machine using a system such as `minikube`, and you
+    If you are running Kubernetes on your local machine using a system such as `minikube` and you
     don't have a custom domain name that maps to the IP for the cluster, you can use a `nip.io`
     address.
     For example, if `minikube ip` returns `192.168.64.1`, you can use the `192.168.64.1.nip.io`
     domain.
-    You cannot use an address of form `127.0.0.1.nip.io` or `subdomain.localhost`. This will cause a
-    failure. Internal services needing to connect to each other will connect to themselves instead,
+    You cannot use an address of form `127.0.0.1.nip.io` or `subdomain.localhost`. This causes a
+    failure. Internal services needing to connect to each other will connect to themselves instead
     because the address would resolve to the host loopback address of `127.0.0.1`.
 
 1. Add the `ingressSecret` to `learning-center-config.yaml`, as in this example:
@@ -1767,9 +1767,9 @@ To install Learning Center:
     ```
 
     If you already have a TLS secret, follow these steps **before deploying any workshop**:
-    * Create the `learningcenter` namespace manually or the one you defined
-    * Copy the tls secret to the `learningcenter` namespace or the one you
-    defined, and use the `secretName` property as in this example:
+    - Create the `learningcenter` namespace manually or the one you defined
+    - Copy the tls secret to the `learningcenter` namespace or the one you
+    defined and use the `secretName` property as in this example:
 
     ```
     ingressSecret:
@@ -1801,7 +1801,7 @@ the `ingressClass` property in `learning-center-config.yaml` **before deploying 
     ```
 
     The command above will create a default namespace in your Kubernetes cluster called `learningcenter`,
-    and the operator along with any required namespaced resources is created in it.
+    and the operator, along with any required namespaced resources, is created in it.
     A set of custom resource definitions and a global cluster role binding are also created.
 
     You can check that the operator deployed successfully by running:
@@ -1810,7 +1810,7 @@ the `ingressClass` property in `learning-center-config.yaml` **before deploying 
     kubectl get all -n learningcenter
     ```
 
-    The Pod for the operator should be marked as running.
+    The pod for the operator should be marked as running.
 
 ## <a id='install-portal-proc'></a> Procedure to install the Self-Guided Tour Training Portal and Workshop
 
@@ -1822,7 +1822,7 @@ To install the Self-Guided Tour Training Portal and Workshop:
     tanzu package available list workshops.learningcenter.tanzu.vmware.com --namespace tap-install
     ```
 
-1. Install the Learning Center Training Portal with the Self Guided Tour workshop by running:
+1. Install the Learning Center Training Portal with the Self-Guided Tour Workshop by running:
 
     **Remember to change the 0.x.x version**
     ```
@@ -1922,11 +1922,11 @@ Use the following procedure to install Service Bindings:
 
 **Prerequisites**
 
-* `cert-manager` installed on the cluster. If you installed TAP profiles, as described in
+- `cert-manager` installed on the cluster. If you installed TAP profiles, as described in
 [Installing Part II: Profiles](install.md), then `cert-manager` is already installed. If not, then
 follow the instructions in [Install cert-manager](#install-prereqs).
 
-* Before installing, see [Deployment Details and Configuration](scst-store/deployment_details.md) to review what resources will be deployed. For more information, see the [overview](scst-store/overview.md).
+- Before installing, see [Deployment Details and Configuration](scst-store/deployment_details.md) to review what resources will be deployed. For more information, see the [overview](scst-store/overview.md).
 
 To install Supply Chain Security Tools - Store:
 
@@ -2137,13 +2137,13 @@ To install Supply Chain Security Tools - Sign:
             >re-install the webhook with `allow_unmatched_images` set to `false`.
 
     - `quota.pod_number`:
-      This setting is the maximum number of Pods that are allowed in the
+      This setting is the maximum number of pods that are allowed in the
       `image-policy-system` namespace with the `system-cluster-critical`
-      priority class. This priority class is added to the Pods to prevent
-      preemption of this component's Pods in case of node pressure.
+      priority class. This priority class is added to the pods to prevent
+      preemption of this component's pods in case of node pressure.
 
       The default value for this property is 5. If your use case requires
-      more than 5 Pods deployed of this component adjust this value to
+      more than 5 pods be deployed of this component, adjust this value to
       allow the number of replicas you intend to deploy.
 
     - `replicas`:
@@ -2193,7 +2193,7 @@ To install Supply Chain Security Tools - Sign:
 
 ## <a id='install-scst-scan'></a> Install Supply Chain Security Tools - Scan
 
-**Prerequisite**: [Supply Chain Security Tools - Store](#install-scst-store) must be installed on the cluster for Scan Results to persist. Supply Chain Security Tools - Scan can be installed without Supply Chain Security Tools - Store already installed. In this case, skip creating a values file. Once Supply Chain Security Tools - Store is installed, the Supply Chain Security Tools - Scan values file must be updated.
+**Prerequisite**: [Supply Chain Security Tools - Store](#install-scst-store) must be installed on the cluster for scan results to persist. Supply Chain Security Tools - Scan can be installed without Supply Chain Security Tools - Store already installed. In this case, skip creating a values file. Once Supply Chain Security Tools - Store is installed, the Supply Chain Security Tools - Scan values file must be updated.
 
 The installation for Supply Chain Security Tools – Scan involves installing two packages:
 Scan Controller and Grype Scanner.
@@ -2496,9 +2496,9 @@ To install Tekton:
 
    Service accounts that run Tekton workloads need access to the image pull
    secrets for the Tanzu package.  This includes the `default` service account
-   in a namespace, which is created automatically, but not associated with any
+   in a namespace, which is created automatically but not associated with any
    image pull secrets.  Without these credentials, PipelineRuns fail with a
-   timeout and the Pods report that they cannot pull images.
+   timeout and the pods report that they cannot pull images.
 
    Create an image pull secret in the current namespace and fill it from [the
    `tap-registry` secret](#add-package-repositories).  Run the following
@@ -2598,9 +2598,9 @@ that you plan to create the `Workload` in:
 
     Where:
 
-    * `YOUR-NAMESPACE` is the name that you want to use for the developer namespace.
+    -`YOUR-NAMESPACE` is the name that you want to use for the developer namespace.
     For example, use `default` for the default namespace.
-    * `REGISTRY-SERVER` is the URL of the registry. For Dockerhub, this must be
+    - `REGISTRY-SERVER` is the URL of the registry. For Dockerhub, this must be
     `https://index.docker.io/v1/`. Specifically, it must have the leading `https://`, the `v1` path,
     and the trailing `/`. For GCR, this is `gcr.io`.
 
