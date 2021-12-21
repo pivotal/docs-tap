@@ -204,29 +204,27 @@ You are now ready to iterate on your application.
 
 #### Live update your application
 
-Deploy the application to view it updating live on the cluster. This will demonstrate how your code changes will behave on a production-like cluster early in the development process.
+Deploy the application to view it updating live on the cluster to demonstrate how code changes will behave on a production-like cluster early in the development process.
 
-To live update your application, follow the steps below:
+Complete the following steps to live update your application:
 
-1. From the Command Palette (⇧⌘P), type in and select **Tanzu: Live Update Start**.
-Tanzu Logs opens up in the Output tab and you will see output from the
-Tanzu Application Platform and from Tilt indicating that the container is being
-built and deployed.
-Because this is your first time starting live update for this application, it
-might take 1-3 minutes for the workload to be deployed and the Knative service
-to become available.
+1. Select **Tanzu: Live Update Start** from the Command Palette (⇧⌘P). The Tanzu Logs will open in the Output tab and the output will be visible from the
+Tanzu Application Platform, and Tilt will indicate the container is being built and deployed. The first time starting live update for the application, it may take up to 3 minutes for the workload to be deployed and the Knative service to become available.
 
-1. When the output indicates the workload is ready, navigate to `http://localhost:8080` in your browser and view your running application.
-1. Return to the IDE and make a change to the source code. For example, in `HelloController.java`, you can modify the string returned with `Hello!`. Save when finished.
-1. If you look in the Tanzu Logs section of the Output tab, you will see the container has updated. Navigate back to your browser and refresh the page.
+2. When the output indicates the workload is ready, navigate to `http://localhost:8080` in your browser and view the running application.
+3. Return to the IDE and change the source code. For example, in `HelloController.java`, you can modify the string returned with `Hello!`. Save when finished.
 
+	The container will be updated in the Tanzu Logs section of the Output tab. 
 
-You will see your changes on the cluster.
+4. Navigate back to your browser and refresh the page.
 
-You can continue to make more changes. If you are finished, you can stop or disable live update:
-	1. Open the command palette (⇧⌘P).
-	1. Type in Tanzu.
-	1. Select stop or disable.
+	You can view the changes on the cluster.
+
+	Continue to make more changes, or if finished, you can stop or disable live update:
+	
+	* Open the command palette (⇧⌘P)
+	* Type `Tanzu`
+	* Select stop or disable
 
 #### Debug your application
 
