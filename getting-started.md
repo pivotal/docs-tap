@@ -63,7 +63,7 @@ To deploy your application, download an accelerator, upload it on your Git repos
 
 1. Click **Create**, located on the left-hand side of the
    navigation bar on the Tanzu Application Platform GUI portal, to view the list of available accelerators.
-   See [Accessing Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md) for information about connecting to Tanzu Application Platform GUI.
+   For information about connecting to Tanzu Application Platform GUI, see [Accessing Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md). 
 
     ![List of accelerators in Tanzu Application Platform GUI](images/getting-started-tap-gui-1.png)
 
@@ -78,7 +78,7 @@ To deploy your application, download an accelerator, upload it on your Git repos
 
     ![Generate Accelerators prompt](images/getting-started-tap-gui-3.png)
 
-4. After the Task Activity processes are completed, click **DOWNLOAD ZIP FILE**.
+4. After the Task Activity processes completes, click **DOWNLOAD ZIP FILE**.
 
     ![Task Activity progress bar](images/getting-started-tap-gui-4.png)
 
@@ -97,7 +97,7 @@ To deploy your application, download an accelerator, upload it on your Git repos
 
     Substitute `GIT-URL-TO-PROJECT-REPO` with the path you uploaded to in step 5.
 
-    If you bypassed step 5 or were unable to upload your accelerator to a Git repository, then you can use the following public version to test:
+    If you bypassed step 5 or were unable to upload your accelerator to a Git repository, use the following public version to test:
     ```
     tanzu apps workload create tanzu-java-web-app \
     --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
@@ -108,7 +108,7 @@ To deploy your application, download an accelerator, upload it on your Git repos
     --yes
     ```
 
-    See [Tanzu Apps Workload Create](cli-plugins/apps/command-reference/tanzu_apps_workload_create.md) for more information.
+    See [Tanzu Apps Workload Create](cli-plugins/apps/command-reference/tanzu_apps_workload_create.md).
 
     > **Note:** This deployment uses an accelerator source from Git, but in later steps you use the VSCode extension
     to debug and live-update this application.
