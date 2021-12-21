@@ -59,16 +59,15 @@ Application accelerators are templates that not only codify best practices, but 
 
 ### Deploy your application
 
-To deploy your application, you need to download an accelerator, upload it on your Git repository of choice, and run a CLI command. We recommend using the accelerator called `Tanzu-Java-Web-App`.
+To deploy your application, download an accelerator, upload it on your Git repository of choice, and run a CLI command. The recommended accelerator is `Tanzu-Java-Web-App`.
 
-1. From the Tanzu Application Platform GUI portal, click **Create** located on the left-hand side of the
-   navigation bar to see the list of available accelerators.
-   For information about connecting to Tanzu Application Platform GUI, see
-   [Accessing Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md).
+1. Click **Create**, located on the left-hand side of the
+   navigation bar on the Tanzu Application Platform GUI portal, to view the list of available accelerators.
+   See [Accessing Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md) for information about connecting to Tanzu Application Platform GUI.
 
     ![List of accelerators in Tanzu Application Platform GUI](images/getting-started-tap-gui-1.png)
 
-2. Locate the Tanzu Java Web App accelerator, which is a Spring Boot web app, and click **CHOOSE**.
+2. Locate the `Tanzu Java Web App` accelerator, a Spring Boot web application, and click **CHOOSE**.
 
     ![Tile for Tanzu Java Web App](images/getting-started-tap-gui-2.png)
 
@@ -79,13 +78,13 @@ To deploy your application, you need to download an accelerator, upload it on yo
 
     ![Generate Accelerators prompt](images/getting-started-tap-gui-3.png)
 
-4. After the Task Activity processes are complete, click **DOWNLOAD ZIP FILE**.
+4. After the Task Activity processes are completed, click **DOWNLOAD ZIP FILE**.
 
     ![Task Activity progress bar](images/getting-started-tap-gui-4.png)
 
 5. After downloading the ZIP file, expand it in a workspace directory and follow your preferred procedure for uploading the generated project files to a Git repository for your new project.
 
-6. Deploy the Tanzu Java Web App accelerator by running the `tanzu apps workload create` command:
+6. Deploy the `Tanzu Java Web App` accelerator by running the following `tanzu apps workload create` command:
 
     ```
     tanzu apps workload create tanzu-java-web-app \
@@ -96,9 +95,9 @@ To deploy your application, you need to download an accelerator, upload it on yo
     --yes
     ```
 
-    Where `GIT-URL-TO-PROJECT-REPO` is the path you uploaded to in step 5.
+    Substitute `GIT-URL-TO-PROJECT-REPO` with the path you uploaded to in step 5.
 
-    If you bypassed step 5 or were unable to upload your accelerator to a Git repository, then you can use the public version to test with:
+    If you bypassed step 5 or were unable to upload your accelerator to a Git repository, then you can use the following public version to test:
     ```
     tanzu apps workload create tanzu-java-web-app \
     --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
@@ -109,24 +108,22 @@ To deploy your application, you need to download an accelerator, upload it on yo
     --yes
     ```
 
-    For more information, see [Tanzu Apps Workload Create](cli-plugins/apps/command-reference/tanzu_apps_workload_create.md).
+    See [Tanzu Apps Workload Create](cli-plugins/apps/command-reference/tanzu_apps_workload_create.md) for more information.
 
-    >**Note:** This first deployment uses accelerator source from Git, but in later steps you use the VSCode extension
-    to debug and live-update this application.
+> **Note:** This first deployment uses the accelerator source from Git, but in later steps you will use the VSCode extension to debug and live update the application.
 
-7. View the build and runtime logs for your app by running the `tail` command:
+7. View the build and runtime logs for your application by running the following `tail` command:
 
     ```
     tanzu apps workload tail tanzu-java-web-app --since 10m --timestamp
     ```
 
-8. After the workload is built and running, you can view the Web App in your browser. View the URL of the Web App by running the command below, and then press **ctrl-click** on the
-Workload Knative Services URL at the bottom of the command output.
+8. After the workload is built and running, view the Web Application URL in your browser by running the following command: 
 
     ```
     tanzu apps workload get tanzu-java-web-app
     ```
-
+	**Ctrl-click** on the Workload Knative Services URL located at the bottom of the command output.
 
 ### Add your application to the Tanzu Application Platform GUI Software Catalog
 
