@@ -61,10 +61,16 @@ Application accelerators are templates that not only codify best practices, but 
 
 To deploy your application, you need to download an accelerator, upload it on your Git repository of choice, and run a CLI command. We recommend using the accelerator called `Tanzu-Java-Web-App`.
 
+<<<<<<< HEAD
+1. Click **Create**, located on the left-hand side of the
+   navigation bar on the Tanzu Application Platform GUI portal, to view the list of available accelerators.
+   For information about connecting to Tanzu Application Platform GUI, see [Accessing Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md). 
+=======
 1. From the Tanzu Application Platform GUI portal, click **Create** located on the left-hand side of the
    navigation bar to see the list of available accelerators.
    For information about connecting to Tanzu Application Platform GUI, see
    [Accessing Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md).
+>>>>>>> 6553db0e6d5a1ffb49109d6973d39e1bd9c22675
 
     ![List of accelerators in Tanzu Application Platform GUI](images/getting-started-tap-gui-1.png)
 
@@ -79,7 +85,11 @@ To deploy your application, you need to download an accelerator, upload it on yo
 
     ![Generate Accelerators prompt](images/getting-started-tap-gui-3.png)
 
+<<<<<<< HEAD
+4. After the Task Activity processes completes, click **DOWNLOAD ZIP FILE**.
+=======
 4. After the Task Activity processes are complete, click **DOWNLOAD ZIP FILE**.
+>>>>>>> 6553db0e6d5a1ffb49109d6973d39e1bd9c22675
 
     ![Task Activity progress bar](images/getting-started-tap-gui-4.png)
 
@@ -98,7 +108,11 @@ To deploy your application, you need to download an accelerator, upload it on yo
 
     Where `GIT-URL-TO-PROJECT-REPO` is the path you uploaded to in step 5.
 
+<<<<<<< HEAD
+    If you bypassed step 5 or were unable to upload your accelerator to a Git repository, use the following public version to test:
+=======
     If you bypassed step 5 or were unable to upload your accelerator to a Git repository, then you can use the public version to test with:
+>>>>>>> 6553db0e6d5a1ffb49109d6973d39e1bd9c22675
     ```
     tanzu apps workload create tanzu-java-web-app \
     --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
@@ -109,7 +123,11 @@ To deploy your application, you need to download an accelerator, upload it on yo
     --yes
     ```
 
+<<<<<<< HEAD
+    See [Tanzu Apps Workload Create](cli-plugins/apps/command-reference/tanzu_apps_workload_create.md).
+=======
     For more information, see [Tanzu Apps Workload Create](cli-plugins/apps/command-reference/tanzu_apps_workload_create.md).
+>>>>>>> 6553db0e6d5a1ffb49109d6973d39e1bd9c22675
 
     >**Note:** This first deployment uses accelerator source from Git, but in later steps you use the VSCode extension
     to debug and live-update this application.
