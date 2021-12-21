@@ -61,25 +61,25 @@ Application accelerators are templates that not only codify best practices, but 
 
 To deploy your application, you need to download an accelerator, upload it on your Git repository of choice, and run a CLI command. We recommend using the accelerator called `Tanzu-Java-Web-App`.
 
-1. From the Tanzu Application Platform GUI portal, click **Create** located on the left-hand side of the
+1. From the Tanzu Application Platform GUI portal, click `Create` located on the left-hand side of the
    navigation bar to see the list of available accelerators.
    For information about connecting to Tanzu Application Platform GUI, see
    [Accessing Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md).
 
     ![List of accelerators in Tanzu Application Platform GUI](images/getting-started-tap-gui-1.png)
 
-2. Locate the Tanzu Java Web App accelerator, which is a Spring Boot web app, and click **CHOOSE**.
+2. Locate the Tanzu Java Web App accelerator, which is a Spring Boot web app, and click `CHOOSE`.
 
     ![Tile for Tanzu Java Web App](images/getting-started-tap-gui-2.png)
 
 3. In the **Generate Accelerators** prompt, replace the default value `dev.local` in the **prefix for container image registry** field
    with the registry in the form of `SERVER-NAME/REPO-NAME`.
    The `SERVER-NAME/REPO-NAME` must match what was specified for `registry` as part of the installation values for `ootb_supply_chain_basic`.
-   Click **NEXT STEP**, verify the provided information, and click **CREATE**.
+   Click `NEXT STEP`, verify the provided information, and click `CREATE`.
 
     ![Generate Accelerators prompt](images/getting-started-tap-gui-3.png)
 
-4. After the Task Activity processes are complete, click **DOWNLOAD ZIP FILE**.
+4. After the Task Activity processes are complete, click `DOWNLOAD ZIP FILE`.
 
     ![Task Activity progress bar](images/getting-started-tap-gui-4.png)
 
@@ -135,17 +135,17 @@ To see this application in your organization catalog, you must register new enti
 
 1. Confirm you have installed the Blank Software Catalog (see [Configure the Tanzu Application Platform GUI](install.md#configure-tap-gui) for instructions).
 
-2. Navigate to the homepage of the Tanzu Application Platform GUI and click **Home**, located on the left-side navigation bar.
-   Then, click **REGISTER ENTITY**.
+2. Navigate to the homepage of the Tanzu Application Platform GUI and click `Home`, located on the left-side navigation bar.
+   Then, click `REGISTER ENTITY`.
 
     ![REGISTER button on the right side of the header](images/getting-started-tap-gui-5.png)
 
 3. "Register an existing component" prompts you to enter a repository URL.
-    Type the link to the `catalog-info.yaml` file in the Git repository field and click **ANALYZE**.
+    Type the link to the `catalog-info.yaml` file in the Git repository field and click `ANALYZE`.
 
     ![Select URL](images/getting-started-tap-gui-6.png)
 
-4. Review the catalog entities to be added and click **IMPORT**.
+4. Review the catalog entities to be added and click `IMPORT`.
 
     ![Review the entities to be added to the catalog](images/getting-started-tap-gui-7.png)
 
@@ -266,16 +266,16 @@ To create a new application accelerator, complete the following steps:
 
     ![Explore project dialog box](images/getting-started-section2-3.png)
 
-	(Optional) To browse the accelerator files, click **EXPLORE**.
-        When finished, click **NEXT STEP**.
+	(Optional) To browse the accelerator files, click `EXPLORE`.
+        When finished, click `NEXT STEP`.
 
 
-3. Verify the provided information and click **CREATE**.
+3. Verify the provided information and click `CREATE`.
 
     ![Verify information for creating an accelerator](images/getting-started-section2-4.png)
 
 
-4. Download and expand the ZIP file by clicking **DOWNLOAD ZIP FILE** and expand it.
+4. Download and expand the ZIP file by clicking `DOWNLOAD ZIP FILE` and expand it.
 
     * The output contains a YAML file for an Accelerator resource, pointing to the Git repository.
     * The output contains a file named `new-accelerator.yaml` which defines the metadata for your new accelerator.
@@ -291,7 +291,7 @@ To create a new application accelerator, complete the following steps:
     ```
 
 6. The Tanzu Application Platform GUI refreshes periodically. Once the GUI refreshes, the new accelerator becomes available.
-   After waiting a few minutes, click **Create** on the left-hand side navigation bar of the Tanzu Application Platform GUI to see if the accelerator appears.
+   After waiting a few minutes, click `Create` on the left-hand side navigation bar of the Tanzu Application Platform GUI to see if the accelerator appears.
 
 
 ### Using accelerator.yaml
