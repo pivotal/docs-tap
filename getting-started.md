@@ -333,7 +333,7 @@ tanzu accelerator update <accelerator-name> --reconcile
 ```
 ---
 
-## <a id='add-testing-and-scanning'></a> Section 3: Add Testing and Security Scanning to Your Application
+## <a id='add-testing-and-scanning'></a> Section 3: Add testing and security scanning to your application
 
 In this section, you will:
 * Learn about supply chains
@@ -352,7 +352,7 @@ more commonly known as CI/CD.
 A supply chain differs from CI/CD in that you can add any and every step that is necessary for an
 application to reach production, or a lower environment.
 
-![Diagram depicting a simple path to production: CI to Security Scan to Build Image to Image Scan to CAB Approval to Deployment.](images/path-to-production.png)
+![Diagram depicting a simple path to production: CI to Security Scan to Build Image to Image Scan to CAB Approval to Deployment.](images/path-to-production-new.png)
 
 ### A simple path to production
 
@@ -377,7 +377,7 @@ work with the Tanzu Application Platform components, and they include:
 The default **OOTB Basic** supply chain and its dependencies were installed on your cluster during the Tanzu Application Platform install.
 The table and diagrams below provide descriptions for each of the supply chains and dependencies provided with the Tanzu Application Platform.
 
-![Diagram depicting the Source-to-URL chain: Watch Repo (Flux) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](images/source-to-url-chain.png)
+![Diagram depicting the Source-to-URL chain: Watch Repo (Flux) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](images/source-to-url-chain-new.png)
 
 <table>
   <tr>
@@ -433,7 +433,7 @@ The table and diagrams below provide descriptions for each of the supply chains 
 The **OOTB Testing** supply chain runs a Tekton pipeline within the supply chain. It is dependent on
 [Tekton](https://tekton.dev/) being installed on your cluster.
 
-![Diagram depicting the Source-and-Test-to-URL chain: Watch Repo (Flux) to Test Code (Tekton) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](images/source-and-test-to-url-chain.png)
+![Diagram depicting the Source-and-Test-to-URL chain: Watch Repo (Flux) to Test Code (Tekton) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](images/source-and-test-to-url-chain-new.png)
 
 <table>
   <tr>
@@ -478,7 +478,7 @@ The **OOTB Testing** supply chain runs a Tekton pipeline within the supply chain
 
 The **OOTB Testing+Scanning** supply chain includes integrations for secure scanning tools.
 
-![Diagram depicting the Source-and-Test-to-URL chain: Watch Repo (Flux) to Test Code (Tekton) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](images/source-test-scan-to-url.png)
+![Diagram depicting the Source-and-Test-to-URL chain: Watch Repo (Flux) to Test Code (Tekton) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](images/source-test-scan-to-url-new.png)
 
 <table>
   <tr>
