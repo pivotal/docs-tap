@@ -505,7 +505,7 @@ The pipeline is configurable; therefore, you can customize the steps
 to perform either additional testing or other tasks with the
 Tekton pipeline. To apply this install method, complete the following steps:
 
-1. Install Tekton (see [Install Tekton](install-components.md#install-tekton) for instructions.
+1. Install Tekton (see [Install Tekton](install-components.md#install-tekton)) for instructions.
 
 2. With Tekton installed, you can activate the Out of the Box Supply Chain with Testing by updating our profile to use `testing` rather than `basic` as the selected supply chain for workloads in this cluster. Update `tap-values.yml`(the file used to customize the profile in `Tanzu package install tap
 --values-file=...`) with the following changes:
@@ -707,7 +707,7 @@ Verify that both Scan Link and Grype Scanner are installed by running:
     EOF
     ```
 
-2. (Optional) To persist and query the vulnerability results post-scan, ensure that [Supply Chain Security Tools - Store](scst-store/overview.md) is installed using the following command. Tanzu Application Platform profiles already install the package by default.
+2. To persist and query the vulnerability results post-scan, ensure that [Supply Chain Security Tools - Store](scst-store/overview.md) is installed using the following command (optional). The Tanzu Application Platform profiles install the package by default.
 
     ```
     tanzu package installed get metadata-store -n tap-install
@@ -741,10 +741,10 @@ Verify that both Scan Link and Grype Scanner are installed by running:
 
 #### Workload update
 
-To connect the new supply chain to the workload, update the workload to point at your Tekton
+To connect the new supply chain to the workload, update the workload to point to your Tekton
 pipeline:
 
-1. Update the workload by running the following with the Tanzu CLI:
+1. Update the workload by running the following using the Tanzu CLI:
 
     ```
     tanzu apps workload create tanzu-java-web-app \
@@ -779,13 +779,13 @@ pipeline:
     Created workload "tanzu-java-web-app"
     ```
 
-1. After accepting the workload creation, see the new resources that the workload created by running:
+1. After accepting the workload creation, view the new resources that the workload created by running:
 
     ```
     kubectl get workload,gitrepository,sourcescan,pipelinerun,images.kpack,imagescan,podintent,app,services.serving
     ```
 
-    Example output, which shows the objects that Supply Chain Choreographer created:
+    The following is an example output, which shows the objects that the Supply Chain Choreographer created:
 
     ```
     NAME                                    AGE
@@ -815,10 +815,32 @@ pipeline:
     NAME                                             URL                                               LATESTCREATED              LATESTREADY                READY     REASON
     service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.developer.example.com   tanzu-java-web-app-00001   tanzu-java-web-app-00001   Unknown   IngressNotConfigured
     ```
-#### Congratulations! You have successfully deployed your application on the Tanzu Application Platform.
+
+    If the source or image scan has a "Failed” phase, then the scan has failed compliance and the supply chain will not continue.  
+
+#### **Query for vulnerabilities**
+
+Scan reports are automatically saved to the [Supply Chain Security Tools - Store](https://docs-staging.vmware.com/en/Tanzu-Application-Platform/0.4/tap/GUID-install-components.html#install-scst-store), and can be queried for vulnerabilities and dependencies. For example, open-source software (OSS) or third party packages.
+
+1. Query the tanzu-java-web-app image dependencies and vulnerabilities with the following commands:
+
+	```
+    insight image get --digest DIGEST
+    insight image vulnerabilities --digest  DIGEST
+	```
+	
+	`DIGEST` is the component version, or image digest printed in the `KUBECTL GET` command.
+ 
+	Important: The `Insight CLI` is separate from the Tanzu CLI.
+
+See [Query Data](https://docs-staging.vmware.com/en/Tanzu-Application-Platform/1.0/tap/GUID-scst-store-query_data.html?hWord=N4IghgNiBcII4FcCmAnAngAgCZgC5hAF8g) or [CLI Details](https://docs-staging.vmware.com/en/Tanzu-Application-Platform/1.0/tap/GUID-scst-store-cli_docs-insight.html) for additional examples.
+<br>
+
+
+### Congratulations! You have successfully deployed your application on the Tanzu Application Platform.
 Continue through the next two sections, and you will not only have an opportunity to learn about recommended supply chain security best practices, but also have access to a powerful Services Journey experience on the Tanzu Application Platform utilizing several advanced use cases. 
 
-## Section 4: Configuring image signing and verification in your supply chain
+## Section 4: Configure image signing and verification in your supply chain
 
 In this section, you will:
 * Configure your supply chain to sign your image builds
@@ -829,8 +851,32 @@ In this section, you will:
 1. Configure Tanzu Build Service to sign your container image builds using cosign. See [Managing Image Resources and Builds](https://docs.vmware.com/en/Tanzu-Build-Service/1.3/vmware-tanzu-build-service-v13/GUID-managing-images.html) for instructions.
 2. Create a `values.yaml` file, and install the sign supply chain security tools and image policy webhook. See [Install Supply Chain Security Tools - Sign](https://docs-staging.vmware.com/en/Tanzu-Application-Platform/0.4/tap/GUID-install-components.html#install-scst-sign) for instructions.
 3. Configure a `ClusterImagePolicy` resource to verify image signatures when deploying resources. The resource must be named `image-policy`. For example:
-	
-	![Cluster Image Policy Resource](images/cluster-image-policy-resource.png)
+
+    ```
+    ---
+    apiVersion: signing.run.tanzu.vmware.com/v1alpha1
+    kind: ClusterImagePolicy
+    metadata:
+       name: image-policy
+    spec:
+       verification:
+         exclude:
+           resources
+             namespaces:
+             - kube-system
+             - test-namespace
+         keys:
+         - name: first-key
+           publicKey: |
+             -----BEGIN PUBLIC KEY-----
+             <content ...>
+             -----END PUBLIC KEY-----
+         images:
+         - namePattern: registry.example.org/myproject/*
+           keys:
+           - name: first-key
+ 
+    ```
 
 This component allows a platform operator to define a policy that will
 restrict unsigned images from running on clusters.
