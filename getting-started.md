@@ -229,15 +229,18 @@ Tanzu Application Platform, and Tilt will indicate the container is being built 
 
 #### Debug your application
 
-You can debug your cluster on your application or in your local environment.
+You can either debug your cluster on the application or in your local environment.
 
-Follow the steps below to debug your cluster:
+Complete the following steps to debug your cluster:
 
-1. Set a breakpoint in your code.
-2. Right-click the file `workload.yaml` within the `config` folder, and select **Tanzu: Java Debug Start**.
-   In a few moments, the workload is redeployed with debugging enabled.
-3. Return to your browser and navigate to `http://localhost:8080`. This will hit the breakpoint within VSCode. You can now step through or play to the end of the debug session using VSCode debugging controls.
+1. Set a breakpoint in the code.
+2. Right-click the file `workload.yaml` in the `config` folder, and select **Tanzu: Java Debug Start**.
+   
+   The workload will redeploy with debugging enabled.
 
+4. Return to your browser. and navigate to `http://localhost:8080` to hit the breakpoint within VSCode. 
+
+   Using the VSCode debugging controls, either step through or play to the end of the session.
 
 ### Monitor your running application
 
