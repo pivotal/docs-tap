@@ -982,7 +982,7 @@ You must have installed:
         ```
         Deleting installed package 'ootb-supply-chain-testing-scanning' in namespace 'tap-install'.
         Are you sure? [y/N]: y
-       
+           
         | Uninstalling package 'ootb-supply-chain-testing-scanning' from namespace 'tap-install'
         \ Getting package install for 'ootb-supply-chain-testing-scanning'
         - Deleting package install 'ootb-supply-chain-testing-scanning' from namespace 'tap-install'
@@ -990,7 +990,7 @@ You must have installed:
         | Deleting role binding 'ootb-supply-chain-testing-scanning-default-cluster-rolebinding'
         | Deleting secret 'ootb-supply-chain-testing-scanning-default-values'
         | Deleting service account 'ootb-supply-chain-testing-scanning-default-sa'
-       
+           
          Uninstalled package 'ootb-supply-chain-testing-scanning' from namespace 'tap-install'
         ```
 
@@ -1105,7 +1105,7 @@ and image for vulnerabilities.
         ```
         Deleting installed package 'ootb-supply-chain-testing' in namespace 'tap-install'.
         Are you sure? [y/N]: y
-       
+           
         | Uninstalling package 'ootb-supply-chain-testing' from namespace 'tap-install'
         \ Getting package install for 'ootb-supply-chain-testing'
         - Deleting package install 'ootb-supply-chain-testing' from namespace 'tap-install'
@@ -1113,7 +1113,7 @@ and image for vulnerabilities.
         | Deleting role binding 'ootb-supply-chain-testing-default-cluster-rolebinding'
         | Deleting secret 'ootb-supply-chain-testing-default-values'
         | Deleting service account 'ootb-supply-chain-testing-default-sa'
-       
+           
          Uninstalled package 'ootb-supply-chain-testing' from namespace 'tap-install'
         ```
 
