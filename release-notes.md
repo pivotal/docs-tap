@@ -34,7 +34,7 @@ This release has the following issues:
 
 This release has the following security issues:
 
-* Customers should note that the installation will specify that the installer's Tanzu Network credentails be exported to all namespaces. Customers can optionally choose to mitigate this concern via one of two methods:
+* The installation specifies that the installer's Tanzu Network credentials be exported to all namespaces. Customers can optionally choose to mitigate this concern using one of the following methods:
   *  Create a Tanzu Network account with their own credentials and use this for the installation exclusively.
   *  Using [Carvel tool's imgpkg](https://carvel.dev/imgpkg/) customers can create a dedicated OCI registry on their own infrastructure that can comply with any required security policies that may exist.
 * Security issue 2
