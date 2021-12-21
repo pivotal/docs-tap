@@ -47,6 +47,7 @@ The following components have separate release notes.
 | Supply Chain Security Tools - Sign       | [Release notes](scst-sign/release-notes.md)                  |
 | Supply Chain Security Tools - Store      | [Release notes](scst-store/release_notes.md)                 |
 | VMware Tanzu Build Service               | [Release notes](https://docs.vmware.com/en/Tanzu-Build-Service/1.3/vmware-tanzu-build-service-v13/GUID-release-notes.html) |
+| VMware Tanzu Developer Tools for Visual Studio Code | [Release notes](vscode-extension/release-notes.md) |
 
 
 ## <a id='0-4-0'></a> v0.4.0 beta release
