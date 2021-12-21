@@ -1221,7 +1221,7 @@ The [setup procedure](#consuming-services-setup) is typically performed by the S
 
 >**Note:** Any service that adheres to the [Provisioned Service](https://github.com/servicebinding/spec#provisioned-service) in the specification is compatible with Tanzu Application Platform.
 
->**Warning:** The example flow detailed in [Use case 1: Binding an application to a pre-provisioned service instance running in the same namespace](#services-journey-use-case-1) uses one RabbitMQ instance and one workload.  RabbitMQ is likely to be used with two or more apps but unfortunately the current implementation blocks the ability to do that via only a workload.  See [Binding multiple apps to the same service resource](binding-multiple-apps-to-the-same-service-resource) for more details on how to work around this manually.
+>**Warning:** The example flow detailed in [Use case 1: Binding an application to a pre-provisioned service instance running in the same namespace](#services-journey-use-case-1) uses one RabbitMQ instance and one workload.  RabbitMQ is frequently  used with two or more applicatons although the current implementation blocks the ability to do this which only one workload.  See [Binding multiple apps to the same service resource](binding-multiple-apps-to-the-same-service-resource) for more details on how to work around this manually.
 
 <!-- * [Use Case 1 - **Binding an App Workload to a Service Resource**](#services-journey-use-case-1)
 * [Use Case 2 - **Binding an App Workload to a Service Resource across multiple clusters**](#services-journey-use-case-2)
@@ -1419,7 +1419,7 @@ the new message IDs.
 
 Currently, if there are two workloads both claiming the same service resource, then Resource Claims would prevent the second workload from claiming the resource.  To get around this, a `ProvisionedService` can be used.
 
-1. In `provisionedservice-reader.yaml`, ensure you have RBAC enabled for `provisionedservice` resources for all authenticated users.
+1. In `provisionedservice-reader.yaml`, ensure you have RBAC enabled for `provisionedservice` resources for all authenticated users similar to the following example:
 
     ```
     # provisionedservice-reader.yaml
@@ -1447,14 +1447,14 @@ Currently, if there are two workloads both claiming the same service resource, t
       name: system:authenticated
     ```
 
-1. Apply `provisionedservice-reader.yaml` by running:
+2. Apply `provisionedservice-reader.yaml` by running:
 
     ```
     kubectl apply -f provisionedservice-reader.yaml
     ```
 
 
-1. Create a RabbitMQ service instance with the following YAML:
+3. Create a RabbitMQ service instance with the following YAML:
 
     ```
     # example-rabbitmq-cluster-service-instance-two-users.yaml
@@ -1467,19 +1467,19 @@ Currently, if there are two workloads both claiming the same service resource, t
       replicas: 1
     ```
 
-1. Apply `example-rabbitmq-cluster-service-instance-two-users.yaml` by running:
+4. Apply `example-rabbitmq-cluster-service-instance-two-users.yaml` by running:
 
     ```
     kubectl apply -f example-rabbitmq-cluster-service-instance-two-users.yaml
     ```
 
-1. Get the name of the binding Secret produced by the RabbitmqCluster.
+5. Get the name of the binding Secret produced by the RabbitmqCluster with the following command:
 
     ```
     kubectl get rabbitmqclusters example-rabbitmq-cluster-two-users -o jsonpath='{.status.binding.name}'
     ```
 
-1. Create two `ProvisionedService`s with the following YAML:
+6. Create two `ProvisionedService`s with the following YAML:
     ```
     # rabbitmq-provisionedservices.yaml
     ---
@@ -1502,19 +1502,19 @@ Currently, if there are two workloads both claiming the same service resource, t
 
     Where `<BINDING-SECRET-NAME>` is the output in the previous step.
 
-1. Apply `rabbitmq-provisionedservices.yaml` by running:
+7. Apply `rabbitmq-provisionedservices.yaml` by running:
 
     ```
     kubectl apply -f rabbitmq-provisionedservices.yaml
     ```
 
-1. Create the first application workload and reference the first `ProvisionedResource` `rabbitmq-user-1` by running:
+8. Create the first application workload and reference the first `ProvisionedResource` `rabbitmq-user-1` by running:
 
     ```
     tanzu apps workload create rmq-sample-app-usecase-1-app-1 --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch v0.1.0 --type web --service-ref "rmq=bindings.labs.vmware.com/v1alpha1:ProvisionedService:rabbitmq-user-1"
     ```
 
-1. Create the second application workload and reference the second `ProvisionedResource` `rabbitmq-user-2` by running:
+9. Create the second application workload and reference the second `ProvisionedResource` `rabbitmq-user-2` by running:
 
     ```
     tanzu apps workload create rmq-sample-app-usecase-1-app-2 --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch v0.1.0 --type web --service-ref "rmq=bindings.labs.vmware.com/v1alpha1:ProvisionedService:rabbitmq-user-2"
