@@ -6,13 +6,13 @@ weight: 1
 
 ## Overview
 
-Developer Conventions are a set of [conventions](../convention-service) that can enable your workloads to support live-update and debug operations. They are used alongside the [Tanzu CLI Apps Plugin](../cli-plugins/apps/overview-installation) and the [Tanzu Dev Tools for VSCode](../vscode-extension/about) IDE extension.
+Developer Conventions are a set of [conventions](../convention-service/about.md) that can enable your workloads to support live-update and debug operations. They are used alongside the [Tanzu CLI Apps Plugin](../cli-plugins/overview-installation.md) and the [Tanzu Dev Tools for VSCode](../vscode-extension/about.md) IDE extension.
 
 ## Features
 ### Enabling Live Updates
 Developer Conventions will modify your workload to enable live updates in one of the following situations:
 1. A workload is deployed using the Tanzu CLI Apps plugin and includes the flag `--live-update=true`. More information on how to deploy a workload with the CLI [here](../cli-plugins/apps/command-reference/tanzu_apps_workload_apply.md).
-1. A workload is deployed using the `Tanzu: Live Update Start` option through the Tanzu Dev Tools for VSCode extension. More information on live updating with the Tanzu Dev Tools extension [here](../vscode-extension/usage).
+1. A workload is deployed using the `Tanzu: Live Update Start` option through the Tanzu Dev Tools for VSCode extension. More information on live updating with the Tanzu Dev Tools extension [here](../vscode-extension/usage.md).
 
 When one of the above actions take place, the convention will behave as follows:
 - It will look for the `apps.tanzu.vmware.com/live-update=true` annotation on a PodTemplateSpec associated with a workload. 
@@ -24,7 +24,7 @@ Once the above changes are made, you will be able to use the Tanzu Dev Tools ext
 ### Enabling Debugging
 Developer Conventions will modify your workload to enable debugging in one of the following situations:
 1. A workload is deployed using the Tanzu CLI Apps plugin and includes the flag `--debug=true`. More information on how to deploy a workload with the CLI [here](../cli-plugins/apps/command-reference/tanzu_apps_workload_apply.md).
-1. A workload is deployed using the `Tanzu Java Debug Start` option through the Tanzu Dev Tools for VSCode extension. More information on debugging with the Tanzu Dev Tools extension [here](../vscode-extension/usage).
+1. A workload is deployed using the `Tanzu Java Debug Start` option through the Tanzu Dev Tools for VSCode extension. More information on debugging with the Tanzu Dev Tools extension [here](../vscode-extension/usage.md).
 
 When one of the above actions take place, the convention will behave as follows:
 - It will look for the `apps.tanzu.vmware.com/debug=true` annotation on a PodTemplateSpec associated with a workload. 
