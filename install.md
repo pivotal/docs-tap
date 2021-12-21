@@ -379,6 +379,8 @@ ootb_supply_chain_basic:
   registry:
     server: "SERVER-NAME"
     repository: "REPO-NAME"
+  git_ops:
+    ssh_secret: ""
 
 learningcenter:
   ingressDomain: "DOMAIN-NAME"
@@ -459,6 +461,8 @@ ootb_supply_chain_basic:
   registry:
     server: "SERVER-NAME"
     repository: "REPO-NAME"
+  git_ops:
+    ssh_secret: ""
 
 tap_gui:
   service_type: ClusterIP
@@ -483,23 +487,23 @@ metadata_store:
 Where:
 
 - `KP-DEFAULT-REPO` is a writable repository in your registry. Tanzu Build Service dependencies are written to this location. Examples:
-    * Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`
-    * Dockerhub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`
-    * Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`
+    - Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`
+    - Dockerhub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`
+    - Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`
 - `KP-DEFAULT-REPO-USERNAME` is the username that can write to `KP-DEFAULT-REPO`. You should be able to `docker push` to this location with this credential.
-    * For Google Cloud Registry, use `kp_default_repository_username: _json_key`
+    - For Google Cloud Registry, use `kp_default_repository_username: _json_key`
 - `KP-DEFAULT-REPO-PASSWORD` is the password for the user that can write to `KP-DEFAULT-REPO`.
 You can `docker push` to this location with these credentials.
-    * For Google Cloud Registry, use the contents of the service account JSON key.
+    - For Google Cloud Registry, use the contents of the service account JSON key.
 - `SERVER-NAME` is the hostname of the registry server. Examples:
-    * Harbor has the form `server: "my-harbor.io"`
-    * Dockerhub has the form `server: "index.docker.io"`
-    * Google Cloud Registry has the form `server: "gcr.io"`
+    - Harbor has the form `server: "my-harbor.io"`
+    - Dockerhub has the form `server: "index.docker.io"`
+    - Google Cloud Registry has the form `server: "gcr.io"`
 - `REPO-NAME` is where workload images are stored in the registry.
 Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
-    * Harbor has the form `repository: "my-project/supply-chain"`
-    * Dockerhub has the form `repository: "my-dockerhub-user"`
-    * Google Cloud Registry has the form `repository: "my-project/supply-chain"`
+    - Harbor has the form `repository: "my-project/supply-chain"`
+    - Dockerhub has the form `repository: "my-dockerhub-user"`
+    - Google Cloud Registry has the form `repository: "my-project/supply-chain"`
 - `INGRESS-DOMAIN` is the subdomain for the hostname that you will point at the `tanzu-shared-ingress` service's External IP address
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog you've already built and posted on the Git infrastucture you specified in the Integration section.
 
@@ -511,7 +515,7 @@ tanzu package available get tap.tanzu.vmware.com/0.4.0 --values-schema --namespa
 ```
 
 >**Note:** The `tap.tanzu.vmware.com` package does not show all configuration settings for packages
->it plans to install. The package only shows top level keys.
+>it plans to install. The package only shows top-level keys.
 >View individual package configuration settings with the same `tanzu package available get` command.
 >For example, use `tanzu package available get -n tap-install cnrs.tanzu.vmware.com/1.0.3 --values-schema` for Cloud Native Runtimes.
 
@@ -632,6 +636,6 @@ To exclude packages from a Tanzu Application Platform profile:
       - service-bindings.lab.vmware.com
     ```
 
->**Note:** If you decide to exclude a package after performing a profile installation which included that package, you can not see the the accurate package states immediately after running `tap package installed list -n tap-install`.
+>**Note:** If you decide to exclude a package after performing a profile installation which included that package, you cannot see the the accurate package states immediately after running `tap package installed list -n tap-install`.
 
 >**Note:** You can break package dependencies by removing a package. Allow 20 minutes to verify that all packages have reconciled correctly while troubleshooting.
