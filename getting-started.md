@@ -197,7 +197,7 @@ To live update your application, follow the steps below:
 1. From the Command Palette (⇧⌘P), type in and select `Tanzu: Live Update Start`.
 You will see output from the Tanzu Application Platform and from Tilt indicating that the container is being built and deployed. 
     - You will also see "Live Update starting..." in the status bar at the bottom right
-    - Because this is your first time starting live update for this workload, it might take 1-3 minutes for the workload to be deployed and the Knative service to become available.
+    - Live update can take 1-3 minutes while the workload is deployed and the Knative service becomes available.
 
 1. Once you see the Live Update status in the status bar resolve to "Live Update Started", navigate to `http://localhost:8080` in your browser and view your workload running.
 1. Return to the IDE and make a change to the source code. For example, in `HelloController.java`, modify the string returned to say `Hello!` and save.
