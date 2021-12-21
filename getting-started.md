@@ -48,7 +48,7 @@ In this section, you will:
 	* Iterate on your application
 	* Live update your application
 	* Debug your application
-* Monitor your running application 
+* Monitor your running application
 
 
 ### About application accelerators
@@ -135,28 +135,29 @@ To see this application in your organization catalog, you must register new enti
 
 1. Confirm you have installed the Blank Software Catalog (see [Configure the Tanzu Application Platform GUI](install.md#configure-tap-gui) for instructions).
 
->**Note:** In Tanzu Application Platform Beta 5, there is currently a bug that requires you to add a line to the `catalog-info.yaml` of the `tanzu-java-web-app` component. Please add the `spec.system: tanzu-java-web-app` statement from the below example:
-```yaml
+		>**Note:** In Tanzu Application Platform beta 5, you must add a line to the `catalog-info.yaml` of the `tanzu-java-web-app` component.
+		In the following example, the added line is the `spec.system: tanzu-java-web-app` statement.
 
-apiVersion: backstage.io/v1alpha1
-kind: Component
-metadata:
-  name: tanzu-java-web-app
-  description: Tanzu Java Web App
-  tags:
-    - app-accelerator
-    - java
-    - spring
-    - web
-    - tanzu
-  annotations:
-    'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=tanzu-java-web-app'
-spec:
-  type: service
-  lifecycle: experimental
-  owner: default-team
-  system: tanzu-java-web-app
-```
+		```
+		apiVersion: backstage.io/v1alpha1
+		kind: Component
+		metadata:
+		  name: tanzu-java-web-app
+		  description: Tanzu Java Web App
+		  tags:
+		    - app-accelerator
+		    - java
+		    - spring
+		    - web
+		    - tanzu
+		  annotations:
+		    'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=tanzu-java-web-app'
+		spec:
+		  type: service
+		  lifecycle: experimental
+		  owner: default-team
+		  system: tanzu-java-web-app
+		```
 
 2. Navigate to the homepage of the Tanzu Application Platform GUI and click **Home**, located on the left-side navigation bar.
    Then, click **REGISTER ENTITY**.
@@ -676,8 +677,8 @@ the workload must be updated to point at your Tekton pipeline.
 
 ### Install OOTB Testing+Scanning
 
-In this section, you will install the OOTB Testing+Scanning supply chain. 
-**Important:** The grype must be installed for scanning. 
+In this section, you will install the OOTB Testing+Scanning supply chain.
+**Important:** The grype must be installed for scanning.
 
 To apply this install method, complete the following steps:
 
@@ -851,9 +852,9 @@ Scan reports are automatically saved to the [Supply Chain Security Tools - Store
     insight image get --digest DIGEST
     insight image vulnerabilities --digest  DIGEST
 	```
-	
+
 	`DIGEST` is the component version, or image digest printed in the `KUBECTL GET` command.
- 
+
 	Important: The `Insight CLI` is separate from the Tanzu CLI.
 
 See [Query Data](https://docs-staging.vmware.com/en/Tanzu-Application-Platform/1.0/tap/GUID-scst-store-query_data.html?hWord=N4IghgNiBcII4FcCmAnAngAgCZgC5hAF8g) or [CLI Details](https://docs-staging.vmware.com/en/Tanzu-Application-Platform/1.0/tap/GUID-scst-store-cli_docs-insight.html) for additional examples.
@@ -861,7 +862,7 @@ See [Query Data](https://docs-staging.vmware.com/en/Tanzu-Application-Platform/1
 
 
 ### Congratulations! You have successfully deployed your application on the Tanzu Application Platform.
-Continue through the next two sections, and you will not only have an opportunity to learn about recommended supply chain security best practices, but also have access to a powerful Services Journey experience on the Tanzu Application Platform utilizing several advanced use cases. 
+Continue through the next two sections, and you will not only have an opportunity to learn about recommended supply chain security best practices, but also have access to a powerful Services Journey experience on the Tanzu Application Platform utilizing several advanced use cases.
 
 ## Section 4: Configure image signing and verification in your supply chain
 
@@ -898,7 +899,7 @@ In this section, you will:
          - namePattern: registry.example.org/myproject/*
            keys:
            - name: first-key
- 
+
     ```
 
 This component allows a platform operator to define a policy that will

@@ -166,7 +166,7 @@ spec:
     isCompliant = isSafe(input.currentVulnerability)
 ```
 
-See [Writing Policy Templates](scst-scan/policies.md) for more details]).
+See [Writing Policy Templates](../scst-scan/policies.md) for more details]).
 
 
 #### <a id="scan-template"></a> ScanTemplate
@@ -184,7 +184,7 @@ If you're targeting a namespace that doesn't match the one configured in the
 Tanzu Application Platform profiles, for example if `grype.namespace` is not the same as the one
 you're writing the workload to, you can install these in such namespace by making use of the
 `tanzu package install` command as described in [Install Supply Chain Security
-Tools - Scan](install-components.md#install-scst-scan):
+Tools - Scan](../install-components.md#install-scst-scan):
 
 1. Create a file named `ootb-supply-chain-basic-values.yaml` that specifies the corresponding values
 to the properties you want to tweak. For example:
@@ -209,7 +209,7 @@ to the properties you want to tweak. For example:
 >`grype.scanning.apps.tanzu.vmware.com`. This is created in the same namespace as configured by
 >using `grype.namespace` in either Tanzu Application Platform profiles or individual component
 >installation as in the earlier example. For more information, see
->[About Source and Image Scans](scst-scan/explanation.md#about-source-and-image-scans).
+>[About Source and Image Scans](../scst-scan/explanation.md#about-source-and-image-scans).
 
 
 ## Developer Workload
