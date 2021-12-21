@@ -202,7 +202,7 @@ You are now ready to iterate on your application.
 
 
 #### Live update your application
-1. Within VSCode, go to `Preferences` > `Settings` > `Extensions` > `Tanzu`.
+1. In VSCode, navigate to `Preferences` > `Settings` > `Extensions` > `Tanzu`.
 
 1. In the **Local Path** field, enter the path to the directory containing the Tanzu Java Web App. Defaults to current directory.
 
@@ -218,18 +218,18 @@ Deploy the application to view it updating live on the cluster to demonstrate ho
 
 Complete the following steps to live update your application:
 
-1. Select **Tanzu: Live Update Start** from the Command Palette (⇧⌘P). The Tanzu Logs will open in the Output tab and the output will be visible from the
-Tanzu Application Platform, and Tilt will indicate the container is being built and deployed. The first time starting live update for the application, it may take up to 3 minutes for the workload to be deployed and the Knative service to become available.
+1. Select **Tanzu: Live Update Start** from the Command Palette (⇧⌘P). The Tanzu Logs open in the Output tab, the output is visible from 
+Tanzu Application Platform, and Tilt indicates the container is being built and deployed. The first time starting live update for the application, it may take up to 3 minutes for the workload to deploy and the Knative service to be available.
 
 1. From the Command Palette (⇧⌘P), type in and select `Tanzu: Live Update Start`.
-You will see output from the Tanzu Application Platform and from Tilt indicating that the container is being built and deployed. 
-    - You will also see "Live Update starting..." in the status bar at the bottom right
-    - Live update can take 1-3 minutes while the workload is deployed and the Knative service becomes available.
+You can view output from Tanzu Application Platform and from Tilt indicating that the container is being built and deployed. 
+    - You see "Live Update starting..." in the status bar at the bottom right.
+    - Live update can take 1-3 minutes while the workload deploys and the Knative service becomes available.
 
-1. Once you see the Live Update status in the status bar resolve to "Live Update Started", navigate to `http://localhost:8080` in your browser and view your workload running.
+1. Once you see the Live Update status in the status bar, resolve to "Live Update Started", navigate to `http://localhost:8080` in your browser, and view your running workload.
 1. Return to the IDE and make a change to the source code. For example, in `HelloController.java`, modify the string returned to say `Hello!` and save.
-1. Once the logs stop streaming, the container has been updated. Navigate back to your browser and refresh the page.
-1. View the changes to your workload that is running on the cluster. 
+1. Once the logs stop streaming, the container is updated. Navigate to your browser and refresh the page.
+1. View the changes to your workload running on the cluster. 
 
 You can now continue to make more changes. If you are finished, you can stop or disable live update. Open the command palette (⇧⌘P), type in `Tanzu`, and select either option.
 
