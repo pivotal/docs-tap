@@ -879,13 +879,13 @@ In this section, you will:
 2. Create a `values.yaml` file, and install the sign supply chain security tools and image policy web-hook. See [Install Supply Chain Security Tools - Sign](https://docs-staging.vmware.com/en/Tanzu-Application-Platform/0.4/tap/GUID-install-components.html#install-scst-sign) for instructions.
 3. Configure a `ClusterImagePolicy` resource to verify image signatures when deploying resources.
 
-    **Note:** The resource must be named `image-policy`. 
+    **Note:** The resource must be named `image-policy`.
 
     For example:
 
     ```
     ---
-    apiVersion: signing.run.tanzu.vmware.com/v1alpha1
+    apiVersion: signing.apps.tanzu.vmware.com/v1beta1
     kind: ClusterImagePolicy
     metadata:
        name: image-policy

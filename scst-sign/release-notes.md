@@ -2,6 +2,21 @@
 
 This topic contains release notes for Supply Chain Security Tools - Sign.
 
+## v1.0.0-beta.4
+
+**Release Date**: December 21, 2021
+
+### Breaking change
+
+* `ClusterImagePolicy` group has been renamed to `signing.apps.tanzu.vmware.com`
+* Dropped support for API version v1alpha1. Use v1beta1.
+
+### Known issues
+
+* A Grype scan has reported the following false positive result:
+    * [CVE-2015-5237](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-5237) is on the C
+    implementation of Protocol Buffers. Supply Chain Security Tools - Sign uses the golang version.
+
 
 ## v1.0.0-beta.3
 
