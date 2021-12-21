@@ -20,42 +20,50 @@ To add the Tanzu Application Platform package repository:
     export INSTALL_REGISTRY_HOSTNAME=registry.tanzu.vmware.com
     ```
 
-2. Create a registry secret by running:
+2. Create a namespace called `tap-install` for deploying any component packages by running:
+
+    ```
+    kubectl create ns tap-install
+    ```
+
+    This namespace keeps the objects grouped together logically.
+
+3. Create a registry secret by running:
 
     ```
     tanzu secret registry add tap-registry \
       --username ${INSTALL_REGISTRY_USERNAME} --password ${INSTALL_REGISTRY_PASSWORD} \
       --server ${INSTALL_REGISTRY_HOSTNAME} \
-      --export-to-all-namespaces --yes --namespace tanzu-package-repo-global
+      --export-to-all-namespaces --yes --namespace tap-install
     ```
 
-3. Add Tanzu Application Platform package repository to the cluster by running:
+4. Add Tanzu Application Platform package repository to the cluster by running:
 
     ```
     tanzu package repository add tanzu-tap-repository \
       --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.4.0 \
-      --namespace tanzu-package-repo-global
+      --namespace tap-install
     ```
     For example:
 
     ```
     $ tanzu package repository add tanzu-tap-repository \
         --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.4.0 \
-        --namespace tanzu-package-repo-global
+        --namespace tap-install
     \ Adding package repository 'tanzu-tap-repository'...
 
     Added package repository 'tanzu-tap-repository'
     ```
 
-4. Get the status of the Tanzu Application Platform package repository, and ensure the status updates to `Reconcile succeeded` by running:
+5. Get the status of the Tanzu Application Platform package repository, and ensure the status updates to `Reconcile succeeded` by running:
 
     ```
-    tanzu package repository get tanzu-tap-repository --namespace tanzu-package-repo-global
+    tanzu package repository get tanzu-tap-repository --namespace tap-install
     ```
     For example:
 
     ```
-    $ tanzu package repository get tanzu-tap-repository --namespace tanzu-package-repo-global
+    $ tanzu package repository get tanzu-tap-repository --namespace tap-install
     - Retrieving repository tap...
     NAME:          tanzu-tap-repository
     VERSION:       3769
@@ -64,14 +72,6 @@ To add the Tanzu Application Platform package repository:
     STATUS:        Reconcile succeeded
     REASON:
     ```
-
-5. Create a namespace called `tap-install` for deploying any component packages by running:
-
-    ```
-    kubectl create ns tap-install
-    ```
-
-    This namespace will keep installed package objects grouped together.
 
 6. List the available packages by running:
 
@@ -96,7 +96,7 @@ To add the Tanzu Application Platform package repository:
       controller.source.apps.tanzu.vmware.com              Tanzu Source Controller                                                   Tanzu Source Controller enables workload create/update from source code.
       developer-conventions.tanzu.vmware.com               Tanzu App Platform Developer Conventions                                  Developer Conventions
       grype.scanning.apps.tanzu.vmware.com                 Grype Scanner for Supply Chain Security Tools - Scan                      Default scan templates using Anchore Grype
-      image-policy-webhook.signing.run.tanzu.vmware.com    Image Policy Webhook                                                      The Image Policy Webhook allows platform operators to define a policy that will use cosign to verify signatures of container images
+      image-policy-webhook.signing.apps.tanzu.vmware.com    Image Policy Webhook                                                     The Image Policy Webhook allows platform operators to define a policy that will use cosign to verify signatures of container images
       learningcenter.tanzu.vmware.com                      Learning Center for Tanzu Application Platform                            Guided technical workshops
       ootb-supply-chain-basic.tanzu.vmware.com             Tanzu App Platform Out of The Box Supply Chain Basic                      Out of The Box Supply Chain Basic.
       ootb-supply-chain-testing-scanning.tanzu.vmware.com  Tanzu App Platform Out of The Box Supply Chain with Testing and Scanning  Out of The Box Supply Chain with Testing and Scanning.
@@ -120,7 +120,7 @@ packages. This section explains how to install a profile.
 Tanzu Application Platform contains the following two profiles:
 
 - Full (`full`)
-- Dev (`dev`)
+- Light (`light`)
 
 The following table lists the packages contained in each profile:
 
@@ -130,7 +130,7 @@ The following table lists the packages contained in each profile:
    </td>
    <td><strong>Full</strong>
    </td>
-   <td><strong>Dev</strong>
+   <td><strong>Light</strong>
    </td>
   </tr>
   <tr>
@@ -182,46 +182,6 @@ The following table lists the packages contained in each profile:
    </td>
   </tr>
   <tr>
-   <td>Out of the Box Delivery - Basic
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-  </tr>
-  <tr>
-   <td>Out of the Box Supply Chain - Basic
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-  </tr>
-  <tr>
-   <td>Out of the Box Supply Chain - Testing
-   </td>
-   <td>&check;<sup>&ast;</sup>
-   </td>
-   <td>&check;
-   </td>
-  </tr>
-  <tr>
-   <td>Out of the Box Supply Chain - Testing and Scanning
-   </td>
-   <td>&check;<sup>&ast;</sup>
-   </td>
-   <td>
-   </td>
-  </tr>
-  <tr>
-   <td>Out of the Box Templates
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-  </tr>
-  <tr>
    <td>Developer Conventions
    </td>
    <td>&check;
@@ -261,7 +221,45 @@ The following table lists the packages contained in each profile:
    <td>
    </td>
   </tr>
+   <td>Out of the Box Delivery - Basic
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+  </tr>
   <tr>
+   <td>Out of the Box Supply Chain - Basic
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+   <td>Out of the Box Supply Chain - Testing
+   </td>
+   <td>&check;<sup>&ast;</sup>
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+   <td>Out of the Box Supply Chain - Testing and Scanning
+   </td>
+   <td>&check;<sup>&ast;</sup>
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Out of the Box Templates
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+  </tr>
    <td>Services Toolkit
    </td>
    <td>&check;
@@ -373,7 +371,8 @@ buildservice:
   kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
   tanzunet_username: "TANZUNET-USERNAME"
   tanzunet_password: "TANZUNET-PASSWORD"
-
+  descriptor_name: "DESCRIPTOR-NAME"
+  enable_automatic_dependency_updates: true
 supply_chain: basic
 
 ootb_supply_chain_basic:
@@ -416,9 +415,11 @@ Where:
     * Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`
 - `KP-DEFAULT-REPO-USERNAME` is the username that can write to `KP-DEFAULT-REPO`. You should be able to `docker push` to this location with this credential.
     * For Google Cloud Registry, use `kp_default_repository_username: _json_key`
-- `KP-DEFAULT-REPO-PASSWORD` is the password for the user that can write to `KP-DEFAULT-REPO`.
-You can `docker push` to this location with these credentials.
+- `KP-DEFAULT-REPO-PASSWORD` is the password for the user that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential.
     * For Google Cloud Registry, use the contents of the service account JSON key.
+- `DESCRIPTOR-NAME` is the name of the descriptor to import automatically. Current available options at time of release:
+    * `tap-1.0.0-full` contains all dependencies, and is for production use.
+    * `tap-1.0.0-lite` smaller footprint used for speeding up installs. Requires Internet access on the cluster.
 - `SERVER-NAME` is the hostname of the registry server. Examples:
     * Harbor has the form `server: "my-harbor.io"`
     * Dockerhub has the form `server: "index.docker.io"`
@@ -435,12 +436,14 @@ service's External IP address.
 - `MY-DEV-NAMESPACE` is the namespace where you want the `ScanTemplates` to be deployed to. This is the namespace where the scanning feature is going to run.
 - `REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull the scanner image from the registry.
 
+>**Note:** Using the `tap-values.yaml` configuration,
+>`buildservice.enable_automatic_dependency_updates: false` can be used to pause the automatic update
+>of Build Service dependencies.
 
-
-### Dev Profile
+### Light Profile
 
 ```
-profile: dev
+profile: light
 ceip_policy_disclosed: true # Installation fails if this is set to 'false'
 
 buildservice:
@@ -627,3 +630,7 @@ To exclude packages from a Tanzu Application Platform profile:
       - tap-gui.tanzu.vmware.com
       - service-bindings.lab.vmware.com
     ```
+
+>**Note:** If you decide to exclude a package after performing a profile installation which included that package, you can not see the the accurate package states immediately after running `tap package installed list -n tap-install`.
+
+>**Note:** You can break package dependencies by removing a package. Allow 20 minutes to verify that all packages have reconciled correctly while troubleshooting.

@@ -9,41 +9,52 @@ Welcome to the Tanzu Application Platform. This document guides you through gett
 * Add testing and security scanning to an application
 * Administer, set up, and manage supply chains
 
-
-### Prerequisites
-
-To take full advantage of this document, ensure you have followed [Installing Tanzu Application Platform](install-intro.md).
-
-Before getting started, ensure the following prerequisites are in place:
-
-1. Tanzu Application Platform is installed on the target Kubernetes cluster. For installation instructions, see [Installing Part I: Prerequisites, EULA, and CLI](install-general.md) and [Installing Part II: Profiles](install.md).
-
-2. Default kubeconfig context is set to the target Kubernetes cluster.
-
-3. The Out of The Box Supply Chain Basic is installed. See [Install default Supply Chain](install-components.md#install-ootb-supply-chain-basic).
-
-4. A developer namespace is set up to accommodate the developer's Workload.
-   See [Set Up Developer Namespaces to Use Installed Packages](install-components.md#-set-up-developer-namespaces-to-use-installed-packages).
-
-5. Tanzu Application Platform GUI is successfully installed.
-
-6. Install the VSCode Tanzu Extension.
-   See [How to Install the VSCode Tanzu Extension](vscode-extension/install.md). 
+Before getting started, you will need to complete the prerequisites in the next section.
 
 
+## Prerequisites
 
-## Section 1: Develop your first application on Tanzu Application Platform
+Please check you have successfully:
 
-In this section, you deploy a simple web application to the platform, enable debugging,
-and see your code updates added to the running application as you save them.
+* **Installed the Tanzu Application Platform**<br>
+See [Installing Tanzu Application Platform](install-intro.md).
 
-### A note about Application Accelerators
+* **Installed the Tanzu Application Platform on the target Kubernetes cluster**<br>
+See [Installing Part I: Prerequisites, EULA, and CLI](install-general.md) and [Installing Part II: Profiles](install.md).
 
-The Application Accelerator Plugin of Tanzu Application Platform GUI is located on the left-hand side navigation bar (`Create` button). It helps application developers and administrators to create and generate application accelerators. Accelerators are templates that codify best practices and ensure important configuration and structures are in place.
+* **Set the default kubeconfig context to the target Kubernetes cluster**<br>
 
-Developers can bootstrap their applications and get started with feature development. Application administrators can create custom accelerators that reflect their desired architectures and configurations, and enable fleets of developers to utilize them instantly. This decreases administrator concerns about whether developers are implementing their desired best practices.
+* **Installed Out of The Box (OOTB) Supply Chain Basic**<br>
+See [Install default Supply Chain](install-components.md#install-ootb-supply-chain-basic).
 
-Application Accelerator templates are available as a quick start from [Tanzu Network](https://network.tanzu.vmware.com/products/app-accelerator). To create your own Application Accelerator, see [Creating an accelerator](#creating-an-accelerator).
+* **Set up a developer namespace to accommodate the developer Workload**<br>
+See [Set Up Developer Namespaces to Use Installed Packages](install-components.md#-set-up-developer-namespaces-to-use-installed-packages).
+
+* **Installed the Tanzu Application Platform GUI**<br>
+
+* **Installed the VSCode Tanzu Extension**<br>
+See [How to Install the VSCode Tanzu Extension](vscode-extension/install.md) for instructions)
+
+If you have completed the prerequisites, then you're ready to get started!
+
+## Section 1: Develop your first application on the Tanzu Application Platform
+
+In this section, you will:
+
+* Learn about application accelerators
+* Deploy your application
+* Add your application to the Tanzu Application Platform GUI Software Catalog
+* Set up your integrated development environment (IDE)
+	* Iterate on your application
+	* Live update your application
+	* Debug your application
+* Monitor your running application 
+
+
+### About application accelerators
+
+
+Application accelerators are templates that not only codify best practices, but also provide important configuration and structures ready and available for use. Developers can create applications and get started with feature development immediately. Administrators can create custom application accelerators that reflect desired architectures and configurations, enabling developer use according to the best practices defined. The Application Accelerator Plugin of TAP GUI assists both application developers and administrators when creating and generating application accelerators. To create your own application accelerator, see [Create your accelerator](#creating-an-accelerator) for instructions.
 
 
 ### Deploy your application
@@ -85,7 +96,7 @@ For information about connecting to Tanzu Application Platform GUI, see
 
     Where `GIT-URL-TO-PROJECT-REPO` is the path you uploaded to in step 5.
 
-    If you bypassed step 5 and were unable to upload your accelerator to a Git repository, then you can use the public version to test with:
+    If you bypassed step 5 or were unable to upload your accelerator to a Git repository, then you can use the public version to test with:
     ```
     tanzu apps workload create tanzu-java-web-app \
     --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
@@ -107,7 +118,7 @@ For information about connecting to Tanzu Application Platform GUI, see
     tanzu apps workload tail tanzu-java-web-app --since 10m --timestamp
     ```
 
-8. After the workload is built and running, you can view the web-app in your browser. View the URL of the web-app by running the command below, and then press **ctrl-click** on the
+8. After the workload is built and running, you can view the Web App in your browser. View the URL of the Web App by running the command below, and then press **ctrl-click** on the
 Workload Knative Services URL at the bottom of the command output.
 
     ```
@@ -115,64 +126,60 @@ Workload Knative Services URL at the bottom of the command output.
     ```
 
 
-### Add your application to Tanzu Application Platform GUI Software Catalog
+### Add your application to the Tanzu Application Platform GUI Software Catalog
 
-To see this application in your organization catalog, you must register new entities as described below.
+To see this application in your organization catalog, you must register new entities as described below:
 
 
-1. Ensure you have already installed the Blank Software Catalog. For installation information, see [Configure the Tanzu Application Platform GUI](install.md#configure-tap-gui).
+1. Confirm you have installed the Blank Software Catalog (see [Configure the Tanzu Application Platform GUI](install.md#configure-tap-gui) for instructions).
 
-2. Go to the `Home` screen of Tanzu Application Platform GUI by clicking the “Home” button on the left-side navigation bar and select `REGISTER ENTITY` button on the top.
+2. Navigate to the homepage of the Tanzu Application Platform GUI and click Home (located on the left-side navigation bar). Then click `REGISTER ENTITY`.
 
     ![REGISTER button on the right side of the header](images/getting-started-tap-gui-5.png)
 
-3. In the Register, an existing component prompt provides a link to the `catalog-info.yaml` file in the Git repo and click on `ANALYZE`
+3. "Register an existing component" prompts you to enter a repository URL. Type the link to the `catalog-info.yaml` file in the Git repository field and click `ANALYZE`.
 
     ![Select URL](images/getting-started-tap-gui-6.png)
 
-4. Review the entities that will be added to the catalog and click on `IMPORT`
+4. Review the catalog entities to be added and click `IMPORT`.
 
     ![Review the entities to be added to the catalog](images/getting-started-tap-gui-7.png)
 
-Once you navigate back to the `Home` screen, the catalog changes should be reflected immediately and you should be able to see the entry in the catalog and interact with it.
+5. Navigate back to the homepage, and the catalog changes and entries will be visible for further inspection.
 
-### <a id='iterate'></a>Iterate on your Application
+### <a id='iterate'></a>Iterate on your application
 
-##### Set up your IDE
+#### **Set up your integrated development environment (IDE)**
+With your basic application workload working, you are ready to iterate on your application
+and test your code changes on the cluster.
+Tanzu Developer Tools for VSCode and VMware Tanzu’s official IDE extension for VSCode
+will assist you in developing and receiving feedback on the Tanzu Application Platform.
 
-Now that you have a skeleton workload working, you are ready to iterate on your application
-and test code changes on the cluster.
-Tanzu Developer Tools for VSCode, VMware Tanzu’s official IDE extension for VSCode,
-helps you develop & receive fast feedback on the Tanzu Application Platform.
+The VSCode extension enables live updates of your application while running on the cluster,
+and allows you to debug your application directly on the cluster.
 
-The VSCode extension enables live updates of your application while it runs on the cluster
-and lets you debug your application directly on the cluster.
+For information about installing the prerequisites and the Tanzu Developer Tools extension, see
+[How to Install the VSCode Tanzu Extension](vscode-extension/install.md) for instructions.
 
-For information about installing the pre-requisites and the Tanzu Developer Tools extension, see
-[How to Install the VSCode Tanzu Extension](vscode-extension/install.md).
+>**Note:** For this sample application, you must use Tilt v0.23.2 or a later version.
 
->**Note:** For this sample app, you must use Tilt v0.23.2 or later
+1. Open the ‘Tanzu Java Web App’ as a project within your VSCode IDE.
 
-Open the ‘Tanzu Java Web App’ as a project within your VSCode IDE.
+2. To ensure your extension assists you with iterating on the correct project, you will need to configure its settings:
 
-In order to ensure your extension helps you iterate on the correct project, you will need to configure its settings:
-
-1. Within VSCode, go to Preferences > Settings > Extensions > Tanzu.
-
-1. In the **Local Path** field, enter the path to the directory containing the Tanzu Java Web App.
-
-1. In the **Source Image** field, enter the destination image repository where
-you’d like to publish an image containing your workload source code.
-For example `harbor.vmware.com/myteam/tanzu-java-web-app-source`.
+ 	* Within VSCode, go to Preferences > Settings > Extensions > Tanzu.
+ 	* In the **Local Path** field, provide the path to the directory containing the Tanzu Java Web App.
+ 	* In the **Source Image** field, provide the destination image repository to publish an image containing your workload source code.
+	For example, `harbor.vmware.com/myteam/tanzu-java-web-app-source`.
 
 You are now ready to iterate on your application.
 
 
-##### Live update your application
+#### Live update your application
 
-Deploy the application and see it live update on the cluster. Doing so allows you to understand how your code changes will behave on a production-like cluster much earlier in the development process.
+Deploy the application to view it updating live on the cluster. This will demonstrate how your code changes will behave on a production-like cluster early in the development process.
 
-Follow these steps:
+To live update your application, follow the steps below:
 
 1. From the Command Palette (⇧⌘P), type in and select **Tanzu: Live Update Start**.
 Tanzu Logs opens up in the Output tab and you will see output from the
@@ -182,17 +189,19 @@ Because this is your first time starting live update for this application, it
 might take 1-3 minutes for the workload to be deployed and the Knative service
 to become available.
 
-1. Once you see output indicating that the workload is ready, navigate to `http://localhost:8080` in your browser and view your application running.
-1. Return to the IDE and make a change to the source code. For example, in `HelloController.java`, modify the string returned to say `Hello!` and save.
+1. When the output indicates the workload is ready, navigate to `http://localhost:8080` in your browser and view your running application.
+1. Return to the IDE and make a change to the source code. For example, in `HelloController.java`, you can modify the string returned with `Hello!`. Save when finished.
 1. If you look in the Tanzu Logs section of the Output tab, you will see the container has updated. Navigate back to your browser and refresh the page.
 
 
 You will see your changes on the cluster.
 
-You can now continue to make more changes. If you are finished, you can stop or disable live update. Open the command palette (⇧⌘P), type in Tanzu, and select either option.
+You can continue to make more changes. If you are finished, you can stop or disable live update:
+	1. Open the command palette (⇧⌘P).
+	1. Type in Tanzu.
+	1. Select stop or disable.
 
-
-##### Debug your application
+#### Debug your application
 
 You can debug your cluster on your application or in your local environment.
 
@@ -203,51 +212,56 @@ Follow the steps below to debug your cluster:
 3. Return to your browser and navigate to `http://localhost:8080`. This will hit the breakpoint within VSCode. You can now step through or play to the end of the debug session using VSCode debugging controls.
 
 
-##### Troubleshoot a running application
+### Monitor your running application
 
-Now that your application is developed you may be interested in inspecting the run time
-characteristics of the running application. You can use Application Live View UI to look
-into the running application to monitor resource consumption, JVM status, incoming traffic
-as well as change log level, environment variables to troubleshoot and fine-tune the running application.
-Currently, Spring Boot based applications can be diagnosed using Application Live View.
+Now that your application is deployed, you can inspect the runtime characteristics of the running
+application.
+You can use the Application Live View UI to monitor resource
+consumption, Java Virtual Machine (JVM) status, incoming traffic, and change log level for your running application.
+You can also troubleshoot environment variables and fine-tune the running application.
 
-Make sure that you have installed Application Live View components successfully.
+To diagnosed Spring Boot-based applications using Application Live View:
 
-Access Application Live View Tanzu Application Platform GUI following the
-[Entry point to Application Live View plug-in](tap-gui/plugins/app-live-view.html#entry-point-to-application-live-view-plugin-1).
-Select your application to look inside the running application and
-[explore](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-product-features.html)
-the various diagnostic capabilities.
+1. Follow the
+[Verify the Application Live View components](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-installing.html#verify-the-application-live-view-components-5) procedure
+to ensure the Application Live View components are successfully installed.
+
+1. Access the Application Live View Tanzu Application Platform GUI by following the
+[Entry point to Application Live View plug-in](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.4/tap/GUID-tap-gui-plugins-app-live-view.html#entry-point-to-application-live-view-plugin-1) procedure.
+
+1. Select your application to view inside the running application and see the diagnostic options.
+See [Product Features](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-product-features.html).
 
 
 ---
 
 
-## <a id='creating-an-accelerator'></a>Section 2: Creating an accelerator
+## <a id='creating-an-accelerator'></a>Section 2: Create your accelerator
 
-In this section, you will create a New Application Accelerator by using the Tanzu Application Platform GUI.
+In this section, you will:
+* Create a new application accelerator using the Tanzu Application Platform GUI
 
-### Create a New Application Accelerator ###
+### Create a new application accelerator ###
 
-Use the following procedure to create an accelerator:
+To create a new application accelerator, complete the following steps:
 
-1. From the Tanzu Application Platform GUI portal, click on the `Create` button on the left-hand side of the navigation bar to see the list of available accelerators. Select the **New Accelerator** tile by pressing on the `CHOOSE` button.
+1. Click `Create` on the left-hand side of the navigation bar on the Tanzu Application Platform GUI portal to view the list of available accelerators.
+2. Click `CHOOSE` to select the **New Accelerator** tile.
 
-    ![New Accelerator tile](images/getting-started-section2-1.png)
+3. Complete the **New Project** form with the following information:
 
-2. Fill in the new project form with the information below. To browse the files of the accelerator, click on the `EXPLORE` button (optional). When finished, click on the `NEXT STEP` button.
-
-    * Name: Your Accelerator name. This is the name of the generated ZIP file.
-    * (Optional) Description: A description of your accelerator.
-    * K8s Resource Name: A Kubernetes resource name to use for the Accelerator.
-    * Git Repository URL: The URL for the git repository that contains the accelerator source code.
-    * Git Branch: The branch for the git repository.
-    * (Optional) Tags: Any associated tags that can be used for searches in the UI.
-
+    * **Name**: `Your accelerator name` This is the name of the generated ZIP file
+    * Description (Optional): A description of your accelerator
+    	*	**K8s Resource Name**: A Kubernetes resource name to use for the accelerator
+    	*	**Git Repository URL**: The URL for the Git repository that contains the accelerator source code
+    	*	**Git Branch**: The branch for the Git repository
+    * **Tags** (Optional): Associated tags that can be used for searches in the UI
 
     ![Generate Accelerators first prompt](images/getting-started-section2-2.png)
 
     ![Explore project dialog box](images/getting-started-section2-3.png)
+
+	(Optional) To browse the accelerator files, click `EXPLORE`. When finished, click the `NEXT STEP` button.
 
 
 3. Verify the provided information and click on `CREATE`
@@ -291,6 +305,16 @@ tanzu accelerator update <accelerator-name> --reconcile
 
 ## <a id='add-testing-and-scanning'></a> Section 3: Add Testing and Security Scanning to Your Application
 
+In this section, you will:
+* Learn about supply chains
+* Discover available out of the box (OOTB) supply chains
+	*  OOTB Basic (default)
+	*  OOTB Testing
+	*  OOTB Testing+Scanning
+* Install OOTB Testing (optional)
+* Install OOTB Testing+Scanning (optional)
+
+
 ### What is a Supply Chain?
 
 Supply Chains provide a way of codifying all of the steps of your path to production, or what is
@@ -300,7 +324,7 @@ application to reach production, or a lower environment.
 
 ![Diagram depicting a simple path to production: CI to Security Scan to Build Image to Image Scan to CAB Approval to Deployment.](images/path-to-production.png)
 
-#### A simple path to production
+### A simple path to production
 
 A path to production allows users to create a unified access point for all of the tools required
 for their applications to reach a customer-facing environment.
@@ -313,33 +337,17 @@ between each of the tools.
 Supply chains used to codify the organization's path to production are configurable, allowing their
 authors to add all of the steps of their application's path to production.
 
-Tanzu Application Platform provides three out of the box supply chains designed to
-work with Tanzu Application Platform components.
+### Available Supply Chains
 
+The Tanzu Application Platform provides three OOTB supply chains designed to
+work with the Tanzu Application Platform components, and they include:
 
-#### Supply Chains included in Beta 3
+### 1: **OOTB Basic Supply Chain (default)**
 
-The Tanzu Application Platform installation steps cover installing the default Supply Chain, but
-others are available.
-If you follow the installation documentation, the **Out of the Box Basic** Supply Chain and its
-dependencies are installed on your cluster.
-The table and diagrams below describe the two supply chains included in Tanzu Application Platform
-Beta 3 and their dependencies.
-
-The **Out of the Box with Testing** runs a Tekton pipeline within the supply chain. It is dependent on
-[Tekton](https://tekton.dev/) being installed on your cluster.
-
-The **Out of the Box with Testing and Scanning** supply chain includes integrations for secure scanning tools.
-
-The following section installs the second supply chain, includes steps to install Tekton and provides a sample Tekton pipeline that tests your
-sample application.
-The pipeline is configurable, therefore you can customize the steps
-to perform additional testing, or any other tasks that can be performed with a
-Tekton pipeline.
+The default **OOTB Basic** supply chain and its dependencies were installed on your cluster during the Tanzu Application Platform install.
+The table and diagrams below provide descriptions for each of the supply chains and dependencies provided with the Tanzu Application Platform.
 
 ![Diagram depicting the Source-to-URL chain: Watch Repo (Flux) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](images/source-to-url-chain.png)
-
-**Out of the Box Basic - default Supply Chain**
 
 <table>
   <tr>
@@ -390,9 +398,12 @@ Tekton pipeline.
   </tr>
 </table>
 
-![Diagram depicting the Source-and-Test-to-URL chain: Watch Repo (Flux) to Test Code (Tekton) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](images/source-and-test-to-url-chain.png)
+### 2: **OOTB Testing**
 
-**Out of the Box Testing**
+The **OOTB Testing** supply chain runs a Tekton pipeline within the supply chain. It is dependent on
+[Tekton](https://tekton.dev/) being installed on your cluster.
+
+![Diagram depicting the Source-and-Test-to-URL chain: Watch Repo (Flux) to Test Code (Tekton) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](images/source-and-test-to-url-chain.png)
 
 <table>
   <tr>
@@ -433,9 +444,11 @@ Tekton pipeline.
   </tr>
 </table>
 
-![Diagram depicting the Source-and-Test-to-URL chain: Watch Repo (Flux) to Test Code (Tekton) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](images/source-test-scan-to-url.png)
+### 3: **OOTB Testing+Scanning**
 
-**Out of the Box Testing and Scanning**
+The **OOTB Testing+Scanning** supply chain includes integrations for secure scanning tools.
+
+![Diagram depicting the Source-and-Test-to-URL chain: Watch Repo (Flux) to Test Code (Tekton) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](images/source-test-scan-to-url.png)
 
 <table>
   <tr>
@@ -478,12 +491,16 @@ Tekton pipeline.
   </tr>
 </table>
 
-### Install Out of the Box with testing
+### Install OOTB Testing
 
-When you chose not to use the preceding install method, see [Install
-Tekton](install-components.md#install-tekton).
+In this section, you will install the OOTB Testing supply chain, which includes the steps required to install Tekton and provides a sample Tekton pipeline that tests your sample application.
+The pipeline is configurable; therefore, you can customize the steps
+to perform either additional testing or other tasks with the
+Tekton pipeline. To apply this install method, complete the following steps:
 
-With Tekton installed, you can activate the Out of the Box Supply Chain with Testing by updating our profile to use `testing` rather than `basic` as the selected supply chain for workloads in this cluster. Update `tap-values.yml`(the file used to customize the profile in `Tanzu package install tap
+1. Install Tekton (see [Install Tekton](install-components.md#install-tekton) for instructions.
+
+2. With Tekton installed, you can activate the Out of the Box Supply Chain with Testing by updating our profile to use `testing` rather than `basic` as the selected supply chain for workloads in this cluster. Update `tap-values.yml`(the file used to customize the profile in `Tanzu package install tap
 --values-file=...`) with the following changes:
 
 ```
@@ -497,23 +514,18 @@ With Tekton installed, you can activate the Out of the Box Supply Chain with Tes
       repository: "<REPO-NAME>"
 ```
 
-Then update the installed profile:
+3. Update the installed profile:
 
 ```
 tanzu package installed update tap -p tap.tanzu.vmware.com -v 0.3.0 --values-file tap-values.yml -n tap-install
 ```
 
 
-### Example Tekton pipeline config
+#### Tekton pipeline config example
 
-In this section, we’ll add a Tekton pipeline to our cluster and in the following section,
-we’ll update the workload to point to the pipeline and resolve any of the current errors.
+In this section, a Tekton pipeline will be added to the cluster. In the next section, the workload will be updated to point to the pipeline and resolve any of the current errors.
 
-The next step is to add a Tekton pipeline to our cluster.
-Because a developer knows how their application needs to be tested this step could be performed by the developer.
-The Operator could also add these to a cluster prior to the developer getting access to it.
-
-In order to add the Tekton supply chain to the cluster, we’ll apply the following YAML to the cluster:
+1. To add the Tekton supply chain to the cluster, apply the following YAML to the cluster (this step could be performed by a developer since a developer knows how their application needs to be tested; the operator could also add these to a cluster prior to the developer having access):
 
 ```
 apiVersion: tekton.dev/v1beta1
@@ -562,7 +574,7 @@ Additionally, Tekton pipelines require a Tekton `pipelineRun` in order to execut
 The Supply Chain Choreographer handles creating the `pipelineRun` dynamically each time
 that step of the supply requires execution.
 
-### Workload update
+#### Workload update
 
 To connect the new supply chain to the workload,
 the workload must be updated to point at your Tekton pipeline.
@@ -632,9 +644,12 @@ the workload must be updated to point at your Tekton pipeline.
   service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.developer.example.com   tanzu-java-web-app-00001   tanzu-java-web-app-00001   Unknown   IngressNotConfigured
   ```
 
-### Install Out of the Box with Testing and Scanning
+### Install OOTB Testing+Scanning
 
-Follow the steps below to install an out of the box supply chain with testing and scanning.
+In this section, you will install the OOTB Testing+Scanning supply chain. 
+**Important:** The grype must be installed for scanning. 
+
+To apply this install method, complete the following steps:
 
 1. Supply Chain Security Tools - Scan is installed as part of the profiles.
 Verify that both Scan Link and Grype Scanner are installed by running:
@@ -717,7 +732,7 @@ Verify that both Scan Link and Grype Scanner are installed by running:
     ```
 
 
-### Workload update
+#### Workload update
 
 To connect the new supply chain to the workload, update the workload to point at your Tekton
 pipeline:
@@ -793,21 +808,22 @@ pipeline:
     NAME                                             URL                                               LATESTCREATED              LATESTREADY                READY     REASON
     service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.developer.example.com   tanzu-java-web-app-00001   tanzu-java-web-app-00001   Unknown   IngressNotConfigured
     ```
+#### Congratulations! You have successfully deployed your application on the Tanzu Application Platform.
+Continue through the next two sections, and you will not only have an opportunity to learn about recommended supply chain security best practices, but also have access to a powerful Services Journey experience on the Tanzu Application Platform utilizing several advanced use cases. 
 
+## Section 4: Configuring image signing and verification in your supply chain
 
-## Section 4: Advanced use cases - Supply Chain Security Tools
+In this section, you will:
+* Configure your supply chain to sign your image builds
+* Configure an admission control policy to verify image signatures before admitting Pods to the cluster
 
-### Supply Chain Security Tools overview
+### Configure your supply chain to sign your image builds
 
-In this section, we will provide an overview of the supply chain security use cases that are available in Tanzu Application Platform:
-
-1. **Sign**: Introducing image signing and verification to your supply chain
-
-2. **Scan & Store**: Introducing vulnerability scanning and metadata storage to your supply chain
-
-### Sign: introducing image signing and verification to your Supply Chain
-
-#### Overview
+1. Configure Tanzu Build Service to sign your container image builds using cosign. See [Managing Image Resources and Builds](https://docs.vmware.com/en/Tanzu-Build-Service/1.3/vmware-tanzu-build-service-v13/GUID-managing-images.html) for instructions.
+2. Create a `values.yaml` file, and install the sign supply chain security tools and image policy webhook. See [Install Supply Chain Security Tools - Sign](https://docs-staging.vmware.com/en/Tanzu-Application-Platform/0.4/tap/GUID-install-components.html#install-scst-sign) for instructions.
+3. Configure a `ClusterImagePolicy` resource to verify image signatures when deploying resources. The resource must be named `image-policy`. For example:
+	
+	![Cluster Image Policy Resource](images/cluster-image-policy-resource.png)
 
 This component allows a platform operator to define a policy that will
 restrict unsigned images from running on clusters.
@@ -820,7 +836,7 @@ Currently, this component supports cosign signatures and its key formats.
 Although this component does not sign container images, you could use tools such
 as the [cosign CLI](https://github.com/sigstore/cosign#quick-start),
 [kpack](https://github.com/pivotal/kpack/blob/main/docs/image.md#cosign-config),
-and [Tanzu Build Service](https://docs.vmware.com/en/Tanzu-Build-Service/1.3/vmware-tanzu-build-service-v13/GUID-index.html)
+and [Tanzu Build Service](https://docs.vmware.com/en/VMware-Tanzu-Build-Service/index.html)
 (which is what we will overview in this document) to generate signatures for
 your images.
 
@@ -844,7 +860,7 @@ follow the cosign format.
 Application operators may sign container images and store them in the registry
 in several different ways, including:
 
-* Using [Tanzu Build Service v1.3](https://docs.vmware.com/en/Tanzu-Build-Service/1.3/vmware-tanzu-build-service-v13/GUID-index.html).
+* Using [Tanzu Build Service v1.4](https://docs.vmware.com/en/Tanzu-Build-Service/1.4/vmware-tanzu-build-service-v14/GUID-index.html).
 * Using [kpack](https://github.com/pivotal/kpack/blob/main/docs/image.md#cosign-config)
 v0.4.0 or higher.
 * Signing existing images with [cosign](https://github.com/sigstore/cosign#quick-start).
@@ -885,7 +901,7 @@ An example policy would look like this:
 
 ```
 ---
-apiVersion: signing.run.tanzu.vmware.com/v1beta1
+apiVersion: signing.apps.tanzu.vmware.com/v1beta1
 kind: ClusterImagePolicy
 metadata:
   name: image-policy
@@ -928,7 +944,7 @@ and expected outcomes:
 
 ```
 ---
-apiVersion: signing.run.tanzu.vmware.com/v1beta1
+apiVersion: signing.apps.tanzu.vmware.com/v1beta1
 kind: ClusterImagePolicy
 metadata:
   name: image-policy
@@ -976,7 +992,7 @@ The Supply Chain Security Tools - Sign component outputs logs for the above
 scenarios. To examine the logs the platform operator can run:
 
 ```
-kubectl logs -n image-policy-system -l "signing.run.tanzu.vmware.com/application-name=image-policy-webhook" -f
+kubectl logs -n image-policy-system -l "signing.apps.tanzu.vmware.com/application-name=image-policy-webhook" -f
 ```
 
 #### Next steps and further information
