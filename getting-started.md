@@ -17,23 +17,23 @@ Before getting started, you will need to complete the prerequisites in the next 
 Please check you have successfully:
 
 * **Installed the Tanzu Application Platform**<br>
-(see [Installing Tanzu Application Platform](install-intro.md) for instructions)
+See [Installing Tanzu Application Platform](install-intro.md).
 
 * **Installed the Tanzu Application Platform on the target Kubernetes cluster**<br>
-(see [Installing Part I: Prerequisites, EULA, and CLI](install-general.md) and [Installing Part II: Profiles](install.md) for instructions)
+See [Installing Part I: Prerequisites, EULA, and CLI](install-general.md) and [Installing Part II: Profiles](install.md).
 
 * **Set the default kubeconfig context to the target Kubernetes cluster**<br>
 
 * **Installed Out of The Box (OOTB) Supply Chain Basic**<br>
-(see [Install default Supply Chain](install-components.md#install-ootb-supply-chain-basic) for instructions)
+See [Install default Supply Chain](install-components.md#install-ootb-supply-chain-basic).
 
 * **Set up a developer namespace to accommodate the developer Workload**<br>
-(see [Set Up Developer Namespaces to Use Installed Packages](install-components.md#-set-up-developer-namespaces-to-use-installed-packages) for instructions)
+See [Set Up Developer Namespaces to Use Installed Packages](install-components.md#-set-up-developer-namespaces-to-use-installed-packages).
 
 * **Installed the Tanzu Application Platform GUI**<br>
 
 * **Installed the VSCode Tanzu Extension**<br>
-(see [How to Install the VSCode Tanzu Extension](vscode-extension/install.md) for instructions)
+See [How to Install the VSCode Tanzu Extension](vscode-extension/install.md) for instructions)
 
 If you have completed the prerequisites, then you're ready to get started!
 
