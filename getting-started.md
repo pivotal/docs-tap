@@ -50,7 +50,9 @@ In this section, you will:
 	* Debug your application
 * Monitor your running application 
 
+
 ### About application accelerators
+
 
 Application accelerators are templates that not only codify best practices, but also provide important configuration and structures ready and available for use. Developers can create applications and get started with feature development immediately. Administrators can create custom application accelerators that reflect desired architectures and configurations, enabling developer use according to the best practices defined. The Application Accelerator Plugin of TAP GUI assists both application developers and administrators when creating and generating application accelerators. To create your own application accelerator, see [Create your accelerator](#creating-an-accelerator) for instructions.
 
@@ -59,8 +61,8 @@ Application accelerators are templates that not only codify best practices, but 
 
 To deploy your application, you need to download an accelerator, upload it on your Git repository of choice, and run a CLI command. We recommend using the accelerator called `Tanzu-Java-Web-App`.
 
-
 1. From the Tanzu Application Platform GUI portal, click **Create** located on the left-hand side of the
+
 navigation bar to see the list of available accelerators.
 For information about connecting to Tanzu Application Platform GUI, see
 [Accessing Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md).
@@ -246,8 +248,6 @@ To create a new application accelerator, complete the following steps:
 1. Click `Create` on the left-hand side of the navigation bar on the Tanzu Application Platform GUI portal to view the list of available accelerators.
 2. Click `CHOOSE` to select the **New Accelerator** tile.
 
-    ![New Accelerator tile](images/getting-started-section2-1.png)
-
 3. Complete the **New Project** form with the following information:
 
     * **Name**: `Your accelerator name` This is the name of the generated ZIP file
@@ -257,12 +257,12 @@ To create a new application accelerator, complete the following steps:
     	*	**Git Branch**: The branch for the Git repository
     * **Tags** (Optional): Associated tags that can be used for searches in the UI
 
-
     ![Generate Accelerators first prompt](images/getting-started-section2-2.png)
 
     ![Explore project dialog box](images/getting-started-section2-3.png)
 
 	(Optional) To browse the accelerator files, click `EXPLORE`. When finished, click the `NEXT STEP` button.
+
 
 3. Verify the provided information and click on `CREATE`
 
