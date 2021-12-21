@@ -117,6 +117,7 @@ spec:
         enabled: true
 ```
 
-The difference is the use of the ``content.files`` setting. Heere, the workshop content is overlaid on top of the standard workshop base image. If you wanted to use an alternate base image with additional applications or packages installed, you would specify the alternate image against the ``content.image`` setting at the same time as setting ``content.files``.
+The difference is the use of the ``content.files`` setting.
+Here, the workshop content is overlaid on top of the standard workshop base image. If you wanted to use an alternate base image with additional applications or packages installed, you would specify the alternate image against the ``content.image`` setting at the same time as setting ``content.files``.
 
 The format of this file and others in the ``resources`` directory is covered later in the documentation which discusses the setup of a workshop environment under Kubernetes.
