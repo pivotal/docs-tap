@@ -9,7 +9,7 @@ This topic contains release notes for Supply Chain Security Tools - Sign.
 ### Breaking change
 
 * `ClusterImagePolicy` group has been renamed to `signing.apps.tanzu.vmware.com`
-* Dropped support for API version v1alpha1. Use v1beta1.
+*  API version v1alpha1 is no longer supported. Use v1beta1.
 
 ### Known issues
 
