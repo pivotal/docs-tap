@@ -379,6 +379,8 @@ ootb_supply_chain_basic:
   registry:
     server: "SERVER-NAME"
     repository: "REPO-NAME"
+  git_ops:
+    ssh_secret:""
 
 learningcenter:
   ingressDomain: "DOMAIN-NAME"
@@ -459,6 +461,8 @@ ootb_supply_chain_basic:
   registry:
     server: "SERVER-NAME"
     repository: "REPO-NAME"
+  git_ops:
+    ssh_secret:""
 
 tap_gui:
   service_type: ClusterIP
