@@ -20,20 +20,20 @@ Please check you have successfully:
 See [Installing Tanzu Application Platform](install-intro.md).
 
 * **Installed the Tanzu Application Platform on the target Kubernetes cluster**<br>
-See [Installing Part I: Prerequisites, EULA, and CLI](install-general.md) and [Installing Part II: Profiles](install.md).
+See [Installing part I: Prerequisites, EULA, and CLI](install-general.md) and [Installing part II: Profiles](install.md).
 
 * **Set the default kubeconfig context to the target Kubernetes cluster**<br>
 
 * **Installed Out of The Box (OOTB) Supply Chain Basic**<br>
-See [Install default Supply Chain](install-components.md#install-ootb-supply-chain-basic).
+See [Install Out of The Box Supply Chain Basic](install-components.md#install-ootb-supply-chain-basic).
 
 * **Set up a developer namespace to accommodate the developer Workload**<br>
-See [Set Up Developer Namespaces to Use Installed Packages](install-components.md#-set-up-developer-namespaces-to-use-installed-packages).
+See [Set up developer namespaces to use installed packages](install-components.md#setup).
 
 * **Installed the Tanzu Application Platform GUI**<br>
 
 * **Installed the VSCode Tanzu Extension**<br>
-See [How to Install the VSCode Tanzu Extension](vscode-extension/install.md) for instructions)
+See [Install the Visual Studio Code Tanzu Extension](vscode-extension/install.md) for instructions.
 
 If you have completed the prerequisites, then you're ready to get started!
 
@@ -1309,7 +1309,7 @@ in the same namespace.
 RabbitMQ instance:
 
     >**Note:** Ensure your namespace can use the installed Tanzu Application Platform packages so that Services Toolkit can create application workloads.
-    For more information, see [Set Up Developer Namespaces to Use Installed Packages](install-components.md#setup).
+    For more information, see [Set up developer namespaces to use installed packages](install-components.md#setup).
 
     1. Obtain a service reference by running:
 

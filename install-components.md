@@ -268,7 +268,7 @@ To install Cloud Native Runtimes:
    >**Note:** This step covers configuring a namespace to run Knative services.
    >If you rely on a SupplyChain to deploy Knative services into your cluster,
    >then skip this step because namespace configuration is covered in
-   >[Set Up Developer Namespaces to Use Installed Packages](#setup).
+   >[Set up developer namespaces to use installed packages](#setup).
    >Otherwise, you must complete the following steps for each namespace where you create Knative services.
 
    Service accounts that run workloads using Cloud Native Runtimes need access to the image pull secrets for the Tanzu package.
@@ -2490,7 +2490,7 @@ To install Tekton:
    > **Note:** This step covers configuring a namespace to run Tekton pipelines.
    If you rely on a SupplyChain to create Tekton PipelineRuns in your cluster,
    then skip this step because namespace configuration is covered in
-   [Set Up Developer Namespaces to Use Installed Packages](#setup). Otherwise,
+   [Set up developer namespaces to use installed packages](#setup). Otherwise,
    you must complete the following steps for each namespace where you create
    Tekton Pipeline/Tasks.
 
@@ -2584,7 +2584,7 @@ Use the following procedure to verify that the packages are installed.
     tbs                      buildservice.tanzu.vmware.com                      1.4.2            Reconcile succeeded
     ```
 
-## <a id='setup'></a> Set Up Developer Namespaces to Use Installed Packages
+## <a id='setup'></a> Set up developer namespaces to use installed packages
 
 To create a `Workload` for your application using the registry credentials specified,
 run these commands to add credentials and Role-Based Access Control (RBAC) rules to the namespace
