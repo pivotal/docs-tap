@@ -98,7 +98,7 @@ instance of Contour that is installed as part of the Profile installation.
 1. Update your package installation with your changed values file by running:
 
     ```
-    tanzu package installed update tap --package-name tap.tanzu.vmware.com --version 0.4.0 --values-file TAP-VALUES-FILE.yml -n tap-install
+    tanzu package installed update tap --package-name tap.tanzu.vmware.com --version 0.1.0 --values-file TAP-VALUES-FILE.yml -n tap-install
     ```
 
     Where `TAP-VALUES-FILE` is the name of your Tanzu Application Platform values YAML file.
