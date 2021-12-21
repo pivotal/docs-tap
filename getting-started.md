@@ -152,7 +152,6 @@ To see this application in your organization catalog, you must register new enti
 5. Navigate back to the homepage, and the catalog changes and entries will be visible for further inspection.
 
 ### <a id='iterate'></a>Iterate on your application
-=======
 Now that you have a skeleton workload working, you are ready to iterate on your application
 and test code changes on the cluster.
 Tanzu Developer Tools for VSCode, VMware Tanzu’s official IDE extension for VSCode,
@@ -160,13 +159,11 @@ helps you develop & receive fast feedback on your workloads running on the Tanzu
 
 The VSCode extension enables live updates of your application while running on the cluster,
 and allows you to debug your application directly on the cluster.
-=======
 For information about installing the pre-requisites and the Tanzu Developer Tools extension, see
 [Install Tanzu Dev Tools for VSCode](vscode-extension/install.md).
 
 
 >**Note:** For this sample application, you must use Tilt v0.23.2 or a later version.
-=======
 
 1. Open the ‘Tanzu Java Web App’ as a project within your VSCode IDE.
 
@@ -181,7 +178,6 @@ You are now ready to iterate on your application.
 
 
 #### Live update your application
-=======
 1. Within VSCode, go to `Preferences` > `Settings` > `Extensions` > `Tanzu`.
 
 1. In the **Local Path** field, enter the path to the directory containing the Tanzu Java Web App. Defaults to current directory.
