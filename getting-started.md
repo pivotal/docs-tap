@@ -152,7 +152,7 @@ To see this application in your organization catalog, you must register new enti
 5. Navigate back to the homepage, and the catalog changes and entries will be visible for further inspection.
 
 
-### **Set up your integrated development environment (IDE)**
+### **Set up your IDE**
 
 #### <a id='iterate'></a>Iterate on your application
 
@@ -530,7 +530,7 @@ tanzu package installed update tap -p tap.tanzu.vmware.com -v 0.3.0 --values-fil
 ```
 
 
-#### Tekton pipeline config example
+#### Tekton pipeline configuration example
 
 In this section, a Tekton pipeline will be added to the cluster. In the next section, the workload will be updated to point to the pipeline and resolve any of the current errors.
 
