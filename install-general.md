@@ -4,7 +4,7 @@ This document describes the first part of the installation process for Tanzu App
 
 + [Prerequisites](#prereqs)
 + [Accept the EULAs](#eulas)
-+ [Install Cluster Essentials for VMware Tanzu](#tanzu-cluster-essentials) 
++ [Install Cluster Essentials for VMware Tanzu](#tanzu-cluster-essentials)
 + [Install or Update the Tanzu CLI and Plugins](#cli-and-plugin)
 
 
@@ -103,9 +103,10 @@ cluster from your local machine. For example:
 
 * To deploy all Tanzu Application Platform packages, your cluster must have at least:
     * 8 GB of RAM across all nodes available to Tanzu Application Platform
-    * At least 8 CPUs for i9 or equivalent or 12 CPUs for i7 or equivalent must be available to Tanzu Application Platform components
-    * VMware recommends that at least 16 GB of RAM is available to build and deploy applications, including for Kind and Minikube
-    * Your cluster must also have at least 70 GB of disk per node
+    * 8 CPUs for i9 (or equivalent) available to Tanzu Application Platform components
+    * 12 CPUs for i7 (or equivalent) available to Tanzu Application Platform components
+    * 16 GB of RAM available to build and deploy applications, including for Kind and Minikube
+    * 70 GB of disk space available per node
 
 * For the [`full` profile](install.html#about-tanzu-application-platform-package-profiles-1), or
     use of Security Chain Security Tools - Store, your cluster must have a configured default StorageClass.
