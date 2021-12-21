@@ -707,7 +707,7 @@ Verify that both Scan Link and Grype Scanner are installed by running:
     EOF
     ```
 
-2. To persist and query the vulnerability results post-scan, ensure that [Supply Chain Security Tools - Store](scst-store/overview.md) is installed using the following command (optional). The Tanzu Application Platform profiles install the package by default.
+2. (optional) To persist and query the vulnerability results post-scan, ensure that [Supply Chain Security Tools - Store](scst-store/overview.md) is installed using the following command. The Tanzu Application Platform profiles install the package by default.
 
     ```
     tanzu package installed get metadata-store -n tap-install
