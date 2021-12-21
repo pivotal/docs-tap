@@ -176,16 +176,18 @@ To see this application in your organization catalog, you must register new enti
 5. Navigate back to the homepage, and the catalog changes and entries will be visible for further inspection.
 
 ### <a id='iterate'></a>Iterate on your application
-Now that you have a skeleton workload working, you are ready to iterate on your application
-and test code changes on the cluster.
-Tanzu Developer Tools for VSCode, VMware Tanzu’s official IDE extension for VSCode,
-helps you develop & receive fast feedback on your workloads running on the Tanzu Application Platform.
+
+#### **Set up your integrated development environment (IDE)**
+With your basic application workload working, you are ready to iterate on your application
+and test your code changes on the cluster.
+Tanzu Developer Tools for VSCode and VMware Tanzu’s official IDE extension for VSCode
+will assist you in developing and receiving feedback on the Tanzu Application Platform.
 
 The VSCode extension enables live updates of your application while running on the cluster,
 and allows you to debug your application directly on the cluster.
-For information about installing the pre-requisites and the Tanzu Developer Tools extension, see
-[Install Tanzu Dev Tools for VSCode](vscode-extension/install.md).
 
+For information about installing the prerequisites and the Tanzu Developer Tools extension, see
+[How to Install the VSCode Tanzu Extension](vscode-extension/install.md) for instructions.
 
 > Note: Use Tilt v0.23.2 or a later version for the sample application.
 
@@ -193,26 +195,15 @@ For information about installing the pre-requisites and the Tanzu Developer Tool
 
 2. To ensure your extension assists you with iterating on the correct project, configure its settings using the following:
 
- 	* Within VSCode, go to Preferences > Settings > Extensions > Tanzu.
- 	* In the **Local Path** field, provide the path to the directory containing the Tanzu Java Web App.
- 	* In the **Source Image** field, provide the destination image repository to publish an image containing your workload source code.
-	For example, `gcr.io/myteam/tanzu-java-web-app-source`.
+ 	* Within VSCode, go to Preferences > Settings > Extensions > Tanzu
+ 	* In the **Local Path** field, provide the path to the directory containing the Tanzu Java Web App
+ 	* In the **Source Image** field, provide the destination image repository to publish an image containing your workload source code
+	For example, `harbor.vmware.com/myteam/tanzu-java-web-app-source`
 
 You are now ready to iterate on your application.
 
 
 #### Live update your application
-1. Within VSCode, go to `Preferences` > `Settings` > `Extensions` > `Tanzu`.
-
-1. In the **Local Path** field, enter the path to the directory containing the Tanzu Java Web App. Defaults to current directory.
-
-1. In the **Source Image** field, enter the destination image repository where
-you’d like to publish an image containing your workload source code.
-For example `gcr.io/myteam/tanzu-java-web-app-source`.
-
-You are now ready to iterate on your application.
-
-### Live update your application
 
 Deploy the application to view it updating live on the cluster to demonstrate how code changes will behave on a production-like cluster early in the development process.
 
@@ -221,17 +212,20 @@ Complete the following steps to live update your application:
 1. Select **Tanzu: Live Update Start** from the Command Palette (⇧⌘P). The Tanzu Logs will open in the Output tab and the output will be visible from the
 Tanzu Application Platform, and Tilt will indicate the container is being built and deployed. The first time starting live update for the application, it may take up to 3 minutes for the workload to be deployed and the Knative service to become available.
 
-1. From the Command Palette (⇧⌘P), type in and select `Tanzu: Live Update Start`.
-You will see output from the Tanzu Application Platform and from Tilt indicating that the container is being built and deployed. 
-    - You will also see "Live Update starting..." in the status bar at the bottom right
-    - Live update can take 1-3 minutes while the workload is deployed and the Knative service becomes available.
+2. When the output indicates the workload is ready, navigate to `http://localhost:8080` in your browser and view the running application.
+3. Return to the IDE and change the source code. For example, in `HelloController.java`, you can modify the string returned with `Hello!`. Save when finished.
 
-1. Once you see the Live Update status in the status bar resolve to "Live Update Started", navigate to `http://localhost:8080` in your browser and view your workload running.
-1. Return to the IDE and make a change to the source code. For example, in `HelloController.java`, modify the string returned to say `Hello!` and save.
-1. Once the logs stop streaming, the container has been updated. Navigate back to your browser and refresh the page.
-1. View the changes to your workload that is running on the cluster. 
+	The container will be updated in the Tanzu Logs section of the Output tab. 
 
-You can now continue to make more changes. If you are finished, you can stop or disable live update. Open the command palette (⇧⌘P), type in `Tanzu`, and select either option.
+4. Navigate back to your browser and refresh the page.
+
+	You can view the changes on the cluster.
+
+	Continue to make more changes, or if finished, you can stop or disable live update:
+	
+	* Open the command palette (⇧⌘P)
+	* Type `Tanzu`
+	* Select stop or disable
 
 #### Debug your application
 
@@ -239,9 +233,14 @@ You can either debug your cluster on the application or in your local environmen
 
 Complete the following steps to debug your cluster:
 
-1. Set a breakpoint in your code.
-2. Right-click the file `workload.yaml` within the `config` folder, and select **Tanzu: Java Debug Start**. In a few moments, the workload will be redeployed with debugging enabled. You will see the "Deploy and Connect" Task complete and the debug menu actions will be available to you, indicating that the debugger has attached.
-3. Return to your browser and navigate to `http://localhost:8080`. This will hit the breakpoint within VSCode. You can now step through or play to the end of the debug session using VSCode debugging controls.
+1. Set a breakpoint in the code.
+2. Right-click the file `workload.yaml` in the `config` folder, and select **Tanzu: Java Debug Start**.
+   
+   The workload will redeploy with debugging enabled.
+
+4. Return to your browser. and navigate to `http://localhost:8080` to hit the breakpoint within VSCode. 
+
+   Using the VSCode debugging controls, either step through or play to the end of the session.
 
 ### Monitor your running application
 
