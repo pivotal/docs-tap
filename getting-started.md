@@ -187,11 +187,11 @@ For information about installing the pre-requisites and the Tanzu Developer Tool
 [Install Tanzu Dev Tools for VSCode](vscode-extension/install.md).
 
 
-> Note: Use Tilt v0.23.2 or a later version for the sample application.
+>**Note:** Use Tilt v0.23.2 or a later version for the sample application.
 
 1. Open the ‘Tanzu Java Web App’ as a project within your VSCode IDE.
 
-2. To ensure your extension assists you with iterating on the correct project, configure its settings using the following:
+2. To ensure your extension assists you with iterating on the correct project, configure its settings using the following instructions:
 
  	* Within VSCode, go to Preferences > Settings > Extensions > Tanzu.
  	* In the **Local Path** field, provide the path to the directory containing the Tanzu Java Web App.
