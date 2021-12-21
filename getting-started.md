@@ -216,6 +216,15 @@ Because this is your first time starting live update for this application, it
 might take 1-3 minutes for the workload to be deployed and the Knative service
 to become available.
 
+    > Note: Depending on the type of cluster you use, you might see an error similar to the following:
+    ````
+    ERROR: Stop! cluster-name might be production.
+    If you're sure you want to deploy there, add:
+            allow_k8s_contexts('cluster-name')
+    to your Tiltfile. Otherwise, switch k8s contexts and restart Tilt.
+    ````
+    > Just follow the instructions and add the line "allow_k8s_contexts('cluster-name')" to your `Tiltfile`.
+
 1. When the output indicates the workload is ready, navigate to `http://localhost:8080` in your browser and view your running application.
 1. Return to the IDE and make a change to the source code. For example, in `HelloController.java`, you can modify the string returned with `Hello!`. Save when finished.
 1. If you look in the Tanzu Logs section of the Output tab, you will see the container has updated. Navigate back to your browser and refresh the page.
