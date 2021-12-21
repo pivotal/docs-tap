@@ -175,7 +175,7 @@ For information about installing the pre-requisites and the Tanzu Developer Tool
  	* Within VSCode, go to Preferences > Settings > Extensions > Tanzu.
  	* In the **Local Path** field, provide the path to the directory containing the Tanzu Java Web App.
  	* In the **Source Image** field, provide the destination image repository to publish an image containing your workload source code.
-	For example, `harbor.vmware.com/myteam/tanzu-java-web-app-source`.
+	For example, `gcr.io/myteam/tanzu-java-web-app-source`.
 
 You are now ready to iterate on your application.
 
@@ -188,7 +188,7 @@ You are now ready to iterate on your application.
 
 1. In the **Source Image** field, enter the destination image repository where
 you’d like to publish an image containing your workload source code.
-For example `harbor.vmware.com/myteam/tanzu-java-web-app-source`.
+For example `gcr.io/myteam/tanzu-java-web-app-source`.
 
 You are now ready to iterate on your application.
 
