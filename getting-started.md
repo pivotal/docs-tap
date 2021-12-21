@@ -1348,11 +1348,9 @@ the new message IDs.
 
 #### <a id='binding-multiple-apps-to-the-same-service-resource'></a> Binding multiple apps to the same service resource
 
-Currently, if there are two workloads both claiming the same service resource, then Resource Claims would prevent the second workload from doing claiming the resource.  To get around this, a `ProvisionedService` can be used.
+Currently, if there are two workloads both claiming the same service resource, then Resource Claims would prevent the second workload from claiming the resource.  To get around this, a `ProvisionedService` can be used.
 
-1. In `provisionedservice-reader.yaml`, ensure you have RBAC enabled for all users.
-The following example grants `get`, `list` and `watch` to all `provisionedservice` resources for all authenticated
-users.
+1. In `provisionedservice-reader.yaml`, ensure you have RBAC enabled for `provisionedservice` resources for all authenticated users.
 
     ```
     # provisionedservice-reader.yaml
