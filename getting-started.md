@@ -135,29 +135,29 @@ To see this application in your organization catalog, you must register new enti
 
 1. Confirm you have installed the Blank Software Catalog (see [Configure the Tanzu Application Platform GUI](install.md#configure-tap-gui) for instructions).
 
-		>**Note:** In Tanzu Application Platform beta 5, you must add a line to the `catalog-info.yaml` of the `tanzu-java-web-app` component.
-		In the following example, the added line is the `spec.system: tanzu-java-web-app` statement.
+>**Note:** In Tanzu Application Platform beta 5, you must add a line to the `catalog-info.yaml` of the `tanzu-java-web-app` component.
+In the following example, the added line is the `spec.system: tanzu-java-web-app` statement.
 
-		```
-		apiVersion: backstage.io/v1alpha1
-		kind: Component
-		metadata:
-		  name: tanzu-java-web-app
-		  description: Tanzu Java Web App
-		  tags:
-		    - app-accelerator
-		    - java
-		    - spring
-		    - web
-		    - tanzu
-		  annotations:
-		    'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=tanzu-java-web-app'
-		spec:
-		  type: service
-		  lifecycle: experimental
-		  owner: default-team
-		  system: tanzu-java-web-app
-		```
+```
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: tanzu-java-web-app
+  description: Tanzu Java Web App
+  tags:
+    - app-accelerator
+    - java
+    - spring
+    - web
+    - tanzu
+  annotations:
+    'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=tanzu-java-web-app'
+spec:
+  type: service
+  lifecycle: experimental
+  owner: default-team
+  system: tanzu-java-web-app
+```
 
 2. Navigate to the homepage of the Tanzu Application Platform GUI and click **Home**, located on the left-side navigation bar.
    Then, click **REGISTER ENTITY**.
