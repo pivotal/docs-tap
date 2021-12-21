@@ -12,7 +12,7 @@ Welcome to the Tanzu Application Platform. This document guides you through gett
 Before getting started, you will need to complete the prerequisites in the next section.
 
 
-## Prerequisites
+## Installation prerequisites
 
 Please check you have successfully:
 
@@ -241,12 +241,12 @@ See [Product Features](https://docs.vmware.com/en/Application-Live-View-for-VMwa
 ---
 
 
-## <a id='creating-an-accelerator'></a>Section 2: Create your accelerator
+## <a id='creating-an-accelerator'></a>Section 2: Create your application accelerator
 
 In this section, you will:
-* Create a new application accelerator using the Tanzu Application Platform GUI
+* Create an application accelerator using the Tanzu Application Platform GUI
 
-### Create a new application accelerator ###
+### Create an application accelerator ###
 
 To create a new application accelerator, complete the following steps:
 
