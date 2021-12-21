@@ -3,7 +3,7 @@
 
 # API details
 
-See [Getting Started with the API](getting_starated_api.md) for a walkthrough and example.
+See [API walkthrough](api_walkthrough.md) for a walkthrough and example.
 
 ## Information
 
