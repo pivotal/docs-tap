@@ -61,16 +61,10 @@ Application accelerators are templates that not only codify best practices, but 
 
 To deploy your application, you need to download an accelerator, upload it on your Git repository of choice, and run a CLI command. We recommend using the accelerator called `Tanzu-Java-Web-App`.
 
-<<<<<<< HEAD
-1. Click **Create**, located on the left-hand side of the
-   navigation bar on the Tanzu Application Platform GUI portal, to view the list of available accelerators.
-   For information about connecting to Tanzu Application Platform GUI, see [Accessing Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md). 
-=======
 1. From the Tanzu Application Platform GUI portal, click **Create** located on the left-hand side of the
    navigation bar to see the list of available accelerators.
    For information about connecting to Tanzu Application Platform GUI, see
    [Accessing Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md).
->>>>>>> 6553db0e6d5a1ffb49109d6973d39e1bd9c22675
 
     ![List of accelerators in Tanzu Application Platform GUI](images/getting-started-tap-gui-1.png)
 
@@ -85,11 +79,7 @@ To deploy your application, you need to download an accelerator, upload it on yo
 
     ![Generate Accelerators prompt](images/getting-started-tap-gui-3.png)
 
-<<<<<<< HEAD
-4. After the Task Activity processes completes, click **DOWNLOAD ZIP FILE**.
-=======
-4. After the Task Activity processes are complete, click **DOWNLOAD ZIP FILE**.
->>>>>>> 6553db0e6d5a1ffb49109d6973d39e1bd9c22675
+4. After the Task Activity processes complete, click **DOWNLOAD ZIP FILE**.
 
     ![Task Activity progress bar](images/getting-started-tap-gui-4.png)
 
@@ -108,11 +98,8 @@ To deploy your application, you need to download an accelerator, upload it on yo
 
     Where `GIT-URL-TO-PROJECT-REPO` is the path you uploaded to in step 5.
 
-<<<<<<< HEAD
     If you bypassed step 5 or were unable to upload your accelerator to a Git repository, use the following public version to test:
-=======
-    If you bypassed step 5 or were unable to upload your accelerator to a Git repository, then you can use the public version to test with:
->>>>>>> 6553db0e6d5a1ffb49109d6973d39e1bd9c22675
+    
     ```
     tanzu apps workload create tanzu-java-web-app \
     --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
@@ -122,12 +109,8 @@ To deploy your application, you need to download an accelerator, upload it on yo
     --label app.kubernetes.io/part-of=tanzu-java-web-app \
     --yes
     ```
-
-<<<<<<< HEAD
-    See [Tanzu Apps Workload Create](cli-plugins/apps/command-reference/tanzu_apps_workload_create.md).
-=======
+    
     For more information, see [Tanzu Apps Workload Create](cli-plugins/apps/command-reference/tanzu_apps_workload_create.md).
->>>>>>> 6553db0e6d5a1ffb49109d6973d39e1bd9c22675
 
     >**Note:** This first deployment uses accelerator source from Git, but in later steps you use the VSCode extension
     to debug and live-update this application.
@@ -193,90 +176,91 @@ To see this application in your organization catalog, you must register new enti
 5. Navigate back to the homepage, and the catalog changes and entries will be visible for further inspection.
 
 ### <a id='iterate'></a>Iterate on your application
-
-#### **Set up your integrated development environment (IDE)**
-With your basic application workload working, you are ready to iterate on your application
-and test your code changes on the cluster.
-Tanzu Developer Tools for VSCode and VMware Tanzu’s official IDE extension for VSCode
-will assist you in developing and receiving feedback on the Tanzu Application Platform.
+Now that you have a skeleton workload working, you are ready to iterate on your application
+and test code changes on the cluster.
+Tanzu Developer Tools for VSCode, VMware Tanzu’s official IDE extension for VSCode,
+helps you develop & receive fast feedback on your workloads running on the Tanzu Application Platform.
 
 The VSCode extension enables live updates of your application while running on the cluster,
 and allows you to debug your application directly on the cluster.
+For information about installing the pre-requisites and the Tanzu Developer Tools extension, see
+[Install Tanzu Dev Tools for VSCode](vscode-extension/install.md).
 
-For information about installing the prerequisites and the Tanzu Developer Tools extension, see
-[How to Install the VSCode Tanzu Extension](vscode-extension/install.md) for instructions.
 
->**Note:** For this sample application, you must use Tilt v0.23.2 or a later version.
+> Note: Use Tilt v0.23.2 or a later version for the sample application.
 
 1. Open the ‘Tanzu Java Web App’ as a project within your VSCode IDE.
 
-2. To ensure your extension assists you with iterating on the correct project, you will need to configure its settings:
+2. To ensure your extension assists you with iterating on the correct project, configure its settings using the following:
 
  	* Within VSCode, go to Preferences > Settings > Extensions > Tanzu.
  	* In the **Local Path** field, provide the path to the directory containing the Tanzu Java Web App.
  	* In the **Source Image** field, provide the destination image repository to publish an image containing your workload source code.
-	For example, `harbor.vmware.com/myteam/tanzu-java-web-app-source`.
+	For example, `gcr.io/myteam/tanzu-java-web-app-source`.
 
 You are now ready to iterate on your application.
 
 
 #### Live update your application
+1. Within VSCode, go to `Preferences` > `Settings` > `Extensions` > `Tanzu`.
 
-Deploy the application to view it updating live on the cluster. This will demonstrate how your code changes will behave on a production-like cluster early in the development process.
+1. In the **Local Path** field, enter the path to the directory containing the Tanzu Java Web App. Defaults to current directory.
 
-To live update your application, follow the steps below:
+1. In the **Source Image** field, enter the destination image repository where
+you’d like to publish an image containing your workload source code.
+For example `gcr.io/myteam/tanzu-java-web-app-source`.
 
-1. From the Command Palette (⇧⌘P), type in and select **Tanzu: Live Update Start**.
-Tanzu Logs opens up in the Output tab and you will see output from the
-Tanzu Application Platform and from Tilt indicating that the container is being
-built and deployed.
-Because this is your first time starting live update for this application, it
-might take 1-3 minutes for the workload to be deployed and the Knative service
-to become available.
+You are now ready to iterate on your application.
 
-1. When the output indicates the workload is ready, navigate to `http://localhost:8080` in your browser and view your running application.
-1. Return to the IDE and make a change to the source code. For example, in `HelloController.java`, you can modify the string returned with `Hello!`. Save when finished.
-1. If you look in the Tanzu Logs section of the Output tab, you will see the container has updated. Navigate back to your browser and refresh the page.
+### Live update your application
 
+Deploy the application to view it updating live on the cluster to demonstrate how code changes will behave on a production-like cluster early in the development process.
 
-You will see your changes on the cluster.
+Complete the following steps to live update your application:
 
-You can continue to make more changes. If you are finished, you can stop or disable live update:
-	1. Open the command palette (⇧⌘P).
-	1. Type in Tanzu.
-	1. Select stop or disable.
+1. Select **Tanzu: Live Update Start** from the Command Palette (⇧⌘P). The Tanzu Logs will open in the Output tab and the output will be visible from the
+Tanzu Application Platform, and Tilt will indicate the container is being built and deployed. The first time starting live update for the application, it may take up to 3 minutes for the workload to be deployed and the Knative service to become available.
+
+1. From the Command Palette (⇧⌘P), type in and select `Tanzu: Live Update Start`.
+You will see output from the Tanzu Application Platform and from Tilt indicating that the container is being built and deployed. 
+    - You will also see "Live Update starting..." in the status bar at the bottom right
+    - Live update can take 1-3 minutes while the workload is deployed and the Knative service becomes available.
+
+1. Once you see the Live Update status in the status bar resolve to "Live Update Started", navigate to `http://localhost:8080` in your browser and view your workload running.
+1. Return to the IDE and make a change to the source code. For example, in `HelloController.java`, modify the string returned to say `Hello!` and save.
+1. Once the logs stop streaming, the container has been updated. Navigate back to your browser and refresh the page.
+1. View the changes to your workload that is running on the cluster. 
+
+You can now continue to make more changes. If you are finished, you can stop or disable live update. Open the command palette (⇧⌘P), type in `Tanzu`, and select either option.
 
 #### Debug your application
 
-You can debug your cluster on your application or in your local environment.
+You can either debug your cluster on the application or in your local environment.
 
-Follow the steps below to debug your cluster:
+Complete the following steps to debug your cluster:
 
 1. Set a breakpoint in your code.
-2. Right-click the file `workload.yaml` within the `config` folder, and select **Tanzu: Java Debug Start**.
-   In a few moments, the workload is redeployed with debugging enabled.
+2. Right-click the file `workload.yaml` within the `config` folder, and select **Tanzu: Java Debug Start**. In a few moments, the workload will be redeployed with debugging enabled. You will see the "Deploy and Connect" Task complete and the debug menu actions will be available to you, indicating that the debugger has attached.
 3. Return to your browser and navigate to `http://localhost:8080`. This will hit the breakpoint within VSCode. You can now step through or play to the end of the debug session using VSCode debugging controls.
-
 
 ### Monitor your running application
 
-Now that your application is deployed, you can inspect the runtime characteristics of the running
-application.
-You can use the Application Live View UI to monitor resource
-consumption, Java Virtual Machine (JVM) status, incoming traffic, and change log level for your running application.
+Inspect the runtime characteristics of your running application using the Application Live View UI to monitor the:
+* Resource consumption
+* Java Virtual Machine (JVM) status
+* Incoming traffic
+* Change log level
+
 You can also troubleshoot environment variables and fine-tune the running application.
 
-To diagnosed Spring Boot-based applications using Application Live View:
+Complete the following steps to diagnose Spring Boot-based applications using Application Live View:
 
-1. Follow the
-[Verify the Application Live View components](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-installing.html#verify-the-application-live-view-components-5) procedure
-to ensure the Application Live View components are successfully installed.
+1. Confirm the Application Live View components installed successfully (see [Verify the Application Live View components](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-installing.html#verify-the-application-live-view-components-5) for instructions).
 
-1. Access the Application Live View Tanzu Application Platform GUI by following the
-[Entry point to Application Live View plug-in](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.4/tap/GUID-tap-gui-plugins-app-live-view.html#entry-point-to-application-live-view-plugin-1) procedure.
+1. Access the Application Live View Tanzu Application Platform GUI (see [Entry point to Application Live View plug-in](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.4/tap/GUID-tap-gui-plugins-app-live-view.html#entry-point-to-application-live-view-plugin-1) for instructions).
 
-1. Select your application to view inside the running application and see the diagnostic options.
-See [Product Features](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-product-features.html).
+1. Select your running application to view the diagnostic options and inside the application.
+(see [Product Features](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-product-features.html) for information).
 
 
 ---
@@ -1245,7 +1229,7 @@ The [setup procedure](#consuming-services-setup) is typically performed by the S
 
 >**Note:** Any service that adheres to the [Provisioned Service](https://github.com/servicebinding/spec#provisioned-service) in the specification is compatible with Tanzu Application Platform.
 
->**Warning:** The example flow detailed in [Use case 1: Binding an application to a pre-provisioned service instance running in the same namespace](#services-journey-use-case-1) uses one RabbitMQ instance and one workload.  RabbitMQ is frequently  used with two or more applicatons although the current implementation blocks the ability to do this which only one workload.  See [Binding multiple apps to the same service resource](binding-multiple-apps-to-the-same-service-resource) for more details on how to work around this manually.
+>**Warning:** The example flow detailed in [Use case 1: Binding an application to a pre-provisioned service instance running in the same namespace](#services-journey-use-case-1) uses one RabbitMQ instance and one workload.  RabbitMQ is frequently  used with two or more applicatons although the current implementation blocks the ability to do this which only one workload.  See [Binding multiple apps to the same service resource](#binding-multiple-apps-to-the-same-service-resource) for more details on how to work around this manually.
 
 <!-- * [Use Case 1 - **Binding an App Workload to a Service Resource**](#services-journey-use-case-1)
 * [Use Case 2 - **Binding an App Workload to a Service Resource across multiple clusters**](#services-journey-use-case-2)
