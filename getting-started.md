@@ -174,9 +174,11 @@ To see this application in your organization catalog, you must register new enti
 
 5. Navigate back to the homepage, and the catalog changes and entries will be visible for further inspection.
 
-### <a id='iterate'></a>Iterate on your application
 
-#### **Set up your integrated development environment (IDE)**
+### **Set up your IDE**
+
+#### <a id='iterate'></a>Iterate on your application
+
 With your basic application workload working, you are ready to iterate on your application
 and test your code changes on the cluster.
 Tanzu Developer Tools for VSCode and VMware Tanzu’s official IDE extension for VSCode
@@ -551,7 +553,7 @@ tanzu package installed update tap -p tap.tanzu.vmware.com -v 0.3.0 --values-fil
 ```
 
 
-#### Tekton pipeline config example
+#### Tekton pipeline configuration example
 
 In this section, a Tekton pipeline will be added to the cluster. In the next section, the workload will be updated to point to the pipeline and resolve any of the current errors.
 
@@ -867,7 +869,7 @@ Continue through the next two sections, and you will not only have an opportunit
 
 In this section, you will:
 * Configure your supply chain to sign your image builds
-* Configure an admission control policy to verify image signatures before admitting Pods to the cluster
+* Configure an admission control policy to verify image signatures before admitting pods to the cluster
 
 ### Configure your supply chain to sign your image builds
 
@@ -901,267 +903,34 @@ In this section, you will:
 
     ```
 
-This component allows a platform operator to define a policy that will
-restrict unsigned images from running on clusters.
-To enforce the configured policies this component communicates with external
-container registries to verify signatures on container images and make a
-decision based on the results of this verification. In order to make admission
-decisions this component is implemented as a dynamic admission control webhook.
+### Configure an admission control policy to verify image signatures before admitting pods to the cluster
+Your cluster will require valid signatures for all images that match the `namePattern:`, defined by you in the configuration, when you apply the `ClusterImagePolicy`resource. See [Configuring Supply Chain Security Tools - Sign](https://docs-staging.vmware.com/en/Tanzu-Application-Platform/0.4/tap/GUID-scst-sign-configuring.html) to learn more about configuring an image signature policy.
 
-Currently, this component supports cosign signatures and its key formats.
-Although this component does not sign container images, you could use tools such
-as the [cosign CLI](https://github.com/sigstore/cosign#quick-start),
-[kpack](https://github.com/pivotal/kpack/blob/main/docs/image.md#cosign-config),
-and [Tanzu Build Service](https://docs.vmware.com/en/VMware-Tanzu-Build-Service/index.html)
-(which is what we will overview in this document) to generate signatures for
-your images.
-
-Signing an artifact creates metadata about it that allows consumers to verify
-its origin and integrity.
-Operators can increase their confidence that trusted software is running on their
-clusters by verifying signatures on artifacts prior to their deployment.
-
-#### Use cases
-
-* Validate signatures from a given registry.
-* Deny unsigned images from being admitted in the cluster.
-
-> **Note**: this component does not verify images that are already running in a
-> cluster.
-
-**Signing container images**
-
-Tanzu Application Platform supports verifying container image signatures that
-follow the cosign format.
-Application operators may sign container images and store them in the registry
-in several different ways, including:
-
-* Using [Tanzu Build Service v1.4](https://docs.vmware.com/en/Tanzu-Build-Service/1.4/vmware-tanzu-build-service-v14/GUID-index.html).
-* Using [kpack](https://github.com/pivotal/kpack/blob/main/docs/image.md#cosign-config)
-v0.4.0 or higher.
-* Signing existing images with [cosign](https://github.com/sigstore/cosign#quick-start).
-
-**Supplying secrets for private registries**
-
-If your images and signatures are hosted in a private registry you will need to
-provide the package with credentials to pull those signatures.
-
-If your resources already have `imagePullSecrets` configured, either
-[directly in their specs](https://kubernetes.io/docs/concepts/configuration/secret/#using-imagepullsecrets)
-or [via the `ServiceAccount` they run authenticated as](https://kubernetes.io/docs/concepts/configuration/secret/#arranging-for-imagepullsecrets-to-be-automatically-attached),
-no further configuration is required.
-
-However, in situations where your cluster pulls credentials from your container
-runtime configuration, you can choose to provide secrets through:
-
-* The `ClusterImagePolicy` resource configuration for a given name pattern.
-* Creating a `ServiceAccount` named `image-policy-registry-credentials` in the
-`image-policy-system` namespace and adding `imagePullSecrets` to that service
-account.
-
-For more information on how to configure these secrets, see
-[Providing credentials for the package](scst-sign/configuring.md#providing-credentials-package).
-
-**Creating a `ClusterImagePolicy`**
-
-The `ClusterImagePolicy` is a custom resource containing the following information:
-
-* A list of namespaces to which the policy should not be enforced.
-* A list of public keys complementary to the private keys that were used to sign
-  the images.
-* A list of image name patterns to which we want to enforce the policy, mapping
-  to the public keys to use for each pattern, and, optionally, a secret reference
-  to be used to authenticate to the referred registry.
-
-An example policy would look like this:
-
-```
----
-apiVersion: signing.apps.tanzu.vmware.com/v1beta1
-kind: ClusterImagePolicy
-metadata:
-  name: image-policy
-spec:
-  verification:
-    exclude:
-      resources:
-        namespaces:
-        - kube-system
-    keys:
-    - name: first-key
-      publicKey: |
-        ​​-----BEGIN PUBLIC KEY-----
-        <content ...>
-        -----END PUBLIC KEY-----
-    images:
-    - namePattern: registry.example.org/myproject/*
-      keys:
-      - name: first-key
-    images:
-    - namePattern: registry.example.org/otherproject/*
-      secretRef:
-        name: credential-to-other-project
-        namespace: secret-namespace
-      keys:
-      - name: first-key
-```
-
-The custom resource for the policy must have a name of `image-policy`.
-
-> **Important**: The platform operator should add to the
-> `spec.verification.exclude.resources.namespaces` section any namespaces that
-> are known to run container images that are not currently signed, such as the
-> `kube-system` namespace.
-
-#### Examples and expected results
-
-If a platform operator creates the following policy, there are different scenarios
-and expected outcomes:
-
-```
----
-apiVersion: signing.apps.tanzu.vmware.com/v1beta1
-kind: ClusterImagePolicy
-metadata:
-  name: image-policy
-spec:
-  verification:
-    exclude:
-      resources:
-        namespaces:
-        - kube-system
-        - test-namespace
-    keys:
-    - name: first-key
-      publicKey: |
-        ​​-----BEGIN PUBLIC KEY-----
-        <content ...>
-        -----END PUBLIC KEY-----
-    images:
-    - namePattern: registry.example.org/myproject/*
-      keys:
-      - name: first-key
-```
-
-* **Scenario 1:** A developer deploys a runnable resource with an image name that matches a
-name pattern in the policy and that image is signed with an expected signature.
-Expected result: resource is created successfully.
-
-* **Scenario 2:** A developer deploys a runnable resources with an image name that matches a
-name pattern in the policy and the image is unsigned.
-Expected result: resource is not created and an error message is shown in the
-CLI output or via API responses.
-
-* **Scenario 3:** A developer deploys a runnable resource with an image name that does not
-match any patterns in the policy and the `AllowUnmatchedImages` feature gate is
-turned on.
-Expected result: resource is created successfully and a warning message is shown
-in the CLI output or via API responses.
-
-* **Scenario 4:** A developer deploys a runnable resource with an image name that does not
-match any patterns in the policy and the `AllowUnmatchedImages` feature gate is
-turned off.
-Expected result: a resource is not created and an error message is shown in the
-CLI output or via API responses.
-
-The Supply Chain Security Tools - Sign component outputs logs for the above
-scenarios. To examine the logs the platform operator can run:
-
-```
-kubectl logs -n image-policy-system -l "signing.apps.tanzu.vmware.com/application-name=image-policy-webhook" -f
-```
-
-#### Next steps and further information
+#### Explore the following:
 
 * [Overview for Supply Chain Security Tools - Sign](scst-sign/overview.md)
 * [Configuring Supply Chain Security Tools - Sign](scst-sign/configuring.md)
 * [Supply Chain Security Tools - Sign Known Issues](scst-sign/known_issues.md)
 
+## <a id='consuming-services'></a> Section 5: Consuming Services on the Tanzu Application Platform
 
-### Scan and Store: Introducing vulnerability scanning and metadata storage to your Supply Chain
-
-**Overview**
-
-This feature set allows an application operator to introduce source code and image vulnerability scanning,
-as well as scan-time rules, to their Tanzu Application Platform Supply Chain. The scan-time rules prevent critical vulnerabilities from flowing through the supply chain unresolved.
-
-All vulnerability scan results are stored over time in a metadata store that allows a team
-to easily reference historical scan results, and provides querying functionality to support the following use cases:
-
-* What images and packages are affected by a specific vulnerability?
-* What source code repos are affected by a specific vulnerability?
-* What packages and vulnerabilities does a particular image have?
-* What images are using a given package?
-
-[Supply Chain Security Tools - Store](scst-store/overview.md) takes the scanning results and stores them. Users can query for information about CVEs, images, packages, and their relationships through the CLI, or directly from the API.
-
-**Features**
-
-* Scan source code repositories and images for known CVEs prior to deploying to a cluster
-* Identify CVEs by scanning continuously on each new code commit and/or each new image built
-* Analyze scan results against user-defined policies using Open Policy Agent
-* Produce vulnerability scan results and post them to the Supply Chain Security Tools - Store where they can later be queried
-
-To try the scan and store features in a supply chain, see [Section 3: Add testing and security scanning to your application](#add-testing-and-scanning).
-
-#### Running Public source code and image scans with policy enforcement
-
-Follow the instructions in [Sample public source code and image scans with policy enforcement](scst-scan/running-scans.md)
-to perform the following two types of public scans:
-
-1. Source code scan on a public repository
-2. Image scan on a public image
-
-Both examples include a policy that considers CVEs with Critical severity ratings as violations.
-
-
-#### Running private source code and image scans with policy enforcement
-
-Follow the instructions in [Sample private source scan](scst-scan/samples/private-source.md) to perform a source code scan against a private registry or
-[Sample private image scan](scst-scan/samples/private-image.md)
-to do an image scan on a private image.
-
-
-#### Viewing vulnerability reports using Supply Chain Security Tools - Store capabilities
-
-After completing the scans from the previous step,
-query the [Supply Chain Security Tools - Store](scst-store/overview.md) to view your vulnerability results.
-It is a Tanzu component that stores image, package, and vulnerability metadata about your dependencies.
-Use the Supply Chain Security Tools - Store CLI, called Insight,
-to query metadata that have been submitted to the component after the scan step.
-
-For a complete guide on how to query the store,
-see [Querying Supply Chain Security Tools - Store](scst-store/query_data.md).
-
-#### Example Supply Chain including source and image scans
-
-One of the out of the box supply chains we are working on for a future release will include image and source code vulnerability scanning and metadata storage into a preset Tanzu Application Platform supply chain. Until then, you can use this example to see how to try this out:
-[Example Supply Chain including Source and Image Scans](scst-scan/choreographer.md).
-
-**Next steps and further information**
-
-* [Configure Code Repositories and Image Artifacts to be Scanned](scst-scan/scan-crs.md)
-
-* [Code and Image Compliance Policy Enforcement Using Open Policy Agent (OPA)](scst-scan/policies.md)
-
-* [How to Create a ScanTemplate](scst-scan/create-scan-template.md)
-
-* [Viewing and Understanding Scan Status Conditions](scst-scan/results.md)
-
-* [Observing and Troubleshooting](scst-scan/observing.md)
-
-## <a id='consuming-services'></a> Section 5: Consuming Services on Tanzu Application Platform
-
-Tanzu Application Platform makes it easy to discover, curate, consume, and manage
+The Tanzu Application Platform makes it easy to discover, curate, consume, and manage
 services across single-cluster or multi-cluster environments.
-This section introduces procedures for implementing several use cases regarding services journey on Tanzu Application Platform.
+
+In this section, you will:
+* Learn about the services journey on the Tanzu Application Platform
+* Set up and install a service with supporting resources
+* Bind an application to a pre-provisioned service instance with the following Services Toolkit-enabled use cases:
+	* Binding an application to a pre-provisioned service instance running in the same namespace
+	* Binding an application to a pre-provisioned service instance running in a different namespace on the same Kubernetes cluster
+	* Binding an application to a service running outside Kubernetes
+	* Binding an application to a service instance running on a different Kubernetes cluster (experimental)
 
 ### Overview
 
-Nowadays most applications depend on backing services such as databases, queues, and caches.
-Developers spend more time focusing on developing their applications and less
-time worrying about the provision, configuration, and operations of the backing services.
-In Tanzu Application Platform, Services Toolkit is the component that enables this experience.
+Applications often depend on backing services such as databases, queues, and caches.
+The Services Toolkit component on the Tanzu Application Platform enables developers to spend more time 
+focusing on developing their applications, and less time thinking about the provisioning, configuration, and operations of the backing services.
 
 ### Use cases enabled by Services Toolkit on Tanzu Application Platform
 
@@ -1195,7 +964,7 @@ The use cases vary according to where the service instance is located. The four 
   </tr>
 </table>
 
-Services Toolkit comprises the following Kubernetes-native components:
+Services Toolkit is comprised of the following Kubernetes-native components:
 
 * [Service Offering](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-service_offering-terminology_and_apis.html)
 * [Service Resource Claims](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-service_resource_claims-terminology_and_apis.html)
