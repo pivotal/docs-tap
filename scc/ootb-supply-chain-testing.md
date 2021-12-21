@@ -26,7 +26,7 @@ It includes all the capabilities of the Out of The Box Supply Chain Basic, but
 adds on top testing with Tekton:
 
 - Watching a Git Repository or local directory for changes
-- Running tests from a developer-provided Tekton orPipeline
+- Running tests from a developer-provided Tekton or Pipeline
 - Building a container image out of the source code with Buildpacks
 - Applying operator-defined conventions to the container definition
 - Deploying the application to the same cluster
@@ -71,26 +71,30 @@ To make sure you have configured the namespace correctly, it's important that
 the namespace has the following objects in it (including the ones marked with
 '_new_' whose explanation and details are provided below):
 
-- **image secret**: a Kubernetes secret of type
+- **image secret**: A Kubernetes secret of type
   `kubernetes.io/dockerconfigjson` filled with credentials for pushing the
-container images built by the supply chain (see Supply Chain Basic for details)
+   container images built by the supply chain.
+   For more information, see [Out of The Box Supply Chain Basic](ootb-supply-chain-basic.md).
 
-- **service account**: the identity to be used for any interaction with the
-  Kubernetes API made by the supply chain (see Supply Chain Basic for details)
+- **service account**: The identity to be used for any interaction with the
+  Kubernetes API made by the supply chain.
+  For more information, see [Out of The Box Supply Chain Basic](ootb-supply-chain-basic.md).
 
-- **role**: the set of capabilities that we want to assign to the service
-  account - it must provide the ability to manage all of the resources that the
-supplychain is responsible for (see Supply Chain Basic for details)
+- **role**: The set of capabilities that you want to assign to the service
+  account. It must provide the ability to manage all of the resources that the
+  supplychain is responsible for.
+  For more information, see [Out of The Box Supply Chain Basic](ootb-supply-chain-basic.md).
 
-- **rolebinding**: binds the role to the service account, i.e., grants the
-  capabilities to the identity (see Supply Chain Basic for details)
+- **rolebinding**: Binds the role to the service account.
+  It grants the capabilities to the identity.
+  For more information, see [Out of The Box Supply Chain Basic](ootb-supply-chain-basic.md).
 
-- (optional) **git credentials secret**: when using GitOps for managing the
-  delivery of applications (or a private git source), provides the required
-  credentials for interacting with the git repository (see Supply Chain Basic 
-  for details).
+- (Optional) **git credentials secret**: When using GitOps for managing the
+  delivery of applications or a private git source, this secret provides the
+  credentials for interacting with the git repository.
+  For more information, see [Out of The Box Supply Chain Basic](ootb-supply-chain-basic.md).
 
-- **Tekton pipeline** (_new_): a pipeline to be ran whenever the supply chain
+- **Tekton pipeline** (_new_): A pipeline run whenever the supply chain
   hits the stage of testing the source code
 
 
@@ -106,7 +110,7 @@ moment, the Tekton PipelineRun object that gets created to run the tests can
 reference such developer-provided Pipeline.
 
 So, aside from the objects previously defined in the Out of The Box Supply
-Chain Basic section, we need to include one more:
+Chain Basic section, you need to include one more:
 
 - `tekton/Pipeline`: the definition of a series of tasks to run against the
   source code that has been found by earlier resources in the Supply Chain.
@@ -156,22 +160,22 @@ spec:
               ./mvnw test
 ```
 
-ps.: at this point, changes to the developer-provided Tekton Pipeline _will
-not_ automatically trigger a re-run of the pipeline (i.e., a new Tekton
-PipelineRun will not be automatically created if a field in the Pipeline object
-is changed). As a workaround, the latest PipelineRun created can be deleted,
-which will trigger a re-run.
+At this point, changes to the developer-provided Tekton Pipeline do
+not automatically trigger a re-run of the pipeline. That is, a new Tekton
+PipelineRun is not automatically created if a field in the Pipeline object
+is changed. As a workaround, the latest PipelineRun created can be deleted,
+which triggers a re-run.
 
 
 ## Developer workload
 
-With the Tekton Pipeline object (following the label and parameter requirements
-mentioned above) submitted to the same namespace as the one where the Workload
-will be submitted to, we're ready to submit our Workload.
+With the Tekton Pipeline object
+submitted to the same namespace as the one where the Workload
+will be submitted to, you can submit your Workload.
 
 Regardless of the workflow being targgeted (local development or gitops), the
 Workload configuration details are the same as in Out of The Box Supply Chain
-Basic, except that we mark the Workload as having tests enabled.
+Basic, except that you mark the Workload as having tests enabled.
 
 For instance:
 

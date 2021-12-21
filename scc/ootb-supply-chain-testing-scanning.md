@@ -72,7 +72,7 @@ As mentioned in the prerequisites section, this example builds on the previous
 Out of The Box Supply Chain examples, so only additions are included here.
 
 To make sure you have configured the namespace correctly, it's important that
-the namespace has the objects we configured in the other supply chain setups:
+the namespace has the objects that you configured in the other supply chain setups:
 
 - **image secret**: A Kubernetes secret of type `kubernetes.io/dockerconfigjson` filled with
 credentials for pushing the container images built by the supply chain. For more information, see
@@ -96,7 +96,7 @@ For more information, see [Supply Chain Basic](ootb-supply-chain-basic.md).
 source code. For more information, see [Supply Chain with Testing](ootb-supply-chain-testing.md).
 
 
-And the new ones we create here:
+And the new ones, that you create here:
 
 - **scan policy**: Defines what to do with the results taken from scanning the source code and
 image produced. For more information, see [ScanPolicy section](#scan-policy).
@@ -116,7 +116,7 @@ Supply Chain With Testing).
 In order for source and image scans to happen, scan templates and scan policies
 must exist in the same namespace as the Workload. These define:
 
-- `ScanTemplate`: how to run a scan, allowing one to tweak details about the
+- `ScanTemplate`: how to run a scan, allowing one to change details about the
   execution of the scan (either for images or source code)
 
 - `ScanPolicy`: how to evaluate whether the artifacts scanned are compliant,
@@ -187,7 +187,7 @@ you're writing the workload to, you can install these in such namespace by makin
 Tools - Scan](../install-components.md#install-scst-scan):
 
 1. Create a file named `ootb-supply-chain-basic-values.yaml` that specifies the corresponding values
-to the properties you want to tweak. For example:
+to the properties you want to change. For example:
 
     ```
     grype:
@@ -216,11 +216,11 @@ to the properties you want to tweak. For example:
 
 With the ScanPolicy and ScanTemplate objects, with the required names set,
 submitted to the same namespace where the Workload will be submitted
-to, we're ready to submit our Workload.
+to, you're ready to submit your Workload.
 
-Regardless of the workflow being targgeted (local development or gitops), the
+Regardless of the workflow being targeted (local development or gitops), the
 Workload configuration details are the same as in Out of The Box Supply Chain
-Basic, except that we mark the Workload as having tests enabled.
+Basic, except that you mark the Workload as having tests enabled.
 
 For instance:
 
