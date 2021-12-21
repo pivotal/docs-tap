@@ -110,7 +110,8 @@ To deploy your application, download an accelerator, upload it on your Git repos
 
     See [Tanzu Apps Workload Create](cli-plugins/apps/command-reference/tanzu_apps_workload_create.md) for more information.
 
-> **Note:** This first deployment uses the accelerator source from Git, but in later steps you will use the VSCode extension to debug and live update the application.
+    > **Note:** This first deployment uses accelerator source from Git, but in later steps you use the VSCode extension
+    to debug and live-update this application.
 
 7. View the build and runtime logs for your application by running the following `tail` command:
 
@@ -127,12 +128,12 @@ To deploy your application, download an accelerator, upload it on your Git repos
 
 ### Add your application to the Tanzu Application Platform GUI Software Catalog
 
-To see this application in your organization catalog, you must register new entities as described below:
+To view this application in your organization catalog, register new entities as follows:
 
-1. Confirm you have installed the Blank Software Catalog (see [Configure the Tanzu Application Platform GUI](install.md#configure-tap-gui) for instructions).
+1. Confirm the Blank Software Catalog is installed (see [Configure the Tanzu Application Platform GUI](install.md#configure-tap-gui) for instructions).
 
-    >**Note:** In Tanzu Application Platform beta 5, you must add a line to the `catalog-info.yaml` of the `tanzu-java-web-app` component.
-    In the following example, the added line is the `spec.system: tanzu-java-web-app` statement.
+    > Note: Add a line to the `catalog-info.yaml` of the `tanzu-java-web-app` component.
+    The added line is the `spec.system: tanzu-java-web-app` statement in the following example:
 
     ```
     apiVersion: backstage.io/v1alpha1
@@ -160,7 +161,7 @@ To see this application in your organization catalog, you must register new enti
 
     ![REGISTER button on the right side of the header](images/getting-started-tap-gui-5.png)
 
-3. "Register an existing component" prompts you to enter a repository URL.
+3. "Register an existing component" prompts you to type a repository URL.
     Type the link to the `catalog-info.yaml` file in the Git repository field and click **ANALYZE**.
 
     ![Select URL](images/getting-started-tap-gui-6.png)
