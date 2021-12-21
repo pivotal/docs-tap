@@ -1,4 +1,4 @@
-# Getting started with the Tanzu Application Platform
+applications# Getting started with the Tanzu Application Platform
 
 ## Purpose
 
@@ -351,7 +351,7 @@ In this section, you will:
 ### What is a Supply Chain?
 
 Supply Chains provide a way of codifying all of the steps of your path to production, or what is
-more commonly known as Continuous Integration/Continous Delivery ((CI/CD).
+more commonly known as Continuous Integration/Continuous Delivery (CI/CD).
 A supply chain differs from CI/CD in that you can add any step necessary for an
 application to reach production, or a different environment such as staging.
 
