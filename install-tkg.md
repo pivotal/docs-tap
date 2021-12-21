@@ -84,10 +84,10 @@ Once completed, you may proceed to the next section.
 ## <a id='install-tap'></a>Install Tanzu Application Platform
 
 1. Ensure you meet all the prerequisites to install Tanzu Application Platform.
-See [Prerequisites](install-general.html#prereqs) in _Installing Part I: Prerequisites, EULA, and CLI_.
+See [Prerequisites](install-general.html#prereqs) in _Installing part I: Prerequisites, EULA, and CLI_.
 
     > **Note**: Do not attempt to install the cert-manager package from Tanzu Standard Repository:
     follow the instructions in Tanzu Application Platform documentation to meet all the prerequisites.
 
-1. Follow the steps in [Installing Part II: Profiles](install.md) to install
+1. Follow the steps in [Installing part II: Profiles](install.md) to install
 Tanzu Application Platform on a Tanzu Kubernetes Grid v1.4 cluster.

@@ -164,7 +164,7 @@ If it is still running, it is likely to finish successfully and produce output s
     developer-conventions     developer-conventions.tanzu.vmware.com             0.4.0-build1     Reconcile succeeded  tap-install
     fluxcd-source-controller  fluxcd.source.controller.tanzu.vmware.com          0.16.0           Reconcile succeeded  tap-install
     grype                     grype.scanning.apps.tanzu.vmware.com               1.0.0            Reconcile succeeded  tap-install
-    image-policy-webhook      image-policy-webhook.signing.run.tanzu.vmware.com  1.0.0-beta.3     Reconcile succeeded  tap-install
+    image-policy-webhook      image-policy-webhook.signing.apps.tanzu.vmware.com 1.0.0-beta.3     Reconcile succeeded  tap-install
     learningcenter            learningcenter.tanzu.vmware.com                    0.1.0-build.6    Reconcile succeeded  tap-install
     learningcenter-workshops  workshops.learningcenter.tanzu.vmware.com          0.1.0-build.7    Reconcile succeeded  tap-install
     ootb-delivery-basic       ootb-delivery-basic.tanzu.vmware.com               0.4.0-build.2    Reconcile succeeded  tap-install

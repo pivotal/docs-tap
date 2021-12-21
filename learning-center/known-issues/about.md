@@ -31,7 +31,7 @@ to create the TLS Secret, once the TLS is created **you need to redeploy the Tra
 If you are installing a TAP profile, perhaps you are going to get this error.
 
 ```
-Internal error occurred: failed calling webhook "image-policy-webhook.signing.run.tanzu.vmware.com": failed to call webhook: Post "https://image-policy-webhook-service.image-policy-system.svc:443/signing-policy-check?timeout=10s": service "image-policy-webhook-service" not found
+Internal error occurred: failed calling webhook "image-policy-webhook.signing.apps.tanzu.vmware.com": failed to call webhook: Post "https://image-policy-webhook-service.image-policy-system.svc:443/signing-policy-check?timeout=10s": service "image-policy-webhook-service" not found
 ```
 
 #### Solution:

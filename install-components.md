@@ -8,7 +8,7 @@ or if you want to install additional packages after installing a profile.
 
 Before installing the packages, ensure that you have completed the prerequisites, configured
 and verified the cluster, accepted the EULA, and installed the Tanzu CLI with any required plugins.
-For information, see [Installing Part I: Prerequisites, EULA, and CLI](install-general.md).
+For information, see [Installing part I: Prerequisites, EULA, and CLI](install-general.md).
 
 + [Install cert-manager and FluxCD source controller](#install-prereqs)
 + [Install Cloud Native Runtimes](#install-cnr)
@@ -17,10 +17,11 @@ For information, see [Installing Part I: Prerequisites, EULA, and CLI](install-g
 + [Install Application Accelerator](#install-app-accelerator)
 + [Install Tanzu Build Service](#install-tbs)
 + [Install Supply Chain Choreographer](#install-scc)
++ [Install Out of the Delivery Basic](#install-ootb-delivery-basic)
 + [Install Out of the Box Templates](#install-ootb-templates)
 + [Install Out of The Box Supply Chain Basic](#install-ootb-supply-chain-basic)
 + [Install Out of The Box Supply Chain with Testing](#install-ootb-supply-chain-testing)
-+ [Install Out of The Box Supply Chain with Testing and Scanning](#install-ootb-sc-test-scan)
++ [Install Out of The Box Supply Chain with Testing and Scanning](#install-ootb-supply-chain-testing-scanning)
 + [Install Developer Conventions](#install-developer-conventions)
 + [Install Spring Boot Conventions](#install-spring-boot-convention)
 + [Install Application Live View](#install-app-live-view)
@@ -197,24 +198,24 @@ To install Cloud Native Runtimes:
         # if deploying on a local cluster such as Kind. Otherwise, you can remove this field
         provider: local
         ```
-
+    
         >**Note:** For most installations, you can leave the `cnr-values.yaml` empty, and use the default values.
-
+    
         If you are running on a single-node cluster, such as kind or minikube, set the `provider: local`
         option. This option reduces resource requirements by using a HostPort service instead of a
         LoadBalancer and reduces the number of replicas.
-
+    
         Cloud Native Runtimes reuses the existing `tanzu-system-ingress` Contour installation for
         external and internal access when installed in the `dev` or `full` profile.
         If you want to use a separate Contour installation for system-internal traffic, set
         `cnrs.ingress.internal.namespace` to the empty string (`""`).
-
+    
         For more information about using Cloud Native Runtimes with kind, see the
         [Cloud Native Runtimes documentation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-local-dns.html#config-cluster).
         If you are running on a multi-node cluster, do not set `provider`.
-
+    
         If your environment has Contour packages, Contour might conflict with the Cloud Native Runtimes installation.
-
+    
         For information about how to prevent conflicts, see [Installing Cloud Native Runtimes for Tanzu with an Existing Contour Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-contour.html) in the Cloud Native Runtimes documentation.
         Specify values for `ingress.reuse_crds`,
         `ingress.external.namespace`, and `ingress.internal.namespace` in the `cnr-values.yaml` file.
@@ -268,11 +269,11 @@ To install Cloud Native Runtimes:
    >**Note:** This step covers configuring a namespace to run Knative services.
    >If you rely on a SupplyChain to deploy Knative services into your cluster,
    >then skip this step because namespace configuration is covered in
-   >[Set Up Developer Namespaces to Use Installed Packages](#setup).
+   >[Set up developer namespaces to use installed packages](#setup).
    >Otherwise, you must complete the following steps for each namespace where you create Knative services.
 
    Service accounts that run workloads using Cloud Native Runtimes need access to the image pull secrets for the Tanzu package.
-   This includes the `default` service account in a namespace, which is created automatically, but not associated with any image pull secrets.
+   This includes the `default` service account in a namespace, which is created automatically but not associated with any image pull secrets.
    Without these credentials, attempts to start a service fail with a timeout and the Pods report that they are unable to pull the `queue-proxy` image.
 
     1. Create an image pull secret in the current namespace and fill it from the `tap-registry`
@@ -760,9 +761,9 @@ To install Tanzu Build Service using the Tanzu CLI:
         * Harbor: `harbor.io/my-project/build-service`
 
     - `REGISTRY-USERNAME` and `REGISTRY-PASSWORD` are the user name and password for the registry. The install requires a `kp_default_repository_username` and `kp_default_repository_password` to write to the repository location.
-    - `TANZUNET-USERNAME` and `TANZUNET-PASSWORD` are the email address and password that you use to log in to Tanzu Network. The Tanzu Network credentials allow for configuration of the Dependencies Updater. This resource accesses and installs the build dependencies (buildpacks and stacks) Tanzu Build Service needs on your Cluster. It also keeps these dependencies up to date as new versions are released on Tanzu Network.
+    - `TANZUNET-USERNAME` and `TANZUNET-PASSWORD` are the email address and password that you use to log in to Tanzu Network. The Tanzu Network credentials allow for configuration of the Dependencies Updater. This resource accesses and installs the build dependencies (buildpacks and stacks) Tanzu Build Service needs on your cluster. It also keeps these dependencies up to date as new versions are released on Tanzu Network.
     - `DESCRIPTOR-NAME` is the name of the descriptor to import automatically. Current available options at time of release:
-        - `tap-1.0.0-full` contains all dependencies, and is for production use.
+        - `tap-1.0.0-full` contains all dependencies and is for production use.
         - `tap-1.0.0-lite` smaller footprint used for speeding up installs. Requires Internet access on the cluster.
 
     >**Note:** Using the `tbs-values.yaml` configuration,
@@ -807,17 +808,6 @@ To install Tanzu Build Service using the Tanzu CLI:
 
 ## <a id='install-scc'></a> Install Supply Chain Choreographer
 
-[cartographer]: https://github.com/vmware-tanzu/cartographer
-[cert-manager]: https://github.com/jetstack/cert-manager
-[convention-controller]: https://github.com/vmware-tanzu/convention-controller
-[kapp-controller]: https://github.com/vmware-tanzu/carvel-kapp-controller
-[knative-serving]: https://knative.dev/docs/serving/
-[kpack]: https://github.com/pivotal/kpack
-[secretgen-controller]: https://github.com/vmware-tanzu/carvel-secretgen-controller
-[source-controller]: https://github.com/fluxcd/source-controller
-[tanzu cli]: https://github.com/vmware-tanzu/tanzu-framework/tree/main/cmd/cli#installation
-[tekton]: https://github.com/tektoncd/pipeline
-
 Supply Chain Choreographer provides the custom resource definitions that the supply chain uses.
 Each pre-approved supply chain creates a paved road to production and orchestrates supply chain resources. You can test, build, scan, and deploy. Developers can focus on delivering value to
 users. App Operators can have peace of mind that all code in production has passed
@@ -827,31 +817,101 @@ For example, Supply Chain Choreographer passes the results of fetching source co
 that knows how to build a container image from of it and then passes the container image
 to a component that knows how to deploy the image.
 
-1. Install v0.0.7 of the `cartographer.tanzu.vmware.com` package, naming the installation `cartographer`.
+1. Install v0.1.0-rc.1 of the `cartographer.tanzu.vmware.com` package, naming the installation `cartographer`.
 
     ```
     tanzu package install cartographer \
       --namespace tap-install \
       --package-name cartographer.tanzu.vmware.com \
-      --version 0.0.7
+      --version 0.1.0-rc.1
     ```
 
     Example output:
 
     ```
     | Installing package 'cartographer.tanzu.vmware.com'
-    | Getting namespace 'default'
+    | Getting namespace 'tap-install'
     | Getting package metadata for 'cartographer.tanzu.vmware.com'
-    | Creating service account 'cartographer-default-sa'
-    | Creating cluster admin role 'cartographer-default-cluster-role'
-    | Creating cluster role binding 'cartographer-default-cluster-rolebinding'
+    | Creating service account 'cartographer-tap-install-sa'
+    | Creating cluster admin role 'cartographer-tap-install-cluster-role'
+    | Creating cluster role binding 'cartographer-tap-install-cluster-rolebinding'
     - Creating package resource
     \ Package install status: Reconciling
 
-    Added installed package 'cartographer' in namespace 'default'
+    Added installed package 'cartographer' in namespace 'tap-install'
     ```
 
-## <a id='install-ootb-templates'></a> Install Out of the Box Templates
+
+## <a id='install-ootb-delivery-basic'></a> Install Out of the Box Delivery Basic
+
+The Out of the Box Delivery Basic package is used by all the Out of the Box Supply Chains
+to deliver the objects that have been produced by them to a Kubernetes environment.
+
+
+### Prerequisites
+
+- Cartographer
+
+
+### Install
+
+To install Out of the Box Delivery Basic:
+
+1. Familiarize yourself with the set of values of the package that can be
+   configured by running:
+
+    ```
+    tanzu package available get ootb-delivery-basic.tanzu.vmware.com/0.5.0-build.1 \
+      --values-schema \
+      -n tap-install
+    ```
+
+    For example:
+
+    ```
+    KEY                  DEFAULT  TYPE    DESCRIPTION
+    service_account      default  string  Name of the service account in the
+                                          namespace where the Deliverable is
+                                          submitted to.
+    ```
+
+1. Create a file named `ootb-delivery-basic-values.yaml` that specifies the
+   corresponding values to the properties you want to change.
+
+   For example, the contents of the file might look like this:
+
+    ```
+    service_account: default
+    ```
+
+1. With the configuration ready, install the package by running:
+
+
+    ```
+    tanzu package install ootb-delivery-basic \
+      --package-name ootb-delivery-basic.tanzu.vmware.com \
+      --version 0.5.0-build.1 \
+      --namespace tap-install \
+      --values-file ootb-delivery-basic-values.yaml
+    ```
+
+    Example output:
+
+    ```
+    \ Installing package 'ootb-delivery-basic.tanzu.vmware.com'
+    | Getting package metadata for 'ootb-delivery-basic.tanzu.vmware.com'
+    | Creating service account 'ootb-delivery-basic-tap-install-sa'
+    | Creating cluster admin role 'ootb-delivery-basic-tap-install-cluster-role'
+    | Creating cluster role binding 'ootb-delivery-basic-tap-install-cluster-rolebinding'
+    | Creating secret 'ootb-delivery-basic-tap-install-values'
+    | Creating package resource
+    - Waiting for 'PackageInstall' reconciliation for 'ootb-delivery-basic'
+    / 'PackageInstall' resource install status: Reconciling
+
+     Added installed package 'ootb-delivery-basic' in namespace 'tap-install'
+    ```
+
+## <a id='install-ootb-templates'></a> Install Out of the Box templates
 
 The Out of the Box Templates package is used by all the Out of the Box Supply
 Chains to provide the templates that are used by the Supply Chains to create
@@ -873,15 +933,15 @@ install it is the following command:
 ```
 tanzu package install ootb-templates \
   --package-name ootb-templates.tanzu.vmware.com \
-  --version 0.4.0-build.1 \
+  --version 0.5.0-build.1 \
   --namespace tap-install
 ```
 ```
 \ Installing package 'ootb-templates.tanzu.vmware.com'
 | Getting package metadata for 'ootb-templates.tanzu.vmware.com'
-| Creating service account 'ootb-templates-default-sa'
-| Creating cluster admin role 'ootb-templates-default-cluster-role'
-| Creating cluster role binding 'ootb-templates-default-cluster-rolebinding'
+| Creating service account 'ootb-templates-tap-install-sa'
+| Creating cluster admin role 'ootb-templates-tap-install-cluster-role'
+| Creating cluster role binding 'ootb-templates-tap-install-cluster-rolebinding'
 | Creating package resource
 / Waiting for 'PackageInstall' reconciliation for 'ootb-templates'
 / 'PackageInstall' resource install status: Reconciling
@@ -905,10 +965,11 @@ Cartographer
 
 ### Install
 
-1. Familiarize yourself with the set of values of the package that can be configured by running:
+1. Familiarize yourself with the set of values of the package that can be
+   configured by running:
 
     ```
-    tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.4.0-build.1 \
+    tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.5.0-build.1 \
       --values-schema \
       -n tap-install
     ```
@@ -916,31 +977,64 @@ Cartographer
     For example:
 
     ```
-    KEY                  TYPE    DESCRIPTION
+    KEY                       DESCRIPTION
 
-    registry.repository  string  Name of the repository in the image registry server where
-                                 the application images from the workload be pushed to
-                                 (required).
+    registry.repository       Name of the repository in the image registry server where
+                              the application images from he workloould be pushed to
+                              (required).
 
-    registry.server      string  Name of the registry server where application images should
-                                 be pushed to (required).
+    registry.server           Name of the registry server where application images should
+                              be pushed to (required).
 
-    cluster_builder      string  Name of the Tanzu Build Service (TBS) ClusterBuilder to
-                                 use by default on image objects managed by the supply chain.
 
-    service_account      string  Name of the service account in the namespace where the Workload
-                                 is submitted to utilize for providing registry credentials to
-                                 Tanzu Build Service (TBS) Image objects as well as deploying the
-                                 application.
+
+    gitops.username           Default user name to be used for the commits produced by the
+                              supply chain.
+
+    gitops.branch             Default branch to use for pushing Kubernetes configuration files
+                              produced by the supply chain.
+
+    gitops.commit_message     Default git commit message to write when publishing Kubernetes
+                              configuration files produces by the supply chain to git.
+
+    gitops.email              Default user email to be used for the commits produced by the
+                              supply chain.
+
+    gitops.repository_prefix  Default prefix to be used for forming Git SSH URLs for pushing
+                              Kubernetes configuration produced by the supply chain.
+
+    gitops.ssh_secret         Name of the default Secret containing SSH credentials to lookup
+                              in the developer namespace for the supply chain to fetch source
+                              code from and push configuration to.
+
+
+
+    cluster_builder           Name of the Tanzu Build Service (TBS) ClusterBuilder to
+                              use by default on image objects managed by the supply chain.
+
+    service_account           Name of the service account in the namespace where the Workload
+                              is submitted to utilize for providing registry credentials to
+                              Tanzu Build Service (TBS) Image objects as well as deploying the
+                              application.
     ```
 
-1. Create a file named `ootb-supply-chain-basic-values.yaml` that specifies the corresponding values
-to the properties you want to tweak. For example:
+1. Create a file named `ootb-supply-chain-basic-values.yaml` that specifies the
+   corresponding values to the properties you want to change. For example:
 
     ```
     registry:
       server: REGISTRY-SERVER
       repository: REGISTRY-REPOSITORY
+
+    gitops:
+      repository_prefix: git@github.com:vmware-tanzu/
+      branch: main
+      user_name: supplychain
+      user_email: supplychain
+      commit_message: supplychain@cluster.local
+      ssh_secret: git-ssh
+
+    cluster_builder: default
     service_account: default
     ```
 
@@ -949,19 +1043,20 @@ to the properties you want to tweak. For example:
     ```
     tanzu package install ootb-supply-chain-basic \
       --package-name ootb-supply-chain-basic.tanzu.vmware.com \
-      --version 0.4.0-build.1 \
+      --version 0.5.0-build.1 \
       --namespace tap-install \
       --values-file ootb-supply-chain-basic-values.yaml
     ```
+
     Example output:
 
     ```
     \ Installing package 'ootb-supply-chain-basic.tanzu.vmware.com'
     | Getting package metadata for 'ootb-supply-chain-basic.tanzu.vmware.com'
-    | Creating service account 'ootb-supply-chain-basic-default-sa'
-    | Creating cluster admin role 'ootb-supply-chain-basic-default-cluster-role'
-    | Creating cluster role binding 'ootb-supply-chain-basic-default-cluster-rolebinding'
-    | Creating secret 'ootb-supply-chain-basic-default-values'
+    | Creating service account 'ootb-supply-chain-basic-tap-install-sa'
+    | Creating cluster admin role 'ootb-supply-chain-basic-tap-install-cluster-role'
+    | Creating cluster role binding 'ootb-supply-chain-basic-tap-install-cluster-rolebinding'
+    | Creating secret 'ootb-supply-chain-basic-tap-install-values'
     | Creating package resource
     - Waiting for 'PackageInstall' reconciliation for 'ootb-supply-chain-basic'
     / 'PackageInstall' resource install status: Reconciling
@@ -986,6 +1081,7 @@ You must have installed:
 - Cartographer
 - Out of The Box Delivery Basic (`ootb-delivery-basic.tanzu.vmware.com`)
 - Out of The Box Templates (`ootb-templates.tanzu.vmware.com`)
+
 
 ### Install
 
@@ -1020,63 +1116,92 @@ Install by following these steps:
         ```
         Deleting installed package 'ootb-supply-chain-testing-scanning' in namespace 'tap-install'.
         Are you sure? [y/N]: y
-
+     
         | Uninstalling package 'ootb-supply-chain-testing-scanning' from namespace 'tap-install'
         \ Getting package install for 'ootb-supply-chain-testing-scanning'
         - Deleting package install 'ootb-supply-chain-testing-scanning' from namespace 'tap-install'
-        | Deleting admin role 'ootb-supply-chain-testing-scanning-default-cluster-role'
-        | Deleting role binding 'ootb-supply-chain-testing-scanning-default-cluster-rolebinding'
-        | Deleting secret 'ootb-supply-chain-testing-scanning-default-values'
-        | Deleting service account 'ootb-supply-chain-testing-scanning-default-sa'
-
+        | Deleting admin role 'ootb-supply-chain-testing-scanning-tap-install-cluster-role'
+        | Deleting role binding 'ootb-supply-chain-testing-scanning-tap-install-cluster-rolebinding'
+        | Deleting secret 'ootb-supply-chain-testing-scanning-tap-install-values'
+        | Deleting service account 'ootb-supply-chain-testing-scanning-tap-install-sa'
+     
          Uninstalled package 'ootb-supply-chain-testing-scanning' from namespace 'tap-install'
         ```
 
 1. Check the values of the package that can be configured by running:
 
     ```
-    tanzu package available get ootb-supply-chain-testing.tanzu.vmware.com/0.4.0-build.1 \
-      --values-schema \
-      -n tap-install
+    KEY                       DESCRIPTION
+
+    registry.repository       Name of the repository in the image registry server where
+                              the application images from he workloould be pushed to
+                              (required).
+
+    registry.server           Name of the registry server where application images should
+                              be pushed to (required).
+
+
+
+    gitops.username           Default user name to be used for the commits produced by the
+                              supply chain.
+
+    gitops.branch             Default branch to use for pushing Kubernetes configuration files
+                              produced by the supply chain.
+
+    gitops.commit_message     Default git commit message to write when publishing Kubernetes
+                              configuration files produces by the supply chain to git.
+
+    gitops.email              Default user email to be used for the commits produced by the
+                              supply chain.
+
+    gitops.repository_prefix  Default prefix to be used for forming Git SSH URLs for pushing
+                              Kubernetes configuration produced by the supply chain.
+
+    gitops.ssh_secret         Name of the default Secret containing SSH credentials to lookup
+                              in the developer namespace for the supply chain to fetch source
+                              code from and push configuration to.
+
+
+
+    cluster_builder           Name of the Tanzu Build Service (TBS) ClusterBuilder to
+                              use by default on image objects managed by the supply chain.
+
+    service_account           Name of the service account in the namespace where the Workload
+                              is submitted to utilize for providing registry credentials to
+                              Tanzu Build Service (TBS) Image objects as well as deploying the
+                              application.
     ```
 
-    Example output:
-
-    ```
-    KEY                  TYPE    DESCRIPTION
-
-    registry.repository  string  Name of the repository in the image registry server where
-                                 the application images from the workload be pushed to
-                                 (required).
-
-    registry.server      string  Name of the registry server where application images should
-                                 be pushed to (required).
-
-    cluster_builder      string  Name of the Tanzu Build Service (TBS) ClusterBuilder to
-                                 use by default on image objects managed by the supply chain.
-
-    service_account      string  Name of the service account in the namespace where the Workload
-                                 is submitted to utilize for providing registry credentials to
-                                 Tanzu Build Service (TBS) Image objects as well as deploying the
-                                 application.
-    ```
-
-1. Create a file named `ootb-supply-chain-testing-values.yaml` that specifies the corresponding
-values to the properties you want to tweak. For example:
+1. Create a file named `ootb-supply-chain-testing-values.yaml` that specifies the
+   corresponding values to the properties you want to change. For example:
 
     ```
     registry:
       server: REGISTRY-SERVER
       repository: REGISTRY-REPOSITORY
+
+    gitops:
+      repository_prefix: git@github.com:vmware-tanzu/
+      branch: main
+      user_name: supplychain
+      user_email: supplychain
+      commit_message: supplychain@cluster.local
+      ssh_secret: git-ssh
+
+    cluster_builder: default
     service_account: default
     ```
+
+    >**Note:** it's **required** that the `gitops.repository_prefix` field ends
+    > with a `/`.
+
 
 1. With the configuration ready, install the package by running:
 
     ```
     tanzu package install ootb-supply-chain-testing \
       --package-name ootb-supply-chain-testing.tanzu.vmware.com \
-      --version 0.4.0-build.1 \
+      --version 0.5.0-build.1 \
       --namespace tap-install \
       --values-file ootb-supply-chain-testing-values.yaml
     ```
@@ -1086,19 +1211,19 @@ values to the properties you want to tweak. For example:
     ```
     \ Installing package 'ootb-supply-chain-testing.tanzu.vmware.com'
     | Getting package metadata for 'ootb-supply-chain-testing.tanzu.vmware.com'
-    | Creating service account 'ootb-supply-chain-testing-default-sa'
-    | Creating cluster admin role 'ootb-supply-chain-testing-default-cluster-role'
-    | Creating cluster role binding 'ootb-supply-chain-testing-default-cluster-rolebinding'
-    | Creating secret 'ootb-supply-chain-testing-default-values'
+    | Creating service account 'ootb-supply-chain-testing-tap-install-sa'
+    | Creating cluster admin role 'ootb-supply-chain-testing-tap-install-cluster-role'
+    | Creating cluster role binding 'ootb-supply-chain-testing-tap-install-cluster-rolebinding'
+    | Creating secret 'ootb-supply-chain-testing-tap-install-values'
     | Creating package resource
     - Waiting for 'PackageInstall' reconciliation for 'ootb-supply-chain-testing'
     \ 'PackageInstall' resource install status: Reconciling
-
+    
     Added installed package 'ootb-supply-chain-testing' in namespace 'tap-install'
     ```
 
 
-## <a id='install-ootb-sc-test-scan'></a> Install Out of The Box Supply Chain with Testing and Scanning
+## <a id='install-ootb-supply-chain-testing-scanning'></a> Install Out of The Box Supply Chain with Testing and Scanning
 
 The Out of the Box Supply Chain with Testing and Scanning package provides a
 ClusterSupplyChain that brings an application from source code to a deployed
@@ -1106,11 +1231,13 @@ instance of it running in a Kubernetes environment performing validations not
 only in terms of running application tests, but also scanning the source code
 and image for vulnerabilities.
 
+
 ### Prerequisites
 
 - Cartographer
 - Out of The Box Delivery Basic (`ootb-delivery-basic.tanzu.vmware.com`)
 - Out of The Box Templates (`ootb-templates.tanzu.vmware.com`)
+
 
 ### Install
 
@@ -1143,63 +1270,99 @@ and image for vulnerabilities.
         ```
         Deleting installed package 'ootb-supply-chain-testing' in namespace 'tap-install'.
         Are you sure? [y/N]: y
-
+     
         | Uninstalling package 'ootb-supply-chain-testing' from namespace 'tap-install'
         \ Getting package install for 'ootb-supply-chain-testing'
         - Deleting package install 'ootb-supply-chain-testing' from namespace 'tap-install'
-        | Deleting admin role 'ootb-supply-chain-testing-default-cluster-role'
-        | Deleting role binding 'ootb-supply-chain-testing-default-cluster-rolebinding'
-        | Deleting secret 'ootb-supply-chain-testing-default-values'
-        | Deleting service account 'ootb-supply-chain-testing-default-sa'
-
+        | Deleting admin role 'ootb-supply-chain-testing-tap-install-cluster-role'
+        | Deleting role binding 'ootb-supply-chain-testing-tap-install-cluster-rolebinding'
+        | Deleting secret 'ootb-supply-chain-testing-tap-install-values'
+        | Deleting service account 'ootb-supply-chain-testing-tap-install-sa'
+     
          Uninstalled package 'ootb-supply-chain-testing' from namespace 'tap-install'
         ```
 
 1. Check the values of the package that can be configured by running:
 
     ```
-    tanzu package available get ootb-supply-chain-testing-scanning.tanzu.vmware.com/0.4.0-build.1 \
+    tanzu package available get ootb-supply-chain-testing-scanning.tanzu.vmware.com/0.5.0-build.1 \
       --values-schema \
       -n tap-install
     ```
 
-    Example output:
+    For example:
 
     ```
-    KEY                  TYPE    DESCRIPTION
+    KEY                       DESCRIPTION
 
-    registry.repository  string  Name of the repository in the image registry server where
-                                 the application images from the workload be pushed to
-                                 (required).
+    registry.repository       Name of the repository in the image registry server where
+                              the application images from he workloould be pushed to
+                              (required).
 
-    registry.server      string  Name of the registry server where application images should
-                                 be pushed to (required).
+    registry.server           Name of the registry server where application images should
+                              be pushed to (required).
 
-    cluster_builder      string  Name of the Tanzu Build Service (TBS) ClusterBuilder to
-                                 use by default on image objects managed by the supply chain.
 
-    service_account      string  Name of the service account in the namespace where the Workload
-                                 is submitted to utilize for providing registry credentials to
-                                 Tanzu Build Service (TBS) Image objects as well as deploying the
-                                 application.
+    gitops.username           Default user name to be used for the commits produced by the
+                              supply chain.
+
+    gitops.branch             Default branch to use for pushing Kubernetes configuration files
+                              produced by the supply chain.
+
+    gitops.commit_message     Default git commit message to write when publishing Kubernetes
+                              configuration files produces by the supply chain to git.
+
+    gitops.email              Default user email to be used for the commits produced by the
+                              supply chain.
+
+    gitops.repository_prefix  Default prefix to be used for forming Git SSH URLs for pushing
+                              Kubernetes configuration produced by the supply chain.
+
+    gitops.ssh_secret         Name of the default Secret containing SSH credentials to lookup
+                              for the supply chain to push configuration to.
+
+
+    cluster_builder           Name of the Tanzu Build Service (TBS) ClusterBuilder to
+                              use by default on image objects managed by the supply chain.
+
+    service_account           Name of the service account in the namespace where the Workload
+                              is submitted to utilize for providing registry credentials to
+                              Tanzu Build Service (TBS) Image objects as well as deploying the
+                              application.
+
+    cluster_builder           Name of the Tanzu Build Service (TBS) ClusterBuilder to use by
+                              default on image objects managed by the supply chain.
     ```
 
-1. Create a file named `ootb-supply-chain-testing-scanning-values.yaml` that specifies the
-corresponding values to the properties you want to tweak. For example:
+1. Create a file named `ootb-supply-chain-testing-values.yaml` that specifies
+   the corresponding values to the properties you want to change. For example:
 
     ```
     registry:
       server: REGISTRY-SERVER
       repository: REGISTRY-REPOSITORY
+
+    gitops:
+      repository_prefix: git@github.com:vmware-tanzu/
+      branch: main
+      user_name: supplychain
+      user_email: supplychain
+      commit_message: supplychain@cluster.local
+      ssh_secret: git-ssh
+
+    cluster_builder: default
     service_account: default
     ```
 
+    >**Note:** The `gitops.repository_prefix` field must end with `/`.
+
 1. With the configuration ready, install the package by running:
+
 
     ```
     tanzu package install ootb-supply-chain-testing-scanning \
       --package-name ootb-supply-chain-testing-scanning.tanzu.vmware.com \
-      --version 0.4.0-build.1 \
+      --version 0.5.0-build.1 \
       --namespace tap-install \
       --values-file ootb-supply-chain-testing-scanning-values.yaml
     ```
@@ -1209,16 +1372,17 @@ corresponding values to the properties you want to tweak. For example:
     ```
     \ Installing package 'ootb-supply-chain-testing-scanning.tanzu.vmware.com'
     | Getting package metadata for 'ootb-supply-chain-testing-scanning.tanzu.vmware.com'
-    | Creating service account 'ootb-supply-chain-testing-scanning-default-sa'
-    | Creating cluster admin role 'ootb-supply-chain-testing-scanning-default-cluster-role'
-    | Creating cluster role binding 'ootb-supply-chain-testing-scanning-default-cluster-rolebinding'
-    | Creating secret 'ootb-supply-chain-testing-scanning-default-values'
+    | Creating service account 'ootb-supply-chain-testing-scanning-tap-install-sa'
+    | Creating cluster admin role 'ootb-supply-chain-testing-scanning-tap-install-cluster-role'
+    | Creating cluster role binding 'ootb-supply-chain-testing-scanning-tap-install-cluster-rolebinding'
+    | Creating secret 'ootb-supply-chain-testing-scanning-tap-install-values'
     | Creating package resource
     - Waiting for 'PackageInstall' reconciliation for 'ootb-supply-chain-testing-scanning'
     \ 'PackageInstall' resource install status: Reconciling
-
+    
     Added installed package 'ootb-supply-chain-testing-scanning' in namespace 'tap-install'
     ```
+
 
 ## <a id='install-developer-conventions'></a> Install Developer Conventions
 
@@ -1368,7 +1532,7 @@ Application Live View Convention Service only.
     >**Note:** The `app-live-view-values.yaml` section does not have any values schema for both
     >packages, therefore it is empty.
 
-    The Application Live View back end and connector are deployed in `app-live-view` namespace by default. The connector is deployed as a `DaemonSet`. There is one connector instance per node in the Kubernetes cluster. This instance observes all the apps running on that node.
+    The Application Live View back-end and connector are deployed in `app-live-view` namespace by default. The connector is deployed as a `DaemonSet`. There is one connector instance per node in the Kubernetes cluster. This instance observes all the apps running on that node.
     The Application Live View Convention Server is deployed in the `alv-convention` namespace by default. The convention server enhances PodIntents with metadata including labels, annotations, or application properties.
 
 1. Install the Application Live View package by running:
@@ -1460,7 +1624,7 @@ Application Live View Convention Service only.
 
     Verify that `STATUS` is `Reconcile succeeded`
 
-The Application Live View UI plug-in is part of Tanzu Application Platform GUI.
+The Application Live View UI plugin is part of Tanzu Application Platform GUI.
 To access the Application Live View UI,
 see [Application Live View in Tanzu Application Platform GUI](https://docs-staging.vmware.com/en/Tanzu-Application-Platform/1.0/tap/GUID-tap-gui-plugins-app-live-view.html#entry-point-to-ap[…]live-view-plugin-1).
 
@@ -1484,7 +1648,7 @@ Supported Git infrastructure includes:
 
 **Required for full functionality:**
 
-- **Tanzu Application Platform tools:** Tanzu Application Platform GUI has plug-ins for the
+- **Tanzu Application Platform tools:** Tanzu Application Platform GUI has plugins for the
 following Tanzu Application Platform tools.
 If you plan on running workloads with these capabilities, you need these tools installed alongside
 Tanzu Application Platform GUI.
@@ -1610,7 +1774,7 @@ with your relevant values. The meanings of some placeholders are explained in th
     ```
 
     Where:
-    
+   
     - `SERVICE-TYPE` is your inbound traffic mechanism: LoadBalancer, NodePort, ClusterIP, or ExternalName
     - `EXTERNAL-IP:PORT` is your Ingress hostname or LoadBalancer information.
        If you are using a load balancer that is dynamically provisioned by the cloud provider,
@@ -1689,13 +1853,13 @@ For general information about Learning Center, see [Learning Center](learning-ce
 
 - [Tanzu Application Platform Prerequisites](install-general.md#prereqs)
 
-- The cluster must have an ingress router configured. If you have installed the TAP package (full or dev profile), it already deploy a contour ingress controller.
+- The cluster must have an ingress router configured. If you have installed the TAP package (full or dev profile), it already deploys a contour ingress controller.
 
-- The operator when deploying instances of the workshop environments needs to be able to expose them via an external URL for access. For the custom domain you are using, DNS must have been configured with a wildcard domain to forward all requests for sub domains of the custom domain, to the ingress router of the Kubernetes cluster
+- The operator, when deploying instances of the workshop environments, needs to be able to expose them via an external URL for access. For the custom domain you are using, DNS must have been configured with a wildcard domain to forward all requests for sub-domains of the custom domain to the ingress router of the Kubernetes cluster
 
-- By default, the workshop portal and workshop sessions will be accessible over HTTP connections. If you wish to use secure HTTPS connections, you must have access to a wildcard SSL certificate for the domain under which you wish to host the workshops. You cannot use a self-signed certificate.
+- By default, the workshop portal and workshop sessions are accessible over HTTP connections. If you wish to use secure HTTPS connections, you must have access to a wildcard SSL certificate for the domain under which you wish to host the workshops. You cannot use a self-signed certificate.
 
-- Any ingress routes created will use the default ingress class. If you have multiple ingress class types available, and you need to override which is used.
+- Any ingress routes created use the default ingress class if you have multiple ingress class types available and you need to override which is used.
 
 ### <a id='install-lc-proc'></a> Procedure to Install Learning Center
 
@@ -1736,16 +1900,16 @@ To install Learning Center:
     suffix to hostnames for instances.
 
     For the custom domain you are using, DNS must have been configured with a wildcard domain to
-    forward all requests for subdomains of the custom domain to the ingress router of the
+    forward all requests for sub-domains of the custom domain to the ingress router of the
     Kubernetes cluster.
 
-    If you are running Kubernetes on your local machine using a system such as `minikube`, and you
+    If you are running Kubernetes on your local machine using a system such as `minikube` and you
     don't have a custom domain name that maps to the IP for the cluster, you can use a `nip.io`
     address.
     For example, if `minikube ip` returns `192.168.64.1`, you can use the `192.168.64.1.nip.io`
     domain.
-    You cannot use an address of form `127.0.0.1.nip.io` or `subdomain.localhost`. This will cause a
-    failure. Internal services needing to connect to each other will connect to themselves instead,
+    You cannot use an address of form `127.0.0.1.nip.io` or `subdomain.localhost`. This causes a
+    failure. Internal services needing to connect to each other will connect to themselves instead
     because the address would resolve to the host loopback address of `127.0.0.1`.
 
 1. Add the `ingressSecret` to `learning-center-config.yaml`, as in this example:
@@ -1767,9 +1931,9 @@ To install Learning Center:
     ```
 
     If you already have a TLS secret, follow these steps **before deploying any workshop**:
-    * Create the `learningcenter` namespace manually or the one you defined
-    * Copy the tls secret to the `learningcenter` namespace or the one you
-    defined, and use the `secretName` property as in this example:
+    - Create the `learningcenter` namespace manually or the one you defined
+    - Copy the tls secret to the `learningcenter` namespace or the one you
+    defined and use the `secretName` property as in this example:
 
     ```
     ingressSecret:
@@ -1801,7 +1965,7 @@ the `ingressClass` property in `learning-center-config.yaml` **before deploying 
     ```
 
     The command above will create a default namespace in your Kubernetes cluster called `learningcenter`,
-    and the operator along with any required namespaced resources is created in it.
+    and the operator, along with any required namespaced resources, is created in it.
     A set of custom resource definitions and a global cluster role binding are also created.
 
     You can check that the operator deployed successfully by running:
@@ -1810,7 +1974,7 @@ the `ingressClass` property in `learning-center-config.yaml` **before deploying 
     kubectl get all -n learningcenter
     ```
 
-    The Pod for the operator should be marked as running.
+    The pod for the operator should be marked as running.
 
 ## <a id='install-portal-proc'></a> Procedure to install the Self-Guided Tour Training Portal and Workshop
 
@@ -1822,7 +1986,7 @@ To install the Self-Guided Tour Training Portal and Workshop:
     tanzu package available list workshops.learningcenter.tanzu.vmware.com --namespace tap-install
     ```
 
-1. Install the Learning Center Training Portal with the Self Guided Tour workshop by running:
+1. Install the Learning Center Training Portal with the Self-Guided Tour Workshop by running:
 
     **Remember to change the 0.x.x version**
     ```
@@ -1923,10 +2087,10 @@ Use the following procedure to install Service Bindings:
 **Prerequisites**
 
 * `cert-manager` installed on the cluster. If you installed TAP profiles, as described in
-[Installing Part II: Profiles](install.md), then `cert-manager` is already installed. If not, then
+[Installing part II: Profiles](install.md), then `cert-manager` is already installed. If not, then
 follow the instructions in [Install cert-manager](#install-prereqs).
 
-* Before installing, see [Deployment Details and Configuration](scst-store/deployment_details.md) to review what resources will be deployed. For more information, see the [overview](scst-store/overview.md).
+- Before installing, see [Deployment Details and Configuration](scst-store/deployment_details.md) to review what resources will be deployed. For more information, see the [overview](scst-store/overview.md).
 
 To install Supply Chain Security Tools - Store:
 
@@ -2030,7 +2194,7 @@ and you want to use `NodePort`, then create a `metadata-store-values.yaml` and c
       --version 1.0.1 \
       --namespace tap-install \
       --values-file metadata-store-values.yaml
-
+    
     - Installing package 'metadata-store.apps.tanzu.vmware.com'
     / Getting namespace 'tap-install'
     - Getting package metadata for 'metadata-store.apps.tanzu.vmware.com'
@@ -2040,7 +2204,7 @@ and you want to use `NodePort`, then create a `metadata-store-values.yaml` and c
     / Creating secret 'metadata-store-tap-install-values'
     | Creating package resource
     - Package install status: Reconciling
-
+    
     Added installed package 'metadata-store' in namespace 'tap-install'
     ```
 
@@ -2051,6 +2215,9 @@ and you want to use `NodePort`, then create a `metadata-store-values.yaml` and c
 >If the webhook is preventing the cluster from functioning,
 >see [Supply Chain Security Tools - Sign Known Issues](scst-sign/known_issues.md#sign-known-issues-pods-not-admitted)
 >for recovery steps.
+
+**Note:** v1alpha1 api version of the ClusterImagePolicy is no longer supported as the group name has been renamed from 
+`signing.run.tanzu.vmware.com` to `signing.apps.vmware.com`.
 
 ### <a id='scst-sign-prereqs'></a> Prerequisites
 
@@ -2067,31 +2234,31 @@ To install Supply Chain Security Tools - Sign:
 1. List version information for the package by running:
 
     ```
-    tanzu package available list image-policy-webhook.signing.run.tanzu.vmware.com --namespace tap-install
+    tanzu package available list image-policy-webhook.signing.apps.tanzu.vmware.com --namespace tap-install
     ```
 
     For example:
 
     ```
-    $ tanzu package available list image-policy-webhook.signing.run.tanzu.vmware.com --namespace tap-install
-    - Retrieving package versions for image-policy-webhook.signing.run.tanzu.vmware.com...
+    $ tanzu package available list image-policy-webhook.signing.apps.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for image-policy-webhook.signing.apps.tanzu.vmware.com...
       NAME                                               VERSION         RELEASED-AT
-      image-policy-webhook.signing.run.tanzu.vmware.com  1.0.0-beta.1    2021-10-25T00:00:00Z
-      image-policy-webhook.signing.run.tanzu.vmware.com  1.0.0-beta.2    2021-11-29T00:00:00Z
-      image-policy-webhook.signing.run.tanzu.vmware.com  1.0.0-beta.3    2021-12-14T00:00:00Z
+      image-policy-webhook.signing.apps.tanzu.vmware.com  1.0.0-beta.1    2021-10-25T00:00:00Z
+      image-policy-webhook.signing.apps.tanzu.vmware.com  1.0.0-beta.2    2021-11-29T00:00:00Z
+      image-policy-webhook.signing.apps.tanzu.vmware.com  1.0.0-beta.3    2021-12-14T00:00:00Z
     ```
 
 1. (Optional) Make changes to the default installation settings by running:
 
     ```
-    tanzu package available get image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.3 --values-schema --namespace tap-install
+    tanzu package available get image-policy-webhook.signing.apps.tanzu.vmware.com/1.0.0-beta.3 --values-schema --namespace tap-install
     ```
 
     For example:
 
     ```
-    $ tanzu package available get image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.3 --values-schema --namespace tap-install
-    | Retrieving package details for image-policy-webhook.signing.run.tanzu.vmware.com/1.0.0-beta.3...
+    $ tanzu package available get image-policy-webhook.signing.apps.tanzu.vmware.com/1.0.0-beta.3 --values-schema --namespace tap-install
+    | Retrieving package details for image-policy-webhook.signing.apps.tanzu.vmware.com/1.0.0-beta.3...
       KEY                     DEFAULT  TYPE     DESCRIPTION
       allow_unmatched_images  false    boolean  Feature flag for enabling admission of images that do not match
                                                 any patterns in the image policy configuration.
@@ -2134,13 +2301,13 @@ To install Supply Chain Security Tools - Sign:
             >re-install the webhook with `allow_unmatched_images` set to `false`.
 
     - `quota.pod_number`:
-      This setting is the maximum number of Pods that are allowed in the
+      This setting is the maximum number of pods that are allowed in the
       `image-policy-system` namespace with the `system-cluster-critical`
-      priority class. This priority class is added to the Pods to prevent
-      preemption of this component's Pods in case of node pressure.
+      priority class. This priority class is added to the pods to prevent
+      preemption of this component's pods in case of node pressure.
 
       The default value for this property is 5. If your use case requires
-      more than 5 Pods deployed of this component adjust this value to
+      more than 5 pods be deployed of this component, adjust this value to
       allow the number of replicas you intend to deploy.
 
     - `replicas`:
@@ -2154,7 +2321,7 @@ To install Supply Chain Security Tools - Sign:
 
     ```
     tanzu package install image-policy-webhook \
-      --package-name image-policy-webhook.signing.run.tanzu.vmware.com \
+      --package-name image-policy-webhook.signing.apps.tanzu.vmware.com \
       --version 1.0.0-beta.3 \
       --namespace tap-install \
       --values-file scst-sign-values.yaml
@@ -2164,21 +2331,21 @@ To install Supply Chain Security Tools - Sign:
 
     ```
     $ tanzu package install image-policy-webhook \
-        --package-name image-policy-webhook.signing.run.tanzu.vmware.com \
+        --package-name image-policy-webhook.signing.apps.tanzu.vmware.com \
         --version 1.0.0-beta.3 \
         --namespace tap-install \
         --values-file scst-sign-values.yaml
-
-    | Installing package 'image-policy-webhook.signing.run.tanzu.vmware.com'
+   
+    | Installing package 'image-policy-webhook.signing.apps.tanzu.vmware.com'
     | Getting namespace 'default'
-    | Getting package metadata for 'image-policy-webhook.signing.run.tanzu.vmware.com'
+    | Getting package metadata for 'image-policy-webhook.signing.apps.tanzu.vmware.com'
     | Creating service account 'image-policy-webhook-default-sa'
     | Creating cluster admin role 'image-policy-webhook-default-cluster-role'
     | Creating cluster role binding 'image-policy-webhook-default-cluster-rolebinding'
     | Creating secret 'image-policy-webhook-default-values'
     / Creating package resource
     - Package install status: Reconciling
-
+   
     Added installed package 'image-policy-webhook' in namespace 'tap-install'
     ```
 
@@ -2190,7 +2357,7 @@ To install Supply Chain Security Tools - Sign:
 
 ## <a id='install-scst-scan'></a> Install Supply Chain Security Tools - Scan
 
-**Prerequisite**: [Supply Chain Security Tools - Store](#install-scst-store) must be installed on the cluster for Scan Results to persist. Supply Chain Security Tools - Scan can be installed without Supply Chain Security Tools - Store already installed. In this case, skip creating a values file. Once Supply Chain Security Tools - Store is installed, the Supply Chain Security Tools - Scan values file must be updated.
+**Prerequisite**: [Supply Chain Security Tools - Store](#install-scst-store) must be installed on the cluster for scan results to persist. Supply Chain Security Tools - Scan can be installed without Supply Chain Security Tools - Store already installed. In this case, skip creating a values file. Once Supply Chain Security Tools - Store is installed, the Supply Chain Security Tools - Scan values file must be updated.
 
 The installation for Supply Chain Security Tools – Scan involves installing two packages:
 Scan Controller and Grype Scanner.
@@ -2306,7 +2473,7 @@ If you want to change from the default values, use the Scan Controller instructi
     | Creating cluster role binding 'grype-scanner-tap-install-cluster-rolebinding'
     / Creating package resource
     - Package install status: Reconciling
-
+    
      Added installed package 'grype-scanner' in namespace 'tap-install'
     ```
 
@@ -2355,7 +2522,7 @@ To install API portal:
 
     ```
     $ tanzu package install api-portal -n tap-install -p api-portal.tanzu.vmware.com -v 1.0.3
-
+    
     / Installing package 'api-portal.tanzu.vmware.com'
     | Getting namespace 'api-portal'
     | Getting package metadata for 'api-portal.tanzu.vmware.com'
@@ -2368,7 +2535,7 @@ To install API portal:
 
     Added installed package 'api-portal' in namespace 'tap-install'
     ```
-
+    
     For more information about API portal, see [API portal for VMware Tanzu](https://docs.pivotal.io/api-portal).
 
 
@@ -2487,15 +2654,15 @@ To install Tekton:
    > **Note:** This step covers configuring a namespace to run Tekton pipelines.
    If you rely on a SupplyChain to create Tekton PipelineRuns in your cluster,
    then skip this step because namespace configuration is covered in
-   [Set Up Developer Namespaces to Use Installed Packages](#setup). Otherwise,
+   [Set up developer namespaces to use installed packages](#setup). Otherwise,
    you must complete the following steps for each namespace where you create
    Tekton Pipeline/Tasks.
 
    Service accounts that run Tekton workloads need access to the image pull
    secrets for the Tanzu package.  This includes the `default` service account
-   in a namespace, which is created automatically, but not associated with any
+   in a namespace, which is created automatically but not associated with any
    image pull secrets.  Without these credentials, PipelineRuns fail with a
-   timeout and the Pods report that they cannot pull images.
+   timeout and the pods report that they cannot pull images.
 
    Create an image pull secret in the current namespace and fill it from [the
    `tap-registry` secret](#add-package-repositories).  Run the following
@@ -2568,7 +2735,7 @@ Use the following procedure to verify that the packages are installed.
     convention-controller    controller.conventions.apps.tanzu.vmware.com       0.4.2            Reconcile succeeded
     developer-conventions    developer-conventions.tanzu.vmware.com             0.3.0-build.1    Reconcile succeeded
     grype-scanner            grype.scanning.apps.tanzu.vmware.com               1.0.0            Reconcile succeeded
-    image-policy-webhook     image-policy-webhook.signing.run.tanzu.vmware.com  1.0.0-beta.1     Reconcile succeeded
+    image-policy-webhook     image-policy-webhook.signing.apps.tanzu.vmware.com  1.0.0-beta.1     Reconcile succeeded
     metadata-store           metadata-store.apps.tanzu.vmware.com               1.0.1            Reconcile succeeded
     ootb-supply-chain-basic  ootb-supply-chain-basic.tanzu.vmware.com           0.3.0-build.5    Reconcile succeeded
     ootb-templates           ootb-templates.tanzu.vmware.com                    0.3.0-build.5    Reconcile succeeded
@@ -2581,7 +2748,7 @@ Use the following procedure to verify that the packages are installed.
     tbs                      buildservice.tanzu.vmware.com                      1.4.2            Reconcile succeeded
     ```
 
-## <a id='setup'></a> Set Up Developer Namespaces to Use Installed Packages
+## <a id='setup'></a> Set up developer namespaces to use installed packages
 
 To create a `Workload` for your application using the registry credentials specified,
 run these commands to add credentials and Role-Based Access Control (RBAC) rules to the namespace
@@ -2595,18 +2762,27 @@ that you plan to create the `Workload` in:
 
     Where:
 
-    * `YOUR-NAMESPACE` is the name that you want to use for the developer namespace.
+    -`YOUR-NAMESPACE` is the name that you want to use for the developer namespace.
     For example, use `default` for the default namespace.
-    * `REGISTRY-SERVER` is the URL of the registry. For Dockerhub this must be
+    - `REGISTRY-SERVER` is the URL of the registry. For Dockerhub, this must be
     `https://index.docker.io/v1/`. Specifically, it must have the leading `https://`, the `v1` path,
-    and the trailing `/`. For GCR this is `gcr.io`.
+    and the trailing `/`. For GCR, this is `gcr.io`.
 
-
+   **Note:** If you observe the following issue with the above command:
+   
+   ```
+   panic: runtime error: invalid memory address or nil pointer dereference
+   [signal SIGSEGV: segmentation violation code=0x1 addr=0x128 pc=0x2bcce00]
+   ```
+   Use `kubectl` to create the secret.
+   ```
+   kubectl create secret docker-registry registry-credentials --docker-server=REGISTRY-SERVER --docker-username=REGISTRY-USERNAME --docker-password=REGISTRY-PASSWORD -n YOUR-NAMESPACE
+   
 1. Add placeholder read secrets, a service account, and RBAC rules to the developer namespace by running:
 
     ```
     cat <<EOF | kubectl -n YOUR-NAMESPACE apply -f -
-
+    
     apiVersion: v1
     kind: Secret
     metadata:
@@ -2616,7 +2792,7 @@ that you plan to create the `Workload` in:
     type: kubernetes.io/dockerconfigjson
     data:
       .dockerconfigjson: e30K
-
+    
     ---
     apiVersion: v1
     kind: ServiceAccount
@@ -2627,7 +2803,7 @@ that you plan to create the `Workload` in:
     imagePullSecrets:
       - name: registry-credentials
       - name: tap-registry
-
+    
     ---
     apiVersion: rbac.authorization.k8s.io/v1
     kind: Role
@@ -2676,7 +2852,7 @@ that you plan to create the `Workload` in:
     - apiGroups: [scanning.apps.tanzu.vmware.com]
       resources: ['imagescans', 'sourcescans']
       verbs: ['*']
-
+    
     ---
     apiVersion: rbac.authorization.k8s.io/v1
     kind: RoleBinding
@@ -2689,6 +2865,6 @@ that you plan to create the `Workload` in:
     subjects:
       - kind: ServiceAccount
         name: default
-
+    
     EOF
     ```

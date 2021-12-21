@@ -1,9 +1,10 @@
-# Installing Part I: prerequisites, EULA, and CLI
+# Installing part I: prerequisites, EULA, and CLI
 
 This document describes the first part of the installation process for Tanzu Application Platform:
 
 + [Prerequisites](#prereqs)
 + [Accept the EULAs](#eulas)
++ [Install Cluster Essentials for VMware Tanzu](#tanzu-cluster-essentials)
 + [Install or Update the Tanzu CLI and Plugins](#cli-and-plugin)
 
 
@@ -98,17 +99,20 @@ cluster from your local machine. For example:
     * Tanzu Community Edition v0.9.1
         * Visit the Tanzu Community Edition installation page to follow installation instructions at [Tanzu Community Edition](install-tce.md)
 
-    To deploy all Tanzu Application Platform packages, your cluster must have at least 8&nbsp;GB of RAM across all nodes available to Tanzu Application Platform. At least 8 CPUs for i9 or equivalent or 12 CPUs for i7 or equivalent must be available to Tanzu Application Platform components.
-    VMware recommends that at least 16&nbsp;GB of RAM is available to build and deploy applications, including for Kind and Minikube.
+### Resource requirements
 
-    For the [`full` profile](install.html#about-tanzu-application-platform-package-profiles-1), or
+* To deploy all Tanzu Application Platform packages, your cluster must have at least:
+    * 8 GB of RAM across all nodes available to Tanzu Application Platform
+    * 8 CPUs for i9 (or equivalent) available to Tanzu Application Platform components
+    * 12 CPUs for i7 (or equivalent) available to Tanzu Application Platform components
+    * 16 GB of RAM available to build and deploy applications, including for Kind and Minikube
+    * 70 GB of disk space available per node
+
+* For the [`full` profile](install.html#about-tanzu-application-platform-package-profiles-1), or
     use of Security Chain Security Tools - Store, your cluster must have a configured default StorageClass.
 
-    Your cluster must also have at least 70&nbsp;GB of disk per node.
-
 * [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/)
-must be configured so that Tanzu Application Platform controller
-pods can run as root.
+must be configured so that Tanzu Application Platform controller pods can run as root.
 
 ### Tools and CLI requirements
 
@@ -407,7 +411,7 @@ To perform a clean installation of the Tanzu CLI plugins:
     and `pinniped-auth` commands.
 
 You can now proceed with installing Tanzu Application Platform. For more information, see
-**[Installing Part II: Profiles](install.md)**.
+**[Installing part II: Profiles](install.md)**.
 
 
 ## <a id='udpate-previous-tap-tanzu-cli'></a>Instructions for updating Tanzu CLI that was installed for a previous release of Tanzu Application Platform
@@ -534,7 +538,7 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
       ```
 
 You can now install Tanzu Application Platform.
-See **[Installing Part II: Profiles](install.md)**.
+See **[Installing part II: Profiles](install.md)**.
 
 
 ## <a id='udpate-tkg-tce-tanzu-cli'></a>Instructions for updating Tanzu CLI previously installed for Tanzu Kubernetes Grid or Tanzu Community Edition
