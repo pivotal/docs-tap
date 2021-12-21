@@ -8,11 +8,6 @@ This topic contains release notes for Tanzu Application Platform v1.0.
 
 ### Features
 
-New features and changes in this release:
-
-* Feature 1
-* Feature 2
-
 **Updated Components**
 
 The following components have been updated in Tanzu Application Platform v1.0:
