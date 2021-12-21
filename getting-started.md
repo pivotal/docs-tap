@@ -41,14 +41,14 @@ If you have completed the prerequisites, then you're ready to get started!
 
 In this section, you will:
 
-* Learn about application accelerators
-* Deploy your application
-* Add your application to the Tanzu Application Platform GUI Software Catalog
-* Set up your integrated development environment (IDE)
-	* Iterate on your application
-	* Live update your application
-	* Debug your application
-* Monitor your running application
+- Learn about application accelerators
+- Deploy your application
+- Add your application to the Tanzu Application Platform GUI Software Catalog
+- Set up your integrated development environment (IDE)
+	-Iterate on your application
+	-Live update your application
+	 -Debug your application
+- Monitor your running application
 
 
 ### About application accelerators
@@ -119,7 +119,7 @@ To deploy your application, download an accelerator, upload it on your Git repos
     tanzu apps workload tail tanzu-java-web-app --since 10m --timestamp
     ```
 
-8. After the workload is built and running, view the Web Application URL in your browser by running the following command: 
+8. After the workload is built and running, view the Web Application URL in your browser by running the following command:
 
     ```
     tanzu apps workload get tanzu-java-web-app
@@ -927,7 +927,7 @@ In this section, you will:
 ### Overview
 
 Applications often depend on backing services such as databases, queues, and caches.
-The Services Toolkit component on the Tanzu Application Platform enables developers to spend more time 
+The Services Toolkit component on the Tanzu Application Platform enables developers to spend more time
 focusing on developing their applications, and less time thinking about the provisioning, configuration, and operations of the backing services.
 
 ### Use cases enabled by Services Toolkit on Tanzu Application Platform
@@ -964,10 +964,10 @@ The use cases vary according to where the service instance is located. The four 
 
 Services Toolkit is comprised of the following Kubernetes-native components:
 
-* [Service Offering](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-service_offering-terminology_and_apis.html)
-* [Service Resource Claims](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-service_resource_claims-terminology_and_apis.html)
-* [Service API Projection (Experimental)](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-api_projection_and_resource_replication-terminology_and_apis.html)
-* [Service Resource Replication (Experimental)](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-api_projection_and_resource_replication-terminology_and_apis.html)
+- [Service Offering](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-service_offering-terminology_and_apis.html)
+- [Service Resource Claims](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-service_resource_claims-terminology_and_apis.html)
+- [Service API Projection (Experimental)](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-api_projection_and_resource_replication-terminology_and_apis.html)
+- [Service Resource Replication (Experimental)](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-api_projection_and_resource_replication-terminology_and_apis.html)
 
 >**Note:** Services marked with Experimental/Beta are subject to change.
 
