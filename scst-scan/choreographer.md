@@ -4,7 +4,7 @@ This example takes every source code commit, scans the source code for vulnerabi
 
 ## Prerequisites
 
-1. Follow the steps listed in [Installing Part I: Prerequisites, EULA, and CLI](../install-general.md).
+1. Follow the steps listed in [Installing part I: Prerequisites, EULA, and CLI](../install-general.md).
 
 1. Next, in [Installing Individual Packages](../install-components.md), ensure the following
    packages and their dependencies are installed by running `tanzu package installed list -n tap-install`:

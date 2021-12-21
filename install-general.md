@@ -1,4 +1,4 @@
-# Installing Part I: prerequisites, EULA, and CLI
+# Installing part I: prerequisites, EULA, and CLI
 
 This document describes the first part of the installation process for Tanzu Application Platform:
 
@@ -410,7 +410,7 @@ To perform a clean installation of the Tanzu CLI plugins:
     and `pinniped-auth` commands.
 
 You can now proceed with installing Tanzu Application Platform. For more information, see
-**[Installing Part II: Profiles](install.md)**.
+**[Installing part II: Profiles](install.md)**.
 
 
 ## <a id='udpate-previous-tap-tanzu-cli'></a>Instructions for updating Tanzu CLI that was installed for a previous release of Tanzu Application Platform
@@ -537,7 +537,7 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
       ```
 
 You can now install Tanzu Application Platform.
-See **[Installing Part II: Profiles](install.md)**.
+See **[Installing part II: Profiles](install.md)**.
 
 
 ## <a id='udpate-tkg-tce-tanzu-cli'></a>Instructions for updating Tanzu CLI previously installed for Tanzu Kubernetes Grid or Tanzu Community Edition

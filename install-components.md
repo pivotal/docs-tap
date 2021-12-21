@@ -8,7 +8,7 @@ or if you want to install additional packages after installing a profile.
 
 Before installing the packages, ensure that you have completed the prerequisites, configured
 and verified the cluster, accepted the EULA, and installed the Tanzu CLI with any required plugins.
-For information, see [Installing Part I: Prerequisites, EULA, and CLI](install-general.md).
+For information, see [Installing part I: Prerequisites, EULA, and CLI](install-general.md).
 
 + [Install cert-manager and FluxCD source controller](#install-prereqs)
 + [Install Cloud Native Runtimes](#install-cnr)
@@ -1923,7 +1923,7 @@ Use the following procedure to install Service Bindings:
 **Prerequisites**
 
 * `cert-manager` installed on the cluster. If you installed TAP profiles, as described in
-[Installing Part II: Profiles](install.md), then `cert-manager` is already installed. If not, then
+[Installing part II: Profiles](install.md), then `cert-manager` is already installed. If not, then
 follow the instructions in [Install cert-manager](#install-prereqs).
 
 * Before installing, see [Deployment Details and Configuration](scst-store/deployment_details.md) to review what resources will be deployed. For more information, see the [overview](scst-store/overview.md).
