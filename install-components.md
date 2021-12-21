@@ -17,7 +17,7 @@ For information, see [Installing part I: Prerequisites, EULA, and CLI](install-g
 + [Install Application Accelerator](#install-app-accelerator)
 + [Install Tanzu Build Service](#install-tbs)
 + [Install Supply Chain Choreographer](#install-scc)
-+ [Install Out of the Delivery Basic](#install-ootb- delivery-basic)
++ [Install Out of the Delivery Basic](#install-ootb-delivery-basic)
 + [Install Out of the Box Templates](#install-ootb-templates)
 + [Install Out of The Box Supply Chain Basic](#install-ootb-supply-chain-basic)
 + [Install Out of The Box Supply Chain with Testing](#install-ootb-supply-chain-testing)
@@ -844,9 +844,8 @@ to a component that knows how to deploy the image.
 
 ## <a id='install-ootb-delivery-basic'></a> Install Out of the Box Delivery Basic
 
-The Out of the Box Delivery Basic package is used by all the Out of the Box
-Supply Chains to deliver to a Kubernetes environment the objects that have been
-produced by the them.
+The Out of the Box Delivery Basic package is used by all the Out of the Box Supply Chains
+to deliver the objects that have been produced by them to a Kubernetes environment.
 
 
 ### Prerequisites
@@ -855,6 +854,8 @@ produced by the them.
 
 
 ### Install
+
+To install Out of the Box Delivery Basic:
 
 1. Familiarize yourself with the set of values of the package that can be
    configured by running:
@@ -875,7 +876,9 @@ produced by the them.
     ```
 
 1. Create a file named `ootb-delivery-basic-values.yaml` that specifies the
-   corresponding values to the properties you want to tweak. For example:
+   corresponding values to the properties you want to change.
+
+   For example, the contents of the file might look like this:
 
     ```
     service_account: default
@@ -1017,7 +1020,7 @@ Cartographer
     ```
 
 1. Create a file named `ootb-supply-chain-basic-values.yaml` that specifies the
-   corresponding values to the properties you want to tweak. For example:
+   corresponding values to the properties you want to change. For example:
 
     ```
     registry:
@@ -1171,7 +1174,7 @@ Install by following these steps:
     ```
 
 1. Create a file named `ootb-supply-chain-testing-values.yaml` that specifies the
-   corresponding values to the properties you want to tweak. For example:
+   corresponding values to the properties you want to change. For example:
 
     ```
     registry:
@@ -1333,7 +1336,7 @@ and image for vulnerabilities.
     ```
 
 1. Create a file named `ootb-supply-chain-testing-values.yaml` that specifies
-   the corresponding values to the properties you want to tweak. For example:
+   the corresponding values to the properties you want to change. For example:
 
     ```
     registry:
@@ -1352,8 +1355,7 @@ and image for vulnerabilities.
     service_account: default
     ```
 
-    >**Note:** it's **required** that the `gitops.repository_prefix` field ends
-    > with a `/`.
+    >**Note:** The `gitops.repository_prefix` field must end with `/`.
 
 1. With the configuration ready, install the package by running:
 
