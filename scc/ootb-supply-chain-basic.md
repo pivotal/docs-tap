@@ -1,9 +1,6 @@
----
-title: Out of The Box Supply Chain Basic (ootb-supply-chain-basic)
-weight: 2
----
+# Out of The Box Supply Chain Basic (ootb-supply-chain-basic)
 
-This Cartographe] Supply Chain ties a series of Kubernetes resources which,
+This Cartographer Supply Chain ties a series of Kubernetes resources which,
 when working together, drives a developer-provided Workload from source code
 all the way to a Kubernetes configuration ready to be deployed to a cluster.
 
@@ -30,7 +27,7 @@ DELIVERY
 - Deploying the application to the same cluster
 
 
-### Prerequisites
+## Prerequisites
 
 To make use this supply chain, it's required that:
 
@@ -40,7 +37,7 @@ To make use this supply chain, it's required that:
   supply chain (see below)
 
 
-#### Developer namespace
+### Developer namespace
 
 Despite the supply chains coming out of the box with the definition of the
 objects that it should create to make the source code be transformed to a
@@ -66,19 +63,21 @@ supplychain is responsible for
 - **rolebinding**: binds the role to the service account, i.e., grants the
   capabilities to the identity
 
+- (optional) **git credentials secret**: when using GitOps for managing the
+  delivery of applications (or a private git source), provides the required
+  credentials for interacting with the git repository.
 
-##### Image Secret
 
-Regardless of the supply chain that a Workload goes through, there must be in
-the developer namespace a Secret that contains the credentials to be passed to
+#### Image Secret
+
+Regardless of the supply chain that a Workload goes through, there must be, in
+the developer namespace, a Secret that contains the credentials to be passed to
 resources that push container images to image registries (like Tanzu Build
 Service) as well as for those resources that must pull container images from
 such image registry, such as Convention Service and Knative.
 
-Using the `tanzu secret registry add` command from the Tanzu CLI, we're able
-to provision a base secret that contains such credentials and then export the
-contents of that Secret to the namespaces where it should be consumed. For example,
-the developer namespaces.
+Using the `tanzu secret registry add` command from the Tanzu CLI, we're able to
+provision one that contains such credentials.
 
 
 ```
@@ -89,7 +88,6 @@ the developer namespaces.
 #
 #
 tanzu secret registry add image-secret \
-  --export-to-all-namespaces \
   --server https://index.docker.io/v1/ \
   --username $REGISTRY_USERNAME \
   --password $REGISTRY_PASSWORD
@@ -99,8 +97,15 @@ tanzu secret registry add image-secret \
  Added image pull secret 'image-secret' into namespace 'default'
 ```
 
+With the command above, the secret `image-secret` of type
+`kubernetes.io/dockerconfigjson` is created in the namespace, thus being
+available for Workloads in this same namespace.
 
-##### ServiceAccount
+To export it to all namespaces, make use of the `--export-to-all-namespaces`
+flag.
+
+
+#### ServiceAccount
 
 In a Kubernetes cluster, a ServiceAccount provides a way of representing an
 identity within the Kubernetes role base access control (RBAC) system, which in
@@ -124,8 +129,13 @@ imagePullSecrets:
   - name: image-secret
 ```
 
+Note that the ServiceAccount **must**  have the secret created above linked to
+it, otherwise services like Tanzu Build Service (used in the supply chain)
+won't have the necessary credentials for pushing the images it builds for that
+Workload.
 
-##### Role and RoleBinding
+
+#### Role and RoleBinding
 
 As the Supply Chain takes action in the cluster on behalf of the users who
 created the Workload, it needs permissions within Kubernetes' RBAC system to do
@@ -207,26 +217,26 @@ subjects:
 
 ### Developer workload
 
-With the developer namespace setup with the objects above including, image secret,
-serviceaccount, role, and rolebinding. We can move on to creating the Workload
+With the developer namespace setup with the objects above (image, secret,
+serviceaccount, role, and rolebinding) we can move on to creating the Workload
 object.
 
-We can configure the Workload with two scenarios in mind:
+We can configure the Workload with three scenarios in mind:
 
+- **local iteration**: takes source code from the filesystem and drives is
+  through the supply chain making no use of external git repositories
 
-- local iteration: takes source code from the filesystem and
-  drives is through the supply chain making no use of external git repositories
+- **local iteration with code from git**: takes source code from a git
+  repository and drives it through the supply chain without persisting the
+  final configuration in git (enabled **only** if the installation didn't include
+  a default repository prefix for git-based workflows)
 
-- local iteration with code from git: takes source code from a git repository
-  and drives it through the supply chain without persisting the final
-  configuration in git
-
-- gitops: source code is provided by an external git repository (public _or_
+- **gitops**: source code is provided by an external git repository (public or
   private), and the final kubernetes configuration to deploy the application is
   persisted in a repository
 
 
-###### Local iteration with local code
+#### Local iteration with local code
 
 In this scenario, all we need is the source code (in the example below,
 assuming the current directory `.` as the location of the source code we want
@@ -238,6 +248,7 @@ mean for making the source code available inside the Kubernetes cluster.
 tanzu apps workload create tanzu-java-web-app \
   --local-path . \
   --source-image $REGISTRY/source \
+  --label app.kubernetes.io/part-of=tanzu-java-web-app \
   --type web
 ```
 ```
@@ -248,11 +259,12 @@ Create workload:
       4 + |metadata:
       5 + |  labels:
       6 + |    apps.tanzu.vmware.com/workload-type: web
-      7 + |  name: tanzu-java-web-app
-      8 + |  namespace: default
-      9 + |spec:
-     10 + |  source:
-     11 + |    image: 10.188.0.3:5000/source:latest@sha256:1cb23472fcdcce276c316d9bed6055625fbc4ac3e50a971f8f8004b1e245981e
+      7 + |    app.kubernetes.io/part-of: tanzu-java-web-app
+      8 + |  name: tanzu-java-web-app
+      9 + |  namespace: default
+     10 + |spec:
+     11 + |  source:
+     12 + |    image: 10.188.0.3:5000/source:latest@sha256:1cb23472fcdcce276c316d9bed6055625fbc4ac3e50a971f8f8004b1e245981e
 
 ? Do you want to create this workload? Yes
 Created workload "tanzu-java-web-app"
@@ -267,19 +279,22 @@ tanzu apps workload tail tanzu-java-web-app
 ```
 
 
-
-###### Local iteration with code from git
+#### Local iteration with code from git
 
 Similar to local iteration with local code, here we make use of the same type
 (`web`), but instead of pointing at source code that we have locally, we can
 make use of a git repository to feed the supply chain with new changes as they
 are pushed to a branch.
 
+**note**: If you're planning to use a private git repository, make sure to skip
+to the next section (Private Source Git Repository).
+
 
 ```
 tanzu apps workload create tanzu-java-web-app \
   --git-branch main \
   --git-repo https://github.com/sample-accelerators/tanzu-java-web-app
+  --label app.kubernetes.io/part-of=tanzu-java-web-app \
   --type web
 ```
 ```
@@ -288,21 +303,31 @@ Create workload:
       2 + |apiVersion: carto.run/v1alpha1
       3 + |kind: Workload
       4 + |metadata:
-      5 + |  name: tanzu-java-web-app
-      6 + |  namespace: default
-      7 + |spec:
-      8 + |  source:
-      9 + |    git:
-     10 + |      ref:
-     11 + |        branch: main
-     12 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
+      5 + |  labels:
+      6 + |    apps.tanzu.vmware.com/workload-type: web
+      7 + |    app.kubernetes.io/part-of: tanzu-java-web-app
+      8 + |  name: tanzu-java-web-app
+      9 + |  namespace: default
+     10 + |spec:
+     11 + |  source:
+     12 + |    git:
+     13 + |      ref:
+     14 + |        branch: main
+     15 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
 ```
+
+Note that this scenario is only possible if the installation of the supply
+chain didn't include a default git repository prefix
+(`gitops.repository_prefix`).
+
+
+##### Private Source Git Repository
 
 In the example above, we make use of a public repository, but, if you want to
 make use of a private repository instead, make sure you create a Secret in the
-same namespace as the one where the Workload is being submitted to, and add the
-`--param source_git_ssh_secret=<>` parameter to the set of parameters above.
-
+same namespace as the one where the Workload is being submitted to named after
+the value of `gitops.ssh_secret` (the installation defaults the name to
+`git-ssh`):
 
 ```
 apiVersion: v1
@@ -316,9 +341,12 @@ stringData:
   identity.pub: string            # public of the `identity` private key
 ```
 
+**note**: for a particular Workload, the name of the secret can be overriden by
+making use of the `gitops_ssh_secret` parameter (`--param gitops_ssh_secret`)
+in the Workload.
+
 If it's your first time setting up SSH credentials for your user, the following
 steps can serve as a guide for getting it done:
-
 
 ```
 # generate a new keypair.
@@ -348,16 +376,23 @@ kubectl create secret generic git-ssh \
     --from-file=./known_hosts
 ```
 
+**note**: when creating a Secret that provides credentials for accessing your
+private git repository, you can create a deploy key if your Git Provider
+supports it (GitHub does). Please be aware that any Git secrets you apply to
+your cluster could potentially be viewed by others that have access to that
+cluster. So using Deploy keys or shared bot accounts should be preferred over
+adding personal Git Credentials.
+
 With the namespace configured, having added the secret to be used for
 fetching source code from a private repository, we can move on to creating the
-Workload with the new parameter:
+Workload:
 
 
 ```
 tanzu apps workload create tanzu-java-web-app \
   --git-branch main \
-  --git-repo git@github.com:sample-accelerators/tanzu-java-web-app.git \
-  --param source_git_ssh_secret=git-ssh \
+  --git-repo https://github.com/sample-accelerators/tanzu-java-web-app
+  --label app.kubernetes.io/part-of=tanzu-java-web-app \
   --type web
 ```
 ```
@@ -368,27 +403,49 @@ Create workload:
       4 + |metadata:
       5 + |  labels:
       6 + |    apps.tanzu.vmware.com/workload-type: web
-      7 + |  name: tanzu-java-web-app
-      8 + |  namespace: default
-      9 + |spec:
-     10 + |  params:
-     11 + |  - name: source_git_ssh_secret
-     12 + |    value: git-ssh
-     13 + |  source:
-     14 + |    git:
-     15 + |      ref:
-     16 + |        branch: main
-     17 + |      url: git@github.com:sample-accelerators/tanzu-java-web-app.git
+      7 + |    app.kubernetes.io/part-of: tanzu-java-web-app
+      8 + |  name: tanzu-java-web-app
+      9 + |  namespace: default
+     10 + |spec:
+     11 + |  source:
+     12 + |    git:
+     13 + |      ref:
+     14 + |        branch: main
+     15 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
 ```
 
 
-###### GitOps
+#### GitOps
 
-Differently from local iteration, the GitOps approach requires a secret
-containing credentials to a git provider to be exist in the same
-namespace as the Workload, and a couple parameters to be set with details about
-the commit to be pushed to the repository where Kubernetes configuration is
-delivered to.
+Differently from local iteration, with the GitOps approach we end up at the end
+of the supply chain having the configuration that got created by it pushed to a
+git repository where that's persisted and used at the basis for further
+deployments.
+
+```
+SUPPLY CHAIN
+
+    given a Workload
+      watches sourcecode repo
+        builds container image
+          prepare configuration
+            pushes config to git
+
+
+DELIVERY
+
+    given a Deliverable
+      watches configurations repo
+        deploys the kubernetes configurations
+
+```
+
+Given the extra capability of pushing to git, here we have an extra requirement:
+
+- there must be in the developer namespace (i.e., same namespace as the one
+  where the Workload is submitted to) a Secret containing credentials to a git
+  provider (e.g., GitHub), regardless of whether the source code comes from a
+  private git repository or not.
 
 Before proceeding, make sure you have a secret with following shape fields and
 annotations set:
@@ -397,31 +454,45 @@ annotations set:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: git-ssh
+  name: git-ssh   # `git-ssh` is the default name.
+                  #   - operators can tweak the default via `gitops.ssh_secret`.
+                  #   - developers can override via `gitops_ssh_secret` param.
   annotations:
-    tekton.dev/git-0: github.com  # git server host
+    tekton.dev/git-0: github.com  # git server host   (!! required)
 type: kubernetes.io/ssh-auth
 stringData:
   ssh-privatekey: string          # private key with push-permissions
   known_hosts: string             # git server public keys
-  identity:                       # private key with pull permissions
-  identity.pub:                   # public of the `identity` private key
+  identity: string                # private key with pull permissions
+  identity.pub: string            # public of the `identity` private key
 ```
 
-With the Secret created, we can move on to the Workload:
+**note**: yes, at the moment `ssh-privatekeys` must be set to the same value as
+`identity` due to incompatibilities between Kubernetes resources.
 
+With the Secret created, we can move on to the Workload.
+
+
+##### Workload using default git organization
+
+During the installation of `ootb-*`, one of the values that operators can
+configure is one that dictates what the prefix the supply chain should use when
+forming the name of the repository to push to the Kubernetes configurations
+produced by the supply chains - `gitops.repository_prefix`.
+
+That being set, all it takes to change the behavior towards using GitOps is
+setting the source of the source code to a git repository and then as the
+supply chain progresses, configuration will be pushed to a repository named
+after `$(gitops.repository_prefix) + $(workload.name)`.
+
+e.g, having `gitops.repository_prefix` configured to `git@github.com/foo/` and
+a Workload as such:
 
 ```
 tanzu apps workload create tanzu-java-web-app \
-  --git-repo git@github.com:sample-accelerators/tanzu-java-web-app.git \
   --git-branch main \
-  --param "delivery_git_branch=main" \
-  --param "delivery_git_commit_message=bump" \
-  --param "delivery_git_repository=git@github.com:my-team/staging-repository.git" \
-  --param "delivery_git_user_email=team@team.com" \
-  --param "delivery_git_user_name=team" \
-  --param "delivery_git_ssh_secret=git-ssh" \
-  --param "source_git_ssh_secret=git-ssh" \
+  --git-repo https://github.com/sample-accelerators/tanzu-java-web-app
+  --label app.kubernetes.io/part-of=tanzu-java-web-app \
   --type web
 ```
 ```
@@ -432,57 +503,41 @@ Create workload:
       4 + |metadata:
       5 + |  labels:
       6 + |    apps.tanzu.vmware.com/workload-type: web
-      7 + |  name: tanzu-java-web-app
-      8 + |  namespace: default
-      9 + |spec:
-     10 + |  params:
-     11 + |  - name: delivery_git_branch
-     12 + |    value: main
-     13 + |  - name: delivery_git_commit_message
-     14 + |    value: bump
-     15 + |  - name: delivery_git_repository
-     16 + |    value: git@github.com:my-team/staging-repository.git
-     17 + |  - name: delivery_git_user_email
-     18 + |    value: team@team.com
-     19 + |  - name: delivery_git_user_name
-     20 + |    value: team
-     21 + |  - name: delivery_git_ssh_secret
-     22 + |    value: git-ssh
-     23 + |  - name: source_git_ssh_secret
-     24 + |    value: git-ssh
-     25 + |  source:
-     26 + |    git:
-     27 + |      ref:
-     28 + |        branch: main
-     29 + |      url: git@github.com:sample-accelerators/tanzu-java-web-app.git
-
-? Do you want to create this workload? (y/N)
+      7 + |    app.kubernetes.io/part-of: tanzu-java-web-app
+      8 + |  name: tanzu-java-web-app
+      9 + |  namespace: default
+     10 + |spec:
+     11 + |  source:
+     12 + |    git:
+     13 + |      ref:
+     14 + |        branch: main
+     15 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
 ```
 
-where:
+we'd see kubernetes configuration being pushed to
+`git@github.com/foo/tanzu-java-web-app.git`.
 
--  `delivery_git_ssh_secret` (required): name of the secret in the same
-   namespace as the Workload where SSH credentials exist for pushing the
-   configuration produced by the supply chain to a git repository.
+Regardless of the setup, the repository where configuration is pushed to can be
+also manually overriden by the developers by tweaking the following parameters:
+
+-  `gitops_ssh_secret`: name of the secret in the same namespace as the
+   Workload where SSH credentials exist for pushing the configuration produced
+   by the supply chain to a git repository.
    e.g.: "ssh-secret"
 
--  `delivery_git_repository` (required): SSH url of the git repository to push
-   the Kubernetes configuration produced by the supply chain to.
+-  `gitops_repository`: SSH url of the git repository to push the kubernete
+   configuration produced by the supply chain to.
    e.g.: "ssh://git@foo.com/staging.git"
 
--  `delivery_git_branch`: name of the branch to push the configuration to.
+-  `gitops_branch`: name of the branch to push the configuration to.
    e.g.: "main"
 
--  `delivery_git_commit_message`: message to write as the body of the commits
+-  `gitops_commit_message`: message to write as the body of the commits
    produced for pushing configuration to the git repository.
    e.g.: "ci bump"
 
--  `delivery_git_user_name`: user name to use in the commits.
+-  `gitops_user_name`: user name to use in the commits.
    e.g.: "Alice Lee"
 
--  `delivery_git_user_email`: user email to use for the commits.
+-  `gitops_user_email`: user email to use for the commits.
    e.g.: "foo@example.com"
-
--  `source_git_ssh_secret` (required, if source is private): name of the secret
-   in the same namespace as the Workload where SSH credentials exist for
-   fetching the source code of `workload.spec.source.git`.

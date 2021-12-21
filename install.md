@@ -1,11 +1,11 @@
-# Installing Part II: Profiles
+# Installing part II: Profiles
 
 This document describes how to install Tanzu Application Platform packages
 from the Tanzu Application Platform package repository.
 
 Before you install the packages, ensure you have completed the prerequisites, configured
 and verified the cluster, accepted the EULA, and installed the Tanzu CLI with any required plugins.
-See [Installing Part I: Prerequisites, EULA, and CLI](install-general.md).
+See [Installing part I: Prerequisites, EULA, and CLI](install-general.md).
 
 
 ## <a id='add-package-repositories'></a> Add the Tanzu Application Platform package repository
@@ -379,6 +379,8 @@ ootb_supply_chain_basic:
   registry:
     server: "SERVER-NAME"
     repository: "REPO-NAME"
+  git_ops:
+    ssh_secret: ""
 
 learningcenter:
   ingressDomain: "DOMAIN-NAME"
@@ -459,6 +461,8 @@ ootb_supply_chain_basic:
   registry:
     server: "SERVER-NAME"
     repository: "REPO-NAME"
+  git_ops:
+    ssh_secret: ""
 
 tap_gui:
   service_type: ClusterIP

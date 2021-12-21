@@ -24,7 +24,7 @@ The following components have been updated in Tanzu Application Platform v1.0:
 
 This release has the following issues:
 
-- **Convention Service:** Convention Service does not currently support self-signed certificates for integrating with a private registry. Support for self-signed certs will be available shortly.
+- **Convention Service:** Convention Service does not currently support self-signed certificates for integrating with a private registry. Support for self-signed certificates will be available in an upcoming release.
 
 - **Installing Tanzu Application Platform on Google Kubernetes Engine (GKE):** When installing Tanzu Application Platform on GKE, Kubernetes control plane may be unavailable for several minutes during the install. Package installs can enter the ReconcileFailed state. When API server becomes available, packages try to reconcile to completion. This can happen on newly provisioned clusters which have not gone through GKE API server autoscaling. When GKE scales up an API server, the current Tanzu Application install continues, and any subsequent installs succeed without interruption.
 
@@ -34,7 +34,7 @@ This release has the following issues:
 
 This release has the following security issues:
 
-* Customers should note that the installation will specify that the installer's Tanzu Network credentails be exported to all namespaces. Customers can optionally choose to mitigate this concern via one of two methods:
+* The installation specifies that the installer's Tanzu Network credentials be exported to all namespaces. Customers can optionally choose to mitigate this concern using one of the following methods:
   *  Create a Tanzu Network account with their own credentials and use this for the installation exclusively.
   *  Using [Carvel tool's imgpkg](https://carvel.dev/imgpkg/) customers can create a dedicated OCI registry on their own infrastructure that can comply with any required security policies that may exist.
 * Security issue 2
@@ -91,7 +91,7 @@ Workload Visibility Plugin is renamed Runtime Visibility Plugin.
 
 This release has the following issues:
 
-- **Convention Service:** Convention Service does not currently support self-signed certificates for integrating with a private registry. Support for self-signed certs will be available shortly.
+- **Convention Service:** Convention Service does not currently support self-signed certificates for integrating with a private registry. Support for self-signed certificates will be available in an upcoming release.
 - **Installing Tanzu Application Platform on Google Kubernetes Engine (GKE):** When installing Tanzu Application Platform on GKE, Kubernetes control plane may be unavailable for several minutes during the install. Package installs can enter the ReconcileFailed state. When API server becomes available, packages try to reconcile to completion.
   - This can happen on newly provisioned clusters which have not gone through GKE API server autoscaling. When GKE scales up an API server, the current Tanzu Application install continues, and any subsequent installs succeed without interruption.
 - **Supply Chain Security Tools - Sign:** If all webhook nodes or Pods are evicted by the cluster or scaled down,

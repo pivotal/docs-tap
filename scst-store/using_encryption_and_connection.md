@@ -90,7 +90,7 @@ When using `NodePort`, you need to configure port forwarding for the service for
 kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store
 ```
 
-Run this command in a separate terminal window since it takes over the terminal.
+Run this command in a separate terminal window.
 
 ### Modifying your `/etc/hosts` file
 

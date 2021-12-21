@@ -1,7 +1,4 @@
----
-title: Out of The Box Delivery Basic (ootb-delivery-basic)
-weight: 2
----
+# Out of The Box Delivery Basic (ootb-delivery-basic)
 
 This package provides a reusable ClusterDelivery object that is responsible for
 delivering to an environment the Kubernetes configuration that has been

@@ -1,8 +1,3 @@
----
-title: Out of The Box Supply Chain with Testing and Scanning (ootb-supply-chain-testing)
-weight: 2
----
-
 # Out of The Box Templates (ootb-templates)
 
 In Cartographer, a supply chain is defined as a directed acyclic graph of

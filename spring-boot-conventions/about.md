@@ -37,7 +37,7 @@ The _Spring Boot Convention Server_ looks inside the image like the following `d
 
 The convention server searches inside the image for `Config -> Labels -> io.buildpacks.build.metadata` to find the `bom` file. It looks inside the `bom` file for metadata to evaluate whether the convention is going to be applied.
 
-Check the list of [conventions](reference/CONVENTIONS.md)
+For the list of conventions, see [Conventions](reference/CONVENTIONS.md).
 
 ## Collecting logs from the _Spring Boot Convention Server_
 

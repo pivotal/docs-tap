@@ -9,7 +9,7 @@
 
 1. Create an Amazon RDS Postgres using the [Amazon RDS Getting Started Guide](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_GettingStarted.CreatingConnecting.PostgreSQL.html#CHAP_GettingStarted.Creating.PostgreSQL)
 
-2. Once the database instance starts up, retrieve the following information:
+2. Once the database instance starts, retrieve the following information:
 
    1. DB Instance Endpoint
    1. Master Username
