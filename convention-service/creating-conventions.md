@@ -646,4 +646,4 @@ To deploy a convention server:
 
 Keep exploring:
 
-+ Try to use different matching criteria for the conventions, or enhance the supply chain with multiple conventions.
++ Try to use different matching criteria for the conventions or enhance the supply chain with multiple conventions.
