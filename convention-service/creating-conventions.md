@@ -81,7 +81,7 @@ The following prerequisites must be met before a convention can be developed and
 
 + The Kubernetes command line tool (Kubectl) CLI is installed. For more information, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/tools/).
 + Tanzu Application Platform components and prerequisites are installed. For more information, see the [Installation guide](../install-general.md).
-+ The default supply chain is installed. For more information, see [Tanzu Network](https://network.tanzu.vmware.com/products/ootb-supply-chain-basic/).
++ The default supply chain is installed. For more information, see [Tanzu Network](https://network.tanzu.vmware.com/products/default-supply-chain/).
 + Your kubeconfig context is set to the Tanzu Application Platform-enabled cluster:
 
     ```
