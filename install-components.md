@@ -140,7 +140,7 @@ If you do not want to use a profile, install them manually.
 
     1. (Optional) Make changes to the default installation settings:
 
-        1. Gather values schema.
+        1. Gather values schema by running:
 
             ```
             tanzu package available get contour.tanzu.vmware.com/1.18.2+tap.1 --values-schema -n tap-install
@@ -207,7 +207,7 @@ If you do not want to use a profile, install them manually.
             [IngressClass](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class)
             to select a particular implementation.
 
-            [Cloud Native Runtimes](#install-cnr) programs Contour HTTPRoutes are based on the
+            >**Note:** [Cloud Native Runtimes](#install-cnr) programs Contour HTTPRoutes are based on the
             installed namespace. The default installation of CNR uses a single Contour to provide
             internet-visible services. You can install a second Contour instance with service type
             `ClusterIP` if you want to expose some services to only the local cluster. The second instance
