@@ -251,23 +251,26 @@ To install the Tanzu CLI on a Linux operating system:
     tar -xvf tanzu-framework-linux-amd64.tar -C $HOME/tanzu
     ```
 
-6. Set env var `TANZU_CLI_NO_INIT` to true to assure the local downloaded versions of the CLI core and plugins will be installed:
+6. Set env var `TANZU_CLI_NO_INIT` to `true` to assure the local downloaded versions of the CLI core and plug-ins are installed:
 
      ```
      export TANZU_CLI_NO_INIT=true
      ```
 
-7. Install the CLI core:
+7. Install the CLI core by runnning:
+
     ```
     cd $HOME/tanzu
     sudo install cli/core/v0.10.0/tanzu-core-linux_amd64 /usr/local/bin/tanzu
     ```
 
-8. Confirm installation of the CLI core:
+8. Confirm installation of the CLI core by running:
+
    ```
    tanzu version
    ```
-   Expect `version: v0.10.0`
+
+   Expected output: `version: v0.10.0`
 
 9. Proceed to [Instructions for a clean install of Tanzu CLI Plugins](#cli-plugin-clean-install).
 
@@ -291,24 +294,27 @@ To install the Tanzu CLI on a Mac operating system:
     ```
     tar -xvf tanzu-framework-darwin-amd64.tar -C $HOME/tanzu
     ```
-    
-6. Set env var `TANZU_CLI_NO_INIT` to true to assure the local downloaded versions of the CLI core and plugins will be installed:
+
+6. Set env var `TANZU_CLI_NO_INIT` to `true` to assure the local downloaded versions of the CLI core and plug-ins are installed:
 
      ```
      export TANZU_CLI_NO_INIT=true
      ```
 
-7.  Install the CLI core:
+7.  Install the CLI core by running:
+
     ```
     cd $HOME/tanzu
     install cli/core/v0.10.0/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
     ```
 
-8. Confirm installation of the CLI core:
+8. Confirm installation of the CLI core by running:
+
    ```
    tanzu version
    ```
-   Expect `version: v0.10.0`
+
+   Expected output: `version: v0.10.0`
 
    If you see the following warning when running `Tanzu version` on macOS:
    ```
@@ -365,14 +371,16 @@ To install the Tanzu CLI on a Windows operating system:
   12. Select the **Path** row under **System variables**, and click **Edit**.
 
   13. Click **New** to add a new row, and enter the path to the Tanzu CLI.
-  
-  14. You must also add/set the environmental variable `TANZU_CLI_NO_INIT` to a value of `true`.
 
-  14. From the `tanzu` directory, confirm the installation of the Tanzu CLI by running the following in a terminal window:
+  14. Set the environmental variable `TANZU_CLI_NO_INIT` to `true`.
+
+  14. From the `tanzu` directory, confirm the installation of the Tanzu CLI by running the following command in a terminal window:
+
       ```
       tanzu version
       ```
-      Expect `version: v0.10.0`
+
+      Expected output: `version: v0.10.0`
 
   15. Proceed to [Clean Install Tanzu CLI Plugins](#cli-plugin-clean-install)
 
@@ -380,7 +388,7 @@ To install the Tanzu CLI on a Windows operating system:
 
 To perform a clean installation of the Tanzu CLI plugins:
 
-1. If it hasn't been done already, set env var `TANZU_CLI_NO_INIT` to `true` to assure the local downloaded plugins will be installed:
+1. If it hasn't been done already, set env var `TANZU_CLI_NO_INIT` to `true` to assure the local downloaded plug-ins are installed:
 
      ```
      export TANZU_CLI_NO_INIT=true
@@ -435,8 +443,9 @@ Follow these instructions to update the Tanzu CLI that was installed for a previ
 - If your Tanzu CLI version is **less than `v0.10.0`**, proceed to step 1.<br/>
 
 **Steps:**
-1. If a directory called `tanzu` does not exist, create one:
-   
+
+1. If a directory called `tanzu` does not exist, create one by running:
+
    ```
    mkdir $HOME/tanzu
    ```
@@ -451,31 +460,31 @@ on Tanzu Network.
 5. Download the CLI bundle corresponding with your operating system. For example, if your client
 operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle.
 
-6. If they exist, delete any CLI files from previous installs:
-   
+6. If they exist, delete any CLI files from previous installs by running:
+
    ```
    rm -rf $HOME/tanzu/cli
    ```
 
-7. Unpack the TAR file in the `tanzu` directory:
-   
+7. Unpack the TAR file in the `tanzu` directory by running:
+
    ```
    tar -xvf tanzu-framework-linux-amd64.tar -C $HOME/tanzu
    ```
 
-8. Navigate to the `tanzu` directory:
+8. Navigate to the `tanzu` directory by running:
 
    ```
    cd $HOME/tanzu
    ```
 
-9. Set env var `TANZU_CLI_NO_INIT` to true to install the local versions of the CLI core and plugins you've just downloaded:
+9. Set env var `TANZU_CLI_NO_INIT` to `true` to install the local versions of the CLI core and plug-ins you've downloaded:
 
    ```
    export TANZU_CLI_NO_INIT=true
    ```
 
-10. Update the core CLI:
+10. Update the core CLI by running:
 
     ```
     tanzu update --local ./cli
@@ -483,41 +492,46 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
     Expect to see a user prompt - submit "y"
 
 
-11. Check installation status for the core CLI:
+11. Check installation status for the core CLI by running:
 
     ```
     tanzu version
     ```
-    Expect `version: v0.10.0`
 
-12. List the plugins to see if the `imagepullsecret` plugin was previously installed.
-    If installed, delete it:
+    Expected output: `version: v0.10.0`
+
+12. List the plug-ins to see if the `imagepullsecret` plug-in was previously installed by running:
 
     ```
     tanzu plugin list
     ```
+
+    If installed, delete it by running:
+
     ```
     tanzu plugin delete imagepullsecret
     ```
 
-13. Remove previously installed plugin binaries:
+13. Remove previously installed plugin binaries by running:
 
     ```
     rm -rf ~/Library/Application\ Support/tanzu-cli/*
     ```
 
-14. Install new plugin versions:
+14. Install new plugin versions by running:
+
     ```
     tanzu plugin install --local cli all
     ```
 
-15. Check installation status for plugins:
+15. Check installation status for plugins by running:
 
     ```
     tanzu plugin list
     ```
 
     Expect to see the following:
+    
     ```
     tanzu plugin list
     NAME                LATEST VERSION  DESCRIPTION                                                        REPOSITORY  VERSION  STATUS
