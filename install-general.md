@@ -416,9 +416,9 @@ You can now proceed with installing Tanzu Application Platform. For more informa
 
 ## <a id='udpate-previous-tap-tanzu-cli'></a>Instructions for updating Tanzu CLI that was installed for a previous release of Tanzu Application Platform
 
-* **If your Tanzu CLI version is >= `v0.11.0`**, you must [delete your existing Tanzu CLI, plug-ins, and associated files](uninstall.md#remove-tanzu-cli) and then do a [clean install](#tanzu-cli-clean-install)
-* **If your Tanzu CLI version = `v0.10.0`**, skip to step 12 below
-* **If your Tanzu CLI version is < `v0.10.0`**, proceed to step 1 below
+- If your Tanzu CLI version is **greater than or equal to `v0.11.0`**, you must [delete your existing Tanzu CLI, plug-ins, and associated files](uninstall.md#remove-tanzu-cli) and then perform a [clean install](#tanzu-cli-clean-install)
+- If your Tanzu CLI version is **equal to `v0.10.0`**, proceed to step 12.
+- If your Tanzu CLI version is **less than `v0.10.0`**, proceed to step 1.
 
   1. If a directory called `tanzu` does not exist, create one:
 
@@ -473,7 +473,7 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
       tanzu version
       ```
       Expect `version: v0.10.0`
-      
+
   12. List the plugins to see if the `imagepullsecret` plugin was previously installed.
       If installed, delete it:
 
@@ -521,8 +521,8 @@ See **[Installing part II: Profiles](install.md)**.
 
 ## <a id='udpate-tkg-tce-tanzu-cli'></a>Instructions for updating Tanzu CLI previously installed for Tanzu Kubernetes Grid or Tanzu Community Edition
 
-* **If your Tanzu CLI version is >= `v0.11.0`**, you must [delete your existing Tanzu CLI, plug-ins, and associated files](uninstall.md#remove-tanzu-cli) and then do a [clean install](#tanzu-cli-clean-install)
-* **If your Tanzu CLI version <= `v0.10.0`**, proceed to step 1 below
+- If your Tanzu CLI version is **greater or equal to `v0.11.0`**, you must [delete your existing Tanzu CLI, plug-ins, and associated files](uninstall.md#remove-tanzu-cli) and then perform a [clean install](#tanzu-cli-clean-install)
+- If your Tanzu CLI version is **less than or equal to `v0.10.0`**, proceed to step 1.
 
   1. Create a directory named `tanzu`:
 
