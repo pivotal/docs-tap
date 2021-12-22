@@ -418,9 +418,9 @@ You can now proceed with installing Tanzu Application Platform. For more informa
 
 Follow these instructions to update the Tanzu CLI that was installed for a previous release of Tanzu Application Platform:
 
-  - If your Tanzu CLI version is **greater than or equal to `v0.11.0`**, you must [delete your existing Tanzu CLI, plug-ins, and associated files](uninstall.md#remove-tanzu-cli) and then perform a [clean install](#tanzu-cli-clean-install)
-  - If your Tanzu CLI version is **equal to `v0.10.0`**, proceed to step 12.
-  - If your Tanzu CLI version is **less than `v0.10.0`**, proceed to step 1.
+- If your Tanzu CLI version is **greater than or equal to `v0.11.0`**, you must [delete your existing Tanzu CLI, plug-ins, and associated files](uninstall.md#remove-tanzu-cli) and then perform a [clean install](#tanzu-cli-clean-install)
+- If your Tanzu CLI version is **equal to `v0.10.0`**, proceed to step 12.
+- If your Tanzu CLI version is **less than `v0.10.0`**, proceed to step 1.
 
   1. If a directory called `tanzu` does not exist, create one:
 
@@ -525,8 +525,8 @@ See **[Installing part II: Profiles](install.md)**.
 
 Follow these instructions to update the Tanzu CLI previously installed for Tanzu Kubernetes Grid or Tanzu Community Edition:
 
-  - If your Tanzu CLI version is **greater or equal to `v0.11.0`**, you must [delete your existing Tanzu CLI, plug-ins, and associated files](uninstall.md#remove-tanzu-cli) and then perform a [clean install](#tanzu-cli-clean-install)
-  - If your Tanzu CLI version is **less than or equal to `v0.10.0`**, proceed to step 1.
+- If your Tanzu CLI version is **greater or equal to `v0.11.0`**, you must [delete your existing Tanzu CLI, plug-ins, and associated files](uninstall.md#remove-tanzu-cli) and then perform a [clean install](#tanzu-cli-clean-install)
+- If your Tanzu CLI version is **less than or equal to `v0.10.0`**, proceed to step 1.
 
   1. Create a directory named `tanzu`:
 
