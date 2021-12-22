@@ -1,4 +1,4 @@
-applications# Getting started with the Tanzu Application Platform
+# Getting started with the Tanzu Application Platform
 
 ## Purpose
 
