@@ -17,7 +17,7 @@ Following you can see the alternatives to generate the required files.
 We offer two options to speed up the process of seeing your application's resources:
 
 1. [Tanzu Developer Tools for Visual Studio Code](../../vscode-extension/about.md): can be used to automate the creation of the component's YAML and its resources; for information about the YAML files, see: [Get set up with Snippets](../../vscode-extension/usage-getting-started.md)
-2. Use [Application Accelerator](application-accelerator.md): you can use **TAP Initializer** to generate the required files. 
+2. Use [Application Accelerator](application-accelerator.md): you can use **TAP Initializer** to generate the required files. You can access it through the TAP GUI by using `<TAP-GUI-URL>/create/templates/tap-initialize`
 
 ### Manual process
 
