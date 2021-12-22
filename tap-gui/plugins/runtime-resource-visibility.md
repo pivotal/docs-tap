@@ -5,19 +5,17 @@ The Runtime Resources Visibility tab shows developers the details and status of 
 
 ## Before you begin
 
-To ensure that your component and its resources will be displayed here you need:
+To ensure that your component and its resources are displayed, you need:
 
 1. A YAML file describing your component.
-2. All resources created for your application specify a label `'app.kubernetes.io/part-of'` with your application's name.
-
-Following you can see the alternatives to generate the required files.
+2. All resources created for your application must specify a label `'app.kubernetes.io/part-of'` with your application's name.
 
 ### Automated options
 
-We offer two options to speed up the process of seeing your application's resources:
+We offer two options to speed up the process of displaying your application's resources:
 
-1. [Tanzu Developer Tools for Visual Studio Code](../../vscode-extension/about.md): can be used to automate the creation of the component's YAML and its resources; for information about the YAML files, see: [Get set up with Snippets](../../vscode-extension/usage-getting-started.md)
-2. Use [Application Accelerator](application-accelerator.md): you can use **TAP Initializer** to generate the required files. You can access it through the TAP GUI by using `<TAP-GUI-URL>/create/templates/tap-initialize`
+1. [Tanzu Developer Tools for Visual Studio Code](../../vscode-extension/about.md) can be used to automate the creation of the component's YAML and its resources. For information about the YAML files, see [Get set up with snippets](../../vscode-extension/usage-getting-started.md).
+2. Use [Application Accelerator](application-accelerator.md). You can use **TAP Initializer** to generate the required files. You can access it through the Tanzu Application Platform GUI by using `<TAP-GUI-URL>/create/templates/tap-initialize`.
 
 ### Manual process
 
@@ -74,7 +72,7 @@ Developers must perform the following actions to see their resources on the dash
    
 
 
-usage-getting-started.md#snippets-workload
+
 
 ## Navigate to the Runtime Resources Visibility screen
 

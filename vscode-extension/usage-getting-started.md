@@ -9,7 +9,7 @@ For a more detailed step-by-step walk-through, see [Getting Started instructions
 
 # Usage - get started
 
-## <a id='snippets'></a>Get set up with Snippets
+## <a id='snippets'></a>Get set up with snippets
 
 Code snippets allow you to add the config files necessary to develop against the Tanzu Application Platform (TAP) to existing projects. There are three files you will need to create. Once you select a file, you will be guided through the values requiring user input. You can use the `Tab` key to move through those values.
 
