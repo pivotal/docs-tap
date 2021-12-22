@@ -235,7 +235,7 @@ To perform a clean installation of Tanzu CLI:
 
 To install the Tanzu CLI on a Linux operating system:
 
-1. Create a directory named `tanzu`:
+1. Create a directory named `tanzu` by running:
     ```
     mkdir $HOME/tanzu
     ```
@@ -246,7 +246,7 @@ To install the Tanzu CLI on a Linux operating system:
 
 4. Click the `tanzu-cli-0.10.0` folder.
 
-5. Download `tanzu-framework-bundle-linux` and unpack the TAR file into the `tanzu` directory:
+5. Download `tanzu-framework-bundle-linux` and unpack the TAR file into the `tanzu` directory by running:
     ```
     tar -xvf tanzu-framework-linux-amd64.tar -C $HOME/tanzu
     ```
@@ -257,7 +257,7 @@ To install the Tanzu CLI on a Linux operating system:
      export TANZU_CLI_NO_INIT=true
      ```
 
-7. Install the CLI core by runnning:
+7. Install the CLI core by running:
 
     ```
     cd $HOME/tanzu
@@ -394,13 +394,13 @@ To perform a clean installation of the Tanzu CLI plugins:
      export TANZU_CLI_NO_INIT=true
      ```
 
-2. Install the local versions of the plugins you downloaded:
+2. Install the local versions of the plugins you downloaded by running:
 
     ```
     tanzu plugin install --local cli all
     ```
 
-3. Check the plugin installation status:
+3. Check the plugin installation status by running:
 
     ```
     tanzu plugin list
@@ -438,6 +438,7 @@ You can now proceed with installing Tanzu Application Platform. For more informa
 ## <a id='udpate-previous-tap-tanzu-cli'></a>Instructions for updating Tanzu CLI that was installed for a previous release of Tanzu Application Platform
 
 Follow these instructions to update the Tanzu CLI that was installed for a previous release of Tanzu Application Platform:
+
 - If your Tanzu CLI version is **greater than or equal to `v0.11.0`**, you must [delete your existing Tanzu CLI, plug-ins, and associated files](uninstall.md#remove-tanzu-cli) and then perform a [clean install](#tanzu-cli-clean-install)
 - If your Tanzu CLI version is **equal to `v0.10.0`**, proceed to step 12.
 - If your Tanzu CLI version is **less than `v0.10.0`**, proceed to step 1.<br/>
@@ -489,7 +490,7 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
     ```
     tanzu update --local ./cli
     ```
-    Expect to see a user prompt - submit "y"
+    Expect to see a user prompt - submit `y`
 
 
 11. Check installation status for the core CLI by running:
@@ -531,7 +532,7 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
     ```
 
     Expect to see the following:
-    
+
     ```
     tanzu plugin list
     NAME                LATEST VERSION  DESCRIPTION                                                        REPOSITORY  VERSION  STATUS
