@@ -7,13 +7,14 @@ weight: 2
 This topic explains how to use the VMware Tanzu Developer Tools for Visual Studio Code.
 For a more detailed step-by-step walk-through, see [Getting Started instructions](../getting-started.md).
 
-# Usage - Get Started
+# Usage - get started
 
-## <a id='snippets'></a>Getting set up with Snippets
+## <a id='snippets'></a>Get set up with Snippets
 
 Code snippets allow you to add the config files necessary to develop against the Tanzu Application Platform (TAP) to existing projects. There are three files you will need to create. Once you select a file, you will be guided through the values requiring user input. You can use the `Tab` key to move through those values.
 
-### <a id='snippets-workload'></a> `workload.yaml`
+### <a id='snippets-workload'></a> workload.yaml
+
 The workload.yaml file provides instructions to the [Supply Chain Choreographer](../scc/about) for how a workload should be built and managed.
 
 It can be triggered by creating a new file of type "YAML" and typing the keywords `tanzu workload`.
@@ -35,7 +36,7 @@ It can be triggered by typing the keywords `Tiltfile` or `tanzu tiltfile`. This 
 
 ---
 
-## Getting set up - manually
+## Get set up - manually
 ### <a id='create-workload'></a> Creating a workload.yaml file
 
 The easiest way to create a workload.yaml file is to use the Tanzu CLI, for example:
@@ -46,7 +47,7 @@ tanzu apps workload create my-workload --git-repo https://example.com/my-workloa
 
 See the [Tanzu CLI docs](../cli-plugins/apps/command-reference/tanzu_apps_workload_create.md) for all CLI options.
 
-### <a id='create-tiltfile'></a> Creating a Tiltfile
+### <a id='create-tiltfile'></a> Create a Tiltfile
 
 The following is an example Tiltfile:
 
