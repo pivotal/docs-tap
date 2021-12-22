@@ -1,6 +1,6 @@
 ---
-title: Using Tanzu Dev Tools to Get Started
-subtitle: Using Tanzu Dev Tools to Get Started
+title: Using Tanzu Dev Tools to get started
+subtitle: Using Tanzu Dev Tools to get started
 weight: 2
 ---
 
