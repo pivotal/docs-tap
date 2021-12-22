@@ -1,6 +1,6 @@
-# Runtime Resources Visibility
+# Runtime resources visibility
 
-The Runtime Resources Visibility tab shows developers the details and status of their component's Kubernetes resources to understand their structure and debug issues.
+The Runtime Resources tab shows developers the details and status of their component's Kubernetes resources to understand their structure and debug issues.
 
 
 ## <a id="before-begin"></a>Before you begin
@@ -74,7 +74,7 @@ Developers must perform the following actions to see their resources on the dash
 
 
 
-## <a id="navigate-runtime-resources-visibility"></a>Navigate to the Runtime Resources Visibility screen
+## <a id="navigate-runtime-resources-visibility"></a>Navigate to the Runtime Resources visibility screen
 
 You can view the list of running resources and details about their status, type, namespace, cluster, and public URL if
 applicable for the resource type.
@@ -85,7 +85,7 @@ To view the list of your running resources:
 
    ![Screenshot of selecting component on runtime resources index table](images/runtime-resources-components.png)
 
-2. Select the Runtime Resources tab.
+2. Select the **Runtime Resources** tab.
 
    ![Screenshot of selecting Runtime resources tab](images/runtime-resources-index.png)
 
@@ -101,7 +101,7 @@ Here is an example of the expanded index table showing one of the owner resource
 
 ## <a id="detail-pages"></a>Detail pages
 
-The Runtime Runtime Resources Visibility plug-in provides detail pages with the most relevant characteristics of many resources, including direct links to other ones.
+The Runtime Runtime Resources visibility plug-in provides detail pages with the most relevant characteristics of many resources, including direct links to other ones.
 
 These following sections explain the boxes included on all detail pages:
 
@@ -135,11 +135,11 @@ See [Owners and Dependents](https://kubernetes.io/docs/concepts/overview/working
 
 ![Ownership section](images/runtime-resources-ownership.png)
 
-### <a id="annotations"></a>Annotations & Labels
+### <a id="annotations"></a>Annotations and Labels
 
-Shows information on `metadata.annotations` and`metadata.labels`
+The Annotations and Labels sections show information on `metadata.annotations` and `metadata.labels`.
 
-![Annotations and labels section](images/runtime-resources-annotations.png)
+![Annotations and Labels sections](images/runtime-resources-annotations.png)
 
 ## <a id="navigating-to-pods"></a>Navigating to Pods
 
