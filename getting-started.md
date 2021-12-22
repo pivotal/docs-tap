@@ -232,7 +232,7 @@ You can view output from Tanzu Application Platform and from Tilt indicating tha
       >If you're sure you want to deploy there, add:
       >allow_k8s_contexts('cluster-name')
       >to your Tiltfile. Otherwise, switch k8s >contexts and restart Tilt.
-        
+
       >Just follow the instructions and add the line "allow_k8s_contexts('cluster-name')" to your `Tiltfile`.
 
 1. Once you see the Live Update status in the status bar, resolve to "Live Update Started", navigate to `http://localhost:8080` in your browser, and view your running workload.
@@ -558,7 +558,7 @@ To apply this install method, complete the following steps:
           repository: "<REPO-NAME>"
     ```
 
-3. Update the installed profile:
+3. Update the installed profile by running:
 
     ```
     tanzu package installed update tap -p tap.tanzu.vmware.com -v 0.3.0 --values-file tap-values.yml -n tap-install
@@ -570,42 +570,42 @@ To apply this install method, complete the following steps:
 In this section, a Tekton pipeline is added to the cluster. In the next section,
 the workload is updated to point to the pipeline and resolve any current errors.
 
-1. To add the Tekton supply chain to the cluster, apply the following YAML to the cluster:
+To add the Tekton supply chain to the cluster, apply the following YAML to the cluster:
 
-    >**Note:** Developers can perform this step because they know how their application needs to be tested.
-    The operator can also add the Tekton supply chain to a cluster before the developer get access.
+>**Note:** Developers can perform this step because they know how their application needs to be tested.
+The operator can also add the Tekton supply chain to a cluster before the developer get access.
 
-    ```
-    apiVersion: tekton.dev/v1beta1
-    kind: Pipeline
-    metadata:
-      name: developer-defined-tekton-pipeline
-      labels:
-        apps.tanzu.vmware.com/pipeline: test     # (!) required
-    spec:
+```
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: developer-defined-tekton-pipeline
+  labels:
+    apps.tanzu.vmware.com/pipeline: test     # (!) required
+spec:
+  params:
+    - name: source-url                       # (!) required
+    - name: source-revision                  # (!) required
+  tasks:
+    - name: test
       params:
-        - name: source-url                       # (!) required
-        - name: source-revision                  # (!) required
-      tasks:
-        - name: test
-          params:
-            - name: source-url
-              value: $(params.source-url)
-            - name: source-revision
-              value: $(params.source-revision)
-          taskSpec:
-            params:
-              - name: source-url
-              - name: source-revision
-            steps:
-              - name: test
-                image: gradle
-                script: |-
-                  cd `mktemp -d`
+        - name: source-url
+          value: $(params.source-url)
+        - name: source-revision
+          value: $(params.source-revision)
+      taskSpec:
+        params:
+          - name: source-url
+          - name: source-revision
+        steps:
+          - name: test
+            image: gradle
+            script: |-
+              cd `mktemp -d`
 
-                  wget -qO- $(params.source-url) | tar xvz
-                  ./mvnw test
-    ```
+              wget -qO- $(params.source-url) | tar xvz
+              ./mvnw test
+```
 
 The YAML above defines a Tekton Pipeline with a single step.
 The step itself contained in the `steps` will pull the code from the repository indicated
