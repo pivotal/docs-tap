@@ -17,14 +17,14 @@ and the [Tanzu Dev Tools for VSCode](../vscode-extension/about.md) IDE extension
 
 Developer Conventions modifies your workload to enable live updates in either of the following situations:
 
-1. You deploy a workload by using the Tanzu CLI Apps plug-in and include the flag `--live-update=true`. For more information about how to deploy a workload with the CLI, see [Tanzu apps workload apply](../cli-plugins/apps/command-reference/tanzu_apps_workload_apply.md).
-1. You deploy a workload by using the `Tanzu: Live Update Start` option through the Tanzu Dev Tools for VSCode extension. For more information about live updating with the Tanzu Dev Tools extension, see [Using Tanzu Dev Tools to get started](../vscode-extension/usage-getting-started.md).
+- You deploy a workload by using the Tanzu CLI Apps plug-in and include the flag `--live-update=true`. For more information about how to deploy a workload with the CLI, see [Tanzu apps workload apply](../cli-plugins/apps/command-reference/tanzu_apps_workload_apply.md).
+- You deploy a workload by using the `Tanzu: Live Update Start` option through the Tanzu Dev Tools for VSCode extension. For more information about live updating with the Tanzu Dev Tools extension, see [Using Tanzu Dev Tools to get started](../vscode-extension/usage-getting-started.md).
 
 When either of the preceding actions take place, the convention behaves as follows:
 
-- It looks for the `apps.tanzu.vmware.com/live-update=true` annotation on a PodTemplateSpec associated with a workload.
-- It verifies that the image to which conventions are applied contains a process that can be live updated. 
-- It then adds annotations to the PodTemplateSpec to modify the Knative properties `minScale` & `maxScale` such that the minimum and maximum number of Pods is 1. This ensures the eventual running Pod won't be scaled down to 0 during a live update session.
+1. It looks for the `apps.tanzu.vmware.com/live-update=true` annotation on a PodTemplateSpec associated with a workload.
+2. It verifies that the image to which conventions are applied contains a process that can be live updated. 
+3. It adds annotations to the PodTemplateSpec to modify the Knative properties `minScale` & `maxScale` such that the minimum and maximum number of Pods is 1. This ensures the eventual running Pod won't be scaled down to 0 during a live update session.
 
 After these changes are made, you can use the Tanzu Dev Tools extension
 or the Tilt CLI to make live update changes to source code directly on the cluster.
@@ -33,15 +33,15 @@ or the Tilt CLI to make live update changes to source code directly on the clust
 
 Developer Conventions modifies your workload to enable debugging in either of the following situations:
 
-1. You deploy a workload by using the Tanzu CLI Apps plug-in and include the flag `--debug=true`. For more information about how to deploy a workload with the CLI, see [Tanzu apps workload apply](../cli-plugins/apps/command-reference/tanzu_apps_workload_apply.md).
-1. You deploy a workload by using the `Tanzu Java Debug Start` option through the Tanzu Dev Tools for VSCode extension. For more information about debugging with the Tanzu Dev Tools extension, see [Using Tanzu Dev Tools to get started](../vscode-extension/usage-getting-started.md).
+- You deploy a workload by using the Tanzu CLI Apps plug-in and include the flag `--debug=true`. For more information about how to deploy a workload with the CLI, see [Tanzu apps workload apply](../cli-plugins/apps/command-reference/tanzu_apps_workload_apply.md).
+- You deploy a workload by using the `Tanzu Java Debug Start` option through the Tanzu Dev Tools for VSCode extension. For more information about debugging with the Tanzu Dev Tools extension, see [Using Tanzu Dev Tools to get started](../vscode-extension/usage-getting-started.md).
 
 When either of the preceding actions take place, the convention behaves as follows:
 
-- It looks for the `apps.tanzu.vmware.com/debug=true` annotation on a PodTemplateSpec associated with a workload.
-- It checks for the `debug-8` or `debug-9` labels on the image configuration's bill of materials (BOM).
-- It then sets the TimeoutSeconds of the Liveness, Readiness, and Startup probes to 600 if currently set to a lower number.
-- It then adds annotations to the PodTemplateSpec to modify the Knative properties `minScale` & `maxScale` such that the minimum and maximum number of Pods is 1. This ensures the eventual running Pod won't be scaled down to 0 during a debug session.
+1. It looks for the `apps.tanzu.vmware.com/debug=true` annotation on a PodTemplateSpec associated with a workload.
+2. It checks for the `debug-8` or `debug-9` labels on the image configuration's bill of materials (BOM).
+3. It sets the TimeoutSeconds of the Liveness, Readiness, and Startup probes to 600 if currently set to a lower number.
+4. It adds annotations to the PodTemplateSpec to modify the Knative properties `minScale` & `maxScale` such that the minimum and maximum number of Pods is 1. This ensures the eventual running Pod won't be scaled down to 0 during a debug session.
 
 After these changes are made, you can use the Tanzu Dev Tools extension or other CLI-based debuggers to debug your workload directly on the cluster.
 
