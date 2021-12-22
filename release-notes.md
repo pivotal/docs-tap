@@ -52,7 +52,7 @@ The following components have separate release notes.
 
 ## <a id='0-4-0'></a> v0.4.0 beta release
 
-**Release Date**: December 10, 2021
+**Release Date**: December 13, 2021
 
 ### Features
 
