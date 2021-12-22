@@ -55,7 +55,10 @@ app_service_type: "LoadBalancer"
 
 ### <a id='service-accounts'></a>Service accounts
 
-By default, a service account with read-write privileges to the metadata store app is installed. This service account is a cluster-wide account that uses ClusterRole. If the service account and role are not desired, set the `add_default_rw_service_account` property to `"false." To create a custom service account, see [create service account](create_service_account_access_token.md).
+By default, a service account with read-write privileges to the metadata store app is installed.
+This service account is a cluster-wide account that uses ClusterRole.
+If you don't want the service account and role, set the `add_default_rw_service_account` property to `"false"`.
+To create a custom service account, see [create service account](create_service_account_access_token.md).
 
 The store will automatically create a read-only cluster role, which may be bound to a service account via `ClusterRoleBinding`. To create service accounts to bind to this cluster role, see [create service account](create_service_account_access_token.md). 
 
