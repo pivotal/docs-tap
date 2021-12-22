@@ -1,6 +1,6 @@
 # Log configuration and usage
 
-This topic covers how to configure the Supply Chain Security Tools - Store to output detailed log information and interpret them.
+This topic covers configuring the Supply Chain Security Tools - Store to output detailed log information and interpret them.
 
 ## Log levels
 
@@ -30,7 +30,7 @@ If no log level is specified when the Store is installed, the log level is set t
 
 ## Obtaining logs
 
-Logs are emitted by the k8s pods. The deploymet has two pods, one for the database, and one for the API backend. First, use `kubectl get pods` to obtain the names of the pods.
+Logs are emitted by the k8s pods. The deployment has two pods, one for the database, and one for the API backend. First, use `kubectl get pods` to obtain the names of the pods.
 
 ```sh
 kubectl get pods -n metadata-store
@@ -54,7 +54,7 @@ This user must also own the server process.
 ...
 ```
 
-For the API backend, it's pod has two containers, one for `kube-rbac-proxy`, and the other for the API server. Use the `--all-containers` flag to see logs from both containers. For example:
+For the API backend, its pod has two containers, one for `kube-rbac-proxy`, and the other for the API server. Use the `--all-containers` flag to see logs from both containers. For example:
 
 ```
 $ kubectl logs metadata-store-app-67659bbc66-2rc6k --all-containers -n metadata-store
