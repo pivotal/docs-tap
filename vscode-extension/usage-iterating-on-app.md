@@ -12,7 +12,7 @@ weight: 2
 ## Debug your Workload
 
 Debugging requires a `workload.yaml` file in your project.
-for information about how to create a `workload.yaml` file, see [workload.yaml](usage-getting-started#snippets-workload)
+for information about how to create a `workload.yaml` file, see [workload.yaml](usage-getting-started.md#snippets-workload)
 in _Using Tanzu Dev Tools to Get Started_.
 
 After you have a `workload.yaml` file in your project, you can debug:
@@ -27,7 +27,7 @@ After you have a `workload.yaml` file in your project, you can debug:
 
 Live update requires a `workload.yaml` file and a `Tiltfile` in your project.
 
-For information about how to create these files, see [Get set up with Snippets](usage-getting-started#snippets).
+For information about how to create these files, see [Get set up with Snippets](usage-getting-started.md#snippets).
 
 
 ### Starting live update
