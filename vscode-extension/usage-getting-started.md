@@ -15,7 +15,7 @@ Code snippets allow you to add the config files necessary to develop against the
 
 ### <a id='snippets-workload'></a> workload.yaml
 
-The workload.yaml file provides instructions to the [Supply Chain Choreographer](../scc/about) for how a workload should be built and managed.
+The workload.yaml file provides instructions to the [Supply Chain Choreographer](../scc/about.md) for how a workload should be built and managed.
 
 It can be triggered by creating a new file of type "YAML" and typing the keywords `tanzu workload`.
 
