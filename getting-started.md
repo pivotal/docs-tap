@@ -1,41 +1,40 @@
-# Getting started with the Tanzu Application Platform
+# Getting Started with Tanzu Application Platform
 
 ## Purpose
 
-Welcome to the Tanzu Application Platform. This document guides you through getting started with the platform. Specifically, you will learn how to:
+This guide intends to walk you through the experience of promoting your first application using the Tanzu Application Platform.
 
-* Develop and promote an application
-* Create an application accelerator
-* Add testing and security scanning to an application
-* Administer, set up, and manage supply chains
+The intended user of this guide is anyone curious about Tanzu Application Platform and its parts.
+There are two high-level workflows described in this document:
+
+1. The application development experience with the Developer Toolkit components.
+
+2. The administration, set up, and management of Supply Chains, Security Tools, Services, and Application Accelerators.
 
 
-## Prerequisites
+### Prerequisites
 
-Please check you have successfully:
+To take full advantage of this document, ensure you have followed [Installing Tanzu Application Platform](install-intro.md).
 
-* **Installed the Tanzu Application Platform**<br>
-(see [Installing Tanzu Application Platform](install-intro.md) for instructions)
+---
 
-* **Installed the Tanzu Application Platform on the target Kubernetes cluster**<br>
-(see [Installing Part I: Prerequisites, EULA, and CLI](install-general.md) and [Installing Part II: Profiles](install.md) for instructions)
+## Section 1: Developing Your First Application on Tanzu Application Platform
 
-* **Set the default kubeconfig context to the target Kubernetes cluster**<br>
+In this section, you will deploy a simple web application to the platform, enable debugging and see your code updates added to the running application as you save them.
 
-* **Installed Out of The Box (OOTB) Supply Chain Basic**<br>
-(see [Install default Supply Chain](install-components.md#install-ootb-supply-chain-basic) for instructions)
+Before getting started, ensure the following prerequisites are in place:
 
-* **Set up a developer namespace to accommodate the developer Workload**<br>
-(see [Set Up Developer Namespaces to Use Installed Packages](install-components.md#-set-up-developer-namespaces-to-use-installed-packages) for instructions)
+1. Tanzu Application Platform is installed on the target Kubernetes cluster. For installation instructions, see [Installing Part I: Prerequisites, EULA, and CLI](install-general.md) and [Installing Part II: Profiles](install.md).
 
-* **Installed the Tanzu Application Platform GUI**<br>
+2. Default kubeconfig context is set to the target Kubernetes cluster.
 
-* **Installed the VSCode Tanzu Extension**<br>
-(see [How to Install the VSCode Tanzu Extension](vscode-extension/install.md) for instructions)
+3. The Out of The Box Supply Chain Basic is installed. See [Install default Supply Chain](install-components.md#install-ootb-supply-chain-basic).
 
-If you have completed the prerequisites, then you're ready to get started!
+4. A developer namespace is set up to accommodate the developer's Workload.
+   See [Set Up Developer Namespaces to Use Installed Packages](install-components.md#-set-up-developer-namespaces-to-use-installed-packages).
 
-## Section 1: Develop your first application on the Tanzu Application Platform
+5. Tanzu Application Platform GUI is successfully installed.
+
 
 ### About Application Accelerators
 
@@ -217,36 +216,36 @@ the various diagnostic capabilities.
 ---
 
 
-## <a id='creating-an-accelerator'></a>Section 2: Creating an accelerator
+## <a id='creating-an-accelerator'></a>Section 2: Creating an Accelerator
 
 You can use any git repository to create an Accelerator.
 You need the URL for the repository to create an Accelerator.
 
-To create a new application accelerator:
+Use the following procedure to create an accelerator:
 
 1. Select the **New Accelerator** tile from the accelerators in the Application Accelerator web UI.
 
-1. Fill in the new project form with the following information:
+2. Fill in the new project form with the following information:
 
-    * **Name**: `Your accelerator name` This is the name of the generated ZIP file
-    * Description (Optional): A description of your accelerator
-        * **K8s Resource Name**: A Kubernetes resource name to use for the accelerator
-        * **Git Repository URL**: The URL for the Git repository that contains the accelerator source code
-        * **Git Branch**: The branch for the Git repository
-    * **Tags** (Optional): Associated tags that can be used for searches in the UI
+    * Name: Your Accelerator name. This is the name of the generated ZIP file.
+    * (Optional) Description: A description of your accelerator.
+    * K8s Resource Name: A Kubernetes resource name to use for the Accelerator.
+    * Git Repository URL: The URL for the git repository that contains the accelerator source code.
+    * Git Branch: The branch for the git repository.
+    * (Optional) Tags: Any associated tags that can be used for searches in the UI.
 
-1. Download and expand the zip file.
+3. Download and expand the zip file.
 
-    * The output contains a YAML file for an Accelerator resource, pointing to the Git repository.
+    * The output contains a YAML file for an Accelerator resource, pointing to the git repository.
     * The output contains a file named `new-accelerator.yaml` which defines the metadata for your new accelerator.
 
-1. To apply the k8s-resource.yml, run the following command in your terminal in the folder where you expanded the zip file:
+4. To apply the k8s-resource.yml, run the following command in your terminal in the folder where you expanded the zip file:
 
     ```
     kubectl apply -f k8s-resource.yaml --namespace accelerator-system
     ```
 
-1. The Tanzu Application Platform GUI refreshes periodically. Once the GUI refreshes, the new accelerator becomes available. After waiting a few minutes, click the **Create** button on the left-side navigation bar of the Tanzu Application Platform GUI to see if the accelerator appears.
+5. The Tanzu Application Platform GUI refreshes periodically. Once the GUI refreshes, the new accelerator becomes available. After waiting a few minutes, click the **Create** button on the left-side navigation bar of the Tanzu Application Platform GUI to see if the accelerator appears.
 
 
 #### Using accelerator.yaml

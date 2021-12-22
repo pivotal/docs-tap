@@ -3,7 +3,7 @@
 ## Overview
 
 Learning Center is a self-hosted platform accessed via the browser that allows content creators to 
-create workshops with markdown files that are displayed to the learner in a terminal shell 
+create workshops with markdown files that are then displayed to the learner in a terminal shell 
 environment with an instructional wizard user interface. The user interface can embed slide content, an IDE, 
 a web console for accessing the Kubernetes cluster, and other custom web applications.
 

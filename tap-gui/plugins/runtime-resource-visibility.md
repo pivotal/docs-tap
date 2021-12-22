@@ -1,6 +1,7 @@
 # Runtime Resources Visibility
 
-The Runtime Resources Visibility tab shows developers the details and status of their component's Kubernetes resources to understand their structure and debug issues.
+The Runtime Resources Visibility screen lets developers view the details and status of their Kubernetes
+resources to understand their structure and debug issues.
 
 >**Note:** Runtime Resources Visibility is the new name for the Workload Visibility plugin.
 
@@ -26,12 +27,10 @@ Developers must perform the following actions to see their resources on the dash
       system:
     ```
 
-2. Commit and push the Component definition, created in the previous steps, to a Git repository that
-is registered as a Catalog Location.
-See [Adding Catalog Entities](../catalog/catalog-operations.md#adding-catalog-entities) in the
-Catalog Operations documentation.
-
-3. Create a Kubernetes resource with a label matching the Component's selector in a cluster available to Tanzu Application Platform GUI. A resource is one of the following:
+1. Commit and push the Component definition to a Git repository that is registered as a Catalog Location. See [Adding
+  Catalog Entities](../catalog/catalog-operations.md#adding-catalog-entities) in the Catalog Operations documentation.
+2. Create a Kubernetes resource with a label matching the Component's selector, in a cluster
+available to the Tanzu Application Platform GUI. A resource is one of the following:
 
     - `v1/Service`
     - `apps/v1/Deployment`
@@ -67,25 +66,16 @@ applicable for the resource type.
 
 To view the list of your running resources:
 
-1. Select your component from the Catalog index page.
+1. Select the Component from the Catalog index page.
+1. Select the Workloads tab.
 
-   ![Runtime resources index table collapsed](images/runtime-resources-components.png)
+    ![Workload index table](./images/workload-visibility-workloads.png)
 
-2. Select the Workloads tab.
+## Knative service details page
 
-   ![Workload index table](./images/workload-visibility-workloads.png)
-
-
-## Knative Service Details page
-
-To view details about your Knative services, select any resource that has the "Knative Service" type.
+To view the Knative services details of your resources, select the resource with 'Knative Service' type.
 In this page, additional information is available for Knative resources including status, an ownership hierarchy,
 incoming routes, revisions, and pod details.
 
-![Resource detail page](images/runtime-resources-details.png)
 
-## Pod Details Page
-
-This page shows you most relevant information for a specific Pod including its containers and the [Application Live View information](./app-live-view.md) information.
-
-![Resource detail page](images/workload-visibility-resource-detail.png)
+![Resource detail page](./images/workload-visibility-resource-detail.png)

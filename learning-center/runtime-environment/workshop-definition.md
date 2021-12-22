@@ -236,13 +236,13 @@ The ``session.env`` field should be a list of dictionaries with ``name`` and ``v
 
 Values of fields in the list of resource objects can reference a number of pre-defined parameters. The available parameters are:
 
-- ``session_id`` - A unique ID for the workshop instance within the workshop environment.
-- ``session_namespace`` - The namespace created for and bound to the workshop instance. This is the namespace unique to the session and where a workshop can create its own resources.
-- ``environment_name`` - The name of the workshop environment. For now this is the same as the name of the namespace for the workshop environment. Don't rely on their being the same, and use the most appropriate to cope with any future change.
-- ``workshop_namespace`` - The namespace for the workshop environment. This is the namespace where all deployments of the workshop instances are created and where the service account that the workshop instance runs as exists.
-- ``service_account`` - The name of the service account the workshop instance runs as and which has access to the namespace created for that workshop instance.
-- ``ingress_domain`` - The host domain under which hostnames can be created when creating ingress routes.
-- ``ingress_protocol`` - The protocol (http/https) that is used for ingress routes which are created for workshops.
+* ``session_id`` - A unique ID for the workshop instance within the workshop environment.
+* ``session_namespace`` - The namespace created for and bound to the workshop instance. This is the namespace unique to the session and where a workshop can create their own resources.
+* ``environment_name`` - The name of the workshop environment. For now this is the same as the name of the namespace for the workshop environment. Don't rely on them being the same, and use the most appropriate to cope with any future change.
+* ``workshop_namespace`` - The namespace for the workshop environment. This is the namespace where all deployments of the workshop instances are created, and where the service account that the workshop instance runs as exists.
+* ``service_account`` - The name of the service account the workshop instance runs as, and which has access to the namespace created for that workshop instance.
+* ``ingress_domain`` - The host domain under which hostnames can be created when creating ingress routes.
+* ``ingress_protocol`` - The protocol (http/https) that is used for ingress routes which are created for workshops.
 
 The syntax for referencing one of the parameters is ``$(parameter_name)``.
 
@@ -503,13 +503,13 @@ When resources are created, owner references are added making the ``WorkshopSess
 
 Values of fields in the list of resource objects can reference a number of pre-defined parameters. The available parameters are:
 
-- ``session_id`` - A unique ID for the workshop instance within the workshop environment.
-- ``session_namespace`` - The namespace created for and bound to the workshop instance. This is the namespace unique to the session and where a workshop can create its own resources.
-- ``environment_name`` - The name of the workshop environment. For now this is the same as the name of the namespace for the workshop environment. Don't rely on their being the same, and use the most appropriate to cope with any future change.
-- ``workshop_namespace`` - The namespace for the workshop environment. This is the namespace where all deployments of the workshop instances are created and where the service account that the workshop instance runs as exists.
-- ``service_account`` - The name of the service account the workshop instance runs as and which has access to the namespace created for that workshop instance.
-- ``ingress_domain`` - The host domain under which hostnames can be created when creating ingress routes.
-- ``ingress_protocol`` - The protocol (http/https) that is used for ingress routes which are created for workshops.
+* ``session_id`` - A unique ID for the workshop instance within the workshop environment.
+* ``session_namespace`` - The namespace created for and bound to the workshop instance. This is the namespace unique to the session and where a workshop can create their own resources.
+* ``environment_name`` - The name of the workshop environment. For now this is the same as the name of the namespace for the workshop environment. Don't rely on them being the same, and use the most appropriate to cope with any future change.
+* ``workshop_namespace`` - The namespace for the workshop environment. This is the namespace where all deployments of the workshop instances are created, and where the service account that the workshop instance runs as exists.
+* ``service_account`` - The name of the service account the workshop instance runs as, and which has access to the namespace created for that workshop instance.
+* ``ingress_domain`` - The host domain under which hostnames can be created when creating ingress routes.
+* ``ingress_protocol`` - The protocol (http/https) that is used for ingress routes which are created for workshops.
 
 The syntax for referencing one of the parameters is ``$(parameter_name)``.
 
@@ -798,14 +798,14 @@ When resources are created, owner references are added making the ``WorkshopEnvi
 
 Values of fields in the list of resource objects can reference a number of pre-defined parameters. The available parameters are:
 
-- ``workshop_name`` - The name of the workshop. This is the name of the ``Workshop`` definition the workshop environment was created against.
-- ``environment_name`` - The name of the workshop environment. For now this is the same as the name of the namespace for the workshop environment. Don't rely on their being the same, and use the most appropriate to cope with any future change.
-- ``environment_token`` - The value of the token which needs to be used in workshop requests against the workshop environment.
-- ``workshop_namespace`` - The namespace for the workshop environment. This is the namespace where all deployments of the workshop instances, and their service accounts, are created. It is the same namespace that shared workshop resources are created.
-- ``service_account`` - The name of a service account that can be used when creating deployments in the workshop namespace.
-- ``ingress_domain`` - The host domain under which hostnames can be created when creating ingress routes.
-- ``ingress_protocol`` - The protocol (http/https) that is used for ingress routes which are created for workshops.
-- ``ingress_secret`` - The name of the ingress secret stored in the workshop namespace when secure ingress is being used.
+* ``workshop_name`` - The name of the workshop. This is the name of the ``Workshop`` definition the workshop environment was created against.
+* ``environment_name`` - The name of the workshop environment. For now this is the same as the name of the namespace for the workshop environment. Don't rely on them being the same, and use the most appropriate to cope with any future change.
+* ``environment_token`` - The value of the token which needs to be used in workshop requests against the workshop environment.
+* ``workshop_namespace`` - The namespace for the workshop environment. This is the namespace where all deployments of the workshop instances, and their service accounts, are created. It is the same namespace that shared workshop resources are created.
+* ``service_account`` - The name of a service account that can be used when creating deployments in the workshop namespace.
+* ``ingress_domain`` - The host domain under which hostnames can be created when creating ingress routes.
+* ``ingress_protocol`` - The protocol (http/https) that is used for ingress routes which are created for workshops.
+* ``ingress_secret`` - The name of the ingress secret stored in the workshop namespace when secure ingress is being used.
 
 If you want to create additional namespaces associated with the workshop environment, embed a reference to ``$(workshop_namespace)`` in the name of the additional namespaces, with an appropriate suffix. Be mindful that the suffix doesn't overlap with the range of session IDs for workshop instances.
 
@@ -987,10 +987,10 @@ spec:
 
 The available variables are:
 
-- ``session_namespace`` - The namespace created for and bound to the workshop instance. This is the namespace unique to the session and where a workshop can create its own resources.
-- ``environment_name`` - The name of the workshop environment. Currently this is the same as the name of the namespace for the workshop environment. Don't rely on their being the same and use the most appropriate to cope with any future change.
-- ``workshop_namespace`` - The namespace for the workshop environment. This is the namespace where all deployments of the workshop instances are created and where the service account that the workshop instance runs as exists.
-- ``ingress_domain`` - The host domain under which hostnames can be created when creating ingress routes.
+* ``session_namespace`` - The namespace created for and bound to the workshop instance. This is the namespace unique to the session and where a workshop can create their own resources.
+* ``environment_name`` - The name of the workshop environment. For now this is the same as the name of the namespace for the workshop environment. Don't rely on them being the same, and use the most appropriate to cope with any future change.
+* ``workshop_namespace`` - The namespace for the workshop environment. This is the namespace where all deployments of the workshop instances are created, and where the service account that the workshop instance runs as exists.
+* ``ingress_domain`` - The host domain under which hostnames can be created when creating ingress routes.
 
 If the service uses standard ``http`` or ``https`` ports, you can leave out the ``port`` property and the port will be set based on the value of ``protocol``.
 
@@ -1466,11 +1466,11 @@ spec:
 
 The options for the ``layout`` property are:
 
--``default`` - Single terminal.
-- ``split`` - Two terminals stacked above each other in ratio 60/40.
-- ``split/2`` - Three terminals stacked above each other in ratio 50/25/25.
-- ``lower`` - A single terminal is placed below any dashboard tabs, rather than being a tab of its own. The ratio of dashboard tab to terminal is 70/30.
-- ``none`` - No terminal is displayed but can still be created from the drop down menu.
+* ``default`` - Single terminal.
+* ``split`` - Two terminals stacked above each other in ratio 60/40.
+* ``split/2`` - Three terminals stacked above each other in ratio 50/25/25.
+* ``lower`` - A single terminal is placed below any dashboard tabs, rather than being a tab of its own. The ratio of dashboard tab to terminal is 70/30.
+* ``none`` - No terminal is displayed, but they can still be created from the drop down menu.
 
 When adding the ``terminal`` section, you must include the ``enabled`` property and set it to ``true`` as it is a required field when including the section.
 
@@ -1503,11 +1503,11 @@ spec:
 
 The URL values can reference a number of pre-defined parameters. The available parameters are:
 
-- ``session_namespace`` - The namespace created for and bound to the workshop instance. This is the namespace unique to the session and where a workshop can create its own resources.
-- ``environment_name`` - The name of the workshop environment. For now this is the same as the name of the namespace for the workshop environment. Don't rely on their being the same and use the most appropriate to cope with any future change.
-- ``workshop_namespace`` - The namespace for the workshop environment. This is the namespace where all deployments of the workshop instances are created and where the service account that the workshop instance runs as exists.
-- ``ingress_domain`` - The host domain under which hostnames can be created when creating ingress routes.
-- ``ingress_protocol`` - The protocol (http/https) that is used for ingress routes which are created for workshops.
+* ``session_namespace`` - The namespace created for and bound to the workshop instance. This is the namespace unique to the session and where a workshop can create their own resources.
+* ``environment_name`` - The name of the workshop environment. For now this is the same as the name of the namespace for the workshop environment. Don't rely on them being the same, and use the most appropriate to cope with any future change.
+* ``workshop_namespace`` - The namespace for the workshop environment. This is the namespace where all deployments of the workshop instances are created, and where the service account that the workshop instance runs as exists.
+* ``ingress_domain`` - The host domain under which hostnames can be created when creating ingress routes.
+* ``ingress_protocol`` - The protocol (http/https) that is used for ingress routes which are created for workshops.
 
 The URL can reference an external web site, however, that web site must not prohibit being embedded in a HTML iframe.
 
