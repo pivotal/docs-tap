@@ -55,6 +55,10 @@ Developers must perform the following actions to see their resources on the dash
               - image: springcommunity/spring-framework-petclinic
       EOF
       ```
+   
+You can use [Tanzu Developer Tools for Visual Studio Code](../../vscode-extension/about.md) to automate the creation of the component's YAML and its resources; for information about the yaml files, see: [Get set up with Snippets](../../vscode-extension/usage-getting-started.md)
+
+usage-getting-started.md#snippets-workload
 
 ## Navigate to the Runtime Resources Visibility screen
 
@@ -75,7 +79,7 @@ To view the list of your running resources:
 
 The Resources index table will show Deployments, Pods, ReplicaSets and Services that match with the label indicated in the component's definition; you will see a hierarchical structure showing the owner-dependent relationship between the objects. Resources without an owner will be listed in the table as independent elements.
 
-For information about owners and dependents, see [the official documentation](https://kubernetes.io/docs/concepts/overview/working-with-objects/owners-dependents/).
+For information about owners and dependents, see [Kubernetes documentation](https://kubernetes.io/docs/concepts/overview/working-with-objects/owners-dependents/).
 
 Here is an example of the expanded index table showing one of the owner resources and its dependents.
 
