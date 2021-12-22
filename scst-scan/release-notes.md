@@ -31,7 +31,7 @@ configured. The `.status.conditions` output, however, correctly reflects `Sendin
 * **Scan Phase indicates `Scanning` incorrectly:**
 Scans have an edge case where, when an error has occurred during scanning, the Scan Phase field does
 not get updated to `Error` and instead remains in the `Scanning` phase.
-Read the scan Pod logs to verify that there was an error.
+Read the scan Pod logs to verify there was an error.
 
 
 ### Known limitations with Grype scanner
