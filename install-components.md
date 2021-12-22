@@ -192,6 +192,11 @@ To install Cloud Native Runtimes:
         option. This option reduces resource requirements by using a HostPort service instead of a
         LoadBalancer and reduces the number of replicas.
 
+        Cloud Native Runtimes reuses the existing `tanzu-system-ingress` Contour installation for
+        external and internal access when installed in the `dev` or `full` profile.
+        If you want to use a separate Contour installation for system-internal traffic, set
+        `cnrs.ingress.internal.namespace` to the empty string (`""`).
+
         For more information about using Cloud Native Runtimes with kind, see the
         [Cloud Native Runtimes documentation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-local-dns.html#config-cluster).
         If you are running on a multi-node cluster, do not set `provider`.
