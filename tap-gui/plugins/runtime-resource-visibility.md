@@ -5,6 +5,22 @@ The Runtime Resources Visibility tab shows developers the details and status of 
 
 ## Before you begin
 
+To ensure that your component and its resources will be displayed here you need:
+
+1. A YAML file describing your component.
+2. All resources created for your application specify a label `'app.kubernetes.io/part-of'` with your application's name.
+
+Following you can see the alternatives to generate the required files.
+
+### Automated options
+
+We offer two options to speed up the process of seeing your application's resources:
+
+1. [Tanzu Developer Tools for Visual Studio Code](../../vscode-extension/about.md): can be used to automate the creation of the component's YAML and its resources; for information about the YAML files, see: [Get set up with Snippets](../../vscode-extension/usage-getting-started.md)
+2. Use [Application Accelerator](application-accelerator.md): you can use **TAP Initializer** to generate the required files. 
+
+### Manual process
+
 Developers must perform the following actions to see their resources on the dashboard:
 
 1. Define a Backstage Component with a `backstage.io/kubernetes-label-selector` annotation. See
@@ -55,6 +71,10 @@ Developers must perform the following actions to see their resources on the dash
               - image: springcommunity/spring-framework-petclinic
       EOF
       ```
+   
+
+
+usage-getting-started.md#snippets-workload
 
 ## Navigate to the Runtime Resources Visibility screen
 
@@ -75,7 +95,7 @@ To view the list of your running resources:
 
 The Resources index table will show Deployments, Pods, ReplicaSets and Services that match with the label indicated in the component's definition; you will see a hierarchical structure showing the owner-dependent relationship between the objects. Resources without an owner will be listed in the table as independent elements.
 
-For information about owners and dependents, see [the official documentation](https://kubernetes.io/docs/concepts/overview/working-with-objects/owners-dependents/).
+For information about owners and dependents, see [Kubernetes documentation](https://kubernetes.io/docs/concepts/overview/working-with-objects/owners-dependents/).
 
 Here is an example of the expanded index table showing one of the owner resources and its dependents.
 
