@@ -498,8 +498,6 @@ The `server.yaml` defines the Kubernetes components that makes up the convention
             namespace: awesome-convention
     ```
 
-+ **_Optional:_** Only needed if a self-signed certificate is used. Otherwise, check the cert-manager documentation.
-
 ## Deploy a convention server
 
 To deploy a convention server:
