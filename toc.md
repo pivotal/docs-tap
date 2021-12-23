@@ -126,7 +126,7 @@ This is the table of contents from which the Tanzu Application Platform Document
         - [Security](scst-store/security.md)
     - [Tanzu Developer Tools for VSCode](vscode-extension/about.md)
       - [Release Notes for Tanzu Dev Tools for VSCode](vscode-extension/release-notes.md)
-      - [Install the VSCode Tanzu Extension](vscode-extension/install.md)
+      - [Installing the VSCode Tanzu Extension](vscode-extension/install.md)
       - [Using Tanzu Dev Tools to Get Started](vscode-extension/usage-getting-started.md)
       - [Using Tanzu Dev Tools to Iterate on your Workload](vscode-extension/usage-iterating-on-app.md)
     - [Tanzu Application Platform GUI](tap-gui/about.md)
