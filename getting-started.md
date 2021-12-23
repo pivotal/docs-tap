@@ -133,9 +133,9 @@ Workload Knative Services URL at the bottom of the command output.
 
 To see this application in your organization catalog, you must register new entities as described below:
 
-1. Confirm you have installed the Blank Software Catalog (see [Configure the Tanzu Application Platform GUI](install.md#configure-tap-gui) for instructions).
+1. Confirm you have installed the Blank Software Catalog. For instructions, see [Configure the Tanzu Application Platform GUI](install.md#configure-tap-gui).
 
-    >**Note:** In Tanzu Application Platform beta 5, you must add a line to the `catalog-info.yaml` of the `tanzu-java-web-app` component.
+    >**Note:** In Tanzu Application Platform v1.0, you must add a line to the `catalog-info.yaml` of the `tanzu-java-web-app` component.
     In the following example, the added line is the `spec.system: tanzu-java-web-app` statement.
 
     ```
@@ -173,15 +173,16 @@ To see this application in your organization catalog, you must register new enti
 
     ![Review the entities to be added to the catalog](images/getting-started-tap-gui-7.png)
 
-5. Navigate back to the homepage, and the catalog changes and entries will be visible for further inspection.
+5. Navigate back to the homepage. The catalog changes and entries will be visible for further inspection.
 
 ### <a id='iterate'></a>Iterate on your application
+
 Now that you have a skeleton workload working, you are ready to iterate on your application
 and test code changes on the cluster.
-Tanzu Developer Tools for VSCode, VMware Tanzu’s official IDE extension for VSCode,
-helps you develop & receive fast feedback on your workloads running on the Tanzu Application Platform.
+Tanzu Developer Tools for Visual Studio Code, VMware Tanzu’s official IDE extension for VSCode,
+helps you develop and receive fast feedback on your workloads running on the Tanzu Application Platform.
 
-The VSCode extension enables live updates of your application while running on the cluster,
+The VSCode extension enables live updates of your application while running on the cluster
 and allows you to debug your application directly on the cluster.
 For information about installing the pre-requisites and the Tanzu Developer Tools extension, see
 [Install Tanzu Dev Tools for VSCode](vscode-extension/install.md).
@@ -193,7 +194,7 @@ For information about installing the pre-requisites and the Tanzu Developer Tool
 
 2. To ensure your extension assists you with iterating on the correct project, configure its settings using the following instructions:
 
- 	* Within VSCode, go to Preferences > Settings > Extensions > Tanzu.
+ 	* Within Visual Studio Code, go to Preferences > Settings > Extensions > Tanzu.
  	* In the **Local Path** field, provide the path to the directory containing the Tanzu Java Web App.
  	* In the **Source Image** field, provide the destination image repository to publish an image containing your workload source code.
 	For example, `gcr.io/myteam/tanzu-java-web-app-source`.
@@ -202,9 +203,10 @@ You are now ready to iterate on your application.
 
 
 #### Live update your application
-1. In VSCode, navigate to `Preferences` > `Settings` > `Extensions` > `Tanzu`.
 
-1. In the **Local Path** field, enter the path to the directory containing the Tanzu Java Web App. Defaults to current directory.
+1. In Visual Studio Code, navigate to `Preferences` > `Settings` > `Extensions` > `Tanzu`.
+
+1. In the **Local Path** field, enter the path to the directory containing the Tanzu Java Web App. It defaults to current directory.
 
 1. In the **Source Image** field, enter the destination image repository where
 you’d like to publish an image containing your workload source code.
@@ -235,7 +237,7 @@ You can view output from Tanzu Application Platform and from Tilt indicating tha
 
       >Just follow the instructions and add the line "allow_k8s_contexts('cluster-name')" to your `Tiltfile`.
 
-1. Once you see the Live Update status in the status bar, resolve to "Live Update Started", navigate to `http://localhost:8080` in your browser, and view your running workload.
+1. Once you see the Live Update status in the status bar, resolve to "Live Update Started", navigate to `http://localhost:8080` in your browser, and view your running application.
 1. Return to the IDE and make a change to the source code. For example, in `HelloController.java`, modify the string returned to say `Hello!` and save.
 1. Once the logs stop streaming, the container is updated. Navigate to your browser and refresh the page.
 1. View the changes to your workload running on the cluster.
