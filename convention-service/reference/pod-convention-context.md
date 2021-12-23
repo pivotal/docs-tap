@@ -5,12 +5,13 @@ The pod convention context is the body of the webhook request and response. The 
 The context is a wrapper of the individual object description in an API (TypeMeta), the persistent metadata of a resource ([ObjectMeta](https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/object-meta/#ObjectMeta)), the [`PodConventionContextSpec`](pod-convention-context-spec.md) and the [`PodConventionContextStatus`](pod-convention-context-status.md).
 
 In the `PodConventionContext` API resource:
-* Object path `.spec.template` field defines the [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) to be enriched by conventions.
-* Object path `.spec.imageConfig[]` field defines [ImageConfig](image-config.md). Each entry of it is populated with the name of the image(`.spec.imageConfig[].image`) and its OCI metadata (`.spec.imageConfig[].config`). These entries are generated for each image referenced in [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) (`.spec.template`).
+
+- Object path `.spec.template` field defines the [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) to be enriched by conventions.
+- Object path `.spec.imageConfig[]` field defines [ImageConfig](image-config.md). Each entry of it is populated with the name of the image(`.spec.imageConfig[].image`) and its OCI metadata (`.spec.imageConfig[].config`). These entries are generated for each image referenced in [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) (`.spec.template`).
 
 The following is an example of a `PodConventionContext` resource request received by the convention server. This resource is generated for a [Go language-based application image](https://github.com/paketo-buildpacks/samples/tree/main/go/mod). It is built with Cloud Native Paketo Buildpacks that use Go mod for dependency management.
 
-```yaml
+```
 ---
 apiVersion: webhooks.conventions.apps.tanzu.vmware.com/v1alpha1
 kind: PodConventionContext
@@ -34,7 +35,7 @@ spec: # the request
         "io.buildpacks.stack.id": "io.buildpacks.stacks.bionic"
         "io.buildpacks.stack.maintainer": "Paketo Buildpacks"
         "io.buildpacks.stack.distro.name": "Ubuntu"
-        "io.buildpacks.stack.metadata": `{"app":[{"sha":"sha256:ea4ec23266a3af1204fd643de0f3572dd8dbb5697a5ef15bdae844777c19bf8f"}], 
+        "io.buildpacks.stack.metadata": `{"app":[{"sha":"sha256:ea4ec23266a3af1204fd643de0f3572dd8dbb5697a5ef15bdae844777c19bf8f"}],
         "buildpacks":[{"key":"paketo-buildpac`...,
         "io.buildpacks.build.metadata": `{"bom":[{"name":"go","metadata":{"licenses":[],"name":"Go","sha256":"7fef8ba6a0786143efcce66b0bbfbfbab02afeef522b4e09833c5b550d7`...
   template:
@@ -44,10 +45,12 @@ spec: # the request
         image: helloworld-go-mod
 ```
 
-## PodConventionContext Structure 
+## PodConventionContext Structure
 
-Let's expand more on the image config present in `PodConventionContext`. The convention-controller passes along this information for each image in good faith, the controller is not the source of the metadata and there is no guarantee that the information is correct.
+This section introduces more information about the image config in `PodConventionContext`.
+The convention-controller passes this information for each image in good faith.
+The controller is not the source of the metadata and there is no guarantee that the information is correct.
 
-The `config` field in the image config passes through the [OCI Image metadata](https://github.com/opencontainers/image-spec/blob/master/config.md) loaded from the registry for the image.
+The `config` field in the image config passes through the [OCI Image metadata in GitHub](https://github.com/opencontainers/image-spec/blob/master/config.md) loaded from the registry for the image.
 
-The `boms` field in the image config passes through the [`BOM`](bom.md)s of the image. Conventions may parse the BOMs they want to inspect. There is no guarantee that an image will contain a BOM or that the BOM will be in a certain format.
+The `boms` field in the image config passes through the [`BOM`](bom.md)s of the image. Conventions might parse the BOMs they want to inspect. There is no guarantee that an image contains a BOM or that the BOM is in a certain format.
