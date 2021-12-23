@@ -1,4 +1,4 @@
-# Troubleshooting
+# Troubleshooting Convention Services
 
 ## <a id="no-server-in-cluster"></a>No server in the cluster
 
@@ -32,7 +32,9 @@ Deploy a `convention server` ([ClusterPodConvention](reference/cluster-pod-conve
 
 ### Solution
 
-Ensure that the `convention server` ([ClusterPodConvention](reference/cluster-pod-convention.md)) is configured with the correct certificates. To do so, verify the value of annotation `conventions.apps.tanzu.vmware.com/inject-ca-from` which must be set to the used *Certificate*, Do not set annotation `conventions.apps.tanzu.vmware.com/inject-ca-from` if no certificate is used.
+Ensure that the `convention server` ([ClusterPodConvention](reference/cluster-pod-convention.md)) is configured with the correct certificates. To do so, verify the value of annotation `conventions.apps.tanzu.vmware.com/inject-ca-from` which must be set to the used *Certificate*.
+
+>**Note:** Do not set annotation `conventions.apps.tanzu.vmware.com/inject-ca-from` if no certificate is used.
 
 ## <a id="server-fails"></a>Server fails when processing a request
 
@@ -92,6 +94,7 @@ An unmanaged error occurs in the `convention server` when processing a request.
     ```
 
     Where:
+    
     + The convention server was deployed as a `Deployment`
     + `webhook-594d75d69b-4w4s8` is the name of the `convention server` pod.
     + `convention-template` is the namespace where the convention server is deployed.
