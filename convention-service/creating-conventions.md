@@ -357,7 +357,7 @@ The `server.yaml` defines the Kubernetes components that makes up the convention
     ...
     ```
 
-2. A certificate manager `Issuer` is created (for more information, see the [cert-manager documentation](https://cert-manager.io/docs/concepts/issuer/)) to issue the certificate needed for TLS communication (optional):
+2. (Optional) A certificate manager `Issuer` is created (for more information, see the [cert-manager documentation](https://cert-manager.io/docs/concepts/issuer/)) to issue the certificate needed for TLS communication:
 
     ```
     ...
@@ -375,7 +375,7 @@ The `server.yaml` defines the Kubernetes components that makes up the convention
     ...
     ```
 
-3. A self-signed [`Certificate`](https://cert-manager.io/docs/concepts/certificate/) is created (optional):
+3. (Optional) A self-signed [`Certificate`](https://cert-manager.io/docs/concepts/certificate/) is created:
 
     ```
     ...
@@ -498,7 +498,7 @@ The `server.yaml` defines the Kubernetes components that makes up the convention
             namespace: awesome-convention
     ```
 
-+ **_Optional_**: Only needed if a self-signed certificate is used. Otherwise, check the cert-manager documentation.
++ **_Optional:_** Only needed if a self-signed certificate is used. Otherwise, check the cert-manager documentation.
 
 ## Deploy a convention server
 
