@@ -2,9 +2,10 @@
 
 This topic will help you update the configuration of an existing workload.
 
-To export the current configuration, run 'tanzu apps workload export NAME'.
+To export the current configuration, run `tanzu apps workload export NAME`.
 
 Workload configuration options include:
+
 - source code to build
 - runtime resource limits
 - environment variables
