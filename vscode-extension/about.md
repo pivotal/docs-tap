@@ -1,12 +1,4 @@
----
-title: Tanzu Developer Tools for VSCode
-subtitle: About Tanzu Developer Tools for VSCode
-weight: 1
----
-
 # VMware Tanzu Developer Tools for Visual Studio Code
-
-## Overview
 
 Tanzu Developer Tools for VSCode is VMware Tanzu’s official IDE extension for VSCode to help you develop with the Tanzu Application Platform (TAP). The Tanzu Dev Tools extension enables you to rapidly iterate on your workloads on supported Kubernetes clusters with TAP installed.
 

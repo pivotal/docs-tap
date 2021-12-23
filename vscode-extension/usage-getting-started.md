@@ -1,13 +1,7 @@
----
-title: Using Tanzu Dev Tools to get started
-subtitle: Using Tanzu Dev Tools to get started
-weight: 2
----
+# Using Tanzu Dev Tools to get started
 
 This topic explains how to use the VMware Tanzu Developer Tools for Visual Studio Code.
 For a more detailed step-by-step walk-through, see [Getting Started instructions](../getting-started.md).
-
-# Usage - get started
 
 ## <a id='snippets'></a>Get set up with snippets
 

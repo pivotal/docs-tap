@@ -1,10 +1,4 @@
----
-title: Using Tanzu Dev Tools to Iterate on your Workload
-subtitle: Using Tanzu Dev Tools to Iterate on your Workload
-weight: 2
----
-
-# Usage - Iterate on your workload
+# Using Tanzu Dev Tools to Iterate on your Workload
 
 > **Note:** The Tanzu Developer Tools extension requires only one Tiltfile and workload.yaml per project.
   These must be single-document YAML files rather than multi-document YAML files.

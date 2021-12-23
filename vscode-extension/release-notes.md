@@ -1,10 +1,4 @@
----
-title: Release Notes for Tanzu Dev Tools for VSCode
-subtitle: Release Notes for Tanzu Dev Tools for VSCode
-weight: 2
----
-
-# Release notes
+# Release notes for Tanzu Dev Tools for VSCode
 
 This topic contains release notes for the VMWare Tanzu Developer Tools for Visual Studio Code extension.
 
