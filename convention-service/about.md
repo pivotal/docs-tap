@@ -100,6 +100,6 @@ For example:
   ...
   ```
 
-  ## Troubleshooting
+## Troubleshooting
 
-For basic troubleshooting Convention Controller, please see the troubleshooting guide [here](troubleshooting.md).
+To troubleshoot Convention Controller, see [troubleshooting](troubleshooting.md).
