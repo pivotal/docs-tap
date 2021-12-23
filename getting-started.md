@@ -135,7 +135,7 @@ To see this application in your organization catalog, you must register new enti
 
 1. Confirm you have installed the Blank Software Catalog. For instructions, see [Configure the Tanzu Application Platform GUI](install.md#configure-tap-gui).
 
-    >**Note:** In Tanzu Application Platform v1.0, you must add a line to the `catalog-info.yaml` of the `tanzu-java-web-app` component.
+    >**Note:** In Tanzu Application Platform v0.5, you must add a line to the `catalog-info.yaml` of the `tanzu-java-web-app` component.
     In the following example, the added line is the `spec.system: tanzu-java-web-app` statement.
 
     ```
