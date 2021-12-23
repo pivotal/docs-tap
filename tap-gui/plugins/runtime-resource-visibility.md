@@ -10,69 +10,65 @@ To ensure that your component and its resources are displayed, you need:
 - A YAML file describing your component.
 - All resources created for your application must specify a label `'app.kubernetes.io/part-of'` with your application's name.
 
-###  <a id="automated-options"></a>Automated options
+Developers must follow this instructions in order to see their resources on the dashboard:
 
-We offer two options to speed up the process of displaying your application's resources:
+1. Define a Backstage Component with a `backstage.io/kubernetes-label-selector` annotation. See
+   [Components](../catalog/catalog-operations.md#components) in the Catalog Operations documentation.
 
-- You can use [Tanzu Developer Tools for Visual Studio Code](../../vscode-extension/about.md) to automate the creation of the component's YAML and its resources. For information about the YAML files, see [Get set up with snippets](../../vscode-extension/usage-getting-started.md).
-- Use [Application Accelerator](application-accelerator.md). You can use **TAP Initializer** to generate the required files. You can access it through the Tanzu Application Platform GUI by using `<TAP-GUI-URL>/create/templates/tap-initialize`.
-
-### <a id="manual-process"></a>Manual process
-
-Developers must perform the following actions to see their resources on the dashboard:
-
-1. Define a Backstage component with a `backstage.io/kubernetes-label-selector` annotation. See
-  [Components](../catalog/catalog-operations.md#components) in the Catalog Operations documentation.
-
-    ```
-    apiVersion: backstage.io/v1alpha1
-    kind: Component
-    metadata:
-      name: petclinic
-      description: Spring PetClinic
-      annotations:
-        'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=petclinic-server'
-    spec:
-      type: service
-      lifecycle: demo
-      owner: default-team
-      system:
-    ```
+   You can use a tool to create this file, or you can do it manually:
+   1. [Tanzu Developer Tools for Visual Studio Code](../../vscode-extension/about.md): can be used to generate the component's YAML; for information about this file, see: [catalog-info.yaml](../../vscode-extension/usage-getting-started.md#catalog-infoyaml)
+   2. Use [Application Accelerator](application-accelerator.md). You can use **[TAP Initializer](https://github.com/sample-accelerators/tap-initialize/blob/main/README.md)** to generate the required file; for this step the file is `catalog-info.yaml`. You can access it through the TAP GUI by using `<TAP-GUI-URL>/create/templates/tap-initialize`.
+   3. Create the file using your preferred IDE:
+       ```
+        apiVersion: backstage.io/v1alpha1
+        kind: Component
+        metadata:
+          name: petclinic
+          description: Spring PetClinic
+          annotations:
+            'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=petclinic-server'
+        spec:
+          type: service
+          lifecycle: demo
+          owner: default-team
+          system:
+        ```
 
 2. Commit and push the component definition, created in the previous steps, to a Git repository that is registered as a Catalog Location. See [Adding
-  Catalog Entities](../catalog/catalog-operations.md#adding-catalog-entities) in the Catalog Operations documentation.
+   Catalog Entities](../catalog/catalog-operations.md#adding-catalog-entities) in the Catalog Operations documentation.
 3. Create a Kubernetes resource with a label matching the component's selector in a cluster available to Tanzu Application Platform GUI. A resource is one of the following:
 
-    - `v1/Service`
-    - `apps/v1/Deployment`
-    - `serving.knative.dev/v1/Service`
+   - `v1/Service`
+   - `apps/v1/Deployment`
+   - `serving.knative.dev/v1/Service`
 
-    For example:
+   You can create the YAML file with the workload's definition using one of these options:
+   1. [Tanzu Developer Tools for Visual Studio Code](../../vscode-extension/about.md): can be used to generate the workload's definition YAML; for information about this file, see: [workload.yaml](../../vscode-extension/usage-getting-started.md#a-idsnippets-workloada-workloadyaml)
+   2. Use [Application Accelerator](application-accelerator.md): you can use **[TAP Initializer](https://github.com/sample-accelerators/tap-initialize/blob/main/README.md)** to generate the required file; for this step the file is `workload.yaml`. You can access it through the TAP GUI by using `<TAP-GUI-URL>/create/templates/tap-initialize`.
+   3. Create the file manually with your preferred IDE:
 
-      ```
-      $ cat <<EOF | kubectl apply -f -
-      ---
-      apiVersion: serving.knative.dev/v1
-      kind: Service
-      metadata:
-        name: petclinic
-        namespace: default
-        labels:
-          'app.kubernetes.io/part-of': petclinic-server
-      spec:
-        template:
-          metadata:
-            labels:
-              'app.kubernetes.io/part-of': petclinic-server
-          spec:
-            containers:
-              - image: springcommunity/spring-framework-petclinic
-      EOF
-      ```
-   
+      For example:
 
-
-
+         ```
+         $ cat <<EOF | kubectl apply -f -
+         ---
+         apiVersion: serving.knative.dev/v1
+         kind: Service
+         metadata:
+           name: petclinic
+           namespace: default
+           labels:
+             'app.kubernetes.io/part-of': petclinic-server
+         spec:
+           template:
+             metadata:
+               labels:
+                 'app.kubernetes.io/part-of': petclinic-server
+             spec:
+               containers:
+                 - image: springcommunity/spring-framework-petclinic
+         EOF
+         ```
 
 ## <a id="navigate-runtime-resources-visibility"></a>Navigate to the Runtime Resources visibility screen
 
