@@ -379,7 +379,7 @@ ootb_supply_chain_basic:
   registry:
     server: "SERVER-NAME"
     repository: "REPO-NAME"
-  git_ops:
+  gitops:
     ssh_secret: ""
 
 learningcenter:
@@ -461,7 +461,7 @@ ootb_supply_chain_basic:
   registry:
     server: "SERVER-NAME"
     repository: "REPO-NAME"
-  git_ops:
+  gitops:
     ssh_secret: ""
 
 tap_gui:
