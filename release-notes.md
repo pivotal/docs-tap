@@ -8,12 +8,10 @@ This topic contains release notes for Tanzu Application Platform v1.0.
 
 ### Features
 
-**Updated Components**
-
-The following components have been updated in Tanzu Application Platform v1.0:
-
-- Supply Chain Security Tools
-    - **Sign v1.0.0-beta.4:** For more information, see the [Supply Chain Security Tools - Sign release notes](scst-sign/release-notes.md).
+This release has the following new features:
+- Supply Chain Security Tools – Scan
+  - Enhanced scanning coverage is available for Node.js apps
+  - CA certificates are automatically imported from the Metadata Store namespace
 
 ### Known issues
 
@@ -26,10 +24,29 @@ This release has the following issues:
 - **Supply Chain Choreographer:** Deployment from a public Git repository might require a Git SSH secret. Workaround is to configure SSH access for the public Git repository.
 
 - **Supply Chain Security Tools - Sign:** If all webhook nodes or Pods are evicted by the cluster or scaled down, the admission policy blocks any Pods from being created in the cluster. To resolve the issue, delete the MutatingWebhookConfiguration and reapply it when the cluster is stable. For more information, see [Supply Chain Security Tools - Sign known issues](scst-sign/known_issues.md).
-- **Tanzu CLI:**
-- **`tanzu apps workload get`:** Passing in `--output json` along with and the `--export` flag returns yaml rather than json. Support for honoring the `--output json` with `--export` will be added in the next release.
-- **`tanzu apps workload create/update/apply`:** `--image` is not supported by the default supply chain in Tanzu Application Platform Beta 3 release. `--wait` functions as expected when a workload is created for the first time but may return prematurely on subsequent updates when passed with `workload update/apply` for existing workloads. When the `--wait` flag is included and you decline the "Do you want to create this workload?" prompt, the command continues to wait and must be cancelled manually.
 
+- **Tanzu CLI:**
+  - **`tanzu apps workload get`:** Passing in `--output json` along with and the `--export` flag returns yaml rather than json. Support for honoring the `--output json` with `--export` will be added in the next release.
+  - **`tanzu apps workload create/update/apply`:** `--image` is not supported by the default supply chain in Tanzu Application Platform Beta 3 release. `--wait` functions as expected when a workload is created for the first time but may return prematurely on subsequent updates when passed with `workload update/apply` for existing workloads. When the `--wait` flag is included and you decline the "Do you want to create this workload?" prompt, the command continues to wait and must be cancelled manually.
+  
+- **Supply Chain Security Tools – Scan:**
+  - **Failing Blob source scans:** Blob Source Scans have an edge case where, when a compressed file without a `.git` directory is provided, sending results to the Supply Chain Security Tools - Store fails and the scanned revision value is not set. The current workaround is to add the `.git` directory to the compressed file.
+  - **Events show `SaveScanResultsSuccess` incorrectly:** `SaveScanResultsSuccess` appears in the events when the Supply Chain Security Tools - Store is not configured. The `.status.conditions` output, however, correctly reflects `SendingResults=False`.
+  - **Scan Phase indicates `Scanning` incorrectly:** Scans have an edge case where, when an error has occurred during scanning, the Scan Phase field does not get updated to `Error` and instead remains in the `Scanning` phase. Read the scan Pod logs to verify there was an error.
+  - **CVE print columns are not getting populated:** After running a scan and using `kubectl get` on the scan, the CVE print columns (CRITICAL, HIGH, MEDIUM, LOW, UNKNOWN, CVETOTAL) are not getting populated.
+
+- **Grype scanner:**
+  - **Scanning Java source code may not reveal vulnerabilities:** Source Code Scanning only scans files present in the source code repository. 
+  No network calls are made to fetch dependencies.
+
+  For languages that make use of dependency lock files, such as Golang and Node.js, Grype uses the lock
+  files to check the dependencies for vulnerabilities.
+  In the case of Java, dependency lock files are not guaranteed, so Grype instead uses the dependencies
+  present in the built binaries (`.jar` or `.war` files).
+
+  Because best practices do not include committing binaries to source code repositories, Grype fails to
+  find vulnerabilities during a Source Scan. The vulnerabilities are still found during the Image Scan,
+  after the binaries are built and packaged as images.
 ### Security issues
 
 This release has the following security issues:
