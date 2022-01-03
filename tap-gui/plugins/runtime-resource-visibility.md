@@ -5,20 +5,22 @@ The Runtime Resources tab shows developers the details and status of their compo
 
 ## <a id="before-begin"></a>Before you begin
 
-To ensure that your component and its resources are displayed, you need:
+To ensure your component and its resources are displayed, you need:
 
 - A YAML file describing your component.
 - All resources created for your application must specify a label `'app.kubernetes.io/part-of'` with your application's name.
 
-Developers must follow this instructions in order to see their resources on the dashboard:
+Developers must follow these instructions to see their resources on the dashboard:
 
-1. Define a Backstage Component with a `backstage.io/kubernetes-label-selector` annotation. See
-   [Components](../catalog/catalog-operations.md#components) in the Catalog Operations documentation.
+1. Define a Backstage component with a `backstage.io/kubernetes-label-selector` annotation. See
+   [Components](../catalog/catalog-operations.md#components) in the Catalog operations documentation.
 
    You can use a tool to create this file, or you can do it manually:
-   1. [Tanzu Developer Tools for Visual Studio Code](../../vscode-extension/about.md): can be used to generate the component's YAML; for information about this file, see: [catalog-info.yaml](../../vscode-extension/usage-getting-started.md#catalog-infoyaml)
-   2. Use [Application Accelerator](application-accelerator.md). You can use **[TAP Initializer](https://github.com/sample-accelerators/tap-initialize/blob/main/README.md)** to generate the required file; for this step the file is `catalog-info.yaml`. You can access it through the TAP GUI by using `<TAP-GUI-URL>/create/templates/tap-initialize`.
-   3. Create the file using your preferred IDE:
+
+   - Use [Tanzu Developer Tools for Visual Studio Code](../../vscode-extension/about.md) to generate the component's YAML. For information about this file, see [catalog-info.yaml](../../vscode-extension/usage-getting-started.md#catalog-infoyaml).
+   - Use [Application Accelerator](application-accelerator.md). You can use [Tanzu Application Platform Initializer](https://github.com/sample-accelerators/tap-initialize/blob/main/README.md) to generate the required file; for this step, the file is `catalog-info.yaml`. You can access it through the Tanzu Application Platform GUI by using `<TAP-GUI-URL>/create/templates/tap-initialize`.
+   - Create the file using your preferred IDE. For example:
+
        ```
         apiVersion: backstage.io/v1alpha1
         kind: Component
@@ -34,20 +36,19 @@ Developers must follow this instructions in order to see their resources on the 
           system:
         ```
 
-2. Commit and push the component definition, created in the previous steps, to a Git repository that is registered as a Catalog Location. See [Adding
-   Catalog Entities](../catalog/catalog-operations.md#adding-catalog-entities) in the Catalog Operations documentation.
+2. Commit and push the component definition created in the previous steps, to a Git repository registered as a catalog location. See [Adding
+   catalog entities](../catalog/catalog-operations.md#adding-catalog-entities) in the Catalog operations documentation.
 3. Create a Kubernetes resource with a label matching the component's selector in a cluster available to Tanzu Application Platform GUI. A resource is one of the following:
 
    - `v1/Service`
    - `apps/v1/Deployment`
    - `serving.knative.dev/v1/Service`
 
-   You can create the YAML file with the workload's definition using one of these options:
-   1. [Tanzu Developer Tools for Visual Studio Code](../../vscode-extension/about.md): can be used to generate the workload's definition YAML; for information about this file, see: [workload.yaml](../../vscode-extension/usage-getting-started.md#a-idsnippets-workloada-workloadyaml)
-   2. Use [Application Accelerator](application-accelerator.md): you can use **[TAP Initializer](https://github.com/sample-accelerators/tap-initialize/blob/main/README.md)** to generate the required file; for this step the file is `workload.yaml`. You can access it through the TAP GUI by using `<TAP-GUI-URL>/create/templates/tap-initialize`.
-   3. Create the file manually with your preferred IDE:
+   You can create the YAML file with the workload's definition by using one of these options:
 
-      For example:
+   - Use [Tanzu Developer Tools for Visual Studio Code](../../vscode-extension/about.md)to generate the workload's definition YAML. For information about this file, see [workload.yaml](../../vscode-extension/usage-getting-started.md#a-idsnippets-workloada-workloadyaml).
+   - Use [Application Accelerator](application-accelerator.md). You can use [Tanzu Application Platform Initializer](https://github.com/sample-accelerators/tap-initialize/blob/main/README.md) to generate the required file; for this step, the file is `workload.yaml`. You can access it through the Tanzu Application Platform GUI by using `<TAP-GUI-URL>/create/templates/tap-initialize`.
+   - Create the file manually with your preferred IDE. For example:
 
          ```
          $ cat <<EOF | kubectl apply -f -
