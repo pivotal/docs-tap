@@ -13,9 +13,9 @@ The workload.yaml file provides instructions to the [Supply Chain Choreographer]
 
 It can be triggered by creating a new file of type "YAML" and typing the keywords `tanzu workload`.
 
->Note: If you would like to create your `workload.yaml` file manually, see the [manual configuration steps](#create-workload) below.
+> **Note:** If you would like to create your workload.yaml file manually, see the [manual configuration steps](#create-workload) below.
 
-### `catalog-info.yaml`
+### <a id='catalog-info.yaml'></a> catalog-info.yaml
 The catalog-info.yaml file enables the workload(s) created with this project to be visible in the [TAP GUI](../tap-gui/about.md).
 
 It can be triggered by creating a new file of type "YAML" and typing the keywords `tanzu catalog-info` or `component`.
@@ -26,7 +26,7 @@ The Tiltfile provides the configuration for Tilt to enable your project to live 
 
 It can be triggered by typing the keywords `Tiltfile` or `tanzu tiltfile`. This file should start as a plaintext file, *not* a YAML file.
 
->Note: If you would like to create your Tiltfile manually, see the [manual configuration steps](#create-tiltfile) below.
+> **Note:** If you would like to create your Tiltfile manually, see the [manual configuration steps](#create-tiltfile) below.
 
 ---
 

@@ -18,7 +18,7 @@ Developers must follow these instructions to see their resources on the dashboar
    You can use a tool to create this file, or you can do it manually:
 
    - Use [Tanzu Developer Tools for Visual Studio Code](../../vscode-extension/about.md) to generate the component's YAML. For information about this file, see [catalog-info.yaml](../../vscode-extension/usage-getting-started.md#catalog-infoyaml).
-   - Use [Application Accelerator](application-accelerator.md). You can use [Tanzu Application Platform Initializer](https://github.com/sample-accelerators/tap-initialize/blob/main/README.md) to generate the required file; for this step, the file is `catalog-info.yaml`. You can access it through the Tanzu Application Platform GUI by using `<TAP-GUI-URL>/create/templates/tap-initialize`.
+   - Use [Application Accelerator](application-accelerator.md). You can use [Tanzu Application Platform Initializer](https://github.com/sample-accelerators/tap-initialize/blob/main/README.md) to generate the required file. For this step, the file is `catalog-info.yaml`. You can access it through Tanzu Application Platform GUI by using `<TAP-GUI-URL>/create/templates/tap-initialize` in GitHub.
    - Create the file using your preferred IDE. For example:
 
        ```
@@ -46,8 +46,8 @@ Developers must follow these instructions to see their resources on the dashboar
 
    You can create the YAML file with the workload's definition by using one of these options:
 
-   - Use [Tanzu Developer Tools for Visual Studio Code](../../vscode-extension/about.md)to generate the workload's definition YAML. For information about this file, see [workload.yaml](../../vscode-extension/usage-getting-started.md#a-idsnippets-workloada-workloadyaml).
-   - Use [Application Accelerator](application-accelerator.md). You can use [Tanzu Application Platform Initializer](https://github.com/sample-accelerators/tap-initialize/blob/main/README.md) to generate the required file; for this step, the file is `workload.yaml`. You can access it through the Tanzu Application Platform GUI by using `<TAP-GUI-URL>/create/templates/tap-initialize`.
+   - Use [Tanzu Developer Tools for Visual Studio Code](../../vscode-extension/about.md)to generate the workload's definition YAML. For information about this file, see [workload.yaml](../../vscode-extension/usage-getting-started.md#snippets-workload).
+   - Use [Application Accelerator](application-accelerator.md). You can use [Tanzu Application Platform Initializer](https://github.com/sample-accelerators/tap-initialize/blob/main/README.md) to generate the required file. For this step, the file is `workload.yaml`. You can access it through Tanzu Application Platform GUI by using `<TAP-GUI-URL>/create/templates/tap-initialize` in GitHub.
    - Create the file manually with your preferred IDE. For example:
 
          ```
