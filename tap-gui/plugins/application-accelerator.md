@@ -26,11 +26,9 @@ This main page allows you to search and filter based on text and tags associated
 
 On the **Generate Accelerators** page, supply any configuration options needed to generate the project.
 The Application Architect will have defined these in the `accelerator.yaml` in the accelerator definition. Setting some options may
-cause others to appear that also need to be specified. If there are any errors on this page, for example, missing option values for required options, you'll get an error.
+cause others to appear that also need to be specified.
 
 ![Example configuration page for an accelerator.](./images/aa2_configuringAnAccelerator.png)
-
-Required fields are marked with an asterisk (*).
 
 ## Exploring a project during configuration
 
@@ -47,7 +45,7 @@ This page shows the values you have specified for the configurable options.
 
 ![Screenshot showing the configured project summary.](./images/aa4_configuredProjectSummary.png)
 
-You can return to customize options  by clicking **Back** if needed. Otherwise, you're ready to generate your accelerator.
+You can return to customize options by clicking **Back** if needed. Otherwise, you're ready to generate your accelerator.
 
 ## Creating the project
 
