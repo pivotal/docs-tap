@@ -71,6 +71,13 @@ The following components have separate release notes.
 | VMware Tanzu Build Service               | [Release notes](https://docs.vmware.com/en/Tanzu-Build-Service/1.3/vmware-tanzu-build-service-v13/GUID-release-notes.html) |
 | VMware Tanzu Developer Tools for Visual Studio Code | [Release notes](vscode-extension/release-notes.md) |
 
+### Bug fixes 
+
+This release has the following bug fixes:
+
+- **Tanzu Dev Tools for VSCode:**
+  - Fixed issue where the Tanzu Dev Tools extension could not support projects with multi-document YAML files
+  - Modified debug to remove any leftover port-forwards from past runs
 
 ## <a id='0-4-0'></a> v0.4.0 beta release
 
