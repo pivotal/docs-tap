@@ -56,6 +56,12 @@ This release has the following security issues:
   *  Using [Carvel tool's imgpkg](https://carvel.dev/imgpkg/) customers can create a dedicated OCI registry on their own infrastructure that can comply with any required security policies that may exist.
 * Security issue 2
 
+### Breaking changes
+
+This release has the following breaking changes:
+
+- **Supply Chain Security Tools - Store:** Changed package name to `metadata-store.apps.tanzu.vmware.com`.
+
 ### Component release notes
 
 The following components have separate release notes.
@@ -78,6 +84,8 @@ This release has the following bug fixes:
 - **Tanzu Dev Tools for VSCode:**
   - Fixed issue where the Tanzu Dev Tools extension could not support projects with multi-document YAML files
   - Modified debug to remove any leftover port-forwards from past runs
+- **Supply Chain Security Tools - Store:**  
+  - Upgrade golang version from `1.17.1` to `1.17.5`
 
 ## <a id='0-4-0'></a> v0.4.0 beta release
 
