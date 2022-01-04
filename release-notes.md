@@ -196,6 +196,10 @@ This release has the following bug fixes:
 
 New features and changes in this release:
 
+**Component: Supply Chain Security Tools – Scan**
+  - Enhanced scanning coverage is available for Node.js apps
+  - CA certificates are automatically imported from the Metadata Store namespace
+
 **Installation Profiles**
 
 The Full profile now includes Supply Chain Security Tools - Store.
@@ -328,7 +332,29 @@ For more information, see [Supply Chain Security Tools - Sign known issues](scst
     - `--image` is not supported by the default supply chain in Tanzu Application Platform Beta 3 release.
     - `--wait` functions as expected when a workload is created for the first time but may return prematurely on subsequent updates when passed with `workload update/apply` for existing workloads. 
       - When the `--wait` flag is included and you decline the "Do you want to create this workload?" prompt, the command continues to wait and must be cancelled manually.
-            
+- **Component: Supply Chain Security Tools – Scan**  
+  - **Failing Blob source scans:** Blob Source Scans have an edge case where, when a compressed file without a `.git` directory is
+  provided, sending results to the Supply Chain Security Tools - Store fails and the scanned revision
+  value is not set. The current workaround is to add the `.git` directory to the compressed file.
+  - **Events show `SaveScanResultsSuccess` incorrectly:** `SaveScanResultsSuccess` appears in the events when the Supply Chain Security Tools - Store is not
+  configured. The `.status.conditions` output, however, correctly reflects `SendingResults=False`.
+  - **Scan Phase indicates `Scanning` incorrectly:** Scans have an edge case where, when an error has occurred during scanning, the Scan Phase field does
+  not get updated to `Error` and instead remains in the `Scanning` phase.
+  Read the scan Pod logs to verify that there was an error.
+  
+  
+### Known limitations with Grype scanner
+- **Component: Supply Chain Security Tools – Scan** 
+  - Scanning Java source code may not reveal vulnerabilities:
+    - Source Code Scanning only scans files present in the source code repository. No network calls are made to fetch dependencies.
+    - For languages that make use of dependency lock files, such as Golang and Node.js, Grype uses the lock
+    files to check the dependencies for vulnerabilities.
+    In the case of Java, dependency lock files are not guaranteed, so Grype instead uses the dependencies
+    present in the built binaries (`.jar` or `.war` files).
+    - Because best practices do not include committing binaries to source code repositories, Grype fails to
+    find vulnerabilities during a Source Scan. The vulnerabilities are still found during the Image Scan,
+    after the binaries are built and packaged as images.  
+              
 ## <a id='0-3-0'></a> v0.3.0 beta release
 
 **Release Date**: November 8, 2021
