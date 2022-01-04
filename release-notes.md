@@ -390,7 +390,6 @@ The following components have been updated in Tanzu Application Platform v0.3.0:
 
 This release has the following issues:
 
-
 - **Image Policy Webhook:** If all webhook nodes or Pods are evicted by the cluster or scaled down, the admission policy blocks any Pods from being created in the cluster. To resolve the issue, the administrator needs to kubectl delete the Image Policy Webhook and reapply it once the cluster is stable.
 - When you use the `Tanzu Developer Tools for VSCode` extension, delete the workload before performing any of the following actions. This will avoid workload update errors.
     - Switching between the `Live Update` & `Debug` capabilities
@@ -404,7 +403,13 @@ This release has the following issues:
 - Tanzu App CLI Plugin:
   - *`tanzu apps workload get`*: passing in `--output json` along with and the `--export` flag will return YAML rather than JSON (support for honoring the `--output json` in conjunction with `--export` will be added in the next release).
   - *`tanzu apps workload create/update/apply`*: when the `--wait` flag has been included and the "Do you want to create this workload?" prompt is declined, the command continues to wait rather exit
-
+- **Component: Tanzu CLI apps plugin**
+  - **`tanzu apps workload get`**
+    - Passing in `--output json` along with and the `--export` flag returns yaml rather than json. Support for honoring the `--output json` with `--export` will be added in the next release.
+  - **`tanzu apps workload create/update/apply`**
+    - `--image` is not supported by the default supply chain in Tanzu Application Platform Beta 3 release.
+    - `--wait` functions as expected when a workload is created for the first time but may return prematurely on subsequent updates when passed with `workload update/apply` for existing workloads. 
+      - When the `--wait` flag is included and you decline the "Do you want to create this workload?" prompt, the command continues to wait and must be cancelled manually.
 
 ### Security issues
 
