@@ -327,33 +327,40 @@ have minimal scope within the registry.
 
 ### New features
 
-The following components are new in Tanzu Application Platform v0.2.0:
-
-Tanzu Packages:
-
-- Supply Chain Choreographer for VMware Tanzu
-  - Cartographer v0.0.6
-  - Default Supply Chain v0.2.0
-  - Default Supply Chain with Testing v0.2.0
-- Supply Chain Security Tools for VMware Tanzu
-  - Scan v1.0.0-beta
-  - Image Policy Webhook v1.0.0-beta.0
-  - Store v1.0.0-beta.0
-- Convention Service for VMware Tanzu
-  - Conventions Controller v0.4.2
-  - Image Source Controller v0.1.2
-  - Developer Conventions v0.2.0
-- API Portal for VMware Tanzu v1.0.2
-- Service Control Plane Toolkit v0.3.0
-- Service Bindings for Kubernetes v0.5.0
-- Tanzu Developer Tools for Visual Studio Code v0.2.0
-
-Tanzu CLI Plugins:
-
-- Tanzu Accelerator CLI Plugin v0.3.0
-- Tanzu App CLI Plugin v0.2.0
-- Tanzu ImagePullSecret CLI Plugin v0.5.0
-- Tanzu Package CLI Plugin v0.5.0
+This release has the following new features:
+- **Component: Supply Chain Security Tools - Store**
+  - Add logs to Images, Vulnerabilities, Sources, and Package endpoints
+  - Supporting AWS RDS
+  - Add default read-only clusterrole
+  - Manually update go dependencies
+  - Export CA Cert to a specified namespace. By default, the CA Cert will be exported to the default namespace `scan-link-system`
+  - `db_password` is generated with secretgen when not provided by user
+  - Support cyclonedx 1.3
+- **Component: Tanzu Packages**
+  - Supply Chain Choreographer for VMware Tanzu
+    - Cartographer v0.0.6
+    - Default Supply Chain v0.2.0
+    - Default Supply Chain with Testing v0.2.0
+  - Supply Chain Security Tools for VMware Tanzu
+    - Scan v1.0.0-beta
+    - Image Policy Webhook v1.0.0-beta.0
+    - Store v1.0.0-beta.0
+  - Convention Service for VMware Tanzu
+    - Conventions Controller v0.4.2
+    - Image Source Controller v0.1.2
+    - Developer Conventions v0.2.0
+  - API Portal for VMware Tanzu v1.0.2
+  - Service Control Plane Toolkit v0.3.0
+  - Service Bindings for Kubernetes v0.5.0
+  - Tanzu Developer Tools for Visual Studio Code v0.2.0
+- **Component: Tanzu CLI Plugins**
+  - Tanzu Accelerator CLI Plugin v0.3.0
+  - Tanzu App CLI Plugin v0.2.0
+  - Tanzu ImagePullSecret CLI Plugin v0.5.0
+  - Tanzu Package CLI Plugin v0.5.0
+- **Component: Supply Chain Security Tools - Sign**
+  - Added configuration for ResourceQuotas. See `quota.pod_number`
+  - Number of replicas can be configured via `replicas` value
 
 The following components have been updated in Tanzu Application Platform v0.2.0
 
@@ -361,7 +368,6 @@ The following components have been updated in Tanzu Application Platform v0.2.0
 - [Cloud Native Runtimes v1.0.2](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-cnr-overview.html)
 - [Application Accelerator for VMware Tanzu v0.3.0](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/index.html)
 - [Application Live View for VMware Tanzu v0.2.0](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/0.2/docs/GUID-index.html)
-
 
 ### Known issues
 
@@ -374,14 +380,52 @@ This release has the following issues:
   delete the workload before performing any of the following actions. This will avoid workload update errors.
     - Switching between the `Live Update` & `Debug` capabilities
     - Disabling `Live Update` & re-starting `Live Update`
-
     You can do so by performing the following steps:
     1. Click the `Terminal` menu and select the `Run Task` option
     2. Type `tanzuWorkload delete` in the command palette that appears and hit enter
     3. View the Terminal tab to confirm that the Workload has been deleted
+- **Component: Supply Chain Security Tools - Sign**
+  - A grype scan has reported the following false positives:
+    - CVE-2015-5237 - This is a CVE on the C implementation of Protocol Buffers. We use the Golang version.
+    - CVE-2017-7297 - This is a CVE on Rancher Server which is not a dependency we include.
 
+### Breaking Changes
+
+- **Component: Supply Chain Security Tools - Store**
+  - (possibly breaking) `storageClassName` and `databaseRequestStorage` fields have been changed to `storage_class_name` and `database_request_storage` respectively. This change was made to keep the format of all available fields consistent with other available fields.
+  - (possibly breaking) Change output for unhappy paths to be more consistent. Empty results due to sources not existing when searching by package or source information now returns an empty array with a 200 response. Previously it would give an error JSON with a 404.
+
+### Bug Fixes
+
+- **Component: Supply Chain Security Tools - Store**
+  - Change DB and app service type
+  - Containers no longer need root user to run
+
+### Limitations
+
+- **Component: Supply Chain Security Tools - Store**
+  - Air gapped environments are not supported
+  
 ## <a id='0-1-0'></a> v0.1.0 beta release
 
 **Release Date**: September 1, 2021
 
-Initial release
+### Software component versions
+
+- PostgresSQL 13.4
+
+### New features
+This release has the following new features: 
+
+- **Component: Supply Chain Security Tools - Store**
+  - Added a /health endpoint and `insight health` command
+  - Upgraded to golang 1.17
+  - Added support for query parameters
+  - Updated repository parsing logic
+  - Squashed some minor bugs
+
+### Limitations
+This release has the following limitations:
+
+- **Component: Supply Chain Security Tools - Store**
+  - Air gapped environments are not supported
