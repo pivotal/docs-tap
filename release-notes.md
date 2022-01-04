@@ -17,7 +17,13 @@ This release has the following new features:
 
 This release has the following issues:
 
+<<<<<<< HEAD
 - **Component: Convention Service** Convention Service does not currently support self-signed certificates for integrating with a private registry. Support for self-signed certificates is planned for an upcoming release.
+=======
+- **Application Accelerator:** Build scripts provided as part of an accelerator do not have the execute bit set when a new project is generated from the accelerator. To resolve this issue, explicitly set the execute bit by using the "chmod" command: `chmod +x <build-script>`. For example, for a project generated from the "Spring PetClinic" accelerator, run: `chmod +x ./mvnw`.
+
+- **Convention Service:** Convention Service does not currently support self-signed certificates for integrating with a private registry. Support for self-signed certificates is planned for an upcoming release.
+>>>>>>> d89b317b6e5ce59dd7a268fefa5ceb1c483760ab
 
 - **Installing Tanzu Application Platform on Google Kubernetes Engine (GKE):** When installing Tanzu Application Platform on GKE, Kubernetes control plane can be unavailable for several minutes during the installation. Package installs can enter the `ReconcileFailed` state. When API server becomes available, packages try to reconcile to completion. This can happen on newly provisioned clusters which have not finished GKE API server autoscaling. When GKE scales up an API server, the current Tanzu Application install continues, and any subsequent installs succeed without interruption.
 
@@ -137,6 +143,13 @@ This release has the following issues:
       - Node pressure may be caused by not enough nodes or not enough resources on nodes
       for deploying the workloads you have. In this case, follow your cloud provider
       instructions on how to scale out or scale up your cluster.
+  
+- **Application Live View:**
+  The Live View section in Tanzu Application Platform GUI might show "No live information for pod with ID" after deploying Tanzu Application Platform workloads. Resolve this issue by recreating the Application Live View Connector pod. This allows the connector to discover the application instances and render the details in Tanzu Application Platform GUI. For example:
+
+  ```
+  kubectl -n app-live-view delete pods -l=name=application-live-view-connector
+  ```
 
 ### Security issues
 

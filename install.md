@@ -586,6 +586,8 @@ For instructions, see [Installing Tanzu Dev Tools for VSCode](vscode-extension/i
 
 ## <a id='configure-envoy-lb'></a> Configure LoadBalancer for Contour ingress
 
+This section only applies when you use Tanzu Application Platform to deploy its own shared Contour ingress controller in `tanzu-system-ingress`. It is not applicable when you use an existing ingress with the components. You can share this ingress across `cnrs`, `tap_gui`, and `learningcenter`.
+
 By default, Contour uses `NodePort` as the service type. To set the service type to `LoadBalancer`, add the following to your `tap-values.yml`:
 
 ```
