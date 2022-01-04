@@ -139,6 +139,12 @@ This release has the following issues:
       - Node pressure may be caused by not enough nodes or not enough resources on nodes
       for deploying the workloads you have. In this case, follow your cloud provider
       instructions on how to scale out or scale up your cluster.
+  
+- **Application Live View:**
+  Live View section in TAP GUI may show `No live information for pod with id` after deploying the TAP workloads. Workaround is to re-create the App Live View Connector pod so the connector can discover the application instance(s) and render the details in TAP GUI.
+  ```
+  kubectl -n app-live-view delete pods -l=name=application-live-view-connector
+  ```
 
 ### Security issues
 
