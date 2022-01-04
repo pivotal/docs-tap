@@ -436,7 +436,7 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
 service's External IP address.
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog that you've already built and posted on the Git infrastucture you specified in the Integration section.
 - `MY-DEV-NAMESPACE` is the namespace where you want the `ScanTemplates` to be deployed to. This is the namespace where the scanning feature is going to run.
-- `REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull the scanner image from the registry. If you follwoed step 3 at the beginning of the profile installation, the value you would use here is `tap-registry`. 
+- `REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull the scanner image from the registry. For example, based on step 3 of [Add the Tanzu Application Platform package repository](#add-package-repositories), the value is `tap-registry`. 
 
 >**Note:** Using the `tap-values.yaml` configuration,
 >`buildservice.enable_automatic_dependency_updates: false` can be used to pause the automatic update
