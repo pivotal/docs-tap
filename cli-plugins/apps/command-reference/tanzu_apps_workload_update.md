@@ -2,9 +2,10 @@
 
 This topic will help you update the configuration of an existing workload.
 
-To export the current configuration, run 'tanzu apps workload export NAME'.
+To export the current configuration, run `tanzu apps workload export NAME`.
 
 Workload configuration options include:
+
 - source code to build
 - runtime resource limits
 - environment variables
@@ -44,7 +45,9 @@ tanzu apps workload update --file workload.yaml
       --local-path path                path on the local file system to a directory of source code to build for the workload
   -n, --namespace name                 kubernetes namespace (defaulted from kube config)
       --param "key=value" pair         additional parameters represented as a "key=value" pair, or "key-" to remove. This flag may be specified multiple times
-      --service-ref object reference   object reference for a service to bind to the workload "database=rabbitmq.com/v1beta1:RabbitmqCluster:my-broker", or "database-" to delete. This flag may be specified multiple times.
+      --request-cpu cores              the minumum amount of cpu required, in CPU cores (500m = .5 cores)
+      --request-memory bytes           the minumum amount of memory required, in bytes (500Mi = 500MiB = 500 * 1024 * 1024)
+      --service-ref object reference   object reference for a service to bind to the workload "database=rabbitmq.com/v1beta1:RabbitmqCluster:[my-broker-ns]:my-broker", or "database-" to delete. This flag may be specified multiple times.
       --source-image image             image containing source code to build
       --tail                           show logs while waiting for workload to become ready
       --tail-timestamp                 show logs and add timestamp to each log line while waiting for workload to become ready

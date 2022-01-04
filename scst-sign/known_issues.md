@@ -22,7 +22,7 @@ You will see a message similar to the following in your `ReplicaSet` statuses:
 Events:
   Type     Reason            Age                   From                   Message
   ----     ------            ----                  ----                   -------
-  Warning  FailedCreate      4m28s (x18 over 14m)  replicaset-controller  Error creating: Internal error occurred: failed calling webhook "image-policy-webhook.signing.run.tanzu.vmware.com": Post "https://image-policy-webhook-service.image-policy-system.svc:443/signing-policy-check?timeout=10s": no endpoints available for service "image-policy-webhook-service"
+  Warning  FailedCreate      4m28s (x18 over 14m)  replicaset-controller  Error creating: Internal error occurred: failed calling webhook "image-policy-webhook.signing.apps.tanzu.vmware.com": Post "https://image-policy-webhook-service.image-policy-system.svc:443/signing-policy-check?timeout=10s": no endpoints available for service "image-policy-webhook-service"
 ```
 
 ### Solution
@@ -91,8 +91,8 @@ contents:
 1. Apply your new configuration by running:
     ```
     tanzu package installed update image-policy-webhook \
-      --package-name image-policy-webhook.signing.run.tanzu.vmware.com \
-      --version 1.0.0-beta.2 \
+      --package-name image-policy-webhook.signing.apps.tanzu.vmware.com \
+      --version 1.0.0-beta.3 \
       --namespace tap-install \
       --values-file scst-sign-values.yaml
     ```

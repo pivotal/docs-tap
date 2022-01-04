@@ -10,3 +10,4 @@ The convention controller is open to extension. These resources are typically co
 + [PodConventionContext](pod-convention-context.md)
 + [Cluster Pod Convention](cluster-pod-convention.md)
 + [PodIntent](pod-intent.md)
++ [BOM](bom.md)

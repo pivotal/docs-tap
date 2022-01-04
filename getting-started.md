@@ -1,74 +1,89 @@
-# Getting Started with Tanzu Application Platform
+# Getting started with the Tanzu Application Platform
 
 ## Purpose
 
-This guide intends to walk you through the experience of promoting your first application using the Tanzu Application Platform.
+Welcome to the Tanzu Application Platform. This document guides you through getting started with the platform. Specifically, you will learn how to:
 
-The intended user of this guide is anyone curious about Tanzu Application Platform and its parts.
-There are two high-level workflows described in this document:
+* Develop and promote an application
+* Create an application accelerator
+* Add testing and security scanning to an application
+* Administer, set up, and manage supply chains
 
-1. The application development experience with the Developer Toolkit components.
-
-2. The administration, set up, and management of Supply Chains, Security Tools, Services, and Application Accelerators.
-
-
-### Prerequisites
-
-To take full advantage of this document, ensure you have followed [Installing Tanzu Application Platform](install-intro.md).
-
----
-
-## Section 1: Developing Your First Application on Tanzu Application Platform
-
-In this section, you will deploy a simple web application to the platform, enable debugging and see your code updates added to the running application as you save them.
-
-Before getting started, ensure the following prerequisites are in place:
-
-1. Tanzu Application Platform is installed on the target Kubernetes cluster. For installation instructions, see [Installing Part I: Prerequisites, EULA, and CLI](install-general.md) and [Installing Part II: Profiles](install.md).
-
-2. Default kubeconfig context is set to the target Kubernetes cluster.
-
-3. The Out of The Box Supply Chain Basic is installed. See [Install default Supply Chain](install-components.md#install-ootb-supply-chain-basic).
-
-4. A developer namespace is set up to accommodate the developer's Workload.
-   See [Set Up Developer Namespaces to Use Installed Packages](install-components.md#-set-up-developer-namespaces-to-use-installed-packages).
-
-5. Tanzu Application Platform GUI is successfully installed.
+Before getting started, you will need to complete the prerequisites in the next section.
 
 
-#### A note about Application Accelerators
+## Installation prerequisites
 
-The Application Accelerator Plugin of Tanzu Application Platform GUI (“Create” button on the left-side navigation bar) helps app developers and app operators create and generate application accelerators. Accelerators are templates that codify best practices and ensure important configuration and structures are in place from the start.
+Please check you have successfully:
 
-Developers can bootstrap their applications and get started with feature development right away. Application Operators can create custom accelerators that reflect their desired architectures and configurations and enable fleets of developers to utilize them, decreasing operator concerns about whether developers are implementing their desired best practices.
+* **Installed the Tanzu Application Platform**<br>
+See [Installing Tanzu Application Platform](install-intro.md).
 
-Application Accelerator sample templates are installed by default as part of the Application Accelerator package. To create your own Application Accelerator, see [Creating an Accelerator](#creating-an-accelerator).
+* **Installed the Tanzu Application Platform on the target Kubernetes cluster**<br>
+See [Installing part I: Prerequisites, EULA, and CLI](install-general.md) and [Installing part II: Profiles](install.md).
+
+* **Set the default kubeconfig context to the target Kubernetes cluster**<br>
+
+* **Installed Out of The Box (OOTB) Supply Chain Basic**<br>
+See [Install Out of The Box Supply Chain Basic](install-components.md#install-ootb-supply-chain-basic).
+
+* **Set up a developer namespace to accommodate the developer Workload**<br>
+See [Set up developer namespaces to use installed packages](install-components.md#setup).
+
+* **Installed the Tanzu Application Platform GUI**<br>
+
+* **Installed the VSCode Tanzu Extension**<br>
+See [Install the Visual Studio Code Tanzu Extension](vscode-extension/install.md) for instructions.
+
+If you have completed the prerequisites, then you're ready to get started!
+
+## Section 1: Develop your first application on the Tanzu Application Platform
+
+In this section, you will:
+
+- Learn about application accelerators
+- Deploy your application
+- Add your application to the Tanzu Application Platform GUI Software Catalog
+- Set up your integrated development environment (IDE)
+	-Iterate on your application
+	-Live update your application
+	 -Debug your application
+- Monitor your running application
 
 
-### Deploy Your Application
+### About application accelerators
 
-Follow these steps to get started with an accelerator called `Tanzu-Java-Web-App`.
 
-1. From the Tanzu Application Platform GUI portal, click on **Create** on the left side of the
-navigation bar to see the list of available accelerators.
-For information about connecting to Tanzu Application Platform GUI, see
-[Accessing Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md).
+Application accelerators are templates that not only codify best practices, but also provide important configuration and structures ready and available for use. Developers can create applications and get started with feature development immediately. Administrators can create custom application accelerators that reflect desired architectures and configurations, enabling developer use according to the best practices defined. The Application Accelerator Plugin of TAP GUI assists both application developers and administrators with creating and generating application accelerators. To create your own application accelerator, see [Create your accelerator](#creating-an-accelerator).
+
+
+### Deploy your application
+
+To deploy your application, you need to download an accelerator, upload it on your Git repository of choice, and run a CLI command. We recommend using the accelerator called `Tanzu-Java-Web-App`.
+
+1. From the Tanzu Application Platform GUI portal, click **Create** located on the left-hand side of the
+   navigation bar to see the list of available accelerators.
+   For information about connecting to Tanzu Application Platform GUI, see
+   [Accessing Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md).
 
     ![List of accelerators in Tanzu Application Platform GUI](images/getting-started-tap-gui-1.png)
 
-2. Locate the Tanzu Java Web App accelerator, which is a sample Spring Boot web app, and click on `CHOOSE` button.
+2. Locate the Tanzu Java Web App accelerator, which is a Spring Boot web app, and click **CHOOSE**.
 
-    ![Tile for Tanzu Java Web App](images/getting-started-tap-gui-2.png)   
+    ![Tile for Tanzu Java Web App](images/getting-started-tap-gui-2.png)
 
-3. In the **Generate Accelerators** prompt, replace the default value `dev.local` in the **prefix for container image registry** field with the registry in the form of `SERVER-NAME/REPO-NAME`. The `SERVER-NAME/REPO-NAME` must match what was specified for `registry` as part of the installation values for `ootb_supply_chain_basic`. Click `NEXT STEP`, verify the provided information, and click `CREATE`.
+3. In the **Generate Accelerators** prompt, replace the default value `dev.local` in the **prefix for container image registry** field
+   with the registry in the form of `SERVER-NAME/REPO-NAME`.
+   The `SERVER-NAME/REPO-NAME` must match what was specified for `registry` as part of the installation values for `ootb_supply_chain_basic`.
+   Click **NEXT STEP**, verify the provided information, and click **CREATE**.
 
     ![Generate Accelerators prompt](images/getting-started-tap-gui-3.png)
 
-4. After the Task Activity processes are complete, click on the `DOWNLOAD ZIP FILE` button
+4. After the Task Activity processes complete, click **DOWNLOAD ZIP FILE**.
 
     ![Task Activity progress bar](images/getting-started-tap-gui-4.png)
 
-5. After downloading the zip file, expand it in a workspace directory and follow your preferred procedure for uploading the generated project files to a Git repository for your new project.
+5. After downloading the ZIP file, expand it in a workspace directory and follow your preferred procedure for uploading the generated project files to a Git repository for your new project.
 
 6. Deploy the Tanzu Java Web App accelerator by running the `tanzu apps workload create` command:
 
@@ -83,7 +98,8 @@ For information about connecting to Tanzu Application Platform GUI, see
 
     Where `GIT-URL-TO-PROJECT-REPO` is the path you uploaded to in step 5.
 
-    If you bypassed step 5, and weren't able to upload your accelerator to a Git repo, you can use the public version to test with:
+    If you bypassed step 5 or were unable to upload your accelerator to a Git repository, use the following public version to test:
+
     ```
     tanzu apps workload create tanzu-java-web-app \
     --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
@@ -96,8 +112,8 @@ For information about connecting to Tanzu Application Platform GUI, see
 
     For more information, see [Tanzu Apps Workload Create](cli-plugins/apps/command-reference/tanzu_apps_workload_create.md).
 
-    >**Note:** This first deploy uses accelerator source from Git, but you use the VSCode extension
-    to debug and live-update this app in later steps.
+    >**Note:** This first deployment uses accelerator source from Git, but in later steps you use the VSCode extension
+    to debug and live-update this application.
 
 7. View the build and runtime logs for your app by running the `tail` command:
 
@@ -105,154 +121,196 @@ For information about connecting to Tanzu Application Platform GUI, see
     tanzu apps workload tail tanzu-java-web-app --since 10m --timestamp
     ```
 
-8. After the workload is built and running, get the web-app URL by running
-`tanzu apps workload get tanzu-java-web-app` and then pressing **ctrl-click** on the
+8. After the workload is built and running, you can view the Web App in your browser. View the URL of the Web App by running the command below, and then press **ctrl-click** on the
 Workload Knative Services URL at the bottom of the command output.
 
+    ```
+    tanzu apps workload get tanzu-java-web-app
+    ```
 
-### Add Your Application to Tanzu Application Platform GUI Software Catalog
 
-To see this application in your organization catalog, you must register new entities as described below.
+### Add your application to the Tanzu Application Platform GUI Software Catalog
 
+To see this application in your organization catalog, you must register new entities as described below:
 
-1. Ensure you have already installed the Blank Software Catalog. For installation information, see [Configure the Tanzu Application Platform GUI](install.md#configure-tap-gui).
+1. Confirm you have installed the Blank Software Catalog. For instructions, see [Configure the Tanzu Application Platform GUI](install.md#configure-tap-gui).
 
-2. Go to the `Home` screen of Tanzu Application Platform GUI by clicking the “Home” button on the left-side navigation bar and select `REGISTER ENTITY` button on the top.
+    
+2. Navigate to the homepage of the Tanzu Application Platform GUI and click **Home**, located on the left-side navigation bar.
+   Then, click **REGISTER ENTITY**.
 
     ![REGISTER button on the right side of the header](images/getting-started-tap-gui-5.png)
 
-3. In the Register, an existing component prompt provides a link to the `catalog-info.yaml` file in the Git repo and click on `ANALYZE`
+3. "Register an existing component" prompts you to enter a repository URL.
+    Type the link to the `catalog-info.yaml` file in the Git repository field and click **ANALYZE**.
 
     ![Select URL](images/getting-started-tap-gui-6.png)
 
-4. Review the entities that will be added to the catalog and click on `IMPORT`
+4. Review the catalog entities to be added and click **IMPORT**.
 
     ![Review the entities to be added to the catalog](images/getting-started-tap-gui-7.png)
 
-Once you navigate back to the `Home` screen, the catalog changes should be reflected immediately and you should be able to see the entry in the catalog and interact with it.
+5. Navigate back to the homepage. The catalog changes and entries will be visible for further inspection.
 
-### <a id='iterate'></a>Iterate on your Application
-
-##### Set up your IDE
+### <a id='iterate'></a>Iterate on your application
 
 Now that you have a skeleton workload working, you are ready to iterate on your application
 and test code changes on the cluster.
-Tanzu Developer Tools for VSCode, VMware Tanzu’s official IDE extension for VSCode,
-helps you develop & receive fast feedback on the Tanzu Application Platform.
+Tanzu Developer Tools for Visual Studio Code, VMware Tanzu’s official IDE extension for VSCode,
+helps you develop and receive fast feedback on your workloads running on the Tanzu Application Platform.
 
-The VSCode extension enables live updates of your application while it runs on the cluster
-and lets you debug your application directly on the cluster.
-
+The VSCode extension enables live updates of your application while running on the cluster
+and allows you to debug your application directly on the cluster.
 For information about installing the pre-requisites and the Tanzu Developer Tools extension, see
-[How to Install the VSCode Tanzu Extension](vscode-extension/install.md).
+[Install Tanzu Dev Tools for VSCode](vscode-extension/install.md).
 
->**Note:** For this sample app, you must use Tilt v0.23.0 or later
 
-Open the ‘Tanzu Java Web App’ as a project within your VSCode IDE.
+>**Note:** Use Tilt v0.23.2 or a later version for the sample application.
 
-In order to ensure your extension helps you iterate on the correct project, you will need to configure its settings:
+1. Open the Tanzu Java Web App as a project within your VSCode IDE.
 
-1. Within VSCode, go to Preferences > Settings > Extensions > Tanzu.
+2. To ensure your extension assists you with iterating on the correct project, configure its settings using the following instructions:
 
-1. In the **Local Path** field, enter the path to the directory containing the Tanzu Java Web App.
-
-1. In the **Source Image** field, enter the destination image repository where
-you’d like to publish an image containing your workload source code.
-For example `harbor.vmware.com/myteam/tanzu-java-web-app-source`.
+ 	* Within Visual Studio Code, go to Preferences > Settings > Extensions > Tanzu.
+ 	* In the **Local Path** field, provide the path to the directory containing the Tanzu Java Web App.
+ 	* In the **Source Image** field, provide the destination image repository to publish an image containing your workload source code.
+	For example, `gcr.io/myteam/tanzu-java-web-app-source`.
 
 You are now ready to iterate on your application.
 
 
-##### Live Update your Application
+#### Live update your application
 
-Deploy the application and see it live update on the cluster. Doing so allows you to understand how your code changes will behave on a production-like cluster much earlier in the development process.
+1. In Visual Studio Code, navigate to `Preferences` > `Settings` > `Extensions` > `Tanzu`.
 
-Follow these steps:
+1. In the **Local Path** field, enter the path to the directory containing the Tanzu Java Web App. It defaults to current directory.
 
-1. From the Command Palette (⇧⌘P), type in and select **Tanzu: Live Update Start**.
-Tanzu Logs opens up in the Output tab and you will see output from the
-Tanzu Application Platform and from Tilt indicating that the container is being
-built and deployed.
-Because this is your first time starting live update for this application, it
-might take 1-3 minutes for the workload to be deployed and the Knative service
-to become available.
+1. In the **Source Image** field, enter the destination image repository where
+you’d like to publish an image containing your workload source code.
+For example `gcr.io/myteam/tanzu-java-web-app-source`.
 
-1. Once you see output indicating that the workload is ready, navigate to `http://localhost:8080` in your browser and view your application running.
+You are now ready to iterate on your application.
+
+### Live update your application
+
+Deploy the application to view it updating live on the cluster to demonstrate how code changes will behave on a production-like cluster early in the development process.
+
+Complete the following steps to live update your application:
+
+1. Select **Tanzu: Live Update Start** from the Command Palette (⇧⌘P). The Tanzu Logs open in the Output tab, the output is visible from
+Tanzu Application Platform, and Tilt indicates the container is being built and deployed. The first time starting live update for the application, it may take up to 3 minutes for the workload to deploy and the Knative service to be available.
+
+1. From the Command Palette (⇧⌘P), type in and select `Tanzu: Live Update Start`.
+You can view output from Tanzu Application Platform and from Tilt indicating that the container is being built and deployed.
+    - You see "Live Update starting..." in the status bar at the bottom right.
+    - Live update can take 1-3 minutes while the workload deploys and the Knative service becomes available.
+
+      >**Note:** Depending on the type of cluster you use, you might see an error similar to the following:
+
+      >ERROR: Stop! cluster-name might be production.
+      >If you're sure you want to deploy there, add:
+      >allow_k8s_contexts('cluster-name')
+      >to your Tiltfile. Otherwise, switch k8s >contexts and restart Tilt.
+
+      >Just follow the instructions and add the line "allow_k8s_contexts('cluster-name')" to your `Tiltfile`.
+
+1. Once you see the Live Update status in the status bar, resolve to "Live Update Started", navigate to `http://localhost:8080` in your browser, and view your running application.
 1. Return to the IDE and make a change to the source code. For example, in `HelloController.java`, modify the string returned to say `Hello!` and save.
-1. If you look in the Tanzu Logs section of the Output tab, you will see the container has updated. Navigate back to your browser and refresh the page.
+1. Once the logs stop streaming, the container is updated. Navigate to your browser and refresh the page.
+1. View the changes to your workload running on the cluster.
 
+You can now continue to make more changes. If you are finished, you can stop or disable live update. Open the command palette (⇧⌘P), type in `Tanzu`, and select either option.
 
-You will see your changes on the cluster.
+#### Debug your application
 
-You can now continue to make more changes. If you are finished, you can stop or disable live update. Open the command palette (⇧⌘P), type in Tanzu, and select either option.
+You can either debug your cluster on the application or in your local environment.
 
-
-##### Debug your Application
-
-You can debug your cluster on your application or in your local environment.
-
-Follow the steps below to debug your cluster:
+Complete the following steps to debug your cluster:
 
 1. Set a breakpoint in your code.
-2. Right-click the file `workload.yaml` within the `config` folder, and select `Tanzu: Java Debug Start`. In a few moments, the workload will be redeployed with debugging enabled.
+2. Right-click the file `workload.yaml` within the `config` folder, and select **Tanzu: Java Debug Start**. In a few moments, the workload will be redeployed with debugging enabled. You will see the "Deploy and Connect" Task complete and the debug menu actions will be available to you, indicating that the debugger has attached.
 3. Return to your browser and navigate to `http://localhost:8080`. This will hit the breakpoint within VSCode. You can now step through or play to the end of the debug session using VSCode debugging controls.
 
+### Monitor your running application
 
-##### Troubleshooting a Running Application
+Inspect the runtime characteristics of your running application using the Application Live View UI to monitor:
 
-Now that your application is developed you may be interested in inspecting the run time
-characteristics of the running application. You can use Application Live View UI to look
-into the running application to monitor resource consumption, JVM status, incoming traffic
-as well as change log level, environment variables to troubleshoot and fine-tune the running application.
-Currently, Spring Boot based applications can be diagnosed using Application Live View.
+* Resource consumption
+* Java Virtual Machine (JVM) status
+* Incoming traffic
+* Change log level
 
-Make sure that you have installed Application Live View components successfully.
+You can also troubleshoot environment variables and fine-tune the running application.
 
-Access Application Live View Tanzu Application Platform GUI following the
-[Entry point to Application Live View plug-in](tap-gui/plugins/app-live-view.html#entry-point-to-application-live-view-plugin-1).
-Select your application to look inside the running application and
-[explore](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-product-features.html)
-the various diagnostic capabilities.
+Complete the following steps to diagnose Spring Boot-based applications using Application Live View:
+
+1. Confirm that the Application Live View components installed successfully. For instructions, see [Verify the Application Live View components](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-installing.html#verify-the-application-live-view-components-5).
+
+1. Access the Application Live View Tanzu Application Platform GUI. For instructions, see [Entry point to Application Live View plug-in](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.4/tap/GUID-tap-gui-plugins-app-live-view.html#entry-point-to-application-live-view-plugin-1).
+
+1. Select your running application to view the diagnostic options and inside the application. For more information, see [Product Features](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-product-features.html).
 
 
 ---
 
 
-## <a id='creating-an-accelerator'></a>Section 2: Creating an Accelerator
+## <a id='creating-an-accelerator'></a>Section 2: Create your application accelerator
 
-You can use any git repository to create an Accelerator.
-You need the URL for the repository to create an Accelerator.
+In this section, you will:
 
-Use the following procedure to create an accelerator:
+- Create an application accelerator using the Tanzu Application Platform GUI
 
-1. Select the **New Accelerator** tile from the accelerators in the Application Accelerator web UI.
+### Create an application accelerator ###
 
-2. Fill in the new project form with the following information:
+To create a new application accelerator, complete the following steps:
 
-    * Name: Your Accelerator name. This is the name of the generated ZIP file.
-    * (Optional) Description: A description of your accelerator.
-    * K8s Resource Name: A Kubernetes resource name to use for the Accelerator.
-    * Git Repository URL: The URL for the git repository that contains the accelerator source code.
-    * Git Branch: The branch for the git repository.
-    * (Optional) Tags: Any associated tags that can be used for searches in the UI.
+1. Click `Create` on the left-hand side of the navigation bar on the Tanzu Application Platform GUI portal to view the list of available accelerators.
+2. Click `CHOOSE` to select the **New Accelerator** tile.
 
-3. Download and expand the zip file.
+3. Complete the **New Project** form with the following information:
 
-    * The output contains a YAML file for an Accelerator resource, pointing to the git repository.
+    * **Name**: `Your accelerator name` This is the name of the generated ZIP file
+    * Description (Optional): A description of your accelerator
+    	*	**K8s Resource Name**: A Kubernetes resource name to use for the accelerator
+    	*	**Git Repository URL**: The URL for the Git repository that contains the accelerator source code
+    	*	**Git Branch**: The branch for the Git repository
+    * **Tags** (Optional): Associated tags that can be used for searches in the UI
+
+    ![Generate Accelerators first prompt](images/getting-started-section2-2.png)
+
+    ![Explore project dialog box](images/getting-started-section2-3.png)
+
+	(Optional) To browse the accelerator files, click **EXPLORE**.
+        When finished, click **NEXT STEP**.
+
+
+3. Verify the provided information and click **CREATE**.
+
+    ![Verify information for creating an accelerator](images/getting-started-section2-4.png)
+
+
+4. Download and expand the ZIP file by clicking **DOWNLOAD ZIP FILE** and expand it.
+
+    * The output contains a YAML file for an Accelerator resource, pointing to the Git repository.
     * The output contains a file named `new-accelerator.yaml` which defines the metadata for your new accelerator.
 
-4. To apply the k8s-resource.yml, run the following command in your terminal in the folder where you expanded the zip file:
+
+    ![Download ZIP file with the accelerator](images/getting-started-section2-5.png)
+
+
+5. To apply the k8s-resource.yml, run the following command in your terminal in the folder where you expanded the zip file:
 
     ```
     kubectl apply -f k8s-resource.yaml --namespace accelerator-system
     ```
 
-5. The Tanzu Application Platform GUI refreshes periodically. Once the GUI refreshes, the new accelerator becomes available. After waiting a few minutes, click the **Create** button on the left-side navigation bar of the Tanzu Application Platform GUI to see if the accelerator appears.
+6. The Tanzu Application Platform GUI refreshes periodically. Once the GUI refreshes, the new accelerator becomes available.
+   After waiting a few minutes, click **Create** on the left-hand side navigation bar of the Tanzu Application Platform GUI to see if the accelerator appears.
 
 
-#### Using accelerator.yaml
+### Using accelerator.yaml
 
-The Accelerator zip file contains a file called `new-accelerator.yaml`.
+The Accelerator ZIP file contains a file called `new-accelerator.yaml`.
 This file is a starting point for the metadata for your new accelerator and the associated options and file processing instructions.
 This `new-accelerator.yaml` file should be copied to the root directory of your git repo and named `accelerator.yaml`.
 
@@ -268,21 +326,31 @@ tanzu accelerator update <accelerator-name> --reconcile
 
 ## <a id='add-testing-and-scanning'></a> Section 3: Add Testing and Security Scanning to Your Application
 
+In this section, you will:
+* Learn about supply chains
+* Discover available out of the box (OOTB) supply chains
+	*  OOTB Basic (default)
+	*  OOTB Testing
+	*  OOTB Testing+Scanning
+* Install OOTB Testing (optional)
+* Install OOTB Testing+Scanning (optional)
+
+
 ### What is a Supply Chain?
 
 Supply Chains provide a way of codifying all of the steps of your path to production, or what is
-more commonly known as CI/CD.
-A supply chain differs from CI/CD in that you can add any and every step that is necessary for an
-application to reach production, or a lower environment.
+more commonly known as Continuous Integration/Continuous Delivery (CI/CD).
+A supply chain differs from CI/CD in that you can add any step necessary for an
+application to reach production, or a different environment such as staging.
 
-![Diagram depicting a simple path to production: CI to Security Scan to Build Image to Image Scan to CAB Approval to Deployment.](images/path-to-production.png)
+![Diagram depicting a simple path to production: CI to Security Scan to Build Image to Image Scan to CAB Approval to Deployment.](images/path-to-production-new.png)
 
-#### A simple path to production
+### A simple path to production
 
 A path to production allows users to create a unified access point for all of the tools required
 for their applications to reach a customer-facing environment.
 Instead of having four tools that are loosely coupled to each other, a path to production defines
-all four tools in a single, unified layer of abstraction.
+all four tools in a single, unified layer of abstraction, which can be automated and repeatable between teams for appliations at scale.
 
 Where tools typically are not able to integrate with one another and additional scripting or
 webhooks are necessary, there would be a unified automation tool to codify all the interactions
@@ -290,33 +358,17 @@ between each of the tools.
 Supply chains used to codify the organization's path to production are configurable, allowing their
 authors to add all of the steps of their application's path to production.
 
-Tanzu Application Platform provides three out of the box supply chains designed to
-work with Tanzu Application Platform components.
+### Available Supply Chains
 
+The Tanzu Application Platform provides three OOTB supply chains to
+work with the Tanzu Application Platform components, and they include:
 
-#### Supply Chains included in Beta 3
+### 1: **OOTB Basic Supply Chain (default)**
 
-The Tanzu Application Platform installation steps cover installing the default Supply Chain, but
-others are available.
-If you follow the installation documentation, the **Out of the Box Basic** Supply Chain and its
-dependencies are installed on your cluster.
-The table and diagrams below describe the two supply chains included in Tanzu Application Platform
-Beta 3 and their dependencies.
+The default **OOTB Basic** supply chain and its dependencies were installed on your cluster during the Tanzu Application Platform install.
+The following table and diagrams provide descriptions for each of the supply chains and dependencies provided with the Tanzu Application Platform.
 
-The **Out of the Box with Testing** runs a Tekton pipeline within the supply chain. It is dependent on
-[Tekton](https://tekton.dev/) being installed on your cluster.
-
-The **Out of the Box with Testing and Scanning** supply chain includes integrations for secure scanning tools.
-
-The following section installs the second supply chain, includes steps to install Tekton and provides a sample Tekton pipeline that tests your
-sample application.
-The pipeline is configurable, therefore you can customize the steps
-to perform additional testing, or any other tasks that can be performed with a
-Tekton pipeline.
-
-![Diagram depicting the Source-to-URL chain: Watch Repo (Flux) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](images/source-to-url-chain.png)
-
-**Out of the Box Basic - default Supply Chain**
+![Diagram depicting the Source-to-URL chain: Watch Repo (Flux) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](images/source-to-url-chain-new.png)
 
 <table>
   <tr>
@@ -356,7 +408,7 @@ Tekton pipeline.
 
 <li>Cloud Native Runtimes
 <li>If using Service References:
-   </li>   
+   </li>
 <ul>
 <li>Service Bindings
 <li>Services Toolkit
@@ -367,9 +419,12 @@ Tekton pipeline.
   </tr>
 </table>
 
-![Diagram depicting the Source-and-Test-to-URL chain: Watch Repo (Flux) to Test Code (Tekton) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](images/source-and-test-to-url-chain.png)
+### 2: **OOTB Testing**
 
-**Out of the Box Testing**
+The **OOTB Testing** supply chain runs a Tekton pipeline within the supply chain. It depends on
+[Tekton](https://tekton.dev/) being installed on your cluster.
+
+![Diagram depicting the Source-and-Test-to-URL chain: Watch Repo (Flux) to Test Code (Tekton) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](images/source-and-test-to-url-chain-new.png)
 
 <table>
   <tr>
@@ -410,9 +465,11 @@ Tekton pipeline.
   </tr>
 </table>
 
-![Diagram depicting the Source-and-Test-to-URL chain: Watch Repo (Flux) to Test Code (Tekton) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](images/source-test-scan-to-url.png)
+### 3: **OOTB Testing+Scanning**
 
-**Out of the Box Testing and Scanning**
+The **OOTB Testing+Scanning** supply chain includes integrations for secure scanning tools.
+
+![Diagram depicting the Source-and-Test-to-URL chain: Watch Repo (Flux) to Test Code (Tekton) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](images/source-test-scan-to-url-new.png)
 
 <table>
   <tr>
@@ -455,42 +512,47 @@ Tekton pipeline.
   </tr>
 </table>
 
-### Install Out of the Box with Testing
+### Install OOTB Testing
 
-When you chose not to use the preceding install method, see [Install
-Tekton](install-components.md#install-tekton).
+This section introduces how to install the OOTB Testing supply chain, which includes the steps required to install Tekton and provides a sample Tekton pipeline that tests your sample application.
+The pipeline is configurable. Therefore, you can customize the steps
+to perform either additional testing or other tasks with the
+Tekton pipeline.
 
-With Tekton installed, you can activate the Out of the Box Supply Chain with Testing by updating our profile to use `testing` rather than `basic` as the selected supply chain for workloads in this cluster. Update `tap-values.yml`(the file used to customize the profile in `Tanzu package install tap
+To apply this install method, complete the following steps:
+
+1. Install Tekton (see [Install Tekton](install-components.md#install-tekton)) for instructions.
+
+2. With Tekton installed, you can activate the Out of the Box Supply Chain with Testing by updating our profile to use `testing` rather than `basic` as the selected supply chain for workloads in this cluster. Update `tap-values.yml`(the file used to customize the profile in `Tanzu package install tap
 --values-file=...`) with the following changes:
 
-```
-- supply_chain: basic
-+ supply_chain: testing
+    ```
+    - supply_chain: basic
+    + supply_chain: testing
 
-- ootb_supply_chain_basic:
-+ ootb_supply_chain_testing:
-    registry:
-      server: "<SERVER-NAME>"
-      repository: "<REPO-NAME>"
-```
+    - ootb_supply_chain_basic:
+    + ootb_supply_chain_testing:
+        registry:
+          server: "<SERVER-NAME>"
+          repository: "<REPO-NAME>"
+    ```
 
-Then update the installed profile:
+3. Update the installed profile by running:
 
-```
-tanzu package installed update tap -p tap.tanzu.vmware.com -v 0.3.0 --values-file tap-values.yml -n tap-install
-```
+    ```
+    tanzu package installed update tap -p tap.tanzu.vmware.com -v 0.3.0 --values-file tap-values.yml -n tap-install
+    ```
 
 
-### Example Tekton Pipeline Config
+#### Tekton pipeline config example
 
-In this section, we’ll add a Tekton pipeline to our cluster and in the following section,
-we’ll update the workload to point to the pipeline and resolve any of the current errors.
+In this section, a Tekton pipeline is added to the cluster. In the next section,
+the workload is updated to point to the pipeline and resolve any current errors.
 
-The next step is to add a Tekton pipeline to our cluster.
-Because a developer knows how their application needs to be tested this step could be performed by the developer.
-The Operator could also add these to a cluster prior to the developer getting access to it.
+To add the Tekton supply chain to the cluster, apply the following YAML to the cluster:
 
-In order to add the Tekton supply chain to the cluster, we’ll apply the following YAML to the cluster:
+>**Note:** Developers can perform this step because they know how their application needs to be tested.
+The operator can also add the Tekton supply chain to a cluster before the developer get access.
 
 ```
 apiVersion: tekton.dev/v1beta1
@@ -539,79 +601,80 @@ Additionally, Tekton pipelines require a Tekton `pipelineRun` in order to execut
 The Supply Chain Choreographer handles creating the `pipelineRun` dynamically each time
 that step of the supply requires execution.
 
-### Workload update
+#### Workload update
 
 To connect the new supply chain to the workload,
 the workload must be updated to point at your Tekton pipeline.
 
 1. Update the workload by running the following with the Tanzu CLI:
 
-  ```
-  tanzu apps workload create tanzu-java-web-app \
-    --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
-    --git-branch main \
+    ```
+    tanzu apps workload create tanzu-java-web-app \
+      --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
+      --git-branch main \
     --type web \
-    --label apps.tanzu.vmware.com/has-tests=true \
-    --yes
-  ```
+      --label apps.tanzu.vmware.com/has-tests=true \
+      --yes
+    ```
 
-  ```
-  Create workload:
-      1 + |---
-      2 + |apiVersion: carto.run/v1alpha1
-      3 + |kind: Workload
-      4 + |metadata:
-      5 + |  labels:
-      6 + |    apps.tanzu.vmware.com/has-tests: "true"
-      7 + |    apps.tanzu.vmware.com/workload-type: web
-      8 + |  name: tanzu-java-web-app
-      9 + |  namespace: default
-     10 + |spec:
-     11 + |  source:
-     12 + |    git:
-     13 + |      ref:
-     14 + |        branch: main
-     15 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
+    ```
+    Create workload:
+        1 + |---
+        2 + |apiVersion: carto.run/v1alpha1
+        3 + |kind: Workload
+        4 + |metadata:
+        5 + |  labels:
+        6 + |    apps.tanzu.vmware.com/has-tests: "true"
+        7 + |    apps.tanzu.vmware.com/workload-type: web
+        8 + |  name: tanzu-java-web-app
+        9 + |  namespace: default
+       10 + |spec:
+       11 + |  source:
+       12 + |    git:
+       13 + |      ref:
+       14 + |        branch: main
+       15 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
 
-  ? Do you want to create this workload? Yes
-  Created workload "tanzu-java-web-app"
-  ```
+    ? Do you want to create this workload? Yes
+    Created workload "tanzu-java-web-app"
+    ```
 
 2. After accepting the workload creation, monitor the creation of new resources by the workload by running:
 
-  ```
-  kubectl get workload,gitrepository,pipelinerun,images.kpack,podintent,app,services.serving
-  ```
+    ```
+    kubectl get workload,gitrepository,pipelinerun,images.kpack,podintent,app,services.serving
+    ```
 
   You will see output similar to the following example that shows the objects that were created by the Supply Chain Choreographer:
 
+    ```
+    NAME                                    AGE
+    workload.carto.run/tanzu-java-web-app   109s
 
-  ```
-  NAME                                    AGE
-  workload.carto.run/tanzu-java-web-app   109s
+    NAME                                                        URL                                                         READY   STATUS                                                            AGE
+    gitrepository.source.toolkit.fluxcd.io/tanzu-java-web-app   https://github.com/sample-accelerators/tanzu-java-web-app   True    Fetched revision: main/872ff44c8866b7805fb2425130edb69a9853bfdf   109s
 
-  NAME                                                        URL                                                         READY   STATUS                                                            AGE
-  gitrepository.source.toolkit.fluxcd.io/tanzu-java-web-app   https://github.com/sample-accelerators/tanzu-java-web-app   True    Fetched revision: main/872ff44c8866b7805fb2425130edb69a9853bfdf   109s
+    NAME                                              SUCCEEDED   REASON      STARTTIME   COMPLETIONTIME
+    pipelinerun.tekton.dev/tanzu-java-web-app-4ftlb   True        Succeeded   104s        77s
 
-  NAME                                              SUCCEEDED   REASON      STARTTIME   COMPLETIONTIME
-  pipelinerun.tekton.dev/tanzu-java-web-app-4ftlb   True        Succeeded   104s        77s
+    NAME                                LATESTIMAGE                                                                                                      READY
+    image.kpack.io/tanzu-java-web-app   10.188.0.3:5000/foo/tanzu-java-web-app@sha256:1d5bc4d3d1ffeb8629fbb721fcd1c4d28b896546e005f1efd98fbc4e79b7552c   True
 
-  NAME                                LATESTIMAGE                                                                                                      READY
-  image.kpack.io/tanzu-java-web-app   10.188.0.3:5000/foo/tanzu-java-web-app@sha256:1d5bc4d3d1ffeb8629fbb721fcd1c4d28b896546e005f1efd98fbc4e79b7552c   True
+    NAME                                                             READY   REASON   AGE
+    podintent.conventions.apps.tanzu.vmware.com/tanzu-java-web-app   True             7s
 
-  NAME                                                             READY   REASON   AGE
-  podintent.conventions.apps.tanzu.vmware.com/tanzu-java-web-app   True             7s
+    NAME                                      DESCRIPTION           SINCE-DEPLOY   AGE
+    app.kappctrl.k14s.io/tanzu-java-web-app   Reconcile succeeded   1s             2s
 
-  NAME                                      DESCRIPTION           SINCE-DEPLOY   AGE
-  app.kappctrl.k14s.io/tanzu-java-web-app   Reconcile succeeded   1s             2s
+    NAME                                             URL                                               LATESTCREATED              LATESTREADY                READY     REASON
+    service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.developer.example.com   tanzu-java-web-app-00001   tanzu-java-web-app-00001   Unknown   IngressNotConfigured
+    ```
 
-  NAME                                             URL                                               LATESTCREATED              LATESTREADY                READY     REASON
-  service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.developer.example.com   tanzu-java-web-app-00001   tanzu-java-web-app-00001   Unknown   IngressNotConfigured
-  ```
+### Install OOTB Testing+Scanning
 
-### Install Out of the Box with Testing and Scanning
+Follow these steps to install the OOTB Testing+Scanning supply chain:
 
-Follow the steps below to install an out of the box supply chain with testing and scanning.
+>**Important:** The grype must be installed for scanning.
 
 1. Supply Chain Security Tools - Scan is installed as part of the profiles.
 Verify that both Scan Link and Grype Scanner are installed by running:
@@ -630,7 +693,7 @@ Verify that both Scan Link and Grype Scanner are installed by running:
     ```
     kubectl apply -f - -o yaml << EOF
     ---
-    apiVersion: scst-scan.apps.tanzu.vmware.com/v1alpha1
+    apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
     kind: ScanPolicy
     metadata:
       name: scan-policy
@@ -662,10 +725,10 @@ Verify that both Scan Link and Grype Scanner are installed by running:
     EOF
     ```
 
-2. (Optional) To persist and query the vulnerability results post-scan, ensure that [Supply Chain Security Tools - Store](scst-store/overview.md) is installed using the following command. Tanzu Application Platform profiles already install the package by default.
+2. (optional) To persist and query the vulnerability results post-scan, ensure that [Supply Chain Security Tools - Store](scst-store/overview.md) is installed using the following command. The Tanzu Application Platform profiles install the package by default.
 
     ```
-    tanzu package installed get scst-store -n tap-install
+    tanzu package installed get metadata-store -n tap-install
     ```
 
     If the package is not installed, follow [the installation instructions](install-components.md#install-scst-store).
@@ -694,90 +757,149 @@ Verify that both Scan Link and Grype Scanner are installed by running:
     ```
 
 
-### Workload update
+#### Workload update
 
-Finally, in order to have the new supply chain connected to the workload,
-the workload needs to be updated to point at the newly created Tekton pipeline.
-The workload can be updated using the Tanzu CLI as follows:
+To connect the new supply chain to the workload, update the workload to point to your Tekton
+pipeline:
 
-```
-tanzu apps workload create tanzu-java-web-app \
-  --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
-  --git-branch main \
-  --type web \
-  --label apps.tanzu.vmware.com/has-tests=true \
-  --yes
-```
+1. Update the workload by running the following using the Tanzu CLI:
 
-```
-Create workload:
-      1 + |---
-      2 + |apiVersion: carto.run/v1alpha1
-      3 + |kind: Workload
-      4 + |metadata:
-      5 + |  labels:
-      6 + |    apps.tanzu.vmware.com/has-tests: "true"
-      7 + |    apps.tanzu.vmware.com/workload-type: web
-      8 + |  name: tanzu-java-web-app
-      9 + |  namespace: default
-     10 + |spec:
-     11 + |  source:
-     12 + |    git:
-     13 + |      ref:
-     14 + |        branch: main
-     15 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
+    ```
+    tanzu apps workload create tanzu-java-web-app \
+      --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
+      --git-branch main \
+      --type web \
+      --label apps.tanzu.vmware.com/has-tests=true \
+      --yes
+    ```
 
-? Do you want to create this workload? Yes
-Created workload "tanzu-java-web-app"
-```
+    Example output:
 
-After accepting the creation of the new workload, we can monitor the creation of new resources by the workload using:
+    ```
+    Create workload:
+          1 + |---
+          2 + |apiVersion: carto.run/v1alpha1
+          3 + |kind: Workload
+          4 + |metadata:
+          5 + |  labels:
+          6 + |    apps.tanzu.vmware.com/has-tests: "true"
+          7 + |    apps.tanzu.vmware.com/workload-type: web
+          8 + |  name: tanzu-java-web-app
+          9 + |  namespace: default
+        10 + |spec:
+        11 + |  source:
+        12 + |    git:
+        13 + |      ref:
+        14 + |        branch: main
+        15 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
 
-```
-kubectl get workload,gitrepository,pipelinerun,images.kpack,podintent,app,services.serving
-```
+    ? Do you want to create this workload? Yes
+    Created workload "tanzu-java-web-app"
+    ```
 
-That should result in an output which will show all of the objects that have been created by the Supply Chain Choreographer:
+1. After accepting the workload creation, view the new resources that the workload created by running:
+
+    ```
+    kubectl get workload,gitrepository,sourcescan,pipelinerun,images.kpack,imagescan,podintent,app,services.serving
+    ```
+
+    The following is an example output, which shows the objects that the Supply Chain Choreographer created:
+
+    ```
+    NAME                                    AGE
+    workload.carto.run/tanzu-java-web-app   109s
+
+    NAME                                                        URL                                                         READY   STATUS                                                            AGE
+    gitrepository.source.toolkit.fluxcd.io/tanzu-java-web-app   https://github.com/sample-accelerators/tanzu-java-web-app   True    Fetched revision: main/872ff44c8866b7805fb2425130edb69a9853bfdf   109s
+
+    NAME                                                           PHASE       SCANNEDREVISION                            SCANNEDREPOSITORY                                           AGE    CRITICAL   HIGH   MEDIUM   LOW   UNKNOWN   CVETOTAL
+    sourcescan.scanning.apps.tanzu.vmware.com/tanzu-java-web-app   Completed   187850b39b754e425621340787932759a0838795   https://github.com/sample-accelerators/tanzu-java-web-app   90s
+
+    NAME                                              SUCCEEDED   REASON      STARTTIME   COMPLETIONTIME
+    pipelinerun.tekton.dev/tanzu-java-web-app-4ftlb   True        Succeeded   104s        77s
+
+    NAME                                LATESTIMAGE                                                                                                      READY
+    image.kpack.io/tanzu-java-web-app   10.188.0.3:5000/foo/tanzu-java-web-app@sha256:1d5bc4d3d1ffeb8629fbb721fcd1c4d28b896546e005f1efd98fbc4e79b7552c   True
+
+    NAME                                                          PHASE       SCANNEDIMAGE                                                                                                AGE   CRITICAL   HIGH   MEDIUM   LOW   UNKNOWN   CVETOTAL
+    imagescan.scanning.apps.tanzu.vmware.com/tanzu-java-web-app   Completed   10.188.0.3:5000/foo/tanzu-java-web-app@sha256:1d5bc4d3d1ffeb8629fbb721fcd1c4d28b896546e005f1efd98fbc4e79b7552c   14s
+
+    NAME                                                             READY   REASON   AGE
+    podintent.conventions.apps.tanzu.vmware.com/tanzu-java-web-app   True             7s
+
+    NAME                                      DESCRIPTION           SINCE-DEPLOY   AGE
+    app.kappctrl.k14s.io/tanzu-java-web-app   Reconcile succeeded   1s             2s
+
+    NAME                                             URL                                               LATESTCREATED              LATESTREADY                READY     REASON
+    service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.developer.example.com   tanzu-java-web-app-00001   tanzu-java-web-app-00001   Unknown   IngressNotConfigured
+    ```
+
+    If the source or image scan has a "Failed” phase, then the scan has failed compliance and the supply chain will not continue.  
+
+#### **Query for vulnerabilities**
+
+Scan reports are automatically saved to the [Supply Chain Security Tools - Store](https://docs-staging.vmware.com/en/Tanzu-Application-Platform/0.4/tap/GUID-install-components.html#install-scst-store), and can be queried for vulnerabilities and dependencies. For example, open-source software (OSS) or third party packages.
+
+1. Query the tanzu-java-web-app image dependencies and vulnerabilities with the following commands:
+
+	```
+    insight image get --digest DIGEST
+    insight image vulnerabilities --digest  DIGEST
+	```
+
+	`DIGEST` is the component version, or image digest printed in the `KUBECTL GET` command.
+
+	Important: The `Insight CLI` is separate from the Tanzu CLI.
+
+See [Query Data](https://docs-staging.vmware.com/en/Tanzu-Application-Platform/1.0/tap/GUID-scst-store-query_data.html?hWord=N4IghgNiBcII4FcCmAnAngAgCZgC5hAF8g) or [CLI Details](https://docs-staging.vmware.com/en/Tanzu-Application-Platform/1.0/tap/GUID-scst-store-cli_docs-insight.html) for additional examples.
+<br>
 
 
-```
-NAME                                    AGE
-workload.carto.run/tanzu-java-web-app   109s
+### Congratulations! You have successfully deployed your application on the Tanzu Application Platform.
+Continue through the next two sections to learn about recommended supply chain security best practices and access to a powerful Services Journey experience on the Tanzu Application Platform by enabling several advanced use cases.
 
-NAME                                                        URL                                                         READY   STATUS                                                            AGE
-gitrepository.source.toolkit.fluxcd.io/tanzu-java-web-app   https://github.com/sample-accelerators/tanzu-java-web-app   True    Fetched revision: main/872ff44c8866b7805fb2425130edb69a9853bfdf   109s
+## Section 4: Configure image signing and verification in your supply chain
 
-NAME                                              SUCCEEDED   REASON      STARTTIME   COMPLETIONTIME
-pipelinerun.tekton.dev/tanzu-java-web-app-4ftlb   True        Succeeded   104s        77s
+In this section, you will:
 
-NAME                                LATESTIMAGE                                                                                                      READY
-image.kpack.io/tanzu-java-web-app   10.188.0.3:5000/foo/tanzu-java-web-app@sha256:1d5bc4d3d1ffeb8629fbb721fcd1c4d28b896546e005f1efd98fbc4e79b7552c   True
+- Configure your supply chain to sign your image builds
+- Configure an admission control policy to verify image signatures before admitting Pods to the cluster
 
-NAME                                                             READY   REASON   AGE
-podintent.conventions.apps.tanzu.vmware.com/tanzu-java-web-app   True             7s
+### Configure your supply chain to sign your image builds
 
-NAME                                      DESCRIPTION           SINCE-DEPLOY   AGE
-app.kappctrl.k14s.io/tanzu-java-web-app   Reconcile succeeded   1s             2s
+1. Configure Tanzu Build Service to sign your container image builds by using cosign. See [Managing Image Resources and Builds](https://docs.vmware.com/en/Tanzu-Build-Service/1.3/vmware-tanzu-build-service-v13/GUID-managing-images.html) for instructions.
+2. Create a `values.yaml` file, and install the sign supply chain security tools and image policy web-hook. See [Install Supply Chain Security Tools - Sign](https://docs-staging.vmware.com/en/Tanzu-Application-Platform/0.4/tap/GUID-install-components.html#install-scst-sign) for instructions.
+3. Configure a `ClusterImagePolicy` resource to verify image signatures when deploying resources.
 
-NAME                                             URL                                               LATESTCREATED              LATESTREADY                READY     REASON
-service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.developer.example.com   tanzu-java-web-app-00001   tanzu-java-web-app-00001   Unknown   IngressNotConfigured
-```
+    **Note:** The resource must be named `image-policy`.
 
----
+    For example:
 
-## Section 4: Advanced Use Cases - Supply Chain Security Tools
+    ```
+    ---
+    apiVersion: signing.apps.tanzu.vmware.com/v1beta1
+    kind: ClusterImagePolicy
+    metadata:
+       name: image-policy
+    spec:
+       verification:
+         exclude:
+           resources
+             namespaces:
+             - kube-system
+             - test-namespace
+         keys:
+         - name: first-key
+           publicKey: |
+             -----BEGIN PUBLIC KEY-----
+             <content ...>
+             -----END PUBLIC KEY-----
+         images:
+         - namePattern: registry.example.org/myproject/*
+           keys:
+           - name: first-key
 
-### Supply Chain Security Tools Overview
-
-In this section, we will provide an overview of the supply chain security use cases that are available in Tanzu Application Platform:
-
-1. **Sign**: Introducing image signing and verification to your supply chain
-
-2. **Scan & Store**: Introducing vulnerability scanning and metadata storage to your supply chain
-
-### Sign: Introducing Image Signing & Verification to your Supply Chain
-
-#### Overview
+    ```
 
 This component allows a platform operator to define a policy that will
 restrict unsigned images from running on clusters.
@@ -790,7 +912,7 @@ Currently, this component supports cosign signatures and its key formats.
 Although this component does not sign container images, you could use tools such
 as the [cosign CLI](https://github.com/sigstore/cosign#quick-start),
 [kpack](https://github.com/pivotal/kpack/blob/main/docs/image.md#cosign-config),
-and [Tanzu Build Service](https://docs.vmware.com/en/Tanzu-Build-Service/1.3/vmware-tanzu-build-service-v13/GUID-index.html)
+and [Tanzu Build Service](https://docs.vmware.com/en/VMware-Tanzu-Build-Service/index.html)
 (which is what we will overview in this document) to generate signatures for
 your images.
 
@@ -799,7 +921,7 @@ its origin and integrity.
 Operators can increase their confidence that trusted software is running on their
 clusters by verifying signatures on artifacts prior to their deployment.
 
-#### Use Cases
+#### Use cases
 
 * Validate signatures from a given registry.
 * Deny unsigned images from being admitted in the cluster.
@@ -807,14 +929,14 @@ clusters by verifying signatures on artifacts prior to their deployment.
 > **Note**: this component does not verify images that are already running in a
 > cluster.
 
-**Signing Container Images**
+**Signing container images**
 
 Tanzu Application Platform supports verifying container image signatures that
 follow the cosign format.
 Application operators may sign container images and store them in the registry
 in several different ways, including:
 
-* Using [Tanzu Build Service v1.3](https://docs.vmware.com/en/Tanzu-Build-Service/1.3/vmware-tanzu-build-service-v13/GUID-index.html).
+* Using [Tanzu Build Service v1.4](https://docs.vmware.com/en/Tanzu-Build-Service/1.4/vmware-tanzu-build-service-v14/GUID-index.html).
 * Using [kpack](https://github.com/pivotal/kpack/blob/main/docs/image.md#cosign-config)
 v0.4.0 or higher.
 * Signing existing images with [cosign](https://github.com/sigstore/cosign#quick-start).
@@ -855,7 +977,7 @@ An example policy would look like this:
 
 ```
 ---
-apiVersion: signing.run.tanzu.vmware.com/v1alpha1
+apiVersion: signing.apps.tanzu.vmware.com/v1beta1
 kind: ClusterImagePolicy
 metadata:
   name: image-policy
@@ -891,14 +1013,14 @@ The custom resource for the policy must have a name of `image-policy`.
 > are known to run container images that are not currently signed, such as the
 > `kube-system` namespace.
 
-#### Examples and Expected Results
+#### Examples and expected results
 
 If a platform operator creates the following policy, there are different scenarios
 and expected outcomes:
 
 ```
 ---
-apiVersion: signing.run.tanzu.vmware.com/v1alpha1
+apiVersion: signing.apps.tanzu.vmware.com/v1beta1
 kind: ClusterImagePolicy
 metadata:
   name: image-policy
@@ -946,17 +1068,17 @@ The Supply Chain Security Tools - Sign component outputs logs for the above
 scenarios. To examine the logs the platform operator can run:
 
 ```
-kubectl logs -n image-policy-system -l "signing.run.tanzu.vmware.com/application-name=image-policy-webhook" -f
+kubectl logs -n image-policy-system -l "signing.apps.tanzu.vmware.com/application-name=image-policy-webhook" -f
 ```
 
-#### Next Steps and Further Information
+#### Next steps and further information
 
 * [Overview for Supply Chain Security Tools - Sign](scst-sign/overview.md)
 * [Configuring Supply Chain Security Tools - Sign](scst-sign/configuring.md)
 * [Supply Chain Security Tools - Sign Known Issues](scst-sign/known_issues.md)
 
 
-### Scan & Store: Introducing Vulnerability Scanning and Metadata Storage to your Supply Chain
+### Scan and Store: Introducing vulnerability scanning and metadata storage to your Supply Chain
 
 **Overview**
 
@@ -982,7 +1104,7 @@ to easily reference historical scan results, and provides querying functionality
 
 To try the scan and store features in a supply chain, see [Section 3: Add testing and security scanning to your application](#add-testing-and-scanning).
 
-#### Running Public Source Code and Image Scans with Policy Enforcement
+#### Running Public source code and image scans with policy enforcement
 
 Follow the instructions in [Sample public source code and image scans with policy enforcement](scst-scan/running-scans.md)
 to perform the following two types of public scans:
@@ -993,14 +1115,14 @@ to perform the following two types of public scans:
 Both examples include a policy that considers CVEs with Critical severity ratings as violations.
 
 
-#### Running Private Source Code and Image Scans with Policy Enforcement
+#### Running private source code and image scans with policy enforcement
 
 Follow the instructions in [Sample private source scan](scst-scan/samples/private-source.md) to perform a source code scan against a private registry or
 [Sample private image scan](scst-scan/samples/private-image.md)
 to do an image scan on a private image.
 
 
-#### Viewing Vulnerability Reports using Supply Chain Security Tools - Store Capabilities
+#### Viewing vulnerability reports using Supply Chain Security Tools - Store capabilities
 
 After completing the scans from the previous step,
 query the [Supply Chain Security Tools - Store](scst-store/overview.md) to view your vulnerability results.
@@ -1009,14 +1131,14 @@ Use the Supply Chain Security Tools - Store CLI, called Insight,
 to query metadata that have been submitted to the component after the scan step.
 
 For a complete guide on how to query the store,
-see [Querying Supply Chain Security Tools - Store](scst-store/querying_the_metadata_store.md).
+see [Querying Supply Chain Security Tools - Store](scst-store/query_data.md).
 
-#### Example Supply Chain including Source and Image Scans
+#### Example Supply Chain including source and image scans
 
 One of the out of the box supply chains we are working on for a future release will include image and source code vulnerability scanning and metadata storage into a preset Tanzu Application Platform supply chain. Until then, you can use this example to see how to try this out:
 [Example Supply Chain including Source and Image Scans](scst-scan/choreographer.md).
 
-**Next Steps and Further Information**
+**Next steps and further information**
 
 * [Configure Code Repositories and Image Artifacts to be Scanned](scst-scan/scan-crs.md)
 
@@ -1031,22 +1153,17 @@ One of the out of the box supply chains we are working on for a future release w
 ## <a id='consuming-services'></a> Section 5: Consuming Services on Tanzu Application Platform
 
 Tanzu Application Platform makes it easy to discover, curate, consume, and manage
-services across single or multi-cluster environments.
-This section has procedures for several use cases regarding Services journey on Tanzu Application Platform.
+services across single-cluster or multi-cluster environments.
+This section introduces procedures for implementing several use cases regarding services journey on Tanzu Application Platform.
 
 ### Overview
 
-Most applications require backing services, such as databases, queues, and caches, to run
-successfully.
+Nowadays most applications depend on backing services such as databases, queues, and caches.
+Developers spend more time focusing on developing their applications and less
+time worrying about the provision, configuration, and operations of the backing services.
+In Tanzu Application Platform, Services Toolkit is the component that enables this experience.
 
-This enables developers to spend more time focusing on developing their applications and less
-time worrying about the provision, configuration, and operations of the backing services they
-depend on.
-
-This experience is made possible in Tanzu Application Platform by using the Services Toolkit
-component. Below are use cases that are unlocked by Services Toolkit on Tanzu Application Platform. Those marked with Experimental are subject to change.
-
-### Use cases unlocked by Services Toolkit on Tanzu Application Platform
+### Use cases enabled by Services Toolkit on Tanzu Application Platform
 
 All four use cases are for binding an application to a pre-provisioned service instance.
 The use cases vary according to where the service instance is located. The four use cases are summarized in the following table:
@@ -1068,7 +1185,7 @@ The use cases vary according to where the service instance is located. The four 
 	</tr>
   <tr>
     <td>outside Kubernetes, for example, on an external Azure DB</td>
-    <td>Beta</td>
+    <td>GA</td>
     <td><a href="#services-journey-use-case-3">Use case 3</a></td>
   </tr>
   <tr>
@@ -1080,50 +1197,60 @@ The use cases vary according to where the service instance is located. The four 
 
 Services Toolkit comprises the following Kubernetes-native components:
 
-* [Service Offering](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-service_offering-terminology_and_apis.html)
-* [Service Resource Claims](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-service_resource_claims-terminology_and_apis.html)
-* [Service API Projection (Experimental)](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-api_projection_and_resource_replication-terminology_and_apis.html)
-* [Service Resource Replication (Experimental)](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-api_projection_and_resource_replication-terminology_and_apis.html)
+- [Service Offering](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-service_offering-terminology_and_apis.html)
+- [Service Resource Claims](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-service_resource_claims-terminology_and_apis.html)
+- [Service API Projection (Experimental)](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-api_projection_and_resource_replication-terminology_and_apis.html)
+- [Service Resource Replication (Experimental)](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-api_projection_and_resource_replication-terminology_and_apis.html)
 
-Each component has value on its own, however the most powerful and valuable use cases are unlocked by combining them. For detailed information about each of the Services Toolkit components, including the use cases they unlock and the API reference guides, see the [Services Toolkit documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.4/services-toolkit-0-4/GUID-overview.html).
+>**Note:** Services marked with Experimental/Beta are subject to change.
+
+Each component has its value, however the best use cases are enabled by combining multiple components together.
+For information about each of the Services Toolkit components, including the use cases and the API reference guides,
+see the [About Services Toolkit](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.4/services-toolkit-0-4/GUID-overview.html).
 
 Within the context of Tanzu Application Platform, one of the most important use cases
 is binding an application workload to a backing service such as a PostgreSQL database or a
-RabbitMQ queue.
-This use case is made possible by the [Service Binding Specification](https://github.com/servicebinding/spec) for Kubernetes.
-Any service that adheres to the [Provisioned Service](https://github.com/servicebinding/spec#provisioned-service) part of the specification is automatically
-compatible with Tanzu Application Platform.
+RabbitMQ queue. This ensures the best user experience for working with backing services
+as part of the development life cycle.
 
-This leads to a simple, but powerful, first-class user experience for working with backing services
-as part of the development life cycle. Below we expand on the first two use cases listed above.
+Before exploring the cases, we need to first install a service and a few supporting resources
+so Application Teams can discover, provision, and bind to services in Tanzu Application Platform.
+The [setup procedure](#consuming-services-setup) is typically performed by the Service Operator.
+
+>**Note:** The [Service Binding Specification](https://github.com/servicebinding/spec) for Kubernetes is required in this use case.
+
+>**Note:** Any service that adheres to the [Provisioned Service](https://github.com/servicebinding/spec#provisioned-service) in the specification is compatible with Tanzu Application Platform.
+
+>**Warning:** The example flow detailed in [Use case 1: Binding an application to a pre-provisioned service instance running in the same namespace](#services-journey-use-case-1) uses one RabbitMQ instance and one workload.  RabbitMQ is frequently  used with two or more applicatons although the current implementation blocks the ability to do this which only one workload.  See [Binding multiple apps to the same service resource](#binding-multiple-apps-to-the-same-service-resource) for more details on how to work around this manually.
 
 <!-- * [Use Case 1 - **Binding an App Workload to a Service Resource**](#services-journey-use-case-1)
 * [Use Case 2 - **Binding an App Workload to a Service Resource across multiple clusters**](#services-journey-use-case-2)
 * [Use Case 3 - **Binding an App Workload directly to a Secret (support for external services)**](#services-journey-use-case-3) -->
 
-In order to demonstrate how Application Teams can discover, provision and bind to services in Tanzu Application Platform, we first need to install a service along with a few supporting resources to make it discoverable. This setup is typically performed by the role of the Service Operator.
+### <a id='consuming-services-setup'></a> Set Up
 
-### Setup
+Follow these steps to install RabbitMQ Operator, create the necessary role-based access control (RBAC),
+and create a Services Toolkit resource called `ClusterResource` for RabbitmqCluster.
 
-Follow the steps below to install RabbitMQ Operator, create the necessary RBAC,
-and create a Services Toolkit resource called `ClusterResource` for
-RabbitmqCluster so that app teams can discover it.
-
-1. Install RabbitMQ Operator which provides a RabbitmqCluster API Kind on the rabbitmq.com/v1beta1 API Group/Version.
+1. Install RabbitMQ Operator which provides a RabbitmqCluster API kind on the `rabbitmq.com/v1beta1 API Group/Version`.
 
     ```
     kapp -y deploy --app rmq-operator --file https://github.com/rabbitmq/cluster-operator/releases/download/v1.9.0/cluster-operator.yml
     ```
 
-1. Now that a new API has been installed and is available on the cluster, we must
-create corresponding RBAC rules to give relevant permissions to both the
-services-toolkit controller manager, as well as the users of the cluster.
-Start with the RBAC required by the services-toolkit controller-manager.
-The rules in this `ClusterRole` get aggregated to the services-toolkit controller
-manager through the label, meaning that the services-toolkit controller manager
-is then able to get, list, watch and update rabbitmqcluster resources.
-A ClusterRole like this would be required for each additional API resource
-installed onto the cluster.
+1. After a new API is installed and available on the cluster,
+create the corresponding RBAC rules to give relevant permissions to both the
+services-toolkit controller manager and the users of the cluster by configuring `resource-claims-rmq.yaml`.
+
+    **Example:**
+
+    In the following example, we start with the RBAC required by the services-toolkit controller-manager.
+    The rules in this `ClusterRole` get aggregated to the services-toolkit controller
+    manager through the label, so the services-toolkit controller manager
+    is able to get, list, watch and update all rabbitmqcluster resources.
+
+    >**Note:** A ClusterRole with the RBAC required by the services-toolkit controller-manager
+     must be enabled for each additional API resource installed onto the cluster.
 
     ```
     # resource-claims-rmq.yaml
@@ -1146,10 +1273,12 @@ installed onto the cluster.
     kubectl apply -f resource-claims-rmq.yaml
     ```
 
-1. Ensure relevant RBAC is in place for the users. This example grants
-`get`, `list` and `watch` to all `rabbitmqcluster` resources for all authenticated
-users. The specifics of these permissions vary depending on the desired level
-of access to such resources.
+1. In `rabbitmqcluster-reader.yaml`, ensure you have RBAC enabled for all users.
+The following example grants `get`, `list` and `watch` to all `rabbitmqcluster` resources for all authenticated
+users.
+
+    >**Note:** The specifics of these permissions vary depending on the desired level
+    of access to resources.
 
     ```
     # rabbitmqcluster-reader.yaml
@@ -1190,7 +1319,9 @@ of access to such resources.
     ```
 
 1. Make the API discoverable to the Application Development team by creating the
-ClusterResources. For example:
+ClusterResources in `rabbitmq-clusterresource.yaml`.
+
+    **Example:**
 
     ```
     # rabbitmq-clusterresource.yaml
@@ -1211,16 +1342,16 @@ ClusterResources. For example:
     kubectl apply -f rabbitmq-clusterresource.yaml
     ```
 
-    For further information about `ClusterResource`, see the
-    [Services Toolkit component documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.4/services-toolkit-0-4/GUID-service_offering-terminology_and_apis.html).
+    For information about `ClusterResource`, see the
+    [Service Offering for VMware Tanzu](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.4/services-toolkit-0-4/GUID-service_offering-terminology_and_apis.html).
 
 
-### <a id='services-journey-use-case-1'></a> Use case 1 - Binding an app to a pre-provisioned service instance running in the same namespace
+### <a id='services-journey-use-case-1'></a> Use case 1: Binding an application to a pre-provisioned service instance running in the same namespace
 
-Follow these steps to bind an app to a pre-provisioned service instance running
+Follow these steps to bind an application to a pre-provisioned service instance running
 in the same namespace.
 
-1. Create a RabbitMQ service instance.
+1. Create a RabbitMQ service instance with the following YAML:
 
     ```
     # example-rabbitmq-cluster-service-instance.yaml
@@ -1239,69 +1370,172 @@ in the same namespace.
     kubectl apply -f example-rabbitmq-cluster-service-instance.yaml
     ```
 
-1. Check on that resource by running:
+1. List the resource by running:
 
     ```
     kubectl get rabbitmqclusters
     ```
 
-    >**Note:** In future releases, creating service instances manually will not
-    be required. Services Toolkit will create the service instances on-demand
-    based on the intent declared by the workloads.
+1. Follow these steps to create an application workload that automatically claims and binds to the
+RabbitMQ instance:
 
+    >**Note:** Ensure your namespace can use the installed Tanzu Application Platform packages so that Services Toolkit can create application workloads.
+    For more information, see [Set up developer namespaces to use installed packages](install-components.md#setup).
 
-1. Create an Application Workload that automatically claims and binds to that
-RabbitMQ instance.
+    1. Obtain a service reference by running:
 
-    >**Important:** You must ensure that your namespace is set up to use installed
-    Tanzu Application Platform packages so that application workloads can be created
-    successfully.
-    For more information, see [Set Up Developer Namespaces to Use Installed Packages](install-components.md#setup).
+        ```
+        $ tanzu service instance list -owide
+        ```
 
-1. Obtain a service reference in the correct format by running:
+        Expect to see the following outputs:
 
-    ```
-    $ tanzu service instance list -owide
-    Warning: This is an ALPHA command and may change without notice.
+        ```
+        NAME                        KIND             SERVICE TYPE  AGE  SERVICE REF
+        example-rabbitmq-cluster-1  RabbitmqCluster  rabbitmq      50s  rabbitmq.com/v1beta1:RabbitmqCluster:default:example-rabbitmq-cluster-1
+        ```
 
-    NAME                        KIND             SERVICE TYPE  AGE  SERVICE REF
-    example-rabbitmq-cluster-1  RabbitmqCluster  rabbitmq      50s  rabbitmq.com/v1beta1:RabbitmqCluster:example-rabbitmq-cluster-1:default
-    ```
+    1. Create the application workload and the `rabbitmq-sample` application hosted at
+    `https://github.com/jhvhs/rabbitmq-sample` by running:
 
-1. Use the `SERVICE REF` value from the output to create the Application Workload.
-To do so for this example, use the `rabbitmq-sample` application hosted at
-`https://github.com/jhvhs/rabbitmq-sample` by running:
+        ```
+        tanzu apps workload create rmq-sample-app-usecase-1 --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch v0.1.0 --type web --service-ref "rmq=<SERVICE-REF>"
+        ```
 
-    ```
-    tanzu apps workload create rmq-sample-app-usecase-1 --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch v0.1.0 --type web --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:example-rabbitmq-cluster-1:default"
-    ```
+        Where `<SERVICE-REF>` is the value of `SERVICE REF` from the output in the last step.
 
-1. Get the Knative web-app URL to confirm that the application workload is built
-and operational by running:
+1. Get the Knative web-app URL by running:
 
     ```
     tanzu apps workload get rmq-sample-app-usecase-1
     ```
 
-    >**Note:** It may take some time before the workload is ready.
+    >**Note:** It can take some time before the workload is ready.
 
 1. Visit the URL and confirm the app is working by refreshing the page and checking
 the new message IDs.
 
-<!-- ### <a id='services-journey-use-case-1'></a> Use Case 1 - Binding an App Workload to a Service Resource -->
+#### <a id='binding-multiple-apps-to-the-same-service-resource'></a> Binding multiple apps to the same service resource
 
-### <a id='services-journey-use-case-2'></a> Use case 2 - Binding an application to a pre-provisioned service instance running in a different namespace on the same Kubernetes cluster (GA)
+Currently, if there are two workloads both claiming the same service resource, then Resource Claims would prevent the second workload from claiming the resource.  To get around this, a `ProvisionedService` can be used.
 
-The first use case demonstrates binding a sample application workload to a service
+1. In `provisionedservice-reader.yaml`, ensure you have RBAC enabled for `provisionedservice` resources for all authenticated users similar to the following example:
+
+    ```
+    # provisionedservice-reader.yaml
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRole
+    metadata:
+      name: provisionedservice-reader
+    rules:
+    - apiGroups: ["bindings.labs.vmware.com"]
+      resources: ["provisionedservices"]
+      verbs: ["get", "list", "watch", "update"]
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRoleBinding
+    metadata:
+      name: provisionedservice-reader
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
+      kind: ClusterRole
+      name: provisionedservice-reader
+    subjects:
+    - apiGroup: rbac.authorization.k8s.io
+      kind: Group
+      name: system:authenticated
+    ```
+
+2. Apply `provisionedservice-reader.yaml` by running:
+
+    ```
+    kubectl apply -f provisionedservice-reader.yaml
+    ```
+
+
+3. Create a RabbitMQ service instance with the following YAML:
+
+    ```
+    # example-rabbitmq-cluster-service-instance-two-users.yaml
+    ---
+    apiVersion: rabbitmq.com/v1beta1
+    kind: RabbitmqCluster
+    metadata:
+      name: example-rabbitmq-cluster-two-users
+    spec:
+      replicas: 1
+    ```
+
+4. Apply `example-rabbitmq-cluster-service-instance-two-users.yaml` by running:
+
+    ```
+    kubectl apply -f example-rabbitmq-cluster-service-instance-two-users.yaml
+    ```
+
+5. Get the name of the binding Secret produced by the RabbitmqCluster with the following command:
+
+    ```
+    kubectl get rabbitmqclusters example-rabbitmq-cluster-two-users -o jsonpath='{.status.binding.name}'
+    ```
+
+6. Create two `ProvisionedService`s with the following YAML:
+    ```
+    # rabbitmq-provisionedservices.yaml
+    ---
+    apiVersion: bindings.labs.vmware.com/v1alpha1
+    kind: ProvisionedService
+    metadata:
+      name: rabbitmq-user-1
+    spec:
+      binding:
+        name: <BINDING-SECRET-NAME>
+    ---
+    apiVersion: bindings.labs.vmware.com/v1alpha1
+    kind: ProvisionedService
+    metadata:
+      name: rabbitmq-user-2
+    spec:
+      binding:
+        name: <BINDING-SECRET-NAME>
+    ```
+
+    Where `<BINDING-SECRET-NAME>` is the output in the previous step.
+
+7. Apply `rabbitmq-provisionedservices.yaml` by running:
+
+    ```
+    kubectl apply -f rabbitmq-provisionedservices.yaml
+    ```
+
+8. Create the first application workload and reference the first `ProvisionedResource` `rabbitmq-user-1` by running:
+
+    ```
+    tanzu apps workload create rmq-sample-app-usecase-1-app-1 --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch v0.1.0 --type web --service-ref "rmq=bindings.labs.vmware.com/v1alpha1:ProvisionedService:rabbitmq-user-1"
+    ```
+
+9. Create the second application workload and reference the second `ProvisionedResource` `rabbitmq-user-2` by running:
+
+    ```
+    tanzu apps workload create rmq-sample-app-usecase-1-app-2 --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch v0.1.0 --type web --service-ref "rmq=bindings.labs.vmware.com/v1alpha1:ProvisionedService:rabbitmq-user-2"
+    ```
+
+>**Note:** To have more workloads consume the same RabbitMQ instance, please repeat the step creating a new `ProvisionedService` for the RabbitmqCluster secret, and reference it when creating a new workload.
+
+### <a id='services-journey-use-case-2'></a> Use case 2 - Binding an application to a pre-provisioned service instance running in a different namespace on the same Kubernetes cluster
+
+>**Note:** Consumption of a single service resource by multiple workloads from a different namespace is currently not possible and will be fixed in a future release.
+
+[Use case 1](#services-journey-use-case-1) introduces binding a sample application workload to a service
 instance that is running in the same namespace.
-Here we will look at binding to a service instance that is running in a different
-namespace. This is likely a common scenario as it allows for separation of concerns
+Use case 2 is for binding a sample application workload to a service instance that is running in a different
+namespace. This is a common scenario as it separates concerns
 between those users working with application workloads, and those who are responsible
 for service instances.
 
-1. This step is very similar to the first use case, but here we create a new
-service instance in a different namespace. For example, the `service-instances`
-namespace:
+1. Create a new service instance in a different namespace.
+
+    For example, the `service-instances` namespace:
 
     ```
     # example-rabbitmq-cluster-service-instance-2.yaml
@@ -1309,9 +1543,9 @@ namespace:
     apiVersion: rabbitmq.com/v1beta1
     kind: RabbitmqCluster
     metadata:
-    name: example-rabbitmq-cluster-2
+      name: example-rabbitmq-cluster-2
     spec:
-    replicas: 1
+      replicas: 1
     ```
 
 1. Apply `example-rabbitmq-cluster-service-instance-2.yaml` by running:
@@ -1320,32 +1554,23 @@ namespace:
     kubectl -n service-instances apply -f example-rabbitmq-cluster-service-instance-2.yaml
     ```
 
-    You now have an Application Workload running in our developer namespace and a
-    RabbitmqCluster service instance running in the `service-instances` namespace,
-    but they don’t currently know anything about each other.
-
-1. Bind the Application Workload and the RabbitmqCluster service instance together
-so that your application can use the RabbitMQ cluster.
-This can be done by passing the Application Workload a reference to the service
-instance by using the `--service-ref` flag.
-To obtain a service reference in the correct format, run:
+1. Obtain a service reference by running:
 
     ```
     $ tanzu service instances list --all-namespaces -owide
-    Warning: This is an ALPHA command and may change without notice.
-
-    NAMESPACE          NAME                        KIND             SERVICE TYPE  AGE   SERVICE REF
-    default            example-rabbitmq-cluster-1  RabbitmqCluster  rabbitmq      105s  rabbitmq.com/v1beta1:RabbitmqCluster:example-rabbitmq-cluster-1:default
-    service-instances  example-rabbitmq-cluster-2  RabbitmqCluster  rabbitmq      14s   rabbitmq.com/v1beta1:RabbitmqCluster:example-rabbitmq-cluster-2:service-instances
     ```
 
-1. The service instance is in a different namespace to the one the
-Application Workload is running in.
-By default, it is impossible to bind an Application Workload to a service instance
-that resides in a different namespace as this would break tenancy of the
-Kubernetes namespace model. However, you can create a `ResourceClaimPolicy`
-(API provided by Services Toolkit), which you can configure to allow a
-cross-namespace binding to take place.
+    Expect to see the following outputs:
+
+    ```
+    NAMESPACE          NAME                        KIND             SERVICE TYPE  AGE   SERVICE REF
+    default            example-rabbitmq-cluster-1  RabbitmqCluster  rabbitmq      105s  rabbitmq.com/v1beta1:RabbitmqCluster:default:example-rabbitmq-cluster-1
+    service-instances  example-rabbitmq-cluster-2  RabbitmqCluster  rabbitmq      14s   rabbitmq.com/v1beta1:RabbitmqCluster:service-instances:example-rabbitmq-cluster-2
+    ```
+
+1. Create a `ResourceClaimPolicy` to enable cross-namespace binding.
+
+    >**Note:** The service instance is in a different namespace to the one the application workload is running in. By default, it is impossible to bind an application workload to a service instance that resides in a different namespace as this would break tenancy of the Kubernetes namespace model.
 
     ```
     # resource-claim-policy.yaml
@@ -1360,7 +1585,10 @@ cross-namespace binding to take place.
     subject:
       group: rabbitmq.com
       kind: RabbitmqCluster
-  ```
+
+    ```
+    Where `*` indicates this policy permits any namespace to claim a RabbitmqCluster resource from
+    the service-instances namespace.
 
 1. Apply `resource-claim-policy.yaml` by running:
 
@@ -1368,55 +1596,41 @@ cross-namespace binding to take place.
     kubectl -n service-instances apply -f resource-claim-policy.yaml
     ```
 
-    This policy permits any namespace to claim a RabbitmqCluster resource from
-    the service-instances namespace.
-    For information about how policies work, see the
+    For more information about `ResourceClaimPolicy`, see the
     [ResourceClaimPolicy documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-service_resource_claims-terminology_and_apis.html#resourceclaimpolicy-4).
 
-1. With an appropriate policy in place, you can now bind the Application Workload
-to the RabbitmqCluster Service Instance using the SERVICE REF value from an earlier
-step. Associate the SERVICE REF value with a name as part of the following command:
+1. Bind the application workload to the RabbitmqCluster Service Instance:
 
     ```
-    $ tanzu apps workload update rmq-sample-app-usecase-1 --service-ref="rmq=rabbitmq.com/v1beta1:RabbitmqCluster:example-rabbitmq-cluster-2:service-instances" --yes
+    $ tanzu apps workload update rmq-sample-app-usecase-2 --service-ref="rmq=<SERVICE-REF>" --yes
     ```
 
-1. Confirm that the application workload is built and running by using the following
-command to get the Knative web-app URL:
+    Where `<SERVICE-REF>` is the value of `SERVICE REF` from the output in the step 3.
+
+1. Get the Knative web-app URL by running:
 
     ```
-    tanzu apps workload get rmq-sample-app-usecase-1
+    tanzu apps workload get rmq-sample-app-usecase-2
     ```
-
-    >**Note:** It might take a while.
 
 1. Visit the URL and confirm the app is working by refreshing the page and
 checking the new message IDs.
 
-### <a id='services-journey-use-case-3'></a> Use case 3 - Binding an application to a service running outside Kubernetes (Beta)
+### <a id='services-journey-use-case-3'></a> Use case 3 - Binding an application to a service running outside Kubernetes
 
-This use case enables developers to connect their application workloads to almost
-any backing service, including those that are running external to the platform,
-as well as those that do not adhere to the Provisioned Service part of the binding
-specifications.
-This is made possible by using direct references to Kubernetes Secret objects.
+This use case leverages direct references to Kubernetes `Secret` resources to enable developers to connect their application workloads to almost
+any backing service, including backing services that:
 
-For more information, see the
-[Provisioned Service specifications](https://github.com/servicebinding/spec#provisioned-service) in GitHub.
+* are running external to the platform
+* do not adhere to the [Provisioned Service specifications](https://github.com/servicebinding/spec#provisioned-service)
 
-In the previous two use cases you saw the use of the `--service-ref` flag on the
-`tanzu apps workload create` command, and you used it to provide a reference to a Provisioned Service service instance, for example the RabbitmqCluster.
+>**Note:** Kubernetes Secret resource must abide by
+the [Well-known Secret Entries specifications](https://github.com/servicebinding/spec#well-known-secret-entries).
 
-You can also provide a reference directly to a Kubernetes Secret resource that abides by
-the Well-known Secret Entries part of the binding specifications.
+The following example demonstrates the procedures to bind a new application on Tanzu Application Platform to an
+existing PostgreSQL database that exists in Azure.
 
-For more information, see the
-[Well-known Secret Entries specifications](https://github.com/servicebinding/spec#well-known-secret-entries) in GitHub.
-
-In this example, bind a new application on Tanzu Application Platform to an
-existing PostgreSQL database that exists in Azure:
-
-1. Create a Kubernetes Secret resource similar to the following example:
+1. Create a Kubernetes `Secret` resource similar to the following example:
 
     ```
     # external-azure-db-binding-compatible.yaml
@@ -1441,35 +1655,47 @@ existing PostgreSQL database that exists in Azure:
     ```
     kubectl apply -f external-azure-db-binding-compatible.yaml
     ```
-
-    >**Note:** This Secret can be defined in a different namespace than the Workload
-    >and claimed cross namespace through the use of `ResourceClaimPolicy` resources.
+    >**Note:** The `Secret` can be defined in a different namespace than the Workload
+    >and claimed cross namespace by using `ResourceClaimPolicy` resources.
     >For more information, see [Use case 2](#services-journey-use-case-2).
 
-1. Provide a reference to the Secret when creating your application workload.
-For example:
+1. Create your application workload by running:
+
+    Example:
 
     ```
-    tanzu apps workload create pet-clinic --git-repo https://github.com/spring-projects/spring-petclinic --git-branch main --type web --service-ref db=v1:Secret:external-azure-db-binding-compatible
+    tanzu apps workload create <WORKLOAD-NAME> --git-repo https://github.com/spring-projects/spring-petclinic --git-branch main --type web --service-ref db=<REFERENCE>
     ```
 
-### <a id='services-journey-use-case-4'></a> **Use case 4 - Binding an application to a service instance running on a different Kubernetes cluster (Experimental).**
+    Where:
 
-This use case is almost identical to the first, but rather than installing and running the RabbitMQ Cluster Kubernetes Operator on the same cluster as Tanzu Application Platform, we install and run it on an entirely separate dedicated Services cluster. There are several reasons why you might want to do this:
+    - `<WORKLOAD-NAME>` is the name of the application workload. For example, `pet-clinic`.
+    - `<REFERENCE>` is a reference provided to the `Secret`. For example, `v1:Secret:external-azure-db-binding-compatible`.
 
-* Dedicated cluster requirements for Workload or Service clusters. For example, Service clusters
-might need access to powerful SSDs.
-* Different cluster life cycle management. Upgrades to Service clusters can occur more cautiously.
-* Unique compliance requirements. Because data is stored on a Service cluster it might have
-different compliance needs.
-* Separation of permissions and access. Application teams can only access the clusters where their
+### <a id='services-journey-use-case-4'></a> **Use case 4: Binding an application to a service instance running on a different Kubernetes cluster (Experimental).**
+
+>**Note:** Use cases marked with Experimental are subject to change.
+
+This use case is identical to [use case 1](#services-journey-use-case-1),
+but rather than installing and running the RabbitMQ Cluster Kubernetes Operator on the same cluster
+as Tanzu Application Platform, we install and run it on an entirely separate dedicated services cluster.
+There are several reasons why we want to implement this use case:
+
+- **Dedicated cluster requirements for Workload or Service clusters:** service clusters, for instance,
+might need access to more powerful SSDs.
+- **Different cluster life cycle management:** upgrades to Service clusters can occur more cautiously.
+- **Unique compliance requirements:** data is stored on a Service cluster, which might have different compliance needs.
+- **Separation of permissions and access:** application teams can only access the clusters where their
 applications are running.
 
-The experience of an app developer working on their Tanzu Application Platform cluster is
-unaltered. All complexity in the setup and management of backing infrastructure is abstracted away
-from application developers, which gives them more time to focus on developing their apps.
+The benefits of implementing this use case include:
 
-The components of Services Toolkit that drive this experience are Service API Projection and
+- The experience of application developers working on their Tanzu Application Platform cluster is
+unaltered.
+- All complexity in the setup and management of backing infrastructure is abstracted away
+from application developers, which gives them more time to focus on developing their applications.
+
+>**Note:** The components of Services Toolkit that drive this experience are Service API Projection and
 Service Resource Replication. These components are not currently considered to be GA.
 
 For more information about network requirements and recommended topologies, see the
@@ -1477,11 +1703,11 @@ For more information about network requirements and recommended topologies, see 
 
 #### Prerequisites
 
-It is assumed that you have run through the previous use case prior to going through this one.
+>**Important:** Ensure you have completed the previous use cases prior to continuing with use case 4.
 
-Meet the following prerequisites before following the steps for this use case:
+Ensure you have met the following prerequisites before starting the [procedures of use case 4](#steps-use-case-4).
 
-1. Uninstall the RabbitMQ Cluster Operator that was installed in an earlier step.
+1. Uninstall the RabbitMQ Cluster Operator that was installed in [consuming services setup procedures](#consuming-services-setup).
 
     ```
     kapp delete -a rmq-operator -y
@@ -1492,97 +1718,98 @@ cluster.
 
     * This cluster must be able to create LoadBalanced services.
 
-    * This time after you have added the Tanzu Application Platform package repository, instead of
-    installing a profile, you only need to install the Services Toolkit package.
-       You can skip all other packages.
-       For installation information, see
-       [Add the Tanzu Application Platform Package Repository](install.md#add-package-repositories)
-       and [Install Services Toolkit](install-components.md#install-services-toolkit).
+    * After adding the Tanzu Application Platform package repository, instead of
+    installing all packages, you only need to install the Services Toolkit package.
+    For installation information, see [Add the Tanzu Application Platform Package Repository](install.md#add-package-repositories)
+    and [Install Services Toolkit](install-components.md#install-services-toolkit).
 
-    * From now on this cluster is called the Service Cluster.
+    * From now on this cluster is called the **Service Cluster**.
 
 1. Download and install the `kubectl-scp` plug-in from [Tanzu Application Platform Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform).
-   This plug-in is for demonstration and experimentation purposes only. A `tanzu` CLI UX might
-   replace it in the future.
-   To install the plug-in you must place it in your PATH and ensure it is executable.
-   For example:
+
+    **Note:** This plug-in is in Beta phase.
+
+    **Note:** To install the plug-in you must place it in your `PATH` and ensure it is executable.
+
+    For example:
 
     ```
     sudo cp PATH-TO-KUBECTL-SCP /usr/local/bin/kubectl-scp
     sudo chmod +x /usr/local/bin/kubectl-scp
     ```
 
-    You are left with two Kubernetes clusters:
+    Now you have two Kubernetes clusters:
 
-    - Workload Cluster, which is where Tanzu Application Platform, including Services Toolkit, is installed.
+    - **Workload Cluster**, which is where Tanzu Application Platform, including Services Toolkit, is installed.
     The RabbitMQ Cluster Operator is not installed on this cluster.
-    - Services Cluster, which is where only Services Toolkit is installed. Nothing else is installed here.
+    - **Services Cluster**, which is where only Services Toolkit is installed. No other component is installed in this cluster.
 
-#### Steps
+#### <a id='steps-use-case-4'></a> Steps
 
-To perform this use case, follow these steps:
+Follow these steps to bind an application to a service instance running on a different Kubernetes cluster:
 
->**Important:** Some of the commands listed in the following steps have placeholder values `WORKLOAD-CONTEXT` and `SERVICE-CONTEXT`.
+>**Important:** Some of the commands listed in the following steps have placeholder values `<WORKLOAD-CONTEXT>` and `<SERVICE-CONTEXT>`.
 >Change these values before running the commands.
 
-1. As the Service operator, you enable API Projection and Resource Replication between the Workload
-Cluster and Service Cluster by linking the two clusters together using the `kubectl scp` plug-in.
-Run the following command:
+1. As the Service Operator, run the following command to link the Workload Cluster and Service Cluster together by using the `kubectl scp` plug-in:
 
     ```
-    kubectl scp link --workload-kubeconfig-context=WORKLOAD-CONTEXT --service-kubeconfig-context=SERVICE-CONTEXT
+    kubectl scp link --workload-kubeconfig-context=<WORKLOAD-CONTEXT> --service-kubeconfig-context=<SERVICE-CONTEXT>
     ```
 
 1. Install the RabbitMQ Kubernetes Operator in the Services Cluster using kapp.
-This Operator is installed in the Workload Cluster, but developers can still create
-RabbitmqCluster service instances from the Workload Cluster.
 
-    >**Note:** This RabbitMQ Operator deployment has specific changes in it to enable cross-cluster
-    Service Binding. Use the exact `deploy.yml` specified here.
+    >**Note:** This Operator is installed in the Workload Cluster, but developers can still create
+    RabbitmqCluster service instances from the Workload Cluster.
+
+    >**Note:** Use the exact `deploy.yml` specified in the command as this RabbitMQ Operator deployment includes specific changes to enable cross-cluster
+    service binding.
 
     ```
      kapp -y deploy --app rmq-operator \
         --file https://raw.githubusercontent.com/rabbitmq/cluster-operator/lb-binding/hack/deploy.yml  \
-        --kubeconfig-context SERVICE-CONTEXT
+        --kubeconfig-context <SERVICE-CONTEXT>
     ```
 
-1. Verify that the Operator installed by running:
+1. Verify that the Operator is installed by running:
 
     ```
-    kubectl --context SERVICE-CONTEXT get crds rabbitmqclusters.rabbitmq.com
+    kubectl --context <SERVICE-CONTEXT> get crds rabbitmqclusters.rabbitmq.com
     ```
 
     The following steps federate the `rabbitmq.com/v1beta1` API group, which is available in the
     Service Cluster, into the Workload Cluster.
     This occurs in two parts: projection and replication.
-    Projection applies to custom API groups. Replication applies to core Kubernetes resources, such as
+
+    - Projection applies to custom API groups.
+    - Replication applies to core Kubernetes resources, such as
     Secrets.
 
-1. Create a corresponding namespace in the Service cluster. In the previous use
-case we created a namespace named `service-instances`, we must now create a
-namespace with the same name on the Service cluster. For example:
+1. Create a corresponding namespace in the Service cluster. In [use case 2](#services-journey-use-case-2),
+we created a namespace named `service-instances`, we must now create a namespace with the same name on the Service cluster.
+
+    For example:
 
     ```
-    kubectl --context SERVICE-CONTEXT create namespace service-instances
+    kubectl --context <SERVICE-CONTEXT> create namespace service-instances
     ```
 
 1. Federate using the `kubectl-scp` plug-in by running:
 
     ```
      kubectl scp federate \
-      --workload-kubeconfig-context=WORKLOAD-CONTEXT \
-      --service-kubeconfig-context=SERVICE-CONTEXT \
+      --workload-kubeconfig-context=<WORKLOAD-CONTEXT> \
+      --service-kubeconfig-context=<SERVICE-CONTEXT> \
       --namespace=service-instances \
       --api-group=rabbitmq.com \
       --api-version=v1beta1 \
       --api-resource=rabbitmqclusters
     ```
 
-1. After federation, the `rabbitmq.com/v1beta1` API is also available in the Workload Cluster.
-   Verify this by running:
+1. After federation, verify the `rabbitmq.com/v1beta1` API is also available in the Workload Cluster by running:
 
     ```
-    kubectl --context WORKLOAD-CONTEXT api-resources
+    kubectl --context <WORKLOAD-CONTEXT> api-resources
     ```
 
     The application operator takes over from here.
@@ -1604,8 +1831,9 @@ namespace with the same name on the Service cluster. For example:
     rabbitmq  It's a RabbitMQ cluster!  rabbitmq.com/v1beta1  RabbitmqCluster
     ```
 
-1. As done previously, provision a service instance on the
-Tanzu Application Platform cluster. For example:
+1. Provision a service instance on the Tanzu Application Platform cluster.
+
+    For example:
 
     ```
     # rabbitmq-cluster.yaml
@@ -1622,75 +1850,44 @@ Tanzu Application Platform cluster. For example:
 1. Apply the YAML file by running:
 
     ```
-    kubectl --context WORKLOAD-CONTEXT -n service-instances apply -f rabbitmq-cluster.yaml
+    kubectl --context <WORKLOAD-CONTEXT> -n service-instances apply -f rabbitmq-cluster.yaml
     ```
 
 1. Confirm that the RabbitmqCluster resource reconciles successfully from the
 Workload Cluster by running:
 
     ```
-    kubectl --context WORKLOAD-CONTEXT -n service-instances get -f rabbitmq-cluster.yaml
+    kubectl --context <WORKLOAD-CONTEXT> -n service-instances get -f rabbitmq-cluster.yaml
     ```
 
 1. Confirm that RabbitMQ Pods are running in the Service Cluster, but not in the
 Workload Cluster by running:
 
     ```
-    kubectl --context WORKLOAD-CONTEXT -n service-instances get pods
-    kubectl --context SERVICE-CONTEXT -n service-instances get pods
+    kubectl --context <WORKLOAD-CONTEXT> -n service-instances get pods
+    kubectl --context <SERVICE-CONTEXT> -n service-instances get pods
     ```
 
     Finally, the app developer takes over. The experience is the same for
-    the app developer as with the first use case.
+    the application developer as in [use case 1](#services-journey-use-case-1).
 
 1. Create the application workload by running:
 
     ```
-    tanzu apps workload create rmq-sample-app-usecase-2 --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch v0.1.0 --type web --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:projected-rmq:service-instances"
+    tanzu apps workload create rmq-sample-app-usecase-4 --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch v0.1.0 --type web --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:service-instances:projected-rmq"
     ```
 
-1. Get the web-app URL to confirm that the workload is operational by running:
+1. Get the web-app URL by running:
 
     ```
-    tanzu apps workload get rmq-sample-app-usecase-2
+    tanzu apps workload get rmq-sample-app-usecase-4
     ```
 
 1. Visit the URL and refresh the page to confirm the app is running by checking
 the new message IDs.
 
 
-## Appendix
 
-### Exploring more Tanzu apps CLI commands
-
-Here are some additional CLI commands for the app that you deployed and debugged
-earlier in this guide.
-
-* Add some envars by running:
-
-    ```
-    tanzu apps workload update tanzu-java-web-app --env foo=bar
-    ```
-
-* Export the current running workload definition, to check into git, or promote
-to another environment, by running:
-
-    ```
-    tanzu apps workload get tanzu-java-web-app --export \
-     \
-    ```
-
-* Explore the flags available for the workload commands by running:
-
-    ```
-    tanzu apps workload -h
-    tanzu apps workload get -h
-    tanzu apps workload create -h
-    ```
-
-* Create a simple Java app from source code on your local file system by running:
-
-    ```
-    git clone git@github.com:spring-projects/spring-petclinic.git
-    tanzu apps workload create pet-clinic --source-image <YOUR-REGISTRY.COM>/pet-clinic --local-path ./spring-petclinic
-    ```
+<br>
+<br>
+<br>

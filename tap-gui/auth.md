@@ -61,4 +61,4 @@ You can change the card's title and/or description for a specific provider with 
         message: Enter with your GitHub account
   ```
 
-For a provider to show in the login page, it has to be properly configured under the `auth.providers` section of your values file.
+For a provider to show in the login page, keep in mind that it has to be properly configured under the `auth.providers` section of your values file.

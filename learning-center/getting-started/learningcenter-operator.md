@@ -1,15 +1,14 @@
 # Learning Center operator
 
-Before you can start deploying workshops, you need to install a Kubernetes operator for Learning Center. <br/>
+Before deploying workshops, install a Kubernetes Operator for Learning Center.
 The operator manages the setup of the environment for each workshop and deploys instances of a workshop for each person.
-We have the basic instructions for installing the Operator and Workshops. This 
-* Basic instructions for [Installing the Learning Center Operator](https://github.com/pivotal/docs-tap/blob/main/install-components.md#install-learning-center) 
 
-**Below is additional information on installing and setting up the Learning Center Operator** 
+For information about installing the operator, see basic instructions for [Installing the Learning Center operator](../../install-components.md#install-learning-center).
 
-## Kubernetes cluster requirements
 
-The Learning Center operator should be able to be deployed to any Kubernetes cluster supporting custom 
+Additional information about installing and setting up Learning Center operator.
+
+The Learning Center Operator should be able to be deployed to any Kubernetes cluster supporting custom 
 resource definitions and the concept of operators.
 
 The cluster must have an ingress router configured. Only a basic deployment of the ingress controller 
@@ -38,87 +37,81 @@ For some Kubernetes distributions, including from IBM, it may be necessary to co
 what user and group should be used for persistent volumes. If no default storage class is specified, or a specified 
 storage class is required, Learning Center can be configured with the name of the storage class.
 
-You need to have cluster admin access in order to install the Learning Center operator.
+You need to have cluster admin access in order to install the Learning Center Operator.
 
 ## Cluster pod security policies
 
-The Learning Center operator will define pod security policies to limit what users can do from workshops when
+The Learning Center Operator will define pod security policies to limit what users can do from workshops when
 deploying workloads to the cluster. The default policy prohibits running of images as the ``root`` user or using 
 a privileged pod. Specified workshops may relax these restrictions and apply a policy which enables additional 
 privileges required by the workshop.
 
-It is highly recommended that the pod security policy admission controller be enabled for the cluster to ensure 
-that the pod security policies are applied. If the admission controller is not enabled, users would be able to 
-deploy workloads which run as the ``root`` user in a container, or run privileged pods.
+It is recommended that the Pod security policy admission controller be enabled for the cluster to ensure
+that the Pod security policies are applied. If the admission controller is not enabled, users can
+deploy workloads that run as the ``root`` user in a container, or run privileged Pods.
 
 If you are unable to enable the pod security policy admission controller, you should only provide access to workshops 
-deployed using the Learning Center operator to users you trust.
+deployed using the Learning Center Operator to users you trust.
 
-Also note that where the pod security policy admission controller is not enabled, any workshops which have users create 
-persistent volumes may not work, as the user the pod runs as may not have access to the volume. The pod security policy 
-when applied usually enables access by ensuring that the security context of a pod is modified to give access.
+Whether the absence of the Pod security policy admission controller causes issues with access to persistent volumes
+depends on the cluster. Although minikube does not enable the Pod security policy admission controller, it
+works as persistent volumes when mounted to give write permissions to all users.
 
-Whether the absence of the pod security policy admission controller will cause issues with access to persistent volumes 
-will depend on the cluster. Although minikube doesn't enable the pod security policy admission controller, it will still 
-work as persistent volumes when mounted give write permissions to all users.
-
-No matter whether pod security policies are enabled or not, individual workshops should always be reviewed as to what 
+No matter whether Pod security policies are enabled or not, individual workshops must be reviewed as to what
 additional privileges they grant before allowing their use in a cluster.
 
-## Specifying the ingress domain
+##<a id="ingress-domain"></a>Specifying the ingress domain
 
-The operator when deploying instances of the workshop environments needs to be able to expose them 
-via an external URL for access. To define the domain name that can be used as a suffix to hostnames for instances.
+When deploying instances of workshop environments, the operator must expose the instances
+by using an external URL for access to define the domain name that is used as a suffix to host names for instances.
 
-> **Note:** For the custom domain you are using, DNS must have been configured with a wildcard domain to forward all requests for sub domains of the custom domain, to the ingress router of the Kubernetes cluster.
+>**Note:** For the custom domain you are using, configure your DNS with a wildcard domain to forward all requests for sub domains of the custom domain to the ingress router of the Kubernetes cluster.
+
+> **Note:** For the custom domain you are using, DNS must have been configured with a wildcard domain to forward all requests for sub domains of the custom domain to the ingress router of the Kubernetes cluster.
 
 It is recommended that you avoid using a ``.dev`` domain name as such domain names have a requirement
 to always use HTTPS and you cannot use HTTP. Although you can provide a certificate for secure 
 connections under the domain name for use by Learning Center, this doesn't extend to what a workshop 
-may do. By using a ``.dev`` domain name, if workshop instructions have you creating ingresses in Kubernetes 
-using HTTP only, they will not work.
+may do. By using a ``.dev`` domain name, if workshop instructions require you create ingresses in Kubernetes 
+using HTTP only, these will not work.
 
-> **Note:** If you are running Kubernetes on your local machine using a system like ``minikube`` and you don't have a custom domain name which maps to the IP for the cluster, you can use a ``nip.io`` address. For example, if ``minikube ip`` returned ``192.168.64.1``, you could use the 192.168.64.1.nip.io domain. Note that you cannot use an address of form ``127.0.0.1.nip.io``, or ``subdomain.localhost``. This will cause a failure as internal services when needing to connect to each other, would end up connecting to themselves instead, since the address would resolve to the host loopback address of ``127.0.0.1``.
+> **Note:** If you are running Kubernetes on your local machine using a system like ``minikube`` and you don't have a custom domain name which maps to the IP for the cluster, you can use a ``nip.io`` address. For example, if ``minikube ip`` returned ``192.168.64.1``, you could use the 192.168.64.1.nip.io domain. Note that you cannot use an address of form ``127.0.0.1.nip.io``, or ``subdomain.localhost``. This will cause a failure as internal services needing to connect to each other would end up connecting to themselves instead since the address would resolve to the host loopback address of ``127.0.0.1``.
 
-### Configuration yaml
-Define the ``ingressDomain`` property on the configuration yaml passed to Tanzu CLI.
-**Note:** This property is required to install Learning Center using Tanzu CLI
 ```
 ingressDomain: learningcenter.my-domain.com
 ```
 
-### Set the environment variable manually
-Set the ``INGRESS_DOMAIN`` environment variable on the operator deployment. To set the ``INGRESS_DOMAIN`` 
+### <a id="NAME"></a>Set the environment variable manually
+Set the ``INGRESS_DOMAIN`` environment variable on the operator deployment. To set the ``INGRESS_DOMAIN``
 environment variable, run:
 
 ```
 kubectl set env deployment/learningcenter-operator -n learningcenter INGRESS_DOMAIN=test
-```
+``` <!-- Define any non-obvious placeholders present in the code snippet in the style of |Where PLACEHOLDER is...| -->
 Replace ``test`` with the domain name for your Kubernetes cluster.
 
 or if using a ``nip.io`` address
 ```
 kubectl set env deployment/learningcenter-operator -n learningcenter INGRESS_DOMAIN=192.168.64.1.nip.io
-```
 
-Note that use of environment variables to configure the operator is a short cut to cater for the 
+Note that use of environment variables to configure the operator is a shortcut to cater for the 
 simple use case. The recommended way is to use Tanzu CLI or for more complicated scenarios the 
 ``SystemProfile`` custom resource can be used.
 
 
-## Enforcing secure connections
+##<a id="connections"></a>Enforcing secure connections
 
-By default, the workshop portal and workshop sessions will be accessible over HTTP connections. If you 
+By default, the workshop portal and workshop sessions are accessible over HTTP connections. If you 
 wish to use secure HTTPS connections, you must have access to a wildcard SSL certificate for the domain 
-under which you wish to host the workshops. You cannot use a self signed certificate.
+under which you wish to host the workshops. You cannot use a self-signed certificate.
 
 Wildcard certificates can be created using `letsencrypt <https://letsencrypt.org/>`_. Once you have the 
-certificate, you can:
+certificate, you can do the following:
 
-### Configuration yaml
+###<a id="NAME"></a>Configuration YAML
 
-The easiest way to define the certificate is through the configuration passed to Tanzu CLI. So define 
-the ``certificate`` and ``privateKey`` properties under the ``ingressSecret`` property to specify the 
+The easiest way to define the certificate is with the configuration passed to Tanzu CLI. So define
+the ``certificate`` and ``privateKey`` properties under the ``ingressSecret`` property to specify the
 certificate on the configuration yaml passed to Tanzu CLI
 
   ```
@@ -138,8 +131,8 @@ certificate on the configuration yaml passed to Tanzu CLI
   ```
 
 If you already have a TLS secret, follow these steps **before deploying any workshop**:
-  * Create the `learningcenter` namespace manually or the one you defined
-  * Copy the tls secret to the `learningcenter` namespace or the one you
+  - Create the `learningcenter` namespace manually or the one you defined
+  - Copy the tls secret to the `learningcenter` namespace or the one you
   defined, and use the `secretName` property as in this example:
 
   ```
@@ -147,89 +140,87 @@ If you already have a TLS secret, follow these steps **before deploying any work
     secretName: workshops.example.com-tls
   ```
 
-### Create the TLS secret manually
+###<a id="TLS"></a>Create the TLS secret manually
 
-If you want to add the certificate as a secret in the ``learningcenter`` namespace or that one you defined, the 
-secret needs to be of type ``tls``. You can create it using the ``kubectl create secret tls`` command.
+To add the certificate as a secret in the ``learningcenter`` namespace or that one you defined, the
+secret must be of type ``tls``. You can create it using the ``kubectl create secret tls`` command.
 
 ```
 kubectl create secret tls -n learningcenter workshops.example.com-tls --cert=workshops.example.com/fullchain.pem --key=workshops.example.com/privkey.pem
 ```
 
 Having created the secret, if it is the secret corresponding to the default ingress domain you specified 
-above, set the ``INGRESS_SECRET`` environment variable (if you don't want to use the configuration passed to Tanzu CLI) 
-on the operator deployment. This will ensure that it is applied automatically to any ingress created.
+above, set the ``INGRESS_SECRET`` environment variable, if you don't want to use the configuration passed to Tanzu CLI, 
+on the operator deployment. This ensures it is applied automatically to any ingress created.
 
 ```
 kubectl set env deployment/learningcenter-operator -n learningcenter INGRESS_SECRET=workshops.example.com-tls
 ```
 
 If the certificate isn't that of the default ingress domain, you can supply the domain name and name of the 
-secret when creating a workshop environment or training portal. In either case, secrets for the wildcard 
-certificates must be created in the ``learningcenter`` namespace or that one you defined.
+secret when creating a workshop environment or training portal. In either case, you must create secrets for the wildcard 
+certificates in the ``learningcenter`` namespace or one that you defined.
 
-## Specifying the ingress class
+##<a id="class"></a>Specifying the ingress class
 
-Any ingress routes created will use the default ingress class. If you have multiple ingress class 
-types available, and you need to override which is used, you can:
+Any ingress routes created uses the default ingress class. If you have multiple ingress class
+types available, and you must override which is used, you can:
 
-### Configuration yaml
-Define the ``ingressClass`` property on the configuration yaml passed to Tanzu CLI
+###<a id="yaml"></a>Configuration YAML
+Define the ``ingressClass`` property on the configuration YAML passed to Tanzu CLI
 ```
 ingressClass: contour
 ```
 
-### Set the environment variable manually
+###<a id="NAME"></a>Set the environment variable manually
 Set the ``INGRESS_CLASS`` environment variable for the learningcenter operator.
 ```
 kubectl set env deployment/learningcenter-operator -n learningcenter INGRESS_CLASS=contour
 ```
 
-This only applies to the ingress created for the training portal and workshop sessions. It does not apply 
+This applies only to the ingress created for the training portal and workshop sessions. It does not apply
 to the any ingress created from a workshop as part of the workshop instructions.
 
-This may be necessary where a specific ingress provider is not as reliable in maintaining websocket connections, 
-as explained above is the case for the nginx ingress controller when there are frequent creation or deletions 
+This may be necessary where a specific ingress provider is not as reliable in maintaining websocket connections 
+as explained above in the case for the nginx ingress controller when there are frequent creation or deletions 
 of ingresses occurring in the cluster.
 
-## Trusting insecure registries
+##<a id="registries"></a>Trusting unsecured registries
 
 One of the options available for workshops is to automatically deploy an image registry per workshop session. 
-When the Learning Center operator is configured to use a secure ingress with valid wildcard certificate, the 
+When the Learning Center Operator is configured to use a secure ingress with valid wildcard certificate, the 
 image registry will work out of the box.
 
-If the Learning Center operator is not setup to use secure ingress, the image registry will be accessed over 
-HTTP and will be regarded as an insecure registry.
+If the Learning Center Operator is not set up to use secure ingress, the image registry will be accessed over 
+HTTP and is regarded as an insecure registry.
 
 When using the optional support for building container images using ``docker``, the docker daemon deployed for 
 the workshop session will be configured in this case so it knows the image registry is insecure and pushing 
-images to the image registry will still work.
+images to the image registry still works.
 
 In this case of an insecure image registry, deployment of images from the image registry to the Kubernetes 
-cluster will not however work unless the Kubernetes cluster is configured to trust the insecure registry.
+cluster will not, however, work unless the Kubernetes cluster is configured to trust the insecure registry.
 
-How you configure a Kubernetes cluster to trust an insecure image registry will differ based on how the Kubernetes 
+How you configure a Kubernetes cluster to trust an unsecured registry is different based on how the Kubernetes
 cluster is deployed and what container runtime it uses.
 
-If you are using ``minikube`` with ``dockerd``, to ensure that the image registry is trusted, you will need to 
-set up the trust the very first time you create the minikube instance.
+If you are using ``minikube`` with ``dockerd``, to ensure that the registry is trusted, you must set up the trust the very first time you create the minikube instance.
 
 To do this, first determine which IP subnet minikube uses for the inbound ingress router of the cluster. If you 
-already have a minikube instance running, you can determine this by running ``minikube ip``. If for example this 
+already have a minikube instance running, you can determine this by running ``minikube ip``. If, for example, this 
 reported ``192.168.64.1``, the subnet used is ``129.168.64.0/24``.
 
-With this information, when you create a fresh ``minikube`` instance you would supply the ``--insecure-registry`` 
-option with the subnet.
+With this information, when you create a fresh ``minikube`` instance you must supply the ``--insecure<!-- |not secure| is preferred. -->-registry`` option with the subnet.
 
 ```
 minikube start --insecure-registry="129.168.64.0/24"
 ```
 
-What this option will do is tell ``dockerd`` to regard any image registry as insecure, which is deployed in the 
-Kubernetes cluster, and which is accessed via a URL exposed via an ingress route of the cluster itself.
+What this option does is tell ``dockerd`` to regard any image registry as insecure, which is deployed in the 
+Kubernetes cluster and which is accessed via a URL exposed via an ingress route of the cluster itself.
 
 Note that at this time there is no known way to configure ``containerd`` to treat image registries matching a 
-wildcard subdomain, or which reside in a subnet, as insecure. It is therefore not possible to run workshops which 
+wildcard subdomain or residing in a subnet as insecure. It is therefore not possible to run workshops which 
 need to deploy images from the per session image registry when using ``containerd`` as the underlying Kubernetes 
 cluster container runtime. This is a limitation of ``containerd`` and there are no known plans for ``containerd`` 
 to support this ability. This will limit your ability to use Kubernetes clusters deployed with a tool like ``kind``, 

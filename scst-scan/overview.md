@@ -20,15 +20,15 @@ The following Supply Chain Security Tools - Scan features make the use cases ava
 ## Scanner support
 | Out-Of-The-Box Scanner | Version |
 | --- | --- |
-| [Anchore Grype](https://github.com/anchore/grype) | v0.25.1 |
+| [Anchore Grype](https://github.com/anchore/grype) | v0.27.2 |
 
 More to come in FY23! Let us know if there's a scanner you'd like us to support.
 
 ## Prerequisites
 
 * Supply Chain Security Tools - Store to store CVE results.
-  For installation instructions, see [Installing Part II: Profiles](../install-components.md#install-scst-store).
+  For installation instructions, see [Installing part II: Profiles](../install-components.md#install-scst-store).
   For usage instructions, see [Using the Supply Chain Security Tools - Store](../scst-store/overview.md).
 
 * Supply Chain Security Tools - Store CLI to query the Supply Chain Security Tools - Store for CVE results.
-  See [Installing the CLI](../scst-store/install_cli.md).
+  See [Installing the CLI](../scst-store/cli_installation.md).

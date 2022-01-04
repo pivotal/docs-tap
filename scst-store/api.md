@@ -1,8 +1,9 @@
 
 
 
-# Metadata Store API.
+# API details
 
+See [API walkthrough](api_walkthrough.md) for a walkthrough and example.
 
 ## Information
 

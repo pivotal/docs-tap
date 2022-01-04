@@ -12,8 +12,8 @@ alt="A demonstration of the features. First ingesting a bill of materials file. 
 
 Supply Chain Security Tools - Store has three components:
 
-* [API](api.md)
-* [CLI](install_cli.md) (Insight)
+* [API details](api.md)
+* [CLI installation](cli_installation.md) (Insight)
 * Postgres database
 
 ## Install
@@ -22,42 +22,36 @@ Supply Chain Security Tools - Store is released as an individual Tanzu Applicati
 
 To install, see [Install Supply Chain Security Tools - Store](../install-components.md#install-scst-store).  It will install the Postgres database and an [API](api.md) backend.
 
-> **Note:** The Insight CLI requires a [separate installation](install_cli.md).
+> **Note:** The Insight CLI requires a [separate installation](cli_installation.md).
 
 For more information, see [Deployment Details and Configuration](deployment_details.md).
 
-## <a id='required-set-up'></a>Set up
+## <a id='usage'></a>Querying the database
 
-### Required
+### <a id='required-set-up'></a>Set up
 
 The following steps are required to use the API or CLI:
 
-* [Using encryption and connection](using_encryption_and_connection.md)
-* [Create a service account and get the access token](create_service_account_access_token.md)
+* [Creating service accounts and access tokens](create_service_account_access_token.md)
+* [Using encryption to connect to the database](using_encryption_and_connection.md)
 
-### Recommended
+The Insight CLI is the recommended means to query the database.
 
-The Insight CLI is not required but may provide an easier-to-use interface than the [API](api.md).  
+> **Note:** The Insight CLI is in beta and is separate from the Tanzu CLI. It still works with the final 1.0.0 version of Supply Chain Security Tools - Store.
 
-> **Note:** The Insight CLI is in beta and is separate from the Tanzu CLI.
+* [CLI installation](cli_installation.md)
+* [CLI configuration](cli_configuration.md)
+* [CLI details](cli_docs/insight.md)
 
-* [Install the CLI](install_cli.md)
-* [Configure the CLI](configure_cli.md)
+### Adding & querying data
 
-## <a id='usage'></a>Usage
+See [Add data](add_data.md) to post CycloneDX scan reports to the Supply Chain Security Tools - Store.
 
-### Adding data
-
-See [adding data](add_cyclonedx_to_store.md) to post CycloneDX scan reports to the Supply Chain Security Tools - Store.
-
-### Querying data
-
-See [querying data](querying_the_metadata_store.md) to understand vulnerability, image, and dependency relationships.
+See [Query data](query_data.md) to understand vulnerability, image, and dependency relationships.
 
 ## Auditing
 
-The API server outputs logs when an endpoint is accessed, which can be used for auditing purposes. For information about the logs generated, see [Configuring and Understanding Store Logs](logs.md).
-
+The API server outputs logs when an endpoint is accessed, which can be used for auditing purposes. For information about the logs generated, see [Log configuration and usage](logs.md).
 
 ## Known issues
 
