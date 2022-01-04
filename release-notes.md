@@ -141,7 +141,8 @@ This release has the following issues:
       instructions on how to scale out or scale up your cluster.
   
 - **Application Live View:**
-  Live View section in TAP GUI may show `No live information for pod with id` after deploying the TAP workloads. Workaround is to re-create the App Live View Connector pod so the connector can discover the application instance(s) and render the details in TAP GUI.
+  The Live View section in Tanzu Application Platform GUI might show `No live information for pod with id` after deploying Tanzu Application Platform workloads. Resolve this issue by recreating the Application Live View Connector pod. This allows the connector to discover the application instances and render the details in Tanzu Application Platform GUI. For example:
+
   ```
   kubectl -n app-live-view delete pods -l=name=application-live-view-connector
   ```
