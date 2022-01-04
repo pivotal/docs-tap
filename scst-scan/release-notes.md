@@ -42,8 +42,8 @@ After running a scan and using `kubectl get` on the scan, the CVE print columns 
 	* [CVE-2021-3426](https://nvd.nist.gov/vuln/detail/CVE-2021-3426) - This vulnerability is not in the execution path.
 	* [CVE-2020-35457](https://nvd.nist.gov/vuln/detail/CVE-2020-35457) - A fix has been backported.
 	* [CVE-2021-27218](https://nvd.nist.gov/vuln/detail/CVE-2021-27218) - A merge was applied to the base OS image.
-	* [CVE-2019-12450](https://nvd.nist.gov/vuln/detail/CVE-2019-12450) - The vulnerability is related to GTK which is not used and doesn't exist in the execution path.
-	* [CVE-2019-13012](https://nvd.nist.gov/vuln/detail/CVE-2019-13012) - The vulnerability is related to GTK which is not used and doesn't exist in the execution path.
+	* [CVE-2019-12450](https://nvd.nist.gov/vuln/detail/CVE-2019-12450) - The vulnerability is related to GTK, which is not used and does not exist in the execution path.
+	* [CVE-2019-13012](https://nvd.nist.gov/vuln/detail/CVE-2019-13012) - The vulnerability is related to GTK, which is not used and does not exist in the execution path.
 
 ### Known limitations with Grype scanner
 
