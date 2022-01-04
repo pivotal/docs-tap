@@ -417,7 +417,7 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
     * Google Cloud Registry has the form `repository: "my-project/supply-chain"`
 - `DOMAIN-NAME` has a value such as `learningcenter.example.com`.
 - `MY-DEV-NAMESPACE` is the namespace where you want the `ScanTemplates` to be deployed to. This is the namespace where the scanning feature is going to run.
-- `REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull the scanner image from the registry.
+- `REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull the scanner image from the registry. For example, based on step 3 of [Add the Tanzu Application Platform package repository](#add-package-repositories), the value is `tap-registry`. 
 
 ### Dev Profile
 
