@@ -2,10 +2,6 @@
 
 ## <a id='overview'></a> Overview of Tanzu Application Platform
 
-<p class="note warning">
-<strong>Warning:</strong> Tanzu Application Platform is currently in beta (intended for evaluation and test purposes only).
-</p>
-
 VMware Tanzu Application Platform delivers a superior developer experience for enterprises building and deploying cloud native applications on Kubernetes. It enables application teams to get to production faster by automating source to production pipelines. It clearly defines the roles of developers and operators so they can work collaboratively and integrate their efforts.
 
 The Tanzu Application Platform includes elements that enable developers to quickly begin building and testing applications regardless of their familiarity with Kubernetes. Operations teams can create application scaffolding templates with built-in security and compliance guardrails, making those considerations mostly invisible to developers. Starting with the templates, developers turn source code into a container and get a URL to test their app in minutes. Once the container is built, updating it happens automatically every time there’s a new code commit or dependency patch. And connecting to other applications and data, regardless of how they’re built or what kind of infrastructure they run on, has never been easier, thanks to an internal API management portal.
