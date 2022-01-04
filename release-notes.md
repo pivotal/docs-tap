@@ -17,7 +17,7 @@ This release has the following new features:
 
 This release has the following issues:
 
-- **Application Accelerator:** Any build scripts provided as part of an accelerator will not have the execute bit set when a new project is generated from the accelerator. This issue can be worked around by explicitly setting the execute bit using the "chmod" command: `chmod +x <build-script>`. As an example, for a project generated from the "Spring PetClinic" accelerator, run: `chmod +x ./mvnw`.
+- **Application Accelerator:** Build scripts provided as part of an accelerator do not have the execute bit set when a new project is generated from the accelerator. To resolve this issue, explicitly set the execute bit by using the "chmod" command: `chmod +x <build-script>`. For example, for a project generated from the "Spring PetClinic" accelerator, run: `chmod +x ./mvnw`.
 
 - **Convention Service:** Convention Service does not currently support self-signed certificates for integrating with a private registry. Support for self-signed certificates is planned for an upcoming release.
 
