@@ -32,7 +32,7 @@ The Application Live View UI plug-in is part of Tanzu Application Platform GUI. 
 
 ## Details page
 
-This is the default page loaded in the `Live View` section. This page gives a tabular overview containing the application name, instance id, location, actuator location, health endpoint, direct actuator access, framework , version, new patch version, new major version, build version. The user can navigate between `Information Categories` by selecting from the drop down on the top right corner of the page.
+This is the default page loaded in the `Live View` section. This page gives a tabular overview containing the application name, instance id, location, actuator location, health endpoint, direct actuator access, framework , version, new patch version, new major version, build version. The user can navigate between `Information Categories` by selecting from the drop-down menu on the top right corner of the page.
 
 ![Details Page in UI](./images/details.png)
 
