@@ -134,7 +134,7 @@ This is the table of contents from which the Tanzu Application Platform Document
       - [Catalog operations](tap-gui/catalog/catalog-operations.md)
       - [Authentication](tap-gui/auth.md)
       - [Integrations](tap-gui/integrations.md)
-      - [Database Configuration](tap-gui/database.md)
+      - [Database configuration](tap-gui/database.md)
       - [TechDocs](tap-gui/techdocs/usage.md)
       - [Tanzu Application Platform GUI plug-ins](tap-gui/plugins/about.md)
          - [Runtime resources visibility](tap-gui/plugins/runtime-resource-visibility.md)
