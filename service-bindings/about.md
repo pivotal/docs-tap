@@ -65,44 +65,11 @@ metadata:
   name: account-db
 spec:
   service:
-    apiVersion: bindings.labs.vmware.com/v1alpha1
-    kind: ProvisionedService
+    apiVersion: mysql.example/v1alpha1
+    kind: MySQL
     name: account-db
   workload:
     apiVersion: apps/v1
     kind: Deployment
     name: account-service
 ```
-
-### ProvisionedService (bindings.labs.vmware.com/v1alpha1)
-
-The `ProvisionedService` exposes a resource `Secret` by implementing the upstream [Provisioned Service duck type](https://github.com/k8s-service-bindings/spec#provisioned-service), and may be the target of the `.spec.service` reference for a `ServiceBinding`. It is intended for compatibility with existing services that do not directly implement the duck type.
-
-For example, to expose a service with an existing `Secret` named `account-db-service`:
-
-```
-apiVersion: bindings.labs.vmware.com/v1alpha1
-kind: ProvisionedService
-metadata:
-  name: account-db
-spec:
-  binding:
-    name: account-db-service
-
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: account-db-service
-type: Opaque
-stringData:
-  type: mysql
-  # use appropriate values
-  host: localhost
-  database: default
-  password: ""
-  port: "3306"
-  username: root
-```
-
-The controller writes the resource's status to implement the duck type.
