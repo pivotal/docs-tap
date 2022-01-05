@@ -544,35 +544,47 @@ This release has the following issues:
     1. Click the `Terminal` menu and select the `Run Task` option
     2. Type `tanzuWorkload delete` in the command palette that appears and hit enter
     3. View the Terminal tab to confirm that the Workload has been deleted
-- **Supply Chain Security Tools - Sign**
-  - A grype scan has reported the following false positives:
-    - CVE-2015-5237 - This is a CVE on the C implementation of Protocol Buffers. We use the Golang version.
-    - CVE-2017-7297 - This is a CVE on Rancher Server which is not a dependency we include.
-- **Tanzu CLI apps plug-in** 
-  - `--image`:
-    - This flag isn't supported by the supply chain in Tanzu Application Platform Beta 2 release.
-  - `tanzu apps workload get`:
-    - passing in `--output json` along with and the `--export` flag will return yaml rather than json (support for honoring the `--output json` in conjunction with `--export` will be added in the next release).
-  - `tanzu apps workload create/update/apply`:
-     - `--wait` functions as expected when a workload is created for the first time but may return prematurely on subsequent updates (when passed in with `workload update/apply` for existing workloads). 
-     - when the `--wait` flag has been included and the "Do you want to create this workload?" prompt is declined, the command continues to wait rather exit.
+    
+#### Supply Chain Security Tools - Sign
+
+- A grype scan has reported the following false positives:
+  - CVE-2015-5237 - This is a CVE on the C implementation of Protocol Buffers. We use the Golang version.
+  - CVE-2017-7297 - This is a CVE on Rancher Server which is not a dependency we include.
+  
+#### Tanzu CLI apps plug-in
+
+- `--image`:
+  - This flag isn't supported by the supply chain in Tanzu Application Platform Beta 2 release.
+- `tanzu apps workload get`:
+  - passing in `--output json` along with and the `--export` flag will return yaml rather than json (support for honoring the `--output json` in conjunction with `--export` will be added in the next release).
+- `tanzu apps workload create/update/apply`:
+    - `--wait` functions as expected when a workload is created for the first time but may return prematurely on subsequent updates (when passed in with `workload update/apply` for existing workloads). 
+    - when the `--wait` flag has been included and the "Do you want to create this workload?" prompt is declined, the command continues to wait rather exit.
        
 ### Breaking Changes
 
-- **Supply Chain Security Tools - Store**
-  - (possibly breaking) `storageClassName` and `databaseRequestStorage` fields have been changed to `storage_class_name` and `database_request_storage` respectively. This change was made to keep the format of all available fields consistent with other available fields.
-  - (possibly breaking) Change output for unhappy paths to be more consistent. Empty results due to sources not existing when searching by package or source information now returns an empty array with a 200 response. Previously it would give an error JSON with a 404.
+This release has the following breaking changes:
+
+#### Supply Chain Security Tools - Store**
+
+- (possibly breaking) `storageClassName` and `databaseRequestStorage` fields have been changed to `storage_class_name` and `database_request_storage` respectively. This change was made to keep the format of all available fields consistent with other available fields.
+- (possibly breaking) Change output for unhappy paths to be more consistent. Empty results due to sources not existing when searching by package or source information now returns an empty array with a 200 response. Previously it would give an error JSON with a 404.
 
 ### Bug Fixes
 
-- **Supply Chain Security Tools - Store**
-  - Change DB and app service type
-  - Containers no longer need root user to run
+This release has the following bug fixes:
+
+#### Supply Chain Security Tools - Store
+
+- Change DB and app service type
+- Containers no longer need root user to run
 
 ### Limitations
 
-- **Supply Chain Security Tools - Store**
-  - Air gapped environments are not supported
+This release has the following limitations:
+
+#### Supply Chain Security Tools - Store
+- Air gapped environments are not supported
   
 ## <a id='0-1-0'></a> v0.1.0 beta release
 
@@ -585,21 +597,21 @@ This release has the following issues:
 ### New features
 This release has the following new features: 
 
-- **Supply Chain Security Tools - Store**
-  - Added a /health endpoint and `insight health` command
-  - Upgraded to golang 1.17
-  - Added support for query parameters
-  - Updated repository parsing logic
-  - Squashed some minor bugs
+#### Supply Chain Security Tools - Store
+- Added a /health endpoint and `insight health` command
+- Upgraded to golang 1.17
+- Added support for query parameters
+- Updated repository parsing logic
+- Squashed some minor bugs
 
 ### Limitations
 This release has the following limitations:
 
-- **Supply Chain Security Tools - Store**
-  - Air gapped environments are not supported
+#### Supply Chain Security Tools - Store
+- Air gapped environments are not supported
   
 ### Breaking changes
 This release has the following breaking changes:
 
-- **Supply Chain Security Tools - Sign**
-  - `warn_on_unmatched` value has been renamed to `allow_unmatched_images`.
+#### Supply Chain Security Tools - Sign
+- `warn_on_unmatched` value has been renamed to `allow_unmatched_images`.
