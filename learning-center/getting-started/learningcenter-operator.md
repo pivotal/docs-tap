@@ -81,7 +81,7 @@ using HTTP only, these will not work.
 ingressDomain: learningcenter.my-domain.com
 ```
 
-### <a id="NAME"></a>Set the environment variable manually
+### <a id="set-ingress-domain-manually"></a>Set the environment variable manually
 Set the ``INGRESS_DOMAIN`` environment variable on the operator deployment. To set the ``INGRESS_DOMAIN``
 environment variable, run:
 
@@ -108,7 +108,7 @@ under which you wish to host the workshops. You cannot use a self-signed certifi
 Wildcard certificates can be created using `letsencrypt <https://letsencrypt.org/>`_. Once you have the 
 certificate, you can do the following:
 
-###<a id="NAME"></a>Configuration YAML
+###<a id="configuration-yaml"></a>Configuration YAML
 
 The easiest way to define the certificate is with the configuration passed to Tanzu CLI. So define
 the ``certificate`` and ``privateKey`` properties under the ``ingressSecret`` property to specify the
@@ -172,7 +172,7 @@ Define the ``ingressClass`` property on the configuration YAML passed to Tanzu C
 ingressClass: contour
 ```
 
-###<a id="NAME"></a>Set the environment variable manually
+###<a id="set-ingress-class-manually"></a>Set the environment variable manually
 Set the ``INGRESS_CLASS`` environment variable for the learningcenter operator.
 ```
 kubectl set env deployment/learningcenter-operator -n learningcenter INGRESS_CLASS=contour
