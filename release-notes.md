@@ -348,6 +348,7 @@ not get updated to `Error` and instead remains in the `Scanning` phase.
 Read the scan Pod logs to verify that there was an error.
   
 ### Known limitations with Grype scanner
+
 - **Supply Chain Security Tools – Scan** 
   - Scanning Java source code may not reveal vulnerabilities:
     - Source Code Scanning only scans files present in the source code repository. No network calls are made to fetch dependencies.
@@ -360,8 +361,9 @@ Read the scan Pod logs to verify that there was an error.
     after the binaries are built and packaged as images.  
 
 ### Bug Fixes
-**Tanzu Dev Tools for VSCode**  
-  - Added a "wait" service which prevents user from using the live update & debug capabilities until the deployment is up & running on the cluster. Fixes known issue from TAP 0.2.0 & 0.3.0.
+
+#### Tanzu Dev Tools for VSCode 
+- Added a "wait" service which prevents user from using the live update & debug capabilities until the deployment is up & running on the cluster. Fixes known issue from TAP 0.2.0 & 0.3.0.
               
 ## <a id='0-3-0'></a> v0.3.0 beta release
 
@@ -371,19 +373,19 @@ Read the scan Pod logs to verify that there was an error.
 
 New features and changes in this release:
 
-**Tanzu Dev Tools for VSCode**  
-  - Improved landing page of extension
+#### Tanzu Dev Tools for VSCode  
+- Improved landing page of extension
   
-**Installation Profiles**
+#### Installation Profiles
 
-You can now install Tanzu Application Platform through profiles.
-The Full profile installs all of the component packages.
-The Dev profile installs the packages that a developer needs.
+- You can now install Tanzu Application Platform through profiles.
+- The Full profile installs all of the component packages.
+- The Dev profile installs the packages that a developer needs.
 
 For more information, see [Installation Profiles and Profiles in Tanzu Application Platform v0.3](overview.md#profiles-and-packages) and
 [About Tanzu Application Platform Package Profiles](install.md#about-package-profiles).
 
-**New Components**
+#### New Components
 
 The following components are new in Tanzu Application Platform v0.3.0:
 
@@ -401,7 +403,7 @@ Tanzu Packages:
   - Spring Boot Convention v0.1.2
 - Tanzu Learning Center
 
-**Updated Components**
+#### Updated Components
 
 The following components have been updated in Tanzu Application Platform v0.3.0:
 
@@ -449,7 +451,9 @@ This release has the following issues:
 
 This release has the following security issue:
 
-**In Learning Center, exported registry credentials are visible across namespaces:**
+#### Learning Center
+
+- In Learning Center, exported registry credentials are visible across namespaces.
 Because SecretExport CR allows you to export registry credentials to other namespaces, they are
 visible to users of those namespaces.
 VMware recommends that the registry credentials you export give read-only access to the registry and
@@ -457,8 +461,9 @@ have minimal scope within the registry.
 
 ### Bug Fixes
 
-**Tanzu Dev Tools for VSCode**  
-  - Bug fix in the Tanzu: Live Update Stop command that was not properly calling the stop task
+#### Tanzu Dev Tools for VSCode  
+
+- Bug fix in the Tanzu: Live Update Stop command that was not properly calling the stop task
 
 ## <a id='0-2-0'></a> v0.2.0 beta release
 
@@ -467,42 +472,50 @@ have minimal scope within the registry.
 ### New features
 
 This release has the following new features:
-- **Supply Chain Security Tools - Store**
-  - Add logs to Images, Vulnerabilities, Sources, and Package endpoints
-  - Supporting AWS RDS
-  - Add default read-only clusterrole
-  - Manually update go dependencies
-  - Export CA Cert to a specified namespace. By default, the CA Cert will be exported to the default namespace `scan-link-system`
-  - `db_password` is generated with secretgen when not provided by user
-  - Support cyclonedx 1.3
-- **Tanzu Packages**
-  - Supply Chain Choreographer for VMware Tanzu
-    - Cartographer v0.0.6
-    - Default Supply Chain v0.2.0
-    - Default Supply Chain with Testing v0.2.0
-  - Supply Chain Security Tools for VMware Tanzu
-    - Scan v1.0.0-beta
-    - Image Policy Webhook v1.0.0-beta.0
-    - Store v1.0.0-beta.0
-  - Convention Service for VMware Tanzu
-    - Conventions Controller v0.4.2
-    - Image Source Controller v0.1.2
-    - Developer Conventions v0.2.0
-  - API Portal for VMware Tanzu v1.0.2
-  - Service Control Plane Toolkit v0.3.0
-  - Service Bindings for Kubernetes v0.5.0
-  - Tanzu Developer Tools for Visual Studio Code v0.2.0
-- **Tanzu CLI plug-ins**
-  - Tanzu Accelerator CLI plug-in v0.3.0
-  - Tanzu App CLI plug-in v0.2.0
-  - Tanzu ImagePullSecret CLI plug-in v0.5.0
-  - Tanzu Package CLI plug-in v0.5.0
-- **Supply Chain Security Tools - Sign**
-  - Added configuration for ResourceQuotas. See `quota.pod_number`
-  - Number of replicas can be configured via `replicas` value
-- **Tanzu Dev Tools for VSCode**  
-  - Enable developers to see their code live update on the cluster
-  - Enable developers to debug their code on the cluster
+
+#### Supply Chain Security Tools - Store
+
+- Add logs to Images, Vulnerabilities, Sources, and Package endpoints
+- Supporting AWS RDS
+- Add default read-only clusterrole
+- Manually update go dependencies
+- Export CA Cert to a specified namespace. By default, the CA Cert will be exported to the default namespace `scan-link-system`
+- `db_password` is generated with secretgen when not provided by user
+- Support cyclonedx 1.3
+
+#### Tanzu Packages
+
+- Supply Chain Choreographer for VMware Tanzu
+  - Cartographer v0.0.6
+  - Default Supply Chain v0.2.0
+  - Default Supply Chain with Testing v0.2.0
+- Supply Chain Security Tools for VMware Tanzu
+  - Scan v1.0.0-beta
+  - Image Policy Webhook v1.0.0-beta.0
+  - Store v1.0.0-beta.0
+- Convention Service for VMware Tanzu
+  - Conventions Controller v0.4.2
+  - Image Source Controller v0.1.2
+  - Developer Conventions v0.2.0
+- API Portal for VMware Tanzu v1.0.2
+- Service Control Plane Toolkit v0.3.0
+- Service Bindings for Kubernetes v0.5.0
+- Tanzu Developer Tools for Visual Studio Code v0.2.0
+
+#### Tanzu CLI plug-ins
+- Tanzu Accelerator CLI plug-in v0.3.0
+- Tanzu App CLI plug-in v0.2.0
+- Tanzu ImagePullSecret CLI plug-in v0.5.0
+- Tanzu Package CLI plug-in v0.5.0
+
+#### Supply Chain Security Tools - Sign
+
+- Added configuration for ResourceQuotas. See `quota.pod_number`
+- Number of replicas can be configured via `replicas` value
+
+#### Tanzu Dev Tools for VSCode  
+- Enable developers to see their code live update on the cluster
+- Enable developers to debug their code on the cluster
   
 The following components have been updated in Tanzu Application Platform v0.2.0
 
@@ -515,9 +528,14 @@ The following components have been updated in Tanzu Application Platform v0.2.0
 
 This release has the following issues:
 
+#### Installing
+
 - If your install workflow involves [Carvel imgpkg](https://github.com/vmware-tanzu/carvel-imgpkg), use version.
   v0.19.0 or later to avoid auth errors.
 - If package installation fails, use `tanzu package installed update` with the `--install` flag to continue installation.
+
+#### Tanzu Developer Tools for VSCode
+
 - When you use the `Tanzu Developer Tools for VSCode` extension,
   delete the workload before performing any of the following actions. This will avoid workload update errors.
     - Switching between the `Live Update` & `Debug` capabilities
