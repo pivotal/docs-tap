@@ -239,7 +239,7 @@ Values of fields in the list of resource objects can reference a number of pre-d
 
 If you want to create additional namespaces associated with the workshop environment, embed a reference to ``$(workshop_namespace)`` in the name of the additional namespaces, with an appropriate suffix. Be mindful that the suffix doesn't overlap with the range of session IDs for workshop instances.
 
-When creating deployments in the workshop namespace, set the ``serviceAccountName`` of the ``Deployment`` resouce to ``$(service_account)``. This will ensure the deployment makes use of a special pod security policy set up by the Learning Center. If this isn't used and the cluster imposes a more strict default pod security policy, your deployment may not work, especially if any image expects to run as ``root``.
+When creating deployments in the workshop namespace, set the ``serviceAccountName`` of the ``Deployment`` resource to ``$(service_account)``. This will ensure the deployment makes use of a special pod security policy set up by the Learning Center. If this isn't used and the cluster imposes a more strict default pod security policy, your deployment may not work, especially if any image expects to run as ``root``.
 
 ## Creation of workshop instances
 
