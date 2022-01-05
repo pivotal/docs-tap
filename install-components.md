@@ -7,10 +7,10 @@ Use the instructions on this page if you do not want to use a profile to install
 or if you want to install additional packages after installing a profile.
 
 Before installing the packages, ensure that you have completed the prerequisites, configured
-and verified the cluster, accepted the EULA, and installed the Tanzu CLI with any required plugins.
+and verified the cluster, accepted the EULA, and installed the Tanzu CLI with any required plug-ins.
 For information, see [Installing part I: Prerequisites, EULA, and CLI](install-general.md).
 
-+ [Install cert-manager and FluxCD source controller](#install-prereqs)
++ [Install cert-manager, Contour, and FluxCD source controller](#install-prereqs)
 + [Install Cloud Native Runtimes](#install-cnr)
 + [Install Convention Service](#install-convention-service)
 + [Install Source Controller](#install-source-controller)
@@ -45,28 +45,236 @@ If you do not want to use a profile, install them manually.
 
 * **cert-manager**:
 
-    1. Install cert-manager by running:
+    1. List version information for the package by running:
 
         ```
-        kapp deploy -y -a cert-manager -f https://github.com/jetstack/cert-manager/releases/download/v1.5.3/cert-manager.yaml
+        tanzu package available list cert-manager.tanzu.vmware.com -n tap-install
         ```
 
-        We have verified the Tanzu Application Platform repo bundle packages installation with
-        cert-manager version v1.5.3.
-
-    2. Verify installed cert-manager version by running:
+        For example:
 
         ```
-        kubectl get deployment cert-manager -n cert-manager -o yaml | grep 'app.kubernetes.io/version: v'
+        $ tanzu package available list cert-manager.tanzu.vmware.com -n tap-install
+        / Retrieving package versions for cert-manager.tanzu.vmware.com...
+          NAME                           VERSION      RELEASED-AT
+          cert-manager.tanzu.vmware.com  1.5.3+tap.1  2021-08-23T17:22:51Z
         ```
 
-        Example output:
+    2. Install the package by running:
 
         ```
-        $ kubectl get deployment cert-manager -n cert-manager -o yaml | grep 'app.kubernetes.io/version: v'
-           app.kubernetes.io/version: v1.5.3
-              app.kubernetes.io/version: v1.5.3
+        tanzu package install cert-manager -p cert-manager.tanzu.vmware.com -v VERSION-NUMBER -n tap-install
         ```
+
+        Where:
+
+        - `VERSION-NUMBER` is the version of the package listed in step 1.
+
+        For example:
+
+        ```
+        tanzu package install cert-manager -p cert-manager.tanzu.vmware.com -v 1.5.3+tap.1 -n tap-install
+        \ Installing package 'cert-manager.tanzu.vmware.com'
+        | Getting package metadata for 'cert-manager.tanzu.vmware.com'
+        | Creating service account 'cert-manager-tap-install-sa'
+        | Creating cluster admin role 'cert-manager-tap-install-cluster-role'
+        | Creating cluster role binding 'cert-manager-tap-install-cluster-rolebinding'
+        | Creating package resource
+        - Waiting for 'PackageInstall' reconciliation for 'cert-manager'
+        | 'PackageInstall' resource install status: Reconciling
+
+         Added installed package 'cert-manager'
+        ```
+
+    3. Verify the package install by running:
+
+        ```
+        tanzu package installed get cert-manager -n tap-install
+        ```
+
+        For example:
+
+        ```
+        $ tanzu package installed get cert-manager -n tap-install
+        / Retrieving installation details for cert-manager...
+        NAME:                    cert-manager
+        PACKAGE-NAME:            cert-manager.tanzu.vmware.com
+        PACKAGE-VERSION:         1.5.3+tap.1
+        STATUS:                  Reconcile succeeded
+        CONDITIONS:              [{ReconcileSucceeded True  }]
+        USEFUL-ERROR-MESSAGE:
+        ```
+
+        Verify that `STATUS` is `Reconcile succeeded`
+
+        ```
+        kubectl get deployment cert-manager -n cert-manager
+        ```
+
+        For example:
+
+        ```
+        $ kubectl get deploy cert-manager -n cert-manager
+        NAME           READY   UP-TO-DATE   AVAILABLE   AGE
+        cert-manager   1/1     1            1           2m18s
+        ```
+
+        Verify that `STATUS` is `Running`
+
+* **Contour**:
+
+    1. List version information for the package by running:
+
+        ```
+        tanzu package available list contour.tanzu.vmware.com -n tap-install
+        ```
+
+        For example:
+
+        ```
+        $  tanzu package available list contour.tanzu.vmware.com -n tap-install
+        - Retrieving package versions for contour.tanzu.vmware.com...
+          NAME                      VERSION       RELEASED-AT
+          contour.tanzu.vmware.com  1.18.2+tap.1  2021-10-05T00:00:00Z
+        ```
+
+    1. (Optional) Make changes to the default installation settings:
+
+        1. Gather values schema by running:
+
+            ```
+            tanzu package available get contour.tanzu.vmware.com/1.18.2+tap.1 --values-schema -n tap-install
+            ````
+
+            For example:
+
+            ```
+            $ tanzu package available get contour.tanzu.vmware.com/1.18.2+tap.1 --values-schema -n tap-install
+            | Retrieving package details for contour.tanzu.vmware.com/1.18.2+tap.1...
+              KEY                                  DEFAULT               TYPE     DESCRIPTION
+
+              certificates.duration                8760h                 string   If using cert-manager, how long the certificates should be valid for. If useCertManager is false, this field is ignored.
+              certificates.renewBefore             360h                  string   If using cert-manager, how long before expiration the certificates should be renewed. If useCertManager is false, this field is ignored.
+              contour.configFileContents           <nil>                 object   The YAML contents of the Contour config file. See https://projectcontour.io/docs/v1.18.2/configuration/#configuration-file for more information.
+              contour.logLevel                     info                  string   The Contour log level. Valid options are info and debug.
+
+              contour.replicas                     2                     integer  How many Contour pod replicas to have.
+
+              contour.useProxyProtocol             false                 boolean  Whether to enable PROXY protocol for all Envoy listeners.
+
+              envoy.hostPorts.enable               true                  boolean  Whether to enable host ports. If false, http and https are ignored.
+
+              envoy.hostPorts.http                 80                    integer  If enable == true, the host port number to expose Envoy's HTTP listener on.
+
+              envoy.hostPorts.https                443                   integer  If enable == true, the host port number to expose Envoy's HTTPS listener on.
+
+              envoy.logLevel                       info                  string   The Envoy log level.
+
+              envoy.service.annotations            <nil>                 object   Annotations to set on the Envoy service.
+
+              envoy.service.aws.LBType             classic               string   AWS loadbalancer type.
+
+              envoy.service.externalTrafficPolicy  Cluster               string   The external traffic policy for the Envoy service.
+
+              envoy.service.nodePorts.http         <nil>                 integer  If type == NodePort, the node port number to expose Envoy's HTTP listener on. If not specified, a node port will be auto-assigned by Kubernetes.
+              envoy.service.nodePorts.https        <nil>                 integer  If type == NodePort, the node port number to expose Envoy's HTTPS listener on. If not specified, a node port will be auto-assigned by Kubernetes.
+              envoy.service.type                   NodePort              string   The type of Kubernetes service to provision for Envoy.
+
+              envoy.terminationGracePeriodSeconds  300                   integer  The termination grace period, in seconds, for the Envoy pods.
+
+              envoy.hostNetwork                    false                 boolean  Whether to enable host networking for the Envoy pods.
+
+              infrastructure_provider              vsphere               string   The infrastructur in which to deploy Contour and Envoy. example:- vsphere, aws
+              namespace                            tanzu-system-ingress  string   The namespace in which to deploy Contour and Envoy.
+            ```
+
+        1. Create a `contour-values.yaml` using the following sample as a guide:
+
+            Sample `contour-values.yaml` for installation in a public cloud or TKG cluster with `LoadBalancer` services:
+
+            ```
+            contour:
+              service:
+                type: LoadBalancer
+            ```
+
+            >**Note:** the LoadBalancer type is appropriate for most installations, but local clusters
+              such as `kind` or `minikube` can fail to complete the package install if LoadBalancer
+              services are not supported.
+
+            >**Note:** Contour provides an Ingress implementation by default. If you have another Ingress
+            implementation in your cluster, you must explicitly specify an
+            [IngressClass](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class)
+            to select a particular implementation.
+
+            >**Note:** [Cloud Native Runtimes](#install-cnr) programs Contour HTTPRoutes are based on the
+            installed namespace. The default installation of CNR uses a single Contour to provide
+            internet-visible services. You can install a second Contour instance with service type
+            `ClusterIP` if you want to expose some services to only the local cluster. The second instance
+            must be installed in a separate namespace. You must set the CNR value `ingress.internal.namespace` to
+            point to this namespace.
+
+    1. Install the package by running:
+
+        ```
+        tanzu package install contour -p contour.tanzu.vmware.com -v 1.18.2+tap.1 -n tap-install -f contour-values.yaml
+        ```
+
+        For example:
+
+        ```
+        $ tanzu package install contour -p contour.tanzu.vmware.com -v 1.18.2+tap.1 -n tap-install -f contour-values.yaml
+        - Installing package 'contour.tanzu.vmware.com'
+        | Getting package metadata for 'contour.tanzu.vmware.com'
+        | Creating service account 'contour-tap-install-sa'
+        | Creating cluster admin role 'contour-tap-install-cluster-role'
+        | Creating cluster role binding 'contour-tap-install-cluster-rolebinding'
+        - Creating package resource
+        - Package install status: Reconciling
+
+        Added installed package 'contour' in namespace 'tap-install'
+        ```
+
+    1. Verify the package install by running:
+
+        ```
+        tanzu package installed get contour -n tap-install
+        ```
+
+        For example:
+
+        ```
+        $ tanzu package installed get contour -n tap-install
+        / Retrieving installation details for contour...
+        NAME:                    contour
+        PACKAGE-NAME:            contour.tanzu.vmware.com
+        PACKAGE-VERSION:         1.18.2+tap.1
+        STATUS:                  Reconcile succeeded
+        CONDITIONS:              [{ReconcileSucceeded True  }]
+        USEFUL-ERROR-MESSAGE:
+        ```
+
+        Verify that `STATUS` is `Reconcile succeeded`
+
+    1. Verify the installation:
+
+        ```
+        kubectl get po -n tanzu-system-ingress
+        ```
+
+        For example:
+
+        ```
+        $  kubectl get po -n tanzu-system-ingress
+        NAME                       READY   STATUS    RESTARTS   AGE
+        contour-857d46c845-4r6c5   1/1     Running   1          18d
+        contour-857d46c845-p6bbq   1/1     Running   1          18d
+        envoy-mxkjk                2/2     Running   2          18d
+        envoy-qlg8l                2/2     Running   2          18d
+        ```
+
+        Ensure that all Pods are `Running` with all containers ready.
+
 
 * **FluxCD source-controller**:
 
@@ -93,7 +301,7 @@ If you do not want to use a profile, install them manually.
 
         Where:
 
-        - `VERSION-NUMBER` is the version of the package listed in step 1 above.
+        - `VERSION-NUMBER` is the version of the package listed in step 1.
 
         For example:
 
@@ -752,8 +960,8 @@ To install Tanzu Build Service using the Tanzu CLI:
     ```
     Where:
 
-    - `REPOSITORY` is the fully qualified path to the repository that TBS is written to.
-    This path must be writable. Examples:
+    - `REPOSITORY` is the fully qualified path to the TBS repository.
+    This path must be writable. For example:
 
         * Docker Hub: `my-dockerhub-account/build-service`
         * Google Container Registry: `gcr.io/my-project/build-service`
@@ -837,7 +1045,7 @@ to a component that knows how to deploy the image.
     | Creating cluster role binding 'cartographer-tap-install-cluster-rolebinding'
     - Creating package resource
     \ Package install status: Reconciling
-
+    
     Added installed package 'cartographer' in namespace 'tap-install'
     ```
 
@@ -894,9 +1102,9 @@ To install Out of the Box Delivery Basic:
       --namespace tap-install \
       --values-file ootb-delivery-basic-values.yaml
     ```
-
+    
     Example output:
-
+    
     ```
     \ Installing package 'ootb-delivery-basic.tanzu.vmware.com'
     | Getting package metadata for 'ootb-delivery-basic.tanzu.vmware.com'
@@ -907,7 +1115,7 @@ To install Out of the Box Delivery Basic:
     | Creating package resource
     - Waiting for 'PackageInstall' reconciliation for 'ootb-delivery-basic'
     / 'PackageInstall' resource install status: Reconciling
-
+    
      Added installed package 'ootb-delivery-basic' in namespace 'tap-install'
     ```
 
@@ -978,11 +1186,11 @@ Cartographer
 
     ```
     KEY                       DESCRIPTION
-
+   
     registry.repository       Name of the repository in the image registry server where
                               the application images from he workloould be pushed to
                               (required).
-
+   
     registry.server           Name of the registry server where application images should
                               be pushed to (required).
 
@@ -990,19 +1198,19 @@ Cartographer
 
     gitops.username           Default user name to be used for the commits produced by the
                               supply chain.
-
+    
     gitops.branch             Default branch to use for pushing Kubernetes configuration files
                               produced by the supply chain.
-
+    
     gitops.commit_message     Default git commit message to write when publishing Kubernetes
                               configuration files produces by the supply chain to git.
-
+    
     gitops.email              Default user email to be used for the commits produced by the
                               supply chain.
-
+    
     gitops.repository_prefix  Default prefix to be used for forming Git SSH URLs for pushing
                               Kubernetes configuration produced by the supply chain.
-
+    
     gitops.ssh_secret         Name of the default Secret containing SSH credentials to lookup
                               in the developer namespace for the supply chain to fetch source
                               code from and push configuration to.
@@ -1011,7 +1219,7 @@ Cartographer
 
     cluster_builder           Name of the Tanzu Build Service (TBS) ClusterBuilder to
                               use by default on image objects managed by the supply chain.
-
+    
     service_account           Name of the service account in the namespace where the Workload
                               is submitted to utilize for providing registry credentials to
                               Tanzu Build Service (TBS) Image objects as well as deploying the
@@ -1025,7 +1233,7 @@ Cartographer
     registry:
       server: REGISTRY-SERVER
       repository: REGISTRY-REPOSITORY
-
+   
     gitops:
       repository_prefix: git@github.com:vmware-tanzu/
       branch: main
@@ -1033,7 +1241,7 @@ Cartographer
       user_email: supplychain
       commit_message: supplychain@cluster.local
       ssh_secret: git-ssh
-
+   
     cluster_builder: default
     service_account: default
     ```
@@ -1132,11 +1340,11 @@ Install by following these steps:
 
     ```
     KEY                       DESCRIPTION
-
+    
     registry.repository       Name of the repository in the image registry server where
                               the application images from he workloould be pushed to
                               (required).
-
+    
     registry.server           Name of the registry server where application images should
                               be pushed to (required).
 
@@ -1144,19 +1352,19 @@ Install by following these steps:
 
     gitops.username           Default user name to be used for the commits produced by the
                               supply chain.
-
+    
     gitops.branch             Default branch to use for pushing Kubernetes configuration files
                               produced by the supply chain.
-
+    
     gitops.commit_message     Default git commit message to write when publishing Kubernetes
                               configuration files produces by the supply chain to git.
-
+    
     gitops.email              Default user email to be used for the commits produced by the
                               supply chain.
-
+    
     gitops.repository_prefix  Default prefix to be used for forming Git SSH URLs for pushing
                               Kubernetes configuration produced by the supply chain.
-
+    
     gitops.ssh_secret         Name of the default Secret containing SSH credentials to lookup
                               in the developer namespace for the supply chain to fetch source
                               code from and push configuration to.
@@ -1165,7 +1373,7 @@ Install by following these steps:
 
     cluster_builder           Name of the Tanzu Build Service (TBS) ClusterBuilder to
                               use by default on image objects managed by the supply chain.
-
+    
     service_account           Name of the service account in the namespace where the Workload
                               is submitted to utilize for providing registry credentials to
                               Tanzu Build Service (TBS) Image objects as well as deploying the
@@ -1179,7 +1387,7 @@ Install by following these steps:
     registry:
       server: REGISTRY-SERVER
       repository: REGISTRY-REPOSITORY
-
+   
     gitops:
       repository_prefix: git@github.com:vmware-tanzu/
       branch: main
@@ -1187,7 +1395,7 @@ Install by following these steps:
       user_email: supplychain
       commit_message: supplychain@cluster.local
       ssh_secret: git-ssh
-
+   
     cluster_builder: default
     service_account: default
     ```
@@ -1294,42 +1502,42 @@ and image for vulnerabilities.
 
     ```
     KEY                       DESCRIPTION
-
+    
     registry.repository       Name of the repository in the image registry server where
                               the application images from he workloould be pushed to
                               (required).
-
+    
     registry.server           Name of the registry server where application images should
                               be pushed to (required).
 
 
     gitops.username           Default user name to be used for the commits produced by the
                               supply chain.
-
+    
     gitops.branch             Default branch to use for pushing Kubernetes configuration files
                               produced by the supply chain.
-
+    
     gitops.commit_message     Default git commit message to write when publishing Kubernetes
                               configuration files produces by the supply chain to git.
-
+    
     gitops.email              Default user email to be used for the commits produced by the
                               supply chain.
-
+    
     gitops.repository_prefix  Default prefix to be used for forming Git SSH URLs for pushing
                               Kubernetes configuration produced by the supply chain.
-
+    
     gitops.ssh_secret         Name of the default Secret containing SSH credentials to lookup
                               for the supply chain to push configuration to.
 
 
     cluster_builder           Name of the Tanzu Build Service (TBS) ClusterBuilder to
                               use by default on image objects managed by the supply chain.
-
+    
     service_account           Name of the service account in the namespace where the Workload
                               is submitted to utilize for providing registry credentials to
                               Tanzu Build Service (TBS) Image objects as well as deploying the
                               application.
-
+    
     cluster_builder           Name of the Tanzu Build Service (TBS) ClusterBuilder to use by
                               default on image objects managed by the supply chain.
     ```
@@ -1341,7 +1549,7 @@ and image for vulnerabilities.
     registry:
       server: REGISTRY-SERVER
       repository: REGISTRY-REPOSITORY
-
+   
     gitops:
       repository_prefix: git@github.com:vmware-tanzu/
       branch: main
@@ -1349,7 +1557,7 @@ and image for vulnerabilities.
       user_email: supplychain
       commit_message: supplychain@cluster.local
       ssh_secret: git-ssh
-
+   
     cluster_builder: default
     service_account: default
     ```
@@ -1366,9 +1574,9 @@ and image for vulnerabilities.
       --namespace tap-install \
       --values-file ootb-supply-chain-testing-scanning-values.yaml
     ```
-
+    
     Example output:
-
+    
     ```
     \ Installing package 'ootb-supply-chain-testing-scanning.tanzu.vmware.com'
     | Getting package metadata for 'ootb-supply-chain-testing-scanning.tanzu.vmware.com'
@@ -1624,7 +1832,7 @@ Application Live View Convention Service only.
 
     Verify that `STATUS` is `Reconcile succeeded`
 
-The Application Live View UI plugin is part of Tanzu Application Platform GUI.
+The Application Live View UI plug-in is part of Tanzu Application Platform GUI.
 To access the Application Live View UI,
 see [Application Live View in Tanzu Application Platform GUI](https://docs-staging.vmware.com/en/Tanzu-Application-Platform/1.0/tap/GUID-tap-gui-plugins-app-live-view.html#entry-point-to-ap[…]live-view-plugin-1).
 
@@ -1648,7 +1856,7 @@ Supported Git infrastructure includes:
 
 **Required for full functionality:**
 
-- **Tanzu Application Platform tools:** Tanzu Application Platform GUI has plugins for the
+- **Tanzu Application Platform tools:** Tanzu Application Platform GUI has plug-ins for the
 following Tanzu Application Platform tools.
 If you plan on running workloads with these capabilities, you need these tools installed alongside
 Tanzu Application Platform GUI.
@@ -1774,7 +1982,7 @@ with your relevant values. The meanings of some placeholders are explained in th
     ```
 
     Where:
-   
+
     - `SERVICE-TYPE` is your inbound traffic mechanism: LoadBalancer, NodePort, ClusterIP, or ExternalName
     - `EXTERNAL-IP:PORT` is your Ingress hostname or LoadBalancer information.
        If you are using a load balancer that is dynamically provisioned by the cloud provider,
@@ -2216,7 +2424,7 @@ and you want to use `NodePort`, then create a `metadata-store-values.yaml` and c
 >see [Supply Chain Security Tools - Sign Known Issues](scst-sign/known_issues.md#sign-known-issues-pods-not-admitted)
 >for recovery steps.
 
-**Note:** v1alpha1 api version of the ClusterImagePolicy is no longer supported as the group name has been renamed from 
+**Note:** v1alpha1 api version of the ClusterImagePolicy is no longer supported as the group name has been renamed from
 `signing.run.tanzu.vmware.com` to `signing.apps.vmware.com`.
 
 ### <a id='scst-sign-prereqs'></a> Prerequisites
@@ -2769,7 +2977,7 @@ that you plan to create the `Workload` in:
     and the trailing `/`. For GCR, this is `gcr.io`.
 
    **Note:** If you observe the following issue with the above command:
-   
+
    ```
    panic: runtime error: invalid memory address or nil pointer dereference
    [signal SIGSEGV: segmentation violation code=0x1 addr=0x128 pc=0x2bcce00]
@@ -2777,7 +2985,7 @@ that you plan to create the `Workload` in:
    Use `kubectl` to create the secret.
    ```
    kubectl create secret docker-registry registry-credentials --docker-server=REGISTRY-SERVER --docker-username=REGISTRY-USERNAME --docker-password=REGISTRY-PASSWORD -n YOUR-NAMESPACE
-   
+
 1. Add placeholder read secrets, a service account, and RBAC rules to the developer namespace by running:
 
     ```

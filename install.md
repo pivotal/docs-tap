@@ -4,7 +4,7 @@ This document describes how to install Tanzu Application Platform packages
 from the Tanzu Application Platform package repository.
 
 Before you install the packages, ensure you have completed the prerequisites, configured
-and verified the cluster, accepted the EULA, and installed the Tanzu CLI with any required plugins.
+and verified the cluster, accepted the EULA, and installed the Tanzu CLI with any required plug-ins.
 See [Installing part I: Prerequisites, EULA, and CLI](install-general.md).
 
 
@@ -379,7 +379,7 @@ ootb_supply_chain_basic:
   registry:
     server: "SERVER-NAME"
     repository: "REPO-NAME"
-  git_ops:
+  gitops:
     ssh_secret: ""
 
 learningcenter:
@@ -436,7 +436,7 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
 service's External IP address.
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog that you've already built and posted on the Git infrastucture you specified in the Integration section.
 - `MY-DEV-NAMESPACE` is the namespace where you want the `ScanTemplates` to be deployed to. This is the namespace where the scanning feature is going to run.
-- `REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull the scanner image from the registry.
+- `REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull the scanner image from the registry. For example, based on step 3 of [Add the Tanzu Application Platform package repository](#add-package-repositories), the value is `tap-registry`.
 
 >**Note:** Using the `tap-values.yaml` configuration,
 >`buildservice.enable_automatic_dependency_updates: false` can be used to pause the automatic update
@@ -461,7 +461,7 @@ ootb_supply_chain_basic:
   registry:
     server: "SERVER-NAME"
     repository: "REPO-NAME"
-  git_ops:
+  gitops:
     ssh_secret: ""
 
 tap_gui:
@@ -487,25 +487,25 @@ metadata_store:
 Where:
 
 - `KP-DEFAULT-REPO` is a writable repository in your registry. Tanzu Build Service dependencies are written to this location. Examples:
-    * Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`
-    * Dockerhub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`
-    * Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`
+    - Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`
+    - Dockerhub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`
+    - Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`
 - `KP-DEFAULT-REPO-USERNAME` is the username that can write to `KP-DEFAULT-REPO`. You should be able to `docker push` to this location with this credential.
-    * For Google Cloud Registry, use `kp_default_repository_username: _json_key`
+    - For Google Cloud Registry, use `kp_default_repository_username: _json_key`
 - `KP-DEFAULT-REPO-PASSWORD` is the password for the user that can write to `KP-DEFAULT-REPO`.
 You can `docker push` to this location with these credentials.
-    * For Google Cloud Registry, use the contents of the service account JSON key.
+    - For Google Cloud Registry, use the contents of the service account JSON key.
 - `SERVER-NAME` is the hostname of the registry server. Examples:
-    * Harbor has the form `server: "my-harbor.io"`
-    * Dockerhub has the form `server: "index.docker.io"`
-    * Google Cloud Registry has the form `server: "gcr.io"`
+    - Harbor has the form `server: "my-harbor.io"`
+    - Dockerhub has the form `server: "index.docker.io"`
+    - Google Cloud Registry has the form `server: "gcr.io"`
 - `REPO-NAME` is where workload images are stored in the registry.
 Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
-    * Harbor has the form `repository: "my-project/supply-chain"`
-    * Dockerhub has the form `repository: "my-dockerhub-user"`
-    * Google Cloud Registry has the form `repository: "my-project/supply-chain"`
-- `INGRESS-DOMAIN` is the subdomain for the hostname that you will point at the `tanzu-shared-ingress` service's External IP address
-- `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog you've already built and posted on the Git infrastucture you specified in the Integration section.
+    - Harbor has the form `repository: "my-project/supply-chain"`
+    - Dockerhub has the form `repository: "my-dockerhub-user"`
+    - Google Cloud Registry has the form `repository: "my-project/supply-chain"`
+- `INGRESS-DOMAIN` is the subdomain for the host name that you will point at the `tanzu-shared-ingress` service's External IP address.
+- `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog you've already built and posted on the Git infrastructure you specified in the Integration section.
 
 
 To view possible configuration settings for a package, run:
@@ -573,7 +573,7 @@ For information about package-specific configuration, see [Install components](i
 
     This may take 5-10 minutes because it installs several packages on your cluster.
 
-1. Verify tht all the necessary packages in the profile are installed by running:
+1. Verify that all the necessary packages in the profile are installed by running:
 
     ```
     tanzu package installed list -A
@@ -581,8 +581,12 @@ For information about package-specific configuration, see [Install components](i
 
 1. (Optional) [Install any additional packages](install-components.md) that were not included in your profile.
 
+After you install Dev Profile onto your cluster, you can install the Tanzu Developer Tools for VSCode extension to help you develop against it.
+For instructions, see [Installing Tanzu Dev Tools for VSCode](vscode-extension/install.md).
 
 ## <a id='configure-envoy-lb'></a> Configure LoadBalancer for Contour ingress
+
+This section only applies when you use Tanzu Application Platform to deploy its own shared Contour ingress controller in `tanzu-system-ingress`. It is not applicable when you use an existing ingress with the components. You can share this ingress across `cnrs`, `tap_gui`, and `learningcenter`.
 
 By default, Contour uses `NodePort` as the service type. To set the service type to `LoadBalancer`, add the following to your `tap-values.yml`:
 

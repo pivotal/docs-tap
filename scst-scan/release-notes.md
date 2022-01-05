@@ -31,8 +31,19 @@ configured. The `.status.conditions` output, however, correctly reflects `Sendin
 * **Scan Phase indicates `Scanning` incorrectly:**
 Scans have an edge case where, when an error has occurred during scanning, the Scan Phase field does
 not get updated to `Error` and instead remains in the `Scanning` phase.
-Read the scan Pod logs to verify that there was an error.
+Read the scan Pod logs to verify there was an error.
 
+* **CVE print columns are not populated:**
+After running a scan and using `kubectl get` on the scan, the CVE print columns (CRITICAL, HIGH, MEDIUM, LOW, UNKNOWN, CVETOTAL) are not populated. Query the metadata store for full CVE results.
+
+#### CVEs
+* A Blackduck scan has reported the following false positive results:
+	* [CVE-2020-14145](https://nvd.nist.gov/vuln/detail/CVE-2020-14145) - The developers of OpenSSH are not fixing this upstream. The mitigation is to always connect to SSH servers with verified host keys to avoid any possibilities of man-in-the-middle attack.
+	* [CVE-2021-3426](https://nvd.nist.gov/vuln/detail/CVE-2021-3426) - This vulnerability is not in the execution path.
+	* [CVE-2020-35457](https://nvd.nist.gov/vuln/detail/CVE-2020-35457) - A fix has been backported.
+	* [CVE-2021-27218](https://nvd.nist.gov/vuln/detail/CVE-2021-27218) - A merge was applied to the base OS image.
+	* [CVE-2019-12450](https://nvd.nist.gov/vuln/detail/CVE-2019-12450) - The vulnerability is related to GTK, which is not used and does not exist in the execution path.
+	* [CVE-2019-13012](https://nvd.nist.gov/vuln/detail/CVE-2019-13012) - The vulnerability is related to GTK, which is not used and does not exist in the execution path.
 
 ### Known limitations with Grype scanner
 

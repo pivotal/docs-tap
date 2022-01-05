@@ -20,7 +20,7 @@ The ``Workshop`` custom resource we are using is:
 Example:
 
 ```
-apiVersion: learningcenter.tanzu.vmware.com/v1alpha2
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
   name: lab-k8s-fundamentals
@@ -93,7 +93,7 @@ a set of workshops to be deployed and the number of people who will be doing the
 The ``TrainingPortal`` custom resource we will use is:
 
 ```
-apiVersion: learningcenter.tanzu.vmware.com/v1alpha1
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
   name: lab-k8s-fundamentals
@@ -124,7 +124,7 @@ trainingportal.learningcenter.tanzu.vmware.com/lab-k8s-fundamentals created
 but there is a lot more going on than this. To see all the resources created, run:
 
 ```
-kubectl get eduk8s-training -o name
+kubectl get learningcenter-training -o name
 ```
 
 You should see:

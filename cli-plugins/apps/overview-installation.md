@@ -1,6 +1,6 @@
-# Apps CLI plugin overview
+# Apps CLI plug-in overview
 
-This Tanzu CLI plugin provides the ability to create, view, update, and delete application workloads on any Kubernetes cluster that has the Tanzu Application Platform components installed.
+This Tanzu CLI plug-in provides the ability to create, view, update, and delete application workloads on any Kubernetes cluster that has the Tanzu Application Platform components installed.
 
 ## <a id='About'></a>About workloads
 
@@ -15,7 +15,7 @@ Tanzu Application Platform can support a range of workloads, including a serverl
 
 ## <a id='Installation'></a>Installation
 
-Follow the instructions to [Install or Update the Tanzu CLI and Plugins](../../install-general.md#cli-and-plugin).
+Follow the instructions to [Install or update the Tanzu CLI and plug-ins](../../install-general.md#cli-and-plugin).
 
 From the `$HOME/tanzu` directory, run:
 
@@ -32,9 +32,9 @@ A version should be displayed in the output.
 
 If the following error is displayed during installation:
 ```
-Error: could not find plugin "apps" in any known repositories
+Error: could not find plug-in "apps" in any known repositories
 
-✖  could not find plugin "apps" in any known repositories
+✖  could not find plug-in "apps" in any known repositories
 ```
 
 Verify that there is an `apps` entry in the `cli/manifest.yaml` file. It should look like this:

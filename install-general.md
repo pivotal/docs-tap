@@ -5,7 +5,7 @@ This document describes the first part of the installation process for Tanzu App
 + [Prerequisites](#prereqs)
 + [Accept the EULAs](#eulas)
 + [Install Cluster Essentials for VMware Tanzu](#tanzu-cluster-essentials)
-+ [Install or Update the Tanzu CLI and Plugins](#cli-and-plugin)
++ [Install or Update the Tanzu CLI and plug-ins](#cli-and-plugin)
 
 
 ## <a id='prereqs'></a>Prerequisites
@@ -208,7 +208,7 @@ For other Kubernetes providers, follow the steps below:
     sudo cp $HOME/tanzu-cluster-essentials/kapp /usr/local/bin/kapp
     ```
 
-## <a id='cli-and-plugin'></a> Install or update the Tanzu CLI and plugins
+## <a id='cli-and-plug-in'></a> Install or update the Tanzu CLI and plug-ins
 
 Choose the install scenario that is right for you:
 
@@ -235,7 +235,7 @@ To perform a clean installation of Tanzu CLI:
 
 To install the Tanzu CLI on a Linux operating system:
 
-1. Create a directory named `tanzu`:
+1. Create a directory named `tanzu` by running:
     ```
     mkdir $HOME/tanzu
     ```
@@ -244,26 +244,35 @@ To install the Tanzu CLI on a Linux operating system:
 
 3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/) on Tanzu Network.
 
-4. Click the `tanzu-cli-0.12.0` folder.
+4. Click the `tanzu-cli-0.10.0` folder.
 
-5. Download `tanzu-framework-bundle-linux` and unpack the TAR file into the `tanzu` directory:
+5. Download `tanzu-framework-bundle-linux` and unpack the TAR file into the `tanzu` directory by running:
     ```
     tar -xvf tanzu-framework-linux-amd64.tar -C $HOME/tanzu
     ```
 
-6. Install the CLI core:
+6. Set env var `TANZU_CLI_NO_INIT` to `true` to assure the local downloaded versions of the CLI core and plug-ins are installed:
+
+     ```
+     export TANZU_CLI_NO_INIT=true
+     ```
+
+7. Install the CLI core by running:
+
     ```
     cd $HOME/tanzu
-    sudo install cli/core/v0.12.0/tanzu-core-linux_amd64 /usr/local/bin/tanzu
+    sudo install cli/core/v0.10.0/tanzu-core-linux_amd64 /usr/local/bin/tanzu
     ```
 
-7. Confirm installation of the CLI core:
+8. Confirm installation of the CLI core by running:
+
    ```
    tanzu version
    ```
-   Expect `version: v0.12.0`
 
-8. Proceed to [Instructions for a clean install of Tanzu CLI Plugins](#cli-plugin-clean-install).
+   Expected output: `version: v0.10.0`
+
+9. Proceed to [Instructions for a clean install of Tanzu CLI plug-ins](#cli-plugin-clean-install).
 
 
 #### <a id='mac-cli'></a>MacOS: Install the Tanzu CLI
@@ -279,24 +288,33 @@ To install the Tanzu CLI on a Mac operating system:
 
 3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/) on Tanzu Network.
 
-4. Click the `tanzu-cli-0.12.0` folder.
+4. Click the `tanzu-cli-0.10.0` folder.
 
 5. Download `tanzu-framework-bundle-mac` and unpack the TAR file into the `tanzu` directory:
     ```
     tar -xvf tanzu-framework-darwin-amd64.tar -C $HOME/tanzu
     ```
 
-6.  Install the CLI core:
+6. Set env var `TANZU_CLI_NO_INIT` to `true` to assure the local downloaded versions of the CLI core and plug-ins are installed:
+
+     ```
+     export TANZU_CLI_NO_INIT=true
+     ```
+
+7.  Install the CLI core by running:
+
     ```
     cd $HOME/tanzu
-    install cli/core/v0.12.0/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
+    install cli/core/v0.10.0/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
     ```
 
-7. Confirm installation of the CLI core:
+8. Confirm installation of the CLI core by running:
+
    ```
    tanzu version
    ```
-   Expect `version: v0.12.0`
+
+   Expected output: `version: v0.10.0`
 
    If you see the following warning when running `Tanzu version` on macOS:
    ```
@@ -319,7 +337,7 @@ To install the Tanzu CLI on a Mac operating system:
 
    7. Click **Open** in the macOS prompt window. After completing the steps above, there should be no more security issues while running Tanzu CLI commands.
 
-   8. Proceed to [Instructions for a clean install of Tanzu CLI Plugins](#cli-plugin-clean-install).
+   8. Proceed to [Instructions for a clean install of Tanzu CLI plug-ins](#cli-plugin-clean-install).
 
 
 #### <a id='windows-cli'></a>Windows: Install the Tanzu CLI
@@ -332,13 +350,13 @@ To install the Tanzu CLI on a Windows operating system:
 
   3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/) on Tanzu Network.
 
-  4. Click the `tanzu-cli-0.12.0` folder.
+  4. Click the `tanzu-cli-0.10.0` folder.
 
   5. Download `tanzu-framework-bundle-windows` and unpack the TAR files into the `tanzu-bundle` directory.
 
   6. Create a new `Program Files\tanzu` folder.
 
-  7. In the unpacked CLI folder tanzu-bundle, locate and copy the `core/v0.12.0/tanzu-core-windows_amd64.exe`
+  7. In the unpacked CLI folder tanzu-bundle, locate and copy the `core/v0.10.0/tanzu-core-windows_amd64.exe`
      into the new `Program Files\tanzu` folder.
 
   8. Rename `tanzu-core-windows_amd64.exe` to `tanzu.exe`.
@@ -354,32 +372,35 @@ To install the Tanzu CLI on a Windows operating system:
 
   13. Click **New** to add a new row, and enter the path to the Tanzu CLI.
 
-  14. From the `tanzu` directory, confirm the installation of the Tanzu CLI by running the following in a terminal window:
+  14. Set the environmental variable `TANZU_CLI_NO_INIT` to `true`.
+
+  14. From the `tanzu` directory, confirm the installation of the Tanzu CLI by running the following command in a terminal window:
+
       ```
       tanzu version
       ```
-      Expect `version: v0.12.0`
 
-  15. Proceed to [Clean Install Tanzu CLI Plugins](#cli-plugin-clean-install)
+      Expected output: `version: v0.10.0`
 
-## <a id='cli-plugin-clean-install'></a> Clean install Tanzu CLI plugins
+  15. Proceed to [Clean Install Tanzu CLI plug-ins](#cli-plugin-clean-install)
 
-To perform a clean installation of the Tanzu CLI plugins:
+## <a id='cli-plugin-clean-install'></a> Clean install Tanzu CLI plug-ins
 
-1. Disable the **context-aware CLI for plugins** feature so that the downloaded plugins
-   can be installed without errors:
+To perform a clean installation of the Tanzu CLI plug-ins:
 
-   ```
-   tanzu config set features.global.context-aware-cli-for-plugins false
-   ```
+1. If it hasn't been done already, set env var `TANZU_CLI_NO_INIT` to `true` to assure the local downloaded plug-ins are installed:
 
-2. Install the local versions of the plugins you downloaded:
+     ```
+     export TANZU_CLI_NO_INIT=true
+     ```
+
+2. Install the local versions of the plug-ins you downloaded by running:
 
     ```
     tanzu plugin install --local cli all
     ```
 
-3. Check the plugin installation status:
+3. Check the plug-in installation status by running:
 
     ```
     tanzu plugin list
@@ -390,23 +411,23 @@ To perform a clean installation of the Tanzu CLI plugins:
     ```
     tanzu plugin list
     NAME                LATEST VERSION  DESCRIPTION                                                        REPOSITORY  VERSION  STATUS
-    accelerator                         Manage accelerators in a Kubernetes cluster                                    v0.5.0   installed
-    apps                                Applications on Kubernetes                                                     v0.3.0   installed
-    cluster             v0.12.0         Kubernetes cluster operations                                      core        v0.12.0  installed
-    kubernetes-release  v0.12.0         Kubernetes release operations                                      core        v0.12.0  installed
-    login               v0.12.0         Login to the platform                                              core        v0.12.0  installed
-    management-cluster  v0.12.0         Kubernetes management cluster operations                           core        v0.12.0  installed
-    package             v0.12.0         Tanzu package management                                           core        v0.12.0  installed
-    pinniped-auth       v0.12.0         Pinniped authentication operations (usually not directly invoked)  core        v0.12.0  installed
-    secret              v0.12.0         Tanzu secret management                                            core        v0.12.0  installed
-    services                            Discover Service Types and manage Service Instances (ALPHA)                    v0.1.0   installed
+    accelerator                         Manage accelerators in a Kubernetes cluster                                    v1.0.0   installed
+    apps                                Applications on Kubernetes                                                     v0.4.0   installed
+    cluster             v0.13.1         Kubernetes cluster operations                                      core        v0.10.0  installed
+    kubernetes-release  v0.13.1         Kubernetes release operations                                      core        v0.10.0  installed
+    login               v0.13.1         Login to the platform                                              core        v0.10.0  installed
+    management-cluster  v0.13.1         Kubernetes management cluster operations                           core        v0.10.0  installed
+    package             v0.13.1         Tanzu package management                                           core        v0.10.0  installed
+    pinniped-auth       v0.13.1         Pinniped authentication operations (usually not directly invoked)  core        v0.10.0  installed
+    secret              v0.13.1         Tanzu secret management                                            core        v0.10.0  installed
+    services                            Discover Service Types and manage Service Instances (ALPHA)                    v0.1.1   installed
     ```
 
-    Ensure that you have the `package`, `secret`, `accelerator`, `services`, and `apps` plugins.
-    You need these plugins to install and interact with the Tanzu Application Platform.
+    Ensure that you have the `package`, `secret`, `accelerator`, `services`, and `apps` plug-ins.
+    You need these plug-ins to install and interact with the Tanzu Application Platform.
 
     Tanzu Application Platform beta requires cluster-admin privileges.
-    Running commands associated with the additional plugins can have unintended side-effects.
+    Running commands associated with the additional plug-ins can have unintended side-effects.
     VMware recommends against running `cluster`, `kubernetes-release`, `login`, `management-cluster`,
     and `pinniped-auth` commands.
 
@@ -416,126 +437,116 @@ You can now proceed with installing Tanzu Application Platform. For more informa
 
 ## <a id='udpate-previous-tap-tanzu-cli'></a>Instructions for updating Tanzu CLI that was installed for a previous release of Tanzu Application Platform
 
-If you have an earlier version of the Tanzu CLI on your local machine,
-then follow this procedure instead of the preceeding clean install procedure:
+Follow these instructions to update the Tanzu CLI that was installed for a previous release of Tanzu Application Platform:
 
-  1. If a directory called `tanzu` does not exist, create one:
+- If your Tanzu CLI version is **greater than or equal to `v0.11.0`**, you must [delete your existing Tanzu CLI, plug-ins, and associated files](uninstall.md#remove-tanzu-cli) and then perform a [clean install](#tanzu-cli-clean-install)
+- If your Tanzu CLI version is **equal to `v0.10.0`**, proceed to step 12.
+- If your Tanzu CLI version is **less than `v0.10.0`**, proceed to step 1.<br/>
 
-     ```
-     mkdir $HOME/tanzu
-     ```
+**Steps:**
 
-  2. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
+1. If a directory called `tanzu` does not exist, create one by running:
 
-  3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/)
+   ```
+   mkdir $HOME/tanzu
+   ```
+
+2. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
+
+3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/)
 on Tanzu Network.
 
-  4. Click the **tanzu-cli-0.12.0** directory.
+4. Click the **tanzu-cli-0.10.0** directory.
 
-  5. Download the CLI bundle corresponding with your operating system. For example, if your client
+5. Download the CLI bundle corresponding with your operating system. For example, if your client
 operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle.
 
-  6. If they exist, delete any CLI files from previous installs:
-     ```
-     rm -rf $HOME/tanzu/cli
-     ```
+6. If they exist, delete any CLI files from previous installs by running:
 
-  7. Unpack the TAR file in the `tanzu` directory:
+   ```
+   rm -rf $HOME/tanzu/cli
+   ```
 
-     ```
-     tar -xvf tanzu-framework-linux-amd64.tar -C $HOME/tanzu
-     ```
+7. Unpack the TAR file in the `tanzu` directory by running:
 
-  8. Navigate to the `tanzu` directory:
+   ```
+   tar -xvf tanzu-framework-linux-amd64.tar -C $HOME/tanzu
+   ```
 
-     ```
-     cd $HOME/tanzu
-     ```
+8. Navigate to the `tanzu` directory by running:
 
-  9. Set env var `TANZU_CLI_NO_INIT` to true to install the local plugin versions you've just downloaded:
+   ```
+   cd $HOME/tanzu
+   ```
 
-     ```
-     export TANZU_CLI_NO_INIT=true
-     ```
+9. Set env var `TANZU_CLI_NO_INIT` to `true` to install the local versions of the CLI core and plug-ins you've downloaded:
 
-  10. List the plugins to see if the `imagepullsecret` plugin was previously installed.
-      If installed, delete it:
+   ```
+   export TANZU_CLI_NO_INIT=true
+   ```
 
-      ```
-      tanzu plugin list
-      tanzu plugin delete imagepullsecret
-      ```
+10. Update the core CLI by running:
 
-  11. Remove previously installed plugin binaries:
-
-      ```
-      rm -rf ~/Library/Application\ Support/tanzu-cli/*
-      ```
-
-  12. Check to see what version of the Tanzu CLI core is currently installed:
-
-      ```
-      tanzu version
-      ```
-
-  13. If the version returned is `v0.10.0` or later,
-      disable the **context-aware CLI for plugins** feature so the downloaded CLI core
-      and plugins can be installed without errors:
-
-      ```
-      tanzu config set features.global.context-aware-cli-for-plugins false
-      ```
-
-  14. Update the core CLI:
-
-      ```
-      tanzu update --local ./cli
-      ```
-      Expect to see a user prompt - submit "y"
+    ```
+    tanzu update --local ./cli
+    ```
+    Expect to see a user prompt - submit `y`
 
 
-  15. Check installation status for the core CLI:
+11. Check installation status for the core CLI by running:
 
-      ```
-      tanzu version
-      ```
-      Expect `version: v0.12.0`
+    ```
+    tanzu version
+    ```
 
+    Expected output: `version: v0.10.0`
 
-  16. If the version returned in step 12 above is earlier than `v0.10.0`,
-      disable the **context-aware CLI for plugins** feature so that the downloaded plugins
-      can be installed without errors:
+12. List the plug-ins to see if the `imagepullsecret` plug-in was previously installed by running:
 
-      ```
-      tanzu config set features.global.context-aware-cli-for-plugins false
-      ```
+    ```
+    tanzu plugin list
+    ```
 
-  17. Install new plugin versions:
-      ```
-      tanzu plugin install --local cli all
-      ```
+    If installed, delete it by running:
 
-  18. Check installation status for plugins:
+    ```
+    tanzu plugin delete imagepullsecret
+    ```
 
-      ```
-      tanzu plugin list
-      ```
+13. Remove previously installed plug-in binaries by running:
 
-      Expect to see the following:
-      ```
-      tanzu plugin list
-      NAME                LATEST VERSION  DESCRIPTION                                                        REPOSITORY  VERSION  STATUS
-      accelerator                         Manage accelerators in a Kubernetes cluster                                    v0.5.0   installed
-      apps                                Applications on Kubernetes                                                     v0.3.0   installed
-      cluster             v0.12.0         Kubernetes cluster operations                                      core        v0.12.0  installed
-      kubernetes-release  v0.12.0         Kubernetes release operations                                      core        v0.12.0  installed
-      login               v0.12.0         Login to the platform                                              core        v0.12.0  installed
-      management-cluster  v0.12.0         Kubernetes management cluster operations                           core        v0.12.0  installed
-      package             v0.12.0         Tanzu package management                                           core        v0.12.0  installed
-      pinniped-auth       v0.12.0         Pinniped authentication operations (usually not directly invoked)  core        v0.12.0  installed
-      secret              v0.12.0         Tanzu secret management                                            core        v0.12.0  installed
-      services                            Discover Service Types and manage Service Instances (ALPHA)                    v0.1.0   installed
-      ```
+    ```
+    rm -rf ~/Library/Application\ Support/tanzu-cli/*
+    ```
+
+14. Install new plug-in versions by running:
+
+    ```
+    tanzu plugin install --local cli all
+    ```
+
+15. Check installation status for plug-ins by running:
+
+    ```
+    tanzu plugin list
+    ```
+
+    Expect to see the following:
+
+    ```
+    tanzu plugin list
+    NAME                LATEST VERSION  DESCRIPTION                                                        REPOSITORY  VERSION  STATUS
+    accelerator                         Manage accelerators in a Kubernetes cluster                                    v1.0.0   installed
+    apps                                Applications on Kubernetes                                                     v0.4.0   installed
+    cluster             v0.13.1         Kubernetes cluster operations                                      core        v0.10.0  installed
+    kubernetes-release  v0.13.1         Kubernetes release operations                                      core        v0.10.0  installed
+    login               v0.13.1         Login to the platform                                              core        v0.10.0  installed
+    management-cluster  v0.13.1         Kubernetes management cluster operations                           core        v0.10.0  installed
+    package             v0.13.1         Tanzu package management                                           core        v0.10.0  installed
+    pinniped-auth       v0.13.1         Pinniped authentication operations (usually not directly invoked)  core        v0.10.0  installed
+    secret              v0.13.1         Tanzu secret management                                            core        v0.10.0  installed
+    services                            Discover Service Types and manage Service Instances (ALPHA)                    v0.1.1   installed
+    ```
 
 You can now install Tanzu Application Platform.
 See **[Installing part II: Profiles](install.md)**.
@@ -543,8 +554,10 @@ See **[Installing part II: Profiles](install.md)**.
 
 ## <a id='udpate-tkg-tce-tanzu-cli'></a>Instructions for updating Tanzu CLI previously installed for Tanzu Kubernetes Grid or Tanzu Community Edition
 
-If you want to maintain the Tanzu CLI and plugins you installed previously
-for interacting with Tanzu Kubernetes Grid or Tanzu Community Edition, you only need to update/add the Tanzu Application Platform specific plugins as follows:
+Follow these instructions to update the Tanzu CLI previously installed for Tanzu Kubernetes Grid or Tanzu Community Edition:
+
+- If your Tanzu CLI version is **greater or equal to `v0.11.0`**, you must [delete your existing Tanzu CLI, plug-ins, and associated files](uninstall.md#remove-tanzu-cli) and then perform a [clean install](#tanzu-cli-clean-install)
+- If your Tanzu CLI version is **less than or equal to `v0.10.0`**, proceed to step 1.
 
   1. Create a directory named `tanzu`:
 
@@ -558,7 +571,7 @@ for interacting with Tanzu Kubernetes Grid or Tanzu Community Edition, you only 
   3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/)
 on Tanzu Network.
 
-  4. Click the **tanzu-cli-0.12.0** directory.
+  4. Click the **tanzu-cli-0.10.0** directory.
 
   5. Download the CLI bundle corresponding to your operating system. For example, if your client
 operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle.
@@ -575,13 +588,13 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
      cd $HOME/tanzu
      ```
 
-  8. Set env var `TANZU_CLI_NO_INIT` to true to install the local plugin versions you've just downloaded:
+  8. Set env var `TANZU_CLI_NO_INIT` to true to install the local plug-in versions you've just downloaded:
 
      ```
      export TANZU_CLI_NO_INIT=true
      ```
 
-  9. Check to see if the `imagepullsecret` and `package` plugins are already installed:
+  9. Check to see if the `imagepullsecret` and `package` plug-ins are already installed:
 
      ```
      tanzu plugin list
@@ -599,67 +612,54 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
      tanzu plugin delete package
      ```
 
-  10. Check to see what version of the Tanzu CLI core is installed:
-
-      ```
-      tanzu version
-      ```
-
-  11. If the version returned is `v0.11.0` or later,
-      disable the **context-aware CLI for plugins** feature so that the downloaded plugins
-      can be installed without errors:
-
-      ```
-      tanzu config set features.global.context-aware-cli-for-plugins false
-      ```
-
-  12. Install the `secret` plugin by running:
+  10. Install the `secret` plug-in by running:
 
       ```
       tanzu plugin install secret --local ./cli
       ```
 
-  13. Install the `accelerator` plugin by running:
+  11. Install the `accelerator` plug-in by running:
 
       ```
       tanzu plugin install accelerator --local ./cli
       ```
 
-  14. Install the `apps` plugin by running:
+  12. Install the `apps` plug-in by running:
 
       ```
       tanzu plugin install apps --local ./cli
       ```
 
-  15. Install the updated `package` plugin by running:
+  13. Install the updated `package` plug-in by running:
 
       ```
       tanzu plugin install package --local ./cli
       ```
 
 
-  16. Install the `services` plugin by running:
+  14. Install the `services` plug-in by running:
 
       ```
       tanzu plugin install services --local ./cli
       ```
 
 
-  17. Verify that the Tanzu Application Platform plugins are present:
+  15. Verify that the Tanzu Application Platform plug-ins are present:
 
       ```
       tanzu plugin list
       ```
 
       Expect the following to be included in the list:
+
       ```
       tanzu plugin list
       NAME                LATEST VERSION  DESCRIPTION                                                        REPOSITORY  VERSION  STATUS
-      accelerator                         Manage accelerators in a Kubernetes cluster                                    v0.5.0   installed
-      apps                                Applications on Kubernetes                                                     v0.3.0   installed
-      package             v0.12.0         Tanzu package management                                           core        v0.12.0  installed
-      secret              v0.12.0         Tanzu secret management                                            core        v0.12.0  installed
-      services                            Discover Service Types and manage Service Instances (ALPHA)                    v0.1.0   installed
+      accelerator                         Manage accelerators in a Kubernetes cluster                                    v1.0.0   installed
+      apps                                Applications on Kubernetes                                                     v0.4.0   installed
+      package             v0.13.1         Tanzu package management                                           core        v0.10.0  installed
+      secret              v0.13.1         Tanzu secret management                                            core        v0.10.0  installed
+      services                            Discover Service Types and manage Service Instances (ALPHA)                    v0.1.1   installed
       ```
 
 You can now install Tanzu Application Platform on Tanzu Kubernetes Grid or Tanzu Community Edition.

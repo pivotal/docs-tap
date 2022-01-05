@@ -1,10 +1,10 @@
 ### Tanzu Application Platform GUI Integrations
 
-Tanzu Application Platform GUI supports integrating with a number of Git providers. Inorder to leverage this integration, you'll need to enable it and provide the necessary token or credentials in your `tap-values-file.yml`. 
+Tanzu Application Platform GUI supports integrating with a number of Git providers. To leverage this integration, you must enable it and provide the necessary token or credentials in your `tap-values-file.yml`.
 
 Below is an example of this integration using the GitHub provider integration:
 
-```yaml
+```
       app_config:
         app:
           baseUrl: http://EXTERNAL-IP:7000
@@ -15,12 +15,12 @@ Below is an example of this integration using the GitHub provider integration:
               token: GITHUB-TOKEN
 ```
 
-Where `GITHUB-TOKEN` is a valid token generated from your Git infrastructure of choice with the necessary read permissions for the catalog definition files you extracted from the Blank Software Catalog we covered in the prerequisites documentation.
+Where `GITHUB-TOKEN` is a valid token generated from your Git infrastructure of choice with the necessary read permissions for the catalog definition files you extracted from the Blank Software Catalog introduced in the prerequisites documentation.
 
->**Note:** The `integrations` section above uses Github. If you want additional integrations, see the
+>**Note:** The `integrations` section earlier uses GitHub. For additional integrations, see the
 >format in the [Backstage integration documentation](https://backstage.io/docs/integrations/).
 
-Once you've made the changes to the `tap-values-file.yml` you can update the package profile by running:
+After making the changes to the `tap-values-file.yml`, you can update the package profile by running:
 
 ```
 tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version 1.0.0 --values-file tap-values-file.yml -n tap-install

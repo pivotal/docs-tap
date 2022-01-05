@@ -1,5 +1,5 @@
 # Known issues
-The Apps plugin for the Tanzu CLI has the following known issues:
+The Apps plug-in for the Tanzu CLI has the following known issues:
 
 * **`tanzu apps workload get`**
   * Passing in `--output json` along with and the `--export` flag returns yaml rather than json. Support for honoring the `--output json` with `--export` will be added in the next release.

@@ -2,10 +2,6 @@
 
 ## <a id='overview'></a> Overview of Tanzu Application Platform
 
-<p class="note warning">
-<strong>Warning:</strong> Tanzu Application Platform is currently in beta (intended for evaluation and test purposes only).
-</p>
-
 VMware Tanzu Application Platform delivers a superior developer experience for enterprises building and deploying cloud native applications on Kubernetes. It enables application teams to get to production faster by automating source to production pipelines. It clearly defines the roles of developers and operators so they can work collaboratively and integrate their efforts.
 
 The Tanzu Application Platform includes elements that enable developers to quickly begin building and testing applications regardless of their familiarity with Kubernetes. Operations teams can create application scaffolding templates with built-in security and compliance guardrails, making those considerations mostly invisible to developers. Starting with the templates, developers turn source code into a container and get a URL to test their app in minutes. Once the container is built, updating it happens automatically every time there’s a new code commit or dependency patch. And connecting to other applications and data, regardless of how they’re built or what kind of infrastructure they run on, has never been easier, thanks to an internal API management portal.
@@ -80,7 +76,7 @@ The following packages are part of the Tanzu Application Platform:
 
 - **Developer Conventions**
 
-  Developer conventions configure workloads to prepare them for inner loop development. It’s meant to be a “deploy & forget” component for developers; once installed on the cluster through the Tanzu Package CLI, developers do not need to directly interact with it. Developers instead interact with the Tanzu Developer Tools for VSCode IDE Extension or Tanzu CLI Apps Plugin, which rely on the Developer Conventions to modify the workload to enable inner loop capabilities.
+  Developer conventions configure workloads to prepare them for inner loop development. It’s meant to be a “deploy & forget” component for developers; once installed on the cluster through the Tanzu Package CLI, developers do not need to directly interact with it. Developers instead interact with the Tanzu Developer Tools for VSCode IDE Extension or Tanzu CLI Apps plug-in, which rely on the Developer Conventions to modify the workload to enable inner loop capabilities.
 
 - **Flux Source Controller**
 
@@ -109,8 +105,8 @@ The following packages are part of the Tanzu Application Platform:
 
 - **Tanzu Application Platform GUI**
 
-  Tanzu Application Platform GUI is a tool for your developers to view your organization's running applications and services. This portal provides a central location in which you can view dependencies, relationships, technical documentation, and even service status.
-
+  Tanzu Application Platform GUI lets your developers view your organization's running applications and services.
+  It provides a central location for viewing dependencies, relationships, technical documentation, and even service status.
   Tanzu Application Platform GUI is built from the Cloud Native Computing Foundation's project Backstage.
 
 ## <a id='profiles-and-packages'></a>  Installation profiles and profiles in Tanzu Application Platform v1.0
