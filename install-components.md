@@ -2116,7 +2116,7 @@ To install Learning Center:
     address.
     For example, if `minikube ip` returns `192.168.64.1`, you can use the `192.168.64.1.nip.io`
     domain.
-    You cannot use an address of form `127.0.0.1.nip.io` or `subdomain.localhost`. This causes a
+    You cannot use an address of form `127.0.0.1.nip.io` or `subdomain.localhost`. This will cause a
     failure. Internal services needing to connect to each other will connect to themselves instead
     because the address would resolve to the host loopback address of `127.0.0.1`.
 
