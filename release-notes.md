@@ -373,6 +373,9 @@ For more information, see [Supply Chain Security Tools - Sign known issues](scst
 
 New features and changes in this release:
 
+**Component: Tanzu Dev Tools for VSCode**  
+  - Improved landing page of extension
+  
 **Installation Profiles**
 
 You can now install Tanzu Application Platform through profiles.
@@ -453,6 +456,11 @@ Because SecretExport CR allows you to export registry credentials to other names
 visible to users of those namespaces.
 VMware recommends that the registry credentials you export give read-only access to the registry and
 have minimal scope within the registry.
+
+### Bug Fixes
+
+**Component: Tanzu Dev Tools for VSCode**  
+  - Bug fix in the Tanzu: Live Update Stop command that was not properly calling the stop task
 
 ## <a id='0-2-0'></a> v0.2.0 beta release
 
