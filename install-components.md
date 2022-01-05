@@ -2974,6 +2974,12 @@ that you plan to create the `Workload` in:
     `https://index.docker.io/v1/`. Specifically, it must have the leading `https://`, the `v1` path,
     and the trailing `/`. For GCR, this is `gcr.io`.
 
+    Based on conventions used in [Installing part II: Profiles](install.md), use:
+    ``` 
+    tanzu secret registry add registry-credentials --server ${INSTALL_REGISTRY_HOSTNAME} --username ${INSTALL_REGISTRY_USERNAME} --password ${INSTALL_REGISTRY_PASSWORD} --namespace YOUR-NAMESPACE
+    ```
+
+
    **Note:** If you observe the following issue with the above command:
 
    ```
@@ -2984,7 +2990,7 @@ that you plan to create the `Workload` in:
    ```
    kubectl create secret docker-registry registry-credentials --docker-server=REGISTRY-SERVER --docker-username=REGISTRY-USERNAME --docker-password=REGISTRY-PASSWORD -n YOUR-NAMESPACE
 
-1. Add placeholder read secrets, a service account, and RBAC rules to the developer namespace by running:
+2. Add placeholder read secrets, a service account, and RBAC rules to the developer namespace by running:
 
     ```
     cat <<EOF | kubectl -n YOUR-NAMESPACE apply -f -
