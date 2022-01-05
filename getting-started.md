@@ -135,7 +135,7 @@ To see this application in your organization catalog, you must register new enti
 
 1. Confirm you have installed the Blank Software Catalog. For instructions, see [Configure the Tanzu Application Platform GUI](install.md#configure-tap-gui).
 
-    
+
 2. Navigate to the homepage of the Tanzu Application Platform GUI and click **Home**, located on the left-side navigation bar.
    Then, click **REGISTER ENTITY**.
 
@@ -1217,7 +1217,7 @@ Before exploring the cases, we need to first install a service and a few support
 so Application Teams can discover, provision, and bind to services in Tanzu Application Platform.
 The [setup procedure](#consuming-services-setup) is typically performed by the Service Operator.
 
->**Note:** Services Toolkit and Tanzu Application Platform utilize the [Service Binding Specification](https://github.com/servicebinding/spec) for Kubernetes.
+>**Note:** Services Toolkit and Tanzu Application Platform use the [Service Binding Specification](https://github.com/servicebinding/spec) for Kubernetes.
 
 >**Note:** Any service that adheres to the [Provisioned Service](https://github.com/servicebinding/spec#provisioned-service) part of the specification is compatible with Tanzu Application Platform.
 
@@ -1225,7 +1225,7 @@ The [setup procedure](#consuming-services-setup) is typically performed by the S
 * [Use Case 2 - **Binding an App Workload to a Service Resource across multiple clusters**](#services-journey-use-case-2)
 * [Use Case 3 - **Binding an App Workload directly to a Secret (support for external services)**](#services-journey-use-case-3) -->
 
-### <a id='consuming-services-setup'></a> Set Up
+### <a id='consuming-services-setup'></a> Set up
 
 Follow these steps to install RabbitMQ Operator, create the necessary role-based access control (RBAC),
 and create a Services Toolkit resource called `ClusterResource` for RabbitmqCluster.
@@ -1340,7 +1340,7 @@ ClusterResource to reference and describe it.
 
 ### <a id='services-journey-use-case-1'></a> Use case 1: Binding an application to a pre-provisioned service instance running in the same namespace
 
->**Note:** The example flow detailed here makes use of one RabbitMQ service instance and one application workload, but in most real world cases, RabbitMQ is frequently used with two or more applicatons. See [Binding multiple app workloads to the same service resource](#binding-multiple-app-workloads-to-the-same-service-resource) for details on how to bind multiple application workloads to the same service instance.
+>**Note:** The example flow detailed here makes use of one RabbitMQ service instance and one application workload, but in most real world cases, RabbitMQ is frequently used with two or more applications. See [Binding multiple app workloads to the same service resource](#binding-multiple-app-workloads-to-the-same-service-resource) for details on how to bind multiple application workloads to the same service instance.
 
 Follow these steps to bind an application to a pre-provisioned service instance running
 in the same namespace.
@@ -1420,7 +1420,7 @@ namespace. This is a common scenario as it separates concerns
 between those users working with application workloads, and those who are responsible
 for service instances.
 
-1. Start by creating a new namespace for the service instances:
+1. Create a new namespace for the service instances:
 
     ```
     kubectl create namespace service-instances
@@ -1495,7 +1495,7 @@ for service instances.
     $ tanzu apps workload update rmq-sample-app-usecase-1 --service-ref="rmq=<SERVICE-REF>" --yes
     ```
 
-    Where `<SERVICE-REF>` is the value of the `SERVICE REF` from the `service-instances` namespace from the output in step 3.
+    Where `<SERVICE-REF>` is the value of the `SERVICE REF` from the `service-instances` namespace in the output of step 3.
 
 1. Get the Knative web-app URL by running:
 
@@ -1504,7 +1504,9 @@ for service instances.
     ```
 
 1. Visit the URL and confirm the app is working by refreshing the page and
-checking the new message IDs. Note that it may take a few moments for the app workload to finish updating.
+checking the new message IDs.
+
+>**Note:** It may take a few moments for the app workload to finish updating.
 
 ### <a id='services-journey-use-case-3'></a> Use case 3 - Binding an application to a service running outside Kubernetes
 
