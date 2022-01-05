@@ -1683,6 +1683,7 @@ To install Learning Center:
 
 1. (Optional) See all the configurable parameters on this package by running:
 
+    **Remember to change the 0.x.x version**
     ```
     tanzu package available get learningcenter.tanzu.vmware.com/0.x.x --values-schema -- namespace tap-install
     ```
