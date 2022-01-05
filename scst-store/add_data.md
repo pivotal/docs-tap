@@ -32,8 +32,8 @@ To use Grype to scan an image and generate an image report in CycloneDX format:
     ```
     Where:
 
-    - `REPO` is the name of your repository.
-    - `TAG` is the name of a tag.
+    - `REPO` is the name of your repository
+    - `TAG` is the name of a tag
     - `IMAGE-CVE-REPORT` is the resulting file name of the Grype image scan report
 
     For example:
@@ -63,15 +63,18 @@ To use a CycloneDX-formatted image report:
 1. Run:
 
     ```
-    insight image create --cyclonedx IMAGE-CVE-REPORT
+    insight image create --cyclonedxtype TYPE --path IMAGE-CVE-REPORT
     ```
 
-    Where `IMAGE-CVE-REPORT` is the name of a Cyclone DX formatted file.
+    Where:
+    
+    - `TYPE` specifies XML or JSON, the two supported file types
+    - `IMAGE-CVE-REPORT` is the location of a Cyclone DX formatted file
 
     For example:
 
     ```
-    $ insight image create --cyclonedx image-cve-report
+    $ insight image create --cyclonedxtype xml --path downloads/image-cve-report
     Image report created.
     ```
 
@@ -86,15 +89,18 @@ To use a CycloneDX-formatted source report:
 1. Run:
 
     ```
-    insight source create --cyclonedx SOURCE-CVE-REPORT
+    insight source create --cyclonedxtype TYPE --path SOURCE-CVE-REPORT
     ```
 
-    Where `SOURCE-CVE-REPORT` is the name of a Cyclone DX formatted file.
+    Where:
+    
+    - `TYPE` specifies XML or JSON, the two supported file types
+    - `SOURCE-CVE-REPORT` is the location of a Cyclone DX formatted file
 
     For example:
 
     ```
-    $ insight source create --cyclonedx source-cve-report
+    $ insight source create --cyclonedxtype json --path source-cve-report
     Source report created.
     ```
 
