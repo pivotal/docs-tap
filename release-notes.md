@@ -162,21 +162,6 @@ This release has the following breaking changes:
 
 - **Supply Chain Security Tools - Store:** Changed package name to `metadata-store.apps.tanzu.vmware.com`.
 
-### Component release notes
-
-The following components have separate release notes.
-
-| Component                                | Release notes                                                |
-| ---------------------------------------- | ------------------------------------------------------------ |
-| Application Accelerator for VMware Tanzu | [Release notes](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.5/acc-docs/GUID-release-notes.html) |
-| Application Live View for VMware Tanzu   | [Release notes](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-release-notes.html) |
-| Cloud Native Runtimes for VMware Tanzu   | [Release notes](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-release-notes.html) |
-| Supply Chain Security Tools - Scan   | [Release notes](scst-scan/release-notes.md)                  |
-| Supply Chain Security Tools - Sign       | [Release notes](scst-sign/release-notes.md)                  |
-| Supply Chain Security Tools - Store      | [Release notes](scst-store/release_notes.md)                 |
-| VMware Tanzu Build Service               | [Release notes](https://docs.vmware.com/en/Tanzu-Build-Service/1.3/vmware-tanzu-build-service-v13/GUID-release-notes.html) |
-| VMware Tanzu Developer Tools for Visual Studio Code | [Release notes](vscode-extension/release-notes.md) |
-
 ### Bug fixes 
 
 This release has the following bug fixes:
