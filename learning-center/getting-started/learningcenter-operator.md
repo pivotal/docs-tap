@@ -87,7 +87,7 @@ environment variable, run:
 
 ```
 kubectl set env deployment/learningcenter-operator -n learningcenter INGRESS_DOMAIN=test
-``` <!-- Define any non-obvious placeholders present in the code snippet in the style of |Where PLACEHOLDER is...| -->
+```
 Replace ``test`` with the domain name for your Kubernetes cluster.
 
 or if using a ``nip.io`` address
