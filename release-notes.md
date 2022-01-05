@@ -168,11 +168,12 @@ This release has the following breaking changes:
 
 This release has the following bug fixes:
 
-- **Tanzu Dev Tools for VSCode:**
-  - Fixed issue where the Tanzu Dev Tools extension could not support projects with multi-document YAML files
-  - Modified debug to remove any leftover port-forwards from past runs
-- **Supply Chain Security Tools - Store:**  
-  - Upgrade golang version from `1.17.1` to `1.17.5`
+#### Tanzu Dev Tools for VSCode
+- Fixed issue where the Tanzu Dev Tools extension could not support projects with multi-document YAML files
+- Modified debug to remove any leftover port-forwards from past runs
+  
+#### Supply Chain Security Tools - Store 
+- Upgrade golang version from `1.17.1` to `1.17.5`
 
 ## <a id='0-4-0'></a> v0.4.0 beta release
 
@@ -182,18 +183,19 @@ This release has the following bug fixes:
 
 New features and changes in this release:
 
-**Supply Chain Security Tools – Scan**
-  - Enhanced scanning coverage is available for Node.js apps
-  - CA certificates are automatically imported from the Metadata Store namespace
-**Tanzu Dev Tools for VSCode**  
-  - Bumped support for Tilt to 0.23.2 by removing the reference to the running image in the Tiltfile and requiring `container_selector` argument
-  - Added Code Snippets to help users create config files to enable existing projects to be deployable on TAP. Helps user generate workload.yaml, Tiltfile, and catalog-info.yaml files.
-  - Improved error handling & messaging for the following cases:
-      - Tilt is not installed on the developer's machine
-      - The incorrect version of Tilt is installed
-      - Missing source image in Tanzu settings
+#### Supply Chain Security Tools – Scan
+- Enhanced scanning coverage is available for Node.js apps
+- CA certificates are automatically imported from the Metadata Store namespace
 
-**Installation Profiles**
+#### Tanzu Dev Tools for VSCode* 
+- Bumped support for Tilt to 0.23.2 by removing the reference to the running image in the Tiltfile and requiring `container_selector` argument
+- Added Code Snippets to help users create config files to enable existing projects to be deployable on TAP. Helps user generate workload.yaml, Tiltfile, and catalog-info.yaml files.
+- Improved error handling & messaging for the following cases:
+  - Tilt is not installed on the developer's machine
+  - The incorrect version of Tilt is installed
+  - Missing source image in Tanzu settings
+
+#### Installation Profiles
 
 The Full profile now includes Supply Chain Security Tools - Store.
 
@@ -204,7 +206,7 @@ The Dev profile now includes:
 
 The Dev profile no longer includes Image Policy Webhook.
 
-**Updated Components**
+#### Updated Components
 
 The following components have been updated in Tanzu Application Platform v0.4.0:
 
@@ -213,130 +215,137 @@ The following components have been updated in Tanzu Application Platform v0.4.0:
     - [Sign v1.0.0-beta.2](scst-sign/overview.md)
 - [Tanzu Application Platform GUI v1.0.0-rc.72](tap-gui/about.md)
 
-**Renamed Components**
+#### Renamed Components
 
 Workload Visibility plug-in is renamed Runtime Visibility plug-in.
-
 
 ### Known issues
 
 This release has the following issues:
 
 #### Installing
-- **Installing Tanzu Application Platform on Google Kubernetes Engine (GKE):** When installing Tanzu Application Platform on GKE, Kubernetes control plane may be unavailable for several minutes during the install. Package installs can enter the ReconcileFailed state. When API server becomes available, packages try to reconcile to completion.
+
+- When installing Tanzu Application Platform on Google Kubernetes Engine (GKE), Kubernetes control plane may be unavailable for several minutes during the install. Package installs can enter the ReconcileFailed state. When API server becomes available, packages try to reconcile to completion.
   - This can happen on newly provisioned clusters which have not gone through GKE API server autoscaling. When GKE scales up an API server, the current Tanzu Application install continues, and any subsequent installs succeed without interruption.
 
-- **Convention Service:** Convention Service does not currently support self-signed certificates for integrating with a private registry. Support for self-signed certificates is planned for an upcoming release.
-- **Supply Chain Security Tools - Sign:** If all webhook nodes or Pods are evicted by the cluster or scaled down,
+#### Convention Service
+
+Convention Service does not currently support self-signed certificates for integrating with a private registry. Support for self-signed certificates is planned for an upcoming release.
+
+#### Supply Chain Security Tools - Sign
+
+- If all webhook nodes or Pods are evicted by the cluster or scaled down,
 the admission policy blocks any Pods from being created in the cluster.
-To resolve the issue, delete the `MutatingWebhookConfiguration` and reapply it when the cluster is stable.
-For more information, see [Supply Chain Security Tools - Sign known issues](scst-sign/known_issues.md).
-- **Supply Chain Security Tools - Sign**
-  - **MutatingWebhookConfiguration prevents pods from being admitted**
-    - Under certain circumstances, if the `image-policy-controller-manager` deployment
+  - To resolve the issue, delete the `MutatingWebhookConfiguration` and reapply it when the cluster is stable.
+  - For more information, see [Supply Chain Security Tools - Sign known issues](scst-sign/known_issues.md).
+- **MutatingWebhookConfiguration prevents pods from being admitted**
+  - Under certain circumstances, if the `image-policy-controller-manager` deployment
     pods do not start up before the `MutatingWebhookConfiguration` is applied to the
     cluster, it can prevent the admission of all pods.
-    - For example, pods can be prevented from starting if nodes in a cluster are
+  - For example, pods can be prevented from starting if nodes in a cluster are
     scaled to zero and the webhook is forced to restart at the same time as
     other system components. A deadlock can occur when some components expect the
     webhook to verify their image signatures and the webhook is not running yet.
-    - Symptoms
-      - You will see a message similar to the following in your `ReplicaSet` statuses:
+  - Symptoms
+    - You will see a message similar to the following in your `ReplicaSet` statuses:
 
-      ```
-      Events:
-        Type     Reason            Age                   From                   Message
-        ----     ------            ----                  ----                   -------
-        Warning  FailedCreate      4m28s (x18 over 14m)  replicaset-controller  Error creating: Internal error occurred: failed calling webhook "image-policy-webhook.signing.run.tanzu.vmware.com": Post "https://image-policy-webhook-service.image-policy-system.svc:443/signing-policy-check?timeout=10s": no endpoints available for service "image-policy-webhook-service"
-      ```
+    ```
+    Events:
+      Type     Reason            Age                   From                   Message
+      ----     ------            ----                  ----                   -------
+      Warning  FailedCreate      4m28s (x18 over 14m)  replicaset-controller  Error creating: Internal error occurred: failed calling webhook "image-policy-webhook.signing.run.tanzu.vmware.com": Post "https://image-policy-webhook-service.image-policy-system.svc:443/signing-policy-check?timeout=10s": no endpoints available for service "image-policy-webhook-service"
+    ```
 
-      - Solution
-        - By deleting the `MutatingWebhookConfiguration` resource, you can resolve the
+    - Solution
+      - By deleting the `MutatingWebhookConfiguration` resource, you can resolve the
         deadlock and enable the system to start up again. Once the system is stable,
         you can restore the `MutatingWebhookConfiguration` resource to re-enable image
         signing enforcement.
 
-        > **Important**: the steps below will temporarily disable signature verification
-        > in your cluster.
-        To do so:
+      > **Important**: the steps below will temporarily disable signature verification
+      > in your cluster.
+      To do so:
 
-        1. Backup the `MutatingWebhookConfiguration` to a file by running the following
+      1. Backup the `MutatingWebhookConfiguration` to a file by running the following
         command:
-            ```
-            kubectl get MutatingWebhookConfiguration image-policy-mutating-webhook-configuration -o yaml > image-policy-mutating-webhook-configuration.yaml
-            ```
+          ```
+          kubectl get MutatingWebhookConfiguration image-policy-mutating-webhook-configuration -o yaml > image-policy-mutating-webhook-configuration.yaml
+          ```
 
-        1. Delete the `MutatingWebhookConfiguration`:
-            ```
-            kubectl delete MutatingWebhookConfiguration image-policy-mutating-webhook-configuration
-            ```
+      1. Delete the `MutatingWebhookConfiguration`:
+          ```
+          kubectl delete MutatingWebhookConfiguration image-policy-mutating-webhook-configuration
+          ```
 
-        1. Wait until all components are up and running in your cluster, including the
-        `image-policy-controller-manager` pods (namespace `image-policy-system`).
+      1. Wait until all components are up and running in your cluster, including the
+      `image-policy-controller-manager` pods (namespace `image-policy-system`).
 
-        1. Re-apply the `MutatingWebhookConfiguration`:
-            ```
-            kubectl apply -f image-policy-mutating-webhook-configuration.yaml
-            ```
-  - **Priority class of webhook's pods may preempt less privileged pods**
-    - This component uses a privileged `PriorityClass` to start up its pods in order
-    to prevent node pressure from preempting its pods. However, this can cause other
-    less privileged components to have their pods preempted or evicted instead.
-    - Symptoms
-      - You will see events similar to this in the output of `kubectl get events`:
+      1. Re-apply the `MutatingWebhookConfiguration`:
+          ```
+          kubectl apply -f image-policy-mutating-webhook-configuration.yaml
+          ```
+- **Priority class of webhook's pods may preempt less privileged pods**
+  - This component uses a privileged `PriorityClass` to start up its pods in order
+  to prevent node pressure from preempting its pods. However, this can cause other
+  less privileged components to have their pods preempted or evicted instead.
+  - Symptoms
+    - You will see events similar to this in the output of `kubectl get events`:
 
-        ```
-        $ kubectl get events
-        LAST SEEN   TYPE      REASON             OBJECT               MESSAGE
-        28s         Normal    Preempted          pod/testpod          Preempted by image-policy-system/image-policy-controller-manager-59dc669d99-frwcp on node test-node
-        ```
+      ```
+      $ kubectl get events
+      LAST SEEN   TYPE      REASON             OBJECT               MESSAGE
+      28s         Normal    Preempted          pod/testpod          Preempted by image-policy-system/image-policy-controller-manager-59dc669d99-frwcp on node test-node
+      ```
 
-    - Solution
-      - Reduce the amount of pods deployed by the Sign component
-      - In case your deployment of the Sign component is running more pods than
-      necessary, you may scale the deployment down. To do so:
+  - Solution
+    - Reduce the amount of pods deployed by the Sign component
+    - In case your deployment of the Sign component is running more pods than
+    necessary, you may scale the deployment down. To do so:
       
-        1. Create a values file called `scst-sign-values.yaml` with the following
-        contents:
-        ```
-        ---
-        replicas: N
-        ```
-        where N should be the smallest amount of pods you can have for your current
-        cluster configuration
+      1. Create a values file called `scst-sign-values.yaml` with the following
+      contents:
+      ```
+      ---
+      replicas: N
+      ```
+      where N should be the smallest amount of pods you can have for your current
+      cluster configuration
 
-        1. Apply your new configuration by running:
-        ```
-        tanzu package installed update image-policy-webhook \
-          --package-name image-policy-webhook.signing.run.tanzu.vmware.com \
-          --version 1.0.0-beta.2 \
-          --namespace tap-install \
-          --values-file scst-sign-values.yaml
-        ```
+      1. Apply your new configuration by running:
+      ```
+      tanzu package installed update image-policy-webhook \
+        --package-name image-policy-webhook.signing.run.tanzu.vmware.com \
+        --version 1.0.0-beta.2 \
+        --namespace tap-install \
+        --values-file scst-sign-values.yaml
+      ```
 
-        1. It may take a few minutes until your configuration takes effect in the cluster.
+      1. It may take a few minutes until your configuration takes effect in the cluster.
 
-      - Increase your cluster's resources
-        - Node pressure may be caused by not enough nodes or not enough resources on nodes
-        for deploying the workloads you have. In this case, follow your cloud provider
-        instructions on how to scale out or scale up your cluster.
-- **Tanzu CLI apps plug-in**        
-  - **`tanzu apps workload get`**
-    - Passing in `--output json` along with and the `--export` flag returns yaml rather than json. Support for honoring the `--output json` with `--export` will be added in the next release.
-  - **`tanzu apps workload create/update/apply`**
-    - `--image` is not supported by the default supply chain in Tanzu Application Platform Beta 3 release.
-    - `--wait` functions as expected when a workload is created for the first time but may return prematurely on subsequent updates when passed with `workload update/apply` for existing workloads. 
-      - When the `--wait` flag is included and you decline the "Do you want to create this workload?" prompt, the command continues to wait and must be cancelled manually.
-- **Supply Chain Security Tools – Scan**  
-  - **Failing Blob source scans:** Blob Source Scans have an edge case where, when a compressed file without a `.git` directory is
-  provided, sending results to the Supply Chain Security Tools - Store fails and the scanned revision
-  value is not set. The current workaround is to add the `.git` directory to the compressed file.
-  - **Events show `SaveScanResultsSuccess` incorrectly:** `SaveScanResultsSuccess` appears in the events when the Supply Chain Security Tools - Store is not
-  configured. The `.status.conditions` output, however, correctly reflects `SendingResults=False`.
-  - **Scan Phase indicates `Scanning` incorrectly:** Scans have an edge case where, when an error has occurred during scanning, the Scan Phase field does
-  not get updated to `Error` and instead remains in the `Scanning` phase.
-  Read the scan Pod logs to verify that there was an error.
+    - Increase your cluster's resources
+      - Node pressure may be caused by not enough nodes or not enough resources on nodes
+      for deploying the workloads you have. In this case, follow your cloud provider
+      instructions on how to scale out or scale up your cluster.
+      
+#### Tanzu CLI apps plug-in  
+      
+- **`tanzu apps workload get`**
+  - Passing in `--output json` along with and the `--export` flag returns yaml rather than json. Support for honoring the `--output json` with `--export` will be added in the next release.
+- **`tanzu apps workload create/update/apply`**
+  - `--image` is not supported by the default supply chain in Tanzu Application Platform Beta 3 release.
+  - `--wait` functions as expected when a workload is created for the first time but may return prematurely on subsequent updates when passed with `workload update/apply` for existing workloads. 
+    - When the `--wait` flag is included and you decline the "Do you want to create this workload?" prompt, the command continues to wait and must be cancelled manually.
+    
+#### Supply Chain Security Tools – Scan
   
+- **Failing Blob source scans:** Blob Source Scans have an edge case where, when a compressed file without a `.git` directory is
+provided, sending results to the Supply Chain Security Tools - Store fails and the scanned revision
+value is not set. The current workaround is to add the `.git` directory to the compressed file.
+- **Events show `SaveScanResultsSuccess` incorrectly:** `SaveScanResultsSuccess` appears in the events when the Supply Chain Security Tools - Store is not
+configured. The `.status.conditions` output, however, correctly reflects `SendingResults=False`.
+- **Scan Phase indicates `Scanning` incorrectly:** Scans have an edge case where, when an error has occurred during scanning, the Scan Phase field does
+not get updated to `Error` and instead remains in the `Scanning` phase.
+Read the scan Pod logs to verify that there was an error.
   
 ### Known limitations with Grype scanner
 - **Supply Chain Security Tools – Scan** 
