@@ -34,6 +34,16 @@ store images.
 * Latest version of Chrome, Firefox, or Edge.
 Tanzu Application Platform GUI currently does not support Safari browser.
 
+#### DNS Records
+There are some optional, but recommended DNS records that you should allocate if you decide to leverage these particular components:
+
+- Cloud Native Runtimes (knative) - You'll want a wildcard subdomain for your developer's applications to live in. This will be specified in the `cnrs.domain_name` key of the `tap-values.yml` configuration file that you'll input with the installation. This wildcard should be pointed at the external IP address of the `tanzu-system-ingress`'s `envoy` service.
+- Tanzu Learning Center - Similar to Cloud Native Runtimes, you'll want ato allocate a wildcard subdomain for your workshops and content to live in. This will be specified in the `learningcenter.ingressDomain` key of the `tap-values.yml` configuration file that you'll input with the installation. This wildcard should be pointed at the external IP address of the `tanzu-system-ingress`'s `envoy` service.
+- Tanzu Application Platform GUI - Should you decide to implement the share ingress and include the Tanzua Application Platform GUI you'll want to allocate a fully Qualified Domain Name (FQDN) that can be pointed at the `tanzu-system-ingress` service.
+The default host name consists of `tap-gui` plus an `IngressDomain` of your choice. For example,
+`tap-gui.example.com`.
+
+
 #### Tanzu Application Platform GUI
 
 - Git repository for the Tanzu Application Platform GUI's software catalogs, along with a token allowing read access.
@@ -43,7 +53,7 @@ Tanzu Application Platform GUI currently does not support Safari browser.
     - Azure DevOps
 - Tanzu Application Platform GUI Blank Catalog from the Tanzu Application section of Tanzu Network
   - To install this, navigate to [Tanzu Network](https://network.tanzu.vmware.com/) and select the Tanzu Application Platform. Under the list of available files to download, there will be a folder titled `tap-gui-catalogs`. Inside that folder is a compressed archive titled `Tanzu Application Platform Blank Catalog`. You'll need to extract that catalog to the preceding Git repository of choice. This serves as the configuration location for your Organization's Catalog inside Tanzu Application Platform GUI.
-  - The Tanzu Application Platform GUI catalog allows for two approaches towards storing catalog information:
+- The Tanzu Application Platform GUI catalog allows for two approaches towards storing catalog information:
     - The default option uses an in-memory database and is suitable for test and development scenarios.
           This reads the catalog data from Git URLs that you specify in the `tap-values.yml` file.
           This data is ephemeral and any operations that cause the `server` pod in the `tap-gui` namespace to be re-created
@@ -52,9 +62,7 @@ Tanzu Application Platform GUI currently does not support Safari browser.
           they only exist in the database and are lost when that in-memory database gets rebuilt.
     - For production use-cases, use a PostgreSQL database that exists outside the Tanzu Application Platform's packaging.
           This stores all the catalog data persistently both from the Git locations and from the GUI's manual entity registrations.
-- Fully Qualified Domain Name (FQDN) that can be pointed at the `tanzu-shared-ingress` service.
-The default host name consists of `tap-gui` plus an `IngressDomain` of your choice. For example,
-`tap-gui.example.com`.
+
 
 ### Kubernetes cluster requirements
 Installation requires:
