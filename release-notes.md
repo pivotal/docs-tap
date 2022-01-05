@@ -502,7 +502,10 @@ This release has the following new features:
 - **Component: Supply Chain Security Tools - Sign**
   - Added configuration for ResourceQuotas. See `quota.pod_number`
   - Number of replicas can be configured via `replicas` value
-
+- **Component: Tanzu Dev Tools for VSCode**  
+  - Enable developers to see their code live update on the cluster
+  - Enable developers to debug their code on the cluster
+  
 The following components have been updated in Tanzu Application Platform v0.2.0
 
 - [VMware Tanzu Build Service v1.3](https://docs.vmware.com/en/Tanzu-Build-Service/1.3/vmware-tanzu-build-service-v13/GUID-index.html)
