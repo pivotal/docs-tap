@@ -30,13 +30,15 @@ Convention Service does not currently support custom certificates for integratin
 Deployment from a public Git repository might require a Git SSH secret. Workaround is to configure SSH access for the public Git repository.
 
 #### Supply Chain Security Tools - Sign
-If all webhook nodes or Pods are evicted by the cluster or scaled down, the admission policy blocks any Pods from being created in the cluster. To resolve the issue, delete the MutatingWebhookConfiguration and reapply it when the cluster is stable. For more information, see [Supply Chain Security Tools - Sign known issues](scst-sign/known_issues.md).
+If all webhook nodes or Pods are evicted by the cluster or scaled down, the admission policy blocks any Pods from being created in the cluster. To resolve the issue, delete the MutatingWebhookConfiguration and reapply it when the cluster is stable.
 
 #### Tanzu CLI
+
 - **`tanzu apps workload get`:** Passing in `--output json` along with and the `--export` flag returns yaml rather than json. Support for honoring the `--output json` with `--export` will be added in the next release.
 - **`tanzu apps workload create/update/apply`:** `--image` is not supported by the default supply chain in Tanzu Application Platform Beta 3 release. `--wait` functions as expected when a workload is created for the first time but may return prematurely on subsequent updates when passed with `workload update/apply` for existing workloads. When the `--wait` flag is included and you decline the "Do you want to create this workload?" prompt, the command continues to wait and must be cancelled manually.
   
 #### Supply Chain Security Tools – Scan
+
 - **Failing Blob source scans:** Blob Source Scans have an edge case where, when a compressed file without a `.git` directory is provided, sending results to the Supply Chain Security Tools - Store fails and the scanned revision value is not set. The current workaround is to add the `.git` directory to the compressed file.
 - **Events show `SaveScanResultsSuccess` incorrectly:** `SaveScanResultsSuccess` appears in the events when the Supply Chain Security Tools - Store is not configured. The `.status.conditions` output, however, correctly reflects `SendingResults=False`.
 - **Scan Phase indicates `Scanning` incorrectly:** Scans have an edge case where, when an error has occurred during scanning, the Scan Phase field does not get updated to `Error` and instead remains in the `Scanning` phase. Read the scan Pod logs to verify there was an error.
@@ -237,7 +239,6 @@ Convention Service does not currently support self-signed certificates for integ
 - If all webhook nodes or Pods are evicted by the cluster or scaled down,
 the admission policy blocks any Pods from being created in the cluster.
   - To resolve the issue, delete the `MutatingWebhookConfiguration` and reapply it when the cluster is stable.
-  - For more information, see [Supply Chain Security Tools - Sign known issues](scst-sign/known_issues.md).
 - **MutatingWebhookConfiguration prevents pods from being admitted**
   - Under certain circumstances, if the `image-policy-controller-manager` deployment
     pods do not start up before the `MutatingWebhookConfiguration` is applied to the
