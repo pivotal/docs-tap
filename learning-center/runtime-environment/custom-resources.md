@@ -55,7 +55,7 @@ spec:
   request:
     token: lab-markdown-sample
   session:
-    username: eduk8s
+    username: learningcenter
 ```
 
 When an instance of the ``WorkshopEnvironment`` custom resource is created, the Learning Center operator responds by creating a namespace for hosting the workshop instances defined by the ``Workshop`` resource specified by the ``spec.workshop.name`` field. The namespace created will use the same name as specified by the ``metadata.name`` field of the ``WorkshopEnvironment`` resource.
