@@ -382,7 +382,7 @@ To install the Tanzu CLI on a Windows operating system:
 
   14. Set the environmental variable `TANZU_CLI_NO_INIT` to `true`.
 
-  14. From the `tanzu` directory, confirm the installation of the Tanzu CLI by running the following command in a terminal window:
+  15. From the `tanzu` directory, confirm the installation of the Tanzu CLI by running the following command in a terminal window:
 
       ```
       tanzu version
@@ -390,7 +390,7 @@ To install the Tanzu CLI on a Windows operating system:
 
       Expected output: `version: v0.10.0`
 
-  15. Proceed to [Clean Install Tanzu CLI plug-ins](#cli-plugin-clean-install)
+  16. Proceed to [Clean Install Tanzu CLI plug-ins](#cli-plugin-clean-install)
 
 ## <a id='cli-plugin-clean-install'></a> Clean install Tanzu CLI plug-ins
 
@@ -402,9 +402,10 @@ To perform a clean installation of the Tanzu CLI plug-ins:
      export TANZU_CLI_NO_INIT=true
      ```
 
-2. Install the local versions of the plug-ins you downloaded by running:
+2. From your `tanzu` directory, Install the local versions of the plug-ins you downloaded by running:
 
     ```
+    cd $HOME/tanzu
     tanzu plugin install --local cli all
     ```
 
