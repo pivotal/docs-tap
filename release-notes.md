@@ -198,6 +198,13 @@ New features and changes in this release:
 **Component: Supply Chain Security Tools – Scan**
   - Enhanced scanning coverage is available for Node.js apps
   - CA certificates are automatically imported from the Metadata Store namespace
+**Component: Tanzu Dev Tools for VSCode**  
+  - Bumped support for Tilt to 0.23.2 by removing the reference to the running image in the Tiltfile and requiring `container_selector` argument
+  - Added Code Snippets to help users create config files to enable existing projects to be deployable on TAP. Helps user generate workload.yaml, Tiltfile, and catalog-info.yaml files.
+  - Improved error handling & messaging for the following cases:
+      - Tilt is not installed on the developer's machine
+      - The incorrect version of Tilt is installed
+      - Missing source image in Tanzu settings
 
 **Installation Profiles**
 
@@ -353,6 +360,10 @@ For more information, see [Supply Chain Security Tools - Sign known issues](scst
     - Because best practices do not include committing binaries to source code repositories, Grype fails to
     find vulnerabilities during a Source Scan. The vulnerabilities are still found during the Image Scan,
     after the binaries are built and packaged as images.  
+
+### Bug Fixes
+**Component: Tanzu Dev Tools for VSCode**  
+  - Added a "wait" service which prevents user from using the live update & debug capabilities until the deployment is up & running on the cluster. Fixes known issue from TAP 0.2.0 & 0.3.0.
               
 ## <a id='0-3-0'></a> v0.3.0 beta release
 
