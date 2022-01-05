@@ -130,7 +130,7 @@ For any of the formats, credentials can be supplied as part of the URI.
 
 Access to the registry using a secure connection using ``https`` must have a valid certificate.
 
-The OCI image artficact can be created using ``imgpkg`` from the Carvel tool set. For example, from the top level directory of the Git repository containing the workshop content you would run:
+The OCI image artifact can be created using ``imgpkg`` from the Carvel tool set. For example, from the top level directory of the Git repository containing the workshop content you would run:
 
 ```
 imgpkg push -i harbor.example.com/organisation/project:version -f .
@@ -167,7 +167,7 @@ spec:
     image: quay.io/eduk8s/lab-markdown-sample:master
 ```
 
-Even if using the ability to download workshop content when the workshop environment is started, you may still want to override the workshop image used as a base. This would be done where you have a custom workshop base image that includes additional language runtimes or tools required by specialised workshops.
+Even if using the ability to download workshop content when the workshop environment is started, you may still want to override the workshop image used as a base. This would be done where you have a custom workshop base image that includes additional language runtimes or tools required by specialized workshops.
 
 For example, if running a Java workshop, you could specify the ``jdk11-environment`` workshop image, with workshop content still pulled down from GitHub.
 
@@ -184,7 +184,7 @@ spec:
     files: github.com/eduk8s-tests/lab-spring-testing
 ```
 
-Note that if wanting to use the latest version of an image, always include the ``:latest`` tag. This is important because the Learning Center operator will look for version tags ``:main``, ``:master``, ``:develop`` and ``:latest``, and when they are used will set the image pull policy to ``Always`` to ensure that a newer version is always pulled if available, otherwise the image will be cached on the Kubernetes nodes and only pulled when it is initially not present. Any other version tags will always be assumed to be unique and never updated. Do though be aware of image registries which use a CDN as front end. When using these image tags the CDN can still always regard them as unqiue and they will not do pull through requests to update an image even if uses a tag of ``:latest``.
+Note that if wanting to use the latest version of an image, always include the ``:latest`` tag. This is important because the Learning Center operator will look for version tags ``:main``, ``:master``, ``:develop`` and ``:latest``, and when they are used will set the image pull policy to ``Always`` to ensure that a newer version is always pulled if available, otherwise the image will be cached on the Kubernetes nodes and only pulled when it is initially not present. Any other version tags will always be assumed to be unique and never updated. Do though be aware of image registries which use a CDN as front end. When using these image tags the CDN can still always regard them as unique and they will not do pull through requests to update an image even if uses a tag of ``:latest``.
 
 Where special custom workshop base images are available as part of the Learning Center project, instead of specifying the full location for the image, including the image registry, you can specify a short name. The Learning Center operator will then fill in the rest of the details.
 
@@ -809,13 +809,13 @@ Values of fields in the list of resource objects can reference a number of pre-d
 
 If you want to create additional namespaces associated with the workshop environment, embed a reference to ``$(workshop_namespace)`` in the name of the additional namespaces, with an appropriate suffix. Be mindful that the suffix doesn't overlap with the range of session IDs for workshop instances.
 
-When creating deployments in the workshop namespace, set the ``serviceAccountName`` of the ``Deployment`` resouce to ``$(service_account)``. This will ensure the deployment makes use of a special pod security policy set up by the Learning Center. If this isn't used and the cluster imposes a more strict default pod security policy, your deployment may not work, especially if any image expects to run as ``root``.
+When creating deployments in the workshop namespace, set the ``serviceAccountName`` of the ``Deployment`` resource to ``$(service_account)``. This will ensure the deployment makes use of a special pod security policy set up by the Learning Center. If this isn't used and the cluster imposes a more strict default pod security policy, your deployment may not work, especially if any image expects to run as ``root``.
 
 ## Workshop pod security policy
 
 The pod for the workshop session will be setup with a pod security policy which restricts what can be done from containers in the pod. The nature of the applied pod security policy will be adjusted when enabling support for doing docker builds to enable the ability to do docker builds inside the side car container attached to the workshop container.
 
-If you are customising the workshop by patching the pod specification using ``session.patches``, in order to add your own side car container, and that side car container needs to run as the root user, or needs a custom pod security policy, you will need to override the default security policy for the workshop container.
+If you are customizing the workshop by patching the pod specification using ``session.patches``, in order to add your own side car container, and that side car container needs to run as the root user, or needs a custom pod security policy, you will need to override the default security policy for the workshop container.
 
 In the case where you need to allow a side car container to run as the root user and no extra privileges are required, you can override the default ``nonroot`` security policy and set it to ``anyuid``.
 
@@ -1078,7 +1078,7 @@ In this case ``environment.objects`` of the workshop ``spec`` would need to incl
 
 ## Disabling workshop instructions
 
-The aim of the workshop environment is to provide instructions for a workshop which users can follow. If you want instead to use the workshop environment as a development environment, or use it as an admistration console which provides access to a Kubernetes cluster, you can disable the display of workshop instructions provided with the workshop content. In this case only the workarea with the terminals, console etc, will be displayed. To disable display of workshop instructions, add a ``session.applications.workshop`` section and set the ``enabled`` property to ``false``.
+The aim of the workshop environment is to provide instructions for a workshop which users can follow. If you want instead to use the workshop environment as a development environment, or use it as an administration console which provides access to a Kubernetes cluster, you can disable the display of workshop instructions provided with the workshop content. In this case only the workarea with the terminals, console etc, will be displayed. To disable display of workshop instructions, add a ``session.applications.workshop`` section and set the ``enabled`` property to ``false``.
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
