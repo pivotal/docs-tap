@@ -2974,7 +2974,7 @@ that you plan to create the `Workload` in:
     `https://index.docker.io/v1/`. Specifically, it must have the leading `https://`, the `v1` path,
     and the trailing `/`. For GCR, this is `gcr.io`.
 
-    Based on conventions used in [Installing part II: Profiles](install.md), use:
+    Based on conventions used in [Installing part II: Profiles](install.md), use the following command:
 
     ```
     tanzu secret registry add registry-credentials --server ${INSTALL_REGISTRY_HOSTNAME} --username ${INSTALL_REGISTRY_USERNAME} --password ${INSTALL_REGISTRY_PASSWORD} --namespace YOUR-NAMESPACE
