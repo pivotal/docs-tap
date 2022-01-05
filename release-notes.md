@@ -9,7 +9,7 @@ This topic contains release notes for Tanzu Application Platform v1.0.
 ### Features
 
 This release has the following new features:
-- Supply Chain Security Tools – Scan
+- **Supply Chain Security Tools – Scan**
   - Enhanced scanning coverage is available for Node.js apps
   - CA certificates are automatically imported from the Metadata Store namespace
 
@@ -17,21 +17,23 @@ This release has the following new features:
 
 This release has the following issues:
 
-- **Application Accelerator:** Build scripts provided as part of an accelerator do not have the execute bit set when a new project is generated from the accelerator. To resolve this issue, explicitly set the execute bit by using the "chmod" command: `chmod +x <build-script>`. For example, for a project generated from the "Spring PetClinic" accelerator, run: `chmod +x ./mvnw`.
+#### Installing
+  - **Installing Tanzu Application Platform on Google Kubernetes Engine (GKE):** When installing Tanzu Application Platform on GKE, Kubernetes control plane can be unavailable for several minutes during the installation. Package installs can enter the `ReconcileFailed` state. When API server becomes available, packages try to reconcile to completion. This can happen on newly provisioned clusters which have not finished GKE API server autoscaling. When GKE scales up an API server, the current Tanzu Application install continues, and any subsequent installs succeed without interruption.
 
-- **Component: Convention Service:** Convention Service does not currently support custom certificates for integrating with a private registry. Support for custom certificates is planned for an upcoming release.
+#### Application Accelerator
+Build scripts provided as part of an accelerator do not have the execute bit set when a new project is generated from the accelerator. To resolve this issue, explicitly set the execute bit by using the "chmod" command: `chmod +x <build-script>`. For example, for a project generated from the "Spring PetClinic" accelerator, run: `chmod +x ./mvnw`.
 
-- **Installing Tanzu Application Platform on Google Kubernetes Engine (GKE):** When installing Tanzu Application Platform on GKE, Kubernetes control plane can be unavailable for several minutes during the installation. Package installs can enter the `ReconcileFailed` state. When API server becomes available, packages try to reconcile to completion. This can happen on newly provisioned clusters which have not finished GKE API server autoscaling. When GKE scales up an API server, the current Tanzu Application install continues, and any subsequent installs succeed without interruption.
+- **Convention Service:** Convention Service does not currently support custom certificates for integrating with a private registry. Support for custom certificates is planned for an upcoming release.
 
-- **Component: Supply Chain Choreographer** Deployment from a public Git repository might require a Git SSH secret. Workaround is to configure SSH access for the public Git repository.
+- **Supply Chain Choreographer** Deployment from a public Git repository might require a Git SSH secret. Workaround is to configure SSH access for the public Git repository.
 
-- **Component: Supply Chain Security Tools - Sign** If all webhook nodes or Pods are evicted by the cluster or scaled down, the admission policy blocks any Pods from being created in the cluster. To resolve the issue, delete the MutatingWebhookConfiguration and reapply it when the cluster is stable. For more information, see [Supply Chain Security Tools - Sign known issues](scst-sign/known_issues.md).
+- **Supply Chain Security Tools - Sign** If all webhook nodes or Pods are evicted by the cluster or scaled down, the admission policy blocks any Pods from being created in the cluster. To resolve the issue, delete the MutatingWebhookConfiguration and reapply it when the cluster is stable. For more information, see [Supply Chain Security Tools - Sign known issues](scst-sign/known_issues.md).
 
-- **Component: Tanzu CLI**
+- **Tanzu CLI**
   - **`tanzu apps workload get`:** Passing in `--output json` along with and the `--export` flag returns yaml rather than json. Support for honoring the `--output json` with `--export` will be added in the next release.
   - **`tanzu apps workload create/update/apply`:** `--image` is not supported by the default supply chain in Tanzu Application Platform Beta 3 release. `--wait` functions as expected when a workload is created for the first time but may return prematurely on subsequent updates when passed with `workload update/apply` for existing workloads. When the `--wait` flag is included and you decline the "Do you want to create this workload?" prompt, the command continues to wait and must be cancelled manually.
   
-- **Component: Supply Chain Security Tools – Scan**
+- **Supply Chain Security Tools – Scan**
   - **Failing Blob source scans:** Blob Source Scans have an edge case where, when a compressed file without a `.git` directory is provided, sending results to the Supply Chain Security Tools - Store fails and the scanned revision value is not set. The current workaround is to add the `.git` directory to the compressed file.
   - **Events show `SaveScanResultsSuccess` incorrectly:** `SaveScanResultsSuccess` appears in the events when the Supply Chain Security Tools - Store is not configured. The `.status.conditions` output, however, correctly reflects `SendingResults=False`.
   - **Scan Phase indicates `Scanning` incorrectly:** Scans have an edge case where, when an error has occurred during scanning, the Scan Phase field does not get updated to `Error` and instead remains in the `Scanning` phase. Read the scan Pod logs to verify there was an error.
@@ -50,7 +52,7 @@ This release has the following issues:
     find vulnerabilities during a Source Scan. The vulnerabilities are still found during the Image Scan,
     after the binaries are built and packaged as images.
   
-- **Component: Supply Chain Security Tools - Sign**
+- **Supply Chain Security Tools - Sign**
   - **MutatingWebhookConfiguration prevents pods from being admitted:** Under certain circumstances, if the `image-policy-controller-manager` deployment
   pods do not start up before the `MutatingWebhookConfiguration` is applied to the
   cluster, it can prevent the admission of all pods. 
@@ -97,43 +99,43 @@ This release has the following issues:
         kubectl apply -f image-policy-mutating-webhook-configuration.yaml
         ```
         
-- **Priority class of webhook's pods may preempt less privileged pods:**
-  This component uses a privileged `PriorityClass` to start up its pods in order
-  to prevent node pressure from preempting its pods. However, this can cause other
-  less privileged components to have their pods preempted or evicted instead.
-  - **Symptoms:**
-    You will see events similar to this in the output of `kubectl get events`:
+  - **Priority class of webhook's pods may preempt less privileged pods:**
+      This component uses a privileged `PriorityClass` to start up its pods in order
+      to prevent node pressure from preempting its pods. However, this can cause other
+      less privileged components to have their pods preempted or evicted instead.
+    - **Symptoms:**
+        You will see events similar to this in the output of `kubectl get events`:
 
-    ```
-    $ kubectl get events
-    LAST SEEN   TYPE      REASON             OBJECT               MESSAGE
-    28s         Normal    Preempted          pod/testpod          Preempted by image-policy-system/image-policy-controller-manager-59dc669d99-frwcp on node test-node
-    ```
-  - **Solution:** 
-    - **Reduce the amount of pods deployed by the Sign component:**
+        ```
+        $ kubectl get events
+        LAST SEEN   TYPE      REASON             OBJECT               MESSAGE
+        28s         Normal    Preempted          pod/testpod          Preempted by image-policy-system/image-policy-controller-manager-59dc669d99-frwcp on node test-node
+        ```
+    - **Solution:** 
+      - **Reduce the amount of pods deployed by the Sign component:**
 
-      In case your deployment of the Sign component is running more pods than
-      necessary, you may scale the deployment down. To do so:
+          In case your deployment of the Sign component is running more pods than
+          necessary, you may scale the deployment down. To do so:
 
-      1. Create a values file called `scst-sign-values.yaml` with the following
-      contents:
-          ```
-          ---
-          replicas: N
-          ```
-          where N should be the smallest amount of pods you can have for your current
-          cluster configuration.
+          1. Create a values file called `scst-sign-values.yaml` with the following
+          contents:
+              ```
+              ---
+              replicas: N
+              ```
+              where N should be the smallest amount of pods you can have for your current
+              cluster configuration.
 
-      1. Apply your new configuration by running:
-          ```
-          tanzu package installed update image-policy-webhook \
-            --package-name image-policy-webhook.signing.apps.tanzu.vmware.com \
-            --version 1.0.0-beta.3 \
-            --namespace tap-install \
-            --values-file scst-sign-values.yaml
-          ```
+          1. Apply your new configuration by running:
+              ```
+              tanzu package installed update image-policy-webhook \
+                --package-name image-policy-webhook.signing.apps.tanzu.vmware.com \
+                --version 1.0.0-beta.3 \
+                --namespace tap-install \
+                --values-file scst-sign-values.yaml
+              ```
 
-      1. It may take a few minutes until your configuration takes effect in the cluster.
+          1. It may take a few minutes until your configuration takes effect in the cluster.
 
     - **Increase your cluster's resources:**
       - Node pressure may be caused by not enough nodes or not enough resources on nodes
@@ -180,10 +182,10 @@ This release has the following bug fixes:
 
 New features and changes in this release:
 
-**Component: Supply Chain Security Tools – Scan**
+**Supply Chain Security Tools – Scan**
   - Enhanced scanning coverage is available for Node.js apps
   - CA certificates are automatically imported from the Metadata Store namespace
-**Component: Tanzu Dev Tools for VSCode**  
+**Tanzu Dev Tools for VSCode**  
   - Bumped support for Tilt to 0.23.2 by removing the reference to the running image in the Tiltfile and requiring `container_selector` argument
   - Added Code Snippets to help users create config files to enable existing projects to be deployable on TAP. Helps user generate workload.yaml, Tiltfile, and catalog-info.yaml files.
   - Improved error handling & messaging for the following cases:
@@ -227,7 +229,7 @@ This release has the following issues:
 the admission policy blocks any Pods from being created in the cluster.
 To resolve the issue, delete the `MutatingWebhookConfiguration` and reapply it when the cluster is stable.
 For more information, see [Supply Chain Security Tools - Sign known issues](scst-sign/known_issues.md).
-- **Component: Supply Chain Security Tools - Sign**
+- **Supply Chain Security Tools - Sign**
   - **MutatingWebhookConfiguration prevents pods from being admitted**
     - Under certain circumstances, if the `image-policy-controller-manager` deployment
     pods do not start up before the `MutatingWebhookConfiguration` is applied to the
@@ -316,14 +318,14 @@ For more information, see [Supply Chain Security Tools - Sign known issues](scst
         - Node pressure may be caused by not enough nodes or not enough resources on nodes
         for deploying the workloads you have. In this case, follow your cloud provider
         instructions on how to scale out or scale up your cluster.
-- **Component: Tanzu CLI apps plug-in**        
+- **Tanzu CLI apps plug-in**        
   - **`tanzu apps workload get`**
     - Passing in `--output json` along with and the `--export` flag returns yaml rather than json. Support for honoring the `--output json` with `--export` will be added in the next release.
   - **`tanzu apps workload create/update/apply`**
     - `--image` is not supported by the default supply chain in Tanzu Application Platform Beta 3 release.
     - `--wait` functions as expected when a workload is created for the first time but may return prematurely on subsequent updates when passed with `workload update/apply` for existing workloads. 
       - When the `--wait` flag is included and you decline the "Do you want to create this workload?" prompt, the command continues to wait and must be cancelled manually.
-- **Component: Supply Chain Security Tools – Scan**  
+- **Supply Chain Security Tools – Scan**  
   - **Failing Blob source scans:** Blob Source Scans have an edge case where, when a compressed file without a `.git` directory is
   provided, sending results to the Supply Chain Security Tools - Store fails and the scanned revision
   value is not set. The current workaround is to add the `.git` directory to the compressed file.
@@ -335,7 +337,7 @@ For more information, see [Supply Chain Security Tools - Sign known issues](scst
   
   
 ### Known limitations with Grype scanner
-- **Component: Supply Chain Security Tools – Scan** 
+- **Supply Chain Security Tools – Scan** 
   - Scanning Java source code may not reveal vulnerabilities:
     - Source Code Scanning only scans files present in the source code repository. No network calls are made to fetch dependencies.
     - For languages that make use of dependency lock files, such as Golang and Node.js, Grype uses the lock
@@ -347,7 +349,7 @@ For more information, see [Supply Chain Security Tools - Sign known issues](scst
     after the binaries are built and packaged as images.  
 
 ### Bug Fixes
-**Component: Tanzu Dev Tools for VSCode**  
+**Tanzu Dev Tools for VSCode**  
   - Added a "wait" service which prevents user from using the live update & debug capabilities until the deployment is up & running on the cluster. Fixes known issue from TAP 0.2.0 & 0.3.0.
               
 ## <a id='0-3-0'></a> v0.3.0 beta release
@@ -358,7 +360,7 @@ For more information, see [Supply Chain Security Tools - Sign known issues](scst
 
 New features and changes in this release:
 
-**Component: Tanzu Dev Tools for VSCode**  
+**Tanzu Dev Tools for VSCode**  
   - Improved landing page of extension
   
 **Installation Profiles**
@@ -424,7 +426,7 @@ This release has the following issues:
 - Tanzu App CLI plug-in:
   - *`tanzu apps workload get`*: passing in `--output json` along with and the `--export` flag will return YAML rather than JSON (support for honoring the `--output json` in conjunction with `--export` will be added in the next release).
   - *`tanzu apps workload create/update/apply`*: when the `--wait` flag has been included and the "Do you want to create this workload?" prompt is declined, the command continues to wait rather exit
-- **Component: Tanzu CLI apps plug-in**
+- **Tanzu CLI apps plug-in**
   - **`tanzu apps workload get`**
     - Passing in `--output json` along with and the `--export` flag returns yaml rather than json. Support for honoring the `--output json` with `--export` will be added in the next release.
   - **`tanzu apps workload create/update/apply`**
@@ -444,7 +446,7 @@ have minimal scope within the registry.
 
 ### Bug Fixes
 
-**Component: Tanzu Dev Tools for VSCode**  
+**Tanzu Dev Tools for VSCode**  
   - Bug fix in the Tanzu: Live Update Stop command that was not properly calling the stop task
 
 ## <a id='0-2-0'></a> v0.2.0 beta release
@@ -454,7 +456,7 @@ have minimal scope within the registry.
 ### New features
 
 This release has the following new features:
-- **Component: Supply Chain Security Tools - Store**
+- **Supply Chain Security Tools - Store**
   - Add logs to Images, Vulnerabilities, Sources, and Package endpoints
   - Supporting AWS RDS
   - Add default read-only clusterrole
@@ -462,7 +464,7 @@ This release has the following new features:
   - Export CA Cert to a specified namespace. By default, the CA Cert will be exported to the default namespace `scan-link-system`
   - `db_password` is generated with secretgen when not provided by user
   - Support cyclonedx 1.3
-- **Component: Tanzu Packages**
+- **Tanzu Packages**
   - Supply Chain Choreographer for VMware Tanzu
     - Cartographer v0.0.6
     - Default Supply Chain v0.2.0
@@ -479,15 +481,15 @@ This release has the following new features:
   - Service Control Plane Toolkit v0.3.0
   - Service Bindings for Kubernetes v0.5.0
   - Tanzu Developer Tools for Visual Studio Code v0.2.0
-- **Component: Tanzu CLI plug-ins**
+- **Tanzu CLI plug-ins**
   - Tanzu Accelerator CLI plug-in v0.3.0
   - Tanzu App CLI plug-in v0.2.0
   - Tanzu ImagePullSecret CLI plug-in v0.5.0
   - Tanzu Package CLI plug-in v0.5.0
-- **Component: Supply Chain Security Tools - Sign**
+- **Supply Chain Security Tools - Sign**
   - Added configuration for ResourceQuotas. See `quota.pod_number`
   - Number of replicas can be configured via `replicas` value
-- **Component: Tanzu Dev Tools for VSCode**  
+- **Tanzu Dev Tools for VSCode**  
   - Enable developers to see their code live update on the cluster
   - Enable developers to debug their code on the cluster
   
@@ -513,11 +515,11 @@ This release has the following issues:
     1. Click the `Terminal` menu and select the `Run Task` option
     2. Type `tanzuWorkload delete` in the command palette that appears and hit enter
     3. View the Terminal tab to confirm that the Workload has been deleted
-- **Component: Supply Chain Security Tools - Sign**
+- **Supply Chain Security Tools - Sign**
   - A grype scan has reported the following false positives:
     - CVE-2015-5237 - This is a CVE on the C implementation of Protocol Buffers. We use the Golang version.
     - CVE-2017-7297 - This is a CVE on Rancher Server which is not a dependency we include.
-- **Component: Tanzu CLI apps plug-in** 
+- **Tanzu CLI apps plug-in** 
   - `--image`:
     - This flag isn't supported by the supply chain in Tanzu Application Platform Beta 2 release.
   - `tanzu apps workload get`:
@@ -528,19 +530,19 @@ This release has the following issues:
        
 ### Breaking Changes
 
-- **Component: Supply Chain Security Tools - Store**
+- **Supply Chain Security Tools - Store**
   - (possibly breaking) `storageClassName` and `databaseRequestStorage` fields have been changed to `storage_class_name` and `database_request_storage` respectively. This change was made to keep the format of all available fields consistent with other available fields.
   - (possibly breaking) Change output for unhappy paths to be more consistent. Empty results due to sources not existing when searching by package or source information now returns an empty array with a 200 response. Previously it would give an error JSON with a 404.
 
 ### Bug Fixes
 
-- **Component: Supply Chain Security Tools - Store**
+- **Supply Chain Security Tools - Store**
   - Change DB and app service type
   - Containers no longer need root user to run
 
 ### Limitations
 
-- **Component: Supply Chain Security Tools - Store**
+- **Supply Chain Security Tools - Store**
   - Air gapped environments are not supported
   
 ## <a id='0-1-0'></a> v0.1.0 beta release
@@ -554,7 +556,7 @@ This release has the following issues:
 ### New features
 This release has the following new features: 
 
-- **Component: Supply Chain Security Tools - Store**
+- **Supply Chain Security Tools - Store**
   - Added a /health endpoint and `insight health` command
   - Upgraded to golang 1.17
   - Added support for query parameters
@@ -564,11 +566,11 @@ This release has the following new features:
 ### Limitations
 This release has the following limitations:
 
-- **Component: Supply Chain Security Tools - Store**
+- **Supply Chain Security Tools - Store**
   - Air gapped environments are not supported
   
 ### Breaking changes
 This release has the following breaking changes:
 
-- **Component: Supply Chain Security Tools - Sign**
+- **Supply Chain Security Tools - Sign**
   - `warn_on_unmatched` value has been renamed to `allow_unmatched_images`.
