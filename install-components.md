@@ -2968,7 +2968,7 @@ that you plan to create the `Workload` in:
 
     Where:
 
-    -`YOUR-NAMESPACE` is the name that you want to use for the developer namespace.
+    - `YOUR-NAMESPACE` is the name that you want to use for the developer namespace.
     For example, use `default` for the default namespace.
     - `REGISTRY-SERVER` is the URL of the registry. For Dockerhub, this must be
     `https://index.docker.io/v1/`. Specifically, it must have the leading `https://`, the `v1` path,
