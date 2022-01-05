@@ -17,7 +17,7 @@ the workaround or putting kapp-controller v0.29.0 on Tanzu Kubernetes Grid v1.4?
 To install Tanzu Kubernetes Grid v1.4, you must:
 
 + [Install kapp-controller](#kapp-controller)
-+ [Install Tanzu CLI Plugins](#tanzucli)
++ [Install Tanzu CLI plug-ins](#tanzucli)
 
 
 ### <a id='kapp-controller'></a> Install kapp-controller
@@ -75,7 +75,7 @@ To install kapp-controller v0.29.0 or later on Tanzu Kubernetes Grid v1.4:
     kubectl apply -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/latest/download/release.yml
     ```
 
-### <a id='tanzucli'></a>Install the Tanzu CLI and plugins for Tanzu Application Platform
+### <a id='tanzucli'></a>Install the Tanzu CLI and plug-ins for Tanzu Application Platform
 
 Follow the **[instructions for updating Tanzu CLI](install-general.html#udpate-tkg-tce-tanzu-cli)** that was originally installed for Tanzu Kubernetes Grid and Tanzu Community Edition.
 

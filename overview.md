@@ -76,7 +76,7 @@ The following packages are part of the Tanzu Application Platform:
 
 - **Developer Conventions**
 
-  Developer conventions configure workloads to prepare them for inner loop development. It’s meant to be a “deploy & forget” component for developers; once installed on the cluster through the Tanzu Package CLI, developers do not need to directly interact with it. Developers instead interact with the Tanzu Developer Tools for VSCode IDE Extension or Tanzu CLI Apps Plugin, which rely on the Developer Conventions to modify the workload to enable inner loop capabilities.
+  Developer conventions configure workloads to prepare them for inner loop development. It’s meant to be a “deploy & forget” component for developers; once installed on the cluster through the Tanzu Package CLI, developers do not need to directly interact with it. Developers instead interact with the Tanzu Developer Tools for VSCode IDE Extension or Tanzu CLI Apps plug-in, which rely on the Developer Conventions to modify the workload to enable inner loop capabilities.
 
 - **Flux Source Controller**
 

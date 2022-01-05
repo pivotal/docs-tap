@@ -7,7 +7,7 @@ Use the instructions on this page if you do not want to use a profile to install
 or if you want to install additional packages after installing a profile.
 
 Before installing the packages, ensure that you have completed the prerequisites, configured
-and verified the cluster, accepted the EULA, and installed the Tanzu CLI with any required plugins.
+and verified the cluster, accepted the EULA, and installed the Tanzu CLI with any required plug-ins.
 For information, see [Installing part I: Prerequisites, EULA, and CLI](install-general.md).
 
 + [Install cert-manager, Contour, and FluxCD source controller](#install-prereqs)
@@ -1832,7 +1832,7 @@ Application Live View Convention Service only.
 
     Verify that `STATUS` is `Reconcile succeeded`
 
-The Application Live View UI plugin is part of Tanzu Application Platform GUI.
+The Application Live View UI plug-in is part of Tanzu Application Platform GUI.
 To access the Application Live View UI,
 see [Application Live View in Tanzu Application Platform GUI](https://docs-staging.vmware.com/en/Tanzu-Application-Platform/1.0/tap/GUID-tap-gui-plugins-app-live-view.html#entry-point-to-ap[…]live-view-plugin-1).
 
@@ -1856,7 +1856,7 @@ Supported Git infrastructure includes:
 
 **Required for full functionality:**
 
-- **Tanzu Application Platform tools:** Tanzu Application Platform GUI has plugins for the
+- **Tanzu Application Platform tools:** Tanzu Application Platform GUI has plug-ins for the
 following Tanzu Application Platform tools.
 If you plan on running workloads with these capabilities, you need these tools installed alongside
 Tanzu Application Platform GUI.

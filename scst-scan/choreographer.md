@@ -13,7 +13,7 @@ This example takes every source code commit, scans the source code for vulnerabi
     - [Tanzu Build Service](../install-components.md#install-tbs)
     - [Supply Chain Security Tools - Store](../install-components.md#install-scst-store)
     - [Supply Chain Security Tools - Scan](../install-components.md#install-scst-scan)
-    - (Optional) [Kubectl `tree` Plugin](https://github.com/ahmetb/kubectl-tree)
+    - (Optional) [Kubectl `tree` plug-in](https://github.com/ahmetb/kubectl-tree)
 
 ## Configure the example
 
@@ -306,7 +306,7 @@ EOF
 
 With the Supply Chain components configured, a Developer can deploy a workload through the Supply Chain.
 
-Set up several watches to view the supply chain progressing. In a terminal, if the optional [Kubectl `tree` Plugin](https://github.com/ahmetb/kubectl-tree) is installed, run:
+Set up several watches to view the supply chain progressing. In a terminal, if the optional [Kubectl `tree` plug-in](https://github.com/ahmetb/kubectl-tree) is installed, run:
 ```
 watch kubectl tree workload tanzu-java-web-app
 ```

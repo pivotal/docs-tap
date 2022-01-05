@@ -9,7 +9,7 @@ When you pull up the Tanzu Application Platform UI, you get the error `Catalog N
 
 ### Cause
 
-This issue is caused because the catalog plugin can't read the Git location of your catalog definition files.
+This issue is caused because the catalog plug-in can't read the Git location of your catalog definition files.
 
 ### Solution
 

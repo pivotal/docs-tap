@@ -222,7 +222,7 @@ The following components have been updated in Tanzu Application Platform v0.4.0:
 
 **Renamed Components**
 
-Workload Visibility Plugin is renamed Runtime Visibility Plugin.
+Workload Visibility plug-in is renamed Runtime Visibility plug-in.
 
 
 ### Known issues
@@ -325,7 +325,7 @@ For more information, see [Supply Chain Security Tools - Sign known issues](scst
         - Node pressure may be caused by not enough nodes or not enough resources on nodes
         for deploying the workloads you have. In this case, follow your cloud provider
         instructions on how to scale out or scale up your cluster.
-- **Component: Tanzu CLI apps plugin**        
+- **Component: Tanzu CLI apps plug-in**        
   - **`tanzu apps workload get`**
     - Passing in `--output json` along with and the `--export` flag returns yaml rather than json. Support for honoring the `--output json` with `--export` will be added in the next release.
   - **`tanzu apps workload create/update/apply`**
@@ -384,8 +384,8 @@ Tanzu Packages:
   - Out of the Box Supply Chain with Testing and Scanning v0.3.0
   - Out of the Box Templates v0.3.0
 - Tanzu Application Platform GUI v0.3.0
-  - Workload Visibility Plugin v1.0.0
-  - Application Live View Plugin v0.3.0
+  - Workload Visibility plug-in v1.0.0
+  - Application Live View plug-in v0.3.0
 - Convention Service for VMware Tanzu
   - Spring Boot Convention v0.1.2
 - Tanzu Learning Center
@@ -423,10 +423,10 @@ This release has the following issues:
     2. Type `tanzuWorkload delete` in the command palette that appears and hit enter
     3. View the Terminal tab to confirm that the Workload has been deleted
 
-- Tanzu App CLI Plugin:
+- Tanzu App CLI plug-in:
   - *`tanzu apps workload get`*: passing in `--output json` along with and the `--export` flag will return YAML rather than JSON (support for honoring the `--output json` in conjunction with `--export` will be added in the next release).
   - *`tanzu apps workload create/update/apply`*: when the `--wait` flag has been included and the "Do you want to create this workload?" prompt is declined, the command continues to wait rather exit
-- **Component: Tanzu CLI apps plugin**
+- **Component: Tanzu CLI apps plug-in**
   - **`tanzu apps workload get`**
     - Passing in `--output json` along with and the `--export` flag returns yaml rather than json. Support for honoring the `--output json` with `--export` will be added in the next release.
   - **`tanzu apps workload create/update/apply`**
@@ -476,11 +476,11 @@ This release has the following new features:
   - Service Control Plane Toolkit v0.3.0
   - Service Bindings for Kubernetes v0.5.0
   - Tanzu Developer Tools for Visual Studio Code v0.2.0
-- **Component: Tanzu CLI Plugins**
-  - Tanzu Accelerator CLI Plugin v0.3.0
-  - Tanzu App CLI Plugin v0.2.0
-  - Tanzu ImagePullSecret CLI Plugin v0.5.0
-  - Tanzu Package CLI Plugin v0.5.0
+- **Component: Tanzu CLI plug-ins**
+  - Tanzu Accelerator CLI plug-in v0.3.0
+  - Tanzu App CLI plug-in v0.2.0
+  - Tanzu ImagePullSecret CLI plug-in v0.5.0
+  - Tanzu Package CLI plug-in v0.5.0
 - **Component: Supply Chain Security Tools - Sign**
   - Added configuration for ResourceQuotas. See `quota.pod_number`
   - Number of replicas can be configured via `replicas` value
@@ -511,7 +511,7 @@ This release has the following issues:
   - A grype scan has reported the following false positives:
     - CVE-2015-5237 - This is a CVE on the C implementation of Protocol Buffers. We use the Golang version.
     - CVE-2017-7297 - This is a CVE on Rancher Server which is not a dependency we include.
-- **Component: Tanzu CLI apps plugin** 
+- **Component: Tanzu CLI apps plug-in** 
   - `--image`:
     - This flag isn't supported by the supply chain in Tanzu Application Platform Beta 2 release.
   - `tanzu apps workload get`:

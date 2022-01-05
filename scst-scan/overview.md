@@ -14,7 +14,7 @@ The following Supply Chain Security Tools - Scan features make the use cases ava
 
 * Built Kubernetes controllers to run scan jobs.  
 * Built Custom Resource Definitions (CRDs) for Image and Source Scan.  
-* Created a CRD for a scanner plugin. Provided example using: Anchore's Syft and Grype.  
+* Created a CRD for a scanner plug-in. Provided example using: Anchore's Syft and Grype.  
 * Created a CRD for policy enforcement.
 
 ## Scanner support

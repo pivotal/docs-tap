@@ -5,7 +5,7 @@ This document describes the first part of the installation process for Tanzu App
 + [Prerequisites](#prereqs)
 + [Accept the EULAs](#eulas)
 + [Install Cluster Essentials for VMware Tanzu](#tanzu-cluster-essentials)
-+ [Install or Update the Tanzu CLI and Plugins](#cli-and-plugin)
++ [Install or Update the Tanzu CLI and plug-ins](#cli-and-plugin)
 
 
 ## <a id='prereqs'></a>Prerequisites
@@ -208,7 +208,7 @@ For other Kubernetes providers, follow the steps below:
     sudo cp $HOME/tanzu-cluster-essentials/kapp /usr/local/bin/kapp
     ```
 
-## <a id='cli-and-plugin'></a> Install or update the Tanzu CLI and plugins
+## <a id='cli-and-plug-in'></a> Install or update the Tanzu CLI and plug-ins
 
 Choose the install scenario that is right for you:
 
@@ -272,7 +272,7 @@ To install the Tanzu CLI on a Linux operating system:
 
    Expected output: `version: v0.10.0`
 
-9. Proceed to [Instructions for a clean install of Tanzu CLI Plugins](#cli-plugin-clean-install).
+9. Proceed to [Instructions for a clean install of Tanzu CLI plug-ins](#cli-plugin-clean-install).
 
 
 #### <a id='mac-cli'></a>MacOS: Install the Tanzu CLI
@@ -337,7 +337,7 @@ To install the Tanzu CLI on a Mac operating system:
 
    7. Click **Open** in the macOS prompt window. After completing the steps above, there should be no more security issues while running Tanzu CLI commands.
 
-   8. Proceed to [Instructions for a clean install of Tanzu CLI Plugins](#cli-plugin-clean-install).
+   8. Proceed to [Instructions for a clean install of Tanzu CLI plug-ins](#cli-plugin-clean-install).
 
 
 #### <a id='windows-cli'></a>Windows: Install the Tanzu CLI
@@ -382,11 +382,11 @@ To install the Tanzu CLI on a Windows operating system:
 
       Expected output: `version: v0.10.0`
 
-  15. Proceed to [Clean Install Tanzu CLI Plugins](#cli-plugin-clean-install)
+  15. Proceed to [Clean Install Tanzu CLI plug-ins](#cli-plugin-clean-install)
 
-## <a id='cli-plugin-clean-install'></a> Clean install Tanzu CLI plugins
+## <a id='cli-plugin-clean-install'></a> Clean install Tanzu CLI plug-ins
 
-To perform a clean installation of the Tanzu CLI plugins:
+To perform a clean installation of the Tanzu CLI plug-ins:
 
 1. If it hasn't been done already, set env var `TANZU_CLI_NO_INIT` to `true` to assure the local downloaded plug-ins are installed:
 
@@ -394,13 +394,13 @@ To perform a clean installation of the Tanzu CLI plugins:
      export TANZU_CLI_NO_INIT=true
      ```
 
-2. Install the local versions of the plugins you downloaded by running:
+2. Install the local versions of the plug-ins you downloaded by running:
 
     ```
     tanzu plugin install --local cli all
     ```
 
-3. Check the plugin installation status by running:
+3. Check the plug-in installation status by running:
 
     ```
     tanzu plugin list
@@ -423,11 +423,11 @@ To perform a clean installation of the Tanzu CLI plugins:
     services                            Discover Service Types and manage Service Instances (ALPHA)                    v0.1.1   installed
     ```
 
-    Ensure that you have the `package`, `secret`, `accelerator`, `services`, and `apps` plugins.
-    You need these plugins to install and interact with the Tanzu Application Platform.
+    Ensure that you have the `package`, `secret`, `accelerator`, `services`, and `apps` plug-ins.
+    You need these plug-ins to install and interact with the Tanzu Application Platform.
 
     Tanzu Application Platform beta requires cluster-admin privileges.
-    Running commands associated with the additional plugins can have unintended side-effects.
+    Running commands associated with the additional plug-ins can have unintended side-effects.
     VMware recommends against running `cluster`, `kubernetes-release`, `login`, `management-cluster`,
     and `pinniped-auth` commands.
 
@@ -513,19 +513,19 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
     tanzu plugin delete imagepullsecret
     ```
 
-13. Remove previously installed plugin binaries by running:
+13. Remove previously installed plug-in binaries by running:
 
     ```
     rm -rf ~/Library/Application\ Support/tanzu-cli/*
     ```
 
-14. Install new plugin versions by running:
+14. Install new plug-in versions by running:
 
     ```
     tanzu plugin install --local cli all
     ```
 
-15. Check installation status for plugins by running:
+15. Check installation status for plug-ins by running:
 
     ```
     tanzu plugin list
@@ -588,13 +588,13 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
      cd $HOME/tanzu
      ```
 
-  8. Set env var `TANZU_CLI_NO_INIT` to true to install the local plugin versions you've just downloaded:
+  8. Set env var `TANZU_CLI_NO_INIT` to true to install the local plug-in versions you've just downloaded:
 
      ```
      export TANZU_CLI_NO_INIT=true
      ```
 
-  9. Check to see if the `imagepullsecret` and `package` plugins are already installed:
+  9. Check to see if the `imagepullsecret` and `package` plug-ins are already installed:
 
      ```
      tanzu plugin list
@@ -612,45 +612,46 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
      tanzu plugin delete package
      ```
 
-  10. Install the `secret` plugin by running:
+  10. Install the `secret` plug-in by running:
 
       ```
       tanzu plugin install secret --local ./cli
       ```
 
-  11. Install the `accelerator` plugin by running:
+  11. Install the `accelerator` plug-in by running:
 
       ```
       tanzu plugin install accelerator --local ./cli
       ```
 
-  12. Install the `apps` plugin by running:
+  12. Install the `apps` plug-in by running:
 
       ```
       tanzu plugin install apps --local ./cli
       ```
 
-  13. Install the updated `package` plugin by running:
+  13. Install the updated `package` plug-in by running:
 
       ```
       tanzu plugin install package --local ./cli
       ```
 
 
-  14. Install the `services` plugin by running:
+  14. Install the `services` plug-in by running:
 
       ```
       tanzu plugin install services --local ./cli
       ```
 
 
-  15. Verify that the Tanzu Application Platform plugins are present:
+  15. Verify that the Tanzu Application Platform plug-ins are present:
 
       ```
       tanzu plugin list
       ```
 
       Expect the following to be included in the list:
+
       ```
       tanzu plugin list
       NAME                LATEST VERSION  DESCRIPTION                                                        REPOSITORY  VERSION  STATUS
