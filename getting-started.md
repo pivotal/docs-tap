@@ -848,8 +848,8 @@ Continue through the next two sections to learn about recommended supply chain s
 
 In this section, you will:
 
-- Configure your supply chain to sign your image builds, and;
-- Configure an admission control policy to verify image signatures before admitting Pods to the cluster
+- Configure your supply chain to sign your image builds.
+- Configure an admission control policy to verify image signatures before admitting Pods to the cluster.
 
 ### Configure your supply chain to sign your image builds
 
@@ -887,14 +887,14 @@ In this section, you will:
 
     ```
 
-When you apply the `ClusterImagePolicy` resource, your cluster will require valid signatures for all images that match the `namePattern:` you define in the configuration. For more information about configuring an image signature policy, see [Configuring Supply Chain Security Tools - Sign](https://docs-staging.vmware.com/en/Tanzu-Application-Platform/0.4/tap/GUID-scst-sign-configuring.html).	
+When you apply the `ClusterImagePolicy` resource, your cluster requires valid signatures for all images that match the `namePattern:` you define in the configuration. For more information about configuring an image signature policy, see [Configuring Supply Chain Security Tools - Sign](https://docs-staging.vmware.com/en/Tanzu-Application-Platform/0.4/tap/GUID-scst-sign-configuring.html).
 
 
-#### Next steps and additional information
+#### Next steps
 
-* [Overview for Supply Chain Security Tools - Sign](scst-sign/overview.md)
-* [Configuring Supply Chain Security Tools - Sign](scst-sign/configuring.md)
-* [Supply Chain Security Tools - Sign Known Issues](scst-sign/known_issues.md)
+- [Overview for Supply Chain Security Tools - Sign](scst-sign/overview.md)
+- [Configuring Supply Chain Security Tools - Sign](scst-sign/configuring.md)
+- [Supply Chain Security Tools - Sign known issues](scst-sign/known_issues.md)
 
 
 ### Scan and Store: Introducing vulnerability scanning and metadata storage to your Supply Chain
@@ -957,7 +957,7 @@ see [Querying Supply Chain Security Tools - Store](scst-store/query_data.md).
 One of the out of the box supply chains we are working on for a future release will include image and source code vulnerability scanning and metadata storage into a preset Tanzu Application Platform supply chain. Until then, you can use this example to see how to try this out:
 [Example Supply Chain including Source and Image Scans](scst-scan/choreographer.md).
 
-**Next steps and further information**
+#### Next steps
 
 * [Configure Code Repositories and Image Artifacts to be Scanned](scst-scan/scan-crs.md)
 
