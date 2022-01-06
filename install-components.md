@@ -36,14 +36,15 @@ For information, see [Installing part I: Prerequisites, EULA, and CLI](install-g
 + [Install Tekton](#install-tekton)
 
 
-## <a id='install-prereqs'></a> Install cert-manager and FluxCD Source Controller
+## <a id='install-prereqs'></a> Install cert-manager, contour and FluxCD Source Controller
 
 cert_manager and FluxCD Source Controller are installed as part of all profiles.
 If you do not want to use a profile, install them manually.
 
->**Note:** In future versions, both cert-manager and FluxCD Source Controller will be shipped as packages.
 
 * **cert-manager**:
+
+  >**Note:** The below procedure will work only for Tanzu Kubernetes Grid (TKG) distributions. If you are using any other Kubernetes distributions like EKS, AKS or GKE, please refer to [Installing cert-manager and contour packages using PackageInstall CR](install-tap-dependencies-using-packageinstall.md) for installing cert-manager package manually
 
     1. List version information for the package by running:
 
@@ -123,6 +124,8 @@ If you do not want to use a profile, install them manually.
 
 * **Contour**:
 
+  >**Note:** The below procedure will work only for Tanzu Kubernetes Grid (TKG) distributions. If you are using any other Kubernetes distributions like   EKS, AKS or GKE, please refer to [Installing cert-manager and contour packages using PackageInstall CR](install-tap-dependencies-using-packageinstall.md) for installing cert-manager package manually
+  
     1. List version information for the package by running:
 
         ```
