@@ -1542,7 +1542,7 @@ and image for vulnerabilities.
                               default on image objects managed by the supply chain.
     ```
 
-1. Create a file named `ootb-supply-chain-testing-values.yaml` that specifies
+1. Create a file named `ootb-supply-chain-testing-scanning-values.yaml` that specifies
    the corresponding values to the properties you want to change. For example:
 
     ```
