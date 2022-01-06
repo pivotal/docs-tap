@@ -53,4 +53,4 @@ See [Supply Chain Security Tools - Sign Known Issues](known_issues.md).
 
 ## Release notes
 
-See [Supply Chain Security Tools - Sign Release Notes](release-notes.md).
+See [Release notes](../release-notes.md).
