@@ -6,13 +6,6 @@ This topic contains release notes for Tanzu Application Platform v1.0.
 
 **Release Date**: MMMM DD, 2022
 
-### Features
-
-This release has the following new features:
-- **Supply Chain Security Tools – Scan**
-  - Enhanced scanning coverage is available for Node.js apps
-  - CA certificates are automatically imported from the Metadata Store namespace
-
 ### Known issues
 
 This release has the following issues:
