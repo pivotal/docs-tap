@@ -2565,16 +2565,20 @@ that you plan to create the `Workload` in:
     For example, use `default` for the default namespace.
     * `REGISTRY-SERVER` is the URL of the registry. For Dockerhub, this must be
     `https://index.docker.io/v1/`. Specifically, it must have the leading `https://`, the `v1` path,
-    and the trailing `/`. For GCR, this is `gcr.io`.
+    and the trailing `/`. For GCR, this is `gcr.io`. Based on the information used in [Installing part II: Profiles](install.md), you can use the same registry server as in `ootb_supply_chain_basic` - `registry` - `server`
 
-   **Note:** If you observe the following issue with the above command:
->```
-   panic: runtime error: invalid memory address or nil pointer dereference
-   [signal SIGSEGV: segmentation violation code=0x1 addr=0x128 pc=0x2bcce00]
-   ```
-   Use `kubectl` to create the secret.
-   ```
-   kubectl create secret docker-registry registry-credentials --docker-server=REGISTRY-SERVER --docker-username=REGISTRY-USERNAME --docker-password=REGISTRY-PASSWORD -n YOUR-NAMESPACE
+    **Note:** If you observe the following issue with the above command:
+
+    ```
+    panic: runtime error: invalid memory address or nil pointer dereference
+    [signal SIGSEGV: segmentation violation code=0x1 addr=0x128 pc=0x2bcce00]
+    ```
+
+    Use `kubectl` to create the secret:
+
+    ```
+    kubectl create secret docker-registry registry-credentials --docker-server=REGISTRY-SERVER --docker-username=REGISTRY-USERNAME --docker-password=REGISTRY-PASSWORD -n YOUR-NAMESPACE
+    ```
 
 1. Add placeholder read secrets, a service account, and RBAC rules to the developer namespace by running:
 
