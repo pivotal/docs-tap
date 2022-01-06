@@ -15,7 +15,11 @@ kubectl -n scan-link-system logs -f deployment/scan-link-controller-manager -c m
 ```
 
 ### Missing target image pull secret
-Scanning an image from a private registry requires an image pull secret to exist in the Scan CR's namespace, and referenced as `grype.targetImagePullSecret` in `tap-values.yml` (see [Installing part II: Profiles](../install.md#-install-a-tanzu-application-platform-profile) )
 
-If a private image scan is triggered and the secret is not configured, the Scan Job will fail with the error  
-```Job.batch "scan-${app}-${id}" is invalid: [spec.template.spec.volumes[2].secret.secretName: Required value, spec.template.spec.containers[0].volumeMounts[2].name: Not found: "registry-cred"]```
+Scanning an image from a private registry requires an image pull secret to exist in the Scan CR's namespace, and referenced as `grype.targetImagePullSecret` in `tap-values.yml`. See [Installing part II: Profiles](../install.md#-install-a-tanzu-application-platform-profile) for more information.
+
+If a private image scan is triggered and the secret is not configured, the Scan Job will fail with the error as follows:
+
+```
+Job.batch "scan-${app}-${id}" is invalid: [spec<!-- |specifications| is preferred. -->.template.spec<!-- |specifications| is preferred. -->.volumes[2].secret.secretName: Required value, spec<!-- |specifications| is preferred. -->.template.spec<!-- |specifications| is preferred. -->.containers[0].volumeMounts[2].name: Not found: "registry-cred"]
+```
