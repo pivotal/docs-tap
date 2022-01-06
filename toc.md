@@ -100,7 +100,7 @@ This is the table of contents from which the Tanzu Application Platform Document
     - [Supply Chain Security Tools for Tanzu – Store](scst-store/overview.md)
         - [API details](scst-store/api.md)
         - [API walkthrough](scst-store/api_walkthrough.md)
-        - [CLI installation](scst-store/security.md)
+        - [CLI installation](scst-store/cli_installation.md)
         - [CLI configuration](scst-store/cli_configuration.md)
         - [CLI details](scst-store/cli_docs/insight.md)
           - [Insight config](scst-store/cli_docs/insight_config.md)
