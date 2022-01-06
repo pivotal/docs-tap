@@ -107,7 +107,7 @@ simple use case. The recommended way is to use Tanzu CLI or for more complicated
 ``SystemProfile`` custom resource can be used.
 
 
-## Enforcing secure connections
+##<a id="enforcing-secure-connections"></a> Enforcing secure connections
 
 By default, the workshop portal and workshop sessions will be accessible over HTTP connections. If you 
 wish to use secure HTTPS connections, you must have access to a wildcard SSL certificate for the domain 
