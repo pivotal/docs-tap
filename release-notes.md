@@ -6,13 +6,6 @@ This topic contains release notes for Tanzu Application Platform v1.0.
 
 **Release Date**: MMMM DD, 2022
 
-### Features
-
-This release has the following new features:
-- **Supply Chain Security Tools – Scan**
-  - Enhanced scanning coverage is available for Node.js apps
-  - CA certificates are automatically imported from the Metadata Store namespace
-
 ### Known issues
 
 This release has the following issues:
@@ -259,7 +252,7 @@ kubectl logs deployment/learningcenter-operator -n learningcenter
     ERROR:kopf.objects:Handler 'learningcenter' failed temporarily: TLS secret tls is not available
     ```
 
-  - Solution: To recover from this issue, you can follow [these steps](../getting-started/learningcenter-operator.md#enforcing-secure-connections)
+  - Solution: To recover from this issue, you can follow [these steps](learning-center/getting-started/learningcenter-operator.md#enforcing-secure-connections)
 to create the TLS Secret, once the TLS is created **you need to redeploy the TrainingPortal resource.**
 
 - **image-policy-webhook-service not found** If you are installing a TAP profile, perhaps you are going to get this error.

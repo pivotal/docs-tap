@@ -49,7 +49,7 @@ To configure your installed component properly, see
 
 ## Known issues
 
-See [Supply Chain Security Tools - Sign Known Issues](release-notes.md#scst-sign).
+See [Supply Chain Security Tools - Sign Known Issues](../release-notes.md#scst-sign).
 
 ## Release notes
 
