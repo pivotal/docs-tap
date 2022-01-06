@@ -474,7 +474,7 @@ tap_gui:
     catalog:
         locations:
         - type: url
-            target: https://GIT-CATALOG-URL/catalog-info.yaml
+          target: https://GIT-CATALOG-URL/catalog-info.yaml
     backend:
         baseUrl: http://tap-gui.INGRESS-DOMAIN
         cors:
