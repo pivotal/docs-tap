@@ -34,6 +34,10 @@ Deployment from a public Git repository might require a Git SSH secret. Workarou
 - **Scan Phase indicates `Scanning` incorrectly:** Scans have an edge case where, when an error has occurred during scanning, the Scan Phase field does not get updated to `Error` and instead remains in the `Scanning` phase. Read the scan Pod logs to verify there was an error.
 - **CVE print columns are not getting populated:** After running a scan and using `kubectl get` on the scan, the CVE print columns (CRITICAL, HIGH, MEDIUM, LOW, UNKNOWN, CVETOTAL) are not getting populated.
 
+#### Developer Conventions
+**Debug Convention does not apply:** If you upgraded from tap4 then the app run image may not have the debug convention applied due to missing SBOM data in the image.
+To prevent this issue, delete existing app images built using tap4.
+
 #### Grype scanner
 **Scanning Java source code may not reveal vulnerabilities:** Source Code Scanning only scans files present in the source code repository.
   - No network calls are made to fetch dependencies.
