@@ -56,17 +56,21 @@ If all webhook nodes or Pods are evicted by the cluster or scaled down, the admi
   after the binaries are built and packaged as images.
   
 #### Supply Chain Security Tools - Sign
-**MutatingWebhookConfiguration prevents pods from being admitted:** Under certain circumstances, if the `image-policy-controller-manager` deployment
+**MutatingWebhookConfiguration prevents Pods from being admitted:** Under certain circumstances, if the `image-policy-controller-manager` deployment
 pods do not start up before the `MutatingWebhookConfiguration` is applied to the
-cluster, it can prevent the admission of all pods. 
-  - For example, pods can be prevented from starting if nodes in a cluster are
+cluster, it can prevent the admission of all Pods.
+
+  - For example, Pods can be prevented from starting if nodes in a cluster are
   scaled to zero and the webhook is forced to restart at the same time as
   other system components. A deadlock can occur when some components expect the
   webhook to verify their image signatures and the webhook is not running yet.
-  - There is also a known race condition during Tanzu Application Platform profiles
-  installation that might cause this issue to happen.
+
+  - There is a known race condition during Tanzu Application Platform profiles
+  installation that could cause this issue to happen.
+
   - **Symptoms:**
-    You will see a message similar to one of the following in component statuses:
+
+    You may see a message similar to one of the following in component statuses:
 
     ```
     Events:
@@ -74,12 +78,14 @@ cluster, it can prevent the admission of all pods.
       ----     ------            ----                  ----                   -------
       Warning  FailedCreate      4m28s                 replicaset-controller  Error creating: Internal error occurred: failed calling webhook "image-policy-webhook.signing.apps.tanzu.vmware.com": Post "https://image-policy-webhook-service.image-policy-system.svc:443/signing-policy-check?timeout=10s": no endpoints available for service "image-policy-webhook-service"
     ```
+
     ```
     Events:
       Type     Reason            Age                   From                   Message
       ----     ------            ----                  ----                   -------
       Warning FailedCreate 10m replicaset-controller Error creating: Internal error occurred: failed calling webhook "image-policy-webhook.signing.apps.tanzu.vmware.com": Post "https://image-policy-webhook-service.image-policy-system.svc:443/signing-policy-check?timeout=10s": service "image-policy-webhook-service" not found
     ```
+
   - **Solution:**
     By deleting the `MutatingWebhookConfiguration` resource, you can resolve the
     deadlock and enable the system to start up again. Once the system is stable,
@@ -97,15 +103,15 @@ cluster, it can prevent the admission of all pods.
         kubectl get MutatingWebhookConfiguration image-policy-mutating-webhook-configuration -o yaml > image-policy-mutating-webhook-configuration.yaml
         ```
 
-    1. Delete the `MutatingWebhookConfiguration`:
+    2. Delete the `MutatingWebhookConfiguration`:
         ```
         kubectl delete MutatingWebhookConfiguration image-policy-mutating-webhook-configuration
         ```
 
-    1. Wait until all components are up and running in your cluster, including the
+    3. Wait until all components are up and running in your cluster, including the
     `image-policy-controller-manager` pods (namespace `image-policy-system`).
 
-    1. Re-apply the `MutatingWebhookConfiguration`:
+    4. Re-apply the `MutatingWebhookConfiguration`:
         ```
         kubectl apply -f image-policy-mutating-webhook-configuration.yaml
         ```
@@ -114,7 +120,9 @@ cluster, it can prevent the admission of all pods.
 This component uses a privileged `PriorityClass` to start up its pods in order
 to prevent node pressure from preempting its pods. However, this can cause other
 less privileged components to have their pods preempted or evicted instead.
+
   - **Symptoms:**
+
     You will see events similar to this in the output of `kubectl get events`:
 
     ```
