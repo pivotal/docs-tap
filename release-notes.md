@@ -51,7 +51,6 @@ Deployment from a public Git repository might require a Git SSH secret. Workarou
   - Because best practices do not include committing binaries to source code repositories, Grype fails to
   find vulnerabilities during a Source Scan. The vulnerabilities are still found during the Image Scan,
   after the binaries are built and packaged as images.
-<<<<<<< HEAD
   
 #### Supply Chain Security Tools - Store
 - **CrashLoopBackOff from password authentication failed**
@@ -135,11 +134,6 @@ Deployment from a public Git repository might require a Git SSH secret. Workarou
 - If all webhook nodes or Pods are evicted by the cluster or scaled down, the admission policy blocks any Pods from being created in the cluster. To resolve the issue, delete the MutatingWebhookConfiguration and reapply it when the cluster is stable.
 
 - **MutatingWebhookConfiguration prevents pods from being admitted:** Under certain circumstances, if the `image-policy-controller-manager` deployment
-=======
-
-#### Supply Chain Security Tools - Sign
-**MutatingWebhookConfiguration prevents Pods from being admitted:** Under certain circumstances, if the `image-policy-controller-manager` deployment
->>>>>>> a9b4433341b040f05a50b3150d849f185603c4e2
 pods do not start up before the `MutatingWebhookConfiguration` is applied to the
 cluster, it can prevent the admission of all Pods.
 
