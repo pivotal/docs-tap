@@ -216,7 +216,7 @@ For other Kubernetes providers, follow the steps below:
     sudo cp $HOME/tanzu-cluster-essentials/kapp /usr/local/bin/kapp
     ```
 
-## <a id='cli-and-plug-in'></a> Install or update the Tanzu CLI and plug-ins
+## <a id='cli-and-plugin'></a> Install or update the Tanzu CLI and plug-ins
 
 Choose the install scenario that is right for you:
 
