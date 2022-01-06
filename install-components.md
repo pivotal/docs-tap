@@ -1151,8 +1151,8 @@ and image for vulnerabilities.
                                  application.
     ```
 
-1. Create a file named `ootb-supply-chain-testing-scanning-values.yaml` that specifies the
-corresponding values to the properties you want to tweak. For example:
+1. Create a file named `ootb-supply-chain-testing-scanning-values.yaml` that specifies
+   the corresponding values to the properties you want to change. For example:
 
     ```
     registry:
