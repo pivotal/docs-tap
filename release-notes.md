@@ -23,7 +23,7 @@ When installing Tanzu Application Platform on Google Kubernetes Engine (GKE), Ku
 #### Application Accelerator
 Build scripts provided as part of an accelerator do not have the execute bit set when a new project is generated from the accelerator. To resolve this issue, explicitly set the execute bit by using the "chmod" command: `chmod +x <build-script>`. For example, for a project generated from the "Spring PetClinic" accelerator, run: `chmod +x ./mvnw`.
 
-#### Convention Service 
+#### Convention Service
 Convention Service does not currently support custom certificates for integrating with a private registry. Support for custom certificates is planned for an upcoming release.
 
 #### Supply Chain Choreographer
@@ -36,7 +36,7 @@ If all webhook nodes or Pods are evicted by the cluster or scaled down, the admi
 
 - **`tanzu apps workload get`:** Passing in `--output json` along with and the `--export` flag returns yaml rather than json. Support for honoring the `--output json` with `--export` will be added in the next release.
 - **`tanzu apps workload create/update/apply`:** `--image` is not supported by the default supply chain in Tanzu Application Platform Beta 3 release. `--wait` functions as expected when a workload is created for the first time but may return prematurely on subsequent updates when passed with `workload update/apply` for existing workloads. When the `--wait` flag is included and you decline the "Do you want to create this workload?" prompt, the command continues to wait and must be cancelled manually.
-  
+
 #### Supply Chain Security Tools – Scan
 
 - **Failing Blob source scans:** Blob Source Scans have an edge case where, when a compressed file without a `.git` directory is provided, sending results to the Supply Chain Security Tools - Store fails and the scanned revision value is not set. The current workaround is to add the `.git` directory to the compressed file.
@@ -45,7 +45,7 @@ If all webhook nodes or Pods are evicted by the cluster or scaled down, the admi
 - **CVE print columns are not getting populated:** After running a scan and using `kubectl get` on the scan, the CVE print columns (CRITICAL, HIGH, MEDIUM, LOW, UNKNOWN, CVETOTAL) are not getting populated.
 
 #### Grype scanner
-**Scanning Java source code may not reveal vulnerabilities:** Source Code Scanning only scans files present in the source code repository. 
+**Scanning Java source code may not reveal vulnerabilities:** Source Code Scanning only scans files present in the source code repository.
   - No network calls are made to fetch dependencies.
   - For languages that make use of dependency lock files, such as Golang and Node.js, Grype uses the lock
   files to check the dependencies for vulnerabilities.
@@ -54,11 +54,11 @@ If all webhook nodes or Pods are evicted by the cluster or scaled down, the admi
   - Because best practices do not include committing binaries to source code repositories, Grype fails to
   find vulnerabilities during a Source Scan. The vulnerabilities are still found during the Image Scan,
   after the binaries are built and packaged as images.
-  
-#### Supply Chain Security Tools - Sign
+
+#### <a id="scst-sign"></a> Supply Chain Security Tools - Sign
 **MutatingWebhookConfiguration prevents pods from being admitted:** Under certain circumstances, if the `image-policy-controller-manager` deployment
 pods do not start up before the `MutatingWebhookConfiguration` is applied to the
-cluster, it can prevent the admission of all pods. 
+cluster, it can prevent the admission of all pods.
   - For example, pods can be prevented from starting if nodes in a cluster are
   scaled to zero and the webhook is forced to restart at the same time as
   other system components. A deadlock can occur when some components expect the
@@ -109,7 +109,7 @@ cluster, it can prevent the admission of all pods.
         ```
         kubectl apply -f image-policy-mutating-webhook-configuration.yaml
         ```
-        
+
 **Priority class of webhook's pods may preempt less privileged pods:**
 This component uses a privileged `PriorityClass` to start up its pods in order
 to prevent node pressure from preempting its pods. However, this can cause other
@@ -122,7 +122,7 @@ less privileged components to have their pods preempted or evicted instead.
     LAST SEEN   TYPE      REASON             OBJECT               MESSAGE
     28s         Normal    Preempted          pod/testpod          Preempted by image-policy-system/image-policy-controller-manager-59dc669d99-frwcp on node test-node
     ```
-  - **Solution:** 
+  - **Solution:**
     - **Reduce the amount of pods deployed by the Sign component:**
     In case your deployment of the Sign component is running more pods than
     necessary, you may scale the deployment down. To do so:
@@ -151,7 +151,7 @@ less privileged components to have their pods preempted or evicted instead.
       - Node pressure may be caused by not enough nodes or not enough resources on nodes
       for deploying the workloads you have. In this case, follow your cloud provider
       instructions on how to scale out or scale up your cluster.
-  
+
 #### Application Live View
 The Live View section in Tanzu Application Platform GUI might show "No live information for pod with ID" after deploying Tanzu Application Platform workloads. Resolve this issue by recreating the Application Live View Connector pod. This allows the connector to discover the application instances and render the details in Tanzu Application Platform GUI. For example:
 
@@ -223,15 +223,15 @@ This release has the following breaking changes:
 
 - **Supply Chain Security Tools - Store:** Changed package name to `metadata-store.apps.tanzu.vmware.com`.
 
-### Bug fixes 
+### Bug fixes
 
 This release has the following bug fixes:
 
 #### Tanzu Dev Tools for VSCode
 - Fixed issue where the Tanzu Dev Tools extension could not support projects with multi-document YAML files
 - Modified debug to remove any leftover port-forwards from past runs
-  
-#### Supply Chain Security Tools - Store 
+
+#### Supply Chain Security Tools - Store
 - Upgrade golang version from `1.17.1` to `1.17.5`
 
 ## <a id='0-4-0'></a> v0.4.0 beta release
@@ -246,7 +246,7 @@ New features and changes in this release:
 - Enhanced scanning coverage is available for Node.js apps
 - CA certificates are automatically imported from the Metadata Store namespace
 
-#### Tanzu Dev Tools for VSCode* 
+#### Tanzu Dev Tools for VSCode*
 - Bumped support for Tilt to 0.23.2 by removing the reference to the running image in the Tiltfile and requiring `container_selector` argument
 - Added Code Snippets to help users create config files to enable existing projects to be deployable on TAP. Helps user generate workload.yaml, Tiltfile, and catalog-info.yaml files.
 - Improved error handling & messaging for the following cases:
@@ -359,7 +359,7 @@ the admission policy blocks any Pods from being created in the cluster.
     - Reduce the amount of pods deployed by the Sign component
     - In case your deployment of the Sign component is running more pods than
     necessary, you may scale the deployment down. To do so:
-      
+
       1. Create a values file called `scst-sign-values.yaml` with the following
       contents:
       ```
@@ -384,18 +384,18 @@ the admission policy blocks any Pods from being created in the cluster.
       - Node pressure may be caused by not enough nodes or not enough resources on nodes
       for deploying the workloads you have. In this case, follow your cloud provider
       instructions on how to scale out or scale up your cluster.
-      
+
 #### Tanzu CLI apps plug-in  
-      
+
 - **`tanzu apps workload get`**
   - Passing in `--output json` along with and the `--export` flag returns yaml rather than json. Support for honoring the `--output json` with `--export` will be added in the next release.
 - **`tanzu apps workload create/update/apply`**
   - `--image` is not supported by the default supply chain in Tanzu Application Platform Beta 3 release.
-  - `--wait` functions as expected when a workload is created for the first time but may return prematurely on subsequent updates when passed with `workload update/apply` for existing workloads. 
+  - `--wait` functions as expected when a workload is created for the first time but may return prematurely on subsequent updates when passed with `workload update/apply` for existing workloads.
     - When the `--wait` flag is included and you decline the "Do you want to create this workload?" prompt, the command continues to wait and must be cancelled manually.
-    
+
 #### Supply Chain Security Tools – Scan
-  
+
 - **Failing Blob source scans:** Blob Source Scans have an edge case where, when a compressed file without a `.git` directory is
 provided, sending results to the Supply Chain Security Tools - Store fails and the scanned revision
 value is not set. The current workaround is to add the `.git` directory to the compressed file.
@@ -404,10 +404,10 @@ configured. The `.status.conditions` output, however, correctly reflects `Sendin
 - **Scan Phase indicates `Scanning` incorrectly:** Scans have an edge case where, when an error has occurred during scanning, the Scan Phase field does
 not get updated to `Error` and instead remains in the `Scanning` phase.
 Read the scan Pod logs to verify that there was an error.
-  
+
 ### Known limitations with Grype scanner
 
-- **Supply Chain Security Tools – Scan** 
+- **Supply Chain Security Tools – Scan**
   - Scanning Java source code may not reveal vulnerabilities:
     - Source Code Scanning only scans files present in the source code repository. No network calls are made to fetch dependencies.
     - For languages that make use of dependency lock files, such as Golang and Node.js, Grype uses the lock
@@ -420,9 +420,9 @@ Read the scan Pod logs to verify that there was an error.
 
 ### Bug Fixes
 
-#### Tanzu Dev Tools for VSCode 
+#### Tanzu Dev Tools for VSCode
 - Added a "wait" service which prevents user from using the live update & debug capabilities until the deployment is up & running on the cluster. Fixes known issue from TAP 0.2.0 & 0.3.0.
-              
+
 ## <a id='0-3-0'></a> v0.3.0 beta release
 
 **Release Date**: November 8, 2021
@@ -433,7 +433,7 @@ New features and changes in this release:
 
 #### Tanzu Dev Tools for VSCode  
 - Improved landing page of extension
-  
+
 #### Installation Profiles
 
 - You can now install Tanzu Application Platform through profiles.
@@ -502,7 +502,7 @@ This release has the following issues:
     - Passing in `--output json` along with and the `--export` flag returns yaml rather than json. Support for honoring the `--output json` with `--export` will be added in the next release.
   - **`tanzu apps workload create/update/apply`**
     - `--image` is not supported by the default supply chain in Tanzu Application Platform Beta 3 release.
-    - `--wait` functions as expected when a workload is created for the first time but may return prematurely on subsequent updates when passed with `workload update/apply` for existing workloads. 
+    - `--wait` functions as expected when a workload is created for the first time but may return prematurely on subsequent updates when passed with `workload update/apply` for existing workloads.
       - When the `--wait` flag is included and you decline the "Do you want to create this workload?" prompt, the command continues to wait and must be cancelled manually.
 
 ### Security issues
@@ -574,7 +574,7 @@ This release has the following new features:
 #### Tanzu Dev Tools for VSCode  
 - Enable developers to see their code live update on the cluster
 - Enable developers to debug their code on the cluster
-  
+
 The following components have been updated in Tanzu Application Platform v0.2.0
 
 - [VMware Tanzu Build Service v1.3](https://docs.vmware.com/en/Tanzu-Build-Service/1.3/vmware-tanzu-build-service-v13/GUID-index.html)
@@ -602,13 +602,13 @@ This release has the following issues:
     1. Click the `Terminal` menu and select the `Run Task` option
     2. Type `tanzuWorkload delete` in the command palette that appears and hit enter
     3. View the Terminal tab to confirm that the Workload has been deleted
-    
+
 #### Supply Chain Security Tools - Sign
 
 - A grype scan has reported the following false positives:
   - CVE-2015-5237 - This is a CVE on the C implementation of Protocol Buffers. We use the Golang version.
   - CVE-2017-7297 - This is a CVE on Rancher Server which is not a dependency we include.
-  
+
 #### Tanzu CLI apps plug-in
 
 - `--image`:
@@ -616,9 +616,9 @@ This release has the following issues:
 - `tanzu apps workload get`:
   - passing in `--output json` along with and the `--export` flag will return yaml rather than json (support for honoring the `--output json` in conjunction with `--export` will be added in the next release).
 - `tanzu apps workload create/update/apply`:
-    - `--wait` functions as expected when a workload is created for the first time but may return prematurely on subsequent updates (when passed in with `workload update/apply` for existing workloads). 
+    - `--wait` functions as expected when a workload is created for the first time but may return prematurely on subsequent updates (when passed in with `workload update/apply` for existing workloads).
     - when the `--wait` flag has been included and the "Do you want to create this workload?" prompt is declined, the command continues to wait rather exit.
-       
+
 ### Breaking Changes
 
 This release has the following breaking changes:
@@ -643,7 +643,7 @@ This release has the following limitations:
 
 #### Supply Chain Security Tools - Store
 - Air gapped environments are not supported
-  
+
 ## <a id='0-1-0'></a> v0.1.0 beta release
 
 **Release Date**: September 1, 2021
@@ -653,7 +653,7 @@ This release has the following limitations:
 - PostgresSQL 13.4
 
 ### New features
-This release has the following new features: 
+This release has the following new features:
 
 #### Supply Chain Security Tools - Store
 - Added a /health endpoint and `insight health` command
@@ -667,7 +667,7 @@ This release has the following limitations:
 
 #### Supply Chain Security Tools - Store
 - Air gapped environments are not supported
-  
+
 ### Breaking changes
 This release has the following breaking changes:
 

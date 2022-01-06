@@ -894,7 +894,7 @@ When you apply the `ClusterImagePolicy` resource, your cluster requires valid si
 
 - [Overview for Supply Chain Security Tools - Sign](scst-sign/overview.md)
 - [Configuring Supply Chain Security Tools - Sign](scst-sign/configuring.md)
-- [Supply Chain Security Tools - Sign known issues](scst-sign/known_issues.md)
+- [Supply Chain Security Tools - Sign known issues](release-notes.md#scst-sign)
 
 
 ### Scan and Store: Introducing vulnerability scanning and metadata storage to your Supply Chain
