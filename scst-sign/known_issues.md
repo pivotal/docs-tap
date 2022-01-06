@@ -14,15 +14,25 @@ scaled to zero and the webhook is forced to restart at the same time as
 other system components. A deadlock can occur when some components expect the
 webhook to verify their image signatures and the webhook is not running yet.
 
+There is also a known race condition during Tanzu Application Platform profiles
+installation that might cause this issue to happen.
+
 ### Symptoms
 
-You will see a message similar to the following in your `ReplicaSet` statuses:
+You will see a message similar to one of the following in component statuses:
 
 ```
 Events:
   Type     Reason            Age                   From                   Message
   ----     ------            ----                  ----                   -------
-  Warning  FailedCreate      4m28s (x18 over 14m)  replicaset-controller  Error creating: Internal error occurred: failed calling webhook "image-policy-webhook.signing.apps.tanzu.vmware.com": Post "https://image-policy-webhook-service.image-policy-system.svc:443/signing-policy-check?timeout=10s": no endpoints available for service "image-policy-webhook-service"
+  Warning  FailedCreate      4m28s                 replicaset-controller  Error creating: Internal error occurred: failed calling webhook "image-policy-webhook.signing.apps.tanzu.vmware.com": Post "https://image-policy-webhook-service.image-policy-system.svc:443/signing-policy-check?timeout=10s": no endpoints available for service "image-policy-webhook-service"
+```
+
+```
+Events:
+  Type     Reason            Age                   From                   Message
+  ----     ------            ----                  ----                   -------
+  Warning  FailedCreate      10m                   replicaset-controller  Error creating: Internal error occurred: failed calling webhook "image-policy-webhook.signing.apps.tanzu.vmware.com": Post "https://image-policy-webhook-service.image-policy-system.svc:443/signing-policy-check?timeout=10s": service "image-policy-webhook-service" not found
 ```
 
 ### Solution
