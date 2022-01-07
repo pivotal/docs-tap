@@ -80,7 +80,7 @@ Installation requires:
         Cluster](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-local-dns.html#config-cluster).
         * Because Kind doesn't support LoadBalancer, make sure to use NodePort when defining service types.
 
-* Configure `hostPort` to `containerPort` mappings for ports 80 and 443 to enable access to the
+        * Configure `hostPort` to `containerPort` mappings for ports 80 and 443 to enable access to the
 cluster from your local machine. For example:
 
     ```
