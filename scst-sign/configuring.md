@@ -119,7 +119,7 @@ container being admitted.
 1. [Reading `imagePullSecrets` from the `image-policy-registry-credentials` service account](#secrets-registry-credentials-sa)
 in the `image-policy-system` namespace.
 
-> **Note**: in situations where a valid credential is informed in the
+> **Note**: in situations where a valid credential is specified in the
 > `ClusterImagePolicy` `secretRef` field, or in the
 > `image-policy-registry-credentials` service account, but an invalid
 > credential is present in the `imagePullSecrets` of the resource or in the
