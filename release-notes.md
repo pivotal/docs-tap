@@ -298,8 +298,11 @@ less privileged components to have their pods preempted or evicted instead.
 - **`tanzu apps workload get`:** Passing in `--output json` along with and the `--export` flag returns yaml rather than json. Support for honoring the `--output json` with `--export` will be added in the next release.
 - **`tanzu apps workload create/update/apply`:** `--image` is not supported by the default supply chain in Tanzu Application Platform Beta 3 release. `--wait` functions as expected when a workload is created for the first time but may return prematurely on subsequent updates when passed with `workload update/apply` for existing workloads. When the `--wait` flag is included and you decline the "Do you want to create this workload?" prompt, the command continues to wait and must be cancelled manually.
 
+#### Tanzu Dev Tools for VSCode
 
-
+- Launching the `Extension Host`, and configuring `tasks` in a workspace that does not contain workload yaml files may not work.
+	- **Solution:** Uninstall the Tanzu Dev Tools extension to proceed.
+	
 #### Services Toolkit
 
 * It is not possible for more than one application workload to consume the same service instance. Attempting to create two or more application workloads while specifying the same `--service-ref` value results in only one of the workloads binding to the service instance and reconcile successfully. This limitation is due to be relaxed in an upcoming release.
