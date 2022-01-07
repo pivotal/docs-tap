@@ -34,6 +34,14 @@ Deployment from a public Git repository might require a Git SSH secret. Workarou
 - **Scan Phase indicates `Scanning` incorrectly:** Scans have an edge case where, when an error has occurred during scanning, the Scan Phase field does not get updated to `Error` and instead remains in the `Scanning` phase. Read the scan Pod logs to verify there was an error.
 - **CVE print columns are not getting populated:** After running a scan and using `kubectl get` on the scan, the CVE print columns (CRITICAL, HIGH, MEDIUM, LOW, UNKNOWN, CVETOTAL) are not getting populated.
 
+#### Developer Conventions
+
+**Debug Convention might not apply:** If you upgraded from Tanzu Application Platform v0.4 then the
+the debug convention might not apply to the app run image. This is because of the missing SBOM data
+in the image.
+To prevent this issue, delete existing app images that were built using Tanzu Application Platform
+v0.4.
+
 #### Grype scanner
 **Scanning Java source code may not reveal vulnerabilities:** Source Code Scanning only scans files present in the source code repository.
   - No network calls are made to fetch dependencies.
@@ -44,7 +52,7 @@ Deployment from a public Git repository might require a Git SSH secret. Workarou
   - Because best practices do not include committing binaries to source code repositories, Grype fails to
   find vulnerabilities during a Source Scan. The vulnerabilities are still found during the Image Scan,
   after the binaries are built and packaged as images.
-  
+
 #### Supply Chain Security Tools - Store
 - **CrashLoopBackOff from password authentication failed**
   - Symptom:
@@ -85,7 +93,7 @@ Deployment from a public Git repository might require a Git SSH secret. Workarou
       This is the path found in `postgres-db-deployment.yaml`.
       1. Delete the `metadata-store` app through kapp.
       1. Deploy the `metadata-store` app through kapp.
-      
+
 - **Missing persistent volume**
   - Symptom:
     - After Store is deployed, `metadata-store-db` Pod could fail for missing volume while
@@ -102,11 +110,11 @@ Deployment from a public Git repository might require a Git SSH secret. Workarou
         ```
         # This is the storageclass that Kind uses
         kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml
-          
+
         # set the storage class as default
         kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
         ```
-        
+
 - **Querying local path source reports**
   - Symptom:
     - If a source report has a local path as the name -- for example, `/path/to/code` -- the leading `/`
