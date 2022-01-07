@@ -3,7 +3,7 @@
 This document describes how to install Tanzu Application Platform packages
 from the Tanzu Application Platform package repository.
 
-Before installing the packages, ensure you have completed the prerequisites, configured
+Before you install the packages, ensure that you have completed the prerequisites, configured
 and verified the cluster, accepted the EULA, and installed the Tanzu CLI with any required plug-ins.
 See [Installing part I: Prerequisites, EULA, and CLI](install-general.md).
 
@@ -114,7 +114,7 @@ To add the Tanzu Application Platform package repository:
 
 ## <a id='about-package-profiles'></a> About Tanzu Application Platform package profiles
 
-Tanzu Application Platform can be installed through pre-defined profiles or individual
+Tanzu Application Platform can be installed through pre-defined profiles or through individual
 packages. This section explains how to install a profile.
 
 Tanzu Application Platform contains the following two profiles:
@@ -427,7 +427,7 @@ Where:
     * Dockerhub has the form `server: "index.docker.io"`
     * Google Cloud Registry has the form `server: "gcr.io"`
 - `REPO-NAME` is where workload images are stored in the registry.
-  Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
+Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
     * Harbor has the form `repository: "my-project/supply-chain"`
     * Dockerhub has the form `repository: "my-dockerhub-user"`
     * Google Cloud Registry has the form `repository: "my-project/supply-chain"`
@@ -493,14 +493,14 @@ Where:
 - `KP-DEFAULT-REPO-USERNAME` is the username that can write to `KP-DEFAULT-REPO`. You should be able to `docker push` to this location with this credential.
     - For Google Cloud Registry, use `kp_default_repository_username: _json_key`
 - `KP-DEFAULT-REPO-PASSWORD` is the password for the user that can write to `KP-DEFAULT-REPO`.
-  You can `docker push` to this location with these credentials.
+You can `docker push` to this location with these credentials.
     - For Google Cloud Registry, use the contents of the service account JSON key.
 - `SERVER-NAME` is the hostname of the registry server. Examples:
     - Harbor has the form `server: "my-harbor.io"`
     - Dockerhub has the form `server: "index.docker.io"`
     - Google Cloud Registry has the form `server: "gcr.io"`
 - `REPO-NAME` is where workload images are stored in the registry.
-  Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
+Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
     - Harbor has the form `repository: "my-project/supply-chain"`
     - Dockerhub has the form `repository: "my-dockerhub-user"`
     - Google Cloud Registry has the form `repository: "my-project/supply-chain"`
