@@ -300,8 +300,8 @@ less privileged components to have their pods preempted or evicted instead.
 
 #### Tanzu Dev Tools for VSCode
 
-- Launching the `Extension Host`, and configuring `tasks` in a workspace that does not contain workload yaml files may not work.
-	- **Solution:** Uninstall the Tanzu Dev Tools extension to proceed.
+- Launching the `Extension Host`, and configuring `tasks` in a workspace that does not contain workload YAML files might not work.
+  - **Solution:** Uninstall the Tanzu Dev Tools extension to proceed.
 	
 #### Services Toolkit
 
