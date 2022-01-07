@@ -579,7 +579,7 @@ For information about package-specific configuration, see [Install components](i
     tanzu package installed list -A
     ```
 
-2. Congratulations, you've now installed the Tanzu Application Platform! Before your start submitting your first applications, you'll need to ensure you've [setup developer namespaces](install-components.md#setup).
+2. Congratulations, you've now installed the Tanzu Application Platform! Before your start submitting your first applications, you'll need to ensure you've [setup developer namespaces](install-components.md#setup) .
 
 3. (Optional) [Install any additional packages](install-components.md) that were not included in your profile.
 
