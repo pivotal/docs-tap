@@ -435,7 +435,7 @@ To perform a clean installation of the Tanzu CLI plug-ins:
     Ensure that you have the `package`, `secret`, `accelerator`, `services`, and `apps` plug-ins.
     You need these plug-ins to install and interact with the Tanzu Application Platform.
 
-    Tanzu Application Platform beta requires cluster-admin privileges.
+    Tanzu Application Platform requires cluster-admin privileges.
     Running commands associated with the additional plug-ins can have unintended side-effects.
     VMware recommends against running `cluster`, `kubernetes-release`, `login`, `management-cluster`,
     and `pinniped-auth` commands.
