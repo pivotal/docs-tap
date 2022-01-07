@@ -252,7 +252,7 @@ To install the Tanzu CLI on a Linux operating system:
 
 3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/) on Tanzu Network.
 
-4. Click the `tanzu-cli-0.10.0` folder.
+4. Click the `tanzu-cli-v0.10.0` folder.
 
 5. Download `tanzu-framework-bundle-linux` and unpack the TAR file into the `tanzu` directory by running:
     ```
@@ -296,7 +296,7 @@ To install the Tanzu CLI on a Mac operating system:
 
 3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/) on Tanzu Network.
 
-4. Click the `tanzu-cli-0.10.0` folder.
+4. Click the `tanzu-cli-v0.10.0` folder.
 
 5. Download `tanzu-framework-bundle-mac` and unpack the TAR file into the `tanzu` directory:
     ```
@@ -358,7 +358,7 @@ To install the Tanzu CLI on a Windows operating system:
 
   3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/) on Tanzu Network.
 
-  4. Click the `tanzu-cli-0.10.0` folder.
+  4. Click the `tanzu-cli-v0.10.0` folder.
 
   5. Download `tanzu-framework-bundle-windows` and unpack the TAR files into the `tanzu-bundle` directory.
 
@@ -432,7 +432,7 @@ To perform a clean installation of the Tanzu CLI plug-ins:
     services                            Discover Service Types and manage Service Instances (ALPHA)                    v0.1.1   installed
     ```
 
-    Ensure that you have the `package`, `secret`, `accelerator`, `services`, and `apps` plug-ins.
+    Ensure that you have the `accelerator`, `apps`, `package`, `secret`, and `services` plug-ins.
     You need these plug-ins to install and interact with the Tanzu Application Platform.
 
     Tanzu Application Platform requires cluster-admin privileges.
@@ -464,7 +464,7 @@ Follow these instructions to update the Tanzu CLI that was installed for a previ
 3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/)
 on Tanzu Network.
 
-4. Click the **tanzu-cli-0.10.0** directory.
+4. Click the **tanzu-cli-v0.10.0** directory.
 
 5. Download the CLI bundle corresponding with your operating system. For example, if your client
 operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle.
@@ -579,7 +579,7 @@ Follow these instructions to update the Tanzu CLI previously installed for Tanzu
   3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/)
 on Tanzu Network.
 
-  4. Click the **tanzu-cli-0.10.0** directory.
+  4. Click the **tanzu-cli-v0.10.0** directory.
 
   5. Download the CLI bundle corresponding to your operating system. For example, if your client
 operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle.
