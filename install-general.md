@@ -34,7 +34,7 @@ store images.
 * Latest version of Chrome, Firefox, or Edge.
 Tanzu Application Platform GUI currently does not support Safari browser.
 
-* Once your installation is complete you'll need to identify at least one Developer Namespace. [Instructions for setting up a Developer Namespace](install-components.md#setup) are located at the end of installation as well.
+* After your installation is complete you must identify at least one Developer Namespace. [Instructions for setting up a Developer Namespace](install-components.md#setup) are available at the end of installation.
 
 #### DNS Records
 There are some optional but recommended DNS records you should allocate if you decide to use these particular components:
@@ -77,7 +77,7 @@ Installation requires:
         * GKE Autopilot clusters do not have required features enabled
     * Kind
         * Supported only on Linux operating system.
-        * Reference the resource requirements below
+        * See [Resource requirements](#resource-requirements) for information about the minimum system requirements.
         * If you are using Cloud Native Runtimes, see [Configure Your Local Kind
         Cluster](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-local-dns.html#config-cluster).
         * Because Kind doesn't support LoadBalancer, make sure to use NodePort when defining service types.
@@ -108,7 +108,7 @@ cluster from your local machine. For example:
     * Tanzu Community Edition v0.9.1
         * Visit the Tanzu Community Edition installation page to follow installation instructions at [Tanzu Community Edition](install-tce.md)
 
-### Resource requirements
+### <a id="resource-requirements"></a>Resource requirements
 
 * To deploy all Tanzu Application Platform packages, your cluster must have at least:
     * 8 GB of RAM across all nodes available to Tanzu Application Platform
