@@ -41,14 +41,14 @@ To add the Tanzu Application Platform package repository:
 
     ```
     tanzu package repository add tanzu-tap-repository \
-      --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.4.0 \
+      --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.5.0-build.5 \
       --namespace tap-install
     ```
     For example:
 
     ```
     $ tanzu package repository add tanzu-tap-repository \
-        --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.4.0 \
+        --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.5.0-build.5 \
         --namespace tap-install
     \ Adding package repository 'tanzu-tap-repository'...
 
@@ -68,7 +68,7 @@ To add the Tanzu Application Platform package repository:
     NAME:          tanzu-tap-repository
     VERSION:       3769
     REPOSITORY:    registry.tanzu.vmware.com/tanzu-application-platform/tap-packages
-    TAG:           0.4.0
+    TAG:           0.5.0-build.5
     STATUS:        Reconcile succeeded
     REASON:
     ```
@@ -511,7 +511,7 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
 To view possible configuration settings for a package, run:
 
 ```
-tanzu package available get tap.tanzu.vmware.com/0.4.0 --values-schema --namespace tap-install
+tanzu package available get tap.tanzu.vmware.com/0.5.0-build.5 --values-schema --namespace tap-install
 ```
 
 >**Note:** The `tap.tanzu.vmware.com` package does not show all configuration settings for packages
@@ -562,7 +562,7 @@ For information about package-specific configuration, see [Install components](i
 1. Install the package by running:
 
     ```
-    tanzu package install tap -p tap.tanzu.vmware.com -v 0.4.0 --values-file tap-values.yml -n tap-install
+    tanzu package install tap -p tap.tanzu.vmware.com -v 0.5.0-build.5 --values-file tap-values.yml -n tap-install
     ```
 
 1. Verify the package install by running:

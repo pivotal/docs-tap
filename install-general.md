@@ -52,7 +52,7 @@ The default host name consists of `tap-gui` plus an `IngressDomain` of your choi
     - GitLab
     - Azure DevOps
 - Tanzu Application Platform GUI Blank Catalog from the Tanzu Application section of Tanzu Network
-  - To install this, navigate to [Tanzu Network](https://network.tanzu.vmware.com/) and select the Tanzu Application Platform. Under the list of available files to download, there will be a folder titled `tap-gui-catalogs`. Inside that folder is a compressed archive titled `Tanzu Application Platform Blank Catalog`. You'll need to extract that catalog to the preceding Git repository of choice. This serves as the configuration location for your Organization's Catalog inside Tanzu Application Platform GUI.
+  - To install this, navigate to [Tanzu Network](https://network.tanzu.vmware.com/) and select the Tanzu Application Platform. Under the list of available files to download, there will be a folder titled `tap-gui-catalogs`. Inside that folder is a compressed archive titled `Tanzu Application Platform GUI Blank Catalog`. You'll need to extract that catalog to the preceding Git repository of choice. This serves as the configuration location for your Organization's Catalog inside Tanzu Application Platform GUI.
 - The Tanzu Application Platform GUI catalog allows for two approaches towards storing catalog information:
     - The default option uses an in-memory database and is suitable for test and development scenarios.
           This reads the catalog data from Git URLs that you specify in the `tap-values.yml` file.
@@ -80,7 +80,7 @@ Installation requires:
         Cluster](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-local-dns.html#config-cluster).
         * Because Kind doesn't support LoadBalancer, make sure to use NodePort when defining service types.
 
-* Configure `hostPort` to `containerPort` mappings for ports 80 and 443 to enable access to the
+        * Configure `hostPort` to `containerPort` mappings for ports 80 and 443 to enable access to the
 cluster from your local machine. For example:
 
     ```
@@ -252,7 +252,7 @@ To install the Tanzu CLI on a Linux operating system:
 
 3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/) on Tanzu Network.
 
-4. Click the `tanzu-cli-0.10.0` folder.
+4. Click the `tanzu-cli-v0.10.0` folder.
 
 5. Download `tanzu-framework-bundle-linux` and unpack the TAR file into the `tanzu` directory by running:
     ```
@@ -296,7 +296,7 @@ To install the Tanzu CLI on a Mac operating system:
 
 3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/) on Tanzu Network.
 
-4. Click the `tanzu-cli-0.10.0` folder.
+4. Click the `tanzu-cli-v0.10.0` folder.
 
 5. Download `tanzu-framework-bundle-mac` and unpack the TAR file into the `tanzu` directory:
     ```
@@ -358,7 +358,7 @@ To install the Tanzu CLI on a Windows operating system:
 
   3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/) on Tanzu Network.
 
-  4. Click the `tanzu-cli-0.10.0` folder.
+  4. Click the `tanzu-cli-v0.10.0` folder.
 
   5. Download `tanzu-framework-bundle-windows` and unpack the TAR files into the `tanzu-bundle` directory.
 
@@ -432,10 +432,10 @@ To perform a clean installation of the Tanzu CLI plug-ins:
     services                            Discover Service Types and manage Service Instances (ALPHA)                    v0.1.1   installed
     ```
 
-    Ensure that you have the `package`, `secret`, `accelerator`, `services`, and `apps` plug-ins.
+    Ensure that you have the `accelerator`, `apps`, `package`, `secret`, and `services` plug-ins.
     You need these plug-ins to install and interact with the Tanzu Application Platform.
 
-    Tanzu Application Platform beta requires cluster-admin privileges.
+    Tanzu Application Platform requires cluster-admin privileges.
     Running commands associated with the additional plug-ins can have unintended side-effects.
     VMware recommends against running `cluster`, `kubernetes-release`, `login`, `management-cluster`,
     and `pinniped-auth` commands.
@@ -464,7 +464,7 @@ Follow these instructions to update the Tanzu CLI that was installed for a previ
 3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/)
 on Tanzu Network.
 
-4. Click the **tanzu-cli-0.10.0** directory.
+4. Click the **tanzu-cli-v0.10.0** directory.
 
 5. Download the CLI bundle corresponding with your operating system. For example, if your client
 operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle.
@@ -579,7 +579,7 @@ Follow these instructions to update the Tanzu CLI previously installed for Tanzu
   3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/)
 on Tanzu Network.
 
-  4. Click the **tanzu-cli-0.10.0** directory.
+  4. Click the **tanzu-cli-v0.10.0** directory.
 
   5. Download the CLI bundle corresponding to your operating system. For example, if your client
 operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle.
