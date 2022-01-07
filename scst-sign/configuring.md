@@ -119,6 +119,14 @@ container being admitted.
 1. [Reading `imagePullSecrets` from the `image-policy-registry-credentials` service account](#secrets-registry-credentials-sa)
 in the `image-policy-system` namespace.
 
+> **Note**: in situations where a valid credential is informed in the
+> `ClusterImagePolicy` `secretRef` field, or in the
+> `image-policy-registry-credentials` service account, but an invalid
+> credential is present in the `imagePullSecrets` of the resource or in the
+> service account the resource runs as, authentication will fail. To prevent
+> this issue, choose a single authentication method to validate signatures
+> for your resources.
+
 If you use [containerd-configured registry credentials](https://github.com/containerd/containerd/blob/main/docs/cri/registry.md#configure-registry-credentials)
 or another mechanism that causes your resources and service accounts to not
 include an `imagePullSecrets` field, you will need to provide credentials to
