@@ -1,4 +1,4 @@
-## Setting up a Tanzu Application Platform GUI authentication provider
+# Setting up a Tanzu Application Platform GUI authentication provider
 
 Tanzu Application Platform GUI extends the current [Backstage's authentication plug-in](https://backstage.io/docs/auth/) so that you can see a login page based on the authentication providers configured at install time. This feature is a work in progress, and at the moment it should support the following authentication providers out-of-the-box:
 
@@ -37,7 +37,7 @@ We also support a custom OpenID Connect (OIDC) provider shown here:
     
     For more information, see [this example](https://github.com/backstage/backstage/blob/e4ab91cf571277c636e3e112cd82069cdd6fca1f/app-config.yaml#L333-L347).
 
-### Allowing guest access
+## <a id='allow-guest-access'></a>Allow guest access
 
 If you want to enable guest access along with other providers, you can do it by providing the following flag under your authentication configuration:
 
@@ -46,7 +46,7 @@ If you want to enable guest access along with other providers, you can do it by 
     allowGuestAccess: true
   ```
 
-## Customizing the login page
+## <a id='customize-login'></a>Customize the login page
 
 You can change the card's title and/or description for a specific provider with the following configuration:
 
@@ -61,4 +61,4 @@ You can change the card's title and/or description for a specific provider with 
         message: Enter with your GitHub account
   ```
 
-For a provider to show in the login page, keep in mind that it has to be properly configured under the `auth.providers` section of your values file.
+For a provider to show in the login page, it has to be properly configured under the `auth.providers` section of your values file.
