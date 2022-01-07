@@ -1159,7 +1159,7 @@ ClusterResource to reference and describe it.
 
 ### <a id='services-journey-use-case-1'></a> Use case 1: Binding an application to a pre-provisioned service instance running in the same namespace
 
->**Note:** The example flow detailed here makes use of one RabbitMQ service instance and one application workload, but in most real world cases, RabbitMQ is frequently used with two or more applications.
+>**Note:** The examples below make use of a RabbitMQ service instance and a single sample application which acts as both a producer and consumer of messages. For most real world scenarios using RabbitMQ it's likely that there would be multiple applications deployed and communicating via the RabbitMQ service. Please note the limitation that it is not currently possible for more than one application workload to consume the same service instance. See [Known issues](release-notes.md#1-0) for further information.
 
 Follow these steps to bind an application to a pre-provisioned service instance running
 in the same namespace.
