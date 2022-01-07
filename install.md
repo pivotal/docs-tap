@@ -391,15 +391,15 @@ tap_gui:
   ingressDomain: "INGRESS-DOMAIN"
   app_config:
     app:
-        baseUrl: http://tap-gui.INGRESS-DOMAIN
+      baseUrl: http://tap-gui.INGRESS-DOMAIN
     catalog:
-        locations:
+      locations:
         - type: url
           target: https://GIT-CATALOG-URL/catalog-info.yaml
     backend:
-        baseUrl: http://tap-gui.INGRESS-DOMAIN
-        cors:
-            origin: http://tap-gui.INGRESS-DOMAIN
+      baseUrl: http://tap-gui.INGRESS-DOMAIN
+      cors:
+        origin: http://tap-gui.INGRESS-DOMAIN
 
 metadata_store:
   app_service_type: LoadBalancer # (optional) Defaults to LoadBalancer. Change to NodePort for distributions that don't support LoadBalancer
@@ -470,15 +470,15 @@ tap_gui:
   ingressDomain: "INGRESS-DOMAIN"
   app_config:
     app:
-        baseUrl: http://tap-gui.INGRESS-DOMAIN
+      baseUrl: http://tap-gui.INGRESS-DOMAIN
     catalog:
-        locations:
+      locations:
         - type: url
           target: https://GIT-CATALOG-URL/catalog-info.yaml
     backend:
-        baseUrl: http://tap-gui.INGRESS-DOMAIN
-        cors:
-            origin: http://tap-gui.INGRESS-DOMAIN
+      baseUrl: http://tap-gui.INGRESS-DOMAIN
+      cors:
+        origin: http://tap-gui.INGRESS-DOMAIN
 
 metadata_store:
   app_service_type: LoadBalancer # (optional) Defaults to LoadBalancer. Change to NodePort for distributions that don't support LoadBalancer
