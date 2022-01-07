@@ -77,7 +77,7 @@ Installation requires:
         * GKE Autopilot clusters do not have required features enabled
     * Kind
         * Supported only on Linux operating system.
-        * See [Resource requirements](#resource-requirements) for more information about the minimum system requirements.
+        * See [Resource requirements](#resource-requirements) for information about the minimum system requirements.
         * If you are using Cloud Native Runtimes, see [Configure Your Local Kind
         Cluster](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-local-dns.html#config-cluster).
         * Because Kind doesn't support LoadBalancer, make sure to use NodePort when defining service types.
