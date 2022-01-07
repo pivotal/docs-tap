@@ -3,7 +3,7 @@
 This document describes how to install Tanzu Application Platform packages
 from the Tanzu Application Platform package repository.
 
-Before you install the packages, ensure you have completed the prerequisites, configured
+Before you install the packages, ensure that you have completed the prerequisites, configured
 and verified the cluster, accepted the EULA, and installed the Tanzu CLI with any required plugins.
 See [Installing Part I: Prerequisites, EULA, and CLI](install-general.md).
 
@@ -390,15 +390,15 @@ tap_gui:
   ingressDomain: "INGRESS-DOMAIN"
   app_config:
     app:
-        baseUrl: http://tap-gui.INGRESS-DOMAIN
+      baseUrl: http://tap-gui.INGRESS-DOMAIN
     catalog:
-        locations:
+      locations:
         - type: url
           target: https://GIT-CATALOG-URL/catalog-info.yaml
     backend:
-        baseUrl: http://tap-gui.INGRESS-DOMAIN
-        cors:
-            origin: http://tap-gui.INGRESS-DOMAIN
+      baseUrl: http://tap-gui.INGRESS-DOMAIN
+      cors:
+        origin: http://tap-gui.INGRESS-DOMAIN
 
 metadata_store:
   app_service_type: LoadBalancer # (optional) Defaults to LoadBalancer. Change to NodePort for distributions that don't support LoadBalancer
@@ -461,15 +461,15 @@ tap_gui:
   ingressDomain: "INGRESS-DOMAIN"
   app_config:
     app:
-        baseUrl: http://tap-gui.INGRESS-DOMAIN
+      baseUrl: http://tap-gui.INGRESS-DOMAIN
     catalog:
-        locations:
+      locations:
         - type: url
           target: https://GIT-CATALOG-URL/catalog-info.yaml
     backend:
-        baseUrl: http://tap-gui.INGRESS-DOMAIN
-        cors:
-            origin: http://tap-gui.INGRESS-DOMAIN
+      baseUrl: http://tap-gui.INGRESS-DOMAIN
+      cors:
+        origin: http://tap-gui.INGRESS-DOMAIN
 
 metadata_store:
   app_service_type: LoadBalancer # (optional) Defaults to LoadBalancer. Change to NodePort for distributions that don't support LoadBalancer
@@ -506,7 +506,7 @@ tanzu package available get tap.tanzu.vmware.com/0.4.0 --values-schema --namespa
 ```
 
 >**Note:** The `tap.tanzu.vmware.com` package does not show all configuration settings for packages
->it plans to install. The package only shows top level keys.
+>it plans to install. The package only shows top-level keys.
 >View individual package configuration settings with the same `tanzu package available get` command.
 >For example, use `tanzu package available get -n tap-install cnrs.tanzu.vmware.com/1.0.3 --values-schema` for Cloud Native Runtimes.
 
