@@ -69,7 +69,7 @@ The default host name consists of `tap-gui` plus an `IngressDomain` of your choi
 ### Kubernetes cluster requirements
 Installation requires:
 
-* Kubernetes cluster v1.19 or later on one of the following Kubernetes providers:
+* Kubernetes cluster versions 1.20, 1.21, or 1.22 on one of the following Kubernetes providers:
 
     * Azure Kubernetes Service
     * Amazon Elastic Kubernetes Service
@@ -85,18 +85,18 @@ Installation requires:
         * Configure `hostPort` to `containerPort` mappings for ports 80 and 443 to enable access to the
 cluster from your local machine. For example:
 
-    ```
-    kind: Cluster
-    apiVersion: kind.x-k8s.io/v1alpha4
-    nodes:
-    - role: control-plane
-    - role: worker
-      extraPortMappings:
-      - containerPort: 30443
-        hostPort: 443
-      - containerPort: 30080
-        hostPort: 80
-    ```
+            ```
+            kind: Cluster
+            apiVersion: kind.x-k8s.io/v1alpha4
+            nodes:
+            - role: control-plane
+            - role: worker
+            extraPortMappings:
+            - containerPort: 30443
+                hostPort: 443
+            - containerPort: 30080
+                hostPort: 80
+            ```
 
     * Minikube
         * Reference the resource requirements below
