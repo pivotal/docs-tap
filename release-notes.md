@@ -296,8 +296,8 @@ to create the TLS Secret, once the TLS is created **you need to redeploy the Tra
 
 #### Services Toolkit
 
-* It is not currently possible for more than one application workload to consume the same service instance. Attempting to create two or more application workloads while specifying the same `--service-ref` value will result in only one of the workloads being able to bind to the service instance and reconcile successfully. This limitation is due to be relaxed in an upcoming release.
-* The `tanzu services` CLI plugin is not currently compatible with Kubernetes clusters running on GKE.
+* It is not possible for more than one application workload to consume the same service instance. Attempting to create two or more application workloads while specifying the same `--service-ref` value results in only one of the workloads binding to the service instance and reconcile successfully. This limitation is due to be relaxed in an upcoming release.
+* The `tanzu services` CLI plug-in is not compatible with Kubernetes clusters running on GKE.
 
 ### Security issues
 
