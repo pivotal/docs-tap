@@ -75,38 +75,9 @@ Installation requires:
     * Amazon Elastic Kubernetes Service
     * Google Kubernetes Engine
         * GKE Autopilot clusters do not have required features enabled
-    * Kind
-        * Supported only on Linux operating system.
-        * See [Resource requirements](#resource-requirements) for information about the minimum system requirements.
-        * If you are using Cloud Native Runtimes, see [Configure Your Local Kind
-        Cluster](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-local-dns.html#config-cluster).
-        * Because Kind doesn't support LoadBalancer, make sure to use NodePort when defining service types.
-
-        * Configure `hostPort` to `containerPort` mappings for ports 80 and 443 to enable access to the
-          cluster from your local machine. For example:
-
-            ```
-            kind: Cluster
-            apiVersion: kind.x-k8s.io/v1alpha4
-            nodes:
-            - role: control-plane
-            - role: worker
-            extraPortMappings:
-            - containerPort: 30443
-                hostPort: 443
-            - containerPort: 30080
-                hostPort: 80
-            ```
-
     * Minikube
         * Reference the resource requirements below
         * Hyperkit driver is supported on macOS only; Docker driver is not supported.
-    * Tanzu Kubernetes Grid v1.4
-        * Do not use a Tanzu Kubernetes Grid cluster that runs production workloads.
-        * To install Tanzu Application Platform on Tanzu Kubernetes Grid v1.4,
-          see [Installing with Tanzu Kubernetes Grid v1.4](install-tkg.md).
-    * Tanzu Community Edition v0.9.1
-        * Visit the Tanzu Community Edition installation page to follow installation instructions at [Tanzu Community Edition](install-tce.md)
 
 ### <a id="resource-requirements"></a>Resource requirements
 
@@ -114,7 +85,7 @@ Installation requires:
     * 8 GB of RAM across all nodes available to Tanzu Application Platform
     * 8 CPUs for i9 (or equivalent) available to Tanzu Application Platform components
     * 12 CPUs for i7 (or equivalent) available to Tanzu Application Platform components
-    * 12 GB of RAM is available to build and deploy applications, including Kind and Minikube. VMware recommends 16 GB of RAM for an optimal experience.
+    * 12 GB of RAM is available to build and deploy applications, including Minikube. VMware recommends 16 GB of RAM for an optimal experience.
     * 70 GB of disk space available per node
 
 * For the [`complete` profile](install.html#about-tanzu-application-platform-package-profiles-1), or
@@ -127,7 +98,7 @@ must be configured so that Tanzu Application Platform controller pods can run as
 
 Installation requires:
 
-* The Kubernetes CLI, kubectl, v1.19, v1.20 or v1.21, installed and authenticated with administrator rights for your target cluster. See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes documentation.
+* The Kubernetes CLI, kubectl, v1.20, v1.21 or v1.22, installed and authenticated with administrator rights for your target cluster. See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes documentation.
 
 * To set the Kubernetes cluster context:
 
@@ -144,8 +115,7 @@ Installation requires:
         CURRENT   NAME                                CLUSTER           AUTHINFO                                NAMESPACE
                 aks-repo-trial                      aks-repo-trial    clusterUser_aks-rg-01_aks-repo-trial
         *       aks-tap-cluster                     aks-tap-cluster   clusterUser_aks-rg-01_aks-tap-cluster
-                tkg-mgmt-vc-admin@tkg-mgmt-vc       tkg-mgmt-vc       tkg-mgmt-vc-admin
-                tkg-vc-antrea-admin@tkg-vc-antrea   tkg-vc-antrea     tkg-vc-antrea-admin
+                
         ```
 
     2.  Set the context to the cluster that you want to use for the Tanzu Application Platform packages install.
@@ -223,7 +193,6 @@ Choose the install scenario that is right for you:
 
    + [Instructions for a clean install of Tanzu CLI](#tanzu-cli-clean-install)
    + [Instructions for updating Tanzu CLI that was installed for a previous Tanzu Application Platform release](#udpate-previous-tap-tanzu-cli)
-   + [Instructions for updating Tanzu CLI that was previously installed for Tanzu Kubernetes Grid and/or Tanzu Community Edition](#udpate-tkg-tce-tanzu-cli)  
 
 
 ### <a id='tanzu-cli-clean-install'></a> Clean install Tanzu CLI
@@ -559,120 +528,3 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
 
 You can now install Tanzu Application Platform.
 See **[Installing part II: Profiles](install.md)**.
-
-
-## <a id='udpate-tkg-tce-tanzu-cli'></a>Instructions for updating Tanzu CLI previously installed for Tanzu Kubernetes Grid or Tanzu Community Edition
-
-Follow these instructions to update the Tanzu CLI previously installed for Tanzu Kubernetes Grid or Tanzu Community Edition:
-
-- If your Tanzu CLI version is **greater or equal to `v0.11.0`**, you must [delete your existing Tanzu CLI, plug-ins, and associated files](uninstall.md#remove-tanzu-cli) and then perform a [clean install](#tanzu-cli-clean-install)
-- If your Tanzu CLI version is **less than or equal to `v0.10.0`**, proceed to step 1.
-
-  1. Create a directory named `tanzu`:
-
-     ```
-     mkdir $HOME/tanzu
-     ```
-     If `tanzu` already exists, delete the files in the directory.
-
-  2. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
-
-  3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/)
-  on Tanzu Network.
-
-  4. Click the **tanzu-cli-v0.10.0** directory.
-
-  5. Download the CLI bundle corresponding to your operating system. For example, if your client
-  operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle.
-
-  6. Unpack the TAR file in the `tanzu` directory by running:
-
-     ```
-     tar -xvf tanzu-framework-linux-amd64.tar -C $HOME/tanzu
-     ```
-
-  7. Navigate to the `tanzu` directory by running:
-
-     ```
-     cd $HOME/tanzu
-     ```
-
-  8. Set env var `TANZU_CLI_NO_INIT` to true to install the local plug-in versions you've just downloaded:
-
-     ```
-     export TANZU_CLI_NO_INIT=true
-     ```
-
-  9. Check to see if the `imagepullsecret` and `package` plug-ins are already installed:
-
-     ```
-     tanzu plugin list
-     ```
-
-     If either is present, delete them:
-
-     ```
-     tanzu plugin delete imagepullsecret
-     ```
-
-     And/Or
-
-     ```
-     tanzu plugin delete package
-     ```
-
-  10. Install the `secret` plug-in by running:
-
-      ```
-      tanzu plugin install secret --local ./cli
-      ```
-
-  11. Install the `accelerator` plug-in by running:
-
-      ```
-      tanzu plugin install accelerator --local ./cli
-      ```
-
-  12. Install the `apps` plug-in by running:
-
-      ```
-      tanzu plugin install apps --local ./cli
-      ```
-
-  13. Install the updated `package` plug-in by running:
-
-      ```
-      tanzu plugin install package --local ./cli
-      ```
-
-
-  14. Install the `services` plug-in by running:
-
-      ```
-      tanzu plugin install services --local ./cli
-      ```
-
-
-  15. Verify that the Tanzu Application Platform plug-ins are present:
-
-      ```
-      tanzu plugin list
-      ```
-
-      Expect the following to be included in the list:
-
-      ```
-      tanzu plugin list
-      NAME                LATEST VERSION  DESCRIPTION                                                        REPOSITORY  VERSION  STATUS
-      accelerator                         Manage accelerators in a Kubernetes cluster                                    v1.0.0   installed
-      apps                                Applications on Kubernetes                                                     v0.4.0   installed
-      package             v0.13.1         Tanzu package management                                           core        v0.10.0  installed
-      secret              v0.13.1         Tanzu secret management                                            core        v0.10.0  installed
-      services                            Discover Service Types and manage Service Instances (ALPHA)                    v0.1.1   installed
-      ```
-
-You can now install Tanzu Application Platform on Tanzu Kubernetes Grid or Tanzu Community Edition.
-For more information, see:
-
-* [Installing Tanzu Application Platform on a Tanzu Community Edition v0.9.1 cluster](install-tce.html#install-tap)
-* [Installing Tanzu Application Platform on a Tanzu Kubernetes Grid v1.4 cluster](install-tkg.html#install-tap)

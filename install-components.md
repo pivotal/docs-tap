@@ -190,7 +190,7 @@ If you do not want to use a profile, install them manually.
 
         1. Create a `contour-values.yaml` using the following sample as a guide:
 
-            Sample `contour-values.yaml` for installation in a public cloud or TKG cluster with `LoadBalancer` services:
+            Sample `contour-values.yaml` for installation in a public cloud with `LoadBalancer` services:
 
             ```
             contour:
