@@ -34,6 +34,8 @@ store images.
 * Latest version of Chrome, Firefox, or Edge.
 Tanzu Application Platform GUI currently does not support Safari browser.
 
+* Once your installation is complete you'll need to identify at least one Developer Namespace. [Instructions for setting up a Developer Namespace](install-components.md#setup) are located at the end of installation as well.
+
 #### DNS Records
 There are some optional but recommended DNS records you should allocate if you decide to use these particular components:
 
@@ -75,7 +77,7 @@ Installation requires:
         * GKE Autopilot clusters do not have required features enabled
     * Kind
         * Supported only on Linux operating system.
-        * Minimum requirements: 8 CPUs for i9 or equivalent, 12 CPUs for i7 or equivalent, 8 GB RAM (12+ GB recommended), and 120 GB disk space.
+        * Reference the resource requirements below
         * If you are using Cloud Native Runtimes, see [Configure Your Local Kind
         Cluster](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-local-dns.html#config-cluster).
         * Because Kind doesn't support LoadBalancer, make sure to use NodePort when defining service types.
@@ -97,8 +99,7 @@ cluster from your local machine. For example:
     ```
 
     * Minikube
-        * Minimum requirements for VM: 8 CPUs for i9 or equivalent, 12 CPUs for i7 or equivalent, 8 GB RAM (12+ GB recommended), and 120 GB disk space.
-        * VMware recommends at least 16 GB of total host memory.
+        * Reference the resource requirements below
         * On MacOS only Hyperkit driver is supported; Docker driver is not supported.
     * Tanzu Kubernetes Grid v1.4
         * Do not use a Tanzu Kubernetes Grid cluster that runs production workloads.
@@ -113,7 +114,7 @@ cluster from your local machine. For example:
     * 8 GB of RAM across all nodes available to Tanzu Application Platform
     * 8 CPUs for i9 (or equivalent) available to Tanzu Application Platform components
     * 12 CPUs for i7 (or equivalent) available to Tanzu Application Platform components
-    * 16 GB of RAM available to build and deploy applications, including for Kind and Minikube
+    * 12 GB of RAM available to build and deploy applications, including for Kind and Minikube. VMware recommends 16 GB of RAM for an optimal experience.
     * 70 GB of disk space available per node
 
 * For the [`full` profile](install.html#about-tanzu-application-platform-package-profiles-1), or

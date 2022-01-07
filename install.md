@@ -579,7 +579,9 @@ For information about package-specific configuration, see [Install components](i
     tanzu package installed list -A
     ```
 
-1. (Optional) [Install any additional packages](install-components.md) that were not included in your profile.
+2. Congratulations, you've now installed the Tanzu Application Platform! Before your start submitting your first applications, you'll need to ensure you've [setup developer namespaces](install-components.md#setup).
+
+3. (Optional) [Install any additional packages](install-components.md) that were not included in your profile.
 
 After you install Dev Profile onto your cluster, you can install the Tanzu Developer Tools for VSCode extension to help you develop against it.
 For instructions, see [Installing Tanzu Dev Tools for VSCode](vscode-extension/install.md).
