@@ -34,7 +34,7 @@ store images.
 * Latest version of Chrome, Firefox, or Edge.
 Tanzu Application Platform GUI currently does not support Safari browser.
 
-* After your installation is complete you must identify at least one Developer Namespace. [Instructions for setting up a Developer Namespace](install-components.md#setup) are available at the end of installation.
+* After your installation is complete, you must identify at least one Developer Namespace. [Instructions for setting up a Developer Namespace](install-components.md#setup) are available at the end of installation.
 
 #### DNS Records
 There are some optional but recommended DNS records you should allocate if you decide to use these particular components:
@@ -42,7 +42,7 @@ There are some optional but recommended DNS records you should allocate if you d
 - Cloud Native Runtimes (knative) - Allocate a wildcard subdomain for your developer's applications. This is specified in the `cnrs.domain_name` key of the `tap-values.yml` configuration file that you input with the installation. This wildcard should be pointed at the external IP address of the `tanzu-system-ingress`'s `envoy` service.
 - Tanzu Learning Center - Similar to Cloud Native Runtimes, allocate a wildcard subdomain for your workshops and content. This is specified in the `learningcenter.ingressDomain` key of the `tap-values.yml` configuration file that you input with the installation. This wildcard should be pointed at the external IP address of the `tanzu-system-ingress`'s `envoy` service.
 - Tanzu Application Platform GUI - Should you decide to implement the share ingress and include the Tanzu Application Platform GUI, allocate a fully Qualified Domain Name (FQDN) that can be pointed at the `tanzu-system-ingress` service.
-The default host name consists of `tap-gui` plus an `IngressDomain` of your choice. For example,
+The default hostname consists of `tap-gui` plus an `IngressDomain` of your choice. For example,
 `tap-gui.example.com`.
 
 
@@ -58,12 +58,12 @@ The default host name consists of `tap-gui` plus an `IngressDomain` of your choi
 - The Tanzu Application Platform GUI catalog allows for two approaches towards storing catalog information:
     - The default option uses an in-memory database and is suitable for test and development scenarios.
           This reads the catalog data from Git URLs that you specify in the `tap-values.yml` file.
-          This data is ephemeral and any operations that cause the `server` pod in the `tap-gui` namespace to be re-created
+          This data is temporary, and any operations that cause the `server` pod in the `tap-gui` namespace to be re-created
           also cause this data to be rebuilt from the Git location.
           This can cause issues when you manually register entities through the UI because
           they only exist in the database and are lost when that in-memory database gets rebuilt.
     - For production use-cases, use a PostgreSQL database that exists outside the Tanzu Application Platform's packaging.
-          This stores all the catalog data persistently both from the Git locations and from the GUI's manual entity registrations.
+          This stores all the catalog data persistently both from the Git locations and the GUI's manual entity registrations.
 
 
 ### Kubernetes cluster requirements
@@ -83,7 +83,7 @@ Installation requires:
         * Because Kind doesn't support LoadBalancer, make sure to use NodePort when defining service types.
 
         * Configure `hostPort` to `containerPort` mappings for ports 80 and 443 to enable access to the
-cluster from your local machine. For example:
+          cluster from your local machine. For example:
 
             ```
             kind: Cluster
@@ -100,7 +100,7 @@ cluster from your local machine. For example:
 
     * Minikube
         * Reference the resource requirements below
-        * On MacOS only Hyperkit driver is supported; Docker driver is not supported.
+        * Hyperkit driver is supported on macOS only; Docker driver is not supported.
     * Tanzu Kubernetes Grid v1.4
         * Do not use a Tanzu Kubernetes Grid cluster that runs production workloads.
         * To install Tanzu Application Platform on Tanzu Kubernetes Grid v1.4,
@@ -114,10 +114,10 @@ cluster from your local machine. For example:
     * 8 GB of RAM across all nodes available to Tanzu Application Platform
     * 8 CPUs for i9 (or equivalent) available to Tanzu Application Platform components
     * 12 CPUs for i7 (or equivalent) available to Tanzu Application Platform components
-    * 12 GB of RAM available to build and deploy applications, including for Kind and Minikube. VMware recommends 16 GB of RAM for an optimal experience.
+    * 12 GB of RAM is available to build and deploy applications, including Kind and Minikube. VMware recommends 16 GB of RAM for an optimal experience.
     * 70 GB of disk space available per node
 
-* For the [`full` profile](install.html#about-tanzu-application-platform-package-profiles-1), or
+* For the [`complete` profile](install.html#about-tanzu-application-platform-package-profiles-1), or
     use of Security Chain Security Tools - Store, your cluster must have a configured default StorageClass.
 
 * [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/)
@@ -149,7 +149,7 @@ Installation requires:
         ```
 
     2.  Set the context to the cluster that you want to use for the Tanzu Application Platform packages install.
-        For example set the context to the `aks-tap-cluster` context by running:
+        For example, set the context to the `aks-tap-cluster` context by running:
 
         ```
         kubectl config use-context aks-tap-cluster
@@ -165,7 +165,7 @@ Installation requires:
 
 ## <a id="eulas"></a> Accept the EULAs
 
-Before you can install packages, you have to accept the End User License Agreements (EULAs).
+Before installing packages, you have to accept the End User License Agreements (EULAs).
 
 To accept EULAs:
 
@@ -182,7 +182,7 @@ To accept EULAs:
 
 ## <a id='tanzu-cluster-essentials'></a> Install Cluster Essentials for VMware Tanzu
 
-If you are operating a Tanzu Kubernetes Grid or Tanzu Community Edition cluster, the Cluster Essentials are already installed.
+The Cluster Essentials are already installed if you are operating a Tanzu Kubernetes Grid or Tanzu Community Edition cluster.
 
 For other Kubernetes providers, follow the steps below:
 
@@ -397,7 +397,7 @@ To install the Tanzu CLI on a Windows operating system:
 
 To perform a clean installation of the Tanzu CLI plug-ins:
 
-1. If it hasn't been done already, set env var `TANZU_CLI_NO_INIT` to `true` to assure the local downloaded plug-ins are installed:
+1. If it hasn't been done already, set env var `TANZU_CLI_NO_INIT` to `true` to assure the locally downloaded plug-ins are installed:
 
      ```
      export TANZU_CLI_NO_INIT=true
@@ -437,7 +437,7 @@ To perform a clean installation of the Tanzu CLI plug-ins:
     You need these plug-ins to install and interact with the Tanzu Application Platform.
 
     Tanzu Application Platform requires cluster-admin privileges.
-    Running commands associated with the additional plug-ins can have unintended side-effects.
+    Running commands associated with the additional plug-ins can have unintended side effects.
     VMware recommends against running `cluster`, `kubernetes-release`, `login`, `management-cluster`,
     and `pinniped-auth` commands.
 
@@ -578,12 +578,12 @@ Follow these instructions to update the Tanzu CLI previously installed for Tanzu
   2. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
 
   3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/)
-on Tanzu Network.
+  on Tanzu Network.
 
   4. Click the **tanzu-cli-v0.10.0** directory.
 
   5. Download the CLI bundle corresponding to your operating system. For example, if your client
-operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle.
+  operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle.
 
   6. Unpack the TAR file in the `tanzu` directory by running:
 
@@ -609,7 +609,7 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
      tanzu plugin list
      ```
 
-     If either is present present, delete them:
+     If either is present, delete them:
 
      ```
      tanzu plugin delete imagepullsecret
