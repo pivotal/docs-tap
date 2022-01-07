@@ -2,24 +2,24 @@
 
 ## What is the Support Menu?
 
-Many important pages of Tanzu Application Platform GUI contain a 'Support'
-button -- when clicked, it pops out a menu. This menu contains a one-line
-description of the page the user is looking at, as well as a list of support
-item groupings. For example, by default the menu on the Catalog page looks like
+Many important pages of Tanzu Application Platform GUI have a "Support"
+button that displays a pop-out menu. This menu contains a one-line
+description of the page the user is looking at, and a list of support
+item groupings. For example, the default menu on the Catalog page looks like
 this:
 
 ![Support Menu](./images/support-menu.png)
 
-Out of the box there are two support item groupings:
-* Contact Support, which is marked with an 'email' icon and contains a link to
-  VMware Tanzu's support portal
-* Documentation, which is marked with a 'docs' icon and contains a link to the
-  Tanzu Application Platform documentation (which you are currently reading)
+Out of the box, there are two support item groupings:
+* Contact Support, which is marked with an "email" icon and contains a link to
+  VMware Tanzu's support portal.
+* Documentation, which is marked with a "docs" icon and contains a link to the
+  Tanzu Application Platform documentation (which you are currently reading).
 
 ## Customizing
 
-The set of support item groupings is completely customizable however -- you may
-want to offer custom in-house links for your TAP users, rather than simply
+The set of support item groupings is completely customizable; however, you may
+want to offer custom in-house links for your TAP users rather than simply
 sending them to VMware support and documentation. You can provide this
 configuration via your `tap-values-file.yml`. Here is a config snippet, which
 produces the default support menu:
@@ -47,28 +47,28 @@ tap_gui:
 
 ### URL
 
-The `url` field under the `support` stanza, e.g.
+The `url` field under the `support` stanza, for example,
 
 ```
       support:
         url: https://tanzu.vmware.com/support
 ```
 
-determines the address of the 'contact support' link which appears on error
+determines the address of the "contact support" link which appears on error
 pages like this one:
 
 ![Error Page](./images/error-page.png)
 
 ### Items
 
-The `items` field under the `support` stanza, e.g.
+The `items` field under the `support` stanza, for example,
 
 determines the set of support item groupings to display when the support menu
 is expanded.
 
 #### Title
 
-The `title` field on a support item grouping, e.g.
+The `title` field on a support item grouping, for example,
 
 ```
         items:
@@ -79,7 +79,7 @@ determines the label for the grouping.
 
 #### Icon
 
-The `icon` field on a support item grouping, e.g.
+The `icon` field on a support item grouping, for example,
 
 ```
         items:
@@ -101,7 +101,7 @@ determines the icon to use for that grouping. The valid choices are:
 
 #### Links
 
-The `links` field on a support item grouping, e.g.
+The `links` field on a support item grouping, for example,
 
 ```
         items:
