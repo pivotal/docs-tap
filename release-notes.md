@@ -4,46 +4,38 @@ This topic contains release notes for Tanzu Application Platform v1.0.
 
 ## <a id='1-0'></a> v1.0
 
-**Release Date**: MMMM DD, 2022
+**Release Date**: January 11, 2022
 
 ### Known issues
 
 This release has the following issues:
 
 #### Installing
-When installing Tanzu Application Platform on Google Kubernetes Engine (GKE), Kubernetes control plane can be unavailable for several minutes during the installation. Package installs can enter the `ReconcileFailed` state. When API server becomes available, packages try to reconcile to completion. This can happen on newly provisioned clusters which have not finished GKE API server autoscaling. When GKE scales up an API server, the current Tanzu Application install continues, and any subsequent installs succeed without interruption.
+- When installing Tanzu Application Platform on Google Kubernetes Engine (GKE), Kubernetes control plane can be unavailable for several minutes during the installation. Package installs can enter the `ReconcileFailed` state. When API server becomes available, packages try to reconcile to completion. This can happen on newly provisioned clusters which have not finished GKE API server autoscaling. When GKE scales up an API server, the current Tanzu Application install continues, and any subsequent installs succeed without interruption.
 
 #### Application Accelerator
-Build scripts provided as part of an accelerator do not have the execute bit set when a new project is generated from the accelerator. To resolve this issue, explicitly set the execute bit by using the "chmod" command: `chmod +x <build-script>`. For example, for a project generated from the "Spring PetClinic" accelerator, run: `chmod +x ./mvnw`.
+- Build scripts provided as part of an accelerator do not have the execute bit set when a new project is generated from the accelerator. To resolve this issue, explicitly set the execute bit by using the "chmod" command: `chmod +x <build-script>`. For example, for a project generated from the "Spring PetClinic" accelerator, run: `chmod +x ./mvnw`.
+
+#### Application Live View
+- The Live View section in Tanzu Application Platform GUI might show "No live information for pod with ID" after deploying Tanzu Application Platform workloads. Resolve this issue by recreating the Application Live View Connector pod. This allows the connector to discover the application instances and render the details in Tanzu Application Platform GUI. For example:
+
+```
+kubectl -n app-live-view delete pods -l=name=application-live-view-connector
+```
 
 #### Convention Service
-Convention Service does not currently support custom certificates for integrating with a private registry. Support for custom certificates is planned for an upcoming release.
-
-#### Supply Chain Choreographer
-Deployment from a public Git repository might require a Git SSH secret. Workaround is to configure SSH access for the public Git repository.
-
-#### Tanzu CLI
-
-- **`tanzu apps workload get`:** Passing in `--output json` along with and the `--export` flag returns yaml rather than json. Support for honoring the `--output json` with `--export` will be added in the next release.
-- **`tanzu apps workload create/update/apply`:** `--image` is not supported by the default supply chain in Tanzu Application Platform Beta 3 release. `--wait` functions as expected when a workload is created for the first time but may return prematurely on subsequent updates when passed with `workload update/apply` for existing workloads. When the `--wait` flag is included and you decline the "Do you want to create this workload?" prompt, the command continues to wait and must be cancelled manually.
-
-#### Supply Chain Security Tools – Scan
-
-- **Failing Blob source scans:** Blob Source Scans have an edge case where, when a compressed file without a `.git` directory is provided, sending results to the Supply Chain Security Tools - Store fails and the scanned revision value is not set. The current workaround is to add the `.git` directory to the compressed file.
-- **Events show `SaveScanResultsSuccess` incorrectly:** `SaveScanResultsSuccess` appears in the events when the Supply Chain Security Tools - Store is not configured. The `.status.conditions` output, however, correctly reflects `SendingResults=False`.
-- **Scan Phase indicates `Scanning` incorrectly:** Scans have an edge case where, when an error has occurred during scanning, the Scan Phase field does not get updated to `Error` and instead remains in the `Scanning` phase. Read the scan Pod logs to verify there was an error.
-- **CVE print columns are not getting populated:** After running a scan and using `kubectl get` on the scan, the CVE print columns (CRITICAL, HIGH, MEDIUM, LOW, UNKNOWN, CVETOTAL) are not getting populated.
+- Convention Service does not currently support custom certificates for integrating with a private registry. Support for custom certificates is planned for an upcoming release.
 
 #### Developer Conventions
 
-**Debug Convention might not apply:** If you upgraded from Tanzu Application Platform v0.4 then the
+- **Debug Convention might not apply:** If you upgraded from Tanzu Application Platform v0.4 then the
 the debug convention might not apply to the app run image. This is because of the missing SBOM data
 in the image.
 To prevent this issue, delete existing app images that were built using Tanzu Application Platform
 v0.4.
 
 #### Grype scanner
-**Scanning Java source code may not reveal vulnerabilities:** Source Code Scanning only scans files present in the source code repository.
+- **Scanning Java source code may not reveal vulnerabilities:** Source Code Scanning only scans files present in the source code repository.
   - No network calls are made to fetch dependencies.
   - For languages that make use of dependency lock files, such as Golang and Node.js, Grype uses the lock
   files to check the dependencies for vulnerabilities.
@@ -52,83 +44,66 @@ v0.4.
   - Because best practices do not include committing binaries to source code repositories, Grype fails to
   find vulnerabilities during a Source Scan. The vulnerabilities are still found during the Image Scan,
   after the binaries are built and packaged as images.
+  
+  
+#### Learning Center
+- **Training Portal in pending state:** Under certain circumstances, the training portal will be stuck in a pending state; the best way to know the issue
+this is to view the operator logs. In order to get the logs, you can execute:
 
-#### Supply Chain Security Tools - Store
-- **CrashLoopBackOff from password authentication failed**
-  - Symptom:
+```
+kubectl logs deployment/learningcenter-operator -n learningcenter
+```
 
-    Supply Chain Security Tools - Store does not start up. You see the following error in the `metadata-store-app` Pod logs:
+  - Depending on the log, the issue may be:
+    - TLS secret tls is not available. The TLS secret should be on the Learning Center operator namespace; otherwise, you will get this error:
 
     ```
-    $ kubectl logs pod/metadata-store-app-* -n metadata-store -c metadata-store-app
-    ...
-    [error] failed to initialize database, got error failed to connect to `host=metadata-store-db user=metadata-store-user database=metadata-store`: server error (FATAL: password authentication failed for user "metadata-store-user" (SQLSTATE 28P01))
+    ERROR:kopf.objects:Handler 'learningcenter' failed temporarily: TLS secret tls is not available
     ```
 
-  - Solution:
-    - If you see the error above, you have changed the database password between deployments, which is not
-    supported. To change the password, see
-    [Persistent Volume Retains Data](#persistent-volume-retains-data) below.
-    > **Warning:** Changing the database password deletes your Supply Chain Security Tools - Store data.
+  - Solution: To recover from this issue, you can follow [these steps](learning-center/getting-started/learningcenter-operator.md#enforcing-secure-connections)
+to create the TLS Secret, once the TLS is created **you need to redeploy the TrainingPortal resource.**
 
-- **Persistent volume retains data**
-  - Symptom:
-    - If Supply Chain Security Tools - Store is deployed, deleted, and then redeployed the
-    `metadata-store-db` Pod fails to start up if the database password changed during redeployment.
-    This is due to the persistent volume used by postgres retaining old data, even though the retention
-    policy is set to `DELETE`.
-  - Solution:
-    - To redeploy the app either use the same database password or follow the steps below to erase the
-    data on the volume:
+- **image-policy-webhook-service not found** If you are installing a TAP profile, perhaps you are going to get this error.
 
-      1. Deploy metadata-store app through kapp.
-      1. Verify that the `metadata-store-db-*` Pod fails.
-      1. Run:
+  ```
+  Internal error occurred: failed calling webhook "image-policy-webhook.signing.apps.tanzu.vmware.com": failed to call webhook: Post "https://image-policy-webhook-service.image-policy-system.svc:443/signing-policy-check?timeout=10s": service "image-policy-webhook-service" not found
+  ```
 
-          ```
-          kubectl exec -it metadata-store-db-<some-id> -n metadata-store /bin/bash
-          ```
-          Where `<some-id>` is the ID generated by Kubernetes and appended to the Pod name.
-      1. Run `rm -rf /var/lib/postgresql/data/*` to delete all database data.
-      This is the path found in `postgres-db-deployment.yaml`.
-      1. Delete the `metadata-store` app through kapp.
-      1. Deploy the `metadata-store` app through kapp.
+  - Solution: This is a race condition error among some packages; to recover from this error you only need to redeploy the trainingPortal resource.
 
-- **Missing persistent volume**
-  - Symptom:
-    - After Store is deployed, `metadata-store-db` Pod could fail for missing volume while
-      `postgres-db-pv-claim` pvc is in `PENDING` state.
-      This issue could be occurring because the cluster where Store is deployed does not have
-      `storageclass` defined.
-      `storageclass`'s provisioner is responsible for creating the persistent volume after
-      `metadata-store-db` attaches `postgres-db-pv-claim`.
-  - Solution:
+- **Updating parameters don't work**
+  - Normally you will need to update some parameters provided to the Learning Center Operator (E.g. ingressDomain, TLS secret, ingressClass etc);
+  depending the way you used to change the values, you can execute these commands to validate if the parameters were changed:
 
-    1. Verify that your cluster has `storageclass` by running `kubectl get storageclass`.
-    1. Create a `storageclass` in your cluster before deploying Store, for example:
+  ```
+  kubectl describe systemprofile
+  ```
+  or
+  ```
+  kubectl describe pod  -n learningcenter
+  ```
 
-        ```
-        # This is the storageclass that Kind uses
-        kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml
+  - But the Training Portals don't work or get the updated values.
 
-        # set the storage class as default
-        kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
-        ```
+  - Solution: By design, the Training Portal resources will not react to any changes on the parameters provided when the training portals were created.
+  This is because any change on the trainingportal resource will affect any online user who is running a workshop.
+  To get the new values, you will need to redeploy the trainingportal in a maintenance window where learning center is unavailable while the systemprofile gets updated.
 
-- **Querying local path source reports**
-  - Symptom:
-    - If a source report has a local path as the name -- for example, `/path/to/code` -- the leading `/`
-    on the resulting repository name causes the querying packages and vulnerabilities to return the
-    following error from the client lib and the CLI: `{ "message": "Not found" }`.
-    - The URL of the resulting HTTP request is properly escaped: for example,
-    `/api/sources/%2Fpath%2Fto%2Fdir/vulnerabilities`.
-    - The rbac-proxy used for authentication handles this URL in a way that the response is a redirect:
-    for example, `HTTP 301\nLocation: /api/sources/path/to/dir/vulnerabilities`.
-    The Client Lib follows the redirect, making a request to the new URL which does not exist in the
-    Supply Chain Security Tools - Store API, resulting in the error message above.
-- **No support for installing in custom namespaces**
-  - All of our testing uses the `metadata-store` namespace.
-  Using a different namespace breaks authentication and certificate validation for the metadata-store API.
+- **Increase your cluster's resources**
+  - Node pressure may be caused by not enough nodes or not enough resources on nodes
+  for deploying the workloads you have. In this case, follow your cloud provider
+  instructions on how to scale out or scale up your cluster.
+
+#### Supply Chain Choreographer
+- Deployment from a public Git repository might require a Git SSH secret. Workaround is to configure SSH access for the public Git repository.
+
+#### Supply Chain Security Tools – Scan
+
+ - **Failing Blob source scans:** Blob Source Scans have an edge case where, when a compressed file without a `.git` directory is provided, sending results to the Supply Chain Security Tools - Store fails and the scanned revision value is not set. The current workaround is to add the `.git` directory to the compressed file.
+ - **Events show `SaveScanResultsSuccess` incorrectly:** `SaveScanResultsSuccess` appears in the events when the Supply Chain Security Tools - Store is not configured. The `.status.conditions` output, however, correctly reflects `SendingResults=False`.
+ - **Scan Phase indicates `Scanning` incorrectly:** Scans have an edge case where, when an error has occurred during scanning, the Scan Phase field does not get updated to `Error` and instead remains in the `Scanning` phase. Read the scan Pod logs to verify there was an error.
+ - **CVE print columns are not getting populated:** After running a scan and using `kubectl get` on the scan, the CVE print columns (CRITICAL, HIGH, MEDIUM, LOW, UNKNOWN, CVETOTAL) are not getting populated.
 
 #### Supply Chain Security Tools - Sign
 
@@ -238,61 +213,92 @@ less privileged components to have their pods preempted or evicted instead.
       for deploying the workloads you have. In this case, follow your cloud provider
       instructions on how to scale out or scale up your cluster.
 
-#### Application Live View
-The Live View section in Tanzu Application Platform GUI might show "No live information for pod with ID" after deploying Tanzu Application Platform workloads. Resolve this issue by recreating the Application Live View Connector pod. This allows the connector to discover the application instances and render the details in Tanzu Application Platform GUI. For example:
 
-```
-kubectl -n app-live-view delete pods -l=name=application-live-view-connector
-```
 
-#### Learning Center
-- **Training Portal in pending state:** Under certain circumstances, the training portal will be stuck in a pending state; the best way to know the issue
-this is to view the operator logs. In order to get the logs, you can execute:
+#### Supply Chain Security Tools - Store
+- **CrashLoopBackOff from password authentication failed**
+  - Symptom:
 
-```
-kubectl logs deployment/learningcenter-operator -n learningcenter
-```
-
-  - Depending on the log, the issue may be:
-    - TLS secret tls is not available. The TLS secret should be on the Learning Center operator namespace; otherwise, you will get this error:
+    Supply Chain Security Tools - Store does not start up. You see the following error in the `metadata-store-app` Pod logs:
 
     ```
-    ERROR:kopf.objects:Handler 'learningcenter' failed temporarily: TLS secret tls is not available
+    $ kubectl logs pod/metadata-store-app-* -n metadata-store -c metadata-store-app
+    ...
+    [error] failed to initialize database, got error failed to connect to `host=metadata-store-db user=metadata-store-user database=metadata-store`: server error (FATAL: password authentication failed for user "metadata-store-user" (SQLSTATE 28P01))
     ```
 
-  - Solution: To recover from this issue, you can follow [these steps](learning-center/getting-started/learningcenter-operator.md#enforcing-secure-connections)
-to create the TLS Secret, once the TLS is created **you need to redeploy the TrainingPortal resource.**
+  - Solution:
+    - If you see the error above, you have changed the database password between deployments, which is not
+    supported. To change the password, see
+    [Persistent Volume Retains Data](#persistent-volume-retains-data) below.
+    > **Warning:** Changing the database password deletes your Supply Chain Security Tools - Store data.
 
-- **image-policy-webhook-service not found** If you are installing a TAP profile, perhaps you are going to get this error.
+- **Persistent volume retains data**
+  - Symptom:
+    - If Supply Chain Security Tools - Store is deployed, deleted, and then redeployed the
+    `metadata-store-db` Pod fails to start up if the database password changed during redeployment.
+    This is due to the persistent volume used by postgres retaining old data, even though the retention
+    policy is set to `DELETE`.
+  - Solution:
+    - To redeploy the app either use the same database password or follow the steps below to erase the
+    data on the volume:
 
-  ```
-  Internal error occurred: failed calling webhook "image-policy-webhook.signing.apps.tanzu.vmware.com": failed to call webhook: Post "https://image-policy-webhook-service.image-policy-system.svc:443/signing-policy-check?timeout=10s": service "image-policy-webhook-service" not found
-  ```
+      1. Deploy metadata-store app through kapp.
+      1. Verify that the `metadata-store-db-*` Pod fails.
+      1. Run:
 
-  - Solution: This is a race condition error among some packages; to recover from this error you only need to redeploy the trainingPortal resource.
+          ```
+          kubectl exec -it metadata-store-db-<some-id> -n metadata-store /bin/bash
+          ```
+          Where `<some-id>` is the ID generated by Kubernetes and appended to the Pod name.
+      1. Run `rm -rf /var/lib/postgresql/data/*` to delete all database data.
+      This is the path found in `postgres-db-deployment.yaml`.
+      1. Delete the `metadata-store` app through kapp.
+      1. Deploy the `metadata-store` app through kapp.
 
-- **Updating parameters don't work**
-  - Normally you will need to update some parameters provided to the Learning Center Operator (E.g. ingressDomain, TLS secret, ingressClass etc);
-  depending the way you used to change the values, you can execute these commands to validate if the parameters were changed:
+- **Missing persistent volume**
+  - Symptom:
+    - After Store is deployed, `metadata-store-db` Pod could fail for missing volume while
+      `postgres-db-pv-claim` pvc is in `PENDING` state.
+      This issue could be occurring because the cluster where Store is deployed does not have
+      `storageclass` defined.
+      `storageclass`'s provisioner is responsible for creating the persistent volume after
+      `metadata-store-db` attaches `postgres-db-pv-claim`.
+  - Solution:
 
-  ```
-  kubectl describe systemprofile
-  ```
-  or
-  ```
-  kubectl describe pod  -n learningcenter
-  ```
+    1. Verify that your cluster has `storageclass` by running `kubectl get storageclass`.
+    1. Create a `storageclass` in your cluster before deploying Store, for example:
 
-  - But the Training Portals don't work or get the updated values.
+        ```
+        # This is the storageclass that Kind uses
+        kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml
 
-  - Solution: By design, the Training Portal resources will not react to any changes on the parameters provided when the training portals were created.
-  This is because any change on the trainingportal resource will affect any online user who is running a workshop.
-  To get the new values, you will need to redeploy the trainingportal in a maintenance window where learning center is unavailable while the systemprofile gets updated.
+        # set the storage class as default
+        kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+        ```
 
-- **Increase your cluster's resources**
-  - Node pressure may be caused by not enough nodes or not enough resources on nodes
-  for deploying the workloads you have. In this case, follow your cloud provider
-  instructions on how to scale out or scale up your cluster.
+- **Querying local path source reports**
+  - Symptom:
+    - If a source report has a local path as the name -- for example, `/path/to/code` -- the leading `/`
+    on the resulting repository name causes the querying packages and vulnerabilities to return the
+    following error from the client lib and the CLI: `{ "message": "Not found" }`.
+    - The URL of the resulting HTTP request is properly escaped: for example,
+    `/api/sources/%2Fpath%2Fto%2Fdir/vulnerabilities`.
+    - The rbac-proxy used for authentication handles this URL in a way that the response is a redirect:
+    for example, `HTTP 301\nLocation: /api/sources/path/to/dir/vulnerabilities`.
+    The Client Lib follows the redirect, making a request to the new URL which does not exist in the
+    Supply Chain Security Tools - Store API, resulting in the error message above.
+- **No support for installing in custom namespaces**
+  - All of our testing uses the `metadata-store` namespace.
+  Using a different namespace breaks authentication and certificate validation for the metadata-store API.
+
+
+#### Tanzu CLI
+
+- **`tanzu apps workload get`:** Passing in `--output json` along with and the `--export` flag returns yaml rather than json. Support for honoring the `--output json` with `--export` will be added in the next release.
+- **`tanzu apps workload create/update/apply`:** `--image` is not supported by the default supply chain in Tanzu Application Platform Beta 3 release. `--wait` functions as expected when a workload is created for the first time but may return prematurely on subsequent updates when passed with `workload update/apply` for existing workloads. When the `--wait` flag is included and you decline the "Do you want to create this workload?" prompt, the command continues to wait and must be cancelled manually.
+
+
 
 ### Security issues
 
