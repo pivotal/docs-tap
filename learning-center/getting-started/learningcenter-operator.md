@@ -93,7 +93,7 @@ Replace ``test`` with the domain name for your Kubernetes cluster.
 or if using a ``nip.io`` address
 ```
 kubectl set env deployment/learningcenter-operator -n learningcenter INGRESS_DOMAIN=192.168.64.1.nip.io
-
+```
 Note that use of environment variables to configure the operator is a shortcut to cater for the 
 simple use case. The recommended way is to use Tanzu CLI or for more complicated scenarios the 
 ``SystemProfile`` custom resource can be used.
