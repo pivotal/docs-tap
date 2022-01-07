@@ -2,15 +2,29 @@
 
 ## <a id='overview'></a> Overview of Tanzu Application Platform
 
-VMware Tanzu Application Platform is a modular, application-aware platform that provides a rich set of developer tooling and a prepaved path to production to build and deploy software quickly and securely on any compliant public cloud or on-premises Kubernetes cluster.
+VMware Tanzu Application Platform is a modular, application-aware platform that provides a rich set
+of developer tools and a paved path to production to build and deploy software quickly and
+securely on any compliant public cloud or on-premises Kubernetes cluster.
 
-The Tanzu Application Platform delivers a superior developer experience for enterprises building and deploying cloud native applications on Kubernetes. It enables application teams to get to production faster by automating source to production pipelines. It clearly defines the roles of developers and operators so they can work collaboratively and integrate their efforts.
+Tanzu Application Platform delivers a superior developer experience for enterprises building and
+deploying cloud-native applications on Kubernetes.
+It enables application teams to get to production faster by automating source-to-production
+pipelines. It clearly defines the roles of developers and operators so they can work collaboratively
+and integrate their efforts.
 
-The Tanzu Application Platform includes elements that enable developers to quickly begin building and testing applications regardless of their familiarity with Kubernetes. Operations teams can create application scaffolding templates with built-in security and compliance guardrails, making those considerations mostly invisible to developers. Starting with the templates, developers turn source code into a container and get a URL to test their app in minutes. Once the container is built, updating it happens automatically every time there’s a new code commit or dependency patch. And connecting to other applications and data, regardless of how they’re built or what kind of infrastructure they run on, has never been easier, thanks to an internal API management portal.
+Tanzu Application Platform includes elements that enable developers to quickly begin building
+and testing applications regardless of their familiarity with Kubernetes. Operations teams can
+create application scaffolding templates with built-in security and compliance guardrails, making
+those considerations mostly invisible to developers. Starting with the templates, developers turn
+source code into a container and get a URL to test their app in minutes. Once the container is
+built, updating it happens automatically every time there’s a new code commit or dependency patch.
+And connecting to other applications and data, regardless of how they’re built or what kind of
+infrastructure they run on, has never been easier, thanks to an internal API management portal.
 
 ![TAP conceptual value](images/tap-conceptual-value.png)
 
-Customers can simplify workflows in both the inner loop and outer loop of Kubernetes-based app development with Tanzu Application Platform while creating supply chains.
+Customers can simplify workflows in both the inner loop and outer loop of Kubernetes-based app
+development with Tanzu Application Platform while creating supply chains.
 
 * **Inner Loop**:
     - The inner loop describes a developer’s development cycle of iterating on code.
@@ -44,21 +58,35 @@ The following packages are part of the Tanzu Application Platform:
 - **API Portal**
 
   API portal for VMware Tanzu enables API consumers to find APIs they can use in their own applications. Consumers can view detailed API documentation and try out an API to see if it will meet their needs. API portal assembles its dashboard and detailed API documentation views by ingesting OpenAPI documentation from the source URLs. An API portal operator can add any number of OpenAPI source URLs to be displayed in a single instance.
-  
-- **Application Accelerator**
-  
-  The Application Accelerator component helps app developers and app operators through the creation and generation of application accelerators. Accelerators are templates that codify best practices and ensure important configurations and structures are in place from the start.
 
-  Developers can bootstrap their applications and get started with feature development right away. Application operators can create custom accelerators that reflect their desired architectures and configurations and enable fleets of developers to utilize them, decreasing operator concerns about whether developers are implementing their desired best practices.
+- **Application Accelerator**
+
+  The Application Accelerator component helps app developers and app operators through the creation
+  and generation of application accelerators.
+  Accelerators are templates that codify best practices and ensure important configurations and
+  structures are in place from the start.
+
+  Developers can bootstrap their applications and get started with feature development right away.
+  Application operators can create custom accelerators that reflect their desired architectures and
+  configurations and enable fleets of developers to use them, decreasing operator concerns about
+  whether developers are implementing their desired best practices.
 
 - **Application Live View for VMware Tanzu**
 
-  Application Live View is a lightweight insight and troubleshooting tool that helps application developers and application operators look inside running applications. It is based on the concept of Spring Boot Actuators.
-  The fundamental idea is that the application provides information from inside the running processes via endpoints (in our case, HTTP endpoints). Application Live View uses those endpoints to get the data from the application and to interact with it.
+  Application Live View is a lightweight insight and troubleshooting tool that helps application
+  developers and application operators look inside running applications.
+  It is based on the concept of Spring Boot Actuators.
+  Fundamentally, the application provides information from inside the running
+  processes by using endpoints (in our case, HTTP endpoints).
+  Application Live View uses those endpoints to get the data from the application and to interact
+  with it.
 
 - **Cloud Native Runtimes for Tanzu**
 
-  Cloud Native Runtimes for Tanzu is a serverless application runtime for Kubernetes that is based on Knative and runs on a single Kubernetes cluster. For information about Knative, see the [Knative documentation](https://knative.dev/docs/) Cloud Native Runtimes capabilities are included in VMware Tanzu Advanced Edition and VMware Tanzu Application Platform.
+  Cloud Native Runtimes for Tanzu is a serverless application runtime for Kubernetes that is based
+  on Knative and runs on a single Kubernetes cluster. For information about Knative, see the
+  [Knative documentation](https://knative.dev/docs/) Cloud Native Runtimes capabilities are included
+  in VMware Tanzu Advanced Edition and VMware Tanzu Application Platform.
 
 - **Convention Service**
 
@@ -70,7 +98,7 @@ The following packages are part of the Tanzu Application Platform:
 
 - **Flux Source Controller**
 
-  The main role of the source management component is to provide a common interface for artifact acquisition. 
+  The main role of the source management component is to provide a common interface for artifact acquisition.
 
 - **Grype**
 
@@ -82,34 +110,56 @@ The following packages are part of the Tanzu Application Platform:
 
 - **Supply Chain Choreographer for Tanzu**
 
-  Supply Chain Choreographer is based on open source [Cartographer](https://cartographer.sh/docs/). It allows App Operators to create pre-approved paths to production by integrating Kubernetes resources with the elements of their existing toolchains (e.g. Jenkins).
-  Each pre-approved supply chain creates a paved road to production; orchestrating supply chain resources - test, build, scan, and deploy - allowing developers to be able to focus on delivering value to their users while also providing App Operators with the peace of mind that all code in production has passed through all of the steps of an approved workflow.
+  Supply Chain Choreographer is based on open-source [Cartographer](https://cartographer.sh/docs/).
+  It enables app operators to create pre-approved paths to production by integrating Kubernetes
+  resources with the elements of their existing toolchains, such as Jenkins.
+  Each pre-approved supply chain creates a paved road to production. It orchestrates supply chain
+  resources - test, build, scan, and deploy - enabling developers to focus on delivering
+  value to their users while also providing app operators with the peace of mind that all code in
+  production has passed through all the steps of an approved workflow.
 
 - **Supply Chain Security tools for Tanzu - Scan**
 
-  With Supply Chain Security Tools for VMware Tanzu - Scan, Tanzu customers can build and deploy secure, trusted software that complies with their corporate security requirements. To enable this, Supply Chain Security Tools - Scan provides scanning and gatekeeping capabilities that Application and DevSecOps teams can easily incorporate earlier in their path to production. This is a known industry best practice for reducing security risk and ensuring more efficient remediation.
+  With Supply Chain Security Tools for VMware Tanzu - Scan, Tanzu customers can build and deploy
+  secure trusted software that complies with their corporate security requirements.
+  To enable this, Supply Chain Security Tools - Scan provides scanning and gatekeeping capabilities
+  that Application and DevSecOps teams can easily incorporate earlier in their path to production.
+  This is an established industry best practice for reducing security risk and ensuring more
+  efficient remediation.
 
 - **Supply Chain Security tools for Tanzu - Store**
 
-  Supply Chain Security Tools - Store saves software bills of materials (SBoMs) to a database and allows you to query for image, source, package, and vulnerability relationships. It integrates with Supply Chain Security Tools - Scan to automatically store the resulting source and image vulnerability reports.
+  Supply Chain Security Tools - Store saves software bills of materials (SBoMs) to a database and
+  enables you to query for image, source, package, and vulnerability relationships.
+  It integrates with Supply Chain Security Tools - Scan to automatically store the resulting source
+  and image vulnerability reports.
 
 - **Tanzu Application Platform GUI**
 
   Tanzu Application Platform GUI lets your developers view your organization's running applications and services.
   It provides a central location for viewing dependencies, relationships, technical documentation, and even service status.
   Tanzu Application Platform GUI is built from the Cloud Native Computing Foundation's project Backstage.
-  
+
 - **Tanzu Build Service**
 
-  Tanzu Build Service uses the open-source Cloud Native Buildpacks project to turn application source code into container images. Build Service executes reproducible builds that align with modern container standards and additionally keeps images up to date. It does so by leveraging Kubernetes infrastructure with kpack, a Cloud Native Buildpacks Platform, to orchestrate the image life cycle. The kpack CLI tool, kp can aid in managing kpack resources. Build Service helps you develop and automate containerized software workflows securely and at scale.
-  
+  Tanzu Build Service uses the open-source Cloud Native Buildpacks project to turn application
+  source code into container images. Build Service executes reproducible builds that align with
+  modern container standards, and keeps images up to date. It does so by leveraging
+  Kubernetes infrastructure with kpack, a Cloud Native Buildpacks Platform, to orchestrate the image
+  life cycle. The kpack CLI tool, kp, can aid in managing kpack resources. Build Service helps you
+  develop and automate containerized software workflows securely and at scale.
+
 - **Tanzu Developer Tools for VSCode**
 
-  Tanzu Developer Tools for Visual Studio Code is VMware Tanzu’s official IDE extension for VSCode to help you develop code using the Tanzu Application Platform The VSCode extension enables live updates of your application while it runs on the cluster and lets you debug your application directly on the cluster.
- 
+  Tanzu Developer Tools for Visual Studio Code is the official VMware Tanzu IDE extension for VSCode
+  to help you develop code using the Tanzu Application Platform.
+  The VSCode extension enables live updates of your application while it runs on the cluster and
+  lets you debug your application directly on the cluster.
+
 - **Tekton**
 
-  Tekton is a powerful and flexible open-source framework for creating CI/CD systems, allowing developers to build, test, and deploy across cloud providers and on-premise systems.
+  Tekton is a powerful and flexible open-source framework for creating CI/CD systems, enabling
+  developers to build, test, and deploy across cloud providers and on-premise systems.
 
 ## <a id='profiles-and-packages'></a>  Installation profiles in Tanzu Application Platform v1.0
 
