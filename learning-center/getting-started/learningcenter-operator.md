@@ -131,9 +131,9 @@ certificate on the configuration yaml passed to Tanzu CLI
   ```
 
 If you already have a TLS secret, follow these steps **before deploying any workshop**:
+
   - Create the `learningcenter` namespace manually or the one you defined
-  - Copy the tls secret to the `learningcenter` namespace or the one you
-  defined, and use the `secretName` property as in this example:
+  - Copy the tls secret to the `learningcenter` namespace or the one that you defined, and use the `secretName` property as in this example:
 
   ```
   ingressSecret:
