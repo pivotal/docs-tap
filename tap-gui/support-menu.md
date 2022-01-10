@@ -1,6 +1,6 @@
-# Support Menu Customization
+# Support menu customization
 
-## What is the Support Menu?
+## What is the support menu?
 
 Many important pages of Tanzu Application Platform GUI have a "Support"
 button that displays a pop-out menu. This menu contains a one-line
@@ -8,7 +8,7 @@ description of the page the user is looking at, and a list of support
 item groupings. For example, the default menu on the Catalog page looks like
 this:
 
-![Support Menu](./images/support-menu.png)
+![Support menu](./images/support-menu.png)
 
 Out of the box, there are two support item groupings:
 * Contact Support, which is marked with an "email" icon and contains a link to
@@ -19,9 +19,9 @@ Out of the box, there are two support item groupings:
 ## Customizing
 
 The set of support item groupings is completely customizable; however, you may
-want to offer custom in-house links for your TAP users rather than simply
+want to offer custom in-house links for your Tanzu Application Platform users rather than simply
 sending them to VMware support and documentation. You can provide this
-configuration via your `tap-values-file.yml`. Here is a config snippet, which
+configuration via your `tap-values-file.yml`. Here is a configuration snippet, which
 produces the default support menu:
 
 ```
@@ -43,7 +43,7 @@ tap_gui:
                 title: Tanzu Application Platform Documentation
 ```
 
-## Structure of the Support Config
+## Structure of the support configuration
 
 ### URL
 
@@ -54,7 +54,7 @@ The `url` field under the `support` stanza, for example,
         url: https://tanzu.vmware.com/support
 ```
 
-determines the address of the "contact support" link which appears on error
+determines the address of the "contact support" link that appears on error
 pages like this one:
 
 ![Error Page](./images/error-page.png)
@@ -110,5 +110,5 @@ The `links` field on a support item grouping, for example,
                 title: Tanzu Support Page
 ```
 
-is a list of YAML objects which get rendered as links -- each link will have
-the text given by the `title` field and link to the value of the `url` field.
+is a list of YAML objects that render as links. Each link has
+the text given by the `title` field and links to the value of the `url` field.

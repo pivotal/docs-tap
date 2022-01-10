@@ -123,7 +123,7 @@ This is the table of contents from which the Tanzu Application Platform Document
       - [Accessing Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md)
       - [Catalog operations](tap-gui/catalog/catalog-operations.md)
       - [Authentication](tap-gui/auth.md)
-      - [Support Menu Customization](tap-gui/support-menu.md)
+      - [Support menu customization](tap-gui/support-menu.md)
       - [Integrations](tap-gui/integrations.md)
       - [Database configuration](tap-gui/database.md)
       - [TechDocs](tap-gui/techdocs/usage.md)
