@@ -1,4 +1,4 @@
-# Out of The Box Supply Chain with Testing (ootb-supply-chain-testing)
+# Out of the Box Supply Chain with Testing
 
 This Cartographer Supply Chain ties a series of Kubernetes resources which,
 when working together, drives a developer-provided Workload from source code
@@ -22,7 +22,7 @@ DELIVERY
 ```
 
 
-It includes all the capabilities of the Out of The Box Supply Chain Basic, but
+It includes all the capabilities of the Out of the Box Supply Chain Basic, but
 adds on top testing with Tekton:
 
 - Watching a Git Repository or local directory for changes
@@ -32,16 +32,16 @@ adds on top testing with Tekton:
 - Deploying the application to the same cluster
 
 
-## Prerequisites
+## <a id="prerequisite"></a> Prerequisites
 
-To make use this supply chain, it's required that:
+To make use this supply chain, it is required that:
 
-- Out of The Box Templates is installed
-- Out of The Box Delivery Basic is installed
-- Out of The Box Supply Chain With Testing **is installed**
-- Out of The Box Supply Chain With Testing and Scanning **is NOT installed** (!!)
-- Developer namespace is configured with the objects per Out of The Box Supply
-  Chain Basic guidance (this supply chain is additive to the basic one)
+- Out of the Box Templates is installed
+- Out of the Box Delivery Basic is installed
+- Out of the Box Supply Chain With Testing **is installed**
+- Out of the Box Supply Chain With Testing and Scanning **is NOT installed**
+- Developer namespace is configured with the objects per Out of the Box Supply
+  Chain Basic guidance. This supply chain is additive to the basic one.
 
 You can verify that you have the right set of supply chains installed (i.e. the
 one with Scanning and _not_ the one with testing) by running the following
@@ -62,10 +62,10 @@ _source-test-to-url_.
 
 
 
-## Developer namespace
+## <a id="developer-namespace"></a> Developer Namespace
 
 As mentioned in the prerequisites section, this supply chain builds on the
-previous Out of The Box Supply Chain, so only additions are included here.
+previous Out of the Box Supply Chain, so only additions are included here.
 
 To make sure you have configured the namespace correctly, it's important that
 the namespace has the following objects in it (including the ones marked with
@@ -74,49 +74,49 @@ the namespace has the following objects in it (including the ones marked with
 - **image secret**: A Kubernetes secret of type
   `kubernetes.io/dockerconfigjson` filled with credentials for pushing the
    container images built by the supply chain.
-   For more information, see [Out of The Box Supply Chain Basic](ootb-supply-chain-basic.md).
+   For more information, see [Out of the Box Supply Chain Basic](ootb-supply-chain-basic.md).
 
 - **service account**: The identity to be used for any interaction with the
   Kubernetes API made by the supply chain.
-  For more information, see [Out of The Box Supply Chain Basic](ootb-supply-chain-basic.md).
+  For more information, see [Out of the Box Supply Chain Basic](ootb-supply-chain-basic.md).
 
 - **role**: The set of capabilities that you want to assign to the service
   account. It must provide the ability to manage all of the resources that the
   supplychain is responsible for.
-  For more information, see [Out of The Box Supply Chain Basic](ootb-supply-chain-basic.md).
+  For more information, see [Out of the Box Supply Chain Basic](ootb-supply-chain-basic.md).
 
 - **rolebinding**: Binds the role to the service account.
   It grants the capabilities to the identity.
-  For more information, see [Out of The Box Supply Chain Basic](ootb-supply-chain-basic.md).
+  For more information, see [Out of the Box Supply Chain Basic](ootb-supply-chain-basic.md).
 
 - (Optional) **git credentials secret**: When using GitOps for managing the
   delivery of applications or a private git source, this secret provides the
   credentials for interacting with the git repository.
-  For more information, see [Out of The Box Supply Chain Basic](ootb-supply-chain-basic.md).
+  For more information, see [Out of the Box Supply Chain Basic](ootb-supply-chain-basic.md).
 
 - **Tekton pipeline** (_new_): A pipeline run whenever the supply chain
   hits the stage of testing the source code
 
 
-Below you'll find details about the new objects compared to Out of The Box
+Below you'll find details about the new objects compared to Out of the Box
 Supply Chain Basic.
 
 
-### Updates to the developer namespace
+### <a id="updates-to-developer-namespace"></a> Updates to the Developer Namespace
 
 In order for source code testing to be present in the supply chain, a Tekton
 Pipeline must exist in the same namespace as the Workload so that, at the right
 moment, the Tekton PipelineRun object that gets created to run the tests can
 reference such developer-provided Pipeline.
 
-So, aside from the objects previously defined in the Out of The Box Supply
+So, aside from the objects previously defined in the Out of the Box Supply
 Chain Basic section, you need to include one more:
 
 - `tekton/Pipeline`: the definition of a series of tasks to run against the
   source code that has been found by earlier resources in the Supply Chain.
 
 
-#### Tekton/Pipeline
+#### <a id="tekton-pipeline"></a> Tekton/Pipeline
 
 Despite the full liberty around tasks to run, the Tekton or pipeline object
 **must** be labelled with `apps.tanzu.vmware.com/pipeline: test`, and define
@@ -167,17 +167,17 @@ is changed. As a workaround, the latest PipelineRun created can be deleted,
 which triggers a re-run.
 
 
-## Developer workload
+## <a id="developer-workload"></a> Developer Workload
 
 With the Tekton Pipeline object
 submitted to the same namespace as the one where the Workload
 will be submitted to, you can submit your Workload.
 
-Regardless of the workflow being targgeted (local development or gitops), the
-Workload configuration details are the same as in Out of The Box Supply Chain
+Regardless of the workflow being targeted (local development or gitops), the
+Workload configuration details are the same as in Out of the Box Supply Chain
 Basic, except that you mark the Workload as having tests enabled.
 
-For instance:
+For example:
 
 ```
 tanzu apps workload create tanzu-java-web-app \
