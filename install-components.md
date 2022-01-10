@@ -36,16 +36,14 @@ For information, see [Installing part I: Prerequisites, EULA, and CLI](install-g
 + [Install Tekton](#install-tekton)
 
 
-## <a id='install-prereqs'></a> Install cert-manager and FluxCD Source Controller
+## <a id='install-prereqs'></a> Install cert-manager, contour and FluxCD Source Controller
 
 cert_manager and FluxCD Source Controller are installed as part of all profiles.
 If you do not want to use a profile, install them manually.
 
->**Note:** In future versions, both cert-manager and FluxCD Source Controller will be shipped as packages.
-
 * **cert-manager**:
 
-    1. List version information for the package by running:
+  1. List version information for the package by running:
 
         ```
         tanzu package available list cert-manager.tanzu.vmware.com -n tap-install
@@ -60,39 +58,83 @@ If you do not want to use a profile, install them manually.
           cert-manager.tanzu.vmware.com  1.5.3+tap.1  2021-08-23T17:22:51Z
         ```
 
-    2. Install the package by running:
+  2. Create a `cert-manager-rbac.yml` using below sample and Apply the config.
 
+
+        ```yaml
+        apiVersion: rbac.authorization.k8s.io/v1
+        kind: ClusterRole
+        metadata:
+          name: cert-manager-tap-install-cluster-admin-role
+        rules:
+        - apiGroups:
+          - '*'
+          resources:
+          - '*'
+          verbs:
+          - '*'
+        ---
+        apiVersion: rbac.authorization.k8s.io/v1
+        kind: ClusterRoleBinding
+        metadata:
+          name: cert-manager-tap-install-cluster-admin-role-binding
+        roleRef:
+          apiGroup: rbac.authorization.k8s.io
+          kind: ClusterRole
+          name: cert-manager-tap-install-cluster-admin-role
+        subjects:
+        - kind: ServiceAccount
+          name: cert-manager-tap-install-sa
+          namespace: tap-install
+        ---
+        apiVersion: v1
+        kind: ServiceAccount
+        metadata:
+          name: cert-manager-tap-install-sa
+          namespace: tap-install
         ```
-        tanzu package install cert-manager -p cert-manager.tanzu.vmware.com -v VERSION-NUMBER -n tap-install
-        ```
-
-        Where:
-
-        - `VERSION-NUMBER` is the version of the package listed in step 1.
 
         For example:
 
         ```
-        tanzu package install cert-manager -p cert-manager.tanzu.vmware.com -v 1.5.3+tap.1 -n tap-install
-        \ Installing package 'cert-manager.tanzu.vmware.com'
-        | Getting package metadata for 'cert-manager.tanzu.vmware.com'
-        | Creating service account 'cert-manager-tap-install-sa'
-        | Creating cluster admin role 'cert-manager-tap-install-cluster-role'
-        | Creating cluster role binding 'cert-manager-tap-install-cluster-rolebinding'
-        | Creating package resource
-        - Waiting for 'PackageInstall' reconciliation for 'cert-manager'
-        | 'PackageInstall' resource install status: Reconciling
-
-         Added installed package 'cert-manager'
+        kubectl apply -f cert-manager-rbac.yml
         ```
 
-    3. Verify the package install by running:
+  3. Create a `cert-manager-install.yml` using below sample and Apply the config.
+
+
+        ```yaml
+        apiVersion: packaging.carvel.dev/v1alpha1
+        kind: PackageInstall
+        metadata:
+          name: cert-manager
+          namespace: tap-install
+        spec:
+          serviceAccountName: cert-manager-tap-install-sa
+          packageRef:
+            refName: cert-manager.tanzu.vmware.com
+            versionSelection:
+              constraints: "VERSION-NUMBER"
+              prereleases: {}
+        ```
+
+        Where
+        - `VERSION-NUMBER` is the version of the package listed in step 1.
+
+
+        For example:
+
+        ```
+        kubectl apply -f cert-manager-rbac.yml
+        ```
+
+  4. Verify the package install by running:
 
         ```
         tanzu package installed get cert-manager -n tap-install
         ```
 
-        For example:
+       For example:
 
         ```
         $ tanzu package installed get cert-manager -n tap-install
@@ -121,7 +163,7 @@ If you do not want to use a profile, install them manually.
 
         Verify that `STATUS` is `Running`
 
-* **Contour**:
+* **contour**:
 
     1. List version information for the package by running:
 
@@ -138,7 +180,67 @@ If you do not want to use a profile, install them manually.
           contour.tanzu.vmware.com  1.18.2+tap.1  2021-10-05T00:00:00Z
         ```
 
-    1. (Optional) Make changes to the default installation settings:
+    2. Create a `contour-rbac.yml` using the below sample and Apply the config.
+        ```yaml
+        apiVersion: rbac.authorization.k8s.io/v1
+        kind: ClusterRole
+        metadata:
+          name: contour-tap-install-cluster-admin-role
+        rules:
+        - apiGroups:
+          - '*'
+          resources:
+          - '*'
+          verbs:
+          - '*'
+        ---
+        apiVersion: rbac.authorization.k8s.io/v1
+        kind: ClusterRoleBinding
+        metadata:
+          name: contour-tap-install-cluster-admin-role-binding
+        roleRef:
+          apiGroup: rbac.authorization.k8s.io
+          kind: ClusterRole
+          name: contour-tap-install-cluster-admin-role
+        subjects:
+        - kind: ServiceAccount
+          name: contour-tap-install-sa
+          namespace: tap-install
+        ---
+        apiVersion: v1
+        kind: ServiceAccount
+        metadata:
+          name: contour-tap-install-sa
+          namespace: tap-install
+        ```
+
+        For example:
+
+        ```
+        kubectl apply -f contour-rbac.yml
+        ```
+    
+    3. Create a `contour-install.yml` using the samplebelow and apply the config.
+       > **NOTE:** The below config will install contour package with default options. If you want to make changes to the default installation settings, go to step 
+
+        ```yaml
+        apiVersion: packaging.carvel.dev/v1alpha1
+        kind: PackageInstall
+        metadata:
+          name: contour
+          namespace: tap-install
+        spec:
+          serviceAccountName: tap-install-sa
+          packageRef:
+            refName: contour.tanzu.vmware.com
+            versionSelection:
+              constraints: "VERSION-NUMBER"
+              prereleases: {}
+        ```
+        Where
+        - `VERSION-NUMBER` is the version of the package listed in step 1.
+
+    4. (Optional) Make changes to the default installation settings:
 
         1. Gather values schema by running:
 
@@ -188,14 +290,38 @@ If you do not want to use a profile, install them manually.
               namespace                            tanzu-system-ingress  string   The namespace in which to deploy Contour and Envoy.
             ```
 
-        1. Create a `contour-values.yaml` using the following sample as a guide:
+        2. Create a `contour-install.yaml` using the following sample as a guide:
 
-            Sample `contour-values.yaml` for installation in a public cloud with `LoadBalancer` services:
+            Sample `contour-install.yaml` for installation in aws public cloud with `LoadBalancer` services:
 
-            ```
-            contour:
-              service:
-                type: LoadBalancer
+            ```yaml
+            apiVersion: packaging.carvel.dev/v1alpha1
+            kind: PackageInstall
+            metadata:
+              name: contour
+              namespace: tap-install
+            spec:
+              serviceAccountName: contour-tap-install-sa
+              packageRef:
+                refName: contour.tanzu.vmware.com
+                versionSelection:
+                  constraints: 1.18.2+tap.1
+                  prereleases: {}
+              values:
+              - secretRef:
+                  name: contour-values
+            ---
+            apiVersion: v1
+            kind: Secret
+            metadata:
+              name: contour-values
+              namespace: tap-install
+            stringData:
+              values.yaml: |
+                envoy:
+                  service:
+                    type: LoadBalancer
+                infrastructure_provider: aws
             ```
 
             >**Note:** the LoadBalancer type is appropriate for most installations, but local clusters
@@ -214,28 +340,14 @@ If you do not want to use a profile, install them manually.
             must be installed in a separate namespace. You must set the CNR value `ingress.internal.namespace` to
             point to this namespace.
 
-    1. Install the package by running:
+    5. Install the package by running:
 
         ```
-        tanzu package install contour -p contour.tanzu.vmware.com -v 1.18.2+tap.1 -n tap-install -f contour-values.yaml
+        kubectl apply -f contour-install.yaml
         ```
 
-        For example:
 
-        ```
-        $ tanzu package install contour -p contour.tanzu.vmware.com -v 1.18.2+tap.1 -n tap-install -f contour-values.yaml
-        - Installing package 'contour.tanzu.vmware.com'
-        | Getting package metadata for 'contour.tanzu.vmware.com'
-        | Creating service account 'contour-tap-install-sa'
-        | Creating cluster admin role 'contour-tap-install-cluster-role'
-        | Creating cluster role binding 'contour-tap-install-cluster-rolebinding'
-        - Creating package resource
-        - Package install status: Reconciling
-
-        Added installed package 'contour' in namespace 'tap-install'
-        ```
-
-    1. Verify the package install by running:
+    6. Verify the package install by running:
 
         ```
         tanzu package installed get contour -n tap-install
@@ -256,7 +368,7 @@ If you do not want to use a profile, install them manually.
 
         Verify that `STATUS` is `Reconcile succeeded`
 
-    1. Verify the installation:
+    7. Verify the installation:
 
         ```
         kubectl get po -n tanzu-system-ingress
