@@ -32,7 +32,7 @@ metadata:
 spec:
   title: Markdown Sample
   description: A sample workshop using Markdown
-  url: https://github.com/eduk8s/lab-markdown-sample
+  url: PREPLACE WITH YOUR OWN GIT URL LOCATION FOR lab-markdown-sample
   difficulty: beginner
   duration: 15m
   vendor: learningcenter.tanzu.vmware.com
@@ -42,7 +42,7 @@ spec:
   - template
   logo: data:image/png;base64,....
   content:
-    files: github.com/eduk8s/lab-markdown-sample
+    files: PREPLACE WITH YOUR OWN GIT URL LOCATION FOR lab-markdown-sample
 ```
 
 The ``url`` field must be a URL you can go to for more information about the workshop.
@@ -229,7 +229,7 @@ spec:
   session:
     env:
     - name: REPOSITORY_URL
-      value: https://github.com/eduk8s/lab-markdown-sample
+      value: PREPLACE WITH YOUR OWN GIT URL LOCATION FOR lab-markdown-sample
 ```
 
 The ``session.env`` field should be a list of dictionaries with ``name`` and ``value`` fields.

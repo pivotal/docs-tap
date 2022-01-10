@@ -78,7 +78,7 @@ spec:
   vendor: learningcenter.tanzu.vmware.com
   title: Markdown Sample
   description: A sample workshop using Markdown
-  url: https://github.com/eduk8s/lab-markdown-sample
+  url: PREPLACE WITH YOUR OWN GIT URL LOCATION FOR lab-markdown-sample
   content:
     image: quay.io/eduk8s/lab-markdown-sample:master
   duration: 15m
@@ -103,9 +103,9 @@ spec:
   vendor: learningcenter.tanzu.vmware.com
   title: Markdown Sample
   description: A sample workshop using Markdown
-  url: https://github.com/eduk8s/lab-markdown-sample
+  url: PREPLACE WITH YOUR OWN GIT URL LOCATION FOR lab-markdown-sample
   content:
-    files: github.com/eduk8s/lab-markdown-sample
+    files: PREPLACE WITH YOUR OWN GIT URL LOCATION FOR lab-markdown-sample
   duration: 15m
   session:
     namespaces:
