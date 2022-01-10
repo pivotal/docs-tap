@@ -1,13 +1,13 @@
 # Convention Service
 
-## Overview
+## <a id="overview"></a>Overview
 
-The Convention Service provides a means for people in operational roles to express
-their hard-won knowledge and opinions about how apps should run on Kubernetes as a convention.
-The Convention Service applies these opinions to fleets of developer workloads as they are deployed to the platform,
+Convention Service provides a means for people in operational roles to express
+their hard-won knowledge and opinions about how applications should run on Kubernetes as a convention.
+Convention Service applies these opinions to fleets of developer workloads as they are deployed to the platform,
 saving operator and developer time.
 
-The service is comprised of two components:
+The service is composed of two components:
 
 * **The convention controller:**
   The convention controller provides the metadata to the convention server and executes the updates Pod Template Spec as per the convention server's requests.
@@ -16,9 +16,9 @@ The service is comprised of two components:
   The convention server receives and evaluates metadata associated with a workload and
   requests updates to the Pod Template Spec associated with that workload.
   You can have one or more convention servers for a single convention controller instance.
-  The Convention Service currently supports defining and applying conventions for Pods.
+  Convention Service currently supports defining and applying conventions for Pods.
 
-## About applying conventions
+## <a id="about-applying-conventions"></a>About applying conventions
 
 The convention server uses criteria defined in the convention to determine
 whether the configuration of a workload should be changed.
@@ -27,7 +27,7 @@ If the metadata meets the criteria defined by the convention server,
 the conventions are applied.
 It is also possible for a convention to apply to all workloads regardless of metadata.
 
-### Applying conventions by using image metadata
+### <a id="applying-conventions-image-metadata"></a>Applying conventions by using image metadata
 
 You can define conventions to target workloads by using properties of their OCI metadata.
 
@@ -42,7 +42,7 @@ the image type and match the criteria for a given convention server.
 Images built with Cloud Native Buildpacks reliably include rich descriptive metadata.
 Images built by some other process may not include the same metadata.
 
-### Applying conventions without using image metadata
+### <a id="applying-conventions-no-image-metadata"></a>Applying conventions without using image metadata
 
 Conventions can also be defined to apply to workloads without targeting build service metadata.
 Examples of possible uses of this type of convention include appending a logging/metrics sidecar,
@@ -52,23 +52,21 @@ across workloads deployed on the cluster while reducing developer toil.
 
 > **Note:** Adding a sidecar alone does not magically make the log/metrics collection work.
   This requires collector agents to be already deployed and accessible from the Kubernetes cluster,
-and also configuring required access through RBAC policy.
+and also configuring required access through role-based access control (RBAC) policy.
 
-## Convention service resources
+## <a id="convention-service-resourses"></a>Convention Service resources
 
-There are several [resources](./reference/convention-resources.md) involved in the application of conventions to workloads
+There are several [resources](./reference/convention-resources.md) involved in the application of conventions to workloads.
 
-### How it works
-
-#### API structure
+### <a id="api-structure"></a>API structure
 
 The [`PodConventionContext`](./reference/pod-convention-context.md) API object in the `webhooks.conventions.apps.tanzu.vmware.com` API group is the structure used for both request and response from the convention server.
 
-#### Template status
+### <a id="template-status"></a>Template status
 
-The enriched [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) is reflected at [`.status.template`](./reference/pod-convention-context-status.md).
+The enriched `PodTemplateSpec` is reflected at [`.status.template`](./reference/pod-convention-context-status.md). For more information about `PodTemplateSpec`, see the [Kubernetes documentation](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec).
 
-## Chaining multiple conventions
+## <a id="chaining-multiple-conventions"></a>Chaining multiple conventions
 
 You can define multiple `ClusterPodConventions` and apply them to different types of workloads.
 You can also apply multiple conventions to a single workload.
@@ -82,11 +80,11 @@ After the conventions are applied, the `Ready` status condition on the `PodInten
 whether it is applied successfully.
 A list of all applied conventions is stored under the annotation `conventions.apps.tanzu.vmware.com/applied-conventions`.
 
-## Collecting logs from the controller
+## <a id="collecting-logs-from-controller"></a>Collecting logs from the controller
 
-Convention controller is a Kubernetes operator and can be deployed in a cluster with other components. If you have trouble, you can retrieve and examine the logs from the controller to help identify issues.
+The convention controller is a Kubernetes operator and can be deployed in a cluster with other components. If you have trouble, you can retrieve and examine the logs from the controller to help identify issues.
 
-To retrieve pod logs from the `conventions-controller-manager` running in the `conventions-system` namespace:
+To retrieve Pod logs from the `conventions-controller-manager` running in the `conventions-system` namespace:
 
   ```
   kubectl -n conventions-system logs -l control-plane=controller-manager
@@ -102,4 +100,4 @@ For example:
 
 ## Troubleshooting
 
-To troubleshoot Convention Controller, see [troubleshooting](troubleshooting.md).
+To troubleshoot the convention controller, see [troubleshooting](troubleshooting.md).
