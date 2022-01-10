@@ -13,21 +13,21 @@ It intercepts all resources that create pods as part of their lifecycle: `Pod`s,
 This component uses [cosign](https://github.com/sigstore/cosign#cosign) as its
 backend for signature verification and is compatible only with cosign signatures.
 When cosign signs an image, it generates a signature in an OCI-compliant format
-and pushes it to the the same registry where the image is stored. The signature is
+and pushes it to the same registry where the image is stored. The signature is
 identified by a tag in the format `sha256-<image-digest>.sig`, where `<image-digest>`
 is the digest of the image that this signature belongs to. The webhook needs
-credentials to access this artifact when it is hosted in a registry protected by
+credentials to access this artifact when hosted in a registry protected by
 authentication.
 
 By default, once installed, this component does not include any policy resources
-and will not enforce any kind of policy.
+and will not enforce any policy.
 The operator must create a `ClusterImagePolicy` resource in the cluster before
-the webhook can perform any kind of verifications. This `ClusterImagePolicy`
-resource contains all image patterns the operator wants to verify and their
+the webhook can perform any verifications. This `ClusterImagePolicy`
+resource contains all image patterns the operator wants to verify, and their
 corresponding cosign public keys.
 
 Typically, the webhook gets credentials from running resources and their service
-accounts in order to authenticate against private registries at admission time.
+accounts to authenticate against private registries at admission time.
 There are other mechanisms that the webhook uses for finding credentials.
 For more information on providing credentials, see
 [Providing credentials for the webhook](configuring.md#providing-credentials-package).
