@@ -102,7 +102,7 @@ run:
     [these steps](learning-center/getting-started/learningcenter-operator.md#enforcing-secure-connections) to create the TLS Secret.
     After the TLS is created, redeploy the TrainingPortal resource.
 
-- **image-policy-webhook-service not found** If you are installing a Tanzu Application Platform
+- **image-policy-webhook-service not found:** If you are installing a Tanzu Application Platform
 profile, you might see the error:
 
     ```
@@ -112,11 +112,9 @@ profile, you might see the error:
     This is a rare condition error among some packages. To recover from this error, redeploy the
     `trainingPortal` resource.
 
-- **Updating parameters don't work**
-
-    Normally you need to update some parameters provided to the Learning Center Operator, such as
-    ingressDomain, TLS secret, ingressClass, and so on.
-    Try running one of these commands to validate if the parameters were changed:
+- **Updating parameters don't work:** Normally you need to update some parameters provided to the
+Learning Center Operator, such as ingressDomain, TLS secret, ingressClass, and so on.
+Try running one of these commands to validate if the parameters were changed:
 
     ```
     kubectl describe systemprofile
@@ -136,10 +134,9 @@ profile, you might see the error:
     running a workshop. To get the new values, redeploy `trainingportal` in a maintenance window
     where Learning Center is unavailable while the `systemprofile` is updated.
 
-- **Increase your cluster's resources**
-Node pressure may be caused by not enough nodes or not enough resources on nodes for deploying the
-workloads you have. In this case, follow your cloud provider instructions on how to scale out or
-scale up your cluster.
+- **Increase your cluster's resources:** Node pressure may be caused by not enough nodes or not
+enough resources on nodes for deploying the workloads you have. In this case, follow your cloud
+provider instructions on how to scale out or scale up your cluster.
 
 #### Supply Chain Choreographer
 
@@ -179,10 +176,8 @@ webhook is forced to restart at the same time as other system components.
 A deadlock can occur when some components expect the webhook to verify their image signatures and
 the webhook is not running yet.<br><br>
 There is a known rare condition during Tanzu Application Platform profiles installation that could
-cause this issue to happen.
-
-  - **Symptom:**
-  You may see a message similar to one of the following in component statuses:
+cause this issue to happen. You may see a message similar to one of the following in component
+statuses:
 
     ```
     Events:
@@ -198,15 +193,13 @@ cause this issue to happen.
       Warning FailedCreate 10m replicaset-controller Error creating: Internal error occurred: failed calling webhook "image-policy-webhook.signing.apps.tanzu.vmware.com": Post "https://image-policy-webhook-service.image-policy-system.svc:443/signing-policy-check?timeout=10s": service "image-policy-webhook-service" not found
     ```
 
-  - **Solution:**
-    By deleting the `MutatingWebhookConfiguration` resource, you can resolve the
-    deadlock and enable the system to start up again. After the system is stable,
-    you can restore the `MutatingWebhookConfiguration` resource to re-enable image
-    signing enforcement.
+By deleting the `MutatingWebhookConfiguration` resource, you can resolve the deadlock and enable the
+system to start up again. After the system is stable, you can restore the `MutatingWebhookConfiguration`
+resource to re-enable image signing enforcement.
 
-    >**Important:** These steps temporarily disable signature verification in your cluster.
+>**Important:** These steps temporarily disable signature verification in your cluster.
 
-    To do so:
+To do so:
 
     1. Back up the `MutatingWebhookConfiguration` to a file by running:
 
@@ -234,9 +227,7 @@ This component uses a privileged `PriorityClass` to start up its pods in order t
 pressure from preempting its pods. However, this can cause other less privileged components to have
 their pods preempted or evicted instead.
 
-  - **Symptom:**
-
-    You see events similar to this in the output of `kubectl get events`:
+You see events similar to this in the output of `kubectl get events`:
 
     ```
     $ kubectl get events
@@ -244,8 +235,7 @@ their pods preempted or evicted instead.
     28s         Normal    Preempted          pod/testpod          Preempted by image-policy-system/image-policy-controller-manager-59dc669d99-frwcp on node test-node
     ```
 
-  - **Solutions:**
-    - **Reduce the amount of pods deployed by the Sign component:**
+    - **Solution 1: Reduce the amount of pods deployed by the Sign component:**
     In case your deployment of the Sign component is running more pods than
     necessary, you can scale the deployment down. To do so:
 
@@ -269,15 +259,16 @@ their pods preempted or evicted instead.
 
         1. Wait a few minutes for your configuration to take effect in the cluster.
 
-    - **Increase your cluster's resources:** Node pressure might be caused by a lack of nodes or
+    - **Solution 2: Increase your cluster's resources:** Node pressure might be caused by a lack of nodes or
     resources on nodes for deploying the workloads you have.
     In this case, follow your cloud provider instructions for how to scale out or scale up your
     cluster.
 
 #### Supply Chain Security Tools - Store
 
-- **CrashLoopBackOff from password authentication failed**
-Supply Chain Security Tools - Store does not start up. You see the following error in the `metadata-store-app` Pod logs:
+- **CrashLoopBackOff from password authentication failed:**
+Supply Chain Security Tools - Store does not start up. You see the following error in the
+`metadata-store-app` Pod logs:
 
     ```
     $ kubectl logs pod/metadata-store-app-* -n metadata-store -c metadata-store-app
@@ -287,6 +278,7 @@ Supply Chain Security Tools - Store does not start up. You see the following err
 
     If you see this error then you have changed the database password between deployments,
     which is not supported. To change the password, see **Persistent Volume Retains Data**.
+
     > **Warning:** Changing the database password deletes your Supply Chain Security Tools - Store data.
 
 - **Persistent volume retains data**
@@ -309,14 +301,13 @@ the data on the volume:
     1. Delete the `metadata-store` app with kapp.
     1. Deploy the `metadata-store` app with kapp.
 
-- **Missing persistent volume**
+- **Missing persistent volume:**
 After Store is deployed, `metadata-store-db` Pod might fail for missing volume while
 `postgres-db-pv-claim` pvc is in the `PENDING` state.
 This issue might occur because the cluster where Store is deployed does not have `storageclass`
 defined.<br><br>
 The provisioner of `storageclass` is responsible for creating the persistent volume after
-`metadata-store-db` attaches `postgres-db-pv-claim`.<br><br>
-Solution:
+`metadata-store-db` attaches `postgres-db-pv-claim`. To fix this issue:
     1. Verify that your cluster has `storageclass` by running `kubectl get storageclass`.
     1. Create a `storageclass` in your cluster before deploying Store. For example:
 
@@ -328,18 +319,18 @@ Solution:
         kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
         ```
 
-- **Querying local path source reports**
+- **Querying local path source reports:**
 If a source report has a local path as the name -- for example, `/path/to/code` -- the leading
 `/` on the resulting repository name causes the querying packages and vulnerabilities to return
 the following error from the client lib and the CLI: `{ "message": "Not found" }`.<br><br>
-The URL of the resulting HTTP request is properly escaped: for example,
+The URL of the resulting HTTP request is properly escaped. For example,
 `/api/sources/%2Fpath%2Fto%2Fdir/vulnerabilities`.<br><br>
 The rbac-proxy used for authentication handles this URL in a way that the response is a
 redirect. For example, `HTTP 301\nLocation: /api/sources/path/to/dir/vulnerabilities`.
 The Client Lib follows the redirect, making a request to the new URL which does not exist in the
 Supply Chain Security Tools - Store API, resulting in this error message.
 
-- **No support for installing in custom namespaces**
+- **No support for installing in custom namespaces:**
 All of our testing uses the `metadata-store` namespace. Using a different namespace breaks ]
 authentication and certificate validation for the `metadata-store` API.
 
@@ -359,7 +350,7 @@ prompt, the command continues to wait and must be cancelled manually.
 #### Tanzu Dev Tools for VSCode
 
 Launching the `Extension Host`, and configuring `tasks` in a workspace that does not contain
-workload YAML files might not work. Solution: Uninstall the Tanzu Dev Tools extension to proceed.
+workload YAML files might not work. To solve this issue, uninstall the Tanzu Dev Tools extension.
 
 #### Services Toolkit
 
@@ -369,13 +360,12 @@ value causes only one of the workloads to bind to the service instance and recon
 This limitation is planned to be relaxed in an upcoming release.
 * The `tanzu services` CLI plug-in is not compatible with Kubernetes clusters running on GKE.
 
-### Security issues
+### Security issue
 
-This release has the following security issues:
-
-* The installation specifies that the installer's Tanzu Network credentials be exported to all
+The installation specifies that the installer's Tanzu Network credentials be exported to all
 namespaces. Customers can choose to mitigate this concern using one of the following methods:
-    * Create a Tanzu Network account with their own credentials and use this for the installation exclusively.
+    * Create a Tanzu Network account with their own credentials and use this for the installation
+    exclusively.
     * Using [Carvel tool's imgpkg](https://carvel.dev/imgpkg/) customers can create a dedicated OCI
     registry on their own infrastructure that can comply with any required security policies that
     might exist.
@@ -385,7 +375,7 @@ namespaces. Customers can choose to mitigate this concern using one of the follo
 
 This release has the following breaking change:
 
-- **Supply Chain Security Tools - Store:** Changed package name to `metadata-store.apps.tanzu.vmware.com`.
+**Supply Chain Security Tools - Store:** Changed package name to `metadata-store.apps.tanzu.vmware.com`.
 
 ### Issue fixes
 
@@ -399,7 +389,7 @@ YAML files
 
 #### Supply Chain Security Tools - Store
 
-- Upgrade golang version from `1.17.1` to `1.17.5`
+Upgrade golang version from `1.17.1` to `1.17.5`
 
 ## <a id='0-4-0'></a> v0.4.0 beta release
 
@@ -524,7 +514,7 @@ You see a message similar to the following in your `ReplicaSet` statuses:
           kubectl apply -f image-policy-mutating-webhook-configuration.yaml
           ```
 
-- **Priority class of webhook's pods may preempt less privileged pods**
+- **Priority class of webhook's pods may preempt less privileged pods:**
 This component uses a privileged `PriorityClass` to start up its pods in order to prevent node
 pressure from preempting its pods. However, this can cause other less privileged components to have
 their pods preempted or evicted instead.<br><br>
@@ -536,44 +526,44 @@ You see events similar to this in the output of `kubectl get events`:
     28s         Normal    Preempted          pod/testpod          Preempted by image-policy-system/image-policy-controller-manager-59dc669d99-frwcp on node test-node
     ```
 
-One possible solution is to reduce the amount of pods deployed by the Sign component.
-If your deployment of the Sign component is running more pods than necessary, you can scale the
-deployment down. To do so:
+    * **Solution 1 - Reduce the number of pods:** Reduce the amount of pods deployed by the Sign
+    component. If your deployment of the Sign component is running more pods than necessary, you can
+    scale the deployment down. To do so:
 
-      1. Create a values file called `scst-sign-values.yaml` with the following
-      contents:
+        1. Create a values file called `scst-sign-values.yaml` with the following
+        contents:
 
-        ```
-        ---
-        replicas: N
-        ```
+            ```
+            ---
+            replicas: N
+            ```
 
-      Where `N` should be the smallest amount of pods you can have for your current cluster
-      configuration
+            Where `N` should be the smallest amount of pods you can have for your current cluster
+            configuration
 
-      1. Apply your new configuration by running:
+        1. Apply your new configuration by running:
 
-        ```
-        tanzu package installed update image-policy-webhook \
-          --package-name image-policy-webhook.signing.run.tanzu.vmware.com \
-          --version 1.0.0-beta.2 \
-          --namespace tap-install \
-          --values-file scst-sign-values.yaml
-        ```
+            ```
+            tanzu package installed update image-policy-webhook \
+              --package-name image-policy-webhook.signing.run.tanzu.vmware.com \
+              --version 1.0.0-beta.2 \
+              --namespace tap-install \
+              --values-file scst-sign-values.yaml
+            ```
 
-      1. It might take a few minutes until your configuration takes effect in the cluster.
+        1. It might take a few minutes until your configuration takes effect in the cluster.
 
-Another solution is to increase your cluster's resources.
+**Solution 2 - Increase your cluster's resources:**
 Node pressure might be caused by not enough nodes or not enough resources on nodes for deploying the
 workloads you have. In this case, follow your cloud provider instructions for how to scale out or
 scale up your cluster.
 
 #### Tanzu CLI apps plug-in  
 
-- **`tanzu apps workload get`**
+- **tanzu apps workload get:**
 Passing in `--output json` with the `--export` flag returns YAML rather than JSON.
 Support for honoring the `--output json` with `--export` is planned for the next release.
-- **`tanzu apps workload create/update/apply`**
+- **tanzu apps workload create/update/apply:**
   - `--image` is not supported by the default supply chain in Tanzu Application Platform v0.3.
   - `--wait` functions as expected when a workload is created for the first time but might return
   prematurely on subsequent updates when passed with `workload update/apply` for existing workloads.
