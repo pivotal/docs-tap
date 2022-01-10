@@ -1,4 +1,4 @@
-# insight package
+# Insight package
 
 Package commands are as follows:
 

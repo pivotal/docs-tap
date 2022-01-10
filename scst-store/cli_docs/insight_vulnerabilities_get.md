@@ -1,4 +1,4 @@
-## insight vulnerabilities get
+## Insight vulnerabilities get
 
 Get vulnerability by CVE id.
 
