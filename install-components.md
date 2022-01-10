@@ -1137,13 +1137,13 @@ For example, Supply Chain Choreographer passes the results of fetching source co
 that knows how to build a container image from of it and then passes the container image
 to a component that knows how to deploy the image.
 
-1. Install v0.1.0-rc.1 of the `cartographer.tanzu.vmware.com` package, naming the installation `cartographer`.
+1. Install v0.1.0 of the `cartographer.tanzu.vmware.com` package, naming the installation `cartographer`.
 
     ```
     tanzu package install cartographer \
       --namespace tap-install \
       --package-name cartographer.tanzu.vmware.com \
-      --version 0.1.0-rc.1
+      --version 0.1.0
     ```
 
     Example output:
@@ -1181,7 +1181,7 @@ To install Out of the Box Delivery Basic:
    configured by running:
 
     ```
-    tanzu package available get ootb-delivery-basic.tanzu.vmware.com/0.5.0-build.1 \
+    tanzu package available get ootb-delivery-basic.tanzu.vmware.com/0.5.1 \
       --values-schema \
       -n tap-install
     ```
@@ -1210,7 +1210,7 @@ To install Out of the Box Delivery Basic:
     ```
     tanzu package install ootb-delivery-basic \
       --package-name ootb-delivery-basic.tanzu.vmware.com \
-      --version 0.5.0-build.1 \
+      --version 0.5.1 \
       --namespace tap-install \
       --values-file ootb-delivery-basic-values.yaml
     ```
@@ -1253,7 +1253,7 @@ install it is the following command:
 ```
 tanzu package install ootb-templates \
   --package-name ootb-templates.tanzu.vmware.com \
-  --version 0.5.0-build.1 \
+  --version 0.5.1 \
   --namespace tap-install
 ```
 ```
@@ -1289,7 +1289,7 @@ Cartographer
    configured by running:
 
     ```
-    tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.5.0-build.1 \
+    tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.5.1 \
       --values-schema \
       -n tap-install
     ```
@@ -1363,7 +1363,7 @@ Cartographer
     ```
     tanzu package install ootb-supply-chain-basic \
       --package-name ootb-supply-chain-basic.tanzu.vmware.com \
-      --version 0.5.0-build.1 \
+      --version 0.5.1 \
       --namespace tap-install \
       --values-file ootb-supply-chain-basic-values.yaml
     ```
@@ -1521,7 +1521,7 @@ Install by following these steps:
     ```
     tanzu package install ootb-supply-chain-testing \
       --package-name ootb-supply-chain-testing.tanzu.vmware.com \
-      --version 0.5.0-build.1 \
+      --version 0.5.1 \
       --namespace tap-install \
       --values-file ootb-supply-chain-testing-values.yaml
     ```
@@ -1605,7 +1605,7 @@ and image for vulnerabilities.
 1. Check the values of the package that can be configured by running:
 
     ```
-    tanzu package available get ootb-supply-chain-testing-scanning.tanzu.vmware.com/0.5.0-build.1 \
+    tanzu package available get ootb-supply-chain-testing-scanning.tanzu.vmware.com/0.5.1 \
       --values-schema \
       -n tap-install
     ```
@@ -1682,7 +1682,7 @@ and image for vulnerabilities.
     ```
     tanzu package install ootb-supply-chain-testing-scanning \
       --package-name ootb-supply-chain-testing-scanning.tanzu.vmware.com \
-      --version 0.5.0-build.1 \
+      --version 0.5.1 \
       --namespace tap-install \
       --values-file ootb-supply-chain-testing-scanning-values.yaml
     ```
@@ -3047,15 +3047,15 @@ Use the following procedure to verify that the packages are installed.
     api-portal               api-portal.tanzu.vmware.com                        1.0.3            Reconcile succeeded
     app-accelerator          accelerator.apps.tanzu.vmware.com                  0.4.0            Reconcile succeeded
     app-live-view            appliveview.tanzu.vmware.com                       1.0.0-build.2    Reconcile succeeded
-    cartographer             cartographer.tanzu.vmware.com                      0.0.7            Reconcile succeeded
+    cartographer             cartographer.tanzu.vmware.com                      0.1.0            Reconcile succeeded
     cloud-native-runtimes    cnrs.tanzu.vmware.com                              1.0.3            Reconcile succeeded
     convention-controller    controller.conventions.apps.tanzu.vmware.com       0.4.2            Reconcile succeeded
     developer-conventions    developer-conventions.tanzu.vmware.com             0.3.0-build.1    Reconcile succeeded
     grype-scanner            grype.scanning.apps.tanzu.vmware.com               1.0.0            Reconcile succeeded
     image-policy-webhook     image-policy-webhook.signing.apps.tanzu.vmware.com  1.0.0-beta.1     Reconcile succeeded
     metadata-store           metadata-store.apps.tanzu.vmware.com               1.0.1            Reconcile succeeded
-    ootb-supply-chain-basic  ootb-supply-chain-basic.tanzu.vmware.com           0.3.0-build.5    Reconcile succeeded
-    ootb-templates           ootb-templates.tanzu.vmware.com                    0.3.0-build.5    Reconcile succeeded
+    ootb-supply-chain-basic  ootb-supply-chain-basic.tanzu.vmware.com           0.5.1            Reconcile succeeded
+    ootb-templates           ootb-templates.tanzu.vmware.com                    0.5.1            Reconcile succeeded
     scan-controller          scanning.apps.tanzu.vmware.com                     1.0.0            Reconcile succeeded
     service-bindings         service-bindings.labs.vmware.com                   0.5.0            Reconcile succeeded
     services-toolkit         services-toolkit.tanzu.vmware.com                  0.5.0            Reconcile succeeded
