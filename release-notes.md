@@ -358,8 +358,10 @@ prompt, the command continues to wait and must be cancelled manually.
 
 #### Tanzu Dev Tools for VSCode
 
-Launching the `Extension Host`, and configuring `tasks` in a workspace that does not contain
+**Unable to configure task**: Launching the `Extension Host`, and configuring `tasks` in a workspace that does not contain
 workload YAML files might not work. Solution: Uninstall the Tanzu Dev Tools extension to proceed.
+
+**Extension Pack for Java:** The `Extention Pack for Java` (vscjava.vscode-java-pack) may not be automatically installed. Tanzu Dev Tools will install however live-Update and debug will not work. Solution: Manually install `Extension Pack for Java` in the extension marketplace.
 
 #### Services Toolkit
 
