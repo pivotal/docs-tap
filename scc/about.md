@@ -19,23 +19,23 @@ resources - test, build, scan, and deploy - allows developers to focus on
 delivering value to their users and provides App Operators the assurance that
 all code in production has passed through all the steps of an approved workflow.
 
-# <a id="out-of-the-box-supply-chains"></a> Out of The Box Supply Chains
+# <a id="out-of-the-box-supply-chains"></a> Out of he Box Supply Chains
 
 Out of the box supply chains are provided with Tanzu Application Platform.
 
 The following three supply chains are included:
 
-- Out of The Box Supply Chain Basic
-- Out of The Box Supply Chain with Testing
-- Out of The Box Supply Chain with Testing and Scanning
+- [Out of the Box Supply Chain Basic](ootb-supply-chain-basic.html)
+- [Out of the Box Supply Chain with Testing](ootb-supply-chain-testing.html)
+- [Out of the Box Supply Chain with Testing and Scanning](ootb-supply-chain-testing-scanning.html)
 
 As auxiliary components, Tanzu Application Platform also includes:
 
-- Out of The Box Templates, for providing templates used by the supply chains
+- [Out of the Box Templates](ootb-templates.html), for providing templates used by the supply chains
   to perform common tasks like fetching source code, running tests, and
   building container images.
 
-- Out of The Box Delivery Basic, for delivering to a Kubernetes cluster the
+- [Out of the Box Delivery Basic](ootb-delivery-basic.html), for delivering to a Kubernetes cluster the
   configuration built throughout a supply chain
 
 Both Templates and Delivery Basic are requirements for the Supply Chains.
