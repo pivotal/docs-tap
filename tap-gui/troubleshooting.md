@@ -48,16 +48,16 @@ or change the standalone Tanzu Application Platform GUI values file if you're on
               token: <GITLAB-TOKEN>
   ```
 
-Other integrations can be substituted here as defined in the [Backstage documentation](https://backstage.io/docs/integrations/)
+You can substitute for other integrations as defined in the [Backstage documentation](https://backstage.io/docs/integrations/)
 
 ## <a id='updating-tap-gui-values'></a> Issues updating the values file
 ### Symptom
 
-When you need to update the configuration of Tanzu Application Platform GUI (either through the profiles method or as a standalone package install), how can you tell whether the configuration has been reloaded?
+When you need to update the configuration of Tanzu Application Platform GUI (either by using the profiles method or as a standalone package install), how can you tell whether the configuration has reloaded?
 
 ### Suggestions
 
-1. Check the logs of the Pods to see whether the configuration reloaded by running `kubectl get pods -n tap-gui`. For example:
+1. Check the logs of the Pods and verify whether the configuration reloaded by running `kubectl get pods -n tap-gui`. For example:
 
     ```
     $ kubectl get pods -n tap-gui
@@ -70,13 +70,13 @@ When you need to update the configuration of Tanzu Application Platform GUI (eit
     2021-10-29T15:08:49.725Z backstage info Reloaded config from app-config.yaml, app-config.yaml
     ```
 
-2. Try deleting the Pod and allowing it to be re-instantiated by running:
+2. Try deleting and re-instantiating the Pod by running:
 
     ```
     kubectl delete pod -l app=backstage -n tap-gui
     ```
 
->Note: `tap-gui` Pods aren't stateful. `config` is held in ConfigMaps, Git catalog, or Secrets.
+>**Note:** `tap-gui` Pods aren't stateful. `config` is held in ConfigMaps, Git catalog, or Secrets.
 
 ## <a id='tap-gui-logs'></a> Pull logs from Tanzu Application Platform GUI
 
