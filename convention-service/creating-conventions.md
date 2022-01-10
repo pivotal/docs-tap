@@ -1,4 +1,5 @@
 # Creating conventions
+
 This document describes how to create and deploy custom conventions to the Tanzu Application Platform.
 
 ## <a id='intro'></a>Introduction
@@ -8,20 +9,20 @@ into containerized workloads with a URL.
 The Supply Chain Choreographer for Tanzu manages this transformation.
 For more information, see [Supply Chain Choreographer](../scc/about.html).
 
-The [Convention Service](about.md) is a key component of the supply chain
+[Convention Service](about.md) is a key component of the supply chain
 compositions the choreographer calls into action.
-The Convention Service enables people in operational roles to efficiently apply
+Convention Service enables people in operational roles to efficiently apply
 their expertise. They can specify the runtime best practices, policies, and 
 conventions of their organization to workloads as they are created on the platform.
 The power of this component becomes evident when the conventions of an organization
 are applied consistently, at scale, and without hindering the velocity of application developers.
 
-Opinions and policies vary from organization to organization. The Convention
+Opinions and policies vary from organization to organization. Convention
 Service supports the creation of custom conventions to meet the unique operational needs
 and requirements of an organization.
 
 Before jumping into the details of creating a custom convention, let's look at two
-distinct components of the Convention Service: the
+distinct components of Convention Service: the
 [convention controller](#conventioncontroller) and [convention server](#conventionserver).
 
 ### <a id='conventionserver'></a>Convention server
@@ -31,7 +32,7 @@ Each convention server can host one or more conventions.
 The application of each convention by a convention server can be controlled conditionally.
 The conditional criteria governing the application of a convention is customizable and can be based
 on the evaluation of a custom Kubernetes resource called [PodIntent](reference/pod-intent.md).
-PodIntent is the vehicle by which the Convention Service as a whole delivers its value.
+PodIntent is the vehicle by which Convention Service as a whole delivers its value.
 
 A PodIntent is created, or updated if already existing, when a workload is run through a Tanzu Application Platform supply chain.
 The custom resource includes both the PodTemplateSpec (see the [Kubernetes documentation](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec)) and the OCI image metadata associated with a workload.
@@ -48,7 +49,7 @@ the conventions are organized, grouped, and deployed is up to you and the needs 
 your organization.
 
 Convention servers deployed to the cluster will not take action unless triggered to
-do so by the second component of the Convention Service, the [convention controller](#conventioncontroller).
+do so by the second component of Convention Service, the [convention controller](#conventioncontroller).
 
 ### <a id='conventioncontroller'></a>Convention controller
 
@@ -65,12 +66,12 @@ For more information, see [ClusterPodConvention](reference/cluster-pod-conventio
 After all convention servers are finished processing a PodIntent for a workload,
 the convention controller updates the PodIntent with the latest version of the PodTemplateSpec and sets
 `PodIntent.status.conditions[].status=True` where `PodIntent.status.conditions[].type=Ready`.
-This status change signals the Supply Chain Choreographer that the Convention Service is finished with its work.
+This status change signals the Supply Chain Choreographer that Convention Service is finished with its work.
 The status change also executes whatever steps are waiting in the supply chain.
 
 ## <a id='get-started'></a>Getting started
 
-With this high-level understanding of the Convention Service components, let's look at how to create and deploy a custom convention.
+With this high-level understanding of Convention Service components, let's look at how to create and deploy a custom convention.
 
 > **Note:** This document covers developing conventions using [GOLANG](https://golang.org/), but this can be done using other languages by following the specs.
 
