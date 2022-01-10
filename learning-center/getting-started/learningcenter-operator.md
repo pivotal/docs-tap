@@ -93,7 +93,7 @@ Replace ``test`` with the domain name for your Kubernetes cluster.
 or if using a ``nip.io`` address
 ```
 kubectl set env deployment/learningcenter-operator -n learningcenter INGRESS_DOMAIN=192.168.64.1.nip.io
-
+```
 Note that use of environment variables to configure the operator is a shortcut to cater for the 
 simple use case. The recommended way is to use Tanzu CLI or for more complicated scenarios the 
 ``SystemProfile`` custom resource can be used.
@@ -131,9 +131,9 @@ certificate on the configuration yaml passed to Tanzu CLI
   ```
 
 If you already have a TLS secret, follow these steps **before deploying any workshop**:
+
   - Create the `learningcenter` namespace manually or the one you defined
-  - Copy the tls secret to the `learningcenter` namespace or the one you
-  defined, and use the `secretName` property as in this example:
+  - Copy the tls secret to the `learningcenter` namespace or the one that you defined, and use the `secretName` property as in this example:
 
   ```
   ingressSecret:

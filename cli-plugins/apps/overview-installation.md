@@ -56,7 +56,7 @@ plugins:
 
 ## <a id='known-issues'></a>Known issues
 
-- See [Known Issues](known-issues.md)
+- See [Release Notes](../../release-notes.md)
 
 ## <a id='feedback'></a>Feedback
 

@@ -49,8 +49,8 @@ To configure your installed component properly, see
 
 ## Known issues
 
-See [Supply Chain Security Tools - Sign Known Issues](known_issues.md).
+See [Supply Chain Security Tools - Sign Known Issues](../release-notes.md#scst-sign).
 
 ## Release notes
 
-See [Supply Chain Security Tools - Sign Release Notes](release-notes.md).
+See [Release notes](../release-notes.md).

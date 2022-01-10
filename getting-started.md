@@ -894,7 +894,7 @@ When you apply the `ClusterImagePolicy` resource, your cluster requires valid si
 
 - [Overview for Supply Chain Security Tools - Sign](scst-sign/overview.md)
 - [Configuring Supply Chain Security Tools - Sign](scst-sign/configuring.md)
-- [Supply Chain Security Tools - Sign known issues](scst-sign/known_issues.md)
+- [Supply Chain Security Tools - Sign known issues](release-notes.md#scst-sign)
 
 
 ### Scan and Store: Introducing vulnerability scanning and metadata storage to your Supply Chain
@@ -990,26 +990,21 @@ The use cases vary according to where the service instance is located. The use c
 <col width="60%">
 <col width="10%">
 	<th><strong>Bind application to a service instance running:</strong></th>
-	<th><strong>Status:</strong></th>
   <th><strong>See:</strong></th>
 	<tr>
 		<td>in the same namespace</td>
-		<td>GA</td>
     <td><a href="#services-journey-use-case-1">Use case 1</a></td>
 	</tr>
 	<tr>
 		<td>in different namespace on the same Kubernetes cluster</td>
-    <td>GA</td>
     <td><a href="#services-journey-use-case-2">Use case 2</a></td>
 	</tr>
   <tr>
     <td>outside Kubernetes, for example, on an external Azure DB</td>
-    <td>GA</td>
     <td><a href="#services-journey-use-case-3">Use case 3</a></td>
   </tr>
   <tr>
     <td>on a different Kubernetes cluster</td>
-    <td>Beta</td>
     <td><a href="#services-journey-use-case-4">Use case 4</a></td>
   </tr>
 </table>
@@ -1159,7 +1154,7 @@ ClusterResource to reference and describe it.
 
 ### <a id='services-journey-use-case-1'></a> Use case 1: Binding an application to a pre-provisioned service instance running in the same namespace
 
->**Note:** The example flow detailed here makes use of one RabbitMQ service instance and one application workload, but in most real world cases, RabbitMQ is frequently used with two or more applications.
+>**Note:** The following examples implement a RabbitMQ service instance and a single sample application which acts as both a producer and consumer of messages. For most real world scenarios using RabbitMQ it's likely that there are multiple applications deployed and communicating through the RabbitMQ service. Currently it is not possible for more than one application workload to consume the same service instance. See [Known issues](release-notes.md#1-0) for further information.
 
 Follow these steps to bind an application to a pre-provisioned service instance running
 in the same namespace.

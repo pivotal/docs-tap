@@ -1,8 +1,11 @@
 # Sample public source scan of a blob
-This example will perform a scan against a source code in a `.tar.gz` file. This can be helpful in a Supply Chain, where there can be a `GitRepository` step that handles cloning a repository and outputting the source code as a compressed archive.
 
-## Define the resources
+This example performs a scan against source code in a `.tar.gz` file. This can be helpful in a Supply Chain, where there can be a `GitRepository` step that handles cloning a repository and outputting the source code as a compressed archive.
+
+## <a id="define-resources"></a>Define the resources
+
 Create `public-blob-source-example.yaml`:
+
 ```
 ---
 apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
@@ -51,32 +54,40 @@ spec:
   scanTemplate: public-blob-source-scan-template
 ```
 
-## (Optional) Set up a watch
-Before deploying, set up a watch in another terminal to see things process.
+## <a id="set-up-watch"></a>(Optional) Set up a watch
+
+Before deploying, set up a watch in another terminal to see things process:
+
 ```
 watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
 ```
 
-For more information, refer to [Observing and Troubleshooting](../observing.md).
+For more information, see [Observing and Troubleshooting](../observing.md).
 
-## Deploy the resources
+## <a id="deploy-resources"></a>Deploy the resources
+
 ```
 kubectl apply -f public-blob-source-example.yaml
 ```
 
-## View the scan results
+## <a id="view-scan-results"></a>View the scan results
+
 When the scan completes, perform:
+
 ```
 kubectl describe sourcescan public-blob-source-example
 ```
-and notice the `Status.Conditions` includes a `Reason: JobFinished` and `Message: The scan job finished`.
 
-For more information, refer to [Viewing and Understanding Scan Status Conditions](../results.md).
+Notice the `Status.Conditions` includes a `Reason: JobFinished` and `Message: The scan job finished`.
 
-## Clean up
+For more information, see [Viewing and Understanding Scan Status Conditions](../results.md).
+
+## <a id="clean-up"></a>Clean up
+
 ```
 kubectl delete -f public-blob-source-example.yaml
 ```
 
-## View vulnerability reports
-See [Viewing Vulnerability Reports](../viewing-reports.md) section
+## <a id="view-vulnerability-reports"></a>View vulnerability reports
+
+See [Viewing Vulnerability Reports](../viewing-reports.md) section.

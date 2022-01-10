@@ -1654,7 +1654,7 @@ and image for vulnerabilities.
                               default on image objects managed by the supply chain.
     ```
 
-1. Create a file named `ootb-supply-chain-testing-values.yaml` that specifies
+1. Create a file named `ootb-supply-chain-testing-scanning-values.yaml` that specifies
    the corresponding values to the properties you want to change. For example:
 
     ```
@@ -2163,7 +2163,6 @@ field in the values file.
 ## <a id='install-learning-center'></a> Install Learning Center for Tanzu Application Platform
 
 To install Tanzu Learning Center, see the following sections.
->**Note:** If you have any issue updating values or deploying Learning Center, please see the [Learning Center - Known Issues](learning-center/known-issues/about.md) for recovery steps.
 
 For general information about Learning Center, see [Learning Center](learning-center/about.md).
 
@@ -2533,8 +2532,8 @@ and you want to use `NodePort`, then create a `metadata-store-values.yaml` and c
 
 >**Caution:** This component rejects Pods if the webhook fails or is incorrectly configured.
 >If the webhook is preventing the cluster from functioning,
->see [Supply Chain Security Tools - Sign Known Issues](scst-sign/known_issues.md#sign-known-issues-pods-not-admitted)
->for recovery steps.
+>see [Supply Chain Security Tools - Sign Known Issues](release-notes.md)
+> in the Tanzu Application Plantform release notes for recovery steps.
 
 **Note:** v1alpha1 api version of the ClusterImagePolicy is no longer supported as the group name has been renamed from
 `signing.run.tanzu.vmware.com` to `signing.apps.vmware.com`.

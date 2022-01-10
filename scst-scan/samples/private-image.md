@@ -1,7 +1,9 @@
 # Sample private image scan
-This example will perform a scan against an image located in a private registry.
 
-## Define the resources
+This example performs a scan against an image located in a private registry.
+
+## <a id="define-resources"></a>Define the resources
+
 Create `sample-image-source-scan.yaml` and ensure you enter a valid docker config.json value in the secret:
 
 ```
@@ -25,32 +27,40 @@ spec:
   scanTemplate: private-image-scan-template
 ```
 
-## (Optional) Set up a watch
-Before deploying, set up a watch in another terminal to see things process.
+## <a id="set-up-watch"></a>(Optional) Set up a watch
+
+Before deploying, set up a watch in another terminal to see things process:
+
 ```
 watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
 ```
 
-For more information, refer to [Observing and Troubleshooting](../observing.md).
+For more information, see [Observing and Troubleshooting](../observing.md).
 
-## Deploy the [][]esources
+## <a id="deploy-resources"></a>Deploy the resources
+
 ```
 kubectl apply -f sample-image-source-scan.yaml
 ```
 
-## View the scan results
-When the scan completes, perform:
+## <a id="view-scan-results"></a>View the scan results
+
+When the scan completes, run:
+
 ```
 kubectl describe imagescan sample-image-source-scan
 ```
-and notice the `Status.Conditions` includes a `Reason: JobFinished` and `Message: The scan job finished`.
+
+Notice the `Status.Conditions` includes a `Reason: JobFinished` and `Message: The scan job finished`.
 
 For more information, see [Viewing and Understanding Scan Status Conditions](../results.md).
 
-## Clean up
+## <a id="clean-up"></a>Clean up
+
 ```
 kubectl delete -f sample-image-source-scan.yaml
 ```
 
-## View vulnerability reports
-See [Viewing Vulnerability Reports](../viewing-reports.md) section
+## <a id="view-vulnerability-reports"></a>View vulnerability reports
+
+See [Viewing Vulnerability Reports](../viewing-reports.md) section.

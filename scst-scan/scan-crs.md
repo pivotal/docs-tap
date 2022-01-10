@@ -1,18 +1,24 @@
 # Configure code repositories and image artifacts to be scanned
 
-## Prerequisite
-Both the Source and Image Scans require a `ScanTemplate` to be defined. Run `kubectl get scantemplates` for the ScanTemplates provided with the scanner installation. These can be referenced, or see [How to Create a ScanTemplate](create-scan-template.md).
+## <a id="prerequisite"></a>Prerequisite
 
-## Deploy scan custom resources
-The Scan Controller defines two custom resources to create scanning jobs:
+Both the source and image scans require a `ScanTemplate` to be defined. Run `kubectl get scantemplates` for the ScanTemplates provided with the scanner installation. These can be referenced, or see [How to create a ScanTemplate](create-scan-template.md).
+
+## <a id="deploy-scan-custom-resources"></a>Deploy scan custom resources
+
+The scan controller defines two custom resources to create scanning jobs:
+
 * SourceScan
 * ImageScan
 
-### SourceScan
+### <a id="sourcescan"></a>SourceScan
+
 The SourceScan custom resource helps you define and trigger a scan for a given repository. This can be done with source code existing in a public repository or a private one.
 
-#### Step 1: Create the SourceScan custom resource
+#### <a id="create-sourcescan-cr"></a>Step 1: Create the SourceScan custom resource
+
 Example:
+
 ```
 apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: SourceScan
@@ -31,7 +37,7 @@ spec:
     revision:
     # The name of the kubernetes secret containing the private SSH key information.
     sshKeySecret:
-    # A string containing the repository url.
+    # A string containing the repository URL.
     url:
     # The username needed to SSH connection. Default value is “git”
     username:
@@ -43,13 +49,14 @@ spec:
   scanPolicy: my-scan-policy
 ```
 
-#### Step 2: Deploy the SourceScan custom resource to the desired namespace on cluster
+#### <a id="deploy-sourcescan-cr-to-namespace"></a>Step 2: Deploy the SourceScan custom resource to the desired namespace on cluster
 
 `kubectl apply -f <path_to_the_cr>/<custom_resource_filename>.yml -n <desired_namespace>`
 
-After the scanning is done, the following fields will appear in the custom resource and filled by the scanner.
+After the scanning is done, the following fields appear in the custom resource and are filled by the scanner:
+
 ```
-# These fields will be populated from the source scan results
+# These fields are populated from the source scan results
 status:
   # The source code information as provided in the CycloneDX `bom>metadata>component>*` fields
   artifact:
@@ -59,12 +66,12 @@ status:
       url:
       revision:
 
-  # An array that will be populated with information about the scanning status 
+  # An array populated with information about the scanning status 
   # and the policy validation. These conditions might change in the lifecycle 
   # of the scan, refer to the "View Scan Status and Understanding Conditions" section to learn more.
   conditions: []
 
-  # The url of the vulnerability scan results in the Metadata Store integration.
+  # The URL of the vulnerability scan results in the Metadata Store integration.
   # Only available when the integration is configured.
   metadataUrl:
             
@@ -90,12 +97,14 @@ status:
       version: 1.0.0
 ```
 
-### ImageScan
-The ImageScan custom resource helps you define and trigger a scan for a given image. This can be done with an image existing in a public registry or a private one.
+### <a id="imagescan"></a>ImageScan
 
-#### Step 1: Create the ImageScan custom resource
+The ImageScan custom resource helps you define and trigger a scan for a given image. This can be done with an image existing in a public or private registry.
+
+#### <a id="create-imagescan-cr"></a>Step 1: Create the ImageScan custom resource
 
 Example:
+
 ```
 apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: ImageScan
@@ -118,13 +127,14 @@ spec:
   scanPolicy: my-scan-policy
 ```
 
-#### Step 2: Deploy the ImageScan custom resource to the desired namespace on cluster
+#### <a id="deploy-imagescan-cr-to-namespace"></a>Step 2: Deploy the ImageScan custom resource to the desired namespace on cluster
 
 `kubectl apply -f <path_to_the_cr>/<custom_resource_filename>.yml -n <desired_namespace>`
 
-After the scanning is done, the following fields will appear in the custom resource and filled by the scanner.
+After the scanning is done, the following fields appear in the custom resource and are filled by the scanner:
+
 ```
- # These fields will be populated from the image scan results
+ # These fields are populated from the image scan results
 status:
   artifact:
     registry:
@@ -132,24 +142,24 @@ status:
       image:
       imagePullSecret:
 
-  # An array that will be populated with information about the scanning status 
+  # An array that is populated with information about the scanning status 
   # and the policy validation. These conditions might change in the lifecycle 
   # of the scan, refer to the "View Scan Status and Understanding Conditions" section to learn more.
   conditions: []
 
-  # The url of the vulnerability scan results in the Metadata Store integration.
+  # The URL of the vulnerability scan results in the Metadata Store integration.
   # Only available when the integration is configured.
   metadataUrl:
             
   # When the CRD is updated to point at new revisions, this lets you know 
-  # if the status reflects the latest one or not
+  # whether the status reflects the latest one
   observedGeneration: 1
   observedPolicyGeneration: 1
   observedTemplateGeneration: 1
 
   # The latest datetime when the scanning was successfully finished.
   scannedAt:
-  # Information about the scanner that was used for the latest image scan.
+  # Information about the scanner used for the latest image scan.
   # This information reflects what's in the CycloneDX `bom>metadata>tools>tool>*` fields.
   scannedBy:
     scanner:
