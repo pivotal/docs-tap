@@ -1955,56 +1955,22 @@ To install Tanzu Application Platform GUI, see the following sections.
 
 ### <a id='tap-gui-prereqs'></a> Prerequisites
 
-**Required for basic functionality:**
-
-- Git repository for the software catalogs and a token allowing read access.
-Supported Git infrastructure includes:
-
+- Git repository for the Tanzu Application Platform GUI's software catalogs, along with a token allowing read access.
+  Supported Git infrastructure includes:
     - GitHub
     - GitLab
     - Azure DevOps
-
-- Blank Software Catalog from the Tanzu Application section of Tanzu Network
-
-**Required for full functionality:**
-
-- **Tanzu Application Platform tools:** Tanzu Application Platform GUI has plug-ins for the
-following Tanzu Application Platform tools.
-If you plan on running workloads with these capabilities, you need these tools installed alongside
-Tanzu Application Platform GUI.
-If you choose not to deploy workloads with these tools, the UI shows menu options that you cannot
-select.
-
-    - Tanzu Cloud Native Runtimes
-    - Tanzu App Live View
-
-- **Data cache:** Your software catalog is stored on Git infrastructure, as mentioned in the
-required prerequisites. However, you also have the option to use a PostgreSQL database to
-cache this information. If you do not specify any values here, a SQLite in-memory database is used
-instead.
-
-    - PostgreSQL database and connection information
-
-- **Authentication:** OIDC Identity Provider connection information
-
-- **Customer-developed documentation:** Techdocs object storage location (S3)
-
-- **Tanzu Application Platform GUI catalog:** This allows for two approaches towards storing catalog information:
-
-    - The default option is suitable for test/development scenarios in that an
-    in-memory database is used.
-    This reads the catalog data from Git URLs you specify in the `tap-values.yml`
-    file.
-    This data is ephemeral and any operations that cause the `server` Pod in the
-    `tap-gui` namespace to be re-created will cause this data to be rebuilt from
-    the Git location. This can cause issues when you manually register entities
-    through the UI as they ONLY exist in the database and will be lost when that
-    in-memory database gets rebuilt.
-
-    - For production use-cases we recommend the use of a PostgreSQL database that
-    exists outside the Tanzu Application Platform's packaging.
-    This stores all the catalog data persistently both from the Git locations as
-    well as from the GUI's manual entity registrations.
+- Tanzu Application Platform GUI Blank Catalog from the Tanzu Application section of Tanzu Network
+  - To install this, navigate to [Tanzu Network](https://network.tanzu.vmware.com/) and select the Tanzu Application Platform. Under the list of available files to download, there is a folder titled `tap-gui-catalogs`. Inside that folder is a compressed archive titled `Tanzu Application Platform GUI Blank Catalog`. You must extract that catalog to the preceding Git repository of choice. This serves as the configuration location for your Organization's Catalog inside Tanzu Application Platform GUI.
+- The Tanzu Application Platform GUI catalog allows for two approaches towards storing catalog information:
+    - The default option uses an in-memory database and is suitable for test and development scenarios.
+          This reads the catalog data from Git URLs that you specify in the `tap-values.yml` file.
+          This data is temporary, and any operations that cause the `server` pod in the `tap-gui` namespace to be re-created
+          also cause this data to be rebuilt from the Git location.
+          This can cause issues when you manually register entities through the UI because
+          they only exist in the database and are lost when that in-memory database gets rebuilt.
+    - For production use-cases, use a PostgreSQL database that exists outside the Tanzu Application Platform's packaging.
+          This stores all the catalog data persistently both from the Git locations and the GUI's manual entity registrations.
 
 ### <a id='tap-gui-install-proc'></a> Procedure
 
@@ -2022,13 +1988,13 @@ To install Tanzu Application Platform GUI:
     $ tanzu package available list tap-gui.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for tap-gui.tanzu.vmware.com...
       NAME                      VERSION     RELEASED-AT
-      tap-gui.tanzu.vmware.com  0.3.0-rc.4  2021-10-28T13:14:23Z
+      tap-gui.tanzu.vmware.com  1.0.1  2022-01-10T13:14:23Z
     ```
 
 2. (Optional) To make changes to the default installation settings, run:
 
     ```
-    tanzu package available get tap-gui.tanzu.vmware.com/0.3.0-rc.4 --values-schema --namespace tap-install
+    tanzu package available get tap-gui.tanzu.vmware.com/1.0.1 --values-schema --namespace tap-install
     ```
 
     For more information about values schema options, see the individual product documentation.
@@ -2037,92 +2003,41 @@ To install Tanzu Application Platform GUI:
 with your relevant values. The meanings of some placeholders are explained in this example:
 
     ```
-    namespace: tap-gui
-    service_type: SERVICE-TYPE
+    service_type: ClusterIP
+    ingressEnabled: "true"
+    ingressDomain: "INGRESS-DOMAIN"
     app_config:
       app:
-        baseUrl: https://EXTERNAL-IP:PORT
-      integrations:
-        gitlab: # Other integrations available
-          - host: GITLAB-HOST
-            apiBaseUrl: https://GITLAB-URL/api/v4
-            token: GITLAB-TOKEN
+        baseUrl: http://tap-gui.INGRESS-DOMAIN
       catalog:
         locations:
           - type: url
             target: https://GIT-CATALOG-URL/catalog-info.yaml
       backend:
-          baseUrl: https://EXTERNAL-IP:PORT
-          cors:
-              origin: https://EXTERNAL-IP:PORT
-      # database: # Only needed if you intend to support with an existing PostgreSQL database. The catalog is still refreshed from Git.
-      #     client: pg
-      #      connection:
-      #        host: PGSQL-HOST
-      #        port: PGSQL-PORT
-      #        user: PGSQL-USER
-      #        password: PGSQL-PWD
-      #        ssl: {rejectUnauthorized: false} # May be needed if using self-signed certs
-
-      # techdocs: # Only needed if you want to enable TechDocs capability. Requires running the TechDoc CLI to generate TechDocs from catalog Markdown to S3-compatible bucket called out in Additional Resources documentation.
-      #  builder: 'external'
-      #  generator:
-      #    runIn: 'docker'
-      #  publisher:
-      #    type: 'awsS3'
-      #    awsS3:
-      #      bucketName: 'S3-BUCKET-NAME'
-      #      credentials:
-      #        accessKeyId: 'S3-ACCESS-KEY'
-      #        secretAccessKey: 'S3-SECRET-KEY'
-      #      region: 'S3-REGION'
-      #      s3ForcePathStyle: false # Set value to true if using local S3 solution (Minio)
-
-      # auth: # Only needed if you want to enable OIDC login integration, otherwise only Guest mode is enabled
-      #  environment: development
-      #  session:
-      #    secret: custom session secret # Unique string required by auth-backend to save browser session state
-      #  providers:
-      #    oidc: # Detailed configuration of the OIDC auth capabilities are documented here: https://backstage.io/docs/auth/oauth
-      #      development:
-      #        metadataUrl: AUTH-OIDC-METADATA-URL # metadataUrl is a JSON file with generic OIDC provider config. It contains the authorizationUrl and tokenUrl. These values are read from the metadataUrl file by Backstage and so they do not need to be specified explicitly here. To support OIDC authentication, you must create an OAuth client in your upstream provider, when setting up the client make sure to include the authorized redirect URI as: https://[BASE_URL]/api/auth/oidc/handler/frame
-      #        clientId: AUTH-OIDC-CLIENT-ID
-      #        clientSecret: AUTH-OIDC-CLIENT-SECRET
-      #        tokenSignedResponseAlg: AUTH-OIDC-TOKEN-SIGNED-RESPONSE-ALG # default='RS256'
-      #        scope: AUTH-OIDC-SCOPE # default='openid profile email'
-      #        prompt: TYPE # default=none (allowed values: auto, none, consent, login)
-    ```
+        baseUrl: http://tap-gui.INGRESS-DOMAIN
+        cors:
+          origin: http://tap-gui.INGRESS-DOMAIN
+      ```
 
     Where:
 
-    - `SERVICE-TYPE` is your inbound traffic mechanism: LoadBalancer, NodePort, ClusterIP, or ExternalName
-    - `EXTERNAL-IP:PORT` is your Ingress hostname or LoadBalancer information.
-       If you are using a load balancer that is dynamically provisioned by the cloud provider,
-       leave this value blank initially and, after the installation is complete,
-       run a subsequent `tanzu package installed update`.
-    - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included  Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog that you've already built and posted on the Git infrastructure that you specified in the Integration section.
-
-    >**Note:** The `app_config` section follows the same configuration model that Backstage uses.
-    >For more information, see the [Backstage documentation](https://backstage.io/docs/conf/).
-    >Detailed configuration of the OIDC authentication capabilities are in this
-    >[Backstage OAuth documentation](https://backstage.io/docs/auth/oauth).
-
-    >**Note:** The `integrations` section uses GitLab. If you want additional integrations, see the
-    >format in this [Backstage integration documentation](https://backstage.io/docs/integrations/).
+    - `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
+service's External IP address.
+   - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog that you've already built and posted on the Git infrastucture you specified in the Integration section.
 
 1. Install the package by running:
 
     ```
     tanzu package install tap-gui \
      --package-name tap-gui.tanzu.vmware.com \
-     --version 0.3.0-rc.4 -n tap-install \
+     --version 1.0.1 -n tap-install \
      -f tap-gui-values.yaml
     ```
 
     For example:
 
     ```
-    $ tanzu package install tap-gui -package-name tap-gui.tanzu.vmware.com --version 0.3.0 -n tap-install -f tap-gui-values.yaml
+    $ tanzu package install tap-gui -package-name tap-gui.tanzu.vmware.com --version 1.0.1 -n tap-install -f tap-gui-values.yaml
     - Installing package 'tap-gui.tanzu.vmware.com'
     | Getting package metadata for 'tap-gui.tanzu.vmware.com'
     | Creating service account 'tap-gui-default-sa'
@@ -2148,7 +2063,7 @@ with your relevant values. The meanings of some placeholders are explained in th
     | Retrieving installation details for cc...
     NAME:                    tap-gui
     PACKAGE-NAME:            tap-gui.tanzu.vmware.com
-    PACKAGE-VERSION:         0.3.0-rc.4
+    PACKAGE-VERSION:         1.0.1
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
