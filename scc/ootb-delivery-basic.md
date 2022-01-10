@@ -1,12 +1,21 @@
-# Out of The Box Delivery Basic (ootb-delivery-basic)
+# Out of the Box Delivery Basic
 
 This package provides a reusable ClusterDelivery object that is responsible for
 delivering to an environment the Kubernetes configuration that has been
-produced by the Out of The Box Supply Chains, including Basic, Testing, and Testing With
-Scanning.
+produced by the Out of the Box Supply Chains, including [Basic](ootb-supply-chain-basic.html),
+[Testing](ootb-supply-chain-testing.html), and
+[Testing With Scanning](ootb-supply-chain-testing-scanning.html).
 
-It support both GitOps and local development workflows:
+## <a id="prerequisites"></a> Prerequisites
 
+To make use of this package you must have installed:
+
+- [Supply Chain Cartographer](../install-components.html#install-scc)
+- [Out of the Box Templates](ootb-templates.html)
+
+## <a id="prerequisites"></a> Usage
+
+Out of the Box Delivery Basic support both GitOps and local development workflows:
 
 ```
 GITOPS
@@ -31,7 +40,7 @@ DELIVERY
     takes a Deliverable (local or gitops) and passes is through
     a series of resources:
 
-    
+
            config-provider  <---[config]--- deployer
                  .                             .
                  .                             .
@@ -42,20 +51,13 @@ DELIVERY
                                                 ...
 ```
 
-As a prerequisite of the Out of The Box Supply Chains (the three of them), it
-must be installed in order to have Workloads being properly delivered.
+As a prerequisite to the [Basic](ootb-supply-chain-basic.html),
+[Testing](ootb-supply-chain-testing.html), and
+[Testing With Scanning](ootb-supply-chain-testing-scanning.html) Out of the Box
+Supply Chains, you must install this package to have Workloads delivered properly.
 
-ps.: from the perspective of a consumer of the Out of The Box Supply Chains,
-this package is not something to be interacted with directly - it's used behind
-the scenes once a [carto.run/Deliverable] object is created by the supply
+Consumers do not interact directly with this package. Instead, this package is used
+once a [carto.run/Deliverable](carto.run/Deliverable) object is created by the supply
 chains to express the intention of having the Workloads that go through them
-delivered to an environment (at the moment, the same Kubernetes cluster as the
-Supply Chains).
-
-
-### Prerequisites
-
-To make use of this package, it's required that:
-
-- Cartographer is installed
-- Out of The Box Templates is installed
+delivered to an environment. At this time, the environment is the same Kubernetes cluster as the
+Supply Chains.

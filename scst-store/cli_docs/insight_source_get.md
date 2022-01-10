@@ -1,4 +1,4 @@
-## insight source get
+## Insight source get
 
 Get sources by repository, commit, or organization.
 

@@ -1,4 +1,4 @@
-# insight image create
+# Insight image create
 
 Create an image report from a report file:
 

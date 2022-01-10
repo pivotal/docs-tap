@@ -1,4 +1,4 @@
-# insight vulnerabilities
+# Insight vulnerabilities
 
 Vulnerabilities commands are as follows:
 

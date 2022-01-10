@@ -1,11 +1,14 @@
-# Out of The Box Templates (ootb-templates)
+# Out of the Box Templates
 
 In Cartographer, a supply chain is defined as a directed acyclic graph of
-resources that is choreographed by the Cartographer controllers, with the
+resources choreographed by the Cartographer controllers, with the
 definition of the shape of such resources defined by templates.
 
-In this package, you'll find a series of reusable templates used by  Out of The
-Box Supply Chain Basic, Testing, and Testing with Scanning.
+This package contains a series of reusable templates used by:
 
-As a prerequisite of the Out of The Box SupplyChains, it
-must be installed in order to have Workloads being properly delivered.
+* [Out of the Box Supply Chain Basic](ootb-supply-chain-basic.html)
+* [Out of the Box Supply Chain with Testing](ootb-supply-chain-testing.html)
+* [Out of the Box Supply Chain with Testing and Scanning](ootb-supply-chain-testing-scanning.html)
+
+As a prerequisite of the Out of the Box Supply Chains, you must install this package to have
+Workloads delivered properly.

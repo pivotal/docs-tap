@@ -2,26 +2,28 @@
 
 This guide explains how to generate and publish TechDocs for catalogs. You can also leverage the [Backstage.io documentation](https://backstage.io/docs/features/techdocs/techdocs-overview) as necessary.
 
-## Creating an AWS S3 bucket
+## <a id="create-s3-bucket"></a>Create an Amazon S3 bucket
 
 1. Navigate to [Amazon S3](https://s3.console.aws.amazon.com/s3/home):
-    - Click `Create bucket`.
+    - Click **Create bucket**.
     - Give the bucket a name.
     - Select the AWS region.
-    - Keep `Block all public access` checked
-    - Click `Create bucket`.
+    - Keep **Block all public access** checked.
+    - Click **Create bucket**.
 
-## Configuring AWS S3 access
+## <a id="configure-s3-access"></a>Configure Amazon S3 access
 
-The TechDocs will be published to the S3 bucket that was just created. You will need an AWS user's access key to read from the bucket when viewing TechDocs.
+The TechDocs are published to the S3 bucket that was just created.
+You need an AWS user's access key to read from the bucket when viewing TechDocs.
+To configure Amazon S3 access:
 
 1. Create an [AWS IAM User Group](https://console.aws.amazon.com/iamv2/home#/groups):
-    - Click `Create Group`.
+    - Click **Create Group**.
     - Give the group a name.
-    - Click `Create Group`.
-    - Click the new group and navigate to `Permissions`.
-    - Click `Add permissions` and click `Create Inline Policy`.
-    - Click the `JSON` tab and replace contents with this JSON replacing `<BUCKET_NAME>` with the bucket name.
+    - Click **Create Group**.
+    - Click the new group and navigate to **Permissions**.
+    - Click **Add permissions** and click **Create Inline Policy**.
+    - Click the **JSON** tab and replace contents with this JSON replacing `BUCKET-NAME` with the bucket name.
 
         ```
         {
@@ -35,45 +37,47 @@ The TechDocs will be published to the S3 bucket that was just created. You will 
                         "s3:GetObject"
                     ],
                     "Resource": [
-                        "arn:aws:s3:::<BUCKET_NAME>",
-                        "arn:aws:s3:::<BUCKET_NAME>/*"
+                        "arn:aws:s3:::BUCKET-NAME",
+                        "arn:aws:s3:::BUCKET-NAME/*"
                     ]
                 }
             ]
         }
         ```
 
-    - Click `Review policy`.
-    - Give the policy a name and click `Create policy`.
+    - Click **Review policy**.
+    - Give the policy a name and click **Create policy**.
 1. Create an [AWS IAM User](https://console.aws.amazon.com/iamv2/home#/users) to add to this group:
-   - Click `Add users`.
+   - Click **Add users**.
    - Give the user a name.
-   - Check the box for `Access key - Programmatic access` and click `Next: Permissions`.
-   - Check the box for the IAM Group to add the user to and click `Next: Tags`.
-   - Click `Next: Review` then click `Create user`.
-   - Note the `Access key ID` (`<AWS_READONLY_ACCESS_KEY_ID>`) and the `Secret access key` (`<AWS_READONLY_SECRET_ACCESS_KEY>`) and click `Close`.
+   - Check **Access key - Programmatic access** and click **Next: Permissions**.
+   - Check the IAM Group to add the user to and click **Next: Tags**.
+   - Click **Next: Review** then click **Create user**.
+   - Record the **Access key ID** (`AWS_READONLY_ACCESS_KEY_ID`) and the **Secret access key** (`AWS_READONLY_SECRET_ACCESS_KEY`) and click **Close**.
 
 
-## Find the catalog locations and their entities' namespace/kind/name
+## <a id="catalog-locations-and-entities"></a>Find the catalog locations and their entities' namespace/kind/name
 
 TechDocs are generated for catalogs that have markdown source files for TechDocs.
+To find the catalog locations and their entities' namespace/kind/name:
 
-1. The catalogs that will appear in Tanzu Application Platform GUI are listed in the `tap-gui-values.yaml` under `catalog.locations`.
+1. The catalogs appearing in Tanzu Application Platform GUI are listed in the `tap-gui-values.yaml` under `catalog.locations`.
 1. For a given catalog, clone the catalog's repository to the local file system.
-1. Find the `mkdocs.yml` that is at the root of the catalog. There should be a YAML file describing the catalog at the same level. It may be called `catalog-info.yaml`.
-    - Note the values for `namespace`, `kind`, and `metadata.name`, as well as the directory path containing the YAML file.
-1. Note the `spec.targets` in that file.
-    - For each of the targets, determine the namespace/kind/name.
+1. Find the `mkdocs.yml` that is at the root of the catalog. There is a YAML file describing the catalog at the same level called `catalog-info.yaml`.
+    - Record the values for `namespace`, `kind`, and `metadata.name`, and the directory path containing the YAML file.
+1. Record the `spec.targets` in that file.
+    - Find the namespace/kind</name for each of the targets:
         - Navigate to the target's YAML file.
         - The `namespace` value is the value of `namespace`.
-            - if it isn't specified, it will have the value `default`.
+            - if it isn't specified, it has the value `default`.
         - The `kind` value is the value of `kind`.
         - The `name` value is the value of `metadata.name`.
-        - Note the directory path containing the YAML file.
+        - Record the directory path containing the YAML file.
 
-## Use the TechDocs CLI to generate and publish TechDocs
+## <a id="use-techdocs-cli"></a>Use the TechDocs CLI to generate and publish TechDocs
 
-We will use `npx` to run the TechDocs CLI, which requires `Node.js` and `npm`.
+VMware uses `npx` to run the TechDocs CLI, which requires `Node.js` and `npm`.
+To generate and publish TechDocs by using the TechDocs CLI:
 
 1. [Download and install Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
 1. Install `npx`
@@ -82,33 +86,39 @@ We will use `npx` to run the TechDocs CLI, which requires `Node.js` and `npm`.
     npm install -g npx
     ```
 
-1. Generate the TechDocs for the root of the catalog. This will create a temporary `site` directory in your current working directory that contains the generated TechDocs files.
+1. Generate the TechDocs for the root of the catalog by running:
 
     ```
-    npx @techdocs/cli generate --source-dir <DIRECTORY_CONTAINING_THE_ROOT_YAML_FILE> --output-dir ./site
+    npx @techdocs/cli generate --source-dir DIRECTORY-CONTAINING-THE-ROOT-YAML-FILE --output-dir ./site
     ```
+
+    >**Note:** This creates a temporary `site` directory in your current working directory that contains the generated TechDocs files.
 
 1. Review the contents of the `site` directory to verify the TechDocs were generated successfully.
 1. Set environment variables for authenticating with AWS S3 with an account that has read/write access:
 
     ```
-    export AWS_ACCESS_KEY_ID=<AWS_ACCESS_KEY_ID>
-    export AWS_SECRET_ACCESS_KEY=<AWS_SECRET_ACCESS_KEY>
-    export AWS_REGION=<AWS_REGION>
+    export AWS_ACCESS_KEY_ID=AWS-ACCESS-KEY-ID
+    export AWS_SECRET_ACCESS_KEY=AWS-SECRET-ACCESS-KEY
+    export AWS_REGION=AWS-REGION
     ```
 
-1. Publish the TechDocs for the root of the catalog to the AWS S3 bucket you created earlier.
-    - The `<NAMESPACE/KIND/NAME>` will be the values for `namespace`, `kind`, and `metadata.name` you noted earlier. For example `default/location/yelb-catalog-info`.
+1. Publish the TechDocs for the root of the catalog to the Amazon S3 bucket you created earlier.
+    - The `NAMESPACE/KIND/NAME` are the values for `namespace`, `kind`, and `metadata.name` you recorded earlier.
+    For example, `default/location/yelb-catalog-info`.
 
     ```
-    npx @techdocs/cli publish --publisher-type awsS3 --storage-name <BUCKET_NAME> --entity <NAMESPACE/KIND/NAME> --directory ./site
+    npx @techdocs/cli publish --publisher-type awsS3 --storage-name BUCKET-NAME --entity NAMESPACE/KIND/NAME --directory ./site
     ```
 
-1. For each of the `spec.targets` found earlier repeat the generate and publish commands. Note that the generate command will erase the contents of the `site` directory before creating new TechDocs files so the publish command must follow the generate command for each target.
+1. For each of the `spec.targets` found earlier repeat the generate and publish commands.
 
-## Update app-config.yaml techdocs section to point to the AWS S3 bucket
+    >**Note:** The generate command erases the contents of the `site` directory before creating new TechDocs files so the publish command must follow the generate command for each target.
 
-We will update the `tap-gui-values.yaml` you used at install-time to point to the AWS S3 bucket that has the published TechDocs files.
+## <a id="update-app-config.yaml"></a>Update techdocs section in app-config.yaml to point to the Amazon S3 bucket
+
+Vmware updates the `tap-gui-values.yaml` you used at install-time to point to the Amazon S3 bucket that has the published TechDocs files.
+To update the `techdocs` section `app-config.yaml` to point to the Amazon S3 bucket:
 
 1. Replace the `techdocs` section in `tap-gui-values.yaml` with the following YAML, substituting appropriate values for the placeholders.
 
@@ -118,11 +128,11 @@ We will update the `tap-gui-values.yaml` you used at install-time to point to th
       publisher:
         type: 'awsS3'
         awsS3:
-          bucketName: <BUCKET_NAME>
+          bucketName: BUCKET-NAME
           credentials:
-            accessKeyId: <AWS_READONLY_ACCESS_KEY_ID>
-            secretAccessKey: <AWS_READONLY_SECRET_ACCESS_KEY>
-          region: <AWS_REGION>
+            accessKeyId: AWS-READONLY-ACCESS-KEY-ID
+            secretAccessKey: AWS-READONLY-SECRET-ACCESS-KEY
+          region: AWS-REGION
           s3ForcePathStyle: false
     ```
 

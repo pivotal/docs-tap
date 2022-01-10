@@ -1,4 +1,4 @@
-## insight vulnerabilities images
+## Insight vulnerabilities images
 
 Get images with a given vulnerability.
 
