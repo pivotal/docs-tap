@@ -166,7 +166,7 @@ spec:
     isCompliant = isSafe(input.currentVulnerability)
 ```
 
-See [Writing Policy Templates](../scst-scan/policies.md) for more details]).
+See [Writing Policy Templates](../scst-scan/policies.md) for more details.
 
 
 #### <a id="scan-template"></a> ScanTemplate
