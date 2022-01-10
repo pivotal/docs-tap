@@ -19,12 +19,12 @@ Operations teams can create application scaffolding templates with built-in secu
 guardrails, making those considerations mostly invisible to developers. Starting with the templates,
 developers turn source code into a container and get a URL to test their app in minutes.
 
-Once the container is built, updating it happens automatically every time there’s a new code commit
+After the container is built, updating it happens automatically every time there’s a new code commit
 or dependency patch. And connecting to other applications and data, regardless of how they’re built
 or what kind of infrastructure they run on, has never been easier, thanks to an internal API
 management portal.
 
-![TAP conceptual value](images/tap-conceptual-value.png)
+![Illustration of TAP conceptual value, starting with components that serve the developer and finishing with the components that serve the operations staff and security staff.](images/tap-conceptual-value.png)
 
 Customers can simplify workflows in both the inner loop and outer loop of Kubernetes-based app
 development with Tanzu Application Platform while creating supply chains.
@@ -45,7 +45,9 @@ development with Tanzu Application Platform while creating supply chains.
 [^1]: https://stackoverflow.com/questions/4127241/orchestration-vs-choreography
 [^2]: https://tanzu.vmware.com/developer/guides/supply-chain-choreography/
 
-Supply Chains provide a way of codifying all of the steps of your path to production, or what is more commonly known as CI/CD. A supply chain differs from CI/CD in that you can add any and every step that is necessary for an application to reach production or a lower environment.
+Supply Chains provide a way of codifying all of the steps of your path to production, or what is
+more commonly known as CI/CD. A supply chain differs from CI/CD in that you can add any and every
+step that is necessary for an application to reach production or a lower environment.
 
 ![Diagram depicting a simple path to production: CI to Security Scan to Build Image to Image Scan to CAB Approval to Deployment.](images/path-to-production.png)
 
@@ -54,11 +56,14 @@ unified access point for all of the tools required for their applications to rea
 environment.
 
 Instead of having four tools that are loosely coupled to each other, a path to production defines
-all four tools in a single, unified layer of abstraction. Where tools typically aren’t able to
-integrate with one another and additional scripting or webhooks are necessary, a unified automation
-tool codifies all the interactions between each of the tools.
+all four tools in a single, unified layer of abstraction. Where tools typically can't integrate with
+one another and additional scripting or webhooks are necessary, a unified automation tool codifies
+all the interactions between each of the tools.
 
-Tanzu Application Platform provides a default set of components that automates pushing an app to staging and production on Kubernetes, removing the pain points for both inner and outer loops. In addition, it allows the operators to customize the platform by replacing Tanzu Application Platform components with other products.
+Tanzu Application Platform provides a default set of components that automates pushing an app to
+staging and production on Kubernetes, removing the pain points for both inner and outer loops.
+In addition, it allows the operators to customize the platform by replacing
+Tanzu Application Platform components with other products.
 
 ![Diagram depicting the layered structure of TAP](images/tap-layered-capabilities.png)
 
@@ -69,7 +74,10 @@ The following packages are part of the Tanzu Application Platform:
   API portal for VMware Tanzu enables API consumers to find APIs they can use in their own
   applications.
 
-  Consumers can view detailed API documentation and try out an API to see if it will meet their needs. API portal assembles its dashboard and detailed API documentation views by ingesting OpenAPI documentation from the source URLs. An API portal operator can add any number of OpenAPI source URLs to be displayed in a single instance.
+  Consumers can view detailed API documentation and try out an API to see if it meets their needs.
+  API portal assembles its dashboard and detailed API documentation views by ingesting OpenAPI
+  documentation from the source URLs. An API portal operator can add any number of OpenAPI source
+  URLs to be displayed in a single instance.
 
 - **Application Accelerator**
 
@@ -112,8 +120,8 @@ The following packages are part of the Tanzu Application Platform:
 
   Developer conventions configure workloads to prepare them for inner loop development.
 
-  It’s meant to be a “deploy & forget” component for developers: once installed on the cluster
-  through the Tanzu Package CLI, developers do not need to directly interact with it.
+  It’s meant to be a “deploy and forget” component for developers: after it is installed on the
+  cluster with the Tanzu Package CLI, developers do not need to directly interact with it.
   Developers instead interact with the Tanzu Developer Tools for VSCode IDE Extension or
   Tanzu CLI Apps plug-in, which rely on the Developer Conventions to modify the workload to enable
   inner loop capabilities.
@@ -124,11 +132,13 @@ The following packages are part of the Tanzu Application Platform:
 
 - **Grype**
 
-  Grype is a vulnerability scanner for container images and filesystems.
+  Grype is a vulnerability scanner for container images and file systems.
 
 - **Services Toolkit**
 
-  The SCP Toolkit comprises a number of Kubernetes-native components which support the management, life cycle, discoverability, and connectivity of Service Resources (databases, message queues, DNS records, etc.) on Kubernetes.
+  Services Toolkit comprises a number of Kubernetes-native components which support the management,
+  life cycle, discoverability, and connectivity of Service Resources (databases, message queues,
+  DNS records, etc) on Kubernetes.
 
 - **Supply Chain Choreographer for Tanzu**
 
@@ -190,9 +200,9 @@ The following packages are part of the Tanzu Application Platform:
   Tekton is a powerful and flexible open-source framework for creating CI/CD systems, enabling
   developers to build, test, and deploy across cloud providers and on-premise systems.
 
-## <a id='profiles-and-packages'></a>  Installation profiles in Tanzu Application Platform v1.0
+## <a id='profiles-and-packages'></a> Installation profiles in Tanzu Application Platform v1.0
 
-Tanzu Application Platform is available through pre-defined profiles or individual packages.
+Tanzu Application Platform is available from pre-defined profiles or individual packages.
 
 The following profiles are available in Tanzu Application Platform:
 
@@ -211,20 +221,22 @@ To install the Tanzu Application Platform profiles, see [Installing Tanzu Applic
 
 [//]: # (This following text came from legal. Do not edit it.)
 
-Tanzu Application Platform participates in VMware’s Customer Experience Improvement Program (CEIP).
-As part of CEIP, VMware collects technical information about your organization’s use of VMware products and services
-in association with your organization’s VMware license keys.
+Tanzu Application Platform participates in the VMware Customer Experience Improvement Program (CEIP).
+As part of CEIP, VMware collects technical information about your organization’s use of VMware
+products and services in association with your organization’s VMware license keys.
 For information about CEIP, see the [Trust & Assurance Center](http://www.vmware.com/trustvmware/ceip.html).
 You may join or leave CEIP at any time.
-The CEIP Standard Participation Level provides VMware with information to improve its products and services,
-identify and fix problems, and advise you on how to best deploy and use VMware products.
-For example, this information can enable a proactive product deployment discussion with your VMware account team or
-VMware support team to help resolve your issues.
+The CEIP Standard Participation Level provides VMware with information to improve its products and
+services, identify and fix problems, and advise you on how to best deploy and use VMware products.
+For example, this information can enable a proactive product deployment discussion with your VMware
+account team or VMware support team to help resolve your issues.
 This information cannot directly identify any individual.
 
 [//]: # (The text above came from legal. Do not edit it.)
 
-You must acknowledge that you have read VMware’s CEIP policy before you can proceed with the installation.
-For more information, see [Install a Tanzu Application Platform profile](install.md#install-profile) in
-_Installing part II: profiles_.
-To opt out of telemetry participation after installation, see [Opting out of telemetry collection](opting-out-telemetry.md).
+You must acknowledge that you have read the VMware CEIP policy before you can proceed with the
+installation.
+For more information, see [Install a Tanzu Application Platform profile](install.md#install-profile)
+in _Installing part II: profiles_.
+To opt out of telemetry participation after installation, see
+[Opting out of telemetry collection](opting-out-telemetry.md).
