@@ -130,7 +130,7 @@ For any of the formats, credentials can be supplied as part of the URI.
 
 Access to the registry using a secure connection using ``https`` must have a valid certificate.
 
-The OCI image artficact can be created using ``imgpkg`` from the Carvel tool set. For example, from the top-level directory of the Git repository containing the workshop content, you would run:
+The OCI image artifact can be created using ``imgpkg`` from the Carvel tool set. For example, from the top-level directory of the Git repository containing the workshop content, you would run:
 
 ```
 imgpkg push -i harbor.example.com/organisation/project:version -f .
@@ -809,7 +809,7 @@ Values of fields in the list of resource objects can reference a number of pre-d
 
 If you want to create additional namespaces associated with the workshop environment, embed a reference to ``$(workshop_namespace)`` in the name of the additional namespaces with an appropriate suffix. Be careful that the suffix doesn't overlap with the range of session IDs for workshop instances.
 
-When creating deployments in the workshop namespace, set the ``serviceAccountName`` of the ``Deployment`` resouce to ``$(service_account)``. This ensures the deployment makes use of a special pod security policy set up by the Learning Center. If this isn't used and the cluster imposes a more strict default pod security policy, your deployment may not work, especially if any image expects to run as ``root``.
+When creating deployments in the workshop namespace, set the ``serviceAccountName`` of the ``Deployment`` resource to ``$(service_account)``. This ensures the deployment makes use of a special pod security policy set up by the Learning Center. If this isn't used and the cluster imposes a more strict default pod security policy, your deployment may not work, especially if any image expects to run as ``root``.
 
 ## Workshop pod security policy
 
@@ -1078,7 +1078,7 @@ In this case ``environment.objects`` of the workshop ``spec`` needs to include r
 
 ## Disabling workshop instructions
 
-The aim of the workshop environment is to provide instructions for a workshop which users can follow. If you want instead to use the workshop environment as a development environment or as an admistration console which provides access to a Kubernetes cluster, you can disable the display of workshop instructions provided with the workshop content. In this case, only the work area with the terminals, console, etc., is displayed. To disable display of workshop instructions, add a ``session.applications.workshop`` section and set the ``enabled`` property to ``false``.
+The aim of the workshop environment is to provide instructions for a workshop which users can follow. If you want instead to use the workshop environment as a development environment or as an administration console which provides access to a Kubernetes cluster, you can disable the display of workshop instructions provided with the workshop content. In this case, only the work area with the terminals, console, etc., is displayed. To disable display of workshop instructions, add a ``session.applications.workshop`` section and set the ``enabled`` property to ``false``.
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1

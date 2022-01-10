@@ -1,32 +1,33 @@
 # Enforce compliance policy using Open Policy Agent
 
-## Writing a policy template
-The Scan Policy custom resource allows you to define a Rego File for policy enforcement that you can easily reuse across Image Scan and Source Scan CRs.
+## <a id="writing-policy-template"></a>Writing a policy template
+The Scan Policy custom resource allows you to define a Rego file for policy enforcement that you can reuse across Image Scan and Source Scan CRs.
 
-The Scan Controller supports policy enforcement by using an Open Policy Agent (OPA) engine with Rego Files. This allows scan results to be validated for company policy compliance and can prevent source code from being built or images from being deployed.
+The Scan Controller supports policy enforcement by using an Open Policy Agent (OPA) engine with Rego files. This allows scan results to be validated for company policy compliance and can prevent source code from being built or images from being deployed.
 
-## Rego file contract
-For you to define a rego file for an Image Scan or Source Scan, you need to be compliant with the requirements that are defined for every Rego File in order for the policy verification to work properly.
+## <a id="rego-file-contract"></a>Rego file contract
+To define a Rego file for an image scan or source scan, you must comply with the requirements defined for every Rego file for the policy verification to work properly.
 
-1. **Package Policies**  
-The Rego File must define a package in its body called `policies` since this will be the package the system will be looking for to decide on the scan's results compliance.
+1. **Package policies**  
+The Rego file must define a package in its body called `policies`, because the system looks for this package to determine the scan's results compliance.
 
-1. **Input Match**  
-The Rego File evaluates one vulnerability match at a time, having as many iterations as different vulnerabilities are found in the scan. The match structure can be accessed in the `input.currentVulnerability` object inside the Rego File and will have the [CycloneDX](https://cyclonedx.org/docs/1.3/) format.
+1. **Input match**  
+The Rego file evaluates one vulnerability match at a time, iterating as many times as different vulnerabilities are found in the scan. The match structure can be accessed in the `input.currentVulnerability` object inside the Rego file and has the [CycloneDX](https://cyclonedx.org/docs/1.3/) format.
 
-1. **isCompliant Rule**  
-The Rego File must define inside its body an `isCompliant` rule, which needs to be a boolean type containing the result whether the vulnerability violates the security policy or not. If `isCompliant` is `true`, the vulnerability is allowed in the Source or Image scan; `false` will be considered otherwise. Any scan that finds at least one vulnerability that evaluates to `isCompliant=false` will make the `PolicySucceeded` condition set to false.
+1. **isCompliant rule**  
+The Rego file must define inside its body an `isCompliant` rule. This must be a Boolean type containing the result whether or not the vulnerability violates the security policy. If `isCompliant` is `true`, the vulnerability is allowed in the Source or Image scan; `false` will be considered otherwise. Any scan that finds at least one vulnerability that evaluates to `isCompliant=false` will make the `PolicySucceeded` condition set to false.
 
-## Step 1: Create a scan policy with rego file
+## <a id="create-scan-policy-with-rego-file"></a>Step 1: Create a scan policy with rego file
 
-### Sample scan policy resource
+### <a id="sample-scan-policy-resource"></a>Sample scan policy resource
+
 ```
 apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: ScanPolicy
 metadata:
   name: scanpolicy-sample
 spec:
-  # A multiline string defining a valid Rego File for policy validation
+  # A multiline string defining a valid Rego file for policy validation
   regoFile: |
     # Define the package policies
     package policies
@@ -54,6 +55,6 @@ spec:
     }
 ```
 
-## Step 2: Deploy the Scan Policy to the Cluster
+## <a id="deploy-scan-policy-to-cluster"></a>Step 2: Deploy the scan policy to the cluster
 
 `kubectl apply -f <path_to_scan_policy>/<scan_policy_filename>.yml -n <desired_namespace>`

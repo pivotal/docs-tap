@@ -2,7 +2,7 @@
 
 This topic explains how to configure the Insight CLI:
 
-> **Note:** All [required set up](../scst-store/overview.md#required-set-up) must be completed in addition to configuring the CLI
+> **Note:** All [required setup](../scst-store/overview.md#required-set-up) must be completed in addition to configuring the CLI
 
 
 ## Set the target and certificate authority certificate
@@ -28,7 +28,7 @@ Setting endpoint in config to: https://metadata-store-app.metadata-store.svc.clu
 
 ## Check the connection
 
-Now check that your configuration is correct and you are able to make a connection.
+Check that your configuration is correct and you are able to make a connection.
 
 ```
 insight health

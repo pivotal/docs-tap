@@ -8,7 +8,7 @@ The Runtime Resources tab shows developers the details and status of their compo
 To ensure your component and its resources are displayed, you need:
 
 - A YAML file describing your component.
-- All resources created for your application must specify a label `'app.kubernetes.io/part-of'` with your application's name.
+- All resources created for your application must have a label `'app.kubernetes.io/part-of'` with your application's name.
 
 Developers must follow these instructions to see their resources on the dashboard:
 
@@ -94,7 +94,7 @@ For information about owners and dependents, see [Kubernetes documentation](http
 
 Here is an example of the expanded index table showing one of the owner resources and its dependents.
 
-![Runtime resources index table collapsed](images/runtime-resources-expanded.png)
+![Screenshot of Runtime resources expanded](images/runtime-resources-expanded.png)
 
 ## <a id="detail-pages"></a>Detail pages
 
@@ -104,7 +104,7 @@ These following sections explain the boxes included on all detail pages:
 
 ### <a id="overview-section"></a>Overview section
 
-The overview section is the first card in every detail page. Most of the information in it comes from the `metadata` attribute in each object. 
+The overview section is the first card in every detail page. Most of the information in it comes from the `metadata` attribute in each object.
 Some attributes displayed here include:
 
   1. **.YAML** button: When you click on the **.YAML** button, a side panel opens showing the current object's definition in YAML. You can copy the full content of the **.YAML** file by using the icon in the top-right corner of the side panel..
@@ -114,15 +114,15 @@ Some attributes displayed here include:
   5. Cluster: The value displayed corresponds to the name used in the cluster's configuration.
   6. URL: URL is available for Knative services and Kubernetes services.
 
-![Overview section](images/runtime-resources-overview.png)
+![Screenshot of overview section](images/runtime-resources-overview.png)
 
 ### <a id="status-section"></a>Status section
 
-The status section displays all of the conditions included in the resource's attribute `status.conditions`. Not all resources have conditions, and they could be different for each resource.
+The status section displays all of the conditions in the resource's attribute `status.conditions`. Not all resources have conditions, and they can be different for each resource.
 
 See [Concepts - Object Spec and Status](https://kubernetes.io/docs/concepts/_print/#object-spec-and-status) in the Kubernetes documentation.
 
-![Status section](images/runtime-resources-status.png)
+![Screenshot of status section](images/runtime-resources-status.png)
 
 ### <a id="ownership-section"></a>Ownership section
 
@@ -130,34 +130,39 @@ Depending on the resource that you are viewing, the ownership section presents a
 
 See [Owners and Dependents](https://kubernetes.io/docs/concepts/overview/working-with-objects/owners-dependents/) in the Kubernetes documentation.
 
-![Ownership section](images/runtime-resources-ownership.png)
+![Screenshot of ownership section](images/runtime-resources-ownership.png)
 
 ### <a id="annotations"></a>Annotations and Labels
 
-The Annotations and Labels sections show information on `metadata.annotations` and `metadata.labels`.
+The Annotations and Labels sections show information about `metadata.annotations` and `metadata.labels`.
 
-![Annotations and Labels sections](images/runtime-resources-annotations.png)
+![Screenshot of Annotations and Labels sections](images/runtime-resources-annotations.png)
 
 ## <a id="navigating-to-pods"></a>Navigating to Pods
 
 You can navigate directly to the Pod's detail page from the Resources index table.
 
-![Accessing pod from index table](images/runtime-resources-index-pod.png)
+![Screenshot of accessing pod from index table](images/runtime-resources-index-pod.png)
 
 You can use the table listing Pods in each owner object's detail page. Columns can be different on each detail page.
 
-![Accessing pod from home](images/runtime-resources-pods.png)
+![Screenshot of accessing pod from home](images/runtime-resources-pods.png)
 
 ## <a id="knative-service-details"></a>Knative service details page
 
 To view details about your Knative services, select any resource that has the "Knative Service" type.
-In this page, additional information is available for Knative resources including status, an ownership hierarchy, 
-incoming routes, revisions, and pod details.
+In this page, additional information is available for Knative resources, including:
 
-![Resource detail page](images/runtime-resources-details.png)
+- status
+- an ownership hierarchy
+- incoming routes
+- revisions
+- Pod details
+
+![Screenshot of resource detail page](images/runtime-resources-details.png)
 
 ## <a id="pod-details"></a>Pod details page
 
-This page shows you most relevant information for a specific Pod including its containers and the [Application Live View information](./app-live-view.md) information.
+This page shows you most relevant information for a specific Pod including its containers and the [Application Live View](app-live-view.md) information.
 
-![Resource detail page](images/runtime-resources-pod-details.png)
+![Screenshot of resource detail page](images/runtime-resources-pod-details.png)

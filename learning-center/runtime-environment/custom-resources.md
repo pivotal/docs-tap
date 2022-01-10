@@ -61,7 +61,7 @@ spec:
   request:
     token: lab-markdown-sample
   session:
-    username: eduk8s
+    username: learningcenter
 ```
 
 When an instance of the ``WorkshopEnvironment`` custom resource is created, the Learning Center Operator 

@@ -199,7 +199,7 @@ spec:
 
 ## Overriding the login credentials
 
-When requesting a workshop using ``WorkshopRequest``, a login prompt for the workshop instance is presented to a user when accessing the URL for the workshop instance. By default the username is ``eduk8s``. The password is a random value which the user needs to query from the ``WorkshopRequest`` status after the custom resource has been created.
+When requesting a workshop by using ``WorkshopRequest``, a login prompt is presented to the user when accessing the workshop instance URL. By default, the username is ``learningcenter``. The password is a random value the user needs to query from the ``WorkshopRequest`` status after the custom resource is created.
 
 If you want to override the username, you can specify the ``session.username`` field. If you want to set the same fixed password for all workshop instances, you can specify the ``session.password`` field.
 
@@ -258,7 +258,7 @@ spec:
     namespaces:
     - $(workshop_namespace)
   session:
-    username: eduk8s
+    username: learningcenter 
     password: lab-markdown-sample
   environment:
     objects:

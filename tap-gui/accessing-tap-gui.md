@@ -83,7 +83,7 @@ instance of Contour that is installed as part of the Profile installation.
         catalog:
             locations:
             - type: url
-                target: https://GIT-CATALOG-URL/catalog-info.yaml
+              target: https://GIT-CATALOG-URL/catalog-info.yaml
         backend:
             baseUrl: http://tap-gui.example.com # No port needed with Ingress
             cors:

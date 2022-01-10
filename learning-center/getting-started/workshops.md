@@ -65,7 +65,7 @@ kubectl apply -f https://raw.githubusercontent.com/eduk8s-labs/lab-k8s-fundament
 This should result in the output:
 
 ```
-workshoprequest.training.eduk8s.io/lab-k8s-fundamentals created
+workshoprequest.learningcenter.tanzu.vmware.com/lab-k8s-fundamentals created
 ```
 
 You can list the workshop requests in a namespace by running:

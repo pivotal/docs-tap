@@ -1,7 +1,8 @@
 # Sample private source scan
 
-## Define the resources
-Create `sample-private-source-scan.yaml` and ensure you enter a valid private ssh key value in the secret:
+## <a id="define-resources"></a>Define the resources
+
+Create `sample-private-source-scan.yaml` and ensure you enter a valid private SSH key value in the secret:
 
 ```
 ---
@@ -28,32 +29,40 @@ spec:
   scanTemplate: private-source-scan-template
 ```
 
-## (Optional) Set up a watch
-Before deploying, set up a watch in another terminal to see things process which will be quick.
+## <a id="set-up-watch"></a>(Optional) Set up a watch
+
+Before deploying, set up a watch in another terminal to see things process, which will be quick:
+
 ```
 watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
 ```
 
-For more information, refer to [Observing and Troubleshooting](../observing.md).
+For more information, see [Observing and Troubleshooting](../observing.md).
 
-## Deploy the resources
+## <a id="deploy-resources"></a>Deploy the resources
+
 ```
 kubectl apply -f sample-private-source-scan.yaml
 ```
 
-## View the scan status
-Once the scan has completed, perform:
+## <a id="view-scan-status"></a>View the scan status
+
+Once the scan has completed, run:
+
 ```
 kubectl describe sourcescan sample-private-source-scan
 ```
-and notice the `Status.Conditions` includes a `Reason: JobFinished` and `Message: The scan job finished`.
 
-For more information, refer to [Viewing and Understanding Scan Status Conditions](../results.md).
+Notice the `Status.Conditions` includes a `Reason: JobFinished` and `Message: The scan job finished`.
 
-## Clean up
+For more information, see [Viewing and Understanding Scan Status Conditions](../results.md).
+
+## <a id="clean-up"></a>Clean up
+
 ```
 kubectl delete -f sample-private-source-scan.yaml
 ```
 
-## View vulnerability reports
+## <a id="view-vulnerability-reports"></a>View vulnerability reports
+
 See [Viewing Vulnerability Reports](../viewing-reports.md) section
