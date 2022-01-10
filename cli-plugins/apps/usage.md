@@ -32,8 +32,8 @@ In many cases, you can manage workload life cycles through CLI commands.
 However, you might find cases where you want to manage a workload by using a `yaml` file.
 The Apps CLI plug-in supports using `yaml` files.
 
-The plug-in is designed to manage **one workload** at a time.
-When you manage a workload by using a `yaml` file, that file must contain a single workload definition.
+The plug-in is designed to manage one workload at a time.
+When you manage a workload using a `yaml` file, that file must contain a single workload definition.
 Plug-in commands support only one file per command.
 
 For example, a valid file looks similar to the following example:
