@@ -11,7 +11,7 @@ Before installing the Tanzu Developer Tools IDE extension, you must have:
 - The Tanzu CLI.
   See [Install the Tanzu CLI](../install-general.md#cli-and-plugin).
 - The Tanzu CLI apps plug-in.
-  See [Install the Tanzu CLI Plugins](../install-general.md#install-the-tanzu-cli-plugins).
+  See [Install the Tanzu CLI plug-ins](../install-general.md#install-the-tanzu-cli-plugins).
 - A cluster with Tanzu Application Platform, the default Supply Chain, and their dependencies. Download these from Tanzu Network. For installation instructions, see [Installing part I: Prerequisites, EULA, and CLI](../install-general.md).
 - [VSCode](https://code.visualstudio.com/download)
 

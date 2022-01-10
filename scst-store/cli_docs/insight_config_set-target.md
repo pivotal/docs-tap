@@ -24,7 +24,7 @@ insight config set-target https://localhost:8443 --ca-cert=/tmp/ca.crt --access-
   -h, --help                  help for set-target
 ```
 
-### SEE ALSO
+### See also
 
 * [insight config](insight_config.md)	 - Config commands
 
