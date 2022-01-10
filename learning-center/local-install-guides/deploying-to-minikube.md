@@ -1,10 +1,10 @@
 # Installing on Minikube
 
-Minikube makes for a simple local deployment of Kubernetes for developing workshop content or for self-learning when deploying other people's workshops.
+Minikube makes for simple local deployment of Kubernetes for developing workshop content or for self-learning when deploying other people's workshops.
 
 As you are deploying to a local machine you are unlikely to have access to your own custom domain name and certificate you can use with the cluster. Extra steps are required over a standard install of Minikube to ensure you can run certain types of workshops.
 
-Also keep in mind that since Minikube generally has limited memory resources available and is only a single-node cluster, you may be prohibited from running workshops which have large memory requirements or which demonstrate use of third-party applications which require a multi-node cluster.
+Also keep in mind that since Minikube generally has limited memory resources available and is only a single-node cluster, you may be prohibited from running workshops that have large memory requirements or which demonstrate the use of third-party applications which require a multi-node cluster.
 
 Requirements and setup instructions specific to Minikube are detailed below,; otherwise, normal installation instructions for the Learning Center operator should be followed.
 
@@ -80,7 +80,7 @@ tanzu package repository add tanzu-tap-repository \
   --namespace tap-install
 ```
 Where TANZU-NET-USER and TANZU-NET-PASSWORD are your credentials for Tanzu Network.
-  
+
   Add package repository to your cluster:
 
 ```
