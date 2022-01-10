@@ -33,9 +33,11 @@ We also support a custom OpenID Connect (OIDC) provider shown here:
             prompt: auto # default=none (allowed values: auto, none, consent, login)
     ```
 
-    `metadataUrl` is a JSON file with generic OIDC provider configuration. It contains `authorizationUrl` and `tokenUrl`. These values are read from the `metadataUrl` file by Tanzu Application Platform GUI, and so they do not need to be specified explicitly in your authentication configuration above.
-    
-    For more information, see [this example](https://github.com/backstage/backstage/blob/e4ab91cf571277c636e3e112cd82069cdd6fca1f/app-config.yaml#L333-L347).
+    `metadataUrl` is a JSON file with generic OIDC provider configuration. It contains `authorizationUrl` and `tokenUrl`.
+    These values are read from the `metadataUrl` file by Tanzu Application Platform GUI,
+    and so they do not need to be specified explicitly in your authentication configuration above.
+
+    For more information, see [this example](https://github.com/backstage/backstage/blob/e4ab91cf571277c636e3e112cd82069cdd6fca1f/app-config.yaml#L333-L347) in Github.
 
 ## <a id='allow-guest-access'></a>Allow guest access
 
