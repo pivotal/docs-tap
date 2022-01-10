@@ -53,7 +53,7 @@ To configure Amazon S3 access:
    - Check **Access key - Programmatic access** and click **Next: Permissions**.
    - Check the IAM Group to add the user to and click **Next: Tags**.
    - Click **Next: Review** then click **Create user**.
-   - Record the **Access key ID** (`<AWS_READONLY_ACCESS_KEY_ID> <!-- If a placeholder, delete the angle brackets and use dashes instead of underscores. -->`) and the **Secret access key** (`<AWS_READONLY_SECRET_ACCESS_KEY> <!-- If a placeholder, delete the angle brackets and use dashes instead of underscores. -->`) and click **Close**.
+   - Record the **Access key ID** (`AWS_READONLY_ACCESS_KEY_ID`) and the **Secret access key** (`AWS_READONLY_SECRET_ACCESS_KEY`) and click **Close**.
 
 
 ## <a id="catalog-locations-and-entities"></a>Find the catalog locations and their entities' namespace/kind/name
@@ -104,7 +104,7 @@ To generate and publish TechDocs by using the TechDocs CLI:
     ```
 
 1. Publish the TechDocs for the root of the catalog to the Amazon S3 bucket you created earlier.
-    - The `<NAMESPACE/KIND/NAME>` are the values for `namespace`, `kind`, and `metadata.name` you recorded earlier.
+    - The `NAMESPACE/KIND/NAME` are the values for `namespace`, `kind`, and `metadata.name` you recorded earlier.
     For example, `default/location/yelb-catalog-info`.
 
     ```
