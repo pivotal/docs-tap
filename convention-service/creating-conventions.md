@@ -42,11 +42,10 @@ in the PodIntent. The convention server also updates the `status` section of the
 with the name of the convention that's been applied.
 So if needed, you can figure out after the fact which conventions were applied to the workload.
 
-To provide flexibility in how conventions are organized, multiple convention servers
-can be deployed. Each server can contain a convention or set of conventions focused on a
+To provide flexibility in how conventions are organized, you can deploy multiple convention servers. Each server can contain a convention or set of conventions focused on a
 specific class of runtime modifications, on a specific language framework, and so on. How
-the conventions are organized/grouped and deployed is up to the author and the needs of
-their organization.
+the conventions are organized, grouped, and deployed is up to you and the needs of
+your organization.
 
 Convention servers deployed to the cluster will not take action unless triggered to
 do so by the second component of the Convention Service, the [convention controller](#conventioncontroller).
@@ -94,7 +93,7 @@ The following prerequisites must be met before a convention can be developed and
 ## <a id='server-behavior'></a> Define convention criteria
 
 The `server.go` file contains the configuration for the server and the logic the server applies when a workload matches the defined criteria. 
-For example, adding a prometheus sidecar to web apps, or adding a `workload-type=spring-boot` label to any workload that has metadata, indicating it is a Spring Boot app.  
+For example, adding a Prometheus sidecar to web applications, or adding a `workload-type=spring-boot` label to any workload that has metadata, indicating it is a Spring Boot app.  
 
 > **Note:** For this example, the package `model` is used to define [resources](./reference/convention-resources.md) types.
 
@@ -251,7 +250,7 @@ For example, adding a prometheus sidecar to web apps, or adding a `workload-type
 
 Any property or value within the [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) or OCI image metadata associated with a workload can be used to define the criteria for applying conventions. The following are a few examples.  
 
-### Matching criteria by labels or annotations
+### <a id='matching-criteria-labels-annotations'></a> Matching criteria by labels or annotations
 
 When using labels or annotations to define whether a convention should be applied, the server checks the [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) of workloads.
 
@@ -498,7 +497,9 @@ The `server.yaml` defines the Kubernetes components that enable the convention s
 
 **_Optional_**: Only needed if self-signed certificate is used. Otherwise, check the cert-manager documentation.
 
-## How to deploy a convention server
+## <a id=deploy-convention-server></a>Deploy a convention server
+
+To deploy a convention server:
 
 1. Build and install the convention.
 
@@ -522,7 +523,7 @@ The `server.yaml` defines the Kubernetes components that enable the convention s
         kapp deploy -y -a awesome-convention -f server.yaml 
         ```
 
-2. Verify the Convention Server
+2. Verify the convention server.
 To check the status of the convention server, check for the running convention Pods:
 
     + If the server is running, `kubectl get all -n awesome-convention` returns something like:
@@ -548,7 +549,7 @@ To check the status of the convention server, check for the running convention P
         replicaset.apps/awesome-webhook-9b6957476        0         0         0       24h
         ```
 
-    + To verify the conventions are being applied, check the `PodIntent` of a workload that matches the convention criteria.
+    + To verify the conventions are being applied, check the `PodIntent` of a workload that matches the convention criteria:  
     
         ```bash
         kubectl -o yaml get podintents.conventions.apps.tanzu.vmware.co awesome-app
