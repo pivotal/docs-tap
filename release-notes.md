@@ -302,7 +302,7 @@ less privileged components to have their pods preempted or evicted instead.
 
 - Launching the `Extension Host`, and configuring `tasks` in a workspace that does not contain workload YAML files might not work.
   - **Solution:** Uninstall the Tanzu Dev Tools extension to proceed.
-	
+
 #### Services Toolkit
 
 * It is not possible for more than one application workload to consume the same service instance. Attempting to create two or more application workloads while specifying the same `--service-ref` value results in only one of the workloads binding to the service instance and reconcile successfully. This limitation is due to be relaxed in an upcoming release.
@@ -319,7 +319,7 @@ This release has the following security issues:
 
 ### Breaking changes
 
-This release has the following breaking changes:
+This release has the following breaking change:
 
 - **Supply Chain Security Tools - Store:** Changed package name to `metadata-store.apps.tanzu.vmware.com`.
 
