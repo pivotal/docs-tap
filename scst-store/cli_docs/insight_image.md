@@ -1,4 +1,4 @@
-# insight image
+# Insight image
 
 Image commands are as follows:
 

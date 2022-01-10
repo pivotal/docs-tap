@@ -1,4 +1,4 @@
-## insight source packages
+## Insight source packages
 
 Get source packages.
 

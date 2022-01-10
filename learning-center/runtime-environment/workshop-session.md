@@ -135,7 +135,7 @@ spec:
     id: user1
     env:
     - name: REPOSITORY_URL
-      value: https://github.com/eduk8s/lab-markdown-sample
+      value: PREPLACE WITH YOUR OWN GIT URL LOCATION FOR lab-markdown-sample
 ```
 
 Values of fields in the list of resource objects can reference a number of pre-defined parameters. The available parameters are:

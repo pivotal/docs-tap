@@ -1,4 +1,4 @@
-# insight source create
+# Insight source create
 
 Create a source report from a report file:
 
