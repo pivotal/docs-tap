@@ -193,13 +193,13 @@ statuses:
       Warning FailedCreate 10m replicaset-controller Error creating: Internal error occurred: failed calling webhook "image-policy-webhook.signing.apps.tanzu.vmware.com": Post "https://image-policy-webhook-service.image-policy-system.svc:443/signing-policy-check?timeout=10s": service "image-policy-webhook-service" not found
     ```
 
-By deleting the `MutatingWebhookConfiguration` resource, you can resolve the deadlock and enable the
-system to start up again. After the system is stable, you can restore the `MutatingWebhookConfiguration`
-resource to re-enable image signing enforcement.
+    By deleting the `MutatingWebhookConfiguration` resource, you can resolve the deadlock and enable the
+    system to start up again. After the system is stable, you can restore the `MutatingWebhookConfiguration`
+    resource to re-enable image signing enforcement.
 
->**Important:** These steps temporarily disable signature verification in your cluster.
+    >**Important:** These steps temporarily disable signature verification in your cluster.
 
-To do so:
+    To do so:
 
     1. Back up the `MutatingWebhookConfiguration` to a file by running:
 
@@ -229,40 +229,40 @@ their pods preempted or evicted instead.
 
 You see events similar to this in the output of `kubectl get events`:
 
-    ```
-    $ kubectl get events
-    LAST SEEN   TYPE      REASON             OBJECT               MESSAGE
-    28s         Normal    Preempted          pod/testpod          Preempted by image-policy-system/image-policy-controller-manager-59dc669d99-frwcp on node test-node
-    ```
+```
+$ kubectl get events
+LAST SEEN   TYPE      REASON             OBJECT               MESSAGE
+28s         Normal    Preempted          pod/testpod          Preempted by image-policy-system/image-policy-controller-manager-59dc669d99-frwcp on node test-node
+```
 
-    - **Solution 1: Reduce the amount of pods deployed by the Sign component:**
-    In case your deployment of the Sign component is running more pods than
-    necessary, you can scale the deployment down. To do so:
+- **Solution 1: Reduce the amount of pods deployed by the Sign component:**
+In case your deployment of the Sign component is running more pods than
+necessary, you can scale the deployment down. To do so:
 
-        1. Create a values file called `scst-sign-values.yaml` with the following
-        contents:
-            ```
-            ---
-            replicas: N
-            ```
-            Where N should be the smallest amount of pods you can have for your current
-            cluster configuration.
+    1. Create a values file called `scst-sign-values.yaml` with the following
+    contents:
+        ```
+        ---
+        replicas: N
+        ```
+        Where N should be the smallest amount of pods you can have for your current
+        cluster configuration.
 
-        1. Apply your new configuration by running:
-            ```
-            tanzu package installed update image-policy-webhook \
-              --package-name image-policy-webhook.signing.apps.tanzu.vmware.com \
-              --version 1.0.0-beta.3 \
-              --namespace tap-install \
-              --values-file scst-sign-values.yaml
-            ```
+    1. Apply your new configuration by running:
+        ```
+        tanzu package installed update image-policy-webhook \
+          --package-name image-policy-webhook.signing.apps.tanzu.vmware.com \
+          --version 1.0.0-beta.3 \
+          --namespace tap-install \
+          --values-file scst-sign-values.yaml
+        ```
 
-        1. Wait a few minutes for your configuration to take effect in the cluster.
+    1. Wait a few minutes for your configuration to take effect in the cluster.
 
-    - **Solution 2: Increase your cluster's resources:** Node pressure might be caused by a lack of nodes or
-    resources on nodes for deploying the workloads you have.
-    In this case, follow your cloud provider instructions for how to scale out or scale up your
-    cluster.
+- **Solution 2: Increase your cluster's resources:** Node pressure might be caused by a lack of nodes or
+resources on nodes for deploying the workloads you have.
+In this case, follow your cloud provider instructions for how to scale out or scale up your
+cluster.
 
 #### Supply Chain Security Tools - Store
 
@@ -331,7 +331,7 @@ The Client Lib follows the redirect, making a request to the new URL which does 
 Supply Chain Security Tools - Store API, resulting in this error message.
 
 - **No support for installing in custom namespaces:**
-All of our testing uses the `metadata-store` namespace. Using a different namespace breaks ]
+All of our testing uses the `metadata-store` namespace. Using a different namespace breaks
 authentication and certificate validation for the `metadata-store` API.
 
 
@@ -364,11 +364,12 @@ This limitation is planned to be relaxed in an upcoming release.
 
 The installation specifies that the installer's Tanzu Network credentials be exported to all
 namespaces. Customers can choose to mitigate this concern using one of the following methods:
-    * Create a Tanzu Network account with their own credentials and use this for the installation
-    exclusively.
-    * Using [Carvel tool's imgpkg](https://carvel.dev/imgpkg/) customers can create a dedicated OCI
-    registry on their own infrastructure that can comply with any required security policies that
-    might exist.
+
+- Create a Tanzu Network account with their own credentials and use this for the installation
+exclusively.
+- Using [Carvel tool's imgpkg](https://carvel.dev/imgpkg/) customers can create a dedicated OCI
+registry on their own infrastructure that can comply with any required security policies that might
+exist.
 
 
 ### Breaking changes
@@ -462,12 +463,12 @@ private registry. Support for self-signed certificates is planned for an upcomin
 
 #### Supply Chain Security Tools - Sign
 
-- If all webhook nodes or pods are evicted by the cluster or scaled down, the admission policy
-blocks any pods from being created in the cluster.
+- **Blocked pod creation:** If all webhook nodes or pods are evicted by the cluster or scaled down,
+the admission policy blocks any pods from being created in the cluster.
 To resolve the issue, delete the `MutatingWebhookConfiguration` and reapply it when the cluster is
 stable.
 
-- **MutatingWebhookConfiguration prevents pods from being admitted**
+- **MutatingWebhookConfiguration prevents pods from being admitted:**<br>
 Under certain circumstances, if the `image-policy-controller-manager` deployment pods do not start
 up before the `MutatingWebhookConfiguration` is applied to the cluster, it can prevent the admission
 of all pods.<br><br>
@@ -553,10 +554,10 @@ You see events similar to this in the output of `kubectl get events`:
 
         1. It might take a few minutes until your configuration takes effect in the cluster.
 
-**Solution 2 - Increase your cluster's resources:**
-Node pressure might be caused by not enough nodes or not enough resources on nodes for deploying the
-workloads you have. In this case, follow your cloud provider instructions for how to scale out or
-scale up your cluster.
+    * **Solution 2 - Increase your cluster's resources:**
+    Node pressure might be caused by not enough nodes or not enough resources on nodes for deploying the
+    workloads you have. In this case, follow your cloud provider instructions for how to scale out or
+    scale up your cluster.
 
 #### Tanzu CLI apps plug-in  
 
