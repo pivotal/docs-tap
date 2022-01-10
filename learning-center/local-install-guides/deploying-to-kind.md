@@ -89,7 +89,7 @@ Where TANZU-NET-USER and TANZU-NET-PASSWORD are your credentials for Tanzu Netwo
 
 ```
 tanzu package repository add tanzu-tap-repository \
-  --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.4.0 \
+  --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.0.0 \
   --namespace tap-install
 ```
 Note* We are currently on build 7: if this changes, we need to update the command with the correct build version after the --url flag.
@@ -199,13 +199,13 @@ Also note that you cannot use an address of form ``127.0.0.1.nip.io``, or ``subd
 
 ## Install Learning Center package onto a Kubernetes cluster
 ```
-tanzu package install learningcenter --package-name learningcenter.tanzu.vmware.com --version 1.0.14-build.5 -f ./learningcenter-value.yaml --namespace tap-install
+tanzu package install learningcenter --package-name learningcenter.tanzu.vmware.com --version 0.1.0 -f ./learningcenter-value.yaml --namespace tap-install
 ```
 This package installation uses the installed Package repository along with a configuration learningcenter-value.yaml to install our Learning Center Package.
 
 ## Install Workshop tutorial package onto a Kubernetes cluster
 ```
-tanzu package install learningcenter-tutorials --package-name workshops.learningcenter.tanzu.vmware.com --version 1.0.7-build.6 --namespace tap-install
+tanzu package install learningcenter-tutorials --package-name workshops.learningcenter.tanzu.vmware.com --version 0.1.0 --namespace tap-install
 ```
 Make sure you install the workshop package after the Learning Center package has reconcilled and successfully installed onto your cluster. In case of new versioning, you may obtain package version numbers using
 ```
