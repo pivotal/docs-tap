@@ -1,6 +1,6 @@
 # Installing on Kind
 
-Kind was developed as a means to support development and testing of Kubernetes. Despite that it exists primarily for that purpose, Kind clusters are often used for local development of user applications as well. For Learning Center, you can use a local Kind cluster for developing workshop content or for self-learning when deploying other people's workshops.
+Kind was developed as a means to support development and testing of Kubernetes. Despite that it exists primarily for that purpose, Kind clusters are often used for local development of user applications as well. For Learning Center, you can use a local Kind cluster to develop workshop content or self-learning when deploying other people's workshops.
 
 As you are deploying to a local machine you are unlikely to have access to your own custom domain name and certificate you can use with the cluster. If you don't, you may be restricted as to the sorts of workshops you can develop or run using the Learning Center in Kind. This is because Kind uses ``containerd`` which lacks certain features that allow you to trust any image registries hosted within a subnet. This means you cannot run workshops that use a local image registry for each workshop session in an easy way. If you need the ability to run workshops on your local computer that uses an image registry for each session, we recommend you use minikube with ``dockerd`` instead. You can find more details about this issue below.
 
