@@ -201,26 +201,26 @@ statuses:
 
     To do so:
 
-        1. Back up the `MutatingWebhookConfiguration` to a file by running:
+    1. Back up the `MutatingWebhookConfiguration` to a file by running:
 
-            ```
-            kubectl get MutatingWebhookConfiguration image-policy-mutating-webhook-configuration -o yaml > image-policy-mutating-webhook-configuration.yaml
-            ```
+        ```
+        kubectl get MutatingWebhookConfiguration image-policy-mutating-webhook-configuration -o yaml > image-policy-mutating-webhook-configuration.yaml
+        ```
 
-        2. Delete `MutatingWebhookConfiguration` by running:
+    2. Delete `MutatingWebhookConfiguration` by running:
 
-            ```
-            kubectl delete MutatingWebhookConfiguration image-policy-mutating-webhook-configuration
-            ```
+        ```
+        kubectl delete MutatingWebhookConfiguration image-policy-mutating-webhook-configuration
+        ```
 
-        3. Wait until all components are up and running in your cluster, including the
-        `image-policy-controller-manager` pods (namespace `image-policy-system`).
+    3. Wait until all components are up and running in your cluster, including the
+    `image-policy-controller-manager` pods (namespace `image-policy-system`).
 
-        4. Re-apply the `MutatingWebhookConfiguration` by running:
+    4. Re-apply the `MutatingWebhookConfiguration` by running:
 
-            ```
-            kubectl apply -f image-policy-mutating-webhook-configuration.yaml
-            ```
+        ```
+        kubectl apply -f image-policy-mutating-webhook-configuration.yaml
+        ```
 
 **Priority class of webhook's pods might preempt less privileged pods:**
 This component uses a privileged `PriorityClass` to start up its pods in order to prevent node
@@ -229,40 +229,40 @@ their pods preempted or evicted instead.
 
 You see events similar to this in the output of `kubectl get events`:
 
-    ```
-    $ kubectl get events
-    LAST SEEN   TYPE      REASON             OBJECT               MESSAGE
-    28s         Normal    Preempted          pod/testpod          Preempted by image-policy-system/image-policy-controller-manager-59dc669d99-frwcp on node test-node
-    ```
+```
+$ kubectl get events
+LAST SEEN   TYPE      REASON             OBJECT               MESSAGE
+28s         Normal    Preempted          pod/testpod          Preempted by image-policy-system/image-policy-controller-manager-59dc669d99-frwcp on node test-node
+```
 
-    - **Solution 1: Reduce the amount of pods deployed by the Sign component:**
-    In case your deployment of the Sign component is running more pods than
-    necessary, you can scale the deployment down. To do so:
+- **Solution 1: Reduce the amount of pods deployed by the Sign component:**
+In case your deployment of the Sign component is running more pods than
+necessary, you can scale the deployment down. To do so:
 
-        1. Create a values file called `scst-sign-values.yaml` with the following
-        contents:
-            ```
-            ---
-            replicas: N
-            ```
-            Where N should be the smallest amount of pods you can have for your current
-            cluster configuration.
+    1. Create a values file called `scst-sign-values.yaml` with the following
+    contents:
+        ```
+        ---
+        replicas: N
+        ```
+        Where N should be the smallest amount of pods you can have for your current
+        cluster configuration.
 
-        1. Apply your new configuration by running:
-            ```
-            tanzu package installed update image-policy-webhook \
-              --package-name image-policy-webhook.signing.apps.tanzu.vmware.com \
-              --version 1.0.0-beta.3 \
-              --namespace tap-install \
-              --values-file scst-sign-values.yaml
-            ```
+    1. Apply your new configuration by running:
+        ```
+        tanzu package installed update image-policy-webhook \
+          --package-name image-policy-webhook.signing.apps.tanzu.vmware.com \
+          --version 1.0.0-beta.3 \
+          --namespace tap-install \
+          --values-file scst-sign-values.yaml
+        ```
 
-        1. Wait a few minutes for your configuration to take effect in the cluster.
+    1. Wait a few minutes for your configuration to take effect in the cluster.
 
-    - **Solution 2: Increase your cluster's resources:** Node pressure might be caused by a lack of nodes or
-    resources on nodes for deploying the workloads you have.
-    In this case, follow your cloud provider instructions for how to scale out or scale up your
-    cluster.
+- **Solution 2: Increase your cluster's resources:** Node pressure might be caused by a lack of nodes or
+resources on nodes for deploying the workloads you have.
+In this case, follow your cloud provider instructions for how to scale out or scale up your
+cluster.
 
 #### Supply Chain Security Tools - Store
 
