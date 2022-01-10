@@ -19,7 +19,7 @@ When submitting the following Pod `Pod Intent` on each convention, the output ma
 
 ## <a id="spring-boot-convention"></a>Spring boot convention
 
-  In the `bom` file's metadata, under `dependencies`, there is a `dependency` named `spring-boot`. The convention `spring-boot` adds a __label__ to the `PodTemplateSpec` setting the framework used by running `conventions.apps.tanzu.vmware.com/framework", "spring-boot`. The convention `spring-boot` also adds an __annotation__ with the version of the _dependency_.
+  In the `bom` file's metadata, under `dependencies`, there is a `dependency` named `spring-boot`. The convention `spring-boot` adds a __label__ to the `PodTemplateSpec` setting the framework used by running `conventions.apps.tanzu.vmware.com/framework`, `spring-boot`. The convention `spring-boot` also adds an __annotation__ with the version of the _dependency_.
 
   The `docker inspect` can look like:
 
@@ -407,4 +407,4 @@ When you apply the `Pod Intent` and the image contains a dependency, for example
           - containerPort: 8080
             protocol: TCP
           resources: {}
-  ``` 
+  ```
