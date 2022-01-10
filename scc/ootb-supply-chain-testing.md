@@ -67,7 +67,7 @@ _source-test-to-url_.
 As mentioned in the prerequisites section, this supply chain builds on the
 previous Out of the Box Supply Chain, so only additions are included here.
 
-To make sure you have configured the namespace correctly, it's important that
+To make sure you have configured the namespace correctly, it is important that
 the namespace has the following objects in it (including the ones marked with
 '_new_' whose explanation and details are provided below):
 
@@ -98,7 +98,7 @@ the namespace has the following objects in it (including the ones marked with
   hits the stage of testing the source code
 
 
-Below you'll find details about the new objects compared to Out of the Box
+Below you will find details about the new objects compared to Out of the Box
 Supply Chain Basic.
 
 
