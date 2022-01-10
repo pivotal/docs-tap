@@ -1,4 +1,4 @@
-## insight health
+## Insight health
 
 Checks if endpoint is reachable.
 

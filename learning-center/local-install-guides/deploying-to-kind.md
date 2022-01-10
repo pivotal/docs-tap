@@ -1,20 +1,20 @@
 # Installing on Kind
 
-Kind was developed as a means to support development and testing of Kubernetes. Despite that it exists primarily for that purpose, Kind clusters are often used for local development of user applications as well. For Learning Center, you can use a local Kind cluster for developing workshop content or for self learning when deploying other people's workshops.
+Kind was developed as a means to support development and testing of Kubernetes. Despite that it exists primarily for that purpose, Kind clusters are often used for local development of user applications as well. For Learning Center, you can use a local Kind cluster to develop workshop content or self-learning when deploying other people's workshops.
 
-As you are deploying to a local machine you are unlikely to have access to your own custom domain name and certificate you can use with the cluster. If you don't, you may be restricted as to the sorts of workshops you can develop or run using the Learning Center in Kind. This is because Kind uses ``containerd`` and ``containerd`` lacks certain features that allows you to trust any image registries hosted within a subnet. This means you cannot run workshops which use a local image registry for each workshop session in an easy way. If you need the ability to run workshops on your own local computer which use an image registry for each session, we recommend you use minikube with ``dockerd`` instead. You can find more details about this issue below.
+As you are deploying to a local machine you are unlikely to have access to your own custom domain name and certificate you can use with the cluster. If you don't, you may be restricted as to the sorts of workshops you can develop or run using the Learning Center in Kind. This is because Kind uses ``containerd`` which lacks certain features that allow you to trust any image registries hosted within a subnet. This means you cannot run workshops that use a local image registry for each workshop session in an easy way. If you need the ability to run workshops on your local computer that uses an image registry for each session, we recommend you use minikube with ``dockerd`` instead. You can find more details about this issue below.
 
-Also keep in mind that, since Kind generally has limited memory resources available, you may be prohibited from running workshops which have large memory requirements. Certain workshops which demonstrate use of third-party applications requiring a multi-node cluster also will not work unless the Kind cluster is specifically configured to be multi-node rather than a single node.
+Also keep in mind that, since Kind generally has limited memory resources available, you may be prohibited from running workshops that have large memory requirements. Certain workshops which demonstrate the use of third-party applications requiring a multi-node cluster also will not work unless the Kind cluster is specifically configured to be multi-node rather than a single node.
 
 Requirements and setup instructions specific to Kind are detailed below; otherwise, follow normal installation instructions for the Learning Center Operator.
 
 ## Prerequisites
 The following installation prerequisites must be done prior to installation.
 
-  As a user you currently have created a tanzunet account and have access to your tanzunet credentials.  
-  As a user you currently have kind installed on your local machine.  
-  As a user you currently have tanzuCLI installed on your local machine.  
-  As a user you currently have kubectlCLI installed on your local machine.
+  As a user, you currently have created a tanzunet account and have access to your tanzunet credentials.  
+  As a user, you currently have kind installed on your local machine.  
+  As a user, you currently have tanzuCLI installed on your local machine.  
+  As a user, you currently have kubectlCLI installed on your local machine.
 
 ## Kind cluster creation
 When initially creating the Kind cluster you will need to [configure](https://kind.sigs.k8s.io/docs/user/ingress#create-cluster) it so that the ingress controller will be exposed. The documentation provides the following command to do this, but check the documentation in case the details have changed.

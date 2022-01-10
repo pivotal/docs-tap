@@ -1,4 +1,4 @@
-## insight vulnerabilities packages
+## Insight vulnerabilities packages
 
 Get packages with a given vulnerability.
 

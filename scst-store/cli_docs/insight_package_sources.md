@@ -1,4 +1,4 @@
-## insight package sources
+## Insight package sources
 
 Get sources that contain the given package by name.
 
