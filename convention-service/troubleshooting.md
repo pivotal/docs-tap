@@ -34,7 +34,7 @@ Deploy a `convention server` ([ClusterPodConvention](reference/cluster-pod-conve
 
 Ensure that the `convention server` ([ClusterPodConvention](reference/cluster-pod-convention.md)) is configured with the correct certificates. To do so, verify the value of annotation `conventions.apps.tanzu.vmware.com/inject-ca-from` which must be set to the used *Certificate*.
 
->**Note:** Do not set annotation `conventions.apps.tanzu.vmware.com/inject-ca-from` if no certificate is used.
+> **Note:** Do not set annotation `conventions.apps.tanzu.vmware.com/inject-ca-from` if no certificate is used.
 
 ## <a id="server-fails"></a>Server fails when processing a request
 
@@ -74,7 +74,7 @@ An unmanaged error occurs in the `convention server` when processing a request.
    + Be aware that the new deployment is not applied to the existing `PodIntent`s. It is only applied to the new `PodIntent`s.
    + To apply new deployment to exiting `PodIntent`, you must update the `PodIntent`, so the reconciler applies if it matches the criteria.
 
-## <a id="server-not-secure"></a>Connection refused due to not secured connection
+## <a id="server-not-secure"></a>Connection refused due to unsecured connection
 
 ### Symptoms
 
@@ -96,7 +96,7 @@ An unmanaged error occurs in the `convention server` when processing a request.
     Where:
     
     + The convention server was deployed as a `Deployment`
-    + `webhook-594d75d69b-4w4s8` is the name of the `convention server` pod.
+    + `webhook-594d75d69b-4w4s8` is the name of the `convention server` Pod.
     + `convention-template` is the namespace where the convention server is deployed.
 
     For example:
@@ -125,7 +125,7 @@ An unmanaged error occurs in the `convention server` when processing a request.
 
 ### Cause
 
-When a `convention server` is provided without using TSL but the `Deployment` is configured to use TSL, Kubernetes fails to deploy the `Pod` because of the `liveness probe`.
+When a `convention server` is provided without using Transport Layer Security (TLS) but the `Deployment` is configured to use TLS, Kubernetes fails to deploy the `Pod` because of the `liveness probe`.
 
 ### Solution
 
