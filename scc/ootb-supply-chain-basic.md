@@ -1,12 +1,11 @@
-# Out of The Box Supply Chain Basic (ootb-supply-chain-basic)
+# Out of the Box Supply Chain Basic
 
-This Cartographer Supply Chain ties a series of Kubernetes resources which,
-when working together, drives a developer-provided Workload from source code
-all the way to a Kubernetes configuration ready to be deployed to a cluster.
+This Cartographer Supply Chain ties together a series of Kubernetes resources which
+drive a developer-provided Workload from source code to a Kubernetes configuration
+ready to be deployed to a cluster.
 
-This is the most basic supply chain, making no use of testing or scanning
-steps: it aims at providing a quick path to deployment.
-
+This is the most basic supply chain that provides a quick path to deployment. It
+makes no use of testing or scanning steps.
 
 ```
 SUPPLYCHAIN
@@ -21,64 +20,63 @@ DELIVERY
     <--[src]-- app-deployer                 kapp-ctrl/App
 ```
 
-- Watching a Git Repository or local directory for changes
+- Watching a Git repository or local directory for changes
 - Building a container image out of the source code with Buildpacks
 - Applying operator-defined conventions to the container definition
 - Deploying the application to the same cluster
 
 
-## Prerequisites
+## <a id="prerequisites"></a> Prerequisites
 
-To make use this supply chain, it's required that:
+To use this supply chain, you must:
 
-- Out of The Box Templates is installed
-- Out of The Box Delivery Basic is installed
-- Developer namespace is configured with auxiliary objects that are used by the
-  supply chain (see below)
+- Install [Out of the Box Templates](ootb-templates.html)
+- Install [Out of the Box Delivery Basic](ootb-delivery-basic.html)
+- Configure the Developer namespace with auxiliary objects that are used by the
+  supply chain as described below
 
+### <a id="developer-namespace"></a> Developer Namespace
 
-### Developer namespace
+The supply chains provide definitions of many of the objects that they create to transform the source code
+to a container image and make it available as an application in the cluster.
 
-Despite the supply chains coming out of the box with the definition of the
-objects that it should create to make the source code be transformed to a
-container image and made available as an application in the cluster, there are
-a couple objects that _must_ be provided by the developer or configured in the
-developer namespace beforehand so that the supply chain can make use of it to
-provide credentials and use the permissions that have been granted to a
+The developer must provide or configure particular objects in the developer namespace so that
+the supply chain can provide credentials and use permissions granted to a
 particular development team.
 
-These include:
+The objects that the developer must provide or configure include:
 
-- **image secret**: A Kubernetes secret of type
-  `kubernetes.io/dockerconfigjson` containing credentials for pushing the
-container images built by the supply chain
+- **[image secret](#image-secret)**: A Kubernetes secret of type
+  `kubernetes.io/dockerconfigjson` that contains credentials for pushing the
+  container images built by the supply chain
 
-- **service account**: The identity to be used for any interaction with the
+- **[service account](#service-account)**: The identity to be used for any interaction with the
   Kubernetes API made by the supply chain
 
-- **role**: The set of capabilities that you want to assign to the service
+- **[role](#role-rolebinding)**: The set of capabilities that you want to assign to the service
   account. It must provide the ability to manage all of the resources that the
-supplychain is responsible for.
+  supplychain is responsible for.
 
-- **rolebinding**: Binds the role to the service account. It grants the
+- **[rolebinding](#role-rolebinding)**: Binds the role to the service account. It grants the
   capabilities to the identity.
 
-- (Optional) **git credentials secret**: When using GitOps for managing the
-  delivery of applications or a private git source, this secret provides the 
+- (Optional) **[git credentials secret](#git-credentials-secret)**: When using GitOps for managing the
+  delivery of applications or a private git source, this secret provides the
   credentials for interacting with the git repository.
 
 
-#### Image Secret
+#### <a id="image-secret"></a> Image Secret
 
-Regardless of the supply chain that a Workload goes through, there must be, in
-the developer namespace, a Secret that contains the credentials to be passed to
-resources that push container images to image registries (like Tanzu Build
-Service) as well as for those resources that must pull container images from
-such image registry, such as Convention Service and Knative.
+Regardless of the supply chain that a Workload goes through, there must be a secret
+in the developer namespace. This secret contains the credentials to be passed to:
 
-Using the `tanzu secret registry add` command from the Tanzu CLI, you
-provision a secret that contains such credentials.
+* Resources that push container images to image registries, such as Tanzu Build
+Service
+* Those resources that must pull container images from such image registry, such
+as Convention Service and Knative.
 
+Use the `tanzu secret registry add` command from the Tanzu CLI to provision a
+secret that contains such credentials.
 
 ```
 # create a Secret object using the `dockerconfigjson` format using the
@@ -99,21 +97,20 @@ tanzu secret registry add image-secret \
 
 With the command above, the secret `image-secret` of type
 `kubernetes.io/dockerconfigjson` is created in the namespace.
-This makes it available for Workloads in this same namespace.
+This makes the secret available for Workloads in this same namespace.
 
-To export it to all namespaces, use the `--export-to-all-namespaces`
+To export the secret to all namespaces, use the `--export-to-all-namespaces`
 flag.
 
 
-#### ServiceAccount
+#### <a id="service-account"></a> ServiceAccount
 
 In a Kubernetes cluster, a ServiceAccount provides a way of representing an
-identity within the Kubernetes role base access control (RBAC) system, which in
-the case of a developer namespace, that would be the representation of a
-developer / development team.
+identity within the Kubernetes role base access control (RBAC) system. In
+the case of a developer namespace, this represents a developer or development team.
 
-To it, we can directly attach secrets as bind roles so that we can provide ways
-of indirectly letting resources find credentials without having to know the
+You can directly attach secrets to the ServiceAccount as bind roles. This allows you
+to provide indirect ways for resources to find credentials without them needing to know the
 exact name of the secrets, as well as reduce the set of permissions that a
 group would have, through the use of Roles and RoleBinding objects.
 
@@ -130,23 +127,21 @@ imagePullSecrets:
 ```
 
 The ServiceAccount must have the secret created above linked to
-it, otherwise services like Tanzu Build Service (used in the supply chain)
-won't have the necessary credentials for pushing the images it builds for that
+it. If it does not, services like Tanzu Build Service (used in the supply chain)
+lack the necessary credentials for pushing the images it builds for that
 Workload.
 
-
-#### Role and RoleBinding
+#### <a id="role-rolebinding"></a> Role and RoleBinding
 
 As the Supply Chain takes action in the cluster on behalf of the users who
 created the Workload, it needs permissions within Kubernetes' RBAC system to do
 so.
 
-To achieve that, we need to first describe a set of permissions for particular
+To achieve that, you must first describe a set of permissions for particular
 resources, meaning create a Role, and then bind those permissions to an actor.
 For example, creating a RoleBinding that binds the Role to the ServiceAccount.
 
 So, create a Role describing the permissions:
-
 
 ```
 apiVersion: rbac.authorization.k8s.io/v1
@@ -215,7 +210,7 @@ subjects:
 ```
 
 
-### Developer workload
+### <a id="developer-workload"></a> Developer workload
 
 With the developer namespace setup with the objects above (image, secret,
 serviceaccount, role, and rolebinding), you can create the Workload
@@ -223,20 +218,20 @@ object.
 
 Configure the Workload with three scenarios in mind:
 
-- **local iteration**: takes source code from the filesystem and drives is
+- **[local iteration](#local)**: takes source code from the filesystem and drives is
   through the supply chain making no use of external git repositories
 
-- **local iteration with code from git**: takes source code from a git
+- **[local iteration with code from git](#local-with-git)**: takes source code from a git
   repository and drives it through the supply chain without persisting the
-  final configuration in git (enabled **only** if the installation didn't include
+  final configuration in git (enabled **only** if the installation did not include
   a default repository prefix for git-based workflows)
 
-- **gitops**: source code is provided by an external git repository (public or
-  private), and the final kubernetes configuration to deploy the application is
+- **[gitops](#gitops)**: source code is provided by an external git repository (public or
+  private), and the final Kubernetes configuration to deploy the application is
   persisted in a repository
 
 
-#### Local iteration with local code
+#### <a id="local"></a> Local Iteration with Local Code
 
 In this scenario, you need the source code (in the example below,
 assuming the current directory `.` as the location of the source code you want
@@ -270,7 +265,7 @@ Create workload:
 Created workload "tanzu-java-web-app"
 ```
 
-With the Workload submitted, we should be able to keep track of the resulting
+With the Workload submitted, you can track of the resulting
 series of Kubernetes objects created to drive the source code all the way to a
 deployed application by making use of the `tail` command:
 
@@ -279,15 +274,15 @@ tanzu apps workload tail tanzu-java-web-app
 ```
 
 
-#### Local iteration with code from git
+#### <a id="local-with-git"></a> Local Iteration with Code from Git
 
 Similar to local iteration with local code, here we make use of the same type
 (`web`), but instead of pointing at source code that we have locally, we can
 make use of a git repository to feed the supply chain with new changes as they
 are pushed to a branch.
 
->**Note**: If you're planning to use a private git repository, skip
-to the next section (Private Source Git Repository).
+>**Note**: If you plan to use a private git repository, skip
+to the next section, [Private Source Git Repository](#private-source).
 
 
 ```
@@ -317,14 +312,14 @@ Create workload:
 ```
 
 This scenario is only possible if the installation of the supply
-chain didn't include a default git repository prefix
+chain did not include a default git repository prefix
 (`gitops.repository_prefix`).
 
 
-##### Private Source Git Repository
+##### <a id="private-source"></a> Private Source Git Repository
 
-In the example above, we make use of a public repository, but, if you want to
-make use of a private repository instead, make sure you create a Secret in the
+In the example above, we make use of a public repository. To
+make use of a private repository instead, you create a Secret in the
 same namespace as the one where the Workload is being submitted to named after
 the value of `gitops.ssh_secret` (the installation defaults the name to
 `git-ssh`):
@@ -345,8 +340,8 @@ stringData:
 by using the `gitops_ssh_secret` parameter (`--param gitops_ssh_secret`)
 in the Workload.
 
-If it's your first time setting up SSH credentials for your user, the following
-steps can serve as a guide for getting it done:
+If this is your first time setting up SSH credentials for your user, the following
+steps can serve as a guide:
 
 ```
 # generate a new keypair.
@@ -415,11 +410,11 @@ Create workload:
 ```
 
 
-#### GitOps
+#### <a id="gitops"></a> GitOps
 
 Differently from local iteration, with the GitOps approach we end up at the end
 of the supply chain having the configuration that got created by it pushed to a
-git repository where that's persisted and used at the basis for further
+git repository where that is persisted and used at the basis for further
 deployments.
 
 ```
@@ -454,8 +449,8 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: git-ssh   # `git-ssh` is the default name.
-                  #   - operators can tweak the default via `gitops.ssh_secret`.
-                  #   - developers can override via `gitops_ssh_secret` param.
+                  #   - operators can change the default using `gitops.ssh_secret`.
+                  #   - developers can override using `gitops_ssh_secret`
   annotations:
     tekton.dev/git-0: github.com  # git server host   (!! required)
 type: kubernetes.io/ssh-auth
@@ -472,7 +467,7 @@ stringData:
 With the Secret created, we can move on to the Workload.
 
 
-##### Workload using default git organization
+##### <a id="workload-using-default-git-organization"></a> Workload Using Default Git Organization
 
 During the installation of `ootb-*`, one of the values that operators can
 configure is one that dictates what the prefix the supply chain should use when
@@ -481,7 +476,7 @@ produced by the supply chains - `gitops.repository_prefix`.
 
 That being set, all it takes to change the behavior towards using GitOps is
 setting the source of the source code to a git repository and then as the
-supply chain progresses, configuration will be pushed to a repository named
+supply chain progresses, configuration are pushed to a repository named
 after `$(gitops.repository_prefix) + $(workload.name)`.
 
 e.g, having `gitops.repository_prefix` configured to `git@github.com/foo/` and
@@ -519,24 +514,24 @@ Create workload:
 Regardless of the setup, the repository where configuration is pushed to can be
 also manually overridden by the developers by tweaking the following parameters:
 
--  `gitops_ssh_secret`: name of the secret in the same namespace as the
+-  `gitops_ssh_secret`: Name of the secret in the same namespace as the
    Workload where SSH credentials exist for pushing the configuration produced
    by the supply chain to a git repository.
-   e.g.: "ssh-secret"
+   Example: "ssh-secret"
 
 -  `gitops_repository`: SSH URL of the git repository to push the Kubernetes
    configuration produced by the supply chain to.
-   e.g.: "ssh://git@foo.com/staging.git"
+   Example: "ssh://git@foo.com/staging.git"
 
--  `gitops_branch`: name of the branch to push the configuration to.
-   e.g.: "main"
+-  `gitops_branch`: Name of the branch to push the configuration to.
+   Example: "main"
 
--  `gitops_commit_message`: message to write as the body of the commits
+-  `gitops_commit_message`: Message to write as the body of the commits
    produced for pushing configuration to the git repository.
-   e.g.: "ci bump"
+   Example: "ci bump"
 
--  `gitops_user_name`: user name to use in the commits.
-   e.g.: "Alice Lee"
+-  `gitops_user_name`: Username to use in the commits.
+   Example: "Alice Lee"
 
--  `gitops_user_email`: user email to use for the commits.
-   e.g.: "foo@example.com"
+-  `gitops_user_email`: User email address to use for the commits.
+   Example: "foo@example.com"
