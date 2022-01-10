@@ -1,4 +1,4 @@
-## insight source vulnerabilities
+## Insight source vulnerabilities
 
 Get source vulnerabilities.
 

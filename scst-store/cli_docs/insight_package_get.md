@@ -1,4 +1,4 @@
-## insight package get
+## Insight package get
 
 Get package by name, version, and package manager.
 
