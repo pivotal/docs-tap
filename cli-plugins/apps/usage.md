@@ -2,8 +2,8 @@
 
 ## <a id='changing-clusters'></a> Changing clusters
 
-The Apps CLI plugin refers to the default kubeconfig file to access a Kubernetes cluster.
-When a `tanzu apps` command is run, the plugin uses the default context that's defined in that kubeconfig file (located by default at `$HOME/.kube/config`).
+The Apps CLI plug-in refers to the default kubeconfig file to access a Kubernetes cluster.
+When a `tanzu apps` command is run, the plug-in uses the default context that's defined in that kubeconfig file (located by default at `$HOME/.kube/config`).
 
 There are two ways to change the target cluster:
 
@@ -12,7 +12,7 @@ There are two ways to change the target cluster:
 
 There are also two ways to override the default kubeconfig:
 
-1. Set the env var `KUBECONFIG=<path>` to change the kubeconfig the Apps CLI plugin should reference. All subsequent `tanzu apps` commands will reference the non-default kubeconfig assigned to the env var.
+1. Set the env var `KUBECONFIG=<path>` to change the kubeconfig the Apps CLI plug-in should reference. All subsequent `tanzu apps` commands will reference the non-default kubeconfig assigned to the env var.
 1. Include the  `--kubeconfig <path>` flag when running any `tanzu apps` command. All subsequent `tanzu apps` commands without the `--kubeconfig <path>` flag will continue to use the default kubeconfig.
 
 For more information about kubeconfig, see [Configure Access to Multiple Clusters](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/).
@@ -20,7 +20,7 @@ For more information about kubeconfig, see [Configure Access to Multiple Cluster
 
 ## <a id='checking-update-status'></a>Checking update status
 
-You can use the Apps CLI plugin to create or update a workload.
+You can use the Apps CLI plug-in to create or update a workload.
 After you've successfully submitted your changes to the platform, the CLI command exits.
 Depending on the changes you submitted, it might take time for them to be executed on the platform.
 Run `tanzu apps workload get` to check the status of your changes.
@@ -30,11 +30,11 @@ For more information on this command, see [Tanzu Apps Workload Get](command-refe
 
 In many cases, you can manage workload life cycles through CLI commands.
 However, you might find cases where you want to manage a workload by using a `yaml` file.
-The Apps CLI plugin supports using `yaml` files.
+The Apps CLI plug-in supports using `yaml` files.
 
-The plugin is designed to manage **one workload** at a time.
+The plug-in is designed to manage **one workload** at a time.
 When you manage a workload by using a `yaml` file, that file must contain a single workload definition.
-Plugin commands support only one file per command.
+Plug-in commands support only one file per command.
 
 For example, a valid file looks similar to the following example:
 

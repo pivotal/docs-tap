@@ -6,14 +6,14 @@ This example takes every source code commit, scans the source code for vulnerabi
 
 1. Follow the steps listed in [Installing part I: Prerequisites, EULA, and CLI](../install-general.md).
 
-1. Next, in [Installing Individual Packages](../install-components.md), ensure the following
+1. In [Installing Individual Packages](../install-components.md), ensure the following
    packages and their dependencies are installed by running `tanzu package installed list -n tap-install`:
 
     - [Supply Chain Choreographer](../install-components.md#install-scc)
     - [Tanzu Build Service](../install-components.md#install-tbs)
     - [Supply Chain Security Tools - Store](../install-components.md#install-scst-store)
     - [Supply Chain Security Tools - Scan](../install-components.md#install-scst-scan)
-    - (Optional) [Kubectl `tree` Plugin](https://github.com/ahmetb/kubectl-tree)
+    - (Optional) [Kubectl `tree` plug-in](https://github.com/ahmetb/kubectl-tree)
 
 ## Configure the example
 
@@ -306,7 +306,7 @@ EOF
 
 With the Supply Chain components configured, a Developer can deploy a workload through the Supply Chain.
 
-Set up several watches to view the supply chain progressing. In a terminal, if the optional [Kubectl `tree` Plugin](https://github.com/ahmetb/kubectl-tree) is installed, run:
+Set up several watches to view the supply chain progressing. In a terminal, if the optional [Kubectl `tree` plug-in](https://github.com/ahmetb/kubectl-tree) is installed, run:
 ```
 watch kubectl tree workload tanzu-java-web-app
 ```
@@ -335,7 +335,7 @@ spec:
 EOF
 ```
 
-**NOTE:** Resources can take time to run to completion. The build image step with Tanzu Build Service takes several minutes to build.
+>**Note:** Resources can take time to run to completion. The build image step with Tanzu Build Service takes several minutes to build.
 
 Notice the resources be created:
 
@@ -349,7 +349,7 @@ Notice the resources be created:
 
 During processing and upon completion, try performing `kubectl describe` on the `sourcescan` and `imagescan` resources to see the `Status` section.
 
-**Note:** Detailed information about vulnerabilities found will not display in the output from `kubectl describe; it is instead sent to the Metadata Store, where it can be queried there.
+>**Note:** Detailed information about vulnerabilities found will not display in the output from `kubectl describe; it is instead sent to the Metadata Store, where it can be queried there.
 
 ## Querying the Metadata Store for vulnerability results using the Insight CLI
 
@@ -370,20 +370,20 @@ During processing and upon completion, try performing `kubectl describe` on the 
     insight config set-target https://metadata-store-app.metadata-store.svc.cluster.local:8443 \
       --ca-cert /tmp/storeca.crt \
       --access-token $METADATA_STORE_TOKEN
-   
+
     # Query Source Scan
     kubectl describe sourcescan tanzu-java-web-app-source-scan
     insight source get \
       --repo <insert repo here> \
       --commit <insert sha here> \
       --org <insert org here>
-   
+
     # Query Image Scan
     kubectl describe imagescan tanzu-java-web-app-image-scan
     # Note: the `digest` flag has the form: sha256:841abf253a244adba79844219a045958ce3a6da2671deea3910ea773de4631e1
     insight image get \
       --digest <insert digest here>
-   
+
     # Query By CVE
     # Note: the `cveid` flag has the form: CVE-2021-3711
     insight vulnerabilities get \

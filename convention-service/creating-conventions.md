@@ -1,62 +1,62 @@
 # Creating conventions
+
 This document describes how to create and deploy custom conventions to the Tanzu Application Platform.
 
 ## <a id='intro'></a>Introduction
 
-Tanzu Application Platform makes it easy for developers to transform their code
+Tanzu Application Platform helps developers transform their code
 into containerized workloads with a URL.
-This transformation is managed by the Supply Chain Choreographer for Tanzu.
+The Supply Chain Choreographer for Tanzu manages this transformation.
 For more information, see [Supply Chain Choreographer](../scc/about.html).
 
-The [Convention Service](about.md) is a key component of the supply chain
+[Convention Service](about.md) is a key component of the supply chain
 compositions the choreographer calls into action.
-The Convention Service enables people in operational roles to efficiently apply
-their operational expertises They can specify the runtime best practices and policies
-(or conventions) of their organization to workloads as they are created on the platform.
+Convention Service enables people in operational roles to efficiently apply
+their expertise. They can specify the runtime best practices, policies, and 
+conventions of their organization to workloads as they are created on the platform.
 The power of this component becomes evident when the conventions of an organization
-are applied consistently, at scale, and without hindering the velocity of app developers.
+are applied consistently, at scale, and without hindering the velocity of application developers.
 
-Opinions and policies vary from organization to organization. The Convention
+Opinions and policies vary from organization to organization. Convention
 Service supports the creation of custom conventions to meet the unique operational needs
 and requirements of an organization.
 
 Before jumping into the details of creating a custom convention, let's look at two
-distinct components of the Convention Service: the
+distinct components of Convention Service: the
 [convention controller](#conventioncontroller) and [convention server](#conventionserver).
 
 ### <a id='conventionserver'></a>Convention server
 
-The convention server is the component that applies a convention that has been defined on the server.
+The convention server is the component that applies a convention already defined on the server.
 Each convention server can host one or more conventions.
 The application of each convention by a convention server can be controlled conditionally.
 The conditional criteria governing the application of a convention is customizable and can be based
 on the evaluation of a custom Kubernetes resource called [PodIntent](reference/pod-intent.md).
-PodIntent is the vehicle by which the Convention Service as a whole delivers its value.
+PodIntent is the vehicle by which Convention Service as a whole delivers its value.
 
-A PodIntent is created (or updated if pre-existing) when a workload is run through a Tanzu Application Platform supply chain.
-The custom resource includes both the PodTemplateSpec (see the [Kubernetes documentation](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec)) as well as the OCI image metadata associated with a workload.
+A PodIntent is created, or updated if already existing, when a workload is run through a Tanzu Application Platform supply chain.
+The custom resource includes both the PodTemplateSpec (see the [Kubernetes documentation](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec)) and the OCI image metadata associated with a workload.
 The conditional criteria for a convention can be based on any property or value found in the PodTemplateSpec or the Open Containers Initiative (OCI) image metadata available in the PodIntent.
 
 If a convention's criteria are met, the convention server enriches the PodTemplateSpec
 in the PodIntent. The convention server also updates the `status` section of the PodIntent
 with the name of the convention that's been applied.
-So if needed, you can figure out which conventions have been applied to the workload after the fact.
+So if needed, you can figure out after the fact which conventions were applied to the workload.
 
-To provide flexibility in how conventions are organized, multiple convention servers
-can be deployed. Each server can contain a convention or set of conventions focused on a
+To provide flexibility in how conventions are organized, you can deploy multiple convention servers. Each server can contain a convention or set of conventions focused on a
 specific class of runtime modifications, on a specific language framework, and so on. How
-the conventions are organized/grouped and deployed is up to the author and the needs of
-their organization.
+the conventions are organized, grouped, and deployed is up to you and the needs of
+your organization.
 
-Convention servers deployed to the cluster won't take action unless triggered to
-do so by the second component of the Convention Service, the [convention controller](#conventioncontroller).
+Convention servers deployed to the cluster will not take action unless triggered to
+do so by the second component of Convention Service, the [convention controller](#conventioncontroller).
 
 ### <a id='conventioncontroller'></a>Convention controller
 
 The convention controller is the orchestrator of one or many convention servers deployed to the cluster.
 When the Supply Chain Choreographer creates or updates a PodIntent for a workload, the convention
 controller retrieves the OCI image metadata from the repository
-containing the workload's image(s) and sets it in the PodIntent.
+containing the workload's images and sets it in the PodIntent.
 
 The convention controller then uses a webhook architecture to pass the PodIntent to each convention
 server deployed to the cluster. The controller orchestrates the processing of the PodIntent by
@@ -66,14 +66,14 @@ For more information, see [ClusterPodConvention](reference/cluster-pod-conventio
 After all convention servers are finished processing a PodIntent for a workload,
 the convention controller updates the PodIntent with the latest version of the PodTemplateSpec and sets
 `PodIntent.status.conditions[].status=True` where `PodIntent.status.conditions[].type=Ready`.
-This status change signals the Supply Chain Choreographer that the Convention Service is finished with its work.
+This status change signals the Supply Chain Choreographer that Convention Service is finished with its work.
 The status change also executes whatever steps are waiting in the supply chain.
 
 ## <a id='get-started'></a>Getting started
 
-With this high-level understanding of the Convention Service components and how they work together within the context of the Tanzu Application Platform supply chain, let's look at how to create and deploy a custom convention.
+With this high-level understanding of Convention Service components, let's look at how to create and deploy a custom convention.
 
->**Note:** This document covers developing conventions using [GOLANG](https://golang.org/), but this can be done using other languages by following the specs.
+> **Note:** This document covers developing conventions using [GOLANG](https://golang.org/), but this can be done using other languages by following the specs.
 
 ### <a id='prereqs'></a>Prerequisites
 
@@ -87,17 +87,19 @@ The following prerequisites must be met before a convention can be developed and
     ```
     kubectl config use-context CONTEXT_NAME
     ```
+
 + The ko CLI is installed [from GitHub](https://github.com/google/ko).
   (These instructions use `ko` to build an image, but if there is an existing image or build process, `ko` is optional.)
 
-## <a id='server-behavior'></a> Define Convention Criteria and Behavior
+## <a id='server-behavior'></a> Define convention criteria
 
-The `server.go` file contains the configuration for the server as well as the logic the server applies when a workload matches the defined criteria. 
-For example, adding a prometheus sidecar to web apps, or adding a `workload-type=spring-boot` label to any workload that has has metadata indicating that it is a spring boot app.  
+The `server.go` file contains the configuration for the server and the logic the server applies when a workload matches the defined criteria. 
+For example, adding a Prometheus sidecar to web applications, or adding a `workload-type=spring-boot` label to any workload that has metadata, indicating it is a Spring Boot app.  
 
-**NOTE:** For this example, the package `model` is used to define [resources](./reference/convention-resources.md) types.
+> **Note:** For this example, the package `model` is used to define [resources](./reference/convention-resources.md) types.
 
-1. <a id='convention-1'></a>The example `server.go` sets up the `ConventionHandler` to ingest the webhook requests([PodConventionContext](./reference/pod-convention-context.md)) from the convention controller; at this point the handler only need to deal with the existing [`PodTemplateSpec`](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) and [`ImageConfig`](./reference/image-config.md).
+1. <a id='convention-1'></a>The example `server.go` sets up the `ConventionHandler` to ingest the webhook requests([PodConventionContext](./reference/pod-convention-context.md)) from the convention controller. Here the handler must only deal with the existing [`PodTemplateSpec`](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) and [`ImageConfig`](./reference/image-config.md).
+
    ```go
     ...
     import (
@@ -112,10 +114,10 @@ For example, adding a prometheus sidecar to web apps, or adding a `workload-type
 
      Where:
 
-     + `template` is the predefined [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) that the convention is going to modify.
-     + `images` are the [`ImageConfig`](./reference/image-config.md) which will be used as reference to make decisions in the conventions. In this example the type was created within the `model` package
+     + `template` is the predefined `PodTemplateSpec` that the convention is going to modify. For more information about `PodTemplateSpec`, see the [Kubernetes documentation](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec).
+     + `images` are the [`ImageConfig`](./reference/image-config.md) used as reference to make decisions in the conventions. In this example, the type was created within the `model` package.
 
-2. <a id='server-2'></a>The example `server.go` also configures the convention server to listen for requests
+2. <a id='server-2'></a>The example `server.go` also configures the convention server to listen for requests:
 
     ```go
 
@@ -143,15 +145,15 @@ For example, adding a prometheus sidecar to web apps, or adding a `workload-type
     ```
     Where:
 
-    + `PORT` is a possible environment variable, for this example defined in the [`Deployment`](#install-deployment) 
-    + `ServerHandler` is the *handler* function that will be called when any request comes to the server.
-    + `NewConventionServer` is the function in charge of configure and create the *http webhook* server
-    + `port` is the calculated port of the server to listen requests, it needs to match the [`Deployment`](#install-deployment) if the `PORT` variable is not defined in it
-    + The `path` or pattern (default to `/`) is the convention server's default path if it is changed the it needs to be changed in the [`ClusterPodConvention`](#install-convention)
+    + `PORT` is a possible environment variable, for this example, defined in the [`Deployment`](#install-deployment).
+    + `ServerHandler` is the *handler* function called when any request comes to the server.
+    + `NewConventionServer` is the function in charge of configure and create the *http webhook* server.
+    + `port` is the calculated port of the server to listen for requests. It needs to match the [`Deployment`](#install-deployment) if the `PORT` variable is not defined in it.
+    + The `path` or pattern (default to `/`) is the convention server's default path. If it is changed, it must be changed in the [`ClusterPodConvention`](#install-convention).
 
-**Note:** The *Server Handler* (`func ConventionHandler(...)`) and the configure/start web server (`func NewConventionServer(...)`) are defined in the convention controller within the `webhook` package but a custom one can be used.
+> **Note:** The *Server Handler* (`func ConventionHandler(...)`) and the configure/start web server (`func NewConventionServer(...)`) are defined in the convention controller within the `webhook` package, but a custom one can be used.
 
-3. Creating the *Server Handler* which handles the request from the convention controller with the [PodConventionContext](./reference/pod-convention-context.md) serialized to JSON.
+3. Creating the *Server Handler*, which handles the request from the convention controller with the [PodConventionContext](./reference/pod-convention-context.md) serialized to JSON.
 
     ```go
     package webhook
@@ -189,12 +191,12 @@ For example, adding a prometheus sidecar to web apps, or adding a `workload-type
     ...
     ```
 
-4. Configure and start the web server by defining the `NewConventionServer` function which will start the server with the defined port and current context. The server will use the `.crt` and `.key` files to handle *TLS* traffic.
+4. Configure and start the web server by defining the `NewConventionServer` function, which starts the server with the defined port and current context. The server uses the `.crt` and `.key` files to handle *TLS* traffic.
 
     ```go
     package webhook
     ...
-    // Watch will handle the security by certificates
+    // Watch handles the security by certificates.
     type certWatcher struct {
         CrtFile string
         KeyFile string
@@ -214,7 +216,7 @@ For example, adding a prometheus sidecar to web apps, or adding a `workload-type
     }
     ...
     func NewConventionServer(ctx context.Context, addr string) error {
-        // Define a health check endpoint to readiness and liveness probes
+        // Define a health check endpoint to readiness and liveness probes.
         http.HandleFunc("/healthz", func(w http.ResponseWriter, r *http.Request) {
             w.WriteHeader(http.StatusOK)
         })
@@ -222,7 +224,7 @@ For example, adding a prometheus sidecar to web apps, or adding a `workload-type
         if err := watcher.Load(); err != nil {
             return err
         }
-        // Defines the server with the TSL configuration
+        // Defines the server with the TSL configuration.
         server := &http.Server{
             Addr: addr,
             TLSConfig: &tls.Config{
@@ -249,9 +251,9 @@ For example, adding a prometheus sidecar to web apps, or adding a `workload-type
 
 Any property or value within the [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) or OCI image metadata associated with a workload can be used to define the criteria for applying conventions. The following are a few examples.  
 
-### Matching Criteria By Labels or Annotations:
+### <a id='matching-criteria-labels-annotations'></a> Matching criteria by labels or annotations
 
-When using labels or annotations to define whether a convention should be applied, the server will check the [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) of workloads. 
+When using labels or annotations to define whether a convention should be applied, the server checks the [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) of workloads.
 
    + PodTemplateSpec
    
@@ -273,12 +275,12 @@ When using labels or annotations to define whether a convention should be applie
         ...
         func conventionHandler(template *corev1.PodTemplateSpec, images []model.ImageConfig) ([]string, error) {
             c:= []string{}
-            // This convention will be applied if a specific label is present
+            // This convention is applied if a specific label is present.
             if lv, le := template.Labels["awesome-label"]; le && lv == "awesome-value" {
                 // DO COOl STUFF
                 c = append(c, "awesome-label-convention")
             }
-            // This convention will be applied if a specific annotation is present
+            // This convention is applied if a specific annotation is present.
             if av, ae := template.Annotations["awesome-annotation"]; ae && av == "awesome-value" {
                 // DO COOl STUFF
                 c = append(c, "awesome-annotation-convention")
@@ -290,14 +292,14 @@ When using labels or annotations to define whether a convention should be applie
         ```
     
  Where:
- + `conventionHandler` is the *handler*
- + `awesome-label` is the **label** that we want to validate
- + `awesome-annotation` is the **annotation** that we want to validate
- + `awesome-value` is the value that must have the **label**/**annotation**
+ + `conventionHandler` is the *handler*.
+ + `awesome-label` is the **label** that we want to validate.
+ + `awesome-annotation` is the **annotation** that we want to validate.
+ + `awesome-value` is the value that must have the **label**/**annotation**.
 
-### <a id='EnvironmentVariables'></a>Matching Criteria By Environment Variables
+### <a id='EnvironmentVariables'></a>Matching criteria by environment variables
 
-When using environment variables to define whether the convention is applicable or not, it should be present in the [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec).[spec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#PodSpec).[containers](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#Container)[*].[env](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#environment-variables). and we can validate the value.
+When using environment variables to define whether the convention is applicable, it should be present in the [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec).[spec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#PodSpec).[containers](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#Container)[*].[env](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#environment-variables). and we can validate the value.
 
    + PodTemplateSpec
 
@@ -329,15 +331,15 @@ When using environment variables to define whether the convention is applicable 
         }
         ```
 
-### <a id='ImageMetadata'></a>Matching Criteria By Image Metadata
+### <a id='ImageMetadata'></a>Matching criteria by image metadata
 
-For each image contained within the PodTemplateSpec, the convention controller will fetch the OCI image metadata and known [`bill of materials (BOMs)`](reference/bom.md) providing it to the convention server as [`ImageConfig`](./reference/image-config.md). This metadata can be introspected to make decisions about how to configure the PodTemplateSpec.
+For each image contained within the PodTemplateSpec, the convention controller fetches the OCI image metadata and known [`bill of materials (BOMs)`](reference/bom.md) providing it to the convention server as [`ImageConfig`](./reference/image-config.md). This metadata can be introspected to make decisions about how to configure the PodTemplateSpec.
 
-## <a id='install'></a> Configure and Install the Convention Server
+## <a id='install'></a> Configure and install the convention server
 
-The `server.yaml` defines the Kubernetes components that will enable the convention server in the cluster, the next definitions are within the file.
+The `server.yaml` defines the Kubernetes components that enable the convention server in the cluster. The next definitions are within the file.
 
-1. <a id='install-namespace'></a>A `namespace` will be created for the convention server components and will have the required objects to run the server. It is used in the [`ClusterPodConvention`](#install-convention) section to indicates the controller where the server is.
+1. <a id='install-namespace'></a>A `namespace` is created for the convention server components and has the required objects to run the server. It's used in the [`ClusterPodConvention`](#install-convention) section to indicate to the controller where the server is.
     
     ```yaml
     ...
@@ -350,7 +352,7 @@ The `server.yaml` defines the Kubernetes components that will enable the convent
     ...
     ```
     
-2. <a id='install-cm'></a>A cert manager [`Issuer`](https://cert-manager.io/docs/concepts/issuer/), will be created to issue the cert needed for TLS communication. (Optional)
+2. <a id='install-cm'></a>A certificate manager `Issuer` is created to issue the certificate needed for TLS communication. (Optional)
 
     ```yaml
     ...
@@ -368,7 +370,7 @@ The `server.yaml` defines the Kubernetes components that will enable the convent
     ...
     ```
 
-3. <a id='install-cert'></a>A self-signed [`Certificate`](https://cert-manager.io/docs/concepts/certificate/) will be created. (Optional)
+3. <a id='install-cert'></a>A self-signed `Certificate` is created. (Optional)
 
     ```yaml
     ...
@@ -397,7 +399,7 @@ The `server.yaml` defines the Kubernetes components that will enable the convent
     ...
     ```
 
-4. <a id='install-deployment'></a>A Kubernetes `Deployment` will be created for the webhook to run from. The container port defined by the `Deployment` will be used by the [`Service`](#install-service) to expose server.
+4. <a id='install-deployment'></a>A Kubernetes `Deployment` is created for the webhook to run from. The [`Service`](#install-service) uses the container port defined by the `Deployment` to expose the server.
 
     ```yaml
     ...
@@ -419,7 +421,7 @@ The `server.yaml` defines the Kubernetes components that will enable the convent
         spec:
           containers:
           - name: webhook
-            # Set the prebuilt image of the convention or use ko to build an image from code
+            # Set the prebuilt image of the convention or use ko to build an image from code.
             # see https://github.com/google/ko 
             image: ko://awesome-repo/awesome-user/awesome-convention
           env:
@@ -451,7 +453,7 @@ The `server.yaml` defines the Kubernetes components that will enable the convent
     ...
     ```
 
-5.  <a id='install-service'></a>A Kubernetes `Service` to expose the convention deployment will also be created. For this example the exposed port is the default `443` but if it is changed, the [`ClusterPodConvention`](#install-convention) needs to be updated with the proper one. 
+5.  <a id='install-service'></a>A Kubernetes `Service` to expose the convention deployment is also created. For this example, the exposed port is the default `443`, but if it is changed, the [`ClusterPodConvention`](#install-convention) needs to be updated with the proper one. 
 
     ```yaml
     ...
@@ -473,7 +475,7 @@ The `server.yaml` defines the Kubernetes components that will enable the convent
     ---
     ...
     ```
-6. <a id='install-convention'></a>Finally, the [`ClusterPodConvention`](./reference/cluster-pod-convention.md) will add the convention to the cluster to make it available for the Convention Controller
+6. <a id='install-convention'></a>Finally, the [`ClusterPodConvention`](./reference/cluster-pod-convention.md) adds the convention to the cluster to make it available for the Convention Controller:
 
     ```yaml
     ...
@@ -494,19 +496,21 @@ The `server.yaml` defines the Kubernetes components that will enable the convent
             # port: 443 # default
     ```
 
-**_Optional_**: Only needed if self-signed certificate is being used. Otherwise, check the cert-manager documentation.
+**_Optional_**: Only needed if self-signed certificate is used. Otherwise, check the cert-manager documentation.
 
-## How to Deploy a Convention Server
+## <a id=deploy-convention-server></a>Deploy a convention server
 
-1. Build and Install the Convention
+To deploy a convention server:
 
-    + If the convention needs to be built and deployed, use the [ko](https://github.com/google/ko) tool to do so, it will compile yout _go_ code into a docker image and push it to the registry(`KO_DOCKER_REGISTRY`).
+1. Build and install the convention.
+
+    + If the convention needs to be built and deployed, use the [ko] tool on GitHub (https://github.com/google/ko). It compiles yout _go_ code into a docker image and pushes it to the registry(`KO_DOCKER_REGISTRY`).
     
         ```bash
         ko apply -f dist/server.yaml
         ```
 
-    + If a different tool is being used to build the image, the configuration can be also be applied using either `kubectl` or `kapp` setting the correct image in the [`Deployment`](#install-convention) descriptor.
+    + If a different tool is used to build the image, the configuration can be also be applied using either kubectl or `kapp`, setting the correct image in the [`Deployment`](#install-convention) descriptor.
     
        kubectl
        
@@ -520,10 +524,10 @@ The `server.yaml` defines the Kubernetes components that will enable the convent
         kapp deploy -y -a awesome-convention -f server.yaml 
         ```
 
-2. Verify the Convention Server
-To check the status of the convention server, check for the running convention pods:
+2. Verify the convention server.
+To check the status of the convention server, check for the running convention Pods:
 
-    + If the server is running, `kubectl get all -n awesome-convention` will return something like ...
+    + If the server is running, `kubectl get all -n awesome-convention` returns something like:
     
         ```text
         NAME                                       READY   STATUS    RESTARTS   AGE
@@ -546,7 +550,7 @@ To check the status of the convention server, check for the running convention p
         replicaset.apps/awesome-webhook-9b6957476        0         0         0       24h
         ```
 
-    + To verify the conventions are being applied, check the `PodIntent` of a workload that matches the convention criteria.
+    + To verify the conventions are being applied, check the `PodIntent` of a workload that matches the convention criteria:  
     
         ```bash
         kubectl -o yaml get podintents.conventions.apps.tanzu.vmware.co awesome-app
@@ -640,4 +644,4 @@ To check the status of the convention server, check for the running convention p
 
 Keep Exploring:
 
-+ Try to use different matching criteria for the conventions or enhance the supply chain with multiple conventions
++ Try to use different matching criteria for the conventions or enhance the supply chain with multiple conventions.

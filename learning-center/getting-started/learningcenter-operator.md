@@ -1,4 +1,4 @@
-# Learning Center operator
+# Learning Center Operator
 
 Before deploying workshops, install a Kubernetes Operator for Learning Center.
 The operator manages the setup of the environment for each workshop and deploys instances of a workshop for each person.
@@ -81,19 +81,19 @@ using HTTP only, these will not work.
 ingressDomain: learningcenter.my-domain.com
 ```
 
-### <a id="NAME"></a>Set the environment variable manually
+### <a id="set-ingress-domain-manually"></a>Set the environment variable manually
 Set the ``INGRESS_DOMAIN`` environment variable on the operator deployment. To set the ``INGRESS_DOMAIN``
 environment variable, run:
 
 ```
 kubectl set env deployment/learningcenter-operator -n learningcenter INGRESS_DOMAIN=test
-``` <!-- Define any non-obvious placeholders present in the code snippet in the style of |Where PLACEHOLDER is...| -->
+```
 Replace ``test`` with the domain name for your Kubernetes cluster.
 
 or if using a ``nip.io`` address
 ```
 kubectl set env deployment/learningcenter-operator -n learningcenter INGRESS_DOMAIN=192.168.64.1.nip.io
-
+```
 Note that use of environment variables to configure the operator is a shortcut to cater for the 
 simple use case. The recommended way is to use Tanzu CLI or for more complicated scenarios the 
 ``SystemProfile`` custom resource can be used.
@@ -108,7 +108,7 @@ under which you wish to host the workshops. You cannot use a self-signed certifi
 Wildcard certificates can be created using `letsencrypt <https://letsencrypt.org/>`_. Once you have the 
 certificate, you can do the following:
 
-###<a id="NAME"></a>Configuration YAML
+###<a id="configuration-yaml"></a>Configuration YAML
 
 The easiest way to define the certificate is with the configuration passed to Tanzu CLI. So define
 the ``certificate`` and ``privateKey`` properties under the ``ingressSecret`` property to specify the
@@ -131,9 +131,9 @@ certificate on the configuration yaml passed to Tanzu CLI
   ```
 
 If you already have a TLS secret, follow these steps **before deploying any workshop**:
+
   - Create the `learningcenter` namespace manually or the one you defined
-  - Copy the tls secret to the `learningcenter` namespace or the one you
-  defined, and use the `secretName` property as in this example:
+  - Copy the tls secret to the `learningcenter` namespace or the one that you defined, and use the `secretName` property as in this example:
 
   ```
   ingressSecret:
@@ -172,7 +172,7 @@ Define the ``ingressClass`` property on the configuration YAML passed to Tanzu C
 ingressClass: contour
 ```
 
-###<a id="NAME"></a>Set the environment variable manually
+###<a id="set-ingress-class-manually"></a>Set the environment variable manually
 Set the ``INGRESS_CLASS`` environment variable for the learningcenter operator.
 ```
 kubectl set env deployment/learningcenter-operator -n learningcenter INGRESS_CLASS=contour

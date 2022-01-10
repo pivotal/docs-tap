@@ -1,4 +1,4 @@
-# insight
+# Insight
 
 This CLI is used to post data and query the metadata store.
 

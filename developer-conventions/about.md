@@ -8,7 +8,7 @@ weight: 1
 
 Developer Conventions is a set of [conventions](../convention-service/about.md) that
 enable your workloads to support live-update and debug operations.
-It is used alongside the [Tanzu CLI Apps Plug-in](../cli-plugins/apps/overview-installation.md)
+It is used alongside the [Tanzu CLI Apps plug-in](../cli-plugins/apps/overview-installation.md)
 and the [Tanzu Dev Tools for VSCode](../vscode-extension/about.md) IDE extension.
 
 ## <a id='features'></a>Features
@@ -24,7 +24,7 @@ When either of the preceding actions take place, the convention behaves as follo
 
 1. It looks for the `apps.tanzu.vmware.com/live-update=true` annotation on a PodTemplateSpec associated with a workload.
 2. It verifies that the image to which conventions are applied contains a process that can be live updated. 
-3. It adds annotations to the PodTemplateSpec to modify the Knative properties `minScale` & `maxScale` such that the minimum and maximum number of Pods is 1. This ensures the eventual running Pod won't be scaled down to 0 during a live update session.
+3. It adds annotations to the PodTemplateSpec to modify the Knative properties `minScale` & `maxScale` such that the minimum and maximum number of Pods is 1. This ensures the eventual running Pod is not scaled down to 0 during a live update session.
 
 After these changes are made, you can use the Tanzu Dev Tools extension
 or the Tilt CLI to make live update changes to source code directly on the cluster.
@@ -45,7 +45,7 @@ When either of the preceding actions take place, the convention behaves as follo
 
 After these changes are made, you can use the Tanzu Dev Tools extension or other CLI-based debuggers to debug your workload directly on the cluster.
 
->**Note**: Currently, Developer Conventions only supports debug operations for Java applications.
+> **Note**: Currently, Developer Conventions only supports debug operations for Java applications.
 
 ### <a id='resource-limits'></a>Resource Limits
 

@@ -11,8 +11,8 @@ The following prerequisites are required to use workloads with Tanzu Application
 + Kubectl is installed. For information about installing kubectl, see [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes documentation.
 + Tanzu Application Platform components are installed on a Kubernetes cluster. See [Installing Tanzu Application Platform](../../install-intro.md).
 + Your kubeconfig context is set to the prepared cluster `kubectl config use-context CONTEXT_NAME`.
-+ Tanzu CLI is installed. See [Install or update the Tanzu CLI and plugins](../../install-general.md#cli-and-plugin).
-+ The apps plugin is installed. See the [Apps Plugin Overview](overview-installation.md#Installation).
++ Tanzu CLI is installed. See [Install or update the Tanzu CLI and plug-ins](../../install-general.md#cli-and-plugin).
++ The apps plug-in is installed. See the [Apps plug-in overview](overview-installation.md#Installation).
 
 ### Getting started with an example workload
 

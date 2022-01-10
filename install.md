@@ -1,11 +1,11 @@
-# Installing part II: Profiles
+# Installing Part II: Profiles
 
 This document describes how to install Tanzu Application Platform packages
 from the Tanzu Application Platform package repository.
 
-Before you install the packages, ensure you have completed the prerequisites, configured
-and verified the cluster, accepted the EULA, and installed the Tanzu CLI with any required plugins.
-See [Installing part I: Prerequisites, EULA, and CLI](install-general.md).
+Before you install the packages, ensure that you have completed the prerequisites, configured
+and verified the cluster, accepted the EULA, and installed the Tanzu CLI with any required plug-ins.
+See [Installing Part I: Prerequisites, EULA, and CLI](install-general.md).
 
 
 ## <a id='add-package-repositories'></a> Add the Tanzu Application Platform package repository
@@ -41,14 +41,14 @@ To add the Tanzu Application Platform package repository:
 
     ```
     tanzu package repository add tanzu-tap-repository \
-      --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.4.0 \
+      --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.5.0-build.5 \
       --namespace tap-install
     ```
     For example:
 
     ```
     $ tanzu package repository add tanzu-tap-repository \
-        --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.4.0 \
+        --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.5.0-build.5 \
         --namespace tap-install
     \ Adding package repository 'tanzu-tap-repository'...
 
@@ -68,7 +68,7 @@ To add the Tanzu Application Platform package repository:
     NAME:          tanzu-tap-repository
     VERSION:       3769
     REPOSITORY:    registry.tanzu.vmware.com/tanzu-application-platform/tap-packages
-    TAG:           0.4.0
+    TAG:           0.5.0-build.5
     STATUS:        Reconcile succeeded
     REASON:
     ```
@@ -391,22 +391,22 @@ tap_gui:
   ingressDomain: "INGRESS-DOMAIN"
   app_config:
     app:
-        baseUrl: http://tap-gui.INGRESS-DOMAIN
+      baseUrl: http://tap-gui.INGRESS-DOMAIN
     catalog:
-        locations:
+      locations:
         - type: url
-            target: https://GIT-CATALOG-URL/catalog-info.yaml
+          target: https://GIT-CATALOG-URL/catalog-info.yaml
     backend:
-        baseUrl: http://tap-gui.INGRESS-DOMAIN
-        cors:
-            origin: http://tap-gui.INGRESS-DOMAIN
+      baseUrl: http://tap-gui.INGRESS-DOMAIN
+      cors:
+        origin: http://tap-gui.INGRESS-DOMAIN
 
 metadata_store:
   app_service_type: LoadBalancer # (optional) Defaults to LoadBalancer. Change to NodePort for distributions that don't support LoadBalancer
 
 grype:
   namespace: "MY-DEV-NAMESPACE" # (optional) Defaults to default namespace.
-  targetImagePullSecret: "REGISTRY-CREDENTIALS-SECRET"
+  targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
 ```
 
 Where:
@@ -436,7 +436,7 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
 service's External IP address.
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog that you've already built and posted on the Git infrastucture you specified in the Integration section.
 - `MY-DEV-NAMESPACE` is the namespace where you want the `ScanTemplates` to be deployed to. This is the namespace where the scanning feature is going to run.
-- `REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull the scanner image from the registry.
+- `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull an image from the registry for scanning. If built images are pushed to the same registry as the Tanzu Application Platform images, this can reuse the `tap-registry` secret created in step 3 of [Add the Tanzu Application Platform package repository](#add-package-repositories).
 
 >**Note:** Using the `tap-values.yaml` configuration,
 >`buildservice.enable_automatic_dependency_updates: false` can be used to pause the automatic update
@@ -470,15 +470,15 @@ tap_gui:
   ingressDomain: "INGRESS-DOMAIN"
   app_config:
     app:
-        baseUrl: http://tap-gui.INGRESS-DOMAIN
+      baseUrl: http://tap-gui.INGRESS-DOMAIN
     catalog:
-        locations:
+      locations:
         - type: url
-            target: https://GIT-CATALOG-URL/catalog-info.yaml
+          target: https://GIT-CATALOG-URL/catalog-info.yaml
     backend:
-        baseUrl: http://tap-gui.INGRESS-DOMAIN
-        cors:
-            origin: http://tap-gui.INGRESS-DOMAIN
+      baseUrl: http://tap-gui.INGRESS-DOMAIN
+      cors:
+        origin: http://tap-gui.INGRESS-DOMAIN
 
 metadata_store:
   app_service_type: LoadBalancer # (optional) Defaults to LoadBalancer. Change to NodePort for distributions that don't support LoadBalancer
@@ -504,14 +504,14 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
     - Harbor has the form `repository: "my-project/supply-chain"`
     - Dockerhub has the form `repository: "my-dockerhub-user"`
     - Google Cloud Registry has the form `repository: "my-project/supply-chain"`
-- `INGRESS-DOMAIN` is the subdomain for the hostname that you will point at the `tanzu-shared-ingress` service's External IP address
-- `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog you've already built and posted on the Git infrastucture you specified in the Integration section.
+- `INGRESS-DOMAIN` is the subdomain for the host name that you will point at the `tanzu-shared-ingress` service's External IP address.
+- `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog you've already built and posted on the Git infrastructure you specified in the Integration section.
 
 
 To view possible configuration settings for a package, run:
 
 ```
-tanzu package available get tap.tanzu.vmware.com/0.4.0 --values-schema --namespace tap-install
+tanzu package available get tap.tanzu.vmware.com/0.5.0-build.5 --values-schema --namespace tap-install
 ```
 
 >**Note:** The `tap.tanzu.vmware.com` package does not show all configuration settings for packages
@@ -562,7 +562,7 @@ For information about package-specific configuration, see [Install components](i
 1. Install the package by running:
 
     ```
-    tanzu package install tap -p tap.tanzu.vmware.com -v 0.4.0 --values-file tap-values.yml -n tap-install
+    tanzu package install tap -p tap.tanzu.vmware.com -v 0.5.0-build.5 --values-file tap-values.yml -n tap-install
     ```
 
 1. Verify the package install by running:
@@ -579,12 +579,18 @@ For information about package-specific configuration, see [Install components](i
     tanzu package installed list -A
     ```
 
+
+  Congratulations, now you have installed the Tanzu Application Platform! Before your start submitting your first applications, you must ensure you have [Setup developer namespaces](install-components.md#setup).
+
+
 1. (Optional) [Install any additional packages](install-components.md) that were not included in your profile.
 
 After you install Dev Profile onto your cluster, you can install the Tanzu Developer Tools for VSCode extension to help you develop against it.
 For instructions, see [Installing Tanzu Dev Tools for VSCode](vscode-extension/install.md).
 
 ## <a id='configure-envoy-lb'></a> Configure LoadBalancer for Contour ingress
+
+This section only applies when you use Tanzu Application Platform to deploy its own shared Contour ingress controller in `tanzu-system-ingress`. It is not applicable when you use an existing ingress with the components. You can share this ingress across `cnrs`, `tap_gui`, and `learningcenter`.
 
 By default, Contour uses `NodePort` as the service type. To set the service type to `LoadBalancer`, add the following to your `tap-values.yml`:
 

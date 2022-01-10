@@ -1,6 +1,7 @@
 # More scan samples
-This section provides samples on multiple use cases that can be copied in your cluster for testing purposes.  
 
-1. [Running a Sample Public Source Scan of a Blob](blob.md)
-2. [Running a Sample Private Image Scan](private-image.md)
-3. [Running a Sample Private Source Scan](private-source.md)
+This section provides samples on multiple use cases that you can copy to your cluster for testing purposes.  
+
+- [Running a sample public source scan of a blob](blob.md)
+- [Running a sample private image scan](private-image.md)
+- [Running a sample private source scan](private-source.md)
