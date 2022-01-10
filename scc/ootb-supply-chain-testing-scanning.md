@@ -1,4 +1,4 @@
-# Out of The Box Supply Chain with Testing and Scanning (ootb-supply-chain-testing-scanning)
+# Out of the Box Supply Chain with Testing and Scanning
 
 This Cartographer Supply Chain ties a series of Kubernetes resources which,
 when working together, drives a developer-provided Workload from source code
@@ -24,7 +24,7 @@ DELIVERY
 ```
 
 
-It includes all the capabilities of the Out of The Box Supply Chain With
+It includes all the capabilities of the Out of the Box Supply Chain With
 Testing, but adds on top source and image scanning using Grype:
 
 - Watching a Git Repository or local directory for changes
@@ -36,15 +36,15 @@ Testing, but adds on top source and image scanning using Grype:
 - Deploying the application to the same cluster
 
 
-## Prerequisites
+## <a id="prerequisites"></a> Prerequisites
 
-To make use this supply chain, it's required that:
+To make use this supply chain, it is required that:
 
-- Out of The Box Templates is installed
-- Out of The Box Delivery Basic is installed
-- Out of The Box Supply Chain With Testing **is NOT installed** (!!)
-- Out of The Box Supply Chain With Testing and Scanning **is installed**
-- Developer namespace is configured with the objects per Out of The Box Supply
+- Out of the Box Templates is installed
+- Out of the Box Delivery Basic is installed
+- Out of the Box Supply Chain With Testing **is NOT installed**
+- Out of the Box Supply Chain With Testing and Scanning **is installed**
+- Developer namespace is configured with the objects per Out of the Box Supply
   Chain With Testing guidance (this supply chain is additive to the testing
   one)
 
@@ -66,12 +66,12 @@ have the _source-test-to-url_ installed** at the same time as
 _source-test-scan-to-url_.
 
 
-## Developer namespace
+## <a id="developer-namespace"></a> Developer Namespace
 
 As mentioned in the prerequisites section, this example builds on the previous
-Out of The Box Supply Chain examples, so only additions are included here.
+Out of the Box Supply Chain examples, so only additions are included here.
 
-To make sure you have configured the namespace correctly, it's important that
+To ensure that you have configured the namespace correctly, it is important that
 the namespace has the objects that you configured in the other supply chain setups:
 
 - **image secret**: A Kubernetes secret of type `kubernetes.io/dockerconfigjson` filled with
@@ -107,20 +107,20 @@ code. For more information, see [ScanTemplate section](#scan-template).
 - **image scan template**: A template of how jobs are created for scanning the image
 produced by the supply chain. For more information, see [ScanTemplate section](#scan-template).
 
-Below you'll find details about the new objects (compared to Out of The Box
+Below you will find details about the new objects (compared to Out of the Box
 Supply Chain With Testing).
 
 
-### Updates to the developer namespace
+### <a id="updates-to-developer-namespace"></a> Updates to the Developer Namespace
 
-In order for source and image scans to happen, scan templates and scan policies
+For source and image scans to happen, scan templates and scan policies
 must exist in the same namespace as the Workload. These define:
 
 - `ScanTemplate`: how to run a scan, allowing one to change details about the
   execution of the scan (either for images or source code)
 
 - `ScanPolicy`: how to evaluate whether the artifacts scanned are compliant,
-  e.g., allowing one to be either very strict, or restrictive about particular
+  for example allowing one to be either very strict, or restrictive about particular
 vulnerabilities found.
 
 Note that the names of the objects **must** match the ones in the example.
@@ -180,9 +180,9 @@ below:
 - source scanning (`blob-source-scan-template`)
 - image scanning (`private-image-scan-template`)
 
-If you're targeting a namespace that doesn't match the one configured in the
+If you are targeting a namespace that does not match the one configured in the
 Tanzu Application Platform profiles, for example if `grype.namespace` is not the same as the one
-you're writing the workload to, you can install these in such namespace by making use of the
+you are writing the workload to, you can install these in such namespace by making use of the
 `tanzu package install` command as described in [Install Supply Chain Security
 Tools - Scan](../install-components.md#install-scst-scan):
 
@@ -204,25 +204,25 @@ to the properties you want to change. For example:
       --namespace YOUR-DEV-NAMESPACE
     ```
 
->**Note:** Although you can customize the templates, if you're just following the Getting Started
->guide then it's recommended you stick with what is provided in the installation of
+>**Note:** Although you can customize the templates, if you are just following the Getting Started
+>guide then it is recommended you stick with what is provided in the installation of
 >`grype.scanning.apps.tanzu.vmware.com`. This is created in the same namespace as configured by
 >using `grype.namespace` in either Tanzu Application Platform profiles or individual component
 >installation as in the earlier example. For more information, see
 >[About Source and Image Scans](../scst-scan/explanation.md#about-source-and-image-scans).
 
 
-## Developer Workload
+## <a id="developer-workload"></a> Developer Workload
 
 With the ScanPolicy and ScanTemplate objects, with the required names set,
 submitted to the same namespace where the Workload will be submitted
-to, you're ready to submit your Workload.
+to, you are ready to submit your Workload.
 
 Regardless of the workflow being targeted (local development or gitops), the
-Workload configuration details are the same as in Out of The Box Supply Chain
+Workload configuration details are the same as in Out of the Box Supply Chain
 Basic, except that you mark the Workload as having tests enabled.
 
-For instance:
+For example:
 
 ```
 tanzu apps workload create tanzu-java-web-app \
