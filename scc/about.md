@@ -19,7 +19,7 @@ resources - test, build, scan, and deploy - allows developers to focus on
 delivering value to their users and provides App Operators the assurance that
 all code in production has passed through all the steps of an approved workflow.
 
-# <a id="out-of-the-box-supply-chains"></a> Out of he Box Supply Chains
+# <a id="out-of-the-box-supply-chains"></a> Out of the Box Supply Chains
 
 Out of the box supply chains are provided with Tanzu Application Platform.
 
