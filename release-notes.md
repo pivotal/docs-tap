@@ -162,8 +162,8 @@ You can run `kubectl describe` on the scan and look for `Scan completed. Found x
 
 #### Supply Chain Security Tools - Sign
 
-- If all webhook nodes or pods are evicted by the cluster or scaled down, the admission policy
-blocks any pods from being created in the cluster.
+- **Blocked pod creation:** If all webhook nodes or pods are evicted by the cluster or scaled down, 
+the admission policy blocks any pods from being created in the cluster.
 To resolve the issue, delete `MutatingWebhookConfiguration` and re-apply it when the cluster is
 stable.
 

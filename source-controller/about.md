@@ -2,13 +2,15 @@
 
 The controller extends the functionality of the FluxCD Source Controller. An [`ImageRepository`](#imagerepository) resource is able to resolve source from the content of an image in an image registry.
 
-## Troubleshooting
+## <a id="troubleshooting"></a> Troubleshooting
 
 For basic troubleshooting Source Controller, see the [Troubleshooting guide](./troubleshooting.md).
 
-## Reference documentation
+## <a id="reference"></a> Reference Documentation
 
-### ImageRepository
+The following reference documentation exists.
+
+### <a id="image-repository"></a> ImageRepository
 
 ```
 apiVersion: source.apps.tanzu.vmware.com/v1alpha1

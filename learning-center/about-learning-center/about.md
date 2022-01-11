@@ -1,9 +1,10 @@
 # Learning Center
 
-## Overview
-These sections include general information on Learning Center and workshops.
+## <a id="overview"></a>Overview
 
-Architectural documents and screenshots will be included in this section.
+These sections include general information about Learning Center and workshops.
+
+Architectural documents and screenshots are available in this section.
 
 - [About Learning Center](about-learning-center.md)
-- [About Workshops](about-workshops.md)
+- [About workshops](about-workshops.md)

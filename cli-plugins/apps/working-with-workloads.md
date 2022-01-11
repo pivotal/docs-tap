@@ -1,20 +1,20 @@
-# Working with workloads
+# Working with Workloads
 
-## <a id='Creating'></a> Create a workload
+## <a id="create"></a> Create a Workload
 
 This document describes how to create a workload from example source code with the Tanzu Application Platform.
 
-### <a id='prereqs'></a> Before you begin
+### <a id='prerequisites'></a> Prerequisites
 
 The following prerequisites are required to use workloads with Tanzu Application Service:
 
-+ Kubectl is installed. For information about installing kubectl, see [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes documentation.
++ Kubernetes command line tool (kubectl) is installed. For information about installing kubectl, see [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes documentation.
 + Tanzu Application Platform components are installed on a Kubernetes cluster. See [Installing Tanzu Application Platform](../../install-intro.md).
 + Your kubeconfig context is set to the prepared cluster `kubectl config use-context CONTEXT_NAME`.
 + Tanzu CLI is installed. See [Install or update the Tanzu CLI and plug-ins](../../install-general.md#cli-and-plugin).
 + The apps plug-in is installed. See the [Apps plug-in overview](overview-installation.md#Installation).
 
-### Getting started with an example workload
+### <a id="example"></a> Getting Started with an Example Workload
 
 Use the following procedure to get started with an example workload.
 
@@ -27,16 +27,15 @@ Use the following procedure to get started with an example workload.
     Respond `Y` to prompts to complete process.
 
     Where:
-
-    + `pet-clinic` is the name that will be given to the workload.
+    + `pet-clinic` is the name of the workload.
     + `--git-repo` is the location of the code to build the workload from.
-    + `--git-branch` (optional) specifies which branch in the repo to pull the code from.
+    + `--git-branch` (optional) specifies which branch in the repository to pull the code from.
     + `--type` is used to distinguish the workload type.
 
     The options available for specifying the workload are found in the command reference for [`workload create`](command-reference/tanzu_apps_workload_create.md) or by running `tanzu apps workload create --help`.
 
 
-### <a id='workload-tail'></a> Check build logs
+### <a id="check-build-logs"></a> Check Build Logs
 
 Once the workload is created, you can tail the workload to view the build and runtime logs.
 
@@ -45,16 +44,14 @@ Once the workload is created, you can tail the workload to view the build and ru
     ```
     tanzu apps workload tail pet-clinic --since 10m --timestamp
     ```
-
     Where:
-
     + `pet-clinic` is the name you gave the workload.
     + `--since` (optional) is how long ago to start streaming logs from. The default is 1 second.
     + `--timestamp` (optional) prints the timestamp with each log line.
 
-### <a id='workload-get'></a> Get the workload status and details
+### <a id="workload-status"></a> Get the Workload Status and Details
 
-Once the workload build process is completed, create a knative service to run the workload.
+Once the workload build process is completed, create a Knative service to run the workload.
 You can view workload details at anytime in the process. Some details, such as the workload URL, are only available once the workload is running.
 
 1. Check the workload details by running:
@@ -62,16 +59,14 @@ You can view workload details at anytime in the process. Some details, such as t
     ```
     tanzu apps workload get pet-clinic
     ```
-
     Where:
-
-    + `pet-clinic` is the name of the workload you would like details from.
+    + `pet-clinic` is the name of the workload that you want details about.
 
 2. See the running workload.
 When the workload is created, `tanzu apps workload get` includes the URL for the running workload.
-Depending on your terminal, you may be able to `ctrl`+click the URL to view. You can also copy and paste the URL into your web browser to see the workload.
+Depending on your terminal, you might be able to `ctrl`+click the URL to view. You can also copy and paste the URL into your web browser to see the workload.
 
-### <a id='workload-local-source'></a> Create a workload from local source
+### <a id="workload-local-source"></a> Create a Workload from Local Source
 
 You can create a workload using code from a local folder.
 
@@ -84,12 +79,11 @@ You can create a workload using code from a local folder.
     Respond `Y` to the prompt about publishing local source if the image needs to be updated.
 
     Where:
-
-    + `pet-clinic` is the name that will be given to the workload.
-    + `--local-path` is pointing to the folder where the source code is located.
+    + `pet-clinic` is the name of the workload.
+    + `--local-path` is pointing to the directory where the source code is located.
     + `--source-image` is the registry path for the local source code.
 
-## <a id='service-binding'></a> Bind a service to a workload
+## <a id="bind-service"></a> Bind a Service to a Workload
 
 Multiple services can be configured for each workload. The cluster supply chain is in charge of provisioning those services.
 
@@ -98,13 +92,11 @@ Multiple services can be configured for each workload. The cluster supply chain 
     ```
     tanzu apps workload update pet-clinic --service-ref "database=services.tanzu.vmware.com/v1alpha1:MySQL:my-prod-db"
     ```
-
     Where:
-
     + `pet-clinic` is the name of the workload to be updated.
     + `--service-ref` is the reference to the service using the format {name}={apiVersion}:{kind}:{name}. For more details, refer to [update command](command-reference/tanzu_apps_workload_update.md#update-options).
 
-## <a id='next-steps'></a> Next steps
+## <a id="next-steps"></a> Next Steps
 
 You can add environment variables, export definitions, and use flags with these [commands](command-reference.md). The following procedure includes example environment variables and flags.
 

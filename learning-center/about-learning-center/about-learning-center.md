@@ -80,9 +80,9 @@ When users access the training portal and select the workshop they want to do, t
 user a workshop session (creating one if necessary) against the appropriate workshop environment, and the user is
 redirected to that workshop session instance.
 
-![Architectural overview](images/architectural-overview.png)
+![Screenshot of architectural overview](images/architectural-overview.png)
 
-Each workshop session may be associated with one or more Kubernetes namespaces specifically for use during that session.
+You can associate each workshop session with one or more Kubernetes namespaces specifically for use during that session.
 Role based access control (RBAC) applied to the unique Kubernetes service account for that session, ensures that the
 user can only access the namespaces and other resources that they are allowed to for that workshop.
 
