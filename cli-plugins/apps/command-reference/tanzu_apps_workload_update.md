@@ -1,6 +1,6 @@
 # Tanzu apps workload update
 
-This topic will help you update the configuration of an existing workload.
+This topic helps you update the configuration of an existing workload.
 
 To export the current configuration, run `tanzu apps workload export NAME`.
 
@@ -15,7 +15,7 @@ Workload configuration options include:
 tanzu apps workload update [name] [flags]
 ```
 
-## Examples
+## <a id="examples"></a>Examples
 
 ```
 tanzu apps workload update my-workload --debug=false
@@ -57,7 +57,7 @@ tanzu apps workload update --file workload.yaml
   -y, --yes                            accept all prompts
 ```
 
-## Options inherited from parent commands
+## <a id="options inherited from parent commands"></a>Options inherited from parent commands
 
 ```
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
@@ -68,4 +68,4 @@ tanzu apps workload update --file workload.yaml
 
 ## See also
 
-- [Tanzu Apps Workload](tanzu_apps_workload.md)	 - Workload lifecycle management
+- [Tanzu Apps Workload](tanzu_apps_workload.md)   - Workload life cycle management
