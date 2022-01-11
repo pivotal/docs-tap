@@ -13,13 +13,13 @@ Workload configuration options include:
 tanzu apps workload apply [name] [flags]
 ```
 
-## Examples
+## <a id="examples"></a>Examples
 
 ```
 tanzu apps workload apply --file workload.yaml
 ```
 
-## Options
+## <a id="options"></a>Options
 
 ```
       --app name                       application name the workload is a part of
@@ -52,7 +52,7 @@ tanzu apps workload apply --file workload.yaml
   -y, --yes                            accept all prompts
 ```
 
-## Options inherited from parent commands
+## <a id="options inherited from patent commands"></a>Options inherited from parent commands
 
 ```
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
@@ -63,4 +63,4 @@ tanzu apps workload apply --file workload.yaml
 
 ## See also
 
-- [Tanzu Apps Workload](tanzu_apps_workload.md) - Workload lifecycle management
+- [Tanzu Apps Workload](tanzu_apps_workload.md) - Workload life cycle management

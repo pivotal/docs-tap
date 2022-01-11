@@ -1,10 +1,10 @@
 # Installing on Minikube
 
-Minikube makes for a simple local deployment of Kubernetes for developing workshop content or for self-learning when deploying other people's workshops.
+Minikube makes for simple local deployment of Kubernetes for developing workshop content or for self-learning when deploying other people's workshops.
 
 As you are deploying to a local machine you are unlikely to have access to your own custom domain name and certificate you can use with the cluster. Extra steps are required over a standard install of Minikube to ensure you can run certain types of workshops.
 
-Also keep in mind that since Minikube generally has limited memory resources available and is only a single-node cluster, you may be prohibited from running workshops which have large memory requirements or which demonstrate use of third-party applications which require a multi-node cluster.
+Also keep in mind that since Minikube generally has limited memory resources available and is only a single-node cluster, you may be prohibited from running workshops that have large memory requirements or which demonstrate the use of third-party applications which require a multi-node cluster.
 
 Requirements and setup instructions specific to Minikube are detailed below,; otherwise, normal installation instructions for the Learning Center operator should be followed.
 
@@ -76,16 +76,16 @@ kubectl create ns tap-install
 Create a registry secret:
 ```
 tanzu package repository add tanzu-tap-repository \
-  --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.4.0 \
+  --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.0.0 \
   --namespace tap-install
 ```
 Where TANZU-NET-USER and TANZU-NET-PASSWORD are your credentials for Tanzu Network.
-  
+
   Add package repository to your cluster:
 
 ```
 tanzu package repository add tanzu-tap-repository \
-  --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.4.0 \
+  --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.0.0 \
   --namespace tap-install
 ```
 Note* We are currently on build 7; if this changes, we need to update the command with the correct build version after the --url flag.
@@ -191,14 +191,14 @@ Note that some home internet gateways implement what is called rebind protection
 ## Install Learning Center package onto a minikube cluster
 
 ```
-tanzu package install learningcenter --package-name learningcenter.tanzu.vmware.com --version 1.0.14-build.5 -f ./learningcenter-value.yaml --namespace tap-install
+tanzu package install learningcenter --package-name learningcenter.tanzu.vmware.com --version 0.1.0 -f ./learningcenter-value.yaml --namespace tap-install
 ```
 This package installation uses the installed Package repository along with a configuration learningcenter-value.yaml to install our Learning Center package.
 
 ## Install Workshop tutorial package onto a minikube cluster
 
 ```
-tanzu package install learningcenter-tutorials --package-name workshops.learningcenter.tanzu.vmware.com --version 1.0.7-build.6 --namespace tap-install
+tanzu package install learningcenter-tutorials --package-name workshops.learningcenter.tanzu.vmware.com --version 0.1.0 --namespace tap-install
 ```
 Make sure you install the workshop package after the Learning Center package has reconcilled and successfully installed onto your cluster. In case of new versioning you may obtain package version numbers using 
 ```

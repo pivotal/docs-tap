@@ -10,14 +10,14 @@ are displayed. To show historical logs use --since.
 tanzu apps workload tail <name> [flags]
 ```
 
-## Examples
+## <a id="examples"></a>Examples
 
 ```
 tanzu apps workload tail my-workload
 tanzu apps workload tail my-workload --since 1h
 ```
 
-## Options
+## <a id="options"></a>Options
 
 ```
       --component name   workload component name (e.g. build)
@@ -27,7 +27,7 @@ tanzu apps workload tail my-workload --since 1h
   -t, --timestamp        print timestamp for each log line
 ```
 
-## Options inherited from parent commands
+## <a id="options inherited from parent commands"></a>Options inherited from parent commands
 
 ```
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
@@ -38,5 +38,4 @@ tanzu apps workload tail my-workload --since 1h
 
 ## See also
 
-* [Tanzu Apps Workload](tanzu_apps_workload.md) - Workload lifecycle management
-
+* [Tanzu Apps Workload](tanzu_apps_workload.md) - Workload life cycle management

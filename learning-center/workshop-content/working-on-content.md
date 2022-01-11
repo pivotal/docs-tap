@@ -2,7 +2,7 @@
 
 Workshop content is either embedded in a custom workshop image or downloaded from a Git repository or web server when the workshop session is created. To speed up the iterative loop of editing and testing a workshop when developing workshop content, there are a number of best practices you can use.
 
-## Disabling reserved sessions
+## <a id="disable-reserved-sessions"></a>Disabling reserved sessions
 
 Use an instance of a training portal when developing content where reserved sessions are disabled.
 
@@ -28,7 +28,7 @@ By disabling reserved sessions a new workshop session is always created on deman
 
 As there can be a slight delay in being able to create a new workshop, shut down the existing workshop session first. The new workshop session may also take some time to start if an updated version of the workshop image also has to be pulled down.
 
-## Live updates to the content
+## <a id="live-updates-to-the-content"></a>Live updates to the content
 
 If you download workshop content from a Git repository or web server and you are only doing simple updates to workshop instructions, scripts, or files bundled with the workshop, you can update the content in place without needing to restart the workshop session. To perform an update, do this after you have pushed back any changes to the hosted Git repository or updated the content available via the web server. From the workshop session terminal run:
 
@@ -54,23 +54,23 @@ If additional pages are added to the workshop instructions or pages are renamed,
 restart-workshop
 ```
 
-As long as you didn't rename the current pager or if the name had changed, you can trigger a reload of the current page. Click the home icon, if the name of the first page didn't change, or refresh the whole browser window.
+If you didn't rename the current pager or if the name had changed, you can trigger a reload of the current page. Click the home icon, if the name of the first page didn't change, or refresh the whole browser window.
 
-If action blocks within the workshop instructions are broken and you want to make a change to the workshop instructions within the live workshop session to test, you can make edits to the appropriate page under ``/opt/workshop/content``. Navigate to the modified page or reload it to verify the change.
+If action blocks within the workshop instructions are broken and you want to make a change to the workshop instructions within the live workshop session to test, you can make edits to the appropriate page under `/opt/workshop/content`. Navigate to the modified page or reload it to verify the change.
 
-If you want to make a change to set up scripts which create files specific to a workshop session and re-run them, make the edit to the script under ``/opt/workshop/setup.d``. To trigger running of any setup scripts, then run:
+To make a change to set up scripts which create files specific to a workshop session and re-run them, make the edit to the script under `/opt/workshop/setup.d` directory. To trigger running of any setup scripts, then run:
 
 ```
 rebuild-workshop
 ```
 
-If local changes to the workshop session are working, then you can modify the file back in the original Git repository where you are keeping content.
+If local changes to the workshop session are working, you can edit the file back in the original Git repository where you are keeping content.
 
-Updating workshop content in a live session in this way does not undo any deployments or changes you make in the Kubernetes cluster for that session. If you want to retest parts of the workshop instructions you may have to manually undo changes in the cluster in order to replay them. This depends on your specific workshop content.
+Updating workshop content in a live session in this way does not undo any deployments or changes you make in the Kubernetes cluster for that session. To retest parts of the workshop instructions you might have to manually undo changes in the cluster to replay them. This depends on your specific workshop content.
 
-## Custom workshop image changes
+## <a id="custom-workshop-image-changes"></a>Custom workshop image changes
 
-If your workshop uses a custom workshop image in order to provide additional tools, and, as a result, you have included the workshop instructions as part of the workshop image,  always use an image tag of ``main``, ``master``, ``develop`` or ``latest``during development of workshop content.  Do not use a version image reference. For example:
+If your workshop uses a custom workshop image to provide additional tools, and, as a result, you have included the workshop instructions as part of the workshop image,  always use an image tag of `main`, `master`, `develop` or `latest` during development of workshop content.  Do not use a version image reference. For example:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -84,9 +84,9 @@ spec:
     image: <YOUR-GIT-REPO>/lab-sample-workshop:master
 ```
 
-When an image tag of ``main``, ``master``, ``develop`` or ``latest`` is used, the image pull policy is set to ``Always`` to ensure that the custom workshop image is pulled down again for a new workshop session if the remote image changes. If the image tag was for a specific version, it is necessary to change the workshop definition every time a change occurred to the workshop image.
+When an image tag of `main`, `master`, `develop` or `latest` is used, the image pull policy is set to ``Always`` to ensure that the custom workshop image is pulled down again for a new workshop session if the remote image changes. If the image tag was for a specific version, it is necessary to change the workshop definition every time a change occurred to the workshop image.
 
-## Custom workshop image overlay
+## <a id="custom-workshop-image-overlay"></a>Custom workshop image overlay
 
 Even where you have a custom workshop image, set up the workshop definition to also pull down the workshop content from the hosted Git repository or web server as the following example shows:
 
@@ -124,7 +124,7 @@ spec:
 
 This separates generic tooling from specific workshops and allows the custom workshop base image to be used for multiple workshops on different, but related topics, which require the same tooling.
 
-## Changes to workshop definition
+## <a id="changes-to-workshop-definition"></a>Changes to workshop definition
 
 By default, if you need to modify the definition for a workshop, you need to delete the training portal instance, update the workshop definition in the cluster, and recreate the training portal.
 
@@ -151,10 +151,10 @@ Whenever the workshop definition in the cluster is modified with this option ena
 
 When an active workshop session is still running, the actual deletion of the old workshop environment is delayed until that workshop session is terminated.
 
-## Local build of workshop image
+## <a id="local-build-of-workshop-image"></a>Local build of workshop image
 
-Even if you are not packaging up a workshop into a custom workshop image, in order to avoid the need to keep pushing changes up to a hosted Git repository for local development of workshop content using a Kubernetes cluster, it can be easier to build a custom workshop image locally on your own machine using ``docker``.
+Even if you are not packaging up a workshop into a custom workshop image, to avoid keeping pushing changes up to a hosted Git repository for local development of workshop content using a Kubernetes cluster, it can be easier to build a custom workshop image locally on your own machine using `docker`.
 
-In order to do this and avoid having to still push the image to a public image registry on the internet, you need to deploy an image registry to your local Kubernetes cluster where the Learning Center is being run. A basic deployment of an image registry in a local cluster access usually is insecure. This means you have to configure the Kubernetes cluster to trust the insecure registry. This may be difficult to do depending on the Kubernetes cluster being used but can make for quicker turnaround as you do not have to push or pull the custom workshop image across the public internet.
+In order to do this and avoid having to still push the image to a public image registry on the Internet, you must deploy an image registry to your local Kubernetes cluster where the Learning Center is being run. A basic deployment of an image registry in a local cluster access usually is not secure. This means you have to configure the Kubernetes cluster to trust the registry that is not secure. This can be difficult to do depending on the Kubernetes cluster being used but can make for quicker turnaround as you do not have to push or pull the custom workshop image across the public Internet.
 
-Once the custom workshop image built locally has been pushed to the local image registry, you can set the image reference in the workshop definition to pull it from the local registry in the same cluster. To ensure that the custom workshop image is always pulled for a new workshop session if updated, use the ``latest`` tag when tagging and pushing the image to the local registry.
+After pushing the custom workshop image built locally to the local image registry, you can set the image reference in the workshop definition to pull it from the local registry in the same cluster. To ensure that the custom workshop image is always pulled for a new workshop session if updated, use the `latest` tag when tagging and pushing the image to the local registry.

@@ -1,20 +1,20 @@
 # Installing on Kind
 
-Kind was developed as a means to support development and testing of Kubernetes. Despite that it exists primarily for that purpose, Kind clusters are often used for local development of user applications as well. For Learning Center, you can use a local Kind cluster for developing workshop content or for self learning when deploying other people's workshops.
+Kind was developed as a means to support development and testing of Kubernetes. Despite that it exists primarily for that purpose, Kind clusters are often used for local development of user applications as well. For Learning Center, you can use a local Kind cluster to develop workshop content or self-learning when deploying other people's workshops.
 
-As you are deploying to a local machine you are unlikely to have access to your own custom domain name and certificate you can use with the cluster. If you don't, you may be restricted as to the sorts of workshops you can develop or run using the Learning Center in Kind. This is because Kind uses ``containerd`` and ``containerd`` lacks certain features that allows you to trust any image registries hosted within a subnet. This means you cannot run workshops which use a local image registry for each workshop session in an easy way. If you need the ability to run workshops on your own local computer which use an image registry for each session, we recommend you use minikube with ``dockerd`` instead. You can find more details about this issue below.
+As you are deploying to a local machine you are unlikely to have access to your own custom domain name and certificate you can use with the cluster. If you don't, you may be restricted as to the sorts of workshops you can develop or run using the Learning Center in Kind. This is because Kind uses ``containerd`` which lacks certain features that allow you to trust any image registries hosted within a subnet. This means you cannot run workshops that use a local image registry for each workshop session in an easy way. If you need the ability to run workshops on your local computer that uses an image registry for each session, we recommend you use minikube with ``dockerd`` instead. You can find more details about this issue below.
 
-Also keep in mind that, since Kind generally has limited memory resources available, you may be prohibited from running workshops which have large memory requirements. Certain workshops which demonstrate use of third-party applications requiring a multi-node cluster also will not work unless the Kind cluster is specifically configured to be multi-node rather than a single node.
+Also keep in mind that, since Kind generally has limited memory resources available, you may be prohibited from running workshops that have large memory requirements. Certain workshops which demonstrate the use of third-party applications requiring a multi-node cluster also will not work unless the Kind cluster is specifically configured to be multi-node rather than a single node.
 
 Requirements and setup instructions specific to Kind are detailed below; otherwise, follow normal installation instructions for the Learning Center Operator.
 
 ## Prerequisites
 The following installation prerequisites must be done prior to installation.
 
-  As a user you currently have created a tanzunet account and have access to your tanzunet credentials.  
-  As a user you currently have kind installed on your local machine.  
-  As a user you currently have tanzuCLI installed on your local machine.  
-  As a user you currently have kubectlCLI installed on your local machine.
+  As a user, you currently have created a tanzunet account and have access to your tanzunet credentials.  
+  As a user, you currently have kind installed on your local machine.  
+  As a user, you currently have tanzuCLI installed on your local machine.  
+  As a user, you currently have kubectlCLI installed on your local machine.
 
 ## Kind cluster creation
 When initially creating the Kind cluster you will need to [configure](https://kind.sigs.k8s.io/docs/user/ingress#create-cluster) it so that the ingress controller will be exposed. The documentation provides the following command to do this, but check the documentation in case the details have changed.
@@ -89,7 +89,7 @@ Where TANZU-NET-USER and TANZU-NET-PASSWORD are your credentials for Tanzu Netwo
 
 ```
 tanzu package repository add tanzu-tap-repository \
-  --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:0.4.0 \
+  --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.0.0 \
   --namespace tap-install
 ```
 Note* We are currently on build 7: if this changes, we need to update the command with the correct build version after the --url flag.
@@ -199,13 +199,13 @@ Also note that you cannot use an address of form ``127.0.0.1.nip.io``, or ``subd
 
 ## Install Learning Center package onto a Kubernetes cluster
 ```
-tanzu package install learningcenter --package-name learningcenter.tanzu.vmware.com --version 1.0.14-build.5 -f ./learningcenter-value.yaml --namespace tap-install
+tanzu package install learningcenter --package-name learningcenter.tanzu.vmware.com --version 0.1.0 -f ./learningcenter-value.yaml --namespace tap-install
 ```
 This package installation uses the installed Package repository along with a configuration learningcenter-value.yaml to install our Learning Center Package.
 
 ## Install Workshop tutorial package onto a Kubernetes cluster
 ```
-tanzu package install learningcenter-tutorials --package-name workshops.learningcenter.tanzu.vmware.com --version 1.0.7-build.6 --namespace tap-install
+tanzu package install learningcenter-tutorials --package-name workshops.learningcenter.tanzu.vmware.com --version 0.1.0 --namespace tap-install
 ```
 Make sure you install the workshop package after the Learning Center package has reconcilled and successfully installed onto your cluster. In case of new versioning, you may obtain package version numbers using
 ```

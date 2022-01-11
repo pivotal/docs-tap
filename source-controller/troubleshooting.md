@@ -1,8 +1,8 @@
 # Troubleshooting
 
-## Collecting logs from source controller manager
+## <a id="collecting-logs"></a> Collecting Logs from Source Controller Manager
 
-Retrieve pod logs from the `controller-manager` by running the following command in the `source-system` namespace:
+To retrieve Pod logs from the `controller-manager`, run the following command in the `source-system` namespace:
 
 ```
 kubectl logs -n source-system -l control-plane=controller-manager

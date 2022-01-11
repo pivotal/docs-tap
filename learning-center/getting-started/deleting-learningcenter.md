@@ -15,10 +15,10 @@ To make sure everything is deleted, run:
 kubectl get workshops,trainingportals,workshoprequests,workshopsessions,workshopenvironments --all-namespaces
 ```
 
-To uninstall the Learning Center operator, then run:
+To uninstall the Learning Center operator, run:
 
 ```
 kubectl delete -k "github.com/eduk8s/eduk8s?ref=master"
 ```
 
-This will also remove the custom resource definitions which were added, and the learningcenter namespace.
+This also removes the custom resource definitions that were added, and the learningcenter namespace.

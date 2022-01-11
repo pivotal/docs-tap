@@ -3,18 +3,18 @@
 This component requires extra configuration steps to start verifying your
 container images properly.
 
-## Create a `ClusterImagePolicy` resource
+## <a id="create-clusterimagepolicy-resource"></a> Create a `ClusterImagePolicy` Resource
+
 The cluster image policy is a custom resource containing the following properties:
 
-* `spec.verification.exclude.resources.namespaces`: a list of namespaces where
-this policy will not be enforced.
+* `spec.verification.exclude.resources.namespaces`: A list of namespaces where
+this policy is not enforced.
 
-* `spec.verification.keys`: a list of public keys complementary to the private
+* `spec.verification.keys`: A list of public keys complementary to the private
 keys that were used to sign the images.
 
-* `spec.verification.images[].namePattern`: image name patterns that the policy enforces.
-Each image name pattern maps to the required public keys. Optionally,
-use a secret to authenticate the private registry where images and signatures matching a name pattern are stored.
+* `spec.verification.images[].namePattern`: Image name patterns that the policy enforces.
+Each image name pattern maps to the required public keys. (Optional) Use a secret to authenticate the private registry where images and signatures matching a name pattern are stored.
 
 The following is an example `ClusterImagePolicy`:
 
@@ -24,7 +24,7 @@ apiVersion: signing.apps.tanzu.vmware.com/v1beta1
 kind: ClusterImagePolicy
 metadata:
     name: image-policy
-spec:
+spec<%# |specifications| is preferred. %>:
   verification:
     exclude:
       resources:
@@ -53,7 +53,7 @@ The `name` for the `ClusterImagePolicy` resource must be `image-policy`.
 Add any namespaces that run container images that are not signed in the
 `spec.verification.exclude.resources.namespaces` section, such as the
 `kube-system` namespace.
->
+
 If no `ClusterImagePolicy` resource is created all images are admitted into
 the cluster with the following warning:
 
@@ -62,28 +62,26 @@ Warning: clusterimagepolicies.signing.apps.tanzu.vmware.com "image-policy" not f
 ```
 
 The patterns are evaluated using the any of operator to admit container
-images. For each pod, the image policy webhook iterates over the list of
-containers and init containers. The pod is verified when there is at least
+images. For each Pod, the image policy WebHook iterates over the list of
+containers and init containers. The Pod is verified when there is at least
 one key specified in `spec.verification.images[].keys[]` for each container image
 that matches `spec.verification.images[].namePattern`.
 
->
 For a simpler installation process in a non-production environment,
 use the manifest below to create the `ClusterImagePolicy`
 resource. This manifest includes a cosign public key which signed the public
 cosign v1.2.1 image. The cosign public key validates the specified cosign
 images. Container images running in system namespaces are currently not
-signed. You must configure the image policy webhook to allow these unsigned
+signed. You must configure the image policy WebHook to allow these unsigned
 images by adding system namespaces to the
 `spec.verification.exclude.resources.namespaces` section.
 
 ```
 cat <<EOF | kubectl apply -f -
-apiVersion: signing.apps.tanzu.vmware.com/v1beta1
-kind: ClusterImagePolicy
+apiVersion: signing.apps.tanzu.vmware.com/v1beta1kind: ClusterImagePolicy
 metadata:
   name: image-policy
-spec:
+spec
   verification:
     exclude:
       resources:
@@ -103,7 +101,7 @@ spec:
 EOF
 ```
 
-## <a id='providing-credentials-package'></a> Providing credentials for the package
+## <a id='providing-credentials-package'></a> Providing Credentials for the Package
 
 There are four ways the package reads credentials to authenticate to registries
 protected by authentication, in order:
@@ -122,14 +120,14 @@ in the `image-policy-system` namespace.
 > **Note:** Authentication fails in the following scenario:
 
 > - A valid credential is specified in the `ClusterImagePolicy` `secretRef` field, or in the `image-policy-registry-credentials` service account.
-> - An invalid credential is specified in the `imagePullSecrets` of the resource or in the service account the resource runs as. 
+> - An invalid credential is specified in the `imagePullSecrets` of the resource or in the service account the resource runs as.
 
 > To prevent this issue, choose a single authentication method to validate signatures for your resources.
 
 If you use [containerd-configured registry credentials](https://github.com/containerd/containerd/blob/main/docs/cri/registry.md#configure-registry-credentials)
 or another mechanism that causes your resources and service accounts to not
-include an `imagePullSecrets` field, you will need to provide credentials to
-the webhook using one of the following mechanisms:
+include an `imagePullSecrets` field, you must provide credentials to
+the WebHook using one of the following mechanisms:
 
 1. Create secret resources in any namespace of your preference that grants read
 access to the location of your container images and signatures and include it
@@ -139,7 +137,7 @@ as part of your policy configuration.
 service account. The service account and the secrets must be created in the
 `image-policy-system` namespace.
 
-### <a id="secret-ref-cluster-image-policy"></a> Providing secrets for authentication in your policy
+### <a id="secret-ref-cluster-image-policy"></a> Providing Secrets for Authentication in Your Policy
 
 You can provide secrets for authentication as part of the name pattern policy configuration provided your use case meets the following conditions:
 
@@ -148,7 +146,7 @@ You can provide secrets for authentication as part of the name pattern policy co
 * You do not have `imagePullSecrets` configured in your runnable resources or
 in the `ServiceAccount`s your runnable resources use.
 
-* You would like this webhook to check these container images.
+* You want this WebHook to check these container images.
 
 See the following example:
 
@@ -180,15 +178,15 @@ spec:
       - name: first-key
 ```
 
-> **Note**: you may need to grant the service account
+> **Note**: You may need to grant the service account
 > `image-policy-controller-manager` in the namespace `image-policy-system` RBAC
-> permissions for the verbs `get` and `list` in the namespace you choose to host
+> permissions for the verbs `get` and `list` in the namespace that hosts
 > your secrets.
 
 VMware suggests the use of a set of credentials with the least amount of
-privilege that will allow reading the signature stored in your registry.
+privilege that allows reading the signature stored in your registry.
 
-### <a id="secrets-registry-credentials-sa"></a> Providing secrets for authentication in the `image-policy-registry-credentials` service account
+### <a id="secrets-registry-credentials-sa"></a> Providing Secrets for Authentication in the `image-policy-registry-credentials` Service Account
 
 If you prefer to provide your secrets in the `image-policy-registry-credentials`
 service account, follow these steps:
@@ -217,17 +215,17 @@ namespace and add the secret names from step 1 to the `imagePullSecrets` section
     - name: SECRET-1
     EOF
     ```
-
-    where `SECRET-1` is a secret that allows the webhook to pull signatures from
+    Where `SECRET-1` is a secret that allows the WebHook to pull signatures from
     the private registry.
 
     Add additional secrets to `imagePullSecrets` as required.
 
-## Image name patterns
+## <a id="image-name-patterns"></a> Image Name Patterns
 
 The container image names can be matched exactly or use a wildcard (*)
-that matches any number of characters. Here are some useful name pattern
-examples:
+that matches any number of characters.
+
+Example name patterns:
 
 |Description|Pattern|Matches Image Name|
 |----|----|----|
@@ -247,7 +245,7 @@ Anything|\*|my-registry.example.org/myproject/my-image:mytag<br>registry.example
 > `*.example.org/project/image` is equivalent to `*.example.org/project/image:*`
 
 
-## Verify your configuration
+## <a id="verify-configuration"></a> Verify Your Configuration
 
 If you are using the suggested key `cosign-key` shown in the previous section
 then you can run the following commands to check your configuration:
@@ -301,5 +299,5 @@ public key will not launch. Run:
     $ kubectl run cosign-fail \
       --image=gcr.io/projectsigstore/cosign:v0.3.0 \
       --command -- sleep 900
-    Error from server (The image: gcr.io/projectsigstore/cosign:v0.3.0 is not signed.): admission webhook "image-policy-webhook.signing.apps.tanzu.vmware.com" denied the request: The image: gcr.io/projectsigstore/cosign:v0.3.0 is not signed.
+    Error from server (The image: gcr.io/projectsigstore/cosign:v0.3.0 is not signed.): admission webhook "image-policy-webhook.signing.apps.tanzu.com" denied the request: The image: gcr.io/projectsigstore/cosign:v0.3.0 is not signed.
     ```

@@ -1,23 +1,21 @@
 # TrainingPortal
 
-## Working with multiple workshops
+## <a id="working-with-multiple-workshops"></a>Working with multiple workshops
 
-The quickest way of deploying a set of workshops is to use in a training session is to deploy a ``TrainingPortal``.
-This results in the deployment of a set of workshops, with one instance of each workshop for each attendee.
+The quickest way to deploy a set of workshops to use in a training session is to deploy a ``TrainingPortal``.
+This deploys a set of workshops, with one instance of each workshop for each attendee.
 A web-based portal is provided for registering attendees and allocating them to workshops.
 
 The ``TrainingPortal`` custom resource provides a high-level mechanism for creating a set of workshop environments and
-populating it with workshop instances. When the Learning Center Operator processes this custom resource, all it is doing
-is creating other custom resources to trigger the creation of the workshop environment and the workshop instances.
+populating it with workshop instances. When the Learning Center Operator processes this custom resource, it creates other custom resources to trigger the creation of the workshop environment and the workshop instances.
 If you want more control, you can use these latter custom resources directly instead.
 
-## Loading the workshop definition
+## <a id="loading-workshop-definition"></a>Loading the workshop definition
 
-Each workshop is described by a custom resource of type ``Workshop``. Before a workshop environment can be created, the
-definition of the workshop must first be loaded.
+A custom resource of type ``Workshop`` describes each workshop. Before a workshop environment can be created, you must load the
+definition of the workshop.
 
-The ``Workshop`` custom resource we are using is:
-Example:
+The example ``Workshop`` custom resource we are using is:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -59,38 +57,37 @@ kubectl apply -f https://raw.githubusercontent.com/eduk8s-labs/lab-k8s-fundament
 The custom resource created is cluster-scoped, and the command needs to be run as a cluster admin or other appropriate
 user with permission to create the resource.
 
-If successfully loaded, the command will output:
+If successfully loaded, the command outputs:
 
 ```
 workshop.learningcenter.tanzu.vmware.com/lab-k8s-fundamentals created
 ```
 
-You can list the workshop definitions which have been loaded, and which can be deployed by running:
+You can list the workshop definitions that have been loaded, and which can be deployed by running:
 
 ```
 kubectl get workshops
 ```
 
-For this workshop, this will output:
+For this workshop, this outputs:
 
 ```
 NAME                  IMAGE                                            FILES  URL
 lab-k8s-fundamentals  quay.io/eduk8s-labs/lab-k8s-fundamentals:master         https://github.com/eduk8s-labs/lab-k8s-fundamentals
 ```
 
-The additional fields in this case give the name of the custom workshop container image which will be deployed for the
+The additional fields in this case give the name of the custom workshop container image deployed for the
 workshop and a URL where you can find out more information about the workshop.
 
-The definition of a workshop is loaded as a step of its own, rather than referring to a remotely hosted definition, so
-that a cluster admin can audit the workshop definition to ensure it isn't doing something that the cluster admin doesn't want to
+The definition of a workshop is loaded as a step of its own, rather than referring to a remotely hosted definition. This allows a cluster admin to audit the workshop definition to ensure it isn't doing something the cluster admin doesn't want to
 allow. Once the cluster admin approves the workshop definition, it can be used to create instances of the workshop.
 
-## Creating the workshop training portal
+## <a id="creating-workshop-training-portal"></a>Creating the workshop training portal
 
 To deploy a workshop for one or more users, use the ``TrainingPortal`` custom resource. This custom resource specifies
-a set of workshops to be deployed and the number of people who will be doing the workshops.
+a set of workshops to be deployed and the number of people taking the workshops.
 
-The ``TrainingPortal`` custom resource we will use is:
+The ``TrainingPortal`` custom resource we use in this example is:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -115,13 +112,13 @@ kubectl apply -f https://raw.githubusercontent.com/eduk8s-labs/lab-k8s-fundament
 The custom resource created is cluster-scoped, and the command needs to be run as a cluster admin or other appropriate
 user with permission to create the resource.
 
-This will output:
+This results in the output:
 
 ```
 trainingportal.learningcenter.tanzu.vmware.com/lab-k8s-fundamentals created
 ```
 
-but there is a lot more going on than this. To see all the resources created, run:
+But there is a lot more going on than this. To see all the resources created, run:
 
 ```
 kubectl get learningcenter-training -o name
@@ -138,14 +135,14 @@ workshopsession.learningcenter.tanzu.vmware.com/lab-k8s-fundamentals-w01-s001
 
 In addition to the original ``Workshop`` custom resource providing the definition of the workshop, and the
 ``TrainingPortal`` custom resource you just created, ``WorkshopEnvironment`` and ``WorkshopSession`` custom resources
-have also been created.
+are also created.
 
 The ``WorkshopEnvironment`` custom resource sets up the environment for a workshop, including deploying any application
-services which need to exist and are shared by all workshop instances.
+services that must exist and are shared by all workshop instances.
 
 The ``WorkshopSession`` custom resource results in the creation of a single workshop instance.
 
-You can see a list of the workshop instances which were created and access details by running:
+You can see a list of the workshop instances created, and access details, by running:
 
 ```
 kubectl get workshopsessions
@@ -158,15 +155,15 @@ NAME                            URL                                         USER
 lab-k8s-fundamentals-w01-s001   http://lab-k8s-fundamentals-w01-s001.test
 ```
 
-Only one workshop instance was actually created as, although the maximum capacity was set to 3, the reserved number of
-instances (hot spares) was defined as being 1. Additional workshops instances will only be created as workshop sessions
+Only one workshop instance was created as, although the maximum capacity was set to 3, the reserved number of
+instances (hot spares) was defined as 1. Additional workshops instances are only created as workshop sessions
 are allocated to users, with 1 reserved instance always being maintained so long as capacity hasn't been reached.
 
 If you need a different number of workshop instances, set the ``portal.capacity`` field of the ``TrainingPortal`` custom
-resource YAML input file before creating the resource. Changing the values after the resource has been created will have
+resource YAML input file before creating the resource. Changing the values after the resource has been created has
 no effect.
 
-In this case only one workshop was listed to be hosted by the training portal. You can though deploy more than one
+In this case only one workshop was listed to be hosted by the training portal. You can deploy more than one
 workshop at the same time by adding the names of other workshops to ``workshops``.
 
 Because this is the first time you have deployed the workshop, it can take a few moments to pull down the workshop
@@ -189,10 +186,10 @@ lab-k8s-fundamentals  https://lab-k8s-fundamentals-ui.test  learningcenter      
 Attendees should only be given the URL. The password listed is only for use by the instructor of the training
 session if required.
 
-## Accessing workshops via the web portal
+## <a id="accessing-workshops-via-web-portal"></a>Accessing workshops via the web portal
 
-An attendee when visiting the web-based portal for the training session is presented with a login page. However, 
-the attendee will need to register for an account. From the initial login page, click on the link to
+An attendee visiting the web-based portal for the training session is presented with a login page. However, 
+the attendee must register for an account. From the initial login page, click on the link to
 the registration page.
 
 ![Portal Registration](images/portal-registration.png)
@@ -214,7 +211,7 @@ the attendee to that workshop instance.
 
 ![Dashboard Terminal](../about-learning-center/images/dashboard-terminal.png)
 
-## Deleting the workshop training portal
+## <a id="deleting-workshop-training-portal"></a>Deleting the workshop training portal
 
 The workshop training portal is intended for running workshops with a fixed time period where all workshop instances
 are deleted when complete.
