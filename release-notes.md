@@ -222,7 +222,12 @@ statuses:
         kubectl apply -f image-policy-mutating-webhook-configuration.yaml
         ```
 
-**Priority class of webhook's pods might preempt less privileged pods:**
+- **Terminated kube-dns prevents new pods from being admitted:**
+If `kube-dns` gets terminated, it prevent the admission controller from being able to reach the image policy controller. This will cause new pods from being admitted.
+
+Modify the mutating webhook configuration to exclude the `kube-system` namespace from from the admission check and this should allow pods in the `kube-system` to come up which should restore `kube-dns`
+
+- **Priority class of webhook's pods might preempt less privileged pods:**
 This component uses a privileged `PriorityClass` to start up its pods in order to prevent node
 pressure from preempting its pods. However, this can cause other less privileged components to have
 their pods preempted or evicted instead.
