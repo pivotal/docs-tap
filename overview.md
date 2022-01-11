@@ -2,7 +2,7 @@
 
 ## <a id='overview'></a> Overview of Tanzu Application Platform
 
-VMware Tanzu Application Platform is a modular, application-aware platform that provides a rich set
+VMware Tanzu Application Platform is a modular, application detecting platform that provides a rich set
 of developer tools and a paved path to production to build and deploy software quickly and
 securely on any compliant public cloud or on-premises Kubernetes cluster.
 
@@ -19,7 +19,7 @@ Operations teams can create application scaffolding templates with built-in secu
 guardrails, making those considerations mostly invisible to developers. Starting with the templates,
 developers turn source code into a container and get a URL to test their app in minutes.
 
-After the container is built, updating it happens automatically every time there’s a new code commit
+After the container is built, it updates every time there’s a new code commit
 or dependency patch. And connecting to other applications and data, regardless of how they’re built
 or what kind of infrastructure they run on, has never been easier, thanks to an internal API
 management portal.
@@ -29,17 +29,17 @@ management portal.
 Customers can simplify workflows in both the inner loop and outer loop of Kubernetes-based app
 development with Tanzu Application Platform while creating supply chains.
 
-* **Inner Loop**:
+- **Inner Loop**:
     - The inner loop describes a developer’s development cycle of iterating on code.
     - Inner loop activities include coding, testing, and debugging before making a commit.
     - On cloud-native or Kubernetes platforms, developers in the inner loop often build container images and connect their apps to all necessary services and APIs to deploy them to a development environment.
 
-* **Outer Loop**:
+- **Outer Loop**:
     - The outer loop describes how operators deploy apps to production and maintain them over time.
     - On a cloud-native platform, outer loop activities include building container images, adding container security, and configuring continuous integration and continuous delivery (CI/CD)  pipelines.
     - Outer loop activities are challenging in a Kubernetes-based development environment due to app delivery platforms being constructed from various third-party and open source components with numerous configuration options.
 
-* **Supply Chains and choreography**:
+- **Supply Chains and choreography**:
     - Tanzu Application Platform uses the choreography pattern inherited from the context of microservices[^1] and applies it to continuous integration and continuous deployment (CI/CD) to create a path to production.[^2]
 
 [^1]: https://stackoverflow.com/questions/4127241/orchestration-vs-choreography
