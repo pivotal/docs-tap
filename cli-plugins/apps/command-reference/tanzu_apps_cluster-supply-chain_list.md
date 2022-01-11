@@ -1,24 +1,24 @@
 # Tanzu apps cluster supply chain list
 
-This topic will help you list cluster supply chains.
+This topic helps you list cluster supply chains.
 
 ```
 tanzu apps cluster-supply-chain list [flags]
 ```
 
-## Examples
+## <a id="examples"></a>Examples
 
 ```
 tanzu apps cluster-supply-chain list
 ```
 
-## Options
+## <a id="options"></a>Options
 
 ```
   -h, --help   help for list
 ```
 
-## Options inherited from parent commands
+## <a id="options-inherited-from-parent-commands"></a>Options inherited from parent commands
 
 ```
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
@@ -29,5 +29,5 @@ tanzu apps cluster-supply-chain list
 
 ## See also
 
-- [Tanzu Apps Cluster Supply Chain](tanzu_apps_cluster-supply-chain.md)	- Patterns for building and configuring workloads
+- [Tanzu apps cluster supply chain](tanzu_apps_cluster-supply-chain.md)	- Patterns for building and configuring workloads
 

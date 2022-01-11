@@ -9,14 +9,14 @@ registry.
 tanzu apps workload delete <name(s)> [flags]
 ```
 
-## Examples
+## <a id="examples"></a>Examples
 
 ```
 tanzu apps workload delete my-workload
 tanzu apps workload delete --all
 ```
 
-## Options
+## <a id="options"></a>Options
 
 ```
       --all                     delete all workloads within the namespace
@@ -28,7 +28,7 @@ tanzu apps workload delete --all
   -y, --yes                     accept all prompts
 ```
 
-## Options inherited from parent commands
+## <a id="options inherited from parent commands"></a>Options inherited from parent commands
 
 ```
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
@@ -39,5 +39,4 @@ tanzu apps workload delete --all
 
 ## See also
 
-* [Tanzu Apps Workload](tanzu_apps_workload.md) - Workload lifecycle management
-
+* [Tanzu Apps Workload](tanzu_apps_workload.md) - Workload life cycle management

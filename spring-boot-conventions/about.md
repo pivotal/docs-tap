@@ -1,10 +1,10 @@
 # Spring Boot conventions
 
-## Overview
+## <a id="overview"></a>Overview
 
 The _Spring Boot Convention Server_ is a bundle of smaller conventions applied to any Spring Boot Application submitted to the supply chain in which the convention controller is configured.
 
-The _Spring Boot Convention Server_ looks inside the image like the following `docker inspect` command:
+The _Spring Boot Convention Server_ looks inside the image such as the following `docker inspect` command:
 
 `$ docker inspect springio/petclinic`
 
@@ -35,13 +35,13 @@ The _Spring Boot Convention Server_ looks inside the image like the following `d
 ]
 ```
 
-The convention server searches inside the image for `Config -> Labels -> io.buildpacks.build.metadata` to find the `bom` file. It looks inside the `bom` file for metadata to evaluate whether the convention is going to be applied.
+The convention server searches inside the image for `Config -> Labels -> io.buildpacks.build.metadata` to find the `bom` file. It looks inside the `bom` file for metadata to evaluate whether the convention is to be applied.
 
 For the list of conventions, see [Conventions](reference/CONVENTIONS.md).
 
-## Collecting logs from the _Spring Boot Convention Server_
+## <a id="collecting-logs"></a>Collecting logs from the _Spring Boot Convention Server_
 
-If you have trouble, you can retrieve and examine the logs from the _Spring Boot Convention Server_.
+If you have trouble, you can retrieve and examine the logs from the _Spring Boot Convention Server_ as follows:
 
 1. The _Spring Boot Convention Server_ creates a namespace to contain all of the associated resources, by default the namespace is `spring-boot-convention`. Inspect the logs using the following command:
 
