@@ -27,7 +27,7 @@ The Tiltfile provides the configuration for Tilt to enable your project to live 
 
 It can be triggered by typing the keywords `Tiltfile` or `tanzu tiltfile`. This file should start as a plaintext file, not a YAML file.
 
-> **Note:** To create your Tiltfile manually, see [Create a Tiltfile](create-tiltfile) below.
+> **Note:** To create your Tiltfile manually, see [Create a Tiltfile](#create-tiltfile) below.
 
 ---
 
