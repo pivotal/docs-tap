@@ -2,7 +2,7 @@ publication:
     RootMapFile: toc.md
     OutputFileName: tap
     PublicationName: Tanzu Application Platform v1.0
-    ProductName: VMware Tanzu Application Platform
+    ProductName: Tanzu Application Platform
     ProductVersion: 1.0
     PublicationVersion: 1.0
     PublicationVersionComments:

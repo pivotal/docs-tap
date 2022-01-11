@@ -156,7 +156,7 @@ If it is still running, it is likely to finish successfully and produce output s
     appliveview               run.appliveview.tanzu.vmware.com                   1.0.0-build.3    Reconciling          tap-install
     appliveview-conventions   build.appliveview.tanzu.vmware.com                 1.0.0-build.3    Reconcile succeeded  tap-install
     buildservice              buildservice.tanzu.vmware.com                      1.4.0-build.1    Reconciling          tap-install
-    cartographer              cartographer.tanzu.vmware.com                      0.0.8-rc.7       Reconcile succeeded  tap-install
+    cartographer              cartographer.tanzu.vmware.com                      0.1.0            Reconcile succeeded  tap-install
     cert-manager              cert-manager.tanzu.vmware.com                      1.5.3+tap.1      Reconcile succeeded  tap-install
     cnrs                      cnrs.tanzu.vmware.com                              1.1.0            Reconcile succeeded  tap-install
     contour                   contour.tanzu.vmware.com                           1.18.2+tap.1     Reconcile succeeded  tap-install
@@ -167,11 +167,11 @@ If it is still running, it is likely to finish successfully and produce output s
     image-policy-webhook      image-policy-webhook.signing.apps.tanzu.vmware.com 1.0.0-beta.3     Reconcile succeeded  tap-install
     learningcenter            learningcenter.tanzu.vmware.com                    0.1.0-build.6    Reconcile succeeded  tap-install
     learningcenter-workshops  workshops.learningcenter.tanzu.vmware.com          0.1.0-build.7    Reconcile succeeded  tap-install
-    ootb-delivery-basic       ootb-delivery-basic.tanzu.vmware.com               0.4.0-build.2    Reconcile succeeded  tap-install
-    ootb-supply-chain-basic   ootb-supply-chain-basic.tanzu.vmware.com           0.4.0-build.2    Reconcile succeeded  tap-install
-    ootb-templates            ootb-templates.tanzu.vmware.com                    0.4.0-build.2    Reconcile succeeded  tap-install
+    ootb-delivery-basic       ootb-delivery-basic.tanzu.vmware.com               0.5.1            Reconcile succeeded  tap-install
+    ootb-supply-chain-basic   ootb-supply-chain-basic.tanzu.vmware.com           0.5.1            Reconcile succeeded  tap-install
+    ootb-templates            ootb-templates.tanzu.vmware.com                    0.5.1            Reconcile succeeded  tap-install
     scanning                  scanning.apps.tanzu.vmware.com                     1.0.0            Reconcile succeeded  tap-install
-    metadata-store                metadata-store.apps.tanzu.vmware.com            1.0.1            Reconcile succeeded  tap-install
+    metadata-store            metadata-store.apps.tanzu.vmware.com               1.0.1            Reconcile succeeded  tap-install
     service-bindings          service-bindings.labs.vmware.com                   0.6.0            Reconcile succeeded  tap-install
     services-toolkit          services-toolkit.tanzu.vmware.com                  0.5.0-rc.3       Reconcile succeeded  tap-install
     source-controller         controller.source.apps.tanzu.vmware.com            0.2.0            Reconcile succeeded  tap-install

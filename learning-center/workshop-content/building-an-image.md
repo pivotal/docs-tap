@@ -7,7 +7,7 @@ You can build an image by bundling workshop content from the Learning Center wor
 The structure of the `Dockerfile` provided with the sample workshop templates is:
 
 ```
-FROM dev.registry.tanzu.vmware.com/learning-center/base-environment
+FROM registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:681ef8d2e6fc8414b3783e4de424adbfabf2aa0126e34fa7dcd07dab61e55a89
 
 COPY --chown=1001:0 . /home/eduk8s/
 
@@ -16,7 +16,7 @@ RUN mv /home/eduk8s/workshop /opt/workshop
 RUN fix-permissions /home/eduk8s
 ```
 
-Custom workshop images must be built on the `dev.registry.tanzu.vmware.com/learning-center/base-environment` workshop image. You can do this directly or you can also create an intermediate base image to install extra packages required by a number of different workshops.
+Custom workshop images must be built on the `registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:681ef8d2e6fc8414b3783e4de424adbfabf2aa0126e34fa7dcd07dab61e55a89` workshop image. You can do this directly or you can also create an intermediate base image to install extra packages required by a number of different workshops.
 
 The default action when building the container image when using the `Dockerfile` is to copy all files to the `/home/eduk8s` directory. The `--chown=1001:0` option ensures that files are owned by the appropriate user and group. The `workshop` subdirectory is then moved to `/opt/workshop` so that it is not visible to the user and in a special location to be searched for workshop content, in addition to `/home/eduk8s/workshop`. To have other files or directories from the repository ignored, list them in the `.dockerignore` file.
 
@@ -27,10 +27,8 @@ You can include `RUN` statements in the `Dockerfile` to run custom-build steps, 
 The sample `Dockerfile` provided above and with the GitHub repository workshop templates references the workshop base image as:
 
 ```
-http://dev.registry.tanzu.vmware.com/learning-center/base-environment
+registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:681ef8d2e6fc8414b3783e4de424adbfabf2aa0126e34fa7dcd07dab61e55a89
 ```
-
-This has the `latest` tag implicit to it that follows the most up-to-date image made available for production use. What actual version is used depends on the last date of the base image pull using that tag into the platform where you are building images.
 
 
 ## <a id="custom-workshop-base-iamges"></a>Custom workshop base images
@@ -42,7 +40,7 @@ Below you can see a Dockerfile example on how to create a Java JDK11-customized 
 ```
 ARG IMAGE_REPOSITORY=dev.registry.tanzu.vmware.com/learning-center
 FROM ${IMAGE_REPOSITORY}/pkgs-java-tools as java-tools
-FROM ${IMAGE_REPOSITORY}/base-environment
+FROM registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:681ef8d2e6fc8414b3783e4de424adbfabf2aa0126e34fa7dcd07dab61e55a89
 COPY --from=java-tools --chown=1001:0 /opt/jdk11 /opt/java
 COPY --from=java-tools --chown=1001:0 /opt/gradle /opt/gradle
 COPY --from=java-tools --chown=1001:0 /opt/maven /opt/maven
