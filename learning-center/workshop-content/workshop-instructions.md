@@ -8,7 +8,7 @@ In conjunction with the standard Markdown and AsciiDoc, additional annotations c
 
 If using Markdown, to annotate a code block so that it will be copied to the terminal and executed, use:
 
-~~~text
+~~~
 ```execute
 echo "Execute command."
 ```
@@ -27,7 +27,7 @@ echo "Execute command."
 
 When the workshop dashboard is configured to display multiple terminals, you can qualify which terminal the command should be executed in by adding a suffix to the ``execute`` annotation. For the first terminal use ``execute-1``, for the second terminal ``execute-2``, etc:
 
-~~~text
+~~~
 ```execute-1
 echo "Execute command."
 ```
@@ -39,7 +39,7 @@ echo "Execute command."
 
 If you want to be able to execute a command in all terminal sessions on the terminals tab of the dashboard, you can use ``execute-all``.
 
-~~~text
+~~~
 ```execute-all
 clear
 ```
@@ -47,7 +47,7 @@ clear
 
 In most cases, a command you execute would complete straight away. If you need to run a command that never returns, with the user needing to interrupt it to stop it, you can use the special string ``<ctrl+c>`` in a subsequent code block.
 
-~~~text
+~~~
 ```execute
 <ctrl+c>
 ```
@@ -61,7 +61,7 @@ Note that using the special string ``<ctrl+c>`` is deprecated and you should ins
 
 Instead of executing a command, you wanted the content of the code block to be copied into the paste buffer, you can use:
 
-~~~text
+~~~
 ```copy
 echo "Text to copy."
 ```
@@ -71,7 +71,7 @@ After clicking on this code block, you could then paste the content into another
 
 If you have a situation where the text being copied should be modified before use, you can denote this special case by using ``copy-and-edit`` instead of ``copy``. The text will still be copied to the paste buffer, but will be displayed in the browser in a way to highlight that it needs to be changed before use.
 
-~~~text
+~~~
 ```copy-and-edit
 echo "Text to copy and edit."
 ```
@@ -79,7 +79,7 @@ echo "Text to copy and edit."
 
 For AsciiDoc, similar to ``execute``, you can add the ``role`` of ``copy`` or ``copy-and-edit``:
 
-~~~text
+~~~
 [source,bash,role=copy]
 ----
 echo "Text to copy."
@@ -103,7 +103,7 @@ The means to annotate code blocks described above were the original methods used
 
 For code execution, instead of:
 
-~~~text
+~~~
 ```execute
 echo "Execute command."
 ```
@@ -111,7 +111,7 @@ echo "Execute command."
 
 you can use:
 
-~~~text
+~~~
 ```terminal:execute
 command: echo "Execute command."
 ```
@@ -119,7 +119,7 @@ command: echo "Execute command."
 
 The contents of the code block is YAML. The executable command needs to be set as the ``command`` property. By default when clicked the command will be executed in terminal session 1. If you want to specify a different terminal session, you can set the ``session`` property.
 
-~~~text
+~~~
 ```terminal:execute
 command: echo "Execute command."
 session: 1
@@ -128,7 +128,7 @@ session: 1
 
 To define a command when clicked that will execute in all terminal sessions on the terminals tab of the dashboard, you can also use:
 
-~~~text
+~~~
 ```terminal:execute-all
 command: echo "Execute command."
 ```
@@ -136,7 +136,7 @@ command: echo "Execute command."
 
 For ``terminal:execute`` or ``terminal:execute-all`` if you want to have the terminal cleared before the command is executed you can set the ``clear`` property to ``true``.
 
-~~~text
+~~~
 ```terminal:execute
 command: echo "Execute command."
 clear: true
@@ -147,7 +147,7 @@ This will clear the full terminal buffer and not just the displayed portion of t
 
 Using this new form of clickable actions, the preferred method for indicating that a running command in a terminal session should be interrupted is by using:
 
-~~~text
+~~~
 ```terminal:interrupt
 session: 1
 ```
@@ -157,14 +157,14 @@ You can optionally specify the ``session`` property within the code block to ind
 
 To have an interrupt sent to all terminals sessions on the terminals tab of the dashboard, you can use:
 
-~~~text
+~~~
 ```terminal:interrupt-all
 ```
 ~~~
 
 Where you want to enter input into a terminal but it isn't a command, such as when a running command is prompting for input such as a password, to denote it as being input rather than a command, you can use:
 
-~~~text
+~~~
 ```terminal:input
 text: password
 ```
@@ -172,7 +172,7 @@ text: password
 
 As for executing commands or interrupting a command, you can specify the ``session`` property to indicate a specific terminal to send it to if you don't want to send it to terminal session 1.
 
-~~~text
+~~~
 ```terminal:input
 text: password
 session: 1
@@ -181,7 +181,7 @@ session: 1
 
 When providing terminal input in this way, the text will by default still have a newline appended to the end, making it behave the same as using ``terminal:execute``. If you do not want a newline appended automatically, set the ``endl`` property to ``false``.
 
-~~~text
+~~~
 ```terminal:input
 text: input
 endl: false
@@ -190,7 +190,7 @@ endl: false
 
 To clear all terminal sessions on the terminals tab of the dashboard, you can use:
 
-~~~text
+~~~
 ```terminal:clear-all
 ```
 ~~~
@@ -199,7 +199,7 @@ This works by clearing the full terminal buffer and not just the displayed porti
 
 For copying content to the paste buffer you can use:
 
-~~~text
+~~~
 ```workshop:copy
 text: echo "Text to copy."
 ```
@@ -207,7 +207,7 @@ text: echo "Text to copy."
 
 or:
 
-~~~text
+~~~
 ```workshop:copy-and-edit
 text: echo "Text to copy and edit."
 ```
@@ -219,7 +219,7 @@ By using the different forms above when appropriate, the code block when display
 
 The method for using AsciiDoc is similar, using the ``role`` for the name of the annotation and YAML as the content:
 
-~~~text
+~~~
 [source,bash,role=terminal:execute]
 ----
 command: echo "Execute command."
@@ -232,7 +232,7 @@ In addition to the clickable actions related to the terminal and copying of text
 
 To have the action when clicked open a URL in a new browser, you can use:
 
-~~~text
+~~~
 ```dashboard:open-url
 url: https://www.example.com/
 ```
@@ -240,7 +240,7 @@ url: https://www.example.com/
 
 In order to allow a user to click in the workshop content to display a specific dashboard tab if hidden, you can use:
 
-~~~text
+~~~
 ```dashboard:open-dashboard
 name: Terminal
 ```
@@ -248,7 +248,7 @@ name: Terminal
 
 To create a new dashboard tab with a specific URL, you can use:
 
-~~~text
+~~~
 ```dashboard:create-dashboard
 name: Example
 url: https://www.example.com/
@@ -257,7 +257,7 @@ url: https://www.example.com/
 
 To create a new dashboard tab with a new terminal session, you can use:
 
-~~~text
+~~~
 ```dashboard:create-dashboard
 name: Example
 url: terminal:example
@@ -268,7 +268,7 @@ The value should be of the form ``terminal:<session>``, where ``<session>`` is r
 
 To reload an existing dashboard, using whatever URL it is currently targetting, you can use:
 
-~~~text
+~~~
 ```dashboard:reload-dashboard
 name: Example
 ```
@@ -278,7 +278,7 @@ If the dashboard is for a terminal session there will be no effect unless the te
 
 To change the URL target of an existing dashboard, you can specify the new URL when reloading a dashboard:
 
-~~~text
+~~~
 ```dashboard:reload-dashboard
 name: Example
 url: https://www.example.com/
@@ -289,7 +289,7 @@ You cannot change the target of a dashboard which includes a terminal session.
 
 To delete a dashboard, you can use:
 
-~~~text
+~~~
 ```dashboard:delete-dashboard
 name: Example
 ```
@@ -305,7 +305,7 @@ If the embedded editor is enabled, special actions are available which control t
 
 To open an existing file you can use:
 
-~~~text
+~~~
 ```editor:open-file
 file: ~/exercises/sample.txt
 ```
@@ -313,7 +313,7 @@ file: ~/exercises/sample.txt
 
 You can use ``~/`` prefix to indicate the path relative to the home directory of the session. On opening the file, if you want the insertion point left on a specific line, provide the ``line`` property. Lines numbers start at ``1``.
 
-~~~text
+~~~
 ```editor:open-file
 file: ~/exercises/sample.txt
 line: 1
@@ -322,7 +322,7 @@ line: 1
 
 To highlight certain lines of a file based on an exact string match, use:
 
-~~~text
+~~~
 ```editor:select-matching-text
 file: ~/exercises/sample.txt
 text: "int main()"
@@ -331,7 +331,7 @@ text: "int main()"
 
 The region of the match will be highlighted by default. If you want to highlight any number of lines before or after the line with the match, you can specify the ``before`` and ``after`` properties.
 
-~~~text
+~~~
 ```editor:select-matching-text
 file: ~/exercises/sample.txt
 text: "int main()"
@@ -344,7 +344,7 @@ Setting both ``before`` and ``after`` to ``0`` will result in the complete line 
 
 To match based on a regular expression, rather than an exact match, set ``isRegex`` to ``true``.
 
-~~~text
+~~~
 ```editor:select-matching-text
 file: ~/exercises/sample.txt
 text: "image: (.*)"
@@ -354,7 +354,7 @@ isRegex: true
 
 When a regular expression is used, and subgroups are specified within the pattern, you can indicate which subgroup will be selected.
 
-~~~text
+~~~
 ```editor:select-matching-text
 file: ~/exercises/sample.txt
 text: "image: (.*)"
@@ -365,7 +365,7 @@ group: 1
 
 Where there are multiple possible matches in a file and the one you want to match is not the first, you can set a range of lines to search.
 
-~~~text
+~~~
 ```editor:select-matching-text
 file: ~/exercises/sample.txt
 text: "image: (.*)"
@@ -381,7 +381,7 @@ For both an exact match and regular expression, the text to be matched must all 
 
 To replace text within the file, first match it exactly or using a regular expression so it is marked as selected, then use:
 
-~~~text
+~~~
 ```editor:replace-text-selection
 file: ~/exercises/sample.txt
 text: nginx:latest
@@ -390,7 +390,7 @@ text: nginx:latest
 
 To append lines to the end of a file, use:
 
-~~~text
+~~~
 ```editor:append-lines-to-file
 file: ~/exercises/sample.txt
 text: |
@@ -403,7 +403,7 @@ If you use ``editor:append-to-lines-to-file`` and the file doesn't exist it will
 
 To insert lines before a specified line in the file, use:
 
-~~~text
+~~~
 ```editor:insert-lines-before-line
 file: ~/exercises/sample.txt
 line: 8
@@ -415,7 +415,7 @@ text: |
 
 To insert lines after matching a line containing a specified string, use:
 
-~~~text
+~~~
 ```editor:append-lines-after-match
 file: ~/exercises/sample.txt
 match: Lorem ipsum
@@ -427,7 +427,7 @@ text: |
 
 Where the file contains YAML, to insert a new YAML value into an existing structure, use:
 
-~~~text
+~~~
 ```editor:insert-value-into-yaml
 file: ~/exercises/deployment.yaml
 path: spec.template.spec.containers
@@ -743,7 +743,7 @@ vars:
 
 If you need more control over setting the values of data variables, you can provide the file ``workshop/config.js``. The form of this file should be:
 
-```javascript
+```
 function initialize(workshop) {
     workshop.load_workshop();
 
