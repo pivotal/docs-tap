@@ -498,7 +498,6 @@ Google Analytics doesn't allow you to specify the index position for a custom di
 allocate them for you. You can't already have defined custom dimensions for the property, as the new
 custom dimensions must start at index of 1.
 
-```
 | Custom Dimension Name | Index |
 |-----------------------|-------|
 | workshop_name         | 1     |
@@ -507,7 +506,6 @@ custom dimensions must start at index of 1.
 | training_portal       | 4     |
 | ingress_domain        | 5     |
 | ingress_protocol      | 6     |
-```
 
 In addition to custom dimensions against page accesses, events are also generated. These include:
 
