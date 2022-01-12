@@ -162,7 +162,7 @@ You can run `kubectl describe` on the scan and look for `Scan completed. Found x
 
 #### Supply Chain Security Tools - Sign
 
-- **Blocked pod creation:** If all webhook nodes or pods are evicted by the cluster or scaled down, 
+- **Blocked pod creation:** If all webhook nodes or pods are evicted by the cluster or scaled down,
 the admission policy blocks any pods from being created in the cluster.
 To resolve the issue, delete `MutatingWebhookConfiguration` and re-apply it when the cluster is
 stable.
@@ -354,10 +354,14 @@ prompt, the command continues to wait and must be cancelled manually.
 
 #### Tanzu Dev Tools for VSCode
 
-**Unable to configure task**: Launching the `Extension Host`, and configuring `tasks` in a workspace that does not contain
-workload YAML files might not work. To solve this issue, uninstall the Tanzu Dev Tools extension.
+**Unable to configure task:** Launching the `Extension Host`, and configuring `tasks` in a workspace
+that does not contain workload YAML files might not work.
+To solve this issue, uninstall the Tanzu Dev Tools extension.
 
-**Extension Pack for Java:** The `Extention Pack for Java` (vscjava.vscode-java-pack) may not be automatically installed. Tanzu Dev Tools will install however live-Update and debug will not work. To solve this issue, manually install `Extension Pack for Java` in the extension marketplace.
+**Extension Pack for Java:** In some cases, the Extension Pack for Java (`vscjava.vscode-java-pack`)
+does not automatically install. In these cases debugging does not work after Tanzu Dev Tools
+installs `live-update`.
+To solve this issue, manually install `vscjava.vscode-java-pack` from the extension marketplace.
 
 #### Services Toolkit
 
