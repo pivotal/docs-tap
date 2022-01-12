@@ -4,15 +4,16 @@ The workshop environment for the Learning Center is packaged up as container ima
 
 ## Templates for creating a workshop
 
-To get you started with your own workshop content, a number of sample workshops are provided. 
-Which you use will depend on whether you prefer to use Markdown or AsciiDoc formatting for content. 
-These are under the [Tanzu Network TAP Product Page](https://network.tanzu.vmware.com/products/tanzu-application-platform) in a zip file called: LEARNING-CENTER-WORKSHOP-SAMPLES.ZIP 
+To get you started with your own workshop content, a number of sample workshops are provided.
+Different templates (Markdown or AsciiDoc) are available to use depending on the syntax you use to create the workshop.
+These templates are available in a zip file called `LEARNING-CENTER-WORKSHOP-SAMPLES.ZIP` on the [Tanzu Network TAP Product Page](https://network.tanzu.vmware.com/products/tanzu-application-platform).
 The zip file contains the following projects which you can upload to your own Git repository:
-* lab-markdown-sample
-* lab-asciidoc-sample
 
-When creating your own workshops, a suggested convention is to always prefix the directory name, and thus the Git repository name where it is being hosted, with the ``lab-`` prefix. 
-This way it stands out as a workshop or lab when you have a whole bunch of Git repositories on the same Git hosting service account or organisation.
+- lab-markdown-sample
+- lab-asciidoc-sample
+
+When creating your own workshops, a suggested convention is to always prefix the directory name with the Git repository name where it is being hosted. For example, the prefix can be `lab-`.
+This way it stands out as a workshop or lab when you have a whole bunch of Git repositories on the same Git hosting service account or organization.
 
 Note that you should not make the name you use for a workshop too long, else the DNS host name used for applications deployed from the workshop, when using certain methods of deployment, may exceed the 63 character limit. This is because the workshop deployment name is used as part of the namespace for each workshop session, which will in turn be used in the DNS host names generated for the ingress hostname. It is suggested to keep the workshop name, and thus your repository name to 25 characters or less.
 
