@@ -76,8 +76,8 @@ value of `name`. Then make your changes and load it into the Kubernetes cluster.
 
 ## Downloading workshop content
 
-Workshop content can be<!-- Consider switching to active voice. --> downloaded at the time the workshop instance is created. If the amount of
-content is not too large, the download doesn't affect<!-- Consider using a more precise verb. --> startup times for the workshop instance.
+You can download workshop content when the workshop instance is created. If the amount of
+content is not too large, the download doesn't increase startup times for the workshop instance.
 The alternative is to bundle the workshop content in a container image built from the
 Learning Center workshop base image.
 
@@ -96,7 +96,7 @@ spec:
     files: github.com/eduk8s/lab-markdown-sample
 ```
 
-The location can be<!-- Consider switching to active voice. --> a GitHub or GitLab repository reference, a URL to a tarball hosted on a HTTP
+The location can be a GitHub or GitLab repository reference, a URL to a tarball hosted on a HTTP
 server, or a reference to an OCI image artifact on a registry.
 
 In the case of a GitHub or GitLab repository, do not prefix the location with `https://` as a
@@ -149,41 +149,41 @@ read-only access to the repository and include the credentials in the URL.
 * `https://username@token:github.com/organization/project/archive/develop.tar.gz?path=project-develop`
 
 As with this method a full URL is being supplied to request a tarball of the repository and does not
-refer to<!-- If telling the reader to read something else, use |see|. --> the repository itself, you can also reference private enterprise versions of GitHub or
-GitLab and the repository doesn't need to<!-- |must| is preferred. --> be on the public `github.com` or `gitlab.com` sites.
+refer to the repository itself, you can also reference private enterprise versions of GitHub or
+GitLab and the repository doesn't need to be on the public `github.com` or `gitlab.com` sites.
 
 The last case is a reference to an OCI image artifact stored on a registry.
-This is not a full container image with the operating system, but an image containing just<!-- Avoid uses that suggest a task is simple. --> the files
+This is not a full container image with the operating system, but an image containing only the files
 making up the workshop content. The URI formats for this are:
 
 * `imgpkg+https://harbor.example.com/organisation/project:version` - Use the workshop content from
 the top-level directory of the unpacked OCI artifact. The registry in this case must support `https`.
 * `imgpkg+https://harbor.example.com/organisation/project:version?path=subdir` - Use the workshop
-content from the specified sub-directory<!-- |subdirectory| is preferred. --> path of the unpacked OCI artifact.
+content from the specified subdirectory path of the unpacked OCI artifact.
 The registry in this case must support `https`.
 * `imgpkg+http://harbor.example.com/organisation/project:version` - Use the workshop content from
 the top-level directory of the unpacked OCI artifact. The registry in this case can support only `http`.
 * `imgpkg+http://harbor.example.com/organisation/project:version?path=subdir` - Use the workshop
-content from the specified sub-directory<!-- |subdirectory| is preferred. --> path of the unpacked OCI artifact. The registry in this
+content from the specified subdirectory path of the unpacked OCI artifact. The registry in this
 case can support only `http`.
 
-Instead of the prefix `imgpkg+https://`, you can instead use just<!-- Avoid uses that suggest a task is simple. --> `imgpkg://`. The registry in this
+Instead of the prefix `imgpkg+https://`, you can use `imgpkg://`. The registry in this
 case must still support `https`.
 
-For any of the formats, credentials can be<!-- Consider switching to active voice. --> supplied as part of the URI.
+For any of the formats, you can supply credentials as part of the URI.
 
 * `imgpkg+https://username:password@harbor.example.com/organisation/project:version`
 
 Access to the registry using a secure connection using `https` must have a valid certificate.
 
-The OCI image artifact can be<!-- Consider switching to active voice. --> created using `imgpkg` from the Carvel tool set. For example, from the
+You can create the OCI image artifact by using `imgpkg` from the Carvel tool set. For example, from the
 top-level directory of the Git repository containing the workshop content, you would run:
 
 ```
 imgpkg push -i harbor.example.com/organisation/project:version -f .
 ```
 
-In all cases for downloading workshop content, the `workshop` sub-directory<!-- |subdirectory| is preferred. --> holding the actual
+In all cases for downloading workshop content, the `workshop` subdirectory holding the actual
 workshop content is relocated to `/opt/workshop` so that it is not visible to a user.
 If you want other files ignored and not included in what the user can see, you can supply a
 `.eduk8signore` file in your repository or tarball and list patterns for the files in it.
@@ -220,12 +220,12 @@ spec:
     image: quay.io/eduk8s/lab-markdown-sample:master
 ```
 
-Even if using the ability to<!-- |can| is shorter. Avoid nounification of verbs where possible. --> download workshop content when the workshop environment is started,
-you may<!-- |can| usually works better. Use |might| to convey possibility. --> still want to override the workshop image used as a base. This is done where you have a
-custom workshop base image that includes additional language runtimes<!-- |runtime durations| or |runtime environments| is preferred, depending on meaning. --> or tools required by
+Even though you can download workshop content when the workshop environment is started,
+you might still want to override the workshop image used as a base. You can do this when you have a
+custom workshop base image that includes added language runtimes or tools required by
 specialized workshops.
 
-For example, if running a Java workshop, you could<!-- |can| or |might| whenever possible is preferred. When providing examples, use simple present tense verbs instead of postulating what someone or something could or would do. --> specify the `jdk11-environment` workshop image,
+For example, if running a Java workshop, you can specify the `jdk11-environment` workshop image,
 with workshop content still pulled down from GitHub.
 
 ```
@@ -243,12 +243,11 @@ spec:
 
 If you want to use the latest version of an image, always include the `:latest` tag.
 This is important because the Learning Center Operator looks for version tags `:main`, `:master`,
-`:develop` and `:latest`, and, when they are used, sets the image pull policy to `Always` to ensure
+`:develop` and `:latest`. When they are used, the Operator sets the image pull policy to `Always` to ensure
 that a newer version is always pulled if available.
-Otherwise, the image is cached on the Kubernetes nodes and only pulled when it is initially not
-present. Any other version tags are always assumed to be unique and never updated.
-Be aware of image registries which use a CDN as front end. When using these image tags, the CDN can
-still always regard them as unqiue and not do pull through requests to update an image even if uses
+Otherwise, the image is cached on the Kubernetes nodes and only pulled when it is initially absent. Any other version tags are always assumed to be unique and are never updated.
+Be aware of image registries that use a content delivery network (CDN) as front end. When using these image tags, the CDN can
+still regard them as unique and not do pull through requests to update an image even if it uses
 a tag of `:latest`.
 
 Where special custom workshop base images are available as part of the Learning Center project,
@@ -270,28 +269,23 @@ spec:
 
 The short versions of the names which are recognised are:
 
-* `base-environment:*` - A tagged version of the `base-environment` workshop image which has been<!-- Consider changing to |is| or |has| or rewrite for active voice. -->
-matched with the current version of the Learning Center Operator.
-* `jdk8-environment:*` - A tagged version of the `jdk8-environment` workshop image which has been<!-- Consider changing to |is| or |has| or rewrite for active voice. -->
-matched with the current version of the Learning Center Operator.
-* `jdk11-environment:*` - A tagged version of the `jdk11-environment` workshop image which has been<!-- Consider changing to |is| or |has| or rewrite for active voice. -->
-matched with the current version of the Learning Center Operator.
-* `conda-environment:*` - A tagged version of the `conda-environment` workshop image which has been<!-- Consider changing to |is| or |has| or rewrite for active voice. -->
-matched with the current version of the Learning Center Operator.
+* `base-environment:*` - A tagged version of the `base-environment` workshop image matched with the current version of the Learning Center Operator.
+* `jdk8-environment:*` - A tagged version of the `jdk8-environment` workshop image matched with the current version of the Learning Center Operator.
+* `jdk11-environment:*` - A tagged version of the `jdk11-environment` workshop image matched with the current version of the Learning Center Operator.
+* `conda-environment:*` - A tagged version of the `conda-environment` workshop image matched with the current version of the Learning Center Operator.
 
 The `*` variants of the short names map to the most up-to-date version of the image available at the
-time that the version of the Learning Center Operator was released. That version is thus<!-- Re-write the sentence to drop |thus| or, if that is not possible, replace with |therefore|. --> guaranteed
-to work with that version of the Learning Center Operator, whereas `latest` version may<!-- |can| usually works better. Use |might| to convey possibility. --> be newer,
-with possible incompatibilities.
+time the version of the Learning Center Operator was released. That version is guaranteed
+to work with that version of the Learning Center Operator; whereas the `latest` version can be newer, with possible incompatibilities.
 
 If required, you can remap the short names in the `SystemProfile` configuration of the
 Learning Center Operator. You can map additional short names to your own custom workshop base images
-for use in your own deployment of the Learning Center Operator, along with<!-- Do not use as a conjunction. Whenever possible, use |with| or |and| instead. --> any workshop of your own.
+for use in your own deployment of the Learning Center Operator, and with any workshop of your own.
 
 ## Setting environment variables
 
-If you want to<!-- Maybe replace with just |To|. --> set or override environment variables for the workshop instance, you can supply the
-`session.env` field.
+To set or override environment variables for the workshop instance, you can supply the
+`session.env` field:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -307,33 +301,33 @@ spec:
     env:
     - name: REPOSITORY_URL
       value: PREPLACE WITH YOUR OWN GIT URL LOCATION FOR lab-markdown-sample
-``` <!-- Define any non-obvious placeholders present in the code snippet in the style of |Where PLACEHOLDER is...| -->
+``` 
 
-The `session.env` field should<!-- In most cases, replace with |must|. If using |should| is unavoidable, it must be paired with information on the exceptions that |should| implies exist. --> be a list of dictionaries with `name` and `value` fields.
+The `session.env` field is a list of dictionaries with `name` and `value` fields.
 
 Values of fields in the list of resource objects can reference a number of pre-defined parameters.
 The available parameters are:
 
-- `session_ <!-- Use dashes for spacing in placeholders, not underscores. -->id` - A unique ID for the workshop instance within the workshop environment.
-- `session_ <!-- Use dashes for spacing in placeholders, not underscores. -->namespace` - The namespace created for and bound to the workshop instance.
+- `session_ id` - A unique ID for the workshop instance within the workshop environment.
+- `session_ namespace` - The namespace created for and bound to the workshop instance.
 This is the namespace unique to the session and where a workshop can create its own resources.
-- `environment_ <!-- Use dashes for spacing in placeholders, not underscores. -->name` - The name of the workshop environment. For now this is the same as the name of
+- `environment_ name` - The name of the workshop environment. For now this is the same as the name of
 the namespace for the workshop environment. Don't rely on their being the same, and use the most
-appropriate to cope with any future<!-- Only document what exists. There are legal ramifications to making promises. --> change.
-- `workshop_ <!-- Use dashes for spacing in placeholders, not underscores. -->namespace` - The namespace for the workshop environment. This is the namespace where all
+appropriate to cope with any potential change.
+- `workshop_ namespace` - The namespace for the workshop environment. This is the namespace where all
 deployments of the workshop instances are created and where the service account that the workshop
 instance runs as exists.
-- `service_ <!-- Use dashes for spacing in placeholders, not underscores. -->account` - The name of the service account the workshop instance runs as and which has
+- `service_ account` - The name of the service account the workshop instance runs as and which has
 access to the namespace created for that workshop instance.
-- `ingress_ <!-- Use dashes for spacing in placeholders, not underscores. -->domain` - The host domain under which hostnames<!-- |host names| is preferred. --> can be<!-- Consider switching to active voice. --> created when creating ingress routes.
-- `ingress_ <!-- Use dashes for spacing in placeholders, not underscores. -->protocol` - The protocol (http/https) that is used for ingress routes which are created
+- `ingress_ domain` - The host domain under which you can create host names when creating ingress routes.
+- `ingress_ protocol` - The protocol (http/https) that is used for ingress routes created
 for workshops.
 
 The syntax for referencing one of the parameters is `$(parameter_name)`.
 
 The ability for you to override environment variables using this field must be limited to cases
-where they are required for the workshop. If you want to<!-- Maybe replace with just |To|. --> set or override an environment for a
-specific workshop environment, use the ability to<!-- |can| is shorter. Avoid nounification of verbs where possible. --> set environment variables in the `WorkshopEnvironment`
+where they are required for the workshop. To set or override an environment for a
+specific workshop environment, set environment variables in the `WorkshopEnvironment`
 custom resource for the workshop environment instead.
 
 ## Overriding the memory available
@@ -343,7 +337,7 @@ If the editor is enabled, a total of 1Gi is allocated.
 
 Where the purpose of the workshop is mainly aimed at deploying workloads into the Kubernetes cluster,
 this generally is sufficient. If you are running workloads in the workshop environment container
-itself and need more memory, the default can be<!-- Consider switching to active voice. --> overridden by setting `memory` under
+itself and need more memory, you can override the default by setting `memory` under
 `session.resources`.
 
 ```
@@ -391,15 +385,15 @@ is then mounted on top of the home directory.
 
 In conjunction with each workshop instance, a namespace is created for use during the workshop.
 That is, from the terminal of the
-workshop, you can deploy dashboard applications can be<!-- Consider switching to active voice. --> deployed into the namespace via<!-- |through|, |using| and |by means of| are preferred. --> the Kubernetes
-REST API using tools such as `kubectl` <!-- Do not format |kubectl| as code. -->.
+workshop, you can deploy dashboard applications into the namespace through the Kubernetes
+REST API by using tools such as kubectl.
 
-By default this namespace has whatever limit ranges and resource quota may<!-- |can| usually works better. Use |might| to convey possibility. --> be enforced by<!-- Active voice is preferred. --> the
-Kubernetes cluster. In most cases this means there are no limits or quotas.
+By default this namespace has whatever limit ranges and resource quotas the
+Kubernetes cluster can enforce. In most cases, this means there are no limits or quotas.
 
-To control how much resources can be<!-- Consider switching to active voice. --> used where no limit ranges and resource quotas are set or to
-override any default limit ranges and resource quota, you can set a resource budget for any
-namespaces created for the workshop instance.
+To control how much resources can be used where no limit ranges and resource quotas are set,
+or to override any default limit ranges and resource quotas,
+you can set a resource budget for any namespace created for the workshop instance.
 
 To set the resource budget, set the `session.namespaces.budget` field.
 
@@ -435,15 +429,14 @@ A value of 1000m is equivalent to 1 CPU.
 
 Separate resource quotas for CPU and memory are applied for terminating and non-terminating workloads.
 
-Only the CPU and memory quotas are listed above<!-- IX Standards forbids referring to text |above|. Use |earlier| or, better, just an anchor. -->, but limits are also in place on the number of
-resource objects that can be<!-- Consider switching to active voice. --> created of certain types, including persistent volume claims,
-replication controllers, services,<!-- If a list, maybe reformat it as bullets. If this is a rambling sentence, break it up into smaller sentences. --> and secrets.
+Only the CPU and memory quotas are listed in the preceding table, but limits are also in place on the number of
+resource objects of certain types you can create, including persistent volume claims,
+replication controllers, services, and secrets.
 
-For each budget type, a limit range is created with fixed defaults. The limit ranges for CPU usage<!-- |use| is preferred. -->
-on a container are as follows.
+For each budget type, a limit range is created with fixed defaults. The limit ranges for CPU use on a container are as follows.
 
 
-| Budget    | Min<!-- |Minimum| is preferred. --> | Max<!-- |Maximum| is preferred. -->   | Request | Limit |
+| Budget    | Minimum| Maximum| Request | Limit |
 |-----------|-----|-------|---------|-------|
 | small     | 50m | 1000m | 50m     | 250m  |
 | medium    | 50m | 2000m | 50m     | 500m  |
@@ -456,7 +449,7 @@ on a container are as follows.
 Those for memory are:
 
 
-| Budget    | Min<!-- |Minimum| is preferred. -->  | Max<!-- |Maximum| is preferred. -->  | Request | Limit |
+| Budget    | Minimum | Maximum | Request | Limit |
 |-----------|------|------|---------|-------|
 | small     | 32Mi | 1Gi  | 128Mi   | 256Mi |
 | medium    | 32Mi | 2Gi  | 128Mi   | 512Mi |
@@ -467,11 +460,10 @@ Those for memory are:
 
 
 The request and limit values are the defaults applied to a container when no resources specification
-is given in a pod specification.
+is given in a Pod specification.
 
-If a budget sizing for CPU and memory is sufficient, but you need to<!-- Consider replacing with just |To|. --><!-- |must| is preferred. --> override the limit ranges and
-defaults for request and limit values when none is given in a pod specification, you can supply
-overrides in `session.namespaces.limits`.
+If a budget sizing for CPU and memory is sufficient, but to override the limit ranges and
+defaults for request and limit values when none is given in a Pod specification, you can supply overrides in `session.namespaces.limits`.
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -501,36 +493,35 @@ spec:
           memory: 1Gi
 ```
 
-Although all possible properties that can be<!-- Consider switching to active voice. --> set are listed in this example, you only need to<!-- |must| is preferred. --> supply
-the property for the value you want to override.
+Although all possible properties that can be set are listed in this example,
+you only need to supply the property for the value you want to override.
 
-If you need more control over limit ranges and resource quotas, you should<!-- In most cases, replace with |must|. If using |should| is unavoidable, it must be paired with information on the exceptions that |should| implies exist. --> set the resource budget to
-`custom`. This removes any default limit ranges and resource quota which might be applied to the
-namespace. You can then specify your own `LimitRange` and `ResourceQuota` resources as part of the
-list of resources created for each session.
+If you need more control over limit ranges and resource quotas,
+you can set the resource budget to `custom`.
+This removes any default limit ranges and resource quota that might be applied to the namespace.
+You can then specify your own `LimitRange` and `ResourceQuota` resources as part of the list of resources created for each session.
 
 Before disabling the quota and limit ranges or contemplating any switch to using a custom set of
 `LimitRange` and `ResourceQuota` resources, consider if that is what is really required.
 
-The default requests defined by these for memory and CPU are fallbacks only. In most cases instead
-of changing the defaults, you should<!-- In most cases, replace with |must|. If using |should| is unavoidable, it must be paired with information on the exceptions that |should| implies exist. --> specify memory and CPU resources in the pod template
-specification of your deployment resources used in the workshop to indicate what the application
-actually<!-- Delete unless referring to a situation that is actual instead of virtual. Most uses are extraneous. --> requires. This will<!-- Avoid |will|: present tense is preferred. --> allow you to control exactly what the application is able to<!-- |can| is preferred. --> use and so
+The default requests defined by these for memory and CPU are fallbacks only.
+In most cases, instead of changing the defaults, you can specify memory and CPU resources in the Pod template
+specification of your deployment resources used in the workshop to indicate what the application requires.
+This allows you to control exactly what the application can use and so
 fit into the minimum quota required for the task.
 
 This budget setting and the memory values are distinct from the amount of memory the container the
-workshop environment runs in. If you need to<!-- Consider replacing with just |To|. --><!-- |must| is preferred. --> change how much memory is available to the workshop
+workshop environment runs in. To change how much memory is available to the workshop
 container, set the `memory` setting under `session.resources`.
 
 ## Patching workshop deployment
 
-In order to set or override environment variables you can provide `session.env`.
-If you need to<!-- Consider replacing with just |To|. --><!-- |must| is preferred. --> make other changes to the pod template for the deployment used to create the workshop
-instance, you need to<!-- Consider replacing with just |To|. --><!-- |must| is preferred. --> provide an overlay patch. Such a patch might be used to override the default
+In order to set or override environment variables, you can provide `session.env`.
+To make other changes to the Pod template for the deployment used to create the workshop
+instance, provide an overlay patch. Such a patch can be used to override the default
 CPU and memory limit applied to the workshop instance or to mount a volume.
 
-The patches are provided by setting `session.patches`. The patch will<!-- Avoid |will|: present tense is preferred. --> be applied to the `spec` field
-of the pod template.
+The patches are provided by setting `session.patches`. The patch is applied to the `spec` field of the pod template.
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -553,20 +544,17 @@ spec:
             memory: "1Gi"
 ```
 
-In this example the default memory limit of "512Mi" is increased to "1Gi". Although memory is being
-set via<!-- |through|, |using| and |by means of| are preferred. --> a patch in this example, the `session.resources.memory` field is the preferred way to
+In this example, the default memory limit of "512Mi" is increased to "1Gi". Although memory is
+set using a patch in this example, the `session.resources.memory` field is the preferred way to
 override the memory allocated to the container the workshop environment is running in.
 
-The patch when applied works a bit differently to overlay patches as found elsewhere in Kubernetes.
+The patch when applied works differently than overlay patches found elsewhere in Kubernetes.
 Specifically, when patching an array and the array contains a list of objects, a search is performed
-on the destination array, and, if an object already exists with the same value for the `name` field,<!-- If a list, maybe reformat it as bullets. If this is a rambling sentence, break it up into smaller sentences. -->
-the item <!-- Rewrite to avoid or use |that is,| instead. Note the comma. -->in the source array is overlaid on top of the existing item <!-- Rewrite to avoid or use |that is,| instead. Note the comma. -->in the destination array.
+on the destination array. If an object already exists with the same value for the `name` field, the item in the source array is overlaid on top of the existing item in the destination array.
 
-If there is no matching item <!-- Rewrite to avoid or use |that is,| instead. Note the comma. -->in the destination array, the item <!-- Rewrite to avoid or use |that is,| instead. Note the comma. -->in the source array is added to the
-end of the destination array.
+If there is no matching item in the destination array, the item in the source array is added to the end of the destination array.
 
-This means an array doesn't outright replace an existing array, but a more intelligent merge is
-performed of elements in the array.
+This means an array doesn't outright replace an existing array, but a more intelligent merge is performed of elements in the array.
 
 ## Creation of session resources
 
@@ -580,7 +568,7 @@ instance runs under can access and create resources in the namespace created for
 instance. Each separate workshop instance has its own corresponding namespace and cannot see the
 namespace for another instance.
 
-If you want to<!-- Maybe replace with just |To|. --> pre-create additional resources within the namespace for a workshop instance, you can
+To pre-create additional resources within the namespace for a workshop instance, you can
 supply a list of the resources against the `session.objects` field within the workshop definition.
 You might use this to add additional custom roles to the service account for the workshop instance
 when working in that namespace or to deploy a distinct instance of an application for just that
@@ -635,11 +623,10 @@ spec:
           targetPort: 5000
         selector:
           deployment: registry
-``` <!-- Define any non-obvious placeholders present in the code snippet in the style of |Where PLACEHOLDER is...| -->
+``` 
 
-Note<!-- Format the note properly. --> that<!-- Notes must be in Note boxes and start with |Note: |. --> for namespaced resources, it is not necessary to specify the `namespace` field of the
-resource `metadata`. When the `namespace` field is not present the resource is automatically created
-within the session namespace for that workshop instance.
+For namespaced resources, it is not necessary to specify the `namespace` field of the
+resource `metadata`. When the `namespace` field is not present, the resource is automatically created within the session namespace for that workshop instance.
 
 When resources are created, owner references are added, making the `WorkshopSession` custom resource
 corresponding to the workshop instance the owner. This means that when the workshop instance is
@@ -648,34 +635,34 @@ deleted, any resources are automatically deleted.
 Values of fields in the list of resource objects can reference a number of pre-defined parameters.
 The available parameters are:
 
-- `session_ <!-- Use dashes for spacing in placeholders, not underscores. -->id` - A unique ID for the workshop instance within the workshop environment.
-- `session_ <!-- Use dashes for spacing in placeholders, not underscores. -->namespace` - The namespace created for and bound to the workshop instance. This is the
+- `session_ id` - A unique ID for the workshop instance within the workshop environment.
+- `session_ namespace` - The namespace created for and bound to the workshop instance. This is the
 namespace unique to the session and where a workshop can create its own resources.
-- `environment_ <!-- Use dashes for spacing in placeholders, not underscores. -->name` - The name of the workshop environment. For now this is the same as the name of
+- `environment_ name` - The name of the workshop environment. For now this is the same as the name of
 the namespace for the workshop environment. Don't rely on their being the same, and use the most
-appropriate to cope with any future<!-- Only document what exists. There are legal ramifications to making promises. --> change.
-- `workshop_ <!-- Use dashes for spacing in placeholders, not underscores. -->namespace` - The namespace for the workshop environment. This is the namespace where all
+appropriate to cope with any potential change.
+- `workshop_ namespace` - The namespace for the workshop environment. This is the namespace where all
 deployments of the workshop instances are created and where the service account that the workshop
 instance runs as exists.
-- `service_ <!-- Use dashes for spacing in placeholders, not underscores. -->account` - The name of the service account the workshop instance runs as and which has
+- `service_ account` - The name of the service account the workshop instance runs as and which has
 access to the namespace created for that workshop instance.
-- `ingress_ <!-- Use dashes for spacing in placeholders, not underscores. -->domain` - The host domain under which hostnames<!-- |host names| is preferred. --> can be<!-- Consider switching to active voice. --> created when creating ingress routes.
-- `ingress_ <!-- Use dashes for spacing in placeholders, not underscores. -->protocol` - The protocol (http/https) that is used for ingress routes which are created
+- `ingress_ domain` - The host domain under which you can create host names when creating ingress routes.
+- `ingress_ protocol` - The protocol (http/https) used for ingress routes created
 for workshops.
 
 The syntax for referencing one of the parameters is `$(parameter_name)`.
 
 In the case of cluster-scoped resources, it is important that you set the name of the created resource
 so that it embeds the value of `$(session_namespace)`. This way the resource name is unique to the
-workshop instance and you do not get a clash with a resource for a different workshop instance.
+workshop instance, and you do not get a clash with a resource for a different workshop instance.
 
-For examples of making use of the available parameters see the following sections.
+For examples of making use of the available parameters, see the following sections.
 
-## Overriding default RBAC rules
+## Overriding default role-based access control (RBAC) rules
 
 By default the service account created for the workshop instance has `admin` role access to the
 session namespace created for that workshop instance. This enables the service account to be used to
-deploy applications to the session namespace as well as<!-- |and| is preferred. --> manage secrets and service accounts.
+deploy applications to the session namespace and manage secrets and service accounts.
 
 Where a workshop doesn't require `admin` access for the namespace, you can reduce the level of access
 it has to `edit` or `view` by setting the `session.namespaces.role` field.
@@ -695,8 +682,8 @@ spec:
       role: view
 ```
 
-If you need to<!-- Consider replacing with just |To|. --><!-- |must| is preferred. --> add additional roles to the service account, such as the ability to<!-- |can| is shorter. Avoid nounification of verbs where possible. --> work with custom
-resource types which have been<!-- Consider replacing with |were| or shifting to present tense. --> added to the cluster, you can add the appropriate `Role` and
+To add additional roles to the service account, such as working with custom
+resource types added to the cluster, you can add the appropriate `Role` and
 `RoleBinding` definitions to the `session.objects` field described previously.
 
 ```
@@ -745,12 +732,12 @@ spec:
         name: $(service_account)
 ```
 
-Because the subject of a `RoleBinding` needs to<!-- |must| is preferred. --> specify the service account name and namespace it is
+Because the subject of a `RoleBinding` must specify the service account name and namespace it is
 contained within, both of which are unknown in advance, references to parameters for the workshop
 namespace and service account for the workshop instance are used when defining the subject.
 
-Adding additional resources via<!-- |through|, |using| and |by means of| are preferred. --> `session.objects` can also be used to grant cluster-level roles,
-which would<!-- Re-phrase for present tense if possible. --> be necessary if you need to<!-- Consider replacing with just |To|. --><!-- |must| is preferred. --> grant the service account `cluster-admin` role.
+Adding additional resources by means of `session.objects` can also be used to grant cluster-level roles,
+which is necessary to grant the service account `cluster-admin` role.
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -778,21 +765,21 @@ spec:
         name: $(service_account)
 ```
 
-In this case the name of the cluster role binding resource embeds `$(session_namespace)` so that its
+In this case, the name of the cluster role binding resource embeds `$(session_namespace)` so that its
 name is unique to the workshop instance and doesn't overlap with a binding for a different workshop
 instance.
 
 ## Running user containers as root
 
-In addition to RBAC, which controls what resources a user can create and work with, pod security
-policies are applied to restrict what pods/containers a user deploys can do.
+In addition to RBAC, which controls what resources a user can create and work with, Pod security
+policies are applied to restrict what Pods/containers a user deploys can do.
 
-By default the deployments that can be<!-- Consider switching to active voice. --> created by<!-- Active voice is preferred. --> a workshop user are allowed only to run containers
+By default the deployments that a workshop user can create are allowed only to run containers
 as a non-root user. This means that many container images available on registries such as Docker Hub
-may<!-- |can| usually works better. Use |might| to convey possibility. --> not be able to<!-- |can| is preferred. --> be used.
+cannot be used.
 
-If you are creating a workshop where a user needs to<!-- |must| is preferred. --> be able to<!-- |can| is preferred. --> run containers as the root user, you
-need to<!-- Consider replacing with just |To|. --><!-- |must| is preferred. --> override the default `nonroot` security policy and select the `anyuid` security policy using
+If you are creating a workshop where a user must run containers as the root user, you
+must override the default `nonroot` security policy and select the `anyuid` security policy by using
 the `session.namespaces.security.policy` setting.
 
 ```
@@ -811,13 +798,12 @@ spec:
         policy: anyuid
 ```
 
-This setting applies to the primary session namespace and any secondary namespaces that may<!-- |can| usually works better. Use |might| to convey possibility. --> be
+This setting applies to the primary session namespace and any secondary namespaces
 created.
 
 ## Creating additional namespaces
 
-For each workshop instance a primary session namespace is created, into which applications can be<!-- Consider switching to active voice. -->
-pre-deployed or deployed as part of the workshop.
+For each workshop instance, a primary session namespace is created. Applications can be pre-deployed or deployed into this namespace as part of the workshop.
 
 If you need more than one namespace per workshop instance, you can create secondary namespaces in a
 couple of ways.
@@ -850,17 +836,15 @@ the property `session.namespaces.secondary`.
 
 When secondary namespaces are created, by default, the role, resource quotas, and limit ranges are
 set the same as the primary session namespace. Each namespace, though, has a separate resource
-budget;<!-- Two sentences are preferred over a compound sentence that uses a semi-colon. --> it is not shared.
+budget; it is not shared.
 
-If required, you can override what `role`, `budget`, and `limits` should<!-- In most cases, replace with |must|. If using |should| is unavoidable, it must be paired with information on the exceptions that |should| implies exist. --> be applied within the entry
-for the namespace.
+If required, you can override what `role`, `budget`, and `limits` are applied within the entry for the namespace.
 
 Similarly, you can override the security policy for secondary namespaces on a case-by-case basis by
 adding the `security.policy` setting under the entry for the secondary namespace.
 
-If you also need to<!-- |must| is preferred. --> create resources in the namespaces you want to create, you may<!-- |can| usually works better. Use |might| to convey possibility. --> prefer creating
-the namespaces by adding an appropriate `Namespace` resource to `session.objects` along with the
-definitions of the resources you want to create in the namespaces.
+To create resources in the namespaces you create, create
+the namespaces by adding an appropriate `Namespace` resource to `session.objects` with the definitions of the resources you want to create in the namespaces.
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -880,11 +864,11 @@ spec:
         name: $(session_namespace)-apps
 ```
 
-When listing any other resources to be created within the additional namespace, such as deployments,
+When listing any other resources to be created within the added namespace, such as deployments,
 ensure that the `namespace` is set in the `metadata` of the resource.
 For example, `$(session_namespace)-apps`.
 
-If you need to<!-- Consider replacing with just |To|. --><!-- |must| is preferred. --> override what role the service account for the workshop instance has in the additional
+To override what role the service account for the workshop instance has in the added
 namespace, you can set the `learningcenter.tanzu.vmware.com/session.role` annotation on the
 `Namespace` resource.
 
@@ -908,7 +892,7 @@ spec:
           learningcenter.tanzu.vmware.com/session.role: view
 ```
 
-If you need to<!-- Consider replacing with just |To|. --><!-- |must| is preferred. --> have a different resource budget set for the additional namespace, you can add the
+To have a different resource budget set for the additional namespace, you can add the
 annotation `learningcenter.tanzu.vmware.com/session.budget` in the `Namespace` resource metadata and
 set the value to the required resource budget.
 
@@ -932,7 +916,7 @@ spec:
           learningcenter.tanzu.vmware.com/session.budget: large
 ```
 
-In order to override the limit range values applied corresponding to the budget applied, you can add
+To override the limit range values applied corresponding to the budget applied, you can add
 annotations starting with `learningcenter.tanzu.vmware.com/session.limits.` for each entry.
 
 ```
@@ -962,7 +946,7 @@ spec:
           learningcenter.tanzu.vmware.com/session.limits.request.memory: 1Gi
 ```
 
-You only need to<!-- |must| is preferred. --> supply annotations for the values you want to override.
+You only must supply annotations for the values you want to override.
 
 If you need more fine-grained control over the limit ranges and resource quotas, set the value of
 the annotation for the budget to `custom` and add the `LimitRange` and `ResourceQuota` definitions
@@ -971,78 +955,76 @@ to `session.objects`.
 In this case you must set the `namespace` for the `LimitRange` and `ResourceQuota` resource to the
 name of the namespace, e.g., `$(session_namespace)-apps` so they are only applied to that namespace.
 
-If you need to<!-- Consider replacing with just |To|. --><!-- |must| is preferred. --> set the security policy for a specific namespace different from  the primary session
+To set the security policy for a specific namespace other than the primary session
 namespace, you can add the annotation `learningcenter.tanzu.vmware.com/session.security.policy` in
 the `Namespace` resource metadata and set the value to `nonroot` or `anyuid` as necessary.
 
 ## Shared workshop resources
 
-Adding a list of resources to `session.objects` results in<!-- Consider replacing with |causes|. --> the given resources being created for
-each workshop instance where namespaced resources default to being created in the session namespace
-for that workshop instance.
+Adding a list of resources to `session.objects` causes the given resources to be created for
+each workshop instance, whereas namespaced resources default to being created in the session namespace for a workshop instance.
 
 If instead you want to have one common shared set of resources created once for the whole workshop
 environment, that is, used by all workshop instances, you can list them in the `environment.objects`
 field.
 
-This might, for example, be used to deploy a single image registry<!-- If generic, |container image registry| on first use. If VMware-provided, |Tanzu Network Registry| on first use. In both cases, |registry| thereafter except where risking ambiguity. --> which is used by<!-- Active voice is preferred. --> all workshop
-instances, with a Kubernetes job used to import a set of images into the image registry<!-- If generic, |container image registry| on first use. If VMware-provided, |Tanzu Network Registry| on first use. In both cases, |registry| thereafter except where risking ambiguity. -->, which are
-then referenced by the workshop instances.
+This might, for example, be used to deploy a single image registry used by all workshop
+instances, with a Kubernetes job used to import a set of images into the image registry, which are then referenced by the workshop instances.
 
 For namespaced resources, it is not necessary to specify the `namespace` field of the resource
 `metadata`. When the `namespace` field is not present, the resource is automatically created within
 the workshop namespace for that workshop environment.
 
 When resources are created, owner references are added, making the `WorkshopEnvironment` custom
-resource correspond to the workshop environment of the owner. This means that, when the workshop
-environment is deleted, any resources are automatically deleted.
+resource correspond to the workshop environment of the owner. This means that when the workshop
+environment is deleted, any resources are also deleted.
 
 Values of fields in the list of resource objects can reference a number of pre-defined parameters.
 The available parameters are:
 
-- `workshop_ <!-- Use dashes for spacing in placeholders, not underscores. -->name` - The name of the workshop. This is the name of the `Workshop` definition the
+- `workshop_ name` - The name of the workshop. This is the name of the `Workshop` definition the
 workshop environment was created against.
-- `environment_ <!-- Use dashes for spacing in placeholders, not underscores. -->name` - The name of the workshop environment. For now this is the same as the name of
+- `environment_ name` - The name of the workshop environment. For now this is the same as the name of
 the namespace for the workshop environment. Don't rely on their being the same, and use the most
-appropriate to cope with any future<!-- Only document what exists. There are legal ramifications to making promises. --> change.
-- `environment_ <!-- Use dashes for spacing in placeholders, not underscores. -->token` - The value of the token which needs to<!-- |must| is preferred. --> be used in workshop requests against
+appropriate to cope with any potential change.
+- `environment_ token` - The value of the token that needs to be used in workshop requests against
 the workshop environment.
-- `workshop_ <!-- Use dashes for spacing in placeholders, not underscores. -->namespace` - The namespace for the workshop environment. This is the namespace where all
+- `workshop_ namespace` - The namespace for the workshop environment. This is the namespace where all
 deployments of the workshop instances, and their service accounts, are created. It is the same
 namespace that shared workshop resources are created.
-- `service_ <!-- Use dashes for spacing in placeholders, not underscores. -->account` - The name of a service account that can be<!-- Consider switching to active voice. --> used when creating deployments in
+- `service_ account` - The name of a service account you can use when creating deployments in
 the workshop namespace.
-- `ingress_ <!-- Use dashes for spacing in placeholders, not underscores. -->domain` - The host domain under which hostnames<!-- |host names| is preferred. --> can be<!-- Consider switching to active voice. --> created when creating ingress routes.
-- `ingress_ <!-- Use dashes for spacing in placeholders, not underscores. -->protocol` - The protocol (http/https) that is used for ingress routes which are created
+- `ingress_ domain` - The host domain under which you can create host names when creating ingress routes.
+- `ingress_ protocol` - The protocol (http/https) used for ingress routes created
 for workshops.
-- `ingress_ <!-- Use dashes for spacing in placeholders, not underscores. -->secret` - The name of the ingress secret stored in the workshop namespace when secure
-ingress is being used.
+- `ingress_ secret` - The name of the ingress secret stored in the workshop namespace when secure
+ingress is used.
 
-If you want to<!-- Maybe replace with just |To|. --> create additional namespaces associated with the workshop environment, embed a
+To create additional namespaces associated with the workshop environment, embed a
 reference to `$(workshop_namespace)` in the name of the additional namespaces with an appropriate
 suffix. Be careful that the suffix doesn't overlap with the range of session IDs for workshop
 instances.
 
 When creating deployments in the workshop namespace, set the `serviceAccountName` of the `Deployment`
-resource to `$(service_account)`. This ensures the deployment makes use of a special pod security
+resource to `$(service_account)`. This ensures the deployment makes use of a special Pod security
 policy set up by the Learning Center. If this isn't used and the cluster imposes a more strict
-default pod security policy, your deployment may<!-- |can| usually works better. Use |might| to convey possibility. --> not work, especially if any image expects to run as
+default Pod security policy, your deployment might not work, especially if any image runs as
 `root`.
 
 ## Workshop pod security policy
 
-The pod for the workshop session is set up with a pod security policy which restricts what can be<!-- Consider switching to active voice. -->
-done from containers in the pod. The nature of the applied pod security policy is adjusted when
-enabling support for doing docker<!-- |Docker| is preferred. --> builds;<!-- Two sentences are preferred over a compound sentence that uses a semi-colon. --> this is turn, enables the ability to<!-- |can| is shorter. Avoid nounification of verbs where possible. --> do docker<!-- |Docker| is preferred. --> builds
+The Pod for the workshop session is set up with a Pod security policy that restricts what can be
+done from containers in the pod. The nature of the applied Pod security policy is adjusted when
+enabling support for doing Docker builds. This in turn enables Docker builds
 inside the sidecar container attached to the workshop container.
 
-If you are customizing the workshop by patching the pod specification using `session.patches` in
-order to<!-- |to| is preferred. --> add your own sidecar container and that sidecar container needs to<!-- |must| is preferred. --> run as the root user or
-needs a custom pod security policy, you need to<!-- Consider replacing with just |To|. --><!-- |must| is preferred. --> override the default security policy for the workshop
-container.
+If you are customizing the workshop by patching the Pod specification
+using `session.patches` to add your own sidecar container,
+and that sidecar container must run as the root user or needs a custom Pod security policy,
+you must override the default security policy for the workshop container.
 
-In the case where you need to<!-- Consider replacing with just |To|. --><!-- |must| is preferred. --> allow a sidecar container to run as the root user and no extra
-privileges are required, you can override the default `nonroot` security policy and set it to
+To allow a sidecar container to run as the root user with no extra
+privileges required, you can override the default `nonroot` security policy and set it to
 `anyuid`.
 
 ```
@@ -1064,11 +1046,11 @@ This is a different setting than described previously for changing the security 
 deployments made by a workshop user to the session namespaces. This setting applies only to the
 workshop container itself.
 
-If you need more fine-grained control of the security policy you need to<!-- Consider replacing with just |To|. --><!-- |must| is preferred. --> provide your own resources
-for defining the pod security policy and map it so it is used. The details of the pod security policy
-need<!-- Avoid anthropomorphizing: |require| might be better here. --> to be included in<!-- Consider deleting |included|. --> `environment.objects` and mapped by definitions added to `session.objects`.
-For this to be used, you need to<!-- Consider replacing with just |To|. --><!-- |must| is preferred. --> disable<!-- |deactivate| is preferred. --> the application of the inbuilt pod security policies.
-This can be<!-- Consider switching to active voice. --> done by setting `session.security.policy` to `custom`.
+If you need more fine-grained control of the security policy, you must provide your own resources
+for defining the Pod security policy and map it so it is used. The details of the Pod security policy
+must be in `environment.objects` and mapped by definitions added to `session.objects`.
+For this to be used, you must disable the application of the inbuilt Pod security policies.
+You can do this by setting `session.security.policy` to `custom`.
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -1143,18 +1125,16 @@ spec:
         - aa-$(workshop_namespace)-podman
 ```
 
-By overriding the pod security policy, you are responsible for limiting what can be<!-- Consider switching to active voice. --> done from the
-workshop pod. In other words, you should<!-- In most cases, replace with |must|. If using |should| is unavoidable, it must be paired with information on the exceptions that |should| implies exist. --> only add just<!-- Avoid uses that suggest a task is simple. --> the extra capabilities you need. The pod
-security policy is applied only to the pod the workshop session runs in;<!-- Two sentences are preferred over a compound sentence that uses a semi-colon. --> it does not affect<!-- Consider using a more precise verb. --> any pod
-security policy applied to service accounts which exist in the session namespace or other namespaces
-which have been<!-- Consider replacing with |were| or shifting to present tense. --> created.
+By overriding the Pod security policy, you are responsible for limiting what can be done from the
+workshop Pod. In other words, add only the extra capabilities you need. The Pod
+security policy is applied only to the Pod the workshop session runs in. It does not affect any Pod
+security policy applied to service accounts that exist in the session namespace or other namespaces you have created.
 
-Due to a need for a better way to determine<!-- |determine| has two meanings. Consider if the univocal |discover| or |verify| would be better. --> priority of applied pod security policies when a default
-pod security policy has been<!-- Consider changing to |is| or |has| or rewrite for active voice. --> applied globally by mapping it to the `system:authenticated` group, with
-priority instead falling back to ordering of the names of the pod security policies, it is recommended<!-- Specify the party that recommends (VMware, Cloud Foundry, etc). -->
-you use `aa-` as a prefix to the custom pod security name you create. This ensures it takes precedence
-over any global default pod security policy such as `restricted`, `pks-restricted` or
-`vmware-system-tmc-restricted`, no matter what the name of the global policy default is called.
+There is a better way to set the priority of applied Pod security policies when a default
+Pod security policy is applied globally by mapping it to the `system:authenticated` group. This results in priority falling back to the order of the names of the Pod security policies. VMware recommends
+you use `aa-` as a prefix to the custom Pod security name you create. This ensures it takes precedence
+over any global default Pod security policy such as `restricted`, `pks-restricted` or
+`vmware-system-tmc-restricted`, no matter what the name of the global policy default.
 
 ## Defining additional ingress points
 
@@ -1238,8 +1218,8 @@ Available variables are:
 - `session_ <!-- Use dashes for spacing in placeholders, not underscores. -->namespace` - The namespace created for and bound to the workshop instance. This is the
 namespace unique to the session and where a workshop can create its own resources.
 - `environment_ <!-- Use dashes for spacing in placeholders, not underscores. -->name` - The name of the workshop environment. Currently this is the same as the name
-of the namespace for the workshop environment. Don't rely on their being the same and use the most
-appropriate to cope with any future<!-- Only document what exists. There are legal ramifications to making promises. --> change.
+of the namespace for the workshop environment. Don't rely on their being the same, and use the most
+appropriate to cope with any potential change.
 - `workshop_ <!-- Use dashes for spacing in placeholders, not underscores. -->namespace` - The namespace for the workshop environment. This is the namespace where all
 deployments of the workshop instances are created and where the service account that the workshop
 instance runs as exists.
@@ -1312,8 +1292,8 @@ The URL value can reference a number of pre-defined parameters. The available pa
 * `session_ <!-- Use dashes for spacing in placeholders, not underscores. -->namespace` - The namespace created for and bound to the workshop instance. This is the
 namespace unique to the session and where a workshop can create its own resources.
 * `environment_ <!-- Use dashes for spacing in placeholders, not underscores. -->name` - The name of the workshop environment. For now this is the same as the name of
-the namespace for the workshop environment. Don't rely on their being the same and use the most
-appropriate to cope with any future<!-- Only document what exists. There are legal ramifications to making promises. --> change.
+the namespace for the workshop environment. Don't rely on their being the same, and use the most
+appropriate to cope with any potential change.
 * `workshop_ <!-- Use dashes for spacing in placeholders, not underscores. -->namespace` - The namespace for the workshop environment. This is the namespace where all
 deployments of the workshop instances are created and where the service account that the workshop
 instance runs as exists.
@@ -1860,8 +1840,8 @@ The URL values can reference a number of pre-defined parameters. The available p
 - `session_ <!-- Use dashes for spacing in placeholders, not underscores. -->namespace` - The namespace created for and bound to the workshop instance. This is the
 namespace unique to the session and where a workshop can create its own resources.
 - `environment_ <!-- Use dashes for spacing in placeholders, not underscores. -->name` - The name of the workshop environment. For now this is the same as the name of
-the namespace for the workshop environment. Don't rely on their being the same and use the most
-appropriate to cope with any future<!-- Only document what exists. There are legal ramifications to making promises. --> change.
+the namespace for the workshop environment. Don't rely on their being the same, and use the most
+appropriate to cope with any potential change.
 - `workshop_ <!-- Use dashes for spacing in placeholders, not underscores. -->namespace` - The namespace for the workshop environment. This is the namespace where all
 deployments of the workshop instances are created and where the service account that the workshop
 instance runs as exists.
