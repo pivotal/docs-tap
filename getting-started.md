@@ -2,7 +2,7 @@
 
 ## <a id="purpose"></a>Purpose
 
-Welcome to the Tanzu Application Platform. This document guides you through the getting started platform. Specifically, you are going to learn how to:
+Welcome to the Tanzu Application Platform. This document guides you through getting started on the platform. Specifically, you are going to learn how to:
 
   - Develop and promote an application
   - Create an application accelerator
