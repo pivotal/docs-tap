@@ -1,4 +1,4 @@
-# Tanzu Application Platform v1.0
+# Tanzu Application Platform v1.1
 
 ## <a id='overview'></a> Overview of Tanzu Application Platform
 
@@ -200,7 +200,7 @@ The following packages are part of the Tanzu Application Platform:
   Tekton is a powerful and flexible open-source framework for creating CI/CD systems, enabling
   developers to build, test, and deploy across cloud providers and on-premise systems.
 
-## <a id='profiles-and-packages'></a> Installation profiles in Tanzu Application Platform v1.0
+## <a id='profiles-and-packages'></a> Installation profiles in Tanzu Application Platform v1.1
 
 Tanzu Application Platform is available from pre-defined profiles or individual packages.
 
@@ -213,7 +213,7 @@ The following profiles are available in Tanzu Application Platform:
 - **Full:**
   This profile contains all of the Tanzu Application Platform packages.
 
-## <a id='install'></a> About installing the Tanzu Application Platform v1.0
+## <a id='install'></a> About installing the Tanzu Application Platform v1.1
 
 To install the Tanzu Application Platform profiles, see [Installing Tanzu Application Platform](install-intro.md).
 

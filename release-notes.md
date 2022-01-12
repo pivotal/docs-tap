@@ -1,6 +1,6 @@
 # Release notes
 
-This topic contains release notes for Tanzu Application Platform v1.0.
+This topic contains release notes for Tanzu Application Platform v1.
 
 ## <a id='1-1'></a> v1.1
 
