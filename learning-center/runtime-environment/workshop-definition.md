@@ -23,7 +23,7 @@ The `title` field has a single-line value giving the subject of the workshop.
 
 The `description` field has a longer description of the workshop.
 
-The following optional information can also be supplied for the workshop.
+The following optional information can also be supplied for the workshop:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -82,7 +82,7 @@ The alternative is to bundle the workshop content in a container image built fro
 Learning Center workshop base image.
 
 To download workshop content at the time the workshop instance is started, set the `content.files`
-field to the location of the workshop content.
+field to the location of the workshop content:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -114,18 +114,18 @@ repository. The `master` branch is used.
 * `gitlab.com/organisation/project/subdir?ref=develop` - Use the workshop content hosted at `subdir`
 of the GitLab repository. The `develop` branch is used.
 
-In the case of a URL to a tarball hosted on a HTTP server, the URL can be<!-- Consider switching to active voice. --> in the following formats:
+In the case of a URL to a tarball hosted on a HTTP server, the URL can be in the following formats:
 
 * `https://example.com/workshop.tar` - Use the workshop content from the top-level directory of the
 unpacked tarball.
 * `https://example.com/workshop.tar.gz` - Use the workshop content from the top-level directory of
 the unpacked tarball.
 * `https://example.com/workshop.tar?path=subdir` - Use the workshop content from the specified
-sub-directory<!-- |subdirectory| is preferred. --> path of the unpacked tarball.
+subdirectory path of the unpacked tarball.
 * `https://example.com/workshop.tar.gz?path=subdir` - Use the workshop content from the specified
-sub-directory<!-- |subdirectory| is preferred. --> path of the unpacked tarball.
+subdirectory path of the unpacked tarball.
 
-The tarball referenced by the URL can be<!-- Consider switching to active voice. --> uncompressed or compressed.
+The tarball referenced by the URL can be uncompressed or compressed.
 
 If using GitHub, instead of using the earlier form for referencing the Git repository containing the
 workshop content, you can instead use a URL to refer directly to the downloadable tarball for a
@@ -136,7 +136,7 @@ specific version of the Git repository.
 When using this form you must reference the `.tar.gz` download and cannot use the `.zip` file.
 The base name of the tarball file is the branch or commit name. You must specify the `path` query
 string parameter where the argument is the name of the project and branch or commit.
-The path needs to<!-- |must| is preferred. --> be supplied as the contents of the repository is not returned at the root of the
+The path must be supplied as the contents of the repository is not returned at the root of the
 archive.
 
 If using GitLab, it also provides a means of download a package as a tarball.
@@ -206,7 +206,7 @@ root directory, you need to prefix it with `./`.
 
 When workshop content is bundled into a container image, the `content.image` field should specify
 the image reference identifying the location of the container image to be deployed for the workshop
-instance.
+instance:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -226,7 +226,7 @@ custom workshop base image that includes added language runtimes or tools requir
 specialized workshops.
 
 For example, if running a Java workshop, you can specify the `jdk11-environment` workshop image,
-with workshop content still pulled down from GitHub.
+with workshop content still pulled down from GitHub:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -252,7 +252,7 @@ a tag of `:latest`.
 
 Where special custom workshop base images are available as part of the Learning Center project,
 instead of specifying the full location for the image, including the image registry, you can specify
-a short name. The Learning Center Operator then fills in the rest of the details.
+a short name. The Learning Center Operator then fills in the rest of the details:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -338,7 +338,7 @@ If the editor is enabled, a total of 1Gi is allocated.
 Where the purpose of the workshop is mainly aimed at deploying workloads into the Kubernetes cluster,
 this generally is sufficient. If you are running workloads in the workshop environment container
 itself and need more memory, you can override the default by setting `memory` under
-`session.resources`.
+`session.resources`:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -359,7 +359,7 @@ spec:
 
 In circumstances where a workshop needs persistent storage to ensure no loss of work, you can request
 a persistent volume be mounted into the workshop container if the workshop environment container was
-killed and restarted.
+killed and restarted:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -463,7 +463,7 @@ The request and limit values are the defaults applied to a container when no res
 is given in a Pod specification.
 
 If a budget sizing for CPU and memory is sufficient, but to override the limit ranges and
-defaults for request and limit values when none is given in a Pod specification, you can supply overrides in `session.namespaces.limits`.
+defaults for request and limit values when none is given in a Pod specification, you can supply overrides in `session.namespaces.limits`:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -521,7 +521,7 @@ To make other changes to the Pod template for the deployment used to create the 
 instance, provide an overlay patch. Such a patch can be used to override the default
 CPU and memory limit applied to the workshop instance or to mount a volume.
 
-The patches are provided by setting `session.patches`. The patch is applied to the `spec` field of the pod template.
+The patches are provided by setting `session.patches`. The patch is applied to the `spec` field of the pod template:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -572,7 +572,7 @@ To pre-create additional resources within the namespace for a workshop instance,
 supply a list of the resources against the `session.objects` field within the workshop definition.
 You might use this to add additional custom roles to the service account for the workshop instance
 when working in that namespace or to deploy a distinct instance of an application for just that
-workshop instance, such as a private image registry.
+workshop instance, such as a private image registry:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -665,7 +665,7 @@ session namespace created for that workshop instance. This enables the service a
 deploy applications to the session namespace and manage secrets and service accounts.
 
 Where a workshop doesn't require `admin` access for the namespace, you can reduce the level of access
-it has to `edit` or `view` by setting the `session.namespaces.role` field.
+it has to `edit` or `view` by setting the `session.namespaces.role` field:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -684,7 +684,7 @@ spec:
 
 To add additional roles to the service account, such as working with custom
 resource types added to the cluster, you can add the appropriate `Role` and
-`RoleBinding` definitions to the `session.objects` field described previously.
+`RoleBinding` definitions to the `session.objects` field described previously:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -736,8 +736,8 @@ Because the subject of a `RoleBinding` must specify the service account name and
 contained within, both of which are unknown in advance, references to parameters for the workshop
 namespace and service account for the workshop instance are used when defining the subject.
 
-Adding additional resources by means of `session.objects` can also be used to grant cluster-level roles,
-which is necessary to grant the service account `cluster-admin` role.
+You can add additional resources by means of `session.objects` to grant cluster-level roles,
+which is necessary to grant the service account `cluster-admin` role:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -780,7 +780,7 @@ cannot be used.
 
 If you are creating a workshop where a user must run containers as the root user, you
 must override the default `nonroot` security policy and select the `anyuid` security policy by using
-the `session.namespaces.security.policy` setting.
+the `session.namespaces.security.policy` setting:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -809,7 +809,7 @@ If you need more than one namespace per workshop instance, you can create second
 couple of ways.
 
 If the secondary namespaces are to be created empty, you can list the details of the namespaces under
-the property `session.namespaces.secondary`.
+the property `session.namespaces.secondary`:
 
 ```
     apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -844,7 +844,7 @@ Similarly, you can override the security policy for secondary namespaces on a ca
 adding the `security.policy` setting under the entry for the secondary namespace.
 
 To create resources in the namespaces you create, create
-the namespaces by adding an appropriate `Namespace` resource to `session.objects` with the definitions of the resources you want to create in the namespaces.
+the namespaces by adding an appropriate `Namespace` resource to `session.objects` with the definitions of the resources you want to create in the namespaces:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -870,7 +870,7 @@ For example, `$(session_namespace)-apps`.
 
 To override what role the service account for the workshop instance has in the added
 namespace, you can set the `learningcenter.tanzu.vmware.com/session.role` annotation on the
-`Namespace` resource.
+`Namespace` resource:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -894,7 +894,7 @@ spec:
 
 To have a different resource budget set for the additional namespace, you can add the
 annotation `learningcenter.tanzu.vmware.com/session.budget` in the `Namespace` resource metadata and
-set the value to the required resource budget.
+set the value to the required resource budget:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -917,7 +917,7 @@ spec:
 ```
 
 To override the limit range values applied corresponding to the budget applied, you can add
-annotations starting with `learningcenter.tanzu.vmware.com/session.limits.` for each entry.
+annotations starting with `learningcenter.tanzu.vmware.com/session.limits.` for each entry:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -1025,7 +1025,7 @@ you must override the default security policy for the workshop container.
 
 To allow a sidecar container to run as the root user with no extra
 privileges required, you can override the default `nonroot` security policy and set it to
-`anyuid`.
+`anyuid`:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -1050,7 +1050,7 @@ If you need more fine-grained control of the security policy, you must provide y
 for defining the Pod security policy and map it so it is used. The details of the Pod security policy
 must be in `environment.objects` and mapped by definitions added to `session.objects`.
 For this to be used, you must disable the application of the inbuilt Pod security policies.
-You can do this by setting `session.security.policy` to `custom`.
+You can do this by setting `session.security.policy` to `custom`:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -1139,11 +1139,9 @@ over any global default Pod security policy such as `restricted`, `pks-restricte
 ## Defining additional ingress points
 
 If running additional background applications, by default they are only accessible to other
-processes within the same container. In order for<!-- |For| is preferred. --> an application to be accessible to a user via<!-- |through|, |using| and |by means of| are preferred. --> their
-web browser, an ingress needs to<!-- |must| is preferred. --> be created mapping to the port for the application.
+processes within the same container. For an application to be accessible to a user through their web browser, an ingress must be created mapping to the port for the application.
 
-You can do this by supplying a list of the ingress points and the internal container port they map
-to by setting the `session.ingresses` field in the workshop definition.
+You can do this by supplying a list of the ingress points and the internal container port they map to by setting the `session.ingresses` field in the workshop definition:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -1161,18 +1159,18 @@ spec:
       port: 8080
 ```
 
-The form of the hostname used in URL to access the service is:
+The form of the host name used in the URL to access the service is:
 
 ```
 $(session_namespace)-application.$(ingress_domain)
 ```
 
-You should<!-- In most cases, replace with |must|. If using |should| is unavoidable, it must be paired with information on the exceptions that |should| implies exist. --> not use as the name the name of any builtin dashboards, `terminal`, `console`, `slides`
-or `editor`<!-- Insert the Oxford comma if it is missing here. -->. These are reserved for the corresponding builtin capabilities providing those features.
+Do not use for this name the name of any built-in dashboards, `terminal`, `console`, `slides`,
+or `editor`. These are reserved for the corresponding built-in capabilities providing those features.
 
-In addition to specifying ingresses for proxying to internal ports within the same pod, you can
+In addition to specifying ingresses for proxying to internal ports within the same Pod, you can
 specify a `host`, `protocol` and `port` corresponding to a separate service running in the Kubernetes
-cluster.
+cluster:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -1192,8 +1190,8 @@ spec:
       port: 8080
 ```
 
-Variables providing information about the current session can be<!-- Consider switching to active voice. --> used within the `host` property if
-required.
+You can use variables providing information about the current session within the `host` property if
+required:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -1215,22 +1213,21 @@ spec:
 
 Available variables are:
 
-- `session_ <!-- Use dashes for spacing in placeholders, not underscores. -->namespace` - The namespace created for and bound to the workshop instance. This is the
+- `session_ namespace` - The namespace created for and bound to the workshop instance. This is the
 namespace unique to the session and where a workshop can create its own resources.
-- `environment_ <!-- Use dashes for spacing in placeholders, not underscores. -->name` - The name of the workshop environment. Currently this is the same as the name
+- `environment_ name` - The name of the workshop environment. Currently this is the same as the name
 of the namespace for the workshop environment. Don't rely on their being the same, and use the most
 appropriate to cope with any potential change.
-- `workshop_ <!-- Use dashes for spacing in placeholders, not underscores. -->namespace` - The namespace for the workshop environment. This is the namespace where all
+- `workshop_ namespace` - The namespace for the workshop environment. This is the namespace where all
 deployments of the workshop instances are created and where the service account that the workshop
 instance runs as exists.
-- `ingress_ <!-- Use dashes for spacing in placeholders, not underscores. -->domain` - The host domain under which hostnames<!-- |host names| is preferred. --> can be<!-- Consider switching to active voice. --> created when creating ingress
-routes.
+- `ingress_ domain` - The host domain under which you can create host names when creating ingress routes.
 
 If the service uses standard `http` or `https` ports, you can leave out the `port` property, and the
-port will<!-- Avoid |will|: present tense is preferred. --> be set based on the value of `protocol`.
+port is set based on the value of `protocol`.
 
 When a request is proxied, you can specify additional request headers that must be passed to the
-service.
+service:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -1255,18 +1252,18 @@ spec:
 
 The value of a header can reference the following variables.
 
-* `kubernetes_ <!-- Use dashes for spacing in placeholders, not underscores. -->token` - The access token of the service account for the current workshop session,
+* `kubernetes_ token` - The access token of the service account for the current workshop session,
 used for accessing the Kubernetes REST API.
 
-Accessing any service via<!-- |through|, |using| and |by means of| are preferred. --> the ingress is protected by<!-- Active voice is preferred. --> any access controls enforced by the workshop
-environment or training portal. If you use the training portal, this should<!-- In most cases, replace with |must|. If using |should| is unavoidable, it must be paired with information on the exceptions that |should| implies exist. --> be transparent;<!-- Two sentences are preferred over a compound sentence that uses a semi-colon. --> otherwise,
-you need to<!-- Consider replacing with just |To|. --><!-- |must| is preferred. --> supply any login credentials for the workshop again when prompted by your web browser.  
+Accessing any service through the ingress is protected by any access controls enforced by the workshop
+environment or training portal. If you use the training portal, this should be transparent.
+Otherwise, supply any login credentials for the workshop again when prompted by your web browser.  
 
 ## External workshop instructions
 
 In place of using workshop instructions provided with the workshop content, you can use externally
 hosted instructions instead. To do this set `sessions.applications.workshop.url` to the URL of an
-external web site.
+external web site:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -1289,20 +1286,20 @@ navigation and table of contents if required.
 
 The URL value can reference a number of pre-defined parameters. The available parameters are:
 
-* `session_ <!-- Use dashes for spacing in placeholders, not underscores. -->namespace` - The namespace created for and bound to the workshop instance. This is the
+* `session_ namespace` - The namespace created for and bound to the workshop instance. This is the
 namespace unique to the session and where a workshop can create its own resources.
-* `environment_ <!-- Use dashes for spacing in placeholders, not underscores. -->name` - The name of the workshop environment. For now this is the same as the name of
+* `environment_ name` - The name of the workshop environment. For now this is the same as the name of
 the namespace for the workshop environment. Don't rely on their being the same, and use the most
 appropriate to cope with any potential change.
-* `workshop_ <!-- Use dashes for spacing in placeholders, not underscores. -->namespace` - The namespace for the workshop environment. This is the namespace where all
+* `workshop_ namespace` - The namespace for the workshop environment. This is the namespace where all
 deployments of the workshop instances are created and where the service account that the workshop
 instance runs as exists.
-* `ingress_ <!-- Use dashes for spacing in placeholders, not underscores. -->domain` - The host domain under which hostnames<!-- |host names| is preferred. --> can be<!-- Consider switching to active voice. --> created when creating ingress routes.
-* `ingress_ <!-- Use dashes for spacing in placeholders, not underscores. -->protocol` - The protocol (http/https) that is used for ingress routes which are created
+* `ingress_ domain` - The host domain under which you can create host names when creating ingress routes.
+* `ingress_ protocol` - The protocol (http/https) used for ingress routes that are created
 for workshops.
 
-These could be used for example to reference workshops instructions hosted as part of the workshop
-environment.
+These could be used, for example, to reference workshops instructions hosted as part of the workshop
+environment:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -1323,17 +1320,17 @@ spec:
     - ...
 ```
 
-In this case `environment.objects` of the workshop `spec` needs to<!-- |must| is preferred. --> include resources to deploy the
-application hosting the instructions and expose it via<!-- |through|, |using| and |by means of| are preferred. --> an appropriate ingress.
+In this case `environment.objects` of the workshop `spec` must include resources to deploy the
+application hosting the instructions and expose it through an appropriate ingress.
 
 ## Disabling workshop instructions
 
-The aim of the workshop environment is to provide instructions for a workshop which users can follow.
-If you want instead to use the workshop environment as a development environment<!-- If this simply refers to the user machine, |local machine| is preferred. If drawing a distinction from a production environment, leave as is. --> or as an
-administration console which provides access to a Kubernetes cluster, you can disable<!-- |deactivate| is preferred. --> the display of
+The aim of the workshop environment is to provide instructions for a workshop that users can follow.
+If you want instead to use the workshop environment as a development environment or as an
+administration console that provides access to a Kubernetes cluster, you can disable the display of
 workshop instructions provided with the workshop content. In this case, only the work area with the
-terminals, console, etc<!-- |and so on| is preferred. -->.<!-- |and so on| is preferred. -->, is displayed. To disable<!-- |deactivate| is preferred. --> display of workshop instructions, add a
-`session.applications.workshop` section and set the `enabled` property to `false`.
+terminals, console, and so on, is displayed. To disable display of workshop instructions, add a
+`session.applications.workshop` section and set the `enabled` property to `false`:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -1353,9 +1350,9 @@ spec:
 
 ## Enabling the Kubernetes console
 
-By default the Kubernetes console is not enabled. If you want to<!-- Maybe replace with just |To|. --> enable it and make it available
-through<!-- Do not use as a synonym for |finished| or |done|. Do not use when you mean |by using|. --> the web browser when accessing a workshop, you need to<!-- Consider replacing with just |To|. --><!-- |must| is preferred. --> add a `session.applications.console`
-section to the workshop definition, and set the `enabled` property to `true`.
+By default the Kubernetes console is not enabled. To enable it and make it available
+through the web browser when accessing a workshop, add a `session.applications.console`
+section to the workshop definition, and set the `enabled` property to `true`:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -1373,8 +1370,8 @@ spec:
         enabled: true
 ```
 
-The Kubernetes dashboard provided by the Kubernetes project will<!-- Avoid |will|: present tense is preferred. --> be used.
-If you would<!-- Re-phrase for present tense if possible. --> rather use Octant as the console, you can set the `vendor` property to `octant`.
+The Kubernetes dashboard provided by the Kubernetes project is used.
+To use Octant as the console, you can set the `vendor` property to `octant`:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -1397,10 +1394,9 @@ When `vendor` is not set, `kubernetes` is assumed.
 
 ## Enabling the integrated editor
 
-By default the integrated web based editor is not enabled. If you want to<!-- Maybe replace with just |To|. --> enable it and make it
-available through<!-- Do not use as a synonym for |finished| or |done|. Do not use when you mean |by using|. --> the web browser when accessing a workshop, you need<!-- Avoid anthropomorphizing: |require| might be better here. --> to add a
-`session.applications.editor` section to the workshop definition, and set the `enabled` property to
-`true`.
+By default the integrated web based editor is not enabled. To enable it and make it
+available through the web browser when accessing a workshop, add a
+`session.applications.editor` section to the workshop definition, and set the `enabled` property to `true`:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -1418,11 +1414,9 @@ spec:
         enabled: true
 ```
 
-The integrated editor which is used is based on VS Code. Details of the editor can be<!-- Consider switching to active voice. --> found at:
+The integrated editor used is based on Visual Studio Code. For more information about the editor, see [https://github.com/cdr/code-server](https://github.com/cdr/code-server) in GitHub.
 
-* [https://github.com/cdr/code-server](https://github.com/cdr/code-server) <!-- Type |in GitHub| somewhere in the cross-reference sentence. -->
-
-If you need to<!-- Consider replacing with just |To|. --><!-- |must| is preferred. --> install additional VS Code extensions, this can be<!-- Consider switching to active voice. --> done from the editor.
+To install additional VS Code extensions, do this from the editor.
 Alternatively, if building a custom workshop, you can install them from your `Dockerfile` into your
 workshop image by running:
 
@@ -1440,9 +1434,9 @@ you can instead locate them in the `workshop/code-server/extensions` directory.
 
 ## Enabling workshop downloads
 
-At times you may<!-- |can| usually works better. Use |might| to convey possibility. --> want to provide a way for a workshop user to download files which are provided as
-part of the workshop content. This capability can be<!-- Consider switching to active voice. --> enabled by<!-- Active voice is preferred. --> adding the `session.applications.files`
-section to the workshop definition and setting the `enabled` property to `true`.
+You can provide a way for a workshop user to download files as
+part of the workshop content. Enable this by adding the `session.applications.files`
+section to the workshop definition and setting the `enabled` property to `true`:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -1462,10 +1456,10 @@ spec:
 
 The recommended way of providing access to files from workshop instructions is using the
 `files:download-file` clickable action block. This action ensures any file is downloaded to the local
-machine and not simply<!-- Avoid suggesting an instruction is |simple| or |easy|. --> displayed in the browser in place of the workshop instructions.
+machine and is not simply displayed in the browser in place of the workshop instructions.
 
-By default any files located under the home directory of the workshop user account can be<!-- Consider switching to active voice. --> accessed.
-To restrict where files can be<!-- Consider switching to active voice. --> download from, set the `directory` setting.
+By default the user can access any files located under the home directory of the workshop user account.
+To restrict where the user can download files from, set the `directory` setting:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -1489,10 +1483,10 @@ the workshop user.
 
 ## Enabling the test examiner
 
-The test examiner is a feature which allows a workshop to have verification checks which can be<!-- Consider switching to active voice. -->
-triggered from the workshop instructions. The test examiner is disabled<!-- |deactivated| is preferred. --> by default.
-If you want to<!-- Maybe replace with just |To|. --> enable it, you need to<!-- Consider replacing with just |To|. --><!-- |must| is preferred. --> add a `session.applications.examiner` section to the workshop
-definition and set the `enabled` property to `true`.
+The test examiner is a feature that allows a workshop to have verification checks that can be
+triggered from the workshop instructions. The test examiner is deactivated by default.
+To enable it, add a `session.applications.examiner` section to the workshop
+definition and set the `enabled` property to `true`:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -1510,29 +1504,26 @@ spec:
         enabled: true
 ```
 
-Any executable<!-- Do not use as a noun. Use |executable file| instead. --> test programs to be used for verification checks needs to<!-- |must| is preferred. --> be provided in the
+Any executable test programs to be used for verification checks must be provided in the
 `workshop/examiner/tests` directory.
 
-The test programs should<!-- In most cases, replace with |must|. If using |should| is unavoidable, it must be paired with information on the exceptions that |should| implies exist. --> return an exit status of 0 if the test is successful and non zero<!-- |nonzero| is preferred. --> if a
-failure. The test programs must not be persistent programs that would<!-- Re-phrase for present tense if possible. --> run forever.
+The test programs must return an exit status of 0 if the test is successful and non zero if it fails. Test programs must not be persistent programs that can run forever.
 
-Clickable actions for the test examiner are used within the workshop instructions to trigger the
-verification checks or they can be<!-- Consider switching to active voice. --> configured to be automatically started when the page of the workshop
-instructions is loaded.
+Clickable actions for the test examiner are used within the workshop instructions to trigger the verification checks.
+You can configure them to be automatically started when the page of the workshop instructions is loaded.
 
-## Enabling session image registry<!-- If generic, |container image registry| on first use. If VMware-provided, |Tanzu Network Registry| on first use. In both cases, |registry| thereafter except where risking ambiguity. -->
+## Enabling session image registry
 
 Workshops using tools such as `kpack` or `tekton` and which need a place to push container images
-when built can enable an image registry<!-- If generic, |container image registry| on first use. If VMware-provided, |Tanzu Network Registry| on first use. In both cases, |registry| thereafter except where risking ambiguity. -->. A separate image registry<!-- If generic, |container image registry| on first use. If VMware-provided, |Tanzu Network Registry| on first use. In both cases, |registry| thereafter except where risking ambiguity. --> is deployed for each workshop
+when built can enable a container image registry. A separate registry is deployed for each workshop
 session.
 
-The image registry<!-- If generic, |container image registry| on first use. If VMware-provided, |Tanzu Network Registry| on first use. In both cases, |registry| thereafter except where risking ambiguity. --> is currently fully usable only if workshops are deployed under an Learning Center
-Operator configuration which uses secure ingress. This is because an insecure<!-- |not secure| is preferred. --> registry is not
-trusted by the Kubernetes cluster as the source of container images when doing deployments.
+The image registry is currently fully usable only if workshops are deployed under a Learning Center
+Operator configuration that uses secure ingress. This is because a registry that is not secure is not trusted by the Kubernetes cluster as the source of container images when doing deployments.
 
-To enable the deployment of an image registry<!-- If generic, |container image registry| on first use. If VMware-provided, |Tanzu Network Registry| on first use. In both cases, |registry| thereafter except where risking ambiguity. --> per workshop session, you need to<!-- Consider replacing with just |To|. --><!-- |must| is preferred. --> add a
+To enable the deployment of a registry per workshop session, add a
 `session.applications.registry` section to the workshop definition and set the `enabled` property to
-`true`.
+`true`:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -1550,9 +1541,9 @@ spec:
         enabled: true
 ```
 
-The image registry<!-- If generic, |container image registry| on first use. If VMware-provided, |Tanzu Network Registry| on first use. In both cases, |registry| thereafter except where risking ambiguity. --> mounts a persistent volume for storing of images. By default the size of that
-persistent volume is 5Gi. If you need to<!-- Consider replacing with just |To|. --><!-- |must| is preferred. --> override the size of the persistent volume add the `storage`
-property under the `registry` section.
+The registry mounts a persistent volume for storing of images. By default the size of that
+persistent volume is 5Gi. To override the size of the persistent volume, add the `storage`
+property under the `registry` section:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -1571,7 +1562,7 @@ spec:
         storage: 20Gi
 ```
 
-The amount of memory provided to the image registry<!-- If generic, |container image registry| on first use. If VMware-provided, |Tanzu Network Registry| on first use. In both cases, |registry| thereafter except where risking ambiguity. --> defaults to 768Mi. If you need to<!-- Consider replacing with just |To|. --><!-- |must| is preferred. --> increase this,
+The amount of memory provided to the registry defaults to 768Mi. To increase this,
 add the `memory` property under the `registry` section.
 
 ```
@@ -1591,8 +1582,7 @@ spec:
         memory: 1Gi
 ```
 
-The image registry<!-- If generic, |container image registry| on first use. If VMware-provided, |Tanzu Network Registry| on first use. In both cases, |registry| thereafter except where risking ambiguity. --> is secured with a username<!-- |user name| is preferred. --> and password unique to the workshop session and expects
-access over a secure connection.
+The registry is secured with a user name and password unique to the workshop session, and should be accessed over a secure connection.
 
 To allow access from the workshop session, the file `$HOME/.docker/config.json` containing the
 registry credentials are injected into the workshop session. This is automatically used by tools
@@ -1600,46 +1590,43 @@ such as `docker`.
 
 For deployments in Kubernetes, a secret of type `kubernetes.io/dockerconfigjson` is created in the
 namespace and automatically applied to the `default` service account in the namespace.
-This means deployments made using the default service account are able to<!-- |can| is preferred. --> pull images from the image
-registry<!-- If generic, |container image registry| on first use. If VMware-provided, |Tanzu Network Registry| on first use. In both cases, |registry| thereafter except where risking ambiguity. --> without additional configuration. If creating deployments using other service accounts,
-you need to<!-- Consider replacing with just |To|. --><!-- |must| is preferred. --> add configuration to the service account or deployment to add the registry secret for
-pulling images.
+This means deployments made using the default service account can pull images from the
+registry without additional configuration. If creating deployments using other service accounts, add configuration to the service account or deployment to add the registry secret for pulling images.
 
 If you need access to the raw registry host details and credentials, they are provided as environment
 variables in the workshop session. The environment variables are:
 
-* `REGISTRY_ <!-- Use dashes for spacing in placeholders, not underscores. -->HOST` - Contains the host name for the image registry<!-- If generic, |container image registry| on first use. If VMware-provided, |Tanzu Network Registry| on first use. In both cases, |registry| thereafter except where risking ambiguity. --> for the workshop session.
-* `REGISTRY_ <!-- Use dashes for spacing in placeholders, not underscores. -->AUTH_FILE` - Contains the location of the `docker` configuration file. Should<!-- In most cases, replace with |Must|. If using |Should| is unavoidable, it must be paired with information on the exceptions that |Should| implies exist. --> always be
+* `REGISTRY_ HOST` - Contains the host name for the registry for the workshop session.
+* `REGISTRY_ AUTH_FILE` - Contains the location of the `docker` configuration file. Must be
 the equivalent of `$HOME/.docker/config.json`.
-* `REGISTRY_ <!-- Use dashes for spacing in placeholders, not underscores. -->USERNAME` - Contains the username<!-- |user name| is preferred. --> for accessing the image registry<!-- If generic, |container image registry| on first use. If VMware-provided, |Tanzu Network Registry| on first use. In both cases, |registry| thereafter except where risking ambiguity. -->.
-* `REGISTRY_ <!-- Use dashes for spacing in placeholders, not underscores. -->PASSWORD` - Contains the password for accessing the image registry<!-- If generic, |container image registry| on first use. If VMware-provided, |Tanzu Network Registry| on first use. In both cases, |registry| thereafter except where risking ambiguity. -->. This is different
+* `REGISTRY_ USERNAME` - Contains the user name for accessing the registry.
+* `REGISTRY_ PASSWORD` - Contains the password for accessing the registry. This is different
 for each workshop session.
-* `REGISTRY_ <!-- Use dashes for spacing in placeholders, not underscores. -->SECRET` - Contains the name of a Kubernetes secret of type `kubernetes.io/dockerconfigjson`
-added to the session namespace which contains the registry credentials.
+* `REGISTRY_ SECRET` - Contains the name of a Kubernetes secret of type `kubernetes.io/dockerconfigjson` added to the session namespace, which contains the registry credentials.
 
-The URL for accessing the image registry<!-- If generic, |container image registry| on first use. If VMware-provided, |Tanzu Network Registry| on first use. In both cases, |registry| thereafter except where risking ambiguity. --> adopts the HTTP protocol scheme inherited from the
-environment variable `INGRESS_PROTOCOL`. This is the same HTTP protocol scheme as the workshop
-sessions themselves use.
+The URL for accessing the registry adopts the HTTP protocol scheme inherited from the
+environment variable `INGRESS_PROTOCOL`. This is the same HTTP protocol scheme the workshop
+sessions use.
 
-If you want to<!-- Maybe replace with just |To|. --> use any of the variables as data variables in workshop content, use the same variable
-name but in lowercase. Thus<!-- Re-write the sentence to drop |Thus| or, if that is not possible, replace with |therefore|. -->, `registry_host`, `registry_auth_file`, `registry_username`,
+To use any of the variables as data variables in workshop content, use the same variable
+name but in lowercase: `registry_host`, `registry_auth_file`, `registry_username`,
 `registry_password` and `registry_secret`.
 
 ## Enabling ability to use Docker
 
-If you need to<!-- Consider replacing with just |To|. --><!-- |must| is preferred. --> be able to<!-- |can| is preferred. --> build container images in a workshop using `docker`, you need to<!-- Consider replacing with just |To|. --><!-- |must| is preferred. --> enabled
-it first. Each workshop session is provided with its own separate docker<!-- |Docker| is preferred. --> daemon instance running in
+To build container images in a workshop using `docker`, first enable
+it. Each workshop session is provided with its own separate Docker daemon instance running in
 a container.
 
 Enabling support for running `docker` requires the use of a privileged container for running the
-docker<!-- |Docker| is preferred. --> daemon. Because of the security implications of providing access to docker<!-- |Docker| is preferred. --> with this
-configuration, it is strongly<!-- Consider deleting, especially if it precedes |recommend|. --> recommended that if you don't trust the people doing the workshop,
-any workshops which require docker<!-- |Docker| is preferred. --> only be hosted in a disposable Kubernetes cluster which is
-destroyed at the completion of the workshop. You should<!-- In most cases, replace with |must|. If using |should| is unavoidable, it must be paired with information on the exceptions that |should| implies exist. --> never enable docker<!-- |Docker| is preferred. --> for workshops hosted on
-a public service which is always kept running and where arbitrary users could<!-- |can| or |might| whenever possible is preferred. When providing examples, use simple present tense verbs instead of postulating what someone or something could or would do. --> access the workshops.
+Docker daemon. Because of the security implications of providing access to Docker with this
+configuration, VMware recommends that if you don't trust the people taking the workshop,
+any workshops that require Docker only be hosted in a disposable Kubernetes cluster that is
+destroyed at the completion of the workshop. You should never enable Docker for workshops hosted on
+a public service that is always kept running and where arbitrary users could access the workshops.
 
-To enable support for being able to<!-- |can| is preferred. --> use `docker` add a `session.applications.docker` section to the
-workshop definition and set the `enabled` property to `true`.
+To enable support for using `docker` add a `session.applications.docker` section to the
+workshop definition and set the `enabled` property to `true`:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -1657,9 +1644,8 @@ spec:
         enabled: true
 ```
 
-The container which runs the docker<!-- |Docker| is preferred. --> daemon mounts a persistent volume for storing of images which
-are pulled down or built locally. By default the size of that persistent volume is 5Gi. If you need
-to<!-- Consider replacing with just |To|. --><!-- |must| is preferred. --> override the size of the persistent volume add the `storage` property under the `docker` section.
+The container that runs the Docker daemon mounts a persistent volume for storing of images which
+are pulled down or built locally. By default the size of that persistent volume is 5Gi. To override the size of the persistent volume, add the `storage` property under the `docker` section:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -1678,8 +1664,8 @@ spec:
         storage: 20Gi
 ```
 
-The amount of memory provided to the container running the docker<!-- |Docker| is preferred. --> daemon defaults to 768Mi.
-If you need to<!-- Consider replacing with just |To|. --><!-- |must| is preferred. --> increase this, add the `memory` property under the `registry` section.
+The amount of memory provided to the container running the Docker daemon defaults to 768Mi.
+To increase this, add the `memory` property under the `registry` section:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -1698,25 +1684,22 @@ spec:
         memory: 1Gi
 ```
 
-Access to the docker<!-- |Docker| is preferred. --> daemon from the workshop session uses a local UNIX<!-- |Unix| is preferred. --> socket shared with the
-container running the docker<!-- |Docker| is preferred. --> daemon. If it uses a local tool which wants to access the socket
-connection for the docker<!-- |Docker| is preferred. --> daemon directly rather than by running `docker`, it should<!-- In most cases, replace with |must|. If using |should| is unavoidable, it must be paired with information on the exceptions that |should| implies exist. --> use the
-`DOCKER_HOST` environment variable to determine<!-- |determine| has two meanings. Consider if the univocal |discover| or |verify| would be better. --> the location of the socket.
+Access to the Docker daemon from the workshop session uses a local Unix socket shared with the container running the Docker daemon. If it uses a local tool to access the socket
+connection for the Docker daemon directly rather than by running `docker`, it should use the
+`DOCKER_HOST` environment variable to set the location of the socket.
 
-The docker<!-- |Docker| is preferred. --> daemon is only available from within the workshop session and cannot be accessed outside
-of the pod by any tools deployed separately to Kubernetes.
+The Docker daemon is only available from within the workshop session and cannot be accessed outside
+of the Pod by any tools deployed separately to Kubernetes.
 
 ## Enabling WebDAV access to files
 
-Local files within the workshop session can be<!-- Consider switching to active voice. --> accessed or updated from the terminal<!-- Missing code tags? --> command line or
-editor of the workshop dashboard. The local files reside in the filesystem<!-- |file system| is preferred. --> of the container the
+You can access or update local files within the workshop session from the terminal command line or editor of the workshop dashboard. The local files reside in the file system of the container the
 workshop session is running in.
 
-If there is a need to<!-- |must| is preferred. --> be able to<!-- |can| is preferred. --> access the files remotely, it is possible<!-- |might| might be better. --> to<!-- Active voice |you can| might be better. --> enable WebDAV support
-for the workshop session.
+To access the files remotely, you can enable WebDAV support for the workshop session.
 
-To enable support for being able to<!-- |can| is preferred. --> access files over WebDAV add a `session.applications.webdav`
-section to the workshop definition, and set the `enabled` property to `true`.
+To enable support for accessing files over WebDAV, add a `session.applications.webdav`
+section to the workshop definition, and set the `enabled` property to `true`:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -1734,30 +1717,30 @@ spec:
         enabled: true
 ```
 
-The result of this will<!-- Avoid |will|: present tense is preferred. --> be that a WebDAV server will<!-- Avoid |will|: present tense is preferred. --> be run within the workshop session environment.
+This results in a WebDAV server running within the workshop session environment.
 A set of credentials is also automatically generated and are available as environment variables.
 The environment variables are:
 
-* `WEBDAV_ <!-- Use dashes for spacing in placeholders, not underscores. -->USERNAME` - Contains the username<!-- |user name| is preferred. --> which needs to<!-- |must| is preferred. --> be used when authenticating over WebDAV.
-* `WEBDAV_ <!-- Use dashes for spacing in placeholders, not underscores. -->PASSWORD` - Contains the password which needs to<!-- |must| is preferred. --> be used authenticating over WebDAV.
+* `WEBDAV_ USERNAME` - Contains the user name that must be used when authenticating over WebDAV.
+* `WEBDAV_ PASSWORD` - Contains the password that must be used when authenticating over WebDAV.
 
-If you need to<!-- Consider replacing with just |To|. --><!-- |must| is preferred. --> use any of the environment variables related to the image registry<!-- If generic, |container image registry| on first use. If VMware-provided, |Tanzu Network Registry| on first use. In both cases, |registry| thereafter except where risking ambiguity. --> as data variables
-in workshop content, you need to<!-- Consider replacing with just |To|. --><!-- |must| is preferred. --> declare this in the `workshop/modules.yaml` file in the `config.vars`
-section.
+To use any of the environment variables related to the image registry as data variables
+in workshop content, declare this in the `workshop/modules.yaml` file in the `config.vars`
+section:
 
 ```
 config:
   vars:
   - name: WEBDAV_USERNAME
   - name: WEBDAV_PASSWORD
-``` <!-- Define any non-obvious placeholders present in the code snippet in the style of |Where PLACEHOLDER is...| -->
+```
 
 The URL endpoint for accessing the WebDAV server is the same as the workshop session, with
 `/webdav/` path added. This can be constructed from the terminal using:
 
 ```
 $INGRESS_PROTOCOL://$SESSION_NAMESPACE.$INGRESS_DOMAIN/webdav/
-``` <!-- Define any non-obvious placeholders present in the code snippet in the style of |Where PLACEHOLDER is...| -->
+```
 
 In workshop content it can be constructed using:
 
@@ -1765,17 +1748,16 @@ In workshop content it can be constructed using:
 {{ingress_protocol}}://{{session_namespace}}.{{ingress_domain}}/webdav/
 ```
 
-You must be able to<!-- |can| is preferred. --> use WebDAV client support provided by your operating system or by using a
-standalone WebDAV client such as [CyberDuck](https://cyberduck.io/).
+You must be able to use WebDAV client support provided by your operating system or by using a
+standalone WebDAV client, such as [CyberDuck](https://cyberduck.io/).
 
-Using WebDAV can make it easier if you need<!-- Avoid anthropomorphizing: |require| might be better here. --> to transfer files to or from the workshop session.
+Using WebDAV can make it easier to transfer files to or from the workshop session.
 
 ## Customizing the terminal layout
 
 By default a single terminal is provided in the web browser when accessing the workshop.
-If required, you can enable alternate layouts which provide additional terminals. To set the layout,
-you need to<!-- Consider replacing with just |To|. --><!-- |must| is preferred. --> add the `session.applications.terminal` section and include the `layout` property with
-the desired layout.
+If required, you can enable alternate layouts which provide additional terminals.
+To set the layout, add the `session.applications.terminal` section and include the `layout` property with the desired layout:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -1797,22 +1779,21 @@ spec:
 The options for the `layout` property are:
 
 - `default` - Single terminal.
-- `split` - Two terminals stacked above<!-- IX Standards forbids referring to text |above|. Use |earlier| or, better, just an anchor. --> each other in ratio 60/40.
-- `split/2` - Three terminals stacked above<!-- IX Standards forbids referring to text |above|. Use |earlier| or, better, just an anchor. --> each other in ratio 50/25/25.
-- `lower` - A single terminal is placed below<!-- IX Standards forbids referring to text |below|. Use |following| or |later| or, better, just an anchor. --> any dashboard tabs, rather than being a tab of its own.
+- `split` - Two terminals stacked above each other in ratio 60/40.
+- `split/2` - Three terminals stacked above each other in ratio 50/25/25.
+- `lower` - A single terminal is placed below any dashboard tabs, rather than being a tab of its own.
 The ratio of dashboard tab to terminal is 70/30.
 - `none` - No terminal is displayed but can still be created from the drop down menu.
 
 When adding the `terminal` section, you must include the `enabled` property and set it to `true` as
 it is a required field when including the section.
 
-If you didn't want a terminal displayed and also wanted to disable<!-- |deactivate| is preferred. --> the ability to<!-- |can| is shorter. Avoid nounification of verbs where possible. --> create terminals
-from the drop down menu, set `enabled` to `false`.
+If you don't want a terminal displayed and also want to disable the ability to create terminals from the drop-down menu, set `enabled` to `false`.
 
 ## Adding custom dashboard tabs
 
 Exposed applications, external sites and additional terminals, can be given their own custom
-dashboard tab. This is done by specifying the list of dashboard panels and the target URL.
+dashboard tab. This is done by specifying the list of dashboard panels and the target URL:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -1837,26 +1818,24 @@ spec:
 
 The URL values can reference a number of pre-defined parameters. The available parameters are:
 
-- `session_ <!-- Use dashes for spacing in placeholders, not underscores. -->namespace` - The namespace created for and bound to the workshop instance. This is the
+- `session_ namespace` - The namespace created for and bound to the workshop instance. This is the
 namespace unique to the session and where a workshop can create its own resources.
-- `environment_ <!-- Use dashes for spacing in placeholders, not underscores. -->name` - The name of the workshop environment. For now this is the same as the name of
-the namespace for the workshop environment. Don't rely on their being the same, and use the most
-appropriate to cope with any potential change.
-- `workshop_ <!-- Use dashes for spacing in placeholders, not underscores. -->namespace` - The namespace for the workshop environment. This is the namespace where all
+- `environment_ name` - The name of the workshop environment. For now this is the same as the name of
+the namespace for the workshop environment. Don't rely on their being the same, and use the most appropriate to cope with any potential change.
+- `workshop_ namespace` - The namespace for the workshop environment. This is the namespace where all
 deployments of the workshop instances are created and where the service account that the workshop
 instance runs as exists.
-- `ingress_ <!-- Use dashes for spacing in placeholders, not underscores. -->domain` - The host domain under which hostnames<!-- |host names| is preferred. --> can be<!-- Consider switching to active voice. --> created when creating ingress routes.
-- `ingress_ <!-- Use dashes for spacing in placeholders, not underscores. -->protocol` - The protocol (http/https) that is used for ingress routes which are created
+- `ingress_ domain` - The host domain under which you can create host names when creating ingress routes.
+- `ingress_ protocol` - The protocol (http/https) used for ingress routes that are created
 for workshops.
 
-The URL can reference an external web site;<!-- Two sentences are preferred over a compound sentence that uses a semi-colon. --> however, that web site must not prohibit being embedded
-in a HTML iframe.
+The URL can reference an external web site; however, that web site must not prohibit being embedded in an HTML iframe.
 
 In the case of wanting to have a custom dashboard tab provide an additional terminal, the `url`
 property must use the form `terminal:<session>`, where `<session>` is replaced with the name of the
 terminal session. The name of the terminal session can be any name you choose, but must be restricted
-to lowercase letters, numbers and dashes. You should avoid using numeric terminal session names such
-as "1", "2" and "3" as these are used for the default terminal sessions.
+to lowercase letters, numbers, and dashes. You should avoid using numeric terminal session names such
+as "1", "2", and "3" as these are used for the default terminal sessions.
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
