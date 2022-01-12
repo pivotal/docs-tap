@@ -1,4 +1,4 @@
-# <a id="getting started with Tanzu Application Platform"></a>Getting started with the Tanzu Application Platform
+# Getting started with the Tanzu Application Platform
 
 ## <a id="purpose"></a>Purpose
 
