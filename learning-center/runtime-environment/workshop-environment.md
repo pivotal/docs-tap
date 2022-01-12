@@ -38,9 +38,11 @@ spec:
     name: lab-markdown-sample
   session:
     env:
-    - name: REPOSITORY_URL
-      value: PREPLACE WITH YOUR OWN GIT URL LOCATION FOR lab-markdown-sample
+    - name: REPOSITORY-URL
+      value: YOUR-GITHUB-URL-FOR-LAB-MARKDOWN-SAMPLE
 ```
+
+Where `YOUR-GITHUB-URL-FOR-LAB-MARKDOWN-SAMPLE` is the Git repository URL for `lab-markdown-sample`. For example, `https://github.com/eduk8s/lab-markdown-sample`.
 
 You might use this to set the location of a back end service, such as an image registry, to be used by the workshop.
 

@@ -172,6 +172,8 @@ spec:
       value: YOUR-GITHUB-URL-FOR-LAB-MARKDOWN-SAMPLE
 ```
 
+Where `YOUR-GITHUB-URL-FOR-LAB-MARKDOWN-SAMPLE` is the Git repository URL for `lab-markdown-sample`. For example, `https://github.com/eduk8s/lab-markdown-sample`.
+
 Values of fields in the list of resource objects can reference a number of pre-defined parameters.
 The available parameters are:
 
