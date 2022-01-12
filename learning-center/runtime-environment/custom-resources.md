@@ -48,7 +48,7 @@ The `Workshop` custom resource is created at cluster scope.
 
 ## Workshop environment resource
 
-In order to deploy instances of a workshop, first you must create a workshop environment.
+To deploy instances of a workshop, first you must create a workshop environment.
 The configuration for the workshop environment and which workshop definition specifies the
 details of the workshop to be deployed are defined the by the `WorkshopEnvironment` custom resource.
 
@@ -93,7 +93,7 @@ To create an instance of the workshop under the workshop environment which was c
 path is to create an instance of the `WorkshopRequest` custom resource.
 
 The `WorkshopRequest` custom resource is namespaced to allow who can create it and request a
-workshop instance to be created, to be controlled by using RBAC. This means you can allow
+workshop instance to be created, to be controlled by using Role-based access control (RBAC). This means you can allow
 non-privileged users to create workshops, although the deployment of the workshop instance might
 require elevated privileges.
 
@@ -188,8 +188,8 @@ setting on `TrainingPortal`, `WorkshopEnvironment`, or `WorkshopSession` custom 
 As only a global deployment of the operator is supported, the `SystemProfile` custom resource
 is created at cluster scope.
 
-Changes can be made to instances of the `SystemProfile` custom resource, and they are automatically
-used by the Learning Center Operator without needing to redeploy it.
+You can make changes to instances of the `SystemProfile` custom resource.
+The Learning Center Operator uses these changes without needing to redeploy the custom resource.
 
 The `SystemProfile` custom resource is created at cluster scope.
 
