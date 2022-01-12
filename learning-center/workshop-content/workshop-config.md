@@ -78,7 +78,7 @@ spec:
   vendor: learningcenter.tanzu.vmware.com
   title: Markdown Sample
   description: A sample workshop using Markdown
-  url: PREPLACE WITH YOUR OWN GIT URL LOCATION FOR lab-markdown-sample
+  url: YOUR-GITHUB-URL-FOR-LAB-MARKDOWN-SAMPLE
   content:
     image: quay.io/eduk8s/lab-markdown-sample:master
   duration: 15m
@@ -92,6 +92,8 @@ spec:
         enabled: true
 ```
 
+Where `YOUR-GITHUB-URL-FOR-LAB-MARKDOWN-SAMPLE` is the Git repository URL for `lab-markdown-sample`. For example, `https://github.com/eduk8s/lab-markdown-sample`.
+
 In this sample, a custom workshop image bundles the workshop content into its own container image. This was specified by the ``content.image`` setting. If instead you want to download workshop content from a GitHub repository at runtime, you would use:
 
 ```
@@ -103,9 +105,9 @@ spec:
   vendor: learningcenter.tanzu.vmware.com
   title: Markdown Sample
   description: A sample workshop using Markdown
-  url: PREPLACE WITH YOUR OWN GIT URL LOCATION FOR lab-markdown-sample
+  url: YOUR-GITHUB-URL-FOR-LAB-MARKDOWN-SAMPLE
   content:
-    files: PREPLACE WITH YOUR OWN GIT URL LOCATION FOR lab-markdown-sample
+    files: YOUR-GITHUB-URL-FOR-LAB-MARKDOWN-SAMPLE
   duration: 15m
   session:
     namespaces:
@@ -116,6 +118,8 @@ spec:
       editor:
         enabled: true
 ```
+
+Where `YOUR-GITHUB-URL-FOR-LAB-MARKDOWN-SAMPLE` is the Git repository URL for `lab-markdown-sample`. For example, `https://github.com/eduk8s/lab-markdown-sample`.
 
 The difference is the use of the ``content.files`` setting.
 Here, the workshop content is overlaid on top of the standard workshop base image. If you wanted to use an alternate base image with additional applications or packages installed, you can specify the alternate image against the ``content.image`` setting at the same time as setting ``content.files``.

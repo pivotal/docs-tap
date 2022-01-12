@@ -33,7 +33,7 @@ metadata:
 spec:
   title: Markdown Sample
   description: A sample workshop using Markdown
-  url: PREPLACE WITH YOUR OWN GIT URL LOCATION FOR lab-markdown-sample
+  url: YOUR-GITHUB-URL-FOR-LAB-MARKDOWN-SAMPLE
   difficulty: beginner
   duration: 15m
   vendor: learningcenter.tanzu.vmware.com
@@ -43,31 +43,36 @@ spec:
   - template
   logo: data:image/png;base64,....
   content:
-    files: PREPLACE WITH YOUR OWN GIT URL LOCATION FOR lab-markdown-sample
+    files: YOUR-GITHUB-URL-FOR-LAB-MARKDOWN-SAMPLE
 ```
 
-The `url` field must be a URL you can go to for more information about the workshop.
+Where:
 
-The `difficulty` field must give an indication of who the workshop is targeting.
+- The `url` field is the Git repository URL for `lab-markdown-sample`. For example, `https://github.com/eduk8s/lab-markdown-sample`.
+It must be a URL you can go to for more information about the workshop.
+
+- The `difficulty` field must give an indication of who the workshop is targeting.
 The value must be `beginner`, `intermediate`, `advanced`, or `extreme`.
 
-The `duration` field gives the expected maximum amount of time the workshop takes to complete.
+- The `duration` field gives the expected maximum amount of time the workshop takes to complete.
 This field only provides informational value and is not used to police how long a workshop instance
 lasts. The format of the field is an integer number with `s`, `m`, or `h` suffix.
 
-The `vendor` field must be a value which identifies the company or organization which the authors
+- The `vendor` field must be a value which identifies the company or organization which the authors
 are affiliated with.
 This can be a company or organization name or a DNS host name under the control of whoever has
 created the workshop.
 
-The `authors` field must list the people who worked on creating the workshop.
+- The `authors` field must list the people who worked on creating the workshop.
 
-The `tags` field must list labels which help to identify what the workshop is about.
+- The `tags` field must list labels which help to identify what the workshop is about.
 This is used in a searchable catalog of workshops.
 
-The `logo` field must be a graphical image provided in embedded data URI format which depicts the
+- The `logo` field must be a graphical image provided in embedded data URI format which depicts the
 topic of the workshop. The image should be 400 by 400 pixels. This is used in a searchable catalog
 of workshops.
+
+- The `files` field is the Git repository URL for `lab-markdown-sample`. For example, `https://github.com/eduk8s/lab-markdown-sample`.
 
 When referring to a workshop definition after it is loaded into a Kubernetes cluster, the
 value of the `name` field given in the metadata is used. To experiment with slightly
@@ -299,11 +304,14 @@ spec:
     files: github.com/eduk8s/lab-markdown-sample
   session:
     env:
-    - name: REPOSITORY_URL
-      value: PREPLACE WITH YOUR OWN GIT URL LOCATION FOR lab-markdown-sample
-``` 
+    - name: REPOSITORY-URL
+      value: YOUR-GITHUB-URL-FOR-LAB-MARKDOWN-SAMPLE
+```
 
-The `session.env` field is a list of dictionaries with `name` and `value` fields.
+Where:
+
+- The `session.env` field is a list of dictionaries with `name` and `value` fields.
+- The `value` field is the Git repository URL for `lab-markdown-sample`. For example, `https://github.com/eduk8s/lab-markdown-sample`.
 
 Values of fields in the list of resource objects can reference a number of pre-defined parameters.
 The available parameters are:
@@ -623,7 +631,7 @@ spec:
           targetPort: 5000
         selector:
           deployment: registry
-``` 
+```
 
 For namespaced resources, it is not necessary to specify the `namespace` field of the
 resource `metadata`. When the `namespace` field is not present, the resource is automatically created within the session namespace for that workshop instance.

@@ -397,9 +397,11 @@ spec:
     capacity: 3
     reserved: 1
     env:
-    - name: REPOSITORY_URL
-      value: PREPLACE WITH YOUR OWN GIT URL LOCATION FOR lab-markdown-sample
+    - name: REPOSITORY-URL
+      value: YOUR-GITHUB-URL-FOR-LAB-MARKDOWN-SAMPLE
 ```
+
+Where `YOUR-GITHUB-URL-FOR-LAB-MARKDOWN-SAMPLE` is the Git repository URL for `lab-markdown-sample`. For example, `https://github.com/eduk8s/lab-markdown-sample`.
 
 Values of fields in the list of resource objects can reference a number of pre-defined parameters. The available parameters are:
 
