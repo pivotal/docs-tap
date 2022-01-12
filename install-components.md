@@ -1429,7 +1429,7 @@ Application Live View Convention Service only.
 
 The Application Live View UI plug-in is part of Tanzu Application Platform GUI.
 To access the Application Live View UI,
-see [Application Live View in Tanzu Application Platform GUI](https://docs-staging.vmware.com/en/Tanzu-Application-Platform/0.4/tap/GUID-tap-gui-plugins-app-live-view.html#entry-point-to-ap[…]live-view-plugin-1).
+see [Application Live View in Tanzu Application Platform GUI](tap-gui/plugins/app-live-view.html).
 
 
 ## <a id='install-tap-gui'></a> Install Tanzu Application Platform GUI
