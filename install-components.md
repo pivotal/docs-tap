@@ -1955,22 +1955,22 @@ To install Tanzu Application Platform GUI, see the following sections.
 
 ### <a id='tap-gui-prereqs'></a> Prerequisites
 
-- Git repository for the Tanzu Application Platform GUI's software catalogs, along with a token allowing read access.
+- Git repository for Tanzu Application Platform GUI's software catalogs, with a token allowing read access.
   Supported Git infrastructure includes:
     - GitHub
     - GitLab
     - Azure DevOps
 - Tanzu Application Platform GUI Blank Catalog from the Tanzu Application section of Tanzu Network
-  - To install this, navigate to [Tanzu Network](https://network.tanzu.vmware.com/) and select the Tanzu Application Platform. Under the list of available files to download, there is a folder titled `tap-gui-catalogs`. Inside that folder is a compressed archive titled `Tanzu Application Platform GUI Blank Catalog`. You must extract that catalog to the preceding Git repository of choice. This serves as the configuration location for your Organization's Catalog inside Tanzu Application Platform GUI.
+  - To install Tanzu Application Platform GUI catalog, navigate to [Tanzu Network](https://network.tanzu.vmware.com/) and select the Tanzu Application Platform. Under the list of available files to download, there is a folder titled `tap-gui-catalogs`. Inside that folder is a compressed archive titled `Tanzu Application Platform GUI Blank Catalog`. You must extract that catalog to the preceding Git repository of choice. This serves as the configuration location for your Organization's Catalog inside Tanzu Application Platform GUI.
 - The Tanzu Application Platform GUI catalog allows for two approaches towards storing catalog information:
     - The default option uses an in-memory database and is suitable for test and development scenarios.
-          This reads the catalog data from Git URLs that you specify in the `tap-values.yml` file.
-          This data is temporary, and any operations that cause the `server` pod in the `tap-gui` namespace to be re-created
+          The in-memory database reads the catalog data from Git URLs that you enter in the `tap-values.yml` file.
+          This data is temporary, and any operations that cause the `server` Pod in the `tap-gui` namespace to be re-created
           also cause this data to be rebuilt from the Git location.
-          This can cause issues when you manually register entities through the UI because
+          This can cause issues when you manually register entities by using the UI because
           they only exist in the database and are lost when that in-memory database gets rebuilt.
     - For production use-cases, use a PostgreSQL database that exists outside the Tanzu Application Platform's packaging.
-          This stores all the catalog data persistently both from the Git locations and the GUI's manual entity registrations.
+          The PostgreSQL database stores all the catalog data persistently both from the Git locations and the GUI's manual entity registrations.
 
 ### <a id='tap-gui-install-proc'></a> Procedure
 
@@ -2023,7 +2023,7 @@ with your relevant values. The meanings of some placeholders are explained in th
 
     - `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
 service's External IP address.
-   - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog that you've already built and posted on the Git infrastucture you specified in the Integration section.
+   - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog that you've already built and posted on the Git infrastructure specified in the Integration section.
 
 1. Install the package by running:
 
