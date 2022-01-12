@@ -219,9 +219,9 @@ If you do not want to use a profile, install them manually.
         ```
         kubectl apply -f contour-rbac.yml
         ```
-    
+
     3. Create a `contour-install.yml` using the samplebelow and apply the config.
-       > **NOTE:** The below config will install contour package with default options. If you want to make changes to the default installation settings, go to step 
+       > **NOTE:** The below config will install contour package with default options. If you want to make changes to the default installation settings, go to step
 
         ```yaml
         apiVersion: packaging.carvel.dev/v1alpha1
@@ -1946,7 +1946,7 @@ Application Live View Convention Service only.
 
 The Application Live View UI plug-in is part of Tanzu Application Platform GUI.
 To access the Application Live View UI,
-see [Application Live View in Tanzu Application Platform GUI](https://docs-staging.vmware.com/en/Tanzu-Application-Platform/1.0/tap/GUID-tap-gui-plugins-app-live-view.html#entry-point-to-ap[…]live-view-plugin-1).
+see [Application Live View in Tanzu Application Platform GUI](tap-gui/plugins/app-live-view.html).
 
 
 ## <a id='install-tap-gui'></a> Install Tanzu Application Platform GUI

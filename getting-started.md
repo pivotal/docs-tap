@@ -820,11 +820,11 @@ pipeline:
     service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.developer.example.com   tanzu-java-web-app-00001   tanzu-java-web-app-00001   Unknown   IngressNotConfigured
     ```
 
-    If the source or image scan has a "Failed” phase, then the scan has failed compliance and the supply chain will not continue.  
+    If the source or image scan has a "Failed" phase, then the scan has failed compliance and the supply chain will not continue.  
 
 #### <a id="query for vulnerabilities"></a>**Query for vulnerabilities**
 
-Scan reports are automatically saved to the [Supply Chain Security Tools - Store](https://docs-staging.vmware.com/en/Tanzu-Application-Platform/0.4/tap/GUID-install-components.html#install-scst-store), and can be queried for vulnerabilities and dependencies. For example, open-source software (OSS) or third party packages.
+Scan reports are automatically saved to the [Supply Chain Security Tools - Store](install-components.html#install-scst-store), and can be queried for vulnerabilities and dependencies. For example, open-source software (OSS) or third party packages.
 
 1. Query the tanzu-java-web-app image dependencies and vulnerabilities with the following commands:
 
@@ -837,7 +837,8 @@ Scan reports are automatically saved to the [Supply Chain Security Tools - Store
 
   Important: The `Insight CLI` is separate from the Tanzu CLI.
 
-See [Query Data](https://docs-staging.vmware.com/en/Tanzu-Application-Platform/1.0/tap/GUID-scst-store-query_data.html?hWord=N4IghgNiBcII4FcCmAnAngAgCZgC5hAF8g) or [CLI Details](https://docs-staging.vmware.com/en/Tanzu-Application-Platform/1.0/tap/GUID-scst-store-cli_docs-insight.html) for additional examples.
+See [Query Data](scst-store/query_data.html) or [CLI Details](scst-store/cli_docs/insight.html) for
+additional examples.
 <br>
 
 
@@ -854,7 +855,7 @@ In this section, you are about to:
 ### <a id="configure supply chain to image builds"></a>Configure your supply chain to sign your image builds
 
 1. Configure Tanzu Build Service to sign your container image builds by using cosign. See [Managing Image Resources and Builds](https://docs.vmware.com/en/Tanzu-Build-Service/1.3/vmware-tanzu-build-service-v13/GUID-managing-images.html) for instructions.
-2. Create a `values.yaml` file, and install the sign supply chain security tools and image policy web-hook. See [Install Supply Chain Security Tools - Sign](https://docs-staging.vmware.com/en/Tanzu-Application-Platform/0.4/tap/GUID-install-components.html#install-scst-sign) for instructions.
+2. Create a `values.yaml` file, and install the sign supply chain security tools and image policy web-hook. See [Install Supply Chain Security Tools - Sign](install-components.html#install-scst-sign) for instructions.
 3. Configure a `ClusterImagePolicy` resource to verify image signatures when deploying resources.
 
 > **Note:** The resource must be named `image-policy`.
@@ -887,7 +888,7 @@ In this section, you are about to:
 
     ```
 
-When you apply the `ClusterImagePolicy` resource, your cluster requires valid signatures for all images that match the `namePattern:` you define in the configuration. For more information about configuring an image signature policy, see [Configuring Supply Chain Security Tools - Sign](https://docs-staging.vmware.com/en/Tanzu-Application-Platform/0.4/tap/GUID-scst-sign-configuring.html).
+When you apply the `ClusterImagePolicy` resource, your cluster requires valid signatures for all images that match the `namePattern:` you define in the configuration. For more information about configuring an image signature policy, see [Configuring Supply Chain Security Tools - Sign](scst-sign/configuring.html).
 
 
 #### <a id="next steps"></a>Next steps
