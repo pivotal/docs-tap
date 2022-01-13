@@ -38,7 +38,7 @@ For information, see [Installing part I: Prerequisites, EULA, and CLI](install-g
 
 ## <a id='install-prereqs'></a> Install cert-manager, contour and FluxCD Source Controller
 
-cert_manager and FluxCD Source Controller are installed as part of all profiles.
+cert_manager, contour and FluxCD Source Controller are installed as part of all profiles.
 If you do not want to use a profile, install them manually.
 
 * **cert-manager**:
