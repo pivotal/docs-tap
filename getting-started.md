@@ -30,7 +30,7 @@ See [Install Out of The Box Supply Chain Basic](install-components.md#install-oo
   - **Set up a developer namespace to accommodate the developer Workload**<br>
 See [Set up developer namespaces to use installed packages](install-components.md#setup).
 
-  - **Installed the Tanzu Application Platform GUI<!-- |Tanzu Application Platform GUI| is preferred. No |the| at the start. -->**<br>
+  - **Installed Tanzu Application Platform GUI**<br>
 
   - **Installed the VSCode Tanzu Extension**<br>
 See [Install the Visual Studio Code Tanzu Extension](vscode-extension/install.md) for instructions.
@@ -215,7 +215,7 @@ Follow the following steps to debug your cluster:
 
 1. Set a breakpoint in your code.
 2. Right-click the file `workload.yaml` within the `config` directory, and select **Tanzu: Java Debug Start**. In a few moments, the workload is redeployed with debugging enabled. You are going to see the "Deploy and Connect" Task complete and the debug menu actions are available to you, indicating that the debugger has attached.
-3. Navigate to `http://localhost:8080`in your browser. This hits the breakpoint within VSCode. Play to the end of the debug session using VSCode debugging controls.
+3. Navigate to `http://localhost:8080` in your browser. This hits the breakpoint within VSCode. Play to the end of the debug session using VSCode debugging controls.
 
 ### <a id="monitor your running application"></a>Monitor your running application
 
@@ -509,7 +509,7 @@ To apply this install method, follow the following steps:
 
 1. Install Tekton (see [Install Tekton](install-components.md#install-tekton)) for instructions.
 
-2. With Tekton installed, you can activate the Out of the Box Supply Chain with Testing by updating our profile to use `testing` rather than `basic` as the selected supply chain for workloads in this cluster. Update `tap-values.yml`(the file used to customize the profile in `Tanzu package install tap
+2. With Tekton installed, you can activate the Out of the Box Supply Chain with Testing by updating our profile to use `testing` rather than `basic` as the selected supply chain for workloads in this cluster. Update `tap-values.yml` (the file used to customize the profile in `Tanzu package install tap
 --values-file=...`) with the following changes:
 
     ```
@@ -519,8 +519,8 @@ To apply this install method, follow the following steps:
     - ootb_supply_chain_basic:
     + ootb_supply_chain_testing:
         registry:
-          server: "<SERVER-NAME> <!-- If a placeholder, delete the angle brackets. -->"
-          repository: "<REPO-NAME> <!-- If a placeholder, delete the angle brackets. -->"
+          server: "<SERVER-NAME>"
+          repository: "<REPO-NAME>"
     ```
 
 3. Update the installed profile by running:
@@ -541,30 +541,30 @@ To add the Tekton supply chain to the cluster, apply the following YAML to the c
 The operator can also add the Tekton supply chain to a cluster before the developer get access.
 
 ```
-apiVersion: tekton.dev/v1beta1<!-- If this is a URL then you likely need to present it per xref rules: https://confluence.eng.vmware.com/display/IXCS/Links%2C+Cross-References%2C+and+Citations -->
+apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
   name: developer-defined-tekton-pipeline
   labels:
-    apps.tanzu<!-- The brand is |Tanzu|. -->.vmware<!-- |VMware| is preferred. -->.com/pipeline<!-- If this is a URL then you likely need to present it per xref rules: https://confluence.eng.vmware.com/display/IXCS/Links%2C+Cross-References%2C+and+Citations -->: test     # (!) required
-spec<!-- |specifications| is preferred. -->:
-  params<!-- |parameters| is preferred. -->:
-    - name: source-url<!-- |URL| is preferred. -->                       # (!) required
+    apps.tanzu.vmware.com/pipeline: test     # (!) required
+spec:
+  params:
+    - name: source-url                       # (!) required
     - name: source-revision                  # (!) required
   tasks:
     - name: test
-      params<!-- |parameters| is preferred. -->:
-        - name: source-url<!-- |URL| is preferred. -->
+      params:
+        - name: source-url
           value: $(params.source-url)
         - name: source-revision
           value: $(params.source-revision)
       taskSpec:
-        params<!-- |parameters| is preferred. -->:
-          - name: source-url<!-- |URL| is preferred. -->
+        params:
+          - name: source-url
           - name: source-revision
         steps:
           - name: test
-            image: gradle<!-- |Gradle| is preferred. -->
+            image: gradle
             script: |-
               cd `mktemp -d`
 
@@ -721,7 +721,7 @@ Verify that both Scan Link and Grype Scanner are installed by running:
 
 
 3. Update the profile to use the supply chain with testing and scanning by
-   updating `tap-values.yml` (the file used to customize the profile in `tanzu<!-- The brand is |Tanzu|. -->
+   updating `tap-values.yml` (the file used to customize the profile in `tanzu
    package install tap --values-file=...`) with the following changes:
 
 
@@ -732,8 +732,8 @@ Verify that both Scan Link and Grype Scanner are installed by running:
     - ootb_supply_chain_testing:
     + ootb_supply_chain_testing_scanning:
         registry:
-          server: "<SERVER-NAME> <!-- If a placeholder, delete the angle brackets. -->"
-          repository: "<REPO-NAME> <!-- If a placeholder, delete the angle brackets. -->"
+          server: "<SERVER-NAME>"
+          repository: "<REPO-NAME>"
     ```
 
 4. Update the `tap` package:
@@ -941,7 +941,7 @@ Follow the instructions in [Sample private source scan](scst-scan/samples/privat
 to do an image scan on a private image.
 
 
-#### <a id="viewing vulnerability reports using supply chain security tools store capabilities "></a>Viewing vulnerability reports using Supply Chain Security Tools - Store capabilities
+#### <a id="viewing vulnerability reports using supply chain security tools store capabilities"></a>Viewing vulnerability reports using Supply Chain Security Tools - Store capabilities
 
 After completing the scans from the last step,
 query the [Supply Chain Security Tools - Store](scst-store/overview.md) to view your vulnerability results.
@@ -1193,7 +1193,7 @@ RabbitMQ instance:
     1. Obtain a service reference by running:
 
         ```
-        $ <!-- We only include dollar signs in example terminal code, not in commands the reader might copy and paste. --> tanzu service instance list -owide
+        $  tanzu service instance list -owide
         ```
 
         Expect to see the following outputs:
@@ -1207,10 +1207,10 @@ RabbitMQ instance:
     `https://github.com/jhvhs/rabbitmq-sample` by running:
 
         ```
-        tanzu apps workload create rmq-sample-app-usecase-1 --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch v0.1.0 --type web --service-ref "rmq=<SERVICE-REF> <!-- If a placeholder, delete the angle brackets. -->"
+        tanzu apps workload create rmq-sample-app-usecase-1 --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch v0.1.0 --type web --service-ref "rmq=<SERVICE-REF>"
         ```
 
-        Where `<SERVICE-REF> <!-- If a placeholder, delete the angle brackets. -->` is the value of `SERVICE REF` from the output in the last step.
+        Where `<SERVICE-REF>` is the value of `SERVICE REF` from the output in the last step.
 
 5. Get the Knative web-app URL by running:
 
@@ -1262,7 +1262,7 @@ for service instances.
 4. Obtain a service reference by running:
 
     ```
-    $ <!-- We only include dollar signs in example terminal code, not in commands the reader might copy and paste. --> tanzu service instances list --all-namespaces -owide
+    $ tanzu service instances list --all-namespaces -owide
     ```
 
     Expect to see the following outputs:
@@ -1306,10 +1306,10 @@ for service instances.
 7. Bind the application workload to the RabbitmqCluster Service Instance:
 
     ```
-    $ tanzu apps workload update rmq-sample-app-usecase-1 --service-ref="rmq=<SERVICE-REF> <!-- If a placeholder, delete the angle brackets. -->" --yes
+    $ tanzu apps workload update rmq-sample-app-usecase-1 --service-ref="rmq=<SERVICE-REF>" --yes
     ```
 
-    Where `<SERVICE-REF> <!-- If a placeholder, delete the angle brackets. -->` is the value of the `SERVICE REF` from the `service-instances` namespace in the output of step 3.
+    Where `<SERVICE-REF>` is the value of the `SERVICE REF` from the `service-instances` namespace in the output of step 3.
 
 8. Get the Knative web-app URL by running:
 
@@ -1361,7 +1361,7 @@ existing PostgreSQL database that exists in Azure.
     ```
     kubectl apply -f external-azure-db-binding-compatible.yaml
     ```
-    >**Note:** The `Secret` can be<!-- Consider switching to active voice. --> defined in a different namespace than the Workload
+    >**Note:** The `Secret` can be defined in a different namespace than the Workload
     >and claimed cross namespace by using `ResourceClaimPolicy` resources.
     >For more information, see [Use case 2](#services-journey-use-case-2).
 
@@ -1370,15 +1370,15 @@ existing PostgreSQL database that exists in Azure.
     Example:
 
     ```
-    tanzu apps workload create <WORKLOAD-NAME> <!-- If a placeholder, delete the angle brackets. --> --git-repo https://github.com/spring-projects/spring-petclinic --git-branch main --type web --service-ref db=<REFERENCE>
+    tanzu apps workload create <WORKLOAD-NAME> --git-repo https://github.com/spring-projects/spring-petclinic --git-branch main --type web --service-ref db=<REFERENCE>
     ```
 
     Where:
 
-    - `<WORKLOAD-NAME> <!-- If a placeholder, delete the angle brackets. -->` is the name of the application workload. For example, `pet-clinic`.
+    - `<WORKLOAD-NAME>` is the name of the application workload. For example, `pet-clinic`.
     - `<REFERENCE>` is a reference provided to the `Secret`. For example, `v1:Secret:external-azure-db-binding-compatible`.
 
-### <a id='services-journey-use-case-4'></a> **Use case 4: Binding an application to a service instance running on a different Kubernetes clust <!-- Consider reducing this run-in heading to fewer than 100 characters. -->er (Experimental).**
+### <a id='services-journey-use-case-4'></a> **Use case 4: Binding an application to a service instance running on a different Kubernetes cluster (Experimental).**
 
 >**Note:** Use cases marked with Experimental are subject to change.
 
@@ -1422,10 +1422,10 @@ Ensure you have met the following prerequisites before starting the [procedures 
 2. Follow the documentation to install Tanzu Application Platform on to a second separate Kubernetes
 cluster.
 
-    - This cluster must be able to<!-- |can| is preferred. --> create LoadBalanced services.
+    - This cluster must be able to create LoadBalanced services.
 
     - After adding the Tanzu Application Platform package repository, instead of
-    installing all packages, you only need to<!-- |must| is preferred. --> install the Services Toolkit package.
+    installing all packages, you only need to install the Services Toolkit package.
     For installation information, see [Add the Tanzu Application Platform Package Repository](install.md#add-package-repositories)
     and [Install Services Toolkit](install-components.md#install-services-toolkit).
 
@@ -1460,7 +1460,7 @@ Follow these steps to bind an application to a service instance running on a dif
 1. As the Service Operator, run the following command to link the Workload Cluster and Service Cluster together by using the `kubectl scp` plug-in:
 
     ```
-    kubectl scp link --workload-kubeconfig-context=<WORKLOAD-CONTEXT> <!-- If a placeholder, delete the angle brackets. --> --service-kubeconfig-context=<SERVICE-CONTEXT> <!-- If a placeholder, delete the angle brackets. -->
+    kubectl scp link --workload-kubeconfig-context=<WORKLOAD-CONTEXT> --service-kubeconfig-context=<SERVICE-CONTEXT>
     ```
 
 2. Install the RabbitMQ Kubernetes Operator in the Services Cluster using kapp.
@@ -1474,13 +1474,13 @@ Follow these steps to bind an application to a service instance running on a dif
     ```
      kapp -y deploy --app rmq-operator \
         --file https://raw.githubusercontent.com/rabbitmq/cluster-operator/lb-binding/hack/deploy.yml  \
-        --kubeconfig-context <SERVICE-CONTEXT> <!-- If a placeholder, delete the angle brackets. -->
+        --kubeconfig-context <SERVICE-CONTEXT>
     ```
 
 3. Verify that the Operator is installed by running:
 
     ```
-    kubectl --context <SERVICE-CONTEXT> <!-- If a placeholder, delete the angle brackets. --> get crds rabbitmqclusters.rabbitmq.com
+    kubectl --context <SERVICE-CONTEXT> get crds rabbitmqclusters.rabbitmq.com
     ```
 
     The following steps federate the `rabbitmq.com/v1beta1` API group, which is available in the
@@ -1497,15 +1497,15 @@ you created a namespace named `service-instances`, now create a namespace with t
     For example:
 
     ```
-    kubectl --context <SERVICE-CONTEXT> <!-- If a placeholder, delete the angle brackets. --> create namespace service-instances
+    kubectl --context <SERVICE-CONTEXT> create namespace service-instances
     ```
 
 5. Federate using the `kubectl-scp` plug-in by running:
 
     ```
      kubectl scp federate \
-      --workload-kubeconfig-context=<WORKLOAD-CONTEXT> <!-- If a placeholder, delete the angle brackets. --> \
-      --service-kubeconfig-context=<SERVICE-CONTEXT> <!-- If a placeholder, delete the angle brackets. --> \
+      --workload-kubeconfig-context=<WORKLOAD-CONTEXT> \
+      --service-kubeconfig-context=<SERVICE-CONTEXT> \
       --namespace=service-instances \
       --api-group=rabbitmq.com \
       --api-version=v1beta1 \
@@ -1515,7 +1515,7 @@ you created a namespace named `service-instances`, now create a namespace with t
 6. After federation, verify the `rabbitmq.com/v1beta1` API is also available in the Workload Cluster by running:
 
     ```
-    kubectl --context <WORKLOAD-CONTEXT> <!-- If a placeholder, delete the angle brackets. --> api-resources
+    kubectl --context <WORKLOAD-CONTEXT> api-resources
     ```
 
     The application operator takes over from here.
@@ -1556,22 +1556,22 @@ you created a namespace named `service-instances`, now create a namespace with t
 9. Apply the YAML file by running:
 
     ```
-    kubectl --context <WORKLOAD-CONTEXT> <!-- If a placeholder, delete the angle brackets. --> -n service-instances apply -f rabbitmq-cluster.yaml
+    kubectl --context <WORKLOAD-CONTEXT> -n service-instances apply -f rabbitmq-cluster.yaml
     ```
 
 10. Confirm that the RabbitmqCluster resource reconciles successfully from the
 Workload Cluster by running:
 
     ```
-    kubectl --context <WORKLOAD-CONTEXT> <!-- If a placeholder, delete the angle brackets. --> -n service-instances get -f rabbitmq-cluster.yaml
+    kubectl --context <WORKLOAD-CONTEXT> -n service-instances get -f rabbitmq-cluster.yaml
     ```
 
 11. Confirm that RabbitMQ Pods are running in the Service Cluster, but not in the
 Workload Cluster by running:
 
     ```
-    kubectl --context <WORKLOAD-CONTEXT> <!-- If a placeholder, delete the angle brackets. --> -n service-instances get pods
-    kubectl --context <SERVICE-CONTEXT> <!-- If a placeholder, delete the angle brackets. --> -n service-instances get pods
+    kubectl --context <WORKLOAD-CONTEXT> -n service-instances get pods
+    kubectl --context <SERVICE-CONTEXT> -n service-instances get pods
     ```
 
     Finally, the app developer takes over. The experience is the same for
