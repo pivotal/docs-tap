@@ -952,10 +952,6 @@ to query metadata that is submitted to the component after the scan step.
 For a complete guide on how to query the store,
 see [Querying Supply Chain Security Tools - Store](scst-store/query_data.md).
 
-#### <a id="example supply chain including source and image scans"></a>Example Supply Chain including source and image scans
-
-One of the out of the box supply chains are being worked on for a future release may include image and source code vulnerability scanning and metadata storage into a preset Tanzu Application Platform supply chain. Until then, you can use this example to see how to try this out:
-[Example Supply Chain including Source and Image Scans](scst-scan/choreographer.md).
 
 #### <a id="next steps"></a>Next steps
 
