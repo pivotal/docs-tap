@@ -1,5 +1,17 @@
 # Getting started with the Tanzu Application Platform
 
+## <a id="purpose"></a>Purpose
+
+Welcome to the Tanzu Application Platform. This document guides you through getting started on the platform. Specifically, you are going to learn how to:
+
+  - Develop and promote an application
+  - Create an application accelerator
+  - Add testing and security scanning to an application
+  - Administer, set up, and manage supply chains
+
+Before getting started, you must complete the prerequisites in the next section.
+
+
 ## <a id="installation prerequisites"></a>Installation prerequisites
 
 Verify you have successfully:
@@ -24,17 +36,6 @@ See [Set up developer namespaces to use installed packages](install-components.m
 See [Install the Visual Studio Code Tanzu Extension](vscode-extension/install.md) for instructions.
 
 If you have completed the prerequisites, then you're ready to get started!
-
-## Purpose
-
-Welcome to the Tanzu Application Platform. This document guides you through getting started on the platform. Specifically, you are going to learn how to:
-
-  - Develop and promote an application
-  - Create an application accelerator
-  - Add testing and security scanning to an application
-  - Administer, set up, and manage supply chains
-
-Before getting started, you must complete the prerequisites in the next section.
 
 ## <a id="section 1: first application"></a>Section 1: Develop your first application on the Tanzu Application Platform
 
