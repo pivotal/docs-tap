@@ -1,7 +1,5 @@
 # Uninstalling Tanzu Application Platform
 
-This is a test link to [Getting Started](getting-started.htmlpurpose-0).
-
 This document describes how to uninstall Tanzu Application Platform packages from the
 Tanzu Application Platform package repository.
 
