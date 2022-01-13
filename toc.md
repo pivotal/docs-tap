@@ -79,7 +79,6 @@ This is the table of contents from which the Tanzu Application Platform Document
       - [Out-of-the-box templates](scc/ootb-templates.md)
     - [Supply Chain Security Tools – Scan](scst-scan/overview.md)
         - [Spec reference](scst-scan/explanation.md)
-        - [Sample public source code and image scans with Policy Enforcement](scst-scan/running-scans.md)
         - [More scan samples](scst-scan/samples/more-scan-samples.md)
           - [Public source scan of a blob](scst-scan/samples/blob.md)
           - [Private image scan](scst-scan/samples/private-image.md)
