@@ -587,7 +587,7 @@ Additionally, Tekton pipelines require a Tekton `pipelineRun` in order to execut
 The Supply Chain Choreographer handles creating the `pipelineRun` dynamically each time
 that step of the supply requires execution.
 
-#### <a id="workload update"></a>W>orkload update
+#### <a id="workload update"></a> Workload update
 
 To connect the new supply chain to the workload,
 the workload must be updated to point at your Tekton pipeline.
