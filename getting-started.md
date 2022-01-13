@@ -349,7 +349,7 @@ authors to add all of the steps of their application's path to production.
 The Tanzu Application Platform provides three OOTB supply chains to
 work with the Tanzu Application Platform components, and they include:
 
-### <a id="1 OOTB basic supply chain default"></a>1: **OOTB Basic Supply Chain (default)**
+### <a id="1 OOTB basic supply chain default"></a>1: **OOTB Basic (default)**
 
 The default **OOTB Basic** supply chain and its dependencies were installed on your cluster during the Tanzu Application Platform install.
 The following table and diagrams provide descriptions for each of the supply chains and dependencies provided with the Tanzu Application Platform.
@@ -375,11 +375,11 @@ The following table and diagrams provide descriptions for each of the supply cha
    <td>This supply chain monitors a repository that is identified in the developer’s `workload.yaml` file. When any new commits are made to the application, the supply chain:
 <ul>
 
-<li>Create a new image of the application
+<li>A new image is created
 
-<li>Apply any predefined conventions to the Kubernetes configuration
+<li>Any predefined conventions are applied
 
-<li>Deploy the application to the cluster
+<li>The application is deployed to the cluster
 </li>
 </ul>
    </td>
@@ -587,7 +587,7 @@ Additionally, Tekton pipelines require a Tekton `pipelineRun` in order to execut
 The Supply Chain Choreographer handles creating the `pipelineRun` dynamically each time
 that step of the supply requires execution.
 
-#### <a id="workload update"></a> Workload update
+#### <a id="workload update"></a>Workload update
 
 To connect the new supply chain to the workload,
 the workload must be updated to point at your Tekton pipeline.
@@ -598,7 +598,7 @@ the workload must be updated to point at your Tekton pipeline.
     tanzu apps workload create tanzu-java-web-app \
       --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
       --git-branch main \
-    --type web \
+      --type web \
       --label apps.tanzu.vmware.com/has-tests=true \
       --yes
     ```
