@@ -12,15 +12,7 @@ See [Installing Part I: Prerequisites, EULA, and CLI](install-general.md).
 
 To add the Tanzu Application Platform package repository:
 
-1. Set up environment variables for use during the installation.
-
-    ```
-    export INSTALL_REGISTRY_USERNAME=TANZU-NET-USER
-    export INSTALL_REGISTRY_PASSWORD=TANZU-NET-PASSWORD
-    export INSTALL_REGISTRY_HOSTNAME=registry.tanzu.vmware.com
-    ```
-
-2. Create a namespace called `tap-install` for deploying any component packages by running:
+1. Create a namespace called `tap-install` for deploying any component packages by running:
 
     ```
     kubectl create ns tap-install
@@ -28,7 +20,7 @@ To add the Tanzu Application Platform package repository:
 
     This namespace keeps the objects grouped together logically.
 
-3. Create a registry secret by running:
+2. Create a registry secret by running:
 
     ```
     tanzu secret registry add tap-registry \
@@ -37,7 +29,7 @@ To add the Tanzu Application Platform package repository:
       --export-to-all-namespaces --yes --namespace tap-install
     ```
 
-4. Add Tanzu Application Platform package repository to the cluster by running:
+3. Add Tanzu Application Platform package repository to the cluster by running:
 
     ```
     tanzu package repository add tanzu-tap-repository \
@@ -55,7 +47,7 @@ To add the Tanzu Application Platform package repository:
     Added package repository 'tanzu-tap-repository'
     ```
 
-5. Get the status of the Tanzu Application Platform package repository, and ensure the status updates to `Reconcile succeeded` by running:
+4. Get the status of the Tanzu Application Platform package repository, and ensure the status updates to `Reconcile succeeded` by running:
 
     ```
     tanzu package repository get tanzu-tap-repository --namespace tap-install
@@ -73,7 +65,7 @@ To add the Tanzu Application Platform package repository:
     REASON:
     ```
 
-6. List the available packages by running:
+5. List the available packages by running:
 
     ```
     tanzu package available list --namespace tap-install
