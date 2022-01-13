@@ -932,13 +932,13 @@ To install Application Accelerator:
 1. Install the package by running:
 
     ```
-    tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.5.1 -n tap-install -f app-accelerator-values.yaml
+    tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 1.0.0 -n tap-install -f app-accelerator-values.yaml
     ```
 
     For example:
 
     ```
-    $ tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.5.1 -n tap-install -f app-accelerator-values.yaml
+    $ tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 1.0.0 -n tap-install -f app-accelerator-values.yaml
     - Installing package 'accelerator.apps.tanzu.vmware.com'
     | Getting package metadata for 'accelerator.apps.tanzu.vmware.com'
     | Creating service account 'app-accelerator-tap-install-sa'
@@ -964,7 +964,7 @@ To install Application Accelerator:
     | Retrieving installation details for cc...
     NAME:                    app-accelerator
     PACKAGE-NAME:            accelerator.apps.tanzu.vmware.com
-    PACKAGE-VERSION:         0.5.1
+    PACKAGE-VERSION:         1.0.0
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
@@ -2960,7 +2960,7 @@ Use the following procedure to verify that the packages are installed.
     \ Retrieving installed packages...
     NAME                     PACKAGE-NAME                                       PACKAGE-VERSION  STATUS
     api-portal               api-portal.tanzu.vmware.com                        1.0.3            Reconcile succeeded
-    app-accelerator          accelerator.apps.tanzu.vmware.com                  0.4.0            Reconcile succeeded
+    app-accelerator          accelerator.apps.tanzu.vmware.com                  1.0.0            Reconcile succeeded
     app-live-view            appliveview.tanzu.vmware.com                       1.0.0-build.2    Reconcile succeeded
     cartographer             cartographer.tanzu.vmware.com                      0.1.0            Reconcile succeeded
     cloud-native-runtimes    cnrs.tanzu.vmware.com                              1.0.3            Reconcile succeeded

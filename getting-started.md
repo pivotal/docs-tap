@@ -301,7 +301,7 @@ This file is a starting point for the metadata for your new accelerator and the 
 This `new-accelerator.yaml` file must be copied to the root directory of your GIT repository and named `accelerator.yaml`.
 
 Copy this file into your GIT repository as `accelerator.yaml` to have additional attributes rendered in the web UI.
-See [Creating Accelerators](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/0.2/acc-docs/GUID-creating-accelerators-index.html).
+See [Creating Accelerators](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/1.0/acc-docs/GUID-creating-accelerators-index.html).
 
 After you push that change to your GIT repository, the Accelerator is refreshed based on the `git.interval` setting for the Accelerator resource. The default is 10 minutes. You can run the following command to force an immediate reconciliation:
 
