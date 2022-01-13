@@ -219,10 +219,6 @@ Workaround is to configure SSH access for the public Git repository.
 
 #### Supply Chain Security Tools – Scan
 
-- **Failing Blob source scans:** Blob source scans have an edge case where, when a compressed file
-without a `.git` directory is provided, sending results to the Supply Chain Security Tools - Store
-fails and the scanned revision value is not set. The current workaround is to add the `.git`
-directory to the compressed file.
 - **Events show `SaveScanResultsSuccess` incorrectly:** `SaveScanResultsSuccess` appears in the
 events when the Supply Chain Security Tools - Store is not configured. The `.status.conditions`
 output, however, correctly reflects `SendingResults=False`.
