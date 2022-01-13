@@ -94,7 +94,7 @@ the namespace has the following objects in it (including the ones marked with
   credentials for interacting with the git repository.
   For more information, see [Out of the Box Supply Chain Basic](ootb-supply-chain-basic.md).
 
-- **Tekton pipeline** (_new_): A pipeline run whenever the supply chain
+- **Tekton pipeline** (_new_): A pipeline runs whenever the supply chain
   hits the stage of testing the source code.
 
 
