@@ -151,7 +151,7 @@ If it is still running, it is likely to finish successfully and produce output s
   ```
   \ Retrieving installed packages...
     NAME                      PACKAGE-NAME                                       PACKAGE-VERSION  STATUS               NAMESPACE
-    accelerator               accelerator.apps.tanzu.vmware.com                  0.5.1            Reconcile succeeded  tap-install
+    accelerator               accelerator.apps.tanzu.vmware.com                  1.0.0            Reconcile succeeded  tap-install
     api-portal                api-portal.tanzu.vmware.com                        1.0.6            Reconcile succeeded  tap-install
     appliveview               run.appliveview.tanzu.vmware.com                   1.0.0-build.3    Reconciling          tap-install
     appliveview-conventions   build.appliveview.tanzu.vmware.com                 1.0.0-build.3    Reconcile succeeded  tap-install
