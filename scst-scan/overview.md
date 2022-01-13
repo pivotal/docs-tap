@@ -15,10 +15,11 @@ With Supply Chain Security Tools - Scan, Tanzu customers can build and deploy se
 
 The following Supply Chain Security Tools - Scan features make the use cases available:
 
-* Built Kubernetes controllers to run scan jobs.  
-* Built Custom Resource Definitions (CRDs) for Image and Source Scan.  
-* Created a CRD for a scanner plug-in. Provided example using: Anchore's Syft and Grype.  
-* Created a CRD for policy enforcement.
+* Kubernetes controllers to run scan jobs.
+* Custom Resource Definitions (CRDs) for Image and Source Scan.
+* CRD for a scanner plug-in. Provided example using: Anchore's Syft and Grype.
+* CRD for policy enforcement.
+* Enhanced scanning coverage by analyzing the Cloud Native Buildpack SBoMs provided by TBS images.
 
 ## <a id="scanner-support"></a>Scanner support
 
