@@ -7,11 +7,11 @@ For more information about Backstage, see the
 ## <a id='add-cat-entities'></a> Adding catalog entities
 
 This section describes how you can format your own catalog.
-Creating catalogs consists of building metadata YAML files stored together with the code.
+Creating catalogs consists of building meta data YAML files stored together with the code.
 This information is read from a Git-compatible repository consisting of these YAML catalog definition files.
 Changes made to the catalog definitions on your Git infrastructure are automatically reflected every 200 seconds or when manually registered.
-For each catalog entity you create, you must follow a file format.
-Below is an overview of a few core entities. Here are details about all types of [entities](https://backstage.io/docs/features/software-catalog/descriptor-format).
+For each catalog entity kind you create, there is a file format you must follow.
+Below is an overview of a few core entities, here are details about all types of [entities](https://backstage.io/docs/features/software-catalog/descriptor-format).
 You can use the example [Blank Catalog](https://gitlab.eng.vmware.com/project-star/pstar-backstage-poc/-/tree/master/sample-catalogs/blank) to create user, group, system, and main component YAML files.
 
 Relationship Diagram:
@@ -25,7 +25,7 @@ A Group entity describes an organizational team or unit. Users are members of on
 The descriptor files for both require values for `apiVersion`, `kind`, `metadata.name`.
 Users also require `spec.memberOf`. Groups require `spec.type` and `spec.children`, where
 `spec.children` is another Group.
-To link a logged-in user to a user entity, include the optional `spec.profile.email`
+To link a logged in user to a user entity, include the optional `spec.profile.email`
 field.
 
 Sample user entities:
@@ -91,7 +91,7 @@ More information about system entities is available in
 A Component describes a software component, or a "unit of software".
 Component descriptor files require values for `apiVersion`, `kind`, `metadata.name`, `spec.type`,
 `spec.lifecycle`, and `spec.owner`. Some useful optional fields are `spec.system` and
-`spec.subcomponentOf`, both of which link a Component to an entity it is a part of.
+`spec.subcomponentOf`, both of which links a Component to an entity it is a part of.
 
   ```
   apiVersion: backstage.io/v1alpha1
@@ -150,7 +150,7 @@ To deregister an entity, follow these steps:
         ```
 
     * To register components, add the new catalog's location in either the `app_config` section of
-      `tap-gui-values.yaml` or the custom values file you used when installing. For example:
+    `tap-gui-values.yaml` or the custom values file you used when installing. For example:
 
         ```
         catalog:
