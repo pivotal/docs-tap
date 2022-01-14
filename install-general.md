@@ -152,7 +152,6 @@ To accept EULAs:
 
 ## <a id='tanzu-cluster-essentials'></a> Install Cluster Essentials for VMware Tanzu
 
-The Cluster Essentials are already installed if you are operating a Tanzu Kubernetes Grid or Tanzu Community Edition cluster.
 
 For other Kubernetes providers, follow the steps below:
 
