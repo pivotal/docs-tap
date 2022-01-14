@@ -81,7 +81,7 @@ Packages:
 Use the following command:
 
 ```
-insight vulnerability get --cveid CVE-IDENTIFIER
+insight vulnerabilities get --cveid CVE-IDENTIFIER
 ```
 
 Where `CVE-IDENTIFIER` is the CVE identifier, for example, CVE-2021-30139.
