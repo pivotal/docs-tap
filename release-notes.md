@@ -229,6 +229,10 @@ occurred during scanning, the Scan Phase field is not updated to `Error` and ins
 the scan, the CVE print columns (CRITICAL, HIGH, MEDIUM, LOW, UNKNOWN, CVETOTAL) are not populated.
 You can run `kubectl describe` on the scan and look for `Scan completed. Found x CVE(s): ...` under
 `Status.Conditions` to find these severity counts and `CVETOTAL`.
+- **Failing Blob source scans:** Blob source scans have an edge case where, when a compressed file
+without a `.git` directory is provided, sending results to the Supply Chain Security Tools - Store
+fails and the scanned revision value is not set. The current workaround is to add the `.git`
+directory to the compressed file.
 
 #### Supply Chain Security Tools - Sign
 
@@ -389,7 +393,7 @@ The provisioner of `storageclass` is responsible for creating the persistent vol
         ```
         # This is the storageclass that Kind uses
         kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml
-      
+
         # set the storage class as default
         kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
         ```
