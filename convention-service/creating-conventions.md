@@ -12,7 +12,7 @@ For more information, see [Supply Chain Choreographer](../scc/about.html).
 [Convention Service](about.md) is a key component of the supply chain
 compositions the choreographer calls into action.
 Convention Service enables people in operational roles to efficiently apply
-their expertise. They can specify the runtime best practices, policies, and 
+their expertise. They can specify the runtime best practices, policies, and
 conventions of their organization to workloads as they are created on the platform.
 The power of this component becomes evident when the conventions of an organization
 are applied consistently, at scale, and without hindering the velocity of application developers.
@@ -81,7 +81,7 @@ The following prerequisites must be met before a convention can be developed and
 
 + The Kubernetes command line tool (Kubectl) CLI is installed. For more information, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/tools/).
 + Tanzu Application Platform components and prerequisites are installed. For more information, see the [Installation guide](../install-general.md).
-+ The default supply chain is installed. For more information, see [Tanzu Network](https://network.tanzu.vmware.com/products/default-supply-chain/).
++ The default supply chain is installed. Download Supply Chain Security Tools for VMware Tanzu from [Tanzu Network](https://network.tanzu.vmware.com/products/supply-chain-security-tools/).
 + Your kubeconfig context is set to the Tanzu Application Platform-enabled cluster:
 
     ```
@@ -93,7 +93,7 @@ The following prerequisites must be met before a convention can be developed and
 
 ## <a id='server-behavior'></a> Define convention criteria
 
-The `server.go` file contains the configuration for the server and the logic the server applies when a workload matches the defined criteria. 
+The `server.go` file contains the configuration for the server and the logic the server applies when a workload matches the defined criteria.
 For example, adding a Prometheus sidecar to web applications, or adding a `workload-type=spring-boot` label to any workload that has metadata, indicating it is a Spring Boot app.  
 
 > **Note:** For this example, the package `model` is used to define [resources](./reference/convention-resources.md) types.
@@ -104,7 +104,7 @@ For example, adding a Prometheus sidecar to web applications, or adding a `workl
     ...
     import (
         corev1 "k8s.io/api/core/v1"
-    ) 
+    )
     ...
     func ConventionHandler(template *corev1.PodTemplateSpec, images []model.ImageConfig) ([]string, error) {
         // Create custom conventions
@@ -256,7 +256,7 @@ Any property or value within the [PodTemplateSpec](https://kubernetes.io/docs/re
 When using labels or annotations to define whether a convention should be applied, the server checks the [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) of workloads.
 
    + PodTemplateSpec
-   
+
         ```yaml
         ...
         template:
@@ -285,12 +285,12 @@ When using labels or annotations to define whether a convention should be applie
                 // DO COOl STUFF
                 c = append(c, "awesome-annotation-convention")
             }
-            
+
             return c, nil
         }
         ...
         ```
-    
+
  Where:
  + `conventionHandler` is the *handler*.
  + `awesome-label` is the **label** that we want to validate.
@@ -340,7 +340,7 @@ For each image contained within the PodTemplateSpec, the convention controller f
 The `server.yaml` defines the Kubernetes components that enable the convention server in the cluster. The next definitions are within the file.
 
 1. <a id='install-namespace'></a>A `namespace` is created for the convention server components and has the required objects to run the server. It's used in the [`ClusterPodConvention`](#install-convention) section to indicate to the controller where the server is.
-    
+
     ```yaml
     ...
     ---
@@ -351,7 +351,7 @@ The `server.yaml` defines the Kubernetes components that enable the convention s
     ---
     ...
     ```
-    
+
 2. <a id='install-cm'></a>A certificate manager `Issuer` is created to issue the certificate needed for TLS communication. (Optional)
 
     ```yaml
@@ -422,7 +422,7 @@ The `server.yaml` defines the Kubernetes components that enable the convention s
           containers:
           - name: webhook
             # Set the prebuilt image of the convention or use ko to build an image from code.
-            # see https://github.com/google/ko 
+            # see https://github.com/google/ko
             image: ko://awesome-repo/awesome-user/awesome-convention
           env:
           - name: PORT
@@ -453,7 +453,7 @@ The `server.yaml` defines the Kubernetes components that enable the convention s
     ...
     ```
 
-5.  <a id='install-service'></a>A Kubernetes `Service` to expose the convention deployment is also created. For this example, the exposed port is the default `443`, but if it is changed, the [`ClusterPodConvention`](#install-convention) needs to be updated with the proper one. 
+5.  <a id='install-service'></a>A Kubernetes `Service` to expose the convention deployment is also created. For this example, the exposed port is the default `443`, but if it is changed, the [`ClusterPodConvention`](#install-convention) needs to be updated with the proper one.
 
     ```yaml
     ...
@@ -505,30 +505,30 @@ To deploy a convention server:
 1. Build and install the convention.
 
     + If the convention needs to be built and deployed, use the [ko] tool on GitHub (https://github.com/google/ko). It compiles yout _go_ code into a docker image and pushes it to the registry(`KO_DOCKER_REGISTRY`).
-    
+
         ```bash
         ko apply -f dist/server.yaml
         ```
 
     + If a different tool is used to build the image, the configuration can be also be applied using either kubectl or `kapp`, setting the correct image in the [`Deployment`](#install-convention) descriptor.
-    
+
        kubectl
-       
+
         ```bash
         kubectl apply -f server.yaml
         ```
-        
+
        kapp
-       
+
         ```bash
-        kapp deploy -y -a awesome-convention -f server.yaml 
+        kapp deploy -y -a awesome-convention -f server.yaml
         ```
 
 2. Verify the convention server.
 To check the status of the convention server, check for the running convention Pods:
 
     + If the server is running, `kubectl get all -n awesome-convention` returns something like:
-    
+
         ```text
         NAME                                       READY   STATUS    RESTARTS   AGE
         pod/awesome-webhook-1234567890-12345       1/1     Running   0          8h
@@ -551,7 +551,7 @@ To check the status of the convention server, check for the running convention P
         ```
 
     + To verify the conventions are being applied, check the `PodIntent` of a workload that matches the convention criteria:  
-    
+
         ```bash
         kubectl -o yaml get podintents.conventions.apps.tanzu.vmware.co awesome-app
         ```
