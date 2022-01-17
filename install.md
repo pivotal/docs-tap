@@ -616,8 +616,10 @@ contour:
 
 ## <a id='access-tap-gui'></a> Access the Tanzu Application Platform GUI
 
-To access Tanzu Application Platform GUI, you'll be able to use the hostname that is pointed at the shared ingress you configure above. If you'd prefer a LoadBalancer for Tanzu Application Platform GUI then you can see how to configure that in the [Accessing Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md) section.
-
+To access Tanzu Application Platform GUI, you'll be able to use the hostname that is pointed at the
+shared ingress you configured earlier.
+You can configure a LoadBalancer for Tanzu Application Platform GUI if you prefer. For how to
+configure one, see [Accessing Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md).
 
 You're now ready to start using Tanzu Application Platform GUI.
 Proceed to the [Getting Started](getting-started.md) topic or the
