@@ -923,7 +923,7 @@ to reference historical scan results, and provides querying capability to suppor
 
 To try the scan and store features in a supply chain, see [Section 3: Add testing and security scanning to your application](#add-testing-and-scanning).
 
-#### <a id="running public source code and image scans with policy enforcement"></a>Running Public source code and image scans with policy enforcement
+#### <a id="run-pub-sc-and-pol-enf"></a> Running public source code and image scans with policy enforcement
 
 Follow the instructions in [Sample public source code and image scans with policy enforcement](scst-scan/running-scans.md)
 to perform the following two types of public scans:
