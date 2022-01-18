@@ -32,7 +32,7 @@ with the value of the session namespace filled out when the page is renderer, yo
 ~~~text
 ```execute
 kubectl get all -n $SESSION_NAMESPACE
-``` <!-- Define any non-obvious placeholders present in the code snippet in the style of |Where PLACEHOLDER is...| -->
+``` 
 ~~~
 
 The shell inserts the value of the environment variable.
@@ -94,7 +94,7 @@ To specify the command to be run for a terminal session, you can supply an execu
 
 The name of the shell script file for a terminal session must be of the form `<session>.sh`, where `<session>` is replaced with the name of the terminal session. The session names of the default terminals that is configured to be displayed with the dashboard are `1`, `2` and `3`.
 
-The shell script file might be used to run a terminal based application such as `k9s`, or to create an `ssh<!-- |SSH| is preferred. -->` session to a remote system.
+The shell script file might be used to run a terminal based application such as `k9s`, or to create an `ssh` session to a remote system.
 
 ```
 #!/bin/bash
@@ -123,4 +123,4 @@ echo "Your session namespace is "$SESSION_NAMESPACE".
 echo
 
 exec bash
-``` <!-- Define any non-obvious placeholders present in the code snippet in the style of |Where PLACEHOLDER is...| -->
+``` 
