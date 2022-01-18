@@ -33,7 +33,7 @@ It can be triggered by typing the keywords `Tiltfile` or `tanzu tiltfile`. This 
 
 ## <a id="set-up-manually"></a> Set Up Manually
 
-You can manaully create a workload.yaml and Tiltfile.
+You can manually create a workload.yaml and Tiltfile.
 
 ### <a id="create-workload"></a> Creating a workload.yaml File
 
