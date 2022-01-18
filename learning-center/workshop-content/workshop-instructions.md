@@ -79,7 +79,7 @@ echo "Text to copy and edit."
 
 For AsciiDoc, similar to `execute`, you can add the `role` of `copy` or `copy-and-edit`:
 
-~~~
+```
 [source,bash,role=copy]
 ----
 echo "Text to copy."
@@ -89,7 +89,7 @@ echo "Text to copy."
 ----
 echo "Text to copy and edit."
 ----
-~~~
+```
 
 For `copy` only, if you prefer to mark an inline code section within a paragraph of text as copyable when clicked, you can append the special data variable reference `{{copy}}` immediately after the inline code block.
 
@@ -219,12 +219,12 @@ By using the different forms when appropriate, you can annotate the displayed co
 
 The method for using AsciiDoc is similar, using the `role` for the name of the annotation and YAML as the content:
 
-~~~
+```
 [source,bash,role=terminal:execute]
 ----
 command: echo "Execute command."
 ----
-~~~
+```
 
 ## <a id="clickable-actions-dashboard"></a>Clickable actions for the dashboard
 
