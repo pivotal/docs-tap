@@ -32,7 +32,7 @@ with the value of the session namespace filled out when the page is renderer, yo
 ~~~text
 ```execute
 kubectl get all -n $SESSION_NAMESPACE
-``` 
+```
 ~~~
 
 The shell inserts the value of the environment variable.
@@ -67,14 +67,14 @@ To have the supervisor daemon manage the application for you, add a configuratio
 
 The form of the configuration file snippet must be:
 
-~~~text
+```text
 [program:myapplication]
 process_name=myapplication
 command=/opt/myapplication/sbin/start-myapplication
 stdout_logfile=/proc/1/fd/1
 stdout_logfile_maxbytes=0
 redirect_stderr=true
-~~~
+```
 
 The application must send any logging output to `stdout` or `stderr`, and the configuration snippet must direct log output to `/proc/1/fd/1` so that it is captured in the container log file.
 
@@ -123,4 +123,4 @@ echo "Your session namespace is "$SESSION_NAMESPACE".
 echo
 
 exec bash
-``` 
+```
