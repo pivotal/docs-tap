@@ -2,7 +2,7 @@
 
 Kind was developed as a means to support development and testing of Kubernetes. Despite that it exists primarily for that purpose, Kind clusters are often used for local development of user applications as well. For Learning Center, you can use a local Kind cluster to develop workshop content or self-learning when deploying other people's workshops.
 
-As you are deploying to a local machine you are unlikely to have access to your own custom domain name and certificate you can use with the cluster. If you don't, you may be restricted as to the sorts of workshops you can develop or run using the Learning Center in Kind. This is because Kind uses ``containerd`` which lacks certain features that allow you to trust any image registries hosted within a subnet. This means you cannot run workshops that use a local image registry for each workshop session in an easy way. If you need the ability to run workshops on your local computer that uses an image registry for each session, we recommend you use minikube with ``dockerd`` instead. You can find more details about this issue below.
+As you are deploying to a local machine you are unlikely to have access to your own custom domain name and certificate you can use with the cluster. If you don't, you may be restricted as to the sorts of workshops you can develop or run using the Learning Center in Kind. This is because Kind uses `containerd` which lacks certain features that allow you to trust any image registries hosted within a subnet. This means you cannot run workshops that use a local image registry for each workshop session in an easy way. If you need the ability to run workshops on your local computer that uses an image registry for each session, we recommend you use minikube with `dockerd` instead. You can find more details about this issue below.
 
 Also keep in mind that, since Kind generally has limited memory resources available, you may be prohibited from running workshops that have large memory requirements. Certain workshops which demonstrate the use of third-party applications requiring a multi-node cluster also will not work unless the Kind cluster is specifically configured to be multi-node rather than a single node.
 
@@ -165,23 +165,23 @@ dockerDaemon:
 #! Override operator image. Only used during development of Learning Center.
 operatorImage: null
 ```
-Change the ingressDomain in the learningcenter-values.yaml with ``<your-local-ip>.nip.io`` if you are using a ``nip.io`` DNS address. Details on what this is are provided below.
-In the above example you would replace ``workshops.example.com with``  ``<your-local-ip>.nip.io``
+Change the ingressDomain in the learningcenter-values.yaml with `<your-local-ip>.nip.io` if you are using a `nip.io` DNS address. Details on what this is are provided below.
+In the above example you would replace `workshops.example.com with`  `<your-local-ip>.nip.io`
 
-## Using a ``nip.io`` DNS address
+## Using a `nip.io` DNS address
 
 Before you can start deploying workshops, you need to configure the operator to tell it what domain name can be used to access anything deployed by the operator.
 
 Being a local cluster which isn't exposed to the internet with its own custom domain name, you can use a [nip.io](
 https://nip.io/). address.
 
-To calculate the ``nip.io`` address to use, first work out the IP address for the ingress controller exposed by Kind. This is usually the IP address of the local machine itself, even where you may be using Docker for Mac.
+To calculate the `nip.io` address to use, first work out the IP address for the ingress controller exposed by Kind. This is usually the IP address of the local machine itself, even where you may be using Docker for Mac.
 
 How you get the IP address for your local machine depends on the operating system being used.
 
 For example on a Mac, you can find your ip address by searching for network using spotlight and selecting the network option under system preferences. Here you will see your IP address under status.
 
-Once you have the IP address, if, for example, it was ``192.168.1.1``, use the domain name of ``192.168.1.1.nip.io``.
+Once you have the IP address, if, for example, it was `192.168.1.1`, use the domain name of `192.168.1.1.nip.io`.
 
 To configure the Learning Center operator with this cluster domain, run:
 
@@ -193,9 +193,9 @@ This will cause the Learning Center Operator to automatically be re-deployed wit
 
 You should now be able to start deploying workshops.
 
-Note that some home internet gateways implement what is called rebind protection. That is, they will not let DNS names from the public internet bind to local IP address ranges inside the home network. If your home internet gateway has such a feature and it is enabled, it will block ``nip.io`` addresses from working. In this case you will need to configure your home internet gateway to allow ``*.nip.io`` names to be bound to local addresses.
+Note that some home internet gateways implement what is called rebind protection. That is, they will not let DNS names from the public internet bind to local IP address ranges inside the home network. If your home internet gateway has such a feature and it is enabled, it will block `nip.io` addresses from working. In this case you will need to configure your home internet gateway to allow `*.nip.io` names to be bound to local addresses.
 
-Also note that you cannot use an address of form ``127.0.0.1.nip.io``, or ``subdomain.localhost``. This will cause a failure as internal services, when needing to connect to each other, end up connecting to themselves instead since the address would resolve to the host loopback address of ``127.0.0.1``.
+Also note that you cannot use an address of form `127.0.0.1.nip.io`, or `subdomain.localhost`. This will cause a failure as internal services, when needing to connect to each other, end up connecting to themselves instead since the address would resolve to the host loopback address of `127.0.0.1`.
 
 ## Install Learning Center package onto a Kubernetes cluster
 ```
@@ -225,11 +225,11 @@ Congratulations, you are now running our tutorial workshop using our Learning Ce
 
 Workshops may optionally deploy an image registry for a workshop session. This image registry is secured with a password specific to the workshop session and is exposed via a Kubernetes ingress so it can be accessed from the workshop session.
 
-When using Kind, the typical scenario will be that insecure ingress routes are always going to be used. Even if you were to generate a self-signed certificate to use for ingress, it will not be trusted by ``containerd`` that runs within Kind. This means you have to tell Kind to trust any insecure registry running inside of Kind.
+When using Kind, the typical scenario will be that insecure ingress routes are always going to be used. Even if you were to generate a self-signed certificate to use for ingress, it will not be trusted by `containerd` that runs within Kind. This means you have to tell Kind to trust any insecure registry running inside of Kind.
 
-Configuring kind to trust insecure registries must be done when you first create the cluster. The problem with Kind, however, is that it uses ``containerd`` and not ``dockerd``. The ``containerd`` runtime doesn't provide a way to trust any insecure registry hosted within the IP subnet used by the Kubernetes cluster. Instead, what ``containerd`` requires is that you enumerate every single hostname or IP address on which an insecure registry is hosted. Since each workshop session created by the Learning Center for a workshop uses a different hostname, this makes it much harder to handle this situation.
+Configuring kind to trust insecure registries must be done when you first create the cluster. The problem with Kind, however, is that it uses `containerd` and not `dockerd`. The `containerd` runtime doesn't provide a way to trust any insecure registry hosted within the IP subnet used by the Kubernetes cluster. Instead, what `containerd` requires is that you enumerate every single hostname or IP address on which an insecure registry is hosted. Since each workshop session created by the Learning Center for a workshop uses a different hostname, this makes it much harder to handle this situation.
 
-If you really must used Kind and need to handle this, what you need to do is work out what the image registry hostname for a workshop deployment and configure ``containerd`` to trust a set of hostnames corresponding to low-numbered sessions for that workshop. This will allow it to work, but, once the hostnames for sessions go beyond the range of hostnames you set up, you need to delete the training portal and recreate it so you go back to using the same hostnames again.
+If you really must used Kind and need to handle this, what you need to do is work out what the image registry hostname for a workshop deployment and configure `containerd` to trust a set of hostnames corresponding to low-numbered sessions for that workshop. This will allow it to work, but, once the hostnames for sessions go beyond the range of hostnames you set up, you need to delete the training portal and recreate it so you go back to using the same hostnames again.
 
 For example, if the hostname for the image registry were of the form:
 
@@ -237,7 +237,7 @@ For example, if the hostname for the image registry were of the form:
 lab-docker-testing-wMM-sNNN-registry.192.168.1.1.nip.io
 ```
 
-where ``NNN`` changes per session, you would need to use a command to create the Kind cluster something like:
+where `NNN` changes per session, you would need to use a command to create the Kind cluster something like:
 
 ```
 cat <<EOF | kind create cluster --config=-
@@ -275,6 +275,6 @@ EOF
 
 This allows you to run five workshop sessions before you had to delete the training portal and recreate it.
 
-Do note that if using this, you are able to use the feature of the training portal to automatically update when a workshop definition is changed. This is because the ``wMM`` value identifying the workshop environment changes any time you update the workshop definition.
+Do note that if using this, you are able to use the feature of the training portal to automatically update when a workshop definition is changed. This is because the `wMM` value identifying the workshop environment changes any time you update the workshop definition.
 
-There is no other known workaround for this limitation of ``containerd``. As such, it is recommended to use minikube with ``dockerd`` instead.
+There is no other known workaround for this limitation of `containerd`. As such, it is recommended to use minikube with `dockerd` instead.

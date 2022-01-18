@@ -6,13 +6,13 @@ More detailed information about Workshops including creating your own: [Creating
 
 ![Screenshot of dashboard terminal](images/dashboard-terminal.png)
 
-The terminals provide access to the editors ``vi`` and ``nano``. To provide a UI based editor, you can
+The terminals provide access to the editors `vi` and `nano`. To provide a UI based editor, you can
 enable the embedded editor view and use the embedded IDE based on VS Code.
 
 ![Screenshot of dashboard editor](images/dashboard-editor.png)
 
 To complement the workshop instructions, or to be available for use by the instructor, you can include slides with a
-workshop. For slides you can use HTML based slide presentation tools such as ``reveal.js``, or you can embed a PDF file.
+workshop. For slides you can use HTML based slide presentation tools such as `reveal.js`, or you can embed a PDF file.
 
 ![Screenshot of dashboard slides](images/dashboard-slides.png)
 

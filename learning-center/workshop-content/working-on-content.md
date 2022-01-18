@@ -36,7 +36,7 @@ If you download workshop content from a Git repository or web server and you are
 update-workshop
 ```
 
-This command downloads any workshop content from the Git repository or web server, unpacks it into the live workshop session, and re-runs any script files found in the ``workshop/setup.d`` directory.
+This command downloads any workshop content from the Git repository or web server, unpacks it into the live workshop session, and re-runs any script files found in the `workshop/setup.d` directory.
 
 If you want to see from where the workshop content is being downloaded, you can find the location by viewing the file:
 
@@ -84,7 +84,7 @@ spec:
     image: <YOUR-GIT-REPO>/lab-sample-workshop:master
 ```
 
-When an image tag of `main`, `master`, `develop` or `latest` is used, the image pull policy is set to ``Always`` to ensure that the custom workshop image is pulled down again for a new workshop session if the remote image changes. If the image tag was for a specific version, it is necessary to change the workshop definition every time a change occurred to the workshop image.
+When an image tag of `main`, `master`, `develop` or `latest` is used, the image pull policy is set to `Always` to ensure that the custom workshop image is pulled down again for a new workshop session if the remote image changes. If the image tag was for a specific version, it is necessary to change the workshop definition every time a change occurred to the workshop image.
 
 ## <a id="custom-workshop-image-overlay"></a>Custom workshop image overlay
 

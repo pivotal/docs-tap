@@ -12,13 +12,13 @@ Requirements and setup instructions specific to Minikube are detailed below,; ot
 
 Workshops may optionally deploy an image registry for a workshop session. This image registry is secured with a password specific to the workshop session and is exposed via a Kubernetes ingress so it can be accessed from the workshop session.
 
-When using Minikube, the typical scenario will be that insecure ingress routes are always going to be used. Even if you were to generate a self-signed certificate to use for ingress, it will not be trusted by the ``dockerd`` that runs within Minikube. This means you have to tell Minikube to trust any insecure registry running inside of Minikube.
+When using Minikube, the typical scenario will be that insecure ingress routes are always going to be used. Even if you were to generate a self-signed certificate to use for ingress, it will not be trusted by the `dockerd` that runs within Minikube. This means you have to tell Minikube to trust any insecure registry running inside of Minikube.
 
-Configuring Minikube to trust insecure registries must be done the first time you start a new cluster with it. That is, you must supply the details to ``minikube start``. To do this you need to know the IP subnet that Minikube uses.
+Configuring Minikube to trust insecure registries must be done the first time you start a new cluster with it. That is, you must supply the details to `minikube start`. To do this you need to know the IP subnet that Minikube uses.
 
-If you already have a cluster running using Minikube, you can run ``minikube ip`` to determine the IP address it uses and from that determine what subnet you need to tell it to trust.
+If you already have a cluster running using Minikube, you can run `minikube ip` to determine the IP address it uses and from that determine what subnet you need to tell it to trust.
 
-For example, if ``minikube ip`` returned ``192.168.64.1``, the subnet you need to trust is ``192.168.64.0/24``.
+For example, if `minikube ip` returned `192.168.64.1`, the subnet you need to trust is `192.168.64.0/24`.
 
 With this information, when you start a new cluster with Minikube, you would run:
 
@@ -28,7 +28,7 @@ minikube start --insecure-registry=192.168.64.0/24
 
 If you already have a cluster started with Minikube, you cannot stop it and then provide this option when it is restarted. The option is only used for a completely new cluster.
 
-Note that you must be using ``dockerd``, and not ``containerd``, in the Minikube cluster. This is because ``containerd`` does not accept an IP subnet when defining insecure registries to be trusted, allowing only specific hosts or IP addresses. Because though you don't know what IP address will be used by Minikube in advance, you can't provide the IP on the command line when starting Minikube to create the cluster the first time.
+Note that you must be using `dockerd`, and not `containerd`, in the Minikube cluster. This is because `containerd` does not accept an IP subnet when defining insecure registries to be trusted, allowing only specific hosts or IP addresses. Because though you don't know what IP address will be used by Minikube in advance, you can't provide the IP on the command line when starting Minikube to create the cluster the first time.
 
 ## Prerequisites
 The following installation prerequisites must be done prior to installation.
@@ -40,7 +40,7 @@ The following installation prerequisites must be done prior to installation.
 
 ## Ingress controller with DNS
 
-Once the Minikube cluster is running, you must enable the ``ingress`` and ``ingress-dns`` addons for Minikube. These deploy the nginx ingress controller along with support for integrating into DNS.
+Once the Minikube cluster is running, you must enable the `ingress` and `ingress-dns` addons for Minikube. These deploy the nginx ingress controller along with support for integrating into DNS.
 
 To enable these after the cluster has been created, run:
 
@@ -161,10 +161,10 @@ dockerDaemon:
 #! Override operator image. Only used during development of Learning Center.
 operatorImage: null
 ```
-Change the ingressDomain in the learningcenter-values.yaml with ``<your-local-ip>.nip.io`` if you are using a ``nip.io`` DNS address. Details on what this are provided below.
-In the above example you would replace ``workshops.example.com`` with ``<your-local-ip>.nip.io``
+Change the ingressDomain in the learningcenter-values.yaml with `<your-local-ip>.nip.io` if you are using a `nip.io` DNS address. Details on what this are provided below.
+In the above example you would replace `workshops.example.com` with `<your-local-ip>.nip.io`
 
-## Using a ``nip.io`` DNS address
+## Using a `nip.io` DNS address
 
 
 Once the Learning Center Operator is installed, before you can start deploying workshops, you need to configure the operator to tell it what domain name can be used to access anything deployed by the operator.
@@ -172,9 +172,9 @@ Once the Learning Center Operator is installed, before you can start deploying w
 Being a local cluster which isn't exposed to the internet with its own custom domain name, you can use a [nip.io](
 https://nip.io/). address.
 
-To calculate the ``nip.io`` address to use, first work out the IP address of the cluster created by Minikube by running ``minikube ip``. This is then added as a prefix to the domain name ``nip.io``.
+To calculate the `nip.io` address to use, first work out the IP address of the cluster created by Minikube by running `minikube ip`. This is then added as a prefix to the domain name `nip.io`.
 
-For example, if ``minikube ip`` returns ``192.168.64.1``, use the domain name of ``192.168.64.1.nip.io``.
+For example, if `minikube ip` returns `192.168.64.1`, use the domain name of `192.168.64.1.nip.io`.
 
 To configure the Learning Center operator with this cluster domain, run:
 
@@ -186,7 +186,7 @@ This will cause the Learning Center operator to automatically be re-deployed wit
 
 You should now be able to start deploying workshops.
 
-Note that some home internet gateways implement what is called rebind protection. That is, the gateways will not let DNS names from the public internet bind to local IP address ranges inside the home network. If your home internet gateway has such a feature and it is enabled, it will block ``nip.io`` addresses from working. In this case you will need to configure your home internet gateway to allow ``*.nip.io`` names to be bound to local addresses.
+Note that some home internet gateways implement what is called rebind protection. That is, the gateways will not let DNS names from the public internet bind to local IP address ranges inside the home network. If your home internet gateway has such a feature and it is enabled, it will block `nip.io` addresses from working. In this case you will need to configure your home internet gateway to allow `*.nip.io` names to be bound to local addresses.
 
 ## Install Learning Center package onto a minikube cluster
 
@@ -225,13 +225,13 @@ To do this run:
 kubectl edit configmap nginx-load-balancer-conf -n kube-system
 ```
 
-To the config map resource add the following property under ``data``:
+To the config map resource add the following property under `data`:
 
 ```
 proxy-body-size: 1g
 ```
 
-If you don't increase this, you will find ``docker push`` failing when trying to push container images with very large layers.
+If you don't increase this, you will find `docker push` failing when trying to push container images with very large layers.
 
 ## Limited resource availability
 
@@ -243,7 +243,7 @@ You can view how much memory is available when a custom amount may have been set
 minikube config get memory
 ```
 
-It is strongly recommended you configure Minikube to use 4Gi or more. This must be specified when the cluster is first created. This can be done by using the ``--memory`` option to ``minikube start`` or by specifying a default memory value beforehand using ``minikube config set memory``.
+It is strongly recommended you configure Minikube to use 4Gi or more. This must be specified when the cluster is first created. This can be done by using the `--memory` option to `minikube start` or by specifying a default memory value beforehand using `minikube config set memory`.
 
 In addition to increasing the memory available, you may also want to look at increasing the disk size as fat container images can chew up disk space within the cluster pretty quickly.
 

@@ -15,7 +15,7 @@ To create the workshop environment run:
 kubectl apply -f https://raw.githubusercontent.com/eduk8s-labs/lab-k8s-fundamentals/master/resources/workshop-environment.yaml
 ```
 
-This results in a custom resource being created called ``WorkshopEnvironment``:
+This results in a custom resource being created called `WorkshopEnvironment`:
 
 ```
 workshopenvironment.learningcenter.tanzu.vmware.com/lab-k8s-fundamentals created
@@ -49,7 +49,7 @@ the name of the workshop the environment was created from.
 
 ## <a id="requesting-workshop-instance"></a>Requesting a workshop instance
 
-To request a workshop instance, a custom resource of type ``WorkshopRequest`` needs to be created.
+To request a workshop instance, a custom resource of type `WorkshopRequest` needs to be created.
 
 This is a namespaced resource allowing who can create them to be delegated using role-based access controls. 
 Further, in order to be able to request an instance of a specific workshop, you need to know the secret token specified 
@@ -85,9 +85,9 @@ The additional fields provide the URL where the workshop instance can be accesse
 provide when prompted by your web browser.
 
 The user name and password only come into play when you use the lower-level resources to set up workshops. If 
-you use the ``TrainingPortal`` custom resource, you will see that these fields are empty. This is because, for that case, 
+you use the `TrainingPortal` custom resource, you will see that these fields are empty. This is because, for that case, 
 the workshop instances are deployed so that they rely on user registration and access mediated by the web-based 
-training portal. Visiting the URL for a workshop instance directly when using ``TrainingPortal``, redirects you back 
+training portal. Visiting the URL for a workshop instance directly when using `TrainingPortal`, redirects you back 
 to the web portal in order to log in if necessary.
 
 You can monitor the progress of this workshop deployment by listing the deployments in the namespace created for the
@@ -102,11 +102,11 @@ is where any applications are deployed as part of the workshop. If the definitio
 set of resources that should be automatically created for each session namespace, they are created by the Learning 
 Center Operator. It is therefore possible to pre-deploy applications for each session.
 
-In this case, we used ``WorkshopRequest``; whereas when using ``TrainingPortal``, we created a ``WorkshopSession``. 
-The workshop request does result in creating a ``WorkshopSession``, but ``TrainingPortal`` skips the
-workshop request and directly creates a ``WorkshopSession``.
+In this case, we used `WorkshopRequest`; whereas when using `TrainingPortal`, we created a `WorkshopSession`. 
+The workshop request does result in creating a `WorkshopSession`, but `TrainingPortal` skips the
+workshop request and directly creates a `WorkshopSession`.
 
-The purpose of having ``WorkshopRequest`` as a separate custom resource is to allow RBAC and other controls to be used 
+The purpose of having `WorkshopRequest` as a separate custom resource is to allow RBAC and other controls to be used 
 to allow non-cluster administrators to create workshop instances.
 
 ## Deleting the workshop instance
