@@ -61,8 +61,8 @@ k8s_custom_deploy(
                " --source-image " + SOURCE_IMAGE +
                " --namespace " + NAMESPACE +
                " --yes >/dev/null" +
-               " && kubectl get workload <app-name> --namespace " + NAMESPACE + " -o yaml<%# |YAML| is preferred. %>",
-    delete_cmd="tanzu<%# The brand is |Tanzu|. %> apps workload delete -f <path-to-workload> --namespace " + NAMESPACE + " --yes",
+               " && kubectl get workload <app-name> --namespace " + NAMESPACE + " -o yaml",
+    delete_cmd="tanzu apps workload delete -f <path-to-workload> --namespace " + NAMESPACE + " --yes",
     deps=['pom.xml', './target/classes'],
     container_selector='workload',
     live_update=[
