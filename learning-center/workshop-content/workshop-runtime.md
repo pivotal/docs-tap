@@ -14,10 +14,10 @@ For commands run in the shell environment, a number of pre-defined environment v
 
 Key environment variables are:
 
-* ``WORKSHOP_NAMESPACE`` - The name of the namespace used for the workshop environment.
-* ``SESSION_NAMESPACE`` - The name of the namespace the workshop instance is linked to and into which any deployed applications run.
-* ``INGRESS_DOMAIN`` - The host domain which must be used in the any generated host name of ingress routes for exposing applications.
-* ``INGRESS_PROTOCOL`` - The protocol (http/https) that is used for ingress routes which are created for workshops.
+* `WORKSHOP_NAMESPACE` - The name of the namespace used for the workshop environment.
+* `SESSION_NAMESPACE` - The name of the namespace the workshop instance is linked to and into which any deployed applications run.
+* `INGRESS_DOMAIN` - The host domain which must be used in the any generated host name of ingress routes for exposing applications.
+* `INGRESS_PROTOCOL` - The protocol (http/https) that is used for ingress routes which are created for workshops.
 
 Instead of having an executable command in the workshop content use:
 
@@ -32,18 +32,18 @@ with the value of the session namespace filled out when the page is renderer, yo
 ~~~text
 ```execute
 kubectl get all -n $SESSION_NAMESPACE
-``` <!-- Define any non-obvious placeholders present in the code snippet in the style of |Where PLACEHOLDER is...| -->
+```
 ~~~
 
 The shell inserts the value of the environment variable.
 
 ## <a id="running-steps"></a> Running steps on container start
 
-To run a script which makes use of the earlier environment variables when the container is started, and to perform tasks such as pre-create YAML/JSON resource definitions with values filled out, you can add an executable shell script to the ``workshop/setup.d`` directory. The name of the executable shell script must have a ``.sh`` suffix for it to be recognized and run.
+To run a script which makes use of the earlier environment variables when the container is started, and to perform tasks such as pre-create YAML/JSON resource definitions with values filled out, you can add an executable shell script to the `workshop/setup.d` directory. The name of the executable shell script must have a `.sh` suffix for it to be recognized and run.
 
 If the container is restarted, the setup script runs again in the new container. If the shell script is performing actions against the Kubernetes REST API using kubectl or by using another means, and then the actions it performs must be tolerant of running more than once.
 
-When using a setup script to fill out values in resource files a useful utility to use is ``envsubst``. This could be used in a setup script as follows:
+When using a setup script to fill out values in resource files a useful utility to use is `envsubst`. This could be used in a setup script as follows:
 
 ```
 #!/bin/bash
@@ -51,9 +51,9 @@ When using a setup script to fill out values in resource files a useful utility 
 envsubst < frontend/ingress.yaml.in > frontend/ingress.yaml
 ```
 
-A reference of the form ``${INGRESS_DOMAIN}`` in the input file is replaced with the value of the ``INGRESS_DOMAIN`` environment variable.
+A reference of the form `${INGRESS_DOMAIN}` in the input file is replaced with the value of the `INGRESS_DOMAIN` environment variable.
 
-Setup scripts have the ``/home/eduk8s`` directory as the current working directory.
+Setup scripts have the `/home/eduk8s` directory as the current working directory.
 
 If you are creating or updating files in the file system and using a custom workshop image, ensure that the workshop image is created with correct file permissions to allow updates.
 
@@ -63,38 +63,38 @@ The setup scripts are run once on container startup. Although you can use the sc
 
 If you must run a background application, the preferred mechanism is to integrate the management of the background application with the supervisor daemon run within the container.
 
-To have the supervisor daemon manage the application for you, add a configuration file snippet for the supervisor daemon in the ``workshop/supervisor`` directory. This configuration file must have a ``.conf`` extension.
+To have the supervisor daemon manage the application for you, add a configuration file snippet for the supervisor daemon in the `workshop/supervisor` directory. This configuration file must have a `.conf` extension.
 
 The form of the configuration file snippet must be:
 
-~~~text
+```text
 [program:myapplication]
 process_name=myapplication
 command=/opt/myapplication/sbin/start-myapplication
 stdout_logfile=/proc/1/fd/1
 stdout_logfile_maxbytes=0
 redirect_stderr=true
-~~~
+```
 
-The application must send any logging output to ``stdout`` or ``stderr``, and the configuration snippet must direct log output to ``/proc/1/fd/1`` so that it is captured in the container log file.
+The application must send any logging output to `stdout` or `stderr`, and the configuration snippet must direct log output to `/proc/1/fd/1` so that it is captured in the container log file.
 
-If you nmust restart or shutdown the application within the workshop interactive terminal, you can use the ``supervisorctl`` control script.
+If you nmust restart or shutdown the application within the workshop interactive terminal, you can use the `supervisorctl` control script.
 
 ## <a id="terminal-env"></a> Terminal user shell environment
 
-Neither the setup scripts run when the container starts, or background applications, affect the user environment of the terminal shell. The shell environment makes use of ``bash`` and the ``$HOME/.bash_profile`` script is read to perform additional setup for the user environment. Because some default setup is included in ``$HOME/.bash_profile``, you must not replace it as you will loose that configuration.
+Neither the setup scripts run when the container starts, or background applications, affect the user environment of the terminal shell. The shell environment makes use of `bash` and the `$HOME/.bash_profile` script is read to perform additional setup for the user environment. Because some default setup is included in `$HOME/.bash_profile`, you must not replace it as you will loose that configuration.
 
-To provide commands to initialize each shell environment, you can provide the file ``workshop/profile``. When this file exists, it is sourced at the end of the ``$HOME/.bash_profile`` file when it is processed.
+To provide commands to initialize each shell environment, you can provide the file `workshop/profile`. When this file exists, it is sourced at the end of the `$HOME/.bash_profile` file when it is processed.
 
 ## <a id="override-shell"></a> Overriding terminal shell command
 
-Each terminal session is started up using the ``bash`` terminal shell and a terminal prompt dialog box is displayed, allowing commands to be manually entered or through clickable actions targetting the terminal session.
+Each terminal session is started up using the `bash` terminal shell and a terminal prompt dialog box is displayed, allowing commands to be manually entered or through clickable actions targetting the terminal session.
 
-To specify the command to be run for a terminal session, you can supply an executable shell script file in the ``workshop/terminal`` directory.
+To specify the command to be run for a terminal session, you can supply an executable shell script file in the `workshop/terminal` directory.
 
-The name of the shell script file for a terminal session must be of the form ``<session>.sh``, where ``<session>`` is replaced with the name of the terminal session. The session names of the default terminals that is configured to be displayed with the dashboard are `1`, `2` and `3`.
+The name of the shell script file for a terminal session must be of the form `<session>.sh`, where `<session>` is replaced with the name of the terminal session. The session names of the default terminals that is configured to be displayed with the dashboard are `1`, `2` and `3`.
 
-The shell script file might be used to run a terminal based application such as ``k9s``, or to create an ``ssh<!-- |SSH| is preferred. -->`` session to a remote system.
+The shell script file might be used to run a terminal based application such as `k9s`, or to create an `ssh` session to a remote system.
 
 ```
 #!/bin/bash
@@ -123,4 +123,4 @@ echo "Your session namespace is "$SESSION_NAMESPACE".
 echo
 
 exec bash
-``` <!-- Define any non-obvious placeholders present in the code snippet in the style of |Where PLACEHOLDER is...| -->
+```

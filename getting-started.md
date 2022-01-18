@@ -161,7 +161,7 @@ helps you develop and receive fast feedback on your workloads running on the Tan
 
 The VSCode extension enables live updates of your application while running on the cluster
 and allows you to debug your application directly on the cluster.
-For information about installing the prerequisitesand the Tanzu Developer Tools extension, see
+For information about installing the prerequisites and the Tanzu Developer Tools extension, see
 [Install Tanzu Dev Tools for VSCode](vscode-extension/install.md).
 
 
@@ -923,7 +923,7 @@ to reference historical scan results, and provides querying capability to suppor
 
 To try the scan and store features in a supply chain, see [Section 3: Add testing and security scanning to your application](#add-testing-and-scanning).
 
-#### <a id="running public source code and image scans with policy enforcement"></a>Running Public source code and image scans with policy enforcement
+#### <a id="run-pub-sc-and-pol-enf"></a> Running public source code and image scans with policy enforcement
 
 Follow the instructions in [Sample public source code and image scans with policy enforcement](scst-scan/running-scans.md)
 to perform the following two types of public scans:

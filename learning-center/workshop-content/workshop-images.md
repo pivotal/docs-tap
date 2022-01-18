@@ -23,31 +23,31 @@ When you have created a copy of the sample workshop content, you will see a numb
 
 The files in the top level directory are:
 
-* ``README.md`` - A file telling everyone what the workshop in your Git repository is about, and how to deploy it. Replace the current content provided in the sample workshop with your own.
-* ``LICENSE`` - A license file so people are clear about how they can use your workshop content. Replace this with what license you want to apply to your workshop content.
-* ``Dockerfile`` - Steps to build your workshop into an image ready for deployment. This would be left as is, unless you want to customize it to install additional system packages or tools.
-* ``kustomization.yaml`` - A kustomize resource file for loading the workshop definition. When using this, the Learning Center operator still needs to have first been deployed.
-* ``.dockerignore`` - List of files to ignore when building the workshop content into an image.
-* ``.eduk8signore`` - List of files to ignore when downloading workshop content into the workshop environment at runtime.
+* `README.md` - A file telling everyone what the workshop in your Git repository is about, and how to deploy it. Replace the current content provided in the sample workshop with your own.
+* `LICENSE` - A license file so people are clear about how they can use your workshop content. Replace this with what license you want to apply to your workshop content.
+* `Dockerfile` - Steps to build your workshop into an image ready for deployment. This would be left as is, unless you want to customize it to install additional system packages or tools.
+* `kustomization.yaml` - A kustomize resource file for loading the workshop definition. When using this, the Learning Center operator still needs to have first been deployed.
+* `.dockerignore` - List of files to ignore when building the workshop content into an image.
+* `.eduk8signore` - List of files to ignore when downloading workshop content into the workshop environment at runtime.
 
 Key sub directories and the files contained within them are:
 
-* ``workshop`` - Directory under which your workshop files reside.
-* ``workshop/modules.yaml`` - Configuration file with details of available modules which make up your workshop, and data variables for use in content.
-* ``workshop/workshop.yaml`` - Configuration file which provides the name of the workshop, the list of active modules for the workshop, and any overrides for data variables.
-* ``workshop/content`` - Directory under which your workshop content resides, including images to be displayed in the content.
-* ``resources`` - Directory under which Kubernetes custom resources are stored for deploying the workshop using the Learning Center.
-* ``resources/workshop.yaml`` - The custom resources for the Learning Center which describes your workshop and requirements it may have when being deployed.
-* ``resources/training-portal.yaml`` - A sample custom resource for the Learning Center for creating a training portal for the workshop, encompassing the workshop environment and a workshop instance.
+* `workshop` - Directory under which your workshop files reside.
+* `workshop/modules.yaml` - Configuration file with details of available modules which make up your workshop, and data variables for use in content.
+* `workshop/workshop.yaml` - Configuration file which provides the name of the workshop, the list of active modules for the workshop, and any overrides for data variables.
+* `workshop/content` - Directory under which your workshop content resides, including images to be displayed in the content.
+* `resources` - Directory under which Kubernetes custom resources are stored for deploying the workshop using the Learning Center.
+* `resources/workshop.yaml` - The custom resources for the Learning Center which describes your workshop and requirements it may have when being deployed.
+* `resources/training-portal.yaml` - A sample custom resource for the Learning Center for creating a training portal for the workshop, encompassing the workshop environment and a workshop instance.
 
 A workshop may consist of other configuration files, and directories with other types of content, but this is the minimal set of files to get you started.
 
 ## Directory for workshop exercises
 
-Because of the proliferation of files and directories at the top level of the repository and thus potentially the home directory for the user when running the workshop environment, you can push files required for exercises during the workshop into the ``exercises`` sub directory below the root of the repository.
+Because of the proliferation of files and directories at the top level of the repository and thus potentially the home directory for the user when running the workshop environment, you can push files required for exercises during the workshop into the `exercises` sub directory below the root of the repository.
 
-When such an ``exercises`` sub directory exists, the initial working directory for the embedded terminal when created will be set to be ``$HOME/exercises`` instead of ``$HOME``. Further, if the embedded editor is enabled, the sub directory will be opened as the workspace for the editor and only directories and files in that sub directory will be visible through the default view of the editor.
+When such an `exercises` sub directory exists, the initial working directory for the embedded terminal when created will be set to be `$HOME/exercises` instead of `$HOME`. Further, if the embedded editor is enabled, the sub directory will be opened as the workspace for the editor and only directories and files in that sub directory will be visible through the default view of the editor.
 
-Note that the ``exercises`` directory isn't set as the home directory of the user. This means that if a user inadvertently runs ``cd`` with no arguments from the terminal, they will end up back in the home directory.
+Note that the `exercises` directory isn't set as the home directory of the user. This means that if a user inadvertently runs `cd` with no arguments from the terminal, they will end up back in the home directory.
 
-To try and avoid confusion and provide a means for a user to easily get back to where they need to be, it is recommended if instructing users to change directories, to always provide a full path relative to the home directory. Thus use a path of the form ``~/exercises/example-1`` rather than ``example-1``, to the ``cd`` command if changing directories. By using a full path, they can execute the command again and know they will end up back in the required location.
+To try and avoid confusion and provide a means for a user to easily get back to where they need to be, it is recommended if instructing users to change directories, to always provide a full path relative to the home directory. Thus use a path of the form `~/exercises/example-1` rather than `example-1`, to the `cd` command if changing directories. By using a full path, they can execute the command again and know they will end up back in the required location.
