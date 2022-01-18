@@ -23,5 +23,5 @@ Scanning an image from a private registry requires an image pull secret to exist
 If a private image scan is triggered and the secret is not configured, the scan job will fail with the error as follows:
 
 ```
-Job.batch "scan-${app}-${id}" is invalid: [spec<!-- |specifications| is preferred. -->.template.spec<!-- |specifications| is preferred. -->.volumes[2].secret.secretName: Required value, spec<!-- |specifications| is preferred. -->.template.spec<!-- |specifications| is preferred. -->.containers[0].volumeMounts[2].name: Not found: "registry-cred"]
+Job.batch "scan-${app}-${id}" is invalid: [spec.template.spec.volumes[2].secret.secretName: Required value, spec.template.spec.containers[0].volumeMounts[2].name: Not found: "registry-cred"]
 ```

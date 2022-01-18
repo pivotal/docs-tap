@@ -217,7 +217,7 @@ To do this, first determine which IP subnet minikube uses for the inbound ingres
 already have a minikube instance running, you can determine this by running `minikube ip`. If, for example, this 
 reported `192.168.64.1`, the subnet used is `129.168.64.0/24`.
 
-With this information, when you create a fresh `minikube` instance you must supply the `--insecure<!-- |not secure| is preferred. -->-registry` option with the subnet.
+With this information, when you create a fresh `minikube` instance you must supply the `--insecure-registry` option with the subnet.
 
 ```
 minikube start --insecure-registry="129.168.64.0/24"
