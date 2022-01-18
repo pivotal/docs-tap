@@ -88,22 +88,22 @@ user can only access the namespaces and other resources that they are allowed to
 
 In this scenario, the custom resource types that come into play are:
 
-- ``Workshop`` - Provides the definition of a workshop. Preloaded by an admin into the cluster, it defines
+- `Workshop` - Provides the definition of a workshop. Preloaded by an admin into the cluster, it defines
   where the workshop content is hosted, or the location of a container image which bundles the workshop content and any
   additional tools required for the workshop. The definition also lists additional resources that must be created
   which are to be shared between all workshop sessions, or for each session, with details of resources quotas and
   access roles required by the workshop.
 
-- ``TrainingPortal`` - Created by an admin in the cluster to trigger the deployment of a training portal. The
-  training portal can provide access to one or more distinct workshops defined by a ``Workshop`` resource. The training
+- `TrainingPortal` - Created by an admin in the cluster to trigger the deployment of a training portal. The
+  training portal can provide access to one or more distinct workshops defined by a `Workshop` resource. The training
   portal provides a web based interface for registering for workshops and accessing them. It also provides a REST API
   for requesting access to workshops, allowing custom front ends to be created which integrate with separate identity
   providers and which provide an alternate means for browsing and accessing workshops.
 
-- ``WorkshopEnvironment`` - Used by the training portal to trigger the creation of a workshop environment for a
+- `WorkshopEnvironment` - Used by the training portal to trigger the creation of a workshop environment for a
   workshop. This causes the operator to set up a namespace for the workshop into which shared resources will be deployed,
   and where the workshop sessions are run.
 
-- ``WorkshopSession`` - Used by the training portal to trigger the creation of a workshop session against a specific
+- `WorkshopSession` - Used by the training portal to trigger the creation of a workshop session against a specific
   workshop environment. This causes the operator to set up any namespaces specific to the workshop session and pre-create
   additional resources required for a workshop session. Workshop sessions may be created up front in reserve, to be  handed out when requested, or  created on demand.

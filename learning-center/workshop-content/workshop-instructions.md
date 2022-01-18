@@ -25,7 +25,7 @@ echo "Execute command."
 ----
 ```
 
-When the workshop dashboard is configured to display multiple terminals, you can qualify which terminal the command must be executed in by adding a suffix to the ``execute`` annotation. For the first terminal use `execute-1`, for the second terminal `execute-2`, and so on:
+When the workshop dashboard is configured to display multiple terminals, you can qualify which terminal the command must be executed in by adding a suffix to the `execute` annotation. For the first terminal use `execute-1`, for the second terminal `execute-2`, and so on:
 
 ~~~
 ```execute-1
@@ -94,7 +94,7 @@ echo "Text to copy and edit."
 For `copy` only, if you prefer to mark an inline code section within a paragraph of text as copyable when clicked, you can append the special data variable reference `{{copy}}` immediately after the inline code block.
 
 ```
-Text to ``copy``{{copy}}.
+Text to `copy`{{copy}}.
 ```
 
 ## <a id="extensible-clickable-actions"></a>Extensible clickable actions
@@ -663,7 +663,7 @@ The banner of the action block in this case is displayed as "Prefix: Title", wit
 
 ## <a id="escape-code-block-content"></a>Escaping of code block content
 
-Because the [Liquid](https://www.npmjs.com/package/liquidjs) template engine is applied to workshop content, you must escape content in code blocks which conflicts with the syntactic elements of the Liquid template engine. To escape such elements, you can suspend processing by the template engine for that section of workshop content to ensure it is rendered correctly. This can be done using a Liquid ``{% raw %}...{% endraw %}`` block.
+Because the [Liquid](https://www.npmjs.com/package/liquidjs) template engine is applied to workshop content, you must escape content in code blocks which conflicts with the syntactic elements of the Liquid template engine. To escape such elements, you can suspend processing by the template engine for that section of workshop content to ensure it is rendered correctly. This can be done using a Liquid `{% raw %}...{% endraw %}` block.
 
 ~~~
 {% raw %}

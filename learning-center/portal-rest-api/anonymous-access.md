@@ -33,15 +33,15 @@ To trigger creation and allocation of a workshop to a user, you need to direct u
 <training-portal-url>/workshops/environment/<name>/create/?index_url=<index>
 ```
 
-Replace the value ``<name>`` with the name of the workshop environment corresponding to the workshop to be created.
+Replace the value `<name>` with the name of the workshop environment corresponding to the workshop to be created.
 
-Replace the value ``<index>`` with the URL for your custom index page where you list the workshops available. When a user completes the workshop, that user is redirected back to this index page. The user is also redirected back to this index page when an error occurs.
+Replace the value `<index>` with the URL for your custom index page where you list the workshops available. When a user completes the workshop, that user is redirected back to this index page. The user is also redirected back to this index page when an error occurs.
 
 When a user is redirected back to the index page, a query string parameter is supplied to notify why the user is being returned. This can be used to display a banner or other indication as to why the user was returned.
 
-The name of the query string parameter is ``notification`` and the possible values are:
+The name of the query string parameter is `notification` and the possible values are:
 
-* ``session-deleted`` - Used when the workshop session is completed or restarted.
-* ``workshop-invalid`` - Used when the name of the workshop environment supplied when attempting to create the workshop is invalid.
-* ``session-unavailable`` - Used when capacity is reached and a workshop session cannot be created.
-* ``session-invalid`` - Used when an attempt is made to access a session that doesn't exist. This can occur when the workshop dashboard is refreshed sometime after the workshop session has expired and been deleted.
+* `session-deleted` - Used when the workshop session is completed or restarted.
+* `workshop-invalid` - Used when the name of the workshop environment supplied when attempting to create the workshop is invalid.
+* `session-unavailable` - Used when capacity is reached and a workshop session cannot be created.
+* `session-invalid` - Used when an attempt is made to access a session that doesn't exist. This can occur when the workshop dashboard is refreshed sometime after the workshop session has expired and been deleted.
