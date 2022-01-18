@@ -143,7 +143,9 @@ Using `debug` log level, instead of `default`, to display this information was d
 
 ## SQL Query log output
 
-Some Store logs will display the SQL query commands being executed, such as when the log leve is set to `trace` or during a failed SQL calls.
+Some Store logs will display the SQL query commands being executed, such as when the log level is set to `trace` or during a failed SQL calls.
+
+**NOTE**: Some information in these SQL Query trace logs may be sensitive, and the user may not want them exposed in production environment logs.
 
 ### Format
 When the Store display SQL query logs, it uses the following format:
