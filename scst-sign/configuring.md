@@ -78,7 +78,8 @@ images by adding system namespaces to the
 
 ```
 cat <<EOF | kubectl apply -f -
-apiVersion: signing.apps.tanzu.vmware.com/v1beta1kind: ClusterImagePolicy
+apiVersion: signing.apps.tanzu.vmware.com/v1beta1
+kind: ClusterImagePolicy
 metadata:
   name: image-policy
 spec
