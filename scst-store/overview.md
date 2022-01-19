@@ -60,3 +60,7 @@ See [Troubleshooting and Known Issues](known_issues.md).
 ## Security
 
 See [Security](security.md).
+
+## Backing up data
+
+See [Backup suggestions](backups.md).
