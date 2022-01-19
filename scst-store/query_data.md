@@ -1,8 +1,4 @@
-<<<<<<< HEAD:scst-store/querying_the_metadata_store.md
-# Querying Data
-=======
 # Query data
->>>>>>> 3c0268d (Updated TOC to include CLI detailed docs and re-named files to reflect headers):scst-store/query_data.md
 
 This topic describes how to query the database to understand vulnerability, image, and dependency relationships.
 
@@ -14,13 +10,8 @@ Data must be added before querying. See [Add Data](add_data.md).
 
 There are two different ways of querying the database:
 
-<<<<<<< HEAD:scst-store/querying_the_metadata_store.md
-* [Supply Chain Security Tools - Store API](../scst-store/getting_started_api.md)
-* [Query with the Insight CLI](#query-with-insight) below
-=======
 * [API](api.md)
 * [CLI](cli_installation.md) 
->>>>>>> 3c0268d (Updated TOC to include CLI detailed docs and re-named files to reflect headers):scst-store/query_data.md
 
 
 ## Supported Use Cases
@@ -34,12 +25,7 @@ The following are a few examples supported by the Supply Chain Security Tools - 
 
 ## <a id='query-with-insight'></a> Query with the Insight CLI
 
-<<<<<<< HEAD:scst-store/querying_the_metadata_store.md
-Make sure you have installed the Insight CLI.
-For how to install the CLI, see [Install the Insight CLI](install_cli.md).
-=======
 See [CLI installation](cli_installation.md) if you have not previously installed the Insight CLI.
->>>>>>> 3c0268d (Updated TOC to include CLI detailed docs and re-named files to reflect headers):scst-store/query_data.md
 
 Use the following commands for querying:
 
