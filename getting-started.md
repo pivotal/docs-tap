@@ -922,30 +922,11 @@ to reference historical scan results, and provides querying capability to suppor
   - Analyze scan results against user-defined policies using Open Policy Agent
   - Produce vulnerability scan results and post them to the Supply Chain Security Tools Store where they can later be queried
 
+To try the scan and store features as individual one-off scans, see [Scan samples](scst-scan/samples/overview.md).
+
 To try the scan and store features in a supply chain, see [Section 3: Add testing and security scanning to your application](#add-testing-and-scanning).
 
-#### <a id="run-pub-sc-and-pol-enf"></a> Running public source code and image scans with policy enforcement
-
-Follow the steps in [Sample public source scan of a blob](scst-scan/samples/blob.md) to perform
-the following two types of public scans:
-
-1. Source code scan on a public repository
-2. Image scan on a public image
-
-Both examples include a policy that considers CVEs with Critical severity ratings as violations.
-
-
-#### <a id="running private source code and image scans with policy enforcement"></a>Running private source code and image scans with policy enforcement
-
-Follow the instructions in [Sample private source scan](scst-scan/samples/private-source.md) to perform a source code scan against a private registry or
-[Sample private image scan](scst-scan/samples/private-image.md)
-to do an image scan on a private image.
-
-
-#### <a id="viewing vulnerability reports using supply chain security tools store capabilities"></a>Viewing vulnerability reports using Supply Chain Security Tools - Store capabilities
-
-After completing the scans from the last step,
-query the [Supply Chain Security Tools - Store](scst-store/overview.md) to view your vulnerability results.
+After completing scans, query the [Supply Chain Security Tools - Store](scst-store/overview.md) to view your vulnerability results.
 It is a Tanzu component that stores image, package, and vulnerability metadata about your dependencies.
 Use the Supply Chain Security Tools - Store CLI, called Insight,
 to query metadata that is submitted to the component after the scan step.
