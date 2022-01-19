@@ -7,7 +7,7 @@ This topic explains how to install the VMware Tanzu Developer Tools for Visual S
 Before installing the Tanzu Developer Tools IDE extension, you must have:
 
 - The Kubernetes command-line tool, [Kubernetes documentation](https://kubernetes.io/docs/tasks/tools/)
-- [Tilt](https://docs.tilt.dev/install.html) v0.23.2
+- [Tilt](https://docs.tilt.dev/install.html) >= 0.23.2
 - The Tanzu CLI.
   See [Install the Tanzu CLI](../install-general.md#cli-and-plugin)
 - The Tanzu CLI apps plug-ins.
@@ -19,7 +19,7 @@ Before installing the Tanzu Developer Tools IDE extension, you must have:
 
 To install VMware Tanzu Developer Tools for Visual Studio Code:
 
-1. Download the extension from [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
+1. Download the Tanzu Developer Tools for Visual Studio Code from [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
 1. Open VSCode. From the Command Palette (`cmd` + `shift` + `P`), run "Extensions: Install from VSIX...". Select the extension file, `tanzu-vscode-extension.vsix`.
 1. When you do not already have a Java Development Kit(JDK) installed, the Java extension pack prompts you to install one.
    Accept the dialog box to install the [Extension Pack for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack)
@@ -39,6 +39,7 @@ Kubernetes documentation.
 
 2. Select `Preferences` -> `Settings` -> `Extensions` -> `Tanzu` and set the following:
   - Source Image (required): Destination for an image containing source code to be published
+    - Example: `your-registry.io/project/tanzu-java-web-app-source`
   - Local Path (optional): Path on the local file system to a directory of source code to build (defaults to current directory)
   - Namespace (optional): Namespace that workloads are be deployed into (defaults to namespace set in kubeconfig)
 
@@ -60,7 +61,7 @@ To quickly get you started, use the sample application with the necessary config
 
 1. Use `git clone` to clone the [tanzu-java-web-app](https://github.com/sample-accelerators/tanzu-java-web-app) repository from GitHub.
 
-2. Go to the `Tiltfile` and replace all instances of `your-registry.io/project` with your registry server and repository.
+2. Go to the `Tiltfile` and replace `your-registry.io/project` with your registry server and repository.
 
 ---
 
