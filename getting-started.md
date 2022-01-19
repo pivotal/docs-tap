@@ -636,22 +636,22 @@ the workload must be updated to point at your Tekton pipeline.
     ```
     NAME                                    AGE
     workload.carto.run/tanzu-java-web-app   109s
-    
+
     NAME                                                        URL                                                         READY   STATUS                                                            AGE
     gitrepository.source.toolkit.fluxcd.io/tanzu-java-web-app   https://github.com/sample-accelerators/tanzu-java-web-app   True    Fetched revision: main/872ff44c8866b7805fb2425130edb69a9853bfdf   109s
-    
+
     NAME                                              SUCCEEDED   REASON      STARTTIME   COMPLETIONTIME
     pipelinerun.tekton.dev/tanzu-java-web-app-4ftlb   True        Succeeded   104s        77s
-    
+
     NAME                                LATESTIMAGE                                                                                                      READY
     image.kpack.io/tanzu-java-web-app   10.188.0.3:5000/foo/tanzu-java-web-app@sha256:1d5bc4d3d1ffeb8629fbb721fcd1c4d28b896546e005f1efd98fbc4e79b7552c   True
-    
+
     NAME                                                             READY   REASON   AGE
     podintent.conventions.apps.tanzu.vmware.com/tanzu-java-web-app   True             7s
-    
+
     NAME                                      DESCRIPTION           SINCE-DEPLOY   AGE
     app.kappctrl.k14s.io/tanzu-java-web-app   Reconcile succeeded   1s             2s
-    
+
     NAME                                             URL                                               LATESTCREATED              LATESTREADY                READY     REASON
     service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.developer.example.com   tanzu-java-web-app-00001   tanzu-java-web-app-00001   Unknown   IngressNotConfigured
     ```
@@ -728,7 +728,7 @@ Verify that both Scan Link and Grype Scanner are installed by running:
     ```
     - supply_chain: testing
     + supply_chain: testing_scanning
-    
+
     - ootb_supply_chain_testing:
     + ootb_supply_chain_testing_scanning:
         registry:
@@ -794,28 +794,28 @@ pipeline:
     ```
     NAME                                    AGE
     workload.carto.run/tanzu-java-web-app   109s
-    
+
     NAME                                                        URL                                                         READY   STATUS                                                            AGE
     gitrepository.source.toolkit.fluxcd.io/tanzu-java-web-app   https://github.com/sample-accelerators/tanzu-java-web-app   True    Fetched revision: main/872ff44c8866b7805fb2425130edb69a9853bfdf   109s
-    
+
     NAME                                                           PHASE       SCANNEDREVISION                            SCANNEDREPOSITORY                                           AGE    CRITICAL   HIGH   MEDIUM   LOW   UNKNOWN   CVETOTAL
     sourcescan.scanning.apps.tanzu.vmware.com/tanzu-java-web-app   Completed   187850b39b754e425621340787932759a0838795   https://github.com/sample-accelerators/tanzu-java-web-app   90s
-    
+
     NAME                                              SUCCEEDED   REASON      STARTTIME   COMPLETIONTIME
     pipelinerun.tekton.dev/tanzu-java-web-app-4ftlb   True        Succeeded   104s        77s
-    
+
     NAME                                LATESTIMAGE                                                                                                      READY
     image.kpack.io/tanzu-java-web-app   10.188.0.3:5000/foo/tanzu-java-web-app@sha256:1d5bc4d3d1ffeb8629fbb721fcd1c4d28b896546e005f1efd98fbc4e79b7552c   True
-    
+
     NAME                                                          PHASE       SCANNEDIMAGE                                                                                                AGE   CRITICAL   HIGH   MEDIUM   LOW   UNKNOWN   CVETOTAL
     imagescan.scanning.apps.tanzu.vmware.com/tanzu-java-web-app   Completed   10.188.0.3:5000/foo/tanzu-java-web-app@sha256:1d5bc4d3d1ffeb8629fbb721fcd1c4d28b896546e005f1efd98fbc4e79b7552c   14s
-    
+
     NAME                                                             READY   REASON   AGE
     podintent.conventions.apps.tanzu.vmware.com/tanzu-java-web-app   True             7s
-    
+
     NAME                                      DESCRIPTION           SINCE-DEPLOY   AGE
     app.kappctrl.k14s.io/tanzu-java-web-app   Reconcile succeeded   1s             2s
-    
+
     NAME                                             URL                                               LATESTCREATED              LATESTREADY                READY     REASON
     service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.developer.example.com   tanzu-java-web-app-00001   tanzu-java-web-app-00001   Unknown   IngressNotConfigured
     ```
@@ -861,7 +861,7 @@ In this section, you are about to:
 > **Note:** The resource must be named `image-policy`.
 
     For example:
-    
+
     ```
     ---
     apiVersion: signing.apps.tanzu.vmware.com/v1beta1
@@ -885,7 +885,7 @@ In this section, you are about to:
          - namePattern: registry.example.org/myproject/*
            keys:
            - name: first-key
-    
+
     ```
 
 When you apply the `ClusterImagePolicy` resource, your cluster requires valid signatures for all images that match the `namePattern:` you define in the configuration. For more information about configuring an image signature policy, see [Configuring Supply Chain Security Tools - Sign](scst-sign/configuring.html).
@@ -925,8 +925,8 @@ To try the scan and store features in a supply chain, see [Section 3: Add testin
 
 #### <a id="run-pub-sc-and-pol-enf"></a> Running public source code and image scans with policy enforcement
 
-Follow the instructions in [Sample public source code and image scans with policy enforcement](scst-scan/running-scans.md)
-to perform the following two types of public scans:
+Follow the steps in [Sample public source scan of a blob](scst-scan/samples/overview.md) to perform
+the following two types of public scans:
 
 1. Source code scan on a public repository
 2. Image scan on a public image

@@ -1,4 +1,4 @@
-# More scan samples
+# Scan samples overview
 
 This section provides samples on multiple use cases that you can copy to your cluster for testing purposes.  
 
