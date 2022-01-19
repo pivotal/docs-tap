@@ -103,7 +103,6 @@ This is the table of contents from which the Tanzu Application Platform Document
       - [Known issues](scst-sign/known_issues.md)
     - [Supply Chain Security Tools for Tanzu – Store](scst-store/overview.md)
       - [API details](scst-store/api.md)
-      - [CLI configuration](scst-store/cli_configuration.md)
       - [CLI details](scst-store/cli_docs/insight.md)
         - [Insight config](scst-store/cli_docs/insight_config.md)
         - [Insight health](scst-store/cli_docs/insight_health.md)
