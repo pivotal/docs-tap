@@ -1,9 +1,9 @@
-# Using Tanzu Dev Tools to Iterate on Your Workload
+# Using Tanzu Dev Tools to iterate on your workload
 
 > **Note:** The Tanzu Developer Tools extension requires only one Tiltfile and workload.yaml per project.
   These must be single-document YAML files rather than multi-document YAML files.
 
-## <a id="debug"></a> Debug your Workload
+## <a id="debug"></a> Debug your workload
 
 Debugging requires a `workload.yaml` file in your project.
 For information about creating a `workload.yaml` file, see
@@ -17,7 +17,7 @@ After you have a `workload.yaml` file in your project, you can debug:
 
 1. Select **Tanzu: Java Debug Start**.
 
-## <a id="live-update"></a> Live update your Workload
+## <a id="live-update"></a> Live update your workload
 
 Live update requires a `workload.yaml` file and a `Tiltfile` in your project.
 
@@ -58,7 +58,7 @@ To deactivate live update:
 
 >**Note:** This redeploys your workload to the cluster and removes the live update capability.
 
-## <a id="switch-namespace"></a> Switch a Namespace
+## <a id="switch-namespace"></a> Switch a namespace
 
 To switch the namespace that your workload is created in:
 
