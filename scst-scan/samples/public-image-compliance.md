@@ -70,7 +70,7 @@ Before deploying, set up a watch in another terminal to view the process:
 watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
 ```
 
-For more information about setting up a watch, see [Observing and Troubleshooting](observing.md).
+For more information about setting up a watch, see [Observing and Troubleshooting](../observing.md).
 
 ### Deploy the resources
 
@@ -86,7 +86,7 @@ kubectl describe imagescan sample-public-image-scan-with-compliance-check
 
 Note that the `Status.Conditions` includes a `Reason: EvaluationFailed` and `Message: Policy violated because of 18 CVEs`.
 
-For more information about scan status conditions, see [Viewing and Understanding Scan Status Conditions](results.md).
+For more information about scan status conditions, see [Viewing and Understanding Scan Status Conditions](../results.md).
 
 ### Modify the ScanPolicy
 
