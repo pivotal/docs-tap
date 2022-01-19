@@ -40,6 +40,7 @@ Kubernetes documentation.
 
 2. Select `Preferences` -> `Settings` -> `Extensions` -> `Tanzu` and set the following:
   - Source Image (required): Destination for an image containing source code to be published
+    - Example: `your-registry.io/project/tanzu-java-web-app-source`
   - Local Path (optional): Path on the local file system to a directory of source code to build (defaults to current directory)
   - Namespace (optional): Namespace that workloads are be deployed into (defaults to namespace set in kubeconfig)
 
@@ -61,7 +62,7 @@ To quickly get you started, use the sample application with the necessary config
 
 1. Use `git clone` to clone the [tanzu-java-web-app](https://github.com/sample-accelerators/tanzu-java-web-app) repository from GitHub.
 
-2. Go to the `Tiltfile` and replace all instances of `your-registry.io/project` with your registry server and repository.
+2. Go to the `Tiltfile` and replace `your-registry.io/project` with your registry server and repository.
 
 ---
 
