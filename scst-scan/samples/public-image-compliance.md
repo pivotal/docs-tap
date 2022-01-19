@@ -6,7 +6,7 @@ The following example performs an image scan on an image in a public registry. T
 
 The policy in this example is set to only consider `Critical` severity CVEs as a violation, which returns 21 Unknown Severity Vulnerability.
 
-> **Note:** This example ScanPolicy has been deliberately constructed to showcase the features available and should not be considered an acceptable base policy.
+>**Note:** This example ScanPolicy is deliberately constructed to showcase the features available and must not be considered an acceptable base policy.
 
 In this example, the scan does the following (currently):
 
@@ -14,7 +14,7 @@ In this example, the scan does the following (currently):
 * Ignores any CVEs with severities that are not unknown severities.
 * Indicates in the `Status.Conditions` that 21 CVEs have violated policy compliance.
 
-### Define the ScanPolicy and ImageScan
+### <a id="define-scanpolicy-imagescan"></a> Define the ScanPolicy and ImageScan
 
 Create `sample-public-image-scan-with-compliance-check.yaml`:
 
@@ -62,7 +62,7 @@ spec:
   scanPolicy: sample-scan-policy
 ```
 
-### (Optional) Set up a watch
+### <a id="set-up-watch"></a> (Optional) Set up a watch
 
 Before deploying, set up a watch in another terminal to view the process:
 
@@ -72,27 +72,27 @@ watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
 
 For more information about setting up a watch, see [Observing and Troubleshooting](../observing.md).
 
-### Deploy the resources
+### <a id="deploy-resources"></a> Deploy the resources
 
 ```
 kubectl apply -f sample-public-image-scan-with-compliance-check.yaml
 ```
 
-### View the scan results
+### <a id="view-scan-results"></a> View the scan results
 
 ```
 kubectl describe imagescan sample-public-image-scan-with-compliance-check
 ```
 
-Note that the `Status.Conditions` includes a `Reason: EvaluationFailed` and `Message: Policy violated because of 18 CVEs`.
+> **Note:** The `Status.Conditions` includes a `Reason: EvaluationFailed` and `Message: Policy violated because of 18 CVEs`.
 
 For more information about scan status conditions, see [Viewing and Understanding Scan Status Conditions](../results.md).
 
-### Modify the ScanPolicy
+### <a id="modify-scanpolicy"></a> Modify the ScanPolicy
 
 See the previous source scan example.
 
-### Clean up
+### <a id="clean-up"></a> Clean up
 
 To clean up, run:
 
