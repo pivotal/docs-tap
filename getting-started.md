@@ -126,7 +126,7 @@ Workload Knative Services URL at the bottom of the command output.
     ```
     tanzu apps workload get tanzu-java-web-app
     ```
-    
+
     ![Tanzu-java-web-app default screen](images/getting-started-tap-gui-8.png)
 
 
@@ -926,8 +926,8 @@ To try the scan and store features in a supply chain, see [Section 3: Add testin
 
 #### <a id="run-pub-sc-and-pol-enf"></a> Running public source code and image scans with policy enforcement
 
-Follow the instructions in [Sample public source code and image scans with policy enforcement](scst-scan/running-scans.md)
-to perform the following two types of public scans:
+Follow the steps in [Sample public source scan of a blob](scst-scan/samples/overview.md) to perform
+the following two types of public scans:
 
 1. Source code scan on a public repository
 2. Image scan on a public image
