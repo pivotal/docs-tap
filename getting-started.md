@@ -926,7 +926,7 @@ To try the scan and store features in a supply chain, see [Section 3: Add testin
 
 #### <a id="run-pub-sc-and-pol-enf"></a> Running public source code and image scans with policy enforcement
 
-Follow the steps in [Sample public source scan of a blob](scst-scan/samples/overview.md) to perform
+Follow the steps in [Sample public source scan of a blob](scst-scan/samples/blob.md) to perform
 the following two types of public scans:
 
 1. Source code scan on a public repository
