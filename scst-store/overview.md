@@ -12,13 +12,8 @@ alt="A demonstration of the features. First ingesting a bill of materials file. 
 
 Supply Chain Security Tools - Store has three components:
 
-<<<<<<< HEAD
-* [API](api.md)
-* [CLI](install_cli.md) (Insight)
-=======
 * [API details](api.md)
 * [CLI installation](cli_installation.md) (Insight)
->>>>>>> 3c0268d (Updated TOC to include CLI detailed docs and re-named files to reflect headers)
 * Postgres database
 
 ## Install
@@ -44,18 +39,12 @@ The following steps are required to use the API or CLI:
 
 The Insight CLI is not required but may provide an easier-to-use interface than the [API](api.md).  
 
-<<<<<<< HEAD
 > **Note:** The Insight CLI is in beta and is separate from the Tanzu CLI.
-=======
+
 * [CLI installation](cli_installation.md)
 * [CLI configuration](cli_configuration.md)
 * [CLI details](cli_docs/insight.md)
->>>>>>> 3c0268d (Updated TOC to include CLI detailed docs and re-named files to reflect headers)
 
-* [Install the CLI](install_cli.md)
-* [Configure the CLI](configure_cli.md)
-
-<<<<<<< HEAD
 ## <a id='usage'></a>Usage
 
 ### Adding data
@@ -64,12 +53,9 @@ See [adding data](add_cyclonedx_to_store.md) to post CycloneDX scan reports to t
 
 ### Querying data
 
-See [querying data](querying_the_metadata_store.md) to understand vulnerability, image, and dependency relationships.
-=======
 See [Add data](add_data.md) to post CycloneDX scan reports to the Supply Chain Security Tools - Store.
 
 See [Query data](query_data.md) to understand vulnerability, image, and dependency relationships.
->>>>>>> 3c0268d (Updated TOC to include CLI detailed docs and re-named files to reflect headers)
 
 ## Auditing
 
