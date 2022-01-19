@@ -115,7 +115,6 @@ This is the table of contents from which the Tanzu Application Platform Document
         - [AWS RDS Postgres configuration](scst-store/use_aws_rds.md)
         - [Create service accounts and access tokens](scst-store/create_service_account_access_token.md)
         - [Using encryption to connect to the database](scst-store/using_encryption_and_connection.md)
-      - [Query data](scst-store/query_data.md)
       - [Log configuration and usage](scst-store/logs.md)
       - [Security details](scst-store/security.md)
     - [Tanzu Developer Tools for VSCode](vscode-extension/about.md)
