@@ -352,7 +352,7 @@ The `server.yaml` defines the Kubernetes components that enable the convention s
     ...
     ```
 
-2. <a id='install-cm'></a>A certificate manager `Issuer` is created to issue the certificate needed for TLS communication. (Optional)
+2. <a id='install-cm'></a>(Optional) A certificate manager `Issuer` is created to issue the certificate needed for TLS communication.
 
     ```yaml
     ...
@@ -370,7 +370,7 @@ The `server.yaml` defines the Kubernetes components that enable the convention s
     ...
     ```
 
-3. <a id='install-cert'></a>A self-signed `Certificate` is created. (Optional)
+3. <a id='install-cert'></a>(Optional) A self-signed `Certificate` is created.
 
     ```yaml
     ...
@@ -476,6 +476,7 @@ The `server.yaml` defines the Kubernetes components that enable the convention s
     ...
     ```
 6. <a id='install-convention'></a>Finally, the [`ClusterPodConvention`](./reference/cluster-pod-convention.md) adds the convention to the cluster to make it available for the Convention Controller:
+    >**Note:** The `annotations` block is only needed if you use a self-signed certificate. Otherwise, check the [cert-manager documentation](https://cert-manager.io/docs/).
 
     ```yaml
     ...
@@ -495,8 +496,6 @@ The `server.yaml` defines the Kubernetes components that enable the convention s
             # path: "/" # default
             # port: 443 # default
     ```
-
-**_Optional_**: Only needed if self-signed certificate is used. Otherwise, check the cert-manager documentation.
 
 ## <a id=deploy-convention-server></a>Deploy a convention server
 
