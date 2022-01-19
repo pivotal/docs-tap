@@ -13,4 +13,3 @@ a web console for accessing the Kubernetes cluster, and other custom web applica
 - [Workshops](workshop-content/about.md)
 - [Runtime Environment](runtime-environment/about.md)
 - [Portal Rest API](portal-rest-api/about.md)
-- [Known Issues](troubleshooting/known-issues.md)
