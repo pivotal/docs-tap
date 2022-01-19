@@ -1,8 +1,4 @@
-<<<<<<< HEAD:scst-store/add_cyclonedx_to_store.md
-# Adding Data
-=======
 # Add data
->>>>>>> 3c0268d (Updated TOC to include CLI detailed docs and re-named files to reflect headers):scst-store/add_data.md
 
 This topic describes how to add Software Bill of Materials (SBoM) files to the database to understand your dependencies by querying.
 For instructions on querying, see [Query Data](../scst-store/query_data.md).
