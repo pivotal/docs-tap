@@ -104,7 +104,6 @@ To deploy your application, you must download an accelerator, upload it on your 
     tanzu apps workload create tanzu-java-web-app \
     --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
     --git-branch main \
-    --git-tag tap-beta4 \
     --type web \
     --label app.kubernetes.io/part-of=tanzu-java-web-app \
     --yes
@@ -127,6 +126,8 @@ To deploy your application, you must download an accelerator, upload it on your 
     ```
     tanzu apps workload get tanzu-java-web-app
     ```
+    
+    ![Tanzu-java-web-app default screen](images/getting-started-tap-gui-8.png)
 
 
 ### <a id="add your application to the gui catalog"></a>Add your application to  Tanzu Application Platform GUI Software Catalog
