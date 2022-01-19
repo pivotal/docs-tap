@@ -78,7 +78,7 @@ redirect_stderr=true
 
 The application must send any logging output to `stdout` or `stderr`, and the configuration snippet must direct log output to `/proc/1/fd/1` so that it is captured in the container log file.
 
-If you nmust restart or shutdown the application within the workshop interactive terminal, you can use the `supervisorctl` control script.
+If you must restart or shutdown the application within the workshop interactive terminal, you can use the `supervisorctl` control script.
 
 ## <a id="terminal-env"></a> Terminal user shell environment
 
