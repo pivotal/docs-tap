@@ -6,7 +6,7 @@ This example performs a source scan on a public repository. The source revision 
 
 The example policy is set to only consider `Critical` severity CVEs as violations, which returns 7 Critical Vulnerabilities.
 
-> **Note:** This example ScanPolicy is deliberately constructed to showcase the features available and should not be considered an acceptable base policy.
+>**Note:** This example ScanPolicy is deliberately constructed to showcase the features available and must not be considered an acceptable base policy.
 
 For this example, the scan (at the time of writing):
 
@@ -153,7 +153,7 @@ The following example performs an image scan on an image in a public registry. T
 
 The policy in this example is set to only consider `Critical` severity CVEs as a violation, which returns 21 Unknown Severity Vulnerability.
 
-> **Note:** This example ScanPolicy has been deliberately constructed to showcase the features available and should not be considered an acceptable base policy.
+> **Note:** This example ScanPolicy is deliberately constructed to showcase the features available and must not be considered an acceptable base policy.
 
 In this example, the scan does the following (currently):
 
