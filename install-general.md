@@ -62,7 +62,7 @@ The default hostname consists of `tap-gui` plus an `IngressDomain` of your choic
           also cause this data to be rebuilt from the Git location.
           This can cause issues when you manually register entities through the UI because
           they only exist in the database and are lost when that in-memory database gets rebuilt.
-    - For production use-cases, use a PostgreSQL database that exists outside the Tanzu Application Platform's packaging.
+    - For production use cases, use a PostgreSQL database that exists outside the Tanzu Application Platform's packaging.
           This stores all the catalog data persistently both from the Git locations and the GUI's manual entity registrations.
 
 
