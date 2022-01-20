@@ -1970,7 +1970,7 @@ To install Tanzu Application Platform GUI, see the following sections.
           This can cause issues when you manually register entities by using the UI because
           they only exist in the database and are lost when that in-memory database gets rebuilt.
     - For production use-cases, use a PostgreSQL database that exists outside the Tanzu Application Platform's packaging.
-          The PostgreSQL database stores all the catalog data persistently both from the Git locations and the GUI's manual entity registrations.
+          The PostgreSQL database stores all the catalog data persistently both from the Git locations and the GUI's manual entity registrations. For additional information, please refer to [Configuring the Tanzu Application Platform GUI database](/tap-gui/database.md)
 
 ### <a id='tap-gui-install-proc'></a> Procedure
 
