@@ -141,8 +141,7 @@ The added line is the `spec.system: tanzu-java-web-app` statement in the followi
 
     ![REGISTER button on the right side of the header](images/getting-started-tap-gui-5.png)
 
-3. **Register an existing component** prompts you to type a repository URL.
-    Type the link to the `catalog-info.yaml` file in the Git repository field and click **ANALYZE**.
+3. **Register an existing component** prompts you to type a repository URL. Type the link to the `catalog-info.yaml` file in the Git repository field, for example `https://github.com/USERNAME/PROJECTNAME/blob/main/catalog-info.yaml`. Then click **ANALYZE**.
 
     ![Select URL](images/getting-started-tap-gui-6.png)
 
