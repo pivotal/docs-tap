@@ -824,7 +824,7 @@ pipeline:
 
     If the source or image scan has a "Failed" phase, then the scan has failed compliance and the supply chain will not continue.  
 
-#### <a id="query-for-vuln"></a>**Query for vulnerabilities**
+#### <a id="query-for-vuln"></a> Query for vulnerabilities
 
 Scan reports are automatically saved to the [Supply Chain Security Tools - Store](install-components.html#install-scst-store), and can be queried for vulnerabilities and dependencies. For example, open-source software (OSS) or third party packages.
 
@@ -1357,7 +1357,7 @@ existing PostgreSQL database that exists in Azure.
     - `<WORKLOAD-NAME>` is the name of the application workload. For example, `pet-clinic`.
     - `<REFERENCE>` is a reference provided to the `Secret`. For example, `v1:Secret:external-azure-db-binding-compatible`.
 
-### <a id="diff-cluster-use-case"></a> **Use case 4: Binding an application to a service instance running on a different Kubernetes cluster (Experimental).**
+### <a id="diff-cluster-use-case"></a> Use case 4: Binding an application to a service instance running on a different Kubernetes cluster (Experimental).
 
 >**Note:** Use cases marked with Experimental are subject to change.
 
