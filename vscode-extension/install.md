@@ -6,12 +6,12 @@ This topic explains how to install the VMware Tanzu Developer Tools for Visual S
 
 Before installing the Tanzu Developer Tools IDE extension, you must have:
 
-- The Kubernetes command-line tool, [Kubernetes documentation](https://kubernetes.io/docs/tasks/tools/)
-- [Tilt](https://docs.tilt.dev/install.html) v0.23.2
-- The Tanzu CLI.
-  See [Install the Tanzu CLI](../install-general.md#cli-and-plugin).
+- The Kubernetes command-line tool.
+For more information, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/tools/).
+- [Tilt](https://docs.tilt.dev/install.html) v0.23.2 or later
+- The Tanzu CLI. See [Install the Tanzu CLI](../install-general.md#cli-and-plugin).
 - The Tanzu CLI apps plug-ins.
-  See [Install the Tanzu CLI plug-ins](../install-general.md#install-the-tanzu-cli-plugins).
+  See [Install the Tanzu CLI plug-ins](../install-general.md#install-the-tanzu-cli-plugins)
 - A cluster with Tanzu Application Platform, the default Supply Chain, and their dependencies. Download these from Tanzu Network. For installation instructions, see [Installing part I: Prerequisites, EULA, and CLI](../install-general.md).
 - [VSCode](https://code.visualstudio.com/download)
 
@@ -19,7 +19,7 @@ Before installing the Tanzu Developer Tools IDE extension, you must have:
 
 To install VMware Tanzu Developer Tools for Visual Studio Code:
 
-1. Download the extension from [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
+1. Download Tanzu Developer Tools for Visual Studio Code from [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
 1. Open VSCode. From the Command Palette (`cmd` + `shift` + `P`), run "Extensions: Install from VSIX...". Select the extension file, `tanzu-vscode-extension.vsix`.
 1. When you do not already have a Java Development Kit(JDK) installed, the Java extension pack prompts you to install one.
    Accept the dialog box to install the [Extension Pack for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack)
