@@ -95,7 +95,7 @@ The string that follows the header is a name that helps identify what produced t
 For log entries that display the raw SQL queries, the name is `MetadataStore/gorm`.
 
 #### Key/Value pairs
-Key/value pairs compose the rest of the log output. The tables below list each key and the meaning of their value.
+Key/value pairs compose the rest of the log output. The tables in the following sections list each key and the meaning of their values.
 
 ##### Common to all logs
 The following key/value pairs are common for all logs.
