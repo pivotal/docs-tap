@@ -54,7 +54,7 @@ In this section, you are going to:
 ### <a id="about-app-accs"></a>About application accelerators
 
 
-Application accelerators are templates that not only codify best practices, but also provide important configuration and structures ready and available for use. Developers can create applications and get started with feature development immediately. Admins can create custom application accelerators that reflect desired architectures and configurations, enabling developer use according to the best practices defined. The Application Accelerator plug-in of Tanzu Application Platform GUI assists both application developers and admins with creating and generating application accelerators. To create your own application accelerator, see [Create your accelerator](#creating-an-accelerator).
+Application accelerators are templates that not only codify best practices, but also provide important configuration and structures ready and available for use. Developers can create applications and get started with feature development immediately. Admins can create custom application accelerators that reflect desired architectures and configurations, enabling developer use according to the best practices defined. The Application Accelerator plug-in of Tanzu Application Platform GUI assists both application developers and admins with creating and generating application accelerators. To create your own application accelerator, see [Create your accelerator](#create-app-acc).
 
 
 ### <a id="deploy-your-app"></a>Deploy your application
@@ -126,7 +126,7 @@ To deploy your application, you must download an accelerator, upload it on your 
     ```
     tanzu apps workload get tanzu-java-web-app
     ```
-    
+
     ![Tanzu-java-web-app default screen](images/getting-started-tap-gui-8.png)
 
 
@@ -312,7 +312,7 @@ tanzu accelerator update <accelerator-name> --reconcile
 ```
 ---
 
-## <a id='add-test-and-scan'></a> Section 3: Add Testing and Security Scanning to Your Application
+## <a id="add-test-and-scan"></a> Section 3: Add Testing and Security Scanning to Your Application
 
 In this section, you are going to:
 - Learn about supply chains
@@ -925,7 +925,7 @@ to reference historical scan results, and provides querying capability to suppor
 
 To try the scan and store features as individual one-off scans, see [Scan samples](scst-scan/samples/overview.md).
 
-To try the scan and store features in a supply chain, see [Section 3: Add testing and security scanning to your application](#add-testing-and-scanning).
+To try the scan and store features in a supply chain, see [Section 3: Add testing and security scanning to your application](#add-test-and-scan).
 
 After completing scans, query the [Supply Chain Security Tools - Store](scst-store/overview.md) to view your vulnerability results.
 It is a Tanzu component that stores image, package, and vulnerability metadata about your dependencies.
@@ -972,19 +972,19 @@ The use cases vary according to where the service instance is located. The use c
   <th><strong>See:</strong></th>
   <tr>
     <td>in the same namespace</td>
-    <td><a href="#services-journey-use-case-1">Use case 1</a></td>
+    <td><a href="#same-namespace-use-case">Use case 1</a></td>
   </tr>
   <tr>
     <td>in different namespace on the same Kubernetes cluster</td>
-    <td><a href="#services-journey-use-case-2">Use case 2</a></td>
+    <td><a href="#diff-namespace-use-case">Use case 2</a></td>
   </tr>
   <tr>
     <td>outside Kubernetes, for example, on an external Azure database</td>
-    <td><a href="#services-journey-use-case-3">Use case 3</a></td>
+    <td><a href="#outside-k8s-use-case">Use case 3</a></td>
   </tr>
   <tr>
     <td>on a different Kubernetes cluster</td>
-    <td><a href="#services-journey-use-case-4">Use case 4</a></td>
+    <td><a href="#diff-cluster-use-case">Use case 4</a></td>
   </tr>
 </table>
 
@@ -1008,17 +1008,14 @@ as part of the development life cycle.
 
 Before exploring the cases, you must first install a service and a few supporting resources
 so Application Teams can discover, provision, and bind to services in Tanzu Application Platform.
-The [setup procedure](#consuming-services-setup)  is typically performed by the Service Operator.
+The [setup procedure](#con-serv-setup)  is typically performed by the Service Operator.
 
 >**Note:** Services Toolkit and Tanzu Application Platform use the [Service Binding Specification](https://github.com/servicebinding/spec) for Kubernetes.
 
 >**Note:** Any service that adheres to the [Provisioned Service](https://github.com/servicebinding/spec#provisioned-service) part of the specification is compatible with Tanzu Application Platform.
 
-<!-- * [Use Case 1 - **Binding an App Workload to a Service Resource**](#services-journey-use-case-1)
-* [Use Case 2 - **Binding an App Workload to a Service Resource across multiple clusters**](#services-journey-use-case-2)
-* [Use Case 3 - **Binding an App Workload directly to a Secret (support for external services)**](#services-journey-use-case-3) -->
 
-### <a id='con-serv-setup'></a> Set up
+### <a id="con-serv-setup"></a> Set up
 
 Follow these steps to install RabbitMQ Operator, create the necessary role-based access control (RBAC),
 and create a Services Toolkit resource called `ClusterResource` for RabbitmqCluster.
@@ -1131,7 +1128,7 @@ ClusterResource to reference and describe it.
     [Service Offering for VMware Tanzu](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-service_offering-terminology_and_apis.html).
 
 
-### <a id='same-namespace-use-case'></a> Use case 1: Binding an application to a pre-provisioned service instance running in the same namespace
+### <a id="same-namespace-use-case"></a> Use case 1: Binding an application to a pre-provisioned service instance running in the same namespace
 
 >**Note:** The following examples implement a RabbitMQ service instance and a single sample application which acts as both a producer and consumer of messages. For most real world scenarios using RabbitMQ it's likely that there are multiple applications deployed and communicating through the RabbitMQ service. Currently it is not possible for more than one application workload to consume the same service instance. See [Known issues](release-notes.md#1-0) for further information.
 
@@ -1202,11 +1199,11 @@ RabbitMQ instance:
 6. Visit the URL and confirm the app is working by refreshing the page and checking
 the new message IDs.
 
-### <a id='diff-namespace-use-case'></a> Use case 2 - Binding an application to a pre-provisioned service instance running in a different namespace on the same Kubernetes cluster
+### <a id="diff-namespace-use-case"></a> Use case 2 - Binding an application to a pre-provisioned service instance running in a different namespace on the same Kubernetes cluster
 
 >**Note:** Consumption of a single service instance by multiple workloads from different namespaces is currently not supported, but is intended to be supported in the near future.
 
-[Use case 1](#services-journey-use-case-1) introduces binding a sample application workload to a service
+[Use case 1](#same-namespace-use-case) introduces binding a sample application workload to a service
 instance that is running in the same namespace.
 Use case 2 describes binding a sample application workload to a service instance that is running in a different
 namespace. This is a common scenario as it separates concerns
@@ -1301,7 +1298,7 @@ checking the new message IDs.
 
 >**Note:** It can take a few moments for the app workload to finish updating.
 
-### <a id='outside-k8s-use-case'></a> Use case 3 - Binding an application to a service running outside Kubernetes
+### <a id="outside-k8s-use-case"></a> Use case 3 - Binding an application to a service running outside Kubernetes
 
 This use case leverages direct references to Kubernetes `Secret` resources to enable developers to connect their application workloads to almost
 any backing service, including backing services that:
@@ -1342,7 +1339,7 @@ existing PostgreSQL database that exists in Azure.
     ```
     >**Note:** The `Secret` can be defined in a different namespace than the Workload
     >and claimed cross namespace by using `ResourceClaimPolicy` resources.
-    >For more information, see [Use case 2](#services-journey-use-case-2).
+    >For more information, see [Use case 2](#diff-namespace-use-case).
 
 3. Create your application workload by running:
 
@@ -1361,7 +1358,7 @@ existing PostgreSQL database that exists in Azure.
 
 >**Note:** Use cases marked with Experimental are subject to change.
 
-This use case is similar to [use case 1](#services-journey-use-case-1),
+This use case is similar to [use case 1](#same-namespace-use-case),
 but rather than installing and running the RabbitMQ Cluster Kubernetes Operator on the same cluster
 as Tanzu Application Platform, we install and run it on an entirely separate dedicated services cluster.
 There are several reasons why we want to implement this use case:
@@ -1390,9 +1387,9 @@ For more information about network requirements and recommended topologies, see 
 
 >**Important:** Ensure you have completed the previous use cases prior to continuing with use case 4.
 
-Ensure you have met the following prerequisites before starting the [procedures of use case 4](#steps-use-case-4).
+Ensure you have met the following prerequisites before starting the [procedures of use case 4](#diff-clust-use-case-steps).
 
-1. Uninstall the RabbitMQ Cluster Operator that was installed in [consuming services setup procedures](#consuming-services-setup).
+1. Uninstall the RabbitMQ Cluster Operator that was installed in [consuming services setup procedures](#con-serv-setup).
 
     ```
     kapp delete -a rmq-operator -y
@@ -1429,7 +1426,7 @@ cluster.
     The RabbitMQ Cluster Kubernetes Operatorr is not installed on this cluster.
     - **Services Cluster**, which is where only Services Toolkit is installed. No other component is installed in this cluster.
 
-#### <a id='diff-clust-use-case-steps'></a> Steps
+#### <a id="diff-clust-use-case-steps"></a> Steps
 
 Follow these steps to bind an application to a service instance running on a different Kubernetes cluster:
 
@@ -1470,7 +1467,7 @@ Follow these steps to bind an application to a service instance running on a dif
     - Replication applies to core Kubernetes resources, such as
     Secrets.
 
-4. Create a corresponding namespace in the Service cluster. In [use case 2](#services-journey-use-case-2),
+4. Create a corresponding namespace in the Service cluster. In [use case 2](#diff-namespace-use-case),
 you created a namespace named `service-instances`, now create a namespace with the same name on the Service cluster.
 
     For example:
@@ -1554,7 +1551,7 @@ Workload Cluster by running:
     ```
 
     Finally, the app developer takes over. The experience is the same for
-    the application developer as in [use case 1](#services-journey-use-case-1).
+    the application developer as in [use case 1](#same-namespace-use-case).
 
 12. Create the application workload by running:
 
