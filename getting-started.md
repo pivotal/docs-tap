@@ -132,10 +132,8 @@ To deploy your application, you must download an accelerator, upload it on your 
 
 ### <a id="add-app-to-gui-cat"></a>Add your application to Tanzu Application Platform GUI Software Catalog
 
-To see this application in your organization catalog, you must register new entities as described in the following section:
-
-    >**Note:** Add a line to the `catalog-info.yaml` of the `tanzu-java-web-app` component.
-    The added line is the `spec.system: tanzu-java-web-app` statement in the following example:
+>**Note:** Add a line to the `catalog-info.yaml` of the `tanzu-java-web-app` component.
+The added line is the `spec.system: tanzu-java-web-app` statement in the following example:
 
 
 2. Navigate to the home page of Tanzu Application Platform GUI and click **Home**, located on the left-side navigation bar.
@@ -194,14 +192,14 @@ You can view output from Tanzu Application Platform and from Tilt indicating tha
     - You see "Live Update starting..." in the status bar at the bottom right.
     - Live update can take 1 to 3 minutes while the workload deploys and the Knative service becomes available.
 
-      >**Note:** Depending on the type of cluster you use, you might see an error similar to the following:
+    >**Note:** Depending on the type of cluster you use, you might see an error similar to the following:
 
-      >ERROR: Stop! cluster-name might be production.
-      >If you're sure you want to deploy there, add:
-      >allow_k8s_contexts('cluster-name')
-      >to your Tiltfile. Otherwise, switch k8scontexts and restart Tilt.
-
-      >Follow the instructions and add the line "allow_k8s_contexts('cluster-name')" to your `Tiltfile`.
+    >`ERROR: Stop! cluster-name might be production.
+    >If you're sure you want to deploy there, add:
+    >allow_k8s_contexts('cluster-name')
+    >to your Tiltfile. Otherwise, switch k8scontexts and restart Tilt.
+      `
+    >Follow the instructions and add the line `allow_k8s_contexts('cluster-name')` to your `Tiltfile`.
 
 3. When the Live Update status in the status bar is visible, resolve to "Live Update Started", navigate to `http://localhost:8080` in your browser, and view your running application.
 4. Enter to the IDE and make a change to the source code. For example, in `HelloController.java`, edit the string returned to say `Hello!` and save.
