@@ -2998,7 +2998,9 @@ that you plan to create the `Workload` in:
     For example, use `default` for the default namespace.
     - `REGISTRY-SERVER` is the URL of the registry. For Dockerhub, this must be
     `https://index.docker.io/v1/`. Specifically, it must have the leading `https://`, the `v1` path,
-    and the trailing `/`. For GCR, this is `gcr.io`. Based on the information used in [Installing part II: Profiles](install.md), you can use the same registry server as in `ootb_supply_chain_basic` - `registry` - `server`
+    and the trailing `/`. For GCR, this is `gcr.io`.
+    Based on the information used in [Installing part II: Profiles](install.md), you can use the
+    same registry server as in `ootb_supply_chain_basic` - `registry` - `server`.
 
     **Note:** If you observe the following issue with the above command:
 
