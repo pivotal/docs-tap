@@ -4,7 +4,7 @@ This topic covers configuring the Supply Chain Security Tools - Store to output 
 
 ## Log levels
 
-There are six log levels that the Supply Chain Security Tools - Store supports. 
+There are six log levels that the Supply Chain Security Tools - Store supports.
 
 | Level   | Description                                 |
 |---------|---------------------------------------------|
@@ -23,7 +23,7 @@ Currently, the application logs output at these levels:
 * Less - Outputs a single log line indicating the current log level the Metadata Store is configured to when the application starts.
 * Default - Outputs API endpoint access information.
 * Debug - Outputs API endpoint payload information, both for requests and responses.
-* Trace - Outputs verbose debug information about the actual SQL queries being made against the database.
+* Trace - Outputs verbose debug information about the actual SQL queries for the database.
 
 Other log levels do not output any additional log information and are present for future extensibility.
 
@@ -90,9 +90,9 @@ The log is broken down into three sections: The header, name, and key/value pair
 `I1122 20:30:21.869528       1 images.go:26]` is the logging header. The [Logging header formats](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-instrumentation/logging.md#logging-header-formats) section explains each part in more detail.
 
 #### Name
-The string that follows the header is a name that helps identify what produced the log line. For the case of the Store, the name always starts with `MetadataStore`.
+The string that follows the header is a name that helps identify what produced the log entry. For Stores, the name always starts with `MetadataStore`.
 
-For log lines that display the raw SQL queries being used, they will use the name `MetadataStore/gorm`.
+For log entries that display the raw SQL queries, the name is `MetadataStore/gorm`.
 
 #### Key/Value pairs
 Key/value pairs compose the rest of the log output. The tables below list each key and the meaning of their value.
@@ -104,12 +104,12 @@ The following key/value pairs are common for all logs.
 |----------|---------|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | msg      | string  | default   | A short description of the logged event.                                                                                                                           |
 | endpoint | string  | default   | The API endpoint the Metadata Store is attempting to handle the request. This also includes any query and path parameters passed in.                               |
-| hostname | string  | default   | The Kubernetes hostname of the pod handling the request. This helps identify the specific instance of the Store when multiple instances are deployed on a cluster. |
+| hostname | string  | default   | The Kubernetes hostname of the pod handling the request. This helps identify the specific instance of the Store when you deploy multiple instances on a cluster. |
 | function | string  | debug     | The function name that handles the request.                                                                                                                        |
-| method   | string  | default   | The HTTP verb used to access the endpoint. For example, "GET" or "POST."                                                                                           |
+| method   | string  | default   | The HTTP verb to access the endpoint. For example, "GET" or "POST."                                                                                           |
 | code     | integer | default   | The HTTP response code.                                                                                                                                            |
 | response | string  | default   | The HTTP response in human-readable format. For example, "OK", "Bad Request", or "Internal Server Error."                                                          |
-| error    | string  | all       | The error message. Only displayed in error log lines.                                                                                                              |
+| error    | string  | all       | The error message which is only available in error log entries.                                                                                                              |
 
 ##### Logging query and path parameter values
 
@@ -121,7 +121,7 @@ For example, the following log line:
 ```
 I1122 20:30:21.869791       1 images.go:34] MetadataStore "msg"="Request parameters" "endpoint"="/api/images?digest=sha256%3A20521f76ff3d27f436e03dc666cc97a511bbe71e8e8495f851d0f4bf57b0bab6" "hostname"="metadata-store-app-564f8995c8-r8d6n" "method"="GET" "digest"="sha256:20521f76ff3d27f436e03dc666cc97a511bbe71e8e8495f851d0f4bf57b0bab6" "id"=0
 ```
-contains the `digest` and `id` key, which represents the respective `digest` and `id` query parameters, as well as their values. 
+contains the `digest` and `id` key, which represents the respective `digest` and `id` query parameters, as well as their values.
 
 These key/value pairs show up in all subsequent log lines of the same call. For example:
 ```
@@ -143,19 +143,19 @@ Using `debug` log level, instead of `default`, to display this information was d
 
 ## SQL Query log output
 
-Some Store logs will display the SQL query commands being executed, such as when the log level is set to `trace` or during a failed SQL calls.
+Some Store logs display the executed SQL query commands when you set the log level to `trace` or a failed SQL call occurs.
 
-**NOTE**: Some information in these SQL Query trace logs may be sensitive, and the user may not want them exposed in production environment logs.
+>**Note:** Some information in these SQL Query trace logs might be sensitive, and the user might not want them exposed in production environment logs.
 
 ### Format
 When the Store display SQL query logs, it uses the following format:
 ```
 I0111 20:14:30.816833       1 connection.go:40] MetadataStore/gorm "msg"="Sql Call" "hostname"="metadata-store-app-56799fc4f9-phlv7" "rows"=1 "sql"="SELECT count(*) FROM information_schema.tables WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'images' AND table_type = 'BASE TABLE'"
 ```
-It is similar to the [API endpoint log output](logs.md#api-endpoint-log-output) format, but also uses these key/value pairs:
+It is similar to the [API endpoint log output](logs.md#api-endpoint-log-output) format, but also uses the following key/value pairs:
 
 | Key   | Type    | Log Level | Description                                                                                                                                                                         |
 |-------|---------|-----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | rows  | integer | trace     | Indicates the number of rows affected by the SQL query                                                                                                                              |
-| sql   | string  | trace     | Displays the raw SQL query being executed against the database                                                                                                                      |
- | data# | string  | all       | These are used in error log lines. `#` is replaced by an integer, as multiple of these keys can show up in the same log line. These contain extra information related to the error. |
+| sql   | string  | trace     | Displays the raw SQL query for the database                                                                                                                      |
+ | data# | string  | all       | Used in error log entries. You can replace `#` with an integer, because multiple of these keys can show up in the same log entry. These keys contain extra information related to the error. |
