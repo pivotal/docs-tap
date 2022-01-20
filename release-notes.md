@@ -2,6 +2,22 @@
 
 This topic contains release notes for Tanzu Application Platform v1.0.
 
+## <a id='1-0'></a> v1.0.0
+
+**Release Date**: February 8, 2022
+
+### Features
+
+This release has the following new features:
+
+### Known issues
+
+This release has the following issues:
+
+### Breaking changes
+
+This release has the following breaking change:
+
 ## <a id='1-0'></a> v1.0
 
 **Release Date**: January 11, 2022
