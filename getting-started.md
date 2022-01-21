@@ -136,21 +136,24 @@ To deploy your application, you must download an accelerator, upload it on your 
 The added line is the `spec.system: tanzu-java-web-app` statement in the following example:
 
 
-2. Navigate to the home page of Tanzu Application Platform GUI and click **Home**, located on the left-side navigation bar.
+1. Navigate to the home page of Tanzu Application Platform GUI and click **Home**, located on the left-side navigation bar.
    Click **REGISTER ENTITY**.
 
     ![REGISTER button on the right side of the header](images/getting-started-tap-gui-5.png)
 
-3. **Register an existing component** prompts you to type a repository URL.
-    Type the link to the `catalog-info.yaml` file in the Git repository field and click **ANALYZE**.
+1. **Register an existing component** prompts you to type a repository URL.
+Type the link to the `catalog-info.yaml` file in the Git repository field, for example,
+`https://github.com/USERNAME/PROJECTNAME/blob/main/catalog-info.yaml`.
+
+1. Click **ANALYZE**.
 
     ![Select URL](images/getting-started-tap-gui-6.png)
 
-4. Review the catalog entities to be added and click **IMPORT**.
+1. Review the catalog entities to be added and click **IMPORT**.
 
     ![Review the entities to be added to the catalog](images/getting-started-tap-gui-7.png)
 
-5. Navigate back to the home page. The catalog changes and entries are visible for further inspection.
+1. Navigate back to the home page. The catalog changes and entries are visible for further inspection.
 
 ### <a id="iterate"></a>Iterate on your application
 
