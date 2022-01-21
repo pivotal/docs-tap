@@ -1,7 +1,7 @@
 # Log configuration and usage
 
 This topic covers configuring the Supply Chain Security Tools - Store to output detailed log
-information and interpret them.
+information and interpret them. re-boot
 
 ## Log levels
 
@@ -202,4 +202,4 @@ following key-value pairs:
 |-------|---------|-----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | rows  | integer | trace     | Indicates the number of rows affected by the SQL query                                                                                                                              |
 | sql   | string  | trace     | Displays the raw SQL query for the database                                                                                                                      |
-| data# | string  | all       | Used in error log entries. You can replace `#` with an integer, because multiple of these keys can show up in the same log entry. These keys contain extra information related to the error. |
+| data# | string  | all       | Used in error log entries. You can replace `#` with an integer, because multiples of these keys can show up in the same log entry. These keys contain extra information related to the error. |
