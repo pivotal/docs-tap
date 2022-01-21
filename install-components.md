@@ -220,8 +220,9 @@ If you do not want to use a profile, install them manually.
         kubectl apply -f contour-rbac.yml
         ```
 
-    3. Create a `contour-install.yml` using the samplebelow and apply the config.
-       > **NOTE:** The below config will install contour package with default options. If you want to make changes to the default installation settings, go to step
+    3. Create a `contour-install.yml` using the sample below and apply the configuration.
+       The following configuration installs the contour package with default options.
+       If you want to make changes to the default installation settings, go to the next step.
 
         ```yaml
         apiVersion: packaging.carvel.dev/v1alpha1
