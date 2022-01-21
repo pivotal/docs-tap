@@ -25,7 +25,7 @@ See [Installing part I: Prerequisites, EULA, and CLI](install-general.md) and [I
   - **Set the default kubeconfig context to the target Kubernetes cluster**<br>
 
   - **Installed Out of The Box (OOTB) Supply Chain Basic**<br>
-See [Install Out of The Box Supply Chain Basic](install-components.md#install-ootb-supply-chain-basic).
+See [Install Out of The Box Supply Chain Basic](install-components.md#install-ootb-sc-basic).
 
   - **Set up a developer namespace to accommodate the developer Workload**<br>
 See [Set up developer namespaces to use installed packages](install-components.md#setup).
