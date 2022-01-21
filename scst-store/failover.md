@@ -1,4 +1,4 @@
-# Failover, Redundancy, and Backups
+# Failover, redundancy, and backups
 
 ### API Server
 
@@ -16,5 +16,5 @@ Although the field `db_replicas` exists and is configurable by the user in the `
 For production please use AWS RDS. See instructions [here](use_aws_rds.md).
 
 Initial investigation has been done to use `Velero` as the backup method for the default database that comes with the deployment.
-Read more about using `Velero` as back up [here](???).
+Read more about using `Velero` as back up [here](backups.md).
 
