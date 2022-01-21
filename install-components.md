@@ -12,18 +12,18 @@ For information, see [Installing part I: Prerequisites, EULA, and CLI](install-g
 
 + [Install cert-manager, Contour, and FluxCD source controller](#install-prereqs)
 + [Install Cloud Native Runtimes](#install-cnr)
-+ [Install Convention Service](#install-convention-service)
-+ [Install Source Controller](#install-source-controller)
-+ [Install Application Accelerator](#install-app-accelerator)
++ [Install Convention Service](#install-con-serv)
++ [Install Source Controller](#install-src-ctrl)
++ [Install Application Accelerator](#install-app-acc)
 + [Install Tanzu Build Service](#install-tbs)
 + [Install Supply Chain Choreographer](#install-scc)
-+ [Install Out of the Delivery Basic](#install-ootb-delivery-basic)
++ [Install Out of the Box Delivery Basic](#install-ootb-del-basic)
 + [Install Out of the Box Templates](#install-ootb-templates)
-+ [Install Out of The Box Supply Chain Basic](#install-ootb-supply-chain-basic)
-+ [Install Out of The Box Supply Chain with Testing](#install-ootb-supply-chain-testing)
-+ [Install Out of The Box Supply Chain with Testing and Scanning](#install-ootb-supply-chain-testing-scanning)
-+ [Install Developer Conventions](#install-developer-conventions)
-+ [Install Spring Boot Conventions](#install-spring-boot-convention)
++ [Install Out of The Box Supply Chain Basic](#install-ootb-sc-basic)
++ [Install Out of The Box Supply Chain with Testing](#inst-ootb-sc-testing)
++ [Install Out of The Box Supply Chain with Testing and Scanning](#inst-ootb-sc-test-scan)
++ [Install Developer Conventions](#inst-dev-convs)
++ [Install Spring Boot Conventions](#install-spring-boot-conv)
 + [Install Application Live View](#install-app-live-view)
 + [Install Tanzu Application Platform GUI](#install-tap-gui)
 + [Install Learning Center for Tanzu Application Platform](#install-learning-center)
@@ -639,7 +639,7 @@ To learn more about using Cloud Native Runtimes,
 see [Verify your Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-verify-installation.html)
 in the Cloud Native Runtimes documentation.
 
-## <a id='install-convention-service'></a> Install Convention Service
+## <a id='install-con-serv'></a> Install Convention Service
 
 Convention Service allows app operators to enrich Pod Template Specs with operational knowledge
 based on specific conventions they define.
@@ -749,7 +749,7 @@ To install Convention Controller:
     Verify that `STATUS` is `Running`
 
 
-## <a id='install-source-controller'></a> Install Source Controller
+## <a id='install-src-ctrl'></a> Install Source Controller
 
 Use the following procedure to install Source Controller.
 
@@ -844,7 +844,7 @@ To install Source Controller:
 
     Verify that `STATUS` is `Running`
 
-## <a id='install-app-accelerator'></a> Install Application Accelerator
+## <a id='install-app-acc'></a> Install Application Accelerator
 
 When you install the Application Accelerator,
 you can configure the following optional properties:
@@ -875,7 +875,7 @@ Before you install Application Accelerator, you must have:
 See [Install cert-manager and FluxCD source controller](#install-prereqs).
 
 -  Source Controller installed on the cluster.
-See [Install Source Controller](#install-source-controller).
+See [Install Source Controller](#install-src-ctrl).
 
 ### <a id='app-acc-procedure'></a> Procedure
 
@@ -1161,18 +1161,18 @@ to a component that knows how to deploy the image.
     ```
 
 
-## <a id='install-ootb-delivery-basic'></a> Install Out of the Box Delivery Basic
+## <a id='install-ootb-del-basic'></a> Install Out of the Box Delivery Basic
 
 The Out of the Box Delivery Basic package is used by all the Out of the Box Supply Chains
 to deliver the objects that have been produced by them to a Kubernetes environment.
 
 
-### Prerequisites
+### <a id='ootb-del-basic-prereqs'></a> Prerequisites
 
 - Cartographer
 
 
-### Install
+### <a id='inst-ootb-del-basic-proc'></a> Install
 
 To install Out of the Box Delivery Basic:
 
@@ -1238,13 +1238,13 @@ the objects that drive source code all the way to a deployed application in a
 cluster.
 
 
-### Prerequisites
+### <a id='ootb-template-prereqs'></a> Prerequisites
 
 - Tekton
 - Cartographer
 
 
-### Install
+### <a id='inst-ootb-templ-proc'></a> Install
 
 As this package has no extra configurations to be provided, all it takes to
 install it is the following command:
@@ -1270,19 +1270,19 @@ tanzu package install ootb-templates \
 ```
 
 
-## <a id='install-ootb-supply-chain-basic'></a> Install Out of The Box Supply Chain Basic
+## <a id='install-ootb-sc-basic'></a> Install Out of The Box Supply Chain Basic
 
 The Out of the Box Supply Chain Basic package provides the most basic
 ClusterSupplyChain that brings an application from source code to a deployed
 instance of it running in a Kubernetes environment.
 
 
-### Prerequisite
+### <a id='ootb-sc-basic-prereqs'></a> Prerequisite
 
 Cartographer
 
 
-### Install
+### <a id='inst-ootb-sc-basic-proc'></a> Install
 
 1. Familiarize yourself with the set of values of the package that can be
    configured by running:
@@ -1384,7 +1384,7 @@ Cartographer
      Added installed package 'ootb-supply-chain-basic' in namespace 'tap-install'
     ```
 
-## <a id='install-ootb-supply-chain-testing'></a> Install Out of The Box Supply Chain with Testing
+## <a id='inst-ootb-sc-testing'></a> Install Out of The Box Supply Chain with Testing
 
 The Out of the Box Supply Chain with Testing package provides a
 ClusterSupplyChain that brings an application from source code to a deployed
@@ -1393,7 +1393,7 @@ tests in the form of Tekton/Pipeline objects to validate the source code before
 building container images.
 
 
-### Prerequisites
+### <a id='ootb-sc-test-prereqs'></a> Prerequisites
 
 You must have installed:
 
@@ -1402,7 +1402,7 @@ You must have installed:
 - Out of The Box Templates (`ootb-templates.tanzu.vmware.com`)
 
 
-### Install
+### <a id='inst-ootb-sc-test-proc'></a> Install
 
 Install by following these steps:
 
@@ -1542,7 +1542,7 @@ Install by following these steps:
     ```
 
 
-## <a id='install-ootb-supply-chain-testing-scanning'></a> Install Out of The Box Supply Chain with Testing and Scanning
+## <a id='inst-ootb-sc-test-scan'></a> Install Out of The Box Supply Chain with Testing and Scanning
 
 The Out of the Box Supply Chain with Testing and Scanning package provides a
 ClusterSupplyChain that brings an application from source code to a deployed
@@ -1551,14 +1551,14 @@ only in terms of running application tests, but also scanning the source code
 and image for vulnerabilities.
 
 
-### Prerequisites
+### <a id='ootb-sc-test-scan-prereqs'></a> Prerequisites
 
 - Cartographer
 - Out of The Box Delivery Basic (`ootb-delivery-basic.tanzu.vmware.com`)
 - Out of The Box Templates (`ootb-templates.tanzu.vmware.com`)
 
 
-### Install
+### <a id='ins-ootb-sc-test-scan-pro'></a> Install
 
 1. Ensure you do not have Out of The Box Supply Chain With Testing
 (`ootb-supply-chain-testing.tanzu.vmware.com`) installed:
@@ -1703,12 +1703,12 @@ and image for vulnerabilities.
     ```
 
 
-## <a id='install-developer-conventions'></a> Install Developer Conventions
+## <a id='inst-dev-convs'></a> Install Developer Conventions
 
 To install Developer Conventions:
 
 1. Ensure Convention Service is installed on the cluster. For more information, see the earlier
-[Install Convention Service](#install-convention-service) section.
+[Install Convention Service](#install-con-serv) section.
 
 1. Get the exact name and version information for the Developer Conventions package to be installed
 by running:
@@ -1757,7 +1757,7 @@ by running:
     Verify that `STATUS` is `Reconcile succeeded`
 
 
-## <a id='install-spring-boot-convention'></a> Install Spring Boot Conventions
+## <a id='install-spring-boot-conv'></a> Install Spring Boot Conventions
 
 To install Spring Boot conventions:
 
@@ -2898,8 +2898,8 @@ To install Tekton:
    image pull secrets.  Without these credentials, PipelineRuns fail with a
    timeout and the pods report that they cannot pull images.
 
-   Create an image pull secret in the current namespace and fill it from [the
-   `tap-registry` secret](#add-package-repositories).  Run the following
+   Create an image pull secret in the current namespace and fill it from
+   [the `tap-registry` secret](install.md#add-package-repositories).  Run the following
    commands to create an empty secret and annotate it as a target of the
    secretgen controller:
 
