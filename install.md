@@ -336,13 +336,13 @@ The following table lists the packages contained in each profile:
 <sup>\*</sup> Only one supply chain should be installed at any given time.
 For information on switching from one supply chain to another, see [Getting Started with Tanzu Application Platform](getting-started.md).
 
-## <a id='install-profile'></a> Install a Tanzu Application Platform profile
+## <a id='prepare-install-profile'></a> Prepare to install your Tanzu Application Platform profile
 
-Install a profile by using the `tap.tanzu.vmware.com` package.
+You can install a profile by using the `tap.tanzu.vmware.com` package.
 The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile
 setting.
 
-To install a profile:
+To prepare to install a profile:
 
 1. List version information for the package by running:
 
@@ -604,6 +604,8 @@ registry.server           index.docker.io            string  Name of the registr
 
 service_account           default                    string  Name of the service account in the namespace where the Workload is submitted to utilize for providing registry credentials to Tanzu Build Service (TBS) Image objects as well as deploying the application.
 ```  
+
+## <a id="install-package"></a>Install your Tanzu Application Platform package
 
 1. Install the package by running:
 

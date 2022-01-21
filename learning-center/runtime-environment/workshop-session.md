@@ -186,7 +186,7 @@ service account that the workshop instance runs as exists.
 access to the namespace created for that workshop instance.
 - `ingress_domain` is the host domain under which host names can be created when creating ingress
 routes.
-- `ingress_protocol` is the protocol (http/https) used for ingress routes created for workshops.
+- `ingress_protocol` is the protocol (http/https)   used for ingress routes created for workshops.
 
 The syntax for referencing one of the parameters is `$(parameter_name)`.
 
