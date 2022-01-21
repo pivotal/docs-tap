@@ -180,7 +180,7 @@ If you do not want to use a profile, install them manually.
           contour.tanzu.vmware.com  1.18.2+tap.1  2021-10-05T00:00:00Z
         ```
 
-    2. Create a `contour-rbac.yml` using the below sample and Apply the config.
+    2. Create a `contour-rbac.yml` using the below sample and apply the configuration.
         ```yaml
         apiVersion: rbac.authorization.k8s.io/v1
         kind: ClusterRole
@@ -214,13 +214,13 @@ If you do not want to use a profile, install them manually.
           namespace: tap-install
         ```
 
-        For example:
+    3. Apply the configuration by running:
 
         ```
         kubectl apply -f contour-rbac.yml
         ```
 
-    3. Create a `contour-install.yml` using the sample below and apply the configuration.
+    4. Create a `contour-install.yml` using the sample below and apply the configuration.
        The following configuration installs the contour package with default options.
        If you want to make changes to the default installation settings, go to the next step.
 
@@ -238,10 +238,9 @@ If you do not want to use a profile, install them manually.
               constraints: "VERSION-NUMBER"
               prereleases: {}
         ```
-        Where
-        - `VERSION-NUMBER` is the version of the package listed in step 1.
+        Where `VERSION-NUMBER` is the version of the package listed in step 1.
 
-    4. (Optional) Make changes to the default installation settings:
+    5. (Optional) Make changes to the default installation settings:
 
         1. Gather values schema by running:
 
@@ -251,7 +250,7 @@ If you do not want to use a profile, install them manually.
 
             For example:
 
-            ```
+            ```console
             $ tanzu package available get contour.tanzu.vmware.com/1.18.2+tap.1 --values-schema -n tap-install
             | Retrieving package details for contour.tanzu.vmware.com/1.18.2+tap.1...
               KEY                                  DEFAULT               TYPE     DESCRIPTION
@@ -291,9 +290,8 @@ If you do not want to use a profile, install them manually.
               namespace                            tanzu-system-ingress  string   The namespace in which to deploy Contour and Envoy.
             ```
 
-        2. Create a `contour-install.yaml` using the following sample as a guide:
-
-            Sample `contour-install.yaml` for installation in aws public cloud with `LoadBalancer` services:
+        2. Create a `contour-install.yaml` file using the following sample as a guide.
+           This sample is for installation in an AWS public cloud with `LoadBalancer` services:
 
             ```yaml
             apiVersion: packaging.carvel.dev/v1alpha1
@@ -325,30 +323,30 @@ If you do not want to use a profile, install them manually.
                 infrastructure_provider: aws
             ```
 
-            >**Note:** the LoadBalancer type is appropriate for most installations, but local clusters
-              such as `kind` or `minikube` can fail to complete the package install if LoadBalancer
-              services are not supported.
+            The LoadBalancer type is appropriate for most installations, but local clusters
+            such as `kind` or `minikube` can fail to complete the package install if LoadBalancer
+            services are not supported.
 
-            >**Note:** Contour provides an Ingress implementation by default. If you have another Ingress
+            Contour provides an Ingress implementation by default. If you have another Ingress
             implementation in your cluster, you must explicitly specify an
             [IngressClass](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class)
             to select a particular implementation.
 
-            >**Note:** [Cloud Native Runtimes](#install-cnr) programs Contour HTTPRoutes are based on the
+            [Cloud Native Runtimes](#install-cnr) programs Contour HTTPRoutes are based on the
             installed namespace. The default installation of CNR uses a single Contour to provide
             internet-visible services. You can install a second Contour instance with service type
-            `ClusterIP` if you want to expose some services to only the local cluster. The second instance
-            must be installed in a separate namespace. You must set the CNR value `ingress.internal.namespace` to
-            point to this namespace.
+            `ClusterIP` if you want to expose some services to only the local cluster.
+            The second instance must be installed in a separate namespace.
+            You must set the CNR value `ingress.internal.namespace` to point to this namespace.
 
-    5. Install the package by running:
+    6. Install the package by running:
 
         ```
         kubectl apply -f contour-install.yaml
         ```
 
 
-    6. Verify the package install by running:
+    7. Verify the package install by running:
 
         ```
         tanzu package installed get contour -n tap-install
@@ -369,7 +367,7 @@ If you do not want to use a profile, install them manually.
 
         Verify that `STATUS` is `Reconcile succeeded`
 
-    7. Verify the installation:
+    8. Verify the installation by running:
 
         ```
         kubectl get po -n tanzu-system-ingress
@@ -386,7 +384,7 @@ If you do not want to use a profile, install them manually.
         envoy-qlg8l                2/2     Running   2          18d
         ```
 
-        Ensure that all Pods are `Running` with all containers ready.
+        Ensure that all pods are `Running` with all containers ready.
 
 
 * **FluxCD source-controller**:
