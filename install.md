@@ -541,7 +541,7 @@ accelerator:
 
 ### <a id="ssh-secret-key"></a>Identify the SSH secret key for your package
 
-You can identify the SSH secrete keys for your Tanzu package by running:
+You can identify the SSH secret keys for your Tanzu package by running:
 
 ```
 tanzu package available get PACKAGE-NAME.tanzu.vmware.com/VERSION --values-schema -n tap-install
@@ -575,13 +575,13 @@ your `tap-values.yml`, as summarized in the following table:
 
 For information about package-specific configuration, see [Install components](install-components.md).
 
-For example, to identify the SSH secrete keys for Supply Chain Basic, you can run:
+For example, to identify the SSH secret keys for Supply Chain Basic, you can run:
 
 ```
 tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.5.1 --values-schema -n tap-install
 ```
 
-Expect to see the following outputs that list the all the SSH secrete keys and the descriptions applicable to the package:
+Expect to see the following outputs that list the all the SSH secret keys and the descriptions applicable to the package:
 
 ```
 KEY                       DEFAULT                    TYPE    DESCRIPTION
