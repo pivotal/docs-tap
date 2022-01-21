@@ -1,13 +1,13 @@
-# Workshop session resource
+# WorkshopSession resource
 
 The `WorkshopSession` custom resource defines a workshop session.
 
 ## <a id="specify-session-id"></a> Specifying the session identity
 
-When running training for multiple people, it is more typical to use the `TrainingPortal` custom
-resource to set up a training environment. Alternatively you set up a workshop environment using the
-`WorkshopEnvironment` custom resource, then create requests for workshop instances using the
-`WorkshopRequest` custom resource. If you are creating requests for workshop instances and you need
+When running training for multiple people, typically you'll use the `TrainingPortal` custom
+resource to set up a training environment. Alternatively, you can set up a workshop environment by using the
+`WorkshopEnvironment` custom resource, and then create requests for workshop instances by using the
+`WorkshopRequest` custom resource. If you're creating requests for workshop instances and you need
 more control over how the workshop instances are set up, you can use `WorkshopSession` custom
 resource instead of `WorkshopRequest`.
 
@@ -28,16 +28,15 @@ spec:
 ```
 
 The `name` of the workshop specified in the `metadata` of the training environment must be
-globally unique for the workshop instance being created. You must create a separate
+globally unique for the workshop instance you're creating. You must create a separate
 `WorkshopSession` custom resource for each workshop instance you want.
 
-The session ID must be unique within the workshop environment that the workshop instance is being
-created against.
+The session ID must be unique within the workshop environment that you're creating the workshop instance against.
 
 ## <a id="specify-login-creds"></a> Specifying the login credentials
 
-Access to each workshop instance can be controlled by using login credentials.
-This is so that a workshop attendee cannot interfere with another.
+You can control access to each workshop instance using login credentials.
+Then a workshop attendee cannot interfere with another.
 
 To set login credentials for a workshop instance, set the `session.username` and `session.password`
 fields. For example:
@@ -60,16 +59,14 @@ access it.
 
 ## <a id="specify-ingress-domain"></a> Specifying the ingress domain
 
-To be able to access the workshop instance using a public URL, you must specify an ingress domain.
+To be able to access the workshop instance by using a public URL, you must specify an ingress domain.
 If an ingress domain isn't specified, use the default ingress domain that the Learning Center Operator
 was configured with.
 
-When setting a custom domain, DNS must be configured with a wildcard domain to forward all
+When setting a custom domain, configure DNS with a wildcard domain to forward all
 requests for sub-domains of the custom domain to the ingress router of the Kubernetes cluster.
 
-To provide the ingress domain, you can set the `session.ingress.domain` field.
-
-For example:
+To provide the ingress domain, you can set the `session.ingress.domain` field. For example:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -87,15 +84,13 @@ spec:
 You can create a full host name for the session by prefixing the ingress domain with a host name
 constructed from the name of the workshop environment and the session ID.
 
-If overriding the domain, by default, the workshop session is exposed using a HTTP connection.
+If overriding the domain, by default, the workshop session is exposed by using a HTTP connection.
 If you require a secure HTTPS connection, you must have access to a wildcard SSL certificate for
 the domain.
 
-A secret of type `tls` must be created for the certificate in the `learningcenter` namespace or the
-namespace where Learning Center Operator is deployed. The name of that secret must then be set in
-the `session.ingress.secret` field.
-
-For example:
+You must create a secret of type `tls` for the certificate in the `learningcenter` namespace or in the
+namespace where Learning Center Operator is deployed.
+You must then set the name of that secret in the `session.ingress.secret` field. For example:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -111,9 +106,10 @@ spec:
       secret: training.learningcenter.tanzu.vmware.com-tls
 ```
 
-If HTTPS connections are being terminated using an external load balancer and not by specifying a
-secret for ingresses managed by the Kubernetes ingress controller, then routing traffic into the
-Kubernetes cluster as HTTP connections, you can override the ingress protocol without specifying an
+HTTPS connections can be terminated by using an external load balancer rather than by specifying a
+secret for ingresses managed by the Kubernetes ingress controller. Then,
+when routing traffic into the Kubernetes cluster as HTTP connections,
+you can override the ingress protocol without specifying an
 ingress secret by setting the `session.ingress.protocol` field.
 
 For example:
@@ -175,7 +171,7 @@ spec:
 Where `YOUR-GITHUB-URL-FOR-LAB-MARKDOWN-SAMPLE` is the Git repository URL for `lab-markdown-sample`. For example, `https://github.com/eduk8s/lab-markdown-sample`.
 
 Values of fields in the list of resource objects can reference a number of pre-defined parameters.
-The available parameters are:
+Available parameters are:
 
 - `session_id` is a unique ID for the workshop instance within the workshop environment.
 - `session_namespace` is the namespace created for and bound to the workshop instance.
@@ -190,8 +186,7 @@ service account that the workshop instance runs as exists.
 access to the namespace created for that workshop instance.
 - `ingress_domain` is the host domain under which host names can be created when creating ingress
 routes.
-- `ingress_protocol` is the protocol (http/https) that is used for ingress routes which are created
-for workshops.
+- `ingress_protocol` is the protocol (http/https) used for ingress routes created for workshops.
 
 The syntax for referencing one of the parameters is `$(parameter_name)`.
 
