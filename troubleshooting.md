@@ -2,6 +2,29 @@
 
 This topic describes troubleshooting information for problems with installing Tanzu Application Platform.
 
+## <a id=''></a> 
+
+### Symptom
+
+You get an error message that includes the following:
+
+```
+(message: Error (see .status.usefulErrorMessage for details))
+```
+
+### Cause
+
+A package fails to reconcile and you need to access the details in `.status.usefulErrorMessage`.
+
+### Solution
+
+To access the details in `.status.usefulErrorMessage`, run:
+
+`kubectl get PACKAGE-NAME grype -n tap-install -o yaml`
+
+Where:
+- `PACKAGE-NAME` is the package you want to target. 
+
 ## <a id='unauthorized-to-access'></a> Unauthorized to access error
 
 An authentication error when installing a package, reconciliation fails.
