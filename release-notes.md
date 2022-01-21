@@ -39,6 +39,11 @@ This release has the following issues:
 
 #### Developer Conventions
 
+**Debug Convention might not apply:** If you upgraded from Tanzu Application Platform v0.4 then the
+the debug convention might not apply to the app run image. This is because of the missing SBOM data
+in the image.
+To prevent this issue, delete existing app images that were built using Tanzu Application Platform
+v0.4.
 
 
 #### Grype scanner
