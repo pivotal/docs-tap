@@ -432,7 +432,7 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
     * Dockerhub has the form `repository: "my-dockerhub-user"`
     * Google Cloud Registry has the form `repository: "my-project/supply-chain"`
 - `SSH-SECRET-KEY` is the SSH secret key supported by the specific package.
-See [Identify the SSH secret key for your Tanzu package](#ssh-secret-key) for more information.
+See [Identify the SSH secret key for your package](#ssh-secret-key) for more information.
 - `DOMAIN-NAME` has a value such as `learningcenter.example.com`.
 - `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
 service's External IP address.
@@ -507,10 +507,11 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
     - Dockerhub has the form `repository: "my-dockerhub-user"`
     - Google Cloud Registry has the form `repository: "my-project/supply-chain"`
 - `SSH-SECRET-KEY` is the SSH secret key supported by the specific package.
-    See [Identify the SSH secret key for your Tanzu package](#ssh-secret-key) for more information.
+    See [Identify the SSH secret key for your package](#ssh-secret-key) for more information.
 - `INGRESS-DOMAIN` is the subdomain for the host name that you will point at the `tanzu-shared-ingress` service's External IP address.
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog you've already built and posted on the Git infrastructure you specified in the Integration section.
 
+### <a id="view-package-config-settings"></a>View possible configuration settings for your package
 
 To view possible configuration settings for a package, run:
 
@@ -538,7 +539,7 @@ accelerator:
     service_type: "ClusterIP"
 ```
 
-### <a id="ssh-secret-key"></a>Identify the SSH secret key for your Tanzu package
+### <a id="ssh-secret-key"></a>Identify the SSH secret key for your package
 
 You can identify the SSH secrete keys for your Tanzu package by running:
 
