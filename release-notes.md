@@ -6,11 +6,27 @@ This topic contains release notes for Tanzu Application Platform v1.0.
 
 **Release Date**: February 8, 2022
 
-### Features
+### <a id='1-1-breaking-changes'></a> Breaking changes
+
+This release has the following breaking changes:
+
+
+### <a id='1-1-security-issues'></a> Security issues
+
+This release has the following security issues:
+
+
+### <a id='1-1-features'></a> Features
 
 This release has the following new features:
 
-### Known issues
+
+### <a id='1-1-resolved-issues'></a> Resolved issues
+
+This release has the following fixes:
+
+
+### <a id='1-1-known-issues'></a> Known issues
 
 This release has the following issues:
 
@@ -338,7 +354,7 @@ The provisioner of `storageclass` is responsible for creating the persistent vol
         ```
         # This is the storageclass that Kind uses
         kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml
-          
+
         # set the storage class as default
         kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
         ```
@@ -390,7 +406,7 @@ value causes only one of the workloads to bind to the service instance and recon
 This limitation is planned to be relaxed in an upcoming release.
 * The `tanzu services` CLI plug-in is not compatible with Kubernetes clusters running on GKE.
 
-### Security issue
+### <a id='1-0-security-issues'></a> Security issue
 
 The installation specifies that the installer's Tanzu Network credentials be exported to all
 namespaces. Customers can choose to mitigate this concern using one of the following methods:
@@ -402,15 +418,15 @@ registry on their own infrastructure that can comply with any required security 
 exist.
 
 
-### Breaking changes
+### <a id='1-0-breaking-changes'></a> Breaking changes
 
 This release has the following breaking change:
 
 **Supply Chain Security Tools - Store:** Changed package name to `metadata-store.apps.tanzu.vmware.com`.
 
-### Issue fixes
+### <a id='1-0-resolved-issues'></a> Resolved issues
 
-This release has the following issue fixes:
+This release has the following fixes:
 
 #### Tanzu Dev Tools for VSCode
 
@@ -525,22 +541,22 @@ You see a message similar to the following in your `ReplicaSet` statuses:
 
       1. Back up the `MutatingWebhookConfiguration` to a file by running the following
         command:
-    
+
           ```
           kubectl get MutatingWebhookConfiguration image-policy-mutating-webhook-configuration -o yaml > image-policy-mutating-webhook-configuration.yaml
           ```
-    
+
       1. Delete the `MutatingWebhookConfiguration`:
-    
+
           ```
           kubectl delete MutatingWebhookConfiguration image-policy-mutating-webhook-configuration
           ```
-    
+
       1. Wait until all components are up and running in your cluster, including the
       `image-policy-controller-manager` pods (namespace `image-policy-system`).
-    
+
       1. Re-apply the `MutatingWebhookConfiguration`:
-    
+
           ```
           kubectl apply -f image-policy-mutating-webhook-configuration.yaml
           ```

@@ -56,7 +56,7 @@ To configure your installed component properly, see
 
 ## <a id="known-issues"></a> Known Issues
 
-See [Supply Chain Security Tools - Sign Known Issues](../release-notes.md#scst-sign).
+See [Supply Chain Security Tools - Sign Known Issues](../release-notes.md).
 
 ## <a id="release-notes"></a> Release Notes
 
