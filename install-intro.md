@@ -2,7 +2,7 @@
 
 This document provides an overview to installing Tanzu Application Platform.
 
-## Installation process
+## <a id='install-process'></a>Installation process
 
 The process of installing Tanzu Application Platform includes the following tasks:
 
@@ -16,4 +16,3 @@ The process of installing Tanzu Application Platform includes the following task
 |6.| Install the profile to the cluster. |[Install your Tanzu Application Platform package](install.md#install-package)|
 |7.| (Optional) Install any additional packages that were not included in the profile. |[Installing Individual Packages](install-components.md)|
 |8.| Install developer tools into your integrated development environment (IDE). | [Installing Tanzu Developer Tools for VSCode](vscode-extension/install.md)
- 
