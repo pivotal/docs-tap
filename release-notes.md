@@ -6,17 +6,22 @@ This topic contains release notes for Tanzu Application Platform v1.
 
 **Release Date**: MMMM DD, 2022
 
-### Breaking changes
+### <a id='1-1-breaking-changes'></a> Breaking changes
 
 This release has the following breaking changes:
 
 
-### Security issues
+### <a id='1-1-security-issues'></a> Security issues
 
 This release has the following security issues:
 
 
-### Known issues
+### <a id='1-1-resolved-issues'></a> Resolved issues
+
+This release has the following fixes:
+
+
+### <a id='1-1-known-issues'></a> Known issues
 
 This release has the following issues:
 
@@ -450,7 +455,7 @@ value causes only one of the workloads to bind to the service instance and recon
 This limitation is planned to be relaxed in an upcoming release.
 * The `tanzu services` CLI plug-in is not compatible with Kubernetes clusters running on GKE.
 
-### Security issue
+### <a id='1-0-security-issues'></a> Security issue
 
 The installation specifies that the installer's Tanzu Network credentials be exported to all
 namespaces. Customers can choose to mitigate this concern using one of the following methods:
@@ -462,15 +467,15 @@ registry on their own infrastructure that can comply with any required security 
 exist.
 
 
-### Breaking changes
+### <a id='1-0-breaking-changes'></a> Breaking changes
 
 This release has the following breaking change:
 
 **Supply Chain Security Tools - Store:** Changed package name to `metadata-store.apps.tanzu.vmware.com`.
 
-### Issue fixes
+### <a id='1-0-resolved-issues'></a> Resolved issues
 
-This release has the following issue fixes:
+This release has the following fixes:
 
 #### Tanzu Dev Tools for VSCode
 
