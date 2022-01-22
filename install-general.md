@@ -93,7 +93,7 @@ Installation requires:
     * 12 GB of RAM is available to build and deploy applications, including Minikube. VMware recommends 16 GB of RAM for an optimal experience.
     * 70 GB of disk space available per node
 
-* For the [`complete` profile](install.html#about-tanzu-application-platform-package-profiles-1), or
+* For the [`full` profile](install.html#full-profile), or
     use of Security Chain Security Tools - Store, your cluster must have a configured default StorageClass.
 
 * [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/)

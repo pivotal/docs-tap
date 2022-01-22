@@ -360,7 +360,7 @@ of Tanzu Application Platform.
 
 >**Important:** Keep this file for future use.
 
-### Full Profile
+### <a id='full-profile'></a> Full Profile
 
 ```
 profile: full
@@ -442,7 +442,7 @@ service's External IP address.
 >`buildservice.enable_automatic_dependency_updates: false` can be used to pause the automatic update
 >of Build Service dependencies.
 
-### Light Profile
+### <a id='light-profile'></a> Light Profile
 
 ```
 profile: light
@@ -507,6 +507,7 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
 - `INGRESS-DOMAIN` is the subdomain for the host name that you will point at the `tanzu-shared-ingress` service's External IP address.
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog you've already built and posted on the Git infrastructure you specified in the Integration section.
 
+### <a id="view-pkge-config-settings"></a>View possible configuration settings for your package
 
 To view possible configuration settings for a package, run:
 
