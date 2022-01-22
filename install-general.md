@@ -12,7 +12,7 @@ This document describes the first part of the installation process for Tanzu App
 
 The following are required to install Tanzu Application Platform:
 
-### Tanzu Network and container image registry requirements
+### <a id='tn-and-cont-img-reg-reqs'></a>Tanzu Network and container image registry requirements
 
 Installation requires:
 
@@ -36,7 +36,8 @@ Tanzu Application Platform GUI currently does not support Safari browser.
 
 * After your installation is complete, you must identify at least one Developer Namespace. [Instructions for setting up a Developer Namespace](install-components.md#setup) are available at the end of installation.
 
-#### DNS Records
+#### <a id='dns-records'></a>DNS Records
+
 There are some optional but recommended DNS records you should allocate if you decide to use these particular components:
 
 - Cloud Native Runtimes (knative) - Allocate a wildcard subdomain for your developer's applications. This is specified in the `cnrs.domain_name` key of the `tap-values.yml` configuration file that you input with the installation. This wildcard should be pointed at the external IP address of the `tanzu-system-ingress`'s `envoy` service.
@@ -46,7 +47,7 @@ The default hostname consists of `tap-gui` plus an `IngressDomain` of your choic
 `tap-gui.example.com`.
 
 
-#### Tanzu Application Platform GUI
+#### <a id='tap-gui'></a>Tanzu Application Platform GUI
 
 - Git repository for the Tanzu Application Platform GUI's software catalogs, along with a token allowing read access.
   Supported Git infrastructure includes:
@@ -62,14 +63,15 @@ The default hostname consists of `tap-gui` plus an `IngressDomain` of your choic
           also cause this data to be rebuilt from the Git location.
           This can cause issues when you manually register entities through the UI because
           they only exist in the database and are lost when that in-memory database gets rebuilt.
-    - For production use-cases, use a PostgreSQL database that exists outside the 
+    - For production use-cases, use a PostgreSQL database that exists outside the
           Tanzu Application Platform packaging.
           The PostgreSQL database stores all the catalog data persistently both from the Git locations
           and the UI manual entity registrations. For more information, see
           [Configuring the Tanzu Application Platform GUI database](tap-gui/database.md)
 
 
-### Kubernetes cluster requirements
+### <a id='k8s-cluster-reqs'></a>Kubernetes cluster requirements
+
 Installation requires:
 
 * Kubernetes cluster versions 1.20, 1.21, or 1.22 on one of the following Kubernetes providers:
@@ -97,7 +99,7 @@ Installation requires:
 * [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/)
 must be configured so that Tanzu Application Platform controller pods can run as root.
 
-### Tools and CLI requirements
+### <a id='tools-and-cli-reqs'></a>Tools and CLI requirements
 
 Installation requires:
 
@@ -194,7 +196,7 @@ For other Kubernetes providers, follow the steps below:
 Choose the install scenario that is right for you:
 
    + [Instructions for a clean install of Tanzu CLI](#tanzu-cli-clean-install)
-   + [Instructions for updating Tanzu CLI that was installed for a previous Tanzu Application Platform release](#udpate-previous-tap-tanzu-cli)
+   + [Instructions for updating Tanzu CLI that was installed for a previous Tanzu Application Platform release](#update-prev-tap-tanzu-cli)
 
 
 ### <a id='tanzu-cli-clean-install'></a> Clean install Tanzu CLI
@@ -206,12 +208,12 @@ To perform a clean installation of Tanzu CLI:
 
 1. Follow the procedure for your operating system:
 
-    + [Linux: Install the Tanzu CLI](#linux-cli)
-    + [Mac: Install the Tanzu CLI](#mac-cli)
-    + [Windows: Install the Tanzu CLI](#windows-cli)
+    + [Linux: Install the Tanzu CLI](#linux-tanzu-cli)
+    + [Mac: Install the Tanzu CLI](#mac-tanzu-cli)
+    + [Windows: Install the Tanzu CLI](#windows-tanzu-cli)
 
 
-#### <a id='linux-cli'></a> Linux: Install the Tanzu CLI
+#### <a id='linux-tanzu-cli'></a> Linux: Install the Tanzu CLI
 
 To install the Tanzu CLI on a Linux operating system:
 
@@ -255,7 +257,7 @@ To install the Tanzu CLI on a Linux operating system:
 9. Proceed to [Instructions for a clean install of Tanzu CLI plug-ins](#cli-plugin-clean-install).
 
 
-#### <a id='mac-cli'></a>MacOS: Install the Tanzu CLI
+#### <a id='mac-tanzu-cli'></a>MacOS: Install the Tanzu CLI
 
 To install the Tanzu CLI on a Mac operating system:
 
@@ -320,7 +322,7 @@ To install the Tanzu CLI on a Mac operating system:
    8. Proceed to [Instructions for a clean install of Tanzu CLI plug-ins](#cli-plugin-clean-install).
 
 
-#### <a id='windows-cli'></a>Windows: Install the Tanzu CLI
+#### <a id='windows-tanzu-cli'></a>Windows: Install the Tanzu CLI
 
 To install the Tanzu CLI on a Windows operating system:
 
@@ -416,7 +418,7 @@ You can now proceed with installing Tanzu Application Platform. For more informa
 **[Installing part II: Profiles](install.md)**.
 
 
-## <a id='udpate-previous-tap-tanzu-cli'></a>Instructions for updating Tanzu CLI that was installed for a previous release of Tanzu Application Platform
+## <a id='update-prev-tap-tanzu-cli'></a>Instructions for updating Tanzu CLI that was installed for a previous release of Tanzu Application Platform
 
 Follow these instructions to update the Tanzu CLI that was installed for a previous release of Tanzu Application Platform:
 
