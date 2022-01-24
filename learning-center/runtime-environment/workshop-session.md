@@ -36,7 +36,7 @@ The session ID must be unique within the workshop environment that you're creati
 ## <a id="specify-login-creds"></a> Specifying the login credentials
 
 You can control access to each workshop instance using login credentials.
-Then a workshop attendee cannot interfere with another.
+This ensures a workshop attendee cannot interfere with another.
 
 To set login credentials for a workshop instance, set the `session.username` and `session.password`
 fields. For example:
@@ -59,7 +59,7 @@ access it.
 
 ## <a id="specify-ingress-domain"></a> Specifying the ingress domain
 
-To be able to access the workshop instance by using a public URL, you must specify an ingress domain.
+To access the workshop instance by using a public URL, you must specify an ingress domain.
 If an ingress domain isn't specified, use the default ingress domain that the Learning Center Operator
 was configured with.
 
@@ -106,9 +106,8 @@ spec:
       secret: training.learningcenter.tanzu.vmware.com-tls
 ```
 
-HTTPS connections can be terminated by using an external load balancer rather than by specifying a
-secret for ingresses managed by the Kubernetes ingress controller. Then,
-when routing traffic into the Kubernetes cluster as HTTP connections,
+You can terminate HTTPS connections by using an external load balancer rather than by specifying a
+secret for ingresses managed by the Kubernetes ingress controller. When routing traffic into the Kubernetes cluster as HTTP connections,
 you can override the ingress protocol without specifying an
 ingress secret by setting the `session.ingress.protocol` field.
 
@@ -128,7 +127,7 @@ spec:
       protocol: https
 ```
 
-If you need to override or set the ingress class, add `session.ingress.class`. This dictates which
+To override or set the ingress class, add `session.ingress.class`. This dictates which
 ingress router is used when more than one option is available.
 
 For example:

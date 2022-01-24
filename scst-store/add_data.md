@@ -4,7 +4,7 @@ This topic describes how to add Software Bill of Materials (SBoM) files to the d
 For instructions on querying, see [Query Data](../scst-store/query_data.md).
 
 
-## Methods
+## <a id='methods'></a>Methods
 
 Add data by posting CycloneDX files using the following methods:
 
@@ -13,13 +13,13 @@ Add data by posting CycloneDX files using the following methods:
 - [Add Data with the Insight CLI](#insight-cli) below
 
 
-## Supported Formats
+## <a id='supported-formats'></a>Supported Formats
 
 Currently, only CycloneDX XML files are accepted.
 
-Additional format support, for example, SPDX and CycloneDX JSON, is planned for future releases
+For example, additional format support is planned for future releases, for example, SPDX and CycloneDX JSON.
 
-## Generate a CycloneDX File
+## <a id='gen-cyclone'></a>Generate a CycloneDX File
 
 A CycloneDX file is needed to post data.  CycloneDX files can be generated using many tools. This topic uses [Grype](https://github.com/anchore/grype).  Additional tools can be found on the [CycloneDX Tool Center](https://cyclonedx.org/tool-center/).
 
@@ -56,7 +56,7 @@ Use the following commands to add data:
 
 Use `insight -h` in the terminal or see [CLI details](cli_docs/insight.md) for more information.
 
-## Example #1: Create an Image Report
+## <a id='example1'></a>Example #1: Create an Image Report
 
 To use a CycloneDX-formatted image report:
 
@@ -78,11 +78,11 @@ To use a CycloneDX-formatted image report:
     Image report created.
     ```
 
-> **Note:** The Metadata Store only stores a subset of a CycloneDX file data.
+> **Note:** The Metadata Store only stores a subset of CycloneDX file data.
   Support for more data might be added in the future.
 
 
-## Example #2: Create a Source Report
+## <a id='example2'></a>Example #2: Create a Source Report
 
 To use a CycloneDX-formatted source report:
 

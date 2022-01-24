@@ -336,13 +336,13 @@ The following table lists the packages contained in each profile:
 <sup>\*</sup> Only one supply chain should be installed at any given time.
 For information on switching from one supply chain to another, see [Getting Started with Tanzu Application Platform](getting-started.md).
 
-## <a id='install-profile'></a> Install a Tanzu Application Platform profile
+## <a id='prepare-install-profile'></a> Prepare to install your Tanzu Application Platform profile
 
-Install a profile by using the `tap.tanzu.vmware.com` package.
+You can install a profile by using the `tap.tanzu.vmware.com` package.
 The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile
 setting.
 
-To install a profile:
+To prepare to install a profile:
 
 1. List version information for the package by running:
 
@@ -360,7 +360,7 @@ of Tanzu Application Platform.
 
 >**Important:** Keep this file for future use.
 
-### Full Profile
+### <a id='full-profile'></a> Full Profile
 
 ```
 profile: full
@@ -380,7 +380,7 @@ ootb_supply_chain_basic:
     server: "SERVER-NAME"
     repository: "REPO-NAME"
   gitops:
-    ssh_secret: ""
+    ssh_secret: "SSH-SECRET-KEY"
 
 learningcenter:
   ingressDomain: "DOMAIN-NAME"
@@ -431,6 +431,8 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
     * Harbor has the form `repository: "my-project/supply-chain"`
     * Dockerhub has the form `repository: "my-dockerhub-user"`
     * Google Cloud Registry has the form `repository: "my-project/supply-chain"`
+- `SSH-SECRET-KEY` is the SSH secret key supported by the specific package.
+See [Identify the SSH secret key for your package](#ssh-secret-key) for more information.
 - `DOMAIN-NAME` has a value such as `learningcenter.example.com`.
 - `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
 service's External IP address.
@@ -442,7 +444,7 @@ service's External IP address.
 >`buildservice.enable_automatic_dependency_updates: false` can be used to pause the automatic update
 >of Build Service dependencies.
 
-### Light Profile
+### <a id='light-profile'></a> Light Profile
 
 ```
 profile: light
@@ -462,7 +464,7 @@ ootb_supply_chain_basic:
     server: "SERVER-NAME"
     repository: "REPO-NAME"
   gitops:
-    ssh_secret: ""
+    ssh_secret: "SSH-SECRET-KEY"
 
 tap_gui:
   service_type: ClusterIP
@@ -504,9 +506,12 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
     - Harbor has the form `repository: "my-project/supply-chain"`
     - Dockerhub has the form `repository: "my-dockerhub-user"`
     - Google Cloud Registry has the form `repository: "my-project/supply-chain"`
+- `SSH-SECRET-KEY` is the SSH secret key supported by the specific package.
+    See [Identify the SSH secret key for your package](#ssh-secret-key) for more information.
 - `INGRESS-DOMAIN` is the subdomain for the host name that you will point at the `tanzu-shared-ingress` service's External IP address.
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog you've already built and posted on the Git infrastructure you specified in the Integration section.
 
+### <a id="view-pkge-config-settings"></a>View possible configuration settings for your package
 
 To view possible configuration settings for a package, run:
 
@@ -534,8 +539,19 @@ accelerator:
     service_type: "ClusterIP"
 ```
 
-The following table summarizes the top-level keys used for package-specific configuration within
-your `tap-values.yml`.
+### <a id="ssh-secret-key"></a>Identify the SSH secret key for your package
+
+You can identify the SSH secret keys for your Tanzu package by running:
+
+```
+tanzu package available get PACKAGE-NAME.tanzu.vmware.com/VERSION --values-schema -n tap-install
+```
+
+Where:
+
+- `VERSION` is the version number of the package. For example, `0.5.1` for Supply Chain Basic package.
+- `PACKAGE-NAME` is the value of `Top-level Key` for package-specific configuration within
+your `tap-values.yml`, as summarized in the following table:  
 
 |Package|Top-level Key|
 |----|----|
@@ -558,6 +574,39 @@ your `tap-values.yml`.
 |Learning Center|`learningcenter`|
 
 For information about package-specific configuration, see [Install components](install-components.md).
+
+For example, to identify the SSH secret keys for Supply Chain Basic, you can run:
+
+```
+tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.5.1 --values-schema -n tap-install
+```
+
+Expect to see the following outputs that list the all the SSH secret keys and the descriptions applicable to the package:
+
+```
+KEY                       DEFAULT                    TYPE    DESCRIPTION
+cluster_builder           default                    string  Name of the Tanzu Build Service (TBS) ClusterBuilder to use by default on image objects managed by the supply chain.
+
+gitops.branch             main                       string  Default branch to use for pushing Kubernetes configuration files produced by the supply chain.
+
+gitops.commit_message     bump configuration         string  Default git commit message to write when publishing Kubernetes configuration files produces by the supply chain to git.
+
+gitops.email              supplychain@cluster.local  string  Default user email to be used for the commits produced by the supply chain.
+
+gitops.repository_prefix  <nil>                      string  Default prefix to be used for forming Git SSH URLs for pushing Kubernetes configuration produced by the supply chain.
+
+gitops.ssh_secret         git-ssh                    string  Name of the default Secret containing SSH credentials to lookup in the developer namespace for the supply chain to fetch source code from and push configuration to.
+
+gitops.username           supplychain                string  Default user name to be used for the commits produced by the supply chain.
+
+registry.repository       <nil>                      string  Name of the repository in the image registry server where the application images from the workloads should be pushed to (required).
+
+registry.server           index.docker.io            string  Name of the registry server where application images should be pushed to (required).
+
+service_account           default                    string  Name of the service account in the namespace where the Workload is submitted to utilize for providing registry credentials to Tanzu Build Service (TBS) Image objects as well as deploying the application.
+```  
+
+## <a id="install-package"></a>Install your Tanzu Application Platform package
 
 1. Install the package by running:
 

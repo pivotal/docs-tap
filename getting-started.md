@@ -25,7 +25,7 @@ See [Installing part I: Prerequisites, EULA, and CLI](install-general.md) and [I
   - **Set the default kubeconfig context to the target Kubernetes cluster**<br>
 
   - **Installed Out of The Box (OOTB) Supply Chain Basic**<br>
-See [Install Out of The Box Supply Chain Basic](install-components.md#install-ootb-supply-chain-basic).
+See [Install Out of The Box Supply Chain Basic](install-components.md#install-ootb-sc-basic).
 
   - **Set up a developer namespace to accommodate the developer Workload**<br>
 See [Set up developer namespaces to use installed packages](install-components.md#setup).
@@ -898,7 +898,7 @@ When you apply the `ClusterImagePolicy` resource, your cluster requires valid si
 
 - [Overview for Supply Chain Security Tools - Sign](scst-sign/overview.md)
 - [Configuring Supply Chain Security Tools - Sign](scst-sign/configuring.md)
-- [Supply Chain Security Tools - Sign known issues](release-notes.md#scst-sign)
+- [Supply Chain Security Tools - Sign known issues](release-notes.md)
 
 
 ### <a id="intro-vuln-scan-and-more"></a>Scan and Store: Introducing vulnerability scanning and metadata storage to your Supply Chain
@@ -1131,7 +1131,12 @@ ClusterResource to reference and describe it.
 
 ### <a id="same-namespace-use-case"></a> Use case 1: Binding an application to a pre-provisioned service instance running in the same namespace
 
->**Note:** The following examples implement a RabbitMQ service instance and a single sample application which acts as both a producer and consumer of messages. For most real world scenarios using RabbitMQ it's likely that there are multiple applications deployed and communicating through the RabbitMQ service. Currently it is not possible for more than one application workload to consume the same service instance. See [Known issues](release-notes.md#1-0) for further information.
+>**Note:** The following examples implement a RabbitMQ service instance and a single sample
+>application which acts as both a producer and consumer of messages.
+>For most real-world scenarios using RabbitMQ it's likely that there are multiple applications
+>deployed and communicating through the RabbitMQ service. Currently it is not possible for more than
+>one application workload to consume the same service instance. For more information, see the known
+>issues in the [release notes](release-notes.md) for further information.
 
 Follow these steps to bind an application to a pre-provisioned service instance running
 in the same namespace.
