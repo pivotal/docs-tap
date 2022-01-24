@@ -74,22 +74,22 @@ running:
       service_type: ClusterIP
       ingressEnabled: "true"
       ingressDomain: 'example.com' # This makes the host name tap-gui.example.com
-        # Existing tap-values.yml above  
+    # Existing tap-values.yml above  
       app_config:
         app:
-            baseUrl: http://tap-gui.example.com # No port needed with Ingress
+          baseUrl: http://tap-gui.example.com # No port needed with Ingress
         integrations:
-            github: # Other are integrations available
+          github: # Other are integrations available
             - host: github.com
-                token: GITHUB-TOKEN
+              token: GITHUB-TOKEN
         catalog:
-            locations:
+          locations:
             - type: url
-                target: https://GIT-CATALOG-URL/catalog-info.yaml
+              target: https://GIT-CATALOG-URL/catalog-info.yaml
         backend:
-            baseUrl: http://tap-gui.example.com # No port needed with Ingress
-            cors:
-                origin: http://tap-gui.example.com # No port needed with Ingress
+          baseUrl: http://tap-gui.example.com # No port needed with Ingress
+          cors:
+            origin: http://tap-gui.example.com # No port needed with Ingress
     ```
 
     This snippet is from a values file in the
