@@ -6,7 +6,7 @@ The REST API gives you access to the list of workshops hosted by a training port
 
 ## <a id="querying-credentials"></a>Querying the credentials
 
-To provide access to the REST API, a robot account is automatically provisioned. Obtain the login credentials and details of the OAuth client endpoint used for authentication by querying the resource definition for the training portal after it has been created and the deployment completed. If using `kubectl describe`, use:
+To provide access to the REST API, a robot account is automatically provisioned. Obtain the login credentials and details of the OAuth client endpoint used for authentication by querying the resource definition for the training portal after it is created and the deployment completed. If using `kubectl describe`, use:
 
 ```
 kubectl describe trainingportal.learningcenter.tanzu.vmware.com/<training-portal-name>
@@ -30,13 +30,13 @@ Status:
         Username:  robot@learningcenter
 ```
 
-Use the admin login credentials when you log into the training portal web interface to access admin pages.
+Use the admin login credentials when you log in to the training portal web interface to access admin pages.
 
-Use the robot login credentials if you wish to access the REST API.
+Use the robot login credentials if you want to access the REST API.
 
 ## <a id="requesting-access-token"></a>Requesting an access token
 
-Before you can make requests against the REST API to query details on workshops or request a workshop session, you need to login via the REST API to get an access token.
+Before you can make requests against the REST API to query details about workshops or request a workshop session, you must login through the REST API to get an access token.
 
 This is done from any front-end web application or provisioning system, but the step is equivalent to making a REST API call by using `curl` of:
 
@@ -44,7 +44,7 @@ This is done from any front-end web application or provisioning system, but the 
 curl -v -X POST -H \
 "Content-Type: application/x-www-form-urlencoded" \
 -d "grant_type=password&username=robot@learningcenter&password=<robot-password>" \
--u "<robot-client-id>:<robot-client-secret>" \ 
+-u "<robot-client-id>:<robot-client-secret>" \
 <training-portal-url>/oauth2/token/
 ```
 
@@ -77,4 +77,4 @@ https://lab-markdown-sample-ui.test/oauth2/token/
 
 As with requesting the initial access token, the URL sub path is `/oauth2/token/`.
 
-The JSON response is of the same format as if a new token had been requested.
+The JSON response is of the same format as if a new token was requested.
