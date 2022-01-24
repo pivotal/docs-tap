@@ -57,7 +57,7 @@ As a prerequisite to the [Basic](ootb-supply-chain-basic.html),
 Supply Chains, you must install this package to have Workloads delivered properly.
 
 Consumers do not interact directly with this package. Instead, this package is used
-once a [carto.run/Deliverable](carto.run/Deliverable) object is created by the supply
+once a [carto.run/Deliverable](https://github.com/vmware-tanzu/cartographer) object is created by the supply
 chains to express the intention of having the Workloads that go through them
 delivered to an environment. At this time, the environment is the same Kubernetes cluster as the
 Supply Chains.
