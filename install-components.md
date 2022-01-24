@@ -1119,11 +1119,152 @@ To install Tanzu Build Service using the Tanzu CLI:
     >If the command times out, periodically run the installation verification step provided in the
     >following optional step. Image relocation continues in the background.
 
-1. (Optional) Verify the clusterbuilders created by the Tanzu Build Service install by running:
+### <a id='tbs-tcli-install-offline'></a> Install Tanzu Build Service using the Tanzu CLI (Air-Gapped)
+
+Tanzu Build Service can be installed to a Kubernetes Cluster and registry that are air-gapped from external traffic.
+
+### <a id='tbs-tcli-install-tap-offline'></a> Add the Tanzu Application Platform package repository (Air-Gapped)
+
+You must install tap using your internal registry. This step should be done right before "Installing Part II: Profiles".
+
+You will need the Carvel [imgpkg](https://network.tanzu.vmware.com/products/imgpkg/) CLI for relocating container images.
+
+1. Set up environment variables for use during the installation:
 
     ```
-    tanzu package installed get tbs -n tap-install
+    export INSTALL_REGISTRY_HOSTNAME=IMAGE-REGISTRY
+    export INSTALL_REGISTRY_USERNAME=REGISTRY-USERNAME
+    export INSTALL_REGISTRY_PASSWORD=REGISTRY-PASSWORD
+    export INSTALL_REPOSITORY=IMAGE-REPOSITORY
+    export TAP_VERSION=LATEST-TAP-VERSION
     ```
+
+Where:
+
+* `IMAGE-REGISTRY` is the hostname of the private registry that will be used. Ex. `my-harbor.io`
+* `REGISTRY-USERNAME` is the username of the private registry that will be used. Must have write access to `INSTALL-REPOSITORY`.
+* `REGISTRY-PASSWORD` is the password of the private registry that will be used. Must have write access to `INSTALL-REPOSITORY`.
+* `INSTALL-REPOSITORY` is the repository in your registry that you want to relocate images to.
+    * Harbor has the form `my-harbor.io/my-project/tap-packages`
+* `LATEST-TAP-VERSION` is from the [Tanzu Network Release](https://network.pivotal.io/products/tanzu-application-platform/) page.
+
+2. Copy the tap packages to your local machine using `imgpkg`:
+
+    ```
+    docker login registry.tanzu.vmware.com
+    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:${TAP_VERSION} --to-tar=/tmp/tap.tar
+    ```
+
+3. Move the `tap.tar` file to a machine with access to the internal registry.
+
+4. Copy the images saved in `tap.tar` to the internal registry:
+
+    ```
+    docker login ${INSTALL_REGISTRY_HOSTNAME}
+    imgpkg copy --tar /tmp/tap.tar \
+      --to-repo=${INSTALL_REPOSITORY}
+    ```
+
+5. Create the `tap-install` namespace:
+
+    ```
+    kubectl create ns tap-install
+    ```
+
+6. Add a registry secret for the internal registry:
+
+    ```
+    tanzu secret registry add tap-registry \
+      --username ${INSTALL_REGISTRY_USERNAME} --password ${INSTALL_REGISTRY_PASSWORD} \
+      --server ${INSTALL_REGISTRY_HOSTNAME} \
+      --export-to-all-namespaces --yes --namespace tap-install
+    ```
+
+7. Add Tanzu Application Platform package repository to the cluster by running:
+
+    ```
+    tanzu package repository add tanzu-tap-repository \
+      --url ${INSTALL_REPOSITORY}:${TAP_VERSION} \
+      --namespace tap-install
+    ```
+
+### <a id='tbs-tcli-install-tbs-offline'></a> Install the TBS package (Air-Gapped)
+
+1. Gather the values schema by running:
+
+    ```
+    tanzu package available get buildservice.tanzu.vmware.com/1.4.2 --values-schema --namespace tap-install
+    ```
+
+   For example:
+
+    ```
+    $ tanzu package available get buildservice.tanzu.vmware.com/1.4.2 --values-schema --namespace tap-install
+    | Retrieving package details for buildservice.tanzu.vmware.com/1.4.2...
+      KEY                                  DEFAULT  TYPE    DESCRIPTION
+      kp_default_repository                <nil>    string  Docker repository used for builder images and dependencies
+      kp_default_repository_password       <nil>    string  Username for kp_default_repository
+      kp_default_repository_username       <nil>    string  Password for kp_default_repository
+      tanzunet_username                    <nil>    string  Optional: Tanzunet registry username required for dependency import at install.
+      tanzunet_password                    <nil>    string  Optional: Tanzunet registry password required for dependency import at install.
+      descriptor_name                      <nil>    string  Name of descriptor to import (required for dependency updater feature)
+      descriptor_version                   <nil>    string  Optional: Version of descriptor to use during install. This will override the version installed by default.
+      enable_automatic_dependency_updates  <nil>    bool    Optional: Allow automatic import of new dependency updates from Tanzunet
+      ca_cert_data                         <nil>    string  Optional: TBS registry ca certificate
+      http_proxy                           <nil>    string  Optional: the HTTP proxy to use for network traffic.
+      https_proxy                          <nil>    string  Optional: the HTTPS proxy to use for network traffic.
+      no_proxy                             <nil>    string  Optional: A comma-separated list of hostnames, IP addresses, or IP ranges in CIDR format that should not use a proxy.
+    ```
+
+2. Create a `tbs-values.yaml` file.
+
+    ```
+    ---
+    kp_default_repository: REPOSITORY
+    kp_default_repository_username: REGISTRY-USERNAME
+    kp_default_repository_password: REGISTRY-PASSWORD
+    ca_cert_data: CA_CERT_CONTENTS
+    ```
+
+Where:
+
+- `REPOSITORY` is the fully qualified path to the TBS repository.
+  This path must be writable. For example:
+
+    * Harbor: `harbor.io/my-project/build-service`
+    * Artifactory: `artifactory.com/my-project/build-service`
+
+- `REGISTRY-USERNAME` and `REGISTRY-PASSWORD` are the user name and password for the registry. The install requires a `kp_default_repository_username` and `kp_default_repository_password` to write to the repository location.
+- `CA_CERT_CONTENTS` are the contents of the PEM-encoded CA certificate for the private registry
+
+3. Install the package by running:
+
+    ```
+    tanzu package install tbs -p buildservice.tanzu.vmware.com -v 1.4.2 -n tap-install -f tbs-values.yaml
+    ```
+
+   For example:
+
+    ```
+    $ tanzu package install tbs -p buildservice.tanzu.vmware.com -v 1.4.2 -n tap-install -f tbs-values.yaml
+    | Installing package 'buildservice.tanzu.vmware.com'
+    | Getting namespace 'tap-install'
+    | Getting package metadata for 'buildservice.tanzu.vmware.com'
+    | Creating service account 'tbs-tap-install-sa'
+    | Creating cluster admin role 'tbs-tap-install-cluster-role'
+    | Creating cluster role binding 'tbs-tap-install-cluster-rolebinding'
+    | Creating secret 'tbs-tap-install-values'
+    - Creating package resource
+    - Package install status: Reconciling
+
+     Added installed package 'tbs' in namespace 'tap-install'
+    ```
+
+4. Keeping Tanzu Build Service dependencies up-to-date
+
+When installing TBS to an air-gappend environment, dependencies cannot be automatically pulled in from the external internet.
+
+Therefore, dependencies must be imported and kept up-to-date manually. To import dependencies to an air-gapped TBS, follow the official [Tanzu Build Service docs](https://docs.vmware.com/en/Tanzu-Build-Service/1.4/vmware-tanzu-build-service-v14/GUID-updating-deps.html#online-update).
 
 ## <a id='install-scc'></a> Install Supply Chain Choreographer
 
