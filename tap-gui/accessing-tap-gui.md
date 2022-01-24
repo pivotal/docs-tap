@@ -75,7 +75,7 @@ running:
       ingressEnabled: "true"
       ingressDomain: 'example.com' # This makes the host name tap-gui.example.com
         # Existing tap-values.yml above  
-        app_config:
+      app_config:
         app:
             baseUrl: http://tap-gui.example.com # No port needed with Ingress
         integrations:
@@ -85,7 +85,7 @@ running:
         catalog:
             locations:
             - type: url
-              target: https://GIT-CATALOG-URL/catalog-info.yaml
+                target: https://GIT-CATALOG-URL/catalog-info.yaml
         backend:
             baseUrl: http://tap-gui.example.com # No port needed with Ingress
             cors:
