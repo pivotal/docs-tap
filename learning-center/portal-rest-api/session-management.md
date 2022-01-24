@@ -23,7 +23,7 @@ spec:
 
 ## <a id="request-workshop-session"></a>Requesting a workshop session
 
-The form of the URL sub path for requesting the allocation of a workshop environment using the REST API is `/workshops/environment/<name>/request/`. The name segment must be replaced with the name of the workshop environment. When making the request, the access token must be supplied in the HTTP `Authorization` header with type set as `Bearer`:
+The form of the URL sub path for requesting the allocation of a workshop environment by using the REST API is `/workshops/environment/<name>/request/`. The name segment must be replaced with the name of the workshop environment. When making the request, the access token must be supplied in the HTTP `Authorization` header with type set as `Bearer`:
 
 ```
 curl -v -H "Authorization: Bearer <access-token>" \
@@ -53,22 +53,23 @@ Redirect the user's browser to this URL path on the training portal host. Access
 
 If the workshop session is not activated, which confirms allocation of the session, the session is deleted after 60 seconds.
 
-When a user is redirected back to the URL for the index page, a query string parameter is supplied to supply the reason the user is being returned. This can be used to display a banner or other indication as to why the user was returned.
+When a user is redirected back to the URL for the index page, a query string parameter is supplied to give the reason the user is being returned. This can be used to display a banner or other indication as to why the user was returned.
 
 The name of the query string parameter is `notification` and the possible values are:
 
 * `session-deleted` - Used when the workshop session is completed or restarted.
 * `workshop-invalid` - Used when the name of the workshop environment supplied while attempting to create the workshop is invalid.
-* `session-unavailable` - Used when capacity is reached and a workshop session cannot be created.
+* `session-unavailable` - Used when capacity is reached, and a workshop session cannot be created.
 * `session-invalid` - Used when an attempt is made to access a session that doesn't exist. This can occur when the workshop dashboard is refreshed sometime after the workshop session expired and was deleted.
 
 In prior versions, the name of the session was returned through the "session" property, whereas the "name" property is now used. To support older code using the REST API, the "session" property is still returned, but it is deprecated.
 
 ## <a id="associate-sessions-with-user"></a>Associating sessions with a user
 
-When the workshop session is requested, a unique user account is created in the training portal each time. This can if necessary be identified through the use of the `user` identifier returned in the response.
+When the workshop session is requested, a unique user account is created in the training portal each time. This can be identified through the use of the `user` identifier returned in the response.
 
-If the front end using the REST API to create workshop sessions tracks user activity so that the training portal associates all workshop sessions created by a same user, supply the `user` identifier with subsequent requests by the same user in the request parameter:
+The front end using the REST API to create workshop sessions can track user activity so that the training portal associates all workshop sessions created by the same user.
+Supply the `user` identifier with subsequent requests by the same user in the request parameter:
 
 ```
 curl -v -H "Authorization: Bearer <access-token>" \
@@ -77,7 +78,7 @@ https://lab-markdown-sample-ui.test/workshops/environment/<name>/request/?index_
 
 If the supplied ID matches a user in the training portal, the training portal uses it internally and returns the same value for `user` in the response.
 
-When the user does match, and if there is already a workshop session allocated to the user for the workshop being requested, the training portal returns a link to the existing workshop session rather than create a new workshop session.
+When the user does match, and if there is already a workshop session allocated to the user for the workshop being requested, the training portal returns a link to the existing workshop session, rather than requesting that the user create a new workshop session.
 
 If the user is not a match, possibly because the training portal was completely redeployed since the last time it was accessed, the training portal returns a new user identifier.
 
@@ -116,11 +117,11 @@ The response is of the form:
 }
 ```
 
-Once a workshop has expired or has otherwise been shut down,the training portal no longer returns an entry for the workshop.
+Once a workshop has expired or has otherwise been shut down, the training portal no longer returns an entry for the workshop.
 
 ## <a id="list-workshop-sessions"></a>Listing all workshop sessions
 
-To get a list of all running workshops sessions allocated to users, provide the `sessions=true` flag to the query string parameters of the REST API call to list the workshop environments available through the training portal.
+To get a list of all running workshops sessions allocated to users, provide the `sessions=true` flag to the query string parameters of the REST API call. This lists the workshop environments available through the training portal.
 
 ```
 curl -v -H "Authorization: Bearer <access-token>" |
