@@ -53,7 +53,7 @@ Redirect the user's browser to this URL path on the training portal host. Access
 
 If the workshop session is not activated, which confirms allocation of the session, the session is deleted after 60 seconds.
 
-When a user is redirected back to the URL for the index page, a query string parameter is supplied to give the reason the user is being returned. This can be used to display a banner or other indication as to why the user was returned.
+When a user is redirected back to the URL for the index page, a query string parameter is supplied to give the reason the user is being returned. You can use this to display a banner or other indication as to why the user was returned.
 
 The name of the query string parameter is `notification` and the possible values are:
 
@@ -66,7 +66,7 @@ In prior versions, the name of the session was returned through the "session" pr
 
 ## <a id="associate-sessions-with-user"></a>Associating sessions with a user
 
-When the workshop session is requested, a unique user account is created in the training portal each time. This can be identified through the use of the `user` identifier returned in the response.
+When the workshop session is requested, a unique user account is created in the training portal each time. You can identify this account by using the `user` identifier, which is returned in the response.
 
 The front end using the REST API to create workshop sessions can track user activity so that the training portal associates all workshop sessions created by the same user.
 Supply the `user` identifier with subsequent requests by the same user in the request parameter:
@@ -117,7 +117,7 @@ The response is of the form:
 }
 ```
 
-Once a workshop has expired or has otherwise been shut down, the training portal no longer returns an entry for the workshop.
+After a workshop has expired or has otherwise been shut down, the training portal no longer returns an entry for the workshop.
 
 ## <a id="list-workshop-sessions"></a>Listing all workshop sessions
 
