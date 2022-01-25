@@ -12,9 +12,9 @@ Users have the option to configure the number of replicas using the `app_replica
 
 By default, the database only has 1 replica, and would restart with some downtime if it were to crash.
 
-Although the field `db_replicas` exists and is configurable by the user in the `scst-store-values.yaml` file, it is experimental and is not recommended to be used.
+Although the field `db_replicas` exists and is configurable by the user in the `scst-store-values.yaml` file, we do not recommend using it. The default internal db should not be used in production.
 For production please use AWS RDS. See instructions [here](use_aws_rds.md).
 
-Initial investigation has been done to use `Velero` as the backup method for the default database that comes with the deployment.
+For the default postgres database deployment (set by default or by setting `deploy_internal_db` to true), `Velero` can be used as the backup method.
 Read more about using `Velero` as back up [here](backups.md).
 
