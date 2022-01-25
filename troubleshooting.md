@@ -181,3 +181,30 @@ If it is still running, it is likely to finish successfully and produce output s
     tap-telemetry             tap-telemetry.tanzu.vmware.com                     0.1.0            Reconcile succeeded  tap-install
     tekton-pipelines          tekton.tanzu.vmware.com                            0.30.0           Reconcile succeeded  tap-install
   ```
+
+## <a id='tap-telemetry-secret-error'></a> Telemetry component logs show errors fetching the "reg-creds" secret
+
+An error shows up continuously on the `tap-telemetry-controller` logs.
+
+### Symptom
+
+When you get the logs of the `tap-telemetry` controller with `kubectl logs -n
+tap-telemetry <tap-telemetry-controller-<hash> -f`, you see the following error:
+
+  ```
+  "Error retrieving secret reg-creds on namespace tap-telemetry","error":"secrets \"reg-creds\" is forbidden: User \"system:serviceaccount:tap-telemetry:controller\" cannot get resource \"secrets\" in API group \"\" in the namespace \"tap-telemetry\""
+  ```
+
+### Cause
+
+The `tap-telemetry` namespace is missing a
+[Role](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#role-and-clusterrole)
+that allows the controller to list secrets in the `tap-telemetry` namespace.
+
+### Solution
+
+To fix this problem, run the following command:
+
+```
+kubectl patch roles -n tap-telemetry tap-telemetry-controller --type='json' -p='[{"op": "add", "path": "/rules/-", "value": {"apiGroups": [""],"resources": ["secrets"],"verbs": ["get", "list", "watch"]} }]'
+```
