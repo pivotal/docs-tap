@@ -64,3 +64,7 @@ See [Security](security.md).
 ## Backing up data
 
 See [Backup suggestions](backups.md).
+
+## Failover and redundancy
+
+See [Failover, redundancy, and backups](failover.md).
