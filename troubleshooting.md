@@ -207,7 +207,7 @@ If it is still running, it is likely to finish successfully and produce output s
 
 ## <a id='tap-telemetry-secret-error'></a> Telemetry component logs show errors fetching the "reg-creds" secret
 
-An error shows up continuously on the `tap-telemetry-controller` logs.
+An error message occurs continuously on the `tap-telemetry-controller` logs.
 
 ### Symptom
 
@@ -220,7 +220,7 @@ tap-telemetry <tap-telemetry-controller-<hash> -f`, you see the following error:
 
 ### Cause
 
-The `tap-telemetry` namespace is missing a
+The `tap-telemetry` namespace misses a
 [Role](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#role-and-clusterrole)
 that allows the controller to list secrets in the `tap-telemetry` namespace.
 
