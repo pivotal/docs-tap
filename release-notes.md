@@ -65,6 +65,15 @@ v0.4.
 
 #### Supply Chain Security Tools – Scan
 
+- **Scan controller pod fails:** If there is a misconfiguration
+(i.e. secretgen-controller not running, wrong CA secret name) after enabling the
+metadata store integration, the controller pod fails. The current workaround is
+to update the `tap-values.yaml` file with the proper configuration and update the application.
+- **Deleted resources keep reconciling:** After creating a scan CR and deleting it,
+the controllers keep trying to fetch the deleted resource, resulting in a `not found`
+or `unable to fetch` log entry with every reconciliation cycle.
+- **Scan controller crashes when Git clone fails:** If this occurs, confirm that
+the Git URL and the SSH credentials are correct.
 
 
 #### Supply Chain Security Tools - Sign
@@ -243,15 +252,6 @@ You can run `kubectl describe` on the scan and look for `Scan completed. Found x
 without a `.git` directory is provided, sending results to the Supply Chain Security Tools - Store
 fails and the scanned revision value is not set. The current workaround is to add the `.git`
 directory to the compressed file.
-- **Scan controller pod fails:** If there is a misconfiguration
-(i.e. secretgen-controller not running, wrong CA secret name) after enabling the
-metadata store integration, the controller pod fails. The current workaround is
-to update the `tap-values.yaml` file with the proper configuration and update the application.
-- **Deleted resources keep reconciling:** After creating a scan CR and deleting it,
-the controllers keep trying to fetch the deleted resource, resulting in a `not found`
-or `unable to fetch` log entry with every reconciliation cycle.
-- **Scan controller crashes when Git clone fails:** If this occurs, confirm that
-the Git URL and the SSH credentials are correct.
 
 #### Supply Chain Security Tools - Sign
 
