@@ -116,6 +116,8 @@ This is the table of contents from which the Tanzu Application Platform Document
         - [Query data](scst-store/query_data.md)
         - [Log configuration and usage](scst-store/logs.md)
         - [Security details](scst-store/security.md)
+        - [Backup suggestions](scst-store/backups.md)
+        - [Failover, redundancy, and backups](scst-store/failover.md)
     - [Tanzu Developer Tools for VSCode](vscode-extension/about.md)
       - [Installing the VSCode Tanzu Extension](vscode-extension/install.md)
       - [Using Tanzu Dev Tools to get started](vscode-extension/usage-getting-started.md)
