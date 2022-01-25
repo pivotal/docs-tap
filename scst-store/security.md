@@ -49,7 +49,7 @@ There is no default service account bound to the `Read Only` cluster role. The u
 ## Container security
 
 ### Non-root user
-All containers shipped do not use root user account, nor accounts with root access. Using Kubernetes Security Context ensures that applications do not run with root user.
+All containers shipped do not use root user account or accounts with root access. Using Kubernetes Security Context ensures that applications do not run with root user.
 
 Security Context for the API server:
 ```
