@@ -208,3 +208,35 @@ To fix this problem, run the following command:
 ```
 kubectl patch roles -n tap-telemetry tap-telemetry-controller --type='json' -p='[{"op": "add", "path": "/rules/-", "value": {"apiGroups": [""],"resources": ["secrets"],"verbs": ["get", "list", "watch"]} }]'
 ```
+
+## <a id='error-update'></a> Error message occurs after updating the workload
+
+An error message occurs after applying the command to update the workload.
+
+### Symptom
+
+When you update the workload by running:
+
+```
+% tanzu apps workload create tanzu-java-web-app \
+--git-repo https://github.com/dbuchko/tanzu-java-web-app \
+--git-branch main \
+--type web \
+--label apps.tanzu.vmware.com/has-tests=true \
+--yes
+```
+
+You see the following error:
+
+```
+Error: workload "default/tanzu-java-web-app" already exists
+Error: exit status 1
+```
+
+### Cause
+
+You have the app running before performing a live update using the same app name.
+
+### Solution
+
+To fix this problem, you can either delete the app or use a different name.
