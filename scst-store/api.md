@@ -210,13 +210,13 @@ GET /api/images/{IDorDigest}/vulnerabilities
 |------|--------|------|---------|-----------| :------: |---------|-------------|
 | IDorDigest | `path` | string | `string` |  | ✓ |  |  |
 
-#### <a id='parameters'></a>All responses
+#### <a id='all-responses4'></a>All responses
 | Code | Status | Description | Has headers | Schema |
 |------|--------|-------------|:-----------:|--------|
 | [200](#get-image-vulnerabilities-200) | OK | Vulnerability |  | [schema](#get-image-vulnerabilities-200-schema) |
 | [default](#get-image-vulnerabilities-default) | | ErrorMessage |  | [schema](#get-image-vulnerabilities-default-schema) |
 
-#### Responses
+#### <a id='responses4'></a>Responses
 
 
 ##### <span id="get-image-vulnerabilities-200"></span> 200 - Vulnerability
