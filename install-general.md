@@ -150,14 +150,15 @@ To accept EULAs:
 
 1. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
 
-2. For each of the following components, accept or confirm that you have accepted the EULA:
+2. Select the "Click here to sign the EULA" link in the yellow warning box under the release drop down as seen in the following screen shot. (If this warning is not there then the EULA has already been  accepted).
 
-    + [Cluster Essentials for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-cluster-essentials/#/releases/1011100)
-    + [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/)
-    + [Tanzu Build Service](https://network.tanzu.vmware.com/products/build-service/) and its associated components:
-      + [Tanzu Build Service Dependencies](https://network.tanzu.vmware.com/products/tbs-dependencies/)
-      + [Buildpacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-buildpacks-suite)
-      + [Stacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-stacks-suite)
+![EULA Warning](/images/install-general-eulas1.png)
+
+3. Select "Agree" in the bottom right of the dialog box that comes up as seen in the following screen shot.
+
+![EULA Dialog Box](/images/install-general-eulas2.png)
+
+You have now accepted the EULA's for all of the Tanzu Application Platform.
 
 ## <a id='tanzu-cluster-essentials'></a> Install Cluster Essentials for VMware Tanzu
 
