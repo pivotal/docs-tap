@@ -125,7 +125,7 @@ spec:
     reserved: 5
 ```
 
-## <a id="set-workshop-defaults"></a>Setting defaults for all workshops
+## <a id="set-workshop-defaults"></a>Set defaults for all workshops
 
 If you have a list of workshops, and they all must be set with the same values for `capacity`, `reserved`, and `initial`, rather than add settings to each, you can set defaults to apply to all workshops under the `portal` section:
 
