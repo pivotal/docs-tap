@@ -173,7 +173,7 @@ spec:
     reserved: 4
 ```
 
-This limit also applies to anonymous users when anonymous access is enabled through the training portal web interface or if sessions are being created through the REST API. If you want to set a limit on anonymous users, you can set `portal.sessions.anonymous` instead:
+This limit also applies to anonymous users when anonymous access is enabled through the training portal web interface or if sessions are being created through the REST API. To set a limit on anonymous users, you can set `portal.sessions.anonymous` instead:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -306,7 +306,7 @@ spec:
     reserved: 1
 ```
 
-If overriding the domain, by default the workshop session is exposed using a HTTP connection. If you require a secure HTTPS connection, you must have access to a wildcard SSL certificate for the domain. A secret of type `tls` should be created for the certificate in the `learningcenter` namespace or the namespace where the Learning Center Operator is deployed. The name of that secret should then be set in the `portal.ingress.secret` field:
+If overriding the domain, by default the workshop session is exposed using a HTTP connection. For a secure HTTPS connection, you must have access to a wildcard SSL certificate for the domain. A secret of type `tls` should be created for the certificate in the `learningcenter` namespace or the namespace where the Learning Center Operator is deployed. The name of that secret must be set in the `portal.ingress.secret` field:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -324,7 +324,7 @@ spec:
     reserved: 1
 ```
 
-HTTPS connections can be terminated by using an external load balancer instead of specifying a secret for ingresses managed by the Kubernetes ingress controller. In that case, when routing traffic into the Kubernetes cluster as HTTP connections, you can override the ingress protocol without specifying an ingress secret. Instead, set the `portal.ingress.protocol` field:
+You can terminate HTTPS connections by using an external load balancer instead of specifying a secret for ingresses managed by the Kubernetes ingress controller. In that case, when routing traffic into the Kubernetes cluster as HTTP connections, you can override the ingress protocol without specifying an ingress secret. Instead, set the `portal.ingress.protocol` field:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -365,7 +365,7 @@ spec:
 
 The default host name given to the training portal is the name of the resource with `-ui` suffix, followed by the domain specified by the resource or the default inherited from the configuration of the Learning Center Operator.
 
-If you want to override the generated host name, you can set `portal.ingress.hostname`:
+To override the generated host name, you can set `portal.ingress.hostname`:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -384,7 +384,7 @@ spec:
     reserved: 1
 ```
 
-This results in the host name being `labs.learningcenter.tanzu.vmware.com` rather than the default generated name for this example of `lab-markdown-sample-ui.learningcenter.tanzu.vmware.com`.
+This causes the host name to be `labs.learningcenter.tanzu.vmware.com` rather than the default generated name for this example of `lab-markdown-sample-ui.learningcenter.tanzu.vmware.com`.
 
 ## <a id="set-extra-environ-variables"></a>Set extra environment variables
 
@@ -443,7 +443,7 @@ Status:
         Username:  robot@learningcenter
 ```
 
-If you wish to override any of these values in order to be able to set them to a predetermined value, you can add `credentials` and `clients` sections to the training portal specification.
+To override any of these values to set them to a predetermined value, you can add `credentials` and `clients` sections to the training portal specification.
 
 To overload the credentials for the admin and robot accounts user:
 
@@ -523,11 +523,11 @@ spec:
     reserved: 1
 ```
 
-In anonymous mode, when users visit the home page for the training portal, an account for each user is automatically created and they are logged in.
+In anonymous mode, when users visit the home page for the training portal, an account for each user is created and they are logged in.
 
 ## <a id="set-event-access-code"></a>Specify an event access code
 
-When deploying the training portal with anonymous access or open registration, anyone who knows the URL can access workshops. If you want to at least restrict access to those who know a common event access code or password, you can set `portal.password`:
+When deploying the training portal with anonymous access or open registration, anyone who knows the URL can access workshops. To at least restrict access to those who know a common event access code or password, you can set `portal.password`:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -549,7 +549,7 @@ When anonymous access is enabled and the training portal URL is accessed, users 
 
 By default the index page providing the catalog of available workshop images is only available after a user has logged in, either through a registered account or as an anonymous user.
 
-If you want to make the catalog of available workshops public so they can be viewed before logging in, set the `portal.catalog.visibility` property:
+To make the catalog of available workshops public so they can be viewed before logging in, set the `portal.catalog.visibility` property:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -574,7 +574,7 @@ This also makes it possible to access the list of available workshops from the c
 
 If you are using the training portal with registration disabled, and you are using the REST API from a separate website to control creation of sessions, you can specify an alternate URL for providing the list of workshops.
 
-This helps when a session is created by the REST API and cookies were deleted or a session URL was shared with a different user. This means the value for the `index_url` supplied with the REST API request is lost.
+This helps when the REST API creates a session and cookies are deleted or a session URL is shared with a different user. This means the value for the `index_url` supplied with the REST API request is lost.
 
 To set the URL for the external site, use the `portal.index` property:
 
@@ -601,7 +601,7 @@ If a user has logged into the training portal as the admin user, the user is not
 
 ## <a id="override-portal-title-logo"></a>Override portal title and logo
 
-By default the web interface for the training portal displays a generic Learning Center logo and a page title of "Workshops." If you want to override these, you can set `portal.title` and `portal.logo`:
+By default the web interface for the training portal displays a generic Learning Center logo and a page title of "Workshops." To override these, you can set `portal.title` and `portal.logo`:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
