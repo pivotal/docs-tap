@@ -25,7 +25,7 @@ For information, see [Installing part I: Prerequisites, EULA, and CLI](install-g
 + [Install Developer Conventions](#inst-dev-convs)
 + [Install Spring Boot Conventions](#install-spring-boot-conv)
 + [Install Application Live View](#install-app-live-view)
-+ [Install Tanzu Application Platform GUI](#install-tap-gui)180985074
++ [Install Tanzu Application Platform GUI](#install-tap-gui)
 + [Install Learning Center for Tanzu Application Platform](#install-learning-center)
 + [Install Service Bindings](#install-service-bindings)
 + [Install Supply Chain Security Tools - Store](#install-scst-store)
