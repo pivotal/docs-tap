@@ -6,7 +6,7 @@ The `TrainingPortal` custom resource triggers the deployment of a set of worksho
 
 You run multiple workshop instances to perform training to a group of people by creating the workshop environment and then creating each workshop instance. The `TrainingPortal` workshop resource bundles that up as one step.
 
-Before creating the training environment, you still need to load the workshop definitions as a separate step.
+Before creating the training environment, you must load the workshop definitions as a separate step.
 
 To specify the names of the workshops to be used for the training, list them under the `workshops` field of the training portal specification. Each entry needs to define a `name` property, matching the name of the `Workshop` resource you created.
 
@@ -54,7 +54,7 @@ If you do not set `portal.sessions.maximum`, you must set the capacity for each 
 
 ## <a id="workshop-capacity"></a>Capacity of individual workshops
 
-When you have more than one workshop, you may want to limit how many instances of each workshop you can have so that they cannot grow to the maximum number of sessions for the whole training portal. This means you can stop a specific workshop from using all of the capacity of the training portal. To do this, set the `capacity` field under the entry for the workshop:
+When you have more than one workshop, you can want to limit how many instances of each workshop you can have so that they cannot grow to the maximum number of sessions for the whole training portal. This means you can stop a specific workshop from using all of the capacity of the training portal. To do this, set the `capacity` field under the entry for the workshop:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -72,15 +72,15 @@ spec:
     capacity: 6
 ```
 
-The value of `capacity` limits the number of workshop sessions for a specific workshop to that value. It should always be less than or equal to the maximum number of workshops sessions for the portal, because the latter always sets the absolute limit.
+The value of `capacity` limits the number of workshop sessions for a specific workshop to that value. It must be less than or equal to the maximum number of workshops sessions for the portal, because the latter always sets the absolute limit.
 
 ## <a id="set-workshop-instances"></a>Set reserved workshop instances
 
 By default one instance of each of the listed workshops is created so when the initial user requests that workshop, it's available for use immediately.
 
-When such a reserved instance is allocated to a user, provided that the workshop capacity hasn't been reached, a new instance of the workshop is created as a reserve ready for the next user. When a user ends a workshop, if the workshop had been at capacity, when the instance is deleted, a new reserve is created. The total of allocated and reserved sessions for a workshop cannot exceed the capacity for that workshop.
+When such a reserved instance is allocated to a user, provided that the workshop capacity hasn't been reached, a new instance of the workshop is created as a reserve ready for the next user. When a user ends a workshop and the workshop is at capacity, when the instance is deleted, a new reserve is created. The total of allocated and reserved sessions for a workshop cannot exceed the capacity for that workshop.
 
-If you want to override for a specific workshop how many reserved instances are kept on standby ready for users, you can set the `reserved` setting against the workshop:
+To override for a specific workshop how many reserved instances are kept on standby ready for users, you can set the `reserved` setting against the workshop:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -100,9 +100,9 @@ spec:
     reserved: 4
 ```
 
-The value of `reserved` can be set to 0 if you never want any reserved instances for a workshop and only want instances of that workshop created on demand when required for a user. Creating instances of a workshop on demand can result in a user waiting longer to access a workshop session.
+You can set the value of `reserved` to 0 if you never want any reserved instances for a workshop and only want instances of that workshop created on demand when required for a user. Creating instances of a workshop on demand can result in a user waiting longer to access a workshop session.
 
-When workshop instances are always created on demand, the oldest reserved instance is terminated to allow a new session of a desired workshop to be created. This also happens when reserved instances tie up capacity that could be used for a new session of another workshop. This occurs as long as any caps for specific workshops are met.
+When workshop instances are always created on demand, the oldest reserved instance is terminated to allow a new session of a desired workshop to be created. This also happens when reserved instances tie up capacity that could be used for a new session of another workshop. This occurs if any caps for specific workshops are met.
 
 ## <a id="override-sessions"></a>Override initial number of sessions
 
@@ -127,7 +127,7 @@ spec:
 
 ## <a id="set-workshop-defaults"></a>Setting defaults for all workshops
 
-If you have a list of workshops, and they all need to be set with the same values for `capacity`, `reserved`, and `initial`, rather than add settings to each, you can set defaults to apply to all workshops under the `portal` section:
+If you have a list of workshops, and they all must be set with the same values for `capacity`, `reserved`, and `initial`, rather than add settings to each, you can set defaults to apply to all workshops under the `portal` section:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -146,11 +146,11 @@ spec:
   - name: lab-markdown-sample
 ```
 
->**Note:** The location of these defaults in the training portal configuration is likely to change in a future release.
+
 
 ## <a id="set-user-caps"></a>Set caps on individual users
 
-By default a single user can run more than one workshop at a time. You can cap this if you want to ensure that workshops run only one at a time. This prevents a user from wasting resources by starting more than one workshop and only working on one without shutting the other down.
+By default a single user can run more than one workshop at a time. You can cap this to ensure that workshops run only one at a time. This prevents a user from wasting resources by starting more than one workshop and only working on one without shutting the other down.
 
 To apply a limit on how many concurrent workshop sessions a user can start, use the `portal.sessions.registered` setting:
 
@@ -196,15 +196,15 @@ spec:
 
 ## <a id="expire-workshop-sessions"></a>Expiration of workshop sessions
 
-After you reach the maximum capacity, no more workshops sessions can be created. After a workshop session has been allocated to a user, it cannot be reassigned to another user.
+After you reach the maximum capacity, no more workshops sessions can be created. After a workshop session is allocated to a user, it cannot be reassigned to another user.
 
 If you are running a supervised workshop, set the capacity higher than the anticipated number of users in case you have more users than you expect. Use the setting for the reserved number of instances. This way, even if you set a higher capacity than needed, workshop sessions are only created as required and not all up front.
 
 In supervised workshops, when the training is over, delete the whole training environment. All workshop sessions are then deleted.
 
-If you need to host a training portal over an extended period but don't know when users want to do a workshop, you can set up workshop sessions to expire after a set time. When expired, the workshop session is deleted and a new workshop session can be created in its place.
+To host a training portal over an extended period but don't know when users want to do a workshop, you can set up workshop sessions to expire after a set time. When expired, the workshop session is deleted and a new workshop session can be created in its place.
 
-The maximum capacity is therefore the maximum at any one point in time, with the number being able to grow and shrink over time. So over an extended time, you could handle many more sessions than the set maximum capacity. The maximum capacity ensures you don't try to allocate more workshop sessions than you have resources for at any one time.
+The maximum capacity is therefore the maximum at any one point in time, while the number can grow and shrink over time. So over an extended time, you can handle many more sessions than the set maximum capacity. The maximum capacity ensures you don't try to allocate more workshop sessions than you have resources for at a given time.
 
 To set a maximum time allowed for a workshop session, use the `expires` setting:
 
@@ -245,7 +245,7 @@ spec:
 
 Avoid this setting for supervised workshops where the whole event only lasts a certain length of time. This prevents a user's session from being deleted when the user takes breaks and the computer goes to sleep.
 
-The `expires` and `orphaned` settings can also be set against `portal` if you want them to apply to all workshops.
+The `expires` and `orphaned` settings can also be set against `portal` to apply them to all workshops.
 
 ## <a id="update-workshop-environs"></a>Updates to workshop environments
 
@@ -257,9 +257,9 @@ If you add a workshop to the list of workshops, a new workshop environment for i
 
 Changes to settings, such as the maximum number of sessions for the training portal or capacity settings for individual workshops, are applied to existing workshop environments.
 
-By default a workshop environment is left unchanged if the corresponding workshop definition is changed. So in the default configuration, you need to explicitly delete the workshop from the list of workshops managed by the training portal and then add it back again if the workshop definition changed.
+By default a workshop environment is left unchanged if the corresponding workshop definition is changed. So in the default configuration, you must explicitly delete the workshop from the list of workshops managed by the training portal and then add it back again if the workshop definition changed.
 
-If you prefer that workshop environments be automatically replaced when the workshop definition changes, you can enable it by using the `portal.updates.workshop` setting:
+If you prefer that workshop environments be replaced when the workshop definition changes, enable this by using the `portal.updates.workshop` setting:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -279,13 +279,13 @@ spec:
     orphaned: 5m
 ```
 
-When using this option, use the `portal.sessions.maximum` setting to limit the number of workshop sessions that can be run for the training portal as a whole. When replacing the workshop environment, the old workshop environment is retained as long as there is still an active workshop session being used. If the limit isn't set, the new workshop environment is still able to grow to its specific capacity and is not limited by how many workshop sessions are running against old instances of the workshop environment.
+When using this option, use the `portal.sessions.maximum` setting to limit the number of workshop sessions that can be run for the training portal as a whole. When replacing the workshop environment, the old workshop environment is retained if there is still an active workshop session being used. If the limit isn't set, the new workshop environment is still able to grow to its specific capacity and is not limited by how many workshop sessions are running against old instances of the workshop environment.
 
 Overall, VMware recommends updating workshop environments when workshop definitions change only in development environments when working on workshop content. This is an especially good practice until you are familiar with how the training portal replaces existing workshop environments, and the resource implications of having old and new instances of a workshop environment running at the same time.
 
 ## <a id="override-ingress-domain"></a>Override the ingress domain
 
-To access a workshop instance using a public URL, you need to specify an ingress domain. If an ingress domain isn't specified, the default ingress domain that the Learning Center Operator has been configured with is used.
+To access a workshop instance using a public URL, specify an ingress domain. If an ingress domain isn't specified, the default ingress domain that the Learning Center Operator is configured with is used.
 
 When setting a custom domain, DNS must have been configured with a wildcard domain to forward all requests for sub-domains of the custom domain to the ingress router of the Kubernetes cluster.
 
@@ -306,7 +306,7 @@ spec:
     reserved: 1
 ```
 
-If overriding the domain, by default the workshop session is exposed using a HTTP connection. If you require a secure HTTPS connection, you need to have access to a wildcard SSL certificate for the domain. A secret of type `tls` should be created for the certificate in the `learningcenter` namespace or the namespace where the Learning Center Operator is deployed. The name of that secret should then be set in the `portal.ingress.secret` field:
+If overriding the domain, by default the workshop session is exposed using a HTTP connection. If you require a secure HTTPS connection, you must have access to a wildcard SSL certificate for the domain. A secret of type `tls` should be created for the certificate in the `learningcenter` namespace or the namespace where the Learning Center Operator is deployed. The name of that secret should then be set in the `portal.ingress.secret` field:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -342,7 +342,7 @@ spec:
     reserved: 1
 ```
 
-If you need to override or set the ingress class, which dictates which ingress router is used when more than one option is available, you can add `portal.ingress.class`:
+To override or set the ingress class, which dictates which ingress router is used when more than one option is available, you can add `portal.ingress.class`:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -595,7 +595,7 @@ spec:
     reserved: 1
 ```
 
-If you supply this property, passing the `index_url` when creating a workshop session using the REST API is optional, and the value of this property is used. You may still want to supply `index_url` when using the REST API if you want a user to be redirected back to a sub-category of workshops on the site. The URL provided in the training portal definition then acts only as a fallback. That is, when the redirect URL becomes unavailable, it directs the user back to the top-level page for the external list of workshops.
+If you supply this property, passing the `index_url` when creating a workshop session using the REST API is optional, and the value of this property is used. You can still supply `index_url` when using the REST API for a user to be redirected back to a sub-category of workshops on the site. The URL provided in the training portal definition then acts only as a fallback. That is, when the redirect URL becomes unavailable, it directs the user back to the top-level page for the external list of workshops.
 
 If a user has logged into the training portal as the admin user, the user is not redirected to the external site and still sees the training portal's list of workshops.
 
