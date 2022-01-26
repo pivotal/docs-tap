@@ -5,27 +5,27 @@
 
 See [API walkthrough](api_walkthrough.md) for a walkthrough and example.
 
-## Information
+## <a id='info'></a>Information
 
-### Version
+### <a id='methods'></a>Version
 
 0.0.1
 
-## Content negotiation
+## <a id='con-nego'></a>Content negotiation
 
-### URI Schemes
+### <a id='uri-schemes'></a>URI Schemes
 * http
 * https
 
-### Consumes
+### <a id='consumes'></a>Consumes
 * application/json
 
-### Produces
+### <a id='produce'></a>Produces
 * application/json
 
-## All endpoints
+## <a id='all--enpoints'></a>All endpoints
 
-###  images
+###  <a id='images'></a>images
 
 | Method  | URI     | Name   | Summary |
 |---------|---------|--------|---------|
@@ -36,7 +36,7 @@ See [API walkthrough](api_walkthrough.md) for a walkthrough and example.
 
 
 
-###  Operations
+###  <a id='operations'></a>Operations
 
 | Method  | URI     | Name   | Summary |
 |---------|---------|--------|---------|
@@ -44,7 +44,7 @@ See [API walkthrough](api_walkthrough.md) for a walkthrough and example.
 
 
 
-###  Packages
+###  <a id='packages'></a>Packages
 
 | Method  | URI     | Name   | Summary |
 |---------|---------|--------|---------|
@@ -56,7 +56,7 @@ See [API walkthrough](api_walkthrough.md) for a walkthrough and example.
 
 
 
-###  Sources
+###  <a id='sources'></a>Sources
 
 | Method  | URI     | Name   | Summary |
 |---------|---------|--------|---------|
@@ -67,7 +67,7 @@ See [API walkthrough](api_walkthrough.md) for a walkthrough and example.
 
 
 
-###  Vulnerabilities
+###  <a id='vulnerabilities'></a>Vulnerabilities
 
 | Method  | URI     | Name   | Summary |
 |---------|---------|--------|---------|
@@ -79,9 +79,9 @@ See [API walkthrough](api_walkthrough.md) for a walkthrough and example.
 
 
 
-## Paths
+## <a id='paths'></a>Paths
 
-### <span id="create-image-report"></span> Create a new image report. Related packages and vulnerabilities are also created. (*CreateImageReport*)
+### <a id="create-image-report"></a> Create a new image report. Related packages and vulnerabilities are also created. (*CreateImageReport*)
 
 ```
 POST /api/imageReport
