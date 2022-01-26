@@ -2,31 +2,31 @@
 
 This topic contains release notes for Tanzu Application Platform v1.0.
 
-## <a id='1-0'></a> v1.0.1
+## <a id='1-0-1'></a> v1.0.1
 
 **Release Date**: February 8, 2022
 
-### <a id='1-1-breaking-changes'></a> Breaking changes
+### <a id='1-0-1-breaking-changes'></a> Breaking changes
 
 This release has the following breaking changes:
 
 
-### <a id='1-1-security-issues'></a> Security issues
+### <a id='1-0-1-security-issues'></a> Security issues
 
 This release has the following security issues:
 
 
-### <a id='1-1-features'></a> Features
+### <a id='1-0-1-features'></a> Features
 
 This release has the following new features:
 
 
-### <a id='1-1-resolved-issues'></a> Resolved issues
+### <a id='1-0-1-resolved-issues'></a> Resolved issues
 
 This release has the following fixes:
 
 
-### <a id='1-1-known-issues'></a> Known issues
+### <a id='1-0-1-known-issues'></a> Known issues
 
 This release has the following issues:
 
