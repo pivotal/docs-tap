@@ -36,7 +36,7 @@ Use the robot login credentials if you want to access the REST API.
 
 ## <a id="requesting-access-token"></a>Requesting an access token
 
-Before you can make requests against the REST API to query details about workshops or request a workshop session, you must login through the REST API to get an access token.
+Before you can make requests against the REST API to query details about workshops or request a workshop session, you must log in through the REST API to get an access token.
 
 This is done from any front-end web application or provisioning system, but the step is equivalent to making a REST API call by using `curl` of:
 
