@@ -64,7 +64,7 @@ This is the table of contents from which the Tanzu Application Platform Document
           - [Workshop resource](learning-center/runtime-environment/workshop-definition.md)
           - [WorkshopEnvironment resource](learning-center/runtime-environment/workshop-environment.md)
           - [WorkshopRequest resource](learning-center/runtime-environment/workshop-request.md)
-          - [WorkshopPortal resource](learning-center/runtime-environment/training-portal.md)
+          - [TrainingPortal resource](learning-center/runtime-environment/training-portal.md)
           - [SystemProfile resource](learning-center/runtime-environment/system-profile.md)
           - [WorkshopSession resource](learning-center/runtime-environment/workshop-session.md)
         - [Portal Rest API](learning-center/portal-rest-api/about.md)
