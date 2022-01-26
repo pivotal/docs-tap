@@ -15,7 +15,7 @@ The installation creates the following in your Kubernetes cluster:
 * A Kubernetes secret to allow pulling Supply Chain Security Tools - Store images from a registry.
 * A namespace called `metadata-store`.
 * A service account with read-write privileges named `metadata-store-read-write-client`. It's bound to a ClusterRole named `metadata-store-read-write`.
-* A ready-only ClusterRole named `metadata-store-ready-only` that isn't bound to a service account. See [Service Accounts](#service-accounts).
+* A read-only ClusterRole named `metadata-store-read-only` that isn't bound to a service account. See [Service Accounts](#service-accounts).
 
 ## <a id='configuration'></a> Deployment configuration
 ### Database configuration
