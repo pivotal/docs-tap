@@ -23,7 +23,7 @@ See [API walkthrough](api_walkthrough.md) for a walkthrough and example.
 ### <a id='produce'></a>Produces
 * application/json
 
-## <a id='all--enpoints'></a>All endpoints
+## <a id='all-enpoints'></a>All endpoints
 
 ###  <a id='images'></a>images
 
@@ -87,19 +87,19 @@ See [API walkthrough](api_walkthrough.md) for a walkthrough and example.
 POST /api/imageReport
 ```
 
-#### Parameters
+#### <a id='parameters'></a>Parameters
 
 | Name | Source | Type | Go type | Separator | Required | Default | Description |
 |------|--------|------|---------|-----------| :------: |---------|-------------|
 | Image | `body` | [Image](#image) | `models.Image` | | ✓ | |  |
 
-#### All responses
+#### <a id='all-responses'></a>All responses
 | Code | Status | Description | Has headers | Schema |
 |------|--------|-------------|:-----------:|--------|
 | [200](#create-image-report-200) | OK | Image |  | [schema](#create-image-report-200-schema) |
 | [default](#create-image-report-default) | | ErrorMessage |  | [schema](#create-image-report-default-schema) |
 
-#### Responses
+#### <a id='responses'></a>Responses
 
 
 ##### <span id="create-image-report-200"></span> 200 - Image
@@ -126,19 +126,19 @@ ErrorMessage
 POST /api/sourceReport
 ```
 
-#### Parameters
+#### <a id='parameters2'></a>Parameters
 
 | Name | Source | Type | Go type | Separator | Required | Default | Description |
 |------|--------|------|---------|-----------| :------: |---------|-------------|
 | Image | `body` | [Source](#source) | `models.Source` | | ✓ | |  |
 
-#### All responses
+#### <a id='all-responses2'></a>All responses
 | Code | Status | Description | Has headers | Schema |
 |------|--------|-------------|:-----------:|--------|
 | [200](#create-source-report-200) | OK | Source |  | [schema](#create-source-report-200-schema) |
 | [default](#create-source-report-default) | | ErrorMessage |  | [schema](#create-source-report-default-schema) |
 
-#### Responses
+#### <a id='responses2'></a>Responses
 
 
 ##### <span id="create-source-report-200"></span> 200 - Source
@@ -165,19 +165,19 @@ ErrorMessage
 GET /api/images/{IDorDigest}/packages
 ```
 
-#### Parameters
+#### <a id='parameters3'></a>Parameters
 
 | Name | Source | Type | Go type | Separator | Required | Default | Description |
 |------|--------|------|---------|-----------| :------: |---------|-------------|
 | IDorDigest | `path` | string | `string` |  | ✓ |  |  |
 
-#### All responses
+#### <a id='all-responses3'></a>All responses
 | Code | Status | Description | Has headers | Schema |
 |------|--------|-------------|:-----------:|--------|
 | [200](#get-image-packages-200) | OK | Package |  | [schema](#get-image-packages-200-schema) |
 | [default](#get-image-packages-default) | | ErrorMessage |  | [schema](#get-image-packages-default-schema) |
 
-#### Responses
+#### <a id='responses3'></a>Responses
 
 
 ##### <span id="get-image-packages-200"></span> 200 - Package
@@ -204,13 +204,13 @@ ErrorMessage
 GET /api/images/{IDorDigest}/vulnerabilities
 ```
 
-#### Parameters
+#### <a id='parameters4'></a>Parameters
 
 | Name | Source | Type | Go type | Separator | Required | Default | Description |
 |------|--------|------|---------|-----------| :------: |---------|-------------|
 | IDorDigest | `path` | string | `string` |  | ✓ |  |  |
 
-#### All responses
+#### <a id='parameters'></a>All responses
 | Code | Status | Description | Has headers | Schema |
 |------|--------|-------------|:-----------:|--------|
 | [200](#get-image-vulnerabilities-200) | OK | Vulnerability |  | [schema](#get-image-vulnerabilities-200-schema) |
