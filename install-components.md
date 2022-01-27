@@ -3021,7 +3021,7 @@ that you plan to create the `Workload` in:
 2. Add placeholder read secrets, a service account, and RBAC rules to the developer namespace by running:
 
     ```
-    cat <<EOF | kubectl -n YOUR-NAMESPACE apply -f -
+    cat <<EOF | kubectl -n YOUR-NAMESPACE create -f -
 
     apiVersion: v1
     kind: Secret
