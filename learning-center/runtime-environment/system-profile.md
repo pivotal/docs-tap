@@ -4,11 +4,11 @@ The `SystemProfile` custom resource is used to configure the Learning Center Ope
 The default system profile can be used to set defaults for ingress and image pull secrets, with
 specific deployments able to select an alternate profile if required.
 
->**Note:** Changes made to the `SystemProfile` custom resource (or by means of environment variables)
->won't take effect on already deployed `TrainingPortals`. Those must be re-created for the changes
+>**Note:** Changes made to the `SystemProfile` custom resource, or changes made by means of environment variables,
+>won't take effect on already deployed `TrainingPortals`. Those must be recreated for the changes
 >to be applied.
->Only the `TrainingPortal` resources must be re-created, because this resource takes care of
->re-creating the `WorkshopEnvironments` with the new values.
+>Only the `TrainingPortal` resources must be recreated, because this resource takes care of
+>recreating the `WorkshopEnvironments` with the new values.
 
 ## <a id="op-default-sys-profile"></a> Operator default system profile
 
@@ -273,10 +273,9 @@ available to containers is often reduced. To deal with this possibility, the mtu
 `dockerd` is run for a workshop is set as 1400 instead of 1500.
 
 If you experience problems building or running images with the `docker` support, including errors or
-timeouts in pulling images or when pulling software packages (PyPi, npm, etc) within a build, you
-might need to override this value to an even lower value.
+timeouts in pulling images or when pulling software packages, such as PyPi, npm, and so on, you might need to override this value to an even lower value.
 
-If this is required, you can set the `dockerd.mtu` property.
+If this is required, you can set the `dockerd.mtu` property:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
