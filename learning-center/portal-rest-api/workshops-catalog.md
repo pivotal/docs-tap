@@ -54,11 +54,11 @@ The JSON response is of the form:
 }
 ```
 
-For each workshop listed under `environments`, where a field listed under `workshop` has the same name as it appears in the `Workshop` custom resource, it has the same meaning. The `id` field is an additional field which can uniquely identify a workshop based on the name of the workshop image, the Git repository for the workshop, or the website hosting the workshop instructions. The value of the `id` field doesn't rely on the name of the `Workshop` resource and should be the same if the same workshop details are used but the name of the `Workshop` resource is different.
+For each workshop listed under `environments`, where a field listed under `workshop` has the same name as it appears in the `Workshop` custom resource, it has the same meaning. The `id` field is an additional field which can uniquely identify a workshop based on the name of the workshop image, the Git repository for the workshop, or the website hosting the workshop instructions. The value of the `id` field doesn't rely on the name of the `Workshop` resource and must be the same if the same workshop details are used but the name of the `Workshop` resource is different.
 
-The `duration` field provides the time in seconds after which the workshop environment expires. The value can be `null` if there is no expiration time for the workshop.
+The `duration` field provides the time in seconds after which the workshop environment expires. The value is `null` if there is no expiration time for the workshop.
 
-The `capacity` field is the maximum number of workshop sessions that can be created for the workshop.
+The `capacity` field is the maximum number of workshop sessions that you can create for the workshop.
 
 The `reserved` field indicates how many instances of the workshop are reserved as hot spares. These are used to service requests for a workshop session. If no reserved instances are available and capacity has not been reached, a new workshop session is created on demand.
 
@@ -68,13 +68,13 @@ The `available` field indicates how many workshop sessions are available for imm
 
 Under `portal.sessions`, the `allocated` field indicates the total number of allocated sessions across all workshops hosted by the portal.
 
-Where `maximum`, `registered` and `anonymous` are non-zero, they indicate caps on the number of workshops that can be run.
+Where `maximum`, `registered`, and `anonymous` are nonzero, they are the limit on the number of workshops run.
 
-The `maximum` indicates a maximum on the total number of workshop sessions that can be run by the portal across all workshops. Even where a specific workshop has not reached capacity, if `allocated` for the whole portal has reached `maximum`, then no more workshop sessions can be created.
+  * The `maximum` is the total number of workshop sessions that can be run by the portal across all workshops. If `allocated` for the whole portal has reached `maximum`, no more workshop sessions are created.
 
-The value of `registered` when nonzero indicates a cap on the number of workshop sessions a single registered portal user can have running at the one time.
+  * The value of `registered` when nonzero indicates a cap on the number of workshop sessions a single registered portal user can have running at the one time.
 
-The value of `anonymous` when nonzero indicates a cap on the number of workshop sessions an anonymous user can have running at the one time. Anonymous users are users created as a result of the REST API being used or if anonymous access is enabled when the user accesses the portal via the web interface.
+  * The value of `anonymous` when nonzero indicates a cap on the number of workshop sessions an anonymous user can have running at the one time. Anonymous users are users created as a result of the REST API being used or if anonymous access is enabled when the user accesses the portal through the web interface.
 
 By default, only workshop environments currently marked with a `state` of `RUNNING` are returned, that is, those workshop environments which are taking new workshop session requests. If you also want to see the workshop environments which are currently in the process of being shut down, you must provide the `state` query string parameter to the REST API call and indicate which states workshop environments to return for.
 
