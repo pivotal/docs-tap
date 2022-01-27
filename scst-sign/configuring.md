@@ -82,7 +82,7 @@ apiVersion: signing.apps.tanzu.vmware.com/v1beta1
 kind: ClusterImagePolicy
 metadata:
   name: image-policy
-spec
+spec:
   verification:
     exclude:
       resources:
