@@ -350,7 +350,8 @@ To prepare to install a profile:
     tanzu package available list tap.tanzu.vmware.com --namespace tap-install
     ```
 
-1. Create a `tap-values.yml` file by using the applicable profile sample as a guide.
+1. Create a `tap-values.yml` file by using the
+[Full Profile sample](#full-profile) or [Light Profile sample](#light-profile) as a guide.
 These samples have the minimum configuration required to deploy Tanzu Application Platform.
 The sample values file contains the necessary defaults for both the meta-package
 (parent Tanzu Application Platform package) and subordinate packages
@@ -359,6 +360,9 @@ The values file you provide during installation is used for further configuratio
 of Tanzu Application Platform.
 
 >**Important:** Keep this file for future use.
+
+1. Proceed to the [View possible configuration settings for your package](view-pkge-config-settings)
+section.
 
 ### <a id='full-profile'></a> Full Profile
 
@@ -443,6 +447,8 @@ service's External IP address.
 >**Note:** Using the `tap-values.yaml` configuration,
 >`buildservice.enable_automatic_dependency_updates: false` can be used to pause the automatic update
 >of Build Service dependencies.
+
+
 
 ### <a id='light-profile'></a> Light Profile
 
@@ -628,14 +634,14 @@ service_account           default                    string  Name of the service
     tanzu package installed list -A
     ```
 
+1. Ensure you have
+[set up developer namespaces to use installed packages](install-components.md#setup).
 
-  Congratulations, now you have installed the Tanzu Application Platform! Before your start submitting your first applications, you must ensure you have [Setup developer namespaces](install-components.md#setup).
+1. (Optional) [Install any additional packages](install-components.md) that were not included in
+your profile.
 
-
-1. (Optional) [Install any additional packages](install-components.md) that were not included in your profile.
-
-After you install Light Profile on to your cluster, you can install the Tanzu Developer Tools for
-VSCode extension to help you develop against it.
+After you install Full Profile or Light Profile on to your cluster, you can install the
+Tanzu Developer Tools for VSCode extension to help you develop against it.
 For instructions, see [Installing Tanzu Dev Tools for VSCode](vscode-extension/install.md).
 
 ## <a id='configure-envoy-lb'></a> Configure LoadBalancer for Contour ingress

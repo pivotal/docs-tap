@@ -2089,7 +2089,8 @@ For general information about Learning Center, see [Learning Center](learning-ce
 
 - [Tanzu Application Platform Prerequisites](install-general.md#prereqs)
 
-- The cluster must have an ingress router configured. If you have installed the TAP package (full or dev profile), it already deploys a contour ingress controller.
+- The cluster must have an ingress router configured. If you have installed the TAP package through
+the full profile or light profile, it already deploys a contour ingress controller.
 
 - The operator, when deploying instances of the workshop environments, needs to be able to expose them via an external URL for access. For the custom domain you are using, DNS must have been configured with a wildcard domain to forward all requests for sub-domains of the custom domain to the ingress router of the Kubernetes cluster
 
