@@ -1,6 +1,6 @@
 # Deployment details and configuration
 
-## What is deployed
+## <a id='what-deploy'></a>What is deployed
 
 The installation creates the following in your Kubernetes cluster:
 
@@ -22,11 +22,11 @@ The installation creates the following in your Kubernetes cluster:
 
 The default database that ships with the deployment is meant to get users started using the metadata store. The default database deployment does not support many enterprise production requirements, including scaling, redundancy, or failover. However, it is still a secure deployment.
 
-#### Using AWS RDS postgres database
+#### <a id='awsrds-postresdata'></a>Using AWS RDS postgres database
 
 Users can also configure the deployment to use their own RDS database instead of the default. See [AWS RDS Postgres Configuration](use_aws_rds.md).
 
-#### Custom database password
+#### <a id='cust-data-pass'></a>Custom database password
 
 By default, a database password is generated automatically upon deployment. To configure a custom password, use the `db_password` property in the `metadata-store-values.yaml` during deployment.
 
@@ -45,7 +45,7 @@ Where `PASSWORD-0123` is the same password used between deployments.
 
 > Note: there is a known issue related to changing database passwords [Known Issues - Persistent Volume Retains Data](known_issues.md#persistent-volume-retains-data).
 
-### App service type
+### <a id='appserv-type'></a>App service type
 
 If your environment does not support `LoadBalancer`, and you want to use `NodePort`, configure the `app_service_type` property in your `metadata-store-values.yaml`:
 
@@ -62,6 +62,6 @@ To create a custom service account, see [create service account](create_service_
 
 The store will automatically create a read-only cluster role, which may be bound to a service account via `ClusterRoleBinding`. To create service accounts to bind to this cluster role, see [create service account](create_service_account_access_token.md). 
 
-## Exporting certificates
+## <a id='export-cert'></a>Exporting certificates
 
 Supply Chain Security Tools - Store creates [Secret Export](https://github.com/vmware-tanzu/carvel-secretgen-controller/blob/develop/docs/secret-export.md) for exporting certificates to `Supply Chain Security Tools - Scan` to securely post scan results. These certificates are exported to the namespace where `Supply Chain Security Tools - Scan` is installed. 
