@@ -2,7 +2,7 @@
 
 This topic contains troubleshooting and known issues for Supply Chain Security Tools - Store.
 
-## Deploying for internal/external customers
+## <a id='deploy-intcust'></a>Deploying for internal/external customers
 
 Using `imgpkg copy` command copies the image bundle along with all images it references to a target
 repository.
