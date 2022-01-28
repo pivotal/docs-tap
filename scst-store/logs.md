@@ -3,7 +3,7 @@
 This topic covers configuring the Supply Chain Security Tools - Store to output detailed log
 information and interpret them. re-boot
 
-## Log levels
+## <a id='log-lev'></a> Log levels
 
 There are six log levels that the Supply Chain Security Tools - Store supports.
 
@@ -34,11 +34,11 @@ extensibility.
 
 If no log level is specified when the Store is installed, the log level is set to `default`.
 
-### Error Logs
+### <a id='error-logs'></a> Error Logs
 
 Errors logs are always outputted regardless of the log level, even when it is set to `minimum`.
 
-## Obtaining logs
+## <a id='obtain-logs'></a> Obtaining logs
 
 Logs are emitted by the Kubernetes pods. The deployment has two pods, one for the database, and one
 for the API back end. First, use `kubectl get pods` to obtain the names of the pods.
@@ -77,7 +77,7 @@ I1206 18:34:17.784900       1 main.go:180] Valid token audiences:
 ...
 ```
 
-## API endpoint log output
+##  <a id='api-endptlog-out'></a> API endpoint log output
 
 When an API endpoint handles a request, the Store generates two and five log lines. They are:
 
@@ -93,7 +93,7 @@ This line is shown at the `default` log level.
 key `payload`, and its value is set to the entire response body. This line is shown at the `debug`
 log level.
 
-### Format
+### <a id='api-endptlog-out-format'></a>  Format
 
 When the Store handles a request, it outputs some API endpoint access information in the following
 format:
@@ -104,25 +104,25 @@ I1122 20:30:21.869528       1 images.go:26] MetadataStore "msg"="Processing requ
 
 The log is broken down into three sections: The header, name, and key/value pairs.
 
-#### Log header
+#### <a id='log-head'></a>  Log header
 
 `I1122 20:30:21.869528       1 images.go:26]` is the logging header.
 The [Logging header formats](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-instrumentation/logging.md#logging-header-formats)
 section in GitHub explains each part in more detail.
 
-#### Name
+####  <a id='name'></a> Name
 
 The string that follows the header is a name that helps identify what produced the log entry.
 For Stores, the name always starts with `MetadataStore`.
 
 For log entries that display the raw SQL queries, the name is `MetadataStore/gorm`.
 
-#### Key-value pairs
+####  <a id='key-val'></a> Key-value pairs
 
 Key-value pairs compose the rest of the log output. The tables in the following sections list each
 key and the meaning of their values.
 
-##### Common to all logs
+#####  <a id='common-all'></a> Common to all logs
 
 The following key-value pairs are common for all logs.
 
@@ -137,7 +137,7 @@ The following key-value pairs are common for all logs.
 | response | string  | default   | The HTTP response in human-readable format. For example, "OK", "Bad Request", or "Internal Server Error."                                                         |
 | error    | string  | all       | The error message which is only available in error log entries                                                                                                    |
 
-##### Logging query and path parameter values
+#####  <a id='log-query'></a> Logging query and path parameter values
 
 Those endpoints that use query or path parameters are logged on the `Request parameters` log line as
 key-value pairs. Afterward, they are appended to all other log lines of the same request as
@@ -166,7 +166,7 @@ This is done to ensure:
 Since there can be several simultaneous endpoint calls, this is a first attempt at trying to group
 logs by specific calls.
 
-##### API payload log output
+#####  <a id='api-payload-out'></a> API payload log output
 
 As mentioned at the start of this section, by setting the log level to `debug`, the Store logs the
 body payload data for both the request and response of an API call.
@@ -179,7 +179,7 @@ Moving the payload information at this level helps keep the production log outpu
 * Some information in these payloads may be sensitive, and the user may not want them exposed in
 production environment logs.
 
-## SQL Query log output
+##  <a id='sql_query-out'></a> SQL Query log output
 
 Some Store logs display the executed SQL query commands when you set the log level to `trace` or a
 failed SQL call occurs.
@@ -187,7 +187,7 @@ failed SQL call occurs.
 >**Note:** Some information in these SQL Query trace logs might be sensitive, and the user might not
 want them exposed in production environment logs.
 
-### Format
+###  <a id='sql_query-out-format'></a> Format
 
 When the Store display SQL query logs, it uses the following format:
 
