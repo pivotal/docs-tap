@@ -2,7 +2,7 @@
 
 By default, the metadata store uses a `PersistentVolume` mounted on a Postgres instance, making it a stateful component of Tanzu Application Platform. VMware recommends implementing a regular backup strategy as part of your disaster recovery plan when using the provided Postgres instance.
 
-## Backup
+## <a id='backup-store'></a>Backup
 You can use [Velero](https://velero.io/) to create regular backups.
 
 >**Note:** Backup support for `PersistentVolume` depends on the used `StorageClass` and existing provider plug-ins is the noun or adjective. See the officially [supported plugins here](https://velero.io/plugins/).
@@ -22,7 +22,7 @@ Velero CLI can then be used to create a backup of all the resources in the `meta
 velero backup create metadata-store-$(date '+%s') --include-namespaces=metadata-store
 ```
 
-## Restore
+## <a id='restore-store'></a>Restore
 Velero CLI can restore the Store in the same or a different cluster. The same namespace can be used to restore, but may collide with other Supply Chain Security Tools – Store installations. Furthermore, restoring into the same namespace restores a fully functional instance of Supply Chain Security Tools – Store; however, this instance is not managed by Tanzu Application Platform and can cause conflicts with future installations.
 
 ```bash
