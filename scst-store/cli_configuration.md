@@ -5,7 +5,7 @@ This topic explains how to configure the Insight CLI:
 > **Note:** All [required setup](../scst-store/overview.md#required-set-up) must be completed in addition to configuring the CLI
 
 
-## Set the target and certificate authority certificate
+## <a id='set-tar-cert'></a>Set the target and certificate authority certificate
 
 Set the target endpoint and CA certificate by running:
 
@@ -26,7 +26,7 @@ Using config file: /Users/username/.insight/config.yaml
 Setting endpoint in config to: https://metadata-store-app.metadata-store.svc.cluster.local:8443
 ```
 
-## Check the connection
+## <a id='check-con'></a>Check the connection
 
 Check that your configuration is correct and you are able to make a connection.
 
