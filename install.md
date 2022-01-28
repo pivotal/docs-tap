@@ -8,7 +8,7 @@ and verified the cluster, accepted the EULA, and installed the Tanzu CLI with an
 See [Installing Part I: Prerequisites, EULA, and CLI](install-general.md).
 
 
-## <a id='add-package-repositories'></a> Add the Tanzu Application Platform package repository
+## <a id='add-package-repositories-and-EULAs'></a> Add the Tanzu Application Platform package repository and accept the EULAs
 
 To add the Tanzu Application Platform package repository:
 
@@ -20,7 +20,23 @@ To add the Tanzu Application Platform package repository:
     export INSTALL_REGISTRY_HOSTNAME=registry.tanzu.vmware.com
     ```
 
-2. Create a namespace called `tap-install` for deploying any component packages by running:
+Before installing packages, you have to accept the End User License Agreements (EULAs).
+
+To accept EULAs:
+
+2. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
+
+3. Select the "Click here to sign the EULA" link in the yellow warning box under the release drop down as seen in the following screen shot. (If this warning is not there then the EULA has already been  accepted).
+
+![EULA Warning](/images/install-general-eulas1.png)
+
+4. Select "Agree" in the bottom right of the dialog box that comes up as seen in the following screen shot.
+
+![EULA Dialog Box](/images/install-general-eulas2.png)
+
+You have now accepted the EULA's for all of the Tanzu Application Platform.
+
+5. Create a namespace called `tap-install` for deploying any component packages by running:
 
     ```
     kubectl create ns tap-install
@@ -28,7 +44,7 @@ To add the Tanzu Application Platform package repository:
 
     This namespace keeps the objects grouped together logically.
 
-3. Create a registry secret by running:
+6. Create a registry secret by running:
 
     ```
     tanzu secret registry add tap-registry \
@@ -37,7 +53,7 @@ To add the Tanzu Application Platform package repository:
       --export-to-all-namespaces --yes --namespace tap-install
     ```
 
-4. Add Tanzu Application Platform package repository to the cluster by running:
+7. Add Tanzu Application Platform package repository to the cluster by running:
 
     ```
     tanzu package repository add tanzu-tap-repository \
@@ -55,7 +71,7 @@ To add the Tanzu Application Platform package repository:
     Added package repository 'tanzu-tap-repository'
     ```
 
-5. Get the status of the Tanzu Application Platform package repository, and ensure the status updates to `Reconcile succeeded` by running:
+8. Get the status of the Tanzu Application Platform package repository, and ensure the status updates to `Reconcile succeeded` by running:
 
     ```
     tanzu package repository get tanzu-tap-repository --namespace tap-install
@@ -73,7 +89,7 @@ To add the Tanzu Application Platform package repository:
     REASON:
     ```
 
-6. List the available packages by running:
+9. List the available packages by running:
 
     ```
     tanzu package available list --namespace tap-install

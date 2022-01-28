@@ -1,4 +1,4 @@
-# Installing part I: prerequisites, EULA, and CLI
+# Installing part I: prerequisites and CLI
 
 This document describes the first part of the installation process for Tanzu Application Platform:
 
@@ -140,25 +140,6 @@ Installation requires:
         $ kubectl config use-context aks-tap-cluster
         Switched to context "aks-tap-cluster".
         ```
-
-
-## <a id="eulas"></a> Accept the EULAs
-
-Before installing packages, you have to accept the End User License Agreements (EULAs).
-
-To accept EULAs:
-
-1. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
-
-2. Select the "Click here to sign the EULA" link in the yellow warning box under the release drop down as seen in the following screen shot. (If this warning is not there then the EULA has already been  accepted).
-
-![EULA Warning](/images/install-general-eulas1.png)
-
-3. Select "Agree" in the bottom right of the dialog box that comes up as seen in the following screen shot.
-
-![EULA Dialog Box](/images/install-general-eulas2.png)
-
-You have now accepted the EULA's for all of the Tanzu Application Platform.
 
 ## <a id='tanzu-cluster-essentials'></a> Install Cluster Essentials for VMware Tanzu
 
