@@ -5,7 +5,7 @@ This is the table of contents from which the Tanzu Application Platform Document
 - [Tanzu Application Platform v1.1](overview.md)
 - [Release notes](release-notes.md)
 - [Installing Tanzu Application Platform](install-intro.md)
-  - [Installing part I: Prerequisites, EULA, and CLI](install-general.md)
+  - [Installing part I: Prerequisites, and CLI](install-general.md)
   - [Installing part II: Profiles](install.md)
   - [Opting out of telemetry collection](opting-out-telemetry.md)
 - [Getting started with Tanzu Application Platform](getting-started.md)
