@@ -7,14 +7,14 @@ The access token is a `Bearer` token used in the http request header `Authorizat
 By default, Supply Chain Security Tools - Store comes with `read-write` service account installed.
 This service account is cluster-wide.
 
-## Service accounts
+## <a id='serv-accts'></a>Service accounts
 
 You can create two types of service accounts:
 
 1. Read-only service account - only able to use `GET` API requests
 1. Read-write service account - full access to the API requests
 
-### Read-only service account
+### <a id='readonly-serv-accts'></a>Read-only service account
 
 As a part of the Store installation, the `metadata-store-read-only` cluster role is created by default. This cluster role allows the bound user to have `get` access to all resources. To bind to this cluster role, run the following command:
 
@@ -80,7 +80,7 @@ automountServiceAccountToken: false
 EOF
 ```
 
-### Read-write service account
+### <a id='readwrite-serv-accts'></a>Read-write service account
 
 To create a read-write service account, run the following command. The command creates a service account called `metadata-store-read-write-client`:
 
@@ -119,7 +119,7 @@ automountServiceAccountToken: false
 EOF
 ```
 
-## Getting the Access Token
+## <a id='get-access-token'></a>Getting the Access Token
 To retrieve the read-only access token, run the following command:
 
 ```
