@@ -19,6 +19,7 @@ Tanzu Application Platform GUI is comprised of the following components:
   Initially the included plug-ins are:
   * Runtime Resources Visibility
   * Application Live View
+  * Application Accelerator
 
 * **TechDocs:**
   This plug-in enables you to store your technical documentation in Markdown format in a source-code
