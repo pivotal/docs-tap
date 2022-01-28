@@ -36,7 +36,7 @@ If no log level is specified when the Store is installed, the log level is set t
 
 ### <a id='error-log'></a>Error Logs
 
-Errors logs are always outputted regardless of the log level, even when it is set to `minimum`.
+Error logs are. d regardless of the log level,always outputteset to `minimum`.
 
 ## Obtaining logs
 
