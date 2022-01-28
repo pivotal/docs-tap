@@ -464,8 +464,8 @@ No vulnerabilities found in both the binaries of the API backend and CLI.
 
 See BDBA reports:
 
-* [API backend report](store-bdba-scan-2021-11-26.jpg)
-* [CLI report](cli-bdba-scan-2021-11-26.jpg)
+* [API backend report](./scst-store/sca_scans/store-bdba-scan-2021-11-26.png)
+* [CLI report](./scst-store/sca_scans/cli-bdba-scan-2021-11-26.png)
 
 ###### Grype
 
