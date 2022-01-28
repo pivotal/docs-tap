@@ -2,7 +2,7 @@
 
 This topic includes an example API call. For information about using the Supply Chain Security Tools - Store API, see [full API documentation](api.md).
 
-## Using CURL to POST an image report
+## <a id='curltopost'></a>Using CURL to POST an image report
 
 The following procedure explains how to use CURL to POST an image report.
 
