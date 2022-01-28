@@ -525,7 +525,7 @@ To install Cloud Native Runtimes:
         LoadBalancer and reduces the number of replicas.
 
         Cloud Native Runtimes reuses the existing `tanzu-system-ingress` Contour installation for
-        external and internal access when installed in the `dev` or `full` profile.
+        external and internal access when installed in the `light` or `full` profile.
         If you want to use a separate Contour installation for system-internal traffic, set
         `cnrs.ingress.internal.namespace` to the empty string (`""`).
 
@@ -1814,7 +1814,7 @@ To install Spring Boot conventions:
 
 ## <a id="install-app-live-view"></a>Install Application Live View
 
-Application Live View installs two packages for `full` and `dev` profiles.
+Application Live View installs two packages for `full` and `light` profiles.
 
 Application Live View Package (`run.appliveview.tanzu.vmware.com`) contains Application Live View
 back-end and connector components.
