@@ -2,18 +2,18 @@
 
 This topic describes how to query the database to understand vulnerability, image, and dependency relationships.
 
-## Add data
+## <a id='add-data'></a>Add data
 
 Data must be added before querying. See [Add Data](add_data.md).
 
-## Methods
+## <a id='methods'></a>Methods
 
 There are two different ways of querying the database:
 
 * [API](api.md)
 * [CLI](cli_installation.md) 
 
-## Supported use cases
+## <a id='sup-usecase'></a>Supported use cases
 
 The following are a few examples supported by the Supply Chain Security Tools - Store API and CLI:
 
@@ -45,7 +45,7 @@ Use the following commands for querying:
 
 Use `insight -h` in the terminal or see [CLI details](cli_docs/insight.md) for more information.
 
-## Example #1: What images contain a specific dependency?
+## <a id='example1'></a>Example #1: What images contain a specific dependency?
 
 Use the following command:
 
@@ -74,7 +74,7 @@ Packages:
 		1. CVE-2021-28831 (High)
 ...
 ```
-## Example #2: What dependencies are affected by a specific CVE?
+## <a id='example2'></a>Example #2: What dependencies are affected by a specific CVE?
 
 Use the following command:
 
