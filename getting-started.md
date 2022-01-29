@@ -136,16 +136,12 @@ Workload Knative Services URL at the bottom of the command output.
 
 ### <a id="add-app-to-gui-cat"></a>Add your application to Tanzu Application Platform GUI Software Catalog
 
->**Note:** Add a line to the `catalog-info.yaml` of the `tanzu-java-web-app` component.
-The added line is the `spec.system: tanzu-java-web-app` statement in the following example:
-
-
 1. Navigate to the home page of Tanzu Application Platform GUI and click **Home**, located on the left-side navigation bar.
    Click **REGISTER ENTITY**.
 
     ![REGISTER button on the right side of the header](images/getting-started-tap-gui-5.png)
 
-1. **Register an existing component** prompts you to type a repository URL.
+2. **Register an existing component** prompts you to type a repository URL.
 Type the link to the `catalog-info.yaml` file in the Git repository field, for example,
 `https://github.com/USERNAME/PROJECTNAME/blob/main/catalog-info.yaml`.
 
