@@ -1,11 +1,11 @@
 # AWS RDS Postgres configuration
 
-## Prerequisites
+## <a id='prereq'></a>Prerequisites
 
 * AWS Account
 
 
-### AWS RDS
+### <a id='aws-rds'></a>AWS RDS
 
 1. Create an Amazon RDS Postgres using the [Amazon RDS Getting Started Guide](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_GettingStarted.CreatingConnecting.PostgreSQL.html#CHAP_GettingStarted.Creating.PostgreSQL)
 
