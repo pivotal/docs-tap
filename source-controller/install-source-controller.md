@@ -14,7 +14,7 @@ Before installing Source Controller:
 - Complete all of the prerequisites to install Tanzu Application Platform. For more information, see [Installing part I: Prerequisites, EULA, and CLI](../install-general.md).
 - Install cert-manager on the cluster. See [Install Prerequisites](../install-components.md#install-prereqs).
 
-## <a id='install-src-ctrl'></a> Installation
+## <a id='install-src-ctrl'></a> Install
 
 To install Source Controller:
 
@@ -46,9 +46,6 @@ To install Source Controller:
     ```
     $ tanzu package available get controller.source.apps.tanzu.vmware.com/0.2.0 --values-schema --namespace tap-install
     ```
-
-    For more information about values schema options, see the individual product documentation.
-
 
 1. Install the package. Run:
 
