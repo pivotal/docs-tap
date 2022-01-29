@@ -1,12 +1,12 @@
 # Install Convention Service
 
->**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
-Both the full and light profiles include convention controller.
-For more information about profiles, see [Installing Part II: Profiles](../install.md)
-
 This document describes how to install convention controller
 from the Tanzu Application Platform package repository.
 Convention controller is a primary component of Convention Service.
+
+>**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
+Both the full and light profiles include convention controller.
+For more information about profiles, see [Installing Part II: Profiles](../install.md).
 
 Convention Service allows app operators to enrich Pod Template Specs with operational knowledge
 based on specific conventions they define. It includes the following components:
@@ -22,14 +22,14 @@ You install convention servers as part of separate installation procedures.
 For example, you install an `app-live-view` convention server as part of the `app-live-view`
 installation.
 
-## Prerequisites
+## <a id='prereqs'></a>Prerequisites
 
-Before installing convention controller, ensure that you have completed:
+Before installing convention controller:
 
-- All of the prerequisites to install Tanzu Application Platform. For more information, see [Installing part I: Prerequisites, EULA, and CLI](../install-general.md).
-- Installing Cert-manager on the cluster. See [Install Prerequisites](../install-components.md#install-prereqs).
+- Complete all of the prerequisites to install Tanzu Application Platform. For more information, see [Installing part I: Prerequisites, EULA, and CLI](../install-general.md).
+- Install cert-manager on the cluster. See [Install Prerequisites](../install-components.md#install-prereqs).
 
-## Installation
+## <a id='install'></a>Installation
 
 To install convention controller:
 
@@ -48,7 +48,7 @@ To install convention controller:
       controller.conventions.apps.tanzu.vmware.com  0.4.2    2021-09-16T00:00:00Z
     ```
 
-2. (Optional) Make changes to the default installation settings by running:
+1. (Optional) Make changes to the default installation settings by running:
 
     ```
     tanzu package available get controller.conventions.apps.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
@@ -105,7 +105,7 @@ To install convention controller:
     USEFUL-ERROR-MESSAGE:
     ```
 
-    Verify that `STATUS` is `Reconcile succeeded`
+    Verify that `STATUS` is `Reconcile succeeded`:
 
     ```
     kubectl get pods -n conventions-system
@@ -119,4 +119,4 @@ To install convention controller:
     conventions-controller-manager-596c65f75-j9dmn   1/1     Running   0          72s
     ```
 
-    Verify that `STATUS` is `Running`
+    Verify that `STATUS` is `Running`.
