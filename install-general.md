@@ -1,7 +1,8 @@
-# Installing part I: CLI
+# Installing part I: prerequisites and CLI
 
 This document describes the first part of the installation process for Tanzu Application Platform:
 
++ [Prerequisites](prerequisites.md)
 + [Accept the EULAs](#eulas)
 + [Install Cluster Essentials for VMware Tanzu](#tanzu-cluster-essentials)
 + [Install or Update the Tanzu CLI and plug-ins](#cli-and-plugin)
