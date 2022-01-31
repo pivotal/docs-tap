@@ -918,7 +918,7 @@ To install Application Accelerator:
     $ tanzu package available get accelerator.apps.tanzu.vmware.com/0.5.1 --values-schema --namespace tap-install
     ```
 
-    For more information about values schema options, see the individual product documentation.
+    For more information about values schema options, see the properties listed earlier.
 
 
 1. Create an `app-accelerator-values.yaml` using the following example code:
@@ -1036,8 +1036,8 @@ To install Tanzu Build Service using the Tanzu CLI:
     $ tanzu package available get buildservice.tanzu.vmware.com/1.4.2 --values-schema --namespace tap-install
     ```
 
-    For more information about values schema options, see the individual product documentation.
-
+  
+  
 
 1. Gather the values schema by running:
 

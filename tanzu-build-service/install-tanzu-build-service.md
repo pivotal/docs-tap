@@ -54,7 +54,7 @@ To install Tanzu Build Service by using the Tanzu CLI:
     $ tanzu package available get buildservice.tanzu.vmware.com/1.4.2 --values-schema --namespace tap-install
     ```
 
-    For more information about values schema options, see the individual product documentation.
+
 
 
 1. Gather the values schema by running:
