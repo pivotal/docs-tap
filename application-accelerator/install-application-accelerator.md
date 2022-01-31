@@ -21,7 +21,7 @@ See [Install cert-manager and FluxCD source controller](../install-components.md
 -  Install Source Controller on the cluster.
 See [Install Source Controller](../source-controller/install-source-controller.md).
 
-## <a id='config-app-acc'></a> Configure properties and resource usage
+## <a id='app-acc-config'></a> Configure properties and resource usage
 
 When you install the Application Accelerator,
 you can configure the following optional properties:
@@ -52,7 +52,7 @@ The following table is the resource usage configurations for the components of A
 | acc-server | cpu: 100m <br> memory:20Mi | cpu: 100m <br> memory: 30Mi |
 | acc-engine | cpu: 500m <br> memory: 1Gi | cpu: 500m <br> memory: 2Gi |
 
-## <a id='install-app-acc'></a> Install
+## <a id='app-acc-install'></a> Install
 
 To install Application Accelerator:
 

@@ -7,14 +7,14 @@ from the Tanzu Application Platform package repository.
 Both the full and light profiles include Source Controller.
 For more information about profiles, see [Installing Part II: Profiles](../install.md).
 
-## Prerequisites
+## <a id='sc-prereqs'></a>Prerequisites
 
 Before installing Source Controller:
 
 - Complete all of the prerequisites to install Tanzu Application Platform. For more information, see [Installing part I: Prerequisites, EULA, and CLI](../install-general.md).
 - Install cert-manager on the cluster. See [Install Prerequisites](../install-components.md#install-prereqs).
 
-## <a id='install-src-ctrl'></a> Install
+## <a id='sc-install'></a> Install
 
 To install Source Controller:
 
