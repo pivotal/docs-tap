@@ -8,8 +8,8 @@ The process of installing Tanzu Application Platform includes the following task
 
 |Step|Task|Link|
 |----|----|----|
-|1.| Review the prerequisites to ensure that you have set up everything you need before beginning the installation.|[Prerequisites](install-general.md#prereqs)|
-|2.| Accept the end-user license agreements.|[Accept the EULAs](install-general.md#eulas)|
+|1.| Review the prerequisites to ensure that you have set up everything you need before beginning the installation.|[Prerequisites](prerequisites.md)|
+|2.| Accept the end-user license agreements.|[Accept the EULAs](install.md#add-package-repositories-and-EULAs)|
 |3.| Install the Tanzu command line interface (CLI) and plug-ins for the Tanzu CLI.|[Install the Tanzu CLI and plug-ins](install-general.md#cli-and-plugin)|
 |4.| Create a namespace, add a secret, and add the Tanzu Application Platform package repository. |[Add the Tanzu Application Platform Package Repository](install.md#add-package-repositories)|
 |5.| Prepare your Tanzu Application Platform profile. |[Prepare to install your Tanzu Application Platform profile](install.md#prepare-install-profile)|
