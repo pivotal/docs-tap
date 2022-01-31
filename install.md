@@ -28,11 +28,11 @@ To accept EULAs:
 
 3. Select the "Click here to sign the EULA" link in the yellow warning box under the release drop down as seen in the following screen shot. (If this warning is not there then the EULA has already been  accepted).
 
-![EULA Warning](/images/install-general-eulas1.png)
+![EULA Warning](images/install-general-eulas1.png)
 
 4. Select "Agree" in the bottom right of the dialog box that comes up as seen in the following screen shot.
 
-![EULA Dialog Box](/images/install-general-eulas2.png)
+![EULA Dialog Box](images/install-general-eulas2.png)
 
 You have now accepted the EULA's for all of the Tanzu Application Platform.
 
