@@ -446,19 +446,19 @@ Upgrade golang version from `1.17.1` to `1.17.5`
 
 Software Composition Analysis scanning
 
-**Source of Scan:**
+##### Source of Scan:
 
 * Black Duck Binary Analysis (BDBA)
 * Grype
 
-**Version of Source:**
+##### Version of Source:
 
 * BDBA version 2021.9.0
 * Grype version 0.25.1
 
-**CVEs:**
+##### CVEs:
 
-**BDBA**
+###### BDBA
 
 No vulnerabilities found in both the binaries of the API backend and CLI.
 
@@ -467,7 +467,7 @@ See BDBA reports:
 * [API backend report](./scst-store/sca_scans/store-bdba-scan-2021-11-26.png)
 * [CLI report](./scst-store/sca_scans/cli-bdba-scan-2021-11-26.png)
 
-**Grype**
+###### Grype
 
 No vulnerabilities found through scanning the sources of the API backend, client lib, and CLI
 
