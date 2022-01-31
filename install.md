@@ -390,7 +390,7 @@ buildservice:
   tanzunet_username: "TANZUNET-USERNAME"
   tanzunet_password: "TANZUNET-PASSWORD"
   descriptor_name: "DESCRIPTOR-NAME"
-  enable_automatic_dependency_updates: true
+  enable_automatic_dependency_updates: "true-or-false" # Optional
 supply_chain: basic
 
 cnrs:
@@ -461,9 +461,9 @@ service's External IP address.
 - `MY-DEV-NAMESPACE` is the namespace where you want the `ScanTemplates` to be deployed to. This is the namespace where the scanning feature is going to run.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull an image from the registry for scanning. If built images are pushed to the same registry as the Tanzu Application Platform images, this can reuse the `tap-registry` secret created in step 3 of [Add the Tanzu Application Platform package repository](#add-package-repositories).
 
->**Note:** Using the `tap-values.yaml` configuration,
->`buildservice.enable_automatic_dependency_updates: false` can be used to pause the automatic update
->of Build Service dependencies.
+    >**Note:** Using the `tbs-values.yaml` configuration,
+    >`enable_automatic_dependency_updates:` `true` will cause the dependency updater to update Tanzu Build Service dependencies (buildpacks and stacks) when they are released on Tanzu network. `false` can be used to pause the automatic update of Build Service dependencies. If left undefined, this value will be configured as `false`.
+
 
 
 
