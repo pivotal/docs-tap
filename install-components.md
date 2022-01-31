@@ -1127,11 +1127,67 @@ To install Tanzu Build Service using the Tanzu CLI:
     >If the command times out, periodically run the installation verification step provided in the
     >following optional step. Image relocation continues in the background.
 
-1. (Optional) Verify the clusterbuilders created by the Tanzu Build Service install by running:
+### <a id='tbs-tcli-install-offline'></a> Install Tanzu Build Service using the Tanzu CLI (Air-Gapped)
+
+Tanzu Build Service can be installed to a Kubernetes Cluster and registry that are air-gapped from external traffic.
+
+These steps assume that you have installed the TAP packages in your air-gapped environment.
+
+### <a id='tbs-tcli-install-tbs-offline'></a> Install the TBS package (Air-Gapped)
+
+1. Gather the values schema by running:
 
     ```
-    tanzu package installed get tbs -n tap-install
+    tanzu package available get buildservice.tanzu.vmware.com/1.4.2 --values-schema --namespace tap-install
     ```
+
+2. Create a `tbs-values.yaml` file. Below are the required fields for an air-gapped installation.
+
+    ```
+    ---
+    kp_default_repository: REPOSITORY
+    kp_default_repository_username: REGISTRY-USERNAME
+    kp_default_repository_password: REGISTRY-PASSWORD
+    ca_cert_data: CA-CERT-CONTENTS
+    ```
+
+Where:
+
+- `REPOSITORY` is the fully qualified path to the TBS repository.
+  This path must be writable. For example:
+    * Harbor: `harbor.io/my-project/build-service`
+    * Artifactory: `artifactory.com/my-project/build-service`
+- `REGISTRY-USERNAME` and `REGISTRY-PASSWORD` are the username and password for the internal registry.
+- `CA-CERT-CONTENTS` are the contents of the PEM-encoded CA certificate for the internal registry
+
+3. Install the package by running:
+
+    ```
+    tanzu package install tbs -p buildservice.tanzu.vmware.com -v 1.4.2 -n tap-install -f tbs-values.yaml
+    ```
+
+   For example:
+
+    ```
+    $ tanzu package install tbs -p buildservice.tanzu.vmware.com -v 1.4.2 -n tap-install -f tbs-values.yaml
+    | Installing package 'buildservice.tanzu.vmware.com'
+    | Getting namespace 'tap-install'
+    | Getting package metadata for 'buildservice.tanzu.vmware.com'
+    | Creating service account 'tbs-tap-install-sa'
+    | Creating cluster admin role 'tbs-tap-install-cluster-role'
+    | Creating cluster role binding 'tbs-tap-install-cluster-rolebinding'
+    | Creating secret 'tbs-tap-install-values'
+    - Creating package resource
+    - Package install status: Reconciling
+
+     Added installed package 'tbs' in namespace 'tap-install'
+    ```
+
+4. Keeping Tanzu Build Service dependencies up-to-date
+
+When installing TBS to an air-gappend environment, dependencies cannot be automatically pulled in from the external internet.
+
+Therefore, dependencies must be imported and kept up-to-date manually. To import dependencies to an air-gapped TBS, follow the official [Tanzu Build Service docs](https://docs.vmware.com/en/Tanzu-Build-Service/1.4/vmware-tanzu-build-service-v14/GUID-updating-deps.html#online-update).
 
 ## <a id='install-scc'></a> Install Supply Chain Choreographer
 
