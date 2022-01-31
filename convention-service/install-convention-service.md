@@ -62,7 +62,7 @@ To install convention controller:
     $ tanzu package available get controller.conventions.apps.tanzu.vmware.com/0.4.2 --values-schema --namespace tap-install
     ```
 
-    For more information about values schema options, see the individual product documentation.
+
 
 
 1. Install the package by running:
