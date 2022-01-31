@@ -786,7 +786,7 @@ To install Source Controller:
     $ tanzu package available get controller.source.apps.tanzu.vmware.com/0.2.0 --values-schema --namespace tap-install
     ```
 
-    For more information about values schema options, see the individual product documentation.
+
 
 
 1. Install the package. Run:
