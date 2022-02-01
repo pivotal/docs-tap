@@ -11,7 +11,7 @@ For more information about profiles, see [Installing Part II: Profiles](../insta
 
 Before installing Application Accelerator:
 
-- Complete all of the prerequisites to install Tanzu Application Platform. For more information, see [Installing part I: Prerequisites, EULA, and CLI](../install-general.md).
+- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Installing part I: Prerequisites, EULA, and CLI](../install-general.md).
 
 - Install cert-manager on the cluster. See [Install Prerequisites](../install-components.md#install-prereqs).
 
