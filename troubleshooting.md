@@ -2,7 +2,7 @@
 
 This topic describes troubleshooting information for problems with installing Tanzu Application Platform.
 
-## <a id='error-details'>Access `.status.usefulErrorMessage` details </a>
+## <a id='error-details'></a> Access `.status.usefulErrorMessage` details
 
 ### Symptom
 
