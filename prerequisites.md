@@ -26,8 +26,6 @@ store images.
 
 * Network access to your chosen container image registry.
 
-* Latest version of Chrome, Firefox, or Edge.
-Tanzu Application Platform GUI currently does not support Safari browser.
 
 #### <a id='dns-records'></a>DNS Records
 
@@ -42,6 +40,7 @@ The default hostname consists of `tap-gui` plus an `IngressDomain` of your choic
 
 #### <a id='tap-gui'></a>Tanzu Application Platform GUI
 
+* Latest version of Chrome, Firefox, or Edge. Tanzu Application Platform GUI currently does not support Safari browser.
 - Git repository for the Tanzu Application Platform GUI's software catalogs, along with a token allowing read access.
   Supported Git infrastructure includes:
     - GitHub
