@@ -29,8 +29,6 @@ store images.
 * Latest version of Chrome, Firefox, or Edge.
 Tanzu Application Platform GUI currently does not support Safari browser.
 
-* After your installation is complete, you must identify at least one Developer Namespace. [Instructions for setting up a Developer Namespace](install-components.md#setup) are available at the end of installation.
-
 #### <a id='dns-records'></a>DNS Records
 
 There are some optional but recommended DNS records you should allocate if you decide to use these particular components:
