@@ -484,6 +484,9 @@ buildservice:
 
 supply_chain: basic
 
+cnrs:
+  domain_name: apps.INGRESS-DOMAIN
+
 ootb_supply_chain_basic:
   registry:
     server: "SERVER-NAME"
