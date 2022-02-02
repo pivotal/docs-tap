@@ -1299,8 +1299,7 @@ Cartographer
     KEY                       DESCRIPTION
 
     registry.repository       Name of the repository in the image registry server where
-                              the application images from he workloould be pushed to
-                              (required).
+                              the application images from the workload should be pushed (required).
 
     registry.server           Name of the registry server where application images should
                               be pushed to (required).
@@ -1453,8 +1452,7 @@ Install by following these steps:
     KEY                       DESCRIPTION
 
     registry.repository       Name of the repository in the image registry server where
-                              the application images from he workloould be pushed to
-                              (required).
+                              the application images from the workload should be pushed (required).
 
     registry.server           Name of the registry server where application images should
                               be pushed to (required).
@@ -1615,8 +1613,7 @@ and image for vulnerabilities.
     KEY                       DESCRIPTION
 
     registry.repository       Name of the repository in the image registry server where
-                              the application images from he workloould be pushed to
-                              (required).
+                              the application images from the workload should be pushed (required).
 
     registry.server           Name of the registry server where application images should
                               be pushed to (required).
