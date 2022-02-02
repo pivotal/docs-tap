@@ -336,7 +336,7 @@ The following table lists the packages contained in each profile:
    </td>
   </tr>
   <tr>
-   <td>Tekton Pipelines
+   <td>Tekton
    </td>
    <td>&check;
    </td>
