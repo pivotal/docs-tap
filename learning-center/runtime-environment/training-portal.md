@@ -519,7 +519,8 @@ spec:
     reserved: 1
 ```
 
-In anonymous mode, when users visit the home page for the training portal an account for each user isautomatically created and they are logged in.
+When a user visits the training portal home page in anonymous mode, an account for that user is
+automatically created and the user is logged in.
 
 ## Specifying an event access code
 
