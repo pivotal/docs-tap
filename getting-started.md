@@ -149,7 +149,7 @@ Workload Knative Services URL at the bottom of the command output.
     ![REGISTER button on the right side of the header](images/getting-started-tap-gui-5.png)
 
 2. **Register an existing component** prompts you to type a repository URL.
-Type the link to the `catalog-info.yaml` file in the Git repository field, for example,
+Type the link to the `catalog-info.yaml` file of the tanzu-java-web-app in the Git repository field, for example,
 `https://github.com/USERNAME/PROJECTNAME/blob/main/catalog-info.yaml`.
 
 1. Click **ANALYZE**.
