@@ -33,7 +33,7 @@ For more information, see [Installing part I: Prerequisites, EULA, and CLI](inst
 + [Install Supply Chain Security Tools - Scan](#install-scst-scan)
 + [Install API portal](#install-api-portal)
 + [Install Services Toolkit](#install-services-toolkit)
-+ [Install Tekton](#install-tekton)
++ [Install Tekton Pipelines](#install-tekton-pipelines)
 
 
 ## <a id='install-prereqs'></a> Install cert-manager, contour and FluxCD Source Controller
@@ -1248,7 +1248,7 @@ cluster.
 
 ### <a id='ootb-template-prereqs'></a> Prerequisites
 
-- Tekton
+- Tekton Pipelines
 - Cartographer
 
 
@@ -2829,11 +2829,11 @@ To install Services Toolkit:
     ```
 
 
-## <a id='install-tekton'></a> Install Tekton
+## <a id='install-tekton-pipelines'></a> Install Tekton Pipelines
 
-To install Tekton:
+To install Tekton Pipelines:
 
-1. See what versions of Tekton are available to install by running:
+1. See what versions of Tekton Pipelines are available to install by running:
 
     ```
     tanzu package available list -n tap-install tekton.tanzu.vmware.com
@@ -2851,38 +2851,38 @@ To install Tekton:
 1. Install Tekton by running:
 
     ```
-    tanzu package install tekton -n tap-install -p tekton.tanzu.vmware.com -v 0.30.0
+    tanzu package install tekton-pipelines -n tap-install -p tekton.tanzu.vmware.com -v 0.30.0
     ```
 
     For example:
 
     ```
-    $ tanzu package install tekton -n tap-install -p tekton.tanzu.vmware.com -v 0.30.0
+    $ tanzu package install tekton-pipelines -n tap-install -p tekton.tanzu.vmware.com -v 0.30.0
     - Installing package 'tekton.tanzu.vmware.com'
     \ Getting package metadata for 'tekton.tanzu.vmware.com'
-    / Creating service account 'tekton-tap-install-sa'
-    / Creating cluster admin role 'tekton-tap-install-cluster-role'
-    / Creating cluster role binding 'tekton-tap-install-cluster-rolebinding'
+    / Creating service account 'tekton-pipelines-tap-install-sa'
+    / Creating cluster admin role 'tekton-pipelines-tap-install-cluster-role'
+    / Creating cluster role binding 'tekton-pipelines-tap-install-cluster-rolebinding'
     / Creating package resource
-    - Waiting for 'PackageInstall' reconciliation for 'tekton'
+    - Waiting for 'PackageInstall' reconciliation for 'tekton-pipelines'
     - 'PackageInstall' resource install status: Reconciling
 
 
-     Added installed package 'tekton'
+     Added installed package 'tekton-pipelines'
     ```
 
 1. Verify that the package installed by running:
 
     ```
-    tanzu package installed get tekton -n tap-install
+    tanzu package installed get tekton-pipelines -n tap-install
     ```
 
     For example:
 
     ```
-    $ tanzu package installed get tekton -n tap-install
+    $ tanzu package installed get tekton-pipelines -n tap-install
     \ Retrieving installation details for tekton...
-    NAME:                    tekton
+    NAME:                    tekton-pipelines
     PACKAGE-NAME:            tekton.tanzu.vmware.com
     PACKAGE-VERSION:         0.30.0
     STATUS:                  Reconcile succeeded
@@ -2892,9 +2892,9 @@ To install Tekton:
 
     STATUS should be `Reconcile succeeded`.
 
-1. Configuring a namespace to use Tekton:
+1. Configuring a namespace to use Tekton Pipelines:
 
-   > **Note:** This step covers configuring a namespace to run Tekton pipelines.
+   > **Note:** This step covers configuring a namespace to run Tekton Pipelines.
    If you rely on a SupplyChain to create Tekton PipelineRuns in your cluster,
    then skip this step because namespace configuration is covered in
    [Set up developer namespaces to use installed packages](#setup). Otherwise,
@@ -2946,7 +2946,7 @@ To install Tekton:
 
    > **Note:** The service account has access to the `pull-secret` image pull secret.
 
-For more details on Tekton, see the [Tekton documentation](https://tekton.dev/docs/) and the
+For more details on Tekton Pipelines, see the [Tekton documentation](https://tekton.dev/docs/) and the
 [github repository](https://github.com/tektoncd/pipeline).
 
 You can also view the Tekton [tutorial](https://github.com/tektoncd/pipeline/blob/main/docs/tutorial.md) and
@@ -2987,7 +2987,7 @@ Use the following procedure to verify that the packages are installed.
     services-toolkit         services-toolkit.tanzu.vmware.com                  0.5.0            Reconcile succeeded
     source-controller        controller.source.apps.tanzu.vmware.com            0.2.0            Reconcile succeeded
     tap-gui                  tap-gui.tanzu.vmware.com                           0.3.0-rc.4       Reconcile succeeded
-    tekton                   tekton.tanzu.vmware.com                            0.30.0           Reconcile succeeded
+    tekton-pipelines         tekton.tanzu.vmware.com                            0.30.0           Reconcile succeeded
     tbs                      buildservice.tanzu.vmware.com                      1.4.2            Reconcile succeeded
     ```
 
