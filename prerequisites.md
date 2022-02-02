@@ -33,7 +33,7 @@ store images.
 - Network access to your chosen container image registry.
 
 
-#### <a id='dns-records'></a>DNS Records
+### <a id='dns-records'></a>DNS Records
 
 There are some optional but recommended DNS records you should allocate if you decide to use these particular components:
 
@@ -44,10 +44,10 @@ The default hostname consists of `tap-gui` plus an `IngressDomain` of your choic
 `tap-gui.example.com`.
 
 
-#### <a id='tap-gui'></a>Tanzu Application Platform GUI
+### <a id='tap-gui'></a>Tanzu Application Platform GUI
 
 * Latest version of Chrome, Firefox, or Edge. Tanzu Application Platform GUI currently does not support Safari browser.
-- Git repository for the Tanzu Application Platform GUI's software catalogs, along with a token allowing read access.
+- Git repository for the Tanzu Application Platform GUI's software catalogs, along with a token allowing read access. For more information about how you will use your Git repository, see the Using accelerator.yaml section in [Getting started with the Tanzu Application Platform](getting-started.md#accelerator-yaml).
   Supported Git infrastructure includes:
     - GitHub
     - GitLab
@@ -68,7 +68,7 @@ The default hostname consists of `tap-gui` plus an `IngressDomain` of your choic
           [Configuring the Tanzu Application Platform GUI database](tap-gui/database.md)
 
 
-### <a id='k8s-cluster-reqs'></a>Kubernetes cluster requirements
+## <a id='k8s-cluster-reqs'></a>Kubernetes cluster requirements
 
 Installation requires:
 
@@ -82,7 +82,7 @@ Installation requires:
         * Reference the resource requirements below
         * Hyperkit driver is supported on macOS only; Docker driver is not supported.
 
-### <a id="resource-requirements"></a>Resource requirements
+## <a id="resource-requirements"></a>Resource requirements
 
 * To deploy all Tanzu Application Platform packages, your cluster must have at least:
     * 8 GB of RAM across all nodes available to Tanzu Application Platform
@@ -97,7 +97,7 @@ Installation requires:
 * [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/)
 must be configured so that Tanzu Application Platform controller pods can run as root.
 
-### <a id='tools-and-cli-reqs'></a>Tools and CLI requirements
+## <a id='tools-and-cli-reqs'></a>Tools and CLI requirements
 
 Installation requires:
 
