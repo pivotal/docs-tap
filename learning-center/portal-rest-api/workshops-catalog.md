@@ -42,7 +42,7 @@ The JSON response is of the form:
         "duration": "",
         "tags": [],
         "logo": "",
-        "url": "<workshop_repository_url"
+        "url": "<workshop_repository_url>"
       },
       "duration": 1800,
       "capacity": 10,
@@ -54,7 +54,7 @@ The JSON response is of the form:
 }
 ```
 
-For each workshop listed under `environments`, where a field listed under `workshop` has the same name as it appears in the `Workshop` custom resource, it has the same meaning. The `id` field is an additional field which can uniquely identify a workshop based on the name of the workshop image, the Git repository for the workshop, or the website hosting the workshop instructions. The value of the `id` field doesn't rely on the name of the `Workshop` resource and must be the same if the same workshop details are used but the name of the `Workshop` resource is different.
+For each workshop listed under `environments`, where a field listed under `workshop` has the same name as it appears in the `Workshop` custom resource, it has the same meaning. The `id` field is an additional field which can uniquely identify a workshop based on the name of the workshop image, the Git repository for the workshop, or the website hosting the workshop instructions. The value of the `id` field does not rely on the name of the `Workshop` resource and must be the same if the same workshop details are used but the name of the `Workshop` resource is different.
 
 The `duration` field provides the time in seconds after which the workshop environment expires. The value is `null` if there is no expiration time for the workshop.
 
