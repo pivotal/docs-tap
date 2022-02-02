@@ -116,7 +116,7 @@ The response is of the form:
 }
 ```
 
-Once a workshop has expired or has otherwise been shut down,the training portal no longer returns an entry for the workshop.
+Once a workshop has expired or has otherwise been shut down, the training portal no longer returns an entry for the workshop.
 
 ## <a id="list-workshop-sessions"></a>Listing all workshop sessions
 
