@@ -350,9 +350,7 @@ For information on switching from one supply chain to another, see [Getting Star
 
 ## <a id='install-profile'></a> Install a Tanzu Application Platform profile
 
-Install a profile by using the `tap.tanzu.vmware.com` package.
-The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile
-setting.
+The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile settings. This is done by using the package manager you installed using Tanzu Cluster Essentials.
 
 To install a profile:
 
