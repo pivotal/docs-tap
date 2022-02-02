@@ -1832,12 +1832,12 @@ Application Live View Convention Service only.
     $ tanzu package available list run.appliveview.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for run.appliveview.tanzu.vmware.com...
       NAME                              VERSION        RELEASED-AT
-      run.appliveview.tanzu.vmware.com  1.0.1          2021-12-17T00:00:00Z
+      run.appliveview.tanzu.vmware.com  1.0.2          2022-01-24T00:00:00Z
 
     $ tanzu package available list build.appliveview.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for build.appliveview.tanzu.vmware.com...
       NAME                                VERSION        RELEASED-AT
-      build.appliveview.tanzu.vmware.com  1.0.1          2021-12-17T00:00:00Z
+      build.appliveview.tanzu.vmware.com  1.0.2          2022-01-24T00:00:00Z
     ```
 
 1. Create `app-live-view-values.yaml` with the following details:
@@ -1854,13 +1854,13 @@ Application Live View Convention Service only.
 1. Install the Application Live View package by running:
 
     ```
-    tanzu package install appliveview -p run.appliveview.tanzu.vmware.com -v 1.0.1 -n tap-install -f app-live-view-values.yaml
+    tanzu package install appliveview -p run.appliveview.tanzu.vmware.com -v 1.0.2 -n tap-install -f app-live-view-values.yaml
     ```
 
     For example:
 
     ```
-    $ tanzu package install appliveview -p run.appliveview.tanzu.vmware.com -v 1.0.1 -n tap-install -f app-live-view-values.yaml
+    $ tanzu package install appliveview -p run.appliveview.tanzu.vmware.com -v 1.0.2 -n tap-install -f app-live-view-values.yaml
     - Installing package 'run.appliveview.tanzu.vmware.com'
     | Getting package metadata for 'run.appliveview.tanzu.vmware.com'
     | Creating service account 'app-live-view-tap-install-sa'
@@ -1876,13 +1876,13 @@ Application Live View Convention Service only.
 1. Install the Application Live View conventions package by running:
 
     ```
-    tanzu package install appliveview-conventions -p build.appliveview.tanzu.vmware.com -v 1.0.1 -n tap-install -f app-live-view-values.yaml
+    tanzu package install appliveview-conventions -p build.appliveview.tanzu.vmware.com -v 1.0.2 -n tap-install -f app-live-view-values.yaml
     ```
 
     For example:
 
     ```
-    $ tanzu package install appliveview-conventions -p build.appliveview.tanzu.vmware.com -v 1.0.1 -n tap-install -f app-live-view-values.yaml
+    $ tanzu package install appliveview-conventions -p build.appliveview.tanzu.vmware.com -v 1.0.2 -n tap-install -f app-live-view-values.yaml
     - Installing package 'build.appliveview.tanzu.vmware.com'
     | Getting package metadata for 'build.appliveview.tanzu.vmware.com'
     | Creating service account 'app-live-view-tap-install-sa'
@@ -1911,7 +1911,7 @@ Application Live View Convention Service only.
     | Retrieving installation details for cc...
     NAME:                    appliveview
     PACKAGE-NAME:            run.appliveview.tanzu.vmware.com
-    PACKAGE-VERSION:         1.0.1
+    PACKAGE-VERSION:         1.0.2
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
@@ -1932,7 +1932,7 @@ Application Live View Convention Service only.
     | Retrieving installation details for cc...
     NAME:                    appliveview-conventions
     PACKAGE-NAME:            build.appliveview.tanzu.vmware.com
-    PACKAGE-VERSION:         1.0.1
+    PACKAGE-VERSION:         1.0.2
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
@@ -2961,7 +2961,8 @@ Use the following procedure to verify that the packages are installed.
     NAME                     PACKAGE-NAME                                       PACKAGE-VERSION  STATUS
     api-portal               api-portal.tanzu.vmware.com                        1.0.3            Reconcile succeeded
     app-accelerator          accelerator.apps.tanzu.vmware.com                  1.0.0            Reconcile succeeded
-    app-live-view            appliveview.tanzu.vmware.com                       1.0.0-build.2    Reconcile succeeded
+    app-live-view            appliveview.tanzu.vmware.com                       1.0.2            Reconcile succeeded
+    appliveview-conventions  build.appliveview.tanzu.vmware.com                 1.0.2            Reconcile succeeded
     cartographer             cartographer.tanzu.vmware.com                      0.1.0            Reconcile succeeded
     cloud-native-runtimes    cnrs.tanzu.vmware.com                              1.0.3            Reconcile succeeded
     convention-controller    controller.conventions.apps.tanzu.vmware.com       0.4.2            Reconcile succeeded
