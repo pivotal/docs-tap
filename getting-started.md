@@ -12,7 +12,7 @@ Welcome to the Tanzu Application Platform. This document guides you through gett
 Before getting started, you must complete the prerequisites in the next section.
 
 
-## <a id="install-prereqs"></a>Installation prerequisites
+## <a id="get-started-prereqs"></a>Getting started prerequisites
 
 Verify you have successfully:
 
