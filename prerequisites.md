@@ -20,7 +20,7 @@ Tanzu Application Platform packages.
 When available, VMware recommends using a paid registry account to avoid potential rate-limiting
 associated with some free registry offerings.
 
-    - If installing using the `lite` descriptor for Tanzu Build Service, 1&nbsp;GB of available
+    - If installing using the `light` descriptor for Tanzu Build Service, 1&nbsp;GB of available
     storage is recommended.
     - If installing using the `full` descriptor for Tanzu Build Service, which is intended for production use
     and offline environments, 10&nbsp;GB of available storage is recommended.

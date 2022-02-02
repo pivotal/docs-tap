@@ -1083,7 +1083,7 @@ To install Tanzu Build Service using the Tanzu CLI:
     - `TANZUNET-USERNAME` and `TANZUNET-PASSWORD` are the email address and password that you use to log in to Tanzu Network. The Tanzu Network credentials allow for configuration of the Dependencies Updater. This resource accesses and installs the build dependencies (buildpacks and stacks) Tanzu Build Service needs on your cluster. It also keeps these dependencies up to date as new versions are released on Tanzu Network.
     - `DESCRIPTOR-NAME` is the name of the descriptor to import automatically. Current available options at time of release:
         - `tap-1.0.0-full` contains all dependencies and is for production use.
-        - `tap-1.0.0-lite` smaller footprint used for speeding up installs. Requires Internet access on the cluster.
+        - `tap-1.0.0-light` smaller footprint used for speeding up installs. Requires Internet access on the cluster.
 
     >**Note:** Using the `tbs-values.yaml` configuration,
     >`enable_automatic_dependency_updates: false` can be used to pause the automatic update of
@@ -1115,7 +1115,7 @@ To install Tanzu Build Service using the Tanzu CLI:
     >**Note:** Installing the `buildservice.tanzu.vmware.com` package with Tanzu Network credentials
     >automatically relocates buildpack dependencies to your cluster. This install process can take
     >some time and the `--poll-timeout` flag increases the timeout duration.
-    >Using the `lite` descriptor speeds this up significantly.
+    >Using the `light` descriptor speeds this up significantly.
     >If the command times out, periodically run the installation verification step provided in the
     >following optional step. Image relocation continues in the background.
 
