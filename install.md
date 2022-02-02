@@ -350,7 +350,7 @@ The following table lists the packages contained in each profile:
 </table>
 
 <sup>\*</sup> Only one supply chain should be installed at any given time.
-For information on switching from one supply chain to another, see [Getting Started with Tanzu Application Platform](getting-started.md).
+For information on switching from one supply chain to another, see [Getting Started with Tanzu Application Platform](getting-started.md). For more information about profiles, see [Installation profiles in Tanzu Application Platform](overview.md#profiles-and-packages).
 
 ## <a id='prepare-install-profile'></a> Prepare to install your Tanzu Application Platform profile
 
