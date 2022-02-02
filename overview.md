@@ -202,7 +202,7 @@ The following packages are part of the Tanzu Application Platform:
 
 ## <a id='profiles-and-packages'></a> Installation profiles in Tanzu Application Platform v1.1
 
-Tanzu Application Platform is available from pre-defined profiles or individual packages.
+Tanzu Application Platform is available from predefined profiles or individual packages.
 
 The following profiles are available in Tanzu Application Platform:
 

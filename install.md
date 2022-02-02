@@ -130,7 +130,7 @@ You have now accepted the EULA's for all of the Tanzu Application Platform.
 
 ## <a id='about-package-profiles'></a> About Tanzu Application Platform package profiles
 
-Tanzu Application Platform can be installed through pre-defined profiles or through individual
+Tanzu Application Platform can be installed through predefined profiles or through individual
 packages. This section explains how to install a profile.
 
 Tanzu Application Platform contains the following two profiles:
