@@ -352,11 +352,9 @@ The following table lists the packages contained in each profile:
 <sup>\*</sup> Only one supply chain should be installed at any given time.
 For information on switching from one supply chain to another, see [Getting Started with Tanzu Application Platform](getting-started.md). For more information about profiles, see [Installation profiles in Tanzu Application Platform](overview.md#profiles-and-packages).
 
-## <a id='prepare-install-profile'></a> Prepare to install your Tanzu Application Platform profile
+## <a id='install-profile'></a> Install your Tanzu Application Platform profile
 
-You can install a profile by using the `tap.tanzu.vmware.com` package.
-The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile
-setting.
+The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile settings. This is done by using the package manager you installed using Tanzu Cluster Essentials.
 
 To prepare to install a profile:
 
