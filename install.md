@@ -441,7 +441,7 @@ Where:
     * For Google Cloud Registry, use the contents of the service account JSON key.
 - `DESCRIPTOR-NAME` is the name of the descriptor to import automatically. Current available options at time of release:
     * `tap-1.0.0-full` contains all dependencies, and is for production use.
-    * `tap-1.0.0-lite` smaller footprint used for speeding up installs. Requires Internet access on the cluster.
+    * `tap-1.0.0-light` smaller footprint used for speeding up installs. Requires Internet access on the cluster.
 - `SERVER-NAME` is the hostname of the registry server. Examples:
     * Harbor has the form `server: "my-harbor.io"`
     * Dockerhub has the form `server: "index.docker.io"`
