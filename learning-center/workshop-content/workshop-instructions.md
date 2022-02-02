@@ -677,7 +677,7 @@ This has the side effect of preventing interpolation of data variables, so restr
 
 ## <a id="interpolation-of-data-variables"></a>Interpolation of data variables
 
-When creating page content, you can reference a number of pre-defined data variables. The values of the data variables are substituted into the page when rendered in the users browser.
+When creating page content, you can reference a number of predefined data variables. The values of the data variables are substituted into the page when rendered in the users browser.
 
 The workshop environment provides the following built-in data variables.
 

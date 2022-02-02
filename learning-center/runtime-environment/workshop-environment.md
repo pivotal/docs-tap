@@ -46,7 +46,7 @@ Where `YOUR-GITHUB-URL-FOR-LAB-MARKDOWN-SAMPLE` is the Git repository URL for `l
 
 You might use this to set the location of a back end service, such as an image registry, to be used by the workshop.
 
-Values of fields in the list of resource objects can reference a number of pre-defined parameters. The available parameters are:
+Values of fields in the list of resource objects can reference a number of predefined parameters. The available parameters are:
 
 - `session_id` - A unique ID for the workshop instance within the workshop environment.
 - `session_namespace` - The namespace created for and bound to the workshop instance. This is the namespace unique to the session and where a workshop can create its own resources.
@@ -228,7 +228,7 @@ For namespaced resources, it is not necessary to set the `namespace` field of th
 
 When resources are created, owner references are added, making the `WorkshopEnvironment` custom resource correspond to the owner of the workshop environment. This means that when the workshop environment is deleted, any resources are also deleted.
 
-Values of fields in the list of resource objects can reference a number of pre-defined parameters. The available parameters are:
+Values of fields in the list of resource objects can reference a number of predefined parameters. The available parameters are:
 
 - `workshop_name` - The name of the workshop. This is the name of the `Workshop` definition the workshop environment was created against.
 - `environment_name` - The name of the workshop environment. Currently, this is the same as the name of the namespace for the workshop environment. Don't rely on their being the same, and use the most appropriate to cope with any future change.

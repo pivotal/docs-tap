@@ -313,7 +313,7 @@ Where:
 - The `session.env` field is a list of dictionaries with `name` and `value` fields.
 - The `value` field is the Git repository URL for `lab-markdown-sample`. For example, `https://github.com/eduk8s/lab-markdown-sample`.
 
-Values of fields in the list of resource objects can reference a number of pre-defined parameters.
+Values of fields in the list of resource objects can reference a number of predefined parameters.
 The available parameters are:
 
 - `session_ id` - A unique ID for the workshop instance within the workshop environment.
@@ -640,7 +640,7 @@ When resources are created, owner references are added, making the `WorkshopSess
 corresponding to the workshop instance the owner. This means that when the workshop instance is
 deleted, any resources are automatically deleted.
 
-Values of fields in the list of resource objects can reference a number of pre-defined parameters.
+Values of fields in the list of resource objects can reference a number of predefined parameters.
 The available parameters are:
 
 - `session_ id` - A unique ID for the workshop instance within the workshop environment.
@@ -987,7 +987,7 @@ When resources are created, owner references are added, making the `WorkshopEnvi
 resource correspond to the workshop environment of the owner. This means that when the workshop
 environment is deleted, any resources are also deleted.
 
-Values of fields in the list of resource objects can reference a number of pre-defined parameters.
+Values of fields in the list of resource objects can reference a number of predefined parameters.
 The available parameters are:
 
 - `workshop_ name` - The name of the workshop. This is the name of the `Workshop` definition the
@@ -1292,7 +1292,7 @@ spec:
 The external web site must displayed in an HTML iframe, is shown as is and must provide its own page
 navigation and table of contents if required.
 
-The URL value can reference a number of pre-defined parameters. The available parameters are:
+The URL value can reference a number of predefined parameters. The available parameters are:
 
 * `session_ namespace` - The namespace created for and bound to the workshop instance. This is the
 namespace unique to the session and where a workshop can create its own resources.
@@ -1824,7 +1824,7 @@ spec:
       url: http://www.example.com
 ```
 
-The URL values can reference a number of pre-defined parameters. The available parameters are:
+The URL values can reference a number of predefined parameters. The available parameters are:
 
 - `session_ namespace` - The namespace created for and bound to the workshop instance. This is the
 namespace unique to the session and where a workshop can create its own resources.
