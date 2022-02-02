@@ -60,7 +60,7 @@ To perform a clean installation of Tanzu CLI:
 
     + [Linux: Install the Tanzu CLI](#linux-tanzu-cli)
     + [Mac: Install the Tanzu CLI](#mac-tanzu-cli)
-    + [Windows: Install the Tanzu CLI](#windows-tanzu-cli)
+
 
 
 #### <a id='linux-tanzu-cli'></a> Linux: Install the Tanzu CLI
@@ -107,7 +107,7 @@ To install the Tanzu CLI on a Linux operating system:
 9. Proceed to [Instructions for a clean install of Tanzu CLI plug-ins](#cli-plugin-clean-install).
 
 
-#### <a id='mac-tanzu-cli'></a>MacOS: Install the Tanzu CLI
+#### <a id='mac-tanzu-cli'></a>Mac: Install the Tanzu CLI
 
 To install the Tanzu CLI on a Mac operating system:
 
