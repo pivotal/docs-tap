@@ -11,7 +11,7 @@ Installation requires:
 
   - A [Tanzu Network](https://network.tanzu.vmware.com/) account to download
 Tanzu Application Platform packages.
-  - Network access to https://registry.tanzu.vmware.com. 
+  - Network access to https://registry.tanzu.vmware.com.
 
 - Cluster-specific registry:
 
@@ -85,11 +85,11 @@ Installation requires:
 ### <a id="resource-requirements"></a>Resource requirements
 
 * To deploy all Tanzu Application Platform packages, your cluster must have at least:
-    * 8 GB of RAM across all nodes available to Tanzu Application Platform
-    * 8 CPUs for i9 (or equivalent) available to Tanzu Application Platform components
-    * 12 CPUs for i7 (or equivalent) available to Tanzu Application Platform components
-    * 12 GB of RAM is available to build and deploy applications, including Minikube. VMware recommends 16 GB of RAM for an optimal experience.
-    * 70 GB of disk space available per node
+    * 8&nbsp;CPUs for i9 (or equivalent) available to Tanzu Application Platform components
+    * 12&nbsp;CPUs for i7 (or equivalent) available to Tanzu Application Platform components
+    * 8&nbsp;GB of RAM across all nodes available to Tanzu Application Platform
+    * 12&nbsp;GB of RAM is available to build and deploy applications, including Minikube. VMware recommends 16&nbsp;GB of RAM for an optimal experience.
+    * 70&nbsp;GB of disk space available per node
 
 * For the [`full` profile](install.html#full-profile), or
     use of Security Chain Security Tools - Store, your cluster must have a configured default StorageClass.
