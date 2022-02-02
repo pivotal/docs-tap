@@ -213,7 +213,9 @@ The following profiles are available in Tanzu Application Platform:
 - **Full:**
   This profile contains all of the Tanzu Application Platform packages.
 
-## <a id='install'></a> About installing the Tanzu Application Platform v1.0
+For more information about profiles, see [About Tanzu Application Platform package profiles](install.md#about-package-profiles).
+
+## <a id='install'></a> About installing the Tanzu Application Platform v1.1
 
 To install the Tanzu Application Platform profiles, see [Installing Tanzu Application Platform](install-intro.md).
 
