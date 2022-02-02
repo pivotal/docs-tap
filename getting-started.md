@@ -31,6 +31,12 @@ See [Install Out of The Box Supply Chain Basic](install-components.md#install-oo
     >**Note:** If you used the default profiles provided in [Installing part II: Profiles](install.md),
     you have already installed the Out of The Box (OOTB) Supply Chain Basic.
 
+  - **Installed Tekton-Pipelines**<br>
+See [Install Tekton Pipelines](install-components.md#install-tekton-pipelines).
+
+    >**Note:** If you used the default profiles provided in [Installing part II: Profiles](install.md),
+    you have already installed Tekton Pipelines.
+
   - **Set up a developer namespace to accommodate the developer Workload**<br>
 See [Set up developer namespaces to use installed packages](install-components.md#setup).
 
@@ -500,16 +506,14 @@ The **OOTB Testing+Scanning** supply chain includes integrations for secure scan
 
 ### <a id="install-ootb-test"></a>Install OOTB Testing
 
-This section introduces how to install the OOTB Testing supply chain, which includes the steps required to install Tekton and provides a sample Tekton pipeline that tests your sample application.
-The pipeline is configurable. Therefore, you can customize the steps
-to perform either additional testing or other tasks with the
-Tekton pipeline.
+This section introduces how to install the OOTB Testing supply chain and
+provides a sample Tekton pipeline that tests your sample application.  The
+pipeline is configurable. Therefore, you can customize the steps to perform
+either additional testing or other tasks with Tekton Pipelines.
 
 To apply this install method, follow the following steps:
 
-1. Install Tekton (see [Install Tekton](install-components.md#install-tekton)) for instructions.
-
-2. With Tekton installed, you can activate the Out of the Box Supply Chain with Testing by updating our profile to use `testing` rather than `basic` as the selected supply chain for workloads in this cluster. Update `tap-values.yml` (the file used to customize the profile in `Tanzu package install tap
+1. You can activate the Out of the Box Supply Chain with Testing by updating our profile to use `testing` rather than `basic` as the selected supply chain for workloads in this cluster. Update `tap-values.yml` (the file used to customize the profile in `Tanzu package install tap
 --values-file=...`) with the following changes:
 
     ```
@@ -523,7 +527,7 @@ To apply this install method, follow the following steps:
           repository: "<REPO-NAME>"
     ```
 
-3. Update the installed profile by running:
+2. Update the installed profile by running:
 
     ```
     tanzu package installed update tap -p tap.tanzu.vmware.com -v 1.0.0 --values-file tap-values.yml -n tap-install
