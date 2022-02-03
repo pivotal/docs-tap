@@ -1146,7 +1146,7 @@ over any global default Pod security policy such as `restricted`, `pks-restricte
 
 ## Custom security policies for user containers 
 
-There is also the option the option to set the value of the `session.namespaces.security.policy` setting as `custom`. This allows for more fine-grained control on the security policy applied to the Pods/containers a user deploys during a session. Note that in this case you must provide your own resources defining the Pod security policy and map it to so it is used. 
+There is also the option to set the value of the `session.namespaces.security.policy` setting as `custom`. This allows for more fine-grained control on the security policy applied to the Pods/containers a user deploys during a session. Note that in this case you must provide your own resources defining the Pod security policy and map it so it is used. 
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
