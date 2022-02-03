@@ -48,11 +48,11 @@ If you have trouble, you can retrieve and examine the logs from the _Spring Boot
     ```
     $ kubectl logs -l app=spring-boot-webhook -n spring-boot-convention
 
-    {"level":"info","timestamp":"2021-11-11T16:00:26.597Z","caller":"spring-boot-conventions/server.go:83","msg":"Succesfully applied convention: spring-boot","component":"spring-boot-conventions"}
-    {"level":"info","timestamp":"2021-11-11T16:00:26.597Z","caller":"spring-boot-conventions/server.go:83","msg":"Succesfully applied convention: spring-boot-graceful-shutdown","component":"spring-boot-conventions"}
-    {"level":"info","timestamp":"2021-11-11T16:00:26.597Z","caller":"spring-boot-conventions/server.go:83","msg":"Succesfully applied convention: spring-boot-web","component":"spring-boot-conventions"}
-    {"level":"info","timestamp":"2021-11-11T16:00:26.597Z","caller":"spring-boot-conventions/server.go:83","msg":"Succesfully applied convention: spring-boot-actuator","component":"spring-boot-conventions"}
-    {"level":"info","timestamp":"2021-11-11T16:00:26.597Z","caller":"spring-boot-conventions/server.go:83","msg":"Succesfully applied convention: service-intent-mysql","component":"spring-boot-conventions"}
+    {"level":"info","timestamp":"2021-11-11T16:00:26.597Z","caller":"spring-boot-conventions/server.go:83","msg":"Successfully applied convention: spring-boot","component":"spring-boot-conventions"}
+    {"level":"info","timestamp":"2021-11-11T16:00:26.597Z","caller":"spring-boot-conventions/server.go:83","msg":"Successfully applied convention: spring-boot-graceful-shutdown","component":"spring-boot-conventions"}
+    {"level":"info","timestamp":"2021-11-11T16:00:26.597Z","caller":"spring-boot-conventions/server.go:83","msg":"Successfully applied convention: spring-boot-web","component":"spring-boot-conventions"}
+    {"level":"info","timestamp":"2021-11-11T16:00:26.597Z","caller":"spring-boot-conventions/server.go:83","msg":"Successfully applied convention: spring-boot-actuator","component":"spring-boot-conventions"}
+    {"level":"info","timestamp":"2021-11-11T16:00:26.597Z","caller":"spring-boot-conventions/server.go:83","msg":"Successfully applied convention: service-intent-mysql","component":"spring-boot-conventions"}
     ```
 
 2. For all of the conventions that were applied successfully, a log entry is added. In case of an error, a log entry is added with a description.
