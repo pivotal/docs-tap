@@ -965,7 +965,7 @@ name of the namespace, e.g., `$(session_namespace)-apps` so they are only applie
 
 To set the security policy for a specific namespace other than the primary session
 namespace, you can add the annotation `learningcenter.tanzu.vmware.com/session.security.policy` in
-the `Namespace` resource metadata and set the value to `nonroot` or `anyuid` as necessary.
+the `Namespace` resource metadata and set the value to `nonroot`, `anyuid` or `custom` as necessary.
 
 ## Shared workshop resources
 
@@ -1143,6 +1143,87 @@ Pod security policy is applied globally by mapping it to the `system:authenticat
 you use `aa-` as a prefix to the custom Pod security name you create. This ensures it takes precedence
 over any global default Pod security policy such as `restricted`, `pks-restricted` or
 `vmware-system-tmc-restricted`, no matter what the name of the global policy default.
+
+## Custom security policies for user containers 
+
+There is also the option to set the value of the `session.namespaces.security.policy` setting as `custom`. This allows for more fine-grained control on the security policy applied to the Pods/containers a user deploys during a session. Note that in this case you must provide your own resources defining the Pod security policy and map it so it is used. 
+
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
+kind: Workshop
+metadata:
+  name: lab-policy-testing
+spec:
+  title: Policy Testing
+  description: Play area for testing policy override
+  content:
+    files: github.com/eduk8s-tests/lab-policy-testing
+  session:
+    namespaes:
+      security:
+        policy: custom
+    objects:
+    - apiVersion: rbac.authorization.k8s.io/v1
+      kind: RoleBinding
+      metadata:
+        namespace: $(workshop_namespace)
+        name: $(session_namespace)-security-policy
+      roleRef:
+        apiGroup: rbac.authorization.k8s.io
+        kind: ClusterRole
+        name: $(workshop_namespace)-security-policy
+      subjects:
+      - kind: Group 
+        namespace: $(workshop_namespace)
+        name: system:serviceaccounts:$(workshop_namespace)
+  environment:
+    objects:
+    - apiVersion: policy/v1beta1
+      kind: PodSecurityPolicy
+      metadata:
+        name: aa-$(workshop_namespace)-security-policy
+      spec:
+        privileged: true
+        allowPrivilegeEscalation: true
+        requiredDropCapabilities:
+        - KILL
+        - MKNOD
+        hostIPC: false
+        hostNetwork: false
+        hostPID: false
+        hostPorts: []
+        runAsUser:
+          rule: MustRunAsNonRoot
+        seLinux:
+          rule: RunAsAny
+        fsGroup:
+          rule: RunAsAny
+        supplementalGroups:
+          rule: RunAsAny
+        volumes:
+        - configMap
+        - downwardAPI
+        - emptyDir
+        - persistentVolumeClaim
+        - projected
+        - secret
+    - apiVersion: rbac.authorization.k8s.io/v1
+      kind: ClusterRole
+      metadata:
+        name: $(workshop_namespace)-security-policy
+      rules:
+      - apiGroups:
+        - policy
+        resources:
+        - podsecuritypolicies
+        verbs:
+        - use
+        resourceNames:
+        - aa-$(workshop_namespace)-security-policy
+```
+
+This can also be done on secondary namespaces by either setting the `session.namespaces.secondary.security.policy` setting to `custom` or using the `learningcenter.tanzu.vmware.com/session.security.policy: custom` annotation.
+
 
 ## Defining additional ingress points
 
