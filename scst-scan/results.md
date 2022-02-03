@@ -15,7 +15,7 @@ The Reason field is `JobStarted` while the scanning is running and `JobFinished`
 
 The Message field can either be `The scan job is running` or `The scan job terminated` depending on the current Status and Reason.
 
-#### <a id='suceeded'></a>Succeeded
+#### <a id='succeeded'></a>Succeeded
 The Condition with type `Succeeded` indicates the scanning job result. The Status field indicates whether the scan finished successfully or if it encountered an error (i.e., the status is `Status: True` if it completed successfully or `Status: False` otherwise).
 
 The Reason field is `JobFinished` if the scanning was successful or `Error` if otherwise.
