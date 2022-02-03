@@ -642,8 +642,7 @@ The available parameters are:
 - `session_ id` - A unique ID for the workshop instance within the workshop environment.
 - `session_ namespace` - The namespace created for and bound to the workshop instance. This is the
 namespace unique to the session and where a workshop can create its own resources.
-- `environment_ name` - The name of the workshop environment. This is the same as the name of
-the namespace for the workshop environment. Don't rely on their being the same, and use the most
+- `environment_ name` - The name of the workshop environment. This is the same as the namespace's name for the workshop environment. Do not rely on their being the same, and use the most
 appropriate to cope with any potential change.
 - `workshop_ namespace` - The namespace for the workshop environment. This is the namespace where all
 deployments of the workshop instances are created and where the service account that the workshop
@@ -1243,7 +1242,7 @@ spec:
       port: 8080
 ```
 
-The form of the host name used in the URL to access the service is:
+The form of the hostname used in the URL to access the service is:
 
 ```
 $(session_namespace)-application.$(ingress_domain)
