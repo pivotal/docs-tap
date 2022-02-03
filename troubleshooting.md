@@ -159,7 +159,7 @@ Often, the cause is one of the following:
 - A race-condition between components exists.
   For example, a package that uses `Ingress` completes before the shared Tanzu ingress controller is available.
 
-The VMWare Carvel tools kapp-controller continues to try in a reconciliation loop.
+The VMware Carvel tools kapp-controller continues to try in a reconciliation loop.
 
 ### Solution
 
