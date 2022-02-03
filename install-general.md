@@ -1,11 +1,8 @@
 # Installing part I: Installing CLI
 
-This document describes how to set Kubernetes cluster context, install Cluster Essentials,
-install or upgrade CLI for Tanzu Application Platform:
-
-- [Set Kubernetes cluster context](#cluster-context)
-- [Install Cluster Essentials for VMware Tanzu](#tanzu-cluster-essentials)
-- [Install or Update the Tanzu CLI and plug-ins](#cli-and-plugin)
+This document describes how to [Set Kubernetes cluster context](#cluster-context),
+[Install Cluster Essentials for VMware Tanzu](#tanzu-cluster-essentials),
+and [Install or Update the Tanzu CLI and plug-ins](#cli-and-plugin) for Tanzu Application Platform:
 
 ## <a id='cluster-context'></a> Set Kubernetes cluster context
 
