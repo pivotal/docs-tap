@@ -51,14 +51,14 @@ Where:
 - The `url` field is the Git repository URL for `lab-markdown-sample`. For example, `https://github.com/eduk8s/lab-markdown-sample`.
 It must be a URL you can go to for more information about the workshop.
 
-- The `difficulty` field must give an indication of who the workshop is targeting.
+- The `difficulty` field must indicate who the workshop is targeting.
 The value must be `beginner`, `intermediate`, `advanced`, or `extreme`.
 
 - The `duration` field gives the expected maximum amount of time the workshop takes to complete.
-This field only provides informational value and is not used to police how long a workshop instance
-lasts. The format of the field is an integer number with `s`, `m`, or `h` suffix.
+This field only provides informational value and does not police how long a workshop instance
+lasts. The field format is an integer number with `s`, `m`, or `h` suffix.
 
-- The `vendor` field must be a value which identifies the company or organization which the authors
+- The `vendor` field must be a value that identifies the company or organization which the authors
 are affiliated with.
 This can be a company or organization name or a DNS host name under the control of whoever has
 created the workshop.
