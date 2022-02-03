@@ -39,9 +39,3 @@ As auxiliary components, Tanzu Application Platform also includes:
   configuration built throughout a supply chain
 
 Both Templates and Delivery Basic are requirements for the Supply Chains.
-
-## <a id="overview"></a>Installing
-
-Supply Chain Choreographer is released as a Tanzu Package.
-
-To install Supply Chain Choreographer, see [Install Supply Chain Choreographer](../install-components.md#install-scc).
