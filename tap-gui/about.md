@@ -26,3 +26,10 @@ Tanzu Application Platform GUI is comprised of the following components:
   repository and display it alongside the relevant catalog entries.
 
   ![Tanzu Application Platform Catalog](./images/tap-gui-catalog.png)
+  
+* **A Git Repository:**  
+The Tanzu Application Platform GUI stores the following in a Git repository:
+  * The structure for your application catalog.
+  * Your technical documentation about the catalog items, if you enable the Tanzu Application Platform GUI TechDocs capabilities.
+
+You can host the structure for your application catalog and your technical documentation in the same repository as your source code. 
