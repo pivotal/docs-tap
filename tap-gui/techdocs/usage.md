@@ -66,10 +66,10 @@ To find the catalog locations and their entities' namespace/kind/name:
 1. Find the `mkdocs.yml` that is at the root of the catalog. There is a YAML file describing the catalog at the same level called `catalog-info.yaml`.
     - Record the values for `namespace`, `kind`, and `metadata.name`, and the directory path containing the YAML file.
 1. Record the `spec.targets` in that file.
-    - Find the namespace/kind</name for each of the targets:
+    - Find the namespace/kind</name> for each of the targets:
         - Navigate to the target's YAML file.
         - The `namespace` value is the value of `namespace`.
-            - if it isn't specified, it has the value `default`.
+            - if it is not specified, it has the value `default`.
         - The `kind` value is the value of `kind`.
         - The `name` value is the value of `metadata.name`.
         - Record the directory path containing the YAML file.
