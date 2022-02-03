@@ -16,4 +16,4 @@ Supply Chain Security Tools - Store has three components:
 * [CLI installation](cli_installation.md) (Insight)
 * Postgres database
 
-See [Supply Chain Security Tools for Tanzu – Store Details](scst_scans.md) for more details.
+See [Additional resources](additional.md) for more information about Supply Chain Security Tools for Tanzu – Store.

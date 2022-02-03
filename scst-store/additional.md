@@ -1,4 +1,4 @@
-# Supply Chain Security Tools for Tanzu – Store Details
+# Additional resources
 
 See [Supply Chain Security Tools for Tanzu – Store](overview.md) for overview information.
 
