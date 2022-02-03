@@ -2699,6 +2699,8 @@ If you want to change from the default values, use the Scan Controller instructi
       --values-file grype-values.yaml
     ```
 
+    The flag --values-file is optional and used only if you want to customize the deployment configuration.
+
     For example:
 
     ```
@@ -2717,8 +2719,6 @@ If you want to change from the default values, use the Scan Controller instructi
 
      Added installed package 'grype-scanner' in namespace 'tap-install'
     ```
-
-    The flag --values-file is optional and used only if you want to customize the deployment configuration. For example:
 
 ## <a id='install-api-portal'></a> Install API portal
 
