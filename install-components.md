@@ -2674,17 +2674,17 @@ To install Supply Chain Security Tools - Scan (Grype Scanner):
       targetSourceSshSecret      <EMPTY>  string  Reference to the secret containing SSH credentials for cloning private repositories.
     ```
 
-    The `tap-values.yml` file to change the default installation settings looks like this:
-
+    To modify the deployment configuration, create a grype-values.yml with custom configuration values you want.
     ```
-    grype:
-      namespace: my-dev-namespace
-      targetImagePullSecret: registry-credentials
+    ---
+    namespace: my-dev-namespace
+    targetImagePullSecret: registry-credentials
     ```
 
     >**Note:** If you want to use a namespace other than the default namespace, then ensure that the
     >namespace exists before you install. If the namespace does not exist, then the Grype Scanner
     >installation fails.
+
 
 1. The default values are appropriate for this package.
 If you want to change from the default values, use the Scan Controller instructions as a guide.
@@ -2695,8 +2695,11 @@ If you want to change from the default values, use the Scan Controller instructi
     tanzu package install grype-scanner \
       --package-name grype.scanning.apps.tanzu.vmware.com \
       --version 1.0.0 \
-      --namespace tap-install
+      --namespace tap-install \
+      --values-file grype-values.yaml
     ```
+
+    The flag --values-file is optional and used only if you want to customize the deployment configuration.
 
     For example:
 
