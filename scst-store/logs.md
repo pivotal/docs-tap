@@ -36,11 +36,11 @@ If no log level is specified when the Store is installed, the log level is set t
 
 ### <a id='error-log'></a>Error Logs
 
-Errors logs are always outputted regardless of the log level, even when it is set to `minimum`.
+Error logs are always outputted regardless of the log level, even when set to `minimum`.
 
 ## Obtaining logs
 
-Logs are emitted by the Kubernetes pods. The deployment has two pods, one for the database, and one
+Logs are emitted by the Kubernetes pods. The deployment has two pods: one for the database and one
 for the API back end. First, use `kubectl get pods` to obtain the names of the pods.
 
 ```console
@@ -56,7 +56,7 @@ metadata-store-app-67659bbc66-2rc6k   2/2     Running   0          4d3h
 metadata-store-db-64d5b88587-8dns7    1/1     Running   0          4d3h
 ```
 
-The database pod has prefix `metadata-store-db-` and the API backend pod has prefix
+The database pod has prefix `metadata-store-db-` and the API backend pod has the prefix
 `metadata-store-app-`. Use `kubectl logs` to get the logs from the pod you're interested in.
 For example, if you wanted to see the logs of the database pod from the above example:
 
@@ -81,7 +81,7 @@ I1206 18:34:17.784900       1 main.go:180] Valid token audiences:
 
 When an API endpoint handles a request, the Store generates two and five log lines. They are:
 
-1. When the endpoint receives a request, it outputs a `Processing request` line. This log line is
+1. When the endpoint receives a request, it outputs a `Processing request` line. This logline is
 shown at the `default` log level.
 1. If the endpoint includes query or path parameters, it outputs a `Request parameters` line.
 This line logs the parameters passed in the request. This line is shown at the `default` log level.
@@ -129,8 +129,8 @@ The following key-value pairs are common for all logs.
 | Key      | Type    | Log Level | Description                                                                                                                                                       |
 |----------|---------|-----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | msg      | string  | default   | A short description of the logged event                                                                                                                           |
-| endpoint | string  | default   | The API endpoint the Metadata Store is attempting to handle the request. This also includes any query and path parameters passed in.                              |
-| host name | string  | default  | The Kubernetes host name of the pod handling the request. This helps identify the specific instance of the Store when you deploy multiple instances on a cluster. |
+| endpoint | string  | default   | The API endpoint the Metadata Store attempts to handle the request. This also includes any query and path parameters passed in.                              |
+| host name | string  | default  | The Kubernetes hostname of the pod handling the request. This helps identify the specific instance of the Store when you deploy multiple instances on a cluster. |
 | function | string  | debug     | The function name that handles the request                                                                                                                        |
 | method   | string  | default   | The HTTP verb to access the endpoint. For example, "GET" or "POST."                                                                                               |
 | code     | integer | default   | The HTTP response code                                                                                                                                            |
@@ -139,7 +139,7 @@ The following key-value pairs are common for all logs.
 
 ##### Logging query and path parameter values
 
-Those endpoints that use query or path parameters are logged on the `Request parameters` log line as
+Those endpoints that use query or path parameters are logged on the `Request parameters` logline as
 key-value pairs. Afterward, they are appended to all other log lines of the same request as
 key-value pairs.
 
@@ -163,7 +163,7 @@ This is done to ensure:
 
 * The application interprets the values of the query or path parameters correctly.
 * Help figure out which log lines are associated with a particular API request.
-Since there can be several simultaneous endpoint calls, this is a first attempt at trying to group
+Since there can be several simultaneous endpoint calls, this is a first attempt at grouping
 logs by specific calls.
 
 ##### API payload log output
@@ -171,7 +171,7 @@ logs by specific calls.
 As mentioned at the start of this section, by setting the log level to `debug`, the Store logs the
 body payload data for both the request and response of an API call.
 
-The `debug` log level, instead of `default`, is used to display this information instead of `default`
+The `debug` log level, instead of the `default`, is used to display this information instead of `default`
 because:
 
 * Body payloads can be huge, containing full CycloneDX and SBOM information.
@@ -198,8 +198,8 @@ I0111 20:14:30.816833       1 connection.go:40] MetadataStore/gorm "msg"="Sql Ca
 It is similar to the [API endpoint log output](#api-endpoint-log-output) format, but also uses the
 following key-value pairs:
 
-| Key   | Type    | Log Level | Description                                                                                                                                                                         |
-|-------|---------|-----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| rows  | integer | trace     | Indicates the number of rows affected by the SQL query                                                                                                                              |
-| sql   | string  | trace     | Displays the raw SQL query for the database                                                                                                                      |
-| data# | string  | all       | Used in error log entries. You can replace `#` with an integer, because multiples of these keys can show up in the same log entry. These keys contain extra information related to the error. |
+| Key   | Type    | Log Level | Description                                                  |
+| ----- | ------- | --------- | ------------------------------------------------------------ |
+| rows  | integer | trace     | Indicates the number of rows affected by the SQL query       |
+| sql   | string  | trace     | Displays the raw SQL query for the database                  |
+| data# | string  | all       | Used in error log entries. You can replace `#` with an integer because multiples of these keys can appear in the same log entry. These keys contain extra information related to the error. |
