@@ -74,6 +74,7 @@ This is the table of contents from which the Tanzu Application Platform Document
           - [Session management](learning-center/portal-rest-api/session-management.md)
           - [Client authentication](learning-center/portal-rest-api/client-authentication.md)
     - [Supply Chain Choreographer for Tanzu](scc/about.md)
+      - [Install Supply Chain Choreographer](scc/install.md)
       - [Out-of-the-box delivery basic](scc/ootb-delivery-basic.md)
       - [Out-of-the-box supply chain basic](scc/ootb-supply-chain-basic.md)
       - [Out-of-the-box supply chain with testing and scanning](scc/ootb-supply-chain-testing-scanning.md)
