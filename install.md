@@ -371,7 +371,7 @@ of Tanzu Application Platform.
 
 >**Important:** Keep this file for future use.
 
-1. Proceed to the [View possible configuration settings for your package](view-pkge-config-settings)
+1. Proceed to the [View possible configuration settings for your package](#view-pkge-config-settings)
 section.
 
 ### <a id='full-profile'></a> Full Profile
