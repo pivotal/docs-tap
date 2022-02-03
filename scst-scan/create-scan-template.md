@@ -27,7 +27,7 @@ You can define any valid [Kubernetes Pod](https://kubernetes.io/docs/concepts/wo
     **Component Name**  
         For the scan controller to keep track of your report, provide the name of the scanned artifact in the `bom>metadata>component>name` field of the XML generated as an output. Use the `url` for a source repository. Use the `image` name for an image scan.
     **Component Digest**  
-        For the Scan Controller to keep track of your report, provide your artifact's digest or most unique identifier into the `bom>metadata>component>version` field of the XML generated as an output.  
+        For the Scan Controller to keep track of your report, provide your artifact's digest or most unique identifier of your artifact into the `bom>metadata>component>version` field of the XML generated as an output.  
     **Scanner Name**  
         Provide the name of the scanner you are using in the `bom>metadata>tools>tool>name` field of the XML generated as an output.  
     **Scanner Vendor**  
