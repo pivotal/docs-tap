@@ -97,6 +97,7 @@ This is the table of contents from which the Tanzu Application Platform Document
     - [Supply Chain Security Tools for Tanzu - Sign](scst-sign/overview.md)
       - [Configuring Supply Chain Security Tools - Sign](scst-sign/configuring.md)
     - [Supply Chain Security Tools for Tanzu – Store](scst-store/overview.md)
+        - [Supply Chain Security Tools for Tanzu – Store Details](scst-store/scst_scans.md)
         - [API details](scst-store/api.md)
         - [API walkthrough](scst-store/api_walkthrough.md)
         - [CLI installation](scst-store/cli_installation.md)
