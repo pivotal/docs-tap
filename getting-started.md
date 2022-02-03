@@ -35,6 +35,7 @@ See [Install Out of The Box Supply Chain Basic](install-components.md#install-oo
 See [Set up developer namespaces to use installed packages](install-components.md#setup).
 
   - **Installed Tanzu Application Platform GUI**<br>
+See [Install Tanzu Application Platform GUI](install-components.md#install-tap-gui).
 
   - **Installed the VSCode Tanzu Extension**<br>
 See [Install the Visual Studio Code Tanzu Extension](vscode-extension/install.md) for instructions.
