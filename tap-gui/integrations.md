@@ -32,7 +32,7 @@ To allow Tanzu Application GUI to read non-GitHub repositories containing compon
             - host: "GIT-CATALOG-URL-2" # Optional, if several URLs
 ```
 
-Where `GIT-CATALOG-URL-X` is a URL in a list URLs what Tanzu Application Platform GUI is allowed to read when registering new components. For example, `"git.example.com"`. More on registering new components could be found in [Adding Catalog Entities](tap-gui/catalog/catalog-operations.md#add-cat-entities).
+Where `GIT-CATALOG-URL-X` is a URL in a list URLs what Tanzu Application Platform GUI is allowed to read when registering new components. For example, `"git.example.com"`. More on registering new components could be found in [Adding Catalog Entities](./tap-gui/catalog/catalog-operations.md#add-cat-entities).
 
 
 After making the changes to the `tap-values-file.yml`, you can update the package profile by running:
