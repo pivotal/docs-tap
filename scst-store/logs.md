@@ -3,7 +3,7 @@
 This topic covers configuring the Supply Chain Security Tools - Store to output detailed log
 information and interpret them. re-boot
 
-## Log levels
+## <a id='log-levels'></a>Log levels
 
 There are six log levels that the Supply Chain Security Tools - Store supports.
 
@@ -34,7 +34,7 @@ extensibility.
 
 If no log level is specified when the Store is installed, the log level is set to `default`.
 
-### Error Logs
+### <a id='error-log'></a>Error Logs
 
 Errors logs are always outputted regardless of the log level, even when it is set to `minimum`.
 
