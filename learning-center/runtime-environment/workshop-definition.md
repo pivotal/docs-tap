@@ -649,7 +649,7 @@ deployments of the workshop instances are created and where the service account 
 instance runs as exists.
 - `service_ account` - The name of the service account the workshop instance runs as and which has
 access to the namespace created for that workshop instance.
-- `ingress_ domain` - The host domain under which you can create host names when creating ingress routes.
+- `ingress_ domain` - The host domain under which you can create hostnames when creating ingress routes.
 - `ingress_ protocol` - The protocol (http/https) used for ingress routes created
 for workshops.
 
@@ -996,7 +996,7 @@ deployments of the workshop instances, and their service accounts, are created. 
 namespace that shared workshop resources are created.
 - `service_ account` - The name of a service account you can use when creating deployments in
 the workshop namespace.
-- `ingress_ domain` - The host domain under which you can create host names when creating ingress routes.
+- `ingress_ domain` - The host domain under which you can create hostnames when creating ingress routes.
 - `ingress_ protocol` - The protocol (http/https) used for ingress routes created
 for workshops.
 - `ingress_ secret` - The name of the ingress secret stored in the workshop namespace when secure
@@ -1302,7 +1302,7 @@ appropriate to cope with any potential change.
 - `workshop_ namespace` - The namespace for the workshop environment. This is the namespace where all
 deployments of the workshop instances are created and where the service account that the workshop
 instance runs as exists.
-- `ingress_ domain` - The host domain under which you can create host names when creating ingress routes.
+- `ingress_ domain` - The host domain under which you can create hostnames when creating ingress routes.
 
 If the service uses standard `http` or `https` ports, you can leave out the `port` property, and the
 port is set based on the value of `protocol`.
@@ -1375,7 +1375,7 @@ appropriate to cope with any potential change.
 * `workshop_ namespace` - The namespace for the workshop environment. This is the namespace where all
 deployments of the workshop instances are created and where the service account that the workshop
 instance runs as exists.
-* `ingress_ domain` - The host domain under which you can create host names when creating ingress routes.
+* `ingress_ domain` - The host domain under which you can create hostnames when creating ingress routes.
 * `ingress_ protocol` - The protocol (http/https) used for ingress routes that are created
 for workshops.
 
@@ -1906,7 +1906,7 @@ the namespace for the workshop environment. Do not rely on their being the same,
 - `workshop_ namespace` - The namespace for the workshop environment. This is the namespace where all
 deployments of the workshop instances are created and where the service account that the workshop
 instance runs as exists.
-- `ingress_ domain` - The host domain under which you can create host names when creating ingress routes.
+- `ingress_ domain` - The host domain under which you can create hostnames when creating ingress routes.
 - `ingress_ protocol` - The protocol (http/https) used for ingress routes that are created
 for workshops.
 
