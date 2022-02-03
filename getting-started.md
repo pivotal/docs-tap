@@ -46,7 +46,7 @@ See [Install Tanzu Application Platform GUI](install-components.md#install-tap-g
   - **Installed the VSCode Tanzu Extension**<br>
 See [Install the Visual Studio Code Tanzu Extension](vscode-extension/install.md) for instructions.
 
-If you have completed the prerequisites, then you're ready to get started!
+When you have completed the prerequisites, you are ready to get started.
 
 ## <a id="dev-first-app"></a>Section 1: Develop your first application on the Tanzu Application Platform
 
@@ -132,7 +132,7 @@ To deploy your application, you must download an accelerator, upload it on your 
     ```
 
 8. After the workload is built and running, you can view the Web App in your browser. View the URL of the Web App by running the command below, and then press **ctrl-click** on the
-Workload Knative Services URL at the bottom of the command output.
+   Workload Knative Services URL at the bottom of the command output.
 
     ```
     tanzu apps workload get tanzu-java-web-app
@@ -184,7 +184,7 @@ For information about installing the prerequisites and the Tanzu Developer Tools
    -  In Visual Studio Code, navigate to `Preferences` > `Settings` > `Extensions` > `Tanzu`.
    - In the **Local Path** field, provide the path to the directory containing the Tanzu Java Web App. The current directory is the default.
    - In the **Source Image** field, provide the destination image repository to publish an image containing your workload source code.
-  For example, `gcr.io/myteam/tanzu-java-web-app-source`.
+    For example, `gcr.io/myteam/tanzu-java-web-app-source`.
 
 You are now ready to iterate on your application.
 
@@ -641,22 +641,22 @@ the workload must be updated to point at your Tekton pipeline.
     ```
     NAME                                    AGE
     workload.carto.run/tanzu-java-web-app   109s
-
+    
     NAME                                                        URL                                                         READY   STATUS                                                            AGE
     gitrepository.source.toolkit.fluxcd.io/tanzu-java-web-app   https://github.com/sample-accelerators/tanzu-java-web-app   True    Fetched revision: main/872ff44c8866b7805fb2425130edb69a9853bfdf   109s
-
+    
     NAME                                              SUCCEEDED   REASON      STARTTIME   COMPLETIONTIME
     pipelinerun.tekton.dev/tanzu-java-web-app-4ftlb   True        Succeeded   104s        77s
-
+    
     NAME                                LATESTIMAGE                                                                                                      READY
     image.kpack.io/tanzu-java-web-app   10.188.0.3:5000/foo/tanzu-java-web-app@sha256:1d5bc4d3d1ffeb8629fbb721fcd1c4d28b896546e005f1efd98fbc4e79b7552c   True
-
+    
     NAME                                                             READY   REASON   AGE
     podintent.conventions.apps.tanzu.vmware.com/tanzu-java-web-app   True             7s
-
+    
     NAME                                      DESCRIPTION           SINCE-DEPLOY   AGE
     app.kappctrl.k14s.io/tanzu-java-web-app   Reconcile succeeded   1s             2s
-
+    
     NAME                                             URL                                               LATESTCREATED              LATESTREADY                READY     REASON
     service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.developer.example.com   tanzu-java-web-app-00001   tanzu-java-web-app-00001   Unknown   IngressNotConfigured
     ```
@@ -733,7 +733,7 @@ Verify that both Scan Link and Grype Scanner are installed by running:
     ```
     - supply_chain: testing
     + supply_chain: testing_scanning
-
+    
     - ootb_supply_chain_testing:
     + ootb_supply_chain_testing_scanning:
         registry:
@@ -799,28 +799,28 @@ pipeline:
     ```
     NAME                                    AGE
     workload.carto.run/tanzu-java-web-app   109s
-
+    
     NAME                                                        URL                                                         READY   STATUS                                                            AGE
     gitrepository.source.toolkit.fluxcd.io/tanzu-java-web-app   https://github.com/sample-accelerators/tanzu-java-web-app   True    Fetched revision: main/872ff44c8866b7805fb2425130edb69a9853bfdf   109s
-
+    
     NAME                                                           PHASE       SCANNEDREVISION                            SCANNEDREPOSITORY                                           AGE    CRITICAL   HIGH   MEDIUM   LOW   UNKNOWN   CVETOTAL
     sourcescan.scanning.apps.tanzu.vmware.com/tanzu-java-web-app   Completed   187850b39b754e425621340787932759a0838795   https://github.com/sample-accelerators/tanzu-java-web-app   90s
-
+    
     NAME                                              SUCCEEDED   REASON      STARTTIME   COMPLETIONTIME
     pipelinerun.tekton.dev/tanzu-java-web-app-4ftlb   True        Succeeded   104s        77s
-
+    
     NAME                                LATESTIMAGE                                                                                                      READY
     image.kpack.io/tanzu-java-web-app   10.188.0.3:5000/foo/tanzu-java-web-app@sha256:1d5bc4d3d1ffeb8629fbb721fcd1c4d28b896546e005f1efd98fbc4e79b7552c   True
-
+    
     NAME                                                          PHASE       SCANNEDIMAGE                                                                                                AGE   CRITICAL   HIGH   MEDIUM   LOW   UNKNOWN   CVETOTAL
     imagescan.scanning.apps.tanzu.vmware.com/tanzu-java-web-app   Completed   10.188.0.3:5000/foo/tanzu-java-web-app@sha256:1d5bc4d3d1ffeb8629fbb721fcd1c4d28b896546e005f1efd98fbc4e79b7552c   14s
-
+    
     NAME                                                             READY   REASON   AGE
     podintent.conventions.apps.tanzu.vmware.com/tanzu-java-web-app   True             7s
-
+    
     NAME                                      DESCRIPTION           SINCE-DEPLOY   AGE
     app.kappctrl.k14s.io/tanzu-java-web-app   Reconcile succeeded   1s             2s
-
+    
     NAME                                             URL                                               LATESTCREATED              LATESTREADY                READY     REASON
     service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.developer.example.com   tanzu-java-web-app-00001   tanzu-java-web-app-00001   Unknown   IngressNotConfigured
     ```
@@ -866,7 +866,7 @@ In this section, you are about to:
 > **Note:** The resource must be named `image-policy`.
 
     For example:
-
+    
     ```
     ---
     apiVersion: signing.apps.tanzu.vmware.com/v1beta1
@@ -890,7 +890,7 @@ In this section, you are about to:
          - namePattern: registry.example.org/myproject/*
            keys:
            - name: first-key
-
+    
     ```
 
 When you apply the `ClusterImagePolicy` resource, your cluster requires valid signatures for all images that match the `namePattern:` you define in the configuration. For more information about configuring an image signature policy, see [Configuring Supply Chain Security Tools - Sign](scst-sign/configuring.html).
@@ -1410,8 +1410,8 @@ cluster.
 
     - After adding the Tanzu Application Platform package repository, instead of
     installing all packages, you only need to install the Services Toolkit package.
-    For installation information, see [Add the Tanzu Application Platform Package Repository](install.md#add-package-repositories)
-    and [Install Services Toolkit](install-components.md#install-services-toolkit).
+     For installation information, see [Add the Tanzu Application Platform Package Repository](install.md#add-package-repositories)
+     and [Install Services Toolkit](install-components.md#install-services-toolkit).
 
     - From now on this cluster is called the **Service Cluster**.
 
