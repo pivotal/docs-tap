@@ -1,6 +1,6 @@
 # Supply Chain Security Tools for Tanzu – Store Details
 
-See [Supply Chain Security Tools for Tanzu – Store](scst-store/overview.md) for overview information.
+See [Supply Chain Security Tools for Tanzu – Store](overview.md) for overview information.
 
 ## <a id='install'></a>Install
 
