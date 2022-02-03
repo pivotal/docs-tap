@@ -60,24 +60,23 @@ lasts. The field format is an integer number with `s`, `m`, or `h` suffix.
 
 - The `vendor` field must be a value that identifies the company or organization which the authors
 are affiliated with.
-This can be a company or organization name or a DNS host name under the control of whoever has
+This can be a company or organization name or a DNS hostname under the control of whoever has
 created the workshop.
 
 - The `authors` field must list the people who worked on creating the workshop.
 
-- The `tags` field must list labels which help to identify what the workshop is about.
+- The `tags` field must list labels that help to identify what the workshop is about.
 This is used in a searchable catalog of workshops.
 
-- The `logo` field must be a graphical image provided in embedded data URI format which depicts the
-topic of the workshop. The image should be 400 by 400 pixels. This is used in a searchable catalog
+- The `logo` field must be a graphical image provided in embedded data URI format that depicts the workshop topic. The image should be 400 by 400 pixels. This is used in a searchable catalog
 of workshops.
 
 - The `files` field is the Git repository URL for `lab-markdown-sample`. For example, `https://github.com/eduk8s/lab-markdown-sample`.
 
 When referring to a workshop definition after it is loaded into a Kubernetes cluster, the
 value of the `name` field given in the metadata is used. To experiment with slightly
-different variations of a workshop, copy the original workshop definition YAML file and change the
-value of `name`. Then make your changes and load it into the Kubernetes cluster.
+different workshop variations, copy the original workshop definition YAML file and change the
+value of `name`. Then make your changes and load them into the Kubernetes cluster.
 
 ## Downloading workshop content
 
@@ -86,7 +85,7 @@ content is not too large, the download doesn't increase startup times for the wo
 The alternative is to bundle the workshop content in a container image built from the
 Learning Center workshop base image.
 
-To download workshop content at the time the workshop instance is started, set the `content.files`
+To download workshop content when the workshop instance is started, set the `content.files`
 field to the location of the workshop content:
 
 ```
@@ -101,13 +100,13 @@ spec:
     files: github.com/eduk8s/lab-markdown-sample
 ```
 
-The location can be a GitHub or GitLab repository reference, a URL to a tarball hosted on a HTTP
+The location can be a GitHub or GitLab repository reference, a URL to a tarball hosted on an HTTP
 server, or a reference to an OCI image artifact on a registry.
 
 In the case of a GitHub or GitLab repository, do not prefix the location with `https://` as a
 symbolic reference is being used and not an actual URL.
 
-The format of the reference to a GitHub or GitLab repository is similar to that used with kustomize
+The reference format to a GitHub or GitLab repository is similar to that used with kustomize
 when referencing remote repositories. For example:
 
 * `github.com/organisation/project` - Use the workshop content hosted at the root of the GitHub
@@ -138,13 +137,13 @@ specific version of the Git repository.
 
 * `https://github.com/organization/project/archive/develop.tar.gz?path=project-develop`
 
-When using this form you must reference the `.tar.gz` download and cannot use the `.zip` file.
-The base name of the tarball file is the branch or commit name. You must specify the `path` query
-string parameter where the argument is the name of the project and branch or commit.
+When using this form, you must reference the `.tar.gz` download and cannot use the `.zip` file.
+The basename of the tarball file is the branch or commit name. You must specify the `path` query
+string parameter where the argument is the project name and branch or commit.
 The path must be supplied as the contents of the repository is not returned at the root of the
 archive.
 
-If using GitLab, it also provides a means of download a package as a tarball.
+Using GitLab also provides a means of downloading a package as a tarball.
 
 * `https://gitlab.com/organization/project/-/archive/develop/project-develop.tar.gz?path=project-develop`
 
@@ -153,27 +152,27 @@ read-only access to the repository and include the credentials in the URL.
 
 * `https://username@token:github.com/organization/project/archive/develop.tar.gz?path=project-develop`
 
-As with this method a full URL is being supplied to request a tarball of the repository and does not
-refer to the repository itself, you can also reference private enterprise versions of GitHub or
-GitLab and the repository doesn't need to be on the public `github.com` or `gitlab.com` sites.
+As with this method, a full URL is being supplied to request a tarball of the repository and does not
+refer to the repository itself. You can also reference private enterprise versions of GitHub or
+GitLab and the repository do not need to be on the public `github.com` or `gitlab.com` sites.
 
-The last case is a reference to an OCI image artifact stored on a registry.
-This is not a full container image with the operating system, but an image containing only the files
+The last case references an OCI image artifact stored on a registry.
+This is not a full container image with the operating system but an image containing only the files
 making up the workshop content. The URI formats for this are:
 
 * `imgpkg+https://harbor.example.com/organisation/project:version` - Use the workshop content from
-the top-level directory of the unpacked OCI artifact. The registry in this case must support `https`.
+the top-level directory of the unpacked OCI artifact. The registry, in this case, must support `https`.
 * `imgpkg+https://harbor.example.com/organisation/project:version?path=subdir` - Use the workshop
 content from the specified subdirectory path of the unpacked OCI artifact.
-The registry in this case must support `https`.
+The registry, in this case, must support `https`.
 * `imgpkg+http://harbor.example.com/organisation/project:version` - Use the workshop content from
-the top-level directory of the unpacked OCI artifact. The registry in this case can support only `http`.
+the top-level directory of the unpacked OCI artifact. The registry, in this case, can support only `http`.
 * `imgpkg+http://harbor.example.com/organisation/project:version?path=subdir` - Use the workshop
-content from the specified subdirectory path of the unpacked OCI artifact. The registry in this
-case can support only `http`.
+content from the specified subdirectory path of the unpacked OCI artifact. The registry, in this
+case, can support only `http`.
 
 Instead of the prefix `imgpkg+https://`, you can use `imgpkg://`. The registry in this
-case must still support `https`.
+the case must still support `https`.
 
 For any of the formats, you can supply credentials as part of the URI.
 
@@ -181,7 +180,7 @@ For any of the formats, you can supply credentials as part of the URI.
 
 Access to the registry using a secure connection using `https` must have a valid certificate.
 
-You can create the OCI image artifact by using `imgpkg` from the Carvel tool set. For example, from the
+You can create the OCI image artifact using `imgpkg` from the Carvel toolset. For example, from the
 top-level directory of the Git repository containing the workshop content, you would run:
 
 ```
@@ -193,9 +192,9 @@ workshop content is relocated to `/opt/workshop` so that it is not visible to a 
 If you want other files ignored and not included in what the user can see, you can supply a
 `.eduk8signore` file in your repository or tarball and list patterns for the files in it.
 
-Note that the contents of the `.eduk8signore` file is processed as a list of patterns and each is
+Note that the contents of the `.eduk8signore` file are processed as a list of patterns, and each is
 applied recursively to subdirectories. To ensure that a file is only ignored if it resides in the
-root directory, you need to prefix it with `./`.
+root directory, you must prefix it with `./`.
 
 ```
 ./.dockerignore
@@ -247,8 +246,8 @@ spec:
 ```
 
 If you want to use the latest version of an image, always include the `:latest` tag.
-This is important because the Learning Center Operator looks for version tags `:main`, `:master`,
-`:develop` and `:latest`. When they are used, the Operator sets the image pull policy to `Always` to ensure
+This is important because the Learning Center Operator looks for version tags:main`, `:master`,
+`:develop` and `:latest`. When used, the Operator sets the image pull policy to `Always` to ensure
 that a newer version is always pulled if available.
 Otherwise, the image is cached on the Kubernetes nodes and only pulled when it is initially absent. Any other version tags are always assumed to be unique and are never updated.
 Be aware of image registries that use a content delivery network (CDN) as front end. When using these image tags, the CDN can
@@ -256,8 +255,7 @@ still regard them as unique and not do pull through requests to update an image 
 a tag of `:latest`.
 
 Where special custom workshop base images are available as part of the Learning Center project,
-instead of specifying the full location for the image, including the image registry, you can specify
-a short name. The Learning Center Operator then fills in the rest of the details:
+you can specify a short name instead of specifying the full location for the image, including the image registry. The Learning Center Operator then fills in the rest of the details:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -272,20 +270,19 @@ spec:
     files: github.com/eduk8s-tests/lab-spring-testing
 ```
 
-The short versions of the names which are recognised are:
+The short versions of the names which are recognized are:
 
 * `base-environment:*` - A tagged version of the `base-environment` workshop image matched with the current version of the Learning Center Operator.
 * `jdk8-environment:*` - A tagged version of the `jdk8-environment` workshop image matched with the current version of the Learning Center Operator.
 * `jdk11-environment:*` - A tagged version of the `jdk11-environment` workshop image matched with the current version of the Learning Center Operator.
 * `conda-environment:*` - A tagged version of the `conda-environment` workshop image matched with the current version of the Learning Center Operator.
 
-The `*` variants of the short names map to the most up-to-date version of the image available at the
-time the version of the Learning Center Operator was released. That version is guaranteed
-to work with that version of the Learning Center Operator; whereas the `latest` version can be newer, with possible incompatibilities.
+The `*` variants of the short names map to the most up-to-date version of the image available when the version of the Learning Center Operator was released. That version is guaranteed
+to work with that version of the Learning Center Operator, whereas the `latest` version can be newer, with possible incompatibilities.
 
 If required, you can remap the short names in the `SystemProfile` configuration of the
-Learning Center Operator. You can map additional short names to your own custom workshop base images
-for use in your own deployment of the Learning Center Operator, and with any workshop of your own.
+Learning Center Operator. You can map additional short names to your custom workshop base images
+for use in your deployment of the Learning Center Operator and with any workshop of your own.
 
 ## Setting environment variables
 
@@ -313,28 +310,28 @@ Where:
 - The `session.env` field is a list of dictionaries with `name` and `value` fields.
 - The `value` field is the Git repository URL for `lab-markdown-sample`. For example, `https://github.com/eduk8s/lab-markdown-sample`.
 
-Values of fields in the list of resource objects can reference a number of predefined parameters.
+Values of fields in the list of resource objects can reference several predefined parameters.
 The available parameters are:
 
 - `session_ id` - A unique ID for the workshop instance within the workshop environment.
 - `session_ namespace` - The namespace created for and bound to the workshop instance.
 This is the namespace unique to the session and where a workshop can create its own resources.
-- `environment_ name` - The name of the workshop environment. For now this is the same as the name of
-the namespace for the workshop environment. Don't rely on their being the same, and use the most
+- `environment_ name` - The name of the workshop environment. This is the same as the name of
+the namespace for the workshop environment. Do not rely on their being the same, and use the most
 appropriate to cope with any potential change.
 - `workshop_ namespace` - The namespace for the workshop environment. This is the namespace where all
 deployments of the workshop instances are created and where the service account that the workshop
 instance runs as exists.
 - `service_ account` - The name of the service account the workshop instance runs as and which has
 access to the namespace created for that workshop instance.
-- `ingress_ domain` - The host domain under which you can create host names when creating ingress routes.
+- `ingress_ domain` - The host domain under which you can create hostnames when creating ingress routes.
 - `ingress_ protocol` - The protocol (http/https) that is used for ingress routes created
 for workshops.
 
 The syntax for referencing one of the parameters is `$(parameter_name)`.
 
-The ability for you to override environment variables using this field must be limited to cases
-where they are required for the workshop. To set or override an environment for a
+The ability to override environment variables using this field must be limited to cases
+where they are required for the workshop. To set or override a
 specific workshop environment, set environment variables in the `WorkshopEnvironment`
 custom resource for the workshop environment instead.
 
@@ -345,7 +342,7 @@ If the editor is enabled, a total of 1Gi is allocated.
 
 Where the purpose of the workshop is mainly aimed at deploying workloads into the Kubernetes cluster,
 this generally is sufficient. If you are running workloads in the workshop environment container
-itself and need more memory, you can override the default by setting `memory` under
+and need more memory, you can override the default by setting `memory` under
 `session.resources`:
 
 ```
@@ -384,7 +381,7 @@ spec:
       storage: 5Gi
 ```
 
-The persistent volume is mounted on top of the `/home/eduk8s` directory. Because this hides any
+The persistent volume is mounted on the `/home/eduk8s` directory. Because this hides any
 workshop content bundled with the image, an init container is automatically configured and run,
 which copies the contents of the home directory to the persistent volume before the persistent volume
 is then mounted on top of the home directory.
@@ -396,7 +393,7 @@ That is, from the terminal of the
 workshop, you can deploy dashboard applications into the namespace through the Kubernetes
 REST API by using tools such as kubectl.
 
-By default this namespace has whatever limit ranges and resource quotas the
+By default, this namespace has whatever limit ranges and resource quotas the
 Kubernetes cluster can enforce. In most cases, this means there are no limits or quotas.
 
 To control how much resources can be used where no limit ranges and resource quotas are set,
@@ -506,7 +503,7 @@ you only need to supply the property for the value you want to override.
 
 If you need more control over limit ranges and resource quotas,
 you can set the resource budget to `custom`.
-This removes any default limit ranges and resource quota that might be applied to the namespace.
+This removes any default limit ranges and resource quotas that might be applied to the namespace.
 You can then specify your own `LimitRange` and `ResourceQuota` resources as part of the list of resources created for each session.
 
 Before disabling the quota and limit ranges or contemplating any switch to using a custom set of
@@ -556,24 +553,23 @@ In this example, the default memory limit of "512Mi" is increased to "1Gi". Alth
 set using a patch in this example, the `session.resources.memory` field is the preferred way to
 override the memory allocated to the container the workshop environment is running in.
 
-The patch when applied works differently than overlay patches found elsewhere in Kubernetes.
-Specifically, when patching an array and the array contains a list of objects, a search is performed
+The patch, when applied, works differently than overlay patches found elsewhere in Kubernetes.
+Specifically, when patching an array containing a list of objects, a search is performed
 on the destination array. If an object already exists with the same value for the `name` field, the item in the source array is overlaid on top of the existing item in the destination array.
 
 If there is no matching item in the destination array, the item in the source array is added to the end of the destination array.
 
-This means an array doesn't outright replace an existing array, but a more intelligent merge is performed of elements in the array.
+This means an array doesn't outright replace an existing array, but a more intelligent merge of elements in the array is performed.
 
 ## Creation of session resources
 
-When a workshop instance is created, the deployment running the workshop dashboard is created in the
+When a workshop instance is created, the workshop dashboard deployment is created in the
 namespace for the workshop environment. When more than one workshop instance is created under that
 workshop environment, all those deployments are in the same namespace.
 
 For each workshop instance, a separate empty namespace is created with name corresponding to the
-workshop session. The workshop instance is configured so that the service account that the workshop
-instance runs under can access and create resources in the namespace created for that workshop
-instance. Each separate workshop instance has its own corresponding namespace and cannot see the
+workshop session. The workshop instance is configured so that the workshop instance service account can access and create resources in the namespace created for that 
+instance. Each separate workshop instance has its corresponding namespace and cannot see the
 namespace for another instance.
 
 To pre-create additional resources within the namespace for a workshop instance, you can
@@ -637,17 +633,16 @@ For namespaced resources, it is not necessary to specify the `namespace` field o
 resource `metadata`. When the `namespace` field is not present, the resource is automatically created within the session namespace for that workshop instance.
 
 When resources are created, owner references are added, making the `WorkshopSession` custom resource
-corresponding to the workshop instance the owner. This means that when the workshop instance is
+corresponding to the workshop instance the owner. When the workshop instance is
 deleted, any resources are automatically deleted.
 
-Values of fields in the list of resource objects can reference a number of predefined parameters.
+Values of fields in the list of resource objects can reference several predefined parameters.
 The available parameters are:
 
 - `session_ id` - A unique ID for the workshop instance within the workshop environment.
 - `session_ namespace` - The namespace created for and bound to the workshop instance. This is the
 namespace unique to the session and where a workshop can create its own resources.
-- `environment_ name` - The name of the workshop environment. For now this is the same as the name of
-the namespace for the workshop environment. Don't rely on their being the same, and use the most
+- `environment_ name` - The name of the workshop environment. This is the same as the namespace's name for the workshop environment. Do not rely on their being the same, and use the most
 appropriate to cope with any potential change.
 - `workshop_ namespace` - The namespace for the workshop environment. This is the namespace where all
 deployments of the workshop instances are created and where the service account that the workshop
@@ -661,15 +656,15 @@ for workshops.
 The syntax for referencing one of the parameters is `$(parameter_name)`.
 
 In the case of cluster-scoped resources, it is important that you set the name of the created resource
-so that it embeds the value of `$(session_namespace)`. This way the resource name is unique to the
+so that it embeds the value of `$(session_namespace)`. This way, the resource name is unique to the
 workshop instance, and you do not get a clash with a resource for a different workshop instance.
 
-For examples of making use of the available parameters, see the following sections.
+For examples of using the available parameters, see the following sections.
 
 ## Overriding default role-based access control (RBAC) rules
 
-By default the service account created for the workshop instance has `admin` role access to the
-session namespace created for that workshop instance. This enables the service account to be used to
+By default, the service account created for the workshop instance has `admin` role access to the
+session namespace created for that workshop instance. This enables the service account to
 deploy applications to the session namespace and manage secrets and service accounts.
 
 Where a workshop doesn't require `admin` access for the namespace, you can reduce the level of access
@@ -740,8 +735,8 @@ spec:
         name: $(service_account)
 ```
 
-Because the subject of a `RoleBinding` must specify the service account name and namespace it is
-contained within, both of which are unknown in advance, references to parameters for the workshop
+The subject of a `RoleBinding` must specify the service account name and namespace where it is
+contained, both of which are unknown in advance. References to parameters for the workshop
 namespace and service account for the workshop instance are used when defining the subject.
 
 You can add additional resources by means of `session.objects` to grant cluster-level roles,
@@ -782,7 +777,7 @@ instance.
 In addition to RBAC, which controls what resources a user can create and work with, Pod security
 policies are applied to restrict what Pods/containers a user deploys can do.
 
-By default the deployments that a workshop user can create are allowed only to run containers
+By default, the deployments that a workshop user can create are allowed only to run containers
 as a non-root user. This means that many container images available on registries such as Docker Hub
 cannot be used.
 
@@ -814,7 +809,7 @@ created.
 For each workshop instance, a primary session namespace is created. Applications can be pre-deployed or deployed into this namespace as part of the workshop.
 
 If you need more than one namespace per workshop instance, you can create secondary namespaces in a
-couple of ways.
+a couple of ways.
 
 If the secondary namespaces are to be created empty, you can list the details of the namespaces under
 the property `session.namespaces.secondary`:
@@ -960,7 +955,7 @@ If you need more fine-grained control over the limit ranges and resource quotas,
 the annotation for the budget to `custom` and add the `LimitRange` and `ResourceQuota` definitions
 to `session.objects`.
 
-In this case you must set the `namespace` for the `LimitRange` and `ResourceQuota` resource to the
+In this case, you must set the `namespace` for the `LimitRange` and `ResourceQuota` resource to the
 name of the namespace, e.g., `$(session_namespace)-apps` so they are only applied to that namespace.
 
 To set the security policy for a specific namespace other than the primary session
@@ -969,31 +964,30 @@ the `Namespace` resource metadata and set the value to `nonroot`, `anyuid` or `c
 
 ## Shared workshop resources
 
-Adding a list of resources to `session.objects` causes the given resources to be created for
+Adding a list of resources to `session.objects` cause the given resources to be created for
 each workshop instance, whereas namespaced resources default to being created in the session namespace for a workshop instance.
 
-If instead you want to have one common shared set of resources created once for the whole workshop
-environment, that is, used by all workshop instances, you can list them in the `environment.objects`
+If  you want to have one common shared set of resources created once for the whole workshop
+environment that is used by all workshop instances, you can list them in the `environment.objects`
 field.
 
-This might, for example, be used to deploy a single image registry used by all workshop
-instances, with a Kubernetes job used to import a set of images into the image registry, which are then referenced by the workshop instances.
+For example, this might be used to deploy a single image registry used by all workshop
+instances. A Kubernetes job is used to import a set of images into the image registry, which is then referenced by the workshop instances.
 
 For namespaced resources, it is not necessary to specify the `namespace` field of the resource
 `metadata`. When the `namespace` field is not present, the resource is automatically created within
 the workshop namespace for that workshop environment.
 
 When resources are created, owner references are added, making the `WorkshopEnvironment` custom
-resource correspond to the workshop environment of the owner. This means that when the workshop
-environment is deleted, any resources are also deleted.
+resource correspond to the workshop environment of the owner. This means that any resources are also deleted when the workshop environment is deleted.
 
 Values of fields in the list of resource objects can reference a number of predefined parameters.
 The available parameters are:
 
 - `workshop_ name` - The name of the workshop. This is the name of the `Workshop` definition the
 workshop environment was created against.
-- `environment_ name` - The name of the workshop environment. For now this is the same as the name of
-the namespace for the workshop environment. Don't rely on their being the same, and use the most
+- `environment_ name` - The name of the workshop environment. This is the same as the name of
+the namespace for the workshop environment. Do not rely on their being the same, and use the most
 appropriate to cope with any potential change.
 - `environment_ token` - The value of the token that needs to be used in workshop requests against
 the workshop environment.
@@ -1014,7 +1008,7 @@ suffix. Be careful that the suffix doesn't overlap with the range of session IDs
 instances.
 
 When creating deployments in the workshop namespace, set the `serviceAccountName` of the `Deployment`
-resource to `$(service_account)`. This ensures the deployment makes use of a special Pod security
+resource to `$(service_account)`. This ensures the deployment uses a special Pod security
 policy set up by the Learning Center. If this isn't used and the cluster imposes a more strict
 default Pod security policy, your deployment might not work, especially if any image runs as
 `root`.
@@ -1023,7 +1017,7 @@ default Pod security policy, your deployment might not work, especially if any i
 
 The Pod for the workshop session is set up with a Pod security policy that restricts what can be
 done from containers in the pod. The nature of the applied Pod security policy is adjusted when
-enabling support for doing Docker builds. This in turn enables Docker builds
+enabling support for doing Docker builds. This enables Docker builds
 inside the sidecar container attached to the workshop container.
 
 If you are customizing the workshop by patching the Pod specification
@@ -1055,7 +1049,7 @@ deployments made by a workshop user to the session namespaces. This setting appl
 workshop container itself.
 
 If you need more fine-grained control of the security policy, you must provide your own resources
-for defining the Pod security policy and map it so it is used. The details of the Pod security policy
+for defining the Pod security policy and map it, so it is used. The details of the Pod security policy
 must be in `environment.objects` and mapped by definitions added to `session.objects`.
 For this to be used, you must disable the application of the inbuilt Pod security policies.
 You can do this by setting `session.security.policy` to `custom`:
@@ -1140,13 +1134,13 @@ security policy applied to service accounts that exist in the session namespace 
 
 There is a better way to set the priority of applied Pod security policies when a default
 Pod security policy is applied globally by mapping it to the `system:authenticated` group. This results in priority falling back to the order of the names of the Pod security policies. VMware recommends
-you use `aa-` as a prefix to the custom Pod security name you create. This ensures it takes precedence
+using `aa-` as a prefix to the custom Pod security name you create. This ensures it takes precedence
 over any global default Pod security policy such as `restricted`, `pks-restricted` or
 `vmware-system-tmc-restricted`, no matter what the name of the global policy default.
 
 ## Custom security policies for user containers 
 
-There is also the option to set the value of the `session.namespaces.security.policy` setting as `custom`. This allows for more fine-grained control on the security policy applied to the Pods/containers a user deploys during a session. Note that in this case you must provide your own resources defining the Pod security policy and map it so it is used. 
+There is also the option to set the value of the `session.namespaces.security.policy` setting as `custom`. This allows for more fine-grained control of the security policy applied to the Pods/containers a user deploys during a session. In this case, you must provide your own resources defining the Pod security policy and map it so it is used. 
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -1227,7 +1221,7 @@ This can also be done on secondary namespaces by either setting the `session.nam
 
 ## Defining additional ingress points
 
-If running additional background applications, by default they are only accessible to other
+By default, if running additional background applications, they are only accessible to other
 processes within the same container. For an application to be accessible to a user through their web browser, an ingress must be created mapping to the port for the application.
 
 You can do this by supplying a list of the ingress points and the internal container port they map to by setting the `session.ingresses` field in the workshop definition:
@@ -1248,17 +1242,16 @@ spec:
       port: 8080
 ```
 
-The form of the host name used in the URL to access the service is:
+The form of the hostname used in the URL to access the service is:
 
 ```
 $(session_namespace)-application.$(ingress_domain)
 ```
 
-Do not use for this name the name of any built-in dashboards, `terminal`, `console`, `slides`,
-or `editor`. These are reserved for the corresponding built-in capabilities providing those features.
+Do not use the name of any built-in dashboards, terminal, console, slides, or editor for this name. These are reserved for the corresponding built-in capabilities providing those features.
 
 In addition to specifying ingresses for proxying to internal ports within the same Pod, you can
-specify a `host`, `protocol` and `port` corresponding to a separate service running in the Kubernetes
+specify a `host`, `protocol,` and `port` corresponding to a separate service running in the Kubernetes
 cluster:
 
 ```
@@ -1304,8 +1297,7 @@ Available variables are:
 
 - `session_ namespace` - The namespace created for and bound to the workshop instance. This is the
 namespace unique to the session and where a workshop can create its own resources.
-- `environment_ name` - The name of the workshop environment. Currently this is the same as the name
-of the namespace for the workshop environment. Don't rely on their being the same, and use the most
+- `environment_ name` - The name of the workshop environment. Currently, this is the same as the namespace name for the workshop environment. Do not rely on their being the same, and use the most
 appropriate to cope with any potential change.
 - `workshop_ namespace` - The namespace for the workshop environment. This is the namespace where all
 deployments of the workshop instances are created and where the service account that the workshop
@@ -1346,13 +1338,13 @@ used for accessing the Kubernetes REST API.
 
 Accessing any service through the ingress is protected by any access controls enforced by the workshop
 environment or training portal. If you use the training portal, this should be transparent.
-Otherwise, supply any login credentials for the workshop again when prompted by your web browser.  
+Otherwise, supply any login credentials for the workshop when prompted by your web browser.  
 
 ## External workshop instructions
 
 In place of using workshop instructions provided with the workshop content, you can use externally
-hosted instructions instead. To do this set `sessions.applications.workshop.url` to the URL of an
-external web site:
+hosted instructions instead. To do this, set `sessions.applications.workshop.URL` to the URL of an
+external website:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -1370,15 +1362,15 @@ spec:
         url: https://www.example.com/instructions
 ```
 
-The external web site must displayed in an HTML iframe, is shown as is and must provide its own page
+The external website must be displayed in an HTML iframe, is shown as is, and must provide its page
 navigation and table of contents if required.
 
 The URL value can reference a number of predefined parameters. The available parameters are:
 
 * `session_ namespace` - The namespace created for and bound to the workshop instance. This is the
 namespace unique to the session and where a workshop can create its own resources.
-* `environment_ name` - The name of the workshop environment. For now this is the same as the name of
-the namespace for the workshop environment. Don't rely on their being the same, and use the most
+* `environment_ name` - The name of the workshop environment. This is the same as the name of
+the namespace for the workshop environment. Do not rely on their being the same, and use the most
 appropriate to cope with any potential change.
 * `workshop_ namespace` - The namespace for the workshop environment. This is the namespace where all
 deployments of the workshop instances are created and where the service account that the workshop
@@ -1414,11 +1406,11 @@ application hosting the instructions and expose it through an appropriate ingres
 
 ## Disabling workshop instructions
 
-The aim of the workshop environment is to provide instructions for a workshop that users can follow.
-If you want instead to use the workshop environment as a development environment or as an
+The workshop environment aims to provide instructions for a workshop that users can follow.
+If you want to use the workshop environment as a development environment or as an
 administration console that provides access to a Kubernetes cluster, you can disable the display of
 workshop instructions provided with the workshop content. In this case, only the work area with the
-terminals, console, and so on, is displayed. To disable display of workshop instructions, add a
+terminals, console, and so on is displayed. To disable the display of workshop instructions, add a
 `session.applications.workshop` section and set the `enabled` property to `false`:
 
 ```
@@ -1439,8 +1431,8 @@ spec:
 
 ## Enabling the Kubernetes console
 
-By default the Kubernetes console is not enabled. To enable it and make it available
-through the web browser when accessing a workshop, add a `session.applications.console`
+By default, the Kubernetes console is not enabled. To enable it and make it available
+through the web browser, when accessing a workshop, add a `session.applications.console`
 section to the workshop definition, and set the `enabled` property to `true`:
 
 ```
@@ -1483,7 +1475,7 @@ When `vendor` is not set, `kubernetes` is assumed.
 
 ## Enabling the integrated editor
 
-By default the integrated web based editor is not enabled. To enable it and make it
+By default, the integrated web-based editor is not enabled. To enable it and make it
 available through the web browser when accessing a workshop, add a
 `session.applications.editor` section to the workshop definition, and set the `enabled` property to `true`:
 
@@ -1514,7 +1506,7 @@ code-server --install-extension vendor.extension
 ```
 
 Replace `vendor.extension` with the name of the extension, where the name identifies the extension on
-the VS Code extensions marketplace used by the editor or provide a path name to a local `.vsix` file.
+the VS Code extensions marketplace used by the editor or provide a pathname to a local `.vsix` file.
 
 This installs the extensions into `$HOME/.config/code-server/extensions`.
 
@@ -1543,11 +1535,11 @@ spec:
         enabled: true
 ```
 
-The recommended way of providing access to files from workshop instructions is using the
+The recommended way to provide access to files from workshop instructions is to use the
 `files:download-file` clickable action block. This action ensures any file is downloaded to the local
 machine and is not simply displayed in the browser in place of the workshop instructions.
 
-By default the user can access any files located under the home directory of the workshop user account.
+By default, the user can access any files located under the home directory of the workshop user account.
 To restrict where the user can download files from, set the `directory` setting:
 
 ```
@@ -1603,11 +1595,11 @@ You can configure them to be automatically started when the page of the workshop
 
 ## Enabling session image registry
 
-Workshops using tools such as `kpack` or `tekton` and which need a place to push container images
+Workshops using tools such as `kpack` or `tekton` that need a place to push container images
 when built can enable a container image registry. A separate registry is deployed for each workshop
 session.
 
-The image registry is currently fully usable only if workshops are deployed under a Learning Center
+The image registry is currently fully usable only if workshops are deployed under a Learning Center.
 Operator configuration that uses secure ingress. This is because a registry that is not secure is not trusted by the Kubernetes cluster as the source of container images when doing deployments.
 
 To enable the deployment of a registry per workshop session, add a
@@ -1630,7 +1622,7 @@ spec:
         enabled: true
 ```
 
-The registry mounts a persistent volume for storing of images. By default the size of that
+The registry mounts a persistent volume for storing images. By default, the size of that
 persistent volume is 5Gi. To override the size of the persistent volume, add the `storage`
 property under the `registry` section:
 
@@ -1671,10 +1663,10 @@ spec:
         memory: 1Gi
 ```
 
-The registry is secured with a user name and password unique to the workshop session, and should be accessed over a secure connection.
+The registry is secured with a user name and password unique to the workshop session and should be accessed over a secure connection.
 
 To allow access from the workshop session, the file `$HOME/.docker/config.json` containing the
-registry credentials are injected into the workshop session. This is automatically used by tools
+registry credentials is injected into the workshop session. This is automatically used by tools
 such as `docker`.
 
 For deployments in Kubernetes, a secret of type `kubernetes.io/dockerconfigjson` is created in the
@@ -1685,7 +1677,7 @@ registry without additional configuration. If creating deployments using other s
 If you need access to the raw registry host details and credentials, they are provided as environment
 variables in the workshop session. The environment variables are:
 
-* `REGISTRY_ HOST` - Contains the host name for the registry for the workshop session.
+* `REGISTRY_ HOST` - Contains the hostname for the registry for the workshop session.
 * `REGISTRY_ AUTH_FILE` - Contains the location of the `docker` configuration file. Must be
 the equivalent of `$HOME/.docker/config.json`.
 * `REGISTRY_ USERNAME` - Contains the user name for accessing the registry.
@@ -1703,18 +1695,18 @@ name but in lowercase: `registry_host`, `registry_auth_file`, `registry_username
 
 ## Enabling ability to use Docker
 
-To build container images in a workshop using `docker`, first enable
-it. Each workshop session is provided with its own separate Docker daemon instance running in
+To build container images in a workshop using `docker`, you must first enable
+it. Each workshop session has its own separate Docker daemon instance running in
 a container.
 
 Enabling support for running `docker` requires the use of a privileged container for running the
 Docker daemon. Because of the security implications of providing access to Docker with this
 configuration, VMware recommends that if you don't trust the people taking the workshop,
 any workshops that require Docker only be hosted in a disposable Kubernetes cluster that is
-destroyed at the completion of the workshop. You should never enable Docker for workshops hosted on
+destroyed after the workshop. You should never enable Docker for workshops hosted on
 a public service that is always kept running and where arbitrary users could access the workshops.
 
-To enable support for using `docker` add a `session.applications.docker` section to the
+To enable support for using `docker,` add a `session.applications.docker` section to the
 workshop definition and set the `enabled` property to `true`:
 
 ```
@@ -1733,8 +1725,8 @@ spec:
         enabled: true
 ```
 
-The container that runs the Docker daemon mounts a persistent volume for storing of images which
-are pulled down or built locally. By default the size of that persistent volume is 5Gi. To override the size of the persistent volume, add the `storage` property under the `docker` section:
+The container that runs the Docker daemon mounts a persistent volume to store images that
+are pulled down or built locally. By default. the size of that persistent volume is 5Gi. To override the size of the persistent volume, add the `storage` property under the `docker` section:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -1773,7 +1765,7 @@ spec:
         memory: 1Gi
 ```
 
-Access to the Docker daemon from the workshop session uses a local Unix socket shared with the container running the Docker daemon. If it uses a local tool to access the socket
+The workshop session access to the Docker daemon uses a local Unix socket shared with the container running the Docker daemon. If it uses a local tool to access the socket
 connection for the Docker daemon directly rather than by running `docker`, it should use the
 `DOCKER_HOST` environment variable to set the location of the socket.
 
@@ -1783,7 +1775,7 @@ of the Pod by any tools deployed separately to Kubernetes.
 ## Enabling WebDAV access to files
 
 You can access or update local files within the workshop session from the terminal command line or editor of the workshop dashboard. The local files reside in the file system of the container the
-workshop session is running in.
+the workshop session is running in.
 
 To access the files remotely, you can enable WebDAV support for the workshop session.
 
@@ -1813,7 +1805,7 @@ The environment variables are:
 * `WEBDAV_ USERNAME` - Contains the user name that must be used when authenticating over WebDAV.
 * `WEBDAV_ PASSWORD` - Contains the password that must be used when authenticating over WebDAV.
 
-To use any of the environment variables related to the image registry as data variables
+To use any environment variables related to the image registry as data variables
 in workshop content, declare this in the `workshop/modules.yaml` file in the `config.vars`
 section:
 
@@ -1840,11 +1832,11 @@ In workshop content it can be constructed using:
 You must be able to use WebDAV client support provided by your operating system or by using a
 standalone WebDAV client, such as [CyberDuck](https://cyberduck.io/).
 
-Using WebDAV can make it easier to transfer files to or from the workshop session.
+Using WebDAV can make transferring files to or from the workshop session easier.
 
 ## Customizing the terminal layout
 
-By default a single terminal is provided in the web browser when accessing the workshop.
+By default, a single terminal is provided in the web browser when accessing the workshop.
 If required, you can enable alternate layouts which provide additional terminals.
 To set the layout, add the `session.applications.terminal` section and include the `layout` property with the desired layout:
 
@@ -1870,18 +1862,18 @@ The options for the `layout` property are:
 - `default` - Single terminal.
 - `split` - Two terminals stacked above each other in ratio 60/40.
 - `split/2` - Three terminals stacked above each other in ratio 50/25/25.
-- `lower` - A single terminal is placed below any dashboard tabs, rather than being a tab of its own.
+- `lower` - A single terminal is placed below any dashboard tabs, rather than a tab of its own.
 The ratio of dashboard tab to terminal is 70/30.
-- `none` - No terminal is displayed but can still be created from the drop down menu.
+- `none` - No terminal is displayed but can still be created from the drop-down menu.
 
-When adding the `terminal` section, you must include the `enabled` property and set it to `true` as
+When adding the `terminal` section, you must include the `enabled` property and set it to `accurate` as
 it is a required field when including the section.
 
-If you don't want a terminal displayed and also want to disable the ability to create terminals from the drop-down menu, set `enabled` to `false`.
+If you do not want a terminal displayed and disable the ability to create terminals from the drop-down menu, set `enabled` to `false`.
 
 ## Adding custom dashboard tabs
 
-Exposed applications, external sites and additional terminals, can be given their own custom
+Exposed applications, external sites, and additional terminals can be given their own custom
 dashboard tab. This is done by specifying the list of dashboard panels and the target URL:
 
 ```
@@ -1909,8 +1901,8 @@ The URL values can reference a number of predefined parameters. The available pa
 
 - `session_ namespace` - The namespace created for and bound to the workshop instance. This is the
 namespace unique to the session and where a workshop can create its own resources.
-- `environment_ name` - The name of the workshop environment. For now this is the same as the name of
-the namespace for the workshop environment. Don't rely on their being the same, and use the most appropriate to cope with any potential change.
+- `environment_ name` - The name of the workshop environment. This is the same as the name of
+the namespace for the workshop environment. Do not rely on their being the same, and use the most appropriate to cope with any potential change.
 - `workshop_ namespace` - The namespace for the workshop environment. This is the namespace where all
 deployments of the workshop instances are created and where the service account that the workshop
 instance runs as exists.
@@ -1918,9 +1910,9 @@ instance runs as exists.
 - `ingress_ protocol` - The protocol (http/https) used for ingress routes that are created
 for workshops.
 
-The URL can reference an external web site; however, that web site must not prohibit being embedded in an HTML iframe.
+The URL can reference an external website; however, that website must not prohibit being embedded in an HTML iframe.
 
-In the case of wanting to have a custom dashboard tab provide an additional terminal, the `url`
+If you want to have a custom dashboard tab provide an additional terminal, the `url`
 property must use the form `terminal:<session>`, where `<session>` is replaced with the name of the
 terminal session. The name of the terminal session can be any name you choose, but must be restricted
 to lowercase letters, numbers, and dashes. You should avoid using numeric terminal session names such
