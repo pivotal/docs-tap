@@ -23,7 +23,7 @@ See [API walkthrough](api_walkthrough.md) for a walkthrough and example.
 ### <a id='produce'></a>Produces
 * application/json
 
-## <a id='all-enpoints'></a>All endpoints
+## <a id='all-endpoints'></a>All endpoints
 
 ###  <a id='images'></a>images
 
@@ -62,8 +62,8 @@ See [API walkthrough](api_walkthrough.md) for a walkthrough and example.
 |---------|---------|--------|---------|
 | POST | /api/sourceReport | [create source report](#create-source-report) | Create a new source report. Related packages and vulnerabilities are also created. |
 | GET | /api/packages/{IDorName}/sources | [get package sources](#get-package-sources) | List the sources containing the given package. |
-| GET | /api/sources | [get sourcs](#get-sourcs) | Search for sources by ID, repository, commit sha and/or organization. |
-| GET | /api/vulnerabiltities/{CVEID}/sources | [get vulnerability sources](#get-vulnerability-sources) | List sources that contain the given vulnerability. |
+| GET | /api/sources | [get sources](#get-sources) | Search for sources by ID, repository, commit sha and/or organization. |
+| GET | /api/vulnerabilities/{CVEID}/sources | [get vulnerability sources](#get-vulnerability-sources) | List sources that contain the given vulnerability. |
 
 
 
@@ -73,8 +73,8 @@ See [API walkthrough](api_walkthrough.md) for a walkthrough and example.
 |---------|---------|--------|---------|
 | GET | /api/images/{IDorDigest}/vulnerabilities | [get image vulnerabilities](#get-image-vulnerabilities) | List vulnerabilities from the given image. |
 | GET | /api/packages/{IDorName}/vulnerabilities | [get package vulnerabilities](#get-package-vulnerabilities) | List vulnerabilities from the given package. |
-| GET | /api/sources/{IDorRepoorSha}/vulnerabilitites | [get source vulnerabilities](#get-source-vulnerabilities) |  |
-| GET | /api/sources/vulnerabilitites | [get source vulnerabilities query](#get-source-vulnerabilities-query) | List vulnerabilities of the given source. |
+| GET | /api/sources/{IDorRepoorSha}/vulnerabilities | [get source vulnerabilities](#get-source-vulnerabilities) |  |
+| GET | /api/sources/vulnerabilities | [get source vulnerabilities query](#get-source-vulnerabilities-query) | List vulnerabilities of the given source. |
 | GET | /api/vulnerabilities | [get vulnerabilities](#get-vulnerabilities) | Search for vulnerabilities by CVE id. |
 
 
@@ -518,7 +518,7 @@ ErrorMessage
 ### <a id="get-source-vulnerabilities"></a> get source vulnerabilities (*GetSourceVulnerabilities*)
 
 ```
-GET /api/sources/{IDorRepoorSha}/vulnerabilitites
+GET /api/sources/{IDorRepoorSha}/vulnerabilities
 ```
 
 #### <a id='parameters-gsv'></a>Parameters
@@ -557,7 +557,7 @@ ErrorMessage
 ### <a id="get-source-vulnerabilities-query"></a> List vulnerabilities of the given source. (*GetSourceVulnerabilitiesQuery*)
 
 ```
-GET /api/sources/vulnerabilitites
+GET /api/sources/vulnerabilities
 ```
 
 #### <a id='parameters-gsvq'></a>Parameters
@@ -748,7 +748,7 @@ ErrorMessage
 ### <a id="get-vulnerability-sources"></a> List sources that contain the given vulnerability. (*GetVulnerabilitySources*)
 
 ```
-GET /api/vulnerabiltities/{CVEID}/sources
+GET /api/vulnerabilities/{CVEID}/sources
 ```
 
 #### <a id='parameters-gvs'></a>Parameters

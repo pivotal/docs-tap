@@ -161,7 +161,7 @@ added as a supplemental group for the container and the persistent volume update
 this group. This must be done by an `init` container running in the pod mounting the persistent
 volume.
 
-To trigger this fixup of ownership and permissions, set the `storage.user` property. For example:
+To trigger this change of ownership and permissions, set the `storage.user` property. For example:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1

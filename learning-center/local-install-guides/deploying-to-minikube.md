@@ -200,7 +200,7 @@ This package installation uses the installed Package repository along with a con
 ```
 tanzu package install learningcenter-tutorials --package-name workshops.learningcenter.tanzu.vmware.com --version 0.1.0 --namespace tap-install
 ```
-Make sure you install the workshop package after the Learning Center package has reconcilled and successfully installed onto your cluster. In case of new versioning you may obtain package version numbers using 
+Make sure you install the workshop package after the Learning Center package has reconciled and successfully installed onto your cluster. In case of new versioning you may obtain package version numbers using 
 ```
 kubectl get packages -n tap-install
 ```

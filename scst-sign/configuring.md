@@ -145,7 +145,7 @@ You can provide secrets for authentication as part of the name pattern policy co
 * Your images and signatures reside in a registry protected by authentication.
 
 * You do not have `imagePullSecrets` configured in your runnable resources or
-in the `ServiceAccount`s your runnable resources use.
+in the `ServiceAccount`s that your runnable resources use.
 
 * You want this WebHook to check these container images.
 

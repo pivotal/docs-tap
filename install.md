@@ -130,7 +130,7 @@ You have now accepted the EULA's for all of the Tanzu Application Platform.
 
 ## <a id='about-package-profiles'></a> About Tanzu Application Platform package profiles
 
-Tanzu Application Platform can be installed through pre-defined profiles or through individual
+Tanzu Application Platform can be installed through predefined profiles or through individual
 packages. This section explains how to install a profile.
 
 Tanzu Application Platform contains the following two profiles:
@@ -340,7 +340,7 @@ The following table lists the packages contained in each profile:
    </td>
   </tr>
   <tr>
-   <td>Tekton
+   <td>Tekton Pipelines
    </td>
    <td>&check;
    </td>
@@ -350,13 +350,11 @@ The following table lists the packages contained in each profile:
 </table>
 
 <sup>\*</sup> Only one supply chain should be installed at any given time.
-For information on switching from one supply chain to another, see [Getting Started with Tanzu Application Platform](getting-started.md).
+For information on switching from one supply chain to another, see [Getting Started with Tanzu Application Platform](getting-started.md). For more information about profiles, see [Installation profiles in Tanzu Application Platform](overview.md#profiles-and-packages).
 
-## <a id='prepare-install-profile'></a> Prepare to install your Tanzu Application Platform profile
+## <a id='install-profile'></a> Install your Tanzu Application Platform profile
 
-You can install a profile by using the `tap.tanzu.vmware.com` package.
-The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile
-setting.
+The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile settings. This is done by using the package manager you installed using Tanzu Cluster Essentials.
 
 To prepare to install a profile:
 
@@ -441,7 +439,7 @@ Where:
     * For Google Cloud Registry, use the contents of the service account JSON key.
 - `DESCRIPTOR-NAME` is the name of the descriptor to import automatically. Current available options at time of release:
     * `tap-1.0.0-full` contains all dependencies, and is for production use.
-    * `tap-1.0.0-lite` smaller footprint used for speeding up installs. Requires Internet access on the cluster.
+    * `tap-1.0.0-light` smaller footprint used for speeding up installs. Requires Internet access on the cluster.
 - `SERVER-NAME` is the hostname of the registry server. Examples:
     * Harbor has the form `server: "my-harbor.io"`
     * Dockerhub has the form `server: "index.docker.io"`
@@ -456,7 +454,7 @@ See [Identify the SSH secret key for your package](#ssh-secret-key) for more inf
 - `DOMAIN-NAME` has a value such as `learningcenter.example.com`.
 - `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
 service's External IP address.
-- `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog that you've already built and posted on the Git infrastucture you specified in the Integration section.
+- `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog that you've already built and posted on the Git infrastructure you specified in the Integration section.
 - `MY-DEV-NAMESPACE` is the namespace where you want the `ScanTemplates` to be deployed to. This is the namespace where the scanning feature is going to run.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull an image from the registry for scanning. If built images are pushed to the same registry as the Tanzu Application Platform images, this can reuse the `tap-registry` secret created in step 3 of [Add the Tanzu Application Platform package repository](#add-package-repositories).
 

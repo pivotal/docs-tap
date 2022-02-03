@@ -1,29 +1,63 @@
 # SCA Scanning Results
-## Date:
-November 26, 2021
+## <a id='102'></a>1.0.2
 
-## Scan Type:
+### <a id='black-duck-ba'></a>Black Duck Binary Analysis
+
+#### <a id='api-backend'></a>API backend
+
+* Date: January 31, 2022
+* Results: no known vulnerabilities
+
+#### <a id='cli-sr'></a>CLI
+
+* Date: January 24, 2022
+* Results: no known vulnerabilities
+
+### <a id='grype-sr'></a>Grype
+
+Version: 0.32.0
+
+#### <a id='api-backend-ci'></a>API Backend Container Image
+
+* Date: February 2, 2022
+* Results: No high and critical vulnerabilities. Multiple medium and low vulnerabilities. ([CycloneDX file](metadata-store-image-1.0.2-cyclonedx.xml))
+
+#### <a id='api-backend-cr'></a>API Backend Code Repository
+
+* Date: February 2, 2022
+* Results: no known vulnerabilities
+
+#### <a id='cli-cr'></a>CLI Code Repository
+
+* Date: February 2, 2022
+* Results: no known vulnerabilities
+
+## <a id='100'></a>1.0.0
+Date: November 26, 2021
+
+### <a id='scan-type'></a>Scan Type:
+
 Software Composition Analysis scanning
 
-## Source of Scan:
+### <a id='source-scan'></a>Source of Scan:
 
 * Black Duck Binary Analysis (BDBA)
 * Grype
 
-## Version of Source:
+### <a id='version-source'></a>Version of Source:
 
 * BDBA version 2021.9.0
 * Grype version 0.25.1
 
-## CVEs:
-### BDBA
+### <a id='cves'></a>CVEs:
+#### <a id='bdba'></a>BDBA
 No vulnerabilities found in both the binaries of the API backend and CLI.
 
 See BDBA reports:
 * [API backend report](store-bdba-scan-2021-11-26.jpg)
 * [CLI report](cli-bdba-scan-2021-11-26.jpg)
 
-### Grype
+#### <a id='grype-cr'></a>Grype
 No vulnerabilities found through scanning the sources of the API backend, client lib, and CLI
 
 The following CVEs were found through scanning the API backend image:

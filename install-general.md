@@ -2,11 +2,45 @@
 
 This document describes the first part of the installation process for Tanzu Application Platform:
 
-+ [Install Cluster Essentials for VMware Tanzu](#tanzu-cluster-essentials)
-+ [Install or Update the Tanzu CLI and plug-ins](#cli-and-plugin)
+- [Set Kubernetes cluster context](#cluster-context)
+- [Install Cluster Essentials for VMware Tanzu](#tanzu-cluster-essentials)
+- [Install or Update the Tanzu CLI and plug-ins](#cli-and-plugin)
+
+## <a id='cluster-context'></a> Set Kubernetes cluster context
+
+To set the Kubernetes cluster context:
+
+1. List the existing contexts by running:
+
+    ```
+    kubectl config get-contexts
+    ```
+
+    For example:
+
+    ```
+    $ kubectl config get-contexts
+    CURRENT   NAME                                CLUSTER           AUTHINFO                                NAMESPACE
+            aks-repo-trial                      aks-repo-trial    clusterUser_aks-rg-01_aks-repo-trial
+    *       aks-tap-cluster                     aks-tap-cluster   clusterUser_aks-rg-01_aks-tap-cluster
+
+    ```
+
+2.  Set the context to the cluster that you want to use for the Tanzu Application Platform packages install.
+    For example, set the context to the `aks-tap-cluster` context by running:
+
+    ```
+    kubectl config use-context aks-tap-cluster
+    ```
+
+    For example:
+
+    ```
+    $ kubectl config use-context aks-tap-cluster
+    Switched to context "aks-tap-cluster".
+    ```
 
 ## <a id='tanzu-cluster-essentials'></a> Install Cluster Essentials for VMware Tanzu
-
 
 For other Kubernetes providers, follow the steps below:
 
@@ -60,7 +94,7 @@ To perform a clean installation of Tanzu CLI:
 
     + [Linux: Install the Tanzu CLI](#linux-tanzu-cli)
     + [Mac: Install the Tanzu CLI](#mac-tanzu-cli)
-    + [Windows: Install the Tanzu CLI](#windows-tanzu-cli)
+
 
 
 #### <a id='linux-tanzu-cli'></a> Linux: Install the Tanzu CLI
@@ -107,7 +141,7 @@ To install the Tanzu CLI on a Linux operating system:
 9. Proceed to [Instructions for a clean install of Tanzu CLI plug-ins](#cli-plugin-clean-install).
 
 
-#### <a id='mac-tanzu-cli'></a>MacOS: Install the Tanzu CLI
+#### <a id='mac-tanzu-cli'></a>Mac: Install the Tanzu CLI
 
 To install the Tanzu CLI on a Mac operating system:
 
