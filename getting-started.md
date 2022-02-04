@@ -20,7 +20,7 @@ Verify you have successfully:
 See [Installing Tanzu Application Platform](install-intro.md).
 
   - **Installed the Tanzu Application Platform on the target Kubernetes cluster**<br>
-See [Installing the Tanzu CLI](install-general.md) and [Installing part II: Profiles](install.md).
+See [Installing the Tanzu CLI](install-general.md) and [Installing the Tanzu Application Platform Package and Profiles](install.md).
 
   - **Set the default kubeconfig context to the target Kubernetes cluster**<br>
 See [Changing clusters](cli-plugins/apps/usage.md#changing-clusters).
@@ -28,7 +28,7 @@ See [Changing clusters](cli-plugins/apps/usage.md#changing-clusters).
   - **Installed Out of The Box (OOTB) Supply Chain Basic**<br>
 See [Install Out of The Box Supply Chain Basic](install-components.md#install-ootb-sc-basic).
 
-    >**Note:** If you used the default profiles provided in [Installing part II: Profiles](install.md),
+    >**Note:** If you used the default profiles provided in [Installing the Tanzu Application Platform Package and Profiles](install.md),
     you have already installed the Out of The Box (OOTB) Supply Chain Basic.
 
   - **Set up a developer namespace to accommodate the developer Workload**<br>

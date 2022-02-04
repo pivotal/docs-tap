@@ -2321,7 +2321,7 @@ Use the following procedure to install Service Bindings:
 **Prerequisites**
 
 * `cert-manager` installed on the cluster. If you installed TAP profiles, as described in
-[Installing part II: Profiles](install.md), then `cert-manager` is already installed. If not, then
+[Installing the Tanzu Application Platform Package and Profiles](install.md), then `cert-manager` is already installed. If not, then
 follow the instructions in [Install cert-manager](#install-prereqs).
 
 - Before installing, see [Deployment Details and Configuration](scst-store/deployment_details.md) to review what resources will be deployed. For more information, see the [overview](scst-store/overview.md).
@@ -2999,7 +2999,7 @@ that you plan to create the `Workload` in:
     - `REGISTRY-SERVER` is the URL of the registry. For Dockerhub, this must be
     `https://index.docker.io/v1/`. Specifically, it must have the leading `https://`, the `v1` path,
     and the trailing `/`. For GCR, this is `gcr.io`.
-    Based on the information used in [Installing part II: Profiles](install.md), you can use the
+    Based on the information used in [Installing the Tanzu Application Platform Package and Profiles](install.md), you can use the
     same registry server as in `ootb_supply_chain_basic` - `registry` - `server`.
 
     **Note:** If you observe the following issue with the above command:
