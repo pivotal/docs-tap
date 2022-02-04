@@ -1,4 +1,4 @@
-# Installing part I: Installing CLI
+# Installing the Tanzu CLI
 
 This document describes how to [Set Kubernetes cluster context](#cluster-context),
 [Install Cluster Essentials for VMware Tanzu](#tanzu-cluster-essentials),
@@ -297,7 +297,7 @@ To perform a clean installation of the Tanzu CLI plug-ins:
     and `pinniped-auth` commands.
 
 You can now proceed with installing Tanzu Application Platform. For more information, see
-**[Installing part II: Profiles](install.md)**.
+**[Installing the Tanzu Application Platform Package and Profiles](install.md)**.
 
 
 ## <a id='update-prev-tap-tanzu-cli'></a>Instructions for updating Tanzu CLI that was installed for a previous release of Tanzu Application Platform
@@ -413,4 +413,4 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
     ```
 
 You can now install Tanzu Application Platform.
-See **[Installing part II: Profiles](install.md)**.
+See **[Installing the Tanzu Application Platform Package and Profiles](install.md)**.
