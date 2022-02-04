@@ -7,6 +7,12 @@ from the Tanzu Application Platform package repository.
 Both the full and light profiles include Tekton.
 For more information about profiles, see [Installing the Tanzu Application Platform Package and Profiles](../install.md).
 
+## <a id='prereqs'></a>Prerequisites
+
+Before installing Tekton:
+
+- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Installing the Tanzu CLI](../install-general.md).
+
 ## <a id='install-tekton-pipelines'></a> Install Tekton Pipelines
 
 To install Tekton Pipelines:
