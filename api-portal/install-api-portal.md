@@ -3,7 +3,7 @@
 This document describes how to install API portal
 from the Tanzu Application Platform package repository.
 
->**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
+>**Note:** Use the instructions on this page if you do not want to use the full profile to install packages.
 Only the full profile includes API portal.
 For more information about profiles, see [Installing the Tanzu Application Platform Package and Profiles](../install.md).
 
@@ -11,7 +11,7 @@ For more information about profiles, see [Installing the Tanzu Application Platf
 
 Before installing API portal:
 
-- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Installing the Tanzu CLI](../install-general.md).
+- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
 
 ## <a id='install-api-portal'></a> Install API portal
 
