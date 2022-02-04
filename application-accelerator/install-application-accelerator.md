@@ -11,7 +11,7 @@ For more information about profiles, see [Installing the Tanzu Application Platf
 
 Before installing Application Accelerator:
 
-- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Installing part I: Prerequisites, EULA, and CLI](../install-general.md).
+- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Installing the Tanzu CLI](../install-general.md).
 
 - Install Flux SourceController on the cluster.
 See [Install cert-manager and FluxCD source controller](../install-components.md#install-prereqs).
