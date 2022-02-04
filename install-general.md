@@ -365,31 +365,14 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
 
     Expected output: `version: v0.11.1`
 
-12. List the plug-ins to see if the `imagepullsecret` plug-in was previously installed by running:
 
-    ```
-    tanzu plugin list
-    ```
-
-    If installed, delete it by running:
-
-    ```
-    tanzu plugin delete imagepullsecret
-    ```
-
-13. Remove previously installed plug-in binaries by running:
-
-    ```
-    rm -rf ~/Library/Application\ Support/tanzu-cli/*
-    ```
-
-14. Install new plug-in versions by running:
+12. Install new plug-in versions by running:
 
     ```
     tanzu plugin install --local cli all
     ```
 
-15. Check installation status for plug-ins by running:
+13. Check installation status for plug-ins by running:
 
     ```
     tanzu plugin list
