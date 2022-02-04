@@ -16,7 +16,72 @@ This release has the following breaking changes:
 This release has the following security issues:
 
 
-### <a id='1-0-1-features'></a> Features
+### <a id='1-1-resolved-issues'></a> Resolved issues
+
+This release has the following fixes:
+
+
+### <a id='1-1-known-issues'></a> Known issues
+
+This release has the following issues:
+
+- The buildpack can't handle having both Maven and Gradle builds. The buildpack runs both, deleting the source after the Gradle build succeeds and then fails when the Maven build runs afterwards due to the Project Object Model(POM) being deleted after the Gradle build succeeded.
+
+#### Installing
+
+
+
+#### Application Accelerator
+
+
+
+#### Application Live View
+
+
+
+#### Convention Service
+
+
+
+#### Developer Conventions
+
+**Debug Convention might not apply:** If you upgraded from Tanzu Application Platform v0.4 then the
+the debug convention might not apply to the app run image. This is because of the missing SBOM data
+in the image.
+To prevent this issue, delete existing app images that were built using Tanzu Application Platform
+v0.4.
+
+
+#### Grype scanner
+
+
+
+#### Learning Center
+
+
+
+#### Supply Chain Choreographer
+
+
+
+#### Supply Chain Security Tools – Scan
+
+- **Scan controller pod fails:** If there is a misconfiguration
+(i.e. secretgen-controller not running, wrong CA secret name) after enabling the
+metadata store integration, the controller pod fails. The current workaround is
+to update the `tap-values.yaml` file with the proper configuration and update the application.
+- **Deleted resources keep reconciling:** After creating a scan CR and deleting it,
+the controllers keep trying to fetch the deleted resource, resulting in a `not found`
+or `unable to fetch` log entry with every reconciliation cycle.
+- **Scan controller crashes when Git clone fails:** If this occurs, confirm that
+the Git URL and the SSH credentials are correct.
+
+
+#### Supply Chain Security Tools - Sign
+
+
+
+#### Supply Chain Security Tools - Store
 
 This release has the following new features:
 
