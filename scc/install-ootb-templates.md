@@ -22,8 +22,8 @@ Before installing Out of the Box Templates:
 
 ## <a id='inst-ootb-templ-proc'></a> Install
 
-As this package has no extra configurations to be provided, all it takes to
-install it is the following command:
+As this package has no extra configurations to be provided, to
+install use the following command:
 
 ```
 tanzu package install ootb-templates \
