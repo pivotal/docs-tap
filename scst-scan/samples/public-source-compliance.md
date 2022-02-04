@@ -236,7 +236,24 @@ ImageScan:
     For more information about scan status conditions, see
     [Viewing and Understanding Scan Status Conditions](../results.md).
 
-1. See the previous source scan example.
+1. If the failing CVEs are acceptable or the build needs to be deployed regardless of these CVEs,
+the app is patched to remove the vulnerabilities. Update the `ignoreCVEs` array in the ScanPolicy to
+include the CVEs to ignore:
+
+    ```
+    ...
+    spec:
+      regoFile: |
+        package policies
+
+        default isCompliant = false
+
+        # Accepted Values: "UnknownSeverity", "Critical", "High", "Medium", "Low", "Negligible"
+        violatingSeverities := ["Critical"]
+        # Adding the failing CVEs to the ignore array
+        ignoreCVEs := ["CVE-2018-14643", "GHSA-f2jv-r9rf-7988", "GHSA-w457-6q6x-cgp9", "CVE-2021-23369", "CVE-2021-23383", "CVE-2020-15256", "CVE-2021-29940"]
+    ...
+    ```
 
 1. Clean up by running:
 
