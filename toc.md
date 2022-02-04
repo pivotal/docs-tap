@@ -137,3 +137,4 @@ This is the table of contents from which the Tanzu Application Platform Document
          - [Application Live View](tap-gui/plugins/app-live-view.md)
          - [Application Accelerator](tap-gui/plugins/application-accelerator.md)
       - [Troubleshooting Tanzu Application Platform GUI](tap-gui/troubleshooting.md)
+    - [VMware Tanzu Build Service](https://docs.vmware.com/en/VMware-Tanzu-Build-Service/index.html)
