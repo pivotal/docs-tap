@@ -209,7 +209,7 @@ to the properties you want to change. For example:
 >`grype.scanning.apps.tanzu.vmware.com`. This is created in the same namespace as configured by
 >using `grype.namespace` in either Tanzu Application Platform profiles or individual component
 >installation as in the earlier example. For more information, see
->[About Source and Image Scans](../scst-scan/explanation.md#about-source-and-image-scans).
+>[About Source and Image Scans](../scst-scan/explanation.md#about-src-and-image-scans).
 
 
 ## <a id="developer-workload"></a> Developer Workload

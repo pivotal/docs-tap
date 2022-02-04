@@ -17,9 +17,9 @@ The Rego file evaluates one vulnerability match at a time, iterating as many tim
 1. **isCompliant rule**  
 The Rego file must define inside its body an `isCompliant` rule. This must be a Boolean type containing the result whether or not the vulnerability violates the security policy. If `isCompliant` is `true`, the vulnerability is allowed in the Source or Image scan; `false` will be considered otherwise. Any scan that finds at least one vulnerability that evaluates to `isCompliant=false` will make the `PolicySucceeded` condition set to false.
 
-## <a id="create-scan-policy-with-rego-file"></a>Step 1: Create a scan policy with rego file
+## <a id="create-scan-pol-with-rego"></a>Step 1: Create a scan policy with rego file
 
-### <a id="sample-scan-policy-resource"></a>Sample scan policy resource
+### <a id="sample-scan-pol-resource"></a>Sample scan policy resource
 
 ```
 apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
@@ -32,7 +32,7 @@ spec:
     # Define the package policies
     package policies
 
-    # Give default value to isCompliant to be returned 
+    # Give default value to isCompliant to be returned
     # if no change to `true` is applied
     default isCompliant = false
 
@@ -55,6 +55,6 @@ spec:
     }
 ```
 
-## <a id="deploy-scan-policy-to-cluster"></a>Step 2: Deploy the scan policy to the cluster
+## <a id="deploy-scan-pol-to-clust"></a>Step 2: Deploy the scan policy to the cluster
 
 `kubectl apply -f <path_to_scan_policy>/<scan_policy_filename>.yml -n <desired_namespace>`
