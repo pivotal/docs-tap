@@ -3,7 +3,7 @@
 This component requires extra configuration steps to start verifying your
 container images properly.
 
-## <a id="create-clusterimagepolicy-resource"></a> Create a `ClusterImagePolicy` Resource
+## <a id="create-cip-resource"></a> Create a `ClusterImagePolicy` resource
 
 The cluster image policy is a custom resource containing the following properties:
 
@@ -102,7 +102,7 @@ spec:
 EOF
 ```
 
-## <a id='providing-credentials-package'></a> Providing Credentials for the Package
+## <a id='provide-creds-for-package'></a> Provide credentials for the package
 
 There are four ways the package reads credentials to authenticate to registries
 protected by authentication, in order:
@@ -111,11 +111,10 @@ protected by authentication, in order:
 
 1. [Reading `imagePullSecrets` from the service account the resource is running as](https://kubernetes.io/docs/concepts/configuration/secret/#arranging-for-imagepullsecrets-to-be-automatically-attached).
 
-1. [Reading a `secretRef` from the `ClusterImagePolicy` resource](#secret-ref-cluster-image-policy)
-applied to the cluster for the container image name pattern that matches the
-container being admitted.
+1. Reading a `secretRef` from the `ClusterImagePolicy` resource applied to the cluster for the
+container image name pattern that matches the container being admitted.
 
-1. [Reading `imagePullSecrets` from the `image-policy-registry-credentials` service account](#secrets-registry-credentials-sa)
+1. [Reading `imagePullSecrets` from the `image-policy-registry-credentials` service account](#provide-secrets-iprc-sa)
 in the `image-policy-system` namespace.
 
 > **Note:** Authentication fails in the following scenario:
@@ -138,7 +137,7 @@ as part of your policy configuration.
 service account. The service account and the secrets must be created in the
 `image-policy-system` namespace.
 
-### <a id="secret-ref-cluster-image-policy"></a> Providing Secrets for Authentication in Your Policy
+### <a id="provide-pol-auth-secrets"></a> Provide secrets for authentication in your policy
 
 You can provide secrets for authentication as part of the name pattern policy configuration provided your use case meets the following conditions:
 
@@ -187,7 +186,7 @@ spec:
 VMware suggests the use of a set of credentials with the least amount of
 privilege that allows reading the signature stored in your registry.
 
-### <a id="secrets-registry-credentials-sa"></a> Providing Secrets for Authentication in the `image-policy-registry-credentials` Service Account
+### <a id="provide-secrets-iprc-sa"></a> Provide secrets for authentication in the `image-policy-registry-credentials` service account
 
 If you prefer to provide your secrets in the `image-policy-registry-credentials`
 service account, follow these steps:
@@ -221,7 +220,7 @@ namespace and add the secret names from step 1 to the `imagePullSecrets` section
 
     Add additional secrets to `imagePullSecrets` as required.
 
-## <a id="image-name-patterns"></a> Image Name Patterns
+## <a id="image-name-patterns"></a> Image name patterns
 
 The container image names can be matched exactly or use a wildcard (*)
 that matches any number of characters.
@@ -246,7 +245,7 @@ Anything|\*|my-registry.example.org/myproject/my-image:mytag<br>registry.example
 > `*.example.org/project/image` is equivalent to `*.example.org/project/image:*`
 
 
-## <a id="verify-configuration"></a> Verify Your Configuration
+## <a id="verify-configuration"></a> Verify your configuration
 
 If you are using the suggested key `cosign-key` shown in the previous section
 then you can run the following commands to check your configuration:
