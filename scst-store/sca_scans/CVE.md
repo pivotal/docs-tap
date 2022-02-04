@@ -1,7 +1,7 @@
 # SCA Scanning Results
 ## <a id='102'></a>1.0.2
 
-### <a id='black-duck-ba'></a>Black Duck Binary Analysis
+### <a id='black-duck-ba'></a>Black Duck Binary Analysis (BDBA)
 
 #### <a id='api-backend'></a>API backend
 
