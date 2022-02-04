@@ -12,8 +12,8 @@ For more information about profiles, see [Installing the Tanzu Application Platf
 Before installing Spring Boot Conventions:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
-- Ensure Convention Service is installed on the cluster. For more information, see the earlier
-[Install Convention Service](../convention-service/install-convention-service.md#install-prereqs) section.
+- Ensure Convention Service is installed on the cluster. For more information, see 
+[Install Convention Service](../convention-service/install-conv-service.md#install-prereqs) section.
 
 ## <a id='install-spring-boot-conv'></a> Install Spring Boot Conventions
 
