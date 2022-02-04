@@ -25,6 +25,7 @@ This release has the following fixes:
 
 This release has the following issues:
 
+- The buildpack can't handle having both Maven and Gradle builds. The buildpack runs both, deleting the source after the Gradle build succeeds and then fails when the Maven build runs afterwards due to the Project Object Model(POM) being deleted after the Gradle build succeeded.
 
 #### Installing
 
