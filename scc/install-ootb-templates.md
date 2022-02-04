@@ -32,7 +32,7 @@ tanzu package install ootb-templates \
   --namespace tap-install
 ```
 
-This results in:
+Example output:
 
 ```
 \ Installing package 'ootb-templates.tanzu.vmware.com'
