@@ -15,9 +15,25 @@ Follow the [Backstage authentication docs](https://backstage.io/docs/auth/) to c
 
 We also support a custom OpenID Connect (OIDC) provider shown here:
 
-- Edit your tap-gui-values.yaml (or your custom configuration file) to include an OIDC authentication provider. Configure the OIDC provider with your OAuth App values. Example:
+- Edit your tap-values.yaml (or your custom configuration file) to include an OIDC authentication provider. Configure the OIDC provider with your OAuth App values. Example:
 
-    ```
+```
+tap_gui:
+  service_type: ClusterIP
+  ingressEnabled: "true"
+  ingressDomain: "INGRESS-DOMAIN"
+  app_config:
+    app:
+      baseUrl: http://tap-gui.INGRESS-DOMAIN
+    catalog:
+      locations:
+        - type: url
+          target: https://GIT-CATALOG-URL/catalog-info.yaml
+    backend:
+      baseUrl: http://tap-gui.INGRESS-DOMAIN
+      cors:
+        origin: http://tap-gui.INGRESS-DOMAIN
+#Existing values file above
     auth:
       environment: development
       session:
@@ -31,13 +47,13 @@ We also support a custom OpenID Connect (OIDC) provider shown here:
             tokenSignedResponseAlg: ${AUTH_OIDC_TOKEN_SIGNED_RESPONSE_ALG} # default='RS256'
             scope: ${AUTH_OIDC_SCOPE} # default='openid profile email'
             prompt: auto # default=none (allowed values: auto, none, consent, login)
-    ```
+```
 
-    `metadataUrl` is a JSON file with generic OIDC provider configuration. It contains `authorizationUrl` and `tokenUrl`.
-    These values are read from the `metadataUrl` file by Tanzu Application Platform GUI,
-    and so they do not need to be specified explicitly in your authentication configuration above.
+  `metadataUrl` is a JSON file with generic OIDC provider configuration. It contains `authorizationUrl` and `tokenUrl`.
+  These values are read from the `metadataUrl` file by Tanzu Application Platform GUI,
+  and so they do not need to be specified explicitly in your authentication configuration above.
 
-    For more information, see [this example](https://github.com/backstage/backstage/blob/e4ab91cf571277c636e3e112cd82069cdd6fca1f/app-config.yaml#L333-L347) in Github.
+  For more information, see [this example](https://github.com/backstage/backstage/blob/e4ab91cf571277c636e3e112cd82069cdd6fca1f/app-config.yaml#L333-L347) in Github.
 
 ## <a id='allow-guest-access'></a>Allow guest access
 
