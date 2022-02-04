@@ -13,7 +13,7 @@ You only need to install the Tilt component. Docker Desktop and local Kubernetes
 - The Tanzu CLI. See [Install the Tanzu CLI](../install-general.md#cli-and-plugin).
 - The Tanzu CLI apps plug-ins.
   See [Install the Tanzu CLI plug-ins](../install-general.md#cli-and-plugin)
-- A cluster with Tanzu Application Platform, the default Supply Chain, and their dependencies. Download these from Tanzu Network. For installation instructions, see [Installing part I: Prerequisites, EULA, and CLI](../install-general.md).
+- A cluster with Tanzu Application Platform, the default Supply Chain, and their dependencies. Download these from Tanzu Network. For installation instructions, see [Installing the Tanzu CLI](../install-general.md).
 - [VSCode](https://code.visualstudio.com/download)
 
 ## <a id="installation"></a> Installation

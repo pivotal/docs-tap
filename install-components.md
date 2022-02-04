@@ -8,7 +8,7 @@ or if you want to install additional packages after installing a profile.
 
 Before installing the packages, ensure that you have completed the prerequisites, configured
 and verified the cluster, accepted the EULA, and installed the Tanzu CLI with any required plug-ins.
-For information, see [Installing part I: Prerequisites, EULA, and CLI](install-general.md).
+For more information, see [Installing the Tanzu CLI](install-general.md).
 
 + [Install cert-manager, Contour, and FluxCD source controller](#install-prereqs)
 + [Install Cloud Native Runtimes](#install-cnr)
