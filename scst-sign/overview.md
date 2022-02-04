@@ -38,26 +38,3 @@ accounts to authenticate against private registries at admission time.
 There are other mechanisms that the WebHook uses for finding credentials.
 For more information about providing credentials, see
 [Providing Credentials for the WebHook](configuring.md#providing-credentials-package).
-
-## <a id="install"></a> Install
-
-Supply Chain Security Tools - Sign is released as an individual Tanzu Application
-Platform component.
-
-To install, see [Install Supply Chain Security Tools - Sign](../install-components.md#install-scst-sign).
-
-## <a id="configure"></a> Configure
-
-The WebHook deployed by Supply Chain Security Tools - Sign requires extra input
-from the operator before it starts enforcing policies.
-
-To configure your installed component properly, see
-[Configuring Supply Chains Security Tools - Sign](configuring.md).
-
-## <a id="known-issues"></a> Known Issues
-
-See [Supply Chain Security Tools - Sign Known Issues](../release-notes.md).
-
-## <a id="release-notes"></a> Release Notes
-
-See [Release notes](../release-notes.md).

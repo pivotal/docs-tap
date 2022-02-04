@@ -14,7 +14,7 @@ to deliver the objects that have been produced by them to a Kubernetes environme
 
 Before installing Out of the Box Delivery Basic:
 
-- Install cartographer. For more information, see [Install Supply Chain Choreographer](install-supply-chain-choreographer.md).
+- Install cartographer. For more information, see [Install Supply Chain Choreographer](install-scc.md).
 
 ## <a id='oobtdb-install'></a> Install
 

@@ -21,7 +21,6 @@ to a component that deploys the image.
 Before installing Supply Chain Choreographer:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Installing part I: Prerequisites, EULA, and CLI](../install-general.md).
-- Install cert-manager on the cluster. See [Install Prerequisites](../install-components.md#install-prereqs).
 
 ## <a id='scc-install'></a> Install
 

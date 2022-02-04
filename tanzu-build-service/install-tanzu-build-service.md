@@ -16,7 +16,6 @@ For more information about profiles, see [Installing Part II: Profiles](../insta
 Before installing Tanzu Build Service:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Installing part I: Prerequisites, EULA, and CLI](../install-general.md).
-- Install cert-manager on the cluster. See [Install Prerequisites](../install-components.md#install-prereqs).
 - You must have access to a Docker registry that Tanzu Build Service can use to create builder images.
 Approximately 10&nbsp;GB of registry space is required when using the full descriptor.
 - Your Docker registry must be accessible with username and password credentials.

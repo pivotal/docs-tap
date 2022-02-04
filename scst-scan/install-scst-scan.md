@@ -4,7 +4,7 @@ This document describes how to install Supply Chain Security Tools - Scan
 from the Tanzu Application Platform package repository.
 
 >**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
-The full profiles includes Supply Chain Security Tools - Scan.
+The full profile includes Supply Chain Security Tools - Scan.
 For more information about profiles, see [Installing Part II: Profiles](../install.md).
 
 ## <a id='scst-scan-prereqs'></a>Prerequisites
@@ -12,7 +12,6 @@ For more information about profiles, see [Installing Part II: Profiles](../insta
 Before installing Supply Chain Security Tools - Scan:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Installing part I: Prerequisites, EULA, and CLI](../install-general.md).
-- Install cert-manager on the cluster. See [Install Prerequisites](../install-components.md#install-prereqs).
 - [Supply Chain Security Tools - Store](#install-scst-store) must be installed on the cluster for scan results to persist. Supply Chain Security Tools - Scan can be installed without Supply Chain Security Tools - Store already installed. In this case, skip creating a values file. Once Supply Chain Security Tools - Store is installed, the Supply Chain Security Tools - Scan values file must be updated.
   For usage instructions, see [Using the Supply Chain Security Tools - Store](../scst-store/overview.md).
 - Install Supply Chain Security Tools - Store CLI to query the Supply Chain Security Tools - Store for CVE results.
