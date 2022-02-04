@@ -2680,7 +2680,7 @@ To install Supply Chain Security Tools - Scan (Grype Scanner):
     ```yaml
     ---
     namespace: DEV-NAMESPACE
-    targetImagePullSecret: registry-credentials
+    targetImagePullSecret: TARGET-REGISTRY-CREDENTIALS-SECRET
     ```
 
     Where `DEV-NAMESPACE` is your developer namespace.
@@ -2688,6 +2688,7 @@ To install Supply Chain Security Tools - Scan (Grype Scanner):
     >**Note:** If you want to use a namespace other than the default namespace, then ensure that the
     >namespace exists before you install. If the namespace does not exist, then the Grype Scanner
     >installation fails.
+    - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull an image from the registry for scanning. If built images are pushed to the same registry as the Tanzu Application Platform images, this can reuse the `tap-registry` secret created in step 3 of [Add the Tanzu Application Platform package repository](#add-package-repositories).
 
 
 1. (Optional) The default values are appropriate for this package.
