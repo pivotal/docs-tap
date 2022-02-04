@@ -88,6 +88,6 @@ For more information, see [Viewing and Understanding Scan Status Conditions](../
 kubectl delete -f public-blob-source-example.yaml
 ```
 
-## <a id="view-vulnerability-reports"></a>View vulnerability reports
+## <a id="view-vuln-reports"></a>View vulnerability reports
 
 See [Viewing Vulnerability Reports](../viewing-reports.md) section.

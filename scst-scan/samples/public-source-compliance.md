@@ -18,7 +18,7 @@ For this example, the scan (at the time of writing):
 * Ignores any CVEs that have severities that are not critical.
 * Indicates in the `Status.Conditions` that 7 CVEs have violated policy compliance.
 
-### <a id="public-source-scan-proc"></a> Run an example public source scan
+### <a id="define-scanpolicy-srcscan"></a>Define the ScanPolicy and SourceScan
 
 To perform an example source scan on a public repository:
 

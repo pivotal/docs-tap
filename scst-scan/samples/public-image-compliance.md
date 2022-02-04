@@ -14,7 +14,7 @@ In this example, the scan does the following (currently):
 * Ignores any CVEs with severities that are not unknown severities.
 * Indicates in the `Status.Conditions` that 21 CVEs have violated policy compliance.
 
-### <a id="define-scanpolicy-imagescan"></a> Define the ScanPolicy and ImageScan
+### <a id="define-scanpolicy-imgscan"></a> Define the ScanPolicy and ImageScan
 
 Create `sample-public-image-scan-with-compliance-check.yaml`:
 
