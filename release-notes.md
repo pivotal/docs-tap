@@ -20,11 +20,30 @@ This release has the following security issues:
 
 This release has the following new features:
 
+#### Application Accelerator
+
+Added apply command to Tanzu CLI plugin.
+
+Added -n short alias for all --namespace flags for Tanzu CLI plugin.
 
 ### <a id='1-0-1-resolved-issues'></a> Resolved issues
 
 This release has the following fixes:
 
+#### Application Accelerator
+
+Build scripts provided as part of an accelerator now have the execute bit set when a new
+project is generated from the accelerator.
+
+Accelerators that do not include an accelerator.yaml file or have an empty list of options will now render in the GUI.
+
+The CLI plugin no longer shows panic output for errors, it just adds the error message to the output.
+
+The entity loader for TAP GUI will not stop when encountering invalid accelerator.
+
+Deleted accelerators will no longer be shown in TAP GUI.
+
+The TAP GUI "Explore" feature now shows any engine errors.
 
 ### <a id='1-0-1-known-issues'></a> Known issues
 
