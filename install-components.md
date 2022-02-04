@@ -1036,8 +1036,8 @@ To install Tanzu Build Service using the Tanzu CLI:
     $ tanzu package available get buildservice.tanzu.vmware.com/1.4.2 --values-schema --namespace tap-install
     ```
 
-  
-  
+
+
 
 1. Gather the values schema by running:
 
@@ -2674,24 +2674,28 @@ To install Supply Chain Security Tools - Scan (Grype Scanner):
       targetSourceSshSecret      <EMPTY>  string  Reference to the secret containing SSH credentials for cloning private repositories.
     ```
 
-    To modify the deployment configuration, create a grype-values.yml with custom configuration values you want.
-    ```
+    To modify the deployment configuration, create a `grype-values.yml` file with your choice of
+    configuration values.
+
+    ```yaml
     ---
-    namespace: my-dev-namespace
+    namespace: DEV-NAMESPACE
     targetImagePullSecret: registry-credentials
     ```
+
+    Where `DEV-NAMESPACE` is your developer namespace.
 
     >**Note:** If you want to use a namespace other than the default namespace, then ensure that the
     >namespace exists before you install. If the namespace does not exist, then the Grype Scanner
     >installation fails.
 
 
-1. The default values are appropriate for this package.
+1. (Optional) The default values are appropriate for this package.
 If you want to change from the default values, use the Scan Controller instructions as a guide.
 
-1. Install the package by running:
+1. If you created the optional `grype-values.yaml` file, install the package by running:
 
-    ```
+    ```console
     tanzu package install grype-scanner \
       --package-name grype.scanning.apps.tanzu.vmware.com \
       --version 1.0.0 \
@@ -2699,11 +2703,18 @@ If you want to change from the default values, use the Scan Controller instructi
       --values-file grype-values.yaml
     ```
 
-    The flag --values-file is optional and used only if you want to customize the deployment configuration.
+    If you did not create the optional `grype-values.yaml` file, install the package by running:
+
+    ```console
+    tanzu package install grype-scanner \
+      --package-name grype.scanning.apps.tanzu.vmware.com \
+      --version 1.0.0 \
+      --namespace tap-install \
+    ```
 
     For example:
 
-    ```
+    ```console
     $ tanzu package install grype-scanner \
       --package-name grype.scanning.apps.tanzu.vmware.com \
       --version 1.0.0 \
