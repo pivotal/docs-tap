@@ -14,7 +14,7 @@ For this example, the scan (at the time of writing):
 * Ignores any CVEs that have severities that are not critical.
 * Indicates in the `Status.Conditions` that 7 CVEs have violated policy compliance.
 
-### <a id="define-scanpolicy-sourcescan"></a>Define the ScanPolicy and SourceScan
+### <a id="define-scanpolicy-srcscan"></a>Define the ScanPolicy and SourceScan
 
 Create `sample-public-source-scan-with-compliance-check.yaml`:
 
