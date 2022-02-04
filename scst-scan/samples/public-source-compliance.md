@@ -2,11 +2,15 @@
 
 ## <a id="public-source-scan"></a> Public source scan
 
-This example performs a source scan on a public repository. The source revision has 192 known Common Vulnerabilities and Exposures (CVEs), spanning several severities. SourceScan uses the ScanPolicy to run a compliance check against the CVEs.
+This example performs a source scan on a public repository. The source revision has 192 known
+Common Vulnerabilities and Exposures (CVEs), spanning several severities.
+SourceScan uses the ScanPolicy to run a compliance check against the CVEs.
 
-The example policy is set to only consider `Critical` severity CVEs as violations, which returns 7 Critical Vulnerabilities.
+The example policy is set to only consider `Critical` severity CVEs as violations, which returns 7
+Critical Vulnerabilities.
 
->**Note:** This example ScanPolicy is deliberately constructed to showcase the features available and must not be considered an acceptable base policy.
+>**Note:** This example ScanPolicy is deliberately constructed to showcase the features available
+>and must not be considered an acceptable base policy.
 
 For this example, the scan (at the time of writing):
 
@@ -14,146 +18,143 @@ For this example, the scan (at the time of writing):
 * Ignores any CVEs that have severities that are not critical.
 * Indicates in the `Status.Conditions` that 7 CVEs have violated policy compliance.
 
-### <a id="define-scanpolicy-srcscan"></a>Define the ScanPolicy and SourceScan
+1. Create `sample-public-source-scan-with-compliance-check.yaml` to define the ScanPolicy and
+SourceScan:
 
-Create `sample-public-source-scan-with-compliance-check.yaml`:
+    ```
+    ---
+    apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
+    kind: ScanPolicy
+    metadata:
+      name: sample-scan-policy
+    spec:
+      regoFile: |
+        package policies
 
-```
----
-apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
-kind: ScanPolicy
-metadata:
-  name: sample-scan-policy
-spec:
-  regoFile: |
-    package policies
+        default isCompliant = false
 
-    default isCompliant = false
+        # Accepted Values: "UnknownSeverity", "Critical", "High", "Medium", "Low", "Negligible"
+        violatingSeverities := ["Critical"]
+        ignoreCVEs := []
 
-    # Accepted Values: "UnknownSeverity", "Critical", "High", "Medium", "Low", "Negligible"
-    violatingSeverities := ["Critical"]
-    ignoreCVEs := []
+        contains(array, elem) = true {
+          array[_] = elem
+        } else = false { true }
 
-    contains(array, elem) = true {
-      array[_] = elem
-    } else = false { true }
+        isSafe(match) {
+          fails := contains(violatingSeverities, match.Ratings.Rating[_].Severity)
+          not fails
+        }
 
-    isSafe(match) {
-      fails := contains(violatingSeverities, match.Ratings.Rating[_].Severity)
-      not fails
-    }
+        isSafe(match) {
+          ignore := contains(ignoreCVEs, match.Id)
+          ignore
+        }
 
-    isSafe(match) {
-      ignore := contains(ignoreCVEs, match.Id)
-      ignore
-    }
+        isCompliant = isSafe(input.currentVulnerability)
 
-    isCompliant = isSafe(input.currentVulnerability)
+    ---
+    apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
+    kind: SourceScan
+    metadata:
+      name: sample-public-source-scan-with-compliance-check
+    spec:
+      git:
+        url: "https://github.com/houndci/hound.git"
+        revision: "5805c650"
+      scanTemplate: public-source-scan-template
+      scanPolicy: sample-scan-policy
+    ```
 
----
-apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
-kind: SourceScan
-metadata:
-  name: sample-public-source-scan-with-compliance-check
-spec:
-  git:
-    url: "https://github.com/houndci/hound.git"
-    revision: "5805c650"
-  scanTemplate: public-source-scan-template
-  scanPolicy: sample-scan-policy
-```
+1. (Optional) Before deploying, set up a watch in another terminal to view processing by running:
 
-### <a id="set-up-watch"></a>(Optional) Set up a watch
+    ```
+    watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
+    ```
 
-Before deploying, set up a watch in another terminal to view processing:
+    For more information, refer to [Observing and Troubleshooting](../observing.md).
 
-```
-watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
-```
+1. Deploy the resources by running:
 
-For more information, refer to [Observing and Troubleshooting](../observing.md).
+    ```
+    kubectl apply -f sample-public-source-scan-with-compliance-check.yaml
+    ```
 
-### <a id="deploy-resources"></a>Deploy the resources
+1. When the scan completes, view the results by running:
 
-```
-kubectl apply -f sample-public-source-scan-with-compliance-check.yaml
-```
+    ```
+    kubectl describe sourcescan sample-public-source-scan-with-compliance-check
+    ```
 
-### <a id="view-scan-results"></a>View the scan results
+    The `Status.Conditions` includes a `Reason: EvaluationFailed` and `Message: Policy violated because of 7 CVEs`.
+    For more information, see [Viewing and Understanding Scan Status Conditions](../results.md).
 
-When the scan completes, run:
+1. If the failing CVEs are acceptable or the build needs to be deployed regardless of these CVEs,
+the app is patched to remove the vulnerabilities. Update the `ignoreCVEs` array in the ScanPolicy to
+include the CVEs to ignore:
 
-```
-kubectl describe sourcescan sample-public-source-scan-with-compliance-check
-```
+    ```
+    ...
+    spec:
+      regoFile: |
+        package policies
 
-Notice the `Status.Conditions` includes a `Reason: EvaluationFailed` and `Message: Policy violated because of 7 CVEs`.
+        default isCompliant = false
 
-For more information, see [Viewing and Understanding Scan Status Conditions](../results.md).
+        # Accepted Values: "UnknownSeverity", "Critical", "High", "Medium", "Low", "Negligible"
+        violatingSeverities := ["Critical"]
+        # Adding the failing CVEs to the ignore array
+        ignoreCVEs := ["CVE-2018-14643", "GHSA-f2jv-r9rf-7988", "GHSA-w457-6q6x-cgp9", "CVE-2021-23369", "CVE-2021-23383", "CVE-2020-15256", "CVE-2021-29940"]
+    ...
+    ```
 
-### <a id="modify-scanpolicy"></a>Modify the ScanPolicy
+1. Delete the SourceScan CR by running:
 
-If the failing CVEs are acceptable or the build needs to be deployed regardless of these CVEs, the app is patched to remove the vulnerabilities.
+    ```
+    kubectl delete sourcescan sample-public-source-scan-with-compliance-check
+    ```
 
-Update the `ignoreCVEs` array in the ScanPolicy to include the CVEs to ignore:
+1. Reapply the resources by running:
 
-```
-...
-spec:
-  regoFile: |
-    package policies
+    ```
+    kubectl apply -f sample-public-source-scan-with-compliance-check.yaml
+    ```
 
-    default isCompliant = false
+1. Re-describe the SourceScan CR by running:
 
-    # Accepted Values: "UnknownSeverity", "Critical", "High", "Medium", "Low", "Negligible"
-    violatingSeverities := ["Critical"]
-    # Adding the failing CVEs to the ignore array
-    ignoreCVEs := ["CVE-2018-14643", "GHSA-f2jv-r9rf-7988", "GHSA-w457-6q6x-cgp9", "CVE-2021-23369", "CVE-2021-23383", "CVE-2020-15256", "CVE-2021-29940"]
-...
-```
+    ```
+    kubectl describe sourcescan sample-public-source-scan-with-compliance-check
+    ```
 
-#### <a id="delete-sourcescan-cr"></a>Delete the SourceScan CR:
+1. Check that `Status.Conditions` now includes a `Reason: EvaluationPassed` and
+`No CVEs were found that violated the policy`.
+You can update the `violatingSeverities` array in the ScanPolicy if desired. For reference, the
+Grype scan returns the following Severity spread of vulnerabilities (currently):
 
-```
-kubectl delete sourcescan sample-public-source-scan-with-compliance-check
-```
+    * Critical: 7
+    * High: 88
+    * Medium: 92
+    * Low: 5
+    * Negligible: 0
+    * UnknownSeverity: 0
 
-#### <a id="reapply-resources"></a>Reapply the resources:
+1.  Clean up by running:
 
-```
-kubectl apply -f sample-public-source-scan-with-compliance-check.yaml
-```
-
-#### Re-describe the SourceScan CR:
-
-```
-kubectl describe sourcescan sample-public-source-scan-with-compliance-check
-```
-
-Observe that `Status.Conditions` now includes a `Reason: EvaluationPassed` and `No CVEs were found that violated the policy`.
-
-You can update the `violatingSeverities` array in the ScanPolicy if desired. For reference, the Grype scan returns the following Severity spread of vulnerabilities (currently):
-
-* Critical: 7
-* High: 88
-* Medium: 92
-* Low: 5
-* Negligible: 0
-* UnknownSeverity: 0
-
-### Clean Up
-
-```
-kubectl delete -f sample-public-source-scan-with-compliance-check.yaml
-```
+    ```
+    kubectl delete -f sample-public-source-scan-with-compliance-check.yaml
+    ```
 
 ## <a id="public-image-scan"></a> Public image scan
 
-The following example performs an image scan on an image in a public registry. This image revision has 223 known vulnerabilities (CVEs), spanning a number of severities. ImageScan uses the ScanPolicy to run a compliance check against the CVEs.
+The following example performs an image scan on an image in a public registry.
+This image revision has 223 known vulnerabilities (CVEs), spanning a number of severities.
+ImageScan uses the ScanPolicy to run a compliance check against the CVEs.
 
-The policy in this example is set to only consider `Critical` severity CVEs as a violation, which returns 21 Unknown Severity Vulnerability.
+The policy in this example is set to only consider `Critical` severity CVEs as a violation, which
+returns 21 Unknown Severity Vulnerability.
 
-> **Note:** This example ScanPolicy is deliberately constructed to showcase the features available and must not be considered an acceptable base policy.
+>**Note:** This example ScanPolicy is deliberately constructed to showcase the features available
+>and must not be considered an acceptable base policy.
 
 In this example, the scan does the following (currently):
 
@@ -161,88 +162,84 @@ In this example, the scan does the following (currently):
 * Ignores any CVEs with severities that are not unknown severities.
 * Indicates in the `Status.Conditions` that 21 CVEs have violated policy compliance.
 
-### Define the ScanPolicy and ImageScan
+1. Create `sample-public-image-scan-with-compliance-check.yaml` to define the ScanPolicy and
+ImageScan:
 
-Create `sample-public-image-scan-with-compliance-check.yaml`:
+    ```
+    ---
+    apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
+    kind: ScanPolicy
+    metadata:
+      name: sample-scan-policy
+    spec:
+      regoFile: |
+        package policies
 
-```
----
-apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
-kind: ScanPolicy
-metadata:
-  name: sample-scan-policy
-spec:
-  regoFile: |
-    package policies
+        default isCompliant = false
 
-    default isCompliant = false
+        # Accepted Values: "UnknownSeverity", "Critical", "High", "Medium", "Low", "Negligible"
+        violatingSeverities := ["Critical"]
+        ignoreCVEs := []
 
-    # Accepted Values: "UnknownSeverity", "Critical", "High", "Medium", "Low", "Negligible"
-    violatingSeverities := ["Critical"]
-    ignoreCVEs := []
+        contains(array, elem) = true {
+          array[_] = elem
+        } else = false { true }
 
-    contains(array, elem) = true {
-      array[_] = elem
-    } else = false { true }
+        isSafe(match) {
+          fails := contains(violatingSeverities, match.Ratings.Rating[_].Severity)
+          not fails
+        }
 
-    isSafe(match) {
-      fails := contains(violatingSeverities, match.Ratings.Rating[_].Severity)
-      not fails
-    }
+        isSafe(match) {
+          ignore := contains(ignoreCVEs, match.Id)
+          ignore
+        }
 
-    isSafe(match) {
-      ignore := contains(ignoreCVEs, match.Id)
-      ignore
-    }
+        isCompliant = isSafe(input.currentVulnerability)
 
-    isCompliant = isSafe(input.currentVulnerability)
+    ---
+    apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
+    kind: ImageScan
+    metadata:
+      name: sample-public-image-scan-with-compliance-check
+    spec:
+      registry:
+        image: "nginx:1.16"
+      scanTemplate: public-image-scan-template
+      scanPolicy: sample-scan-policy
+    ```
 
----
-apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
-kind: ImageScan
-metadata:
-  name: sample-public-image-scan-with-compliance-check
-spec:
-  registry:
-    image: "nginx:1.16"
-  scanTemplate: public-image-scan-template
-  scanPolicy: sample-scan-policy
-```
+1. (Optional) Before deploying, set up a watch in another terminal to view the process by running:
 
-### (Optional) Set up a watch
+    ```
+    watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
+    ```
 
-Before deploying, set up a watch in another terminal to view the process:
+    For more information about setting up a watch, see
+    [Observing and Troubleshooting](../observing.md).
 
-```
-watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
-```
+1. Deploy the resources by running:
 
-For more information about setting up a watch, see [Observing and Troubleshooting](../observing.md).
+    ```
+    kubectl apply -f sample-public-image-scan-with-compliance-check.yaml
+    ```
 
-### Deploy the resources
+1. View the scan results by running:
 
-```
-kubectl apply -f sample-public-image-scan-with-compliance-check.yaml
-```
+    ```
+    kubectl describe imagescan sample-public-image-scan-with-compliance-check
+    ```
 
-### View the scan results
+    The `Status.Conditions` includes a `Reason: EvaluationFailed` and
+    `Message: Policy violated because of 18 CVEs`.
 
-```
-kubectl describe imagescan sample-public-image-scan-with-compliance-check
-```
+    For more information about scan status conditions, see
+    [Viewing and Understanding Scan Status Conditions](../results.md).
 
-Note that the `Status.Conditions` includes a `Reason: EvaluationFailed` and `Message: Policy violated because of 18 CVEs`.
+1. See the previous source scan example.
 
-For more information about scan status conditions, see [Viewing and Understanding Scan Status Conditions](../results.md).
+1. Clean up by running:
 
-### Modify the ScanPolicy
-
-See the previous source scan example.
-
-### Clean up
-
-To clean up, run:
-
-```
-kubectl delete -f sample-public-image-scan-with-compliance-check.yaml
-```
+    ```
+    kubectl delete -f sample-public-image-scan-with-compliance-check.yaml
+    ```
