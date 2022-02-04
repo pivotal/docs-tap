@@ -665,6 +665,9 @@ the workload must be updated to point at your Tekton pipeline.
 
 Follow these steps to install the OOTB Testing+Scanning supply chain:
 
+  > **Note:** When leveraging both TBS and Grype in your TAP supply chain, you can receive enhanced scanning coverage for Java workloads that includes application runtime layer dependencies.
+
+
 >**Important:** The grype must be installed for scanning.
 
 1. Supply Chain Security Tools - Scan is installed as part of the profiles.
