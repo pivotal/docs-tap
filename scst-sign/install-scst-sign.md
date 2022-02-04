@@ -143,7 +143,7 @@ To install Supply Chain Security Tools - Sign:
    After you run the commands above your signing package will be running.
 
    >**Note:** This component requires extra configuration steps to work properly. See
-   >[Configuring Supply Chain Security Tools - Sign](scst-sign/configuring.md)
+   >[Configuring Supply Chain Security Tools - Sign](configuring.md)
    >for instructions on how to apply the required configuration.
 
 
