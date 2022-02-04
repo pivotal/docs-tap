@@ -378,7 +378,7 @@ section.
 
 ```
 profile: full
-ceip_policy_disclosed: true # Installation fails if this is set to 'false'
+ceip_policy_disclosed: "true-OR-false" # Installation fails if this not set to `true`
 buildservice:
   kp_default_repository: "KP-DEFAULT-REPO"
   kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
@@ -462,7 +462,7 @@ service's External IP address.
 
 ```
 profile: light
-ceip_policy_disclosed: true # Installation fails if this is set to 'false'
+ceip_policy_disclosed: "true-OR-false" # Installation fails if this not set to `true`
 
 buildservice:
   kp_default_repository: "KP-DEFAULT-REPO"
