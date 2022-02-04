@@ -1,7 +1,7 @@
 # SCA Scanning Results
 ## 1.0.2
 
-### Black Duck Binary Analysis
+### <a id='black-duck-ba'></a>Black Duck Binary Analysis (BDBA)
 
 #### API backend
 
