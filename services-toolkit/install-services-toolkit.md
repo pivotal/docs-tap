@@ -11,7 +11,7 @@ For more information about profiles, see [Installing the Tanzu Application Platf
 
 Before installing Services Toolkit:
 
-- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Installing the Tanzu CLI](../install-general.md).
+- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
 
 ## <a id='install-services-toolkit'></a> Install Services Toolkit
 
@@ -58,3 +58,4 @@ To install Services Toolkit:
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
     ```
+    
