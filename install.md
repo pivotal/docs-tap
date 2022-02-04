@@ -393,6 +393,9 @@ buildservice:
   enable_automatic_dependency_updates: true
 supply_chain: basic
 
+cnrs:
+  domain_name: apps.INGRESS-DOMAIN
+
 ootb_supply_chain_basic:
   registry:
     server: "SERVER-NAME"
@@ -478,6 +481,9 @@ buildservice:
   tanzunet_password: "TANZUNET-PASSWORD"
 
 supply_chain: basic
+
+cnrs:
+  domain_name: apps.INGRESS-DOMAIN
 
 ootb_supply_chain_basic:
   registry:
