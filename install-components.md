@@ -2362,20 +2362,20 @@ To install Supply Chain Security Tools - Store:
     $ tanzu package available list metadata-store.apps.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for metadata-store.apps.tanzu.vmware.com...
       NAME                         VERSION       RELEASED-AT
-      metadata-store.apps.tanzu.vmware.com  1.0.1
+      metadata-store.apps.tanzu.vmware.com  1.0.2
     ```
 
 1. (Optional) List out all the available deployment configuration options:
 
     ```
-    tanzu package available get metadata-store.apps.tanzu.vmware.com/1.0.1 --values-schema -n tap-install
+    tanzu package available get metadata-store.apps.tanzu.vmware.com/1.0.2 --values-schema -n tap-install
     ```
 
     For example:
 
     ```
-    $ tanzu package available get metadata-store.apps.tanzu.vmware.com/1.0.1 --values-schema -n tap-install
-    | Retrieving package details for metadata-store.apps.tanzu.vmware.com/1.0.1...
+    $ tanzu package available get metadata-store.apps.tanzu.vmware.com/1.0.2 --values-schema -n tap-install
+    | Retrieving package details for metadata-store.apps.tanzu.vmware.com/1.0.2...
       KEY                               DEFAULT              TYPE     DESCRIPTION
       app_service_type                  LoadBalancer         string   The type of service to use for the metadata app service. This can be set to 'NodePort' or 'LoadBalancer'.
       auth_proxy_host                   0.0.0.0              string   The binding ip address of the kube-rbac-proxy sidecar
@@ -2422,7 +2422,7 @@ and you want to use `NodePort`, then create a `metadata-store-values.yaml` and c
     ```
     tanzu package install metadata-store \
       --package-name metadata-store.apps.tanzu.vmware.com \
-      --version 1.0.1 \
+      --version 1.0.2 \
       --namespace tap-install \
       --values-file metadata-store-values.yaml
     ```
@@ -2433,7 +2433,7 @@ and you want to use `NodePort`, then create a `metadata-store-values.yaml` and c
     ```
     $ tanzu package install metadata-store \
       --package-name metadata-store.apps.tanzu.vmware.com \
-      --version 1.0.1 \
+      --version 1.0.2 \
       --namespace tap-install \
       --values-file metadata-store-values.yaml
 
@@ -2991,7 +2991,7 @@ Use the following procedure to verify that the packages are installed.
     developer-conventions    developer-conventions.tanzu.vmware.com             0.3.0-build.1    Reconcile succeeded
     grype-scanner            grype.scanning.apps.tanzu.vmware.com               1.0.0            Reconcile succeeded
     image-policy-webhook     image-policy-webhook.signing.apps.tanzu.vmware.com  1.0.0-beta.1     Reconcile succeeded
-    metadata-store           metadata-store.apps.tanzu.vmware.com               1.0.1            Reconcile succeeded
+    metadata-store           metadata-store.apps.tanzu.vmware.com               1.0.2            Reconcile succeeded
     ootb-supply-chain-basic  ootb-supply-chain-basic.tanzu.vmware.com           0.5.1            Reconcile succeeded
     ootb-templates           ootb-templates.tanzu.vmware.com                    0.5.1            Reconcile succeeded
     scan-controller          scanning.apps.tanzu.vmware.com                     1.0.0            Reconcile succeeded
