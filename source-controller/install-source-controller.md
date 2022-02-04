@@ -5,7 +5,7 @@ from the Tanzu Application Platform package repository.
 
 >**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
 Both the full and light profiles include Source Controller.
-For more information about profiles, see [Installing Part II: Profiles](../install.md).
+For more information about profiles, see [Installing the Tanzu Application Platform Package and Profiles](../install.md).
 
 ## <a id='sc-prereqs'></a>Prerequisites
 
