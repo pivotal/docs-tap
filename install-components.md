@@ -1270,7 +1270,7 @@ tanzu package install ootb-templates \
 ```
 
 
-## <a id='install-ootb-sc-basic'></a> Install Out of The Box Supply Chain Basic
+## <a id='install-ootb-sc-basic'></a> Install Out of the Box Supply Chain Basic
 
 The Out of the Box Supply Chain Basic package provides the most basic
 ClusterSupplyChain that brings an application from source code to a deployed
