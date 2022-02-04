@@ -4,7 +4,7 @@
 
 Both the source and image scans require a `ScanTemplate` to be defined. Run `kubectl get scantemplates` for the ScanTemplates provided with the scanner installation. These can be referenced, or see [How to create a ScanTemplate](create-scan-template.md).
 
-## <a id="deploy-scan-custom-resources"></a>Deploy scan custom resources
+## <a id="deploy-scan-custom-resrc"></a>Deploy scan custom resources
 
 The scan controller defines two custom resources to create scanning jobs:
 
@@ -44,12 +44,12 @@ spec:
 
   # A string defining the name of an existing ScanTemplate custom resource. See "How To Create a ScanTemplate" section.
   scanTemplate: my-scan-template
- 
+
    # A string defining the name of an existing ScanPolicy custom resource. See "Enforcement Policies (OPA)" section.
   scanPolicy: my-scan-policy
 ```
 
-#### <a id="deploy-sourcescan-cr-to-namespace"></a>Step 2: Deploy the SourceScan custom resource to the desired namespace on cluster
+#### <a id="deploy-srcscan-cr-to-nmsp"></a>Step 2: Deploy the SourceScan custom resource to the desired namespace on cluster
 
 `kubectl apply -f <path_to_the_cr>/<custom_resource_filename>.yml -n <desired_namespace>`
 
@@ -66,16 +66,16 @@ status:
       url:
       revision:
 
-  # An array populated with information about the scanning status 
-  # and the policy validation. These conditions might change in the lifecycle 
+  # An array populated with information about the scanning status
+  # and the policy validation. These conditions might change in the lifecycle
   # of the scan, refer to the "View Scan Status and Understanding Conditions" section to learn more.
   conditions: []
 
   # The URL of the vulnerability scan results in the Metadata Store integration.
   # Only available when the integration is configured.
   metadataUrl:
-            
-  # When the CRD is updated to point at new revisions, this lets you know 
+
+  # When the CRD is updated to point at new revisions, this lets you know
   # if the status reflects the latest one or not
   observedGeneration: 1
   observedPolicyGeneration: 1
@@ -87,7 +87,7 @@ status:
   # This information reflects what's in the CycloneDX `bom>metadata>tools>tool>*` fields.
   scannedBy:
     scanner:
-      # The name of the scanner that was used. 
+      # The name of the scanner that was used.
       name: my-image-scanner
 
       # The name of the scanner's development company or team
@@ -127,7 +127,7 @@ spec:
   scanPolicy: my-scan-policy
 ```
 
-#### <a id="deploy-imagescan-cr-to-namespace"></a>Step 2: Deploy the ImageScan custom resource to the desired namespace on cluster
+#### <a id="deploy-imgscan-cr-to-nmsp"></a>Step 2: Deploy the ImageScan custom resource to the desired namespace on cluster
 
 `kubectl apply -f <path_to_the_cr>/<custom_resource_filename>.yml -n <desired_namespace>`
 
@@ -142,16 +142,16 @@ status:
       image:
       imagePullSecret:
 
-  # An array that is populated with information about the scanning status 
-  # and the policy validation. These conditions might change in the lifecycle 
+  # An array that is populated with information about the scanning status
+  # and the policy validation. These conditions might change in the lifecycle
   # of the scan, refer to the "View Scan Status and Understanding Conditions" section to learn more.
   conditions: []
 
   # The URL of the vulnerability scan results in the Metadata Store integration.
   # Only available when the integration is configured.
   metadataUrl:
-            
-  # When the CRD is updated to point at new revisions, this lets you know 
+
+  # When the CRD is updated to point at new revisions, this lets you know
   # whether the status reflects the latest one
   observedGeneration: 1
   observedPolicyGeneration: 1
@@ -163,7 +163,7 @@ status:
   # This information reflects what's in the CycloneDX `bom>metadata>tools>tool>*` fields.
   scannedBy:
     scanner:
-      # The name of the scanner that was used. 
+      # The name of the scanner that was used.
       name: my-image-scanner
 
       # The name of the scanner's development company or team

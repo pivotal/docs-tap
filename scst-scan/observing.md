@@ -16,7 +16,7 @@ If you run into any problems or face non-expected behavior, you can always addre
 kubectl -n scan-link-system logs -f deployment/scan-link-controller-manager -c manager
 ```
 
-### <a id="missing-target-image-pull-secret"></a>Missing target image pull secret
+### <a id="missing-img-pull-secret"></a>Missing target image pull secret
 
 Scanning an image from a private registry requires an image pull secret to exist in the Scan CR's namespace and be referenced as `grype.targetImagePullSecret` in `tap-values.yml`. See [Installing part II: Profiles](../install.md#prepare-install-profile) for more information.
 

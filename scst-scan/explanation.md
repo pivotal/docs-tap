@@ -12,7 +12,7 @@ scantemplates.scanning.apps.tanzu.vmware.com             2021-09-09T15:22:07Z
 sourcescans.scanning.apps.tanzu.vmware.com               2021-09-09T15:22:07Z
 ```
 
-## <a id="about-source-and-image-scans"></a>About source and image scans
+## <a id="about-src-and-image-scans"></a>About source and image scans
 
 Both SourceScan (`sourcescans.scanning.apps.tanzu.vmware.com`) and ImageScan (`imagescans.scanning.apps.tanzu.vmware.com`) define what will be scanned, and ScanTemplate (`scantemplates.scanning.apps.tanzu.vmware.com`) will define how to run a scan. We have provided five custom resources (CRs) pre-installed for use. You can either use them as-is or as samples to create your own.
 
@@ -36,7 +36,7 @@ The private scan templates reference secrets created using the docker server and
 
 For more information about the `SourceScan` and `ImageScan` CRDs and how to customize your own, refer to [Configuring Code Repositories and Image Artifacts to be Scanned](scan-crs.md).
 
-## <a id="about-policy-enforcement-around-vulnerabilities"></a>About policy enforcement around vulnerabilities found
+## <a id="policy-enforcement-vuln"></a>About policy enforcement around vulnerabilities found
 
 The Scan Controller supports policy enforcement by using an Open Policy Agent (OPA) engine. ScanPolicy (`scanpolicies.scanning.apps.tanzu.vmware.com`) allows scan results to be validated for company policy compliance and can prevent source code from being built or images from being deployed.
 
