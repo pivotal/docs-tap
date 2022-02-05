@@ -74,7 +74,7 @@ This is the table of contents from which the Tanzu Application Platform Document
           - [Session management](learning-center/portal-rest-api/session-management.md)
           - [Client authentication](learning-center/portal-rest-api/client-authentication.md)
     - [Supply Chain Choreographer for Tanzu](scc/about.md)
-      - [Install Supply Chain Choreographer](scc/install.md)
+      - [Install Supply Chain Choreographer](scc/install-scc.md)
       - [Out-of-the-box delivery basic](scc/ootb-delivery-basic.md)
       - [Out-of-the-box supply chain basic](scc/ootb-supply-chain-basic.md)
       - [Out-of-the-box supply chain with testing and scanning](scc/ootb-supply-chain-testing-scanning.md)
@@ -137,3 +137,4 @@ This is the table of contents from which the Tanzu Application Platform Document
          - [Application Live View](tap-gui/plugins/app-live-view.md)
          - [Application Accelerator](tap-gui/plugins/application-accelerator.md)
       - [Troubleshooting Tanzu Application Platform GUI](tap-gui/troubleshooting.md)
+    - [VMware Tanzu Build Service](https://docs.vmware.com/en/VMware-Tanzu-Build-Service/index.html)

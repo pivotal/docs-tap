@@ -85,11 +85,41 @@ the Git URL and the SSH credentials are correct.
 
 This release has the following new features:
 
+#### Application Accelerator
+
+Added apply command to Tanzu CLI plugin.
+
+Added -n short alias for all --namespace flags for Tanzu CLI plugin.
+
+#### Application Live View
+
+- Updated pod security policies for App Live View Components 
+- Updated Spring Boot 2.5.7 to 2.5.8
 
 ### <a id='1-0-1-resolved-issues'></a> Resolved issues
 
 This release has the following fixes:
 
+#### Application Accelerator
+
+Build scripts provided as part of an accelerator now have the execute bit set when a new
+project is generated from the accelerator.
+
+Accelerators that do not include an accelerator.yaml file or have an empty list of options will now render in the GUI.
+
+The CLI plugin no longer shows panic output for errors, it just adds the error message to the output.
+
+The entity loader for TAP GUI will not stop when encountering invalid accelerator.
+
+Deleted accelerators will no longer be shown in TAP GUI.
+
+The TAP GUI "Explore" feature now shows any engine errors.
+
+#### Application Live View
+
+- Includes changes to the App Live View connector to handle stream reset exceptions
+- Increased requests and limits for App Live View Connector to fix pod restarts
+- CVE vulnerability fix - to update protobuf-java to 3.19.2 in connector
 
 ### <a id='1-0-1-known-issues'></a> Known issues
 
