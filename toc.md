@@ -117,6 +117,7 @@ This is the table of contents from which the Tanzu Application Platform Document
     - [Supply Chain Security Tools for Tanzu - Sign](scst-sign/overview.md)
       - [Install Supply Chain Security Tools - Sign](scst-sign/install-scst-sign.md)
       - [Configuring Supply Chain Security Tools - Sign](scst-sign/configuring.md)
+      - [Logs messages and reasons](scst-sign/logs.md)
     - [Supply Chain Security Tools for Tanzu – Store](scst-store/overview.md)
         - [Install Supply Chain Security Tools - Store](scst-store/install-scst-store.md)
         - [Additional resources](scst-store/additional.md)
