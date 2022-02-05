@@ -98,6 +98,7 @@ This is the table of contents from which the Tanzu Application Platform Document
         - [View scan status conditions](scst-scan/results.md)
     - [Supply Chain Security Tools for Tanzu - Sign](scst-sign/overview.md)
       - [Configuring Supply Chain Security Tools - Sign](scst-sign/configuring.md)
+      - [Logs messages and reasons](scst-sign/logs.md)
     - [Supply Chain Security Tools for Tanzu – Store](scst-store/overview.md)
         - [Additional resources](scst-store/additional.md)
         - [API details](scst-store/api.md)
