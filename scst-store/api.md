@@ -81,7 +81,7 @@ See [API walkthrough](api_walkthrough.md) for a walkthrough and example.
 
 ## <a id='paths'></a>Paths
 
-### <a id="create-image-report"></a> Create a new image report. Related packages and vulnerabilities are also created. (*CreateImageReport*)
+### <a id="cir"></a> Create a new image report. Related packages and vulnerabilities are also created. (*CreateImageReport*)
 
 ```
 POST /api/imageReport
@@ -120,7 +120,7 @@ ErrorMessage
 
 [ErrorMessage](#error-message)
 
-### <a id="create-source-report"></a> Create a new source report. Related packages and vulnerabilities are also created. (*CreateSourceReport*)
+### <a id="create-sr"></a> Create a new source report. Related packages and vulnerabilities are also created. (*CreateSourceReport*)
 
 ```
 POST /api/sourceReport
@@ -159,7 +159,7 @@ ErrorMessage
 
 [ErrorMessage](#error-message)
 
-### <a id="get-image-packages"></a> List the packages in an image. (*GetImagePackages*)
+### <a id="gip"></a> List the packages in an image. (*GetImagePackages*)
 
 ```
 GET /api/images/{IDorDigest}/packages
@@ -198,7 +198,7 @@ ErrorMessage
 
 [ErrorMessage](#error-message)
 
-### <a id="get-image-vulnerabilities"></a> List vulnerabilities from the given image. (*GetImageVulnerabilities*)
+### <a id="giv"></a> List vulnerabilities from the given image. (*GetImageVulnerabilities*)
 
 ```
 GET /api/images/{IDorDigest}/vulnerabilities
@@ -277,7 +277,7 @@ ErrorMessage
 
 [ErrorMessage](#error-message)
 
-### <a id="get-package-images"></a> List the images that contain the given package. (*GetPackageImages*)
+### <a id="gpi"></a> List the images that contain the given package. (*GetPackageImages*)
 
 ```
 GET /api/packages/{IDorName}/images
@@ -316,7 +316,7 @@ ErrorMessage
 
 [ErrorMessage](#error-message)
 
-### <a id="get-package-sources"></a> List the sources containing the given package. (*GetPackageSources*)
+### <a id="gps"></a> List the sources containing the given package. (*GetPackageSources*)
 
 ```
 GET /api/packages/{IDorName}/sources
@@ -355,7 +355,7 @@ ErrorMessage
 
 [ErrorMessage](#error-message)
 
-### <a id="get-package-vulnerabilities"></a> List vulnerabilities from the given package. (*GetPackageVulnerabilities*)
+### <a id="gpv"></a> List vulnerabilities from the given package. (*GetPackageVulnerabilities*)
 
 ```
 GET /api/packages/{IDorName}/vulnerabilities
@@ -394,7 +394,7 @@ ErrorMessage
 
 [ErrorMessage](#error-message)
 
-### <a id="get-packages"></a> Search packages by id, name and/or version. (*GetPackages*)
+### <a id="gp"></a> Search packages by id, name and/or version. (*GetPackages*)
 
 ```
 GET /api/packages
@@ -435,7 +435,7 @@ ErrorMessage
 
 [ErrorMessage](#error-message)
 
-### <a id="get-source-packages"></a> get source packages (*GetSourcePackages*)
+### <a id="gsp"></a> get source packages (*GetSourcePackages*)
 
 ```
 GET /api/sources/{IDorRepoorSha}/packages
@@ -474,7 +474,7 @@ ErrorMessage
 
 [ErrorMessage](#error-message)
 
-### <a id="get-source-packages-query"></a> List packages of the given source. (*GetSourcePackagesQuery*)
+### <a id="gsp"></a> List packages of the given source. (*GetSourcePackagesQuery*)
 
 ```
 GET /api/sources/packages
@@ -515,7 +515,7 @@ ErrorMessage
 
 [ErrorMessage](#error-message)
 
-### <a id="get-source-vulnerabilities"></a> get source vulnerabilities (*GetSourceVulnerabilities*)
+### <a id="gsv"></a> get source vulnerabilities (*GetSourceVulnerabilities*)
 
 ```
 GET /api/sources/{IDorRepoorSha}/vulnerabilities
@@ -554,7 +554,7 @@ ErrorMessage
 
 [ErrorMessage](#error-message)
 
-### <a id="get-source-vulnerabilities-query"></a> List vulnerabilities of the given source. (*GetSourceVulnerabilitiesQuery*)
+### <a id="gsvq"></a> List vulnerabilities of the given source. (*GetSourceVulnerabilitiesQuery*)
 
 ```
 GET /api/sources/vulnerabilities
@@ -628,7 +628,7 @@ ErrorMessage
 
 [ErrorMessage](#error-message)
 
-### <a id="get-vulnerabilities"></a> Search for vulnerabilities by CVE id. (*GetVulnerabilities*)
+### <a id="gv"></a> Search for vulnerabilities by CVE id. (*GetVulnerabilities*)
 
 ```
 GET /api/vulnerabilities
@@ -667,7 +667,7 @@ ErrorMessage
 
 [ErrorMessage](#error-message)
 
-### <a id="get-vulnerability-images"></a> List the images that contain the given vulnerability. (*GetVulnerabilityImages*)
+### <a id="gvi"></a> List the images that contain the given vulnerability. (*GetVulnerabilityImages*)
 
 ```
 GET /api/vulnerabilities/{CVEID}/images
@@ -706,7 +706,7 @@ ErrorMessage
 
 [ErrorMessage](#error-message)
 
-### <a id="get-vulnerability-packages"></a> List packages that contain the given CVE id. (*GetVulnerabilityPackages*)
+### <a id="gvp"></a> List packages that contain the given CVE id. (*GetVulnerabilityPackages*)
 
 ```
 GET /api/vulnerabilities/{CVEID}/packages
@@ -745,7 +745,7 @@ ErrorMessage
 
 [ErrorMessage](#error-message)
 
-### <a id="get-vulnerability-sources"></a> List sources that contain the given vulnerability. (*GetVulnerabilitySources*)
+### <a id="gvs"></a> List sources that contain the given vulnerability. (*GetVulnerabilitySources*)
 
 ```
 GET /api/vulnerabilities/{CVEID}/sources
@@ -886,7 +886,7 @@ marshalled as a JSON object.
 
 
 > Model a basic GoLang struct which includes the following fields: ID, CreatedAt, UpdatedAt, DeletedAt
-It may be embedded into your model or you may build your own model without it
+It may be embedded into your model, or you may build your model without it
 type User struct {
 gorm.Model
 }
@@ -910,8 +910,7 @@ gorm.Model
 ### <a id="null-time"></a> NullTime
 
 
-> NullTime implements the Scanner interface so
-it can be used as a scan destination, similar to NullString.
+> NullTime implements the Scanner interface to be used as a scan destination, similar to NullString.
 
 
 

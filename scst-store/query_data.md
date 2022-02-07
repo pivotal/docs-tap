@@ -22,7 +22,7 @@ The following are a few examples supported by the Supply Chain Security Tools - 
 +  How many CVEs does a specific image or dependency contain?
 
 
-## <a id='query-with-insight'></a> Query using the Insight CLI
+## <a id='query-insight'></a> Query using the Insight CLI
 
 See [CLI installation](cli_installation.md) if you have not previously installed the Insight CLI.
 

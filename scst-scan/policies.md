@@ -1,6 +1,6 @@
 # Enforce compliance policy using Open Policy Agent
 
-## <a id="writing-policy-template"></a>Writing a policy template
+## <a id="writing-pol-temp"></a>Writing a policy template
 The Scan Policy custom resource allows you to define a Rego file for policy enforcement that you can reuse across Image Scan and Source Scan CRs.
 
 The Scan Controller supports policy enforcement by using an Open Policy Agent (OPA) engine with Rego files. This allows scan results to be validated for company policy compliance and can prevent source code from being built or images from being deployed.
@@ -17,7 +17,7 @@ The Rego file evaluates one vulnerability match at a time, iterating as many tim
 1. **isCompliant rule**  
 The Rego file must define inside its body an `isCompliant` rule. This must be a Boolean type containing the result whether or not the vulnerability violates the security policy. If `isCompliant` is `true`, the vulnerability is allowed in the Source or Image scan; `false` will be considered otherwise. Any scan that finds at least one vulnerability that evaluates to `isCompliant=false` will make the `PolicySucceeded` condition set to false.
 
-## <a id="create-scan-pol-with-rego"></a>Step 1: Create a scan policy with rego file
+## <a id="create-scan-pol-rego"></a>Step 1: Create a scan policy with rego file
 
 ### <a id="sample-scan-pol-resource"></a>Sample scan policy resource
 
@@ -55,6 +55,6 @@ spec:
     }
 ```
 
-## <a id="deploy-scan-pol-to-clust"></a>Step 2: Deploy the scan policy to the cluster
+## <a id="deploy-scan-pol-clust"></a>Step 2: Deploy the scan policy to the cluster
 
 `kubectl apply -f <path_to_scan_policy>/<scan_policy_filename>.yml -n <desired_namespace>`

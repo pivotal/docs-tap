@@ -4,7 +4,7 @@
 
 Both the source and image scans require a `ScanTemplate` to be defined. Run `kubectl get scantemplates` for the ScanTemplates provided with the scanner installation. These can be referenced, or see [How to create a ScanTemplate](create-scan-template.md).
 
-## <a id="deploy-scan-custom-resrc"></a>Deploy scan custom resources
+## <a id="deploy-scan-cr"></a>Deploy scan custom resources
 
 The scan controller defines two custom resources to create scanning jobs:
 
@@ -49,7 +49,7 @@ spec:
   scanPolicy: my-scan-policy
 ```
 
-#### <a id="deploy-srcscan-cr-to-nmsp"></a>Step 2: Deploy the SourceScan custom resource to the desired namespace on cluster
+#### <a id="deploy-srcscan-cr-nmsp"></a>Step 2: Deploy the SourceScan custom resource to the desired namespace on cluster
 
 `kubectl apply -f <path_to_the_cr>/<custom_resource_filename>.yml -n <desired_namespace>`
 
@@ -127,7 +127,7 @@ spec:
   scanPolicy: my-scan-policy
 ```
 
-#### <a id="deploy-imgscan-cr-to-nmsp"></a>Step 2: Deploy the ImageScan custom resource to the desired namespace on cluster
+#### <a id="deploy-imgscan-cr-nmsp"></a>Step 2: Deploy the ImageScan custom resource to the desired namespace on cluster
 
 `kubectl apply -f <path_to_the_cr>/<custom_resource_filename>.yml -n <desired_namespace>`
 

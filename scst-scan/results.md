@@ -3,10 +3,10 @@
 ## <a id='view-scan-stat'></a>Viewing scan status
 You can view the scan status by using `kubectl describe` on a `SourceScan` or `ImageScan`. You can see information about the scan status under the Status field for each scan CR.
 
-## <a id='understand-conditions'></a>Understanding conditions
+## <a id='understand-con'></a>Understanding conditions
 The `Status.Conditions` array is populated with the scan status information during and after scanning execution, and the policy validation (if defined for the scan) after the results are available.
 
-### <a id='condition-type-scan'></a>Condition types for the scans
+### <a id='con-type-scan'></a>Condition types for the scans
 
 #### <a id='scanning'></a>Scanning
 The Condition with type `Scanning` indicates the execution of the scanning job. The Status field indicates whether the scan is still running or has already finished (i.e., if `Status: True`, the scan job is still running; if `Status: False`, the scan is done).

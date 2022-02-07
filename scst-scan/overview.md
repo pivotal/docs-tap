@@ -11,7 +11,7 @@ With Supply Chain Security Tools - Scan, Tanzu customers can build and deploy se
 * Analyze scan results against user-defined policies using Open Policy Agent.
 * Produce vulnerability scan results and post them to the Supply Chain Security Tools - Store from where they can be queried.
 
-## <a id="scst-scan-features"></a>Supply Chain Security Tools - Scan features
+## <a id="scst-scan-feat"></a>Supply Chain Security Tools - Scan features
 
 The following Supply Chain Security Tools - Scan features make the use cases available:
 
