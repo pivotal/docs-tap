@@ -2,7 +2,7 @@
 
 Source commands are as follows:
 
-## <a id='curltopost'></a>Options
+## <a id='options'></a>Options
 
 ```
   -h, --help   help for source
