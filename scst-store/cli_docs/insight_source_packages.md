@@ -1,8 +1,8 @@
-## Insight source packages
+# Insight source packages
 
 Get source packages.
 
-### Synopsis
+## <a id='synopsis'></a>Synopsis
 
 Get source packages.
 
@@ -10,13 +10,13 @@ Get source packages.
 insight source packages [--commit <commit-hash>] [--repo <repo-url>] [--format <format>] [flags]
 ```
 
-### Examples
+## <a id='examples'></a>Examples
 
 ```
 insight sources packages --commit 0b1b659907 --format json
 ```
 
-### Options
+## <a id='options'></a>Options
 
 ```
   -c, --commit string   commit's hash
@@ -25,7 +25,7 @@ insight sources packages --commit 0b1b659907 --format json
   -r, --repo string     source repository url
 ```
 
-### See also
+## <a id='see-also'></a>See also
 
 * [insight source](insight_source.md)	 - Source commands
 

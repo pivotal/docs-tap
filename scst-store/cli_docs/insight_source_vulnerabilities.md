@@ -1,8 +1,8 @@
-## Insight source vulnerabilities
+# Insight source vulnerabilities
 
 Get source vulnerabilities.
 
-### Synopsis
+## <a id='synopsis'></a>Synopsis
 
 Get source vulnerabilities. You can specify either commit or repo.
 
@@ -10,13 +10,13 @@ Get source vulnerabilities. You can specify either commit or repo.
 insight source vulnerabilities [--commit <commit-hash>] [--repo <repo-url>] [--format <format>] [flags]
 ```
 
-### Examples
+## <a id='examples'></a>Examples
 
 ```
 insight sources vulnerabilities --commit eb55fc13
 ```
 
-### Options
+## <a id='options'></a>Options
 
 ```
   -c, --commit string   commit's hash
@@ -25,7 +25,7 @@ insight sources vulnerabilities --commit eb55fc13
   -r, --repo string     source repository url
 ```
 
-### See also
+## <a id='see-also'></a>See also
 
 * [insight source](insight_source.md)	 - Source commands
 

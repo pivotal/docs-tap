@@ -2,19 +2,19 @@
 
 This CLI is used to post data and query the metadata store.
 
-## Synopsis
+## <a id='synopsis'></a>Synopsis
 
 This CLI is used to post data and query the metadata store through its secure REST API.
 Source and Image reports can be uploaded using CycloneDX XML and JSON format.
 Source, image, package, and vulnerabilities can be queried and outputted in CycloneDX XML, JSON, and human-readable text formats.
 
-## Options
+## <a id='options'></a>Options
 
 ```
   -h, --help   help for insight
 ```
 
-## See also
+## <a id='see-also'></a>See also
 
 * [Insight config](insight_config.md)	 - Config commands
 * [Insight health](insight_health.md)	 - Checks if endpoint is reachable

@@ -1,8 +1,8 @@
-## Insight vulnerabilities sources
+# Insight vulnerabilities sources
 
 Get sources with a given vulnerability.
 
-### Synopsis
+## <a id='synopsis'></a>Synopsis
 
 Get sources with a given vulnerability.
 
@@ -10,13 +10,13 @@ Get sources with a given vulnerability.
 insight vulnerabilities sources --cveid <cve-id> [--format <format>] [flags]
 ```
 
-### Examples
+## <a id='examples'></a>Examples
 
 ```
 insight vulnerabilities sources --cveid CVE-123123-2021
 ```
 
-### Options
+## <a id='options'></a>Options
 
 ```
   -c, --cveid string    CVE id
@@ -24,7 +24,7 @@ insight vulnerabilities sources --cveid CVE-123123-2021
   -h, --help            help for sources
 ```
 
-### See also
+## <a id='see-also'></a>See also
 
 * [insight vulnerabilities](insight_vulnerabilities.md)	 - Vulnerabilities commands
 

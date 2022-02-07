@@ -1,8 +1,8 @@
-## Insight package get
+# Insight package get
 
 Get package by name, version, and package manager.
 
-### Synopsis
+## <a id='synopsis'></a>Synopsis
 
 Get package by name, version, and package manager.
 
@@ -10,13 +10,13 @@ Get package by name, version, and package manager.
 insight package get --name <package name> --version <package version> --pkgmngr Unknown [--format <format>] [flags]
 ```
 
-### Examples
+## <a id='examples'></a>Examples
 
 ```
 insight package get --name client --version 1.0.0a --pkgmngr Unknown
 ```
 
-### Options
+## <a id='options'></a>Options
 
 ```
   -f, --format string    output format which can be in 'json' or 'text'. If not present, defaults to text. (default "text")
@@ -26,7 +26,7 @@ insight package get --name client --version 1.0.0a --pkgmngr Unknown
   -v, --version string   version of the package
 ```
 
-### See also
+## <a id='see-also'></a>See also
 
 * [insight package](insight_package.md)	 - Package commands
 
