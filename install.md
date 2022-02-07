@@ -8,7 +8,7 @@ and verified the cluster, accepted the EULA, and installed the Tanzu CLI with an
 See [Installing Part I: Installing CLI](install-general.md).
 
 
-## <a id='add-package-repositories-and-EULAs'></a> Add the Tanzu Application Platform package repository and accept the EULAs
+## <a id='add-package-repositories-and-EULAs'></a> Add the Tanzu Application Platform Package Repository and Accept the EULAs
 
 To add the Tanzu Application Platform package repository:
 
@@ -20,23 +20,19 @@ To add the Tanzu Application Platform package repository:
     export INSTALL_REGISTRY_HOSTNAME=registry.tanzu.vmware.com
     ```
 
-Before installing packages, you have to accept the End User License Agreements (EULAs).
+1. Before installing packages, you must accept the End User License Agreements (EULAs). To accept EULAs:
 
-To accept EULAs:
+1. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
 
-2. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
+1. Select the "Click here to sign the EULA" link in the yellow warning box under the release drop down. If you do not see this warning, the EULA has already been accepted.
 
-3. Select the "Click here to sign the EULA" link in the yellow warning box under the release drop down as seen in the following screen shot. (If this warning is not there then the EULA has already been  accepted).
+    ![EULA Warning](images/install-general-eulas1.png)
 
-![EULA Warning](images/install-general-eulas1.png)
+1. Select "Agree" in the bottom right of the dialog box to accept the EULAs for all of the Tanzu Application Platform.
 
-4. Select "Agree" in the bottom right of the dialog box that comes up as seen in the following screen shot.
+    ![EULA Dialog Box](images/install-general-eulas2.png)
 
-![EULA Dialog Box](images/install-general-eulas2.png)
-
-You have now accepted the EULA's for all of the Tanzu Application Platform.
-
-5. Create a namespace called `tap-install` for deploying any component packages by running:
+1. Create a namespace named `tap-install` for deploying any component packages by running:
 
     ```
     kubectl create ns tap-install
@@ -66,7 +62,7 @@ You have now accepted the EULA's for all of the Tanzu Application Platform.
     $ tanzu package repository add tanzu-tap-repository \
         --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.0.0 \
         --namespace tap-install
-    \ Adding package repository 'tanzu-tap-repository'...
+    | Adding package repository 'tanzu-tap-repository'...
 
     Added package repository 'tanzu-tap-repository'
     ```
@@ -99,7 +95,7 @@ You have now accepted the EULA's for all of the Tanzu Application Platform.
 
     ```
     $ tanzu package available list --namespace tap-install
-    / Retrieving available packages...
+    | Retrieving available packages...
       NAME                                                 DISPLAY-NAME                                                              SHORT-DESCRIPTION
       accelerator.apps.tanzu.vmware.com                    Application Accelerator for VMware Tanzu                                  Used to create new projects and configurations.
       api-portal.tanzu.vmware.com                          API portal                                                                A unified user interface to enable search, discovery and try-out of API endpoints at ease.
@@ -128,10 +124,10 @@ You have now accepted the EULA's for all of the Tanzu Application Platform.
       workshops.learningcenter.tanzu.vmware.com            Workshop Building Tutorial                                                Workshop Building Tutorial
     ```
 
-## <a id='about-package-profiles'></a> About Tanzu Application Platform package profiles
+## <a id='about-package-profiles'></a> About Tanzu Application Platform Package Profiles
 
-Tanzu Application Platform can be installed through predefined profiles or through individual
-packages. This section explains how to install a profile.
+You can install Tanzu Application Platform through predefined profiles or through individual
+packages. This section describes the profiles.
 
 Tanzu Application Platform contains the following two profiles:
 
@@ -350,11 +346,11 @@ The following table lists the packages contained in each profile:
 </table>
 
 <sup>\*</sup> Only one supply chain should be installed at any given time.
-For information on switching from one supply chain to another, see [Getting Started with Tanzu Application Platform](getting-started.md). For more information about profiles, see [Installation profiles in Tanzu Application Platform](overview.md#profiles-and-packages).
+For information about switching from one supply chain to another, see [Getting Started with Tanzu Application Platform](getting-started.md). For more information about profiles, see [Installation profiles in Tanzu Application Platform](overview.md#profiles-and-packages).
 
 ## <a id='install-profile'></a> Install your Tanzu Application Platform profile
 
-The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile settings. This is done by using the package manager you installed using Tanzu Cluster Essentials.
+The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile settings. Use the package manager that you installed using Tanzu Cluster Essentials to do this.
 
 To prepare to install a profile:
 
@@ -370,10 +366,10 @@ These samples have the minimum configuration required to deploy Tanzu Applicatio
 The sample values file contains the necessary defaults for both the meta-package
 (parent Tanzu Application Platform package) and subordinate packages
 (individual child packages).
-The values file you provide during installation is used for further configuration
+The values file that you provide during installation is used for further configuration
 of Tanzu Application Platform.
 
-  >**Important:** Keep this file for future use.
+    >**Important:** Keep this file for future use.
 
 1. Proceed to the [View possible configuration settings for your package](#view-pkge-config-settings)
 section.
@@ -632,7 +628,7 @@ registry.server           index.docker.io            string  Name of the registr
 service_account           default                    string  Name of the service account in the namespace where the Workload is submitted to utilize for providing registry credentials to Tanzu Build Service (TBS) Image objects as well as deploying the application.
 ```  
 
-## <a id="install-package"></a>Install your Tanzu Application Platform package
+## <a id="install-package"></a>Install the Tanzu Application Platform Package
 
 1. Install the package by running:
 
@@ -640,7 +636,7 @@ service_account           default                    string  Name of the service
     tanzu package install tap -p tap.tanzu.vmware.com -v 1.0.0 --values-file tap-values.yml -n tap-install
     ```
 
-1. Verify the package install by running:
+1. Verify that the package install by running:
 
     ```
     tanzu package installed get tap -n tap-install
