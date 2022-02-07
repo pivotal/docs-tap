@@ -1,5 +1,5 @@
-# SCA Scanning Results
-## 1.0.2
+# SCA scanning results
+## <a id='102'></a>1.0.2
 
 ### <a id='black-duck-ba'></a>Black Duck Binary Analysis (BDBA)
 
