@@ -20,6 +20,11 @@ This release has the following security issues:
 
 This release has the following fixes:
 
+#### Tanzu Dev Tools for VSCode
+- In the 0.5.0 release, extensions in the dependency "Extension Pack for Java" were not being installed. 0.5.2 installs "Debugger for Java" and "Language Support for Java(TM) by Red Hat" extensions directly instead of installing the extension pack.
+- Users can once again run "Configure Tasks", "Configure the Default Build Task", or "Launch Extension Host" when using the Tanzu Dev Tools extension in a workspace without a workload.yaml file.
+- Fixes [CVE 2022-0144](https://www.cvedetails.com/cve/CVE-2022-0144/)
+
 
 ### <a id='1-1-known-issues'></a> Known issues
 
