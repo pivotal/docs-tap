@@ -6,7 +6,7 @@ See [Supply Chain Security Tools for Tanzu – Store](overview.md) for overview 
 
 Supply Chain Security Tools - Store is released as an individual Tanzu Application Platform component.
 
-To install, see [Install Supply Chain Security Tools - Store](../install-components.md#install-scst-store).  It will install the Postgres database and an [API](api.md) backend.
+To install, see [Install Supply Chain Security Tools - Store](install-scst-store.md).  It will install the Postgres database and an [API](api.md) backend.
 
 > **Note:** The Insight CLI requires a [separate installation](cli_installation.md).
 
