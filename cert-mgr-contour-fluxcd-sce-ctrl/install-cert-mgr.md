@@ -1,6 +1,6 @@
-# Install cert-manager, contour, and FluxCD Source Controller
+# Install cert-manager, Contour, and FluxCD Source Controller
 
-This document describes how to install cert-manager, contour, and FluxCD Source Controller
+This document describes how to install cert-manager, Contour, and FluxCD Source Controller
 from the Tanzu Application Platform package repository.
 
 >**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
@@ -9,13 +9,13 @@ For more information about profiles, see [Installing the Tanzu Application Platf
 
 ## <a id='cnr-prereqs'></a>Prerequisites
 
-Before installing cert-manager, contour, and FluxCD Source Controller:
+Before installing cert-manager, Contour, and FluxCD Source Controller:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
 
 ## <a id='install'></a> Install
 
-cert_manager, contour, and FluxCD Source Controller are installed as part of all profiles.
+cert_manager, Contour, and FluxCD Source Controller are installed as part of all profiles.
 If you do not want to use a profile, install them manually.
 
 * **cert-manager**:
@@ -140,7 +140,7 @@ If you do not want to use a profile, install them manually.
 
         Verify that `STATUS` is `Running`
 
-* **contour**:
+* **Contour**:
 
     1. List version information for the package by running:
 
@@ -198,7 +198,7 @@ If you do not want to use a profile, install them manually.
         ```
 
     4. Create a `contour-install.yml` using the sample below and apply the configuration.
-       The following configuration installs the contour package with default options.
+       The following configuration installs the Contour package with default options.
        If you want to make changes to the default installation settings, go to the next step.
 
         ```yaml
@@ -263,7 +263,7 @@ If you do not want to use a profile, install them manually.
 
               envoy.hostNetwork                    false                 boolean  Whether to enable host networking for the Envoy pods.
 
-              infrastructure_provider              vsphere               string   The infrastructur in which to deploy Contour and Envoy. example:- vsphere, aws
+              infrastructure_provider              vsphere               string   The infrastructure in which to deploy Contour and Envoy. example:- vsphere, aws
               namespace                            tanzu-system-ingress  string   The namespace in which to deploy Contour and Envoy.
             ```
 
