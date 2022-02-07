@@ -102,19 +102,19 @@ POST /api/imageReport
 #### <a id='responses-cir'></a>Responses
 
 
-##### <span id="create-image-report-200"></span> 200 - Image
+##### <a id="create-image-report-200"></a> 200 - Image
 Status: OK
 
-###### <span id="create-image-report-200-schema"></span> Schema
+###### <a id="create-image-report-200-schema"></a> Schema
 
 
 
 [Image](#image)
 
-##### <span id="create-image-report-default"></span> Default Response
+##### <a id="create-image-report-default"></a> Default Response
 ErrorMessage
 
-###### <span id="create-image-report-default-schema"></span> Schema
+###### <a id="create-image-report-default-schema"></a> Schema
 
 
 
@@ -141,19 +141,19 @@ POST /api/sourceReport
 #### <a id='responses-csr'></a>Responses
 
 
-##### <span id="create-source-report-200"></span> 200 - Source
+##### <a id="create-source-report-200"></a> 200 - Source
 Status: OK
 
-###### <span id="create-source-report-200-schema"></span> Schema
+###### <a id="create-source-report-200-schema"></a> Schema
 
 
 
 [Source](#source)
 
-##### <span id="create-source-report-default"></span> Default Response
+##### <a id="create-source-report-default"></a> Default Response
 ErrorMessage
 
-###### <span id="create-source-report-default-schema"></span> Schema
+###### <a id="create-source-report-default-schema"></a> Schema
 
 
 
@@ -180,19 +180,19 @@ GET /api/images/{IDorDigest}/packages
 #### <a id='responses-gip'></a>Responses
 
 
-##### <span id="get-image-packages-200"></span> 200 - Package
+##### <a id="get-image-packages-200"></a> 200 - Package
 Status: OK
 
-###### <span id="get-image-packages-200-schema"></span> Schema
+###### <a id="get-image-packages-200-schema"></a> Schema
 
 
 
 [][Package](#package)
 
-##### <span id="get-image-packages-default"></span> Default Response
+##### <a id="get-image-packages-default"></a> Default Response
 ErrorMessage
 
-###### <span id="get-image-packages-default-schema"></span> Schema
+###### <a id="get-image-packages-default-schema"></a> Schema
 
 
 
@@ -219,19 +219,19 @@ GET /api/images/{IDorDigest}/vulnerabilities
 #### <a id='responses-giv'></a>Responses
 
 
-##### <span id="get-image-vulnerabilities-200"></span> 200 - Vulnerability
+##### <a id="get-image-vulnerabilities-200"></a> 200 - Vulnerability
 Status: OK
 
-###### <span id="get-image-vulnerabilities-200-schema"></span> Schema
+###### <a id="get-image-vulnerabilities-200-schema"></a> Schema
 
 
 
 [][Vulnerability](#vulnerability)
 
-##### <span id="get-image-vulnerabilities-default"></span> Default Response
+##### <a id="get-image-vulnerabilities-default"></a> Default Response
 ErrorMessage
 
-###### <span id="get-image-vulnerabilities-default-schema"></span> Schema
+###### <a id="get-image-vulnerabilities-default-schema"></a> Schema
 
 
 
@@ -259,19 +259,19 @@ GET /api/images
 #### <a id='responses-gi'></a>Responses
 
 
-##### <span id="get-images-200"></span> 200 - Image
+##### <a id="get-images-200"></a> 200 - Image
 Status: OK
 
-###### <span id="get-images-200-schema"></span> Schema
+###### <a id="get-images-200-schema"></a> Schema
 
 
 
 [Image](#image)
 
-##### <span id="get-images-default"></span> Default Response
+##### <a id="get-images-default"></a> Default Response
 ErrorMessage
 
-###### <span id="get-images-default-schema"></span> Schema
+###### <a id="get-images-default-schema"></a> Schema
 
 
 
@@ -298,19 +298,19 @@ GET /api/packages/{IDorName}/images
 #### <a id='responses-gpi'></a>Responses
 
 
-##### <span id="get-package-images-200"></span> 200 - Image
+##### <a id="get-package-images-200"></a> 200 - Image
 Status: OK
 
-###### <span id="get-package-images-200-schema"></span> Schema
+###### <a id="get-package-images-200-schema"></a> Schema
 
 
 
 [][Image](#image)
 
-##### <span id="get-package-images-default"></span> Default Response
+##### <a id="get-package-images-default"></a> Default Response
 ErrorMessage
 
-###### <span id="get-package-images-default-schema"></span> Schema
+###### <a id="get-package-images-default-schema"></a> Schema
 
 
 
@@ -337,19 +337,19 @@ GET /api/packages/{IDorName}/sources
 #### <a id='responses-gps'></a>Responses
 
 
-##### <span id="get-package-sources-200"></span> 200 - Source
+##### <a id="get-package-sources-200"></a> 200 - Source
 Status: OK
 
-###### <span id="get-package-sources-200-schema"></span> Schema
+###### <a id="get-package-sources-200-schema"></a> Schema
 
 
 
 [][Source](#source)
 
-##### <span id="get-package-sources-default"></span> Default Response
+##### <a id="get-package-sources-default"></a> Default Response
 ErrorMessage
 
-###### <span id="get-package-sources-default-schema"></span> Schema
+###### <a id="get-package-sources-default-schema"></a> Schema
 
 
 
@@ -376,19 +376,19 @@ GET /api/packages/{IDorName}/vulnerabilities
 #### <a id='responses-gpv'></a>Responses
 
 
-##### <span id="get-package-vulnerabilities-200"></span> 200 - Vulnerability
+##### <a id="get-package-vulnerabilities-200"></a> 200 - Vulnerability
 Status: OK
 
-###### <span id="get-package-vulnerabilities-200-schema"></span> Schema
+###### <a id="get-package-vulnerabilities-200-schema"></a> Schema
 
 
 
 [][Vulnerability](#vulnerability)
 
-##### <span id="get-package-vulnerabilities-default"></span> Default Response
+##### <a id="get-package-vulnerabilities-default"></a> Default Response
 ErrorMessage
 
-###### <span id="get-package-vulnerabilities-default-schema"></span> Schema
+###### <a id="get-package-vulnerabilities-default-schema"></a> Schema
 
 
 
@@ -417,19 +417,19 @@ GET /api/packages
 #### <a id='responses-gp'></a>Responses
 
 
-##### <span id="get-packages-200"></span> 200 - Package
+##### <a id="get-packages-200"></a> 200 - Package
 Status: OK
 
-###### <span id="get-packages-200-schema"></span> Schema
+###### <a id="get-packages-200-schema"></a> Schema
 
 
 
 [][Package](#package)
 
-##### <span id="get-packages-default"></span> Default Response
+##### <a id="get-packages-default"></a> Default Response
 ErrorMessage
 
-###### <span id="get-packages-default-schema"></span> Schema
+###### <a id="get-packages-default-schema"></a> Schema
 
 
 
@@ -456,19 +456,19 @@ GET /api/sources/{IDorRepoorSha}/packages
 #### <a id='responses-gsp'></a>Responses
 
 
-##### <span id="get-source-packages-200"></span> 200 - Package
+##### <a id="get-source-packages-200"></a> 200 - Package
 Status: OK
 
-###### <span id="get-source-packages-200-schema"></span> Schema
+###### <a id="get-source-packages-200-schema"></a> Schema
 
 
 
 [][Package](#package)
 
-##### <span id="get-source-packages-default"></span> Default Response
+##### <a id="get-source-packages-default"></a> Default Response
 ErrorMessage
 
-###### <span id="get-source-packages-default-schema"></span> Schema
+###### <a id="get-source-packages-default-schema"></a> Schema
 
 
 
@@ -497,19 +497,19 @@ GET /api/sources/packages
 #### <a id='responses-gspq'></a>Responses
 
 
-##### <span id="get-source-packages-query-200"></span> 200 - Package
+##### <a id="get-source-packages-query-200"></a> 200 - Package
 Status: OK
 
-###### <span id="get-source-packages-query-200-schema"></span> Schema
+###### <a id="get-source-packages-query-200-schema"></a> Schema
 
 
 
 [][Package](#package)
 
-##### <span id="get-source-packages-query-default"></span> Default Response
+##### <a id="get-source-packages-query-default"></a> Default Response
 ErrorMessage
 
-###### <span id="get-source-packages-query-default-schema"></span> Schema
+###### <a id="get-source-packages-query-default-schema"></a> Schema
 
 
 
@@ -536,19 +536,19 @@ GET /api/sources/{IDorRepoorSha}/vulnerabilities
 #### <a id='responses-gsv'></a>Responses
 
 
-##### <span id="get-source-vulnerabilities-200"></span> 200 - Vulnerability
+##### <a id="get-source-vulnerabilities-200"></a> 200 - Vulnerability
 Status: OK
 
-###### <span id="get-source-vulnerabilities-200-schema"></span> Schema
+###### <a id="get-source-vulnerabilities-200-schema"></a> Schema
 
 
 
 [][Vulnerability](#vulnerability)
 
-##### <span id="get-source-vulnerabilities-default"></span> Default Response
+##### <a id="get-source-vulnerabilities-default"></a> Default Response
 ErrorMessage
 
-###### <span id="get-source-vulnerabilities-default-schema"></span> Schema
+###### <a id="get-source-vulnerabilities-default-schema"></a> Schema
 
 
 
@@ -577,19 +577,19 @@ GET /api/sources/vulnerabilities
 #### <a id='responses-gsvq'></a>Responses
 
 
-##### <span id="get-source-vulnerabilities-query-200"></span> 200 - Vulnerability
+##### <a id="get-source-vulnerabilities-query-200"></a> 200 - Vulnerability
 Status: OK
 
-###### <span id="get-source-vulnerabilities-query-200-schema"></span> Schema
+###### <a id="get-source-vulnerabilities-query-200-schema"></a> Schema
 
 
 
 [][Vulnerability](#vulnerability)
 
-##### <span id="get-source-vulnerabilities-query-default"></span> Default Response
+##### <a id="get-source-vulnerabilities-query-default"></a> Default Response
 ErrorMessage
 
-###### <span id="get-source-vulnerabilities-query-default-schema"></span> Schema
+###### <a id="get-source-vulnerabilities-query-default-schema"></a> Schema
 
 
 
@@ -610,19 +610,19 @@ GET /api/sources
 #### Responses
 
 
-##### <span id="get-sourcs-200"></span> 200 - Source
+##### <a id="get-sourcs-200"></a> 200 - Source
 Status: OK
 
-###### <span id="get-sourcs-200-schema"></span> Schema
+###### <a id="get-sourcs-200-schema"></a> Schema
 
 
 
 [][Source](#source)
 
-##### <span id="get-sourcs-default"></span> Default Response
+##### <a id="get-sourcs-default"></a> Default Response
 ErrorMessage
 
-###### <span id="get-sourcs-default-schema"></span> Schema
+###### <a id="get-sourcs-default-schema"></a> Schema
 
 
 
@@ -649,19 +649,19 @@ GET /api/vulnerabilities
 #### <a id='responses-gv'></a>Responses
 
 
-##### <span id="get-vulnerabilities-200"></span> 200 - Vulnerability
+##### <a id="get-vulnerabilities-200"></a> 200 - Vulnerability
 Status: OK
 
-###### <span id="get-vulnerabilities-200-schema"></span> Schema
+###### <a id="get-vulnerabilities-200-schema"></a> Schema
 
 
 
 [][Vulnerability](#vulnerability)
 
-##### <span id="get-vulnerabilities-default"></span> Default Response
+##### <a id="get-vulnerabilities-default"></a> Default Response
 ErrorMessage
 
-###### <span id="get-vulnerabilities-default-schema"></span> Schema
+###### <a id="get-vulnerabilities-default-schema"></a> Schema
 
 
 
@@ -688,19 +688,19 @@ GET /api/vulnerabilities/{CVEID}/images
 #### <a id='responses-gvi'></a>Responses
 
 
-##### <span id="get-vulnerability-images-200"></span> 200 - Image
+##### <a id="get-vulnerability-images-200"></a> 200 - Image
 Status: OK
 
-###### <span id="get-vulnerability-images-200-schema"></span> Schema
+###### <a id="get-vulnerability-images-200-schema"></a> Schema
 
 
 
 [][Image](#image)
 
-##### <span id="get-vulnerability-images-default"></span> Default Response
+##### <a id="get-vulnerability-images-default"></a> Default Response
 ErrorMessage
 
-###### <span id="get-vulnerability-images-default-schema"></span> Schema
+###### <a id="get-vulnerability-images-default-schema"></a> Schema
 
 
 
@@ -727,19 +727,19 @@ GET /api/vulnerabilities/{CVEID}/packages
 #### <a id='responses-gvp'></a>Responses
 
 
-##### <span id="get-vulnerability-packages-200"></span> 200 - Package
+##### <a id="get-vulnerability-packages-200"></a> 200 - Package
 Status: OK
 
-###### <span id="get-vulnerability-packages-200-schema"></span> Schema
+###### <a id="get-vulnerability-packages-200-schema"></a> Schema
 
 
 
 [][Package](#package)
 
-##### <span id="get-vulnerability-packages-default"></span> Default Response
+##### <a id="get-vulnerability-packages-default"></a> Default Response
 ErrorMessage
 
-###### <span id="get-vulnerability-packages-default-schema"></span> Schema
+###### <a id="get-vulnerability-packages-default-schema"></a> Schema
 
 
 
@@ -766,19 +766,19 @@ GET /api/vulnerabilities/{CVEID}/sources
 #### <a id='responses-gvs'></a>Responses
 
 
-##### <span id="get-vulnerability-sources-200"></span> 200 - Source
+##### <a id="get-vulnerability-sources-200"></a> 200 - Source
 Status: OK
 
-###### <span id="get-vulnerability-sources-200-schema"></span> Schema
+###### <a id="get-vulnerability-sources-200-schema"></a> Schema
 
 
 
 [][Source](#source)
 
-##### <span id="get-vulnerability-sources-default"></span> Default Response
+##### <a id="get-vulnerability-sources-default"></a> Default Response
 ErrorMessage
 
-###### <span id="get-vulnerability-sources-default-schema"></span> Schema
+###### <a id="get-vulnerability-sources-default-schema"></a> Schema
 
 
 
@@ -799,15 +799,15 @@ GET /api/health
 #### <a id='parameters-hc'></a>Responses
 
 
-##### <span id="health-check-200"></span> 200
+##### <a id="health-check-200"></a> 200
 Status: OK
 
-###### <span id="health-check-200-schema"></span> Schema
+###### <a id="health-check-200-schema"></a> Schema
 
-##### <span id="health-check-default"></span> Default Response
+##### <a id="health-check-default"></a> Default Response
 ErrorMessage
 
-###### <span id="health-check-default-schema"></span> Schema
+###### <a id="health-check-default-schema"></a> Schema
 
 
 
@@ -1016,4 +1016,3 @@ gorm.Model
 | Ratings | [][Rating](#rating)| `[]*Rating` |  | |  |  |
 | References | [StringArray](#string-array)| `StringArray` |  | |  |  |
 | URL | string| `string` |  | |  |  |
-
