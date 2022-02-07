@@ -92,7 +92,7 @@ To install Tekton Pipelines:
    timeout and the pods report that they cannot pull images.
 
    Create an image pull secret in the current namespace and fill it from
-   [the `tap-registry` secret](install.md#add-package-repositories).  Run the following
+   [the `tap-registry` secret](../install.md#add-package-repositories).  Run the following
    commands to create an empty secret and annotate it as a target of the
    secretgen controller:
 
