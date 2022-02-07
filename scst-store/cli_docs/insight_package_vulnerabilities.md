@@ -1,8 +1,8 @@
-## Insight Package Vulnerabilities
+# Insight Package Vulnerabilities
 
 Get package vulnerabilities.
 
-### Synopsis
+## <a id='synopsis'></a>Synopsis
 
 Get package vulnerabilities.
 
@@ -10,13 +10,13 @@ Get package vulnerabilities.
 insight package vulnerabilities --name <package name> [flags]
 ```
 
-### Examples
+## <a id='examples'></a>Examples
 
 ```
 insight package vulnerabilities --name client
 ```
 
-### Options
+## <a id='options'></a>Options
 
 ```
   -f, --format string   output format which can be in 'json' or 'text'. If not present, defaults to text. (default "text")
@@ -24,7 +24,7 @@ insight package vulnerabilities --name client
   -n, --name string     name of the package
 ```
 
-### See also
+## <a id='see-also'></a>See also
 
 * [insight package](insight_package.md)	 - Package commands
 
