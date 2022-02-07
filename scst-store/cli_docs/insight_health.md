@@ -2,7 +2,7 @@
 
 Checks if endpoint is reachable.
 
-### Synopsis
+### <a id='synopsis'></a>Synopsis
 
 Checks if endpoint is reachable.
 
@@ -10,19 +10,19 @@ Checks if endpoint is reachable.
 insight health [flags]
 ```
 
-### Examples
+### <a id='examples'></a>Examples
 
 ```
 insight health
 ```
 
-### Options
+### <a id='options'></a>Options
 
 ```
   -h, --help   help for health
 ```
 
-### See also
+### <a id='see-also'></a>See also
 
 * [insight](insight.md)	 -
 

@@ -1,8 +1,8 @@
-## Insight Package Images
+# Insight Package Images
 
 Get images that contain the given package by name.
 
-### Synopsis
+## <a id='synopsis'></a>Synopsis
 
 Get images that contain the given package by name.
 
@@ -10,13 +10,13 @@ Get images that contain the given package by name.
 insight package images --name <package name> [flags]
 ```
 
-### Examples
+## <a id='examples'></a>Examples
 
 ```
 insight package images --name client
 ```
 
-### Options
+## <a id='options'></a>Options
 
 ```
   -f, --format string   output format which can be in 'json' or 'text'. If not present, defaults to text. (default "text")
@@ -24,7 +24,7 @@ insight package images --name client
   -n, --name string     name of the package
 ```
 
-### See also
+## <a id='see-also'></a>See also
 
 * [insight package](insight_package.md)	 - Package commands
 

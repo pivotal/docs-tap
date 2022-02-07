@@ -2,13 +2,13 @@
 
 Vulnerabilities commands are as follows:
 
-## Options
+## <a id='options'></a>Options
 
 ```
   -h, --help   help for vulnerabilities
 ```
 
-## See also
+## <a id='see-also'></a>See also
 
 * [Insight](insight.md)	 - This CLI is used to post data and query the metadata store.
 * [Insight vulnerabilities get](insight_vulnerabilities_get.md)	 - Get vulnerability by CVE id.

@@ -2,13 +2,13 @@
 
 Image commands are as follows:
 
-## Options
+## <a id='options'></a>Options
 
 ```
   -h, --help   help for image
 ```
 
-## See also
+## <a id='see-also'></a>See also
 
 * [Insight](insight.md)	 - This CLI is used to post data and query the metadata store.
 * [Insight image create](insight_image_create.md)	 - Create an image report.

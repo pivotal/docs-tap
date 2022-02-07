@@ -1,8 +1,8 @@
-## Insight image packages
+# Insight image packages
 
 Get image packages.
 
-### Synopsis
+## <a id='synopsis'></a>Synopsis
 
 Get image packages.
 
@@ -10,13 +10,13 @@ Get image packages.
 insight image packages --digest <image-digest> [--format <image-format>] [flags]
 ```
 
-### Examples
+## <a id='examples'></a>Examples
 
 ```
 insight image packages --digest sha256:a86859ac1946065d93df9ecb5cb7060adeeb0288fad610b1b659907 --format json
 ```
 
-### Options
+## <a id='options'></a>Options
 
 ```
   -d, --digest string   image digest
@@ -24,7 +24,7 @@ insight image packages --digest sha256:a86859ac1946065d93df9ecb5cb7060adeeb0288f
   -h, --help            help for packages
 ```
 
-### See also
+## <a id='see-also'></a>See also
 
 * [insight image](insight_image.md)	 - Image commands
 
