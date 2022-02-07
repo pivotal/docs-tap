@@ -18,7 +18,7 @@ instance that:
 
 Before installing Out of the Box Supply Chain with Testing:
 
-- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Installing the Tanzu CLI](../install-general.md).
+- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
 - Install cartographer. For more information, see [Install Supply Chain Choreographer](install-scc.md).
 - Install [Out of the Box Delivery Basic](install-ootb-sc-basic.md)
 - Install [Out of the Box Templates](install-ootb-templates.md)

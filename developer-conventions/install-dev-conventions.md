@@ -11,7 +11,7 @@ For more information about profiles, see [Installing the Tanzu Application Platf
 
 Before installing Developer Conventions:
 
-- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Installing the Tanzu CLI](../install-general.md).
+- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
 - Install [Convention Service](../convention-service/install-conv-serv.md).
 
 ## <a id='dc-install'></a>Install
