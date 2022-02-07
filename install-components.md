@@ -10,35 +10,9 @@ Before installing the packages, ensure that you have completed the prerequisites
 and verified the cluster, accepted the EULA, and installed the Tanzu CLI with any required plug-ins.
 For more information, see [Installing the Tanzu CLI](install-general.md).
 
-+ [Install cert-manager, Contour, and FluxCD source controller](#install-prereqs)
-+ [Install Cloud Native Runtimes](#install-cnr)
-+ [Install Convention Service](#install-con-serv)
-+ [Install Source Controller](#install-src-ctrl)
-+ [Install Application Accelerator](#install-app-acc)
-+ [Install Tanzu Build Service](#install-tbs)
-+ [Install Supply Chain Choreographer](#install-scc)
-+ [Install Out of the Box Delivery Basic](#install-ootb-del-basic)
-+ [Install Out of the Box Templates](#install-ootb-templates)
-+ [Install Out of The Box Supply Chain Basic](#install-ootb-sc-basic)
-+ [Install Out of The Box Supply Chain with Testing](#inst-ootb-sc-testing)
-+ [Install Out of The Box Supply Chain with Testing and Scanning](#inst-ootb-sc-test-scan)
-+ [Install Developer Conventions](#inst-dev-convs)
-+ [Install Spring Boot Conventions](#install-spring-boot-conv)
-+ [Install Application Live View](#install-app-live-view)
-+ [Install Tanzu Application Platform GUI](#install-tap-gui)
-+ [Install Learning Center for Tanzu Application Platform](#install-learning-center)
-+ [Install Service Bindings](#install-service-bindings)
-+ [Install Supply Chain Security Tools - Store](#install-scst-store)
-+ [Install Supply Chain Security Tools - Sign](#install-scst-sign)
-+ [Install Supply Chain Security Tools - Scan](#install-scst-scan)
-+ [Install API portal](#install-api-portal)
-+ [Install Services Toolkit](#install-services-toolkit)
-+ [Install Tekton Pipelines](#install-tekton-pipelines)
+## <a id='install-prereqs'></a> Install cert-manager, contour, and FluxCD Source Controller
 
-
-## <a id='install-prereqs'></a> Install cert-manager, contour and FluxCD Source Controller
-
-cert_manager, contour and FluxCD Source Controller are installed as part of all profiles.
+cert_manager, contour, and FluxCD Source Controller are installed as part of all profiles.
 If you do not want to use a profile, install them manually.
 
 * **cert-manager**:
