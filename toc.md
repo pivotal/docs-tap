@@ -121,7 +121,7 @@ This is the table of contents from which the Tanzu Application Platform Document
         - [Query data](scst-store/query_data.md)
         - [Log configuration and usage](scst-store/logs.md)
         - [Security details](scst-store/security.md)
-        - [SCA Scanning Results](scst-store/sca_scans/cve.md)
+        - [SCA scanning results](scst-store/sca_scans/cve.md)
         - [Backup suggestions](scst-store/backups.md)
         - [Failover, redundancy, and backups](scst-store/failover.md)
     - [Tanzu Developer Tools for VSCode](vscode-extension/about.md)
