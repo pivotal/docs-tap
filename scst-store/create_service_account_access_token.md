@@ -14,8 +14,7 @@ You can create two types of service accounts:
 1. Read-only service account - only able to use `GET` API requests
 1. Read-write service account - full access to the API requests
 
-### Read-only service account
-
+### <a id='ro-serv-accts'></a>Read-only service account
 As a part of the Store installation, the `metadata-store-read-only` cluster role is created by default. This cluster role allows the bound user to have `get` access to all resources. To bind to this cluster role, run the following command:
 
 ```
@@ -80,8 +79,7 @@ automountServiceAccountToken: false
 EOF
 ```
 
-### Read-write service account
-
+### <a id='rw-serv-accts'></a>Read-write service account
 To create a read-write service account, run the following command. The command creates a service account called `metadata-store-read-write-client`:
 
 ```
