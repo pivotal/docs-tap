@@ -1,4 +1,3 @@
-
 # Prerequisites
 
 The following are required to install Tanzu Application Platform:
