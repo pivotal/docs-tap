@@ -38,6 +38,8 @@ This is the table of contents from which the Tanzu Application Platform Document
       - [Creating conventions](convention-service/creating-conventions.md)
       - [Troubleshooting](convention-service/troubleshooting.md)
       - [Convention resources](convention-service/reference/convention-resources.md)
+    - [Cloud Native Runtimes](cloud-native-runtimes/about.md)
+      - [Install Cloud Native Runtimes](cloud-native-runtimes/install-cnrt.md)
     - [Spring Boot conventions](spring-boot-conventions/about.md)
       - [Install Spring Boot Conventions](spring-boot-conventions/install-spring-boot-conventions.md)
       - [Conventions](spring-boot-conventions/reference/CONVENTIONS.md)
