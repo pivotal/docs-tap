@@ -373,7 +373,7 @@ The sample values file contains the necessary defaults for both the meta-package
 The values file you provide during installation is used for further configuration
 of Tanzu Application Platform.
 
->**Important:** Keep this file for future use.
+  >**Important:** Keep this file for future use.
 
 1. Proceed to the [View possible configuration settings for your package](#view-pkge-config-settings)
 section.
