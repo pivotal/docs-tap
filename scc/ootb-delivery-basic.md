@@ -46,7 +46,6 @@ DELIVERY
                  .                             .
     GitRepository/ImageRepository         kapp-ctrl/App
                                                 - knative/Service
-                                                - ResourceClaim
                                                 - ServiceBinding
                                                 ...
 ```
