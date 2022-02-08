@@ -100,7 +100,7 @@ To perform a clean installation of Tanzu CLI:
 To install the Tanzu CLI on Linux, follow the procedure for your version of
 Tanzu Application Platform.
 
-##### <a id='linux-tanzu-cli-1-0-1'></a> Tanzu Application Platform v1.0.1 Procedure
+**Tanzu Application Platform v1.0.1 Procedure**
 
 To install the Tanzu CLI on a Linux operating system when using
 Tanzu Application Platform v1.0.1:
@@ -144,7 +144,7 @@ Tanzu Application Platform v1.0.1:
 
 9. Proceed to [Instructions for a clean install of Tanzu CLI plug-ins](#cli-plugin-clean-install).
 
-##### <a id='linux-tanzu-cli-1-0-0'></a> Tanzu Application Platform v1.0.0 Procedure
+**Tanzu Application Platform v1.0.0 Procedure**
 
 To install the Tanzu CLI on a Linux operating system when using
 Tanzu Application Platform v1.0.0:
@@ -194,7 +194,7 @@ Tanzu Application Platform v1.0.0:
 To install the Tanzu CLI on Mac, follow the procedure for your version of
 Tanzu Application Platform.
 
-##### <a id='mac-tanzu-cli-1-0-1'></a> Tanzu Application Platform v1.0.1 Procedure
+**Tanzu Application Platform v1.0.1 Procedure**
 
 To install the Tanzu CLI on a Mac operating system when using
 Tanzu Application Platform v1.0.1:
@@ -259,7 +259,7 @@ Tanzu Application Platform v1.0.1:
 
    8. Proceed to [Instructions for a clean install of Tanzu CLI plug-ins](#cli-plugin-clean-install).
 
-##### <a id='mac-tanzu-cli-1-0-0'></a> Tanzu Application Platform v1.0.0 Procedure
+**Tanzu Application Platform v1.0.0 Procedure**
 
 To install the Tanzu CLI on a Mac operating system when using
 Tanzu Application Platform v1.0.0:
@@ -330,7 +330,7 @@ Tanzu Application Platform v1.0.0:
 To install the Tanzu CLI on Windows, follow the procedure for your version of
 Tanzu Application Platform.
 
-##### <a id='windows-tanzu-cli-1-0-1'></a> Tanzu Application Platform v1.0.1 Procedure
+**Tanzu Application Platform v1.0.1 Procedure**
 
 To install the Tanzu CLI on a Windows operating system when using
 Tanzu Application Platform v1.0.1:
@@ -375,7 +375,7 @@ Tanzu Application Platform v1.0.1:
 
   16. Proceed to [Clean Install Tanzu CLI plug-ins](#cli-plugin-clean-install)
 
-##### <a id='windows-tanzu-cli-1-0-0'></a> Tanzu Application Platform v1.0.0 Procedure
+**Tanzu Application Platform v1.0.0 Procedure**
 
 To install the Tanzu CLI on a Windows operating system when using
 Tanzu Application Platform v1.0.0:
