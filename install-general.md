@@ -1,4 +1,6 @@
-# Accept EULAs
+# Accepting EULAs and installing the Tanzu CLI
+
+## Accepting EULAs
 
 Before installing packages, you have to accept the End User License Agreements (EULAs).
 
@@ -14,8 +16,8 @@ To accept EULAs:
     * [Buildpacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-buildpacks-suite)
     * [Stacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-stacks-suite)
 
- 
-This is an example of how to accept EULAs for Tanzu Application Platform: 
+
+This is an example of how to accept EULAs for Tanzu Application Platform:
 After signing in to Tanzu Network, select the "Click here to sign the EULA" link in the yellow warning box under the release drop down as seen in the following screen shot. (If this warning is not there then the EULA has already been  accepted).
 
 ![EULA Warning](images/install-general-eulas1.png)
@@ -26,7 +28,7 @@ Select "Agree" in the bottom right of the dialog box that comes up as seen in th
 
 This example shows that you have now accepted the EULAs for Tanzu Application Platform. In addition, you must accept the EULAs for Cluster Essentials for VMware Tanzu and for Tanzu Build Services and its associated components as stated above.
 
-# Installing the Tanzu CLI
+## Installing the Tanzu CLI
 
 This document describes how to [Set Kubernetes cluster context](#cluster-context),
 [Install Cluster Essentials for VMware Tanzu](#tanzu-cluster-essentials),
