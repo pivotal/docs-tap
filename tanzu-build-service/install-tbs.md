@@ -11,8 +11,6 @@ For more information about profiles, see [Installing the Tanzu Application Platf
 >For more advanced details on installing Tanzu Build Service, see
 >[Installing Tanzu Build Service](https://docs.vmware.com/en/VMware-Tanzu-Build-Service/index.html).
 
-VMware Tanzu Build Service automates container creation, management, and governance at enterprise scale. Tanzu Build Service uses the open-source [Cloud Native Buildpacks](https://buildpacks.io/) project to turn application source code into container images. It executes reproducible builds aligned with modern container standards and keeps images up to date. For more information about Tanzu Build Service, see the [Tanzu Build Service Documentation](https://docs.vmware.com/en/VMware-Tanzu-Build-Service/index.html).
-
 ## <a id='tbs-prereqs'></a> Prerequisites
 
 Before installing Tanzu Build Service:
