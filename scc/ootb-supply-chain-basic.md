@@ -479,7 +479,7 @@ setting the source of the source code to a git repository and then as the
 supply chain progresses, configuration are pushed to a repository named
 after `$(gitops.repository_prefix) + $(workload.name)`.
 
-e.g, having `gitops.repository_prefix` configured to `git@github.com/foo/` and
+e.g, having `gitops.repository_prefix` configured to `ssh://git@github.com/foo/` and
 a Workload as such:
 
 ```
@@ -521,7 +521,7 @@ also manually overridden by the developers by tweaking the following parameters:
 
 -  `gitops_repository`: SSH URL of the git repository to push the Kubernetes
    configuration produced by the supply chain to.
-   Example: "ssh://git@foo.com/staging.git"
+   Example: "ssh://git@github.com/foo/"
 
 -  `gitops_branch`: Name of the branch to push the configuration to.
    Example: "main"

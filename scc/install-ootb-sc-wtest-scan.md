@@ -126,7 +126,7 @@ instance that:
       repository: REGISTRY-REPOSITORY
 
     gitops:
-      repository_prefix: git@github.com:vmware-tanzu/
+      repository_prefix: ssh://git@github.com:vmware-tanzu/
       branch: main
       user_name: supplychain
       user_email: supplychain
