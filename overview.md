@@ -224,6 +224,7 @@ Tanzu Application Platform contains the following two profiles:
 - Light (`light`)
 
 The following table lists the packages contained in each profile:
+
 <table>
   <tr>
    <td><strong>Capability Name</strong>
