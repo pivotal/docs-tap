@@ -6,95 +6,52 @@ This topic contains release notes for Tanzu Application Platform v1.0.
 
 **Release Date**: February 8, 2022
 
-### <a id='1-0-1-breaking-changes'></a> Breaking changes
+### <a id='1-0-1-known-issues'></a> Known issues
 
-This release has the following breaking changes:
-
-
-### <a id='1-0-1-security-issues'></a> Security issues
-
-This release has the following security issues:
-
-
-### <a id='1-1-resolved-issues'></a> Resolved issues
-
-This release has the following fixes:
-
-
-### <a id='1-1-known-issues'></a> Known issues
-
-This release has the following issues:
-
-- The buildpack can't handle having both Maven and Gradle builds. The buildpack runs both, deleting the source after the Gradle build succeeds and then fails when the Maven build runs afterwards due to the Project Object Model(POM) being deleted after the Gradle build succeeded.
-
-#### Installing
-
-
-
-#### Application Accelerator
-
-
-
-#### Application Live View
-
-
-
-#### Convention Service
-
-
+This release has the following known issues:
 
 #### Developer Conventions
 
-**Debug Convention might not apply:** If you upgraded from Tanzu Application Platform v0.4 then the
-the debug convention might not apply to the app run image. This is because of the missing SBOM data
-in the image.
-To prevent this issue, delete existing app images that were built using Tanzu Application Platform
-v0.4.
+**Debug Convention might not apply:**
+If you upgraded from Tanzu Application Platform v0.4, the debug convention might not
+apply to the app run image. This is because of the missing SBOM data in the image.
+To prevent this issue, delete existing app images that were built using Tanzu Application
+Platform v0.4.
 
+### Services Toolkit
 
-#### Grype scanner
-
-
-
-#### Learning Center
-
-
-
-#### Supply Chain Choreographer
-
-
+**The buildpack cannot support both Maven and Gradle builds:**
+When both Maven and Gradle builds are present, the buildpack tries to run both. This causes
+the buildpack to delete the source after the Gradle build succeeds, and then fail when the
+Maven build runs afterwards. This is because the Project Object Model (POM) is deleted after
+the Gradle build succeeds.
 
 #### Supply Chain Security Tools – Scan
 
-- **Scan controller pod fails:** If there is a misconfiguration
-(i.e. secretgen-controller not running, wrong CA secret name) after enabling the
-metadata store integration, the controller pod fails. The current workaround is
-to update the `tap-values.yaml` file with the proper configuration and update the application.
-- **Deleted resources keep reconciling:** After creating a scan CR and deleting it,
-the controllers keep trying to fetch the deleted resource, resulting in a `not found`
+- **Scan controller pod fails:** If there is a misconfiguration, such as
+`secretgen-controller` not running or you have the wrong Certificate Authority secret name,
+the controller pod fails after enabling the metadata store integration.
+The current workaround is to update the `tap-values.yaml` file with the proper configuration
+and update the application.
+- **Deleted resources keep reconciling:** After creating a scan custom resource and deleting
+it, the controllers keep trying to fetch the deleted resource. This causes a `not found`
 or `unable to fetch` log entry with every reconciliation cycle.
-- **Scan controller crashes when Git clone fails:** If this occurs, confirm that
+- **Scan controller fails when Git clone fails:** If this occurs, confirm that
 the Git URL and the SSH credentials are correct.
 
-
-#### Supply Chain Security Tools - Sign
-
-
-
-#### Supply Chain Security Tools - Store
+### <a id='1-0-1-features'></a> Features
 
 This release has the following new features:
 
 #### Application Accelerator
 
-Added apply command to Tanzu CLI plugin.
-
-Added -n short alias for all --namespace flags for Tanzu CLI plugin.
+- Tanzu CLI plug-in now has an `apply` command
+- Tanzu CLI plug-in now has the short alias `-n` for all `--namespace` flags
 
 #### Application Live View
 
-- Updated pod security policies for App Live View Components 
-- Updated Spring Boot 2.5.7 to 2.5.8
+- Updated pod security policies for Application Live View component
+- Updated Spring Boot v2.5.7 to v2.5.8
 
 ### <a id='1-0-1-resolved-issues'></a> Resolved issues
 
@@ -102,32 +59,22 @@ This release has the following fixes:
 
 #### Application Accelerator
 
-Build scripts provided as part of an accelerator now have the execute bit set when a new
-project is generated from the accelerator.
-
-Accelerators that do not include an accelerator.yaml file or have an empty list of options will now render in the GUI.
-
-The CLI plugin no longer shows panic output for errors, it just adds the error message to the output.
-
-The entity loader for TAP GUI will not stop when encountering invalid accelerator.
-
-Deleted accelerators will no longer be shown in TAP GUI.
-
-The TAP GUI "Explore" feature now shows any engine errors.
+- Build scripts are provided as part of an accelerator now have the execute bit set when a
+new project is generated from the accelerator.
+- Accelerators that do not include an `accelerator.yaml` file or have an empty list of
+options now render in the UI.
+- The CLI plug-in no longer shows panic output for errors. It just adds the error message to
+the output.
+- The entity loader for Tanzu Application Platform GUI does not stop when encountering an
+invalid accelerator.
+- Deleted accelerators are no longer shown in Tanzu Application Platform GUI.
+- The Tanzu Application Platform GUI Explore feature now shows engine errors.
 
 #### Application Live View
 
-- Includes changes to the App Live View connector to handle stream reset exceptions
-- Increased requests and limits for App Live View Connector to fix pod restarts
-- CVE vulnerability fix - to update protobuf-java to 3.19.2 in connector
-
-### <a id='1-0-1-known-issues'></a> Known issues
-
-This release has the following issues:
-
-### Breaking changes
-
-This release has the following breaking change:
+- Application Live View connector now handles stream reset exceptions
+- Increased requests and limits for Application Live View connector to fix pod restarts
+- CVE vulnerability fix to update `protobuf-java` to `3.19.2` in the connector
 
 ## <a id='1-0'></a> v1.0
 
