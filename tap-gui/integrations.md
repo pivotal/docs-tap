@@ -1,6 +1,6 @@
 ### Tanzu Application Platform GUI Integrations
 
-Tanzu Application Platform GUI supports integrating with a number of Git providers. To leverage this integration, you must enable it and provide the necessary token or credentials in your `tap-values-file.yml`.
+Tanzu Application Platform GUI supports integrating with several Git providers. To leverage this integration, you must enable it and provide the necessary token or credentials in your `tap-values-file.yml`.
 
 Below is an example of this integration using the GitHub provider integration:
 
@@ -15,7 +15,7 @@ Below is an example of this integration using the GitHub provider integration:
               token: GITHUB-TOKEN
 ```
 
-Where `GITHUB-TOKEN` is a valid token generated from your Git infrastructure of choice with the necessary read permissions for the catalog definition files you extracted from the Blank Software Catalog introduced in the prerequisites documentation.
+`GITHUB-TOKEN` is a valid token generated from your Git infrastructure of choice with the necessary read permissions for the catalog definition files you extracted from the Blank Software Catalog introduced in the prerequisites documentation.
 
 >**Note:** The `integrations` section earlier uses GitHub. For additional integrations, see the
 >format in the [Backstage integration documentation](https://backstage.io/docs/integrations/).
@@ -32,10 +32,11 @@ To allow Tanzu Application GUI to read non-GitHub repositories containing compon
             - host: "GIT-CATALOG-URL-2" # Optional, if several URLs
 ```
 
-Where `GIT-CATALOG-URL-X` is a URL in a list URLs what Tanzu Application Platform GUI is allowed to read when registering new components. For example, `"git.example.com"`. More on registering new components could be found in [Adding Catalog Entities](../tap-gui/catalog/catalog-operations.md#add-cat-entities).
 
 
-After making the changes to the `tap-values-file.yml`, you can update the package profile by running:
+`GIT-CATALOG-URL-X` is a URL in a list of URLs that Tanzu Application Platform GUI can read when registering new components. For example, `"git.example.com." For more on registering new components, see [Adding Catalog Entities](./catalog/catalog-operations.md#add-cat-entities).
+
+After making changes to the `tap-values-file.yml`, update the package profile by running:
 
 ```
 tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version 1.0.0 --values-file tap-values-file.yml -n tap-install
