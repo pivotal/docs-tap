@@ -21,16 +21,15 @@ To add the Tanzu Application Platform package repository:
     export INSTALL_REGISTRY_HOSTNAME=registry.tanzu.vmware.com
     ```
 
-
-
 1. Create a namespace called `tap-install` for deploying any component packages by running:
 
     ```
     kubectl create ns tap-install
+    ```
 
     This namespace keeps the objects grouped together logically.
 
-2. Create a registry secret by running:
+1. Create a registry secret by running:
 
     ```
     tanzu secret registry add tap-registry \
@@ -39,7 +38,7 @@ To add the Tanzu Application Platform package repository:
       --export-to-all-namespaces --yes --namespace tap-install
     ```
 
-3. Add Tanzu Application Platform package repository to the cluster by running:
+1. Add Tanzu Application Platform package repository to the cluster by running:
 
     ```
     tanzu package repository add tanzu-tap-repository \
@@ -57,7 +56,7 @@ To add the Tanzu Application Platform package repository:
     Added package repository 'tanzu-tap-repository'
     ```
 
-4. Get the status of the Tanzu Application Platform package repository, and ensure the status updates to `Reconcile succeeded` by running:
+1. Get the status of the Tanzu Application Platform package repository, and ensure the status updates to `Reconcile succeeded` by running:
 
     ```
     tanzu package repository get tanzu-tap-repository --namespace tap-install
@@ -75,7 +74,7 @@ To add the Tanzu Application Platform package repository:
     REASON:
     ```
 
-5. List the available packages by running:
+1. List the available packages by running:
 
     ```
     tanzu package available list --namespace tap-install
@@ -116,7 +115,7 @@ To add the Tanzu Application Platform package repository:
 
 ## <a id='about-package-profiles'></a> About Tanzu Application Platform package profiles
 
-Tanzu Application Platform can be installed through predefined profiles or through individual
+You can install Tanzu Application Platform through predefined profiles or through individual
 packages. This section explains how to install a profile.
 
 Tanzu Application Platform contains the following two profiles:
@@ -359,7 +358,7 @@ The sample values file contains the necessary defaults for both the meta-package
 The values file you provide during installation is used for further configuration
 of Tanzu Application Platform.
 
-  >**Important:** Keep this file for future use.
+    >**Important:** Keep this file for future use.
 
 1. Proceed to the [View possible configuration settings for your package](#view-pkge-config-settings)
 section.
@@ -442,11 +441,8 @@ service's External IP address.
 - `MY-DEV-NAMESPACE` is the namespace where you want the `ScanTemplates` to be deployed to. This is the namespace where the scanning feature is going to run.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull an image from the registry for scanning. If built images are pushed to the same registry as the Tanzu Application Platform images, this can reuse the `tap-registry` secret created in step 3 of [Add the Tanzu Application Platform package repository](#add-package-repositories).
 
->**Note:** Using the `tap-values.yaml` configuration,
->`buildservice.enable_automatic_dependency_updates: false` can be used to pause the automatic update
+>**Note:** You can use `buildservice.enable_automatic_dependency_updates: false` in the `tap-values.yaml` to pause the automatic update
 >of Build Service dependencies.
-
-
 
 ### <a id='light-profile'></a> Light Profile
 
