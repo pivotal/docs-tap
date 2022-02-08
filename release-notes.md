@@ -39,14 +39,6 @@ or `unable to fetch` log entry with every reconciliation cycle.
 - **Scan controller fails when Git clone fails:** If this occurs, confirm that
 the Git URL and the SSH credentials are correct.
 
-### <a id='1-0-1-features'></a> Features
-
-This release has the following new features:
-
-#### Application Accelerator
-
-- Tanzu CLI plug-in now has an `apply` command
-- Tanzu CLI plug-in now has the short alias `-n` for all `--namespace` flags
 
 ### <a id='1-0-1-resolved-issues'></a> Resolved issues
 
