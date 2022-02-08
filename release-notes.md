@@ -18,7 +18,7 @@ apply to the app run image. This is because of the missing SBOM data in the imag
 To prevent this issue, delete existing app images that were built using Tanzu Application
 Platform v0.4.
 
-### Services Toolkit
+#### Services Toolkit
 
 **The buildpack cannot support both Maven and Gradle builds:**
 When both Maven and Gradle builds are present, the buildpack tries to run both. This causes
@@ -437,7 +437,7 @@ value causes only one of the workloads to bind to the service instance and recon
 This limitation is planned to be relaxed in an upcoming release.
 * The `tanzu services` CLI plug-in is not compatible with Kubernetes clusters running on GKE.
 
-#### <a id='1-0-security-issues'></a> Security issue
+### <a id='1-0-security-issues'></a> Security issue
 
 The installation specifies that the installer's Tanzu Network credentials be exported to all
 namespaces. Customers can choose to mitigate this concern using one of the following methods:
