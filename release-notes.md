@@ -48,11 +48,6 @@ This release has the following new features:
 - Tanzu CLI plug-in now has an `apply` command
 - Tanzu CLI plug-in now has the short alias `-n` for all `--namespace` flags
 
-#### Application Live View
-
-- Updated pod security policies for Application Live View component
-- Updated Spring Boot v2.5.7 to v2.5.8
-
 ### <a id='1-0-1-resolved-issues'></a> Resolved issues
 
 This release has the following fixes:
@@ -72,6 +67,8 @@ invalid accelerator.
 
 #### Application Live View
 
+- Updated pod security policies for Application Live View component
+- Updated Spring Boot v2.5.7 to v2.5.8
 - Application Live View connector now handles stream reset exceptions
 - Increased requests and limits for Application Live View connector to fix pod restarts
 - CVE vulnerability fix to update `protobuf-java` to `3.19.2` in the connector
