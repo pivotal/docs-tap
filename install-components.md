@@ -13,8 +13,6 @@ For more information, see [Prerequisites](prerequisites.md).
 
 (Note to self and Yugang: make more categories if possible. These will  be links.)
 
-### Primary Tanzu Application Platform components
-
 - Convention Service
 - Source Controller
 - Tanzu Build Service
@@ -35,13 +33,7 @@ For more information, see [Prerequisites](prerequisites.md).
 - API portal
 - Services Toolkit
 - Cloud Native Runtimes
-
-### Tanzu Application Platform GUI plug-ins
-
 - Application Accelerator
 - Application Live View
-
-### Open source packages
-
 - cert-manager, Contour, and FluxCD source controller
 - Tekton
