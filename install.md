@@ -384,7 +384,7 @@ buildservice:
   tanzunet_username: "TANZUNET-USERNAME"
   tanzunet_password: "TANZUNET-PASSWORD"
   descriptor_name: "DESCRIPTOR-NAME"
-  enable_automatic_dependency_updates: true
+  enable_automatic_dependency_updates: true/false # Optional
 supply_chain: basic
 
 ootb_supply_chain_basic:
