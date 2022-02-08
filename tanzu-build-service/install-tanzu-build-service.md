@@ -94,7 +94,7 @@ To install Tanzu Build Service by using the Tanzu CLI:
     tanzunet_username: TANZUNET-USERNAME
     tanzunet_password: TANZUNET-PASSWORD
     descriptor_name: DESCRIPTOR-NAME
-    enable_automatic_dependency_updates: true
+    enable_automatic_dependency_updates: true/false # Optional 
     ```
     Where:
 
@@ -107,14 +107,13 @@ To install Tanzu Build Service by using the Tanzu CLI:
         * Harbor: `harbor.io/my-project/build-service`
 
     - `REGISTRY-USERNAME` and `REGISTRY-PASSWORD` are the user name and password for the registry. The install requires a `kp_default_repository_username` and `kp_default_repository_password` to write to the repository location.
-    - `TANZUNET-USERNAME` and `TANZUNET-PASSWORD` are the email address and password that you use to log in to Tanzu Network. The Tanzu Network credentials allow for configuration of the Dependencies Updater. This resource accesses and installs the build dependencies (buildpacks and stacks) Tanzu Build Service needs on your cluster. It also keeps these dependencies up to date as new versions are released on Tanzu Network.
+    - `TANZUNET-USERNAME` and `TANZUNET-PASSWORD` are the email address and password that you use to log in to Tanzu Network. The Tanzu Network credentials allow for configuration of the Dependencies Updater. This resource accesses and installs the build dependencies (buildpacks and stacks) Tanzu Build Service needs on your cluster. It can also optionally keep these dependencies up to date as new versions are released on Tanzu Network.
     - `DESCRIPTOR-NAME` is the name of the descriptor to import automatically. Current available options at time of release:
         - `tap-1.0.0-full` contains all dependencies and is for production use.
         - `tap-1.0.0-lite` smaller footprint used for speeding up installs. Requires Internet access on the cluster.
 
     >**Note:** Using the `tbs-values.yaml` configuration,
-    >`enable_automatic_dependency_updates: false` can be used to pause the automatic update of
-    >Build Service dependencies.
+    >`enable_automatic_dependency_updates:` `true` will cause the dependency updater to update Tanzu Build Service dependencies (buildpacks and stacks) when they are released on Tanzu network. `false` can be used to pause the automatic update of Build Service dependencies. If left undefined, this value will be configured as `false`.
 
 1. Install the package by running:
 
