@@ -40,13 +40,8 @@ For more information, see [Prerequisites](prerequisites.md).
 
 - Application Accelerator
 - Application Live View
-- 
 
 ### Open source packages
 
 - cert-manager, Contour, and FluxCD source controller
 - Tekton
-- 
-
-
-
