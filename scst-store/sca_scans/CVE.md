@@ -20,7 +20,7 @@ Version: 0.32.0
 #### <a id='api-backend-ci'></a>API Backend Container Image
 
 * Date: February 2, 2022
-* Results: No high and critical vulnerabilities. Multiple medium and low vulnerabilities. ([CycloneDX file](metadata-store-image-1.0.2-cyclonedx.xml))
+* Results: No high or critical vulnerabilities. Multiple medium and low vulnerabilities. For more information, see the [CycloneDX file content](cyclonedx-file-content.md).
 
 #### <a id='api-backend-cr'></a>API Backend Code Repository
 

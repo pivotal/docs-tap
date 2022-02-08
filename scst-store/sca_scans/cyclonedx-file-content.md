@@ -1,3 +1,8 @@
+# CycloneDX file content
+
+The following XML content is from a CycloneDX file related to [SCA scanning results](cve.md).
+
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <bom xmlns="http://cyclonedx.org/schema/bom/1.2" xmlns:v="http://cyclonedx.org/schema/ext/vulnerability/1.0" version="1" serialNumber="urn:uuid:31586811-1212-41f4-9593-7d460ec9d7a4">
   <metadata>
@@ -394,3 +399,4 @@
     </component>
   </components>
 </bom>
+```
