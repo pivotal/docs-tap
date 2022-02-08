@@ -450,10 +450,12 @@ service's External IP address.
 - `MY-DEV-NAMESPACE` is the namespace where you want the `ScanTemplates` to be deployed to. This is the namespace where the scanning feature is going to run.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull an image from the registry for scanning. If built images are pushed to the same registry as the Tanzu Application Platform images, this can reuse the `tap-registry` secret created in step 3 of [Add the Tanzu Application Platform package repository](#add-package-repositories).
 
->**Note:** Using the `tap-values.yaml` configuration,
->`buildservice.enable_automatic_dependency_updates: false` can be used to pause the automatic update
->of Build Service dependencies.
-
+>**Note:** By using the `tbs-values.yaml` configuration,
+>`enable_automatic_dependency_updates: true` causes the dependency updater to update
+>Tanzu Build Service dependencies (buildpacks and stacks) when they are released on
+>VMware Tanzu Network. You can set `enable_automatic_dependency_updates` as `false` to pause
+>the automatic update of Build Service dependencies. If left undefined, this value is
+>`false`.
 
 
 ### <a id='light-profile'></a> Light Profile
@@ -521,7 +523,14 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
 - `INGRESS-DOMAIN` is the subdomain for the host name that you will point at the `tanzu-shared-ingress` service's External IP address.
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog you've already built and posted on the Git infrastructure you specified in the Integration section.
 
-### <a id="view-pkge-config-settings"></a>View Possible Configuration Settings for the Package
+>**Note:** By using the `tbs-values.yaml` configuration,
+>`enable_automatic_dependency_updates: true` causes the dependency updater to update
+>Tanzu Build Service dependencies (buildpacks and stacks) when they are released on
+>VMware Tanzu Network. You can set `enable_automatic_dependency_updates` as `false` to pause
+>the automatic update of Build Service dependencies. If left undefined, this value is
+>`false`.
+
+### <a id="view-pkge-config-settings"></a>View possible configuration settings for your package
 
 To view possible configuration settings for a package, run:
 
