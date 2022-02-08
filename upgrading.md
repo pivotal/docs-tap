@@ -1,3 +1,4 @@
 # Upgrading Tanzu Application Platform
 
-This document describes how to upgrade Tanzu Application Platform from 1.0 to 1.0.1.
+The Upgrade procedure will be added to Tanzu Application Platform shortly.
+Please reach out to https://tanzu.vmware.com/support if you require assistance.
