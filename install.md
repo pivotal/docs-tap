@@ -470,6 +470,7 @@ buildservice:
   kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
   tanzunet_username: "TANZUNET-USERNAME"
   tanzunet_password: "TANZUNET-PASSWORD"
+  enable_automatic_dependency_updates: true/false # Optional
 
 supply_chain: basic
 
