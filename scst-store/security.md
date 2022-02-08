@@ -2,7 +2,11 @@
 
 ## Application security
 
-### TLS encryption
+See [SCA Scanning Results](sca_scans/sca-scanning-results.md) for security scanning results for the API and CLI components.
+
+## <a id='app-sec'></a>Application security
+
+### <a id='tls-encrypt'></a>TLS encryption
 
 Supply Chain Security Tools - Store requires TLS connection. If certificates are not provided, the application will not start. It supports TLS v1.2 and TLS v1.3. It does not support TLS 1.0, so a downgrade attack cannot happen. TLS 1.0 is prohibited under Payment Card Industry Data Security Standard (PCI DSS).
 
@@ -80,4 +84,3 @@ A Coverity Scan is run on the source code of the API server, CLI, and all their 
 A Black Duck scan is run on the compiled binary to check for vulnerabilities and license data. There are no high or critical items outstanding at the time of release.
 
 A Grype scan is run against the source code and the compiled container for dependencies vulnerabilities. There are no high or critical items outstanding at the time of release.
-
