@@ -11,11 +11,12 @@ For more information, see [Prerequisites](prerequisites.md).
 
 ## Install pages for individual Tanzu Application Platform packages
 
+- [Install cert-manager, Contour, and FluxCD](cert-mgr-contour-fcd/install-cert-mgr.md)
 - [Install Cloud Native Runtimes](cloud-native-runtimes/install-cnrt.md)
 - [Install Convention Service](convention-service/install-conv-service.md)
 - [Install Source Controller](source-controller/install-source-controller.md)
 - [Install Application Accelerator](application-accelerator/install-app-acc.md)
-- [Install Tanzu Build Service](tanzu-build-service/install-tanzu-build-service.md)
+- [Install Tanzu Build Service](tanzu-build-service/install-tbs.md)
 - [Install Supply Chain Choreographer](scc/install-scc.md)
 - [Install Out of the Box Supply Chain Basic](scc/install-ootb-sc-basic.md)
 - [Install Out of the Box Templates](scc/install-ootb-templates.md)
