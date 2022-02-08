@@ -8,10 +8,11 @@ and verified the cluster, accepted the EULA, and installed the Tanzu CLI with an
 See [Installing Part I: Installing CLI](install-general.md).
 
 
-## <a id='add-package-repositories'></a> Add the Tanzu Application Platform Package Repository
+## <a id='add-package-repositories-and-EULAs'></a> Add the Tanzu Application Platform package repository
 
 To add the Tanzu Application Platform package repository:
 
+1. If you haven’t already completed the Install Cluster Essentials for VMware Tanzu, this step is required.
 1. Set up environment variables for use during the installation.
 
     ```
@@ -21,24 +22,15 @@ To add the Tanzu Application Platform package repository:
     ```
 
 
-2. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
 
-3. Select the "Click here to sign the EULA" link in the yellow warning box under the release drop down. If you do not see this warning, the EULA has already been accepted.
-
-    ![EULA Warning](images/install-general-eulas1.png)
-
-4. Select "Agree" in the bottom right of the dialog box to accept the EULAs for all of the Tanzu Application Platform. If you do not see this warning, the EULA has already been accepted.
-
-    ![EULA Dialog Box](images/install-general-eulas2.png)
-
-5. Create a namespace named `tap-install` for deploying any component packages by running:
+1. Create a namespace called `tap-install` for deploying any component packages by running:
 
     ```
     kubectl create ns tap-install
 
     This namespace keeps the objects grouped together logically.
 
-3. Create a registry secret by running:
+2. Create a registry secret by running:
 
     ```
     tanzu secret registry add tap-registry \
@@ -47,7 +39,7 @@ To add the Tanzu Application Platform package repository:
       --export-to-all-namespaces --yes --namespace tap-install
     ```
 
-4. Add Tanzu Application Platform package repository to the cluster by running:
+3. Add Tanzu Application Platform package repository to the cluster by running:
 
     ```
     tanzu package repository add tanzu-tap-repository \
@@ -60,12 +52,12 @@ To add the Tanzu Application Platform package repository:
     $ tanzu package repository add tanzu-tap-repository \
         --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.0.0 \
         --namespace tap-install
-    | Adding package repository 'tanzu-tap-repository'...
+    \ Adding package repository 'tanzu-tap-repository'...
 
     Added package repository 'tanzu-tap-repository'
     ```
 
-5. Get the status of the Tanzu Application Platform package repository, and ensure the status updates to `Reconcile succeeded` by running:
+4. Get the status of the Tanzu Application Platform package repository, and ensure the status updates to `Reconcile succeeded` by running:
 
     ```
     tanzu package repository get tanzu-tap-repository --namespace tap-install
@@ -83,7 +75,7 @@ To add the Tanzu Application Platform package repository:
     REASON:
     ```
 
-6. List the available packages by running:
+5. List the available packages by running:
 
     ```
     tanzu package available list --namespace tap-install
@@ -93,7 +85,7 @@ To add the Tanzu Application Platform package repository:
 
     ```
     $ tanzu package available list --namespace tap-install
-    | Retrieving available packages...
+    / Retrieving available packages...
       NAME                                                 DISPLAY-NAME                                                              SHORT-DESCRIPTION
       accelerator.apps.tanzu.vmware.com                    Application Accelerator for VMware Tanzu                                  Used to create new projects and configurations.
       api-portal.tanzu.vmware.com                          API portal                                                                A unified user interface to enable search, discovery and try-out of API endpoints at ease.
@@ -122,10 +114,10 @@ To add the Tanzu Application Platform package repository:
       workshops.learningcenter.tanzu.vmware.com            Workshop Building Tutorial                                                Workshop Building Tutorial
     ```
 
-## <a id='about-package-profiles'></a> About Tanzu Application Platform Package Profiles
+## <a id='about-package-profiles'></a> About Tanzu Application Platform package profiles
 
-You can install Tanzu Application Platform through predefined profiles or through individual
-packages. This section describes the profiles.
+Tanzu Application Platform can be installed through predefined profiles or through individual
+packages. This section explains how to install a profile.
 
 Tanzu Application Platform contains the following two profiles:
 
@@ -344,11 +336,11 @@ The following table lists the packages contained in each profile:
 </table>
 
 <sup>\*</sup> Only one supply chain should be installed at any given time.
-For information about switching from one supply chain to another, see [Getting Started with Tanzu Application Platform](getting-started.md). For more information about profiles, see [Installation profiles in Tanzu Application Platform](overview.md#profiles-and-packages).
+For information on switching from one supply chain to another, see [Getting Started with Tanzu Application Platform](getting-started.md). For more information about profiles, see [Installation profiles in Tanzu Application Platform](overview.md#profiles-and-packages).
 
 ## <a id='install-profile'></a> Install a Tanzu Application Platform Profile
 
-The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile settings. Use the package manager that you installed using Tanzu Cluster Essentials to do this.
+The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile settings. This is done by using the package manager you installed using Tanzu Cluster Essentials.
 
 To install a profile:
 
@@ -364,10 +356,10 @@ These samples contain the minimum configuration required to deploy Tanzu Applica
 The sample values file contains the necessary defaults for both the meta-package
 (parent Tanzu Application Platform package) and subordinate packages
 (individual child packages).
-The values file that you provide during installation is used for further configuration
+The values file you provide during installation is used for further configuration
 of Tanzu Application Platform.
 
-    >**Important:** Keep this file for future use.
+  >**Important:** Keep this file for future use.
 
 1. Proceed to the [View possible configuration settings for your package](#view-pkge-config-settings)
 section.
@@ -384,7 +376,7 @@ buildservice:
   tanzunet_username: "TANZUNET-USERNAME"
   tanzunet_password: "TANZUNET-PASSWORD"
   descriptor_name: "DESCRIPTOR-NAME"
-  enable_automatic_dependency_updates: true/false # Optional
+  enable_automatic_dependency_updates: true
 supply_chain: basic
 
 ootb_supply_chain_basic:
@@ -450,12 +442,10 @@ service's External IP address.
 - `MY-DEV-NAMESPACE` is the namespace where you want the `ScanTemplates` to be deployed to. This is the namespace where the scanning feature is going to run.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull an image from the registry for scanning. If built images are pushed to the same registry as the Tanzu Application Platform images, this can reuse the `tap-registry` secret created in step 3 of [Add the Tanzu Application Platform package repository](#add-package-repositories).
 
->**Note:** By using the `tbs-values.yaml` configuration,
->`enable_automatic_dependency_updates: true` causes the dependency updater to update
->Tanzu Build Service dependencies (buildpacks and stacks) when they are released on
->VMware Tanzu Network. You can set `enable_automatic_dependency_updates` as `false` to pause
->the automatic update of Build Service dependencies. If left undefined, this value is
->`false`.
+>**Note:** Using the `tap-values.yaml` configuration,
+>`buildservice.enable_automatic_dependency_updates: false` can be used to pause the automatic update
+>of Build Service dependencies.
+
 
 
 ### <a id='light-profile'></a> Light Profile
@@ -470,7 +460,6 @@ buildservice:
   kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
   tanzunet_username: "TANZUNET-USERNAME"
   tanzunet_password: "TANZUNET-PASSWORD"
-  enable_automatic_dependency_updates: true/false # Optional
 
 supply_chain: basic
 
@@ -524,13 +513,6 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
 - `INGRESS-DOMAIN` is the subdomain for the host name that you will point at the `tanzu-shared-ingress` service's External IP address.
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog you've already built and posted on the Git infrastructure you specified in the Integration section.
 
->**Note:** By using the `tbs-values.yaml` configuration,
->`enable_automatic_dependency_updates: true` causes the dependency updater to update
->Tanzu Build Service dependencies (buildpacks and stacks) when they are released on
->VMware Tanzu Network. You can set `enable_automatic_dependency_updates` as `false` to pause
->the automatic update of Build Service dependencies. If left undefined, this value is
->`false`.
-
 ### <a id="view-pkge-config-settings"></a>View possible configuration settings for your package
 
 To view possible configuration settings for a package, run:
@@ -583,6 +565,39 @@ your `tap-values.yml`.
 |Learning Center|`learningcenter`|
 
 For information about package-specific configuration, see [Install components](install-components.md).
+
+For example, to identify the SSH secret keys for Supply Chain Basic, you can run:
+
+```
+tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.5.1 --values-schema -n tap-install
+```
+
+Expect to see the following outputs that list the all the SSH secret keys and the descriptions applicable to the package:
+
+```
+KEY                       DEFAULT                    TYPE    DESCRIPTION
+cluster_builder           default                    string  Name of the Tanzu Build Service (TBS) ClusterBuilder to use by default on image objects managed by the supply chain.
+
+gitops.branch             main                       string  Default branch to use for pushing Kubernetes configuration files produced by the supply chain.
+
+gitops.commit_message     bump configuration         string  Default git commit message to write when publishing Kubernetes configuration files produces by the supply chain to git.
+
+gitops.email              supplychain@cluster.local  string  Default user email to be used for the commits produced by the supply chain.
+
+gitops.repository_prefix  <nil>                      string  Default prefix to be used for forming Git SSH URLs for pushing Kubernetes configuration produced by the supply chain.
+
+gitops.ssh_secret         git-ssh                    string  Name of the default Secret containing SSH credentials to lookup in the developer namespace for the supply chain to fetch source code from and push configuration to.
+
+gitops.username           supplychain                string  Default user name to be used for the commits produced by the supply chain.
+
+registry.repository       <nil>                      string  Name of the repository in the image registry server where the application images from the workloads should be pushed to (required).
+
+registry.server           index.docker.io            string  Name of the registry server where application images should be pushed to (required).
+
+service_account           default                    string  Name of the service account in the namespace where the Workload is submitted to utilize for providing registry credentials to Tanzu Build Service (TBS) Image objects as well as deploying the application.
+```  
+
+## <a id="install-package"></a>Install your Tanzu Application Platform package
 
 1. Install the package by running:
 
