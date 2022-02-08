@@ -8,7 +8,7 @@ and verified the cluster, accepted the EULA, and installed the Tanzu CLI with an
 See [Installing Part I: Installing CLI](install-general.md).
 
 
-## <a id='add-package-repositories'></a> Add the Tanzu Application Platform package repository
+## <a id='add-package-repositories'></a> Add the Tanzu Application Platform Package Repository
 
 To add the Tanzu Application Platform package repository:
 
@@ -23,17 +23,15 @@ To add the Tanzu Application Platform package repository:
 
 2. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
 
-3. Select the "Click here to sign the EULA" link in the yellow warning box under the release drop down as seen in the following screen shot. (If this warning is not there then the EULA has already been  accepted).
+3. Select the "Click here to sign the EULA" link in the yellow warning box under the release drop down. If you do not see this warning, the EULA has already been accepted.
 
-![EULA Warning](images/install-general-eulas1.png)
+    ![EULA Warning](images/install-general-eulas1.png)
 
-4. Select "Agree" in the bottom right of the dialog box that comes up as seen in the following screen shot.
+4. Select "Agree" in the bottom right of the dialog box to accept the EULAs for all of the Tanzu Application Platform. If you do not see this warning, the EULA has already been accepted.
 
-![EULA Dialog Box](images/install-general-eulas2.png)
+    ![EULA Dialog Box](images/install-general-eulas2.png)
 
-You have now accepted the EULA's for all of the Tanzu Application Platform.
-
-5. Create a namespace called `tap-install` for deploying any component packages by running:
+5. Create a namespace named `tap-install` for deploying any component packages by running:
 
     ```
     kubectl create ns tap-install
@@ -62,7 +60,7 @@ You have now accepted the EULA's for all of the Tanzu Application Platform.
     $ tanzu package repository add tanzu-tap-repository \
         --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.0.0 \
         --namespace tap-install
-    \ Adding package repository 'tanzu-tap-repository'...
+    | Adding package repository 'tanzu-tap-repository'...
 
     Added package repository 'tanzu-tap-repository'
     ```
@@ -76,7 +74,7 @@ You have now accepted the EULA's for all of the Tanzu Application Platform.
 
     ```
     $ tanzu package repository get tanzu-tap-repository --namespace tap-install
-    - Retrieving repository tap...
+    | Retrieving repository tap...
     NAME:          tanzu-tap-repository
     VERSION:       121657971
     REPOSITORY:    registry.tanzu.vmware.com/tanzu-application-platform/tap-packages
@@ -95,7 +93,7 @@ You have now accepted the EULA's for all of the Tanzu Application Platform.
 
     ```
     $ tanzu package available list --namespace tap-install
-    / Retrieving available packages...
+    | Retrieving available packages...
       NAME                                                 DISPLAY-NAME                                                              SHORT-DESCRIPTION
       accelerator.apps.tanzu.vmware.com                    Application Accelerator for VMware Tanzu                                  Used to create new projects and configurations.
       api-portal.tanzu.vmware.com                          API portal                                                                A unified user interface to enable search, discovery and try-out of API endpoints at ease.
@@ -124,10 +122,10 @@ You have now accepted the EULA's for all of the Tanzu Application Platform.
       workshops.learningcenter.tanzu.vmware.com            Workshop Building Tutorial                                                Workshop Building Tutorial
     ```
 
-## <a id='about-package-profiles'></a> About Tanzu Application Platform package profiles
+## <a id='about-package-profiles'></a> About Tanzu Application Platform Package Profiles
 
-Tanzu Application Platform can be installed through predefined profiles or through individual
-packages. This section explains how to install a profile.
+You can install Tanzu Application Platform through predefined profiles or through individual
+packages. This section describes the profiles.
 
 Tanzu Application Platform contains the following two profiles:
 
@@ -346,11 +344,11 @@ The following table lists the packages contained in each profile:
 </table>
 
 <sup>\*</sup> Only one supply chain should be installed at any given time.
-For information on switching from one supply chain to another, see [Getting Started with Tanzu Application Platform](getting-started.md). For more information about profiles, see [Installation profiles in Tanzu Application Platform](overview.md#profiles-and-packages).
+For information about switching from one supply chain to another, see [Getting Started with Tanzu Application Platform](getting-started.md). For more information about profiles, see [Installation profiles in Tanzu Application Platform](overview.md#profiles-and-packages).
 
-## <a id='install-profile'></a> Install a Tanzu Application Platform profile
+## <a id='install-profile'></a> Install a Tanzu Application Platform Profile
 
-The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile settings. This is done by using the package manager you installed using Tanzu Cluster Essentials.
+The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile settings. Use the package manager that you installed using Tanzu Cluster Essentials to do this.
 
 To install a profile:
 
@@ -362,14 +360,14 @@ To install a profile:
 
 1. Create a `tap-values.yml` file by using the
 [Full Profile sample](#full-profile) or [Light Profile sample](#light-profile) as a guide.
-These samples have the minimum configuration required to deploy Tanzu Application Platform.
+These samples contain the minimum configuration required to deploy Tanzu Application Platform.
 The sample values file contains the necessary defaults for both the meta-package
 (parent Tanzu Application Platform package) and subordinate packages
 (individual child packages).
-The values file you provide during installation is used for further configuration
+The values file that you provide during installation is used for further configuration
 of Tanzu Application Platform.
 
->**Important:** Keep this file for future use.
+    >**Important:** Keep this file for future use.
 
 1. Proceed to the [View possible configuration settings for your package](#view-pkge-config-settings)
 section.
@@ -523,7 +521,7 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
 - `INGRESS-DOMAIN` is the subdomain for the host name that you will point at the `tanzu-shared-ingress` service's External IP address.
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog you've already built and posted on the Git infrastructure you specified in the Integration section.
 
-### <a id="view-pkge-config-settings"></a>View possible configuration settings for your package
+### <a id="view-pkge-config-settings"></a>View Possible Configuration Settings for the Package
 
 To view possible configuration settings for a package, run:
 
@@ -606,7 +604,7 @@ After you install Full Profile or Light Profile on to your cluster, you can inst
 Tanzu Developer Tools for VSCode extension to help you develop against it.
 For instructions, see [Installing Tanzu Dev Tools for VSCode](vscode-extension/install.md).
 
-## <a id='configure-envoy-lb'></a> Configure LoadBalancer for Contour ingress
+## <a id='configure-envoy-lb'></a> Configure LoadBalancer for Contour Ingress
 
 This section only applies when you use Tanzu Application Platform to deploy its own shared Contour ingress controller in `tanzu-system-ingress`. It is not applicable when you use an existing ingress with the components. You can share this ingress across `cnrs`, `tap_gui`, and `learningcenter`.
 
@@ -644,7 +642,7 @@ Proceed to the [Getting Started](getting-started.md) topic or the
 [Tanzu Application Platform GUI - Catalog Operations](tap-gui/catalog/catalog-operations.md) topic.
 
 
-## <a id='exclude-packages'></a> Exclude packages from a Tanzu Application Platform profile
+## <a id='exclude-packages'></a> Exclude Packages from a Tanzu Application Platform Profile
 
 To exclude packages from a Tanzu Application Platform profile:
 
