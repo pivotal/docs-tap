@@ -2,7 +2,7 @@
 
 ## <a id='sec-scan'></a>Security Scans
 
-See [SCA Scanning Results](./sca_scans/CVE.md) for security scanning results for the API and CLI components.
+See [SCA Scanning Results](sca_scans/sca-scanning-results.md) for security scanning results for the API and CLI components.
 
 ## <a id='app-sec'></a>Application security
 
@@ -84,4 +84,3 @@ A Coverity Scan is run on the source code of the API server, CLI, and all their 
 A Black Duck scan is run on the compiled binary to check for vulnerabilities and license data. There are no high or critical items outstanding at the time of release.
 
 A Grype scan is run against the source code and the compiled container for dependencies vulnerabilities. There are no high or critical items outstanding at the time of release.
-

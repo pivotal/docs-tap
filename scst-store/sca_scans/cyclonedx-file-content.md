@@ -1,6 +1,7 @@
 # CycloneDX file content
 
-The following XML content is from a CycloneDX file related to [SCA scanning results](cve.md).
+The following XML content is from a CycloneDX file related to
+[SCA scanning results](sca-scanning-results.md).
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
