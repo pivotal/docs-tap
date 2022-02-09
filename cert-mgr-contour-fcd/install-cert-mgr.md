@@ -102,7 +102,7 @@ If you do not want to use a profile, install them manually.
         For example:
 
         ```
-        kubectl apply -f cert-manager-rbac.yml
+        kubectl apply -f cert-manager-install.yml
         ```
 
   4. Verify the package install by running:
