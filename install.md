@@ -41,9 +41,12 @@ To add the Tanzu Application Platform package repository:
 
     ```
     tanzu package repository add tanzu-tap-repository \
-      --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.0.0 \
+      --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:TAP-VERSION \
       --namespace tap-install
     ```
+
+    Where `TAP-VERSION` is your Tanzu Application Platform version, such as `1.0.1`.
+
     For example:
 
     ```
@@ -60,6 +63,7 @@ To add the Tanzu Application Platform package repository:
     ```
     tanzu package repository get tanzu-tap-repository --namespace tap-install
     ```
+
     For example:
 
     ```
@@ -72,6 +76,9 @@ To add the Tanzu Application Platform package repository:
     STATUS:        Reconcile succeeded
     REASON:
     ```
+
+    >**Note:** the `VERSION` and `TAG` numbers differ from the example above if you are on
+    >Tanzu Application Platform v1.0.1 or later.
 
 1. List the available packages by running:
 
@@ -299,8 +306,10 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
 To view possible configuration settings for a package, run:
 
 ```
-tanzu package available get tap.tanzu.vmware.com/1.0.0 --values-schema --namespace tap-install
+tanzu package available get tap.tanzu.vmware.com/TAP-VERSION --values-schema --namespace tap-install
 ```
+
+Where `TAP-VERSION` is your Tanzu Application Platform version, such as `1.0.1`.
 
 >**Note:** The `tap.tanzu.vmware.com` package does not show all configuration settings for packages
 >it plans to install. The package only shows top-level keys.
@@ -394,8 +403,10 @@ service_account           default                    string  Name of the service
 1. Install the package by running:
 
     ```
-    tanzu package install tap -p tap.tanzu.vmware.com -v 1.0.0 --values-file tap-values.yml -n tap-install
+    tanzu package install tap -p tap.tanzu.vmware.com -v NUMBER --values-file tap-values.yml -n tap-install
     ```
+
+    Where `N`
 
 1. Verify the package install by running:
 
