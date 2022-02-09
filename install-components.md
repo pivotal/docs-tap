@@ -1,7 +1,6 @@
 # Installing individual packages
 
-This document describes how to install individual Tanzu Application Platform packages
-from the Tanzu Application Platform package repository.
+You can install Tanzu Application Platform through predefined profiles or through individual packages. This page provides links to install instructions for each of the individual packages. For more information about installing through profiles, see [Installing the Tanzu Application Platform Package and Profiles](install.md#about-package-profiles).
 
 Use the instructions on this page if you do not want to use a profile to install packages
 or if you want to install additional packages after installing a profile.
@@ -34,3 +33,162 @@ For more information, see [Prerequisites](prerequisites.md).
 - [Install API portal](api-portal/install-api-portal.md)
 - [Install Services Toolkit](services-toolkit/install-services-toolkit.md)
 - [Install Tekton](tekton/install-tekton.md)
+
+## <a id='verify'></a> Verify the installed packages
+
+Use the following procedure to verify that the packages are installed.
+
+1. List the installed packages by running:
+
+    ```
+    tanzu package installed list --namespace tap-install
+    ```
+
+    For example:
+
+    ```
+    $ tanzu package installed list --namespace tap-install
+    \ Retrieving installed packages...
+    NAME                     PACKAGE-NAME                                       PACKAGE-VERSION  STATUS
+    api-portal               api-portal.tanzu.vmware.com                        1.0.3            Reconcile succeeded
+    app-accelerator          accelerator.apps.tanzu.vmware.com                  1.0.0            Reconcile succeeded
+    app-live-view            appliveview.tanzu.vmware.com                       1.0.2            Reconcile succeeded
+    appliveview-conventions  build.appliveview.tanzu.vmware.com                 1.0.2            Reconcile succeeded
+    cartographer             cartographer.tanzu.vmware.com                      0.1.0            Reconcile succeeded
+    cloud-native-runtimes    cnrs.tanzu.vmware.com                              1.0.3            Reconcile succeeded
+    convention-controller    controller.conventions.apps.tanzu.vmware.com       0.4.2            Reconcile succeeded
+    developer-conventions    developer-conventions.tanzu.vmware.com             0.3.0-build.1    Reconcile succeeded
+    grype-scanner            grype.scanning.apps.tanzu.vmware.com               1.0.0            Reconcile succeeded
+    image-policy-webhook     image-policy-webhook.signing.apps.tanzu.vmware.com  1.0.0-beta.1     Reconcile succeeded
+    metadata-store           metadata-store.apps.tanzu.vmware.com               1.0.2            Reconcile succeeded
+    ootb-supply-chain-basic  ootb-supply-chain-basic.tanzu.vmware.com           0.5.1            Reconcile succeeded
+    ootb-templates           ootb-templates.tanzu.vmware.com                    0.5.1            Reconcile succeeded
+    scan-controller          scanning.apps.tanzu.vmware.com                     1.0.0            Reconcile succeeded
+    service-bindings         service-bindings.labs.vmware.com                   0.5.0            Reconcile succeeded
+    services-toolkit         services-toolkit.tanzu.vmware.com                  0.5.0            Reconcile succeeded
+    source-controller        controller.source.apps.tanzu.vmware.com            0.2.0            Reconcile succeeded
+    tap-gui                  tap-gui.tanzu.vmware.com                           0.3.0-rc.4       Reconcile succeeded
+    tekton-pipelines         tekton.tanzu.vmware.com                            0.30.0           Reconcile succeeded
+    tbs                      buildservice.tanzu.vmware.com                      1.4.2            Reconcile succeeded
+    ```
+
+## <a id='setup'></a> Set up developer namespaces to use installed packages
+
+To create a `Workload` for your application using the registry credentials specified,
+run these commands to add credentials and Role-Based Access Control (RBAC) rules to the namespace
+that you plan to create the `Workload` in:
+
+1. Add read/write registry credentials to the developer namespace by running:
+
+    ```
+    tanzu secret registry add registry-credentials --server REGISTRY-SERVER --username REGISTRY-USERNAME --password REGISTRY-PASSWORD --namespace YOUR-NAMESPACE
+    ```
+
+    Where:
+
+    - `YOUR-NAMESPACE` is the name that you want to use for the developer namespace.
+    For example, use `default` for the default namespace.
+    - `REGISTRY-SERVER` is the URL of the registry. For Dockerhub, this must be
+    `https://index.docker.io/v1/`. Specifically, it must have the leading `https://`, the `v1` path,
+    and the trailing `/`. For GCR, this is `gcr.io`.
+    Based on the information used in [Installing the Tanzu Application Platform Package and Profiles](install.md), you can use the
+    same registry server as in `ootb_supply_chain_basic` - `registry` - `server`.
+
+    **Note:** If you observe the following issue with the above command:
+
+    ```
+    panic: runtime error: invalid memory address or nil pointer dereference
+    [signal SIGSEGV: segmentation violation code=0x1 addr=0x128 pc=0x2bcce00]
+    ```
+
+    Use `kubectl` to create the secret:
+
+    ```
+    kubectl create secret docker-registry registry-credentials --docker-server=REGISTRY-SERVER --docker-username=REGISTRY-USERNAME --docker-password=REGISTRY-PASSWORD -n YOUR-NAMESPACE
+    ```
+
+2. Add placeholder read secrets, a service account, and RBAC rules to the developer namespace by running:
+
+    ```
+    cat <<EOF | kubectl -n YOUR-NAMESPACE apply -f -
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: tap-registry
+      annotations:
+        secretgen.carvel.dev/image-pull-secret: ""
+    type: kubernetes.io/dockerconfigjson
+    data:
+      .dockerconfigjson: e30K
+    ---
+    apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      name: default
+    secrets:
+      - name: registry-credentials
+    imagePullSecrets:
+      - name: registry-credentials
+      - name: tap-registry
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: Role
+    metadata:
+      name: default
+    rules:
+    - apiGroups: [source.toolkit.fluxcd.io]
+      resources: [gitrepositories]
+      verbs: ['*']
+    - apiGroups: [source.apps.tanzu.vmware.com]
+      resources: [imagerepositories]
+      verbs: ['*']
+    - apiGroups: [carto.run]
+      resources: [deliverables, runnables]
+      verbs: ['*']
+    - apiGroups: [kpack.io]
+      resources: [images]
+      verbs: ['*']
+    - apiGroups: [conventions.apps.tanzu.vmware.com]
+      resources: [podintents]
+      verbs: ['*']
+    - apiGroups: [""]
+      resources: ['configmaps']
+      verbs: ['*']
+    - apiGroups: [""]
+      resources: ['pods']
+      verbs: ['list']
+    - apiGroups: [tekton.dev]
+      resources: [taskruns, pipelineruns]
+      verbs: ['*']
+    - apiGroups: [tekton.dev]
+      resources: [pipelines]
+      verbs: ['list']
+    - apiGroups: [kappctrl.k14s.io]
+      resources: [apps]
+      verbs: ['*']
+    - apiGroups: [serving.knative.dev]
+      resources: ['services']
+      verbs: ['*']
+    - apiGroups: [servicebinding.io]
+      resources: ['servicebindings']
+      verbs: ['*']
+    - apiGroups: [services.apps.tanzu.vmware.com]
+      resources: ['resourceclaims']
+      verbs: ['*']
+    - apiGroups: [scanning.apps.tanzu.vmware.com]
+      resources: ['imagescans', 'sourcescans']
+      verbs: ['*']
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: RoleBinding
+    metadata:
+      name: default
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
+      kind: Role
+      name: default
+    subjects:
+      - kind: ServiceAccount
+        name: default
+    EOF
+    ```
