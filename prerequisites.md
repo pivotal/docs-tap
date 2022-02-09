@@ -93,7 +93,7 @@ Installation requires:
 * For the [`full` profile](install.html#full-profile), or
     use of Security Chain Security Tools - Store, your cluster must have a configured default StorageClass.
 
-* [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/)
+* With Tanzu for vSphere, [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/)
 must be configured so that Tanzu Application Platform controller pods can run as root.
 
 ## <a id='tools-and-cli-reqs'></a>Tools and CLI requirements
