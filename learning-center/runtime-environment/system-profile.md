@@ -1,28 +1,27 @@
 # SystemProfile resource
 
-The `SystemProfile` custom resource is used to configure the Learning Center Operator.
-The default system profile can be used to set defaults for ingress and image pull secrets, with
-specific deployments able to select an alternate profile if required.
+Use the `SystemProfile` custom resource to configure the Learning Center Operator.
+You can use the default system profile to set defaults for ingress and image pull secrets. You can also select an alternate profile for
+specific deployments if required.
 
 >**Note:** Changes made to the `SystemProfile` custom resource, or changes made by means of environment variables,
->won't take effect on already deployed `TrainingPortals`. Those must be recreated for the changes
+>won't take effect on already deployed `TrainingPortals`. You must recreate those for the changes
 >to be applied.
->Only the `TrainingPortal` resources must be recreated, because this resource takes care of
+>You only need to recreate the `TrainingPortal` resources, because this resource takes care of
 >recreating the `WorkshopEnvironments` with the new values.
 
 ## <a id="op-default-sys-profile"></a> Operator default system profile
 
 The Learning Center Operator, by default, uses an instance of the `SystemProfile` custom resource
 if it exists, named `default-system-profile`. You can override the name of the resource used by the
-Learning Center Operator as the default, by setting the `SYSTEM_PROFILE` environment variable on the
-deployment for the Learning Center Operator.
+Learning Center Operator as the default by setting the `SYSTEM_PROFILE` environment variable on the
+deployment for the Learning Center Operator. For example:
 
 ```
 kubectl set env deployment/learningcenter-operator -e SYSTEM_PROFILE=default-system-profile -n learningcenter
 ```
 
-Any changes to an instance of the `SystemProfile` custom are automatically detected and used by the
-Learning Center Operator. There is no need to redeploy the operator when changes are made.
+The Learning Center Operator automatically detects and uses any changes to an instance of the `SystemProfile` custom resource. You do not need to redeploy the operator when changes are made.
 
 ## <a id="def-ingress-config"></a> Defining configuration for ingress
 
