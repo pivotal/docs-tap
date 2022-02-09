@@ -82,6 +82,10 @@ Installation requires:
         * Reference the resource requirements below
         * Hyperkit driver is supported on macOS only; Docker driver is not supported.
     * vSphere with Tanzu v7.0 U3a (only possible with Tanzu Application Platform v1.0.1)
+        * For vSphere with Tanzu [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/)
+must be configured so that Tanzu Application Platform controller pods can run as root. Set the following Pod Security Policies: 
+`kubectl create clusterrolebinding default-tkg-admin-privileged-binding --clusterrole=psp:vmware-system-privileged --group=system:authenticated` 
+For more information about Pod Security Policies on Tanzu for vSphere, see [Using Pod Security Policies with Tanzu Kubernetes Clusters in VMware vSphere Product Documentation](https://docs.vmware.com/en/VMware-vSphere/7.0/vmware-vsphere-with-tanzu/GUID-CD033D1D-BAD2-41C4-A46F-647A560BAEAB.html).
 
 
 ## <a id="resource-requirements"></a>Resource requirements
@@ -95,9 +99,6 @@ Installation requires:
 
 * For the [`full` profile](install.html#full-profile), or
     use of Security Chain Security Tools - Store, your cluster must have a configured default StorageClass.
-
-* [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/)
-must be configured so that Tanzu Application Platform controller pods can run as root.
 
 ## <a id='tools-and-cli-reqs'></a>Tools and CLI requirements
 
