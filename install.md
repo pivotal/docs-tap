@@ -148,6 +148,8 @@ section.
 
 ### <a id='full-profile'></a> Full Profile
 
+The following is the YAML file sample for the full-profile:
+
 ```
 profile: full
 ceip_policy_disclosed: "true-OR-false" # Installation fails if this not set to `true`
@@ -228,6 +230,8 @@ service's External IP address.
 >of Build Service dependencies.
 
 ### <a id='light-profile'></a> Light Profile
+
+The following is the YAML file sample for the light-profile:
 
 ```
 profile: light
