@@ -41,14 +41,14 @@ To add the Tanzu Application Platform package repository:
 
     ```
     tanzu package repository add tanzu-tap-repository \
-      --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.0.0 \
+      --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.0.1 \
       --namespace tap-install
     ```
     For example:
 
     ```
     $ tanzu package repository add tanzu-tap-repository \
-        --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.0.0 \
+        --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.0.1 \
         --namespace tap-install
     \ Adding package repository 'tanzu-tap-repository'...
 
@@ -66,9 +66,9 @@ To add the Tanzu Application Platform package repository:
     $ tanzu package repository get tanzu-tap-repository --namespace tap-install
     - Retrieving repository tap...
     NAME:          tanzu-tap-repository
-    VERSION:       121657971
+    VERSION:       274079111
     REPOSITORY:    registry.tanzu.vmware.com/tanzu-application-platform/tap-packages
-    TAG:           1.0.0
+    TAG:           1.0.1
     STATUS:        Reconcile succeeded
     REASON:
     ```
@@ -299,7 +299,7 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
 To view possible configuration settings for a package, run:
 
 ```
-tanzu package available get tap.tanzu.vmware.com/1.0.0 --values-schema --namespace tap-install
+tanzu package available get tap.tanzu.vmware.com/1.0.1 --values-schema --namespace tap-install
 ```
 
 >**Note:** The `tap.tanzu.vmware.com` package does not show all configuration settings for packages
@@ -394,7 +394,7 @@ service_account           default                    string  Name of the service
 1. Install the package by running:
 
     ```
-    tanzu package install tap -p tap.tanzu.vmware.com -v 1.0.0 --values-file tap-values.yml -n tap-install
+    tanzu package install tap -p tap.tanzu.vmware.com -v 1.0.1 --values-file tap-values.yml -n tap-install
     ```
 
 1. Verify the package install by running:
