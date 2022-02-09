@@ -1,12 +1,13 @@
 # Tanzu apps workload update
 
-Update configuration of an existing workload
+Update the configuration of an existing workload.
 
 ### Synopsis
 
-Update configuration of an existing workload.
+Update the configuration of an existing workload.
 
 Workload configuration options include:
+
 - source code to build
 - runtime resource limits
 - environment variables

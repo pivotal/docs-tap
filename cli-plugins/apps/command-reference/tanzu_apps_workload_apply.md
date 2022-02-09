@@ -1,12 +1,13 @@
-## Tanzu apps workload apply
+# Tanzu apps workload apply
 
-Apply configuration to a new or existing workload
+Apply configurations to a new or existing workload.
 
 ### Synopsis
 
-Apply configuration to a new or existing workload. If the resource does not exist, it will be created.
+Apply configurations to a new or existing workload. If the resource does not exist, it will be created.
 
 Workload configuration options include:
+
 - source code to build
 - runtime resource limits
 - environment variables

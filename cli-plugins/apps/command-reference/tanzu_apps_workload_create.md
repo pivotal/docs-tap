@@ -1,12 +1,13 @@
 # Tanzu apps workload create
 
-Create a workload with specified configuration
+Create a workload with the specified configuration.
 
 ### Synopsis
 
-Create a workload with specified configuration.
+Create a workload with the specified configuration.
 
 Workload configuration options include:
+
 - Source code to build
 - Runtime resource limits
 - Environment variables

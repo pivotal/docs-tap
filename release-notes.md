@@ -32,7 +32,7 @@ This release has the following fixes:
 This release has the following issues:
 
 - The buildpack can't handle having both Maven and Gradle builds. The buildpack runs both, deleting the source after the Gradle build succeeds and then fails when the Maven build runs afterwards due to the Project Object Model(POM) being deleted after the Gradle build succeeded.
-- Tanzu CLI users shouldn’t be required to provide —git-branch if —git-tag is provided
+- Tanzu CLI users do not need to provide `—git-branch` if `—git-tag` is provided.
 
 
 #### Installing
@@ -119,11 +119,11 @@ the Git URL and the SSH credentials are correct.
 
 #### Tanzu CLI
 
-- Fix error reported on tail command when init containers are coming up
-- Workload update help command has incorrect suggestion for --export
-- Workload get command does not report pod status correctly
-- Workload apply command removed part of the content of a workload yaml definition file
-- Apply annotations to my workload and expect those annotations to be propagated
+- Fix error reported on tail command when Init Containers start running.
+- Workload update help command has incorrect suggestion for `--export`.
+- Workload get command does not report pod status correctly.
+- Workload apply command removes part of the content of a workload YAML definition file.
+- Apply annotations to my workload causes propagating annotations.
 
 #### Tanzu Dev Tools for VSCode
 
