@@ -92,11 +92,11 @@ To install Tanzu Build Service by using the Tanzu CLI:
     tanzunet_username: TANZUNET-USERNAME
     tanzunet_password: TANZUNET-PASSWORD
     descriptor_name: DESCRIPTOR-NAME
-    enable_automatic_dependency_updates: true
+    enable_automatic_dependency_updates: true/false # Optional
     ```
     Where:
 
-    - `REPOSITORY` is the fully qualified path to the TBS repository.
+    - `REPOSITORY` is the fully qualified path to the Tanzu Build Service repository.
     This path must be writable. For example:
 
         * Docker Hub: `my-dockerhub-account/build-service`
@@ -104,15 +104,26 @@ To install Tanzu Build Service by using the Tanzu CLI:
         * Artifactory: `artifactory.com/my-project/build-service`
         * Harbor: `harbor.io/my-project/build-service`
 
-    - `REGISTRY-USERNAME` and `REGISTRY-PASSWORD` are the user name and password for the registry. The install requires a `kp_default_repository_username` and `kp_default_repository_password` to write to the repository location.
-    - `TANZUNET-USERNAME` and `TANZUNET-PASSWORD` are the email address and password that you use to log in to Tanzu Network. The Tanzu Network credentials allow for configuration of the Dependencies Updater. This resource accesses and installs the build dependencies (buildpacks and stacks) Tanzu Build Service needs on your cluster. It also keeps these dependencies up to date as new versions are released on Tanzu Network.
-    - `DESCRIPTOR-NAME` is the name of the descriptor to import automatically. Current available options at time of release:
+    - `REGISTRY-USERNAME` and `REGISTRY-PASSWORD` are the user name and password for the
+    registry. The install requires a `kp_default_repository_username` and
+    `kp_default_repository_password` to write to the repository location.
+    - `TANZUNET-USERNAME` and `TANZUNET-PASSWORD` are the email address and password that
+    you use to log in to VMware Tanzu Network. Your VMware Tanzu Network credentials enable
+    you to configure the dependencies updater. This resource accesses and installs the build
+    dependencies (buildpacks and stacks) Tanzu Build Service needs on your cluster. It can
+    also optionally keep these dependencies up to date as new versions are released on
+    VMware Tanzu Network.
+    - `DESCRIPTOR-NAME` is the name of the descriptor to import automatically. The
+    available options at time of release are:
         - `tap-1.0.0-full` contains all dependencies and is for production use.
-        - `tap-1.0.0-light` smaller footprint used for speeding up installs. Requires Internet access on the cluster.
+        - `tap-1.0.0-lite` has a smaller footprint that enables faster installations. It requires Internet access on the cluster.
 
-    >**Note:** Using the `tbs-values.yaml` configuration,
-    >`enable_automatic_dependency_updates: false` can be used to pause the automatic update of
-    >Build Service dependencies.
+    >**Note:** By using the `tbs-values.yaml` configuration,
+    >`enable_automatic_dependency_updates: true` causes the dependency updater to update
+    >Tanzu Build Service dependencies (buildpacks and stacks) when they are released on
+    >VMware Tanzu Network. You can set `enable_automatic_dependency_updates` as `false` to
+    >pause the automatic update of Build Service dependencies. If left undefined, this value
+    >is `false`.
 
 1. Install the package by running:
 
@@ -140,7 +151,7 @@ To install Tanzu Build Service by using the Tanzu CLI:
     >**Note:** Installing the `buildservice.tanzu.vmware.com` package with Tanzu Network credentials
     >automatically relocates buildpack dependencies to your cluster. This install process can take
     >some time and the `--poll-timeout` flag increases the timeout duration.
-    >Using the `light` descriptor speeds this up significantly.
+    >Using the `lite` descriptor speeds this up significantly.
     >If the command times out, periodically run the installation verification step provided in the
     >following optional step. Image relocation continues in the background.
 
@@ -149,3 +160,63 @@ To install Tanzu Build Service by using the Tanzu CLI:
     ```
     tanzu package installed get tbs -n tap-install
     ```
+
+## <a id='tbs-tcli-install-offline'></a> Install Tanzu Build Service using the Tanzu CLI air-gapped
+
+Tanzu Build Service can be installed to a Kubernetes Cluster and registry that are air-gapped from external traffic.
+
+These steps assume that you have installed the TAP packages in your air-gapped environment.
+
+To install the Tanzu Build Service package air-gapped:
+
+1. Gather the values schema by running:
+
+    ```
+    tanzu package available get buildservice.tanzu.vmware.com/1.4.2 --values-schema --namespace tap-install
+    ```
+
+1. Create a `tbs-values.yaml` file. The required fields for an air-gapped installation are:
+
+    ```
+    ---
+    kp_default_repository: REPOSITORY
+    kp_default_repository_username: REGISTRY-USERNAME
+    kp_default_repository_password: REGISTRY-PASSWORD
+    ca_cert_data: CA-CERT-CONTENTS
+    ```
+
+Where:
+
+- `REPOSITORY` is the fully qualified path to the Tanzu Build Service repository.
+  This path must be writable. For example:
+    * Harbor: `harbor.io/my-project/build-service`
+    * Artifactory: `artifactory.com/my-project/build-service`
+- `REGISTRY-USERNAME` and `REGISTRY-PASSWORD` are the user name and password for the internal registry.
+- `CA-CERT-CONTENTS` are the contents of the PEM-encoded CA certificate for the internal registry
+
+1. Install the package by running:
+
+    ```
+   tanzu package install tbs -p buildservice.tanzu.vmware.com -v 1.4.2 -n tap-install -f tbs-values.yaml
+    ```
+
+   For example:
+
+    ```
+    $ tanzu package install tbs -p buildservice.tanzu.vmware.com -v 1.4.2 -n tap-install -f tbs-values.yaml
+    | Installing package 'buildservice.tanzu.vmware.com'
+    | Getting namespace 'tap-install'
+    | Getting package metadata for 'buildservice.tanzu.vmware.com'
+    | Creating service account 'tbs-tap-install-sa'
+    | Creating cluster admin role 'tbs-tap-install-cluster-role'
+    | Creating cluster role binding 'tbs-tap-install-cluster-rolebinding'
+    | Creating secret 'tbs-tap-install-values'
+    - Creating package resource
+    - Package install status: Reconciling
+     Added installed package 'tbs' in namespace 'tap-install'
+    ```
+
+1. Keep Tanzu Build Service dependencies up-to-date.
+
+When installing Tanzu Build Service to an air-gapped environment, dependencies cannot be automatically pulled in from the external internet.
+So dependencies must be imported and kept up to date manually. To import dependencies to an air-gapped Tanzu Build Service, follow the official [Tanzu Build Service docs](https://docs.vmware.com/en/Tanzu-Build-Service/1.4/vmware-tanzu-build-service-v14/GUID-updating-deps.html#online-update).

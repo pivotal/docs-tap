@@ -31,4 +31,3 @@ Verify the versions of packages have been updated using this command:
 ```
 tanzu package installed list --namespace tap-install
 ```
-

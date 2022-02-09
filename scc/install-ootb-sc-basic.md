@@ -13,7 +13,7 @@ instance of it running in a Kubernetes environment.
 
 ## <a id='ootb-sc-basic-prereqs'></a> Prerequisites
 
-- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Installing the Tanzu CLI](../install-general.md).
+- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
 - Install cartographer. For more information, see [Install Supply Chain Choreographer](install-scc.md).
 
 

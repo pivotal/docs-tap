@@ -20,7 +20,7 @@ Version: 0.32.0
 #### API Backend Container Image
 
 * Date: February 2, 2022
-* Results: No high and critical vulnerabilities. Multiple medium and low vulnerabilities. ([CycloneDX file](metadata-store-image-1.0.2-cyclonedx.xml))
+* Results: No high or critical vulnerabilities. Multiple medium and low vulnerabilities. For more information, see the [CycloneDX file content](cyclonedx-file-content.md).
 
 #### API Backend Code Repository
 
@@ -49,16 +49,16 @@ Software Composition Analysis scanning
 * BDBA version 2021.9.0
 * Grype version 0.25.1
 
-### CVEs:
-#### BDBA
-No vulnerabilities found in both the binaries of the API backend and CLI.
+### <a id='cves'></a>CVEs:
+#### <a id='bdba'></a>BDBA
+No vulnerabilities were found in the API backend and CLI binaries.
 
 See BDBA reports:
 * [API backend report](store-bdba-scan-2021-11-26.jpg)
 * [CLI report](cli-bdba-scan-2021-11-26.jpg)
 
-#### Grype
-No vulnerabilities found through scanning the sources of the API backend, client lib, and CLI
+#### <a id='grype-cr'></a>Grype
+No vulnerabilities were found scanning the API backend sources, client lib, and CLI.
 
 The following CVEs were found through scanning the API backend image:
 ```

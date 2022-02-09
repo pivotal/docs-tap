@@ -125,7 +125,7 @@ If you do not want to use a profile, install them manually.
         For example:
 
         ```
-        kubectl apply -f cert-manager-rbac.yml
+        kubectl apply -f cert-manager-install.yml
         ```
 
   4. Verify the package install by running:
@@ -1083,7 +1083,7 @@ To install Tanzu Build Service using the Tanzu CLI:
     - `TANZUNET-USERNAME` and `TANZUNET-PASSWORD` are the email address and password that you use to log in to Tanzu Network. The Tanzu Network credentials allow for configuration of the Dependencies Updater. This resource accesses and installs the build dependencies (buildpacks and stacks) Tanzu Build Service needs on your cluster. It also keeps these dependencies up to date as new versions are released on Tanzu Network.
     - `DESCRIPTOR-NAME` is the name of the descriptor to import automatically. Current available options at time of release:
         - `tap-1.0.0-full` contains all dependencies and is for production use.
-        - `tap-1.0.0-light` smaller footprint used for speeding up installs. Requires Internet access on the cluster.
+        - `tap-1.0.0-lite` smaller footprint used for speeding up installs. Requires Internet access on the cluster.
 
     >**Note:** Using the `tbs-values.yaml` configuration,
     >`enable_automatic_dependency_updates: false` can be used to pause the automatic update of
@@ -1115,7 +1115,7 @@ To install Tanzu Build Service using the Tanzu CLI:
     >**Note:** Installing the `buildservice.tanzu.vmware.com` package with Tanzu Network credentials
     >automatically relocates buildpack dependencies to your cluster. This install process can take
     >some time and the `--poll-timeout` flag increases the timeout duration.
-    >Using the `light` descriptor speeds this up significantly.
+    >Using the `lite` descriptor speeds this up significantly.
     >If the command times out, periodically run the installation verification step provided in the
     >following optional step. Image relocation continues in the background.
 
@@ -1832,12 +1832,12 @@ Application Live View Convention Service only.
     $ tanzu package available list run.appliveview.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for run.appliveview.tanzu.vmware.com...
       NAME                              VERSION        RELEASED-AT
-      run.appliveview.tanzu.vmware.com  1.0.1          2021-12-17T00:00:00Z
+      run.appliveview.tanzu.vmware.com  1.0.2          2022-01-24T00:00:00Z
 
     $ tanzu package available list build.appliveview.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for build.appliveview.tanzu.vmware.com...
       NAME                                VERSION        RELEASED-AT
-      build.appliveview.tanzu.vmware.com  1.0.1          2021-12-17T00:00:00Z
+      build.appliveview.tanzu.vmware.com  1.0.2          2022-01-24T00:00:00Z
     ```
 
 1. Create `app-live-view-values.yaml` with the following details:
@@ -1854,13 +1854,13 @@ Application Live View Convention Service only.
 1. Install the Application Live View package by running:
 
     ```
-    tanzu package install appliveview -p run.appliveview.tanzu.vmware.com -v 1.0.1 -n tap-install -f app-live-view-values.yaml
+    tanzu package install appliveview -p run.appliveview.tanzu.vmware.com -v 1.0.2 -n tap-install -f app-live-view-values.yaml
     ```
 
     For example:
 
     ```
-    $ tanzu package install appliveview -p run.appliveview.tanzu.vmware.com -v 1.0.1 -n tap-install -f app-live-view-values.yaml
+    $ tanzu package install appliveview -p run.appliveview.tanzu.vmware.com -v 1.0.2 -n tap-install -f app-live-view-values.yaml
     - Installing package 'run.appliveview.tanzu.vmware.com'
     | Getting package metadata for 'run.appliveview.tanzu.vmware.com'
     | Creating service account 'app-live-view-tap-install-sa'
@@ -1876,13 +1876,13 @@ Application Live View Convention Service only.
 1. Install the Application Live View conventions package by running:
 
     ```
-    tanzu package install appliveview-conventions -p build.appliveview.tanzu.vmware.com -v 1.0.1 -n tap-install -f app-live-view-values.yaml
+    tanzu package install appliveview-conventions -p build.appliveview.tanzu.vmware.com -v 1.0.2 -n tap-install -f app-live-view-values.yaml
     ```
 
     For example:
 
     ```
-    $ tanzu package install appliveview-conventions -p build.appliveview.tanzu.vmware.com -v 1.0.1 -n tap-install -f app-live-view-values.yaml
+    $ tanzu package install appliveview-conventions -p build.appliveview.tanzu.vmware.com -v 1.0.2 -n tap-install -f app-live-view-values.yaml
     - Installing package 'build.appliveview.tanzu.vmware.com'
     | Getting package metadata for 'build.appliveview.tanzu.vmware.com'
     | Creating service account 'app-live-view-tap-install-sa'
@@ -1911,7 +1911,7 @@ Application Live View Convention Service only.
     | Retrieving installation details for cc...
     NAME:                    appliveview
     PACKAGE-NAME:            run.appliveview.tanzu.vmware.com
-    PACKAGE-VERSION:         1.0.1
+    PACKAGE-VERSION:         1.0.2
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
@@ -1932,7 +1932,7 @@ Application Live View Convention Service only.
     | Retrieving installation details for cc...
     NAME:                    appliveview-conventions
     PACKAGE-NAME:            build.appliveview.tanzu.vmware.com
-    PACKAGE-VERSION:         1.0.1
+    PACKAGE-VERSION:         1.0.2
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
@@ -2354,20 +2354,20 @@ To install Supply Chain Security Tools - Store:
     $ tanzu package available list metadata-store.apps.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for metadata-store.apps.tanzu.vmware.com...
       NAME                         VERSION       RELEASED-AT
-      metadata-store.apps.tanzu.vmware.com  1.0.1
+      metadata-store.apps.tanzu.vmware.com  1.0.2
     ```
 
 1. (Optional) List out all the available deployment configuration options:
 
     ```
-    tanzu package available get metadata-store.apps.tanzu.vmware.com/1.0.1 --values-schema -n tap-install
+    tanzu package available get metadata-store.apps.tanzu.vmware.com/1.0.2 --values-schema -n tap-install
     ```
 
     For example:
 
     ```
-    $ tanzu package available get metadata-store.apps.tanzu.vmware.com/1.0.1 --values-schema -n tap-install
-    | Retrieving package details for metadata-store.apps.tanzu.vmware.com/1.0.1...
+    $ tanzu package available get metadata-store.apps.tanzu.vmware.com/1.0.2 --values-schema -n tap-install
+    | Retrieving package details for metadata-store.apps.tanzu.vmware.com/1.0.2...
       KEY                               DEFAULT              TYPE     DESCRIPTION
       app_service_type                  LoadBalancer         string   The type of service to use for the metadata app service. This can be set to 'NodePort' or 'LoadBalancer'.
       auth_proxy_host                   0.0.0.0              string   The binding ip address of the kube-rbac-proxy sidecar
@@ -2414,7 +2414,7 @@ and you want to use `NodePort`, then create a `metadata-store-values.yaml` and c
     ```
     tanzu package install metadata-store \
       --package-name metadata-store.apps.tanzu.vmware.com \
-      --version 1.0.1 \
+      --version 1.0.2 \
       --namespace tap-install \
       --values-file metadata-store-values.yaml
     ```
@@ -2425,7 +2425,7 @@ and you want to use `NodePort`, then create a `metadata-store-values.yaml` and c
     ```
     $ tanzu package install metadata-store \
       --package-name metadata-store.apps.tanzu.vmware.com \
-      --version 1.0.1 \
+      --version 1.0.2 \
       --namespace tap-install \
       --values-file metadata-store-values.yaml
 
@@ -2961,14 +2961,15 @@ Use the following procedure to verify that the packages are installed.
     NAME                     PACKAGE-NAME                                       PACKAGE-VERSION  STATUS
     api-portal               api-portal.tanzu.vmware.com                        1.0.3            Reconcile succeeded
     app-accelerator          accelerator.apps.tanzu.vmware.com                  1.0.0            Reconcile succeeded
-    app-live-view            appliveview.tanzu.vmware.com                       1.0.0-build.2    Reconcile succeeded
+    app-live-view            appliveview.tanzu.vmware.com                       1.0.2            Reconcile succeeded
+    appliveview-conventions  build.appliveview.tanzu.vmware.com                 1.0.2            Reconcile succeeded
     cartographer             cartographer.tanzu.vmware.com                      0.1.0            Reconcile succeeded
     cloud-native-runtimes    cnrs.tanzu.vmware.com                              1.0.3            Reconcile succeeded
     convention-controller    controller.conventions.apps.tanzu.vmware.com       0.4.2            Reconcile succeeded
     developer-conventions    developer-conventions.tanzu.vmware.com             0.3.0-build.1    Reconcile succeeded
     grype-scanner            grype.scanning.apps.tanzu.vmware.com               1.0.0            Reconcile succeeded
     image-policy-webhook     image-policy-webhook.signing.apps.tanzu.vmware.com  1.0.0-beta.1     Reconcile succeeded
-    metadata-store           metadata-store.apps.tanzu.vmware.com               1.0.1            Reconcile succeeded
+    metadata-store           metadata-store.apps.tanzu.vmware.com               1.0.2            Reconcile succeeded
     ootb-supply-chain-basic  ootb-supply-chain-basic.tanzu.vmware.com           0.5.1            Reconcile succeeded
     ootb-templates           ootb-templates.tanzu.vmware.com                    0.5.1            Reconcile succeeded
     scan-controller          scanning.apps.tanzu.vmware.com                     1.0.0            Reconcile succeeded
