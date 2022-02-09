@@ -460,7 +460,6 @@ This information cannot directly identify any individual.
 
 You must acknowledge that you have read the VMware CEIP policy before you can proceed with the
 installation.
-For more information, see [Install a Tanzu Application Platform profile](install.md#install-profile)
-in _Installing part II: profiles_.
+For more information, see [Install a Tanzu Application Platform profile](install.md#install-profile).
 To opt out of telemetry participation after installation, see
 [Opting out of telemetry collection](opting-out-telemetry.md).
