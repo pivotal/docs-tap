@@ -70,13 +70,13 @@ To set the Kubernetes cluster context:
 
 ## <a id='tanzu-cluster-essentials'></a> Install Cluster Essentials for VMware Tanzu
 
-For other Kubernetes providers, follow the steps below:
+Note that only MacOS and Linux are supported for Cluster Essentials for VMware Tanzu.
 
 1. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
 
 3. Navigate to [Cluster Essentials for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-cluster-essentials/) on Tanzu Network.
 
-4. Download `tanzu-cluster-essentials-darwin-amd64-1.0.0.tgz` (for OS X) or `tanzu-cluster-essentials-linux-amd64-1.0.0.tgz` (for Linux)
+4. Download `tanzu-cluster-essentials-darwin-amd64-1.0.0.tgz` (for MacOS) or `tanzu-cluster-essentials-linux-amd64-1.0.0.tgz` (for Linux)
    and unpack the TAR file into `tanzu-cluster-essentials` directory:
 
     ```
