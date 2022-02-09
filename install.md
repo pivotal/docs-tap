@@ -387,10 +387,10 @@ service_account           default                    string  Name of the service
 1. Install the package by running:
 
     ```
-    tanzu package install tap -p tap.tanzu.vmware.com -v VERSION --values-file tap-values.yml -n tap-install
+    tanzu package install tap -p tap.tanzu.vmware.com -v NUMBER --values-file tap-values.yml -n tap-install
     ```
 
-    Where `VERSION` is your Tanzu Application Platform version, such as `1.0.1`.
+    Where `N`
 
 1. Verify the package install by running:
 
