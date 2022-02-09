@@ -96,7 +96,9 @@ To deploy your application, you must download an accelerator, upload it on your 
 
 5. After downloading the ZIP file, expand it in a workspace directory and follow your preferred procedure for uploading the generated project files to a Git repository for your new project.
 
-6. Deploy the Tanzu Java Web App accelerator by running the `tanzu apps workload create` command:
+6. Ensure you have [set up developer namespaces to use installed packages](install-components.md#setup).
+
+7. Deploy the Tanzu Java Web App accelerator by running the `tanzu apps workload create` command:
 
     ```
     tanzu apps workload create tanzu-java-web-app \
@@ -125,13 +127,13 @@ To deploy your application, you must download an accelerator, upload it on your 
     > **Note:** This deployment uses an accelerator source from Git, but in later steps you use the VSCode extension
     to debug and live-update this application.
 
-7. View the build and runtime logs for your app by running the `tail` command:
+8. View the build and runtime logs for your app by running the `tail` command:
 
     ```
     tanzu apps workload tail tanzu-java-web-app --since 10m --timestamp
     ```
 
-8. After the workload is built and running, you can view the Web App in your browser. View the URL of the Web App by running the command below, and then press **ctrl-click** on the
+9. After the workload is built and running, you can view the Web App in your browser. View the URL of the Web App by running the command below, and then press **ctrl-click** on the
    Workload Knative Services URL at the bottom of the command output.
 
     ```
