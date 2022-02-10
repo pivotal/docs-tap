@@ -1,8 +1,10 @@
 # Troubleshooting
 
-## <a id="collecting logs"></a> Collecting Logs from Service Binding Manager
+## <a id="collect-logs"></a> Collect logs
 
-Retrieve pod logs from the `manager` running in the `service-bindings` namespace.
+To help identify issues when troubleshooting, you can retrieve and examine logs from the service binding manager.
+
+To retrieve pod logs from the `manager` running in the `service-bindings` namespace, run:
 
 ```
 kubectl -n service-bindings logs -l role=manager
