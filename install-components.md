@@ -2,7 +2,8 @@
 
 You can install Tanzu Application Platform through predefined profiles or through individual packages. This page provides links to install instructions for each of the individual packages. For more information about installing through profiles, see [Installing the Tanzu Application Platform Package and Profiles](install.md#about-package-profiles).
 
-Use the instructions on this page if you do not want to use a profile to install packages
+Installing individual Tanzu Application Platform packages
+is useful if you do not want to use a profile to install packages
 or if you want to install additional packages after installing a profile.
 Before installing the packages, be sure to complete the prerequisites, configure
 and verify the cluster, accept the EULA, and install the Tanzu CLI with any required plug-ins.
