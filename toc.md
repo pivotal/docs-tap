@@ -15,7 +15,6 @@ This is the table of contents from which the Tanzu Application Platform Document
 - [Uninstalling Tanzu Application Platform](uninstall.md)
 - [Component documentation](components.md)
   - [Installing individual packages](install-components.md)
-        - [Install Cloud Native Runtimes](cloud-native-runtimes/install-cnrt.md)
   - [Apps CLI plug-in](cli-plugins/apps/overview-installation.md)
         - [Working with workloads](cli-plugins/apps/working-with-workloads.md)
         - [Command reference](cli-plugins/apps/command-reference.md)
