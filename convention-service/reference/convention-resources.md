@@ -2,19 +2,19 @@
 
 The convention controller is open to extension. These resources are typically consumed by platform developers and operators rather than by application developers.
 
-## <a id="convention-service-resourses"></a>Convention Service resources
+## <a id="convention-service-resourses"></a>Convention Service Resources
 
 There are several [resources](convention-resources.md) involved in the application of conventions to workloads.
 
-### <a id="api-structure"></a>API structure
+### <a id="api-structure"></a>API Structure
 
 The [`PodConventionContext`](pod-convention-context.md) API object in the `webhooks.conventions.apps.tanzu.vmware.com` API group is the structure used for both request and response from the convention server.
 
-### <a id="template-status"></a>Template status
+### <a id="template-status"></a>Template Status
 
 The enriched `PodTemplateSpec` is reflected at [`.status.template`](pod-convention-context-status.md). For more information about `PodTemplateSpec`, see the [Kubernetes documentation](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec).
 
-## <a id="chaining-multiple-conventions"></a>Chaining multiple conventions
+## <a id="chaining-multiple-conventions"></a>Chaining Multiple Conventions
 
 You can define multiple `ClusterPodConventions` and apply them to different types of workloads.
 You can also apply multiple conventions to a single workload.
@@ -28,7 +28,7 @@ After the conventions are applied, the `Ready` status condition on the `PodInten
 whether it is applied successfully.
 A list of all applied conventions is stored under the annotation `conventions.apps.tanzu.vmware.com/applied-conventions`.
 
-## <a id="collecting-logs-from-controller"></a>Collecting logs from the controller
+## <a id="collecting-logs-from-controller"></a>Collecting Logs from the Controller
 
 The convention controller is a Kubernetes operator and can be deployed in a cluster with other components. If you have trouble, you can retrieve and examine the logs from the controller to help identify issues.
 
