@@ -102,19 +102,19 @@ POST /api/imageReport
 #### <a id='responses-cir'></a>Responses
 
 
-##### <a id="create-image-rpt-200"></a> 200 - Image
+##### <a id="create-im-rpt-200"></a> 200 - Image
 Status: OK
 
-###### <a id="create-image-rpt-200-schema"></a> Schema
+###### <a id="create-im-rpt-200-schema"></a> Schema
 
 
 
 [Image](#image)
 
-##### <a id="create-image-rpt-default"></a> Default Response
+##### <a id="create-im-rpt-default"></a> Default Response
 ErrorMessage
 
-###### <a id="create-image-rpt-default-schema"></a> Schema
+###### <a id="create-im-rpt-def-schema"></a> Schema
 
 
 
@@ -141,19 +141,19 @@ POST /api/sourceReport
 #### <a id='responses-csr'></a>Responses
 
 
-##### <a id="create-source-rpt-200"></a> 200 - Source
+##### <a id="create-srce-rpt-200"></a> 200 - Source
 Status: OK
 
-###### <a id="create-source-rpt-200-schema"></a> Schema
+###### <a id="create-srce-rpt-200-schem"></a> Schema
 
 
 
 [Source](#source)
 
-##### <a id="create-source-rpt-default"></a> Default Response
+##### <a id="cr-source-rpt-def"></a> Default Response
 ErrorMessage
 
-###### <a id="create-source-rpt-default-schema"></a> Schema
+###### <a id="cr-source-rpt-def-schema"></a> Schema
 
 
 
@@ -180,19 +180,19 @@ GET /api/images/{IDorDigest}/packages
 #### <a id='responses-gip'></a>Responses
 
 
-##### <a id="get-image-packages-200"></a> 200 - Package
+##### <a id="get-im-packages-200"></a> 200 - Package
 Status: OK
 
-###### <a id="get-image-pckgs-200-schema"></a> Schema
+###### <a id="get-im-pckgs-200-schema"></a> Schema
 
 
 
 [][Package](#package)
 
-##### <a id="get-image-pckgs-default"></a> Default Response
+##### <a id="get-im-pckgs-def"></a> Default Response
 ErrorMessage
 
-###### <a id="get-image-pckgs-default-schema"></a> Schema
+###### <a id="get-ime-pckgs-def-schema"></a> Schema
 
 
 
@@ -228,10 +228,10 @@ Status: OK
 
 [][Vulnerability](#vulnerability)
 
-##### <a id="get-image-vul-default"></a> Default Response
+##### <a id="get-image-vul-def"></a> Default Response
 ErrorMessage
 
-###### <a id="get-image-vul-default-schema"></a> Schema
+###### <a id="get-im-vul-def-schema"></a> Schema
 
 
 
@@ -298,19 +298,19 @@ GET /api/packages/{IDorName}/images
 #### <a id='responses-gpi'></a>Responses
 
 
-##### <a id="get-pckg-images-200"></a> 200 - Image
+##### <a id="get-pckg-im-200"></a> 200 - Image
 Status: OK
 
-###### <a id="get-pckg-images-200-schema"></a> Schema
+###### <a id="get-pckg-im-200-schema"></a> Schema
 
 
 
 [][Image](#image)
 
-##### <a id="get-pckg-images-default"></a> Default Response
+##### <a id="get-pckg-im-def"></a> Default Response
 ErrorMessage
 
-###### <a id="get-pckg-images-default-schema"></a> Schema
+###### <a id="get-pckg-im-def-schema"></a> Schema
 
 
 
@@ -340,16 +340,16 @@ GET /api/packages/{IDorName}/sources
 ##### <a id="get-pckg-sources-200"></a> 200 - Source
 Status: OK
 
-###### <a id="get-pckg-sources-200-schema"></a> Schema
+###### <a id="get-pckg-srce-200-schema"></a> Schema
 
 
 
 [][Source](#source)
 
-##### <a id="get-pckg-sources-default"></a> Default Response
+##### <a id="get-pckg-srce-def"></a> Default Response
 ErrorMessage
 
-###### <a id="get-pckg-sources-default-schema"></a> Schema
+###### <a id="get-pckg-srce-def-schema"></a> Schema
 
 
 
@@ -388,7 +388,7 @@ Status: OK
 ##### <a id="get-pckg-vul-default"></a> Default Response
 ErrorMessage
 
-###### <a id="get-pckg-vul-default-schema"></a> Schema
+###### <a id="get-pckg-vul-def-schema"></a> Schema
 
 
 
@@ -465,10 +465,10 @@ Status: OK
 
 [][Package](#package)
 
-##### <a id="get-srce-pckg-default"></a> Default Response
+##### <a id="get-srce-pckg-def"></a> Default Response
 ErrorMessage
 
-###### <a id="get-srce-pckg-default-schema"></a> Schema
+###### <a id="get-srce-pckg-def-schema"></a> Schema
 
 
 
@@ -500,7 +500,7 @@ GET /api/sources/packages
 ##### <a id="get-srce-pckg-que-200"></a> 200 - Package
 Status: OK
 
-###### <a id="get-srce-pckg-que-200-schema"></a> Schema
+###### <a id="getsrcepckgque-200-schema"></a> Schema
 
 
 
@@ -509,7 +509,7 @@ Status: OK
 ##### <a id="get-srce-pckg-que-def"></a> Default Response
 ErrorMessage
 
-###### <a id="get-srce-pckg-que-def-schema"></a> Schema
+###### <a id="getsrcepckgque-def-schema"></a> Schema
 
 
 
@@ -580,7 +580,7 @@ GET /api/sources/vulnerabilities
 ##### <a id="get-srce-vul-query-200"></a> 200 - Vulnerability
 Status: OK
 
-###### <a id="get-srce-vul-que-200-schema"></a> Schema
+###### <a id="getsrcevulque-200-schema"></a> Schema
 
 
 
@@ -589,7 +589,7 @@ Status: OK
 ##### <a id="get-srce-vul-que-def"></a> Default Response
 ErrorMessage
 
-###### <a id="get-rce-vul-que-def-schema"></a> Schema
+###### <a id="getsrcevulque-def-schema"></a> Schema
 
 
 
