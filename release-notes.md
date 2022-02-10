@@ -12,33 +12,26 @@ This release has the following known issues:
 
 #### Developer Conventions
 
-**Debug Convention might not apply:** If you upgraded from Tanzu Application Platform v0.4 then the
-the debug convention might not apply to the app run image. This is because of the missing SBOM data
-in the image.
-To prevent this issue, delete existing app images that were built using Tanzu Application Platform
-v0.4.
-
+**Debug Convention might not apply:** If you upgraded from Tanzu Application Platform v0.4
+then the the debug convention might not apply to the app run image. This is because of the
+missing SBOM data in the image.
+To prevent this issue, delete existing app images that were built using
+Tanzu Application Platform v0.4.
 
 #### Grype scanner
 
 **Scanning Java source code may not reveal vulnerabilities:** Source Code Scanning only scans
 files present in the source code repository.
 No network calls are made to fetch dependencies.
-For languages that make use of dependency lock files, such as Golang and Node.js, Grype uses the
-lock files to check the dependencies for vulnerabilities.
+For languages that make use of dependency lock files, such as Golang and Node.js, Grype uses
+the lock files to check the dependencies for vulnerabilities.
 
 In the case of Java, dependency lock files are not guaranteed, so Grype instead uses the
 dependencies present in the built binaries (`.jar` or `.war` files).
 
 Because best practices do not include committing binaries to source code repositories, Grype
-fails to find vulnerabilities during a Source Scan. The vulnerabilities are still found during the
-Image Scan, after the binaries are built and packaged as images.
-
-#### Learning Center
-
-
-
-#### Supply Chain Choreographer
+fails to find vulnerabilities during a Source Scan. The vulnerabilities are still found
+during the Image Scan, after the binaries are built and packaged as images.
 
 #### Services Toolkit
 
@@ -50,34 +43,32 @@ the Gradle build succeeds.
 
 #### Supply Chain Security Tools – Scan
 
-- **Events show `SaveScanResultsSuccess` incorrectly:** `SaveScanResultsSuccess` appears in the
-events when the Supply Chain Security Tools - Store is not configured. The `.status.conditions`
-output, however, correctly reflects `SendingResults=False`.
-- **Scan Phase indicates `Scanning` incorrectly:** Scans have an edge case where, when an error has
-occurred during scanning, the Scan Phase field is not updated to `Error` and instead remains in the
-`Scanning` phase. Read the scan Pod logs to verify there was an error.
-- **CVE print columns are not getting populated:** After running a scan and using `kubectl get` on
-the scan, the CVE print columns (CRITICAL, HIGH, MEDIUM, LOW, UNKNOWN, CVETOTAL) are not populated.
-You can run `kubectl describe` on the scan and look for `Scan completed. Found x CVE(s): ...` under
-`Status.Conditions` to find these severity counts and `CVETOTAL`.
-- **Failing Blob source scans:** Blob source scans have an edge case where, when a compressed file
-without a `.git` directory is provided, sending results to the Supply Chain Security Tools - Store
-fails and the scanned revision value is not set. The current workaround is to add the `.git`
-directory to the compressed file.
-- **Scan controller pod fails:** If there is a misconfiguration
-(i.e. secretgen-controller not running, wrong CA secret name) after enabling the
-metadata store integration, the controller pod fails. The current workaround is
-to update the `tap-values.yaml` file with the proper configuration and update the application.
+- **Events show `SaveScanResultsSuccess` incorrectly:** `SaveScanResultsSuccess` appears in
+the events when the Supply Chain Security Tools - Store is not configured. The
+`.status.conditions` output, however, correctly reflects `SendingResults=False`.
+- **Scan Phase indicates `Scanning` incorrectly:** Scans have an edge case where, when an
+error has occurred during scanning, the Scan Phase field is not updated to `Error` and
+instead remains in the `Scanning` phase. Read the scan pod logs to verify there was an error.
+- **CVE print columns are not getting populated:** After running a scan and using
+`kubectl get` on the scan, the CVE print columns
+(CRITICAL, HIGH, MEDIUM, LOW, UNKNOWN, CVETOTAL) are not populated.
+You can run `kubectl describe` on the scan and look for
+`Scan completed. Found x CVE(s): ...` under `Status.Conditions` to find these severity
+counts and `CVETOTAL`.
+- **Failing Blob source scans:** Blob source scans have an edge case where, when a
+compressed file without a `.git` directory is provided, sending results to the
+Supply Chain Security Tools - Store fails and the scanned revision value is not set.
+The current workaround is to add the `.git` directory to the compressed file.
+- **Scan controller pod fails:** If there is a misconfiguration, such as
+secretgen-controller not running or the Certificate Authority secret name being wrong, the
+controller pod fails after enabling the metadata store integration. The current workaround is
+to update the `tap-values.yaml` file with the proper configuration and update the
+application.
 - **Deleted resources keep reconciling:** After creating a scan CR and deleting it,
 the controllers keep trying to fetch the deleted resource, resulting in a `not found`
 or `unable to fetch` log entry with every reconciliation cycle.
 - **Scan controller fails when Git clone fails:** If this occurs, confirm that
 the Git URL and the SSH credentials are correct.
-
-#### Supply Chain Security Tools - Sign
-
-
-This release has the following fixes:
 
 #### Application Accelerator
 
