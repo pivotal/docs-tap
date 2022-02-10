@@ -151,3 +151,7 @@ This is the table of contents from which the Tanzu Application Platform Document
          - [Application Accelerator](tap-gui/plugins/application-accelerator.md)
       - [Upgrading Tanzu Applucation Platform GUI](tap-gui/upgrades.md)
       - [Troubleshooting Tanzu Application Platform GUI](tap-gui/troubleshooting.md)
+    - [Tanzu Build Service](tanzu-build-service/tbs-about.md)
+      - [Install Tanzu Build Service](tanzu-build-service/install-tbs.md)
+    - [Tekton](tekton/tekton-about.md)
+      - [Install Tekton](tekton/install-tekton.md)
