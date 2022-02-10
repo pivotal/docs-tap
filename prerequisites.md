@@ -80,6 +80,7 @@ Installation requires:
     * Minikube
         * Reference the resource requirements below
         * Hyperkit driver is supported on macOS only; Docker driver is not supported.
+    * Tanzu Kubernetes Grid multi-cloud
 
 ## <a id="resource-requirements"></a>Resource requirements
 
