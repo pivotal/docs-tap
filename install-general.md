@@ -1,7 +1,5 @@
 # Accepting EULAs and installing the Tanzu CLI
 
-## Accepting EULAs
-
 Before installing packages, you have to accept the End User License Agreements (EULAs).
 
 To accept EULAs:
@@ -9,12 +7,13 @@ To accept EULAs:
 1. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
 
 2. For each of the following components, accept or confirm that you have accepted the EULA:
-- [Cluster Essentials for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-cluster-essentials/#/releases/1011100)
-- [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/)
-- [Tanzu Build Service](https://network.tanzu.vmware.com/products/build-service/) and its associated components:
-    * [Tanzu Build Service Dependencies](https://network.tanzu.vmware.com/products/tbs-dependencies/)
-    * [Buildpacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-buildpacks-suite)
-    * [Stacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-stacks-suite)
+
+    - [Cluster Essentials for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-cluster-essentials/#/releases/1011100)
+    - [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/)
+    - [Tanzu Build Service](https://network.tanzu.vmware.com/products/build-service/) and its associated components:
+        - [Tanzu Build Service Dependencies](https://network.tanzu.vmware.com/products/tbs-dependencies/)
+        - [Buildpacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-buildpacks-suite)
+        - [Stacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-stacks-suite)
 
 
 This is an example of how to accept EULAs for Tanzu Application Platform:
