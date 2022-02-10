@@ -43,6 +43,7 @@ This is the table of contents from which the Tanzu Application Platform Document
     - [Service Bindings for Kubernetes](service-bindings/about.md)
       - [Troubleshooting](service-bindings/troubleshooting.md)
     - [Services Toolkit](services-toolkit/about.md)
+      - [Install Services Toolkit](services-toolkit/install-services-toolkit.md)
     - [Source Controller](source-controller/about.md)
       - [Troubleshooting](source-controller/troubleshooting.md)
     - [Developer Conventions](developer-conventions/about.md)
