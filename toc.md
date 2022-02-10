@@ -17,7 +17,7 @@ This is the table of contents from which the Tanzu Application Platform Document
   - [Installing individual packages](install-components.md)
         - [Install Cloud Native Runtimes](cloud-native-runtimes/install-cnrt.md)
         - [Install Tekton](tekton/install-tekton.md)
-  - [Apps CLI plug-in overview](cli-plugins/apps/overview-installation.md)
+  - [Apps CLI plug-in](cli-plugins/apps/overview-installation.md)
         - [Working with workloads](cli-plugins/apps/working-with-workloads.md)
         - [Command reference](cli-plugins/apps/command-reference.md)
             - [Tanzu Apps](cli-plugins/apps/command-reference/tanzu_apps.md)
