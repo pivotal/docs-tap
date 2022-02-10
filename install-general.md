@@ -73,6 +73,8 @@ To set the Kubernetes cluster context:
 
 Only MacOS and Linux are supported for Cluster Essentials for VMware Tanzu.
 
+To install cluster essentials for VMware Tanzu:
+
 1. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
 
 1. Navigate to [Cluster Essentials for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-cluster-essentials/) on VMware Tanzu Network.
