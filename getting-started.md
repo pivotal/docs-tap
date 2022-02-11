@@ -235,7 +235,7 @@ Follow the following steps to diagnose Spring Boot-based applications using Appl
 
 1. Confirm that the Application Live View components installed successfully. For instructions, see [Verify the Application Live View components](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-installing.html#verify-the-application-live-view-components-5) in the Application Live View documentation.
 
-1. Access the Application Live View Tanzu Application Platform GUI. For instructions, see [Entry point to Application Live View plug-in](app-live-view.md#entry-point) in _Application Live View in Tanzu Application Platform GUI_.
+1. Access the Application Live View Tanzu Application Platform GUI. For instructions, see [Entry point to Application Live View plug-in](tap-gui/plugins/install-application-live-view.md#entry-point) in _Application Live View in Tanzu Application Platform GUI_.
 
 1. Select your running application to view the diagnostic options and inside the application. For more information, see [Product Features](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-product-features.html) in the Application Live View documentation.
 
