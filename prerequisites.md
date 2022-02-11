@@ -77,6 +77,7 @@ Installation requires:
     * Amazon Elastic Kubernetes Service
     * Google Kubernetes Engine
         * GKE Autopilot clusters do not have required features enabled
+        * GKE clusters that are setup in Zonal mode may notice K8s API errors when the GKE control plane gets resized after traffic increases. Users can mitigate this creating a Regional cluster with 3 control-plane nodes right from the start.
     * Minikube
         * Reference the resource requirements below
         * Hyperkit driver is supported on macOS only; Docker driver is not supported.
