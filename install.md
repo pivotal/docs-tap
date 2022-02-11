@@ -163,7 +163,7 @@ buildservice:
 supply_chain: basic
 
 cnrs:
-  domain_name: apps.INGRESS-DOMAIN
+  domain_name: INGRESS-DOMAIN
 
 ootb_supply_chain_basic:
   registry:
@@ -256,7 +256,7 @@ buildservice:
 supply_chain: basic
 
 cnrs:
-  domain_name: apps.INGRESS-DOMAIN
+  domain_name: INGRESS-DOMAIN
 
 ootb_supply_chain_basic:
   registry:
