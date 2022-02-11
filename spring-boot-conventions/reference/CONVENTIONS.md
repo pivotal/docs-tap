@@ -1,6 +1,6 @@
 # Conventions
 
-When submitting the following Pod `Pod Intent` on each convention, the output may change depending on the applied convention
+When submitting the following pod `Pod Intent` on each convention, the output may change depending on the applied convention.
 
   The submitted pod intent can be:
 
