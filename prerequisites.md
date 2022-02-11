@@ -24,8 +24,8 @@ associated with some free registry offerings.
     - If installing using the `full` descriptor for Tanzu Build Service, which is intended for production use
     and offline environments, 10&nbsp;GB of available storage is recommended.
 
-- Registry credentials with push and write access made available to Tanzu Application Platform to
-store images.
+- Registry credentials with read and write access made available to
+Tanzu Application Platform to store images.
 
 - Network access to https://registry.tanzu.vmware.com.
 
