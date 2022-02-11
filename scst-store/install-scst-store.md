@@ -97,7 +97,7 @@ and you want to use `NodePort`, then create a `metadata-store-values.yaml` and c
     app_service_type: "NodePort"
     ```
 
-    See [Deployment Details and Configuration](scst-store/deployment_details.md#configuration) for
+    See [Deployment Details and Configuration](deployment_details.md#configuration) for
     more detailed descriptions of configuration options.
 
 1. Install the package by running:

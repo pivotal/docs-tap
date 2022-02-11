@@ -134,7 +134,7 @@ To install Cloud Native Runtimes:
 1. Configure a namespace to use Cloud Native Runtimes:
 
    >**Note:** This step covers configuring a namespace to run Knative services.
-   >If you rely on a SupplyChain to deploy Knative services into your cluster, 
+   >If you rely on a SupplyChain to deploy Knative services into your cluster,
    >skip this step because namespace configuration is covered in
    >[Set up developer namespaces to use installed packages](../install-components.md#setup).
    >Otherwise, you must complete the following steps for each namespace where you create Knative services.
@@ -145,7 +145,7 @@ To install Cloud Native Runtimes:
 
     1. Create an image pull secret in the current namespace and fill it from the `tap-registry`
     secret mentioned in
-       [Add the Tanzu Application Platform package repository](install.md#add-package-repositories).
+       [Add the Tanzu Application Platform package repository](../install.md#add-tap-package-repo).
        Run the following commands to create an empty secret and annotate it as a target of the secretgen
        controller:
 

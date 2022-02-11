@@ -17,7 +17,7 @@ This easy-to-use interface provides ways to troubleshoot, learn, and maintain an
 It gives a level of control to the users to change some parameters, such as environment properties, without a restart (where the Spring Boot application, for example, supports that).
 
 
-## Entry point to Application Live View plug-in
+## <a id="entry-point"></a>Entry point to Application Live View plug-in
 
 The Application Live View UI plug-in is part of Tanzu Application Platform GUI. To use the Application Live View plug-in:
 

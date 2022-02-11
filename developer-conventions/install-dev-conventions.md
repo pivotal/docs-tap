@@ -12,7 +12,7 @@ For more information about profiles, see [Installing the Tanzu Application Platf
 Before installing Developer Conventions:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
-- Install [Convention Service](../convention-service/install-conv-serv.md).
+- Install [Convention Service](../convention-service/install-conv-service.md).
 
 ## <a id='dc-install'></a>Install
 
@@ -63,4 +63,3 @@ by running:
     ```
 
     Verify that `STATUS` is `Reconcile succeeded`
-
