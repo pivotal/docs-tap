@@ -131,7 +131,7 @@ You issue the `tanzu package install` command, but one or more packages fail to 
 For example:
 
   ```
-  tanzu package install tap -p tap.tanzu.vmware.com -v 0.4.0 --values-file tap-values.yaml -n tap-install
+  tanzu package install tap -p tap.tanzu.vmware.com -v 1.0.1 --values-file tap-values.yaml -n tap-install
   - Installing package 'tap.tanzu.vmware.com'
   \ Getting package metadata for 'tap.tanzu.vmware.com'
   | Creating service account 'tap-tap-install-sa'
@@ -199,7 +199,7 @@ If it is still running, it is likely to finish successfully and produce output s
     services-toolkit          services-toolkit.tanzu.vmware.com                  0.5.0-rc.3       Reconcile succeeded  tap-install
     source-controller         controller.source.apps.tanzu.vmware.com            0.2.0            Reconcile succeeded  tap-install
     spring-boot-conventions   spring-boot-conventions.tanzu.vmware.com           0.2.0            Reconcile succeeded  tap-install
-    tap                       tap.tanzu.vmware.com                               0.4.0-build.12   Reconciling          tap-install
+    tap                       tap.tanzu.vmware.com                               1.0.1            Reconciling          tap-install
     tap-gui                   tap-gui.tanzu.vmware.com                           1.0.0-rc.72      Reconcile succeeded  tap-install
     tap-telemetry             tap-telemetry.tanzu.vmware.com                     0.1.0            Reconcile succeeded  tap-install
     tekton-pipelines          tekton.tanzu.vmware.com                            0.30.0           Reconcile succeeded  tap-install

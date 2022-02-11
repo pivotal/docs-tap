@@ -67,4 +67,4 @@ Developer Conventions is released as a Tanzu Package. For information about inst
 
 ## <a id='uninstalling'></a>Uninstalling
 
-To uninstall Developer Conventions, follow the guide for [Uninstalling Tanzu Application Platform packages](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.4/tap/GUID-uninstall.html). The package name for developer conventions is `developer-conventions`.
+To uninstall Developer Conventions, follow the guide for [Uninstalling Tanzu Application Platform packages](../../uninstall.html). The package name for developer conventions is `developer-conventions`.

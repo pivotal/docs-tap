@@ -725,7 +725,7 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
     tanzu plugin list
     NAME                LATEST VERSION  DESCRIPTION                                                        REPOSITORY  VERSION  STATUS
     accelerator                         Manage accelerators in a Kubernetes cluster                                    v1.0.0   installed
-    apps                                Applications on Kubernetes                                                     v0.4.0   installed
+    apps                                Applications on Kubernetes                                                     v1.0.1   installed
     cluster             v0.13.1         Kubernetes cluster operations                                      core        v0.10.0  installed
     kubernetes-release  v0.13.1         Kubernetes release operations                                      core        v0.10.0  installed
     login               v0.13.1         Login to the platform                                              core        v0.10.0  installed
