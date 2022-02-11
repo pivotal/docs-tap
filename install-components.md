@@ -53,8 +53,8 @@ Use the following procedure to verify that the packages are installed.
     NAME                     PACKAGE-NAME                                       PACKAGE-VERSION  STATUS
     api-portal               api-portal.tanzu.vmware.com                        1.0.3            Reconcile succeeded
     app-accelerator          accelerator.apps.tanzu.vmware.com                  1.0.0            Reconcile succeeded
-    app-live-view            appliveview.tanzu.vmware.com                       1.0.2-build.2    Reconcile succeeded
-    appliveview-conventions  build.appliveview.tanzu.vmware.com                 1.0.2-build.2    Reconcile succeeded
+    app-live-view            appliveview.tanzu.vmware.com                       1.0.2            Reconcile succeeded
+    appliveview-conventions  build.appliveview.tanzu.vmware.com                 1.0.2            Reconcile succeeded
     cartographer             cartographer.tanzu.vmware.com                      0.1.0            Reconcile succeeded
     cloud-native-runtimes    cnrs.tanzu.vmware.com                              1.0.3            Reconcile succeeded
     convention-controller    controller.conventions.apps.tanzu.vmware.com       0.4.2            Reconcile succeeded
