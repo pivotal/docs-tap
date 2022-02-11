@@ -21,13 +21,14 @@ For example, a profile-based install:
 tanzu package installed update tap -p tap.tanzu.vmware.com -v 1.0.1  --values-file tap-values.yaml -n tap-install
 ```
 
-## Component specific installation instructions
+## Component-specific installation instructions
 
-Please see additional information about [upgrading Tanzu Aplication Platform GUI](https://docs.vmware.com/en/Tanzu-Application-Platform/1.1/tap/GUID-tap-gui-upgrades.html).
+Please see additional information about [upgrading Tanzu Application Platform GUI](tap-gui/upgrades.html).
 
-## Verify Upgrade
+## Verify the upgrade
 
-Verify the versions of packages have been updated using this command:
+Verify the versions of packages have been updated by running:
+
 ```
 tanzu package installed list --namespace tap-install
 ```
