@@ -24,8 +24,8 @@ associated with some free registry offerings.
     - If installing using the `full` descriptor for Tanzu Build Service, which is intended for production use
     and offline environments, 10&nbsp;GB of available storage is recommended.
 
-- Registry credentials with push and write access made available to Tanzu Application Platform to
-store images.
+- Registry credentials with read and write access made available to
+Tanzu Application Platform to store images.
 
 - Network access to https://registry.tanzu.vmware.com.
 
@@ -82,7 +82,7 @@ Installation requires:
         * Hyperkit driver is supported on macOS only. Docker driver is not supported.
     * Tanzu Kubernetes Grid multi-cloud
     * vSphere with Tanzu v7.0 U3a (only possible with Tanzu Application Platform v1.0.1).
-    
+
     For vSphere with Tanzu, [pod security policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/)
     must be configured so that Tanzu Application Platform controller pods can run as
     root. To set the pod security policies, run:
