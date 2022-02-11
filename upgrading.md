@@ -2,7 +2,8 @@
 
 This document describes how to upgrade Tanzu Application Platform from 1.0 to 1.0.1.
 
-A fresh install of Tanzu Application Platform `1.0.1` can be performed directly by following the instructions [Installing Tanzu Application Platform](https://docs.vmware.com/en/Tanzu-Application-Platform/1.0/tap/GUID-install-intro.html).
+You can perform a fresh install of Tanzu Application Platform `1.0.1` by following the instructions
+[Installing Tanzu Application Platform](install-intro.html).
 
 ## Add new package repository
 

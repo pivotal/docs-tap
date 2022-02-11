@@ -83,7 +83,7 @@ To install cluster essentials for VMware Tanzu:
 
 3. Navigate to [Cluster Essentials for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-cluster-essentials/) on Tanzu Network.
 
-4. Download `tanzu-cluster-essentials-darwin-amd64-1.0.0.tgz` (for OS X) or `tanzu-cluster-essentials-linux-amd64-1.0.0.tgz` (for Linux)
+4. Download `tanzu-cluster-essentials-darwin-amd64-1.0.1.tgz` (for OS X) or `tanzu-cluster-essentials-linux-amd64-1.0.1.tgz` (for Linux)
    and unpack the TAR file into `tanzu-cluster-essentials` directory:
 
     ```

@@ -100,7 +100,7 @@ running:
 1. Update your package installation with your changed values file by running:
 
     ```
-    tanzu package installed update tap --package-name tap.tanzu.vmware.com --version 1.0.0 --values-file tap-values-file.yml -n tap-install
+    tanzu package installed update tap --package-name tap.tanzu.vmware.com --version 1.0.1 --values-file tap-values-file.yml -n tap-install
     ```
 
 1. Access your Tanzu Application Platform GUI by using a web browser at the hostname that you provided.

@@ -37,13 +37,13 @@ To allow Tanzu Application GUI to read non-GitHub repositories containing compon
 After making changes to the `tap-values-file.yml`, update the package profile by running:
 
 ```
-tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version 1.0.0 --values-file tap-values-file.yml -n tap-install
+tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version 1.0.1 --values-file tap-values-file.yml -n tap-install
 ```
 
 For example:
 
 ```
-$ tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version 1.0.0 --values-file tap-values-file.yml -n tap-install
+$ tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version 1.0.1 --values-file tap-values-file.yml -n tap-install
 | Updating package 'tap'
 | Getting package install for 'tap'
 | Getting package metadata for 'tap.tanzu.vmware.com'
