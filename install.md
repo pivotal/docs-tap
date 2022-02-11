@@ -8,7 +8,7 @@ and verified the cluster, accepted the EULA, and installed the Tanzu CLI with an
 See [Accepting EULAs and installing the Tanzu CLI](install-general.md).
 
 
-## <a id='add-package-repositories-and-EULAs'></a> Add the Tanzu Application Platform package repository
+## <a id='add-tap-package-repo'></a> Add the Tanzu Application Platform package repository
 
 To add the Tanzu Application Platform package repository:
 
@@ -223,8 +223,13 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
 - `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
 service's External IP address.
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog that you've already built and posted on the Git infrastructure you specified in the Integration section.
-- `MY-DEV-NAMESPACE` is the namespace where you want the `ScanTemplates` to be deployed to. This is the namespace where the scanning feature is going to run.
-- `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull an image from the registry for scanning. If built images are pushed to the same registry as the Tanzu Application Platform images, this can reuse the `tap-registry` secret created in step 3 of [Add the Tanzu Application Platform package repository](#add-package-repositories).
+- `MY-DEV-NAMESPACE` is the namespace where you want the `ScanTemplates` to be deployed to.
+This is the namespace where the scanning feature is going to run.
+- `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
+credentials to pull an image from the registry for scanning.
+If built images are pushed to the same registry as the Tanzu Application Platform images,
+this can reuse the `tap-registry` secret created in
+[Add the Tanzu Application Platform package repository](#add-tap-package-repo).
 
 >**Note:** You can use `buildservice.enable_automatic_dependency_updates: false` in the `tap-values.yaml` to pause the automatic update
 >of Build Service dependencies.
