@@ -24,7 +24,7 @@ For more information, see [Prerequisites](prerequisites.md).
 - [Install Out-of-the-Box Supply Chain with Testing and Scanning](scc/install-ootb-sc-wtest-scan.md)
 - [Install Developer Conventions](developer-conventions/install-dev-conventions.md)
 - [Install Spring Boot Conventions](spring-boot-conventions/install-spring-boot-conventions.md)
-- [Install Application Live View](tap-gui/plugins/install-application-live-view.md)
+- [Install Application Live View](application-live-view/install-application-live-view.md)
 - [Install Tanzu Application Platform GUI](tap-gui/install-tap-gui.md)
 - [Install Learning Center for Tanzu Application Platform](learning-center/install-learning-center.md)
 - [Install Service Bindings](service-bindings/install-service-bindings.md)
@@ -53,8 +53,8 @@ Use the following procedure to verify that the packages are installed.
     NAME                     PACKAGE-NAME                                       PACKAGE-VERSION  STATUS
     api-portal               api-portal.tanzu.vmware.com                        1.0.3            Reconcile succeeded
     app-accelerator          accelerator.apps.tanzu.vmware.com                  1.0.0            Reconcile succeeded
-    app-live-view            appliveview.tanzu.vmware.com                       1.0.2            Reconcile succeeded
-    appliveview-conventions  build.appliveview.tanzu.vmware.com                 1.0.2            Reconcile succeeded
+    app-live-view            appliveview.tanzu.vmware.com                       1.0.2-build.2    Reconcile succeeded
+    appliveview-conventions  build.appliveview.tanzu.vmware.com                 1.0.2-build.2    Reconcile succeeded
     cartographer             cartographer.tanzu.vmware.com                      0.1.0            Reconcile succeeded
     cloud-native-runtimes    cnrs.tanzu.vmware.com                              1.0.3            Reconcile succeeded
     convention-controller    controller.conventions.apps.tanzu.vmware.com       0.4.2            Reconcile succeeded
