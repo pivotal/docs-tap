@@ -1,4 +1,4 @@
-## Install Learning Center for Tanzu Application Platform
+## Install Learning Center
 
 This document describes how to install Learning Center
 from the Tanzu Application Platform package repository.
@@ -26,7 +26,7 @@ the full profile or light profile, it already deploys a contour ingress controll
 
 - Any ingress routes created use the default ingress class if you have multiple ingress class types available and you need to override which is used.
 
-### <a id='install-lc-proc'></a> Procedure to Install Learning Center
+### <a id='install'></a> Install
 
 To install Learning Center:
 
