@@ -2,7 +2,7 @@
 
 The `WorkshopRequest` custom resource defines a workshop request.
 
-## <a id="specify-workshop-env"></a> Specifying workshop environment
+## <a id="specify"></a> Specifying workshop environment
 
 The `WorkshopRequest` custom resource is used only to request a workshop instance.
 It does not specify the actual details needed to perform the deployment of the workshop instance.
@@ -31,7 +31,7 @@ custom resource for the workshop environment.
 If multiple workshop requests, whether for the same workshop environment or different ones, are
 created in the same namespace, the `name` defined in the `metadata` for the workshop request must be
 different for each. The value of this name is not important and is not used in the naming of workshop
-instances. A user must remember to delete the workshop instance, which is done by deleting the
+instances. You must remember to delete the workshop instance, which is done by deleting the
 workshop request.
 
 ## <a id="specify-workshop-env"></a> Specifying required access token
