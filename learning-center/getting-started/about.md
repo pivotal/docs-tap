@@ -1,6 +1,6 @@
 # Getting started with Learning Center
 
-To view information about Learning Center, see [About Learning Center](../about-learning-center/about-learning-center.md).
+To view information about Learning Center, see [Learning Center for Tanzu Application Platform](../../learning-center/about.md).
 Before deploying workshops, install a Kubernetes Operator for Learning Center.
 The operator manages the setup of the environment for each workshop and deploys instances of a workshop for each person.
 
