@@ -20,7 +20,7 @@ spec:
     name: lab-markdown-sample
 ```
 
-The workshop environment name specified in the workshop environment metadata does not need to be the same. It has to be different if you create multiple workshop environments from the same workshop definition.
+The workshop environment name specified in the workshop environment metadata must be the same. It has to be different if you create multiple workshop environments from the same workshop definition.
 
 When the workshop environment is created, the namespace created for the workshop environment uses the `name` specified in the `metadata`. This name is also used in the unique names of each workshop instance created under the workshop environment.
 
@@ -44,17 +44,17 @@ spec:
 
 Where `YOUR-GITHUB-URL-FOR-LAB-MARKDOWN-SAMPLE` is the Git repository URL for `lab-markdown-sample`. For example, `https://github.com/eduk8s/lab-markdown-sample`.
 
-You might use this to set the location of a back-end service, such as an image registry, to be used by the workshop.
+You can use this to set the location of a back-end service, such as an image registry, used by the workshop.
 
 Values of fields in the list of resource objects can reference several predefined parameters. The available parameters are:
 
-- `session_id` - A unique ID for the workshop instance within the workshop environment.
-- `session_namespace` - The namespace created for and bound to the workshop instance. This is the namespace unique to the session and where a workshop can create its own resources.
-- `environment_name` - The name of the workshop environment. Currently, this is the same as the name of the namespace for the workshop environment. Do not rely on their being the same, and use the most appropriate to cope with any future change.
-- `workshop_namespace` - The namespace for the workshop environment. This is the namespace where all deployments of the workshop instances are created and where the workshop instance runs the service account exists.
-- `service_account` - The workshop instance service account's name and access to the namespace created for that workshop instance.
-- `ingress_domain` - The host domain under which hostnames can be created when creating ingress routes.
-- `ingress_protocol` - The protocol (http/https) used for ingress routes created for workshops.
+- `session_ <!-- Use dashes for spacing in placeholders, not underscores. -->id` - A unique ID for the workshop instance within the workshop environment.
+- `session_ <!-- Use dashes for spacing in placeholders, not underscores. -->namespace` - The namespace created for and bound to the workshop instance. This is the namespace unique to the session and where a workshop can create its own resources.
+- `environment_ <!-- Use dashes for spacing in placeholders, not underscores. -->name` - The name of the workshop environment. Currently, this is the same as the name of the namespace for the workshop environment. It is suggested that you do not rely on workshop environment name and namespace being the same, and use the most appropriate to cope with any future change.
+- `workshop_ <!-- Use dashes for spacing in placeholders, not underscores. -->namespace` - The namespace for the workshop environment. This is the namespace where all deployments of the workshop instances are created and where the workshop instance runs the service account exists.
+- `service_ <!-- Use dashes for spacing in placeholders, not underscores. -->account` - The workshop instance service account's name and access to the namespace created for that workshop instance.
+- `ingress_ <!-- Use dashes for spacing in placeholders, not underscores. -->domain` - The host domain under which host names are created when creating ingress routes.
+- `ingress_ <!-- Use dashes for spacing in placeholders, not underscores. -->protocol` - The protocol (http/https) used for ingress routes created for workshops.
 
 The syntax for referencing one of the parameters is `$(parameter_name)`.
 
@@ -146,7 +146,7 @@ spec:
 
 With this enabled, anyone who can create a `WorkshopRequest` custom resource can request the creation of a workshop instance for the workshop environment.
 
-To further control who can request a workshop instance in the workshop environment, you can first set an access token, which a user must know and supply with the workshop request. This can be done by setting the `request.token` field.
+To further control who can request a workshop instance in the workshop environment, you can first set an access token, which a user must know and supply with the workshop request. This is done by setting the `request.token` field.
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -161,7 +161,7 @@ spec:
     token: lab-markdown-sample
 ```
 
-The same name as the workshop environment is used in this example, which is probably not a good practice. Use a random value instead. The token value can be multi-line.
+The same name as the workshop environment is used in this example, which is probably not a good practice. Use a random value instead. The token value may be multi-line.
 
 As a second control measure, you can specify what namespaces the `WorkshopRequest` must be created. This means a user must have the specific ability to create `WorkshopRequest` resources in one of those namespaces.
 
@@ -220,7 +220,7 @@ spec:
 
 ## <a id="additional-workshop-resources"></a>Additional workshop resources
 
-The workshop definition defined by the `Workshop` custom resource already declares a set of resources to be created with the workshop environment. You can use this when you have shared service applications the workshop needs, such as an image registry or a Git repository server.
+The workshop definition defined by the `Workshop` custom resource already declares a set of resources to be created with the workshop environment. You can use this when you have shared service applications the workshop needs, such as an container image registry or a Git repository server.
 
 To deploy additional applications related to a specific workshop environment, you can declare them by adding them into the `environment.objects` field of the `WorkshopEnvironment` custom resource. You might use this deploy a web application used by attendees of a workshop to access their workshop instances.
 
@@ -230,14 +230,14 @@ When resources are created, owner references are added, making the `WorkshopEnvi
 
 Values of fields in the list of resource objects can reference several predefined parameters. The available parameters are:
 
-- `workshop_name` - The name of the workshop. This is the name of the `Workshop` definition the workshop environment was created against.
-- `environment_name` - The name of the workshop environment. Currently, this is the same as the name of the namespace for the workshop environment. Do not rely on their being the same, and use the most appropriate to cope with any future change.
-- `environment_token` - The token value must be used against the workshop environment in workshop requests.
-- `workshop_namespace` - The namespace for the workshop environment. This is the namespace where all deployments of the workshop instances and their service accounts are created. It is the same namespace that shared workshop resources are created.
-- `service_account` - The service account name can be used when creating deployments in the workshop namespace.
-- `ingress_domain` - The host domain under which hostnames can be created when creating ingress routes.
-- `ingress_protocol` - The protocol (http/https) used for ingress routes created for workshops.
-- `ingress_secret` - The name of the ingress secret stored in the workshop namespace when secure ingress is being used.
+- `workshop_ <!-- Use dashes for spacing in placeholders, not underscores. -->name` - The name of the workshop. This is the name of the `Workshop` definition the workshop environment was created against.
+- `environment_ <!-- Use dashes for spacing in placeholders, not underscores. -->name` - The name of the workshop environment. Currently, this is the same as the name of the namespace for the workshop environment. Do not rely on the name and the workshop environment being the same, and use the most appropriate to cope with any future change.
+- `environment_ <!-- Use dashes for spacing in placeholders, not underscores. -->token` - The token value must be used against the workshop environment in workshop requests.
+- `workshop_ <!-- Use dashes for spacing in placeholders, not underscores. -->namespace` - The namespace for the workshop environment. This is the namespace where all deployments of the workshop instances and their service accounts are created. It is the same namespace that shared workshop resources are created.
+- `service_ <!-- Use dashes for spacing in placeholders, not underscores. -->account` - The service account name is used when creating deployments in the workshop namespace.
+- `ingress_ <!-- Use dashes for spacing in placeholders, not underscores. -->domain` - The host domain under which host names are created when creating ingress routes.
+- `ingress_ <!-- Use dashes for spacing in placeholders, not underscores. -->protocol` - The protocol (http/https) used for ingress routes created for workshops.
+- `ingress_ <!-- Use dashes for spacing in placeholders, not underscores. -->secret` - The name of the ingress secret stored in the workshop namespace when secure ingress is being used.
 
 To create additional namespaces associated with the workshop environment, embed a reference to `$(workshop_namespace)` in the name of the additional namespaces, with an appropriate suffix. Be mindful that the suffix doesn't overlap with the range of session IDs for workshop instances.
 
@@ -245,7 +245,7 @@ When creating deployments in the workshop namespace, set the `serviceAccountName
 
 ## <a id="creation-of-workshop-instances"></a>Creation of workshop instances
 
-After a workshop environment is created, you can create the workshop instances. You can request a workshop instance by using the `WorkshopRequest` custom resource. This can be a separate step, or you can use the trick of adding them as resources under `environment.objects`.
+After a workshop environment is created, you can create the workshop instances. You can request a workshop instance by using the `WorkshopRequest` custom resource. This can be a separate step, or you can add them as resources under `environment.objects`.
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -282,6 +282,6 @@ spec:
           token: $(environment_token)
 ```
 
-Using this method, the workshop environment is automatically populated with workshop instances. You can query the workshop requests from the workshop namespace to discover the URLs for accessing each and the password if you didn't set one and a random password was assigned.
+Using this method, the workshop environment is  populated with workshop instances. You can query the workshop requests from the workshop namespace to discover the URLs for accessing each and the password if you didn't set one and a random password was assigned.
 
 If you need more control over how the workshop instances were created using this method, you can use the `WorkshopSession` custom resource instead.
