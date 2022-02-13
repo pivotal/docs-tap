@@ -24,7 +24,7 @@ or dependency patch. And connecting to other applications and data, regardless o
 or what kind of infrastructure they run on, has never been easier, thanks to an internal API
 management portal.
 
-![Illustration of TAP conceptual value, starting with components that serve the developer and finishing with the components that serve the operations staff and security staff.](images/tap-conceptual-value.jpg)
+![Illustration of TAP conceptual value, starting with components that serve the developer and finishing with the components that serve the operations staff and security staff.](images/tap-conceptual-value.png)
 
 Customers can simplify workflows in both the inner loop and outer loop of Kubernetes-based app
 development with Tanzu Application Platform while creating supply chains.
