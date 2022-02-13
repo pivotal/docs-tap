@@ -72,7 +72,7 @@ To set the Kubernetes cluster context:
 >**Note:** If you use Tanzu Kubernetes Grid multi-cloud, skip this section.
 
 The Tanzu Cluster Essentials package is intended to simplify the process of installing the
-open-source [Carvel](https://carvel.dev) tools on your cluster. 
+open-source [Carvel](https://carvel.dev) tools on your cluster.
 It includes a script that uses the Carvel CLI tools to download and install the server-side
 components `kapp-controller` and `secretgen-crontroller` on the targeted cluster.
 Currently, only MacOS and Linux are supported for Cluster Essentials for VMware Tanzu.
@@ -81,15 +81,19 @@ To install cluster essentials for VMware Tanzu:
 
 1. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
 
-3. Navigate to [Cluster Essentials for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-cluster-essentials/) on Tanzu Network.
+1. Navigate to [Cluster Essentials for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-cluster-essentials/) on VMware Tanzu Network.
 
-4. Download `tanzu-cluster-essentials-darwin-amd64-1.0.1.tgz` (for OS X) or `tanzu-cluster-essentials-linux-amd64-1.0.1.tgz` (for Linux)
-   and unpack the TAR file into `tanzu-cluster-essentials` directory:
+1. Download either `tanzu-cluster-essentials-darwin-amd64-1.0.0.tgz` for macOS or
+`tanzu-cluster-essentials-linux-amd64-1.0.0.tgz` for Linux.
+
+1. Unpack the TAR file into the `tanzu-cluster-essentials` directory by running:
 
     ```
     mkdir $HOME/tanzu-cluster-essentials
-    tar -xvf tanzu-cluster-essentials-darwin-amd64-1.0.0.tgz -C $HOME/tanzu-cluster-essentials
+    tar -xvf TAR-FILE -C $HOME/tanzu-cluster-essentials
     ```
+
+    Where `TAR-FILE` is the TAR file you downloaded.
 
 5. Configure and run `install.sh`, which installs kapp-controller and secretgen-controller on your cluster:
 
@@ -102,7 +106,8 @@ To install cluster essentials for VMware Tanzu:
     ./install.sh
     ```
 
-    Where `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for Tanzu Network.
+    Where `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for
+    VMware Tanzu Network.
 
 6. Install the `kapp` CLI onto your `$PATH`:
 
