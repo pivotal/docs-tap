@@ -112,20 +112,28 @@ subsequent installs succeed without interruption.
 
 #### Application Accelerator
 
-Build scripts provided as part of an accelerator do not have the execute bit set when a new
+- Build scripts provided as part of an accelerator do not have the execute bit set when a new
 project is generated from the accelerator.
 
-To resolve this issue, explicitly set the execute bit by running the `chmod` command:
+    To resolve this issue, explicitly set the execute bit by running the `chmod` command:
 
-```
-chmod +x <build-script>
-```
+    ```
+    chmod +x <build-script>
+    ```
 
-For example, for a project generated from the "Spring PetClinic" accelerator, run:
+    For example, for a project generated from the "Spring PetClinic" accelerator, run:
 
-```
-chmod +x ./mvnw
-```
+    ```
+    chmod +x ./mvnw
+    ```
+
+- Upgraded log4j-api dependency to 2.16.0.
+
+- Disabled the Exec Transform.
+
+- Improved App Accelerator TAP GUI plug-in refresh cycle.
+
+- Fixed Accelerator loading issues for TAP GUI plug-in.
 
 #### Application Live View
 
