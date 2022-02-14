@@ -5,6 +5,14 @@ This document describes how to upgrade Tanzu Application Platform from 1.0 to 1.
 You can perform a fresh install of Tanzu Application Platform `1.0.1` by following the instructions
 [Installing Tanzu Application Platform](install-intro.html).
 
+## <a id='prereqs'></a>Prerequisites
+
+Before you upgrade Tanzu Application Platform:
+
+- Follow the instructions to [Install your Tanzu Application Platform profile](install.md#install-profile).
+- Follow the instructions to [Install or update the Tanzu CLI and plug-ins](install-general.md#cli-and-plugin)
+- Read through [Tanzu Application Platform GUI Considerations](tap-gui/upgrades.md#considerations)
+
 ## Add new package repository
 
 Add the `1.0.1` version of the Tanzu Application Platform package repository
