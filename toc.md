@@ -9,6 +9,7 @@ This is the table of contents from which the Tanzu Application Platform Document
   - [Accepting EULAs and installing the Tanzu CLI](install-general.md)
   - [Installing the Tanzu Application Platform Package and Profiles](install.md)
   - [Opting out of telemetry collection](opting-out-telemetry.md)
+- [Upgrading Tanzu Application Platform](upgrading.md)
 - [Getting started with Tanzu Application Platform](getting-started.md)
 - [Troubleshooting Tanzu Application Platform](troubleshooting.md)
 - [Uninstalling Tanzu Application Platform](uninstall.md)
