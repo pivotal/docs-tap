@@ -108,7 +108,9 @@ that you plan to create the `Workload` in:
     kubectl create secret docker-registry registry-credentials --docker-server=REGISTRY-SERVER --docker-username=REGISTRY-USERNAME --docker-password=REGISTRY-PASSWORD -n YOUR-NAMESPACE
     ```
 
-2. Add placeholder read secrets, a service account, and RBAC rules to the developer namespace by running:
+2. Add secrets, a service account, and RBAC rules to the developer namespace by running:
+
+    >**Important:** Ensure to replace `YOUR-NAMESPACE` with the name of the developer namespace.
 
     ```
     cat <<EOF | kubectl -n YOUR-NAMESPACE apply -f -
