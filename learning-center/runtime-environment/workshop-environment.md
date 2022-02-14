@@ -20,7 +20,7 @@ spec:
     name: lab-markdown-sample
 ```
 
-The workshop environment name specified in the workshop environment metadata must be the same. It has to be different if you create multiple workshop environments from the same workshop definition.
+The workshop environment name specified in the workshop environment metadata does not need to be the same. It has to be different if you create multiple workshop environments from the same workshop definition.
 
 When the workshop environment is created, the namespace created for the workshop environment uses the `name` specified in the `metadata`. This name is also used in the unique names of each workshop instance created under the workshop environment.
 
@@ -48,13 +48,13 @@ You can use this to set the location of a back-end service, such as an image reg
 
 Values of fields in the list of resource objects can reference several predefined parameters. The available parameters are:
 
-- `session_ <!-- Use dashes for spacing in placeholders, not underscores. -->id` - A unique ID for the workshop instance within the workshop environment.
-- `session_ <!-- Use dashes for spacing in placeholders, not underscores. -->namespace` - The namespace created for and bound to the workshop instance. This is the namespace unique to the session and where a workshop can create its own resources.
-- `environment_ <!-- Use dashes for spacing in placeholders, not underscores. -->name` - The name of the workshop environment. Currently, this is the same as the name of the namespace for the workshop environment. It is suggested that you do not rely on workshop environment name and namespace being the same, and use the most appropriate to cope with any future change.
-- `workshop_ <!-- Use dashes for spacing in placeholders, not underscores. -->namespace` - The namespace for the workshop environment. This is the namespace where all deployments of the workshop instances are created and where the workshop instance runs the service account exists.
-- `service_ <!-- Use dashes for spacing in placeholders, not underscores. -->account` - The workshop instance service account's name and access to the namespace created for that workshop instance.
-- `ingress_ <!-- Use dashes for spacing in placeholders, not underscores. -->domain` - The host domain under which host names are created when creating ingress routes.
-- `ingress_ <!-- Use dashes for spacing in placeholders, not underscores. -->protocol` - The protocol (http/https) used for ingress routes created for workshops.
+- `session_ ` - A unique ID for the workshop instance within the workshop environment.
+- `session_ ` - The namespace created for and bound to the workshop instance. This is the namespace unique to the session and where a workshop can create its own resources.
+- `environment_ ` - The name of the workshop environment. Currently, this is the same as the name of the namespace for the workshop environment. It is suggested that you do not rely on workshop environment name and namespace being the same, and use the most appropriate to cope with any future change.
+- `workshop_ ` - The namespace for the workshop environment. This is the namespace where all deployments of the workshop instances are created and where the workshop instance runs the service account exists.
+- `service_ ` - The workshop instance service account's name and access to the namespace created for that workshop instance.
+- `ingress_ ` - The host domain under which host names are created when creating ingress routes.
+- `ingress_ ` - The protocol (http/https) used for ingress routes created for workshops.
 
 The syntax for referencing one of the parameters is `$(parameter_name)`.
 
@@ -79,7 +79,7 @@ spec:
       domain: training.learningcenter.tanzu.vmware.com
 ```
 
-By default, if overriding the domain, the workshop session is exposed using an HTTP connection. If you require a secure HTTPS connection, you must have access to a wildcard SSL certificate for the domain. A secret of type `tls` must be created for the certificate in the `learningcenter` namespace or the namespace where the Learning Center Operator is deployed. The name of that secret must then be set in the `session.ingress.secret` field.
+By default, the workshop session is exposed using an HTTP connection if overriding the domain. If you require a secure HTTPS connection, you must have access to a wildcard SSL certificate for the domain. A secret of type `tls` must be created for the certificate in the `learningcenter` namespace or the namespace where the Learning Center Operator is deployed. The name of that secret must then be set in the `session.ingress.secret` field.
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -230,14 +230,14 @@ When resources are created, owner references are added, making the `WorkshopEnvi
 
 Values of fields in the list of resource objects can reference several predefined parameters. The available parameters are:
 
-- `workshop_ <!-- Use dashes for spacing in placeholders, not underscores. -->name` - The name of the workshop. This is the name of the `Workshop` definition the workshop environment was created against.
-- `environment_ <!-- Use dashes for spacing in placeholders, not underscores. -->name` - The name of the workshop environment. Currently, this is the same as the name of the namespace for the workshop environment. Do not rely on the name and the workshop environment being the same, and use the most appropriate to cope with any future change.
-- `environment_ <!-- Use dashes for spacing in placeholders, not underscores. -->token` - The token value must be used against the workshop environment in workshop requests.
-- `workshop_ <!-- Use dashes for spacing in placeholders, not underscores. -->namespace` - The namespace for the workshop environment. This is the namespace where all deployments of the workshop instances and their service accounts are created. It is the same namespace that shared workshop resources are created.
-- `service_ <!-- Use dashes for spacing in placeholders, not underscores. -->account` - The service account name is used when creating deployments in the workshop namespace.
-- `ingress_ <!-- Use dashes for spacing in placeholders, not underscores. -->domain` - The host domain under which host names are created when creating ingress routes.
-- `ingress_ <!-- Use dashes for spacing in placeholders, not underscores. -->protocol` - The protocol (http/https) used for ingress routes created for workshops.
-- `ingress_ <!-- Use dashes for spacing in placeholders, not underscores. -->secret` - The name of the ingress secret stored in the workshop namespace when secure ingress is being used.
+- `workshop_ ` - The name of the workshop. This is the name of the `Workshop` definition the workshop environment was created against.
+- `environment_ ` - The name of the workshop environment. Currently, this is the same as the name of the namespace for the workshop environment. Do not rely on the name and the workshop environment being the same, and use the most appropriate to cope with any future change.
+- `environment_ ` - The token value must be used against the workshop environment in workshop requests.
+- `workshop_ ` - The namespace for the workshop environment. This is the namespace where all deployments of the workshop instances and their service accounts are created. It is the same namespace that shared workshop resources are created.
+- `service_ ` - The service account name is used when creating deployments in the workshop namespace.
+- `ingress_ ` - The host domain under which host names are created when creating ingress routes.
+- `ingress_ ` - The protocol (http/https) used for ingress routes created for workshops.
+- `ingress_ ` - The name of the ingress secret stored in the workshop namespace when secure ingress is being used.
 
 To create additional namespaces associated with the workshop environment, embed a reference to `$(workshop_namespace)` in the name of the additional namespaces, with an appropriate suffix. Be mindful that the suffix doesn't overlap with the range of session IDs for workshop instances.
 
@@ -282,6 +282,6 @@ spec:
           token: $(environment_token)
 ```
 
-Using this method, the workshop environment is  populated with workshop instances. You can query the workshop requests from the workshop namespace to discover the URLs for accessing each and the password if you didn't set one and a random password was assigned.
+Using this method, the workshop environment is populated with workshop instances. You can query the workshop requests from the workshop namespace to discover the URLs for accessing each and the password if you didn't set one and a random password was assigned.
 
 If you need more control over how the workshop instances were created using this method, you can use the `WorkshopSession` custom resource instead.
