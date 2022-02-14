@@ -18,6 +18,7 @@ To add the Tanzu Application Platform package repository:
     export INSTALL_REGISTRY_USERNAME=TANZU-NET-USER
     export INSTALL_REGISTRY_PASSWORD=TANZU-NET-PASSWORD
     export INSTALL_REGISTRY_HOSTNAME=registry.tanzu.vmware.com
+    export TAP_VERSION=1.0.1
     ```
 
 1. Create a namespace called `tap-install` for deploying any component packages by running:
@@ -41,7 +42,7 @@ To add the Tanzu Application Platform package repository:
 
     ```
     tanzu package repository add tanzu-tap-repository \
-      --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:TAP-VERSION \
+      --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:$TAP_VERSION \
       --namespace tap-install
     ```
 
@@ -315,7 +316,7 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
 To view possible configuration settings for a package, run:
 
 ```
-tanzu package available get tap.tanzu.vmware.com/TAP-VERSION --values-schema --namespace tap-install
+tanzu package available get tap.tanzu.vmware.com/$TAP_VERSION --values-schema --namespace tap-install
 ```
 
 Where `TAP-VERSION` is your Tanzu Application Platform version, such as `1.0.1`.
