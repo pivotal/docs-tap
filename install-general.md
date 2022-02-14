@@ -75,7 +75,7 @@ The Tanzu Cluster Essentials package is intended to simplify the process of inst
 open-source [Carvel](https://carvel.dev) tools on your cluster.
 It includes a script that uses the Carvel CLI tools to download and install the server-side
 components `kapp-controller` and `secretgen-crontroller` on the targeted cluster.
-Currently, only MacOS and Linux are supported for Cluster Essentials for VMware Tanzu.
+Currently, only macOS and Linux are supported for Cluster Essentials for VMware Tanzu.
 
 To install cluster essentials for VMware Tanzu:
 

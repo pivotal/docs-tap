@@ -86,7 +86,7 @@ To delete the Tanzu Application Platform package repository:
 
 To completely remove the Tanzu CLI, plug-ins, and associated files, run the script for your OS:
 
-+ For Linux or MacOS, run:
++ For Linux or macOS, run:
 
     ```
     #!/bin/zsh
