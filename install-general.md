@@ -83,8 +83,8 @@ To install cluster essentials for VMware Tanzu:
 
 1. Navigate to [Cluster Essentials for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-cluster-essentials/) on VMware Tanzu Network.
 
-1. Download either `tanzu-cluster-essentials-darwin-amd64-1.0.0.tgz` for macOS or
-`tanzu-cluster-essentials-linux-amd64-1.0.0.tgz` for Linux.
+1. If using macOS, download `tanzu-cluster-essentials-darwin-amd64-1.0.0.tgz`.
+If using Linux, download `tanzu-cluster-essentials-linux-amd64-1.0.0.tgz`.
 
 1. Unpack the TAR file into the `tanzu-cluster-essentials` directory by running:
 
@@ -93,7 +93,7 @@ To install cluster essentials for VMware Tanzu:
     tar -xvf DOWNLOADED-CLUSTER-ESSENTIALS-PACKAGE -C $HOME/tanzu-cluster-essentials
     ```
 
-    Where `DOWNLOADED-CLUSTER-ESSENTIALS-PACKAGE` is the cluster essentials package you 
+    Where `DOWNLOADED-CLUSTER-ESSENTIALS-PACKAGE` is the cluster essentials package you
     downloaded.
 
 5. Configure and run `install.sh`, which installs kapp-controller and secretgen-controller on your cluster:
