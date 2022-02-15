@@ -12,15 +12,19 @@ See [Accepting EULAs and installing the Tanzu CLI](install-general.md).
 
 To add the Tanzu Application Platform package repository:
 
-1. If you haven’t already completed the Install Cluster Essentials for VMware Tanzu, this step is required. Set up environment variables for use during the installation.
+1. If you haven’t already completed the Install Cluster Essentials for VMware Tanzu, this step is required. 
+
+2. Set up environment variables for use during the installation.
 
     ```
     export INSTALL_REGISTRY_USERNAME=TANZU-NET-USER
     export INSTALL_REGISTRY_PASSWORD=TANZU-NET-PASSWORD
     export INSTALL_REGISTRY_HOSTNAME=registry.tanzu.vmware.com
+    export TAP_VERSION=1.0.1
     ```
+    Where `$TAP_VERSION` is set to the current Tanzu Application Platform version.
 
-1. Create a namespace called `tap-install` for deploying any component packages by running:
+3. Create a namespace called `tap-install` for deploying any component packages by running:
 
     ```
     kubectl create ns tap-install
@@ -41,22 +45,12 @@ To add the Tanzu Application Platform package repository:
 
     ```
     tanzu package repository add tanzu-tap-repository \
-      --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:TAP-VERSION \
+      --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:$TAP_VERSION \
       --namespace tap-install
     ```
 
-    Where `TAP-VERSION` is your Tanzu Application Platform version, such as `1.0.1`.
+   Where `$TAP_VERSION` is your Tanzu Application Platform version environment variable defined in Step 2.
 
-    For example:
-
-    ```
-    $ tanzu package repository add tanzu-tap-repository \
-        --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.0.0 \
-        --namespace tap-install
-    \ Adding package repository 'tanzu-tap-repository'...
-
-    Added package repository 'tanzu-tap-repository'
-    ```
 
 1. Get the status of the Tanzu Application Platform package repository, and ensure the status updates to `Reconcile succeeded` by running:
 
@@ -315,10 +309,10 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
 To view possible configuration settings for a package, run:
 
 ```
-tanzu package available get tap.tanzu.vmware.com/TAP-VERSION --values-schema --namespace tap-install
+tanzu package available get tap.tanzu.vmware.com/$TAP_VERSION --values-schema --namespace tap-install
 ```
 
-Where `TAP-VERSION` is your Tanzu Application Platform version, such as `1.0.1`.
+Where `$TAP_VERSION` is your Tanzu Application Platform version environment variable defined in Step 2.
 
 >**Note:** The `tap.tanzu.vmware.com` package does not show all configuration settings for packages
 >it plans to install. The package only shows top-level keys.
