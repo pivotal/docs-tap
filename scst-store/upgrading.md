@@ -1,12 +1,19 @@
-## Upgrading
+# Upgrading
 
-### DB deployment does not exist
+This topic describes upgrading issues and resolutions.
 
-In order to prevent issues with the metadata store database such as the ones below, the database deployment is now a `StatefulSet`.
-If you have scripts looking for a `metadata-store-db` `Deployment`, this will need to be changed to instead look for the `StatefulSet`.
+## <a id="deploy-does-not-exist"></a> Database deployment does not exist
 
-### Invalid checkpoint record
-When using tanzu to upgrade to a new version of the store, there is occasionally data corruption identified by something like this in the log:
+To prevent issues with the metadata store database, such as the ones described in
+this topic, the database deployment is now a `StatefulSet`.
+If you have scripts searching for a `metadata-store-db` deployment, edit the scripts to
+instead search for `StatefulSet`.
+
+
+## <a id="invalid-checkpoint-record"></a> Invalid checkpoint record
+
+When using Tanzu to upgrade to a new version of the store, there is occasionally data
+corruption. Here is an example of how this shows up in the log:
 
 ```
 PostgreSQL Database directory appears to contain a database; Skipping initialization
@@ -24,12 +31,15 @@ PostgreSQL Database directory appears to contain a database; Skipping initializa
 2022-01-21 21:53:39.507 UTC [1] LOG:  database system is shut down
 ```
 
-You will see the DB pod in a crash loop. There are steps to correct the issue so that the upgrade can proceed: https://sysopspro.com/fix-postgresql-error-panic-could-not-locate-a-valid-checkpoint-record/
+The log shows a database pod in a failure loop. For steps to fix the issue so that the
+upgrade can proceed, see the [SysOpsPro documentation](https://sysopspro.com/fix-postgresql-error-panic-could-not-locate-a-valid-checkpoint-record/).
 
 
-### Upgraded pod hanging
+## <a id="upgraded-pod-hanging"></a> Upgraded pod hanging
 
-Due to the default access mode in the PVC being `ReadWriteOnce`, if you are deploying in an environment with multiple nodes,
-there is a chance that each pod is on a different node. This means that the upgraded pod spins up but is stuck initializing
-because the original pod does not terminate. This means the new pod cannot attach to the persistent volume until the original
-pod is deleted. This can be done manually to solve this issue.
+Because the default access mode in the PVC is `ReadWriteOnce`, if you are deploying in an
+environment with multiple nodes then each pod might be on a different node.
+This causes the upgraded pod to spin up but then get stuck initializing because the original
+pod does not stop.
+To resolve this issue, manually delete the original pod so that the new pod can attach to the
+persistent volume.
