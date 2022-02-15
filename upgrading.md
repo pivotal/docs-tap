@@ -15,28 +15,40 @@ Before you upgrade Tanzu Application Platform:
 
 ## Add new package repository
 
-Add the `1.0.1` version of the Tanzu Application Platform package repository
+1. Add the `1.0.1` version of the Tanzu Application Platform package repository by running:
 
-```
-tanzu package repository update tanzu-tap-repository \
-    --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.0.1  \
-    --namespace tap-install
-```
+    ```
+    tanzu package repository update tanzu-tap-repository \
+        --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.0.1  \
+        --namespace tap-install
+    ```
 
-## Update version of the installed package
+1. Verify you have added the new package repository by running:
 
-For example, a profile-based install:
+    ```
+    tanzu package repository get tanzu-tap-repository --namespace tap-install
+
+    ```
+
+## Perform upgrade of Tanzu Application Platform
+
+### Upgrade instructions for Profile-based installation
+
+For Tanzu Application Platform that is installed by profile, you can perform the upgrade by running:
+
+>**Note:** Ensure you run following command in the directory where the `tap-values.yaml` file resides.
+
 ```
 tanzu package installed update tap -p tap.tanzu.vmware.com -v 1.0.1  --values-file tap-values.yaml -n tap-install
 ```
 
-## Component-specific installation instructions
+### Upgrade instructions for component-specific installation
 
-Please see additional information about [upgrading Tanzu Application Platform GUI](tap-gui/upgrades.html).
+See additional information about [upgrading Tanzu Application Platform GUI](tap-gui/upgrades.html).
 
 ## Verify the upgrade
 
-Verify the versions of packages have been updated by running:
+Verify the versions of packages after the upgrade by running:
 
 ```
 tanzu package installed list --namespace tap-install
