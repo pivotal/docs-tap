@@ -1,11 +1,11 @@
-# Upgrading
+# Troubleshooting Upgrading
 
 This topic describes upgrading issues and resolutions.
 
 ## <a id="deploy-does-not-exist"></a> Database deployment does not exist
 
 To prevent issues with the metadata store database, such as the ones described in
-this topic, the database deployment is now a `StatefulSet`.
+this topic, as of Tap v1.1 and Metadata Store v 1.1, the database deployment is now a `StatefulSet`.
 If you have scripts searching for a `metadata-store-db` deployment, edit the scripts to
 instead search for `StatefulSet`.
 
@@ -43,3 +43,9 @@ This causes the upgraded pod to spin up but then get stuck initializing because 
 pod does not stop.
 To resolve this issue, manually delete the original pod so that the new pod can attach to the
 persistent volume.
+
+Find the pod name of the app pod that is not in a pending state and then delete it:
+```
+kubectl get pods -n metadata-store
+kubectl delete pod <metadata-store-app-XXXXXXXXXXX> -n metadata-store
+```
