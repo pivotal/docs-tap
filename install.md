@@ -152,7 +152,7 @@ The following is the YAML file sample for the full-profile:
 
 ```
 profile: full
-ceip_policy_disclosed: "true-OR-false" # Installation fails if this not set to `true`
+ceip_policy_disclosed: true # The value must be true for installation to succeed
 buildservice:
   kp_default_repository: "KP-DEFAULT-REPO"
   kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
@@ -243,7 +243,7 @@ The following is the YAML file sample for the light-profile:
 
 ```
 profile: light
-ceip_policy_disclosed: "true-OR-false" # Installation fails if this not set to `true`
+ceip_policy_disclosed: true # The value must be true for installation to succeed
 
 buildservice:
   kp_default_repository: "KP-DEFAULT-REPO"
