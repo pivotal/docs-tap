@@ -120,6 +120,7 @@ This is the table of contents from which the Tanzu Application Platform Document
       - [Logs messages and reasons](scst-sign/logs.md)
     - [Supply Chain Security Tools for Tanzu – Store](scst-store/overview.md)
         - [Install Supply Chain Security Tools - Store](scst-store/install-scst-store.md)
+        - [Troubleshooting upgrading](scst-store/upgrading.md)
         - [Additional resources](scst-store/additional.md)
         - [API details](scst-store/api.md)
         - [API walkthrough](scst-store/api_walkthrough.md)
