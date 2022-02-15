@@ -12,7 +12,7 @@ See [Accepting EULAs and installing the Tanzu CLI](install-general.md).
 
 To add the Tanzu Application Platform package repository:
 
-1. If you haven’t already completed the Install Cluster Essentials for VMware Tanzu, this step is required. 
+1. If you haven’t already completed the Install Cluster Essentials for VMware Tanzu, this step is required.
 
 2. Set up environment variables for use during the installation.
 
@@ -145,7 +145,7 @@ The following is the YAML file sample for the full-profile:
 
 ```
 profile: full
-ceip_policy_disclosed: "true-OR-false" # Installation fails if this not set to `true`
+ceip_policy_disclosed: true # The value must be true for installation to succeed
 buildservice:
   kp_default_repository: "KP-DEFAULT-REPO"
   kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
@@ -238,7 +238,7 @@ The following is the YAML file sample for the light-profile:
 
 ```
 profile: light
-ceip_policy_disclosed: "true-OR-false" # Installation fails if this not set to `true`
+ceip_policy_disclosed: true # The value must be true for installation to succeed
 
 buildservice:
   kp_default_repository: "KP-DEFAULT-REPO"
