@@ -28,8 +28,8 @@ The Learning Center Operator automatically detects and uses any changes to an in
 The `SystemProfile` custom resource replaces the use of environment variables to configure details
 such as the ingress domain, secret, and class.
 
-Instead of setting `INGRESS_DOMAIN`, `INGRESS_SECRET` and `INGRESS_CLASS` environment variables,
-create an instance of the `SystemProfile` custom resource named `default-system-profile`.
+Instead of setting `INGRESS_DOMAIN`, `INGRESS_SECRET`, and `INGRESS_CLASS` environment variables,
+create an instance of the `SystemProfile` custom resource named `default-system-profile`:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -43,10 +43,10 @@ spec:
     class: nginx
 ```
 
-If HTTPS connections are being terminated using an external load balancer and not by specifying a
+If you terminate HTTPS connections by using an external load balancer and not by specifying a
 secret for ingresses managed by the Kubernetes ingress controller, then routing traffic into the
 Kubernetes cluster as HTTP connections, you can override the ingress protocol without specifying an
-ingress secret.
+ingress secret:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -62,10 +62,10 @@ spec:
 
 ## <a id="def-image-reg"></a> Defining image registry pull secrets
 
-If needing to work with custom workshop images stored in a private image registry, the system profile
-can define a list of image pull secrets that should be added to the service accounts used to deploy
+To work with custom workshop images stored in a private image registry, the system profile
+can define a list of image pull secrets. This should be added to the service accounts used to deploy
 and run the workshop images. The `environment.secrets.pull` property should be set to the list of
-secret names.
+secret names:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -83,8 +83,8 @@ The secrets containing the image registry credentials must exist within the `lea
 or the namespace where the Learning Center Operator is deployed. The secret resources must be of type
 `kubernetes.io/dockerconfigjson`.
 
-This doesn't result in any secrets being added to the namespace created for each workshop
-session. The secrets are only added to the workshop namespace and are not visible to a user.
+The secrets are added to the workshop namespace and are not visible to a user. No secrets are added to the namespace created for each workshop
+session.
 
 For container images used as part of Learning Center itself, such as the container image for the
 training portal web interface and the builtin base workshop images, if you have copied these from the
