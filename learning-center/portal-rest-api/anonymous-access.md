@@ -37,7 +37,7 @@ Replace the value `<name>` with the name of the workshop environment correspondi
 
 Replace the value `<index>` with the URL for your custom index page where you list the workshops available. When a user completes the workshop, that user is redirected back to this index page. The user is also redirected back to this index page when an error occurs.
 
-When a user is redirected back to the index page, a query string parameter is supplied to notify why the user is being returned. This can be used to display a banner or other indication as to why the user was returned.
+When a user is redirected back to the index page, a query string parameter is supplied to notify why the user is being returned. This is used to display a banner or other indication as to why the user was returned.
 
 The name of the query string parameter is `notification` and the possible values are:
 
