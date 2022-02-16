@@ -53,6 +53,7 @@ This is the table of contents from which the Tanzu Application Platform Document
     - [Source Controller](source-controller/about.md)
       - [Install Source Controller](source-controller/install-source-controller.md)
       - [Troubleshooting](source-controller/troubleshooting.md)
+      - [Reference](source-controller/reference.md)
     - [Developer Conventions](developer-conventions/about.md)
       - [Install Developer Conventions](developer-conventions/install-dev-conventions.md)
     - [Learning Center](learning-center/about.md)
