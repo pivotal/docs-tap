@@ -5,7 +5,7 @@ You can use the default system profile to set defaults for ingress and image pul
 specific deployments if required.
 
 >**Note:** Changes made to the `SystemProfile` custom resource, or changes made by means of environment variables,
->won't take effect on already deployed `TrainingPortals`. You must recreate those for the changes
+>don't take effect on already deployed `TrainingPortals`. You must recreate those for the changes
 >to be applied.
 >You only need to recreate the `TrainingPortal` resources, because this resource takes care of
 >recreating the `WorkshopEnvironments` with the new values.
@@ -60,12 +60,11 @@ spec:
     class: nginx
 ```
 
-## <a id="def-image-reg"></a> Defining image registry pull secrets
+## <a id="def-image-reg"></a> Defining container image registry pull secrets
 
 To work with custom workshop images stored in a private image registry, the system profile
-can define a list of image pull secrets. This should be added to the service accounts used to deploy
-and run the workshop images. The `environment.secrets.pull` property should be set to the list of
-secret names:
+can define a list of image pull secrets. Add this to the service accounts used to deploy
+and run the workshop images. Set the `environment.secrets.pull` property to the list of secret names:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -219,8 +218,8 @@ spec:
 
 ## <a id="run-docker-daemon-rootless"></a> Running Docker daemon rootless
 
-If `docker` is enabled for workshops, docker-in-docker is run using a sidecar container.
-Because of the current state of running docker-in-docker and portability across Kubernetes
+If `docker` is enabled for workshops, Docker-in-Docker is run using a sidecar container.
+Because of the current state of running Docker-in-Docker and portability across Kubernetes
 environments, the `docker` daemon by default runs as `root`. Because a privileged container is also
 being used, this represents a security risk. Only run workshops requiring `docker` in disposable
 Kubernetes clusters or for users whom you trust.
@@ -242,7 +241,7 @@ spec:
 ```
 
 Use of `docker` can be made even more secure by avoiding the use of a privileged container for the
-`docker` daemon. This requires a specific configuration to be set up for nodes in the Kubernetes
+`docker` daemon. This requires that you set up a specific configuration for nodes in the Kubernetes
 cluster.
 With this configuration, you can disable the use of a privileged container by setting
 `dockerd.privileged` to `false`:
@@ -258,7 +257,7 @@ spec:
     privileged: false
 ```
 
-For further details about the requirements for running rootless docker-in-docker and using a
+For further details about the requirements for running rootless Docker-in-Docker and using a
 non-privileged container, see the [Docker documentation](https://docs.docker.com/engine/security/rootless/).
 
 
@@ -339,7 +338,7 @@ spec:
 ```
 
 For authenticated access to Docker Hub, create an access token under your Docker Hub account.
-Then set the `username` and `password`, using the access token as the `password`.
+Then set the `username` and `password` using the access token as the `password`.
 Do not use the password for the account itself. Using an access token makes it easier to revoke the
 token if necessary.
 
@@ -369,7 +368,7 @@ Kubernetes, which make use of images hosted on Docker Hub. Use of images from Do
 deployments is still subject to the limit for anonymous access, unless you supply image registry
 credentials for the deployment so an authenticated user is used.
 
-## Setting default access credentials
+## <a id="set-default-access-creds"></a>Setting default access credentials
 
 When deploying a training portal using the `TrainingPortal` custom resource, the credentials for
 accessing the portal are unique for each instance. Find the details of the credentials by viewing
@@ -413,7 +412,7 @@ spec:
 If the `TrainingPortal` has specified credentials or client information, they still take
 precedence over the values specified in the system profile.
 
-## Overriding the workshop images
+## <a id="override-ws-images"></a>Overriding the workshop images
 
 When a workshop does not define a workshop image to use and instead downloads workshop content from
 GitHub or a web server, it uses the `base-environment` workshop image. The workshop content is then
@@ -434,8 +433,8 @@ matched with the current version of the Learning Center Operator.
 * `jdk11-environment:*` is a tagged version of the `jdk11-environment` workshop image matched with the current version of the Learning Center Operator.
 * `conda-environment:*` is a tagged version of the `conda-environment` workshop image matched with the current version of the Learning Center Operator.
 
-If you wanted to override the version of the `base-environment` workshop image mapped to by the `*`
-tag, you would use:
+To override the version of the `base-environment` workshop image mapped to by the `*`
+tag, use:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -464,7 +463,7 @@ spec:
       "quay.io/eduk8s-labs/lab-k8s-fundamentals:master": "registry.test/lab-k8s-fundamentals:master"
 ```
 
-## Tracking using Google Analytics
+## <a id="track-w-google-analytics"></a>Tracking using Google Analytics
 
 If you want to record analytics data on usage of workshops using Google Analytics, you can enable
 tracking by supplying a tracking ID for Google Analytics. For example:
@@ -485,9 +484,9 @@ and through which training portal and cluster it was accessed. You can therefore
 Google Analytics tracking ID with Learning Center running on multiple clusters.
 
 To support use of custom dimensions in Google Analytics, you must configure the Google Analytics
-property with the following custom dimensions. They must be added in the order shown because
-Google Analytics doesn't allow you to specify the index position for a custom dimension and will
-allocate them for you. You can't already have defined custom dimensions for the property, because the new
+property with the following custom dimensions. They must be added in the order shown, because
+Google Analytics doesn't allow you to specify the index position for a custom dimension and
+allocates them for you. You can't already have defined custom dimensions for the property, because the new
 custom dimensions must start at index of 1.
 
 | Custom Dimension Name | Index |
@@ -511,7 +510,7 @@ For more precise statistics, use the webhook URL for collecting analytics with a
 data collection platform. Configuration of a webhook URL for analytics can only be specified on the
 `TrainingPortal` definition and cannot be specified globally on the `SystemProfile` configuration.
 
-## Overriding styling of the workshop
+## <a id="override-ws-styling"></a>Overriding styling of the workshop
 
 If using the REST API to create/manage workshop sessions, and the workshop dashboard is then embedded
 into an iframe of a separate site, you can perform minor styling changes of the dashboard,
