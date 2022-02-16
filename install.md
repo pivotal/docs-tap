@@ -12,9 +12,8 @@ See [Accepting EULAs and installing the Tanzu CLI](install-general.md).
 
 To add the Tanzu Application Platform package repository:
 
-1. If you haven’t already completed the Install Cluster Essentials for VMware Tanzu, this step is required.
-
-2. Set up environment variables for use during the installation.
+1. If you haven’t already completed the Install Cluster Essentials for VMware Tanzu,
+set up environment variables for use during the installation by running:
 
     ```
     export INSTALL_REGISTRY_USERNAME=TANZU-NET-USER
@@ -25,7 +24,7 @@ To add the Tanzu Application Platform package repository:
 
     Where `TAP_VERSION` is set to the current Tanzu Application Platform version.
 
-3. Create a namespace called `tap-install` for deploying any component packages by running:
+1. Create a namespace called `tap-install` for deploying any component packages by running:
 
     ```
     kubectl create ns tap-install
@@ -50,8 +49,8 @@ To add the Tanzu Application Platform package repository:
       --namespace tap-install
     ```
 
-    Where `$TAP_VERSION` is your Tanzu Application Platform version environment variable
-    defined earlier.
+    Where `$TAP_VERSION` is the Tanzu Application Platform version environment variable
+    you defined earlier.
 
 1. Get the status of the Tanzu Application Platform package repository, and ensure the status updates to `Reconcile succeeded` by running:
 
@@ -313,7 +312,8 @@ To view possible configuration settings for a package, run:
 tanzu package available get tap.tanzu.vmware.com/$TAP_VERSION --values-schema --namespace tap-install
 ```
 
-Where `$TAP_VERSION` is your Tanzu Application Platform version environment variable defined in Step 2.
+Where `$TAP_VERSION` is the Tanzu Application Platform version environment variable
+you defined earlier.
 
 >**Note:** The `tap.tanzu.vmware.com` package does not show all configuration settings for packages
 >it plans to install. The package only shows top-level keys.
