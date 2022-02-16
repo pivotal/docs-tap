@@ -80,7 +80,6 @@ Installation requires:
     * Minikube
         * Reference the resource requirements below
         * Hyperkit driver is supported on macOS only. Docker driver is not supported.
-    * Tanzu Kubernetes Grid multi-cloud
     * vSphere with Tanzu v7.0 U3a (not possible with Tanzu Application Platform v1.0.0 or
       earlier).
 
