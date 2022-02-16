@@ -19,10 +19,10 @@ set up environment variables for use during the installation by running:
     export INSTALL_REGISTRY_USERNAME=TANZU-NET-USER
     export INSTALL_REGISTRY_PASSWORD=TANZU-NET-PASSWORD
     export INSTALL_REGISTRY_HOSTNAME=registry.tanzu.vmware.com
-    export TAP_VERSION=1.0.1
+    export TAP_VERSION=VERSION-NUMBER
     ```
 
-    Where `TAP_VERSION` is set to the current Tanzu Application Platform version.
+    Where `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `1.0.1`.
 
 1. Create a namespace called `tap-install` for deploying any component packages by running:
 
