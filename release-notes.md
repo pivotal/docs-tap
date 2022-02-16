@@ -101,14 +101,13 @@ This release has the following issues:
 
 #### Installing
 
-When installing Tanzu Application Platform on Google Kubernetes Engine (GKE), Kubernetes control
+When you install Tanzu Application Platform on Google Kubernetes Engine (GKE), Kubernetes control
 plane can be unavailable for several minutes during the installation.
 Package installations can enter the `ReconcileFailed` state. When API server becomes available,
 packages try to reconcile to completion.
 
-This can happen on newly provisioned clusters which have not finished GKE API server autoscaling.
-When GKE scales up an API server, the current Tanzu Application install continues, and any
-subsequent installs succeed without interruption.
+This can happen on newly provisioned clusters that have not finished GKE API server autoscaling.
+When GKE scales up an API server, the current Tanzu Application install continues, and any subsequent installs succeed without interruption.
 
 #### Application Accelerator
 
