@@ -26,6 +26,12 @@ with a `git clone` error or error fetching scanner logs.
 
 This release has the following fixes:
 
+#### Services Toolkit
+
+* Resolved an issue with the `tanzu services` CLI plugin which meant it was not compatible with Kubernetes clusters running on GKE.
+* Fixed a potential race condition during reconciliation of ResourceClaims which could cause the Services Toolkit manager to crash.
+* Updated configuration of the Services Toolkit carvel Package to prevent an unwanted build up of ConfigMap resources.
+
 #### Supply Chain Security Tools – Scan
 
 - Resolved the issue that events show `SaveScanResultsSuccess` when metadata store is not configured.
