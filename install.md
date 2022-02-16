@@ -22,7 +22,8 @@ To add the Tanzu Application Platform package repository:
     export INSTALL_REGISTRY_HOSTNAME=registry.tanzu.vmware.com
     export TAP_VERSION=1.0.1
     ```
-    Where `$TAP_VERSION` is set to the current Tanzu Application Platform version.
+
+    Where `TAP_VERSION` is set to the current Tanzu Application Platform version.
 
 3. Create a namespace called `tap-install` for deploying any component packages by running:
 
@@ -49,8 +50,8 @@ To add the Tanzu Application Platform package repository:
       --namespace tap-install
     ```
 
-   Where `$TAP_VERSION` is your Tanzu Application Platform version environment variable defined in Step 2.
-
+    Where `$TAP_VERSION` is your Tanzu Application Platform version environment variable
+    defined earlier.
 
 1. Get the status of the Tanzu Application Platform package repository, and ensure the status updates to `Reconcile succeeded` by running:
 
