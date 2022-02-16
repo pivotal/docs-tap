@@ -1178,6 +1178,7 @@ RabbitMQ instance:
 
     >**Note:** Ensure your namespace has been setup to to use installed Tanzu Application Platform packages
     For more information, see [Set up developer namespaces to use installed packages](install-components.md#setup).
+    >**Note:** Ensure you have run through the [setup procedure](#con-serv-setup).
 
     1. Obtain a service reference by running:
 
@@ -1249,6 +1250,8 @@ for service instances.
     ```
 
 4. Obtain a service reference by running:
+
+    >**Note:** Ensure you have run through the [setup procedure](#con-serv-setup).
 
     ```
     $ tanzu service instances list --all-namespaces -owide
