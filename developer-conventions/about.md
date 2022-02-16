@@ -47,24 +47,6 @@ After these changes are made, you can use the Tanzu Dev Tools extension or other
 
 > **Note**: Currently, Developer Conventions only supports debug operations for Java applications.
 
-### <a id='resource-limits'></a>Resource Limits
+## Next steps
 
-The following resource limits are set on the Developer Conventions service:
-
-```
-resources:
-  limits:
-	cpu: 100m
-	memory: 256Mi
-  requests:
-	cpu: 100m
-	memory: 20Mi
-```
-
-## <a id='installing'></a>Installing
-
-Developer Conventions is released as a Tanzu Package. For information about installing Developer Conventions, see [Installing Tanzu Application Platform](../install-intro.md).
-
-## <a id='uninstalling'></a>Uninstalling
-
-To uninstall Developer Conventions, follow the guide for [Uninstalling Tanzu Application Platform packages](../uninstall.html). The package name for developer conventions is `developer-conventions`.
+- [Install Developer Conventions](install-dev-conventions.md)
