@@ -63,3 +63,21 @@ by running:
     ```
 
     Verify that `STATUS` is `Reconcile succeeded`
+
+## <a id='resource-limits'></a>Resource limits
+
+The following resource limits are set on the Developer Conventions service:
+
+```
+resources:
+  limits:
+	cpu: 100m
+	memory: 256Mi
+  requests:
+	cpu: 100m
+	memory: 20Mi
+```
+
+## <a id='uninstalling'></a>Uninstall
+
+To uninstall Developer Conventions, follow the guide for [Uninstalling Tanzu Application Platform packages](../uninstall.md). The package name for developer conventions is `developer-conventions`.
