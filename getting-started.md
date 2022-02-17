@@ -1193,10 +1193,10 @@ RabbitMQ instance:
         ```
 
     2. Create the application workload and the `rabbitmq-sample` application hosted at
-    `https://github.com/jhvhs/rabbitmq-sample` by running:
+    `https://github.com/sample-accelerators/rabbitmq-sample` by running:
 
         ```
-        tanzu apps workload create rmq-sample-app-usecase-1 --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch v0.1.0 --type web --service-ref "rmq=<SERVICE-REF>"
+        tanzu apps workload create rmq-sample-app-usecase-1 --git-repo https://github.com/sample-accelerators/rabbitmq-sample --git-branch main --git-tag tap-1.0 --type web --service-ref "rmq=<SERVICE-REF>"
         ```
 
         Where `<SERVICE-REF>` is the value of `SERVICE REF` from the output in the last step.
@@ -1571,7 +1571,7 @@ Workload Cluster by running:
 12. Create the application workload by running:
 
     ```
-    tanzu apps workload create rmq-sample-app-usecase-4 --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch v0.1.0 --type web --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:service-instances:projected-rmq"
+    tanzu apps workload create rmq-sample-app-usecase-4 --git-repo https://github.com/sample-accelerators/rabbitmq-sample --git-branch main --git-tag tap-1.0 --type web --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:service-instances:projected-rmq"
     ```
 
 13. Get the web-app URL by running:
