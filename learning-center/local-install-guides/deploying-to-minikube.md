@@ -31,12 +31,13 @@ If you already have a cluster started with Minikube, you cannot stop it and then
 Note that you must be using `dockerd`, and not `containerd`, in the Minikube cluster. This is because `containerd` does not accept an IP subnet when defining insecure registries to be trusted, allowing only specific hosts or IP addresses. Because though you don't know what IP address will be used by Minikube in advance, you can't provide the IP on the command line when starting Minikube to create the cluster the first time.
 
 ## Prerequisites
-The following installation prerequisites must be done prior to installation.
 
-  As a user you currently have created a tanzunet account and have access to your tanzunet credentials.  
-  As a user you currently have miniKube installed on your local machine.  
-  As a user you currently have tanzuCLI installed on your local machine.  
-  As a user you currently have kubectlCLI installed on your local machine.
+The following installation prerequisites must be done prior to installation:
+
+  - As a user you currently have created a tanzunet account and have access to your tanzunet credentials.  
+  - As a user you currently have miniKube installed on your local machine.  
+  - As a user you currently have tanzuCLI installed on your local machine.  
+  - As a user you currently have kubectlCLI installed on your local machine.
 
 ## Ingress controller with DNS
 
@@ -51,7 +52,7 @@ minikube addons enable ingress-dns
 
 You are ready now to install the Learning Center package.
 
-Note that the ingress addons for Minikube do not work when using Minikube on top of Docker for Mac or Docker for Windows. On macOS you must use the Hyperkit VM driver. On Windows you must use the Hyper-V VM driver.
+>**Note:** that the ingress addons for Minikube do not work when using Minikube on top of Docker for Mac or Docker for Windows. On macOS you must use the Hyperkit VM driver. On Windows you must use the Hyper-V VM driver.
 
 ## Installing carvel tools
 You must install the kapp controller and secret-gen controller carvel tools in order to properly install our tanzu packages.
@@ -65,7 +66,7 @@ Install secret-gen controller using:
 ```
 kapp deploy -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/latest/download/release.yml
 ```
-Note* Type y and enter to continue when prompted during installation of both kapp and secret-gen controller.
+>**Note:** Type y and enter to continue when prompted during installation of both kapp and secret-gen controller.
 
 ## Installing Tanzu package repository
 
@@ -79,7 +80,7 @@ tanzu package repository add tanzu-tap-repository \
   --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.0.0 \
   --namespace tap-install
 ```
-Where TANZU-NET-USER and TANZU-NET-PASSWORD are your credentials for Tanzu Network.
+Where `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for Tanzu Network.
 
   Add package repository to your cluster:
 
@@ -88,7 +89,7 @@ tanzu package repository add tanzu-tap-repository \
   --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.0.0 \
   --namespace tap-install
 ```
-Note* We are currently on build 7; if this changes, we need to update the command with the correct build version after the --url flag.
+>**Note:** We are currently on build 7; if this changes, we need to update the command with the correct build version after the --url flag.
 
 Please make sure to check the package repository install status by running:
 ```
@@ -161,8 +162,10 @@ dockerDaemon:
 #! Override operator image. Only used during development of Learning Center.
 operatorImage: null
 ```
-Change the ingressDomain in the learningcenter-values.yaml with `<your-local-ip>.nip.io` if you are using a `nip.io` DNS address. Details on what this are provided below.
-In the above example you would replace `workshops.example.com` with `<your-local-ip>.nip.io`
+Where:
+
+- `ingressDomain` is `<your-local-ip>.nip.io` if you are using a `nip.io` DNS address. Details on what this is provided below.
+- `workshops.example.com` is `<your-local-ip>.nip.io`
 
 ## Using a `nip.io` DNS address
 
