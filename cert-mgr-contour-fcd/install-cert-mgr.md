@@ -13,12 +13,9 @@ Before installing cert-manager, contour, and FluxCD Source Controller:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
 
-## <a id='install'></a>Install
+## <a id='install-cert-mgr'></a>Install cert-manager
 
-cert_manager, Contour, and FluxCD Source Controller are installed as part of all profiles.
-If you do not want to use a profile, you can install them each manually.
-
-### <a id='install-cert-mgr'></a>Install cert-manager
+To install cert-manager from the Tanzu Application Platform package repository:
 
 1. List version information for the package by running:
 
@@ -35,7 +32,7 @@ If you do not want to use a profile, you can install them each manually.
         cert-manager.tanzu.vmware.com  1.5.3+tap.1  2021-08-23T17:22:51Z
       ```
 
-2. Create a `cert-manager-rbac.yml` using below sample and Apply the config.
+2. Create a `cert-manager-rbac.yml` using the following sample and apply the configuration.
 
 
       ```yaml
@@ -77,7 +74,7 @@ If you do not want to use a profile, you can install them each manually.
       kubectl apply -f cert-manager-rbac.yml
       ```
 
-3. Create a `cert-manager-install.yml` using below sample and Apply the config.
+3. Create a `cert-manager-install.yml` using the following sample and apply the configuration.
 
 
       ```yaml
@@ -140,7 +137,9 @@ If you do not want to use a profile, you can install them each manually.
 
       Verify that `STATUS` is `Running`
 
-### <a id='install-contour'></a>Install Contour
+## <a id='install-contour'></a>Install Contour
+
+To install Contour from the Tanzu Application Platform package repository:
 
 1. List version information for the package by running:
 
@@ -157,7 +156,8 @@ If you do not want to use a profile, you can install them each manually.
       contour.tanzu.vmware.com  1.18.2+tap.1  2021-10-05T00:00:00Z
     ```
 
-2. Create a `contour-rbac.yml` using the below sample and apply the configuration.
+2. Create a `contour-rbac.yml` using the following sample and apply the configuration.
+
     ```yaml
     apiVersion: rbac.authorization.k8s.io/v1
     kind: ClusterRole
@@ -197,7 +197,7 @@ If you do not want to use a profile, you can install them each manually.
     kubectl apply -f contour-rbac.yml
     ```
 
-4. Create a `contour-install.yml` using the sample below and apply the configuration.
+4. Create a `contour-install.yml` using the following sample and apply the configuration.
     The following configuration installs the Contour package with default options.
     If you want to make changes to the default installation settings, go to the next step.
 
@@ -364,7 +364,9 @@ If you do not want to use a profile, you can install them each manually.
     Ensure that all pods are `Running` with all containers ready.
 
 
-### <a id='install-fluxcd'></a>Install FluxCD source-controller
+## <a id='install-fluxcd'></a>Install FluxCD source-controller
+
+To install FluxCD source-controller from the Tanzu Application Platform package repository:
 
 1. List version information for the package by running:
 
