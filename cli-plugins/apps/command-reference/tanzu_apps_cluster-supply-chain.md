@@ -1,6 +1,6 @@
 # Tanzu apps cluster supply chain
 
-Patterns for building and configuring workloads.
+This topic includes patterns for building and configuring workloads.
 
 ## <a id="options"></a>Options
 
