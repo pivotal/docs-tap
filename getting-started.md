@@ -1132,8 +1132,7 @@ ClusterResource to reference and describe it.
     kubectl apply -f rabbitmq-clusterresource.yaml
     ```
 
-    For more information about `ClusterResource`, see the
-    [Service Offering for VMware Tanzu](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-service_offering-terminology_and_apis.html).
+    The creation of this `ClusterResource` referring to `RabbitmqCluster` is the mechanism by which the `tanzu service` CLI plugin (discussed below) determines which resources to disply. For more information about `ClusterResource`, see [Service Offering for VMware Tanzu](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-service_offering-terminology_and_apis.html).
 
 
 ### <a id="same-namespace-use-case"></a> Use case 1: Binding an application to a pre-provisioned service instance running in the same namespace
@@ -1178,6 +1177,7 @@ RabbitMQ instance:
 
     >**Note:** Ensure your namespace has been setup to to use installed Tanzu Application Platform packages
     For more information, see [Set up developer namespaces to use installed packages](install-components.md#setup).
+    >**Note:** Ensure you have run through the [setup procedure](#con-serv-setup).
 
     1. Obtain a service reference by running:
 
@@ -1193,10 +1193,10 @@ RabbitMQ instance:
         ```
 
     2. Create the application workload and the `rabbitmq-sample` application hosted at
-    `https://github.com/jhvhs/rabbitmq-sample` by running:
+    `https://github.com/sample-accelerators/rabbitmq-sample` by running:
 
         ```
-        tanzu apps workload create rmq-sample-app-usecase-1 --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch v0.1.0 --type web --service-ref "rmq=<SERVICE-REF>"
+        tanzu apps workload create rmq-sample-app-usecase-1 --git-repo https://github.com/sample-accelerators/rabbitmq-sample --git-branch main --git-tag tap-1.0 --type web --service-ref "rmq=<SERVICE-REF>"
         ```
 
         Where `<SERVICE-REF>` is the value of `SERVICE REF` from the output in the last step.
@@ -1249,6 +1249,8 @@ for service instances.
     ```
 
 4. Obtain a service reference by running:
+
+    >**Note:** Ensure you have run through the [setup procedure](#con-serv-setup).
 
     ```
     $ tanzu service instances list --all-namespaces -owide
@@ -1359,7 +1361,7 @@ existing PostgreSQL database that exists in Azure.
     Example:
 
     ```
-    tanzu apps workload create <WORKLOAD-NAME> --git-repo https://github.com/spring-projects/spring-petclinic --git-branch main --type web --service-ref db=<REFERENCE>
+    tanzu apps workload create <WORKLOAD-NAME> --git-repo https://github.com/sample-accelerators/spring-petclinic --git-branch main --git-tag tap-1.0 --type web --service-ref db=<REFERENCE>
     ```
 
     Where:
@@ -1569,7 +1571,7 @@ Workload Cluster by running:
 12. Create the application workload by running:
 
     ```
-    tanzu apps workload create rmq-sample-app-usecase-4 --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch v0.1.0 --type web --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:service-instances:projected-rmq"
+    tanzu apps workload create rmq-sample-app-usecase-4 --git-repo https://github.com/sample-accelerators/rabbitmq-sample --git-branch main --git-tag tap-1.0 --type web --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:service-instances:projected-rmq"
     ```
 
 13. Get the web-app URL by running:

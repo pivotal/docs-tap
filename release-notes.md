@@ -22,6 +22,11 @@ This release has the following security issues:
 
 ### <a id='1-1-resolved-issues'></a> Resolved issues
 
+#### Services Toolkit
+
+* Resolved an issue with the `tanzu services` CLI plugin which meant it was not compatible with Kubernetes clusters running on GKE.
+* Fixed a potential race condition during reconciliation of ResourceClaims which could cause the Services Toolkit manager to crash.
+* Updated configuration of the Services Toolkit carvel Package to prevent an unwanted build up of ConfigMap resources.
 
 ### <a id='1-1-known-issues'></a> Known issues
 
