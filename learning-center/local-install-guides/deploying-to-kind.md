@@ -72,6 +72,8 @@ Note* Type y and enter to continue when prompted during installation of both kap
 
 ## Installing Tanzu package repository
 
+To install the Tanzu package repository: 
+
 Create a namespace using:
 ```
 kubectl create ns tap-install
@@ -101,6 +103,8 @@ tanzu package repository get tanzu-tap-repository --namespace tap-install
 wait for a reconciled successful status before attempting to install any other packages
 
 ## Create a configuration YAML file for Learning Center package
+
+To create a configuration YAML file: 
 
 Create a file called learningcenter-value.yaml in your current directory with the data provided below.
 ```
@@ -198,12 +202,18 @@ Note that some home internet gateways implement what is called rebind protection
 Also note that you cannot use an address of form `127.0.0.1.nip.io`, or `subdomain.localhost`. This will cause a failure as internal services, when needing to connect to each other, end up connecting to themselves instead since the address would resolve to the host loopback address of `127.0.0.1`.
 
 ## Install Learning Center package onto a Kubernetes cluster
+
+To install Learning Center on a Kubernetes cluster:
+
 ```
 tanzu package install learningcenter --package-name learningcenter.tanzu.vmware.com --version 0.1.0 -f ./learningcenter-value.yaml --namespace tap-install
 ```
 This package installation uses the installed Package repository along with a configuration learningcenter-value.yaml to install our Learning Center Package.
 
 ## Install Workshop tutorial package onto a Kubernetes cluster
+
+To install a Workshop tutorial on a Kubernetes cluster:
+
 ```
 tanzu package install learningcenter-tutorials --package-name workshops.learningcenter.tanzu.vmware.com --version 0.1.0 --namespace tap-install
 ```
@@ -212,6 +222,8 @@ Make sure you install the workshop package after the Learning Center package has
 kubectl get packages -n tap-install
 ```
 ## Run the workshop
+
+To run a workshop:
 
 Use the following command to get our portal URL:
 ```

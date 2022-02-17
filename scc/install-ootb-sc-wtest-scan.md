@@ -25,6 +25,8 @@ instance that:
 
 ## <a id='ins-ootb-sc-test-scan'></a> Install
 
+To install Out of the Box Supply Chain with Testing and Scanning:
+
 1. Ensure you do not have Out of The Box Supply Chain With Testing
 (`ootb-supply-chain-testing.tanzu.vmware.com`) installed:
 

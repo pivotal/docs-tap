@@ -1,6 +1,14 @@
 # Tanzu apps workload apply
 
+<<<<<<< HEAD
 This topic will help you apply configuration to a new or existing workload. If the resource does not exist, it will be created.
+=======
+This topic helps you apply configurations to a new or existing workload.
+
+### Synopsis
+
+Apply configurations to a new or existing workload. If the resource does not exist, it will be created.
+>>>>>>> 467fc53 ([#181218854] adds lead in sentences)
 
 Workload configuration options include:
 
