@@ -16,7 +16,8 @@ This release has the following known issues:
 This release has the following fixes:
 
 #### Supply Chain Security Tools – Scan
-- Resolved issue where events show `SaveScanResultsSuccess` when metadata store is not configured. 
+
+- Resolved the issue that events show `SaveScanResultsSuccess` when metadata store is not configured. 
 - Updated Scan Phase to correctly reflect `Error` if an error occurs during scanning.
 - CVE print columns are now properly populated.
 - Fixed failing Blob source scans where `.git` directory is not provided.
