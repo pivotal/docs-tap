@@ -23,6 +23,8 @@ Before installing Application Live View:
 
 ## <a id='install-app-live-view'></a> Install Application Live View
 
+To install Application Live View:
+
 1. List version information for both packages by running:
 
     ```

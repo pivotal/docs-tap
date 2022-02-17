@@ -15,6 +15,8 @@ If you've installed Tanzu Application Platform GUI as part of a Tanzu Applicatio
 
 ## <a id="upgrade-component"></a> Upgrade Tanzu Application Platform GUI Individually
 
+To upgrade only the Upgrade Tanzu Application Platform GUI:
+
 >**Note:** These steps only apply to installing Tanzu Application Platform GUI individually as opposed to part of a profile.
 
 1. Make sure your repository has access to the new version of the package:
