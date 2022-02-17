@@ -27,15 +27,17 @@ Users are still able to visit the training portal directly and view the catalog 
 
 ## <a id="triggering-workshop-creation"></a>Triggering workshop creation
 
-To trigger creation and allocation of a workshop to a user, you need to direct users browsers to a URL specific to the workshop. The form of this URL should be:
+1. To trigger creation and allocation of a workshop to a user, you need to direct users browsers to a URL specific to the workshop. The form of this URL should be:
 
-```
-<training-portal-url>/workshops/environment/<name>/create/?index_url=<index>
-```
+    ```
+    <training-portal-url>/workshops/environment/<name>/create/?index_url=<index>
+    ```
 
-Replace the value `<name>` with the name of the workshop environment corresponding to the workshop to be created.
+1. Replace the value `<name>` with the name of the workshop environment corresponding to the workshop to be created.
 
-Replace the value `<index>` with the URL for your custom index page where you list the workshops available. When a user completes the workshop, that user is redirected back to this index page. The user is also redirected back to this index page when an error occurs.
+1. Replace the value `<index>` with the URL for your custom index page where you list the workshops available.
+
+When a user completes the workshop, that user is redirected back to this index page. The user is also redirected back to this index page when an error occurs.
 
 When a user is redirected back to the index page, a query string parameter is supplied to notify why the user is being returned. This is used to display a banner or other indication as to why the user was returned.
 
