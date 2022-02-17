@@ -12,8 +12,9 @@ See [Accepting EULAs and installing the Tanzu CLI](install-general.md).
 
 To add the Tanzu Application Platform package repository:
 
-1. If you haven’t already completed the Install Cluster Essentials for VMware Tanzu,
-set up environment variables for use during the installation by running:
+1. If you haven’t already completed the
+[Install Cluster Essentials for VMware Tanzu](install-general.md#tanzu-cluster-essentials)
+procedure, set up environment variables for use during the installation by running:
 
     ```
     export INSTALL_REGISTRY_USERNAME=TANZU-NET-USER
