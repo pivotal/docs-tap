@@ -29,15 +29,15 @@ spec:
 
 Follow these steps to trigger creation and allocation of a workshop to a user:
 
-1. Direct users browsers to a URL specific to the workshop. The form of the URL is:
+1. Direct users browsers to a URL specific to the workshop as follows:
 
     ```
-    <training-portal-url>/workshops/environment/<name>/create/?index_url=<index>
+    TRAINING-PORTAL-URL/workshops/environment/NAME/create/?index_url=INDEX
     ```
 
-1. Replace the value `<name>` with the name of the workshop environment corresponding to the workshop to be created.
+1. Replace the value `NAME` with the name of the workshop environment corresponding to the workshop that you creates.
 
-1. Replace the value `<index>` with the URL for your custom index page where you list the workshops available.
+1. Replace the value `INDEX` with the URL of your custom index page that contains the workshops.
 
     The user is redirected back to this index page when:
 
