@@ -19,7 +19,7 @@ generate your own keys and sign an image.
 
 ## <a id='install-scst-sign'></a> Install
 
-**Note:** v1alpha1 api version of the ClusterImagePolicy is no longer supported as the group name has been renamed from
+>**Note:** v1alpha1 api version of the ClusterImagePolicy is no longer supported as the group name has been renamed from
 `signing.run.tanzu.vmware.com` to `signing.apps.tanzu.vmware.com`.
 
 To install Supply Chain Security Tools - Sign:
