@@ -1,6 +1,6 @@
 # Tanzu apps workload create
 
-Create a workload with the specified configuration.
+This topic helps you create a workload with the specified configuration.
 
 ### Synopsis
 

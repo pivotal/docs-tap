@@ -14,8 +14,8 @@ Tanzu Application Platform can support a range of workloads, including a serverl
 
 ## <a id='command-reference'></a>Command reference
 
-- See [Command Reference](command-reference.md)
+For information about available commands, see [Command Reference](command-reference.md).
 
 ## <a id='usage-and-examples'></a>Usage and examples
 
-- See [Usage and Examples](usage.md)
+For information about how to use the Apps CLI plug-in, see [Usage and Examples](usage.md).

@@ -405,6 +405,8 @@ service_account           default                    string  Name of the service
 
 ## <a id="install-package"></a>Install your Tanzu Application Platform package
 
+To install the Install the Tanzu Application Platform package:
+
 1. Install the package by running:
 
     ```

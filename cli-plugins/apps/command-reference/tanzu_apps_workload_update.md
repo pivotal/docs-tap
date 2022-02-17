@@ -1,6 +1,6 @@
 # Tanzu apps workload update
 
-Update the configuration of an existing workload.
+This topic helps you update the configuration of an existing workload.
 
 ### Synopsis
 

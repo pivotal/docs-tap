@@ -1,6 +1,6 @@
 # Tanzu apps workload apply
 
-Apply configurations to a new or existing workload.
+This topic helps you apply configurations to a new or existing workload.
 
 ### Synopsis
 
