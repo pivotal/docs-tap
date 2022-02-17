@@ -93,7 +93,7 @@ To install Supply Chain Security Tools - Sign:
 
     - `quota.pod_number`:
       This setting is the maximum number of pods that are allowed in the
-      `image-policy-system` namespace with the `system-cluster-critical`
+      deployment namespace with the `system-cluster-critical`
       priority class. This priority class is added to the pods to prevent
       preemption of this component's pods in case of node pressure.
 
@@ -107,6 +107,13 @@ To install Supply Chain Security Tools - Sign:
 
         * **For production environments**: VMware recommends you increase the number of replicas to
           3 to ensure availability of the component for better admission performance.
+
+    - `deployment_namespace`:
+      This setting controls the namespace to which this component will be deployed.
+      When not specified, the namespace `image-policy-system` is assumed.
+      This component creates the specified namespace in order to deploy required
+      resources. Make sure to select a namespace that is not being used by any
+      other components.
 
 1. Install the package:
 
