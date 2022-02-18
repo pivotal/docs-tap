@@ -1,11 +1,15 @@
-# Troubleshooting upgrading 
+# Troubleshooting upgrading
 
 This topic describes upgrading issues and resolutions.
 
 ## <a id="deploy-does-not-exist"></a> Database deployment does not exist
 
 To prevent issues with the metadata store database, such as the ones described in
-this topic, as of Tap v1.1 and Metadata Store v 1.1, the database deployment is now a `StatefulSet`.
+this topic, the database deployment is `StatefulSet` in
+
+* Tanzu Application Platform v1.1 and later
+* Metadata Store v1.1 and later
+
 If you have scripts searching for a `metadata-store-db` deployment, edit the scripts to
 instead search for `StatefulSet`.
 
@@ -41,11 +45,17 @@ Because the default access mode in the PVC is `ReadWriteOnce`, if you are deploy
 environment with multiple nodes then each pod might be on a different node.
 This causes the upgraded pod to spin up but then get stuck initializing because the original
 pod does not stop.
-To resolve this issue, manually delete the original pod so that the new pod can attach to the
-persistent volume.
+To resolve this issue, find and delete the original pod so that the new pod can attach to the
+persistent volume:
 
-Find the pod name of the app pod that is not in a pending state and then delete it:
-```
-kubectl get pods -n metadata-store
-kubectl delete pod <metadata-store-app-XXXXXXXXXXX> -n metadata-store
-```
+1. Discover the name of the app pod that is not in a pending state by running:
+
+    ```
+    kubectl get pods -n metadata-store
+    ```
+
+1. Delete the pod by running:
+
+    ```
+    kubectl delete pod METADATA-STORE-APP-POD-NAME -n metadata-store
+    ```
