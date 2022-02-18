@@ -1,16 +1,16 @@
-# Learning Center Operator
+# Learning Center operator
 
-Before deploying workshops, install a Kubernetes Operator for Learning Center.
+Before deploying workshops, install a Kubernetes operator for Learning Center.
 The operator manages the setup of the environment for each workshop and deploys instances of a workshop for each person.
 
-For information about installing the operator, see basic instructions for [Installing the Learning Center operator](../../install-components.md#install-learning-center).
+For basic information about installing the operator, see [Install Learning Center](../install-learning-center.md).
 
+## Installing and setting up Learning Center operator
 
-Additional information about installing and setting up Learning Center operator.
+The following is additional information about installing and setting up Learning Center operator.
 
-The Learning Center Operator should be able to be deployed to any Kubernetes cluster supporting custom 
+Learning Center operator should be able to be deployed to any Kubernetes cluster supporting custom 
 resource definitions and the concept of operators.
-
 The cluster must have an ingress router configured. Only a basic deployment of the ingress controller 
 is usually required. You do not need to configure the ingress controller to handle cluster wide edge 
 termination of secure HTTP connections. Learning Center creates Kubernetes Ingress resources and 
@@ -18,20 +18,16 @@ supplies any secret for use with secure HTTP connections for each ingress.
 
 For the ingress controller, VMware recommends the use of Contour over alternatives such as nginx. 
 An nginx-based ingress controller has a less than optimal design. Every time a new ingress is 
-created or deleted, the nginx config is reloaded, resulting in websocket connections terminating 
-after a period of time. Learning Center terminals are implemented to reconnect automatically in the case 
+created or deleted, the nginx config is reloaded. This results in websocket connections terminating 
+after a period of time. Learning Center terminals reconnect automatically in the case 
 of the websocket connection being lost. However, not all applications you might use with specific workshops can 
-handle loss of websocket connections so gracefully and they might be impacted due to the use of an nginx 
+handle loss of websocket connections so gracefully, and they might be impacted due to the use of an nginx 
 ingress controller. This problem is not specific to Learning Center. It can impact any application when 
 an nginx ingress controller is used frequently and ingresses are created or deleted frequently.
 
-If using a hosted Kubernetes solution from an IaaS provider such as Google, AWS, or Azure, you might need to 
-ensure that any HTTP request timeout specified on the inbound load balancer for the ingress controller is 
-increased such that long-lived websocket connections can be used. Load balancers of hosted Kubernetes solutions 
-in some cases only have a 30-second timeout. If possible configure the timeout applying to websockets 
-to be 1 hour.
+You can use a hosted Kubernetes solution from an IaaS provider such as Google, AWS, or Azure. If you do, you might need to ensure that any HTTP request timeout specified on the inbound load balancer for the ingress controller is increased such that long-lived websocket connections can be used. In some cases, load balancers of hosted Kubernetes solutions only have a 30-second timeout. If possible, configure the timeout applying to websockets to be 1 hour.
 
-If deploying the web-based training portal, the cluster must have available persistent volumes of type `ReadWriteOnce (RWO)`. 
+If you deploy the web-based training portal, the cluster must have available persistent volumes of type `ReadWriteOnce (RWO)`. 
 A default storage class should have been defined so that persistent volume claims do not need to specify a storage class. 
 For some Kubernetes distributions, including from IBM, it might be necessary to configure Learning Center as to 
 what user and group must be used for persistent volumes. If no default storage class is specified, or a specified 
