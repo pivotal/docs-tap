@@ -263,3 +263,15 @@ You have the app running before performing a live update using the same app name
 ### Solution
 
 To fix this problem, you can either delete the app or use a different name.
+
+### Symptom
+
+You see errors related to needing to accept an End User License Agreement
+
+### Cause
+
+TAP or one of its components cannot be accessed from TanzuNet due to the user not accepting a EULA in Tanzu Network.
+
+### Solution
+
+Ignore any errors you see and refer to Installing Tanzu Application Platform > Accepting EULAs and installing the Tanzu CLI.  Open the links and accept any EULAs displayed in the Tanzu Network interface.  If you are not prompted to sign a EULA, you have already agreed to the EULA for that component.  
