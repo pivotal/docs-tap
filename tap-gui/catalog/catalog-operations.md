@@ -12,7 +12,7 @@ This information is read from a Git-compatible repository consisting of these YA
 Changes made to the catalog definitions on your Git infrastructure are automatically reflected every 200 seconds or when manually registered.
 For each catalog entity kind you create, there is a file format you must follow.
 Below is an overview of a few core entities, here are details about all types of [entities](https://backstage.io/docs/features/software-catalog/descriptor-format).
-You can use the example blank catalog [described and linked to in the prerequisites](https://docs.vmware.com/en/Tanzu-Application-Platform/1.0/tap/GUID-prerequisites.html#tanzu-application-platform-gui-2) as a foundation for creating user, group, system, and main component YAML files.
+You can use the example blank catalog described in [Prerequisites](../../prerequisites.md#tap-gui) as a foundation for creating user, group, system, and main component YAML files.
 
 Relationship Diagram:
 ![Tanzu Application Platform GUI Relationships](../images/tap-gui-relationships.jpg)
