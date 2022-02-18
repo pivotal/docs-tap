@@ -264,14 +264,18 @@ You have the app running before performing a live update using the same app name
 
 To fix this problem, you can either delete the app or use a different name.
 
+
+## <a id='eula-error'></a> Error from failure to accept an End User License Agreement
+
 ### Symptom
 
-You see errors related to needing to accept an End User License Agreement
+An error message appears as a result of not accepting a relevant End User License Agreement (EULA).
 
 ### Cause
 
-TAP or one of its components cannot be accessed from TanzuNet due to the user not accepting a EULA in Tanzu Network.
+You cannot access Tanzu Application Platform or one of its components from
+VMware Tanzu Network before accepting the relevant EULA in VMware Tanzu Network.
 
 ### Solution
 
-Ignore any errors you see and refer to Installing Tanzu Application Platform > Accepting EULAs and installing the Tanzu CLI.  Open the links and accept any EULAs displayed in the Tanzu Network interface.  If you are not prompted to sign a EULA, you have already agreed to the EULA for that component.  
+Follow the steps in [Accept the End User License Agreements](install-general.md#accept-eulas).

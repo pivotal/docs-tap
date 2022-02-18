@@ -1,6 +1,8 @@
 # Accepting EULAs and installing the Tanzu CLI
 
-Before installing packages, you have to accept the End User License Agreements (EULAs).
+## <a id="accept-eulas"></a> Accept the End User License Agreements
+
+Before installing packages, you must accept the End User License Agreements (EULAs).
 
 To accept EULAs:
 
