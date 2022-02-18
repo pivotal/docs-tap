@@ -2,7 +2,7 @@
 
 The following are required to install Tanzu Application Platform:
 
-## <a id='tn-and-cont-img-reg-reqs'></a>Tanzu Network and container image registry requirements
+## <a id='tn-and-cont-img-reg-reqs'></a> VMware Tanzu Network and container image registry requirements
 
 Installation requires:
 
