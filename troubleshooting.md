@@ -263,3 +263,19 @@ You have the app running before performing a live update using the same app name
 ### Solution
 
 To fix this problem, you can either delete the app or use a different name.
+
+
+## <a id='eula-error'></a> Error from failure to accept an End User License Agreement
+
+### Symptom
+
+An error message appears as a result of not accepting a relevant End User License Agreement (EULA).
+
+### Cause
+
+You cannot access Tanzu Application Platform or one of its components from
+VMware Tanzu Network before accepting the relevant EULA in VMware Tanzu Network.
+
+### Solution
+
+Follow the steps in [Accept the End User License Agreements](install-general.md#accept-eulas).
