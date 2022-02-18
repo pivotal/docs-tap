@@ -1248,7 +1248,7 @@ spec:
       port: 8080
 ```
 
-The form of the hostname used in the URL to access the service is:
+The form of the host name used in the URL to access the service is:
 
 ```
 $(session_namespace)-application.$(ingress_domain)
