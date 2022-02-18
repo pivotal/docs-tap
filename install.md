@@ -395,10 +395,11 @@ To install the Install the Tanzu Application Platform package:
 1. Install the package by running:
 
     ```
-    tanzu package install tap -p tap.tanzu.vmware.com -v VERSION --values-file tap-values.yml -n tap-install
+    tanzu package install tap -p tap.tanzu.vmware.com -v $TAP_VERSION --values-file tap-values.yml -n tap-install
     ```
 
-    Where `VERSION` is your Tanzu Application Platform version, such as `1.0.1`.
+    Where `$TAP_VERSION` is the Tanzu Application Platform version environment variable
+    you defined earlier.
 
 1. Verify the package install by running:
 
