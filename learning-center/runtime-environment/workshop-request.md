@@ -2,7 +2,7 @@
 
 The `WorkshopRequest` custom resource defines a workshop request.
 
-## <a id="specify"></a> Specifying workshop environment
+## <a id="specify-workshop-env"></a> Specifying workshop environment
 
 The `WorkshopRequest` custom resource is used only to request a workshop instance.
 It does not specify actual details needed to perform the deployment of the workshop instance.
