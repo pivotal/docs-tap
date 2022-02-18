@@ -3,15 +3,16 @@
 This component requires extra configuration steps to start verifying your
 container images properly.
 
-> **Note**:
-> The instructions in this section refer to the deployment namespace of this
-> component. In most examples, this will be rendered as the default namespace
-> `image-policy-system`.
->
-> If you deployed this component using a customized namespace specified in the
-> installation values file, make sure to replace `image-policy-system` with the
-> namespace name you specified in `deployment_namespace` to perform the
-> configuration steps.
+> **Note:**
+
+> - The instructions in this section only apply to the deployment namespace of
+Supply Chain Security Tools - Sign. In most cases, this namespace is
+rendered as the default namespace `image-policy-system`.
+
+> - If you deployed Supply Chain Security Tools - Sign by using a customized
+namespace specified in the installation values file, replace `image-policy-system`
+with the namespace name that you specified in `deployment_namespace` before
+performing the configuration steps.
 
 ## <a id="create-cip-resource"></a> Create a `ClusterImagePolicy` resource
 
@@ -212,7 +213,7 @@ service account, follow these steps:
     ```
 
 1. Create the `image-policy-registry-credentials` service account in the
-deployment namespace and add the secret names from step 1 to the
+deployment namespace and add the secret name (one or more) in the previous step to the
 `imagePullSecrets` section:
 
     ```
