@@ -17,7 +17,7 @@ This release has the following fixes:
 
 #### Supply Chain Security Tools – Scan
 
-- Resolved the issue that events show `SaveScanResultsSuccess` when metadata store is not configured. 
+- Resolved the issue that events show `SaveScanResultsSuccess` when metadata store is not configured.
 - Updated Scan Phase to correctly reflect `Error` if an error occurs during scanning.
 - CVE print columns are now properly populated.
 - Fixed failing Blob source scans where `.git` directory is not provided.
@@ -58,40 +58,9 @@ during the Image Scan, after the binaries are built and packaged as images.
 
 #### Services Toolkit
 
-**The buildpack cannot support both Maven and Gradle builds:**
-When both Maven and Gradle builds are present, the buildpack tries to run both. This causes
-the buildpack to delete the source after the Gradle build succeeds, and then fail when the
-Maven build runs afterwards. This is because the Project Object Model (POM) is deleted after
-the Gradle build succeeds.
-
-#### Supply Chain Security Tools – Scan
-
-- **Events show `SaveScanResultsSuccess` incorrectly:** `SaveScanResultsSuccess` appears in
-the events when the Supply Chain Security Tools - Store is not configured. The
-`.status.conditions` output, however, correctly reflects `SendingResults=False`.
-- **Scan Phase indicates `Scanning` incorrectly:** Scans have an edge case where, when an
-error has occurred during scanning, the Scan Phase field is not updated to `Error` and
-instead remains in the `Scanning` phase. Read the scan pod logs to verify there was an error.
-- **CVE print columns are not getting populated:** After running a scan and using
-`kubectl get` on the scan, the CVE print columns
-(CRITICAL, HIGH, MEDIUM, LOW, UNKNOWN, CVETOTAL) are not populated.
-You can run `kubectl describe` on the scan and look for
-`Scan completed. Found x CVE(s): ...` under `Status.Conditions` to find these severity
-counts and `CVETOTAL`.
-- **Failing Blob source scans:** Blob source scans have an edge case where, when a
-compressed file without a `.git` directory is provided, sending results to the
-Supply Chain Security Tools - Store fails and the scanned revision value is not set.
-The current workaround is to add the `.git` directory to the compressed file.
-- **Scan controller pod fails:** If there is a misconfiguration, such as
-secretgen-controller not running or the Certificate Authority secret name being wrong, the
-controller pod fails after enabling the metadata store integration. The current workaround is
-to update the `tap-values.yaml` file with the proper configuration and update the
-application.
-- **Deleted resources keep reconciling:** After creating a scan CR and deleting it,
-the controllers keep trying to fetch the deleted resource, resulting in a `not found`
-or `unable to fetch` log entry with every reconciliation cycle.
-- **Scan controller fails when Git clone fails:** If this occurs, confirm that
-the Git URL and the SSH credentials are correct.
+- Resolved an issue with the `tanzu services` CLI plug-in which meant it was not compatible with Kubernetes clusters running on GKE.
+- Fixed a potential race condition during reconciliation of ResourceClaims which might cause the Services Toolkit manager to stop responding.
+- Updated configuration of the Services Toolkit carvel Package to prevent an unwanted build up of ConfigMap resources.
 
 #### Application Accelerator
 
