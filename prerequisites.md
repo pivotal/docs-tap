@@ -6,7 +6,7 @@ The following are required to install Tanzu Application Platform:
 
 Installation requires:
 
-- Access to Tanzu Net:
+- Access to VMware Tanzu Network:
 
   - A [Tanzu Network](https://network.tanzu.vmware.com/) account to download
 Tanzu Application Platform packages.
@@ -26,8 +26,6 @@ associated with some free registry offerings.
 
 - Registry credentials with read and write access made available to
 Tanzu Application Platform to store images.
-
-- Network access to https://registry.tanzu.vmware.com.
 
 - Network access to your chosen container image registry.
 
