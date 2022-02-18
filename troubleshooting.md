@@ -1,6 +1,12 @@
 # Troubleshooting Tanzu Application Platform
 
-This topic describes troubleshooting information for problems with installing Tanzu Application Platform.
+This topic describes troubleshooting information for problems with installing Tanzu Application Platform as a whole. For component-level troubleshooting, please reference the component's troubleshooting documentation:
+* [Tanzu Application Platform GUI](./tap-gui/troubleshooting.md)
+* [Tanzu Application Platform Convention Service](./convention-service/troubleshooting.md)
+* [Tanzu Application Platform Learning Center](./learning-center/troubleshooting/known-issues.md)
+* [Tanzu Application Platform Service Bindings](./service-bindings/troubleshooting.md)
+* [Tanzu Application Platform Source Controller](./source-controller/troubleshooting.md)
+* [Tanzu Application Platform Spring Boot Conventions](./spring-boot-conventions/troubleshooting.md)
 
 ## <a id='error-details'></a> Access `.status.usefulErrorMessage` details
 
