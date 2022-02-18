@@ -8,7 +8,7 @@ If you do not need to authenticate users but still want to provide your own fron
 
 ## <a id="enabling-anonymous-access"></a>Enabling anonymous access
 
-You can set the registration type to `anonymous` to enable full anonymous access to the training portal.
+Set the registration type to `anonymous` to enable full anonymous access to the training portal:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -27,28 +27,29 @@ spec:
 
 ## <a id="triggering-workshop-creation"></a>Triggering workshop creation
 
-Follow these steps to trigger creation and allocation of a workshop to a user:
+Direct users' browsers to a URL that is specific to a workshop to trigger creation and allocation of the workshop.
 
-1. Direct users browsers to a URL specific to the workshop as follows:
+The URL format looks like this:
 
-    ```
-    TRAINING-PORTAL-URL/workshops/environment/NAME/create/?index_url=INDEX
-    ```
+```
+TRAINING-PORTAL-URL/workshops/environment/NAME/create/?index_url=INDEX
+```
 
-1. Replace the value `NAME` with the name of the workshop environment corresponding to the workshop that you creates.
+Where:
 
-1. Replace the value `INDEX` with the URL of your custom index page that contains the workshops.
+- `NAME` is the name of the workshop environment corresponding to the workshop that you creates.
+- `INDEX` is the URL of your custom index page that contains the workshops.
 
-    The user is redirected back to this index page when:
+The user is redirected back to this index page when:
 
-    - a user completes the workshop
-    - an error occurs
+- a user completes the workshop
+- an error occurs
 
-    When a user is redirected back to the index page, a query string parameter is supplied to display a banner or other indication about why the user was returned.
+When a user is redirected back to the index page, a query string parameter is supplied to display a banner or other indication about why the user was returned.
 
-    The name of the query string parameter is `notification` and the possible values are:
+The name of the query string parameter is `notification` and the possible values are:
 
-    * `session-deleted` - Used when the workshop session is completed or restarted.
-    * `workshop-invalid` - Used when the name of the workshop environment created is invalid.
-    * `session-unavailable` - Used when capacity is reached and a workshop session cannot be created.
-    * `session-invalid` - Used when an attempt is made to access a session that doesn't exist. This can occur when the workshop dashboard is refreshed after the workshop session is expired and deleted.
+- `session-deleted` - Used when the workshop session is completed or restarted.
+- `workshop-invalid` - Used when the name of the workshop environment created is invalid.
+- `session-unavailable` - Used when capacity is reached and a workshop session cannot be created.
+- `session-invalid` - Used when an attempt is made to access a session that doesn't exist. This can occur when the workshop dashboard is refreshed after the workshop session is expired and deleted.
