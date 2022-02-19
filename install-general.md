@@ -29,7 +29,7 @@ Select "Agree" in the bottom right of the dialog box that comes up as seen in th
 
 This example shows that you have now accepted the EULAs for Tanzu Application Platform. In addition, you must accept the EULAs for Cluster Essentials for VMware Tanzu and for Tanzu Build Services and its associated components as stated above.
 
-## Installing the Tanzu CLI
+## <a id='install-tanzu-cli'></a> Installing the Tanzu CLI
 
 This document describes how to [Set Kubernetes cluster context](#cluster-context),
 [Install Cluster Essentials for VMware Tanzu](#tanzu-cluster-essentials),
