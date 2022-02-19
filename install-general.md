@@ -147,43 +147,52 @@ To install the Tanzu CLI on a Linux operating system when using
 Tanzu Application Platform v1.0.1:
 
 1. Create a directory named `tanzu` by running:
+
     ```
     mkdir $HOME/tanzu
     ```
 
-2. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
+1. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
 
-3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/) on Tanzu Network.
+1. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/) on VMware Tanzu Network.
 
-4. Click the `tanzu-cli-v0.11.1` folder.
+1. Click the Tanzu CLI folder for your Tanzu Application Platform version:
+    * For v1.0.1, select `tanzu-cli-v0.11.1`.
+    * For v1.0.0, select `tanzu-cli-v0.10.0`.
 
-5. Download `tanzu-framework-bundle-linux` and unpack the TAR file into the `tanzu` directory by running:
+1. Download `tanzu-framework-bundle-linux` and unpack the TAR file into the `tanzu` directory by running:
+
     ```
     tar -xvf tanzu-framework-linux-amd64.tar -C $HOME/tanzu
     ```
 
-6. Set env var `TANZU_CLI_NO_INIT` to `true` to assure the local downloaded versions of the CLI core and plug-ins are installed:
+1. Set environment variable `TANZU_CLI_NO_INIT` to `true` to ensure the local downloaded versions of
+the CLI core and plug-ins are installed:
 
      ```
      export TANZU_CLI_NO_INIT=true
      ```
 
-7. Install the CLI core by running:
+1. Install the CLI core by running:
 
     ```
     cd $HOME/tanzu
-    sudo install cli/core/v0.11.1/tanzu-core-linux_amd64 /usr/local/bin/tanzu
+    sudo install cli/core/VERSION/tanzu-core-linux_amd64 /usr/local/bin/tanzu
     ```
+    Where `VERSION` is:
+        * `v0.11.1` if you are on Tanzu Application Platform v1.0.1
+        * `v0.10.0` if you are on Tanzu Application Platform v1.0.0
 
-8. Confirm installation of the CLI core by running:
+1. Confirm installation of the CLI core by running:
 
-   ```
-   tanzu version
-   ```
+    ```
+    tanzu version
+    ```
+    The expected output is:
+        * `version: v0.11.1` for Tanzu Application Platform v1.0.1
+        * `version: v0.10.0` for Tanzu Application Platform v1.0.0
 
-   Expected output: `version: v0.11.1`
-
-9. Proceed to [Instructions for a clean install of Tanzu CLI plug-ins](#cli-plugin-clean-install).
+1. Proceed to [Instructions for a clean install of Tanzu CLI plug-ins](#cli-plugin-clean-install).
 
 **Tanzu Application Platform v1.0.0 Procedure**
 
@@ -232,73 +241,55 @@ Tanzu Application Platform v1.0.0:
 
 #### <a id='mac-tanzu-cli'></a>Mac: Install the Tanzu CLI
 
-To install the Tanzu CLI on Mac, follow the procedure for your version of
-Tanzu Application Platform.
-
-**Tanzu Application Platform v1.0.1 Procedure**
-
-To install the Tanzu CLI on a Mac operating system when using
-Tanzu Application Platform v1.0.1:
+To install the Tanzu CLI on macOS:
 
 1. Create a directory named `tanzu`:
+
     ```
     mkdir $HOME/tanzu
     ```
 
-2. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
+1. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
 
-3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/) on Tanzu Network.
+1. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/) on VMware Tanzu Network.
 
-4. Click the `tanzu-cli-v0.11.1` folder.
+1. Click the Tanzu CLI folder for your Tanzu Application Platform version:
+    * For v1.0.1, select `tanzu-cli-v0.11.1`.
+    * For v1.0.0, select `tanzu-cli-v0.10.0`.
 
-5. Download `tanzu-framework-bundle-mac` and unpack the TAR file into the `tanzu` directory:
+1. Download `tanzu-framework-bundle-mac` and unpack the TAR file into the `tanzu` directory:
+
     ```
     tar -xvf tanzu-framework-darwin-amd64.tar -C $HOME/tanzu
     ```
 
-6. Set env var `TANZU_CLI_NO_INIT` to `true` to assure the local downloaded versions of the CLI core and plug-ins are installed:
+1. Set environment variable `TANZU_CLI_NO_INIT` to `true` to ensure the local downloaded versions of
+the CLI core and plug-ins are installed:
 
      ```
      export TANZU_CLI_NO_INIT=true
      ```
 
-7.  Install the CLI core by running:
+1. Install the CLI core by running:
 
     ```
     cd $HOME/tanzu
-    install cli/core/v0.11.1/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
+    install cli/core/VERSION/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
     ```
+    Where `VERSION` is:
+        * `v0.11.1` if you are on Tanzu Application Platform v1.0.1
+        * `v0.10.0` if you are on Tanzu Application Platform v1.0.0
 
-8. Confirm installation of the CLI core by running:
+1. Confirm installation of the CLI core by running:
 
-   ```
-   tanzu version
-   ```
+    ```
+    tanzu version
+    ```
+    The expected output is:
+        * `version: v0.11.1` for Tanzu Application Platform v1.0.1
+        * `version: v0.10.0` for Tanzu Application Platform v1.0.0
 
-   Expected output: `version: v0.11.1`
-
-   If you see the following warning when running `Tanzu version` on macOS:
-   ```
-   "tanzu" cannot be opened because the developer cannot be verified
-   ```
-
-   To resolve this error, do the following:
-
-   1. Click **Cancel** in the macOS prompt window.
-
-   2. Open the **Security & Privacy** control panel from **System Preferences**.
-
-   3. Click **General**.
-
-   4. Click **Allow Anyway** next to the warning message for the Tanzu binary.
-
-   5. Enter your system username and password in the macOS prompt window to confirm the changes.
-
-   6. Execute the `Tanzu version` command in the terminal window again.
-
-   7. Click **Open** in the macOS prompt window. After completing the steps above, there should be no more security issues while running Tanzu CLI commands.
-
-   8. Proceed to [Instructions for a clean install of Tanzu CLI plug-ins](#cli-plugin-clean-install).
+1. Proceed to [Instructions for a clean install of Tanzu CLI plug-ins](#cli-plugin-clean-install).
 
 **Tanzu Application Platform v1.0.0 Procedure**
 
@@ -368,53 +359,56 @@ Tanzu Application Platform v1.0.0:
 
 #### <a id='windows-tanzu-cli'></a>Windows: Install the Tanzu CLI
 
-To install the Tanzu CLI on Windows, follow the procedure for your version of
-Tanzu Application Platform.
+To install the Tanzu CLI on Windows:
 
-**Tanzu Application Platform v1.0.1 Procedure**
+1. Create a directory called `tanzu-bundle`.
 
-To install the Tanzu CLI on a Windows operating system when using
-Tanzu Application Platform v1.0.1:
+1. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
 
-  1. Create a directory called `tanzu-bundle`.
+1. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/) on Tanzu Network.
 
-  2. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
+1. Click the Tanzu CLI folder for your Tanzu Application Platform version:
+    * For v1.0.1, select `tanzu-cli-v0.11.1`.
+    * For v1.0.0, select `tanzu-cli-v0.10.0`.
 
-  3. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/) on Tanzu Network.
+1. Download `tanzu-framework-bundle-windows` and unpack the TAR files into the `tanzu-bundle` directory.
 
-  4. Click the `tanzu-cli-v0.11.1` folder.
+1. Create a new `Program Files\tanzu` folder.
 
-  5. Download `tanzu-framework-bundle-windows` and unpack the TAR files into the `tanzu-bundle` directory.
+1. In the unpacked CLI folder `tanzu-bundle`, locate and copy `core/VERSION/tanzu-core-windows_amd64.exe`
+Where `VERSION` is:
+    * `v0.11.1` if you are on Tanzu Application Platform v1.0.1
+    * `v0.10.0` if you are on Tanzu Application Platform v1.0.0
 
-  6. Create a new `Program Files\tanzu` folder.
+1. Paste the file into the new `Program Files\tanzu` directory.
 
-  7. In the unpacked CLI folder tanzu-bundle, locate and copy the `core/v0.11.1/tanzu-core-windows_amd64.exe`
-     into the new `Program Files\tanzu` folder.
+1. Rename `tanzu-core-windows_amd64.exe` as `tanzu.exe`.
 
-  8. Rename `tanzu-core-windows_amd64.exe` to `tanzu.exe`.
+1. Right-click the `tanzu` folder, select **Properties > Security**, and make sure that your user
+account has the **Full Control** permission.
 
-  9. Right-click the `tanzu` folder, select **Properties > Security**,
-     and make sure that your user account has the **Full Control** permission.
+1. Use Windows Search to search for `env`.
 
-  10. Use Windows Search to search for `env`.
+1. Select **Edit the system environment variables**, and click **Environment Variables**.
 
-  11. Select **Edit the system environment variables**, and click **Environment Variables**.
+1. Select the **Path** row under **System variables**, and click **Edit**.
 
-  12. Select the **Path** row under **System variables**, and click **Edit**.
+1. Click **New** to add a new row, and enter the path to the Tanzu CLI.
 
-  13. Click **New** to add a new row, and enter the path to the Tanzu CLI.
+1. Set the environmental variable `TANZU_CLI_NO_INIT` to `true`.
 
-  14. Set the environmental variable `TANZU_CLI_NO_INIT` to `true`.
+1. From the `tanzu` directory, confirm the installation of the Tanzu CLI by running the following
+command in a terminal window:
 
-  15. From the `tanzu` directory, confirm the installation of the Tanzu CLI by running the following command in a terminal window:
+    ```
+    tanzu version
+    ```
+    The expected output is:
+        * `version: v0.11.1` for Tanzu Application Platform v1.0.1
+        * `version: v0.10.0` for Tanzu Application Platform v1.0.0
 
-      ```
-      tanzu version
-      ```
+1. Proceed to [Clean Install Tanzu CLI plug-ins](#cli-plugin-clean-install)
 
-      Expected output: `version: v0.11.1`
-
-  16. Proceed to [Clean Install Tanzu CLI plug-ins](#cli-plugin-clean-install)
 
 **Tanzu Application Platform v1.0.0 Procedure**
 

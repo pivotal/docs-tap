@@ -2,6 +2,37 @@
 
 This topic describes troubleshooting information for problems with installing Tanzu Application Platform.
 
+## <a id='macos-unverified-dev'></a> Developer cannot be verified when installing Tanzu CLI on macOS
+
+### Symptom
+
+If you see the following error when running `tanzu version` on macOS:
+
+```
+"tanzu" cannot be opened because the developer cannot be verified
+```
+
+### Cause
+
+Your security settings are preventing installation.
+
+### Solution
+
+1. Click **Cancel** in the macOS prompt window.
+
+2. Open the **Security & Privacy** control panel from **System Preferences**.
+
+3. Click **General**.
+
+4. Click **Allow Anyway** next to the warning message for the Tanzu binary.
+
+5. Enter your system username and password in the macOS prompt window to confirm the changes.
+
+6. Execute the `Tanzu version` command in the terminal window again.
+
+7. Click **Open** in the macOS prompt window. After completing the steps above, there should be no
+more security issues while running Tanzu CLI commands.
+
 ## <a id='error-details'></a> Access `.status.usefulErrorMessage` details
 
 ### Symptom
