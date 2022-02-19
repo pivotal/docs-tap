@@ -2,7 +2,7 @@
 
 This Tanzu CLI plug-in provides the ability to create, view, update, and delete application workloads on any Kubernetes cluster that has the Tanzu Application Platform components installed.
 
-## <a id='About'></a>About workloads
+## <a id='about'></a>About workloads
 
 Tanzu Application Platform enables developers to quickly build and test applications regardless of their familiarity with Kubernetes.
 Developers can turn source code into a workload that runs in a container with a URL.

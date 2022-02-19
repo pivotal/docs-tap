@@ -8,7 +8,7 @@ This topic includes patterns for building and configuring workloads.
   -h, --help   help for cluster-supply-chain
 ```
 
-## <a id="options-inherited-from-parent-commands"></a>Options inherited from parent commands
+## <a id="parent-commands-options"></a> Options inherited from parent commands
 
 ```
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
