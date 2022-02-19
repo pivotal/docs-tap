@@ -22,14 +22,14 @@ You install convention servers as part of separate installation procedures.
 For example, you install an `app-live-view` convention server as part of the `app-live-view`
 installation.
 
-## <a id='cs-prereqs'></a>Prerequisites
+## <a id='prereqs'></a> Prerequisites
 
 Before installing convention controller:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
 - Install cert-manager on the cluster. See [Install Prerequisites](../install-components.md#install-prereqs).
 
-## <a id='cs-install'></a>Install
+## <a id='install'></a> Install
 
 To install convention controller:
 

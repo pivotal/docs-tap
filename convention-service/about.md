@@ -18,7 +18,7 @@ The service is composed of two components:
   You can have one or more convention servers for a single convention controller instance.
   Convention Service currently supports defining and applying conventions for Pods.
 
-## <a id="about-applying-conventions"></a>About applying conventions
+## <a id="about-apply-conventions"></a>About applying conventions
 
 The convention server uses criteria defined in the convention to determine
 whether the configuration of a workload should be changed.
@@ -27,7 +27,7 @@ If the metadata meets the criteria defined by the convention server,
 the conventions are applied.
 It is also possible for a convention to apply to all workloads regardless of metadata.
 
-### <a id="applying-conventions-image-metadata"></a>Applying conventions by using image metadata
+### <a id="apply-by-image-metadata"></a>Applying conventions by using image metadata
 
 You can define conventions to target workloads by using properties of their OCI metadata.
 
@@ -42,7 +42,7 @@ the image type and match the criteria for a given convention server.
 Images built with Cloud Native Buildpacks reliably include rich descriptive metadata.
 Images built by some other process may not include the same metadata.
 
-### <a id="applying-conventions-no-image-metadata"></a>Applying conventions without using image metadata
+### <a id="apply-wo-image-metadata"></a>Applying conventions without using image metadata
 
 Conventions can also be defined to apply to workloads without targeting build service metadata.
 Examples of possible uses of this type of convention include appending a logging/metrics sidecar,
