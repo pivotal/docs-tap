@@ -498,7 +498,7 @@ The `server.yaml` defines the Kubernetes components that enable the convention s
             # port: 443 # default
     ```
 
-## <a id=deploy-convention-server></a> Deploy a convention server
+## <a id="deploy-convention-server"></a> Deploy a convention server
 
 To deploy a convention server:
 
