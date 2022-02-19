@@ -27,7 +27,7 @@ tanzu apps cluster-supply-chain list
   -v, --verbose int32     number for the log level verbosity (default 1)
 ```
 
-## See also
+## <a id="see-also"></a> See also
 
 - [Tanzu apps cluster supply chain](tanzu_apps_cluster-supply-chain.md)	- Patterns for building and configuring workloads
 
