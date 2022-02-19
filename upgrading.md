@@ -4,7 +4,7 @@ This document describes how to upgrade Tanzu Application Platform from 1.0 to 1.
 
 You can perform fresh install of Tanzu Application Platform `1.0.1` by following the instructions in [Installing Tanzu Application Platform](install-intro.md).
 
-## <a id='prereqs'></a>Prerequisites
+## <a id='prereqs'></a> Prerequisites
 
 Before you upgrade Tanzu Application Platform:
 
@@ -13,7 +13,7 @@ Before you upgrade Tanzu Application Platform:
 - Read through [Tanzu Application Platform GUI Considerations](tap-gui/upgrades.md#considerations)
 - Verify all packages are reconciled by running `tanzu package installed list -A`
 
-## Add new package repository
+## <a id="add-new-package-repo"></a> Add new package repository
 
 Follow these steps to add the new package repository:
 
@@ -31,9 +31,9 @@ Follow these steps to add the new package repository:
     tanzu package repository get tanzu-tap-repository --namespace tap-install
     ```
 
-## Perform upgrade of Tanzu Application Platform
+## <a id="upgrade-tap"></a> Perform upgrade of Tanzu Application Platform
 
-### Upgrade instructions for Profile-based installation
+### <a id="profile-based-instruct"></a> Upgrade instructions for Profile-based installation
 
 For Tanzu Application Platform that is installed by profile, you can perform the upgrade by running:
 
@@ -43,11 +43,11 @@ For Tanzu Application Platform that is installed by profile, you can perform the
 tanzu package installed update tap -p tap.tanzu.vmware.com -v 1.0.1  --values-file tap-values.yaml -n tap-install
 ```
 
-### Upgrade instructions for component-specific installation
+### <a id="comp-specific-instruct"></a> Upgrade instructions for component-specific installation
 
 See additional information about [upgrading Tanzu Application Platform GUI](tap-gui/upgrades.html).
 
-## Verify the upgrade
+## <a id="verify"></a> Verify the upgrade
 
 Verify the versions of packages after the upgrade by running:
 
