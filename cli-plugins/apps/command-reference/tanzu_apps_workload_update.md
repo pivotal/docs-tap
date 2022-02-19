@@ -2,7 +2,9 @@
 
 This topic helps you update the configuration of an existing workload.
 
-To export the current configuration, run `tanzu apps workload export NAME`.
+### <a id="synopsis"></a> Synopsis
+
+Update the configuration of an existing workload.
 
 Workload configuration options include:
 
@@ -57,7 +59,7 @@ tanzu apps workload update --file workload.yaml
   -y, --yes                            accept all prompts
 ```
 
-## <a id="options inherited from parent commands"></a>Options inherited from parent commands
+## <a id="parent-commands-options"></a>Options inherited from parent commands
 
 ```
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)

@@ -2,7 +2,7 @@
 
 This topic helps you apply configurations to a new or existing workload.
 
-### Synopsis
+### <a id="synopsis"></a> Synopsis
 
 Apply configurations to a new or existing workload. If the resource does not exist, it will be created.
 
@@ -17,13 +17,13 @@ Workload configuration options include:
 tanzu apps workload apply [name] [flags]
 ```
 
-## <a id="examples"></a>Examples
+## <a id="examples"></a> Examples
 
 ```
 tanzu apps workload apply --file workload.yaml
 ```
 
-## <a id="options"></a>Options
+## <a id="options"></a> Options
 
 ```
       --app name                       application name the workload is a part of
@@ -56,7 +56,7 @@ tanzu apps workload apply --file workload.yaml
   -y, --yes                            accept all prompts
 ```
 
-## <a id="options inherited from patent commands"></a>Options inherited from parent commands
+## <a id="parent-commands-options"></a> Options inherited from parent commands
 
 ```
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)

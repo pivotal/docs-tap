@@ -2,7 +2,7 @@
 
 This topic helps you create a workload with the specified configuration.
 
-### Synopsis
+### <a id="synopsis"></a> Synopsis
 
 Create a workload with the specified configuration.
 
@@ -58,7 +58,7 @@ tanzu apps workload create --file workload.yaml
   -y, --yes                            accept all prompts
 ```
 
-## <a id="options-inherited-from-parent-commands"></a>Options inherited from parent commands
+## <a id="parent-commands-options"></a> Options inherited from parent commands
 
 ```
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)

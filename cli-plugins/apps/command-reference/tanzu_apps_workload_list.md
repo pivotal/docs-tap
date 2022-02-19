@@ -22,7 +22,7 @@ tanzu apps workload list --all-namespaces
   -n, --namespace name   kubernetes namespace (defaulted from kube config)
 ```
 
-## <a id="options inherited from parent commands"></a>Options inherited from parent commands
+## <a id="parent-commands-options"></a>Options inherited from parent commands
 
 ```
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
