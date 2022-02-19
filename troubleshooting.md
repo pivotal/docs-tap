@@ -1,6 +1,9 @@
 # Troubleshooting Tanzu Application Platform
 
 This topic is for troubleshooting the installation of Tanzu Application Platform.
+
+## <a id="component-ts-links"></a> Component-level troubleshooting
+
 For component-level troubleshooting, see these topics:
 
 * [Troubleshooting Tanzu Application Platform GUI](tap-gui/troubleshooting.md)
