@@ -9,7 +9,7 @@ Before installing the packages, be sure to complete the prerequisites, configure
 and verify the cluster, accept the EULA, and install the Tanzu CLI with any required plug-ins.
 For more information, see [Prerequisites](prerequisites.md).
 
-## Install pages for individual Tanzu Application Platform packages
+## <a id='individual-package-toc'></a> Install pages for individual Tanzu Application Platform packages
 
 - [Install cert-manager, Contour, and FluxCD](cert-mgr-contour-fcd/install-cert-mgr.md)
 - [Install Cloud Native Runtimes](cloud-native-runtimes/install-cnrt.md)
