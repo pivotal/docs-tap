@@ -1,6 +1,6 @@
 # Application Accelerator in Tanzu Application Platform GUI
 
-## <a id='what-is-application-accelerator'></a>What is Application Accelerator?
+## <a id="overview"></a> Overview
 
 Application Accelerator for VMware Tanzu helps you bootstrap developing and deploying your applications in a discoverable and repeatable way.
 
