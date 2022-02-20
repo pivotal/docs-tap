@@ -2,7 +2,7 @@
 
 A single training portal can host one or more workshops. The REST API endpoints for the workshops catalog provide a means to list the available workshops and get information about them.
 
-## <a id="listing-available-workshops"></a>Listing available workshops
+## <a id="list-available-workshops"></a>Listing available workshops
 
 The URL sub path for accessing the list of available workshop environments is `/workshops/catalog/environments/`. When making the request, you must supply the access token in the HTTP `Authorization` header with type set as `Bearer`:
 

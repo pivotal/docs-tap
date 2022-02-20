@@ -1,6 +1,6 @@
 # TrainingPortal
 
-## <a id="working-with-multiple-workshops"></a>Working with multiple workshops
+## <a id="work-with-workshops"></a>Working with multiple workshops
 
 The quickest way to deploy a set of workshops to use in a training session is to deploy a `TrainingPortal`.
 This deploys a set of workshops, with one instance of each workshop for each attendee.
@@ -10,7 +10,7 @@ The `TrainingPortal` custom resource provides a high-level mechanism for creatin
 populating it with workshop instances. When the Learning Center Operator processes this custom resource, it creates other custom resources to trigger the creation of the workshop environment and the workshop instances.
 If you want more control, you can use these latter custom resources directly instead.
 
-## <a id="loading-workshop-definition"></a>Loading the workshop definition
+## <a id="loading-ws-definition"></a>Loading the workshop definition
 
 A custom resource of type `Workshop` describes each workshop. Before a workshop environment can be created, you must load the
 definition of the workshop.
@@ -82,7 +82,7 @@ workshop and a URL where you can find out more information about the workshop.
 The definition of a workshop is loaded as a step of its own, rather than referring to a remotely hosted definition. This allows a cluster admin to audit the workshop definition to ensure it isn't doing something the cluster admin doesn't want to
 allow. Once the cluster admin approves the workshop definition, it can be used to create instances of the workshop.
 
-## <a id="creating-workshop-training-portal"></a>Creating the workshop training portal
+## <a id="create-ws-training-portal"></a>Creating the workshop training portal
 
 To deploy a workshop for one or more users, use the `TrainingPortal` custom resource. This custom resource specifies
 a set of workshops to be deployed and the number of people taking the workshops.
@@ -185,9 +185,9 @@ lab-k8s-fundamentals  https://lab-k8s-fundamentals-ui.test  learningcenter      
 Attendees should only be given the URL. The password listed is only for use by the instructor of the training
 session if required.
 
-## <a id="accessing-workshops-via-web-portal"></a>Accessing workshops via the web portal
+## <a id="access-ws-via-web-portal"></a>Accessing workshops via the web portal
 
-An attendee visiting the web-based portal for the training session is presented with a login page. However, 
+An attendee visiting the web-based portal for the training session is presented with a login page. However,
 the attendee must register for an account. From the initial login page, click on the link to
 the registration page.
 
@@ -210,7 +210,7 @@ the attendee to that workshop instance.
 
 ![Dashboard Terminal](../about-learning-center/images/dashboard-terminal.png)
 
-## <a id="deleting-workshop-training-portal"></a>Deleting the workshop training portal
+## <a id="delete-ws-training-portal"></a>Deleting the workshop training portal
 
 The workshop training portal is intended for running workshops with a fixed time period where all workshop instances
 are deleted when complete.

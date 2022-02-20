@@ -8,7 +8,8 @@ Also keep in mind that, since Kind generally has limited memory resources availa
 
 Requirements and setup instructions specific to Kind are detailed below; otherwise, follow normal installation instructions for the Learning Center Operator.
 
-## Prerequisites
+## <a id="prerequisites"></a> Prerequisites
+
 The following installation prerequisites must be done prior to installation:
 
   - As a user, you currently have created a tanzunet account and have access to your tanzunet credentials.  
@@ -16,7 +17,8 @@ The following installation prerequisites must be done prior to installation:
   - As a user, you currently have tanzuCLI installed on your local machine.  
   - As a user, you currently have kubectlCLI installed on your local machine.
 
-## Kind cluster creation
+## <a id="kind-cluster-creation"></a> Kind cluster creation
+
 When initially creating the Kind cluster you will need to [configure](https://kind.sigs.k8s.io/docs/user/ingress#create-cluster) it so that the ingress controller will be exposed. The documentation provides the following command to do this, but check the documentation in case the details have changed.
 
 ```
@@ -43,7 +45,7 @@ EOF
 
 Once you have the Kind cluster up and running, you need to install an ingress controller.
 
-## Ingress controller with DNS
+## <a id="ingress-control-with-dns"></a> Ingress controller with DNS
 
 The Kind documentation provides instructions for installing Ambassador, Contour, and Nginx-based ingress controllers.
 
@@ -56,7 +58,8 @@ If you have created a contour ingress controller, please verify all pods have a 
 kubectl get pods -n projectcontour -o wide
 ```
 
-## Installing carvel tools
+## <a id="install-carvel-tools"></a> Installing carvel tools
+
 You must install the kapp controller and secret-gen controller carvel tools in order to properly install our tanzu packages.
 
 Install kapp controller by running:
@@ -70,9 +73,9 @@ kapp deploy -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller
 ```
 >**Note:** Type y and enter to continue when prompted during installation of both kapp and secret-gen controller.
 
-## Installing Tanzu package repository
+## <a id="install-tanzu-pkg-repo"></a> Installing Tanzu package repository
 
-To install the Tanzu package repository: 
+To install the Tanzu package repository:
 
 1. Create a namespace:
 
@@ -110,12 +113,12 @@ Note* We are currently on build 7: if this changes, we need to update the comman
   ```
   tanzu package repository get tanzu-tap-repository --namespace tap-install
   ```
-  
+
   Wait for a reconciled successful status before attempting to install any other packages.
 
-## Create a configuration YAML file for Learning Center package
+## <a id="create-config-yaml-lc-pkg"></a> Create a configuration YAML file for Learning Center package
 
-To create a configuration YAML file: 
+To create a configuration YAML file:
 
 1. Create a file called learningcenter-value.yaml in your current directory with the data provided below.
   ```
@@ -185,7 +188,7 @@ Where:
 - `ingressDomain` is `<your-local-ip>.nip.io` if you are using a `nip.io` DNS address. Details on what this is are provided below.
 - `workshops.example.com with`  is `<your-local-ip>.nip.io`.
 
-## Using a `nip.io` DNS address
+## <a id="use-nip-io-dns-address"></a> Using a `nip.io` DNS address
 
 Before you can start deploying workshops, you need to configure the operator to tell it what domain name can be used to access anything deployed by the operator.
 
@@ -214,7 +217,7 @@ Note that some home internet gateways implement what is called rebind protection
 
 Also note that you cannot use an address of form `127.0.0.1.nip.io`, or `subdomain.localhost`. This will cause a failure as internal services, when needing to connect to each other, end up connecting to themselves instead since the address would resolve to the host loopback address of `127.0.0.1`.
 
-## Install Learning Center package onto a Kubernetes cluster
+## <a id="install-lc-pkg-k8s-clust"></a> Install Learning Center package onto a Kubernetes cluster
 
 To install Learning Center on a Kubernetes cluster:
 
@@ -223,7 +226,7 @@ tanzu package install learningcenter --package-name learningcenter.tanzu.vmware.
 ```
 This package installation uses the installed Package repository along with a configuration learningcenter-value.yaml to install our Learning Center Package.
 
-## Install Workshop tutorial package onto a Kubernetes cluster
+## <a id="ws-tut-pkg-k8s-cluster"></a> Install Workshop tutorial package onto a Kubernetes cluster
 
 To install a Workshop tutorial on a Kubernetes cluster:
 
@@ -234,7 +237,8 @@ Make sure you install the workshop package after the Learning Center package has
 ```
 kubectl get packages -n tap-install
 ```
-## Run the workshop
+
+## <a id="run-the-workshop"></a> Run the workshop
 
 To run a workshop:
 
@@ -246,7 +250,7 @@ Here we get a URL that we can then paste into our browser.
 
 Congratulations, you are now running our tutorial workshop using our Learning Center Operator.
 
-## Trusting insecure registries
+## <a id="trust-insecure-registries"></a> Trusting insecure registries
 
 Workshops may optionally deploy an image registry for a workshop session. This image registry is secured with a password specific to the workshop session and is exposed via a Kubernetes ingress so it can be accessed from the workshop session.
 

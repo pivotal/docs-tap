@@ -61,7 +61,7 @@ spec:
     class: nginx
 ```
 
-## <a id="def-image-reg"></a> Defining container image registry pull secrets
+## <a id="def-img-reg-pull-secrets"></a> Defining container image registry pull secrets
 
 To work with custom workshop images stored in a private image registry, the system profile
 can define a list of image pull secrets. Add this to the service accounts used to deploy
@@ -216,7 +216,7 @@ spec:
     - fd00:ec2::254/128
 ```
 
-## <a id="run-docker-daemon-rootless"></a> Running Docker daemon rootless
+## <a id="run-dker-daemon-rootless"></a> Running Docker daemon rootless
 
 If `docker` is enabled for workshops, Docker-in-Docker is run using a sidecar container.
 Because of the current state of running Docker-in-Docker and portability across Kubernetes
@@ -558,7 +558,7 @@ spec:
         }
 ```
 
-## Additional custom system profiles
+## <a id="extra-custom-sys-profiles"></a> Additional custom system profiles
 
 If the default system profile is specified, it is used by all deployments managed by the
 Learning Center Operator unless it was overridden by the system profile to use for a specific

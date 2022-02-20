@@ -34,7 +34,7 @@ different for each. The value of this name is not used to name workshop
 instances. You need the `name` value to delete the workshop instance, which is done by deleting the
 workshop request.
 
-## <a id="specify<-workshop-env"></a> Specifying required access token
+## <a id="specify-req-access-token"></a> Specifying required access token
 
 If a workshop environment is configured to require an access token when making a workshop request
 against that environment, you can specify decide the token by setting the `environment.token` field.

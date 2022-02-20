@@ -8,7 +8,7 @@ Also keep in mind that since Minikube generally has limited memory resources ava
 
 Requirements and setup instructions specific to Minikube are detailed below,; otherwise, normal installation instructions for the Learning Center operator should be followed.
 
-## Trusting insecure registries
+## <a id="trust-insecure-registries"></a> Trusting insecure registries
 
 Workshops may optionally deploy an image registry for a workshop session. This image registry is secured with a password specific to the workshop session and is exposed via a Kubernetes ingress so it can be accessed from the workshop session.
 
@@ -30,7 +30,7 @@ If you already have a cluster started with Minikube, you cannot stop it and then
 
 Note that you must be using `dockerd`, and not `containerd`, in the Minikube cluster. This is because `containerd` does not accept an IP subnet when defining insecure registries to be trusted, allowing only specific hosts or IP addresses. Because though you don't know what IP address will be used by Minikube in advance, you can't provide the IP on the command line when starting Minikube to create the cluster the first time.
 
-## Prerequisites
+## <a id="prerequisites"></a> Prerequisites
 
 The following installation prerequisites must be done prior to installation:
 
@@ -39,7 +39,7 @@ The following installation prerequisites must be done prior to installation:
   - As a user you currently have tanzuCLI installed on your local machine.  
   - As a user you currently have kubectlCLI installed on your local machine.
 
-## Ingress controller with DNS
+## <a id="ingress-ctrl-with-dns"></a> Ingress controller with DNS
 
 Once the Minikube cluster is running, you must enable the `ingress` and `ingress-dns` addons for Minikube. These deploy the nginx ingress controller along with support for integrating into DNS.
 
@@ -54,7 +54,8 @@ You are ready now to install the Learning Center package.
 
 >**Note:** that the ingress addons for Minikube do not work when using Minikube on top of Docker for Mac or Docker for Windows. On macOS you must use the Hyperkit VM driver. On Windows you must use the Hyper-V VM driver.
 
-## Installing carvel tools
+## <a id="install-carvel-tools"></a> Installing carvel tools
+
 You must install the kapp controller and secret-gen controller carvel tools in order to properly install our tanzu packages.
 
 Install kapp controller using:
@@ -68,7 +69,7 @@ kapp deploy -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller
 ```
 >**Note:** Type y and enter to continue when prompted during installation of both kapp and secret-gen controller.
 
-## Installing Tanzu package repository
+## <a id="install-tanzu-pkg-repo"></a> Installing Tanzu package repository
 
 Create a namespace using:
 ```
@@ -97,11 +98,11 @@ tanzu package repository get tanzu-tap-repository --namespace tap-install
 ```
 wait for a reconciled sucessful status before attempting to install any other packages.
 
-## Create a configuration yaml file for Learning Center Package
+## <a id="create-yaml-for-lc-pkg"></a> Create a configuration yaml file for Learning Center Package
 
 Create a file called learningcenter-value.yaml in your current directory with the data provided below.
 ```
-#! The namespace in which to deploy Learning Center. 
+#! The namespace in which to deploy Learning Center.
 namespace: learningcenter
 #! DNS parent subdomain used for training portal and workshop ingresses.
 ingressDomain: workshops.example.com
@@ -167,8 +168,7 @@ Where:
 - `ingressDomain` is `<your-local-ip>.nip.io` if you are using a `nip.io` DNS address. Details on what this is provided below.
 - `workshops.example.com` is `<your-local-ip>.nip.io`
 
-## Using a `nip.io` DNS address
-
+## <a id="use-nip-io-dns-address"></a> Using a `nip.io` DNS address
 
 Once the Learning Center Operator is installed, before you can start deploying workshops, you need to configure the operator to tell it what domain name can be used to access anything deployed by the operator.
 
@@ -191,24 +191,24 @@ You should now be able to start deploying workshops.
 
 Note that some home internet gateways implement what is called rebind protection. That is, the gateways will not let DNS names from the public internet bind to local IP address ranges inside the home network. If your home internet gateway has such a feature and it is enabled, it will block `nip.io` addresses from working. In this case you will need to configure your home internet gateway to allow `*.nip.io` names to be bound to local addresses.
 
-## Install Learning Center package onto a minikube cluster
+## <a id="install-lc-pkg-mk-cluster"></a> Install Learning Center package onto a minikube cluster
 
 ```
 tanzu package install learningcenter --package-name learningcenter.tanzu.vmware.com --version 0.1.0 -f ./learningcenter-value.yaml --namespace tap-install
 ```
 This package installation uses the installed Package repository along with a configuration learningcenter-value.yaml to install our Learning Center package.
 
-## Install Workshop tutorial package onto a minikube cluster
+## <a id="ws-tutor-pkg-mk-cluster"></a> Install Workshop tutorial package onto a minikube cluster
 
 ```
 tanzu package install learningcenter-tutorials --package-name workshops.learningcenter.tanzu.vmware.com --version 0.1.0 --namespace tap-install
 ```
-Make sure you install the workshop package after the Learning Center package has reconciled and successfully installed onto your cluster. In case of new versioning you may obtain package version numbers using 
+Make sure you install the workshop package after the Learning Center package has reconciled and successfully installed onto your cluster. In case of new versioning you may obtain package version numbers using
 ```
 kubectl get packages -n tap-install
 ```
 
-## Run workshop
+## <a id="run-the-workshop"></a> Run the workshop
 
 Use the following command to get our portal URL:
 ```
@@ -218,7 +218,7 @@ Here we will get a URL that we can then paste into our browser
 
 Congratulations, you are now running our tutorial workshop using our Learning Center Operator.
 
-## Working with large images
+## <a id="work-with-large-images"></a> Working with large images
 
 If you are creating or running workshops which work with the image registry created for a workshop session and you are going to be pushing images to that image registry which have very large layers, you need to configure the version of nginx deployed for the ingress controller and increase the allowed size of request data for a HTTP request.
 
@@ -236,7 +236,7 @@ proxy-body-size: 1g
 
 If you don't increase this, you will find `docker push` failing when trying to push container images with very large layers.
 
-## Limited resource availability
+## <a id="limit-rsrc-availability"></a> Limited resource availability
 
 By default Minikube when deploying a cluster only configures support for 2Gi of memory. This isn't usually enough to do much.
 
@@ -250,7 +250,7 @@ It is strongly recommended you configure Minikube to use 4Gi or more. This must 
 
 In addition to increasing the memory available, you may also want to look at increasing the disk size as fat container images can chew up disk space within the cluster pretty quickly.
 
-## Storage provisioner bug
+## <a id="storage-provisioner-issue"></a> Storage provisioner issue
 
 Version 1.12.3 of Minikube introduced a [bug](https://github.com/kubernetes/minikube/issues/8987) in the storage provisioner which causes potential corruption of data in persistent volumes where the same persistent volume claim name is used in two different namespaces. This affects Learning Center where you deploy multiple training portals at the same time, where you run multiple workshops at the same time which have docker or image registry support enabled, or where the workshop session itself is backed by persistent storage and multiple sessions are run at the same time.
 

@@ -9,7 +9,7 @@ Not all possible fields are shown in the examples of each custom resource type t
 Later documentation is expected to go in-depth on all the possible fields that can be set and what
 they do.
 
-## Workshop definition resource
+## <a id="workshop-def-resource"></a> Workshop definition resource
 
 The `Workshop` custom resource defines a workshop. It specifies the title and description of the
 workshop, the location of the workshop content or container image to be deployed, any resources to
@@ -46,7 +46,7 @@ action by the Learning Center Operator. This custom resource exists only to defi
 
 The `Workshop` custom resource is created at cluster scope.
 
-## Workshop environment resource
+## <a id="workshop-env-resource"></a> Workshop environment resource
 
 To deploy instances of a workshop, first you must create a workshop environment.
 The configuration for the workshop environment and which workshop definition specifies the
@@ -87,7 +87,7 @@ created in those namespaces instead.
 
 The `WorkshopEnvironment` custom resource is created at cluster scope.
 
-## Workshop request resource
+## <a id="workshop-request-resource"></a> Workshop request resource
 
 To create an instance of the workshop under the workshop environment which was created, the typical
 path is to create an instance of the `WorkshopRequest` custom resource.
@@ -119,7 +119,7 @@ The `WorkshopRequest` resource is not used when you use the `TrainingPortal` res
 web interface for accessing workshops. The `WorkshopRequest` resource is only used where you create
 the `WorkshopEnvironment` resource manually and do not use the training portal.
 
-## Workshop session resource
+## <a id="workshop-session-resource"></a> Workshop session resource
 
 Although `WorkshopRequest` is the typical way that workshop instances are requested, upon
 the request being granted, the Learning Center Operator itself creates an instance of a
@@ -133,7 +133,7 @@ instance based on that definition.
 
 The `WorkshopSession` custom resource is created at the cluster scope.
 
-## Training portal resource
+## <a id="training-portal-resource"></a> Training portal resource
 
 The `TrainingPortal` custom resource provides a high-level mechanism for creating a set of
 workshop environments and populating them with workshop instances.
@@ -156,7 +156,7 @@ are created for each workshop.
 
 The `TrainingPortal` custom resource is created at cluster scope.
 
-## System profile resource
+## <a id="system-profile-resource"></a> System profile resource
 
 The `SystemProfile` custom resources provides a mechanism for configuring the Learning Center
 Operator. This provides additional features above using using environment variables to configure the
@@ -193,7 +193,7 @@ The Learning Center Operator uses these changes without needing to redeploy the 
 
 The `SystemProfile` custom resource is created at cluster scope.
 
-## Loading the workshop CRDs
+## <a id="loading-workshop-crds"></a> Loading the workshop CRDs
 
 The custom resource definitions for the custom resource described earlier are created in the
 Kubernetes cluster when you deploy the Learning Center operator using the Tanzu CLI.
