@@ -1,4 +1,4 @@
-### Tanzu Application Platform GUI Integrations
+# Tanzu Application Platform GUI Integrations
 
 Tanzu Application Platform GUI supports integrating with several Git providers. To leverage this integration, you must enable it and provide the necessary token or credentials in your `tap-values-file.yml`.
 
@@ -34,7 +34,7 @@ add the following to the `tap-values-file.yml` file:
 ```
 
 Where `GIT-CATALOG-URL-1` and `GIT-CATALOG-URL-2` are URLs in a list of URLs that
-Tanzu Application Platform GUI can read when registering new components. For example, `git.example.com.` 
+Tanzu Application Platform GUI can read when registering new components. For example, `git.example.com.`
 For more information about registering new components, see
 [Adding Catalog Entities](catalog/catalog-operations.md#add-cat-entities).
 

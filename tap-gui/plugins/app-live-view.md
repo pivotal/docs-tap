@@ -1,6 +1,6 @@
 # Application Live View in Tanzu Application Platform GUI
 
-## What is Application Live View?
+## <a id="overview"></a> Overview
 
 The Application Live View features of the Tanzu Application Platform include sophisticated components to give developers and operators a view into their running workloads on Kubernetes.
 
@@ -17,7 +17,7 @@ This easy-to-use interface provides ways to troubleshoot, learn, and maintain an
 It gives a level of control to the users to change some parameters, such as environment properties, without a restart (where the Spring Boot application, for example, supports that).
 
 
-## Entry point to Application Live View plug-in
+## <a id="plug-in-entry-point"></a> Entry point to Application Live View plug-in
 
 The Application Live View UI plug-in is part of Tanzu Application Platform GUI. To use the Application Live View plug-in:
 
@@ -27,10 +27,10 @@ The Application Live View UI plug-in is part of Tanzu Application Platform GUI. 
 + The user can see all the details, do some lightweight troubleshooting and interact with the application in certain boundaries under the `Live View` section
 
 
-## Application Live View pages
+## <a id="app-live-view-pages"></a> Application Live View pages
 
 
-## Details page
+### <a id="details-page"></a> Details page
 
 This is the default page loaded in the `Live View` section. This page gives a tabular overview containing the following information:
 
@@ -51,7 +51,7 @@ The user can navigate between `Information Categories` by selecting from the dro
 ![Details Page in UI](./images/details.png)
 
 
-### Health page
+### <a id="health-page"></a> Health page
 
 To navigate to the health page, the user can select the `Health` option from the `Information Category` drop-down menu.
 The health page provides detailed information about the health of the application.
@@ -61,7 +61,7 @@ It displays the status, details associated with each of the components.
 ![Health Page in UI](./images/health.png)
 
 
-### Environment page
+### <a id="environment-page"></a> Environment page
 
 To navigate to the **Environment** page, the user can select the `Environment` option from the `Information Category` drop-down menu.
 The Environment page contains details of the applications' environment.
@@ -84,7 +84,7 @@ The page includes the following features:
 ![Environment Page Editable in UI](./images/environment-2.png)
 
 
-### Log Levels page
+### <a id="log-levels-page"></a> Log Levels page
 
 To navigate to the **Log Levels** page, the user can select the `Log Levels` option from the `Information Category` drop-down menu.
 The log levels page provides access to the application’s loggers and the configuration of their levels. The user can configure the log levels such as INFO, DEBUG, TRACE in real time from the UI. The user can search for a package and edit its respective log level. The user can configure the log levels at a specific class and package. They can deactivate all the log levels by modifying the log level of root logger to OFF.
@@ -96,7 +96,7 @@ The **Reset All** on top right corner of the page resets all the loggers to defa
 ![Log Levels Page in UI](./images/log-levels.png)
 
 
-### Threads page
+### <a id="threads-page"></a> Threads page
 
 To navigate to the **Threads** page, the user can select the `Threads` option from the `Information Category` drop-down menu.
 This page displays all details related to JVM threads and running processes of the application.
@@ -112,7 +112,7 @@ The page also has a feature to download thread dump for analysis purposes.
 ![Thread Details Page in UI](./images/threads-2.png)
 
 
-### Memory page
+### <a id="memory-page"></a> Memory page
 
 To navigate to the **Memory** page, the user can select the `Memory` option from the `Information Category` drop-down menu.
 
@@ -124,7 +124,7 @@ To navigate to the **Memory** page, the user can select the `Memory` option from
 >**Note:** This graphical visualization happens in real time and shows real-time data only. As mentioned at the top, the Application Live View features do not store any information. That means the graphs visualize the data over time only for as long as you stay on that page.
 
 
-### Request Mappings page
+### <a id="request-mappings-page"></a> Request Mappings page
 
 To navigate to the Request Mappings page, the user should select the `Request Mappings` option from the `Information Category` drop-down menu.
 This page provides information about the application’s request mappings. For each of the mapping, it displays the request handler method. The user can view more details of the request mapping such as header metadata of the application, i.e produces, consumes and HTTP method by clicking on the mapping. The search feature enables the user to search on the request mapping or the method. The toggle `/actuator/** Request Mappings` displays the actuator related mappings of the application.
@@ -136,7 +136,7 @@ This page provides information about the application’s request mappings. For e
 ![Request Mappings Details Page in UI](./images/request-mappings-2.png)
 
 
-### HTTP Requests page
+### <a id="http-requests-page"></a> HTTP Requests page
 
 To navigate to the HTTP Requests page, the user should select the `HTTP Requests` option from the `Information Category` drop-down menu.
 The HTTP Requests page provides information about HTTP request-response exchanges to the application.
@@ -155,7 +155,7 @@ The toggle '/actuator/**' on the top right corner of the page displays the actua
 ![Http Request Details Page in UI](./images/http-requests-2.png)
 
 
-### Caches page
+### <a id="caches-page"></a> Caches page
 
 To navigate to the **Caches** page, the user can select the `Caches` option from the `Information Category` drop-down menu.
 The Caches page provides access to the application’s caches. It gives the details of the cache managers associated with the application including the fully qualified name of the native cache. The search feature in the Caches Page enables the user to search for a specific cache/cache manager. The user can clear individual caches by clicking **Evict**. The user can clear all the caches completely by clicking **Evict All**.
@@ -164,7 +164,7 @@ If there are no cache managers for the application, a message is displayed `No c
 ![Caches Page in UI](./images/caches.png)
 
 
-### Configuration Properties page
+### <a id="config-props-page"></a> Configuration Properties page
 
 To navigate to the **Configuration Properties** page, the user can select the `Configuration Properties` option from the `Information Category` drop-down menu.
 The configuration properties page provides information about the configuration properties of the application. In case of Spring Boot, it displays application's @ConfigurationProperties beans. It gives a snapshot of all the beans and their associated configuration properties. The search feature allows the user to look up for property's key/value or the bean name.
@@ -172,7 +172,7 @@ The configuration properties page provides information about the configuration p
 ![Configuration Properties Page in UI](./images/config-props.png)
 
 
-### Conditions page
+### <a id="conditions-page"></a> Conditions page
 
 To navigate to the **Conditions** page, the user can select the `Conditions` option from the `Information Category` drop-down menu.
 The conditions evaluation report provides information about the evaluation of conditions on configuration and auto-configuration classes. In case of Spring Boot, this gives the user a clear view of all the beans configured in the application. When the user clicks on the bean name, the conditions and the reason for the conditional match is displayed. In case of not configured beans, it shows both the matched and unmatched conditions of the bean if any. In addition to this, it also displays names of unconditional auto configuration classes if any. The user can filter out on the beans and the conditions using the search feature.
@@ -180,14 +180,14 @@ The conditions evaluation report provides information about the evaluation of co
 ![Conditions Page in UI](./images/conditions.png)
 
 
-### Scheduled Tasks page
+### <a id="scheduled-tasks-page"></a> Scheduled Tasks page
 
 To navigate to the **Scheduled Tasks** page, the user can select the `Scheduled Tasks` option from the `Information Category` drop-down menu.
 The scheduled tasks page provides information about the application's scheduled tasks. It includes cron tasks, fixed delay tasks and fixed rate tasks, custom tasks and the properties associated with them. The user can search for a particular property or a task in the search bar to retrieve the task or property details.
 
 ![Scheduled Tasks Page in UI](./images/scheduled-tasks.png)
 
-### Beans page
+### <a id="beans-page"></a> Beans page
 
 To navigate to the **Beans** page, the user can select the `Beans` option from the `Information Category` drop-down menu.
 The beans page provides information about a list of all application beans and its dependencies. It displays the information about the bean type, dependencies, and its resource. The user can search by the bean name or its corresponding fields.
@@ -195,7 +195,7 @@ The beans page provides information about a list of all application beans and it
 ![Beans Page in UI](./images/beans.png)
 
 
-### Metrics page
+### <a id="metrics-page"></a> Metrics page
 
 To navigate to the **Metrics** page, the user can select the `Metrics` option from the `Information Category` drop-down menu.
 The metrics page provides access to application metrics information. The user can choose from the list of various metrics available for the application such as jvm.memory.used, jvm.memory.max, http.server.request, and so on.After the metric is chosen, the user can view the associated tags. The user can choose the value of each of the tags based on filtering criteria. Clicking **Add Metric** adds the metric to the page which is refreshed every 5 seconds by default. The user can pause the auto refresh feature by disabling the `Auto Refresh` toggle. The user can also refresh the metrics manually by clicking **Refresh All**. The format of the metric value can be changed according to the user's needs. They can delete a particular metric by clicking the minus symbol in the same row.
@@ -203,7 +203,7 @@ The metrics page provides access to application metrics information. The user ca
 ![Metrics Page in UI](./images/metrics.png)
 
 
-### Actuator page
+### <a id="actuator-page"></a> Actuator page
 
 To navigate to the **Actuator** page, the user can select the `Actuator` option from the `Information Category` drop-down menu.
 The actuator page provides a tree view of the actuator data. The user can choose from a list of actuator endpoints and parse through the raw actuator data.
@@ -211,7 +211,7 @@ The actuator page provides a tree view of the actuator data. The user can choose
 ![Actuator Page in UI](./images/actuator.png)
 
 
-## Troubleshoot
+## <a id="troubleshooting"></a> Troubleshooting
 
 You might run into cases where a workload running on your cluster does not show up in the Application Live View overview, the detail pages do not load any information while running, or similar issues.
 See [Troubleshooting](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-troubleshooting.html) in the Application Live View documentation.

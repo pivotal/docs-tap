@@ -58,7 +58,7 @@ To configure Amazon S3 access:
    6. Record the **Access key ID** (`AWS_READONLY_ACCESS_KEY_ID`) and the **Secret access key** (`AWS_READONLY_SECRET_ACCESS_KEY`) and click **Close**.
 
 
-## <a id="catalog-locations-and-entities"></a>Find the catalog locations and their entities' namespace/kind/name
+## <a id="find-cat-loc-and-entities"></a>Find the catalog locations and their entities' namespace/kind/name
 
 TechDocs are generated for catalogs that have markdown source files for TechDocs.
 To find the catalog locations and their entities' namespace/kind/name:
