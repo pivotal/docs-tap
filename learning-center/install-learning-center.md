@@ -1,4 +1,4 @@
-## Install Learning Center
+# Install Learning Center
 
 This document describes how to install Learning Center
 from the Tanzu Application Platform package repository.
