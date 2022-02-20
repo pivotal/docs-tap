@@ -4,7 +4,7 @@ The workshop content can script the steps a user must run for a workshop. In som
 
 This is possible by supplying setup scripts which are run when the container is started. If necessary you can also run persistent background processes in the container which perform extra work for you while a workshop is being run.
 
-## <a id="env-variables"></a> predefined environment variables
+## <a id="env-variables"></a> Predefined environment variables
 
 When creating the workshop content, you can use data variables to automatically insert values corresponding to the specific workshop session or environment. Examples are the name of the namespace used for the session, and the ingress domain when creating an ingress route.
 

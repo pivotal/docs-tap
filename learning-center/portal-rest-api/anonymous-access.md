@@ -25,7 +25,7 @@ spec:
 
 >**Note:** Users can still visit the training portal directly and view the catalog of available workshops, so instead of linking to the main page of the training portal, link from your custom index page to the individual links for creating each workshop.
 
-## <a id="triggering-workshop-creation"></a>Triggering workshop creation
+## <a id="trigger-workshop-creation"></a>Triggering workshop creation
 
 Direct users' browsers to a URL that is specific to a workshop to trigger creation and allocation of the workshop.
 

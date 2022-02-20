@@ -28,7 +28,7 @@ By disabling reserved sessions a new workshop session is always created on deman
 
 As there can be a slight delay in being able to create a new workshop, shut down the existing workshop session first. The new workshop session may also take some time to start if an updated version of the workshop image also has to be pulled down.
 
-## <a id="live-updates-to-the-content"></a>Live updates to the content
+## <a id="live-updates-to-content"></a>Live updates to the content
 
 If you download workshop content from a Git repository or web server and you are only doing simple updates to workshop instructions, scripts, or files bundled with the workshop, you can update the content in place without needing to restart the workshop session. To perform an update, do this after you have pushed back any changes to the hosted Git repository or updated the content available via the web server. From the workshop session terminal run:
 
@@ -68,7 +68,7 @@ If local changes to the workshop session are working, you can edit the file back
 
 Updating workshop content in a live session in this way does not undo any deployments or changes you make in the Kubernetes cluster for that session. To retest parts of the workshop instructions you might have to manually undo changes in the cluster to replay them. This depends on your specific workshop content.
 
-## <a id="custom-workshop-image-changes"></a>Custom workshop image changes
+## <a id="custom-wrkshp-img-changes"></a>Custom workshop image changes
 
 If your workshop uses a custom workshop image to provide additional tools, and, as a result, you have included the workshop instructions as part of the workshop image,  always use an image tag of `main`, `master`, `develop` or `latest` during development of workshop content.  Do not use a version image reference. For example:
 
@@ -86,7 +86,7 @@ spec:
 
 When an image tag of `main`, `master`, `develop` or `latest` is used, the image pull policy is set to `Always` to ensure that the custom workshop image is pulled down again for a new workshop session if the remote image changes. If the image tag was for a specific version, it is necessary to change the workshop definition every time a change occurred to the workshop image.
 
-## <a id="custom-workshop-image-overlay"></a>Custom workshop image overlay
+## <a id="custom-wrkshp-img-overlay"></a>Custom workshop image overlay
 
 Even where you have a custom workshop image, set up the workshop definition to also pull down the workshop content from the hosted Git repository or web server as the following example shows:
 
@@ -124,7 +124,7 @@ spec:
 
 This separates generic tooling from specific workshops and allows the custom workshop base image to be used for multiple workshops on different, but related topics, which require the same tooling.
 
-## <a id="changes-to-workshop-definition"></a>Changes to workshop definition
+## <a id="changes-to-wrkshp-def"></a>Changes to workshop definition
 
 By default, if you need to modify the definition for a workshop, you need to delete the training portal instance, update the workshop definition in the cluster, and recreate the training portal.
 
@@ -151,7 +151,7 @@ Whenever the workshop definition in the cluster is modified with this option ena
 
 When an active workshop session is still running, the actual deletion of the old workshop environment is delayed until that workshop session is terminated.
 
-## <a id="local-build-of-workshop-image"></a>Local build of workshop image
+## <a id="local-build-of-wrkshp-img"></a>Local build of workshop image
 
 Even if you are not packaging up a workshop into a custom workshop image, to avoid keeping pushing changes up to a hosted Git repository for local development of workshop content using a Kubernetes cluster, it can be easier to build a custom workshop image locally on your own machine using `docker`.
 

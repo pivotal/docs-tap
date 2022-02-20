@@ -2,7 +2,7 @@
 
 You can build an image by bundling workshop content from the Learning Center workshop base image. Do this to include extra system or third-You party tools or configuration. For this purpose, the sample workshop templates provide a `Dockerfile`.
 
-## <a id="structure-of-the-dockerfile"></a>Structure of the Dockerfile
+## <a id="structure-of-dockerfile"></a>Structure of the Dockerfile
 
 The structure of the `Dockerfile` provided with the sample workshop templates is:
 
@@ -22,7 +22,7 @@ The default action when building the container image when using the `Dockerfile`
 
 You can include `RUN` statements in the `Dockerfile` to run custom-build steps, but the `USER` inherited from the base image has user ID `1001` and is not the `root` user.
 
-## <a id="base-images-and-version-tags"></a>Bases images and version tags
+## <a id="base-images-version-tags"></a>Bases images and version tags
 
 The sample `Dockerfile` provided above and with the GitHub repository workshop templates references the workshop base image as:
 
@@ -31,7 +31,7 @@ registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:681ef8d
 ```
 
 
-## <a id="custom-workshop-base-iamges"></a>Custom workshop base images
+## <a id="custom-workshop-base-imgs"></a>Custom workshop base images
 
 The `base-environment` workshop images include language run times for Node.js and Python. If you need a different language runtime or a different version of a language runtime, you must create a custom workshop base image which includes the supported environment you need. This custom workshop image is derived from `base-environment` but includes the extra runtime components needed.
 
@@ -53,7 +53,7 @@ ENV PATH=/opt/java/bin:/opt/gradle/bin:/opt/maven/bin:$PATH \
 ```
 
 
-## <a id="install-extra-system-packages"></a>Installing extra system packages
+## <a id="install-extra-system-pkgs"></a>Installing extra system packages
 
 Installation of extra system packages requires the installation to be run as `root`. To do this you must first switch the user commands before running the command and then switch the user back to user ID of `1001` when done.
 
@@ -82,7 +82,7 @@ RUN HOME=/root && \
 USER 1001
 ```
 
-## <a id="install-third-party-packages"></a>Installing third-party packages
+## <a id="install-third-party-pkgs"></a>Installing third-party packages
 
 If you are not using system packaging tools to install extra packages, but are instead manually downloading packages and optionally compiling them to binaries, it is better to do this as the default user and not `root`.
 

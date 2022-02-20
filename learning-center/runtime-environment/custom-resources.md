@@ -2,7 +2,11 @@
 
 You can deploy workshop images directly to a container runtime. Learning Center Operator enables managing the deployments into a Kubernetes cluster. A set of Kubernetes custom resource definitions (CRDs) controls the operation of the Learning Center Operator.
 
-## <a id="definition"></a>Workshop definition resource
+Not all possible fields are shown in the examples of each custom resource type that follow.
+Later documentation is expected to go in-depth on all the possible fields that can be set and what
+they do.
+
+## <a id="workshop-def-resource"></a> Workshop definition resource
 
 The `Workshop` custom resource defines a workshop. It specifies the title and description of the
 workshop, the location of the workshop content or container image that you will deploy, any resources that you will pre-create in the workshop environment or for each instance of the workshop.
@@ -38,7 +42,7 @@ action. This custom resource exists only to define the workshop.
 
 The `Workshop` custom resource is created at cluster scope.
 
-## <a id="environment"></a>Workshop environment resource
+## <a id="workshop-env-resource"></a> Workshop environment resource
 
 You must create a workshop environment first to deploy the instances of a workshop.
 The `WorkshopEnvironment` custom resource defines the configuration of the workshop environment and the
@@ -78,7 +82,7 @@ that you create in those namespaces instead.
 
 The `WorkshopEnvironment` custom resource is created at cluster scope.
 
-## <a id="request"></a>Workshop request resource
+## <a id="workshop-request-resource"></a> Workshop request resource
 
 To create an instance of the workshop under the workshop environment, the typical
 path is to create an instance of the `WorkshopRequest` custom resource.
@@ -106,7 +110,7 @@ The `WorkshopRequest` resource is not  required when you use the `TrainingPortal
 web interface for accessing workshops. The `WorkshopRequest` resource is only required when you create
 the `WorkshopEnvironment` resource manually and do not use the training portal.
 
-## <a id="session"></a>Workshop session resource
+## <a id="workshop-session-resource"></a> Workshop session resource
 
 Although `WorkshopRequest` is the typical way to request workshop instances, the Learning Center Operator itself creates an instance of a
 `WorkshopSession` custom resource when the request is granted.
@@ -119,7 +123,7 @@ instance based on that definition.
 
 The `WorkshopSession` custom resource is created at the cluster scope.
 
-## <a id="portal"></a>Training portal resource
+## <a id="training-portal-resource"></a> Training portal resource
 
 The `TrainingPortal` custom resource provides a high-level mechanism for creating a set of
 workshop environments and populating them with workshop instances.
@@ -142,7 +146,7 @@ are created for each workshop.
 
 The `TrainingPortal` custom resource is created at cluster scope.
 
-## <a id="system-profile"></a>System profile resource
+## <a id="system-profile-resource"></a> System profile resource
 
 The `SystemProfile` custom resources provides a mechanism for configuring the Learning Center
 Operator. This provides additional features that use environment variables to configure the
@@ -178,7 +182,7 @@ The Learning Center Operator uses these changes without needing to redeploy the 
 
 The `SystemProfile` custom resource is created at cluster scope.
 
-## <a id="load-crds"></a>Loading the workshop CRDs
+## <a id="loading-workshop-crds"></a> Loading the workshop CRDs
 
 The custom resource definitions for the custom resource described earlier are created in the
 Kubernetes cluster when you deploy the Learning Center operator by using the Tanzu CLI.

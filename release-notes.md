@@ -129,7 +129,7 @@ run:
     ```
 
     To recover from this issue, you can follow
-    [these steps](learning-center/getting-started/learningcenter-operator.md#enforcing-secure-connections) to create the TLS Secret.
+    [these steps](learning-center/getting-started/learning-center-operator.md#enforce-secure-connect) to create the TLS Secret.
     After the TLS is created, redeploy the TrainingPortal resource.
 
 - **image-policy-webhook-service not found:** If you are installing a Tanzu Application Platform

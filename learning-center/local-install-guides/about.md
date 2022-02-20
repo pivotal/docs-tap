@@ -1,6 +1,5 @@
 # Learning Center local install guides
 
-## Overview
 The following guides tell you how to install Learning Center on your local environment:
 
 - [Installing on Kind](deploying-to-kind.md)

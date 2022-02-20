@@ -1,7 +1,5 @@
 # Learning Center runtime environment
 
-## <a id="overview"></a> Overview
-
 This section includes information about the Custom Resource Definitions (CRDs) that are part of the
 Learning Center:
 

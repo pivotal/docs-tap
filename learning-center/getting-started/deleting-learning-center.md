@@ -1,6 +1,6 @@
 # Deleting Learning Center
 
-If you ever want to uninstall the Learning Center operator, first delete all current workshop environments. 
+If you ever want to uninstall the Learning Center operator, first delete all current workshop environments.
 You can do this by running:
 
 ```

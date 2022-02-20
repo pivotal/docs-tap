@@ -1,7 +1,5 @@
 # Learning Center Portal Rest API
 
-## Overview
-
 This section includes information about the Portal Rest API that you can leverage
 to gain information and manage your Learning Center instance.
 

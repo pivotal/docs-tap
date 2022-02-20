@@ -4,7 +4,7 @@
 The `WorkshopEnvironment` custom resource defines a workshop environment.
 
 
-## <a id="specify-workshop-definition"></a>Specifying the workshop definition
+## <a id="spec-workshop-definition"></a>Specifying the workshop definition
 
 Creating a workshop environment is performed as a separate step to loading the workshop definition. This allows multiple distinct workshop environments using the same workshop definition to be created if necessary.
 
@@ -24,7 +24,7 @@ The workshop environment name specified in the workshop environment metadata doe
 
 When the workshop environment is created, the namespace created for the workshop environment uses the `name` specified in the `metadata`. This name is also used in the unique names of each workshop instance created under the workshop environment.
 
-## <a id="override-environment-variables"></a>Overriding environment variables
+## <a id="override-env-vars"></a>Overriding environment variables
 
 A workshop definition can set a list of environment variables that must be set for all workshop instances. To override an environment variable specified in the workshop definition. or one defined in the container image, you can supply a list of environment variables as `session.env`.
 
@@ -128,7 +128,7 @@ spec:
       class: nginx
 ```
 
-## <a id="controlling-access-to-workshop"></a>Controlling access to the workshop
+## <a id="control-access-to-ws"></a>Controlling access to the workshop
 
 By default, requesting a workshop using the `WorkshopRequest` custom resource is deactivated and must be enabled for a workshop environment by setting `request.enabled` to `true`.
 
@@ -199,7 +199,7 @@ spec:
     - $(workshop_namespace)
 ```
 
-## <a id="override-login-credentials"></a>Overriding the login credentials
+## <a id="override-login-creds"></a>Overriding the login credentials
 
 When requesting a workshop using `WorkshopRequest`, a login dialog box is presented to the user when accessing the workshop instance URL. By default, the user name is `learningcenter`. The password is a random value the user must query from the `WorkshopRequest` status after creating the custom resource.
 
@@ -218,7 +218,7 @@ spec:
     password: lab-markdown-sample
 ```
 
-## <a id="additional-workshop-resources"></a>Additional workshop resources
+## <a id="extra-workshop-resources"></a>Additional workshop resources
 
 The workshop definition defined by the `Workshop` custom resource already declares a set of resources to be created with the workshop environment. You can use this when you have shared service applications the workshop needs, such as an container image registry or a Git repository server.
 
@@ -243,7 +243,7 @@ To create additional namespaces associated with the workshop environment, embed 
 
 When creating deployments in the workshop namespace, set the `serviceAccountName` of the `Deployment` resource to `$(service_account)`. This ensures the deployment uses a special Pod security policy set up by the Learning Center. If this isn't used and the cluster imposes a more strict default Pod security policy, your deployment might not work, especially if any image expects to run as `root`.
 
-## <a id="creation-of-workshop-instances"></a>Creation of workshop instances
+## <a id="create-workshop-instances"></a>Creation of workshop instances
 
 After a workshop environment is created, you can create the workshop instances. You can request a workshop instance by using the `WorkshopRequest` custom resource. This can be a separate step, or you can add them as resources under `environment.objects`.
 

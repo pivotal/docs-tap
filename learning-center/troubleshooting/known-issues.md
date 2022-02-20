@@ -23,7 +23,7 @@ ERROR:kopf.objects:Handler 'learningcenter' failed temporarily: TLS secret tls i
 ```
 
 #### Solution:
-To recover from this issue, you can follow [these steps](../getting-started/learningcenter-operator.md#enforcing-secure-connections) to create the TLS Secret, once the TLS is created, **you need to redeploy the TrainingPortal resource.**
+To recover from this issue, you can follow [these steps](../getting-started/learning-center-operator.md#enforce-secure-connect) to create the TLS Secret, once the TLS is created, **you need to redeploy the TrainingPortal resource.**
 
 ### <a id="image-policy-webhook-service-not-found"></a>image-policy-webhook-service not found
 

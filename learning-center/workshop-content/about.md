@@ -1,6 +1,5 @@
 # Creating Learning Center workshops
 
-## Overview
 This section includes information on creating Learning Center workshops.
 
 - [Workshop configuration](workshop-config.md)
