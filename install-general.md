@@ -173,6 +173,7 @@ the CLI core and plug-ins are installed:
     cd $HOME/tanzu
     sudo install cli/core/VERSION/tanzu-core-linux_amd64 /usr/local/bin/tanzu
     ```
+
     Where `VERSION` is:
         * `v0.11.1` if you are on Tanzu Application Platform v1.0.1
         * `v0.10.0` if you are on Tanzu Application Platform v1.0.0
@@ -182,9 +183,10 @@ the CLI core and plug-ins are installed:
     ```
     tanzu version
     ```
+
     The expected output is:
-        * `version: v0.11.1` for Tanzu Application Platform v1.0.1
-        * `version: v0.10.0` for Tanzu Application Platform v1.0.0
+    * `version: v0.11.1` for Tanzu Application Platform v1.0.1
+    * `version: v0.10.0` for Tanzu Application Platform v1.0.0
 
 1. Proceed to [Instructions for a clean install of Tanzu CLI plug-ins](#cli-plugin-clean-install).
 
@@ -226,18 +228,20 @@ the CLI core and plug-ins are installed:
     cd $HOME/tanzu
     install cli/core/VERSION/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
     ```
+
     Where `VERSION` is:
-        * `v0.11.1` if you are on Tanzu Application Platform v1.0.1
-        * `v0.10.0` if you are on Tanzu Application Platform v1.0.0
+    * `v0.11.1` if you are on Tanzu Application Platform v1.0.1
+    * `v0.10.0` if you are on Tanzu Application Platform v1.0.0
 
 1. Confirm installation of the CLI core by running:
 
     ```
     tanzu version
     ```
+
     The expected output is:
-        * `version: v0.11.1` for Tanzu Application Platform v1.0.1
-        * `version: v0.10.0` for Tanzu Application Platform v1.0.0
+    * `version: v0.11.1` for Tanzu Application Platform v1.0.1
+    * `version: v0.10.0` for Tanzu Application Platform v1.0.0
 
 1. Proceed to [Instructions for a clean install of Tanzu CLI plug-ins](#cli-plugin-clean-install).
 
@@ -288,9 +292,10 @@ command in a terminal window:
     ```
     tanzu version
     ```
+
     The expected output is:
-        * `version: v0.11.1` for Tanzu Application Platform v1.0.1
-        * `version: v0.10.0` for Tanzu Application Platform v1.0.0
+    * `version: v0.11.1` for Tanzu Application Platform v1.0.1
+    * `version: v0.10.0` for Tanzu Application Platform v1.0.0
 
 1. Proceed to [Clean Install Tanzu CLI plug-ins](#cli-plugin-clean-install)
 
@@ -299,7 +304,7 @@ command in a terminal window:
 
 To perform a clean installation of the Tanzu CLI plug-ins:
 
-1. If it hasn't been done already, set env var `TANZU_CLI_NO_INIT` to `true` to assure the locally downloaded plug-ins are installed:
+1. If it hasn't been done already, set environment variable `TANZU_CLI_NO_INIT` to `true` to assure the locally downloaded plug-ins are installed:
 
      ```
      export TANZU_CLI_NO_INIT=true
@@ -338,7 +343,7 @@ To perform a clean installation of the Tanzu CLI plug-ins:
 
     Tanzu Application Platform requires cluster-admin privileges.
     Running commands associated with the additional plug-ins can have unintended side effects.
-    VMware recommends against running `cluster`, `kubernetes-release`, `login`, `management-cluster`,
+    VMware discourages running `cluster`, `kubernetes-release`, `login`, `management-cluster`,
     and `pinniped-auth` commands.
 
 You can now proceed with installing Tanzu Application Platform. For more information, see
@@ -388,7 +393,7 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
    cd $HOME/tanzu
    ```
 
-9. Set env var `TANZU_CLI_NO_INIT` to `true` to install the local versions of the CLI core and plug-ins you've downloaded:
+9. Set environment variable `TANZU_CLI_NO_INIT` to `true` to install the local versions of the CLI core and plug-ins you've downloaded:
 
    ```
    export TANZU_CLI_NO_INIT=true
