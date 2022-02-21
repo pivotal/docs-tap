@@ -175,8 +175,8 @@ the CLI core and plug-ins are installed:
     ```
 
     Where `VERSION` is:
-    * `v0.11.1` if you are on Tanzu Application Platform v1.0.1
-    * `v0.10.0` if you are on Tanzu Application Platform v1.0.0
+        * `v0.11.1` if you are on Tanzu Application Platform v1.0.1
+        * `v0.10.0` if you are on Tanzu Application Platform v1.0.0
 
 1. Confirm installation of the CLI core by running:
 
@@ -185,8 +185,8 @@ the CLI core and plug-ins are installed:
     ```
 
     The expected output is:
-    * `version: v0.11.1` for Tanzu Application Platform v1.0.1
-    * `version: v0.10.0` for Tanzu Application Platform v1.0.0
+        * `version: v0.11.1` for Tanzu Application Platform v1.0.1
+        * `version: v0.10.0` for Tanzu Application Platform v1.0.0
 
 1. Proceed to [Instructions for a clean install of Tanzu CLI plug-ins](#cli-plugin-clean-install).
 
@@ -230,8 +230,8 @@ the CLI core and plug-ins are installed:
     ```
 
     Where `VERSION` is:
-    * `v0.11.1` if you are on Tanzu Application Platform v1.0.1
-    * `v0.10.0` if you are on Tanzu Application Platform v1.0.0
+        * `v0.11.1` if you are on Tanzu Application Platform v1.0.1
+        * `v0.10.0` if you are on Tanzu Application Platform v1.0.0
 
 1. Confirm installation of the CLI core by running:
 
@@ -240,8 +240,8 @@ the CLI core and plug-ins are installed:
     ```
 
     The expected output is:
-    * `version: v0.11.1` for Tanzu Application Platform v1.0.1
-    * `version: v0.10.0` for Tanzu Application Platform v1.0.0
+        * `version: v0.11.1` for Tanzu Application Platform v1.0.1
+        * `version: v0.10.0` for Tanzu Application Platform v1.0.0
 
 1. Proceed to [Instructions for a clean install of Tanzu CLI plug-ins](#cli-plugin-clean-install).
 
@@ -264,10 +264,15 @@ To install the Tanzu CLI on Windows:
 
 1. Create a new `Program Files\tanzu` folder.
 
-1. In the unpacked CLI folder `tanzu-bundle`, locate and copy `core/VERSION/tanzu-core-windows_amd64.exe`
-Where `VERSION` is:
-    * `v0.11.1` if you are on Tanzu Application Platform v1.0.1
-    * `v0.10.0` if you are on Tanzu Application Platform v1.0.0
+1. In the unpacked CLI folder `tanzu-bundle`, locate and copy
+
+    ```
+    core/VERSION/tanzu-core-windows_amd64.exe
+    ```
+
+    Where `VERSION` is:
+        * `v0.11.1` if you are on Tanzu Application Platform v1.0.1
+        * `v0.10.0` if you are on Tanzu Application Platform v1.0.0
 
 1. Paste the file into the new `Program Files\tanzu` directory.
 
@@ -294,8 +299,8 @@ command in a terminal window:
     ```
 
     The expected output is:
-    * `version: v0.11.1` for Tanzu Application Platform v1.0.1
-    * `version: v0.10.0` for Tanzu Application Platform v1.0.0
+        * `version: v0.11.1` for Tanzu Application Platform v1.0.1
+        * `version: v0.10.0` for Tanzu Application Platform v1.0.0
 
 1. Proceed to [Clean Install Tanzu CLI plug-ins](#cli-plugin-clean-install)
 
