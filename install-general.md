@@ -175,8 +175,8 @@ the CLI core and plug-ins are installed:
     ```
 
     Where `VERSION` is:
-        * `v0.11.1` if you are on Tanzu Application Platform v1.0.1
-        * `v0.10.0` if you are on Tanzu Application Platform v1.0.0
+    * `v0.11.1` if you are on Tanzu Application Platform v1.0.1
+    * `v0.10.0` if you are on Tanzu Application Platform v1.0.0
 
 1. Confirm installation of the CLI core by running:
 
