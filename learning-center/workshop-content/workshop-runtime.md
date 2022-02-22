@@ -1,6 +1,6 @@
 # Workshop runtime
 
-Your workshop content can script the steps a user must run for a workshop. In some cases, you must parameterize that content with information from the runtime environment. Data variables in workshop content allow this to a degree, but you might want to automate this by using scripts executed in the workshop container to set up configuration files.
+Your workshop content can script the steps a user must run for a workshop. In some cases, you must parameterize that content with information from the runtime environment. Data variables in workshop content allow this to a degree, but you can automate this by using scripts executed in the workshop container to set up configuration files.
 
 Do this by supplying setup scripts that run when the container is started. You can also run persistent background processes in the container that perform extra work for you while a workshop is being run.
 
@@ -8,7 +8,7 @@ Do this by supplying setup scripts that run when the container is started. You c
 
 When you create the workshop content, you can use data variables to automatically insert values corresponding to the specific workshop session or environment. For example: the name of the namespace used for the session and the ingress domain when creating an ingress route.
 
-These data variables can display a YAML/JSON resource file in the workshop content with values automatically filled out. You can have executable commands that have the data variables substituted with values given as arguments to the commands.
+These data variables can display a YAML/JSON resource file in the workshop content with values already filled out. You can have executable commands that have the data variables substituted with values given as arguments to the commands.
 
 For commands run in the shell environment, a number of predefined environment variables are also available that can be referenced directly.
 
@@ -74,11 +74,11 @@ stdout_logfile_maxbytes=0
 redirect_stderr=true
 ```
 
-The application must send any logging output to `stdout` or `stderr`, and the configuration snippet must direct log output to `/proc/1/fd/1` so it is captured in the container log file. If you must restart or shutdown the application within the workshop interactive terminal, you can use the `supervisorctl` control script.
+The application must send any logging output to `stdout` or `stderr`, and the configuration snippet must direct log output to `/proc/1/fd/1` so it is captured in the container log file. If you must restart or shut down the application within the workshop interactive terminal, you can use the `supervisorctl` control script.
 
 ## <a id="terminal-env"></a> Terminal user shell environment
 
-Neither the setup scripts that run when the container starts nor background applications affect the user environment of the terminal shell. The shell environment makes use of `bash` and the `$HOME/.bash_profile` script is read to perform added setup for the user environment. Because some default setup is included in `$HOME/.bash_profile`, you must not replace it, because you will loose that configuration.
+Neither the setup scripts that run when the container starts nor background applications affect the user environment of the terminal shell. The shell environment makes use of `bash` and the `$HOME/.bash_profile` script is read to perform added setup for the user environment. Because some default setup is included in `$HOME/.bash_profile`, you must not replace it, because you can loose that configuration.
 
 To provide commands to initialize each shell environment, you can provide the file `workshop/profile`. When this file exists, it is sourced at the end of the `$HOME/.bash_profile` file when it is processed.
 
