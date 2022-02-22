@@ -2,9 +2,8 @@
 
 You can deploy workshop images directly to a container runtime. Learning Center Operator enables managing the deployments into a Kubernetes cluster. A set of Kubernetes custom resource definitions (CRDs) controls the operation of the Learning Center Operator.
 
-Not all possible fields are shown in the examples of each custom resource type that follow.
-Later documentation is expected to go in-depth on all the possible fields that can be set and what
-they do.
+The examples do not show all the possible fields of each custom resource type.
+Later documentation will go in-depth on all the possible fields and their definitions.
 
 ## <a id="workshop-def-resource"></a> Workshop definition resource
 
@@ -66,17 +65,14 @@ spec:
 
 When you create an instance of the `WorkshopEnvironment` custom resource, the Learning Center Operator
 responds by creating a namespace to host the workshop instances. The `Workshop` resource defines the workshop instance and
-the `spec.workshop.name` field specifies the name of the `Workshop` resource. The namespace you created uses the same name as that of
+the `spec.workshop.name` field specifies the name of the `Workshop` resource. The namespace you create uses the same name as that of
 the `metadata.name` field in the `WorkshopEnvironment` resource.
 
 The `spec.request.token` field defines a token with which you must supply a request to create an
 instance of a workshop in this workshop environment.
 If necessary, you can also specify the namespaces from which a request for a workshop instance to initiate.
 
-If the `Workshop` definition for the workshop to be deployed in this workshop environment defines
-a set of common resources which must exist for the workshop. Learning Center Operator creates these common resources after you created
-the namespace for the workshop environment.
-Where such resources are namespaced, they are created in the namespace for the workshop environment.
+The `Workshop` defines a set of common resources that must exist for the workshop. Learning Center Operator creates these common resources after you created the namespace for the workshop environment.  
 If necessary, these resources can include creation of separate namespaces with specific resources
 that you create in those namespaces instead.
 
