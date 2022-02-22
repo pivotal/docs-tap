@@ -2,6 +2,29 @@
 
 This topic contains release notes for Tanzu Application Platform v1.0.
 
+## <a id='1-0-2'></a> v1.0.2
+
+**Release Date**: March 4, 2022
+
+### <a id='1-0-2-known-issues'></a> Known issues
+
+This release has the following known issues:
+
+
+### <a id='1-0-2-resolved-issues'></a> Resolved issues
+
+This release has the following fixes:
+
+#### Supply Chain Security Tools – Scan
+
+- Resolved the issue that events show `SaveScanResultsSuccess` when metadata store is not configured.
+- Updated Scan Phase to correctly reflect `Error` if an error occurs during scanning.
+- CVE print columns are now properly populated.
+- Fixed failing Blob source scans where `.git` directory is not provided.
+- Prevent scan controller pod from failing when metadata store certificate is not available.
+- Removed unnecessary reconciliation of resources upon deletion.
+- Prevent scan controller failure upon Git clone fails.
+
 ## <a id='1-0-1'></a> v1.0.1
 
 **Release Date**: February 8, 2022
