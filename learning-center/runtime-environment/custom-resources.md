@@ -2,19 +2,19 @@
 
 You can deploy workshop images directly to a container runtime. Learning Center Operator enables managing the deployments into a Kubernetes cluster. A set of Kubernetes custom resource definitions (CRDs) controls the operation of the Learning Center Operator.
 
-The examples do not show all the possible fields of each custom resource type.
+>**Note:** The examples do not show all the possible fields of each custom resource type.
 Later documentation will go in-depth on all the possible fields and their definitions.
 
 ## <a id="workshop-def-resource"></a> Workshop definition resource
 
 The `Workshop` custom resource defines a workshop. It specifies the title and description of the
-workshop, the location of the workshop content or container image that you will deploy, any resources that you will pre-create in the workshop environment or for each instance of the workshop.
+workshop, the location of the workshop content or container image that you deploy, any resources that you pre-create in the workshop environment or for each instance of the workshop.
 
 You can also define environment variables for the workshop image, the amount
 of CPU and memory resources for the workshop instance, any overall quota you will apply to
 the created namespaces and what the workshop uses.
 
-A minimal example of the `Workshop` custom resource might look like this:
+A minimal example of the `Workshop` custom resource looks like this:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -39,7 +39,7 @@ spec:
 When you create an instance of the `Workshop` custom resource, the Learning Center Operator does not take any immediate
 action. This custom resource exists only to define the workshop.
 
-The `Workshop` custom resource is created at cluster scope.
+>**Note:** You create the `Workshop` custom resource at the cluster scope.
 
 ## <a id="workshop-env-resource"></a> Workshop environment resource
 
@@ -47,7 +47,7 @@ You must create a workshop environment first to deploy the instances of a worksh
 The `WorkshopEnvironment` custom resource defines the configuration of the workshop environment and the
 details of the workshop that you deploy.
 
-A minimal example of the `WorkshopEnvironment` custom resource might look like this:
+A minimal example of the `WorkshopEnvironment` custom resource looks like this:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -72,11 +72,9 @@ The `spec.request.token` field defines a token with which you must supply a requ
 instance of a workshop in this workshop environment.
 If necessary, you can also specify the namespaces from which a request for a workshop instance to initiate.
 
-The `Workshop` defines a set of common resources that must exist for the workshop. Learning Center Operator creates these common resources after you created the namespace for the workshop environment.  
-If necessary, these resources can include creation of separate namespaces with specific resources
-that you create in those namespaces instead.
+The `Workshop` defines a set of common resources that must exist for the workshop. Learning Center Operator creates these common resources after you created the namespace for the workshop environment. If necessary, these resources can include creation of separate namespaces with specific resources that you create in those namespaces instead.
 
-The `WorkshopEnvironment` custom resource is created at cluster scope.
+>**Note:** You create the `WorkshopEnvironment` custom resource at the cluster scope.
 
 ## <a id="workshop-request-resource"></a> Workshop request resource
 
@@ -87,7 +85,7 @@ The `WorkshopRequest` custom resource is namespaced to allow who can create it. 
 workshop instance. This means you can allow non-privileged users to create workshops, although the deployment of the workshop instance might
 require elevated privileges.
 
-A minimal example of the `WorkshopRequest` custom resource might look like this:
+A minimal example of the `WorkshopRequest` custom resource looks like this:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -102,8 +100,8 @@ spec:
 
 Apart from appropriate access from RBAC, the user requesting a workshop instance must know the name of the workshop environment and the secret token that permits workshop requests against that specific workshop environment.
 
-The `WorkshopRequest` resource is not  required when you use the `TrainingPortal` resource to provide a
-web interface for accessing workshops. The `WorkshopRequest` resource is only required when you create
+You do not need to create the `WorkshopRequest` resource when you use the `TrainingPortal` resource to provide a
+web interface for accessing workshops. You only need to create the `WorkshopRequest` resource when you create
 the `WorkshopEnvironment` resource manually and do not use the training portal.
 
 ## <a id="workshop-session-resource"></a> Workshop session resource
@@ -117,14 +115,14 @@ links back to the `WorkshopRequest` resource object that triggered the request.
 The Learning Center Operator reacts to an instance of `WorkshopSession` and creates the workshop
 instance based on that definition.
 
-The `WorkshopSession` custom resource is created at the cluster scope.
+>**Note:** You create the `WorkshopSession` custom resource at the cluster scope.
 
 ## <a id="training-portal-resource"></a> Training portal resource
 
 The `TrainingPortal` custom resource provides a high-level mechanism for creating a set of
 workshop environments and populating them with workshop instances.
 
-A minimal example of the `TrainingPortal` custom resource might look like this:
+A minimal example of the `TrainingPortal` custom resource looks like this:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -140,15 +138,15 @@ spec:
 You can set the capacity of the training room, which dictates how many workshop instances
 are created for each workshop.
 
-The `TrainingPortal` custom resource is created at cluster scope.
+>**Note:** You create the `TrainingPortal` custom resource at the cluster scope.
 
 ## <a id="system-profile-resource"></a> System profile resource
 
-The `SystemProfile` custom resources provides a mechanism for configuring the Learning Center
+The `SystemProfile` custom resource provides a mechanism for configuring the Learning Center
 Operator. This provides additional features that use environment variables to configure the
 operator.
 
-A minimal example of the `SystemProfile` custom resource might look like this:
+A minimal example of the `SystemProfile` custom resource looks like this:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -176,7 +174,7 @@ is created at cluster scope.
 You can make changes to instances of the `SystemProfile` custom resource.
 The Learning Center Operator uses these changes without needing to redeploy the custom resource.
 
-The `SystemProfile` custom resource is created at cluster scope.
+>**Note:** You create the `SystemProfile` custom resource at the cluster scope.
 
 ## <a id="loading-workshop-crds"></a> Loading the workshop CRDs
 
