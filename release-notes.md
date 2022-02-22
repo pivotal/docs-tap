@@ -10,6 +10,11 @@ This topic contains release notes for Tanzu Application Platform v1.0.
 
 This release has the following known issues:
 
+#### Supply Chain Security Tools – Scan
+- **Scan Phase does not correctly reflect `Error`**: If an error (e.g. ScanPolicy defined or invalid xml) occurs during scanning, the phase remains as `Scanning`. The current workaround is to `kubectl describe` the scan and view the status and events.
+- **Two scan jobs/pods running at the same time**: There is an edge case where two scan jobs/pods appear when a scan policy is updated. This does not affect the result of the scan.
+- **Grype package installation can fail**: Missing private scan secrets can cause the installation of grype to fail. The current workaround is to include target secrets.
+- **Logs do not correctly reflect error**: There is an edge case where logs are missing error details with a `git clone` error or error fetching scanner logs.
 
 ### <a id='1-0-2-resolved-issues'></a> Resolved issues
 
@@ -18,7 +23,6 @@ This release has the following fixes:
 #### Supply Chain Security Tools – Scan
 
 - Resolved the issue that events show `SaveScanResultsSuccess` when metadata store is not configured.
-- Updated Scan Phase to correctly reflect `Error` if an error occurs during scanning.
 - CVE print columns are now properly populated.
 - Fixed failing Blob source scans where `.git` directory is not provided.
 - Prevent scan controller pod from failing when metadata store certificate is not available.
