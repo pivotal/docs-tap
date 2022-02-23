@@ -325,7 +325,8 @@ To resolve this issue, either delete the app or use a different name for the app
 
 ### Symptom
 
-When you do not accept a relevant End User License Agreement (EULA), you receive an error message.
+You cannot access Tanzu Application Platform or one of its components from
+VMware Tanzu Network.
 
 ### Cause
 
@@ -336,3 +337,45 @@ VMware Tanzu Network before accepting the relevant EULA in VMware Tanzu Network.
 
 Follow the steps in [Accept the End User License Agreements](install-general.html#accept-eulas) in
 _Installing the Tanzu CLI_.
+
+## <a id='debug-convention'></a> Debug Convention May Not Apply
+
+### Symptom
+
+If you upgrade from TAP v0.4, the debug convention may not apply to the app run image.
+
+### Cause
+
+The TAP v0.4 lacks SBOM data.
+
+### Solution
+
+Delete existing app images that were built using TAP v0.4.
+
+## <a id='build-scripts-lack-execute-bit'></a> Execute Bit Not Set for App Accelerator Build Scripts
+
+### Symptom
+
+You cannot execute a build script provided as part of an accelerator.
+
+### Cause
+
+Build scripts provided as part of an accelerator do not have the execute bit set when a new
+project is generated from the accelerator.
+
+
+### Solution
+
+Explicitly set the execute bit by running the `chmod` command:
+
+```
+chmod +x BUILD-SCRIPT-NAME
+```
+Where `BUILD-SCRIPT-NAME` is the name of the build script.
+
+For example, for a project generated from the "Spring PetClinic" accelerator, run:
+
+```
+chmod +x ./mvnw
+```
+

@@ -46,7 +46,7 @@ This release has the following known issues:
 #### Developer Conventions
 
 **Debug Convention might not apply:** If you upgraded from Tanzu Application Platform v0.4
-then the the debug convention might not apply to the app run image. This is because of the
+then the debug convention may not apply to the app run image. This is because of the
 missing SBOM data in the image.
 To prevent this issue, delete existing app images that were built using
 Tanzu Application Platform v0.4.
@@ -113,20 +113,12 @@ When GKE scales up an API server, the current Tanzu Application install continue
 
 #### Application Accelerator
 
-- Build scripts provided as part of an accelerator do not have the execute bit set when a new
+Build scripts provided as part of an accelerator do not have the execute bit set when a new
 project is generated from the accelerator.
 
-    To resolve this issue, explicitly set the execute bit by running the `chmod` command:
-
-    ```
-    chmod +x <build-script>
-    ```
-
-    For example, for a project generated from the "Spring PetClinic" accelerator, run:
-
-    ```
-    chmod +x ./mvnw
-    ```
+To resolve this issue, explicitly set the execute bit. For more information, see
+[Execute Bit Not Set for App Accelerator Build Scripts](troubleshooting.html#build-scripts-lack-execute-bit)
+in _Troubleshooting Tanzu Application Platform_.
 
 - Upgraded log4j-api dependency to 2.16.0.
 
