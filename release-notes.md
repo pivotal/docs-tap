@@ -12,8 +12,9 @@ This release has the following known issues:
 
 #### Supply Chain Security Tools – Scan
 
-- **Two scan jobs and two scan pods appear at the same time**: There is an edge case where two scan
-jobs and two scan pods appear when a scan policy is updated. This does not affect the result of the scan.
+**Two scan jobs and two scan pods appear at the same time**: There is an edge case where two scan
+jobs and two scan pods appear when a scan policy is updated.
+This does not affect the result of the scan.
 
 ### <a id='1-0-2-resolved-issues'></a> Resolved issues
 
