@@ -154,7 +154,7 @@ buildservice:
   tanzunet_username: "TANZUNET-USERNAME"
   tanzunet_password: "TANZUNET-PASSWORD"
   descriptor_name: "DESCRIPTOR-NAME"
-  enable_automatic_dependency_updates: true
+  enable_automatic_dependency_updates: true/false # Optional
 supply_chain: basic
 
 cnrs:
@@ -230,8 +230,9 @@ If built images are pushed to the same registry as the Tanzu Application Platfor
 this can reuse the `tap-registry` secret created in
 [Add the Tanzu Application Platform package repository](#add-tap-package-repo).
 
->**Note:** You can use `buildservice.enable_automatic_dependency_updates: false` in the `tap-values.yaml` to pause the automatic update
->of Build Service dependencies.
+>**Note:** Using the `tbs-values.yaml` configuration,
+>`enable_automatic_dependency_updates:` `true` will cause the dependency updater to update Tanzu Build Service dependencies (buildpacks and stacks) when they are released on Tanzu network. `false` can be used to pause the automati
+c update of Build Service dependencies. If left undefined, this value will be configured as `false`.
 
 ### <a id='light-profile'></a> Light Profile
 
@@ -247,6 +248,7 @@ buildservice:
   kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
   tanzunet_username: "TANZUNET-USERNAME"
   tanzunet_password: "TANZUNET-PASSWORD"
+  enable_automatic_dependency_updates: true/false # Optional
 
 supply_chain: basic
 
@@ -304,6 +306,10 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
     See [Identify the SSH secret key for your package](#ssh-secret-key) for more information.
 - `INGRESS-DOMAIN` is the subdomain for the host name that you will point at the `tanzu-shared-ingress` service's External IP address.
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog you've already built and posted on the Git infrastructure you specified in the Integration section.
+
+>**Note:** Using the `tbs-values.yaml` configuration,
+>`enable_automatic_dependency_updates:` `true` will cause the dependency updater to update Tanzu Build Service dependencies (buildpacks and stacks) when they are released on Tanzu network. `false` can be used to pause the automati
+c update of Build Service dependencies. If left undefined, this value will be configured as `false`.
 
 ### <a id="view-pkge-config-settings"></a>View possible configuration settings for your package
 
