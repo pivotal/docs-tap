@@ -809,26 +809,26 @@ If the secondary namespaces are to be created empty, you can list the details of
 the property `session.namespaces.secondary`:
 
 ```
-    apiVersion: learningcenter.tanzu.vmware.com/v1beta1
-    kind: Workshop
-    metadata:
-      name: lab-namespace-testing
-    spec:
-      title: Namespace Testing
-      description: Play area for testing namespaces
-      content:
-        files: github.com/eduk8s-tests/lab-namespace-testing
-      session:
-        namespaces:
-          role: admin
-          budget: medium
-          secondary:
-          - name: $(session_namespace)-apps
-            role: edit
-            budget: large
-            limits:
-              default:
-                memory: 512mi
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
+kind: Workshop
+metadata:
+  name: lab-namespace-testing
+spec:
+  title: Namespace Testing
+  description: Play area for testing namespaces
+  content:
+    files: github.com/eduk8s-tests/lab-namespace-testing
+  session:
+    namespaces:
+      role: admin
+      budget: medium
+      secondary:
+      - name: $(session_namespace)-apps
+        role: edit
+        budget: large
+        limits:
+          default:
+            memory: 512mi
 ```
 
 When secondary namespaces are created, by default, the role, resource quotas, and limit ranges are
@@ -979,20 +979,20 @@ environment is deleted, any resources are also deleted.
 Values of fields in the list of resource objects can reference a number of predefined parameters.
 The available parameters are:
 
-- `workshop_name` - The name of the workshop. This is the name of the `Workshop` definition the
+- `workshop_name`: The name of the workshop. This is the name of the `Workshop` definition the
 workshop environment was created against.
-- `environment_name` - The name of the workshop environment. Its current value is the name of
+- `environment_name`: The name of the workshop environment. Its current value is the name of
 the namespace for the workshop environment and subject to change.
-- `environment_token` - The value of the token that must be used in workshop requests against the workshop environment.
-- `workshop_namespace` - The namespace for the workshop environment. This is the namespace where all
+- `environment_token`: The value of the token that must be used in workshop requests against the workshop environment.
+- `workshop_namespace`: The namespace for the workshop environment. This is the namespace where all
 deployments of the workshop instances, and their service accounts, are created. It is the same
 namespace that shared workshop resources are created.
-- `service_account` - The name of a service account you can use when creating deployments in
+- `service_account`: The name of a service account you can use when creating deployments in
 the workshop namespace.
-- `ingress_domain` - The host domain under which you can create host names when creating ingress routes.
-- `ingress_protocol` - The protocol (http/https) used for ingress routes created
+- `ingress_domain`: The host domain under which you can create host names when creating ingress routes.
+- `ingress_protocol`: The protocol (http/https) used for ingress routes created
 for workshops.
-- `ingress_secret` - The name of the ingress secret stored in the workshop namespace when secure
+- `ingress_secret`: The name of the ingress secret stored in the workshop namespace when secure
 ingress is used.
 
 To create additional namespaces associated with the workshop environment, embed a
@@ -1300,13 +1300,13 @@ spec:
 
 Available variables are:
 
-- `session_namespace` - The namespace you create for and bind to the workshop instance. This is the
+- `session_namespace`: The namespace you create for and bind to the workshop instance. This is the
 namespace unique to the session and where a workshop can create its own resources.
-- `environment_name` - The name of the workshop environment. Its current value is the name of
+- `environment_name`: The name of the workshop environment. Its current value is the name of
 the namespace for the workshop environment and subject to change.
-- `workshop_namespace` - The namespace for the workshop environment. This is the namespace where you create all
+- `workshop_namespace`: The namespace for the workshop environment. This is the namespace where you create all
 deployments of the workshop instances and where the service account that the workshop instance runs.
-- `ingress_domain` - The host domain under which you can create host names when creating ingress routes.
+- `ingress_domain`: The host domain under which you can create host names when creating ingress routes.
 
 If the service uses standard `http` or `https` ports, you can leave out the `port` property, and the
 port is set based on the value of `protocol`.
@@ -1335,9 +1335,9 @@ spec:
         value: "Bearer $(kubernetes_token)"
 ```
 
-The value of a header can reference the following variables.
+The value of a header can reference the following variable:
 
-* `kubernetes_token` - The access token of the service account for the current workshop session,
+- `kubernetes_token`: The access token of the service account for the current workshop session,
 used for accessing the Kubernetes REST API.
 
 Access controls enforced by the workshop environment or training portal protect accessing any service through the ingress.
@@ -1371,15 +1371,15 @@ navigation and table of contents if required.
 
 The URL value can reference a number of predefined parameters. The available parameters are:
 
-- `session_namespace` - The namespace you create for and bind to the workshop instance. This is the
+- `session_namespace`: The namespace you create for and bind to the workshop instance. This is the
 namespace unique to the session and where a workshop can create its own resources.
-- `environment_name` - The name of the workshop environment. Its current value is the name of
+- `environment_name`: The name of the workshop environment. Its current value is the name of
 the namespace for the workshop environment and subject to change.
-- `workshop_namespace` - The namespace for the workshop environment. This is the namespace where you create all
+- `workshop_namespace`: The namespace for the workshop environment. This is the namespace where you create all
 deployments of the workshop instances and where the service account that the workshop
 instance runs.
-- `ingress_domain` - The host domain under which you can create host names when creating ingress routes.
-- `ingress_protocol` - The protocol (http/https) used for ingress routes that you create for workshops.
+- `ingress_domain`: The host domain under which you can create host names when creating ingress routes.
+- `ingress_protocol`: The protocol (http/https) used for ingress routes that you create for workshops.
 
 These could be used, for example, to reference workshops instructions hosted as part of the workshop
 environment:
@@ -1680,13 +1680,13 @@ add configuration to the service account or deployment to add the registry secre
 If you need access to the raw registry host details and credentials, they are provided as environment
 variables in the workshop session. The environment variables are:
 
-- `REGISTRY_HOST` - Contains the host name for the registry for the workshop session.
-- `REGISTRY_AUTH_FILE` - Contains the location of the `docker` configuration file. Must be
+- `REGISTRY_HOST`: Contains the host name for the registry for the workshop session.
+- `REGISTRY_AUTH_FILE`: Contains the location of the `docker` configuration file. Must be
 the equivalent of `$HOME/.docker/config.json`.
-- `REGISTRY_USERNAME` - Contains the user name for accessing the registry.
-- `REGISTRY_PASSWORD` - Contains the password for accessing the registry. This is different
+- `REGISTRY_USERNAME`: Contains the user name for accessing the registry.
+- `REGISTRY_PASSWORD`: Contains the password for accessing the registry. This is different
 for each workshop session.
-- `REGISTRY_SECRET` - Contains the name of a Kubernetes secret of type `kubernetes.io/dockerconfigjson`
+- `REGISTRY_SECRET`: Contains the name of a Kubernetes secret of type `kubernetes.io/dockerconfigjson`
 added to the session namespace, which contains the registry credentials.
 
 The URL for accessing the registry adopts the HTTP protocol scheme inherited from the
@@ -1807,8 +1807,8 @@ This causes a WebDAV server running within the workshop session environment.
 A set of credentials is also generated and are available as environment variables.
 The environment variables are:
 
-- `WEBDAV_USERNAME` - Contains the user name that must be used when authenticating over WebDAV.
-- `WEBDAV_PASSWORD` - Contains the password that must be used when authenticating over WebDAV.
+- `WEBDAV_USERNAME`: Contains the user name that must be used when authenticating over WebDAV.
+- `WEBDAV_PASSWORD`: Contains the password that must be used when authenticating over WebDAV.
 
 To use any of the environment variables related to the container image registry as data variables
 in workshop content, declare this in the `workshop/modules.yaml` file in the `config.vars`
@@ -1864,12 +1864,12 @@ spec:
 
 The options for the `layout` property are:
 
-- `default` - Single terminal.
-- `split` - Two terminals stacked above each other in ratio 60/40.
-- `split/2` - Three terminals stacked above each other in ratio 50/25/25.
-- `lower` - A single terminal is placed below any dashboard tabs, rather than being a tab of its own.
+- `default`: Single terminal.
+- `split`: Two terminals stacked above each other in ratio 60/40.
+- `split/2`: Three terminals stacked above each other in ratio 50/25/25.
+- `lower`: A single terminal is placed below any dashboard tabs, rather than being a tab of its own.
 The ratio of dashboard tab to terminal is 70/30.
-- `none` - No terminal is displayed but can still be created from the drop down menu.
+- `none`: No terminal is displayed but can still be created from the drop down menu.
 
 When adding the `terminal` section, you must include the `enabled` property and set it to `true` as
 it is a required field when including the section.
@@ -1904,15 +1904,15 @@ spec:
 
 The URL values can reference a number of predefined parameters. The available parameters are:
 
-- `session_namespace` - The namespace you create for and bind to the workshop instance. This is the
+- `session_namespace`: The namespace you create for and bind to the workshop instance. This is the
 namespace unique to the session and where a workshop can create its own resources.
-- `environment_name` - The name of the workshop environment. Its current value is the name of
+- `environment_name`: The name of the workshop environment. Its current value is the name of
 the namespace for the workshop environment and subject to change.
-- `workshop_namespace` - The namespace for the workshop environment. This is the namespace where all
+- `workshop_namespace`: The namespace for the workshop environment. This is the namespace where all
 deployments of the workshop instances you create and where the service account that the workshop
 instance runs.
-- `ingress_domain` - The host domain under which you can create host names when creating ingress routes.
-- `ingress_protocol` - The protocol (http/https) used for ingress routes that you create
+- `ingress_domain`: The host domain under which you can create host names when creating ingress routes.
+- `ingress_protocol`: The protocol (http/https) used for ingress routes that you create
 for workshops.
 
 The URL can reference an external web site, however, that web site must not prohibit being embedded in an HTML iframe.
