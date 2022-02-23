@@ -2,45 +2,6 @@
 
 This topic contains release notes for Tanzu Application Platform v1.0.
 
-## <a id='1-0-2'></a> v1.0.2
-
-**Release Date**: March 4, 2022
-
-### <a id='1-0-2-known-issues'></a> Known issues
-
-This release has the following known issues:
-
-#### Supply Chain Security Tools – Scan
-
-- **Scan Phase does not correctly reflect `Error`**: If an error occurs during scanning, such as
-ScanPolicy defined or invalid xml, the phase remains as `Scanning`.
-The current workaround is to run `kubectl describe` on the scan to view the actual status and events.
-- **Two scan jobs/pods running at the same time**: There is an edge case where two scan jobs/pods
-appear when a scan policy is updated. This does not affect the result of the scan.
-- **Grype package installation can fail**: Missing private scan secrets can cause the installation of
-Grype to fail. The current workaround is to include target secrets.
-- **Logs do not correctly reflect error**: There is an edge case where logs are missing error details
-with a `git clone` error or error fetching scanner logs.
-
-### <a id='1-0-2-resolved-issues'></a> Resolved issues
-
-This release has the following fixes:
-
-#### Services Toolkit
-
-* Resolved an issue with the `tanzu services` CLI plugin which meant it was not compatible with Kubernetes clusters running on GKE.
-* Fixed a potential race condition during reconciliation of ResourceClaims which could cause the Services Toolkit manager to crash.
-* Updated configuration of the Services Toolkit carvel Package to prevent an unwanted build up of ConfigMap resources.
-
-#### Supply Chain Security Tools – Scan
-
-- Resolved the issue that events show `SaveScanResultsSuccess` when metadata store is not configured.
-- CVE print columns are now properly populated.
-- Fixed failing Blob source scans where `.git` directory is not provided.
-- Prevent scan controller pod from failing when metadata store certificate is not available.
-- Removed unnecessary reconciliation of resources upon deletion.
-- Prevent scan controller failure upon Git clone fails.
-
 ## <a id='1-0-1'></a> v1.0.1
 
 **Release Date**: February 8, 2022
