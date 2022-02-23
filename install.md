@@ -154,7 +154,7 @@ buildservice:
   tanzunet_username: "TANZUNET-USERNAME"
   tanzunet_password: "TANZUNET-PASSWORD"
   descriptor_name: "DESCRIPTOR-NAME"
-  enable_automatic_dependency_updates: true # Optional
+  enable_automatic_dependency_updates: TRUE-OR-FALSE-VALUE # Optional, set as true or false. Not a string.
 supply_chain: basic
 
 cnrs:
@@ -250,7 +250,7 @@ buildservice:
   kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
   tanzunet_username: "TANZUNET-USERNAME"
   tanzunet_password: "TANZUNET-PASSWORD"
-  enable_automatic_dependency_updates: true # Optional
+  enable_automatic_dependency_updates: TRUE-OR-FALSE-VALUE # Optional, set as true or false. Not a string.
 
 supply_chain: basic
 
