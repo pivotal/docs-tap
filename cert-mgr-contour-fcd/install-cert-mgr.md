@@ -92,7 +92,8 @@ To install cert-manager from the Tanzu Application Platform package repository:
             prereleases: {}
       ```
 
-      Where
+      Where:
+      
       - `VERSION-NUMBER` is the version of the package listed in step 1.
 
 
