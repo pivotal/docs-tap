@@ -1,20 +1,20 @@
 # Troubleshooting Tanzu Application Platform
 
-This topic is for troubleshooting the installation of Tanzu Application Platform.
+This topic provides troubleshooting information to help resolve issues with Tanzu Application Platform (TAP).
 
-## <a id="component-ts-links"></a> Component-level troubleshooting
+## <a id="component-ts-links"></a> Component-Level Troubleshooting
 
 For component-level troubleshooting, see these topics:
 
 * [Troubleshooting Tanzu Application Platform GUI](tap-gui/troubleshooting.md)
 * [Troubleshooting Convention Service](convention-service/troubleshooting.md)
-* [Troubleshooting Learning Center](learning-center/troubleshooting/known-issues.md)
-* [Troubleshooting Service Bindings](service-bindings/troubleshooting.md)
-* [Troubleshooting Source Controller](source-controller/troubleshooting.md)
-* [Troubleshooting Spring Boot Conventions](spring-boot-conventions/troubleshooting.md)
-* [Troubleshooting Application Live View](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-troubleshooting.html)
+* [Learning Center Known Issues](learning-center/troubleshooting/known-issues.md)
+* [Service Bindings Troubleshooting](service-bindings/troubleshooting.md)
+* [Source Controller Troubleshooting ](source-controller/troubleshooting.md)
+* [Spring Boot Conventions Troubleshooting ](spring-boot-conventions/troubleshooting.md)
+* [Application Live View for VMware Tanzu Troubleshooting](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-troubleshooting.html)
 * [Troubleshooting Cloud Native Runtimes for Tanzu](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-troubleshooting.html)
-* [Troubleshooting Tanzu Build Service - FAQ](https://docs.vmware.com/en/Tanzu-Build-Service/1.4/vmware-tanzu-build-service-v14/GUID-faq.html)
+* [Tanzu Build Service Frequently Asked Questions](https://docs.vmware.com/en/Tanzu-Build-Service/1.4/vmware-tanzu-build-service-v14/GUID-faq.html)
 
 ## <a id='macos-unverified-dev'></a> Developer cannot be verified when installing Tanzu CLI on macOS
 
