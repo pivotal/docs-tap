@@ -13,14 +13,14 @@ This release has the following known issues:
 #### Supply Chain Security Tools – Scan
 
 - **Scan Phase does not correctly reflect `Error`**: If an error occurs during scanning, such as
-ScanPolicy defined or invalid xml, the phase remains as `Scanning`.
+ScanPolicy undefined or invalid xml, the phase remains as `Scanning`.
 The current workaround is to run `kubectl describe` on the scan to view the actual status and events.
-- **Two scan jobs/pods running at the same time**: There is an edge case where two scan jobs/pods
-appear when a scan policy is updated. This does not affect the result of the scan.
+- **Two scan jobs and two scan pods running at the same time**: There is an edge case where two scan
+jobs and two scan pods appear when a scan policy is updated. This does not affect the result of the scan.
 - **Grype package installation can fail**: Missing private scan secrets can cause the installation of
 Grype to fail. The current workaround is to include target secrets.
-- **Logs do not correctly reflect error**: There is an edge case where logs are missing error details
-with a `git clone` error or error fetching scanner logs.
+- **Logs do not correctly reflect error**: Errors that arise through either `git clone` or when
+trying to fetch scanner logs are only partially described in the event log.
 
 ### <a id='1-0-2-resolved-issues'></a> Resolved issues
 
