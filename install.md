@@ -330,7 +330,7 @@ you defined earlier.
 >it plans to install. The package only shows top-level keys.
 >View individual package configuration settings with the same `tanzu package available get` command.
 >For example, use `tanzu package available get -n tap-install cnrs.tanzu.vmware.com/1.0.3 --values-schema` for Cloud Native Runtimes.
-
+>You can pull the list of available packages with their versions using `tanzu package available list --namespace tap-install` command.
 ```
 profile: full
 
