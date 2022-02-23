@@ -185,14 +185,13 @@ To install the Tanzu Build Service package air-gapped:
     ca_cert_data: CA-CERT-CONTENTS
     ```
 
-Where:
+    Where:
 
-- `REPOSITORY` is the fully qualified path to the Tanzu Build Service repository.
-  This path must be writable. For example:
-    * Harbor: `harbor.io/my-project/build-service`
-    * Artifactory: `artifactory.com/my-project/build-service`
-- `REGISTRY-USERNAME` and `REGISTRY-PASSWORD` are the user name and password for the internal registry.
-- `CA-CERT-CONTENTS` are the contents of the PEM-encoded CA certificate for the internal registry
+    - `REPOSITORY` is the fully qualified path to the Tanzu Build Service repository. This path must be writable. For example:
+        * Harbor: `harbor.io/my-project/build-service`
+        * Artifactory: `artifactory.com/my-project/build-service`
+    - `REGISTRY-USERNAME` and `REGISTRY-PASSWORD` are the user name and password for the internal registry.
+    - `CA-CERT-CONTENTS` are the contents of the PEM-encoded CA certificate for the internal registry
 
 1. Install the package by running:
 
