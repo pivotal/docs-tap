@@ -6,21 +6,21 @@ This topic provides troubleshooting information to help resolve issues with Tanz
 
 For component-level troubleshooting, see these topics:
 
-* [Troubleshooting Tanzu Application Platform GUI](tap-gui/troubleshooting.md)
-* [Troubleshooting Convention Service](convention-service/troubleshooting.md)
-* [Learning Center Known Issues](learning-center/troubleshooting/known-issues.md)
-* [Service Bindings Troubleshooting](service-bindings/troubleshooting.md)
-* [Source Controller Troubleshooting ](source-controller/troubleshooting.md)
-* [Spring Boot Conventions Troubleshooting ](spring-boot-conventions/troubleshooting.md)
+* [Troubleshooting Tanzu Application Platform GUI](tap-gui/troubleshooting.html)
+* [Troubleshooting Convention Service](convention-service/troubleshooting.html)
+* [Learning Center Known Issues](learning-center/troubleshooting/known-issues.html)
+* [Service Bindings Troubleshooting](service-bindings/troubleshooting.html)
+* [Source Controller Troubleshooting ](source-controller/troubleshooting.html)
+* [Spring Boot Conventions Troubleshooting ](spring-boot-conventions/troubleshooting.html)
 * [Application Live View for VMware Tanzu Troubleshooting](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-troubleshooting.html)
 * [Troubleshooting Cloud Native Runtimes for Tanzu](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-troubleshooting.html)
 * [Tanzu Build Service Frequently Asked Questions](https://docs.vmware.com/en/Tanzu-Build-Service/1.4/vmware-tanzu-build-service-v14/GUID-faq.html)
 
-## <a id='macos-unverified-dev'></a> Developer cannot be verified when installing Tanzu CLI on macOS
+## <a id='macos-unverified-developer'></a> Developer Cannot Be Verified When Installing Tanzu CLI on macOS
 
 ### Symptom
 
-If you see the following error when running `tanzu version` on macOS:
+You see the following error when you run Tanzu CLI commands, for example `tanzu version`, on macOS:
 
 ```
 "tanzu" cannot be opened because the developer cannot be verified
@@ -28,30 +28,32 @@ If you see the following error when running `tanzu version` on macOS:
 
 ### Cause
 
-Your security settings are preventing installation.
+Security settings are preventing installation.
 
 ### Solution
 
+To resolve this issue:
+
 1. Click **Cancel** in the macOS prompt window.
 
-2. Open the **Security & Privacy** control panel from **System Preferences**.
+2. Open **System Preferences** > **Security & Privacy**.
 
 3. Click **General**.
 
-4. Click **Allow Anyway** next to the warning message for the Tanzu binary.
+4. Next to the warning message for the Tanzu binary, click **Allow Anyway**.
 
 5. Enter your system username and password in the macOS prompt window to confirm the changes.
 
-6. Execute the `Tanzu version` command in the terminal window again.
+6. In the terminal window, run `tanzu version`.
 
-7. Click **Open** in the macOS prompt window. After completing the steps above, there should be no
-more security issues while running Tanzu CLI commands.
+7. In the macOS prompt window, click **Open**.
 
-## <a id='error-details'></a> Access `.status.usefulErrorMessage` details
+
+## <a id='access-error-details'></a> Access `.status.usefulErrorMessage` Details
 
 ### Symptom
 
-You get an error message that includes the following:
+When installing TAP, you receive an error message that includes the following:
 
 ```
 (message: Error (see .status.usefulErrorMessage for details))
@@ -59,26 +61,28 @@ You get an error message that includes the following:
 
 ### Cause
 
-A package fails to reconcile and you need to access the details in `.status.usefulErrorMessage`.
+A package fails to reconcile and you must access the details in `.status.usefulErrorMessage`.
 
 ### Solution
 
-To access the details in `.status.usefulErrorMessage`, run:
+Access the details in `.status.usefulErrorMessage` by running:
 
 `kubectl get PACKAGE-NAME grype -n tap-install -o yaml`
 
 Where:
-- `PACKAGE-NAME` is the package you want to target.
+- `PACKAGE-NAME` is the name of the package to target.
 
-## <a id='unauthorized-to-access'></a> Unauthorized to access error
-
-An authentication error when installing a package, reconciliation fails.
+## <a id='unauthorized'></a> Unauthorized to Access Error
 
 ### Symptom
 
-You run the `tanzu package install` command and receive an `UNAUTHORIZED: unauthorized to access repository:` error.
+When running the `tanzu package install` command, you receive an error message that includes the error:
 
-For example:
+```
+UNAUTHORIZED: unauthorized to access repository
+```
+
+Example:
 
   ```
   $ tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.1.0 -n tap-install -f ./app-live-view.yml
@@ -88,37 +92,39 @@ For example:
       Imgpkg: exit status 1 (stderr: Error: Checking if image is bundle: Collecting images: Working with registry.tanzu.vmware.com/app-live-view/application-live-view-install-bundle@sha256:b13b9ba81bcc985d76607cfc04bcbb8829b4cc2820e64a99e0af840681da12aa: GET https://registry.tanzu.vmware.com/v2/app-live-view/application-live-view-install-bundle/manifests/sha256:b13b9ba81bcc985d76607cfc04bcbb8829b4cc2820e64a99e0af840681da12aa: UNAUTHORIZED: unauthorized to access repository: app-live-view/application-live-view-install-bundle, action: pull: unauthorized to access repository: app-live-view/application-live-view-install-bundle, action: pull
   ```
 
->**Note:** The sample above shows Application Live View as the package; however, this error can
->occur with other packages as well.
+>**Note:** This example shows an error received when with Application Live View as the package. This error can also occur with other packages.
 
 ### Cause
 
-A common cause of this error is that the Tanzu Network credentials needed to access the package
-are missing or incorrect.
+The Tanzu Network credentials needed to access the package may be missing or incorrect.
 
 ### Solution
 
-To fix this problem:
+To resolve this issue:
 
-1. Repeat the step to create a secret for the namespace. See [Add the Tanzu Application Platform Package Repository](install.md#add-package-repositories).
-   Ensure that you provide the correct credentials.
+1. Repeat the step to create a secret for the namespace. For instructions, see
+  [Add the Tanzu Application Platform Package Repository](install.html#add-package-repositories) in _Installing the Tanzu Application Platform Package and Profiles_.
+  Ensure that you provide the correct credentials.
 
-   When the secret has the correct credentials,
-   the authentication error should resolve itself and the reconciliation succeed.
-   Do not reinstall the package.
+  When the secret has the correct credentials,
+  the authentication error should resolve itself and the reconciliation succeed.
+  Do not reinstall the package.
 
 2. List the status of the installed packages to confirm that the reconcile has succeeded.
-   For instructions, see [Verify the Installed Packages](install-components.md#verify).
+  For instructions, see
+	[Verify the Installed Packages](install-components.html#verify) in _Installing Individual Packages_.
 
-## <a id='existing-service-account'></a> Already existing service account error
-
-A service account error when installing a package, reconciliation fails.
+## <a id='existing-service-account'></a> Already Existing Service Account Error
 
 ### Symptom
 
-You run the `tanzu package install` command and receive an `failed to create ServiceAccount resource: serviceaccounts already exists` error.
+When running the `tanzu package install` command, you receive the following error:
 
-For example:
+```
+failed to create ServiceAccount resource: serviceaccounts already exists
+```
+
+Example:
 
   ```
   $ tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.2.0 -n tap-install -f app-accelerator-values.yaml
@@ -126,25 +132,25 @@ For example:
   Error: failed to create ServiceAccount resource: serviceaccounts "app-accelerator-tap-install-sa" already exists
   ```
 
->**Note:** The sample above shows App Accelerator as the package; however, this error can occur
->with other packages as well.
+>**Note:** This example shows an error received with App Accelerator as the package. This error can also occur with other packages.
 
 ### Cause
 
-A common cause of this error is that the `tanzu package install` command is being executed again after failing.
+The `tanzu package install` command may be executed again after failing.
 
 ### Solution
 
-If you want to update the package, use `tanzu package installed update` command after the first use
-of the `tanzu package install` command.
+To update the package, run the following command after the first use of the `tanzu package install` command
 
-## <a id='workload-no-build'></a> After creating a workload, there are no build logs
+```
+tanzu package installed update 
+```
 
-After creating a workload, there are no logs.
+## <a id='missing-build-logs'></a> Missing Build Logs after Creating a Workload
 
 ### Symptom
 
-You create a workload, but no logs appear when you check the logs with:
+You create a workload, but no logs appear when you check for logs by running the following command:
 
   ```
   tanzu apps workload tail workload-name --since 10m --timestamp
@@ -160,20 +166,19 @@ Common causes include:
 
 ### Solution
 
-To fix this problem, run each of these commands to get the relevant error message:
+To resolve this issue, run each of the following commands to receive the relevant error message:
 
 - `kubectl get clusterbuilder.kpack.io -o yaml`
 - `kubectl get image.kpack.io <workload-name> -o yaml`
 - `kubectl get build.kpack.io -o yaml`
 
-## <a id='failed-reconcile'></a> After package installation, one or more packages fails to reconcile
-
-After creating a workload, there are no logs.
+## <a id='failed-reconcile'></a> Packages Fail to Reconcile after Package Installation
 
 ### Symptom
 
-You issue the `tanzu package install` command, but one or more packages fail to install.
-For example:
+When running `tanzu package install`, one or more packages fail to install.
+
+Example:
 
   ```
   tanzu package install tap -p tap.tanzu.vmware.com -v 1.0.1 --values-file tap-values.yaml -n tap-install
@@ -190,7 +195,6 @@ For example:
 
   Please consider using 'tanzu package installed update' to update the installed package with correct settings
 
-
   Error: resource reconciliation failed: kapp: Error: waiting on reconcile packageinstall/tap-gui (packaging.carvel.dev/v1alpha1) namespace: tap-install:
     Finished unsuccessfully (Reconcile failed:  (message: Error (see .status.usefulErrorMessage for details))). Reconcile failed: Error (see .status.usefulErrorMessage for details)
   Error: exit status 1
@@ -198,23 +202,23 @@ For example:
 
 ### Cause
 
-Often, the cause is one of the following:
+Common causes include:
 
 - Some infrastructure providers take longer than the timeout value allows to perform tasks.
-- A race-condition between components exists.
-  For example, a package that uses `Ingress` completes before the shared Tanzu ingress controller is available.
+- A race-condition between components exists. For example, a package that uses `Ingress` completes
+  before the shared Tanzu ingress controller is available.
 
 The VMware Carvel tools kapp-controller continues to try in a reconciliation loop.
 
 ### Solution
 
-Verify if the installation is still continuing by running:
+Check if the installation is continuing by running:
 
   ```
   tanzu package installed list -A
   ```
 
-If it is still running, it is likely to finish successfully and produce output similar to this:
+If the installation is still running, it is likely to finish successfully and produce output similar to this:
 
   ```
   \ Retrieving installed packages...
@@ -250,13 +254,13 @@ If it is still running, it is likely to finish successfully and produce output s
     tekton-pipelines          tekton.tanzu.vmware.com                            0.30.0           Reconcile succeeded  tap-install
   ```
 
-## <a id='tap-telemetry-secret-error'></a> Telemetry component logs show errors fetching the "reg-creds" secret
+## <a id='telemetry-fails-fetching-secret'></a> Telemetry Component Logs Show Errors Fetching the "reg-creds" Secret
 
 An error message occurs continuously on the `tap-telemetry-controller` logs.
 
 ### Symptom
 
-When you get the logs of the `tap-telemetry` controller with `kubectl logs -n
+When you view the logs of the `tap-telemetry` controller by running `kubectl logs -n
 tap-telemetry <tap-telemetry-controller-<hash> -f`, you see the following error:
 
   ```
@@ -265,28 +269,35 @@ tap-telemetry <tap-telemetry-controller-<hash> -f`, you see the following error:
 
 ### Cause
 
-The `tap-telemetry` namespace misses a
-[Role](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#role-and-clusterrole)
-that allows the controller to list secrets in the `tap-telemetry` namespace.
+The `tap-telemetry` namespace misses a Role that allows the controller to list secrets in the
+`tap-telemetry` namespace. For more information about Roles, see
+[Role and ClusterRole](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#role-and-clusterrole)
+in _Using RBAC Authorization_ in the Kubernetes documentation.
 
 ### Solution
 
-To fix this problem, run the following command:
+To resolve this issue, run:
 
 ```
 kubectl patch roles -n tap-telemetry tap-telemetry-controller --type='json' -p='[{"op": "add", "path": "/rules/-", "value": {"apiGroups": [""],"resources": ["secrets"],"verbs": ["get", "list", "watch"]} }]'
 ```
 
-## <a id='error-update'></a> Error message occurs after updating the workload
-
-An error message occurs after applying the command to update the workload.
+## <a id='error-update'></a> Workload Already Exists Error after Updating the Workload
 
 ### Symptom
 
-When you update the workload by running:
+When you update the workload, you receive the following error:
 
 ```
-% tanzu apps workload create tanzu-java-web-app \
+Error: workload "default/APP-NAME" already exists
+Error: exit status 1
+```
+Where `APP-NAME` is the name of the app.
+
+For example, when you run:
+
+```
+$ tanzu apps workload create tanzu-java-web-app \
 --git-repo https://github.com/dbuchko/tanzu-java-web-app \
 --git-branch main \
 --type web \
@@ -294,7 +305,7 @@ When you update the workload by running:
 --yes
 ```
 
-You see the following error:
+You receive the following error
 
 ```
 Error: workload "default/tanzu-java-web-app" already exists
@@ -303,18 +314,18 @@ Error: exit status 1
 
 ### Cause
 
-You have the app running before performing a live update using the same app name.
+The app is running before performing a live update using the same app name.
 
 ### Solution
 
-To fix this problem, you can either delete the app or use a different name.
+To resolve this issue, either delete the app or use a different name for the app.
 
 
-## <a id='eula-error'></a> Error from failure to accept an End User License Agreement
+## <a id='eula-error'></a> Failure to Accept an End User License Agreement Error
 
 ### Symptom
 
-An error message appears as a result of not accepting a relevant End User License Agreement (EULA).
+When you do not accept a relevant End User License Agreement (EULA), you receive an error message.
 
 ### Cause
 
@@ -323,4 +334,5 @@ VMware Tanzu Network before accepting the relevant EULA in VMware Tanzu Network.
 
 ### Solution
 
-Follow the steps in [Accept the End User License Agreements](install-general.md#accept-eulas).
+Follow the steps in [Accept the End User License Agreements](install-general.html#accept-eulas) in
+_Installing the Tanzu CLI_.
