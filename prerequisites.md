@@ -67,26 +67,24 @@ The default hostname consists of `tap-gui` plus an `IngressDomain` of your choic
 
 ## <a id='k8s-cluster-reqs'></a>Kubernetes cluster requirements
 
-Installation requires:
+Installation requires Kubernetes cluster v1.20, v1.21, or v1.22 on one of the following Kubernetes
+providers:
 
-* Kubernetes cluster versions 1.20, 1.21, or 1.22 on one of the following Kubernetes providers:
-
-    * Azure Kubernetes Service
-    * Amazon Elastic Kubernetes Service
-    * Google Kubernetes Engine
-        * GKE Autopilot clusters do not have required features enabled
-        * GKE clusters that are set up in zonal mode might detect Kubernetes API errors when the GKE
-        control plane is resized after traffic increases. Users can mitigate this by creating a
-        regional cluster with 3 control-plane nodes right from the start.
-    * Minikube
-        * Reference the resource requirements below
-        * Hyperkit driver is supported on macOS only. Docker driver is not supported.
-    * vSphere with Tanzu v7.0 U3a (not possible with Tanzu Application Platform v1.0.0 or
-      earlier).
-
-    For vSphere with Tanzu, [pod security policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/)
-    must be configured so that Tanzu Application Platform controller pods can run as
-    root. To set the pod security policies, run:
+* Azure Kubernetes Service
+* Amazon Elastic Kubernetes Service
+* Google Kubernetes Engine
+    * GKE Autopilot clusters do not have required features enabled
+    * GKE clusters that are set up in zonal mode might detect Kubernetes API errors when the GKE
+    control plane is resized after traffic increases. Users can mitigate this by creating a
+    regional cluster with 3 control-plane nodes right from the start.
+* Minikube
+    * Reference the resource requirements below
+    * Hyperkit driver is supported on macOS only; Docker driver is not supported.
+* Tanzu Kubernetes Grid multi-cloud
+* vSphere with Tanzu v7.0 U3a (not possible with Tanzu Application Platform v1.0.0 or earlier).<br>
+For vSphere with Tanzu, [pod security policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/)
+must be configured so that Tanzu Application Platform controller pods can run as root.
+To set the pod security policies, run:
 
     ```
     kubectl create clusterrolebinding default-tkg-admin-privileged-binding --clusterrole=psp:vmware-system-privileged --group=system:authenticated
