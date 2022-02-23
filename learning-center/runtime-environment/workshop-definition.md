@@ -965,7 +965,7 @@ name of the namespace, e.g., `$(session_namespace)-apps` so they are only applie
 
 To set the security policy for a specific namespace other than the primary session
 namespace, you can add the annotation `learningcenter.tanzu.vmware.com/session.security.policy` in
-the `Namespace` resource metadata and set the value to `nonroot`, `anyuid` or `custom` as necessary.
+the `Namespace` resource metadata and set the value to `nonroot`, `anyuid`, or `custom` as necessary.
 
 ## <a id="shared-workshop-resources"></a> Shared workshop resources
 
@@ -1144,9 +1144,14 @@ you use `aa-` as a prefix to the custom Pod security name you create. This ensur
 over any global default Pod security policy such as `restricted`, `pks-restricted` or
 `vmware-system-tmc-restricted`, no matter what the name of the global policy default.
 
+
 ## <a id="custom-sec-pol-user-cont"></a> Custom security policies for user containers
 
-There is also the option to set the value of the `session.namespaces.security.policy` setting as `custom`. This allows for more fine-grained control on the security policy applied to the Pods/containers a user deploys during a session. Note that in this case you must provide your own resources defining the Pod security policy and map it so it is used.
+You can also set the value of the `session.namespaces.security.policy` setting as
+`custom`. This gives you more fine-grained control of the security policy applied to the
+pods and containers that a user deploys during a session.
+In this case you must provide your own resources that define and map the pod security policy.
+For example:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -1222,7 +1227,9 @@ spec:
         - aa-$(workshop_namespace)-security-policy
 ```
 
-This can also be done on secondary namespaces by either setting the `session.namespaces.secondary.security.policy` setting to `custom` or using the `learningcenter.tanzu.vmware.com/session.security.policy: custom` annotation.
+You can also do this on secondary namespaces by either changing the
+`session.namespaces.secondary.security.policy` setting to `custom` or using the
+`learningcenter.tanzu.vmware.com/session.security.policy: custom` annotation.
 
 
 ## <a id="def-extra-ingress-points"></a> Defining additional ingress points
