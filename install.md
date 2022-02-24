@@ -218,9 +218,9 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
     * Google Cloud Registry has the form `repository: "my-project/supply-chain"`
 - `SSH-SECRET-KEY` is the SSH secret key supported by the specific package.
 See [Identify the SSH secret key for your package](#ssh-secret-key) for more information.
-- `DOMAIN-NAME` has a value such as `learningcenter.example.com`.
 - `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
-service's External IP address.
+service's External IP address. If this subdmain value `example.com` then the DNS configuration should point `*.example.com` to the External IP address of the `tanzu-shared-ingress` service.
+- `DOMAIN-NAME` has the same value configured under `INGRESS-DOMAIN`. The system will generate a prefixed subdomain for learning center GUI.
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog that you've already built and posted on the Git infrastructure you specified in the Integration section.
 - `MY-DEV-NAMESPACE` is the namespace where you want the `ScanTemplates` to be deployed to.
 This is the namespace where the scanning feature is going to run.
