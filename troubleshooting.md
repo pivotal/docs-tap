@@ -70,6 +70,7 @@ Access the details in `.status.usefulErrorMessage` by running:
 `kubectl get PACKAGE-NAME grype -n tap-install -o yaml`
 
 Where:
+
 - `PACKAGE-NAME` is the name of the package to target.
 
 ## <a id='unauthorized'></a> Unauthorized to Access Error
