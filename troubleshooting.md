@@ -307,7 +307,7 @@ If none exists, and you are unable to fix the described issue yourself, please c
 1. Repeat these diagnosis steps for any other packages that failed to reconcile.
 
 
-## <a id='namespace-not-found'></a> Error: namespace not found
+## <a id='namespace-not-found'></a> Package fails to reconcile because a namespace was not found
 
 ### Symptom
 
