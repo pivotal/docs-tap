@@ -204,7 +204,7 @@ Often, the cause is one of the following:
 - A race-condition between components exists.
   For example, a package that uses `Ingress` completes before the shared Tanzu ingress controller is available.
 
-The VMware Carvel tools kapp-controller continues to try in a reconciliation loop in these cases. However, if the reconciliation is showing failed then there could be a possible configuration issue in the provided `tap-config.yml` file, or something else. 
+The VMware Carvel tools kapp-controller continues to try in a reconciliation loop in these cases. However, if the reconciliation is showing failed then there could be a possible configuration issue in the provided `tap-config.yml` file, or something else.
 
 ### Solution
 
@@ -276,7 +276,7 @@ ootb-supply-chain-basic    ootb-supply-chain-basic.tanzu.vmware.com             
 ootb-templates             ootb-templates.tanzu.vmware.com                      0.6.1             Reconcile succeeded                                                    109m
 scanning                   scanning.apps.tanzu.vmware.com                       1.0.0             Reconcile succeeded                                                    119m
 service-bindings           service-bindings.labs.vmware.com                     0.6.0             Reconcile succeeded                                                    119m
-services-toolkit           services-toolkit.tanzu.vmware.com                    0.5.0             Reconcile succeeded                                                    119m
+services-toolkit           services-toolkit.tanzu.vmware.com                    0.5.1             Reconcile succeeded                                                    119m
 source-controller          controller.source.apps.tanzu.vmware.com              0.2.0             Reconcile succeeded                                                    119m
 spring-boot-conventions    spring-boot-conventions.tanzu.vmware.com             0.3.0             Reconcile succeeded                                                    109m
 tap                        tap.tanzu.vmware.com                                 1.0.1             Reconcile failed: Error (see .status.usefulErrorMessage for details)   119m
@@ -289,7 +289,7 @@ In this example, `packageinstall/grype` is having a reconciliation error. To get
 ```
 kubectl describe packageinstall/grype -n tap-install
 ```
-The `Status` section of the output as given below indicates that a namespace expected by `grype` with name `scanning` is not present in the targeted Kubernetes cluster. 
+The `Status` section of the output as given below indicates that a namespace expected by `grype` with name `scanning` is not present in the targeted Kubernetes cluster.
 
 ```
 Status:
@@ -312,7 +312,7 @@ tanzu package installed update tap -p tap.tanzu.vmware.com -v 1.0.1  --values-fi
 
 This is just for an example. The failed package and the failure cause could be different in your case. But, the same procedure can be followed to find the reason for the failure and retrigger the installation.
 
-Repeate this process until all the packages are successfully reconciled. 
+Repeate this process until all the packages are successfully reconciled.
 
 ## <a id='tap-telemetry-secret-error'></a> Telemetry component logs show errors fetching the "reg-creds" secret
 
