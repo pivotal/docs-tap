@@ -274,8 +274,9 @@ Supply Chain Security Tools - Store does not start up. You see the following err
     [error] failed to initialize database, got error failed to connect to `host=metadata-store-db user=metadata-store-user database=metadata-store`: server error (FATAL: password authentication failed for user "metadata-store-user" (SQLSTATE 28P01))
     ```
 
-    If you see this error then you have changed the database password between deployments,
-    which is not supported. To change the password, see **Persistent Volume Retains Data**.
+    This error results when the database password was changed between deployments. This is not
+    supported. To resolve this issue, see [CrashLoopBackOff from Password Authentication Fails](troubleshooting.html#password-authentication-fails)
+    in _Troubleshooting Tanzu Application Platform_.
 
     > **Warning:** Changing the database password deletes your Supply Chain Security Tools - Store data.
 
