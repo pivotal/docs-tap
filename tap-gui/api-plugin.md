@@ -1,27 +1,53 @@
-# API plugin in Tanzu Application Platform GUI
+# API Docs plugin in Tanzu Application Platform GUI
 
 ## <a id="overview"></a> Overview
 
-(Overview section)
+(Overview section - in the context of Software catalog; API that it might consume or expose)
 
-## <a id='entry-point'></a>Entry point to API plugin
+## <a id='entry-point'></a>Entry points to API Docs plugin
 
-The API plugin is part of Tanzu Application Platform GUI. To access the API plugin, click **APIs** in the left-hand navigation bar of Tanzu Application Platform GUI. This opens the **API catalog page**.
+The API Docs plugin is part of Tanzu Application Platform GUI. 
+
+The first entry point to the API Docs plugin, click **APIs** in the left-hand navigation bar of Tanzu Application Platform GUI. This opens the **API catalog page**.
 
 ![Screenshot of API catalog page](./images/aa1_firstpage.png)
 
-Here you can view APIs already registered with the system.
-Developers can add new APIs and API groups by registering them as new entities of the Software Catalog.
+On that page, you can view APIs already registered with the system. Developers can add new API entries and link them to Components and Systems in the Software Catalog by registering them as new entities of the Software Catalog.
 
-Every accelerator provides a title and short description. You can view an accelerator definition by clicking **View Repository**, which opens the accelerator's Git repository in a new browser tab.
+The second entry point to the API Docs plugin is though Components and Systems of the Software Catalog, listed on the Home page of Tanzu Application Platform GUI. If there is an API entity associated with the selected Component or System, the **VIEW API** icon shall be active
 
-This main page allows you to search and filter based on text and tags associated with the accelerators. When you find the accelerator representing the project you want to create, click **Choose**. This opens the **Generate Accelerators** page.
+![Screenshot of Component page](./images/aa1_firstpage.png)
+
+Every API entry provides a title and short description, including reference to the team that owns the definition of that API and the Software Catalog objects that are connected to it.
+
+![Screenshot of API page - Overview](./images/aa1_firstpage.png)
+
+By choosing the **Definition** tab on the top of the API page, you can see the definition of that API in human-readable and machine-readable format.
+
+![Screenshot of API page - Definition](./images/aa1_firstpage.png)
+
+API Docs plugin supports the following API formats
+* OpenAPI 2 & 3
+* AsyncAPI
+* GraphQL
+* Plain (to support any other format)
 
 ## <a id='create-project'></a>Creating a new API entry
 
-To create a new API entry, click **Create**. The system starts generating your project and the Task Activity page shows the progress, with detailed logs on the right side.
+To create a new API entry, you must follow the same steps as if you were registering any other Software Catalog entity.
 
-![Task activity during project creation](./images/aa5_taskActivity.png)
+1. Navigate to the home page of Tanzu Application Platform GUI by clicking on the **Home** icon, located on the left-side navigation bar. Click **REGISTER ENTITY**.
+
+    ![REGISTER button on the right side of the header](images/getting-started-tap-gui-5.png)
+
+2. **Register an existing component** prompts you to type a repository URL. Paste the link to the `catalog-info.yaml` file of your choice that contains the defintion of your API entity.
+`DEMO LINK TO BE ADDED`.
+
+1. Click **ANALYZE**, review the catalog entities to be added and click **IMPORT**.
+
+    ![Review the entities to be added to the catalog](images/getting-started-tap-gui-7.png)
+
+3. Navigate to the API page by clicking the **APIs** button on the left-hand side navigation panel. The catalog changes and entries are visible for further inspection.
 
 ---
 
@@ -37,7 +63,7 @@ To create a new API entry, click **Create**. The system starts generating your p
   * Runtime Resources Visibility
   * Application Live View
   * Application Accelerator
-  * API plugin
+  * API Docs
 
 
 # Tanzu Application Platform GUI plugins
@@ -53,12 +79,7 @@ Tanzu Application Platform includes the following GUI plugins:
 - [Runtime Resources Visibility](runtime-resource-visibility.md)
 - [Application Live View](app-live-view.md)
 - [Application Accelerator](application-accelerator.md)
-- [API pluin](LINK-TO-FILE.md)
-
-
-
-
-Component documentation
+- [API Docs](LINK-TO-FILE.md)
 
 ---
 
