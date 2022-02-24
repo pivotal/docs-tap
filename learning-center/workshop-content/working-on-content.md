@@ -26,7 +26,7 @@ spec:
     orphaned: 15m
 ```
 
-If you don't deactivate reserved sessions, a new session is always created ready for the next workshop session when there is available capacity to do so. If you modify workshop content while testing the current workshop session, and then terminate the session and start a new one, the workshop picks up the reserved session. The reserved session has a copy of the old content.
+If you do not deactivate reserved sessions, a new session is always created ready for the next workshop session when there is available capacity to do so. If you modify workshop content while testing the current workshop session, terminate the session and start a new one, the workshop picks up the reserved session. The reserved session has a copy of the old content.
 
 By deactivating reserved sessions, a new workshop session is always created on demand. This ensures the latest workshop content is used.
 
@@ -113,7 +113,7 @@ spec:
 
 By pulling down the workshop content as an overlay of the custom workshop image when the workshop session starts, you only need to rebuild the custom workshop image when you need to make changes such as to include additional tools or to ensure the latest workshop instructions are included in the final custom workshop image.
 
-Because the location of the workshop files is known, you can live update the workshop content in the session by following [Live updates to the content](#live-updates-to-content)
+Because the location of the workshop files is known, you can live update the workshop content in the session by following [Live updates to the content](#live-updates-to-content).
 
 If the additional set of tools required for a workshop is not specific to a workshop, VMware recommends that you create a standalone workshop base image where you can add the tools. You can always pull down content for a specific workshop from a Git repository or web server when the workshop session starts.
 
