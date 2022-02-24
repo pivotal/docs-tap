@@ -133,14 +133,9 @@ When GKE scales up an API server, the current Tanzu Application install continue
 The Live View section in Tanzu Application Platform GUI might show
 "No live information for pod with ID" after deploying Tanzu Application Platform workloads.
 
-Resolve this issue by recreating the Application Live View Connector pod. This allows the connector
-to discover the application instances and render the details in Tanzu Application Platform GUI.
-
-For example:
-
-```
-kubectl -n app-live-view delete pods -l=name=application-live-view-connector
-```
+Resolve this issue by recreating the Application Live View Connector pod. For more information, see
+[No Live Information for Pod with ID Error](troubleshooting.html#no-live-information) in
+_Troubleshooting Tanzu Application Platform_.
 
 #### Convention Service
 
@@ -154,6 +149,9 @@ the debug convention might not apply to the app run image. This is because of th
 in the image.
 To prevent this issue, delete existing app images that were built using Tanzu Application Platform
 v0.4.
+
+For more information, see [Debug Convention May Not Apply](troubleshooting.html#debug-convention) in
+_Troubleshooting Tanzu Application Platform_.
 
 #### Grype scanner
 
@@ -173,24 +171,9 @@ Image Scan, after the binaries are built and packaged as images.
 #### Learning Center
 
 - **Training Portal in pending state:** Under certain circumstances, the training portal is stuck in
-a pending state. The best way to discover the issue is to view the operator logs. To get the logs,
-run:
-
-    ```
-    kubectl logs deployment/learningcenter-operator -n learningcenter
-    ```
-
-    Depending on the log, the issue might be that the TLS secret `tls` is not available.
-    The TLS secret should be on the Learning Center operator namespace. Otherwise, you get this
-    error:
-
-    ```
-    ERROR:kopf.objects:Handler 'learningcenter' failed temporarily: TLS secret tls is not available
-    ```
-
-    To recover from this issue, you can follow
-    [these steps](learning-center/getting-started/learning-center-operator.md#enforce-secure-connect) to create the TLS Secret.
-    After the TLS is created, redeploy the TrainingPortal resource.
+a pending state. To resolve this issue, see
+[Training Portal Stays in Pending State](troubleshooting.html#training-portal-pending) in
+_Troubleshooting Tanzu Application Platform_.
 
 - **image-policy-webhook-service not found:** If you are installing a Tanzu Application Platform
 profile, you might see the error:
@@ -202,27 +185,13 @@ profile, you might see the error:
     This is a rare condition error among some packages. To recover from this error, redeploy the
     `trainingPortal` resource.
 
-- **Updating parameters don't work:** Normally you need to update some parameters provided to the
-Learning Center Operator, such as ingressDomain, TLS secret, ingressClass, and so on.
-Try running one of these commands to validate if the parameters were changed:
+- **Cannot Update Parameters:** 
+Normally you must update some parameters provided to the Learning Center Operator. These parameters
+include ingressDomain, TLS secret, ingressClass, and others.
 
-    ```
-    kubectl describe systemprofile
-    ```
-
-    or
-
-    ```
-    kubectl describe pod  -n learningcenter
-    ```
-
-    If the Training Portals don't work or you can't get the updated values, there is another
-    workaround.
-    By design, the Training Portal resources do not react to any changes on the parameters provided
-    when the training portals were created.
-    This is because any change on the `trainingportal` resource affect any online user who is
-    running a workshop. To get the new values, redeploy `trainingportal` in a maintenance window
-    where Learning Center is unavailable while the `systemprofile` is updated.
+After updating parameters, if the Training Portals do not work or you cannot see the updated values,
+redeploy `trainingportal` in a maintenance window where Learning Center is unavailable while the
+`systemprofile` is updated.
 
 - **Increase your cluster's resources:** Node pressure may be caused by not enough nodes or not
 enough resources on nodes for deploying the workloads you have. In this case, follow your cloud

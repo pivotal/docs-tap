@@ -1,6 +1,6 @@
 # Troubleshooting Tanzu Application Platform
 
-This topic provides troubleshooting information to help resolve issues with Tanzu Application Platform (TAP).
+This topic provides troubleshooting information to help resolve issues with Tanzu Application Platform.
 
 ## <a id="component-ts-links"></a> Component-Level Troubleshooting
 
@@ -53,7 +53,7 @@ To resolve this issue:
 
 ### Symptom
 
-When installing TAP, you receive an error message that includes the following:
+When installing Tanzu Application Platform, you receive an error message that includes the following:
 
 ```
 (message: Error (see .status.usefulErrorMessage for details))
@@ -341,15 +341,15 @@ _Installing the Tanzu CLI_.
 
 ### Symptom
 
-If you upgrade from TAP v0.4, the debug convention may not apply to the app run image.
+If you upgrade from Tanzu Application Platform v0.4, the debug convention may not apply to the app run image.
 
 ### Cause
 
-The TAP v0.4 lacks SBOM data.
+The Tanzu Application Platform v0.4 lacks SBOM data.
 
 ### Solution
 
-Delete existing app images that were built using TAP v0.4.
+Delete existing app images that were built using Tanzu Application Platform v0.4.
 
 ## <a id='build-scripts-lack-execute-bit'></a> Execute Bit Not Set for App Accelerator Build Scripts
 
@@ -377,4 +377,116 @@ For example, for a project generated from the "Spring PetClinic" accelerator, ru
 ```
 chmod +x ./mvnw
 ```
+
+## <a id='no-live-information'></a> No Live Information for Pod with ID Error
+
+### Symptom
+
+After deploying Tanzu Application Platform workloads, the Tanzu Application Platform GUI shows a "No live information for pod with ID" error.
+
+### Cause
+
+The connector must discover the application instances and render the details in Tanzu Application Platform GUI.
+
+### Solution
+
+Recreate the Application Live View Connector pod by running:
+
+```
+kubectl -n app-live-view delete pods -l=name=application-live-view-connector
+```
+
+This allows the connector to discover the application instances and render the details in Tanzu Application Platform GUI.
+
+## <a id='training-portal-pending'></a> Training Portal Stays in Pending State
+
+### Symptom
+
+The Training Portal stays in a "pending" state.
+
+### Cause
+
+The TLS secret `tls` is not available.
+
+### Solution
+
+1. Access the operator logs by running:
+    ```
+    kubectl logs deployment/learningcenter-operator -n learningcenter
+    ```
+1. Observe that the TLS secret `tls` is not available. The TLS secret should be on the Learning
+    Center operator namespace. If the TLS secret is not on the Learning Center operator namespace,
+    the operator logs contain the following error:
+    ```
+    ERROR:kopf.objects:Handler 'learningcenter' failed temporarily: TLS secret tls is not available
+    ```
+1. Follow the steps in
+    [Enforcing Secure Connections](learning-center/getting-started/learning-center-operator.html#enforce-secure-connect)
+    in _Learning Center Operator_ to create the TLS secret.
+
+1. Redeploy the `trainingPortal` resource.
+
+## <a id='image-policy-webhook-service-not-found'></a> "image-policy-webhook-service not found" Error
+
+### Symptom
+
+When installing a Tanzu Application Platform profile, you receive the following error:
+
+```
+Internal error occurred: failed calling webhook "image-policy-webhook.signing.apps.tanzu.vmware.com": failed to call webhook: Post "https://image-policy-webhook-service.image-policy-system.svc:443/signing-policy-check?timeout=10s": service "image-policy-webhook-service" not found
+```
+
+### Cause
+
+The "image-policy-webhook-service" service cannot be found.
+
+### Solution
+
+Redeploy the `trainingPortal` resource.
+
+## <a id='cannot-update-parameters'></a> Cannot Update Parameters
+
+### Symptom
+
+The Training Portals do not work or do not show updated parameters.
+
+Run one of the following commands to validate changes made to parameters provided to the Learning
+Center Operator. These parameters include ingressDomain, TLS secret, ingressClass, and others.
+
+Command:
+```
+kubectl describe systemprofile
+```
+
+Command:
+```
+kubectl describe pod  -n learningcenter
+```
+
+### Cause
+
+By design, the Training Portal resources do not react to any changes on the parameters provided
+when the training portals were created. This prevents any change on the `trainingportal` resource
+from affecting any online user running a workshop.
+
+### Solution
+
+Redeploy `trainingportal` in a maintenance window where Learning Center is unavailable while the
+`systemprofile` is updated.
+
+
+## <a id='increase-cluster-resources'></a> Increase Your Cluster Resources Error
+
+### Symptom
+
+You receive a "Increase your cluster's resources" error.
+
+### Cause
+
+Node pressure may be caused by an insufficient number of nodes or a lack of resources on nodes
+necessary to deploy the workloads that you have.
+
+### Solution
+
+Follow instructions from your cloud provider to scale out or scale up your cluster.
 
