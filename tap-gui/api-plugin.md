@@ -1,22 +1,28 @@
-# API Docs plugin in Tanzu Application Platform GUI
+# API Documentation plugin in Tanzu Application Platform GUI
 
 ## <a id="overview"></a> Overview
 
-(Overview section - in the context of Software catalog; API that it might consume or expose)
+The API Documentation plugin provides a standalone list of APIs that can be connected to Components and Systems of Tanzu Application Platform GUI's Software Catalog. Each API entity show the Components that provide that API entity, as well as the list of Components that are consumers of that API entity. Also, an API entity can be attributed to certain system and show up on the System's diagram. To show such dependency, `spec.providesApis:` and `spec.consumesApis:` sections of the Component definition files should reference that API entity.
 
-## <a id='entry-point'></a>Entry points to API Docs plugin
+For more information on the structure of the definition file for an API entity, please refer to [Backstage Kind: API](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-api). For more information on the API Documentation plugin, please refer to [Backstage API Documentation](https://github.com/backstage/backstage/blob/master/plugins/api-docs/README.md).
 
-The API Docs plugin is part of Tanzu Application Platform GUI. 
+## <a id='entry-point'></a>Entry points to the API Documentation plugin
 
-The first entry point to the API Docs plugin, click **APIs** in the left-hand navigation bar of Tanzu Application Platform GUI. This opens the **API catalog page**.
+The API Documentation plugin is part of Tanzu Application Platform GUI. 
+
+The first entry point to the API Documentation plugin, click **APIs** in the left-hand navigation bar of Tanzu Application Platform GUI. This opens the **API catalog page**.
 
 ![Screenshot of API catalog page](./images/aa1_firstpage.png)
 
 On that page, you can view APIs already registered with the system. Developers can add new API entries and link them to Components and Systems in the Software Catalog by registering them as new entities of the Software Catalog.
 
-The second entry point to the API Docs plugin is though Components and Systems of the Software Catalog, listed on the Home page of Tanzu Application Platform GUI. If there is an API entity associated with the selected Component or System, the **VIEW API** icon shall be active
+The second entry point to the API Documentation plugin is though Components and Systems of the Software Catalog, listed on the Home page of Tanzu Application Platform GUI. If there is an API entity associated with the selected Component or System, the **VIEW API** icon shall be active.
 
 ![Screenshot of Component page](./images/aa1_firstpage.png)
+
+The **VIEW API** tab demonstrates which APIs are being consumed by a Component and which APIs are being provided by the Component.
+
+![Screenshot of VIEW API page](./images/aa1_firstpage.png)
 
 Every API entry provides a title and short description, including reference to the team that owns the definition of that API and the Software Catalog objects that are connected to it.
 
@@ -26,7 +32,7 @@ By choosing the **Definition** tab on the top of the API page, you can see the d
 
 ![Screenshot of API page - Definition](./images/aa1_firstpage.png)
 
-API Docs plugin supports the following API formats
+API Documentation plugin supports the following API formats
 * OpenAPI 2 & 3
 * AsyncAPI
 * GraphQL
@@ -40,14 +46,35 @@ To create a new API entry, you must follow the same steps as if you were registe
 
     ![REGISTER button on the right side of the header](images/getting-started-tap-gui-5.png)
 
-2. **Register an existing component** prompts you to type a repository URL. Paste the link to the `catalog-info.yaml` file of your choice that contains the defintion of your API entity.
-`DEMO LINK TO BE ADDED`.
+2. **Register an existing component** prompts you to type a repository URL. Paste the link to the `catalog-info.yaml` file of your choice that contains the defintion of your API entity. For example, you can copy the text below and save it as `catalog-info.yaml` on a Git repository of your choice.
 
-1. Click **ANALYZE**, review the catalog entities to be added and click **IMPORT**.
+    ```
+    apiVersion: backstage.io/v1alpha1
+    kind: API
+    metadata:
+        name: demo-api
+        description: The demo API entity
+    tags:
+        - demo
+        - rest
+    links:
+        - url: https://github.com/swagger-api/swagger-petstore
+        title: Documentation
+    spec:
+        type: openapi
+        lifecycle: experimental
+        owner: team-a
+        system: demo-app
+    definition: |
+        TO BE ADDED
+    ```
+
+
+3. Click **ANALYZE**, review the catalog entities to be added and click **IMPORT**.
 
     ![Review the entities to be added to the catalog](images/getting-started-tap-gui-7.png)
 
-3. Navigate to the API page by clicking the **APIs** button on the left-hand side navigation panel. The catalog changes and entries are visible for further inspection.
+4. Navigate to the API page by clicking the **APIs** button on the left-hand side navigation panel. The catalog changes and entries are visible for further inspection.
 
 ---
 
@@ -63,7 +90,7 @@ To create a new API entry, you must follow the same steps as if you were registe
   * Runtime Resources Visibility
   * Application Live View
   * Application Accelerator
-  * API Docs
+  * API Documentation
 
 
 # Tanzu Application Platform GUI plugins
@@ -79,13 +106,13 @@ Tanzu Application Platform includes the following GUI plugins:
 - [Runtime Resources Visibility](runtime-resource-visibility.md)
 - [Application Live View](app-live-view.md)
 - [Application Accelerator](application-accelerator.md)
-- [API Docs](LINK-TO-FILE.md)
+- [API Documentation](LINK-TO-FILE.md)
 
 ---
 
-**Getting started documentation**
+**Getting started documentation - Separate file for API Documentation**
 
-## <a id="dev-first-app"></a>Section X: Add your API entry to the Tanzu Application Platform GUI Software Catalog
+## <a id="dev-first-app"></a>Add your API entry to the Tanzu Application Platform GUI Software Catalog
 
 In this section, you are going to:
 
@@ -123,17 +150,10 @@ Type the link to the `catalog-info.yaml` file of your choice or use demo link he
 
 ### <a id="deploy-your-app"></a>Update your demo API entry
 
-To update your demo API entity, you can select it from the list of available APIs in your Software Catalog and press the Edit icon 
+1. To update your demo API entity, select it from the list of available APIs in your Software Catalog and press the Edit icon. 
 
-    ![Highlighted Edit icon](images/getting-started-tap-gui-7.png)
+    ![Review the entities to be added to the catalog](images/getting-started-tap-gui-7.png)
 
-That would open the source `catalog-info.yaml` file that you can edit. After your edits have been made, Tanzu Application Platform GUI shall re-render the API entry with the next refresh cycle
+That would open the source `catalog-info.yaml` file that you can edit. 
 
----
-
- 
----
-
-**Installing the Tanzu Application Platform Package and Profiles**
-
-- no changes
+2. After your edits have been made, Tanzu Application Platform GUI shall re-render the API entry with the next refresh cycle.
