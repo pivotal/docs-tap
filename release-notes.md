@@ -242,63 +242,17 @@ stable.
 - **MutatingWebhookConfiguration prevents pods from being admitted:** Under certain circumstances,
   if the `image-policy-controller-manager` deployment pods do not start up before the
   `MutatingWebhookConfiguration` is applied to the cluster, it can prevent the admission of all
-  pods.<br><br>
-  For example, pods can be prevented from starting if nodes in a cluster are scaled to zero and the
-  webhook is forced to restart at the same time as other system components.
-  A deadlock can occur when some components expect the webhook to verify their image signatures and
-  the webhook is not running yet.<br><br>
-  There is a known rare condition during Tanzu Application Platform profiles installation that could
-  cause this issue to happen. You may see a message similar to one of the following in component
-  statuses:
+  pods.
 
-    ```
-    Events:
-      Type     Reason            Age                   From                   Message
-      ----     ------            ----                  ----                   -------
-      Warning  FailedCreate      4m28s                 replicaset-controller  Error creating: Internal error occurred: failed calling webhook "image-policy-webhook.signing.apps.tanzu.vmware.com": Post "https://image-policy-webhook-service.image-policy-system.svc:443/signing-policy-check?timeout=10s": no endpoints available for service "image-policy-webhook-service"
-    ```
-
-    ```
-    Events:
-      Type     Reason            Age                   From                   Message
-      ----     ------            ----                  ----                   -------
-      Warning FailedCreate 10m replicaset-controller Error creating: Internal error occurred: failed calling webhook "image-policy-webhook.signing.apps.tanzu.vmware.com": Post "https://image-policy-webhook-service.image-policy-system.svc:443/signing-policy-check?timeout=10s": service "image-policy-webhook-service" not found
-    ```
-
-    By deleting the `MutatingWebhookConfiguration` resource, you can resolve the deadlock and enable the
-    system to start up again. After the system is stable, you can restore the `MutatingWebhookConfiguration`
-    resource to re-enable image signing enforcement.
-
-    >**Important:** These steps temporarily disable signature verification in your cluster.
-
-    To do so:
-
-    1. Back up the `MutatingWebhookConfiguration` to a file by running:
-
-        ```
-        kubectl get MutatingWebhookConfiguration image-policy-mutating-webhook-configuration -o yaml > image-policy-mutating-webhook-configuration.yaml
-        ```
-
-    2. Delete `MutatingWebhookConfiguration` by running:
-
-        ```
-        kubectl delete MutatingWebhookConfiguration image-policy-mutating-webhook-configuration
-        ```
-
-    3. Wait until all components are up and running in your cluster, including the
-
-      `image-policy-controller-manager` pods (namespace `image-policy-system`).
-
-    4. Re-apply the `MutatingWebhookConfiguration` by running:
-
-        ```
-        kubectl apply -f image-policy-mutating-webhook-configuration.yaml
-        ```
+    To resolve this issue, delete the `MutatingWebhookConfiguration` resource, then restore the
+    `MutatingWebhookConfiguration` resource to re-enable image signing enforcement. For instructions,
+    see [MutatingWebhookConfiguration Prevents Pod Admission](troubleshooting.html#pod-admission-prevented)
+    in _Troubleshooting Tanzu Application Platform_.
 
 - **Terminated kube-dns prevents new pods from being admitted:**
-If `kube-dns` gets terminated, it prevents the admission controller from being able to reach the image policy controller. This prevents new pods from being admitted, including core services like kube-dns.
+If `kube-dns` is terminated, it prevents the admission controller from being able to reach the image policy controller. This prevents new pods from being admitted, including core services like kube-dns.
 
-Modify the mutating webhook configuration to exclude the `kube-system` namespace from the admission check. This allows pods in the `kube-system` to appear, which should restore `kube-dns`
+    Modify the mutating webhook configuration to exclude the `kube-system` namespace from the admission check. This allows pods in the `kube-system` to appear, which should restore `kube-dns`
 
 - **Priority class of webhook's pods might preempt less privileged pods:**
 This component uses a privileged `PriorityClass` to start up its pods in order to prevent node
