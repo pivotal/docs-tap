@@ -649,7 +649,7 @@ data on the volume:
 ### Symptom
 
 Supply Chain Security Tools - Store does not start. You see the following error in the
-`metadata-store-app` Pod logs:
+`metadata-store-app` Pod logs:?
 
 ```
 $ kubectl logs pod/metadata-store-app-* -n metadata-store -c metadata-store-app
