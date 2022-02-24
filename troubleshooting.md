@@ -204,7 +204,7 @@ Often, the cause is one of the following:
 - A race-condition between components exists.
   For example, a package that uses `Ingress` completes before the shared Tanzu ingress controller is available.
 
-The VMware Carvel tools kapp-controller continues to try in a reconciliation loop.
+The VMware Carvel tools kapp-controller continues to try in a reconciliation loop in these cases. However, if the reconciliation is showing failed then there could be a possible configuration issue in the provided `tap-config.yml` file, or something else. 
 
 ### Solution
 
@@ -249,6 +249,70 @@ If it is still running, it is likely to finish successfully and produce output s
     tap-telemetry             tap-telemetry.tanzu.vmware.com                     0.1.0            Reconcile succeeded  tap-install
     tekton-pipelines          tekton.tanzu.vmware.com                            0.30.0           Reconcile succeeded  tap-install
   ```
+
+It is also possible that the reconciliation would fail for some reason. You would see a list of packages like this:
+
+```
+NAME                       PACKAGE NAME                                         PACKAGE VERSION   DESCRIPTION                                                            AGE
+accelerator                accelerator.apps.tanzu.vmware.com                    1.0.1             Reconcile succeeded                                                    109m
+api-portal                 api-portal.tanzu.vmware.com                          1.0.9             Reconcile succeeded                                                    119m
+appliveview                run.appliveview.tanzu.vmware.com                     1.0.2-build.2     Reconcile succeeded                                                    109m
+appliveview-conventions    build.appliveview.tanzu.vmware.com                   1.0.2-build.2     Reconcile succeeded                                                    109m
+buildservice               buildservice.tanzu.vmware.com                        1.4.2             Reconcile succeeded                                                    119m
+cartographer               cartographer.tanzu.vmware.com                        0.2.1             Reconcile succeeded                                                    117m
+cert-manager               cert-manager.tanzu.vmware.com                        1.5.3+tap.1       Reconcile succeeded                                                    119m
+cnrs                       cnrs.tanzu.vmware.com                                1.1.0             Reconcile succeeded                                                    109m
+contour                    contour.tanzu.vmware.com                             1.18.2+tap.1      Reconcile succeeded                                                    117m
+conventions-controller     controller.conventions.apps.tanzu.vmware.com         0.5.0             Reconcile succeeded                                                    117m
+developer-conventions      developer-conventions.tanzu.vmware.com               0.5.0             Reconcile succeeded                                                    109m
+fluxcd-source-controller   fluxcd.source.controller.tanzu.vmware.com            0.16.1            Reconcile succeeded                                                    119m
+grype                      grype.scanning.apps.tanzu.vmware.com                 1.0.0             Reconcile failed: Error (see .status.usefulErrorMessage for details)   109m
+image-policy-webhook       image-policy-webhook.signing.apps.tanzu.vmware.com   1.0.1             Reconcile succeeded                                                    117m
+learningcenter             learningcenter.tanzu.vmware.com                      0.1.0             Reconcile succeeded                                                    109m
+learningcenter-workshops   workshops.learningcenter.tanzu.vmware.com            0.1.0             Reconcile succeeded                                                    103m
+metadata-store             metadata-store.apps.tanzu.vmware.com                 1.0.2             Reconcile succeeded                                                    117m
+ootb-delivery-basic        ootb-delivery-basic.tanzu.vmware.com                 0.6.1             Reconcile succeeded                                                    103m
+ootb-supply-chain-basic    ootb-supply-chain-basic.tanzu.vmware.com             0.6.1             Reconcile succeeded                                                    103m
+ootb-templates             ootb-templates.tanzu.vmware.com                      0.6.1             Reconcile succeeded                                                    109m
+scanning                   scanning.apps.tanzu.vmware.com                       1.0.0             Reconcile succeeded                                                    119m
+service-bindings           service-bindings.labs.vmware.com                     0.6.0             Reconcile succeeded                                                    119m
+services-toolkit           services-toolkit.tanzu.vmware.com                    0.5.0             Reconcile succeeded                                                    119m
+source-controller          controller.source.apps.tanzu.vmware.com              0.2.0             Reconcile succeeded                                                    119m
+spring-boot-conventions    spring-boot-conventions.tanzu.vmware.com             0.3.0             Reconcile succeeded                                                    109m
+tap                        tap.tanzu.vmware.com                                 1.0.1             Reconcile failed: Error (see .status.usefulErrorMessage for details)   119m
+tap-gui                    tap-gui.tanzu.vmware.com                             1.0.2             Reconcile succeeded                                                    109m
+tap-telemetry              tap-telemetry.tanzu.vmware.com                       0.1.3             Reconcile succeeded                                                    119m
+tekton-pipelines           tekton.tanzu.vmware.com                              0.30.0            Reconcile succeeded                                                    119m
+```
+In this example, `packageinstall/grype` is having a reconciliation error. To get more details on the possible cause of the failure, run below command for `packageinstall/grype`.
+
+```
+kubectl describe packageinstall/grype -n tap-install
+```
+The `Status` section of the output as given below indicates that a namespace expected by `grype` with name `scanning` is not present in the targeted Kubernetes cluster. 
+
+```
+Status:
+  Conditions:
+    Message:               Error (see .status.usefulErrorMessage for details)
+    Status:                True
+    Type:                  ReconcileFailed
+  Friendly Description:    Reconcile failed: Error (see .status.usefulErrorMessage for details)
+  Last Attempted Version:  1.0.0
+  Observed Generation:     1
+  Useful Error Message:    kapp: Error: Applying create secret/scanner-secret-ref (v1) namespace: scanning:
+  Creating resource secret/scanner-secret-ref (v1) namespace: scanning: namespaces "scanning" not found (reason: NotFound)
+  Version:  1.0.0
+```
+To resolve this error, create this required namespace on the cluster and retrigger the installation with below command.
+
+```
+tanzu package installed update tap -p tap.tanzu.vmware.com -v 1.0.1  --values-file tap-values.yml -n tap-install
+```
+
+This is just for an example. The failed package and the failure cause could be different in your case. But, the same procedure can be followed to find the reason for the failure and retrigger the installation.
+
+Repeate this process until all the packages are successfully reconciled. 
 
 ## <a id='tap-telemetry-secret-error'></a> Telemetry component logs show errors fetching the "reg-creds" secret
 
