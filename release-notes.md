@@ -259,43 +259,8 @@ This component uses a privileged `PriorityClass` to start up its pods in order t
 pressure from preempting its pods. However, this can cause other less privileged components to have
 their pods preempted or evicted instead.
 
-You see events similar to this in the output of `kubectl get events`:
-
-```
-$ kubectl get events
-LAST SEEN   TYPE      REASON             OBJECT               MESSAGE
-28s         Normal    Preempted          pod/testpod          Preempted by image-policy-system/image-policy-controller-manager-59dc669d99-frwcp on node test-node
-```
-
-- **Solution 1: Reduce the amount of pods deployed by the Sign component:**
-  In case your deployment of the Sign component is running more pods than
-  necessary, you can scale the deployment down. To do so:
-
-    1. Create a values file called `scst-sign-values.yaml` with the following
-
-      contents:
-        ```
-        ---
-        replicas: N
-        ```
-        Where N should be the smallest amount of pods you can have for your current
-        cluster configuration.
-
-    1. Apply your new configuration by running:
-        ```
-        tanzu package installed update image-policy-webhook \
-          --package-name image-policy-webhook.signing.apps.tanzu.vmware.com \
-          --version 1.0.0-beta.3 \
-          --namespace tap-install \
-          --values-file scst-sign-values.yaml
-        ```
-
-    1. Wait a few minutes for your configuration to take effect in the cluster.
-
-- **Solution 2: Increase your cluster's resources:** Node pressure might be caused by a lack of nodes or
-resources on nodes for deploying the workloads you have.
-In this case, follow your cloud provider instructions for how to scale out or scale up your
-cluster.
+    To resolve this issue, see [Priority Class of Webhook's Pods Preempts Less Privileged Pods](troubleshooting.html#priority-class-preempts)
+    in _Troubleshooting Tanzu Application Platform_.
 
 #### Supply Chain Security Tools - Store
 

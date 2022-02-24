@@ -552,3 +552,52 @@ image signing enforcement.
     ```
     kubectl apply -f image-policy-mutating-webhook-configuration.yaml
     ```
+
+## <a id=''></a> Priority Class of Webhook's Pods Pre-empts Less Privileged Pods
+
+### Symptom
+
+When viewing the output of `kubectl get events`, you see events similar to the following:
+
+```
+$ kubectl get events
+LAST SEEN   TYPE      REASON             OBJECT               MESSAGE
+28s         Normal    Preempted          pod/testpod          Preempted by image-policy-system/image-policy-controller-manager-59dc669d99-frwcp on node test-node
+```
+
+### Cause
+
+The Supply Chain Security Tools - Sign component uses a privileged `PriorityClass` to start its pods
+to prevent node pressure from preempting its pods. This can cause less privileged components to have
+their pods preempted or evicted instead.
+
+### Solution
+
+- **Solution 1: Reduce the number of pods deployed by the Sign component:**
+    If your deployment of the Sign component runs more pods than necessary, scale down the deployment
+    down as follows:
+
+    1. Create a values file named `scst-sign-values.yaml` with the following contents:
+        ```
+        ---
+        replicas: N
+        ```
+        Where N is an integer indicating the lowest number of pods you necessary for your current
+        cluster configuration.
+
+    1. Apply the new configuration by running:
+        ```
+        tanzu package installed update image-policy-webhook \
+          --package-name image-policy-webhook.signing.apps.tanzu.vmware.com \
+          --version 1.0.0-beta.3 \
+          --namespace tap-install \
+          --values-file scst-sign-values.yaml
+        ```
+
+    1. Wait a few minutes for your configuration to take effect in the cluster.
+
+- **Solution 2: Increase your cluster's resources:**
+    Node pressure may be caused by an insufficient number of nodes or a lack of resources on nodes
+    necessary to deploy the workloads that you have. Follow instructions from your cloud provider
+    to scale out or scale up your cluster.
+
