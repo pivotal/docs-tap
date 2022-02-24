@@ -122,8 +122,9 @@ To install Tanzu Build Service by using the Tanzu CLI:
     >`enable_automatic_dependency_updates: true` causes the dependency updater to update
     >Tanzu Build Service dependencies (buildpacks and stacks) when they are released on
     >VMware Tanzu Network. You can set `enable_automatic_dependency_updates` as `false` to
-    >pause the automatic update of Build Service dependencies. If left undefined, this value
-    >is `false`.
+    >pause the automatic update of Build Service dependencies. When automatic updates are paused, 
+    >the pinned version of the descriptor for TAP 1.0.2 is [100.0.267](https://network.pivotal.io/products/tbs-dependencies#/releases/1053790)
+    >If left undefined, this value is `false`.
 
 1. Install the package by running:
 
