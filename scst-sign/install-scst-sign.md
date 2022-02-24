@@ -36,20 +36,20 @@ To install Supply Chain Security Tools - Sign:
     $ tanzu package available list image-policy-webhook.signing.apps.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for image-policy-webhook.signing.apps.tanzu.vmware.com...
       NAME                                               VERSION         RELEASED-AT
-      image-policy-webhook.signing.apps.tanzu.vmware.com  1.0.1          2022-01-24 09:00:00 -0500 EST
+      image-policy-webhook.signing.apps.tanzu.vmware.com  1.0.2          2022-02-24 09:00:00 -0500 EST
     ```
 
 1. (Optional) Make changes to the default installation settings by running:
 
     ```
-    tanzu package available get image-policy-webhook.signing.apps.tanzu.vmware.com/1.0.1 --values-schema --namespace tap-install
+    tanzu package available get image-policy-webhook.signing.apps.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
     ```
 
     For example:
 
     ```
-    $ tanzu package available get image-policy-webhook.signing.apps.tanzu.vmware.com/1.0.1 --values-schema --namespace tap-install
-    | Retrieving package details for image-policy-webhook.signing.apps.tanzu.vmware.com/1.0.1...
+    $ tanzu package available get image-policy-webhook.signing.apps.tanzu.vmware.com/1.0.2 --values-schema --namespace tap-install
+    | Retrieving package details for image-policy-webhook.signing.apps.tanzu.vmware.com/1.0.2...
       KEY                     DEFAULT  TYPE     DESCRIPTION
       allow_unmatched_images  false    boolean  Feature flag for enabling admission of images that do not match
                                                 any patterns in the image policy configuration.
@@ -113,7 +113,7 @@ To install Supply Chain Security Tools - Sign:
     ```
     tanzu package install image-policy-webhook \
       --package-name image-policy-webhook.signing.apps.tanzu.vmware.com \
-      --version 1.0.1 \
+      --version 1.0.2 \
       --namespace tap-install \
       --values-file scst-sign-values.yaml
     ```
@@ -123,7 +123,7 @@ To install Supply Chain Security Tools - Sign:
     ```
     $ tanzu package install image-policy-webhook \
         --package-name image-policy-webhook.signing.apps.tanzu.vmware.com \
-        --version 1.0.1 \
+        --version 1.0.2 \
         --namespace tap-install \
         --values-file scst-sign-values.yaml
 
