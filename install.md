@@ -223,7 +223,7 @@ See [Identify the SSH secret key for your package](#ssh-secret-key) for more inf
 service's External IP address.
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog that you've already built and posted on the Git infrastructure you specified in the Integration section.
 - `MY-DEV-NAMESPACE` is the namespace where you want the `ScanTemplates` to be deployed to.
-This is the namespace where the scanning feature is going to run.
+This is the namespace where the scanning feature is going to run. You need to create this namespace in the targeted cluster if not already present before the installation.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
 credentials to pull an image from the registry for scanning.
 If built images are pushed to the same registry as the Tanzu Application Platform images,
