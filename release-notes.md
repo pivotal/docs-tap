@@ -189,9 +189,9 @@ profile, you might see the error:
 Normally you must update some parameters provided to the Learning Center Operator. These parameters
 include ingressDomain, TLS secret, ingressClass, and others.
 
-After updating parameters, if the Training Portals do not work or you cannot see the updated values,
-redeploy `trainingportal` in a maintenance window where Learning Center is unavailable while the
-`systemprofile` is updated.
+    After updating parameters, if the Training Portals do not work or you cannot see the updated values,
+    redeploy `trainingportal` in a maintenance window where Learning Center is unavailable while the
+    `systemprofile` is updated.
 
 - **Increase your cluster's resources:** Node pressure may be caused by not enough nodes or not
 enough resources on nodes for deploying the workloads you have. In this case, follow your cloud
