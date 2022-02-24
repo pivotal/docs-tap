@@ -44,7 +44,10 @@ To resolve this issue:
 
 5. Enter your system username and password in the macOS prompt window to confirm the changes.
 
-6. In the terminal window, run `tanzu version`.
+6. In the terminal window, run:
+    ```
+    tanzu version
+    ```
 
 7. In the macOS prompt window, click **Open**.
 
@@ -67,7 +70,9 @@ A package fails to reconcile and you must access the details in `.status.usefulE
 
 Access the details in `.status.usefulErrorMessage` by running:
 
-`kubectl get PACKAGE-NAME grype -n tap-install -o yaml`
+```
+kubectl get PACKAGE-NAME grype -n tap-install -o yaml
+```
 
 Where `PACKAGE-NAME` is the name of the package to target.
 
@@ -167,9 +172,9 @@ Common causes include:
 
 To resolve this issue, run each of the following commands to receive the relevant error message:
 
-- `kubectl get clusterbuilder.kpack.io -o yaml`
-- `kubectl get image.kpack.io <workload-name> -o yaml`
-- `kubectl get build.kpack.io -o yaml`
+- ```kubectl get clusterbuilder.kpack.io -o yaml```
+- ```kubectl get image.kpack.io <workload-name> -o yaml```
+- ```kubectl get build.kpack.io -o yaml```
 
 ## <a id='failed-reconcile'></a> Packages Fail to Reconcile after Package Installation
 
@@ -479,7 +484,7 @@ Redeploy `trainingportal` in a maintenance window where Learning Center is unava
 
 ### Symptom
 
-You receive a "Increase your cluster's resources" error.
+You receive an "Increase your cluster's resources" error.
 
 ### Cause
 
