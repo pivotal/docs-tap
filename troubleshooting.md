@@ -241,7 +241,7 @@ If it is still running, it is likely to finish successfully and produce output s
     scanning                  scanning.apps.tanzu.vmware.com                     1.0.0            Reconcile succeeded  tap-install
     metadata-store            metadata-store.apps.tanzu.vmware.com               1.0.2            Reconcile succeeded  tap-install
     service-bindings          service-bindings.labs.vmware.com                   0.6.0            Reconcile succeeded  tap-install
-    services-toolkit          services-toolkit.tanzu.vmware.com                  0.5.0-rc.3       Reconcile succeeded  tap-install
+    services-toolkit          services-toolkit.tanzu.vmware.com                  0.5.1            Reconcile succeeded  tap-install
     source-controller         controller.source.apps.tanzu.vmware.com            0.2.0            Reconcile succeeded  tap-install
     spring-boot-conventions   spring-boot-conventions.tanzu.vmware.com           0.2.0            Reconcile succeeded  tap-install
     tap                       tap.tanzu.vmware.com                               0.4.0-build.12   Reconciling          tap-install
