@@ -446,6 +446,8 @@ To install the Install the Tanzu Application Platform package:
 1. (Optional) [Install any additional packages](install-components.md) that were not included in
 your profile.
 
+If you see any package reconciliation failing then you can visit [these troubleshooting steps](troubleshooting.md) to resolve the issue.
+
 After you install Full Profile or Light Profile on to your cluster, you can install the
 Tanzu Developer Tools for VSCode extension to help you develop against it.
 For instructions, see [Installing Tanzu Dev Tools for VSCode](vscode-extension/install.md).
