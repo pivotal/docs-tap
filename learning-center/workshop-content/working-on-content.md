@@ -7,8 +7,8 @@ and testing a workshop when developing workshop content.
 
 ## <a id="disable-reserved-sessions"></a> Deactivating reserved sessions
 
-Use an instance of a training portal when developing content where reserved
-sessions are deactivated.
+Deactivate the reserved sessions by setting the `reserved` field to `0` in your
+training portal instance:
 
 ```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -45,7 +45,7 @@ This command downloads any workshop content from the Git repository or web serve
 Find the location where the workshop content is downloading by viewing the file:
 
 ```
-~/.eduk8s/workshop-files.txt
+cat ~/.eduk8s/workshop-files.txt
 ```
 
 You can change the location saved in this file if, for example, it references a specific version of the workshop content and you want to test with a different version.
