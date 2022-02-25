@@ -32,7 +32,7 @@ This example shows that you have now accepted the EULAs for Tanzu Application Pl
 ## <a id='install-tanzu-cli'></a> Installing the Tanzu CLI
 
 This document describes how to [Set Kubernetes cluster context](#cluster-context),
-[Install Cluster Essentials for VMware Tanzu](#tanzu-cluster-essentials),
+[Install Cluster Essentials for VMware Tanzu for non-TKG clusters](#tanzu-cluster-essentials),
 and [Install or Update the Tanzu CLI and plug-ins](#cli-and-plugin) for Tanzu Application Platform:
 
 ## <a id='cluster-context'></a> Set Kubernetes cluster context
@@ -69,11 +69,12 @@ To set the Kubernetes cluster context:
     Switched to context "aks-tap-cluster".
     ```
 
-## <a id='tanzu-cluster-essentials'></a> Install Cluster Essentials for VMware Tanzu
+## <a id='tanzu-cluster-essentials'></a> Install Cluster Essentials for VMware Tanzu for non-TKG clusters
 
->**Note:** If you use Tanzu Kubernetes Grid multi-cloud, skip this section.
+> **Note:** If you use Tanzu Kubernetes Grid (TKG) multi-cloud, skip this section.
+> TKG clusters do not require Cluster Essentials for VMware Tanzu.
 
-The Tanzu Cluster Essentials package is intended to simplify the process of installing the open-source [Carvel](https://carvel.dev) tools on your cluster.
+The Cluster Essentials for VMware Tanzu package simplifies the process of installing the open-source [Carvel](https://carvel.dev) tools on your cluster.
 It includes a script that uses the Carvel CLI tools to download and install the server-side components `kapp-controller` and `secretgen-crontroller` on the targeted cluster.
 Currently, only MacOS and Linux are supported for Cluster Essentials for VMware Tanzu.
 
