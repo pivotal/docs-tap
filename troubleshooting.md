@@ -147,7 +147,7 @@ The `tanzu package install` command may be executed again after failing.
 To update the package, run the following command after the first use of the `tanzu package install` command
 
 ```
-tanzu package installed update 
+tanzu package installed update
 ```
 
 ## <a id='missing-build-logs'></a> Missing Build Logs after Creating a Workload
@@ -176,16 +176,15 @@ To resolve this issue, run each of the following commands to receive the relevan
 - ```kubectl get image.kpack.io <workload-name> -o yaml```
 - ```kubectl get build.kpack.io -o yaml```
 
-## <a id='failed-reconcile'></a> Packages Fail to Reconcile after Package Installation
+## <a id='failed-reconcile'></a> After package installation, one or more packages fails to reconcile
 
 ### Symptom
 
-When running `tanzu package install`, one or more packages fail to install.
-
-Example:
+You run the `tanzu package install` command and one or more packages fails to install.
+For example:
 
   ```
-  tanzu package install tap -p tap.tanzu.vmware.com -v 1.0.1 --values-file tap-values.yaml -n tap-install
+  tanzu package install tap -p tap.tanzu.vmware.com -v 0.4.0 --values-file tap-values.yaml -n tap-install
   - Installing package 'tap.tanzu.vmware.com'
   \ Getting package metadata for 'tap.tanzu.vmware.com'
   | Creating service account 'tap-tap-install-sa'
@@ -199,6 +198,7 @@ Example:
 
   Please consider using 'tanzu package installed update' to update the installed package with correct settings
 
+
   Error: resource reconciliation failed: kapp: Error: waiting on reconcile packageinstall/tap-gui (packaging.carvel.dev/v1alpha1) namespace: tap-install:
     Finished unsuccessfully (Reconcile failed:  (message: Error (see .status.usefulErrorMessage for details))). Reconcile failed: Error (see .status.usefulErrorMessage for details)
   Error: exit status 1
@@ -206,57 +206,113 @@ Example:
 
 ### Cause
 
-Common causes include:
+Often, the cause is one of the following:
 
-- Some infrastructure providers take longer than the timeout value allows to perform tasks.
-- A race-condition between components exists. For example, a package that uses `Ingress` completes
-  before the shared Tanzu ingress controller is available.
+- Your infrastructure provider takes longer to perform tasks than the timeout value allows.
+- A race-condition between components exists.
+  For example, a package that uses `Ingress` completes before the shared Tanzu ingress controller
+  becomes available.
 
-The VMware Carvel tools kapp-controller continues to try in a reconciliation loop.
+The VMware Carvel tools kapp-controller continues to try in a reconciliation loop in these cases.
+However, if the reconciliation status is `failed` then there might be a configuration issue
+in the provided `tap-config.yml` file.
 
 ### Solution
 
-Check if the installation is continuing by running:
+1. Verify if the installation is still in progress by running:
 
-  ```
-  tanzu package installed list -A
-  ```
+    ```
+    tanzu package installed list -A
+    ```
 
-If the installation is still running, it is likely to finish successfully and produce output similar to this:
+    If the installation is still in progress, the command produces output similar to the following
+    example, and the installation is likely to finish successfully.
 
-  ```
-  \ Retrieving installed packages...
-    NAME                      PACKAGE-NAME                                       PACKAGE-VERSION  STATUS               NAMESPACE
-    accelerator               accelerator.apps.tanzu.vmware.com                  1.0.0            Reconcile succeeded  tap-install
-    api-portal                api-portal.tanzu.vmware.com                        1.0.6            Reconcile succeeded  tap-install
-    appliveview               run.appliveview.tanzu.vmware.com                   1.0.0-build.3    Reconciling          tap-install
-    appliveview-conventions   build.appliveview.tanzu.vmware.com                 1.0.0-build.3    Reconcile succeeded  tap-install
-    buildservice              buildservice.tanzu.vmware.com                      1.4.0-build.1    Reconciling          tap-install
-    cartographer              cartographer.tanzu.vmware.com                      0.1.0            Reconcile succeeded  tap-install
-    cert-manager              cert-manager.tanzu.vmware.com                      1.5.3+tap.1      Reconcile succeeded  tap-install
-    cnrs                      cnrs.tanzu.vmware.com                              1.1.0            Reconcile succeeded  tap-install
-    contour                   contour.tanzu.vmware.com                           1.18.2+tap.1     Reconcile succeeded  tap-install
-    conventions-controller    controller.conventions.apps.tanzu.vmware.com       0.4.2            Reconcile succeeded  tap-install
-    developer-conventions     developer-conventions.tanzu.vmware.com             0.4.0-build1     Reconcile succeeded  tap-install
-    fluxcd-source-controller  fluxcd.source.controller.tanzu.vmware.com          0.16.0           Reconcile succeeded  tap-install
-    grype                     grype.scanning.apps.tanzu.vmware.com               1.0.0            Reconcile succeeded  tap-install
-    image-policy-webhook      image-policy-webhook.signing.apps.tanzu.vmware.com 1.0.0-beta.3     Reconcile succeeded  tap-install
-    learningcenter            learningcenter.tanzu.vmware.com                    0.1.0-build.6    Reconcile succeeded  tap-install
-    learningcenter-workshops  workshops.learningcenter.tanzu.vmware.com          0.1.0-build.7    Reconcile succeeded  tap-install
-    ootb-delivery-basic       ootb-delivery-basic.tanzu.vmware.com               0.5.1            Reconcile succeeded  tap-install
-    ootb-supply-chain-basic   ootb-supply-chain-basic.tanzu.vmware.com           0.5.1            Reconcile succeeded  tap-install
-    ootb-templates            ootb-templates.tanzu.vmware.com                    0.5.1            Reconcile succeeded  tap-install
-    scanning                  scanning.apps.tanzu.vmware.com                     1.0.0            Reconcile succeeded  tap-install
-    metadata-store            metadata-store.apps.tanzu.vmware.com               1.0.2            Reconcile succeeded  tap-install
-    service-bindings          service-bindings.labs.vmware.com                   0.6.0            Reconcile succeeded  tap-install
-    services-toolkit          services-toolkit.tanzu.vmware.com                  0.5.0-rc.3       Reconcile succeeded  tap-install
-    source-controller         controller.source.apps.tanzu.vmware.com            0.2.0            Reconcile succeeded  tap-install
-    spring-boot-conventions   spring-boot-conventions.tanzu.vmware.com           0.2.0            Reconcile succeeded  tap-install
-    tap                       tap.tanzu.vmware.com                               1.0.1            Reconciling          tap-install
-    tap-gui                   tap-gui.tanzu.vmware.com                           1.0.0-rc.72      Reconcile succeeded  tap-install
-    tap-telemetry             tap-telemetry.tanzu.vmware.com                     0.1.0            Reconcile succeeded  tap-install
-    tekton-pipelines          tekton.tanzu.vmware.com                            0.30.0           Reconcile succeeded  tap-install
-  ```
+    ```
+    \ Retrieving installed packages...
+      NAME                      PACKAGE-NAME                                       PACKAGE-VERSION  STATUS               NAMESPACE
+      accelerator               accelerator.apps.tanzu.vmware.com                  1.0.0            Reconcile succeeded  tap-install
+      api-portal                api-portal.tanzu.vmware.com                        1.0.6            Reconcile succeeded  tap-install
+      appliveview               run.appliveview.tanzu.vmware.com                   1.0.0-build.3    Reconciling          tap-install
+      appliveview-conventions   build.appliveview.tanzu.vmware.com                 1.0.0-build.3    Reconcile succeeded  tap-install
+      buildservice              buildservice.tanzu.vmware.com                      1.4.0-build.1    Reconciling          tap-install
+      cartographer              cartographer.tanzu.vmware.com                      0.1.0            Reconcile succeeded  tap-install
+      cert-manager              cert-manager.tanzu.vmware.com                      1.5.3+tap.1      Reconcile succeeded  tap-install
+      cnrs                      cnrs.tanzu.vmware.com                              1.1.0            Reconcile succeeded  tap-install
+      contour                   contour.tanzu.vmware.com                           1.18.2+tap.1     Reconcile succeeded  tap-install
+      conventions-controller    controller.conventions.apps.tanzu.vmware.com       0.4.2            Reconcile succeeded  tap-install
+      developer-conventions     developer-conventions.tanzu.vmware.com             0.4.0-build1     Reconcile succeeded  tap-install
+      fluxcd-source-controller  fluxcd.source.controller.tanzu.vmware.com          0.16.0           Reconcile succeeded  tap-install
+      grype                     grype.scanning.apps.tanzu.vmware.com               1.0.0            Reconcile succeeded  tap-install
+      image-policy-webhook      image-policy-webhook.signing.apps.tanzu.vmware.com 1.0.0-beta.3     Reconcile succeeded  tap-install
+      learningcenter            learningcenter.tanzu.vmware.com                    0.1.0-build.6    Reconcile succeeded  tap-install
+      learningcenter-workshops  workshops.learningcenter.tanzu.vmware.com          0.1.0-build.7    Reconcile succeeded  tap-install
+      ootb-delivery-basic       ootb-delivery-basic.tanzu.vmware.com               0.5.1            Reconcile succeeded  tap-install
+      ootb-supply-chain-basic   ootb-supply-chain-basic.tanzu.vmware.com           0.5.1            Reconcile succeeded  tap-install
+      ootb-templates            ootb-templates.tanzu.vmware.com                    0.5.1            Reconcile succeeded  tap-install
+      scanning                  scanning.apps.tanzu.vmware.com                     1.0.0            Reconcile succeeded  tap-install
+      metadata-store            metadata-store.apps.tanzu.vmware.com               1.0.2            Reconcile succeeded  tap-install
+      service-bindings          service-bindings.labs.vmware.com                   0.6.0            Reconcile succeeded  tap-install
+      services-toolkit          services-toolkit.tanzu.vmware.com                  0.5.1            Reconcile succeeded  tap-install
+      source-controller         controller.source.apps.tanzu.vmware.com            0.2.0            Reconcile succeeded  tap-install
+      spring-boot-conventions   spring-boot-conventions.tanzu.vmware.com           0.2.0            Reconcile succeeded  tap-install
+      tap                       tap.tanzu.vmware.com                               0.4.0-build.12   Reconciling          tap-install
+      tap-gui                   tap-gui.tanzu.vmware.com                           1.0.0-rc.72      Reconcile succeeded  tap-install
+      tap-telemetry             tap-telemetry.tanzu.vmware.com                     0.1.0            Reconcile succeeded  tap-install
+      tekton-pipelines          tekton.tanzu.vmware.com                            0.30.0           Reconcile succeeded  tap-install
+    ```
+
+    If the installation has stopped running, one or more reconciliations have likely failed, as seen
+    in the following example:
+
+    ```
+    NAME                       PACKAGE NAME                                         PACKAGE VERSION   DESCRIPTION                                                            AGE
+    accelerator                accelerator.apps.tanzu.vmware.com                    1.0.1             Reconcile succeeded                                                    109m
+    api-portal                 api-portal.tanzu.vmware.com                          1.0.9             Reconcile succeeded                                                    119m
+    appliveview                run.appliveview.tanzu.vmware.com                     1.0.2-build.2     Reconcile succeeded                                                    109m
+    appliveview-conventions    build.appliveview.tanzu.vmware.com                   1.0.2-build.2     Reconcile succeeded                                                    109m
+    buildservice               buildservice.tanzu.vmware.com                        1.4.2             Reconcile succeeded                                                    119m
+    cartographer               cartographer.tanzu.vmware.com                        0.2.1             Reconcile succeeded                                                    117m
+    cert-manager               cert-manager.tanzu.vmware.com                        1.5.3+tap.1       Reconcile succeeded                                                    119m
+    cnrs                       cnrs.tanzu.vmware.com                                1.1.0             Reconcile succeeded                                                    109m
+    contour                    contour.tanzu.vmware.com                             1.18.2+tap.1      Reconcile succeeded                                                    117m
+    conventions-controller     controller.conventions.apps.tanzu.vmware.com         0.5.0             Reconcile succeeded                                                    117m
+    developer-conventions      developer-conventions.tanzu.vmware.com               0.5.0             Reconcile succeeded                                                    109m
+    fluxcd-source-controller   fluxcd.source.controller.tanzu.vmware.com            0.16.1            Reconcile succeeded                                                    119m
+    grype                      grype.scanning.apps.tanzu.vmware.com                 1.0.0             Reconcile failed: Error (see .status.usefulErrorMessage for details)   109m
+    image-policy-webhook       image-policy-webhook.signing.apps.tanzu.vmware.com   1.0.1             Reconcile succeeded                                                    117m
+    learningcenter             learningcenter.tanzu.vmware.com                      0.1.0             Reconcile succeeded                                                    109m
+    learningcenter-workshops   workshops.learningcenter.tanzu.vmware.com            0.1.0             Reconcile succeeded                                                    103m
+    metadata-store             metadata-store.apps.tanzu.vmware.com                 1.0.2             Reconcile succeeded                                                    117m
+    ootb-delivery-basic        ootb-delivery-basic.tanzu.vmware.com                 0.6.1             Reconcile succeeded                                                    103m
+    ootb-supply-chain-basic    ootb-supply-chain-basic.tanzu.vmware.com             0.6.1             Reconcile succeeded                                                    103m
+    ootb-templates             ootb-templates.tanzu.vmware.com                      0.6.1             Reconcile succeeded                                                    109m
+    scanning                   scanning.apps.tanzu.vmware.com                       1.0.0             Reconcile succeeded                                                    119m
+    service-bindings           service-bindings.labs.vmware.com                     0.6.0             Reconcile succeeded                                                    119m
+    services-toolkit           services-toolkit.tanzu.vmware.com                    0.5.1             Reconcile succeeded                                                    119m
+    source-controller          controller.source.apps.tanzu.vmware.com              0.2.0             Reconcile succeeded                                                    119m
+    spring-boot-conventions    spring-boot-conventions.tanzu.vmware.com             0.3.0             Reconcile succeeded                                                    109m
+    tap                        tap.tanzu.vmware.com                                 1.0.1             Reconcile failed: Error (see .status.usefulErrorMessage for details)   119m
+    tap-gui                    tap-gui.tanzu.vmware.com                             1.0.2             Reconcile succeeded                                                    109m
+    tap-telemetry              tap-telemetry.tanzu.vmware.com                       0.1.3             Reconcile succeeded                                                    119m
+    tekton-pipelines           tekton.tanzu.vmware.com                              0.30.0            Reconcile succeeded                                                    119m
+    ```
+
+    In this example, `packageinstall/grype` and `packageinstall/tap` have reconciliation errors.
+
+1. To get more details on the possible cause of a reconciliation failure, run:
+
+    ```
+    kubectl describe packageinstall/NAME -n tap-install
+    ```
+
+    Where `NAME` is the name of the failing package. For this example it would be `grype`.
+
+1. Use the displayed information to search for a relevant troubleshooting issue in this topic.
+If none exists, and you are unable to fix the described issue yourself, please contact
+[support](https://tanzu.vmware.com/support).
+
+1. Repeat these diagnosis steps for any other packages that failed to reconcile.
 
 ## <a id='telemetry-fails-fetching-secret'></a> Telemetry Component Logs Show Errors Fetching the "reg-creds" Secret
 
@@ -505,7 +561,7 @@ start before the `MutatingWebhookConfiguration` is applied to the cluster.
 ### Cause
 
 Pods can be prevented from starting if nodes in a cluster are scaled to zero and the webhook is
-forced to restart at the same time as other system components. A deadlock can occur when some 
+forced to restart at the same time as other system components. A deadlock can occur when some
 components expect the webhook to verify their image signatures and the webhook is not yet running.
 
 A known rare condition during Tanzu Application Platform profiles installation can cause this. If so,
@@ -616,7 +672,7 @@ Supply Chain Security Tools - Store does not start. You see the following error 
 
 ### Cause
 
-The database password has been changed between deployments. This is not supported. 
+The database password has been changed between deployments. This is not supported.
 
 ### Solution
 
@@ -638,7 +694,7 @@ data on the volume:
     rm -rf /var/lib/postgresql/data/*
     ```
     This is the path found in `postgres-db-deployment.yaml`.
-    
+
 1. Delete the `metadata-store` app with kapp.
 
 1. Deploy the `metadata-store` app with kapp.
@@ -659,7 +715,7 @@ $ kubectl logs pod/metadata-store-app-* -n metadata-store -c metadata-store-app
 
 ### Cause
 
-The database password has been changed between deployments. This is not supported. 
+The database password has been changed between deployments. This is not supported.
 
 ### Solution
 
@@ -681,7 +737,7 @@ data on the volume:
     rm -rf /var/lib/postgresql/data/*
     ```
     This is the path found in `postgres-db-deployment.yaml`.
-    
+
 1. Delete the `metadata-store` app with kapp.
 
 1. Deploy the `metadata-store` app with kapp.
@@ -718,7 +774,7 @@ data on the volume:
     rm -rf /var/lib/postgresql/data/*
     ```
     This is the path found in `postgres-db-deployment.yaml`.
-    
+
 1. Delete the `metadata-store` app with kapp.
 
 1. Deploy the `metadata-store` app with kapp.
