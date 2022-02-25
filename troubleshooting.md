@@ -168,8 +168,6 @@ To fix this problem, run each of these commands to get the relevant error messag
 
 ## <a id='failed-reconcile'></a> After package installation, one or more packages fails to reconcile
 
-After creating a workload, there are no logs.
-
 ### Symptom
 
 You run the `tanzu package install` command and one or more packages fail to install.
@@ -305,47 +303,6 @@ If none exists, and you are unable to fix the described issue yourself, please c
 [support](https://tanzu.vmware.com/support).
 
 1. Repeat these diagnosis steps for any other packages that failed to reconcile.
-
-
-## <a id='namespace-not-found'></a> Package fails to reconcile because a namespace was not found
-
-### Symptom
-
-After performing the steps for [this issue](#failed-reconcile) to diagnose why a package is
-failing to reconcile, you encounter an error message similar to the following example:
-
-```
-Status:
-  Conditions:
-    Message:               Error (see .status.usefulErrorMessage for details)
-    Status:                True
-    Type:                  ReconcileFailed
-  Friendly Description:    Reconcile failed: Error (see .status.usefulErrorMessage for details)
-  Last Attempted Version:  1.0.0
-  Observed Generation:     1
-  Useful Error Message:    kapp: Error: Applying create secret/scanner-secret-ref (v1) namespace: scanning:
-  Creating resource secret/scanner-secret-ref (v1) namespace: scanning: namespaces "scanning" not found (reason: NotFound)
-  Version:  1.0.0
-```
-
-### Cause
-
-As the `Status` section of the output shows, the namespace that the package expects is not present
-in the targeted Kubernetes cluster.
-
-### Solution
-
-To resolve this error, create the required namespace on the targeted Kubernetes cluster and
-re-trigger the installation by running:
-
-```
-tanzu package installed update tap -p tap.tanzu.vmware.com -v TAP-VERSION  --values-file tap-values.yml -n tap-install
-```
-
-Where `TAP-VERSION` is:
-
-* `1.0.1` if your Tanzu Application Platform version is v1.0.1
-* `1.0.0` if your Tanzu Application Platform version is v1.0.0
 
 
 ## <a id='tap-telemetry-secret-error'></a> Telemetry component logs show errors fetching the "reg-creds" secret
