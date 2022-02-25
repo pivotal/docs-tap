@@ -2,7 +2,7 @@
 
 This topic provides troubleshooting information to help resolve issues with Tanzu Application Platform.
 
-## <a id="component-ts-links"></a> Component-Level Troubleshooting
+## <a id="component-troubleshooting-links"></a> Component-Level Troubleshooting
 
 For component-level troubleshooting, see these topics:
 
@@ -18,15 +18,13 @@ For component-level troubleshooting, see these topics:
 
 ## <a id='macos-unverified-developer'></a> Developer Cannot Be Verified When Installing Tanzu CLI on macOS
 
-### Symptom
-
 You see the following error when you run Tanzu CLI commands, for example `tanzu version`, on macOS:
 
 ```
 "tanzu" cannot be opened because the developer cannot be verified
 ```
 
-### Cause
+### Explanation
 
 Security settings are preventing installation.
 
@@ -54,15 +52,13 @@ To resolve this issue:
 
 ## <a id='access-error-details'></a> Access `.status.usefulErrorMessage` Details
 
-### Symptom
-
 When installing Tanzu Application Platform, you receive an error message that includes the following:
 
 ```
 (message: Error (see .status.usefulErrorMessage for details))
 ```
 
-### Cause
+### Explanation
 
 A package fails to reconcile and you must access the details in `.status.usefulErrorMessage`.
 
@@ -77,8 +73,6 @@ kubectl get PACKAGE-NAME grype -n tap-install -o yaml
 Where `PACKAGE-NAME` is the name of the package to target.
 
 ## <a id='unauthorized'></a> Unauthorized to Access Error
-
-### Symptom
 
 When running the `tanzu package install` command, you receive an error message that includes the error:
 
@@ -98,7 +92,7 @@ Example:
 
 >**Note:** This example shows an error received when with Application Live View as the package. This error can also occur with other packages.
 
-### Cause
+### Explanation
 
 The Tanzu Network credentials needed to access the package may be missing or incorrect.
 
@@ -120,8 +114,6 @@ To resolve this issue:
 
 ## <a id='existing-service-account'></a> Already Existing Service Account Error
 
-### Symptom
-
 When running the `tanzu package install` command, you receive the following error:
 
 ```
@@ -138,7 +130,7 @@ Example:
 
 >**Note:** This example shows an error received with App Accelerator as the package. This error can also occur with other packages.
 
-### Cause
+### Explanation
 
 The `tanzu package install` command may be executed again after failing.
 
@@ -152,15 +144,13 @@ tanzu package installed update
 
 ## <a id='missing-build-logs'></a> Missing Build Logs after Creating a Workload
 
-### Symptom
-
 You create a workload, but no logs appear when you check for logs by running the following command:
 
   ```
   tanzu apps workload tail workload-name --since 10m --timestamp
   ```
 
-### Cause
+### Explanation
 
 Common causes include:
 
@@ -177,8 +167,6 @@ To resolve this issue, run each of the following commands to receive the relevan
 - ```kubectl get build.kpack.io -o yaml```
 
 ## <a id='failed-reconcile'></a> After package installation, one or more packages fails to reconcile
-
-### Symptom
 
 You run the `tanzu package install` command and one or more packages fails to install.
 For example:
@@ -204,7 +192,7 @@ For example:
   Error: exit status 1
   ```
 
-### Cause
+### Explanation
 
 Often, the cause is one of the following:
 
@@ -316,10 +304,6 @@ If none exists, and you are unable to fix the described issue yourself, please c
 
 ## <a id='telemetry-fails-fetching-secret'></a> Telemetry Component Logs Show Errors Fetching the "reg-creds" Secret
 
-An error message occurs continuously on the `tap-telemetry-controller` logs.
-
-### Symptom
-
 When you view the logs of the `tap-telemetry` controller by running `kubectl logs -n
 tap-telemetry <tap-telemetry-controller-<hash> -f`, you see the following error:
 
@@ -327,7 +311,7 @@ tap-telemetry <tap-telemetry-controller-<hash> -f`, you see the following error:
   "Error retrieving secret reg-creds on namespace tap-telemetry","error":"secrets \"reg-creds\" is forbidden: User \"system:serviceaccount:tap-telemetry:controller\" cannot get resource \"secrets\" in API group \"\" in the namespace \"tap-telemetry\""
   ```
 
-### Cause
+### Explanation
 
 The `tap-telemetry` namespace misses a Role that allows the controller to list secrets in the
 `tap-telemetry` namespace. For more information about Roles, see
@@ -343,8 +327,6 @@ kubectl patch roles -n tap-telemetry tap-telemetry-controller --type='json' -p='
 ```
 
 ## <a id='error-update'></a> Workload Already Exists Error after Updating the Workload
-
-### Symptom
 
 When you update the workload, you receive the following error:
 
@@ -372,7 +354,7 @@ Error: workload "default/tanzu-java-web-app" already exists
 Error: exit status 1
 ```
 
-### Cause
+### Explanation
 
 The app is running before performing a live update using the same app name.
 
@@ -383,12 +365,10 @@ To resolve this issue, either delete the app or use a different name for the app
 
 ## <a id='eula-error'></a> Failure to Accept an End User License Agreement Error
 
-### Symptom
-
 You cannot access Tanzu Application Platform or one of its components from
 VMware Tanzu Network.
 
-### Cause
+### Explanation
 
 You cannot access Tanzu Application Platform or one of its components from
 VMware Tanzu Network before accepting the relevant EULA in VMware Tanzu Network.
@@ -400,11 +380,9 @@ _Installing the Tanzu CLI_.
 
 ## <a id='debug-convention'></a> Debug Convention May Not Apply
 
-### Symptom
-
 If you upgrade from Tanzu Application Platform v0.4, the debug convention may not apply to the app run image.
 
-### Cause
+### Explanation
 
 The Tanzu Application Platform v0.4 lacks SBOM data.
 
@@ -414,11 +392,9 @@ Delete existing app images that were built using Tanzu Application Platform v0.4
 
 ## <a id='build-scripts-lack-execute-bit'></a> Execute Bit Not Set for App Accelerator Build Scripts
 
-### Symptom
-
 You cannot execute a build script provided as part of an accelerator.
 
-### Cause
+### Explanation
 
 Build scripts provided as part of an accelerator do not have the execute bit set when a new
 project is generated from the accelerator.
@@ -441,11 +417,9 @@ chmod +x ./mvnw
 
 ## <a id='no-live-information'></a> No Live Information for Pod with ID Error
 
-### Symptom
-
 After deploying Tanzu Application Platform workloads, the Tanzu Application Platform GUI shows a "No live information for pod with ID" error.
 
-### Cause
+### Explanation
 
 The connector must discover the application instances and render the details in Tanzu Application Platform GUI.
 
@@ -461,11 +435,9 @@ This allows the connector to discover the application instances and render the d
 
 ## <a id='training-portal-pending'></a> Training Portal Stays in Pending State
 
-### Symptom
-
 The Training Portal stays in a "pending" state.
 
-### Cause
+### Explanation
 
 The TLS secret `tls` is not available.
 
@@ -489,15 +461,13 @@ The TLS secret `tls` is not available.
 
 ## <a id='image-policy-webhook-service-not-found'></a> "image-policy-webhook-service not found" Error
 
-### Symptom
-
 When installing a Tanzu Application Platform profile, you receive the following error:
 
 ```
 Internal error occurred: failed calling webhook "image-policy-webhook.signing.apps.tanzu.vmware.com": failed to call webhook: Post "https://image-policy-webhook-service.image-policy-system.svc:443/signing-policy-check?timeout=10s": service "image-policy-webhook-service" not found
 ```
 
-### Cause
+### Explanation
 
 The "image-policy-webhook-service" service cannot be found.
 
@@ -506,8 +476,6 @@ The "image-policy-webhook-service" service cannot be found.
 Redeploy the `trainingPortal` resource.
 
 ## <a id='cannot-update-parameters'></a> Cannot Update Parameters
-
-### Symptom
 
 The Training Portals do not work or do not show updated parameters.
 
@@ -524,7 +492,7 @@ Command:
 kubectl describe pod  -n learningcenter
 ```
 
-### Cause
+### Explanation
 
 By design, the Training Portal resources do not react to any changes on the parameters provided
 when the training portals were created. This prevents any change on the `trainingportal` resource
@@ -538,11 +506,9 @@ Redeploy `trainingportal` in a maintenance window where Learning Center is unava
 
 ## <a id='increase-cluster-resources'></a> Increase Your Cluster Resources Error
 
-### Symptom
-
 You receive an "Increase your cluster's resources" error.
 
-### Cause
+### Explanation
 
 Node pressure may be caused by an insufficient number of nodes or a lack of resources on nodes
 necessary to deploy the workloads that you have.
@@ -553,12 +519,10 @@ Follow instructions from your cloud provider to scale out or scale up your clust
 
 ## <a id='pod-admission-prevented'></a> MutatingWebhookConfiguration Prevents Pod Admission
 
-### Symptom
-
 Admission of all pods is prevented when the `image-policy-controller-manager` deployment pods do not
 start before the `MutatingWebhookConfiguration` is applied to the cluster.
 
-### Cause
+### Explanation
 
 Pods can be prevented from starting if nodes in a cluster are scaled to zero and the webhook is
 forced to restart at the same time as other system components. A deadlock can occur when some
@@ -611,8 +575,6 @@ image signing enforcement.
 
 ## <a id='priority-class-preempts'></a> Priority Class of Webhook's Pods Preempts Less Privileged Pods
 
-### Symptom
-
 When viewing the output of `kubectl get events`, you see events similar to the following:
 
 ```
@@ -621,7 +583,7 @@ LAST SEEN   TYPE      REASON             OBJECT               MESSAGE
 28s         Normal    Preempted          pod/testpod          Preempted by image-policy-system/image-policy-controller-manager-59dc669d99-frwcp on node test-node
 ```
 
-### Cause
+### Explanation
 
 The Supply Chain Security Tools - Sign component uses a privileged `PriorityClass` to start its pods
 to prevent node pressure from preempting its pods. This can cause less privileged components to have
@@ -659,8 +621,6 @@ their pods preempted or evicted instead.
 
 ## <a id='password-authentication-fails'></a> CrashLoopBackOff from Password Authentication Fails
 
-### Symptom
-
 Supply Chain Security Tools - Store does not start. You see the following error in the
 `metadata-store-app` Pod logs:
 
@@ -670,7 +630,7 @@ Supply Chain Security Tools - Store does not start. You see the following error 
     [error] failed to initialize database, got error failed to connect to `host=metadata-store-db user=metadata-store-user database=metadata-store`: server error (FATAL: password authentication failed for user "metadata-store-user" (SQLSTATE 28P01))
     ```
 
-### Cause
+### Explanation
 
 The database password has been changed between deployments. This is not supported.
 
@@ -700,9 +660,7 @@ data on the volume:
 1. Deploy the `metadata-store` app with kapp.
 
 
-## <a id='password-authentication-fails'></a> CrashLoopBackOff from Password Authentication Fails
-
-### Symptom
+## <a id='password-authentication-fails'></a> Password Authentication Fails
 
 Supply Chain Security Tools - Store does not start. You see the following error in the
 `metadata-store-app` Pod logs:
@@ -713,7 +671,7 @@ $ kubectl logs pod/metadata-store-app-* -n metadata-store -c metadata-store-app
 [error] failed to initialize database, got error failed to connect to `host=metadata-store-db user=metadata-store-user database=metadata-store`: server error (FATAL: password authentication failed for user "metadata-store-user" (SQLSTATE 28P01))
 ```
 
-### Cause
+### Explanation
 
 The database password has been changed between deployments. This is not supported.
 
@@ -745,12 +703,10 @@ data on the volume:
 
 ## <a id='metadata-store-db-fails-to-start'></a> `metadata-store-db` Pod Fails to Start
 
-### Symptom
-
 When Supply Chain Security Tools - Store is deployed, deleted, and then redeployed, the `metadata-store-db`
 Pod fails to start if the database password changed during redeployment.
 
-### Cause
+### Explanation
 
 The persistent volume used by postgres retains old data, even though the retention policy is set to `DELETE`.
 
@@ -782,12 +738,10 @@ data on the volume:
 
 ## <a id='missing-persistent-volume'></a> Missing Persistent Volume
 
-### Symptom
-
 After Supply Chain Security Tools - Store is deployed, `metadata-store-db` Pod fails for missing volume
 while `postgres-db-pv-claim` pvc is in the `PENDING` state.
 
-### Cause
+### Explanation
 
 The cluster where Supply Chain Security Tools - Store is deployed does not have `storageclass`
 defined. The provisioner of `storageclass` is responsible for creating the persistent volume after
