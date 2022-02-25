@@ -1252,8 +1252,9 @@ The form of the host name used in the URL to access the service is:
 $(session_namespace)-application.$(ingress_domain)
 ```
 
-Do not use for this name the name of any built-in dashboards, `terminal`, `console`, `slides`,
-or `editor`. These are reserved for the corresponding built-in capabilities providing those features.
+This name cannot be `terminal`, `console`, `slides`, `editor`, or the name of any built-in
+dashboard.
+These values are reserved for the corresponding built-in capabilities providing those features.
 
 In addition to specifying ingresses for proxying to internal ports within the same Pod, you can
 enter a `host`, `protocol` and `port` corresponding to a separate service running in the Kubernetes
