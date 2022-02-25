@@ -71,8 +71,8 @@ To set the Kubernetes cluster context:
 
 ## <a id='tanzu-cluster-essentials'></a> Install Cluster Essentials for VMware Tanzu for non-TKG clusters
 
-> **Note:** If you use Tanzu Kubernetes Grid (TKG) multi-cloud, skip this section.
-> TKG clusters do not require Cluster Essentials for VMware Tanzu.
+> **Note:** If you use Tanzu Kubernetes Grid (TKG) multi-cloud v1.5.1 or later, skip this section.
+> Clusters on TKG v1.5.1 or later do not require Cluster Essentials for VMware Tanzu.
 
 The Cluster Essentials for VMware Tanzu package simplifies the process of installing the open-source [Carvel](https://carvel.dev) tools on your cluster.
 It includes a script that uses the Carvel CLI tools to download and install the server-side components `kapp-controller` and `secretgen-crontroller` on the targeted cluster.
