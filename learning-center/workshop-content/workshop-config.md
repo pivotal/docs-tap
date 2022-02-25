@@ -10,7 +10,7 @@ The `workshop/modules.yaml` file provides details about the list of available mo
 
 The list of available modules represents all of the modules available to you. You might not use all of them. You might want to run variations of your workshop, such as for different programming languages. As such, which modules are active and are used for a specific workshop are listed in the separate `workshop/workshop.yaml` file. The active modules are listed with the name to be given to that workshop.
 
-By default the `workshop.yaml` file specifies what modules are used. When you want to deliver different variations of the workshop content, you can provide multiple workshop files with different names. For example, you could name the workshop files `workshop-java.yaml` and `workshop-python.yaml`.
+By default the `workshop.yaml` file specifies what modules are used. When you want to deliver different variations of the workshop content, you can provide multiple workshop files with different names. For example, you can name the workshop files `workshop-java.yaml` and `workshop-python.yaml`.
 
 Where you have multiple workshop files and don't have the default `workshop.yaml` file, you can specify the default workshop file by setting the `WORKSHOP_FILE` environment variable in the runtime configuration.
 
@@ -53,13 +53,9 @@ The `modules.activate` field is a list of modules to be used for the workshop. T
 
 The order in which modules are listed under the `modules.activate` field in the workshop configuration file dictates the order pages are traversed. The order in which modules appear in the modules configuration file is not relevant.
 
-At the bottom of each page, a **Continue** button is displayed to go to the next page in sequence. You can customize the label on this button by setting the `exit_sign` field in the entry for the module in the modules configuration file.
+At the bottom of each page, a **Continue** button is displayed to allow the user to go to the next page in sequence. You can customize the label on this button by setting the `exit_sign` field in the entry for the module in the modules configuration file.
 
-For the last module in the workshop, a button is displayed. Where the user goes after clicking the button varies.
-
-If you want the user to go to a different website upon completion, you can set the `exit_link` field of the final module to an external URL. Alternatively, you can set the `RESTART_URL` environment variable in a workshop environment to control where the user goes.
-
-If a destination for the final page is not provided, the user is redirected back to the starting page of the workshop.
+In the last module in the workshop, a button is displayed, but where the user goes after clicking it varies. If you want the user to go to a different website upon completion, you can set the `exit_link` field of the final module to an external URL. Alternatively, you can set the `RESTART_URL` environment variable in a workshop environment to control where the user goes. If a destination for the final page is not provided, the user is redirected back to the starting page of the workshop.
 
 When the user uses the training portal, the training portal overrides this environment variable so, at the completion of a workshop, the user returns to the training portal.
 
@@ -96,7 +92,7 @@ You can deploy workshop images directly to a container runtime. The Learning Cen
 
   - `YOUR-GITHUB-URL-FOR-LAB-MARKDOWN-SAMPLE` is the Git repository URL for `lab-markdown-sample`. For example, `https://github.com/eduk8s/lab-markdown-sample`.
 
-In this sample, a custom workshop image bundles the workshop content into its own container image. This is specified by the `content.image` setting. To instead download workshop content from a GitHub repository at runtime, use:
+In this sample, a custom workshop image bundles the workshop content into its own container image. The `content.image` setting specifies this. To instead download workshop content from a GitHub repository at runtime, use:
 
   ```
   apiVersion: learningcenter.tanzu.vmware.com/v1beta1
