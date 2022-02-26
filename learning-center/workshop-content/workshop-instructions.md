@@ -53,7 +53,7 @@ In most cases, a command the user executes completes immediately. To run a comma
 ```
 ~~~
 
-When the user clicks on this code block, the running command in the corresponding terminal is interrupted.
+When the user clicks on this code block, the command running in the corresponding terminal is interrupted.
 
 >**Note:** Using the special string `<ctrl+c>` is deprecated, and you must use the `terminal:interrupt` clickable action instead.
 
@@ -219,9 +219,7 @@ A benefit of using these over the original methods is that by using the appropri
 - Line breaks are preserved.
 - Initial or terminating new lines are included.
 
-In the original methods, the string was always trimmed before use.
-
-By using the different forms as appropriate, you can annotate the displayed code block with a different message indicating what will happen.
+In the original methods, the string was always trimmed before use. By using the different forms as appropriate, you can annotate the displayed code block with a different message letting the user know what will happen.
 
 The method for using AsciiDoc is similar, using the `role` for the name of the annotation and YAML as the content:
 
@@ -280,7 +278,7 @@ name: Example
 ```
 ~~~
 
-If the dashboard is for a terminal session, there is no effect unless the terminal session was disconnected, in which case it will be reconnected.
+If the dashboard is for a terminal session, there is no effect unless the terminal session was disconnected, in which case it is reconnected.
 
 To allow the user to change the URL target of an existing dashboard by entering the new URL when reloading a dashboard, use:
 
@@ -346,7 +344,7 @@ after: 1
 ```
 ~~~
 
-Setting both `before` and `after` to `0` results in the complete line that matched being highlighted instead of any region within the line.
+Setting both `before` and `after` to `0` causes the complete line that matched to be highlighted instead of a region within the line.
 
 To match based on a regular expression, rather than an exact match, set `isRegex` to `true`:
 
@@ -470,9 +468,9 @@ The action triggers saving the file to the user's local computer, and the file i
 
 ## <a id="click-actions-examiner"></a>Clickable actions for the examiner
 
-If the test examiner is enabled, special actions are available to run verification checks to verify whether a workshop user has performed a required step. You can trigger these verification checks by clicking on the action, or you can optionally configure them to automatically start running when the page loads.
+If the test examiner is enabled, special actions are available to run verification checks to verify whether a workshop user has performed a required step. You can trigger these verification checks by clicking on the action, or you can configure them to start running when the page loads.
 
-For a single verification check that the user must click to run, use:
+For a single verification check the user must click to run, use:
 
 ~~~
 ```examiner:execute-test
@@ -483,7 +481,7 @@ args:
 ```
 ~~~
 
-The `title` field is displayed as the title of the clickable action and must describe the nature of the test. If required, you can provide a `description` field for a longer explaination of the test. This is displayed in the body of the clickable action but is shown as preformatted text.
+The `title` field is displayed as the title of the clickable action and must describe the nature of the test. If required, you can provide a `description` field for a longer explanation of the test. This is displayed in the body of the clickable action but is shown as preformatted text.
 
 There must be an executable program (script or compiled application) in the `workshop/examiner/tests` directory with name matching the value of the `name` field.
 
@@ -503,7 +501,7 @@ fi
 exit 0
 ```
 
-By default the program for a test is killed after a timeout of 15 seconds, and the test deemed as failed. To adjust the timeout, you can set the `timeout` value. The value is in seconds. A value of 0 results in the default timeout being applied. It is not possible to deactivate the killing of the test program if it runs too long.
+By default the program for a test is killed after a timeout of 15 seconds, and the test deemed as failed. To adjust the timeout, you can set the `timeout` value. The value is in seconds. A value of 0 causes the default timeout to be applied. It is not possible to deactivate the killing of the test program if it runs too long.
 
 ~~~
 ```examiner:execute-test
@@ -545,7 +543,7 @@ delay: 1
 ```
 ~~~
 
-Rather than require a workshop user to click the action to run the test, you can have the test start running as soon as the page is loaded, or when a section the page is contained in is expanded, by setting `autostart` to `true`.
+Rather than require a workshop user to click the action to run the test, you can have the test start as soon as the page is loaded, or when a section the page is contained in is expanded. Do this by setting `autostart` to `true`:
 
 ~~~
 ```examiner:execute-test
@@ -635,7 +633,7 @@ name: questions
 
 The `prefix` attribute allows you to override the default `Section` prefix used on the title for the action.
 
-If a collapsible section includes an examiner action block and it is set to automatically run, it only starts when the user expands the collapsible section.
+If a collapsible section includes an examiner action block set to automatically run, it only starts when the user expands the collapsible section.
 
 In case you want a section header showing in the same style as other clickable actions, you can use:
 
@@ -767,7 +765,7 @@ Because it is JavaScript, you can write any code to query process environment va
 
 ## <a id="pass-env-vars"></a>Passing environment variables
 
-You can pass environment variables, including remapping of variable names, by setting your own custom data variables. If you don't need to set default values, or remap the name of an environment variable, you can instead reference the name of the environment variable directly. You must prefix the name with `ENV_` when using it.
+You can pass environment variables, including remapping of variable names, by setting your own custom data variables. If you don't need to set default values or remap the name of an environment variable, you can instead reference the name of the environment variable directly. You must prefix the name with `ENV_` when using it.
 
 For example, to display the value of the `KUBECTL_VERSION` environment variable in the workshop content, use `ENV_KUBECTL_VERSION`, as in:
 
