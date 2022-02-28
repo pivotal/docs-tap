@@ -9,7 +9,7 @@ see [Install Learning Center](../../learning-center/install-learning-center.md).
 
 Other useful information about getting started with Learning Center:
 
--  [Learning Center operator](learningcenter-operator.md)
--  [Deleting an operator](deleting-learningcenter.md)
+-  [Learning Center operator](getting-started/learning-center-operator.md)
+-  [Deleting an operator](getting-started/deleting-learningcenter.md)
 -  [Workshops](workshops.md)
 -  [TrainingPortal](training-portal.md)

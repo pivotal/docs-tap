@@ -2,7 +2,7 @@
 
 ## <a id='sec-scan'></a>Security Scans
 
-See [SCA Scanning Results](./sca_scans/CVE.md) for security scanning results for the API and CLI components.
+See [SCA Scanning Results](sca_scans/sca-scanning-results.md) for security scanning results for the API and CLI components.
 
 ## <a id='app-sec'></a>Application security
 
