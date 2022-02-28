@@ -55,11 +55,11 @@ To install Supply Chain Security Tools - Sign:
                                                             Set to true to allow images that do not match any patterns into the cluster with a warning.
       deployment_namespace    image-policy-system  string   Deployment namespace specifies the namespace where this component should be deployed to.
                                                             If not specified, "image-policy-system" is assumed.
-      limits_cpu              200m                 object   The CPU limit defines a hard ceiling on how much CPU time that
+      limits_cpu              200m                 string   The CPU limit defines a hard ceiling on how much CPU time that
                                                             the Image Policy Webhook controller manager container can use.
                                                             https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu
 
-      limits_memory           256Mi                object   The memory limit defines a hard ceiling on how much memory that
+      limits_memory           256Mi                string   The memory limit defines a hard ceiling on how much memory that
                                                             the Image Policy Webhook controller manager container can use.
                                                             https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory
 
@@ -68,12 +68,12 @@ To install Supply Chain Security Tools - Sign:
                                                             specified then a default value of 5 is used.
       replicas                1                    integer  The number of replicas to be created for the Image Policy Webhook. This value must not be enclosed
                                                             in quotes. If this value is not specified then a default value of 1 is used.
-      requests_cpu            100m                 object   The CPU request defines the minimum CPU time for the Image Policy
+      requests_cpu            100m                 string   The CPU request defines the minimum CPU time for the Image Policy
                                                             Webhook controller manager. During CPU contention, CPU request is used
                                                             as a weighting where higher CPU requests are allocated more CPU time.
                                                             https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu
 
-      requests_memory         50Mi                 object   The memory request defines the minium memory amount for the Image Policy Webhook controller manager.
+      requests_memory         50Mi                 string   The memory request defines the minium memory amount for the Image Policy Webhook controller manager.
                                                             https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory
     ```
 
