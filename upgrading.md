@@ -49,7 +49,7 @@ For information about upgrading Tanzu Application Platform GUI, see [upgrading T
 
 ###<a id="upgrading-instructions-tanzu-cli"><a/> Upgrade instructions for Tanzu Application Platform CLI
 
-For information about upgrading Tanzu Application Platform CLI, see [Install or update the Tanzu CLI and plugins](install-general.html#install-or-update-the-tanzu-cli-and-plugins-3).
+For information about upgrading Tanzu Application Platform CLI, see [Install or update the Tanzu CLI and plugins](install-tanzu-cli.html#install-or-update-the-tanzu-cli-and-plugins-3).
 
 ## <a id="verify"></a> Verify the upgrade
 
