@@ -68,49 +68,48 @@ To create a new API entity, you must follow the same steps as if you were regist
 
 2. **Register an existing component** prompts you to type a repository URL. Paste the link to the `catalog-info.yaml` file of your choice that contains the defintion of your API entity. For example, you can copy the text below and save it as `catalog-info.yaml` on a Git repository of your choice.
 
-```
-apiVersion: backstage.io/v1alpha1
-kind: API
-metadata:
-  name: demo-api
-  description: The demo API for Tanzu Application Platform GUI
-  links:
-    - url: https://api.agify.io
-      title: API Definition
-      icon: docs
-spec:
-  type: openapi
-  lifecycle: experimental
-  owner: demo-team
-  system: demo-app # Or specify system name of your choice
-  definition: |
-    openapi: 3.0.1
-    info:
-      title: defaultTitle
-      description: defaultDescription
-      version: '0.1'
-    servers:
-      - url: https://api.agify.io
-    paths:
-      /:
-        get:
-          description: Auto generated using Swagger Inspector
-          parameters:
-            - name: name
-              in: query
-              schema:
-                type: string
-              example: type_any_name
-          responses:
-            '200':
+    ```
+    apiVersion: backstage.io/v1alpha1
+    kind: API
+    metadata:
+      name: demo-api
+      description: The demo API for Tanzu Application Platform GUI
+      links:
+        - url: https://api.agify.io
+          title: API Definition
+          icon: docs
+    spec:
+      type: openapi
+      lifecycle: experimental
+      owner: demo-team
+      system: demo-app # Or specify system name of your choice
+      definition: |
+        openapi: 3.0.1
+        info:
+          title: defaultTitle
+          description: defaultDescription
+          version: '0.1'
+        servers:
+          - url: https://api.agify.io
+        paths:
+          /:
+            get:
               description: Auto generated using Swagger Inspector
-              content:
-                application/json; charset=utf-8:
+              parameters:
+                - name: name
+                  in: query
                   schema:
                     type: string
-                  examples: {}        
-```
-
+                  example: type_any_name
+              responses:
+                '200':
+                  description: Auto generated using Swagger Inspector
+                  content:
+                    application/json; charset=utf-8:
+                      schema:
+                        type: string
+                      examples: {}        
+    ```
 
 3. Click **ANALYZE**, review the catalog entities to be added and click **IMPORT**.
 

@@ -1,4 +1,4 @@
-# <a id="dev-first-app"></a>Getting started with API documentation plug-in
+# Getting started with API documentation plug-in
 
 ## <a id="dev-first-app"></a>Add your API entry to the Tanzu Application Platform GUI Software Catalog
 
@@ -10,7 +10,7 @@ In this section, you are going to:
 
 ### <a id="about-app-accs"></a>About API entities
 
-The list of API entities is visible on the left-hand side navigation panel of Tanzu Application Platform GUI. It is also visible on the overview page of specific components on the home page. APIs are a definition of the interface between components. Their definition is provided in machine-readable ("raw")  and human-readable formats. For more details, see [API plugin documentation](/tap-gui/plugins/api-docs.md).
+The list of API entities is visible on the left-hand side navigation panel of Tanzu Application Platform GUI. It is also visible on the overview page of specific components on the home page. APIs are a definition of the interface between components. Their definition is provided in machine-readable ("raw")  and human-readable formats. For more details, see [API plugin documentation](api-docs.md).
 
 ### <a id="deploy-your-app"></a>Add a demo API entity to Tanzu Application Platform GUI Software Catalog
 
