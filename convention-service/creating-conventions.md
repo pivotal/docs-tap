@@ -80,7 +80,7 @@ With this high-level understanding of Convention Service components, let's look 
 The following prerequisites must be met before a convention can be developed and deployed:
 
 + The Kubernetes command line tool (Kubectl) CLI is installed. For more information, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/tools/).
-+ Tanzu Application Platform components and prerequisites are installed. For more information, see the [Installation guide](../install-general.md).
++ Tanzu Application Platform components and prerequisites are installed. For more information, see the [Installation guide](../install-tanzu-cli.md).
 + The default supply chain is installed. Download Supply Chain Security Tools for VMware Tanzu from [Tanzu Network](https://network.tanzu.vmware.com/products/supply-chain-security-tools/).
 + Your kubeconfig context is set to the Tanzu Application Platform-enabled cluster:
 

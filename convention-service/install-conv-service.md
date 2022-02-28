@@ -26,7 +26,7 @@ installation.
 
 Before installing convention controller:
 
-- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Installing the Tanzu CLI](../install-general.md).
+- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Installing the Tanzu CLI](../install-tanzu-cli.md).
 - Install cert-manager on the cluster. See [Install Prerequisites](../install-components.md#install-prereqs).
 
 ## <a id='install'></a> Install

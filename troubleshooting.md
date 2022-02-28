@@ -375,7 +375,7 @@ VMware Tanzu Network before accepting the relevant EULA in VMware Tanzu Network.
 
 ### Solution
 
-Follow the steps in [Accept the End User License Agreements](install-general.html#accept-eulas) in
+Follow the steps in [Accept the End User License Agreements](install-tanzu-cli.html#accept-eulas) in
 _Installing the Tanzu CLI_.
 
 ## <a id='debug-convention'></a> Debug Convention May Not Apply

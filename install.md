@@ -5,7 +5,7 @@ from the Tanzu Application Platform package repository.
 
 Before you install the packages, ensure that you have completed the prerequisites, configured
 and verified the cluster, accepted the EULA, and installed the Tanzu CLI with any required plug-ins.
-See [Accepting EULAs and installing the Tanzu CLI](install-general.md).
+See [Accepting EULAs and installing the Tanzu CLI](install-tanzu-cli.md).
 
 
 ## <a id='add-tap-package-repo'></a> Add the Tanzu Application Platform package repository
@@ -13,7 +13,7 @@ See [Accepting EULAs and installing the Tanzu CLI](install-general.md).
 To add the Tanzu Application Platform package repository:
 
 1. If you haven’t completed the
-[Install Cluster Essentials for VMware Tanzu for non-TKG clusters](install-general.md#tanzu-cluster-essentials)
+[Install Cluster Essentials for VMware Tanzu for non-TKG clusters](install-tanzu-cli.md#tanzu-cluster-essentials)
 procedure, set up environment variables for use during the installation by running:
 
     ```
