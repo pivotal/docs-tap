@@ -20,7 +20,7 @@ Verify you have successfully:
 See [Installing Tanzu Application Platform](install-intro.md).
 
   - **Installed the Tanzu Application Platform on the target Kubernetes cluster**<br>
-See [Installing the Tanzu CLI](install-general.md) and [Installing the Tanzu Application Platform Package and Profiles](install.md).
+See [Installing the Tanzu CLI](install-tanzu-cli.md) and [Installing the Tanzu Application Platform Package and Profiles](install.md).
 
   - **Set the default kubeconfig context to the target Kubernetes cluster**<br>
 See [Changing clusters](cli-plugins/apps/usage.md#changing-clusters).

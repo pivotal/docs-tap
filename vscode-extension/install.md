@@ -10,10 +10,10 @@ Before installing the Tanzu Developer Tools IDE extension, you must have:
 For more information, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/tools/).
 - [Tilt](https://docs.tilt.dev/install.html) v0.23.2 or later.
 You only need to install the Tilt component. Docker Desktop and local Kubernetes are not prerequisites for VMware Tanzu Dev Tools for Visual Studio Code.
-- The Tanzu CLI. See [Install the Tanzu CLI](../install-general.md#cli-and-plugin).
+- The Tanzu CLI. See [Install the Tanzu CLI](../install-tanzu-cli.md#cli-and-plugin).
 - The Tanzu CLI apps plug-ins.
-  See [Install the Tanzu CLI plug-ins](../install-general.md#cli-and-plugin)
-- A cluster with Tanzu Application Platform, the default Supply Chain, and their dependencies. Download these from Tanzu Network. For installation instructions, see [Installing the Tanzu CLI](../install-general.md).
+  See [Install the Tanzu CLI plug-ins](../install-tanzu-cli.md#cli-and-plugin)
+- A cluster with Tanzu Application Platform, the default Supply Chain, and their dependencies. Download these from Tanzu Network. For installation instructions, see [Installing the Tanzu CLI](../install-tanzu-cli.md).
 - [VSCode](https://code.visualstudio.com/download)
 
 ## <a id="installation"></a> Installation
