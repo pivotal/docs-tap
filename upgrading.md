@@ -47,6 +47,7 @@ tanzu package installed update tap -p tap.tanzu.vmware.com -v 1.0.1  --values-fi
 
 For information about upgrading Tanzu Application Platform GUI, see [upgrading Tanzu Application Platform GUI](tap-gui/upgrades.html).
 
+
 ## <a id="verify"></a> Verify the upgrade
 
 Verify the versions of packages after the upgrade by running:
