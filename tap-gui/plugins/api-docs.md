@@ -1,7 +1,7 @@
 # API Documentation plugin in Tanzu Application Platform GUI
 
-This section provides a general overview of the API Documentation plugin of the Tanzu Application Platform GUI. For additional information, please refer to the [Getting Started Guide for the API Documentation Plugin](api-docs.md).
-  
+This section provides a general overview of the API Documentation plugin of the Tanzu Application Platform GUI. For additional information, please refer to the [Getting started with API documentation plug-in](api-docs-getting-started.md).
+
 ## <a id="overview"></a> Overview
 
 The API Documentation plugin provides a standalone list of APIs that can be connected to Components and Systems of Tanzu Application Platform GUI's Software Catalog. Each API entity can reflect the Components that provide that API, as well as the list of Components that are consumers of that API. Also, an API entity can be associated to Systems and show up on the System's diagram. To show such dependency, `spec.providesApis:` and `spec.consumesApis:` sections of the Component definition files should reference the name of the API entity.
@@ -28,13 +28,13 @@ For more information on the structure of the definition file for an API entity, 
 
 ## <a id='utilizing'></a>Utilizing the API Documentation plugin
 
-The API Documentation plugin is part of Tanzu Application Platform GUI. 
+The API Documentation plugin is part of Tanzu Application Platform GUI.
 
 The first way to use the API Documentation plugin is API-first. Click **APIs** in the left-hand navigation sidebar of Tanzu Application Platform GUI. This opens the **API catalog page**.
 
 ![Screenshot of API catalog page](./tap-gui/images/../../../images/api-plugin-1.png)
 
-On that page, you can view all the APIs already registered in the catalog regardless if they are associated with Components or Systems. 
+On that page, you can view all the APIs already registered in the catalog regardless if they are associated with Components or Systems.
 
 The second way to utilize the API Documentation plugin is through Components and Systems of the Software Catalog, listed on the Home page of Tanzu Application Platform GUI. If there is an API entity associated with the selected Component or System, the **VIEW API** icon shall be active.
 
@@ -116,4 +116,4 @@ spec:
 
     ![Review the entities to be added to the catalog](./tap-gui/images/../../../images/api-plugin-6.png)
 
-4. Navigate to the API page by clicking the **APIs** button on the left-hand side navigation panel. The catalog changes and entries are visible for further inspection.
+4. Navigate to the API page by clicking **APIs** on the left-hand side navigation panel. The catalog changes and entries are visible for further inspection.
