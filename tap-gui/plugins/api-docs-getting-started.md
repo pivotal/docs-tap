@@ -1,4 +1,4 @@
-# <a id="dev-first-app"></a>Getting started with API documentation plug-in
+# Getting started with API documentation plug-in
 
 ## <a id="dev-first-app"></a>Add your API entry to the Tanzu Application Platform GUI Software Catalog
 
