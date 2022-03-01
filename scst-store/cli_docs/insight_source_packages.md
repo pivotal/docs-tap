@@ -19,7 +19,7 @@ insight sources packages --commit 0b1b659907 --format json
 ## <a id='options'></a>Options
 
 ```
-  -c, --commit string   commit's hash
+  -c, --commit string   commit hash
   -f, --format string   output format (default "text")
   -h, --help            help for packages
   -r, --repo string     source repository url

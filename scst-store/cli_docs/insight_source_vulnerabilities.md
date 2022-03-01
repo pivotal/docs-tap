@@ -19,7 +19,7 @@ insight sources vulnerabilities --commit eb55fc13
 ## <a id='options'></a>Options
 
 ```
-  -c, --commit string   commit's hash
+  -c, --commit string   commit hash
   -f, --format string   output format which can be in 'json' or 'text'. If not present, defaults to text. (default "text")
   -h, --help            help for vulnerabilities
   -r, --repo string     source repository url

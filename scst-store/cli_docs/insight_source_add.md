@@ -1,22 +1,22 @@
-# Insight source create
+# Insight source add
 
-Create a source report from a report file:
+Add a source report from a report file:
 
 ```
-insight source create [flags]
+insight source add [flags]
 ```
 
 ## <a id='examples'></a>Examples
 
 ```
-insight source create --cyclonedxtype json --path  /path/to/file.json
+insight source add --cyclonedxtype json --path  /path/to/file.json
 ```
 
 ## <a id='options'></a>Options
 
 ```
       --cyclonedxtype string   cyclonedx file type (xml/json)
-  -h, --help                   help for create
+  -h, --help                   help for add
       --path string            path to file
 ```
 
