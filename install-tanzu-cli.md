@@ -1,4 +1,4 @@
-# Accepting EULAs and installing the Tanzu CLI
+# Installing the Tanzu CLI
 
 ## <a id="accept-eulas"></a> Accept the End User License Agreements
 
