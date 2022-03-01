@@ -156,7 +156,7 @@ spec:
             image: gradle
             script: |-
               cd `mktemp -d`
-              wget -qO- $(params.source-url) | tar xvz
+              wget -qO- $(params.source-url) | tar xvz -m
               ./mvnw test
 ```
 

@@ -213,4 +213,4 @@ objects.
 [Tanzu Application Platform downloads](https://network.pivotal.io/products/tanzu-application-platform)
 under the **Tap-GUI-Catalogs** folder.
 2. Use the steps for
-[Adding an Additional Catalog Location](#adding-an-additional-catalog-location) to add the `catalog-info.yaml`.
+[Adding catalog entities](#add-cat-entities) to add the `catalog-info.yaml`.

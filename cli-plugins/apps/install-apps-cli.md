@@ -6,7 +6,7 @@ This document describes how to install the Apps CLI plug-in.
 
 Before you install the Apps CLI plug-in:
 
-- Follow the instructions to [Install or update the Tanzu CLI and plug-ins](../../install-general.md#cli-and-plugin).
+- Follow the instructions to [Install or update the Tanzu CLI and plug-ins](../../install-tanzu-cli.md#cli-and-plugin).
 
 ## <a id='Install'></a>Install
 

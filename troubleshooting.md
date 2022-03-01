@@ -1,84 +1,86 @@
 # Troubleshooting Tanzu Application Platform
 
-This topic is for troubleshooting the installation of Tanzu Application Platform.
+This topic provides troubleshooting information to help resolve issues with Tanzu Application Platform.
 
-## <a id="component-ts-links"></a> Component-level troubleshooting
+## <a id="component-troubleshooting-links"></a> Component-Level Troubleshooting
 
 For component-level troubleshooting, see these topics:
 
-* [Troubleshooting Tanzu Application Platform GUI](tap-gui/troubleshooting.md)
-* [Troubleshooting Convention Service](convention-service/troubleshooting.md)
-* [Troubleshooting Learning Center](learning-center/troubleshooting/known-issues.md)
-* [Troubleshooting Service Bindings](service-bindings/troubleshooting.md)
-* [Troubleshooting Source Controller](source-controller/troubleshooting.md)
-* [Troubleshooting Spring Boot Conventions](spring-boot-conventions/troubleshooting.md)
-* [Troubleshooting Application Live View](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-troubleshooting.html)
+* [Troubleshooting Tanzu Application Platform GUI](tap-gui/troubleshooting.html)
+* [Troubleshooting Convention Service](convention-service/troubleshooting.html)
+* [Learning Center Known Issues](learning-center/troubleshooting/known-issues.html)
+* [Service Bindings Troubleshooting](service-bindings/troubleshooting.html)
+* [Source Controller Troubleshooting ](source-controller/troubleshooting.html)
+* [Spring Boot Conventions Troubleshooting ](spring-boot-conventions/troubleshooting.html)
+* [Application Live View for VMware Tanzu Troubleshooting](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-troubleshooting.html)
 * [Troubleshooting Cloud Native Runtimes for Tanzu](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-troubleshooting.html)
-* [Troubleshooting Tanzu Build Service - FAQ](https://docs.vmware.com/en/Tanzu-Build-Service/1.4/vmware-tanzu-build-service-v14/GUID-faq.html)
+* [Tanzu Build Service Frequently Asked Questions](https://docs.vmware.com/en/Tanzu-Build-Service/1.4/vmware-tanzu-build-service-v14/GUID-faq.html)
 
-## <a id='macos-unverified-dev'></a> Developer cannot be verified when installing Tanzu CLI on macOS
+## <a id='macos-unverified-developer'></a> Developer Cannot Be Verified When Installing Tanzu CLI on macOS
 
-### Symptom
-
-If you see the following error when running `tanzu version` on macOS:
+You see the following error when you run Tanzu CLI commands, for example `tanzu version`, on macOS:
 
 ```
 "tanzu" cannot be opened because the developer cannot be verified
 ```
 
-### Cause
+### Explanation
 
-Your security settings are preventing installation.
+Security settings are preventing installation.
 
 ### Solution
 
+To resolve this issue:
+
 1. Click **Cancel** in the macOS prompt window.
 
-2. Open the **Security & Privacy** control panel from **System Preferences**.
+2. Open **System Preferences** > **Security & Privacy**.
 
 3. Click **General**.
 
-4. Click **Allow Anyway** next to the warning message for the Tanzu binary.
+4. Next to the warning message for the Tanzu binary, click **Allow Anyway**.
 
 5. Enter your system username and password in the macOS prompt window to confirm the changes.
 
-6. Execute the `Tanzu version` command in the terminal window again.
+6. In the terminal window, run:
+    ```
+    tanzu version
+    ```
 
-7. Click **Open** in the macOS prompt window. After completing the steps above, there should be no
-more security issues while running Tanzu CLI commands.
+7. In the macOS prompt window, click **Open**.
 
-## <a id='error-details'></a> Access `.status.usefulErrorMessage` details
 
-### Symptom
+## <a id='access-error-details'></a> Access `.status.usefulErrorMessage` Details
 
-You get an error message that includes the following:
+When installing Tanzu Application Platform, you receive an error message that includes the following:
 
 ```
 (message: Error (see .status.usefulErrorMessage for details))
 ```
 
-### Cause
+### Explanation
 
-A package fails to reconcile and you need to access the details in `.status.usefulErrorMessage`.
+A package fails to reconcile and you must access the details in `.status.usefulErrorMessage`.
 
 ### Solution
 
-To access the details in `.status.usefulErrorMessage`, run:
+Access the details in `.status.usefulErrorMessage` by running:
 
-`kubectl get PACKAGE-NAME grype -n tap-install -o yaml`
+```
+kubectl get PACKAGE-NAME grype -n tap-install -o yaml
+```
 
-Where:
-- `PACKAGE-NAME` is the package you want to target.
+Where `PACKAGE-NAME` is the name of the package to target.
 
-## <a id='unauthorized-to-access'></a> Unauthorized to access error
+## <a id='unauthorized'></a> Unauthorized to Access Error
 
-An authentication error when installing a package, reconciliation fails.
+When running the `tanzu package install` command, you receive an error message that includes the error:
 
-### Symptom
+```
+UNAUTHORIZED: unauthorized to access repository
+```
 
-You run the `tanzu package install` command and receive an `UNAUTHORIZED: unauthorized to access repository:` error.
-
-For example:
+Example:
 
   ```
   $ tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.1.0 -n tap-install -f ./app-live-view.yml
@@ -88,37 +90,37 @@ For example:
       Imgpkg: exit status 1 (stderr: Error: Checking if image is bundle: Collecting images: Working with registry.tanzu.vmware.com/app-live-view/application-live-view-install-bundle@sha256:b13b9ba81bcc985d76607cfc04bcbb8829b4cc2820e64a99e0af840681da12aa: GET https://registry.tanzu.vmware.com/v2/app-live-view/application-live-view-install-bundle/manifests/sha256:b13b9ba81bcc985d76607cfc04bcbb8829b4cc2820e64a99e0af840681da12aa: UNAUTHORIZED: unauthorized to access repository: app-live-view/application-live-view-install-bundle, action: pull: unauthorized to access repository: app-live-view/application-live-view-install-bundle, action: pull
   ```
 
->**Note:** The sample above shows Application Live View as the package; however, this error can
->occur with other packages as well.
+>**Note:** This example shows an error received when with Application Live View as the package. This error can also occur with other packages.
 
-### Cause
+### Explanation
 
-A common cause of this error is that the Tanzu Network credentials needed to access the package
-are missing or incorrect.
+The Tanzu Network credentials needed to access the package may be missing or incorrect.
 
 ### Solution
 
-To fix this problem:
+To resolve this issue:
 
-1. Repeat the step to create a secret for the namespace. See [Add the Tanzu Application Platform Package Repository](install.md#add-package-repositories).
-   Ensure that you provide the correct credentials.
+1. Repeat the step to create a secret for the namespace. For instructions, see
+  [Add the Tanzu Application Platform Package Repository](install.html#add-package-repositories) in _Installing the Tanzu Application Platform Package and Profiles_.
+  Ensure that you provide the correct credentials.
 
-   When the secret has the correct credentials,
-   the authentication error should resolve itself and the reconciliation succeed.
-   Do not reinstall the package.
+  When the secret has the correct credentials,
+  the authentication error should resolve itself and the reconciliation succeed.
+  Do not reinstall the package.
 
 2. List the status of the installed packages to confirm that the reconcile has succeeded.
-   For instructions, see [Verify the Installed Packages](install-components.md#verify).
+  For instructions, see
+	[Verify the Installed Packages](install-components.html#verify) in _Installing Individual Packages_.
 
-## <a id='existing-service-account'></a> Already existing service account error
+## <a id='existing-service-account'></a> Already Existing Service Account Error
 
-A service account error when installing a package, reconciliation fails.
+When running the `tanzu package install` command, you receive the following error:
 
-### Symptom
+```
+failed to create ServiceAccount resource: serviceaccounts already exists
+```
 
-You run the `tanzu package install` command and receive an `failed to create ServiceAccount resource: serviceaccounts already exists` error.
-
-For example:
+Example:
 
   ```
   $ tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.2.0 -n tap-install -f app-accelerator-values.yaml
@@ -126,31 +128,29 @@ For example:
   Error: failed to create ServiceAccount resource: serviceaccounts "app-accelerator-tap-install-sa" already exists
   ```
 
->**Note:** The sample above shows App Accelerator as the package; however, this error can occur
->with other packages as well.
+>**Note:** This example shows an error received with App Accelerator as the package. This error can also occur with other packages.
 
-### Cause
+### Explanation
 
-A common cause of this error is that the `tanzu package install` command is being executed again after failing.
+The `tanzu package install` command may be executed again after failing.
 
 ### Solution
 
-If you want to update the package, use `tanzu package installed update` command after the first use
-of the `tanzu package install` command.
+To update the package, run the following command after the first use of the `tanzu package install` command
 
-## <a id='workload-no-build'></a> After creating a workload, there are no build logs
+```
+tanzu package installed update
+```
 
-After creating a workload, there are no logs.
+## <a id='missing-build-logs'></a> Missing Build Logs after Creating a Workload
 
-### Symptom
-
-You create a workload, but no logs appear when you check the logs with:
+You create a workload, but no logs appear when you check for logs by running the following command:
 
   ```
   tanzu apps workload tail workload-name --since 10m --timestamp
   ```
 
-### Cause
+### Explanation
 
 Common causes include:
 
@@ -160,17 +160,15 @@ Common causes include:
 
 ### Solution
 
-To fix this problem, run each of these commands to get the relevant error message:
+To resolve this issue, run each of the following commands to receive the relevant error message:
 
-- `kubectl get clusterbuilder.kpack.io -o yaml`
-- `kubectl get image.kpack.io <workload-name> -o yaml`
-- `kubectl get build.kpack.io -o yaml`
+- ```kubectl get clusterbuilder.kpack.io -o yaml```
+- ```kubectl get image.kpack.io <workload-name> -o yaml```
+- ```kubectl get build.kpack.io -o yaml```
 
 ## <a id='failed-reconcile'></a> After package installation, one or more packages fails to reconcile
 
-### Symptom
-
-You run the `tanzu package install` command and one or more packages fail to install.
+You run the `tanzu package install` command and one or more packages fails to install.
 For example:
 
   ```
@@ -194,7 +192,7 @@ For example:
   Error: exit status 1
   ```
 
-### Cause
+### Explanation
 
 Often, the cause is one of the following:
 
@@ -304,44 +302,44 @@ If none exists, and you are unable to fix the described issue yourself, please c
 
 1. Repeat these diagnosis steps for any other packages that failed to reconcile.
 
+## <a id='telemetry-fails-fetching-secret'></a> Telemetry Component Logs Show Errors Fetching the "reg-creds" Secret
 
-## <a id='tap-telemetry-secret-error'></a> Telemetry component logs show errors fetching the "reg-creds" secret
-
-An error message occurs continuously on the `tap-telemetry-controller` logs.
-
-### Symptom
-
-When you get the logs of the `tap-telemetry` controller with `kubectl logs -n
+When you view the logs of the `tap-telemetry` controller by running `kubectl logs -n
 tap-telemetry <tap-telemetry-controller-<hash> -f`, you see the following error:
 
   ```
   "Error retrieving secret reg-creds on namespace tap-telemetry","error":"secrets \"reg-creds\" is forbidden: User \"system:serviceaccount:tap-telemetry:controller\" cannot get resource \"secrets\" in API group \"\" in the namespace \"tap-telemetry\""
   ```
 
-### Cause
+### Explanation
 
-The `tap-telemetry` namespace misses a
-[Role](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#role-and-clusterrole)
-that allows the controller to list secrets in the `tap-telemetry` namespace.
+The `tap-telemetry` namespace misses a Role that allows the controller to list secrets in the
+`tap-telemetry` namespace. For more information about Roles, see
+[Role and ClusterRole](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#role-and-clusterrole)
+in _Using RBAC Authorization_ in the Kubernetes documentation.
 
 ### Solution
 
-To fix this problem, run the following command:
+To resolve this issue, run:
 
 ```
 kubectl patch roles -n tap-telemetry tap-telemetry-controller --type='json' -p='[{"op": "add", "path": "/rules/-", "value": {"apiGroups": [""],"resources": ["secrets"],"verbs": ["get", "list", "watch"]} }]'
 ```
 
-## <a id='error-update'></a> Error message occurs after updating the workload
+## <a id='error-update'></a> Workload Already Exists Error after Updating the Workload
 
-An error message occurs after applying the command to update the workload.
-
-### Symptom
-
-When you update the workload by running:
+When you update the workload, you receive the following error:
 
 ```
-% tanzu apps workload create tanzu-java-web-app \
+Error: workload "default/APP-NAME" already exists
+Error: exit status 1
+```
+Where `APP-NAME` is the name of the app.
+
+For example, when you run:
+
+```
+$ tanzu apps workload create tanzu-java-web-app \
 --git-repo https://github.com/dbuchko/tanzu-java-web-app \
 --git-branch main \
 --type web \
@@ -349,33 +347,418 @@ When you update the workload by running:
 --yes
 ```
 
-You see the following error:
+You receive the following error
 
 ```
 Error: workload "default/tanzu-java-web-app" already exists
 Error: exit status 1
 ```
 
-### Cause
+### Explanation
 
-You have the app running before performing a live update using the same app name.
+The app is running before performing a live update using the same app name.
 
 ### Solution
 
-To fix this problem, you can either delete the app or use a different name.
+To resolve this issue, either delete the app or use a different name for the app.
 
 
-## <a id='eula-error'></a> Error from failure to accept an End User License Agreement
+## <a id='eula-error'></a> Failure to Accept an End User License Agreement Error
 
-### Symptom
+You cannot access Tanzu Application Platform or one of its components from
+VMware Tanzu Network.
 
-An error message appears as a result of not accepting a relevant End User License Agreement (EULA).
-
-### Cause
+### Explanation
 
 You cannot access Tanzu Application Platform or one of its components from
 VMware Tanzu Network before accepting the relevant EULA in VMware Tanzu Network.
 
 ### Solution
 
-Follow the steps in [Accept the End User License Agreements](install-general.md#accept-eulas).
+Follow the steps in [Accept the End User License Agreements](install-tanzu-cli.html#accept-eulas) in
+_Installing the Tanzu CLI_.
+
+## <a id='debug-convention'></a> Debug Convention May Not Apply
+
+If you upgrade from Tanzu Application Platform v0.4, the debug convention may not apply to the app run image.
+
+### Explanation
+
+The Tanzu Application Platform v0.4 lacks SBOM data.
+
+### Solution
+
+Delete existing app images that were built using Tanzu Application Platform v0.4.
+
+## <a id='build-scripts-lack-execute-bit'></a> Execute Bit Not Set for App Accelerator Build Scripts
+
+You cannot execute a build script provided as part of an accelerator.
+
+### Explanation
+
+Build scripts provided as part of an accelerator do not have the execute bit set when a new
+project is generated from the accelerator.
+
+
+### Solution
+
+Explicitly set the execute bit by running the `chmod` command:
+
+```
+chmod +x BUILD-SCRIPT-NAME
+```
+Where `BUILD-SCRIPT-NAME` is the name of the build script.
+
+For example, for a project generated from the "Spring PetClinic" accelerator, run:
+
+```
+chmod +x ./mvnw
+```
+
+## <a id='no-live-information'></a> No Live Information for Pod with ID Error
+
+After deploying Tanzu Application Platform workloads, the Tanzu Application Platform GUI shows a "No live information for pod with ID" error.
+
+### Explanation
+
+The connector must discover the application instances and render the details in Tanzu Application Platform GUI.
+
+### Solution
+
+Recreate the Application Live View Connector pod by running:
+
+```
+kubectl -n app-live-view delete pods -l=name=application-live-view-connector
+```
+
+This allows the connector to discover the application instances and render the details in Tanzu Application Platform GUI.
+
+## <a id='training-portal-pending'></a> Training Portal Stays in Pending State
+
+The Training Portal stays in a "pending" state.
+
+### Explanation
+
+The TLS secret `tls` is not available.
+
+### Solution
+
+1. Access the operator logs by running:
+    ```
+    kubectl logs deployment/learningcenter-operator -n learningcenter
+    ```
+1. Observe that the TLS secret `tls` is not available. The TLS secret should be on the Learning
+    Center operator namespace. If the TLS secret is not on the Learning Center operator namespace,
+    the operator logs contain the following error:
+    ```
+    ERROR:kopf.objects:Handler 'learningcenter' failed temporarily: TLS secret tls is not available
+    ```
+1. Follow the steps in
+    [Enforcing Secure Connections](learning-center/getting-started/learning-center-operator.html#enforce-secure-connect)
+    in _Learning Center Operator_ to create the TLS secret.
+
+1. Redeploy the `trainingPortal` resource.
+
+## <a id='image-policy-webhook-service-not-found'></a> "image-policy-webhook-service not found" Error
+
+When installing a Tanzu Application Platform profile, you receive the following error:
+
+```
+Internal error occurred: failed calling webhook "image-policy-webhook.signing.apps.tanzu.vmware.com": failed to call webhook: Post "https://image-policy-webhook-service.image-policy-system.svc:443/signing-policy-check?timeout=10s": service "image-policy-webhook-service" not found
+```
+
+### Explanation
+
+The "image-policy-webhook-service" service cannot be found.
+
+### Solution
+
+Redeploy the `trainingPortal` resource.
+
+## <a id='cannot-update-parameters'></a> Cannot Update Parameters
+
+The Training Portals do not work or do not show updated parameters.
+
+Run one of the following commands to validate changes made to parameters provided to the Learning
+Center Operator. These parameters include ingressDomain, TLS secret, ingressClass, and others.
+
+Command:
+```
+kubectl describe systemprofile
+```
+
+Command:
+```
+kubectl describe pod  -n learningcenter
+```
+
+### Explanation
+
+By design, the Training Portal resources do not react to any changes on the parameters provided
+when the training portals were created. This prevents any change on the `trainingportal` resource
+from affecting any online user running a workshop.
+
+### Solution
+
+Redeploy `trainingportal` in a maintenance window where Learning Center is unavailable while the
+`systemprofile` is updated.
+
+
+## <a id='increase-cluster-resources'></a> Increase Your Cluster Resources Error
+
+You receive an "Increase your cluster's resources" error.
+
+### Explanation
+
+Node pressure may be caused by an insufficient number of nodes or a lack of resources on nodes
+necessary to deploy the workloads that you have.
+
+### Solution
+
+Follow instructions from your cloud provider to scale out or scale up your cluster.
+
+## <a id='pod-admission-prevented'></a> MutatingWebhookConfiguration Prevents Pod Admission
+
+Admission of all pods is prevented when the `image-policy-controller-manager` deployment pods do not
+start before the `MutatingWebhookConfiguration` is applied to the cluster.
+
+### Explanation
+
+Pods can be prevented from starting if nodes in a cluster are scaled to zero and the webhook is
+forced to restart at the same time as other system components. A deadlock can occur when some
+components expect the webhook to verify their image signatures and the webhook is not yet running.
+
+A known rare condition during Tanzu Application Platform profiles installation can cause this. If so,
+you may see a message similar to one of the following in component statuses:
+
+```
+Events:
+  Type     Reason            Age                   From                   Message
+  ----     ------            ----                  ----                   -------
+  Warning  FailedCreate      4m28s                 replicaset-controller  Error creating: Internal error occurred: failed calling webhook "image-policy-webhook.signing.apps.tanzu.vmware.com": Post "https://image-policy-webhook-service.image-policy-system.svc:443/signing-policy-check?timeout=10s": no endpoints available for service "image-policy-webhook-service"
+```
+```
+Events:
+  Type     Reason            Age                   From                   Message
+  ----     ------            ----                  ----                   -------
+  Warning FailedCreate 10m replicaset-controller Error creating: Internal error occurred: failed calling webhook "image-policy-webhook.signing.apps.tanzu.vmware.com": Post "https://image-policy-webhook-service.image-policy-system.svc:443/signing-policy-check?timeout=10s": service "image-policy-webhook-service" not found
+```
+
+### Solution
+
+Delete the MutatingWebhookConfiguration resource to resolve the deadlock and enable the system to
+restart. After the system is stable, restore the MutatingWebhookConfiguration resource to re-enable
+image signing enforcement.
+
+>**Important:** These steps temporarily disable signature verification in your cluster.
+
+1. Back up `MutatingWebhookConfiguration` to a file by running:
+
+    ```
+    kubectl get MutatingWebhookConfiguration image-policy-mutating-webhook-configuration -o yaml > image-policy-mutating-webhook-configuration.yaml
+    ```
+
+1. Delete `MutatingWebhookConfiguration` by running:
+
+    ```
+    kubectl delete MutatingWebhookConfiguration image-policy-mutating-webhook-configuration
+    ```
+
+1. Wait until all components are up and running in your cluster, including the
+`image-policy-controller-manager pods` (namespace `image-policy-system`).
+
+1. Re-apply `MutatingWebhookConfiguration` by running:
+
+    ```
+    kubectl apply -f image-policy-mutating-webhook-configuration.yaml
+    ```
+
+## <a id='priority-class-preempts'></a> Priority Class of Webhook's Pods Preempts Less Privileged Pods
+
+When viewing the output of `kubectl get events`, you see events similar to the following:
+
+```
+$ kubectl get events
+LAST SEEN   TYPE      REASON             OBJECT               MESSAGE
+28s         Normal    Preempted          pod/testpod          Preempted by image-policy-system/image-policy-controller-manager-59dc669d99-frwcp on node test-node
+```
+
+### Explanation
+
+The Supply Chain Security Tools - Sign component uses a privileged `PriorityClass` to start its pods
+to prevent node pressure from preempting its pods. This can cause less privileged components to have
+their pods preempted or evicted instead.
+
+### Solution
+
+- **Solution 1: Reduce the number of pods deployed by the Sign component:**
+    If your deployment of the Sign component runs more pods than necessary, scale down the deployment
+    down as follows:
+
+    1. Create a values file named `scst-sign-values.yaml` with the following contents:
+        ```
+        ---
+        replicas: N
+        ```
+        Where `N` is an integer indicating the lowest number of pods you necessary for your current
+        cluster configuration.
+
+    1. Apply the new configuration by running:
+        ```
+        tanzu package installed update image-policy-webhook \
+          --package-name image-policy-webhook.signing.apps.tanzu.vmware.com \
+          --version 1.0.0-beta.3 \
+          --namespace tap-install \
+          --values-file scst-sign-values.yaml
+        ```
+
+    1. Wait a few minutes for your configuration to take effect in the cluster.
+
+- **Solution 2: Increase your cluster's resources:**
+    Node pressure may be caused by an insufficient number of nodes or a lack of resources on nodes
+    necessary to deploy the workloads that you have. Follow instructions from your cloud provider
+    to scale out or scale up your cluster.
+
+## <a id='password-authentication-fails'></a> CrashLoopBackOff from Password Authentication Fails
+
+Supply Chain Security Tools - Store does not start. You see the following error in the
+`metadata-store-app` Pod logs:
+
+    ```
+    $ kubectl logs pod/metadata-store-app-* -n metadata-store -c metadata-store-app
+    ...
+    [error] failed to initialize database, got error failed to connect to `host=metadata-store-db user=metadata-store-user database=metadata-store`: server error (FATAL: password authentication failed for user "metadata-store-user" (SQLSTATE 28P01))
+    ```
+
+### Explanation
+
+The database password has been changed between deployments. This is not supported.
+
+### Solution
+
+Redeploy the app either with the original database password or follow these steps below to erase the
+data on the volume:
+
+1. Deploy `metadata-store app` with kapp.
+
+1. Verify that the `metadata-store-db-*` Pod fails.
+
+1. Run:
+    ```
+    kubectl exec -it metadata-store-db-KUBERNETES-ID -n metadata-store /bin/bash
+    ```
+    Where `KUBERNETES-ID` is the ID generated by Kubernetes and appended to the Pod name.
+
+1. To delete all database data, run:
+    ```
+    rm -rf /var/lib/postgresql/data/*
+    ```
+    This is the path found in `postgres-db-deployment.yaml`.
+
+1. Delete the `metadata-store` app with kapp.
+
+1. Deploy the `metadata-store` app with kapp.
+
+
+## <a id='password-authentication-fails'></a> Password Authentication Fails
+
+Supply Chain Security Tools - Store does not start. You see the following error in the
+`metadata-store-app` Pod logs:
+
+```
+$ kubectl logs pod/metadata-store-app-* -n metadata-store -c metadata-store-app
+...
+[error] failed to initialize database, got error failed to connect to `host=metadata-store-db user=metadata-store-user database=metadata-store`: server error (FATAL: password authentication failed for user "metadata-store-user" (SQLSTATE 28P01))
+```
+
+### Explanation
+
+The database password has been changed between deployments. This is not supported.
+
+### Solution
+
+Redeploy the app either with the original database password or follow these steps below to erase the
+data on the volume:
+
+1. Deploy `metadata-store app` with kapp.
+
+1. Verify that the `metadata-store-db-*` Pod fails.
+
+1. Run:
+    ```
+    kubectl exec -it metadata-store-db-KUBERNETES-ID -n metadata-store /bin/bash
+    ```
+    Where `KUBERNETES-ID` is the ID generated by Kubernetes and appended to the Pod name.
+
+1. To delete all database data, run:
+    ```
+    rm -rf /var/lib/postgresql/data/*
+    ```
+    This is the path found in `postgres-db-deployment.yaml`.
+
+1. Delete the `metadata-store` app with kapp.
+
+1. Deploy the `metadata-store` app with kapp.
+
+
+## <a id='metadata-store-db-fails-to-start'></a> `metadata-store-db` Pod Fails to Start
+
+When Supply Chain Security Tools - Store is deployed, deleted, and then redeployed, the `metadata-store-db`
+Pod fails to start if the database password changed during redeployment.
+
+### Explanation
+
+The persistent volume used by postgres retains old data, even though the retention policy is set to `DELETE`.
+
+### Solution
+
+Redeploy the app either with the original database password or follow these steps below to erase the
+data on the volume:
+
+1. Deploy `metadata-store app` with kapp.
+
+1. Verify that the `metadata-store-db-*` Pod fails.
+
+1. Run:
+    ```
+    kubectl exec -it metadata-store-db-KUBERNETES-ID -n metadata-store /bin/bash
+    ```
+    Where `KUBERNETES-ID` is the ID generated by Kubernetes and appended to the Pod name.
+
+1. To delete all database data, run:
+    ```
+    rm -rf /var/lib/postgresql/data/*
+    ```
+    This is the path found in `postgres-db-deployment.yaml`.
+
+1. Delete the `metadata-store` app with kapp.
+
+1. Deploy the `metadata-store` app with kapp.
+
+
+## <a id='missing-persistent-volume'></a> Missing Persistent Volume
+
+After Supply Chain Security Tools - Store is deployed, `metadata-store-db` Pod fails for missing volume
+while `postgres-db-pv-claim` pvc is in the `PENDING` state.
+
+### Explanation
+
+The cluster where Supply Chain Security Tools - Store is deployed does not have `storageclass`
+defined. The provisioner of `storageclass` is responsible for creating the persistent volume after
+`metadata-store-db` attaches `postgres-db-pv-claim`.
+
+### Solution
+
+1. Verify that your cluster has `storageclass` by running:
+    ```
+    kubectl get storageclass
+    ```
+
+1. Create a `storageclass` in your cluster before deploying Supply Chain Security Tools - Store. For example:
+    ```
+    # This is the storageclass that Kind uses
+    kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml
+
+    # set the storage class as default
+    kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+     ```

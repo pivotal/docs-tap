@@ -20,7 +20,7 @@ Verify you have successfully:
 See [Installing Tanzu Application Platform](install-intro.md).
 
   - **Installed the Tanzu Application Platform on the target Kubernetes cluster**<br>
-See [Installing the Tanzu CLI](install-general.md) and [Installing the Tanzu Application Platform Package and Profiles](install.md).
+See [Installing the Tanzu CLI](install-tanzu-cli.md) and [Installing the Tanzu Application Platform Package and Profiles](install.md).
 
   - **Set the default kubeconfig context to the target Kubernetes cluster**<br>
 See [Changing clusters](cli-plugins/apps/usage.md#changing-clusters).
@@ -333,10 +333,7 @@ In this section, you are going to:
 
 ### <a id="intro-supply-chain"></a>Introducing a Supply Chain
 
-Supply Chains provide a way of codifying all of the steps of your path to production, or what is
-more commonly known as continuous integration/Continuous Delivery (CI/CD).
-A supply chain differs from CI/CD in that you can add any step necessary for an
-application to reach production, or a different environment such as staging.
+Supply Chains provide a way of codifying all of the steps of your path to production, more commonly known as continuous integration/Continuous Delivery (CI/CD). CI/CD is a method to frequently deliver applications by introducing automation into the stages of application development. The main concepts attributed to CI/CD are continuous integration, continuous delivery, and continuous deployment. CI/CD is the method used by supply chain to deliver applications through automation where supply chain allows you to use CI/CD and add any other steps necessary for an application to reach production, or a different environment such as staging.
 
 ![Diagram depicting a simple path to production: CI to Security Scan to Build Image to Image Scan to CAB Approval to Deployment.](images/path-to-production-new.png)
 
@@ -575,7 +572,7 @@ spec:
             script: |-
               cd `mktemp -d`
 
-              wget -qO- $(params.source-url) | tar xvz
+              wget -qO- $(params.source-url) | tar xvz -m
               ./mvnw test
 ```
 

@@ -51,19 +51,30 @@ To install Supply Chain Security Tools - Sign:
     $ tanzu package available get image-policy-webhook.signing.apps.tanzu.vmware.com/1.1.0 --values-schema --namespace tap-install
     | Retrieving package details for image-policy-webhook.signing.apps.tanzu.vmware.com/1.1.0...
       KEY                     DEFAULT              TYPE     DESCRIPTION
+      allow_unmatched_images  false                boolean  Feature flag for enabling admission of images that do not match any patterns in the image policy configuration.
+                                                            Set to true to allow images that do not match any patterns into the cluster with a warning.
       deployment_namespace    image-policy-system  string   Deployment namespace specifies the namespace where this component should be deployed to.
                                                             If not specified, "image-policy-system" is assumed.
-      allow_unmatched_images  false                boolean  Feature flag for enabling admission of images that do not match
-                                                            any patterns in the image policy configuration.
-                                                            Set to true to allow images that do not match any patterns into
-                                                            the cluster with a warning.
-      quota.pod_number        5                    string   The maximum number of Image Policy Webhook Pods allowed to be
-                                                            created with the priority class system-cluster-critical. This
-                                                            value must be enclosed in quotes (""). If this value is not
-                                                            specified then the default value of 5 is used.
-      replicas                1                    integer  The number of replicas to be created for the Image Policy
-                                                            Webhook. This value must not be enclosed in quotes. If this
-                                                            value is not specified then the default value of 1 is used.
+      limits_cpu              200m                 string   The CPU limit defines a hard ceiling on how much CPU time that
+                                                            the Image Policy Webhook controller manager container can use.
+                                                            https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu
+
+      limits_memory           256Mi                string   The memory limit defines a hard ceiling on how much memory that
+                                                            the Image Policy Webhook controller manager container can use.
+                                                            https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory
+
+      quota.pod_number        5                    string   The maximum number of Image Policy Webhook Pods allowed to be created with the priority class
+                                                            system-cluster-critical. This value must be enclosed in quotes (""). If this value is not
+                                                            specified then a default value of 5 is used.
+      replicas                1                    integer  The number of replicas to be created for the Image Policy Webhook. This value must not be enclosed
+                                                            in quotes. If this value is not specified then a default value of 1 is used.
+      requests_cpu            100m                 string   The CPU request defines the minimum CPU time for the Image Policy
+                                                            Webhook controller manager. During CPU contention, CPU request is used
+                                                            as a weighting where higher CPU requests are allocated more CPU time.
+                                                            https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu
+
+      requests_memory         50Mi                 string   The memory request defines the minium memory amount for the Image Policy Webhook controller manager.
+                                                            https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory
     ```
 
 1. Create a file named `scst-sign-values.yaml` and add the settings you want to customize:
@@ -117,12 +128,30 @@ To install Supply Chain Security Tools - Sign:
       resources. Select a namespace that is not used by any
       other components.
 
+    - `limits_cpu`:
+      This setting controls the maximum CPU resource allocated to the Image Policy
+      Webhook controller. The default value is "200m". See [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu) for more details.
+
+    - `limits_memory`:
+      This setting controls the maximum memory resource allocated to the Image Policy
+      Webhook controller. The default value is "256Mi". See [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory) for more details.
+
+    - `requests_cpu`:
+      This setting controls the minimum CPU resource allocated to the Image Policy
+      Webhook controller. During CPU contention, this value is used as a weighting
+      where higher values indicate more CPU time is allocated. The default value is "100m".
+      See [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu) for more details.
+
+    - `requests_memory`:
+      This setting controls the minimum memory resource allocated to the Image Policy
+      Webhook controller. The default value is "50Mi". See [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory) for more details.
+
 1. Install the package:
 
     ```
     tanzu package install image-policy-webhook \
       --package-name image-policy-webhook.signing.apps.tanzu.vmware.com \
-      --version 1.0.1 \
+      --version 1.1.0 \
       --namespace tap-install \
       --values-file scst-sign-values.yaml
     ```
@@ -132,7 +161,7 @@ To install Supply Chain Security Tools - Sign:
     ```
     $ tanzu package install image-policy-webhook \
         --package-name image-policy-webhook.signing.apps.tanzu.vmware.com \
-        --version 1.0.1 \
+        --version 1.1.0 \
         --namespace tap-install \
         --values-file scst-sign-values.yaml
 
