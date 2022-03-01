@@ -1,4 +1,4 @@
-# Configure target endpoint and certificate
+# Using encryption to connect to the database
 
 The connection to the Store requires TLS encryption. Follow the instructions below to set up the TLS connection depending on which type of service is being used:
 

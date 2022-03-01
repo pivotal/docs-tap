@@ -1,4 +1,4 @@
-# Configure access tokens
+# Creating service accounts and access tokens
 
 Service accounts are required to generate the access tokens.  
 

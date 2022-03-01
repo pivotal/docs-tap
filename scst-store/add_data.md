@@ -1,7 +1,17 @@
 # Add data
 
-This topic describes how to add Software Bill of Materials (SBoM) files to Supply Chain Security Tools - Store to understand your dependencies by querying.
+This topic describes how to add Software Bill of Materials (SBoM) files to the database to understand your dependencies by querying.
 For instructions on querying, see [Query Data](../scst-store/query_data.md).
+
+
+## <a id='methods'></a>Methods
+
+Add data by posting CycloneDX files using the following methods:
+
+- [Supply Chain Security Tools - Scan](../scst-scan/overview.md)
+- [Supply Chain Security Tools - Store API](../scst-store/api_walkthrough.md)
+- [Add Data with the Insight CLI](#insight-cli) below
+
 
 ## <a id='supported-formats'></a>Supported Formats
 
@@ -94,5 +104,5 @@ To use a CycloneDX-formatted source report:
     Source report created.
     ```
 
-> **Note:** Supply Chain Security Tools - Store only stores a subset of a CycloneDX file’s data.
+> **Note:** The Metadata Store only stores a subset of a CycloneDX file’s data.
   Support for more data might be added in the future.

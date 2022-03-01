@@ -2,13 +2,25 @@
 
 This topic describes how to query the database to understand vulnerability, image, and dependency relationships.
 
+## <a id='add-data'></a>Add data
+
+Data must be added before querying. See [Add Data](add_data.md).
+
+## <a id='methods'></a>Methods
+
+There are two different ways of querying the database:
+
+* [API](api.md)
+* [CLI](cli_installation.md) 
+
 ## <a id='sup-usecase'></a>Supported use cases
 
-The following are a few use cases supported by the CLI:
+The following are a few examples supported by the Supply Chain Security Tools - Store API and CLI:
 
 +  What images contain a specific dependency?
 +  What dependencies are affected by a specific CVE?
 +  How many CVEs does a specific image or dependency contain?
+
 
 ## <a id='query-insight'></a> Query using the Insight CLI
 
@@ -83,7 +95,3 @@ Packages:
 	3. libc6@2.28-10
 	4. locales@2.28-10
 ```
-
-## <a id='add-data'></a>Add data
-
-Users who want to manually add data and follow the documentation in [Add Data](add_data.md).
