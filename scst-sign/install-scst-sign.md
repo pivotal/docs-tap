@@ -56,7 +56,7 @@ To install Supply Chain Security Tools - Sign:
 
       custom_ca_secrets       <nil>                array    List of custom CA secrets that should be included in the application container for registry communication.
                                                             An array of secret references each containing a secret_name field with the secret name to be referenced
-                                                            and a namespace field with the name of the namespace where the referred secret reside.
+                                                            and a namespace field with the name of the namespace where the referred secret resides.
 
       custom_cas              <nil>                array    List of custom CA contents that should be included in the application container for registry communication.
                                                             An array of items containing a ca_content field with the PEM-encoded contents of a certificate authority.
@@ -140,8 +140,9 @@ To install Supply Chain Security Tools - Sign:
       format for this setting is an array of items, each one of them containing
       a single field named `ca_content`. The content of this field should be a
       PEM-formatted certificate authority. The certificate content should be
-      indented by two spaces after the colon, and all lines of the certificate
-      must be aligned at the same indentation.
+      specified as a YAML block, preceded by the literal indicator (`|`) in
+      order to preserve line breaks and guarantee the certificates will be
+      interpreted correctly.
 
       For example,
       ```yaml
