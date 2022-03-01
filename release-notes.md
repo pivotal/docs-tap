@@ -93,6 +93,16 @@ invalid accelerator.
 - Increased requests and limits for Application Live View connector to fix pod restarts
 - CVE vulnerability fix to update `protobuf-java` to `3.19.2` in the connector
 
+### <a id='1-0-1-resolved-issues'></a> Resolved issues
+
+This release has the following fixes:
+
+#### Tanzu Dev Tools for VSCode
+
+- v0.5.0 release does not install the extensions in the dependency "Extension Pack for Java". v0.5.2 installs "Debugger for Java" and "Language Support for Java(TM) by Red Hat" extensions directly instead of installing the extension pack.
+- Users can run "Configure Tasks", "Configure the Default Build Task", or "Launch Extension Host" when using the Tanzu Dev Tools extension in a workspace without a `workload.yaml` file.
+- Fixes [CVE 2022-0144](https://www.cvedetails.com/cve/CVE-2022-0144/)
+
 ## <a id='1-0'></a> v1.0
 
 **Release Date**: January 11, 2022
@@ -185,7 +195,7 @@ profile, you might see the error:
     This is a rare condition error among some packages. To recover from this error, redeploy the
     `trainingPortal` resource.
 
-- **Cannot Update Parameters:** 
+- **Cannot Update Parameters:**
 Normally you must update some parameters provided to the Learning Center Operator. These parameters
 include ingressDomain, TLS secret, ingressClass, and others.
 
