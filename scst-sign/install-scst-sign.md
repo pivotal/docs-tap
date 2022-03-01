@@ -53,8 +53,17 @@ To install Supply Chain Security Tools - Sign:
       KEY                     DEFAULT              TYPE     DESCRIPTION
       allow_unmatched_images  false                boolean  Feature flag for enabling admission of images that do not match any patterns in the image policy configuration.
                                                             Set to true to allow images that do not match any patterns into the cluster with a warning.
+
+      custom_ca_secrets       <nil>                array    List of custom CA secrets that should be included in the application container for registry communication.
+                                                            An array of secret references each containing a secret_name field with the secret name to be referenced
+                                                            and a namespace field with the name of the namespace where the referred secret reside.
+
+      custom_cas              <nil>                array    List of custom CA contents that should be included in the application container for registry communication.
+                                                            An array of items containing a ca_content field with the PEM-encoded contents of a certificate authority.
+
       deployment_namespace    image-policy-system  string   Deployment namespace specifies the namespace where this component should be deployed to.
                                                             If not specified, "image-policy-system" is assumed.
+
       limits_cpu              200m                 string   The CPU limit defines a hard ceiling on how much CPU time that
                                                             the Image Policy Webhook controller manager container can use.
                                                             https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu
@@ -104,22 +113,50 @@ To install Supply Chain Security Tools - Sign:
             >To promote to a production environment VMware recommends that you
             >re-install the webhook with `allow_unmatched_images` set to `false`.
 
-    - `quota.pod_number`:
-      This setting is the maximum number of pods that are allowed in the
-      deployment namespace with the `system-cluster-critical`
-      priority class. This priority class is added to the pods to prevent
-      preemption of this component's pods in case of node pressure.
+    - `custom_ca_secrets`:
+      This setting controls which secrets will be added to the application
+      container as custom certificate authorities (CAs) to allow communication
+      with registries deployed with self-signed certificates. The format for
+      this setting is an array of items, each one of them containing two fields:
+      one `secret_name` field that holds the name of the secret to be looked up,
+      and one `namespace` field that holds the name of the namespace where said
+      secret is stored.
 
-      The default value for this property is 5. If your use case requires
-      more than 5 pods be deployed of this component, adjust this value to
-      allow the number of replicas you intend to deploy.
+      For example,
+      ```yaml
+      custom_ca_secrets:
+      - secret_name: first-ca
+        namespace: ca-namespace
+      - secret_name: second-ca
+        namespace: ca-namespace
+      ```
 
-    - `replicas`:
-      These settings controls the default amount of replicas that will get deployed by this
-      component. The default value is 1.
+      This setting is allowed even if `custom_cas` was informed.
 
-        * **For production environments**: VMware recommends you increase the number of replicas to
-          3 to ensure availability of the component for better admission performance.
+    - `custom_cas`:
+      This setting allows adding certificate content in PEM format that will be
+      added to the application container as custom certificate authorities (CAs)
+      to communicate with registries deployed with self-signed certificates. The
+      format for this setting is an array of items, each one of them containing
+      a single field named `ca_content`. The content of this field should be a
+      PEM-formatted certificate authority. The certificate content should be
+      indented by two spaces after the colon, and all lines of the certificate
+      must be aligned at the same indentation.
+
+      For example,
+      ```yaml
+      custom_cas:
+      - ca_content: |
+          ----- BEGIN CERTIFICATE -----
+          first certificate content here...
+          ----- END CERTIFICATE -----
+      - ca_content: |
+          ----- BEGIN CERTIFICATE -----
+          second certificate content here...
+          ----- END CERTIFICATE -----
+      ```
+
+      This setting is allowed even if `custom_ca_secrets` was informed.
 
     - `deployment_namespace`:
       This setting controls the namespace to which this component is deployed.
@@ -135,6 +172,23 @@ To install Supply Chain Security Tools - Sign:
     - `limits_memory`:
       This setting controls the maximum memory resource allocated to the Image Policy
       Webhook controller. The default value is "256Mi". See [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory) for more details.
+
+    - `quota.pod_number`:
+      This setting is the maximum number of pods that are allowed in the
+      deployment namespace with the `system-cluster-critical`
+      priority class. This priority class is added to the pods to prevent
+      preemption of this component's pods in case of node pressure.
+
+      The default value for this property is 5. If your use case requires
+      more than 5 pods be deployed of this component, adjust this value to
+      allow the number of replicas you intend to deploy.
+
+    - `replicas`:
+      These settings controls the default amount of replicas that will get deployed by this
+      component. The default value is 1.
+
+      * **For production environments**: VMware recommends you increase the number of replicas to
+        3 to ensure availability of the component for better admission performance.
 
     - `requests_cpu`:
       This setting controls the minimum CPU resource allocated to the Image Policy
