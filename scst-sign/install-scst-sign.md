@@ -130,24 +130,21 @@ To install Supply Chain Security Tools - Sign:
 
     - `limits_cpu`:
       This setting controls the maximum CPU resource allocated to the Image Policy
-      Webhook controller. The default value is "200m". More details can be found
-      on the [kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu)
+      Webhook controller. The default value is "200m". See [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu) for more details.
 
     - `limits_memory`:
       This setting controls the maximum memory resource allocated to the Image Policy
-      Webhook controller. The default value is "256Mi". More details can be found
-      on the [kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory)
+      Webhook controller. The default value is "256Mi". See [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory) for more details.
 
     - `requests_cpu`:
       This setting controls the minimum CPU resource allocated to the Image Policy
       Webhook controller. During CPU contention, this value is used as a weighting
-      where higher values allocate more CPU time. The default value is "100m".
-      More details can be found on the [kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu)
+      where higher values indicate more CPU time is allocated. The default value is "100m".
+      See [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu) for more details.
 
     - `requests_memory`:
       This setting controls the minimum memory resource allocated to the Image Policy
-      Webhook controller. The default value is "50Mi". More details can be found on
-      the [kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory)
+      Webhook controller. The default value is "50Mi". See [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory) for more details.
 
 1. Install the package:
 
