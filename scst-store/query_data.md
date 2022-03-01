@@ -86,4 +86,4 @@ Packages:
 
 ## <a id='add-data'></a>Add data
 
-Users who want to manually add data and follow the documentation in [Add Data](add_data.md).
+See [Add Data](add_data.md) for more information about manually adding data.
