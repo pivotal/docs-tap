@@ -1,8 +1,8 @@
 # Workshop catalog
 
-A single training portal can hosted one or more workshops. The REST API endpoints for the workshops catalog provide a means to list the available workshops and get information about them.
+A single training portal can host one or more workshops. The REST API endpoints for the workshops catalog provide a means to list the available workshops and get information about them.
 
-## <a id="listing-available-workshops"></a>Listing available workshops
+## <a id="list-available-workshops"></a>Listing available workshops
 
 The URL sub path for accessing the list of available workshop environments is `/workshops/catalog/environments/`. When making the request, you must supply the access token in the HTTP `Authorization` header with type set as `Bearer`:
 
@@ -11,7 +11,7 @@ curl -v -H "Authorization: Bearer <access-token>" \
 <training-portal-url>/workshops/catalog/environments/
 ```
 
-The JSON response is of the form:
+The JSON response looks like this:
 
 ```
 {
@@ -54,7 +54,7 @@ The JSON response is of the form:
 }
 ```
 
-For each workshop listed under `environments`, where a field listed under `workshop` has the same name as it appears in the `Workshop` custom resource, it has the same meaning. The `id` field is an additional field which can uniquely identify a workshop based on the name of the workshop image, the Git repository for the workshop, or the website hosting the workshop instructions. The value of the `id` field does not rely on the name of the `Workshop` resource and must be the same if the same workshop details are used but the name of the `Workshop` resource is different.
+For each workshop listed under `environments`, where a field listed under `workshop` has the same name as appears in the `Workshop` custom resource, it has the same meaning. The `id` field is an additional field that can uniquely identify a workshop based on the name of the workshop image, the Git repository for the workshop, or the website hosting the workshop instructions. The value of the `id` field does not rely on the name of the `Workshop` resource and must be the same if the same workshop details are used but the name of the `Workshop` resource is different.
 
 The `duration` field provides the time in seconds after which the workshop environment expires. The value is `null` if there is no expiration time for the workshop.
 

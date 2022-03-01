@@ -4,7 +4,7 @@ This example performs a scan against an image located in a private registry.
 
 ## <a id="define-resources"></a>Define the resources
 
-Create `sample-image-source-scan.yaml` and ensure you enter a valid docker config.json value in the secret:
+Create `sample-private-image-scan.yaml` and ensure you enter a valid docker config.json value in the secret:
 
 ```
 ---
@@ -40,7 +40,7 @@ For more information, see [Observing and Troubleshooting](../observing.md).
 ## <a id="deploy-resources"></a>Deploy the resources
 
 ```
-kubectl apply -f sample-image-source-scan.yaml
+kubectl apply -f sample-private-image-scan.yaml
 ```
 
 ## <a id="view-scan-results"></a>View the scan results
@@ -58,9 +58,9 @@ For more information, see [Viewing and Understanding Scan Status Conditions](../
 ## <a id="clean-up"></a>Clean up
 
 ```
-kubectl delete -f sample-image-source-scan.yaml
+kubectl delete -f sample-private-image-scan.yaml
 ```
 
 ## <a id="view-vuln-reports"></a>View vulnerability reports
 
-See [Viewing Vulnerability Reports](../viewing-reports.md) section.
+After completing the scans, [query the Supply Chain Security Tools - Store](../../scst-store/query_data.md) to view your vulnerability results.

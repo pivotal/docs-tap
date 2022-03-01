@@ -97,7 +97,7 @@ For `copy` only, if you prefer to mark an inline code section within a paragraph
 Text to `copy`{{copy}}.
 ```
 
-## <a id="extensible-clickable-actions"></a>Extensible clickable actions
+## <a id="extensible-click-actions"></a>Extensible clickable actions
 
 The means to annotate code blocks described earlier were the original methods used to indicate code blocks to be executed or copied when clicked. To support a growing number of clickable actions with different customizable purposes, annotation names were changed to being name-spaced. The earlier annotations is still supported, but the following are now recommended, with additional options available to customize the way the actions are presented.
 
@@ -226,7 +226,7 @@ command: echo "Execute command."
 ----
 ```
 
-## <a id="clickable-actions-dashboard"></a>Clickable actions for the dashboard
+## <a id="click-actions-dashboard"></a>Clickable actions for the dashboard
 
 In addition to the clickable actions related to the terminal and copying of text to the paste buffer, additional actions are available for controlling the dashboard and opening URL links.
 
@@ -450,7 +450,7 @@ args:
 ```
 ~~~
 
-## <a id="clickable-actions-file-download"></a>Clickable actions for file download
+## <a id="click-actions-file-dl"></a>Clickable actions for file download
 
 If file downloads are enabled, you can use the `files:download-file` clickable action.
 
@@ -462,7 +462,7 @@ path: .kube/config
 
 The action always triggers saving of the file to the local computer and the file is not displayed in the web browser.
 
-## <a id="clickable-actions-examiner"></a>Clickable actions for the examiner
+## <a id="click-actions-examiner"></a>Clickable actions for the examiner
 
 If the test examiner is enabled, special actions are available to run verification checks to verify if a workshop user has performed a required step. You can trigger these verification checks by clicking on the action, or you can optionally configure them to automatically start running when the page loads.
 
@@ -579,7 +579,7 @@ delay: 1
 ```
 ~~~
 
-## <a id="clickable-actions-sections"></a>Clickable actions for sections
+## <a id="click-actions-sections"></a>Clickable actions for sections
 
 For instructions which are optional, or which you want to hide until the workshop user is ready to do that part of the instructions, you can designate sections which is initially collapsed and hidden. Clicking the action for the section expands the content of that section. This might be used for the examples that initially hide a set of questions or a test at the end of each page for workshop instructions.
 
@@ -641,7 +641,7 @@ title: Questions
 
 Clicking on this still marks the action as having been completed, but does not trigger any other action.
 
-## <a id="override-title-and-description"></a>Overriding title and description
+## <a id="override-title-desc"></a>Overriding title and description
 
 Clickable action blocks are default to use a title with prefix dictated by what the action block does. The body of the action block is also default to use a value commensurate with the action.
 
@@ -675,7 +675,7 @@ echo "Execute command."
 
 This has the side effect of preventing interpolation of data variables, so restrict it to only the required scope.
 
-## <a id="interpolation-of-data-variables"></a>Interpolation of data variables
+## <a id="interpolate-data-vars"></a>Interpolation of data variables
 
 When creating page content, you can reference a number of predefined data variables. The values of the data variables are substituted into the page when rendered in the users browser.
 
@@ -761,7 +761,7 @@ This JavaScript code is loaded and the `initialize()` function called to set up 
 
 Because it is JavaScript, you can write any code to query process environment variables and set data variables based on those. This might include creating composite values constructed from multiple environment variables. You can even download data variables from a remote host.
 
-## <a id="pass-environment-variables"></a>Passing of environment variables
+## <a id="pass-env-vars"></a>Passing of environment variables
 
 You can achieve the passing of environment variables, including remapping of variable names, by setting your own custom data variables. If you don't need to set default values, or remap the name of an environment variable, you can instead reference the name of the environment variable directly, albeit that you must prefix the name with `ENV_` when using it.
 
@@ -785,7 +785,7 @@ You can define a URL where components of the URL are provided by data variables.
 https://myapp-{{ session_namespace }}.{{ ingress_domain }}
 ```
 
-## <a id="conditional-rendering-content"></a>Conditional rendering of content
+## <a id="cond-rendering-content"></a>Conditional rendering of content
 
 As rendering of pages is in part handled using the [Liquid](https://www.npmjs.com/package/liquidjs) template engine, you can also use any constructs the template engine supports for conditional content.
 

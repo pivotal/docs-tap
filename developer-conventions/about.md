@@ -8,7 +8,7 @@ weight: 1
 
 Developer Conventions is a set of [conventions](../convention-service/about.md) that
 enable your workloads to support live-update and debug operations.
-It is used alongside the [Tanzu CLI Apps plug-in](../cli-plugins/apps/overview-installation.md)
+It is used alongside the [Tanzu CLI Apps plug-in](../cli-plugins/apps/overview.md)
 and the [Tanzu Dev Tools for VSCode](../vscode-extension/about.md) IDE extension.
 
 ## <a id='features'></a>Features
@@ -23,7 +23,7 @@ Developer Conventions modifies your workload to enable live updates in either of
 When either of the preceding actions take place, the convention behaves as follows:
 
 1. Looks for the `apps.tanzu.vmware.com/live-update=true` annotation on a PodTemplateSpec associated with a workload.
-2. Verifies that the image to which conventions are applied contains a process that can be live updated. 
+2. Verifies that the image to which conventions are applied contains a process that can be live updated.
 3. Adds annotations to the PodTemplateSpec to modify the Knative properties `minScale` & `maxScale` such that the minimum and maximum number of pods is 1. This ensures the eventual running pod is not scaled down to 0 during a live update session.
 
 After these changes are made, you can use the Tanzu Dev Tools extension
@@ -47,24 +47,6 @@ After these changes are made, you can use the Tanzu Dev Tools extension or other
 
 > **Note**: Currently, Developer Conventions only supports debug operations for Java applications.
 
-### <a id='resource-limits'></a>Resource Limits
+## <a id='next-steps'></a> Next steps
 
-The following resource limits are set on the Developer Conventions service:
-
-```
-resources:
-  limits:
-	cpu: 100m
-	memory: 256Mi
-  requests:
-	cpu: 100m
-	memory: 20Mi
-```
-
-## <a id='installing'></a>Installing
-
-Developer Conventions is released as a Tanzu Package. For information about installing Developer Conventions, see [Installing Tanzu Application Platform](../install-intro.md).
-
-## <a id='uninstalling'></a>Uninstalling
-
-To uninstall Developer Conventions, follow the guide for [Uninstalling Tanzu Application Platform packages](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.4/tap/GUID-uninstall.html). The package name for developer conventions is `developer-conventions`.
+- [Install Developer Conventions](install-dev-conventions.md)

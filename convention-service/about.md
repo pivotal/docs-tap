@@ -18,7 +18,7 @@ The service is composed of two components:
   You can have one or more convention servers for a single convention controller instance.
   Convention Service currently supports defining and applying conventions for Pods.
 
-## <a id="about-applying-conventions"></a>About applying conventions
+## <a id="about-apply-conventions"></a>About applying conventions
 
 The convention server uses criteria defined in the convention to determine
 whether the configuration of a workload should be changed.
@@ -27,7 +27,7 @@ If the metadata meets the criteria defined by the convention server,
 the conventions are applied.
 It is also possible for a convention to apply to all workloads regardless of metadata.
 
-### <a id="applying-conventions-image-metadata"></a>Applying conventions by using image metadata
+### <a id="apply-by-image-metadata"></a>Applying conventions by using image metadata
 
 You can define conventions to target workloads by using properties of their OCI metadata.
 
@@ -42,7 +42,7 @@ the image type and match the criteria for a given convention server.
 Images built with Cloud Native Buildpacks reliably include rich descriptive metadata.
 Images built by some other process may not include the same metadata.
 
-### <a id="applying-conventions-no-image-metadata"></a>Applying conventions without using image metadata
+### <a id="apply-wo-image-metadata"></a>Applying conventions without using image metadata
 
 Conventions can also be defined to apply to workloads without targeting build service metadata.
 Examples of possible uses of this type of convention include appending a logging/metrics sidecar,
@@ -53,51 +53,3 @@ across workloads deployed on the cluster while reducing developer toil.
 > **Note:** Adding a sidecar alone does not magically make the log/metrics collection work.
   This requires collector agents to be already deployed and accessible from the Kubernetes cluster,
 and also configuring required access through role-based access control (RBAC) policy.
-
-## <a id="convention-service-resourses"></a>Convention Service resources
-
-There are several [resources](./reference/convention-resources.md) involved in the application of conventions to workloads.
-
-### <a id="api-structure"></a>API structure
-
-The [`PodConventionContext`](./reference/pod-convention-context.md) API object in the `webhooks.conventions.apps.tanzu.vmware.com` API group is the structure used for both request and response from the convention server.
-
-### <a id="template-status"></a>Template status
-
-The enriched `PodTemplateSpec` is reflected at [`.status.template`](./reference/pod-convention-context-status.md). For more information about `PodTemplateSpec`, see the [Kubernetes documentation](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec).
-
-## <a id="chaining-multiple-conventions"></a>Chaining multiple conventions
-
-You can define multiple `ClusterPodConventions` and apply them to different types of workloads.
-You can also apply multiple conventions to a single workload.
-
-The `PodIntent` reconciler lists all `ClusterPodConvention` resources and applies them serially.
-To ensure the consistency of enriched [`PodTemplateSpec`](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec),
-the list of `ClusterPodConventions`is sorted alphabetically by name before applying conventions.
-You can use strategic naming to control the order in which the conventions are applied.
-
-After the conventions are applied, the `Ready` status condition on the `PodIntent` resource is used to indicate
-whether it is applied successfully.
-A list of all applied conventions is stored under the annotation `conventions.apps.tanzu.vmware.com/applied-conventions`.
-
-## <a id="collecting-logs-from-controller"></a>Collecting logs from the controller
-
-The convention controller is a Kubernetes operator and can be deployed in a cluster with other components. If you have trouble, you can retrieve and examine the logs from the controller to help identify issues.
-
-To retrieve Pod logs from the `conventions-controller-manager` running in the `conventions-system` namespace:
-
-  ```
-  kubectl -n conventions-system logs -l control-plane=controller-manager
-  ```
-
-For example:
-
-  ```
-  ...
-  {"level":"info","ts":1637073467.3334172,"logger":"controllers.PodIntent.PodIntent.ApplyConventions","msg":"applied convention","diff":"  interface{}(\n- \ts\"&PodTemplateSpec{ObjectMeta:{      0 0001-01-01 00:00:00 +0000 UTC <nil> <nil> map[app.kubernetes.io/component:run app.kubernetes.io/part-of:spring-petclinic-app-db carto.run/workload-name:spring-petclinic-app-db] map[developer.conventions/target-container\"...,\n+ \tv1.PodTemplateSpec{\n+ \t\tObjectMeta: v1.ObjectMeta{\n+ \t\t\tLabels: map[string]string{\n+ \t\t\t\t\"app.kubernetes.io/component\": \"run\",\n+ \t\t\t\t\"app.kubernetes.io/part-of\":   \"spring-petclinic-app-db\",\n+ \t\t\t\t\"carto.run/workload-name\":     \"spring-petclinic-app-db\",\n+ \t\t\t\t\"tanzu.app.live.view\":         \"true\",\n+ \t\t\t\t...\n+ \t\t\t},\n+ \t\t\tAnnotations: map[string]string{\"developer.conventions/target-containers\": \"workload\"},\n+ \t\t},\n+ \t\tSpec: v1.PodSpec{Containers: []v1.Container{{...}}, ServiceAccountName: \"default\"},\n+ \t},\n  )\n","convention":"appliveview-sample"}
-  ...
-  ```
-
-## Troubleshooting
-
-To troubleshoot the convention controller, see [troubleshooting](troubleshooting.md).

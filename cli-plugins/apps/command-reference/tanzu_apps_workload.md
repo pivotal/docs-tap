@@ -17,7 +17,7 @@ Workload configuration includes:
   -h, --help   help for workload
 ```
 
-## <a id="options-inherited-from-parent-commands"></a>Options inherited from parent commands
+## <a id="parent-commands-options"></a>Options inherited from parent commands
 
 ```
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
@@ -26,7 +26,7 @@ Workload configuration includes:
   -v, --verbose int32     number for the log level verbosity (default 1)
 ```
 
-## See also
+## <a id="see-also"></a> See also
 
 - [Tanzu applications](tanzu_apps.md)	- Applications on Kubernetes
 - [Tanzu apps workload apply](tanzu_apps_workload_apply.md)	- Apply configuration to a new or existing workload

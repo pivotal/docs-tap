@@ -1,21 +1,21 @@
-# Install Spring Boot Conventions
+# Install Spring Boot conventions
 
-This document describes how to install Spring Boot Conventions
+This document describes how to install Spring Boot conventions
 from the Tanzu Application Platform package repository.
 
 >**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
-Both the full and light profiles include Spring Boot Conventions.
+Both the full and light profiles include Spring Boot conventions.
 For more information about profiles, see [Installing the Tanzu Application Platform Package and Profiles](../install.md).
 
 ## <a id='prereqs'></a>Prerequisites
 
-Before installing Spring Boot Conventions:
+Before installing Spring Boot conventions:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
-- Ensure Convention Service is installed on the cluster. For more information, see 
-[Install Convention Service](../convention-service/install-conv-service.md#install-prereqs) section.
+- Ensure Convention Service is installed on the cluster. For more information, see
+[Install Convention Service](../convention-service/install-conv-service.md#prereqs) section.
 
-## <a id='install-spring-boot-conv'></a> Install Spring Boot Conventions
+## <a id='install-spring-boot-conv'></a> Install Spring Boot conventions
 
 To install Spring Boot conventions:
 

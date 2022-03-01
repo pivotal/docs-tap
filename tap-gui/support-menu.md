@@ -1,6 +1,6 @@
 # Support menu customization
 
-## What is the support menu?
+## <a id="overview"></a> Overview
 
 Many important pages of Tanzu Application Platform GUI have a "Support"
 button that displays a pop-out menu. This menu contains a one-line
@@ -16,7 +16,7 @@ Out of the box, there are two support item groupings:
 * Documentation, which is marked with a "docs" icon and contains a link to the
   Tanzu Application Platform documentation (which you are currently reading).
 
-## Customizing
+## <a id="customizing"></a> Customizing
 
 The set of support item groupings is completely customizable; however, you may
 want to offer custom in-house links for your Tanzu Application Platform users rather than simply
@@ -43,9 +43,9 @@ tap_gui:
                 title: Tanzu Application Platform Documentation
 ```
 
-## Structure of the support configuration
+## <a id="support-config-struct"></a> Structure of the support configuration
 
-### URL
+### <a id="url"></a> URL
 
 The `url` field under the `support` stanza, for example,
 
@@ -59,14 +59,14 @@ pages like this one:
 
 ![Error Page](./images/error-page.png)
 
-### Items
+### <a id="items"></a> Items
 
 The `items` field under the `support` stanza, for example,
 
 determines the set of support item groupings to display when the support menu
 is expanded.
 
-#### Title
+#### <a id="title"></a> Title
 
 The `title` field on a support item grouping, for example,
 
@@ -77,7 +77,7 @@ The `title` field on a support item grouping, for example,
 
 determines the label for the grouping.
 
-#### Icon
+#### <a id="icon"></a> Icon
 
 The `icon` field on a support item grouping, for example,
 
@@ -99,7 +99,7 @@ determines the icon to use for that grouping. The valid choices are:
 * `user`
 * `warning`
 
-#### Links
+#### <a id="links"></a> Links
 
 The `links` field on a support item grouping, for example,
 

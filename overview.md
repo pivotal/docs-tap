@@ -24,7 +24,7 @@ or dependency patch. And connecting to other applications and data, regardless o
 or what kind of infrastructure they run on, has never been easier, thanks to an internal API
 management portal.
 
-![Illustration of TAP conceptual value, starting with components that serve the developer and finishing with the components that serve the operations staff and security staff.](images/tap-conceptual-value.jpg)
+![Illustration of TAP conceptual value, starting with components that serve the developer and finishing with the components that serve the operations staff and security staff.](images/tap-conceptual-value.png)
 
 Customers can simplify workflows in both the inner loop and outer loop of Kubernetes-based app
 development with Tanzu Application Platform while creating supply chains.
@@ -213,7 +213,229 @@ The following profiles are available in Tanzu Application Platform:
 - **Full:**
   This profile contains all of the Tanzu Application Platform packages.
 
-For more information about profiles, see [About Tanzu Application Platform package profiles](install.md#about-package-profiles).
+## <a id='about-package-profiles'></a> About Tanzu Application Platform package profiles
+
+Tanzu Application Platform can be installed through predefined profiles or through individual
+packages. This section explains how to install a profile.
+
+Tanzu Application Platform contains the following two profiles:
+
+- Full (`full`)
+- Light (`light`)
+
+The following table lists the packages contained in each profile:
+
+<table>
+  <tr>
+   <td><strong>Capability Name</strong>
+   </td>
+   <td><strong>Full</strong>
+   </td>
+   <td><strong>Light</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>API Portal
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Application Accelerator
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+   <td>Application Live View
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+   <td>Application Live View Conventions
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+   <tr>
+   <td>Cloud Native Runtimes
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+   <td>Convention Controller
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+   <td>Developer Conventions
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+   <td>Flux Source Controller
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+   <td>Grype
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+  </tr>  
+  <tr>
+   <td>Image Policy Webhook
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Learning Center
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+  </tr>
+   <td>Out of the Box Delivery - Basic
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+   <td>Out of the Box Supply Chain - Basic
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+   <td>Out of the Box Supply Chain - Testing
+   </td>
+   <td>&check;<sup>&ast;</sup>
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+   <td>Out of the Box Supply Chain - Testing and Scanning
+   </td>
+   <td>&check;<sup>&ast;</sup>
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Out of the Box Templates
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+   <td>Services Toolkit
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+   <td>Service Bindings
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+   <td>Source Controller
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+   <td>Spring Boot Convention
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+   <td>Supply Chain Choreographer
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+   <td>Supply Chain Security Tools - Scan</td>
+   <td>&check;</td><td></td>
+  </tr>
+  <tr>
+   <td>Supply Chain Security Tools - Store</td>
+   <td>&check;</td><td></td>
+  </tr>
+  <tr>
+   <td>Tanzu Build Service
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+   <td>Tanzu Application Platform GUI
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+   <td>Tekton Pipelines
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+</table>
+
+<sup>\*</sup> Only one supply chain should be installed at any given time.
+For information on switching from one supply chain to another, see [Getting Started with Tanzu Application Platform](getting-started.md).
 
 ## <a id='install'></a> About installing the Tanzu Application Platform v1.1
 
@@ -238,7 +460,6 @@ This information cannot directly identify any individual.
 
 You must acknowledge that you have read the VMware CEIP policy before you can proceed with the
 installation.
-For more information, see [Prepare to install your Tanzu Application Platform profile](install.md#prepare-install-profile)
-in _Installing part II: profiles_.
+For more information, see [Install a Tanzu Application Platform profile](install.md#install-profile).
 To opt out of telemetry participation after installation, see
 [Opting out of telemetry collection](opting-out-telemetry.md).

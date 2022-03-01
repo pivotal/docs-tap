@@ -19,8 +19,8 @@ generate your own keys and sign an image.
 
 ## <a id='install-scst-sign'></a> Install
 
-**Note:** v1alpha1 api version of the ClusterImagePolicy is no longer supported as the group name has been renamed from
-`signing.run.tanzu.vmware.com` to `signing.apps.vmware.com`.
+>**Note:** v1alpha1 api version of the ClusterImagePolicy is no longer supported as the group name has been renamed from
+`signing.run.tanzu.vmware.com` to `signing.apps.tanzu.vmware.com`.
 
 To install Supply Chain Security Tools - Sign:
 
@@ -35,33 +35,35 @@ To install Supply Chain Security Tools - Sign:
     ```
     $ tanzu package available list image-policy-webhook.signing.apps.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for image-policy-webhook.signing.apps.tanzu.vmware.com...
-      NAME                                               VERSION         RELEASED-AT
-      image-policy-webhook.signing.apps.tanzu.vmware.com  1.0.1          2022-01-24 09:00:00 -0500 EST
+      NAME                                                VERSION        RELEASED-AT
+      image-policy-webhook.signing.apps.tanzu.vmware.com  1.1.0          2022-01-24 09:00:00 -0500 EST
     ```
 
 1. (Optional) Make changes to the default installation settings by running:
 
     ```
-    tanzu package available get image-policy-webhook.signing.apps.tanzu.vmware.com/1.0.1 --values-schema --namespace tap-install
+    tanzu package available get image-policy-webhook.signing.apps.tanzu.vmware.com/1.1.0 --values-schema --namespace tap-install
     ```
 
     For example:
 
     ```
-    $ tanzu package available get image-policy-webhook.signing.apps.tanzu.vmware.com/1.0.1 --values-schema --namespace tap-install
-    | Retrieving package details for image-policy-webhook.signing.apps.tanzu.vmware.com/1.0.1...
-      KEY                     DEFAULT  TYPE     DESCRIPTION
-      allow_unmatched_images  false    boolean  Feature flag for enabling admission of images that do not match
-                                                any patterns in the image policy configuration.
-                                                Set to true to allow images that do not match any patterns into
-                                                the cluster with a warning.
-      quota.pod_number        5        string   The maximum number of Image Policy Webhook Pods allowed to be
-                                                created with the priority class system-cluster-critical. This
-                                                value must be enclosed in quotes (""). If this value is not
-                                                specified then the default value of 5 is used.
-      replicas                1        integer  The number of replicas to be created for the Image Policy
-                                                Webhook. This value must not be enclosed in quotes. If this
-                                                value is not specified then the default value of 1 is used.
+    $ tanzu package available get image-policy-webhook.signing.apps.tanzu.vmware.com/1.1.0 --values-schema --namespace tap-install
+    | Retrieving package details for image-policy-webhook.signing.apps.tanzu.vmware.com/1.1.0...
+      KEY                     DEFAULT              TYPE     DESCRIPTION
+      deployment_namespace    image-policy-system  string   Deployment namespace specifies the namespace where this component should be deployed to.
+                                                            If not specified, "image-policy-system" is assumed.
+      allow_unmatched_images  false                boolean  Feature flag for enabling admission of images that do not match
+                                                            any patterns in the image policy configuration.
+                                                            Set to true to allow images that do not match any patterns into
+                                                            the cluster with a warning.
+      quota.pod_number        5                    string   The maximum number of Image Policy Webhook Pods allowed to be
+                                                            created with the priority class system-cluster-critical. This
+                                                            value must be enclosed in quotes (""). If this value is not
+                                                            specified then the default value of 5 is used.
+      replicas                1                    integer  The number of replicas to be created for the Image Policy
+                                                            Webhook. This value must not be enclosed in quotes. If this
+                                                            value is not specified then the default value of 1 is used.
     ```
 
 1. Create a file named `scst-sign-values.yaml` and add the settings you want to customize:
@@ -93,7 +95,7 @@ To install Supply Chain Security Tools - Sign:
 
     - `quota.pod_number`:
       This setting is the maximum number of pods that are allowed in the
-      `image-policy-system` namespace with the `system-cluster-critical`
+      deployment namespace with the `system-cluster-critical`
       priority class. This priority class is added to the pods to prevent
       preemption of this component's pods in case of node pressure.
 
@@ -107,6 +109,13 @@ To install Supply Chain Security Tools - Sign:
 
         * **For production environments**: VMware recommends you increase the number of replicas to
           3 to ensure availability of the component for better admission performance.
+
+    - `deployment_namespace`:
+      This setting controls the namespace to which this component is deployed.
+      When not specified, the namespace `image-policy-system` is assumed.
+      This component creates the specified namespace to deploy required
+      resources. Select a namespace that is not used by any
+      other components.
 
 1. Install the package:
 

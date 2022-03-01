@@ -27,7 +27,7 @@ tanzu apps workload tail my-workload --since 1h
   -t, --timestamp        print timestamp for each log line
 ```
 
-## <a id="options inherited from parent commands"></a>Options inherited from parent commands
+## <a id="parent-commands-options"></a>Options inherited from parent commands
 
 ```
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
@@ -36,6 +36,6 @@ tanzu apps workload tail my-workload --since 1h
   -v, --verbose int32     number for the log level verbosity (default 1)
 ```
 
-## See also
+## <a id="see-also"></a> See also
 
 * [Tanzu Apps Workload](tanzu_apps_workload.md) - Workload life cycle management

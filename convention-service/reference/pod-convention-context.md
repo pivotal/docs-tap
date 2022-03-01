@@ -45,7 +45,7 @@ spec: # the request
         image: helloworld-go-mod
 ```
 
-## PodConventionContext Structure
+## <a id="pcc-structure"></a> PodConventionContext Structure
 
 This section introduces more information about the image configuration in `PodConventionContext`.
 The convention-controller passes this information for each image in good faith.

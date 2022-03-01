@@ -1,6 +1,6 @@
 # Troubleshooting Convention Service
 
-## <a id="no-server-in-cluster"></a>No server in the cluster
+## <a id="no-server-in-cluster"></a> No server in the cluster
 
 ### Symptoms
 
@@ -94,7 +94,7 @@ An unmanaged error occurs in the `convention server` when processing a request.
     ```
 
     Where:
-    
+
     + The convention server was deployed as a `Deployment`
     + `webhook-594d75d69b-4w4s8` is the name of the `convention server` Pod.
     + `convention-template` is the namespace where the convention server is deployed.

@@ -96,7 +96,9 @@ To deploy your application, you must download an accelerator, upload it on your 
 
 5. After downloading the ZIP file, expand it in a workspace directory and follow your preferred procedure for uploading the generated project files to a Git repository for your new project.
 
-6. Deploy the Tanzu Java Web App accelerator by running the `tanzu apps workload create` command:
+6. Ensure you have [set up developer namespaces to use installed packages](install-components.md#setup).
+
+7. Deploy the Tanzu Java Web App accelerator by running the `tanzu apps workload create` command:
 
     ```
     tanzu apps workload create tanzu-java-web-app \
@@ -125,13 +127,13 @@ To deploy your application, you must download an accelerator, upload it on your 
     > **Note:** This deployment uses an accelerator source from Git, but in later steps you use the VSCode extension
     to debug and live-update this application.
 
-7. View the build and runtime logs for your app by running the `tail` command:
+8. View the build and runtime logs for your app by running the `tail` command:
 
     ```
     tanzu apps workload tail tanzu-java-web-app --since 10m --timestamp
     ```
 
-8. After the workload is built and running, you can view the Web App in your browser. View the URL of the Web App by running the command below, and then press **ctrl-click** on the
+9. After the workload is built and running, you can view the Web App in your browser. View the URL of the Web App by running the command below, and then press **ctrl-click** on the
    Workload Knative Services URL at the bottom of the command output.
 
     ```
@@ -239,7 +241,7 @@ Follow the following steps to diagnose Spring Boot-based applications using Appl
 
 1. Confirm that the Application Live View components installed successfully. For instructions, see [Verify the Application Live View components](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-installing.html#verify-the-application-live-view-components-5).
 
-1. Access the Application Live View Tanzu Application Platform GUI. For instructions, see [Entry point to Application Live View plug-in](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.4/tap/GUID-tap-gui-plugins-app-live-view.html#entry-point-to-application-live-view-plugin-1).
+1. Access the Application Live View Tanzu Application Platform GUI. For instructions, see [Entry point to Application Live View plug-in](tap-gui/plugins/app-live-view.html#plug-in-entry-point).
 
 1. Select your running application to view the diagnostic options and inside the application. For more information, see [Product Features](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-product-features.html).
 
@@ -1130,8 +1132,7 @@ ClusterResource to reference and describe it.
     kubectl apply -f rabbitmq-clusterresource.yaml
     ```
 
-    For more information about `ClusterResource`, see the
-    [Service Offering for VMware Tanzu](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-service_offering-terminology_and_apis.html).
+    The creation of this `ClusterResource` referring to `RabbitmqCluster` is the mechanism by which the `tanzu service` CLI plug-in (as the following mentions ) verifies which resources to disply. For more information about `ClusterResource`, see [Service Offering for VMware Tanzu](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-service_offering-terminology_and_apis.html).
 
 
 ### <a id="same-namespace-use-case"></a> Use case 1: Binding an application to a pre-provisioned service instance running in the same namespace
@@ -1176,6 +1177,7 @@ RabbitMQ instance:
 
     >**Note:** Ensure your namespace has been setup to to use installed Tanzu Application Platform packages
     For more information, see [Set up developer namespaces to use installed packages](install-components.md#setup).
+    >**Note:** Ensure you have run through the [setup procedure](#con-serv-setup).
 
     1. Obtain a service reference by running:
 
@@ -1191,10 +1193,10 @@ RabbitMQ instance:
         ```
 
     2. Create the application workload and the `rabbitmq-sample` application hosted at
-    `https://github.com/jhvhs/rabbitmq-sample` by running:
+    `https://github.com/sample-accelerators/rabbitmq-sample` by running:
 
         ```
-        tanzu apps workload create rmq-sample-app-usecase-1 --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch v0.1.0 --type web --service-ref "rmq=<SERVICE-REF>"
+        tanzu apps workload create rmq-sample-app-usecase-1 --git-repo https://github.com/sample-accelerators/rabbitmq-sample --git-branch main --git-tag tap-1.0 --type web --service-ref "rmq=<SERVICE-REF>"
         ```
 
         Where `<SERVICE-REF>` is the value of `SERVICE REF` from the output in the last step.
@@ -1247,6 +1249,8 @@ for service instances.
     ```
 
 4. Obtain a service reference by running:
+
+    >**Note:** Ensure you have run through the [setup procedure](#con-serv-setup).
 
     ```
     $ tanzu service instances list --all-namespaces -owide
@@ -1357,7 +1361,7 @@ existing PostgreSQL database that exists in Azure.
     Example:
 
     ```
-    tanzu apps workload create <WORKLOAD-NAME> --git-repo https://github.com/spring-projects/spring-petclinic --git-branch main --type web --service-ref db=<REFERENCE>
+    tanzu apps workload create <WORKLOAD-NAME> --git-repo https://github.com/sample-accelerators/spring-petclinic --git-branch main --git-tag tap-1.0 --type web --service-ref db=<REFERENCE>
     ```
 
     Where:
@@ -1567,7 +1571,7 @@ Workload Cluster by running:
 12. Create the application workload by running:
 
     ```
-    tanzu apps workload create rmq-sample-app-usecase-4 --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch v0.1.0 --type web --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:service-instances:projected-rmq"
+    tanzu apps workload create rmq-sample-app-usecase-4 --git-repo https://github.com/sample-accelerators/rabbitmq-sample --git-branch main --git-tag tap-1.0 --type web --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:service-instances:projected-rmq"
     ```
 
 13. Get the web-app URL by running:

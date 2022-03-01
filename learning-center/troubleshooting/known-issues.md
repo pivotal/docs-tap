@@ -23,9 +23,9 @@ ERROR:kopf.objects:Handler 'learningcenter' failed temporarily: TLS secret tls i
 ```
 
 #### Solution:
-To recover from this issue, you can follow [these steps](../getting-started/learningcenter-operator.md#enforcing-secure-connections) to create the TLS Secret, once the TLS is created, **you need to redeploy the TrainingPortal resource.**
+To recover from this issue, you can follow [these steps](../getting-started/learning-center-operator.md#enforce-secure-connect) to create the TLS Secret, once the TLS is created, **you need to redeploy the TrainingPortal resource.**
 
-### <a id="image-policy-webhook-service-not-found"></a>image-policy-webhook-service not found
+### <a id="img-pol-wbhk-srvc-nt-fnd"></a>image-policy-webhook-service not found
 
 If you are installing a TAP profile, perhaps you are going to get this error.
 
@@ -53,7 +53,7 @@ However, the Training Portals doesn't work or get the updated values.
 #### Solution:
 By design, the Training Portal resources do not react to any changes on the parameters provided when the training portals were created, because any change on the `trainingportal` resource affects the online user who is running a workshop. To get the new values, you must redeploy the `trainingportal` in a maintenance window where learning center is unavailable while the `systemprofile` gets updated.
 
-## <a id="increase-cluster-resources"></a>Increase your cluster's resources
+## <a id="increase-cluster-rsrcs"></a>Increase your cluster's resources
 
 If you don't have enough nodes or enough resources on nodes for deploying the workloads, node pressure might occur.
 In this case, follow your cloud provider's instructions on how to scale out or scale up your cluster.

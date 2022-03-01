@@ -21,7 +21,7 @@ tanzu apps workload get my-workload
   -o, --output string    output the Workload formatted. Supported formats: "json", "yaml"
 ```
 
-## <a id="options-inherited-from-parent-commands"></a>Options inherited from parent commands
+## <a id="parent-commands-options"></a>Options inherited from parent commands
 
 ```
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
@@ -30,7 +30,7 @@ tanzu apps workload get my-workload
   -v, --verbose int32     number for the log level verbosity (default 1)
 ```
 
-## See also
+## <a id="see-also"></a> See also
 
 * [Tanzu apps workload](tanzu_apps_workload.md)	- Workload life cycle management
 

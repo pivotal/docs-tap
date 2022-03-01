@@ -18,7 +18,7 @@ tanzu apps cluster-supply-chain list
   -h, --help   help for list
 ```
 
-## <a id="options-inherited-from-parent-commands"></a>Options inherited from parent commands
+## <a id="parent-commands-options"></a>Options inherited from parent commands
 
 ```
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
@@ -27,7 +27,6 @@ tanzu apps cluster-supply-chain list
   -v, --verbose int32     number for the log level verbosity (default 1)
 ```
 
-## See also
+## <a id="see-also"></a> See also
 
 - [Tanzu apps cluster supply chain](tanzu_apps_cluster-supply-chain.md)	- Patterns for building and configuring workloads
-

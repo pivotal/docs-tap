@@ -19,6 +19,8 @@ instance of it running in a Kubernetes environment.
 
 ## <a id='inst-ootb-sc-basic'></a> Install
 
+To install Out of the Box Supply Chain Basic:
+
 1. Familiarize yourself with the set of values of the package that can be
    configured by running:
 

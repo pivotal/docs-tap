@@ -29,14 +29,16 @@ To install Services Toolkit:
     $ tanzu package available list -n tap-install services-toolkit.tanzu.vmware.com
     - Retrieving package versions for services-toolkit.tanzu.vmware.com...
       NAME                               VERSION           RELEASED-AT
-      services-toolkit.tanzu.vmware.com  0.5.0             2021-10-18T09:45:46Z
+      services-toolkit.tanzu.vmware.com  0.5.1             2022-03-08T09:00:00Z
     ```
 
 1. Install Services Toolkit by running:
 
     ```
-    tanzu package install services-toolkit -n tap-install -p services-toolkit.tanzu.vmware.com -v 0.5.0
+    tanzu package install services-toolkit -n tap-install -p services-toolkit.tanzu.vmware.com -v VERSION-NUMBER
     ```
+
+    Where `VERSION-NUMBER` is the Services Toolkit version you want to install. For example, `0.5.1`.
 
 1. Verify that the package installed by running:
 
@@ -53,9 +55,8 @@ To install Services Toolkit:
     | Retrieving installation details for services-toolkit...
     NAME:                    services-toolkit
     PACKAGE-NAME:            services-toolkit.tanzu.vmware.com
-    PACKAGE-VERSION:         0.5.0
+    PACKAGE-VERSION:         0.5.1
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
     ```
-    

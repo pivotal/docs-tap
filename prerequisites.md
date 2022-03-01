@@ -2,11 +2,11 @@
 
 The following are required to install Tanzu Application Platform:
 
-## <a id='tn-and-cont-img-reg-reqs'></a>Tanzu Network and container image registry requirements
+## <a id='tn-and-cont-img-reg-reqs'></a> VMware Tanzu Network and container image registry requirements
 
 Installation requires:
 
-- Access to Tanzu Net:
+- Access to VMware Tanzu Network:
 
   - A [Tanzu Network](https://network.tanzu.vmware.com/) account to download
 Tanzu Application Platform packages.
@@ -24,10 +24,8 @@ associated with some free registry offerings.
     - If installing using the `full` descriptor for Tanzu Build Service, which is intended for production use
     and offline environments, 10&nbsp;GB of available storage is recommended.
 
-- Registry credentials with push and write access made available to Tanzu Application Platform to
-store images.
-
-- Network access to https://registry.tanzu.vmware.com.
+- Registry credentials with read and write access made available to
+Tanzu Application Platform to store images.
 
 - Network access to your chosen container image registry.
 
@@ -69,17 +67,31 @@ The default hostname consists of `tap-gui` plus an `IngressDomain` of your choic
 
 ## <a id='k8s-cluster-reqs'></a>Kubernetes cluster requirements
 
-Installation requires:
+Installation requires Kubernetes cluster v1.20, v1.21, or v1.22 on one of the following Kubernetes
+providers:
 
-* Kubernetes cluster versions 1.20, 1.21, or 1.22 on one of the following Kubernetes providers:
+* Azure Kubernetes Service
+* Amazon Elastic Kubernetes Service
+* Google Kubernetes Engine
+    * GKE Autopilot clusters do not have required features enabled
+    * GKE clusters that are set up in zonal mode might detect Kubernetes API errors when the GKE
+    control plane is resized after traffic increases. Users can mitigate this by creating a
+    regional cluster with 3 control-plane nodes right from the start.
+* Minikube
+    * Reference the resource requirements below
+    * Hyperkit driver is supported on macOS only; Docker driver is not supported.
+* Tanzu Kubernetes Grid multi-cloud
+* vSphere with Tanzu v7.0 U3a (not possible with Tanzu Application Platform v1.0.0 or earlier).<br>
+For vSphere with Tanzu, [pod security policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/)
+must be configured so that Tanzu Application Platform controller pods can run as root.
+To set the pod security policies, run:
 
-    * Azure Kubernetes Service
-    * Amazon Elastic Kubernetes Service
-    * Google Kubernetes Engine
-        * GKE Autopilot clusters do not have required features enabled
-    * Minikube
-        * Reference the resource requirements below
-        * Hyperkit driver is supported on macOS only; Docker driver is not supported.
+    ```
+    kubectl create clusterrolebinding default-tkg-admin-privileged-binding --clusterrole=psp:vmware-system-privileged --group=system:authenticated
+    ```
+
+    For more information about Pod Security Policies on Tanzu for vSphere, see
+    [Using Pod Security Policies with Tanzu Kubernetes Clusters in VMware vSphere Product Documentation](https://docs.vmware.com/en/VMware-vSphere/7.0/vmware-vsphere-with-tanzu/GUID-CD033D1D-BAD2-41C4-A46F-647A560BAEAB.html).
 
 ## <a id="resource-requirements"></a>Resource requirements
 

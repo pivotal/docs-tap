@@ -11,8 +11,6 @@ For more information about profiles, see [Installing the Tanzu Application Platf
 >For more advanced details on installing Tanzu Build Service, see
 >[Installing Tanzu Build Service](https://docs.vmware.com/en/VMware-Tanzu-Build-Service/index.html).
 
-VMware Tanzu Build Service automates container creation, management, and governance at enterprise scale. Tanzu Build Service uses the open-source [Cloud Native Buildpacks](https://buildpacks.io/) project to turn application source code into container images. It executes reproducible builds aligned with modern container standards and keeps images up to date. For more information about Tanzu Build Service, see the [Tanzu Build Service Documentation](https://docs.vmware.com/en/VMware-Tanzu-Build-Service/index.html).
-
 ## <a id='tbs-prereqs'></a> Prerequisites
 
 Before installing Tanzu Build Service:
@@ -98,7 +96,7 @@ To install Tanzu Build Service by using the Tanzu CLI:
     ```
     Where:
 
-    - `REPOSITORY` is the fully qualified path to the TBS repository.
+    - `REPOSITORY` is the fully qualified path to the Tanzu Build Service repository.
     This path must be writable. For example:
 
         * Docker Hub: `my-dockerhub-account/build-service`
@@ -162,3 +160,62 @@ To install Tanzu Build Service by using the Tanzu CLI:
     ```
     tanzu package installed get tbs -n tap-install
     ```
+
+## <a id='tbs-tcli-install-offline'></a> Install Tanzu Build Service using the Tanzu CLI air-gapped
+
+Tanzu Build Service can be installed to a Kubernetes Cluster and registry that are air-gapped from external traffic.
+
+These steps assume that you have installed the TAP packages in your air-gapped environment.
+
+To install the Tanzu Build Service package air-gapped:
+
+1. Gather the values schema by running:
+
+    ```
+    tanzu package available get buildservice.tanzu.vmware.com/1.4.2 --values-schema --namespace tap-install
+    ```
+
+1. Create a `tbs-values.yaml` file. The required fields for an air-gapped installation are:
+
+    ```
+    ---
+    kp_default_repository: REPOSITORY
+    kp_default_repository_username: REGISTRY-USERNAME
+    kp_default_repository_password: REGISTRY-PASSWORD
+    ca_cert_data: CA-CERT-CONTENTS
+    ```
+
+    Where:
+
+    - `REPOSITORY` is the fully qualified path to the Tanzu Build Service repository. This path must be writable. For example:
+        * Harbor: `harbor.io/my-project/build-service`
+        * Artifactory: `artifactory.com/my-project/build-service`
+    - `REGISTRY-USERNAME` and `REGISTRY-PASSWORD` are the user name and password for the internal registry.
+    - `CA-CERT-CONTENTS` are the contents of the PEM-encoded CA certificate for the internal registry
+
+1. Install the package by running:
+
+    ```
+   tanzu package install tbs -p buildservice.tanzu.vmware.com -v 1.4.2 -n tap-install -f tbs-values.yaml
+    ```
+
+   For example:
+
+    ```
+    $ tanzu package install tbs -p buildservice.tanzu.vmware.com -v 1.4.2 -n tap-install -f tbs-values.yaml
+    | Installing package 'buildservice.tanzu.vmware.com'
+    | Getting namespace 'tap-install'
+    | Getting package metadata for 'buildservice.tanzu.vmware.com'
+    | Creating service account 'tbs-tap-install-sa'
+    | Creating cluster admin role 'tbs-tap-install-cluster-role'
+    | Creating cluster role binding 'tbs-tap-install-cluster-rolebinding'
+    | Creating secret 'tbs-tap-install-values'
+    - Creating package resource
+    - Package install status: Reconciling
+     Added installed package 'tbs' in namespace 'tap-install'
+    ```
+
+1. Keep Tanzu Build Service dependencies up-to-date.
+
+When installing Tanzu Build Service to an air-gapped environment, dependencies cannot be automatically pulled in from the external internet.
+So dependencies must be imported and kept up to date manually. To import dependencies to an air-gapped Tanzu Build Service, follow the official [Tanzu Build Service docs](https://docs.vmware.com/en/Tanzu-Build-Service/1.4/vmware-tanzu-build-service-v14/GUID-updating-deps.html#online-update).

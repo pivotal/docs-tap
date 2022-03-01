@@ -54,19 +54,19 @@ spec:
       ref:
         branch: main
 ```
-## <a id='autocompletion'></a>Autocompletion
+## <a id='autocompletion'></a> Autocompletion
 
 To enable command autocompletion, the Tanzu CLI offers the `tanzu completion` command.
 
 Add the following command to the shell config file according to the current setup. Use one of the following options:
 
-### Bash
+### <a id='bash'></a> Bash
 
 ```
 tanzu completion bash >  $HOME/.tanzu/completion.bash.inc
 ```
 
-### Zsh
+### <a id='zsh'></a> Zsh
 
 ```
 echo "autoload -U compinit; compinit" >> ~/.zshrc

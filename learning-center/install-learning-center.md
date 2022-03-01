@@ -1,4 +1,4 @@
-## Install Learning Center for Tanzu Application Platform
+# Install Learning Center
 
 This document describes how to install Learning Center
 from the Tanzu Application Platform package repository.
@@ -9,7 +9,7 @@ For more information about profiles, see [Installing the Tanzu Application Platf
 
 To install Tanzu Learning Center, see the following sections.
 
-For general information about Learning Center, see [Learning Center](about.md).
+For general information about Learning Center, see [Learning Center](about.md). For information about deploying Learning Center operator, see [Learning Center operator](../learning-center/getting-started/learningcenter-operator.md).
 
 ## <a id='prereqs'></a>Prerequisites
 
@@ -20,13 +20,13 @@ Before installing Learning Center:
 - The cluster must have an ingress router configured. If you have installed the TAP package through
 the full profile or light profile, it already deploys a contour ingress controller.
 
-- The operator, when deploying instances of the workshop environments, needs to be able to expose them via an external URL for access. For the custom domain you are using, DNS must have been configured with a wildcard domain to forward all requests for sub-domains of the custom domain to the ingress router of the Kubernetes cluster.
+- The operator, when deploying instances of the workshop environments, needs to be able to expose them through an external URL for access. For the custom domain you are using, DNS must have been configured with a wildcard domain to forward all requests for sub-domains of the custom domain to the ingress router of the Kubernetes cluster.
 
 - By default, the workshop portal and workshop sessions are accessible over HTTP connections. If you wish to use secure HTTPS connections, you must have access to a wildcard SSL certificate for the domain under which you wish to host the workshops. You cannot use a self-signed certificate.
 
 - Any ingress routes created use the default ingress class if you have multiple ingress class types available and you need to override which is used.
 
-### <a id='install-lc-proc'></a> Procedure to Install Learning Center
+### <a id='install'></a>Install
 
 To install Learning Center:
 
@@ -122,7 +122,7 @@ the `ingressClass` property in `learning-center-config.yaml` **before deploying 
     ingressClass: contour
     ```
 
-1. Install Learning Center Operator by running:
+1. Install Learning Center operator by running:
 
     **Remember to change the 0.x.x version**
     ```

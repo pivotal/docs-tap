@@ -3,7 +3,7 @@
 
 The REST API endpoints for session management allow you to request that a workshop session be allocated.
 
-## <a id="disable-portal-user-registration"></a>Disabling portal user registration
+## <a id="disable-portal-user-reg"></a>Disabling portal user registration
 
 When you use the REST API to trigger creation of workshop sessions, VMware recommends that you disable user registration through the training portal web interface. This means that only the admin user is able to directly access the web interface for the training portal.
 
@@ -64,7 +64,7 @@ The name of the query string parameter is `notification` and the possible values
 
 In prior versions, the name of the session was returned through the "session" property, whereas the "name" property is now used. To support older code using the REST API, the "session" property is still returned, but it is deprecated.
 
-## <a id="associate-sessions-with-user"></a>Associating sessions with a user
+## <a id="associate-sessions-user"></a>Associating sessions with a user
 
 When the workshop session is requested, a unique user account is created in the training portal each time. You can identify this account by using the `user` identifier, which is returned in the response.
 
@@ -119,7 +119,7 @@ The response is of the form:
 
 After a workshop has expired or has otherwise been shut down, the training portal no longer returns an entry for the workshop.
 
-## <a id="list-workshop-sessions"></a>Listing all workshop sessions
+## <a id="list-workshop-sessions"></a> Listing all workshop sessions
 
 To get a list of all running workshops sessions allocated to users, provide the `sessions=true` flag to the query string parameters of the REST API call. This lists the workshop environments available through the training portal.
 

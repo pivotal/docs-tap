@@ -23,9 +23,9 @@ and requirements of an organization.
 
 Before jumping into the details of creating a custom convention, let's look at two
 distinct components of Convention Service: the
-[convention controller](#conventioncontroller) and [convention server](#conventionserver).
+[convention controller](#convention-controller) and [convention server](#convention-server).
 
-### <a id='conventionserver'></a>Convention server
+### <a id='convention-server'></a>Convention server
 
 The convention server is the component that applies a convention already defined on the server.
 Each convention server can host one or more conventions.
@@ -49,9 +49,9 @@ the conventions are organized, grouped, and deployed is up to you and the needs 
 your organization.
 
 Convention servers deployed to the cluster will not take action unless triggered to
-do so by the second component of Convention Service, the [convention controller](#conventioncontroller).
+do so by the second component of Convention Service, the [convention controller](#convention-controller).
 
-### <a id='conventioncontroller'></a>Convention controller
+### <a id='convention-controller'></a>Convention controller
 
 The convention controller is the orchestrator of one or many convention servers deployed to the cluster.
 When the Supply Chain Choreographer creates or updates a PodIntent for a workload, the convention
@@ -92,7 +92,7 @@ The following prerequisites must be met before a convention can be developed and
 + The ko CLI is installed [from GitHub](https://github.com/google/ko).
   (These instructions use `ko` to build an image, but if there is an existing image or build process, `ko` is optional.)
 
-## <a id='server-behavior'></a> Define convention criteria
+## <a id='define-conv-criteria'></a> Define convention criteria
 
 The `server.go` file contains the configuration for the server and the logic the server applies when a workload matches the defined criteria.
 For example, adding a Prometheus sidecar to web applications, or adding a `workload-type=spring-boot` label to any workload that has metadata, indicating it is a Spring Boot app.  
@@ -248,11 +248,11 @@ For example, adding a Prometheus sidecar to web applications, or adding a `workl
         return server.ListenAndServeTLS("", "")
     }
     ```
-## <a id='targeting'></a> Define the convention behavior
+## <a id='define-conv-behavior'></a> Define the convention behavior
 
 Any property or value within the [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) or OCI image metadata associated with a workload can be used to define the criteria for applying conventions. The following are a few examples.  
 
-### <a id='matching-criteria-labels-annotations'></a> Matching criteria by labels or annotations
+### <a id='match-crit-labels-annot'></a> Matching criteria by labels or annotations
 
 When using labels or annotations to define whether a convention should be applied, the server checks the [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) of workloads.
 
@@ -298,7 +298,7 @@ When using labels or annotations to define whether a convention should be applie
  + `awesome-annotation` is the **annotation** that we want to validate.
  + `awesome-value` is the value that must have the **label**/**annotation**.
 
-### <a id='EnvironmentVariables'></a>Matching criteria by environment variables
+### <a id='match-criteria-env-var'></a> Matching criteria by environment variables
 
 When using environment variables to define whether the convention is applicable, it should be present in the [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec).[spec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#PodSpec).[containers](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#Container)[*].[env](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#environment-variables). and we can validate the value.
 
@@ -332,7 +332,7 @@ When using environment variables to define whether the convention is applicable,
         }
         ```
 
-### <a id='ImageMetadata'></a>Matching criteria by image metadata
+### <a id='match-crit-img-metadata'></a>Matching criteria by image metadata
 
 For each image contained within the PodTemplateSpec, the convention controller fetches the OCI image metadata and known [`bill of materials (BOMs)`](reference/bom.md) providing it to the convention server as [`ImageConfig`](./reference/image-config.md). This metadata can be introspected to make decisions about how to configure the PodTemplateSpec.
 
@@ -498,7 +498,7 @@ The `server.yaml` defines the Kubernetes components that enable the convention s
             # port: 443 # default
     ```
 
-## <a id=deploy-convention-server></a>Deploy a convention server
+## <a id="deploy-convention-server"></a> Deploy a convention server
 
 To deploy a convention server:
 

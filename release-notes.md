@@ -6,9 +6,13 @@ This topic contains release notes for Tanzu Application Platform v1.
 
 **Release Date**: MMMM DD, 2022
 
-### <a id='1-1-breaking-changes'></a> Breaking changes
+### <a id='1-1-new-features'></a> New Features
 
-This release has the following breaking changes:
+#### Tanzu Application Platform GUI
+[placeholder for Runtime Resources Plugin]
+
+
+### <a id='1-1-breaking-changes'></a> Breaking changes
 
 
 ### <a id='1-1-security-issues'></a> Security issues
@@ -18,88 +22,15 @@ This release has the following security issues:
 
 ### <a id='1-1-resolved-issues'></a> Resolved issues
 
-This release has the following fixes:
+#### Services Toolkit
 
-#### Tanzu Dev Tools for VSCode
-
-- v0.5.0 release does not install the extensions in the dependency "Extension Pack for Java". v0.5.2 installs "Debugger for Java" and "Language Support for Java(TM) by Red Hat" extensions directly instead of installing the extension pack.
-- Users can run "Configure Tasks", "Configure the Default Build Task", or "Launch Extension Host" when using the Tanzu Dev Tools extension in a workspace without a `workload.yaml` file.
-- Fixes [CVE 2022-0144](https://www.cvedetails.com/cve/CVE-2022-0144/)
-
+- Resolved an issue with the `tanzu services` CLI plug-in which meant it was not compatible with Kubernetes clusters running on GKE.
+- Fixed a potential race condition during reconciliation of ResourceClaims which might cause the Services Toolkit manager to stop responding.
+- Updated configuration of the Services Toolkit carvel Package to prevent an unwanted build up of ConfigMap resources.
 
 ### <a id='1-1-known-issues'></a> Known issues
 
-This release has the following issues:
 
-- The buildpack can't handle having both Maven and Gradle builds. The buildpack runs both, deleting the source after the Gradle build succeeds and then fails when the Maven build runs afterwards due to the Project Object Model(POM) being deleted after the Gradle build succeeded.
-
-#### Installing
-
-
-
-#### Application Accelerator
-
-
-
-#### Application Live View
-
-
-
-#### Convention Service
-
-
-
-#### Developer Conventions
-
-**Debug Convention might not apply:** If you upgraded from Tanzu Application Platform v0.4 then the
-the debug convention might not apply to the app run image. This is because of the missing SBOM data
-in the image.
-To prevent this issue, delete existing app images that were built using Tanzu Application Platform
-v0.4.
-
-
-#### Grype scanner
-
-
-
-#### Learning Center
-
-
-
-#### Supply Chain Choreographer
-
-
-
-#### Supply Chain Security Tools – Scan
-
-- **Scan controller pod fails:** If there is a misconfiguration
-(i.e. secretgen-controller not running, wrong CA secret name) after enabling the
-metadata store integration, the controller pod fails. The current workaround is
-to update the `tap-values.yaml` file with the proper configuration and update the application.
-- **Deleted resources keep reconciling:** After creating a scan CR and deleting it,
-the controllers keep trying to fetch the deleted resource, resulting in a `not found`
-or `unable to fetch` log entry with every reconciliation cycle.
-- **Scan controller crashes when Git clone fails:** If this occurs, confirm that
-the Git URL and the SSH credentials are correct.
-
-
-#### Supply Chain Security Tools - Sign
-
-
-
-#### Supply Chain Security Tools - Store
-
-
-
-#### Tanzu CLI
-
-
-
-#### Tanzu Dev Tools for VSCode
-
-
-
-#### Services Toolkit
 
 
 ## <a id='1-0'></a> v1.0
@@ -112,14 +43,13 @@ This release has the following issues:
 
 #### Installing
 
-When installing Tanzu Application Platform on Google Kubernetes Engine (GKE), Kubernetes control
+When you install Tanzu Application Platform on Google Kubernetes Engine (GKE), Kubernetes control
 plane can be unavailable for several minutes during the installation.
 Package installations can enter the `ReconcileFailed` state. When API server becomes available,
 packages try to reconcile to completion.
 
-This can happen on newly provisioned clusters which have not finished GKE API server autoscaling.
-When GKE scales up an API server, the current Tanzu Application install continues, and any
-subsequent installs succeed without interruption.
+This can happen on newly provisioned clusters that have not finished GKE API server autoscaling.
+When GKE scales up an API server, the current Tanzu Application install continues, and any subsequent installs succeed without interruption.
 
 #### Application Accelerator
 
@@ -199,7 +129,7 @@ run:
     ```
 
     To recover from this issue, you can follow
-    [these steps](learning-center/getting-started/learningcenter-operator.md#enforcing-secure-connections) to create the TLS Secret.
+    [these steps](learning-center/getting-started/learning-center-operator.md#enforce-secure-connect) to create the TLS Secret.
     After the TLS is created, redeploy the TrainingPortal resource.
 
 - **image-policy-webhook-service not found:** If you are installing a Tanzu Application Platform
@@ -259,6 +189,15 @@ You can run `kubectl describe` on the scan and look for `Scan completed. Found x
 without a `.git` directory is provided, sending results to the Supply Chain Security Tools - Store
 fails and the scanned revision value is not set. The current workaround is to add the `.git`
 directory to the compressed file.
+- **Scan controller pod fails:** If there is a misconfiguration
+(i.e. secretgen-controller not running, wrong CA secret name) after enabling the
+metadata store integration, the controller pod fails. The current workaround is
+to update the `tap-values.yaml` file with the proper configuration and update the application.
+- **Deleted resources keep reconciling:** After creating a scan CR and deleting it,
+the controllers keep trying to fetch the deleted resource, resulting in a `not found`
+or `unable to fetch` log entry with every reconciliation cycle.
+- **Scan controller crashes when Git clone fails:** If this occurs, confirm that
+the Git URL and the SSH credentials are correct.
 
 #### Supply Chain Security Tools - Sign
 

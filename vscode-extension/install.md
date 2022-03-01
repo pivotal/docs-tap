@@ -38,7 +38,7 @@ To configure VMware Tanzu Developer Tools for Visual Studio Code:
 1. Ensure that you are targeting the correct cluster. See [Configure Access to Multiple Clusters](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/) in the
 Kubernetes documentation.
 
-2. Select `Preferences` -> `Settings` -> `Extensions` -> `Tanzu` and set the following:
+2. Select `File` -> `Preferences` -> `Settings` -> `Extensions` -> `Tanzu` and set the following:
   - Source Image (required): Destination for an image containing source code to be published
     - Example: `your-registry.io/project/tanzu-java-web-app-source`
   - Local Path (optional): Path on the local file system to a directory of source code to build (defaults to current directory)

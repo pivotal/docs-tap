@@ -1,6 +1,10 @@
 # Tanzu apps workload create
 
-This topic helps you create a workload with a specified configuration.
+This topic helps you create a workload with the specified configuration.
+
+### <a id="synopsis"></a> Synopsis
+
+Create a workload with the specified configuration.
 
 Workload configuration options include:
 
@@ -24,11 +28,12 @@ tanzu apps workload create --file workload.yaml
 ## <a id="options"></a>Options
 
 ```
+      --annotation "key=value" pair    annotation is represented as a "key=value" pair, or "key-" to remove. This flag may be specified multiple times
       --app name                       application name the workload is a part of
       --debug                          put the workload in debug mode, --debug=false to disable
       --dry-run                        print kubernetes resources to stdout rather than apply them to the cluster, messages normally on stdout will be sent to stderr
       --env "key=value" pair           environment variables represented as a "key=value" pair, or "key-" to remove. This flag may be specified multiple times
-  -f, --file file path                 file path containing the description of a single workload, other flags are layered on top of this resource
+  -f, --file file path                 file path containing the description of a single workload, other flags are layered on top of this resource. Use value "-" to read from stdin
       --git-branch branch              branch within the git repo to checkout
       --git-commit SHA                 commit SHA within the git repo to checkout
       --git-repo url                   git url to remote source code
@@ -45,7 +50,7 @@ tanzu apps workload create --file workload.yaml
       --request-cpu cores              the minumum amount of cpu required, in CPU cores (500m = .5 cores)
       --request-memory bytes           the minumum amount of memory required, in bytes (500Mi = 500MiB = 500 * 1024 * 1024)
       --service-ref object reference   object reference for a service to bind to the workload "database=rabbitmq.com/v1beta1:RabbitmqCluster:[my-broker-ns]:my-broker", or "database-" to delete. This flag may be specified multiple times.
-      --source-image image             image containing source code to build
+      --source-image image             destination image repository where source code is staged before being built
       --tail                           show logs while waiting for workload to become ready
       --tail-timestamp                 show logs and add timestamp to each log line while waiting for workload to become ready
       --type type                      distinguish workload type
@@ -54,7 +59,7 @@ tanzu apps workload create --file workload.yaml
   -y, --yes                            accept all prompts
 ```
 
-## <a id="options-inherited-from-parent-commands"></a>Options inherited from parent commands
+## <a id="parent-commands-options"></a> Options inherited from parent commands
 
 ```
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
@@ -63,6 +68,6 @@ tanzu apps workload create --file workload.yaml
   -v, --verbose int32     number for the log level verbosity (default 1)
 ```
 
-## See also
+## <a id="see-also"></a> See also
 
 - [Tanzu Apps Workload](tanzu_apps_workload.md) - Workload life cycle management

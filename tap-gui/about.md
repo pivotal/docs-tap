@@ -14,15 +14,16 @@ Tanzu Application Platform GUI is comprised of the following components:
   The catalog serves as the primary visual representation of your running services (Components) and
   Applications (Systems).
 
-* **Tanzu Application Platform GUI plug-ins:**
-  These plug-ins expose capabilities regarding specific Tanzu Application Platform tools.
-  Initially the included plug-ins are:
+* **Tanzu Application Platform GUI plugins:**
+  These plugins expose capabilities regarding specific Tanzu Application Platform tools.
+  Initially the included plugins are:
   * Runtime Resources Visibility
   * Application Live View
   * Application Accelerator
+  * API Documentation
 
 * **TechDocs:**
-  This plug-in enables you to store your technical documentation in Markdown format in a source-code
+  This plugin enables you to store your technical documentation in Markdown format in a source-code
   repository and display it alongside the relevant catalog entries.
 
   ![Tanzu Application Platform Catalog](./images/tap-gui-catalog.png)

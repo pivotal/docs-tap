@@ -40,8 +40,10 @@ Error logs are always outputted regardless of the log level, even when set to `m
 
 ## <a id='obtain-logs'></a> Obtaining logs
 
-Logs are emitted by the Kubernetes pods. The deployment has two pods: one for the database and one
-for the API back end. First, use `kubectl get pods` to obtain the names of the pods.
+Kubernetes pods emit logs. The deployment has two pods: one for the database and one
+for the API back end. 
+
+Use `kubectl get pods` to obtain the names of the pods by running:
 
 ```console
 kubectl get pods -n metadata-store
@@ -58,7 +60,7 @@ metadata-store-db-64d5b88587-8dns7    1/1     Running   0          4d3h
 
 The database pod has prefix `metadata-store-db-` and the API backend pod has the prefix
 `metadata-store-app-`. Use `kubectl logs` to get the logs from the pod you're interested in.
-For example, if you wanted to see the logs of the database pod from the above example:
+For example, to see the logs of the database pod, run:
 
 ```console
 $ kubectl logs metadata-store-db-64d5b88587-8dns7 -n metadata-store
@@ -67,7 +69,7 @@ This user must also own the server process.
 ...
 ```
 
-For the API backend, its pod has two containers, one for `kube-rbac-proxy`, and the other for the
+The API backend pod has two containers, one for `kube-rbac-proxy`, and the other for the
 API server. Use the `--all-containers` flag to see logs from both containers. For example:
 
 ```console

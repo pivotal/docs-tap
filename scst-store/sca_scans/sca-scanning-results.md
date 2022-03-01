@@ -51,14 +51,14 @@ Software Composition Analysis scanning
 
 ### <a id='cves'></a>CVEs:
 #### <a id='bdba'></a>BDBA
-No vulnerabilities found in both the binaries of the API backend and CLI.
+No vulnerabilities were found in the API backend and CLI binaries.
 
 See BDBA reports:
 * [API backend report](store-bdba-scan-2021-11-26.jpg)
 * [CLI report](cli-bdba-scan-2021-11-26.jpg)
 
 #### <a id='grype-cr'></a>Grype
-No vulnerabilities found through scanning the sources of the API backend, client lib, and CLI
+No vulnerabilities were found scanning the API backend sources, client lib, and CLI.
 
 The following CVEs were found through scanning the API backend image:
 ```

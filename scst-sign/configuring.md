@@ -3,6 +3,17 @@
 This component requires extra configuration steps to start verifying your
 container images properly.
 
+> **Note:**
+
+> - The instructions in this section only apply to the deployment namespace of
+Supply Chain Security Tools - Sign. In most cases, this namespace is
+rendered as the default namespace `image-policy-system`.
+
+> - If you deployed Supply Chain Security Tools - Sign by using a customized
+namespace specified in the installation values file, replace `image-policy-system`
+with the namespace name that you specified in `deployment_namespace` before
+performing the configuration steps.
+
 ## <a id="create-cip-resource"></a> Create a `ClusterImagePolicy` resource
 
 The cluster image policy is a custom resource containing the following properties:
@@ -115,7 +126,7 @@ protected by authentication, in order:
 container image name pattern that matches the container being admitted.
 
 1. [Reading `imagePullSecrets` from the `image-policy-registry-credentials` service account](#provide-secrets-iprc-sa)
-in the `image-policy-system` namespace.
+in the deployment namespace.
 
 > **Note:** Authentication fails in the following scenario:
 
@@ -135,7 +146,7 @@ as part of your policy configuration.
 
 1. Create secret resources and include them in the `image-policy-registry-credentials`
 service account. The service account and the secrets must be created in the
-`image-policy-system` namespace.
+deployment namespace.
 
 ### <a id="provide-pol-auth-secrets"></a> Provide secrets for authentication in your policy
 
@@ -179,7 +190,7 @@ spec:
 ```
 
 > **Note**: You may need to grant the service account
-> `image-policy-controller-manager` in the namespace `image-policy-system` RBAC
+> `image-policy-controller-manager` in the deployment namespace RBAC
 > permissions for the verbs `get` and `list` in the namespace that hosts
 > your secrets.
 
@@ -191,7 +202,7 @@ privilege that allows reading the signature stored in your registry.
 If you prefer to provide your secrets in the `image-policy-registry-credentials`
 service account, follow these steps:
 
-1. Create the required secrets in the `image-policy-system` namespace (once per secret):
+1. Create the required secrets in the deployment namespace (once per secret):
 
     ```
     kubectl create secret docker-registry SECRET-1 \
@@ -201,8 +212,9 @@ service account, follow these steps:
       --docker-password=<password>
     ```
 
-1. Create the `image-policy-registry-credentials` in the `image-policy-system`
-namespace and add the secret names from step 1 to the `imagePullSecrets` section:
+1. Create the `image-policy-registry-credentials` service account in the
+deployment namespace and add the secret name (one or more) in the previous step to the
+`imagePullSecrets` section:
 
     ```
     cat <<EOF | kubectl apply -f -
