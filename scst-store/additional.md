@@ -20,7 +20,7 @@ For more information, see [Deployment Details and Configuration](deployment_deta
 
 ## Additional documentation
 
-* [AWS RDS Postgres configuration](scst-store/use_aws_rds.md)
+* [AWS RDS Postgres configuration](use_aws_rds.md)
 * <a id='audit'></a>[Log configuration and usage](logs.md)
 * <a id='known-issues'></a>[Troubleshooting and Known Issues](known_issues.md)
 * <a id='backup'></a>[Backup suggestions](backups.md)
