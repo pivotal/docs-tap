@@ -121,7 +121,6 @@ This is the table of contents from which the Tanzu Application Platform Document
       - [Logs messages and reasons](scst-sign/logs.md)
     - [Supply Chain Security Tools for Tanzu – Store](scst-store/overview.md)
         - [Install Supply Chain Security Tools - Store](scst-store/install-scst-store.md)
-        - CLI
           - [CLI installation](scst-store/cli_installation.md)
           - [CLI configuration](scst-store/cli_configuration.md)
           - [Configure target endpoint and certificate](scst-store/using_encryption_and_connection.md)
