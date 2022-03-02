@@ -52,7 +52,7 @@ To resolve this issue:
 7. In the macOS prompt window, click **Open**.
 
 
-## <a id='access-error-details'></a> Access `.status.usefulErrorMessage` Details
+### <a id='access-error-details'></a> Access `.status.usefulErrorMessage` details
 
 When installing Tanzu Application Platform, you receive an error message that includes the following:
 
@@ -60,11 +60,11 @@ When installing Tanzu Application Platform, you receive an error message that in
 (message: Error (see .status.usefulErrorMessage for details))
 ```
 
-### Explanation
+#### Explanation
 
 A package fails to reconcile and you must access the details in `.status.usefulErrorMessage`.
 
-### Solution
+#### Solution
 
 Access the details in `.status.usefulErrorMessage` by running:
 
@@ -74,7 +74,7 @@ kubectl get PACKAGE-NAME grype -n tap-install -o yaml
 
 Where `PACKAGE-NAME` is the name of the package to target.
 
-## <a id='unauthorized'></a> Unauthorized to Access Error
+### <a id='unauthorized'></a> "Unauthorized to access" error
 
 When running the `tanzu package install` command, you receive an error message that includes the error:
 
@@ -94,11 +94,11 @@ Example:
 
 >**Note:** This example shows an error received when with Application Live View as the package. This error can also occur with other packages.
 
-### Explanation
+#### Explanation
 
 The Tanzu Network credentials needed to access the package may be missing or incorrect.
 
-### Solution
+#### Solution
 
 To resolve this issue:
 
@@ -114,7 +114,7 @@ To resolve this issue:
   For instructions, see
 	[Verify the Installed Packages](install-components.html#verify) in _Installing Individual Packages_.
 
-## <a id='existing-service-account'></a> Already Existing Service Account Error
+### <a id='existing-service-account'></a> "Serviceaccounts already exists" error
 
 When running the `tanzu package install` command, you receive the following error:
 
@@ -132,11 +132,11 @@ Example:
 
 >**Note:** This example shows an error received with App Accelerator as the package. This error can also occur with other packages.
 
-### Explanation
+#### Explanation
 
 The `tanzu package install` command may be executed again after failing.
 
-### Solution
+#### Solution
 
 To update the package, run the following command after the first use of the `tanzu package install` command
 
@@ -144,7 +144,7 @@ To update the package, run the following command after the first use of the `tan
 tanzu package installed update
 ```
 
-## <a id='failed-reconcile'></a> After package installation, one or more packages fails to reconcile
+### <a id='failed-reconcile'></a> After package installation, one or more packages fails to reconcile
 
 You run the `tanzu package install` command and one or more packages fails to install.
 For example:
@@ -170,7 +170,7 @@ For example:
   Error: exit status 1
   ```
 
-### Explanation
+#### Explanation
 
 Often, the cause is one of the following:
 
@@ -183,7 +183,7 @@ The VMware Carvel tools kapp-controller continues to try in a reconciliation loo
 However, if the reconciliation status is `failed` then there might be a configuration issue
 in the provided `tap-config.yml` file.
 
-### Solution
+#### Solution
 
 1. Verify if the installation is still in progress by running:
 
@@ -280,17 +280,17 @@ If none exists, and you are unable to fix the described issue yourself, please c
 
 1. Repeat these diagnosis steps for any other packages that failed to reconcile.
 
-## <a id='eula-error'></a> Failure to Accept an End User License Agreement Error
+### <a id='eula-error'></a> Failure to accept an End User License Agreement error
 
 You cannot access Tanzu Application Platform or one of its components from
 VMware Tanzu Network.
 
-### Explanation
+#### Explanation
 
 You cannot access Tanzu Application Platform or one of its components from
 VMware Tanzu Network before accepting the relevant EULA in VMware Tanzu Network.
 
-### Solution
+#### Solution
 
 Follow the steps in [Accept the End User License Agreements](install-tanzu-cli.html#accept-eulas) in
 _Installing the Tanzu CLI_.
@@ -298,7 +298,7 @@ _Installing the Tanzu CLI_.
 
 ## <a id="troubleshoot-tap-usage"></a>Issues using Tanzu Application Platform  
 
-### <a id='missing-build-logs'></a> Missing Build Logs after Creating a Workload
+### <a id='missing-build-logs'></a> Missing build logs after creating a workload
 
 You create a workload, but no logs appear when you check for logs by running the following command:
 
@@ -323,7 +323,7 @@ To resolve this issue, run each of the following commands to receive the relevan
 - ```kubectl get build.kpack.io -o yaml```
 
 
-## <a id='error-update'></a> Workload Already Exists Error after Updating the Workload
+### <a id='error-update'></a> "Workload already exists" error after updating the workload
 
 When you update the workload, you receive the following error:
 
@@ -351,16 +351,16 @@ Error: workload "default/tanzu-java-web-app" already exists
 Error: exit status 1
 ```
 
-### Explanation
+#### Explanation
 
 The app is running before performing a live update using the same app name.
 
-### Solution
+#### Solution
 
 To resolve this issue, either delete the app or use a different name for the app.
 
 
-## <a id='telemetry-fails-fetching-secret'></a> Telemetry Component Logs Show Errors Fetching the "reg-creds" Secret
+### <a id='telemetry-fails-fetching-secret'></a> Telemetry component logs show errors fetching the "reg-creds" secret
 
 When you view the logs of the `tap-telemetry` controller by running `kubectl logs -n
 tap-telemetry <tap-telemetry-controller-<hash> -f`, you see the following error:
@@ -369,14 +369,14 @@ tap-telemetry <tap-telemetry-controller-<hash> -f`, you see the following error:
   "Error retrieving secret reg-creds on namespace tap-telemetry","error":"secrets \"reg-creds\" is forbidden: User \"system:serviceaccount:tap-telemetry:controller\" cannot get resource \"secrets\" in API group \"\" in the namespace \"tap-telemetry\""
   ```
 
-### Explanation
+#### Explanation
 
 The `tap-telemetry` namespace misses a Role that allows the controller to list secrets in the
 `tap-telemetry` namespace. For more information about Roles, see
 [Role and ClusterRole](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#role-and-clusterrole)
 in _Using RBAC Authorization_ in the Kubernetes documentation.
 
-### Solution
+#### Solution
 
 To resolve this issue, run:
 
@@ -384,29 +384,28 @@ To resolve this issue, run:
 kubectl patch roles -n tap-telemetry tap-telemetry-controller --type='json' -p='[{"op": "add", "path": "/rules/-", "value": {"apiGroups": [""],"resources": ["secrets"],"verbs": ["get", "list", "watch"]} }]'
 ```
 
-## <a id='debug-convention'></a> Debug convention may not apply
+### <a id='debug-convention'></a> Debug convention may not apply
 
 If you upgrade from Tanzu Application Platform v0.4, the debug convention may not apply to the app run image.
 
-### Explanation
+#### Explanation
 
 The Tanzu Application Platform v0.4 lacks SBOM data.
 
-### Solution
+#### Solution
 
 Delete existing app images that were built using Tanzu Application Platform v0.4.
 
-## <a id='build-scripts-lack-execute-bit'></a> Execute Bit Not Set for App Accelerator Build Scripts
+### <a id='build-scripts-lack-execute-bit'></a> Execute bit not set for App Accelerator build scripts
 
 You cannot execute a build script provided as part of an accelerator.
 
-### Explanation
+#### Explanation
 
 Build scripts provided as part of an accelerator do not have the execute bit set when a new
 project is generated from the accelerator.
 
-
-### Solution
+#### Solution
 
 Explicitly set the execute bit by running the `chmod` command:
 
@@ -421,15 +420,15 @@ For example, for a project generated from the "Spring PetClinic" accelerator, ru
 chmod +x ./mvnw
 ```
 
-## <a id='no-live-information'></a> No Live Information for Pod with ID Error
+### <a id='no-live-information'></a> "No live information for pod with ID" error
 
 After deploying Tanzu Application Platform workloads, the Tanzu Application Platform GUI shows a "No live information for pod with ID" error.
 
-### Explanation
+#### Explanation
 
 The connector must discover the application instances and render the details in Tanzu Application Platform GUI.
 
-### Solution
+#### Solution
 
 Recreate the Application Live View Connector pod by running:
 
@@ -439,7 +438,7 @@ kubectl -n app-live-view delete pods -l=name=application-live-view-connector
 
 This allows the connector to discover the application instances and render the details in Tanzu Application Platform GUI.
 
-## <a id='image-policy-webhook-service-not-found'></a> "image-policy-webhook-service not found" Error
+### <a id='image-policy-webhook-service-not-found'></a> "image-policy-webhook-service not found" error
 
 When installing a Tanzu Application Platform profile, you receive the following error:
 
@@ -447,62 +446,33 @@ When installing a Tanzu Application Platform profile, you receive the following 
 Internal error occurred: failed calling webhook "image-policy-webhook.signing.apps.tanzu.vmware.com": failed to call webhook: Post "https://image-policy-webhook-service.image-policy-system.svc:443/signing-policy-check?timeout=10s": service "image-policy-webhook-service" not found
 ```
 
-### Explanation
+#### Explanation
 
 The "image-policy-webhook-service" service cannot be found.
 
-### Solution
+#### Solution
 
 Redeploy the `trainingPortal` resource.
 
-## <a id='cannot-update-parameters'></a> Cannot Update Parameters
-
-The Training Portals do not work or do not show updated parameters.
-
-Run one of the following commands to validate changes made to parameters provided to the Learning
-Center Operator. These parameters include ingressDomain, TLS secret, ingressClass, and others.
-
-Command:
-```
-kubectl describe systemprofile
-```
-
-Command:
-```
-kubectl describe pod  -n learningcenter
-```
-
-### Explanation
-
-By design, the Training Portal resources do not react to any changes on the parameters provided
-when the training portals were created. This prevents any change on the `trainingportal` resource
-from affecting any online user running a workshop.
-
-### Solution
-
-Redeploy `trainingportal` in a maintenance window where Learning Center is unavailable while the
-`systemprofile` is updated.
-
-
-## <a id='increase-cluster-resources'></a> Increase Your Cluster Resources Error
+### <a id='increase-cluster-resources'></a> Increase your cluster resources error
 
 You receive an "Increase your cluster's resources" error.
 
-### Explanation
+#### Explanation
 
 Node pressure may be caused by an insufficient number of nodes or a lack of resources on nodes
 necessary to deploy the workloads that you have.
 
-### Solution
+#### Solution
 
 Follow instructions from your cloud provider to scale out or scale up your cluster.
 
-## <a id='pod-admission-prevented'></a> MutatingWebhookConfiguration Prevents Pod Admission
+### <a id='pod-admission-prevented'></a> MutatingWebhookConfiguration prevents pod admission
 
 Admission of all pods is prevented when the `image-policy-controller-manager` deployment pods do not
 start before the `MutatingWebhookConfiguration` is applied to the cluster.
 
-### Explanation
+#### Explanation
 
 Pods can be prevented from starting if nodes in a cluster are scaled to zero and the webhook is
 forced to restart at the same time as other system components. A deadlock can occur when some
@@ -517,6 +487,7 @@ Events:
   ----     ------            ----                  ----                   -------
   Warning  FailedCreate      4m28s                 replicaset-controller  Error creating: Internal error occurred: failed calling webhook "image-policy-webhook.signing.apps.tanzu.vmware.com": Post "https://image-policy-webhook-service.image-policy-system.svc:443/signing-policy-check?timeout=10s": no endpoints available for service "image-policy-webhook-service"
 ```
+
 ```
 Events:
   Type     Reason            Age                   From                   Message
@@ -524,7 +495,7 @@ Events:
   Warning FailedCreate 10m replicaset-controller Error creating: Internal error occurred: failed calling webhook "image-policy-webhook.signing.apps.tanzu.vmware.com": Post "https://image-policy-webhook-service.image-policy-system.svc:443/signing-policy-check?timeout=10s": service "image-policy-webhook-service" not found
 ```
 
-### Solution
+#### Solution
 
 Delete the MutatingWebhookConfiguration resource to resolve the deadlock and enable the system to
 restart. After the system is stable, restore the MutatingWebhookConfiguration resource to re-enable
@@ -553,7 +524,7 @@ image signing enforcement.
     kubectl apply -f image-policy-mutating-webhook-configuration.yaml
     ```
 
-## <a id='priority-class-preempts'></a> Priority Class of Webhook's Pods Preempts Less Privileged Pods
+### <a id='priority-class-preempts'></a> Priority class of webhook's pods preempts less privileged pods
 
 When viewing the output of `kubectl get events`, you see events similar to the following:
 
@@ -563,13 +534,13 @@ LAST SEEN   TYPE      REASON             OBJECT               MESSAGE
 28s         Normal    Preempted          pod/testpod          Preempted by image-policy-system/image-policy-controller-manager-59dc669d99-frwcp on node test-node
 ```
 
-### Explanation
+#### Explanation
 
 The Supply Chain Security Tools - Sign component uses a privileged `PriorityClass` to start its pods
 to prevent node pressure from preempting its pods. This can cause less privileged components to have
 their pods preempted or evicted instead.
 
-### Solution
+#### Solution
 
 - **Solution 1: Reduce the number of pods deployed by the Sign component:**
     If your deployment of the Sign component runs more pods than necessary, scale down the deployment
@@ -599,7 +570,7 @@ their pods preempted or evicted instead.
     necessary to deploy the workloads that you have. Follow instructions from your cloud provider
     to scale out or scale up your cluster.
 
-## <a id='password-authentication-fails'></a> CrashLoopBackOff from Password Authentication Fails
+### <a id='password-authentication-fails'></a> CrashLoopBackOff from password authentication fails
 
 Supply Chain Security Tools - Store does not start. You see the following error in the
 `metadata-store-app` Pod logs:
@@ -610,11 +581,11 @@ Supply Chain Security Tools - Store does not start. You see the following error 
     [error] failed to initialize database, got error failed to connect to `host=metadata-store-db user=metadata-store-user database=metadata-store`: server error (FATAL: password authentication failed for user "metadata-store-user" (SQLSTATE 28P01))
     ```
 
-### Explanation
+#### Explanation
 
 The database password has been changed between deployments. This is not supported.
 
-### Solution
+#### Solution
 
 Redeploy the app either with the original database password or follow these steps below to erase the
 data on the volume:
@@ -640,7 +611,7 @@ data on the volume:
 1. Deploy the `metadata-store` app with kapp.
 
 
-## <a id='password-authentication-fails'></a> Password Authentication Fails
+### <a id='password-authentication-fails'></a> Password authentication fails
 
 Supply Chain Security Tools - Store does not start. You see the following error in the
 `metadata-store-app` Pod logs:
@@ -651,11 +622,11 @@ $ kubectl logs pod/metadata-store-app-* -n metadata-store -c metadata-store-app
 [error] failed to initialize database, got error failed to connect to `host=metadata-store-db user=metadata-store-user database=metadata-store`: server error (FATAL: password authentication failed for user "metadata-store-user" (SQLSTATE 28P01))
 ```
 
-### Explanation
+#### Explanation
 
 The database password has been changed between deployments. This is not supported.
 
-### Solution
+#### Solution
 
 Redeploy the app either with the original database password or follow these steps below to erase the
 data on the volume:
@@ -681,16 +652,16 @@ data on the volume:
 1. Deploy the `metadata-store` app with kapp.
 
 
-## <a id='metadata-store-db-fails-to-start'></a> `metadata-store-db` Pod Fails to Start
+### <a id='metadata-store-db-fails-to-start'></a> `metadata-store-db` pod fails to start
 
 When Supply Chain Security Tools - Store is deployed, deleted, and then redeployed, the `metadata-store-db`
 Pod fails to start if the database password changed during redeployment.
 
-### Explanation
+#### Explanation
 
 The persistent volume used by postgres retains old data, even though the retention policy is set to `DELETE`.
 
-### Solution
+#### Solution
 
 Redeploy the app either with the original database password or follow these steps below to erase the
 data on the volume:
@@ -716,18 +687,18 @@ data on the volume:
 1. Deploy the `metadata-store` app with kapp.
 
 
-## <a id='missing-persistent-volume'></a> Missing Persistent Volume
+### <a id='missing-persistent-volume'></a> Missing persistent volume
 
 After Supply Chain Security Tools - Store is deployed, `metadata-store-db` Pod fails for missing volume
 while `postgres-db-pv-claim` pvc is in the `PENDING` state.
 
-### Explanation
+#### Explanation
 
 The cluster where Supply Chain Security Tools - Store is deployed does not have `storageclass`
 defined. The provisioner of `storageclass` is responsible for creating the persistent volume after
 `metadata-store-db` attaches `postgres-db-pv-claim`.
 
-### Solution
+#### Solution
 
 1. Verify that your cluster has `storageclass` by running:
     ```

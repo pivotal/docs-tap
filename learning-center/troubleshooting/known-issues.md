@@ -7,11 +7,11 @@ for Learning Center.
 
 The training portal stays in a "pending" state.
 
-### Explanation
+**Explanation**
 
 The TLS secret `tls` is not available.
 
-### Solution
+**Solution**
 
 1. Access the operator logs by running:
 
@@ -33,33 +33,52 @@ The TLS secret `tls` is not available.
 
 1. Redeploy the `trainingPortal` resource.
 
-### <a id="img-pol-wbhk-srvc-nt-fnd"></a>image-policy-webhook-service not found
+## <a id="img-pol-wbhk-srvc-nt-fnd"></a>image-policy-webhook-service not found
 
-If you are installing a TAP profile, perhaps you are going to get this error.
+You are installing a TAP profile and you get this error:
 
 ```
 Internal error occurred: failed calling webhook "image-policy-webhook.signing.run.tanzu.vmware.com": failed to call webhook: Post "https://image-policy-webhook-service.image-policy-system.svc:443/signing-policy-check?timeout=10s": service "image-policy-webhook-service" not found
 ```
 
-#### Solution:
-This is a race condition error among some packages, to recover from this error you only need to redeploy the trainingPortal resource.
+**Explanation**
 
-## <a id="update-parameters"></a>Updating parameters don't work
+This is a race condition error among some packages.
 
-Normally you will need to update some parameters provided to the Learning Center Operator (E.g. ingressDomain, TLS secret, ingressClass etc), depending the way you used to change the values, you can execute these commands to validate if the parameters were changed:
+**Solution**
+
+To recover from this error you only need to redeploy the trainingPortal resource.
+
+## <a id='cannot-update-parameters'></a> Cannot update parameters
+
+The training portals do not work or do not show updated parameters.
+
+Run one of the following commands to validate changes made to parameters provided to the Learning
+Center Operator. These parameters include ingressDomain, TLS secret, ingressClass, and others.
+
+Command:
 
 ```
 kubectl describe systemprofile
 ```
-or
+
+Command:
+
 ```
 kubectl describe pod  -n learningcenter
 ```
 
-However, the Training Portals doesn't work or get the updated values.
+**Explanation**
 
-#### Solution:
-By design, the Training Portal resources do not react to any changes on the parameters provided when the training portals were created, because any change on the `trainingportal` resource affects the online user who is running a workshop. To get the new values, you must redeploy the `trainingportal` in a maintenance window where learning center is unavailable while the `systemprofile` gets updated.
+By design, the training portal resources do not react to any changes on the parameters provided
+when the training portals were created. This prevents any change on the `trainingportal` resource
+from affecting any online user running a workshop.
+
+**Solution**
+
+Redeploy `trainingportal` in a maintenance window where Learning Center is unavailable while the
+`systemprofile` is updated.
+
 
 ## <a id="increase-cluster-rsrcs"></a>Increase your cluster's resources
 
