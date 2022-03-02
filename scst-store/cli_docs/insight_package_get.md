@@ -1,4 +1,4 @@
-# Insight package get
+# Tanzu insight package get
 
 Get package by name, version, and package manager.
 
@@ -7,13 +7,13 @@ Get package by name, version, and package manager.
 Get package by name, version, and package manager.
 
 ```
-insight package get --name <package name> --version <package version> --pkgmngr Unknown [--format <format>] [flags]
+tanzu insight package get --name <package name> --version <package version> --pkgmngr Unknown [--format <format>] [flags]
 ```
 
 ## <a id='examples'></a>Examples
 
 ```
-insight package get --name client --version 1.0.0a --pkgmngr Unknown
+tanzu insight package get --name client --version 1.0.0a --pkgmngr Unknown
 ```
 
 ## <a id='options'></a>Options
@@ -28,4 +28,4 @@ insight package get --name client --version 1.0.0a --pkgmngr Unknown
 
 ## <a id='see-also'></a>See also
 
-* [insight package](insight_package.md)	 - Package commands
+* [Tanzu insight package](insight_package.md)	 - Package commands

@@ -1,4 +1,4 @@
-## Insight Config Set-Target
+## Tanzu insight config set-target
 
 Set the metadata store endpoint.
 
@@ -7,13 +7,13 @@ Set the metadata store endpoint.
 Set the target endpoint for the metadata store.
 
 ```
-insight config set-target <endpoint> [--ca-cert <ca certificate path to verify peer against>] [--access-token <kubernetes service account access token>] [flags]
+tanzu insight config set-target <endpoint> [--ca-cert <ca certificate path to verify peer against>] [--access-token <kubernetes service account access token>] [flags]
 ```
 
 ### <a id='examples'></a>Examples
 
 ```
-insight config set-target https://localhost:8443 --ca-cert=/tmp/ca.crt --access-token eyJhbGc...
+tanzu insight config set-target https://localhost:8443 --ca-cert=/tmp/ca.crt --access-token eyJhbGc...
 ```
 
 ### <a id='options'></a>Options
@@ -26,4 +26,4 @@ insight config set-target https://localhost:8443 --ca-cert=/tmp/ca.crt --access-
 
 ### <a id='see-also'></a>See also
 
-* [insight config](insight_config.md)	 - Config commands
+* [Tanzu insight config](insight_config.md)	 - Config commands

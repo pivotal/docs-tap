@@ -1,4 +1,4 @@
-# Insight source vulnerabilities
+# Tanzu insight source vulnerabilities
 
 Get source vulnerabilities.
 
@@ -7,13 +7,13 @@ Get source vulnerabilities.
 Get source vulnerabilities. You can specify either commit or repo.
 
 ```
-insight source vulnerabilities [--commit <commit-hash>] [--repo <repo-url>] [--format <format>] [flags]
+tanzu insight source vulnerabilities [--commit <commit-hash>] [--repo <repo-url>] [--format <format>] [flags]
 ```
 
 ## <a id='examples'></a>Examples
 
 ```
-insight sources vulnerabilities --commit eb55fc13
+tanzu insight sources vulnerabilities --commit eb55fc13
 ```
 
 ## <a id='options'></a>Options
@@ -27,4 +27,4 @@ insight sources vulnerabilities --commit eb55fc13
 
 ## <a id='see-also'></a>See also
 
-* [insight source](insight_source.md)	 - Source commands
+* [Tanzu insight source](insight_source.md)	 - Source commands

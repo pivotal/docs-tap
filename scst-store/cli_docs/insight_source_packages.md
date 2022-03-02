@@ -1,4 +1,4 @@
-# Insight source packages
+# Tanzu insight source packages
 
 Get source packages.
 
@@ -7,13 +7,13 @@ Get source packages.
 Get source packages.
 
 ```
-insight source packages [--commit <commit-hash>] [--repo <repo-url>] [--format <format>] [flags]
+tanzu insight source packages [--commit <commit-hash>] [--repo <repo-url>] [--format <format>] [flags]
 ```
 
 ## <a id='examples'></a>Examples
 
 ```
-insight sources packages --commit 0b1b659907 --format json
+tanzu insight sources packages --commit 0b1b659907 --format json
 ```
 
 ## <a id='options'></a>Options
@@ -27,4 +27,4 @@ insight sources packages --commit 0b1b659907 --format json
 
 ## <a id='see-also'></a>See also
 
-* [insight source](insight_source.md)	 - Source commands
+* [Tanzu insight source](insight_source.md)	 - Source commands

@@ -1,15 +1,15 @@
-# Insight source add
+# Tanzu insight source add
 
 Add a source report from a report file:
 
 ```
-insight source add [flags]
+tanzu insight source add [flags]
 ```
 
 ## <a id='examples'></a>Examples
 
 ```
-insight source add --cyclonedxtype json --path  /path/to/file.json
+tanzu insight source add --cyclonedxtype json --path  /path/to/file.json
 ```
 
 ## <a id='options'></a>Options
@@ -22,4 +22,4 @@ insight source add --cyclonedxtype json --path  /path/to/file.json
 
 ## <a id='see-also'></a>See also
 
-* [Insight source](insight_source.md)	 - Source commands
+* [Tanzu insight source](insight_source.md)	 - Source commands

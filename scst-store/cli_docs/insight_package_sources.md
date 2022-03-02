@@ -1,4 +1,4 @@
-# Insight package sources
+# Tanzu insight package sources
 
 Get sources that contain the given package by name.
 
@@ -7,13 +7,13 @@ Get sources that contain the given package by name.
 Get sources that contain the given package by name.
 
 ```
-insight package sources --name <package name> [flags]
+tanzu insight package sources --name <package name> [flags]
 ```
 
 ## <a id='examples'></a>Examples
 
 ```
-insight package sources --name client
+tanzu insight package sources --name client
 ```
 
 ## <a id='options'></a>Options
@@ -26,4 +26,4 @@ insight package sources --name client
 
 ## <a id='see-also'></a>See also
 
-* [insight package](insight_package.md)	 - Package commands
+* [Tanzu insight package](insight_package.md)	 - Package commands
