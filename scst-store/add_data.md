@@ -37,14 +37,14 @@ To use Grype to scan an image and generate an image report in CycloneDX format:
     ```
 
 
-## <a id='insight-cli'></a>Add Data with the Insight CLI
+## <a id='insight-cli'></a>Add Data with the Tanzu Insight Plugin
 
 Use the following commands to add data:
 
 - `image create`
 - `source create`
 
-Use `insight -h` in the terminal or see [CLI details](cli_docs/insight.md) for more information.
+Use `tanzu insight -h` in the terminal or see [tanzu insight details](cli_docs/insight.md) for more information.
 
 ## <a id='example1'></a>Example #1: Create an Image Report
 
@@ -53,7 +53,7 @@ To use a CycloneDX-formatted image report:
 1. Run:
 
     ```
-    insight image create --cyclonedxtype TYPE --path IMAGE-CVE-REPORT
+    tanzu insight image create --cyclonedxtype TYPE --path IMAGE-CVE-REPORT
     ```
 
     Where:
@@ -64,7 +64,7 @@ To use a CycloneDX-formatted image report:
     For example:
 
     ```
-    $ insight image create --cyclonedxtype xml --path downloads/image-cve-report
+    $ tanzu insight image create --cyclonedxtype xml --path downloads/image-cve-report
     Image report created.
     ```
 
@@ -79,7 +79,7 @@ To use a CycloneDX-formatted source report:
 1. Run:
 
     ```
-    insight source create --cyclonedxtype TYPE --path SOURCE-CVE-REPORT
+    tanzu insight source create --cyclonedxtype TYPE --path SOURCE-CVE-REPORT
     ```
 
     Where:
@@ -90,7 +90,7 @@ To use a CycloneDX-formatted source report:
     For example:
 
     ```
-    $ insight source create --cyclonedxtype json --path source-cve-report
+    $ tanzu insight source create --cyclonedxtype json --path source-cve-report
     Source report created.
     ```
 

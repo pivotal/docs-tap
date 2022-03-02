@@ -1,6 +1,6 @@
-# CLI configuration
+# CLI plugin configuration
 
-This topic explains how to configure the Insight CLI:
+This topic explains how to configure the Tanzu Insight plugin:
 
 > **Note:** All [required setup](../scst-store/overview.md#required-set-up) must be completed in addition to configuring the CLI
 
@@ -10,7 +10,7 @@ This topic explains how to configure the Insight CLI:
 Set the target endpoint and CA certificate by running:
 
 ```
-insight config set-target https://metadata-store-app.metadata-store.svc.cluster.local:PORT --ca-cert PATH
+tanzu insight config set-target https://metadata-store-app.metadata-store.svc.cluster.local:PORT --ca-cert PATH
 ```
 Where
 
@@ -20,10 +20,12 @@ Where
 For example:
 
 ```
-$ insight config set-target https://metadata-store-app.metadata-store.svc.cluster.local:8443 --ca-cert /tmp/ca.crt
+$ tanzu insight config set-target https://metadata-store-app.metadata-store.svc.cluster.local:8443 --ca-cert /tmp/ca.crt
 
-Using config file: /Users/username/.insight/config.yaml
-Setting endpoint in config to: https://metadata-store-app.metadata-store.svc.cluster.local:8443
+ℹ  Using config file: /Users/username/.config/tanzu/insight/config.yaml
+ℹ  Setting trustedcacert in config
+ℹ  Setting endpoint in config to: https://metadata-store-app.metadata-store.svc.cluster.local:8443
+✔  Success: Set Metadata Store endpoint
 ```
 
 ## <a id='check-con'></a>Check the connection
@@ -31,12 +33,12 @@ Setting endpoint in config to: https://metadata-store-app.metadata-store.svc.clu
 Check that your configuration is correct and you are able to make a connection.
 
 ```
-insight health
+tanzu insight health
 ```
 
 For example:
 
 ```
-$ insight health
-{"message":"Successfully Reached Metadata Store!"}
+$ tanzu insight health
+Success: Reached Metadata Store!
 ```
