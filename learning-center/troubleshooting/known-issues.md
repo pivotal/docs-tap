@@ -3,27 +3,35 @@
 This section includes a list of known issues with troubleshooting and recovery steps
 for Learning Center.
 
-## <a id="training-portal-pending"></a>Training Portal in pending state
+## <a id="training-portal-pending"></a>Training portal stays in pending state
 
-Under certain circumstances, the training portal will be stuck in a pending state, the best way to know the issue
-is viewing the operator logs. In order to get the logs, you can execute:
+The training portal stays in a "pending" state.
 
-```
-kubectl logs deployment/learningcenter-operator -n learningcenter
-```
+### Explanation
 
-Depending on the log, the issue may be:
+The TLS secret `tls` is not available.
 
-### <a id="tls-not-available"></a>TLS secret tls is not available
+### Solution
 
-The TLS secret should be on the Learning Center operator namespace, otherwise you will get this error:
+1. Access the operator logs by running:
 
-```
-ERROR:kopf.objects:Handler 'learningcenter' failed temporarily: TLS secret tls is not available
-```
+    ```
+    kubectl logs deployment/learningcenter-operator -n learningcenter
+    ```
+    
+1. Observe that the TLS secret `tls` is not available. The TLS secret should be on the Learning
+    Center operator namespace. If the TLS secret is not on the Learning Center operator namespace,
+    the operator logs contain the following error:
 
-#### Solution:
-To recover from this issue, you can follow [these steps](../getting-started/learning-center-operator.md#enforce-secure-connect) to create the TLS Secret, once the TLS is created, **you need to redeploy the TrainingPortal resource.**
+    ```
+    ERROR:kopf.objects:Handler 'learningcenter' failed temporarily: TLS secret tls is not available
+    ```
+
+1. Follow the steps in
+    [Enforcing Secure Connections](learning-center/getting-started/learning-center-operator.html#enforce-secure-connect)
+    in _Learning Center Operator_ to create the TLS secret.
+
+1. Redeploy the `trainingPortal` resource.
 
 ### <a id="image-policy-webhook-service-not-found"></a>image-policy-webhook-service not found
 

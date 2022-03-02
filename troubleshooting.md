@@ -2,7 +2,7 @@
 
 This topic provides troubleshooting information to help resolve issues with Tanzu Application Platform.
 
-## <a id="component-troubleshooting-links"></a> Component-Level Troubleshooting
+## <a id="component-troubleshooting-links"></a> Component-level troubleshooting
 
 For component-level troubleshooting, see these topics:
 
@@ -16,7 +16,9 @@ For component-level troubleshooting, see these topics:
 * [Troubleshooting Cloud Native Runtimes for Tanzu](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-troubleshooting.html)
 * [Tanzu Build Service Frequently Asked Questions](https://docs.vmware.com/en/Tanzu-Build-Service/1.4/vmware-tanzu-build-service-v14/GUID-faq.html)
 
-## <a id='macos-unverified-developer'></a> Developer Cannot Be Verified When Installing Tanzu CLI on macOS
+## <a id="troubleshoot-tap-install"></a>Issues installing Tanzu Application Platform
+
+### <a id='macos-unverified-developer'></a> Developer cannot be verified when installing Tanzu CLI on macOS
 
 You see the following error when you run Tanzu CLI commands, for example `tanzu version`, on macOS:
 
@@ -24,11 +26,11 @@ You see the following error when you run Tanzu CLI commands, for example `tanzu 
 "tanzu" cannot be opened because the developer cannot be verified
 ```
 
-### Explanation
+#### Explanation
 
 Security settings are preventing installation.
 
-### Solution
+#### Solution
 
 To resolve this issue:
 
@@ -141,30 +143,6 @@ To update the package, run the following command after the first use of the `tan
 ```
 tanzu package installed update
 ```
-
-## <a id='missing-build-logs'></a> Missing Build Logs after Creating a Workload
-
-You create a workload, but no logs appear when you check for logs by running the following command:
-
-  ```
-  tanzu apps workload tail workload-name --since 10m --timestamp
-  ```
-
-### Explanation
-
-Common causes include:
-
-- Misconfigured repository
-- Misconfigured service account
-- Misconfigured registry credentials
-
-### Solution
-
-To resolve this issue, run each of the following commands to receive the relevant error message:
-
-- ```kubectl get clusterbuilder.kpack.io -o yaml```
-- ```kubectl get image.kpack.io <workload-name> -o yaml```
-- ```kubectl get build.kpack.io -o yaml```
 
 ## <a id='failed-reconcile'></a> After package installation, one or more packages fails to reconcile
 
@@ -302,29 +280,48 @@ If none exists, and you are unable to fix the described issue yourself, please c
 
 1. Repeat these diagnosis steps for any other packages that failed to reconcile.
 
-## <a id='telemetry-fails-fetching-secret'></a> Telemetry Component Logs Show Errors Fetching the "reg-creds" Secret
+## <a id='eula-error'></a> Failure to Accept an End User License Agreement Error
 
-When you view the logs of the `tap-telemetry` controller by running `kubectl logs -n
-tap-telemetry <tap-telemetry-controller-<hash> -f`, you see the following error:
-
-  ```
-  "Error retrieving secret reg-creds on namespace tap-telemetry","error":"secrets \"reg-creds\" is forbidden: User \"system:serviceaccount:tap-telemetry:controller\" cannot get resource \"secrets\" in API group \"\" in the namespace \"tap-telemetry\""
-  ```
+You cannot access Tanzu Application Platform or one of its components from
+VMware Tanzu Network.
 
 ### Explanation
 
-The `tap-telemetry` namespace misses a Role that allows the controller to list secrets in the
-`tap-telemetry` namespace. For more information about Roles, see
-[Role and ClusterRole](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#role-and-clusterrole)
-in _Using RBAC Authorization_ in the Kubernetes documentation.
+You cannot access Tanzu Application Platform or one of its components from
+VMware Tanzu Network before accepting the relevant EULA in VMware Tanzu Network.
 
 ### Solution
 
-To resolve this issue, run:
+Follow the steps in [Accept the End User License Agreements](install-tanzu-cli.html#accept-eulas) in
+_Installing the Tanzu CLI_.
 
-```
-kubectl patch roles -n tap-telemetry tap-telemetry-controller --type='json' -p='[{"op": "add", "path": "/rules/-", "value": {"apiGroups": [""],"resources": ["secrets"],"verbs": ["get", "list", "watch"]} }]'
-```
+
+## <a id="troubleshoot-tap-usage"></a>Issues using Tanzu Application Platform  
+
+### <a id='missing-build-logs'></a> Missing Build Logs after Creating a Workload
+
+You create a workload, but no logs appear when you check for logs by running the following command:
+
+  ```
+  tanzu apps workload tail workload-name --since 10m --timestamp
+  ```
+
+#### Explanation
+
+Common causes include:
+
+- Misconfigured repository
+- Misconfigured service account
+- Misconfigured registry credentials
+
+#### Solution
+
+To resolve this issue, run each of the following commands to receive the relevant error message:
+
+- ```kubectl get clusterbuilder.kpack.io -o yaml```
+- ```kubectl get image.kpack.io <workload-name> -o yaml```
+- ```kubectl get build.kpack.io -o yaml```
+
 
 ## <a id='error-update'></a> Workload Already Exists Error after Updating the Workload
 
@@ -363,22 +360,31 @@ The app is running before performing a live update using the same app name.
 To resolve this issue, either delete the app or use a different name for the app.
 
 
-## <a id='eula-error'></a> Failure to Accept an End User License Agreement Error
+## <a id='telemetry-fails-fetching-secret'></a> Telemetry Component Logs Show Errors Fetching the "reg-creds" Secret
 
-You cannot access Tanzu Application Platform or one of its components from
-VMware Tanzu Network.
+When you view the logs of the `tap-telemetry` controller by running `kubectl logs -n
+tap-telemetry <tap-telemetry-controller-<hash> -f`, you see the following error:
+
+  ```
+  "Error retrieving secret reg-creds on namespace tap-telemetry","error":"secrets \"reg-creds\" is forbidden: User \"system:serviceaccount:tap-telemetry:controller\" cannot get resource \"secrets\" in API group \"\" in the namespace \"tap-telemetry\""
+  ```
 
 ### Explanation
 
-You cannot access Tanzu Application Platform or one of its components from
-VMware Tanzu Network before accepting the relevant EULA in VMware Tanzu Network.
+The `tap-telemetry` namespace misses a Role that allows the controller to list secrets in the
+`tap-telemetry` namespace. For more information about Roles, see
+[Role and ClusterRole](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#role-and-clusterrole)
+in _Using RBAC Authorization_ in the Kubernetes documentation.
 
 ### Solution
 
-Follow the steps in [Accept the End User License Agreements](install-tanzu-cli.html#accept-eulas) in
-_Installing the Tanzu CLI_.
+To resolve this issue, run:
 
-## <a id='debug-convention'></a> Debug Convention May Not Apply
+```
+kubectl patch roles -n tap-telemetry tap-telemetry-controller --type='json' -p='[{"op": "add", "path": "/rules/-", "value": {"apiGroups": [""],"resources": ["secrets"],"verbs": ["get", "list", "watch"]} }]'
+```
+
+## <a id='debug-convention'></a> Debug convention may not apply
 
 If you upgrade from Tanzu Application Platform v0.4, the debug convention may not apply to the app run image.
 
@@ -432,32 +438,6 @@ kubectl -n app-live-view delete pods -l=name=application-live-view-connector
 ```
 
 This allows the connector to discover the application instances and render the details in Tanzu Application Platform GUI.
-
-## <a id='training-portal-pending'></a> Training Portal Stays in Pending State
-
-The Training Portal stays in a "pending" state.
-
-### Explanation
-
-The TLS secret `tls` is not available.
-
-### Solution
-
-1. Access the operator logs by running:
-    ```
-    kubectl logs deployment/learningcenter-operator -n learningcenter
-    ```
-1. Observe that the TLS secret `tls` is not available. The TLS secret should be on the Learning
-    Center operator namespace. If the TLS secret is not on the Learning Center operator namespace,
-    the operator logs contain the following error:
-    ```
-    ERROR:kopf.objects:Handler 'learningcenter' failed temporarily: TLS secret tls is not available
-    ```
-1. Follow the steps in
-    [Enforcing Secure Connections](learning-center/getting-started/learning-center-operator.html#enforce-secure-connect)
-    in _Learning Center Operator_ to create the TLS secret.
-
-1. Redeploy the `trainingPortal` resource.
 
 ## <a id='image-policy-webhook-service-not-found'></a> "image-policy-webhook-service not found" Error
 
