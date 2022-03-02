@@ -10,7 +10,7 @@ You create a workload, but no logs appear when you check for logs by running the
   tanzu apps workload tail workload-name --since 10m --timestamp
   ```
 
-### Explanation
+**Explanation**
 
 Common causes include:
 
@@ -18,7 +18,7 @@ Common causes include:
 - Misconfigured service account
 - Misconfigured registry credentials
 
-### Solution
+**Solution**
 
 To resolve this issue, run each of the following commands to receive the relevant error message:
 
@@ -55,11 +55,11 @@ Error: workload "default/tanzu-java-web-app" already exists
 Error: exit status 1
 ```
 
-### Explanation
+**Explanation**
 
 The app is running before performing a live update using the same app name.
 
-### Solution
+**Solution**
 
 To resolve this issue, either delete the app or use a different name for the app.
 
@@ -73,14 +73,14 @@ tap-telemetry <tap-telemetry-controller-<hash> -f`, you see the following error:
   "Error retrieving secret reg-creds on namespace tap-telemetry","error":"secrets \"reg-creds\" is forbidden: User \"system:serviceaccount:tap-telemetry:controller\" cannot get resource \"secrets\" in API group \"\" in the namespace \"tap-telemetry\""
   ```
 
-### Explanation
+**Explanation**
 
 The `tap-telemetry` namespace misses a Role that allows the controller to list secrets in the
 `tap-telemetry` namespace. For more information about Roles, see
 [Role and ClusterRole](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#role-and-clusterrole)
 in _Using RBAC Authorization_ in the Kubernetes documentation.
 
-### Solution
+**Solution**
 
 To resolve this issue, run:
 
@@ -92,11 +92,11 @@ kubectl patch roles -n tap-telemetry tap-telemetry-controller --type='json' -p='
 
 If you upgrade from Tanzu Application Platform v0.4, the debug convention may not apply to the app run image.
 
-### Explanation
+**Explanation**
 
 The Tanzu Application Platform v0.4 lacks SBOM data.
 
-### Solution
+**Solution**
 
 Delete existing app images that were built using Tanzu Application Platform v0.4.
 
@@ -104,12 +104,12 @@ Delete existing app images that were built using Tanzu Application Platform v0.4
 
 You cannot execute a build script provided as part of an accelerator.
 
-### Explanation
+**Explanation**
 
 Build scripts provided as part of an accelerator do not have the execute bit set when a new
 project is generated from the accelerator.
 
-### Solution
+**Solution**
 
 Explicitly set the execute bit by running the `chmod` command:
 
@@ -128,11 +128,11 @@ chmod +x ./mvnw
 
 After deploying Tanzu Application Platform workloads, the Tanzu Application Platform GUI shows a "No live information for pod with ID" error.
 
-### Explanation
+**Explanation**
 
 The connector must discover the application instances and render the details in Tanzu Application Platform GUI.
 
-### Solution
+**Solution**
 
 Recreate the Application Live View Connector pod by running:
 
@@ -150,11 +150,11 @@ When installing a Tanzu Application Platform profile, you receive the following 
 Internal error occurred: failed calling webhook "image-policy-webhook.signing.apps.tanzu.vmware.com": failed to call webhook: Post "https://image-policy-webhook-service.image-policy-system.svc:443/signing-policy-check?timeout=10s": service "image-policy-webhook-service" not found
 ```
 
-### Explanation
+**Explanation**
 
 The "image-policy-webhook-service" service cannot be found.
 
-### Solution
+**Solution**
 
 Redeploy the `trainingPortal` resource.
 
@@ -162,12 +162,12 @@ Redeploy the `trainingPortal` resource.
 
 You receive an "Increase your cluster's resources" error.
 
-### Explanation
+**Explanation**
 
 Node pressure may be caused by an insufficient number of nodes or a lack of resources on nodes
 necessary to deploy the workloads that you have.
 
-### Solution
+**Solution**
 
 Follow instructions from your cloud provider to scale out or scale up your cluster.
 
@@ -176,7 +176,7 @@ Follow instructions from your cloud provider to scale out or scale up your clust
 Admission of all pods is prevented when the `image-policy-controller-manager` deployment pods do not
 start before the `MutatingWebhookConfiguration` is applied to the cluster.
 
-### Explanation
+**Explanation**
 
 Pods can be prevented from starting if nodes in a cluster are scaled to zero and the webhook is
 forced to restart at the same time as other system components. A deadlock can occur when some
@@ -199,7 +199,7 @@ Events:
   Warning FailedCreate 10m replicaset-controller Error creating: Internal error occurred: failed calling webhook "image-policy-webhook.signing.apps.tanzu.vmware.com": Post "https://image-policy-webhook-service.image-policy-system.svc:443/signing-policy-check?timeout=10s": service "image-policy-webhook-service" not found
 ```
 
-### Solution
+**Solution**
 
 Delete the MutatingWebhookConfiguration resource to resolve the deadlock and enable the system to
 restart. After the system is stable, restore the MutatingWebhookConfiguration resource to re-enable
@@ -238,13 +238,13 @@ LAST SEEN   TYPE      REASON             OBJECT               MESSAGE
 28s         Normal    Preempted          pod/testpod          Preempted by image-policy-system/image-policy-controller-manager-59dc669d99-frwcp on node test-node
 ```
 
-### Explanation
+**Explanation**
 
 The Supply Chain Security Tools - Sign component uses a privileged `PriorityClass` to start its pods
 to prevent node pressure from preempting its pods. This can cause less privileged components to have
 their pods preempted or evicted instead.
 
-### Solution
+**Solution**
 
 - **Solution 1: Reduce the number of pods deployed by the Sign component:**
     If your deployment of the Sign component runs more pods than necessary, scale down the deployment
@@ -285,11 +285,11 @@ Supply Chain Security Tools - Store does not start. You see the following error 
     [error] failed to initialize database, got error failed to connect to `host=metadata-store-db user=metadata-store-user database=metadata-store`: server error (FATAL: password authentication failed for user "metadata-store-user" (SQLSTATE 28P01))
     ```
 
-### Explanation
+**Explanation**
 
 The database password has been changed between deployments. This is not supported.
 
-### Solution
+**Solution**
 
 Redeploy the app either with the original database password or follow these steps below to erase the
 data on the volume:
@@ -326,11 +326,11 @@ $ kubectl logs pod/metadata-store-app-* -n metadata-store -c metadata-store-app
 [error] failed to initialize database, got error failed to connect to `host=metadata-store-db user=metadata-store-user database=metadata-store`: server error (FATAL: password authentication failed for user "metadata-store-user" (SQLSTATE 28P01))
 ```
 
-### Explanation
+**Explanation**
 
 The database password has been changed between deployments. This is not supported.
 
-### Solution
+**Solution**
 
 Redeploy the app either with the original database password or follow these steps below to erase the
 data on the volume:
@@ -361,11 +361,11 @@ data on the volume:
 When Supply Chain Security Tools - Store is deployed, deleted, and then redeployed, the `metadata-store-db`
 Pod fails to start if the database password changed during redeployment.
 
-### Explanation
+**Explanation**
 
 The persistent volume used by postgres retains old data, even though the retention policy is set to `DELETE`.
 
-### Solution
+**Solution**
 
 Redeploy the app either with the original database password or follow these steps below to erase the
 data on the volume:
@@ -396,13 +396,13 @@ data on the volume:
 After Supply Chain Security Tools - Store is deployed, `metadata-store-db` Pod fails for missing volume
 while `postgres-db-pv-claim` pvc is in the `PENDING` state.
 
-### Explanation
+**Explanation**
 
 The cluster where Supply Chain Security Tools - Store is deployed does not have `storageclass`
 defined. The provisioner of `storageclass` is responsible for creating the persistent volume after
 `metadata-store-db` attaches `postgres-db-pv-claim`.
 
-### Solution
+**Solution**
 
 1. Verify that your cluster has `storageclass` by running:
     ```

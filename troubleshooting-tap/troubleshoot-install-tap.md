@@ -10,11 +10,11 @@ You see the following error when you run Tanzu CLI commands, for example `tanzu 
 "tanzu" cannot be opened because the developer cannot be verified
 ```
 
-### Explanation
+**Explanation**
 
 Security settings are preventing installation.
 
-### Solution
+**Solution**
 
 To resolve this issue:
 
@@ -44,11 +44,11 @@ When installing Tanzu Application Platform, you receive an error message that in
 (message: Error (see .status.usefulErrorMessage for details))
 ```
 
-### Explanation
+**Explanation**
 
 A package fails to reconcile and you must access the details in `.status.usefulErrorMessage`.
 
-### Solution
+**Solution**
 
 Access the details in `.status.usefulErrorMessage` by running:
 
@@ -78,11 +78,11 @@ Example:
 
 >**Note:** This example shows an error received when with Application Live View as the package. This error can also occur with other packages.
 
-### Explanation
+**Explanation**
 
 The Tanzu Network credentials needed to access the package may be missing or incorrect.
 
-### Solution
+**Solution**
 
 To resolve this issue:
 
@@ -116,11 +116,11 @@ Example:
 
 >**Note:** This example shows an error received with App Accelerator as the package. This error can also occur with other packages.
 
-### Explanation
+**Explanation**
 
 The `tanzu package install` command may be executed again after failing.
 
-### Solution
+**Solution**
 
 To update the package, run the following command after the first use of the `tanzu package install` command
 
@@ -154,7 +154,7 @@ For example:
   Error: exit status 1
   ```
 
-### Explanation
+**Explanation**
 
 Often, the cause is one of the following:
 
@@ -167,7 +167,7 @@ The VMware Carvel tools kapp-controller continues to try in a reconciliation loo
 However, if the reconciliation status is `failed` then there might be a configuration issue
 in the provided `tap-config.yml` file.
 
-### Solution
+**Solution**
 
 1. Verify if the installation is still in progress by running:
 
@@ -269,12 +269,12 @@ If none exists, and you are unable to fix the described issue yourself, please c
 You cannot access Tanzu Application Platform or one of its components from
 VMware Tanzu Network.
 
-### Explanation
+**Explanation**
 
 You cannot access Tanzu Application Platform or one of its components from
 VMware Tanzu Network before accepting the relevant EULA in VMware Tanzu Network.
 
-### Solution
+**Solution**
 
 Follow the steps in [Accept the End User License Agreements](install-tanzu-cli.html#accept-eulas) in
 _Installing the Tanzu CLI_.
