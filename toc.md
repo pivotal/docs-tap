@@ -12,7 +12,7 @@ This is the table of contents from which the Tanzu Application Platform Document
 - [Upgrading Tanzu Application Platform](upgrading.md)
 - [Migrate Profiles in Tanzu Application Platform](migrate-profile.md)
 - [Getting started with Tanzu Application Platform](getting-started.md)
-- [Troubleshooting Tanzu Application Platform](troubleshooting-tap/troubleshooting.md)
+- [Troubleshooting Tanzu Application Platform](troubleshooting.md)
   - [Troubleshoot installing](troubleshooting-tap/troubleshoot-install-tap.md)
   - [Troubleshoot using](troubleshooting-tap/troubleshoot-using-tap.md)
 - [Uninstalling Tanzu Application Platform](uninstall.md)
