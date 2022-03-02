@@ -21,7 +21,11 @@ Before installing Supply Chain Security Tools - Scan:
 
 | Out-Of-The-Box Scanner | Version |
 | --- | --- |
+<<<<<<< HEAD
 | [Anchore Grype](https://github.com/anchore/grype) | v0.32.0 |
+=======
+| [Anchore Grype](https://github.com/anchore/grype) | v0.33.0 |
+>>>>>>> 3640d07 (Update grype version for release)
 
 Let us know if there's a scanner you'd like us to support.
 
