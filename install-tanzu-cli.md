@@ -492,7 +492,7 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
     secret              Tanzu secret management                                            Standalone  default    v0.11.1  installed
     accelerator         Manage accelerators in a Kubernetes cluster                        Standalone             v1.0.1   installed
     apps                Applications on Kubernetes                                         Standalone             v0.4.1   installed
-    services            Discover Service Types and manage Service Instances (ALPHA)        Standalone             v0.1.1   installed
+    services            Discover Service Types and manage Service Instances (ALPHA)        Standalone             v0.1.2   installed
     ```
 
 You can now install Tanzu Application Platform.
