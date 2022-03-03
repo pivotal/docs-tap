@@ -198,7 +198,7 @@ Image Scan, after the binaries are built and packaged as images.
 
 - **Training Portal in pending state:** Under certain circumstances, the training portal is stuck in
 a pending state. To resolve this issue, see
-[Training portal stays in pending state](learning-center/troubleshooting/known-issues.md#training-portal-pending).
+[Training portal stays in pending state](learning-center/troubleshoot-learning-center.md#training-portal-pending).
 
 - **image-policy-webhook-service not found:** If you are installing a Tanzu Application Platform
 profile, you might see the error:

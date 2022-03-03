@@ -1,4 +1,4 @@
-# Troubleshooting
+# Troubleshoot Spring Boot Conventions
 
 ## <a id="collect-logs"></a>Collect logs
 
