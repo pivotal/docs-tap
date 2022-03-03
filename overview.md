@@ -375,15 +375,27 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>&check;
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
    </td>
   </tr>
   <tr>
    <td>Flux Source Controller
-   </td>
+  </td>
    <td>&check;
    </td>
-   <td>&check;
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
    </td>
   </tr>
   <tr>
@@ -393,28 +405,53 @@ The following table lists the packages contained in each profile:
    </td>
    <td>
    </td>
-  </tr>  
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+  </tr>
   <tr>
    <td>Image Policy Webhook
-   </td>
+  </td>
    <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
    </td>
    <td>
    </td>
   </tr>
   <tr>
    <td>Learning Center
+  </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Out of the Box Delivery - Basic
    </td>
    <td>&check;
    </td>
    <td>
    </td>
-  </tr>
-   <td>Out of the Box Delivery - Basic
+   <td>
    </td>
-   <td>&check;
+   <td>
    </td>
-   <td>&check;
+   <td>
    </td>
   </tr>
   <tr>
@@ -422,21 +459,39 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>&check;
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
    </td>
   </tr>
   <tr>
    <td>Out of the Box Supply Chain - Testing
    </td>
-   <td>&check;<sup>&ast;</sup>
-   </td>
    <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
    </td>
   </tr>
   <tr>
    <td>Out of the Box Supply Chain - Testing and Scanning
    </td>
-   <td>&check;<sup>&ast;</sup>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
    </td>
    <td>
    </td>
@@ -446,14 +501,27 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>&check;
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
    </td>
   </tr>
+  <tr>
    <td>Services Toolkit
    </td>
    <td>&check;
    </td>
-   <td>&check;
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
    </td>
   </tr>
   <tr>
@@ -461,7 +529,13 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>&check;
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
    </td>
   </tr>
   <tr>
@@ -469,15 +543,27 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>&check;
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
    </td>
   </tr>
   <tr>
    <td>Spring Boot Convention
-   </td>
+  </td>
    <td>&check;
    </td>
-   <td>&check;
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
    </td>
   </tr>
   <tr>
@@ -485,23 +571,55 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>&check;
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
    </td>
   </tr>
   <tr>
    <td>Supply Chain Security Tools - Scan</td>
-   <td>&check;</td><td></td>
+  </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
   </tr>
   <tr>
    <td>Supply Chain Security Tools - Store</td>
-   <td>&check;</td><td></td>
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
   </tr>
   <tr>
    <td>Tanzu Build Service
    </td>
    <td>&check;
    </td>
-   <td>&check;
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
    </td>
   </tr>
   <tr>
@@ -509,7 +627,13 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>&check;
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
    </td>
   </tr>
   <tr>
@@ -517,9 +641,16 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>&check;
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
    </td>
   </tr>
+  <tr>
 </table>
 
 <sup>\*</sup> Only one supply chain should be installed at any given time.
