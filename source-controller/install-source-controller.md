@@ -30,7 +30,10 @@ To install Source Controller:
     $ tanzu package available list controller.source.apps.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for controller.source.apps.tanzu.vmware.com...
       NAME                                     VERSION  RELEASED-AT
-      controller.source.apps.tanzu.vmware.com  0.2.0    2021-09-16T00:00:00Z
+      controller.source.apps.tanzu.vmware.com  0.2.0    2021-11-17 19:00:00 -0500 -05
+      controller.source.apps.tanzu.vmware.com  0.2.1    2022-02-09 19:00:00 -0500 -05
+      controller.source.apps.tanzu.vmware.com  0.3.1    2022-01-23 19:00:00 -0500 -05
+      controller.source.apps.tanzu.vmware.com  0.3.2    2022-02-21 19:00:00 -0500 -05
     ```
 
 1. (Optional) Make changes to the default installation settings by running:
@@ -44,29 +47,34 @@ To install Source Controller:
     For example:
 
     ```
-    $ tanzu package available get controller.source.apps.tanzu.vmware.com/0.2.0 --values-schema --namespace tap-install
+    $ tanzu package available get controller.source.apps.tanzu.vmware.com/0.3.2 --values-schema --namespace tap-install
+     Retrieving package details for controller.source.apps.tanzu.vmware.com/0.3.2...
+     KEY           DEFAULT  TYPE    DESCRIPTION
+     ca_cert_data           string  Optional: PEM Encoded certificate data for image registries with private CA.
     ```
 
 1. Install the package. Run:
 
     ```
-    tanzu package install source-controller -p controller.source.apps.tanzu.vmware.com -v 0.2.0 -n tap-install
+    tanzu package install source-controller -p controller.source.apps.tanzu.vmware.com -v VERSION-NUMBER -n tap-install
     ```
+    Where `VERSION-NUMBER` is the version of the package listed in step 1 above.
 
     For example:
 
     ```
-    tanzu package install source-controller -p controller.source.apps.tanzu.vmware.com -v 0.2.0 -n tap-install
-    / Installing package 'controller.source.apps.tanzu.vmware.com'
-    | Getting namespace 'tap-install'
-    - Getting package metadata for 'controller.source.apps.tanzu.vmware.com'
-    | Creating service account 'source-controller-tap-install-sa'
-    | Creating cluster admin role 'source-controller-tap-install-cluster-role'
-    | Creating cluster role binding 'source-controller-tap-install-cluster-rolebinding'
-    \ Creating package resource
-    | Package install status: Reconciling
+    tanzu package install source-controller -p controller.source.apps.tanzu.vmware.com -v 0.3.2 -n tap-install
+    \ Installing package 'controller.source.apps.tanzu.vmware.com'
+    \ Getting package metadata for 'controller.source.apps.tanzu.vmware.com'
+    / Creating service account 'source-controller-tap-install-sa'
+    / Creating cluster admin role 'source-controller-tap-install-cluster-role'
+    / Creating cluster role binding 'source-controller-tap-install-cluster-rolebinding'
+    / Creating package resource
+    - Waiting for 'PackageInstall' reconciliation for 'source-controller'
+    \ 'PackageInstall' resource install status: Reconciling
 
-     Added installed package 'source-controller' in namespace 'tap-install'
+
+    Added installed package 'source-controller'
     ```
 
 1. Verify the package install by running:
@@ -79,10 +87,10 @@ To install Source Controller:
 
     ```
     tanzu package installed get source-controller -n tap-install
-    Retrieving installation details for sourcer-controller...
-    NAME:                    sourcer-controller
+   - Retrieving installation details for source-controller...
+    NAME:                    source-controller
     PACKAGE-NAME:            controller.source.apps.tanzu.vmware.com
-    PACKAGE-VERSION:         0.2.0
+    PACKAGE-VERSION:         0.3.2
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
@@ -99,7 +107,7 @@ To install Source Controller:
     ```
     $ kubectl get pods -n source-system
     NAME                                        READY   STATUS    RESTARTS   AGE
-    source-controller-manager-f68dc7bb6-4lrn6   1/1     Running   0          45h
+    source-controller-manager-f68dc7bb6-4lrn6   1/1     Running   0          100s
     ```
 
     Verify that `STATUS` is `Running`.
