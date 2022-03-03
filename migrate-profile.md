@@ -18,13 +18,15 @@ Before you migrate from one Tanzu Application Platform to another:
 
 Follow these steps to add the new package repository:
 
-1. Add the 1.1.0 version of the Tanzu Application Platform package repository by running:
+1. Add the latest version of the Tanzu Application Platform package repository by running:
 
     ```
     tanzu package repository update tanzu-tap-repository \
-        --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.1.0  \
+        --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:TAP-VERSION  \
         --namespace tap-install
     ```
+    
+    Where `TAP-VERSION` is your Tanzu Application Platform version. For example, `1.1.0`.
 
 2. Verify you have added the new package repository by running:
 
@@ -48,7 +50,7 @@ Where:
 To complete the Tanzu Application Platform profile migration, perform the following:
 
 ```
-tanzu package installed update tap -p tap.tanzu.vmware.com -v 1.1.0  --values-file tap-values.yaml -n tap-install
+tanzu package installed update tap -p tap.tanzu.vmware.com -v TAP-VERSION  --values-file tap-values.yaml -n tap-install
 ```
 
-
+Where `TAP-VERSION` is your Tanzu Application Platform version. For example, `1.1.0`.

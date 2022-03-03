@@ -63,7 +63,7 @@ To install Application Live View back-end:
     tanzu package available get backend.appliveview.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
 
-    Where `VERSION-NUMBER` is the version of the package listed in step 1 above.
+    Where `VERSION-NUMBER` is the version of the package listed. For example, `1.1.0-build.1`.
 
     For example:
 
@@ -108,8 +108,10 @@ To install Application Live View back-end:
 1. Install the Application Live View back-end package by running:
 
     ```
-    tanzu package install appliveview -p backend.appliveview.tanzu.vmware.com -v 1.1.0-build.1 -n tap-install -f app-live-view-backend-values.yaml
+    tanzu package install appliveview -p backend.appliveview.tanzu.vmware.com -v VERSION-NUMBER -n tap-install -f app-live-view-backend-values.yaml
     ```
+    
+    Where `VERSION-NUMBER` is the version of the package listed.
 
     For example:
 
@@ -176,7 +178,7 @@ To install Application Live View connector:
     tanzu package available get connector.appliveview.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
 
-    Where `VERSION-NUMBER` is the version of the package listed in step 1 above.
+    Where `VERSION-NUMBER` is the version of the package listed. For example, `1.1.0-build.1`.
 
     For example:
 
@@ -216,8 +218,10 @@ To install Application Live View connector:
 1. Install the Application Live View Connector package by running:
 
     ```
-    tanzu package install appliveview-connector -p connector.appliveview.tanzu.vmware.com -v 1.1.0-build.1 -n tap-install -f app-live-view-connector-values.yaml
+    tanzu package install appliveview-connector -p connector.appliveview.tanzu.vmware.com -v VERSION-NUMBER -n tap-install -f app-live-view-connector-values.yaml
     ```
+    
+    Where `VERSION-NUMBER` is the version of the package listed. For example, `1.1.0-build.1`.
 
     For example:
 
@@ -264,8 +268,10 @@ To install Application Live View connector:
 1. Install the Application Live View conventions package by running:
 
     ```
-    tanzu package install appliveview-conventions -p conventions.appliveview.tanzu.vmware.com -v 1.1.0-build.1 -n tap-install
+    tanzu package install appliveview-conventions -p conventions.appliveview.tanzu.vmware.com -v VERSION-NUMBER -n tap-install
     ```
+
+    Where `VERSION-NUMBER` is the version of the package listed in [Install Application Live View Connector](#install-app-live-view-connector). For example, `1.1.0-build.1`.
 
     For example:
 

@@ -278,4 +278,3 @@ VMware Tanzu Network before accepting the relevant EULA in VMware Tanzu Network.
 
 Follow the steps in [Accept the End User License Agreements](install-tanzu-cli.html#accept-eulas) in
 _Installing the Tanzu CLI_.
-
