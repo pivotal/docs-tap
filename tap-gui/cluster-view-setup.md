@@ -73,7 +73,7 @@ kubectl create -f tap-gui-viewer-service-account-rbac.yaml
 
 This cluster will need to be identified to Tanzu Application Platform GUI along with the `ServiceAccount` token and the cluster Kubernetes control plane url. Choose a name for the cluster and note it as `CLUSTER_NAME`. The `CLUSTER_URL` and `CLUSTER_TOKEN` can be found with these commands:
 
-```
+```bash
 CLUSTER_URL=$(kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}')
 
 CLUSTER_TOKEN=$(kubectl -n tap-gui get secret $(kubectl -n tap-gui get sa tap-gui-viewer -o=json \
@@ -86,7 +86,7 @@ CLUSTER_TOKEN=$(kubectl -n tap-gui get secret $(kubectl -n tap-gui get sa tap-gu
 
 A `kubernetes` section will need to be added to the `app_config` used by Tanzu Application Platform GUI. Update the `tap-gui-values.yaml` that was used to install Tanzu Application Platform GUI with an entry to `clusters` for each cluster with resources to view. See the yaml below for the `kubernetes` section and substitute in the `CLUSTER_URL`, `CLUSTER_NAME`, and `CLUSTER_TOKEN` values found earlier.
 
-```
+```yaml
 app_config:
   kubernetes:
     serviceLocatorMethod:
