@@ -21,11 +21,7 @@ Before installing Supply Chain Security Tools - Scan:
 
 | Out-Of-The-Box Scanner | Version |
 | --- | --- |
-<<<<<<< HEAD
-| [Anchore Grype](https://github.com/anchore/grype) | v0.32.0 |
-=======
 | [Anchore Grype](https://github.com/anchore/grype) | v0.33.0 |
->>>>>>> 3640d07 (Update grype version for release)
 
 Let us know if there's a scanner you'd like us to support.
 
@@ -118,7 +114,7 @@ To install Supply Chain Security Tools - Scan (Grype scanner):
     ```
 
     Where:
-    
+
     - `DEV-NAMESPACE` is your developer namespace.
 
       >**Note:** If you want to use a namespace other than the default namespace, ensure the namespace exists before you install. If the namespace does not exist, then the Grype scanner installation fails.
