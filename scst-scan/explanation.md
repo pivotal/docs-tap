@@ -32,6 +32,12 @@ You will see the following scan templates:
 |`private-image-scan-template`|Connects with the registry credentials to pull and scan images from a private registry.|
 |`blob-source-scan-template`|To be used in a Supply Chain. Gets a `.tar.gz` available file with `wget`, uncompresses it, and scans the source code inside it.|
 
+By default, there will be 3 scan templates deployed (`public-source-scan-template`, `public-image-scan-template`, `blob-source-scan-template`).
+
+If targetImagePullSecret is set in the tap-values.yml, then a `private-image-scan-template` would also be deployed.
+
+If targetSourceSshSecret is set in the tap-values.yml, then a `private-image-scan-template` would also be deployed.
+
 The private scan templates reference secrets created using the docker server and credentials you provided, so they are ready to use out-of-the-box. We make use of them when running the samples.
 
 For more information about the `SourceScan` and `ImageScan` CRDs and how to customize your own, refer to [Configuring Code Repositories and Image Artifacts to be Scanned](scan-crs.md).
