@@ -1,8 +1,8 @@
-# CLI Plugin installation
+# CLI plug-in installation
 
->**Note:** By following the [instructions](../install-tanzu-cli.md) to install the tanzu cli and all the plugins, the `insight` plugin should also be installed.
+>**Note:** By following the [instructions](../install-tanzu-cli.md) to install the Tanzu CLI and all the plug-ins, the `insight` plug-in is also installed.
 
-This topic explains how to install the `insight` plugin by itself, after the user has installed the tanzu cli.
+This topic explains how to install the `insight` plug-in by itself, after the user has installed the Tanzu CLI.
 
 1. From your `tanzu` directory, install the local version of the `insight` plugin you downloaded by running:
 
@@ -10,4 +10,4 @@ This topic explains how to install the `insight` plugin by itself, after the use
     cd $HOME/tanzu
     tanzu plugin install insight --local cli
     ```
-1. Configure the `insight` plugin by following these [instructions](cli_configuration.md)
+1. Configure the `insight` plug-in by following these [instructions](cli_configuration.md)

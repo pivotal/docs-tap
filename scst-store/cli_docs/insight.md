@@ -1,10 +1,10 @@
 # Tanzu insight
 
-This CLI plugin is used to post data and query the metadata store.
+This CLI plug-in is used to post data and query the metadata store.
 
 ## <a id='synopsis'></a>Synopsis
 
-This CLI plugin is used to post data and query the metadata store through its secure REST API.
+This CLI plug-in is used to post data and query the metadata store through its secure REST API.
 Source and Image reports can be uploaded using CycloneDX XML and JSON format.
 Source, image, package, and vulnerabilities can be queried and outputted in CycloneDX XML, JSON, and human-readable text formats.
 
