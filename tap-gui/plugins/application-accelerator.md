@@ -13,7 +13,7 @@ The Application Accelerator user interface (UI) enables you to discover availabl
 The Application Accelerator UI plug-in is part of Tanzu Application Platform GUI. To access Application Accelerator,
 click **Create** in the left-hand navigation bar of Tanzu Application Platform. This opens the **Accelerators page**.
 
-![Screenshot of Accelerators page](./images/aa1-accelerator-page.png)
+![Screenshot of Accelerators page](./images/aa1-acc-page.png)
 
 Here you can view accelerators already registered with the system.
 Developers can add new accelerators by registering them with Kubernetes.

@@ -2,8 +2,8 @@
 
 These topics provide troubleshooting information to help resolve issues with Tanzu Application Platform:
 
-- [Troubleshoot installing Tanzu Application Platform](troubleshoot-install-tap.md)
-- [Troubleshoot using Tanzu Application Platform](troubleshoot-using-tap.md)
+- [Troubleshoot installing Tanzu Application Platform](troubleshooting-tap/troubleshoot-install-tap.md)
+- [Troubleshoot using Tanzu Application Platform](troubleshooting-tap/troubleshoot-using-tap.md)
 
 For component-level troubleshooting, see these topics:
 
