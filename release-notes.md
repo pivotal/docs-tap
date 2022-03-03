@@ -27,9 +27,12 @@ Image Scan, after the binaries are built and packaged as images.
 
 #### Supply Chain Security Tools – Scan
 
-**Two scan jobs and two scan pods appear at the same time**: There is an edge case where two scan
+- **Two scan jobs and two scan pods appear at the same time**: There is an edge case where two scan
 jobs and two scan pods appear when a scan policy is updated.
 This does not affect the result of the scan.
+- **Scan Phase indicates `Scanning` incorrectly:** Scans have an edge case where, when an error has
+occurred during scanning, the Scan Phase field is not updated to `Error` and instead remains in the
+`Scanning` phase. Read the scan Pod logs to verify there was an error.
 
 ### <a id='1-0-2-resolved-issues'></a> Resolved issues
 
@@ -49,7 +52,6 @@ This release has the following fixes:
 - Prevent scan controller pod from failing when metadata store certificate is not available.
 - Removed unnecessary reconciliation of resources upon deletion.
 - Prevent scan controller failure upon Git clone fails.
-- Scan phase correctly updates to `Error` if error occurs during scanning.
 
 ## <a id='1-0-1'></a> v1.0.1
 
