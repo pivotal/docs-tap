@@ -34,6 +34,7 @@ This release has the following fixes:
 - Prevent scan controller pod from failing when metadata store certificate is not available.
 - Removed unnecessary reconciliation of resources upon deletion.
 - Prevent scan controller failure upon Git clone fails.
+- Scan phase correctly updates to `Error` if error occurs during scanning.
 
 ## <a id='1-0-1'></a> v1.0.1
 
@@ -227,10 +228,6 @@ occurred during scanning, the Scan Phase field is not updated to `Error` and ins
 the scan, the CVE print columns (CRITICAL, HIGH, MEDIUM, LOW, UNKNOWN, CVETOTAL) are not populated.
 You can run `kubectl describe` on the scan and look for `Scan completed. Found x CVE(s): ...` under
 `Status.Conditions` to find these severity counts and `CVETOTAL`.
-- **Failing Blob source scans:** Blob source scans have an edge case where, when a compressed file
-without a `.git` directory is provided, sending results to the Supply Chain Security Tools - Store
-fails and the scanned revision value is not set. The current workaround is to add the `.git`
-directory to the compressed file.
 - **Scan controller pod fails:** If there is a misconfiguration
 (i.e. secretgen-controller not running, wrong CA secret name) after enabling the
 metadata store integration, the controller pod fails. The current workaround is
