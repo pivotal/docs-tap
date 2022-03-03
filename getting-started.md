@@ -526,7 +526,7 @@ To apply this install method, follow the following steps:
 3. Update the installed profile by running:
 
     ```
-    tanzu package installed update tap -p tap.tanzu.vmware.com -v 1.0.1 --values-file tap-values.yml -n tap-install
+    tanzu package installed update tap -p tap.tanzu.vmware.com -v 1.0.2 --values-file tap-values.yml -n tap-install
     ```
 
 
@@ -742,7 +742,7 @@ Verify that both Scan Link and Grype Scanner are installed by running:
 4. Update the `tap` package:
 
     ```
-    tanzu package installed update tap -p tap.tanzu.vmware.com -v 1.0.1 --values-file tap-values.yml -n tap-install
+    tanzu package installed update tap -p tap.tanzu.vmware.com -v 1.0.2 --values-file tap-values.yml -n tap-install
     ```
 
 
