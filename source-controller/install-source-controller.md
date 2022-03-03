@@ -30,13 +30,11 @@ To install Source Controller:
     $ tanzu package available list controller.source.apps.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for controller.source.apps.tanzu.vmware.com...
       NAME                                     VERSION  RELEASED-AT
-      controller.source.apps.tanzu.vmware.com  0.2.0    2021-11-17 19:00:00 -0500 -05
-      controller.source.apps.tanzu.vmware.com  0.2.1    2022-02-09 19:00:00 -0500 -05
       controller.source.apps.tanzu.vmware.com  0.3.1    2022-01-23 19:00:00 -0500 -05
       controller.source.apps.tanzu.vmware.com  0.3.2    2022-02-21 19:00:00 -0500 -05
     ```
 
-1. (Optional) Make changes to the default installation settings by running:
+2. (Optional) Make changes to the default installation settings by running:
 
     ```
     tanzu package available get controller.source.apps.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
@@ -53,7 +51,7 @@ To install Source Controller:
      ca_cert_data           string  Optional: PEM Encoded certificate data for image registries with private CA.
     ```
 
-1. Install the package. Run:
+3. Install the package. Run:
 
     ```
     tanzu package install source-controller -p controller.source.apps.tanzu.vmware.com -v VERSION-NUMBER -n tap-install
@@ -77,7 +75,7 @@ To install Source Controller:
     Added installed package 'source-controller'
     ```
 
-1. Verify the package install by running:
+4. Verify the package install by running:
 
     ```
     tanzu package installed get source-controller -n tap-install
