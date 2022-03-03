@@ -87,7 +87,7 @@ The Tanzu Network credentials needed to access the package may be missing or inc
 To resolve this issue:
 
 1. Repeat the step to create a secret for the namespace. For instructions, see
-  [Add the Tanzu Application Platform Package Repository](install.html#add-package-repositories) in _Installing the Tanzu Application Platform Package and Profiles_.
+  [Add the Tanzu Application Platform Package Repository](../install.md#add-tap-package-repo) in _Installing the Tanzu Application Platform Package and Profiles_.
   Ensure that you provide the correct credentials.
 
   When the secret has the correct credentials,
@@ -96,7 +96,7 @@ To resolve this issue:
 
 2. List the status of the installed packages to confirm that the reconcile has succeeded.
   For instructions, see
-	[Verify the Installed Packages](install-components.html#verify) in _Installing Individual Packages_.
+	[Verify the Installed Packages](../install-components.md#verify) in _Installing Individual Packages_.
 
 ## <a id='existing-service-account'></a> "Serviceaccounts already exists" error
 
@@ -276,6 +276,6 @@ VMware Tanzu Network before accepting the relevant EULA in VMware Tanzu Network.
 
 **Solution**
 
-Follow the steps in [Accept the End User License Agreements](install-tanzu-cli.html#accept-eulas) in
+Follow the steps in [Accept the End User License Agreements](../install-tanzu-cli.md#accept-eulas) in
 _Installing the Tanzu CLI_.
 
