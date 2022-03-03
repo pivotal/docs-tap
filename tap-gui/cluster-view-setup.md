@@ -8,7 +8,7 @@ A service account will need to be created on the cluster that can `get`, `watch`
 
 This yaml will create the `Namespace`, `ServiceAccount`, `ClusterRole` and `ClusterRoleBinding`. Copy it into a file called `tap-gui-viewer-service-account-rbac.yaml`.
 
-```
+```yaml
 apiVersion: v1
 kind: Namespace
 metadata:
