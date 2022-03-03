@@ -51,17 +51,31 @@ To install Source Controller:
      ca_cert_data           string  Optional: PEM Encoded certificate data for image registries with private CA.
     ```
 
-3. Install the package. Run:
+3. If wanted to provide custom cert, create a file named `source-controller-values.yaml` that specifies the corresponding values to the properties you want to change.
+   
+    For example, the contents of the file might look like this:
+    ```yaml
+    ca_cert_data: |
+        -----BEGIN CERTIFICATE-----
+        MIICpTCCAYUCBgkqhkiG9w0BBQ0wMzAbBgkqhkiG9w0BBQwwDgQIYg9x6gkCAggA
+        ...
+        9TlA7A4FFpQqbhAuAVH6KQ8WMZIrVxJSQ03c9lKVkI62wQ==
+        -----END CERTIFICATE-----
+    ```
+
+4. Install the package. Run:
 
     ```
-    tanzu package install source-controller -p controller.source.apps.tanzu.vmware.com -v VERSION-NUMBER -n tap-install
+    tanzu package install source-controller -p controller.source.apps.tanzu.vmware.com -v VERSION-NUMBER -n tap-install -f VALUES-FILE
     ```
-    Where `VERSION-NUMBER` is the version of the package listed in step 1 above.
+    Where
+      - `VERSION-NUMBER` is the version of the package listed in step 1 above.
+      - `VALUES-FILE` is the path to the file created in step 3.
 
     For example:
 
     ```
-    tanzu package install source-controller -p controller.source.apps.tanzu.vmware.com -v 0.3.2 -n tap-install
+    tanzu package install source-controller -p controller.source.apps.tanzu.vmware.com -v 0.3.2 -n tap-install -f source-controller-values.yaml
     \ Installing package 'controller.source.apps.tanzu.vmware.com'
     \ Getting package metadata for 'controller.source.apps.tanzu.vmware.com'
     / Creating service account 'source-controller-tap-install-sa'
@@ -75,7 +89,7 @@ To install Source Controller:
     Added installed package 'source-controller'
     ```
 
-4. Verify the package install by running:
+5. Verify the package install by running:
 
     ```
     tanzu package installed get source-controller -n tap-install
