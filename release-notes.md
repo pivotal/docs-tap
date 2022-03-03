@@ -8,6 +8,13 @@ This topic contains release notes for Tanzu Application Platform v1.
 
 ### <a id='1-1-new-features'></a> New Features
 
+#### Default Roles for Tanzu Application Platform
+
+* Introduction of five new default roles and related permissions that apply to **k8s resources**. These roles are to help make it faster and easier to set up common sets of permissions for users and service accounts accessing a cluster running TAP.
+  * Three roles will be meant for users (people): app-editor, app-viewer and app-operator. 
+  * Two roles will be meant for “robot” or system permissions, which we will call Workload and Deliverable. 
+
+
 #### Tanzu Application Platform GUI
 [placeholder for Runtime Resources Plugin]
 
