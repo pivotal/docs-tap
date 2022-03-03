@@ -212,22 +212,34 @@ Tanzu Application Platform is available from predefined profiles or individual p
 
 The following profiles are available in Tanzu Application Platform:
 
-- **Light:**
-  Contains packages that drive the Inner Loop personal developer experience of building and
-  iterating on applications.
-
 - **Full:**
   This profile contains all of the Tanzu Application Platform packages.
+  
+- **Iterate:**
+  This profile is intended for iterative application development.
+
+- **Build:**
+  This profile is intended for the transformation of source revisions to workload revisions. Specifically, hosting Workloads and SupplyChains.
+ 
+- **Run:**
+  This profile is intended for the transformation of workload revisions to running Pods. Specifically, hosting Deliverys and Deliverables.
+
+- **View:**
+  This profile is intended for instances of applications related to centralized developer experiences. Specifically, the TAP GUI and Metadata Store.
+  
 
 ## <a id='about-package-profiles'></a> About Tanzu Application Platform package profiles
 
 Tanzu Application Platform can be installed through predefined profiles or through individual
 packages. This section explains how to install a profile.
 
-Tanzu Application Platform contains the following two profiles:
+Tanzu Application Platform contains the following five profiles:
 
 - Full (`full`)
-- Light (`light`)
+- Iterate (`iterate`)
+- Build (`build`)
+- Run (`run`)
+- View (`view`)
 
 The following table lists the packages contained in each profile:
 
@@ -237,7 +249,13 @@ The following table lists the packages contained in each profile:
    </td>
    <td><strong>Full</strong>
    </td>
-   <td><strong>Light</strong>
+   <td><strong>Iterate</strong>
+   </td>   
+   <td><strong>Build</strong>
+   </td>
+   <td><strong>Run</strong>
+   </td>
+   <td><strong>View</strong>
    </td>
   </tr>
   <tr>
@@ -247,45 +265,109 @@ The following table lists the packages contained in each profile:
    </td>
    <td>
    </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
   </tr>
   <tr>
    <td>Application Accelerator
    </td>
    <td>&check;
    </td>
-   <td>&check;
+   <td>
    </td>
-  </tr>
-  <tr>
-   <td>Application Live View
+   <td>
    </td>
-   <td>&check;
+   <td>
    </td>
    <td>&check;
    </td>
   </tr>
   <tr>
-   <td>Application Live View Conventions
+   <td>Application Live View (Build)
    </td>
    <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
    </td>
    <td>&check;
    </td>
   </tr>
-   <tr>
-   <td>Cloud Native Runtimes
+  <tr>
+   <td>Application Live View (Run)
    </td>
    <td>&check;
    </td>
    <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+  <td>Application Live View (GUI)
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+  <td>Cartographer
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+  <td>Cloud Native Runtimes
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>
    </td>
   </tr>
   <tr>
    <td>Convention Controller
-   </td>
+    </td>
    <td>&check;
    </td>
    <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
    </td>
   </tr>
   <tr>
