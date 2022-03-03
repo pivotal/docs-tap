@@ -6,7 +6,7 @@ This topic includes additional information about Supply Chain Security Tools - S
 
 Supply Chain Security Tools - Store is released as part of Tanzu Application Platform. See [Install Supply Chain Security Tools - Store](install-scst-store.md) for additional information about installation.
 
->**Note:** The `tanzu insight` CLI plugin requires a [separate installation](cli_installation.md).
+>**Note:** The `tanzu insight` CLI plug-in requires a [separate installation](cli_installation.md).
 
 ## <a id='components'></a>Components
 
