@@ -36,7 +36,7 @@ By default, there will be 3 scan templates deployed (`public-source-scan-templat
 
 If targetImagePullSecret is set in the tap-values.yml, then a `private-image-scan-template` would also be deployed.
 
-If targetSourceSshSecret is set in the tap-values.yml, then a `private-image-scan-template` would also be dep
+If targetSourceSshSecret is set in the tap-values.yml, then a `private-image-scan-template` would also be deployed.
 
 The private scan templates reference secrets created using the docker server and credentials you provided, so they are ready to use out-of-the-box. We make use of them when running the samples.
 
