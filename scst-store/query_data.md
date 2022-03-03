@@ -10,9 +10,9 @@ The following are a few use cases supported by the CLI:
 +  What dependencies are affected by a specific CVE?
 +  How many CVEs does a specific image or dependency contain?
 
-## <a id='query-insight'></a> Query using the Insight CLI
+## <a id='query-insight'></a> Query using the Tanzu Insight plugin
 
-See [CLI installation](cli_installation.md) if you have not previously installed the Insight CLI.
+See [CLI plugin installation](cli_installation.md) if you have not previously installed the `insight` CLI plugin.
 
 Use the following commands for querying:
 
@@ -31,14 +31,14 @@ Use the following commands for querying:
 - `vulnerabilities package`
 - `vulnerabilities source`
 
-Use `insight -h` in the terminal or see [CLI details](cli_docs/insight.md) for more information.
+Use `tanzu insight -h` in the terminal or see [tanzu insight details](cli_docs/insight.md) for more information.
 
 ## <a id='example1'></a>Example #1: What images contain a specific dependency?
 
 Use the following command:
 
 ```
-insight image get --digest DIGEST
+tanzu insight image get --digest DIGEST
 ```
 
 Where `DIGEST` is the component version or image digest.
@@ -46,7 +46,7 @@ Where `DIGEST` is the component version or image digest.
 For example:
 
 ```
-$ insight image get --digest sha256:407d7099d6ce7e3632b6d00682a43028d75d3b088600797a833607bd629d1ed5
+$ tanzu insight image get --digest sha256:407d7099d6ce7e3632b6d00682a43028d75d3b088600797a833607bd629d1ed5
 Registry:	docker.io
 Image Name:	checkr/flagr:1.1.12
 Digest:    	sha256:407d7099d6ce7e3632b6d00682a43028d75d3b088600797a833607bd629d1ed5
@@ -67,7 +67,7 @@ Packages:
 Use the following command:
 
 ```
-insight vulnerabilities get --cveid CVE-IDENTIFIER
+tanzu insight vulnerabilities get --cveid CVE-IDENTIFIER
 ```
 
 Where `CVE-IDENTIFIER` is the CVE identifier, for example, CVE-2021-30139.
@@ -75,7 +75,7 @@ Where `CVE-IDENTIFIER` is the CVE identifier, for example, CVE-2021-30139.
 For example:
 
 ```
-$ insight vulnerabilities get --cveid CVE-2010-4051
+$ tanzu insight vulnerabilities get --cveid CVE-2010-4051
 1. CVE-2010-4051 (Low)
 Packages:
 	1. libc-bin@2.28-10

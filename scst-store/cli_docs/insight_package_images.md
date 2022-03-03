@@ -1,4 +1,4 @@
-# Insight Package Images
+# Tanzu insight Package Images
 
 Get images that contain the given package by name.
 
@@ -7,13 +7,13 @@ Get images that contain the given package by name.
 Get images that contain the given package by name.
 
 ```
-insight package images --name <package name> [flags]
+tanzu insight package images --name <package name> [flags]
 ```
 
 ## <a id='examples'></a>Examples
 
 ```
-insight package images --name client
+tanzu insight package images --name client
 ```
 
 ## <a id='options'></a>Options
@@ -26,4 +26,4 @@ insight package images --name client
 
 ## <a id='see-also'></a>See also
 
-* [insight package](insight_package.md)	 - Package commands
+* [Tanzu insight package](insight_package.md)	 - Package commands

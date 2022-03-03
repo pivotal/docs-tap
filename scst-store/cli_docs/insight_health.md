@@ -1,4 +1,4 @@
-## Insight health
+## Tanzu insight health
 
 Checks if endpoint is reachable.
 
@@ -7,13 +7,13 @@ Checks if endpoint is reachable.
 Checks if endpoint is reachable.
 
 ```
-insight health [flags]
+tanzu insight health [flags]
 ```
 
 ### <a id='examples'></a>Examples
 
 ```
-insight health
+tanzu insight health
 ```
 
 ### <a id='options'></a>Options
@@ -24,4 +24,4 @@ insight health
 
 ### <a id='see-also'></a>See also
 
-* [insight](insight.md)
+* [Tanzu insight](insight.md)
