@@ -1,4 +1,4 @@
-# Troubleshooting
+# Troubleshoot Service Bindings
 
 ## <a id="collect-logs"></a> Collect logs
 
