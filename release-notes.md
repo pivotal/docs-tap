@@ -10,6 +10,21 @@ This topic contains release notes for Tanzu Application Platform v1.0.
 
 This release has the following known issues:
 
+#### Grype scanner
+
+**Scanning Java source code may not reveal vulnerabilities:** Source Code Scanning only scans
+files present in the source code repository.
+No network calls are made to fetch dependencies.
+For languages that make use of dependency lock files, such as Golang and Node.js, Grype uses the
+lock files to check the dependencies for vulnerabilities.
+
+In the case of Java, dependency lock files are not guaranteed, so Grype instead uses the
+dependencies present in the built binaries (`.jar` or `.war` files).
+
+Because best practices do not include committing binaries to source code repositories, Grype
+fails to find vulnerabilities during a Source Scan. The vulnerabilities are still found during the
+Image Scan, after the binaries are built and packaged as images.
+
 #### Supply Chain Security Tools – Scan
 
 **Two scan jobs and two scan pods appear at the same time**: There is an edge case where two scan
