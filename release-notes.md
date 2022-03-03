@@ -8,6 +8,17 @@ This topic contains release notes for Tanzu Application Platform v1.
 
 ### <a id='1-1-new-features'></a> New Features
 
+#### Tanzu Application Platform Profile - Iterate
+This new profile is intended for iterative development versus the path to production.
+
+#### Tanzu Application Platform Profile - Build
+
+#### Tanzu Application Platform Profile - Run
+
+#### Tanzu Application Platform Profile - Full
+
+* New packages added....
+
 #### Default Roles for Tanzu Application Platform
 
 * Introduction of five new default roles and related permissions that apply to **k8s resources**. These roles are to help make it faster and easier to set up common sets of permissions for users and service accounts accessing a cluster running TAP.
@@ -37,7 +48,9 @@ This release has the following security issues:
 
 ### <a id='1-1-known-issues'></a> Known issues
 
+### <a id='1-1-known-issues'></a> Feature Deprecation 
 
+* Tanzu Application Platform Profile - Light
 
 
 ## <a id='1-0'></a> v1.0
