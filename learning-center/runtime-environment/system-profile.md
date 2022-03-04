@@ -429,9 +429,6 @@ The short versions of the recognized names are:
 
 * `base-environment:*` is a tagged version of the `base-environment` workshop image
 matched with the current version of the Learning Center Operator.
-* `jdk8-environment:*` is a tagged version of the `jdk8-environment` workshop image matched with the current version of the Learning Center Operator.
-* `jdk11-environment:*` is a tagged version of the `jdk11-environment` workshop image matched with the current version of the Learning Center Operator.
-* `conda-environment:*` is a tagged version of the `conda-environment` workshop image matched with the current version of the Learning Center Operator.
 
 To override the version of the `base-environment` workshop image mapped to by the `*`
 tag, use:
@@ -444,7 +441,7 @@ metadata:
 spec:
   workshop:
     images:
-      "base-environment:*": "dev.registry.tanzu.vmware.com/learning-center/base-environment:latest"
+      "base-environment:*": "registry.tanzu.vmware.com/learning-center/base-environment:latest"
 ```
 
 It is also possible to override where images are pulled from for any arbitrary image.

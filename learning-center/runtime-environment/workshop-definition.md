@@ -240,7 +240,7 @@ spec:
   title: Spring Testing
   description: Playground for testing Spring development
   content:
-    image: dev.registry.tanzu.vmware.com/learning-center/jdk11-environment:latest
+    image: registry.tanzu.vmware.com/learning-center/jdk11-environment:latest
     files: github.com/eduk8s-tests/lab-spring-testing
 ```
 
@@ -273,9 +273,6 @@ spec:
 The supported short versions of the names are:
 
 - `base-environment:*`: A tagged version of the `base-environment` workshop image matched with the current version of the Learning Center Operator.
-- `jdk8-environment:*`: A tagged version of the `jdk8-environment` workshop image matched with the current version of the Learning Center Operator.
-- `jdk11-environment:*`: A tagged version of the `jdk11-environment` workshop image matched with the current version of the Learning Center Operator.
-- `conda-environment:*`: A tagged version of the `conda-environment` workshop image matched with the current version of the Learning Center Operator.
 
 The `*` variants of the short names map to the most up-to-date version of the image available when the version of the Learning Center Operator was released. That version is guaranteed to work with that version of the Learning Center Operator. The `latest` version can be newer, with possible incompatibilities.
 
