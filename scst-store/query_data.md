@@ -10,9 +10,9 @@ The following are a few use cases supported by the CLI:
 +  What dependencies are affected by a specific CVE?
 +  How many CVEs does a specific image or dependency contain?
 
-## <a id='query-insight'></a> Query using the Tanzu Insight plugin
+## <a id='query-insight'></a> Query using the Tanzu Insight plug-in
 
-See [CLI plugin installation](cli_installation.md) if you have not previously installed the `insight` CLI plugin.
+See [CLI plug-in installation](cli_installation.md) if you have not previously installed the `insight` CLI plug-in.
 
 Use the following commands for querying:
 
