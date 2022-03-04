@@ -89,8 +89,9 @@ procedure, set up environment variables for use during the installation by runni
       NAME                                                 DISPLAY-NAME                                                              SHORT-DESCRIPTION
       accelerator.apps.tanzu.vmware.com                    Application Accelerator for VMware Tanzu                                  Used to create new projects and configurations.
       api-portal.tanzu.vmware.com                          API portal                                                                A unified user interface to enable search, discovery and try-out of API endpoints at ease.
-      run.appliveview.tanzu.vmware.com                     Application Live View for VMware Tanzu                                    App for monitoring and troubleshooting running apps
-      build.appliveview.tanzu.vmware.com                   Application Live View Conventions for VMware Tanzu                        Application Live View convention server
+      backend.appliveview.tanzu.vmware.com                 Application Live View for VMware Tanzu                                    App for monitoring and troubleshooting running apps
+      connector.appliveview.tanzu.vmware.com               Application Live View Connector for VMware Tanzu                          App for discovering and registering running apps
+      conventions.appliveview.tanzu.vmware.com             Application Live View Conventions for VMware Tanzu                        Application Live View convention server 
       buildservice.tanzu.vmware.com                        Tanzu Build Service                                                       Tanzu Build Service enables the building and automation of containerized software workflows securely and at scale.
       cartographer.tanzu.vmware.com                        Cartographer                                                              Kubernetes native Supply Chain Choreographer.
       cnrs.tanzu.vmware.com                                Cloud Native Runtimes                                                     Cloud Native Runtimes is a serverless runtime based on Knative
@@ -365,6 +366,7 @@ your `tap-values.yml`, as summarized in the following table:
 |API portal|`api_portal`|
 |Application Accelerator|`accelerator`|
 |Application Live View|`appliveview`|
+|Application Live View Connector|`appliveview_connector`|
 |Application Live View Conventions|`appliveview-conventions`|
 |Cartographer|`cartographer`|
 |Cloud Native Runtimes|`cnrs`|

@@ -18,6 +18,10 @@ This topic contains release notes for Tanzu Application Platform v1.
 #### Tanzu Application Platform GUI
 [placeholder for Runtime Resources Plugin]
 
+#### Application Live View
+
+* Enabled multiple cluster support for Application Live View
+* Application Live View components are split into three packages with new package reference names
 
 ### <a id='1-1-breaking-changes'></a> Breaking changes
 
