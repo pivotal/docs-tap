@@ -1,10 +1,10 @@
-# API Documentation plugin in Tanzu Application Platform GUI
+# API documentation plug-in in Tanzu Application Platform GUI
 
-This section provides a general overview of the API Documentation plugin of the Tanzu Application Platform GUI. For additional information, please refer to the [Getting started with API documentation plug-in](api-docs-getting-started.md).
+This section provides a general overview of the API documentation plug-in of the Tanzu Application Platform GUI. For additional information, please refer to the [Getting started with API documentation plug-in](api-docs-getting-started.md).
 
 ## <a id="overview"></a> Overview
 
-The API Documentation plugin provides a standalone list of APIs that can be connected to Components and Systems of Tanzu Application Platform GUI's Software Catalog. Each API entity can reflect the Components that provide that API, as well as the list of Components that are consumers of that API. Also, an API entity can be associated to Systems and show up on the System's diagram. To show such dependency, `spec.providesApis:` and `spec.consumesApis:` sections of the Component definition files should reference the name of the API entity.
+The API documentation plug-in provides a standalone list of APIs that can be connected to Components and Systems of Tanzu Application Platform GUI's Software Catalog. Each API entity can reflect the Components that provide that API, as well as the list of Components that are consumers of that API. Also, an API entity can be associated to Systems and show up on the System's diagram. To show such dependency, `spec.providesApis:` and `spec.consumesApis:` sections of the Component definition files should reference the name of the API entity.
 
 Here's a sample of how `providesApis` and `consumesApis` can be added to an existing Component's catalog definition, linking them together.
 ```yaml
@@ -24,19 +24,19 @@ spec:
     - example-api-2
 ```
 
-For more information on the structure of the definition file for an API entity, please refer to [Backstage Kind: API](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-api). For more information on the API Documentation plugin, please refer to [Backstage API Documentation](https://github.com/backstage/backstage/blob/master/plugins/api-docs/README.md).
+For more information on the structure of the definition file for an API entity, please refer to [Backstage Kind: API](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-api). For more information on the API documentation plug-in, please refer to [Backstage API documentation](https://github.com/backstage/backstage/blob/master/plugins/api-docs/README.md).
 
-## <a id='utilizing'></a>Utilizing the API Documentation plugin
+## <a id='utilizing'></a>Utilizing the API documentation plug-in
 
-The API Documentation plugin is part of Tanzu Application Platform GUI.
+The API documentation plug-in is part of Tanzu Application Platform GUI.
 
-The first way to use the API Documentation plugin is API-first. Click **APIs** in the left-hand navigation sidebar of Tanzu Application Platform GUI. This opens the **API catalog page**.
+The first way to use the API documentation plug-in is API-first. Click **APIs** in the left-hand navigation sidebar of Tanzu Application Platform GUI. This opens the **API catalog page**.
 
 ![Screenshot of API catalog page](./tap-gui/images/../../../images/api-plugin-1.png)
 
 On that page, you can view all the APIs already registered in the catalog regardless if they are associated with Components or Systems.
 
-The second way to utilize the API Documentation plugin is through Components and Systems of the Software Catalog, listed on the Home page of Tanzu Application Platform GUI. If there is an API entity associated with the selected Component or System, the **VIEW API** icon shall be active.
+The second way to utilize the API documentation plug-in is through Components and Systems of the Software Catalog, listed on the Home page of Tanzu Application Platform GUI. If there is an API entity associated with the selected Component or System, the **VIEW API** icon shall be active.
 
 ![Screenshot of Component page](./tap-gui/images/../../../images/api-plugin-2.png)
 
@@ -52,7 +52,7 @@ By choosing the **Definition** tab on the top of the API page, you can see the d
 
 ![Screenshot of API page - Definition](./tap-gui/images/../../../images/api-plugin-5.png)
 
-The API Documentation plugin supports the following API formats
+The API documentation plug-in supports the following API formats
 * OpenAPI 2 & 3
 * AsyncAPI
 * GraphQL

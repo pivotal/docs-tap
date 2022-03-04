@@ -176,12 +176,9 @@ This is the table of contents from which the Tanzu Application Platform Document
            - [Install Application Live View](tap-gui/plugins/install-application-live-view.md)
          - [Application Accelerator](tap-gui/plugins/application-accelerator.md)
            - [Install Application Accelerator](application-accelerator/install-app-acc.md)
-<<<<<<< Updated upstream
-         - [API Documentation](tap-gui/plugins/api-docs.md)
-           - [Getting Started with API Documentation plugin](tap-gui/plugins/api-docs-getting-started.md)
+         - [API documentation](tap-gui/plugins/api-docs.md)
+           - [Getting started with API documentation plug-in](tap-gui/plugins/api-docs-getting-started.md)
          - [Supply Chain Choreographer](tap-gui/plugins/scc-tap-gui.md)
-=======
->>>>>>> Stashed changes
       - [Upgrading Tanzu Application Platform GUI](tap-gui/upgrades.md)
       - [Troubleshoot Tanzu Application Platform GUI](tap-gui/troubleshooting.md)
     - [Tanzu Build Service](tanzu-build-service/tbs-about.md)
