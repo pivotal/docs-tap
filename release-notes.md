@@ -31,8 +31,8 @@ This new profile is intended for iterative development versus the path to produc
 
 #### Application Live View
 
-* Enabled multiple cluster support for Application Live View
-* Split Application Live View components into three packages with new package reference names
+* Enabled multiple cluster support for Application Live View.
+* Split Application Live View components into three packages with new package reference names.
 
 ### <a id='1-1-breaking-changes'></a> Breaking changes
 
