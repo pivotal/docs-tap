@@ -1,4 +1,4 @@
-# Learning Center known issues
+# Troubleshoot Learning Center
 
 This section includes a list of known issues with troubleshooting and recovery steps
 for Learning Center.

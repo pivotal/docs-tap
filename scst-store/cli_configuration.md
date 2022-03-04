@@ -1,6 +1,6 @@
 # CLI plugin configuration
 
-This topic explains how to configure the Tanzu Insight plugin:
+This topic explains how to configure the Tanzu Insight plug-in:
 
 > **Note:** All [required setup](../scst-store/overview.md#required-set-up) must be completed in addition to configuring the CLI
 

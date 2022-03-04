@@ -37,14 +37,14 @@ To use Grype to scan an image and generate an image report in CycloneDX format:
     ```
 
 
-## <a id='insight-cli'></a>Add Data with the Tanzu Insight Plugin
+## <a id='insight-cli'></a>Add Data with the Tanzu Insight Plug-in
 
 Use the following commands to add data:
 
 - `image create`
 - `source create`
 
-Use `tanzu insight -h` in the terminal or see [tanzu insight details](cli_docs/insight.md) for more information.
+Use `tanzu insight -h` in the terminal or see [Tanzu insight](cli_docs/insight.md) for more information.
 
 ## <a id='example1'></a>Example #1: Create an Image Report
 
