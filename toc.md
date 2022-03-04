@@ -176,6 +176,7 @@ This is the table of contents from which the Tanzu Application Platform Document
            - [Install Application Live View](tap-gui/plugins/install-application-live-view.md)
          - [Application Accelerator](tap-gui/plugins/application-accelerator.md)
            - [Install Application Accelerator](application-accelerator/install-app-acc.md)
+         - [Supply Chain Choreographer](tap-gui/plugins/scc-tap-gui.md)
       - [Upgrading Tanzu Application Platform GUI](tap-gui/upgrades.md)
       - [Troubleshoot Tanzu Application Platform GUI](tap-gui/troubleshooting.md)
     - [Tanzu Build Service](tanzu-build-service/tbs-about.md)

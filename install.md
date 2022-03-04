@@ -283,9 +283,9 @@ accelerator:
     service_type: "ClusterIP"
 ```
 
-### <a id="ssh-secret-key"></a>Identify the SSH secret key for your package
+### <a id="identify-values"></a>Identify the values for your package
 
-You can identify the SSH secret keys for your Tanzu package by running:
+You can identify the values for your Tanzu package by running:
 
 ```
 tanzu package available get PACKAGE-NAME.tanzu.vmware.com/VERSION --values-schema -n tap-install

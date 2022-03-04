@@ -203,16 +203,15 @@ The following packages are part of the Tanzu Application Platform:
  
 - **Tanzu Learning Center**
 
-  Learning Center provides a platform for creating and self-hosting workshops. It allows content 
-  creators to create workshops from markdown files that are displayed to the learner in a terminal 
+  Learning Center provides a platform for creating and self-hosting workshops. With Learning Center, content 
+  creators can create workshops from markdown files that learners can view in a terminal 
   shell environment with an instructional wizard UI. The UI can embed slide content, an integrated 
   development environment (IDE), a web console for accessing the Kubernetes cluster, and other custom 
   web applications.
 
-  Although Learning Center requires Kubernetes to run, and is used to teach users about Kubernetes, 
-  you can use it to host training for other purposes as well. For example, you can use it to help train 
-  users in web-based applications, use of databases, or programming languages, where the user has no interest 
-  or need for Kubernetes.
+  Although Learning Center requires Kubernetes to run, and it teaches users about Kubernetes, 
+  you can use it to host training for other purposes as well. For example, you can use it to train 
+  users on web-based applications, use of databases, or programming languages.
 
 - **Tekton**
 
@@ -370,6 +369,20 @@ The following table lists the packages contained in each profile:
    </td>
   </tr>
   <tr>
+   <td>Default Roles
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
    <td>Developer Conventions
    </td>
    <td>&check;
@@ -497,20 +510,6 @@ The following table lists the packages contained in each profile:
   </tr>
   <tr>
    <td>Out of the Box Templates
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-  </tr>
-  <tr>
-   <td>Role Based Access Control
    </td>
    <td>&check;
    </td>
