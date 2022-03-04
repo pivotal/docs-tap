@@ -1,4 +1,4 @@
-# Troubleshooting Tanzu Application Platform GUI
+# Troubleshoot Tanzu Application Platform GUI
 
 This topic describes troubleshooting information for problems with installing Tanzu Application Platform GUI.
 

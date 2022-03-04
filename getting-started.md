@@ -150,7 +150,9 @@ To deploy your application, you must download an accelerator, upload it on your 
 
     ![REGISTER button on the right side of the header](images/getting-started-tap-gui-5.png)
 
-2. **Register an existing component** prompts you to type a repository URL.
+>**Note:** Alternatively, you can add the link to the `catalog-info.yaml` to the configuration `tap-values.yml` file in the `tap_gui.app_config.catalog.locations` section as described in the [Installing the Tanzu Application Platform Package and Profiles](/install.md#a-idfull-profilea-full-profile).
+
+1. **Register an existing component** prompts you to type a repository URL.
 Type the link to the `catalog-info.yaml` file of the tanzu-java-web-app in the Git repository field, for example,
 `https://github.com/USERNAME/PROJECTNAME/blob/main/catalog-info.yaml`.
 
@@ -163,6 +165,8 @@ Type the link to the `catalog-info.yaml` file of the tanzu-java-web-app in the G
     ![Review the entities to be added to the catalog](images/getting-started-tap-gui-7.png)
 
 1. Navigate back to the home page. The catalog changes and entries are visible for further inspection.
+
+>**Note:** If your Tanzu Application Platform GUI instance does not have a [PostgreSQL](tap-gui/database.md) database configured, then the `catalog-info.yaml` location needs to be re-registered after the instance get restarted or upgraded.
 
 ### <a id="iterate"></a>Iterate on your application
 
@@ -253,70 +257,95 @@ Follow the following steps to diagnose Spring Boot-based applications using Appl
 
 In this section, you are going to:
 
-  - Create an application accelerator using Tanzu Application Platform GUI.
+  - Create an application accelerator using Tanzu Application Platform GUI and CLI.
 
 ### <a id="create-an-app-acc"></a>Create an application accelerator ###
 
-To create a new application accelerator, follow the following steps:
+You can use any Git repository to create an accelerator. You need the URL for the repository to create an accelerator.
 
-1. Click `Create` on the left-hand side of the navigation bar on Tanzu Application Platform GUI portal to view the list of available accelerators.
-2. Click `CHOOSE` to select the **New Accelerator** tile.
+For this example the Git repository should be `public` and contain a `README.md` file. These are all options that are available  when you create repositories on GitHub.
 
-3. Complete the **New Project** form with the following information.
+To create a new application accelerator using your Git repository, follow these steps:
 
-    - > **Name**: `Your accelerator name` This is the name of the generated ZIP file
-    - Description (Optional): A description of your accelerator
-      -  **K8s Resource Name**: A Kubernetes resource name to use for the accelerator
-      -  **Git Repository URL**: The URL for the Git repository that contains the accelerator source code
-      -  **Git Branch**: The branch for the Git repository
-    * **Tags** (Optional): Associated tags that are used for searches in the UI
+1. Clone your Git repository.
 
-    ![Generate Accelerators first prompt](images/getting-started-section2-2.png)
+2. Create a file named `accelerator.yaml` in the root directory of this Git repository.
 
-    ![Explore project dialog box](images/getting-started-section2-3.png)
+3. Add the following content to the `accelerator.yaml` file:
 
-  (Optional) To navigate through the accelerator files, click **EXPLORE**.
-        When finished, click **NEXT STEP**.
-
-
-3. Verify the provided information and click **CREATE**.
-
-    ![Verify information for creating an accelerator](images/getting-started-section2-4.png)
-
-
-4. Download and expand the ZIP file by clicking **DOWNLOAD ZIP FILE** and expand it.
-
-    * The output contains a YAML file for an Accelerator resource, pointing to the Git repository.
-    * The output contains a file named `new-accelerator.yaml` which defines the metadata for your new accelerator.
-
-
-    ![Download ZIP file with the accelerator](images/getting-started-section2-5.png)
-
-
-5. To apply the k8s-resource.yml, run the following command in your terminal in the folder where you expanded the zip file:
-
-    ```
-    kubectl apply -f k8s-resource.yaml --namespace accelerator-system
+    ```yaml
+    accelerator:
+      displayName: Simple Accelerator
+      description: Contains just a README
+      iconUrl: https://images.freecreatives.com/wp-content/uploads/2015/05/smiley-559124_640.jpg
+      tags:
+      - simple
+      - getting-started
     ```
 
-6. The Tanzu Application Platform GUI refreshes periodically. After the UI refreshes, the new accelerator becomes available.
-   After waiting a few minutes, click **Create** on the left-hand side navigation bar of Tanzu Application Platform GUI to see if the accelerator appears.
+    > Feel free to use a different icon, as long as it is using a reachable URL.
 
+4. Add the new `accelerator.yaml` file, commit this change and push to your Git repository.
 
-### <a id="accelerator-yaml"></a>Using accelerator.yaml
+## <a id="publishing-the-new-accelerator"></a>Publish the new accelerator
 
-The Accelerator ZIP file contains a file called `new-accelerator.yaml`.
-This file is a starting point for the metadata for your new accelerator and the associated options and file processing instructions.
-This `new-accelerator.yaml` file must be copied to the root directory of your GIT repository and named `accelerator.yaml`.
+To publish the new application accelerator created in your Git repository, follow these steps:
 
-Copy this file into your GIT repository as `accelerator.yaml` to have additional attributes rendered in the web UI.
-See [Creating Accelerators](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/1.0/acc-docs/GUID-creating-accelerators-index.html).
+1. Run the following command in your terminal:
 
-After you push that change to your GIT repository, the Accelerator is refreshed based on the `git.interval` setting for the Accelerator resource. The default is 10 minutes. You can run the following command to force an immediate reconciliation:
+    > You need the URL for you Git repository plus the name of the branch where you pushed the new `accelerator.yaml` file.
+
+    ```sh
+    tanzu accelerator create simple --git-repository <YOUR-GIT-REPOSITORY-URL> --git-branch <YOUR-GIT-BRANCH>
+    ```
+
+2. Refresh Tanzu Application Platform GUI to reveal the newly published accelerator.
+
+    ![Another accelerator appears in the Tanzu Application Platform GUI](images/new-accelerator-deployed-v1.1.png)
+
+    >**Note:** It might take a few seconds for Tanzu Application Platform GUI to refresh the catalog and add an entry for new accelerator.
+
+## <a id="working-with-accelerators"></a>Working with accelerators
+
+### <a id="accelerator-updates"></a>Updating an accelerator
+
+After you push any changes to your Git repository, the Accelerator is refreshed based on the `git.interval` setting for the Accelerator resource. The default is 10 minutes. You can run the following command to force an immediate reconciliation:
 
 ```
-tanzu accelerator update <accelerator-name> --reconcile
+tanzu accelerator update <ACCELERATOR-NAME> --reconcile
 ```
+
+### <a id="accelerator-deletes"></a>Deleting an accelerator
+
+When you no longer need your accelerator, you can simply delete it using the Tanzu CLI:
+
+```
+tanzu accelerator delete <ACCELERATOR-NAME>
+```
+
+### <a id="accelerator-manifest"></a>Using an accelerator manifest
+
+An alternative to using the Tanzu CLI is to create seperate manifest file and apply it to the cluster. Create a `simple-manifest.yaml` file and add the following content, filling in with your Git repository and branch values.
+
+```yaml
+apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
+kind: Accelerator
+metadata:
+  name: simple
+  namespace: accelerator-system
+spec:
+  git:
+    url: <YOUR-GIT-REPOSITORY-URL>
+    ref:
+      branch: <YOUR-GIT-BRANCH>
+```
+
+To apply the `simple-manifest.yaml`, run the following command in your terminal in the directory where you created this file:
+
+```sh
+kubectl apply -f simple-manifest.yaml
+```
+
 ---
 
 ## <a id="add-test-and-scan"></a> Section 3: Add Testing and Security Scanning to Your Application
@@ -1129,7 +1158,7 @@ ClusterResource to reference and describe it.
     kubectl apply -f rabbitmq-clusterresource.yaml
     ```
 
-    The creation of this `ClusterResource` referring to `RabbitmqCluster` is the mechanism by which the `tanzu service` CLI plug-in (as the following mentions ) verifies which resources to disply. For more information about `ClusterResource`, see [Service Offering for VMware Tanzu](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-service_offering-terminology_and_apis.html).
+    The creation of this `ClusterResource` referring to `RabbitmqCluster` enables the `tanzu service` CLI plug-in to verify which resources to display. For more information about `ClusterResource`, see [Service Offering for VMware Tanzu](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-service_offering-terminology_and_apis.html).
 
 
 ### <a id="same-namespace-use-case"></a> Use case 1: Binding an application to a pre-provisioned service instance running in the same namespace
@@ -1137,7 +1166,7 @@ ClusterResource to reference and describe it.
 >**Note:** The following examples implement a RabbitMQ service instance and a single sample
 >application which acts as both a producer and consumer of messages.
 >For most real-world scenarios using RabbitMQ it's likely that there are multiple applications
->deployed and communicating through the RabbitMQ service. Currently it is not possible for more than
+>deployed and communicating through the RabbitMQ service. Currently, it is not possible for more than
 >one application workload to consume the same service instance. For more information, see the known
 >issues in the [release notes](release-notes.md) for further information.
 
@@ -1210,6 +1239,8 @@ RabbitMQ instance:
 the new message IDs.
 
 ### <a id="diff-namespace-use-case"></a> Use case 2 - Binding an application to a pre-provisioned service instance running in a different namespace on the same Kubernetes cluster
+
+>**Note:** Tanzu Application Platform v1.1.0 GA will support this use case.
 
 >**Note:** Consumption of a single service instance by multiple workloads from different namespaces is currently not supported, but is intended to be supported in the near future.
 
@@ -1367,6 +1398,8 @@ existing PostgreSQL database that exists in Azure.
     - `<REFERENCE>` is a reference provided to the `Secret`. For example, `v1:Secret:external-azure-db-binding-compatible`.
 
 ### <a id="diff-cluster-use-case"></a> Use case 4: Binding an application to a service instance running on a different Kubernetes cluster (Experimental).
+
+>**Note:** Tanzu Application Platform v1.1.0 GA will support this use case.
 
 >**Note:** Use cases marked with Experimental are subject to change.
 

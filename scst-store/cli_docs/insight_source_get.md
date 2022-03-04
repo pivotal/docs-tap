@@ -1,4 +1,4 @@
-# Insight source get
+# Tanzu insight source get
 
 Get sources by repository, commit, or organization.
 
@@ -7,13 +7,13 @@ Get sources by repository, commit, or organization.
 Get sources by repository, commit, or organization.
 
 ```
-insight source get --repo <repository> --commit <commit-hash> --org <organization-name> [--format <format>] [flags]
+tanzu insight source get --repo <repository> --commit <commit-hash> --org <organization-name> [--format <format>] [flags]
 ```
 
 ## <a id='examples'></a>Examples
 
 ```
-insight source get --repo github.com/org/example --commit b33dfee51 --org company
+tanzu insight source get --repo github.com/org/example --commit b33dfee51 --org company
 ```
 
 ## <a id='options'></a>Options
@@ -28,4 +28,4 @@ insight source get --repo github.com/org/example --commit b33dfee51 --org compan
 
 ## <a id='see-also'></a>See also
 
-* [insight source](insight_source.md)	 - Source commands
+* [Tanzu insight source](insight_source.md)	 - Source commands

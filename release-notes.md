@@ -8,9 +8,31 @@ This topic contains release notes for Tanzu Application Platform v1.
 
 ### <a id='1-1-new-features'></a> New Features
 
+#### Tanzu Application Platform Profile - Iterate
+This new profile is intended for iterative development versus the path to production.
+
+#### Tanzu Application Platform Profile - Build
+
+#### Tanzu Application Platform Profile - Run
+
+#### Tanzu Application Platform Profile - Full
+
+* New packages added....
+
+#### Default Roles for Tanzu Application Platform
+
+* Introduction of five new default roles and related permissions that apply to **k8s resources**. These roles are to help make it faster and easier to set up common sets of permissions for users and service accounts accessing a cluster running TAP.
+  * Three roles will be meant for users (people): app-editor, app-viewer and app-operator. 
+  * Two roles will be meant for “robot” or system permissions, which we will call Workload and Deliverable. 
+
+
 #### Tanzu Application Platform GUI
 [placeholder for Runtime Resources Plugin]
 
+#### Application Live View
+
+* Enabled multiple cluster support for Application Live View
+* Application Live View components are split into three packages with new package reference names
 
 ### <a id='1-1-breaking-changes'></a> Breaking changes
 
@@ -30,7 +52,9 @@ This release has the following security issues:
 
 ### <a id='1-1-known-issues'></a> Known issues
 
+### <a id='1-1-known-issues'></a> Feature Deprecation 
 
+* Tanzu Application Platform Profile - Light
 
 
 ## <a id='1-0'></a> v1.0
@@ -103,8 +127,7 @@ Image Scan, after the binaries are built and packaged as images.
 
 - **Training Portal in pending state:** Under certain circumstances, the training portal is stuck in
 a pending state. To resolve this issue, see
-[Training Portal Stays in Pending State](troubleshooting.html#training-portal-pending) in
-_Troubleshooting Tanzu Application Platform_.
+[Training portal stays in pending state](learning-center/troubleshoot-learning-center.md#training-portal-pending).
 
 - **image-policy-webhook-service not found:** If you are installing a Tanzu Application Platform
 profile, you might see the error:

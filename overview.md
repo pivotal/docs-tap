@@ -116,6 +116,12 @@ The following packages are part of the Tanzu Application Platform:
   service applies these opinions to fleets of developer workloads as they are deployed to the
   platform, saving operator and developer time.
 
+- **Default Roles for Tanzu Application Platform**
+
+  This package includes five default roles for users and service accounts: app-editor, app-viewer, app-operator, workload and deliverable. These roles are available to help make it faster and easier for operators to limit the permissions that a user or service account will require on a cluster running TAP. They are built using aggregated cluster roles in kubernetes RBAC.
+
+  Default roles only apply to a user interacting with the cluster using kubectl and Tanzu CLI. TAP GUI support for Default roles will be introduced in a future release.
+
 - **Developer Conventions**
 
   Developer conventions configure workloads to prepare them for inner loop development.
@@ -206,22 +212,34 @@ Tanzu Application Platform is available from predefined profiles or individual p
 
 The following profiles are available in Tanzu Application Platform:
 
-- **Light:**
-  Contains packages that drive the Inner Loop personal developer experience of building and
-  iterating on applications.
-
 - **Full:**
   This profile contains all of the Tanzu Application Platform packages.
+  
+- **Iterate:**
+  This profile is intended for iterative application development.
+
+- **Build:**
+  This profile is intended for the transformation of source revisions to workload revisions. Specifically, hosting Workloads and SupplyChains.
+ 
+- **Run:**
+  This profile is intended for the transformation of workload revisions to running Pods. Specifically, hosting Deliverys and Deliverables.
+
+- **View:**
+  This profile is intended for instances of applications related to centralized developer experiences. Specifically, the TAP GUI and Metadata Store.
+  
 
 ## <a id='about-package-profiles'></a> About Tanzu Application Platform package profiles
 
 Tanzu Application Platform can be installed through predefined profiles or through individual
 packages. This section explains how to install a profile.
 
-Tanzu Application Platform contains the following two profiles:
+Tanzu Application Platform contains the following five profiles:
 
 - Full (`full`)
-- Light (`light`)
+- Iterate (`iterate`)
+- Build (`build`)
+- Run (`run`)
+- View (`view`)
 
 The following table lists the packages contained in each profile:
 
@@ -231,7 +249,13 @@ The following table lists the packages contained in each profile:
    </td>
    <td><strong>Full</strong>
    </td>
-   <td><strong>Light</strong>
+   <td><strong>Iterate</strong>
+   </td>   
+   <td><strong>Build</strong>
+   </td>
+   <td><strong>Run</strong>
+   </td>
+   <td><strong>View</strong>
    </td>
   </tr>
   <tr>
@@ -241,45 +265,95 @@ The following table lists the packages contained in each profile:
    </td>
    <td>
    </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
   </tr>
   <tr>
    <td>Application Accelerator
    </td>
    <td>&check;
    </td>
-   <td>&check;
+   <td>
    </td>
-  </tr>
-  <tr>
-   <td>Application Live View
+   <td>
    </td>
-   <td>&check;
+   <td>
    </td>
    <td>&check;
    </td>
   </tr>
   <tr>
-   <td>Application Live View Conventions
+   <td>Application Live View (Build)
    </td>
    <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
    </td>
    <td>&check;
    </td>
   </tr>
-   <tr>
-   <td>Cloud Native Runtimes
+  <tr>
+   <td>Application Live View (Run)
    </td>
    <td>&check;
    </td>
    <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+  <td>Application Live View (GUI)
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+  <td>Cloud Native Runtimes
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>
    </td>
   </tr>
   <tr>
    <td>Convention Controller
-   </td>
+    </td>
    <td>&check;
    </td>
    <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
    </td>
   </tr>
   <tr>
@@ -289,13 +363,25 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
   </tr>
   <tr>
    <td>Flux Source Controller
+  </td>
+   <td>&check;
+   </td>
+   <td>&check;
    </td>
    <td>&check;
    </td>
    <td>&check;
+   </td>
+   <td>
    </td>
   </tr>
   <tr>
@@ -305,9 +391,21 @@ The following table lists the packages contained in each profile:
    </td>
    <td>
    </td>
-  </tr>  
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+  </tr>
   <tr>
    <td>Image Policy Webhook
+  </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
    </td>
    <td>&check;
    </td>
@@ -316,17 +414,30 @@ The following table lists the packages contained in each profile:
   </tr>
   <tr>
    <td>Learning Center
-   </td>
+  </td>
    <td>&check;
    </td>
    <td>
    </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
   </tr>
+  <tr>
    <td>Out of the Box Delivery - Basic
    </td>
    <td>&check;
    </td>
    <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>
    </td>
   </tr>
   <tr>
@@ -336,19 +447,37 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
   </tr>
   <tr>
    <td>Out of the Box Supply Chain - Testing
    </td>
-   <td>&check;<sup>&ast;</sup>
+   <td>&check;
    </td>
    <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
    </td>
   </tr>
   <tr>
    <td>Out of the Box Supply Chain - Testing and Scanning
    </td>
-   <td>&check;<sup>&ast;</sup>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>
    </td>
    <td>
    </td>
@@ -360,12 +489,25 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
   </tr>
-   <td>Services Toolkit
+  <tr>
+   <td>Role Based Access Control
    </td>
    <td>&check;
    </td>
    <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
    </td>
   </tr>
   <tr>
@@ -375,6 +517,26 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Services Toolkit
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
   </tr>
   <tr>
    <td>Source Controller
@@ -383,13 +545,25 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
   </tr>
   <tr>
    <td>Spring Boot Convention
-   </td>
+  </td>
    <td>&check;
    </td>
    <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
    </td>
   </tr>
   <tr>
@@ -399,14 +573,40 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
   </tr>
   <tr>
    <td>Supply Chain Security Tools - Scan</td>
-   <td>&check;</td><td></td>
+  </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
   </tr>
   <tr>
    <td>Supply Chain Security Tools - Store</td>
-   <td>&check;</td><td></td>
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
   </tr>
   <tr>
    <td>Tanzu Build Service
@@ -415,11 +615,23 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
   </tr>
   <tr>
    <td>Tanzu Application Platform GUI
    </td>
    <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
    </td>
    <td>&check;
    </td>
@@ -431,7 +643,28 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
   </tr>
+  <tr>
+   <td>Telemetry
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
 </table>
 
 <sup>\*</sup> Only one supply chain should be installed at any given time.
@@ -460,6 +693,6 @@ This information cannot directly identify any individual.
 
 You must acknowledge that you have read the VMware CEIP policy before you can proceed with the
 installation.
-For more information, see [Install a Tanzu Application Platform profile](install.md#install-profile).
+For more information, see [Install your Tanzu Application Platform profile](install.md#install-profile).
 To opt out of telemetry participation after installation, see
 [Opting out of telemetry collection](opting-out-telemetry.md).

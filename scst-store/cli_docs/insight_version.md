@@ -1,9 +1,9 @@
-# Insight version
+# Tanzu insight version
 
-To display insight version:
+To display tanzu insight version:
 
 ```
-insight version [flags]
+tanzu insight version [flags]
 ```
 
 ## <a id='options'></a>Options
@@ -14,4 +14,4 @@ insight version [flags]
 
 ## <a id='see-also'></a>See also
 
-* [Insight](insight.md)	 - This CLI is used to post data and query the metadata store.
+* [Tanzu insight](insight.md)	 - This CLI is used to post data and query the metadata store.

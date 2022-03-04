@@ -1,4 +1,4 @@
-# Insight image
+# Tanzu insight image
 
 Image commands are as follows:
 
@@ -10,8 +10,8 @@ Image commands are as follows:
 
 ## <a id='see-also'></a>See also
 
-* [Insight](insight.md)	 - This CLI is used to post data and query the metadata store.
-* [Insight image create](insight_image_create.md)	 - Create an image report.
-* [Insight image get](insight_image_get.md)	 - Get image by digest.
-* [Insight image packages](insight_image_packages.md)	 - Get image packages.
-* [Insight image vulnerabilities](insight_image_vulnerabilities.md)	 - Get image vulnerabilities.
+* [Tanzu insight](insight.md)	 - This CLI is used to post data and query the metadata store.
+* [Tanzu insight image add](insight_image_add.md)	 - Add an image report.
+* [Tanzu insight image get](insight_image_get.md)	 - Get image by digest.
+* [Tanzu insight image packages](insight_image_packages.md)	 - Get image packages.
+* [Tanzu insight image vulnerabilities](insight_image_vulnerabilities.md)	 - Get image vulnerabilities.
