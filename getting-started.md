@@ -150,7 +150,9 @@ To deploy your application, you must download an accelerator, upload it on your 
 
     ![REGISTER button on the right side of the header](images/getting-started-tap-gui-5.png)
 
-2. **Register an existing component** prompts you to type a repository URL.
+>**Note:** Alternatively, you can add the link to the `catalog-info.yaml` to the configuration `tap-values.yml` file in the `tap_gui.app_config.catalog.locations` section as described in the [Installing the Tanzu Application Platform Package and Profiles](/install.md#a-idfull-profilea-full-profile).
+
+1. **Register an existing component** prompts you to type a repository URL.
 Type the link to the `catalog-info.yaml` file of the tanzu-java-web-app in the Git repository field, for example,
 `https://github.com/USERNAME/PROJECTNAME/blob/main/catalog-info.yaml`.
 
@@ -163,6 +165,8 @@ Type the link to the `catalog-info.yaml` file of the tanzu-java-web-app in the G
     ![Review the entities to be added to the catalog](images/getting-started-tap-gui-7.png)
 
 1. Navigate back to the home page. The catalog changes and entries are visible for further inspection.
+
+>**Note:** If your Tanzu Application Platform GUI instance does not have a [PostgreSQL](tap-gui/database.md) database configured, then the `catalog-info.yaml` location needs to be re-registered after the instance get restarted or upgraded.
 
 ### <a id="iterate"></a>Iterate on your application
 
