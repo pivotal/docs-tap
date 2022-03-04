@@ -20,7 +20,7 @@ tanzu apps workload delete --all
 
 ```
       --all                     delete all workloads within the namespace
-  -f, --file file path          file path containing the description of a single workload, other flags are layered on top of this resource
+  -f, --file file path          file path containing the description of a single workload, other flags are layered on top of this resource. Use value "-" to read from stdin
   -h, --help                    help for delete
   -n, --namespace name          kubernetes namespace (defaulted from kube config)
       --wait                    waits for workload to be deleted

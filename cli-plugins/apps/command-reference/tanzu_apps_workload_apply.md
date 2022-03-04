@@ -28,6 +28,7 @@ tanzu apps workload apply --file workload.yaml
 ```
       --annotation "key=value" pair    annotation is represented as a "key=value" pair, or "key-" to remove. This flag may be specified multiple times
       --app name                       application name the workload is a part of
+      --build-env "key=value" pair     build environment variables represented as a "key=value" pair, or "key-" to remove. This flag may be specified multiple times
       --debug                          put the workload in debug mode, --debug=false to disable
       --dry-run                        print kubernetes resources to stdout rather than apply them to the cluster, messages normally on stdout will be sent to stderr
       --env "key=value" pair           environment variables represented as a "key=value" pair, or "key-" to remove. This flag may be specified multiple times
@@ -45,8 +46,8 @@ tanzu apps workload apply --file workload.yaml
       --local-path path                path on the local file system to a directory of source code to build for the workload
   -n, --namespace name                 kubernetes namespace (defaulted from kube config)
       --param "key=value" pair         additional parameters represented as a "key=value" pair, or "key-" to remove. This flag may be specified multiple times
-      --request-cpu cores              the minumum amount of cpu required, in CPU cores (500m = .5 cores)
-      --request-memory bytes           the minumum amount of memory required, in bytes (500Mi = 500MiB = 500 * 1024 * 1024)
+      --request-cpu cores              the minimum amount of cpu required, in CPU cores (500m = .5 cores)
+      --request-memory bytes           the minimum amount of memory required, in bytes (500Mi = 500MiB = 500 * 1024 * 1024)
       --service-ref object reference   object reference for a service to bind to the workload "database=rabbitmq.com/v1beta1:RabbitmqCluster:[my-broker-ns]:my-broker", or "database-" to delete. This flag may be specified multiple times.
       --source-image image             destination image repository where source code is staged before being built
       --tail                           show logs while waiting for workload to become ready
