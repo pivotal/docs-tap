@@ -327,7 +327,7 @@ To install Application Live View connector:
 
 
 For more information about Application Live View,
-see the [Application Live View documentation](https://docs-staging.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.1/docs/GUID-index.html).
+see the [Application Live View documentation](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.1/docs/GUID-index.html).
 
 The Application Live View UI plug-in is part of Tanzu Application Platform GUI.
 To access the Application Live View UI,
