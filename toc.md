@@ -43,9 +43,9 @@ This is the table of contents from which the Tanzu Application Platform Document
       - [Install cert-manager, Contour, and FluxCD](cert-mgr-contour-fcd/install-cert-mgr.md)
     - [Cloud Native Runtimes](cloud-native-runtimes/about.md)
       - [Install Cloud Native Runtimes](cloud-native-runtimes/install-cnrt.md)
-    - [Default Roles for Tanzu Application Platform](default-roles/overview.md)
-      - [Role Description](default-roles/role-descriptions.md)
-      - [How to bind a user or group to a default role](default-roles/binding.md)
+    - [Default roles for Tanzu Application Platform](default-roles/overview.md)
+      - [Role descriptions](default-roles/role-descriptions.md)
+      - [Bind a user or group to a default role](default-roles/binding.md)
     - [Spring Boot conventions](spring-boot-conventions/about.md)
       - [Install Spring Boot conventions](spring-boot-conventions/install-spring-boot-conventions.md)
       - [Conventions](spring-boot-conventions/reference/conventions.md)
@@ -176,9 +176,12 @@ This is the table of contents from which the Tanzu Application Platform Document
            - [Install Application Live View](tap-gui/plugins/install-application-live-view.md)
          - [Application Accelerator](tap-gui/plugins/application-accelerator.md)
            - [Install Application Accelerator](application-accelerator/install-app-acc.md)
+<<<<<<< Updated upstream
          - [API Documentation](tap-gui/plugins/api-docs.md)
            - [Getting Started with API Documentation plugin](tap-gui/plugins/api-docs-getting-started.md)
          - [Supply Chain Choreographer](tap-gui/plugins/scc-tap-gui.md)
+=======
+>>>>>>> Stashed changes
       - [Upgrading Tanzu Application Platform GUI](tap-gui/upgrades.md)
       - [Troubleshoot Tanzu Application Platform GUI](tap-gui/troubleshooting.md)
     - [Tanzu Build Service](tanzu-build-service/tbs-about.md)
