@@ -42,7 +42,7 @@ Application Live view can be installed in single cluster or multi-cluster enviro
 
 To install Application Live View back-end:
 
-1. List version information for both packages by running:
+1. List version information for package by running:
 
     ```
     tanzu package available list backend.appliveview.tanzu.vmware.com --namespace tap-install
@@ -157,7 +157,7 @@ To install Application Live View back-end:
 
 To install Application Live View connector:
 
-1. List version information for both packages by running:
+1. List version information for package by running:
 
     ```
     tanzu package available list connector.appliveview.tanzu.vmware.com --namespace tap-install
@@ -207,8 +207,7 @@ To install Application Live View connector:
         host: appliveview.INGRESS-DOMAIN
     ```
 
-    Where `INGRESS-DOMAIN` is the top level domain you point at the tanzu-shared-ingress service’s External IP address. The "appliveview" 
-    subdomain should be prepended to the value provided.
+    Where `INGRESS-DOMAIN` is the top level domain the Application Live View Backend exposes using tanzu-shared-ingress for connectors in other clusters to reach the backend. The "appliveview" subdomain should be prepended to the value provided.
 
     Edit the values if needed or leave the default values.
 
@@ -265,13 +264,28 @@ To install Application Live View connector:
 
 ## <a id='install-app-live-view-conventions'></a> Install Application Live View Conventions
 
+1. List version information for package by running:
+
+    ```
+    tanzu package available list conventions.appliveview.tanzu.vmware.com --namespace tap-install
+    ```
+
+    For example:
+
+    ```
+    $ tanzu package available list conventions.appliveview.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for conventions.appliveview.tanzu.vmware.com... 
+      NAME                                      VERSION        RELEASED-AT           
+      conventions.appliveview.tanzu.vmware.com  1.1.0-build.1  2022-02-24T00:00:00Z
+    ```
+
 1. Install the Application Live View conventions package by running:
 
     ```
     tanzu package install appliveview-conventions -p conventions.appliveview.tanzu.vmware.com -v VERSION-NUMBER -n tap-install
     ```
 
-    Where `VERSION-NUMBER` is the version of the package listed in [Install Application Live View Connector](#install-app-live-view-connector). For example, `1.1.0-build.1`.
+    Where `VERSION-NUMBER` is the version of the package listed. For example, `1.1.0-build.1`.
 
     For example:
 
@@ -299,20 +313,21 @@ To install Application Live View connector:
 
     ```
     tanzu package installed get appliveview-conventions -n tap-install
-    | Retrieving installation details for cc...
+    | Retrieving installation details for appliveview-conventions... 
     NAME:                    appliveview-conventions
-    PACKAGE-NAME:            build.appliveview.tanzu.vmware.com
-    PACKAGE-VERSION:         1.0.2
+    PACKAGE-NAME:            conventions.appliveview.tanzu.vmware.com
+    PACKAGE-VERSION:         1.1.0-build.1
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
+
     ```
 
     Verify that `STATUS` is `Reconcile succeeded`
 
 
 For more information about Application Live View,
-see the [Application Live View documentation](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-index.html).
+see the [Application Live View documentation](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.1/docs/GUID-index.html).
 
 The Application Live View UI plug-in is part of Tanzu Application Platform GUI.
 To access the Application Live View UI,
