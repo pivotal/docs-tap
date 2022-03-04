@@ -1,34 +1,32 @@
-# Role Descriptions
+# Role descriptions
 
 ## app-editor
 
-*(can create, edit, delete a Tanzu Workload or Deliverable)*
+The app-editor role can create, edit, and delete a Tanzu workload or deliverable.
 
-This role is recommended if you would like to give a user, for example an app developer, the ability to create running workloads on the cluster (they are able to deploy their applications). This user role will require the ability to:
+Assign this role to give a user, for example an app developer, the ability to create running workloads on the cluster. This allows them to deploy their applications. This role allows the user to:
 
-* View, create, update or delete a Tanzu Workload (and Deliverable), including the ability to view the logs of the pods spun up via the Tanzu Workload and the ability to trace a commit through the build process. 
-* Download the image(s) associated with their Tanzu Workload so that they can test images locally, or create a Tanzu Workload from it (instead of starting from source code in a repo). 
-* View and use app accelerator templates.
-* View, create, update or delete a Tanzu Workload binding with an existing service. 
+* View, create, update, or delete a Tanzu workload or deliverable. This includes viewing the logs of the pods spun up through the Tanzu workload and tracing a commit through the build process.
+* Download the images associated with their Tanzu workload so they can test images locally, or create a Tanzu workload from it instead of starting from source code in a repository.
+* View and use Application Accelerator templates.
+* View, create, update, or delete a Tanzu workload binding with an existing service.
 
 ## app-viewer
 
-*(cannot create, edit, delete a Tanzu Workload or Deliverable)*
+The app-viewer role cannot create, edit, or delete a Tanzu workload or deliverable.
 
-This role has a subset of the permissions of the app-editor role. It is recommended if you do not want a user to be able to create, edit or delete a Tanzu Workload (and Deliverable), but they require the ability to view its status. This role does not have the ability to bind services with a Tanzu Workload either. An example of where you may choose to give a user these permissions is if you have an application developer that requires visibility into the state of their Tanzu Workload or micro-service, but does not have the permissions to deploy it (such as in production or staging environments). 
+This role has a subset of the permissions of the app-editor role.  Use it if you do not want a user to create, edit, or delete a Tanzu workload or deliverable, but they require the ability to view its status. For example, give these permissions to an application developer that requires visibility into the state of their Tanzu workload or micro-service, but does not have the permissions to deploy it, such as to production or staging environments. This role cannot bind services with a Tanzu workload.
 
 ## app-operator
 
-*(can create, edit, delete Supply Chain Resources)*
+The app-operator role can create, edit, and delete supply chain resources.
 
-This role is meant for a user responsible for defining the activities that happen within a supply chain (or the path to production), for example building, testing or scanning. This role requires the ability to view, create, update or delete Tanzu Supply Chain resources, including TBS control plane resources (e.g. kpack's builder, Stack, Store), scanning resources, grype and the metadata store. If this person requires the ability to create Tanzu Workloads, you may bind the user with the app-editor role as well. 
+Assign this role to a user who defines the activities within a supply chain or the path to production. For example, building, testing, or scanning. This role can view, create, update, or delete Tanzu supply chain resources, including Tanzu Build Service control plane resources such as kpack's builder, stack, and store, scanning resources, grype, and the metadata store. If this person must create Tanzu workloads, you may bind the user with the app-editor role as well.
 
 ## workload
 
-This role provides the service account associated with the Tanzu Workload with the permissions it requires to execute the activities in the supply chain. This role is meant for a “robot” versus a user.  
+This role provides the service account associated with the Tanzu workload the permissions needed to execute the activities in the supply chain. This role is for a "robot” versus a user.  
 
 ## deliverable
 
-This role gives the Delivery “robot” service account the permissions it requires to create running workloads. This role is not meant for a user.
-
-For more information on the specific permissions of each role, see Detailed Role Permissions Breakdown.
+This role gives the delivery “robot” service account the permissions neeeded to create running workloads. This role is not for a user.

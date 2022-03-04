@@ -21,9 +21,9 @@ This new profile is intended for iterative development versus the path to produc
 
 #### Default Roles for Tanzu Application Platform
 
-* Introduction of five new default roles and related permissions that apply to **k8s resources**. These roles are to help make it faster and easier to set up common sets of permissions for users and service accounts accessing a cluster running TAP.
-  * Three roles will be meant for users (people): app-editor, app-viewer and app-operator. 
-  * Two roles will be meant for “robot” or system permissions, which we will call Workload and Deliverable. 
+* Introduction of five new default roles and related permissions that apply to **k8s resources**. These roles are to help operators set up common sets of permissions for users and service accounts accessing a cluster running Tanzu Application Platform.
+  * Three roles are for users: app-editor, app-viewer and app-operator. 
+  * Two roles are for “robot” or system permissions: workload and deliverable. 
 
 
 #### Tanzu Application Platform GUI
