@@ -2,7 +2,7 @@
 
 When submitting the following pod `Pod Intent` on each convention, the output may change depending on the applied convention.
 
-  The submitted pod intent can be:
+The submitted pod intent can be:
 
   ```yaml
   apiVersion: conventions.apps.tanzu.vmware.com/v1alpha1
@@ -17,9 +17,9 @@ When submitting the following pod `Pod Intent` on each convention, the output ma
           image: springio/petclinic
   ```
 
-## <a id="spring-boot-convention"></a>Spring boot convention
+## <a id="spring-boot-convention"></a>Spring Boot convention
 
-  In the `bom` file's metadata, under `dependencies`, there is a `dependency` named `spring-boot`. The convention `spring-boot` adds a __label__ to the `PodTemplateSpec` setting the framework used `conventions.apps.tanzu.vmware.com/framework: spring-boot`. The convention `spring-boot` also adds an __annotation__ with the version of the _dependency_.
+  In the `bom` file's metadata, under `dependencies`, there is a `dependency` named `spring-boot`. The convention `spring-boot` adds a __label__ to the `PodTemplateSpec` setting the framework used by running `conventions.apps.tanzu.vmware.com/framework: spring-boot`. The convention `spring-boot` also adds an __annotation__ with the version of the _dependency_.
 
 Example of PodIntent after applying the convention:
 
@@ -69,7 +69,7 @@ Example of PodIntent after applying the convention:
           resources: {}
   ```
 
-## <a id="spring-boot-graceful-shutdown-convention"></a>Spring boot graceful shutdown convention
+## <a id="spring-boot-graceful-shutdown-convention"></a>Spring Boot graceful shutdown convention
 
   In the `bom` file's metadata, under `dependencies`, if there are any of the following `dependencies`, the convention is applied to the `PodTemplateSpec` object:
 
@@ -133,14 +133,14 @@ Example of PodIntent after applying the convention:
           resources: {}
   ```
 
-## <a id="spring-boot-web-convention"></a>Spring boot web convention
+## <a id="spring-boot-web-convention"></a>Spring Boot web convention
 
-  In the `bom` file's metadata, under `dependencies`, if there are any of the following `dependencies`, the convention is applied to the `PodTemplateSpec` object:
+In the `bom` file's metadata, under `dependencies`, if there are any of the following `dependencies`, the convention is applied to the `PodTemplateSpec` object:
 
-  + spring-boot
-  + spring-boot-web
+  - spring-boot
+  - spring-boot-web
 
-   The convention `spring-boot-web` adds the default 8080 `port` to the `PodTemplateSpec`.
+The convention `spring-boot-web` adds the default 8080 `port` to the `PodTemplateSpec`.
 
 Example of PodIntent after applying the convention:
 
@@ -197,11 +197,11 @@ Example of PodIntent after applying the convention:
           resources: {}
   ```
 
-## <a id="spring-boot-actuator-convention"></a>Spring boot actuator convention
+## <a id="spring-boot-actuator-convention"></a>Spring Boot actuator convention
 
-  In the `bom` file's metadata, under `dependencies`, there is a `dependency` with the name `spring-boot-actuator`. The convention `spring-boot-actuator` adds the management port and the base path to the the environment variable `JAVA_TOOL_OPTIONS`. It also adds an __annotation__ (`boot.spring.io/actuator`) where the actuator is accessed.
+In the `bom` file's metadata, under `dependencies`, there is a `dependency` with the name `spring-boot-actuator`. The convention `spring-boot-actuator` adds the management port and the base path to the the environment variable `JAVA_TOOL_OPTIONS`. It also adds an __annotation__ (`boot.spring.io/actuator`) where the actuator is accessed.
 
-  For easy access to the management context of the spring boot application, a service can be created pointing to port `8081` and base path `/actuator`.
+For easy access to the management context of the Spring Boot application, you can create a service pointing to port `8081` and base path `/actuator`.
 
 Example of PodIntent after applying the convention:
 
@@ -260,9 +260,9 @@ Example of PodIntent after applying the convention:
           resources: {}
   ```
 
-## <a id="spring-boot-actuator-probes-convention"></a>Spring Boot Actuator Probes Convention
+## <a id="spring-boot-actuator-probes-convention"></a>Spring Boot Actuator Probes convention
 
-  In the `bom` file's metadata, under `dependencies`, there is a `dependency` with the name `spring-boot-actuator-probes` and the version of it is equal or greater than **2.6**. The convention `spring-boot-actuator-probes` adds the *liveness* and *readiness* [probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/) when ever the property `management.health.probes.enabled` is not set to true.
+  In the `bom` file's metadata, under `dependencies`, there is a `dependency` with the name `spring-boot-actuator-probes` with version equal to or greater than **2.6**. The convention `spring-boot-actuator-probes` adds the *liveness* and *readiness* [probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/) whenever the property `management.health.probes.enabled` is not set to true.
 
 Example of PodIntent after applying the convention:
 
