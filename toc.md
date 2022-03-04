@@ -170,7 +170,7 @@ This is the table of contents from which the Tanzu Application Platform Document
       - [Integrations](tap-gui/integrations.md)
       - [Database configuration](tap-gui/database.md)
       - [TechDocs](tap-gui/techdocs/usage.md)
-      - [Tanzu Application Platform GUI plugins](tap-gui/plugins/about.md)
+      - [Tanzu Application Platform GUI plug-ins](tap-gui/plugins/about.md)
          - [Runtime resources visibility](tap-gui/plugins/runtime-resource-visibility.md)
          - [Application Live View](tap-gui/plugins/app-live-view.md)
            - [Install Application Live View](tap-gui/plugins/install-application-live-view.md)
