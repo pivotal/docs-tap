@@ -16,6 +16,7 @@ The installation creates the following in your Kubernetes cluster:
 * A namespace called `metadata-store`.
 * A service account with read-write privileges named `metadata-store-read-write-client`. It's bound to a ClusterRole named `metadata-store-read-write`.
 * A read-only ClusterRole named `metadata-store-read-only` that isn't bound to a service account. See [Service Accounts](#service-accounts).
+* (Optional) An HTTPProxy object for ingress support.
 
 ## <a id='configuration'></a> Deployment configuration
 ### Database configuration
@@ -65,3 +66,14 @@ The store will automatically create a read-only cluster role, which may be bound
 ## <a id='export-cert'></a>Exporting certificates
 
 Supply Chain Security Tools - Store creates [Secret Export](https://github.com/vmware-tanzu/carvel-secretgen-controller/blob/develop/docs/secret-export.md) for exporting certificates to `Supply Chain Security Tools - Scan` to securely post scan results. These certificates are exported to the namespace where `Supply Chain Security Tools - Scan` is installed. 
+
+## <a id='ingress'></a>Ingress support
+
+Supply Chain Security Tools - Store's values file allows you to enable ingress support and to configure a custom domain name to leverage Contour to provide external access to Supply Chain Security Tools - Store's API.
+
+```
+ingress_enabled: "true"
+ingress_domain: "example.com"
+```
+
+An HTTPProxy object is then installed with `metadata-store.example.com` as the fully qualified domain name. See [Ingress & Multi Cluster support](ingress_multi_cluster.md).
