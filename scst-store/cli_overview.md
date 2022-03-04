@@ -1,4 +1,4 @@
-# `Tanzu Insight` Plug-in Overview
+# Tanzu Insight plug-in overview
 
 The `tanzu insight` CLI plug-in enables querying vulnerability, image, and package data.  
 

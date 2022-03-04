@@ -1,4 +1,4 @@
-# CLI plugin configuration
+# CLI plug-in configuration
 
 This topic explains how to configure the Tanzu Insight plug-in:
 
