@@ -1,5 +1,7 @@
 # Role descriptions
 
+Below are high level descriptions of each default role. For more information on the specific permissions of each role for every component, see [Detailed Role Permissions Breakdown](permissions-breakdown.md).
+
 ## app-editor
 
 The app-editor role can create, edit, and delete a Tanzu workload or deliverable.
