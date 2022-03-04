@@ -380,7 +380,7 @@ your `tap-values.yml`, as summarized in the following table:
 |Tanzu Application Platform GUI|`tap_gui`|
 |Learning Center|`learningcenter`|
 
-For information about package-specific configuration, see [Install components](install-components.md).
+For information about package-specific configuration, see [Installing individual packages](install-components.md).
 
 For example, to identify the SSH secret keys for Supply Chain Basic, you can run:
 
