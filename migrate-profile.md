@@ -35,7 +35,7 @@ Follow these steps to add the new package repository:
     ```
 ## <a id="edit-profile-values"></a> Edit the tap-values.yaml configuration file that was used during installation
 
-During the Tanzu Application Platform installation, a configuration file was built that contains all the necessary configuration vaules related to the Tanzu Application Platform cluster. We will need to edit the `profile` key in this file (usually saved as `tap-values.yaml`) in order to change the desired profile:
+During the Tanzu Application Platform installation, [a configuration file was built](./install.md#install-profile) that contains all the necessary configuration vaules related to the Tanzu Application Platform cluster. We will need to edit the `profile` key in this file (usually saved as `tap-values.yaml`) in order to change the desired profile:
 
 ```yaml
 profile: PROFILE-NAME
