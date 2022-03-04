@@ -451,7 +451,7 @@ metadata:
 spec:
   workshop:
     images:
-      "base-environment:*": "dev.registry.tanzu.vmware.com/learning-center/base-environment:latest"
+      "base-environment:*": "registry.tanzu.vmware.com/learning-center/base-environment:latest"
 ```
 
 It is also possible to override where images are pulled from for any arbitrary image.
