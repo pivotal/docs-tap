@@ -329,20 +329,6 @@ The following table lists the packages contained in each profile:
    </td>
   </tr>
   <tr>
-  <td>Cartographer
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-  </tr>
-  <tr>
   <td>Cloud Native Runtimes
    </td>
    <td>&check;
@@ -375,7 +361,7 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>
+   <td>&check;
    </td>
    <td>
    </td>
@@ -389,11 +375,11 @@ The following table lists the packages contained in each profile:
   </td>
    <td>&check;
    </td>
-   <td>
+   <td>&check;
    </td>
-   <td>
+   <td>&check;
    </td>
-   <td>
+   <td>&check;
    </td>
    <td>
    </td>
@@ -405,7 +391,7 @@ The following table lists the packages contained in each profile:
    </td>
    <td>
    </td>
-   <td>
+   <td>&check;
    </td>
    <td>
    </td>
@@ -417,11 +403,11 @@ The following table lists the packages contained in each profile:
   </td>
    <td>&check;
    </td>
-   <td>
+   <td>&check;
    </td>
    <td>
    </td>
-   <td>
+   <td>&check;
    </td>
    <td>
    </td>
@@ -437,7 +423,7 @@ The following table lists the packages contained in each profile:
    </td>
    <td>
    </td>
-   <td>
+   <td>&check;
    </td>
   </tr>
   <tr>
@@ -445,11 +431,11 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>
+   <td>&check;
    </td>
    <td>
    </td>
-   <td>
+   <td>&check;
    </td>
    <td>
    </td>
@@ -459,9 +445,9 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>
+   <td>&check;
    </td>
-   <td>
+   <td>&check;
    </td>
    <td>
    </td>
@@ -473,9 +459,9 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>
+   <td>&check;
    </td>
-   <td>
+   <td>&check;
    </td>
    <td>
    </td>
@@ -489,7 +475,7 @@ The following table lists the packages contained in each profile:
    </td>
    <td>
    </td>
-   <td>
+   <td>&check;
    </td>
    <td>
    </td>
@@ -501,25 +487,25 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>
+   <td>&check;
    </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-  </tr>
-  <tr>
-   <td>Services Toolkit
+   <td>&check;
    </td>
    <td>&check;
    </td>
    <td>
    </td>
-   <td>
+  </tr>
+  <tr>
+   <td>Role Based Access Control
    </td>
-   <td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
    </td>
    <td>
    </td>
@@ -529,11 +515,25 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>
+   <td>&check;
    </td>
    <td>
    </td>
+   <td>&check;
+   </td>
    <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Services Toolkit
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
    </td>
    <td>
    </td>
@@ -543,11 +543,11 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>
+   <td>&check;
    </td>
-   <td>
+   <td>&check;
    </td>
-   <td>
+   <td>&check;
    </td>
    <td>
    </td>
@@ -557,9 +557,9 @@ The following table lists the packages contained in each profile:
   </td>
    <td>&check;
    </td>
-   <td>
+   <td>&check;
    </td>
-   <td>
+   <td>&check;
    </td>
    <td>
    </td>
@@ -571,11 +571,11 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>
+   <td>&check;
    </td>
-   <td>
+   <td>&check;
    </td>
-   <td>
+   <td>&check;
    </td>
    <td>
    </td>
@@ -587,7 +587,7 @@ The following table lists the packages contained in each profile:
    </td>
    <td>
    </td>
-   <td>
+   <td>&check;
    </td>
    <td>
    </td>
@@ -605,7 +605,7 @@ The following table lists the packages contained in each profile:
    </td>
    <td>
    </td>
-   <td>
+   <td>&check;
    </td>
   </tr>
   <tr>
@@ -613,9 +613,9 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>
+   <td>&check;
    </td>
-   <td>
+   <td>&check;
    </td>
    <td>
    </td>
@@ -633,7 +633,7 @@ The following table lists the packages contained in each profile:
    </td>
    <td>
    </td>
-   <td>
+   <td>&check;
    </td>
   </tr>
   <tr>
@@ -641,13 +641,27 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>
+   <td>&check;
+   </td>
+   <td>&check;
    </td>
    <td>
    </td>
    <td>
    </td>
-   <td>
+  </tr>
+  <tr>
+   <td>Telemetry
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
    </td>
   </tr>
   <tr>
