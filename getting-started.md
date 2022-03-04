@@ -1158,7 +1158,7 @@ ClusterResource to reference and describe it.
     kubectl apply -f rabbitmq-clusterresource.yaml
     ```
 
-    The creation of this `ClusterResource` referring to `RabbitmqCluster` is the mechanism by which the `tanzu service` CLI plug-in (as the following mentions ) verifies which resources to disply. For more information about `ClusterResource`, see [Service Offering for VMware Tanzu](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-service_offering-terminology_and_apis.html).
+    The creation of this `ClusterResource` referring to `RabbitmqCluster` is the mechanism by which the `tanzu service` CLI plug-in (as the following mentions) verifies which resources to display. For more information about `ClusterResource`, see [Service Offering for VMware Tanzu](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-service_offering-terminology_and_apis.html).
 
 
 ### <a id="same-namespace-use-case"></a> Use case 1: Binding an application to a pre-provisioned service instance running in the same namespace
@@ -1166,7 +1166,7 @@ ClusterResource to reference and describe it.
 >**Note:** The following examples implement a RabbitMQ service instance and a single sample
 >application which acts as both a producer and consumer of messages.
 >For most real-world scenarios using RabbitMQ it's likely that there are multiple applications
->deployed and communicating through the RabbitMQ service. Currently it is not possible for more than
+>deployed and communicating through the RabbitMQ service. Currently, it is not possible for more than
 >one application workload to consume the same service instance. For more information, see the known
 >issues in the [release notes](release-notes.md) for further information.
 
@@ -1239,6 +1239,7 @@ RabbitMQ instance:
 the new message IDs.
 
 ### <a id="diff-namespace-use-case"></a> Use case 2 - Binding an application to a pre-provisioned service instance running in a different namespace on the same Kubernetes cluster
+>**Note:** this use case is currently not working due to a known issue, it will be fixed in time for TAP 1.1.0 GA.
 
 >**Note:** Consumption of a single service instance by multiple workloads from different namespaces is currently not supported, but is intended to be supported in the near future.
 
@@ -1396,6 +1397,7 @@ existing PostgreSQL database that exists in Azure.
     - `<REFERENCE>` is a reference provided to the `Secret`. For example, `v1:Secret:external-azure-db-binding-compatible`.
 
 ### <a id="diff-cluster-use-case"></a> Use case 4: Binding an application to a service instance running on a different Kubernetes cluster (Experimental).
+>**Note:** This use case is currently not working due to a known issue, it will be fixed in time for TAP 1.1.0 GA.
 
 >**Note:** Use cases marked with Experimental are subject to change.
 
