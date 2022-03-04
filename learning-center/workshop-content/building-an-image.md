@@ -7,7 +7,7 @@ This topic explains how to include an extra system, third-party tool, or configu
 The structure of the `Dockerfile` in the sample workshop template is:
 
 ```
-FROM registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:18882f916ff833872e658bdc00e7fe81b1b921fb3993ce761372805825b155e9
+FROM registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:681ef8d2e6fc8414b3783e4de424adbfabf2aa0126e34fa7dcd07dab61e55a89
 
 COPY --chown=1001:0 . /home/eduk8s/
 
@@ -18,7 +18,7 @@ RUN fix-permissions /home/eduk8s
 
 The default `Dockerfile` action is to:
 
-  - Copy all files from a registry to the `/home/eduk8s` directory. You must build the custom workshop images on the `registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:18882f916ff833872e658bdc00e7fe81b1b921fb3993ce761372805825b155e9` workshop image. You can do this directly or you can also create an intermediate base image to install extra packages required by a number of different workshops. The `--chown=1001:0` option ensures that files are owned by the appropriate user and group. 
+  - Copy all files from a registry to the `/home/eduk8s` directory. You must build the custom workshop images on the `registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:681ef8d2e6fc8414b3783e4de424adbfabf2aa0126e34fa7dcd07dab61e55a89` workshop image. You can do this directly or you can also create an intermediate base image to install extra packages required by a number of different workshops. The `--chown=1001:0` option ensures that files are owned by the appropriate user and group. 
   - The `workshop` subdirectory is moved to `/opt/workshop` so that it is not visible to the user. This subdirectory is in an area searchable for workshop content, in addition to `/home/eduk8s/workshop`. 
 
 To customize your `Dockerfile`: 
@@ -31,7 +31,7 @@ To customize your `Dockerfile`:
 The sample `Dockerfile` provided above and the GitHub repository workshop templates reference the workshop base image as follows:
 
 ```
-registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:18882f916ff833872e658bdc00e7fe81b1b921fb3993ce761372805825b155e9
+registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:681ef8d2e6fc8414b3783e4de424adbfabf2aa0126e34fa7dcd07dab61e55a89
 ```
 
 
@@ -44,7 +44,7 @@ The following Dockerfile example creates a Java JDK11-customized image:
 ```
 ARG IMAGE_REPOSITORY=dev.registry.tanzu.vmware.com/learning-center
 FROM ${IMAGE_REPOSITORY}/pkgs-java-tools as java-tools
-FROM registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:18882f916ff833872e658bdc00e7fe81b1b921fb3993ce761372805825b155e9
+FROM registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:681ef8d2e6fc8414b3783e4de424adbfabf2aa0126e34fa7dcd07dab61e55a89
 COPY --from=java-tools --chown=1001:0 /opt/jdk11 /opt/java
 COPY --from=java-tools --chown=1001:0 /opt/gradle /opt/gradle
 COPY --from=java-tools --chown=1001:0 /opt/maven /opt/maven
