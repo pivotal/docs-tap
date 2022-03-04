@@ -370,6 +370,20 @@ The following table lists the packages contained in each profile:
    </td>
   </tr>
   <tr>
+   <td>Default Roles
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
    <td>Developer Conventions
    </td>
    <td>&check;
@@ -497,20 +511,6 @@ The following table lists the packages contained in each profile:
   </tr>
   <tr>
    <td>Out of the Box Templates
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-  </tr>
-  <tr>
-   <td>Role Based Access Control
    </td>
    <td>&check;
    </td>
