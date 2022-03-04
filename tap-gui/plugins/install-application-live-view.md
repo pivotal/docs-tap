@@ -42,7 +42,7 @@ Application Live view can be installed in single cluster or multi-cluster enviro
 
 To install Application Live View back-end:
 
-1. List version information for package by running:
+1. List version information for the package by running:
 
     ```
     tanzu package available list backend.appliveview.tanzu.vmware.com --namespace tap-install
@@ -157,7 +157,7 @@ To install Application Live View back-end:
 
 To install Application Live View connector:
 
-1. List version information for package by running:
+1. List version information for the package by running:
 
     ```
     tanzu package available list connector.appliveview.tanzu.vmware.com --namespace tap-install
@@ -207,7 +207,7 @@ To install Application Live View connector:
         host: appliveview.INGRESS-DOMAIN
     ```
 
-    Where `INGRESS-DOMAIN` is the top level domain the Application Live View Backend exposes using tanzu-shared-ingress for connectors in other clusters to reach the backend. The "appliveview" subdomain should be prepended to the value provided.
+    Where `INGRESS-DOMAIN` is the top level domain the Application Live View Backend exposes by using tanzu-shared-ingress for connectors in other clusters to reach the back end. Prepend the "appliveview" subdomain to the provided value.
 
     Edit the values if needed or leave the default values.
 
@@ -264,7 +264,7 @@ To install Application Live View connector:
 
 ## <a id='install-app-live-view-conventions'></a> Install Application Live View Conventions
 
-1. List version information for package by running:
+1. List version information for the package by running:
 
     ```
     tanzu package available list conventions.appliveview.tanzu.vmware.com --namespace tap-install
