@@ -32,6 +32,7 @@ To install Source Controller:
       NAME                                     VERSION  RELEASED-AT
       controller.source.apps.tanzu.vmware.com  0.3.1    2022-01-23 19:00:00 -0500 -05
       controller.source.apps.tanzu.vmware.com  0.3.2    2022-02-21 19:00:00 -0500 -05
+      controller.source.apps.tanzu.vmware.com  0.3.3    2022-03-03 19:00:00 -0500 -05
     ```
 
 2. (Optional) Make changes to the default installation settings by running:
@@ -45,8 +46,8 @@ To install Source Controller:
     For example:
 
     ```
-    $ tanzu package available get controller.source.apps.tanzu.vmware.com/0.3.2 --values-schema --namespace tap-install
-     Retrieving package details for controller.source.apps.tanzu.vmware.com/0.3.2...
+    $ tanzu package available get controller.source.apps.tanzu.vmware.com/0.3.3 --values-schema --namespace tap-install
+     Retrieving package details for controller.source.apps.tanzu.vmware.com/0.3.3...
      KEY           DEFAULT  TYPE    DESCRIPTION
      ca_cert_data           string  Optional: PEM Encoded certificate data for image registries with private CA.
     ```
@@ -75,7 +76,7 @@ To install Source Controller:
     For example:
 
     ```
-    tanzu package install source-controller -p controller.source.apps.tanzu.vmware.com -v 0.3.2 -n tap-install -f source-controller-values.yaml
+    tanzu package install source-controller -p controller.source.apps.tanzu.vmware.com -v 0.3.3 -n tap-install -f source-controller-values.yaml
     \ Installing package 'controller.source.apps.tanzu.vmware.com'
     \ Getting package metadata for 'controller.source.apps.tanzu.vmware.com'
     / Creating service account 'source-controller-tap-install-sa'
@@ -102,7 +103,7 @@ To install Source Controller:
    - Retrieving installation details for source-controller...
     NAME:                    source-controller
     PACKAGE-NAME:            controller.source.apps.tanzu.vmware.com
-    PACKAGE-VERSION:         0.3.2
+    PACKAGE-VERSION:         0.3.3
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
