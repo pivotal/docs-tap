@@ -27,8 +27,9 @@ This new profile is intended for iterative development versus the path to produc
 
 
 #### Tanzu Application Platform GUI
-- **Runtime Resources Visibility Plugin:** explanation here
-- **Supply Chain Choreographer Plugin:** explanation here
+
+- **Runtime Resources Visibility plug-in:** explanation here
+- **Supply Chain Choreographer plug-in:** explanation here
 
 #### Application Live View
 
