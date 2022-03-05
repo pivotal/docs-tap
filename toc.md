@@ -46,6 +46,7 @@ This is the table of contents from which the Tanzu Application Platform Document
     - [Default roles for Tanzu Application Platform](default-roles/overview.md)
       - [Role descriptions](default-roles/role-descriptions.md)
       - [Bind a user or group to a default role](default-roles/binding.md)
+      - [Detailed Role Permissions Breakdown](default-roles/permissions-breakdown.md)
     - [Spring Boot conventions](spring-boot-conventions/about.md)
       - [Install Spring Boot conventions](spring-boot-conventions/install-spring-boot-conventions.md)
       - [Conventions](spring-boot-conventions/reference/conventions.md)
