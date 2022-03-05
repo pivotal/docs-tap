@@ -36,6 +36,40 @@ This new profile is intended for iterative development versus the path to produc
 * Enabled multiple cluster support for Application Live View.
 * Split Application Live View components into three packages with new package reference names.
 
+#### Tanzu CLI - Apps plugin
+* `workload create/update/apply`:
+  * Accept `workload.yaml` from stdin (via `--file -`).
+  * Enable providing `spec.build.env` values (via new `–build.env` flag).
+  * When `--git-url` and `--git-tag` are provided, `git-branch` is not also required.
+* `workload list`:
+  * Shorthand `-A` can be passed in for `--all-namespaces`.
+* `workload get`:
+  * Service Claim(s) details are returned in command output.
+  * The existing STATUS value in the Pods table in the output reflects when a pod is “Terminating.” 
+
+
+#### Service Bindings
+
+* Apply human-readable [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339) timestamps to service binding logs.
+* Add TAP aggregate roles to support the Default Roles for Tanzu Application Platform (new feature referenced above).
+* Add support for servicebinding.io/v1beta1
+
+
+#### Source Controller
+
+* Apply human-readable [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339) timestamps to source controller logs.
+* Add TAP aggregate roles to support the Default Roles for Tanzu Application Platform (new feature referenced above).
+
+
+#### Spring Boot Conventions
+
+* Update logging format consistent with other TAP components to expedite troubleshooting. 
+* Apply human-readable [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339) timestamps to service binding logs.
+The following new conventions are applied to spring boot apps, v2.6 and above:
+* Add Kubernetes liveness and readiness probes using spring boot health endpoints.
+* Change management port from 8080 to 8081 to increase security of the management port.
+
+
 ### <a id='1-1-breaking-changes'></a> Breaking changes
 
 
@@ -45,6 +79,17 @@ This release has the following security issues:
 
 
 ### <a id='1-1-resolved-issues'></a> Resolved issues
+
+#### Tanzu CLI - Apps plugin
+* Apps plugin no longer crashes when `KUBECONFIG` includes the colon (`:`) config file delimiter.
+* `tanzu apps workload get`: Passing in `--output json` and `--export` flags together exports the workload in JSON
+rather than YAML.
+* `tanzu apps workload tail`: Duplicate log entries created for init containers have been removed.
+* `tanzu apps workload create/update/apply`
+  * When the `--wait` flag passed and the prompt "Do you want to create this workload?" 
+  is declined, the command immediately exits 0 rather than hanging (continuing to "wait").
+  * Workload name is now validated when the workload values are passed in via `--file workload.yaml`.
+  * When creating/applying a workload from –local-path, if user answers “No” to the prompt “Are you sure you want to publish your local code to [registry name] where others may be able to access it?”, the command now exits 0 immediately rather than showing the workload diff and prompting to continue with workload creation.
 
 #### Services Toolkit
 
