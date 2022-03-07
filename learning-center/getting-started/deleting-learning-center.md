@@ -1,36 +1,35 @@
 # Deleting Learning Center
 
-If you ever want to uninstall the Learning Center operator, first delete all current workshop environments.
-You can do this by running:
+Follow these steps to delete Learning Center:
 
-```
-kubectl delete workshops,trainingportals,workshoprequests,workshopsessions,workshopenvironments --all
-```
+1. Delete all current workshop environments by running:
 
-The Learning Center operator must still be running when you do this.
+    ```
+    kubectl delete workshops,trainingportals,workshoprequests,workshopsessions,workshopenvironments --all
+    ```
 
-To make sure everything is deleted (Workshops on the workshops.learningcenter.tanzu.vmware.com package will not be deleted with this command), run:
+    >**Note:** Ensure the Learning Center operator is still be running when running this command.
 
-```
-kubectl get workshops,trainingportals,workshoprequests,workshopsessions,workshopenvironments --all-namespaces
-```
+1. Verify you have deleted all current workshop environments by running:
 
-To uninstall the Learning Center package, run:
+    ```
+    kubectl get workshops,trainingportals,workshoprequests,workshopsessions,workshopenvironments --all-namespaces
+    ```
 
-```
-tanzu package installed delete {NAME_OF_THE_PACKAGE} -n tap-install
-```
+    >**Note:** This command does not delete the workshops on the `workshops.learningcenter.tanzu.vmware.com` package.
 
-This also removes the custom resource definitions that were added, and the learningcenter namespace.
+1. Uninstall the Learning Center package by running:
 
-<hr>
+    ```
+    tanzu package installed delete {NAME_OF_THE_PACKAGE} -n tap-install
+    ```
 
-**Note:**
+    >**Note:** This command also removes the added custom resource definitions and the `learningcenter` namespace.
 
-If you have installed the TAP package, Learning Center will be recreated again. In order to remove the Learning Center package you can add the following lines to your tap-values file.
-```
-excluded_packages:
-- learningcenter.tanzu.vmware.com
-- workshops.learningcenter.tanzu.vmware.com
-```
+1. (Optional) If you have installed the Tanzu Application Platform package, Learning Center will be recreated. To remove the Learning Center package, you can add the following lines to your `tap-values` file.
 
+    ```
+    excluded_packages:
+    - learningcenter.tanzu.vmware.com
+    - workshops.learningcenter.tanzu.vmware.com
+    ```
