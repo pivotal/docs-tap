@@ -234,10 +234,10 @@ The following profiles are available in Tanzu Application Platform:
   This profile is intended for the transformation of source revisions to workload revisions. Specifically, hosting Workloads and SupplyChains.
  
 - **Run:**
-  This profile is intended for the transformation of workload revisions to running Pods. Specifically, hosting Deliverys and Deliverables.
+  This profile is intended for the transformation of workload revisions to running Pods. Specifically, hosting Deliveries and Deliverables.
 
 - **View:**
-  This profile is intended for instances of applications related to centralized developer experiences. Specifically, the TAP GUI and Metadata Store.
+  This profile is intended for instances of applications related to centralized developer experiences. Specifically, the Tanzu Application Platform GUI and Metadata Store.
   
 
 ## <a id='about-package-profiles'></a> About Tanzu Application Platform package profiles
