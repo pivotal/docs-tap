@@ -44,7 +44,7 @@ tanzu apps workload update --file workload.yaml
   -h, --help                           help for update
       --image image                    pre-built image, skips the source resolution and build phases of the supply chain
       --label "key=value" pair         label is represented as a "key=value" pair, or "key-" to remove. This flag may be specified multiple times
-      --limit-cpu cores                the maximum amount of cpu allowed, in CPU cores (500m = .5 cores)
+      --limit-cpu cores                the maximum number of CPU cores allowed (500m = .5 cores)
       --limit-memory bytes             the maximum amount of memory allowed, in bytes (500Mi = 500MiB = 500 * 1024 * 1024)
       --live-update                    put the workload in live update mode, --live-update=false to disable
       --local-path path                path on the local file system to a directory of source code to build for the workload
