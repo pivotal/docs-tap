@@ -40,7 +40,7 @@ This new profile is intended for iterative development versus the path to produc
 * `workload create/update/apply`:
   * Accept `workload.yaml` from stdin (via `--file -`).
   * Enable providing `spec.build.env` values (via new `–build.env` flag).
-  * When `--git-url` and `--git-tag` are provided, `git-branch` is not also required.
+  * When `--git-repo` and `--git-tag` are provided, `git-branch` is not also required.
 * `workload list`:
   * Shorthand `-A` can be passed in for `--all-namespaces`.
 * `workload get`:
