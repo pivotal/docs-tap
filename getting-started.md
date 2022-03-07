@@ -1198,7 +1198,7 @@ in the same namespace.
     kubectl get rabbitmqclusters
     ```
 
-4. Follow these steps to claim the RabbitMQ instance and create an application workload that binds to it:
+4. Follow these steps to claim the RabbitMQ instance and create an application workload that binds to the RabbitMQ instance:
 
     >**Note:** Ensure your namespace has been set up to use installed Tanzu Application Platform packages
     For more information, see [Set up developer namespaces to use installed packages](install-components.md#setup).
