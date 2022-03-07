@@ -19,7 +19,7 @@ For languages that make use of dependency lock files, such as Golang and Node.js
 lock files to check the dependencies for vulnerabilities.
 
 In the case of Java, dependency lock files are not guaranteed, so Grype instead uses the
-dependencies present in the built binaries (`.jar` or `.war` files).
+dependencies present in the built binaries, such as `.jar` or `.war` files.
 
 Because best practices do not include committing binaries to source code repositories, Grype
 fails to find vulnerabilities during a Source Scan. The vulnerabilities are still found during the
