@@ -1198,34 +1198,52 @@ in the same namespace.
     kubectl get rabbitmqclusters
     ```
 
-4. Follow these steps to create an application workload that automatically claims and binds to the
-RabbitMQ instance:
+4. Follow these steps to claim the RabbitMQ instance and create an application workload that binds to it:
 
-    >**Note:** Ensure your namespace has been setup to to use installed Tanzu Application Platform packages
+    >**Note:** Ensure your namespace has been set up to use installed Tanzu Application Platform packages
     For more information, see [Set up developer namespaces to use installed packages](install-components.md#setup).
     >**Note:** Ensure you have run through the [setup procedure](#con-serv-setup).
 
-    1. Obtain a service reference by running:
+    1. Confirm the service instance details by running:
 
         ```
-        $  tanzu service instance list -owide
+        $  tanzu service instance list
         ```
 
         Expect to see the following outputs:
 
         ```
-        NAME                        KIND             SERVICE TYPE  AGE  SERVICE REF
-        example-rabbitmq-cluster-1  RabbitmqCluster  rabbitmq      50s  rabbitmq.com/v1beta1:RabbitmqCluster:default:example-rabbitmq-cluster-1
+        NAME                        KIND             SERVICE TYPE  AGE
+        example-rabbitmq-cluster-1  RabbitmqCluster  rabbitmq      50s
         ```
 
-    2. Create the application workload and the `rabbitmq-sample` application hosted at
+    2. Create a claim for the newly created rabbitmq instance by running:
+
+        ```
+        $ tanzu service claim create rmq-claim-1 --resource-name example-rabbitmq-cluster-1 --resource-kind RabbitmqCluster --resource-api-version rabbitmq.com/v1beta1
+        ```
+
+    3. Obtain the claim reference of the newly-created claim by running:
+
+        ```
+        $ tanzu service claim list -o wide
+        ```
+
+        Expect to see the following output:
+
+        ```
+        NAME         READY  REASON  CLAIM REF
+        rmq-claim-1  True           services.apps.tanzu.vmware.com/v1alpha1:ResourceClaim:rmq-claim-1
+        ```
+
+    4. Create the application workload and the `rabbitmq-sample` application hosted at
     `https://github.com/sample-accelerators/rabbitmq-sample` by running:
 
         ```
-        tanzu apps workload create rmq-sample-app-usecase-1 --git-repo https://github.com/sample-accelerators/rabbitmq-sample --git-branch main --git-tag tap-1.0 --type web --service-ref "rmq=<SERVICE-REF>"
+        tanzu apps workload create rmq-sample-app-usecase-1 --git-repo https://github.com/sample-accelerators/rabbitmq-sample --git-branch main --git-tag tap-1.0 --type web --service-ref "rmq=<REFERENCE>"
         ```
 
-        Where `<SERVICE-REF>` is the value of `SERVICE REF` from the output in the last step.
+        Where `<REFERENCE>` is the value of `CLAIM REF` from the output in the last step.
 
 5. Get the Knative web-app URL by running:
 
@@ -1235,8 +1253,7 @@ RabbitMQ instance:
 
     >**Note:** It can take some time before the workload is ready.
 
-6. Visit the URL and confirm the app is working by refreshing the page and checking
-the new message IDs.
+6. Visit the URL and confirm the app is working by refreshing the page and checking the new message IDs.
 
 ### <a id="diff-namespace-use-case"></a> Use case 2 - Binding an application to a pre-provisioned service instance running in a different namespace on the same Kubernetes cluster
 
@@ -1276,20 +1293,20 @@ for service instances.
     kubectl -n service-instances apply -f example-rabbitmq-cluster-service-instance-2.yaml
     ```
 
-4. Obtain a service reference by running:
+4. Confirm the service instance details by running:
 
     >**Note:** Ensure you have run through the [setup procedure](#con-serv-setup).
 
     ```
-    $ tanzu service instances list --all-namespaces -owide
+    $ tanzu service instances list --all-namespaces
     ```
 
     Expect to see the following outputs:
 
     ```
-    NAMESPACE          NAME                        KIND             SERVICE TYPE  AGE   SERVICE REF
-    default            example-rabbitmq-cluster-1  RabbitmqCluster  rabbitmq      105s  rabbitmq.com/v1beta1:RabbitmqCluster:default:example-rabbitmq-cluster-1
-    service-instances  example-rabbitmq-cluster-2  RabbitmqCluster  rabbitmq      14s   rabbitmq.com/v1beta1:RabbitmqCluster:service-instances:example-rabbitmq-cluster-2
+    NAMESPACE          NAME                        KIND             SERVICE TYPE  AGE
+    default            example-rabbitmq-cluster-1  RabbitmqCluster  rabbitmq      105s
+    service-instances  example-rabbitmq-cluster-2  RabbitmqCluster  rabbitmq      14s
     ```
 
 5. Create a `ResourceClaimPolicy` to enable cross-namespace binding.
@@ -1322,21 +1339,41 @@ for service instances.
     For more information about `ResourceClaimPolicy`, see the
     [ResourceClaimPolicy documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-service_resource_claims-terminology_and_apis.html#resourceclaimpolicy-4).
 
-7. Bind the application workload to the RabbitmqCluster Service Instance:
+7. Create a claim for the newly created rabbitmq instance by running:
 
     ```
-    $ tanzu apps workload update rmq-sample-app-usecase-1 --service-ref="rmq=<SERVICE-REF>" --yes
+    $ tanzu service claim create rmq-claim-2 --resource-name example-rabbitmq-cluster-2 --resource-kind RabbitmqCluster --resource-api-version rabbitmq.com/v1beta1 --resource-namespace service-instances
     ```
 
-    Where `<SERVICE-REF>` is the value of the `SERVICE REF` from the `service-instances` namespace in the output of step 3.
+8. Obtain the claim reference of the newly-created claim by running:
 
-8. Get the Knative web-app URL by running:
+    ```
+    $ tanzu service claim list -o wide
+    ```
+
+    Expect to see the following output:
+
+    ```
+    NAME         READY  REASON  CLAIM REF
+    rmq-claim-1  True           services.apps.tanzu.vmware.com/v1alpha1:ResourceClaim:rmq-claim-1
+    rmq-claim-2  True           services.apps.tanzu.vmware.com/v1alpha1:ResourceClaim:rmq-claim-2
+    ```
+
+9. Bind the application workload to the RabbitmqCluster Service Instance:
+
+    ```
+    $ tanzu apps workload update rmq-sample-app-usecase-1 --service-ref="rmq=<REFERENCE>" --yes
+    ```
+
+    Where `<REFERENCE>` is the value of the `CLAIM REF` for the newly created claim in the output of the last step.
+
+10. Get the Knative web-app URL by running:
 
     ```
     tanzu apps workload get rmq-sample-app-usecase-1
     ```
 
-9. Visit the URL and confirm the app is working by refreshing the page and
+11. Visit the URL and confirm the app is working by refreshing the page and
 checking the new message IDs.
 
 >**Note:** It can take a few moments for the app workload to finish updating.
@@ -1384,7 +1421,26 @@ existing PostgreSQL database that exists in Azure.
     >and claimed cross namespace by using `ResourceClaimPolicy` resources.
     >For more information, see [Use case 2](#diff-namespace-use-case).
 
-3. Create your application workload by running:
+3. Create a claim for the newly created secret by running:
+
+    ```
+    $ tanzu service claim create external-azure-db-claim --resource-name external-azure-db-binding-compatible --resource-kind Secret --resource-api-version v1
+    ```
+
+4. Obtain the claim reference of the newly-created claim by running:
+
+    ```
+    $ tanzu service claim list -o wide
+    ```
+
+    Expect to see the following output:
+
+    ```
+    NAME                     READY  REASON  CLAIM REF
+    external-azure-db-claim  True           services.apps.tanzu.vmware.com/v1alpha1:ResourceClaim:external-azure-db-claim
+    ```
+
+5. Create your application workload by running:
 
     Example:
 
@@ -1395,7 +1451,7 @@ existing PostgreSQL database that exists in Azure.
     Where:
 
     - `<WORKLOAD-NAME>` is the name of the application workload. For example, `pet-clinic`.
-    - `<REFERENCE>` is a reference provided to the `Secret`. For example, `v1:Secret:external-azure-db-binding-compatible`.
+    - `<REFERENCE>` is the value of the `CLAIM REF` for the newly created claim in the output of the last step.
 
 ### <a id="diff-cluster-use-case"></a> Use case 4: Binding an application to a service instance running on a different Kubernetes cluster (Experimental).
 
@@ -1598,19 +1654,25 @@ Workload Cluster by running:
     Finally, the app developer takes over. The experience is the same for
     the application developer as in [use case 1](#same-namespace-use-case).
 
-12. Create the application workload by running:
+12. Create a claim for the projected service instance by running:
 
     ```
-    tanzu apps workload create rmq-sample-app-usecase-4 --git-repo https://github.com/sample-accelerators/rabbitmq-sample --git-branch main --git-tag tap-1.0 --type web --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:service-instances:projected-rmq"
+    $ tanzu service claim create projected-rmq-claim --resource-name projected-rmq --resource-kind RabbitmqCluster --resource-api-version rabbitmq.com/v1beta1 --resource-namespace service-instances
     ```
 
-13. Get the web-app URL by running:
+13. Create the application workload by running:
+
+    ```
+    tanzu apps workload create rmq-sample-app-usecase-4 --git-repo https://github.com/sample-accelerators/rabbitmq-sample --git-branch main --git-tag tap-1.0 --type web --service-ref "rmq=services.apps.tanzu.vmware.com/v1alpha1:ResourceClaim:projected-rmq-claim"
+    ```
+
+14. Get the web-app URL by running:
 
     ```
     tanzu apps workload get rmq-sample-app-usecase-4
     ```
 
-14. Visit the URL and refresh the page to confirm the app is running by checking
+15. Visit the URL and refresh the page to confirm the app is running by checking
 the new message IDs.
 
 
