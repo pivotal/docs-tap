@@ -127,9 +127,9 @@ The following profiles are available for Tanzu Application Platform:
 
 - **Iterate:** This profile is intended for iterative application development.
 
-- **Build:** This profile is intended for the transformation of source revisions to workload revisions. Specifically, hosting Workloads and SupplyChains.
+- **Build:** This profile is intended for the transformation of source revisions to workload revisions. Specifically, hosting workloads and SupplyChains.
 
-- **Run:** This profile is intended for the transformation of workload revisions to running Pods. Specifically, hosting Deliverys and Deliverables.
+- **Run:** This profile is intended for the transformation of workload revisions to running pods. Specifically, hosting deliveries and deliverables.
 
 - **View:** This profile is intended for instances of applications related to centralized developer experiences. Specifically, the TAP GUI and Metadata Store.
 
@@ -145,9 +145,11 @@ To prepare to install a profile:
 1. Create a `tap-values.yml` file by using the
 [Full Profile sample](#full-profile) as a guide.
 These samples have the minimum configuration required to deploy Tanzu Application Platform.
-The sample values file contains the necessary defaults for both the meta-package
-(parent Tanzu Application Platform package) and subordinate packages
-(individual child packages).
+The sample values file contains the necessary defaults for:
+
+- The meta-package, or parent Tanzu Application Platform package
+- Subordinate packages, or individual child packages
+
 The values file you provide during installation is used for further configuration
 of Tanzu Application Platform.
 
