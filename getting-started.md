@@ -106,10 +106,11 @@ To deploy your application, you must download an accelerator, upload it on your 
     --git-branch main \
     --type web \
     --label app.kubernetes.io/part-of=tanzu-java-web-app \
-    --yes
+    --yes \
+    --namespace YOUR-DEVELOPER-NAMESPACE
     ```
 
-    Where `GIT-URL-TO-PROJECT-REPO` is the path you uploaded to in step 5.
+    Where `GIT-URL-TO-PROJECT-REPO` is the path you uploaded to in step 5 and `YOUR-DEVELOPER-NAMESPACE` is the namespace configured in step 6.
 
     If you bypassed step 5 or were unable to upload your accelerator to a Git repository, use the following public version to test:
 
@@ -119,9 +120,12 @@ To deploy your application, you must download an accelerator, upload it on your 
     --git-branch main \
     --type web \
     --label app.kubernetes.io/part-of=tanzu-java-web-app \
-    --yes
+    --yes \
+    --namespace YOUR-DEVELOPER-NAMESPACE
     ```
-
+    
+    Where `YOUR-DEVELOPER-NAMESPACE` is the namespace configured in step 6.
+    
     For more information, see [Tanzu Apps Workload Create](cli-plugins/apps/command-reference/tanzu_apps_workload_create.md).
 
     > **Note:** This deployment uses an accelerator source from Git, but in later steps you use the VSCode extension
@@ -130,15 +134,19 @@ To deploy your application, you must download an accelerator, upload it on your 
 8. View the build and runtime logs for your app by running the `tail` command:
 
     ```
-    tanzu apps workload tail tanzu-java-web-app --since 10m --timestamp
+    tanzu apps workload tail tanzu-java-web-app --since 10m --timestamp --namespace YOUR-DEVELOPER-NAMESPACE
     ```
+    
+    Where `YOUR-DEVELOPER-NAMESPACE` is the namespace configured in step 6.
 
 9. After the workload is built and running, you can view the Web App in your browser. View the URL of the Web App by running the command below, and then press **ctrl-click** on the
    Workload Knative Services URL at the bottom of the command output.
 
     ```
-    tanzu apps workload get tanzu-java-web-app
+    tanzu apps workload get tanzu-java-web-app --namespace YOUR-DEVELOPER-NAMESPACE
     ```
+    
+    Where `YOUR-DEVELOPER-NAMESPACE` is the namespace configured in step 6.
 
     ![Tanzu-java-web-app default screen](images/getting-started-tap-gui-8.png)
 
