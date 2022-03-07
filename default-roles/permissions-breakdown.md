@@ -1,4 +1,4 @@
-# Detailed Role Permissions Breakdown
+# Detailed role permissions breakdown
 
 ## Native Kubernetes Resources
 
