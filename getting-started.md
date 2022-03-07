@@ -1376,7 +1376,7 @@ for service instances.
 11. Visit the URL and confirm the app is working by refreshing the page and
 checking the new message IDs.
 
->**Note:** It can take a few moments for the app workload to finish updating.
+    >**Note:** It can take a few moments for the app workload to finish updating.
 
 ### <a id="outside-k8s-use-case"></a> Use case 3 - Binding an application to a service running outside Kubernetes
 
