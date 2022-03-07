@@ -10,7 +10,7 @@ VMware recommends that you use the Beta TAP Auth CLI, available for download fro
 ## <a id="prereqs"></a>Prerequisites
 
 1. Download the latest Tanzu CLI
-1. Download the Beta TAP Auth CLI tar.gz from Tanzu Network.
+1. Download the Beta TAP Auth CLI tar.gz from [Tanzu Network](https://network.tanzu.vmware.com/products/tap-auth).
 1. Ensure you have admin access to the cluster
 1. Ensure you have an authentication solution configured for the cluster. You can use Pinniped or the authentication service native to your Kubernetes distribution.
 
