@@ -249,8 +249,88 @@ this can reuse the `tap-registry` secret created in
 >`enable_automatic_dependency_updates: true` causes the dependency updater to update
 >Tanzu Build Service dependencies (buildpacks and stacks) when they are released on
 >VMware Tanzu Network. Use `false` to pause the automatic update of Build Service dependencies.
+>When automatic updates are paused, the pinned version of the descriptor for TAP 1.0.2 is [100.0.267](https://network.pivotal.io/products/tbs-dependencies#/releases/1053790)
 >If left undefined, this value is `false`.
 
+### <a id='light-profile'></a> Light Profile
+
+The following is the YAML file sample for the light-profile:
+
+```
+profile: light
+ceip_policy_disclosed: true # The value must be true for installation to succeed
+
+buildservice:
+  kp_default_repository: "KP-DEFAULT-REPO"
+  kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
+  kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
+  tanzunet_username: "TANZUNET-USERNAME"
+  tanzunet_password: "TANZUNET-PASSWORD"
+  enable_automatic_dependency_updates: TRUE-OR-FALSE-VALUE # Optional, set as true or false. Not a string.
+
+supply_chain: basic
+
+cnrs:
+  domain_name: INGRESS-DOMAIN
+
+ootb_supply_chain_basic:
+  registry:
+    server: "SERVER-NAME"
+    repository: "REPO-NAME"
+  gitops:
+    ssh_secret: "SSH-SECRET-KEY"
+
+tap_gui:
+  service_type: ClusterIP
+  ingressEnabled: "true"
+  ingressDomain: "INGRESS-DOMAIN"
+  app_config:
+    app:
+      baseUrl: http://tap-gui.INGRESS-DOMAIN
+    catalog:
+      locations:
+        - type: url
+          target: https://GIT-CATALOG-URL/catalog-info.yaml
+    backend:
+      baseUrl: http://tap-gui.INGRESS-DOMAIN
+      cors:
+        origin: http://tap-gui.INGRESS-DOMAIN
+
+metadata_store:
+  app_service_type: LoadBalancer # (optional) Defaults to LoadBalancer. Change to NodePort for distributions that don't support LoadBalancer
+```
+
+Where:
+
+- `KP-DEFAULT-REPO` is a writable repository in your registry. Tanzu Build Service dependencies are written to this location. Examples:
+    - Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`
+    - Dockerhub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`
+    - Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`
+- `KP-DEFAULT-REPO-USERNAME` is the username that can write to `KP-DEFAULT-REPO`. You should be able to `docker push` to this location with this credential.
+    - For Google Cloud Registry, use `kp_default_repository_username: _json_key`
+- `KP-DEFAULT-REPO-PASSWORD` is the password for the user that can write to `KP-DEFAULT-REPO`.
+You can `docker push` to this location with these credentials.
+    - For Google Cloud Registry, use the contents of the service account JSON key.
+- `SERVER-NAME` is the hostname of the registry server. Examples:
+    - Harbor has the form `server: "my-harbor.io"`
+    - Dockerhub has the form `server: "index.docker.io"`
+    - Google Cloud Registry has the form `server: "gcr.io"`
+- `REPO-NAME` is where workload images are stored in the registry.
+Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
+    - Harbor has the form `repository: "my-project/supply-chain"`
+    - Dockerhub has the form `repository: "my-dockerhub-user"`
+    - Google Cloud Registry has the form `repository: "my-project/supply-chain"`
+- `SSH-SECRET-KEY` is the SSH secret key supported by the specific package.
+    See [Identify the SSH secret key for your package](#ssh-secret-key) for more information.
+- `INGRESS-DOMAIN` is the subdomain for the host name that you will point at the `tanzu-shared-ingress` service's External IP address.
+- `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog you've already built and posted on the Git infrastructure you specified in the Integration section.
+
+>**Note:** When using the `tbs-values.yaml` configuration,
+>`enable_automatic_dependency_updates: true` causes the dependency updater to update
+>Tanzu Build Service dependencies (buildpacks and stacks) when they are released on
+>VMware Tanzu Network. Use `false` to pause the automatic update of Build Service dependencies.
+>When automatic updates are paused, the pinned version of the descriptor for TAP 1.0.2 is [100.0.267](https://network.pivotal.io/products/tbs-dependencies#/releases/1053790)
+>If left undefined, this value is `false`.
 
 ### <a id="view-pkge-config-settings"></a>View possible configuration settings for your package
 
