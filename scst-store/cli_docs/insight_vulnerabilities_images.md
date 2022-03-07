@@ -1,4 +1,4 @@
-# Insight vulnerabilities images
+# Tanzu insight vulnerabilities images
 
 Get images with a given vulnerability.
 
@@ -7,13 +7,13 @@ Get images with a given vulnerability.
 Get images with a given vulnerability.
 
 ```
-insight vulnerabilities images --cveid <cve-id> [--format <format>] [flags]
+tanzu insight vulnerabilities images --cveid <cve-id> [--format <format>] [flags]
 ```
 
 ## <a id='examples'></a>Examples
 
 ```
-insight vulnerabilities images --cveid CVE-123123-2021
+tanzu insight vulnerabilities images --cveid CVE-123123-2021
 ```
 
 ## <a id='options'></a>Options
@@ -26,4 +26,4 @@ insight vulnerabilities images --cveid CVE-123123-2021
 
 ## <a id='see-also'></a>See also
 
-* [insight vulnerabilities](insight_vulnerabilities.md)	 - Vulnerabilities commands
+* [Tanzu insight vulnerabilities](insight_vulnerabilities.md)	 - Vulnerabilities commands

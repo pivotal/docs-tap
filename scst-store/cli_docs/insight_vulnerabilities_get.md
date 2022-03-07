@@ -1,4 +1,4 @@
-# Insight vulnerabilities get
+# Tanzu insight vulnerabilities get
 
 Get vulnerability by CVE id.
 
@@ -7,13 +7,13 @@ Get vulnerability by CVE id.
 Get vulnerability by CVE id.
 
 ```
-insight vulnerabilities get --cveid <cve-id> [--format <format>] [flags]
+tanzu insight vulnerabilities get --cveid <cve-id> [--format <format>] [flags]
 ```
 
 ## <a id='examples'></a>Examples
 
 ```
-insight vulnerabilities get --cveid CVE-123123-2021
+tanzu insight vulnerabilities get --cveid CVE-123123-2021
 ```
 
 ## <a id='options'></a>Options
@@ -26,4 +26,4 @@ insight vulnerabilities get --cveid CVE-123123-2021
 
 ## <a id='see-also'></a>See also
 
-* [insight vulnerabilities](insight_vulnerabilities.md)	 - Vulnerabilities commands
+* [Tanzu insight vulnerabilities](insight_vulnerabilities.md)	 - Vulnerabilities commands

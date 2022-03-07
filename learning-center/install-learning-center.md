@@ -9,7 +9,7 @@ For more information about profiles, see [Installing the Tanzu Application Platf
 
 To install Tanzu Learning Center, see the following sections.
 
-For general information about Learning Center, see [Learning Center](about.md). For information about deploying Learning Center operator, see [Learning Center operator](../learning-center/getting-started/learningcenter-operator.md).
+For general information about Learning Center, see [Learning Center](about.md). For information about deploying Learning Center operator, see [Learning Center operator](getting-started/learning-center-operator.md).
 
 ## <a id='prereqs'></a>Prerequisites
 

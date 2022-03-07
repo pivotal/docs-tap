@@ -1,4 +1,4 @@
-# Insight image packages
+# Tanzu insight image packages
 
 Get image packages.
 
@@ -7,13 +7,13 @@ Get image packages.
 Get image packages.
 
 ```
-insight image packages --digest <image-digest> [--format <image-format>] [flags]
+tanzu insight image packages [--digest <image-digest>] [--name <name>] [--format <image-format>] [flags]
 ```
 
 ## <a id='examples'></a>Examples
 
 ```
-insight image packages --digest sha256:a86859ac1946065d93df9ecb5cb7060adeeb0288fad610b1b659907 --format json
+tanzu insight image packages --digest sha256:a86859ac1946065d93df9ecb5cb7060adeeb0288fad610b1b659907 --format json
 ```
 
 ## <a id='options'></a>Options
@@ -22,8 +22,9 @@ insight image packages --digest sha256:a86859ac1946065d93df9ecb5cb7060adeeb0288f
   -d, --digest string   image digest
   -f, --format string   output format (default "text")
   -h, --help            help for packages
+  -n, --name string     image name
 ```
 
 ## <a id='see-also'></a>See also
 
-* [insight image](insight_image.md)	 - Image commands
+* [Tanzu insight image](insight_image.md)	 - Image commands

@@ -1,4 +1,4 @@
-# Troubleshooting Convention Service
+# Troubleshoot Convention Service
 
 ## <a id="no-server-in-cluster"></a> No server in the cluster
 

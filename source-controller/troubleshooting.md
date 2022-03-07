@@ -1,4 +1,4 @@
-# Source Controller Troubleshooting
+# Troubleshoot Source Controller
 
 ## <a id="collecting-logs"></a> Collecting Logs from Source Controller Manager
 

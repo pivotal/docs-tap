@@ -20,7 +20,7 @@ Verify you have successfully:
 See [Installing Tanzu Application Platform](install-intro.md).
 
   - **Installed the Tanzu Application Platform on the target Kubernetes cluster**<br>
-See [Installing the Tanzu CLI](install-general.md) and [Installing the Tanzu Application Platform Package and Profiles](install.md).
+See [Installing the Tanzu CLI](install-tanzu-cli.md) and [Installing the Tanzu Application Platform Package and Profiles](install.md).
 
   - **Set the default kubeconfig context to the target Kubernetes cluster**<br>
 See [Changing clusters](cli-plugins/apps/usage.md#changing-clusters).
@@ -150,7 +150,9 @@ To deploy your application, you must download an accelerator, upload it on your 
 
     ![REGISTER button on the right side of the header](images/getting-started-tap-gui-5.png)
 
-2. **Register an existing component** prompts you to type a repository URL.
+>**Note:** Alternatively, you can add the link to the `catalog-info.yaml` to the configuration `tap-values.yml` file in the `tap_gui.app_config.catalog.locations` section as described in the [Installing the Tanzu Application Platform Package and Profiles](/install.md#a-idfull-profilea-full-profile).
+
+1. **Register an existing component** prompts you to type a repository URL.
 Type the link to the `catalog-info.yaml` file of the tanzu-java-web-app in the Git repository field, for example,
 `https://github.com/USERNAME/PROJECTNAME/blob/main/catalog-info.yaml`.
 
@@ -163,6 +165,8 @@ Type the link to the `catalog-info.yaml` file of the tanzu-java-web-app in the G
     ![Review the entities to be added to the catalog](images/getting-started-tap-gui-7.png)
 
 1. Navigate back to the home page. The catalog changes and entries are visible for further inspection.
+
+>**Note:** If your Tanzu Application Platform GUI instance does not have a [PostgreSQL](tap-gui/database.md) database configured, then the `catalog-info.yaml` location needs to be re-registered after the instance get restarted or upgraded.
 
 ### <a id="iterate"></a>Iterate on your application
 
@@ -253,70 +257,95 @@ Follow the following steps to diagnose Spring Boot-based applications using Appl
 
 In this section, you are going to:
 
-  - Create an application accelerator using Tanzu Application Platform GUI.
+  - Create an application accelerator using Tanzu Application Platform GUI and CLI.
 
 ### <a id="create-an-app-acc"></a>Create an application accelerator ###
 
-To create a new application accelerator, follow the following steps:
+You can use any Git repository to create an accelerator. You need the URL for the repository to create an accelerator.
 
-1. Click `Create` on the left-hand side of the navigation bar on Tanzu Application Platform GUI portal to view the list of available accelerators.
-2. Click `CHOOSE` to select the **New Accelerator** tile.
+For this example the Git repository should be `public` and contain a `README.md` file. These are all options that are available  when you create repositories on GitHub.
 
-3. Complete the **New Project** form with the following information.
+To create a new application accelerator using your Git repository, follow these steps:
 
-    - > **Name**: `Your accelerator name` This is the name of the generated ZIP file
-    - Description (Optional): A description of your accelerator
-      -  **K8s Resource Name**: A Kubernetes resource name to use for the accelerator
-      -  **Git Repository URL**: The URL for the Git repository that contains the accelerator source code
-      -  **Git Branch**: The branch for the Git repository
-    * **Tags** (Optional): Associated tags that are used for searches in the UI
+1. Clone your Git repository.
 
-    ![Generate Accelerators first prompt](images/getting-started-section2-2.png)
+2. Create a file named `accelerator.yaml` in the root directory of this Git repository.
 
-    ![Explore project dialog box](images/getting-started-section2-3.png)
+3. Add the following content to the `accelerator.yaml` file:
 
-  (Optional) To navigate through the accelerator files, click **EXPLORE**.
-        When finished, click **NEXT STEP**.
-
-
-3. Verify the provided information and click **CREATE**.
-
-    ![Verify information for creating an accelerator](images/getting-started-section2-4.png)
-
-
-4. Download and expand the ZIP file by clicking **DOWNLOAD ZIP FILE** and expand it.
-
-    * The output contains a YAML file for an Accelerator resource, pointing to the Git repository.
-    * The output contains a file named `new-accelerator.yaml` which defines the metadata for your new accelerator.
-
-
-    ![Download ZIP file with the accelerator](images/getting-started-section2-5.png)
-
-
-5. To apply the k8s-resource.yml, run the following command in your terminal in the folder where you expanded the zip file:
-
-    ```
-    kubectl apply -f k8s-resource.yaml --namespace accelerator-system
+    ```yaml
+    accelerator:
+      displayName: Simple Accelerator
+      description: Contains just a README
+      iconUrl: https://images.freecreatives.com/wp-content/uploads/2015/05/smiley-559124_640.jpg
+      tags:
+      - simple
+      - getting-started
     ```
 
-6. The Tanzu Application Platform GUI refreshes periodically. After the UI refreshes, the new accelerator becomes available.
-   After waiting a few minutes, click **Create** on the left-hand side navigation bar of Tanzu Application Platform GUI to see if the accelerator appears.
+    > Feel free to use a different icon, as long as it is using a reachable URL.
 
+4. Add the new `accelerator.yaml` file, commit this change and push to your Git repository.
 
-### <a id="accelerator-yaml"></a>Using accelerator.yaml
+## <a id="publishing-the-new-accelerator"></a>Publish the new accelerator
 
-The Accelerator ZIP file contains a file called `new-accelerator.yaml`.
-This file is a starting point for the metadata for your new accelerator and the associated options and file processing instructions.
-This `new-accelerator.yaml` file must be copied to the root directory of your GIT repository and named `accelerator.yaml`.
+To publish the new application accelerator created in your Git repository, follow these steps:
 
-Copy this file into your GIT repository as `accelerator.yaml` to have additional attributes rendered in the web UI.
-See [Creating Accelerators](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/1.0/acc-docs/GUID-creating-accelerators-index.html).
+1. Run the following command in your terminal:
 
-After you push that change to your GIT repository, the Accelerator is refreshed based on the `git.interval` setting for the Accelerator resource. The default is 10 minutes. You can run the following command to force an immediate reconciliation:
+    > You need the URL for you Git repository plus the name of the branch where you pushed the new `accelerator.yaml` file.
+
+    ```sh
+    tanzu accelerator create simple --git-repository <YOUR-GIT-REPOSITORY-URL> --git-branch <YOUR-GIT-BRANCH>
+    ```
+
+2. Refresh Tanzu Application Platform GUI to reveal the newly published accelerator.
+
+    ![Another accelerator appears in the Tanzu Application Platform GUI](images/new-accelerator-deployed-v1.1.png)
+
+    >**Note:** It might take a few seconds for Tanzu Application Platform GUI to refresh the catalog and add an entry for new accelerator.
+
+## <a id="working-with-accelerators"></a>Working with accelerators
+
+### <a id="accelerator-updates"></a>Updating an accelerator
+
+After you push any changes to your Git repository, the Accelerator is refreshed based on the `git.interval` setting for the Accelerator resource. The default is 10 minutes. You can run the following command to force an immediate reconciliation:
 
 ```
-tanzu accelerator update <accelerator-name> --reconcile
+tanzu accelerator update <ACCELERATOR-NAME> --reconcile
 ```
+
+### <a id="accelerator-deletes"></a>Deleting an accelerator
+
+When you no longer need your accelerator, you can simply delete it using the Tanzu CLI:
+
+```
+tanzu accelerator delete <ACCELERATOR-NAME>
+```
+
+### <a id="accelerator-manifest"></a>Using an accelerator manifest
+
+An alternative to using the Tanzu CLI is to create seperate manifest file and apply it to the cluster. Create a `simple-manifest.yaml` file and add the following content, filling in with your Git repository and branch values.
+
+```yaml
+apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
+kind: Accelerator
+metadata:
+  name: simple
+  namespace: accelerator-system
+spec:
+  git:
+    url: <YOUR-GIT-REPOSITORY-URL>
+    ref:
+      branch: <YOUR-GIT-BRANCH>
+```
+
+To apply the `simple-manifest.yaml`, run the following command in your terminal in the directory where you created this file:
+
+```sh
+kubectl apply -f simple-manifest.yaml
+```
+
 ---
 
 ## <a id="add-test-and-scan"></a> Section 3: Add Testing and Security Scanning to Your Application
@@ -333,10 +362,7 @@ In this section, you are going to:
 
 ### <a id="intro-supply-chain"></a>Introducing a Supply Chain
 
-Supply Chains provide a way of codifying all of the steps of your path to production, or what is
-more commonly known as continuous integration/Continuous Delivery (CI/CD).
-A supply chain differs from CI/CD in that you can add any step necessary for an
-application to reach production, or a different environment such as staging.
+Supply Chains provide a way of codifying all of the steps of your path to production, more commonly known as continuous integration/Continuous Delivery (CI/CD). CI/CD is a method to frequently deliver applications by introducing automation into the stages of application development. The main concepts attributed to CI/CD are continuous integration, continuous delivery, and continuous deployment. CI/CD is the method used by supply chain to deliver applications through automation where supply chain allows you to use CI/CD and add any other steps necessary for an application to reach production, or a different environment such as staging.
 
 ![Diagram depicting a simple path to production: CI to Security Scan to Build Image to Image Scan to CAB Approval to Deployment.](images/path-to-production-new.png)
 
@@ -575,7 +601,7 @@ spec:
             script: |-
               cd `mktemp -d`
 
-              wget -qO- $(params.source-url) | tar xvz
+              wget -qO- $(params.source-url) | tar xvz -m
               ./mvnw test
 ```
 
@@ -1132,7 +1158,7 @@ ClusterResource to reference and describe it.
     kubectl apply -f rabbitmq-clusterresource.yaml
     ```
 
-    The creation of this `ClusterResource` referring to `RabbitmqCluster` is the mechanism by which the `tanzu service` CLI plug-in (as the following mentions ) verifies which resources to disply. For more information about `ClusterResource`, see [Service Offering for VMware Tanzu](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-service_offering-terminology_and_apis.html).
+    The creation of this `ClusterResource` referring to `RabbitmqCluster` enables the `tanzu service` CLI plug-in to verify which resources to display. For more information about `ClusterResource`, see [Service Offering for VMware Tanzu](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-service_offering-terminology_and_apis.html).
 
 
 ### <a id="same-namespace-use-case"></a> Use case 1: Binding an application to a pre-provisioned service instance running in the same namespace
@@ -1140,7 +1166,7 @@ ClusterResource to reference and describe it.
 >**Note:** The following examples implement a RabbitMQ service instance and a single sample
 >application which acts as both a producer and consumer of messages.
 >For most real-world scenarios using RabbitMQ it's likely that there are multiple applications
->deployed and communicating through the RabbitMQ service. Currently it is not possible for more than
+>deployed and communicating through the RabbitMQ service. Currently, it is not possible for more than
 >one application workload to consume the same service instance. For more information, see the known
 >issues in the [release notes](release-notes.md) for further information.
 
@@ -1172,34 +1198,52 @@ in the same namespace.
     kubectl get rabbitmqclusters
     ```
 
-4. Follow these steps to create an application workload that automatically claims and binds to the
-RabbitMQ instance:
+4. Follow these steps to claim the RabbitMQ instance and create an application workload that binds to the RabbitMQ instance:
 
-    >**Note:** Ensure your namespace has been setup to to use installed Tanzu Application Platform packages
+    >**Note:** Ensure your namespace has been set up to use installed Tanzu Application Platform packages
     For more information, see [Set up developer namespaces to use installed packages](install-components.md#setup).
     >**Note:** Ensure you have run through the [setup procedure](#con-serv-setup).
 
-    1. Obtain a service reference by running:
+    1. Confirm the service instance details by running:
 
         ```
-        $  tanzu service instance list -owide
+        $  tanzu service instance list
         ```
 
         Expect to see the following outputs:
 
         ```
-        NAME                        KIND             SERVICE TYPE  AGE  SERVICE REF
-        example-rabbitmq-cluster-1  RabbitmqCluster  rabbitmq      50s  rabbitmq.com/v1beta1:RabbitmqCluster:default:example-rabbitmq-cluster-1
+        NAME                        KIND             SERVICE TYPE  AGE
+        example-rabbitmq-cluster-1  RabbitmqCluster  rabbitmq      50s
         ```
 
-    2. Create the application workload and the `rabbitmq-sample` application hosted at
+    2. Create a claim for the newly created rabbitmq instance by running:
+
+        ```
+        $ tanzu service claim create rmq-claim-1 --resource-name example-rabbitmq-cluster-1 --resource-kind RabbitmqCluster --resource-api-version rabbitmq.com/v1beta1
+        ```
+
+    3. Obtain the claim reference of the newly-created claim by running:
+
+        ```
+        $ tanzu service claim list -o wide
+        ```
+
+        Expect to see the following output:
+
+        ```
+        NAME         READY  REASON  CLAIM REF
+        rmq-claim-1  True           services.apps.tanzu.vmware.com/v1alpha1:ResourceClaim:rmq-claim-1
+        ```
+
+    4. Create the application workload and the `rabbitmq-sample` application hosted at
     `https://github.com/sample-accelerators/rabbitmq-sample` by running:
 
         ```
-        tanzu apps workload create rmq-sample-app-usecase-1 --git-repo https://github.com/sample-accelerators/rabbitmq-sample --git-branch main --git-tag tap-1.0 --type web --service-ref "rmq=<SERVICE-REF>"
+        tanzu apps workload create rmq-sample-app-usecase-1 --git-repo https://github.com/sample-accelerators/rabbitmq-sample --git-branch main --git-tag tap-1.0 --type web --service-ref "rmq=<REFERENCE>"
         ```
 
-        Where `<SERVICE-REF>` is the value of `SERVICE REF` from the output in the last step.
+        Where `<REFERENCE>` is the value of `CLAIM REF` from the output in the last step.
 
 5. Get the Knative web-app URL by running:
 
@@ -1209,10 +1253,11 @@ RabbitMQ instance:
 
     >**Note:** It can take some time before the workload is ready.
 
-6. Visit the URL and confirm the app is working by refreshing the page and checking
-the new message IDs.
+6. Visit the URL and confirm the app is working by refreshing the page and checking the new message IDs.
 
 ### <a id="diff-namespace-use-case"></a> Use case 2 - Binding an application to a pre-provisioned service instance running in a different namespace on the same Kubernetes cluster
+
+>**Note:** Tanzu Application Platform v1.1.0 GA will support this use case.
 
 >**Note:** Consumption of a single service instance by multiple workloads from different namespaces is currently not supported, but is intended to be supported in the near future.
 
@@ -1248,20 +1293,20 @@ for service instances.
     kubectl -n service-instances apply -f example-rabbitmq-cluster-service-instance-2.yaml
     ```
 
-4. Obtain a service reference by running:
+4. Confirm the service instance details by running:
 
     >**Note:** Ensure you have run through the [setup procedure](#con-serv-setup).
 
     ```
-    $ tanzu service instances list --all-namespaces -owide
+    $ tanzu service instances list --all-namespaces
     ```
 
     Expect to see the following outputs:
 
     ```
-    NAMESPACE          NAME                        KIND             SERVICE TYPE  AGE   SERVICE REF
-    default            example-rabbitmq-cluster-1  RabbitmqCluster  rabbitmq      105s  rabbitmq.com/v1beta1:RabbitmqCluster:default:example-rabbitmq-cluster-1
-    service-instances  example-rabbitmq-cluster-2  RabbitmqCluster  rabbitmq      14s   rabbitmq.com/v1beta1:RabbitmqCluster:service-instances:example-rabbitmq-cluster-2
+    NAMESPACE          NAME                        KIND             SERVICE TYPE  AGE
+    default            example-rabbitmq-cluster-1  RabbitmqCluster  rabbitmq      105s
+    service-instances  example-rabbitmq-cluster-2  RabbitmqCluster  rabbitmq      14s
     ```
 
 5. Create a `ResourceClaimPolicy` to enable cross-namespace binding.
@@ -1294,24 +1339,44 @@ for service instances.
     For more information about `ResourceClaimPolicy`, see the
     [ResourceClaimPolicy documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-service_resource_claims-terminology_and_apis.html#resourceclaimpolicy-4).
 
-7. Bind the application workload to the RabbitmqCluster Service Instance:
+7. Create a claim for the newly created rabbitmq instance by running:
 
     ```
-    $ tanzu apps workload update rmq-sample-app-usecase-1 --service-ref="rmq=<SERVICE-REF>" --yes
+    $ tanzu service claim create rmq-claim-2 --resource-name example-rabbitmq-cluster-2 --resource-kind RabbitmqCluster --resource-api-version rabbitmq.com/v1beta1 --resource-namespace service-instances
     ```
 
-    Where `<SERVICE-REF>` is the value of the `SERVICE REF` from the `service-instances` namespace in the output of step 3.
+8. Obtain the claim reference of the newly-created claim by running:
 
-8. Get the Knative web-app URL by running:
+    ```
+    $ tanzu service claim list -o wide
+    ```
+
+    Expect to see the following output:
+
+    ```
+    NAME         READY  REASON  CLAIM REF
+    rmq-claim-1  True           services.apps.tanzu.vmware.com/v1alpha1:ResourceClaim:rmq-claim-1
+    rmq-claim-2  True           services.apps.tanzu.vmware.com/v1alpha1:ResourceClaim:rmq-claim-2
+    ```
+
+9. Bind the application workload to the RabbitmqCluster Service Instance:
+
+    ```
+    $ tanzu apps workload update rmq-sample-app-usecase-1 --service-ref="rmq=<REFERENCE>" --yes
+    ```
+
+    Where `<REFERENCE>` is the value of the `CLAIM REF` for the newly created claim in the output of the last step.
+
+10. Get the Knative web-app URL by running:
 
     ```
     tanzu apps workload get rmq-sample-app-usecase-1
     ```
 
-9. Visit the URL and confirm the app is working by refreshing the page and
+11. Visit the URL and confirm the app is working by refreshing the page and
 checking the new message IDs.
 
->**Note:** It can take a few moments for the app workload to finish updating.
+    >**Note:** It can take a few moments for the app workload to finish updating.
 
 ### <a id="outside-k8s-use-case"></a> Use case 3 - Binding an application to a service running outside Kubernetes
 
@@ -1356,7 +1421,26 @@ existing PostgreSQL database that exists in Azure.
     >and claimed cross namespace by using `ResourceClaimPolicy` resources.
     >For more information, see [Use case 2](#diff-namespace-use-case).
 
-3. Create your application workload by running:
+3. Create a claim for the newly created secret by running:
+
+    ```
+    $ tanzu service claim create external-azure-db-claim --resource-name external-azure-db-binding-compatible --resource-kind Secret --resource-api-version v1
+    ```
+
+4. Obtain the claim reference of the newly-created claim by running:
+
+    ```
+    $ tanzu service claim list -o wide
+    ```
+
+    Expect to see the following output:
+
+    ```
+    NAME                     READY  REASON  CLAIM REF
+    external-azure-db-claim  True           services.apps.tanzu.vmware.com/v1alpha1:ResourceClaim:external-azure-db-claim
+    ```
+
+5. Create your application workload by running:
 
     Example:
 
@@ -1367,9 +1451,11 @@ existing PostgreSQL database that exists in Azure.
     Where:
 
     - `<WORKLOAD-NAME>` is the name of the application workload. For example, `pet-clinic`.
-    - `<REFERENCE>` is a reference provided to the `Secret`. For example, `v1:Secret:external-azure-db-binding-compatible`.
+    - `<REFERENCE>` is the value of the `CLAIM REF` for the newly created claim in the output of the last step.
 
 ### <a id="diff-cluster-use-case"></a> Use case 4: Binding an application to a service instance running on a different Kubernetes cluster (Experimental).
+
+>**Note:** Tanzu Application Platform v1.1.0 GA will support this use case.
 
 >**Note:** Use cases marked with Experimental are subject to change.
 
@@ -1568,19 +1654,25 @@ Workload Cluster by running:
     Finally, the app developer takes over. The experience is the same for
     the application developer as in [use case 1](#same-namespace-use-case).
 
-12. Create the application workload by running:
+12. Create a claim for the projected service instance by running:
 
     ```
-    tanzu apps workload create rmq-sample-app-usecase-4 --git-repo https://github.com/sample-accelerators/rabbitmq-sample --git-branch main --git-tag tap-1.0 --type web --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:service-instances:projected-rmq"
+    $ tanzu service claim create projected-rmq-claim --resource-name projected-rmq --resource-kind RabbitmqCluster --resource-api-version rabbitmq.com/v1beta1 --resource-namespace service-instances
     ```
 
-13. Get the web-app URL by running:
+13. Create the application workload by running:
+
+    ```
+    tanzu apps workload create rmq-sample-app-usecase-4 --git-repo https://github.com/sample-accelerators/rabbitmq-sample --git-branch main --git-tag tap-1.0 --type web --service-ref "rmq=services.apps.tanzu.vmware.com/v1alpha1:ResourceClaim:projected-rmq-claim"
+    ```
+
+14. Get the web-app URL by running:
 
     ```
     tanzu apps workload get rmq-sample-app-usecase-4
     ```
 
-14. Visit the URL and refresh the page to confirm the app is running by checking
+15. Visit the URL and refresh the page to confirm the app is running by checking
 the new message IDs.
 
 

@@ -45,10 +45,11 @@ These properties are only used to configure non-standard installations.
 The following table is the resource usage configurations for the components of Application Accelerator.
 
 | Component | Resource requests | Resource limits |
-| :- | :- | :- |
+| --- | --- | --- |
 | acc-controller | cpu: 100m <br> memory: 20Mi| cpu: 100m <br> memory: 30Mi |
 | acc-server | cpu: 100m <br> memory:20Mi | cpu: 100m <br> memory: 30Mi |
 | acc-engine | cpu: 500m <br> memory: 1Gi | cpu: 500m <br> memory: 2Gi |
+
 
 ## <a id='app-acc-install'></a> Install
 

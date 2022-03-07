@@ -8,9 +8,33 @@ This topic contains release notes for Tanzu Application Platform v1.
 
 ### <a id='1-1-new-features'></a> New Features
 
-#### Tanzu Application Platform GUI
-[placeholder for Runtime Resources Plugin]
+#### Tanzu Application Platform Profile - Iterate
+This new profile is intended for iterative development versus the path to production.
 
+#### Tanzu Application Platform Profile - Build
+
+#### Tanzu Application Platform Profile - Run
+
+#### Tanzu Application Platform Profile - Full
+
+* New packages added....
+
+#### Default Roles for Tanzu Application Platform
+
+* Introduction of five new default roles and related permissions that apply to **k8s resources**. These roles are to help operators set up common sets of permissions for users and service accounts accessing a cluster running Tanzu Application Platform.
+  * Three roles are for users: app-editor, app-viewer and app-operator. 
+  * Two roles are for “robot” or system permissions: workload and deliverable. 
+
+
+#### Tanzu Application Platform GUI
+
+- **Runtime Resources Visibility plug-in:** explanation here
+- **Supply Chain Choreographer plug-in:** explanation here
+
+#### Application Live View
+
+* Enabled multiple cluster support for Application Live View.
+* Split Application Live View components into three packages with new package reference names.
 
 ### <a id='1-1-breaking-changes'></a> Breaking changes
 
@@ -30,7 +54,9 @@ This release has the following security issues:
 
 ### <a id='1-1-known-issues'></a> Known issues
 
+### <a id='1-1-known-issues'></a> Feature Deprecation 
 
+* Tanzu Application Platform Profile - Light
 
 
 ## <a id='1-0'></a> v1.0
@@ -53,34 +79,20 @@ When GKE scales up an API server, the current Tanzu Application install continue
 
 #### Application Accelerator
 
-Build scripts provided as part of an accelerator do not have the execute bit set when a new
-project is generated from the accelerator.
+- Build scripts provided as part of an accelerator do not have the execute bit set when a new
+  project is generated from the accelerator.
 
-To resolve this issue, explicitly set the execute bit by running the `chmod` command:
-
-```
-chmod +x <build-script>
-```
-
-For example, for a project generated from the "Spring PetClinic" accelerator, run:
-
-```
-chmod +x ./mvnw
-```
-
+    To resolve this issue, explicitly set the execute bit. For more information, see
+    [Execute Bit Not Set for App Accelerator Build Scripts](troubleshooting.html#build-scripts-lack-execute-bit)
+    in _Troubleshooting Tanzu Application Platform_.
 #### Application Live View
 
 The Live View section in Tanzu Application Platform GUI might show
 "No live information for pod with ID" after deploying Tanzu Application Platform workloads.
 
-Resolve this issue by recreating the Application Live View Connector pod. This allows the connector
-to discover the application instances and render the details in Tanzu Application Platform GUI.
-
-For example:
-
-```
-kubectl -n app-live-view delete pods -l=name=application-live-view-connector
-```
+Resolve this issue by recreating the Application Live View Connector pod. For more information, see
+[No Live Information for Pod with ID Error](troubleshooting.html#no-live-information) in
+_Troubleshooting Tanzu Application Platform_.
 
 #### Convention Service
 
@@ -94,6 +106,9 @@ the debug convention might not apply to the app run image. This is because of th
 in the image.
 To prevent this issue, delete existing app images that were built using Tanzu Application Platform
 v0.4.
+
+For more information, see [Debug Convention May Not Apply](troubleshooting.html#debug-convention) in
+_Troubleshooting Tanzu Application Platform_.
 
 #### Grype scanner
 
@@ -113,24 +128,8 @@ Image Scan, after the binaries are built and packaged as images.
 #### Learning Center
 
 - **Training Portal in pending state:** Under certain circumstances, the training portal is stuck in
-a pending state. The best way to discover the issue is to view the operator logs. To get the logs,
-run:
-
-    ```
-    kubectl logs deployment/learningcenter-operator -n learningcenter
-    ```
-
-    Depending on the log, the issue might be that the TLS secret `tls` is not available.
-    The TLS secret should be on the Learning Center operator namespace. Otherwise, you get this
-    error:
-
-    ```
-    ERROR:kopf.objects:Handler 'learningcenter' failed temporarily: TLS secret tls is not available
-    ```
-
-    To recover from this issue, you can follow
-    [these steps](learning-center/getting-started/learning-center-operator.md#enforce-secure-connect) to create the TLS Secret.
-    After the TLS is created, redeploy the TrainingPortal resource.
+a pending state. To resolve this issue, see
+[Training portal stays in pending state](learning-center/troubleshoot-learning-center.md#training-portal-pending).
 
 - **image-policy-webhook-service not found:** If you are installing a Tanzu Application Platform
 profile, you might see the error:
@@ -142,27 +141,13 @@ profile, you might see the error:
     This is a rare condition error among some packages. To recover from this error, redeploy the
     `trainingPortal` resource.
 
-- **Updating parameters don't work:** Normally you need to update some parameters provided to the
-Learning Center Operator, such as ingressDomain, TLS secret, ingressClass, and so on.
-Try running one of these commands to validate if the parameters were changed:
+- **Cannot Update Parameters:**
+Normally you must update some parameters provided to the Learning Center Operator. These parameters
+include ingressDomain, TLS secret, ingressClass, and others.
 
-    ```
-    kubectl describe systemprofile
-    ```
-
-    or
-
-    ```
-    kubectl describe pod  -n learningcenter
-    ```
-
-    If the Training Portals don't work or you can't get the updated values, there is another
-    workaround.
-    By design, the Training Portal resources do not react to any changes on the parameters provided
-    when the training portals were created.
-    This is because any change on the `trainingportal` resource affect any online user who is
-    running a workshop. To get the new values, redeploy `trainingportal` in a maintenance window
-    where Learning Center is unavailable while the `systemprofile` is updated.
+    After updating parameters, if the Training Portals do not work or you cannot see the updated values,
+    redeploy `trainingportal` in a maintenance window where Learning Center is unavailable while the
+    `systemprofile` is updated.
 
 - **Increase your cluster's resources:** Node pressure may be caused by not enough nodes or not
 enough resources on nodes for deploying the workloads you have. In this case, follow your cloud
@@ -207,106 +192,27 @@ To resolve the issue, delete `MutatingWebhookConfiguration` and re-apply it when
 stable.
 
 - **MutatingWebhookConfiguration prevents pods from being admitted:** Under certain circumstances,
-if the `image-policy-controller-manager` deployment pods do not start up before the
-`MutatingWebhookConfiguration` is applied to the cluster, it can prevent the admission of all
-pods.<br><br>
-For example, pods can be prevented from starting if nodes in a cluster are scaled to zero and the
-webhook is forced to restart at the same time as other system components.
-A deadlock can occur when some components expect the webhook to verify their image signatures and
-the webhook is not running yet.<br><br>
-There is a known rare condition during Tanzu Application Platform profiles installation that could
-cause this issue to happen. You may see a message similar to one of the following in component
-statuses:
+  if the `image-policy-controller-manager` deployment pods do not start up before the
+  `MutatingWebhookConfiguration` is applied to the cluster, it can prevent the admission of all
+  pods.
 
-    ```
-    Events:
-      Type     Reason            Age                   From                   Message
-      ----     ------            ----                  ----                   -------
-      Warning  FailedCreate      4m28s                 replicaset-controller  Error creating: Internal error occurred: failed calling webhook "image-policy-webhook.signing.apps.tanzu.vmware.com": Post "https://image-policy-webhook-service.image-policy-system.svc:443/signing-policy-check?timeout=10s": no endpoints available for service "image-policy-webhook-service"
-    ```
-
-    ```
-    Events:
-      Type     Reason            Age                   From                   Message
-      ----     ------            ----                  ----                   -------
-      Warning FailedCreate 10m replicaset-controller Error creating: Internal error occurred: failed calling webhook "image-policy-webhook.signing.apps.tanzu.vmware.com": Post "https://image-policy-webhook-service.image-policy-system.svc:443/signing-policy-check?timeout=10s": service "image-policy-webhook-service" not found
-    ```
-
-    By deleting the `MutatingWebhookConfiguration` resource, you can resolve the deadlock and enable the
-    system to start up again. After the system is stable, you can restore the `MutatingWebhookConfiguration`
-    resource to re-enable image signing enforcement.
-
-    >**Important:** These steps temporarily disable signature verification in your cluster.
-
-    To do so:
-
-    1. Back up the `MutatingWebhookConfiguration` to a file by running:
-
-        ```
-        kubectl get MutatingWebhookConfiguration image-policy-mutating-webhook-configuration -o yaml > image-policy-mutating-webhook-configuration.yaml
-        ```
-
-    2. Delete `MutatingWebhookConfiguration` by running:
-
-        ```
-        kubectl delete MutatingWebhookConfiguration image-policy-mutating-webhook-configuration
-        ```
-
-    3. Wait until all components are up and running in your cluster, including the
-      `image-policy-controller-manager` pods (namespace `image-policy-system`).
-
-    4. Re-apply the `MutatingWebhookConfiguration` by running:
-
-        ```
-        kubectl apply -f image-policy-mutating-webhook-configuration.yaml
-        ```
+    To resolve this issue, delete the `MutatingWebhookConfiguration` resource, then restore the
+    `MutatingWebhookConfiguration` resource to re-enable image signing enforcement. For instructions,
+    see [MutatingWebhookConfiguration Prevents Pod Admission](troubleshooting.html#pod-admission-prevented)
+    in _Troubleshooting Tanzu Application Platform_.
 
 - **Terminated kube-dns prevents new pods from being admitted:**
-If `kube-dns` gets terminated, it prevents the admission controller from being able to reach the image policy controller. This prevents new pods from being admitted, including core services like kube-dns.
+If `kube-dns` is terminated, it prevents the admission controller from being able to reach the image policy controller. This prevents new pods from being admitted, including core services like kube-dns.
 
-Modify the mutating webhook configuration to exclude the `kube-system` namespace from the admission check. This allows pods in the `kube-system` to appear, which should restore `kube-dns`
+    Modify the mutating webhook configuration to exclude the `kube-system` namespace from the admission check. This allows pods in the `kube-system` to appear, which should restore `kube-dns`
 
 - **Priority class of webhook's pods might preempt less privileged pods:**
 This component uses a privileged `PriorityClass` to start up its pods in order to prevent node
 pressure from preempting its pods. However, this can cause other less privileged components to have
 their pods preempted or evicted instead.
 
-You see events similar to this in the output of `kubectl get events`:
-
-```
-$ kubectl get events
-LAST SEEN   TYPE      REASON             OBJECT               MESSAGE
-28s         Normal    Preempted          pod/testpod          Preempted by image-policy-system/image-policy-controller-manager-59dc669d99-frwcp on node test-node
-```
-
-- **Solution 1: Reduce the amount of pods deployed by the Sign component:**
-In case your deployment of the Sign component is running more pods than
-necessary, you can scale the deployment down. To do so:
-
-    1. Create a values file called `scst-sign-values.yaml` with the following
-      contents:
-        ```
-        ---
-        replicas: N
-        ```
-        Where N should be the smallest amount of pods you can have for your current
-        cluster configuration.
-
-    1. Apply your new configuration by running:
-        ```
-        tanzu package installed update image-policy-webhook \
-          --package-name image-policy-webhook.signing.apps.tanzu.vmware.com \
-          --version 1.0.0-beta.3 \
-          --namespace tap-install \
-          --values-file scst-sign-values.yaml
-        ```
-
-    1. Wait a few minutes for your configuration to take effect in the cluster.
-
-- **Solution 2: Increase your cluster's resources:** Node pressure might be caused by a lack of nodes or
-resources on nodes for deploying the workloads you have.
-In this case, follow your cloud provider instructions for how to scale out or scale up your
-cluster.
+    To resolve this issue, see [Priority Class of Webhook's Pods Preempts Less Privileged Pods](troubleshooting.html#priority-class-preempts)
+    in _Troubleshooting Tanzu Application Platform_.
 
 #### Supply Chain Security Tools - Store
 
@@ -320,48 +226,33 @@ Supply Chain Security Tools - Store does not start up. You see the following err
     [error] failed to initialize database, got error failed to connect to `host=metadata-store-db user=metadata-store-user database=metadata-store`: server error (FATAL: password authentication failed for user "metadata-store-user" (SQLSTATE 28P01))
     ```
 
-    If you see this error then you have changed the database password between deployments,
-    which is not supported. To change the password, see **Persistent Volume Retains Data**.
+    This error results when the database password was changed between deployments. This is not
+    supported. To resolve this issue, see [CrashLoopBackOff from Password Authentication Fails](troubleshooting.html#password-authentication-fails)
+    in _Troubleshooting Tanzu Application Platform_.
 
     > **Warning:** Changing the database password deletes your Supply Chain Security Tools - Store data.
 
 - **Persistent volume retains data**
-If Supply Chain Security Tools - Store is deployed, deleted, and then redeployed the
-`metadata-store-db` Pod fails to start up if the database password changed during redeployment.
-This is due to the persistent volume used by postgres retaining old data, even though the retention
-policy is set to `DELETE`.<br><br>
-To redeploy the app either use the same database password or follow these steps below to erase
-the data on the volume:
-    1. Deploy `metadata-store app` with kapp.
-    1. Verify that the `metadata-store-db-*` Pod fails.
-    1. Run:
+  If Supply Chain Security Tools - Store is deployed, deleted, and then redeployed the
+  `metadata-store-db` Pod fails to start if the database password changed during redeployment.
+  This is caused by the persistent volume used by postgres retaining old data, even though the retention
+  policy is set to `DELETE`.
 
-        ```
-        kubectl exec -it metadata-store-db-<some-id> -n metadata-store /bin/bash
-        ```
-        Where `<some-id>` is the ID generated by Kubernetes and appended to the Pod name.
-    1. Run `rm -rf /var/lib/postgresql/data/*` to delete all database data.
-      This is the path found in `postgres-db-deployment.yaml`.
-    1. Delete the `metadata-store` app with kapp.
-    1. Deploy the `metadata-store` app with kapp.
+    To resolve this issue, see [CrashLoopBackOff from Password Authentication Fails](troubleshooting.html#password-authentication-fails)
+    in _Troubleshooting Tanzu Application Platform_.
+
+    > **Warning:** Changing the database password deletes your Supply Chain Security Tools - Store data.
 
 - **Missing persistent volume:**
-After Store is deployed, `metadata-store-db` Pod might fail for missing volume while
-`postgres-db-pv-claim` pvc is in the `PENDING` state.
-This issue might occur because the cluster where Store is deployed does not have `storageclass`
-defined.<br><br>
-The provisioner of `storageclass` is responsible for creating the persistent volume after
-`metadata-store-db` attaches `postgres-db-pv-claim`. To fix this issue:
-    1. Verify that your cluster has `storageclass` by running `kubectl get storageclass`.
-    1. Create a `storageclass` in your cluster before deploying Store. For example:
+After Supply Chain Security Tools - Store is deployed, `metadata-store-db` Pod might fail for missing
+volume while `postgres-db-pv-claim` pvc is in the `PENDING` state.
+This issue may occur if the cluster where Supply Chain Security Tools - Store is deployed does not have
+`storageclass` defined.
 
-        ```
-        # This is the storageclass that Kind uses
-        kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml
-
-        # set the storage class as default
-        kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
-        ```
+    The provisioner of `storageclass` is responsible for creating the persistent volume after
+    `metadata-store-db` attaches `postgres-db-pv-claim`. To resolve this issue, see
+    [Missing Persistent Volume](troubleshooting.html#missing-persistent-volume)
+    in _Troubleshooting Tanzu Application Platform_.
 
 - **Querying local path source reports:**
 If a source report has a local path as the name -- for example, `/path/to/code` -- the leading

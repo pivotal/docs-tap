@@ -50,17 +50,22 @@ Software Composition Analysis scanning
 * Grype version 0.25.1
 
 ### <a id='cves'></a>CVEs:
+
 #### <a id='bdba'></a>BDBA
+
 No vulnerabilities were found in the API backend and CLI binaries.
 
 See BDBA reports:
-* [API backend report](store-bdba-scan-2021-11-26.jpg)
-* [CLI report](cli-bdba-scan-2021-11-26.jpg)
+
+- [API backend report](store-bdba-scan-2021-11-26.jpg)
+- [CLI report](cli-bdba-scan-2021-11-26.jpg)
 
 #### <a id='grype-cr'></a>Grype
-No vulnerabilities were found scanning the API backend sources, client lib, and CLI.
 
-The following CVEs were found through scanning the API backend image:
+No vulnerabilities were found through scanning the API back end sources, client lib, and CLI.
+
+The following CVEs were found through scanning the API back end image:
+
 ```
 NAME   INSTALLED        FIXED-IN  VULNERABILITY   SEVERITY   
 libc6  2.27-3ubuntu1.4            CVE-2015-8985   Negligible  
@@ -75,4 +80,5 @@ libc6  2.27-3ubuntu1.4            CVE-2021-38604  Medium
 libc6  2.27-3ubuntu1.4            CVE-2016-10228  Negligible  
 libc6  2.27-3ubuntu1.4            CVE-2009-5155   Negligible  
 ```
+
 No `high` or `critical` CVEs present.

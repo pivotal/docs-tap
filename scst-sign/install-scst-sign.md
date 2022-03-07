@@ -42,8 +42,10 @@ To install Supply Chain Security Tools - Sign:
 1. (Optional) Make changes to the default installation settings by running:
 
     ```
-    tanzu package available get image-policy-webhook.signing.apps.tanzu.vmware.com/1.1.0 --values-schema --namespace tap-install
+    tanzu package available get image-policy-webhook.signing.apps.tanzu.vmware.com/VERSION --values-schema --namespace tap-install
     ```
+    
+    Where `VERSION` is the version number you discovered. For example, `1.1.0`.
 
     For example:
 
@@ -51,19 +53,39 @@ To install Supply Chain Security Tools - Sign:
     $ tanzu package available get image-policy-webhook.signing.apps.tanzu.vmware.com/1.1.0 --values-schema --namespace tap-install
     | Retrieving package details for image-policy-webhook.signing.apps.tanzu.vmware.com/1.1.0...
       KEY                     DEFAULT              TYPE     DESCRIPTION
+      allow_unmatched_images  false                boolean  Feature flag for enabling admission of images that do not match any patterns in the image policy configuration.
+                                                            Set to true to allow images that do not match any patterns into the cluster with a warning.
+
+      custom_ca_secrets       <nil>                array    List of custom CA secrets that should be included in the application container for registry communication.
+                                                            An array of secret references each containing a secret_name field with the secret name to be referenced
+                                                            and a namespace field with the name of the namespace where the referred secret resides.
+
+      custom_cas              <nil>                array    List of custom CA contents that should be included in the application container for registry communication.
+                                                            An array of items containing a ca_content field with the PEM-encoded contents of a certificate authority.
+
       deployment_namespace    image-policy-system  string   Deployment namespace specifies the namespace where this component should be deployed to.
                                                             If not specified, "image-policy-system" is assumed.
-      allow_unmatched_images  false                boolean  Feature flag for enabling admission of images that do not match
-                                                            any patterns in the image policy configuration.
-                                                            Set to true to allow images that do not match any patterns into
-                                                            the cluster with a warning.
-      quota.pod_number        5                    string   The maximum number of Image Policy Webhook Pods allowed to be
-                                                            created with the priority class system-cluster-critical. This
-                                                            value must be enclosed in quotes (""). If this value is not
-                                                            specified then the default value of 5 is used.
-      replicas                1                    integer  The number of replicas to be created for the Image Policy
-                                                            Webhook. This value must not be enclosed in quotes. If this
-                                                            value is not specified then the default value of 1 is used.
+
+      limits_cpu              200m                 string   The CPU limit defines a hard ceiling on how much CPU time that
+                                                            the Image Policy Webhook controller manager container can use.
+                                                            https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu
+
+      limits_memory           256Mi                string   The memory limit defines a hard ceiling on how much memory that
+                                                            the Image Policy Webhook controller manager container can use.
+                                                            https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory
+
+      quota.pod_number        5                    string   The maximum number of Image Policy Webhook Pods allowed to be created with the priority class
+                                                            system-cluster-critical. This value must be enclosed in quotes (""). If this value is not
+                                                            specified then a default value of 5 is used.
+      replicas                1                    integer  The number of replicas to be created for the Image Policy Webhook. This value must not be enclosed
+                                                            in quotes. If this value is not specified then a default value of 1 is used.
+      requests_cpu            100m                 string   The CPU request defines the minimum CPU time for the Image Policy
+                                                            Webhook controller manager. During CPU contention, CPU request is used
+                                                            as a weighting where higher CPU requests are allocated more CPU time.
+                                                            https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu
+
+      requests_memory         50Mi                 string   The memory request defines the minium memory amount for the Image Policy Webhook controller manager.
+                                                            https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory
     ```
 
 1. Create a file named `scst-sign-values.yaml` and add the settings you want to customize:
@@ -93,22 +115,53 @@ To install Supply Chain Security Tools - Sign:
             >To promote to a production environment VMware recommends that you
             >re-install the webhook with `allow_unmatched_images` set to `false`.
 
-    - `quota.pod_number`:
-      This setting is the maximum number of pods that are allowed in the
-      deployment namespace with the `system-cluster-critical`
-      priority class. This priority class is added to the pods to prevent
-      preemption of this component's pods in case of node pressure.
+    - `custom_ca_secrets`:
+      This setting controls which secrets to be added to the application
+      container as custom certificate authorities (CAs). It enables communication
+      with registries deployed with self-signed certificates. `custom_ca_secrets`
+      consists of an array of items. Each item contains two fields:
+      the `secret_name` field defines the name of the secret,
+      and the `namespace` field defines the name of the namespace where said
+      secret is stored.
 
-      The default value for this property is 5. If your use case requires
-      more than 5 pods be deployed of this component, adjust this value to
-      allow the number of replicas you intend to deploy.
+      For example:
+      
+      ```yaml
+      custom_ca_secrets:
+      - secret_name: first-ca
+        namespace: ca-namespace
+      - secret_name: second-ca
+        namespace: ca-namespace
+      ```
 
-    - `replicas`:
-      These settings controls the default amount of replicas that will get deployed by this
-      component. The default value is 1.
+      >**Note:** This setting is allowed even if `custom_cas` was informed.
 
-        * **For production environments**: VMware recommends you increase the number of replicas to
-          3 to ensure availability of the component for better admission performance.
+    - `custom_cas`:
+      This setting enables adding certificate content in PEM format. 
+      The certificate content are added to the application container as custom 
+      certificate authorities (CAs) to communicate with registries deployed with 
+      self-signed certificates. 
+      `custom_cas` consists of an array of items. Each item contains
+      a single field named `ca_content`. The value of this field must be a
+      PEM-formatted certificate authority. The certificate content must be
+      defined as a YAML block, preceded by the literal indicator (`|`) to 
+      preserve line breaks and ensure the certificates are interpreted correctly.
+
+      For example:
+      
+      ```yaml
+      custom_cas:
+      - ca_content: |
+          ----- BEGIN CERTIFICATE -----
+          first certificate content here...
+          ----- END CERTIFICATE -----
+      - ca_content: |
+          ----- BEGIN CERTIFICATE -----
+          second certificate content here...
+          ----- END CERTIFICATE -----
+      ```
+
+      >**Note:** This setting is allowed even if `custom_ca_secrets` was informed.
 
     - `deployment_namespace`:
       This setting controls the namespace to which this component is deployed.
@@ -117,22 +170,58 @@ To install Supply Chain Security Tools - Sign:
       resources. Select a namespace that is not used by any
       other components.
 
+    - `limits_cpu`:
+      This setting controls the maximum CPU resource allocated to the Image Policy
+      Webhook controller. The default value is "200m". See [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu) for more details.
+
+    - `limits_memory`:
+      This setting controls the maximum memory resource allocated to the Image Policy
+      Webhook controller. The default value is "256Mi". See [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory) for more details.
+
+    - `quota.pod_number`:
+      This setting controls the maximum number of pods that are allowed in the
+      deployment namespace with the `system-cluster-critical`
+      priority class. This priority class is added to the pods to prevent
+      preemption of this component's pods in case of node pressure.
+
+      The default value for this field is `5`. If your use case requires
+      more than 5 pods, change this value to allow the number of replicas you intend to deploy.
+
+    - `replicas`:
+      This setting controls the default amount of replicas to be deployed by this
+      component. The default value is `1`.
+
+      **For production environments**: VMware recommends you increase the number of replicas to
+        `3` to ensure availability of the component and better admission performance.
+
+    - `requests_cpu`:
+      This setting controls the minimum CPU resource allocated to the Image Policy
+      Webhook controller. During CPU contention, this value is used as a weighting
+      where higher values indicate more CPU time is allocated. The default value is "100m".
+      See [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu) for more details.
+
+    - `requests_memory`:
+      This setting controls the minimum memory resource allocated to the Image Policy
+      Webhook controller. The default value is "50Mi". See [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory) for more details.
+
 1. Install the package:
 
     ```
     tanzu package install image-policy-webhook \
       --package-name image-policy-webhook.signing.apps.tanzu.vmware.com \
-      --version 1.0.1 \
+      --version VERSION \
       --namespace tap-install \
       --values-file scst-sign-values.yaml
     ```
+    
+    Where `VERSION` is the version number you discovered earlier. For example, `1.1.0`.
 
     For example:
 
     ```
     $ tanzu package install image-policy-webhook \
         --package-name image-policy-webhook.signing.apps.tanzu.vmware.com \
-        --version 1.0.1 \
+        --version 1.1.0 \
         --namespace tap-install \
         --values-file scst-sign-values.yaml
 

@@ -1,4 +1,4 @@
-# Insight Package Vulnerabilities
+# Tanzu insight Package Vulnerabilities
 
 Get package vulnerabilities.
 
@@ -7,13 +7,13 @@ Get package vulnerabilities.
 Get package vulnerabilities.
 
 ```
-insight package vulnerabilities --name <package name> [flags]
+tanzu insight package vulnerabilities --name <package name> [flags]
 ```
 
 ## <a id='examples'></a>Examples
 
 ```
-insight package vulnerabilities --name client
+tanzu insight package vulnerabilities --name client
 ```
 
 ## <a id='options'></a>Options
@@ -26,4 +26,4 @@ insight package vulnerabilities --name client
 
 ## <a id='see-also'></a>See also
 
-* [insight package](insight_package.md)	 - Package commands
+* [Tanzu insight package](insight_package.md)	 - Package commands

@@ -35,8 +35,10 @@ To install Services Toolkit:
 1. Install Services Toolkit by running:
 
     ```
-    tanzu package install services-toolkit -n tap-install -p services-toolkit.tanzu.vmware.com -v 0.5.1
+    tanzu package install services-toolkit -n tap-install -p services-toolkit.tanzu.vmware.com -v VERSION-NUMBER
     ```
+
+    Where `VERSION-NUMBER` is the Services Toolkit version you want to install. For example, `0.5.1`.
 
 1. Verify that the package installed by running:
 
@@ -58,4 +60,3 @@ To install Services Toolkit:
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
     ```
-    

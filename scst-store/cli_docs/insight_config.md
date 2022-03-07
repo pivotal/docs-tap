@@ -1,4 +1,4 @@
-# Insight config
+# Tanzu insight config
 
 Config commands are as follows:
 
@@ -10,5 +10,5 @@ Config commands are as follows:
 
 ## <a id='see-also'></a>See also
 
-* [Insight](insight.md)	 - This CLI is used to post data and make queries to the metadata store.
-* [Insight config set-target](insight_config_set-target.md)	 - Set metadata store endpoint.
+* [Tanzu insight](insight.md)	 - This CLI is used to post data and make queries to the metadata store.
+* [Tanzu insight config set-target](insight_config_set-target.md)	 - Set metadata store endpoint.

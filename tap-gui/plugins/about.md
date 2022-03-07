@@ -11,3 +11,4 @@ Tanzu Application Platform includes the following GUI plug-ins:
 - [Runtime Resources Visibility](runtime-resource-visibility.md)
 - [Application Live View](app-live-view.md)
 - [Application Accelerator](application-accelerator.md)
+- [API Documentation](api-docs.md)

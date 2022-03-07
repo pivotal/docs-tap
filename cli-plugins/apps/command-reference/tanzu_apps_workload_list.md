@@ -16,7 +16,7 @@ tanzu apps workload list --all-namespaces
 ## <a id="options"></a>Options
 
 ```
-      --all-namespaces   use all kubernetes namespaces
+  -A, --all-namespaces   use all kubernetes namespaces
       --app name         application name the workload is a part of
   -h, --help             help for list
   -n, --namespace name   kubernetes namespace (defaulted from kube config)

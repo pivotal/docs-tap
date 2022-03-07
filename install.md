@@ -5,15 +5,15 @@ from the Tanzu Application Platform package repository.
 
 Before you install the packages, ensure that you have completed the prerequisites, configured
 and verified the cluster, accepted the EULA, and installed the Tanzu CLI with any required plug-ins.
-See [Accepting EULAs and installing the Tanzu CLI](install-general.md).
+See [Installing the Tanzu CLI](install-tanzu-cli.md).
 
 
 ## <a id='add-tap-package-repo'></a> Add the Tanzu Application Platform package repository
 
 To add the Tanzu Application Platform package repository:
 
-1. If you haven’t already completed the
-[Install Cluster Essentials for VMware Tanzu](install-general.md#tanzu-cluster-essentials)
+1. If you haven’t completed the
+[Install Cluster Essentials for VMware Tanzu for non-TKG clusters](install-tanzu-cli.md#tanzu-cluster-essentials)
 procedure, set up environment variables for use during the installation by running:
 
     ```
@@ -89,8 +89,9 @@ procedure, set up environment variables for use during the installation by runni
       NAME                                                 DISPLAY-NAME                                                              SHORT-DESCRIPTION
       accelerator.apps.tanzu.vmware.com                    Application Accelerator for VMware Tanzu                                  Used to create new projects and configurations.
       api-portal.tanzu.vmware.com                          API portal                                                                A unified user interface to enable search, discovery and try-out of API endpoints at ease.
-      run.appliveview.tanzu.vmware.com                     Application Live View for VMware Tanzu                                    App for monitoring and troubleshooting running apps
-      build.appliveview.tanzu.vmware.com                   Application Live View Conventions for VMware Tanzu                        Application Live View convention server
+      backend.appliveview.tanzu.vmware.com                 Application Live View for VMware Tanzu                                    App for monitoring and troubleshooting running apps
+      connector.appliveview.tanzu.vmware.com               Application Live View Connector for VMware Tanzu                          App for discovering and registering running apps
+      conventions.appliveview.tanzu.vmware.com             Application Live View Conventions for VMware Tanzu                        Application Live View convention server 
       buildservice.tanzu.vmware.com                        Tanzu Build Service                                                       Tanzu Build Service enables the building and automation of containerized software workflows securely and at scale.
       cartographer.tanzu.vmware.com                        Cartographer                                                              Kubernetes native Supply Chain Choreographer.
       cnrs.tanzu.vmware.com                                Cloud Native Runtimes                                                     Cloud Native Runtimes is a serverless runtime based on Knative
@@ -116,7 +117,22 @@ procedure, set up environment variables for use during the installation by runni
 
 ## <a id='install-profile'></a> Install your Tanzu Application Platform profile
 
-The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile settings. This is done by using the package manager you installed using Tanzu Cluster Essentials. For more information about profiles, see [Installation profiles in Tanzu Application Platform](overview.md#profiles-and-packages).
+The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile settings. This is done by using the package manager you installed using Tanzu Cluster Essentials. 
+
+For more information about profiles, see [Installation profiles in Tanzu Application Platform](overview.md#profiles-and-packages).
+
+The following profiles are available for Tanzu Application Platform:
+
+- **Full:** This profile contains all of the Tanzu Application Platform packages.
+
+- **Iterate:** This profile is intended for iterative application development.
+
+- **Build:** This profile is intended for the transformation of source revisions to workload revisions. Specifically, hosting Workloads and SupplyChains.
+
+- **Run:** This profile is intended for the transformation of workload revisions to running Pods. Specifically, hosting Deliverys and Deliverables.
+
+- **View:** This profile is intended for instances of applications related to centralized developer experiences. Specifically, the TAP GUI and Metadata Store.
+
 
 To prepare to install a profile:
 
@@ -127,7 +143,7 @@ To prepare to install a profile:
     ```
 
 1. Create a `tap-values.yml` file by using the
-[Full Profile sample](#full-profile) or [Light Profile sample](#light-profile) as a guide.
+[Full Profile sample](#full-profile) as a guide.
 These samples have the minimum configuration required to deploy Tanzu Application Platform.
 The sample values file contains the necessary defaults for both the meta-package
 (parent Tanzu Application Platform package) and subordinate packages
@@ -206,7 +222,6 @@ Where:
     * For Google Cloud Registry, use the contents of the service account JSON key.
 - `DESCRIPTOR-NAME` is the name of the descriptor to import automatically. Current available options at time of release:
     * `tap-1.0.0-full` contains all dependencies, and is for production use.
-    * `tap-1.0.0-lite` smaller footprint used for speeding up installs. Requires Internet access on the cluster.
 - `SERVER-NAME` is the hostname of the registry server. Examples:
     * Harbor has the form `server: "my-harbor.io"`
     * Dockerhub has the form `server: "index.docker.io"`
@@ -221,7 +236,7 @@ See [Identify the SSH secret key for your package](#ssh-secret-key) for more inf
 - `DOMAIN-NAME` has a value such as `learningcenter.example.com`.
 - `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
 service's External IP address.
-- `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog that you've already built and posted on the Git infrastructure you specified in the Integration section.
+- `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download either a blank or populated catalog file from the [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1043418/file_groups/6091). Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git infrastructure you specified in the Integration section.
 - `MY-DEV-NAMESPACE` is the namespace where you want the `ScanTemplates` to be deployed to.
 This is the namespace where the scanning feature is going to run.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
@@ -348,9 +363,9 @@ accelerator:
     service_type: "ClusterIP"
 ```
 
-### <a id="ssh-secret-key"></a>Identify the SSH secret key for your package
+### <a id="identify-values"></a>Identify the values for your package
 
-You can identify the SSH secret keys for your Tanzu package by running:
+You can identify the values for your Tanzu package by running:
 
 ```
 tanzu package available get PACKAGE-NAME.tanzu.vmware.com/VERSION --values-schema -n tap-install
@@ -367,6 +382,7 @@ your `tap-values.yml`, as summarized in the following table:
 |API portal|`api_portal`|
 |Application Accelerator|`accelerator`|
 |Application Live View|`appliveview`|
+|Application Live View Connector|`appliveview_connector`|
 |Application Live View Conventions|`appliveview-conventions`|
 |Cartographer|`cartographer`|
 |Cloud Native Runtimes|`cnrs`|
@@ -382,7 +398,7 @@ your `tap-values.yml`, as summarized in the following table:
 |Tanzu Application Platform GUI|`tap_gui`|
 |Learning Center|`learningcenter`|
 
-For information about package-specific configuration, see [Install components](install-components.md).
+For information about package-specific configuration, see [Installing individual packages](install-components.md).
 
 For example, to identify the SSH secret keys for Supply Chain Basic, you can run:
 

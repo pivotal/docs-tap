@@ -1,4 +1,4 @@
-# Accepting EULAs and installing the Tanzu CLI
+# Installing the Tanzu CLI
 
 ## <a id="accept-eulas"></a> Accept the End User License Agreements
 
@@ -21,18 +21,18 @@ To accept EULAs:
 This is an example of how to accept EULAs for Tanzu Application Platform:
 After signing in to Tanzu Network, select the "Click here to sign the EULA" link in the yellow warning box under the release drop down as seen in the following screen shot. (If this warning is not there then the EULA has already been  accepted).
 
-![EULA Warning](images/install-general-eulas1.png)
+![EULA Warning](images/install-tanzu-cli-eulas1.png)
 
 Select "Agree" in the bottom right of the dialog box that comes up as seen in the following screen shot.
 
-![EULA Dialog Box](images/install-general-eulas2.png)
+![EULA Dialog Box](images/install-tanzu-cli-eulas2.png)
 
 This example shows that you have now accepted the EULAs for Tanzu Application Platform. In addition, you must accept the EULAs for Cluster Essentials for VMware Tanzu and for Tanzu Build Services and its associated components as stated above.
 
 ## <a id='install-tanzu-cli'></a> Installing the Tanzu CLI
 
 This document describes how to [Set Kubernetes cluster context](#cluster-context),
-[Install Cluster Essentials for VMware Tanzu](#tanzu-cluster-essentials),
+[Install Cluster Essentials for VMware Tanzu for non-TKG clusters](#tanzu-cluster-essentials),
 and [Install or Update the Tanzu CLI and plug-ins](#cli-and-plugin) for Tanzu Application Platform:
 
 ## <a id='cluster-context'></a> Set Kubernetes cluster context
@@ -69,11 +69,12 @@ To set the Kubernetes cluster context:
     Switched to context "aks-tap-cluster".
     ```
 
-## <a id='tanzu-cluster-essentials'></a> Install Cluster Essentials for VMware Tanzu
+## <a id='tanzu-cluster-essentials'></a> Install Cluster Essentials for VMware Tanzu for non-TKG clusters
 
->**Note:** If you use Tanzu Kubernetes Grid multi-cloud, skip this section.
+> **Note:** If you use Tanzu Kubernetes Grid (TKG) multi-cloud v1.5.1 or later, skip this section.
+> Clusters on TKG v1.5.1 or later do not require Cluster Essentials for VMware Tanzu.
 
-The Tanzu Cluster Essentials package is intended to simplify the process of installing the open-source [Carvel](https://carvel.dev) tools on your cluster.
+The Cluster Essentials for VMware Tanzu package simplifies the process of installing the open-source [Carvel](https://carvel.dev) tools on your cluster.
 It includes a script that uses the Carvel CLI tools to download and install the server-side components `kapp-controller` and `secretgen-crontroller` on the targeted cluster.
 Currently, only MacOS and Linux are supported for Cluster Essentials for VMware Tanzu.
 
@@ -329,6 +330,8 @@ To perform a clean installation of the Tanzu CLI plug-ins:
     ```
     cd $HOME/tanzu
     tanzu plugin install --local cli all
+    
+    tanzu plugin install --local cli/standalone all
     ```
 
 3. Check the plug-in installation status by running:
@@ -339,18 +342,19 @@ To perform a clean installation of the Tanzu CLI plug-ins:
 
     Expect to see the following:
 
-    ```
+   ```
     tanzu plugin list
-    NAME                DESCRIPTION                                                        SCOPE       DISCOVERY  VERSION  STATUS
-    login               Login to the platform                                              Standalone  default    v0.11.1  not installed
-    management-cluster  Kubernetes management-cluster operations                           Standalone  default    v0.11.1  not installed
-    package             Tanzu package management                                           Standalone  default    v0.11.1  installed
-    pinniped-auth       Pinniped authentication operations (usually not directly invoked)  Standalone  default    v0.11.1  not installed
-    secret              Tanzu secret management                                            Standalone  default    v0.11.1  installed
-    accelerator         Manage accelerators in a Kubernetes cluster                        Standalone             v1.0.1   installed
-    apps                Applications on Kubernetes                                         Standalone             v0.4.1   installed
-    services            Discover Service Types and manage Service Instances (ALPHA)        Standalone             v0.1.1   installed
-    ```
+    NAME                DESCRIPTION                                                                   SCOPE       DISCOVERY             VERSION      STATUS
+    login               Login to the platform                                                         Standalone  default               v0.11.1      not installed
+    management-cluster  Kubernetes management-cluster operations                                      Standalone  default               v0.11.1      not installed
+    package             Tanzu package management                                                      Standalone  default               v0.11.1      installed
+    pinniped-auth       Pinniped authentication operations (usually not directly invoked)             Standalone  default               v0.11.1      not installed
+    secret              Tanzu secret management                                                       Standalone  default               v0.11.1      installed
+    services            Discover Service Types, Service Instances and manage Resource Claims (ALPHA)  Standalone                        v0.2.0-rc.1  installed
+    accelerator         Manage accelerators in a Kubernetes cluster                                   Standalone                        v1.1.0       installed
+    apps                Applications on Kubernetes                                                    Standalone                        v0.5.0       installed
+    insight             post & query image, package, source, and vulnerability data                   Standalone                        v1.1.0       installed 
+   ```
 
     Ensure that you have the `accelerator`, `apps`, `package`, `secret`, and `services` plug-ins.
     You need these plug-ins to install and interact with the Tanzu Application Platform.
@@ -434,6 +438,8 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
 
     ```
     tanzu plugin install --local cli all
+    
+    tanzu plugin install --local cli/standalone all
     ```
 
 13. Check installation status for plug-ins by running:
@@ -446,15 +452,16 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
 
     ```
     tanzu plugin list
-    NAME                DESCRIPTION                                                        SCOPE       DISCOVERY  VERSION  STATUS
-    login               Login to the platform                                              Standalone  default    v0.11.1  not installed
-    management-cluster  Kubernetes management-cluster operations                           Standalone  default    v0.11.1  not installed
-    package             Tanzu package management                                           Standalone  default    v0.11.1  installed
-    pinniped-auth       Pinniped authentication operations (usually not directly invoked)  Standalone  default    v0.11.1  not installed
-    secret              Tanzu secret management                                            Standalone  default    v0.11.1  installed
-    accelerator         Manage accelerators in a Kubernetes cluster                        Standalone             v1.0.1   installed
-    apps                Applications on Kubernetes                                         Standalone             v0.4.1   installed
-    services            Discover Service Types and manage Service Instances (ALPHA)        Standalone             v0.1.1   installed
+    NAME                DESCRIPTION                                                                   SCOPE       DISCOVERY             VERSION      STATUS
+    login               Login to the platform                                                         Standalone  default               v0.11.1      not installed
+    management-cluster  Kubernetes management-cluster operations                                      Standalone  default               v0.11.1      not installed
+    package             Tanzu package management                                                      Standalone  default               v0.11.1      installed
+    pinniped-auth       Pinniped authentication operations (usually not directly invoked)             Standalone  default               v0.11.1      not installed
+    secret              Tanzu secret management                                                       Standalone  default               v0.11.1      installed
+    services            Discover Service Types, Service Instances and manage Resource Claims (ALPHA)  Standalone                        v0.2.0-rc.1  installed
+    accelerator         Manage accelerators in a Kubernetes cluster                                   Standalone                        v1.1.0       installed
+    apps                Applications on Kubernetes                                                    Standalone                        v0.5.0       installed
+    insight             post & query image, package, source, and vulnerability data                   Standalone                        v1.1.0       installed 
     ```
 
 You can now install Tanzu Application Platform.

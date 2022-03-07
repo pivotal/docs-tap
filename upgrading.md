@@ -9,7 +9,7 @@ You can perform fresh install of Tanzu Application Platform 1.0.1 by following t
 Before you upgrade Tanzu Application Platform:
 
 - For information about installing your Tanzu Application Platform, see [Install your Tanzu Application Platform profile](install.md#install-profile)
-- For information about installing or updating the Tanzu CLI and plug-ins, see [Install or update the Tanzu CLI and plug-ins](install-general.md#cli-and-plugin)
+- For information about installing or updating the Tanzu CLI and plug-ins, see [Install or update the Tanzu CLI and plug-ins](install-tanzu-cli.md#cli-and-plugin)
 - For information on Tanzu Application Platform GUI considerations, see [Tanzu Application Platform GUI Considerations](tap-gui/upgrades.md#considerations)
 - Verify all packages are reconciled by running `tanzu package installed list -A`
 
