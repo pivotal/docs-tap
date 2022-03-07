@@ -38,12 +38,12 @@ To install Application Live View:
     $ tanzu package available list run.appliveview.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for run.appliveview.tanzu.vmware.com...
       NAME                              VERSION        RELEASED-AT
-      run.appliveview.tanzu.vmware.com  1.0.2-build.2  2022-01-24T00:00:00Z
+      run.appliveview.tanzu.vmware.com  1.0.2          2022-02-07T00:00:00Z
 
     $ tanzu package available list build.appliveview.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for build.appliveview.tanzu.vmware.com...
       NAME                                VERSION        RELEASED-AT
-      build.appliveview.tanzu.vmware.com  1.0.2-build.2  2022-01-24T00:00:00Z
+      build.appliveview.tanzu.vmware.com  1.0.2          2022-02-07T00:00:00Z
     ```
 
 1. Create `app-live-view-values.yaml` with the following details:
@@ -60,13 +60,13 @@ To install Application Live View:
 1. Install the Application Live View package by running:
 
     ```
-    tanzu package install appliveview -p run.appliveview.tanzu.vmware.com -v 1.0.2-build.2 -n tap-install -f app-live-view-values.yaml
+    tanzu package install appliveview -p run.appliveview.tanzu.vmware.com -v 1.0.2 -n tap-install -f app-live-view-values.yaml
     ```
 
     For example:
 
     ```
-    $ tanzu package install appliveview -p run.appliveview.tanzu.vmware.com -v 1.0.2-build.2 -n tap-install -f app-live-view-values.yaml
+    $ tanzu package install appliveview -p run.appliveview.tanzu.vmware.com -v 1.0.2 -n tap-install -f app-live-view-values.yaml
     - Installing package 'run.appliveview.tanzu.vmware.com'
     | Getting package metadata for 'run.appliveview.tanzu.vmware.com'
     | Creating service account 'app-live-view-tap-install-sa'
@@ -82,13 +82,13 @@ To install Application Live View:
 1. Install the Application Live View conventions package by running:
 
     ```
-    tanzu package install appliveview-conventions -p build.appliveview.tanzu.vmware.com -v 1.0.2-build.2 -n tap-install -f app-live-view-values.yaml
+    tanzu package install appliveview-conventions -p build.appliveview.tanzu.vmware.com -v 1.0.2 -n tap-install -f app-live-view-values.yaml
     ```
 
     For example:
 
     ```
-    $ tanzu package install appliveview-conventions -p build.appliveview.tanzu.vmware.com -v 1.0.2-build.2 -n tap-install -f app-live-view-values.yaml
+    $ tanzu package install appliveview-conventions -p build.appliveview.tanzu.vmware.com -v 1.0.2 -n tap-install -f app-live-view-values.yaml
     - Installing package 'build.appliveview.tanzu.vmware.com'
     | Getting package metadata for 'build.appliveview.tanzu.vmware.com'
     | Creating service account 'app-live-view-tap-install-sa'
@@ -117,7 +117,7 @@ To install Application Live View:
     | Retrieving installation details for cc...
     NAME:                    appliveview
     PACKAGE-NAME:            run.appliveview.tanzu.vmware.com
-    PACKAGE-VERSION:         1.0.2-build.2
+    PACKAGE-VERSION:         1.0.2
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
@@ -138,7 +138,7 @@ To install Application Live View:
     | Retrieving installation details for cc...
     NAME:                    appliveview-conventions
     PACKAGE-NAME:            build.appliveview.tanzu.vmware.com
-    PACKAGE-VERSION:         1.0.2-build.2
+    PACKAGE-VERSION:         1.0.2
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
