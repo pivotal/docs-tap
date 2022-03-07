@@ -16,6 +16,7 @@ VMware recommends that you use the Beta TAP Auth CLI, available for download fro
 
 
 ## <a id="install"></a>Install the auth plugin
+
 1. Untar the tar.gz
 1. Install the auth plugin locally:
 	For macOS:
@@ -28,6 +29,7 @@ VMware recommends that you use the Beta TAP Auth CLI, available for download fro
 	`tanzu plugin install auth --local published/windows-amd64`
 
 ### <a id="use-kubeconfig"></a>Use a different kubeconfig location
+
 Use the `--kubeconfig` flag before the subcommand
 
 ```
