@@ -72,7 +72,7 @@ procedure, set up environment variables for use during the installation by runni
     REASON:
     ```
 
-    >**Note:** the `VERSION` and `TAG` numbers differ from the example above if you are on
+    >**Note:** the `VERSION` and `TAG` numbers differ from the earlier example if you are on
     >Tanzu Application Platform v1.0.2 or earlier.
 
 1. List the available packages by running:
