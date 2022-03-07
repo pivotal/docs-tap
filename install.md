@@ -23,7 +23,7 @@ procedure, set up environment variables for use during the installation by runni
     export TAP_VERSION=VERSION-NUMBER
     ```
 
-    Where `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `1.0.1`.
+    Where `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `1.0.2`.
 
 1. Create a namespace called `tap-install` for deploying any component packages by running:
 
@@ -67,13 +67,13 @@ procedure, set up environment variables for use during the installation by runni
     NAME:          tanzu-tap-repository
     VERSION:       121657971
     REPOSITORY:    registry.tanzu.vmware.com/tanzu-application-platform/tap-packages
-    TAG:           1.0.1
+    TAG:           1.0.2
     STATUS:        Reconcile succeeded
     REASON:
     ```
 
     >**Note:** the `VERSION` and `TAG` numbers differ from the example above if you are on
-    >Tanzu Application Platform v1.0.1 or later.
+    >Tanzu Application Platform v1.0.2 or earlier.
 
 1. List the available packages by running:
 
