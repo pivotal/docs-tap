@@ -18,6 +18,7 @@ VMware recommends that you use the Beta TAP Auth CLI, available for download fro
 ## <a id="install"></a>Install the auth plugin
 
 1. Untar the tar.gz
+	`tar zxvf <NAME OF THE TAR>`
 1. Install the auth plugin locally:
 	For macOS:
 	`tanzu plugin install auth --local published/darwin-amd64`
