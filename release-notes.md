@@ -6,22 +6,22 @@ This topic contains release notes for Tanzu Application Platform v1.
 
 **Release Date**: MMMM DD, 2022
 
-### <a id='1-1-new-features'></a> New Features
+### <a id='1-1-new-features'></a> New features
 
-#### Tanzu Application Platform Profile - Iterate
+#### Tanzu Application Platform profile - iterate
 This new profile is intended for iterative development versus the path to production.
 
-#### Tanzu Application Platform Profile - Build
+#### Tanzu Application Platform profile - build
 
-#### Tanzu Application Platform Profile - Run
+#### Tanzu Application Platform profile - run
 
-#### Tanzu Application Platform Profile - Full
+#### Tanzu Application Platform profile - full
 
 * New packages added....
 
-#### Default Roles for Tanzu Application Platform
+#### Default roles for Tanzu Application Platform
 
-* Introduction of five new default roles and related permissions that apply to **k8s resources**. These roles are to help operators set up common sets of permissions for users and service accounts accessing a cluster running Tanzu Application Platform.
+* Introduction of five new default roles and related permissions that apply to **k8s resources**. These roles help operators set up common sets of permissions for users and service accounts accessing a cluster running Tanzu Application Platform.
   * Three roles are for users: app-editor, app-viewer and app-operator. 
   * Two roles are for “robot” or system permissions: workload and deliverable. 
 
@@ -54,9 +54,9 @@ This release has the following security issues:
 
 ### <a id='1-1-known-issues'></a> Known issues
 
-### <a id='1-1-known-issues'></a> Feature Deprecation 
+### <a id='1-1-known-issues'></a> Feature deprecation
 
-* Tanzu Application Platform Profile - Light
+* Tanzu Application Platform profile - light
 
 
 ## <a id='1-0'></a> v1.0
