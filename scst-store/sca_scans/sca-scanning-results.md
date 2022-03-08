@@ -42,6 +42,12 @@ Version: 0.33.1
 * Date: March 7, 2022
 * Results: 1 high vulnerability in 3 different packages: [CVE-2022-24407](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-24407), and multiple medium and low vulnerabilities. For more information see the [Postgres Database Container Image v1.1.0 CycloneDX file content](postgres-database-image-v1.1.0-grype-result.md)
 
+#### <a id='init-ci'></a>Init Container Image
+
+* Date: March 7, 2022
+* Results: no known vulnerabilities
+
+
 ## <a id='102'></a>1.0.2
 
 ### <a id='black-duck-ba'></a>Black Duck Binary Analysis (BDBA)
