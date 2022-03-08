@@ -263,9 +263,7 @@ Follow the following steps to diagnose Spring Boot-based applications using Appl
 
 ## <a id='create-app-acc'></a>Section 2: Create your application accelerator
 
-In this section, you are going to:
-
-  - Create an application accelerator by using Tanzu Application Platform GUI and CLI.
+In this section, you are going to create an application accelerator by using Tanzu Application Platform GUI and CLI.
 
 ### <a id="create-an-app-acc"></a>Create an application accelerator
 
@@ -299,7 +297,7 @@ To create a new application accelerator by using your Git repository, follow the
 
 To publish the new application accelerator that is created in your Git repository, follow these steps:
 
-1. Run the following command in your terminal:
+1. Run the following command to publish the new application accelerator:
 
     ```sh
     tanzu accelerator create simple --git-repository YOUR-GIT-REPOSITORY-URL --git-branch YOUR-GIT-BRANCH
@@ -338,7 +336,7 @@ tanzu accelerator delete ACCELERATOR-NAME
 
 You can also create a separate manifest file and apply it to the cluster by using the Tanzu CLI:
 
-    1. Create a `simple-manifest.yaml` file and add the following content:
+1. Create a `simple-manifest.yaml` file and add the following content:
 
     ```yaml
     apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
