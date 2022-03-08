@@ -4,19 +4,19 @@ Minikube enables local deployment of Kubernetes for developing workshop content 
 
 Because you are deploying to a local machine, you are unlikely to have access to your own custom domain name and certificate you can use with the cluster. You must take extra steps over a standard install of Minikube to ensure you can run certain types of workshops.
 
-Also keep in mind that since Minikube generally has limited memory resources available and is only a single-node cluster, you might be restricted from running workshops that have large memory requirements or that demonstrate the use of third-party applications requiring a multi-node cluster.
+Also, because Minikube generally has limited memory resources available and is only a single-node cluster, you might be restricted from running workshops that have large memory requirements or that demonstrate the use of third-party applications requiring a multi-node cluster.
 
 Requirements and setup instructions specific to Minikube are detailed in this document. Otherwise, you can follow normal installation instructions for the Learning Center operator.
 
 ## <a id="trust-insecure-registries"></a> Trusting insecure registries
 
-Workshops can optionally deploy an image registry for a workshop session. This image registry is secured with a password specific to the workshop session and is exposed through a Kubernetes ingress, so it can be accessed from the workshop session.
+Workshops can optionally deploy a container image registry for a workshop session. This image registry is secured with a password specific to the workshop session and is exposed through a Kubernetes ingress, so it can be accessed from the workshop session.
 
 In a typical scenario, Minikube uses insecure ingress routes. Even were you to generate a self-signed certificate to use for ingress, it is not trusted by the `dockerd` that runs within Minikube. You must tell Minikube to trust any insecure registry running inside of Minikube.
 
 Configuring Minikube to trust insecure registries must be done the first time you start a new cluster with it. That is, you must supply the details to `minikube start`. To do this, you must know the IP subnet Minikube uses.
 
-If you already have a cluster running using Minikube, you can run `minikube ip` to determine the IP address it uses. From that you can determine the trusted subnet. For example, if `minikube ip` returned `192.168.64.1`, the trusted subnet is `192.168.64.0/24`.
+If you already have a cluster running using Minikube, run `minikube ip` to discover the IP address it uses. From that you can discover the trusted subnet. For example, if `minikube ip` returned `192.168.64.1`, the trusted subnet is `192.168.64.0/24`.
 
 With this information, when you start a new cluster with Minikube, run:
 
@@ -39,7 +39,7 @@ You must complete the following installation prerequisites as a user prior to in
 
 ## <a id="ingress-ctrl-with-dns"></a> Ingress controller with DNS
 
-Once the Minikube cluster is running, you must enable the `ingress` and `ingress-dns` add-ons for Minikube. These deploy the nginx ingress controller along with support for integrating into DNS.
+After the Minikube cluster is running, you must enable the `ingress` and `ingress-dns` add-ons for Minikube. These deploy the nginx ingress controller along with support for integrating into DNS.
 
 To enable these after the cluster has been created, run:
 
@@ -74,7 +74,7 @@ kapp deploy -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller
 
 Follow these steps to install the Tanzu package repository:
 
-1. Create a namespace by running:
+1. To create a namespace, run:
 
     ```
     kubectl create ns tap-install
@@ -102,7 +102,7 @@ Follow these steps to install the Tanzu package repository:
 
     >**Note:** We are currently on build 7; if this changes, we need to update the command with the correct build version after the --url flag.
 
-1. Check the package repository install status by running:
+1. To check the package repository install status, run:
 
     ```
     tanzu package repository get tanzu-tap-repository --namespace tap-install
@@ -179,7 +179,7 @@ operatorImage: null
 
 Where:
 
-- `ingressDomain` is `<your-local-ip>.nip.io` if you are using a `nip.io` DNS address. Details on this is provided in the following section.
+- `ingressDomain` is `<your-local-ip>.nip.io` if you are using a `nip.io` DNS address. Details about this are provided in the following section.
 - `workshops.example.com` is `<your-local-ip>.nip.io`
 
 ## <a id="use-nip-io-dns-address"></a> Using a `nip.io` DNS address
@@ -265,16 +265,16 @@ To view how much memory is available when a custom amount has been set as a defa
 minikube config get memory
 ```
 
-VMware strongly recommends you configure Minikube to use 4Gi or more. This must be specified when the cluster is first created. Do this by using the `--memory` option to `minikube start` or by specifying a default memory value beforehand by using `minikube config set memory`.
+VMware recommends you configure Minikube to use 4Gi or more. This must be specified when the cluster is first created. Do this by using the `--memory` option to `minikube start` or by specifying a default memory value beforehand by using `minikube config set memory`.
 
 In addition to increasing the memory available, you can increase the disk size, because fat container images can quickly use disk space within the cluster.
 
 ## <a id="storage-provisioner-issue"></a> Storage provisioner issue
 
-Version 1.12.3 of Minikube introduced a [bug](https://github.com/kubernetes/minikube/issues/8987) in the storage provisioner that causes potential corruption of data in persistent volumes where the same persistent volume claim name is used in two different namespaces. This affects Learning Center when:
+v1.12.3 of Minikube introduced a [bug](https://github.com/kubernetes/minikube/issues/8987) in the storage provisioner that causes potential corruption of data in persistent volumes where the same persistent volume claim name is used in two different namespaces. This affects Learning Center when:
 
 - You deploy multiple training portals at the same time.
 - You run multiple workshops at the same time that have docker or image registry support enabled.
 - The workshop session itself is backed by persistent storage and multiple sessions run at the same time.
 
-This issue is supposed to be fixed in Minikube version 1.13.0; however, you can still encounter issues when deleting a training portal instance and recreating it immediately with the same name. This occurs because reclaiming of the persistent volume by the Minikube storage provisioner can be slow, and the new instance can grab the same original directory on disk with old data in it. Always ensure you leave some time between deleting a training portal instance and recreating one with the same name to allow the storage provisioner to delete the old persistent volume.
+This issue is supposed to be fixed in Minikube v1.13.0; however, you can still encounter issues when deleting a training portal instance and recreating it immediately with the same name. This occurs because reclaiming of the persistent volume by the Minikube storage provisioner can be slow, and the new instance can grab the same original directory on disk with old data in it. After deleting a training portal instance, wait before recreating one with the same name to allow the storage provisioner to delete the old persistent volume.
