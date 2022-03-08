@@ -1,6 +1,18 @@
 # SCA scanning results
 ## <a id='110'></a>1.1.0
 
+### <a id='black-duck-ba'></a>Black Duck Binary Analysis (BDBA)
+
+#### <a id='api-backend'></a>API backend
+
+* Date: March 4, 2022
+* Results: no known vulnerabilities
+
+#### <a id='cli-sr'></a>CLI
+
+* Date: March 8, 2022
+* Results: no known vulnerabilities
+
 ### <a id='grype-sr'></a>Grype
 
 Version: 0.33.1
