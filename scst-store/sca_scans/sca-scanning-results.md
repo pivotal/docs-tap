@@ -6,12 +6,12 @@
 #### <a id='api-backend'></a>API backend
 
 * Date: March 4, 2022
-* Results: no known vulnerabilities
+* Results: No known vulnerabilities
 
 #### <a id='cli-sr'></a>CLI
 
 * Date: March 8, 2022
-* Results: no known vulnerabilities
+* Results: No known vulnerabilities
 
 ### <a id='grype-sr'></a>Grype
 
@@ -20,32 +20,32 @@ Version: 0.33.1
 #### <a id='api-backend-ci'></a>API Backend Container Image
 
 * Date: March 7, 2022
-* Results: No high or critical vulnerabilities. Multiple medium and low vulnerabilities. For more information, see the [API Backend Container Image v1.1.0 CycloneDX file content](api-backend-container-image-v1.1.0-grype-result.md).
+* Results: No critical or high vulnerabilities. Multiple medium and low vulnerabilities. For more information, see the [API Backend Container Image v1.1.0 CycloneDX file content](api-backend-container-image-v1.1.0-grype-result.md).
 
 #### <a id='api-backend-cr'></a>API Backend Code Repository
 
 * Date: March 7, 2022
-* Results: no known vulnerabilities
+* Results: No known vulnerabilities
 
 #### <a id='cli-cr'></a>CLI Repository
 
 * Date: March 7, 2022
-* Results: 2 high vulnerabilities: [CVE-2015-5237](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-5237), [CVE-2021-22570](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-22570)
+* Results: No critical, and 2 high vulnerabilities: [CVE-2015-5237](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-5237), [CVE-2021-22570](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-22570). No medium or low vulnerabilities.
 
 #### <a id='kube-rbac-proxy-ci'></a>Kube RBAC Proxy Container Image
 
 * Date: March 7, 2022
-* Results: 3 high vulnerabilities: [CVE-2022-21698](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-21698), [CVE-2015-5237](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-5237), [CVE-2021-22570](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-22570)
+* Results: No critical, and 3 high vulnerabilities: [CVE-2022-21698](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-21698), [CVE-2015-5237](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-5237), [CVE-2021-22570](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-22570). No medium or low vulnerabilities.
 
 #### <a id='postgres-database-ci'></a>Postgres Database Container Image
 
 * Date: March 7, 2022
-* Results: 1 high vulnerability in 3 different packages: [CVE-2022-24407](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-24407), and multiple medium and low vulnerabilities. For more information see the [Postgres Database Container Image v1.1.0 CycloneDX file content](postgres-database-image-v1.1.0-grype-result.md)
+* Results: No critical, and 1 high vulnerability in 3 different packages: [CVE-2022-24407](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-24407). Multiple medium and low vulnerabilities. For more information see the [Postgres Database Container Image v1.1.0 CycloneDX file content](postgres-database-image-v1.1.0-grype-result.md)
 
 #### <a id='init-ci'></a>Init Container Image
 
 * Date: March 7, 2022
-* Results: no known vulnerabilities
+* Results: No known vulnerabilities
 
 
 ## <a id='102'></a>1.0.2
