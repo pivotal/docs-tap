@@ -265,15 +265,15 @@ Follow the following steps to diagnose Spring Boot-based applications using Appl
 
 In this section, you are going to:
 
-  - Create an application accelerator using Tanzu Application Platform GUI and CLI.
+  - Create an application accelerator by using Tanzu Application Platform GUI and CLI.
 
-### <a id="create-an-app-acc"></a>Create an application accelerator ###
+### <a id="create-an-app-acc"></a>Create an application accelerator
 
-You can use any Git repository to create an accelerator. You need the URL for the repository to create an accelerator.
+You can use any Git repository to create an accelerator. You need the repository URL to create an accelerator.
 
-For this example the Git repository should be `public` and contain a `README.md` file. These are all options that are available  when you create repositories on GitHub.
+The Git repository must be `public` and contain a `README.md` file. These options are available to configure when you create repositories on GitHub.
 
-To create a new application accelerator using your Git repository, follow these steps:
+To create a new application accelerator by using your Git repository, follow these steps:
 
 1. Clone your Git repository.
 
@@ -291,21 +291,24 @@ To create a new application accelerator using your Git repository, follow these 
       - getting-started
     ```
 
-    > Feel free to use a different icon, as long as it is using a reachable URL.
+    >**Note:** You can use any icon with a reachable URL.
 
 4. Add the new `accelerator.yaml` file, commit this change and push to your Git repository.
 
-## <a id="publishing-the-new-accelerator"></a>Publish the new accelerator
+## <a id="publish-accelerator"></a>Publish the new accelerator
 
-To publish the new application accelerator created in your Git repository, follow these steps:
+To publish the new application accelerator that is created in your Git repository, follow these steps:
 
 1. Run the following command in your terminal:
 
-    > You need the URL for you Git repository plus the name of the branch where you pushed the new `accelerator.yaml` file.
-
     ```sh
-    tanzu accelerator create simple --git-repository <YOUR-GIT-REPOSITORY-URL> --git-branch <YOUR-GIT-BRANCH>
+    tanzu accelerator create simple --git-repository YOUR-GIT-REPOSITORY-URL --git-branch YOUR-GIT-BRANCH
     ```
+
+    Where:
+    
+    - `YOUR-GIT-REPOSITORY-URL` is the URL of your Git repository.
+    - `YOUR-GIT-BRANCH` is the name of the branch where you pushed the new `accelerator.yaml` file.
 
 2. Refresh Tanzu Application Platform GUI to reveal the newly published accelerator.
 
@@ -313,46 +316,53 @@ To publish the new application accelerator created in your Git repository, follo
 
     >**Note:** It might take a few seconds for Tanzu Application Platform GUI to refresh the catalog and add an entry for new accelerator.
 
-## <a id="working-with-accelerators"></a>Working with accelerators
+## <a id="work-with-accelerators"></a>Working with accelerators
 
 ### <a id="accelerator-updates"></a>Updating an accelerator
 
-After you push any changes to your Git repository, the Accelerator is refreshed based on the `git.interval` setting for the Accelerator resource. The default is 10 minutes. You can run the following command to force an immediate reconciliation:
+After you push any changes to your Git repository, the Accelerator is refreshed based on the `git.interval` setting for the Accelerator resource. The default value is 10 minutes. You can run the following command to force an immediate reconciliation:
 
 ```
-tanzu accelerator update <ACCELERATOR-NAME> --reconcile
+tanzu accelerator update ACCELERATOR-NAME --reconcile
 ```
 
 ### <a id="accelerator-deletes"></a>Deleting an accelerator
 
-When you no longer need your accelerator, you can simply delete it using the Tanzu CLI:
+When you no longer need your accelerator, you can delete it by using the Tanzu CLI:
 
 ```
-tanzu accelerator delete <ACCELERATOR-NAME>
+tanzu accelerator delete ACCELERATOR-NAME
 ```
 
 ### <a id="accelerator-manifest"></a>Using an accelerator manifest
 
-An alternative to using the Tanzu CLI is to create seperate manifest file and apply it to the cluster. Create a `simple-manifest.yaml` file and add the following content, filling in with your Git repository and branch values.
+You can also create a separate manifest file and apply it to the cluster by using the Tanzu CLI:
 
-```yaml
-apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
-kind: Accelerator
-metadata:
-  name: simple
-  namespace: accelerator-system
-spec:
-  git:
-    url: <YOUR-GIT-REPOSITORY-URL>
-    ref:
-      branch: <YOUR-GIT-BRANCH>
-```
+    1. Create a `simple-manifest.yaml` file and add the following content:
 
-To apply the `simple-manifest.yaml`, run the following command in your terminal in the directory where you created this file:
+    ```yaml
+    apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
+    kind: Accelerator
+    metadata:
+      name: simple
+      namespace: accelerator-system
+    spec:
+      git:
+        url: YOUR-GIT-REPOSITORY-URL
+        ref:
+          branch: YOUR-GIT-BRANCH
+    ```
 
-```sh
-kubectl apply -f simple-manifest.yaml
-```
+    Where:
+
+    - `YOUR-GIT-REPOSITORY-URL` is the URL of your Git repository.
+    - `YOUR-GIT-BRANCH` is the name of the branch.
+
+1. Apply the `simple-manifest.yaml` by running the following command in the directory where you created this file:
+
+    ```sh
+    kubectl apply -f simple-manifest.yaml
+    ```
 
 ---
 
