@@ -9,29 +9,43 @@ VMware recommends that you use the Beta TAP Auth CLI, available for download fro
 
 ## <a id="prereqs"></a>Prerequisites
 
-1. Download the latest Tanzu CLI
-1. Download the Beta TAP Auth CLI tar.gz from [Tanzu Network](https://network.tanzu.vmware.com/products/tap-auth).
-1. Ensure you have admin access to the cluster
-1. Ensure you have an authentication solution configured for the cluster. You can use Pinniped or the authentication service native to your Kubernetes distribution.
+1. Download the latest Tanzu CLI.
+1. Download the beta Tanzu Application Platform Auth CLI tar.gz from [Tanzu Network](https://network.tanzu.vmware.com/products/tap-auth).
+1. Ensure you have admin access to the cluster.
+1. Ensure you have configured an authentication solution for the cluster. You can use Pinniped or the authentication service native to your Kubernetes distribution.
 
 
 ## <a id="install"></a>Install the auth plugin
 
-1. Untar the tar.gz
-	`tar zxvf <NAME OF THE TAR>`
+1. Untar the tar.gz:
+
+		```
+		tar zxvf <NAME OF THE TAR>
+		```
+	
 1. Install the auth plugin locally:
-	For macOS:
-	`tanzu plugin install auth --local published/darwin-amd64`
 
-	For Linux:
-	`tanzu plugin install auth --local published/linux-amd64`
+		- For macOS:
+		
+		```
+		tanzu plugin install auth --local published/darwin-amd64
+		```
 
-	For Windows:
-	`tanzu plugin install auth --local published/windows-amd64`
+		- For Linux:
+		
+		```
+		tanzu plugin install auth --local published/linux-amd64
+		```
+
+		- For Windows:
+		
+		```
+		tanzu plugin install auth --local published/windows-amd64
+		```
 
 ### <a id="use-kubeconfig"></a>Use a different kubeconfig location
 
-Use the `--kubeconfig` flag before the subcommand
+Use the `--kubeconfig` flag before the subcommand:
 
 ```
 tanzu auth --kubeconfig <PATH_OF_KUBECONFIG> add-binding ...
@@ -43,7 +57,7 @@ For example:
 $ tanzu auth --kubeconfig /tmp/pinniped_kubeconfig.yaml add-binding --user username@vmware.com --role app-editor --namespace user-ns
 ```
 
-Note: The environment variable `KUBECONFIG` has not been implemented, you must use the `--kubeconfig` flag to use a different location.
+>**Note:** The environment variable `KUBECONFIG` is not implemented, you must use the `--kubeconfig` flag to enter a different location.
 
 ### <a id="add-user-group-to-role"></a>Add the specified user or group to a role
 
