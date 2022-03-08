@@ -1,6 +1,6 @@
 # Tanzu apps workload
 
-This topic will help you with workload lifecycle management.
+This topic helps you with workload life cycle management.
 
 A workload may run as a Knative service, Kubernetes deployment, or other runtime. Workloads can be grouped together with other related resources, such as storage or credential objects as a logical application for easier management.
 
@@ -11,13 +11,13 @@ Workload configuration includes:
 - Environment variables
 - Services to bind
 
-## Options
+## <a id="options"></a>Options
 
 ```
   -h, --help   help for workload
 ```
 
-## Options inherited from parent commands
+## <a id="parent-commands-options"></a>Options inherited from parent commands
 
 ```
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
@@ -26,14 +26,14 @@ Workload configuration includes:
   -v, --verbose int32     number for the log level verbosity (default 1)
 ```
 
-## See also
+## <a id="see-also"></a> See also
 
-- [Tanzu Applications](tanzu_apps.md)	- Applications on Kubernetes
-- [Tanzu Apps Workload Apply](tanzu_apps_workload_apply.md)	- Apply configuration to a new or existing workload
-- [Tanzu Apps Workload Create](tanzu_apps_workload_create.md)	- Create a workload with specified configuration
-- [Tanzu Apps Workload Delete](tanzu_apps_workload_delete.md)	- Delete workload(s)
-- [Tanzu Apps Workload Get](tanzu_apps_workload_get.md)	- Get details from a workload
-- [Tanzu Apps Workload List](tanzu_apps_workload_list.md) - Table listing of workloads
-- [Tanzu Apps Workload Tail](tanzu_apps_workload_tail.md) - Watch workload-related logs
-- [Tanzu Apps Workload Update](tanzu_apps_workload_update.md)	- Update configuration of an existing workload
+- [Tanzu applications](tanzu_apps.md)	- Applications on Kubernetes
+- [Tanzu apps workload apply](tanzu_apps_workload_apply.md)	- Apply configuration to a new or existing workload
+- [Tanzu apps workload create](tanzu_apps_workload_create.md)	- Create a workload with specified configuration
+- [Tanzu apps workload delete](tanzu_apps_workload_delete.md)	- Delete workload(s)
+- [Tanzu apps workload get](tanzu_apps_workload_get.md)	- Get details from a workload
+- [Tanzu apps workload list](tanzu_apps_workload_list.md) - Table listing of workloads
+- [Tanzu apps workload tail](tanzu_apps_workload_tail.md) - Watch workload-related logs
+- [Tanzu apps workload update](tanzu_apps_workload_update.md)	- Update configuration of an existing workload
 

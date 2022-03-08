@@ -1,14 +1,15 @@
 # Getting started with Learning Center
 
-## Overview
-To view general information and usages for Learning Center see [About Learning Center](../about-learning-center/about-learning-center.md)
-Before you can start deploying workshops, you need to install a Kubernetes operator for Learning Center. 
+To view information about Learning Center, see [Learning Center for Tanzu Application Platform](../../learning-center/about.md).
+Before deploying workshops, install a Kubernetes Operator for Learning Center.
 The operator manages the setup of the environment for each workshop and deploys instances of a workshop for each person.
-We have the basic instructions for installing the Operator and Workshops. 
 
-- Basic instructions for [Installing Learning Center operator](https://github.com/pivotal/docs-tap/blob/main/install-components.md#install-learning-center)
+For information about installing Learning Center,
+see [Install Learning Center](../../learning-center/install-learning-center.md).
 
--  [Learning Center operator](learningcenter-operator.md)
--  [Deleting an operator](deleting-learningcenter.md)
+Other useful information about getting started with Learning Center:
+
+-  [Learning Center operator](learning-center-operator.md)
+-  [Deleting an operator](deleting-learning-center.md)
 -  [Workshops](workshops.md)
 -  [TrainingPortal](training-portal.md)

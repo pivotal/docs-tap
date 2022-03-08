@@ -1,19 +1,21 @@
-# Workshop request resource
+# WorkshopRequest resource
 
-The ``WorkshopRequest`` custom resource defines a workshop request.
+The `WorkshopRequest` custom resource defines a workshop request.
 
-The raw custom resource definition for the ``WorkshopRequest`` custom resource can be viewed at:
+## <a id="specify-workshop-env"></a> Specifying workshop environment
 
-* [https://github.com/eduk8s/eduk8s/blob/develop/resources/crds-v1/workshop-request.yaml](https://github.com/eduk8s/eduk8s/blob/develop/resources/crds-v1/workshop-request.yaml)
+The `WorkshopRequest` custom resource is used to request a workshop instance.
+It does not provide details needed to perform the deployment of the workshop instance.
+That information is sourced by the Learning Center Operator from the `WorkshopEnvironment`
+and `Workshop` custom resources.
 
-## Specifying workshop environment
+The minimum required information in the workshop request is the name of the workshop
+environment. You supply this by setting the `environment.name` field.
 
-The ``WorkshopRequest`` custom resource is only used to request a workshop instance. It does not specify actual details needed to perform the deployment of the workshop instance. That information is instead sourced by the Learning Center operator from the ``WorkshopEnvironment`` and ``Workshop`` custom resources.
+For example:
 
-The minimum required information in the workshop request is therefore just the name of the workshop environment. This is supplied by setting the ``environment.name`` field.
-
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopRequest
 metadata:
   name: lab-markdown-sample
@@ -22,16 +24,25 @@ spec:
     name: lab-markdown-sample
 ```
 
-A request will only be successful if the ability to request a workshop instance for a workshop environment has been enabled for that workshop. Enabling of requests needs to have been specified in the ``WorkshopEnvironment`` custom resource for the workshop environment.
+A request is successful only if requesting a workshop instance for a workshop environment
+is enabled for that workshop. You can enable requests in the `WorkshopEnvironment`
+custom resource for the workshop environment.
 
-If multiple workshop requests, whether for the same workshop environment or different ones, are created in the same namespace, the ``name`` defined in the ``metadata`` for the workshop request must be different for each. The value of this name is not important and is not used in naming of workshop instances. A user will need to remember it if they want to delete the workshop instance, which is done by deleting the workshop request.
+If multiple workshop requests, for the same workshop environment or different ones, are
+created in the same namespace, the `name` defined in the `metadata` for the workshop request must be
+different for each. The value of this name is not used to name workshop
+instances. You need the `name` value to delete the workshop instance, which is done by deleting the
+workshop request.
 
-## Specifying required access token
+## <a id="specify-req-access-token"></a> Specifying required access token
 
-Where a workshop environment has been configured to require an access token when making workshop request against that environment, it can be specified by setting the ``environment.token`` field.
+If a workshop environment is configured to require an access token when making a workshop request
+against that environment, you can specify decide the token by setting the `environment.token` field.
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+For example:
+
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopRequest
 metadata:
   name: lab-markdown-sample
@@ -41,4 +52,7 @@ spec:
     token: lab-markdown-sample
 ```
 
-Even with the token, if the workshop environment has restricted the namespaces a workshop request has been made from, and the workshop request was not created in one of the white listed namespaces, the request will fail.
+Even with the token, the request fails if the following is true:
+
+* The workshop environment has restricted the namespaces from which a workshop request was made
+* The workshop request was not created in one of the permitted namespaces

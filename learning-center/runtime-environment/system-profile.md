@@ -1,59 +1,73 @@
-# System profile resource
+# SystemProfile resource
 
-The ``SystemProfile`` custom resource is used to configure the Learning Center operator. The default system profile can be used to set defaults for ingress and image pull secrets, with specific deployments being able to select an alternate profile if required.
+Use the `SystemProfile` custom resource to configure the Learning Center Operator.
+You can use the default system profile to set defaults for ingress and image pull secrets. You can also select an alternate profile for
+specific deployments if required.
 
-The raw custom resource definition for the ``SystemProfile`` custom resource can be viewed at:
+>**Note:** Changes made to the `SystemProfile` custom resource, or changes made by means of environment variables,
+>don't take effect on already deployed `TrainingPortals`. You must recreate those for the changes
+>to be applied.
+>You only need to recreate the `TrainingPortal` resources, because this resource takes care of
+>recreating the `WorkshopEnvironments` with the new values.
 
-* [https://github.com/eduk8s/eduk8s/blob/develop/resources/crds-v1/system-profile.yaml](https://github.com/eduk8s/eduk8s/blob/develop/resources/crds-v1/system-profile.yaml)
+## <a id="op-default-sys-profile"></a> Operator default system profile
 
-## Operator default system profile
+The Learning Center Operator, by default, uses an instance of the `SystemProfile` custom resource
+if it exists, named `default-system-profile`. You can override the name of the resource used by the
+Learning Center Operator as the default by setting the `SYSTEM_PROFILE` environment variable on the
+deployment for the Learning Center Operator. For example:
 
-The Learning Center operator will by default use an instance of the ``SystemProfile`` custom resource, if it exists, named ``default-system-profile``. You can override the name of the resource used by the Learning Center operator as the default, by setting the ``SYSTEM_PROFILE`` environment variable on the deployment for the Learning Center operator.
-
-```text
-kubectl set env deployment/eduk8s-operator -e SYSTEM_PROFILE=default-system-profile -n eduk8s
+```
+kubectl set env deployment/learningcenter-operator -e SYSTEM_PROFILE=default-system-profile -n learningcenter
 ```
 
-Any changes to an instance of the ``SystemProfile`` custom will be automatically detected and used by the Learning Center operator and there is no need to redeploy the operator when changes are made.
+The Learning Center Operator automatically detects and uses any changes to an instance of the `SystemProfile` custom resource. You do not need to redeploy the operator when changes are made.
 
-## Defining configuration for ingress
+## <a id="def-ingress-config"></a> Defining configuration for ingress
 
-The ``SystemProfile`` custom resource replaces the use of environment variables to configure details such as the ingress domain, secret and class.
+The `SystemProfile` custom resource replaces the use of environment variables to configure details
+such as the ingress domain, secret, and class.
 
-Instead of setting ``INGRESS_DOMAIN``, ``INGRESS_SECRET`` and ``INGRESS_CLASS`` environment variables, create an instance of the ``SystemProfile`` custom resource named ``default-system-profile``.
+Instead of setting `INGRESS_DOMAIN`, `INGRESS_SECRET`, and `INGRESS_CLASS` environment variables,
+create an instance of the `SystemProfile` custom resource named `default-system-profile`:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
   name: default-system-profile
 spec:
   ingress:
-    domain: training.eduk8s.io
-    secret: training.eduks8.io-tls
+    domain: learningcenter.tanzu.vmware.com
+    secret: learningcenter.tanzu.vmware.com-tls
     class: nginx
 ```
 
-If HTTPS connections are being terminated using an external load balancer and not by specificying a secret for ingresses managed by the Kubernetes ingress controller, with traffic then routed into the Kubernetes cluster as HTTP connections, you can override the ingress protocol without specifying an ingress secret.
+If you terminate HTTPS connections by using an external load balancer and not by specifying a
+secret for ingresses managed by the Kubernetes ingress controller, then routing traffic into the
+Kubernetes cluster as HTTP connections, you can override the ingress protocol without specifying an
+ingress secret:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
   name: default-system-profile
 spec:
   ingress:
-    domain: training.eduk8s.io
+    domain: learningcenter.tanzu.vmware.com
     protocol: https
     class: nginx
 ```
 
-## Defining image registry pull secrets
+## <a id="def-img-reg-pull-secrets"></a> Defining container image registry pull secrets
 
-If needing to work with custom workshop images stored in a private image registry, the system profile can define a list of image pull secrets that should be added to the service accounts used to deploy and run the workshop images. The ``environment.secrets.pull`` property should be set to the list of secret names.
+To work with custom workshop images stored in a private image registry, the system profile
+can define a list of image pull secrets. Add this to the service accounts used to deploy
+and run the workshop images. Set the `environment.secrets.pull` property to the list of secret names:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
   name: default-system-profile
@@ -64,30 +78,42 @@ spec:
       - private-image-registry-pull
 ```
 
-The secrets containing the image registry credentials must exist within the ``educates`` namespace or the namespace where the Learning Center operator is deployed. The secret resources must be of type ``kubernetes.io/dockerconfigjson``.
+The secrets containing the image registry credentials must exist within the `learningcenter` namespace
+or the namespace where the Learning Center Operator is deployed. The secret resources must be of type
+`kubernetes.io/dockerconfigjson`.
 
-Note that this doesn't result in any secrets being added to the namespace created for each workshop session. The secrets are only added to the workshop namespace and are not visible to a user.
+The secrets are added to the workshop namespace and are not visible to a user. No secrets are added to the namespace created for each workshop
+session.
 
-For container images used as part of Learning Center itself, such as the container image for the training portal web interface, and the builtin base workshop images, if you have copied these from the public image registries and stored them in a local private registry, instead of the above setting you should use the ``registry`` section as follows.
+Some container images are used as part of Learning Center itself, such as the container image for the
+training portal web interface and the builtin base workshop images. If you have copied these from the
+public image registries and stored them in a local private registry, use the `registry` section
+instead of the above setting. For example:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
   name: default-system-profile
 spec:
   registry:
-    secret: eduk8s-image-registry-pull
+    secret: learningcenter-image-registry-pull
 ```
 
-The ``registry.secret`` is the name of the secret containing the image registry credentials. This must be present in the ``educates`` namespace or the namespace where the Learning Center operator is deployed.
+The `registry.secret` is the name of the secret containing the image registry credentials.
+This must be present in the `learningcenter` namespace or the namespace where the
+Learning Center Operator is deployed.
 
-## Defining storage class for volumes
+## <a id="def-vol-storage-class"></a> Defining storage class for volumes
 
-Deployments of the training portal web interface and the workshop sessions make use of persistent volumes. By default the persistent volume claims will not specify a storage class for the volume and instead rely on the Kubernetes cluster specifying a default storage class that works. If the Kubernetes cluster doesn't define a suitable default storage class, or you need to override it, you can set the ``storage.class`` property.
+Deployments of the training portal web interface and the workshop sessions make use of persistent
+volumes.
+By default the persistent volume claims do not specify a storage class for the volume. Instead, they rely on the Kubernetes cluster to specify a default storage class that works.
+If the Kubernetes cluster doesn't define a suitable default storage class or you need to override it,
+you can set the `storage.class` property. For example:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
   name: default-system-profile
@@ -96,16 +122,23 @@ spec:
     class: default
 ```
 
-Note that this only applies to persistent volume claims setup by the Learning Center operator. If the steps in a workshop which a user executes include making persistent volume claims, these will not be automatically adjusted.
+This only applies to persistent volume claims setup by the Learning Center Operator.
+If a user executes steps in a workshop that include making persistent volume claims, these are
+not automatically adjusted.
 
-## Defining storage group for volumes
+## <a id="def-vol-storage-group"></a> Defining storage group for volumes
 
-Where persistent volumes are used by Learning Center for the training portal web interface and workshop environments, the application of pod security policies by the cluster is relied on to ensure that the permissions of persistent volumes are set correctly such that they can be accessed by containers mounting the persistent volume. For where the pod security policy admission controller is not enabled, a fallback is instituted to enable access to volumes by enabling group access using the group ID of ``0``.
+The cluster must apply pod security policies where persistent volumes are used by Learning Center for the training portal web interface and
+workshop environments.
+These security policies ensure that permissions of persistent volumes are set correctly so they can be accessed by containers mounting the persistent volume.
+When the pod security policy admission controller is not enabled, the cluster
+institutes a fallback to enable access to volumes by enabling group access using the group ID of `0`.
 
-In situations where the only class of persistent storage available is NFS or similar, it may be necessary to override the group ID applied and set it to an alternate ID dictated by the file system storage provider. If this is required, you can set the ``storage.group`` property.
+In situations where the only class of persistent storage available is NFS or similar, you might have to override the group ID applied and set it to an alternate ID dictated by the file system
+storage provider. If this is required, you can set the `storage.group` property. For example:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
   name: default-system-profile
@@ -114,14 +147,19 @@ spec:
     group: 1
 ```
 
-Overriding the group ID to match the persistent storage relies on the group having write permission to the volume. If only the owner of the volume has permission this will not work.
+Overriding the group ID to match the persistent storage relies on the group having write permission
+to the volume. If only the owner of the volume has permission, this does not work.
 
-In this case it is necessary to change the owner/group and permissions of the persistent volume such that the owner matches the user ID a container runs as, or the group is set to a known ID which is added as a supplemental group for the container, and the persistent volume updated to be writable to this group. This needs to be done by an init container running in the pod mounting the persistent volume.
+In this case, change the owner/group and permissions of the persistent volume such
+that the owner matches the user ID a container runs at. Alternatively, set the group to a known ID that is
+added as a supplemental group for the container and update the persistent volume to be writable to
+this group. This must be done by an `init` container running in the pod mounting the persistent
+volume.
 
-To trigger this fixup of ownership and permissions, you can set the ``storage.user`` property.
+To trigger this change of ownership and permissions, set the `storage.user` property. For example:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
   name: default-system-profile
@@ -131,18 +169,43 @@ spec:
     group: 1
 ```
 
-This will result in the init container being run as the root user, with the owner of the mount directory of the persistent volume being set to ``storage.user``, the group being set to ``storage.group``, and the directory being made group writable. The group will then be added as supplemental group to containers using the persistent volume so they can write to it, regardless of what user ID the container runs as. To that end, the value of ``storage.user`` doesn't matter, as long as it is set, but it may need to be set to a specific user ID based on requirements of the storage provider.
+This results in:
 
-Note that both these variations on the settings only apply to the persistent volumes used by Learning Center itself. If a workshop asks users to create persistent volumes, those instructions or the resource definitions used may need to be modified in order to work where the storage class available requires access as a specific user or group ID. Further, the second method using the init container to fixup permissions will not work if pod security policies are enforced, as the ability to run a container as the root user would be blocked in that case due to the restricted PSP which is applied to workshop instances.
+- The `init` container running as the root user.
+- The owner of the mount directory of the persistent volume being set to `storage.user`.
+- The group being set to `storage.group`.
+- The directory made group-writable.
 
-## Restricting Network Access
+The group is then added as the
+supplemental group to containers using the persistent volume. So they can write to the persistent volume, regardless of
+what user ID the container runs as. To that end, the specific value of `storage.user` doesn't matter,
+but you might need to set it to a specific user ID based on requirements of the storage provider.
 
-Any processes run from the workshop container, and any applications deployed to the session namespaces associated with a workshop instance can contact any network IP addresses accessible from the cluster. If you need to add restrictions on what IP addresses or IP subnets can be accessed, you can set ``network.blockCIDRs``. This must be a CIDR block range corresponding to the subnet, or portion of a subnet you want to block. A Kubernetes ``NetworkPolicy`` will be used to enforce the restriction, so the Kubernetes cluster must use a network layer supporting network policies and the necessary Kubernetes controllers supporting network policies enabled when the cluster was installed.
+Both these variations on the settings only apply to the persistent volumes used by
+Learning Center itself. If a workshop asks users to create persistent volumes, those instructions, or
+the resource definitions used, might need to be modified to work where the available storage class requires access as a specific user or group ID.
 
-If deploying to AWS, it is important to block access to the AWS endpoint for querying EC2 metadata as it can expose sensitive information that workshop users should not haves access to. The AWS endpoint in this case is a single IP address and the configuration would be:
+Further, the second method using the `init` container to fix permissions does not work if pod
+security policies are enforced. The ability to run a container as the root user is blocked in that
+case due to the restricted PSP, which is applied to workshop instances.
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+## <a id="restrict-network-access"></a> Restricting network access
+
+Any processes running from the workshop container, and any applications deployed to the session namespaces
+associated with a workshop instance, can contact any network IP addresses accessible from the cluster.
+To restrict access to IP addresses or IP subnets, set
+`network.blockCIDRs`. This must be a CIDR block range corresponding to the subnet or a portion of a
+subnet you want to block. A Kubernetes `NetworkPolicy` is used to enforce the restriction. So the
+Kubernetes cluster must use a network layer supporting network policies, and the necessary Kubernetes
+controllers supporting network policies must be enabled when the cluster is installed.
+
+If deploying to AWS, it is important to block access to the AWS endpoint for querying EC2 metadata, because
+it can expose sensitive information that workshop users should not haves access to. By default
+Learning Center will block the AWS endpoint on the TAP SystemProfile. If you need to replicate this
+block to other SystemProfiles, the configuration is as follows:
+
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
   name: default-system-profile
@@ -150,18 +213,25 @@ spec:
   network:
     blockCIDRs:
     - 169.254.169.254/32
+    - fd00:ec2::254/128
 ```
 
-## Running docker daemon rootless
+## <a id="run-dker-daemon-rootless"></a> Running Docker daemon rootless
 
-If ``docker`` is enabled for workshops, docker in docker is run using a side car container. Because of the current state of running docker in docker, and portability across Kubernetes environments, the ``docker`` daemon by default runs as ``root``. Because a privileged container is also being used, this represents a security risk and workshops requiring ``docker`` should only be run in disposable Kubernetes clusters, or for users who you trust.
+If `docker` is enabled for workshops, Docker-in-Docker is run using a sidecar container.
+Because of the current state of running Docker-in-Docker and portability across Kubernetes
+environments, the `docker` daemon by default runs as `root`. Because a privileged container is also
+being used, this represents a security risk. Only run workshops requiring `docker` in disposable
+Kubernetes clusters or for users whom you trust.
 
-The risks of running ``docker`` in the Kubernetes cluster can be partly mediated by running the ``docker`` daemon in rootless mode, however not all Kubernetes clusters may support this due to the Linux kernel configuration or other incompatibilities.
+You can partly mediate the risks of running `docker` in the Kubernetes cluster by running the `docker`
+daemon in rootless mode. However, not all Kubernetes clusters can support this due to the Linux
+kernel configuration or other incompatibilities.
 
-To enable rootless mode, you can set the ``dockerd.rootless`` property to ``true``.
+To enable rootless mode, you can set the `dockerd.rootless` property to `true`:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
   name: default-system-profile
@@ -170,10 +240,14 @@ spec:
     rootless: true
 ```
 
-Use of ``docker`` can be made even more secure by avoiding the use of a privileged container for the ``docker`` daemon. This requires specific configuration to be setup for nodes in the Kubernetes cluster. If such configuration has been done, you can disable the use of a privileged container by setting ``dockerd.privileged`` to ``false``.
+Use of `docker` can be made even more secure by avoiding the use of a privileged container for the
+`docker` daemon. This requires that you set up a specific configuration for nodes in the Kubernetes
+cluster.
+With this configuration, you can disable the use of a privileged container by setting
+`dockerd.privileged` to `false`:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
   name: default-system-profile
@@ -183,22 +257,26 @@ spec:
     privileged: false
 ```
 
-For further details on the requirements for running rootless docker in docker, and using an non privileged container see:
+For further details about the requirements for running rootless Docker-in-Docker and using a
+non-privileged container, see the [Docker documentation](https://docs.docker.com/engine/security/rootless/).
 
-* [https://docs.docker.com/engine/security/rootless/](https://docs.docker.com/engine/security/rootless/)
 
-## Overriding network packet size
+## <a id="override-nwk-packet-size"></a> Overriding network packet size
 
-When support for building container images using ``docker`` is enabled for workshops, because of network layering that occurs when doing ``docker build`` or ``docker run``, it is necessary to adjust the network packet size (mtu) used for containers run from ``dockerd`` hosted inside of the workshop container.
+When you enable support for building container images using `docker` for workshops, because of
+network layering that occurs when doing `docker build` or `docker run`, you must adjust the network
+packet size (MTU) used for containers run from `dockerd` hosted inside the workshop container.
 
-The default mtu size for networks is 1500, but when containers are run in Kubernetes the size available to containers is often reduced. To deal with this possibility, the mtu size used when ``dockerd`` is run for a workshop is set as 1400 instead of 1500.
+The default MTU size for networks is 1500, but, when containers are run in Kubernetes, the size
+available to containers is often reduced. To deal with this possibility, the MTU size used when
+`dockerd` is run for a workshop is set as 1400 instead of 1500.
 
-If you experience problems building or running images with the ``docker`` support, including errors or timeouts in pulling images, or when pulling software packages (PyPi, npm, etc) within a build, you may need to override this value to an even lower value.
+You might need to override this value to an even lower value if you experience problems building or running images with `docker` support. These problems could include errors or timeouts in pulling images or when pulling software packages such as PyPi, npm, and so on.
 
-If this is required, you can set the ``dockerd.mtu`` property.
+To lower the value, set the `dockerd.mtu` property:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
   name: default-system-profile
@@ -207,9 +285,10 @@ spec:
     mtu: 1400
 ```
 
-You can determine what the size may need to be by accessing the ``docker`` container run with a workshop and run ``ifconfig eth0``. This will yield something similar to:
+To discover the maximum viable size, access the `docker` container run with a
+workshop and run `ifconfig eth0`. This yields something similar to:
 
-```text
+```
 eth0      Link encap:Ethernet  HWaddr 02:42:AC:11:00:07
           inet addr:172.17.0.7  Bcast:172.17.255.255  Mask:255.255.0.0
           UP BROADCAST RUNNING MULTICAST  MTU:1350  Metric:1
@@ -219,22 +298,36 @@ eth0      Link encap:Ethernet  HWaddr 02:42:AC:11:00:07
           RX bytes:86363656 (82.3 MiB)  TX bytes:65183730 (62.1 MiB)
 ```
 
-If the ``MTU`` size is less than 1400, then use the value given, or a smaller value, for the ``dockerd.mtu`` setting.
+If the `MTU` size is less than 1400, use the value given, or a smaller value, for the
+`dockerd.mtu` setting.
 
-## Image registry pull through cache
+## <a id="img-registry-pull"></a> Image registry pull through cache
 
-When running or building container images with ``docker``, if the container image is hosted on Docker Hub it will be pulled down direct from Docker Hub for each separate workshop session of that workshop.
+When running or building container images with `docker`, if the container image is hosted on
+Docker Hub, it is pulled down directly from the Docker Hub for each separate workshop session
+of that workshop.
 
-Because the image is pulled from Docker Hub this will be slow for all users, especially for large images. With Docker Hub introducing limits on how many images can be pulled anonymously from an IP address within a set period, this also could result in the cap on image pulls being reached, preventing the workshop from being used until the period expires.
+Because the image is pulled from Docker Hub, this can be slow for all users, especially for large
+images. With Docker Hub introducing limits on how many images can be pulled anonymously from an IP
+address within a set period, this also can result in the cap on image pulls being reached. This prevents the workshop from being used until the period expires.
 
-Docker Hub has a higher limit when pulling images as an authenticated user, but with the limit being applied to the user rather than by IP address. For authenticated users with a paid plan on Docker Hub, there is no limit.
+Docker Hub has a higher limit when pulling images as an authenticated user, but with the limit
+applied to the user rather than by IP address. For authenticated users with a paid plan on Docker Hub,
+there is no limit.
 
-To try and avoid the impact of the limit, the first thing you can do is enable an image registry mirror with image pull through. This is enabled globally and results in an instance of an image registry mirror being created in the workshop environment of workshops which enable ``docker`` support. This mirror will be used for all workshops sessions created against that workshop environment. When the first user attempts to pull an image, it will be pulled down from Docker Hub and cached in the mirror. Subsequent users will be served up from the image registry mirror, avoiding the need to pull the image from Docker Hub again. The subsequent users will also see a speed up in pulling the image because the mirror is deployed to the same cluster.
+To attempt to avoid the impact of the limit, the first thing you can do is enable an image registry
+mirror with image pull-through. This is enabled globally and results in an instance of an image
+registry mirror being created in the workshop environment of workshops that enable `docker` support.
+This mirror is used for all workshops sessions created against that workshop environment.
+When the first user attempts to pull an image, it is pulled down from Docker Hub and cached in
+the mirror. Subsequent users are served up from the image registry mirror, avoiding the need to
+pull the image from Docker Hub again. Subsequent users also see a speed up in pulling the
+image, because the mirror is deployed to the same cluster.
 
-For enabling the use of an image registry mirror against Docker Hub, use:
+To enable the use of an image registry mirror against Docker Hub, use:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
   name: default-system-profile
@@ -244,10 +337,13 @@ spec:
       remote: https://registry-1.docker.io
 ```
 
-For authenticated access to Docker Hub, create an access token under your Docker Hub account. Then set the ``username`` and ``password``, using the access token as the ``password``. Do not use the password for the account itself. Using an access token makes it easier to revoke the token if necessary.
+For authenticated access to Docker Hub, create an access token under your Docker Hub account.
+Then set the `username` and `password` using the access token as the `password`.
+Do not use the password for the account itself. Using an access token makes it easier to revoke the
+token if necessary.
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
   name: default-system-profile
@@ -259,22 +355,31 @@ spec:
       password: access-token
 ```
 
-Note that an access token provides write access to Docker Hub. It is thus also recommended you use a separate robot account in Docker Hub which isn't going to be used to host images, and also doesn't have write access to any other organizations. In other words, use it purely for reading images from Docker Hub.
+An access token provides write access to Docker Hub. It is therefore also recommended you use a
+separate robot account in Docker Hub that is not used to host images and doesn't have write access
+to any other organizations. In other words, use it purely for reading images from Docker Hub.
 
-If this is a free account, the higher limit on image pulls will then apply. If the account is paid, then there may be higher limits, or no limit all all.
+If this is a free account, the higher limit on image pulls then applies. If the account is paid,
+there might be higher limits or no limit all all.
 
-Also note that the image registry mirror is only used when running or building images using the support for running ``docker``. The mirror does not come into play when creating deployments in Kubernetes which make use of images hosted on Docker Hub. Usage of images from Docker Hub in deployments will still be subject to the limit for anonymous access, unless you were to supply image registry credentials for the deployment so an authenticated user were used.
+The image registry mirror is only used when running or building images using
+support for running `docker`. The mirror does not come into play when creating deployments in
+Kubernetes, which make use of images hosted on Docker Hub. Use of images from Docker Hub in
+deployments is still subject to the limit for anonymous access, unless you supply image registry
+credentials for the deployment so an authenticated user is used.
 
-## Setting default access credentials
+## <a id="set-default-access-creds"></a>Setting default access credentials
 
-When deploying a training portal using the ``TrainingPortal`` custom resource, the credentials for accessing the portal will be unique for each instance. The details of the credentials can be found by viewing status information added to the custom resources using ``kubectl describe``.
+When deploying a training portal using the `TrainingPortal` custom resource, the credentials for
+accessing the portal are unique for each instance. Find the details of the credentials by viewing
+status information added to the custom resources by using `kubectl describe`.
 
-If you want to override the credentials for the portals so the same set of credentials are used for each, they can be overridden by adding the desired values to the system profile.
+To override the credentials for the portals so the same set of credentials are used for each, add the desired values to the system profile.
 
-To override the username and password for the admin and robot accounts use ``portal.credentials``.
+To override the user name and password for the admin and robot accounts, use `portal.credentials`:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
   name: default-system-profile
@@ -282,17 +387,17 @@ spec:
   portal:
     credentials:
       admin:
-        username: eduk8s
+        username: learningcenter
         password: admin-password
       robot:
-        username: robot@eduk8s
+        username: robot@learningcenter
         password: robot-password
 ```
 
-To override the client ID and secret used for OAuth access by the robot account, use ``portal.clients``.
+To override the client ID and secret used for OAuth access by the robot account, use `portal.clients`:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
   name: default-system-profile
@@ -304,40 +409,48 @@ spec:
         secret: robot-secret
 ```
 
-If the ``TrainingPortal`` has specified credentials or client information, they will still take precedence over the values specified in the system profile.
+If the `TrainingPortal` has specified credentials or client information, they still take
+precedence over the values specified in the system profile.
 
-## Overriding the workshop images
+## <a id="override-ws-images"></a>Overriding the workshop images
 
-When a workshop does not define a workshop image to use, and instead downloads workshop content from GitHub or a web server, the ``base-environment`` workshop image is used. The workshop content is then added to the container, overlaid on this image.
+When a workshop does not define a workshop image to use and instead downloads workshop content from
+GitHub or a web server, it uses the `base-environment` workshop image. The workshop content is then
+added to the container, overlaid on this image.
 
-The version of the ``base-environment`` workshop image used is what was the most up to date compatible version of the image available for that version of the Learning Center operator when it was released.
+The version of the `base-environment` workshop image used is the most up-to-date, compatible
+version of the image available for that version of the Learning Center Operator when it was released.
 
-If necessary you can override what version of the ``base-environment`` workshop image is used by defining a mapping under ``workshop.images``. For workshop images supplied as part of the Learning Center project, you can override the short names used to refer to them.
+If necessary you can override the version of the `base-environment` workshop image used by
+defining a mapping under `workshop.images`. For workshop images supplied as part of the
+Learning Center project, you can override the short names used to refer to them.
 
-The short versions of the names which are recognised are:
+The short versions of the recognized names are:
 
-* ``base-environment:*`` - A tagged version of the ``base-environment`` workshop image which has been matched with the current version of the Learning Center operator.
-* ``jdk8-environment:*`` - A tagged version of the ``jdk8-environment`` workshop image which has been matched with the current version of the Learning Center operator.
-* ``jdk11-environment:*`` - A tagged version of the ``jdk11-environment`` workshop image which has been matched with the current version of the Learning Center operator.
-* ``conda-environment:*`` - A tagged version of the ``conda-environment`` workshop image which has been matched with the current version of the Learning Center operator.
+* `base-environment:*` is a tagged version of the `base-environment` workshop image
+matched with the current version of the Learning Center Operator.
 
-If you wanted to override the version of the ``base-environment`` workshop image mapped to by the ``*`` tag, you would use:
+To override the version of the `base-environment` workshop image mapped to by the `*`
+tag, use:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
   name: default-system-profile
 spec:
   workshop:
     images:
-      "base-environment:*": "projects.registry.vmware.com/educates/base-environment:latest"
+      "base-environment:*": "registry.tanzu.vmware.com/learning-center/base-environment:latest"
 ```
 
-It is also possible to override where images are pulled from for any arbitrary image. This could be used where you want to cache the images for a workshop in a local image registry and avoid going outside of your network, or the cluster, to get them. This means you wouldn't need to override the workshop definitions for a specific workshop to change it.
+It is also possible to override where images are pulled from for any arbitrary image.
+This could be used where you want to cache the images for a workshop in a local image registry and
+avoid going outside of your network, or the cluster, to get them.
+This means you wouldn't need to override the workshop definitions for a specific workshop to change it. For example:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
   name: default-system-profile
@@ -347,12 +460,13 @@ spec:
       "quay.io/eduk8s-labs/lab-k8s-fundamentals:master": "registry.test/lab-k8s-fundamentals:master"
 ```
 
-## Tracking using Google Analytics
+## <a id="track-w-google-analytics"></a>Tracking using Google Analytics
 
-If you want to record analytics data on usage of workshops using Google Analytics, you can enable tracking by supplying a tracking ID for Google Analytics.
+If you want to record analytics data on usage of workshops using Google Analytics, you can enable
+tracking by supplying a tracking ID for Google Analytics. For example:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
   name: default-system-profile
@@ -362,11 +476,16 @@ spec:
       trackingId: UA-XXXXXXX-1
 ```
 
-Custom dimensions are used in Google Analytics to record details about the workshop a user is doing, and through which training portal and cluster it was accessed. You can therefore use the same Google Analytics tracking ID with Learning Center running on multiple clusters.
+Custom dimensions are used in Google Analytics to record details about the workshop a user is taking
+and through which training portal and cluster it was accessed. You can therefore use the same
+Google Analytics tracking ID with Learning Center running on multiple clusters.
 
-To support use of custom dimensions in Google Analytics you must configure the Google Analytics property with the following custom dimensions. They must be added in the order shown as Google Analytics doesn't allow you to specify the index position for a custom dimension and will allocate them for you. You can't already have custom dimensions defined for the property, as the new custom dimensions must start at index of 1.
+To support use of custom dimensions in Google Analytics, you must configure the Google Analytics
+property with the following custom dimensions. They must be added in the order shown, because
+Google Analytics doesn't allow you to specify the index position for a custom dimension and
+allocates them for you. You can't already have defined custom dimensions for the property, because the new
+custom dimensions must start at index of 1.
 
-```text
 | Custom Dimension Name | Index |
 |-----------------------|-------|
 | workshop_name         | 1     |
@@ -375,7 +494,6 @@ To support use of custom dimensions in Google Analytics you must configure the G
 | training_portal       | 4     |
 | ingress_domain        | 5     |
 | ingress_protocol      | 6     |
-```
 
 In addition to custom dimensions against page accesses, events are also generated. These include:
 
@@ -383,14 +501,24 @@ In addition to custom dimensions against page accesses, events are also generate
 * Workshop/Finish
 * Workshop/Expired
 
-Note that Google Analytics is not a reliable way to collect data. This is because individuals or corporate firewalls can block the reporting of Google Analytics data. For more precise statistics, you should use the webhook URL for collecting analytics with a custom data collection platform. Configuration of a webhook URL for analytics can only be specified on the ``TrainingPortal`` definition and cannot be specified globally on the ``SystemProfile`` configuration.
+However, Google Analytics is not a reliable way to collect data.
+This is because individuals or corporate firewalls can block the reporting of Google Analytics data.
+For more precise statistics, use the webhook URL for collecting analytics with a custom
+data collection platform. Configuration of a webhook URL for analytics can only be specified on the
+`TrainingPortal` definition and cannot be specified globally on the `SystemProfile` configuration.
 
-## Overriding styling of the workshop
+## <a id="override-ws-styling"></a>Overriding styling of the workshop
 
-If using the REST API to create/manage workshop sessions and the workshop dashboard is then embedded into an iframe of a separate site, it is possible to perform minor styling changes of the dashboard, workshop content and portal to match the separate site. To do this you can provide CSS styles under ``theme.dashboard.style``, ``theme.workshop.style`` and ``theme.portal.style``. For dynamic styling, or for adding hooks to report on progress through a workshop to a separate service, you can also supply Javascript as part of the theme under ``theme.dashboard.script``, ``theme.workshop.script`` and ``theme.portal.script``.
+If using the REST API to create/manage workshop sessions, and the workshop dashboard is then embedded
+into an iframe of a separate site, you can perform minor styling changes of the dashboard,
+workshop content, and portal to match the separate site. To do this, provide CSS styles under
+`theme.dashboard.style`, `theme.workshop.style` and `theme.portal.style`. For dynamic styling or for
+adding hooks to report on progress through a workshop to a separate service, supply
+JavaScript as part of the theme under `theme.dashboard.script`, `theme.workshop.script`, and
+`theme.portal.script`. For example:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
   name: default-system-profile
@@ -419,18 +547,21 @@ spec:
         }
 ```
 
-## Additional custom system profiles
+## <a id="extra-custom-sys-profiles"></a> Additional custom system profiles
 
-If the default system profile is specified, it will be used by all deployments managed by the Learning Center operator unless the system profile to use has been overridden for a specific deployment. The name of the system profile can be set for deployments by setting the ``system.profile`` property of ``TrainingPortal``, ``WorkshopEnvironment`` and ``WorkshopSession`` custom resources.
+If the default system profile is specified, it is used by all deployments managed by the
+Learning Center Operator, unless it was overridden by the system profile to use for a specific
+deployment. You can set the name of the system profile for deployments by setting the `system.profile`
+property of `TrainingPortal`, `WorkshopEnvironment`, and `WorkshopSession` custom resources. For example:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
   name: lab-markdown-sample
 spec:
   system:
-    profile: training-eduk8s-io-profile
+    profile: learningcenter-tanzu-vmware-com-profile
   workshops:
   - name: lab-markdown-sample
     capacity: 1

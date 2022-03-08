@@ -1,21 +1,17 @@
-# Training portal resource
+# TrainingPortal resource
 
-The ``TrainingPortal`` custom resource triggers the deployment of a set of workshop environments and a set number of workshop instances.
+The `TrainingPortal` custom resource triggers the deployment of a set of workshop environments and a set number of workshop instances.
 
-The raw custom resource definition for the ``TrainingPortal`` custom resource can be viewed at:
+## <a id="specify-workshop-defs"></a> Specifying the workshop definitions
 
-* [https://github.com/eduk8s/eduk8s/blob/develop/resources/crds-v1/training-portal.yaml](https://github.com/eduk8s/eduk8s/blob/develop/resources/crds-v1/training-portal.yaml)
+You run multiple workshop instances to perform training to a group of people by creating the workshop environment and then creating each workshop instance. The `TrainingPortal` workshop resource bundles that up as one step.
 
-## Specifying the workshop definitions
+Before creating the training environment, you must load the workshop definitions as a separate step.
 
-Running multiple workshop instances to perform training to a group of people can be done by following the step wise process of creating the workshop environment, and then creating each workshop instance. The ``TrainingPortal`` workshop resource bundles that up as one step.
+To specify the names of the workshops to be used for the training, list them under the `workshops` field of the training portal specification. Each entry needs to define a `name` property, matching the name of the `Workshop` resource you created.
 
-Before creating the training environment you still need to load the workshop definitions as a separate step.
-
-To specify the names of the workshops to be used for the training, list them under the ``workshops`` field of the training portal specification. Each entry needs to define a ``name`` property, matching the name of the ``Workshop`` resource which was created.
-
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
   name: sample-workshops
@@ -28,14 +24,18 @@ spec:
   - name: lab-markdown-sample
 ```
 
-When the training portal is created, it will setup the underlying workshop environments, create any workshop instances required to be created initially for each workshop, and deploy a web portal for attendees of the training to access their workshop instances.
+When the training portal is created, it:
 
-## Limiting the number of sessions
+- Sets up the underlying workshop environments.
+- Creates any workshop instances required to be created initially for each workshop.
+- Deploys a web portal for attendees of the training to access their workshop instances.
 
-When defining the training portal, you can set a limit on the workshop sessions that can be run concurrently. This is done using the ``portal.sessions.maximum`` property.
+## <a id="limit-number-of-sessions"></a>Limit the number of sessions
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+When defining the training portal, you can set a limit on the workshop sessions that can be run concurrently. Set this limit by using the `portal.sessions.maximum` property:
+
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
   name: sample-workshops
@@ -48,16 +48,16 @@ spec:
   - name: lab-markdown-sample
 ```
 
-When this is specified, the maximum capacity of each workshop will be set to the same maximum value for the portal as a whole. This means that any one workshop can have as many sessions as specified by the maximum, but to achieve that only instances of that workshops could have been created. In other words the maximum applies to the total number of workshop instances created across all workshops.
+When you specify this, the maximum capacity of each workshop is set to the maximum value for the training portal as a whole. This means that any one workshop can have as many sessions running as specified by the maximum for the portal. However, to achieve this maximum for a given workshop, only instances of that workshop can be created. In other words, the maximum capacity can be spread across a number of workshops or it can be used in its entirety by a single workshop.
 
-Note that if you do not set ``portal.sessions.maximum``, you must set the capacity for each individual workshop as detailed below. In only setting the capacities of each workshop and not an overall maximum for sessions, you can't share the overall capacity of the training portal across multiple workshops.
+If you do not set `portal.sessions.maximum`, you must set the capacity for each individual workshop as detailed in the following section. In only setting the capacities of each workshop and not an overall maximum for sessions, you cannot share the overall capacity of the training portal across multiple workshops.
 
-## Capacity of individual workshops
+## <a id="cap-individual-workshops"></a> Capacity of individual workshops
 
-When you have more than one workshop, you may want to limit how many instances of each workshop you can have so that they cannot grow to the maximum number of sessions for the whole training portal, but a lessor maximum. This means you can stop one specific workshop taking over all the capacity of the whole training portal. To do this set the ``capacity`` field under the entry for the workshop.
+When you have more than one workshop, you can want to limit how many instances of each workshop you can have so that they cannot grow to the maximum number of sessions for the whole training portal. This means you can stop a specific workshop from using all of the capacity of the training portal. To do this, set the `capacity` field under the entry for the workshop:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
   name: sample-workshops
@@ -72,18 +72,18 @@ spec:
     capacity: 6
 ```
 
-The value of ``capacity`` caps the number of workshop sessions for the specific workshop at that value. It should always be less than or equal to the maximum number of workshops sessions as the latter always sets the absolute cap.
+The value of `capacity` limits the number of workshop sessions for a specific workshop to that value. It must be less than or equal to the maximum number of workshops sessions for the portal, because the latter always sets the absolute limit.
 
-## Set reserved workshop instances
+## <a id="set-reserved-ws-instances"></a> Set reserved workshop instances
 
-By default, one instance of each of the listed workshops will be created up front so that when the initial user requests that workshop, it is available for use immediately.
+By default one instance of each of the listed workshops is created so when the initial user requests that workshop, it's available for use immediately.
 
-When such a reserved instance is allocated to a user, provided that the workshop capacity hasn't been reached a new instance of the workshop will be created as a reserve ready for the next user. When a user ends a workshop, if the workshop had been at capacity, when the instance is deleted, then a new reserve will be created. The total of allocated and reserved sessions for a workshop cannot therefore exceed the capacity for that workshop.
+When such a reserved instance is allocated to a user, provided that the workshop capacity hasn't been reached, a new instance of the workshop is created as a reserve ready for the next user. When a user ends a workshop and the workshop is at capacity, when the instance is deleted, a new reserve is created. The total of allocated and reserved sessions for a workshop cannot exceed the capacity for that workshop.
 
-If you want to override for a specific workshop how many reserved instances are kept in standby ready for users, you can set the ``reserved`` setting against the workshop.
+To override for a specific workshop how many reserved instances are kept on standby ready for users, you can set the `reserved` setting against the workshop:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
   name: sample-workshops
@@ -100,18 +100,18 @@ spec:
     reserved: 4
 ```
 
-The value of ``reserved`` can be set to 0 if you do not ever want any reserved instances for a workshop and you instead only want instances of that workshop created on demand when required for a user. Only creating instances of a workshop on demand can result in a user needing to wait longer to access their workshop session.
+You can set the value of `reserved` to 0 if you never want any reserved instances for a workshop and only want instances of that workshop created on demand when required for a user. Creating instances of a workshop on demand can result in a user waiting longer to access a workshop session.
 
-Note that in this instance where workshop instances are always created on demand, but also in other cases where reserved instances are tying up capacity which could be used for a new session of another workshop, the oldest reserved instance will be terminated to allow a new session of the desired workshop to be created instead. This will occur so long as any caps for specific workshops are being satisfied.
+When workshop instances are always created on demand, the oldest reserved instance is terminated to allow a new session of a desired workshop to be created. This also happens when reserved instances tie up capacity that could be used for a new session of another workshop. This occurs if any caps for specific workshops are met.
 
-## Override initial number of sessions
+## <a id="override-init-num-session"></a> Override initial number of sessions
 
-The initial number of workshop instances created for each workshop will be what is specified by ``reserved``, or 1 if the setting wasn't provided.
+The initial number of workshop instances created for each workshop is specified by `reserved` or 1 if the setting hasn't been provided.
 
-In the case where ``reserved`` is set in order to keep workshop instances on standby, you can indicate that initially you want more than the reserved number of instances created. This is useful where you are running a workshop for a set period of time. You might create up front instances of the workshop corresponding to 75% of the expected number of attendees, but with a smaller reserve number. With this configuration, new reserve instances would only start to be created when getting close to the 75% and all of the extra instances created up front have been allocated to users. This way you can ensure you have enough instances ready for when most people show up, but then can create others if necessary as people trickle in later.
+In the case where `reserved` is set in order to keep workshop instances on standby, you can indicate that initially you want more than the reserved number of instances created. This is useful when running a workshop for a set period of time. You might create up-front instances of the workshop corresponding to 75% of the expected number of attendees but with a smaller reserve number. With this configuration, new reserve instances only start to be created when the total number approaches 75% and all extra instances created up front have been allocated to users. This ensures you have enough instances ready for when most people come, but you can also create other instances later if necessary:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
   name: kubernetes-fundamentals
@@ -125,12 +125,12 @@ spec:
     reserved: 5
 ```
 
-## Setting defaults for all workshops
+## <a id="set-defaults-for-ws"></a> Setting defaults for all workshops
 
-If you have a list of workshops and they all need to be set with the same values for ``capacity``, ``reserved`` and ``initial``, rather than add the settings to each, you can set defaults to apply to each under the ``portal`` section instead.
+If you have a list of workshops, and they all must be set with the same values for `capacity`, `reserved`, and `initial`, rather than add settings to each, you can set defaults to apply to all workshops under the `portal` section:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
   name: sample-workshops
@@ -146,16 +146,16 @@ spec:
   - name: lab-markdown-sample
 ```
 
-Note that the location of these defaults in the training portal configuration will most likely change in a future version.
 
-## Setting caps on individual users
 
-By default a single user can run more than one workshop at a time. You can though cap this if you want to ensure that they can only run one at a time. This avoids the problem of a user wasting resources by starting more than one at the same time, but only proceeding with one, without shutting down the other first.
+## <a id="set-user-caps"></a>Set caps on individual users
 
-The setting to apply a limit on how many concurrent workshop sessions a user can start is ``portal.sessions.registered``.
+By default a single user can run more than one workshop at a time. You can cap this to ensure that workshops run only one at a time. This prevents a user from wasting resources by starting more than one workshop and only working on one without shutting the other down.
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+To apply a limit on how many concurrent workshop sessions a user can start, use the `portal.sessions.registered` setting:
+
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
   name: sample-workshops
@@ -173,10 +173,10 @@ spec:
     reserved: 4
 ```
 
-This limit will also apply to anonymous users when anonymous access is enabled through the training portal web interface, or if sessions are being created via the REST API. If you want to set a distinct limit on anonymous users, you can set ``portal.sessions.anonymous`` instead.
+This limit also applies to anonymous users when anonymous access is enabled through the training portal web interface or if sessions are being created through the REST API. To set a limit on anonymous users, you can set `portal.sessions.anonymous` instead:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
   name: sample-workshops
@@ -194,22 +194,22 @@ spec:
     reserved: 4
 ```
 
-## Expiring of workshop sessions
+## <a id="expiring-of-ws-sessions"></a>Expiration of workshop sessions
 
-Once you reach the maximum capacity, no more workshops sessions can be created. Once a workshop session has been allocated to a user, they cannot be re-assigned to another user.
+After you reach the maximum capacity, no more workshops sessions can be created. After a workshop session is allocated to a user, it cannot be reassigned to another user.
 
-If running a supervised workshop you therefore need to ensure that you set the capacity higher than the expected number in case you have extra users you didn't expect which you need to accomodate. You can use the setting for the reserved number of instances so that although a higher capacity is set, workshop sessions are only created as required, rather than all being created up front.
+If you are running a supervised workshop, set the capacity higher than the anticipated number of users in case you have more users than you expect. Use the setting for the reserved number of instances. This way, even if you set a higher capacity than needed, workshop sessions are only created as required and not all up front.
 
-For supervised workshops when the training is over you would delete the whole training environment and all workshop sessions would then be deleted.
+In supervised workshops, when the training is over, delete the whole training environment. All workshop sessions are then deleted.
 
-If you need to host a training portal over an extended period and you don't know when users will want to do a workshop, you can setup workshop sessions to expire after a set time. When expired the workshop session will be deleted, and a new workshop session can be created in its place.
+To host a training portal over an extended period but don't know when users want to do a workshop, you can set up workshop sessions to expire after a set time. When expired, the workshop session is deleted and a new workshop session can be created in its place.
 
-The maximum capacity is therefore the maximum at any one point in time, with the number being able to grow and shrink over time. In this way, over an extended time you could handle many more sessions that what the maximum capacity is set to. The maximum capacity is in this case used to ensure you don't try and allocate more workshop sessions than you have resources to handle at any one time.
+The maximum capacity is therefore the maximum at any one point in time, while the number can grow and shrink over time. So over an extended time, you can handle many more sessions than the set maximum capacity. The maximum capacity ensures you don't try to allocate more workshop sessions than you have resources for at a given time.
 
-Setting a maximum time allowed for a workshop session can be done using the ``expires`` setting.
+To set a maximum time allowed for a workshop session, use the `expires` setting:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
   name: lab-markdown-sample
@@ -221,16 +221,16 @@ spec:
     expires: 60m
 ```
 
-The value needs to be an integer, followed by a suffix of 's', 'm' or 'h', corresponding to seconds, minutes or hours.
+The value needs to be an integer, followed by a suffix of 's', 'm' or 'h', corresponding to seconds, minutes, or hours.
 
-The time period is calculated from when the workshop session is allocated to a user. When the time period is up, the workshop session will be automatically deleted.
+The time period is calculated from when the workshop session is allocated to a user. When the time period is up, the workshop session is automatically deleted.
 
-When an expiration period is specified, when a user finishes a workshop, or restarts the workshop, it will also be deleted.
+When an expiration period is specified, or when a user finishes a workshop or restarts the workshop, the workshop is also deleted.
 
-To cope with users who grab a workshop session, but then leave and don't actually use it, you can also set a time period for when a workshop session with no activity is deemed as being orphaned and so deleted. This is done using the ``orphaned`` setting.
+To cope with users who claim a workshop session, but leave and don't use it, you can set a time period for when a workshop session with no activity is deemed orphaned and so is deleted. Do this using the `orphaned` setting:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
   name: lab-markdown-sample
@@ -243,26 +243,26 @@ spec:
     orphaned: 5m
 ```
 
-For supervised workshops where the whole event only lasts a certain amount of time, you should avoid this setting so that a users session is not deleted when they take breaks and their computer goes to sleep.
+Avoid this setting for supervised workshops where the whole event only lasts a certain length of time. This prevents a user's session from being deleted when the user takes breaks and the computer goes to sleep.
 
-The ``expires`` and ``orphaned`` settings can also be set against ``portal`` instead, if you want to have them apply to all workshops.
+The `expires` and `orphaned` settings can also be set against `portal` to apply them to all workshops.
 
-## Updates to workshop environments
+## <a id="updates-to-ws-env"></a> Updates to workshop environments
 
 The list of workshops for an existing training portal can be changed by modifying the training portal definition applied to the Kubernetes cluster.
 
-If a workshop is removed from the list of workshops, the workshop environment will be marked as stopping, and will be deleted when all active workshop sessions have completed.
+If you remove a workshop from the list of workshops, the workshop environment is marked as stopping and is deleted when all active workshop sessions have completed.
 
-If a workshop is added to the list of workshops, a new workshop environment for it will be created.
+If you add a workshop to the list of workshops, a new workshop environment for it is created.
 
-Changes to settings such as the maximum number of sessions for the training portal, or capacity settings for individual workshops will be applied to the existing workshop environments.
+Changes to settings, such as the maximum number of sessions for the training portal or capacity settings for individual workshops, are applied to existing workshop environments.
 
-By default a workshop environment will be left unchanged if the corresponding workshop definition is changed. In the default configuration you would therefore need to explicitly delete the workshop from the list of workshops managed by the training portal, and then add it back again, if the workshop definition had changed.
+By default a workshop environment is left unchanged if the corresponding workshop definition is changed. So in the default configuration, you must explicitly delete the workshop from the list of workshops managed by the training portal and then add it back again if the workshop definition changed.
 
-If you would prefer for workshop environments to automatically be replaced when the workshop definition changes, you can enable it by setting the ``portal.updates.workshop`` setting.
+If you prefer that workshop environments be replaced when the workshop definition changes, enable this by using the `portal.updates.workshop` setting:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
   name: lab-markdown-sample
@@ -279,62 +279,62 @@ spec:
     orphaned: 5m
 ```
 
-When using this option you should use the ``portal.sessions.maximum`` setting to cap the number of workshop sessions that can be run for the training portal as a whole. This is because when replacing the workshop environment the old workshop environment will be retained so long as there is still an active workshop session being used. If the cap isn't set, then the new workshop environment will be still able to grow to its specific capacity and will not be limited based on how many workshop sessions are running against old instances of the workshop environment.
+When using this option, use the `portal.sessions.maximum` setting to limit the number of workshop sessions that can be run for the training portal as a whole. When replacing the workshop environment, the old workshop environment is retained if there is still an active workshop session being used. If the limit isn't set, the new workshop environment is still able to grow to its specific capacity and is not limited by how many workshop sessions are running against old instances of the workshop environment.
 
-Overall it is recommended that the option to update workshop environments when workshop definitions change only be used in development environments where working on workshop content, at least until you are quite familiar with the mechanism for how the training portal replaces existing workshop environments, and the resource implications of when you have old and new instances of a workshop environment running at the same time.
+Overall, VMware recommends updating workshop environments when workshop definitions change only in development environments when working on workshop content. This is an especially good practice until you are familiar with how the training portal replaces existing workshop environments, and the resource implications of having old and new instances of a workshop environment running at the same time.
 
-## Overriding the ingress domain
+## <a id="override-ingress-domain"></a>Override the ingress domain
 
-In order to be able to access a workshop instance using a public URL, you will need to specify an ingress domain. If an ingress domain isn't specified, the default ingress domain that the Learning Center operator has been configured with will be used.
+To access a workshop instance using a public URL, specify an ingress domain. If an ingress domain isn't specified, the default ingress domain that the Learning Center Operator is configured with is used.
 
-When setting a custom domain, DNS must have been configured with a wildcard domain to forward all requests for sub domains of the custom domain, to the ingress router of the Kubernetes cluster.
+When setting a custom domain, DNS must have been configured with a wildcard domain to forward all requests for sub-domains of the custom domain to the ingress router of the Kubernetes cluster.
 
-To provide the ingress domain, you can set the ``portal.ingress.domain`` field.
+To provide the ingress domain, set the `portal.ingress.domain` field:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
   name: lab-markdown-sample
 spec:
   portal:
     ingress:
-      domain: training.eduk8s.io
+      domain: learningcenter.tanzu.vmware.com
   workshops:
   - name: lab-markdown-sample
     capacity: 3
     reserved: 1
 ```
 
-If overriding the domain, by default, the workshop session will be exposed using a HTTP connection. If you require a secure HTTPS connection, you will need to have access to a wildcard SSL certificate for the domain. A secret of type ``tls`` should be created for the certificate in the ``educates`` namespace or the namespace where the Learning Center operator is deployed. The name of that secret should then be set in the ``portal.ingress.secret`` field.
+If overriding the domain, by default the workshop session is exposed using a HTTP connection. For a secure HTTPS connection, you must have access to a wildcard SSL certificate for the domain. A secret of type `tls` should be created for the certificate in the `learningcenter` namespace or the namespace where the Learning Center Operator is deployed. The name of that secret must be set in the `portal.ingress.secret` field:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
   name: lab-markdown-sample
 spec:
   portal:
     ingress:
-      domain: training.eduk8s.io
-      secret: training.eduk8s.io-tls
+      domain: learningcenter.tanzu.vmware.com
+      secret: learningcenter.tanzu.vmware.com-tls
   workshops:
   - name: lab-markdown-sample
     capacity: 3
     reserved: 1
 ```
 
-If HTTPS connections are being terminated using an external load balancer and not by specificying a secret for ingresses managed by the Kubernetes ingress controller, with traffic then routed into the Kubernetes cluster as HTTP connections, you can override the ingress protocol without specifying an ingress secret by setting the ``portal.ingress.protocol`` field.
+You can terminate HTTPS connections by using an external load balancer instead of specifying a secret for ingresses managed by the Kubernetes ingress controller. In that case, when routing traffic into the Kubernetes cluster as HTTP connections, you can override the ingress protocol without specifying an ingress secret. Instead, set the `portal.ingress.protocol` field:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
   name: lab-markdown-sample
 spec:
   portal:
     ingress:
-      domain: training.eduk8s.io
+      domain: learningcenter.tanzu.vmware.com
       protocol: https
   workshops:
   - name: lab-markdown-sample
@@ -342,18 +342,18 @@ spec:
     reserved: 1
 ```
 
-If you need to override or set the ingress class, which dictates which ingress router is used when more than one option is available, you can add ``portal.ingress.class``.
+To override or set the ingress class, which dictates which ingress router is used when more than one option is available, you can add `portal.ingress.class`:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
   name: lab-markdown-sample
 spec:
   portal:
     ingress:
-      domain: training.eduk8s.io
-      secret: training.eduk8s.io-tls
+      domain: learningcenter.tanzu.vmware.com
+      secret: learningcenter.tanzu.vmware.com-tls
       class: nginx
   workshops:
   - name: lab-markdown-sample
@@ -361,14 +361,14 @@ spec:
     reserved: 1
 ```
 
-## Overriding the portal hostname
+## <a id="override-portal-hostname"></a>Override the portal host name
 
-The default hostname given to the training portal will be the name of the resource with ``-ui`` suffix, followed by the domain specified by the resource, or the default inherited from the configuration of the Learning Center operator.
+The default host name given to the training portal is the name of the resource with `-ui` suffix, followed by the domain specified by the resource or the default inherited from the configuration of the Learning Center Operator.
 
-If you want to override the generated hostname, you can set ``portal.ingress.hostname``.
+To override the generated host name, you can set `portal.ingress.hostname`:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
   name: lab-markdown-sample
@@ -376,22 +376,22 @@ spec:
   portal:
     ingress:
       hostname: labs
-      domain: training.eduk8s.io
-      secret: training.eduk8s.io-tls
+      domain: learningcenter.tanzu.vmware.com
+      secret: learningcenter.tanzu.vmware.com-tls
   workshops:
   - name: lab-markdown-sample
     capacity: 3
     reserved: 1
 ```
 
-This will result in the hostname being ``labs.training.eduk8s.io``, rather than the default generated name for this example of ``lab-markdown-sample-ui.training.eduk8s.io``.
+This causes the host name to be `labs.learningcenter.tanzu.vmware.com` rather than the default generated name for this example of `lab-markdown-sample-ui.learningcenter.tanzu.vmware.com`.
 
-## Setting extra environment variables
+## <a id="set-extra-env-variables"></a>Set extra environment variables
 
-If you want to override any environment variables for workshop instances created for a specific work, you can provide the environment variables in the ``env`` field of that workshop.
+To override any environment variables for workshop instances created for a specific work, provide the environment variables in the `env` field of that workshop:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
   name: lab-markdown-sample
@@ -401,33 +401,35 @@ spec:
     capacity: 3
     reserved: 1
     env:
-    - name: REPOSITORY_URL
-      value: https://github.com/eduk8s/lab-markdown-sample
+    - name: REPOSITORY-URL
+      value: YOUR-GITHUB-URL-FOR-LAB-MARKDOWN-SAMPLE
 ```
 
-Values of fields in the list of resource objects can reference a number of pre-defined parameters. The available parameters are:
+Where `YOUR-GITHUB-URL-FOR-LAB-MARKDOWN-SAMPLE` is the Git repository URL for `lab-markdown-sample`. For example, `https://github.com/eduk8s/lab-markdown-sample`.
 
-* ``session_id`` - A unique ID for the workshop instance within the workshop environment.
-* ``session_namespace`` - The namespace created for and bound to the workshop instance. This is the namespace unique to the session and where a workshop can create their own resources.
-* ``environment_name`` - The name of the workshop environment. For now this is the same as the name of the namespace for the workshop environment. Don't rely on them being the same, and use the most appropriate to cope with any future change.
-* ``workshop_namespace`` - The namespace for the workshop environment. This is the namespace where all deployments of the workshop instances are created, and where the service account that the workshop instance runs as exists.
-* ``service_account`` - The name of the service account the workshop instance runs as, and which has access to the namespace created for that workshop instance.
-* ``ingress_domain`` - The host domain under which hostnames can be created when creating ingress routes.
-* ``ingress_protocol`` - The protocol (http/https) that is used for ingress routes which are created for workshops.
+Values of fields in the list of resource objects can reference a number of predefined parameters. The available parameters are:
 
-The syntax for referencing one of the parameters is ``$(parameter_name)``.
+- `session_id` - A unique ID for the workshop instance within the workshop environment.
+- `session_namespace` - The namespace created for and bound to the workshop instance. This is the namespace unique to the session and where a workshop can create its own resources.
+- `environment_name` - The name of the workshop environment. For now this is the same as the name of the namespace for the workshop environment. Don't rely on them being the same, and use the most appropriate to cope with any future change.
+- `workshop_namespace` - The namespace for the workshop environment. This is the namespace where all deployments of the workshop instances are created and where the service account that the workshop instance runs as exists.
+- `service_account` - The name of the service account the workshop instance runs as and which has access to the namespace created for that workshop instance.
+- `ingress_domain` - The host domain under which host names can be created when creating ingress routes.
+- `ingress_protocol` - The protocol (http/https) used for ingress routes created for workshops.
 
-## Overriding portal credentials
+The syntax for referencing one of the parameters is `$(parameter_name)`.
 
-When a training portal is deployed, the username for the admin and robot accounts will use the defaults of ``eduk8s`` and ``robot@eduk8s``. The passwords for each account will be randomly set.
+## <a id="override-portal-creds"></a>Override portal credentials
 
-For the robot account, the OAuth application client details used with the REST API will also be randomly generated.
+When a training portal is deployed, the user name for the admin and robot accounts uses the defaults of `learningcenter` and `robot@learningcenter`. The passwords for each account are randomly set.
 
-You can see what the credentials and client details are by running ``kubectl describe`` against the training portal resource. This will yield output which includes:
+For the robot account, the OAuth application client details used with the REST API are also randomly generated.
 
-```text
+You can see what the credentials and client details are by running `kubectl describe` against the training portal resource. This will yield output that includes:
+
+```
 Status:
-  eduk8s:
+  learningcenter:
     Clients:
       Robot:
         Id:      ACZpcaLIT3qr725YWmXu8et9REl4HBg1
@@ -435,18 +437,18 @@ Status:
     Credentials:
       Admin:
         Password:  0kGmMlYw46BZT2vCntyrRuFf1gQq5ohi
-        Username:  eduk8s
+        Username:  learningcenter
       Robot:
         Password:  QrnY67ME9yGasNhq2OTbgWA4RzipUvo5
-        Username:  robot@eduk8s
+        Username:  robot@learningcenter
 ```
 
-If you wish to override any of these values in order to be able to set them to a pre-determined value, you can add ``credentials`` and ``clients`` sections to the training portal specification.
+To override any of these values to set them to a predetermined value, you can add `credentials` and `clients` sections to the training portal specification.
 
-To overload the credentials for the admin and robot accounts use:
+To overload the credentials for the admin and robot accounts user:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
   name: lab-markdown-sample
@@ -465,10 +467,10 @@ spec:
     reserved: 1
 ```
 
-To override the application client details for OAuth access by the robot account use:
+To override the application client details for OAuth access by the robot account user:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
   name: lab-markdown-sample
@@ -484,12 +486,12 @@ spec:
     reserved: 1
 ```
 
-## Controlling registration type
+## <a id="control-reg-type"></a>Control registration type
 
-By default the training portal web interface will present a registration page for users to create an account, before they can select a workshop to do. If you only want to allow the administrator to login, you can disable the registration page. This would be done if using the REST API to create and allocate workshop sessions from a separate application.
+By default the training portal web interface presents a registration page for users to create an account before selecting a workshop. If you only want to allow the administrator to log in, you can disable the registration page. Do this if you are using the REST API to create and allocate workshop sessions from a separate application:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
   name: lab-markdown-sample
@@ -504,10 +506,10 @@ spec:
     reserved: 1
 ```
 
-If rather than requiring users to register, you want to allow anonymous access, you can switch the registration type to anonymous.
+If rather than requiring users to register, you want to allow anonymous access, you can switch the registration type to anonymous:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
   name: lab-markdown-sample
@@ -521,14 +523,15 @@ spec:
     reserved: 1
 ```
 
-In anonymous mode, when users visit the home page for the training portal an account will be automatically created and they will be logged in.
+When a user visits the training portal home page in anonymous mode, an account for that user is
+automatically created and the user is logged in.
 
-## Specifying an event access code
+## <a id="specify-event-access-code"></a> Specify an event access code
 
-Where deploying the training portal with anonymous access, or open registration, anyone would be able to access workshops who knows the URL. If you want to at least prevent access to those who know a common event access code or password, you can set ``portal.password``.
+When deploying the training portal with anonymous access or open registration, anyone who knows the URL can access workshops. To at least restrict access to those who know a common event access code or password, you can set `portal.password`:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
   name: lab-markdown-sample
@@ -541,16 +544,16 @@ spec:
     reserved: 1
 ```
 
-When the training portal URL is accessed, users will be asked to enter the event access code before they are redirected to the list of workshops (when anonymous access is enabled), or to the login page.
+When anonymous access is enabled and the training portal URL is accessed, users are asked to enter an event access code before they are redirected to the list of workshops or to the login page.
 
-## Making list of workshops public
+## <a id="make-list-of-ws-public"></a>Make a list of workshops public
 
-By default the index page providing the catalog of available workshop images is only available once a user has logged in, be that through a registered account or as an anonymous user.
+By default the index page providing the catalog of available workshop images is only available after a user has logged in, either through a registered account or as an anonymous user.
 
-If you want to make the catalog of available workshops public, so they can be viewed before logging in, you can set the ``portal.catalog.visibility`` property.
+To make the catalog of available workshops public so they can be viewed before logging in, set the `portal.catalog.visibility` property:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
   name: lab-markdown-sample
@@ -564,20 +567,20 @@ spec:
     reserved: 1
 ```
 
-By default the catalog has visibility set to ``private``. Use ``public`` to expose it.
+By default the catalog has visibility set to `private`. Use `public` to expose it.
 
-Note that this will also make it possible to access the list of available workshops from the catalog, via the REST API, without authenticating against the REST API.
+This also makes it possible to access the list of available workshops from the catalog through the REST API, without authenticating against the REST API.
 
-## Using an external list of workshops
+## <a id="use-external-list-of-ws"></a>Use an external list of workshops
 
-If you are using the training portal with registration disabled and are using the REST API from a separate web site to control creation of sessions, you can specify an alternate URL for providing the list of workshops.
+If you are using the training portal with registration disabled, and you are using the REST API from a separate website to control creation of sessions, you can specify an alternate URL for providing the list of workshops.
 
-This helps in the situation where for a session created by the REST API, cookies were deleted, or a session URL was shared with a different user, meaning the value for the ``index_url`` supplied with the REST API request is lost.
+This helps when the REST API creates a session and cookies are deleted or a session URL is shared with a different user. This means the value for the `index_url` supplied with the REST API request is lost.
 
-The property to set the URL for the external site is ``portal.index``.
+To set the URL for the external site, use the `portal.index` property:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
   name: lab-markdown-sample
@@ -593,16 +596,16 @@ spec:
     reserved: 1
 ```
 
-If the property is supplied, passing the ``index_url`` when creating a workshop session using the REST API is optional, and the value of this property will be used. You may still want to supply ``index_url`` when using the REST API however if you want a user to be redirected back to a sub category for workshops on the site providing the list of workshops. The URL provided here in the training portal definition would then act only as a fallback when the redirect URL becomes unavailable, and would direct back to the top level page for the external list of workshops.
+If you supply this property, passing the `index_url` when creating a workshop session using the REST API is optional, and the value of this property is used. You can still supply `index_url` when using the REST API for a user to be redirected back to a sub-category of workshops on the site. The URL provided in the training portal definition then acts only as a fallback. That is, when the redirect URL becomes unavailable, it directs the user back to the top-level page for the external list of workshops.
 
-Note that if a user has logged into the training portal as the admin user, they will not be redirected to the external site and will still see the training portals own list of workshops.
+If a user has logged into the training portal as the admin user, the user is not redirected to the external site and still sees the training portal's list of workshops.
 
-## Overriding portal title and logo
+## <a id="override-prtl-title-logo"></a>Override portal title and logo
 
-The web interface for the training portal will display a generic Learning Center logo by default, along with a page title of "Workshops". If you want to override these, you can set ``portal.title`` and ``portal.logo``.
+By default the web interface for the training portal displays a generic Learning Center logo and a page title of "Workshops." To override these, you can set `portal.title` and `portal.logo`:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
   name: lab-markdown-sample
@@ -616,16 +619,16 @@ spec:
     reserved: 1
 ```
 
-The ``logo`` field should be a graphical image provided in embedded data URI format which displays the branding you desire. The image is displayed with a fixed height of "40px". The field can also be a URL for an image stored on a remote web server.
+The `logo` field should be a graphical image provided in embedded data URI format. The image is displayed with a fixed height of "40px". The field can also be a URL for an image stored on a remote web server.
 
-## Allowing the portal in an iframe
+## <a id="allow-portal-in-iframe"></a>Allow the portal in an iframe
 
-By default if you try and display the web interface for the training portal in an iframe of another web site, it will be prohibited due to content security policies applying to the training portal web site.
+By default it is prohibited to display the web interface for the training portal in an iframe of another web site, because of content security policies applying to the training portal website.
 
-If you want to enable the ability to iframe the full training portal web interface, or even a specific workshop session created using the REST API, you need to provide the hostname of the site which will embed it. This can be done using the ``portal.theme.frame.ancestors`` property.
+To enable the ability to iframe the full training portal web interface or even a specific workshop session created using the REST API, provide the host name of the site that embeds it. Do this by using the `portal.theme.frame.ancestors` property:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
   name: lab-markdown-sample
@@ -641,34 +644,42 @@ spec:
     reserved: 1
 ```
 
-The property is a list of hosts, not a single value. If needing to use a URL for the training portal in an iframe of a page, which is in turn embedded in another iframe of a page on a different site again, the hostnames of all sites need to be listed.
+The property is a list of hosts, not a single value. To use a URL for the training portal in an iframe of a page, which, in turn, is embedded in another iframe of a page on a different site, list the host names of all sites.
 
-Note that the sites which embed the iframes must be secure and use HTTPS, they cannot use plain HTTP. This is because browser policies prohibit promoting of cookies to an insecure site when embedding using an iframe. If cookies aren't able to be stored, a user would not be able to authenticate against the workshop session.
+Because the sites that embed iframes must be secure and use HTTPS, they cannot use plain HTTP. Browser policies prohibit promoting cookies to an insecure site when embedding using an iframe. If cookies cannot be stored, a user cannot authenticate against the workshop session.
 
-## Collecting analytics on workshops
+## <a id="collect-analytics-on-ws"></a>Collect analytics on workshops
 
-To collect analytics data on usage of workshops, you can supply a webhook URL. When this is supplied, events will be posted to the webhook URL for events such as workshops being started, pages of a workshop being viewed, expiration of a workshop, completion of a workshop, or termination of a workshop.
+To collect analytics data on usage of workshops, supply a webhook URL. When you supply a webhook URL, events are posted to the webhook URL, including:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+- Workshops started
+- Pages of a workshop viewed
+- Expiration of a workshop
+- Completion of a workshop
+- Termination of a workshop
+
+For example:
+
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
   name: lab-markdown-sample
 spec:
   analytics:
     webhook:
-      url: https://metrics.eduk8s.io/?client=name&token=password
+      url: https://metrics.learningcenter.tanzu.vmware.com/?client=name&token=password
   workshops:
   - name: lab-markdown-sample
     capacity: 3
     reserved: 1
 ```
 
-At present there is no metrics collection service compatible with the portal webhook reporting mechanism, so you will need to create a custom service or integrate it with any existing web front end for the portal REST API service.
+At present there is no metrics collection service compatible with the portal webhook reporting mechanism, so create a custom service or integrate it with any existing web front end for the portal REST API service.
 
-If the collection service needs to be provided with a client ID or access token, that must be able to be accepted using query string parameters which would be set in the webhook URL.
+If the collection service needs to be provided with a client ID or access token, it must accept using query string parameters set in the webhook URL.
 
-The details of the event are subsequently included as HTTP POST data using the ``application/json`` content type.
+Include the details of the event as HTTP POST data by using the `application/json` content type:
 
 ```
 {
@@ -676,7 +687,7 @@ The details of the event are subsequently included as HTTP POST data using the `
     "name": "lab-markdown-sample",
     "uid": "91dfa283-fb60-403b-8e50-fb30943ae87d",
     "generation": 3,
-    "url": "https://lab-markdown-sample-ui.training.eduk8s.io"
+    "url": "https://lab-markdown-sample-ui.learningcenter.tanzu.vmware.com"
   },
   "event": {
     "name": "Session/Started",
@@ -690,7 +701,7 @@ The details of the event are subsequently included as HTTP POST data using the `
 }
 ```
 
-Where an event has associated data, it is included in the ``data`` dictionary.
+When an event has associated data, it is included in the `data` dictionary:
 
 ```
 {
@@ -698,7 +709,7 @@ Where an event has associated data, it is included in the ``data`` dictionary.
     "name": "lab-markdown-sample",
     "uid": "91dfa283-fb60-403b-8e50-fb30943ae87d",
     "generation": 3,
-    "url": "https://lab-markdown-sample-ui.training.eduk8s.io"
+    "url": "https://lab-markdown-sample-ui.learningcenter.tanzu.vmware.com"
   },
   "event": {
     "name": "Workshop/View",
@@ -717,16 +728,16 @@ Where an event has associated data, it is included in the ``data`` dictionary.
 }
 ```
 
-The ``user`` field will be the same portal user identity that is returned by the REST API when creating workshop sessions.
+The `user` field is the same portal user identity returned by the REST API when creating workshop sessions.
 
-Note that the event stream only produces events for things as they happen. If you need a snapshot of all current workshop sessions, you should use the REST API to request the catalog of available workshop environments, enabling the inclusion of current workshop sessions.
+The event stream only produces events for things as they happen. For a snapshot of all current workshop sessions, use the REST API to request the catalog of available workshop environments, enabling the inclusion of current workshop sessions.
 
-## Tracking using Google Analytics
+## <a id="using-google-analytics"></a>Track using Google Analytics
 
-If you want to record analytics data on usage of workshops using Google Analytics, you can enable tracking by supplying a tracking ID for Google Analytics.
+To record analytics data on usage of workshops by using Google Analytics, enable tracking by supplying a tracking ID for Google Analytics:
 
-```yaml
-apiVersion: training.eduk8s.io/v1alpha1
+```
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
   name: lab-markdown-sample
@@ -740,11 +751,11 @@ spec:
     reserved: 1
 ```
 
-Custom dimensions are used in Google Analytics to record details about the workshop a user is doing, and through which training portal and cluster it was accessed. You can therefore use the same Google Analytics tracking ID for multiple training portal instances running on different Kubernetes clusters if desired.
+Custom dimensions are used in Google Analytics to record details about the workshop a user is taking, including through which training portal and cluster it was accessed. So you can use the same Google Analytics tracking ID for multiple training portal instances running on different Kubernetes clusters.
 
-To support use of custom dimensions in Google Analytics you must configure the Google Analytics property with the following custom dimensions. They must be added in the order shown as Google Analytics doesn't allow you to specify the index position for a custom dimension and will allocate them for you. You can't already have custom dimensions defined for the property, as the new custom dimensions must start at index of 1.
+To support use of custom dimensions in Google Analytics, configure the Google Analytics property with the following custom dimensions. They must be added in the order shown, because Google Analytics doesn't allow you to specify the index position for a custom dimension. It allocates them for you. You can't already have custom dimensions defined for the property, as the new custom dimensions must start at index of 1.
 
-```text
+```
 | Custom Dimension Name | Index |
 |-----------------------|-------|
 | workshop_name         | 1     |
@@ -761,6 +772,6 @@ In addition to custom dimensions against page accesses, events are also generate
 * Workshop/Finish
 * Workshop/Expired
 
-If a Google Analytics tracking ID is provided with the ``TrainingPortal`` resource definition, it will take precedence over one set by the ``SystemProfile`` resource definition.
+If you provide a Google Analytics tracking ID with the `TrainingPortal` resource definition, it takes precedence over the `SystemProfile` resource definition.
 
-Note that Google Analytics is not a reliable way to collect data. This is because individuals or corporate firewalls can block the reporting of Google Analytics data. For more precise statistics, you should use the webhook URL for collecting analytics with a custom data collection platform.
+>**Note:** Google Analytics is not a reliable way to collect data. Individuals or corporate firewalls can block the reporting of Google Analytics data. For more precise statistics, use the webhook URL for collecting analytics with a custom data collection platform.

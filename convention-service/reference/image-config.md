@@ -1,9 +1,18 @@
 # ImageConfig
 
-The image configuration object is used to hold the name of the image and the [OCI image configuration](https://github.com/opencontainers/image-spec/blob/main/config.md).
+The image configuration object holds the name of the image, the [`BOM`](bom.md), and the [OCI image configuration](https://github.com/opencontainers/image-spec/blob/main/config.md) with image metadata from the repository.
+
+[OCI image configuration](https://github.com/opencontainers/image-spec/blob/main/config.md) contains the metadata from the image repository.
+
+The [`BOM`](bom.md) represents the content of the image and may be zero or more per image.
+
 ```json
 {
   "name": "oci-image-name",
+  "boms": [{
+      "name": "bom-name",
+      "raw": "`a byte array`"
+  }],
   "config": {
       {
         "created": "2015-10-31T22:22:56.015925234Z",

@@ -6,23 +6,23 @@ This topic will help you list workloads in a namespace or across all namespaces.
 tanzu apps workload list [flags]
 ```
 
-## Examples
+## <a id="examples"></a>Examples
 
 ```
 tanzu apps workload list
 tanzu apps workload list --all-namespaces
 ```
 
-## Options
+## <a id="options"></a>Options
 
 ```
-      --all-namespaces   use all kubernetes namespaces
+  -A, --all-namespaces   use all kubernetes namespaces
       --app name         application name the workload is a part of
   -h, --help             help for list
   -n, --namespace name   kubernetes namespace (defaulted from kube config)
 ```
 
-## Options inherited from parent commands
+## <a id="parent-commands-options"></a>Options inherited from parent commands
 
 ```
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
@@ -31,7 +31,6 @@ tanzu apps workload list --all-namespaces
   -v, --verbose int32     number for the log level verbosity (default 1)
 ```
 
-## See also
+## <a id="see-also"></a> See also
 
-* [Tanzu Apps Workload](tanzu_apps_workload.md) - Workload lifecycle management
-
+* [Tanzu Apps Workload](tanzu_apps_workload.md) - Workload life cycle management

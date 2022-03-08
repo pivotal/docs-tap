@@ -1,11 +1,14 @@
-## Tanzu Application Platform GUI plugins
+# Tanzu Application Platform GUI plug-ins
 
-### Overview
-The Tanzu Application Platform GUI has many pre-integrated plugins. 
-You do not need to configure the plugins. To use the plugin,
-you need to install the Tanzu Application Platform component.
+## <a id="overview"></a> Overview
 
-Tanzu Application Platform includes the following GUI Plugins:
+The Tanzu Application Platform GUI has many pre-integrated plug-ins.
+You do not need to configure the plug-ins. To use the plug-in,
+you must install the Tanzu Application Platform component.
 
-- [Workload Visibility](workload-visibility.md)
+Tanzu Application Platform includes the following GUI plug-ins:
+
+- [Runtime Resources Visibility](runtime-resource-visibility.md)
 - [Application Live View](app-live-view.md)
+- [Application Accelerator](application-accelerator.md)
+- [API Documentation](api-docs.md)

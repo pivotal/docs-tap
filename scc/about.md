@@ -8,23 +8,34 @@ weight: 1
 
 This topic introduces Supply Chain Choreographer.
 
-## Overview
+## <a id="overview"></a> Overview
 
 Supply Chain Choreographer is based on open source [Cartographer](https://cartographer.sh/docs/).
-It allows App Operators to create pre-approved paths to production by integrating Kubernetes 
-resources with the elements of their existing toolchains (e.g. Jenkins).
+It allows App Operators to create pre-approved paths to production by integrating Kubernetes
+resources with the elements of their existing toolchains, for example, Jenkins.
 
-Each pre-approved supply chain creates a paved road to production; orchestrating supply chain 
-resources - test, build, scan, and deploy - allowing developers to be able to focus on 
-delivering value to their users while also providing App Operators with the peace of mind that 
-all code in production has passed through all of the steps of an approved workflow.
+Each pre-approved supply chain creates a paved road to production. Orchestrating supply chain
+resources - test, build, scan, and deploy - allows developers to focus on
+delivering value to their users and provides App Operators the assurance that
+all code in production has passed through all the steps of an approved workflow.
 
-## Out of the box supply chains
+# <a id="out-of-the-box-supply-chains"></a> Out of the Box Supply Chains
 
-VMware Tanzu ships with [Out-of-the-Box Supply Chains](default-supply-chains.md).
+Out of the box supply chains are provided with Tanzu Application Platform.
 
-## About installing
+The following three supply chains are included:
 
-Supply Chain Choreographer is released as a Tanzu Package.
+- [Out of the Box Supply Chain Basic](ootb-supply-chain-basic.html)
+- [Out of the Box Supply Chain with Testing](ootb-supply-chain-testing.html)
+- [Out of the Box Supply Chain with Testing and Scanning](ootb-supply-chain-testing-scanning.html)
 
-To install Supply Chain Choreographer, see [Install Supply Chain Choreographer](../install-components.md#install-scc).
+As auxiliary components, Tanzu Application Platform also includes:
+
+- [Out of the Box Templates](ootb-templates.html), for providing templates used by the supply chains
+  to perform common tasks like fetching source code, running tests, and
+  building container images.
+
+- [Out of the Box Delivery Basic](ootb-delivery-basic.html), for delivering to a Kubernetes cluster the
+  configuration built throughout a supply chain
+
+Both Templates and Delivery Basic are requirements for the Supply Chains.

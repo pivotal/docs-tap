@@ -1,6 +1,6 @@
 # Tanzu apps workload delete
 
-This topic will help you delete one or more workloads by name or all workloads within a namespace.
+This topic helps you delete one or more workloads by name or all workloads within a namespace.
 
 Deleting a workload prevents new builds while preserving built images in the
 registry.
@@ -9,18 +9,18 @@ registry.
 tanzu apps workload delete <name(s)> [flags]
 ```
 
-## Examples
+## <a id="examples"></a>Examples
 
 ```
 tanzu apps workload delete my-workload
 tanzu apps workload delete --all
 ```
 
-## Options
+## <a id="options"></a>Options
 
 ```
       --all                     delete all workloads within the namespace
-  -f, --file file path          file path containing the description of a single workload, other flags are layered on top of this resource
+  -f, --file file path          file path containing the description of a single workload; other flags are layered on top of this resource. Use value "-" to read from stdin
   -h, --help                    help for delete
   -n, --namespace name          kubernetes namespace (defaulted from kube config)
       --wait                    waits for workload to be deleted
@@ -28,7 +28,7 @@ tanzu apps workload delete --all
   -y, --yes                     accept all prompts
 ```
 
-## Options inherited from parent commands
+## <a id="parent-commands-options"></a> Options inherited from parent commands
 
 ```
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
@@ -37,7 +37,6 @@ tanzu apps workload delete --all
   -v, --verbose int32     number for the log level verbosity (default 1)
 ```
 
-## See also
+## <a id="see-also"></a> See also
 
-* [Tanzu Apps Workload](tanzu_apps_workload.md) - Workload lifecycle management
-
+* [Tanzu Apps Workload](tanzu_apps_workload.md) - Workload life cycle management

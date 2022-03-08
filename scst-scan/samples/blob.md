@@ -1,11 +1,14 @@
 # Sample public source scan of a blob
-This example will perform a scan against a source code in a `.tar.gz` file. This can be helpful in a Supply Chain, where there can be a `GitRepository` step that handles cloning a repository and outputting the source code as a compressed archive.
 
-## Define the resources
+This example performs a scan against source code in a `.tar.gz` file. This can be helpful in a Supply Chain, where there can be a `GitRepository` step that handles cloning a repository and outputting the source code as a compressed archive.
+
+## <a id="define-resources"></a>Define the resources
+
 Create `public-blob-source-example.yaml`:
-```yaml
+
+```
 ---
-apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
+apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: ScanTemplate
 metadata:
   name: public-blob-source-scan-template
@@ -41,7 +44,7 @@ spec:
         args: ["-c", "grype dir:/workspace/source -o cyclonedx"]
 
 ---
-apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
+apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: SourceScan
 metadata:
   name: public-blob-source-example
@@ -51,32 +54,40 @@ spec:
   scanTemplate: public-blob-source-scan-template
 ```
 
-## (Optional) Set up a watch
-Before deploying, set up a watch in another terminal to see things process which will be quick.
-```bash
+## <a id="set-up-watch"></a>(Optional) Set up a watch
+
+Before deploying, set up a watch in another terminal to see things process:
+
+```
 watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
 ```
 
-For more information, refer to [Observing and Troubleshooting](../observing.md).
+For more information, see [Observing and Troubleshooting](../observing.md).
 
-## Deploy the resources
-```bash
+## <a id="deploy-resources"></a>Deploy the resources
+
+```
 kubectl apply -f public-blob-source-example.yaml
 ```
 
-## View the scan results
-Once the scan has completed, perform:
-```bash
+## <a id="view-scan-results"></a>View the scan results
+
+When the scan completes, perform:
+
+```
 kubectl describe sourcescan public-blob-source-example
 ```
-and notice the `Status.Conditions` includes a `Reason: JobFinished` and `Message: The scan job finished`.
 
-For more information, refer to [Viewing and Understanding Scan Status Conditions](../results.md).
+Notice the `Status.Conditions` includes a `Reason: JobFinished` and `Message: The scan job finished`.
 
-## Clean up
-```bash
+For more information, see [Viewing and Understanding Scan Status Conditions](../results.md).
+
+## <a id="clean-up"></a>Clean up
+
+```
 kubectl delete -f public-blob-source-example.yaml
 ```
 
-## View vulnerability reports
-See [Viewing Vulnerability Reports](../viewing-reports.md) section
+## <a id="view-vuln-reports"></a>View vulnerability reports
+
+After completing the scans, [query the Supply Chain Security Tools - Store](../../scst-store/query_data.md) to view your vulnerability results.
