@@ -12,36 +12,36 @@ VMware recommends that you use the Beta TAP Auth CLI, available for download fro
 1. Download the latest Tanzu CLI.
 1. Download the beta Tanzu Application Platform Auth CLI tar.gz from [Tanzu Network](https://network.tanzu.vmware.com/products/tap-auth).
 1. Ensure you have admin access to the cluster.
-1. Ensure you have configured an authentication solution for the cluster. You can use Pinniped or the authentication service native to your Kubernetes distribution.
+1. Ensure you have configured an authentication solution for the cluster. You can use **Pinniped** or the authentication service native to your Kubernetes distribution.
 
 
 ## <a id="install"></a>Install the auth plugin
 
 1. Untar the tar.gz:
 
-		```
-		tar zxvf <NAME OF THE TAR>
-		```
-	
+    ```
+    tar zxvf <NAME OF THE TAR>
+    ```
+
 1. Install the auth plugin locally:
 
-		- For macOS:
-		
-		```
-		tanzu plugin install auth --local published/darwin-amd64
-		```
+    - For macOS:
 
-		- For Linux:
-		
-		```
-		tanzu plugin install auth --local published/linux-amd64
-		```
+    ```
+    tanzu plugin install auth --local published/darwin-amd64
+    ```
 
-		- For Windows:
-		
-		```
-		tanzu plugin install auth --local published/windows-amd64
-		```
+    - For Linux:
+
+    ```
+    tanzu plugin install auth --local published/linux-amd64
+    ```
+
+    - For Windows:
+
+    ```
+    tanzu plugin install auth --local published/windows-amd64
+    ```
 
 ### <a id="use-kubeconfig"></a>Use a different kubeconfig location
 
