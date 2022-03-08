@@ -2,9 +2,9 @@
 
 Tanzu Application Platform GUI can be configured to retrieve Kubernetes object details from multiple clusters and to surface those details in the Runtime Resources Visibility plug-in.
 
-## Set up a Service Account to view resources on a cluster
+## <a id="set-up-view-resources"></a>Set up a Service Account to view resources on a cluster
 
-A service account needs to be created on the cluster that can `get`, `watch`, and `list` resources on that cluster. Create a `ClusterRole` with these rules and a `ServiceAccount` in its own `Namespace`, and then bind the `ClusterRole` to the `ServiceAccount`.
+A service account must be created on the cluster that can `get`, `watch`, and `list` resources on that cluster. Create a `ClusterRole` with these rules and a `ServiceAccount` in its own `Namespace`, and then bind the `ClusterRole` to the `ServiceAccount`.
 
 This YAML creates the `Namespace`, `ServiceAccount`, `ClusterRole`, and `ClusterRoleBinding`. Copy it into a file called `tap-gui-viewer-service-account-rbac.yaml`.
 
@@ -71,7 +71,7 @@ Ensure the kubeconfig context is set to the cluster with resources to be viewed 
 kubectl create -f tap-gui-viewer-service-account-rbac.yaml
 ```
 
-This cluster will need to be identified to Tanzu Application Platform GUI along with the `ServiceAccount` token and the cluster Kubernetes control plane url. Choose a name for the cluster and note it as `CLUSTER_NAME`. The `CLUSTER_URL` and `CLUSTER_TOKEN` can be found with these commands:
+This cluster must be identified to Tanzu Application Platform GUI with the `ServiceAccount` token and the cluster Kubernetes control plane URL. Choose a name for the cluster and note it as `CLUSTER_NAME`. You can find the `CLUSTER_URL` and `CLUSTER_TOKEN` with these commands:
 
 ```bash
 CLUSTER_URL=$(kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}')
@@ -82,7 +82,7 @@ CLUSTER_TOKEN=$(kubectl -n tap-gui get secret $(kubectl -n tap-gui get sa tap-gu
 | base64 --decode)
 ```
 
-## Update Tanzu Application Platform GUI to view resources on multiple clusters
+## <a id="view-resourcs-on-clusters"></a>Update Tanzu Application Platform GUI to view resources on multiple clusters
 
 A `kubernetes` section must be added to the `app_config` used by Tanzu Application Platform GUI. Update the `tap-gui-values.yaml` used to install Tanzu Application Platform GUI with an entry to `clusters` for each cluster with resources to view. See the following YAML for the `kubernetes` section and substitute in the `CLUSTER_URL`, `CLUSTER_NAME`, and `CLUSTER_TOKEN` values found earlier:
 
@@ -114,7 +114,7 @@ Wait a moment for the `tap-gui` package to update and then verify that `STATUS` 
 tanzu package installed get tap-gui -n tap-install
 ```
 
-## View resources on multiple clusters in the Runtime Resources Visibility plug-in
+## <a id="view-resources-plug-in"></a>View resources on multiple clusters in the Runtime Resources Visibility plug-in
 
 Navigate to the Runtime Resources Visibility plug-in for a component that is running on multiple clusters. Multiple resources and their status across the clusters are displayed.
 
