@@ -165,7 +165,7 @@ This is the table of contents from which the Tanzu Application Platform Document
       - [Install Tanzu Application Platform GUI](tap-gui/install-tap-gui.md)
       - [Accessing Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md)
       - [Catalog operations](tap-gui/catalog/catalog-operations.md)
-      - [Viewing resources on multiple clusters in Tanzu Application Platform GUI](tap-gui/cluster-view-setup.md)
+      - [Viewing resources on multiple clusters](tap-gui/cluster-view-setup.md)
       - [Authentication](tap-gui/auth.md)
       - [Support menu customization](tap-gui/support-menu.md)
       - [Integrations](tap-gui/integrations.md)
