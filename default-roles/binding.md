@@ -27,21 +27,21 @@ VMware recommends that you use the Beta TAP Auth CLI, available for download fro
 
     - For macOS:
 
-    ```
-    tanzu plugin install auth --local published/darwin-amd64
-    ```
+        ```
+        tanzu plugin install auth --local published/darwin-amd64
+        ```
 
     - For Linux:
 
-    ```
-    tanzu plugin install auth --local published/linux-amd64
-    ```
+        ```
+        tanzu plugin install auth --local published/linux-amd64
+        ```
 
     - For Windows:
 
-    ```
-    tanzu plugin install auth --local published/windows-amd64
-    ```
+        ```
+        tanzu plugin install auth --local published/windows-amd64
+        ```
 
 ### <a id="use-kubeconfig"></a>Use a different kubeconfig location
 
