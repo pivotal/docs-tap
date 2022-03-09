@@ -1,25 +1,25 @@
 # Installing on Kind
 
-Kind was developed as a means to support development and testing of Kubernetes. Despite that it exists primarily for that purpose, Kind clusters are often used for local development of user applications as well. For Learning Center, you can use a local Kind cluster to develop workshop content or self-learning when deploying other people's workshops.
+Kind was developed as a means to support development and testing of Kubernetes. Though it exists primarily for that purpose, Kind clusters are often used for local development of user applications as well. For Learning Center, you can use a local Kind cluster to develop workshop content or self-learning when deploying other people's workshops.
 
-As you are deploying to a local machine you are unlikely to have access to your own custom domain name and certificate you can use with the cluster. If you don't, you may be restricted as to the sorts of workshops you can develop or run using the Learning Center in Kind. This is because Kind uses `containerd` which lacks certain features that allow you to trust any image registries hosted within a subnet. This means you cannot run workshops that use a local image registry for each workshop session in an easy way. If you need the ability to run workshops on your local computer that uses an image registry for each session, we recommend you use minikube with `dockerd` instead. You can find more details about this issue below.
+Because you are deploying to a local machine, you are unlikely to have access to your own custom domain name and certificate you can use with the cluster. If you don't, you can be restricted as to the sorts of workshops you can develop or run using the Learning Center in Kind. Kind uses `containerd`, which lacks certain features that allow you to trust any image registries hosted within a subnet. This means you cannot readily run workshops that use a local container image registry for each workshop session. If you must run workshops on your local computer that uses an image registry for each session, VMware recommends you use minikube with `dockerd` instead. For more information, see [Installing on Minikube](deploying-to-minikube.md).
 
-Also keep in mind that, since Kind generally has limited memory resources available, you may be prohibited from running workshops that have large memory requirements. Certain workshops which demonstrate the use of third-party applications requiring a multi-node cluster also will not work unless the Kind cluster is specifically configured to be multi-node rather than a single node.
+Also, since Kind has limited memory resources available, you may be prohibited from running workshops that have large memory requirements. Workshops that demonstrate the use of third-party applications requiring a multi-node cluster also do not work unless the Kind cluster is specifically configured to be multi-node rather than single node.
 
-Requirements and setup instructions specific to Kind are detailed below; otherwise, follow normal installation instructions for the Learning Center Operator.
+Requirements and setup instructions specific to Kind are detailed in this document. Otherwise, follow normal installation instructions for the Learning Center operator.
 
 ## <a id="prerequisites"></a> Prerequisites
 
-The following installation prerequisites must be done prior to installation:
+You must complete the following installation prerequisites as a user prior to installation:
 
-  - As a user, you currently have created a tanzunet account and have access to your tanzunet credentials.  
-  - As a user, you currently have kind installed on your local machine.  
-  - As a user, you currently have tanzuCLI installed on your local machine.  
-  - As a user, you currently have kubectlCLI installed on your local machine.
+  - Create a tanzunet account and have access to your tanzunet credentials.  
+  - Install Kind on your local machine.  
+  - Install tanzuCLI on your local machine.  
+  - Install kubectlCLI on your local machine.
 
 ## <a id="kind-cluster-creation"></a> Kind cluster creation
 
-When initially creating the Kind cluster you will need to [configure](https://kind.sigs.k8s.io/docs/user/ingress#create-cluster) it so that the ingress controller will be exposed. The documentation provides the following command to do this, but check the documentation in case the details have changed.
+When initially creating the Kind cluster, you must [configure](https://kind.sigs.k8s.io/docs/user/ingress#create-cluster) it so that the ingress controller is exposed. The Kind documentation provides the following command to do this, but check the documentation in case the details have changed.
 
 ```
 cat <<EOF | kind create cluster --config=-
@@ -43,41 +43,45 @@ nodes:
 EOF
 ```
 
-Once you have the Kind cluster up and running, you need to install an ingress controller.
+Once you have the Kind cluster up and running, you must install an ingress controller.
 
 ## <a id="ingress-control-with-dns"></a> Ingress controller with DNS
 
 The Kind documentation provides instructions for installing Ambassador, Contour, and Nginx-based ingress controllers.
 
-It is recommended that [Contour](https://kind.sigs.k8s.io/docs/user/ingress#contour) be used rather than Nginx, as the latter will drop websocket connections whenever new ingresses are created. The Learning Center workshop environments do include a workaround to re-establish websocket connections for the workshop terminals without losing terminal state, but other applications used with workshops may not, such as terminals available through VS Code.
+VMware recommends that you use [Contour](https://kind.sigs.k8s.io/docs/user/ingress#contour) rather than Nginx, because Nginx drops websocket connections whenever new ingresses are created. The Learning Center workshop environments do include a workaround to re-establish websocket connections for the workshop terminals without losing terminal state, but other applications used with workshops might not, such as terminals available through Visual Studio Code.
 
-You should avoid using the Ambassador ingress controller as it requires all ingresses created to be annotated explicitly with an ingress class of "ambassador". The Learning Center Operator can be configured to do this automatically for ingresses created for the training portal and workshop sessions, however, any workshops which create ingresses as part of the workshop instructions will not work unless they are written to have the user manually add the ingress class when required due to the use of Ambassador.
+Avoid using the Ambassador ingress controller, because it requires all ingresses created to be annotated explicitly with an ingress class of "ambassador." The Learning Center operator can be configured to do this automatically for ingresses created for the training portal and workshop sessions. However, any workshops that create ingresses as part of the workshop instructions do not work unless they are written to have the user manually add the ingress class when required due to the use of Ambassador.
 
-If you have created a contour ingress controller, please verify all pods have a running status using:
+If you have created a contour ingress controller, verify all pods have a running status. Run:
+
 ```
 kubectl get pods -n projectcontour -o wide
 ```
 
-## <a id="install-carvel-tools"></a> Installing carvel tools
+## <a id="install-carvel-tools"></a> Install carvel tools
 
-You must install the kapp controller and secret-gen controller carvel tools in order to properly install our tanzu packages.
+You must install the kapp controller and secret-gen controller carvel tools in order to properly install VMware tanzu packages.
 
-Install kapp controller by running:
+ To install kapp controller, run:
+
 ```
 kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/latest/download/release.yml
 ```
 
-Install secret-gen controller by running:
+To install secret-gen controller, run:
+
 ```
 kapp deploy -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/latest/download/release.yml
 ```
->**Note:** Type y and enter to continue when prompted during installation of both kapp and secret-gen controller.
 
-## <a id="install-tanzu-pkg-repo"></a> Installing Tanzu package repository
+>**Note:** Type "y" and enter to continue when prompted during installation of both kapp and secret-gen controllers.
 
-To install the Tanzu package repository:
+## <a id="install-tanzu-pkg-repo"></a> Install Tanzu package repository
 
-1. Create a namespace:
+Follow these steps to install the Tanzu package repository:
+
+1. To create a namespace, run:
 
   ```
   kubectl create ns tap-install
@@ -92,18 +96,21 @@ To install the Tanzu package repository:
     --export-to-all-namespaces --yes --namespace tap-install
   ```
 
-  Where `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for Tanzu Network.
+  Where: 
+  
+  - `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for Tanzu Network.
 
-1. Add package repository to your cluster:
+1. Add a vpackage repository to your cluster:
 
   ```
   tanzu package repository add tanzu-tap-repository \
     --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.0.0 \
     --namespace tap-install
   ```
+
   >**Note:** We are currently on build 7: if this changes, we need to update the command with the correct build version after the --url flag.
 
-1. Please make sure to check the package repository install status by running:
+1. To check the package repository install status, run:
 
   ```
   tanzu package repository get tanzu-tap-repository --namespace tap-install
@@ -115,7 +122,8 @@ To install the Tanzu package repository:
 
 To create a configuration YAML file:
 
-1. Create a file called learningcenter-value.yaml in your current directory with the data provided below.
+1. Create a file called learningcenter-value.yaml in your current directory with the following data:
+
   ```
   #! The namespace in which to deploy Learning Center. For now this must be "learningcenter" as
   namespace: learningcenter
@@ -131,7 +139,7 @@ To create a configuration YAML file:
     privateKey: null
     secretName: null
   #! Configuration for persistent volumes. The default storage class specified
-  #! by the cluster is used if not defined. You may need to set storage group
+  #! by the cluster is used if not defined. You might need to set storage group
   #! where a cluster has pod security policies enabled, usually
   #! to one. Set storage user and storage group in exceptional cases
   #! where storage class uses maps to NFS storage and storage server requires
@@ -139,8 +147,8 @@ To create a configuration YAML file:
   storageClass: null
   storageUser: null
   storageGroup: null
-  #! Credentials for accessing training portal instances. If not specified, then
-  #! random passwords are generated which you can obtain from the custom resource
+  #! Credentials for accessing training portal instances. If not specified, 
+  #! random passwords are generated that you can obtain from the custom resource
   #! for the training portal.
   portalCredentials:
     systemAdmin:
@@ -158,10 +166,10 @@ To create a configuration YAML file:
     username: null
     password: null
   #! Container image versions for various components of Learning Center. The Learning Center
-  #! Operator will need to be modified to read names of images for the registry
+  #! operator needs to be modified to read names of images for the registry
   #! and docker-in-docker from config map to enable disconnected install.
   #!   https://github.com/eduk8s/eduk8s-operator/issues/112
-  #! Prepull images to nodes in cluster. Should be empty list if no images
+  #! Prepull images to nodes in cluster. Should be an empty list if no images
   #! should be prepulled. Normally you would only want to prepull workshop
   #! images. This is done to reduce start-up times for sessions.
   prepullImages: ["base-environment"]
@@ -180,23 +188,24 @@ To create a configuration YAML file:
   ```
 
 Where:
-- `ingressDomain` is `<your-local-ip>.nip.io` if you are using a `nip.io` DNS address. Details on what this is are provided below.
+
+- `ingressDomain` is `<your-local-ip>.nip.io` if you are using a `nip.io` DNS address. Details about this are provided in the following section.
 - `workshops.example.com with`  is `<your-local-ip>.nip.io`.
 
 ## <a id="use-nip-io-dns-address"></a> Using a `nip.io` DNS address
 
 Before you can start deploying workshops, you need to configure the operator to tell it what domain name can be used to access anything deployed by the operator.
 
-Being a local cluster which isn't exposed to the internet with its own custom domain name, you can use a [nip.io](
+Being a local cluster that isn't exposed to the internet with its own custom domain name, you can use a [nip.io](
 https://nip.io/). address.
 
-To calculate the `nip.io` address to use, first work out the IP address for the ingress controller exposed by Kind. This is usually the IP address of the local machine itself, even where you may be using Docker for Mac.
+To calculate the `nip.io` address to use, first work out the IP address for the ingress controller exposed by Kind. This is usually the IP address of the local machine itself, even when you may be using Docker for Mac.
 
-How you get the IP address for your local machine depends on the operating system being used.
+How you get the IP address for your local machine depends on the operating system you are using.
 
-For example on a Mac, you can find your ip address by searching for network using spotlight and selecting the network option under system preferences. Here you will see your IP address under status.
+For example on a Mac, you can find your IP address by searching for network using spotlight and selecting the network option under system preferences. Here you will see your IP address under status.
 
-Once you have the IP address, if, for example, it was `192.168.1.1`, use the domain name of `192.168.1.1.nip.io`.
+Once you have the IP address, add this as a prefix to the domain name `nip.io`. For example, if the address was `192.168.1.1`, use the domain name of `192.168.1.1.nip.io`.
 
 To configure the Learning Center operator with this cluster domain, run:
 
@@ -204,13 +213,9 @@ To configure the Learning Center operator with this cluster domain, run:
 kubectl set env deployment/eduk8s-operator -n eduk8s INGRESS_DOMAIN=192.168.1.1.nip.io
 ```
 
-This will cause the Learning Center Operator to automatically be re-deployed with the new configuration.
+This causes the Learning Center operator to redeploy with the new configuration. You should now be able to deploy workshops.
 
-You should now be able to start deploying workshops.
-
-Note that some home internet gateways implement what is called rebind protection. That is, they will not let DNS names from the public internet bind to local IP address ranges inside the home network. If your home internet gateway has such a feature and it is enabled, it will block `nip.io` addresses from working. In this case you will need to configure your home internet gateway to allow `*.nip.io` names to be bound to local addresses.
-
-Also note that you cannot use an address of form `127.0.0.1.nip.io`, or `subdomain.localhost`. This will cause a failure as internal services, when needing to connect to each other, end up connecting to themselves instead since the address would resolve to the host loopback address of `127.0.0.1`.
+>**Note:** Some home internet gateways implement what is called rebind protection. These gateways do not let DNS names from the public internet bind to local IP address ranges inside the home network. If your home internet gateway has such a feature and it is enabled, it blocks `nip.io` addresses from working. In this case, you must configure your home internet gateway to allow `*.nip.io` names to be bound to local addresses. Also, you cannot use an address of form `127.0.0.1.nip.io` or `subdomain.localhost`. This will cause a failure, because when internal services need to connect to each other, they end up connecting to themselves instead.  This happens because the address resolves to the host loopback address of `127.0.0.1`.
 
 ## <a id="install-lc-pkg-k8s-clust"></a> Install Learning Center package onto a Kubernetes cluster
 
@@ -219,49 +224,52 @@ To install Learning Center on a Kubernetes cluster:
 ```
 tanzu package install learningcenter --package-name learningcenter.tanzu.vmware.com --version 0.1.0 -f ./learningcenter-value.yaml --namespace tap-install
 ```
-This package installation uses the installed Package repository along with a configuration learningcenter-value.yaml to install our Learning Center Package.
 
-## <a id="ws-tut-pkg-k8s-cluster"></a> Install Workshop tutorial package onto a Kubernetes cluster
+This package installation uses the installed Package repository with a configuration learningcenter-value.yaml to install our Learning Center package.
 
-To install a Workshop tutorial on a Kubernetes cluster:
+## <a id="ws-tut-pkg-k8s-cluster"></a> Install workshop tutorial package onto a Kubernetes cluster
+
+To install a workshop tutorial on a Kubernetes cluster:
 
 ```
 tanzu package install learningcenter-tutorials --package-name workshops.learningcenter.tanzu.vmware.com --version 0.1.0 --namespace tap-install
 ```
-Make sure you install the workshop package after the Learning Center package has reconciled and successfully installed onto your cluster. In case of new versioning, you may obtain package version numbers using
+
+Make sure you install the workshop package after the Learning Center package has reconciled and successfully installed onto your cluster. In case of new versioning, to obtain package version numbers, run:
+
 ```
 kubectl get packages -n tap-install
 ```
 
 ## <a id="run-the-workshop"></a> Run the workshop
 
-To run a workshop:
+To get our portal URL, run:
 
-Use the following command to get our portal URL:
 ```
 kubectl get trainingportals
 ```
-Here we get a URL that we can then paste into our browser.
 
-Congratulations, you are now running our tutorial workshop using our Learning Center Operator.
+You get a URL that you can paste into your browser.
+
+Congratulations, you are now running our tutorial workshop using the Learning Center operator.
 
 ## <a id="trust-insecure-registries"></a> Trusting insecure registries
 
-Workshops may optionally deploy an image registry for a workshop session. This image registry is secured with a password specific to the workshop session and is exposed via a Kubernetes ingress so it can be accessed from the workshop session.
+Workshops can optionally deploy a container image registry for a workshop session. This image registry is secured with a password specific to the workshop session and is exposed through a Kubernetes ingress so it can be accessed from the workshop session.
 
-When using Kind, the typical scenario will be that insecure ingress routes are always going to be used. Even if you were to generate a self-signed certificate to use for ingress, it will not be trusted by `containerd` that runs within Kind. This means you have to tell Kind to trust any insecure registry running inside of Kind.
+In a typical scenario, Kind uses insecure ingress routes. Even were you to generate a self-signed certificate to use for ingress, it is not trusted by `containerd` that runs within Kind. You must tell Kind to trust any insecure registry running inside of Kind.
 
-Configuring kind to trust insecure registries must be done when you first create the cluster. The problem with Kind, however, is that it uses `containerd` and not `dockerd`. The `containerd` runtime doesn't provide a way to trust any insecure registry hosted within the IP subnet used by the Kubernetes cluster. Instead, what `containerd` requires is that you enumerate every single hostname or IP address on which an insecure registry is hosted. Since each workshop session created by the Learning Center for a workshop uses a different hostname, this makes it much harder to handle this situation.
+You must configure Kind to trust insecure registries when you first create the cluster. Kind, however, is that it uses `containerd` and not `dockerd`. The `containerd` runtime doesn't provide a way to trust any insecure registry hosted within the IP subnet used by the Kubernetes cluster. Instead, `containerd` requires that you enumerate every single host name or IP address on which an insecure registry is hosted. Since each workshop session created by the Learning Center for a workshop uses a different host name, this becomes cumbersome.
 
-If you really must used Kind and need to handle this, what you need to do is work out what the image registry hostname for a workshop deployment and configure `containerd` to trust a set of hostnames corresponding to low-numbered sessions for that workshop. This will allow it to work, but, once the hostnames for sessions go beyond the range of hostnames you set up, you need to delete the training portal and recreate it so you go back to using the same hostnames again.
+If you must used Kind, find out the image registry host name for a workshop deployment and configure `containerd` to trust a set of host names corresponding to low-numbered sessions for that workshop. This allows Kind to work, but once the host names for sessions go beyond the range of host names you set up, you need to delete the training portal and recreate it, so you can use the same host names again.
 
-For example, if the hostname for the image registry were of the form:
+For example, if the host name for the image registry were of the form:
 
 ```
 lab-docker-testing-wMM-sNNN-registry.192.168.1.1.nip.io
 ```
 
-where `NNN` changes per session, you would need to use a command to create the Kind cluster something like:
+where `NNN` changes per session, you must use a command to create the Kind cluster. For example:
 
 ```
 cat <<EOF | kind create cluster --config=-
@@ -297,8 +305,8 @@ containerdConfigPatches:
 EOF
 ```
 
-This allows you to run five workshop sessions before you had to delete the training portal and recreate it.
+This allows you to run five workshop sessions before you have to delete the training portal and recreate it.
 
-Do note that if using this, you are able to use the feature of the training portal to automatically update when a workshop definition is changed. This is because the `wMM` value identifying the workshop environment changes any time you update the workshop definition.
+If you use this, you can use the feature of the training portal to automatically update when a workshop definition is changed. This is because the `wMM` value identifying the workshop environment changes any time you update the workshop definition.
 
-There is no other known workaround for this limitation of `containerd`. As such, it is recommended to use minikube with `dockerd` instead.
+There is no other known workaround for this limitation of `containerd`. As such, VMware recommends you use minikube with `dockerd` instead. For more information, see [Installing on Minikube](deploying-to-minikube.md).

@@ -10,11 +10,11 @@ Requirements and setup instructions specific to Minikube are detailed in this do
 
 ## <a id="trust-insecure-registries"></a> Trusting insecure registries
 
-Workshops can optionally deploy a container image registry for a workshop session. This image registry is secured with a password specific to the workshop session and is exposed through a Kubernetes ingress, so it can be accessed from the workshop session.
+Workshops can optionally deploy a container image registry for a workshop session. This image registry is secured with a password specific to the workshop session and is exposed through a Kubernetes ingress so it can be accessed from the workshop session.
 
-In a typical scenario, Minikube uses insecure ingress routes. Even were you to generate a self-signed certificate to use for ingress, it is not trusted by the `dockerd` that runs within Minikube. You must tell Minikube to trust any insecure registry running inside of Minikube.
+In a typical scenario, Minikube uses insecure ingress routes. Even were you to generate a self-signed certificate to use for ingress, it is not trusted by `dockerd` that runs within Minikube. You must tell Minikube to trust any insecure registry running inside of Minikube.
 
-Configuring Minikube to trust insecure registries must be done the first time you start a new cluster with it. That is, you must supply the details to `minikube start`. To do this, you must know the IP subnet Minikube uses.
+You must configure Minikube to trust insecure registries the first time you start a new cluster with it. That is, you must supply the details to `minikube start`, which means you must know the IP subnet Minikube uses.
 
 If you already have a cluster running using Minikube, run `minikube ip` to discover the IP address it uses. From that you can discover the trusted subnet. For example, if `minikube ip` returned `192.168.64.1`, the trusted subnet is `192.168.64.0/24`.
 
@@ -52,7 +52,7 @@ You are now ready to install the Learning Center package.
 
 >**Note:** The ingress add-ons for Minikube do not work when using Minikube on top of Docker for Mac or Docker for Windows. On macOS you must use the Hyperkit VM driver. On Windows you must use the Hyper-V VM driver.
 
-## <a id="install-carvel-tools"></a> Installing carvel tools
+## <a id="install-carvel-tools"></a> Install carvel tools
 
 You must install the kapp controller and secret-gen controller carvel tools in order to properly install VMware tanzu packages.
 
@@ -70,7 +70,7 @@ kapp deploy -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller
 
 >**Note:** Type "y" and enter to continue when prompted during installation of both kapp and secret-gen controllers.
 
-## <a id="install-tanzu-pkg-repo"></a> Installing Tanzu package repository
+## <a id="install-tanzu-pkg-repo"></a> Install Tanzu package repository
 
 Follow these steps to install the Tanzu package repository:
 
@@ -219,7 +219,7 @@ To install the workshop tutorial package onto a minikube cluster, run:
 tanzu package install learningcenter-tutorials --package-name workshops.learningcenter.tanzu.vmware.com --version 0.1.0 --namespace tap-install
 ```
 
-Make sure you install the workshop package after the Learning Center package has reconciled and successfully installed onto your cluster. In case of new versioning, you may obtain package version numbers by running:
+Make sure you install the workshop package after the Learning Center package has reconciled and successfully installed onto your cluster. In case of new versioning, to obtain package version numbers, run:
 
 ```
 kubectl get packages -n tap-install
@@ -233,7 +233,7 @@ To get our portal URL, run:
 kubectl get trainingportals
 ```
 
-You get a URL that you can then paste into your browser.
+You get a URL that you can paste into your browser.
 
 Congratulations, you are now running the tutorial workshop using the Learning Center operator.
 
