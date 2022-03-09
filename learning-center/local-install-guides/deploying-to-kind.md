@@ -199,18 +199,18 @@ Where:
 
 ## <a id="use-nip-io-dns-address"></a> Using a `nip.io` DNS address
 
-Before you can start deploying workshops, you need to configure the operator to tell it what domain name can be used to access anything deployed by the operator.
+Before you can start deploying workshops, you must configure the operator to tell it what domain name can be used to access anything deployed by the operator.
 
-Being a local cluster that isn't exposed to the internet with its own custom domain name, you can use a [nip.io](
+Being a local cluster that isn't exposed to the Internet with its own custom domain name, you can use a [nip.io](
 https://nip.io/). address.
 
-To calculate the `nip.io` address to use, first work out the IP address for the ingress controller exposed by Kind. This is usually the IP address of the local machine itself, even when you may be using Docker for Mac.
+To calculate the `nip.io` address to use, first work out the IP address for the ingress controller exposed by Kind. This is usually the IP address of the local machine itself, even when you use Docker for Mac.
 
 How you get the IP address for your local machine depends on the operating system you are using.
 
-For example on a Mac, you can find your IP address by searching for network using spotlight and selecting the network option under system preferences. Here you will see your IP address under status.
+For example on a Mac, you can find your IP address by searching for network using spotlight and selecting the network option under system preferences. Here you can see your IP address under status.
 
-Once you have the IP address, add this as a prefix to the domain name `nip.io`. For example, if the address was `192.168.1.1`, use the domain name of `192.168.1.1.nip.io`.
+After you have the IP address, add this as a prefix to the domain name `nip.io`. For example, if the address was `192.168.1.1`, use the domain name of `192.168.1.1.nip.io`.
 
 To configure the Learning Center operator with this cluster domain, run:
 
@@ -218,9 +218,9 @@ To configure the Learning Center operator with this cluster domain, run:
 kubectl set env deployment/eduk8s-operator -n eduk8s INGRESS_DOMAIN=192.168.1.1.nip.io
 ```
 
-This causes the Learning Center operator to redeploy with the new configuration. You should now be able to deploy workshops.
+This causes the Learning Center operator to redeploy with the new configuration. You can now deploy workshops.
 
->**Note:** Some home internet gateways implement what is called rebind protection. These gateways do not let DNS names from the public internet bind to local IP address ranges inside the home network. If your home internet gateway has such a feature and it is enabled, it blocks `nip.io` addresses from working. In this case, you must configure your home internet gateway to allow `*.nip.io` names to be bound to local addresses. Also, you cannot use an address of form `127.0.0.1.nip.io` or `subdomain.localhost`. This will cause a failure, because when internal services need to connect to each other, they end up connecting to themselves instead.  This happens because the address resolves to the host loopback address of `127.0.0.1`.
+>**Note:** Some home Internet gateways implement what is called rebind protection. These gateways do not allow DNS names from the public Internet bind to local IP address ranges inside the home network. If your home Internet gateway has such a feature and it is enabled, it blocks `nip.io` addresses from working. In this case, you must configure your home Internet gateway to allow `*.nip.io` names to be bound to local addresses. Also, you cannot use an address of form `127.0.0.1.nip.io` or `subdomain.localhost`. This causes a failure, because when internal services need to connect to each other, they connect to themselves instead.  This happens because the address resolves to the host loopback address of `127.0.0.1`.
 
 ## <a id="install-lc-pkg-k8s-clust"></a> Install Learning Center package onto a Kubernetes cluster
 
@@ -264,7 +264,7 @@ Workshops can optionally deploy a container image registry for a workshop sessio
 
 In a typical scenario, Kind uses insecure ingress routes. Even were you to generate a self-signed certificate to use for ingress, it is not trusted by `containerd` that runs within Kind. You must tell Kind to trust any insecure registry running inside of Kind.
 
-You must configure Kind to trust insecure registries when you first create the cluster. Kind, however, is that it uses `containerd` and not `dockerd`. The `containerd` runtime doesn't provide a way to trust any insecure registry hosted within the IP subnet used by the Kubernetes cluster. Instead, `containerd` requires that you enumerate every single host name or IP address on which an insecure registry is hosted. Since each workshop session created by the Learning Center for a workshop uses a different host name, this becomes cumbersome.
+You must configure Kind to trust insecure registries when you first create the cluster. Kind, however, is that it uses `containerd` and not `dockerd`. The `containerd` runtime doesn't provide a way to trust any insecure registry hosted within the IP subnet used by the Kubernetes cluster. Instead, `containerd` requires that you enumerate every single host name or IP address on which an insecure registry is hosted. Because each workshop session created by the Learning Center for a workshop uses a different host name, this becomes cumbersome.
 
 If you must used Kind, find out the image registry host name for a workshop deployment and configure `containerd` to trust a set of host names corresponding to low-numbered sessions for that workshop. This allows Kind to work, but once the host names for sessions go beyond the range of host names you set up, you need to delete the training portal and recreate it, so you can use the same host names again.
 
