@@ -243,7 +243,7 @@ kubectl get packages -n tap-install
 
 ## <a id="run-the-workshop"></a> Run the workshop
 
-To get our portal URL, run:
+To get the training portal URL, run:
 
 ```
 kubectl get trainingportals
