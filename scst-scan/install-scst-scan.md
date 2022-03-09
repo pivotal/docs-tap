@@ -12,16 +12,16 @@ For more information about profiles, see [Installing the Tanzu Application Platf
 Before installing Supply Chain Security Tools - Scan:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
-- [Supply Chain Security Tools - Store](../install-components.md#install-scst-store) must be installed on the cluster for scan results to persist. Supply Chain Security Tools - Scan can be installed without Supply Chain Security Tools - Store already installed. In this case, skip creating a values file. Once Supply Chain Security Tools - Store is installed, the Supply Chain Security Tools - Scan values file must be updated.
+- [Supply Chain Security Tools - Store](../install-components.md#install-scst-store) must be installed for scan results to persist. It can be present on the same cluster or a different one. Supply Chain Security Tools - Scan can be installed using the CA Secret name for Supply Chain Security Tools - Store present in the same cluster, can be installed with Token Secret name for Supply Chain Security Tools - Store in different cluster, or can be installed without Supply Chain Security Tools - Store. In this case, skip creating a values file. Once Supply Chain Security Tools - Store is installed, the Supply Chain Security Tools - Scan values file must be updated.
   For usage instructions, see [Using the Supply Chain Security Tools - Store](../scst-store/overview.md).
-- Install Supply Chain Security Tools - Store CLI to query the Supply Chain Security Tools - Store for CVE results.
-  See [Installing the CLI](../scst-store/cli_installation.md).
+- Install Supply Chain Security Tools - Store Tanzu CLI plug-in to query the Supply Chain Security Tools - Store for CVE results.
+  See [Installing the Tanzu CLI plug-in](../scst-store/cli_installation.md).
 
 ## <a id="scanner-support"></a>Scanner support
 
 | Out-Of-The-Box Scanner | Version |
 | --- | --- |
-| [Anchore Grype](https://github.com/anchore/grype) | v0.33.0 |
+| [Anchore Grype](https://github.com/anchore/grype) | v0.33.1 |
 
 Let us know if there's a scanner you'd like us to support.
 
@@ -48,13 +48,13 @@ To install Supply Chain Security Tools - Scan (Scan controller):
     $ tanzu package available list scanning.apps.tanzu.vmware.com --namespace tap-install
     / Retrieving package versions for scanning.apps.tanzu.vmware.com...
       NAME                             VERSION       RELEASED-AT
-      scanning.apps.tanzu.vmware.com   1.0.0
+      scanning.apps.tanzu.vmware.com   1.1.0
     ```
 
 1. (Optional) Make changes to the default installation settings by running:
 
     ```
-    tanzu package available get scanning.apps.tanzu.vmware.com/1.0.0 --values-schema -n tap-install
+    tanzu package available get scanning.apps.tanzu.vmware.com/1.1.0 --values-schema -n tap-install
     ```
 
 1. Gather the values schema.
@@ -64,7 +64,7 @@ To install Supply Chain Security Tools - Scan (Scan controller):
     ```
     tanzu package install scan-controller \
       --package-name scanning.apps.tanzu.vmware.com \
-      --version 1.0.0 \
+      --version 1.1.0 \
       --namespace tap-install
     ```
 
@@ -82,20 +82,20 @@ To install Supply Chain Security Tools - Scan (Grype scanner):
     $ tanzu package available list grype.scanning.apps.tanzu.vmware.com --namespace tap-install
     / Retrieving package versions for grype.scanning.apps.tanzu.vmware.com...
       NAME                                  VERSION       RELEASED-AT
-      grype.scanning.apps.tanzu.vmware.com  1.0.0
+      grype.scanning.apps.tanzu.vmware.com  1.1.0
     ```
 
 1. (Optional) Make changes to the default installation settings by running:
 
     ```
-    tanzu package available get grype.scanning.apps.tanzu.vmware.com/1.0.0 --values-schema -n tap-install
+    tanzu package available get grype.scanning.apps.tanzu.vmware.com/1.1.0 --values-schema -n tap-install
     ```
 
     For example:
 
     ```
-    $ tanzu package available get grype.scanning.apps.tanzu.vmware.com/1.0.0 --values-schema -n tap-install
-    | Retrieving package details for grype.scanning.apps.tanzu.vmware.com/1.0.0...
+    $ tanzu package available get grype.scanning.apps.tanzu.vmware.com/1.1.0 --values-schema -n tap-install
+    | Retrieving package details for grype.scanning.apps.tanzu.vmware.com/1.1.0...
       KEY                        DEFAULT  TYPE    DESCRIPTION
       namespace                  default  string  Deployment namespace for the Scan Templates
       resources.limits.cpu       1000m    <nil>   Limits describes the maximum amount of cpu resources allowed.
@@ -108,9 +108,10 @@ To install Supply Chain Security Tools - Scan (Grype scanner):
     The `tap-values.yml` file to change the default installation settings looks like this:
 
     ```
-    grype:
-      namespace: DEV-NAMESPACE
-      targetImagePullSecret: TARGET-REGISTRY-CREDENTIALS-SECRET
+    ---
+    namespace: DEV-NAMESPACE
+    targetImagePullSecret: TARGET-REGISTRY-CREDENTIALS-SECRET
+    targetSourceSshSecret: TARGET-REPOSITORY-CREDENTIALS-SECRET
     ```
 
     Where:
@@ -119,9 +120,11 @@ To install Supply Chain Security Tools - Scan (Grype scanner):
 
       >**Note:** If you want to use a namespace other than the default namespace, ensure the namespace exists before you install. If the namespace does not exist, then the Grype scanner installation fails.
 
-    - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull an image from the registry for scanning. If built images are pushed to the same registry as the Tanzu Application Platform images, this can reuse the `tap-registry` secret created in step 3 of [Add the Tanzu Application Platform package repository](../install.md#add-package-repositories-and-EULAs).
+    - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull an image from a private registry for scanning. If built images are pushed to the same registry as the Tanzu Application Platform images, this can reuse the `tap-registry` secret created in step 3 of [Add the Tanzu Application Platform package repository](../install.md#add-package-repositories-and-EULAs).
 
-1. The default values are appropriate for this package.
+    - `TARGET-REPOSITORY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull source code from a private repository for scanning. This can be ignored if the source code is located in a public repository.
+
+2. The default values are appropriate for this package.
 If you want to change from the default values, use the Scan controller instructions as a guide.
 
 1. Install the package by running:
@@ -129,7 +132,7 @@ If you want to change from the default values, use the Scan controller instructi
     ```
     tanzu package install grype-scanner \
       --package-name grype.scanning.apps.tanzu.vmware.com \
-      --version 1.0.0 \
+      --version 1.1.0 \
       --namespace tap-install
     ```
 
@@ -138,7 +141,7 @@ If you want to change from the default values, use the Scan controller instructi
     ```
     $ tanzu package install grype-scanner \
       --package-name grype.scanning.apps.tanzu.vmware.com \
-      --version 1.0.0 \
+      --version 1.1.0 \
       --namespace tap-install
     / Installing package 'grype.scanning.apps.tanzu.vmware.com'
     | Getting namespace 'tap-install'
