@@ -12,8 +12,10 @@ For more information about profiles, see [Installing the Tanzu Application Platf
 Before installing Supply Chain Security Tools - Scan:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
-- [Supply Chain Security Tools - Store](../install-components.md#install-scst-store) must be installed for scan results to persist. It can be present on the same cluster or a different one. Supply Chain Security Tools - Scan can be installed using the CA Secret name for Supply Chain Security Tools - Store present in the same cluster, can be installed with Token Secret name for Supply Chain Security Tools - Store in different cluster, or can be installed without Supply Chain Security Tools - Store. In this case, skip creating a values file. Once Supply Chain Security Tools - Store is installed, the Supply Chain Security Tools - Scan values file must be updated.
-  For usage instructions, see [Using the Supply Chain Security Tools - Store](../scst-store/overview.md).
+- Install [Supply Chain Security Tools - Store](../install-components.md#install-scst-store) for scan results to persist. It can be present on the same cluster or a different one. You can install Supply Chain Security Tools - Scan by using the CA Secret name for Supply Chain Security Tools - Store present in the same cluster, with Token Secret name for Supply Chain Security Tools - Store in different cluster, or without Supply Chain Security Tools - Store. In this case, skip creating a values file. After you complete installing Supply Chain Security Tools - Store, you must update the Supply Chain Security Tools - Scan values file. 
+
+    For usage instructions, see [Using the Supply Chain Security Tools - Store](../scst-store/overview.md).
+
 - Install Supply Chain Security Tools - Store Tanzu CLI plug-in to query the Supply Chain Security Tools - Store for CVE results.
   See [Installing the Tanzu CLI plug-in](../scst-store/cli_installation.md).
 
@@ -120,12 +122,12 @@ To install Supply Chain Security Tools - Scan (Grype scanner):
 
       >**Note:** If you want to use a namespace other than the default namespace, ensure the namespace exists before you install. If the namespace does not exist, then the Grype scanner installation fails.
 
-    - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull an image from a private registry for scanning. If built images are pushed to the same registry as the Tanzu Application Platform images, this can reuse the `tap-registry` secret created in step 3 of [Add the Tanzu Application Platform package repository](../install.md#add-package-repositories-and-EULAs).
+    - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull an image from a private registry for scanning. If built images are pushed to the same registry as the Tanzu Application Platform images, you can reuse the `tap-registry` secret created earlier in [Add the Tanzu Application Platform package repository](../install.md#add-package-repositories-and-EULAs) for this field.
 
-    - `TARGET-REPOSITORY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull source code from a private repository for scanning. This can be ignored if the source code is located in a public repository.
+    - `TARGET-REPOSITORY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull source code from a private repository for scanning. This field is not optional if the source code is located in a public repository.
 
-2. The default values are appropriate for this package.
-If you want to change from the default values, use the Scan controller instructions as a guide.
+2. VMware recommends using the default values for this package.
+If you want to change the default values, see the Scan controller instructions for more information.
 
 1. Install the package by running:
 
