@@ -38,7 +38,8 @@ By default, three scan templates are deployed (`public-source-scan-template`,
 If `targetImagePullSecret` is set in `tap-values.yml`, `private-image-scan-template` is also deployed.
 If `targetSourceSshSecret` is set in `tap-values.yml`, `private-source-scan-template` is also deployed.
 
-The private scan templates reference secrets created using the docker server and credentials you provided, so they are ready to use out-of-the-box.
+The private scan templates reference secrets created using the Docker server and credentials you
+provided, which means they are ready to use immediately.
 
 For more information about the `SourceScan` and `ImageScan` CRDs and how to customize your own, refer to [Configuring Code Repositories and Image Artifacts to be Scanned](scan-crs.md).
 
