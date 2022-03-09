@@ -5,20 +5,11 @@ from the Tanzu Application Platform package repository.
 
 Application Live View installs three packages for `full` , `light` and `iterate` profiles:
 
-- Application Live View Backend package (`backend.appliveview.tanzu.vmware.com`) contains
-Application Live View Backend component.
+- For the `view` profile, Application Live View installs Application Live View Backend package (`backend.appliveview.tanzu.vmware.com`). This installs the Application Live View Backend component with Tanzu Application Platform GUI in `app-live-view` namespace.
 
-    - For the `view` profile, Application Live View installs Application Live View Backend package (`backend.appliveview.tanzu.vmware.com`). This installs the Application Live View Backend component with Tanzu Application Platform GUI in `app-live-view` namespace.
+- For the `run` profile, Application Live View installs Application Live View Connector package (`connector.appliveview.tanzu.vmware.com`). This installs the Application Live View Connector component as DaemonSet in `app-live-view-connector` namespace.
 
-- Application Live View Connector package (`connector.appliveview.tanzu.vmware.com`) contains
-Application Live View Connector component.
-
-    - For the `run` profile, Application Live View installs Application Live View Connector package (`connector.appliveview.tanzu.vmware.com`). This installs the Application Live View Connector component as DaemonSet in `app-live-view-connector` namespace.
-
-- Application Live View Conventions package (`conventions.appliveview.tanzu.vmware.com`) contains
-Application Live View Convention Service only.
-
-    - For the `build` profile, Application Live View installs Application Live View Conventions package (`conventions.appliveview.tanzu.vmware.com`). This installs the Application Live View Convention Service in `app-live-view-conventions` namespace.
+- For the `build` profile, Application Live View installs Application Live View Conventions package (`conventions.appliveview.tanzu.vmware.com`). This installs the Application Live View Convention Service in `app-live-view-conventions` namespace.
 
 >**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
 For more information about profiles, see [Installing the Tanzu Application Platform Package and Profiles](../../install.md).
