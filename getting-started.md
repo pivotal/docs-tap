@@ -26,7 +26,7 @@ See [Installing the Tanzu CLI](install-tanzu-cli.md) and [Installing the Tanzu A
 See [Changing clusters](cli-plugins/apps/usage.md#changing-clusters).
 
   - **Installed Out of The Box (OOTB) Supply Chain Basic**<br>
-See [Install Out of The Box Supply Chain Basic](install-components.md#install-ootb-sc-basic).
+See [Install Out of The Box Supply Chain Basic](scc-install-ootb-sc-basic.md).
 
     >**Note:** If you used the default profiles provided in [Installing the Tanzu Application Platform Package and Profiles](install.md),
     you have already installed the Out of The Box (OOTB) Supply Chain Basic.
