@@ -186,7 +186,7 @@ Where:
 
 After the Learning Center operator is installed, before you can start deploying workshops, you must configure the operator to tell it what domain name can be used to access anything deployed by the operator.
 
-Being a local cluster that isn't exposed to the internet with its own custom domain name, you can use a [nip.io](
+Being a local cluster that isn't exposed to the Internet with its own custom domain name, you can use a [nip.io](
 https://nip.io/). address.
 
 To calculate the `nip.io` address to use, first work out the IP address of the cluster created by Minikube by running `minikube ip`. Add this as a prefix to the domain name `nip.io`. For example, if `minikube ip` returns `192.168.64.1`, use the domain name of `192.168.64.1.nip.io`.
@@ -199,7 +199,7 @@ kubectl set env deployment/learningcenter-operator -n learningcenter INGRESS_DOM
 
 This causes the Learning Center operator to redeploy with the new configuration. You should now be able to start deploying workshops.
 
->**Note:** Some home internet gateways implement what is called rebind protection. These gateways do not let DNS names from the public internet bind to local IP address ranges inside the home network. If your home internet gateway has such a feature and it is enabled, it blocks `nip.io` addresses from working. In this case, you must configure your home internet gateway to allow `*.nip.io` names to be bound to local addresses.
+>**Note:** Some home Internet gateways implement what is called rebind protection. These gateways do not let DNS names from the public Internet bind to local IP address ranges inside the home network. If your home Internet gateway has such a feature and it is enabled, it blocks `nip.io` addresses from working. In this case, you must configure your home Internet gateway to allow `*.nip.io` names to be bound to local addresses.
 
 ## <a id="install-lc-pkg-mk-cluster"></a> Install Learning Center package onto a minikube cluster
 
