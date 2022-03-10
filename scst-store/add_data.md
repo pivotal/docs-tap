@@ -1,13 +1,14 @@
 # Add data
 
-This topic describes how to add Software Bill of Materials (SBoM) files to Supply Chain Security Tools - Store to understand your dependencies by querying.
-For instructions on querying, see [Query Data](../scst-store/query_data.md).
+This topic describes how to add Software Bill of Materials (SBoM) files to Supply Chain Security Tools - Store to understand your dependencies by querying.  For instructions on querying, see [Query Data](../scst-store/query_data.md).
 
-## <a id='supported-formats'></a>Supported Formats
+## <a id='supported-formats'></a>Supported Formats and File Types
 
-Currently, only CycloneDX XML files are accepted.
+Currently, only CycloneDX XML and JSON files are accepted.
 
-For example, additional format support is planned for future releases, for example, SPDX and CycloneDX JSON.
+Source commits and image files have been tested; additional file types (e.g., JAR) may work but these have not been fully tested.
+
+> The `version` field is required, as the database expects a unique identifier; any numeric value can be entered into the field
 
 ## <a id='gen-cyclone'></a>Generate a CycloneDX File
 
