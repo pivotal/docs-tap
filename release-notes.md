@@ -63,7 +63,6 @@ Corrected Postgres resource pluralization error.
 
 #### Spring Boot Conventions
 
-* Update logging format consistent with other TAP components to expedite troubleshooting. 
 * Apply human-readable [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339) timestamps to service binding logs.
 The following new conventions are applied to spring boot apps, v2.6 and above:
 * Add Kubernetes liveness and readiness probes using spring boot health endpoints.
