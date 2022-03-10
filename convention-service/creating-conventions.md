@@ -101,16 +101,16 @@ For example, adding a Prometheus sidecar to web applications, or adding a `workl
 1. <a id='convention-1'></a>The example `server.go` sets up the `ConventionHandler` to ingest the webhook requests([PodConventionContext](./reference/pod-convention-context.md)) from the convention controller. Here the handler must only deal with the existing [`PodTemplateSpec`](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) and [`ImageConfig`](./reference/image-config.md).
 
    ```go
-    ...
-    import (
-        corev1 "k8s.io/api/core/v1"
-    )
-    ...
-    func ConventionHandler(template *corev1.PodTemplateSpec, images []model.ImageConfig) ([]string, error) {
-        // Create custom conventions
-    }
-    ...
-    ```
+   ...
+   import (
+      corev1 "k8s.io/api/core/v1"
+   )
+   ...
+   func ConventionHandler(template *corev1.PodTemplateSpec, images []model.ImageConfig) ([]string, error) {
+       // Create custom conventions
+   }
+   ...
+   ```
 
      Where:
 
@@ -120,29 +120,28 @@ For example, adding a Prometheus sidecar to web applications, or adding a `workl
 2. <a id='server-2'></a>The example `server.go` also configures the convention server to listen for requests:
 
     ```go
-
+    ...
+    import (
+        "context"
+        "fmt"
+        "log"
+        "net/http"
+        "os"
         ...
-        import (
-            "context"
-            "fmt"
-            "log"
-            "net/http"
-            "os"
-            ...
-        )
-        ...
-        func main() {
-            ctx := context.Background()
-            port := os.Getenv("PORT")
-            if port == "" {
-                port = "9000"
-            }
-            http.HandleFunc("/", webhook.ServerHandler(convention.ConventionHandler))
-            log.Fatal(webhook.NewConventionServer(ctx, fmt.Sprintf(":%s", port)))
+    )
+    ...
+    func main() {
+        ctx := context.Background()
+        port := os.Getenv("PORT")
+        if port == "" {
+            port = "9000"
         }
-        ...
-
+        http.HandleFunc("/", webhook.ServerHandler(convention.ConventionHandler))
+        log.Fatal(webhook.NewConventionServer(ctx, fmt.Sprintf(":%s", port)))
+    }
+    ...
     ```
+
     Where:
 
     + `PORT` is a possible environment variable, for this example, defined in the [`Deployment`](#install-deployment).
