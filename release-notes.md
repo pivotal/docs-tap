@@ -63,7 +63,7 @@ Corrected Postgres resource pluralization error.
 
 #### Spring Boot Conventions
 
-* Apply human-readable [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339) timestamps to service binding logs.
+* Apply [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339) timestamps to service binding logs.
 The following new conventions are applied to spring boot apps, v2.6 and above:
 * Add Kubernetes liveness and readiness probes using spring boot health endpoints.
 * Change management port from 8080 to 8081 to increase security of the management port.
