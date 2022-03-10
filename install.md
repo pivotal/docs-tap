@@ -91,7 +91,7 @@ procedure, set up environment variables for use during the installation by runni
       api-portal.tanzu.vmware.com                          API portal                                                                A unified user interface to enable search, discovery and try-out of API endpoints at ease.
       backend.appliveview.tanzu.vmware.com                 Application Live View for VMware Tanzu                                    App for monitoring and troubleshooting running apps
       connector.appliveview.tanzu.vmware.com               Application Live View Connector for VMware Tanzu                          App for discovering and registering running apps
-      conventions.appliveview.tanzu.vmware.com             Application Live View Conventions for VMware Tanzu                        Application Live View convention server 
+      conventions.appliveview.tanzu.vmware.com             Application Live View Conventions for VMware Tanzu                        Application Live View convention server
       buildservice.tanzu.vmware.com                        Tanzu Build Service                                                       Tanzu Build Service enables the building and automation of containerized software workflows securely and at scale.
       cartographer.tanzu.vmware.com                        Cartographer                                                              Kubernetes native Supply Chain Choreographer.
       cnrs.tanzu.vmware.com                                Cloud Native Runtimes                                                     Cloud Native Runtimes is a serverless runtime based on Knative
@@ -117,7 +117,7 @@ procedure, set up environment variables for use during the installation by runni
 
 ## <a id='install-profile'></a> Install your Tanzu Application Platform profile
 
-The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile settings. This is done by using the package manager you installed using Tanzu Cluster Essentials. 
+The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile settings. This is done by using the package manager you installed using Tanzu Cluster Essentials.
 
 For more information about profiles, see [Installation profiles in Tanzu Application Platform](overview.md#profiles-and-packages).
 
@@ -147,11 +147,11 @@ To prepare to install a profile:
 These samples have the minimum configuration required to deploy Tanzu Application Platform.
 The sample values file contains the necessary defaults for:
 
-- The meta-package, or parent Tanzu Application Platform package
-- Subordinate packages, or individual child packages
+    - The meta-package, or parent Tanzu Application Platform package
+    - Subordinate packages, or individual child packages
 
-The values file you provide during installation is used for further configuration
-of Tanzu Application Platform.
+    The values file you provide during installation is used for further configuration
+    of Tanzu Application Platform.
 
     >**Important:** Keep this file for future use.
 
