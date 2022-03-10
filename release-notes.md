@@ -58,7 +58,7 @@ Corrected Postgres resource pluralization error.
 #### Source Controller
 
 * Apply [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339) timestamps to source controller logs.
-* Add TAP aggregate roles to support the Default Roles for Tanzu Application Platform (new feature referenced above).
+* Add TAP aggregate roles to support Tanzu Application Platform Authentication and Authorization (new feature referenced above).
 
 
 #### Spring Boot Conventions
