@@ -35,8 +35,7 @@ To install Source Controller:
       controller.source.apps.tanzu.vmware.com  0.3.3    2022-03-03 19:00:00 -0500 -05
     ```
 
-2. (Optional) Make changes to the default installation settings by running:
-
+2. (Optional) Gather values schema:
     ```
     tanzu package available get controller.source.apps.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
@@ -52,19 +51,22 @@ To install Source Controller:
      ca_cert_data           string  Optional: PEM Encoded certificate data for image registries with private CA.
     ```
 
-3. If wanted to provide custom cert, create a file named `source-controller-values.yaml` that specifies the corresponding values to the properties you want to change.
-   
-    For example, the contents of the file might look like this:
-    ```yaml
-    ca_cert_data: |
-        -----BEGIN CERTIFICATE-----
-        MIICpTCCAYUCBgkqhkiG9w0BBQ0wMzAbBgkqhkiG9w0BBQwwDgQIYg9x6gkCAggA
-        ...
-        9TlA7A4FFpQqbhAuAVH6KQ8WMZIrVxJSQ03c9lKVkI62wQ==
-        -----END CERTIFICATE-----
-    ```
+3. (Optional) Enable Source Controller to connect to image registries that use self-signed or private certificate authorities.
+If a certificate error `x509: certificate signed by unknown authority` occurs, this option can be used to trust additional certificate authorities. 
 
-4. Install the package. Run:
+    To provide custom cert, create a file named `source-controller-values.yaml` that includes the PEM-encoded CA cert data.
+   
+      For example:
+      ```yaml
+      ca_cert_data: |
+          -----BEGIN CERTIFICATE-----
+          MIICpTCCAYUCBgkqhkiG9w0BBQ0wMzAbBgkqhkiG9w0BBQwwDgQIYg9x6gkCAggA
+          ...
+          9TlA7A4FFpQqbhAuAVH6KQ8WMZIrVxJSQ03c9lKVkI62wQ==
+          -----END CERTIFICATE-----
+      ```
+
+4. Install the package:
 
     ```
     tanzu package install source-controller -p controller.source.apps.tanzu.vmware.com -v VERSION-NUMBER -n tap-install -f VALUES-FILE
@@ -90,7 +92,7 @@ To install Source Controller:
     Added installed package 'source-controller'
     ```
 
-5. Verify the package install by running:
+5. Verify the package installation by running:
 
     ```
     tanzu package installed get source-controller -n tap-install
