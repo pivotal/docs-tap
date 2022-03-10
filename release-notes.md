@@ -53,7 +53,7 @@ This new profile is intended for iterative development versus the path to produc
 * Apply [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339) timestamps to service binding logs.
 * Add TAP aggregate roles to support Tanzu Application Platform Authentication and Authorization(new feature referenced above).
 * Add support for servicebinding.io/v1beta1
-
+Corrected Postgres resource pluralization error.
 
 #### Source Controller
 
