@@ -1,13 +1,14 @@
 # Add data
 
-This topic describes how to add Software Bill of Materials (SBoM) files to Supply Chain Security Tools - Store to understand your dependencies by querying.
-For instructions on querying, see [Query Data](../scst-store/query_data.md).
+This topic describes how to add Software Bill of Materials (SBoM) files to Supply Chain Security Tools - Store to understand your dependencies by querying.  For instructions on querying, see [Query Data](../scst-store/query_data.md).
 
-## <a id='supported-formats'></a>Supported Formats
+## <a id='supported-formats'></a>Supported Formats and File Types
 
-Currently, only CycloneDX XML files are accepted.
+Currently, only CycloneDX XML and JSON files are accepted.
 
-For example, additional format support is planned for future releases, for example, SPDX and CycloneDX JSON.
+Source commits and image files have been tested; additional file types (e.g., JAR) may work but these have not been fully tested.
+
+> If using a non-source commit or image file type, be sure your CycloneDX file's `component.version` field is non-null, as the database expects a unique identifier.
 
 ## <a id='gen-cyclone'></a>Generate a CycloneDX File
 
@@ -44,7 +45,7 @@ Use the following commands to add data:
 - `image create`
 - `source create`
 
-Use `tanzu insight -h` in the terminal or see [Tanzu insight](cli_docs/insight.md) for more information.
+> If using a non-source commit or image file type, you can pick either option
 
 ## <a id='example1'></a>Example #1: Create an Image Report
 
