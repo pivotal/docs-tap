@@ -126,14 +126,15 @@ To install a profile:
     tanzu package available list tap.tanzu.vmware.com --namespace tap-install
     ```
 
-1. Create a `tap-values.yml` file by using the
-[Full Profile sample](#full-profile) or [Light Profile sample](#light-profile) as a guide.
-These samples contain the minimum configuration required to deploy Tanzu Application Platform.
-The sample values file contains the necessary defaults for both the meta-package
-(parent Tanzu Application Platform package) and subordinate packages
-(individual child packages).
-The values file you provide during installation is used for further configuration
-of Tanzu Application Platform.
+1. Create a `tap-values.yml` file by using the [Full Profile sample](#full-profile) as a guide.
+These samples have the minimum configuration required to deploy Tanzu Application Platform.
+The sample values file contains the necessary defaults for:
+
+    - The meta-package, or parent Tanzu Application Platform package
+    - Subordinate packages, or individual child packages
+
+    The values file you provide during installation is used for further configuration
+    of Tanzu Application Platform.
 
     >**Important:** Keep this file for future use.
 
