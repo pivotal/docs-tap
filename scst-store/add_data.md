@@ -45,7 +45,7 @@ Use the following commands to add data:
 - `image create`
 - `source create`
 
-Use `tanzu insight -h` in the terminal or see [Tanzu insight](cli_docs/insight.md) for more information.
+> If using a non-source commit or image file type, you can pick either option
 
 ## <a id='example1'></a>Example #1: Create an Image Report
 
