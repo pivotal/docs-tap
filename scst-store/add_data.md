@@ -6,9 +6,9 @@ This topic describes how to add Software Bill of Materials (SBoM) files to Suppl
 
 Currently, only CycloneDX XML and JSON files are accepted.
 
-Source commits and image files have been tested; additional file types (e.g., JAR) may work but these have not been fully tested.
+Source commits and image files are tested. Additional file types, for example, JAR, might work because they are not fully tested.
 
-> If using a non-source commit or image file type, be sure your CycloneDX file's `component.version` field is non-null, as the database expects a unique identifier.
+>**Note:** If you use a non-source commit or image file type, ensure the `component.version` field in the CycloneDX file is non-null, because the database expects a unique identifier.
 
 ## <a id='gen-cyclone'></a>Generate a CycloneDX File
 
@@ -45,7 +45,7 @@ Use the following commands to add data:
 - `image create`
 - `source create`
 
-> If using a non-source commit or image file type, you can pick either option
+>**Note:** If using a non-source commit or image file type, you can select either option.
 
 ## <a id='example1'></a>Example #1: Create an Image Report
 
