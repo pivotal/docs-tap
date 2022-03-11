@@ -12,7 +12,7 @@ The following are a few use cases supported by the CLI:
 
 ## <a id='query-insight'></a> Query using the Tanzu Insight plug-in
 
-See [CLI plug-in installation](cli_installation.md) if you have not previously installed the `insight` CLI plug-in.
+See [CLI plug-in installation](cli-installation.md) if you have not previously installed the `insight` CLI plug-in.
 
 Use the following commands for querying:
 
@@ -86,4 +86,4 @@ Packages:
 
 ## <a id='add-data'></a>Add data
 
-See [Add Data](add_data.md) for more information about manually adding data.
+See [Add Data](add-data.md) for more information about manually adding data.

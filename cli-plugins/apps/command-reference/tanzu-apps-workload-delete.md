@@ -39,4 +39,4 @@ tanzu apps workload delete --all
 
 ## <a id="see-also"></a> See also
 
-* [Tanzu Apps Workload](tanzu_apps_workload.md) - Workload life cycle management
+* [Tanzu Apps Workload](tanzu-apps-workload.md) - Workload life cycle management

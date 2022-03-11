@@ -28,12 +28,12 @@ Workload configuration includes:
 
 ## <a id="see-also"></a> See also
 
-- [Tanzu applications](tanzu_apps.md)	- Applications on Kubernetes
-- [Tanzu apps workload apply](tanzu_apps_workload_apply.md)	- Apply configuration to a new or existing workload
-- [Tanzu apps workload create](tanzu_apps_workload_create.md)	- Create a workload with specified configuration
-- [Tanzu apps workload delete](tanzu_apps_workload_delete.md)	- Delete workload(s)
-- [Tanzu apps workload get](tanzu_apps_workload_get.md)	- Get details from a workload
-- [Tanzu apps workload list](tanzu_apps_workload_list.md) - Table listing of workloads
-- [Tanzu apps workload tail](tanzu_apps_workload_tail.md) - Watch workload-related logs
-- [Tanzu apps workload update](tanzu_apps_workload_update.md)	- Update configuration of an existing workload
+- [Tanzu applications](tanzu-apps.md)	- Applications on Kubernetes
+- [Tanzu apps workload apply](tanzu-apps-workload-apply.md)	- Apply configuration to a new or existing workload
+- [Tanzu apps workload create](tanzu-apps-workload-create.md)	- Create a workload with specified configuration
+- [Tanzu apps workload delete](tanzu-apps-workload-delete.md)	- Delete workload(s)
+- [Tanzu apps workload get](tanzu-apps-workload-get.md)	- Get details from a workload
+- [Tanzu apps workload list](tanzu-apps-workload-list.md) - Table listing of workloads
+- [Tanzu apps workload tail](tanzu-apps-workload-tail.md) - Watch workload-related logs
+- [Tanzu apps workload update](tanzu-apps-workload-update.md)	- Update configuration of an existing workload
 

@@ -1,10 +1,10 @@
-# Tanzu apps workload update
+# Tanzu apps workload apply
 
-This topic helps you update the configuration of an existing workload.
+This topic helps you apply configurations to a new or existing workload.
 
 ### <a id="synopsis"></a> Synopsis
 
-Update the configuration of an existing workload.
+Apply configurations to a new or existing workload. If the resource does not exist, it will be created.
 
 Workload configuration options include:
 
@@ -14,20 +14,16 @@ Workload configuration options include:
 - services to bind
 
 ```
-tanzu apps workload update [name] [flags]
+tanzu apps workload apply [name] [flags]
 ```
 
-## <a id="examples"></a>Examples
+## <a id="examples"></a> Examples
 
 ```
-tanzu apps workload update my-workload --debug=false
-tanzu apps workload update my-workload --local-path .
-tanzu apps workload update my-workload --env key=value
-tanzu apps workload update my-workload --build-env key=value
-tanzu apps workload update --file workload.yaml
+tanzu apps workload apply --file workload.yaml
 ```
 
-## <a id='update-options'></a>Options
+## <a id="options"></a> Options
 
 ```
       --annotation "key=value" pair    annotation is represented as a "key=value" pair, or "key-" to remove. This flag may be specified multiple times
@@ -41,10 +37,10 @@ tanzu apps workload update --file workload.yaml
       --git-commit SHA                 commit SHA within the git repo to checkout
       --git-repo url                   git url to remote source code
       --git-tag tag                    tag within the git repo to checkout
-  -h, --help                           help for update
+  -h, --help                           help for apply
       --image image                    pre-built image, skips the source resolution and build phases of the supply chain
       --label "key=value" pair         label is represented as a "key=value" pair, or "key-" to remove. This flag may be specified multiple times
-      --limit-cpu cores                the maximum number of CPU cores allowed (500m = .5 cores)
+      --limit-cpu cores                the maximum number CPU cores allowed (500m = .5 cores)
       --limit-memory bytes             the maximum amount of memory allowed, in bytes (500Mi = 500MiB = 500 * 1024 * 1024)
       --live-update                    put the workload in live update mode, --live-update=false to disable
       --local-path path                path on the local file system to a directory of source code to build for the workload
@@ -62,7 +58,7 @@ tanzu apps workload update --file workload.yaml
   -y, --yes                            accept all prompts
 ```
 
-## <a id="parent-commands-options"></a>Options inherited from parent commands
+## <a id="parent-commands-options"></a> Options inherited from parent commands
 
 ```
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
@@ -73,4 +69,4 @@ tanzu apps workload update --file workload.yaml
 
 ## <a id="see-also"></a> See also
 
-- [Tanzu Apps Workload](tanzu_apps_workload.md)   - Workload life cycle management
+- [Tanzu Apps Workload](tanzu-apps-workload.md) - Workload life cycle management

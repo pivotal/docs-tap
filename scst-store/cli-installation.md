@@ -10,4 +10,4 @@ This topic explains how to install the `insight` plug-in by itself, after the us
     cd $HOME/tanzu
     tanzu plugin install insight --local cli
     ```
-1. Configure the `insight` plug-in by following these [instructions](cli_configuration.md)
+1. Configure the `insight` plug-in by following these [instructions](cli-configuration.md)

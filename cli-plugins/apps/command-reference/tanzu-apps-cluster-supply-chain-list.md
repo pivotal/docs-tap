@@ -1,25 +1,21 @@
-# Tanzu apps workload list
+# Tanzu apps cluster supply chain list
 
-This topic will help you list workloads in a namespace or across all namespaces.
+This topic helps you list cluster supply chains.
 
 ```
-tanzu apps workload list [flags]
+tanzu apps cluster-supply-chain list [flags]
 ```
 
 ## <a id="examples"></a>Examples
 
 ```
-tanzu apps workload list
-tanzu apps workload list --all-namespaces
+tanzu apps cluster-supply-chain list
 ```
 
 ## <a id="options"></a>Options
 
 ```
-  -A, --all-namespaces   use all kubernetes namespaces
-      --app name         application name the workload is a part of
-  -h, --help             help for list
-  -n, --namespace name   kubernetes namespace (defaulted from kube config)
+  -h, --help   help for list
 ```
 
 ## <a id="parent-commands-options"></a>Options inherited from parent commands
@@ -33,4 +29,4 @@ tanzu apps workload list --all-namespaces
 
 ## <a id="see-also"></a> See also
 
-* [Tanzu Apps Workload](tanzu_apps_workload.md) - Workload life cycle management
+- [Tanzu apps cluster supply chain](tanzu-apps-cluster-supply-chain.md)	- Patterns for building and configuring workloads

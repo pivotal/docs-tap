@@ -126,7 +126,7 @@ To deploy your application, you must download an accelerator, upload it on your 
     
     Where `YOUR-DEVELOPER-NAMESPACE` is the namespace configured in step 6.
     
-    For more information, see [Tanzu Apps Workload Create](cli-plugins/apps/command-reference/tanzu_apps_workload_create.md).
+    For more information, see [Tanzu Apps Workload Create](cli-plugins/apps/command-reference/tanzu-apps-workload-create.md).
 
     > **Note:** This deployment uses an accelerator source from Git, but in later steps you use the VSCode extension
     to debug and live-update this application.
@@ -983,7 +983,7 @@ Use the Supply Chain Security Tools - Store CLI, called Insight,
 to query metadata that is submitted to the component after the scan step.
 
 For a complete guide on how to query the store,
-see [Querying Supply Chain Security Tools - Store](scst-store/query_data.md).
+see [Querying Supply Chain Security Tools - Store](scst-store/query-data.md).
 
 
 #### <a id="scst-scan-next-steps"></a>Next steps
