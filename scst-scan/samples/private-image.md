@@ -63,4 +63,4 @@ kubectl delete -f sample-image-source-scan.yaml
 
 ## <a id="view-vuln-reports"></a>View vulnerability reports
 
-After completing the scans, [query the Supply Chain Security Tools - Store](../../scst-store/query_data.md) to view your vulnerability results.
+After completing the scans, [query the Supply Chain Security Tools - Store](../../scst-store/query-data.md) to view your vulnerability results.

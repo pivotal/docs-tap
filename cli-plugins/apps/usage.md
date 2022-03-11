@@ -24,7 +24,7 @@ You can use the Apps CLI plug-in to create or update a workload.
 After you've successfully submitted your changes to the platform, the CLI command exits.
 Depending on the changes you submitted, it might take time for them to be executed on the platform.
 Run `tanzu apps workload get` to check the status of your changes.
-For more information on this command, see [Tanzu Apps Workload Get](command-reference/tanzu_apps_workload_get.md).
+For more information on this command, see [Tanzu Apps Workload Get](command-reference/tanzu-apps-workload-get.md).
 
 ## <a id='yaml-files'></a> Working with YAML files
 

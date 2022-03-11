@@ -1,31 +1,29 @@
-# Tanzu apps workload create
+# Tanzu apps workload apply
 
-This topic helps you create a workload with the specified configuration.
+This topic helps you apply configurations to a new or existing workload.
 
 ### <a id="synopsis"></a> Synopsis
 
-Create a workload with the specified configuration.
+Apply configurations to a new or existing workload. If the resource does not exist, it will be created.
 
 Workload configuration options include:
 
-- Source code to build
-- Runtime resource limits
-- Environment variables
-- Services to bind
+- source code to build
+- runtime resource limits
+- environment variables
+- services to bind
 
 ```
-tanzu apps workload create [name] [flags]
+tanzu apps workload apply [name] [flags]
 ```
 
-## <a id="examples"></a>Examples
+## <a id="examples"></a> Examples
 
 ```
-tanzu apps workload create my-workload --git-repo https://example.com/my-workload.git
-tanzu apps workload create my-workload --local-path . --source-image registry.example/repository:tag
-tanzu apps workload create --file workload.yaml
+tanzu apps workload apply --file workload.yaml
 ```
 
-## <a id="options"></a>Options
+## <a id="options"></a> Options
 
 ```
       --app name                       application name the workload is a part of
@@ -37,7 +35,7 @@ tanzu apps workload create --file workload.yaml
       --git-commit SHA                 commit SHA within the git repo to checkout
       --git-repo url                   git url to remote source code
       --git-tag tag                    tag within the git repo to checkout
-  -h, --help                           help for create
+  -h, --help                           help for apply
       --image image                    pre-built image, skips the source resolution and build phases of the supply chain
       --label "key=value" pair         label is represented as a "key=value" pair, or "key-" to remove. This flag may be specified multiple times
       --limit-cpu cores                the maximum amount of cpu allowed, in CPU cores (500m = .5 cores)
@@ -69,4 +67,4 @@ tanzu apps workload create --file workload.yaml
 
 ## <a id="see-also"></a> See also
 
-- [Tanzu Apps Workload](tanzu_apps_workload.md) - Workload life cycle management
+- [Tanzu Apps Workload](tanzu-apps-workload.md) - Workload life cycle management

@@ -3,7 +3,7 @@
 
 # API details
 
-See [API walkthrough](api_walkthrough.md) for a walkthrough and example.
+See [API walkthrough](api-walkthrough.md) for a walkthrough and example.
 
 ## <a id='info'></a>Information
 

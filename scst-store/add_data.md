@@ -1,6 +1,6 @@
 # Add data
 
-This topic describes how to add Software Bill of Materials (SBoM) files to Supply Chain Security Tools - Store to understand your dependencies by querying. For instructions on querying, see [Query Data](../scst-store/query_data.md).
+This topic describes how to add Software Bill of Materials (SBoM) files to Supply Chain Security Tools - Store to understand your dependencies by querying. For instructions on querying, see [Query Data](../scst-store/query-data.md).
 
 
 ## <a id='methods'></a>Methods
@@ -8,7 +8,7 @@ This topic describes how to add Software Bill of Materials (SBoM) files to Suppl
 Add data by posting CycloneDX files using the following methods:
 
 - [Supply Chain Security Tools - Scan](../scst-scan/overview.md)
-- [Supply Chain Security Tools - Store API](../scst-store/api_walkthrough.md)
+- [Supply Chain Security Tools - Store API](../scst-store/api-walkthrough.md)
 - [Add Data with the Insight CLI](#insight-cli) below
 
 
@@ -57,7 +57,7 @@ Use the following commands to add data:
 
 >**Note:** If using a non-source commit or image file type, you can select either option.
 
-Use `insight -h` in the terminal or see [CLI details](cli_docs/insight.md) for more information.
+Use `insight -h` in the terminal or see [CLI details](cli-docs/insight.md) for more information.
 
 ## <a id='example1'></a>Example #1: Create an Image Report
 

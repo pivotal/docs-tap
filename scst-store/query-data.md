@@ -4,14 +4,14 @@ This topic describes how to query the database to understand vulnerability, imag
 
 ## Add data
 
-Data must be added before querying. See [Add Data](add_data.md).
+Data must be added before querying. See [Add Data](add-data.md).
 
 ## Methods
 
 There are two different ways of querying the database:
 
 * [API](api.md)
-* [CLI](cli_installation.md) 
+* [CLI](cli-installation.md) 
 
 ## Supported use cases
 
@@ -24,7 +24,7 @@ The following are a few examples supported by the Supply Chain Security Tools - 
 
 ## <a id='query-insight'></a> Query using the Insight CLI
 
-See [CLI installation](cli_installation.md) if you have not previously installed the Insight CLI.
+See [CLI installation](cli-installation.md) if you have not previously installed the Insight CLI.
 
 Use the following commands for querying:
 
@@ -43,7 +43,7 @@ Use the following commands for querying:
 - `vulnerabilities package`
 - `vulnerabilities source`
 
-Use `insight -h` in the terminal or see [CLI details](cli_docs/insight.md) for more information.
+Use `insight -h` in the terminal or see [CLI details](cli-docs/insight.md) for more information.
 
 ## Example #1: What images contain a specific dependency?
 

@@ -24,7 +24,7 @@ The default database that ships with the deployment is meant to get users starte
 
 #### Using AWS RDS postgres database
 
-Users can also configure the deployment to use their own RDS database instead of the default. See [AWS RDS Postgres Configuration](use_aws_rds.md).
+Users can also configure the deployment to use their own RDS database instead of the default. See [AWS RDS Postgres Configuration](use-aws-rds.md).
 
 #### Custom database password
 
@@ -43,7 +43,7 @@ metadata_store:
 
 Where `PASSWORD-0123` is the same password used between deployments.
 
-> Note: there is a known issue related to changing database passwords [Known Issues - Persistent Volume Retains Data](known_issues.md#persistent-volume-retains-data).
+> Note: there is a known issue related to changing database passwords [Known Issues - Persistent Volume Retains Data](known-issues.md#persistent-volume-retains-data).
 
 ### App service type
 
@@ -58,9 +58,9 @@ app_service_type: "LoadBalancer"
 By default, a service account with read-write privileges to the metadata store app is installed.
 This service account is a cluster-wide account that uses ClusterRole.
 If you don't want the service account and role, set the `add_default_rw_service_account` property to `"false"`.
-To create a custom service account, see [create service account](create_service_account_access_token.md).
+To create a custom service account, see [create service account](create-service-account-access-token.md).
 
-The store will automatically create a read-only cluster role, which may be bound to a service account via `ClusterRoleBinding`. To create service accounts to bind to this cluster role, see [create service account](create_service_account_access_token.md). 
+The store will automatically create a read-only cluster role, which may be bound to a service account via `ClusterRoleBinding`. To create service accounts to bind to this cluster role, see [create service account](create-service-account-access-token.md). 
 
 ## Exporting certificates
 
