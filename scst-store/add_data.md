@@ -18,7 +18,7 @@ Currently, only CycloneDX XML and JSON files are accepted.
 
 Source commits and image files are tested. Additional file types, for example, JAR, might work because they are not fully tested.
 
->**Note:** If you use a non-source commit or image file type, ensure the `component.version` field in the CycloneDX file is non-null, because the database expects a unique identifier.
+>**Note:** If using a non-source commit or image file type, you must ensure the `component.version` field in the CycloneDX file is non-null, because the database expects a unique identifier.
 
 ## <a id='gen-cyclone'></a>Generate a CycloneDX File
 
