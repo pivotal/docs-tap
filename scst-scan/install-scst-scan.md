@@ -107,7 +107,7 @@ To install Supply Chain Security Tools - Scan (Grype scanner):
       targetSourceSshSecret      <EMPTY>  string  Reference to the secret containing SSH credentials for cloning private repositories.
     ```
 
-    Optionally, you can define the `--values-file` flag to customize the default configuration. You can create a `grype-values.yml` file using the configuration below:
+1. (Optional) You can define the `--values-file` flag to customize the default configuration. Create a `grype-values.yml` file by using the following configuration:
 
     ```yaml
     ---
@@ -120,14 +120,14 @@ To install Supply Chain Security Tools - Scan (Grype scanner):
     
     - `DEV-NAMESPACE` is your developer namespace.
 
-      >**Note:** If you want to use a namespace other than the default namespace, ensure the namespace exists before you install. If the namespace does not exist, then the Grype scanner installation fails.
+      >**Note:** To use a namespace other than the default namespace, ensure the namespace exists before you install. If the namespace does not exist, the Grype scanner installation fails.
 
     - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull an image from a private registry for scanning. If built images are pushed to the same registry as the Tanzu Application Platform images, you can reuse the `tap-registry` secret created earlier in [Add the Tanzu Application Platform package repository](../install.md#add-package-repositories-and-EULAs) for this field.
 
     - `TARGET-REPOSITORY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull source code from a private repository for scanning. This field is not optional if the source code is located in a public repository.
 
-2. VMware recommends using the default values for this package.
-If you want to change the default values, see the Scan controller instructions for more information.
+1. VMware recommends using the default values for this package.
+To change the default values, see the Scan controller instructions for more information.
 
 1. Install the package by running:
 
