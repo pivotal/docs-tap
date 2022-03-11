@@ -12,8 +12,7 @@ If you want more control, you can use these latter custom resources directly ins
 
 ## <a id="loading-ws-definition"></a>Loading the workshop definition
 
-A custom resource of type `Workshop` describes each workshop. Before a workshop environment can be created, you must load the
-definition of the workshop.
+A custom resource of type `Workshop` describes each workshop. Before you can create a workshop environment, you must load the definition of the workshop.
 
 Here is an example `Workshop` custom resource:
 
@@ -83,7 +82,7 @@ workshop.
 - A URL for more information about the workshop.
 
 The definition of a workshop is loaded as a step of its own, rather than referring to a remotely hosted definition. This allows a cluster admin to audit the workshop definition to ensure it isn't doing something the cluster admin doesn't want to
-allow. Once the cluster admin approves the workshop definition, it can be used to create instances of the workshop.
+allow. After the cluster admin approves the workshop definition, it can be used to create instances of the workshop.
 
 ## <a id="create-ws-training-portal"></a>Creating the workshop training portal
 
@@ -136,7 +135,7 @@ workshopenvironment.learningcenter.tanzu.vmware.comlab-k8s-fundamentals-w01
 workshopsession.learningcenter.tanzu.vmware.com/lab-k8s-fundamentals-w01-s001
 ```
 
-In addition to the original `Workshop` custom resource providing the definition of the workshop, and the `TrainingPortal` custom resource you just created, `WorkshopEnvironment` and `WorkshopSession` custom resources are also created.
+In addition to the original `Workshop` custom resource providing the definition of the workshop, and the `TrainingPortal` custom resource you just created, you've also created the `WorkshopEnvironment` and `WorkshopSession` custom resources.
 
 The `WorkshopEnvironment` custom resource sets up the environment for a workshop, including deploying any application
 services that must exist and are shared by all workshop instances.
@@ -156,12 +155,12 @@ NAME                            URL                                         USER
 lab-k8s-fundamentals-w01-s001   http://lab-k8s-fundamentals-w01-s001.test
 ```
 
-Only one workshop instance is created. Though the maximum capacity is set to 3, the reserved number of
-instances (hot spares) is defined as 1. Additional workshops instances are only created as workshop sessions
+Only one workshop instance is created. Though the maximum capacity is set to three, the reserved number of
+instances (hot spares) is defined as one. Additional workshops instances are only created as workshop sessions
 are allocated to users. One reserved instance is always maintained until capacity is reached.
 
 If you need a different number of workshop instances, set the `portal.capacity` field of the `TrainingPortal` custom
-resource YAML input file before creating the resource. Changing the values after the resource has been created has
+resource YAML input file before creating the resource. Changing the values after the resource is created has
 no effect.
 
 In this case, only one workshop is listed to be hosted by the training portal. You can deploy more than one
@@ -190,15 +189,15 @@ session if required.
 
 Attendees can access workshops through the web portal by following two steps:
 
-1. Upon visiting the web-based portal for the training session, the attendee is presented with a login page. However, the attendee must first register for an account. On the initial login page, the attendee clicks the link to the registration page and fills it in.
+1. The attendee visits the web-based portal for the training session and is presented with a login page. However, before logging in, the attendee must register for an account. The attendee clicks the link to the registration page and fills it in.
 
-    ![Portal Registration](images/portal-registration.png)
+    ![Screenshot of the portal registration form](images/portal-registration.png)
 
     Registration is required so if the attendee's web browser exits or the attendee needs to switch web browsers, the attendee can log in again and access the same workshop instance.
 
 2. Upon registering, the attendee is presented with a list of workshops available for the training session.
 
-    ![Portal Catalog](images/portal-catalog.png)
+    ![Screenshot of a workshop listing on the portal catalog](images/portal-catalog.png)
 
     - An orange dot beside a workshop means that no instance for that workshop has been allocated
     to the user as yet, but that some are available. 
@@ -210,7 +209,7 @@ Attendees can access workshops through the web portal by following two steps:
     The attendee clicks the "Start workshop" button. This allocates a workshop instance if one hasn't yet been reserved and redirects
     the attendee to that workshop instance.
 
-    ![Dashboard Terminal](../about-learning-center/images/dashboard-terminal.png)
+    ![Screenshot of a workshop overview and dashboard terminal](../about-learning-center/images/dashboard-terminal.png)
 
 ## <a id="delete-ws-training-portal"></a>Deleting the workshop training portal
 
