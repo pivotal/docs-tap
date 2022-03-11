@@ -153,7 +153,7 @@ This is the table of contents from which the Tanzu Application Platform Document
       - [Security details](scst-store/security.md)
           - [SCA scanning results](scst-store/sca-scans/sca-scanning-results.md)
       - [Additional resources](scst-store/additional.md)
-          - [Deployment details and configuration](scst-store/deployment_details.md)
+          - [Deployment details and configuration](scst-store/deployment-details.md)
           - [Troubleshooting upgrading](scst-store/upgrading.md)
           - [AWS RDS Postgres configuration](scst-store/use-aws-rds.md)
           - [Log configuration and usage](scst-store/logs.md)

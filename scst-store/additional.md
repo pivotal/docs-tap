@@ -16,7 +16,7 @@ Supply Chain Security Tools - Store has three components:
 - [API](api.md)
 - Postgres database
 
-For more information, see [Deployment Details and Configuration](deployment_details.md).
+For more information, see [Deployment Details and Configuration](deployment-details.md).
 
 ## <a id='additional-info'></a>Additional documentation
 
