@@ -26,4 +26,4 @@ tanzu insight config set-target https://localhost:8443 --ca-cert=/tmp/ca.crt --a
 
 ### <a id='see-also'></a>See also
 
-* [Tanzu insight config](insight_config.md)	 - Config commands
+* [Tanzu insight config](insight-config.md)	 - Config commands

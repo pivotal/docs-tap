@@ -26,4 +26,4 @@ tanzu insight vulnerabilities sources --cveid CVE-123123-2021
 
 ## <a id='see-also'></a>See also
 
-* [Tanzu insight vulnerabilities](insight_vulnerabilities.md)	 - Vulnerabilities commands
+* [Tanzu insight vulnerabilities](insight-vulnerabilities.md)	 - Vulnerabilities commands

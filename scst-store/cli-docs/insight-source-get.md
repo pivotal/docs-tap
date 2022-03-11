@@ -28,4 +28,4 @@ tanzu insight source get --repo github.com/org/example --commit b33dfee51 --org 
 
 ## <a id='see-also'></a>See also
 
-* [Tanzu insight source](insight_source.md)	 - Source commands
+* [Tanzu insight source](insight-source.md)	 - Source commands

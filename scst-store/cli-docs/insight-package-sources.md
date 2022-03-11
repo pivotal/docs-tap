@@ -26,4 +26,4 @@ tanzu insight package sources --name client
 
 ## <a id='see-also'></a>See also
 
-* [Tanzu insight package](insight_package.md)	 - Package commands
+* [Tanzu insight package](insight-package.md)	 - Package commands

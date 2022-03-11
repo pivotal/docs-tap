@@ -27,4 +27,4 @@ tanzu insight image packages --digest sha256:a86859ac1946065d93df9ecb5cb7060adee
 
 ## <a id='see-also'></a>See also
 
-* [Tanzu insight image](insight_image.md)	 - Image commands
+* [Tanzu insight image](insight-image.md)	 - Image commands

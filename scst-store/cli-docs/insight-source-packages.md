@@ -27,4 +27,4 @@ tanzu insight sources packages --commit 0b1b659907 --format json
 
 ## <a id='see-also'></a>See also
 
-* [Tanzu insight source](insight_source.md)	 - Source commands
+* [Tanzu insight source](insight-source.md)	 - Source commands

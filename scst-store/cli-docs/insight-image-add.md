@@ -22,4 +22,4 @@ tanzu insight image add --cyclonedxtype json --path /path/to/file.json
 
 ## <a id='see-also'></a>See also
 
-* [Tanzu insight image](insight_image.md) - Image commands
+* [Tanzu insight image](insight-image.md) - Image commands

@@ -28,4 +28,4 @@ tanzu insight package get --name client --version 1.0.0a --pkgmngr Unknown
 
 ## <a id='see-also'></a>See also
 
-* [Tanzu insight package](insight_package.md)	 - Package commands
+* [Tanzu insight package](insight-package.md)	 - Package commands

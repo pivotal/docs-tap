@@ -27,4 +27,4 @@ tanzu insight sources vulnerabilities --commit eb55fc13
 
 ## <a id='see-also'></a>See also
 
-* [Tanzu insight source](insight_source.md)	 - Source commands
+* [Tanzu insight source](insight-source.md)	 - Source commands
