@@ -18,11 +18,11 @@ contour:
 appliveview_connector:
   backend:
     sslDisabled: TRUE-OR-FALSE-VALUE
-    host: APP-LIVE-VIEW-INGRESS-DOMAIN
+    host: appliveview.APP-LIVE-VIEW-INGRESS-DOMAIN
 ```
 
 Where:
 
 - `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
 service's External IP address.
-- `APP-LIVE-VIEW-INGRESS-DOMAIN` is the subdomain you setup on the View profile cluster. This corresponds to the value key `appliveview.ingressDomain`
+- `APP-LIVE-VIEW-INGRESS-DOMAIN` is the subdomain you setup on the View profile cluster. This corresponds to the value key `appliveview.ingressDomain`. Make sure to include the default hostname `applieview.` ahead of the domain.
