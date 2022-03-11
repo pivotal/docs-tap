@@ -78,18 +78,20 @@ If a certificate error `x509: certificate signed by unknown authority` occurs, t
     For example:
 
     ```
-    tanzu package install source-controller -p controller.source.apps.tanzu.vmware.com -v 0.3.3 -n tap-install -f source-controller-values.yaml
+    tanzu package install source-controller -p controller.source.apps.tanzu.vmware.com -v 0.3.3 -f source-controller-values.yaml
     \ Installing package 'controller.source.apps.tanzu.vmware.com'
-    \ Getting package metadata for 'controller.source.apps.tanzu.vmware.com'
-    / Creating service account 'source-controller-tap-install-sa'
-    / Creating cluster admin role 'source-controller-tap-install-cluster-role'
-    / Creating cluster role binding 'source-controller-tap-install-cluster-rolebinding'
-    / Creating package resource
+    | Getting package metadata for 'controller.source.apps.tanzu.vmware.com'
+    | Creating service account 'source-controller-default-sa'
+    | Creating cluster admin role 'source-controller-default-cluster-role'
+    | Creating cluster role binding 'source-controller-default-cluster-rolebinding'
+    | Creating secret 'source-controller-default-values'
+    | Creating package resource
     - Waiting for 'PackageInstall' reconciliation for 'source-controller'
-    \ 'PackageInstall' resource install status: Reconciling
+    - 'PackageInstall' resource install status: Reconciling
 
 
-    Added installed package 'source-controller'
+
+     Added installed package 'source-controller'
     ```
 
 5. Verify the package installation by running:
