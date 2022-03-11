@@ -38,31 +38,72 @@ kind: ClusterRole
 metadata:
   name: k8s-reader
 rules:
-  - apiGroups: ['']
-    resources: ['pods', 'services', 'configmaps']
-    verbs: ['get', 'watch', 'list']
-  - apiGroups: ['apps']
-    resources: ['deployments', 'replicasets']
-    verbs: ['get', 'watch', 'list']
-  - apiGroups: ['autoscaling']
-    resources: ['horizontalpodautoscalers']
-    verbs: ['get', 'watch', 'list']
-  - apiGroups: ['networking.k8s.io']
-    resources: ['ingresses']
-    verbs: ['get', 'watch', 'list']
-  - apiGroups: ['networking.internal.knative.dev']
-    resources: ['serverlessservices']
-    verbs: ['get', 'watch', 'list']
-  - apiGroups: [ 'autoscaling.internal.knative.dev' ]
-    resources: [ 'podautoscalers' ]
-    verbs: [ 'get', 'watch', 'list' ]
-  - apiGroups: ['serving.knative.dev']
-    resources:
-    - configurations
-    - revisions
-    - routes
-    - services
-    verbs: ['get', 'watch', 'list']
+- apiGroups: ['']
+  resources: ['pods', 'services', 'configmaps']
+  verbs: ['get', 'watch', 'list']
+- apiGroups: ['apps']
+  resources: ['deployments', 'replicasets']
+  verbs: ['get', 'watch', 'list']
+- apiGroups: ['autoscaling']
+  resources: ['horizontalpodautoscalers']
+  verbs: ['get', 'watch', 'list']
+- apiGroups: ['networking.k8s.io']
+  resources: ['ingresses']
+  verbs: ['get', 'watch', 'list']
+- apiGroups: ['networking.internal.knative.dev']
+  resources: ['serverlessservices']
+  verbs: ['get', 'watch', 'list']
+- apiGroups: [ 'autoscaling.internal.knative.dev' ]
+  resources: [ 'podautoscalers' ]
+  verbs: [ 'get', 'watch', 'list' ]
+- apiGroups: ['serving.knative.dev']
+  resources:
+  - configurations
+  - revisions
+  - routes
+  - services
+  verbs: ['get', 'watch', 'list']
+- apiGroups: ['carto.run']
+  resources:
+  - clusterconfigtemplates
+  - clusterdeliveries
+  - clusterdeploymenttemplates
+  - clusterimagetemplates
+  - clusterruntemplates
+  - clustersourcetemplates
+  - clustersupplychains
+  - clustertemplates
+  - deliverables
+  - runnables
+  - workloads
+  verbs: ['get', 'watch', 'list']
+- apiGroups: ['source.toolkit.fluxcd.io']
+  resources:
+  - gitrepositories
+  verbs: ['get', 'watch', 'list']
+- apiGroups: ['conventions.apps.tanzu.vmware.com']
+  resources:
+  - podintents
+  verbs: ['get', 'watch', 'list']
+- apiGroups: ['kpack.io']
+  resources:
+  - images
+  - builds
+  verbs: ['get', 'watch', 'list']
+- apiGroups: ['scanning.apps.tanzu.vmware.com']
+  resources:
+  - sourcescans
+  - imagescans
+  verbs: ['get', 'watch', 'list']
+- apiGroups: ['tekton.dev']
+  resources:
+  - taskruns
+  - pipelineruns
+  verbs: ['get', 'watch', 'list']
+- apiGroups: ['kappctrl.k14s.io']
+  resources:
+  - apps
+  verbs: ['get', 'watch', 'list']
 ```
 
 Ensure the kubeconfig context is set to the cluster with resources to be viewed in Tanzu Application Platform GUI. Create the `Namespace`, `ServiceAccount`, `ClusterRole` and `ClusterRoleBinding` with the following command:
