@@ -1,6 +1,6 @@
 # Add data
 
-This topic describes how to add Software Bill of Materials (SBoM) files to Supply Chain Security Tools - Store to understand your dependencies by querying.  For instructions on querying, see [Query Data](../scst-store/query_data.md).
+This topic describes how to add Software Bill of Materials (SBoM) files to Supply Chain Security Tools - Store to understand your dependencies by querying. For instructions on querying, see [Query Data](../scst-store/query_data.md).
 
 ## <a id='supported-formats'></a>Supported Formats and File Types
 
