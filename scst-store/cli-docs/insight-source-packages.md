@@ -27,4 +27,4 @@ insight sources packages --commit 0b1b659907 --format json
 
 ## <a id='see-also'></a>See also
 
-* [insight source](insight_source.md)	 - Source commands
+* [insight source](insight-source.md)	 - Source commands

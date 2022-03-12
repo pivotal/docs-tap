@@ -22,4 +22,4 @@ insight source create --cyclonedxtype json --path  /path/to/file.json
 
 ## <a id='see-also'></a>See also
 
-* [Insight source](insight_source.md)	 - Source commands
+* [Insight source](insight-source.md)	 - Source commands

@@ -16,10 +16,10 @@ Source, image, package, and vulnerabilities can be queried and outputted in Cycl
 
 ## <a id='see-also'></a>See also
 
-* [Insight config](insight_config.md)	 - Config commands
-* [Insight health](insight_health.md)	 - Checks if endpoint is reachable
-* [Insight image](insight_image.md)	 - Image commands
-* [Insight package](insight_package.md)	 - Package commands
-* [Insight source](insight_source.md)	 - Source commands
-* [Insight version](insight_version.md)	 - Display insight version
-* [Insight vulnerabilities](insight_vulnerabilities.md)	 - Vulnerabilities commands
+* [Insight config](insight-config.md)	 - Config commands
+* [Insight health](insight-health.md)	 - Checks if endpoint is reachable
+* [Insight image](insight-image.md)	 - Image commands
+* [Insight package](insight-package.md)	 - Package commands
+* [Insight source](insight-source.md)	 - Source commands
+* [Insight version](insight-version.md)	 - Display insight version
+* [Insight vulnerabilities](insight-vulnerabilities.md)	 - Vulnerabilities commands

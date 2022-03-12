@@ -26,4 +26,4 @@ insight package images --name client
 
 ## <a id='see-also'></a>See also
 
-* [insight package](insight_package.md)	 - Package commands
+* [insight package](insight-package.md)	 - Package commands

@@ -26,4 +26,4 @@ insight image get --digest sha256:a86859ac1946065d93df9ecb5cb7060adeeb0288fad610
 
 ## <a id='see-also'></a>See Also
 
-* [insight image](insight_image.md)	 - Image commands
+* [insight image](insight-image.md)	 - Image commands
