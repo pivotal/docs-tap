@@ -141,6 +141,7 @@ This is the table of contents from which the Tanzu Application Platform Document
           - [Configure target endpoint and certificate](scst-store/using-encryption-and-connection.md)
           - [Configure access tokens](scst-store/create-service-account-access-token.md)
           - [Query data](scst-store/query-data.md)
+          - [Add data](scst-store/add-data.md)
           - [CLI commands](scst-store/cli-docs/insight.md)
               - [Insight config](scst-store/cli-docs/insight-config.md)
               - [Insight health](scst-store/cli-docs/insight-health.md)
