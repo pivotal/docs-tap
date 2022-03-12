@@ -37,7 +37,7 @@ It has the following form:
 The `Ingress` method of access for Tanzu Application GUI can use the shared `tanzu-system-ingress`
 instance of Contour that is installed as part of the Profile installation.
 
-1. The `Ingress` method of access requires that you have a DNS hostname that you can point at the External
+1. The `Ingress` method of access requires that you have a DNS host name that you can point at the External
 IP address of the `envoy` service that the shared `tanzu-system-ingress` uses. Retrieve this IP address by
 running:
 
@@ -54,8 +54,8 @@ running:
     ```
 
     The IP address in the `EXTERNAL-IP` field is the one that you point a DNS host record to.
-    Tanzu Application Platform GUI automatically prepends `tap-gui` to your provided subdomain.
-    This makes the final hostname `tap-gui.YOUR-SUBDOMAIN`. You use this hostname in the appropriate
+    Tanzu Application Platform GUI prepends `tap-gui` to your provided subdomain.
+    This makes the final host name `tap-gui.YOUR-SUBDOMAIN`. You use this host name in the appropriate
     fields in the `tap-values.yml` mentioned later.
 
 1. Specify parameters in your `tap-values.yaml` related to Ingress following this example:
@@ -67,7 +67,7 @@ running:
       ingressDomain: 'example.com' # This makes the host name tap-gui.example.com
     ```
 
-1. Update your other hostnames in the `tap_gui` section of your `tap-values.yml` with the new hostname following this example:
+1. Update your other host names in the `tap_gui` section of your `tap-values.yml` with the new host name following this example:
 
     ```
     tap_gui:
@@ -94,13 +94,13 @@ running:
 
     This snippet is from a values file in the
     [Configure Tanzu Application Platform GUI section](../install.md#configure-tap-gui) of the
-    Profiles installation topic. The new hostnames are populated based on the example hostname
+    Profiles installation topic. The new host names are populated based on the example host name
     `tap-gui.example.com`.
 
 1. Update your package installation with your changed values file by running:
 
     ```
-    tanzu package installed update tap --package-name tap.tanzu.vmware.com --version 1.0.1 --values-file tap-values-file.yml -n tap-install
+    tanzu package installed update tap --package-name tap.tanzu.vmware.com --version 1.0.0 --values-file tap-values.yml -n tap-install
     ```
 
-1. Access your Tanzu Application Platform GUI by using a web browser at the hostname that you provided.
+1. Access your Tanzu Application Platform GUI by using a web browser at the host name that you provided.
