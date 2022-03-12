@@ -31,7 +31,7 @@ Use the following commands for querying:
 - `vulnerabilities package`
 - `vulnerabilities source`
 
-Use `tanzu insight -h` in the terminal or see [tanzu insight details](cli_docs/insight.md) for more information.
+Use `tanzu insight -h` in the terminal or see [tanzu insight details](cli-docs/insight.md) for more information.
 
 ## <a id='example1'></a>Example #1: What images contain a specific dependency?
 
