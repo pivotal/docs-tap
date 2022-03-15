@@ -90,6 +90,7 @@ occurs during scanning, the `Scan Phase` field is not updated to `Error` and rem
 ### <a id='1-1-known-issues'></a> Feature deprecation
 
 * Tanzu Application Platform profile - light
+* Supply Chain Security Tools - Scan deprecated API version `scanning.apps.tanzu.vmware.com/v1alpha1`
 
 
 ## <a id='1-0'></a> v1.0
