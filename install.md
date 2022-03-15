@@ -8,24 +8,44 @@ and verified the cluster, accepted the EULA, and installed the Tanzu CLI with an
 See [Installing the Tanzu CLI](install-tanzu-cli.md).
 
 
-## <a id='add-tap-package-repo'></a> Add the Tanzu Application Platform package repository
+## <a id='add-tap-package-repo'></a> Relocate Images to a Registry
 
-To add the Tanzu Application Platform package repository:
+Its recommended to relocate the Images to your registry from Tanzu Network registry before attempting installation.
+The supported conatiner registries are Harbor, Azure Container Registry, Google Container Registry, Qual.io.
+Please refer to corresponding documentation on how to setup above listed registries.
 
-1. If you haven’t completed the
-[Install Cluster Essentials for VMware Tanzu for non-TKG clusters](install-tanzu-cli.md#tanzu-cluster-essentials)
-procedure, set up environment variables for use during the installation by running:
+This procedure relocates images from the Tanzu Network registry to your registry:
+
+1. Log in to your image registry:
 
     ```
-    export INSTALL_REGISTRY_USERNAME=TANZU-NET-USER
-    export INSTALL_REGISTRY_PASSWORD=TANZU-NET-PASSWORD
-    export INSTALL_REGISTRY_HOSTNAME=registry.tanzu.vmware.com
+    docker login my.registry.io
+    ```
+
+2. Log in to the Tanzu Network registry with your Tanzu Network credentials:
+
+    ```
+    docker login registry.tanzu.vmware.com
+    ```
+
+3. Set up environment variables for use during the installation by running:
+
+    ```
+    export INSTALL_REGISTRY_USERNAME=MY-REGISTRY-USER
+    export INSTALL_REGISTRY_PASSWORD=MY-REGISTRY-PASSWORD
+    export INSTALL_REGISTRY_HOSTNAME=my.registry.io
     export TAP_VERSION=VERSION-NUMBER
     ```
 
-    Where `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `1.0.1`.
+    Where `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `1.0.2`.
 
-1. Create a namespace called `tap-install` for deploying any component packages by running:
+4. Relocate the images with the Carvel tool imgpkg by running:
+
+    ```
+    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.0.2 --to-repo my.registry.io/some-repo/tap-packages
+    ```
+
+5. Create a namespace called `tap-install` for deploying any component packages by running:
 
     ```
     kubectl create ns tap-install
@@ -33,7 +53,7 @@ procedure, set up environment variables for use during the installation by runni
 
     This namespace keeps the objects grouped together logically.
 
-1. Create a registry secret by running:
+6. Create a registry secret by running:
 
     ```
     tanzu secret registry add tap-registry \
@@ -42,18 +62,18 @@ procedure, set up environment variables for use during the installation by runni
       --export-to-all-namespaces --yes --namespace tap-install
     ```
 
-1. Add Tanzu Application Platform package repository to the cluster by running:
+7. Add Tanzu Application Platform package repository to the cluster by running:
 
     ```
     tanzu package repository add tanzu-tap-repository \
-      --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:$TAP_VERSION \
+      --url my.registry.io/some-repo/tap-packages:$TAP_VERSION \
       --namespace tap-install
     ```
 
     Where `$TAP_VERSION` is the Tanzu Application Platform version environment variable
     you defined earlier.
 
-1. Get the status of the Tanzu Application Platform package repository, and ensure the status updates to `Reconcile succeeded` by running:
+8. Get the status of the Tanzu Application Platform package repository, and ensure the status updates to `Reconcile succeeded` by running:
 
     ```
     tanzu package repository get tanzu-tap-repository --namespace tap-install
@@ -65,9 +85,9 @@ procedure, set up environment variables for use during the installation by runni
     $ tanzu package repository get tanzu-tap-repository --namespace tap-install
     - Retrieving repository tap...
     NAME:          tanzu-tap-repository
-    VERSION:       121657971
-    REPOSITORY:    registry.tanzu.vmware.com/tanzu-application-platform/tap-packages
-    TAG:           1.0.0
+    VERSION:       16253001
+    REPOSITORY:    tapmdc.azurecr.io/mdc/1.0.2/tap-packages
+    TAG:           1.0.2
     STATUS:        Reconcile succeeded
     REASON:
     ```
@@ -75,7 +95,7 @@ procedure, set up environment variables for use during the installation by runni
     >**Note:** the `VERSION` and `TAG` numbers differ from the example above if you are on
     >Tanzu Application Platform v1.0.1 or later.
 
-1. List the available packages by running:
+9. List the available packages by running:
 
     ```
     tanzu package available list --namespace tap-install
@@ -155,7 +175,7 @@ The sample values file contains the necessary defaults for:
 
     >**Important:** Keep this file for future use.
 
-1. Proceed to the [View possible configuration settings for your package](#view-pkge-config-settings)
+2. Proceed to the [View possible configuration settings for your package](#view-pkge-config-settings)
 section.
 
 ### <a id='full-profile'></a> Full Profile
