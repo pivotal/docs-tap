@@ -32,7 +32,7 @@ This example shows that you have now accepted the EULAs for Tanzu Application Pl
 ## <a id='install-tanzu-cli'></a> Installing the Tanzu CLI
 
 This document describes how to [Set Kubernetes cluster context](#cluster-context),
-[Install Cluster Essentials for VMware Tanzu for non-TKG clusters](#tanzu-cluster-essentials),
+[Install Cluster Essentials for Tanzu](#tanzu-cluster-essentials),
 and [Install or Update the Tanzu CLI and plug-ins](#cli-and-plugin) for Tanzu Application Platform:
 
 ## <a id='cluster-context'></a> Set Kubernetes cluster context
@@ -69,32 +69,34 @@ To set the Kubernetes cluster context:
     Switched to context "aks-tap-cluster".
     ```
 
-## <a id='tanzu-cluster-essentials'></a> Install Cluster Essentials for VMware Tanzu for non-TKG clusters
+## <a id='tanzu-cluster-essentials'></a> Install Cluster Essentials for Tanzu
 
-> **Note:** If you use Tanzu Kubernetes Grid (TKG) multi-cloud v1.5.1 or later, skip this section.
-> Clusters on TKG v1.5.1 or later do not require Cluster Essentials for VMware Tanzu.
+The Cluster Essentials for Tanzu package simplifies the process of installing the open-source [Carvel](https://carvel.dev) tools on your cluster. It includes a script that uses the Carvel CLI tools to download and install the server-side components `kapp-controller` and `secretgen-crontroller` on the targeted cluster. Currently, only MacOS and Linux are supported for Cluster Essentials for Tanzu.
 
-The Cluster Essentials for VMware Tanzu package simplifies the process of installing the open-source [Carvel](https://carvel.dev) tools on your cluster.
-It includes a script that uses the Carvel CLI tools to download and install the server-side components `kapp-controller` and `secretgen-crontroller` on the targeted cluster.
-Currently, only MacOS and Linux are supported for Cluster Essentials for VMware Tanzu.
-
-To install cluster essentials for VMware Tanzu:
+To install Cluster Essentials for Tanzu:
 
 1. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
 
-1. Navigate to [Cluster Essentials for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-cluster-essentials/) on VMware Tanzu Network.
+1. Go to [Cluster Essentials for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-cluster-essentials/) on VMware Tanzu Network. Select a download according to your Kubernetes provider and operating system:
 
-1. If using macOS, download `tanzu-cluster-essentials-darwin-amd64-1.0.0.tgz`.
-If using Linux, download `tanzu-cluster-essentials-linux-amd64-1.0.0.tgz`.
+    - If you’re using VMware Tanzu Kubernetes Grid multi-cloud v1.5.1 or later, you must use Cluster Essentials for VMware Tanzu v1.0.
+        1. For macOS, download `tanzu-cluster-essentials-darwin-amd64-1.0.0.tgz`.
+        1. For Linux, download `tanzu-cluster-essentials-linux-amd64-1.0.0.tgz`.
+    - If you’re not using a Tanzu Kubernetes Grid cluster, VMware recommends you use Cluster Essentials for VMware Tanzu v1.1.
+        1. For macOS, download `tanzu-cluster-essentials-darwin-amd64-1.1.0.tgz`.
+        1. For Linux, download `tanzu-cluster-essentials-linux-amd64-1.1.0.tgz`. 
 
-1. Unpack the TAR file into `tanzu-cluster-essentials` directory:
+
+1. Unpack the TAR file into the `tanzu-cluster-essentials` directory:
 
     ```
     mkdir $HOME/tanzu-cluster-essentials
     tar -xvf DOWNLOADED-CLUSTER-ESSENTIALS-PACKAGE -C $HOME/tanzu-cluster-essentials
     ```
 
-    Where `DOWNLOADED-CLUSTER-ESSENTIALS-PACKAGE` is the name of the cluster essentials package you downloaded.
+    Where:
+    
+    - `DOWNLOADED-CLUSTER-ESSENTIALS-PACKAGE` is the name of the cluster essentials package you downloaded.
 
 1. Configure and run `install.sh`, which installs `kapp-controller` and `secretgen-controller` on your cluster:
 
@@ -107,7 +109,9 @@ If using Linux, download `tanzu-cluster-essentials-linux-amd64-1.0.0.tgz`.
     ./install.sh
     ```
 
-    Where `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for VMware Tanzu Network.
+    Where:
+    
+    - `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for VMware Tanzu Network.
 
 1. Install the `kapp` CLI onto your `$PATH`:
 
@@ -178,8 +182,8 @@ the CLI core and plug-ins are installed:
 
     Where `VERSION` is:
 
-    * `v0.11.1` if you are on Tanzu Application Platform v1.0.1
-    * `v0.10.0` if you are on Tanzu Application Platform v1.0.0
+    - `v0.11.1` if you are on Tanzu Application Platform v1.0.1
+    - `v0.10.0` if you are on Tanzu Application Platform v1.0.0
 
 1. Confirm installation of the CLI core by running:
 
@@ -236,8 +240,8 @@ the CLI core and plug-ins are installed:
 
     Where `VERSION` is:
 
-    * `v0.11.1` if you are on Tanzu Application Platform v1.0.1
-    * `v0.10.0` if you are on Tanzu Application Platform v1.0.0
+    - `v0.11.1` if you are on Tanzu Application Platform v1.0.1
+    - `v0.10.0` if you are on Tanzu Application Platform v1.0.0
 
 1. Confirm installation of the CLI core by running:
 
@@ -280,8 +284,8 @@ To install the Tanzu CLI on Windows:
 
     Where `VERSION` is:
 
-    * `v0.11.1` if you are on Tanzu Application Platform v1.0.1
-    * `v0.10.0` if you are on Tanzu Application Platform v1.0.0
+    - `v0.11.1` if you are on Tanzu Application Platform v1.0.1
+    - `v0.10.0` if you are on Tanzu Application Platform v1.0.0
 
 1. Paste the file into the new `Program Files\tanzu` directory.
 
