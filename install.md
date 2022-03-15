@@ -11,7 +11,7 @@ See [Installing the Tanzu CLI](install-tanzu-cli.md).
 ## <a id='add-tap-package-repo'></a> Relocate Images to a Registry
 
 Its recommended to relocate the Images to your registry from Tanzu Network registry before attempting installation.
-The supported conatiner registries are Harbor, Azure Container Registry, Google Container Registry, Qual.io.
+The supported conatiner registries are Harbor, Azure Container Registry, Google Container Registry, Quay.io.
 Please refer to corresponding documentation on how to setup above listed registries.
 
 This procedure relocates images from the Tanzu Network registry to your registry:
@@ -33,16 +33,19 @@ This procedure relocates images from the Tanzu Network registry to your registry
     ```
     export INSTALL_REGISTRY_USERNAME=MY-REGISTRY-USER
     export INSTALL_REGISTRY_PASSWORD=MY-REGISTRY-PASSWORD
-    export INSTALL_REGISTRY_HOSTNAME=my.registry.io
+    export INSTALL_REGISTRY_HOSTNAME=MY-REGISTRY
     export TAP_VERSION=VERSION-NUMBER
     ```
 
-    Where `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `1.0.2`.
+    Where `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `1.0.2`,
+    where `MY-REGISTRY-USER`is the user with write access to MY-REGISTRY,
+    where `MY-REGISTRY-PASSWORD` is the password for the `MY-REGISTRY-USER`,
+    where `MY-REGISTRY` is your own container registry.
 
 4. Relocate the images with the Carvel tool imgpkg by running:
 
     ```
-    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.0.2 --to-repo my.registry.io/some-repo/tap-packages
+    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.0.2 --to-repo ${INSTALL_REGISTRY_HOSTNAME}/some-repo/tap-packages
     ```
 
 5. Create a namespace called `tap-install` for deploying any component packages by running:
@@ -66,7 +69,7 @@ This procedure relocates images from the Tanzu Network registry to your registry
 
     ```
     tanzu package repository add tanzu-tap-repository \
-      --url my.registry.io/some-repo/tap-packages:$TAP_VERSION \
+      --url ${INSTALL_REGISTRY_HOSTNAME}/some-repo/tap-packages:$TAP_VERSION \
       --namespace tap-install
     ```
 
