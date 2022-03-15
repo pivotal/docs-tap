@@ -8,10 +8,10 @@ and verified the cluster, accepted the EULA, and installed the Tanzu CLI with an
 See [Installing the Tanzu CLI](install-tanzu-cli.md).
 
 
-## <a id='add-tap-package-repo'></a> Relocate Images to a Registry
+## <a id='add-tap-package-repo'></a> Relocate images to a Registry
 
-Its recommended to relocate the Images to your registry from Tanzu Network registry before attempting installation.
-The supported conatiner registries are Harbor, Azure Container Registry, Google Container Registry, Quay.io.
+VMware recommends relocating the images to your registry from Tanzu Network registry before attempting installation.
+The supported conatiner registries are Harbor, Azure Container Registry, Google Container Registry, Quay.io. 
 Please refer to corresponding documentation on how to setup above listed registries.
 
 This procedure relocates images from the Tanzu Network registry to your registry:
