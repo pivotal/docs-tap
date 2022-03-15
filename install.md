@@ -8,22 +8,48 @@ and verified the cluster, accepted the EULA, and installed the Tanzu CLI with an
 See [Installing the Tanzu CLI](install-tanzu-cli.md).
 
 
-## <a id='add-tap-package-repo'></a> Add the Tanzu Application Platform package repository
+## <a id='add-tap-package-repo'></a> Relocate images to a registry
 
-To add the Tanzu Application Platform package repository:
+VMware recommends relocating the images to your registry from VMware Tanzu Network registry before attempting installation.
+The supported container registries are Harbor, Azure Container Registry, Google Container Registry, and Quay.io. 
+Refer to the documentation for a registry to learn how to set it up.
 
-1. If you haven’t completed the
-[Install Cluster Essentials for VMware Tanzu for non-TKG clusters](install-tanzu-cli.md#tanzu-cluster-essentials)
-procedure, set up environment variables for use during the installation by running:
+This procedure relocates images from the VMware Tanzu Network registry to your registry:
+
+1. Log in to your image registry:
 
     ```
-    export INSTALL_REGISTRY_USERNAME=TANZU-NET-USER
-    export INSTALL_REGISTRY_PASSWORD=TANZU-NET-PASSWORD
-    export INSTALL_REGISTRY_HOSTNAME=registry.tanzu.vmware.com
+    docker login MY-REGISTRY
+    ```
+    
+    Where `MY-REGISTRY` is your own container registry.
+    
+1. Log in to the VMware Tanzu Network registry with your VMware Tanzu Network credentials:
+
+    ```
+    docker login registry.tanzu.vmware.com
+    ```
+    
+1. Set up environment variables for use during the installation by running:
+
+    ```
+    export INSTALL_REGISTRY_USERNAME=MY-REGISTRY-USER
+    export INSTALL_REGISTRY_PASSWORD=MY-REGISTRY-PASSWORD
+    export INSTALL_REGISTRY_HOSTNAME=MY-REGISTRY
     export TAP_VERSION=VERSION-NUMBER
     ```
+    
+    Where: 
+    
+    - `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `1.0.2`.
+    - `MY-REGISTRY-USER`is the user with write access to `MY-REGISTRY`.
+    - `MY-REGISTRY-PASSWORD` is the password for `MY-REGISTRY-USER`.
+    
+1. Relocate the images with the Carvel tool imgpkg by running:
 
-    Where `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `1.0.2`.
+    ```
+    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.0.2 --to-repo ${INSTALL_REGISTRY_HOSTNAME}/some-repo/tap-packages
+    ```
 
 1. Create a namespace called `tap-install` for deploying any component packages by running:
 
@@ -46,7 +72,7 @@ procedure, set up environment variables for use during the installation by runni
 
     ```
     tanzu package repository add tanzu-tap-repository \
-      --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:$TAP_VERSION \
+      --url ${INSTALL_REGISTRY_HOSTNAME}/some-repo/tap-packages:$TAP_VERSION \
       --namespace tap-install
     ```
 
@@ -65,8 +91,8 @@ procedure, set up environment variables for use during the installation by runni
     $ tanzu package repository get tanzu-tap-repository --namespace tap-install
     | Retrieving repository tap...
     NAME:          tanzu-tap-repository
-    VERSION:       121657971
-    REPOSITORY:    registry.tanzu.vmware.com/tanzu-application-platform/tap-packages
+    VERSION:       16253001
+    REPOSITORY:    tapmdc.azurecr.io/mdc/1.0.2/tap-packages
     TAG:           1.0.2
     STATUS:        Reconcile succeeded
     REASON:
