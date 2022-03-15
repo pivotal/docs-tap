@@ -11,7 +11,7 @@ The purpose of the below procedures is to validate the successful implementation
 5. Set the value of `DEVELOPER_NAMESPACE` to the appropriate namespace you setup in the previous step.
 
 ```bash
-export DEVELOPER_NAMESPACE=YOUR_DEVERLOPER_NAMESPACE
+export DEVELOPER_NAMESPACE=YOUR_DEVELOPER_NAMESPACE
 ```
 
 Where:
@@ -90,7 +90,7 @@ spec:
     image: tapmulticluster.azurecr.io/tap-multi-build-dev/tanzu-java-web-app-default-bundle:xxxx-xxxx-xxxx-xxxx-xxxx
 ```
 
-7. Now that you have this `Deliverable` file, you can take it to the Run profile cluster(s) and run the following command:
+7. Now that you have this `Deliverable` file, you can take it to the **Run** profile cluster(s) and run the following command:
 
 ```bash
 kubectl apply -f deliverable.yaml --namespace ${DEVELOPER_NAMESPACE}
