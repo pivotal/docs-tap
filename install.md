@@ -19,8 +19,9 @@ This procedure relocates images from the Tanzu Network registry to your registry
 1. Log in to your image registry:
 
     ```
-    docker login my.registry.io
+    docker login MY-REGISTRY
     ```
+    Where `MY-REGISTRY` is your own container registry.
     
 2. Log in to the Tanzu Network registry with your Tanzu Network credentials:
 
@@ -39,8 +40,7 @@ This procedure relocates images from the Tanzu Network registry to your registry
     
     Where `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `1.0.2`,
     where `MY-REGISTRY-USER`is the user with write access to MY-REGISTRY,
-    where `MY-REGISTRY-PASSWORD` is the password for the `MY-REGISTRY-USER`,
-    where `MY-REGISTRY` is your own container registry.
+    where `MY-REGISTRY-PASSWORD` is the password for the `MY-REGISTRY-USER`.
     
 4. Relocate the images with the Carvel tool imgpkg by running:
 
