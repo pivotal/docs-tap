@@ -51,8 +51,10 @@ To install Supply Chain Security Tools - Store:
 1. (Optional) List out all the available deployment configuration options:
 
     ```
-    tanzu package available get metadata-store.apps.tanzu.vmware.com/1.0.2 --values-schema -n tap-install
+    tanzu package available get metadata-store.apps.tanzu.vmware.com/VERSION --values-schema -n tap-install
     ```
+
+    Where `VERSION` is the your package version number. For example, `1.0.2`.
 
     For example:
 
@@ -105,13 +107,18 @@ and you want to use `NodePort`, then create a `metadata-store-values.yaml` and c
     ```
     tanzu package install metadata-store \
       --package-name metadata-store.apps.tanzu.vmware.com \
-      --version 1.0.2 \
+      --version VERSION \
       --namespace tap-install \
       --values-file metadata-store-values.yaml
     ```
 
-    The flag `--values-file` is optional and used only if you want to customize the deployment
-    configuration. For example:
+    Where:
+
+    * `--values-file` is an optional flag. Only use it if you want to customize the deployment
+    configuration.
+    * `VERSION` is the package version number. For example, `1.0.2`.
+
+    For example:
 
     ```
     $ tanzu package install metadata-store \
