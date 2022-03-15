@@ -8,6 +8,16 @@ The purpose of the below procedures is to validate the successful implementation
 2. For the sample Workload we'll be using the same Application Accelerator - Tanzu Java Web App that is used in the non-multicluster [Getting Started](../getting-started.md) guide. You can download this accelerator and put it on your own Git infrastructure of choice (additional configuration may be necessary regarding permissions) or you can leverage the [sample-accelerators GitHub repository](https://github.com/sample-accelerators/tanzu-java-web-app).
 3. The two Supply Chains that will be used here are on the Build profile: `ootb-supply-chain-basic` and on the Run profile: `ootb-delivery-basic`
 4. For both the Build and Run profiled clusters, perform the [Setup Developer Namespace](../install-components.md#setup) steps. For the purposes of this guide, we'll assume that the `default` namespace was used.
+5. Set the value of `DEVELOPER_NAMESPACE` to the appropriate namespace you setup in the previous step.
+
+```bash
+export DEVELOPER_NAMESPACE=YOUR_DEVERLOPER_NAMESPACE
+```
+
+Where:
+
+- `YOUR-DEVELOPER-NAMESPACE` is the namespace you [setup prior](../install-components.md#setup). For the purposes of this tutorial, `default` will be used.
+
 
 ## <a id='build-cluster'></a> Start the Workload on the Build Profile Cluster
 
@@ -21,28 +31,21 @@ tanzu apps workload create tanzu-java-web-app \
 --type web \
 --label app.kubernetes.io/part-of=tanzu-java-web-app \
 --yes \
---namespace YOUR-DEVELOPER-NAMESPACE
+--namespace ${DEVELOPER_NAMESPACE}
 ```
-
-Where:
-
-- `YOUR-DEVELOPER-NAMESPACE` is the namespace you [setup prior](../install-components.md#setup). For the purposes of this tutorial, `default` will be used.
 
 3. You can now monitor the progress of this process using the command below. To exit the monitoring session you can use `CTRL+C`
 
 ```
-tanzu apps workload tail tanzu-java-web-app --since 10m --timestamp --namespace YOUR-DEVELOPER-NAMESPACE
+tanzu apps workload tail tanzu-java-web-app --since 10m --timestamp --namespace ${DEVELOPER_NAMESPACE}
 ```
 
-Where `YOUR-DEVELOPER-NAMESPACE` is the namespace you [setup prior](../install-components.md#setup). For the purposes of this tutorial, `default` will be used.
 
-1. You'll now need to check that your supply chain has produced the necessary `Deliverable` for the `Workload`. This `Deliverable` contains the reference to the `source`, in this case a bundle that has been paced on the image registy you specified for the Supply Chain. The supply chains can also leverage Git repositories instead of ImageRepositories, but that's out-of-scope for this guide.
+4. You'll now need to check that your supply chain has produced the necessary `Deliverable` for the `Workload`. This `Deliverable` contains the reference to the `source`, in this case a bundle that has been paced on the image registy you specified for the Supply Chain. The supply chains can also leverage Git repositories instead of ImageRepositories, but that's out-of-scope for this guide.
 
 ```bash
-kubectl get deliverable --namespace YOUR-DEVELOPER-NAMESPACE
+kubectl get deliverable --namespace ${DEVELOPER_NAMESPACE}
 ```
-
-Where `YOUR-DEVELOPER-NAMESPACE` is the namespace you [setup prior](../install-components.md#setup). For the purposes of this tutorial, `default` will be used.
 
 The output should look simiar to the following:
 
@@ -55,9 +58,9 @@ tanzu-java-web-app   tapmulticluster.azurecr.io/tap-multi-build-dev/tanzu-java-w
 5. Now that you see there's a `Deliver` on the build cluster, you can create a `Deliverable`. You'll need to dump the contents of this to a file that you can take to the Run profile cluster(s):
 
 ```bash
-kubectl get deliverable tanzu-java-web-app --namespace YOUR-DEVELOPER-NAMEPACE -oyaml > deliverable.yaml
+kubectl get deliverable tanzu-java-web-app --namespace ${DEVELOPER_NAMESPACE} -oyaml > deliverable.yaml
 ```
-Where `YOUR-DEVELOPER-NAMESPACE` is the namespace you [setup prior](../install-components.md#setup). For the purposes of this tutorial, `default` will be used.
+
 
 6. Now you can edit this deliverable yaml down to just the key sections. You'll want to **delete** the following sections:`ownerReferences` and `status`. After editing you should be left with something similar to the following:
 
@@ -90,18 +93,15 @@ spec:
 7. Now that you have this `Deliverable` file, you can take it to the Run profile cluster(s) and run the following command:
 
 ```bash
-kubectl apply -f deliverable.yaml --namespace YOUR-DEVELOPER-NAMEPACE
+kubectl apply -f deliverable.yaml --namespace ${DEVELOPER_NAMESPACE}
 ```
 
-Where `YOUR-DEVELOPER-NAMESPACE` is the namespace you [setup prior](../install-components.md#setup). For the purposes of this tutorial, `default` will be used.
 
 8. The next step is to check that this `Deliverable` has been started and is `Ready`. You can do this with the following command:
 
 ```bash
-kubectl get deliverables --namespace YOUR-DEVELOPER-NAMEPACE
+kubectl get deliverables --namespace ${DEVELOPER_NAMESPACE}
 ```
-
-Where `YOUR-DEVELOPER-NAMESPACE` is the namespace you [setup prior](../install-components.md#setup). For the purposes of this tutorial, `default` will be used
 
 The output should resemble the following:
 
@@ -114,7 +114,7 @@ tanzu-java-web-app   tapmulticloud.azurecr.io/tap-multi-build-dev/tanzu-java-web
 9. In order to test the application, you'll need to query the URL for the application. You can find this by looking for the `httpProxy`:
 
 ```bash
-kubectl get httpproxy --namespace YOUR-DEVELOPER-NAMESPACE
+kubectl get httpproxy --namespace ${DEVELOPER_NAMESPACE}
 ```
 
 You should see the URL similar to the below:
