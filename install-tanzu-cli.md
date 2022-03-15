@@ -116,6 +116,11 @@ If using Linux, download `tanzu-cluster-essentials-linux-amd64-1.0.0.tgz`.
     ```
     sudo cp $HOME/tanzu-cluster-essentials/kapp /usr/local/bin/kapp
     ```
+7. Install the `imgpkg` CLI onto your `$PATH`:
+
+    ```
+    sudo cp $HOME/tanzu-cluster-essentials/imgpkg /usr/local/bin/imgpkg
+    ```
 
 ## <a id='cli-and-plugin'></a> Install or update the Tanzu CLI and plug-ins
 
