@@ -112,7 +112,7 @@ Ensure the kubeconfig context is set to the cluster with resources to be viewed 
 kubectl create -f tap-gui-viewer-service-account-rbac.yaml
 ```
 
-This cluster must be identified to Tanzu Application Platform GUI with the `ServiceAccount` token and the cluster Kubernetes control plane URL. Choose a name for the cluster and note it as `CLUSTER_NAME`. You can find the `CLUSTER_URL` and `CLUSTER_TOKEN` with these commands:
+This cluster must be identified to Tanzu Application Platform GUI with the `ServiceAccount` token and the cluster Kubernetes control plane URL. The `CLUSTER_URL` and `CLUSTER_TOKEN` can be found with these commands:
 
 ```bash
 CLUSTER_URL=$(kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}')
@@ -121,11 +121,14 @@ CLUSTER_TOKEN=$(kubectl -n tap-gui get secret $(kubectl -n tap-gui get sa tap-gu
 | jq -r '.secrets[0].name') -o=json \
 | jq -r '.data["token"]' \
 | base64 --decode)
+
+echo CLUSTER_URL: $CLUSTER_URL
+echo CLUSTER_TOKEN: $CLUSTER_TOKEN
 ```
 
 ## <a id="view-resourcs-on-clusters"></a>Update Tanzu Application Platform GUI to view resources on multiple clusters
 
-A `kubernetes` section must be added to the `app_config` used by Tanzu Application Platform GUI. Update the `tap-gui-values.yaml` used to install Tanzu Application Platform GUI with an entry to `clusters` for each cluster with resources to view. See the following YAML for the `kubernetes` section and substitute in the `CLUSTER_URL`, `CLUSTER_NAME`, and `CLUSTER_TOKEN` values found earlier:
+A `kubernetes` section must be added to the `app_config` used by Tanzu Application Platform GUI. Update the `tap-gui-values.yaml` used to install Tanzu Application Platform GUI with an entry to `clusters` for each cluster with resources to view. See the following YAML for the `kubernetes` section, substitute in the `CLUSTER_URL` and `CLUSTER_TOKEN` values found earlier and for `CLUSTER_NAME` give it a unique name to identify this cluster:
 
 ```yaml
 app_config:
