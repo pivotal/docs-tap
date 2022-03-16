@@ -124,7 +124,7 @@ To install Cluster Essentials for Tanzu:
 Choose the install scenario that is right for you:
 
    + [Cleanly Install Tanzu CLI](#tanzu-cli-clean-install)
-   + [Updating Tanzu CLI Installed for a Previous TAP Release](#update-prev-tap-tanzu-cli)
+   + [Updating Tanzu CLI Installed for a Previous Tanzu Application Platform Release](#update-prev-tap-tanzu-cli)
 
 
 ### <a id='tanzu-cli-clean-install'></a> Cleanly Install Tanzu CLI
@@ -372,7 +372,7 @@ You can now proceed with installing Tanzu Application Platform. For more informa
 **[Installing the Tanzu Application Platform Package and Profiles](install.md)**.
 
 
-## <a id='update-prev-tap-tanzu-cli'></a> Updating Tanzu CLI Installed for a Previous TAP Release
+## <a id='update-prev-tap-tanzu-cli'></a> Updating Tanzu CLI Installed for a Previous Tanzu Application Platform Release
 
 Follow these instructions to update the Tanzu CLI that was installed for a previous release of Tanzu Application Platform:
 
