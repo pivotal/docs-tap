@@ -1,4 +1,4 @@
-### <a id='full-profile'></a> Run Profile
+# Run Profile
 
 The following is the YAML file sample for the run-profile:
 

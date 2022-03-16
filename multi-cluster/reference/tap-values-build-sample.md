@@ -1,4 +1,4 @@
-### <a id='full-profile'></a> Build Profile
+# Build Profile
 
 The following is the YAML file sample for the build-profile:
 

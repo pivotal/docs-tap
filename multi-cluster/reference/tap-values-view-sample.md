@@ -1,4 +1,4 @@
-### <a id='full-profile'></a> View Profile
+# View Profile
 
 The following is the YAML file sample for the view-profile:
 
