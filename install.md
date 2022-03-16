@@ -10,13 +10,22 @@ See [Installing the Tanzu CLI](install-tanzu-cli.md).
 
 ## <a id='add-tap-package-repo'></a> Relocate images to a registry
 
-VMware recommends relocating the images to your registry from VMware Tanzu Network registry before attempting installation.
-The supported container registries are Harbor, Azure Container Registry, Google Container Registry, and Quay.io.
-Refer to the documentation for a registry to learn how to set it up.
+VMware recommends relocating the images to your registry from VMware Tanzu Network registry before
+attempting installation.
 
-This procedure relocates images from the VMware Tanzu Network registry to your registry:
+If you choose not to relocate images, Tanzu Application Platform depends directly on
+VMware Tanzu Network for continued operation.
+VMware recommends relocating images because there are no uptime guarantees for installations that
+depend directly on VMware Tanzu Network in this manner.
+The option to skip relocation is documented for purposes of evaluation and proof-of-concept only.
 
-1. Log in to your image registry:
+The supported container registries are Harbor, Azure Container Registry, Google Container Registry,
+and Quay.io.
+See the documentation for a registry to learn how to set it up.
+
+To relocate images from the VMware Tanzu Network registry to your registry:
+
+1. Log in to your image registry by running:
 
     ```
     docker login MY-REGISTRY
@@ -24,7 +33,7 @@ This procedure relocates images from the VMware Tanzu Network registry to your r
 
     Where `MY-REGISTRY` is your own container registry.
 
-1. Log in to the VMware Tanzu Network registry with your VMware Tanzu Network credentials:
+1. Log in to the VMware Tanzu Network registry with your VMware Tanzu Network credentials by running:
 
     ```
     docker login registry.tanzu.vmware.com
@@ -42,14 +51,16 @@ This procedure relocates images from the VMware Tanzu Network registry to your r
     Where:
 
     - `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `1.0.2`.
-    - `MY-REGISTRY-USER`is the user with write access to `MY-REGISTRY`.
+    - `MY-REGISTRY-USER` is the user with write access to `MY-REGISTRY`.
     - `MY-REGISTRY-PASSWORD` is the password for `MY-REGISTRY-USER`.
 
 1. Relocate the images with the Carvel tool imgpkg by running:
 
     ```
-    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.0.2 --to-repo ${INSTALL_REGISTRY_HOSTNAME}/some-repo/tap-packages
+    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.0.2 --to-repo ${INSTALL_REGISTRY_HOSTNAME}/TARGET-REPOSITORY/tap-packages
     ```
+
+    Where `TARGET-REPOSITORY` is your target repository.
 
 1. Create a namespace called `tap-install` for deploying any component packages by running:
 
@@ -68,16 +79,18 @@ This procedure relocates images from the VMware Tanzu Network registry to your r
       --export-to-all-namespaces --yes --namespace tap-install
     ```
 
-1. Add Tanzu Application Platform package repository to the cluster by running:
+1. Add the Tanzu Application Platform package repository to the cluster by running:
 
     ```
     tanzu package repository add tanzu-tap-repository \
-      --url ${INSTALL_REGISTRY_HOSTNAME}/some-repo/tap-packages:$TAP_VERSION \
+      --url ${INSTALL_REGISTRY_HOSTNAME}/TARGET-REPOSITORY/tap-packages:$TAP_VERSION \
       --namespace tap-install
     ```
 
-    Where `$TAP_VERSION` is the Tanzu Application Platform version environment variable
-    you defined earlier.
+    Where:
+
+    - `$TAP_VERSION` is the Tanzu Application Platform version environment variable you defined earlier.
+    - `TARGET-REPOSITORY` is the necessary repository.
 
 1. Get the status of the Tanzu Application Platform package repository, and ensure the status updates to `Reconcile succeeded` by running:
 
@@ -98,8 +111,8 @@ This procedure relocates images from the VMware Tanzu Network registry to your r
     REASON:
     ```
 
-    >**Note:** the `VERSION` and `TAG` numbers differ from the example above if you are on
-    >Tanzu Application Platform v1.0.1 or later.
+    > **Note:** the `VERSION` and `TAG` numbers differ from the earlier example if you are on
+    > Tanzu Application Platform v1.0.2 or earlier.
 
 1. List the available packages by running:
 
