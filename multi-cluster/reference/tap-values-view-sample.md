@@ -1,4 +1,4 @@
-# View Profile
+# View profile
 
 The following is the YAML file sample for the view-profile:
 

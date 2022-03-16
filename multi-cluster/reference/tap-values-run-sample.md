@@ -1,4 +1,4 @@
-# Run Profile
+# Run profile
 
 The following is the YAML file sample for the run-profile:
 

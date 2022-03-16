@@ -1,4 +1,4 @@
-# Build Profile
+# Build profile
 
 The following is the YAML file sample for the build-profile:
 

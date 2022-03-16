@@ -1,4 +1,4 @@
-# Installing Multicluster Tanzu Application Platform Profiles
+# Install multicluster Tanzu Application Platform profiles
 
 
 ## <a id='prerequisites'></a> Prerequisites
