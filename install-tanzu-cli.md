@@ -409,10 +409,13 @@ To update Tanzu CLI if it was installed on an earlier release of Tanzu Applicati
 
 ### <a id='old-tap-tanzu-cli-1-0-0'></a>Instructions for updating Tanzu CLI that was installed for Tanzu Application Platform v1.0.0 or v1.0.1
 
-Follow these instructions to update the Tanzu CLI that was installed for a previous release of Tanzu Application Platform:
+Follow these instructions to update the Tanzu CLI that was installed for Tanzu Application Platform
+v1.0.0 or v1.0.1:
 
-- If your Tanzu CLI version is **greater than `v0.11.1`**, you must [delete your existing Tanzu CLI, plug-ins, and associated files](uninstall.md#remove-tanzu-cli) and then perform a [clean install](#tanzu-cli-clean-install)
-- If your Tanzu CLI version is **less than or equal to `v0.11.1`**, proceed to step 1.<br/>
+- 1. Uninstall Tanzu CLI, plug-ins, and associated files by following the steps in
+[Remove Tanzu CLI, plug-ins, and associated files](uninstall.md#remove-tanzu-cli).
+
+- 1. Perform a clean install of the Tanzu CLI by following the steps in [Clean install Tanzu CLI](#tanzu-cli-clean-install) above.
 
 **Steps:**
 
@@ -505,10 +508,13 @@ See **[Installing the Tanzu Application Platform Package and Profiles](install.m
 
 ### <a id='old-tap-tanzu-cli-0-4'></a>Instructions for updating Tanzu CLI that was installed for Tanzu Application Platform v0.4 or earlier
 
-Follow these instructions to update the Tanzu CLI that was installed for a previous release of Tanzu Application Platform:
+Follow these instructions to update the Tanzu CLI that was installed for Tanzu Application Platform
+v0.4 or earlier:
 
-- If your Tanzu CLI version is **greater than `v0.10.0`**, you must [delete your existing Tanzu CLI, plug-ins, and associated files](uninstall.md#remove-tanzu-cli) and then perform a [clean install](#tanzu-cli-clean-install)
-- If your Tanzu CLI version is **less than or equal to `v0.10.0`**, proceed to step 1.<br/>
+- 1. Uninstall Tanzu CLI, plug-ins, and associated files by following the steps in
+[Remove Tanzu CLI, plug-ins, and associated files](uninstall.md#remove-tanzu-cli).
+
+- 1. Perform a clean install of the Tanzu CLI by following the steps in [Clean install Tanzu CLI](#tanzu-cli-clean-install) above.
 
 **Steps:**
 
