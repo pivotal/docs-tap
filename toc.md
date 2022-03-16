@@ -19,7 +19,7 @@ This is the table of contents from which the Tanzu Application Platform Document
   - [Installing individual packages](install-components.md)
   - [Apps CLI plug-in](cli-plugins/apps/overview.md)
         - [Install Apps CLI plug-in](cli-plugins/apps/install-apps-cli.md)
-        - [Working with workloads](cli-plugins/apps/working-with-workloads.md)
+        - [Create a workload](cli-plugins/apps/create-workload.md)
         - [Command reference](cli-plugins/apps/command-reference.md)
             - [Tanzu Apps](cli-plugins/apps/command-reference/tanzu-apps.md)
                 - [Tanzu Apps workload](cli-plugins/apps/command-reference/tanzu-apps-workload.md)
