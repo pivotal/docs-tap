@@ -412,14 +412,14 @@ To update Tanzu CLI if it was installed on an earlier release of Tanzu Applicati
 Follow these instructions to update the Tanzu CLI that was installed for Tanzu Application Platform
 v1.0.0 or v1.0.1:
 
-- 1. Uninstall Tanzu CLI, plug-ins, and associated files by following the steps in
+1. Uninstall Tanzu CLI, plug-ins, and associated files by following the steps in
 [Remove Tanzu CLI, plug-ins, and associated files](uninstall.md#remove-tanzu-cli).
 
-- 1. Perform a clean install of the Tanzu CLI by following the steps in [Clean install Tanzu CLI](#tanzu-cli-clean-install) above.
+1. Perform a clean install of the Tanzu CLI by following the steps in [Clean install Tanzu CLI](#tanzu-cli-clean-install) above.
 
 **Steps:**
 
-1. If a directory called `tanzu` does not exist, create one by running:
+1. If a directory named `tanzu` does not exist, create one by running:
 
     ```
     mkdir $HOME/tanzu
@@ -511,14 +511,14 @@ See **[Installing the Tanzu Application Platform Package and Profiles](install.m
 Follow these instructions to update the Tanzu CLI that was installed for Tanzu Application Platform
 v0.4 or earlier:
 
-- 1. Uninstall Tanzu CLI, plug-ins, and associated files by following the steps in
+1. Uninstall Tanzu CLI, plug-ins, and associated files by following the steps in
 [Remove Tanzu CLI, plug-ins, and associated files](uninstall.md#remove-tanzu-cli).
 
-- 1. Perform a clean install of the Tanzu CLI by following the steps in [Clean install Tanzu CLI](#tanzu-cli-clean-install) above.
+1. Perform a clean install of the Tanzu CLI by following the steps in [Clean install Tanzu CLI](#tanzu-cli-clean-install) above.
 
 **Steps:**
 
-1. If a directory called `tanzu` does not exist, create one by running:
+1. If a directory named `tanzu` does not exist, create one by running:
 
    ```
    mkdir $HOME/tanzu
