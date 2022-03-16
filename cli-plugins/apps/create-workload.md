@@ -38,7 +38,7 @@ Here is how you can get started with an example workload.
 
 Once the workload is created, you can tail the workload to view the build and runtime logs.
 
-1. Check logs by running:
+- Check logs by running:
 
     ```
     tanzu apps workload tail pet-clinic --since 10m --timestamp
