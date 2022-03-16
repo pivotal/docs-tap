@@ -14,7 +14,7 @@ The following prerequisites are required to use workloads with Tanzu Application
 
 ## <a id="example"></a> Get started with an example workload
 
-You can get started with an example workload:
+Here is how you can get started with an example workload.
 
 - To name the workload and specify a source code location to create the workload from, run:
 
@@ -65,7 +65,7 @@ You can view workload details at anytime in the process. Some details, such as t
 
     - `pet-clinic` is the name of the workload you want details about.
 
-2. You can now see the running workload. When the workload is created, `tanzu apps workload get` includes the URL for the running workload. Depending on your terminal, you might be able to `ctrl` + click the URL to view it. You can also copy and paste the URL into your web browser to see the workload.
+2. You can now see the running workload. When the workload is created, `tanzu apps workload get` includes the URL for the running workload. Some terminals allow you to `ctrl`+click the URL to view it. You can also copy and paste the URL into your web browser to see the workload.
 
 ## <a id="workload-local-source"></a> Create a workload from local source code
 
