@@ -407,7 +407,7 @@ You can now proceed with installing Tanzu Application Platform. For more informa
 
 To update Tanzu CLI if it was installed on an earlier release of Tanzu Application Platform, follow the relevant procedure below.
 
-### <a id='old-tap-tanzu-cli-1-0-0'></a>Instructions for updating Tanzu CLI that was installed for Tanzu Application Platform v1.0.0 or v1.0.1
+### <a id='update-tap-tanzu-cli-1-0-0'></a>Instructions for updating Tanzu CLI that was installed for Tanzu Application Platform v1.0.0 or v1.0.1
 
 Follow these instructions to update the Tanzu CLI that was installed for Tanzu Application Platform
 v1.0.0 or v1.0.1:
@@ -506,7 +506,7 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
 You can now install Tanzu Application Platform.
 See **[Installing the Tanzu Application Platform Package and Profiles](install.md)**.
 
-### <a id='old-tap-tanzu-cli-0-4'></a>Instructions for updating Tanzu CLI that was installed for Tanzu Application Platform v0.4 or earlier
+### <a id='update-tap-tanzu-cli-0-4'></a>Instructions for updating Tanzu CLI that was installed for Tanzu Application Platform v0.4 or earlier
 
 Follow these instructions to update the Tanzu CLI that was installed for Tanzu Application Platform
 v0.4 or earlier:
