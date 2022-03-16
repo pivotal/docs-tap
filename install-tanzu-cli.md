@@ -126,11 +126,11 @@ If using Linux, download `tanzu-cluster-essentials-linux-amd64-1.0.0.tgz`.
 
 Choose the install scenario that is right for you:
 
-   + [Instructions for a clean install of Tanzu CLI](#tanzu-cli-clean-install)
-   + [Instructions for updating Tanzu CLI that was installed for a previous Tanzu Application Platform release](#update-prev-tap-tanzu-cli)
+   + [Cleanly Install Tanzu CLI](#tanzu-cli-clean-install)
+   + [Updating Tanzu CLI Installed for a Previous Tanzu Application Platform Release](#update-prev-tap-tanzu-cli)
 
 
-### <a id='tanzu-cli-clean-install'></a> Clean install Tanzu CLI
+### <a id='tanzu-cli-clean-install'></a> Cleanly Install Tanzu CLI
 
 To perform a clean installation of Tanzu CLI:
 
@@ -199,7 +199,7 @@ the CLI core and plug-ins are installed:
     * `version: v0.11.1` for Tanzu Application Platform v1.0.1 or v1.0.2
     * `version: v0.10.0` for Tanzu Application Platform v1.0.0
 
-1. Proceed to [Instructions for a clean install of Tanzu CLI plug-ins](#cli-plugin-clean-install).
+1. Proceed to [Cleanly Install Tanzu CLI Plug-ins](#cli-plugin-clean-install).
 
 
 #### <a id='mac-tanzu-cli'></a>Mac: Install the Tanzu CLI
@@ -257,7 +257,7 @@ the CLI core and plug-ins are installed:
     * `version: v0.11.1` for Tanzu Application Platform v1.0.1 or v1.0.2
     * `version: v0.10.0` for Tanzu Application Platform v1.0.0
 
-1. Proceed to [Instructions for a clean install of Tanzu CLI plug-ins](#cli-plugin-clean-install).
+1. Proceed to [Cleanly Install Tanzu CLI Plug-ins](#cli-plugin-clean-install).
 
 
 #### <a id='windows-tanzu-cli'></a>Windows: Install the Tanzu CLI
@@ -319,9 +319,9 @@ command in a terminal window:
     * `version: v0.11.1` for Tanzu Application Platform v1.0.1 or v1.0.2
     * `version: v0.10.0` for Tanzu Application Platform v1.0.0
 
-1. Proceed to [Clean Install Tanzu CLI plug-ins](#cli-plugin-clean-install)
+1. Proceed to [Cleanly Install Tanzu CLI Plug-ins](#cli-plugin-clean-install)
 
-## <a id='cli-plugin-clean-install'></a> Clean install Tanzu CLI plug-ins
+## <a id='cli-plugin-clean-install'></a> Cleanly Install Tanzu CLI Plug-ins
 
 To perform a clean installation of the Tanzu CLI plug-ins:
 
@@ -403,11 +403,11 @@ You can now proceed with installing Tanzu Application Platform. For more informa
 **[Installing the Tanzu Application Platform Package and Profiles](install.md)**.
 
 
-## <a id='update-prev-tap-tanzu-cli'></a>Instructions for updating Tanzu CLI that was installed for a previous release of Tanzu Application Platform
+## <a id='update-prev-tap-tanzu-cli'></a>Updating Tanzu CLI Installed for a Previous Tanzu Application Platform Release
 
 To update Tanzu CLI if it was installed on an earlier release of Tanzu Application Platform, follow the relevant procedure below.
 
-### <a id='update-tap-tanzu-cli-1-0-0'></a>Instructions for updating Tanzu CLI that was installed for Tanzu Application Platform v1.0.0 or v1.0.1
+### <a id='update-tap-tanzu-cli-1-0-0'></a> Updating Tanzu CLI Installed for Tanzu Application Platform v1.0.0 or v1.0.1
 
 Follow these instructions to update the Tanzu CLI that was installed for Tanzu Application Platform
 v1.0.0 or v1.0.1:
@@ -415,9 +415,7 @@ v1.0.0 or v1.0.1:
 1. Uninstall Tanzu CLI, plug-ins, and associated files by following the steps in
 [Remove Tanzu CLI, plug-ins, and associated files](uninstall.md#remove-tanzu-cli).
 
-1. Perform a clean install of the Tanzu CLI by following the steps in [Clean install Tanzu CLI](#tanzu-cli-clean-install) above.
-
-**Steps:**
+1. Perform a clean install of the Tanzu CLI by following the steps in [Cleanly Install Tanzu CLI](#tanzu-cli-clean-install) above.
 
 1. If a directory named `tanzu` does not exist, create one by running:
 
@@ -506,7 +504,7 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
 You can now install Tanzu Application Platform.
 See **[Installing the Tanzu Application Platform Package and Profiles](install.md)**.
 
-### <a id='update-tap-tanzu-cli-0-4'></a>Instructions for updating Tanzu CLI that was installed for Tanzu Application Platform v0.4 or earlier
+### <a id='update-tap-tanzu-cli-0-4'></a> Updating Tanzu CLI Installed for Tanzu Application Platform v0.4 or earlier
 
 Follow these instructions to update the Tanzu CLI that was installed for Tanzu Application Platform
 v0.4 or earlier:
@@ -514,9 +512,7 @@ v0.4 or earlier:
 1. Uninstall Tanzu CLI, plug-ins, and associated files by following the steps in
 [Remove Tanzu CLI, plug-ins, and associated files](uninstall.md#remove-tanzu-cli).
 
-1. Perform a clean install of the Tanzu CLI by following the steps in [Clean install Tanzu CLI](#tanzu-cli-clean-install) above.
-
-**Steps:**
+1. Perform a clean install of the Tanzu CLI by following the steps in [Cleanly Install Tanzu CLI](#tanzu-cli-clean-install) above.
 
 1. If a directory named `tanzu` does not exist, create one by running:
 
