@@ -25,4 +25,4 @@ Where:
 
 - `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
 service's External IP address.
-- `APP-LIVE-VIEW-INGRESS-DOMAIN` is the subdomain you setup on the View profile cluster. This corresponds to the value key `appliveview.ingressDomain`. Make sure to include the default hostname `applieview.` ahead of the domain.
+- `APP-LIVE-VIEW-INGRESS-DOMAIN` is the subdomain you setup on the View profile cluster. This corresponds to the value key `appliveview.ingressDomain`. Make sure to include the default host name `applieview.` ahead of the domain.

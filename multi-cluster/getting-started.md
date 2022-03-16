@@ -1,31 +1,35 @@
-# Getting Started with Multicluster Tanzu Application Platform
+# Getting started with multicluster Tanzu Application Platform
 
-The purpose of the below procedures is to validate the successful implementation of a multicluster topology by taking a small sample Workload and passing it through the Supply Chains that exist on the Build and Run clusters. There are numerous ways that the supply chain can be configured in this topology, but we're going to focus on validating the most basic capbilities. At the end of this documenation you should have a application that was build on the Build profile clusters and delivered to run on the Run profile clusters. This Workload and associated objects should be viewable from the Tanzu Application Platform GUI interface on the View profile cluster.
+In this tutorial, we'll validate the successful implementation of a multicluster topology by taking a small sample workload and passing it through the supply chains on the Build and Run clusters. You can take various approaches to configuring the supply chain in this topology, but the following procedures validate the most basic capabilities.
+
+The steps in this tutorial result in an application built on the Build profile clusters and delivered to run on the Run profile clusters. The workload and associated objects can then be viewed from the Tanzu Application Platform GUI interface on the View profile cluster.
 
 ## <a id='prerequisites'></a> Prerequisites
 
-1. In order to continue, you'll need to make sure you've completed the [installation steps for the 3 profiles](./installing-multicluster.md): Build, Run, and View.
+Before implementing a multicluster topology, complete the following: 
 
-1. For the sample Workload we'll be using the same Application Accelerator - Tanzu Java Web App that is used in the non-multicluster [Getting Started](../getting-started.md) guide. You can download this accelerator and put it on your own Git infrastructure of choice (additional configuration may be necessary regarding permissions) or you can leverage the [sample-accelerators GitHub repository](https://github.com/sample-accelerators/tanzu-java-web-app).
+1. Complete all [installation steps for the 3 profiles](./installing-multicluster.md): Build, Run, and View.
 
-1. The two Supply Chains that will be used here are on the Build profile: `ootb-supply-chain-basic` and on the Run profile: `ootb-delivery-basic`
+1. For the sample workload, we use the same Application Accelerator - Tanzu Java Web App used in the non-multicluster [Getting Started](../getting-started.md) guide. You can download this accelerator and put it on your own Git infrastructure of choice. Additional configuration may be necessary regarding permissions. Otherwise, you can use the [sample-accelerators GitHub repository](https://github.com/sample-accelerators/tanzu-java-web-app).
 
-1. For both the Build and Run profiled clusters, perform the [Setup Developer Namespace](../install-components.md#setup) steps. For the purposes of this guide, we'll assume that the `default` namespace was used.
+1. The two supply chains used here are on the Build profile: `ootb-supply-chain-basic` and on the Run profile: `ootb-delivery-basic`. For both the Build and Run profiled clusters, perform the [Setup Developer Namespace](../install-components.md#setup) steps. This guide assumes that the `default` namespace is used.
 
-1. Set the value of `DEVELOPER_NAMESPACE` to the appropriate namespace you setup in the previous step.
+1. To set the value of `DEVELOPER_NAMESPACE` to the appropriate namespace you setup in the previous step, run:
 
     ```bash
     export DEVELOPER_NAMESPACE=YOUR_DEVELOPER_NAMESPACE
     ```
 
-    Where `YOUR-DEVELOPER-NAMESPACE` is the namespace you [set up prior](../install-components.md#setup). For the purposes of this tutorial, `default` will be used.
+    Where:
+    
+    - `YOUR-DEVELOPER-NAMESPACE` is the namespace you [set up prior](../install-components.md#setup). For the purposes of this tutorial, `default` is used.
 
 
-## <a id='build-cluster'></a> Start the Workload on the Build Profile Cluster
+## <a id='build-cluster'></a> Start the workload on the Build profile cluster
 
-1. The Build cluster will start things off by taking the Workload and building the necessary bundle that will then be delivered to the Run cluster to start.
+The Build cluster starts by building the necessary bundle for the workload that is delivered to the Run cluster.
 
-1. Use the Tanzu CLI to start the Workload down the first Supply Chain:
+1. Use the Tanzu CLI to start the workload down the first supply chain:
 
     ```bash
     tanzu apps workload create tanzu-java-web-app \
@@ -37,15 +41,15 @@ The purpose of the below procedures is to validate the successful implementation
     --namespace ${DEVELOPER_NAMESPACE}
     ```
 
-1. Monitor the progress of this process by running:
+1. To monitor the progress of this process, run:
 
     ```
     tanzu apps workload tail tanzu-java-web-app --since 10m --timestamp --namespace ${DEVELOPER_NAMESPACE}
     ```
 
-1. Exit the monitoring session by pressing **CTRL**+**C**.
+1. To exit the monitoring session, press **CTRL**+**C**.
 
-1. You'll now need to check that your supply chain has produced the necessary `Deliverable` for the `Workload`. This `Deliverable` contains the reference to the `source`, in this case a bundle that has been paced on the image registy you specified for the Supply Chain. The supply chains can also leverage Git repositories instead of ImageRepositories, but that's out-of-scope for this guide.
+1. Check that your supply chain has produced the necessary `Deliverable` for the `Workload`. This `Deliverable` contains the reference to the `source`, in this case a bundle placed on the image registry you specified for the supply chain. The supply chains can also leverage Git repositories instead of ImageRepositories, but that's beyond the scope of this tutorial. To check for the `Deliverable`, run:
 
     ```bash
     kubectl get deliverable --namespace ${DEVELOPER_NAMESPACE}
@@ -59,13 +63,13 @@ The purpose of the below procedures is to validate the successful implementation
     tanzu-java-web-app   tapmulticluster.azurecr.io/tap-multi-build-dev/tanzu-java-web-app-default-bundle:xxxx-xxxx-xxxx-xxxx-xxxxx              False   DeliveryNotFound   28h
     ```
 
-1. Now that you see there's a `Deliver` on the build cluster, you can create a `Deliverable`. You'll need to dump the contents of this to a file that you can take to the Run profile cluster(s):
+1. Now that you see there's a `Deliver` on the build cluster, you can create a `Deliverable`. Dump the contents of this to a file that you can take to the Run profile clusters:
 
     ```bash
     kubectl get deliverable tanzu-java-web-app --namespace ${DEVELOPER_NAMESPACE} -oyaml > deliverable.yaml
     ```
 
-1. Now you can edit this deliverable yaml down to just the key sections. You'll want to **delete** the following sections:`ownerReferences` and `status`. After editing you should be left with something similar to the following:
+1. Edit this deliverable YAML to just the key sections. **Delete** the `ownerReferences` and `status` sections. After editing you are left with something similar to the following:
 
     ```yaml
     apiVersion: carto.run/v1alpha1
@@ -93,19 +97,19 @@ The purpose of the below procedures is to validate the successful implementation
         image: tapmulticluster.azurecr.io/tap-multi-build-dev/tanzu-java-web-app-default-bundle:xxxx-xxxx-xxxx-xxxx-xxxx
     ```
 
-1. Now that you have this `Deliverable` file, you can take it to the **Run** profile cluster(s) and run the following command:
+1. To take this `Deliverable` file to the **Run** profile clusters, run:
 
     ```bash
     kubectl apply -f deliverable.yaml --namespace ${DEVELOPER_NAMESPACE}
     ```
 
-1. The next step is to check that this `Deliverable` has been started and is `Ready`. You can do this with the following command:
+1. To check that this `Deliverable` is started and `Ready`, run:
 
     ```bash
     kubectl get deliverables --namespace ${DEVELOPER_NAMESPACE}
     ```
 
-    The output should resemble the following:
+    The output resembles the following:
 
     ```bash
     kubectl get deliverables --namespace default
@@ -113,13 +117,13 @@ The purpose of the below procedures is to validate the successful implementation
     tanzu-java-web-app   tapmulticloud.azurecr.io/tap-multi-build-dev/tanzu-java-web-app-default-bundle:xxxx-xxxx-xxxx-xxxx-1a7beafd6389   delivery-basic   True    Ready    7m2s
     ```
 
-1. In order to test the application, you'll need to query the URL for the application. You can find this by looking for the `httpProxy`:
+1. To test the application, query the URL for the application. Look for the `httpProxy` by running:
 
     ```bash
     kubectl get httpproxy --namespace ${DEVELOPER_NAMESPACE}
     ```
 
-    You should see the URL similar to the below:
+    The output resembles the following:
 
     ```bash
     kubectl get httpproxy --namespace default
@@ -132,4 +136,4 @@ The purpose of the below procedures is to validate the successful implementation
 
     Select the URL that corresponds to the domain you specified in your Run cluster's profile and type it into a browser. You should see the message "Greetings from Spring Boot + Tanzu!".
 
-1. If you'd like to see the component in the Tanzu Application Platform GUI, you can [follow the steps to Register the Component](../tap-gui/catalog/catalog-operations.md#register-comp) using the [catalog file from the sample accelerator](https://github.com/sample-accelerators/tanzu-java-web-app/blob/main/catalog/catalog-info.yaml).
+1. To see the component in the Tanzu Application Platform GUI, [follow the steps to Register the Component](../tap-gui/catalog/catalog-operations.md#register-comp) by using the [catalog file from the sample accelerator](https://github.com/sample-accelerators/tanzu-java-web-app/blob/main/catalog/catalog-info.yaml).
