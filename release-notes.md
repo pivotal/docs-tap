@@ -22,8 +22,8 @@ This new profile is intended for iterative development versus the path to produc
 #### Default roles for Tanzu Application Platform
 
 * Introduction of five new default roles and related permissions that apply to **k8s resources**. These roles help operators set up common sets of permissions for users and service accounts accessing a cluster running Tanzu Application Platform.
-  * Three roles are for users: app-editor, app-viewer and app-operator. 
-  * Two roles are for “robot” or system permissions: workload and deliverable. 
+  * Three roles are for users: app-editor, app-viewer and app-operator.
+  * Two roles are for “robot” or system permissions: workload and deliverable.
 
 
 #### Tanzu Application Platform GUI
@@ -63,6 +63,10 @@ This release has the following security issues:
 
 ### <a id='1-1-known-issues'></a> Known issues
 
+#### Tanzu Application Platform
+
+- **Deprecated profile:** Tanzu Application Platform light profile is deprecated.
+
 #### Grype scanner
 
 **Scanning Java source code may not reveal vulnerabilities:** Source Code Scanning only scans
@@ -86,11 +90,7 @@ This does not change the result of the scan.
 - **Scan Phase indicates `Scanning` incorrectly:** Scans have an edge case that when an error
 occurs during scanning, the `Scan Phase` field is not updated to `Error` and remains in the
 `Scanning` phase. Read the scan pod logs to verify the existence of an error.
-
-### <a id='1-1-known-issues'></a> Feature deprecation
-
-* Tanzu Application Platform profile - light
-* Supply Chain Security Tools - Scan deprecated API version `scanning.apps.tanzu.vmware.com/v1alpha1`
+- **Deprecated API version:** API version `scanning.apps.tanzu.vmware.com/v1alpha1` is deprecated.
 
 
 ## <a id='1-0'></a> v1.0
