@@ -100,6 +100,8 @@ and you want to use `NodePort`, then create a `metadata-store-values.yaml` and c
     See [Deployment Details and Configuration](deployment_details.md#configuration) for
     more detailed descriptions of configuration options.
 
+    See [Ingress & Multi Cluster support](ingress_multi_cluster.md) for more details on Ingress and custom Domain name support.
+
 1. Install the package by running:
 
     ```
