@@ -125,7 +125,7 @@ that you plan to create the `Workload` in:
     apiVersion: v1
     kind: ServiceAccount
     metadata:
-      name: supplychain
+      name: default
     secrets:
       - name: registry-credentials
     imagePullSecrets:
@@ -135,26 +135,26 @@ that you plan to create the `Workload` in:
     apiVersion: rbac.authorization.k8s.io/v1
     kind: RoleBinding
     metadata:
-      name: supplychain-permit-deliverable
+      name: default-permit-deliverable
     roleRef:
       apiGroup: rbac.authorization.k8s.io
       kind: ClusterRole
       name: deliverable
     subjects:
       - kind: ServiceAccount
-        name: supplychain
+        name: default
     ---
     apiVersion: rbac.authorization.k8s.io/v1
     kind: RoleBinding
     metadata:
-      name: supplychain-permit-workload
+      name: default-permit-workload
     roleRef:
       apiGroup: rbac.authorization.k8s.io
       kind: ClusterRole
       name: workload
     subjects:
       - kind: ServiceAccount
-        name: supplychain
+        name: default
     EOF
     ```
 
