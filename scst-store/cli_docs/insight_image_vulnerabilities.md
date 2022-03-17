@@ -22,4 +22,4 @@ insight image vulnerabilities --digest sha256:a86859ac1946065d93df9ecb5cb7060ade
 
 ## <a id='see-also'></a>See also
 
-* [Insight image](insight-image.md)	 - Image commands
+* [Insight image](insight_image.md)	 - Image commands

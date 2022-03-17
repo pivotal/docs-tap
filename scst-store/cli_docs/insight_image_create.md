@@ -22,4 +22,4 @@ insight image create --cyclonedxtype json --path /path/to/file.json
 
 ## <a id='see-also'></a>See also
 
-* [Insight image](insight-image.md) - Image commands
+* [Insight image](insight_image.md) - Image commands

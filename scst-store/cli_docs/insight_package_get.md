@@ -28,4 +28,4 @@ insight package get --name client --version 1.0.0a --pkgmngr Unknown
 
 ## <a id='see-also'></a>See also
 
-* [insight package](insight-package.md)	 - Package commands
+* [insight package](insight_package.md)	 - Package commands

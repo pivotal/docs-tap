@@ -28,4 +28,4 @@ insight source get --repo github.com/org/example --commit b33dfee51 --org compan
 
 ## <a id='see-also'></a>See also
 
-* [insight source](insight-source.md)	 - Source commands
+* [insight source](insight_source.md)	 - Source commands

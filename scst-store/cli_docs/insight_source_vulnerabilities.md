@@ -27,4 +27,4 @@ insight sources vulnerabilities --commit eb55fc13
 
 ## <a id='see-also'></a>See also
 
-* [insight source](insight-source.md)	 - Source commands
+* [insight source](insight_source.md)	 - Source commands
