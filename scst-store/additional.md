@@ -14,7 +14,11 @@ For more information, see [Deployment Details and Configuration](deployment_deta
 
 ## <a id='query-data'></a>Querying the database
 
+<<<<<<< HEAD
 ### <a id='required-set-up'></a>Set up
+=======
+For more information, see [Deployment Details and Configuration](deployment_details.md).
+>>>>>>> parent of 29397a03 ([#181173838] replace _ with - in file names)
 
 The following steps are required to use the API or CLI:
 
