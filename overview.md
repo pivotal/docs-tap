@@ -118,7 +118,7 @@ The following packages are part of the Tanzu Application Platform:
 
 - **Default roles for Tanzu Application Platform**
 
-  This package includes five default roles for users and service accounts: app-editor, app-viewer, app-operator, workload, and deliverable. These roles are available to help operators limit the permissions that a user or service account requires on a cluster running Tanzu Application Platform. They are built using aggregated cluster roles in Kubernetes role-based access control (RBAC).
+  This package includes [five default roles](authn-authz/overview.md) for users and service accounts: app-editor, app-viewer, app-operator, workload, and deliverable. These roles are available to help operators limit the permissions that a user or service account requires on a cluster running Tanzu Application Platform. They are built using aggregated cluster roles in Kubernetes role-based access control (RBAC).
 
   Default roles only apply to a user interacting with the cluster using kubectl and Tanzu CLI. Tanzu Application Platform GUI support for default roles is planned for a future release.
 
