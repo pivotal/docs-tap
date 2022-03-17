@@ -256,7 +256,7 @@ this can reuse the `tap-registry` secret created in
 
 ### <a id='light-profile'></a> Light Profile
 
-The Light profile has been deprecated. While existing values files may still refer to it, we strongly advise users migrate to one of the [new profiles](#install-profile) using the [process detailed here.](./migrate-profile.md)
+The Light profile is deprecated. Although existing values files might still refer to the Light profile, VMware recommends to migrate to one of the new profiles described in [Install your Tanzu Application Platform profile](#install-profile) by following the procedures in [Migrate Tanzu Application Platform profiles](migrate-profile.md).
 
 ### <a id="view-pkge-config-settings"></a>View possible configuration settings for your package
 
