@@ -50,9 +50,23 @@ Where:
 
 - `PATH` is the location where you want to save the CA certificate. This file is used later when you [configure the CLI](cli-configuration.md).
 
-###<a id='editing-etchost'></a>Editing `/etc/hosts`
+If using an Ingress, the CA certificate for clients should be that one of the ingress domain:
 
-To add the IP entry mapping to `metadata-store-app.metadata-store.svc.cluster.local` in `/etc/hosts`. Add this line:
+```
+kubectl get secret ingress-cert -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d > PATH
+```
+
+### <a id='dns-resolution'></a>DNS resolution
+
+In order to support TLS domain verification, you'll need to setup a record to resolve to the IP handling the connections. This can be achieved via a DNS server or by modifying your local `/etc/hosts` file. 
+
+If ingress is enabled, this IP should point to the `envoy`'s service external IP from the `metadata-store` subdomain record.
+
+```
+IP metadata-store.<ingress_domain>
+```
+
+For installations without ingress enabled, add the IP entry mapping to `metadata-store-app.metadata-store.svc.cluster.local`.
 
 ```
 IP metadata-store-app.metadata-store.svc.cluster.local
@@ -60,12 +74,14 @@ IP metadata-store-app.metadata-store.svc.cluster.local
 
 Where:
 
-- `IP` is the IP you got from the step *Using `LoadBalancer`* step above.
+- `IP` is the IP you got from the step *Using `LoadBalancer`* step above or the `envoy`'s service external IP. 
 
 For example:
 
-```
+```bash
 10.186.124.220 metadata-store-app.metadata-store.svc.cluster.local
+# if using ingress
+10.186.124.220 metadata-store.example.com
 ```
 
 ## <a id='use-np'></a>Using `NodePort`
@@ -82,6 +98,12 @@ kubectl get secret app-tls-cert -n metadata-store -o json | jq -r '.data."ca.crt
 Where:
 
 - `PATH` is the location where you want to save the CA certificate. This file is used later when you [configure the CLI](cli-configuration.md).
+
+If using an Ingress, the CA certificate for clients should be that one of the ingress domain:
+
+```
+kubectl get secret ingress-cert -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d > PATH
+```
 
 ### <a id='config-pf'></a>Configuring port forwarding
 When using `NodePort`, you need to configure port forwarding for the service for the CLI to access the Supply Chain Security Tools - Store. Run:
