@@ -31,7 +31,7 @@ Here is how you can get started with an example workload.
     - `--git-branch` (optional) specifies which branch in the repository to pull the code from.
     - `--type` is used to distinguish the workload type.
 
-    You can find the options available for specifying the workload in the command reference for [`workload create`](command-reference/tanzu-apps-workload-create.md), or you can run `tanzu apps workload create --help`.
+    You can find the options available for specifying the workload in the command reference for [`workload create`](command-reference/tanzu_apps_workload_create.md), or you can run `tanzu apps workload create --help`.
 
 
 ## <a id="check-build-logs"></a> Check build logs
@@ -98,7 +98,7 @@ Multiple services can be configured for each workload. The cluster supply chain 
     Where:
 
     - `pet-clinic` is the name of the workload to be updated.
-    - `--service-ref` references the service using the format {name}={apiVersion}:{kind}:{name}. For more details, refer to [update command](command-reference/tanzu-apps-workload-update.md#update-options).
+    - `--service-ref` references the service using the format {name}={apiVersion}:{kind}:{name}. For more details, refer to [update command](command-reference/tanzu_apps_workload_update.md#update-options).
 
 ## <a id="next-steps"></a> Next steps
 

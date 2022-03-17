@@ -28,7 +28,7 @@ The TLS secret `tls` is not available.
     ```
 
 1. Follow the steps in
-    [Enforcing Secure Connections](learning-center/getting-started/learning-center-operator.html#enforce-secure-connect)
+    [Enforcing Secure Connections](getting-started/learning-center-operator.html#enforce-secure-connect)
     in _Learning Center Operator_ to create the TLS secret.
 
 1. Redeploy the `trainingPortal` resource.

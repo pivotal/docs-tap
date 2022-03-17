@@ -840,13 +840,8 @@ Scan reports are automatically saved to the [Supply Chain Security Tools - Store
 
   Important: The `Insight CLI` is separate from the Tanzu CLI.
 
-<<<<<<< HEAD
 See [Query Data](scst-store/query_data.html) or [CLI Details](scst-store/cli_docs/insight.html) for
-=======
-See [Query Data](scst-store/query-data..html) or [CLI Details](scst-store/cli-docs/insight.html) for
->>>>>>> parent of b9e0e828 ([#181173838] fix broken links)
 additional examples.
-<br>
 
 
 ### <a id="successful-deploy"></a>Congratulations! You have successfully deployed your application on the Tanzu Application Platform.
