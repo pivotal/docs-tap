@@ -1,31 +1,32 @@
-# Tanzu apps workload create
+# Tanzu apps workload update
 
-This topic helps you create a workload with the specified configuration.
+This topic helps you update the configuration of an existing workload.
 
 ### <a id="synopsis"></a> Synopsis
 
-Create a workload with the specified configuration.
+Update the configuration of an existing workload.
 
 Workload configuration options include:
 
-- Source code to build
-- Runtime resource limits
-- Environment variables
-- Services to bind
+- source code to build
+- runtime resource limits
+- environment variables
+- services to bind
 
 ```
-tanzu apps workload create [name] [flags]
+tanzu apps workload update [name] [flags]
 ```
 
 ## <a id="examples"></a>Examples
 
 ```
-tanzu apps workload create my-workload --git-repo https://example.com/my-workload.git
-tanzu apps workload create my-workload --local-path . --source-image registry.example/repository:tag
-tanzu apps workload create --file workload.yaml
+tanzu apps workload update my-workload --debug=false
+tanzu apps workload update my-workload --local-path .
+tanzu apps workload update my-workload --env key=value
+tanzu apps workload update --file workload.yaml
 ```
 
-## <a id="options"></a>Options
+## <a id='update-options'></a>Options
 
 ```
       --app name                       application name the workload is a part of
@@ -37,7 +38,7 @@ tanzu apps workload create --file workload.yaml
       --git-commit SHA                 commit SHA within the git repo to checkout
       --git-repo url                   git url to remote source code
       --git-tag tag                    tag within the git repo to checkout
-  -h, --help                           help for create
+  -h, --help                           help for update
       --image image                    pre-built image, skips the source resolution and build phases of the supply chain
       --label "key=value" pair         label is represented as a "key=value" pair, or "key-" to remove. This flag may be specified multiple times
       --limit-cpu cores                the maximum amount of cpu allowed, in CPU cores (500m = .5 cores)
@@ -58,7 +59,7 @@ tanzu apps workload create --file workload.yaml
   -y, --yes                            accept all prompts
 ```
 
-## <a id="parent-commands-options"></a> Options inherited from parent commands
+## <a id="parent-commands-options"></a>Options inherited from parent commands
 
 ```
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
@@ -69,4 +70,4 @@ tanzu apps workload create --file workload.yaml
 
 ## <a id="see-also"></a> See also
 
-- [Tanzu Apps Workload](tanzu-apps-workload.md) - Workload life cycle management
+- [Tanzu Apps Workload](tanzu_apps_workload.md)   - Workload life cycle management

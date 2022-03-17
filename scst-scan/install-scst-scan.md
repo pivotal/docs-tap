@@ -15,7 +15,7 @@ Before installing Supply Chain Security Tools - Scan:
 - [Supply Chain Security Tools - Store](../install-components.md#install-scst-store) must be installed on the cluster for scan results to persist. Supply Chain Security Tools - Scan can be installed without Supply Chain Security Tools - Store already installed. In this case, skip creating a values file. Once Supply Chain Security Tools - Store is installed, the Supply Chain Security Tools - Scan values file must be updated.
   For usage instructions, see [Using the Supply Chain Security Tools - Store](../scst-store/overview.md).
 - Install Supply Chain Security Tools - Store CLI to query the Supply Chain Security Tools - Store for CVE results.
-  See [Installing the CLI](../scst-store/cli-installation.md).
+  See [Installing the CLI](../scst-store/cli_installation.md).
 
 ## <a id="scanner-support"></a>Scanner support
 

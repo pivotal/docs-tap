@@ -13,7 +13,7 @@ alt="A demonstration of the features. First ingesting a bill of materials file. 
 Supply Chain Security Tools - Store has three components:
 
 * [API details](api.md)
-* [CLI installation](cli-installation.md) (Insight)
+* [CLI installation](cli_installation.md) (Insight)
 * Postgres database
 
 See [Additional resources](additional.md) for more information about Supply Chain Security Tools for Tanzu – Store.

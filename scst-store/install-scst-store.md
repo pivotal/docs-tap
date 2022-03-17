@@ -13,7 +13,7 @@ Before installing Supply Chain Security Tools - Store:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
 - Install cert-manager on the cluster. See [Install Prerequisites](../install-components.md#install-prereqs).
-- See [Deployment Details and Configuration](deployment-details.md) to review what resources will be deployed. For more information, see the [overview](overview.md).
+- See [Deployment Details and Configuration](deployment_details.md) to review what resources will be deployed. For more information, see the [overview](overview.md).
 
 ## <a id='install'></a>Install
 
@@ -97,7 +97,7 @@ and you want to use `NodePort`, then create a `metadata-store-values.yaml` and c
     app_service_type: "NodePort"
     ```
 
-    See [Deployment Details and Configuration](deployment-details.md#configuration) for
+    See [Deployment Details and Configuration](deployment_details.md#configuration) for
     more detailed descriptions of configuration options.
 
 1. Install the package by running:

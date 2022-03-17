@@ -32,5 +32,5 @@ tanzu apps workload get my-workload
 
 ## <a id="see-also"></a> See also
 
-* [Tanzu apps workload](tanzu-apps-workload.md)	- Workload life cycle management
+* [Tanzu apps workload](tanzu_apps_workload.md)	- Workload life cycle management
 

@@ -14,6 +14,6 @@ This topic includes a description of applications (apps) available on Kubernetes
 
 ## <a id="see-also"></a> See also
 
-- [Tanzu Apps Cluster Supply Chain](tanzu-apps-cluster-supply-chain.md)	- Patterns for building and configuring workloads
-- [Tanzu Apps Workload](tanzu-apps-workload.md)	- Workload life cycle management
+- [Tanzu Apps Cluster Supply Chain](tanzu_apps_cluster-supply-chain.md)	- Patterns for building and configuring workloads
+- [Tanzu Apps Workload](tanzu_apps_workload.md)	- Workload life cycle management
 
