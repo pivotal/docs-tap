@@ -17,7 +17,7 @@ For more information, see [Prerequisites](prerequisites.md).
 - [Install cert-manager, Contour, and FluxCD](cert-mgr-contour-fcd/install-cert-mgr.md)
 - [Install Cloud Native Runtimes](cloud-native-runtimes/install-cnrt.md)
 - [Install Convention Service](convention-service/install-conv-service.md)
-- [Install default roles for Tanzu Application Platform](./default-roles/overview.md)  
+- [Install default roles for Tanzu Application Platform](./authn-authz/overview.md)  
 - [Install Developer Conventions](developer-conventions/install-dev-conventions.md)
 - [Install Learning Center for Tanzu Application Platform](learning-center/install-learning-center.md)
 - [Install Out-of-the-Box Templates](scc/install-ootb-templates.md)

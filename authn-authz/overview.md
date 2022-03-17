@@ -1,6 +1,14 @@
 # Overview
 
-Tanzu Application Platform 1.1 introduces five new default roles to help you set up permissions for users and service accounts within a namespace on a cluster running one of the Tanzu Application Platform profiles. Three of these roles are for users:
+Tanzu Application Platform 1.1 introduces:
+
+* Documentation for [integrating with your existing identity management solution](integrating-identity.md).
+* Five new default roles to help you set up permissions for users and service accounts within a namespace on a cluster running one of the Tanzu Application Platform profiles.
+* TAP `rbac` CLI plugin for role binding.
+
+## Default roles
+
+Three of these roles are for users:
 
 - app-editor
 - app-viewer
@@ -15,6 +23,6 @@ The default roles provide an opinionated starting point for the most common perm
 
 The default roles are installed with every Tanzu Application Platform profile. For an overview of the different roles and what permission they have, see [Role Descriptions](role-descriptions.md).
 
-## <a id="work-with-roles"></a>Working with roles
+## <a id="work-with-roles"></a>Working with roles using the `rbac` CLI plugin
 
 For more information about working with roles, see [Bind a user or group to a default role](binding.md).
