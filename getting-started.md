@@ -1001,7 +1001,7 @@ see [Querying Supply Chain Security Tools - Store](scst-store/query-data.md).
 ## <a id='service-consump'></a> Section 5: Consuming Services on Tanzu Application Platform
 
 Tanzu Application Platform makes it straight forward to discover, curate, consume, and manage
-services across single-cluster or multi-cluster environments.
+services across single-cluster or multicluster environments.
 This section introduces procedures for implementing several use cases regarding the services journey on Tanzu Application Platform.
 
 ### <a id="serv-con-overview"></a>Overview

@@ -22,7 +22,7 @@ Before installing Application Live View:
 
 ## <a id='install-app-live-view'></a> Install Application Live View
 
-You can install Application Live View in single cluster or multi-cluster environment: 
+You can install Application Live View in single cluster or multicluster environment: 
 
 - `Single cluster`: All Application Live View components are deployed in a single cluster. The user can access Application Live View plug-in information of the applications across all the namespaces in the Kubernetes cluster. This is the default mode of Application Live View.
 
@@ -66,13 +66,13 @@ To install Application Live View Backend:
 
 1. Create `app-live-view-backend-values.yaml` with the following details:
 
-    For single cluster environment, use the following values
+    For single cluster environment, use the following values:
 
     ```
     ingressEnabled: "false"
     ```
 
-    For multi-cluster environment, use the following values
+    For a multicluster environment, use the following values:
 
     ```
     ingressEnabled: "true"
