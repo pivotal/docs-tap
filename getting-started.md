@@ -827,7 +827,7 @@ pipeline:
 
 #### <a id="query-for-vuln"></a> Query for vulnerabilities
 
-Scan reports are automatically saved to the [Supply Chain Security Tools - Store](install-components.html#install-scst-store), and can be queried for vulnerabilities and dependencies. For example, open-source software (OSS) or third party packages.
+Scan reports are automatically saved to the [Supply Chain Security Tools - Store](scst-store/overview.md), and can be queried for vulnerabilities and dependencies. For example, open-source software (OSS) or third party packages.
 
 1. Query the tanzu-java-web-app image dependencies and vulnerabilities with the following commands:
 
