@@ -1,4 +1,4 @@
-# Setting up Authentication for Tanzu Application Platform
+# Setting up authentication for Tanzu Application Platform
 
 There are multiple ways to integrate Tanzu Application Platform with your identity provider depending on your Kubernetes deployment.
 

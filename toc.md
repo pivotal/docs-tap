@@ -41,6 +41,7 @@ This is the table of contents from which the Tanzu Application Platform Document
                 - [Cluster supply chain list](cli-plugins/apps/command-reference/tanzu-apps-cluster-supply-chain-list.md)
         - [Usage and examples](cli-plugins/apps/usage.md)
     - [Authentication and Authorization](authn-authz/overview.md)
+      - [Setting up authentication for Tanzu Application Platform](authn-authz/integrating-identity.md)
       - [Role descriptions](authn-authz/role-descriptions.md)
       - [Bind a user or group to a default role](authn-authz/binding.md)
       - [Detailed role permissions breakdown](authn-authz/permissions-breakdown.md)
