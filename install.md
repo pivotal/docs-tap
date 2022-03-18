@@ -22,7 +22,7 @@ The option to skip relocation is documented for purposes of evaluation and proof
 The supported container registries are Harbor, Azure Container Registry, Google Container Registry,
 and Quay.io.
 See the documentation for a registry to learn how to set it up.
-Refer to [Prerequisites](prerequisites.md) for container image registry requirements.
+See [Prerequisites](prerequisites.md) for container image registry requirements.
 
 To relocate images from the VMware Tanzu Network registry to your registry:
 
