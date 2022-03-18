@@ -97,7 +97,7 @@ If using Linux, download `tanzu-cluster-essentials-linux-amd64-1.0.0.tgz`.
     Where `DOWNLOADED-CLUSTER-ESSENTIALS-PACKAGE` is the cluster essentials package you
     downloaded.
 
-5. Configure and run `install.sh`, which installs kapp-controller and secretgen-controller on your cluster:
+1. Configure and run `install.sh`, which installs kapp-controller and secretgen-controller on your cluster:
 
     ```
     export INSTALL_BUNDLE=registry.tanzu.vmware.com/tanzu-cluster-essentials/cluster-essentials-bundle@sha256:82dfaf70656b54dcba0d4def85ccae1578ff27054e7533d08320244af7fb0343
@@ -111,12 +111,13 @@ If using Linux, download `tanzu-cluster-essentials-linux-amd64-1.0.0.tgz`.
     Where `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for
     VMware Tanzu Network.
 
-6. Install the `kapp` CLI onto your `$PATH`:
+1. Install the `kapp` CLI onto your `$PATH`:
 
     ```
     sudo cp $HOME/tanzu-cluster-essentials/kapp /usr/local/bin/kapp
     ```
-7. Install the `imgpkg` CLI onto your `$PATH`:
+
+1. Install the `imgpkg` CLI onto your `$PATH`:
 
     ```
     sudo cp $HOME/tanzu-cluster-essentials/imgpkg /usr/local/bin/imgpkg
