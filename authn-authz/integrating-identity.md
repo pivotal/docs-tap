@@ -1,11 +1,11 @@
 # Setting up Authentication for Tanzu Application Platform
 
-Customer have multiple ways of integrating Tanzu Application Platform with their identity provider depending on their Kubernetes deployment.
+There are multiple ways to integrate Tanzu Application Platform with your identity provider depending on your Kubernetes deployment.
 
-Our recommendation is to use the solutions provided by your Kubernetes deployment.
+VMware recommends using the solutions provided by your Kubernetes deployment.
 
-In the scenario where you have multiple identity management solutions that you want to integrate into one experience, we recommend [installing open source Pinniped](https://pinniped.dev/docs/). For example, if you're operating Tanzu Application Platform on multi-cloud.
+When you have multiple identity management solutions to integrate, for example, if you're operating Tanzu Application Platform on multi-cloud, VMware recommends [installing open source Pinniped](https://pinniped.dev/docs/). 
 
 ## Tanzu Kubernetes Grid
 
-For TKG clusters, Pinniped is the default identity solution and is installed as a [core package](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.4/vmware-tanzu-kubernetes-grid-14/GUID-packages-core-index.html). Follow the [TKG documentation for enabling the functionality](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.4/vmware-tanzu-kubernetes-grid-14/GUID-cluster-lifecycle-enable-identity-management.html).
+For TKG clusters, Pinniped is the default identity solution and is installed as a [core package](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.4/vmware-tanzu-kubernetes-grid-14/GUID-packages-core-index.html). See [TKG documentation](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.4/vmware-tanzu-kubernetes-grid-14/GUID-cluster-lifecycle-enable-identity-management.html) for more information about enabling the functionality.
