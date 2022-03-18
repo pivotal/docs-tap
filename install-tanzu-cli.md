@@ -84,7 +84,7 @@ To install Cluster Essentials for Tanzu:
         1. For Linux, download `tanzu-cluster-essentials-linux-amd64-1.0.0.tgz`.
     - If you’re not using a Tanzu Kubernetes Grid cluster, VMware recommends you use Cluster Essentials for VMware Tanzu v1.1.
         1. For macOS, download `tanzu-cluster-essentials-darwin-amd64-1.1.0.tgz`.
-        1. For Linux, download `tanzu-cluster-essentials-linux-amd64-1.1.0.tgz`. 
+        1. For Linux, download `tanzu-cluster-essentials-linux-amd64-1.1.0.tgz`.
 
 
 1. Unpack the TAR file into the `tanzu-cluster-essentials` directory:
@@ -95,7 +95,7 @@ To install Cluster Essentials for Tanzu:
     ```
 
     Where:
-    
+
     - `DOWNLOADED-CLUSTER-ESSENTIALS-PACKAGE` is the name of the cluster essentials package you downloaded.
 
 1. Configure and run `install.sh`, which installs `kapp-controller` and `secretgen-controller` on your cluster:
@@ -110,7 +110,7 @@ To install Cluster Essentials for Tanzu:
     ```
 
     Where:
-    
+
     - `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for VMware Tanzu Network.
 
 1. Install the `kapp` CLI onto your `$PATH`:
@@ -118,7 +118,8 @@ To install Cluster Essentials for Tanzu:
     ```
     sudo cp $HOME/tanzu-cluster-essentials/kapp /usr/local/bin/kapp
     ```
-7. Install the `imgpkg` CLI onto your `$PATH`:
+
+1. Install the `imgpkg` CLI onto your `$PATH`:
 
     ```
     sudo cp $HOME/tanzu-cluster-essentials/imgpkg /usr/local/bin/imgpkg
@@ -339,7 +340,7 @@ To perform a clean installation of the Tanzu CLI plug-ins:
     ```
     cd $HOME/tanzu
     tanzu plugin install --local cli all
-    
+
     tanzu plugin install --local cli/standalone all
     ```
 
@@ -362,7 +363,7 @@ To perform a clean installation of the Tanzu CLI plug-ins:
     services            Discover Service Types, Service Instances and manage Resource Claims (ALPHA)  Standalone                        v0.2.0-rc.1  installed
     accelerator         Manage accelerators in a Kubernetes cluster                                   Standalone                        v1.1.0       installed
     apps                Applications on Kubernetes                                                    Standalone                        v0.5.0       installed
-    insight             post & query image, package, source, and vulnerability data                   Standalone                        v1.1.0       installed 
+    insight             post & query image, package, source, and vulnerability data                   Standalone                        v1.1.0       installed
    ```
 
     Ensure that you have the `accelerator`, `apps`, `package`, `secret`, and `services` plug-ins.
@@ -447,7 +448,7 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
 
     ```
     tanzu plugin install --local cli all
-    
+
     tanzu plugin install --local cli/standalone all
     ```
 
@@ -470,7 +471,7 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
     services            Discover Service Types, Service Instances and manage Resource Claims (ALPHA)  Standalone                        v0.2.0-rc.1  installed
     accelerator         Manage accelerators in a Kubernetes cluster                                   Standalone                        v1.1.0       installed
     apps                Applications on Kubernetes                                                    Standalone                        v0.5.0       installed
-    insight             post & query image, package, source, and vulnerability data                   Standalone                        v1.1.0       installed 
+    insight             post & query image, package, source, and vulnerability data                   Standalone                        v1.1.0       installed
     ```
 
 You can now install Tanzu Application Platform.
