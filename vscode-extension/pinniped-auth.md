@@ -1,6 +1,6 @@
-# Pinniped Compatibility 
+# Pinniped compatibility 
 
-This topic covers the compatibility details with [pinniped](https://github.com/vmware-tanzu/pinniped) in GitHub.
+This topic covers the compatibility details of [Pinniped](https://github.com/vmware-tanzu/pinniped) in GitHub.
 
 ## <a id="oauth"></a> Oauth
 
