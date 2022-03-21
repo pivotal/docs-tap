@@ -39,8 +39,8 @@ This new profile is intended for iterative development versus the path to produc
 #### Tanzu CLI - Apps plug-in
 
 - `workload create/update/apply`:
-  - Accept `workload.yaml` from stdin (via `--file -`).
-  - Enable providing `spec.build.env` values (via new `–build.env` flag).
+  - Accept `workload.yaml` from stdin (through `--file -`).
+  - Enable providing `spec.build.env` values (through new `–build.env` flag).
   - When `--git-repo` and `--git-tag` are provided, `git-branch` is not required.
 - `workload list`:
   - Shorthand `-A` can be passed in for `--all-namespaces`.
@@ -59,12 +59,12 @@ This new profile is intended for iterative development versus the path to produc
 #### Source Controller
 
 - Applied [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339) timestamps to source controller logs.
-- Added TAP aggregate roles to support Tanzu Application Platform Authentication and Authorization (new feature referenced above).
+- Added Tanzu Application Platform aggregate roles to support Tanzu Application Platform Authentication and Authorization (new feature referenced above).
 
 #### Spring Boot Conventions
 
 - Applied [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339) timestamps to service binding logs.
-The following new conventions are applied to spring boot apps v2.6 and above:
+The following new conventions are applied to spring boot apps v2.6 and later:
 - Add Kubernetes liveness and readiness probes by using spring boot health endpoints.
 - Change management port from 8080 to 8081 to increase security of the management port.
 
@@ -87,7 +87,7 @@ This release has the following security issues:
 - `tanzu apps workload create/update/apply`
   - When the `--wait` flag passed and the prompt "Do you want to create this workload?" 
   is declined, the command immediately exits 0 rather than hanging (continuing to "wait").
-  - Workload name is now validated when the workload values are passed in via `--file workload.yaml`.
+  - Workload name is now validated when the workload values are passed in through `--file workload.yaml`.
   - When creating/applying a workload from –local-path, if user answers “No” to the prompt “Are you sure you want to publish your local code to [registry name] where others may be able to access it?”, the command now exits 0 immediately rather than showing the workload diff and prompting to continue with workload creation.
 
 #### Services Toolkit
