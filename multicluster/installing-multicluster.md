@@ -22,7 +22,7 @@ To install the Build profile cluster:
 
 -  Follow the steps for installing the Full profile in [Installing the Tanzu Application Platform package and profiles](../install.md). Alternatively, you can use a reduced values file for the Build profile, as shown in [Build profile](reference/tap-values-build-sample.md).
 
-## <a id='install-run'></a> Install Run Cluster(s)
+## <a id='install-run'></a> Install Run clusters
 
 To install the Run profile cluster:
 
