@@ -167,6 +167,7 @@ This is the table of contents from which the Tanzu Application Platform Document
       - [Installing the VSCode Tanzu Extension](vscode-extension/install.md)
       - [Using Tanzu Dev Tools to get started](vscode-extension/usage-getting-started.md)
       - [Using Tanzu Dev Tools to iterate on your workload](vscode-extension/usage-iterating-on-app.md)
+      - [Pinniped compatibility](vscode-extension/pinniped-auth.md)
     - [Tanzu API portal](api-portal/about.md)
       - [Install Tanzu API portal](api-portal/install-api-portal.md)
     - [Tanzu Application Platform GUI](tap-gui/about.md)

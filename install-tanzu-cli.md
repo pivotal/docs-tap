@@ -71,21 +71,20 @@ To set the Kubernetes cluster context:
 
 ## <a id='tanzu-cluster-essentials'></a> Install Cluster Essentials for Tanzu
 
-The Cluster Essentials for Tanzu package simplifies the process of installing the open-source [Carvel](https://carvel.dev) tools on your cluster. It includes a script that uses the Carvel CLI tools to download and install the server-side components `kapp-controller` and `secretgen-crontroller` on the targeted cluster. Currently, only MacOS and Linux are supported for Cluster Essentials for Tanzu.
+Cluster Essentials for VMware Tanzu simplifies the process of installing the open-source [Carvel](https://carvel.dev) tools on your cluster. It includes a script to download and install supported verions of `kapp-controller` and `secretgen-crontroller` on the targeted cluster. Currently, only MacOS and Linux are supported for Cluster Essentials.
 
-To install Cluster Essentials for Tanzu:
+If you are using a VMware Tanzu Kubernetes Grid cluster, you do not need to install Cluster Essentials because the contents of Cluster Essentials are already installed on your cluster.
+
+For all other clusters, install Cluster Essentials using the following steps:
 
 1. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
 
 1. Go to [Cluster Essentials for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-cluster-essentials/) on VMware Tanzu Network. Select a download according to your Kubernetes provider and operating system:
 
-    - If you’re using VMware Tanzu Kubernetes Grid multi-cloud v1.5.1 or later, you must use Cluster Essentials for VMware Tanzu v1.0.
-        1. For macOS, download `tanzu-cluster-essentials-darwin-amd64-1.0.0.tgz`.
-        1. For Linux, download `tanzu-cluster-essentials-linux-amd64-1.0.0.tgz`.
-    - If you’re not using a Tanzu Kubernetes Grid cluster, VMware recommends you use Cluster Essentials for VMware Tanzu v1.1.
-        1. For macOS, download `tanzu-cluster-essentials-darwin-amd64-1.1.0.tgz`.
-        1. For Linux, download `tanzu-cluster-essentials-linux-amd64-1.1.0.tgz`.
+    - For macOS, download `tanzu-cluster-essentials-darwin-amd64-1.1.0.tgz`.
+    - For Linux, download `tanzu-cluster-essentials-linux-amd64-1.1.0.tgz`.
 
+Tanzu Application Platform v1.1 is supported on Cluster Essentials v1.0 and v1.1. VMware recommends to install Cluster Essentials v1.1 to take advantage to newer features.
 
 1. Unpack the TAR file into the `tanzu-cluster-essentials` directory:
 
