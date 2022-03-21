@@ -5,7 +5,7 @@
 Before installing multicluster Tanzu Application Platform profiles, you must meet the following prerequisites:
 
 - Build, Run, and View clusters must satisfy all the requirements to install Tanzu Application Platform. See [Prerequisites](../prerequisites.md).
-- Install Tanzu CLI and Tanzu Cluster Essentials on all clusters. For more information, see [Installed Tanzu CLI](../install-tanzu-cli.md).
+- Install Tanzu CLI and Tanzu Cluster Essentials on all clusters. For more information, see [Installing the Tanzu CLI](../install-tanzu-cli.md).
 
 ## <a id='install-view'></a> Install View cluster
 
