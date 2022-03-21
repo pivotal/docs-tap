@@ -35,14 +35,18 @@ you see that the integrated development environment creates a directory "target"
 
 To configure VMware Tanzu Developer Tools for Visual Studio Code:
 
-1. Ensure that you are targeting the correct cluster. See [Configure Access to Multiple Clusters](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/) in the
-Kubernetes documentation.
+1. Ensure that you are targeting the correct cluster. For more information, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/).
 
-2. Select `File` -> `Preferences` -> `Settings` -> `Extensions` -> `Tanzu` and set the following:
-  - Source Image (required): Destination for an image containing source code to be published
-    - Example: `your-registry.io/project/tanzu-java-web-app-source`
-  - Local Path (optional): Path on the local file system to a directory of source code to build (defaults to current directory)
-  - Namespace (optional): Namespace that workloads are be deployed into (defaults to namespace set in kubeconfig)
+1. Navigate to the **Tanzu** settings.
+
+  * If on Windows, select **File** > **Preferences** > **Settings** > **Extensions** > **Tanzu**.
+  * If on macOS, select **Code** > **Preferences** > **Settings** > **Extensions** > **Tanzu**.
+
+1. Configure as follows:
+
+  - **Source Image (required):** Set the location where an image containing source code is published. For example, `your-registry.io/project/tanzu-java-web-app-source`.
+  - **Local Path (optional):** Set the path on the local file system to a directory of source code to build. The current directory is the default path.
+  - **Namespace (optional):** Set the namespace to deploy workloads in. The namespace specified in `kubeconfig` is the default namespace.
 
 ## <a id="quick-start"></a> Quick Start
 
