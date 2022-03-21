@@ -43,7 +43,7 @@ For more information about the API documentation plug-in, see the
 in GitHub.
 
 
-## <a id='utilizing'></a> Use the API documentation plug-in
+## <a id='use-api-plug-in'></a> Use the API documentation plug-in
 
 The API documentation plug-in is part of Tanzu Application Platform GUI.
 
