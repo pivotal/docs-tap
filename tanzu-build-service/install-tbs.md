@@ -113,10 +113,9 @@ To install Tanzu Build Service by using the Tanzu CLI:
     dependencies (buildpacks and stacks) Tanzu Build Service needs on your cluster. It can
     also optionally keep these dependencies up to date as new versions are released on
     VMware Tanzu Network.
-    - `DESCRIPTOR-NAME` is the name of the descriptor to import automatically. The
-    available options at time of release are:
-        - `full` contains all dependencies and is for production use.
-        - `lite` has a smaller footprint that enables faster installations. It requires Internet access on the cluster.
+    - `DESCRIPTOR-NAME` is the name of the descriptor to import. See more details [here](tbs-about.html#dependencies-descriptors). Available options are:
+      * `lite` (default) has a smaller footprint that enables faster installations.
+      * `full` optimized to speed up builds and includes dependencies for all supported workload types.
 
     >**Note:** By using the `tbs-values.yaml` configuration,
     >`enable_automatic_dependency_updates: true` causes the dependency updater to update
