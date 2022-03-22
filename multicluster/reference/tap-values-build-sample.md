@@ -33,13 +33,13 @@ Where:
     * Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`.
     * Dockerhub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`.
     * Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`.
-- `KP-DEFAULT-REPO-USERNAME` is the username for `KP-DEFAULT-REPO`. You can `docker push` to this repository with this username.
+- `KP-DEFAULT-REPO-USERNAME` is the user name for `KP-DEFAULT-REPO`. You can `docker push` to this repository with this user name.
     * For Google Cloud Registry, use `kp_default_repository_username: _json_key`.
 - `KP-DEFAULT-REPO-PASSWORD` is the password for `KP-DEFAULT-REPO`. You can `docker push` to this repository with this password.
     * For Google Cloud Registry, use the contents of the service account JSON key.
-- `DESCRIPTOR-NAME` is the name of the descriptor to import automatically. Current available options include:
-    * `tap-1.0.0-full` contains all dependencies, and is for production use.
-- `SERVER-NAME` is the hostname of the registry server. Examples:
+- `DESCRIPTOR-NAME` is the name of the descriptor to import automatically. Currently available options include:
+    * `tap-1.0.0-full` contains all dependencies and is for production use.
+- `SERVER-NAME` is the host name of the registry server. Examples:
     * Harbor has the form `server: "my-harbor.io"`.
     * Dockerhub has the form `server: "index.docker.io"`.
     * Google Cloud Registry has the form `server: "gcr.io"`.
@@ -54,7 +54,7 @@ See [Identify the SSH secret key for your package](#ssh-secret-key) for more inf
 This is the namespace where the scanning feature runs.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
 credentials to pull an image from the registry for scanning.
-If built images are pushed to the same registry as the Tanzu Application Platform images,
+If built images are pushed to the same registry as Tanzu Application Platform images,
 you can reuse the `tap-registry` secret created in
 [Add the Tanzu Application Platform package repository](#add-tap-package-repo).
 
