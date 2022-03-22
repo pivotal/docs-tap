@@ -35,8 +35,8 @@ This new profile is intended for iterative development versus the path to produc
 
 - Enabled multiple cluster support for Application Live View.
 - Split Application Live View components into three packages with new package reference names.
-- Enable structured JSON logging for App Live View to meet the TAP logging requirements
-- Make App Live View Convention Service compatible with the cert-manager version 1.7.1
+- Enabled structured JSON logging for App Live View to meet the TAP logging requirements.
+- Made App Live View Convention Service compatible with the cert-manager version 1.7.1.
 
 #### Tanzu CLI - Apps plug-in
 
