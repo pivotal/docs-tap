@@ -206,7 +206,7 @@ To install Application Live View Connector:
 
     You can edit the values to suit your project needs or leave the default values as is.
 
-    >**Note:** Using the HTTP proxy either on 80 or 443 based on SSL config exposes the back end service running on port 7000. The connector connects to the back end on port 80/443 by default. Therefore, you are not required to explicitly configure the `port` field. 
+    >**Note:** Using the HTTP proxy either on 80 or 443 based on SSL config exposes the Backend service running on port 7000. The connector connects to the Backend on port 80/443 by default. Therefore, you are not required to explicitly configure the `port` field. 
         
 
 1. Install the Application Live View Connector package by running:
@@ -233,7 +233,7 @@ To install Application Live View Connector:
     Added installed package 'appliveview-connector' in namespace 'tap-install'
     ```
 
-    >**Note:** Each cluster installs the connector as a DaemonSet. The connector is configured to connect to the central instance of the back end. The Application Live View Connector component is deployed in `app-live-view-connector` namespace by default. 
+    >**Note:** Each cluster installs the connector as a DaemonSet. The connector is configured to connect to the central instance of the Backend. The Application Live View Connector component is deployed in `app-live-view-connector` namespace by default. 
 
 1. Verify the `Application Live View Connector` package installation by running:
 
