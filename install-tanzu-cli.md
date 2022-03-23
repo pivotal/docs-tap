@@ -429,10 +429,8 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
 10. Update the core CLI by running:
 
     ```
-    tanzu update --local ./cli
+    install cli/core/VERSION/tanzu-core-linux_amd64 /usr/local/bin/tanzu
     ```
-    Expect to see a user prompt - submit `y`
-
 
 11. Check installation status for the core CLI by running:
 
