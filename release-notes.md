@@ -72,8 +72,8 @@ The following new conventions are applied to spring boot apps v2.6 and later:
 
 #### Supply Chain Security Tools – Scan
 
-- Webhook resources can now be configured
-- Namespace where webhook is installed can be configured
+- Support configuring Webhook resources
+- Support configuring Namespace where webhook is installed
 - Support for registries with self-signed certificates
 
 
