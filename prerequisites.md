@@ -67,7 +67,7 @@ The default hostname consists of `tap-gui` plus an `IngressDomain` of your choic
 
 ## <a id='k8s-cluster-reqs'></a>Kubernetes cluster requirements
 
-Installation requires Kubernetes cluster v1.20, v1.21, or v1.22 on one of the following Kubernetes
+Installation requires Kubernetes cluster v1.21, v1.22, or v1.23 on one of the following Kubernetes
 providers:
 
 * Azure Kubernetes Service
