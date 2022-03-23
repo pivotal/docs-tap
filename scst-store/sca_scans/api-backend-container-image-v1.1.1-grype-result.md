@@ -1,13 +1,13 @@
-# API Backend Container Image v1.1.0 CycloneDX file content
+# API Backend Container Image v1.1.1 CycloneDX file content
 
 The following XML content is from a CycloneDX file related to
 [SCA scanning results](sca-scanning-results.md).
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<bom xmlns="http://cyclonedx.org/schema/bom/1.2" xmlns:v="http://cyclonedx.org/schema/ext/vulnerability/1.0" version="1" serialNumber="urn:uuid:6ade1fa2-020f-45af-9ee8-a36c94283298">
+<bom xmlns="http://cyclonedx.org/schema/bom/1.2" xmlns:v="http://cyclonedx.org/schema/ext/vulnerability/1.0" version="1" serialNumber="urn:uuid:e7e3714a-60c5-4950-b406-b1dc67d25f2c">
   <metadata>
-    <timestamp>2022-03-07T14:27:08-05:00</timestamp>
+    <timestamp>2022-03-22T14:37:24-04:00</timestamp>
     <tools>
       <tool>
         <vendor>anchore</vendor>
@@ -16,8 +16,8 @@ The following XML content is from a CycloneDX file related to
       </tool>
     </tools>
     <component type="container">
-      <name>harbor-repo.vmware.com/source_insight_tooling/insight-metadata-store-bundle@sha256:d2890a446279e8271b1b565e670bdddb78b511c7157630fabb3d0eed984b98d9</name>
-      <version>sha256:d2890a446279e8271b1b565e670bdddb78b511c7157630fabb3d0eed984b98d9</version>
+      <name>dev.registry.tanzu.vmware.com/supply-chain-security-tools/insight-metadata-store-bundle@sha256:da871ec05889df3b016a082596aa128f1c0d4da619f348c7cbf9ac7b9429912a</name>
+      <version>sha256:4487f1a762659f6825bbaaa7d6be3fc96186f23da362070a97a6dad149ff5bc4</version>
     </component>
   </metadata>
   <components>
@@ -161,7 +161,7 @@ The following XML content is from a CycloneDX file related to
         </license>
       </licenses>
       <v:vulnerabilities>
-        <v:vulnerability ref="urn:uuid:2b5075a6-370a-4271-bbbe-49d26107432b">
+        <v:vulnerability ref="urn:uuid:1b0b14a0-50da-4847-b262-59d00b3bf5fc">
           <v:id>CVE-2009-5155</v:id>
           <v:source name="ubuntu:18.04">
             <v:url>http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-5155</v:url>
@@ -175,7 +175,7 @@ The following XML content is from a CycloneDX file related to
             <v:advisory>http://people.ubuntu.com/~ubuntu-security/cve/CVE-2009-5155</v:advisory>
           </v:advisories>
         </v:vulnerability>
-        <v:vulnerability ref="urn:uuid:6f2cd64f-8c22-45af-9946-63f2f9815222">
+        <v:vulnerability ref="urn:uuid:77b41082-9018-4734-ac3b-dffda7d8895b">
           <v:id>CVE-2015-8985</v:id>
           <v:source name="ubuntu:18.04">
             <v:url>http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-8985</v:url>
@@ -189,7 +189,7 @@ The following XML content is from a CycloneDX file related to
             <v:advisory>http://people.ubuntu.com/~ubuntu-security/cve/CVE-2015-8985</v:advisory>
           </v:advisories>
         </v:vulnerability>
-        <v:vulnerability ref="urn:uuid:64306359-dcd0-46dc-80e4-89f3521111f7">
+        <v:vulnerability ref="urn:uuid:3a5aa7a4-1be1-43e4-8341-b460ff993aee">
           <v:id>CVE-2016-10228</v:id>
           <v:source name="ubuntu:18.04">
             <v:url>http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-10228</v:url>
@@ -203,7 +203,7 @@ The following XML content is from a CycloneDX file related to
             <v:advisory>http://people.ubuntu.com/~ubuntu-security/cve/CVE-2016-10228</v:advisory>
           </v:advisories>
         </v:vulnerability>
-        <v:vulnerability ref="urn:uuid:e085cf31-e74c-4a23-ab0b-85e1ffda2504">
+        <v:vulnerability ref="urn:uuid:f95930f5-00ab-4588-85f5-458b4af55e62">
           <v:id>CVE-2016-10739</v:id>
           <v:source name="ubuntu:18.04">
             <v:url>http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-10739</v:url>
@@ -217,7 +217,7 @@ The following XML content is from a CycloneDX file related to
             <v:advisory>http://people.ubuntu.com/~ubuntu-security/cve/CVE-2016-10739</v:advisory>
           </v:advisories>
         </v:vulnerability>
-        <v:vulnerability ref="urn:uuid:270d4b0c-04e3-4f3e-9ba5-72796c19d927">
+        <v:vulnerability ref="urn:uuid:0480b0cd-4523-4901-b4da-f9720429e0ee">
           <v:id>CVE-2019-25013</v:id>
           <v:source name="ubuntu:18.04">
             <v:url>http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-25013</v:url>
@@ -231,7 +231,7 @@ The following XML content is from a CycloneDX file related to
             <v:advisory>http://people.ubuntu.com/~ubuntu-security/cve/CVE-2019-25013</v:advisory>
           </v:advisories>
         </v:vulnerability>
-        <v:vulnerability ref="urn:uuid:3c6a4ab6-c9ea-45d2-a045-18e8dda0f032">
+        <v:vulnerability ref="urn:uuid:9ab620db-3e7e-49d4-90f8-ebfe252c9c8d">
           <v:id>CVE-2020-27618</v:id>
           <v:source name="ubuntu:18.04">
             <v:url>http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-27618</v:url>
@@ -245,7 +245,7 @@ The following XML content is from a CycloneDX file related to
             <v:advisory>http://people.ubuntu.com/~ubuntu-security/cve/CVE-2020-27618</v:advisory>
           </v:advisories>
         </v:vulnerability>
-        <v:vulnerability ref="urn:uuid:5d4b7c7e-8ca8-4d11-91df-59b5862f88e9">
+        <v:vulnerability ref="urn:uuid:c02327cf-d247-4f82-b634-27348c42ea9f">
           <v:id>CVE-2020-29562</v:id>
           <v:source name="ubuntu:18.04">
             <v:url>http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-29562</v:url>
@@ -259,7 +259,7 @@ The following XML content is from a CycloneDX file related to
             <v:advisory>http://people.ubuntu.com/~ubuntu-security/cve/CVE-2020-29562</v:advisory>
           </v:advisories>
         </v:vulnerability>
-        <v:vulnerability ref="urn:uuid:94d9bf98-55a5-403c-b47c-006fd9b566b6">
+        <v:vulnerability ref="urn:uuid:51445aad-5998-44c1-971a-36d91e48a697">
           <v:id>CVE-2020-6096</v:id>
           <v:source name="ubuntu:18.04">
             <v:url>http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-6096</v:url>
@@ -273,7 +273,7 @@ The following XML content is from a CycloneDX file related to
             <v:advisory>http://people.ubuntu.com/~ubuntu-security/cve/CVE-2020-6096</v:advisory>
           </v:advisories>
         </v:vulnerability>
-        <v:vulnerability ref="urn:uuid:5c352c7e-97f8-4168-94e1-606a05ac0594">
+        <v:vulnerability ref="urn:uuid:55caf56d-dcd1-4aa4-a89f-b131e7439d43">
           <v:id>CVE-2021-3326</v:id>
           <v:source name="ubuntu:18.04">
             <v:url>http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-3326</v:url>
@@ -287,7 +287,7 @@ The following XML content is from a CycloneDX file related to
             <v:advisory>http://people.ubuntu.com/~ubuntu-security/cve/CVE-2021-3326</v:advisory>
           </v:advisories>
         </v:vulnerability>
-        <v:vulnerability ref="urn:uuid:778e162e-6e2b-4a2e-bd87-beddf729c55c">
+        <v:vulnerability ref="urn:uuid:41d2b95f-2970-4ccf-a7d1-7d691d3ce3d0">
           <v:id>CVE-2021-35942</v:id>
           <v:source name="ubuntu:18.04">
             <v:url>http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-35942</v:url>
@@ -301,7 +301,7 @@ The following XML content is from a CycloneDX file related to
             <v:advisory>http://people.ubuntu.com/~ubuntu-security/cve/CVE-2021-35942</v:advisory>
           </v:advisories>
         </v:vulnerability>
-        <v:vulnerability ref="urn:uuid:aa8715a6-d2d9-45b0-a34a-f4610c710124">
+        <v:vulnerability ref="urn:uuid:aa1a2b0b-dbfc-486e-802f-c1a6163bb8e2">
           <v:id>CVE-2021-3999</v:id>
           <v:source name="ubuntu:18.04">
             <v:url>http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-3999</v:url>
@@ -315,7 +315,7 @@ The following XML content is from a CycloneDX file related to
             <v:advisory>http://people.ubuntu.com/~ubuntu-security/cve/CVE-2021-3999</v:advisory>
           </v:advisories>
         </v:vulnerability>
-        <v:vulnerability ref="urn:uuid:5f907049-0ad9-406a-b4af-e91e391d1d6a">
+        <v:vulnerability ref="urn:uuid:4db54c26-2fa0-4f3c-92fe-b230d461c6ad">
           <v:id>CVE-2022-23218</v:id>
           <v:source name="ubuntu:18.04">
             <v:url>http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-23218</v:url>
@@ -329,7 +329,7 @@ The following XML content is from a CycloneDX file related to
             <v:advisory>http://people.ubuntu.com/~ubuntu-security/cve/CVE-2022-23218</v:advisory>
           </v:advisories>
         </v:vulnerability>
-        <v:vulnerability ref="urn:uuid:2a5f547c-7634-4f4a-8996-c8e56f9b50fa">
+        <v:vulnerability ref="urn:uuid:e6954f04-f9dc-4ba8-819c-912a8ca32153">
           <v:id>CVE-2022-23219</v:id>
           <v:source name="ubuntu:18.04">
             <v:url>http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-23219</v:url>
@@ -348,6 +348,22 @@ The following XML content is from a CycloneDX file related to
     <component type="library">
       <name>libssl1.1</name>
       <version>1.1.1-1ubuntu2.1~18.04.13</version>
+      <v:vulnerabilities>
+        <v:vulnerability ref="urn:uuid:c0518913-7282-40cc-9147-ae2daf0abf7b">
+          <v:id>CVE-2022-0778</v:id>
+          <v:source name="ubuntu:18.04">
+            <v:url>http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-0778</v:url>
+          </v:source>
+          <v:ratings>
+            <v:rating>
+              <v:severity>High</v:severity>
+            </v:rating>
+          </v:ratings>
+          <v:advisories>
+            <v:advisory>http://people.ubuntu.com/~ubuntu-security/cve/CVE-2022-0778</v:advisory>
+          </v:advisories>
+        </v:vulnerability>
+      </v:vulnerabilities>
     </component>
     <component type="library">
       <name>netbase</name>
@@ -361,6 +377,22 @@ The following XML content is from a CycloneDX file related to
     <component type="library">
       <name>openssl</name>
       <version>1.1.1-1ubuntu2.1~18.04.13</version>
+      <v:vulnerabilities>
+        <v:vulnerability ref="urn:uuid:5d99aa11-4d7d-4eab-b61e-979914010229">
+          <v:id>CVE-2022-0778</v:id>
+          <v:source name="ubuntu:18.04">
+            <v:url>http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-0778</v:url>
+          </v:source>
+          <v:ratings>
+            <v:rating>
+              <v:severity>High</v:severity>
+            </v:rating>
+          </v:ratings>
+          <v:advisories>
+            <v:advisory>http://people.ubuntu.com/~ubuntu-security/cve/CVE-2022-0778</v:advisory>
+          </v:advisories>
+        </v:vulnerability>
+      </v:vulnerabilities>
     </component>
     <component type="library">
       <name>tzdata</name>

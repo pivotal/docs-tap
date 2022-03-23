@@ -44,8 +44,9 @@ This new profile is intended for iterative development versus the path to produc
   - Added v1 GET packages endpoint
   - Added v1 GET vulnerabilities endpoint
 - Added Contour Ingress support with custom domain name
+- Added related packages to image and source vulnerabilities
 - Created Tanzu CLI plugin called Insight
-- Upgraded golang version from `1.17.5` to `1.17.7`
+- Upgraded golang version from `1.17.5` to `1.17.8`
 
 ### <a id='1-1-breaking-changes'></a> Breaking changes
 
