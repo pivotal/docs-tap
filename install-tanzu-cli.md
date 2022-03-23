@@ -97,6 +97,22 @@ If using Linux, download `tanzu-cluster-essentials-linux-amd64-1.0.0.tgz`.
     Where `DOWNLOADED-CLUSTER-ESSENTIALS-PACKAGE` is the cluster essentials package you
     downloaded.
 
+1. **If your registry needs a custom certificate**, you will need to [load that configuration](https://carvel.dev/kapp-controller/docs/v0.32.0/controller-config/) into the cluster before installing `kapp-controller`. If your registry uses a public certificate, this step is not needed.
+
+   Create the `kapp-controller` namespace:
+
+    ```
+    kubectl create namespace kapp-controller
+    ```
+
+   Create a configuration secret using the registry's `ca.crt` stored on local disk:
+
+    ```
+    kubectl create secret generic kapp-controller-config \
+       --namespace kapp-controller \
+       --from-file caCerts=ca.crt
+    ```
+
 1. Configure and run `install.sh`, which installs kapp-controller and secretgen-controller on your cluster:
 
     ```
