@@ -69,7 +69,7 @@ Tanzu Application Platform components with other products.
 
 The following packages are part of the Tanzu Application Platform:
 
-- **API Portal**
+- **[API portal for VMware Tanzu](https://docs.pivotal.io/api-portal)**
 
   API portal for VMware Tanzu enables API consumers to find APIs they can use in their own
   applications.
@@ -79,7 +79,7 @@ The following packages are part of the Tanzu Application Platform:
   documentation from the source URLs. An API portal operator can add any number of OpenAPI source
   URLs to be displayed in a single instance.
 
-- **Application Accelerator**
+- **[Application Accelerator for VMware Tanzu](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/index.html)**
 
   The Application Accelerator component helps app developers and app operators through the creation
   and generation of application accelerators.
@@ -92,7 +92,7 @@ The following packages are part of the Tanzu Application Platform:
   configurations and enable fleets of developers to use them, decreasing operator concerns about
   whether developers are implementing their desired best practices.
 
-- **Application Live View for VMware Tanzu**
+- **[Application Live View for VMware Tanzu](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-index.html)**
 
   Application Live View is a lightweight insight and troubleshooting tool that helps application
   developers and application operators look inside running applications.
@@ -102,27 +102,27 @@ The following packages are part of the Tanzu Application Platform:
   endpoints (in our case, HTTP endpoints). Application Live View uses those endpoints to get the
   data from the application and to interact with it.
 
-- **Cloud Native Runtimes for Tanzu**
+- **[Cloud Native Runtimes for VMware Tanzu](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-cnr-overview.html)**
 
   Cloud Native Runtimes for Tanzu is a serverless application runtime for Kubernetes that is based
   on Knative and runs on a single Kubernetes cluster. For information about Knative, see the
   [Knative documentation](https://knative.dev/docs/) Cloud Native Runtimes capabilities are included
   in VMware Tanzu Advanced Edition and VMware Tanzu Application Platform.
 
-- **Convention Service**
+- **[Convention Service for VMware Tanzu](convention-service/about.md)**
 
   The convention service provides a means for people in operational roles to express their hard-won
   knowledge and opinions about how apps should run on Kubernetes as a convention. The convention
   service applies these opinions to fleets of developer workloads as they are deployed to the
   platform, saving operator and developer time.
 
-- **Default roles for Tanzu Application Platform**
+- **[Default roles for Tanzu Application Platform](authn-authz/overview.md)**
 
-  This package includes [five default roles](authn-authz/overview.md) for users including app-editor, app-viewer, app-operator, and service accounts including workload, and deliverable. These roles are available to help operators limit the permissions that a user or service account requires on a cluster that runs Tanzu Application Platform. They are built by using aggregated cluster roles in Kubernetes role-based access control (RBAC).
+  This package includes five default roles for users including app-editor, app-viewer, app-operator, and service accounts including workload, and deliverable. These roles are available to help operators limit the permissions that a user or service account requires on a cluster that runs Tanzu Application Platform. They are built by using aggregated cluster roles in Kubernetes role-based access control (RBAC).
 
   Default roles only apply to a user interacting with the cluster using kubectl and Tanzu CLI. Tanzu Application Platform GUI support for default roles is planned for a future release.
 
-- **Developer Conventions**
+- **[Developer Conventions](../convention-service/about.md)**
 
   Developer conventions configure workloads to prepare them for inner loop development.
 
@@ -132,21 +132,21 @@ The following packages are part of the Tanzu Application Platform:
   Tanzu CLI Apps plug-in, which rely on the Developer Conventions to modify the workload to enable
   inner loop capabilities.
 
-- **Flux Source Controller**
+- **[Flux Source Controller](https://github.com/fluxcd/source-controller)**
 
   The main role of the source management component is to provide a common interface for artifact acquisition.
 
-- **Grype**
+- **[Grype](https://github.com/anchore/grype)**
 
   Grype is a vulnerability scanner for container images and file systems.
 
-- **Services Toolkit**
+- **[Services Toolkit](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-overview.html)**
 
   Services Toolkit comprises a number of Kubernetes-native components which support the management,
   life cycle, discoverability, and connectivity of Service Resources (databases, message queues,
   DNS records, etc) on Kubernetes.
 
-- **Supply Chain Choreographer for Tanzu**
+- **[Supply Chain Choreographer for VMware Tanzu](scc/about.md)**
 
   Supply Chain Choreographer is based on open-source [Cartographer](https://cartographer.sh/docs/).
   It enables app operators to create pre-approved paths to production by integrating Kubernetes
@@ -200,17 +200,17 @@ The following packages are part of the Tanzu Application Platform:
   to help you develop code using the Tanzu Application Platform.
   The VSCode extension enables live updates of your application while it runs on the cluster and
   lets you debug your application directly on the cluster.
- 
+
 - **Tanzu Learning Center**
 
-  Learning Center provides a platform for creating and self-hosting workshops. With Learning Center, content 
-  creators can create workshops from markdown files that learners can view in a terminal 
-  shell environment with an instructional wizard UI. The UI can embed slide content, an integrated 
-  development environment (IDE), a web console for accessing the Kubernetes cluster, and other custom 
+  Learning Center provides a platform for creating and self-hosting workshops. With Learning Center, content
+  creators can create workshops from markdown files that learners can view in a terminal
+  shell environment with an instructional wizard UI. The UI can embed slide content, an integrated
+  development environment (IDE), a web console for accessing the Kubernetes cluster, and other custom
   web applications.
 
-  Although Learning Center requires Kubernetes to run, and it teaches users about Kubernetes, 
-  you can use it to host training for other purposes as well. For example, you can use it to train 
+  Although Learning Center requires Kubernetes to run, and it teaches users about Kubernetes,
+  you can use it to host training for other purposes as well. For example, you can use it to train
   users on web-based applications, use of databases, or programming languages.
 
 - **Tekton**
@@ -226,19 +226,19 @@ The following profiles are available in Tanzu Application Platform:
 
 - **Full:**
   This profile contains all of the Tanzu Application Platform packages.
-  
+
 - **Iterate:**
   This profile is intended for iterative application development.
 
 - **Build:**
   This profile is intended for the transformation of source revisions to workload revisions. Specifically, hosting Workloads and SupplyChains.
- 
+
 - **Run:**
   This profile is intended for the transformation of workload revisions to running Pods. Specifically, hosting Deliveries and Deliverables.
 
 - **View:**
   This profile is intended for instances of applications related to centralized developer experiences. Specifically, the Tanzu Application Platform GUI and Metadata Store.
-  
+
 
 ## <a id='about-package-profiles'></a> About Tanzu Application Platform package profiles
 
