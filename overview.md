@@ -118,7 +118,7 @@ The following packages are part of the Tanzu Application Platform:
 
 - **Default roles for Tanzu Application Platform**
 
-  This package includes five default roles for users and service accounts: app-editor, app-viewer, app-operator, workload, and deliverable. These roles are available to help operators limit the permissions that a user or service account requires on a cluster running Tanzu Application Platform. They are built using aggregated cluster roles in Kubernetes role-based access control (RBAC).
+  This package includes [five default roles](authn-authz/overview.md) for users including app-editor, app-viewer, app-operator, and service accounts including workload, and deliverable. These roles are available to help operators limit the permissions that a user or service account requires on a cluster that runs Tanzu Application Platform. They are built by using aggregated cluster roles in Kubernetes role-based access control (RBAC).
 
   Default roles only apply to a user interacting with the cluster using kubectl and Tanzu CLI. Tanzu Application Platform GUI support for default roles is planned for a future release.
 
@@ -234,10 +234,10 @@ The following profiles are available in Tanzu Application Platform:
   This profile is intended for the transformation of source revisions to workload revisions. Specifically, hosting Workloads and SupplyChains.
  
 - **Run:**
-  This profile is intended for the transformation of workload revisions to running Pods. Specifically, hosting Deliverys and Deliverables.
+  This profile is intended for the transformation of workload revisions to running Pods. Specifically, hosting Deliveries and Deliverables.
 
 - **View:**
-  This profile is intended for instances of applications related to centralized developer experiences. Specifically, the TAP GUI and Metadata Store.
+  This profile is intended for instances of applications related to centralized developer experiences. Specifically, the Tanzu Application Platform GUI and Metadata Store.
   
 
 ## <a id='about-package-profiles'></a> About Tanzu Application Platform package profiles

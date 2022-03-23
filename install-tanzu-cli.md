@@ -32,7 +32,7 @@ This example shows that you have now accepted the EULAs for Tanzu Application Pl
 ## <a id='install-tanzu-cli'></a> Installing the Tanzu CLI
 
 This document describes how to [Set Kubernetes cluster context](#cluster-context),
-[Install Cluster Essentials for VMware Tanzu for non-TKG clusters](#tanzu-cluster-essentials),
+[Install Cluster Essentials for Tanzu](#tanzu-cluster-essentials),
 and [Install or Update the Tanzu CLI and plug-ins](#cli-and-plugin) for Tanzu Application Platform:
 
 ## <a id='cluster-context'></a> Set Kubernetes cluster context
@@ -69,32 +69,49 @@ To set the Kubernetes cluster context:
     Switched to context "aks-tap-cluster".
     ```
 
-## <a id='tanzu-cluster-essentials'></a> Install Cluster Essentials for VMware Tanzu for non-TKG clusters
+## <a id='tanzu-cluster-essentials'></a> Install Cluster Essentials for Tanzu
 
-> **Note:** If you use Tanzu Kubernetes Grid (TKG) multi-cloud v1.5.1 or later, skip this section.
-> Clusters on TKG v1.5.1 or later do not require Cluster Essentials for VMware Tanzu.
+Cluster Essentials for VMware Tanzu simplifies the process of installing the open-source [Carvel](https://carvel.dev) tools on your cluster. It includes a script to download and install supported verions of `kapp-controller` and `secretgen-crontroller` on the targeted cluster. Currently, only MacOS and Linux are supported for Cluster Essentials.
 
-The Cluster Essentials for VMware Tanzu package simplifies the process of installing the open-source [Carvel](https://carvel.dev) tools on your cluster.
-It includes a script that uses the Carvel CLI tools to download and install the server-side components `kapp-controller` and `secretgen-crontroller` on the targeted cluster.
-Currently, only MacOS and Linux are supported for Cluster Essentials for VMware Tanzu.
+If you are using a VMware Tanzu Kubernetes Grid cluster, you do not need to install Cluster Essentials because the contents of Cluster Essentials are already installed on your cluster.
 
-To install cluster essentials for VMware Tanzu:
+For all other clusters, install Cluster Essentials using the following steps:
 
 1. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
 
-1. Navigate to [Cluster Essentials for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-cluster-essentials/) on VMware Tanzu Network.
+1. Go to [Cluster Essentials for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-cluster-essentials/) on VMware Tanzu Network. Select a download according to your Kubernetes provider and operating system:
 
-1. If using macOS, download `tanzu-cluster-essentials-darwin-amd64-1.0.0.tgz`.
-If using Linux, download `tanzu-cluster-essentials-linux-amd64-1.0.0.tgz`.
+    - For macOS, download `tanzu-cluster-essentials-darwin-amd64-1.1.0.tgz`.
+    - For Linux, download `tanzu-cluster-essentials-linux-amd64-1.1.0.tgz`.
 
-1. Unpack the TAR file into `tanzu-cluster-essentials` directory:
+Tanzu Application Platform v1.1 is supported on Cluster Essentials v1.0 and v1.1. VMware recommends to install Cluster Essentials v1.1 to take advantage to newer features.
+
+1. Unpack the TAR file into the `tanzu-cluster-essentials` directory:
 
     ```
     mkdir $HOME/tanzu-cluster-essentials
     tar -xvf DOWNLOADED-CLUSTER-ESSENTIALS-PACKAGE -C $HOME/tanzu-cluster-essentials
     ```
 
-    Where `DOWNLOADED-CLUSTER-ESSENTIALS-PACKAGE` is the name of the cluster essentials package you downloaded.
+    Where:
+
+    - `DOWNLOADED-CLUSTER-ESSENTIALS-PACKAGE` is the name of the cluster essentials package you downloaded.
+
+1. (Optional) If your registry needs a custom certificate, you must [load that configuration](https://carvel.dev/kapp-controller/docs/v0.32.0/controller-config/) into the cluster before installing `kapp-controller`. If your registry uses a public certificate, this step is not required.
+
+   Create the `kapp-controller` namespace:
+
+    ```
+    kubectl create namespace kapp-controller
+    ```
+
+   Create a configuration secret by using the registry's `ca.crt` stored on local disk:
+
+    ```
+    kubectl create secret generic kapp-controller-config \
+       --namespace kapp-controller \
+       --from-file caCerts=ca.crt
+    ```
 
 1. Configure and run `install.sh`, which installs `kapp-controller` and `secretgen-controller` on your cluster:
 
@@ -107,7 +124,9 @@ If using Linux, download `tanzu-cluster-essentials-linux-amd64-1.0.0.tgz`.
     ./install.sh
     ```
 
-    Where `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for VMware Tanzu Network.
+    Where:
+
+    - `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for VMware Tanzu Network.
 
 1. Install the `kapp` CLI onto your `$PATH`:
 
@@ -115,15 +134,21 @@ If using Linux, download `tanzu-cluster-essentials-linux-amd64-1.0.0.tgz`.
     sudo cp $HOME/tanzu-cluster-essentials/kapp /usr/local/bin/kapp
     ```
 
+1. Install the `imgpkg` CLI onto your `$PATH`:
+
+    ```
+    sudo cp $HOME/tanzu-cluster-essentials/imgpkg /usr/local/bin/imgpkg
+    ```
+
 ## <a id='cli-and-plugin'></a> Install or update the Tanzu CLI and plug-ins
 
 Choose the install scenario that is right for you:
 
-   + [Instructions for a clean install of Tanzu CLI](#tanzu-cli-clean-install)
-   + [Instructions for updating Tanzu CLI that was installed for a previous Tanzu Application Platform release](#update-prev-tap-tanzu-cli)
+   + [Cleanly Install Tanzu CLI](#tanzu-cli-clean-install)
+   + [Updating Tanzu CLI Installed for a Previous Tanzu Application Platform Release](#update-prev-tap-tanzu-cli)
 
 
-### <a id='tanzu-cli-clean-install'></a> Clean install Tanzu CLI
+### <a id='tanzu-cli-clean-install'></a> Cleanly Install Tanzu CLI
 
 To perform a clean installation of Tanzu CLI:
 
@@ -178,8 +203,8 @@ the CLI core and plug-ins are installed:
 
     Where `VERSION` is:
 
-    * `v0.11.1` if you are on Tanzu Application Platform v1.0.1
-    * `v0.10.0` if you are on Tanzu Application Platform v1.0.0
+    - `v0.11.1` if you are on Tanzu Application Platform v1.0.1
+    - `v0.10.0` if you are on Tanzu Application Platform v1.0.0
 
 1. Confirm installation of the CLI core by running:
 
@@ -192,7 +217,7 @@ the CLI core and plug-ins are installed:
     * `version: v0.11.1` for Tanzu Application Platform v1.0.1
     * `version: v0.10.0` for Tanzu Application Platform v1.0.0
 
-1. Proceed to [Instructions for a clean install of Tanzu CLI plug-ins](#cli-plugin-clean-install).
+1. Proceed to [Cleanly Install Tanzu CLI Plug-ins](#cli-plugin-clean-install).
 
 
 #### <a id='mac-tanzu-cli'></a>Mac: Install the Tanzu CLI
@@ -236,8 +261,8 @@ the CLI core and plug-ins are installed:
 
     Where `VERSION` is:
 
-    * `v0.11.1` if you are on Tanzu Application Platform v1.0.1
-    * `v0.10.0` if you are on Tanzu Application Platform v1.0.0
+    - `v0.11.1` if you are on Tanzu Application Platform v1.0.1
+    - `v0.10.0` if you are on Tanzu Application Platform v1.0.0
 
 1. Confirm installation of the CLI core by running:
 
@@ -250,7 +275,7 @@ the CLI core and plug-ins are installed:
     * `version: v0.11.1` for Tanzu Application Platform v1.0.1
     * `version: v0.10.0` for Tanzu Application Platform v1.0.0
 
-1. Proceed to [Instructions for a clean install of Tanzu CLI plug-ins](#cli-plugin-clean-install).
+1. Proceed to [Cleanly Install Tanzu CLI Plug-ins](#cli-plugin-clean-install).
 
 
 #### <a id='windows-tanzu-cli'></a>Windows: Install the Tanzu CLI
@@ -280,8 +305,8 @@ To install the Tanzu CLI on Windows:
 
     Where `VERSION` is:
 
-    * `v0.11.1` if you are on Tanzu Application Platform v1.0.1
-    * `v0.10.0` if you are on Tanzu Application Platform v1.0.0
+    - `v0.11.1` if you are on Tanzu Application Platform v1.0.1
+    - `v0.10.0` if you are on Tanzu Application Platform v1.0.0
 
 1. Paste the file into the new `Program Files\tanzu` directory.
 
@@ -312,10 +337,10 @@ command in a terminal window:
     * `version: v0.11.1` for Tanzu Application Platform v1.0.1
     * `version: v0.10.0` for Tanzu Application Platform v1.0.0
 
-1. Proceed to [Clean Install Tanzu CLI plug-ins](#cli-plugin-clean-install)
+1. Proceed to [Cleanly Install Tanzu CLI Plug-ins](#cli-plugin-clean-install)
 
 
-## <a id='cli-plugin-clean-install'></a> Clean install Tanzu CLI plug-ins
+## <a id='cli-plugin-clean-install'></a> Cleanly Install Tanzu CLI Plug-ins
 
 To perform a clean installation of the Tanzu CLI plug-ins:
 
@@ -330,7 +355,7 @@ To perform a clean installation of the Tanzu CLI plug-ins:
     ```
     cd $HOME/tanzu
     tanzu plugin install --local cli all
-    
+
     tanzu plugin install --local cli/standalone all
     ```
 
@@ -353,7 +378,7 @@ To perform a clean installation of the Tanzu CLI plug-ins:
     services            Discover Service Types, Service Instances and manage Resource Claims (ALPHA)  Standalone                        v0.2.0-rc.1  installed
     accelerator         Manage accelerators in a Kubernetes cluster                                   Standalone                        v1.1.0       installed
     apps                Applications on Kubernetes                                                    Standalone                        v0.5.0       installed
-    insight             post & query image, package, source, and vulnerability data                   Standalone                        v1.1.0       installed 
+    insight             post & query image, package, source, and vulnerability data                   Standalone                        v1.1.0       installed
    ```
 
     Ensure that you have the `accelerator`, `apps`, `package`, `secret`, and `services` plug-ins.
@@ -368,16 +393,16 @@ You can now proceed with installing Tanzu Application Platform. For more informa
 **[Installing the Tanzu Application Platform Package and Profiles](install.md)**.
 
 
-## <a id='update-prev-tap-tanzu-cli'></a>Instructions for updating Tanzu CLI that was installed for a previous release of Tanzu Application Platform
+## <a id='update-prev-tap-tanzu-cli'></a> Updating Tanzu CLI Installed for a Previous Tanzu Application Platform Release
 
 Follow these instructions to update the Tanzu CLI that was installed for a previous release of Tanzu Application Platform:
 
-- If your Tanzu CLI version is **greater than `v0.11.1`**, you must [delete your existing Tanzu CLI, plug-ins, and associated files](uninstall.md#remove-tanzu-cli) and then perform a [clean install](#tanzu-cli-clean-install)
-- If your Tanzu CLI version is **less than or equal to `v0.11.1`**, proceed to step 1.<br/>
+1. Uninstall Tanzu CLI, plug-ins, and associated files by following the steps in
+[Remove Tanzu CLI, plug-ins, and associated files](uninstall.md#remove-tanzu-cli).
 
-**Steps:**
+1. Perform a clean install of the Tanzu CLI by following the steps in [Cleanly Install Tanzu CLI](#tanzu-cli-clean-install) above.
 
-1. If a directory called `tanzu` does not exist, create one by running:
+1. If a directory named `tanzu` does not exist, create one by running:
 
     ```
     mkdir $HOME/tanzu
@@ -420,10 +445,13 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
 10. Update the core CLI by running:
 
     ```
-    tanzu update --local ./cli
+    install cli/core/VERSION/tanzu-core-linux_amd64 /usr/local/bin/tanzu
     ```
-    Expect to see a user prompt - submit `y`
 
+    Where `VERSION` is:
+
+    - `v0.11.1` if you are on Tanzu Application Platform v1.0.1
+    - `v0.10.0` if you are on Tanzu Application Platform v1.0.0
 
 11. Check installation status for the core CLI by running:
 
@@ -438,7 +466,7 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
 
     ```
     tanzu plugin install --local cli all
-    
+
     tanzu plugin install --local cli/standalone all
     ```
 
@@ -461,7 +489,7 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
     services            Discover Service Types, Service Instances and manage Resource Claims (ALPHA)  Standalone                        v0.2.0-rc.1  installed
     accelerator         Manage accelerators in a Kubernetes cluster                                   Standalone                        v1.1.0       installed
     apps                Applications on Kubernetes                                                    Standalone                        v0.5.0       installed
-    insight             post & query image, package, source, and vulnerability data                   Standalone                        v1.1.0       installed 
+    insight             post & query image, package, source, and vulnerability data                   Standalone                        v1.1.0       installed
     ```
 
 You can now install Tanzu Application Platform.

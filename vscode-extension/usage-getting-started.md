@@ -43,7 +43,7 @@ Use the Tanzu CLI to create a workload.yaml file. For example:
 tanzu apps workload create my-workload --git-repo https://example.com/my-workload.git > workload.yaml
 ```
 
-For more information about this Tanzu CLI command, see [Tanzu apps workload create](../cli-plugins/apps/command-reference/tanzu_apps_workload_create.md) in the Tanzu CLI documentation.
+For more information about this Tanzu CLI command, see [Tanzu apps workload create](../cli-plugins/apps/command-reference/tanzu-apps-workload-create.md) in the Tanzu CLI documentation.
 
 ### <a id="create-tiltfile"></a> Create a Tiltfile
 

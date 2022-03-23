@@ -1,121 +1,207 @@
 # Viewing resources on multiple clusters in Tanzu Application Platform GUI
 
-Tanzu Application Platform GUI can be configured to retrieve Kubernetes objects details from multiple clusters and surface those details in the Runtime Resources Visibility plugin.
+You can configure Tanzu Application Platform GUI to retrieve Kubernetes object details from multiple
+clusters and then surface those details in the Runtime Resources Visibility plug-in.
 
-## Setup a Service Account to view resources on a cluster
 
-A service account will need to be created on the cluster that can `get`, `watch`, and `list` resources on that cluster. Create a `ClusterRole` with these rules, a `ServiceAccount` in its own `Namespace` and then bind the `ClusterRole` to the `ServiceAccount`.
+## <a id="set-up-service-account"></a> Set up a Service Account to view resources on a cluster
 
-This yaml will create the `Namespace`, `ServiceAccount`, `ClusterRole` and `ClusterRoleBinding`. Copy it into a file called `tap-gui-viewer-service-account-rbac.yaml`.
+To view resources on a cluster, you must create a service account on the cluster that can
+`get`, `watch`, and `list` resources on that cluster.
+You first create a `ClusterRole` with these rules and a `ServiceAccount` in its own `Namespace`, and
+then bind the `ClusterRole` to the `ServiceAccount`.
 
-```yaml
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: tap-gui
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  namespace: tap-gui
-  name: tap-gui-viewer
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: tap-gui-read-k8s
-subjects:
-- kind: ServiceAccount
-  namespace: tap-gui
-  name: tap-gui-viewer
-roleRef:
-  kind: ClusterRole
-  name: k8s-reader
-  apiGroup: rbac.authorization.k8s.io
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: k8s-reader
-rules:
-  - apiGroups: ['']
-    resources: ['pods', 'services', 'configmaps']
-    verbs: ['get', 'watch', 'list']
-  - apiGroups: ['apps']
-    resources: ['deployments', 'replicasets']
-    verbs: ['get', 'watch', 'list']
-  - apiGroups: ['autoscaling']
-    resources: ['horizontalpodautoscalers']
-    verbs: ['get', 'watch', 'list']
-  - apiGroups: ['networking.k8s.io']
-    resources: ['ingresses']
-    verbs: ['get', 'watch', 'list']
-  - apiGroups: ['networking.internal.knative.dev']
-    resources: ['serverlessservices']
-    verbs: ['get', 'watch', 'list']
-  - apiGroups: [ 'autoscaling.internal.knative.dev' ]
-    resources: [ 'podautoscalers' ]
-    verbs: [ 'get', 'watch', 'list' ]
-  - apiGroups: ['serving.knative.dev']
-    resources:
-    - configurations
-    - revisions
-    - routes
-    - services
-    verbs: ['get', 'watch', 'list']
-```
+To do so:
 
-Ensure the kubeconfig context is set to the cluster with resources to be viewed in Tanzu Application Platform GUI. Create the `Namespace`, `ServiceAccount`, `ClusterRole` and `ClusterRoleBinding` with the following command:
+1. Copy this YAML content into a file called `tap-gui-viewer-service-account-rbac.yaml`.
 
-```
-kubectl create -f tap-gui-viewer-service-account-rbac.yaml
-```
+    ```yaml
+    apiVersion: v1
+    kind: Namespace
+    metadata:
+      name: tap-gui
+    ---
+    apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      namespace: tap-gui
+      name: tap-gui-viewer
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRoleBinding
+    metadata:
+      name: tap-gui-read-k8s
+    subjects:
+    - kind: ServiceAccount
+      namespace: tap-gui
+      name: tap-gui-viewer
+    roleRef:
+      kind: ClusterRole
+      name: k8s-reader
+      apiGroup: rbac.authorization.k8s.io
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRole
+    metadata:
+      name: k8s-reader
+    rules:
+    - apiGroups: ['']
+      resources: ['pods', 'services', 'configmaps']
+      verbs: ['get', 'watch', 'list']
+    - apiGroups: ['apps']
+      resources: ['deployments', 'replicasets']
+      verbs: ['get', 'watch', 'list']
+    - apiGroups: ['autoscaling']
+      resources: ['horizontalpodautoscalers']
+      verbs: ['get', 'watch', 'list']
+    - apiGroups: ['networking.k8s.io']
+      resources: ['ingresses']
+      verbs: ['get', 'watch', 'list']
+    - apiGroups: ['networking.internal.knative.dev']
+      resources: ['serverlessservices']
+      verbs: ['get', 'watch', 'list']
+    - apiGroups: [ 'autoscaling.internal.knative.dev' ]
+      resources: [ 'podautoscalers' ]
+      verbs: [ 'get', 'watch', 'list' ]
+    - apiGroups: ['serving.knative.dev']
+      resources:
+      - configurations
+      - revisions
+      - routes
+      - services
+      verbs: ['get', 'watch', 'list']
+    - apiGroups: ['carto.run']
+      resources:
+      - clusterconfigtemplates
+      - clusterdeliveries
+      - clusterdeploymenttemplates
+      - clusterimagetemplates
+      - clusterruntemplates
+      - clustersourcetemplates
+      - clustersupplychains
+      - clustertemplates
+      - deliverables
+      - runnables
+      - workloads
+      verbs: ['get', 'watch', 'list']
+    - apiGroups: ['source.toolkit.fluxcd.io']
+      resources:
+      - gitrepositories
+      verbs: ['get', 'watch', 'list']
+    - apiGroups: ['source.apps.tanzu.vmware.com']
+      resources:
+      - imagerepositories
+      verbs: ['get', 'watch', 'list']
+    - apiGroups: ['conventions.apps.tanzu.vmware.com']
+      resources:
+      - podintents
+      verbs: ['get', 'watch', 'list']
+    - apiGroups: ['kpack.io']
+      resources:
+      - images
+      - builds
+      verbs: ['get', 'watch', 'list']
+    - apiGroups: ['scanning.apps.tanzu.vmware.com']
+      resources:
+      - sourcescans
+      - imagescans
+      verbs: ['get', 'watch', 'list']
+    - apiGroups: ['tekton.dev']
+      resources:
+      - taskruns
+      - pipelineruns
+      verbs: ['get', 'watch', 'list']
+    - apiGroups: ['kappctrl.k14s.io']
+      resources:
+      - apps
+      verbs: ['get', 'watch', 'list']
+    ```
 
-This cluster will need to be identified to Tanzu Application Platform GUI along with the `ServiceAccount` token and the cluster Kubernetes control plane url. Choose a name for the cluster and note it as `CLUSTER_NAME`. The `CLUSTER_URL` and `CLUSTER_TOKEN` can be found with these commands:
+    This YAML content creates the `Namespace`, `ServiceAccount`, `ClusterRole`, and `ClusterRoleBinding`.
 
-```bash
-CLUSTER_URL=$(kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}')
+1. Create the `Namespace`, `ServiceAccount`, `ClusterRole` and `ClusterRoleBinding` by running:
 
-CLUSTER_TOKEN=$(kubectl -n tap-gui get secret $(kubectl -n tap-gui get sa tap-gui-viewer -o=json \
-| jq -r '.secrets[0].name') -o=json \
-| jq -r '.data["token"]' \
-| base64 --decode)
-```
+    ```
+    kubectl create -f tap-gui-viewer-service-account-rbac.yaml
+    ```
 
-## Update Tanzu Application Platform GUI to view resources on multiple clusters
+    This ensures the `kubeconfig` context is set to the cluster with resources to be viewed in
+    Tanzu Application Platform GUI.
 
-A `kubernetes` section will need to be added to the `app_config` used by Tanzu Application Platform GUI. Update the `tap-gui-values.yaml` that was used to install Tanzu Application Platform GUI with an entry to `clusters` for each cluster with resources to view. See the yaml below for the `kubernetes` section and substitute in the `CLUSTER_URL`, `CLUSTER_NAME`, and `CLUSTER_TOKEN` values found earlier.
+1.  Discover the `CLUSTER_URL` and `CLUSTER_TOKEN` values by running:
 
-```yaml
-app_config:
-  kubernetes:
-    serviceLocatorMethod:
-      type: 'multiTenant'
-    clusterLocatorMethods:
-      - type: 'config'
-        clusters:
-          - url: <CLUSTER_URL>
-            name: <CLUSTER_NAME>
-            authProvider: serviceAccount
-            serviceAccountToken: "<CLUSTER_TOKEN>"
-            skipTLSVerify: true
-```
->**Note:** If there are resources to view on the cluster that hosts Tanzu Application Platform GUI, add an entry to `clusters` for it as well.
+    ```console
+    CLUSTER_URL=$(kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}')
 
-Update the `tap-gui` package by running this command:
+    CLUSTER_TOKEN=$(kubectl -n tap-gui get secret $(kubectl -n tap-gui get sa tap-gui-viewer -o=json \
+    | jq -r '.secrets[0].name') -o=json \
+    | jq -r '.data["token"]' \
+    | base64 --decode)
 
-```
-tanzu package installed update tap-gui --values-file tap-gui-values.yaml
-```
+    echo CLUSTER_URL: $CLUSTER_URL
+    echo CLUSTER_TOKEN: $CLUSTER_TOKEN
+    ```
 
-Wait a moment for the `tap-gui` package to update and then verify that `STATUS` is `Reconcile succeeded` by running this command:
+1. Record the `CLUSTER_URL` and `CLUSTER_TOKEN` values for when you
+[Update Tanzu Application Platform GUI to view resources on multiple clusters](#update-tap-gui) later.
 
-```
-tanzu package installed get tap-gui -n tap-install
-```
 
-## View resources on multiple clusters in the Runtime Resources Visibility plugin
+## <a id="update-tap-gui"></a>Update Tanzu Application Platform GUI to view resources on multiple clusters
 
-Navigate to the Runtime Resources Visibility plugin for a component that is running on multiple clusters. Multiple resources and their status across the clusters will be displayed.
+The cluster must be identified to Tanzu Application Platform GUI with the `ServiceAccount` token
+and the cluster Kubernetes control plane URL.
 
-![Tanzu Application Platform Runtime Resources](./images/tap-gui-multiple-clusters.png)
+You must add a `kubernetes` section to the `app_config` file that Tanzu Application Platform GUI uses. This section must have an entry for each cluster that has resources to view.
+
+To do so:
+
+1. Copy this YAML content into `tap-gui-values.yaml`:
+
+    ```yaml
+    app_config:
+      kubernetes:
+        serviceLocatorMethod:
+          type: 'multiTenant'
+        clusterLocatorMethods:
+          - type: 'config'
+            clusters:
+              - url: CLUSTER-URL
+                name: CLUSTER-NAME
+                authProvider: serviceAccount
+                serviceAccountToken: "CLUSTER-TOKEN"
+                skipTLSVerify: true
+    ```
+
+    Where:
+
+    - `CLUSTER-URL` is the value you discovered earlier.
+    - `CLUSTER-TOKEN` is the value you discovered earlier.
+    - `CLUSTER-NAME` is a unique name of your choice.
+
+    If there are resources to view on the cluster that hosts Tanzu Application Platform GUI, add an
+    entry to `clusters` for it as well.
+
+1. Update the `tap-gui` package by running this command:
+
+    ```
+    tanzu package installed update tap-gui --values-file tap-gui-values.yaml
+    ```
+
+1. Wait a moment for the `tap-gui` package to update and then verify that `STATUS` is
+`Reconcile succeeded` by running:
+
+    ```
+    tanzu package installed get tap-gui -n tap-install
+    ```
+
+
+## <a id="runtime-resrc-plug-in"></a> View resources on multiple clusters in the Runtime Resources Visibility plug-in
+
+To view resources on multiple clusters in the Runtime Resources Visibility plug-in:
+
+1. Navigate to the Runtime Resources Visibility plug-in for a component that is running on multiple
+clusters. [//]: # (More detail needed?)
+
+1. View the multiple resources and their statuses across the clusters.
+
+    ![Screenshot of example Tanzu Application Platform runtime resources](images/tap-gui-multiple-clusters.png)

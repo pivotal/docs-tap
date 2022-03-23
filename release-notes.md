@@ -6,24 +6,24 @@ This topic contains release notes for Tanzu Application Platform v1.
 
 **Release Date**: MMMM DD, 2022
 
-### <a id='1-1-new-features'></a> New Features
+### <a id='1-1-new-features'></a> New features
 
-#### Tanzu Application Platform Profile - Iterate
+#### Tanzu Application Platform profile - iterate
 This new profile is intended for iterative development versus the path to production.
 
-#### Tanzu Application Platform Profile - Build
+#### Tanzu Application Platform profile - build
 
-#### Tanzu Application Platform Profile - Run
+#### Tanzu Application Platform profile - run
 
-#### Tanzu Application Platform Profile - Full
+#### Tanzu Application Platform profile - full
 
 * New packages added....
 
-#### Default Roles for Tanzu Application Platform
+#### Default roles for Tanzu Application Platform
 
-* Introduction of five new default roles and related permissions that apply to **k8s resources**. These roles are to help operators set up common sets of permissions for users and service accounts accessing a cluster running Tanzu Application Platform.
-  * Three roles are for users: app-editor, app-viewer and app-operator. 
-  * Two roles are for “robot” or system permissions: workload and deliverable. 
+- Introduction of [five new default roles](authn-authz/overview.md) and related permissions that apply to **k8s resources**. These roles help operators set up common sets of permissions to limit the access that users and service accounts have on a cluster that runs Tanzu Application Platform.
+  - Three roles are for users, including: app-editor, app-viewer and app-operator.
+  - Two roles are for “robot” or system permissions, including: workload and deliverable.
 
 
 #### Tanzu Application Platform GUI
@@ -33,8 +33,49 @@ This new profile is intended for iterative development versus the path to produc
 
 #### Application Live View
 
-* Enabled multiple cluster support for Application Live View.
-* Split Application Live View components into three packages with new package reference names.
+- Enabled multiple cluster support for Application Live View.
+- Split Application Live View components into three packages with new package reference names.
+- Enabled structured JSON logging for App Live View to meet the TAP logging requirements.
+- Made App Live View Convention Service compatible with the cert-manager version 1.7.1.
+
+#### Tanzu CLI - Apps plug-in
+
+- `workload create/update/apply`:
+  - Accept `workload.yaml` from stdin (through `--file -`).
+  - Enable providing `spec.build.env` values (through new `–build.env` flag).
+  - When `--git-repo` and `--git-tag` are provided, `git-branch` is not required.
+- `workload list`:
+  - Shorthand `-A` can be passed in for `--all-namespaces`.
+- `workload get`:
+  - Service Claim details are returned in command output.
+  - The existing STATUS value in the Pods table in the output reflects when a pod is “Terminating.” 
+
+
+#### Service Bindings
+
+- Applied [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339) timestamps to service binding logs.
+- Added Tanzu Application Platform aggregate roles to support Tanzu Application Platform Authentication and Authorization (new feature referenced above).
+- Added support for servicebinding.io/v1beta1
+- Corrected Postgres resource pluralization error.
+
+#### Source Controller
+
+- Applied [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339) timestamps to source controller logs.
+- Added Tanzu Application Platform aggregate roles to support Tanzu Application Platform Authentication and Authorization (new feature referenced above).
+
+#### Spring Boot Conventions
+
+- Applied [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339) timestamps to service binding logs.
+The following new conventions are applied to spring boot apps v2.6 and later:
+- Add Kubernetes liveness and readiness probes by using spring boot health endpoints.
+- Change management port from 8080 to 8081 to increase security of the management port.
+
+#### Supply Chain Security Tools – Scan
+
+- Webhook resources can now be configured
+- Namespace where webhook is installed can be configured
+- Support for registries with self-signed certificates
+
 
 #### Supply Chain Security Tools - Store
 
@@ -62,17 +103,66 @@ This release has the following security issues:
 
 ### <a id='1-1-resolved-issues'></a> Resolved issues
 
+#### Tanzu CLI - Apps plug-in
+
+- Apps plug-in no longer crashes when `KUBECONFIG` includes the colon (`:`) config file delimiter.
+- `tanzu apps workload get`: Passing in `--output json` and `--export` flags together exports the workload in JSON rather than YAML.
+- `tanzu apps workload tail`: Duplicate log entries created for init containers are removed.
+- `tanzu apps workload create/update/apply`
+  - When the `--wait` flag passed and the prompt "Do you want to create this workload?" 
+  is declined, the command immediately exits 0 rather than hanging (continuing to "wait").
+  - Workload name is now validated when the workload values are passed in through `--file workload.yaml`.
+  - When creating/applying a workload from –local-path, if user answers “No” to the prompt “Are you sure you want to publish your local code to [registry name] where others may be able to access it?”, the command now exits 0 immediately rather than showing the workload diff and prompting to continue with workload creation.
+
 #### Services Toolkit
 
 - Resolved an issue with the `tanzu services` CLI plug-in which meant it was not compatible with Kubernetes clusters running on GKE.
 - Fixed a potential race condition during reconciliation of ResourceClaims which might cause the Services Toolkit manager to stop responding.
 - Updated configuration of the Services Toolkit carvel Package to prevent an unwanted build up of ConfigMap resources.
 
+#### Supply Chain Security Tools – Scan
+
+- Resolved the issue that events show `SaveScanResultsSuccess` when metadata store is not configured.
+- CVE print columns are now properly populated.
+- Fixed failing Blob source scans where `.git` directory is not provided.
+- Prevent scan controller pod from failing when metadata store certificate is not available.
+- Removed unnecessary reconciliation of resources upon deletion.
+- Prevent scan controller failure upon Git clone fails.
+
 #### Supply Chain Security Tools - Store
 
 - Fixed an issue where querying a source report with local path name would return the following error: `{ "message": "Not found" }`
 
 ### <a id='1-1-known-issues'></a> Known issues
+
+#### Tanzu Application Platform
+
+- **Deprecated profile:** Tanzu Application Platform light profile is deprecated.
+
+#### Grype scanner
+
+**Scanning Java source code may not reveal vulnerabilities:** Source Code Scanning only scans
+files present in the source code repository.
+No network calls are made to fetch dependencies.
+For languages using dependency lock files, such as Golang and Node.js, Grype uses the
+lock files to check the dependencies for vulnerabilities.
+
+For Java, dependency lock files are not guaranteed, so Grype instead uses the
+dependencies present in the built binaries (`.jar` or `.war` files).
+
+Because VMware does not recommend committing binaries to source code repositories, Grype
+fails to find vulnerabilities during a Source Scan. The vulnerabilities are still found during the
+Image Scan, after the binaries are built and packaged as images.
+
+#### Supply Chain Security Tools – Scan
+
+- **Two scan jobs and two scan pods appear at the same time**: There is an edge case where two scan
+  jobs and two scan pods appear when a scan policy is updated.
+  This does not change the result of the scan.
+- **Scan Phase indicates `Scanning` incorrectly:** Scans have an edge case that when an error
+  occurs during scanning, the `Scan Phase` field is not updated to `Error` and remains in the
+  `Scanning` phase. Read the scan pod logs to verify the existence of an error.
+- **Deprecated API version:** API version `scanning.apps.tanzu.vmware.com/v1alpha1` is deprecated.
 
 #### Supply Chain Security Tools - Store
 
@@ -101,11 +191,6 @@ This release has the following security issues:
 - **No support for installing in custom namespaces:**
   Supply Chain Security Tools — Store is deployed to the `metadata-store` namespace.
   There is no support for configuring the namespace.
-
-### <a id='1-1-known-issues'></a> Feature Deprecation 
-
-* Tanzu Application Platform Profile - Light
-
 
 ## <a id='1-0'></a> v1.0
 

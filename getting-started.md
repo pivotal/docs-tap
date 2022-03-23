@@ -26,7 +26,7 @@ See [Installing the Tanzu CLI](install-tanzu-cli.md) and [Installing the Tanzu A
 See [Changing clusters](cli-plugins/apps/usage.md#changing-clusters).
 
   - **Installed Out of The Box (OOTB) Supply Chain Basic**<br>
-See [Install Out of The Box Supply Chain Basic](install-components.md#install-ootb-sc-basic).
+See [Install Out of The Box Supply Chain Basic](scc/install-ootb-sc-basic.md).
 
     >**Note:** If you used the default profiles provided in [Installing the Tanzu Application Platform Package and Profiles](install.md),
     you have already installed the Out of The Box (OOTB) Supply Chain Basic.
@@ -106,10 +106,11 @@ To deploy your application, you must download an accelerator, upload it on your 
     --git-branch main \
     --type web \
     --label app.kubernetes.io/part-of=tanzu-java-web-app \
-    --yes
+    --yes \
+    --namespace YOUR-DEVELOPER-NAMESPACE
     ```
 
-    Where `GIT-URL-TO-PROJECT-REPO` is the path you uploaded to in step 5.
+    Where `GIT-URL-TO-PROJECT-REPO` is the path you uploaded to in step 5 and `YOUR-DEVELOPER-NAMESPACE` is the namespace configured in step 6.
 
     If you bypassed step 5 or were unable to upload your accelerator to a Git repository, use the following public version to test:
 
@@ -119,10 +120,13 @@ To deploy your application, you must download an accelerator, upload it on your 
     --git-branch main \
     --type web \
     --label app.kubernetes.io/part-of=tanzu-java-web-app \
-    --yes
+    --yes \
+    --namespace YOUR-DEVELOPER-NAMESPACE
     ```
-
-    For more information, see [Tanzu Apps Workload Create](cli-plugins/apps/command-reference/tanzu_apps_workload_create.md).
+    
+    Where `YOUR-DEVELOPER-NAMESPACE` is the namespace configured in step 6.
+    
+    For more information, see [Tanzu Apps Workload Create](cli-plugins/apps/command-reference/tanzu-apps-workload-create.md).
 
     > **Note:** This deployment uses an accelerator source from Git, but in later steps you use the VSCode extension
     to debug and live-update this application.
@@ -130,15 +134,19 @@ To deploy your application, you must download an accelerator, upload it on your 
 8. View the build and runtime logs for your app by running the `tail` command:
 
     ```
-    tanzu apps workload tail tanzu-java-web-app --since 10m --timestamp
+    tanzu apps workload tail tanzu-java-web-app --since 10m --timestamp --namespace YOUR-DEVELOPER-NAMESPACE
     ```
+    
+    Where `YOUR-DEVELOPER-NAMESPACE` is the namespace configured in step 6.
 
 9. After the workload is built and running, you can view the Web App in your browser. View the URL of the Web App by running the command below, and then press **ctrl-click** on the
    Workload Knative Services URL at the bottom of the command output.
 
     ```
-    tanzu apps workload get tanzu-java-web-app
+    tanzu apps workload get tanzu-java-web-app --namespace YOUR-DEVELOPER-NAMESPACE
     ```
+    
+    Where `YOUR-DEVELOPER-NAMESPACE` is the namespace configured in step 6.
 
     ![Tanzu-java-web-app default screen](images/getting-started-tap-gui-8.png)
 
@@ -150,7 +158,7 @@ To deploy your application, you must download an accelerator, upload it on your 
 
     ![REGISTER button on the right side of the header](images/getting-started-tap-gui-5.png)
 
->**Note:** Alternatively, you can add the link to the `catalog-info.yaml` to the configuration `tap-values.yml` file in the `tap_gui.app_config.catalog.locations` section as described in the [Installing the Tanzu Application Platform Package and Profiles](/install.md#a-idfull-profilea-full-profile).
+>**Note:** Alternatively, you can add a link to the `catalog-info.yaml` to the `tap-values.yml` configuration file in the `tap_gui.app_config.catalog.locations` section. See [Installing the Tanzu Application Platform Package and Profiles](install.md#a-idfull-profilea-full-profile).
 
 1. **Register an existing component** prompts you to type a repository URL.
 Type the link to the `catalog-info.yaml` file of the tanzu-java-web-app in the Git repository field, for example,
@@ -166,7 +174,7 @@ Type the link to the `catalog-info.yaml` file of the tanzu-java-web-app in the G
 
 1. Navigate back to the home page. The catalog changes and entries are visible for further inspection.
 
->**Note:** If your Tanzu Application Platform GUI instance does not have a [PostgreSQL](tap-gui/database.md) database configured, then the `catalog-info.yaml` location needs to be re-registered after the instance get restarted or upgraded.
+>**Note:** If your Tanzu Application Platform GUI instance does not have a [PostgreSQL](tap-gui/database.md) database configured, then the `catalog-info.yaml` location must be re-registered after the instance is restarted or upgraded.
 
 ### <a id="iterate"></a>Iterate on your application
 
@@ -255,17 +263,15 @@ Follow the following steps to diagnose Spring Boot-based applications using Appl
 
 ## <a id='create-app-acc'></a>Section 2: Create your application accelerator
 
-In this section, you are going to:
+In this section, you are going to create an application accelerator by using Tanzu Application Platform GUI and CLI.
 
-  - Create an application accelerator using Tanzu Application Platform GUI and CLI.
+### <a id="create-an-app-acc"></a>Create an application accelerator
 
-### <a id="create-an-app-acc"></a>Create an application accelerator ###
+You can use any Git repository to create an accelerator. You need the repository URL to create an accelerator.
 
-You can use any Git repository to create an accelerator. You need the URL for the repository to create an accelerator.
+The Git repository must be `public` and contain a `README.md` file. These options are available to configure when you create repositories on GitHub.
 
-For this example the Git repository should be `public` and contain a `README.md` file. These are all options that are available  when you create repositories on GitHub.
-
-To create a new application accelerator using your Git repository, follow these steps:
+To create a new application accelerator by using your Git repository, follow these steps:
 
 1. Clone your Git repository.
 
@@ -283,21 +289,24 @@ To create a new application accelerator using your Git repository, follow these 
       - getting-started
     ```
 
-    > Feel free to use a different icon, as long as it is using a reachable URL.
+    >**Note:** You can use any icon with a reachable URL.
 
 4. Add the new `accelerator.yaml` file, commit this change and push to your Git repository.
 
-## <a id="publishing-the-new-accelerator"></a>Publish the new accelerator
+## <a id="publish-accelerator"></a>Publish the new accelerator
 
-To publish the new application accelerator created in your Git repository, follow these steps:
+To publish the new application accelerator that is created in your Git repository, follow these steps:
 
-1. Run the following command in your terminal:
-
-    > You need the URL for you Git repository plus the name of the branch where you pushed the new `accelerator.yaml` file.
+1. Run the following command to publish the new application accelerator:
 
     ```sh
-    tanzu accelerator create simple --git-repository <YOUR-GIT-REPOSITORY-URL> --git-branch <YOUR-GIT-BRANCH>
+    tanzu accelerator create simple --git-repository YOUR-GIT-REPOSITORY-URL --git-branch YOUR-GIT-BRANCH
     ```
+
+    Where:
+    
+    - `YOUR-GIT-REPOSITORY-URL` is the URL of your Git repository.
+    - `YOUR-GIT-BRANCH` is the name of the branch where you pushed the new `accelerator.yaml` file.
 
 2. Refresh Tanzu Application Platform GUI to reveal the newly published accelerator.
 
@@ -305,46 +314,53 @@ To publish the new application accelerator created in your Git repository, follo
 
     >**Note:** It might take a few seconds for Tanzu Application Platform GUI to refresh the catalog and add an entry for new accelerator.
 
-## <a id="working-with-accelerators"></a>Working with accelerators
+## <a id="work-with-accelerators"></a>Working with accelerators
 
 ### <a id="accelerator-updates"></a>Updating an accelerator
 
-After you push any changes to your Git repository, the Accelerator is refreshed based on the `git.interval` setting for the Accelerator resource. The default is 10 minutes. You can run the following command to force an immediate reconciliation:
+After you push any changes to your Git repository, the Accelerator is refreshed based on the `git.interval` setting for the Accelerator resource. The default value is 10 minutes. You can run the following command to force an immediate reconciliation:
 
 ```
-tanzu accelerator update <ACCELERATOR-NAME> --reconcile
+tanzu accelerator update ACCELERATOR-NAME --reconcile
 ```
 
 ### <a id="accelerator-deletes"></a>Deleting an accelerator
 
-When you no longer need your accelerator, you can simply delete it using the Tanzu CLI:
+When you no longer need your accelerator, you can delete it by using the Tanzu CLI:
 
 ```
-tanzu accelerator delete <ACCELERATOR-NAME>
+tanzu accelerator delete ACCELERATOR-NAME
 ```
 
 ### <a id="accelerator-manifest"></a>Using an accelerator manifest
 
-An alternative to using the Tanzu CLI is to create seperate manifest file and apply it to the cluster. Create a `simple-manifest.yaml` file and add the following content, filling in with your Git repository and branch values.
+You can also create a separate manifest file and apply it to the cluster by using the Tanzu CLI:
 
-```yaml
-apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
-kind: Accelerator
-metadata:
-  name: simple
-  namespace: accelerator-system
-spec:
-  git:
-    url: <YOUR-GIT-REPOSITORY-URL>
-    ref:
-      branch: <YOUR-GIT-BRANCH>
-```
+1. Create a `simple-manifest.yaml` file and add the following content:
 
-To apply the `simple-manifest.yaml`, run the following command in your terminal in the directory where you created this file:
+    ```yaml
+    apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
+    kind: Accelerator
+    metadata:
+      name: simple
+      namespace: accelerator-system
+    spec:
+      git:
+        url: YOUR-GIT-REPOSITORY-URL
+        ref:
+          branch: YOUR-GIT-BRANCH
+    ```
 
-```sh
-kubectl apply -f simple-manifest.yaml
-```
+    Where:
+
+    - `YOUR-GIT-REPOSITORY-URL` is the URL of your Git repository.
+    - `YOUR-GIT-BRANCH` is the name of the branch.
+
+1. Apply the `simple-manifest.yaml` by running the following command in the directory where you created this file:
+
+    ```sh
+    kubectl apply -f simple-manifest.yaml
+    ```
 
 ---
 
@@ -860,7 +876,7 @@ pipeline:
 
 #### <a id="query-for-vuln"></a> Query for vulnerabilities
 
-Scan reports are automatically saved to the [Supply Chain Security Tools - Store](install-components.html#install-scst-store), and can be queried for vulnerabilities and dependencies. For example, open-source software (OSS) or third party packages.
+Scan reports are automatically saved to the [Supply Chain Security Tools - Store](scst-store/overview.md), and can be queried for vulnerabilities and dependencies. For example, open-source software (OSS) or third party packages.
 
 1. Query the tanzu-java-web-app image dependencies and vulnerabilities with the following commands:
 
@@ -873,7 +889,7 @@ Scan reports are automatically saved to the [Supply Chain Security Tools - Store
 
   Important: The `Insight CLI` is separate from the Tanzu CLI.
 
-See [Query Data](scst-store/query_data.html) or [CLI Details](scst-store/cli_docs/insight.html) for
+See [Query Data](scst-store/query-data.md) or [CLI Details](scst-store/cli-docs/insight.md) for
 additional examples.
 <br>
 
@@ -967,7 +983,7 @@ Use the Supply Chain Security Tools - Store CLI, called Insight,
 to query metadata that is submitted to the component after the scan step.
 
 For a complete guide on how to query the store,
-see [Querying Supply Chain Security Tools - Store](scst-store/query_data.md).
+see [Querying Supply Chain Security Tools - Store](scst-store/query-data.md).
 
 
 #### <a id="scst-scan-next-steps"></a>Next steps
@@ -985,7 +1001,7 @@ see [Querying Supply Chain Security Tools - Store](scst-store/query_data.md).
 ## <a id='service-consump'></a> Section 5: Consuming Services on Tanzu Application Platform
 
 Tanzu Application Platform makes it straight forward to discover, curate, consume, and manage
-services across single-cluster or multi-cluster environments.
+services across single-cluster or multicluster environments.
 This section introduces procedures for implementing several use cases regarding the services journey on Tanzu Application Platform.
 
 ### <a id="serv-con-overview"></a>Overview

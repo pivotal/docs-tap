@@ -1,4 +1,4 @@
-# Installing the Tanzu Application Platform Package and Profiles
+# Installing the Tanzu Application Platform package and profiles
 
 This document describes how to install Tanzu Application Platform packages
 from the Tanzu Application Platform package repository.
@@ -91,7 +91,7 @@ procedure, set up environment variables for use during the installation by runni
       api-portal.tanzu.vmware.com                          API portal                                                                A unified user interface to enable search, discovery and try-out of API endpoints at ease.
       backend.appliveview.tanzu.vmware.com                 Application Live View for VMware Tanzu                                    App for monitoring and troubleshooting running apps
       connector.appliveview.tanzu.vmware.com               Application Live View Connector for VMware Tanzu                          App for discovering and registering running apps
-      conventions.appliveview.tanzu.vmware.com             Application Live View Conventions for VMware Tanzu                        Application Live View convention server 
+      conventions.appliveview.tanzu.vmware.com             Application Live View Conventions for VMware Tanzu                        Application Live View convention server
       buildservice.tanzu.vmware.com                        Tanzu Build Service                                                       Tanzu Build Service enables the building and automation of containerized software workflows securely and at scale.
       cartographer.tanzu.vmware.com                        Cartographer                                                              Kubernetes native Supply Chain Choreographer.
       cnrs.tanzu.vmware.com                                Cloud Native Runtimes                                                     Cloud Native Runtimes is a serverless runtime based on Knative
@@ -117,7 +117,7 @@ procedure, set up environment variables for use during the installation by runni
 
 ## <a id='install-profile'></a> Install your Tanzu Application Platform profile
 
-The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile settings. This is done by using the package manager you installed using Tanzu Cluster Essentials. 
+The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile settings. This is done by using the package manager you installed using Tanzu Cluster Essentials.
 
 For more information about profiles, see [Installation profiles in Tanzu Application Platform](overview.md#profiles-and-packages).
 
@@ -127,9 +127,9 @@ The following profiles are available for Tanzu Application Platform:
 
 - **Iterate:** This profile is intended for iterative application development.
 
-- **Build:** This profile is intended for the transformation of source revisions to workload revisions. Specifically, hosting Workloads and SupplyChains.
+- **Build:** This profile is intended for the transformation of source revisions to workload revisions. Specifically, hosting workloads and SupplyChains.
 
-- **Run:** This profile is intended for the transformation of workload revisions to running Pods. Specifically, hosting Deliverys and Deliverables.
+- **Run:** This profile is intended for the transformation of workload revisions to running pods. Specifically, hosting deliveries and deliverables.
 
 - **View:** This profile is intended for instances of applications related to centralized developer experiences. Specifically, the TAP GUI and Metadata Store.
 
@@ -145,11 +145,13 @@ To prepare to install a profile:
 1. Create a `tap-values.yml` file by using the
 [Full Profile sample](#full-profile) as a guide.
 These samples have the minimum configuration required to deploy Tanzu Application Platform.
-The sample values file contains the necessary defaults for both the meta-package
-(parent Tanzu Application Platform package) and subordinate packages
-(individual child packages).
-The values file you provide during installation is used for further configuration
-of Tanzu Application Platform.
+The sample values file contains the necessary defaults for:
+
+    - The meta-package, or parent Tanzu Application Platform package
+    - Subordinate packages, or individual child packages
+
+    The values file you provide during installation is used for further configuration
+    of Tanzu Application Platform.
 
     >**Important:** Keep this file for future use.
 
@@ -254,83 +256,7 @@ this can reuse the `tap-registry` secret created in
 
 ### <a id='light-profile'></a> Light Profile
 
-The following is the YAML file sample for the light-profile:
-
-```
-profile: light
-ceip_policy_disclosed: true # The value must be true for installation to succeed
-
-buildservice:
-  kp_default_repository: "KP-DEFAULT-REPO"
-  kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
-  kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
-  tanzunet_username: "TANZUNET-USERNAME"
-  tanzunet_password: "TANZUNET-PASSWORD"
-  enable_automatic_dependency_updates: TRUE-OR-FALSE-VALUE # Optional, set as true or false. Not a string.
-
-supply_chain: basic
-
-cnrs:
-  domain_name: INGRESS-DOMAIN
-
-ootb_supply_chain_basic:
-  registry:
-    server: "SERVER-NAME"
-    repository: "REPO-NAME"
-  gitops:
-    ssh_secret: "SSH-SECRET-KEY"
-
-tap_gui:
-  service_type: ClusterIP
-  ingressEnabled: "true"
-  ingressDomain: "INGRESS-DOMAIN"
-  app_config:
-    app:
-      baseUrl: http://tap-gui.INGRESS-DOMAIN
-    catalog:
-      locations:
-        - type: url
-          target: https://GIT-CATALOG-URL/catalog-info.yaml
-    backend:
-      baseUrl: http://tap-gui.INGRESS-DOMAIN
-      cors:
-        origin: http://tap-gui.INGRESS-DOMAIN
-
-metadata_store:
-  app_service_type: LoadBalancer # (optional) Defaults to LoadBalancer. Change to NodePort for distributions that don't support LoadBalancer
-```
-
-Where:
-
-- `KP-DEFAULT-REPO` is a writable repository in your registry. Tanzu Build Service dependencies are written to this location. Examples:
-    - Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`
-    - Dockerhub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`
-    - Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`
-- `KP-DEFAULT-REPO-USERNAME` is the username that can write to `KP-DEFAULT-REPO`. You should be able to `docker push` to this location with this credential.
-    - For Google Cloud Registry, use `kp_default_repository_username: _json_key`
-- `KP-DEFAULT-REPO-PASSWORD` is the password for the user that can write to `KP-DEFAULT-REPO`.
-You can `docker push` to this location with these credentials.
-    - For Google Cloud Registry, use the contents of the service account JSON key.
-- `SERVER-NAME` is the hostname of the registry server. Examples:
-    - Harbor has the form `server: "my-harbor.io"`
-    - Dockerhub has the form `server: "index.docker.io"`
-    - Google Cloud Registry has the form `server: "gcr.io"`
-- `REPO-NAME` is where workload images are stored in the registry.
-Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
-    - Harbor has the form `repository: "my-project/supply-chain"`
-    - Dockerhub has the form `repository: "my-dockerhub-user"`
-    - Google Cloud Registry has the form `repository: "my-project/supply-chain"`
-- `SSH-SECRET-KEY` is the SSH secret key supported by the specific package.
-    See [Identify the SSH secret key for your package](#ssh-secret-key) for more information.
-- `INGRESS-DOMAIN` is the subdomain for the host name that you will point at the `tanzu-shared-ingress` service's External IP address.
-- `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog you've already built and posted on the Git infrastructure you specified in the Integration section.
-
->**Note:** When using the `tbs-values.yaml` configuration,
->`enable_automatic_dependency_updates: true` causes the dependency updater to update
->Tanzu Build Service dependencies (buildpacks and stacks) when they are released on
->VMware Tanzu Network. Use `false` to pause the automatic update of Build Service dependencies.
->When automatic updates are paused, the pinned version of the descriptor for TAP 1.0.2 is [100.0.267](https://network.pivotal.io/products/tbs-dependencies#/releases/1053790)
->If left undefined, this value is `false`.
+The Light profile is deprecated. Although existing values files might still refer to the Light profile, VMware recommends to migrate to one of the new profiles described in [Install your Tanzu Application Platform profile](#install-profile) by following the procedures in [Migrate Tanzu Application Platform profiles](migrate-profile.md).
 
 ### <a id="view-pkge-config-settings"></a>View possible configuration settings for your package
 
@@ -458,19 +384,21 @@ To install the Install the Tanzu Application Platform package:
     tanzu package installed list -A
     ```
 
-1. Ensure you have
-[set up developer namespaces to use installed packages](install-components.md#setup).
-
-1. (Optional) [Install any additional packages](install-components.md) that were not included in
+1. (Optional) [Install any additional packages](install-components.md) not included in
 your profile.
 
-After you install Full Profile or Light Profile on to your cluster, you can install the
+>**Important:** Ensure you have
+[set up developer namespaces to use your installed packages](install-components.md#setup).
+
+After you install Full Profile on to your cluster, you can install the
 Tanzu Developer Tools for VSCode extension to help you develop against it.
 For instructions, see [Installing Tanzu Dev Tools for VSCode](vscode-extension/install.md).
 
 ## <a id='configure-envoy-lb'></a> Configure LoadBalancer for Contour ingress
 
-This section only applies when you use Tanzu Application Platform to deploy its own shared Contour ingress controller in `tanzu-system-ingress`. It is not applicable when you use an existing ingress with the components. You can share this ingress across `cnrs`, `tap_gui`, and `learningcenter`.
+This section only applies when you use Tanzu Application Platform to deploy its own shared Contour ingress controller in `tanzu-system-ingress`. It is not applicable when you use your own existing ingress.
+
+You can share this ingress across Cloud Native Runtimes (`cnrs`), Tanzu Application Platform GUI (`tap_gui`), and Learning Center (`learningcenter`).
 
 By default, Contour uses `NodePort` as the service type. To set the service type to `LoadBalancer`, add the following to your `tap-values.yml`:
 

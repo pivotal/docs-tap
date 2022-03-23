@@ -2,7 +2,7 @@
 
 ## <a id='sec-scan'></a>Security Scans
 
-See [SCA Scanning Results](sca_scans/sca-scanning-results.md) for security scanning results for the API and CLI components.
+See [SCA Scanning Results](sca-scans/sca-scanning-results.md) for security scanning results for the API and CLI components.
 
 ## <a id='app-sec'></a>Application security
 
@@ -37,11 +37,11 @@ Supply Chain Security Tools - Store uses [kube-rbac-proxy](https://github.com/br
 
 The `kube-rbac-proxy` uses [Token Review](https://kubernetes.io/docs/reference/access-authn-authz/authentication/) to verify if the token is valid. `Token Review` is a Kubernetes API to ensure a trusted vendor issued the access token provided by the user. To issue an access token using Kubernetes, the user can create a Kubernetes Service Account and retrieve the corresponding generated Secret for the access token.
 
-To create an access token, please refer to the [Create Service Account Access Token Docs.](create_service_account_access_token.md)
+To create an access token, please refer to the [Create Service Account Access Token Docs.](create-service-account-access-token.md)
 
 ##### <a id='auth-api'></a>Authorization
 
-The `kube-rbac-proxy` uses [Subject Access Review](https://kubernetes.io/docs/reference/access-authn-authz/authorization/) to ensure users access certain operations. `Subject Access Review` is a Kubernetes API that uses [Kubernetes RBAC](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) to determine if the user can perform specific actions. Please refer to the [Create Service Account Access Token doc](create_service_account_access_token.md).
+The `kube-rbac-proxy` uses [Subject Access Review](https://kubernetes.io/docs/reference/access-authn-authz/authorization/) to ensure users access certain operations. `Subject Access Review` is a Kubernetes API that uses [Kubernetes RBAC](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) to determine if the user can perform specific actions. Please refer to the [Create Service Account Access Token doc](create-service-account-access-token.md).
 
 There are only two supported roles: `Read Only` cluster role and `Read and Write` cluster role. These cluster roles are deployed by default.
 Additionally, a service account is created and bound to the `Read and Write` cluster role by default. If you do not want this service account, set `add_default_rw_service_account` property to `"false"` in the `metadata-store-values.yaml` file [during deployment](../install-components.md#install-scst-store).
