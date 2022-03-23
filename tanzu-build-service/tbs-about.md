@@ -40,7 +40,9 @@ Different descriptors can apply to different use cases and you can configure whi
 
 The Tanzu Build Service `lite` descriptor is the default descriptor selected if none are configured.
 
-It contains a smaller footprint to speed up installation time. However, it does not support all workload types.
+It contains a smaller footprint to speed up installation time. However, it does not support all workload types – for example the `lite` descriptor does not contain the php buildpack.
+
+The `lite` descriptor only contains the `base` [stack](https://docs.pivotal.io/tanzu-buildpacks/stacks.html). The `default` stack will be installed but is identical to the `base` stack.
 
 A full table of differences between `full` and `lite` shown [here](#descriptors-table).
 
@@ -48,7 +50,13 @@ A full table of differences between `full` and `lite` shown [here](#descriptors-
 
 The Tanzu Build Service `full` descriptor contains more dependencies which allows for more workload types.
 
-It also includes all dependencies pre-packaged so builds don't need to download them from the internet.
+It also includes all dependencies pre-packaged so builds don't need to download them from the internet which can speed up build times.
+
+The `full` descriptor contains the following [stacks](https://docs.pivotal.io/tanzu-buildpacks/stacks.html) which support different use cases:
+- `base`
+- `default` (identical to `base`)
+- `full`
+- `tiny`
 
 However, due to its larger-footprint, installations may take longer.
 
@@ -62,6 +70,9 @@ Both `lite` and `full` descriptors are suitable for production environments.
 |---|---|---|
 | Faster installation time | Yes | No |
 | Dependencies pre-packaged | No | Yes |
+| Contains base stack | Yes | Yes |
+| Contains full stack | No | Yes |
+| Contains tiny stack | No | Yes |
 | Supports Java workloads | Yes | Yes |
 | Supports Node.js workloads | Yes | Yes |
 | Supports Go workloads | Yes | Yes |
