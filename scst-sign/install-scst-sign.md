@@ -36,7 +36,7 @@ To install Supply Chain Security Tools - Sign:
     $ tanzu package available list image-policy-webhook.signing.apps.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for image-policy-webhook.signing.apps.tanzu.vmware.com...
       NAME                                                VERSION        RELEASED-AT
-      image-policy-webhook.signing.apps.tanzu.vmware.com  1.1.0          2022-01-24 09:00:00 -0500 EST
+      image-policy-webhook.signing.apps.tanzu.vmware.com  1.1.0          2022-03-17 18:00:00 -0500 EST
     ```
 
 1. (Optional) Make changes to the default installation settings by running:
