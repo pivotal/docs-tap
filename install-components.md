@@ -60,7 +60,7 @@ Use the following procedure to verify that the packages are installed.
     convention-controller    controller.conventions.apps.tanzu.vmware.com       0.4.2            Reconcile succeeded
     developer-conventions    developer-conventions.tanzu.vmware.com             0.3.0-build.1    Reconcile succeeded
     grype-scanner            grype.scanning.apps.tanzu.vmware.com               1.0.0            Reconcile succeeded
-    image-policy-webhook     image-policy-webhook.signing.apps.tanzu.vmware.com  1.0.0-beta.1     Reconcile succeeded
+    image-policy-webhook     image-policy-webhook.signing.apps.tanzu.vmware.com 1.1.0            Reconcile succeeded
     metadata-store           metadata-store.apps.tanzu.vmware.com               1.0.2            Reconcile succeeded
     ootb-supply-chain-basic  ootb-supply-chain-basic.tanzu.vmware.com           0.5.1            Reconcile succeeded
     ootb-templates           ootb-templates.tanzu.vmware.com                    0.5.1            Reconcile succeeded
