@@ -36,8 +36,24 @@ This new profile is intended for iterative development versus the path to produc
 * Enabled multiple cluster support for Application Live View.
 * Split Application Live View components into three packages with new package reference names.
 
+#### Supply Chain Security Tools - Store
+
+- Introduced v1 endpoints to query with pagination
+  - Added v1 GET images endpoint
+  - Added v1 GET sources endpoint
+  - Added v1 GET packages endpoint
+  - Added v1 GET vulnerabilities endpoint
+- Added Contour Ingress support with custom domain name
+- Added related packages to image and source vulnerabilities
+- Created Tanzu CLI plugin called Insight
+- Upgraded golang version from `1.17.5` to `1.17.8`
+
 ### <a id='1-1-breaking-changes'></a> Breaking changes
 
+#### Supply Chain Security Tools - Store
+
+- Insight CLI is deprecated, customers can now use Tanzu CLI plugin called Insight.
+  - Renamed all instances of `create` verb to `add` for all CLI commands.
 
 ### <a id='1-1-security-issues'></a> Security issues
 
@@ -52,7 +68,39 @@ This release has the following security issues:
 - Fixed a potential race condition during reconciliation of ResourceClaims which might cause the Services Toolkit manager to stop responding.
 - Updated configuration of the Services Toolkit carvel Package to prevent an unwanted build up of ConfigMap resources.
 
+#### Supply Chain Security Tools - Store
+
+- Fixed an issue where querying a source report with local path name would return the following error: `{ "message": "Not found" }`
+
 ### <a id='1-1-known-issues'></a> Known issues
+
+#### Supply Chain Security Tools - Store
+
+- **Persistent volume retains data**
+  If Supply Chain Security Tools - Store is deployed, deleted, and then redeployed the
+  `metadata-store-db` Pod fails to start if the database password changed during redeployment.
+  This is caused by the persistent volume used by postgres retaining old data, even though the retention
+  policy is set to `DELETE`.
+
+  To resolve this issue, see [CrashLoopBackOff from Password Authentication Fails](troubleshooting.html#password-authentication-fails)
+  in _Troubleshooting Tanzu Application Platform_.
+
+  > **Warning:** Changing the database password deletes your Supply Chain Security Tools - Store data.
+
+- **Missing persistent volume:**
+  After Supply Chain Security Tools - Store is deployed, `metadata-store-db` Pod might fail for missing
+  volume while `postgres-db-pv-claim` pvc is in the `PENDING` state.
+  This issue may occur if the cluster where Supply Chain Security Tools - Store is deployed does not have
+  `storageclass` defined.
+
+  The provisioner of `storageclass` is responsible for creating the persistent volume after
+  `metadata-store-db` attaches `postgres-db-pv-claim`. To resolve this issue, see
+  [Missing Persistent Volume](troubleshooting.html#missing-persistent-volume)
+  in _Troubleshooting Tanzu Application Platform_.
+
+- **No support for installing in custom namespaces:**
+  Supply Chain Security Tools — Store is deployed to the `metadata-store` namespace.
+  There is no support for configuring the namespace.
 
 ### <a id='1-1-known-issues'></a> Feature Deprecation 
 
