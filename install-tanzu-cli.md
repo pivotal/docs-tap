@@ -466,6 +466,11 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
     Expect to see a user prompt - submit `y`
 
 
+    Where `VERSION` is:
+
+    - `v0.11.1` if you are on Tanzu Application Platform v1.0.1
+    - `v0.10.0` if you are on Tanzu Application Platform v1.0.0
+
 11. Check installation status for the core CLI by running:
 
     ```
