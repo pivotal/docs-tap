@@ -103,7 +103,7 @@ Tanzu Application Platform v1.1 is supported on Cluster Essentials v1.0 and v1.1
 
     ```
     kubectl create namespace kapp-controller
-    ```\
+    ```
 
    Create a configuration secret using the registry's `ca.crt` stored on local disk:
 
