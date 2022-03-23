@@ -114,7 +114,7 @@ To install Tanzu Build Service by using the Tanzu CLI:
     also optionally keep these dependencies up to date as new versions are released on
     VMware Tanzu Network.
     - `DESCRIPTOR-NAME` is the name of the descriptor to import. See more details [here](tbs-about.html#dependencies-descriptors). Available options are:
-      * `lite` (default) has a smaller footprint that enables faster installations.
+      * `lite` (default if unset) has a smaller footprint that enables faster installations.
       * `full` optimized to speed up builds and includes dependencies for all supported workload types.
 
     >**Note:** By using the `tbs-values.yaml` configuration,

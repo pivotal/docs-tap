@@ -26,7 +26,7 @@ descriptor_name: DESCRIPTOR-NAME</b>
 Where:
 - `TANZUNET-USERNAME` and `TANZUNET-PASSWORD` are the email address and password that you use to log in to VMware Tanzu Network.
 - `DESCRIPTOR-NAME` is the name of the descriptor to import automatically. See more details [here](#dependencies-descriptors). Available options are:
-    * `lite` (default) has a smaller footprint that enables faster installations.
+    * `lite` (default if unset) has a smaller footprint that enables faster installations.
     * `full` optimized to speed up builds and includes dependencies for all supported workload types.
 
 ### <a id="dependencies-descriptors"> Descriptors
