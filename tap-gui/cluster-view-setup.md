@@ -88,6 +88,10 @@ To do so:
       resources:
       - gitrepositories
       verbs: ['get', 'watch', 'list']
+    - apiGroups: ['source.apps.tanzu.vmware.com']
+      resources:
+      - imagerepositories
+      verbs: ['get', 'watch', 'list']
     - apiGroups: ['conventions.apps.tanzu.vmware.com']
       resources:
       - podintents
