@@ -97,7 +97,7 @@ Tanzu Application Platform v1.1 is supported on Cluster Essentials v1.0 and v1.1
 
     - `DOWNLOADED-CLUSTER-ESSENTIALS-PACKAGE` is the name of the cluster essentials package you downloaded.
 
-1. **If your registry needs a custom certificate**, you will need to [load that configuration](https://carvel.dev/kapp-controller/docs/v0.32.0/controller-config/) into the cluster before installing `kapp-controller`. If your registry uses a public certificate, this step is not needed.
+1. (Optional) If your registry needs a custom certificate, you must [load that configuration](https://carvel.dev/kapp-controller/docs/v0.32.0/controller-config/) into the cluster before installing `kapp-controller`. If your registry uses a public certificate, this step is not required.
 
    Create the `kapp-controller` namespace:
 
@@ -105,7 +105,7 @@ Tanzu Application Platform v1.1 is supported on Cluster Essentials v1.0 and v1.1
     kubectl create namespace kapp-controller
     ```
 
-   Create a configuration secret using the registry's `ca.crt` stored on local disk:
+   Create a configuration secret by using the registry's `ca.crt` stored on local disk:
 
     ```
     kubectl create secret generic kapp-controller-config \
