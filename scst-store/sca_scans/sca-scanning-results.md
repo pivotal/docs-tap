@@ -30,12 +30,12 @@ Version: 0.33.1
 #### <a id='cli-cr'></a>CLI Repository
 
 * Date: March 22, 2022
-* Results: No critical, and 2 high vulnerabilities: [CVE-2015-5237](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-5237), [CVE-2021-22570](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-22570). No medium or low vulnerabilities. Multiple medium and low vulnerabilities. For more information, see the [CLI Repository v1.1.1 CycloneDX file content](cli-repository-v1.1.1-grype-result.md).
+* Results: No critical, and 2 high vulnerabilities: [CVE-2015-5237](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-5237), [CVE-2021-22570](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-22570). For more information, see the [CLI Repository v1.1.1 CycloneDX file content](cli-repository-v1.1.1-grype-result.md).
 
 #### <a id='kube-rbac-proxy-ci'></a>Kube RBAC Proxy Container Image
 
 * Date: March 22, 2022
-* Results: No critical, and 3 high vulnerabilities: [CVE-2022-21698](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-21698), [CVE-2015-5237](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-5237), [CVE-2021-22570](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-22570). No medium or low vulnerabilities. Multiple medium and low vulnerabilities. For more information, see the [Kube RBAC Proxy Container Image v1.1.1 CycloneDX file content](kube-rbac-proxy-container-image-v1.1.1-grype-result.md).
+* Results: No critical, and 3 high vulnerabilities: [CVE-2022-21698](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-21698), [CVE-2015-5237](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-5237), [CVE-2021-22570](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-22570). Multiple medium and low vulnerabilities. For more information, see the [Kube RBAC Proxy Container Image v1.1.1 CycloneDX file content](kube-rbac-proxy-container-image-v1.1.1-grype-result.md).
 
 #### <a id='postgres-database-ci'></a>Postgres Database Container Image
 
