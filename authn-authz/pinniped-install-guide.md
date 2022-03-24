@@ -219,15 +219,4 @@ After creating the resource files we are now installing them into the cluster. W
 
 ## Login to the Cluster
 
-1. get the kubeconfig from concierge.
-    ```
-    pinniped get kubeconfig --oidc-skip-listen --oidc-skip-browser --kubeconfig-context <your-kubeconfig-context>  > /tmp/concierge-kubeconfig
-    ...
-    "level"=0 "msg"="validated connection to the cluster"
-    ```
-1. Request resource and authenticate via OIDC. Run:
-    ```
-    k --kubeconfig /tmp/concierge-kubeconfig get pods
-    ```
-1. After this command pinniped prints a URL which you need to visit with your browser, log in, copy the auth code and paste it back to the terminal.
-1. After a successful login you will either see the resources or a message that informs you that your user has no permission to access the resources. In this case you need to use the `kubectl` or the [`tanzu rbac`](binding.md) plugin to bind the user to a role.
+See [Login using Pinniped](pinniped-login.md).
