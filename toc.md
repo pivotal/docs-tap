@@ -43,6 +43,7 @@ This is the table of contents from which the Tanzu Application Platform Document
         - [Usage and examples](cli-plugins/apps/usage.md)
     - [Authentication and Authorization](authn-authz/overview.md)
       - [Setting up authentication for Tanzu Application Platform](authn-authz/integrating-identity.md)
+        - [Installing Pinniped on a single cluster](authn-authz/pinniped-install-guide.md)
       - [Role descriptions](authn-authz/role-descriptions.md)
       - [Bind a user or group to a default role](authn-authz/binding.md)
       - [Detailed role permissions breakdown](authn-authz/permissions-breakdown.md)
