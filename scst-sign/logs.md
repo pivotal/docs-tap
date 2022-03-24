@@ -1,5 +1,17 @@
 # Logs messages and reasons
 
+Log messages follow a JSON format. Each log can contain the following keys:
+
+| Key        | Description |
+| ---------- | ----------- |
+| level      | Log level |
+| ts         | Timestamp |
+| logger     | Name of the logger component which provided the log message |
+| msg        | Log message |
+| object     | Relevant object that triggered the log message |
+| error      | A message for the error.<br> Only present with "error" log level |
+| stacktrace | A stacktrace for where the error occured.<br> Only present with error level |
+
 The following is the list of possible logs messages the webhook emits.
 
 ## Log message
@@ -85,3 +97,72 @@ The image: <container image> is not signed.
 - The namespace you are installing your resource in is not excluded.
 - Image of the container being installed matches a pattern in the policy.
 - The image is not signed.
+
+
+## Log message
+
+```
+failed to decode resource
+```
+
+### Explanation
+
+- Resource type is not supported
+- Currently supported v1 versions of:
+  - Pod
+  - Deployment
+  - StatefulSet
+  - DaemonSet
+  - ReplicaSet
+  - Job
+  - CronJob (and v1beta1)
+
+
+## Log message
+
+```
+failed to verify
+```
+
+### Explanation
+
+- An image policy is present in the cluster
+- The namespace you are installing your resource is not excluded
+- Image of the container being installed matches a pattern.
+- The webhook was not able to verify the signature
+
+
+## Log message
+
+```
+matching pattern: <Pattern> against image <ContainerImage>
+matching registry patterns: [{<Image NamePattern, Keys, SecretRef>}]
+```
+
+### Explanation
+
+- Provides the pattern that matched the container image
+- Provides the corresponding Image configuration from the ClusterImagePolicy that matched the container image
+
+
+## Log message
+
+```
+service account not found
+```
+
+### Explanation
+
+- The fallback service account, "image-policy-registry-credentials", was not found in the namespace of where the webhook is installed
+- The fallback service account is deprecated and was originally purposed to storing `imagePullSecrets` for container images and their co-located `cosign` signatures
+
+
+## Log message
+
+```
+unmatched image policy: <ContainerImage>
+```
+
+### Explanation
+
+- Container image did not match any policy image patterns
