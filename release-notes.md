@@ -70,7 +70,7 @@ The following new conventions are applied to spring boot apps v2.6 and later:
 - Add Kubernetes liveness and readiness probes by using spring boot health endpoints.
 - Change management port from 8080 to 8081 to increase security of the management port.
 
-#### Supply Chain Security Tools – Scan
+#### Supply Chain Security Tools – Sign
 
 - Support configuring Webhook resources
 - Support configuring Namespace where webhook is installed
