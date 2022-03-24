@@ -24,7 +24,7 @@ or dependency patch. And connecting to other applications and data, regardless o
 or what kind of infrastructure they run on, has never been easier, thanks to an internal API
 management portal.
 
-![Illustration of TAP conceptual value, starting with components that serve the developer and finishing with the components that serve the operations staff and security staff.](images/tap-conceptual-value.png)
+![Illustration of TAP conceptual value.](images/tap-conceptual-value.png)
 
 Customers can simplify workflows in both the inner loop and outer loop of Kubernetes-based app
 development with Tanzu Application Platform while creating supply chains.
@@ -43,7 +43,7 @@ development with Tanzu Application Platform while creating supply chains.
     - Tanzu Application Platform uses the choreography pattern inherited from the context of microservices[^1] and applies it to continuous integration and continuous deployment (CI/CD) to create a path to production.[^2]
 
 [^1]: https://stackoverflow.com/questions/4127241/orchestration-vs-choreography
-[^2]: https://tanzu.vmware.com/developer/guides/supply-chain-choreography/
+[^2]: https://tanzu/developer/guides/supply-chain-choreography/
 
 Supply Chains provide a way of codifying all of the steps of your path to production, or what is
 more commonly known as CI/CD. A supply chain differs from CI/CD in that you can add any and every
@@ -106,13 +106,13 @@ The following packages are part of the Tanzu Application Platform:
 
   Cloud Native Runtimes for Tanzu is a serverless application runtime for Kubernetes that is based
   on Knative and runs on a single Kubernetes cluster. For information about Knative, see the
-  [Knative documentation](https://knative.dev/docs/) Cloud Native Runtimes capabilities are included
+  [Knative documentation](https://knative.dev/docs/) Cloud Native Runtimes capabilities
   in VMware Tanzu Advanced Edition and VMware Tanzu Application Platform.
 
 - **[Convention Service for VMware Tanzu](convention-service/about.md)**
 
   The convention service provides a means for people in operational roles to express their hard-won
-  knowledge and opinions about how apps should run on Kubernetes as a convention. The convention
+  knowledge and opinions about how apps must run on Kubernetes as a convention. The convention
   service applies these opinions to fleets of developer workloads as they are deployed to the
   platform, saving operator and developer time.
 
@@ -126,11 +126,11 @@ The following packages are part of the Tanzu Application Platform:
   Tanzu CLI Apps plug-in, which rely on the Developer Conventions to modify the workload to enable
   inner loop capabilities.
 
-- **[Flux Source Controller](https://github.com/fluxcd/source-controller)**
+- **[Flux Source Controller](https://github.com/fluxcd/source-controller)** in GitHub
 
   The main role of the source management component is to provide a common interface for artifact acquisition.
 
-- **[Grype](https://github.com/anchore/grype)**
+- **[Grype](https://github.com/anchore/grype)** in GitHub
 
   Grype is a vulnerability scanner for container images and file systems.
 
@@ -149,26 +149,26 @@ The following packages are part of the Tanzu Application Platform:
   Each pre-approved supply chain creates a paved road to production. It orchestrates supply chain
   resources - test, build, scan, and deploy - enabling developers to focus on delivering
   value to their users while also providing app operators with the peace of mind that all code in
-  production has passed through all the steps of an approved workflow.
+  production has finished all the steps of an approved workflow.
 
-- **Supply Chain Security tools for Tanzu - Scan**
+- **[Supply Chain Security Tools - Scan](scst-scan/overview.md)**
 
   With Supply Chain Security Tools for VMware Tanzu - Scan, Tanzu customers can build and deploy
   secure trusted software that complies with their corporate security requirements.
 
   To enable this, Supply Chain Security Tools - Scan provides scanning and gatekeeping capabilities
-  that Application and DevSecOps teams can easily incorporate earlier in their path to production.
+  that Application and DevSecOps teams can incorporate earlier in their path to production.
   This is an established industry best practice for reducing security risk and ensuring more
   efficient remediation.
 
-- **Supply Chain Security tools for Tanzu - Store**
+- **[Supply Chain Security Tools - Store](scst-store/overview.md)**
 
   Supply Chain Security Tools - Store saves software bills of materials (SBoMs) to a database and
   enables you to query for image, source, package, and vulnerability relationships.
   It integrates with Supply Chain Security Tools - Scan to automatically store the resulting source
   and image vulnerability reports.
 
-- **Tanzu Application Platform GUI**
+- **[Tanzu Application Platform GUI](tap-gui/about.md)**
 
   Tanzu Application Platform GUI lets your developers view your organization's running applications
   and services. It provides a central location for viewing dependencies, relationships, technical
@@ -188,7 +188,7 @@ The following packages are part of the Tanzu Application Platform:
   The kpack CLI tool, kp, can aid in managing kpack resources. Build Service helps you
   develop and automate containerized software workflows securely and at scale.
 
-- **Tanzu Developer Tools for VSCode**
+- **[Tanzu Developer Tools for Visual Studio Code](vscode-extension/about.md)**
 
   Tanzu Developer Tools for Visual Studio Code is the official VMware Tanzu IDE extension for VSCode
   to help you develop code using the Tanzu Application Platform.
@@ -226,8 +226,7 @@ The following profiles are available in Tanzu Application Platform:
 
 ## <a id='about-package-profiles'></a> About Tanzu Application Platform package profiles
 
-Tanzu Application Platform can be installed through predefined profiles or through individual
-packages. This section explains how to install a profile.
+You can install Tanzu Application Platform by using predefined profiles or individual packages. This section explains how to install a profile.
 
 Tanzu Application Platform contains the following two profiles:
 
@@ -246,7 +245,7 @@ The following table lists the packages contained in each profile:
    </td>
   </tr>
   <tr>
-   <td>API Portal
+   <td>API portal
    </td>
    <td>&check;
    </td>
@@ -445,8 +444,8 @@ The following table lists the packages contained in each profile:
   </tr>
 </table>
 
-<sup>\*</sup> Only one supply chain should be installed at any given time.
-For information on switching from one supply chain to another, see [Getting Started with Tanzu Application Platform](getting-started.md).
+<sup>\*</sup> Only one supply chain must be installed at any given time.
+For information about switching from one supply chain to another, see [Getting Started with Tanzu Application Platform](getting-started.md).
 
 ## <a id='install'></a> About installing the Tanzu Application Platform v1.0
 
@@ -460,9 +459,13 @@ Tanzu Application Platform participates in the VMware Customer Experience Improv
 As part of CEIP, VMware collects technical information about your organization’s use of VMware
 products and services in association with your organization’s VMware license keys.
 For information about CEIP, see the [Trust & Assurance Center](http://www.vmware.com/trustvmware/ceip.html).
-You may join or leave CEIP at any time.
-The CEIP Standard Participation Level provides VMware with information to improve its products and
-services, identify and fix problems, and advise you on how to best deploy and use VMware products.
+You can join or leave CEIP at any time.
+The CEIP Standard Participation Level provides VMware with information to:
+
+- improve its products and services
+- identify and fix problems
+- advise you on how to best deploy and use VMware products
+
 For example, this information can enable a proactive product deployment discussion with your VMware
 account team or VMware support team to help resolve your issues.
 This information cannot directly identify any individual.
