@@ -38,7 +38,7 @@ Where:
 - `KP-DEFAULT-REPO-PASSWORD` is the password for `KP-DEFAULT-REPO`. You can `docker push` to this repository with this password.
     * For Google Cloud Registry, use the contents of the service account JSON key.
 - `DESCRIPTOR-NAME` is the name of the descriptor to import automatically. Currently available options include:
-    * `tap-1.0.0-full` contains all dependencies and is for production use.
+    * `full` contains all dependencies and is for production use.
 - `SERVER-NAME` is the host name of the registry server. Examples:
     * Harbor has the form `server: "my-harbor.io"`.
     * Dockerhub has the form `server: "index.docker.io"`.
