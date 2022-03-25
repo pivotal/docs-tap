@@ -115,8 +115,8 @@ To install Tanzu Build Service by using the Tanzu CLI:
     VMware Tanzu Network.
     - `DESCRIPTOR-NAME` is the name of the descriptor to import automatically. The
     available options at time of release are:
-        - `tap-1.0.0-full` contains all dependencies and is for production use.
-        - `tap-1.0.0-lite` has a smaller footprint that enables faster installations. It requires Internet access on the cluster.
+        - `full` contains all dependencies and is for production use.
+        - `lite` has a smaller footprint that enables faster installations. It requires Internet access on the cluster.
 
     >**Note:** By using the `tbs-values.yaml` configuration,
     >`enable_automatic_dependency_updates: true` causes the dependency updater to update
