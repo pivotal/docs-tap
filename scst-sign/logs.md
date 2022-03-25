@@ -107,7 +107,7 @@ failed to decode resource
 
 ### Explanation
 
-- Resource type is not supported
+- The resource type is not supported.
 - Currently supported v1 versions of:
   - Pod
   - Deployment
@@ -126,10 +126,10 @@ failed to verify
 
 ### Explanation
 
-- An image policy is present in the cluster
-- The namespace you are installing your resource is not excluded
+- An image policy is present in the cluster.
+- The namespace you are installing your resource in is not excluded.
 - Image of the container being installed matches a pattern.
-- The webhook was not able to verify the signature
+- The webhook can not verify the signature.
 
 
 ## Log message
@@ -141,8 +141,8 @@ matching registry patterns: [{<Image NamePattern, Keys, SecretRef>}]
 
 ### Explanation
 
-- Provides the pattern that matched the container image
-- Provides the corresponding `Image` configuration from the `ClusterImagePolicy` that matched the container image
+- Provide the pattern that matches the container image.
+- Provide the corresponding `Image` configuration from the `ClusterImagePolicy` that matches the container image.
 
 
 ## Log message
@@ -153,8 +153,8 @@ service account not found
 
 ### Explanation
 
-- The fallback service account, "image-policy-registry-credentials", was not found in the namespace of where the webhook is installed
-- The fallback service account is deprecated and was originally purposed to storing `imagePullSecrets` for container images and their co-located `cosign` signatures
+- The fallback service account, "image-policy-registry-credentials", was not found in the namespace of which the webhook is installed.
+- The fallback service account is deprecated and was originally purposed to storing `imagePullSecrets` for container images and their co-located `cosign` signatures.
 
 
 ## Log message
@@ -165,4 +165,4 @@ unmatched image policy: <ContainerImage>
 
 ### Explanation
 
-- Container image did not match any policy image patterns
+- Container image does not match any policy image patterns.
