@@ -182,7 +182,7 @@ The following packages are part of the Tanzu Application Platform:
   Tanzu Application Platform GUI is built from the Cloud Native Computing Foundation's project
   Backstage.
 
-- **Tanzu Build Service**
+- **[Tanzu Build Service](tanzu-build-service/tbs-about.md)**
 
   Tanzu Build Service uses the open-source Cloud Native Buildpacks project to turn application
   source code into container images.
@@ -212,7 +212,7 @@ The following packages are part of the Tanzu Application Platform:
   you can use it to host training for other purposes as well. For example, you can use it to train
   users on web-based applications, use of databases, or programming languages.
 
-- **Tekton**
+- **[Tekton](tekton/tekton-about.md)**
 
   Tekton is a powerful and flexible open-source framework for creating CI/CD systems, enabling
   developers to build, test, and deploy across cloud providers and on-premise systems.
