@@ -1,4 +1,53 @@
 # SCA scanning results
+## <a id='110'></a>1.1.1
+
+### <a id='black-duck-ba'></a>Black Duck Binary Analysis (BDBA)
+
+#### <a id='api-backend'></a>API backend
+
+* Date: March 22, 2022
+* Results: No known vulnerabilities
+
+#### <a id='cli-sr'></a>CLI
+
+* Date: March 22, 2022
+* Results: No known vulnerabilities
+
+### <a id='grype-sr'></a>Grype
+
+Version: 0.33.1
+
+#### <a id='api-backend-ci'></a>API Backend Container Image
+
+* Date: March 22, 2022
+* Results: No critical, and 1 high vulnerabilities in 2 different packages [CVE-2022-0778](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-0778). Multiple medium and low vulnerabilities. For more information, see the [API Backend Container Image v1.1.1 CycloneDX file content](api-backend-container-image-v1.1.1-grype-result.md).
+
+#### <a id='api-backend-cr'></a>API Backend Code Repository
+
+* Date: March 22, 2022
+* Results: No known vulnerabilities
+
+#### <a id='cli-cr'></a>CLI Repository
+
+* Date: March 22, 2022
+* Results: No critical, and 2 high vulnerabilities: [CVE-2015-5237](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-5237), [CVE-2021-22570](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-22570). Multiple medium and low vulnerabilities. For more information, see the [CLI Repository v1.1.1 CycloneDX file content](cli-repository-v1.1.1-grype-result.md).
+
+#### <a id='kube-rbac-proxy-ci'></a>Kube RBAC Proxy Container Image
+
+* Date: March 22, 2022
+* Results: No critical, and 3 high vulnerabilities: [CVE-2022-21698](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-21698), [CVE-2015-5237](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-5237), [CVE-2021-22570](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-22570). Multiple medium and low vulnerabilities. For more information, see the [Kube RBAC Proxy Container Image v1.1.1 CycloneDX file content](kube-rbac-proxy-container-image-v1.1.1-grype-result.md).
+
+#### <a id='postgres-database-ci'></a>Postgres Database Container Image
+
+* Date: March 22, 2022
+* Results: No critical, and 1 high vulnerability in 2 different packages: [CVE-2022-0778](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-0778). Multiple medium and low vulnerabilities. For more information see the [Postgres Database Container Image v1.1.1 CycloneDX file content](postgres-database-container-image-v1.1.1-grype-result.md)
+
+#### <a id='init-ci'></a>Init Container Image
+
+* Date: March 22, 2022
+* Results: No known vulnerabilities
+
+
 ## <a id='102'></a>1.0.2
 
 ### <a id='black-duck-ba'></a>Black Duck Binary Analysis (BDBA)
