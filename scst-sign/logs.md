@@ -98,6 +98,7 @@ The image: <ContainerImage> is not signed.
 - Image of the container being installed matches a pattern in the policy.
 - The image is not signed.
 
+---
 
 ## Log message
 
@@ -117,6 +118,7 @@ failed to decode resource
   - Job
   - CronJob (and v1beta1)
 
+---
 
 ## Log message
 
@@ -131,6 +133,7 @@ failed to verify
 - Image of the container being installed matches a pattern.
 - The webhook can not verify the signature.
 
+---
 
 ## Log message
 
@@ -144,6 +147,7 @@ matching registry patterns: [{<Image NamePattern, Keys, SecretRef>}]
 - Provide the pattern that matches the container image.
 - Provide the corresponding `Image` configuration from the `ClusterImagePolicy` that matches the container image.
 
+---
 
 ## Log message
 
@@ -156,6 +160,7 @@ service account not found
 - The fallback service account, "image-policy-registry-credentials", was not found in the namespace of which the webhook is installed.
 - The fallback service account is deprecated and was originally purposed to storing `imagePullSecrets` for container images and their co-located `cosign` signatures.
 
+---
 
 ## Log message
 
