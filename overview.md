@@ -176,7 +176,7 @@ The following packages are part of the Tanzu Application Platform:
   Tanzu Application Platform GUI is built from the Cloud Native Computing Foundation's project
   Backstage.
 
-- **Tanzu Build Service**
+- **[Tanzu Build Service](tanzu-build-service/tbs-about.md)**
 
   Tanzu Build Service uses the open-source Cloud Native Buildpacks project to turn application
   source code into container images.
@@ -195,7 +195,18 @@ The following packages are part of the Tanzu Application Platform:
   The VSCode extension enables live updates of your application while it runs on the cluster and
   lets you debug your application directly on the cluster.
 
-- **Tekton**
+- **[Learning Center for Tanzu Application Platform](learning-center/about.md)**
+
+  Learning Center provides a platform for creating and self-hosting workshops. With Learning Center, content
+  creators can create workshops from markdown files that learners can view in a terminal
+  shell environment with an instructional wizard UI. The UI can embed slide content, an integrated
+  development environment (IDE), a web console for accessing the Kubernetes cluster, and other custom web applications.
+
+  Although Learning Center requires Kubernetes to run, and it teaches users about Kubernetes,
+  you can use it to host training for other purposes as well. For example, you can use it to train
+  users on web-based applications, use of databases, or programming languages.
+
+- **[Tekton](tekton/tekton-about.md)**
 
   Tekton is a powerful and flexible open-source framework for creating CI/CD systems, enabling
   developers to build, test, and deploy across cloud providers and on-premise systems.
