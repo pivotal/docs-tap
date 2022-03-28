@@ -66,7 +66,7 @@ The possible log messages the webhook emits and their explanations are summarize
     <tr>
         <td>
           <code>
-            matching pattern: &lt;Pattern&gt; against image &lt;ContainerImage&gt;
+            matching pattern: &lt;Pattern&gt; against image &lt;ContainerImage&gt;<br>
             matching registry patterns: [{<Image NamePattern, Keys, SecretRef>}]
           </code>
         </td>
