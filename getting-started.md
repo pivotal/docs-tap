@@ -507,7 +507,7 @@ Tekton pipeline.
 
 To apply this install method, follow the following steps:
 
-1. Install Tekton (see [Install Tekton](install-components.md#install-tekton)) for instructions.
+1. [Install Tekton](tekton/install-tekton.md)
 
 2. With Tekton installed, you can activate the Out of the Box Supply Chain with Testing by updating our profile to use `testing` rather than `basic` as the selected supply chain for workloads in this cluster. Update `tap-values.yml` (the file used to customize the profile in `Tanzu package install tap
 --values-file=...`) with the following changes:
