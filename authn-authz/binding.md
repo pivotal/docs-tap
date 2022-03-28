@@ -2,12 +2,12 @@
 
 You can take two approaches to bind a user or group to a default role:
 
-1. Use the beta TAP Auth CLI, which only supports binding Tanzu Application Platform default roles.
+1. Use the beta Tanzu Application Platform Auth CLI plug-in, which only supports binding Tanzu Application Platform default roles.
 1. Use Kubernetes role-based access control (RBAC) role binding.
 
-VMware recommends that you use the beta Tanzu Application Platform Auth CLI, available for download from Tanzu Network. This CLI simplifies the process for you by binding the cluster-scoped resource permissions at the same time as the namespace-scoped resource permissions, where applicable, for each default role. The following sections cover the beta TAP Auth CLI.
+VMware recommends that you use the beta Tanzu Application Platform Auth CLI plug-in, available for download from Tanzu Network. This CLI plug-in simplifies the process for you by binding the cluster-scoped resource permissions at the same time as the namespace-scoped resource permissions, where applicable, for each default role. The following sections cover the beta Tanzu Application Platform Auth CLI plug-in.
 
->**Warning:** The CLI plug-in is currently in beta and is intended for evaluation and test purposes only.
+>**Caution:** The Auth CLI plug-in is currently in beta and is intended for evaluation and test purposes only.
 
 ## <a id="prereqs"></a>Prerequisites
 
