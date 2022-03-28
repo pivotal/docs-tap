@@ -1,6 +1,6 @@
 # Installing Pinniped on a single cluster
 
-To support authentication on TAP we are installing [Pinniped](pinniped.dev). Inn this guide we install pinniped on a single cluster TAP setup. Pinniped consists of two components that we will deploy into our cluster.
+To support authentication on TAP we are installing [Pinniped](pinniped.dev). In this guide we install pinniped on a single cluster TAP setup. Pinniped consists of two components that we will deploy into our cluster.
 
 The Pinniped Supervisor is an OIDC server which allows users to authenticate with an external identity provider (IDP), it hosts an API that the concierge component is using to fulfill authentication requests.
 
