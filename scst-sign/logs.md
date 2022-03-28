@@ -24,7 +24,7 @@ The possible log messages the webhook emits and their explanations are summarize
         <td><p>The Image Policy was not created in the cluster and the webhook did not check any container images for signatures.</p></td>
     </tr>
     <tr>
-        <td><code><Namespace> is excluded. The ImagePolicy will not be applied.</code></td>
+        <td><code>&lt;Namespace&gt; is excluded. The ImagePolicy will not be applied.</code></td>
         <td>
           <ul>          
             <li>
@@ -40,11 +40,11 @@ The possible log messages the webhook emits and their explanations are summarize
         </td>
     </tr>
     <tr>
-        <td><code>Could not verify against any image policies for container image: <ContainerImage>.</code></td>
+        <td><code>Could not verify against any image policies for container image: &lt;ContainerImage&gt;.</code></td>
         <td>data3</td>
     </tr>
     <tr>
-        <td><code><ContainerImage> did not match any image policies. Container will be created as AllowUnmatchedImages flag is true.</code></td>
+        <td><code>&lt;ContainerImage&gt; did not match any image policies. Container will be created as AllowUnmatchedImages flag is true.</code></td>
         <td>data4</td>
     </tr>
     <tr>
@@ -52,7 +52,7 @@ The possible log messages the webhook emits and their explanations are summarize
         <td>data5</td>
     </tr>
     <tr>
-        <td><code>The image: <ContainerImage> is not signed.</code></td>
+        <td><code>The image: &lt;ContainerImage&gt; is not signed.</code></td>
         <td>data6</td>
     </tr>
     <tr>
@@ -66,7 +66,7 @@ The possible log messages the webhook emits and their explanations are summarize
     <tr>
         <td>
           <code>
-            matching pattern: <Pattern> against image <ContainerImage>
+            matching pattern: &lt;Pattern&gt; against image &lt;ContainerImage&gt;
             matching registry patterns: [{<Image NamePattern, Keys, SecretRef>}]
           </code>
         </td>
@@ -77,7 +77,7 @@ The possible log messages the webhook emits and their explanations are summarize
         <td>data10</td>
     </tr>
     <tr>
-        <td><code>unmatched image policy: <ContainerImage></code></td>
+        <td><code>unmatched image policy: &lt;ContainerImage&gt;</code></td>
         <td>data11</td>
     </tr>                    
 </table>
