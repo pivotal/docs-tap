@@ -430,7 +430,7 @@ The following table and diagrams provide descriptions for each of the supply cha
 
 <li>Applies any predefined conventions.
 
-<li>Deployes the application to the cluster.
+<li>Deploys the application to the cluster.
 </li>
 </ul>
    </td>
