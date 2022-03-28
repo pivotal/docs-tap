@@ -12,6 +12,76 @@ Log messages follow a JSON format. Each log can contain the following keys:
 | error      | A message for the error.<br> Only present with "error" log level |
 | stacktrace | A stacktrace for where the error occured.<br> Only present with error level |
 
+The possible log messages the webhook emits and their explanations are summarized in the following table:
+
+<table class="nice">
+<col width="50%">
+<col width="50%">
+    <th>Log Message</th>
+    <th>Explanation</th>
+    <tr>
+        <td><code>clusterimagepolicies.signing.apps.tanzu.vmware.com "image-policy" not found. Image policy enforcement was not applied.</code></td>
+        <td><p>The Image Policy was not created in the cluster and the webhook did not check any container images for signatures.</p></td>
+    </tr>
+    <tr>
+        <td><code><Namespace> is excluded. The ImagePolicy will not be applied.</code></td>
+        <td>
+          <ul>          
+            <li>
+              An image policy is present in the cluster.
+            </li>
+            <li>
+              The namespace is present in the <code>verification.exclude.resouces.namespaces</code> property of the policy.
+            </li>
+            <li>
+              Any container images trying to get created in this namespace will not be checked for signatures.
+            </li>                        
+          </ul>        
+        </td>
+    </tr>
+    <tr>
+        <td><code>Could not verify against any image policies for container image: <ContainerImage>.</code></td>
+        <td>data3</td>
+    </tr>
+    <tr>
+        <td><code><ContainerImage> did not match any image policies. Container will be created as AllowUnmatchedImages flag is true.</code></td>
+        <td>data4</td>
+    </tr>
+    <tr>
+        <td><code>failed to find signature for image.</code></td>
+        <td>data5</td>
+    </tr>
+    <tr>
+        <td><code>The image: <ContainerImage> is not signed.</code></td>
+        <td>data6</td>
+    </tr>
+    <tr>
+        <td><code>failed to decode resource</code></td>
+        <td>data7</td>
+    </tr>
+    <tr>
+        <td><code>failed to verify</code></td>
+        <td>data8</td>
+    </tr>
+    <tr>
+        <td>
+          <code>
+            matching pattern: <Pattern> against image <ContainerImage>
+            matching registry patterns: [{<Image NamePattern, Keys, SecretRef>}]
+          </code>
+        </td>
+        <td>data9</td>
+    </tr>
+    <tr>
+        <td><code>service account not found</code></td>
+        <td>data10</td>
+    </tr>
+    <tr>
+        <td><code>unmatched image policy: <ContainerImage></code></td>
+        <td>data11</td>
+    </tr>                    
+</table>
+
 The following is the list of possible logs messages the webhook emits.
 
 ## Log message
