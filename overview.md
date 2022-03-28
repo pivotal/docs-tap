@@ -132,7 +132,7 @@ The following packages are part of the Tanzu Application Platform:
   Tanzu CLI Apps plug-in, which rely on the Developer Conventions to modify the workload to enable
   inner loop capabilities.
 
-- **[Flux Source Controller](https://github.com/fluxcd/source-controller)** in GitHub
+- **[Flux Source Controller](https://fluxcd.io/docs/components/source/)**
 
   The main role of the source management component is to provide a common interface for artifact acquisition.
 
