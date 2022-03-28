@@ -12,7 +12,7 @@ To login to your cluster using Pinniped follow these steps:
 As an administrator you need to generate the kubeconfig using the following command:
 
 ```
-pinniped get kubeconfig --oidc-skip-listen --oidc-skip-browser --kubeconfig-context <your-kubeconfig-context>  > /tmp/concierge-kubeconfig
+pinniped get kubeconfig --kubeconfig-context <your-kubeconfig-context>  > /tmp/concierge-kubeconfig
 ...
 "level"=0 "msg"="validated connection to the cluster"
 ```
