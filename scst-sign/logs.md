@@ -20,11 +20,11 @@ The possible log messages the webhook emits and their explanations are summarize
     <th>Log Message</th>
     <th>Explanation</th>
     <tr>
-        <td><code>clusterimagepolicies.signing.apps.tanzu.vmware.com "image-policy" not found. Image policy enforcement was not applied.</code></td>
-        <td><p>The Image Policy was not created in the cluster and the webhook did not check any container images for signatures.</p></td>
+        <td><pre>clusterimagepolicies.signing.apps.tanzu.vmware.com "image-policy" not found. Image policy enforcement was not applied.</pre></td>
+        <td>The Image Policy was not created in the cluster and the webhook did not check any container images for signatures.</td>
     </tr>
     <tr>
-        <td><code>&lt;Namespace&gt; is excluded. The ImagePolicy will not be applied.</code></td>
+        <td><pre>&lt;Namespace&gt; is excluded. The ImagePolicy will not be applied.</pre></td>
         <td>
           <ul>          
             <li>
@@ -40,44 +40,44 @@ The possible log messages the webhook emits and their explanations are summarize
         </td>
     </tr>
     <tr>
-        <td><code>Could not verify against any image policies for container image: &lt;ContainerImage&gt;.</code></td>
+        <td><pre>Could not verify against any image policies for container image: &lt;ContainerImage&gt;.</pre></td>
         <td>data3</td>
     </tr>
     <tr>
-        <td><code>&lt;ContainerImage&gt; did not match any image policies. Container will be created as AllowUnmatchedImages flag is true.</code></td>
+        <td><pre>&lt;ContainerImage&gt; did not match any image policies. Container will be created as AllowUnmatchedImages flag is true.</pre></td>
         <td>data4</td>
     </tr>
     <tr>
-        <td><code>failed to find signature for image.</code></td>
+        <td><pre>failed to find signature for image.</pre></td>
         <td>data5</td>
     </tr>
     <tr>
-        <td><code>The image: &lt;ContainerImage&gt; is not signed.</code></td>
+        <td><pre>The image: &lt;ContainerImage&gt; is not signed.</pre></td>
         <td>data6</td>
     </tr>
     <tr>
-        <td><code>failed to decode resource</code></td>
+        <td><pre>failed to decode resource</pre></td>
         <td>data7</td>
     </tr>
     <tr>
-        <td><code>failed to verify</code></td>
+        <td><pre>failed to verify</code></pre>
         <td>data8</td>
     </tr>
     <tr>
         <td>
-          <code>
+          <pre>
             matching pattern: &lt;Pattern&gt; against image &lt;ContainerImage&gt;
             matching registry patterns: [{<Image NamePattern, Keys, SecretRef>}]
-          </code>
+          </pre>
         </td>
         <td>data9</td>
     </tr>
     <tr>
-        <td><code>service account not found</code></td>
+        <td><pre>service account not found</pre></td>
         <td>data10</td>
     </tr>
     <tr>
-        <td><code>unmatched image policy: &lt;ContainerImage&gt;</code></td>
+        <td><pre>unmatched image policy: &lt;ContainerImage&gt;</pre></td>
         <td>data11</td>
     </tr>                    
 </table>
