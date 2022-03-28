@@ -4,8 +4,6 @@ The following XML content is from a CycloneDX file related to
 [SCA scanning results](sca-scanning-results.md).
 
 ```xml
-
-```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <bom xmlns="http://cyclonedx.org/schema/bom/1.2" xmlns:v="http://cyclonedx.org/schema/ext/vulnerability/1.0" version="1" serialNumber="urn:uuid:5bd6ea99-8441-469a-ab9c-87cfce704210">
   <metadata>

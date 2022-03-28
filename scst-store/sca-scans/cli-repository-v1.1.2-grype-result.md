@@ -1,3 +1,4 @@
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <bom xmlns="http://cyclonedx.org/schema/bom/1.2" xmlns:v="http://cyclonedx.org/schema/ext/vulnerability/1.0" version="1" serialNumber="urn:uuid:c6df96b9-aefe-46c5-a27f-348a7366d4ed">
   <metadata>
@@ -6585,3 +6586,4 @@
     </component>
   </components>
 </bom>
+```
