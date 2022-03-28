@@ -25,7 +25,7 @@ To install Out of the Box Delivery Basic:
    configured by running:
 
     ```
-    tanzu package available get ootb-delivery-basic.tanzu.vmware.com/0.5.1 \
+    tanzu package available get ootb-delivery-basic.tanzu.vmware.com/0.7.0-build.2 \
       --values-schema \
       -n tap-install
     ```
@@ -37,6 +37,10 @@ To install Out of the Box Delivery Basic:
     service_account      default  string  Name of the service account in the
                                           namespace where the Deliverable is
                                           submitted to.
+
+
+    git_implementation   go-git   string  Which git client library to use.
+                                          Valid options are go-git or libgit2.
     ```
 
 1. Create a file named `ootb-delivery-basic-values.yaml` that specifies the
@@ -54,7 +58,7 @@ To install Out of the Box Delivery Basic:
     ```
     tanzu package install ootb-delivery-basic \
       --package-name ootb-delivery-basic.tanzu.vmware.com \
-      --version 0.5.1 \
+      --version 0.7.0-build.2 \
       --namespace tap-install \
       --values-file ootb-delivery-basic-values.yaml
     ```

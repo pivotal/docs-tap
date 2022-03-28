@@ -12,7 +12,7 @@ ClusterSupplyChain that brings an application from source code to a deployed
 instance that:
 
 - Runs in a Kubernetes environment.
-- Performs validations in terms of running application tests. 
+- Performs validations in terms of running application tests.
 - Scans the source code and image for vulnerabilities.
 
 
@@ -71,7 +71,7 @@ To install Out of the Box Supply Chain with Testing and Scanning:
 1. Check the values of the package that can be configured by running:
 
     ```
-    tanzu package available get ootb-supply-chain-testing-scanning.tanzu.vmware.com/0.5.1 \
+    tanzu package available get ootb-supply-chain-testing-scanning.tanzu.vmware.com/0.7.0-build.2 \
       --values-schema \
       -n tap-install
     ```
@@ -86,6 +86,10 @@ To install Out of the Box Supply Chain with Testing and Scanning:
 
     registry.server           Name of the registry server where application images should
                               be pushed to (required).
+
+
+    git_implementation        Determines which git client library to use.
+                              Valid options are go-git or libgit2.
 
 
     gitops.username           Default user name to be used for the commits produced by the
@@ -147,7 +151,7 @@ To install Out of the Box Supply Chain with Testing and Scanning:
     ```
     tanzu package install ootb-supply-chain-testing-scanning \
       --package-name ootb-supply-chain-testing-scanning.tanzu.vmware.com \
-      --version 0.5.1 \
+      --version 0.7.0-build.2 \
       --namespace tap-install \
       --values-file ootb-supply-chain-testing-scanning-values.yaml
     ```
