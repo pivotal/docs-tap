@@ -2,20 +2,24 @@
 
 You can take two approaches to bind a user or group to a default role:
 
-1. Use the Beta TAP Auth CLI, which only supports binding Tanzu Application Platform default roles.
+1. Use the beta TAP Auth CLI, which only supports binding Tanzu Application Platform default roles.
 1. Use Kubernetes role-based access control (RBAC) role binding.
 
-VMware recommends that you use the Beta TAP Auth CLI, available for download from Tanzu Network. This CLI simplifies the process for you by binding the cluster-scoped resource permissions at the same time as the namespace-scoped resource permissions, where applicable, for each default role. The following sections cover the Beta TAP Auth CLI.
+VMware recommends that you use the beta Tanzu Application Platform Auth CLI, available for download from Tanzu Network. This CLI simplifies the process for you by binding the cluster-scoped resource permissions at the same time as the namespace-scoped resource permissions, where applicable, for each default role. The following sections cover the beta TAP Auth CLI.
+
+>**Warning:** The CLI plug-in is currently in beta and is intended for evaluation and test purposes only.
 
 ## <a id="prereqs"></a>Prerequisites
 
 1. Download the latest Tanzu CLI.
-1. Download the beta Tanzu Application Platform Auth CLI tar.gz from [Tanzu Network](https://network.tanzu.vmware.com/products/tap-auth).
-1. Ensure you have admin access to the cluster.
+1. Download the beta Tanzu Application Platform Auth CLI plug-in tar.gz from [Tanzu Network](https://network.tanzu.vmware.com/products/tap-auth).
+1. Ensure you have administrator access to the cluster.
 1. Ensure you have configured an authentication solution for the cluster. You can use **Pinniped** or the authentication service native to your Kubernetes distribution.
 
 
-## <a id="install"></a>Install the auth plugin
+## <a id="install"></a>Install the Auth CLI plug-in
+
+Follow these steps to install the Auth CLI plug-in:
 
 1. Untar the tar.gz:
 
@@ -23,7 +27,7 @@ VMware recommends that you use the Beta TAP Auth CLI, available for download fro
     tar zxvf <NAME OF THE TAR>
     ```
 
-1. Install the auth plugin locally:
+1. Install the Auth plug-in locally:
 
     - For macOS:
 
@@ -57,9 +61,11 @@ For example:
 $ tanzu auth --kubeconfig /tmp/pinniped_kubeconfig.yaml add-binding --user username@vmware.com --role app-editor --namespace user-ns
 ```
 
->**Note:** The environment variable `KUBECONFIG` is not implemented, you must use the `--kubeconfig` flag to enter a different location.
+>**Note:** The environment variable `KUBECONFIG` is not implemented. You must use the `--kubeconfig` flag to enter a different location.
 
 ### <a id="add-user-group-to-role"></a>Add the specified user or group to a role
+
+To add a user or group to a role, run:
 
 ```
 tanzu auth add-binding --user $user --role $role --namespace $namespace
@@ -75,6 +81,8 @@ $ tanzu auth add-binding --user username@vmware.com --role app-editor --namespac
 
 ### <a id="get-list-users"></a>Get a list of users and groups from a role
 
+To get a list of users and groups from a role, run:
+
 ```
 tanzu auth get-binding --role $role --namespace $namespace
 
@@ -88,6 +96,8 @@ $ tanzu auth get-binding --role app-editor --namespace user-ns
 ```
 
 ### <a id="remove-binding"></a>Remove the specified user or group from a role
+
+To remove a user or group from a role, run:
 
 ```
 tanzu auth remove-binding --user $user --role  $role --namespace $namespace
