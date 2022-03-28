@@ -375,11 +375,11 @@ The following table and diagrams provide descriptions for each of the supply cha
    <td>This supply chain monitors a repository that is identified in the developer’s `workload.yaml` file. When any new commits are made to the application, the supply chain:
 <ul>
 
-<li>A new image is created
+<li>Creates a new image.
 
-<li>Any predefined conventions are applied
+<li>Applies any predefined conventions.
 
-<li>The application is deployed to the cluster
+<li>Deployes the application to the cluster.
 </li>
 </ul>
    </td>
@@ -431,13 +431,13 @@ The **OOTB Testing** supply chain runs a Tekton pipeline within the supply chain
    <td>The Out of the Box Testing contains all of the same elements as the Source to URL. It allows developers to specify a Tekton pipeline that runs as part of the CI step of the supply chain.
 <ul>
 
-<li>The application tests using the Tekton pipeline
+<li>The application tests using the Tekton pipeline.
 
-<li>A new image is created
+<li>A new image is created.
 
-<li>Any predefined conventions are applied
+<li>Any predefined conventions are applied.
 
-<li>The application is deployed to the cluster
+<li>The application is deployed to the cluster.
 </li>
 </ul>
    </td>
@@ -476,15 +476,15 @@ The **OOTB Testing+Scanning** supply chain includes integrations for secure scan
    <td>The Out of the Box Testing and Scanning contains all of the same elements as the Out of the Box Testing supply chains but it also includes integrations out of the box with the secure scanning components of Tanzu Application Platform.
 <ul>
 
-<li>The application is tested using the provided Tekton pipeline
-<li>The application source code is scanned for vulnerabilities
+<li>The application is tested using the provided Tekton pipeline.
+<li>The application source code is scanned for vulnerabilities.
 
-<li>A new image is created
-<li>The image is scanned for vulnerabilities
+<li>A new image is created.
+<li>The image is scanned for vulnerabilities.
 
-<li>Any predefined conventions are applied
+<li>Any predefined conventions are applied.
 
-<li>The application deploys to the cluster
+<li>The application deploys to the cluster.
 </li>
 </ul>
    </td>
