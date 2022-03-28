@@ -443,6 +443,8 @@ The following table and diagrams provide descriptions for each of the supply cha
 
 <li>Convention Service
 
+<li>Tekton
+
 <li>Cloud Native Runtimes
 <li>If using Service References:
    </li>
@@ -458,8 +460,7 @@ The following table and diagrams provide descriptions for each of the supply cha
 
 ### <a id="OOTB-testing"></a>2: **OOTB Testing**
 
-The **OOTB Testing** supply chain runs a Tekton pipeline within the supply chain. It depends on
-[Tekton](https://tekton.dev/) being installed on your cluster.
+The **OOTB Testing** supply chain runs a Tekton pipeline within the supply chain.
 
 ![Diagram depicting the Source-and-Test-to-URL chain: Watch Repo (Flux) to Test Code (Tekton) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](images/source-and-test-to-url-chain-new.png)
 
@@ -492,11 +493,9 @@ The **OOTB Testing** supply chain runs a Tekton pipeline within the supply chain
 </li>
 </ul>
    </td>
-   <td>All of the Source to URL dependencies, and:
+   <td>All of the Source to URL dependencies
 <ul>
 
-<li>Tekton
-</li>
 </ul>
    </td>
   </tr>
