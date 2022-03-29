@@ -21,7 +21,7 @@ The possible log messages the webhook emits and their explanations are summarize
   </thead>
     <tr>
         <td><code>clusterimagepolicies.signing.apps.tanzu.vmware.com "image-policy" not found. Image policy enforcement was not applied.</code></td>
-        <td><p>The Image Policy was not created in the cluster and the webhook did not check any container images for signatures.</p></td>
+        <td>The Image Policy was not created in the cluster and the webhook did not check any container images for signatures.</td>
     </tr>
     <tr>
         <td><code>&lt;Namespace&gt; is excluded. The ImagePolicy will not be applied.</code></td>
