@@ -14,9 +14,7 @@ Log messages follow a JSON format. Each log can contain the following keys:
 
 The possible log messages the webhook emits and their explanations are summarized in the following table:
 
-<table class="nice">
-<col width="50%">
-<col width="50%">
+<table>
     <th>Log Message</th>
     <th>Explanation</th>
     <tr>
