@@ -3,6 +3,7 @@
 ## <a id=on-this-page></a> On this page
 
 - [Before Beginning](#before-beginning)
+- [Multiple Projects in Workspace](#multiple-projects-in-workspace)
 - [Debugging on the Cluster](#debugging-on-the-cluster)
   - [Start Debugging on the Cluster](#start-debugging-on-the-cluster)
   - [Stop Debugging on the Cluster](#stop-debugging-on-the-cluster)
@@ -12,11 +13,15 @@
   - [Disable Live Update](#disable-live-update)
   - [Live Update Status](#live-update-status)
 - [Switch Namespace](#switch-namespace)
-- [Workload Panel](#workload-panel)
 
 ## <a id="before-beginning"></a> Before Beginning
 
 Ensure the project you want to use the extension with has the required files specified in the [Getting Started page](../vscode-extension/getting-started.md). Note that the Tanzu Developer Tools extension requires only one Tiltfile and one workload.yaml per project. The workload.yaml must be a single-document YAML file, not a multi-document YAML files.
+
+## <a id="multiple-projects-in-workspace"></a> Multiple Projects in Workspace
+
+When working with multiple projects in a single workspace you can configure the Tanzu Dev Tools Extension settings on a per-project basis by using the dropdown selector in the `Settings` page.
+![The VS Code interface showing the Settings open to the Tanzu Extension, with the "project" dropdown expanded to show both projects in the current workspace.](../images/vscode-multiple-projects.png)
 
 ## <a id="debugging-on-the-cluster"></a> Debugging on the Cluster
 
@@ -107,5 +112,3 @@ To switch the namespace that your workload is created in:
 1. In the Namespace option, add the namespace you want to deploy to. This defaults to the default namespace.
 
 ![The VS Code settings scrolled to the Tanzu section within the Extensions section](../images/vscode-switchnamespace1.png)
-
-## <a id="workload-panel"></a> Workload Panel
