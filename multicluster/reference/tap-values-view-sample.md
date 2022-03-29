@@ -4,7 +4,7 @@ The following is the YAML file sample for the view-profile:
 
 ```yaml
 profile: view
-ceip_policy_disclosed: true # The value must be true for installation to succeed
+ceip_policy_disclosed: FALSE-OR-TRUE-VALUE # Installation fails if this is not set to true. Not a string.
 
 contour:
   envoy:

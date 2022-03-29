@@ -14,14 +14,14 @@ Log messages follow a JSON format. Each log can contain the following keys:
 
 The possible log messages the webhook emits and their explanations are summarized in the following table:
 
-<table class="nice">
-<col width="50%">
-<col width="50%">
+<table>
+  <thead>
     <th>Log Message</th>
     <th>Explanation</th>
+  </thead>
     <tr>
         <td><code>clusterimagepolicies.signing.apps.tanzu.vmware.com "image-policy" not found. Image policy enforcement was not applied.</code></td>
-        <td><p>The Image Policy was not created in the cluster and the webhook did not check any container images for signatures.</p></td>
+        <td>The Image Policy was not created in the cluster and the webhook did not check any container images for signatures.</td>
     </tr>
     <tr>
         <td><code>&lt;Namespace&gt; is excluded. The ImagePolicy will not be applied.</code></td>

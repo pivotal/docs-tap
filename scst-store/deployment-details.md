@@ -19,6 +19,7 @@ The installation creates the following in your Kubernetes cluster:
 * (Optional) An HTTPProxy object for ingress support.
 
 ## <a id='configuration'></a> Deployment configuration
+
 ### Database configuration
 
 The default database that ships with the deployment is meant to get users started using the metadata store. The default database deployment does not support many enterprise production requirements, including scaling, redundancy, or failover. However, it is still a secure deployment.
@@ -44,7 +45,7 @@ metadata_store:
 
 Where `PASSWORD-0123` is the same password used between deployments.
 
-> Note: there is a known issue related to changing database passwords [Known Issues - Persistent Volume Retains Data](known-issues.md#persistent-volume-retains-data).
+>**Note:** there is a known issue related to changing database passwords [Known Issues - Persistent Volume Retains Data](known-issues.md#persistent-volume-retains-data).
 
 ### <a id='appserv-type'></a>App service type
 
@@ -69,11 +70,11 @@ Supply Chain Security Tools - Store creates [Secret Export](https://github.com/v
 
 ## <a id='ingress'></a>Ingress support
 
-Supply Chain Security Tools - Store's values file allows you to enable ingress support and to configure a custom domain name to leverage Contour to provide external access to Supply Chain Security Tools - Store's API.
+Supply Chain Security Tools - Store's values file allows you to enable ingress support and to configure a custom domain name to use Contour to provide external access to Supply Chain Security Tools - Store's API. For example:
 
 ```
 ingress_enabled: "true"
 ingress_domain: "example.com"
 ```
 
-An HTTPProxy object is then installed with `metadata-store.example.com` as the fully qualified domain name. See [Ingress & Multi Cluster support](ingress_multi_cluster.md).
+An HTTPProxy object is then installed with `metadata-store.example.com` as the fully qualified domain name. See [Ingress and multicluster support](ingress-multicluster.md).
