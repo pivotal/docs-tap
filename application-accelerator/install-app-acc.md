@@ -34,6 +34,7 @@ you can configure the following optional properties:
 | engine.max_direct_memory_size | 32M | The maximum size for the Java -XX:MaxDirectMemorySize setting |
 | samples.include | True | Whether to include the bundled sample Accelerators in the installation |
 | ingress.include | False | Whether to include the ingress configuration in the installation |
+| ingress.enable_tls | False | Whether to include TLS for the ingress configuration |
 | domain | tap.example.com | Top level domain to use for ingress configuration |
 | tls.secretName | tls | The name of the secret |
 | tls.namespace | tanzu-system-ingress | The namespace for the secret |
