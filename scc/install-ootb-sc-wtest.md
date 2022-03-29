@@ -80,6 +80,9 @@ Install by following these steps:
                               be pushed to (required).
 
 
+    git_implementation        Determines which git client library to use.
+                              Valid options are go-git or libgit2.
+
 
     gitops.username           Default user name to be used for the commits produced by the
                               supply chain.
@@ -140,7 +143,7 @@ Install by following these steps:
     ```
     tanzu package install ootb-supply-chain-testing \
       --package-name ootb-supply-chain-testing.tanzu.vmware.com \
-      --version 0.5.1 \
+      --version 0.7.0-build.2 \
       --namespace tap-install \
       --values-file ootb-supply-chain-testing-values.yaml
     ```

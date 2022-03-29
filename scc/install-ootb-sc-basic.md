@@ -26,7 +26,7 @@ To install Out of the Box Supply Chain Basic:
    configured by running:
 
     ```
-    tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.5.1 \
+    tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.7.0-build.2 \
       --values-schema \
       -n tap-install
     ```
@@ -42,6 +42,9 @@ To install Out of the Box Supply Chain Basic:
     registry.server           Name of the registry server where application images should
                               be pushed to (required).
 
+
+    git_implementation        Determines which git client library to use.
+                              Valid options are go-git or libgit2.
 
 
     gitops.username           Default user name to be used for the commits produced by the
@@ -99,7 +102,7 @@ To install Out of the Box Supply Chain Basic:
     ```
     tanzu package install ootb-supply-chain-basic \
       --package-name ootb-supply-chain-basic.tanzu.vmware.com \
-      --version 0.5.1 \
+      --version 0.7.0-build.2 \
       --namespace tap-install \
       --values-file ootb-supply-chain-basic-values.yaml
     ```
