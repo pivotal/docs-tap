@@ -99,10 +99,10 @@ and you want to use `NodePort`, then create a `metadata-store-values.yaml` and c
     app_service_type: "NodePort"
     ```
 
-    See [Deployment Details and Configuration](deployment-details.md#configuration) for
-    more detailed descriptions of configuration options.
+    See [Deployment details and configuration](deployment-details.md#configuration) for
+    more information about configuration options.
 
-    See [Ingress & Multi Cluster support](ingress_multi_cluster.md) for more details on Ingress and custom Domain name support.
+    See [Ingress and multicluster support](ingress-multicluster.md) for more information about ingress and custom domain name support.
 
 1. Install the package by running:
 
