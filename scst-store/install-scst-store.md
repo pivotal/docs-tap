@@ -116,7 +116,7 @@ and you want to use `NodePort`, then create a `metadata-store-values.yaml` and c
 
     Where:
 
-    * `--values-file` is an optional flag. Only use it if you want to customize the deployment
+    * `--values-file` is an optional flag. Only use it to customize the deployment
     configuration.
     * `VERSION` is the package version number. For example, `1.0.2`.
 

@@ -15,7 +15,7 @@ Supply Chain Security Tools - Store installation creates an HTTPProxy entry with
 
 Contour and DNS setup are not part of Supply Chain Security Tools - Store installation. Access to Supply Chain Security Tools - Store through Contour depends on the correct configuration of these two components.
 
-The proper DNS record should be available to clients to resolve `metadata-store.<ingress_domain>` to Envoy service's external IP. 
+Make the proper DNS record available to clients to resolve `metadata-store.<ingress_domain>` to Envoy service's external IP address. 
 
 DNS setup example:
 
@@ -43,7 +43,7 @@ $ curl https://metadata-store.example.com/api/health -k -v
   ...
 ```
 
->**Note:** The curl example above uses the insecure (`-k`) flag to skip TLS verification because the Store installs a self-signed certificate. The following section shows how to access the CA certificate to enable TLS verification for HTTP clients.
+>**Note:** The preceding curl example uses the insecure (`-k`) flag to skip TLS verification because the Store installs a self-signed certificate. The following section shows how to access the CA certificate to enable TLS verification for HTTP clients.
 
 ## <a id="multicluster-setup"></a>Multicluster setup
 
@@ -127,7 +127,7 @@ EOF
 $ kubectl apply -f store_secrets_export.yml
 ```
 
-At this point, you can install Supply Chain Security Tools - Scan with the following configuration:
+Install Supply Chain Security Tools - Scan with the following configuration:
 
 ```yml
 ---

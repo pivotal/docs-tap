@@ -4,14 +4,14 @@
 
 The installation creates the following in your Kubernetes cluster:
 
-* Two components — an API backend and a database. 
+* Two components — an API back end and a database. 
   Each component includes:
     * service
     * deployment
     * replicaset
     * pod
 * Persistent volume and persistent volume claim.
-* External IP (based on a deployment configuration set to use `LoadBalancer`).
+* External IP address (based on a deployment configuration set to use `LoadBalancer`).
 * A Kubernetes secret to allow pulling Supply Chain Security Tools - Store images from a registry.
 * A namespace called `metadata-store`.
 * A service account with read-write privileges named `metadata-store-read-write-client`. It's bound to a ClusterRole named `metadata-store-read-write`.
@@ -22,7 +22,7 @@ The installation creates the following in your Kubernetes cluster:
 
 ### Database configuration
 
-The default database that ships with the deployment is meant to get users started using the metadata store. The default database deployment does not support many enterprise production requirements, including scaling, redundancy, or failover. However, it is still a secure deployment.
+The default database included with the deployment is meant to get users started using the metadata store. The default database deployment does not support many enterprise production requirements, including scaling, redundancy, or failover. However, it is still a secure deployment.
 
 #### <a id='awsrds-postresdata'></a>Using AWS RDS postgres database
 
@@ -36,7 +36,7 @@ By default, a database password is generated automatically upon deployment. To c
 db_password: "PASSWORD-0123"
 ```
 
-If you're deploying with TAP profiles, in `tap-values.yaml`, put:
+If you're deploying with Tanzu Application Platform profiles, in `tap-values.yaml`, put:
 
 ```
 metadata_store:
@@ -60,9 +60,9 @@ app_service_type: "LoadBalancer"
 By default, a service account with read-write privileges to the metadata store app is installed.
 This service account is a cluster-wide account that uses ClusterRole.
 If you don't want the service account and role, set the `add_default_rw_service_account` property to `"false"`.
-To create a custom service account, see [create service account](create-service-account-access-token.md).
+To create a custom service account, see [Configure access tokens](create-service-account-access-token.md).
 
-The store will automatically create a read-only cluster role, which may be bound to a service account via `ClusterRoleBinding`. To create service accounts to bind to this cluster role, see [create service account](create-service-account-access-token.md). 
+The store creates a read-only cluster role, which can be bound to a service account through `ClusterRoleBinding`. To create service accounts to bind to this cluster role, see [Configure access tokens](create-service-account-access-token.md). 
 
 ## <a id='export-cert'></a>Exporting certificates
 

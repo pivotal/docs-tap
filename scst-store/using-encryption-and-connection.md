@@ -7,9 +7,9 @@ The connection to the Store requires TLS encryption. Use the following instructi
 
 ## <a id='use-lb'></a>Using `LoadBalancer`
 
-If you are using a `LoadBalancer` configuration, you need to find the external IP of the `metadata-store-app` service. You can use `kubectl` to do this.
+If you are using a `LoadBalancer` configuration, you need to find the external IP address of the `metadata-store-app` service. You can use kubectl to do this.
 
->**Note**: For all `kubectl` commands, use the `--namespace metadata-store` flag.
+>**Note**: For all kubectl commands, use the `--namespace metadata-store` flag.
 
 ```
 kubectl get service/metadata-store-app --namespace metadata-store -o yaml
@@ -49,7 +49,7 @@ kubectl get secret app-tls-cert -n metadata-store -o json | jq -r '.data."ca.crt
 
 Where:
 
-- `PATH` is the location where you want to save the CA certificate. Use this file later when you [configure the CLI](cli-configuration.md).
+- `PATH` is the location where you want to save the CA certificate. Use this file later when you configure the CLI. See [CLI plug-in configuration](cli-configuration.md).
 
 If using an ingress, the CA certificate for clients is the certificate of the ingress domain:
 
@@ -59,15 +59,15 @@ kubectl get secret ingress-cert -n metadata-store -o json | jq -r '.data."ca.crt
 
 ### <a id='dns-resolution'></a>DNS resolution
 
-To support TLS domain verification, set up a record to resolve to the IP handling the connections. Do this through a DNS server or by modifying your local `/etc/hosts` file. 
+To support TLS domain verification, set up a record to resolve to the IP address handling the connections. Do this through a DNS server or by modifying your local `/etc/hosts` file. 
 
-If ingress is enabled, point this IP to the `envoy`'s service external IP from the `metadata-store` subdomain record:
+If ingress is enabled, point this IP address to the `envoy`'s service external IP address from the `metadata-store` subdomain record:
 
 ```
 IP metadata-store.<ingress_domain>
 ```
 
-For installations without ingress enabled, add the IP entry mapping to `metadata-store-app.metadata-store.svc.cluster.local`:
+For installations without ingress enabled, add the IP address entry mapping to `metadata-store-app.metadata-store.svc.cluster.local`:
 
 ```
 IP metadata-store-app.metadata-store.svc.cluster.local
@@ -75,7 +75,7 @@ IP metadata-store-app.metadata-store.svc.cluster.local
 
 Where:
 
-- `IP` is the IP you got from the earlier step *Using `LoadBalancer`* or the `envoy`'s service external IP. 
+- `IP` is the IP address you got from the earlier step *Using `LoadBalancer`* or the `envoy`'s service external IP address. 
 
 For example:
 
