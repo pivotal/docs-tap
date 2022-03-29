@@ -70,6 +70,10 @@ The following new conventions are applied to spring boot apps v2.6 and later:
 - Add Kubernetes liveness and readiness probes by using spring boot health endpoints.
 - Change management port from 8080 to 8081 to increase security of the management port.
 
+#### Supply Chain Security Tools - Scan
+
+- Multi-cluster support for Supply Chain Security Tools - Store using the authentication token.
+
 #### Supply Chain Security Tools – Sign
 
 - Support configuring Webhook resources
@@ -95,6 +99,10 @@ The following new conventions are applied to spring boot apps v2.6 and later:
 
 - Insight CLI is deprecated, customers can now use Tanzu CLI plugin called Insight.
   - Renamed all instances of `create` verb to `add` for all CLI commands.
+
+#### Supply Chain Security Tools - Scan
+
+- **Deprecated API version:** API version `scanning.apps.tanzu.vmware.com/v1alpha1` is deprecated.
 
 ### <a id='1-1-security-issues'></a> Security issues
 
@@ -128,6 +136,7 @@ This release has the following security issues:
 - Prevent scan controller pod from failing when metadata store certificate is not available.
 - Removed unnecessary reconciliation of resources upon deletion.
 - Prevent scan controller failure upon Git clone fails.
+- Resolved two scan jobs and two scan pods being created when reconciling `ScanTemplates` and `ScanPolicies`.
 
 #### Supply Chain Security Tools - Store
 
@@ -156,13 +165,10 @@ Image Scan, after the binaries are built and packaged as images.
 
 #### Supply Chain Security Tools – Scan
 
-- **Two scan jobs and two scan pods appear at the same time**: There is an edge case where two scan
-  jobs and two scan pods appear when a scan policy is updated.
-  This does not change the result of the scan.
 - **Scan Phase indicates `Scanning` incorrectly:** Scans have an edge case that when an error
   occurs during scanning, the `Scan Phase` field is not updated to `Error` and remains in the
   `Scanning` phase. Read the scan pod logs to verify the existence of an error.
-- **Deprecated API version:** API version `scanning.apps.tanzu.vmware.com/v1alpha1` is deprecated.
+- **Supply Chain Security Tools - Store is not configured:** The Scan Controller has a race-condition when deploying Supply Chain Security Tools - Store in the same cluster, that shows Supply Chain Security Tools - Store as not configured, even when it is present and properly configured. This happens because the Scan Controller is deployed and reconciled before Supply Chain Security Tools - Store is reconciled and the corresponding secrets are exported to the Scan Controller namespace. As a workaround to this, once your Supply Chain Security Tools - Store is successfully reconciled you would need to restart your Supply Chain Security Tools - Scan deployment by running: `kubectl rollout restart deployment.apps/scan-link-controller-manager  -n scan-link-system`. If you deployed Supply Chain Security Tools - Scan to a different namespace than the default one, you can replace `-n scan-link-system` with `-n <my_custom_namespace>`.
 
 #### Supply Chain Security Tools - Store
 
