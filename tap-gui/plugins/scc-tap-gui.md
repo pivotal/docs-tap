@@ -2,15 +2,15 @@
 
 ## <a id="overview"></a> Overview
 
-The Supply Chain Choreographer (SCC) plugin enables you to visualize the execution of a workload through any of the installed Out-Of-The-Box supply chains. See [Supply Chain Choreographer for Tanzu](../../scc/about.md) for more information about the Out-Of-The-Box Supply Chains that are available in Tanzu Application Platform, and their installation guides.
+The Supply Chain Choreographer (SCC) plug-in enables you to visualize the execution of a workload through any of the installed Out-Of-The-Box supply chains. See [Supply Chain Choreographer for Tanzu](../../scc/about.md) for more information about the Out-Of-The-Box Supply Chains that are available in Tanzu Application Platform, and their installation guides.
 
 ## <a id="prerequisites"></a> Prerequisites
 
-You must have either of the Full or View profiles installed, which includes the Tanzu Application Platform GUI.
+You must have either of the Full or View profiles installed on your cluster, which includes the Tanzu Application Platform GUI.
 
 ## <a id="sc-visibility"></a> Supply Chain Visibility
 
-To visualize your workload through the SCC plugin, you must first create a workload.
+To visualize your workload through the SCC plug-in, you must first create a workload.
 
 Use the left sidebar navigation to access your workload and visualize it in the supply chain that is installed on your cluster.
 
