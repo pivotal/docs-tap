@@ -4,7 +4,7 @@ The following is the YAML file sample for the build-profile:
 
 ```yaml
 profile: build
-ceip_policy_disclosed: true # The value must be true for installation to succeed
+ceip_policy_disclosed: "true-OR-false" # Installation fails if this is not set to true
 buildservice:
   kp_default_repository: "KP-DEFAULT-REPO"
   kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
