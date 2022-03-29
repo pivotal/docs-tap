@@ -1272,8 +1272,6 @@ in the same namespace.
 
 ### <a id="diff-namespace-use-case"></a> Use case 2 - Binding an application to a pre-provisioned service instance running in a different namespace on the same Kubernetes cluster
 
->**Note:** Tanzu Application Platform v1.1.0 GA will support this use case.
-
 >**Note:** Consumption of a single service instance by multiple workloads from different namespaces is currently not supported, but is intended to be supported in the near future.
 
 [Use case 1](#same-namespace-use-case) introduces binding a sample application workload to a service
@@ -1469,8 +1467,6 @@ existing PostgreSQL database that exists in Azure.
     - `<REFERENCE>` is the value of the `CLAIM REF` for the newly created claim in the output of the last step.
 
 ### <a id="diff-cluster-use-case"></a> Use case 4: Binding an application to a service instance running on a different Kubernetes cluster (Experimental).
-
->**Note:** Tanzu Application Platform v1.1.0 GA will support this use case.
 
 >**Note:** Use cases marked with Experimental are subject to change.
 
