@@ -36,7 +36,7 @@ To install Tanzu Build Service by using the Tanzu CLI:
     $ tanzu package available list buildservice.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for buildservice.tanzu.vmware.com...
       NAME                           VERSION  RELEASED-AT
-      buildservice.tanzu.vmware.com  1.4.2    2021-12-17T00:00:00Z
+      buildservice.tanzu.vmware.com  1.5.0    2021-12-17T00:00:00Z
     ```
 
 1. (Optional) To make changes to the default installation settings, run:
@@ -50,7 +50,7 @@ To install Tanzu Build Service by using the Tanzu CLI:
     For example:
 
     ```
-    $ tanzu package available get buildservice.tanzu.vmware.com/1.4.2 --values-schema --namespace tap-install
+    $ tanzu package available get buildservice.tanzu.vmware.com/1.5.0 --values-schema --namespace tap-install
     ```
 
 
@@ -59,14 +59,14 @@ To install Tanzu Build Service by using the Tanzu CLI:
 1. Gather the values schema by running:
 
     ```
-    tanzu package available get buildservice.tanzu.vmware.com/1.4.2 --values-schema --namespace tap-install
+    tanzu package available get buildservice.tanzu.vmware.com/1.5.0 --values-schema --namespace tap-install
     ```
 
     For example:
 
     ```
-    $ tanzu package available get buildservice.tanzu.vmware.com/1.4.2 --values-schema --namespace tap-install
-    | Retrieving package details for buildservice.tanzu.vmware.com/1.4.2...
+    $ tanzu package available get buildservice.tanzu.vmware.com/1.5.0 --values-schema --namespace tap-install
+    | Retrieving package details for buildservice.tanzu.vmware.com/1.5.0...
       KEY                                  DEFAULT  TYPE    DESCRIPTION
       kp_default_repository                <nil>    string  Docker repository used for builder images and dependencies
       kp_default_repository_password       <nil>    string  Username for kp_default_repository
@@ -122,19 +122,19 @@ To install Tanzu Build Service by using the Tanzu CLI:
     >Tanzu Build Service dependencies (buildpacks and stacks) when they are released on
     >VMware Tanzu Network. You can set `enable_automatic_dependency_updates` as `false` to
     >pause the automatic update of Build Service dependencies. When automatic updates are paused, 
-    >the pinned version of the descriptor for TAP 1.0.2 is [100.0.267](https://network.pivotal.io/products/tbs-dependencies#/releases/1053790)
+    >the pinned version of the descriptor for TAP 1.1.0 is [100.0.279](https://network.pivotal.io/products/tbs-dependencies#/releases/1066670)
     >If left undefined, this value is `false`.
 
 1. Install the package by running:
 
     ```
-    tanzu package install tbs -p buildservice.tanzu.vmware.com -v 1.4.2 -n tap-install -f tbs-values.yaml --poll-timeout 30m
+    tanzu package install tbs -p buildservice.tanzu.vmware.com -v 1.5.0 -n tap-install -f tbs-values.yaml --poll-timeout 30m
     ```
 
     For example:
 
     ```
-    $ tanzu package install tbs -p buildservice.tanzu.vmware.com -v 1.4.2 -n tap-install -f tbs-values.yaml --poll-timeout 30m
+    $ tanzu package install tbs -p buildservice.tanzu.vmware.com -v 1.5.0 -n tap-install -f tbs-values.yaml --poll-timeout 30m
     | Installing package 'buildservice.tanzu.vmware.com'
     | Getting namespace 'tap-install'
     | Getting package metadata for 'buildservice.tanzu.vmware.com'
@@ -172,7 +172,7 @@ To install the Tanzu Build Service package air-gapped:
 1. Gather the values schema by running:
 
     ```
-    tanzu package available get buildservice.tanzu.vmware.com/1.4.2 --values-schema --namespace tap-install
+    tanzu package available get buildservice.tanzu.vmware.com/1.5.0 --values-schema --namespace tap-install
     ```
 
 1. Create a `tbs-values.yaml` file. The required fields for an air-gapped installation are:
@@ -196,13 +196,13 @@ To install the Tanzu Build Service package air-gapped:
 1. Install the package by running:
 
     ```
-   tanzu package install tbs -p buildservice.tanzu.vmware.com -v 1.4.2 -n tap-install -f tbs-values.yaml
+   tanzu package install tbs -p buildservice.tanzu.vmware.com -v 1.5.0 -n tap-install -f tbs-values.yaml
     ```
 
    For example:
 
     ```
-    $ tanzu package install tbs -p buildservice.tanzu.vmware.com -v 1.4.2 -n tap-install -f tbs-values.yaml
+    $ tanzu package install tbs -p buildservice.tanzu.vmware.com -v 1.5.0 -n tap-install -f tbs-values.yaml
     | Installing package 'buildservice.tanzu.vmware.com'
     | Getting namespace 'tap-install'
     | Getting package metadata for 'buildservice.tanzu.vmware.com'

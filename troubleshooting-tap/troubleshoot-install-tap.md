@@ -221,7 +221,7 @@ in the provided `tap-config.yml` file.
     api-portal                 api-portal.tanzu.vmware.com                          1.0.9             Reconcile succeeded                                                    119m
     appliveview                run.appliveview.tanzu.vmware.com                     1.0.2-build.2     Reconcile succeeded                                                    109m
     appliveview-conventions    build.appliveview.tanzu.vmware.com                   1.0.2-build.2     Reconcile succeeded                                                    109m
-    buildservice               buildservice.tanzu.vmware.com                        1.4.2             Reconcile succeeded                                                    119m
+    buildservice               buildservice.tanzu.vmware.com                        1.5.0             Reconcile succeeded                                                    119m
     cartographer               cartographer.tanzu.vmware.com                        0.2.1             Reconcile succeeded                                                    117m
     cert-manager               cert-manager.tanzu.vmware.com                        1.5.3+tap.1       Reconcile succeeded                                                    119m
     cnrs                       cnrs.tanzu.vmware.com                                1.1.0             Reconcile succeeded                                                    109m
