@@ -22,11 +22,9 @@ Before installing Out of the Box Templates:
 
 ## <a id='inst-ootb-templ-proc'></a> Install
 
-
 To install Out of the Box Templates:
 
-1. Familiarize yourself with the set of values of the package that can be
-   configured by running:
+1. View the configurable values of the package by running:
 
     ```
     tanzu package available get ootb-templates.tanzu.vmware.com/0.7.0-build.2 \
@@ -52,7 +50,7 @@ To install Out of the Box Templates:
     ```
 
 
-1. With the configuration ready, install the package by running:
+1. After the configuration is ready, install the package by running:
 
     ```
     tanzu package install ootb-templates \
