@@ -21,21 +21,20 @@ See [Install Source Controller](../source-controller/install-source-controller.m
 
 ## <a id='app-acc-config'></a> Configure properties and resource usage
 
-When you install the Application Accelerator,
-you can configure the following optional properties:
+When you install the Application Accelerator, you can configure the following optional properties:
 
 | Property | Default | Description |
 | --- | --- | --- |
 | registry.secret_ref | registry.tanzu.vmware.com | The secret used for accessing the registry where the App-Accelerator images are located |
-| server.service_type | LoadBalancer | The service type for the acc-ui-server service including, LoadBalancer, NodePort, or ClusterIP |
+| server.service_type | LoadBalancer | The service type for the acc-ui-server service including LoadBalancer, NodePort, or ClusterIP |
 | server.watched_namespace | accelerator-system | The namespace the server watches for accelerator resources |
 | server.engine_invocation_url | http://acc-engine.accelerator-system.svc.cluster.local/invocations | The URL to use for invoking the accelerator engine |
-| engine.service_type | ClusterIP | The service type for the acc-engine service including, LoadBalancer, NodePort, or ClusterIP |
+| engine.service_type | ClusterIP | The service type for the acc-engine service including LoadBalancer, NodePort, or ClusterIP |
 | engine.max_direct_memory_size | 32M | The maximum size for the Java -XX:MaxDirectMemorySize setting |
-| samples.include | True | Whether to include the bundled sample Accelerators in the installation |
-| ingress.include | False | Whether to include the ingress configuration in the installation |
-| ingress.enable_tls | False | Whether to include TLS for the ingress configuration |
-| domain | tap.example.com | Top level domain to use for ingress configuration |
+| samples.include | True | Option to include the bundled sample Accelerators in the installation |
+| ingress.include | False | Option to include the ingress configuration in the installation |
+| ingress.enable_tls | False | Option to include TLS for the ingress configuration |
+| domain | tap.example.com | Top-level domain to use for ingress configuration |
 | tls.secretName | tls | The name of the secret |
 | tls.namespace | tanzu-system-ingress | The namespace for the secret |
 
