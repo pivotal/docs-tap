@@ -108,6 +108,19 @@ The following new conventions are applied to spring boot apps v2.6 and later:
 
 This release has the following security issues:
 
+#### Supply Chain Security Tools - Scan
+
+This release of Supply Chain Security Tools - Scan has the following CVEs present:
+
+- [CVE-2022-27191](https://nvd.nist.gov/vuln/detail/CVE-2022-27191): Associated with the golang version used to compiled the Scan Controller: `1.17`
+
+#### Grype Scanner
+
+This release of Grype Scanner has the following CVEs present:
+
+- [CVE-2022-22623](https://nvd.nist.gov/vuln/detail/CVE-2022-22623): Present in the OS layer for the Grype Scanner image.
+- [CVE-2022-27191](https://nvd.nist.gov/vuln/detail/CVE-2022-27191): Associated with the golang version used to compiled the Syft, Grype, Crane and CNB-SBoM CLIs present in the Grype Scanner image: `1.17`
+
 
 ### <a id='1-1-resolved-issues'></a> Resolved issues
 
@@ -164,7 +177,7 @@ Image Scan, after the binaries are built and packaged as images.
 - **Scan Phase indicates `Scanning` incorrectly:** Scans have an edge case that when an error
   occurs during scanning, the `Scan Phase` field is not updated to `Error` and remains in the
   `Scanning` phase. Read the scan pod logs to verify the existence of an error.
-- **User see error message saying Supply Chain Security Tools - Store (Store) is not configured even though configuration values were supplied:** The Scan Controller experiences a race-condition when deploying Store in the same cluster, that shows Store as not configured, even when it is present and properly configured. This happens when the Scan Controller is deployed and reconciled before the Store is reconciled and the corresponding secrets are exported to the Scan Controller namespace. As a workaround to this, once your Store is successfully reconciled, you would need to restart your Supply Chain Security Tools - Scan deployment by running: `kubectl rollout restart deployment.apps/scan-link-controller-manager -n scan-link-system`. If you deployed Supply Chain Security Tools - Scan to a different namespace than the default one, you can replace `-n scan-link-system` with `-n <my_custom_namespace>`.
+- **User sees error message saying Supply Chain Security Tools - Store (Store) is not configured even though configuration values were supplied:** The Scan Controller experiences a race-condition when deploying Store in the same cluster, that shows Store as not configured, even when it is present and properly configured. This happens when the Scan Controller is deployed and reconciled before the Store is reconciled and the corresponding secrets are exported to the Scan Controller namespace. As a workaround to this, once your Store is successfully reconciled, you would need to restart your Supply Chain Security Tools - Scan deployment by running: `kubectl rollout restart deployment.apps/scan-link-controller-manager -n scan-link-system`. If you deployed Supply Chain Security Tools - Scan to a different namespace than the default one, you can replace `-n scan-link-system` with `-n <my_custom_namespace>`.
 
 #### Supply Chain Security Tools - Store
 
