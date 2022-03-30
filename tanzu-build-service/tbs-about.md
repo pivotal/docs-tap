@@ -99,3 +99,13 @@ descriptor_name: DESCRIPTOR-NAME
 <b>enable_automatic_dependency_updates: true</b>
 ...
 </pre>
+
+### <a id="dependencies-manual"> Manual Control of Dependency Updates
+
+Sometimes, you may not want to have TBS automatically update dependencies in the background.
+
+In this case, you can manually manage and update your dependencies individually or automate it yourself in a CI/CD context.
+
+The Tanzu Build Service package in TAP behaves identically to the standalone Taznu Build Service product which is documented [here](https://docs.vmware.com/en/VMware-Tanzu-Build-Service/index.html).
+
+For details on updating dependencies manually, see docs [here](https://docs.vmware.com/en/Tanzu-Build-Service/1.5/vmware-tanzu-build-service-v15/GUID-updating-deps.html#bulk-update).

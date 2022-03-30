@@ -64,4 +64,4 @@ you can reuse the `tap-registry` secret created in
 >Tanzu Build Service dependencies, such as buildpacks and stacks, when they are released on
 >VMware Tanzu Network. Use `false` to pause the automatic update of Build Service dependencies.
 >When automatic updates are paused, the pinned version of the descriptor for TAP 1.1.0 is [100.0.279](https://network.pivotal.io/products/tbs-dependencies#/releases/1066670)
->The default value is `false`.
+>The default value is `false`. For details about updating dependencies manually, see [here](../../tanzu-build-service/tbs-about.html#dependencies-manual).
