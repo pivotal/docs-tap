@@ -1,39 +1,29 @@
 # Query data
 
-This topic describes how to query the database to understand vulnerability, image, and dependency relationships.
+This topic describes how to query the database to understand vulnerability, image, and dependency relationships.  The `tanzu insight` CLI plug-in queries the database for vulnerability scan reports or Software Bill of Materials (SBoM) files.
 
 ## <a id='sup-usecase'></a>Supported use cases
 
 The following are a few use cases supported by the CLI:
 
-+  What images contain a specific dependency?
-+  What dependencies are affected by a specific CVE?
-+  How many CVEs does a specific image or dependency contain?
++  What packages and CVEs exist in a particular image? (`image`)
++  What packages and CVEs exist in my source code? (`source`)
++  What dependencies are affected by a specific CVE? (`vulnerabilities`)
 
-## <a id='query-insight'></a> Query using the Tanzu Insight plug-in
+## <a id='query-insight'></a> Query using the `tanzu insight` CLI plug-in
 
-See [CLI plug-in installation](cli-installation.md) if you have not previously installed the `insight` CLI plug-in.
+See [CLI plug-in installation](cli-installation.md) if you have not previously installed the `tanzu insight` CLI plug-in.
 
-Use the following commands for querying:
+There are four commands for querying and adding data.
 
-- `image get`
-- `image package`
-- `image vulnerabilities`
-- `package get`
-- `package image`
-- `package source`
-- `package vulnerabilities`
-- `source get`
-- `source package`
-- `source vulnerabilities`
-- `vulnerabilities get`
-- `vulnerabilities image`
-- `vulnerabilities package`
-- `vulnerabilities source`
++ `image` - [post an image SBOM](add-data.md) or query images for packages and vulnerabilties
++ `package` - query packages for vulnerabilities or by image or source code
++ `source` - [post a source code SBOM](add-data.md) or query source code for packages and vulnerabilties
++ `vulnerabilities` - query vulnerabilities by image, package, or source code
 
-Use `tanzu insight -h` in the terminal or see [tanzu insight details](cli-docs/insight.md) for more information.
+Use `tanzu insight -h` or see [Tanzu Insight Details](cli-docs/insight.md) for more information.
 
-## <a id='example1'></a>Example #1: What images contain a specific dependency?
+## <a id='example1'></a>Example #1: What packages & CVEs does a specific image contain?
 
 Use the following command:
 
@@ -62,7 +52,38 @@ Packages:
 		1. CVE-2021-28831 (High)
 ...
 ```
-## <a id='example2'></a>Example #2: What dependencies are affected by a specific CVE?
+## <a id='example2'></a>Example #2: What packages & CVEs does my source code contain?
+
+Use the following command:
+
+```
+tanzu insight source get --repo REPO --org ORG
+```
+
+Where:
+- `REPO` specifies XML or JSON, the two supported file types
+- `ORG` is the source code's organization
+
+
+> You may also use `tanzu insight source get --commit COMMIT` where `COMMIT` is the commit sha.  `--repo` and `--org` must be used together.
+
+For example:
+
+```
+$ tanzu insight source get --repo https://github.com/pivotal/kpack.git --org pivotal-cf
+ID:       	2
+Repository:  https://github.com/pivotal/kpack.git	
+Commit:  b66668e
+Organization:	pivotal-cf
+Packages:
+		1. cloud.google.com/go/kms@v1.0.0
+		2. github.com/BurntSushi/toml@v3.1.1
+		CVEs:
+			1. CVE-2021-30999 (Low)
+		3. github.com/Microsoft/go-winio@v0.5.2
+```
+
+## <a id='example3'></a>Example #3: What dependencies are affected by a specific CVE?
 
 Use the following command:
 

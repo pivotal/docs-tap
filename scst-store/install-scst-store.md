@@ -1,11 +1,9 @@
-# Install Supply Chain Security Tools - Store
+# Install Supply Chain Security Tools - Store independent from Tanzu Application Platform profiles
 
 This document describes how to install Supply Chain Security Tools - Store
 from the Tanzu Application Platform package repository.
 
->**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
-The full profile includes Supply Chain Security Tools - Store.
-For more information about profiles, see [Installing the Tanzu Application Platform Package and Profiles](../install.md).
+>**Note:** It is recommended to install Supply Chain Security Tools - Store using Tanzu Application Platform Profiles.  See [Installing the Tanzu Application Platform Package and Profiles](../install.md).  Use the following instructions if you do not want to use a profile to install the Supply Chain Security Tools - Store package.
 
 ## <a id='prereqs'></a>Prerequisites
 
