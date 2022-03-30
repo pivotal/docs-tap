@@ -4,7 +4,7 @@ There are multiple ways to integrate Tanzu Application Platform with your identi
 
 VMware recommends using the solutions provided by your Kubernetes deployment.
 
-When you have multiple identity management solutions to integrate, for example, if you're operating Tanzu Application Platform on multi-cloud, VMware recommends [installing open source Pinniped](https://pinniped.dev/docs/). 
+When you have multiple identity management solutions to integrate, for example, if you're operating Tanzu Application Platform on multi-cloud, VMware recommends installing pinniped. See our [guide to install pinniped](pinniped-install-guide.md). 
 
 ## Tanzu Kubernetes Grid
 
