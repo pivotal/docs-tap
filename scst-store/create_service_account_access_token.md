@@ -27,16 +27,16 @@ metadata:
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: metadata-store-ready-only
+  name: metadata-store-read-only
 subjects:
 - kind: ServiceAccount
-  name: metadata-store-read-user
+  name: metadata-store-read-client
   namespace: metadata-store
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: metadata-store-read-user
+  name: metadata-store-read-client
   namespace: metadata-store
 automountServiceAccountToken: false
 EOF
