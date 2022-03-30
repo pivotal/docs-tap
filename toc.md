@@ -167,7 +167,7 @@ This is the table of contents from which the Tanzu Application Platform Document
           - [API walkthrough](scst-store/api-walkthrough.md)
           - [Ingress and multicluster support](scst-store/ingress-multicluster.md)
     - [Tanzu Developer Tools for VSCode](vscode-extension/about.md)
-      - [Installing the VSCode Tanzu Extension](vscode-extension/install.md)
+      - [Installing the VSCode Tanzu Extension](vscode-extension/installation.md)
       - [Using Tanzu Dev Tools to get started](vscode-extension/usage-getting-started.md)
       - [Using Tanzu Dev Tools to iterate on your workload](vscode-extension/usage-iterating-on-app.md)
       - [Pinniped compatibility](vscode-extension/pinniped-auth.md)
