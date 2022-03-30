@@ -29,8 +29,8 @@ This new profile is intended for iterative development versus the path to produc
 #### Tanzu Application Platform GUI
 
 - **Runtime Resources Visibility plug-in:** explanation here
-- **Supply Chain Choreographer plug-in:** explanation here
-
+- **Supply Chain Choreographer plug-in:** Added a new graphical representation of the execution of a workload through an installed supply chain. This  includes CRDs in the supply chain, the source results of each stage, as well as details to facilitate the troublshooting of workloads on their path to production. 
+  
 #### Application Live View
 
 - Enabled multiple cluster support for Application Live View.
@@ -157,6 +157,8 @@ Because VMware does not recommend committing binaries to source code repositorie
 fails to find vulnerabilities during a Source Scan. The vulnerabilities are still found during the
 Image Scan, after the binaries are built and packaged as images.
 
+#### Supply Chain Choreographer plug-in
+- **Details for ConfigMap CRD not appearing:** `Unable to retrieve conditions for ConfigMap...` error appears in details section after clicking on the ConfigMap stage in the graph view of a supply chain. This does not necessarily mean that the workload failed its execution through the supply chain.
 #### Supply Chain Security Tools – Scan
 
 - **Scan Phase indicates `Scanning` incorrectly:** Scans have an edge case that when an error
