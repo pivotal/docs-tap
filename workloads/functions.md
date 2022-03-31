@@ -123,23 +123,24 @@ The accelerator ZIP file contains a file called k8s-resource.yaml. This file con
     --yes
     ```
 
-Where:
+    Where:
 
-- --source-image is a writable repository in your registry.
+    - --source-image is a writable repository in your registry.
 
-Harbor has the form: "my-harbor.io/my-project/functions-accelerator-python".
+    Harbor has the form: "my-harbor.io/my-project/functions-accelerator-python".
 
-Dockerhub has the form: "my-dockerhub-user/functions-accelerator-python".
+    Dockerhub has the form: "my-dockerhub-user/functions-accelerator-python".
 
-Google Cloud Registry has the form: "gcr.io/my-project/functions-accelerator-python".
+    Google Cloud Registry has the form: "gcr.io/my-project/functions-accelerator-python".
 
 1. View the build and runtime logs for your application by running the tail command:
 
-```
-tanzu apps workload tail tanzu-java-web-app --since 10m --timestamp
-```
+    ```
+    tanzu apps workload tail tanzu-java-web-app --since 10m --timestamp
+    ```
 
 1. After the workload is built and running, you can view the web application in your browser. To view the URL of the web application, run the following command and then ctrl-click the Workload Knative Services URL at the bottom of the command output.
 
-```tanzu apps workload get functions-accelerator-python
-```
+    ```
+    tanzu apps workload get functions-accelerator-python
+    ```
