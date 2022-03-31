@@ -1,12 +1,10 @@
-# Tanzu insight
+# Tanzu insight details
 
-This CLI plug-in is used to post data and query the metadata store.
+The `tanzu insight` CLI plug-in is used to post data and query the Supply Chain Security Tools - Store database.
 
 ## <a id='synopsis'></a>Synopsis
 
-This CLI plug-in is used to post data and query the metadata store through its secure REST API.
-Source and Image reports can be uploaded using CycloneDX XML and JSON format.
-Source, image, package, and vulnerabilities can be queried and outputted in CycloneDX XML, JSON, and human-readable text formats.
+This CLI plug-in is used to post data and query the Supply Chain Security Tools - Store through its secure REST API. Source commit and image vulnerability reports can be uploaded using CycloneDX XML and JSON format.  Source commit, image, package, and vulnerabilities can be queried and outputted in CycloneDX XML, JSON, and human-readable text formats.
 
 ## <a id='options'></a>Options
 
