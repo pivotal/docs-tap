@@ -2,7 +2,7 @@
 
 ## Overview
 
-Functions on Tanzu Application Platform enables you to deploy function-based workloads. You can use starter templates to bootstrap your function and write only the code that matters to your business. You can run a single CLI command to deploy your function to an auto-scaled cluster.
+Functions on Tanzu Application Platform allows you to deploy function-based workloads. You can use starter templates to bootstrap your function and write only the code that matters to your business. You can run a single CLI command to deploy your function to an auto-scaled cluster.
 
 This document describes how to create and deploy an HTTP function workload from an application accelerator starter template.
 
@@ -14,7 +14,7 @@ Before using functions workloads on Tanzu Application Platform, complete the fol
 
 - Complete all steps described in [Installing Tanzu Application Platform](../install-intro.md).
 - Download and install the kp CLI for your operating system from the [Tanzu Build Service](https://network.tanzu.vmware.com/products/build-service/) page on Tanzu Network. For more information, see the [kp CLI help text](https://github.com/vmware-tanzu/kpack-cli/blob/v0.4.0/docs/kp.md) on GitHub.
-- [Set up developer namespaces to use installed packages](https://docs.vmware.com/en/Tanzu-Application-Platform/1.0/tap/GUID-install-components.html#setup)
+- [Set up developer namespaces to use installed packages](https://docs.vmware.com/en/Tanzu-Application-Platform/1.0/tap/GUID-install-components.html#setup).
 
 ## Add buildpackages to a ClusterStore
 
