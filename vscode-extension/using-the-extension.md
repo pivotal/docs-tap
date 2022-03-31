@@ -48,13 +48,13 @@ To start debugging on the cluster:
 
 To stop debugging on the cluster:
 
-1. Select the stop button in the Debug overlay.
+- Select the stop button in the Debug overlay.
 
-![The VS Code interface close-up on the debug overlay showing the stop rectangle icon and mouseover description](../images/vscode-stopdebug1.png)
+    ![The VS Code interface close-up on the debug overlay showing the stop rectangle icon and mouseover description](../images/vscode-stopdebug1.png)
 
-1. Or select the trash can icon for the debug task running in the Panel (`View -> Appearance -> Show Panel`, or hotkey `⌘+J`).
+- Or select the trash can icon for the debug task running in the Panel (`View -> Appearance -> Show Panel`, or hotkey `⌘+J`).
 
-![The VS Code interface close-up on the tasks panel showing the delete trash can icon](../images/vscode-stopdebug2.png)
+    ![The VS Code interface close-up on the tasks panel showing the delete trash can icon](../images/vscode-stopdebug2.png)
 
 ## <a id="live-update"></a> Live Update
 
@@ -70,11 +70,11 @@ There are two ways to start live update:
 
 - Right-click your project’s `Tiltfile` and select `Tanzu: Live Update Start`.
 
-![The VS Code interface showing the Explorer tab with the Tiltfile file right-click menu open and the "Tanzu: Live Update Start" option highlighted](../images/vscode-startliveupdate1.png)
+    ![The VS Code interface showing the Explorer tab with the Tiltfile file right-click menu open and the "Tanzu: Live Update Start" option highlighted](../images/vscode-startliveupdate1.png)
 
 - Start the Command Palette (`⇧⌘P`) and run the `Tanzu: Live Update Start` command.
 
-![Command palette open showing text Tanzu: Live Update Start](../images/vscode-startliveupdate2.png)
+    ![Command palette open showing text Tanzu: Live Update Start](../images/vscode-startliveupdate2.png)
 
 ### <a id="stop-live-update"></a> Stop Live Update
 
@@ -84,11 +84,11 @@ There are two ways to stop live update:
 
 - Right-click your project’s `Tiltfile` and select `Tanzu: Live Update Stop`.
 
-![The VS Code interface showing the Explorer tab with the Tiltfile file right-click menu open and the "Tanzu: Live Update Stop" option highlighted](../images/vscode-stopliveupdate1.png)
+    ![The VS Code interface showing the Explorer tab with the Tiltfile file right-click menu open and the "Tanzu: Live Update Stop" option highlighted](../images/vscode-stopliveupdate1.png)
 
 - Start the Command Palette (`⇧⌘P`) and run the `Tanzu: Live Update Stop` command.
 
-![Command palette open showing text Tanzu: Live Update Stop](../images/vscode-stopliveupdate2.png)
+    ![Command palette open showing text Tanzu: Live Update Stop](../images/vscode-stopliveupdate2.png)
 
 ### <a id="disable-live-update"></a> Disable Live Update
 
@@ -99,9 +99,10 @@ You can remove the Live Update capability from your application entirely. This f
 To disable Live Update:
 
 1. Start the Command Palette (`⇧⌘P`).
+
 1. Run the `Tanzu: Live Update Disable` command.
 
-![Command palette open showing text Tanzu: Live Update Disable](../images/vscode-liveupdatedisable.png)
+    ![Command palette open showing text Tanzu: Live Update Disable](../images/vscode-liveupdatedisable.png)
 
 1. Enter the name of the workload you want to deactivate live update for.
 

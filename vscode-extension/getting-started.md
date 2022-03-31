@@ -21,19 +21,19 @@ To use the Tanzu Developer Tools extension with a project, the project must have
 
 - Write the three files manually by following [Set Up Manually](#set-up-manually). The required files are:
 
-    1. **workload.yaml**
+    - **workload.yaml**
     
-        A file named **workload** with the extension **.yaml** must be included in the project (Eg. `my project/config/workload.yaml`). The **workload.yaml** file provides instructions to the [Supply Chain Choreographer](../scc/about.md) for how a workload must be built and managed.
+        A file named **workload** with the extension **.yaml** must be included in the project. For example, `my project/config/workload.yaml`. The **workload.yaml** file provides instructions to the [Supply Chain Choreographer](../scc/about.md) for how a workload must be built and managed.
         
         >**Note:** The Tanzu Developer Tools extension requires only one workload.yaml per project. The workload.yaml must be a single-document YAML file, not a multi-document YAML file.
 
-    1. **catalog-info.yaml**
+    - **catalog-info.yaml**
     
-        A file named **catalog-info** with the extension **.yaml** must be included in the project. (Eg. `my project/catalog/catalog-info.yaml`). The **catalog-info.yaml** file enables the workloads created with the Tanzu Developer Tools extension to be visible in the [TAP GUI](../tap-gui/about.md).
+        A file named **catalog-info** with the extension **.yaml** must be included in the project. For example, `my project/catalog/catalog-info.yaml`. The **catalog-info.yaml** file enables the workloads created with the Tanzu Developer Tools extension to be visible in the [TAP GUI](../tap-gui/about.md).
 
-    1. **Tiltfile**
+    - **Tiltfile**
     
-        A file named **Tiltfile** with no extension (no filetype) must be included in the project. (Eg. `My project/Tiltfile`). The **Tiltfile** provides the configuration for [Tilt](https://docs.tilt.dev/) to enable your project to live update on the Tanzu Application Platform.
+        A file named **Tiltfile** with no extension (no filetype) must be included in the project. For example, `My project/Tiltfile`. The **Tiltfile** provides the configuration for [Tilt](https://docs.tilt.dev/) to enable your project to live update on the Tanzu Application Platform.
         
         >**Note:** The Tanzu Developer Tools extension requires only one Tiltfile per project.
 

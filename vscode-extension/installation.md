@@ -35,18 +35,26 @@ To install VMware Tanzu Developer Tools for Visual Studio Code:
 
 1. Open VS Code.
 
-    **Option 1:**    
-    1. From the Command Palette (cmd + shift + P), run "Extensions: Install from VSIX...".    
+    **Option 1:**
+     
+    1. From the Command Palette (cmd + shift + P), run "Extensions: Install from VSIX...".
+    
     1. Select the extension file **tanzu-vscode-extension.vsix**.
-    ![Command palette open showing text Extensions: INSTALL FROM VSIX...](../images/vscode-install1.png)    
-    **Option 2:**    
+    
+    ![Command palette open showing text Extensions: INSTALL FROM VSIX...](../images/vscode-install1.png)
+    
+    **Option 2:**
+    
     1. Select the **Extensions** tab: ![The extensions tab icon which is a square cut in fourths with the top-right fourth moved away from the other three](../images/vscode-install2.png)
-    1. Select `Install from VSIX…` from the overflow menu
+    
+    1. Select `Install from VSIX…` from the overflow menu.
+    
     ![The VS Code interface showing the extensions tab open, the overflow menu in the extensions tab open, and the "Install from VSIX..." option highlighted](../images/vscode-install3.png)
     
 1. The Tanzu Developer Tools extension will install  the Debugger for Java, Language Support for Java(™) by Red Hat, and YAML extensions if they are not previously installed. The Tanzu Developer Tools extension depends on these additional extensions to function.
 
 >**Note:** If the extensions do not automatically install, manually install the following extensions from the VS Code Marketplace:
+
     - [Debugger for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-debug)
     - [Language Support for Java(™) by Red Hat](https://marketplace.visualstudio.com/items?itemName=redhat.java)
     - [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml)
@@ -67,9 +75,9 @@ To configure the VMware Tanzu Developer Tools extension for Visual Studio Code:
 
 1. Select **File -> Preferences -> Settings -> Extensions -> Tanzu** and set the following:
 
-- [Source Image](../glossary.md#source-image) (required): Destination for an image containing the source code to be published. For example, `your-registry.io/project/tanzu-java-web-app-source`.
-- [Local Path](../glossary.md#local-path) (optional): Path on the local file system to a directory of source code to build (defaults to current directory).
-- [Namespace](../glossary.md#namespace) (optional): Namespace that workloads are deployed into (defaults to namespace set in `kubeconfig`).
+    - [Source Image](../glossary.md#source-image) (required): Destination for an image containing the source code to be published. For example, `your-registry.io/project/tanzu-java-web-app-source`.
+    - [Local Path](../glossary.md#local-path) (optional): Path on the local file system to a directory of source code to build (defaults to current directory).
+    - [Namespace](../glossary.md#namespace) (optional): Namespace that workloads are deployed into (defaults to namespace set in `kubeconfig`).
 
 ## <a id="uninstallation"></a> Uninstallation
 
