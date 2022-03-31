@@ -24,7 +24,7 @@ Before using functions workloads on Tanzu Application Platform, complete the fol
     kp clusterstore add default \-b ghcr.io/vmware-tanzu/function-buildpacks-for-knative/python-buildpack-with-deps:0.0.11 \-b ghcr.io/vmware-tanzu/function-buildpacks-for-knative/java-buildpack-with-deps:0.0.6
     ```
 
-1. Create and save a new ClusterBuilder. Run:
+2. Create and save a new ClusterBuilder. Run:
 
     ```
     kp clusterbuilder save function --store default -o - \&lt;\&lt;EOF
