@@ -49,11 +49,16 @@ This new profile is intended for iterative development versus the path to produc
   - Accept `workload.yaml` from stdin (through `--file -`).
   - Enable providing `spec.build.env` values (through new `–build.env` flag).
   - When `--git-repo` and `--git-tag` are provided, `git-branch` is not required.
+  - Add new `--annotations` flag - annotation(s) provided are propagated to the running pod for the workload. 
 - `workload list`:
   - Shorthand `-A` can be passed in for `--all-namespaces`.
 - `workload get`:
   - Service Claim details are returned in command output.
   - The existing STATUS value in the Pods table in the output reflects when a pod is “Terminating.” 
+
+**Deprecation**
+* The `namespace` value that can be passed in for the `--service-ref` flag is now deprecated.
+  * A deprecation warning message has been added to the `workload create/update/apply...` when user specifies a namespace in the `--service-ref` object
 
 
 #### Service Bindings
@@ -65,6 +70,9 @@ This new profile is intended for iterative development versus the path to produc
 
 #### Source Controller
 
+- Enable Source Controller to connect to image registries that use self-signed or private certificate authorities - to support airgapped installs
+  - This is an optional configuration
+  - See [Source Controller Installation](source-controller/install-source-controller.md) for details
 - Applied [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339) timestamps to source controller logs.
 - Added Tanzu Application Platform aggregate roles to support Tanzu Application Platform Authentication and Authorization (new feature referenced above).
 
@@ -134,6 +142,7 @@ This release has the following security issues:
   is declined, the command immediately exits 0 rather than hanging (continuing to "wait").
   - Workload name is now validated when the workload values are passed in through `--file workload.yaml`.
   - When creating/applying a workload from –local-path, if user answers “No” to the prompt “Are you sure you want to publish your local code to [registry name] where others may be able to access it?”, the command now exits 0 immediately rather than showing the workload diff and prompting to continue with workload creation.
+  - `.spec.build.env` in workload yaml definition file is being removed when using tanzu apps workload apply command
 
 #### Services Toolkit
 
@@ -144,16 +153,10 @@ This release has the following security issues:
 #### Supply Chain Security Tools – Scan
 
 - Resolved two scan jobs and two scan pods being created when reconciling `ScanTemplates` and `ScanPolicies`.
-- Upgraded package `client_golang` to version `v1.11.1` to address CVE [CVE-2022-21698](https://nvd.nist.gov/vuln/detail/CVE-2022-21698)
 
 #### Supply Chain Security Tools - Store
 
 - Fixed an issue where querying a source report with local path name would return the following error: `{ "message": "Not found" }`
-
-#### Grype Scanner
-
-- Upgraded golang version to `1.17.8` to address CVE [CVE-2022-24921](https://nvd.nist.gov/vuln/detail/CVE-2022-24921)
-- Upgraded photon to address CVEs [CVE-2022-23308](https://nvd.nist.gov/vuln/detail/CVE-2022-23308), [CVE-2022-0778](https://nvd.nist.gov/vuln/detail/CVE-2022-0778).
 
 ### <a id='1-1-known-issues'></a> Known issues
 
@@ -183,7 +186,7 @@ Image Scan, after the binaries are built and packaged as images.
 - **Scan Phase indicates `Scanning` incorrectly:** Scans have an edge case that when an error
   occurs during scanning, the `Scan Phase` field is not updated to `Error` and remains in the
   `Scanning` phase. Read the scan pod logs to verify the existence of an error.
-- **User sees error message saying Supply Chain Security Tools - Store (Store) is not configured even though configuration values were supplied:** The Scan Controller experiences a race-condition when deploying Store in the same cluster, that shows Store as not configured, even when it is present and properly configured. This happens when the Scan Controller is deployed and reconciled before the Store is reconciled and the corresponding secrets are exported to the Scan Controller namespace. As a workaround to this, once your Store is successfully reconciled, you would need to restart your Supply Chain Security Tools - Scan deployment by running: `kubectl rollout restart deployment.apps/scan-link-controller-manager -n scan-link-system`. If you deployed Supply Chain Security Tools - Scan to a different namespace than the default one, you can replace `-n scan-link-system` with `-n <my_custom_namespace>`.
+- **User see error message saying Supply Chain Security Tools - Store (Store) is not configured even though configuration values were supplied:** The Scan Controller experiences a race-condition when deploying Store in the same cluster, that shows Store as not configured, even when it is present and properly configured. This happens when the Scan Controller is deployed and reconciled before the Store is reconciled and the corresponding secrets are exported to the Scan Controller namespace. As a workaround to this, once your Store is successfully reconciled, you would need to restart your Supply Chain Security Tools - Scan deployment by running: `kubectl rollout restart deployment.apps/scan-link-controller-manager -n scan-link-system`. If you deployed Supply Chain Security Tools - Scan to a different namespace than the default one, you can replace `-n scan-link-system` with `-n <my_custom_namespace>`.
 
 #### Supply Chain Security Tools - Store
 
