@@ -108,20 +108,6 @@ The following new conventions are applied to spring boot apps v2.6 and later:
 
 This release has the following security issues:
 
-#### Supply Chain Security Tools - Scan
-
-This release of Supply Chain Security Tools - Scan has the following CVEs present:
-
-- [CVE-2022-27191](https://nvd.nist.gov/vuln/detail/CVE-2022-27191): Associated with the golang version used to compiled the Scan Controller: `1.17`
-
-#### Grype Scanner
-
-This release of Grype Scanner has the following CVEs present:
-
-- [CVE-2022-22623](https://nvd.nist.gov/vuln/detail/CVE-2022-22623): Present in the OS layer for the Grype Scanner image.
-- [CVE-2022-27191](https://nvd.nist.gov/vuln/detail/CVE-2022-27191): Associated with the golang version used to compiled the Syft, Grype, Crane and CNB-SBoM CLIs present in the Grype Scanner image: `1.17`
-
-
 ### <a id='1-1-resolved-issues'></a> Resolved issues
 
 #### Tanzu CLI - Apps plug-in
@@ -144,10 +130,16 @@ This release of Grype Scanner has the following CVEs present:
 #### Supply Chain Security Tools – Scan
 
 - Resolved two scan jobs and two scan pods being created when reconciling `ScanTemplates` and `ScanPolicies`.
+- Upgraded package `client_golang` to version `v1.11.1` to address CVE [CVE-2022-21698](https://nvd.nist.gov/vuln/detail/CVE-2022-21698)
 
 #### Supply Chain Security Tools - Store
 
 - Fixed an issue where querying a source report with local path name would return the following error: `{ "message": "Not found" }`
+
+#### Grype Scanner
+
+- Upgraded golang version to `1.17.8` to address CVE [CVE-2022-24921](https://nvd.nist.gov/vuln/detail/CVE-2022-24921)
+- Upgraded photon to address CVEs [CVE-2022-23308](https://nvd.nist.gov/vuln/detail/CVE-2022-23308), [CVE-2022-0778](https://nvd.nist.gov/vuln/detail/CVE-2022-0778).
 
 ### <a id='1-1-known-issues'></a> Known issues
 
