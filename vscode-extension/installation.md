@@ -53,7 +53,7 @@ To install VMware Tanzu Developer Tools for Visual Studio Code:
     
 1. The Tanzu Developer Tools extension will install  the Debugger for Java, Language Support for Java(™) by Red Hat, and YAML extensions if they are not previously installed. The Tanzu Developer Tools extension depends on these additional extensions to function.
 
->**Note:** If the extensions do not automatically install, manually install the following extensions from the VS Code Marketplace:
+    **Note:** If the extensions do not automatically install, manually install the following extensions from the VS Code Marketplace:
 
     - [Debugger for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-debug)
     - [Language Support for Java(™) by Red Hat](https://marketplace.visualstudio.com/items?itemName=redhat.java)

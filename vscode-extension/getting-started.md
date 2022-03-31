@@ -9,7 +9,7 @@
 - [Example Project](#example-project)
 - [What’s Next](#whats-next)
 
-## <a id="prereqs"></a> prerequisites
+## <a id="prereqs"></a> Prerequisites
 
 Ensure you have completed the [Installation](../vscode-extension/installation.md) before continuing on to the following sections.
 
