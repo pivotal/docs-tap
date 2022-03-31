@@ -143,7 +143,7 @@ Certain sections of the example **workload.yaml** file above must be replaced wi
 - Replace `<git-source-url>` with your git source code URL
 - Replace `<git-branch-name>` with the branch of your git source code you want to use
 
-Alternatively you can use the Tanzu CLI to create a workload.yaml file. For more information about the Tanzu CLI command, see [Tanzu apps workload create in the Tanzu CLI documentation](../cli-plugins/apps/command-reference/tanzu_apps_workload_create.md).
+Alternatively you can use the Tanzu CLI to create a workload.yaml file. For more information about the Tanzu CLI command, see [Tanzu apps workload create in the Tanzu CLI documentation](../cli-plugins/apps/command-reference/tanzu-apps-workload-create.md).
 
 ### <a id="creating-a-catalog-info-yaml-file"></a> Creating a **catalog-info.yaml** File
 

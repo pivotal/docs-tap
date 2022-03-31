@@ -44,7 +44,7 @@ See [Set up developer namespaces to use installed packages](install-components.m
 See [Install Tanzu Application Platform GUI](install-components.md#install-tap-gui).
 
   - **Installed the VSCode Tanzu Extension**<br>
-See [Install the Visual Studio Code Tanzu Extension](vscode-extension/install.md) for instructions.
+See [Install the Visual Studio Code Tanzu Extension](vscode-extension/installation.md) for instructions.
 
 When you have completed the prerequisites, you are ready to get started.
 
@@ -186,7 +186,7 @@ helps you develop and receive fast feedback on your workloads running on the Tan
 The VSCode extension enables live updates of your application while running on the cluster
 and allows you to debug your application directly on the cluster.
 For information about installing the prerequisites and the Tanzu Developer Tools extension, see
-[Install Tanzu Dev Tools for VSCode](vscode-extension/install.md).
+[Install Tanzu Dev Tools for VSCode](vscode-extension/installation.md).
 
 
 >**Note:** Use Tilt v0.23.2 or a later version for the sample application.
