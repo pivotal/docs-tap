@@ -190,9 +190,13 @@ Image Scan, after the binaries are built and packaged as images.
 
 #### Supply Chain Security Tools - Store
 
-- **`insight` CLI plug-in does not support Windows**
+- **`insight` CLI plug-in does not support Windows:**
 
     Currently, only MacOS and Linux are supported for the `insight` plug-in.
+
+- **Existing packages with new vulnerabilities not updated:**
+
+    There’s a known issue in Supply Chain Security Tools - Store where it does not correctly save new vulnerablities for a package that had already been submitted in a previous report. This issue will result in new vulnerabilities not being saved to the database.
 
 - **Persistent volume retains data:**
 
