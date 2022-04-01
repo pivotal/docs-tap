@@ -48,6 +48,8 @@ This is the table of contents from which the Tanzu Application Platform Document
         - [Detailed role permissions breakdown](authn-authz/permissions-breakdown.md)
       - [Bind a user or group to a default role](authn-authz/binding.md)
       - [Login using Pinniped](authn-authz/pinniped-login.md)
+      - [Additional resources](authn-authz/additional.md)
+        - [Install default roles independently](authn-authz/install.md)
     - [Convention Service](convention-service/about.md)
       - [Install Convention Service](convention-service/install-conv-service.md)
       - [Creating conventions](convention-service/creating-conventions.md)
