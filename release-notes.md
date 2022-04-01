@@ -34,10 +34,10 @@ This topic contains release notes for Tanzu Application Platform v1.1
 - **Runtime Resources Visibility plug-in:** explanation here
 - **Supply Chain Choreographer plug-in:** Added a new graphical representation of the execution of a workload through an installed supply chain. This  includes CRDs in the supply chain, the source results of each stage, as well as details to facilitate the troubleshooting of workloads on their path to production. 
 
-#### Application Accelerator
+#### <a id="app-acc-features"></a> Application Accelerator
 
 - Option values can now be validated using regex
-- TLS for ingress can be enabled using `ingress.enable_tls` flag during package install
+- TLS for ingress are enabled using `ingress.enable_tls` flag during package install
 
 #### Application Live View
 
@@ -111,7 +111,7 @@ The following new conventions are applied to spring boot apps v2.6 and later:
 
 ### <a id='1-1-breaking-changes'></a> Breaking changes
 
-#### Application Accelerator
+#### <a id="app-acc-changes"></a> Application Accelerator
 
 - When enabling ingress the TLS support must now be explicitly enabled using `ingress.tls_enable`.
 
@@ -133,7 +133,7 @@ None.
 
 ### <a id='1-1-resolved-issues'></a> Resolved issues
 
-#### Application Accelerator
+#### <a id="app-acc-resolved"></a> Application Accelerator
 
 - Accelerator engine no longer fails with "java.lang.OutOfMemoryError: Direct buffer memory" when processing very large Git repositories.
 
