@@ -1,4 +1,4 @@
-# Tanzu Application Platform v1.0
+# Tanzu Application Platform v1.1
 
 ## <a id='overview'></a> Overview of Tanzu Application Platform
 
@@ -24,7 +24,7 @@ or dependency patch. And connecting to other applications and data, regardless o
 or what kind of infrastructure they run on, has never been easier, thanks to an internal API
 management portal.
 
-![Illustration of TAP conceptual value.](images/tap-conceptual-value.png)
+![Illustration of TAP conceptual value, starting with components that serve the developer and finishing with the components that serve the operations staff and security staff.](images/tap-conceptual-value.png)
 
 Customers can simplify workflows in both the inner loop and outer loop of Kubernetes-based app
 development with Tanzu Application Platform while creating supply chains.
@@ -43,7 +43,7 @@ development with Tanzu Application Platform while creating supply chains.
     - Tanzu Application Platform uses the choreography pattern inherited from the context of microservices[^1] and applies it to continuous integration and continuous deployment (CI/CD) to create a path to production.[^2]
 
 [^1]: https://stackoverflow.com/questions/4127241/orchestration-vs-choreography
-[^2]: https://tanzu/developer/guides/supply-chain-choreography/
+[^2]: https://tanzu.vmware.com/developer/guides/supply-chain-choreography/
 
 Supply Chains provide a way of codifying all of the steps of your path to production, or what is
 more commonly known as CI/CD. A supply chain differs from CI/CD in that you can add any and every
@@ -106,13 +106,13 @@ The following packages are part of the Tanzu Application Platform:
 
   Cloud Native Runtimes for Tanzu is a serverless application runtime for Kubernetes that is based
   on Knative and runs on a single Kubernetes cluster. For information about Knative, see the
-  [Knative documentation](https://knative.dev/docs/) Cloud Native Runtimes capabilities
+  [Knative documentation](https://knative.dev/docs/) Cloud Native Runtimes capabilities are included
   in VMware Tanzu Advanced Edition and VMware Tanzu Application Platform.
 
 - **[Convention Service for VMware Tanzu](convention-service/about.md)**
 
   The convention service provides a means for people in operational roles to express their hard-won
-  knowledge and opinions about how apps must run on Kubernetes as a convention. The convention
+  knowledge and opinions about how apps should run on Kubernetes as a convention. The convention
   service applies these opinions to fleets of developer workloads as they are deployed to the
   platform, saving operator and developer time.
 
@@ -122,7 +122,7 @@ The following packages are part of the Tanzu Application Platform:
 
   Default roles only apply to a user interacting with the cluster using kubectl and Tanzu CLI. Tanzu Application Platform GUI support for default roles is planned for a future release.
 
-- **[Developer Conventions](convention-service/about.md)**
+- **[Developer Conventions](../convention-service/about.md)**
 
   Developer conventions configure workloads to prepare them for inner loop development.
 
@@ -136,7 +136,7 @@ The following packages are part of the Tanzu Application Platform:
 
   The main role of the source management component is to provide a common interface for artifact acquisition.
 
-- **[Grype](https://github.com/anchore/grype)** in GitHub
+- **[Grype](https://github.com/anchore/grype)**
 
   Grype is a vulnerability scanner for container images and file systems.
 
@@ -155,26 +155,26 @@ The following packages are part of the Tanzu Application Platform:
   Each pre-approved supply chain creates a paved road to production. It orchestrates supply chain
   resources - test, build, scan, and deploy - enabling developers to focus on delivering
   value to their users while also providing app operators with the peace of mind that all code in
-  production has finished all the steps of an approved workflow.
+  production has passed through all the steps of an approved workflow.
 
-- **[Supply Chain Security Tools - Scan](scst-scan/overview.md)**
+- **Supply Chain Security tools for Tanzu - Scan**
 
   With Supply Chain Security Tools for VMware Tanzu - Scan, Tanzu customers can build and deploy
   secure trusted software that complies with their corporate security requirements.
 
   To enable this, Supply Chain Security Tools - Scan provides scanning and gatekeeping capabilities
-  that Application and DevSecOps teams can incorporate earlier in their path to production.
+  that Application and DevSecOps teams can easily incorporate earlier in their path to production.
   This is an established industry best practice for reducing security risk and ensuring more
   efficient remediation.
 
-- **[Supply Chain Security Tools - Store](scst-store/overview.md)**
+- **Supply Chain Security tools for Tanzu - Store**
 
   Supply Chain Security Tools - Store saves software bills of materials (SBoMs) to a database and
   enables you to query for image, source, package, and vulnerability relationships.
   It integrates with Supply Chain Security Tools - Scan to automatically store the resulting source
   and image vulnerability reports.
 
-- **[Tanzu Application Platform GUI](tap-gui/about.md)**
+- **Tanzu Application Platform GUI**
 
   Tanzu Application Platform GUI lets your developers view your organization's running applications
   and services. It provides a central location for viewing dependencies, relationships, technical
@@ -194,19 +194,20 @@ The following packages are part of the Tanzu Application Platform:
   The kpack CLI tool, kp, can aid in managing kpack resources. Build Service helps you
   develop and automate containerized software workflows securely and at scale.
 
-- **[Tanzu Developer Tools for Visual Studio Code](vscode-extension/about.md)**
+- **Tanzu Developer Tools for VSCode**
 
   Tanzu Developer Tools for Visual Studio Code is the official VMware Tanzu IDE extension for VSCode
   to help you develop code using the Tanzu Application Platform.
   The VSCode extension enables live updates of your application while it runs on the cluster and
   lets you debug your application directly on the cluster.
 
-- **[Learning Center for Tanzu Application Platform](learning-center/about.md)**
+- **Tanzu Learning Center**
 
   Learning Center provides a platform for creating and self-hosting workshops. With Learning Center, content
   creators can create workshops from markdown files that learners can view in a terminal
   shell environment with an instructional wizard UI. The UI can embed slide content, an integrated
-  development environment (IDE), a web console for accessing the Kubernetes cluster, and other custom web applications.
+  development environment (IDE), a web console for accessing the Kubernetes cluster, and other custom
+  web applications.
 
   Although Learning Center requires Kubernetes to run, and it teaches users about Kubernetes,
   you can use it to host training for other purposes as well. For example, you can use it to train
@@ -217,15 +218,11 @@ The following packages are part of the Tanzu Application Platform:
   Tekton is a powerful and flexible open-source framework for creating CI/CD systems, enabling
   developers to build, test, and deploy across cloud providers and on-premise systems.
 
-## <a id='profiles-and-packages'></a> Installation profiles in Tanzu Application Platform v1.0
+## <a id='profiles-and-packages'></a> Installation profiles in Tanzu Application Platform v1.1
 
 Tanzu Application Platform is available from predefined profiles or individual packages.
 
 The following profiles are available in Tanzu Application Platform:
-
-- **Light:**
-  Contains packages that drive the Inner Loop personal developer experience of building and
-  iterating on applications.
 
 - **Full:**
   This profile contains all of the Tanzu Application Platform packages.
@@ -237,19 +234,24 @@ The following profiles are available in Tanzu Application Platform:
   This profile is intended for the transformation of source revisions to workload revisions. Specifically, hosting Workloads and SupplyChains.
 
 - **Run:**
-  This profile is intended for the transformation of workload revisions to running pods. Specifically, hosting Deliveries and Deliverables.
+  This profile is intended for the transformation of workload revisions to running Pods. Specifically, hosting Deliveries and Deliverables.
 
 - **View:**
-  This profile is intended for instances of applications related to centralized developer experiences. Specifically, Tanzu Application Platform GUI and Metadata Store.
+  This profile is intended for instances of applications related to centralized developer experiences. Specifically, the Tanzu Application Platform GUI and Metadata Store.
+
 
 ## <a id='about-package-profiles'></a> About Tanzu Application Platform package profiles
 
-You can install Tanzu Application Platform by using predefined profiles or individual packages. This section explains how to install a profile.
+Tanzu Application Platform can be installed through predefined profiles or through individual
+packages. This section explains how to install a profile.
 
-Tanzu Application Platform contains the following two profiles:
+Tanzu Application Platform contains the following five profiles:
 
 - Full (`full`)
-- Light (`light`)
+- Iterate (`iterate`)
+- Build (`build`)
+- Run (`run`)
+- View (`view`)
 
 The following table lists the packages contained in each profile:
 
@@ -259,15 +261,27 @@ The following table lists the packages contained in each profile:
    </td>
    <td><strong>Full</strong>
    </td>
-   <td><strong>Light</strong>
+   <td><strong>Iterate</strong>
+   </td>   
+   <td><strong>Build</strong>
+   </td>
+   <td><strong>Run</strong>
+   </td>
+   <td><strong>View</strong>
    </td>
   </tr>
   <tr>
-   <td>API portal
+   <td>API Portal
    </td>
    <td>&check;
    </td>
    <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>&check;
    </td>
   </tr>
   <tr>
@@ -275,39 +289,97 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>&check;
+   <td>
    </td>
-  </tr>
-  <tr>
-   <td>Application Live View
+   <td>
    </td>
-   <td>&check;
+   <td>
    </td>
    <td>&check;
    </td>
   </tr>
   <tr>
-   <td>Application Live View Conventions
+   <td>Application Live View (Build)
    </td>
    <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
    </td>
    <td>&check;
    </td>
   </tr>
-   <tr>
-   <td>Cloud Native Runtimes
+  <tr>
+   <td>Application Live View (Run)
    </td>
    <td>&check;
    </td>
    <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+  <td>Application Live View (GUI)
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+  <td>Cloud Native Runtimes
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>
    </td>
   </tr>
   <tr>
    <td>Convention Controller
+    </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Default Roles
    </td>
    <td>&check;
    </td>
    <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
    </td>
   </tr>
   <tr>
@@ -317,13 +389,25 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
   </tr>
   <tr>
    <td>Flux Source Controller
+  </td>
+   <td>&check;
+   </td>
+   <td>&check;
    </td>
    <td>&check;
    </td>
    <td>&check;
+   </td>
+   <td>
    </td>
   </tr>
   <tr>
@@ -333,9 +417,21 @@ The following table lists the packages contained in each profile:
    </td>
    <td>
    </td>
-  </tr>  
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+  </tr>
   <tr>
    <td>Image Policy Webhook
+  </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
    </td>
    <td>&check;
    </td>
@@ -344,17 +440,30 @@ The following table lists the packages contained in each profile:
   </tr>
   <tr>
    <td>Learning Center
-   </td>
+  </td>
    <td>&check;
    </td>
    <td>
    </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
   </tr>
+  <tr>
    <td>Out of the Box Delivery - Basic
    </td>
    <td>&check;
    </td>
    <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>
    </td>
   </tr>
   <tr>
@@ -364,19 +473,37 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
   </tr>
   <tr>
    <td>Out of the Box Supply Chain - Testing
    </td>
-   <td>&check;<sup>&ast;</sup>
+   <td>&check;
    </td>
    <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
    </td>
   </tr>
   <tr>
    <td>Out of the Box Supply Chain - Testing and Scanning
    </td>
-   <td>&check;<sup>&ast;</sup>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>
    </td>
    <td>
    </td>
@@ -388,12 +515,11 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-  </tr>
-   <td>Services Toolkit
-   </td>
    <td>&check;
    </td>
    <td>&check;
+   </td>
+   <td>
    </td>
   </tr>
   <tr>
@@ -403,6 +529,26 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Services Toolkit
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
   </tr>
   <tr>
    <td>Source Controller
@@ -411,13 +557,25 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
   </tr>
   <tr>
    <td>Spring Boot Convention
-   </td>
+  </td>
    <td>&check;
    </td>
    <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
    </td>
   </tr>
   <tr>
@@ -427,14 +585,40 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
   </tr>
   <tr>
    <td>Supply Chain Security Tools - Scan</td>
-   <td>&check;</td><td></td>
+  </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
   </tr>
   <tr>
    <td>Supply Chain Security Tools - Store</td>
-   <td>&check;</td><td></td>
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
   </tr>
   <tr>
    <td>Tanzu Build Service
@@ -443,11 +627,23 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
   </tr>
   <tr>
    <td>Tanzu Application Platform GUI
    </td>
    <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
    </td>
    <td>&check;
    </td>
@@ -459,13 +655,34 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
   </tr>
+  <tr>
+   <td>Telemetry
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
 </table>
 
-<sup>\*</sup> Only one supply chain must be installed at any given time.
-For information about switching from one supply chain to another, see [Getting Started with Tanzu Application Platform](getting-started.md).
+<sup>\*</sup> Only one supply chain should be installed at any given time.
+For information on switching from one supply chain to another, see [Getting Started with Tanzu Application Platform](getting-started.md).
 
-## <a id='install'></a> About installing the Tanzu Application Platform v1.0
+## <a id='install'></a> About installing the Tanzu Application Platform v1.1
 
 To install the Tanzu Application Platform profiles, see [Installing Tanzu Application Platform](install-intro.md).
 
@@ -477,13 +694,9 @@ Tanzu Application Platform participates in the VMware Customer Experience Improv
 As part of CEIP, VMware collects technical information about your organization’s use of VMware
 products and services in association with your organization’s VMware license keys.
 For information about CEIP, see the [Trust & Assurance Center](http://www.vmware.com/trustvmware/ceip.html).
-You can join or leave CEIP at any time.
-The CEIP Standard Participation Level provides VMware with information to:
-
-- improve its products and services
-- identify and fix problems
-- advise you on how to best deploy and use VMware products
-
+You may join or leave CEIP at any time.
+The CEIP Standard Participation Level provides VMware with information to improve its products and
+services, identify and fix problems, and advise you on how to best deploy and use VMware products.
 For example, this information can enable a proactive product deployment discussion with your VMware
 account team or VMware support team to help resolve your issues.
 This information cannot directly identify any individual.
