@@ -1,6 +1,6 @@
 # Release notes
 
-This topic contains release notes for Tanzu Application Platform v1.
+This topic contains release notes for Tanzu Application Platform v1.1
 
 ## <a id='1-1'></a> v1.1
 
@@ -8,28 +8,26 @@ This topic contains release notes for Tanzu Application Platform v1.
 
 ### <a id='1-1-new-features'></a> New features
 
-#### Tanzu Application Platform profile - iterate
-This new profile is intended for iterative development versus the path to production.
+#### Installing
 
-#### Tanzu Application Platform profile - build
 
-#### Tanzu Application Platform profile - run
+* **Tanzu Application Platform profile - Iterate** : This profile is intended for iterative development versus the path to production.
 
-#### Tanzu Application Platform profile - full
+* **Tanzu Application Platform profile - Build** : This profile is intended for the transformation of source revisions to workload revisions. Specifically, hosting Workloads and SupplyChains. 
 
-* New packages added....
+* **Tanzu Application Platform profile - Run** : This profile is intended for the transformation of workload revisions to running Pods. Specifically, hosting Deliverys and Deliverables.
+
+* **Tanzu Application Platform profile - View** : This profile is intended for instances of applications related to centralized developer experiences. Specifically, the TAP GUI and Metadata Store.
+
+* **Tanzu Application Platform profile - Full** : This profile contains all of the Tanzu Application Platform packages.
+  - New packages included in the Full profile:
+    - to be added here
 
 #### Default roles for Tanzu Application Platform
 
 - Introduction of [five new default roles](authn-authz/overview.md) and related permissions that apply to **k8s resources**. These roles help operators set up common sets of permissions to limit the access that users and service accounts have on a cluster that runs Tanzu Application Platform.
   - Three roles are for users, including: app-editor, app-viewer and app-operator.
   - Two roles are for “robot” or system permissions, including: workload and deliverable.
-
-
-#### Tanzu Application Platform GUI
-
-- **Runtime Resources Visibility plug-in:** explanation here
-- **Supply Chain Choreographer plug-in:** Added a new graphical representation of the execution of a workload through an installed supply chain. This  includes CRDs in the supply chain, the source results of each stage, as well as details to facilitate the troublshooting of workloads on their path to production. 
 
 #### Application Accelerator
 
@@ -63,7 +61,6 @@ This new profile is intended for iterative development versus the path to produc
 * The `namespace` value that can be passed in for the `--service-ref` flag is now deprecated.
   * A deprecation warning message has been added to the `workload create/update/apply...` when user specifies a namespace in the `--service-ref` object
 
-
 #### Service Bindings
 
 - Applied [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339) timestamps to service binding logs.
@@ -96,7 +93,6 @@ The following new conventions are applied to spring boot apps v2.6 and later:
 - Support configuring Namespace where webhook is installed
 - Support for registries with self-signed certificates
 
-
 #### Supply Chain Security Tools - Store
 
 - Introduced v1 endpoints to query with pagination
@@ -109,43 +105,37 @@ The following new conventions are applied to spring boot apps v2.6 and later:
 - Created Tanzu CLI plugin called Insight
 - Upgraded golang version from `1.17.5` to `1.17.8`
 
+#### Tanzu Application Platform GUI
+
+- **Runtime Resources Visibility plug-in:** 
+- **Supply Chain Choreographer plug-in:** Added a new graphical representation of the execution of a workload through an installed supply chain. This  includes CRDs in the supply chain, the source results of each stage, as well as details to facilitate the troublshooting of workloads on their path to production. 
+
 ### <a id='1-1-breaking-changes'></a> Breaking changes
 
 #### Application Accelerator
 
 - When enabling ingress the TLS support must now be explicitly enabled using `ingress.tls_enable`.
 
+#### Supply Chain Security Tools - Scan
+
+- **Deprecated API version:** API version `scanning.apps.tanzu.vmware.com/v1alpha1` is deprecated.
+
 #### Supply Chain Security Tools - Store
 
 - Insight CLI is deprecated, customers can now use Tanzu CLI plugin called Insight.
   - Renamed all instances of `create` verb to `add` for all CLI commands.
 
-#### Supply Chain Security Tools - Scan
-
-- **Deprecated API version:** API version `scanning.apps.tanzu.vmware.com/v1alpha1` is deprecated.
-
 ### <a id='1-1-security-issues'></a> Security issues
 
 This release has the following security issues:
 
+None.
 
 ### <a id='1-1-resolved-issues'></a> Resolved issues
 
 #### Application Accelerator
 
 - Accelerator engine no longer fails with "java.lang.OutOfMemoryError: Direct buffer memory" when processing very large Git repositories.
-
-#### Tanzu CLI - Apps plug-in
-
-- Apps plug-in no longer crashes when `KUBECONFIG` includes the colon (`:`) config file delimiter.
-- `tanzu apps workload get`: Passing in `--output json` and `--export` flags together exports the workload in JSON rather than YAML.
-- `tanzu apps workload tail`: Duplicate log entries created for init containers are removed.
-- `tanzu apps workload create/update/apply`
-  - When the `--wait` flag passed and the prompt "Do you want to create this workload?" 
-  is declined, the command immediately exits 0 rather than hanging (continuing to "wait").
-  - Workload name is now validated when the workload values are passed in through `--file workload.yaml`.
-  - When creating/applying a workload from –local-path, if user answers “No” to the prompt “Are you sure you want to publish your local code to [registry name] where others may be able to access it?”, the command now exits 0 immediately rather than showing the workload diff and prompting to continue with workload creation.
-  - `.spec.build.env` in workload yaml definition file is being removed when using tanzu apps workload apply command
 
 #### Services Toolkit
 
@@ -161,29 +151,49 @@ This release has the following security issues:
 
 - Fixed an issue where querying a source report with local path name would return the following error: `{ "message": "Not found" }`
 
+#### Tanzu CLI - Apps plug-in
+
+- Apps plug-in no longer crashes when `KUBECONFIG` includes the colon (`:`) config file delimiter.
+- `tanzu apps workload get`: Passing in `--output json` and `--export` flags together exports the workload in JSON rather than YAML.
+- `tanzu apps workload tail`: Duplicate log entries created for init containers are removed.
+- `tanzu apps workload create/update/apply`
+  - When the `--wait` flag passed and the prompt "Do you want to create this workload?" 
+  is declined, the command immediately exits 0 rather than hanging (continuing to "wait").
+  - Workload name is now validated when the workload values are passed in through `--file workload.yaml`.
+  - When creating/applying a workload from –local-path, if user answers “No” to the prompt “Are you sure you want to publish your local code to [registry name] where others may be able to access it?”, the command now exits 0 immediately rather than showing the workload diff and prompting to continue with workload creation.
+  - `.spec.build.env` in workload yaml definition file is being removed when using tanzu apps workload apply command
+
+
 ### <a id='1-1-known-issues'></a> Known issues
 
 #### Tanzu Application Platform
 
 - **Deprecated profile:** Tanzu Application Platform light profile is deprecated.
 
+#### Application Live View
+
+- **App Live View connector sometimes does not connect to the backend**
+  Workaround: Check the app live view connector pod logs to see if there are any rsocket connection issues to the backend. 
+  Try deleting the connector pod so it gets recreated:
+  ```
+  kubectl -n app-live-view delete pods -l=name=application-live-view-connector
+  ```
+
 #### Grype scanner
 
-**Scanning Java source code may not reveal vulnerabilities:** Source Code Scanning only scans
-files present in the source code repository.
-No network calls are made to fetch dependencies.
+- **Scanning Java source code may not reveal vulnerabilities:** Source Code Scanning only scans
+files present in the source code repository. No network calls are made to fetch dependencies.
 For languages using dependency lock files, such as Golang and Node.js, Grype uses the
 lock files to check the dependencies for vulnerabilities.
-
-For Java, dependency lock files are not guaranteed, so Grype instead uses the
+- For Java, dependency lock files are not guaranteed, so Grype instead uses the
 dependencies present in the built binaries (`.jar` or `.war` files).
-
-Because VMware does not recommend committing binaries to source code repositories, Grype
+- Because VMware does not recommend committing binaries to source code repositories, Grype
 fails to find vulnerabilities during a Source Scan. The vulnerabilities are still found during the
 Image Scan, after the binaries are built and packaged as images.
 
 #### Supply Chain Choreographer plug-in
 - **Details for ConfigMap CRD not appearing:** `Unable to retrieve conditions for ConfigMap...` error appears in details section after clicking on the ConfigMap stage in the graph view of a supply chain. This does not necessarily mean that the workload failed its execution through the supply chain.
+
 #### Supply Chain Security Tools – Scan
 
 - **Scan Phase indicates `Scanning` incorrectly:** Scans have an edge case that when an error
@@ -218,15 +228,6 @@ Image Scan, after the binaries are built and packaged as images.
 - **No support for installing in custom namespaces:**
   Supply Chain Security Tools — Store is deployed to the `metadata-store` namespace.
   There is no support for configuring the namespace.
-
-#### Application Live View
-
-- **App Live View connector sometimes does not connect to the backend**
-  Workaround: Check the app live view connector pod logs to see if there are any rsocket connection issues to the backend. 
-  Try deleting the connector pod so it gets recreated:
-  ```
-  kubectl -n app-live-view delete pods -l=name=application-live-view-connector
-  ```
 
 
 ## <a id='1-0'></a> v1.0
@@ -282,16 +283,13 @@ _Troubleshooting Tanzu Application Platform_.
 
 #### Grype scanner
 
-**Scanning Java source code may not reveal vulnerabilities:** Source Code Scanning only scans
-files present in the source code repository.
-No network calls are made to fetch dependencies.
-For languages that make use of dependency lock files, such as Golang and Node.js, Grype uses the
+- **Scanning Java source code may not reveal vulnerabilities:** Source Code Scanning only scans
+files present in the source code repository. No network calls are made to fetch dependencies.
+- For languages that make use of dependency lock files, such as Golang and Node.js, Grype uses the
 lock files to check the dependencies for vulnerabilities.
-
-In the case of Java, dependency lock files are not guaranteed, so Grype instead uses the
+- In the case of Java, dependency lock files are not guaranteed, so Grype instead uses the
 dependencies present in the built binaries (`.jar` or `.war` files).
-
-Because best practices do not include committing binaries to source code repositories, Grype
+- Because best practices do not include committing binaries to source code repositories, Grype
 fails to find vulnerabilities during a Source Scan. The vulnerabilities are still found during the
 Image Scan, after the binaries are built and packaged as images.
 
