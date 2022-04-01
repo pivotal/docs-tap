@@ -2,6 +2,44 @@
 
 This topic contains release notes for Tanzu Application Platform v1.0.
 
+## <a id='1-0-2'></a> v1.0.3
+
+**Release Date**: April 1, 2022
+
+### <a id='1-0-2-known-issues'></a> Known issues
+
+This release has the following known issues:
+
+#### Grype scanner
+
+**Scanning Java source code may not reveal vulnerabilities:** Source Code Scanning only scans
+files present in the source code repository.
+No network calls are made to fetch dependencies.
+For languages that make use of dependency lock files, such as Golang and Node.js, Grype uses the
+lock files to check the dependencies for vulnerabilities.
+
+In the case of Java, dependency lock files are not guaranteed, so Grype instead uses the
+dependencies present in the built binaries, such as `.jar` or `.war` files.
+
+Because best practices do not include committing binaries to source code repositories, Grype
+fails to find vulnerabilities during a Source Scan. The vulnerabilities are still found during the
+Image Scan, after the binaries are built and packaged as images.
+
+#### Supply Chain Security Tools – Scan
+
+- **Two scan jobs and two scan pods appear at the same time**: There is an edge case where two scan
+jobs and two scan pods appear when a scan policy is updated.
+This does not affect the result of the scan.
+- **Scan Phase indicates `Scanning` incorrectly:** Scans have an edge case where, when an error
+occurs during scanning, the Scan Phase field is not updated to `Error` and remains in the
+`Scanning` phase. Read the scan Pod logs to verify if there was an error.
+
+### <a id='1-0-2-resolved-issues'></a> Resolved issues
+
+This release has the following fixes:
+
+- ‘CVE-2022-22965': Spring Framework RCE via Data Binding on JDK 9+
+
 ## <a id='1-0-2'></a> v1.0.2
 
 **Release Date**: March 8, 2022
