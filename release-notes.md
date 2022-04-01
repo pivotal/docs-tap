@@ -13,9 +13,9 @@ This topic contains release notes for Tanzu Application Platform v1.1
 
 * **Tanzu Application Platform profile - Iterate** : This profile is intended for iterative development versus the path to production.
 
-* **Tanzu Application Platform profile - Build** : This profile is intended for the transformation of source revisions to workload revisions. Specifically, hosting Workloads and SupplyChains. 
+* **Tanzu Application Platform profile - Build** : This profile is intended for the transformation of source revisions to workload revisions. Specifically, hosting workloads and SupplyChains. 
 
-* **Tanzu Application Platform profile - Run** : This profile is intended for the transformation of workload revisions to running Pods. Specifically, hosting Deliveries and Deliverables.
+* **Tanzu Application Platform profile - Run** : This profile is intended for the transformation of workload revisions to running pods. Specifically, hosting deliveries and deliverables.
 
 * **Tanzu Application Platform profile - View** : This profile is intended for instances of applications related to centralized developer experiences. Specifically, Tanzu Application Platform GUI and Metadata Store.
 
