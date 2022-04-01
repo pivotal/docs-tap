@@ -1,22 +1,22 @@
 # Functions
 
-## Overview
+## <a id="overview"></a>Overview
 
-Functions on Tanzu Application Platform enables you to deploy function-based workloads. You can use starter templates to bootstrap your function and write only the code that matters to your business. You can run a single CLI command to deploy your function to an auto-scaled cluster.
+Functions on Tanzu Application Platform allows you to deploy function-based workloads. You can use starter templates to bootstrap your function and write only the code that matters to your business. You can run a single CLI command to deploy your function to an auto-scaled cluster.
 
 This document describes how to create and deploy an HTTP function workload from an application accelerator starter template.
 
 >**Caution:** This functionality is currently in beta and is intended for evaluation and test purposes only.
 
-## Prerequisites
+## <a id="prereqs"></a>Prerequisites
 
 Before using functions workloads on Tanzu Application Platform, complete the following prerequisites:
 
 - Complete all steps described in [Installing Tanzu Application Platform](../install-intro.md).
 - Download and install the kp CLI for your operating system from the [Tanzu Build Service](https://network.tanzu.vmware.com/products/build-service/) page on Tanzu Network. For more information, see the [kp CLI help text](https://github.com/vmware-tanzu/kpack-cli/blob/v0.4.0/docs/kp.md) on GitHub.
-- [Set up developer namespaces to use installed packages](https://docs.vmware.com/en/Tanzu-Application-Platform/1.0/tap/GUID-install-components.html#setup)
+- [Set up developer namespaces to use installed packages](https://docs.vmware.com/en/Tanzu-Application-Platform/1.0/tap/GUID-install-components.html#setup).
 
-## Add buildpackages to a ClusterStore
+## <a id="add-buildpacks"></a>Add buildpackages to a ClusterStore
 
 1. Add the functions buildpackages to the default ClusterStore. Run:
 
@@ -71,7 +71,7 @@ Where:
 
 - VERSION is the version of Tanzu Application Platform GUI you have installed. For example, 1.0.2.
 
-## Add accelerators to Tanzu Application Platform GUI
+## <a id="add-accelerators"></a>Add accelerators to Tanzu Application Platform GUI
 
 Application Accelerator is a component of Tanzu Application Platform. An accelerator contains your enterprise-conformant code and configurations that developers can use to create new projects that automatically follow the standards defined in your accelerators.
 
@@ -96,7 +96,7 @@ The accelerator ZIP file contains a file called k8s-resource.yaml. This file con
 
     It might take time for Tanzu Application Platform GUI to refresh the catalog to see your added functions accelerators.
 
-## Create a functions project from an accelerator
+## <a id="create-functions-proj"></a>Create a functions project from an accelerator
 
 1. From the Tanzu Application Platform GUI portal, click **Create** on the left navigation bar to see the list of available accelerators.
 
@@ -111,7 +111,7 @@ The accelerator ZIP file contains a file called k8s-resource.yaml. This file con
 
 1. After downloading the ZIP file, expand it in a workspace directory and follow your preferred procedure for uploading the generated project files to a Git repository for your new project.
 
-## Deploy your function
+## <a id="deploy-function"></a>Deploy your function
 
 1. Deploy the Function accelerator by running the tanzu apps workload create command:
 
@@ -123,23 +123,24 @@ The accelerator ZIP file contains a file called k8s-resource.yaml. This file con
     --yes
     ```
 
-Where:
+    Where:
 
-- --source-image is a writable repository in your registry.
+    - --source-image is a writable repository in your registry.
 
-Harbor has the form: "my-harbor.io/my-project/functions-accelerator-python".
+    Harbor has the form: "my-harbor.io/my-project/functions-accelerator-python".
 
-Dockerhub has the form: "my-dockerhub-user/functions-accelerator-python".
+    Dockerhub has the form: "my-dockerhub-user/functions-accelerator-python".
 
-Google Cloud Registry has the form: "gcr.io/my-project/functions-accelerator-python".
+    Google Cloud Registry has the form: "gcr.io/my-project/functions-accelerator-python".
 
 1. View the build and runtime logs for your application by running the tail command:
 
-```
-tanzu apps workload tail tanzu-java-web-app --since 10m --timestamp
-```
+    ```
+    tanzu apps workload tail tanzu-java-web-app --since 10m --timestamp
+    ```
 
-1. After the workload is built and running, you can view the web application in your browser. To view the URL of the web application, run the following command and then press ctrl-click on the Workload Knative Services URL at the bottom of the command output.
+1. After the workload is built and running, you can view the web application in your browser. To view the URL of the web application, run the following command and then ctrl-click the Workload Knative Services URL at the bottom of the command output.
 
-```tanzu apps workload get functions-accelerator-python
-```
+    ```
+    tanzu apps workload get functions-accelerator-python
+    ```

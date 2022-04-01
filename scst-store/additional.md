@@ -10,7 +10,7 @@ Supply Chain Security Tools - Store is released as part of Tanzu Application Pla
 
 ## <a id='components'></a>Components
 
-Supply Chain Security Tools - Store has three components:
+Supply Chain Security Tools - Store has three components.  
 
 - [CLI plugin](cli-installation.md)
 - [API](api.md)
@@ -20,6 +20,7 @@ For more information, see [Deployment Details and Configuration](deployment-deta
 
 ## <a id='additional-info'></a>Additional documentation
 
+- <a id='install-scst-store'></a>[Install Supply Chain Security Tools - Store independent from Tanzu Application Platform profiles](install-scst-store.md)
 - <a id='aws-rds'></a>[AWS RDS Postgres configuration](use-aws-rds.md)
 - <a id='audit'></a>[Log configuration and usage](logs.md)
 - <a id='known-issues'></a>[Troubleshooting and Known Issues](known-issues.md)

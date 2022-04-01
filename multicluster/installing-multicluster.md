@@ -7,6 +7,22 @@ Before installing multicluster Tanzu Application Platform profiles, you must mee
 - Build, Run, and View clusters must satisfy all the requirements to install Tanzu Application Platform. See [Prerequisites](../prerequisites.md).
 - Install Tanzu CLI and Tanzu Cluster Essentials on all clusters. For more information, see [Installing the Tanzu CLI](../install-tanzu-cli.md).
 
+## <a id='order-of-operations'></a> Multicluster Installation Order of Operations
+
+The installation order is flexible given the ability to update the installation with a modified values file using the `tanzu package installed update` command. Below is an example of the order of operations that can be used:
+
+  1. [Install View profile cluster](#install-view-cluster)
+  2. [Install Build profile cluster](#install-build-clusters)
+  3. [Install Run profile cluster](#install-run-cluster)
+  4. Add RBAC, cluster URL, and token from Build and Run clusters as documented in [Viewing resources on multiple clusters in Tanzu Application Platform GUI](../tap-gui/cluster-view-setup.md)
+  5. Update the View cluster's installation values file with the above information and issue the `tanzu package installed update` command as showb below in order to pass the updated config values to the Tanzu Application Platform GUI:
+
+    ```shell
+    tanzu package install tap -p tap.tanzu.vmware.com -v TAP_VERSION --values-file tap-values.yml -n tap-install
+    ```
+
+    Where `TAP_VERSION` is the Tanzu Application Platform version you've installed
+
 ## <a id='install-view'></a> Install View cluster
 
 Install the View profile cluster first, because some components must exist before installing the Run clusters. For example, the Application Live View back end must be present before installing the Run clusters. For more information about profiles, see [About Tanzu Application Platform package profiles](../overview.md#about-package-profiles).
@@ -32,7 +48,7 @@ To install the Run profile cluster:
 ## <a id='add-view'></a> Add Build and Run clusters to Tanzu Application Platform GUI
 
 1. After installing the Build and Run clusters, create the `Service Accounts` that Tanzu Application Platform GUI uses to read objects from the clusters. 
-1. Follow the steps in [Viewing resources on multiple clusters in Tanzu Application Platform GUI](../tap-gui/cluster-view-setup.md) to add a remote cluster. You must add both the Build and Run clusters to the View cluster for all plug-ins to function as expected.
+1. Follow the steps in [Viewing resources on multiple clusters in Tanzu Application Platform GUI](../tap-gui/cluster-view-setup.md) to add a remote cluster. These steps create the necessary RBAC elements the will allow you to pull the URL and token from the Build and Run clusters that you will them come back and add to the View cluster's values file. You must add both the Build and Run clusters to the View cluster for all plug-ins to function as expected.
 
 ## Next steps
 

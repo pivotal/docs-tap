@@ -1,14 +1,14 @@
 # Add data
 
-This topic describes how to add Software Bill of Materials (SBoM) files to Supply Chain Security Tools - Store to understand your dependencies by querying. For instructions on querying, see [Query Data](../scst-store/query-data.md).
+This topic describes how to add vulnerability scan reports or Software Bill of Materials (SBoM) files to the Supply Chain Security Tools - Store.
 
 ## <a id='supported-formats'></a>Supported Formats and File Types
 
 Currently, only CycloneDX XML and JSON files are accepted.
 
-Source commits and image files are tested. Additional file types, for example, JAR, might work because they are not fully tested.
+Source commits and image files have been tested. Additional file types may work, but are not fully supported (e.g., JAR files).
 
->**Note:** If using a non-source commit or image file type, you must ensure the `component.version` field in the CycloneDX file is non-null, because the database expects a unique identifier.
+>**Note:** If not using a source commit or image file, you must ensure the `component.version` field in the CycloneDX file is non-null.
 
 ## <a id='gen-cyclone'></a>Generate a CycloneDX File
 
@@ -42,19 +42,19 @@ To use Grype to scan an image and generate an image report in CycloneDX format:
 
 Use the following commands to add data:
 
-- `image create`
-- `source create`
+- `image add`
+- `source add`
 
->**Note:** If using a non-source commit or image file type, you can select either option.
+>**Note:** If not using a source commit or image file, you can select either option.
 
-## <a id='example1'></a>Example #1: Create an Image Report
+## <a id='example1'></a>Example #1: Add an Image Report
 
 To use a CycloneDX-formatted image report:
 
 1. Run:
 
     ```
-    tanzu insight image create --cyclonedxtype TYPE --path IMAGE-CVE-REPORT
+    tanzu insight image add --cyclonedxtype TYPE --path IMAGE-CVE-REPORT
     ```
 
     Where:
@@ -65,7 +65,7 @@ To use a CycloneDX-formatted image report:
     For example:
 
     ```
-    $ tanzu insight image create --cyclonedxtype xml --path downloads/image-cve-report
+    $ tanzu insight image add --cyclonedxtype xml --path downloads/image-cve-report
     Image report created.
     ```
 
@@ -73,14 +73,14 @@ To use a CycloneDX-formatted image report:
   Support for more data might be added in the future.
 
 
-## <a id='example2'></a>Example #2: Create a Source Report
+## <a id='example2'></a>Example #2: Add a Source Report
 
 To use a CycloneDX-formatted source report:
 
 1. Run:
 
     ```
-    tanzu insight source create --cyclonedxtype TYPE --path SOURCE-CVE-REPORT
+    tanzu insight source add --cyclonedxtype TYPE --path SOURCE-CVE-REPORT
     ```
 
     Where:
@@ -91,7 +91,7 @@ To use a CycloneDX-formatted source report:
     For example:
 
     ```
-    $ tanzu insight source create --cyclonedxtype json --path source-cve-report
+    $ tanzu insight source add --cyclonedxtype json --path source-cve-report
     Source report created.
     ```
 
