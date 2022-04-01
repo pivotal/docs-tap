@@ -66,7 +66,7 @@ Use the following procedure to verify that the packages are installed.
     ootb-templates           ootb-templates.tanzu.vmware.com                    0.5.1            Reconcile succeeded
     scan-controller          scanning.apps.tanzu.vmware.com                     1.0.0            Reconcile succeeded
     service-bindings         service-bindings.labs.vmware.com                   0.5.0            Reconcile succeeded
-    services-toolkit         services-toolkit.tanzu.vmware.com                  0.5.1            Reconcile succeeded
+    services-toolkit         services-toolkit.tanzu.vmware.com                  0.6.0            Reconcile succeeded
     source-controller        controller.source.apps.tanzu.vmware.com            0.2.0            Reconcile succeeded
     tap-gui                  tap-gui.tanzu.vmware.com                           0.3.0-rc.4       Reconcile succeeded
     tekton-pipelines         tekton.tanzu.vmware.com                            0.30.0           Reconcile succeeded
