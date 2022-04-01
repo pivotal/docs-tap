@@ -98,14 +98,9 @@ The following new conventions are applied to spring boot apps v2.6 and later:
 
 #### Supply Chain Security Tools - Store
 
-- Introduced v1 endpoints to query with pagination
-  - Added v1 GET images endpoint
-  - Added v1 GET sources endpoint
-  - Added v1 GET packages endpoint
-  - Added v1 GET vulnerabilities endpoint
 - Added Contour Ingress support with custom domain name
-- Added related packages to image and source vulnerabilities
-- Created Tanzu CLI plugin called Insight
+- Created Tanzu CLI plug-in called `insight`
+  - Currently, only MacOS and Linux are supported for the `insight` plug-in.
 - Upgraded golang version from `1.17.5` to `1.17.8`
 
 ### <a id='1-1-breaking-changes'></a> Breaking changes
@@ -116,8 +111,9 @@ The following new conventions are applied to spring boot apps v2.6 and later:
 
 #### Supply Chain Security Tools - Store
 
-- Insight CLI is deprecated, customers can now use Tanzu CLI plugin called Insight.
+- The independent `insight` CLI is deprecated, customers can now use Tanzu CLI plugin called `insight`.
   - Renamed all instances of `create` verb to `add` for all CLI commands.
+  - Currently, only MacOS and Linux are supported for the `insight` plug-in.
 
 #### Supply Chain Security Tools - Scan
 
@@ -159,6 +155,8 @@ This release has the following security issues:
 #### Supply Chain Security Tools - Store
 
 - Fixed an issue where querying a source report with local path name would return the following error: `{ "message": "Not found" }`
+- Return related packages when querying image and source vulnerabilities
+- Ratings are updated when updating vulnerabilities
 
 ### <a id='1-1-known-issues'></a> Known issues
 
@@ -192,6 +190,10 @@ Image Scan, after the binaries are built and packaged as images.
 
 #### Supply Chain Security Tools - Store
 
+- **`insight` CLI plug-in does not support Windows**
+
+    Currently, only MacOS and Linux are supported for the `insight` plug-in.
+
 - **Persistent volume retains data:**
 
     If Supply Chain Security Tools - Store is deployed, deleted, and then redeployed the
@@ -199,10 +201,8 @@ Image Scan, after the binaries are built and packaged as images.
     This is caused by the persistent volume used by postgres retaining old data, even though the retention
     policy is set to `DELETE`.
 
-    To resolve this issue, see [CrashLoopBackOff from Password Authentication Fails](troubleshooting.html#password-authentication-fails)
-    in _Troubleshooting Tanzu Application Platform_.
+    To resolve this issue, see [solution](scst-store/troubleshooting.md#persistent-volume-retains-data-solution).
 
-    > **Warning:** Changing the database password deletes your Supply Chain Security Tools - Store data.
 
 - **Missing persistent volume:**
 
@@ -213,8 +213,7 @@ Image Scan, after the binaries are built and packaged as images.
 
     The provisioner of `storageclass` is responsible for creating the persistent volume after
     `metadata-store-db` attaches `postgres-db-pv-claim`. To resolve this issue, see
-    [Missing Persistent Volume](troubleshooting.html#missing-persistent-volume)
-    in _Troubleshooting Tanzu Application Platform_.
+    [solution](scst-store/troubleshooting.md#missing-persistent-volume-solution).
 
 - **No support for installing in custom namespaces:**
 
