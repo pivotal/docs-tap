@@ -15,12 +15,12 @@ This topic contains release notes for Tanzu Application Platform v1.1
 
 * **Tanzu Application Platform profile - Build** : This profile is intended for the transformation of source revisions to workload revisions. Specifically, hosting Workloads and SupplyChains. 
 
-* **Tanzu Application Platform profile - Run** : This profile is intended for the transformation of workload revisions to running Pods. Specifically, hosting Deliverys and Deliverables.
+* **Tanzu Application Platform profile - Run** : This profile is intended for the transformation of workload revisions to running Pods. Specifically, hosting Deliveries and Deliverables.
 
-* **Tanzu Application Platform profile - View** : This profile is intended for instances of applications related to centralized developer experiences. Specifically, the TAP GUI and Metadata Store.
+* **Tanzu Application Platform profile - View** : This profile is intended for instances of applications related to centralized developer experiences. Specifically, Tanzu Application Platform GUI and Metadata Store.
 
 * **Tanzu Application Platform profile - Full** : This profile contains all of the Tanzu Application Platform packages.
-  - New packages included in the Full profile:
+  - New packages in the Full profile:
     - to be added here
 
 #### Default roles for Tanzu Application Platform
@@ -104,10 +104,10 @@ The following new conventions are applied to spring boot apps v2.6 and later:
   - Currently, only MacOS and Linux are supported for the `insight` plug-in.
 - Upgraded golang version from `1.17.5` to `1.17.8`
 
-#### Tanzu Application Platform GUI
+#### <a id="gui-features"></a>|Tanzu Application Platform GUI
 
 - **Runtime Resources Visibility plug-in:** 
-- **Supply Chain Choreographer plug-in:** Added a new graphical representation of the execution of a workload through an installed supply chain. This  includes CRDs in the supply chain, the source results of each stage, as well as details to facilitate the troublshooting of workloads on their path to production. 
+- **Supply Chain Choreographer plug-in:** Added a new graphical representation of the execution of a workload through by using an installed supply chain. This  includes CRDs in the supply chain, the source results of each stage, and details to facilitate the troubleshooting of workloads on their path to production.  
 
 ### <a id='1-1-breaking-changes'></a> Breaking changes
 
@@ -155,15 +155,15 @@ None.
 
 #### Tanzu CLI - Apps plug-in
 
-- Apps plug-in no longer crashes when `KUBECONFIG` includes the colon (`:`) config file delimiter.
+- Apps plug-in no longer fails when `KUBECONFIG` includes the colon (`:`) config file delimiter.
 - `tanzu apps workload get`: Passing in `--output json` and `--export` flags together exports the workload in JSON rather than YAML.
 - `tanzu apps workload tail`: Duplicate log entries created for init containers are removed.
 - `tanzu apps workload create/update/apply`
-  - When the `--wait` flag passed and the prompt "Do you want to create this workload?" 
-  is declined, the command immediately exits 0 rather than hanging (continuing to "wait").
-  - Workload name is now validated when the workload values are passed in through `--file workload.yaml`.
-  - When creating/applying a workload from –local-path, if user answers “No” to the prompt “Are you sure you want to publish your local code to [registry name] where others may be able to access it?”, the command now exits 0 immediately rather than showing the workload diff and prompting to continue with workload creation.
-  - `.spec.build.env` in workload yaml definition file is being removed when using tanzu apps workload apply command
+  - When the `--wait` flag passed and the dialog box "Do you want to create this workload?" 
+  is declined, the command immediately exits 0, rather than hanging and continuing to wait.
+  - Workload name is now validated when the workload values are passed in by using `--file workload.yaml`.
+  - When creating or applying a workload from –local-path, if user answers “No” to the prompt “Are you sure you want to publish your local code to [registry name] where others may be able to access it?”, the command now exits 0 immediately rather than showing the workload diff and prompting to continue with workload creation.
+  - `.spec.build.env` in workload YAML definition file is being removed when using Tanzu apps workload apply command
 
 
 ### <a id='1-1-known-issues'></a> Known issues
