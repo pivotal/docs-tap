@@ -192,7 +192,7 @@ Image Scan, after the binaries are built and packaged as images.
 
 #### Supply Chain Security Tools - Store
 
-- **Persistent volume retains data**
+- **Persistent volume retains data:**
 
     If Supply Chain Security Tools - Store is deployed, deleted, and then redeployed the
     `metadata-store-db` Pod fails to start if the database password changed during redeployment.
