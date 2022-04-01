@@ -1,6 +1,8 @@
 # CLI plug-in installation
 
->**Note:** By following the [instructions](../install-tanzu-cli.md) to install the Tanzu CLI and all the plug-ins, the `insight` plug-in is also installed.
+>**Note:**
+> * By following the [instructions](../install-tanzu-cli.md) to install the Tanzu CLI and all the plug-ins, the `insight` plug-in is also installed.
+> * Currently, only MacOS and Linux are supported for the `tanzu insight` plug-in. Windows is not supported.
 
 This topic explains how to install the `insight` plug-in by itself, after the user has installed the Tanzu CLI.
 

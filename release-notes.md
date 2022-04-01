@@ -29,6 +29,11 @@ This topic contains release notes for Tanzu Application Platform v1.1
   - Three roles are for users, including: app-editor, app-viewer and app-operator.
   - Two roles are for “robot” or system permissions, including: workload and deliverable.
 
+#### Tanzu Application Platform GUI
+
+- **Runtime Resources Visibility plug-in:** explanation here
+- **Supply Chain Choreographer plug-in:** Added a new graphical representation of the execution of a workload through an installed supply chain. This  includes CRDs in the supply chain, the source results of each stage, as well as details to facilitate the troubleshooting of workloads on their path to production. 
+
 #### Application Accelerator
 
 - Option values can now be validated using regex
@@ -38,11 +43,10 @@ This topic contains release notes for Tanzu Application Platform v1.1
 
 - Enabled multiple cluster support for Application Live View
 - Split Application Live View components into three packages with new package reference names
-- Enabled structured JSON logging for App Live View to meet the TAP logging requirements
-- Made App Live View Convention Service compatible with the cert-manager version 1.7.1
-- Updated Spring Native 0.10.5 to 0.10.6
-- Updated `Spring Boot` to ‘2.5.12’ to address ‘CVE-2022-22965’
-- Updated `Spring Boot` to ‘2.5.12’ to address ‘CVE-2020-36518’
+- Enabled structured JSON logging for App Live View to meet the logging requirements of Tanzu Application Platform
+- Made App Live View Convention Service compatible with the cert-manager version `1.7.1`
+- Updated Spring Native `0.10.5` to `0.10.6`
+- Updated `Spring Boot` to `2.5.12` to address `CVE-2022-22965` and `CVE-2020-36518`
 
 #### Tanzu CLI - Apps plug-in
 
@@ -95,14 +99,9 @@ The following new conventions are applied to spring boot apps v2.6 and later:
 
 #### Supply Chain Security Tools - Store
 
-- Introduced v1 endpoints to query with pagination
-  - Added v1 GET images endpoint
-  - Added v1 GET sources endpoint
-  - Added v1 GET packages endpoint
-  - Added v1 GET vulnerabilities endpoint
 - Added Contour Ingress support with custom domain name
-- Added related packages to image and source vulnerabilities
-- Created Tanzu CLI plugin called Insight
+- Created Tanzu CLI plug-in called `insight`
+  - Currently, only MacOS and Linux are supported for the `insight` plug-in.
 - Upgraded golang version from `1.17.5` to `1.17.8`
 
 #### Tanzu Application Platform GUI
@@ -122,8 +121,9 @@ The following new conventions are applied to spring boot apps v2.6 and later:
 
 #### Supply Chain Security Tools - Store
 
-- Insight CLI is deprecated, customers can now use Tanzu CLI plugin called Insight.
+- The independent `insight` CLI is deprecated, customers can now use Tanzu CLI plugin called `insight`.
   - Renamed all instances of `create` verb to `add` for all CLI commands.
+  - Currently, only MacOS and Linux are supported for the `insight` plug-in.
 
 ### <a id='1-1-security-issues'></a> Security issues
 
@@ -150,6 +150,8 @@ None.
 #### Supply Chain Security Tools - Store
 
 - Fixed an issue where querying a source report with local path name would return the following error: `{ "message": "Not found" }`
+- Return related packages when querying image and source vulnerabilities
+- Ratings are updated when updating vulnerabilities
 
 #### Tanzu CLI - Apps plug-in
 
@@ -203,32 +205,53 @@ Image Scan, after the binaries are built and packaged as images.
 
 #### Supply Chain Security Tools - Store
 
-- **Persistent volume retains data**
-  If Supply Chain Security Tools - Store is deployed, deleted, and then redeployed the
-  `metadata-store-db` Pod fails to start if the database password changed during redeployment.
-  This is caused by the persistent volume used by postgres retaining old data, even though the retention
-  policy is set to `DELETE`.
+- **`insight` CLI plug-in does not support Windows:**
 
-  To resolve this issue, see [CrashLoopBackOff from Password Authentication Fails](troubleshooting.html#password-authentication-fails)
-  in _Troubleshooting Tanzu Application Platform_.
+    Currently, only MacOS and Linux are supported for the `insight` plug-in.
 
-  > **Warning:** Changing the database password deletes your Supply Chain Security Tools - Store data.
+- **Existing packages with new vulnerabilities not updated:**
+
+    There’s a known issue in Supply Chain Security Tools - Store where it does not correctly save new vulnerablities for a package that had already been submitted in a previous report. This issue will result in new vulnerabilities not being saved to the database.
+
+- **Persistent volume retains data:**
+
+    If Supply Chain Security Tools - Store is deployed, deleted, and then redeployed the
+    `metadata-store-db` Pod fails to start if the database password changed during redeployment.
+    This is caused by the persistent volume used by postgres retaining old data, even though the retention
+    policy is set to `DELETE`.
+
+    To resolve this issue, see [solution](scst-store/troubleshooting.md#persistent-volume-retains-data-solution).
+
 
 - **Missing persistent volume:**
-  After Supply Chain Security Tools - Store is deployed, `metadata-store-db` Pod might fail for missing
-  volume while `postgres-db-pv-claim` pvc is in the `PENDING` state.
-  This issue may occur if the cluster where Supply Chain Security Tools - Store is deployed does not have
-  `storageclass` defined.
 
-  The provisioner of `storageclass` is responsible for creating the persistent volume after
-  `metadata-store-db` attaches `postgres-db-pv-claim`. To resolve this issue, see
-  [Missing Persistent Volume](troubleshooting.html#missing-persistent-volume)
-  in _Troubleshooting Tanzu Application Platform_.
+    After Supply Chain Security Tools - Store is deployed, `metadata-store-db` Pod might fail for missing
+    volume while `postgres-db-pv-claim` pvc is in the `PENDING` state.
+    This issue may occur if the cluster where Supply Chain Security Tools - Store is deployed does not have
+    `storageclass` defined.
+
+    The provisioner of `storageclass` is responsible for creating the persistent volume after
+    `metadata-store-db` attaches `postgres-db-pv-claim`. To resolve this issue, see
+    [solution](scst-store/troubleshooting.md#missing-persistent-volume-solution).
 
 - **No support for installing in custom namespaces:**
-  Supply Chain Security Tools — Store is deployed to the `metadata-store` namespace.
-  There is no support for configuring the namespace.
 
+    Supply Chain Security Tools — Store is deployed to the `metadata-store` namespace.
+    There is no support for configuring the namespace.
+
+#### Application Live View
+
+- **App Live View connector sometimes does not connect to the back end:**
+
+    Workaround: 
+    
+    - Check the app live view connector pod logs to verify if there are any rsocket connection issues to the back end. 
+    
+    - Try deleting the connector pod so it gets re-created:
+    
+        ```
+        kubectl -n app-live-view delete pods -l=name=application-live-view-connector
+        ```
 
 ## <a id='1-0'></a> v1.0
 
@@ -384,59 +407,48 @@ their pods preempted or evicted instead.
 
 #### Supply Chain Security Tools - Store
 
-- **CrashLoopBackOff from password authentication failed:**
-Supply Chain Security Tools - Store does not start up. You see the following error in the
-`metadata-store-app` Pod logs:
+- **Existing packages with new vulnerabilities not updated:**
 
-    ```
-    $ kubectl logs pod/metadata-store-app-* -n metadata-store -c metadata-store-app
-    ...
-    [error] failed to initialize database, got error failed to connect to `host=metadata-store-db user=metadata-store-user database=metadata-store`: server error (FATAL: password authentication failed for user "metadata-store-user" (SQLSTATE 28P01))
-    ```
+    There’s a known issue in Supply Chain Security Tools - Store where it does not correctly save new vulnerablities for a package that had already been submitted in a previous report. This issue will result in new vulnerabilities not being saved to the database.
 
-    This error results when the database password was changed between deployments. This is not
-    supported. To resolve this issue, see [CrashLoopBackOff from Password Authentication Fails](troubleshooting.html#password-authentication-fails)
-    in _Troubleshooting Tanzu Application Platform_.
+- **Persistent volume retains data:**
 
-    > **Warning:** Changing the database password deletes your Supply Chain Security Tools - Store data.
+    If Supply Chain Security Tools - Store is deployed, deleted, and then redeployed the
+    `metadata-store-db` Pod fails to start if the database password changed during redeployment.
+    This is caused by the persistent volume used by postgres retaining old data, even though the retention
+    policy is set to `DELETE`.
 
-- **Persistent volume retains data**
-  If Supply Chain Security Tools - Store is deployed, deleted, and then redeployed the
-  `metadata-store-db` Pod fails to start if the database password changed during redeployment.
-  This is caused by the persistent volume used by postgres retaining old data, even though the retention
-  policy is set to `DELETE`.
+    To resolve this issue, see [solution](scst-store/troubleshooting.md#persistent-volume-retains-data-solution).
 
-    To resolve this issue, see [CrashLoopBackOff from Password Authentication Fails](troubleshooting.html#password-authentication-fails)
-    in _Troubleshooting Tanzu Application Platform_.
-
-    > **Warning:** Changing the database password deletes your Supply Chain Security Tools - Store data.
 
 - **Missing persistent volume:**
-After Supply Chain Security Tools - Store is deployed, `metadata-store-db` Pod might fail for missing
-volume while `postgres-db-pv-claim` pvc is in the `PENDING` state.
-This issue may occur if the cluster where Supply Chain Security Tools - Store is deployed does not have
-`storageclass` defined.
+
+    After Supply Chain Security Tools - Store is deployed, `metadata-store-db` Pod might fail for missing
+    volume while `postgres-db-pv-claim` pvc is in the `PENDING` state.
+    This issue may occur if the cluster where Supply Chain Security Tools - Store is deployed does not have
+    `storageclass` defined.
 
     The provisioner of `storageclass` is responsible for creating the persistent volume after
     `metadata-store-db` attaches `postgres-db-pv-claim`. To resolve this issue, see
-    [Missing Persistent Volume](troubleshooting.html#missing-persistent-volume)
-    in _Troubleshooting Tanzu Application Platform_.
-
-- **Querying local path source reports:**
-If a source report has a local path as the name -- for example, `/path/to/code` -- the leading
-`/` on the resulting repository name causes the querying packages and vulnerabilities to return
-the following error from the client lib and the CLI: `{ "message": "Not found" }`.<br><br>
-The URL of the resulting HTTP request is properly escaped. For example,
-`/api/sources/%2Fpath%2Fto%2Fdir/vulnerabilities`.<br><br>
-The rbac-proxy used for authentication handles this URL in a way that the response is a
-redirect. For example, `HTTP 301\nLocation: /api/sources/path/to/dir/vulnerabilities`.
-The Client Lib follows the redirect, making a request to the new URL which does not exist in the
-Supply Chain Security Tools - Store API, resulting in this error message.
+    [solution](scst-store/troubleshooting.md#missing-persistent-volume-solution).
 
 - **No support for installing in custom namespaces:**
-All of our testing uses the `metadata-store` namespace. Using a different namespace breaks
-authentication and certificate validation for the `metadata-store` API.
 
+    Supply Chain Security Tools — Store is deployed to the `metadata-store` namespace.
+    There is no support for configuring the namespace.
+
+- **Querying local path source reports:**
+
+    If a source report has a local path as the name -- for example,
+    `/path/to/code` -- the leading `/` on the resulting repository name
+    causes the querying packages and vulnerabilities to return the
+    following error from the client lib and the CLI: `{ "message": "Not found" }`.
+
+    The URL of the resulting HTTP request is properly escaped. For example,
+    `/api/sources/%2Fpath%2Fto%2Fdir/vulnerabilities`.
+    
+    The rbac-proxy used for authentication handles this URL in a way that the response is a redirect. For example, `HTTP 301\nLocation: /api/sources/path/to/dir/vulnerabilities`. The Client Lib follows the redirect, making a request to the new URL which does not exist in the
+    Supply Chain Security Tools - Store API, resulting in this error message.
 
 #### Tanzu CLI
 

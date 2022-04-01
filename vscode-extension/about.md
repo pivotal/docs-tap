@@ -32,7 +32,6 @@ The Tanzu Developer Tools extension enables you to debug your application in a p
 - [Installation](../vscode-extension/installation.md) - Describes how to install the extension.
 - [Getting Started](../vscode-extension/getting-started.md) - Describes how to set up a project for use with the extension.
 - [Using the Extension](../vscode-extension/using-the-extension.md) - Describes how to use the various features of the extension.
-- [Glossary of Terms](../glossary.md) - Terms to know for using the extension and Tanzu Application Platform.
 
 ## <a id="whats-next"></a> What’s Next
 

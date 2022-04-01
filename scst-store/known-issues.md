@@ -1,4 +1,4 @@
-# Troubleshooting and known issues
+# Known issues
 
 This topic contains troubleshooting and known issues for Supply Chain Security Tools - Store.
 

@@ -58,7 +58,7 @@ To stop debugging on the cluster:
 
 ## <a id="live-update"></a> Live Update
 
-By using [Live Update](../glossary.md#live-update) facilitated by [Tilt](https://docs.tilt.dev/), the Tanzu Developer Tools extension enables you to deploy your workload once, save changes to the code and see those changes reflected in the workload running on the cluster within seconds.
+By using Live Update facilitated by [Tilt](https://docs.tilt.dev/), the Tanzu Developer Tools extension enables you to deploy your workload once, save changes to the code and see those changes reflected in the workload running on the cluster within seconds.
 
 Live update requires a **workload.yaml** file and a **Tiltfile** in your project. For information about how to create a **workload.yaml** and a **Tiltfile**, see the [Set Up section](../vscode-extension/getting-started.md#set-up-tanzu-dev-tools) on the Getting Started page.
 

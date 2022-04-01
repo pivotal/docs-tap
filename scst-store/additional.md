@@ -1,28 +1,13 @@
-# Additional resources
+# Additional documentation
 
-This topic includes additional information about Supply Chain Security Tools - Store. Read the [Overview](overview.md) page first to get started.
-
-## <a id='install'></a>Install
-
-Supply Chain Security Tools - Store is released as part of Tanzu Application Platform. See [Install Supply Chain Security Tools - Store](install-scst-store.md) for additional information about installation.
-
->**Note:** The `tanzu insight` CLI plug-in requires a [separate installation](cli-installation.md).
-
-## <a id='components'></a>Components
-
-Supply Chain Security Tools - Store has three components.  
-
-- [CLI plugin](cli-installation.md)
-- [API](api.md)
-- Postgres database
-
-For more information, see [Deployment Details and Configuration](deployment-details.md).
-
-## <a id='additional-info'></a>Additional documentation
-
-- <a id='install-scst-store'></a>[Install Supply Chain Security Tools - Store independent from Tanzu Application Platform profiles](install-scst-store.md)
-- <a id='aws-rds'></a>[AWS RDS Postgres configuration](use-aws-rds.md)
-- <a id='audit'></a>[Log configuration and usage](logs.md)
-- <a id='known-issues'></a>[Troubleshooting and Known Issues](known-issues.md)
-- <a id='backup'></a>[Backup suggestions](backups.md)
-- <a id='fail-red'></a>[Failover, redundancy, and backups](failover.md)
+- [API details](scst-store/api.md)
+- [API walkthrough](scst-store/api-walkthrough.md)
+- [Deployment details and configuration](scst-store/deployment-details.md)
+- [Install independent from Tanzu Application Platform profiles](install-scst-store.md)
+- [AWS RDS Postgres configuration](scst-store/use-aws-rds.md)
+- [Database backup recommendations](scst-store/backups.md)
+- [Log configuration and usage](scst-store/logs.md)
+- [Troubleshooting upgrading](scst-store/upgrading.md)
+- [Known issues](known-issues.md)
+- [Failover, redundancy, and backups](scst-store/failover.md)
+- [Ingress and multicluster support](scst-store/ingress-multicluster.md)
