@@ -75,9 +75,9 @@ To configure the VMware Tanzu Developer Tools extension for Visual Studio Code:
 
 1. Select **File -> Preferences -> Settings -> Extensions -> Tanzu** and set the following:
 
-    - [Source Image](../glossary.md#source-image) (required): Destination for an image containing the source code to be published. For example, `your-registry.io/project/tanzu-java-web-app-source`.
-    - [Local Path](../glossary.md#local-path) (optional): Path on the local file system to a directory of source code to build (defaults to current directory).
-    - [Namespace](../glossary.md#namespace) (optional): Namespace that workloads are deployed into (defaults to namespace set in `kubeconfig`).
+    - **Source Image** (required): Destination for an image containing the source code to be published. For example, `your-registry.io/project/tanzu-java-web-app-source`.
+    - **Local Path** (optional): Path on the local file system to a directory of source code to build (defaults to current directory).
+    - **Namespace** (optional): Namespace that workloads are deployed into (defaults to namespace set in `kubeconfig`).
 
 ## <a id="uninstallation"></a> Uninstallation
 

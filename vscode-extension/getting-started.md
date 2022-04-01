@@ -45,19 +45,19 @@ To use the Tanzu Developer Tools extension with a project, the project must have
 
 The **workload.yaml** file provides instructions to the Supply Chain Choreographer to build and manage a workload.
 
->**Note:** The Tanzu Developer Tools extension requires only one workload.yaml per project. The workload.yaml must be a single-document [YAML](../glossary.md#yaml) file, not a multi-document YAML file.
+>**Note:** The Tanzu Developer Tools extension requires only one workload.yaml per project. The workload.yaml must be a single-document YAML file, not a multi-document YAML file.
 
 Before beginning to write your **workload.yaml** file, ensure that you know:
 
 - the name of your application. For example, `my app`.
-- the workload type of your application. For example, `web`. See [Workload in the Glossary](../glossary.md#workload) for more information.
+- the workload type of your application. For example, `web`.
 - the git source code URL. For example, `github.com/mycompany/myapp`.
 - the branch of the git source code that you will use. For example, `main`.
 
 To create a workload.yaml file by using the Code Snippets:
 
 1. (Optional) Create a folder named `config` in the root directory of your project. For example, `my project -> config`.
-1. Create a file named **workload** with the extension **[.yaml](../glossary.md#yaml)** in the new config folder. For example, `my project -> config -> workload.yaml`.
+1. Create a file named **workload** with the extension **.yaml** in the new config folder. For example, `my project -> config -> workload.yaml`.
 1. Open the new **workload.yaml** file in VS Code, enter `tanzu workload` in the file to trigger the Code Snippets, then either press **return** or left-click the `tanzu workload` text in the dropdown.
     ![A new file called workload.yaml with the words "tanzu workload" written in it and an action menu showing "tanzu workload"](../images/vscode-workload.png)
 1. Fill out the template by using the **tab** key.
@@ -67,7 +67,7 @@ To create a workload.yaml file by using the Code Snippets:
 
 ### <a id="the-catalog-info-yaml-file"></a> The **catalog-info.yaml** file
 
-The **catalog-info.yaml** file enables the [workloads](../glossary.md#workload) of this project to be visible in the [Tanzu Application Platform GUI](../tap-gui/about.md).
+The **catalog-info.yaml** file enables the workloads of this project to be visible in the [Tanzu Application Platform GUI](../tap-gui/about.md).
 
 Before beginning to write your **catalog-info.yaml** file, ensure that you:
 
@@ -77,7 +77,7 @@ Before beginning to write your **catalog-info.yaml** file, ensure that you:
 To create a **workload.yaml** file by using the Code Snippets:
 
 1. (Optional) Create a folder named `catalog` in the root directory of your project. For example, `my project -> catalog`
-1. Create a file named **catalog-info** with the extension **[.yaml](../glossary.md#yaml)** in the new config folder. For example, `my project -> catalog -> catalog-info.yaml`
+1. Create a file named **catalog-info** with the extension **.yaml** in the new config folder. For example, `my project -> catalog -> catalog-info.yaml`
 1. Open the new **catalog-info.yaml** file in VS Code, enter `tanzu catalog-info` in the file to trigger the Code Snippets, then either press **return** or left-click the `tanzu catalog-info` text in the dropdown.
     ![A new file called catalog-info.yaml with the words "tanzu catalog-info" written in it and an action menu showing "tanzu catalog-info"](../images/vscode-cataloginfo.png)
 1. Fill out the template by using the **tab** key.
@@ -86,15 +86,15 @@ To create a **workload.yaml** file by using the Code Snippets:
 
 ### <a id="the-tiltfile-file"></a> The **Tiltfile** file
 
-The **Tiltfile** file provides the configuration for [Tilt](https://docs.tilt.dev/) to enable your project to [live update](../glossary.md#live-update) on your Kubernetes cluster enabled by Tanzu Application Platform.
+The **Tiltfile** file provides the configuration for [Tilt](https://docs.tilt.dev/) to enable your project to live update on your Kubernetes cluster enabled by Tanzu Application Platform.
 
 >**Note:** The Tanzu Dev Tools extension requires only one **Tiltfile** per project.
 
 Before beginning to write your **Tiltfile** file, ensure that you know:
 
 - the name of your application. For example, `my app`.
-- the value of the [source image](../glossary.md#source-image). For example, `docker.io/mycompany/myapp`.
-- whether you want to compile the source image from a local directory other than the project directory, otherwise leave the `local path` value unchanged. For more information, see [local path](../glossary.md#local-path) in the glossary.
+- the value of the source image. For example, `docker.io/mycompany/myapp`.
+- whether you want to compile the source image from a local directory other than the project directory, otherwise leave the `local path` value unchanged. For more information, see local path in the glossary.
 - the path to your `workload.yaml` file. For example, `config/workload.yaml`.
 - the name of your current [Kubernetes context](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/), if the targeting Kubernetes cluster enabled by Tanzu Application Platform is not running on your local machine.
 
@@ -122,12 +122,12 @@ If you don’t want to use the Code Snippets templates to create the files requi
 
 The **workload.yaml** file provides instructions to the Supply Chain Choreographer for how to build and manage a workload.
 
->**Note:** The Tanzu Developer Tools extension requires only one **workload.yaml** per project. The **workload.yaml** must be a single-document [YAML](../glossary.md#yaml) file, not a multi-document YAML file.
+>**Note:** The Tanzu Developer Tools extension requires only one **workload.yaml** per project. The **workload.yaml** must be a single-document YAML file, not a multi-document YAML file.
 
 Before beginning to write your workload.yaml file, ensure that you know:
 
 - the name of your application. For example, `my app`.
-- the workload type of your application. For example, `web`. See [Workload in the Glossary](../glossary.md#workload) for more information.
+- the workload type of your application. For example, `web`.
 - the git source code URL. For example, `github.com/mycompany/myapp`.
 - the branch of the git source code that you will use. For example, `main`.
 
@@ -152,7 +152,7 @@ spec:
 Where:
 
 - `<app-name>` is the name of your application.
-- `<workload-type>` is the type of this workload. For example, `web`. See [Workload in the Glossary](../glossary.md#workload) for more information.
+- `<workload-type>` is the type of this workload. For example, `web`.
 - `<git-source-url>` is your git source code URL.
 - `<git-branch-name>` is the branch of your git source code.
 
@@ -160,7 +160,7 @@ Alternatively, you can use the Tanzu CLI to create a **workload.yaml** file. For
 
 ### <a id="creating-a-catalog-info-yaml-file"></a> Creating a **catalog-info.yaml** File
 
-The **catalog-info.yaml** file enables the [workloads](../glossary.md#workload) of this project to be visible in the [TAP GUI](../tap-gui/about.md).
+The **catalog-info.yaml** file enables the workloads of this project to be visible in the [TAP GUI](../tap-gui/about.md).
 
 Before beginning to write your **catalog-info.yaml** file, ensure that you:
 
@@ -192,15 +192,15 @@ Where:
 
 ### <a id="creating-a-tiltfile-file"></a> Creating a **Tiltfile** File
 
-The **Tiltfile** file provides the configuration for [Tilt](https://docs.tilt.dev/) to enable your project to [live update](../glossary.md#live-update) on your Kubernetes cluster enabled by Tanzu Application Platform.
+The **Tiltfile** file provides the configuration for [Tilt](https://docs.tilt.dev/) to enable your project to live update on your Kubernetes cluster enabled by Tanzu Application Platform.
 
 >**Note:** The Tanzu Developer Tools extension requires only one **Tiltfile** per project.
 
 Before beginning to write your **Tiltfile** file, ensure that you know:
 
 - the name of your application. For example, `my app`.
-- the value of the [source image](../glossary.md#source-image). For example, `docker.io/mycompany/myapp`.
-- whether you want to compile the source image from a local directory other than the project directory, otherwise leave the `local path` value unchanged. For more information, see [local path](../glossary.md#local-path) in the glossary.
+- the value of the source image. For example, `docker.io/mycompany/myapp`.
+- whether you want to compile the source image from a local directory other than the project directory, otherwise leave the `local path` value unchanged. For more information, see local path in the glossary.
 - the path to your `workload.yaml` file. For example, `config/workload.yaml`.
 - the name of your current [Kubernetes context](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/), if the targeting Kubernetes cluster enabled by Tanzu Application Platform is not running on your local machine.
 
@@ -234,7 +234,7 @@ allow_k8s_contexts('<context-name>')
 
 Where:
 
-- `<source-image>` is the value of [source image](../glossary.md#source-image).
+- `<source-image>` is the value of source image.
 - `<app-name>` is the name of your application.
 - `<path-to-workload-yaml>` is the local file system path to your **workload.yaml** file. For example, `config/workload.yaml`.
 - `<context-name>` is the name of your current [Kubernetes context](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/). If your Kubernetes cluster enabled by Tanzu Application Platform is running locally on your machine, the entire `allow_k8s_contexts` line can be removed. For more information, see the [Tilt documentation](https://docs.tilt.dev/api.html#api.allow_k8s_contexts).
@@ -243,7 +243,7 @@ Where:
 
 You can view a sample application that demonstrates the necessary configuration files. There are two ways to obtain the sample application.
 
-Before you begin, you will need a [container registry](../glossary.md#container-registry) for the sample application.
+Before you begin, you will need a container registry for the sample application.
 
 **Option 1: Application Accelerator**
 
