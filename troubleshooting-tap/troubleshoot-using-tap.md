@@ -126,7 +126,7 @@ chmod +x ./mvnw
 
 ## <a id='no-live-information'></a> "No live information for pod with ID" error
 
-After deploying Tanzu Application Platform workloads, the Tanzu Application Platform GUI shows a "No live information for pod with ID" error.
+After deploying Tanzu Application Platform workloads, Tanzu Application Platform GUI shows a "No live information for pod with ID" error.
 
 **Explanation**
 

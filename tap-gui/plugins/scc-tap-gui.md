@@ -6,7 +6,7 @@ The Supply Chain Choreographer (SCC) plug-in enables you to visualize the execut
 
 ## <a id="prerequisites"></a> Prerequisites
 
-You must have either of the Full or View profiles installed on your cluster, which includes the Tanzu Application Platform GUI.
+You must have either of the Full or View profiles installed on your cluster, which includes Tanzu Application Platform GUI.
 
 ## <a id="sc-visibility"></a> Supply Chain Visibility
 

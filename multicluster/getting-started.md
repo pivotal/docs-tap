@@ -140,4 +140,4 @@ The Build cluster starts by building the necessary bundle for the workload that 
 
     Select the URL that corresponds to the domain you specified in your Run cluster's profile and enter it into a browser. Expect to see the message "Greetings from Spring Boot + Tanzu!".
 
-1. View the component in the Tanzu Application Platform GUI, by following [these steps](../tap-gui/catalog/catalog-operations.md#register-comp) and using the [catalog file](https://github.com/sample-accelerators/tanzu-java-web-app/blob/main/catalog/catalog-info.yaml) from the sample accelerator in GitHub.
+1. View the component in Tanzu Application Platform GUI, by following [these steps](../tap-gui/catalog/catalog-operations.md#register-comp) and using the [catalog file](https://github.com/sample-accelerators/tanzu-java-web-app/blob/main/catalog/catalog-info.yaml) from the sample accelerator in GitHub.

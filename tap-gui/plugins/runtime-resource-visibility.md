@@ -8,9 +8,9 @@ Runtime Resources Visibility plug-in part of Tanzu Application Platform GUI allo
 
 In order to access the Runtime Resources Visibility plug-in, you must first have successfully [installed Tanzu Application Platform](../../install-intro.md) which includes Tanzu Application Platform GUI.
 
-## <a id="Visualize-app"></a> Visualize Workloads on the Tanzu Application Platform GUI
+## <a id="Visualize-app"></a> Visualize Workloads on Tanzu Application Platform GUI
 
-In order to view your applications on the Tanzu Application Platform GUI, use the following steps:
+In order to view your applications on Tanzu Application Platform GUI, use the following steps:
 
 1. [Develop your application on the Tanzu Application Platform via Application Accelerators](https://docs.vmware.com/en/Tanzu-Application-Platform/1.0/tap/GUID-getting-started.html#section-1-develop-your-first-application-on-the-tanzu-application-platform-2)
 2. [Add your application to Tanzu Application Platform GUI Software Catalog](https://docs.vmware.com/en/Tanzu-Application-Platform/1.0/tap/GUID-getting-started.html#add-app-to-gui-cats)

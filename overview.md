@@ -245,7 +245,7 @@ The following profiles are available in Tanzu Application Platform:
   This profile is intended for the transformation of workload revisions to running Pods. Specifically, hosting Deliveries and Deliverables.
 
 - **View:**
-  This profile is intended for instances of applications related to centralized developer experiences. Specifically, the Tanzu Application Platform GUI and Metadata Store.
+  This profile is intended for instances of applications related to centralized developer experiences. Specifically, Tanzu Application Platform GUI and Metadata Store.
 
 
 ## <a id='about-package-profiles'></a> About Tanzu Application Platform package profiles

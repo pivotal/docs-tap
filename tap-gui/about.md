@@ -28,13 +28,13 @@ Tanzu Application Platform GUI consists of the following components:
   This plug-in enables you to store your technical documentation in Markdown format in a source-code
   repository and display it alongside the relevant catalog entries.
 
-  ![Screenshot of a Tanzu Application Platform catalog displayed within the Tanzu Application Platform GUI.](images/tap-gui-catalog.png)
+  ![Screenshot of a Tanzu Application Platform catalog displayed within Tanzu Application Platform GUI.](images/tap-gui-catalog.png)
 
 * **A Git repository:**  
-  The Tanzu Application Platform GUI stores the following in a Git repository:
+  Tanzu Application Platform GUI stores the following in a Git repository:
 
   * The structure for your application catalog.
-  * Your technical documentation about the catalog items, if you enable the Tanzu Application Platform GUI TechDocs capabilities.
+  * Your technical documentation about the catalog items, if you enable Tanzu Application Platform GUI TechDocs capabilities.
 
 You can host the structure for your application catalog and your technical documentation in the same
 repository as your source code.
