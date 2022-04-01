@@ -29,7 +29,7 @@ This new profile is intended for iterative development versus the path to produc
 #### Tanzu Application Platform GUI
 
 - **Runtime Resources Visibility plug-in:** explanation here
-- **Supply Chain Choreographer plug-in:** Added a new graphical representation of the execution of a workload through an installed supply chain. This  includes CRDs in the supply chain, the source results of each stage, as well as details to facilitate the troublshooting of workloads on their path to production. 
+- **Supply Chain Choreographer plug-in:** Added a new graphical representation of the execution of a workload through an installed supply chain. This  includes CRDs in the supply chain, the source results of each stage, as well as details to facilitate the troubleshooting of workloads on their path to production. 
 
 #### Application Accelerator
 
@@ -40,11 +40,10 @@ This new profile is intended for iterative development versus the path to produc
 
 - Enabled multiple cluster support for Application Live View
 - Split Application Live View components into three packages with new package reference names
-- Enabled structured JSON logging for App Live View to meet the TAP logging requirements
+- Enabled structured JSON logging for App Live View to meet the logging requirements of Tanzu Application Platform
 - Made App Live View Convention Service compatible with the cert-manager version 1.7.1
 - Updated Spring Native 0.10.5 to 0.10.6
-- Updated `Spring Boot` to ‘2.5.12’ to address ‘CVE-2022-22965’
-- Updated `Spring Boot` to ‘2.5.12’ to address ‘CVE-2020-36518’
+- Updated `Spring Boot` to ‘2.5.12’ to address ‘CVE-2022-22965’ and ‘CVE-2020-36518’
 
 #### Tanzu CLI - Apps plug-in
 
@@ -194,39 +193,47 @@ Image Scan, after the binaries are built and packaged as images.
 #### Supply Chain Security Tools - Store
 
 - **Persistent volume retains data**
-  If Supply Chain Security Tools - Store is deployed, deleted, and then redeployed the
-  `metadata-store-db` Pod fails to start if the database password changed during redeployment.
-  This is caused by the persistent volume used by postgres retaining old data, even though the retention
-  policy is set to `DELETE`.
 
-  To resolve this issue, see [CrashLoopBackOff from Password Authentication Fails](troubleshooting.html#password-authentication-fails)
-  in _Troubleshooting Tanzu Application Platform_.
+    If Supply Chain Security Tools - Store is deployed, deleted, and then redeployed the
+    `metadata-store-db` Pod fails to start if the database password changed during redeployment.
+    This is caused by the persistent volume used by postgres retaining old data, even though the retention
+    policy is set to `DELETE`.
 
-  > **Warning:** Changing the database password deletes your Supply Chain Security Tools - Store data.
+    To resolve this issue, see [CrashLoopBackOff from Password Authentication Fails](troubleshooting.html#password-authentication-fails)
+    in _Troubleshooting Tanzu Application Platform_.
+
+    > **Warning:** Changing the database password deletes your Supply Chain Security Tools - Store data.
 
 - **Missing persistent volume:**
-  After Supply Chain Security Tools - Store is deployed, `metadata-store-db` Pod might fail for missing
-  volume while `postgres-db-pv-claim` pvc is in the `PENDING` state.
-  This issue may occur if the cluster where Supply Chain Security Tools - Store is deployed does not have
-  `storageclass` defined.
 
-  The provisioner of `storageclass` is responsible for creating the persistent volume after
-  `metadata-store-db` attaches `postgres-db-pv-claim`. To resolve this issue, see
-  [Missing Persistent Volume](troubleshooting.html#missing-persistent-volume)
-  in _Troubleshooting Tanzu Application Platform_.
+    After Supply Chain Security Tools - Store is deployed, `metadata-store-db` Pod might fail for missing
+    volume while `postgres-db-pv-claim` pvc is in the `PENDING` state.
+    This issue may occur if the cluster where Supply Chain Security Tools - Store is deployed does not have
+    `storageclass` defined.
+
+    The provisioner of `storageclass` is responsible for creating the persistent volume after
+    `metadata-store-db` attaches `postgres-db-pv-claim`. To resolve this issue, see
+    [Missing Persistent Volume](troubleshooting.html#missing-persistent-volume)
+    in _Troubleshooting Tanzu Application Platform_.
 
 - **No support for installing in custom namespaces:**
-  Supply Chain Security Tools — Store is deployed to the `metadata-store` namespace.
-  There is no support for configuring the namespace.
+
+    Supply Chain Security Tools — Store is deployed to the `metadata-store` namespace.
+    There is no support for configuring the namespace.
 
 #### Application Live View
 
-- **App Live View connector sometimes does not connect to the backend**
-  Workaround: Check the app live view connector pod logs to see if there are any rsocket connection issues to the backend. 
-  Try deleting the connector pod so it gets recreated:
-  ```
-  kubectl -n app-live-view delete pods -l=name=application-live-view-connector
-  ```
+- **App Live View connector sometimes does not connect to the back end**
+
+    Workaround: 
+    
+    - Check the app live view connector pod logs to verify if there are any rsocket connection issues to the back end. 
+    
+    - Try deleting the connector pod so it gets re-created:
+    
+        ```
+        kubectl -n app-live-view delete pods -l=name=application-live-view-connector
+        ```
 
 
 ## <a id='1-0'></a> v1.0
