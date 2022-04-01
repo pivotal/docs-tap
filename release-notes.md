@@ -223,7 +223,7 @@ Image Scan, after the binaries are built and packaged as images.
 
 #### Application Live View
 
-- **App Live View connector sometimes does not connect to the back end**
+- **App Live View connector sometimes does not connect to the back end:**
 
     Workaround: 
     
