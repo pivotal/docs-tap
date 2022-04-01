@@ -38,10 +38,13 @@ This new profile is intended for iterative development versus the path to produc
 
 #### Application Live View
 
-- Enabled multiple cluster support for Application Live View.
-- Split Application Live View components into three packages with new package reference names.
-- Enabled structured JSON logging for App Live View to meet the TAP logging requirements.
-- Made App Live View Convention Service compatible with the cert-manager version 1.7.1.
+- Enabled multiple cluster support for Application Live View
+- Split Application Live View components into three packages with new package reference names
+- Enabled structured JSON logging for App Live View to meet the TAP logging requirements
+- Made App Live View Convention Service compatible with the cert-manager version 1.7.1
+- Updated Spring Native 0.10.5 to 0.10.6
+- Updated `Spring Boot` to ‘2.5.12’ to address ‘CVE-2022-22965’
+- Updated `Spring Boot` to ‘2.5.12’ to address ‘CVE-2020-36518’
 
 #### Tanzu CLI - Apps plug-in
 
@@ -212,6 +215,16 @@ Image Scan, after the binaries are built and packaged as images.
 - **No support for installing in custom namespaces:**
   Supply Chain Security Tools — Store is deployed to the `metadata-store` namespace.
   There is no support for configuring the namespace.
+
+#### Application Live View
+
+- **App Live View connector sometimes does not connect to the backend**
+  Workaround: Check the app live view connector pod logs to see if there are any rsocket connection issues to the backend. 
+  Try deleting the connector pod so it gets recreated:
+  ```
+  kubectl -n app-live-view delete pods -l=name=application-live-view-connector
+  ```
+
 
 ## <a id='1-0'></a> v1.0
 
