@@ -30,12 +30,4 @@ Once `tanzu insight` CLI plug-in is set up:
 
 ## <a id='additional-info'></a>Additional documentation
 
-- <a id='api'></a>[API](api.md)
-- <a id='deploy'></a>[Deployment details and configuration](deployment-details.md)
-- <a id='install-scst-store'></a>[Install Supply Chain Security Tools - Store independent from Tanzu Application Platform profiles](install-scst-store.md)
-- <a id='aws-rds'></a>[AWS RDS Postgres configuration](use-aws-rds.md)
-- <a id='audit'></a>[Log configuration and usage](logs.md)
-- <a id='known-issues'></a>[Troubleshooting and Known Issues](known-issues.md)
-- <a id='backup'></a>[Backup suggestions](backups.md)
-- <a id='fail-red'></a>[Failover, redundancy, and backups](failover.md)
-
+[Additional documentation](additional.md) includes information about the API, deployment details & config, AWS RDS configuraiton and other database backup recommendations, known issues, among other topics.
