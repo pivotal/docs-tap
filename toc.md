@@ -167,7 +167,7 @@ This is the table of contents from which the Tanzu Application Platform Document
           - [Database backup recommendations](scst-store/backups.md)
           - [Log configuration and usage](scst-store/logs.md)
           - [Troubleshooting upgrading](scst-store/upgrading.md)
-          - [Known issues](known-issues.md)
+          - [Known issues](scst-store/known-issues.md)
           - [Failover, redundancy, and backups](scst-store/failover.md)
           - [Ingress and multicluster support](scst-store/ingress-multicluster.md)
     - [Tanzu Developer Tools for VSCode](vscode-extension/about.md)
