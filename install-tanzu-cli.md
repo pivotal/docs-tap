@@ -71,7 +71,7 @@ To set the Kubernetes cluster context:
 
 ## <a id='tanzu-cluster-essentials'></a> Install Cluster Essentials for Tanzu
 
-Cluster Essentials for VMware Tanzu simplifies the process of installing the open-source [Carvel](https://carvel.dev) tools on your cluster. It includes a script to download and install supported verions of `kapp-controller` and `secretgen-crontroller` on the targeted cluster. Currently, only MacOS and Linux are supported for Cluster Essentials.
+Cluster Essentials for VMware Tanzu simplifies the process of installing the open-source [Carvel](https://carvel.dev) tools on your cluster. It includes a script to download and install supported verions of `kapp-controller` and `secretgen-crontroller` on the targeted cluster. Currently, Cluster Essentials only supports MacOS and Linux.
 
 If you are using a VMware Tanzu Kubernetes Grid cluster, you do not need to install Cluster Essentials because the contents of Cluster Essentials are already installed on your cluster.
 
@@ -339,7 +339,7 @@ command in a terminal window:
 
 1. Proceed to [Cleanly Install Tanzu CLI Plug-ins](#cli-plugin-clean-install)
 
-> **Note**: Currently, the `insight` plug-in is not available for Windows. This will not affect the Tanzu CLI installation or other plug-ins.
+>**Note**: Currently, the `insight` plug-in is not available for Windows. This will not affect the Tanzu CLI installation or other plug-ins.
 
 
 ## <a id='cli-plugin-clean-install'></a> Cleanly Install Tanzu CLI Plug-ins
@@ -391,7 +391,7 @@ To perform a clean installation of the Tanzu CLI plug-ins:
     VMware discourages running `cluster`, `kubernetes-release`, `login`, `management-cluster`,
     and `pinniped-auth` commands.
 
-    Currently, only MacOS and Linux are supported for the `insight` plug-in.
+    Currently, `insight` plug-in only supports MacOS and Linux.
 
 You can now proceed with installing Tanzu Application Platform. For more information, see
 **[Installing the Tanzu Application Platform Package and Profiles](install.md)**.
@@ -496,7 +496,7 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
     insight             post & query image, package, source, and vulnerability data                   Standalone                        v1.1.0       installed
     ```
 
-    Currently, only MacOS and Linux are supported for the `insight` plug-in.
+    Currently, `insight` plug-in only supports MacOS and Linux.
 
 You can now install Tanzu Application Platform.
 See **[Installing the Tanzu Application Platform Package and Profiles](install.md)**.

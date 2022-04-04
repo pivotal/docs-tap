@@ -119,7 +119,7 @@ The following new conventions are applied to spring boot apps v2.6 and later:
 
 - Added Contour Ingress support with custom domain name
 - Created Tanzu CLI plug-in called `insight`
-  - Currently, only MacOS and Linux are supported for the `insight` plug-in.
+  - Currently, `insight` plug-in only supports MacOS and Linux.
 - Upgraded golang version from `1.17.5` to `1.17.8`
 
 #### <a id="gui-features"></a>|Tanzu Application Platform GUI
@@ -141,7 +141,7 @@ The following new conventions are applied to spring boot apps v2.6 and later:
 
 - The independent `insight` CLI is deprecated, customers can now use Tanzu CLI plugin called `insight`.
   - Renamed all instances of `create` verb to `add` for all CLI commands.
-  - Currently, only MacOS and Linux are supported for the `insight` plug-in.
+  - Currently, `insight` plug-in only supports MacOS and Linux.
 
 ### <a id='1-1-security-issues'></a> Security issues
 
@@ -167,9 +167,9 @@ None.
 
 #### Supply Chain Security Tools - Store
 
-- Fixed an issue where querying a source report with local path name would return the following error: `{ "message": "Not found" }`
-- Return related packages when querying image and source vulnerabilities
-- Ratings are updated when updating vulnerabilities
+- Fixed an issue where querying a source report with local path name would return the following error: `{ "message": "Not found" }`.
+- Return related packages when querying image and source vulnerabilities.
+- Ratings are updated when updating vulnerabilities.
 
 #### Tanzu CLI - Apps plug-in
 
@@ -181,7 +181,7 @@ None.
   is declined, the command immediately exits 0, rather than hanging and continuing to wait.
   - Workload name is now validated when the workload values are passed in by using `--file workload.yaml`.
   - When creating or applying a workload from –local-path, if user answers “No” to the prompt “Are you sure you want to publish your local code to [registry name] where others may be able to access it?”, the command now exits 0 immediately rather than showing the workload diff and prompting to continue with workload creation.
-  - `.spec.build.env` in workload YAML definition file is being removed when using Tanzu apps workload apply command
+  - `.spec.build.env` in workload YAML definition file is being removed when using Tanzu apps workload apply command.
 
 
 ### <a id='1-1-known-issues'></a> Known issues
@@ -225,27 +225,26 @@ Image Scan, after the binaries are built and packaged as images.
 
 - **`insight` CLI plug-in does not support Windows:**
 
-    Currently, only MacOS and Linux are supported for the `insight` plug-in.
+    Currently, `insight` plug-in only supports MacOS and Linux.
 
 - **Existing packages with new vulnerabilities not updated:**
 
-    There’s a known issue in Supply Chain Security Tools - Store where it does not correctly save new vulnerablities for a package that had already been submitted in a previous report. This issue will result in new vulnerabilities not being saved to the database.
+    It is a known issue that **Supply Chain Security Tools - Store** does not correctly save new vulnerabilities for a package that was already submitted in a previous report. This issue causes new vulnerabilities not saved to the database.
 
 - **Persistent volume retains data:**
 
-    If Supply Chain Security Tools - Store is deployed, deleted, and then redeployed the
-    `metadata-store-db` Pod fails to start if the database password changed during redeployment.
+    If **Supply Chain Security Tools - Store** is deployed, deleted, redeployed, and the database password is changed during the redeployment, the
+    `metadata-store-db` pod fails to start.
     This is caused by the persistent volume used by postgres retaining old data, even though the retention
     policy is set to `DELETE`.
 
     To resolve this issue, see [solution](scst-store/troubleshooting.md#persistent-volume-retains-data-solution).
 
-
 - **Missing persistent volume:**
 
-    After Supply Chain Security Tools - Store is deployed, `metadata-store-db` Pod might fail for missing
+    After **Supply Chain Security Tools - Store** is deployed, `metadata-store-db` pod might fail for missing
     volume while `postgres-db-pv-claim` pvc is in the `PENDING` state.
-    This issue may occur if the cluster where Supply Chain Security Tools - Store is deployed does not have
+    This issue might occur if the cluster where **Supply Chain Security Tools - Store** is deployed does not have
     `storageclass` defined.
 
     The provisioner of `storageclass` is responsible for creating the persistent volume after
@@ -254,7 +253,7 @@ Image Scan, after the binaries are built and packaged as images.
 
 - **No support for installing in custom namespaces:**
 
-    Supply Chain Security Tools — Store is deployed to the `metadata-store` namespace.
+    **Supply Chain Security Tools — Store** is deployed to the `metadata-store` namespace.
     There is no support for configuring the namespace.
 
 #### Application Live View
@@ -427,23 +426,22 @@ their pods preempted or evicted instead.
 
 - **Existing packages with new vulnerabilities not updated:**
 
-    There’s a known issue in Supply Chain Security Tools - Store where it does not correctly save new vulnerablities for a package that had already been submitted in a previous report. This issue will result in new vulnerabilities not being saved to the database.
+    It is a known issue that **Supply Chain Security Tools - Store** does not correctly save new vulnerabilities for a package that was already submitted in a previous report. This issue causes new vulnerabilities not saved to the database.
 
 - **Persistent volume retains data:**
 
-    If Supply Chain Security Tools - Store is deployed, deleted, and then redeployed the
-    `metadata-store-db` Pod fails to start if the database password changed during redeployment.
+    If **Supply Chain Security Tools - Store** is deployed, deleted, redeployed, and the database password is changed during the redeployment, the
+    `metadata-store-db` pod fails to start.
     This is caused by the persistent volume used by postgres retaining old data, even though the retention
     policy is set to `DELETE`.
 
     To resolve this issue, see [solution](scst-store/troubleshooting.md#persistent-volume-retains-data-solution).
 
-
 - **Missing persistent volume:**
 
-    After Supply Chain Security Tools - Store is deployed, `metadata-store-db` Pod might fail for missing
+    After **Supply Chain Security Tools - Store** is deployed, `metadata-store-db` pod might fail for missing
     volume while `postgres-db-pv-claim` pvc is in the `PENDING` state.
-    This issue may occur if the cluster where Supply Chain Security Tools - Store is deployed does not have
+    This issue might occur if the cluster where **Supply Chain Security Tools - Store** is deployed does not have
     `storageclass` defined.
 
     The provisioner of `storageclass` is responsible for creating the persistent volume after
@@ -452,21 +450,24 @@ their pods preempted or evicted instead.
 
 - **No support for installing in custom namespaces:**
 
-    Supply Chain Security Tools — Store is deployed to the `metadata-store` namespace.
+    **Supply Chain Security Tools — Store** is deployed to the `metadata-store` namespace.
     There is no support for configuring the namespace.
 
 - **Querying local path source reports:**
 
-    If a source report has a local path as the name -- for example,
-    `/path/to/code` -- the leading `/` on the resulting repository name
+    If a source report has a local path as the name, for example,
+    `/path/to/code`, the leading `/` on the resulting repository name
     causes the querying packages and vulnerabilities to return the
     following error from the client lib and the CLI: `{ "message": "Not found" }`.
 
     The URL of the resulting HTTP request is properly escaped. For example,
     `/api/sources/%2Fpath%2Fto%2Fdir/vulnerabilities`.
 
-    The rbac-proxy used for authentication handles this URL in a way that the response is a redirect. For example, `HTTP 301\nLocation: /api/sources/path/to/dir/vulnerabilities`. The Client Lib follows the redirect, making a request to the new URL which does not exist in the
-    Supply Chain Security Tools - Store API, resulting in this error message.
+    The rbac-proxy used for authentication creates a redirect in the response, 
+    For example, `HTTP 301\nLocation: /api/sources/path/to/dir/vulnerabilities`. 
+    The Client Lib follows the redirect, making a request to the new URL that 
+    does not exist in the **Supply Chain Security Tools - Store** API, 
+    resulting in this error message.
 
 #### Tanzu CLI
 
