@@ -86,7 +86,8 @@ If a certificate error `x509: certificate signed by unknown authority` occurs, t
     ```
     tanzu package install convention-controller -p controller.conventions.apps.tanzu.vmware.com -v VERSION-NUMBER -f VALUES-FILE -n tap-install
     ```
-    Where
+    Where:
+    
       - `VERSION-NUMBER` is the version of the package listed in the earlier step.
       - `VALUES-FILE` is the path to the file created in the earlier step.
 
