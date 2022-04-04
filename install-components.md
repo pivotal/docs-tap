@@ -158,7 +158,9 @@ that you plan to create the `Workload` in:
     EOF
     ```
 
-3. To enable developers namespace-level access plus view access to appropriate cluster-level resources, apply the following RBAC policy, or use [the `tanzu auth` plugin] to grant `app-viewer` or `app-editor` roles. It is recommended to use your identity provider's groups system to [grant access to a group of developers](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#referring-to-subjects), rather than granting roles directly to individuals.
+3. Give developers namespace-level access and view access to appropriate cluster-level resources by doing one of the following:
+  * Use the `tanzu auth` plug-in to grant `app-viewer` or `app-editor` roles
+  * Apply the following RBAC policy:
 
     ```
     apiVersion: rbac.authorization.k8s.io/v1
@@ -188,3 +190,8 @@ that you plan to create the `Workload` in:
         apiGroup: rbac.authorization.k8s.io
     EOF
     ```
+
+    VMware recommends using your identity provider's groups system to grant access to a group of
+    developers, rather than granting roles directly to individuals.
+    For more information, see the
+    [Kubernetes documentation](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#referring-to-subjects).
