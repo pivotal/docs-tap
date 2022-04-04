@@ -306,6 +306,7 @@ your `tap-values.yml`, as summarized in the following table:
 
 |Package|Top-level Key|
 |----|----|
+|_see table below_|`shared`|
 |API portal|`api_portal`|
 |Application Accelerator|`accelerator`|
 |Application Live View|`appliveview`|
@@ -313,6 +314,8 @@ your `tap-values.yml`, as summarized in the following table:
 |Application Live View Conventions|`appliveview-conventions`|
 |Cartographer|`cartographer`|
 |Cloud Native Runtimes|`cnrs`|
+|Convention Controller|`convention_controller`|
+|Source Controller|`source_controller`|
 |Supply Chain|`supply_chain`|
 |Supply Chain Basic|`ootb_supply_chain_basic`|
 |Supply Chain Testing|`ootb_supply_chain_testing`|
@@ -324,6 +327,12 @@ your `tap-values.yml`, as summarized in the following table:
 |Build Service|`buildservice`|
 |Tanzu Application Platform GUI|`tap_gui`|
 |Learning Center|`learningcenter`|
+
+Shared Keys define values that configure multiple packages. These keys are defined under the `shared` Top-level Key, as summarized in the following table:
+
+|Shared Key|Used By|Description|
+|----|----|----|
+|`ca_cert_data`|`convention_controller`, `source_controller`|Optional: PEM Encoded certificate data to trust TLS connections with a private CA.|
 
 For information about package-specific configuration, see [Installing individual packages](install-components.md).
 
