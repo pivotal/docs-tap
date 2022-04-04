@@ -72,7 +72,7 @@ the troubleshooting of workloads on their path to production.
   - Accept `workload.yaml` from stdin (through `--file -`).
   - Enable providing `spec.build.env` values (through new `–build.env` flag).
   - When `--git-repo` and `--git-tag` are provided, `git-branch` is not required.
-  - Add new `--annotations` flag - annotation(s) provided are propagated to the running pod for the workload.
+  - Add new `--annotations` flag. Annotation(s) provided are propagated to the running pod for the workload.
 - `workload list`:
   - Shorthand `-A` can be passed in for `--all-namespaces`.
 - `workload get`:
@@ -80,8 +80,8 @@ the troubleshooting of workloads on their path to production.
   - The existing STATUS value in the Pods table in the output reflects when a pod is “Terminating.”
 
 **Deprecation**
-* The `namespace` value that can be passed in for the `--service-ref` flag is now deprecated.
-  * A deprecation warning message has been added to the `workload create/update/apply...` when user specifies a namespace in the `--service-ref` object
+* The `namespace` value you can pass for the `--service-ref` flag is deprecated.
+  * A deprecation warning message is added to the `workload create/update/apply...` when user specifies a namespace in the `--service-ref` object.
 
 #### Service Bindings
 
@@ -92,7 +92,7 @@ the troubleshooting of workloads on their path to production.
 
 #### Source Controller
 
-- Enable Source Controller to connect to image registries that use self-signed or private certificate authorities - to support airgapped installs
+- Enable Source Controller to connect to image registries that use self-signed or private certificate authorities to support airgapped installations
   - This is an optional configuration
   - See [Source Controller Installation](source-controller/install-source-controller.md) for details
 - Applied [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339) timestamps to source controller logs.
