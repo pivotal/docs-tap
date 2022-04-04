@@ -213,6 +213,7 @@ Image Scan, after the binaries are built and packaged as images.
 
 #### Supply Chain Choreographer plug-in
 - **Details for ConfigMap CRD not appearing:** `Unable to retrieve conditions for ConfigMap...` error appears in details section after clicking on the ConfigMap stage in the graph view of a supply chain. This does not necessarily mean that the workload failed its execution through the supply chain.
+- **Scan results not shown:** Current CVEs found during Image or Build scanning do not appear. However, results are still present in the metadata store and are available through the Tanzu CLI. 
 
 #### Supply Chain Security Tools – Scan
 
