@@ -71,6 +71,7 @@ If a certificate error `x509: certificate signed by unknown authority` occurs, t
     To provide custom cert, create a file named `convention-controller-values.yaml` that includes the PEM-encoded CA cert data.
    
     For example:
+    
     ```yaml
     ca_cert_data: |
       -----BEGIN CERTIFICATE-----
@@ -86,8 +87,8 @@ If a certificate error `x509: certificate signed by unknown authority` occurs, t
     tanzu package install convention-controller -p controller.conventions.apps.tanzu.vmware.com -v VERSION-NUMBER -f VALUES-FILE -n tap-install
     ```
     Where
-      - `VERSION-NUMBER` is the version of the package listed in step 1 above.
-      - `VALUES-FILE` is the path to the file created in step 3.
+      - `VERSION-NUMBER` is the version of the package listed in the earlier step.
+      - `VALUES-FILE` is the path to the file created in the earlier step.
 
     For example:
 
