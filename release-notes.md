@@ -2,11 +2,11 @@
 
 This topic contains release notes for Tanzu Application Platform v1.0.
 
-## <a id='1-0-2'></a> v1.0.3
+## <a id='1-0-3'></a> v1.0.3
 
 **Release Date**: April 1, 2022
 
-### <a id='1-0-2-known-issues'></a> Known issues
+### <a id='1-0-3-known-issues'></a> Known issues
 
 This release has the following known issues:
 
@@ -32,13 +32,13 @@ jobs and two scan pods appear when a scan policy is updated.
 This does not affect the result of the scan.
 - **Scan Phase indicates `Scanning` incorrectly:** Scans have an edge case where, when an error
 occurs during scanning, the Scan Phase field is not updated to `Error` and remains in the
-`Scanning` phase. Read the scan Pod logs to verify if there was an error.
+`Scanning` phase. Read the scan pod logs to verify that there was an error.
 
-### <a id='1-0-2-resolved-issues'></a> Resolved issues
+### <a id='1-0-3-resolved-issues'></a> Resolved issues
 
-This release has the following fixes:
+This release has the following fix:
 
-- ‘CVE-2022-22965': Spring Framework RCE via Data Binding on JDK 9+
+- [CVE-2022-22965](https://cve.mitre.org/cgi-bin/cvename.cgi?name=2022-22965): Spring Framework RCE via Data Binding on JDK 9+
 
 ## <a id='1-0-2'></a> v1.0.2
 
