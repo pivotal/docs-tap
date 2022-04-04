@@ -171,7 +171,7 @@ The following packages are part of the Tanzu Application Platform:
 
   Supply Chain Security Tools - Sign provides an admission controller that allows a cluster operator
   to specify a policy that allows or denies images from running based on signature verification
-  against provided public keys. It works with the
+  against public keys. It works with
   [cosign signature format](https://github.com/sigstore/cosign#quick-start) and allows for fine-tuned
   configuration based on image source patterns.
 
