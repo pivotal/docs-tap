@@ -10,17 +10,15 @@ This topic contains release notes for Tanzu Application Platform v1.1
 
 #### Installing
 
+* **Tanzu Application Platform profile - Iterate** is intended for iterative development versus the path to production.
 
-* **Tanzu Application Platform profile - Iterate** : This profile is intended for iterative development versus the path to production.
+* **Tanzu Application Platform profile - Build** is intended for the transformation of source revisions to workload revisions. Specifically, it's for hosting workloads and SupplyChains.
 
-* **Tanzu Application Platform profile - Build** : This profile is intended for the transformation of source revisions to workload revisions. Specifically, hosting workloads and SupplyChains. 
+* **Tanzu Application Platform profile - Run** is intended for the transformation of workload revisions to running pods. Specifically, it's for hosting deliveries and deliverables.
 
-* **Tanzu Application Platform profile - Run** : This profile is intended for the transformation of workload revisions to running pods. Specifically, hosting deliveries and deliverables.
+* **Tanzu Application Platform profile - View** is intended for instances of applications related to centralized developer experiences, such as Tanzu Application Platform GUI and Metadata Store.
 
-* **Tanzu Application Platform profile - View** : This profile is intended for instances of applications related to centralized developer experiences. Specifically, Tanzu Application Platform GUI and Metadata Store.
-
-* **Tanzu Application Platform profile - Full** : This profile contains all of the Tanzu Application Platform packages.
-  - New packages in the Full profile:
+* **Tanzu Application Platform profile - Full** contains all of the Tanzu Application Platform packages. New packages in the Full profile:
     - Application Live View (Build)
     - Application Live View (Run)
     - Application Live View (GUI)
@@ -29,20 +27,30 @@ This topic contains release notes for Tanzu Application Platform v1.1
 
 #### Default roles for Tanzu Application Platform
 
-- Introduction of [five new default roles](authn-authz/overview.md) and related permissions that apply to **k8s resources**. These roles help operators set up common sets of permissions to limit the access that users and service accounts have on a cluster that runs Tanzu Application Platform.
-  - Three roles are for users, including: app-editor, app-viewer and app-operator.
-  - Two roles are for “robot” or system permissions, including: workload and deliverable.
+There are five new default roles and related permissions that apply to Kubernetes resources.
+These roles help operators set up common sets of permissions to limit the access that users and
+service accounts have on a cluster that runs Tanzu Application Platform.
+
+Three roles are for users, including `app-editor`, `app-viewer` and `app-operator`.
+Two roles are for “robot” or system permissions, including `workload` and `deliverable`.
+
+For more information, see [Overview of Default Roles](authn-authz/overview.md).
 
 #### Tanzu Application Platform GUI
 
-- **Runtime Resources Visibility plug-in:** 
-  - Introduced textual and enumerated table column filters for ease of search
-  - Display meaningful errors and path forward to troubleshoot issues when system fails
-  - Included 'tags' in Knative revision table in details page
-  - Introduced Kubernetes Service on the resources page to provide more insights to Kubernetes service details
-  - Improved several user interface components for a better user experience, including accessibility
-  
-- **Supply Chain Choreographer plug-in:** Added a new graphical representation of the execution of a workload through an installed supply chain. This  includes CRDs in the supply chain, the source results of each stage, as well as details to facilitate the troubleshooting of workloads on their path to production. 
+Plug-in improvements and additions include:
+
+- **Runtime Resources Visibility plug-in:**
+  - Textual and enumerated table column filters for ease of search
+  - Meaningful error messages and paths forward to troubleshoot issues
+  - Tags in Knative revision table on the details page
+  - Kubernetes Service on the resources page to provide more insights into Kubernetes service details
+  - Improved UI components for a better, and more accessible, user experience
+
+- **Supply Chain Choreographer plug-in:**
+Added a graphical representation of the execution of a workload by using an installed supply chain.
+This includes CRDs in the supply chain, the source results of each stage, and details to facilitate
+the troubleshooting of workloads on their path to production.
 
 #### <a id="app-acc-features"></a> Application Accelerator
 
@@ -64,12 +72,12 @@ This topic contains release notes for Tanzu Application Platform v1.1
   - Accept `workload.yaml` from stdin (through `--file -`).
   - Enable providing `spec.build.env` values (through new `–build.env` flag).
   - When `--git-repo` and `--git-tag` are provided, `git-branch` is not required.
-  - Add new `--annotations` flag - annotation(s) provided are propagated to the running pod for the workload. 
+  - Add new `--annotations` flag - annotation(s) provided are propagated to the running pod for the workload.
 - `workload list`:
   - Shorthand `-A` can be passed in for `--all-namespaces`.
 - `workload get`:
   - Service Claim details are returned in command output.
-  - The existing STATUS value in the Pods table in the output reflects when a pod is “Terminating.” 
+  - The existing STATUS value in the Pods table in the output reflects when a pod is “Terminating.”
 
 **Deprecation**
 * The `namespace` value that can be passed in for the `--service-ref` flag is now deprecated.
@@ -116,7 +124,7 @@ The following new conventions are applied to spring boot apps v2.6 and later:
 
 #### <a id="gui-features"></a>|Tanzu Application Platform GUI
 
-- **Runtime Resources Visibility plug-in:** 
+- **Runtime Resources Visibility plug-in:**
 - **Supply Chain Choreographer plug-in:** Added a new graphical representation of the execution of a workload through by using an installed supply chain. This  includes CRDs in the supply chain, the source results of each stage, and details to facilitate the troubleshooting of workloads on their path to production.  
 
 ### <a id='1-1-breaking-changes'></a> Breaking changes
@@ -169,7 +177,7 @@ None.
 - `tanzu apps workload get`: Passing in `--output json` and `--export` flags together exports the workload in JSON rather than YAML.
 - `tanzu apps workload tail`: Duplicate log entries created for init containers are removed.
 - `tanzu apps workload create/update/apply`
-  - When the `--wait` flag passed and the dialog box "Do you want to create this workload?" 
+  - When the `--wait` flag passed and the dialog box "Do you want to create this workload?"
   is declined, the command immediately exits 0, rather than hanging and continuing to wait.
   - Workload name is now validated when the workload values are passed in by using `--file workload.yaml`.
   - When creating or applying a workload from –local-path, if user answers “No” to the prompt “Are you sure you want to publish your local code to [registry name] where others may be able to access it?”, the command now exits 0 immediately rather than showing the workload diff and prompting to continue with workload creation.
@@ -185,7 +193,7 @@ None.
 #### Application Live View
 
 - **App Live View connector sometimes does not connect to the backend**
-  Workaround: Check the app live view connector pod logs to see if there are any rsocket connection issues to the backend. 
+  Workaround: Check the app live view connector pod logs to see if there are any rsocket connection issues to the backend.
   Try deleting the connector pod so it gets recreated:
   ```
   kubectl -n app-live-view delete pods -l=name=application-live-view-connector
@@ -253,12 +261,12 @@ Image Scan, after the binaries are built and packaged as images.
 
 - **App Live View connector sometimes does not connect to the back end:**
 
-    Workaround: 
-    
-    - Check the app live view connector pod logs to verify if there are any rsocket connection issues to the back end. 
-    
+    Workaround:
+
+    - Check the app live view connector pod logs to verify if there are any rsocket connection issues to the back end.
+
     - Try deleting the connector pod so it gets re-created:
-    
+
         ```
         kubectl -n app-live-view delete pods -l=name=application-live-view-connector
         ```
@@ -456,7 +464,7 @@ their pods preempted or evicted instead.
 
     The URL of the resulting HTTP request is properly escaped. For example,
     `/api/sources/%2Fpath%2Fto%2Fdir/vulnerabilities`.
-    
+
     The rbac-proxy used for authentication handles this URL in a way that the response is a redirect. For example, `HTTP 301\nLocation: /api/sources/path/to/dir/vulnerabilities`. The Client Lib follows the redirect, making a request to the new URL which does not exist in the
     Supply Chain Security Tools - Store API, resulting in this error message.
 
