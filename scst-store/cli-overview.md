@@ -6,6 +6,8 @@ To install and configure the `tanzu insight` CLI plug-in, you must install the S
 
 >**Note:** Currently, the `tanzu insight` plug-in only supports MacOS and Linux. Windows is not supported.
 
+See also:
+
 - [CLI plug-in installation](cli-installation.md)
 - [Configure target endpoint and certificate](using-encryption-and-connection.md)
 - [Configure access tokens](create-service-account-access-token.md)
