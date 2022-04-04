@@ -45,10 +45,10 @@ To install convention controller:
     $ tanzu package available list controller.conventions.apps.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for controller.conventions.apps.tanzu.vmware.com...
       NAME                                          VERSION  RELEASED-AT
-      controller.conventions.apps.tanzu.vmware.com  0.4.2    2021-09-16T00:00:00Z
+      controller.conventions.apps.tanzu.vmware.com  0.6.3    2022-03-08T00:00:00Z
     ```
 
-1. (Optional) Make changes to the default installation settings by running:
+1. (Optional) Gather values schema:
 
     ```
     tanzu package available get controller.conventions.apps.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
@@ -59,22 +59,40 @@ To install convention controller:
     For example:
 
     ```
-    $ tanzu package available get controller.conventions.apps.tanzu.vmware.com/0.4.2 --values-schema --namespace tap-install
+    $ tanzu package available get controller.conventions.apps.tanzu.vmware.com/0.6.3 --values-schema --namespace tap-install
+    
+    KEY           DEFAULT  TYPE    DESCRIPTION                                                                   
+    ca_cert_data           string  Optional: PEM Encoded certificate data for image registries with private CA.  
     ```
 
+1. (Optional) Enable Convention Controller to connect to image registries that use self-signed or private certificate authorities.
+If a certificate error `x509: certificate signed by unknown authority` occurs, this option can be used to trust additional certificate authorities. 
 
-
+    To provide custom cert, create a file named `convention-controller-values.yaml` that includes the PEM-encoded CA cert data.
+   
+    For example:
+    ```yaml
+    ca_cert_data: |
+      -----BEGIN CERTIFICATE-----
+      MIICpTCCAYUCBgkqhkiG9w0BBQ0wMzAbBgkqhkiG9w0BBQwwDgQIYg9x6gkCAggA
+      ...
+      9TlA7A4FFpQqbhAuAVH6KQ8WMZIrVxJSQ03c9lKVkI62wQ==
+      -----END CERTIFICATE-----
+    ```
 
 1. Install the package by running:
 
     ```
-    tanzu package install convention-controller -p controller.conventions.apps.tanzu.vmware.com -v 0.4.2 -n tap-install
+    tanzu package install convention-controller -p controller.conventions.apps.tanzu.vmware.com -v VERSION-NUMBER -f VALUES-FILE -n tap-install
     ```
+    Where
+      - `VERSION-NUMBER` is the version of the package listed in step 1 above.
+      - `VALUES-FILE` is the path to the file created in step 3.
 
     For example:
 
     ```
-    tanzu package install convention-controller -p controller.conventions.apps.tanzu.vmware.com -v 0.4.2 -n tap-install
+    tanzu package install convention-controller -p controller.conventions.apps.tanzu.vmware.com -v 0.6.3 -f VALUES-FILE convention-controller-values.yaml -n tap-install
     / Installing package 'controller.conventions.apps.tanzu.vmware.com'
     | Getting namespace 'tap-install'
     - Getting package metadata for 'controller.conventions.apps.tanzu.vmware.com'
@@ -99,7 +117,7 @@ To install convention controller:
     Retrieving installation details for convention-controller...
     NAME:                    convention-controller
     PACKAGE-NAME:            controller.conventions.apps.tanzu.vmware.com
-    PACKAGE-VERSION:         0.4.2
+    PACKAGE-VERSION:         0.6.3
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
