@@ -30,4 +30,4 @@ Once `tanzu insight` CLI plug-in is set up:
 
 ## <a id='additional-info'></a>Additional documentation
 
-[Additional documentation](additional.md) includes information about the API, deployment details & config, AWS RDS configuraiton and other database backup recommendations, known issues, among other topics.
+[Additional documentation](additional.md) includes information about the API, deployment details and config, AWS RDS configuration and other database backup recommendations, known issues, among other topics.
