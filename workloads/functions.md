@@ -2,7 +2,7 @@
 
 ## <a id="overview"></a>Overview
 
-The function experience on Tanzu Application Platform enables developers to deploy functions, where developers will be able to use starter templates to bootstrap their function and write only the code that matters to your business. Developers can run a single CLI command to get their functions deployed to an auto-scaled cluster.
+The function experience on Tanzu Application Platform enables developers to deploy functions, use starter templates to bootstrap their function and write only the code that matters to your business. Developers can run a single CLI command to deploy their functions to an auto-scaled cluster.
 
 This document describes how to create and deploy an HTTP function from an application accelerator starter template.
 
@@ -18,15 +18,15 @@ Before using functions workloads on Tanzu Application Platform, complete the fol
 
 ## <a id="add-buildpacks"></a>Adding function buildpacks
 
-In order to use the function buildpacks, you will need to upload their buildpackages to Build Service stores.
+To use the function `buildpacks`, you must upload their buildpackages to Build Service stores.
 
-1. Add the functions buildpackages to the default [ClusterStore](https://docs.vmware.com/en/Tanzu-Build-Service/1.4/vmware-tanzu-build-service-v14/GUID-managing-stores.html). Run:
+1. Add the function's buildpackages to the default [ClusterStore](https://docs.vmware.com/en/Tanzu-Build-Service/1.4/vmware-tanzu-build-service-v14/GUID-managing-stores.html) by running:
 
     ```
     kp clusterstore add default \-b ghcr.io/vmware-tanzu/function-buildpacks-for-knative/python-buildpack-with-deps:0.0.11 \-b ghcr.io/vmware-tanzu/function-buildpacks-for-knative/java-buildpack-with-deps:0.0.6
     ```
 
-1. Create and save a new [ClusterBuilder](https://docs.vmware.com/en/Tanzu-Build-Service/1.4/vmware-tanzu-build-service-v14/GUID-managing-builders.html). Run:
+1. Create and save a new [ClusterBuilder](https://docs.vmware.com/en/Tanzu-Build-Service/1.4/vmware-tanzu-build-service-v14/GUID-managing-builders.html) by running:
 
     ```
     kp clusterbuilder save function --store default -o - <<EOF
@@ -146,7 +146,3 @@ The accelerator ZIP file contains a file called k8s-resource.yaml. This file con
     ```
     tanzu apps workload get functions-accelerator-python
     ```
-
-
-
-
