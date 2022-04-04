@@ -6,7 +6,7 @@ The Supply Chain Choreographer (SCC) plug-in enables you to visualize the execut
 
 ## <a id="prerequisites"></a> Prerequisites
 
-You must have either of the Full or View profiles installed on your cluster, which includes Tanzu Application Platform GUI, or having installed the Tanzu Application Platform GUI package.
+You must have either of the Full or View profiles installed on your cluster, which includes Tanzu Application Platform GUI, or having installed Tanzu Application Platform GUI package.
 
 ## <a id="sc-visibility"></a> Supply Chain Visibility
 
@@ -16,11 +16,11 @@ Use the left sidebar navigation to access your workload and visualize it in the 
 
 For this example, we will look at the `tanzu-java-web-app`.
 
-![Screen Shot 2022-03-04 at 2 26 00 PM](https://user-images.githubusercontent.com/94395371/156849927-498524fc-4c92-4bee-8680-5de0c9f9cf84.png)
+![Screen Shot of Workloads](images/workloads.png)
 
 Click **tanzu-java-web-app** in the **WORKLOADS** table to navigate to the visualization of the supply chain.
 
-![Screen Shot 2022-03-04 at 2 29 32 PM](https://user-images.githubusercontent.com/94395371/156849831-6ab69788-2269-4087-a9e7-b65853e898e7.png)
+![Screen Shot of Supply Chain Visualization](images/visual-sc.png)
 
 There are two sections within this view:
 
@@ -29,4 +29,4 @@ There are two sections within this view:
 
 Here is a sample result of the Build stage for the `tanzu-java-web-app` by using Tanzu Build Service:
 
-![Screen Shot 2022-03-04 at 2 27 42 PM](https://user-images.githubusercontent.com/94395371/156852521-d0e1582d-4341-472e-8d34-64b9fbaa62a8.png)
+![Screen Shot of Build Stage](images/build-stage-sample.png)
