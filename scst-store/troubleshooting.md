@@ -30,7 +30,7 @@ data on the volume:
     
 1. Run `rm -rf /var/lib/postgresql/data/*` to delete all database data.
 
-    `/var/lib/postgresql/data/*` is the path found in `postgres-db-deployment.yaml`.
+    Where `/var/lib/postgresql/data/*` is the path found in `postgres-db-deployment.yaml`.
 
 1. Delete the `metadata-store` app by using `kapp`.
 1. Deploy the `metadata-store` app by using `kapp`.
