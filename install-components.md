@@ -70,7 +70,7 @@ Use the following procedure to verify that the packages are installed.
     source-controller        controller.source.apps.tanzu.vmware.com            0.2.0            Reconcile succeeded
     tap-gui                  tap-gui.tanzu.vmware.com                           0.3.0-rc.4       Reconcile succeeded
     tekton-pipelines         tekton.tanzu.vmware.com                            0.30.0           Reconcile succeeded
-    tbs                      buildservice.tanzu.vmware.com                      1.4.2            Reconcile succeeded
+    tbs                      buildservice.tanzu.vmware.com                      1.5.0            Reconcile succeeded
     ```
 
 ## <a id='setup'></a> Set up developer namespaces to use installed packages
