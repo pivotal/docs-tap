@@ -21,7 +21,11 @@ This topic contains release notes for Tanzu Application Platform v1.1
 
 * **Tanzu Application Platform profile - Full** : This profile contains all of the Tanzu Application Platform packages.
   - New packages in the Full profile:
-    - to be added here
+    - Application Live View (Build)
+    - Application Live View (Run)
+    - Application Live View (GUI)
+    - Default Roles
+    - Telemetry
 
 #### Default roles for Tanzu Application Platform
 
@@ -31,7 +35,13 @@ This topic contains release notes for Tanzu Application Platform v1.1
 
 #### Tanzu Application Platform GUI
 
-- **Runtime Resources Visibility plug-in:** explanation here
+- **Runtime Resources Visibility plug-in:** 
+  - Introduced textual and enumerated table column filters for ease of search
+  - Display meaningful errors and path forward to troubleshoot issues when system fails
+  - Included 'tags' in Knative revision table in details page
+  - Introduced Kubernetes Service on the resources page to provide more insights to Kubernetes service details
+  - Improved several user interface components for a better user experience, including accessibility
+  
 - **Supply Chain Choreographer plug-in:** Added a new graphical representation of the execution of a workload through an installed supply chain. This  includes CRDs in the supply chain, the source results of each stage, as well as details to facilitate the troubleshooting of workloads on their path to production. 
 
 #### <a id="app-acc-features"></a> Application Accelerator
