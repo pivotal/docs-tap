@@ -105,6 +105,18 @@ The following new conventions are applied to spring boot apps v2.6 and later:
 - Add Kubernetes liveness and readiness probes by using spring boot health endpoints.
 - Change management port from 8080 to 8081 to increase security of the management port.
 
+
+- **Set the management port to port 8081** rather than the default (port 8080).
+  - This change increases the security of spring boot applications running on the platform by preventing access to actuator endpoints which could leak sensitive information and/or allow access to trigger actions that could impact the application.
+  - If the application has explicitly set the management port via the JAVA_TOOL_OPTIONS in the workload.yaml that setting will be respected by the spring boot conventions (the management port will NOT be set to port 8081).
+  - **NOTE:** Other common approaches to configuring the management port will NOT be respected. For example, if an application is configured with a specific management port via `application.properties/yml`, `config server`, or any other "usual" Spring Boot config mechanism, the convention will override that management port configuration.
+  - [Directions for configuring the management port via JAVA_TOOL_OPTIONS](spring-boot-conventions/reference/CONVENTIONS.md#set-java-tool-options-property).
+- **Applied [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339) timestamps to service binding logs.**
+- Add Kubernetes liveness and readiness probes by using spring boot health endpoints.
+  - **NOTE:** this convention is applied to spring boot apps **v2.6+**.
+  - The proves will be exposed on the main serving port for the app (port 8080 by default).
+
+
 #### Supply Chain Security Tools - Scan
 
 - Support for configuring Supply Chain Security Tools - Scan to remotely connect to Supply Chain Security Tools - Store in a different cluster.
