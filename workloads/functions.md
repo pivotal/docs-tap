@@ -39,7 +39,7 @@ To use the function `buildpacks`, you must upload their buildpackages to Build S
     - id: kn-fn/java-function
     ```
 
-1. (Optional) To use default Java and Python buildpacks for non-functions workloads, add an optional flag and set it to true to a cluster builder group to use those buildpacks.
+1. (Optional) To use default Java and Python buildpacks for non-functions workloads, add an optional flag and set it to `true` to a cluster builder group to use those buildpacks.
 
     ```
     kp clusterbuilder save function --store default -o - <<EOF
@@ -71,7 +71,7 @@ To use the function `buildpacks`, you must upload their buildpackages to Build S
 
 Where:
 
-- VERSION is the version of Tanzu Application Platform GUI you have installed. For example, 1.0.2.
+- `VERSION` is the version of Tanzu Application Platform GUI you have installed. For example, 1.0.2.
 
 ## <a id="add-accelerators"></a>Add accelerators to Tanzu Application Platform GUI
 
@@ -127,7 +127,7 @@ The accelerator ZIP file contains a file called k8s-resource.yaml. This file con
 
     Where:
 
-    - --source-image is a writable repository in your registry.
+    - `--source-image` is a writable repository in your registry.
 
     Harbor has the form: "my-harbor.io/my-project/functions-accelerator-python".
 
