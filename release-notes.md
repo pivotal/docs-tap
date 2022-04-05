@@ -125,7 +125,10 @@ The following new conventions are applied to spring boot apps v2.6 and later:
 #### <a id="gui-features"></a>|Tanzu Application Platform GUI
 
 - **Runtime Resources Visibility plug-in:**
-- **Supply Chain Choreographer plug-in:** Added a new graphical representation of the execution of a workload through by using an installed supply chain. This  includes CRDs in the supply chain, the source results of each stage, and details to facilitate the troubleshooting of workloads on their path to production.  
+- **Supply Chain Choreographer plug-in:** Added a new graphical representation of
+the execution of a workload by using an installed supply chain.
+This includes CRDs in the supply chain, the source results of each stage, and
+details to facilitate the troubleshooting of workloads on their path to production.  
 
 ### <a id='1-1-breaking-changes'></a> Breaking changes
 
@@ -213,8 +216,11 @@ Image Scan, after the binaries are built and packaged as images.
 
 #### Supply Chain Choreographer plug-in
 
-- **Details for ConfigMap CRD not appearing:** `Unable to retrieve conditions for ConfigMap...` Error appears in details section after clicking on the ConfigMap stage in the graph view of a supply chain. This does not necessarily mean that the workload failed its execution through the supply chain.
-- **Scan results not shown:** Current CVEs found during Image or Build scanning do not appear. However, results are still present in the metadata store and are available by using the Tanzu CLI. 
+- **Details for ConfigMap CRD not appearing:** The error `Unable to retrieve conditions for ConfigMap...`
+appears in the details section after clicking on the ConfigMap stage in the
+graph view of a supply chain.
+This error does not necessarily mean that the workload failed its execution through the supply chain.
+- **Scan results not shown:** Current CVEs found during Image or Build scanning do not appear. However, results are still present in the metadata store and are available by using the Tanzu CLI.
 
 #### Supply Chain Security Tools – Scan
 
@@ -465,10 +471,10 @@ their pods preempted or evicted instead.
     The URL of the resulting HTTP request is properly escaped. For example,
     `/api/sources/%2Fpath%2Fto%2Fdir/vulnerabilities`.
 
-    The rbac-proxy used for authentication creates a redirect in the response, 
-    For example, `HTTP 301\nLocation: /api/sources/path/to/dir/vulnerabilities`. 
-    The Client Lib follows the redirect, making a request to the new URL that 
-    does not exist in the **Supply Chain Security Tools - Store** API, 
+    The rbac-proxy used for authentication creates a redirect in the response,
+    For example, `HTTP 301\nLocation: /api/sources/path/to/dir/vulnerabilities`.
+    The Client Lib follows the redirect, making a request to the new URL that
+    does not exist in the **Supply Chain Security Tools - Store** API,
     resulting in this error message.
 
 #### Tanzu CLI
