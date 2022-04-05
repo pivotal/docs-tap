@@ -4,7 +4,7 @@
 
 The **Pinniped Supervisor** is an OIDC server which allows users to authenticate with an external identity provider (IDP). It hosts an API for the concierge component to fulfill authentication requests.
 
-The **Pinniped Concierge** is a credential exchange API which takes as input a credential from an identity source, for example, Pinniped Supervisor, proprietary IDP, authenticates the user via that credential, and returns another credential which is parsable by the host Kubernetes cluster or by an impersonation proxy that acts on behalf of the user.
+The **Pinniped Concierge** is a credential exchange API which takes a credential from an identity source, for example, Pinniped Supervisor, proprietary IDP, as input. The **Pinniped Concierge** authenticates the user via the credential, and returns another credential which is parsable by the host Kubernetes cluster or by an impersonation proxy that acts on behalf of the user.
 
 
 ## Prerequisites
