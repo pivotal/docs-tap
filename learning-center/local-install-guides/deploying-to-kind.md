@@ -108,7 +108,7 @@ Follow these steps to install the Tanzu package repository:
     --namespace tap-install
   ```
 
-  >**Note:** We are currently on build 7: if this changes, we need to update the command with the correct build version after the --url flag.
+  >**Note:** We are currently on build 7. If this changes, we need to update the command with the correct build version after the --url flag.
 
 1. To check the package repository install status, run:
 
