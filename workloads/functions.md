@@ -138,7 +138,7 @@ The accelerator ZIP file contains a file called k8s-resource.yaml. This file con
 1. View the build and runtime logs for your application by running the tail command:
 
     ```
-    tanzu apps workload tail tanzu-java-web-app --since 10m --timestamp
+    tanzu apps workload tail functions-accelerator-python --since 10m --timestamp
     ```
 
 1. After the workload is built and running, you can view the web application in your browser. To view the URL of the web application, run the following command and then ctrl-click the Workload Knative Services URL at the bottom of the command output.
