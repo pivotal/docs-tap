@@ -52,13 +52,13 @@ Follow these steps to install the Auth CLI plug-in:
 Use the `--kubeconfig` flag before the subcommand:
 
 ```
-tanzu auth --kubeconfig <PATH_OF_KUBECONFIG> add-binding ...
+tanzu auth --kubeconfig <PATH_OF_KUBECONFIG> binding add ...
 ```
 
 For example:
 
 ```
-$ tanzu auth --kubeconfig /tmp/pinniped_kubeconfig.yaml add-binding --user username@vmware.com --role app-editor --namespace user-ns
+$ tanzu auth --kubeconfig /tmp/pinniped_kubeconfig.yaml binding add --user username@vmware.com --role app-editor --namespace user-ns
 ```
 
 >**Note:** The environment variable `KUBECONFIG` is not implemented. You must use the `--kubeconfig` flag to enter a different location.
@@ -68,15 +68,15 @@ $ tanzu auth --kubeconfig /tmp/pinniped_kubeconfig.yaml add-binding --user usern
 To add a user or group to a role, run:
 
 ```
-tanzu auth add-binding --user $user --role $role --namespace $namespace
+tanzu auth binding add --user $user --role $role --namespace $namespace
 
-tanzu auth add-binding --group $group --role $role --namespace $namespace
+tanzu auth binding add --group $group --role $role --namespace $namespace
 ```
 
 For example:
 
 ```
-$ tanzu auth add-binding --user username@vmware.com --role app-editor --namespace user-ns
+$ tanzu auth binding add --user username@vmware.com --role app-editor --namespace user-ns
 ```
 
 ### <a id="get-list-users"></a>Get a list of users and groups from a role
@@ -84,29 +84,29 @@ $ tanzu auth add-binding --user username@vmware.com --role app-editor --namespac
 To get a list of users and groups from a role, run:
 
 ```
-tanzu auth get-binding --role $role --namespace $namespace
+tanzu auth binding get --role $role --namespace $namespace
 
-tanzu auth get-binding --role $role --namespace $namespace
+tanzu auth binding get --role $role --namespace $namespace
 ```
 
 For example:
 
 ```
-$ tanzu auth get-binding --role app-editor --namespace user-ns
+$ tanzu auth binding get --role app-editor --namespace user-ns
 ```
 
-### <a id="remove-binding"></a>Remove the specified user or group from a role
+### <a id="binding-delete"></a>Remove the specified user or group from a role
 
 To remove a user or group from a role, run:
 
 ```
-tanzu auth remove-binding --user $user --role  $role --namespace $namespace
+tanzu auth binding delete --user $user --role  $role --namespace $namespace
 
-tanzu auth remove-binding --group $group --role $role --namespace $namespace
+tanzu auth binding delete --group $group --role $role --namespace $namespace
 ```
 
 For example:
 
 ```
-$ tanzu auth remove-binding --user username@vmware.com --role app-editor --namespace user-ns
+$ tanzu auth binding delete --user username@vmware.com --role app-editor --namespace user-ns
 ```
