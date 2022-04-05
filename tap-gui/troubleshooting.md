@@ -101,7 +101,7 @@ Get timestamped logs from the running pod and review the logs:
 
 Here are some common troubleshooting steps for errors presented in the Runtime Resources tab.
 
-## <a id='network-error'></a> Error communicating with Tanzu Application Platform web server
+## <a id='rrv-network-error'></a> Error communicating with Tanzu Application Platform web server
 
 ### Symptom
 
@@ -117,7 +117,7 @@ When you access the Runtime Resource Visibility tab and the system displays `Err
 2. Confirm that the backend service is running correctly.
 3. Confirm the cluster’s configuration is correct. 
 
-## No data available
+##  <a id='rrv-no-data-found'></a> No data available
 
 ### Symptom
 
@@ -145,16 +145,17 @@ The reported errors may not indicate a real problem. A build cluster may not hav
 
 ### Error Details
 
-- `Access error when querying cluster ‘CLUSTER_NAME’ for resource 'KUBERNETES_RESOURCE_PATH' (status: 401). Contact your administrator.`
+-  <a id='rrv-cluster-configuration'></a> `Access error when querying cluster ‘CLUSTER_NAME’ for resource 'KUBERNETES_RESOURCE_PATH' (status: 401). Contact your administrator.`
 
-  #### Cause
+    #### Cause
   
-  There is a problem with the cluster configuration.
+    There is a problem with the cluster configuration.
 
-  #### Solution
-  Confirm the access token used to request information in the cluster.
+    #### Solution
+    
+    Confirm the access token used to request information in the cluster.
 
-- `Access error when querying cluster ‘CLUSTER_NAME’ for resource 'KUBERNETES_RESOURCE_PATH' (status: 403). Contact your administrator.`
+- <a id='rrv-resource-access'></a> `Access error when querying cluster ‘CLUSTER_NAME’ for resource 'KUBERNETES_RESOURCE_PATH' (status: 403). Contact your administrator.`
 
   #### Cause
 
@@ -166,7 +167,7 @@ The reported errors may not indicate a real problem. A build cluster may not hav
   If the error is in a watched cluster please review the process to grant access to it here: [Viewing resources on multiple clusters in Tanzu Application Platform GUI](cluster-view-setup.md).
 
 
-- `Knative is not installed on ‘CLUSTER_NAME’ (status: 404). Contact your administrator.`
+- <a id='rrv-missing-knative'></a> `Knative is not installed on ‘CLUSTER_NAME’ (status: 404). Contact your administrator.`
 
   #### Cause
   
@@ -176,11 +177,14 @@ The reported errors may not indicate a real problem. A build cluster may not hav
 
   Install the Knative components following the instructions [here](../cloud-native-runtimes/install-cnrt.md).
 
-- `Error when querying cluster ‘CLUSTER_NAME’ for resource 'KUBERNETES_RESOURCE_PATH' (status: 404). Contact your administrator.`
+- <a id='rrv-missing-resource'></a> `Error when querying cluster ‘CLUSTER_NAME’ for resource 'KUBERNETES_RESOURCE_PATH' (status: 404). Contact your administrator.`
 
   #### Cause
+
   The package that contains the resource is not installed.
 
   #### Solution
+
   Install the missing package.
 
+  
