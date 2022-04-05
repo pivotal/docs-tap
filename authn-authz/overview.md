@@ -5,7 +5,7 @@ Tanzu Application Platform 1.1 includes:
 - Documentation for [Integrating with your Existing Identity Management Solution](integrating-identity.md).
 - Five new default roles to help you set up permissions for users and service accounts within a namespace on a cluster that runs one of the Tanzu Application Platform profiles.
 - Tanzu Application Platform `rbac` [CLI plug-in](binding.md) for role binding.
-- Documentation for [Logging in using Pinniped](pinniped-login.md).
+- Documentation for [Login using Pinniped](pinniped-login.md).
 
 ## <a id="default-roles"></a> Default roles
 

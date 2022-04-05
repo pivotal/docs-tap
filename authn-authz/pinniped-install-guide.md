@@ -1,34 +1,33 @@
 # Installing Pinniped on a single cluster
 
-To support authentication on TAP we are installing [Pinniped](https://pinniped.dev/). In this guide we install pinniped on a single cluster TAP setup. Pinniped consists of two components that we will deploy into our cluster.
+[Pinniped](https://pinniped.dev/) is used to support authentication on Tanzu Application Platform. This topic introduces how to install Pinniped on a single cluster of Tanzu Application Platform. You will deploy two Pinniped components into the cluster.
 
-The Pinniped Supervisor is an OIDC server which allows users to authenticate with an external identity provider (IDP), it hosts an API that the concierge component is using to fulfill authentication requests.
+The **Pinniped Supervisor** is an OIDC server which allows users to authenticate with an external identity provider (IDP). It hosts an API for the concierge component to fulfill authentication requests.
 
-The Pinniped Concierge is a credential exchange API which takes as input a credential from an identity source (e.g., Pinniped Supervisor, proprietary IDP), authenticates the user via that credential, and returns another credential which is understood by the host Kubernetes cluster or by an impersonation proxy which acts on behalf of the user.
+The **Pinniped Concierge** is a credential exchange API which takes as input a credential from an identity source (e.g., Pinniped Supervisor, proprietary IDP), authenticates the user via that credential, and returns another credential which is parsable by the host Kubernetes cluster or by an impersonation proxy that acts on behalf of the user.
 
 
 ## Prerequisites
 
-* installing pinniped with the proposed configuration requires the following packages to be installed:
+* installing Pinniped with the proposed configuration requires installation of the following packages:
     * certmanager
     * contour
-* these packages are included in Tanzu Application Platform
+* certmanager and contour are included in Tanzu Application Platform
 * create a folder acting as your workspace `workspace`
 
-## Install Pinniped supervisor
+## Install Pinniped Supervisor
 
-In order to install pinniped-supervisor you need to follow these steps:
+Follow these steps to install `pinniped-supervisor`:
 
 1. create the necessary certificate files
-1. create the ingress resources
-1. create the pinniped-supervisor configuration
+1. create the Ingress resources
+1. create the `pinniped-supervisor` configuration
 1. apply those resources to the cluster
 
-### Create necessary Certificates (letsencrypt/cert-manager)
+### Create Certificates (letsencrypt/cert-manager)
 
-Create a ClusterIssuer for letsencrypt, a CA certificate and tls certificate for pinniped supervisor.
-
-You can do it by creating the following resources and save it into `workspace/pinniped-supervisor/certificates.yaml`.
+Create a ClusterIssuer for `letsencrypt`, a CA certificate and TLS certificate for Pinniped Supervisor 
+by creating the following resources and save them into `workspace/pinniped-supervisor/certificates.yaml`.
 
 ```yaml
 ---
@@ -81,9 +80,9 @@ spec:
 
 ### Create Ingress resources
 
-Create a Service and Ingress resource to make the pinniped-supervisor accessible from outside the cluster.
+Create a Service and Ingress resource to make the `pinniped-supervisor` accessible from outside the cluster.
 
-You can do it by creating the following resources and save it into `workspace/pinniped-supervisor/ingress.yaml`.
+To do so, create the following resources and save them into `workspace/pinniped-supervisor/ingress.yaml`.
 
 ```yaml
 ---
@@ -119,9 +118,9 @@ spec:
 
 ### Create Pinniped-Supervisor configuration
 
-Create a FederationDomain to link the concierge to the supervisor instance and configure an OIDCIdentityProvider to connect the supervisor to your OIDC Provider. In the example below we use auth0. See the [pinniped how-to guides](https://pinniped.dev/docs/howto/) to learn how to configure different identity providers, including OKTA, GitLab, OpenLDAP, Dex, Microsoft AD and more.
+Create a FederationDomain to link the concierge to the supervisor instance and configure an OIDCIdentityProvider to connect the supervisor to your OIDC Provider. In the following example, you will use auth0. See the [pinniped how-to guides](https://pinniped.dev/docs/howto/) to learn how to configure different identity providers, including OKTA, GitLab, OpenLDAP, Dex, Microsoft AD and more.
 
-You can do it by creating the following resources and save it into `workspace/pinniped-supervisor/oidc_identity_provider.yaml`.
+To create Pinniped-Supervisor configuration, create the following resources and save it into `workspace/pinniped-supervisor/oidc_identity_provider.yaml`.
 
 ```yaml
 apiVersion: idp.supervisor.pinniped.dev/v1alpha1
@@ -173,7 +172,8 @@ spec:
 
 ### Apply the resources
 
-After creating the resource files we are now installing them into the cluster. We will deploy them as a [kapp application](https://carvel.dev/kapp/).
+After creating the resource files, you can install them into the cluster. 
+Follow these steps to deploy them as a [kapp application](https://carvel.dev/kapp/):
 
 1. Install the supervisor.
     ```
@@ -190,20 +190,22 @@ After creating the resource files we are now installing them into the cluster. W
 
 ## Install Pinniped Concierge
 
-1. Deploy the pinniped concierge.
+1. Deploy the Pinniped Concierge.
+
     ```
     kapp deploy -y --app pinniped-concierge \
       -f https://get.pinniped.dev/v0.12.0/install-pinniped-concierge-crds.yaml \
       -f https://get.pinniped.dev/v0.12.0/install-pinniped-concierge.yaml
     ```
-1. get the CA certificate of the supervisor.
+    
+1. Get the CA certificate of the supervisor.
+
     ```
     kubectl get secret pinniped-supervisor-ca-cert -n pinniped-supervisor  -o 'go-template={{index .data "tls.crt"}}'
     ```
-1.  create the following resource to `workspace/pinniped-concierge/jwt_authenticator.yaml` and deploy it with:
-    ```sh
-    kapp deploy -y --app pinniped-concierge-jwt --into-ns pinniped-concierge -f pinniped-concierge/jwt_authenticator.yaml
-    ```
+    
+1. Create the following resource to `workspace/pinniped-concierge/jwt_authenticator.yaml`.
+
     ```yaml
     ---
     apiVersion: authentication.concierge.pinniped.dev/v1alpha1
@@ -215,6 +217,12 @@ After creating the resource files we are now installing them into the cluster. W
       audience: concierge
       tls:
         certificateAuthorityData: # insert the CA certificate data here
+    ``` 
+
+    Deploy the resource by running:
+
+    ```sh
+    kapp deploy -y --app pinniped-concierge-jwt --into-ns pinniped-concierge -f pinniped-concierge/jwt_authenticator.yaml
     ```
 
 ## Login to the Cluster
