@@ -49,7 +49,7 @@ kubectl get secret app-tls-cert -n metadata-store -o json | jq -r '.data."ca.crt
 
 Where:
 
-- `PATH` is the location where you want to save the CA certificate. Use this file later when you configure the CLI. See [CLI plug-in configuration](cli-configuration.md).
+- `PATH` is the location where you want to save the CA certificate. Use this file later when you configure the CLI. See [CLI plug-in configuration](../cli-plugins/insight/cli-configuration.md).
 
 If using an ingress, the CA certificate for clients is the certificate of the ingress domain:
 

@@ -888,8 +888,8 @@ Scan reports are automatically saved to the [Supply Chain Security Tools - Store
 
   Important: The `Insight CLI` is separate from the Tanzu CLI.
 
-See [Query Data](scst-store/query-data.md) or [CLI Details](scst-store/cli-docs/insight.md) for
-additional examples.
+See [Tanzu Insight plug-in overview](cli-plugins/insight/cli-overview.md) 
+additional information and examples.
 <br>
 
 
