@@ -59,7 +59,7 @@ kubectl get secret ingress-cert -n metadata-store -o json | jq -r '.data."ca.crt
 
 ### <a id='dns-resolution'></a>DNS resolution
 
-To support TLS domain verification, set up a record to resolve to the IP address handling the connections. Do this through a DNS server or by modifying your local `/etc/hosts` file. 
+To support TLS domain verification, set up a record to resolve to the IP address handling the connections. Do this through a DNS server or by modifying your local `/etc/hosts` file.
 
 If ingress is enabled, point this IP address to the `envoy`'s service external IP address from the `metadata-store` subdomain record:
 
@@ -75,7 +75,7 @@ IP metadata-store-app.metadata-store.svc.cluster.local
 
 Where:
 
-- `IP` is the IP address you got from the earlier step *Using `LoadBalancer`* or the `envoy`'s service external IP address. 
+- `IP` is the IP address you got from the earlier step *Using `LoadBalancer`* or the `envoy`'s service external IP address.
 
 For example:
 
@@ -99,7 +99,7 @@ kubectl get secret app-tls-cert -n metadata-store -o json | jq -r '.data."ca.crt
 
 Where:
 
-- `PATH` is the location where you want to save the CA certificate. Use this file later when you [configure the CLI](cli-configuration.md).
+- `PATH` is the location where you want to save the CA certificate. Use this file later when you [configure the CLI](../cli-plugins/insight/cli-configuration.md).
 
 If using an ingress, the CA certificate for clients is the certificate of the ingress domain:
 

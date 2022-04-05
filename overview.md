@@ -122,7 +122,7 @@ The following packages are part of the Tanzu Application Platform:
 
   Default roles only apply to a user interacting with the cluster using kubectl and Tanzu CLI. Tanzu Application Platform GUI support for default roles is planned for a future release.
 
-- **[Developer Conventions](../convention-service/about.md)**
+- **[Developer Conventions](convention-service/about.md)**
 
   Developer conventions configure workloads to prepare them for inner loop development.
 
