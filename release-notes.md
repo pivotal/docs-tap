@@ -134,7 +134,7 @@ The following new conventions are applied to spring boot apps v2.6 and later:
   - Currently, `insight` plug-in only supports MacOS and Linux.
 - Upgraded golang version from `1.17.5` to `1.17.8`
 
-#### <a id="gui-features"></a>|Tanzu Application Platform GUI
+#### <a id="gui-features"></a> Tanzu Application Platform GUI
 
 - **Runtime Resources Visibility plug-in:**
 - **Supply Chain Choreographer plug-in:** Added a new graphical representation of
