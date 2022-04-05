@@ -142,6 +142,12 @@ the execution of a workload by using an installed supply chain.
 This includes CRDs in the supply chain, the source results of each stage, and
 details to facilitate the troubleshooting of workloads on their path to production.  
 
+#### Functions (Beta)
+
+The function experience on Tanzu Application Platform enables developers to deploy functions, use starter templates to bootstrap their function and write only the code that matters to your business. Developers can run a single CLI command to deploy their functions to an auto-scaled cluster.
+
+For more information, see [Functions](workloads/functions.md).
+
 ### <a id='1-1-breaking-changes'></a> Breaking changes
 
 #### <a id="app-acc-changes"></a> Application Accelerator
