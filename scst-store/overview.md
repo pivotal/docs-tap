@@ -12,21 +12,9 @@ alt="A demonstration of the features. First ingesting a bill of materials file. 
 
 ## Using the `tanzu insight` CLI plug-in
 
-The `tanzu insight` CLI plug-in is the primary method to post and query the Supply Chain Security Tools - Store database.
+The `tanzu insight` CLI plug-in is the primary way to view results from the Supply Chain Security Tools - Scan of source code and image files.  Use it to query by source code commit, image digest, CVE identifier to understand security risks.  
 
-Follow the below steps to install and configure `tanzu insight` CLI plug-in.
-
->**Note:** Prior to using the CLI plug-in, you must install the Supply Chain Security Tools - Store, either as its own package, or as part of Tanzu Application Platform Build profile or Tanzu Application Platform View profile.
-
-1. [CLI plug-in installation](cli-installation.md)
-1. [Configure target endpoint and certificate](using-encryption-and-connection.md)
-1. [Configure access tokens](create-service-account-access-token.md)
-
-Once `tanzu insight` CLI plug-in is set up:
-
-1. [Add data](add-data.md)
-1. [Query data](query-data.md)
-
+See [Tanzu Insight plug-in overview](../cli-plugins/insight/cli-overview.md) to install, configure and use `tanzu insight`.
 
 ## <a id='additional-info'></a>Additional documentation
 

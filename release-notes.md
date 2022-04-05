@@ -72,7 +72,7 @@ the troubleshooting of workloads on their path to production.
   - Accept `workload.yaml` from stdin (through `--file -`).
   - Enable providing `spec.build.env` values (through new `–build.env` flag).
   - When `--git-repo` and `--git-tag` are provided, `git-branch` is not required.
-  - Add new `--annotations` flag - annotation(s) provided are propagated to the running pod for the workload.
+  - Add new `--annotations` flag. Annotation(s) provided are propagated to the running pod for the workload.
 - `workload list`:
   - Shorthand `-A` can be passed in for `--all-namespaces`.
 - `workload get`:
@@ -80,8 +80,8 @@ the troubleshooting of workloads on their path to production.
   - The existing STATUS value in the Pods table in the output reflects when a pod is “Terminating.”
 
 **Deprecation**
-* The `namespace` value that can be passed in for the `--service-ref` flag is now deprecated.
-  * A deprecation warning message has been added to the `workload create/update/apply...` when user specifies a namespace in the `--service-ref` object
+* The `namespace` value you can pass for the `--service-ref` flag is deprecated.
+  * A deprecation warning message is added to the `workload create/update/apply...` when user specifies a namespace in the `--service-ref` object.
 
 #### Service Bindings
 
@@ -92,7 +92,7 @@ the troubleshooting of workloads on their path to production.
 
 #### Source Controller
 
-- Enable Source Controller to connect to image registries that use self-signed or private certificate authorities - to support airgapped installs
+- Enable Source Controller to connect to image registries that use self-signed or private certificate authorities to support airgapped installations
   - This is an optional configuration
   - See [Source Controller Installation](source-controller/install-source-controller.md) for details
 - Applied [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339) timestamps to source controller logs.
@@ -104,6 +104,18 @@ the troubleshooting of workloads on their path to production.
 The following new conventions are applied to spring boot apps v2.6 and later:
 - Add Kubernetes liveness and readiness probes by using spring boot health endpoints.
 - Change management port from 8080 to 8081 to increase security of the management port.
+
+
+- **Set the management port to port 8081** rather than the default (port 8080).
+  - This change increases the security of spring boot applications running on the platform by preventing access to actuator endpoints which could leak sensitive information and/or allow access to trigger actions that could impact the application.
+  - If the application has explicitly set the management port via the JAVA_TOOL_OPTIONS in the workload.yaml that setting will be respected by the spring boot conventions (the management port will NOT be set to port 8081).
+  - **NOTE:** Other common approaches to configuring the management port will NOT be respected. For example, if an application is configured with a specific management port via `application.properties/yml`, `config server`, or any other "usual" Spring Boot config mechanism, the convention will override that management port configuration.
+  - [Directions for configuring the management port via JAVA_TOOL_OPTIONS](spring-boot-conventions/reference/CONVENTIONS.md#set-java-tool-options-property).
+- **Applied [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339) timestamps to service binding logs.**
+- Add Kubernetes liveness and readiness probes by using spring boot health endpoints.
+  - **NOTE:** this convention is applied to spring boot apps **v2.6+**.
+  - The proves will be exposed on the main serving port for the app (port 8080 by default).
+
 
 #### Supply Chain Security Tools - Scan
 
@@ -125,7 +137,10 @@ The following new conventions are applied to spring boot apps v2.6 and later:
 #### <a id="gui-features"></a>|Tanzu Application Platform GUI
 
 - **Runtime Resources Visibility plug-in:**
-- **Supply Chain Choreographer plug-in:** Added a new graphical representation of the execution of a workload through by using an installed supply chain. This  includes CRDs in the supply chain, the source results of each stage, and details to facilitate the troubleshooting of workloads on their path to production.  
+- **Supply Chain Choreographer plug-in:** Added a new graphical representation of
+the execution of a workload by using an installed supply chain.
+This includes CRDs in the supply chain, the source results of each stage, and
+details to facilitate the troubleshooting of workloads on their path to production.  
 
 ### <a id='1-1-breaking-changes'></a> Breaking changes
 
@@ -212,14 +227,19 @@ fails to find vulnerabilities during a Source Scan. The vulnerabilities are stil
 Image Scan, after the binaries are built and packaged as images.
 
 #### Supply Chain Choreographer plug-in
-- **Details for ConfigMap CRD not appearing:** `Unable to retrieve conditions for ConfigMap...` error appears in details section after clicking on the ConfigMap stage in the graph view of a supply chain. This does not necessarily mean that the workload failed its execution through the supply chain.
+
+- **Details for ConfigMap CRD not appearing:** The error `Unable to retrieve conditions for ConfigMap...`
+appears in the details section after clicking on the ConfigMap stage in the
+graph view of a supply chain.
+This error does not necessarily mean that the workload failed its execution through the supply chain.
+- **Scan results not shown:** Current CVEs found during Image or Build scanning do not appear. However, results are still present in the metadata store and are available by using the Tanzu CLI.
 
 #### Supply Chain Security Tools – Scan
 
 - **Scan Phase indicates `Scanning` incorrectly:** Scans have an edge case that when an error
   occurs during scanning, the `Scan Phase` field is not updated to `Error` and remains in the
   `Scanning` phase. Read the scan pod logs to verify the existence of an error.
-- **User see error message saying Supply Chain Security Tools - Store (Store) is not configured even though configuration values were supplied:** The Scan Controller experiences a race-condition when deploying Store in the same cluster, that shows Store as not configured, even when it is present and properly configured. This happens when the Scan Controller is deployed and reconciled before the Store is reconciled and the corresponding secrets are exported to the Scan Controller namespace. As a workaround to this, once your Store is successfully reconciled, you would need to restart your Supply Chain Security Tools - Scan deployment by running: `kubectl rollout restart deployment.apps/scan-link-controller-manager -n scan-link-system`. If you deployed Supply Chain Security Tools - Scan to a different namespace than the default one, you can replace `-n scan-link-system` with `-n <my_custom_namespace>`.
+- **User sees error message saying Supply Chain Security Tools - Store (Store) is not configured even though configuration values were supplied:** The Scan Controller experiences a race-condition when deploying Store in the same cluster, that shows Store as not configured, even when it is present and properly configured. This happens when the Scan Controller is deployed and reconciled before the Store is reconciled and the corresponding secrets are exported to the Scan Controller namespace. As a workaround to this, once your Store is successfully reconciled, you would need to restart your Supply Chain Security Tools - Scan deployment by running: `kubectl rollout restart deployment.apps/scan-link-controller-manager -n scan-link-system`. If you deployed Supply Chain Security Tools - Scan to a different namespace than the default one, you can replace `-n scan-link-system` with `-n <my_custom_namespace>`.
 
 #### Supply Chain Security Tools - Store
 
@@ -463,10 +483,10 @@ their pods preempted or evicted instead.
     The URL of the resulting HTTP request is properly escaped. For example,
     `/api/sources/%2Fpath%2Fto%2Fdir/vulnerabilities`.
 
-    The rbac-proxy used for authentication creates a redirect in the response, 
-    For example, `HTTP 301\nLocation: /api/sources/path/to/dir/vulnerabilities`. 
-    The Client Lib follows the redirect, making a request to the new URL that 
-    does not exist in the **Supply Chain Security Tools - Store** API, 
+    The rbac-proxy used for authentication creates a redirect in the response,
+    For example, `HTTP 301\nLocation: /api/sources/path/to/dir/vulnerabilities`.
+    The Client Lib follows the redirect, making a request to the new URL that
+    does not exist in the **Supply Chain Security Tools - Store** API,
     resulting in this error message.
 
 #### Tanzu CLI

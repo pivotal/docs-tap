@@ -122,7 +122,7 @@ The following packages are part of the Tanzu Application Platform:
 
   Default roles only apply to a user interacting with the cluster using kubectl and Tanzu CLI. Tanzu Application Platform GUI support for default roles is planned for a future release.
 
-- **[Developer Conventions](../convention-service/about.md)**
+- **[Developer Conventions](convention-service/about.md)**
 
   Developer conventions configure workloads to prepare them for inner loop development.
 
@@ -171,7 +171,7 @@ The following packages are part of the Tanzu Application Platform:
 
   Supply Chain Security Tools - Sign provides an admission controller that allows a cluster operator
   to specify a policy that allows or denies images from running based on signature verification
-  against provided public keys. It works with the
+  against public keys. It works with
   [cosign signature format](https://github.com/sigstore/cosign#quick-start) and allows for fine-tuned
   configuration based on image source patterns.
 
