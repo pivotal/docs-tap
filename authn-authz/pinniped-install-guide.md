@@ -1,6 +1,6 @@
 # Installing Pinniped on a single cluster
 
-To support authentication on TAP we are installing [Pinniped](pinniped.dev). In this guide we install pinniped on a single cluster TAP setup. Pinniped consists of two components that we will deploy into our cluster.
+To support authentication on TAP we are installing [Pinniped](https://pinniped.dev/). In this guide we install pinniped on a single cluster TAP setup. Pinniped consists of two components that we will deploy into our cluster.
 
 The Pinniped Supervisor is an OIDC server which allows users to authenticate with an external identity provider (IDP), it hosts an API that the concierge component is using to fulfill authentication requests.
 
@@ -142,8 +142,8 @@ spec:
   claims:
     username: email
     groups: groups
-   
-  # Specify the name of the Kubernetes Secret that contains your 
+
+  # Specify the name of the Kubernetes Secret that contains your
   # application's client credentials (created below).
   client:
     secretName: auth0-client-credentials
@@ -173,7 +173,7 @@ spec:
 
 ### Apply the resources
 
-After creating the resource files we are now installing them into the cluster. We will deploy them as a [kapp application](https://carvel.dev/kapp/). 
+After creating the resource files we are now installing them into the cluster. We will deploy them as a [kapp application](https://carvel.dev/kapp/).
 
 1. Install the supervisor.
     ```
@@ -194,7 +194,7 @@ After creating the resource files we are now installing them into the cluster. W
     ```
     kapp deploy -y --app pinniped-concierge \
       -f https://get.pinniped.dev/v0.12.0/install-pinniped-concierge-crds.yaml \
-      -f https://get.pinniped.dev/v0.12.0/install-pinniped-concierge.yaml 
+      -f https://get.pinniped.dev/v0.12.0/install-pinniped-concierge.yaml
     ```
 1. get the CA certificate of the supervisor.
     ```

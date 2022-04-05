@@ -82,15 +82,15 @@ To install Tanzu Build Service by using the Tanzu CLI:
    - `KP-DEFAULT-REPO-PASSWORD` is the password for the user that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential. This credential can also be configured via a Secret reference. See [here](#install-secret-refs) for details.
      * For Google Cloud Registry, use the contents of the service account json file.
    - `TANZUNET-USERNAME` and `TANZUNET-PASSWORD` are the email address and password that you use to log in to VMware Tanzu Network. Your VMware Tanzu Network credentials enable you to configure the dependencies updater. This resource accesses and installs the build dependencies (buildpacks and stacks) Tanzu Build Service needs on your cluster. It can also optionally keep these dependencies up to date as new versions are released on VMware Tanzu Network. This credential can also be configured via a Secret reference. See [here](#install-secret-refs) for details.
-   - `DESCRIPTOR-NAME` is the name of the descriptor to import. See more details [here](tanzu-build-service/tbs-about.html#dependencies-descriptors). Available options are:
+   - `DESCRIPTOR-NAME` is the name of the descriptor to import. For more information, see [Descriptors](tbs-about.html#dependencies-descriptors). Available options are:
      * `lite` (default if unset) has a smaller footprint that enables faster installations.
      * `full` optimized to speed up builds and includes dependencies for all supported workload types.
-           
+
      >**Note:** By using the `tbs-values.yaml` configuration,
      >`enable_automatic_dependency_updates: true` causes the dependency updater to update
      >Tanzu Build Service dependencies (buildpacks and stacks) when they are released on
      >VMware Tanzu Network. You can set `enable_automatic_dependency_updates` as `false` to
-     >pause the automatic update of Build Service dependencies. When automatic updates are paused, 
+     >pause the automatic update of Build Service dependencies. When automatic updates are paused,
      >the pinned version of the descriptor for TAP 1.1.0 is [100.0.279](https://network.pivotal.io/products/tbs-dependencies#/releases/1066670)
      >If left undefined, this value is `false`. For details about updating dependencies manually, see [here](tbs-about.html#dependencies-manual).
 
@@ -223,6 +223,6 @@ Use the following alternative configuration for `values.yaml`:
 - `KP-DEFAULT-REPO-SECRET-NAMESPACE` is the namespace of the `kubernetes.io/dockerconfigjson` Secret containing credentials for `KP-DEFAULT-REPO`. You should be able to `docker push` to this location with this credential.
 - `TANZUNET-SECRET-NAME` is the name of the `kubernetes.io/dockerconfigjson` Secret containing credentials for VMware Tanzu Network registry.
 - `TANZUNET-SECRET-NAMESPACE` is the namespace of the `kubernetes.io/dockerconfigjson` Secret containing credentials for VMware Tanzu Network registry.
-- `DESCRIPTOR-NAME` is the name of the descriptor to import. See more details [here](tanzu-build-service/tbs-about.html#dependencies-descriptors). Available options are:
+- `DESCRIPTOR-NAME` is the name of the descriptor to import. For more information, see [Descriptors](tbs-about.html#dependencies-descriptors). Available options are:
     * `lite` (default if unset) has a smaller footprint that enables faster installations.
     * `full` optimized to speed up builds and includes dependencies for all supported workload types.

@@ -123,9 +123,9 @@ To deploy your application, you must download an accelerator, upload it on your 
     --yes \
     --namespace YOUR-DEVELOPER-NAMESPACE
     ```
-    
+
     Where `YOUR-DEVELOPER-NAMESPACE` is the namespace configured in step 6.
-    
+
     For more information, see [Tanzu Apps Workload Create](cli-plugins/apps/command-reference/tanzu-apps-workload-create.md).
 
     > **Note:** This deployment uses an accelerator source from Git, but in later steps you use the VSCode extension
@@ -136,7 +136,7 @@ To deploy your application, you must download an accelerator, upload it on your 
     ```
     tanzu apps workload tail tanzu-java-web-app --since 10m --timestamp --namespace YOUR-DEVELOPER-NAMESPACE
     ```
-    
+
     Where `YOUR-DEVELOPER-NAMESPACE` is the namespace configured in step 6.
 
 9. After the workload is built and running, you can view the Web App in your browser. View the URL of the Web App by running the command below, and then press **ctrl-click** on the
@@ -145,7 +145,7 @@ To deploy your application, you must download an accelerator, upload it on your 
     ```
     tanzu apps workload get tanzu-java-web-app --namespace YOUR-DEVELOPER-NAMESPACE
     ```
-    
+
     Where `YOUR-DEVELOPER-NAMESPACE` is the namespace configured in step 6.
 
     ![Tanzu-java-web-app default screen](images/getting-started-tap-gui-8.png)
@@ -304,7 +304,7 @@ To publish the new application accelerator that is created in your Git repositor
     ```
 
     Where:
-    
+
     - `YOUR-GIT-REPOSITORY-URL` is the URL of your Git repository.
     - `YOUR-GIT-BRANCH` is the name of the branch where you pushed the new `accelerator.yaml` file.
 
@@ -888,8 +888,8 @@ Scan reports are automatically saved to the [Supply Chain Security Tools - Store
 
   Important: The `Insight CLI` is separate from the Tanzu CLI.
 
-See [Query Data](scst-store/query-data.md) or [CLI Details](scst-store/cli-docs/insight.md) for
-additional examples.
+See [Tanzu Insight plug-in overview](cli-plugins/insight/cli-overview.md)
+additional information and examples.
 <br>
 
 
@@ -982,7 +982,7 @@ Use the Supply Chain Security Tools - Store CLI, called Insight,
 to query metadata that is submitted to the component after the scan step.
 
 For a complete guide on how to query the store,
-see [Querying Supply Chain Security Tools - Store](scst-store/query-data.md).
+see [Querying Supply Chain Security Tools - Store](cli-plugins/insight/query-data.md).
 
 
 #### <a id="scst-scan-next-steps"></a>Next steps
@@ -1033,7 +1033,7 @@ The value of `.status.binding.name` must point to a `Secret` in the same namespa
 
 Typically APIs including such resource types would be installed into the Tanzu Application Platform cluster as Kubernetes Operators providing CRDs and controllers to reconcile them, as is the case with the three Kubernetes Operators listed above.
 
-**Note**: There are plans to introduce tooling to Tanzu Application Platform to loosen this requirement in the near future, enabling a much wider range of services and Kubernetes Operators to integrate well with the platform. 
+**Note**: There are plans to introduce tooling to Tanzu Application Platform to loosen this requirement in the near future, enabling a much wider range of services and Kubernetes Operators to integrate well with the platform.
 
 ### <a id="stk-user-roles-responsibilities"></a> User Roles and Responsibilities
 

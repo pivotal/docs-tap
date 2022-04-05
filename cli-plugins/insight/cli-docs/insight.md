@@ -1,4 +1,4 @@
-# Tanzu insight details
+# Command reference
 
 The `tanzu insight` CLI plug-in is used to post data and query the Supply Chain Security Tools - Store database.
 
