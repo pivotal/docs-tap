@@ -12,7 +12,7 @@ Source commits and image files have been tested. Additional file types may work,
 
 ## <a id='gen-cyclone'></a>Generate a CycloneDX File
 
-A CycloneDX file is needed to post data.  CycloneDX files can be generated using many tools. This topic uses [Grype](https://github.com/anchore/grype).  Additional tools can be found on the [CycloneDX Tool Center](https://cyclonedx.org/tool-center/).
+A CycloneDX file is needed to post data.  [Supply Chain Security Tools - Scan](../../scst-scan/overview.md) will output CycloneDX files automatically.  To generate a file to manually post, [Grype](https://github.com/anchore/grype) or another tool found on the [CycloneDX Tool Center](https://cyclonedx.org/tool-center/) may be used.
 
 To use Grype to scan an image and generate an image report in CycloneDX format:
 
