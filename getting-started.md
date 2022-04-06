@@ -1370,24 +1370,24 @@ Resource to Claim:
 The information we're interested in here is the `Claim Reference`. This is the value we will pass to `--service-ref` when it comes to creating our Application Workloads, as follows:
 
 ```
-tanzu apps workload create \
-  spring-sensors-web-ui \
+tanzu apps workload create spring-sensors-consumer-web \
   --git-repo https://github.com/sample-accelerators/spring-sensors-rabbit \
   --git-branch main \
   --type web \
   --service-ref="rmq=services.apps.tanzu.vmware.com/v1alpha1:ResourceClaim:rmq-1"
 
 tanzu apps workload create \
-  spring-sensors-sensor \
-  --git-repo https://github.com/sample-accelerators/spring-sensors-sensor \
+  spring-sensors-producer \
+  --git-repo https://github.com/tanzu-end-to-end/spring-sensors-sensor \
   --git-branch main \
   --type web \
-  --service-ref="rmq=services.apps.tanzu.vmware.com/v1alpha1:ResourceClaim:rmq-1"
+  --service-ref="rmq=services.apps.tanzu.vmware.com/v1alpha1:ResourceClaim:rmq-1" \
+  --annotation=autoscaling.knative.dev/minScale="1"
 ```
 
 Usage of the `--service-ref` flag instructs Tanzu Application Platform to bind the Application Workload to the service provided in the ref. Note that here we are not passing a service ref to the `RabbitmqCluster` Service Instance directly, but rather to the Resource Claim (which itself has successfully claimed the `RabbitmqCluster` Service Instance). Refer back to the earlier diagram for an explanation as to why.
 
-Once the Workloads are ready, visit the URL of the `spring-sensors-web-ui` Application and confirm that sensor data (passing from the sensor workload to the web UI workload via our RabbitmqCluster Service Instance) is displayed.
+Once the Workloads are ready, visit the URL of the `spring-sensors-consumer-web` Application and confirm that sensor data (passing from the `spring-sensors-producer` Workload to the `create spring-sensors-consumer-web` Workload via our RabbitmqCluster Service Instance) is displayed.
 
 ### <a id="stk-walkthrough-6-summary"></a> Walkthrough Summary
 
@@ -1404,13 +1404,13 @@ There are a couple of slighly more advanced services use cases not covered in th
   <tr>
     <td>Direct Secret References</td>
     <td>Bind to services running external to the cluster (e.g. in-house oracle DB)<br />Bind to services not conformant with the binding spec</td>
-    <td><a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.6/services-toolkit-0-6/GUID-reference-use_cases.html">Link</a></td>
+    <td><a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.6/services-toolkit/GUID-reference-use_cases.html#direct-secret-references">Link</a></td>
   </tr>
   <tr>
     <td>Dedicated Service Clusters</td>
     <td>Separate Application Workloads from Service Instances across dedicated clusters</td>
-    <td><a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.6/services-toolkit-0-6/GUID-reference-use_cases.html">Link</a></td>
+    <td><a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.6/services-toolkit/GUID-reference-use_cases.html#dedicated-service-clusters-using-experimental-projection-and-replication-apis">Link</a></td>
   </tr>
 </table>
 
-Please refer to the [Services Toolkit Component documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.6/services-toolkit-0-6) for full details on the APIs and concepts underpinning Services on Tanzu Application Platform.
+Please refer to the [Services Toolkit Component documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.6/services-toolkit/GUID-overview.html) for full details on the APIs and concepts underpinning Services on Tanzu Application Platform.
