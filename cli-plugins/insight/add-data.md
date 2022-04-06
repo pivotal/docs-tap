@@ -12,15 +12,21 @@ Source commits and image files have been tested. Additional file types may work,
 
 ## <a id='gen-cyclone'></a>Generate a CycloneDX File
 
-A CycloneDX file is needed to post data.  [Supply Chain Security Tools - Scan](../../scst-scan/overview.md) will output CycloneDX files automatically.  To generate a file to manually post, [Grype](https://github.com/anchore/grype) or another tool found on the [CycloneDX Tool Center](https://cyclonedx.org/tool-center/) may be used.
+A CycloneDX file is needed to post data. Supply Chain Security Tools - Scan outputs CycloneDX files automatically.
+For more information, see [Supply Chain Security Tools - Scan](../../scst-scan/overview.md).
+
+To generate a file to post manually, use Grype or another tool in the [CycloneDX Tool Center](https://cyclonedx.org/tool-center/).
 
 To use Grype to scan an image and generate an image report in CycloneDX format:
 
-1. Run:
+1. Install [Grype](https://github.com/anchore/grype).
+
+1. Scan the image and generate a report by running:
 
     ```
     grype REPO:TAG -o cyclonedx > IMAGE-CVE-REPORT
     ```
+    
     Where:
 
     - `REPO` is the name of your repository
@@ -58,7 +64,7 @@ To use a CycloneDX-formatted image report:
     ```
 
     Where:
-    
+
     - `TYPE` specifies XML or JSON, the two supported file types
     - `IMAGE-CVE-REPORT` is the location of a Cyclone DX formatted file
 
@@ -84,7 +90,7 @@ To use a CycloneDX-formatted source report:
     ```
 
     Where:
-    
+
     - `TYPE` specifies XML or JSON, the two supported file types
     - `SOURCE-CVE-REPORT` is the location of a Cyclone DX formatted file
 

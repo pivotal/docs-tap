@@ -17,7 +17,7 @@ Before installing Supply Chain Security Tools - Scan:
     For usage instructions, see [Using the Supply Chain Security Tools - Store](../scst-store/overview.md).
 
 - Install the `tanzu insight` CLI plug-in to query the Supply Chain Security Tools - Store for CVE results.
-  See [Install Insight CLI plug-in](../cli-plugins/insight/cli-installation.md).
+  See [Install the Insight CLI plug-in](../cli-plugins/insight/cli-installation.md).
 
 ## <a id="scanner-support"></a>Scanner support
 
