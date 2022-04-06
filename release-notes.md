@@ -280,16 +280,3 @@ This error does not necessarily mean that the workload failed its execution thro
     **Supply Chain Security Tools — Store** is deployed to the `metadata-store` namespace.
     There is no support for configuring the namespace.
 
-#### Application Live View
-
-- **App Live View connector sometimes does not connect to the back end:**
-
-    Workaround:
-
-    - Check the app live view connector pod logs to verify if there are any rsocket connection issues to the back end.
-
-    - Try deleting the connector pod so it gets re-created:
-
-        ```
-        kubectl -n app-live-view delete pods -l=name=application-live-view-connector
-        ```
