@@ -12,14 +12,14 @@ alt="A demonstration of the features. First ingesting a bill of materials file. 
 
 ## Using the `tanzu insight` CLI plug-in
 
-The `tanzu insight` CLI plug-in is the primary way to view results from the Supply Chain Security Tools - Scan of source code and image files.  Use it to query by source code commit, image digest, CVE identifier to understand security risks.  
+The `tanzu insight` CLI plug-in is the primary way to view results from the Supply Chain Security Tools - Scan of source code and image files.  Use it to query by source code commit, image digest, and CVE identifier to understand security risks.  
 
-See [Tanzu Insight plug-in overview](../cli-plugins/insight/cli-overview.md) to install, configure and use `tanzu insight`.
+See [Tanzu Insight plug-in overview](../cli-plugins/insight/cli-overview.md) to install, configure, and use `tanzu insight`.
 
-## Multi-cluster configuration
+## Multicluster configuration
 
-See [Ingress and multicluster support](ingress-multicluster.md) for information how to set up Supply Chain Security Tools Scan and Store to work together in a multi-cluster setup.
+See [Ingress and multicluster support](ingress-multicluster.md) for information about how to set up Supply Chain Security Tools Scan and Store to work together in a multicluster setup.
 
 ## <a id='additional-info'></a>Additional documentation
 
-[Additional documentation](additional.md) includes information about the API, deployment details and config, AWS RDS configuration and other database backup recommendations, known issues, among other topics.
+[Additional documentation](additional.md) includes information about the API, deployment details and configuration, AWS RDS configuration, other database backup recommendations, known issues, and other topics.

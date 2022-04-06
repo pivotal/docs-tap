@@ -16,22 +16,24 @@ See [CLI plug-in installation](cli-installation.md) if you have not previously i
 
 There are four commands for querying and adding data.
 
-+ `image` - [post an image SBOM](add-data.md) or query images for packages and vulnerabilties
-+ `package` - query packages for vulnerabilities or by image or source code
-+ `source` - [post a source code SBOM](add-data.md) or query source code for packages and vulnerabilties
-+ `vulnerabilities` - query vulnerabilities by image, package, or source code
++ `image` - [Post an image SBOM](add-data.md) or query images for packages and vulnerabilties.
++ `package` - Query packages for vulnerabilities or by image or source code.
++ `source` - [Post a source code SBOM](add-data.md) or query source code for packages and vulnerabilties.
++ `vulnerabilities` - Query vulnerabilities by image, package, or source code.
 
 Use `tanzu insight -h` or see [Tanzu Insight Details](cli-docs/insight.md) for more information.
 
 ## <a id='example1'></a>Example #1: What packages & CVEs does a specific image contain?
 
-Use the following command:
+Run:
 
 ```
 tanzu insight image get --digest DIGEST
 ```
 
-Where `DIGEST` is the component version or image digest.
+Where:
+
+- `DIGEST` is the component version or image digest.
 
 For example:
 
@@ -52,15 +54,17 @@ Packages:
 		1. CVE-2021-28831 (High)
 ...
 ```
+
 ## <a id='example2'></a>Example #2: What packages & CVEs does my source code contain?
 
-Use the following command:
+Run:
 
 ```
 tanzu insight source get --repo REPO --org ORG
 ```
 
 Where:
+
 - `REPO` specifies XML or JSON, the two supported file types
 - `ORG` is the source code's organization
 
@@ -85,13 +89,15 @@ Packages:
 
 ## <a id='example3'></a>Example #3: What dependencies are affected by a specific CVE?
 
-Use the following command:
+Run:
 
 ```
 tanzu insight vulnerabilities get --cveid CVE-IDENTIFIER
 ```
 
-Where `CVE-IDENTIFIER` is the CVE identifier, for example, CVE-2021-30139.
+Where:
+
+- `CVE-IDENTIFIER` is the CVE identifier, for example, CVE-2021-30139.
 
 For example:
 
