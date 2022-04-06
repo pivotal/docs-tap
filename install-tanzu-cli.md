@@ -71,74 +71,12 @@ To set the Kubernetes cluster context:
 
 ## <a id='tanzu-cluster-essentials'></a> Install Cluster Essentials for Tanzu
 
-Cluster Essentials for VMware Tanzu simplifies the process of installing the open-source [Carvel](https://carvel.dev) tools on your cluster. It includes a script to download and install supported verions of `kapp-controller` and `secretgen-crontroller` on the targeted cluster. Currently, Cluster Essentials only supports MacOS and Linux.
+[Cluster Essentials for VMware Tanzu](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/index.html) simplifies the process of installing the open-source [Carvel](https://carvel.dev) tools on your cluster. It includes a script to download and install supported versions of kapp-controller, secretgen-controller on the target cluster. It also installs the kapp, imgpkg, ytt, and kbld CLIs on your local machine. Currently, Cluster Essentials only supports MacOS and Linux. 
 
 If you are using a VMware Tanzu Kubernetes Grid cluster, you do not need to install Cluster Essentials because the contents of Cluster Essentials are already installed on your cluster.
 
-For all other clusters, install Cluster Essentials using the following steps:
+To install Cluster Essentials see [Deploying Cluster Essentials v1.1](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.1/cluster-essentials/GUID-deploy.html)
 
-1. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
-
-1. Go to [Cluster Essentials for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-cluster-essentials/) on VMware Tanzu Network. Select a download according to your Kubernetes provider and operating system:
-
-    - For macOS, download `tanzu-cluster-essentials-darwin-amd64-1.1.0.tgz`.
-    - For Linux, download `tanzu-cluster-essentials-linux-amd64-1.1.0.tgz`.
-
-Tanzu Application Platform v1.1 is supported on Cluster Essentials v1.0 and v1.1. VMware recommends to install Cluster Essentials v1.1 to take advantage to newer features.
-
-1. Unpack the TAR file into the `tanzu-cluster-essentials` directory:
-
-    ```
-    mkdir $HOME/tanzu-cluster-essentials
-    tar -xvf DOWNLOADED-CLUSTER-ESSENTIALS-PACKAGE -C $HOME/tanzu-cluster-essentials
-    ```
-
-    Where:
-
-    - `DOWNLOADED-CLUSTER-ESSENTIALS-PACKAGE` is the name of the cluster essentials package you downloaded.
-
-1. (Optional) If your registry needs a custom certificate, you must [load that configuration](https://carvel.dev/kapp-controller/docs/v0.32.0/controller-config/) into the cluster before installing `kapp-controller`. If your registry uses a public certificate, this step is not required.
-
-   Create the `kapp-controller` namespace:
-
-    ```
-    kubectl create namespace kapp-controller
-    ```
-
-   Create a configuration secret by using the registry's `ca.crt` stored on local disk:
-
-    ```
-    kubectl create secret generic kapp-controller-config \
-       --namespace kapp-controller \
-       --from-file caCerts=ca.crt
-    ```
-
-1. Configure and run `install.sh`, which installs `kapp-controller` and `secretgen-controller` on your cluster:
-
-    ```
-    export INSTALL_BUNDLE=registry.tanzu.vmware.com/tanzu-cluster-essentials/cluster-essentials-bundle@sha256:82dfaf70656b54dcba0d4def85ccae1578ff27054e7533d08320244af7fb0343
-    export INSTALL_REGISTRY_HOSTNAME=registry.tanzu.vmware.com
-    export INSTALL_REGISTRY_USERNAME=TANZU-NET-USER
-    export INSTALL_REGISTRY_PASSWORD=TANZU-NET-PASSWORD
-    cd $HOME/tanzu-cluster-essentials
-    ./install.sh
-    ```
-
-    Where:
-
-    - `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for VMware Tanzu Network.
-
-1. Install the `kapp` CLI onto your `$PATH`:
-
-    ```
-    sudo cp $HOME/tanzu-cluster-essentials/kapp /usr/local/bin/kapp
-    ```
-
-1. Install the `imgpkg` CLI onto your `$PATH`:
-
-    ```
-    sudo cp $HOME/tanzu-cluster-essentials/imgpkg /usr/local/bin/imgpkg
-    ```
 
 ## <a id='cli-and-plugin'></a> Install or update the Tanzu CLI and plug-ins
 
