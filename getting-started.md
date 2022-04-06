@@ -1387,7 +1387,7 @@ tanzu apps workload create \
 
 Usage of the `--service-ref` flag instructs Tanzu Application Platform to bind the Application Workload to the service provided in the ref. Note that here we are not passing a service ref to the `RabbitmqCluster` Service Instance directly, but rather to the Resource Claim (which itself has successfully claimed the `RabbitmqCluster` Service Instance). Refer back to the earlier diagram for an explanation as to why.
 
-Once the Workloads are ready, visit the URL of the `spring-sensors-consumer-web` Application and confirm that sensor data (passing from the `spring-sensors-producer` Workload to the `create spring-sensors-consumer-web` Workload via our RabbitmqCluster Service Instance) is displayed.
+After the Workloads are ready, visit the URL of the `spring-sensors-consumer-web` Application and confirm that sensor data (passing from the `spring-sensors-producer` Workload to the `create spring-sensors-consumer-web` Workload using our RabbitmqCluster Service Instance) is displayed.
 
 ### <a id="stk-walkthrough-6-summary"></a> Walkthrough Summary
 
