@@ -105,47 +105,47 @@ Here are some common troubleshooting steps for errors presented in the Runtime R
 
 ### Symptom
 
-When you access the Runtime Resource Visibility tab and the system displays `Error communicating with TAP GUI backend`.
+When accessing the **Runtime Resource Visibility** tab, the system displays, "Error communicating with TAP GUI back end."
 
 ### Causes
 
-1. An interrupted internet connection.
-2. Error with the backend service.
+1. An interrupted Internet connection.
+2. Error with the back end service.
 
 ### Solution
-1. Confirm that you have internet access.
-2. Confirm that the backend service is running correctly.
-3. Confirm the cluster’s configuration is correct. 
+1. Confirm that you have Internet access.
+2. Confirm that the back end service is running correctly.
+3. Confirm the cluster’s configuration is correct.
 
 ##  <a id='rrv-no-data-found'></a> No data available
 
 ### Symptom
 
-When you access the Runtime Resource Visibility tab and the system displays 
-`One or more resources are missing. This could be due to a label mismatch. Please make sure your resources have the label(s) "LABEL_SELECTOR".`
+When accessing the **Runtime Resource Visibility** tab, the system displays, 
+"One or more resources are missing. This could be due to a label mismatch. Please make sure your resources have the label(s) "LABEL_SELECTOR"."
 
 ### Cause
 
-No communications error has occurred but no resources were found.  
+No communications error has occurred, but no resources were found.  
 
 ### Solution
 
 Confirm that you are using the correct label:
 - Check the [Component definition](catalog/catalog-operations.md)
  for the annotation `backstage.io/kubernetes-label-selector`
-- Confirm your Kubernetes resources  match that label selector.
+- Confirm your Kubernetes resources match that label selector.
 
 ## Errors retrieving resources
 
 ### Symptom
 
-When you open the runtime resource visibility tab it shows “One or more resources might be missing because of cluster query errors.”
+When opening the **Runtime Resource Visibility** tab, the system displays, “One or more resources might be missing because of cluster query errors.”
 
-The reported errors may not indicate a real problem. A build cluster may not have runtime CRDs (like Knative Service) installed, and a run cluster may not have build CRDs (like a Cartographer Workload) installed, so in these cases 403 and 404 errors may be false positives.
+The reported errors might not indicate a real problem. A build cluster might not have runtime CRDs (like Knative Service) installed, and a run cluster might not have build CRDs (like a Cartographer Workload) installed. In these cases, 403 and 404 errors may be false positives.
 
 ### Error Details
 
--  <a id='rrv-cluster-configuration'></a> `Access error when querying cluster ‘CLUSTER_NAME’ for resource 'KUBERNETES_RESOURCE_PATH' (status: 401). Contact your administrator.`
+-  <a id='rrv-cluster-configuration'></a> "Access error when querying cluster ‘CLUSTER_NAME’ for resource 'KUBERNETES_RESOURCE_PATH' (status: 401). Contact your administrator."
 
     #### Cause
   
@@ -155,36 +155,35 @@ The reported errors may not indicate a real problem. A build cluster may not hav
     
     Confirm the access token used to request information in the cluster.
 
-- <a id='rrv-resource-access'></a> `Access error when querying cluster ‘CLUSTER_NAME’ for resource 'KUBERNETES_RESOURCE_PATH' (status: 403). Contact your administrator.`
+- <a id='rrv-resource-access'></a> "Access error when querying cluster ‘CLUSTER_NAME’ for resource 'KUBERNETES_RESOURCE_PATH' (status: 403). Contact your administrator."
 
-  #### Cause
+    #### Cause
 
-  The service account used doesn’t have access to the specific resource type in the cluster.
+    The service account used doesn’t have access to the specific resource type in the cluster.
 
-  #### Solution
+    #### Solution
 
-  If the cluster is the same where **Tanzu Application Platform** is running, review the version installed to confirm that it contains the desired resource. 
-  If the error is in a watched cluster please review the process to grant access to it here: [Viewing resources on multiple clusters in Tanzu Application Platform GUI](cluster-view-setup.md).
+    If the cluster is the same where **Tanzu Application Platform** is running, review the version installed to confirm it contains the desired resource. 
+    If the error is in a watched cluster, review the process to grant access to it in [Viewing resources on multiple clusters in Tanzu Application Platform GUI](cluster-view-setup.md).
 
 
-- <a id='rrv-missing-knative'></a> `Knative is not installed on ‘CLUSTER_NAME’ (status: 404). Contact your administrator.`
+- <a id='rrv-missing-knative'></a> "Knative is not installed on ‘CLUSTER_NAME’ (status: 404). Contact your administrator."
 
-  #### Cause
-  
-  The cluster doesn’t have the Cloud Native Runtimes installed. 
+    #### Cause
+    
+    The cluster doesn’t have the Cloud Native Runtimes installed. 
 
-  #### Solution
+    #### Solution
 
-  Install the Knative components following the instructions [here](../cloud-native-runtimes/install-cnrt.md).
+    Install the Knative components by following the instructions in [Install Cloud Native Runtimes](../cloud-native-runtimes/install-cnrt.md).
 
-- <a id='rrv-missing-resource'></a> `Error when querying cluster ‘CLUSTER_NAME’ for resource 'KUBERNETES_RESOURCE_PATH' (status: 404). Contact your administrator.`
+- <a id='rrv-missing-resource'></a> "Error when querying cluster ‘CLUSTER_NAME’ for resource 'KUBERNETES_RESOURCE_PATH' (status: 404). Contact your administrator."
 
-  #### Cause
+    #### Cause
 
-  The package that contains the resource is not installed.
+    The package that contains the resource is not installed.
 
-  #### Solution
+    #### Solution
 
-  Install the missing package.
+    Install the missing package.
 
-  
