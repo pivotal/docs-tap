@@ -44,7 +44,7 @@ If desired, the JAVA_TOOL_OPTIONS value(s) can be provided in the workload.yaml 
     spec:
      env:
      - name: JAVA_TOOL_OPTIONS
-      value: -Dmanagement.server.port=8082
+       value: -Dmanagement.server.port=8082
      source:
     ...
     ```
