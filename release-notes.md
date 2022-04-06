@@ -59,9 +59,11 @@ the troubleshooting of workloads on their path to production.
 
 #### Application Live View
 
-- Enabled multiple cluster support for Application Live View
-- Split Application Live View components into three packages with new package reference names
-- Made App Live View Convention Service compatible with the cert-manager version `1.7.1`
+- Application Live View supports a multi-cluster setup now
+- Application Live View components are split into three bundles with new package reference names (backend, connector, conventions)
+- Application Live View Convention Service now compatible with the cert-manager version `1.7.1`
+- Application Live View Convention now taking the management port setting from the Spring Boot Convention into account
+- structured JSON logging integrated into Application Live View Backend and Application Live View Convention
 - Updated Spring Native `0.10.5` to `0.10.6`
 - Updated `Spring Boot` to `2.5.12` to address `CVE-2022-22965` and `CVE-2020-36518`
 
@@ -217,6 +219,13 @@ None.
   ```
   kubectl -n app-live-view delete pods -l=name=application-live-view-connector
   ```
+
+- **Application Live View Convention auto-exposes all actuators:** The Application Live View Convention exposes all Spring Boot actuator endpoints by default (to whatever is configured via the Spring Boot Convention for the management port). The detailed documentation of the Application Live View Convention contains more details and instructions how to avoid this if this does not fit your needs.
+
+- **Frequent Application Live View Connector restarts:** We are aware of the Application Live View Connector component being restarted quite frequently (under specific circumstances). This usually doesn't cause any problems when using Application Live View, but we are investigating this for future releases.
+
+- **No structured JSON logging on the connector yet:** The format of the log output of the Application Live View Connector component is not yet aligned with the standard TAP logging format. This is scheduled to be fixed in an upcoming 1.1.1 release.
+
 
 #### Grype scanner
 
