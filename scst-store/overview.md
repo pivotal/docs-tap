@@ -16,6 +16,10 @@ The `tanzu insight` CLI plug-in is the primary way to view results from the Supp
 
 See [Tanzu Insight plug-in overview](../cli-plugins/insight/cli-overview.md) to install, configure and use `tanzu insight`.
 
+## Multi-cluster configuration
+
+See [Ingress and multicluster support](ingress-multicluster.md) for information how to set up Supply Chain Security Tools Scan and Store to work together in a multi-cluster setup.
+
 ## <a id='additional-info'></a>Additional documentation
 
 [Additional documentation](additional.md) includes information about the API, deployment details and config, AWS RDS configuration and other database backup recommendations, known issues, among other topics.
