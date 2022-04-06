@@ -1,6 +1,6 @@
 # Configure the Tanzu Insight CLI plug-in
 
-This topic explains how to configure the Tanzu Insight plug-in:
+This topic explains how to configure the Tanzu Insight plug-in.
 
 > **Note:** All [required setup](cli-overview.md) must be completed in addition to configuring the CLI
 

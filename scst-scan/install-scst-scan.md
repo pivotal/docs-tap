@@ -7,7 +7,7 @@ from the Tanzu Application Platform package repository.
 The full profile includes Supply Chain Security Tools - Scan.
 For more information about profiles, see [Installing the Tanzu Application Platform Package and Profiles](../install.md).
 
-## <a id='scst-scan-prereqs'></a>Prerequisites
+## <a id='scst-scan-prereqs'></a> Prerequisites
 
 Before installing Supply Chain Security Tools - Scan:
 
@@ -19,7 +19,7 @@ Before installing Supply Chain Security Tools - Scan:
 - Install the `tanzu insight` CLI plug-in to query the Supply Chain Security Tools - Store for CVE results.
   See [Install the Insight CLI plug-in](../cli-plugins/insight/cli-installation.md).
 
-## <a id="scanner-support"></a>Scanner support
+## <a id="scanner-support"></a> Scanner support
 
 | Out-Of-The-Box Scanner | Version |
 | --- | --- |
