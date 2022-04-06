@@ -61,7 +61,6 @@ the troubleshooting of workloads on their path to production.
 
 - Enabled multiple cluster support for Application Live View
 - Split Application Live View components into three packages with new package reference names
-- Enabled structured JSON logging for App Live View to meet the logging requirements of Tanzu Application Platform
 - Made App Live View Convention Service compatible with the cert-manager version `1.7.1`
 - Updated Spring Native `0.10.5` to `0.10.6`
 - Updated `Spring Boot` to `2.5.12` to address `CVE-2022-22965` and `CVE-2020-36518`
