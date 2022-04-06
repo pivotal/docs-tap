@@ -83,10 +83,10 @@ Follow these steps to install the Tanzu package repository:
 1. Create a registry secret:
 
     ```
-  tanzu secret registry add tap-registry \
-    --username "TANZU-NET-USER" --password "TANZU-NET-PASSWORD" \
-    --server registry.tanzu.vmware.com \
-    --export-to-all-namespaces --yes --namespace tap-install
+    tanzu secret registry add tap-registry \
+      --username "TANZU-NET-USER" --password "TANZU-NET-PASSWORD" \
+      --server registry.tanzu.vmware.com \
+      --export-to-all-namespaces --yes --namespace tap-install
     ```
 
     Where:
