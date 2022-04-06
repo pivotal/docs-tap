@@ -18,7 +18,7 @@ See [Tanzu Insight plug-in overview](../cli-plugins/insight/cli-overview.md) to 
 
 ## Multi-cluster configuration
 
-See [Ingress and multicluster support](ingress-multicluster.md) for information how to set up Supply Chain Security Tools Scan and Store to work together in a multi-cluster setup.
+See [Ingress and multicluster support](ingress-multicluster.md) to learn how to configure Supply Chain Security Tools Scan and Store in a multi-cluster setup.
 
 ## <a id='additional-info'></a>Additional documentation
 
