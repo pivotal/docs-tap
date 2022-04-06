@@ -213,6 +213,7 @@ grype:
 ```
 
 Where:
+
 - `KP-DEFAULT-REPO` is a writable repository in your registry. Tanzu Build Service dependencies are written to this location. Examples:
     * Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`
     * Dockerhub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`
@@ -252,8 +253,10 @@ this can reuse the `tap-registry` secret created in
 >`enable_automatic_dependency_updates: true` causes the dependency updater to update
 >Tanzu Build Service dependencies (buildpacks and stacks) when they are released on
 >VMware Tanzu Network. Use `false` to pause the automatic update of Build Service dependencies.
->When automatic updates are paused, the pinned version of the descriptor for TAP 1.1.0 is [100.0.279](https://network.pivotal.io/products/tbs-dependencies#/releases/1066670)
->If left undefined, this value is `false`. For details about updating dependencies manually, see [here](tanzu-build-service/tbs-about.html#dependencies-manual).
+>When automatic updates are paused, the pinned version of the descriptor for TAP 1.1.0 is
+>[100.0.279](https://network.pivotal.io/products/tbs-dependencies#/releases/1066670)
+>If left undefined, this value is `false`. For details about updating dependencies manually, see
+>[here](tanzu-build-service/tbs-about.html#dependencies-manual).
 
 ### <a id='light-profile'></a> Light Profile
 
