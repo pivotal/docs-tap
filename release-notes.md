@@ -213,7 +213,7 @@ None.
 
 #### Application Live View
 
-- **App Live View connector sometimes does not connect to the backend **
+- **App Live View connector sometimes does not connect to the backend**
   Workaround: Check the app live view connector pod logs to see if there are any rsocket connection issues to the backend.
   Try deleting the connector pod so it gets recreated:
   ```
