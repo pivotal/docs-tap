@@ -118,10 +118,10 @@ the troubleshooting of workloads on their path to production.
 
 #### Supply Chain Choreographer
 
-- All TAP provided Supply Chains support pre-built images for Workloads
-- Supply Chains can select workloads by fields and expressions in addtion to labels
+- All Supply Chains provided by Tanzu Application Platform support pre-built images for workloads
+- Supply Chains can select workloads by fields and expressions in addition to labels
 - Supply Chains can select which template to stamp out based on optional criteria
-- Workloads include stamped resource references in their status.
+- Workloads include stamped resource references in their status
 
 #### Supply Chain Security Tools - Scan
 
