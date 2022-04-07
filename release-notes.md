@@ -36,22 +36,6 @@ Two roles are for “robot” or system permissions, including `workload` and `d
 
 For more information, see [Overview of Default Roles](authn-authz/overview.md).
 
-#### Tanzu Application Platform GUI
-
-Plug-in improvements and additions include:
-
-- **Runtime Resources Visibility plug-in:**
-  - Textual and enumerated table column filters for ease of search
-  - Meaningful error messages and paths forward to troubleshoot issues
-  - Tags in Knative revision table on the details page
-  - Kubernetes Service on the resources page to provide more insights into Kubernetes service details
-  - Improved UI components for a better, and more accessible, user experience
-
-- **Supply Chain Choreographer plug-in:**
-Added a graphical representation of the execution of a workload by using an installed supply chain.
-This includes CRDs in the supply chain, the source results of each stage, and details to facilitate
-the troubleshooting of workloads on their path to production.
-
 #### <a id="app-acc-features"></a> Application Accelerator
 
 - Option values can now be validated using regex
@@ -142,11 +126,25 @@ the troubleshooting of workloads on their path to production.
 
 #### <a id="gui-features"></a> Tanzu Application Platform GUI
 
+- Added improvements to the information presentation and filtering mechanisms of the Runtime Resources tab
+- Added the new Supply Chain plugin
+- Added the Backstage API Docs Plugin
+- Updated overall theme to Clarity City
+- Added compatibility with v1beta3 Backstage Templates
+- Small security fixes
+- Various accessibility and styling fixes
+
+Plug-in improvements and additions include:
+
 - **Runtime Resources Visibility plug-in:**
-- **Supply Chain Choreographer plug-in:** Added a new graphical representation of
-the execution of a workload by using an installed supply chain.
-This includes CRDs in the supply chain, the source results of each stage, and
-details to facilitate the troubleshooting of workloads on their path to production.  
+  - Textual and enumerated table column filters for ease of search
+  - Meaningful error messages and paths forward to troubleshoot issues
+  - Tags in Knative revision table on the details page
+  - Kubernetes Service on the resources page to provide more insights into Kubernetes service details
+  - Improved UI components for a better, and more accessible, user experience
+
+- **Supply Chain Choreographer plug-in:**
+  - Added a graphical representation of the execution of a workload by using an installed supply chain. This includes CRDs in the supply chain, the source results of each stage, and details to facilitate the troubleshooting of workloads on their path to production.
 
 #### Functions (Beta)
 
@@ -315,3 +313,7 @@ The necessary `Secret` for the RBAC Auth token will be created and the scan can 
 
     **Supply Chain Security Tools — Store** is deployed to the `metadata-store` namespace.
     There is no support for configuring the namespace.
+
+#### Tanzu Application Platform GUI
+
+- **Runtime Resources errors:** The Runtime Resources tab shows cluster query errors when attempting to retrieve Kubernetes object details from non-full-profile clusters.
