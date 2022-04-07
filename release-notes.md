@@ -116,6 +116,12 @@ the troubleshooting of workloads on their path to production.
   - This convention is applied to Spring Boot v2.6 and later apps.
   - The probes will be exposed on the main serving port for the app, which is port `8080` by default.
 
+#### Supply Chain Choreographer
+
+- All TAP provided Supply Chains support pre-built images for Workloads
+- Supply Chains can select workloads by fields and expressions in addtion to labels
+- Supply Chains can select which template to stamp out based on optional criteria
+- Workloads include stamped resource references in their status.
 
 #### Supply Chain Security Tools - Scan
 
