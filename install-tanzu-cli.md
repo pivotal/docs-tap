@@ -71,11 +71,17 @@ To set the Kubernetes cluster context:
 
 ## <a id='tanzu-cluster-essentials'></a> Install Cluster Essentials for Tanzu
 
-[Cluster Essentials for VMware Tanzu](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/index.html) simplifies the process of installing the open-source [Carvel](https://carvel.dev) tools on your cluster. It includes a script to download and install supported versions of kapp-controller, secretgen-controller on the target cluster. It also installs the kapp, imgpkg, ytt, and kbld CLIs on your local machine. Currently, Cluster Essentials only supports MacOS and Linux. 
+[Cluster Essentials for VMware Tanzu](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/index.html)
+simplifies the process of installing the open-source [Carvel](https://carvel.dev) tools on your cluster.
+It includes a script to download and install supported versions of kapp-controller and
+secretgen-controller on the target cluster.
+It also installs the kapp, imgpkg, ytt, and kbld CLIs on your local machine.
+Currently, Cluster Essentials only supports macOS and Linux.
 
-If you are using a VMware Tanzu Kubernetes Grid cluster, you do not need to install Cluster Essentials because the contents of Cluster Essentials are already installed on your cluster.
+If you are using a VMware Tanzu Kubernetes Grid cluster, you don't need to install Cluster Essentials
+because the contents of Cluster Essentials are already installed on your cluster.
 
-To install Cluster Essentials see [Deploying Cluster Essentials v1.1](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.1/cluster-essentials/GUID-deploy.html)
+To install Cluster Essentials, see [Deploying Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.1/cluster-essentials/GUID-deploy.html).
 
 
 ## <a id='cli-and-plugin'></a> Install or update the Tanzu CLI and plug-ins
