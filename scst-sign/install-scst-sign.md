@@ -36,7 +36,7 @@ To install Supply Chain Security Tools - Sign:
     $ tanzu package available list image-policy-webhook.signing.apps.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for image-policy-webhook.signing.apps.tanzu.vmware.com...
       NAME                                                VERSION        RELEASED-AT
-      image-policy-webhook.signing.apps.tanzu.vmware.com  1.1.0          2022-03-17 18:00:00 -0500 EST
+      image-policy-webhook.signing.apps.tanzu.vmware.com  1.1.1          2022-03-30 18:00:00 -0500 EST
     ```
 
 1. (Optional) Make changes to the default installation settings by running:
@@ -45,13 +45,13 @@ To install Supply Chain Security Tools - Sign:
     tanzu package available get image-policy-webhook.signing.apps.tanzu.vmware.com/VERSION --values-schema --namespace tap-install
     ```
     
-    Where `VERSION` is the version number you discovered. For example, `1.1.0`.
+    Where `VERSION` is the version number you discovered. For example, `1.1.1`.
 
     For example:
 
     ```
-    $ tanzu package available get image-policy-webhook.signing.apps.tanzu.vmware.com/1.1.0 --values-schema --namespace tap-install
-    | Retrieving package details for image-policy-webhook.signing.apps.tanzu.vmware.com/1.1.0...
+    $ tanzu package available get image-policy-webhook.signing.apps.tanzu.vmware.com/1.1.1 --values-schema --namespace tap-install
+    | Retrieving package details for image-policy-webhook.signing.apps.tanzu.vmware.com/1.1.1...
       KEY                     DEFAULT              TYPE     DESCRIPTION
       allow_unmatched_images  false                boolean  Feature flag for enabling admission of images that do not match any patterns in the image policy configuration.
                                                             Set to true to allow images that do not match any patterns into the cluster with a warning.
@@ -214,14 +214,14 @@ To install Supply Chain Security Tools - Sign:
       --values-file scst-sign-values.yaml
     ```
     
-    Where `VERSION` is the version number you discovered earlier. For example, `1.1.0`.
+    Where `VERSION` is the version number you discovered earlier. For example, `1.1.1`.
 
     For example:
 
     ```
     $ tanzu package install image-policy-webhook \
         --package-name image-policy-webhook.signing.apps.tanzu.vmware.com \
-        --version 1.1.0 \
+        --version 1.1.1 \
         --namespace tap-install \
         --values-file scst-sign-values.yaml
 
