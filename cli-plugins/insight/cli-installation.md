@@ -1,4 +1,4 @@
-# CLI plug-in installation
+# Install Insight CLI plug-in
 
 **Note:**
 
