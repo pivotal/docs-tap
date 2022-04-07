@@ -298,4 +298,4 @@ This error does not necessarily mean that the workload failed its execution thro
 
 #### Tanzu Application Platform GUI
 
-- **Runtime Resources errors:** The Runtime Resources tab shows errors when viewing non-full-profile clusters. These cluster query errors show up on the Entity page for Components on the "view" cluster.
+- **Runtime Resources errors:** The Runtime Resources tab shows cluster query errors when attempting to retrieve Kubernetes object details from non-full-profile clusters.
