@@ -140,7 +140,7 @@ The following packages are part of the Tanzu Application Platform:
 
   Grype is a vulnerability scanner for container images and file systems.
 
-- **[Services Toolkit](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-overview.html)**
+- **[Services Toolkit](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.6/svc-tlk/GUID-overview.html)**
 
   Services Toolkit comprises a number of Kubernetes-native components which support the management,
   life cycle, discoverability, and connectivity of Service Resources (databases, message queues,
