@@ -1,8 +1,10 @@
 # Overview of multicluster Tanzu Application Platform
 
-You can install Tanzu Application Platform in various topologies to reflect your existing landscape. VMware has tested and recommends the multicluster topology for production use. Since flexibility and choice are core to Tanzu Application Platform's design, none of the implementation recommendations are set in stone.
+You can install Tanzu Application Platform in various topologies to reflect your existing landscape. VMware has tested and recommends a multi-cluster topology for production use. Since flexibility and choice are core to Tanzu Application Platform's design, none of the implementation recommendations are set in stone. 
 
-The multicluster topology uses the [profile capabilities](../overview.md#profiles-and-packages) supported by Tanzu Application Platform. Each cluster adopts one of three multicluster-aligned profiles:
+The multi-cluster topology uses the [profile capabilities](../overview.md#profiles-and-packages) supported by Tanzu Application Platform. Each cluster adopts one of three multicluster-aligned profiles:
+
+- **Iterate:** Intended for inner-loop iterate application development.
 
 - **Build:** Transforms source revisions to workload revisions; specifically, hosting workloads and supply chains.
  
