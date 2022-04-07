@@ -27,8 +27,8 @@ If a `JAVA_TOOL_OPTIONS` property already exists for a workload, the convention 
 
 To set `JAVA_TOOL_OPTIONS`, do one of the following:
 
-- **Set `JAVA_TOOL_OPTIONS` using the `--env` flag.** When creating or updating a workload,
-you can set a `JAVA_TOOL_OPTIONS` property using the Tanzu CLI `apps` plugin by running:
+- **Use the Tanzu CLI `apps` plug-in:** When creating or updating a workload,
+set a `JAVA_TOOL_OPTIONS` property using the `--env` flag by running:
 
     ```
     tanzu apps workload create APP-NAME --env JAVA_TOOL_OPTIONS="-DPROPERTY-NAME=VALUE"
@@ -38,15 +38,15 @@ you can set a `JAVA_TOOL_OPTIONS` property using the Tanzu CLI `apps` plugin by 
     ```
     tanzu apps workload create APP-NAME --env JAVA_TOOL_OPTIONS="-Dmanagement.server.port=8080"
     ```
-- **Set `JAVA_TOOL_OPTIONS` using `workload.yaml`.** Provide one or more values for the
+- **Use the `workload.yaml`:** Provide one or more values for the `JAVA_TOOL_OPTIONS`
 property in the `workload.yaml` as follows:
 
     ```
     apiVersion: carto.run/v1alpha1
     kind: Workload
     ...
-    spec:
-     env:
+    spec<!-- |specifications| is preferred. -->:
+     env<!-- |environment| is preferred -->:
      - name: JAVA_TOOL_OPTIONS
        value: -Dmanagement.server.port=8082
      source:
