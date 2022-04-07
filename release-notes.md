@@ -127,7 +127,7 @@ the troubleshooting of workloads on their path to production.
 
 - Support for configuring Supply Chain Security Tools - Scan to remotely connect to Supply Chain Security Tools - Store in a different cluster.
 
-#### Supply Chain Security Tools – Sign
+#### Supply Chain Security Tools - Sign
 
 - Support configuring Webhook resources
 - Support configuring Namespace where webhook is installed
@@ -188,7 +188,7 @@ None.
 - Fixed a potential race condition during reconciliation of ResourceClaims which might cause the Services Toolkit manager to stop responding.
 - Updated configuration of the Services Toolkit carvel Package to prevent an unwanted build up of ConfigMap resources.
 
-#### Supply Chain Security Tools – Scan
+#### Supply Chain Security Tools - Scan
 
 - Resolved two scan jobs and two scan pods being created when reconciling `ScanTemplates` and `ScanPolicies`.
 
@@ -262,11 +262,23 @@ graph view of a supply chain.
 This error does not necessarily mean that the workload failed its execution through the supply chain.
 - **Scan results not shown:** Current CVEs found during Image or Build scanning do not appear. However, results are still present in the metadata store and are available by using the Tanzu CLI.
 
-#### Supply Chain Security Tools – Scan
+#### Supply Chain Security Tools - Scan
 
 - **Scan Phase indicates `Scanning` incorrectly:** Scans have an edge case that when an error
   occurs during scanning, the `Scan Phase` field is not updated to `Error` and remains in the
   `Scanning` phase. Read the scan pod logs to verify the existence of an error.
+- **Multi-Cluster Support: Error sending results to Supply Chain Security Tools - Store (Store) running in a different cluster:** The [Store Ingress and multicluster support](scst-store/ingress-multicluster.md) document instructs on how to create `SecretExports` to share necessary secrets for communicating with the Store. During installation, Supply Chain Security Tools - Scan (Scan) automatically creates the `SecretImport` necessary for ingesting the TLS CA certificate secret, but is missing the `SecretImport` for the RBAC Auth token. As a workaround, apply the following `yaml` (if necessary, updating the namespaces) to the cluster running Scan and then perform a rolling restart (e.g. `kubectl rollout restart deployment.apps/scan-link-controller-manager -n scan-link-system`):
+```yaml
+---
+apiVersion: secretgen.carvel.dev/v1alpha1
+kind: SecretImport
+metadata:
+  name: store-auth-token
+  namespace: scan-link-system
+spec:
+  fromNamespace: metadata-store-secrets
+```
+The necessary `Secret` for the RBAC Auth token will be created and the scan can be re-run.
 - **User sees error message saying Supply Chain Security Tools - Store (Store) is not configured even though configuration values were supplied:** The Scan Controller experiences a race-condition when deploying Store in the same cluster, that shows Store as not configured, even when it is present and properly configured. This happens when the Scan Controller is deployed and reconciled before the Store is reconciled and the corresponding secrets are exported to the Scan Controller namespace. As a workaround to this, once your Store is successfully reconciled, you would need to restart your Supply Chain Security Tools - Scan deployment by running: `kubectl rollout restart deployment.apps/scan-link-controller-manager -n scan-link-system`. If you deployed Supply Chain Security Tools - Scan to a different namespace than the default one, you can replace `-n scan-link-system` with `-n <my_custom_namespace>`.
 
 #### Supply Chain Security Tools - Store
