@@ -235,18 +235,31 @@ Example of PodIntent after applying the convention:
 
 ## <a id="spring-boot-actuator-convention"></a>Spring Boot actuator convention
 
-In the `SBOM` file's metadata, under `dependencies`, there is a `dependency` with the name `spring-boot-actuator`. The `spring-boot-actuator` convention does the following:
-1. add the management port (set to port 8081) to the `JAVA_TOOL_OPTIONS` environment variable **\***
-1. add the base path (set to `/actuator`) to the `JAVA_TOOL_OPTIONS` environment variable
-1. add an annotation (`boot.spring.io/actuator`) where the actuator is accessed
+In the metadata for the `SBOM` file, under `dependencies`, there is a `dependency`
+with the name `spring-boot-actuator`. The `spring-boot-actuator` convention does the following:
 
-***NOTE:** The management port is set to port 8081 for security reasons.
-  * Although there are approaches to locking down public access to the actuator endpoints exposed on the management port when set to the default (8080), the threat of exposure through internal access remains, and setting the management port to something other than 8080 is our recommended security best practice
-  * However, if the management port number is provided via the `-Dmanagement.server.port` property in `JAVA_TOOL_OPTIONS`, the value provided for that property is respected by the spring boot actuator convention (the management port will be set to the provided port number rather than 8081)
-    * Alternative methods for setting the management port will be disregarded/overwritten (for example: For example, if an application is configured with a specific management port via `application.properties/yml`, `config server`, or any other "usual" Spring Boot config mechanism, the convention will override that management port configuration.).
-    * Instructions for providing the management port number for an application are available [here](#set-java-tool-options-property)
-  * The management context of a Spring Boot application can be accessed by creating a service pointing to port `8081` and base path `/actuator`.
+1. Sets the management port in the `JAVA_TOOL_OPTIONS` environment variable to `8081`.
+1. Sets the base path in the `JAVA_TOOL_OPTIONS` environment variable to `/actuator`.
+1. Adds an annotation, `boot.spring.io/actuator`, to where the actuator is accessed.
 
+The management port is set to port `8081` for security reasons.
+Although you can prevent public access to the actuator endpoints that are exposed
+on the management port when it is set to the default `8080`, the threat of
+exposure through internal access remains.
+The best practice for security is to set the management port to something other than `8080`.
+
+However, if the management port number is provided using the `-Dmanagement.server.port`
+property in `JAVA_TOOL_OPTIONS`, the Spring Boot actuator convention will respect the value provided for that property.
+The management port will be set to the provided port number rather than `8081`.
+For instructions for providing the management port number for an application, see
+[Set the `JAVA_TOOL_OPTIONS` property for a workload](#set-java-tool-options) earlier in this topic.
+
+Alternative methods for setting the management port are overwritten.
+The convention overrides other common methods to configure the management port
+such as `application.properties/yml` and `config server`.
+
+You can access the management context of a Spring Boot application by creating
+a service pointing to port `8081` and base path `/actuator`.
 
 Example of PodIntent after applying the convention:
 
