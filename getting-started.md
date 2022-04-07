@@ -953,37 +953,24 @@ When you apply the `ClusterImagePolicy` resource, your cluster requires valid si
 
 **Overview**
 
-This feature set allows an application operator to introduce source code and image vulnerability scanning,
-and scan-time rules, to their Tanzu Application Platform Supply Chain. The scan-time rules prevent critical vulnerabilities from flowing to the supply chain unresolved.
+This feature set allows an application operator to introduce source code and image vulnerability scanning, and scan-time rules, to their Tanzu Application Platform Supply Chain. The scan-time rules prevent critical vulnerabilities from flowing to the supply chain unresolved.
 
-All vulnerability scan results are stored over time in a metadata store that allows a team
-to reference historical scan results, and provides querying capability to support the following use cases:
-
-  - What images and packages are affected by a specific vulnerability?
-  - What source code repos are affected by a specific vulnerability?
-  - What packages and vulnerabilities does a particular image have?
-
-[Supply Chain Security Tools - Store](scst-store/overview.md) takes the scanning results and stores them. Users can query for information about CVEs, images, packages, and their relationships by using the CLI, or directly from the API.
+All vulnerability scan results are stored over time in the [Supply Chain Security Tools - Store](scst-store/overview.md) which can be queried using the `tanzu insight` CLI plug-in for source code and image metadata including the packages or dependencies used by the software along with any CVEs .
 
 **Features**
 
   - Scan source code repositories and images for known CVEs before deploying to a cluster
   - Identify CVEs by scanning continuously on each new code commit or each new image built
   - Analyze scan results against user-defined policies using Open Policy Agent
-  - Produce vulnerability scan results and post them to the Supply Chain Security Tools Store where they can later be queried
+  - Produce vulnerability scan results and post them to the Supply Chain Security Tools - Store where they can be queried
+  - Query the store for such use cases as:
+    - What images and packages are affected by a specific vulnerability?
+    - What source code repos are affected by a specific vulnerability?
+    - What packages and vulnerabilities does a particular image have?
 
 To try the scan and store features as individual one-off scans, see [Scan samples](scst-scan/samples/overview.md).
 
 To try the scan and store features in a supply chain, see [Section 3: Add testing and security scanning to your application](#add-test-and-scan).
-
-After completing scans, query the [Supply Chain Security Tools - Store](scst-store/overview.md) to view your vulnerability results.
-It is a Tanzu component that stores image, package, and vulnerability metadata about your dependencies.
-Use the Supply Chain Security Tools - Store CLI, called Insight,
-to query metadata that is submitted to the component after the scan step.
-
-For a complete guide on how to query the store,
-see [Querying Supply Chain Security Tools - Store](cli-plugins/insight/query-data.md).
-
 
 #### <a id="scst-scan-next-steps"></a>Next steps
 
@@ -996,6 +983,8 @@ see [Querying Supply Chain Security Tools - Store](cli-plugins/insight/query-dat
   - [Viewing and Understanding Scan Status Conditions](scst-scan/results.md)
 
   - [Observing and Troubleshooting](scst-scan/observing.md)
+
+  - [Tanzu Insight plug-in overview](../cli-plugins/insight/cli-overview.md)
 
 ## <a id='stk'></a> Section 5: Consuming Services on Tanzu Application Platform
 
