@@ -185,6 +185,12 @@ None.
 #### Supply Chain Security Tools - Scan
 
 - Resolved two scan jobs and two scan pods being created when reconciling `ScanTemplates` and `ScanPolicies`.
+- Upgraded package `client_golang` to version `v1.11.1` to address CVE [CVE-2022-21698](https://nvd.nist.gov/vuln/detail/CVE-2022-21698)
+
+#### Grype Scanner
+
+- Upgraded golang version to `1.17.8` to address CVE [CVE-2022-24921](https://nvd.nist.gov/vuln/detail/CVE-2022-24921)
+- Upgraded photon to address CVEs [CVE-2022-23308](https://nvd.nist.gov/vuln/detail/CVE-2022-23308), [CVE-2022-0778](https://nvd.nist.gov/vuln/detail/CVE-2022-0778)
 
 #### Supply Chain Security Tools - Store
 
