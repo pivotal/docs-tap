@@ -108,7 +108,7 @@ the troubleshooting of workloads on their path to production.
   - If the app explicitly sets the management port using the `JAVA_TOOL_OPTIONS`
   in the `workload.yaml`, the Spring Boot conventions will respect that setting
   and will not set the management port to `8081`. For more information about `JAVA_TOOL_OPTIONS`, see
-  [Conventions](spring-boot-conventions/reference/CONVENTIONS.md#set-java-tool-options-property).
+  [Conventions](spring-boot-conventions/reference/CONVENTIONS.md#set-java-tool-options).
   - The convention overrides other common management port configuration methods
   such as `application.properties/yml` and `config server`.
 - **RFC-3339 timestamps:** Applied [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339) timestamps to service binding logs.

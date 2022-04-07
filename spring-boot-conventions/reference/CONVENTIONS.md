@@ -1,9 +1,9 @@
 # Conventions
 
-When submitting the following pod `Pod Intent` on each convention, 
+When submitting the following pod `Pod Intent` on each convention,
 the output may change depending on the applied convention.
 
-Before any spring boot conventions are applied, the pod intent will 
+Before any spring boot conventions are applied, the pod intent will
 look something like the following:
 
   ```yaml
@@ -23,20 +23,24 @@ Most of the Spring Boot conventions will either modify or add properties to the 
 
 If a `JAVA_TOOL_OPTIONS` property already exists for a workload, the convention will use the existing value rather than the value the convention has been designed to apply by default (The provided property value will be used for the pod spec mutation.)
 
-<a id="set-java-tool-options-property"></a>**Instructions to set a `JAVA_TOOL_OPTIONS` property for a workload:**
+## <a id="set-java-tool-options"></a> Set the `JAVA_TOOL_OPTIONS` property for a workload
 
-There are two approaches:
-1. Set property using the `--env` flag:<br/>
-When creating/updating a workload, a `JAVA_TOOL_OPTIONS` property can be set using the Tanzu CLI `apps` plugin as follows: 
+To set `JAVA_TOOL_OPTIONS`, do one of the following:
+
+- **Set `JAVA_TOOL_OPTIONS` using the `--env` flag.** When creating or updating a workload,
+you can set a `JAVA_TOOL_OPTIONS` property using the Tanzu CLI `apps` plugin by running:
+
     ```
-    tanzu apps workload create APP-NAME --env JAVA_TOOL_OPTIONS="-D[property]=[value]"
+    tanzu apps workload create APP-NAME --env JAVA_TOOL_OPTIONS="-DPROPERTY-NAME=VALUE"
     ```
-    For example, setting the management port to 8080 rather than the [spring-boot-actuator-convention](#spring-boot-actuator-convention) default (port 8081) can be achieved via the following Tanzu CLI command:
+    For example, to set the management port to `8080` rather than the
+    [spring-boot-actuator-convention](#spring-boot-actuator-convention) default port `8081`, run:
     ```
     tanzu apps workload create APP-NAME --env JAVA_TOOL_OPTIONS="-Dmanagement.server.port=8080"
     ```
-1. Set property using `workload.yaml`:<br/>
-If desired, the JAVA_TOOL_OPTIONS value(s) can be provided in the workload.yaml as follows:
+- **Set `JAVA_TOOL_OPTIONS` using `workload.yaml`.** Provide one or more values for the
+property in the `workload.yaml` as follows:
+
     ```
     apiVersion: carto.run/v1alpha1
     kind: Workload
@@ -48,7 +52,6 @@ If desired, the JAVA_TOOL_OPTIONS value(s) can be provided in the workload.yaml 
      source:
     ...
     ```
-
 
 ## <a id="spring-boot-convention"></a>Spring Boot convention
 
@@ -380,7 +383,7 @@ The _Service intent_ conventions do not change the behavior of the final deploym
 The list of the supported intents are:
 
   - MySQL
-    - __Name__: `service-intent-mysql` 
+    - __Name__: `service-intent-mysql`
     - __Label__: `services.conventions.apps.tanzu.vmware.com/mysql`
     - __Dependencies__: `mysql-connector-java`, `r2dbc-mysql`
   - PostreSql
