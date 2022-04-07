@@ -2,24 +2,24 @@
 
 You can take two approaches to bind a user or group to a default role:
 
-1. Use the beta Tanzu Application Platform Auth CLI plug-in, which only supports binding Tanzu Application Platform default roles.
+1. Use the Tanzu Application Platform RBAC CLI plug-in **BETA**, which only supports binding Tanzu Application Platform default roles.
 1. Use Kubernetes role-based access control (RBAC) role binding.
 
-VMware recommends that you use the beta Tanzu Application Platform Auth CLI plug-in, available for download from Tanzu Network. This CLI plug-in simplifies the process for you by binding the cluster-scoped resource permissions at the same time as the namespace-scoped resource permissions, where applicable, for each default role. The following sections cover the beta Tanzu Application Platform Auth CLI plug-in.
+VMware recommends that you use the Tanzu Application Platform RBAC CLI plug-in **BETA**, available for download from Tanzu Network. This CLI plug-in simplifies the process for you by binding the cluster-scoped resource permissions at the same time as the namespace-scoped resource permissions, where applicable, for each default role. The following sections cover the Tanzu Application Platform RBAC CLI plug-in **BETA**.
 
->**Caution:** The Auth CLI plug-in is currently in beta and is intended for evaluation and test purposes only.
+>**Caution:** The Tanzu Application Platform RBAC CLI plug-in is currently in **BETA** and is intended for evaluation and test purposes only.
 
 ## <a id="prereqs"></a>Prerequisites
 
 1. Download the latest Tanzu CLI.
-1. Download the beta Tanzu Application Platform Auth CLI plug-in tar.gz from [Tanzu Network](https://network.tanzu.vmware.com/products/tap-auth).
+1. Download the Tanzu Application Platform RBAC CLI plug-in **BETA** tar.gz from [Tanzu Network](https://network.tanzu.vmware.com/products/tap-auth).
 1. Ensure you have administrator access to the cluster.
 1. Ensure you have configured an authentication solution for the cluster. You can use **Pinniped** or the authentication service native to your Kubernetes distribution.
 
 
-## <a id="install"></a>Install the Auth CLI plug-in
+## <a id="install"></a>Install the Tanzu Application Platform RBAC CLI plug-in **BETA**
 
-Follow these steps to install the Auth CLI plug-in:
+Follow these steps to install the Tanzu Application Platform RBAC CLI plug-in **BETA**:
 
 1. Untar the tar.gz:
 
@@ -27,7 +27,7 @@ Follow these steps to install the Auth CLI plug-in:
     tar zxvf <NAME OF THE TAR>
     ```
 
-1. Install the Auth plug-in locally:
+1. Install the Tanzu Application Platform RBAC CLI plug-in **BETA** locally:
 
     - For macOS:
 
