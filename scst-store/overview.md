@@ -10,9 +10,9 @@ src="https://www.youtube.com/embed/UoWSsJBjFgc"
 frameborder="0" allow="autoplay; encrypted-media" allowfullscreen
 alt="A demonstration of the features. First ingesting a bill of materials file. Then investigating vulnerabilities of different images."></iframe>
 
-## Using the `tanzu insight` CLI plug-in
+## Using the Tanzu Insight CLI plug-in
 
-The `tanzu insight` CLI plug-in is the primary way to view results from the Supply Chain Security Tools - Scan of source code and image files.  Use it to query by source code commit, image digest, and CVE identifier to understand security risks.  
+the Tanzu Insight CLI plug-in is the primary way to view results from the Supply Chain Security Tools - Scan of source code and image files.  Use it to query by source code commit, image digest, and CVE identifier to understand security risks.  
 
 See [Tanzu Insight plug-in overview](../cli-plugins/insight/cli-overview.md) to install, configure, and use `tanzu insight`.
 

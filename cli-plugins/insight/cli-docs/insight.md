@@ -1,6 +1,6 @@
 # Command reference
 
-The `tanzu insight` CLI plug-in is used to post data and query the Supply Chain Security Tools - Store database.
+the Tanzu Insight CLI plug-in is used to post data and query the Supply Chain Security Tools - Store database.
 
 ## <a id='synopsis'></a>Synopsis
 
@@ -19,5 +19,5 @@ This CLI plug-in is used to post data and query the Supply Chain Security Tools 
 * [Tanzu insight image](insight-image.md)	 - Image commands
 * [Tanzu insight package](insight-package.md)	 - Package commands
 * [Tanzu insight source](insight-source.md)	 - Source commands
-* [Tanzu insight version](insight-version.md)	 - Display insight version
+* [Tanzu insight version](insight-version.md)	 - Display Tanzu Insight version
 * [Tanzu insight vulnerabilities](insight-vulnerabilities.md)	 - Vulnerabilities commands

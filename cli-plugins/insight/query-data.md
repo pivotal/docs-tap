@@ -1,6 +1,6 @@
 # Query data
 
-This topic describes how to query the database to understand vulnerability, image, and dependency relationships.  The `tanzu insight` CLI plug-in queries the database for vulnerability scan reports or Software Bill of Materials (SBoM) files.
+This topic describes how to query the database to understand vulnerability, image, and dependency relationships. The Tanzu Insight CLI plug-in queries the database for vulnerability scan reports or Software Bill of Materials (SBoM) files.
 
 ## <a id='sup-usecase'></a>Supported use cases
 
@@ -10,13 +10,13 @@ The following are a few use cases supported by the CLI:
 +  What packages and CVEs exist in my source code? (`source`)
 +  What dependencies are affected by a specific CVE? (`vulnerabilities`)
 
-## <a id='query-insight'></a> Query using the `tanzu insight` CLI plug-in
+## <a id='query-insight'></a> Query using the Tanzu Insight CLI plug-in
 
-See [CLI plug-in installation](cli-installation.md) if you have not previously installed the `tanzu insight` CLI plug-in.
+[Install the Tanzu Insight CLI plug-in](cli-installation.md) if you have not already done so.
 
 There are four commands for querying and adding data.
 
-+ `image` - [Post an image SBOM](add-data.md) or query images for packages and vulnerabilties.
++ `image` - [Post an image SBOM](add-data.md) or query images for packages and vulnerabilities.
 + `package` - Query packages for vulnerabilities or by image or source code.
 + `source` - [Post a source code SBOM](add-data.md) or query source code for packages and vulnerabilties.
 + `vulnerabilities` - Query vulnerabilities by image, package, or source code.
@@ -76,7 +76,7 @@ For example:
 ```
 $ tanzu insight source get --repo https://github.com/pivotal/kpack.git --org pivotal-cf
 ID:       	2
-Repository:  https://github.com/pivotal/kpack.git	
+Repository:  https://github.com/pivotal/kpack.git
 Commit:  b66668e
 Organization:	pivotal-cf
 Packages:

@@ -283,7 +283,8 @@ command in a terminal window:
 
 1. Proceed to [Cleanly Install Tanzu CLI Plug-ins](#cli-plugin-clean-install)
 
->**Note**: Currently, the `insight` plug-in is not available for Windows. This will not affect the Tanzu CLI installation or other plug-ins.
+> **Note**: Currently, the Tanzu Insight plug-in is not available for Windows.
+> This does not affect the Tanzu CLI installation or other plug-ins.
 
 
 ## <a id='cli-plugin-clean-install'></a> Cleanly Install Tanzu CLI Plug-ins
@@ -335,7 +336,7 @@ To perform a clean installation of the Tanzu CLI plug-ins:
     VMware discourages running `cluster`, `kubernetes-release`, `login`, `management-cluster`,
     and `pinniped-auth` commands.
 
-    Currently, `insight` plug-in only supports MacOS and Linux.
+    Currently, `insight` plug-in only supports macOS and Linux.
 
 You can now proceed with installing Tanzu Application Platform. For more information, see
 **[Installing the Tanzu Application Platform Package and Profiles](install.md)**.

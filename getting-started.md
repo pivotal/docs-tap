@@ -886,7 +886,7 @@ Scan reports are automatically saved to the [Supply Chain Security Tools - Store
 
   `DIGEST` is the component version, or image digest printed in the `KUBECTL GET` command.
 
-  Important: The `Insight CLI` is separate from the Tanzu CLI.
+  > **Important:** The `Insight CLI` is separate from the Tanzu CLI.
 
 See [Tanzu Insight plug-in overview](cli-plugins/insight/cli-overview.md)
 additional information and examples.
