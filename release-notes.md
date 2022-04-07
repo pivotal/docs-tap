@@ -61,11 +61,11 @@ the troubleshooting of workloads on their path to production.
 
 - Application Live View supports a multi-cluster setup now
 - Application Live View components are split into three bundles with new package reference names (backend, connector, conventions)
-- Application Live View Convention Service now compatible with the cert-manager version `1.7.1`
-- Application Live View Convention now taking the management port setting from the Spring Boot Convention into account
-- structured JSON logging integrated into Application Live View Backend and Application Live View Convention
-- Updated Spring Native `0.10.5` to `0.10.6`
-- Updated `Spring Boot` to `2.5.12` to address `CVE-2022-22965` and `CVE-2020-36518`
+- Application Live View Convention Service is compatible with cert-manager v1.7.1
+- Application Live View Convention takes the management port setting from the Spring Boot Convention into account
+- Structured JSON logging is integrated into Application Live View Backend and Application Live View Convention
+- Updated Spring Native v0.10.5v to v0.10.6
+- Updated Spring Boot to v2.5.12 to address [CVE-2022-22965](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-22965) and [CVE-2020-36518](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-36518)
 
 #### Tanzu CLI - Apps plug-in
 
@@ -213,18 +213,27 @@ None.
 
 #### Application Live View
 
-- **App Live View connector sometimes does not connect to the backend**
-  Workaround: Check the app live view connector pod logs to see if there are any rsocket connection issues to the backend.
-  Try deleting the connector pod so it gets recreated:
-  ```
-  kubectl -n app-live-view delete pods -l=name=application-live-view-connector
-  ```
+- **Application Live View Connector sometimes does not connect to the back end**
+Workaround: Search the Application Live View Connector pod logs for issues with rsocket connection
+to the back end. If you find any issues, delete the connector pod to recreate it:
 
-- **Application Live View Convention auto-exposes all actuators:** The Application Live View Convention exposes all Spring Boot actuator endpoints by default (to whatever is configured via the Spring Boot Convention for the management port). The detailed documentation of the Application Live View Convention contains more details and instructions how to avoid this if this does not fit your needs.
+    ```
+    kubectl -n app-live-view delete pods -l=name=application-live-view-connector
+    ```
 
-- **Frequent Application Live View Connector restarts:** We are aware of the Application Live View Connector component being restarted quite frequently (under specific circumstances). This usually doesn't cause any problems when using Application Live View, but we are investigating this for future releases.
+- **Application Live View Convention auto-exposes all actuators:**
+The Application Live View Convention exposes all Spring Boot actuator endpoints by default to
+whatever is configured using the Spring Boot Convention for the management port.
+The detailed documentation of the Application Live View Convention contains more details and
+instructions how to avoid this if this does not fit your needs.
 
-- **No structured JSON logging on the connector yet:** The format of the log output of the Application Live View Connector component is not yet aligned with the standard TAP logging format. This is scheduled to be fixed in an upcoming 1.1.1 release.
+- **Frequent Application Live View Connector restarts:**
+In some cases, Application Live View Connector component restarts frequently.
+This usually doesn't cause any problems when using Application Live View.
+
+- **No structured JSON logging on the connector yet:**
+The format of the log output of the Application Live View Connector component is not currently
+aligned with the standard Tanzu Application Platform logging format. A fix is planned for v1.1.1.
 
 
 #### Grype scanner
@@ -288,4 +297,3 @@ This error does not necessarily mean that the workload failed its execution thro
 
     **Supply Chain Security Tools — Store** is deployed to the `metadata-store` namespace.
     There is no support for configuring the namespace.
-
