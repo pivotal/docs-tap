@@ -127,8 +127,8 @@ For more information, see [Overview of Default Roles](authn-authz/overview.md).
 #### <a id="gui-features"></a> Tanzu Application Platform GUI
 
 - Added improvements to the information presentation and filtering mechanisms of the Runtime Resources tab
-- Added the new Supply Chain plugin
-- Added the Backstage API Docs Plugin
+- Added the new Supply Chain plug-in
+- Added the Backstage API Documentation Plug-in
 - Updated overall theme to Clarity City
 - Added compatibility with v1beta3 Backstage Templates
 - Small security fixes
@@ -141,7 +141,7 @@ Plug-in improvements and additions include:
   - Meaningful error messages and paths forward to troubleshoot issues
   - Tags in Knative revision table on the details page
   - Kubernetes Service on the resources page to provide more insights into Kubernetes service details
-  - Improved UI components for a better, and more accessible, user experience
+  - Improved UI components for a more accessible user experience
 
 - **Supply Chain Choreographer plug-in:**
   - Added a graphical representation of the execution of a workload by using an installed supply chain. This includes CRDs in the supply chain, the source results of each stage, and details to facilitate the troubleshooting of workloads on their path to production.
