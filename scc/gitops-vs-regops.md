@@ -6,12 +6,12 @@ repository, or a container image registry.
 
 ```
 Supply Chain
-   
-  -- fetch source 
-    -- test 
-      -- build 
-        -- scan 
-          -- apply-conventions 
+
+  -- fetch source
+    -- test
+      -- build
+        -- scan
+          -- apply-conventions
             -- push config        * either to Git or Registry
 ```
 
@@ -26,9 +26,13 @@ image registry.
 
 ## GitOps
 
-Typically associated with an outerloop workflow where the configuration
-produced by the supply chains should be persisted in a Git repository, it only
-gets used if certain parameters are set in the supply chain:
+Different from local iteration, the GitOps approach configures the supply
+chains to push the Kubernetes Configuration to a remote Git repository. This
+allows users to compare configuration changes and promote those through
+environments using GitOps principles.
+
+Typically associated with an outerloop workflow, it's only activated if certain
+parameters are set in the supply chain:
 
 - `gitops.repository_prefix`, configured during the Out of the Box Supply
   Chains package installation, or
@@ -73,10 +77,9 @@ workload-n:
 ```
 
 
-Alternatively, assuming that `gitops.repository_prefix` is _not_ configured
-during the installation of TAP, it'd still be possible to force a Workload to
-have the configuration published in a Git repository by providing to the
-Workload the `gitops_repository` parameter:
+Alternatively, it's also possible to force a Workload to have the configuration
+published in a Git repository by providing to the Workload the
+`gitops_repository` parameter:
 
 ```bash
 tanzu apps workload create tanzu-java-web-app \
@@ -84,7 +87,7 @@ tanzu apps workload create tanzu-java-web-app \
   --type web \
   --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
   --git-branch main \
-  --param gitops_ssh_secret=SECRET-NAME \
+  --param gitops_ssh_secret=GIT-SECRET-NAME \
   --param gitops_repository=https://github.com/my-org/config-repo
 ```
 
@@ -96,10 +99,13 @@ Workload would be published to the repository provided under the
 ### Authentication
 
 Regardless of how the supply chains have been configured, as long as pushing to
-Git is configured (via repository prefix or repository name), credentials must
-be provided through a Kubernetes Secret in the same namespace as the Workload
-(attached to the Workload ServiceAccount) so that the push can be performed via
-the requests being authenticated with the proper credentials.
+Git is configured (via repository prefix or repository name as mentioned
+before), credentials for the remote provider (e.g., GitHub) must be provided
+through a Kubernetes Secret in the same namespace as the Workload (attached to
+the Workload ServiceAccount).
+
+Because the operation of pushing requires elevated permissions, this is true
+regardless if the repository is public or private.
 
 
 #### HTTP(S) Basic-auth / Token-based authentication
@@ -113,7 +119,11 @@ Secret as follows:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: SECRET-NAME
+  name: GIT-SECRET-NAME  # `git-ssh` is the default name.
+                         #   - operators can change such default via the
+                         #     `gitops.ssh_secret` property in `tap-values.yml`
+                         #   - developers can override via the workload param
+                         #     named `gitops_ssh_secret`.
   annotations:
     tekton.dev/git-0: GIT-SERVER        # ! required
 type: kubernetes.io/basic-auth          # ! required
@@ -158,7 +168,11 @@ Secret as follows:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: GIT-SECRET-NAME
+  name: GIT-SECRET-NAME  # `git-ssh` is the default name.
+                         #   - operators can change such default via the
+                         #     `gitops.ssh_secret` property in `tap-values.yml`
+                         #   - developers can override via the workload param
+                         #     named `gitops_ssh_secret`.
   annotations:
     tekton.dev/git-0: GIT-SERVER
 type: kubernetes.io/ssh-auth
@@ -171,7 +185,6 @@ stringData:
 
 With the Secret created, attach it to the ServiceAccount used by the Workload.
 For instance:
-
 
 ```yaml
 apiVersion: v1
