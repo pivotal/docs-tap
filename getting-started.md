@@ -986,31 +986,58 @@ To try the scan and store features in a supply chain, see [Section 3: Add testin
 
   - [Tanzu Insight plug-in overview](../cli-plugins/insight/cli-overview.md)
 
-## <a id='stk'></a> Section 5: Consuming Services on Tanzu Application Platform
+## <a id='stk'></a> Section 5: Consuming services on Tanzu Application Platform
 
-In this section you will learn about working with backing services such as RabbitMQ, PostgreSQL and MySQL as part of Tanzu Application Platform. Particular focus is given to the most common of services use cases - that of binding Application Workloads to Service Instances.
+In this section you will learn about working with backing services such as
+RabbitMQ, PostgreSQL and MySQL as part of Tanzu Application Platform.
 
-### <a id="stk-overview"></a> Overview
+Particular focus will be given to binding application workloads to service instances,
+which is the most common use case for services.
 
-There are a few key concepts to familiarize yourself with in order to fully appreciate how best to work with services on Tanzu Application Platform - these are Service Instances, Service Bindings and Resource Claims. A brief overview of each is provided below.
+### <a id="stk-concepts"></a> Key concepts
 
-A **Service Instance** is considered to be any Kubernetes resource which exposes its functionality via a well-defined interface. For example we could consider Kubernetes resources with an API Kind of `MySQL` to be "MySQL Service Instances", all of which expose their functionality over the MySQL protocol. Other examples may include resources with an API Kind of `PostreSQL` or, as we'll see a little later on, `RabbitmqCluster`.
+When working with services on Tanzu Application Platform you must be familiar
+with service instances, service bindings and resource claims.
+This section provides a brief overview of each of these key concepts.
 
-**Service Binding** refers to a mechanism in which Service Instance credentials and other related connectivity information are communicated to Application Workloads in an automated way. Tanzu Application Platform makes use of a standard named [Service Binding for Kubernetes](https://servicebinding.io/) to implement such a mechanism. An understanding and appreciation of this standard is an important part of fully understanding the services aspect of Tanzu Application Platform.
+#### Service instances
 
-**Resource Claims**, inspired in part by Kubernetes' [Persistent Volume Claims](https://kubernetes.io/docs/concepts/storage/persistent-volumes/), provide a mechanism for users to "claim" Service Instance resources on a given cluster while also serving to decouple the lifecycle of Application Workloads and Service Instances.
+A **service instance** is any Kubernetes resource which exposes its capability
+through a well-defined interface.
+For example, you could consider Kubernetes resources that have `MySQL` as the API Kind
+to be MySQL service instances. These resources expose their capability over the MySQL protocol.
+Other examples include resources that have `PostreSQL` or `RabbitmqCluster` as the API Kind.
 
-### <a id="stk-available-services"></a> Services available for use with Tanzu Application Platform today
+#### Service bindings
 
-There is a short and a long answer to the question of, "Which services can I use on Tanzu Application Platform today?". The short answer is that the following list of Kubernetes Operators all expose APIs which are known to integrate well with Tanzu Application Platform:
+**Service binding** refers to a mechanism in which connectivity information such
+as service instance credentials are automatically communicated to application workloads.
+Tanzu Application Platform uses a standard named [Service Binding for Kubernetes](https://servicebinding.io/)
+to implement this mechanism. To fully understand the services aspect of Tanzu Application Platform,
+you must learn about this standard.
+
+#### Resource claims
+
+**Resource claims** are inspired in part by [Persistent Volume Claims](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) in Kubernetes.
+Resource Claims provide a mechanism for users to "claim" service instance resources
+on a cluster, while also decoupling the life cycle of application workloads and service instances.
+
+### <a id="stk-available-services"></a> Services you can use with Tanzu Application Platform
+
+The following list of Kubernetes Operators all expose APIs that are known to
+integrate well with Tanzu Application Platform:
 
 1. [RabbitMQ Cluster Operator for Kubernetes](https://www.rabbitmq.com/kubernetes/operator/operator-overview.html)
 1. [VMware Tanzu SQL with Postgres for Kubernetes](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-Postgres-for-Kubernetes/index.html)
 1. [VMware Tanzu SQL with MySQL for Kubernetes](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-MySQL-for-Kubernetes/index.html)
 
-The long answer is slightly more nuanced and considers that compatibility of services on Tanzu Application Platform exists as a scale, rather than a simple "works" vs "doesn't work" option.
+Compatibility of services on Tanzu Application Platform exists as a scale, rather
+than a "works" compared to "doesn't work" option.
 
-At present, the minimum requirement for entry onto the scale of compatibility is that there must exist a declarative, Kubernetes-based API on which there is at least one API Resource Type adhering to the [Provisioned Service](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-MySQL-for-Kubernetes/index.html) duck type defined by the [Service Binding for Kubernetes](https://servicebinding.io/) standard. In other words, any resource type with the following schema:
+At present, the minimum requirement for compatibility is that there must exist a declarative,
+Kubernetes-based API on which there is at least one API resource type adhering to the [Provisioned Service](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-MySQL-for-Kubernetes/index.html) <!-- why this link? -->
+duck type defined by the [Service Binding for Kubernetes](https://servicebinding.io/) standard.
+In other words, any resource type with the following schema:
 
 ```yaml
 status:
@@ -1018,263 +1045,300 @@ status:
     name: # string
 ```
 
-The value of `.status.binding.name` must point to a `Secret` in the same namespace which then contains any required credentials and connectivity information for the resource.
+The value of `.status.binding.name` must point to a `Secret` in the same namespace.
+The `Secret` contains required credentials and connectivity information for the resource.
 
-Typically APIs including such resource types would be installed into the Tanzu Application Platform cluster as Kubernetes Operators providing CRDs and controllers to reconcile them, as is the case with the three Kubernetes Operators listed above.
+Typically, APIs that include these resource types are installed onto the Tanzu Application Platform
+cluster as Kubernetes Operators and providing CRDs and controllers to reconcile them,
+as is the case with the three Kubernetes Operators listed above. <!-- need to clarify -->
 
-**Note**: There are plans to introduce tooling to Tanzu Application Platform to loosen this requirement in the near future, enabling a much wider range of services and Kubernetes Operators to integrate well with the platform.
+### <a id="stk-user-roles"></a> User roles and responsibilities
 
-### <a id="stk-user-roles-responsibilities"></a> User Roles and Responsibilities
-
-It is important to understand the User Roles considered when discussing services on Tanzu Application Platform along with the responsibilities assumed of each.
+It is important to understand the user roles for services on Tanzu Application Platform
+along with the responsibilities assumed of each. The following table describes
+each user role.
 
 <table class="nice">
-  <th><strong>User Role</strong></th>
-  <th><strong>Exists as a default Role in TAP?</strong></th>
+  <th><strong>User role</strong></th>
+  <th><strong>Exists as a default role in Tanzu Application Platform?</strong></th>
   <th><strong>Responsibilities</strong></th>
   <tr>
-    <td>Service Operator</td>
-    <td>No (may be introduced in a future release)</td>
-    <td>Namespace and cluster topology design<br>Lifecycle management (CRUD) of Kubernetes Operators<br>Lifecycle management (CRUD) of Service Instances<br>Lifecycle management (CRUD) of Resource Claim Policies</td>
+    <td>Service operator</td>
+    <td>No (might be introduced in a future release)</td>
+    <td>
+      <ul>
+        <li>Namespace and cluster topology design</li>
+        <li>Life cycle management (CRUD) of Kubernetes Operators</li>
+        <li>Life cycle management (CRUD) of Service Instances</li>
+        <li>Life cycle management (CRUD) of Resource Claim Policies</li>
+      </ul>
+    </td>
   </tr>
   <tr>
-    <td>Application Operator</td>
-    <td>Yes - <a href="https://docs.vmware.com/en/Tanzu-Application-Platform/1.1/tap/GUID-default-roles-role-descriptions.html#appoperator-2">app-operator</a></td>
-    <td>Lifecycle management (CRUD) of Resource Claims</td>
+    <td>Application operator</td>
+    <td>
+      Yes - <a href="https://docs.vmware.com/en/Tanzu-Application-Platform/1.1/tap/GUID-default-roles-role-descriptions.html#appoperator-2">app-operator</a>
+    </td>
+    <td>Life cycle management (CRUD) of Resource Claims</td>
   </tr>
   <tr>
-    <td>Application Developer</td>
-    <td>Yes - <a href="https://docs.vmware.com/en/Tanzu-Application-Platform/1.1/tap/GUID-default-roles-role-descriptions.html#appeditor-0">app-editor</a> / <a href="https://docs.vmware.com/en/Tanzu-Application-Platform/1.1/tap/GUID-default-roles-role-descriptions.html#appviewer-1">app-viewer</a></td>
-    <td>Binding Service Instances to Application Workloads</td>
+    <td>Application developer</td>
+    <td>
+      Yes - <a href="https://docs.vmware.com/en/Tanzu-Application-Platform/1.1/tap/GUID-default-roles-role-descriptions.html#appeditor-0">app-editor</a>
+      and <a href="https://docs.vmware.com/en/Tanzu-Application-Platform/1.1/tap/GUID-default-roles-role-descriptions.html#appviewer-1">app-viewer</a>
+    </td>
+    <td>Binding service instances to application workloads</td>
   </tr>
 </table>
 
 ### <a id="stk-walkthrough"></a> Walkthrough
 
-With an understanding of the main services concepts and user roles in mind it's now time to exercise our understanding with a practical walkthrough. In this section we'll walk through the deployment of two Application Workloads and learn how to configure them to communicate over RabbitMQ. In doing so we will learn about the `tanzu services` CLI plug-in as well as the most important APIs for working with services on Tanzu Application Platform. A summary of what we'll cover is captured in the diagram below.
+This section guides you through deploying two application workloads and learning
+how to configure them to communicate over RabbitMQ.
+You will learn about the `tanzu services` CLI plug-in and the most
+important APIs for working with services on Tanzu Application Platform.
+The following diagram depicts a summary of what this section covers.
 
-![Multiple Application Workloads binding to a Service Instance](images/getting-started-stk-1.png)
+![Diagram shows the default namespace and service instances namespace. The default namespace has two application workloads, each connected to a service binding. The service bindings connect to the service instance in the service instances namespace through a resource claim.](images/getting-started-stk-1.png)
 
-It is worth bearing the following key observations in mind as you work your way through the Walkthrough.
+Bear the following observations in mind as you work through this section.
 
-1. Clear separation of concerns across the various user roles
-    * Lifecycle of Workloads determined by Application Developers
-    * Lifecycle of Resource Claims determined by Application Operators
-    * Lifecycle of Service Instances determined by Service Operators
-    * Lifecycle of Service Bindings implicitly tied to lifecycle of Workloads
-1. Resource Claims and Resource Claim Policies as the mechanism to enable cross-namespace binding
-1. [ProvisionedService](https://github.com/servicebinding/spec#provisioned-service) as the contract allowing credentials and connectivity information to flow from the Service Instance, through the Resource Claim, through the Service Binding and ultimately to the Application Workloads
-1. Exclusivity of Resource Claims
-    * Resource Claims are considered to be mutually exclusive, meaning that Service Instances can be claimed by at most 1 Resource Claim
+1. There is a clear separation of concerns across the various user roles:
+    * The life cycle of workloads is determined by application developers.
+    * The life cycle of resource claims is determined by application operators.
+    * The life cycle of service instances is determined by service operators.
+    * The life cycle of service bindings is implicitly tied to lifecycle of workloads.
+1. Resource claims and resource claim policies are the mechanism to enable cross-namespace binding.
+1. [ProvisionedService](https://github.com/servicebinding/spec#provisioned-service) are the contract allowing credentials and connectivity information to flow from the service instance, to the resource claim, to the service binding and ultimately to the application workload.
+1. Exclusivity of resource claims:
+    * Resource claims are considered to be mutually exclusive, meaning that service instances can be claimed by at most one resource claim.
 
-#### <a id="stk-walkthrough-1-pre-reqs"></a> Pre-Requisites
+#### <a id="stk-prereqs>"></a> Prerequisites
 
-Please note the following assumptions / pre-requisites for completing the walkthrough:
+Before following this walkthrough, you must:
 
-1. You have access to a cluster with Tanzu Application Platform installed
-1. You have downloaded and installed the `tanzu` CLI along with the corresponding plug-ins
-1. You have setup the `default` namespace to use installed packages (see [Set up developer namespaces to use installed packages](https://docs.vmware.com/en/Tanzu-Application-Platform/1.1/tap/GUID-install-components.html#setup)) and will use it as your "developer namespace"
-1. Your Tanzu Application Platform cluster is able to pull source code from GitHub
-1. Your Tanzu Application Platform cluster is able to pull the images required by the [RabbitMQ Cluster Kubernetes Operator](https://www.rabbitmq.com/kubernetes/operator/using-operator.html)
+1. Have access to a cluster with Tanzu Application Platform installed.
+1. Have downloaded and installed the `tanzu` CLI and the corresponding plug-ins.
+1. Have setup the `default` namespace to use installed packages and use it as your developer namespace.
+For more information, see [Set up developer namespaces to use installed packages](https://docs.vmware.com/en/Tanzu-Application-Platform/1.1/tap/GUID-install-components.html#setup)).
+1. Ensure your Tanzu Application Platform cluster can pull source code from GitHub.
+1. Ensure your Tanzu Application Platform cluster can pull the images required by the [RabbitMQ Cluster Kubernetes Operator](https://www.rabbitmq.com/kubernetes/operator/using-operator.html).
 
-#### <a id="stk-walkthrough-2-set-up"></a> Set up
+#### <a id="stk-set-up"></a> Set up a service
 
-Covered in this section:
+This section covers the following:
 
-* Installation of the [RabbitMQ Cluster Kubernetes Operator](https://www.rabbitmq.com/kubernetes/operator/using-operator.html)
-* Creation of required RBAC rules
-* Creation of additional supporting resources to aid with discovery of services
+* Installing the [RabbitMQ Cluster Kubernetes Operator](https://www.rabbitmq.com/kubernetes/operator/using-operator.html)
+* Creating the RBAC rules to grant Tanzu Application Platform permission to interact
+with the newly-installed APIs provided by the RabbitMQ Cluster Kubernetes Operator.
+* Creating the additional supporting resources to aid with discovery of services
 
-For this part of the walkthrough we will assume the role of the **Service Operator**.
+For this part of the walkthrough, you assume the role of the **service operator**.
 
-We'll begin by installing the [RabbitMQ Cluster Kubernetes Operator](https://www.rabbitmq.com/kubernetes/operator/using-operator.html). Then, we'll look to create a set of RBAC rules which will grant Tanzu Application Platform permission to interact with the newly-installed APIs provided by the RabbitMQ Cluster Operator. Finally we'll create some supporting resources to aid with the discovery of the new APIs in the cluster.
+>**Note:** Although this walkthrough uses the RabbitMQ Cluster Kubernetes Operator
+as an example, the set up steps remain mostly the same for any compatible Operator.
 
-**Note**: While this walkthrough uses the RabbitMQ Cluster Operator as an example, the set up steps detailed here will remain largely the same for any compatilble Operator.
+To set up a service:
 
-1. Install the RabbitMQ Cluster Operator
+1. Use `kapp` to install the RabbitMQ Cluster Kubernetes Operator by running the command:
 
-Use `kapp` to install the operator, as follows:
+    ```
+    kapp -y deploy --app rmq-operator --file https://github.com/rabbitmq/cluster-operator/releases/download/v1.9.0/cluster-operator.yml
+    ```
+    As a result, a new API Group (`rabbitmq.com`) and Kind (`RabbitmqCluster`) are
+    now available in the cluster.
 
-```
-kapp -y deploy --app rmq-operator --file https://github.com/rabbitmq/cluster-operator/releases/download/v1.9.0/cluster-operator.yml
-```
+1. Apply RBAC rules to grant Tanzu Application Platform permission to interact with the new API.
 
-2. Apply RBAC rules to permit interaction with the new API
+    1. In a file named `resource-claims-rmq.yml`, create a `ClusterRole` that defines the rules and label it
+    so that the rules are aggregated to the appropriate controller:
 
-As a result of the previous step a new API Group (`rabbitmq.com`) and Kind (`RabbitmqCluster`) are now available in the cluster. We now need to grant Tanzu Application Platform permission to interact with the resources of this new API. This is achieved by creating a new `ClusterRole` defining the rules and labelling it such that the rules are aggregated to the appropriate controller, as follows:
+        ```yaml
+        # resource-claims-rmq.yml
+        ---
+        apiVersion: rbac.authorization.k8s.io/v1
+        kind: ClusterRole
+        metadata:
+          name: resource-claims-rmq
+          labels:
+            resourceclaims.services.apps.tanzu.vmware.com/controller: "true"
+        rules:
+        - apiGroups: ["rabbitmq.com"]
+          resources: ["rabbitmqclusters"]
+          verbs: ["get", "list", "watch", "update"]
+        ```
 
-```yaml
-# resource-claims-rmq.yml
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: resource-claims-rmq
-  labels:
-    resourceclaims.services.apps.tanzu.vmware.com/controller: "true"
-rules:
-- apiGroups: ["rabbitmq.com"]
-  resources: ["rabbitmqclusters"]
-  verbs: ["get", "list", "watch", "update"]
-```
+    1. Apply `resource-claims-rmq.yml` by running:
 
-Apply `resource-claims-rmq.yml` by running:
+        ```
+        kubectl apply -f resource-claims-rmq.yml
+        ```
 
-```
-kubectl apply -f resource-claims-rmq.yml
-```
+    1. In a file named `rabbitmqcluster-app-operator-reader.yml`, define RBAC
+    rules permitting the users of the cluster to interact with the new APIs.
+    For example, to permit application operators to get, list, and watch for `RabbitmqCluster` service instances,
+    apply the following RBAC `ClusterRole`, labeled so that the rules are aggregated to the `app-operator` role:
 
-Additionally we can also define RBAC rules permitting users of the cluster to interact with the new APIs. For example to permit Application Operators to get, list and watch for `RabbitmqCluster` Service Instances (something they will be doing later in this walkthrough), we can apply the following RBAC `ClusterRole`, labelled such that the rules are aggregated to the `app-operator` role:
+        ```yaml
+        # rabbitmqcluster-app-operator-reader.yml
+        ---
+        apiVersion: rbac.authorization.k8s.io/v1
+        kind: ClusterRole
+        metadata:
+          name: rabbitmqcluster-app-operator-reader
+          labels:
+            apps.tanzu.vmware.com/aggregate-to-app-operator-cluster-access: "true"
+        rules:
+        - apiGroups: ["rabbitmq.com"]
+          resources: ["rabbitmqclusters"]
+          verbs: ["get", "list", "watch"]
+        ```
 
-```yaml
-# rabbitmqcluster-app-operator-reader.yml
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: rabbitmqcluster-app-operator-reader
-  labels:
-    apps.tanzu.vmware.com/aggregate-to-app-operator-cluster-access: "true"
-rules:
-- apiGroups: ["rabbitmq.com"]
-  resources: ["rabbitmqclusters"]
-  verbs: ["get", "list", "watch"]
-```
+    1. Apply `rabbitmqcluster-app-operator-reader.yml` by running:
 
-Apply `rabbitmqcluster-app-operator-reader.yml` by running:
+        ```
+        kubectl apply -f rabbitmqcluster-app-operator-reader.yml
+        ```
 
-```
-kubectl apply -f rabbitmqcluster-app-operator-reader.yml
-```
+1. Make the new API discoverable.
 
-3. Make the new API discoverable by creating a `ClusterResource` to reference and describe it
+    1. In a file named `rabbitmqcluster-clusterresource.yml`, create a `ClusterResource`
+    that refers to the new service, and set any additional metadata. For example:
 
-The final step in setting up a new service for Tanzu Application Platform is to make it discoverable. This is achieved by the Service Operator creating a `ClusterResource` referring to the new service and setting any additional relevant metadata about it. For example:
+    ```yaml
+    # rabbitmqcluster-clusterresource.yml
+    apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+    kind: ClusterResource
+    metadata:
+      name: rabbitmq
+    spec:
+      shortDescription: It's a RabbitMQ cluster!
+      longDescription: A consistent and easy way to deploy RabbitMQ clusters to Kubernetes and run them, including "day two" (continuous) operations.
+      resourceRef:
+        group: rabbitmq.com
+        kind: RabbitmqCluster
+    ```
 
-```yaml
-# rabbitmqcluster-clusterresource.yml
-apiVersion: services.apps.tanzu.vmware.com/v1alpha1
-kind: ClusterResource
-metadata:
-  name: rabbitmq
-spec:
-  shortDescription: It's a RabbitMQ cluster!
-  longDescription: A consistent and easy way to deploy RabbitMQ clusters to Kubernetes and run them, including "day two" (continuous) operations.
-  resourceRef:
-    group: rabbitmq.com
-    kind: RabbitmqCluster
-```
+    1. Apply `rabbitmqcluster-clusterresource.yml` by running:
 
-7. Apply `rabbitmqcluster-clusterresource.yml` by running:
+        ```
+        kubectl apply -f rabbitmqcluster-clusterresource.yml
+        ```
+        After applying this resource, it will be listed in the output of the
+        `tanzu service types list` command, and is discoverable in the `tanzu` tooling.
 
-```
-kubectl apply -f rabbitmqcluster-clusterresource.yml
-```
+#### <a id="stk-create-svc-instances"></a> Create a service instance
 
-The result of applying this resource is that it will now be listed in the output of the `tanzu service types list` command, and thus has been made discoverable in the `tanzu` tooling.
+This section covers the following:
 
-#### <a id="stk-walkthrough-3-service-instance"></a> Creating Service Instances
+* Using kubectl to create a `RabbitmqCluster` service instance.
+* Creating a resource claim policy that permits the service instance to be claimed.
 
-Covered in this section:
+For this part of the walkthrough, you assume the role of the **service operator**.
 
-* Using `kubectl` to create a `RabbitmqCluster` Service Instance
-* Creation of a Resource Claim Policy permitting claiming of the Service Instance
+1. Create a dedicated namespace for service instances by running the command:
 
-For this part of the walkthrough we will continue to assume the role of the **Service Operator**.
+    ```
+    kubectl create namespace service-instances
+    ```
 
-1. Create a dedicated namespace for Service Instances
+    >**Note:** Using namespaces to separate service instances from application workloads allows
+    for greater separation of concerns, and means that you can achieve greater control
+    over who has access to what.
+    However, this is not a strict requirement.
+    You can create both service instances and application workloads in the same namespace if desired.
 
-Use `kubectl` to create a dedicated namespace in which to hold Service Instances, as follows:
+2. Create a `RabbitmqCluster` Service Instance by running the command:
 
-```
-kubectl create namespace service-instances
-```
+    ```
+    tanzu service types list
+    ```
 
-Using namespaces to separate Service Instances from Application Workloads allows for greater separation of concerns and means that greater control can be achieved over who has access to what. However it should be noted that this is not a strict requirement and it is perfectly possible to create both Service Instances and Application Workloads in the same namespace if desired.
+    Expected output:
 
-2. Create a `RabbitmqCluster` Service Instance
+    ```
+    Warning: This is an ALPHA command and may change without notice.
 
-It's now time to create our first Service Instance. Let's use the `tanzu service types list` command to discover the list of services that are available on our cluster, as follows:
+     NAME      DESCRIPTION               APIVERSION                    KIND
+     rabbitmq  It's a RabbitMQ cluster!  rabbitmq.com/v1beta1          RabbitmqCluster
+    ```
 
-```
-tanzu service types list
-```
+    >**Note**: If you see `No service types found.`, ensure you have completed the
+    steps in [Set up a service](#stk-set-up) earlier in this walkthrough.
 
-The following will be output:
+1. Create a service instance.
 
-```
-Warning: This is an ALPHA command and may change without notice.
+    1. Create a file named `rmq-1-service-instance.yml` using the `APIVERSION` and
+    `KIND` from the output of the `tanzu service types list` command:
 
- NAME      DESCRIPTION               APIVERSION                    KIND
- rabbitmq  It's a RabbitMQ cluster!  rabbitmq.com/v1beta1          RabbitmqCluster
-```
+        ```yaml
+        # rmq-1-service-instance.yml
+        ---
+        apiVersion: rabbitmq.com/v1beta1
+        kind: RabbitmqCluster
+        metadata:
+          name: rmq-1
+          namespace: service-instances
+        ```
 
-**Note**: If you see `No service types found.`, make sure you have first run through the [Set Up](#stk-walkthrough-2-set-up).
+    1. Apply `rmq-1-service-instance.yml` by running:
 
-The output of the `tanzu service types list` command tells us the API Group/Version and Kind, which we can now use to create our Service Instance.
+        ```
+        kubectl apply -f rmq-1-service-instance.yml
+        ```
 
-```yaml
-# rmq-1-service-instance.yml
----
-apiVersion: rabbitmq.com/v1beta1
-kind: RabbitmqCluster
-metadata:
-  name: rmq-1
-  namespace: service-instances
-```
+3. Create a resource claim policy to define the namespaces the instance can be claimed and bound from:
 
-Apply `rmq-1-service-instance.yml` by running:
+    >**Note:** By default, you can only claim and bind to service instances that
+    are running in the _same_ namespace as the application workloads.
+    To claim service instances that are running in a different namespace, you must
+    create a resource claim policy.
 
-```
-kubectl apply -f rmq-1-service-instance.yml
-```
+    1. Create a file named `rmq-claim-policy.yml` as follows:
 
-3. Create a Resource Claim Policy
+        ```yaml
+        # rmq-claim-policy.yml
+        ---
+        apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+        kind: ResourceClaimPolicy
+        metadata:
+          name: rabbitmqcluster-cross-namespace
+          namespace: service-instances
+        spec:
+          consumingNamespaces:
+          - '*'
+          subject:
+            group: rabbitmq.com
+            kind: RabbitmqCluster
+        ```
 
-Now that we have a `RabbitmqCluster` Service Instance running in the `service-instances` namespace, the next step is to create a Resource Claim Policy to define the namespaces the instance can be claimed (and subsequently bound) from. By default it is only possible to claim and subsequently bind to Service Instances that are running in the _same_ namespace as the Application Workloads. But as we've just seen here our Service Instance is running in a different namespace. So, let's create a Resource Claim Policy to unblock ourselves.
+    1. Apply `rmq-claim-policy.yml` by running:
 
-```yaml
-# rmq-claim-policy.yml
----
-apiVersion: services.apps.tanzu.vmware.com/v1alpha1
-kind: ResourceClaimPolicy
-metadata:
-  name: rabbitmqcluster-cross-namespace
-  namespace: service-instances
-spec:
-  consumingNamespaces:
-  - '*'
-  subject:
-    group: rabbitmq.com
-    kind: RabbitmqCluster
-```
+        ```
+        kubectl apply -f rmq-claim-policy.yml
+        ```
 
-Apply `rmq-claim-policy.yml` by running:
+    This policy states that any resource of kind `RabbitmqCluster` on the `rabbitmq.com`
+    API group in the `service-instances` namespace can be consumed from any namespace.
 
-```
-kubectl apply -f rmq-claim-policy.yml
-```
+#### <a id="stk-claim"></a> Claim a service instance
 
-This policy states that any resource of kind `RabbitmqCluster` on the `rabbitmq.com` API group in the `service-instances` namespace can be consumed from any namespace. With the Service Instance created and the policy in place, let's now switch gears to the Application Operator role and see how we can claim this instance for use with our Application Workloads.
+This section covers the following:
 
-#### <a id="stk-walkthrough-4-claim"></a> Claiming Service Instances
+* Using `tanzu service instance list` to view details about Service Instances.
+* Using `tanzu service claim create` to create a claim for the Service Instance.
 
-Covered in this section:
+For this part of the walkthrough we<!-- |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. --> will<!-- Avoid |will|: present tense is preferred. --> assume the role of the **application operator**.
 
-* Using `tanzu service instance list` to view details about Service Instances
-* Using `tanzu service claim create` to create a claim for the Service Instance
+Resource Claims in Tanzu Application Platform are a powerful concept that serve many purposes. Arguably their most important role is in enabling Appliction Operators to request services to be used with their Application Workloads<!-- |application workloads| is preferred. --> without them having to actually<!-- Delete unless referring to a situation that is actual instead of virtual. Most uses are extraneous. --> create and manage the services themselves. In simpler terms, they provide a mechanism for application operators to say what they want, without having to worry about anything that goes into providing what they want. To learn more about Resource Claims please<!-- Do not use unless asking the reader to do you a favor, such as giving feedback. --> refer to<!-- If telling the reader to read something else, use |see|. --> [Resource Claims](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.6/svc-tlk/GUID-service_resource_claims-terminology_and_apis.html).
 
-For this part of the walkthrough we will assume the role of the **Application Operator**.
-
-Resource Claims in Tanzu Application Platform are a powerful concept that serve many purposes. Arguably their most important role is in enabling Appliction Operators to request services to be used with their Application Workloads without them having to actually create and manage the services themselves. In simpler terms, they provide a mechanism for Application Operators to say what they want, without having to worry about anything that goes into providing what they want. To learn more about Resource Claims please refer to [Resource Claims](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.6/svc-tlk/GUID-service_resource_claims-terminology_and_apis.html).
-
-Let's see how to create a claim that can be fulfilled by our `RabbitmqCluster` Service Instance. We'll use the `tanzu service claims create` command to do just that. This command requires some information to be able to create a claim successfully. As of today, we have to provide the following:
+Let<!-- Do not use to describe features that a product makes possible. Use |You can| instead. -->'s<!-- Re-word: too colloquial. --> see how to create a claim that can be<!-- Consider switching to active voice. --> fulfilled by<!-- Active voice is preferred. --> our `RabbitmqCluster` Service Instance. We<!-- |VMware|, the product name, or another term is preferred. Define who |We| is for the reader is preferred. -->'ll<!-- Specify the party (VMware, Cloud Foundry, etc) and avoid a contraction if it is too colloquial or awkward or uncommonly used. --> use the `tanzu service claims create` command to do just<!-- Avoid uses that suggest a task is simple. --> that. This command requires some information to be able to<!-- |can| is preferred. --> create a claim successfully. As of today, we<!-- |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. --> have to provide the following:<!-- To introduce steps just write |To do x:| -->
 
 1. `--resource-name`
 1. `--resource-kind`
 1. `--resource-api-version`
 
-And in addition we'll need to provide the optional `--resource-namespace` argument as well. As of today it is required to provide a lot of very specific information in order to create a claim. In particular the requirement to provide a specific name and namespace here is less than ideal as it means that Application Operators have to somehow determine this information prior to creating a claim. The plan is that over time such requirements can be relaxed as more functionality is added to the Resource Claims component in upcoming releases of Tanzu Application Platform. For now we can fall back to the `tanzu service instance list` command to determine the appropriate information, as follows:
+And in addition we<!-- |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. -->'ll<!-- Specify the party (VMware, Cloud Foundry, etc) and avoid a contraction if it is too colloquial or awkward or uncommonly used. --> need to<!-- |must| is preferred. --> provide the optional `--resource-namespace` argument as well. As of today it is required to provide a lot of very specific information in order to<!-- |to| is preferred. --> create a claim. In particular the requirement<!-- Requirements are things needed to install and run the product. We list them on the product index page. Prerequisites are things needed for a given procedure beyond the product requirements. We list those on the procedure page. --> to provide a specific name and namespace here is less than ideal as it means that application operators have to somehow determine<!-- |determine| has two meanings. Consider if the univocal |discover| or |verify| would be better. --> this information prior to<!-- |before| is preferred. --> creating a claim. The plan is that over time such requirements can be<!-- Consider switching to active voice. --> relaxed as more functionality<!-- |function|, |features|, or |capability| is preferred. --> is added to the Resource Claims component in upcoming releases of Tanzu Application Platform. For now we<!-- |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. --> can fall back to the `tanzu service instance list` command to determine the appropriate information, as follows:
 
 ```
 tanzu service instance list -A
@@ -1299,24 +1363,24 @@ tanzu service claim create rmq-1 \
   --resource-api-version rabbitmq.com/v1beta1
 ```
 
-In the next section we'll see how to inspect the claim and to then use it to bind to Application Workloads.
+In the next section we<!-- |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. -->'ll<!-- Specify the party (VMware, Cloud Foundry, etc) and avoid a contraction if it is too colloquial or awkward or uncommonly used. --> see how to inspect the claim and to then use it to bind to Application Workloads<!-- |application workloads| is preferred. -->.
 
-#### <a id="stk-walkthrough-5-bind"></a> Binding Application Workloads to the Service Instance
+#### <a id="stk-bind"></a> Bind an application workload to the service instance
 
 Covered in this section:
 
 * Using `tanzu service claim list` and `tanzu service claim get` to find information about the claim to use for binding
 * Using `tanzu apps workload create` with the `--service-ref` flag to create a Workload and bind it to the Service Instance
 
-For this part of the walkthrough we will assume the role of the **Application Developer**.
+For this part of the walkthrough we<!-- |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. --> will<!-- Avoid |will|: present tense is preferred. --> assume the role of the **Application Developer**.
 
-We're nearing the end of the walkthrough and all that is left to do now is to actually create our Application Workloads and to bind them, via the claim, to the Service Instance.
+We<!-- |VMware|, the product name, or another term is preferred. Define who |We| is for the reader is preferred. -->'re<!-- Specify the party (VMware, Cloud Foundry, etc) and avoid a contraction if it is too colloquial or awkward or uncommonly used. --> nearing the end of the walkthrough and all that is left to do now is to actually<!-- Delete unless referring to a situation that is actual instead of virtual. Most uses are extraneous. --> create our Application Workloads<!-- |application workloads| is preferred. --> and to bind them, via<!-- |through|, |using| and |by means of| are preferred. --> the claim, to the Service Instance.
 
-**Note** In cases where Service Instances are running in the same namespace as Application Workloads, it is not technically necessary to create a claim, rather you can bind to the Service Instance directly.
+**Note** <!-- Proper note formatting is |>**Note:**| or |>**Caution:**| or |>**Important:**|. --> In cases where Service Instances are running in the same namespace as Application Workloads<!-- |application workloads| is preferred. -->, it is not technically necessary to create a claim, rather you can bind to the Service Instance directly.
 
-1. Determine a suitable value to pass to `--service-ref` on the `tanzu apps workload create` command
+1. Determine<!-- |Determine| has two meanings. Consider if the univocal |discover| or |verify| would be better. --> a suitable value to pass to `--service-ref` on the `tanzu apps workload create` command
 
-In Tanzu Application Platform Service Bindings are created when Application Workloads that specify `.spec.serviceClaims` are created. In this section we will see how to create such Workloads using the `--service-ref` flag of the `tanzu apps workload create` command. But first, we need to determine a suitable value to pass to this flag. This can be achieved by inspecting existing claims in our developer namespace, as follows:
+In Tanzu Application Platform Service Bindings are created when Application Workloads that specify `.spec.serviceClaims` are created. In this section we<!-- |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. --> will<!-- Avoid |will|: present tense is preferred. --> see how to create such Workloads using the `--service-ref` flag of the `tanzu apps workload create` command. But first, we need to determine a suitable value to pass to this flag. This can be achieved by inspecting existing claims in our developer namespace, as follows:
 
 
 ```
@@ -1356,7 +1420,7 @@ Resource to Claim:
   Kind: RabbitmqCluster
 ```
 
-The information we're interested in here is the `Claim Reference`. This is the value we will pass to `--service-ref` when it comes to creating our Application Workloads, as follows:
+The information we<!-- |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. -->'re<!-- Specify the party (VMware, Cloud Foundry, etc) and avoid a contraction if it is too colloquial or awkward or uncommonly used. --> interested in here is the `Claim Reference`. This is the value we<!-- |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. --> will<!-- Avoid |will|: present tense is preferred. --> pass to `--service-ref` when it comes to creating our Application Workloads, as follows:
 
 ```
 tanzu apps workload create spring-sensors-consumer-web \
@@ -1374,32 +1438,38 @@ tanzu apps workload create \
   --annotation=autoscaling.knative.dev/minScale="1"
 ```
 
-Usage of the `--service-ref` flag instructs Tanzu Application Platform to bind the Application Workload to the service provided in the ref. Note that here we are not passing a service ref to the `RabbitmqCluster` Service Instance directly, but rather to the Resource Claim (which itself has successfully claimed the `RabbitmqCluster` Service Instance). Refer back to the earlier diagram for an explanation as to why.
+Using the `--service-ref` flag instructs Tanzu Application Platform to bind the application workload to the service provided in the `ref`.
+
+>**Note:** You are not passing a service ref to the `RabbitmqCluster` service instance directly,
+but rather to the resource claim, which itself has successfully claimed the `RabbitmqCluster` Service Instance.
+See the [diagram](#stk-walkthrough) at the beginning of this walkthrough.
 
 After the Workloads are ready, visit the URL of the `spring-sensors-consumer-web` Application and confirm that sensor data (passing from the `spring-sensors-producer` Workload to the `create spring-sensors-consumer-web` Workload using our RabbitmqCluster Service Instance) is displayed.
 
-### <a id="stk-walkthrough-6-summary"></a> Walkthrough Summary
+### <a id="stk-advanced-use-cases"></a> Advanced use cases and further reading
 
-We covered a lot of ground in the walkthrough. The hope is that this introduction to the various components and tooling has laid the ground work for you to begin your services journey on Tanzu Application Platform.
-
-### <a id="stk-advanced-use-cases"></a> Advanced Use Cases and Further Reading
-
-There are a couple of slighly more advanced services use cases not covered in the above walkthrough, namely "Direct Secret References" and "Dedicated Service Clusters".
+There are a couple more advanced service use cases that not covered in the
+procedures in this topic, such as Direct Secret References and Dedicated Service Clusters.
 
 <table class="nice">
   <th><strong>Advanced Use Case</strong></th>
   <th><strong>Short Description</strong></th>
-  <th><strong>Link</strong></th>
   <tr>
-    <td>Direct Secret References</td>
-    <td>Bind to services running external to the cluster (e.g. in-house oracle DB)<br />Bind to services not conformant with the binding spec</td>
-    <td><a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.6/svc-tlk/GUID-reference-use_cases.html#direct-secret-references">Link</a></td>
+    <td>
+      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.6/svc-tlk/GUID-reference-use_cases.html#direct-secret-references">Direct Secret References</a>
+    </td>
+    <td>
+      Binding to services running external to the cluster, for example, and in-house oracle database.<br>
+      Binding to services that are not conformant with the binding specification.
+    </td>
   </tr>
   <tr>
-    <td>Dedicated Service Clusters</td>
-    <td>Separate Application Workloads from Service Instances across dedicated clusters</td>
-    <td><a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.6/svc-tlk/GUID-reference-use_cases.html#dedicated-service-clusters-using-experimental-projection-and-replication-apis">Link</a></td>
+    <td>
+      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.6/svc-tlk/GUID-reference-use_cases.html#dedicated-service-clusters-using-experimental-projection-and-replication-apis">Dedicated Service Clusters</a>
+    </td>
+    <td>Separates application workloads from service instances across dedicated clusters.</td>
   </tr>
 </table>
 
-Please refer to the [Services Toolkit Component documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.6/svc-tlk/GUID-overview.html) for full details on the APIs and concepts underpinning Services on Tanzu Application Platform.
+For more information about the APIs and concepts underpinning Services on Tanzu Application Platform, see the
+[Services Toolkit Component documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.6/svc-tlk/GUID-overview.html)
