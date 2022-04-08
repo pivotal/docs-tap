@@ -13,7 +13,7 @@ Installation requires Kubernetes clusters v1.21, v1.22, or v1.23. See [prerequis
 
 
 #### Installing
-There are 4 new profiles available, as well as additions to the Full profile. The inclusion of new profiles supports a multi-cluster deployment architecture.
+There are 4 new profiles available, and additions to the Full profile. The inclusion of new profiles supports a multi-cluster deployment architecture.
 
 * **Tanzu Application Platform profile - Iterate** is intended for iterative development versus the path to production.
 
