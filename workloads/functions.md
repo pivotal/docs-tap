@@ -6,7 +6,7 @@ The function experience on Tanzu Application Platform enables developers to depl
 
 This document describes how to create and deploy an HTTP function from an application accelerator starter template.
 
->**Caution:** This functionality is currently in beta and subject to changes based on users feedback - It is intended for evaluation and test purposes only.
+>**Note:** This functionality is in beta and subject to changes based on users feedback. It is intended for evaluation and test purposes only.
 
 ## <a id="prereqs"></a>Prerequisites
 
