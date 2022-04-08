@@ -26,7 +26,7 @@ To install Out of the Box Supply Chain Basic:
    configured by running:
 
     ```
-    tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.7.0-build.2 \
+    tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.7.0 \
       --values-schema \
       -n tap-install
     ```
@@ -102,7 +102,7 @@ To install Out of the Box Supply Chain Basic:
     ```
     tanzu package install ootb-supply-chain-basic \
       --package-name ootb-supply-chain-basic.tanzu.vmware.com \
-      --version 0.7.0-build.2 \
+      --version 0.7.0 \
       --namespace tap-install \
       --values-file ootb-supply-chain-basic-values.yaml
     ```
