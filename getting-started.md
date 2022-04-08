@@ -990,16 +990,16 @@ The use cases vary according to where the service instance is located. The use c
 
 Services Toolkit comprises the following Kubernetes-native components:
 
-- [Service Offering](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-service_offering-terminology_and_apis.html)
-- [Service Resource Claims](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-service_resource_claims-terminology_and_apis.html)
-- [Service API Projection (Experimental)](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-api_projection_and_resource_replication-terminology_and_apis.html)
-- [Service Resource Replication (Experimental)](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-api_projection_and_resource_replication-terminology_and_apis.html)
+- [Service Offering](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.5/svc-tlk/GUID-service_offering-terminology_and_apis.html)
+- [Service Resource Claims](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.5/svc-tlk/GUID-service_resource_claims-terminology_and_apis.html)
+- [Service API Projection (Experimental)](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.5/svc-tlk/GUID-api_projection_and_resource_replication-terminology_and_apis.html)
+- [Service Resource Replication (Experimental)](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.5/svc-tlk/GUID-api_projection_and_resource_replication-terminology_and_apis.html)
 
 >**Note:** Services marked with Experimental/beta are subject to change.
 
 Each component has its value, however the most powerful use cases are enabled by combining multiple components together.
 For information about each of the Services Toolkit components, including the use cases and the API reference guides,
-see the [About Services Toolkit](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-overview.html).
+see the [About Services Toolkit](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.5/svc-tlk/GUID-overview.html).
 
 Within the context of Tanzu Application Platform, one of the most important use cases
 is binding an application workload to a backing service such as a PostgreSQL database or a
@@ -1124,7 +1124,7 @@ ClusterResource to reference and describe it.
     kubectl apply -f rabbitmq-clusterresource.yaml
     ```
 
-    The creation of this `ClusterResource` referring to `RabbitmqCluster` is the mechanism by which the `tanzu service` CLI plugin (discussed below) determines which resources to disply. For more information about `ClusterResource`, see [Service Offering for VMware Tanzu](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-service_offering-terminology_and_apis.html).
+    The creation of this `ClusterResource` referring to `RabbitmqCluster` is the mechanism by which the `tanzu service` CLI plugin (discussed below) determines which resources to disply. For more information about `ClusterResource`, see [Service Offering for VMware Tanzu](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.5/svc-tlk/GUID-service_offering-terminology_and_apis.html).
 
 
 ### <a id="same-namespace-use-case"></a> Use case 1: Binding an application to a pre-provisioned service instance running in the same namespace
@@ -1284,7 +1284,7 @@ for service instances.
     ```
 
     For more information about `ResourceClaimPolicy`, see the
-    [ResourceClaimPolicy documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-service_resource_claims-terminology_and_apis.html#resourceclaimpolicy-4).
+    [ResourceClaimPolicy documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.5/svc-tlk/GUID-service_resource_claims-terminology_and_apis.html#resourceclaimpolicy-4).
 
 7. Bind the application workload to the RabbitmqCluster Service Instance:
 
@@ -1388,7 +1388,7 @@ from application developers, which gives them more time to focus on developing t
 Service Resource Replication. These components are not currently considered to be GA.
 
 For more information about network requirements and recommended topologies, see the
-[Topology section](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-reference-topologies.html) of the Services Toolkit documentation.
+[Topology section](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.5/svc-tlk/GUID-reference-topologies.html) of the Services Toolkit documentation.
 
 #### <a id="use-case-prereqs"></a>Prerequisites
 
