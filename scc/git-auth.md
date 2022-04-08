@@ -116,14 +116,41 @@ stringData:
     kind: Secret
     metadata:
       name: GIT-SECRET-NAME
-      annotations:
-        tekton.dev/git-0: GIT-SERVER
+      annotations: {tekton.dev/git-0: GIT-SERVER}
     type: kubernetes.io/ssh-auth
     stringData:
-      ssh-privatekey: SSH-PRIVATE-KEY    
-      identity: SSH-PRIVATE-KEY          
-      identity.pub: SSH-PUBLIC-KEY       
+      ssh-privatekey: SSH-PRIVATE-KEY
+      identity: SSH-PRIVATE-KEY
+      identity.pub: SSH-PUBLIC-KEY
       known_hosts: GIT-SERVER-PUBLIC-KEYS
+    ```
+
+    For instance, having credentials redacted:
+
+
+    ```yaml
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: git-ssh
+      annotations: {tekton.dev/git-0: github.com}
+    type: kubernetes.io/ssh-auth
+    stringData:
+      ssh-privatekey: |
+        -----BEGIN OPENSSH PRIVATE KEY-----
+        AAAA
+        ....
+        ....
+        -----END OPENSSH PRIVATE KEY-----
+      known_hosts: |
+        <known hosts entrys for git provider>
+      identity: |
+        -----BEGIN OPENSSH PRIVATE KEY-----
+        AAAA
+        ....
+        ....
+        -----END OPENSSH PRIVATE KEY-----
+      identity.pub: ssh-ed25519 AAAABBBCCCCDDDDeeeeFFFF user@example.com
     ```
 
 With the Secret created, attach it to the ServiceAccount configured for the
