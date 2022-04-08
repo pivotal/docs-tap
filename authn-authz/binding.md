@@ -37,19 +37,19 @@ intended for evaluation and test purposes only.
     - For macOS, run:
 
         ```
-        tanzu plugin install auth --local published/darwin-amd64
+        tanzu plugin install rbac --local published/darwin-amd64
         ```
 
     - For Linux, run:
 
         ```
-        tanzu plugin install auth --local published/linux-amd64
+        tanzu plugin install rbac --local published/linux-amd64
         ```
 
     - For Windows, run:
 
         ```
-        tanzu plugin install auth --local published/windows-amd64
+        tanzu plugin install rbac --local published/windows-amd64
         ```
 
 
@@ -58,7 +58,7 @@ intended for evaluation and test purposes only.
 Use a different kubeconfig location by running:
 
 ```
-tanzu auth --kubeconfig PATH-OF-KUBECONFIG binding add ...
+tanzu rbac --kubeconfig PATH-OF-KUBECONFIG binding add ...
 ```
 
 > **Note:** The environment variable `KUBECONFIG` is not implemented.
@@ -67,7 +67,7 @@ tanzu auth --kubeconfig PATH-OF-KUBECONFIG binding add ...
 For example:
 
 ```
-$ tanzu auth --kubeconfig /tmp/pinniped_kubeconfig.yaml binding add --user username@vmware.com --role app-editor --namespace user-ns
+$ tanzu rbac --kubeconfig /tmp/pinniped_kubeconfig.yaml binding add --user username@vmware.com --role app-editor --namespace user-ns
 ```
 
 
@@ -76,15 +76,15 @@ $ tanzu auth --kubeconfig /tmp/pinniped_kubeconfig.yaml binding add --user usern
 Add a user or group to a role by running:
 
 ```
-tanzu auth binding add --user $user --role $role --namespace $namespace
+tanzu rbac binding add --user $user --role $role --namespace $namespace
 
-tanzu auth binding add --group $group --role $role --namespace $namespace
+tanzu rbac binding add --group $group --role $role --namespace $namespace
 ```
 
 For example:
 
 ```
-$ tanzu auth binding add --user username@vmware.com --role app-editor --namespace user-ns
+$ tanzu rbac binding add --user username@vmware.com --role app-editor --namespace user-ns
 ```
 
 ### <a id="get-list-users"></a> Get a list of users and groups from a role
@@ -92,15 +92,15 @@ $ tanzu auth binding add --user username@vmware.com --role app-editor --namespac
 Get a list of users and groups from a role by running:
 
 ```
-tanzu auth binding get --role $role --namespace $namespace
+tanzu rbac binding get --role $role --namespace $namespace
 
-tanzu auth binding get --role $role --namespace $namespace
+tanzu rbac binding get --role $role --namespace $namespace
 ```
 
 For example:
 
 ```
-$ tanzu auth binding get --role app-editor --namespace user-ns
+$ tanzu rbac binding get --role app-editor --namespace user-ns
 ```
 
 ### <a id="binding-delete"></a> Remove the specified user or group from a role
@@ -108,13 +108,99 @@ $ tanzu auth binding get --role app-editor --namespace user-ns
 Remove a user or group from a role by running:
 
 ```
-tanzu auth binding delete --user $user --role $role --namespace $namespace
+tanzu rbac binding delete --user $user --role $role --namespace $namespace
 
-tanzu auth binding delete --group $group --role $role --namespace $namespace
+tanzu rbac binding delete --group $group --role $role --namespace $namespace
 ```
 
 For example:
 
 ```
-$ tanzu auth binding delete --user username@vmware.com --role app-editor --namespace user-ns
+$ tanzu rbac binding delete --user username@vmware.com --role app-editor --namespace user-ns
 ```
+
+### <a id="error-logs"></a> Error logs
+
+#### Permission Denied:
+
+The current user does not have permission to create or modify rolebinding objects.
+Please use an administrator account when using the rbac cli.
+```
+Error: rolebindings.rbac.authorization.k8s.io "app-operator" is forbidden: User "<subject>" cannot get resource "rolebindings" in API group "rbac.authorization.k8s.io" in the namespace "namespace"
+Usage:
+tanzu rbac binding add [flags]
+Flags:
+-g, --group string User Group
+-h, --help help for add-binding
+-n, --namespace string Namespace
+-r, --role string Role
+-u, --user string User Name
+
+Global Flags:
+--kubeconfig string kubeconfig file
+```
+
+#### Already Bound Error:
+Adding a subject (user or group) to a role that already has the subject will produce the following error:
+```
+Error: User ‘test-user’ is already bound to 'app-operator' role
+Usage:
+tanzu rbac binding add [flags]
+Flags:
+-g, --group string User Group
+-h, --help help for add-binding
+-n, --namespace string Namespace
+-r, --role string Role
+-u, --user string User Name
+
+Global Flags:
+--kubeconfig string kubeconfig file
+```
+
+#### Could Not Find Error:
+Removing a subject (user or group) from a role that did not exist will produce the following error:
+```
+Error: Did not find User 'test-user' in RoleBinding 'app-operator'
+Usage:
+tanzu rbac binding delete [flags]
+
+Flags:
+-g, --group string User Group
+-h, --help help for add-binding
+-n, --namespace string Namespace
+-r, --role string Role
+-u, --user string User Name
+
+Global Flags:
+--kubeconfig string kubeconfig file
+```
+
+#### Object Has Been Modified Error:
+This error is a race condition caused by running the mutiple rbac cli actions at the same time.
+Rerunning the rbac cli may fix the issue.
+```
+Removed User 'test-user' from RoleBinding 'app-operator'
+Removed User 'test-user' from ClusterRoleBinding 'app-operator-cluster-access'
+Error: Operation cannot be fulfilled on rolebindings.rbac.authorization.k8s.io "app-operator": the object has been modified; please apply your changes to the latest version and try again
+Usage:
+tanzu rbac binding delete [flags]
+
+Flags:
+-g, --group string User Group
+-h, --help help for remove-binding
+-n, --namespace string Namespace
+-r, --role string Role
+-u, --user string User Name
+```
+
+### <a id="troubleshooting"></a> Troubleshooting
+
+1) To Get a list of permission a user or group have
+	```
+	export NAME=<subject_name>
+	kubectl get rolebindings,clusterrolebindings -A -o json | jq -r ".items[] | select(.subjects[]?.name == \"${NAME}\") | .roleRef.name" | xargs -n1 kubectl describe clusterroles
+	```
+1) Get a list of user or group for a specific role
+	```
+	tanzu rbac binding get --role $role --namespace $namespace
+	```
