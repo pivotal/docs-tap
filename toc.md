@@ -96,7 +96,7 @@ This is the table of contents from which the Tanzu Application Platform Document
           - [PodConventionContext](convention-service/reference/pod-convention-context.md)
           - [Cluster Pod Convention](convention-service/reference/cluster-pod-convention.md)
           - [PodIntent](convention-service/reference/pod-intent.md)
-          - [BOM](bom.md)
+          - [BOM](convention-service/reference/bom.md)
     - [cert-manager, Contour, and FluxCD](cert-mgr-contour-fcd/cert-mgr-contour-fcd-about.md)
       - [Install cert-manager, Contour, and FluxCD](cert-mgr-contour-fcd/install-cert-mgr.md)
     - [Cloud Native Runtimes](cloud-native-runtimes/about.md)
