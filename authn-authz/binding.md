@@ -123,7 +123,7 @@ $ tanzu rbac binding delete --user username@vmware.com --role app-editor --names
 
 #### Permission Denied:
 
-The current user does not have permission to create or modify rolebinding objects.
+The current user does not have permissions to create or modify rolebinding objects.
 Please use an administrator account when using the rbac cli.
 ```
 Error: rolebindings.rbac.authorization.k8s.io "app-operator" is forbidden: User "<subject>" cannot get resource "rolebindings" in API group "rbac.authorization.k8s.io" in the namespace "namespace"
@@ -158,7 +158,7 @@ Global Flags:
 ```
 
 #### Could Not Find Error:
-Removing a subject (user or group) from a role that did not exist will produce the following error:
+Removing a subject (user or group) from a role that does not exist will produce the following error:
 ```
 Error: Did not find User 'test-user' in RoleBinding 'app-operator'
 Usage:
@@ -195,7 +195,7 @@ Flags:
 
 ### <a id="troubleshooting"></a> Troubleshooting
 
-1) To Get a list of permission a user or group have
+1) To Get a list of permissions for a user or a group
 	```
 	export NAME=<subject_name>
 	kubectl get rolebindings,clusterrolebindings -A -o json | jq -r ".items[] | select(.subjects[]?.name == \"${NAME}\") | .roleRef.name" | xargs -n1 kubectl describe clusterroles
