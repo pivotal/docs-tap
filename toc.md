@@ -168,7 +168,7 @@ This is the table of contents from which the Tanzu Application Platform Document
          - [Runtime resources visibility](tap-gui/plugins/runtime-resource-visibility.md)
          - [Application Live View](tap-gui/plugins/app-live-view.md)
          - [Application Accelerator](tap-gui/plugins/application-accelerator.md)
-           - [Install Application Accelerator](application-accelerator/install-app-acc.md)
+             - [Install Application Accelerator](application-accelerator/install-app-acc.md)
       - [Upgrading Tanzu Application Platform GUI](tap-gui/upgrades.md)
       - [Troubleshoot Tanzu Application Platform GUI](tap-gui/troubleshooting.md)
     - [Tanzu Build Service](tanzu-build-service/tbs-about.md)
