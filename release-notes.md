@@ -9,7 +9,7 @@ This topic contains release notes for Tanzu Application Platform v1.1
 ### <a id='1-1-new-features'></a> New features
 
 #### Installing
-There are 4 new profiles available, as well as addiitons to the Full profile. The inclusion of new profiles supports a multi-cluster deployment architecture.
+There are 4 new profiles available, as well as additions to the Full profile. The inclusion of new profiles supports a multi-cluster deployment architecture.
 
 * **Tanzu Application Platform profile - Iterate** is intended for iterative development versus the path to production.
 
@@ -151,7 +151,7 @@ Plug-in improvements and additions include:
 
 The function experience on Tanzu Application Platform enables developers to deploy functions, use starter templates to bootstrap their function and write only the code that matters to your business. Developers can run a single CLI command to deploy their functions to an auto-scaled cluster.
 
-**Caution:** This functionality is currently in beta and subject to changes based on users feedback - It is intended for evaluation and test purposes only.
+>**Note:** This functionality is in beta and subject to changes based on users feedback. It is intended for evaluation and test purposes only.
 
 For more information, see [Functions](workloads/functions.md).
 
