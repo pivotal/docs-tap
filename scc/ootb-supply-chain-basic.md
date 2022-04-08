@@ -412,10 +412,7 @@ Create workload:
 
 #### <a id="gitops"></a> GitOps
 
-Differently from local iteration, with the GitOps approach we end up at the end
-of the supply chain having the configuration that got created by it pushed to a
-git repository where that is persisted and used at the basis for further
-deployments.
+Different from local iteration, the GitOps approach configures the supply chain to push the Kubernetes Configuration to a remote Git repository.  This allows users to compare configuration changes and promote changes through environments using GitOps principles. 
 
 ```
 SUPPLY CHAIN
@@ -435,14 +432,9 @@ DELIVERY
 
 ```
 
-Given the extra capability of pushing to git,
-there must be in the developer namespace (i.e., same namespace as the one
-where the Workload is submitted to) a Secret containing credentials to a git
-provider (e.g., GitHub), regardless of whether the source code comes from a
-private git repository or not.
+In order to authenticate to a remote Git repository, a secret containing credentials for the remote provider (e.g., GitHub) must be created in the developer namespace.  Because this operation requires push permissions, this is true regardless if the repository is public or private.
 
-Before proceeding, make sure you have a secret with following shape fields and
-annotations set:
+Before proceeding, create a secret in the following format:
 
 ```
 apiVersion: v1
@@ -457,15 +449,65 @@ type: kubernetes.io/ssh-auth
 stringData:
   ssh-privatekey: string          # private key with push-permissions
   known_hosts: string             # git server public keys
-  identity: string                # private key with pull permissions
+  identity: string                # private key with pull permissions (same as ssh-privatekey)
   identity.pub: string            # public of the `identity` private key
+```
+
+For example (with secrets redacted):
+
+```
+apiVersion: v1
+kind: Secret
+metadata:
+  name: git-ssh   # `git-ssh` is the default name.
+                  #   - operators can change the default using `gitops.ssh_secret`.
+                  #   - developers can override using `gitops_ssh_secret`
+  annotations:
+    tekton.dev/git-0: github.com  # git server host   (!! required)
+type: kubernetes.io/ssh-auth
+stringData:
+  ssh-privatekey: |
+    -----BEGIN OPENSSH PRIVATE KEY-----
+    AAAA
+    ....
+    ....
+    ....
+    ....
+    -----END OPENSSH PRIVATE KEY-----      
+  known_hosts: |
+    <known hosts entrys for git provider>          
+  identity: |
+    -----BEGIN OPENSSH PRIVATE KEY-----
+    AAAA
+    ....
+    ....
+    ....
+    ....
+    -----END OPENSSH PRIVATE KEY-----            
+  identity.pub: ssh-ed25519 AAAABBBCCCCDDDDeeeeFFFF user@example.com
 ```
 
 >**Note**: Because of incompatibilities between Kubernetes resources
  `ssh-privatekeys` must be set to the same value as `identity`.
 
-With the Secret created, we can move on to the Workload.
+Now that the secret has been created, ensure that it is added to the service account for the developer namespace is using.  For example, if you are using the `default` service account from the "Getting Started" guide, the service account should look like this:
 
+```
+apiVersion: v1
+imagePullSecrets:
+- name: registry-credentials
+- name: tap-registry
+kind: ServiceAccount
+metadata:
+  name: default
+  namespace: default
+secrets:
+- name: registry-credentials
+- name: default-token-zjbjs
+- name: git-ssh
+```
+
+With the Secret created and added to the service account, we can move on to the Workload.
 
 ##### <a id="workload-using-default-git-organization"></a> Workload Using Default Git Organization
 
@@ -479,7 +521,7 @@ setting the source of the source code to a git repository and then as the
 supply chain progresses, configuration are pushed to a repository named
 after `$(gitops.repository_prefix) + $(workload.name)`.
 
-e.g, having `gitops.repository_prefix` configured to `git@github.com/foo/` and
+e.g, having `gitops.repository_prefix` configured to `ssh://git@github.com/foo/gitops` and
 a Workload as such:
 
 ```
@@ -509,29 +551,29 @@ Create workload:
 ```
 
  You see the Kubernetes configuration pushed to
-`git@github.com/foo/tanzu-java-web-app.git`.
+`git@github.com/foo/gitops-tanzu-java-web-app.git`.
 
 Regardless of the setup, the repository where configuration is pushed to can be
 also manually overridden by the developers by tweaking the following parameters:
 
--  `gitops_ssh_secret`: Name of the secret in the same namespace as the
+-  `gitops.ssh_secret`: Name of the secret in the same namespace as the
    Workload where SSH credentials exist for pushing the configuration produced
    by the supply chain to a git repository.
    Example: "ssh-secret"
 
--  `gitops_repository`: SSH URL of the git repository to push the Kubernetes
+-  `gitops.repository`: SSH URL of the git repository to push the Kubernetes
    configuration produced by the supply chain to.
    Example: "ssh://git@foo.com/staging.git"
 
--  `gitops_branch`: Name of the branch to push the configuration to.
+-  `gitops.branch`: Name of the branch to push the configuration to.
    Example: "main"
 
--  `gitops_commit_message`: Message to write as the body of the commits
+-  `gitops.commit_message`: Message to write as the body of the commits
    produced for pushing configuration to the git repository.
    Example: "ci bump"
 
--  `gitops_user_name`: Username to use in the commits.
+-  `gitops.user_name`: Username to use in the commits.
    Example: "Alice Lee"
 
--  `gitops_user_email`: User email address to use for the commits.
+-  `gitops.user_email`: User email address to use for the commits.
    Example: "foo@example.com"
