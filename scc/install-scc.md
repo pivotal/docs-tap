@@ -26,13 +26,13 @@ Before installing Supply Chain Choreographer:
 
 To install Supply Chain Choreographer:
 
-1. Install v0.3.0-build.3 of the `cartographer.tanzu.vmware.com` package, naming the installation `cartographer`.
+1. Install v0.3.0 of the `cartographer.tanzu.vmware.com` package, naming the installation `cartographer`.
 
     ```
     tanzu package install cartographer \
       --namespace tap-install \
       --package-name cartographer.tanzu.vmware.com \
-      --version 0.3.0-build.3
+      --version 0.3.0
     ```
 
     Example output:

@@ -27,7 +27,7 @@ To install Out of the Box Templates:
 1. View the configurable values of the package by running:
 
     ```
-    tanzu package available get ootb-templates.tanzu.vmware.com/0.7.0-build.2 \
+    tanzu package available get ootb-templates.tanzu.vmware.com/0.7.0 \
       --values-schema \
       -n tap-install
     ```
@@ -55,7 +55,7 @@ To install Out of the Box Templates:
     ```
     tanzu package install ootb-templates \
       --package-name ootb-templates.tanzu.vmware.com \
-      --version 0.7.0-build.2 \
+      --version 0.7.0 \
       --namespace tap-install \
       --values-file ootb-templates-values.yaml
     ```
