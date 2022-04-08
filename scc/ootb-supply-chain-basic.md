@@ -412,11 +412,6 @@ Create workload:
 
 #### <a id="gitops"></a> GitOps
 
-Differently from local iteration, with the GitOps approach we end up at the end
-of the supply chain having the configuration that got created by it pushed to a
-git repository where that is persisted and used at the basis for further
-deployments.
-
 Different from local iteration, the GitOps approach configures the supply chain to push the Kubernetes Configuration to a remote Git repository.  This allows users to compare configuration changes and promote changes through environments using GitOps principles. 
 
 ```
