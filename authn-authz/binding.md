@@ -164,7 +164,7 @@ There are 2 scenarios this error can happen when removing a subject from a role.
 
 Please ensure the rolebinding exist or the subject name is correctly spelled
 
-``
+```
 Error: Did not find User 'test-user' in RoleBinding 'app-operator'
 Usage:
 tanzu rbac binding delete [flags]
@@ -181,8 +181,10 @@ Global Flags:
 ```
 
 #### Object Has Been Modified Error:
+
 This error is a race condition caused by running mutiple rbac cli actions at the same time.
 Rerunning the rbac cli may fix the issue.
+
 ```
 Removed User 'test-user' from RoleBinding 'app-operator'
 Removed User 'test-user' from ClusterRoleBinding 'app-operator-cluster-access'
@@ -201,11 +203,13 @@ Flags:
 ### <a id="troubleshooting"></a> Troubleshooting
 
 1) Get a list of permissions for a user or a group
+
 	```
 	export NAME=<subject_name>
 	kubectl get rolebindings,clusterrolebindings -A -o json | jq -r ".items[] | select(.subjects[]?.name == \"${NAME}\") | .roleRef.name" | xargs -n1 kubectl describe clusterroles
 	```
 1) Get a list of user or group for a specific role
+
 	```
 	tanzu rbac binding get --role $role --namespace $namespace
 	```
