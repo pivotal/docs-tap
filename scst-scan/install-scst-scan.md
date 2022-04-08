@@ -76,19 +76,18 @@ To install Supply Chain Security Tools - Scan (Scan controller):
 
 1. (Optional) Configure Supply Chain Security Tools - Store in a different cluster
 
-   ```yaml
-   ---
-   metadataStore:
-    url: https://metadata-store.example.com:8443
+    ```yaml
+    ---
+    metadataStore:
+    url: META-DATA-STORE-URL
     authSecret:
-      name: my-auth-secret-name
-   ```
+      name: AUTH-SECRET-NAME
+    ```
 
-   Where:
+    Where:
 
-   - `metadataStore.url` is the URL pointing to the Supply Chain Security Tools - Store ingress in the cluster that has your Supply Chain Security Tools - Store deployment.
-
-   - `metadataStore.authSecret.name` is the name of the secret that has the auth token to post to the Supply Chain Security Tools - Store.
+    - `META-DATA-STORE-URL` is the URL pointing to the Supply Chain Security Tools - Store ingress in the cluster that has your Supply Chain Security Tools - Store deployment. For example, `https://metadata-store.example.com:8443`.
+    - `AUTH-SECRET-NAME` is the name of the secret that has the auth token to post to the Supply Chain Security Tools - Store.
 
 To install Supply Chain Security Tools - Scan (Grype scanner):
 
