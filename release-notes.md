@@ -238,7 +238,7 @@ to the back end. If you find any issues, delete the connector pod to recreate it
 Application Live View Convention exposes all Spring Boot actuator endpoints by default to
 whatever is configured using the Spring Boot Convention for the management port.
 You can change this configuration if it does not suit your needs.
-For more information, see [Configuring an Application](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-app-config.html).
+For more information, see [Convention Server](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.1/docs/GUID-convention-server.html).
 
 - **Frequent Application Live View Connector restarts:**
 In some cases, the Application Live View Connector component restarts frequently.
@@ -246,7 +246,8 @@ This usually doesn't cause problems when using Application Live View.
 
 - **No structured JSON logging on the connector:**
 The format of the log output of the Application Live View Connector component is not currently
-aligned with the standard Tanzu Application Platform logging format. A fix is planned for v1.1.1. <!-- TAP v1.1.1 ? -->
+aligned with the standard Tanzu Application Platform logging format.
+A fix is planned for Tanzu Application Platform v1.1.1.
 
 
 #### Grype scanner
