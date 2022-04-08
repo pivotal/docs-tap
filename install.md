@@ -172,7 +172,6 @@ buildservice:
   tanzunet_username: "TANZUNET-USERNAME"
   tanzunet_password: "TANZUNET-PASSWORD"
   descriptor_name: "DESCRIPTOR-NAME"
-  enable_automatic_dependency_updates: TRUE-OR-FALSE-VALUE # Optional, set as true or false. Not a string.
 supply_chain: basic
 
 cnrs:
@@ -249,14 +248,14 @@ If built images are pushed to the same registry as the Tanzu Application Platfor
 this can reuse the `tap-registry` secret created in
 [Add the Tanzu Application Platform package repository](#add-tap-package-repo).
 
->**Note:** When using the `tbs-values.yaml` configuration,
->`enable_automatic_dependency_updates: true` causes the dependency updater to update
->Tanzu Build Service dependencies (buildpacks and stacks) when they are released on
->VMware Tanzu Network. Use `false` to pause the automatic update of Build Service dependencies.
->When automatic updates are paused, the pinned version of the descriptor for TAP 1.1.0 is
->[100.0.279](https://network.pivotal.io/products/tbs-dependencies#/releases/1066670)
->If left undefined, this value is `false`. For details about updating dependencies manually, see
->[here](tanzu-build-service/tbs-about.html#dependencies-manual).
+> **Note:** When TAP is installed it is bootstrapped with a set of dependencies (buildpacks and stacks) for application 
+> builds. Documentation about buildpacks and stacks can be found [here](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html). The buildpack and stack artifacts installed 
+> with TAP can be found in the descriptor on [Tanzu Network](https://network.pivotal.io/products/tbs-dependencies). 
+> The current installed version of the descriptor is 
+> [100.0.279](https://network.pivotal.io/products/tbs-dependencies#/releases/1066670). Sometimes the dependencies get 
+> out of date and require updates. This can be done via 
+> [manual process in a CI/CD context](tanzu-build-service/tbs-about.html#dependencies-manual), or 
+> [updated automatically](tanzu-build-service/tbs-about.html#dependencies-auto-updates) in the background by TAP.
 
 ### <a id='light-profile'></a> Light Profile
 

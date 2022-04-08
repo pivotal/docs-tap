@@ -4,7 +4,7 @@ VMware Tanzu Build Service automates container creation, management, and governa
 
 ## <a id="dependencies"> Tanzu Build Service Dependencies
 
-Tanzu Build Service requires dependencies (buildpacks and stacks) to build OCI images.
+Tanzu Build Service requires dependencies in the form of [Buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html) and [Stacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html) to build OCI images.
 
 ### <a id="dependencies-configuration"> Configuration
 
