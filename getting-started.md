@@ -1393,13 +1393,13 @@ There are a couple of slighly more advanced services use cases not covered in th
   <tr>
     <td>Direct Secret References</td>
     <td>Bind to services running external to the cluster (e.g. in-house oracle DB)<br />Bind to services not conformant with the binding spec</td>
-    <td><a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.6/services-toolkit/GUID-reference-use_cases.html#direct-secret-references">Link</a></td>
+    <td><a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.6/svc-tlk/GUID-reference-use_cases.html#direct-secret-references">Link</a></td>
   </tr>
   <tr>
     <td>Dedicated Service Clusters</td>
     <td>Separate Application Workloads from Service Instances across dedicated clusters</td>
-    <td><a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.6/services-toolkit/GUID-reference-use_cases.html#dedicated-service-clusters-using-experimental-projection-and-replication-apis">Link</a></td>
+    <td><a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.6/svc-tlk/GUID-reference-use_cases.html#dedicated-service-clusters-using-experimental-projection-and-replication-apis">Link</a></td>
   </tr>
 </table>
 
-Please refer to the [Services Toolkit Component documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.6/services-toolkit/GUID-overview.html) for full details on the APIs and concepts underpinning Services on Tanzu Application Platform.
+Please refer to the [Services Toolkit Component documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.6/svc-tlk/GUID-overview.html) for full details on the APIs and concepts underpinning Services on Tanzu Application Platform.
