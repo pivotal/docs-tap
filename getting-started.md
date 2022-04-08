@@ -708,7 +708,7 @@ the workload must be updated to point at your Tekton pipeline.
 
 Follow these steps to install the OOTB Testing+Scanning supply chain:
 
-  > **Note:** When leveraging both TBS and Grype in your Tanzu Application Platform supply chain, you can receive enhanced scanning coverage for Java workloads that includes application runtime layer dependencies.
+  > **Note:** When leveraging both TBS and Grype in your Tanzu Application Platform supply chain, you can receive enhanced scanning coverage for Java and Node.js workloads that includes application runtime layer dependencies.
 
 
 >**Important:** The grype must be installed for scanning.
