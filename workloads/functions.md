@@ -23,7 +23,9 @@ To use the function `buildpacks`, you must upload their buildpackages to Build S
 1. Add the function's buildpackages to the default [ClusterStore](https://docs.vmware.com/en/Tanzu-Build-Service/1.4/vmware-tanzu-build-service-v14/GUID-managing-stores.html) by running:
 
     ```
-    kp clusterstore add default \-b ghcr.io/vmware-tanzu/function-buildpacks-for-knative/python-buildpack-with-deps:0.0.11 \-b ghcr.io/vmware-tanzu/function-buildpacks-for-knative/java-buildpack-with-deps:0.0.6
+    kp clusterstore add default \
+    -b ghcr.io/vmware-tanzu/function-buildpacks-for-knative/python-buildpack-with-deps:0.0.11 \
+    -b ghcr.io/vmware-tanzu/function-buildpacks-for-knative/java-buildpack-with-deps:0.0.6
     ```
 
 1. Create and save a new [ClusterBuilder](https://docs.vmware.com/en/Tanzu-Build-Service/1.4/vmware-tanzu-build-service-v14/GUID-managing-builders.html) by running:
