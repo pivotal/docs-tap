@@ -35,13 +35,13 @@ To use the function `buildpacks`, you must upload their buildpackages to Build S
       - id: tanzu-buildpacks/python-lite
       - id: kn-fn/python-function
     - group:
-      - id: tanzu-buildpacks/java-native-image-lite 
+      - id: tanzu-buildpacks/java-native-image-lite
       - id: kn-fn/java-function
     - group:
       - id: tanzu-buildpacks/java-lite
       - id: kn-fn/java-function
-     
-     EOF
+
+    EOF
     ```
 
 1. (Optional) To use default Java and Python buildpacks for non-functions workloads, add an optional flag and set it to `true` to a cluster builder group to use those buildpacks.
@@ -54,14 +54,14 @@ To use the function `buildpacks`, you must upload their buildpackages to Build S
       - id: kn-fn/python-function
       optional: true
     - group:
-      - id: tanzu-buildpacks/java-native-image-lite- 
+      - id: tanzu-buildpacks/java-native-image-lite-
       - id: kn-fn/java-function
       optional: true
     - group:
       - id: tanzu-buildpacks/java-lite
       - id: kn-fn/java-function
       optional: true
-    
+
     EOF
     ```
 
@@ -69,7 +69,7 @@ To use the function `buildpacks`, you must upload their buildpackages to Build S
 
     ```
     ootb_supply_chain_basic:
-     cluster_builder: function 
+     cluster_builder: function
      registry:
        server: "index.docker.io"
        repository: "sgravesvm"
