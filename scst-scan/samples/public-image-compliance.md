@@ -90,7 +90,7 @@ For more information about scan status conditions, see [Viewing and Understandin
 
 ### <a id="modify-scanpolicy"></a> Modify the ScanPolicy
 
-To modify the Scan Policy you can refer to [Step 5: Sample Public Source Code Scan with Compliance Check](public-source-compliance.md#modify-scan-policy).
+To modify the Scan Policy, see [Step 5: Sample Public Source Code Scan with Compliance Check](public-source-compliance.md#modify-scan-policy).
 
 ### <a id="clean-up"></a> Clean up
 
