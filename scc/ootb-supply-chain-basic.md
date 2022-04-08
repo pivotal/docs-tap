@@ -447,14 +447,10 @@ metadata:
     tekton.dev/git-0: github.com  # git server host   (!! required)
 type: kubernetes.io/ssh-auth
 stringData:
-  # private key with push-permissions
-  ssh-privatekey: string
-  # git server public keys          
-  known_hosts: string             
-  # private key with pull permissions (required to be the same as ssh-privatekey)
-  identity: string    
-  # public of the `identity` private key            
-  identity.pub: string
+  ssh-privatekey: string          # private key with push-permissions
+  known_hosts: string             # git server public keys
+  identity: string                # private key with pull permissions (same as ssh-privatekey)
+  identity.pub: string            # public of the `identity` private key
 ```
 
 For example (with secrets redacted):
