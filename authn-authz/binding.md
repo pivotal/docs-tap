@@ -108,7 +108,7 @@ $ tanzu auth binding get --role app-editor --namespace user-ns
 Remove a user or group from a role by running:
 
 ```
-tanzu auth binding delete --user $user --role  $role --namespace $namespace
+tanzu auth binding delete --user $user --role $role --namespace $namespace
 
 tanzu auth binding delete --group $group --role $role --namespace $namespace
 ```
