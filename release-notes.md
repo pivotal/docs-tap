@@ -9,7 +9,7 @@ This topic contains release notes for Tanzu Application Platform v1.1
 ### <a id='1-1-new-features'></a> New features
 
 #### Installing
-There are 4 new profiles available, as well as addiitons to the Full profile. The inclusion of new profiles enables a multi-cluster deployment architecture.
+There are 4 new profiles available, as well as addiitons to the Full profile. The inclusion of new profiles supports a multi-cluster deployment architecture.
 
 * **Tanzu Application Platform profile - Iterate** is intended for iterative development versus the path to production.
 
