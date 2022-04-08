@@ -131,7 +131,7 @@ Usage:
 tanzu rbac binding add [flags]
 Flags:
 -g, --group string User Group
--h, --help help for add-binding
+-h, --help help for add
 -n, --namespace string Namespace
 -r, --role string Role
 -u, --user string User Name
@@ -148,7 +148,7 @@ Usage:
 tanzu rbac binding add [flags]
 Flags:
 -g, --group string User Group
--h, --help help for add-binding
+-h, --help help for add
 -n, --namespace string Namespace
 -r, --role string Role
 -u, --user string User Name
@@ -158,15 +158,20 @@ Global Flags:
 ```
 
 #### Could Not Find Error:
-Removing a subject (user or group) from a role that does not exist will produce the following error:
-```
+There are 2 scenarios this error can happen when removing a subject from a role.
+1) The rolebinding does not exist
+1) The subject does not exist in the rolebinding
+
+Please ensure the rolebinding exist or the subject name is correctly spelled
+
+``
 Error: Did not find User 'test-user' in RoleBinding 'app-operator'
 Usage:
 tanzu rbac binding delete [flags]
 
 Flags:
 -g, --group string User Group
--h, --help help for add-binding
+-h, --help help for delete
 -n, --namespace string Namespace
 -r, --role string Role
 -u, --user string User Name
@@ -176,7 +181,7 @@ Global Flags:
 ```
 
 #### Object Has Been Modified Error:
-This error is a race condition caused by running the mutiple rbac cli actions at the same time.
+This error is a race condition caused by running mutiple rbac cli actions at the same time.
 Rerunning the rbac cli may fix the issue.
 ```
 Removed User 'test-user' from RoleBinding 'app-operator'
@@ -187,7 +192,7 @@ tanzu rbac binding delete [flags]
 
 Flags:
 -g, --group string User Group
--h, --help help for remove-binding
+-h, --help help for delete
 -n, --namespace string Namespace
 -r, --role string Role
 -u, --user string User Name
@@ -195,7 +200,7 @@ Flags:
 
 ### <a id="troubleshooting"></a> Troubleshooting
 
-1) To Get a list of permissions for a user or a group
+1) Get a list of permissions for a user or a group
 	```
 	export NAME=<subject_name>
 	kubectl get rolebindings,clusterrolebindings -A -o json | jq -r ".items[] | select(.subjects[]?.name == \"${NAME}\") | .roleRef.name" | xargs -n1 kubectl describe clusterroles
