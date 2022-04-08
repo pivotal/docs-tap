@@ -121,6 +121,8 @@ $ tanzu rbac binding delete --user username@vmware.com --role app-editor --names
 
 ### <a id="error-logs"></a> Error logs
 
+The following errors may be included in authorization error logs.
+
 #### Permission Denied:
 
 The current user does not have permissions to create or modify rolebinding objects.
@@ -141,7 +143,7 @@ Global Flags:
 ```
 
 #### Already Bound Error:
-Adding a subject (user or group) to a role that already has the subject will produce the following error:
+Adding a subject, user or group, to a role that already has the subject will produce the following error:
 ```
 Error: User ‘test-user’ is already bound to 'app-operator' role
 Usage:
@@ -158,11 +160,12 @@ Global Flags:
 ```
 
 #### Could Not Find Error:
-There are 2 scenarios this error can happen when removing a subject from a role.
-1) The rolebinding does not exist
-1) The subject does not exist in the rolebinding
+There are 2 scenarios this error can happen when removing a subject from a role:
 
-Please ensure the rolebinding exist or the subject name is correctly spelled
+1. The rolebinding does not exist
+1. The subject does not exist in the rolebinding
+
+Please ensure the rolebinding exists and that the subject name is correctly spelled.
 
 ```
 Error: Did not find User 'test-user' in RoleBinding 'app-operator'
@@ -182,7 +185,7 @@ Global Flags:
 
 #### Object Has Been Modified Error:
 
-This error is a race condition caused by running mutiple rbac cli actions at the same time.
+This error is a race condition caused by running multiple rbac cli actions at the same time.
 Rerunning the rbac cli may fix the issue.
 
 ```
@@ -202,13 +205,13 @@ Flags:
 
 ### <a id="troubleshooting"></a> Troubleshooting
 
-1) Get a list of permissions for a user or a group
+1. Get a list of permissions for a user or a group
 
 	```
 	export NAME=<subject_name>
 	kubectl get rolebindings,clusterrolebindings -A -o json | jq -r ".items[] | select(.subjects[]?.name == \"${NAME}\") | .roleRef.name" | xargs -n1 kubectl describe clusterroles
 	```
-1) Get a list of user or group for a specific role
+1. Get a list of user or group for a specific role
 
 	```
 	tanzu rbac binding get --role $role --namespace $namespace
