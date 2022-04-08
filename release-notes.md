@@ -151,6 +151,8 @@ Plug-in improvements and additions include:
 
 The function experience on Tanzu Application Platform enables developers to deploy functions, use starter templates to bootstrap their function and write only the code that matters to your business. Developers can run a single CLI command to deploy their functions to an auto-scaled cluster.
 
+**Caution:** This functionality is currently in beta and subject to changes based on users feedback - It is intended for evaluation and test purposes only.
+
 For more information, see [Functions](workloads/functions.md).
 
 ### <a id='1-1-breaking-changes'></a> Breaking changes
