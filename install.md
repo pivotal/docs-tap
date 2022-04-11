@@ -287,16 +287,17 @@ If built images are pushed to the same registry as the Tanzu Application Platfor
 this can reuse the `tap-registry` secret created in
 [Add the Tanzu Application Platform package repository](#add-tap-package-repo).
 
-> **Note:** When Tanzu Application Platform is installed it is bootstrapped with a set of dependencies
-> (buildpacks and stacks) for application builds. For more information, see the
-> [Tanzu Build Service documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html).
-> The buildpack and stack artifacts installed with Tanzu Application Platform are in the descriptor
-> on [VMware Tanzu Network](https://network.pivotal.io/products/tbs-dependencies).
-> The currently installed version of the descriptor is
-> [100.0.279](https://network.pivotal.io/products/tbs-dependencies#/releases/1066670).
-> Sometimes the dependencies require updates.
-> You can update [manually in a CI/CD context](tanzu-build-service/tbs-about.html#manual-updates),
-> or have Tanzu Application Platform [update automatically](tanzu-build-service/tbs-about.html#auto-updates) in the background by Tanzu Application Platform.
+> **Note:** When you install Tanzu Application Platform, it is bootstrapped with
+> a set of dependencies (buildpacks and stacks) for application builds.
+> For more information about buildpacks, see the [VMware Tanzu Buildpacks Documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html).
+> You can find the buildpack and stack artifacts installed with Tanzu Application Platform
+> in the descriptor file on [Tanzu Network](https://network.pivotal.io/products/tbs-dependencies).
+> The current installed version of the descriptor is
+> [100.0.279](https://network.pivotal.io/products/tbs-dependencies#/releases/1066670). Sometimes the dependencies get
+> out of date and require updates. You can do this using a
+> [manual process in a CI/CD context](tanzu-build-service/tbs-about.html#dependencies-manual), or
+> an [automatic update process](tanzu-build-service/tbs-about.html#auto-updates)
+> in the background by Tanzu Application Platform.
 
 ### <a id='light-profile'></a> Light Profile
 
