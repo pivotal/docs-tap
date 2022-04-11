@@ -47,7 +47,7 @@ stringData:
 
 >**Note** In this example, you use an access token because GitHub deprecates 
 basic auth with plain username and password. 
-See [GitHub docs][https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token] 
+See [GitHub docs](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) 
 to learn more.
 
 After you create the Secret, attach it to the `ServiceAccount` configured for the
