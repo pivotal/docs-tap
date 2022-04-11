@@ -19,19 +19,16 @@ look something like the following:
           image: springio/petclinic
   ```
 
-Most of the Spring Boot conventions will either modify or add
-properties to the environment variable `JAVA_TOOL_OPTIONS`.
-It's possible to override those conventions by providing the
-desired `JAVA_TOOL_OPTIONS` property/value via the Tanzu
-CLI/workload.yaml.
+Most of the Spring Boot conventions either modify or add properties to the
+environment variable `JAVA_TOOL_OPTIONS`.
+You can override those conventions by providing the `JAVA_TOOL_OPTIONS` value you  
+want using the Tanzu CLI or `workload.yaml` file.
 
-When a `JAVA_TOOL_OPTIONS` property already exists for a
-workload, the convention will use the existing value rather
-than the value the convention has been designed to apply by
-default (The provided property value will be used for the
-pod spec mutation.)
+When a `JAVA_TOOL_OPTIONS` property already exists for a workload, the convention
+uses the existing value rather than the value that the convention applies by default.
+The property value that you provide is used for the pod spec mutation.
 
-## How to set a `JAVA_TOOL_OPTIONS` property for a workload <a id="set-java-tool-options"></a>
+## <a id="set-java-tool-options"></a> Set a `JAVA_TOOL_OPTIONS` property for a workload
 
 To set `JAVA_TOOL_OPTIONS` property/values, do one of the following:
 
@@ -68,20 +65,19 @@ set a `JAVA_TOOL_OPTIONS` property using the `--env` flag by running:
         tanzu apps workload create -f workload.yaml
         ```
 
+## <a id="spring-boot-convention"></a> Spring Boot convention
 
-
-## Spring Boot Convention<a id="spring-boot-convention"></a>
-
-In the metadata within the `SBOM` file, under `dependencies`, if the `dependency`
-below is found, the Spring Boot convention will be applied to
-the `PodTemplateSpec` object:
+If any of the following dependancies are in the metadata within the `SBOM` file
+under `dependencies`, the Spring Boot convention is applied to the `PodTemplateSpec` object:
 
 - `spring-boot`
 
 The Spring Boot convention adds a _label_ (`conventions.apps.tanzu.vmware.com/framework: spring-boot`) to the
-`PodTemplateSpec` which describes the framework associated with the workload and it adds an _annotation_ (`boot.spring.io/version: VERSION-NO`) which describes the Spring Boot version of the _dependency_.
+`PodTemplateSpec` that describes the framework associated with the workload, and
+adds an _annotation_ (`boot.spring.io/version: VERSION-NO`) that describes the
+Spring Boot version of the _dependency_.
 
-The label and annotation are added informational/visibility purposes only.
+The label and annotation are added informational purposes only.
 
 Example of PodIntent after applying the convention:
 
@@ -119,17 +115,17 @@ Example of PodIntent after applying the convention:
           resources: {}
   ```
 
-## Spring Boot Graceful Shutdown Convention<a id="spring-boot-graceful-shutdown-convention"></a>
+## <a id="spring-boot-graceful-shutdown-convention"></a> Spring boot graceful shut down convention
 
-In the metadata within the `SBOM` file, under `dependencies`, if any of the `dependencies`
-below are found, the Spring Boot graceful shutdown convention will be applied to
+If any of the following dependancies are in the metadata within the `SBOM` file
+under `dependencies`, the Spring Boot graceful shut down convention is applied to
 the `PodTemplateSpec` object:
 
-  - spring-boot-starter-tomcat
-  - spring-boot-starter-jetty
-  - spring-boot-starter-reactor-netty
-  - spring-boot-starter-undertow
-  - tomcat-embed-core
+- `spring-boot-starter-tomcat`
+- `spring-boot-starter-jetty`
+- `spring-boot-starter-reactor-netty`
+- `spring-boot-starter-undertow`
+- `tomcat-embed-core`
 
 The Graceful Shutdown convention `spring-boot-graceful-shutdown` adds
 a _property_ in the environment variable `JAVA_TOOL_OPTIONS` with _key_
@@ -177,20 +173,19 @@ Example of PodIntent after applying the convention:
           resources: {}
   ```
 
-## Spring Boot Web Convention<a id="spring-boot-web-convention"></a>
+## <a id="spring-boot-web-convention"></a> Spring Boot Web convention
 
-In the metadata within the `SBOM` file, under `dependencies`, if any of the `dependencies`
-below are found, the Spring Boot web convention will be applied to
-the `PodTemplateSpec` object:
+If any of the following dependancies are in the metadata within the `SBOM` file
+under `dependencies`, the Spring Boot web convention is applied to the `PodTemplateSpec` object:
 
   - spring-boot
   - spring-boot-web
 
-The Web Convention `spring-boot-web` gets the `server.port` property from
+The Web convention `spring-boot-web` gets the `server.port` property from
 the `JAVA_TOOL_OPTIONS` environment variable and sets it as a port in the
-`PodTemplateSpec`. If `JAVA_TOOL_OPTIONS` environment variable doesn't
-contain a `server.port` property/value, the convention adds the property and
-sets the value to `8080` (the Spring Boot default).
+`PodTemplateSpec`. If `JAVA_TOOL_OPTIONS` environment variable does not
+contain a `server.port` property or value, the convention adds the property and
+sets the value to `8080`, which is the Spring Boot default.
 
 Example of PodIntent after applying the convention:
 
@@ -235,13 +230,12 @@ Example of PodIntent after applying the convention:
           resources: {}
   ```
 
-## Spring Boot Actuator Convention<a id="spring-boot-actuator-convention"></a>
+## <a id="spring-boot-actuator-convention"></a> Spring Boot Actuator convention
 
-In the metadata within the `SBOM` file, under `dependencies`, if the following `dependency`
-below is found, the Spring Boot actuator convention will be applied to
-the `PodTemplateSpec` object:
+If any of the following dependancies are in the metadata within the `SBOM` file
+under `dependencies`, the Spring Boot actuator convention is applied to the `PodTemplateSpec` object:
 
-  - `spring-boot-actuator`
+- `spring-boot-actuator`
 
 The Spring Boot Actuator convention does the following:
 
@@ -255,19 +249,18 @@ on the management port when it is set to the default `8080`, the threat of
 exposure through internal access remains.
 The best practice for security is to set the management port to something other than `8080`.
 
-However, if a management port number value is provided via the `-Dmanagement.server.port`
-property in `JAVA_TOOL_OPTIONS`, the Spring Boot actuator convention will respect
-that value and use it, rather than its default `8081` as the management port.
+However, if a management port number value is provided using the `-Dmanagement.server.port`
+property in `JAVA_TOOL_OPTIONS`, the Spring Boot actuator convention uses that value
+rather than its default `8081` as the management port.
 
-The management context of a Spring Boot application can be accessed by creating
+You can access the management context of a Spring Boot application by creating
 a service pointing to port `8081` and base path `/actuator`.
 
-**IMPORTANT NOTES:**
-* To override the management port setting applied by this convention, see
-[How to set a `JAVA_TOOL_OPTIONS` property for a workload](#set-java-tool-options).
-* Any alternative methods for setting the management port will be overwritten.
-For example, if the management port has been configured via `application.properties/yml`
-or `config server`, the Spring Boot Actuator convention will overrite that config.
+> **Important:** To override the management port setting applied by this convention, see
+> [How to set a `JAVA_TOOL_OPTIONS` property for a workload](#set-java-tool-options) earlier in this topic.
+> Any alternative methods for setting the management port are overwritten.
+> For example, if you configure the management port using `application.properties/yml`
+> or `config server`, the Spring Boot Actuator convention will override your configuration.
 
 Example of PodIntent after applying the convention:
 
@@ -314,13 +307,13 @@ Example of PodIntent after applying the convention:
           resources: {}
   ```
 
-## Spring Boot Actuator Probes Convention<a id="spring-boot-actuator-probes-convention"></a>
+## <a id="spring-boot-actuator-probes-convention"></a> Spring Boot Actuator Probes convention
 
-The Spring Boot Actuator Probes convention will applied only if **all**
+The Spring Boot Actuator Probes convention is applied only if **all**
 of the following conditions are met:
 
-  - The `spring-boot-actuator` dependency exists and is **>= 2.6**
-  - The `JAVA_TOOL_OPTIONS` environment variable does not include the following
+- The `spring-boot-actuator` dependency exists and is **>= 2.6**
+- The `JAVA_TOOL_OPTIONS` environment variable does not include the following
 properties _or_, if either of the properties _is_ included, it is set to a value of `true`:
     - `-Dmanagement.health.probes.enabled`
     - `-Dmanagement.endpoint.health.probes.add-additional-paths`
@@ -328,12 +321,15 @@ properties _or_, if either of the properties _is_ included, it is set to a value
 
 The Spring Boot Actuator Probes convention does the following:
 
-1. Uses the main server port (the `server.port` property/value on `JAVA_TOOL_OPTIONS`) to set the _liveness_ and _readiness_ [probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/)
-2. Adds the following properies/values to the `JAVA_TOOL_OPTIONS` environment variable
+1. Uses the main server port, which is the `server.port` value on `JAVA_TOOL_OPTIONS`,
+to set the _liveness_ and _readiness_ probes. For more information see the
+[Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/)
+2. Adds the following properties and values to the `JAVA_TOOL_OPTIONS` environment variable:
   - `-Dmanagement.health.probes.enabled="true"`
   - `-Dmanagement.endpoint.health.probes.add-additional-paths="true"`
 
-When this convention has been applied, the probes will be exposed as follows:
+When this convention is applied, the probes are exposed as follows:
+
 - Liveness probe: `/livez`
 - Readiness probe: `/readyz`
 
@@ -393,40 +389,57 @@ Example of PodIntent after applying the convention:
           resources: {}
   ```
 
-## <a id="service-intent-conventions"></a>Service intent conventions
+## <a id="service-intent-conventions"></a> Service intent conventions
 
-The _Service intent_ conventions do not change the behavior of the final deployment but can be used as added information to process in the supply chain. For example, when an application requires the binding of a database service. This convention adds an __annotation__ and a label to the `PodTemplateSpec` for each detected dependency. It adds an __annotation__ and a label to the `conventions.apps.tanzu.vmware.com/applied-conventions` as well.
+The _Service intent_ conventions do not change the behavior of the final deployment,
+but you can use them as added information to process in the supply chain.
+For example, when an app requires to be bound to database service.
+This convention adds an annotation and a label to the `PodTemplateSpec` for each detected dependency.
+It also adds an annotation and a label to the `conventions.apps.tanzu.vmware.com/applied-conventions`.
 
 The list of the supported intents are:
 
-  - MySQL
-    - __Name__: `service-intent-mysql`
-    - __Label__: `services.conventions.apps.tanzu.vmware.com/mysql`
-    - __Dependencies__: `mysql-connector-java`, `r2dbc-mysql`
-  - PostreSql
-    - __Name__: `service-intent-postgres`
-    - __Label__: `services.conventions.apps.tanzu.vmware.com/postgres`
-    - __Dependencies__: `postgresql`, `r2dbc-postgresql`
-  - MongoDB
-    - __Name__: `service-intent-mongodb`
-    - __Label__: `services.conventions.apps.tanzu.vmware.com/mongodb`
-    - __Dependencies__: `mongodb-driver-core`
-  - RabbitMQ
-    - __Name__: `service-intent-rabbitmq`
-    - __Label__: `services.conventions.apps.tanzu.vmware.com/rabbitmq`
-    - __Dependencies__: `amqp-client`
-  - Redis
-    - __Name__: `service-intent-redis`
-    - __Label__: `services.conventions.apps.tanzu.vmware.com/redis`
-    - __Dependencies__: `jedis`
-  - Kafka
-    - __Name__: `service-intent-kafka`
-    - __Label__: `services.conventions.apps.tanzu.vmware.com/kafka`
-    - __Dependencies__: `kafka-clients`
-  - Kafka-streams
-    - __Name__: `service-intent-kafka-streams`
-    - __Label__: `services.conventions.apps.tanzu.vmware.com/kafka-streams`
-    - __Dependencies__: `kafka-streams`
+**MySQL**
+
+- __Name__: `service-intent-mysql`
+- __Label__: `services.conventions.apps.tanzu.vmware.com/mysql`
+- __Dependencies__: `mysql-connector-java`, `r2dbc-mysql`
+
+**PostreSql**
+
+- __Name__: `service-intent-postgres`
+- __Label__: `services.conventions.apps.tanzu.vmware.com/postgres`
+- __Dependencies__: `postgresql`, `r2dbc-postgresql`
+
+**MongoDB**
+
+- __Name__: `service-intent-mongodb`
+- __Label__: `services.conventions.apps.tanzu.vmware.com/mongodb`
+- __Dependencies__: `mongodb-driver-core`
+
+**RabbitMQ**
+
+- __Name__: `service-intent-rabbitmq`
+- __Label__: `services.conventions.apps.tanzu.vmware.com/rabbitmq`
+- __Dependencies__: `amqp-client`
+
+**Redis**
+
+- __Name__: `service-intent-redis`
+- __Label__: `services.conventions.apps.tanzu.vmware.com/redis`
+- __Dependencies__: `jedis`
+
+**Kafka**
+
+- __Name__: `service-intent-kafka`
+- __Label__: `services.conventions.apps.tanzu.vmware.com/kafka`
+- __Dependencies__: `kafka-clients`
+
+**Kafka-streams**
+
+- __Name__: `service-intent-kafka-streams`
+- __Label__: `services.conventions.apps.tanzu.vmware.com/kafka-streams`
+- __Dependencies__: `kafka-streams`
 
 ### <a id="example"></a>Example
 
