@@ -58,13 +58,10 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 1. Relocate the images with the Carvel tool imgpkg by running:
 
     ```
-    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:VERSION-NUMBER --to-repo ${INSTALL_REGISTRY_HOSTNAME}/TARGET-REPOSITORY/tap-packages
+    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:${TAP_VERSION} --to-repo ${INSTALL_REGISTRY_HOSTNAME}/TARGET-REPOSITORY/tap-packages
     ```
 
-    Where:
-
-    * `TARGET-REPOSITORY` is your target repository
-    * `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `1.0.2`.
+    Where `TARGET-REPOSITORY` is your target repository
 
 1. Create a namespace called `tap-install` for deploying any component packages by running:
 
