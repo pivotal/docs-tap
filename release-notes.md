@@ -8,7 +8,7 @@ This topic contains release notes for Tanzu Application Platform v1.1
 
 ### <a id='1-1-new-features'></a> New features
 
-###Prerequisites
+### Prerequisites
 Installation requires Kubernetes clusters v1.21, v1.22, or v1.23. See [prerequisites](./prerequisites.md) for supported Kubernetes platforms.
 
 
