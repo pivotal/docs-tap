@@ -261,12 +261,12 @@ Where:
     * Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`
 - `KP-DEFAULT-REPO-USERNAME` is the username that can write to `KP-DEFAULT-REPO`. You should be able to `docker push` to this location with this credential.
     * For Google Cloud Registry, use `kp_default_repository_username: _json_key`
-- `KP-DEFAULT-REPO-PASSWORD` is the password for the user that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential. This credential can also be configured via a Secret reference. See [here](tanzu-build-service/install-tbs.html#install-secret-refs) for details.
-    * For Google Cloud Registry, use the contents of the service account json file.
-- `TANZUNET-USERNAME` and `TANZUNET-PASSWORD` are the email address and password that you use to log in to VMware Tanzu Network. Your VMware Tanzu Network credentials enable you to configure the dependencies updater. This resource accesses and installs the build dependencies (buildpacks and stacks) Tanzu Build Service needs on your cluster. It can also optionally keep these dependencies up to date as new versions are released on VMware Tanzu Network. This credential can also be configured via a Secret reference. See [here](tanzu-build-service/install-tbs.html#install-secret-refs) for details.
-- `DESCRIPTOR-NAME` is the name of the descriptor to import. See more details [here](tanzu-build-service/tbs-about.html#dependencies-descriptors). Available options are:
-    * `lite` (default if unset) has a smaller footprint that enables faster installations.
-    * `full` optimized to speed up builds and includes dependencies for all supported workload types.
+- `KP-DEFAULT-REPO-PASSWORD` is the password for the user that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential. This credential can also be configured through a secret reference. See [Install Tanzu Build Service](tanzu-build-service/install-tbs.html#install-secret-refs) for details.
+    * For Google Cloud Registry, use the contents of the service account JSON file.
+- `TANZUNET-USERNAME` and `TANZUNET-PASSWORD` are the email address and password that you use to log in to VMware Tanzu Network. Your VMware Tanzu Network credentials enable you to configure the dependencies updater. This resource accesses and installs the build dependencies (buildpacks and stacks) Tanzu Build Service needs on your cluster. It can also optionally keep these dependencies up to date as new versions are released on VMware Tanzu Network. This credential can also be configured through a secret reference. For more information, see [Install Tanzu Build Service](tanzu-build-service/install-tbs.html#install-secret-refs).
+- `DESCRIPTOR-NAME` is the name of the descriptor to import. For more information, see [Overview of Tanzu Build Service](tanzu-build-service/tbs-about.html#descriptors). Available options are:
+    * `lite` is the default if not set. It has a smaller footprint, which enables faster installations.
+    * `full` is optimized to speed up builds and includes dependencies for all supported workload types.
 - `SERVER-NAME` is the hostname of the registry server. Examples:
     * Harbor has the form `server: "my-harbor.io"`
     * Dockerhub has the form `server: "index.docker.io"`
@@ -290,14 +290,16 @@ If built images are pushed to the same registry as the Tanzu Application Platfor
 this can reuse the `tap-registry` secret created in
 [Add the Tanzu Application Platform package repository](#add-tap-package-repo).
 
-> **Note:** When TAP is installed it is bootstrapped with a set of dependencies (buildpacks and stacks) for application
-> builds. Documentation about buildpacks and stacks can be found [here](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html). The buildpack and stack artifacts installed
-> with TAP can be found in the descriptor on [Tanzu Network](https://network.pivotal.io/products/tbs-dependencies).
-> The current installed version of the descriptor is
-> [100.0.279](https://network.pivotal.io/products/tbs-dependencies#/releases/1066670). Sometimes the dependencies get
-> out of date and require updates. This can be done via
-> [manual process in a CI/CD context](tanzu-build-service/tbs-about.html#dependencies-manual), or
-> [updated automatically](tanzu-build-service/tbs-about.html#dependencies-auto-updates) in the background by TAP.
+> **Note:** When Tanzu Application Platform is installed it is bootstrapped with a set of dependencies
+> (buildpacks and stacks) for application builds. For more information, see the
+> [Tanzu Build Service documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html).
+> The buildpack and stack artifacts installed with Tanzu Application Platform are in the descriptor
+> on [VMware Tanzu Network](https://network.pivotal.io/products/tbs-dependencies).
+> The currently installed version of the descriptor is
+> [100.0.279](https://network.pivotal.io/products/tbs-dependencies#/releases/1066670).
+> Sometimes the dependencies require updates.
+> You can update [manually in a CI/CD context](tanzu-build-service/tbs-about.html#manual-updates),
+> or have Tanzu Application Platform [update automatically](tanzu-build-service/tbs-about.html#auto-updates) in the background by Tanzu Application Platform.
 
 ### <a id='light-profile'></a> Light Profile
 
