@@ -127,7 +127,6 @@ For more information, see [Overview of Default Roles](authn-authz/overview.md).
 - Added Contour Ingress support with custom domain name
 - Created Tanzu CLI plug-in called `insight`
   - Currently, `insight` plug-in only supports MacOS and Linux.
-- Upgraded golang version from `1.17.5` to `1.17.8`
 
 #### <a id="gui-features"></a> Tanzu Application Platform GUI
 
@@ -208,6 +207,8 @@ None.
 - Fixed an issue where querying a source report with local path name would return the following error: `{ "message": "Not found" }`.
 - Return related packages when querying image and source vulnerabilities.
 - Ratings are updated when updating vulnerabilities.
+- Fixed [CVE-2022-24407](https://nvd.nist.gov/vuln/detail/CVE-2022-24407) and [CVE-2022-0778](https://nvd.nist.gov/vuln/detail/CVE-2022-0778) found in the postgres image 
+- Updated package `client_golang` to v1.17.8 to address [CVE-2022-24921](https://nvd.nist.gov/vuln/detail/CVE-2022-24921)
 
 #### Tanzu CLI - Apps plug-in
 
@@ -318,7 +319,7 @@ This error does not necessarily mean that the workload failed its execution thro
 
     It is a known issue that **Supply Chain Security Tools - Store** does not correctly save new vulnerabilities for a package that was already submitted in a previous report. This issue causes new vulnerabilities not saved to the database.
 
-- **Persistent volume retains data:**
+- <a id='store-persistent-volume-retains-data'></a> **Persistent volume retains data:**
 
     If **Supply Chain Security Tools - Store** is deployed, deleted, redeployed, and the database password is changed during the redeployment, the
     `metadata-store-db` pod fails to start.
