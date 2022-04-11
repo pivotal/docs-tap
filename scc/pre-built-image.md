@@ -1,17 +1,17 @@
 # Pre-built image
 
-For those applications that already have a predefined way of building their
+For applications that have a pre-defined way of building 
 container images, the supply chains in the Out of the Box packages
-support specifying a pre-built image to be used in the final application while
-using the same set of stages as any other Workload.
+support specifying a pre-built image used in the final application 
+using the same stages as any other Workload.
 
 
 ## <a id="workload"></a> Workload
 
 To select a pre-built image, the `workoad.spec.image` field must be set with
-the name of the container image that contains the application to be deployed.
+the name of the container image that contains the application to deploy.
 
-Using the Tanzu CLI, that means leveraging the `--image` field of `tanzu apps
+Using the Tanzu CLI, run the `--image` field of `tanzu apps
 workload create` command:
 
 ```console
@@ -20,7 +20,7 @@ $ tanzu apps workload create --help
                      phases of the supply chain
 ```
 
-For example, assuming you have an image named `IMAGE`, you can create a workload
+For example, if you have an image named `IMAGE`, you can create a workload
 with the flag mentioned earlier:
 
 ```bash
@@ -46,11 +46,10 @@ Create workload:
 
 ## <a id="NAME"></a> Out of the Box Supply Chains
 
-In Tanzu Application Platform, the three packages that relate to supply chains
-(`ootb-supply-chain-basic`, `ootb-supply-chain-testing`, and
-`ootb-supply-chain-testing-scanning`) have each received the addition of a new
-supply chain that allows one to provide a pre-built container image for their
-application, taking the process of building the image out of the flow.
+In Tanzu Application Platform, the `ootb-supply-chain-basic`, `ootb-supply-chain-testing`, and
+`ootb-supply-chain-testing-scanning` packages each receive a new
+supply chain that provides a pre-built container image for your
+application.
 
 ```
 ootb-supply-chain-basic
@@ -71,15 +70,15 @@ ootb-supply-chain-testing-scanning
     ^          source-test-scan-to-url       ClusterSupplyChain
 ```
 
-To leverage the supply chains that expect a pre-built image, the only change to
-the Workload that is necessary is `workoad.spec.image` field being set to the
+To leverage the supply chains that expect a pre-built image, the only necessary change to
+the Workload is `workoad.spec.image` field being set to the
 name of the container image that brings the application to be deployed.
 
-That is because those new supply chains make use of a new Cartographer feature
-that lets VMware increase the specificity of supply chain selection by leveraging
+The new supply chains use a new Cartographer feature
+that lets VMware increase the specificity of supply chain selection by using
 the `matchFields` selector rule. 
 
-In summary, the selection takes place as follows:
+The selection takes place as follows:
 
 - _ootb-supply-chain-basic_
   - from source: label `apps.tanzu.vmware.com/workload-type: web`
@@ -87,20 +86,17 @@ In summary, the selection takes place as follows:
     `workload.spec.image` set
 
 - _ootb-supply-chain-testing_
-  - from source: labels `apps.tanzu.vmware.com/workload-type: web` and
-<!-- Make each bullet independent. Do not use link words such as “and” or “or”, or commas or semi-colons at the end of a bullet. -->    `apps.tanzu.vmware.com/has-tests: true`
+  - from source: labels `apps.tanzu.vmware.com/workload-type: web` and `apps.tanzu.vmware.com/has-tests: true`
   - pre-built image: label `apps.tanzu.vmware.com/workload-type: web` **and**
     `workload.spec.image` set
 
 - _ootb-supply-chain-testing-scanning_
-  - from source: labels `apps.tanzu.vmware.com/workload-type: web` and
-<!-- Make each bullet independent. Do not use link words such as “and” or “or”, or commas or semi-colons at the end of a bullet. -->    `apps.tanzu.vmware.com/has-tests: true`
+  - from source: labels `apps.tanzu.vmware.com/workload-type: web` and `apps.tanzu.vmware.com/has-tests: true`
   - pre-built image: label `apps.tanzu.vmware.com/workload-type: web` **and**
     `workload.spec.image` set
 
-
-To summarize: Workloads that already work with the supply chains before Tanzu Application Platform v1.01.00
- continue to work with the same supply chain as before.
+Workloads that already work with the supply chains before Tanzu Application Platform v1.01.00
+continue to work with the same supply chain.
 Workloads that bring a pre-built container image must set
 `workload.spec.image`.
 
