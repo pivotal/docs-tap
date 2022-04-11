@@ -228,6 +228,10 @@ None.
 
 - **Deprecated profile:** Tanzu Application Platform light profile is deprecated.
 
+### Tanzu Cluster Essentials
+- **When adding Tanzu Application Platform clusters with pre-installed Tanzu Cluster Essentials to a Tanzu Mission Control instance, the tanzunet-secret Export will show Feature Disabled.
+- ##When deploying Tanzu Application Platform on Google Kubernetes Engine (GKE) `v1.23.5-gke.200`, during the step `tanzu secret registry add tanzunet-creds` the `--export-all-namespaces` will not be properly observed.
+
 #### Application Live View
 
 - **Application Live View Connector sometimes does not connect to the back end:**
