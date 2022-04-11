@@ -56,8 +56,10 @@ To install Tanzu Application Platform GUI:
 2. (Optional) To make changes to the default installation settings, run:
 
     ```
-    tanzu package available get tap-gui.tanzu.vmware.com/1.0.1 --values-schema --namespace tap-install
+    tanzu package available get tap-gui.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
+
+    Where `VERSION-NUMBER` is the number you discovered previously. For example, `1.0.1`.
 
     For more information about values schema options, see the individual product documentation.
 
@@ -92,9 +94,11 @@ service's External IP address.
     ```
     tanzu package install tap-gui \
      --package-name tap-gui.tanzu.vmware.com \
-     --version 1.0.1 -n tap-install \
+     --version VERSION -n tap-install \
      -f tap-gui-values.yaml
     ```
+
+    Where `VERSION` is the desired version. For example, `1.0.1`.
 
     For example:
 
