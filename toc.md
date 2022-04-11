@@ -162,6 +162,8 @@ This is the table of contents from which the Tanzu Application Platform Document
           - [Install Out-of-the-Box Supply Chain with Testing and Scanning](scc/install-ootb-sc-wtest-scan.md)
       - [Out-of-the-Box Templates](scc/ootb-templates.md)
           - [Install Out-of-the-Box Templates](scc/install-ootb-templates.md)
+      - [Git authentication](scc/git-auth.md)
+      - [GitOps vs. RegistryOps](scc/gitops-vs-regops.md)
     - [Supply Chain Security Tools – Scan](scst-scan/overview.md)
         - [Install](scst-scan/install-scst-scan.md)
         - [Spec reference](scst-scan/explanation.md)
