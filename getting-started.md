@@ -909,7 +909,7 @@ In this section, you are about to:
 2. Create a `values.yaml` file, and install the sign supply chain security tools and image policy web-hook. See [Install Supply Chain Security Tools - Sign](install-components.html#install-scst-sign) for instructions.
 3. Configure a `ClusterImagePolicy` resource to verify image signatures when deploying resources.
 
-> **Note:** The resource must be named `image-policy`.
+    > **Note:** The resource must be named `image-policy`.
 
     For example:
 
@@ -1134,8 +1134,8 @@ with the newly-installed APIs provided by the RabbitMQ Cluster Kubernetes Operat
 
 For this part of the walkthrough, you assume the role of the **service operator**.
 
->**Note:** Although this walkthrough uses the RabbitMQ Cluster Kubernetes Operator
-as an example, the set up steps remain mostly the same for any compatible Operator.
+> **Note:** Although this walkthrough uses the RabbitMQ Cluster Kubernetes Operator
+> as an example, the set up steps remain mostly the same for any compatible Operator.
 
 To set up a service:
 
@@ -1243,10 +1243,10 @@ To create a service instance:
     kubectl create namespace service-instances
     ```
 
-    >**Note:** Using namespaces to separate service instances from application workloads allows
-    for greater separation of concerns, and means that you can achieve greater control
-    over who has access to what. However, this is not a strict requirement.
-    You can create both service instances and application workloads in the same namespace if desired.
+    > **Note:** Using namespaces to separate service instances from application workloads allows
+    > for greater separation of concerns, and means that you can achieve greater control
+    > over who has access to what. However, this is not a strict requirement.
+    > You can create both service instances and application workloads in the same namespace if desired.
 
 2.  Find the list of services that are available on your cluster by running:
 
@@ -1263,8 +1263,8 @@ To create a service instance:
      rabbitmq  It's a RabbitMQ cluster!  rabbitmq.com/v1beta1          RabbitmqCluster
     ```
 
-    >**Note**: If you see `No service types found.`, ensure you have completed the
-    steps in [Set up a service](#stk-set-up) earlier in this walkthrough.
+    > **Note**: If you see `No service types found.`, ensure you have completed the
+    > steps in [Set up a service](#stk-set-up) earlier in this walkthrough.
 
 1. Create a `RabbitmqCluster` service instance.
 
@@ -1289,10 +1289,10 @@ To create a service instance:
 
 3. Create a resource claim policy to define the namespaces the instance can be claimed and bound from:
 
-    >**Note:** By default, you can only claim and bind to service instances that
-    are running in the _same_ namespace as the application workloads.
-    To claim service instances that are running in a different namespace, you must
-    create a resource claim policy.
+    > **Note:** By default, you can only claim and bind to service instances that
+    > are running in the _same_ namespace as the application workloads.
+    > To claim service instances that are running in a different namespace, you must
+    > create a resource claim policy.
 
     1. Create a file named `rmq-claim-policy.yml` as follows:
 
@@ -1460,9 +1460,9 @@ This is the value to pass to `--service-ref` to create the application workload.
 
     Using the `--service-ref` flag instructs Tanzu Application Platform to bind the application workload to the service provided in the `ref`.
 
-    >**Note:** You are not passing a service ref to the `RabbitmqCluster` service instance directly,
-    but rather to the resource claim, which itself has successfully claimed the `RabbitmqCluster` service instance.
-    See the [diagram](#stk-walkthrough) at the beginning of this walkthrough.
+    > **Note:** You are not passing a service ref to the `RabbitmqCluster` service instance directly,
+    > but rather to the resource claim that has claimed the `RabbitmqCluster` service instance.
+    > See the [consuming services diagram](#stk-walkthrough) at the beginning of this walkthrough.
 
 1. After the workloads are ready, visit the URL of the `spring-sensors-consumer-web` app.
 Confirm that sensor data, passing from the `spring-sensors-producer` workload to
