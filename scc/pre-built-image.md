@@ -104,15 +104,14 @@ Workloads that bring a pre-built container image must set
 
 ## <a id="NAME"></a> How it works
 
-Under the hood, an `ImageRepository` object is created to keep track of
-new images pushed under that name, making available to further resources in the
-supply chain the final digest-based of the latest it found.
+An `ImageRepository` object is created to keep track of
+new images pushed under that name, making them available to further resources in the
+supply chain the final digest of the latest that is found.
 
 Whenever a new image is pushed with that image name, the `ImageRepository`
-object is detected, and then make it available to further resources by
-updating its own `imagerepository.status.artifact.revision` with the absolute
-name of that image (i.e., the image name including the digest of the latest one
-found).
+object is detected, and then it is available to further resources by
+updating its `imagerepository.status.artifact.revision` with the absolute
+name of that image.
 
 For example, if you create a Workload using an image named `hello-world`,
 tagged `tanzu-java-web-app` hosted under `ghcr.io` in the `kontinue`
@@ -132,7 +131,7 @@ keeping track of images named
 
 ```scala
 Workload/tanzu-java-web-app
-├─ImageRepository/tanzu-java-web-app        #! this
+├─ImageRepository/tanzu-java-web-app        
 ├─PodIntent/tanzu-java-web-app
 ├─ConfigMap/tanzu-java-web-app
 └─Runnable/tanzu-java-web-app-config-writer
@@ -178,8 +177,8 @@ status:
         name: image-provider-template
 ```
 
-That image found by the ImageRepository objects is then carried through the
-supply chain all the way to the final configuration that gets pushed to either
+The image found by the ImageRepository object is carried through the
+supply chain to the final configuration that is pushed to either
 a Git repository or image registry so that it is deployed in a run cluster.
 
 >**Note:** The image name matches the image name supplied in the `workload.spec.image` field, but also includes the digest of the latest image found under the tag. If a new image is pushed to the same tag, you see the `ImageRepository` resolving the name to a different digest corresponding to the new image pushed.
@@ -187,29 +186,29 @@ a Git repository or image registry so that it is deployed in a run cluster.
 ## <a id="examples"></a> Examples
 
 Aside from the gotchas outlined in the following section, it's transparent
-to the supply chain how you came up with the image being provided.
+to the supply chain how you come up with the image provided.
 
 In the following examples below, VMware showcases a couple ways that you can build
 container images for a Java-based application and complete the
-supply chains all the way to a running service.
+supply chains to a running service.
 
 
-### <a id="NAME"></a> Dockerfile
+### <a id="dockerfile"></a> Dockerfile
 
-Perhaps the most common way of building container images, with a Dockerfile you
+Using a Dockerfile is the most common way of building container images. You
 can select a base image, on top of which certain operations must occur, such as compiling code, mutating the contents of the file system
 to a final container image that has our application built and any
 required runtime dependencies.
 
-Here you leverage the `maven` base image for compiling our application code, and
-then the very minimal distroless `java17-debian11` image for providing a JRE
+Here you use the `maven` base image for compiling our application code, and
+then the minimal distroless `java17-debian11` image for providing a JRE
 that can run our built application. 
 
 With the image built, you push it to a container image registry, and then
 reference it in the Workload.
 
 1. Create a Dockerfile that describes how to build our application and make it
-   available as a container image
+   available as a container image:
 
     ```Dockerfile
     ARG BUILDER_IMAGE=maven
@@ -228,14 +227,14 @@ reference it in the Workload.
             CMD [ "/demo.jar" ]
     ```
 
-2. Push the container image to a container image registry 
+2. Push the container image to a container image registry: 
 
     ```bash
     docker build -t IMAGE .
     docker push IMAGE
     ```
 
-3. Create a workload that makes use of it
+3. Create a workload:
 
     ```bash
     tanzu apps workload create tanzu-java-web-app \
@@ -360,7 +359,7 @@ ports:
 
 - **Non-privileged user ID**
 
-By default, the container initiated as part of the pod will be ran as user
+By default, the container initiated as part of the pod is run as user
 1000.
 
 ```
