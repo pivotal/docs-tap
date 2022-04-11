@@ -1024,8 +1024,7 @@ on a cluster, while also decoupling the life cycle of application workloads and 
 
 ### <a id="stk-available-services"></a> Services you can use with Tanzu Application Platform
 
-The following list of Kubernetes Operators all expose APIs that are known to
-integrate well with Tanzu Application Platform:
+The following list of Kubernetes Operators expose APIs that integrate well with Tanzu Application Platform:
 
 1. [RabbitMQ Cluster Operator for Kubernetes](https://www.rabbitmq.com/kubernetes/operator/operator-overview.html)
 1. [VMware Tanzu SQL with Postgres for Kubernetes](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-Postgres-for-Kubernetes/index.html)
@@ -1140,7 +1139,7 @@ as an example, the set up steps remain mostly the same for any compatible Operat
 
 To set up a service:
 
-1. Use `kapp` to install the RabbitMQ Cluster Kubernetes Operator by running the command:
+1. Use `kapp` to install the RabbitMQ Cluster Kubernetes Operator by running: <!-- add kapp + kubectl as a prereq or first step? -->
 
     ```
     kapp -y deploy --app rmq-operator --file https://github.com/rabbitmq/cluster-operator/releases/download/v1.9.0/cluster-operator.yml
@@ -1175,7 +1174,7 @@ To set up a service:
         ```
 
     1. In a file named `rabbitmqcluster-app-operator-reader.yml`, define RBAC
-    rules permitting the users of the cluster to interact with the new APIs.
+    rules that permit the users of the cluster to interact with the new APIs.
     For example, to permit application operators to get, list, and watch for `RabbitmqCluster` service instances,
     apply the following RBAC `ClusterRole`, labeled so that the rules are aggregated to the `app-operator` role:
 
@@ -1236,7 +1235,9 @@ This section covers the following:
 
 For this part of the walkthrough, you assume the role of the **service operator**.
 
-1. Create a dedicated namespace for service instances by running the command:
+To create a service instance:
+
+1. Create a dedicated namespace for service instances by running:
 
     ```
     kubectl create namespace service-instances
@@ -1244,11 +1245,10 @@ For this part of the walkthrough, you assume the role of the **service operator*
 
     >**Note:** Using namespaces to separate service instances from application workloads allows
     for greater separation of concerns, and means that you can achieve greater control
-    over who has access to what.
-    However, this is not a strict requirement.
+    over who has access to what. However, this is not a strict requirement.
     You can create both service instances and application workloads in the same namespace if desired.
 
-2. Create a `RabbitmqCluster` Service Instance by running the command:
+2.  Find the list of services that are available on your cluster by running:
 
     ```
     tanzu service types list
@@ -1266,7 +1266,7 @@ For this part of the walkthrough, you assume the role of the **service operator*
     >**Note**: If you see `No service types found.`, ensure you have completed the
     steps in [Set up a service](#stk-set-up) earlier in this walkthrough.
 
-1. Create a service instance.
+1. Create a `RabbitmqCluster` service instance.
 
     1. Create a file named `rmq-1-service-instance.yml` using the `APIVERSION` and
     `KIND` from the output of the `tanzu service types list` command:
@@ -1325,126 +1325,148 @@ For this part of the walkthrough, you assume the role of the **service operator*
 
 This section covers the following:
 
-* Using `tanzu service instance list` to view details about Service Instances.
-* Using `tanzu service claim create` to create a claim for the Service Instance.
+* Using `tanzu service instance list` to view details about service instances.
+* Using `tanzu service claim create` to create a claim for the service instance.
 
-For this part of the walkthrough we<!-- |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. --> will<!-- Avoid |will|: present tense is preferred. --> assume the role of the **application operator**.
+For this part of the walkthrough you assume the role of the **application operator**.
 
-Resource Claims in Tanzu Application Platform are a powerful concept that serve many purposes. Arguably their most important role is in enabling Appliction Operators to request services to be used with their Application Workloads<!-- |application workloads| is preferred. --> without them having to actually<!-- Delete unless referring to a situation that is actual instead of virtual. Most uses are extraneous. --> create and manage the services themselves. In simpler terms, they provide a mechanism for application operators to say what they want, without having to worry about anything that goes into providing what they want. To learn more about Resource Claims please<!-- Do not use unless asking the reader to do you a favor, such as giving feedback. --> refer to<!-- If telling the reader to read something else, use |see|. --> [Resource Claims](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.6/svc-tlk/GUID-service_resource_claims-terminology_and_apis.html).
+Resource claims in Tanzu Application Platform are a powerful concept that serve many purposes.
+Arguably their most important role is to enable application operators to request
+services that they can use with their application workloads without them having
+to create and manage the services themselves.
+Resource claims provide a mechanism for application operators to say what
+they want, without having to worry about anything that goes into providing what they want.
+For more information, see [Resource Claims](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.6/svc-tlk/GUID-service_resource_claims-terminology_and_apis.html).
 
-Let<!-- Do not use to describe features that a product makes possible. Use |You can| instead. -->'s<!-- Re-word: too colloquial. --> see how to create a claim that can be<!-- Consider switching to active voice. --> fulfilled by<!-- Active voice is preferred. --> our `RabbitmqCluster` Service Instance. We<!-- |VMware|, the product name, or another term is preferred. Define who |We| is for the reader is preferred. -->'ll<!-- Specify the party (VMware, Cloud Foundry, etc) and avoid a contraction if it is too colloquial or awkward or uncommonly used. --> use the `tanzu service claims create` command to do just<!-- Avoid uses that suggest a task is simple. --> that. This command requires some information to be able to<!-- |can| is preferred. --> create a claim successfully. As of today, we<!-- |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. --> have to provide the following:<!-- To introduce steps just write |To do x:| -->
+In cases where service instances are running in the same namespace as
+application workloads, you do not have to create a claim. You can bind to the service instance directly.
 
-1. `--resource-name`
-1. `--resource-kind`
-1. `--resource-api-version`
+In this section you will use the `tanzu service claims create` command to create
+claim that the `RabbitmqCluster` service instance you created earlier can fulfill.
+This command requires the following information to create a claim successfully:
 
-And in addition we<!-- |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. -->'ll<!-- Specify the party (VMware, Cloud Foundry, etc) and avoid a contraction if it is too colloquial or awkward or uncommonly used. --> need to<!-- |must| is preferred. --> provide the optional `--resource-namespace` argument as well. As of today it is required to provide a lot of very specific information in order to<!-- |to| is preferred. --> create a claim. In particular the requirement<!-- Requirements are things needed to install and run the product. We list them on the product index page. Prerequisites are things needed for a given procedure beyond the product requirements. We list those on the procedure page. --> to provide a specific name and namespace here is less than ideal as it means that application operators have to somehow determine<!-- |determine| has two meanings. Consider if the univocal |discover| or |verify| would be better. --> this information prior to<!-- |before| is preferred. --> creating a claim. The plan is that over time such requirements can be<!-- Consider switching to active voice. --> relaxed as more functionality<!-- |function|, |features|, or |capability| is preferred. --> is added to the Resource Claims component in upcoming releases of Tanzu Application Platform. For now we<!-- |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. --> can fall back to the `tanzu service instance list` command to determine the appropriate information, as follows:
+- `--resource-name`
+- `--resource-kind`
+- `--resource-api-version`
+- `--resource-namespace`
 
-```
-tanzu service instance list -A
-```
+To claim a service instance:
 
-The following will be output:
+1. Find the information needed to make a resource claim by running:
 
-```
-  Warning: This is an ALPHA command and may change without notice.
+    ```
+    tanzu service instance list -A
+    ```
 
-  NAMESPACE          NAME   KIND             SERVICE TYPE  AGE
-  service-instances  rmq-1  RabbitmqCluster  rabbitmq      24h
-```
+    Expected output:
 
-We can now use the information displayed to create a claim for the Service Instance, as follows:
+    ```
+      Warning: This is an ALPHA command and may change without notice.
 
-```
-tanzu service claim create rmq-1 \
-  --resource-name rmq-1 \
-  --resource-namespace service-instances \
-  --resource-kind RabbitmqCluster \
-  --resource-api-version rabbitmq.com/v1beta1
-```
+      NAMESPACE          NAME   KIND             SERVICE TYPE  AGE
+      service-instances  rmq-1  RabbitmqCluster  rabbitmq      24h
+    ```
 
-In the next section we<!-- |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. -->'ll<!-- Specify the party (VMware, Cloud Foundry, etc) and avoid a contraction if it is too colloquial or awkward or uncommonly used. --> see how to inspect the claim and to then use it to bind to Application Workloads<!-- |application workloads| is preferred. -->.
+1. Using the information from the previous command, create a claim for the service instance by running:
+
+    ```
+    tanzu service claim create rmq-1 \
+      --resource-name rmq-1 \
+      --resource-namespace service-instances \
+      --resource-kind RabbitmqCluster \
+      --resource-api-version rabbitmq.com/v1beta1
+    ```
+
+In the next section you will see how to inspect the claim and to then use it to bind to application workloads.
 
 #### <a id="stk-bind"></a> Bind an application workload to the service instance
 
-Covered in this section:
+This section covers the following:
 
 * Using `tanzu service claim list` and `tanzu service claim get` to find information about the claim to use for binding
 * Using `tanzu apps workload create` with the `--service-ref` flag to create a Workload and bind it to the Service Instance
 
-For this part of the walkthrough we<!-- |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. --> will<!-- Avoid |will|: present tense is preferred. --> assume the role of the **Application Developer**.
+For this part of the walkthrough you assume the role of the **application developer**.
 
-We<!-- |VMware|, the product name, or another term is preferred. Define who |We| is for the reader is preferred. -->'re<!-- Specify the party (VMware, Cloud Foundry, etc) and avoid a contraction if it is too colloquial or awkward or uncommonly used. --> nearing the end of the walkthrough and all that is left to do now is to actually<!-- Delete unless referring to a situation that is actual instead of virtual. Most uses are extraneous. --> create our Application Workloads<!-- |application workloads| is preferred. --> and to bind them, via<!-- |through|, |using| and |by means of| are preferred. --> the claim, to the Service Instance.
+As a final step, you must create application workloads and to bind them to the service instance using the claim.
 
-**Note** <!-- Proper note formatting is |>**Note:**| or |>**Caution:**| or |>**Important:**|. --> In cases where Service Instances are running in the same namespace as Application Workloads<!-- |application workloads| is preferred. -->, it is not technically necessary to create a claim, rather you can bind to the Service Instance directly.
+In Tanzu Application Platform Service bindings are created when application workloads
+that specify `.spec.serviceClaims` are created.
+In this section, you will see how to create such workloads using the `--service-ref`
+flag of the `tanzu apps workload create` command.
 
-1. Determine<!-- |Determine| has two meanings. Consider if the univocal |discover| or |verify| would be better. --> a suitable value to pass to `--service-ref` on the `tanzu apps workload create` command
+To create an application workload:
 
-In Tanzu Application Platform Service Bindings are created when Application Workloads that specify `.spec.serviceClaims` are created. In this section we<!-- |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. --> will<!-- Avoid |will|: present tense is preferred. --> see how to create such Workloads using the `--service-ref` flag of the `tanzu apps workload create` command. But first, we need to determine a suitable value to pass to this flag. This can be achieved by inspecting existing claims in our developer namespace, as follows:
+1. Inspect the claims in the developer namespace to find the value to pass to
+`--service-ref` command by running:
 
+    ```
+    tanzu services claims list
+    ```
 
-```
-tanzu services claims list
-```
+    Expected output:
 
-The following will be output:
+    ```
+      Warning: This is an ALPHA command and may change without notice.
 
-```
-  Warning: This is an ALPHA command and may change without notice.
+      NAME   READY  REASON
+      rmq-1  True
+    ```
 
-  NAME   READY  REASON
-  rmq-1  True
-```
+1. Retrieve detailed information about the claim by running:
 
-Retrieve detailed information about the claim by running:
+    ```
+    tanzu services claims get rmq-1
+    ```
 
-```
-tanzu services claims get rmq-1
-```
+    Expected output:
 
-The following will be output:
+    ```
+      Warning: This is an ALPHA command and may change without notice.
 
-```
-  Warning: This is an ALPHA command and may change without notice.
+    Name: rmq-1
+    Status:
+      Ready: True
+    Namespace: default
+    Claim Reference: services.apps.tanzu.vmware.com/v1alpha1:ResourceClaim:rmq-1
+    Resource to Claim:
+      Name: rmq-1
+      Namespace: service-instances
+      Group: rabbitmq.com
+      Version: v1beta1
+      Kind: RabbitmqCluster
+    ```
 
-Name: rmq-1
-Status:
-  Ready: True
-Namespace: default
-Claim Reference: services.apps.tanzu.vmware.com/v1alpha1:ResourceClaim:rmq-1
-Resource to Claim:
-  Name: rmq-1
-  Namespace: service-instances
-  Group: rabbitmq.com
-  Version: v1beta1
-  Kind: RabbitmqCluster
-```
+1. Record the value of `Claim Reference` from the previous command.
+This is the value to pass to `--service-ref` to create the application workload.
 
-The information we<!-- |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. -->'re<!-- Specify the party (VMware, Cloud Foundry, etc) and avoid a contraction if it is too colloquial or awkward or uncommonly used. --> interested in here is the `Claim Reference`. This is the value we<!-- |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. --> will<!-- Avoid |will|: present tense is preferred. --> pass to `--service-ref` when it comes to creating our Application Workloads, as follows:
+1. Create the application workload by running:
 
-```
-tanzu apps workload create spring-sensors-consumer-web \
-  --git-repo https://github.com/sample-accelerators/spring-sensors-rabbit \
-  --git-branch main \
-  --type web \
-  --service-ref="rmq=services.apps.tanzu.vmware.com/v1alpha1:ResourceClaim:rmq-1"
+    ```
+    tanzu apps workload create spring-sensors-consumer-web \
+      --git-repo https://github.com/sample-accelerators/spring-sensors-rabbit \
+      --git-branch main \
+      --type web \
+      --service-ref="rmq=services.apps.tanzu.vmware.com/v1alpha1:ResourceClaim:rmq-1"
 
-tanzu apps workload create \
-  spring-sensors-producer \
-  --git-repo https://github.com/tanzu-end-to-end/spring-sensors-sensor \
-  --git-branch main \
-  --type web \
-  --service-ref="rmq=services.apps.tanzu.vmware.com/v1alpha1:ResourceClaim:rmq-1" \
-  --annotation=autoscaling.knative.dev/minScale="1"
-```
+    tanzu apps workload create \
+      spring-sensors-producer \
+      --git-repo https://github.com/tanzu-end-to-end/spring-sensors-sensor \
+      --git-branch main \
+      --type web \
+      --service-ref="rmq=services.apps.tanzu.vmware.com/v1alpha1:ResourceClaim:rmq-1" \
+      --annotation=autoscaling.knative.dev/minScale="1"
+    ```
 
-Using the `--service-ref` flag instructs Tanzu Application Platform to bind the application workload to the service provided in the `ref`.
+    Using the `--service-ref` flag instructs Tanzu Application Platform to bind the application workload to the service provided in the `ref`.
 
->**Note:** You are not passing a service ref to the `RabbitmqCluster` service instance directly,
-but rather to the resource claim, which itself has successfully claimed the `RabbitmqCluster` Service Instance.
-See the [diagram](#stk-walkthrough) at the beginning of this walkthrough.
+    >**Note:** You are not passing a service ref to the `RabbitmqCluster` service instance directly,
+    but rather to the resource claim, which itself has successfully claimed the `RabbitmqCluster` service instance.
+    See the [diagram](#stk-walkthrough) at the beginning of this walkthrough.
 
-After the Workloads are ready, visit the URL of the `spring-sensors-consumer-web` Application and confirm that sensor data (passing from the `spring-sensors-producer` Workload to the `create spring-sensors-consumer-web` Workload using our RabbitmqCluster Service Instance) is displayed.
+1. After the workloads are ready, visit the URL of the `spring-sensors-consumer-web` app.
+Confirm that sensor data, passing from the `spring-sensors-producer` workload to
+the `create spring-sensors-consumer-web` workload using our `RabbitmqCluster` service instance, is displayed.
 
 ### <a id="stk-advanced-use-cases"></a> Advanced use cases and further reading
 
