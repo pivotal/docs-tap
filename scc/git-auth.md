@@ -109,7 +109,7 @@ stringData:
     ssh-keyscan github.com > ./known_hosts
     ```
 
-1. Create the Kubernetes Secret based using the contents of the files above:
+1. Create the Kubernetes Secret based on using the contents of the files above:
 
     ```yaml
     apiVersion: v1

@@ -1,8 +1,8 @@
 # GitOps vs RegistryOps
 
-Regardless of the supply chain that a Workload goes through, at the end of it
-some Kubernetes configuration gets pushed to an external entity - either a Git
-repository, or a container image registry.
+Regardless of the supply chain that a workload goes through, in the end,
+some Kubernetes configuration gets pushed to an external entity, either to a Git
+repository or to a container image registry.
 
 ```
 Supply Chain
@@ -16,18 +16,18 @@ Supply Chain
 ```
 
 Here we dive into the specifics of that last phase of the supply chains
-constrating the use case of pushing configuration to a Git repository and an
+contrasting the use case of pushing configuration to a Git repository or an
 image registry.
 
 > **Note:** For more information about providing source code either from a
-> local directory or git repository, see [Building from
+> local directory or Git repository, see [Building from
 > Source](building-from-source.md).  
 
 
 ## GitOps
 
-Different from local iteration, the GitOps approach configures the supply
-chains to push the Kubernetes Configuration to a remote Git repository. This
+The GitOps approach differs from local iteration in that the GitOps approach configures the supply
+chains to push the Kubernetes configuration to a remote Git repository. This
 allows users to compare configuration changes and promote those through
 environments using GitOps principles.
 
@@ -40,7 +40,7 @@ parameters are set in the supply chain:
 - `gitops_repository`, as a Workload parameter
 
 For instance, assuming the installation of the supply chain packages through
-TAP profiles and a `tap-values.yml` as such:
+Tanzu Application Platform profiles and a `tap-values.yml`:
 
 ```yaml
 ootb_supply_chain_basic:
@@ -52,11 +52,11 @@ ootb_supply_chain_basic:
     repository_prefix: https://github.com/my-org/
 ```
 
-we'd expect to see that any Workloads in the cluster would end up with the
-Kubernetes configuration produced throughout the supply chain to get pushed to
-the repository whose name would be formed by concatenating
-`gitops.repository_prefix` with the name of the Workload (in this case,
-something like `https://github.com/my-org/$(workload.metadata.name).git`).
+We'd expect to see workloads in the cluster end up with the
+Kubernetes configuration produced throughout the supply chain and be pushed to
+the repository whose name is formed by concatenating
+`gitops.repository_prefix` with the name of the workload. In this case,
+for example: `https://github.com/my-org/$(workload.metadata.name).git`.
 
 ```
 Supply Chain
@@ -77,9 +77,9 @@ workload-n:
 ```
 
 
-Alternatively, it's also possible to force a Workload to have the configuration
-published in a Git repository by providing to the Workload the
-`gitops_repository` parameter:
+Alternatively, it's also possible to force a workload to publish the configuration
+ in a Git repository by providing the
+`gitops_repository` parameter to the workload:
 
 ```bash
 tanzu apps workload create tanzu-java-web-app \
@@ -99,13 +99,13 @@ Workload would be published to the repository provided under the
 ### Authentication
 
 Regardless of how the supply chains have been configured, as long as pushing to
-Git is configured (via repository prefix or repository name as mentioned
-before), credentials for the remote provider (e.g., GitHub) must be provided
-through a Kubernetes Secret in the same namespace as the Workload (attached to
-the Workload ServiceAccount).
+Git is configured by means of repository prefix or repository name,
+credentials for the remote provider (for example, GitHub) must be provided
+through a Kubernetes secret in the same namespace as the workload (attached to
+the workload ServiceAccount).
 
 Because the operation of pushing requires elevated permissions, this is true
-regardless if the repository is public or private.
+whether the repository is public or private.
 
 
 #### HTTP(S) Basic-auth / Token-based authentication
@@ -137,7 +137,7 @@ stringData:
 > server. E.g., for https://github.com/vmware-tanzu/cartographer,
 > https://github.com should be provided as the GIT-SERVER.
 
-With the Secret created, attach it to the ServiceAccount used by the Workload.
+With the secret created, attach it to the ServiceAccount used by the workload.
 For instance:
 
 ```yaml
