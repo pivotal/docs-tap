@@ -1076,21 +1076,21 @@ each user role.
   <tr>
     <td>Application operator</td>
     <td>
-      Yes - <a href="https://docs.vmware.com/en/Tanzu-Application-Platform/1.1/tap/GUID-default-roles-role-descriptions.html#appoperator-2">app-operator</a>
+      Yes - <a href="https://docs.vmware.com/en/Tanzu-Application-Platform/1.1/tap/GUID-default-roles-role-descriptions.html#appoperator-2">app-operator</a> <!-- broken. where should this link go? -->
     </td>
     <td>Life cycle management (CRUD) of Resource Claims</td>
   </tr>
   <tr>
     <td>Application developer</td>
     <td>
-      Yes - <a href="https://docs.vmware.com/en/Tanzu-Application-Platform/1.1/tap/GUID-default-roles-role-descriptions.html#appeditor-0">app-editor</a>
-      and <a href="https://docs.vmware.com/en/Tanzu-Application-Platform/1.1/tap/GUID-default-roles-role-descriptions.html#appviewer-1">app-viewer</a>
+      Yes - <a href="https://docs.vmware.com/en/Tanzu-Application-Platform/1.1/tap/GUID-default-roles-role-descriptions.html#appeditor-0">app-editor</a> <!-- broken. where should this link go? -->
+      and <a href="https://docs.vmware.com/en/Tanzu-Application-Platform/1.1/tap/GUID-default-roles-role-descriptions.html#appviewer-1">app-viewer</a> <!-- broken. where should this link go? -->
     </td>
     <td>Binding service instances to application workloads</td>
   </tr>
 </table>
 
-### <a id="stk-walkthrough"></a> Walkthrough
+### <a id="stk-walkthrough"></a> Walkthrough <!-- not too happy with this heading name -->
 
 This section guides you through deploying two application workloads and learning
 how to configure them to communicate over RabbitMQ.
@@ -1108,7 +1108,7 @@ Bear the following observations in mind as you work through this section.
     * The life cycle of service instances is determined by service operators.
     * The life cycle of service bindings is implicitly tied to lifecycle of workloads.
 1. Resource claims and resource claim policies are the mechanism to enable cross-namespace binding.
-1. [ProvisionedService](https://github.com/servicebinding/spec#provisioned-service) are the contract allowing credentials and connectivity information to flow from the service instance, to the resource claim, to the service binding and ultimately to the application workload.
+1. [ProvisionedService](https://github.com/servicebinding/spec#provisioned-service) is the contract allowing credentials and connectivity information to flow from the service instance, to the resource claim, to the service binding, and ultimately to the application workload.
 1. Exclusivity of resource claims:
     * Resource claims are considered to be mutually exclusive, meaning that service instances can be claimed by at most one resource claim.
 
@@ -1204,19 +1204,19 @@ To set up a service:
     1. In a file named `rabbitmqcluster-clusterresource.yml`, create a `ClusterResource`
     that refers to the new service, and set any additional metadata. For example:
 
-    ```yaml
-    # rabbitmqcluster-clusterresource.yml
-    apiVersion: services.apps.tanzu.vmware.com/v1alpha1
-    kind: ClusterResource
-    metadata:
-      name: rabbitmq
-    spec:
-      shortDescription: It's a RabbitMQ cluster!
-      longDescription: A consistent and easy way to deploy RabbitMQ clusters to Kubernetes and run them, including "day two" (continuous) operations.
-      resourceRef:
-        group: rabbitmq.com
-        kind: RabbitmqCluster
-    ```
+        ```yaml
+        # rabbitmqcluster-clusterresource.yml
+        apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+        kind: ClusterResource
+        metadata:
+          name: rabbitmq
+        spec:
+          shortDescription: It's a RabbitMQ cluster!
+          longDescription: A consistent and easy way to deploy RabbitMQ clusters to Kubernetes and run them, including "day two" (continuous) operations.
+          resourceRef:
+            group: rabbitmq.com
+            kind: RabbitmqCluster
+        ```
 
     1. Apply `rabbitmqcluster-clusterresource.yml` by running:
 
