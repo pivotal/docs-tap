@@ -153,19 +153,19 @@ visit `https://github.com/<repository>/settings/keys/new`.
       identity.pub: ssh-ed25519 AAAABBBCCCCDDDDeeeeFFFF user@example.com
     ```
 
-After you create the Secret, attach it to the ServiceAccount configured for the
+1. After you create the Secret, attach it to the ServiceAccount configured for the
 workload by including it in its set of secrets. For example:
 
-```yaml
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: default
-secrets:
-  - name: registry-credentials
-  - name: tap-registry
-  - name: GIT-SECRET-NAME
-imagePullSecrets:
-  - name: registry-credentials
-  - name: tap-registry
-```
+    ```yaml
+    apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      name: default
+    secrets:
+      - name: registry-credentials
+      - name: tap-registry
+      - name: GIT-SECRET-NAME
+    imagePullSecrets:
+      - name: registry-credentials
+      - name: tap-registry
+    ```

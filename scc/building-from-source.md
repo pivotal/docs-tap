@@ -341,8 +341,6 @@ tanzu apps workload create tanzu-java-web-app \
   --source-image $REGISTRY/test
 ```
 
-Expect to see the following output:
-
 ```console
 Publish source in "." to "REGISTRY-SERVER/REGISTRY-REPOSITORY"? 
 It may be visible to others who can pull images from that repository 
