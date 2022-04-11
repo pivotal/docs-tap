@@ -50,17 +50,20 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
     Where:
 
-    - `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `1.0.2`.
+    - `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `1.1.0`.
     - `MY-REGISTRY-USER` is the user with write access to `MY-REGISTRY`.
     - `MY-REGISTRY-PASSWORD` is the password for `MY-REGISTRY-USER`.
 
 1. Relocate the images with the Carvel tool imgpkg by running:
 
     ```
-    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.0.2 --to-repo ${INSTALL_REGISTRY_HOSTNAME}/TARGET-REPOSITORY/tap-packages
+    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:VERSION-NUMBER --to-repo ${INSTALL_REGISTRY_HOSTNAME}/TARGET-REPOSITORY/tap-packages
     ```
 
-    Where `TARGET-REPOSITORY` is your target repository.
+    Where:
+
+    * `TARGET-REPOSITORY` is your target repository
+    * `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `1.1.0`.
 
 1. Create a namespace called `tap-install` for deploying any component packages by running:
 
@@ -287,13 +290,13 @@ If built images are pushed to the same registry as the Tanzu Application Platfor
 this can reuse the `tap-registry` secret created in
 [Add the Tanzu Application Platform package repository](#add-tap-package-repo).
 
-> **Note:** When TAP is installed it is bootstrapped with a set of dependencies (buildpacks and stacks) for application 
-> builds. Documentation about buildpacks and stacks can be found [here](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html). The buildpack and stack artifacts installed 
-> with TAP can be found in the descriptor on [Tanzu Network](https://network.pivotal.io/products/tbs-dependencies). 
-> The current installed version of the descriptor is 
-> [100.0.279](https://network.pivotal.io/products/tbs-dependencies#/releases/1066670). Sometimes the dependencies get 
-> out of date and require updates. This can be done via 
-> [manual process in a CI/CD context](tanzu-build-service/tbs-about.html#dependencies-manual), or 
+> **Note:** When TAP is installed it is bootstrapped with a set of dependencies (buildpacks and stacks) for application
+> builds. Documentation about buildpacks and stacks can be found [here](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html). The buildpack and stack artifacts installed
+> with TAP can be found in the descriptor on [Tanzu Network](https://network.pivotal.io/products/tbs-dependencies).
+> The current installed version of the descriptor is
+> [100.0.279](https://network.pivotal.io/products/tbs-dependencies#/releases/1066670). Sometimes the dependencies get
+> out of date and require updates. This can be done via
+> [manual process in a CI/CD context](tanzu-build-service/tbs-about.html#dependencies-manual), or
 > [updated automatically](tanzu-build-service/tbs-about.html#dependencies-auto-updates) in the background by TAP.
 
 ### <a id='light-profile'></a> Light Profile
