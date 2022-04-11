@@ -126,13 +126,13 @@ For more information, see [Overview of Default Roles](authn-authz/overview.md).
 
 - Added Contour Ingress support with custom domain name
 - Created Tanzu CLI plug-in called `insight`
-  - Currently, `insight` plug-in only supports MacOS and Linux.
+  - Currently, `insight` plug-in only supports MacOS and Linux
 
 #### <a id="gui-features"></a> Tanzu Application Platform GUI
 
 - Added improvements to the information presentation and filtering mechanisms of the Runtime Resources tab
 - Added the new Supply Chain plug-in
-- Added the Backstage API Documentation Plug-in
+- Added the Backstage API Documentation plug-in
 - Updated overall theme to Clarity City
 - Added compatibility with v1beta3 Backstage Templates
 - Small security fixes
@@ -207,8 +207,8 @@ None.
 - Fixed an issue where querying a source report with local path name would return the following error: `{ "message": "Not found" }`.
 - Return related packages when querying image and source vulnerabilities.
 - Ratings are updated when updating vulnerabilities.
-- Fixed [CVE-2022-24407](https://nvd.nist.gov/vuln/detail/CVE-2022-24407) and [CVE-2022-0778](https://nvd.nist.gov/vuln/detail/CVE-2022-0778) found in the postgres image 
-- Updated package `client_golang` to v1.17.8 to address [CVE-2022-24921](https://nvd.nist.gov/vuln/detail/CVE-2022-24921)
+- Fixed [CVE-2022-24407](https://nvd.nist.gov/vuln/detail/CVE-2022-24407) and [CVE-2022-0778](https://nvd.nist.gov/vuln/detail/CVE-2022-0778) found in the postgres image.
+- Updated package `client_golang` to v1.17.8 to address [CVE-2022-24921](https://nvd.nist.gov/vuln/detail/CVE-2022-24921).
 
 #### Tanzu CLI - Apps plug-in
 
