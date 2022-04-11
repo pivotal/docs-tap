@@ -9,7 +9,7 @@ templates for each resource, to the whole supply chains and delivery objects.
 Depending on how TAP has been installed, there will be different ways of
 achieving such customization of the out of the box supply chains.
 
-Below you'll find sections covering diffent ways that supply chains and
+Below you'll find sections covering different ways that supply chains and
 templates can be authored within the context of profile-based TAP
 installations.
 
@@ -374,7 +374,7 @@ PackageInstall/tap
 Being the installation based on Kubernetes primitives, PackageInstall will
 relentlessly try to achieve the state of having all the packages installed.
 
-This is great in overall, but it presents some challanges for modifying the
+This is great in overall, but it presents some challenges for modifying the
 contents of some of the objects that the installation submits to the cluster:
 any live modifications to them will result in the original definition being
 persisted instead of the changes.
@@ -406,7 +406,7 @@ will still be there, but any changes to those children PackageInstall objects
 will not be overwritten.
 
 Now we can move on to pausing the PackageInstall objects that relate to the
-templates/supplychains we want to modify. 
+templates/supply chains we want to modify. 
 
 For instance:
 
@@ -422,4 +422,3 @@ With the installations now paused, any further live changes to templates/supply
 chains will be persisted until the PackageInstalls are reverted to not being
 paused. To persist the changes, follow the steps outlined in the sections
 above.
-
