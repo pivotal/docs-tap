@@ -574,9 +574,10 @@ To apply this install method, follow the following steps:
 2. Update the installed profile by running:
 
     ```
-    tanzu package installed update tap -p tap.tanzu.vmware.com -v 1.0.0 --values-file tap-values.yml -n tap-install
+    tanzu package installed update tap -p tap.tanzu.vmware.com -v VERSION-NUMBER --values-file tap-values.yml -n tap-install
     ```
 
+    Where `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `1.1.0`.
 
 #### <a id="tekton-config-example"></a>Tekton pipeline config example
 
@@ -790,9 +791,10 @@ Verify that both Scan Link and Grype Scanner are installed by running:
 4. Update the `tap` package:
 
     ```
-    tanzu package installed update tap -p tap.tanzu.vmware.com -v 1.0.0 --values-file tap-values.yml -n tap-install
+    tanzu package installed update tap -p tap.tanzu.vmware.com -v VERSION-NUMBER --values-file tap-values.yml -n tap-install
     ```
 
+    Where `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `1.1.0`.
 
 #### <a id="test-scan-workload-update"></a>Workload update
 

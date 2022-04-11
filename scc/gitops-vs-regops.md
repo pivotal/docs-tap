@@ -15,32 +15,31 @@ Supply Chain
             -- push config        * either to Git or Registry
 ```
 
-Here we dive into the specifics of that last phase of the supply chains
-contrasting the use case of pushing configuration to a Git repository or an
+This topic dives into the specifics of that last phase of the supply chains
+by introducing the use case of pushing configuration to a Git repository and an
 image registry.
 
-> **Note:** For more information about providing source code either from a
-> local directory or Git repository, see [Building from
-> Source](building-from-source.md).  
+>**Note:** For more information about providing source code either from a
+local directory or Git repository, 
+see [Building from Source](building-from-source.md).  
 
+## <a id="gitops"></a>GitOps
 
-## GitOps
-
-The GitOps approach differs from local iteration in that the GitOps approach configures the supply
-chains to push the Kubernetes configuration to a remote Git repository. This
-allows users to compare configuration changes and promote those through
-environments using GitOps principles.
+Different from local iteration, the GitOps approach configures the supply
+chains to push the Kubernetes Configuration to a remote Git repository. This
+allows users to compare configuration changes and promote these changes through
+environments by using GitOps principles.
 
 Typically associated with an outerloop workflow, it's only activated if certain
 parameters are set in the supply chain:
 
-- `gitops.repository_prefix`, configured during the Out of the Box Supply
-  Chains package installation, or
+- `gitops.repository_prefix`: configured during the Out of the Box Supply
+  Chains package installation.
 
-- `gitops_repository`, as a Workload parameter
+- `gitops_repository`: configured as a workload parameter.
 
-For instance, assuming the installation of the supply chain packages through
-Tanzu Application Platform profiles and a `tap-values.yml`:
+For example, assuming the installation of the supply chain packages through
+Tanzu Application Platform profiles and a `tap-values.yml` as follows:
 
 ```yaml
 ootb_supply_chain_basic:
@@ -52,11 +51,11 @@ ootb_supply_chain_basic:
     repository_prefix: https://github.com/my-org/
 ```
 
-We'd expect to see workloads in the cluster end up with the
-Kubernetes configuration produced throughout the supply chain and be pushed to
+Expect to see that any workloads in the cluster with the
+Kubernetes configuration produced throughout the supply chain to get pushed to
 the repository whose name is formed by concatenating
 `gitops.repository_prefix` with the name of the workload. In this case,
-for example: `https://github.com/my-org/$(workload.metadata.name).git`.
+it is `https://github.com/my-org/$(workload.metadata.name).git`.
 
 ```
 Supply Chain
@@ -77,9 +76,9 @@ workload-n:
 ```
 
 
-Alternatively, it's also possible to force a workload to publish the configuration
- in a Git repository by providing the
-`gitops_repository` parameter to the workload:
+Alternatively, you can also force a Workload to have the configuration
+published in a Git repository by providing the `gitops_repository` parameter 
+to the workload:
 
 ```bash
 tanzu apps workload create tanzu-java-web-app \
@@ -91,27 +90,25 @@ tanzu apps workload create tanzu-java-web-app \
   --param gitops_repository=https://github.com/my-org/config-repo
 ```
 
-in which case, at the end of the supply chain the configuration for this
-Workload would be published to the repository provided under the
-`gitops_repository` parameter.
+In this case, at the end of the supply chain, the configuration for this
+workload is published to the repository provided under the `gitops_repository` 
+parameter.
 
+### <a id="auth"></a>Authentication
 
-### Authentication
+Regardless of how the supply chains were configured, if pushing to
+Git is configured by repository prefix or repository name, you must provide
+credentials for the remote provider (for example, GitHub) by using a Kubernetes 
+secret in the same namespace as the workload attached to the workload 
+`ServiceAccount`.
 
-Regardless of how the supply chains have been configured, as long as pushing to
-Git is configured by means of repository prefix or repository name,
-credentials for the remote provider (for example, GitHub) must be provided
-through a Kubernetes secret in the same namespace as the workload (attached to
-the workload ServiceAccount).
+Because the operation of pushing requires elevated permissions, credentials are 
+required by both public and private repositories.
 
-Because the operation of pushing requires elevated permissions, this is true
-whether the repository is public or private.
+#### <a id="http-auth"></a>HTTP(S) Basic-auth / Token-based authentication
 
-
-#### HTTP(S) Basic-auth / Token-based authentication
-
-If the repository at which configuration will be published makes use of
-`https://` or `http://` as their URL scheme, the Kubernetes Secret that
+If the repository at which configuration is published uses
+`https://` or `http://` as the URL scheme, the Kubernetes Secret that
 provides the credentials for that repository must provide credentials in a
 Secret as follows:
 
@@ -132,13 +129,13 @@ stringData:
   password: GIT-PASSWORD
 ```
 
-> **Note:** both the Tekton annotation and the `basic-auth` secret type must be
-> set. GIT-SERVER must be prefixed with the appropriate URL scheme and the git
-> server. E.g., for https://github.com/vmware-tanzu/cartographer,
-> https://github.com should be provided as the GIT-SERVER.
+>**Note:** Both the Tekton annotation and the `basic-auth` secret type must be 
+set. `GIT-SERVER` must be prefixed with the appropriate URL scheme and the Git 
+server. For example, for https://github.com/vmware-tanzu/cartographer, 
+https://github.com must be provided as the GIT-SERVER.
 
-With the secret created, attach it to the ServiceAccount used by the workload.
-For instance:
+After the `Secret` is created, attach it to the `ServiceAccount` used by the 
+workload. For example:
 
 ```yaml
 apiVersion: v1
@@ -154,13 +151,13 @@ imagePullSecrets:
   - name: tap-registry
 ```
 
-For more informations about the credentials and setting up the Kubernetes
-secret, check out [Git Authentication's HTTP section](git-auth.md#http).
+For more information about the credentials and setting up the Kubernetes
+secret, see [Git Authentication's HTTP section](git-auth.md#http).
 
-### SSH
+### <a id="ssh"></a>SSH
 
-If the repository at which configuration will be published makes use of
-`https://` or `http://` as their URL scheme, the Kubernetes Secret that
+If the repository at which configuration is published uses
+`https://` or `http://` as the URL scheme, the Kubernetes Secret that
 provides the credentials for that repository must provide credentials in a
 Secret as follows:
 
@@ -183,8 +180,8 @@ stringData:
   known_hosts: GIT-SERVER-PUBLIC-KEYS # git server public keys
 ```
 
-With the Secret created, attach it to the ServiceAccount used by the Workload.
-For instance:
+After the `Secret` is created, attach it to the `ServiceAccount` used by the 
+workload. For example:
 
 ```yaml
 apiVersion: v1
@@ -200,24 +197,24 @@ imagePullSecrets:
   - name: tap-registry
 ```
 
-For more informations about the credentials and setting up the Kubernetes
-secret, check out [Git Authentication's SSH section](git-auth.md#sh).
+For more information about the credentials and setting up the Kubernetes
+secret, see [Git Authentication's SSH section](git-auth.md#sh).
 
 
-### GitOps Workload parameters
+### <a id="gitops-params"></a>GitOps Workload parameters
 
-During the installation of `ootb-*`, one of the values that operators can
-configure is one that dictates what the prefix the supply chain should use when
-forming the name of the repository to push to the Kubernetes configurations
-produced by the supply chains - `gitops.repository_prefix`.
+While installing `ootb-*`, operators can configure `gitops.repository_prefix` to
+indicate what the prefix the supply chain must use when forming the name of the 
+repository to push to the Kubernetes configurations produced by the supply 
+chains.
 
-That being set, all it takes to change the behavior towards using GitOps is
-setting the source of the source code to a git repository and then as the
-supply chain progresses, configuration are pushed to a repository named
+All it takes to change the behavior towards using GitOps is
+setting the source of the source code to a Git repository. As the
+supply chain progresses, configuration is pushed to a repository named
 after `$(gitops.repository_prefix) + $(workload.name)`.
 
-e.g, having `gitops.repository_prefix` configured to `git@github.com/foo/` and
-a Workload as such:
+For example, configure `gitops.repository_prefix` to `git@github.com/foo/` and
+create a workload as follows:
 
 ```
 tanzu apps workload create tanzu-java-web-app \
@@ -226,6 +223,9 @@ tanzu apps workload create tanzu-java-web-app \
   --label app.kubernetes.io/part-of=tanzu-java-web-app \
   --type web
 ```
+
+Expect to see the following output:
+
 ```
 Create workload:
       1 + |---
@@ -245,57 +245,58 @@ Create workload:
      15 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
 ```
 
- You see the Kubernetes configuration pushed to
+As a result, the Kubernetes configuration is pushed to
 `git@github.com/foo/tanzu-java-web-app.git`.
 
-Regardless of the setup, the repository where configuration is pushed to can be
-also manually overridden by the developers by tweaking the following parameters:
+Regardless of the setup, developers can also manually override the repository 
+where configuration is pushed to by tweaking the following parameters:
 
 -  `gitops_ssh_secret`: Name of the secret in the same namespace as the
-   Workload where SSH credentials exist for pushing the configuration produced
-   by the supply chain to a git repository.
-   Example: "ssh-secret"
+   workload where SSH credentials exist for pushing the configuration produced
+   by the supply chain to a Git repository.
+   Example: `ssh-secret`
 
--  `gitops_repository`: SSH URL of the git repository to push the Kubernetes
+-  `gitops_repository`: SSH URL of the Git repository to push the Kubernetes
    configuration produced by the supply chain to.
-   Example: "ssh://git@foo.com/staging.git"
+   Example: `ssh://git@foo.com/staging.git`
 
 -  `gitops_branch`: Name of the branch to push the configuration to.
-   Example: "main"
+   Example: `main`
 
 -  `gitops_commit_message`: Message to write as the body of the commits
-   produced for pushing configuration to the git repository.
-   Example: "ci bump"
+   produced for pushing configuration to the Git repository.
+   Example: `ci bump`
 
 -  `gitops_user_name`: Username to use in the commits.
-   Example: "Alice Lee"
+   Example: `Alice Lee`
 
 -  `gitops_user_email`: User email address to use for the commits.
-   Example: "foo@example.com"
+   Example: `foo@example.com`
 
 
-## RegistryOps
+## <a id="registryops"></a>RegistryOps
 
 Typically used for inner loop flows where configuration is treated as an
-artifact from quick iterations by developers, in this scenario at the very end
-of the supply chain configuration gets pushed to a container image registry in
+artifact from quick iterations by developers. In this scenario, at the very end
+of the supply chain, configuration gets pushed to a container image registry in
 the form of an [imgpkg bundle](https://carvel.dev/imgpkg/docs/v0.27.0/) - think
 of it as a container image whose sole purpose is to carry arbitrary files.
 
-For this mode of operation to be enabled, the supply chains must be configured
+To enable this mode of operation, the supply chains must be configured
 **without** the following parameters being configured during the installation
-of the `ootb-` packages (or overwritten by the Workload via parameters):
+of the `ootb-` packages or overwritten by the Workload through the following 
+parameters:
 
 - `gitops_repository_prefix`
 - `gitops_repository`
 
-If none of those are set, the configuration will end up being pushed to the
+If none of the parameters is set, the configuration is pushed to the
 same container image registry as where the application image is pushed to
 (i.e., the registry configured under the `registry: {}` section of the `ootb-`
 values).
 
-For instance, assuming the installation of TAP via profiles having the
-`ootb-supply-chain*` package configured as such: 
+For example, assuming the installation of Tanzu Application Platform by using 
+profiles, configure the `ootb-supply-chain*` package as follows: 
 
 ```yaml
 ootb_supply_chain_basic:
@@ -304,10 +305,10 @@ ootb_supply_chain_basic:
     repository: REGISTRY_REPOSITORY
 ```
 
-We'd expect Kubernetes configuration produced by the supply chain to be pushed
-to an as an image named after `REGISTRY-SERVER/REGISTRY-REPOSITORY` including
-the Workload name.
+Expect Kubernetes configuration produced by the supply chain to be pushed
+to an image named after `REGISTRY-SERVER/REGISTRY-REPOSITORY` including
+the workload name.
 
-In this scenario, no extra credentials need to be setup as the secret
-containing the credentials for such container image registry would've already
-been configuring during the setup of the Workload namespace.
+In this scenario, no extra credentials need to be set up as the secret
+containing the credentials for such container image registry were already 
+configured during the setup of the workload namespace.
