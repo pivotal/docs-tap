@@ -111,7 +111,7 @@ include the CVEs to ignore:
     ...
     ```
 
-1. The changes applied to the new ScanPolicy will re-trigger the scan to run again. Reapply the resources by running:
+1. The changes applied to the new ScanPolicy trigger the scan to run again. Reapply the resources by running:
 
     ```
     kubectl apply -f sample-public-source-scan-with-compliance-check.yaml
