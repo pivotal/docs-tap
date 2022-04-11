@@ -96,17 +96,19 @@ Follow these steps to install the Tanzu package repository:
     --export-to-all-namespaces --yes --namespace tap-install
   ```
 
-  Where: 
-  
+  Where:
+
   - `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for Tanzu Network.
 
 1. Add a vpackage repository to your cluster:
 
   ```
   tanzu package repository add tanzu-tap-repository \
-    --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.0.0 \
+    --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:VERSION-NUMBER \
     --namespace tap-install
   ```
+
+  Where `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `1.1.0`.
 
   >**Note:** We are currently on build 7. If this changes, we need to update the command with the correct build version after the --url flag.
 
@@ -147,7 +149,7 @@ To create a configuration YAML file:
   storageClass: null
   storageUser: null
   storageGroup: null
-  #! Credentials for accessing training portal instances. If not specified, 
+  #! Credentials for accessing training portal instances. If not specified,
   #! random passwords are generated that you can obtain from the custom resource
   #! for the training portal.
   portalCredentials:
