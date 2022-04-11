@@ -1,52 +1,50 @@
 # Out of the Box Supply Chain with Testing and Scanning
 
 
-This Package contains Cartographer Supply Chains that tie together a series of
-Kubernetes resources which drive a developer-provided Workload from source code
-all the way to a Kubernetes configuration ready to be deployed to a cluster,
-having not only passed that source code through testing and vulnerability
+This package contains Cartographer Supply Chains that tie together a series of
+Kubernetes resources that drive a developer-provided workload from source code
+to a Kubernetes configuration ready to be deployed to a cluster.
+It contains supply chains that not only pass the source code through testing and vulnerability
 scanning, but also the container image produced.
 
-It includes all the capabilities of the Out of the Box Supply Chain With
-Testing, but adds on top source and image scanning using Grype.
+This package includes all the capabilities of the Out of the Box Supply Chain With
+Testing, but adds source and image scanning using Grype.
 
-Similarly, it allows Workloads providing both source code and pre-built images
-to make use of it performing the following:
+For workloads that use source code or prebuilt images,
+it performs the following:
 
 - Building from source code:
 
   1. Watching a Git Repository or local directory for changes
-  1. Running tests from a developer-provided Tekton or Pipeline
+  1. Running tests from a developer-provided Tekton pipeline
   1. Scanning the source code for known vulnerabilities using Grype
   1. Building a container image out of the source code with Buildpacks
   1. Scanning the image for known vulnerabilities
   1. Applying operator-defined conventions to the container definition
   1. Deploying the application to the same cluster
 
-- Using a pre-built application image:
+- Using a prebuilt application image:
 
   1. Scanning the image for known vulnerabilities
   1. Applying operator-defined conventions to the container definition
-  1. Creating a Deliverable object for deploying the application to a cluster
+  1. Creating a deliverable object for deploying the application to a cluster
 
 
 ## <a id="prerequisites"></a> Prerequisites
 
-To make use this supply chain, it is required that:
+To make use this supply chain, ensure:
 
-- Out of the Box Templates is installed
-- Out of the Box Supply Chain With Testing **is NOT installed**
-- Out of the Box Supply Chain With Testing and Scanning **is installed**
+- Out of the Box Templates is installed.
+- Out of the Box Supply Chain With Testing **is NOT installed**.
+- Out of the Box Supply Chain With Testing and Scanning **is installed**.
 - Developer namespace is configured with the objects per Out of the Box Supply
-  Chain With Testing guidance (this supply chain is additive to the testing
-  one)
-- (optionally) Install [Out of the Box Delivery
-  Basic](ootb-delivery-basic.html), if willing to deploy the application to the
-same cluster as where the Workload and supply chains.
+  Chain With Testing guidance. This supply chain is in addition to the Supply Chain with testing.
+- (Optionally) install [Out of the Box Delivery
+  Basic](ootb-delivery-basic.html), if you are willing to deploy the application to the
+same cluster as the workload and supply chains.
 
-You can verify that you have the right set of supply chains installed (i.e. the
-one with Scanning and _not_ the one with testing) by running the following
-command:
+To verify you have the right set of supply chains installed (that is, the
+one with scanning and _not_ the one with testing), run:
 
 ```
 tanzu apps cluster-supply-chain list
@@ -57,7 +55,7 @@ source-test-scan-to-url   apps.tanzu.vmware.com/has-tests=true,apps.tanzu.vmware
 source-to-url             apps.tanzu.vmware.com/workload-type=web
 ```
 
-If you see `source-test-to-url` in the list, the setup is wrong: you **must not
+If you see `source-test-to-url` in the list, the setup is wrong. You **must not
 have the _source-test-to-url_ installed** at the same time as
 _source-test-scan-to-url_.
 
@@ -71,22 +69,17 @@ To ensure that you have configured the namespace correctly, it is important that
 the namespace has the objects that you configured in the other supply chain setups:
 
 - **registries secrets**: Kubernetes secrets of type
-  `kubernetes.io/dockerconfigjson` that contains credentials for pushing and
-  pulling the container images built by the supply chain as well as the
-  installation of TAP
-
-  For more information, see [Out of the Box Supply Chain Basic](ootb-supply-chain-basic.md).
+  `kubernetes.io/dockerconfigjson` that contain credentials for pushing and
+  pulling the container images built by the supply chain and the
+  installation of Tanzu Application Platform.
 
 - **service account**: The identity to be used for any
-  interaction with the Kubernetes API made by the supply chain
-
-  For more information, see [Out of the Box Supply Chain Basic](ootb-supply-chain-basic.md).
-
+  interaction with the Kubernetes API made by the supply chain.
 
 - **rolebinding**: Grant to the identity the necessary roles
   for creating the resources prescribed by the supply chain.
 
-  For more information, see [Out of the Box Supply Chain Basic](ootb-supply-chain-basic.md).
+  For more information on the preceding objects, see [Out of the Box Supply Chain Basic](ootb-supply-chain-basic.md).
 
 - **Tekton pipeline**: A pipeline runs whenever the supply chain hits the stage
   of testing the source code.
@@ -108,10 +101,10 @@ Below you will find details about the new objects (compared to Out of the Box
 Supply Chain With Testing).
 
 
-### <a id="updates-to-developer-namespace"></a> Updates to the Developer Namespace
+### <a id="updates-to-developer-namespace"></a> Updates to the developer Namespace
 
-For source and image scans to happen, scan templates and scan policies
-must exist in the same namespace as the Workload. These define:
+For source and image scans, scan templates and scan policies
+must exist in the same namespace as the workload. These define:
 
 - `ScanTemplate`: how to run a scan, allowing one to change details about the
   execution of the scan (either for images or source code)
@@ -171,7 +164,7 @@ See [Writing Policy Templates](../scst-scan/policies.md) for more details.
 A ScanTemplate defines the PodTemplateSpec to be used by a Job to run a
 particular scan (image or source). When an ImageScan or SourceScan is
 instantiated by the supply chain, they reference these templates which must
-live in the same namespace as the Workload with the names matching the ones
+live in the same namespace as the workload with the names matching the ones
 below:
 
 - source scanning (`blob-source-scan-template`)
@@ -209,15 +202,14 @@ to the properties you want to change. For example:
 >[About Source and Image Scans](../scst-scan/explanation.md#about-src-and-image-scans).
 
 
-## <a id="developer-workload"></a> Developer Workload
+## <a id="developer-workload"></a> Developer workload
 
 With the ScanPolicy and ScanTemplate objects, with the required names set,
-submitted to the same namespace where the Workload will be submitted
-to, you are ready to submit your Workload.
+submitted to the same namespace where the workload are submitted, you are ready to submit your workload.
 
 Regardless of the workflow being targeted (local development or gitops), the
-Workload configuration details are the same as in Out of the Box Supply Chain
-Basic, except that you mark the Workload as having tests enabled.
+workload configuration details are the same as in Out of the Box Supply Chain
+Basic, except that you mark the workload as having tests enabled.
 
 For example:
 

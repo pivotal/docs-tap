@@ -1,51 +1,51 @@
 # Out of the Box Supply Chain with Testing
 
-This Package contains Cartographer Supply Chains that tie together a series of
-Kubernetes resources which drive a developer-provided Workload from source code
-all the way to a Kubernetes configuration ready to be deployed to a cluster,
-passing forward the source code to image building if and only if the testing
-pipeline supplied by the developers run successfully.
+This package contains Cartographer Supply Chains that tie together a series of
+Kubernetes resources that drive a developer-provided workload from source code
+to a Kubernetes configuration ready to be deployed to a cluster.
+It passes the source code forward to image building only if the testing
+pipeline supplied by the developers runs successfully.
 
-It includes all the capabilities of the Out of the Box Supply Chain Basic, but
-adds on top testing with Tekton.
+This package includes all the capabilities of the Out of the Box Supply Chain Basic, but
+adds testing with Tekton.
 
-Similarly, it allows Workloads providing both source code and pre-built images
-to make use of it performing the following:
+For workloads that use either source code or prebuilt images, it
+performs the following:
 
 - Building from source code:
 
   1. Watching a Git Repository or local directory for changes
-  1. Running tests from a developer-provided Tekton or Pipeline
+  1. Running tests from a developer-provided Tekton pipeline
   1. Building a container image out of the source code with Buildpacks
   1. Applying operator-defined conventions to the container definition
   1. Deploying the application to the same cluster
 
-- Using a pre-built application image:
+- Using a prebuilt application image:
 
   1. Applying operator-defined conventions to the container definition
-  1. Creating a Deliverable object for deploying the application to a cluster
+  1. Creating a deliverable object for deploying the application to a cluster
 
 
 ## <a id="prerequisite"></a> Prerequisites
 
-To make use this supply chain, it is required that:
+To make use this supply chain, ensure:
 
-- Out of the Box Templates is installed
-- Out of the Box Supply Chain With Testing **is installed**
-- Out of the Box Supply Chain With Testing and Scanning **is NOT installed**
+- Out of the Box Templates is installed.
+- Out of the Box Supply Chain With Testing **is installed**.
+- Out of the Box Supply Chain With Testing and Scanning **is NOT installed**.
 - Developer namespace is configured with the objects per Out of the Box Supply
-  Chain Basic guidance. This supply chain is additive to the basic one.
+  Chain Basic guidance. This supply chain is in addition to the basic one.
 - (optionally) Install [Out of the Box Delivery
-  Basic](ootb-delivery-basic.html), if willing to deploy the application to the
-same cluster as where the Workload and supply chains.
+  Basic](ootb-delivery-basic.html), if you are willing to deploy the application to the
+same cluster as the workload and supply chains.
 
-You can verify that you have the right set of supply chains installed (i.e. the
-one with Scanning and _not_ the one with testing) by running the following
-command:
+To verify that you have the right set of supply chains installed (that is, the
+one with Scanning and _not_ the one with testing), run:
 
 ```
 tanzu apps cluster-supply-chain list
 ```
+
 ```
 NAME                      LABEL SELECTOR
 source-test-to-url        apps.tanzu.vmware.com/has-tests=true,apps.tanzu.vmware.com/workload-type=web
@@ -68,9 +68,9 @@ the namespace has the following objects in it (including the ones marked with
 '_new_' whose explanation and details are provided below):
 
 - **registries secrets**: Kubernetes secrets of type
-  `kubernetes.io/dockerconfigjson` that contains credentials for pushing and
-  pulling the container images built by the supply chain as well as the
-  installation of TAP
+  `kubernetes.io/dockerconfigjson` that contain credentials for pushing and
+  pulling the container images built by the supply chain and the
+  installation of Tanzu Application Platform.
 
   For more information, see [Out of the Box Supply Chain Basic](ootb-supply-chain-basic.md).
 
@@ -93,7 +93,7 @@ Below you will find details about the new objects compared to Out of the Box
 Supply Chain Basic.
 
 
-### <a id="updates-to-developer-namespace"></a> Updates to the Developer Namespace
+### <a id="updates-to-developer-namespace"></a> Updates to the developer Namespace
 
 In order for source code testing to be present in the supply chain, a Tekton
 Pipeline must exist in the same namespace as the Workload so that, at the right
@@ -111,7 +111,7 @@ Chain Basic section, you need to include one more:
 
 Despite the full liberty around tasks to run, the Tekton or pipeline object
 **must** be labelled with `apps.tanzu.vmware.com/pipeline: test`, and define
-that it expects to take two params:
+that it expects to take two parameters:
 
 - `source-url`, an HTTP address where a `.tar.gz` file containing all the
   source code to be tested can be found
@@ -166,7 +166,7 @@ will be submitted to, you can submit your Workload.
 
 Regardless of the workflow being targeted (local development or gitops), the
 Workload configuration details are the same as in Out of the Box Supply Chain
-Basic, except that you mark the Workload as having tests enabled via the
+Basic, except that you mark the workload with tests enabled by means of the
 `has-tests` label.
 
 For example:
