@@ -77,22 +77,23 @@ To install Tanzu Build Service by using the Tanzu CLI:
      * Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`
      * Dockerhub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`
      * Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`
-   - `KP-DEFAULT-REPO-USERNAME` is the username that can write to `KP-DEFAULT-REPO`. You should be able to `docker push` to this location with this credential.
+   - `KP-DEFAULT-REPO-USERNAME` is the name of the user who can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential.
      * For Google Cloud Registry, use `kp_default_repository_username: _json_key`
-   - `KP-DEFAULT-REPO-PASSWORD` is the password for the user that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential. This credential can also be configured via a Secret reference. See [here](#install-secret-refs) for details.
+   - `KP-DEFAULT-REPO-PASSWORD` is the password for the user that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential. This credential can also be configured by using a Secret reference. For more information, see [Installation using Secret References for registry credentials](#install-secret-refs) for details.
      * For Google Cloud Registry, use the contents of the service account json file.
-   - `TANZUNET-USERNAME` and `TANZUNET-PASSWORD` are the email address and password that you use to log in to VMware Tanzu Network. Your VMware Tanzu Network credentials enable you to configure the dependencies updater. This resource accesses and installs the build dependencies (buildpacks and stacks) Tanzu Build Service needs on your cluster. It can also optionally keep these dependencies up to date as new versions are released on VMware Tanzu Network. This credential can also be configured via a Secret reference. See [here](#install-secret-refs) for details.
-   - `DESCRIPTOR-NAME` is the name of the descriptor to import. For more information, see [Descriptors](tbs-about.html#dependencies-descriptors). Available options are:
-     * `lite` (default if unset) has a smaller footprint that enables faster installations.
-     * `full` optimized to speed up builds and includes dependencies for all supported workload types.
+   - `TANZUNET-USERNAME` and `TANZUNET-PASSWORD` are the email address and password that you use to log in to VMware Tanzu Network. Your VMware Tanzu Network credentials enable you to configure the dependencies updater. This resource accesses and installs the build dependencies (buildpacks and stacks) Tanzu Build Service needs on your cluster. It can also optionally keep these dependencies up to date as new versions are released on VMware Tanzu Network. This credential can also be configured by using a Secret reference. See [Installation using Secret References for registry credentials](#install-secret-refs) for details.
+   - `DESCRIPTOR-NAME` is the name of the descriptor to import. For more information, see [Descriptors](tbs-about.html#descriptors). Available options are:
+     * `lite` is the default if unset. It has a smaller footprint, which enables faster installations.
+     * `full` is optimized to speed up builds and includes dependencies for all supported workload types.
 
      >**Note:** By using the `tbs-values.yaml` configuration,
      >`enable_automatic_dependency_updates: true` causes the dependency updater to update
      >Tanzu Build Service dependencies (buildpacks and stacks) when they are released on
      >VMware Tanzu Network. You can set `enable_automatic_dependency_updates` as `false` to
      >pause the automatic update of Build Service dependencies. When automatic updates are paused,
-     >the pinned version of the descriptor for TAP 1.1.0 is [100.0.279](https://network.pivotal.io/products/tbs-dependencies#/releases/1066670)
-     >If left undefined, this value is `false`. For details about updating dependencies manually, see [here](tbs-about.html#dependencies-manual).
+     >the pinned version of the descriptor for Tanzu Application Platform v1.1.0 is [100.0.279](https://network.pivotal.io/products/tbs-dependencies#/releases/1066670).
+     >If left undefined, this value is `false`. For information about updating dependencies manually,
+     >see [Manual Control of Dependency Updates](tbs-about.html#manual-updates).
 
 3. Install the package by running:
 
@@ -124,7 +125,7 @@ To install Tanzu Build Service by using the Tanzu CLI:
     >If the command times out, periodically run the installation verification step provided in the
     >following optional step. Image relocation continues in the background.
 
-4. (Optional) Verify the clusterbuilders created by the Tanzu Build Service install by running:
+4. (Optional) Verify the clusterbuilders that the Tanzu Build Service installation created by running:
 
     ```
     tanzu package installed get tbs -n tap-install
@@ -189,15 +190,19 @@ To install the Tanzu Build Service package air-gapped:
 When installing Tanzu Build Service to an air-gapped environment, dependencies cannot be automatically pulled in from the external internet.
 So dependencies must be imported and kept up to date manually. To import dependencies to an air-gapped Tanzu Build Service, follow the official [Tanzu Build Service docs](https://docs.vmware.com/en/Tanzu-Build-Service/1.4/vmware-tanzu-build-service-v14/GUID-updating-deps.html#online-update).
 
-#### <a id='install-secret-refs'> Installation using Secret References for registry credentials
+#### <a id='install-secret-refs'> Installation using Secret references for registry credentials
 
 Tanzu Build Service requires credentials for the `kp_default_repository` and the Tanzu Network registry.
 
-They can be applied in the `values.yaml` configuration directly inline via `_username` and `_password` fields such as `kp_default_repository_username/kp_default_repository_password` and `tanzunet_username/tanzunet_password`.
+You can apply them in the `values.yaml` configuration directly in-line by using `_username` and
+`_password` fields such as `kp_default_repository_username/kp_default_repository_password` and
+`tanzunet_username/tanzunet_password`.
 
-If you do not want credentials saved in ConfigMaps in plaintext, you can use Secret references in the `values.yaml` configuration to use existing Secrets.
+If you do not want credentials saved in ConfigMaps in plaintext, you can use Secret references in the
+`values.yaml` configuration to use existing Secrets.
 
-To use secret references you must create Secrets of type `kubernetes.io/dockerconfigjson` containing credentials for `kp_default_repository` and Tanzu Network Registry.
+To use Secret references you must create Secrets of type `kubernetes.io/dockerconfigjson` containing
+credentials for `kp_default_repository` and the VMware Tanzu Network registry.
 
 Use the following alternative configuration for `values.yaml`:
 
@@ -215,14 +220,14 @@ Use the following alternative configuration for `values.yaml`:
 
     Where:
 
-- `KP-DEFAULT-REPO` is a writable repository in your registry. Tanzu Build Service dependencies are written to this location. Examples:
-    * Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`
-    * Dockerhub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`
-    * Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`
-- `KP-DEFAULT-REPO-SECRET-NAME` is the name of the `kubernetes.io/dockerconfigjson` Secret containing credentials for `KP-DEFAULT-REPO`. You should be able to `docker push` to this location with this credential.
-- `KP-DEFAULT-REPO-SECRET-NAMESPACE` is the namespace of the `kubernetes.io/dockerconfigjson` Secret containing credentials for `KP-DEFAULT-REPO`. You should be able to `docker push` to this location with this credential.
-- `TANZUNET-SECRET-NAME` is the name of the `kubernetes.io/dockerconfigjson` Secret containing credentials for VMware Tanzu Network registry.
-- `TANZUNET-SECRET-NAMESPACE` is the namespace of the `kubernetes.io/dockerconfigjson` Secret containing credentials for VMware Tanzu Network registry.
-- `DESCRIPTOR-NAME` is the name of the descriptor to import. For more information, see [Descriptors](tbs-about.html#dependencies-descriptors). Available options are:
-    * `lite` (default if unset) has a smaller footprint that enables faster installations.
-    * `full` optimized to speed up builds and includes dependencies for all supported workload types.
+    - `KP-DEFAULT-REPO` is a writable repository in your registry. Tanzu Build Service dependencies are written to this location. Examples:
+        * Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`
+        * Dockerhub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`
+        * Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`
+    - `KP-DEFAULT-REPO-SECRET-NAME` is the name of the `kubernetes.io/dockerconfigjson` Secret containing credentials for `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential.
+    - `KP-DEFAULT-REPO-SECRET-NAMESPACE` is the namespace of the `kubernetes.io/dockerconfigjson` Secret containing credentials for `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential.
+    - `TANZUNET-SECRET-NAME` is the name of the `kubernetes.io/dockerconfigjson` Secret containing credentials for VMware Tanzu Network registry.
+    - `TANZUNET-SECRET-NAMESPACE` is the namespace of the `kubernetes.io/dockerconfigjson` Secret containing credentials for the VMware Tanzu Network registry.
+    - `DESCRIPTOR-NAME` is the name of the descriptor to import. For more information, see [Descriptors](tbs-about.html#descriptors). Available options are:
+        * `lite` is the default if not set. It has a smaller footprint, which enables faster installations.
+        * `full` is optimized to speed up builds and includes dependencies for all supported workload types.

@@ -8,8 +8,12 @@ This topic contains release notes for Tanzu Application Platform v1.1
 
 ### <a id='1-1-new-features'></a> New features
 
+###Prerequisites
+Installation requires Kubernetes clusters v1.21, v1.22, or v1.23. See [prerequisites](./prerequisites.md) for supported Kubernetes platforms.
+
+
 #### Installing
-There are 4 new profiles available, as well as addiitons to the Full profile. The inclusion of new profiles supports a multi-cluster deployment architecture.
+There are 4 new profiles available, and additions to the Full profile. The inclusion of new profiles supports a multi-cluster deployment architecture.
 
 * **Tanzu Application Platform profile - Iterate** is intended for iterative development versus the path to production.
 
@@ -150,7 +154,7 @@ Plug-in improvements and additions include:
 
 The function experience on Tanzu Application Platform enables developers to deploy functions, use starter templates to bootstrap their function and write only the code that matters to your business. Developers can run a single CLI command to deploy their functions to an auto-scaled cluster.
 
-**Caution:** This functionality is currently in beta and subject to changes based on users feedback - It is intended for evaluation and test purposes only.
+>**Note:** This functionality is in beta and subject to changes based on users feedback. It is intended for evaluation and test purposes only.
 
 For more information, see [Functions](workloads/functions.md).
 
@@ -225,6 +229,17 @@ None.
 
 - **Deprecated profile:** Tanzu Application Platform light profile is deprecated.
 
+### Tanzu Cluster Essentials
+
+- **Feature Disabled error:**
+When adding Tanzu Application Platform clusters with pre-installed Tanzu Cluster Essentials to a
+Tanzu Mission Control instance, the `tanzunet-secret` export shows `Feature Disabled`.
+
+- **--export-all-namespaces not properly observed:**
+When deploying Tanzu Application Platform on Google Kubernetes Engine (GKE) v1.23.5-gke.200,
+when running `tanzu secret registry add tanzunet-creds` the `--export-all-namespaces` is not
+properly observed.
+
 #### Application Live View
 
 - **Application Live View Connector sometimes does not connect to the back end:**
@@ -239,7 +254,7 @@ to the back end. If you find any issues, delete the connector pod to recreate it
 Application Live View Convention exposes all Spring Boot actuator endpoints by default to
 whatever is configured using the Spring Boot Convention for the management port.
 You can change this configuration if it does not suit your needs.
-For more information, see [Configuring an Application](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-app-config.html).
+For more information, see [Convention Server](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.1/docs/GUID-convention-server.html).
 
 - **Frequent Application Live View Connector restarts:**
 In some cases, the Application Live View Connector component restarts frequently.
@@ -247,7 +262,8 @@ This usually doesn't cause problems when using Application Live View.
 
 - **No structured JSON logging on the connector:**
 The format of the log output of the Application Live View Connector component is not currently
-aligned with the standard Tanzu Application Platform logging format. A fix is planned for v1.1.1. <!-- TAP v1.1.1 ? -->
+aligned with the standard Tanzu Application Platform logging format.
+A fix is planned for Tanzu Application Platform v1.1.1.
 
 
 #### Grype scanner

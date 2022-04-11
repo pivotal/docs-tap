@@ -1,35 +1,29 @@
 # Out of the Box Supply Chain with Testing
 
-This Cartographer Supply Chain ties a series of Kubernetes resources which,
-when working together, drives a developer-provided Workload from source code
+This Package contains Cartographer Supply Chains that tie together a series of
+Kubernetes resources which drive a developer-provided Workload from source code
 all the way to a Kubernetes configuration ready to be deployed to a cluster,
 passing forward the source code to image building if and only if the testing
 pipeline supplied by the developers run successfully.
 
-
-```
-SUPPLYCHAIN
-  source-provider                          flux/GitRepository|vmware/ImageRepository
-    <--[src]-- source-tester               carto/Runnable        : tekton/PipelineRun
-       <--[src]-- image-builder            kpack/Image           : kpack/Build
-           <--[img]-- convention-applier   convention/PodIntent
-             <--[config]-- config-creator  corev1/ConfigMap
-              <--[config]-- config-pusher  carto/Runnable        : tekton/TaskRun
-
-DELIVERY
-  config-provider                           flux/GitRepository|vmware/ImageRepository
-    <--[src]-- app-deployer                 kapp-ctrl/App
-```
-
-
 It includes all the capabilities of the Out of the Box Supply Chain Basic, but
-adds on top testing with Tekton:
+adds on top testing with Tekton.
 
-- Watching a Git Repository or local directory for changes
-- Running tests from a developer-provided Tekton or Pipeline
-- Building a container image out of the source code with Buildpacks
-- Applying operator-defined conventions to the container definition
-- Deploying the application to the same cluster
+Similarly, it allows Workloads providing both source code and pre-built images
+to make use of it performing the following:
+
+- Building from source code:
+
+  1. Watching a Git Repository or local directory for changes
+  1. Running tests from a developer-provided Tekton or Pipeline
+  1. Building a container image out of the source code with Buildpacks
+  1. Applying operator-defined conventions to the container definition
+  1. Deploying the application to the same cluster
+
+- Using a pre-built application image:
+
+  1. Applying operator-defined conventions to the container definition
+  1. Creating a Deliverable object for deploying the application to a cluster
 
 
 ## <a id="prerequisite"></a> Prerequisites
@@ -37,11 +31,13 @@ adds on top testing with Tekton:
 To make use this supply chain, it is required that:
 
 - Out of the Box Templates is installed
-- Out of the Box Delivery Basic is installed
 - Out of the Box Supply Chain With Testing **is installed**
 - Out of the Box Supply Chain With Testing and Scanning **is NOT installed**
 - Developer namespace is configured with the objects per Out of the Box Supply
   Chain Basic guidance. This supply chain is additive to the basic one.
+- (optionally) Install [Out of the Box Delivery
+  Basic](ootb-delivery-basic.html), if willing to deploy the application to the
+same cluster as where the Workload and supply chains.
 
 You can verify that you have the right set of supply chains installed (i.e. the
 one with Scanning and _not_ the one with testing) by running the following
@@ -71,27 +67,22 @@ To make sure you have configured the namespace correctly, it is important that
 the namespace has the following objects in it (including the ones marked with
 '_new_' whose explanation and details are provided below):
 
-- **image secret**: A Kubernetes secret of type
-  `kubernetes.io/dockerconfigjson` filled with credentials for pushing the
-   container images built by the supply chain.
-   For more information, see [Out of the Box Supply Chain Basic](ootb-supply-chain-basic.md).
+- **registries secrets**: Kubernetes secrets of type
+  `kubernetes.io/dockerconfigjson` that contains credentials for pushing and
+  pulling the container images built by the supply chain as well as the
+  installation of TAP
 
-- **service account**: The identity to be used for any interaction with the
-  Kubernetes API made by the supply chain.
   For more information, see [Out of the Box Supply Chain Basic](ootb-supply-chain-basic.md).
 
-- **role**: The set of capabilities that you want to assign to the service
-  account. It must provide the ability to manage all of the resources that the
-  supplychain is responsible for.
+- **service account**: The identity to be used for any
+  interaction with the Kubernetes API made by the supply chain
+
   For more information, see [Out of the Box Supply Chain Basic](ootb-supply-chain-basic.md).
 
-- **rolebinding**: Binds the role to the service account.
-  It grants the capabilities to the identity.
-  For more information, see [Out of the Box Supply Chain Basic](ootb-supply-chain-basic.md).
 
-- (Optional) **git credentials secret**: When using GitOps for managing the
-  delivery of applications or a private git source, this secret provides the
-  credentials for interacting with the git repository.
+- **rolebinding**: Grant to the identity the necessary roles
+  for creating the resources prescribed by the supply chain.
+
   For more information, see [Out of the Box Supply Chain Basic](ootb-supply-chain-basic.md).
 
 - **Tekton pipeline** (_new_): A pipeline runs whenever the supply chain
@@ -175,7 +166,8 @@ will be submitted to, you can submit your Workload.
 
 Regardless of the workflow being targeted (local development or gitops), the
 Workload configuration details are the same as in Out of the Box Supply Chain
-Basic, except that you mark the Workload as having tests enabled.
+Basic, except that you mark the Workload as having tests enabled via the
+`has-tests` label.
 
 For example:
 

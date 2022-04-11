@@ -6,7 +6,12 @@ The function experience on Tanzu Application Platform enables developers to depl
 
 This document describes how to create and deploy an HTTP function from an application accelerator starter template.
 
->**Caution:** This functionality is currently in beta and subject to changes based on users feedback - It is intended for evaluation and test purposes only.
+> **Important:** The functionality of beta features has been tested, but performance has not.
+> Features enter the beta stage for customers to gain early access to them and give feedback on their
+> design and behavior.
+> Beta features might undergo changes based on that feedback before leaving beta.
+> VMware discourages running beta features in production.
+> VMware doesn't guarantee that any beta feature can be upgraded in the future.
 
 ## <a id="prereqs"></a>Prerequisites
 

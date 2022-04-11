@@ -228,7 +228,7 @@ The following packages are part of the Tanzu Application Platform:
 
 ## <a id='profiles-and-packages'></a> Installation profiles in Tanzu Application Platform v1.1
 
-Tanzu Application Platform can be deployed via predefined profiles or individual packages. The profiles have been designed to allow the Tanzu Application Platform to scale across an organization's multi-cluster, multi-cloud or hybrid cloud infrastructure. These profiles are not meant to cover all customer’s use cases, but rather serve as a starting point to allow for further customization.
+Tanzu Application Platform can be deployed through predefined profiles or individual packages. The profiles are designed to allow the Tanzu Application Platform to scale across an organization's multi-cluster, multi-cloud, or hybrid cloud infrastructure. These profiles are not meant to cover all customer’s use cases, but rather serve as a starting point to allow for further customization.
 
 The following profiles are available in Tanzu Application Platform:
 

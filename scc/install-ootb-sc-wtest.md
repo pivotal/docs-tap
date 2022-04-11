@@ -143,7 +143,7 @@ Install by following these steps:
     ```
     tanzu package install ootb-supply-chain-testing \
       --package-name ootb-supply-chain-testing.tanzu.vmware.com \
-      --version 0.7.0-build.2 \
+      --version 0.7.0 \
       --namespace tap-install \
       --values-file ootb-supply-chain-testing-values.yaml
     ```
