@@ -2,53 +2,49 @@
 
 The Out of the Box Supply Chain, Delivery Basic and Templates packages provide
 a set of Kubernetes objects aiming at covering a reference path to production
-prescribed by VMware, but recognizing that each organization will have their
-own needs, any of those objects can be customized, from the individual
-templates for each resource, to the whole supply chains and delivery objects.
+prescribed by VMware, but recognizing that each organization has their
+own needs, any of those objects are customizable, from the individual
+templates for each resource, to the whole supply chains, and delivery objects.
 
-Depending on how Tanzu Application Platform has been installed, there will be different ways of
-achieving such customization of the out of the box supply chains.
+Depending on how Tanzu Application Platform is installed, there are different ways of
+customizing the out of the box supply chains.
 
-Below you'll find sections covering different ways that supply chains and
-templates can be authored within the context of profile-based Tanzu Application Platform
+Below you will find sections covering different ways that supply chains and
+templates are authored within the context of profile-based Tanzu Application Platform
 installations.
 
 
-## Providing your own supply chain
+## <a id="own-sup-chain"></a> Providing your own supply chain
 
-To create a supply chain from scratch and make it available for Workloads, all
-that's required is making sure that the supply chain does not conflict with the
-ones that are installed in the cluster, after all, those objects are
+To create a new supply chain and make it available for Workloads, make sure that the supply chain does not conflict with the
+ones that are installed on the cluster, as those objects are
 cluster-scoped.
 
-If this is your first time creating one, make sure to follow the tutorials from
-the Cartographer documentation:
-https://cartographer.sh/docs/v0.3.0/tutorials/first-supply-chain/
+If this is your first time creating one, follow the tutorials from
+the [Cartographer documentation](https://cartographer.sh/docs/v0.3.0/tutorials/first-supply-chain/).
 
-That said, it's important to observe that any supply chain installed in a Tanzu Application Platform
-cluster might suffer with two possible cases of collisions:
+Any supply chain installed in a Tanzu Application Platform
+cluster might with two possible cases of collisions:
 
-- **object name**: as mentioned before, supply chains (ClusterSupplyChain
-  resource) are cluster scoped (just like any Cartographer resource prefixed
-  with `Cluster`), so the name of the custom supply chain must be different
+- **object name**: supply chains are cluster scoped, such as any Cartographer resource prefixed
+  with `Cluster`, so the name of the custom supply chain must be different
   from the ones the Out of the Box packages provide.
 
   Either create a supply chain whose name is different, or remove the
   installation of the corresponding `ootb-supply-chain-*` from the Tanzu Application Platform.
 
-- **workload selection**: a Workload gets reconciled against a particular
+- **workload selection**: a Workload is reconciled against a particular
   supply chain based on a set of selection rules as defined by the supply
-  chains. If the rules for the supply chain to match a Workload is ambiguous,
-  the Workload will not make any progress.
+  chains. If the rules for the supply chain to match a Workload are ambiguous,
+  the Workload does not make any progress.
 
   Either create a supply chain whose selection rules are different from the
   ones used by the Out of the Box Supply Chain packages, or remove the 
   installation of the corresponding `ootb-supply-chain-*` from Tanzu Application Platform.
   
-  See [Selectors](https://cartographer.sh/docs/v0.3.0/architecture/#selectors)
-  to know more about it.
+  See [Selectors](https://cartographer.sh/docs/v0.3.0/architecture/#selectors).
 
-Currently (Tanzu Application Platform 1.1), the following selection rules are in place for the
+For Tanzu Application Platform 1.1, the following selection rules are in place for the
 supply chains of the corresponding packages:
 
 - _ootb-supply-chain-basic_
@@ -74,13 +70,13 @@ supply chains of the corresponding packages:
      - label `apps.tanzu.vmware.com/workload-type: web`
      - label `apps.tanzu.vmware.com/has-test: true`
 
-For details on how to modify an existing supply chain, check out the [Modifying
+For details about how to edit an existing supply chain, see [Modifying
 an Out of the Box Supply Chain](#modifying-an-out-of-the-box-supply-chain)
 section.
 
-In case a supply chain package must not be included in the installation to
-prevent any of the conflicts above, like any other package, using Tanzu Application Platform profiles
-we can prevent supply chains from being installed you can make use of the
+In case a supply chain package must not be in the installation to
+prevent any of the conflicts earlier, such as any other package, using Tanzu Application Platform profiles
+you can prevent supply chains from being installed you can use the
 `excluded_packages` property in `tap-values.yml`. For example:
 
 ```yaml
@@ -90,17 +86,16 @@ excluded_packages:
   - ootb-supply-chain-basic.apps.tanzu.vmware.com
   - ootb-supply-chain-testing.apps.tanzu.vmware.com
   - ootb-supply-chain-testing-scanning.apps.tanzu.vmware.com
-
 # comment out remove the `supply_chain` property
 #
 # supply_chain: ""
 ```
 
 
-## Providing your own templates
+## <a id="templates"></a> Providing your own templates
 
 Similar to supply chains, Cartographer templates (`Cluster*Template` resources)
-are cluster-scoped, so we must make sure that the new templates being submitted
+are cluster-scoped, so we<!-- |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. --> must make sure<!-- Redundant? |Make sure you do X.| is weaker than |Do x.| --> that the new templates being submitted
 to the cluster do not conflict with the ones installed by the `ootb-templates`
 package.
 
@@ -126,14 +121,14 @@ Currently, the following set of objects are provided by `ootb-templates`:
 - ClusterTemplate/**config-writer-template**
 - ClusterTemplate/**deliverable-template**
 
-Before submitting your own, make sure that either the name and resource has no
+Before submitting your own, ensure that either the name and resource has no
 conflicts with the ones installed by `ootb-templates`, or exclude from the
 installation the template you want to override making use of the
 `excluded_templates` property of `ootb-templates`.
 
-For example, if we wanted to override the `ClusterConfigTemplate` named
-`config-template` to provide our own with the very same name (so that we don't
-need to modify the supply chain), in `tap-values.yml` exclude the Tanzu Application Platform-provided
+For example, if you want to override the `ClusterConfigTemplate` named
+`config-template` to provide your own with the same name, so that you don't
+need to edit the supply chain. In `tap-values.yml`, exclude the Tanzu Application Platform-provided
 template:
 
 ```yaml
@@ -142,27 +137,26 @@ ootb_templates:
     - 'config-writer'
 ```
 
-For details on how to modify an existing template, check out the 
-[Modifying an Out of the Box Supply template](#modifying-an-out-of-the-box-template)
+For details about how to edit an existing template, see 
+[Modifying an Out of the Box Supply template](#modifying-an-out-of-the-box-template) 
 section.
 
 
-## Modifying an Out of the Box Supply Chain
+## <a id="modify-sc"></a> Modifying an Out of the Box Supply Chain
 
-In case either the shape of a supply chain or the templates that it points at
-should be slightly changed, we recommend following the steps below:
+In case either the shape of a supply chain or the templates that it points to must be changed, VMware recommends the following:
 
 1. Copy one of the reference supply chains
-1. Remove the old one (see [preventing Tanzu Application Platform supply chains from being
-   installed](#preventing-tap-supply-chains-from-being-installed))
-1. Modify the supply chain object
+1. Remove the old supply chain. See [preventing Tanzu Application Platform supply chains from being
+   installed](#preventing-tap-supply-chains-from-being-installed).
+1. Edit the supply chain object
 1. Submit the modified supply chain to the cluster
 
-### Example
+### <a id="NAME"></a> Example
 
-Suppose that we have a new `ClusterImageTemplate` object named `foo` that we
+If you have a new `ClusterImageTemplate` object named `foo` that you
 want use for building container images instead of the out of the box one that
-makes use of Kpack for that, and the supply chain that we want to apply such
+makes use of Kpack for that, and the supply chain that you want to apply such
 modification to is the `source-to-url` provided by the
 `ootb-supply-chain-basic` package.
 
@@ -207,7 +201,7 @@ modification to is the `source-to-url` provided by the
     └── values.yaml
     ```
 
-1. Modify the desired supply chain to swap the template with another
+1. Edit the desired supply chain to swap the template with another
 
     ```diff
     --- a/supply-chain.yaml
@@ -226,7 +220,7 @@ modification to is the `source-to-url` provided by the
 4. Submit the supply chain to Kubernetes
 
     The supply chain definition found in the bundle expects some values (the
-    ones one provide via `tap-values.yml`) to be interpolated via YTT before
+    ones one provide through `tap-values.yml`) to be interpolated through YTT before
     being submitted to Kubernetes, so before applying the modified supply chain
     to the cluster, use YTT to interpolate those values and then apply:
 
@@ -239,20 +233,17 @@ modification to is the `source-to-url` provided by the
       kubectl apply -f-
     ```
 
-    > **Note:** the modified supply chain will not outlive the destruction of
-    > the cluster. It's recommended that it gets saved somewhere (e.g., a git
-    > repsository) to be installed on every cluster where the supply chain is
-    > expected to exist.
+    >**Note:** The modified supply chain does not outlive the destruction of the cluster. VMware recommends that it gets saved somewhere, such as a git repository, to install on every cluster where the supply chain is expected to exist.
 
 
-## Modifying an Out of the Box Supply template
+## a id="modify-ootb-sc"></a> Modifying an Out of the Box Supply template
 
 The Out of the Box Templates package (`ootb-templates`) concentrates all the
-templates and shared Tekton Tasks used by the supply chains shipped via
+templates and shared Tekton tasks used by the supply chains shipped through
 `ootb-supply-chain-*` packages.
 
-Any templates that one wishes to modify (for example, to change details about
-the resources that are created based on them) would be found as part of this
+Any templates that you want to edit, such as to change details about
+the resources that are created based on them, are found as part of this
 package.
 
 The workflow for getting any of them updated goes as follows:
@@ -261,17 +252,17 @@ The workflow for getting any of them updated goes as follows:
 1. Exclude that template from set of objects provided by `ootb-templates` (see
    `excluded_templates` in [Providing your Own
    Templates](#providing-your-own-templates))
-1. Modify the template
+1. Edit the template
 1. Submit the modified template to the cluster
 
-Note that in this case we don't need to change anything related to supply
+>**Note:** That in this case you don't need to< change anything related to supply
 chains - because we're preserving the name of the object (which is referenced
-to by the supply chain), no changes to the supply chain would be necessary.
+ by the supply chain), no changes to the supply chain would be necessary.
 
 
-### Example
+### <a id="example"></a> Example
 
-Suppose that we want to update the `ClusterImageTemplate` object called
+If that you want to update the `ClusterImageTemplate` object called
 `kpack-template` that provides a template for `kpack/Image`s to be created to
 hardcode some environment variable.
 
@@ -311,7 +302,7 @@ installs by upating `tap-values.yml`
     Succeeded
     ```
 
-1. Observe that we've downloaded all the templates
+1. Observe that you've downloaded all the templates
 
     ```bash
     tree ./ootb-templates
@@ -327,7 +318,7 @@ installs by upating `tap-values.yml`
     └── values.yaml
     ```
 
-1. Change the property we want to change
+1. Change the property you want to change
 
     ```diff
     --- a/config/kpack-template.yaml
@@ -346,16 +337,15 @@ installs by upating `tap-values.yml`
 1. Submit the template
 
 
-With the template now submitted, because the name of the template has been
-preserved but the contents changed, the supply chains will now all embed to the
+With the template now submitted, because the name of the template is
+preserved but the contents changed, the supply chains are now all embed to the
 build of the application container images that `FOO` environment variable.
 
 
-## Live modification of supply chains and templates
+## <a id="live-mod"></a> Live modification of supply chains and templates
 
-In the sections above we covered how one can update the supply chains or
-templates that have been installed in a cluster, but haven't touched on how one
-could experiment with them making small changes in a live setup with plain
+In the sections earlier, you covered how one can update the supply chains or
+templates that are installed in a cluster, but haven't touched on how you can experiment with them making small changes in a live setup with plain
 `kubectl edit`, covered in this section.
 
 When installing Tanzu Application Platform making use of profiles, a `PackageInstall` object is
@@ -371,16 +361,15 @@ PackageInstall/tap
   └─ PackageInstall/tekton-pipelines
 ```
 
-Being the installation based on Kubernetes primitives, PackageInstall will
-relentlessly try to achieve the state of having all the packages installed.
+Being the installation based on Kubernetes primitives, PackageInstall tries to achieve the state of having all the packages installed.
 
 This is great in overall, but it presents some challenges for modifying the
 contents of some of the objects that the installation submits to the cluster:
-any live modifications to them will result in the original definition being
+any live modifications to them result in the original definition being
 persisted instead of the changes.
 
-Given that, before we perform any customizations to what's been provided out of
-the box via the Out of the Box packages, we need to pause the top-level
+Given that, before you perform any customizations to what is provided out of
+the box through the Out of the Box packages, you must pause the top-level
 `PackageInstall/tap` object:
 
 
@@ -388,12 +377,12 @@ the box via the Out of the Box packages, we need to pause the top-level
 kubectl edit -n tap-install packageinstall tap
 ```
 ```console
-apiVersion: packaging.carvel.dev/v1alpha1
+apiVersion: packaging.carvel.dev/v1alpha1<!-- If this is a URL then you likely need to present it per xref rules: https://confluence.eng.vmware.com/display/IXCS/Links%2C+Cross-References%2C+and+Citations -->
 kind: PackageInstall
 metadata:
   name: tap
   namespace: tap-install
-spec:
+spec<!-- |specifications| is preferred. -->:
   paused: true                    # ! set this field to `paused: true`.
   packageRef:
     refName: tap.tanzu.vmware.com
@@ -402,23 +391,23 @@ spec:
 ```
 
 With the installation of Tanzu Application Platform paused, all of the currently installed components
-will still be there, but any changes to those children PackageInstall objects
-will not be overwritten.
+are still there, but any changes to those children PackageInstall objects
+are not overwritten.
 
-Now we can move on to pausing the PackageInstall objects that relate to the
-templates/supply chains we want to modify. 
+Now you can move on to pausing the PackageInstall objects that relate to the
+templates/supply chains you want to edit. 
 
 For example:
 
-- to modify templates: `kubectl edit -n tap-install packageinstall
+- to edit templates: `kubectl edit -n tap-install packageinstall
   ootb-templates`
 
-- to modify the basic supply chains: `kubectl edit -n tap-install
+- to edit the basic supply chains: `kubectl edit -n tap-install
   packageinstall ootb-supply-chain-basic`
 
 setting `packageinstall.spec.paused: true`.
 
-With the installations now paused, any further live changes to templates/supply
-chains will be persisted until the PackageInstalls are reverted to not being
+With the installations now paused, any further live changes to templates/supply 
+chains are persisted until the PackageInstalls are reverted to not being
 paused. To persist the changes, follow the steps outlined in the sections
-above.
+earlier.
