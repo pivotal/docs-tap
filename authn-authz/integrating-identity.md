@@ -5,7 +5,7 @@ You can manage authentication at the infrastructure level with your Kubernetes p
 such as Tanzu Kubernetes Grid, EKS, AKS, or GKE.
 
 VMware recommends Pinniped for integrating your identity management into Tanzu Application Platform 
-on multi-cloud. It provides many supported integrations for widely used identity providers.
+on multicloud. It provides many supported integrations for widely used identity providers.
 To use Pinniped, see [Installing Pinniped on a single cluster](pinniped-install-guide.md) and
 [Logging in using Pinniped](pinniped-login.md).
 

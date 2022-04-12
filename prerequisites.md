@@ -80,7 +80,7 @@ providers:
 * Minikube
     * Reference the resource requirements below
     * Hyperkit driver is supported on macOS only; Docker driver is not supported.
-* Tanzu Kubernetes Grid multi-cloud
+* Tanzu Kubernetes Grid multicloud
 * vSphere with Tanzu v7.0 U3a (not possible with Tanzu Application Platform v1.0.0 or earlier).<br>
 For vSphere with Tanzu, [pod security policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/)
 must be configured so that Tanzu Application Platform controller pods can run as root.

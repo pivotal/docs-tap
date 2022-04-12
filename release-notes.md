@@ -20,7 +20,7 @@ This release includes the following changes, listed by component and area.
 #### Installing
 
 There are four new profiles available, and additions to the Full profile.
-The inclusion of new profiles supports a multi-cluster deployment architecture.
+The inclusion of new profiles supports a multicluster deployment architecture.
 
 * **Tanzu Application Platform profile - Iterate** is intended for iterative development in contrast to the path to production.
 
@@ -55,7 +55,7 @@ For more information, see [Overview of Default Roles](authn-authz/overview.md).
 
 #### Application Live View
 
-- Application Live View supports a multi-cluster setup now
+- Application Live View supports a multicluster setup now
 - Application Live View components are split into three bundles with new package reference names (backend, connector, conventions)
 - Application Live View Convention Service is compatible with cert-manager v1.7.1
 - Application Live View Convention takes the management port setting from the Spring Boot Convention into account
