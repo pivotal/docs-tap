@@ -25,12 +25,6 @@ Because best practices do not include committing binaries to source code reposit
 fails to find vulnerabilities during a Source Scan. The vulnerabilities are still found during the
 Image Scan, after the binaries are built and packaged as images.
 
-#### Supply Chain Security Tools – Scan
-
-- **Two scan jobs and two scan pods appear at the same time**: There is an edge case where two scan
-jobs and two scan pods appear when a scan policy is updated.
-This does not affect the result of the scan.
-- **Scan Phase indicates `Scanning` incorrectly:** Scans have an edge case where, when an error
 occurs during scanning, the Scan Phase field is not updated to `Error` and remains in the
 `Scanning` phase. Read the scan pod logs to verify that there was an error.
 

@@ -161,7 +161,7 @@ spec:
     token: lab-markdown-sample
 ```
 
-In this example the same name as the workshop environment is used, which is probably not a good practice. Use a random value instead. The token value can be multi-line.
+In this example the same name as the workshop environment is used, which is probably not a good practice. Use a random value instead. The token value can be multiline.
 
 As a second measure of control, you can specify what namespaces the `WorkshopRequest` must be created in to be successful. This means a user must have the specific ability to create `WorkshopRequest` resources in one of those namespaces.
 
