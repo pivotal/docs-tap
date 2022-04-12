@@ -1051,7 +1051,7 @@ The `Secret` contains required credentials and connectivity information for the 
 
 Typically, APIs that include these resource types are installed onto the Tanzu Application Platform
 cluster as Kubernetes Operators and providing CRDs and controllers to reconcile them,
-as is the case with the three Kubernetes Operators listed above. <!-- need to clarify -->
+as is the case with the three Kubernetes Operators listed above. <!-- clarify? -->
 
 ### <a id="stk-user-roles"></a> User roles and responsibilities
 
@@ -1078,21 +1078,21 @@ each user role.
   <tr>
     <td>Application operator</td>
     <td>
-      Yes - <a href="https://docs.vmware.com/en/Tanzu-Application-Platform/1.1/tap/GUID-default-roles-role-descriptions.html#appoperator-2">app-operator</a> <!-- broken. where should this link go? -->
+      Yes - <a href="authn-authz/role-descriptions.md#app-operator">app-operator</a>
     </td>
     <td>Life cycle management (CRUD) of Resource Claims</td>
   </tr>
   <tr>
     <td>Application developer</td>
     <td>
-      Yes - <a href="https://docs.vmware.com/en/Tanzu-Application-Platform/1.1/tap/GUID-default-roles-role-descriptions.html#appeditor-0">app-editor</a> <!-- broken. where should this link go? -->
-      and <a href="https://docs.vmware.com/en/Tanzu-Application-Platform/1.1/tap/GUID-default-roles-role-descriptions.html#appviewer-1">app-viewer</a> <!-- broken. where should this link go? -->
+      Yes - <a href="authn-authz/role-descriptions.md#app-editor">app-editor</a>
+      and <a href="authn-authz/role-descriptions.md#app-viewer">app-viewer</a>
     </td>
     <td>Binding service instances to application workloads</td>
   </tr>
 </table>
 
-### <a id="stk-walkthrough"></a> Walkthrough <!-- not too happy with this heading name -->
+### <a id="stk-walkthrough"></a> Walkthrough <!-- maybe change this heading name? -->
 
 This section guides you through deploying two application workloads and learning
 how to configure them to communicate over RabbitMQ.
