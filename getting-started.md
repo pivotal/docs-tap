@@ -1032,13 +1032,14 @@ The following list of Kubernetes Operators expose APIs that integrate well with 
 1. [VMware Tanzu SQL with Postgres for Kubernetes](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-Postgres-for-Kubernetes/index.html)
 1. [VMware Tanzu SQL with MySQL for Kubernetes](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-MySQL-for-Kubernetes/index.html)
 
-Compatibility of services on Tanzu Application Platform exists as a scale, rather
-than a "works" compared to "doesn't work" option.
+Whether a service is compatible with Tanzu Application Platform is on a scale
+between fully compatible and incompatible.
 
-At present, the minimum requirement for compatibility is that there must exist a declarative,
-Kubernetes-based API on which there is at least one API resource type adhering to the [Provisioned Service](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-MySQL-for-Kubernetes/index.html) <!-- why this link? -->
+The minimum requirement for compatibility is that there must be a declarative,
+Kubernetes-based API on which there is at least one API resource type adhering to the
+[Provisioned Service](https://github.com/servicebinding/spec#provisioned-service)
 duck type defined by the [Service Binding for Kubernetes](https://servicebinding.io/) standard.
-In other words, any resource type with the following schema:
+This duck type includes any resource type with the following schema:
 
 ```yaml
 status:
@@ -1050,8 +1051,9 @@ The value of `.status.binding.name` must point to a `Secret` in the same namespa
 The `Secret` contains required credentials and connectivity information for the resource.
 
 Typically, APIs that include these resource types are installed onto the Tanzu Application Platform
-cluster as Kubernetes Operators and providing CRDs and controllers to reconcile them,
-as is the case with the three Kubernetes Operators listed above. <!-- clarify? -->
+cluster as Kubernetes Operators.
+These Kubernetes Operators provide CRDs and corresponding controllers to reconcile
+the resources of the CRDs, as is the case with the three Kubernetes Operators listed above.
 
 ### <a id="stk-user-roles"></a> User roles and responsibilities
 
@@ -1141,7 +1143,7 @@ For this part of the walkthrough, you assume the role of the **service operator*
 
 To set up a service:
 
-1. Use `kapp` to install the RabbitMQ Cluster Kubernetes Operator by running: <!-- add kapp + kubectl as a prereq or first step? -->
+1. Use `kapp` to install the RabbitMQ Cluster Kubernetes Operator by running:
 
     ```
     kapp -y deploy --app rmq-operator --file https://github.com/rabbitmq/cluster-operator/releases/download/v1.9.0/cluster-operator.yml
