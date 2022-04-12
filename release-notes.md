@@ -289,14 +289,6 @@ For Java, dependency lock files are not guaranteed, so Grype instead uses the de
 
 Because VMware discourages committing binaries to source code repositories, Grype fails to find vulnerabilities during a Source Scan. The vulnerabilities are still found during the Image Scan, after the binaries are built and packaged as images.
 
-#### Supply Chain Choreographer plug-in
-
-- **Details for ConfigMap CRD not appearing:** The error `Unable to retrieve conditions for ConfigMap...`
-appears in the details section after clicking on the ConfigMap stage in the
-graph view of a supply chain.
-This error does not necessarily mean that the workload failed its execution through the supply chain.
-- **Scan results not shown:** Current CVEs found during Image or Build scanning do not appear. However, results are still present in the metadata store and are available by using the Tanzu CLI.
-
 #### Supply Chain Security Tools - Scan
 
 - **Scan Phase indicates `Scanning` incorrectly:** Scans have an edge case that when an error
@@ -361,6 +353,18 @@ This error does not necessarily mean that the workload failed its execution thro
 
     The Runtime Resources tab shows cluster query errors when attempting to retrieve Kubernetes object details from non-full-profile clusters.
 
-- **Supply Chain displays incorrect data if there are workloads with same name and namespace:**
+- **Supply Chain Choreographer page displays incorrect data if there are workloads with same name and namespace:**
 
     When there are two Workloads that have the same name and namespace but live on different clusters, clicking either of them in the supply chain page will always show the details for the first one, and there is no way to access details for the second.
+
+- **Supply Chain Choreographer page - details for ConfigMap CRD not appearing:**
+
+    The error `Unable to retrieve conditions for ConfigMap...`
+    appears in the details section after clicking on the ConfigMap stage in the
+    graph view of a supply chain.
+    This error does not necessarily mean that the workload failed its execution through the supply chain.
+
+- **Supply Chain Choreographer page not showing scan results:**
+
+    Current CVEs found during Image or Build scanning do not appear. However, results are still present in the metadata store and are available by using the Tanzu CLI.
+
