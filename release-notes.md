@@ -182,11 +182,6 @@ API version `scanning.apps.tanzu.vmware.com/v1alpha1` is deprecated.
 - Renamed all instances of the `create` verb as `add` for all CLI commands.
 
 
-### <a id='1-1-security-issues'></a> Security issues
-
-This release has no known security issues.
-
-
 ### <a id='1-1-resolved-issues'></a> Resolved issues
 
 This following issues, listed by area and component, are resolved in this release.
