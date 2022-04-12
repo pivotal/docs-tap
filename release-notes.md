@@ -54,7 +54,6 @@ For more information, see [Overview of Default Roles](authn-authz/overview.md).
 - Application Live View Convention takes the management port setting from the Spring Boot Convention into account
 - Structured JSON logging is integrated into Application Live View Backend and Application Live View Convention
 - Updated Spring Native v0.10.5v to v0.10.6
-- Updated Spring Boot to v2.5.12 to address [CVE-2022-22965](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-22965) and [CVE-2020-36518](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-36518)
 
 #### Tanzu CLI - Apps plug-in
 
@@ -185,6 +184,10 @@ None.
 #### <a id="app-acc-resolved"></a> Application Accelerator
 
 - Accelerator engine no longer fails with "java.lang.OutOfMemoryError: Direct buffer memory" when processing very large Git repositories.
+
+#### <a id="alv-resolved"></a> Application Live View
+
+Updated Spring Boot to v2.5.12 to address [CVE-2022-22965](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-22965) and [CVE-2020-36518](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-36518)
 
 #### Services Toolkit
 
