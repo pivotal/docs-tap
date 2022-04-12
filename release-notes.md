@@ -28,6 +28,10 @@ Image Scan, after the binaries are built and packaged as images.
 occurs during scanning, the Scan Phase field is not updated to `Error` and remains in the
 `Scanning` phase. Read the scan pod logs to verify that there was an error.
 
+#### Tanzu Application Platform GUI
+
+- This release is vulnerable to [CVE-2021-3918](https://nvd.nist.gov/vuln/detail/CVE-2021-3918) from the json-schema package
+
 ### <a id='1-0-3-resolved-issues'></a> Resolved issues
 
 This release has the following fix:
@@ -65,6 +69,10 @@ This does not affect the result of the scan.
 - **Scan Phase indicates `Scanning` incorrectly:** Scans have an edge case where, when an error
 occurs during scanning, the Scan Phase field is not updated to `Error` and remains in the
 `Scanning` phase. Read the scan Pod logs to verify if there was an error.
+
+#### Tanzu Application Platform GUI
+
+- This release is vulnerable to [CVE-2021-3918](https://nvd.nist.gov/vuln/detail/CVE-2021-3918) from the json-schema package
 
 ### <a id='1-0-2-resolved-issues'></a> Resolved issues
 
@@ -142,6 +150,10 @@ invalid accelerator.
 - Application Live View connector now handles stream reset exceptions
 - Increased requests and limits for Application Live View connector to fix pod restarts
 - CVE vulnerability fix to update `protobuf-java` to `3.19.2` in the connector
+
+#### Tanzu Application Platform GUI
+
+- This release is vulnerable to [CVE-2021-3918](https://nvd.nist.gov/vuln/detail/CVE-2021-3918) from the json-schema package
 
 ### <a id='1-0-1-resolved-issues'></a> Resolved issues
 
@@ -403,6 +415,10 @@ Attempting to create two or more application workloads while specifying the same
 value causes only one of the workloads to bind to the service instance and reconcile successfully.
 This limitation is planned to be relaxed in an upcoming release.
 * The `tanzu services` CLI plug-in is not compatible with Kubernetes clusters running on GKE.
+
+#### Tanzu Application Platform GUI
+
+- This release is vulnerable to [CVE-2021-3918](https://nvd.nist.gov/vuln/detail/CVE-2021-3918) from the json-schema package
 
 ### <a id='1-0-security-issues'></a> Security issue
 
