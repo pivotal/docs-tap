@@ -19,7 +19,8 @@ This release includes the following changes, listed by component and area.
 
 #### Installing
 
-There are 4 new profiles available, and additions to the Full profile. The inclusion of new profiles supports a multi-cluster deployment architecture.
+There are four new profiles available, and additions to the Full profile.
+The inclusion of new profiles supports a multi-cluster deployment architecture.
 
 * **Tanzu Application Platform profile - Iterate** is intended for iterative development in contrast to the path to production.
 
@@ -116,7 +117,7 @@ For more information, see [Overview of Default Roles](authn-authz/overview.md).
 
 #### Supply Chain Security Tools - Scan
 
-- Support for configuring Supply Chain Security Tools - Scan to remotely connect to Supply Chain Security Tools - Store in a different cluster.
+Support for configuring Supply Chain Security Tools - Scan to remotely connect to Supply Chain Security Tools - Store in a different cluster.
 
 #### Supply Chain Security Tools - Sign
 
@@ -129,7 +130,7 @@ For more information, see [Overview of Default Roles](authn-authz/overview.md).
 - Added Contour Ingress support with custom domain name
 - Created Tanzu CLI plug-in called `insight`. Currently, `insight` plug-in only supports macOS and Linux.
 
-#### <a id="gui-features"></a> Tanzu Application Platform GUI
+#### Tanzu Application Platform GUI
 
 - Added improvements to the information presentation and filtering mechanisms of the Runtime Resources tab
 - Added the new Supply Chain plug-in
@@ -164,13 +165,16 @@ For more information, see [Functions](workloads/functions.md).
 
 ### <a id='1-1-breaking-changes'></a> Breaking changes
 
+This release has the following breaking changes, listed by area and component.
+
+
 #### <a id="app-acc-changes"></a> Application Accelerator
 
 When enabling ingress, the TLS support must now be explicitly enabled using `ingress.tls_enable`.
 
 #### Supply Chain Security Tools - Scan
 
-**Deprecated API version:** API version `scanning.apps.tanzu.vmware.com/v1alpha1` is deprecated.
+API version `scanning.apps.tanzu.vmware.com/v1alpha1` is deprecated.
 
 #### Supply Chain Security Tools - Store
 
@@ -185,11 +189,11 @@ This release has no known security issues.
 
 ### <a id='1-1-resolved-issues'></a> Resolved issues
 
-This following issues in this release, listed by area and component, are resolved.
+This following issues, listed by area and component, are resolved in this release.
 
 #### <a id="app-acc-resolved"></a> Application Accelerator
 
-- Accelerator engine no longer fails with `java.lang.OutOfMemoryError: Direct buffer memory` when processing very large Git repositories.
+Accelerator engine no longer fails with `java.lang.OutOfMemoryError: Direct buffer memory` when processing very large Git repositories.
 
 #### <a id="alv-resolved"></a> Application Live View
 
@@ -319,26 +323,26 @@ This error does not necessarily mean that the workload failed its execution thro
   ```
 #### Supply Chain Security Tools - Store
 
-- **`insight` CLI plug-in does not support Windows:**
+- **Tanzu Insight CLI plug-in does not support Windows:**
 
-    Currently, `insight` plug-in only supports macOS and Linux.
+    Currently, the Tanzu Insight plug-in only supports macOS and Linux.
 
 - **Existing packages with new vulnerabilities not updated:**
 
-    It is a known issue that **Supply Chain Security Tools - Store** does not correctly save new vulnerabilities for a package that was already submitted in a previous report. This issue causes new vulnerabilities not saved to the database.
+    It is a known issue that Supply Chain Security Tools - Store does not correctly save new vulnerabilities for a package that was already submitted in a previous report. This issue causes new vulnerabilities not saved to the database.
 
 - **Persistent volume retains data:**
 
-    If **Supply Chain Security Tools - Store** is deployed, deleted, redeployed, and the database password is changed during the redeployment, the `metadata-store-db` pod fails to start.
+    If Supply Chain Security Tools - Store is deployed, deleted, redeployed, and the database password is changed during the redeployment, the `metadata-store-db` pod fails to start.
     The cause is the persistent volume that PostgreSQL uses retaining old data, even though the retention policy is set to `DELETE`.
 
     To resolve this issue, see [solution](scst-store/troubleshooting.md#persistent-volume-retains-data-solution).
 
 - **Missing persistent volume:**
 
-    After **Supply Chain Security Tools - Store** is deployed, `metadata-store-db` pod might fail for missing
+    After Supply Chain Security Tools - Store is deployed, `metadata-store-db` pod might fail for missing
     volume while `postgres-db-pv-claim` pvc is in the `PENDING` state.
-    This issue might occur if the cluster where **Supply Chain Security Tools - Store** is deployed does not have
+    This issue might occur if the cluster where Supply Chain Security Tools - Store is deployed does not have
     `storageclass` defined.
 
     The provisioner of `storageclass` is responsible for creating the persistent volume after
@@ -347,7 +351,7 @@ This error does not necessarily mean that the workload failed its execution thro
 
 - **No support for installing in custom namespaces:**
 
-    **Supply Chain Security Tools — Store** is deployed to the `metadata-store` namespace.
+    Supply Chain Security Tools — Store is deployed to the `metadata-store` namespace.
     There is no support for configuring the namespace.
 
 #### Tanzu Application Platform GUI
