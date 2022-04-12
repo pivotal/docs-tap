@@ -2,20 +2,26 @@
 
 This topic contains release notes for Tanzu Application Platform v1.1
 
+
 ## <a id='1-1'></a> v1.1
 
-**Release Date**: MMMM DD, 2022
+**Release Date**: April 12, 2022
+
+
+### Prerequisites
+
+Installation requires Kubernetes clusters v1.21, v1.22, or v1.23.
+See [prerequisites](prerequisites.md) for supported Kubernetes platforms.
 
 ### <a id='1-1-new-features'></a> New features
 
-### Prerequisites
-Installation requires Kubernetes clusters v1.21, v1.22, or v1.23. See [prerequisites](./prerequisites.md) for supported Kubernetes platforms.
-
+This release includes the following changes, listed by component and area.
 
 #### Installing
+
 There are 4 new profiles available, and additions to the Full profile. The inclusion of new profiles supports a multi-cluster deployment architecture.
 
-* **Tanzu Application Platform profile - Iterate** is intended for iterative development versus the path to production.
+* **Tanzu Application Platform profile - Iterate** is intended for iterative development in contrast to the path to production.
 
 * **Tanzu Application Platform profile - Build** is intended for the transformation of source revisions to workload revisions. Specifically, it's for hosting workloads and SupplyChains.
 
@@ -44,7 +50,7 @@ For more information, see [Overview of Default Roles](authn-authz/overview.md).
 #### <a id="app-acc-features"></a> Application Accelerator
 
 - Option values can now be validated using regex
-- TLS for ingress are enabled using `ingress.enable_tls` flag during package install
+- TLS for ingress is enabled using `ingress.enable_tls` flag during package install
 
 #### Application Live View
 
@@ -61,16 +67,15 @@ For more information, see [Overview of Default Roles](authn-authz/overview.md).
   - Accept `workload.yaml` from stdin (through `--file -`).
   - Enable providing `spec.build.env` values (through new `–build.env` flag).
   - When `--git-repo` and `--git-tag` are provided, `git-branch` is not required.
-  - Add new `--annotations` flag. Annotation(s) provided are propagated to the running pod for the workload.
+  - Add new `--annotations` flag. Annotations provided are propagated to the running pod for the workload.
 - `workload list`:
   - Shorthand `-A` can be passed in for `--all-namespaces`.
 - `workload get`:
   - Service Claim details are returned in command output.
-  - The existing STATUS value in the Pods table in the output reflects when a pod is “Terminating.”
-
-**Deprecation**
-* The `namespace` value you can pass for the `--service-ref` flag is deprecated.
-  * A deprecation warning message is added to the `workload create/update/apply...` when user specifies a namespace in the `--service-ref` object.
+  - The existing STATUS value in the pods table in the output reflects when a pod is terminating.
+- Deprecation
+  - The `namespace` value you can pass for the `--service-ref` flag is deprecated.
+  - A deprecation warning message is added to the `workload create/update/apply...` when user specifies a namespace in the `--service-ref` object.
 
 #### Service Bindings
 
@@ -81,9 +86,7 @@ For more information, see [Overview of Default Roles](authn-authz/overview.md).
 
 #### Source Controller
 
-- Enable Source Controller to connect to image registries that use self-signed or private certificate authorities to support airgapped installations
-  - This is an optional configuration
-  - See [Source Controller Installation](source-controller/install-source-controller.md) for details
+- Enable Source Controller to connect to image registries that use self-signed or private certificate authorities to support air-gapped installations. This is an optional configuration. See [Source Controller Installation](source-controller/install-source-controller.md) for details.
 - Applied [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339) timestamps to source controller logs.
 - Added Tanzu Application Platform aggregate roles to support Tanzu Application Platform Authentication and Authorization (new feature referenced above).
 
@@ -94,15 +97,15 @@ For more information, see [Overview of Default Roles](authn-authz/overview.md).
   platform by preventing access to actuator endpoints. Actuator endpoints
   can leak sensitive information and allow access to trigger actions that can impact the app.
   - If the app explicitly sets the management port using the `JAVA_TOOL_OPTIONS`
-  in the `workload.yaml`, the Spring Boot conventions will respect that setting
-  and will not set the management port to `8081`. For more information, see
+  in the `workload.yaml`, the Spring Boot conventions respect that setting
+  and do not set the management port to `8081`. For more information, see
   [Set the `JAVA_TOOL_OPTIONS` property for a workload](spring-boot-conventions/reference/CONVENTIONS.md#set-java-tool-options).
   - The convention overrides other common management port configuration methods
   such as `application.properties/yml` and `config server`.
 - **RFC-3339 timestamps:** Applied [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339) timestamps to service binding logs.
 - **Added Kubernetes liveness and readiness probes by using Spring Boot health endpoints:**
   - This convention is applied to Spring Boot v2.6 and later apps.
-  - The probes will be exposed on the main serving port for the app, which is port `8080` by default.
+  - The probes are exposed on the main serving port for the app, which is port `8080` by default.
 
 #### Supply Chain Choreographer
 
@@ -124,8 +127,7 @@ For more information, see [Overview of Default Roles](authn-authz/overview.md).
 #### Supply Chain Security Tools - Store
 
 - Added Contour Ingress support with custom domain name
-- Created Tanzu CLI plug-in called `insight`
-  - Currently, `insight` plug-in only supports MacOS and Linux
+- Created Tanzu CLI plug-in called `insight`. Currently, `insight` plug-in only supports macOS and Linux.
 
 #### <a id="gui-features"></a> Tanzu Application Platform GUI
 
@@ -151,39 +153,43 @@ Plug-in improvements and additions include:
 
 #### Functions (Beta)
 
-The function experience on Tanzu Application Platform enables developers to deploy functions, use starter templates to bootstrap their function and write only the code that matters to your business. Developers can run a single CLI command to deploy their functions to an auto-scaled cluster.
-
->**Note:** This functionality is in beta and subject to changes based on users feedback. It is intended for evaluation and test purposes only.
+Tanzu Application Platform enables developers to deploy functions, use starter templates to bootstrap
+their functions and write only the code that matters to your business.
+Developers can run a single CLI command to deploy their functions to an auto-scaled cluster.
+This feature is in beta and subject to changes based on users feedback.
+It is intended for evaluation and test purposes only.
 
 For more information, see [Functions](workloads/functions.md).
+
 
 ### <a id='1-1-breaking-changes'></a> Breaking changes
 
 #### <a id="app-acc-changes"></a> Application Accelerator
 
-- When enabling ingress the TLS support must now be explicitly enabled using `ingress.tls_enable`.
+When enabling ingress, the TLS support must now be explicitly enabled using `ingress.tls_enable`.
 
 #### Supply Chain Security Tools - Scan
 
-- **Deprecated API version:** API version `scanning.apps.tanzu.vmware.com/v1alpha1` is deprecated.
+**Deprecated API version:** API version `scanning.apps.tanzu.vmware.com/v1alpha1` is deprecated.
 
 #### Supply Chain Security Tools - Store
 
-- The independent `insight` CLI is deprecated, customers can now use Tanzu CLI plugin called `insight`.
-  - Renamed all instances of `create` verb to `add` for all CLI commands.
-  - Currently, `insight` plug-in only supports MacOS and Linux.
+- The independent `insight` CLI is deprecated. You can now use the Tanzu CLI plug-in Tanzu Insight, which currently supports macOS and Linux only.
+- Renamed all instances of the `create` verb as `add` for all CLI commands.
+
 
 ### <a id='1-1-security-issues'></a> Security issues
 
-This release has the following security issues:
+This release has no known security issues.
 
-None.
 
 ### <a id='1-1-resolved-issues'></a> Resolved issues
 
+This following issues in this release, listed by area and component, are resolved.
+
 #### <a id="app-acc-resolved"></a> Application Accelerator
 
-- Accelerator engine no longer fails with "java.lang.OutOfMemoryError: Direct buffer memory" when processing very large Git repositories.
+- Accelerator engine no longer fails with `java.lang.OutOfMemoryError: Direct buffer memory` when processing very large Git repositories.
 
 #### <a id="alv-resolved"></a> Application Live View
 
@@ -191,8 +197,8 @@ Updated Spring Boot to v2.5.12 to address [CVE-2022-22965](https://cve.mitre.org
 
 #### Services Toolkit
 
-- Resolved an issue with the `tanzu services` CLI plug-in which meant it was not compatible with Kubernetes clusters running on GKE.
-- Fixed a potential race condition during reconciliation of ResourceClaims which might cause the Services Toolkit manager to stop responding.
+- Resolved an issue with the `tanzu services` CLI plug-in that meant it was not compatible with Kubernetes clusters running on GKE.
+- Fixed a potential race condition during reconciliation of ResourceClaims which might have caused the Services Toolkit manager to stop responding.
 - Updated configuration of the Services Toolkit carvel Package to prevent an unwanted build up of ConfigMap resources.
 
 #### Supply Chain Security Tools - Scan
@@ -207,10 +213,10 @@ Updated Spring Boot to v2.5.12 to address [CVE-2022-22965](https://cve.mitre.org
 
 #### Supply Chain Security Tools - Store
 
-- Fixed an issue where querying a source report with local path name would return the following error: `{ "message": "Not found" }`.
+- Fixed an issue where querying a source report with local path name returned the following error: `{ "message": "Not found" }`.
 - Return related packages when querying image and source vulnerabilities.
 - Ratings are updated when updating vulnerabilities.
-- Fixed [CVE-2022-24407](https://nvd.nist.gov/vuln/detail/CVE-2022-24407) and [CVE-2022-0778](https://nvd.nist.gov/vuln/detail/CVE-2022-0778) found in the postgres image.
+- Fixed [CVE-2022-24407](https://nvd.nist.gov/vuln/detail/CVE-2022-24407) and [CVE-2022-0778](https://nvd.nist.gov/vuln/detail/CVE-2022-0778) found in the PostgreSQL image.
 - Updated package `client_golang` to v1.17.8 to address [CVE-2022-24921](https://nvd.nist.gov/vuln/detail/CVE-2022-24921).
 
 #### Tanzu CLI - Apps plug-in
@@ -228,9 +234,11 @@ Updated Spring Boot to v2.5.12 to address [CVE-2022-22965](https://cve.mitre.org
 
 ### <a id='1-1-known-issues'></a> Known issues
 
+This release has the following known issues, listed by area and component.
+
 #### Tanzu Application Platform
 
-- **Deprecated profile:** Tanzu Application Platform light profile is deprecated.
+**Deprecated profile:** Tanzu Application Platform light profile is deprecated.
 
 ### Tanzu Cluster Essentials
 
@@ -271,15 +279,12 @@ A fix is planned for Tanzu Application Platform v1.1.1.
 
 #### Grype scanner
 
-- **Scanning Java source code may not reveal vulnerabilities:** Source Code Scanning only scans
-files present in the source code repository. No network calls are made to fetch dependencies.
-For languages using dependency lock files, such as Golang and Node.js, Grype uses the
-lock files to check the dependencies for vulnerabilities.
-- For Java, dependency lock files are not guaranteed, so Grype instead uses the
-dependencies present in the built binaries (`.jar` or `.war` files).
-- Because VMware does not recommend committing binaries to source code repositories, Grype
-fails to find vulnerabilities during a Source Scan. The vulnerabilities are still found during the
-Image Scan, after the binaries are built and packaged as images.
+**Scanning Java source code may not reveal vulnerabilities:**
+Source Code Scanning only scans files present in the source code repository. No network calls are made to fetch dependencies. For languages using dependency lock files, such as Golang and Node.js, Grype uses the lock files to check the dependencies for vulnerabilities.
+
+For Java, dependency lock files are not guaranteed, so Grype instead uses the dependencies present in the built binaries (`.jar` or `.war` files).
+
+Because VMware discourages committing binaries to source code repositories, Grype fails to find vulnerabilities during a Source Scan. The vulnerabilities are still found during the Image Scan, after the binaries are built and packaged as images.
 
 #### Supply Chain Choreographer plug-in
 
@@ -294,7 +299,7 @@ This error does not necessarily mean that the workload failed its execution thro
 - **Scan Phase indicates `Scanning` incorrectly:** Scans have an edge case that when an error
   occurs during scanning, the `Scan Phase` field is not updated to `Error` and remains in the
   `Scanning` phase. Read the scan pod logs to verify the existence of an error.
-- **Multi-Cluster Support: Error sending results to Supply Chain Security Tools - Store (Store) running in a different cluster** The [Store Ingress and multicluster support](scst-store/ingress-multicluster.md) document instructs you on how to create `SecretExports` to share secrets for communicating with the Store. During installation, Supply Chain Security Tools - Scan (Scan) automatically creates the `SecretImport` necessary for ingesting the TLS CA certificate secret, but is missing the `SecretImport` for the RBAC Auth token. As a workaround, apply the following YAML, updating the namespaces if necessary, to the cluster running Scan and then perform a rolling restart:
+- **Multicluster Support: Error sending results to SCST - Store (Store) running in a different cluster** The [Store Ingress and multicluster support](scst-store/ingress-multicluster.md) document instructs you on how to create `SecretExports` to share secrets for communicating with the Store. During installation, Supply Chain Security Tools - Scan (Scan) automatically creates the `SecretImport` necessary for ingesting the TLS CA certificate secret, but is missing the `SecretImport` for the RBAC Auth token. As a workaround, apply the following YAML, updating the namespaces if necessary, to the cluster running Scan and then perform a rolling restart:
   ```yaml
   ---
   apiVersion: secretgen.carvel.dev/v1alpha1
@@ -316,18 +321,16 @@ This error does not necessarily mean that the workload failed its execution thro
 
 - **`insight` CLI plug-in does not support Windows:**
 
-    Currently, `insight` plug-in only supports MacOS and Linux.
+    Currently, `insight` plug-in only supports macOS and Linux.
 
 - **Existing packages with new vulnerabilities not updated:**
 
     It is a known issue that **Supply Chain Security Tools - Store** does not correctly save new vulnerabilities for a package that was already submitted in a previous report. This issue causes new vulnerabilities not saved to the database.
 
-- <a id='store-persistent-volume-retains-data'></a> **Persistent volume retains data:**
+- **Persistent volume retains data:**
 
-    If **Supply Chain Security Tools - Store** is deployed, deleted, redeployed, and the database password is changed during the redeployment, the
-    `metadata-store-db` pod fails to start.
-    This is caused by the persistent volume used by postgres retaining old data, even though the retention
-    policy is set to `DELETE`.
+    If **Supply Chain Security Tools - Store** is deployed, deleted, redeployed, and the database password is changed during the redeployment, the `metadata-store-db` pod fails to start.
+    The cause is the persistent volume that PostgreSQL uses retaining old data, even though the retention policy is set to `DELETE`.
 
     To resolve this issue, see [solution](scst-store/troubleshooting.md#persistent-volume-retains-data-solution).
 
@@ -349,4 +352,4 @@ This error does not necessarily mean that the workload failed its execution thro
 
 #### Tanzu Application Platform GUI
 
-- **Runtime Resources errors:** The Runtime Resources tab shows cluster query errors when attempting to retrieve Kubernetes object details from non-full-profile clusters.
+**Runtime Resources errors:** The Runtime Resources tab shows cluster query errors when attempting to retrieve Kubernetes object details from non-full-profile clusters.
