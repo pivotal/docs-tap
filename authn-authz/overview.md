@@ -32,10 +32,6 @@ For an overview of the different roles and their permissions, see [Role Descript
 
 For more information about working with roles, see [Bind a user or group to a default role](binding.md).
 
-## <a id="add-info"></a> Additional Information
-
-[SCA scanning results](sca-scanning-results.md)
-
 ## <a id="disclaimer"></a> Disclaimer
 
 [Tanzu Application Platform GUI](../tap-gui/about.md) does not make use of the described roles.

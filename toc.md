@@ -83,8 +83,6 @@ This is the table of contents from which the Tanzu Application Platform Document
         - [Login using Pinniped](authn-authz/pinniped-login.md)
         - [Additional resources](authn-authz/additional.md)
             - [Install default roles independently](authn-authz/install.md)
-            - [SCA scanning results](authn-authz/sca-scanning-results.md)
-            - [Tap Auth v1.0.1-beta.1 CycloneDX](authn-authz/sca-scans/tap-auth-v101-beta1-grype-results.md)
     - [Convention Service](convention-service/about.md)
       - [Install Convention Service](convention-service/install-conv-service.md)
       - [Creating conventions](convention-service/creating-conventions.md)

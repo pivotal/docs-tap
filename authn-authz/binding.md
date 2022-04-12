@@ -29,7 +29,7 @@ intended for evaluation and test purposes only.
 1. Untar the `tar.gz` file:
 
     ```
-    tar zxvf <NAME OF THE TAR>
+    tar -zxvf <NAME OF THE TAR>
     ```
 
 1. Install the Tanzu Application Platform RBAC CLI plug-in locally on your operating system:
@@ -37,19 +37,19 @@ intended for evaluation and test purposes only.
     - For macOS, run:
 
         ```
-        tanzu plugin install rbac --local published/darwin-amd64
+        tanzu plugin install rbac --local darwin-amd64
         ```
 
     - For Linux, run:
 
         ```
-        tanzu plugin install rbac --local published/linux-amd64
+        tanzu plugin install rbac --local linux-amd64
         ```
 
     - For Windows, run:
 
         ```
-        tanzu plugin install rbac --local published/windows-amd64
+        tanzu plugin install rbac --local windows-amd64
         ```
 
 
