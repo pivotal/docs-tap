@@ -235,6 +235,10 @@ Updated Spring Boot to v2.5.12 to address [CVE-2022-22965](https://cve.mitre.org
   - When creating or applying a workload from –local-path, if user answers “No” to the prompt “Are you sure you want to publish your local code to [registry name] where others may be able to access it?”, the command now exits 0 immediately rather than showing the workload diff and prompting to continue with workload creation.
   - `.spec.build.env` in workload YAML definition file is being removed when using Tanzu apps workload apply command.
 
+#### Tanzu Application Platform GUI
+
+- Fixed [CVE-2021-3918](https://nvd.nist.gov/vuln/detail/CVE-2021-3918) from the json-schema package
+
 
 ### <a id='1-1-known-issues'></a> Known issues
 
