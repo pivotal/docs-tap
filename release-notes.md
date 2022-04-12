@@ -6,6 +6,10 @@ This topic contains release notes for Tanzu Application Platform v1.0.
 
 **Release Date**: April 1, 2022
 
+### <a id='1-0-3-sec-issues'></a> Security issue
+
+Tanzu Application Platform GUI is vulnerable to [CVE-2021-3918](https://nvd.nist.gov/vuln/detail/CVE-2021-3918) from the `json-schema` package.
+
 ### <a id='1-0-3-known-issues'></a> Known issues
 
 This release has the following known issues:
@@ -28,9 +32,6 @@ Image Scan, after the binaries are built and packaged as images.
 occurs during scanning, the Scan Phase field is not updated to `Error` and remains in the
 `Scanning` phase. Read the scan pod logs to verify that there was an error.
 
-#### Tanzu Application Platform GUI
-
-- This release is vulnerable to [CVE-2021-3918](https://nvd.nist.gov/vuln/detail/CVE-2021-3918) from the json-schema package
 
 ### <a id='1-0-3-resolved-issues'></a> Resolved issues
 
@@ -41,6 +42,10 @@ This release has the following fix:
 ## <a id='1-0-2'></a> v1.0.2
 
 **Release Date**: March 8, 2022
+
+### <a id='1-0-2-sec-issues'></a> Security issue
+
+Tanzu Application Platform GUI is vulnerable to [CVE-2021-3918](https://nvd.nist.gov/vuln/detail/CVE-2021-3918) from the `json-schema` package.
 
 ### <a id='1-0-2-known-issues'></a> Known issues
 
@@ -70,9 +75,6 @@ This does not affect the result of the scan.
 occurs during scanning, the Scan Phase field is not updated to `Error` and remains in the
 `Scanning` phase. Read the scan Pod logs to verify if there was an error.
 
-#### Tanzu Application Platform GUI
-
-- This release is vulnerable to [CVE-2021-3918](https://nvd.nist.gov/vuln/detail/CVE-2021-3918) from the json-schema package
 
 ### <a id='1-0-2-resolved-issues'></a> Resolved issues
 
@@ -96,6 +98,10 @@ This release has the following fixes:
 ## <a id='1-0-1'></a> v1.0.1
 
 **Release Date**: February 8, 2022
+
+### <a id='1-0-1-sec-issues'></a> Security issue
+
+Tanzu Application Platform GUI is vulnerable to [CVE-2021-3918](https://nvd.nist.gov/vuln/detail/CVE-2021-3918) from the `json-schema` package.
 
 ### <a id='1-0-1-known-issues'></a> Known issues
 
