@@ -355,16 +355,16 @@ Because VMware discourages committing binaries to source code repositories, Gryp
 
 - **Supply Chain Choreographer page displays incorrect data if there are workloads with same name and namespace:**
 
-    When there are two Workloads that have the same name and namespace but live on different clusters, clicking either of them in the supply chain page will always show the details for the first one, and there is no way to access details for the second.
+    When there are two workloads that have the same name and namespace but live on different clusters, clicking either of them in the supply chain page shows the details for the first workload, and there is no way to access details for the second.
 
 - **Supply Chain Choreographer page - details for ConfigMap CRD not appearing:**
 
     The error `Unable to retrieve conditions for ConfigMap...`
-    appears in the details section after clicking on the ConfigMap stage in the
+    appears in the details section after clicking the ConfigMap stage in the
     graph view of a supply chain.
     This error does not necessarily mean that the workload failed its execution through the supply chain.
 
 - **Supply Chain Choreographer page not showing scan results:**
 
-    Current CVEs found during Image or Build scanning do not appear. However, results are still present in the metadata store and are available by using the Tanzu CLI.
+    Current CVEs found during image or build scanning do not appear. However, results are still present in the metadata store and are available by using the Tanzu CLI.
 
