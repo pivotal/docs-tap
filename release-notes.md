@@ -314,12 +314,14 @@ This error does not necessarily mean that the workload failed its execution thro
     fromNamespace: metadata-store-secrets
   ```
   The necessary `Secret` for the RBAC Auth token is created and the scan can be re-run.
-
   A rolling restart includes running the following:
 
   ```
   kubectl rollout restart deployment.apps/scan-link-controller-manager -n scan-link-system
   ```
+  
+- **User sees error message saying Supply Chain Security Tools - Store (Store) is not configured even though configuration values were supplied:** The Scan Controller experiences a race-condition when deploying Store in the same cluster, that shows Store as not configured, even when it is present and properly configured. This happens when the Scan Controller is deployed and reconciled before the Store is reconciled and the corresponding secrets are exported to the Scan Controller namespace. As a workaround to this, once your Store is successfully reconciled, you would need to restart your Supply Chain Security Tools - Scan deployment by running: `kubectl rollout restart deployment.apps/scan-link-controller-manager -n scan-link-system`. If you deployed Supply Chain Security Tools - Scan to a different namespace than the default one, you can replace `-n scan-link-system` with `-n <my_custom_namespace>`.
+
 #### Supply Chain Security Tools - Store
 
 - **Tanzu Insight CLI plug-in does not support Windows:**
