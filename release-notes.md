@@ -237,7 +237,7 @@ Updated Spring Boot to v2.5.12 to address [CVE-2022-22965](https://cve.mitre.org
 
 #### Tanzu Application Platform GUI
 
-- Fixed [CVE-2021-3918](https://nvd.nist.gov/vuln/detail/CVE-2021-3918) from the json-schema package
+Applied a fix for [CVE-2021-3918](https://nvd.nist.gov/vuln/detail/CVE-2021-3918) from the `json-schema` package
 
 
 ### <a id='1-1-known-issues'></a> Known issues
