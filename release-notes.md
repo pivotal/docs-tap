@@ -357,4 +357,10 @@ This error does not necessarily mean that the workload failed its execution thro
 
 #### Tanzu Application Platform GUI
 
-**Runtime Resources errors:** The Runtime Resources tab shows cluster query errors when attempting to retrieve Kubernetes object details from non-full-profile clusters.
+- **Runtime Resources errors:**
+
+    The Runtime Resources tab shows cluster query errors when attempting to retrieve Kubernetes object details from non-full-profile clusters.
+
+- **Supply Chain displays incorrect data if there are workloads with same name and namespace:**
+
+    When there are two Workloads that have the same name and namespace but live on different clusters, clicking either of them in the supply chain page will always show the details for the first one, and there is no way to access details for the second.
