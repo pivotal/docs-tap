@@ -21,6 +21,9 @@ The cluster image policy is a custom resource containing the following propertie
 * `spec.verification.exclude.resources.namespaces`: A list of namespaces where
 this policy is not enforced.
 
+> **Note:** System namespaces specific to your cloud provider may need to be excluded from the policy
+
+
 > **Note:** To prevent the Image Policy Webhook from blocking components of Tanzu Application Platform, it is recommended to configure exclusions for TAP system namespaces.
 >
 > A list of created namespaces can be obtained using:

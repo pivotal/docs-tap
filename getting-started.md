@@ -941,6 +941,10 @@ In this section, you are about to:
            - name: first-key
 
     ```
+
+> **Note:** System namespaces specific to your cloud provider may need to be excluded from the policy
+
+
 > **Note:** To prevent the Image Policy Webhook from blocking components of Tanzu Application Platform, it is recommended to configure exclusions for TAP system namespaces listed [here](scst-sign/configuring.html#create-cip-resource)
 
 When you apply the `ClusterImagePolicy` resource, your cluster requires valid signatures for all images that match the `namePattern:` you define in the configuration. For more information about configuring an image signature policy, see [Configuring Supply Chain Security Tools - Sign](scst-sign/configuring.html).
