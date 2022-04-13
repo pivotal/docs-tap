@@ -4,11 +4,11 @@ This component requires extra configuration steps to start verifying your
 container images properly.
 
 > **Note:**
-
+>
 > - The instructions in this section only apply to the deployment namespace of
 Supply Chain Security Tools - Sign. In most cases, this namespace is
 rendered as the default namespace `image-policy-system`.
-
+>
 > - If you deployed Supply Chain Security Tools - Sign by using a customized
 namespace specified in the installation values file, replace `image-policy-system`
 with the namespace name that you specified in `deployment_namespace` before
@@ -20,6 +20,54 @@ The cluster image policy is a custom resource containing the following propertie
 
 * `spec.verification.exclude.resources.namespaces`: A list of namespaces where
 this policy is not enforced.
+
+> **Note:** To prevent the Image Policy Webhook from blocking components of Tanzu Application Platform, it is recommended to configure exclusions for TAP system namespaces.
+>
+> A list of created namespaces can be obtained using:
+> ```
+> kubectl get namespaces
+> ```
+>
+> TAP system namespaces can include:
+> ```
+> - accelerator-system
+> - api-portal
+> - app-live-view
+> - app-live-view-connector
+> - app-live-view-conventions
+> - build-service
+> - cartographer-system
+> - cert-injection-webhook
+> - cert-manager
+> - conventions-system
+> - developer-conventions
+> - flux-system
+> - image-policy-system
+> - kapp-controller
+> - knative-eventing
+> - knative-serving
+> - knative-sources
+> - kpack
+> - learning-center-guided-ui
+> - learning-center-guided-w01
+> - learningcenter
+> - metadata-store
+> - scan-link-system
+> - secretgen-controller
+> - service-bindings
+> - services-toolkit
+> - source-system
+> - spring-boot-convention
+> - stacks-operator-system
+> - tanzu-cluster-essentials
+> - tanzu-package-repo-global
+> - tanzu-system-ingress
+> - tap-gui
+> - tap-install
+> - tap-telemetry
+> - tekton-pipelines
+> - triggermesh
+> ```
 
 * `spec.verification.keys`: A list of public keys complementary to the private
 keys that were used to sign the images.
@@ -41,6 +89,7 @@ spec:
       resources:
         namespaces:
         - kube-system
+        - <TAP system namespaces>
     keys:
     - name: first-key
       publicKey: |
@@ -73,7 +122,7 @@ Warning: clusterimagepolicies.signing.apps.tanzu.vmware.com "image-policy" not f
 ```
 
 The patterns are evaluated using the any of operator to admit container
-images. For each Pod, the image policy WebHook iterates over the list of
+images. For each Pod, the Image Policy Webhook iterates over the list of
 containers and init containers. The Pod is verified when there is at least
 one key specified in `spec.verification.images[].keys[]` for each container image
 that matches `spec.verification.images[].namePattern`.
@@ -83,7 +132,7 @@ use the manifest below to create the `ClusterImagePolicy`
 resource. This manifest includes a cosign public key which signed the public
 cosign v1.2.1 image. The cosign public key validates the specified cosign
 images. Container images running in system namespaces are currently not
-signed. You must configure the image policy WebHook to allow these unsigned
+signed. You must configure the Image Policy Webhook to allow these unsigned
 images by adding system namespaces to the
 `spec.verification.exclude.resources.namespaces` section.
 
@@ -99,6 +148,43 @@ spec:
       resources:
         namespaces:
         - kube-system
+        - accelerator-system
+        - api-portal
+        - app-live-view
+        - app-live-view-connector
+        - app-live-view-conventions
+        - build-service
+        - cartographer-system
+        - cert-injection-webhook
+        - cert-manager
+        - conventions-system
+        - developer-conventions
+        - flux-system
+        - image-policy-system
+        - kapp-controller
+        - knative-eventing
+        - knative-serving
+        - knative-sources
+        - kpack
+        - learning-center-guided-ui
+        - learning-center-guided-w01
+        - learningcenter
+        - metadata-store
+        - scan-link-system
+        - secretgen-controller
+        - service-bindings
+        - services-toolkit
+        - source-system
+        - spring-boot-convention
+        - stacks-operator-system
+        - tanzu-cluster-essentials
+        - tanzu-package-repo-global
+        - tanzu-system-ingress
+        - tap-gui
+        - tap-install
+        - tap-telemetry
+        - tekton-pipelines
+        - triggermesh
     keys:
     - name: cosign-key
       publicKey: |
@@ -129,10 +215,10 @@ container image name pattern that matches the container being admitted.
 in the deployment namespace.
 
 > **Note:** Authentication fails in the following scenario:
-
+>
 > - A valid credential is specified in the `ClusterImagePolicy` `secretRef` field, or in the `image-policy-registry-credentials` service account.
 > - An invalid credential is specified in the `imagePullSecrets` of the resource or in the service account the resource runs as.
-
+>
 > To prevent this issue, choose a single authentication method to validate signatures for your resources.
 
 If you use [containerd-configured registry credentials](https://github.com/containerd/containerd/blob/main/docs/cri/registry.md#configure-registry-credentials)
