@@ -10,7 +10,7 @@ To accept EULAs:
 
 2. For each of the following components, accept or confirm that you have accepted the EULA:
 
-    - [Cluster Essentials for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-cluster-essentials/#/releases/1011100)
+    - [Cluster Essentials for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-cluster-essentials/)
     - [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/)
     - Tanzu Build Service associated components:
         - [Tanzu Build Service Dependencies](https://network.tanzu.vmware.com/products/tbs-dependencies/)
