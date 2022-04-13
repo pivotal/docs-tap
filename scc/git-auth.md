@@ -89,7 +89,7 @@ create the Kubernetes secret as follows:
       known_hosts: GIT-SERVER-PUBLIC-KEYS # Git server public keys
     ```
 
-1. Generate a new SSH key pair: `identity` and `identity.pub`.
+1. Generate a new SSH keypair: `identity` and `identity.pub`.
 
     ```bash
     ssh-keygen -t ecdsa -b 521 -C "" -f "identity" -N ""
@@ -102,7 +102,7 @@ visit `https://github.com/<repository>/settings/keys/new`.
 
     >**Note:** Keys of type SHA-1/RSA are recently deprecated by GitHub.
 
-1. Gather public keys from the provider, for example, Github:
+1. Gather public keys from the provider, for example, GitHub:
 
     ```bash
     ssh-keyscan github.com > ./known_hosts
