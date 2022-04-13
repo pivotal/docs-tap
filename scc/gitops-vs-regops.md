@@ -1,7 +1,7 @@
 # GitOps vs. RegistryOps
 
 Regardless of the supply chain that a workload goes through, in the end,
-some Kubernetes configuration gets pushed to an external entity, either to a Git
+some Kubernetes configuration is pushed to an external entity, either to a Git
 repository or to a container image registry.
 
 For example:
@@ -310,5 +310,4 @@ to an image named after `REGISTRY-SERVER/REGISTRY-REPOSITORY` including
 the workload name.
 
 In this scenario, no extra credentials need to be set up, because the secret
-containing the credentials for the container image registry were already 
-configured during the setup of the workload namespace.
+containing the credentials for the container image registry were already configured during the setup of the workload namespace.
