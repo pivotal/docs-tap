@@ -19,7 +19,7 @@ Before using functions workloads on Tanzu Application Platform, complete the fol
 
 - Complete all steps described in [Installing Tanzu Application Platform](../install-intro.md).
 - Download and install the kp CLI for your operating system from the [Tanzu Build Service](https://network.tanzu.vmware.com/products/build-service/) page on Tanzu Network. For more information, see the [kp CLI help text](https://github.com/vmware-tanzu/kpack-cli/blob/v0.4.0/docs/kp.md) on GitHub.
-- [Set up developer namespaces to use installed packages](https://docs.vmware.com/en/Tanzu-Application-Platform/1.0/tap/GUID-install-components.html#setup).
+- [Set up developer namespaces to use installed packages](../install-components.html#setup).
 
 ## <a id="add-buildpacks"></a>Adding function buildpacks
 

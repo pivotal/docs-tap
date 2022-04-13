@@ -214,4 +214,4 @@ The actuator page provides a tree view of the actuator data. The user can choose
 ## <a id="troubleshooting"></a> Troubleshooting
 
 You might run into cases where a workload running on your cluster does not show up in the Application Live View overview, the detail pages do not load any information while running, or similar issues.
-See [Troubleshooting](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-troubleshooting.html) in the Application Live View documentation.
+See [Troubleshooting](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.1/docs/GUID-troubleshooting.html) in the Application Live View documentation.
