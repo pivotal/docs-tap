@@ -1,22 +1,24 @@
-# GitOps vs RegistryOps
+# GitOps vs. RegistryOps
 
 Regardless of the supply chain that a workload goes through, in the end,
 some Kubernetes configuration gets pushed to an external entity, either to a Git
 repository or to a container image registry.
 
-```
-Supply Chain
+For example:
 
-  -- fetch source
-    -- test
-      -- build
-        -- scan
-          -- apply-conventions
-            -- push config        * either to Git or Registry
-```
+  ```
+  Supply Chain
+
+    -- fetch source
+      -- test
+        -- build
+          -- scan
+            -- apply-conventions
+              -- push config        * either to Git or Registry
+  ```
 
 This topic dives into the specifics of that last phase of the supply chains
-by introducing the use case of pushing configuration to a Git repository and an
+by introducing the use case of pushing configuration to a Git repository or an
 image registry.
 
 >**Note:** For more information about providing source code either from a
@@ -25,12 +27,12 @@ see [Building from Source](building-from-source.md).
 
 ## <a id="gitops"></a>GitOps
 
-Different from local iteration, the GitOps approach configures the supply
-chains to push the Kubernetes Configuration to a remote Git repository. This
-allows users to compare configuration changes and promote these changes through
+The GitOps approach differs from local iteration in that GitOps configures the supply
+chains to push the Kubernetes configuration to a remote Git repository. This
+allows users to compare configuration changes and promote those changes through
 environments by using GitOps principles.
 
-Typically associated with an outerloop workflow, it's only activated if certain
+Typically associated with an outerloop workflow, the GitOps approach is only activated if certain
 parameters are set in the supply chain:
 
 - `gitops.repository_prefix`: configured during the Out of the Box Supply
@@ -39,56 +41,56 @@ parameters are set in the supply chain:
 - `gitops_repository`: configured as a workload parameter.
 
 For example, assuming the installation of the supply chain packages through
-Tanzu Application Platform profiles and a `tap-values.yml` as follows:
+Tanzu Application Platform profiles and a `tap-values.yml`:
 
-```yaml
-ootb_supply_chain_basic:
-  registry:
-    server: REGISTRY-SERVER
-    repository: REGISTRY-REPOSITORY
+  ```yaml
+  ootb_supply_chain_basic:
+    registry:
+      server: REGISTRY-SERVER
+      repository: REGISTRY-REPOSITORY
 
-  gitops:
-    repository_prefix: https://github.com/my-org/
-```
+    gitops:
+      repository_prefix: https://github.com/my-org/
+  ```
 
-Expect to see that any workloads in the cluster with the
-Kubernetes configuration produced throughout the supply chain to get pushed to
+Workloads in the cluster with the
+Kubernetes configuration produced throughout the supply chain is pushed to
 the repository whose name is formed by concatenating
 `gitops.repository_prefix` with the name of the workload. In this case,
-it is `https://github.com/my-org/$(workload.metadata.name).git`.
+for example: `https://github.com/my-org/$(workload.metadata.name).git`.
 
-```
-Supply Chain
-  params:
-      - gitops_repository_prefix: GIT-REPO_PREFIX
-
-
-workload-1:
-  `git push` to GIT-REPO-PREFIX/workload-1.git
-
-workload-2:
-  `git push` to GIT-REPO-PREFIX/workload-2.git
-
-...
-
-workload-n:
-  `git push` to GIT-REPO-PREFIX/workload-n.git
-```
+  ```
+  Supply Chain
+    params:
+        - gitops_repository_prefix: GIT-REPO_PREFIX
 
 
-Alternatively, you can also force a Workload to have the configuration
-published in a Git repository by providing the `gitops_repository` parameter 
+  workload-1:
+    `git push` to GIT-REPO-PREFIX/workload-1.git
+
+  workload-2:
+    `git push` to GIT-REPO-PREFIX/workload-2.git
+
+  ...
+
+  workload-n:
+    `git push` to GIT-REPO-PREFIX/workload-n.git
+  ```
+
+
+Alternatively, you can force a workload to publish the configuration
+in a Git repository by providing the `gitops_repository` parameter 
 to the workload:
 
-```bash
-tanzu apps workload create tanzu-java-web-app \
-  --app tanzu-java-web-app \
-  --type web \
-  --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
-  --git-branch main \
-  --param gitops_ssh_secret=GIT-SECRET-NAME \
-  --param gitops_repository=https://github.com/my-org/config-repo
-```
+  ```bash
+  tanzu apps workload create tanzu-java-web-app \
+    --app tanzu-java-web-app \
+    --type web \
+    --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
+    --git-branch main \
+    --param gitops_ssh_secret=GIT-SECRET-NAME \
+    --param gitops_repository=https://github.com/my-org/config-repo
+  ```
 
 In this case, at the end of the supply chain, the configuration for this
 workload is published to the repository provided under the `gitops_repository` 
@@ -96,7 +98,7 @@ parameter.
 
 ### <a id="auth"></a>Authentication
 
-Regardless of how the supply chains were configured, if pushing to
+Regardless of how the supply chains are configured, if pushing to
 Git is configured by repository prefix or repository name, you must provide
 credentials for the remote provider (for example, GitHub) by using a Kubernetes 
 secret in the same namespace as the workload attached to the workload 
@@ -108,26 +110,25 @@ required by both public and private repositories.
 #### <a id="http-auth"></a>HTTP(S) Basic-auth / Token-based authentication
 
 If the repository at which configuration is published uses
-`https://` or `http://` as the URL scheme, the Kubernetes Secret that
-provides the credentials for that repository must provide credentials in a
-Secret as follows:
+`https://` or `http://` as the URL scheme, the Kubernetes secret must
+provide the credentials for that repository as follows:
 
-```yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: GIT-SECRET-NAME  # `git-ssh` is the default name.
-                         #   - operators can change such default via the
-                         #     `gitops.ssh_secret` property in `tap-values.yml`
-                         #   - developers can override via the workload param
-                         #     named `gitops_ssh_secret`.
-  annotations:
-    tekton.dev/git-0: GIT-SERVER        # ! required
-type: kubernetes.io/basic-auth          # ! required
-stringData:
-  username: GIT-USERNAME
-  password: GIT-PASSWORD
-```
+  ```yaml
+  apiVersion: v1
+  kind: Secret
+  metadata:
+    name: GIT-SECRET-NAME  # `git-ssh` is the default name.
+                          #   - operators can change such default through the
+                          #     `gitops.ssh_secret` property in `tap-values.yml`
+                          #   - developers can override through the workload param
+                          #     named `gitops_ssh_secret`.
+    annotations:
+      tekton.dev/git-0: GIT-SERVER        # ! required
+  type: kubernetes.io/basic-auth          # ! required
+  stringData:
+    username: GIT-USERNAME
+    password: GIT-PASSWORD
+  ```
 
 >**Note:** Both the Tekton annotation and the `basic-auth` secret type must be 
 set. `GIT-SERVER` must be prefixed with the appropriate URL scheme and the Git 
@@ -137,113 +138,112 @@ https://github.com must be provided as the GIT-SERVER.
 After the `Secret` is created, attach it to the `ServiceAccount` used by the 
 workload. For example:
 
-```yaml
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: default
-secrets:
-  - name: registry-credentials
-  - name: tap-registry
-  - name: GIT-SECRET-NAME
-imagePullSecrets:
-  - name: registry-credentials
-  - name: tap-registry
-```
+  ```yaml
+  apiVersion: v1
+  kind: ServiceAccount
+  metadata:
+    name: default
+  secrets:
+    - name: registry-credentials
+    - name: tap-registry
+    - name: GIT-SECRET-NAME
+  imagePullSecrets:
+    - name: registry-credentials
+    - name: tap-registry
+  ```
 
 For more information about the credentials and setting up the Kubernetes
 secret, see [Git Authentication's HTTP section](git-auth.md#http).
 
 ### <a id="ssh"></a>SSH
 
-If the repository at which configuration is published uses
-`https://` or `http://` as the URL scheme, the Kubernetes Secret that
-provides the credentials for that repository must provide credentials in a
-Secret as follows:
+If the repository to which configuration is published uses
+`https://` or `http://` as the URL scheme, the Kubernetes secret must
+provide the credentials for that repository as follows:
 
-```yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: GIT-SECRET-NAME  # `git-ssh` is the default name.
-                         #   - operators can change such default via the
-                         #     `gitops.ssh_secret` property in `tap-values.yml`
-                         #   - developers can override via the workload param
-                         #     named `gitops_ssh_secret`.
-  annotations:
-    tekton.dev/git-0: GIT-SERVER
-type: kubernetes.io/ssh-auth
-stringData:
-  ssh-privatekey: SSH-PRIVATE-KEY     # private key with push-permissions
-  identity: SSH-PRIVATE-KEY           # private key with pull permissions
-  identity.pub: SSH-PUBLIC-KEY        # public of the `identity` private key
-  known_hosts: GIT-SERVER-PUBLIC-KEYS # git server public keys
-```
+  ```yaml
+  apiVersion: v1
+  kind: Secret
+  metadata:
+    name: GIT-SECRET-NAME  # `git-ssh` is the default name.
+                          #   - operators can change such default via the
+                          #     `gitops.ssh_secret` property in `tap-values.yml`
+                          #   - developers can override through the workload param
+                          #     named `gitops_ssh_secret`.
+    annotations:
+      tekton.dev/git-0: GIT-SERVER
+  type: kubernetes.io/ssh-auth
+  stringData:
+    ssh-privatekey: SSH-PRIVATE-KEY     # private key with push-permissions
+    identity: SSH-PRIVATE-KEY           # private key with pull permissions
+    identity.pub: SSH-PUBLIC-KEY        # public of the `identity` private key
+    known_hosts: GIT-SERVER-PUBLIC-KEYS # git server public keys
+  ```
 
 After the `Secret` is created, attach it to the `ServiceAccount` used by the 
 workload. For example:
 
-```yaml
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: default
-secrets:
-  - name: registry-credentials
-  - name: tap-registry
-  - name: GIT-SECRET-NAME
-imagePullSecrets:
-  - name: registry-credentials
-  - name: tap-registry
-```
+  ```yaml
+  apiVersion: v1
+  kind: ServiceAccount
+  metadata:
+    name: default
+  secrets:
+    - name: registry-credentials
+    - name: tap-registry
+    - name: GIT-SECRET-NAME
+  imagePullSecrets:
+    - name: registry-credentials
+    - name: tap-registry
+  ```
 
 For more information about the credentials and setting up the Kubernetes
 secret, see [Git Authentication's SSH section](git-auth.md#sh).
 
 
-### <a id="gitops-params"></a>GitOps Workload parameters
+### <a id="gitops-params"></a>GitOps workload parameters
 
 While installing `ootb-*`, operators can configure `gitops.repository_prefix` to
-indicate what the prefix the supply chain must use when forming the name of the 
+indicate what prefix the supply chain must use when forming the name of the 
 repository to push to the Kubernetes configurations produced by the supply 
 chains.
 
-All it takes to change the behavior towards using GitOps is
-setting the source of the source code to a Git repository. As the
+Then to change the behavior towards using GitOps, 
+set the source of the source code to a Git repository. As the
 supply chain progresses, configuration is pushed to a repository named
 after `$(gitops.repository_prefix) + $(workload.name)`.
 
 For example, configure `gitops.repository_prefix` to `git@github.com/foo/` and
 create a workload as follows:
 
-```
-tanzu apps workload create tanzu-java-web-app \
-  --git-branch main \
-  --git-repo https://github.com/sample-accelerators/tanzu-java-web-app
-  --label app.kubernetes.io/part-of=tanzu-java-web-app \
-  --type web
-```
+  ```
+  tanzu apps workload create tanzu-java-web-app \
+    --git-branch main \
+    --git-repo https://github.com/sample-accelerators/tanzu-java-web-app
+    --label app.kubernetes.io/part-of=tanzu-java-web-app \
+    --type web
+  ```
 
 Expect to see the following output:
 
-```
-Create workload:
-      1 + |---
-      2 + |apiVersion: carto.run/v1alpha1
-      3 + |kind: Workload
-      4 + |metadata:
-      5 + |  labels:
-      6 + |    apps.tanzu.vmware.com/workload-type: web
-      7 + |    app.kubernetes.io/part-of: tanzu-java-web-app
-      8 + |  name: tanzu-java-web-app
-      9 + |  namespace: default
-     10 + |spec:
-     11 + |  source:
-     12 + |    git:
-     13 + |      ref:
-     14 + |        branch: main
-     15 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
-```
+  ```
+  Create workload:
+        1 + |---
+        2 + |apiVersion: carto.run/v1alpha1
+        3 + |kind: Workload
+        4 + |metadata:
+        5 + |  labels:
+        6 + |    apps.tanzu.vmware.com/workload-type: web
+        7 + |    app.kubernetes.io/part-of: tanzu-java-web-app
+        8 + |  name: tanzu-java-web-app
+        9 + |  namespace: default
+      10 + |spec:
+      11 + |  source:
+      12 + |    git:
+      13 + |      ref:
+      14 + |        branch: main
+      15 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
+  ```
 
 As a result, the Kubernetes configuration is pushed to
 `git@github.com/foo/tanzu-java-web-app.git`.
@@ -267,48 +267,48 @@ where configuration is pushed to by tweaking the following parameters:
    produced for pushing configuration to the Git repository.
    Example: `ci bump`
 
--  `gitops_user_name`: Username to use in the commits.
+-  `gitops_user_name`: User name to use in the commits.
    Example: `Alice Lee`
 
--  `gitops_user_email`: User email address to use for the commits.
-   Example: `foo@example.com`
+-  `gitops_user_email`: User email address to use in the commits.
+   Example: `alice@example.com`
 
 
 ## <a id="registryops"></a>RegistryOps
 
-Typically used for inner loop flows where configuration is treated as an
-artifact from quick iterations by developers. In this scenario, at the very end
+RegistryOps is typically used for inner loop flows where configuration is treated as an
+artifact from quick iterations by developers. In this scenario, at the end
 of the supply chain, configuration gets pushed to a container image registry in
-the form of an [imgpkg bundle](https://carvel.dev/imgpkg/docs/v0.27.0/) - think
+the form of an [imgpkg bundle](https://carvel.dev/imgpkg/docs/v0.27.0/). You can think
 of it as a container image whose sole purpose is to carry arbitrary files.
 
 To enable this mode of operation, the supply chains must be configured
 **without** the following parameters being configured during the installation
-of the `ootb-` packages or overwritten by the Workload through the following 
+of the `ootb-` packages or overwritten by the workload through the following 
 parameters:
 
 - `gitops_repository_prefix`
 - `gitops_repository`
 
-If none of the parameters is set, the configuration is pushed to the
-same container image registry as where the application image is pushed to
-(i.e., the registry configured under the `registry: {}` section of the `ootb-`
-values).
+If none of the parameters are set, the configuration is pushed to the
+same container image registry as the application image. That is, to
+the registry configured under the `registry: {}` section of the `ootb-`
+values.
 
 For example, assuming the installation of Tanzu Application Platform by using 
 profiles, configure the `ootb-supply-chain*` package as follows: 
 
-```yaml
-ootb_supply_chain_basic:
-  registry:
-    server: REGISTRY-SERVER
-    repository: REGISTRY_REPOSITORY
-```
+  ```yaml
+  ootb_supply_chain_basic:
+    registry:
+      server: REGISTRY-SERVER
+      repository: REGISTRY_REPOSITORY
+  ```
 
-Expect Kubernetes configuration produced by the supply chain to be pushed
+The Kubernetes configuration produced by the supply chain is pushed
 to an image named after `REGISTRY-SERVER/REGISTRY-REPOSITORY` including
 the workload name.
 
-In this scenario, no extra credentials need to be set up as the secret
-containing the credentials for such container image registry were already 
+In this scenario, no extra credentials need to be set up, because the secret
+containing the credentials for the container image registry were already 
 configured during the setup of the workload namespace.
