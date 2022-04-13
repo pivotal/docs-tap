@@ -18,7 +18,7 @@ For example:
   ```
 
 This topic dives into the specifics of that last phase of the supply chains
-by introducing the use case of pushing configuration to a Git repository or an
+by pushing configuration to a Git repository or an
 image registry.
 
 >**Note:** For more information about providing source code either from a
@@ -57,7 +57,7 @@ Workloads in the cluster with the
 Kubernetes configuration produced throughout the supply chain is pushed to
 the repository whose name is formed by concatenating
 `gitops.repository_prefix` with the name of the workload. In this case,
-for example: `https://github.com/my-org/$(workload.metadata.name).git`.
+for example, `https://github.com/my-org/$(workload.metadata.name).git`.
 
   ```
   Supply Chain
@@ -118,9 +118,9 @@ provide the credentials for that repository as follows:
   kind: Secret
   metadata:
     name: GIT-SECRET-NAME  # `git-ssh` is the default name.
-                          #   - operators can change such default through the
+                          #   - operators can change such default by using the
                           #     `gitops.ssh_secret` property in `tap-values.yml`
-                          #   - developers can override through the workload param
+                          #   - developers can override by using the workload parameter
                           #     named `gitops_ssh_secret`.
     annotations:
       tekton.dev/git-0: GIT-SERVER        # ! required
@@ -168,7 +168,7 @@ provide the credentials for that repository as follows:
     name: GIT-SECRET-NAME  # `git-ssh` is the default name.
                           #   - operators can change such default via the
                           #     `gitops.ssh_secret` property in `tap-values.yml`
-                          #   - developers can override through the workload param
+                          #   - developers can override by using the workload parameter
                           #     named `gitops_ssh_secret`.
     annotations:
       tekton.dev/git-0: GIT-SERVER
@@ -208,7 +208,7 @@ indicate what prefix the supply chain must use when forming the name of the
 repository to push to the Kubernetes configurations produced by the supply 
 chains.
 
-Then to change the behavior towards using GitOps, 
+To change the behavior to use GitOps, 
 set the source of the source code to a Git repository. As the
 supply chain progresses, configuration is pushed to a repository named
 after `$(gitops.repository_prefix) + $(workload.name)`.
@@ -278,13 +278,13 @@ where configuration is pushed to by tweaking the following parameters:
 
 RegistryOps is typically used for inner loop flows where configuration is treated as an
 artifact from quick iterations by developers. In this scenario, at the end
-of the supply chain, configuration gets pushed to a container image registry in
+of the supply chain, configuration is pushed to a container image registry in
 the form of an [imgpkg bundle](https://carvel.dev/imgpkg/docs/v0.27.0/). You can think
 of it as a container image whose sole purpose is to carry arbitrary files.
 
 To enable this mode of operation, the supply chains must be configured
 **without** the following parameters being configured during the installation
-of the `ootb-` packages or overwritten by the workload through the following 
+of the `ootb-` packages or overwritten by the workload by using the following 
 parameters:
 
 - `gitops_repository_prefix`
