@@ -243,7 +243,7 @@ This release has the following known issues, listed by area and component.
 
 **Deprecated profile:** Tanzu Application Platform light profile is deprecated.
 
-### Tanzu Cluster Essentials
+#### Tanzu Cluster Essentials
 
 - **Feature Disabled error:**
 When adding Tanzu Application Platform clusters with pre-installed Tanzu Cluster Essentials to a
