@@ -49,7 +49,7 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
     * Dockerhub has the form `repository: "my-dockerhub-user"`.
     * Google Cloud Registry has the form `repository: "my-project/supply-chain"`.
 - `SSH-SECRET-KEY` is the SSH secret key supported by the specific package.
-See [Identify the SSH secret key for your package](#ssh-secret-key) for more information.
+For more information, see [Identify the values for your package](../../install.html#identify-values).
 - `MY-DEV-NAMESPACE` is the namespace where you want to deploy the `ScanTemplates`.
 This is the namespace where the scanning feature runs.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the Secret that contains the
