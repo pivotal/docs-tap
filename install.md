@@ -274,7 +274,7 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
     * Dockerhub has the form `repository: "my-dockerhub-user"`
     * Google Cloud Registry has the form `repository: "my-project/supply-chain"`
 - `SSH-SECRET-KEY` is the SSH secret key supported by the specific package.
-See [Identify the SSH secret key for your package](#ssh-secret-key) for more information.
+See [Identify the values for your package](#identify-values) for more information.
 - `DOMAIN-NAME` has a value such as `learningcenter.example.com`.
 - `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
 service's External IP address.
