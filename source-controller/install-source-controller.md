@@ -55,7 +55,7 @@ To install Source Controller:
 3. (Optional) Enable Source Controller to connect to image registries that use self-signed or private certificate authorities.
 If a certificate error `x509: certificate signed by unknown authority` occurs, this option can be used to trust additional certificate authorities. 
 
-    To provide custom certificate, create a file named `source-controller-values.yaml` that includes the PEM-encoded CA certificate data.
+    To provide a custom certificate, create a file named `source-controller-values.yaml` that includes the PEM-encoded CA certificate data.
    
       For example:
 
