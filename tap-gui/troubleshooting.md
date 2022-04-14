@@ -76,7 +76,12 @@ When you need to update the configuration of Tanzu Application Platform GUI (eit
     kubectl delete pod -l app=backstage -n tap-gui
     ```
 
->**Note:** `tap-gui` Pods aren't stateful. `config` is held in ConfigMaps, Git catalog, or Secrets.
+> **Note:** Depending on your database configuration, deleting and re-instantiating
+> the pod might cause the loss of user preferences and manually registered entities.
+> If you have configured an external PostgreSQL database, then `tap-gui` pods are not stateful.
+> In most cases, state is held in ConfigMaps, Secrets, or the database.
+> For more information, see [Configuring the Tanzu Application Platform GUI database](database.md) and
+> [Register components](catalog/catalog-operations.md#register-comp).
 
 ## <a id='tap-gui-logs'></a> Pull logs from Tanzu Application Platform GUI
 
