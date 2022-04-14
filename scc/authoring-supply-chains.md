@@ -39,9 +39,9 @@ cluster might with two possible cases of collisions:
   the Workload does not make any progress.
 
   Either create a supply chain whose selection rules are different from the
-  ones used by the Out of the Box Supply Chain packages, or remove the 
+  ones used by the Out of the Box Supply Chain packages, or remove the
   installation of the corresponding `ootb-supply-chain-*` from Tanzu Application Platform.
-  
+
   See [Selectors](https://cartographer.sh/docs/v0.3.0/architecture/#selectors).
 
 For Tanzu Application Platform 1.1, the following selection rules are in place for the
@@ -81,7 +81,7 @@ you can prevent supply chains from being installed you can use the
 
 ```yaml
 # add to exclued_packages `ootb-*` packages you DON'T want to install
-# 
+#
 excluded_packages:
   - ootb-supply-chain-basic.apps.tanzu.vmware.com
   - ootb-supply-chain-testing.apps.tanzu.vmware.com
@@ -95,7 +95,7 @@ excluded_packages:
 ## <a id="templates"></a> Providing your own templates
 
 Similar to supply chains, Cartographer templates (`Cluster*Template` resources)
-are cluster-scoped, so we<!-- |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. --> must make sure<!-- Redundant? |Make sure you do X.| is weaker than |Do x.| --> that the new templates being submitted
+are cluster-scoped, so we must make sure that the new templates being submitted
 to the cluster do not conflict with the ones installed by the `ootb-templates`
 package.
 
@@ -137,8 +137,8 @@ ootb_templates:
     - 'config-writer'
 ```
 
-For details about how to edit an existing template, see 
-[Modifying an Out of the Box Supply template](#modifying-an-out-of-the-box-template) 
+For details about how to edit an existing template, see
+[Modifying an Out of the Box Supply template](#modifying-an-out-of-the-box-template)
 section.
 
 
@@ -377,12 +377,12 @@ the box through the Out of the Box packages, you must pause the top-level
 kubectl edit -n tap-install packageinstall tap
 ```
 ```console
-apiVersion: packaging.carvel.dev/v1alpha1<!-- If this is a URL then you likely need to present it per xref rules: https://confluence.eng.vmware.com/display/IXCS/Links%2C+Cross-References%2C+and+Citations -->
+apiVersion: packaging.carvel.dev/v1alpha1
 kind: PackageInstall
 metadata:
   name: tap
   namespace: tap-install
-spec<!-- |specifications| is preferred. -->:
+spec:
   paused: true                    # ! set this field to `paused: true`.
   packageRef:
     refName: tap.tanzu.vmware.com
@@ -395,7 +395,7 @@ are still there, but any changes to those children PackageInstall objects
 are not overwritten.
 
 Now you can move on to pausing the PackageInstall objects that relate to the
-templates/supply chains you want to edit. 
+templates/supply chains you want to edit.
 
 For example:
 
@@ -407,7 +407,7 @@ For example:
 
 setting `packageinstall.spec.paused: true`.
 
-With the installations now paused, any further live changes to templates/supply 
+With the installations now paused, any further live changes to templates/supply
 chains are persisted until the PackageInstalls are reverted to not being
 paused. To persist the changes, follow the steps outlined in the sections
 earlier.

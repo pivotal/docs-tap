@@ -319,7 +319,7 @@ This error does not necessarily mean that the workload failed its execution thro
   ```
   kubectl rollout restart deployment.apps/scan-link-controller-manager -n scan-link-system
   ```
-  
+
 - **User sees error message saying Supply Chain Security Tools - Store (Store) is not configured even though configuration values were supplied:** The Scan Controller experiences a race-condition when deploying Store in the same cluster, that shows Store as not configured, even when it is present and properly configured. This happens when the Scan Controller is deployed and reconciled before the Store is reconciled and the corresponding secrets are exported to the Scan Controller namespace. As a workaround to this, once your Store is successfully reconciled, you would need to restart your Supply Chain Security Tools - Scan deployment by running: `kubectl rollout restart deployment.apps/scan-link-controller-manager -n scan-link-system`. If you deployed Supply Chain Security Tools - Scan to a different namespace than the default one, you can replace `-n scan-link-system` with `-n <my_custom_namespace>`.
 
 #### Supply Chain Security Tools - Store
@@ -359,8 +359,8 @@ This error does not necessarily mean that the workload failed its execution thro
 
 - **Runtime Resources errors:**
 
-    The Runtime Resources tab shows cluster query errors when attempting to retrieve Kubernetes object details from non-full-profile clusters.
+    The Runtime Resources tab shows cluster query errors when attempting to retrieve Kubernetes object details from clusters that are not on the Full profile.
 
 - **Supply Chain displays incorrect data if there are workloads with same name and namespace:**
 
-    When there are two Workloads that have the same name and namespace but live on different clusters, clicking either of them in the supply chain page will always show the details for the first one, and there is no way to access details for the second.
+    When there are two workloads that have the same name and namespace, but exist on different clusters, clicking either of them in the supply chain page always shows the details for the first one. There is no way to access details for the second.
