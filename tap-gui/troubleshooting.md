@@ -76,7 +76,12 @@ When you need to update the configuration of Tanzu Application Platform GUI (eit
     kubectl delete pod -l app=backstage -n tap-gui
     ```
 
->**Note:** `tap-gui` Pods aren't stateful. `config` is held in ConfigMaps, Git catalog, or Secrets.
+> **Note:** Depending on your database configuration, deleting and re-instantiating
+> the pod might cause the loss of user preferences and manually registered entities.
+> If you have configured an external PostgreSQL database, then `tap-gui` pods are not stateful.
+> In most cases, state is held in ConfigMaps, Secrets, or the database.
+> For more information, see [Configuring the Tanzu Application Platform GUI database](database.md) and
+> [Register components](catalog/catalog-operations.md#register-comp).
 
 ## <a id='tap-gui-logs'></a> Pull logs from Tanzu Application Platform GUI
 
@@ -121,7 +126,7 @@ When accessing the **Runtime Resource Visibility** tab, the system displays, "Er
 
 ### Symptom
 
-When accessing the **Runtime Resource Visibility** tab, the system displays, 
+When accessing the **Runtime Resource Visibility** tab, the system displays,
 "One or more resources are missing. This could be due to a label mismatch. Please make sure your resources have the label(s) "LABEL_SELECTOR"."
 
 ### Cause
@@ -148,11 +153,11 @@ The reported errors might not indicate a real problem. A build cluster might not
 -  <a id='rrv-cluster-configuration'></a> "Access error when querying cluster ‘CLUSTER_NAME’ for resource 'KUBERNETES_RESOURCE_PATH' (status: 401). Contact your administrator."
 
     #### Cause
-  
+
     There is a problem with the cluster configuration.
 
     #### Solution
-    
+
     Confirm the access token used to request information in the cluster.
 
 - <a id='rrv-resource-access'></a> "Access error when querying cluster ‘CLUSTER_NAME’ for resource 'KUBERNETES_RESOURCE_PATH' (status: 403). Contact your administrator."
@@ -163,15 +168,15 @@ The reported errors might not indicate a real problem. A build cluster might not
 
     #### Solution
 
-    If the cluster is the same where **Tanzu Application Platform** is running, review the version installed to confirm it contains the desired resource. 
+    If the cluster is the same where **Tanzu Application Platform** is running, review the version installed to confirm it contains the desired resource.
     If the error is in a watched cluster, review the process to grant access to it in [Viewing resources on multiple clusters in Tanzu Application Platform GUI](cluster-view-setup.md).
 
 
 - <a id='rrv-missing-knative'></a> "Knative is not installed on ‘CLUSTER_NAME’ (status: 404). Contact your administrator."
 
     #### Cause
-    
-    The cluster doesn’t have the Cloud Native Runtimes installed. 
+
+    The cluster doesn’t have the Cloud Native Runtimes installed.
 
     #### Solution
 
@@ -186,4 +191,3 @@ The reported errors might not indicate a real problem. A build cluster might not
     #### Solution
 
     Install the missing package.
-
