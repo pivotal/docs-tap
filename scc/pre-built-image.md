@@ -1,14 +1,14 @@
-# Pre-built image
+# Prebuilt image
 
-For applications that have a pre-defined way of building 
+For applications that have a predefined way of building 
 container images, the supply chains in the Out of the Box packages
-support specifying a pre-built image used in the final application 
+support specifying a prebuilt image used in the final application 
 using the same stages as any other Workload.
 
 
 ## <a id="workload"></a> Workload
 
-To select a pre-built image, the `workoad.spec.image` field must be set with
+To select a prebuilt image, the `workoad.spec.image` field must be set with
 the name of the container image that contains the application to deploy.
 
 Using the Tanzu CLI, run the `--image` field of `tanzu apps
@@ -16,7 +16,7 @@ workload create` command:
 
 ```console
 $ tanzu apps workload create --help
---image image        pre-built image, skips the source resolution and build 
+--image image        prebuilt image, skips the source resolution and build 
                      phases of the supply chain
 ```
 
@@ -48,7 +48,7 @@ Create workload:
 
 In Tanzu Application Platform, the `ootb-supply-chain-basic`, `ootb-supply-chain-testing`, and
 `ootb-supply-chain-testing-scanning` packages each receive a new
-supply chain that provides a pre-built container image for your
+supply chain that provides a prebuilt container image for your
 application.
 
 ```
@@ -70,7 +70,7 @@ ootb-supply-chain-testing-scanning
     ^          source-test-scan-to-url       ClusterSupplyChain
 ```
 
-To leverage the supply chains that expect a pre-built image, the only necessary change to
+To leverage the supply chains that expect a prebuilt image, the only necessary change to
 the Workload is `workoad.spec.image` field being set to the
 name of the container image that brings the application to be deployed.
 
@@ -82,22 +82,22 @@ The selection takes place as follows:
 
 - _ootb-supply-chain-basic_
   - from source: label `apps.tanzu.vmware.com/workload-type: web`
-  - pre-built image: label `apps.tanzu.vmware.com/workload-type: web` **and**
+  - prebuilt image: label `apps.tanzu.vmware.com/workload-type: web` **and**
     `workload.spec.image` set
 
 - _ootb-supply-chain-testing_
   - from source: labels `apps.tanzu.vmware.com/workload-type: web` and `apps.tanzu.vmware.com/has-tests: true`
-  - pre-built image: label `apps.tanzu.vmware.com/workload-type: web` **and**
+  - prebuilt image: label `apps.tanzu.vmware.com/workload-type: web` **and**
     `workload.spec.image` set
 
 - _ootb-supply-chain-testing-scanning_
   - from source: labels `apps.tanzu.vmware.com/workload-type: web` and `apps.tanzu.vmware.com/has-tests: true`
-  - pre-built image: label `apps.tanzu.vmware.com/workload-type: web` **and**
+  - prebuilt image: label `apps.tanzu.vmware.com/workload-type: web` **and**
     `workload.spec.image` set
 
 Workloads that already work with the supply chains before Tanzu Application Platform v1.01.00
 continue to work with the same supply chain.
-Workloads that bring a pre-built container image must set
+Workloads that bring a prebuilt container image must set
 `workload.spec.image`.
 
 
