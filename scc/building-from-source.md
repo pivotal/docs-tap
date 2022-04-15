@@ -321,7 +321,7 @@ before being built
 
 This way, whether the cluster the developer targets is local 
 (a cluster in the developer's machine) or not, the source code
-is made available by using an container image registry.
+is made available by using a container image registry.
 
 For example, if a developer has source code under the current directory
 (`.`) and access to a repository in a container image
