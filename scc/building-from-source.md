@@ -1,70 +1,66 @@
 # Building from source
 
-Regardless of the Out of the Box Supply Chain Package installed, when it comes
-to providing source code for the Workload, that can either come from a
-developer's machine (directory in the filesystem) or a Git repository.
+Regardless of the Out of the Box Supply Chain Package you've installed, you can provide source code for the workload either from a directory in your local computer's file system or from a Git repository.
 
-```
-Supply Chain
-   
-  -- fetch source                 * either from Git or local directory
-    -- test 
-      -- build 
-        -- scan 
-          -- apply-conventions 
-            -- push config
-```
+  ```
+  Supply Chain
+    
+    -- fetch source                 * either from Git or local directory
+      -- test 
+        -- build 
+          -- scan 
+            -- apply-conventions 
+              -- push config
+  ```
 
-The following sections dive into details about both approaches.
+This document provides details about both approaches.
 
->**Note:** To provide a pre-built container image instead of 
+>**Note:** To provide a prebuilt container image instead of 
 building the application from the beginning by using the supply chain, see 
-[Pre-built image](pre-built-image.md).
+[Prebuilt image](pre-built-image.md).
 
 ## <a id="git-source"></a>Git source
 
 To provide source code from a Git repository to the supply chains,
-you must fill `workload.spec.source.git`.
-
-With the `tanzu` CLI, you can do so by using the following flags:
+you must fill `workload.spec.source.git`. With the `tanzu` CLI, you can do so by using the following flags:
 
 - `--git-branch`: branch within the Git repository to checkout
 - `--git-commit`: commit SHA within the Git repository to checkout
 - `--git-repo`: Git URL to remote source code
 - `--git-tag`: tag within the Git repository to checkout
 
-For example, having installed `ootb-supply-chain-basic`, you can create a
-`Workload` of which source code comes from the `main` branch of the
-`github.com/sample-accelerators/tanzu-java-web-app` Git repository running:
+For example, after installing `ootb-supply-chain-basic`, to create a
+`Workload` the source code for which comes from the `main` branch of the
+`github.com/sample-accelerators/tanzu-java-web-app` Git repository, run:
 
-```bash
-tanzu apps workload create tanzu-java-web-app \
-  --app tanzu-java-web-app \
-  --type web \
-  --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
-  --git-branch main
-```
+  ```bash
+  tanzu apps workload create tanzu-java-web-app \
+    --app tanzu-java-web-app \
+    --type web \
+    --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
+    --git-branch main
+  ```
 
 Expect to see the following output:
 
-```console
-Create workload:
-      1 + |---
-      2 + |apiVersion: carto.run/v1alpha1
-      3 + |kind: Workload
-      4 + |metadata:
-      5 + |  labels:
-      6 + |    app.kubernetes.io/part-of: tanzu-java-web-app
-      7 + |    apps.tanzu.vmware.com/workload-type: web
-      8 + |  name: tanzu-java-web-app
-      9 + |  namespace: default
-     10 + |spec:
-     11 + |  source:
-     12 + |    git:
-     13 + |      ref:
-     14 + |        branch: main
-     15 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
-```
+  ```console
+  Create workload:
+        1 + |---
+        2 + |apiVersion: carto.run/v1alpha1
+        3 + |kind: Workload
+        4 + |metadata:
+        5 + |  labels:
+        6 + |    app.kubernetes.io/part-of: tanzu-java-web-app
+        7 + |    apps.tanzu.vmware.com/workload-type: web
+        8 + |  name: tanzu-java-web-app
+        9 + |  namespace: default
+      10 + |spec:
+      11 + |  source:
+      12 + |    git:
+      13 + |      ref:
+      14 + |        branch: main
+      15 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
+  ```
 
 >**Note:** The Git repository URL must include the scheme: `http://`,
 `https://`, or `ssh://`.
@@ -73,8 +69,8 @@ Create workload:
 ### <a id="private-git-repo"></a>Private `GitRepository`
 
 To fetch source code from a repository that requires credentials, you must
-provide those by using a Kubernetes Secret object that is then referenced by the
-`GitRepostiory` object created for that Workload. See [How It Works](#how-it-works) 
+provide those by using a Kubernetes secret object that is referenced by the
+`GitRepostiory` object created for that workload. See [How It Works](#how-it-works) 
 to learn more about the underlying process of detecting changes to the repository.
 
 ```scala
@@ -88,83 +84,82 @@ Workload/tanzu-java-web-app
 
 Platform operators who install the Out of the Box Supply Chain packages
 by using Tanzu Application Platform profiles can customize the default name of 
-the secret (`git-ssh`) by tweaking the corresponding `ootb_supply_chain*` 
+the secret (`git-ssh`) by editing the corresponding `ootb_supply_chain*` 
 property in the `tap-values.yml` file:
 
 
-```yaml
-ootb_supply_chain_basic:
-  gitops:
-    ssh_secret: GIT-SECRET-NAME
-```
+  ```yaml
+  ootb_supply_chain_basic:
+    gitops:
+      ssh_secret: GIT-SECRET-NAME
+  ```
 
 For platform operators who install the `ootb-supply-chain-*` package individually 
-by using `tanzu package install`, they can tweak the 
-`ootb-supply-chain-*-values.yml` as such:
+by using `tanzu package install`, they can edit the 
+`ootb-supply-chain-*-values.yml` as follows:
 
-```yaml
-gitops:
-  ssh_secret: GIT-SECRET-NAME
-```
+  ```yaml
+  gitops:
+    ssh_secret: GIT-SECRET-NAME
+  ```
 
-You can also override the default secret name directly in the Workload by using 
+You can also override the default secret name directly in the workload by using 
 the `gitops_ssh_secret` parameter, regardless of how Tanzu Application Platform 
 is installed. You can use the `--param` flag in Tanzu CLI. For example:
 
-```bash
-tanzu apps workload create tanzu-java-web-app \
-  --app tanzu-java-web-app \
-  --type web \
-  --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
-  --git-branch main \
-  --param gitops_ssh_secret=SECRET-NAME
-```
+  ```bash
+  tanzu apps workload create tanzu-java-web-app \
+    --app tanzu-java-web-app \
+    --type web \
+    --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
+    --git-branch main \
+    --param gitops_ssh_secret=SECRET-NAME
+  ```
 
 Expect to see the following output:
 
-```console
-Create workload:
-      1 + |---
-      2 + |apiVersion: carto.run/v1alpha1
-      3 + |kind: Workload
-      4 + |metadata:
-      5 + |  labels:
-      6 + |    app.kubernetes.io/part-of: tanzu-java-web-app
-      7 + |    apps.tanzu.vmware.com/workload-type: web
-      8 + |  name: tanzu-java-web-app
-      9 + |  namespace: default
-     10 + |spec:
-     11 + |  params:
-     12 + |  - name: gitops_ssh_secret  #! parameter that overrides the default
-     13 + |    value: GIT-SECRET-NAME     #! secret name
-     14 + |  source:
-     15 + |    git:
-     16 + |      ref:
-     17 + |        branch: main
-     18 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
-```
+  ```console
+  Create workload:
+        1 + |---
+        2 + |apiVersion: carto.run/v1alpha1
+        3 + |kind: Workload
+        4 + |metadata:
+        5 + |  labels:
+        6 + |    app.kubernetes.io/part-of: tanzu-java-web-app
+        7 + |    apps.tanzu.vmware.com/workload-type: web
+        8 + |  name: tanzu-java-web-app
+        9 + |  namespace: default
+      10 + |spec:
+      11 + |  params:
+      12 + |  - name: gitops_ssh_secret  #! parameter that overrides the default
+      13 + |    value: GIT-SECRET-NAME     #! secret name
+      14 + |  source:
+      15 + |    git:
+      16 + |      ref:
+      17 + |        branch: main
+      18 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
+  ```
 
 >**Note:** A secret reference is only provided to `GitRepository` if 
-`gitops_ssh_secret` is set to a non-empty string in some fashion 
-(either package property or workload parameter). To force a `GitRepository` to 
+`gitops_ssh_secret` is set to a non-empty string in some fashion, 
+either by a package property or a workload parameter. To force a `GitRepository` to 
 not reference a secret, set the value to an empty string (`""`).
 
-After defining the name of Kubernetes Secret, you can move on to the definition 
-of the Secret.
+After defining the name of the Kubernetes secret, you can define 
+the secret.
 
 #### <a id="http-auth"></a>HTTP(S) Basic-auth / Token-based authentication
 
-Despite both the Package value being called `gitops.ssh_secret` and Workload
-parameter `gitops_ssh_secret`, you can use HTTP(S) transports as well:
+Despite both the package value and workload parameter being called `gitops.ssh_secret`, you can use HTTP(S) transports as well:
 
 1. Ensure that the repository in the `Workload` specification 
-uses `http://` Or `https://` schemes in any URLs that relate to the repositories
-(e.g., `https://github.com/my-org/my-repo` as opposed to
-`github.com/my-org/my-repo` or `ssh://github.com:my-org/my-repo`).
+uses `http://` or `https://` schemes in any URLs that relate to the repositories.
+For example, `https://github.com/my-org/my-repo` instead of 
+`github.com/my-org/my-repo` or `ssh://github.com:my-org/my-repo`.
 
-1. In the same namespace as the Workload, create a Kubernetes Secret object
-of type `kubernetes.io/basic-auth` like so with the name matching the one
-expected by the supply chain as explained in the earlier section:
+1. In the same namespace as the workload, create a Kubernetes secret object
+of type `kubernetes.io/basic-auth` with the name matching the one
+expected by the supply chain as explained in the earlier section. For example:
 
     ```yaml
     apiVersion: v1
@@ -179,8 +174,8 @@ expected by the supply chain as explained in the earlier section:
       password: GIT-PASSWORD
     ```
 
-1. With the Secret created with the name matching the one configured for
-`gitops.ssh_secret`, attach it to the `ServiceAccount` used by the Workload. For
+1. With the secret created with the name matching the one configured for
+`gitops.ssh_secret`, attach it to the `ServiceAccount` used by the workload. For
 example:
 
     ```yaml
@@ -197,7 +192,7 @@ example:
       - name: tap-registry
     ```
 
-To learn more about the credentials and setting up the Kubernetes secret, see 
+For more information about the credentials and setting up the Kubernetes secret, see 
 [Git Authentication's HTTP section](git-auth.md#http).
 
 #### <a id="ssh-auth"></a>SSH auth
