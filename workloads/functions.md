@@ -29,8 +29,8 @@ To use the function `buildpacks`, you must upload their buildpackages to Build S
 
     ```
     kp clusterstore add default \
-    -b ghcr.io/vmware-tanzu/function-buildpacks-for-knative/python-buildpack-with-deps:0.0.11 \
-    -b ghcr.io/vmware-tanzu/function-buildpacks-for-knative/java-buildpack-with-deps:0.0.6
+    -b registry.tanzu.vmware.com/python-function-buildpack-for-vmware-tanzu/python-buildpack-with-deps:0.0.11 \
+    -b registry.tanzu.vmware.com/java-function-buildpack-for-vmware-tanzu/java-buildpack-with-deps:0.0.6
     ```
 
 1. Create and save a new [ClusterBuilder](https://docs.vmware.com/en/Tanzu-Build-Service/1.4/vmware-tanzu-build-service-v14/GUID-managing-builders.html) by running:
@@ -51,9 +51,9 @@ To use the function `buildpacks`, you must upload their buildpackages to Build S
     EOF
     ```
 
-1. (Optional) To use default Java and Python buildpacks for non-functions workloads, add an optional flag and set it to `true` to a cluster builder group to use those buildpacks.
+**Note:** If you still would like to use default Java and Python buildpacks for non-functions workloads, you can add an optional flag and set it to true to a cluster builder group in order to use those buildpacks. This will not enable the full functionality of non-function workloads provided by the default ClusterBuilder.
 
-    ```
+    
     kp clusterbuilder save function --store default -o - <<EOF
     ---
     - group:
@@ -70,16 +70,14 @@ To use the function `buildpacks`, you must upload their buildpackages to Build S
       optional: true
 
     EOF
-    ```
+
 
 1. After creating the ClusterBuilder, update your tap\_values.yaml configuration to use the cluster builder you created:
 
     ```
     ootb_supply_chain_basic:
      cluster_builder: function
-     registry:
-       server: "index.docker.io"
-       repository: "sgravesvm"
+     registry: { … }       
     ```
 
 1. Apply the update to the tap-values.yaml. Run the following command in the directory where the tap-values.yml file resides:
@@ -100,9 +98,9 @@ The accelerator ZIP file contains a file called k8s-resource.yaml. This file con
 
 1. Download the ZIP file for the appropriate accelerator.
 
-- [Python HTTP Function](https://github.com/sample-accelerators/python-functions-accelerator) on GitHub.
+    - [Python HTTP Function](https://github.com/sample-accelerators/python-functions-accelerator) on GitHub.
 
-- [Java HTTP Function](https://github.com/sample-accelerators/java-functions-accelerator) on GitHub.
+    - [Java HTTP Function](https://github.com/sample-accelerators/java-functions-accelerator) on GitHub.
 
 1. Expand the accelerator ZIP file in your target cluster with Tanzu Application Platform GUI installed.
 1. To update the Application Accelerator templates in Tanzu Application Platform GUI, you must apply the k8s-resource.yaml. Run the following command in your terminal in the folder where you expanded the ZIP file:
