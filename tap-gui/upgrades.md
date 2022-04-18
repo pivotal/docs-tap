@@ -38,7 +38,7 @@ To upgrade only the Upgrade Tanzu Application Platform GUI:
 2. Perform the package upgrade by using the targeted package update version:
 
     ```
-    tanzu package installed update tap -p tap-gui.tanzu.vmware.com -v VERSION  --values-file TAP_GUI_VALUES.yaml -n tap-install
+    tanzu package installed update tap-gui -p tap-gui.tanzu.vmware.com -v VERSION  --values-file TAP_GUI_VALUES.yaml -n tap-install
     ```
 
     Where:

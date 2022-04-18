@@ -251,7 +251,7 @@ You can also troubleshoot environment variables and fine-tune the running applic
 
 Follow the following steps to diagnose Spring Boot-based applications using Application Live View:
 
-1. Confirm that the Application Live View components installed successfully. For instructions, see [Verify the Application Live View component](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.1/docs/GUID-installing.html#verify-the-application-live-view-convention-component-15).
+1. Confirm that the Application Live View components installed successfully. For instructions, see [Verify the Application Live View component](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.1/docs/GUID-installing.html#verify-alv-connector-component).
 
 1. Access the Application Live View Tanzu Application Platform GUI. For instructions, see [Entry point to Application Live View plug-in](tap-gui/plugins/app-live-view.html#plug-in-entry-point).
 
@@ -873,7 +873,7 @@ pipeline:
     service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.developer.example.com   tanzu-java-web-app-00001   tanzu-java-web-app-00001   Unknown   IngressNotConfigured
     ```
 
-    If the source or image scan has a "Failed" phase, then the scan has failed compliance and the supply chain will not continue.  
+    If the source or image scan has a "Failed" phase, then the scan has failed compliance and the supply chain stops.
 
 #### <a id="query-for-vuln"></a> Query for vulnerabilities
 
@@ -909,9 +909,7 @@ In this section, you are about to:
 
 1. Configure Tanzu Build Service to sign your container image builds by using cosign. See [Managing Image Resources and Builds](https://docs.vmware.com/en/Tanzu-Build-Service/1.3/vmware-tanzu-build-service-v13/GUID-managing-images.html) for instructions.
 2. Create a `values.yaml` file, and install the sign supply chain security tools and image policy web-hook. See [Install Supply Chain Security Tools - Sign](install-components.html#install-scst-sign) for instructions.
-3. Configure a `ClusterImagePolicy` resource to verify image signatures when deploying resources.
-
-    > **Note:** The resource must be named `image-policy`.
+3. Configure a `ClusterImagePolicy` resource to verify image signatures when deploying resources. The resource must be named `image-policy`.
 
     For example:
 
@@ -928,6 +926,7 @@ In this section, you are about to:
              namespaces:
              - kube-system
              - test-namespace
+             - <TAP system namespaces>
          keys:
          - name: first-key
            publicKey: |
@@ -940,6 +939,10 @@ In this section, you are about to:
            - name: first-key
 
     ```
+
+> **Note:** System namespaces specific to your cloud provider might need to be excluded from the policy.
+
+To prevent the Image Policy Webhook from blocking components of Tanzu Application Platform, VMware recommends configuring exclusions for Tanzu Application Platform system namespaces listed in [Create a `ClusterImagePolicy` resource](scst-sign/configuring.md#create-cip-resource).
 
 When you apply the `ClusterImagePolicy` resource, your cluster requires valid signatures for all images that match the `namePattern:` you define in the configuration. For more information about configuring an image signature policy, see [Configuring Supply Chain Security Tools - Sign](scst-sign/configuring.html).
 
@@ -1094,7 +1097,7 @@ each user role.
   </tr>
 </table>
 
-### <a id="stk-walkthrough"></a> Walkthrough <!-- maybe change this heading name? -->
+### <a id="stk-walkthrough"></a> Walkthrough [//]: # (maybe change this heading name?)
 
 This section guides you through deploying two application workloads and learning
 how to configure them to communicate over RabbitMQ.

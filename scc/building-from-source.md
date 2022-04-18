@@ -1,70 +1,66 @@
 # Building from source
 
-Regardless of the Out of the Box Supply Chain Package installed, when it comes
-to providing source code for the Workload, that can either come from a
-developer's machine (directory in the filesystem) or a Git repository.
+Regardless of the Out of the Box Supply Chain Package you've installed, you can provide source code for the workload either from a directory in your local computer's file system or from a Git repository.
 
-```
-Supply Chain
-   
-  -- fetch source                 * either from Git or local directory
-    -- test 
-      -- build 
-        -- scan 
-          -- apply-conventions 
-            -- push config
-```
+  ```
+  Supply Chain
+    
+    -- fetch source                 * either from Git or local directory
+      -- test 
+        -- build 
+          -- scan 
+            -- apply-conventions 
+              -- push config
+  ```
 
-The following sections dive into details about both approaches.
+This document provides details about both approaches.
 
->**Note:** To provide a pre-built container image instead of 
+>**Note:** To provide a prebuilt container image instead of 
 building the application from the beginning by using the supply chain, see 
-[Pre-built image](pre-built-image.md).
+[Prebuilt image](pre-built-image.md).
 
 ## <a id="git-source"></a>Git source
 
 To provide source code from a Git repository to the supply chains,
-you must fill `workload.spec.source.git`.
-
-With the `tanzu` CLI, you can do so by using the following flags:
+you must fill `workload.spec.source.git`. With the `tanzu` CLI, you can do so by using the following flags:
 
 - `--git-branch`: branch within the Git repository to checkout
 - `--git-commit`: commit SHA within the Git repository to checkout
 - `--git-repo`: Git URL to remote source code
 - `--git-tag`: tag within the Git repository to checkout
 
-For example, having installed `ootb-supply-chain-basic`, you can create a
-`Workload` of which source code comes from the `main` branch of the
-`github.com/sample-accelerators/tanzu-java-web-app` Git repository running:
+For example, after installing `ootb-supply-chain-basic`, to create a
+`Workload` the source code for which comes from the `main` branch of the
+`github.com/sample-accelerators/tanzu-java-web-app` Git repository, run:
 
-```bash
-tanzu apps workload create tanzu-java-web-app \
-  --app tanzu-java-web-app \
-  --type web \
-  --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
-  --git-branch main
-```
+  ```bash
+  tanzu apps workload create tanzu-java-web-app \
+    --app tanzu-java-web-app \
+    --type web \
+    --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
+    --git-branch main
+  ```
 
 Expect to see the following output:
 
-```console
-Create workload:
-      1 + |---
-      2 + |apiVersion: carto.run/v1alpha1
-      3 + |kind: Workload
-      4 + |metadata:
-      5 + |  labels:
-      6 + |    app.kubernetes.io/part-of: tanzu-java-web-app
-      7 + |    apps.tanzu.vmware.com/workload-type: web
-      8 + |  name: tanzu-java-web-app
-      9 + |  namespace: default
-     10 + |spec:
-     11 + |  source:
-     12 + |    git:
-     13 + |      ref:
-     14 + |        branch: main
-     15 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
-```
+  ```console
+  Create workload:
+        1 + |---
+        2 + |apiVersion: carto.run/v1alpha1
+        3 + |kind: Workload
+        4 + |metadata:
+        5 + |  labels:
+        6 + |    app.kubernetes.io/part-of: tanzu-java-web-app
+        7 + |    apps.tanzu.vmware.com/workload-type: web
+        8 + |  name: tanzu-java-web-app
+        9 + |  namespace: default
+      10 + |spec:
+      11 + |  source:
+      12 + |    git:
+      13 + |      ref:
+      14 + |        branch: main
+      15 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
+  ```
 
 >**Note:** The Git repository URL must include the scheme: `http://`,
 `https://`, or `ssh://`.
@@ -73,8 +69,8 @@ Create workload:
 ### <a id="private-git-repo"></a>Private `GitRepository`
 
 To fetch source code from a repository that requires credentials, you must
-provide those by using a Kubernetes Secret object that is then referenced by the
-`GitRepostiory` object created for that Workload. See [How It Works](#how-it-works) 
+provide those by using a Kubernetes secret object that is referenced by the
+`GitRepostiory` object created for that workload. See [How It Works](#how-it-works) 
 to learn more about the underlying process of detecting changes to the repository.
 
 ```scala
@@ -88,83 +84,82 @@ Workload/tanzu-java-web-app
 
 Platform operators who install the Out of the Box Supply Chain packages
 by using Tanzu Application Platform profiles can customize the default name of 
-the secret (`git-ssh`) by tweaking the corresponding `ootb_supply_chain*` 
+the secret (`git-ssh`) by editing the corresponding `ootb_supply_chain*` 
 property in the `tap-values.yml` file:
 
 
-```yaml
-ootb_supply_chain_basic:
-  gitops:
-    ssh_secret: GIT-SECRET-NAME
-```
+  ```yaml
+  ootb_supply_chain_basic:
+    gitops:
+      ssh_secret: GIT-SECRET-NAME
+  ```
 
 For platform operators who install the `ootb-supply-chain-*` package individually 
-by using `tanzu package install`, they can tweak the 
-`ootb-supply-chain-*-values.yml` as such:
+by using `tanzu package install`, they can edit the 
+`ootb-supply-chain-*-values.yml` as follows:
 
-```yaml
-gitops:
-  ssh_secret: GIT-SECRET-NAME
-```
+  ```yaml
+  gitops:
+    ssh_secret: GIT-SECRET-NAME
+  ```
 
-You can also override the default secret name directly in the Workload by using 
+You can also override the default secret name directly in the workload by using 
 the `gitops_ssh_secret` parameter, regardless of how Tanzu Application Platform 
 is installed. You can use the `--param` flag in Tanzu CLI. For example:
 
-```bash
-tanzu apps workload create tanzu-java-web-app \
-  --app tanzu-java-web-app \
-  --type web \
-  --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
-  --git-branch main \
-  --param gitops_ssh_secret=SECRET-NAME
-```
+  ```bash
+  tanzu apps workload create tanzu-java-web-app \
+    --app tanzu-java-web-app \
+    --type web \
+    --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
+    --git-branch main \
+    --param gitops_ssh_secret=SECRET-NAME
+  ```
 
 Expect to see the following output:
 
-```console
-Create workload:
-      1 + |---
-      2 + |apiVersion: carto.run/v1alpha1
-      3 + |kind: Workload
-      4 + |metadata:
-      5 + |  labels:
-      6 + |    app.kubernetes.io/part-of: tanzu-java-web-app
-      7 + |    apps.tanzu.vmware.com/workload-type: web
-      8 + |  name: tanzu-java-web-app
-      9 + |  namespace: default
-     10 + |spec:
-     11 + |  params:
-     12 + |  - name: gitops_ssh_secret  #! parameter that overrides the default
-     13 + |    value: GIT-SECRET-NAME     #! secret name
-     14 + |  source:
-     15 + |    git:
-     16 + |      ref:
-     17 + |        branch: main
-     18 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
-```
+  ```console
+  Create workload:
+        1 + |---
+        2 + |apiVersion: carto.run/v1alpha1
+        3 + |kind: Workload
+        4 + |metadata:
+        5 + |  labels:
+        6 + |    app.kubernetes.io/part-of: tanzu-java-web-app
+        7 + |    apps.tanzu.vmware.com/workload-type: web
+        8 + |  name: tanzu-java-web-app
+        9 + |  namespace: default
+      10 + |spec:
+      11 + |  params:
+      12 + |  - name: gitops_ssh_secret  #! parameter that overrides the default
+      13 + |    value: GIT-SECRET-NAME     #! secret name
+      14 + |  source:
+      15 + |    git:
+      16 + |      ref:
+      17 + |        branch: main
+      18 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
+  ```
 
 >**Note:** A secret reference is only provided to `GitRepository` if 
-`gitops_ssh_secret` is set to a non-empty string in some fashion 
-(either package property or workload parameter). To force a `GitRepository` to 
+`gitops_ssh_secret` is set to a non-empty string in some fashion, 
+either by a package property or a workload parameter. To force a `GitRepository` to 
 not reference a secret, set the value to an empty string (`""`).
 
-After defining the name of Kubernetes Secret, you can move on to the definition 
-of the Secret.
+After defining the name of the Kubernetes secret, you can define 
+the secret.
 
 #### <a id="http-auth"></a>HTTP(S) Basic-auth / Token-based authentication
 
-Despite both the Package value being called `gitops.ssh_secret` and Workload
-parameter `gitops_ssh_secret`, you can use HTTP(S) transports as well:
+Despite both the package value and workload parameter being called `gitops.ssh_secret`, you can use HTTP(S) transports as well:
 
 1. Ensure that the repository in the `Workload` specification 
-uses `http://` Or `https://` schemes in any URLs that relate to the repositories
-(e.g., `https://github.com/my-org/my-repo` as opposed to
-`github.com/my-org/my-repo` or `ssh://github.com:my-org/my-repo`).
+uses `http://` or `https://` schemes in any URLs that relate to the repositories.
+For example, `https://github.com/my-org/my-repo` instead of 
+`github.com/my-org/my-repo` or `ssh://github.com:my-org/my-repo`.
 
-1. In the same namespace as the Workload, create a Kubernetes Secret object
-of type `kubernetes.io/basic-auth` like so with the name matching the one
-expected by the supply chain as explained in the earlier section:
+1. In the same namespace as the workload, create a Kubernetes secret object
+of type `kubernetes.io/basic-auth` with the name matching the one
+expected by the supply chain as explained in the earlier section. For example:
 
     ```yaml
     apiVersion: v1
@@ -179,8 +174,8 @@ expected by the supply chain as explained in the earlier section:
       password: GIT-PASSWORD
     ```
 
-1. With the Secret created with the name matching the one configured for
-`gitops.ssh_secret`, attach it to the `ServiceAccount` used by the Workload. For
+1. With the secret created with the name matching the one configured for
+`gitops.ssh_secret`, attach it to the `ServiceAccount` used by the workload. For
 example:
 
     ```yaml
@@ -197,18 +192,17 @@ example:
       - name: tap-registry
     ```
 
-To learn more about the credentials and setting up the Kubernetes secret, see 
+For more information about the credentials and setting up the Kubernetes secret, see 
 [Git Authentication's HTTP section](git-auth.md#http).
 
 #### <a id="ssh-auth"></a>SSH auth
 
 Aside from using HTTP(S) as a transport, you can also use SSH:
 
-1. Ensure that the repository URL in the Workload specification uses
-`ssh://` as the scheme in the URL 
-(e.g., `ssh://git@github.com:my-org/my-repo.git`).  
+1. Ensure that the repository URL in the workload specification uses
+`ssh://` as the scheme in the URL, for example, `ssh://git@github.com:my-org/my-repo.git`.  
 
-1. Create a Kubernetes Secret object of type `kubernetes.io/ssh-auth`:
+1. Create a Kubernetes secret object of type `kubernetes.io/ssh-auth`:
 
     ```yaml
     apiVersion: v1
@@ -225,8 +219,8 @@ Aside from using HTTP(S) as a transport, you can also use SSH:
       known_hosts: GIT-SERVER-PUBLIC-KEYS # git server public keys
     ```
 
-1. With the Secret created with the name matching the one configured for
-`gitops.ssh_secret`, attach it to the ServiceAccount used by the Workload. For
+1. With the secret created with the name matching the one configured for
+`gitops.ssh_secret`, attach it to the ServiceAccount used by the workload. For
 example:
 
     ```yaml
@@ -256,68 +250,68 @@ Git repository stated in `workload.spec.source.git`.
 For each revision found, `gitrepository.status.artifact` gets updated providing
 information about an HTTP endpoint that the controller makes available for
 other components to fetch the source code from within the cluster.
-The digest of the latest commit looks like:
+The digest of the latest commit looks like this:
 
-```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta1
-kind: GitRepository
-metadata:
-  name: tanzu-java-web-app
-spec:
-  gitImplementation: go-git
-  ignore: '!.git'
-  interval: 1m0s
-  ref: {branch: main}
-  timeout: 20s
-  url: https://github.com/sample-accelerators/tanzu-java-web-app
-status:
-  artifact:
-    checksum: 375c2daee5fc8657c5c5b49711a8e94d400994d7
-    lastUpdateTime: "2022-04-07T15:02:30Z"
-    path: gitrepository/default/tanzu-java-web-app/d85df1fc.tar.gz
-    revision: main/d85df1fc28c6b86ca54bd613f55991645d3b257c
-    url: http://source-controller.flux-system.svc.cluster.local./gitrepository/default/tanzu-java-web-app/d85df1fc.tar.gz
-  conditions:
-  - lastTransitionTime: "2022-04-07T15:02:30Z"
-    message: 'Fetched revision: main/d85df1fc28c6b86ca54bd613f55991645d3b257c'
-    reason: GitOperationSucceed
-    status: "True"
-    type: Ready
-  observedGeneration: 1
-```
+  ```yaml
+  apiVersion: source.toolkit.fluxcd.io/v1beta1
+  kind: GitRepository
+  metadata:
+    name: tanzu-java-web-app
+  spec:
+    gitImplementation: go-git
+    ignore: '!.git'
+    interval: 1m0s
+    ref: {branch: main}
+    timeout: 20s
+    url: https://github.com/sample-accelerators/tanzu-java-web-app
+  status:
+    artifact:
+      checksum: 375c2daee5fc8657c5c5b49711a8e94d400994d7
+      lastUpdateTime: "2022-04-07T15:02:30Z"
+      path: gitrepository/default/tanzu-java-web-app/d85df1fc.tar.gz
+      revision: main/d85df1fc28c6b86ca54bd613f55991645d3b257c
+      url: http://source-controller.flux-system.svc.cluster.local./gitrepository/default/tanzu-java-web-app/d85df1fc.tar.gz
+    conditions:
+    - lastTransitionTime: "2022-04-07T15:02:30Z"
+      message: 'Fetched revision: main/d85df1fc28c6b86ca54bd613f55991645d3b257c'
+      reason: GitOperationSucceed
+      status: "True"
+      type: Ready
+    observedGeneration: 1
+  ```
 
-This way, with Cartographer passing the artifact URL and revision to further
-components in the supply chain, those must consume the source code from
-an internal URL (where a tarball with the source code) can be fetched, without 
-the need to process any Git-specific details in multiple places.
+Supply Chain Choreographer passes the artifact URL and revision to further
+components in the supply chain. Those components must consume the source code from
+an internal URL where a tarball with the source code can be fetched, without 
+having to process any Git-specific details in multiple places.
 
 
 ### <a id="workload-params"></a>Workload parameters
 
-You can pass the following parameters by using the Workload object's
+You can pass the following parameters by using the workload object's
 `workload.spec.params` field to override the default behavior of the
 `GitRepository` object created for keeping track of the changes to a repository:
 
 - `gitImplementation`: name of the Git implementation (either `libgit2` or
   `go-git`) to fetch the source code.
 
-- `gitops_ssh_secret`: name of the secret in the same namespace as the Workload
+- `gitops_ssh_secret`: name of the secret in the same namespace as the workload
   where credentials to fetch the repository can be found.
 
-You can also customize the following parameters with defaults for the whole cluster 
-by using properties for either `tap-values.yml` 
-(when installing supply chains by using Tanzu Application Platform profiles),
-or `ootb-supply-chain-*-values.yml` (when installing the OOTB packages
+You can also customize the following parameters with defaults for the whole cluster.
+Do this by using properties for either `tap-values.yml` 
+when installing supply chains by using Tanzu Application Platform profiles,
+or `ootb-supply-chain-*-values.yml` when installing the OOTB packages
 individually):
 
-- `git_implementation` (same as `gitImplementation` as a Workload parameter)
-- `gitops.ssh_secret` (same as `gitops_ssh_secret` Workload parameter)
+- `git_implementation`: the same as `gitImplementation` workload parameter
+- `gitops.ssh_secret`: the same as `gitops_ssh_secret` workload parameter
 
 ## <a id="local-source"></a>Local source
 
-To provide source code from a local directory (e.g., a directory in the
-developer's file system), the `tanzu` CLI provides two flags to specify 
-the source code location in the file system, and where the source code is
+You can provide source code from a local directory; that is, from a directory in the
+developer's file system. The `tanzu` CLI provides two flags to specify 
+the source code location in the file system and where the source code is
 pushed to as a container image:
 
 - `--local-path`: path on the local file system to a directory of source code 
@@ -325,126 +319,132 @@ to build for the workload
 - `--source-image`: destination image repository where source code is staged 
 before being built
 
-This way, regardless of whether the cluster the developer targets is local 
+This way, whether the cluster the developer targets is local 
 (a cluster in the developer's machine) or not, the source code
-is made available by using an container image registry.
+is made available by using a container image registry.
 
-For example, assuming a developer has source code under the current directory
-(`.`) and access to a repository (`REGISTRY-REPOSITORY`) in a container image
-registry (`REGISTRY-SERVER`), you can create a workload as follows:
+For example, if a developer has source code under the current directory
+(`.`) and access to a repository in a container image
+registry, you can create a workload as follows:
 
-```bash
-tanzu apps workload create tanzu-java-web-app \
-  --app tanzu-java-web-app \
-  --type web \
-  --local-path . \
-  --source-image $REGISTRY/test
-```
+  ```bash
+  tanzu apps workload create tanzu-java-web-app \
+    --app tanzu-java-web-app \
+    --type web \
+    --local-path . \
+    --source-image $REGISTRY/test
+  ```
+ 
+  ```console
+  Publish source in "." to "REGISTRY-SERVER/REGISTRY-REPOSITORY"? 
+  It may be visible to others who can pull images from that repository 
 
-```console
-Publish source in "." to "REGISTRY-SERVER/REGISTRY-REPOSITORY"? 
-It may be visible to others who can pull images from that repository 
+    Yes
 
-  Yes
+  Publishing source in "." to "REGISTRY-SERVER/REGISTRY-REPOSITORY"...
+  Published source
 
-Publishing source in "." to "REGISTRY-SERVER/REGISTRY-REPOSITORY"...
-Published source
+  Create workload:
+        1 + |---
+        2 + |apiVersion: carto.run/v1alpha1
+        3 + |kind: Workload
+        4 + |metadata:
+        5 + |  labels:
+        6 + |    app.kubernetes.io/part-of: tanzu-java-web-app
+        7 + |    apps.tanzu.vmware.com/workload-type: web
+        8 + |  name: tanzu-java-web-app
+        9 + |  namespace: default
+      10 + |spec:
+      11 + |  source:
+      12 + |    image: REGISTRY-SERVER/REGISTRY-REPOSITORY:latest@<digest>
+  ```
 
-Create workload:
-      1 + |---
-      2 + |apiVersion: carto.run/v1alpha1
-      3 + |kind: Workload
-      4 + |metadata:
-      5 + |  labels:
-      6 + |    app.kubernetes.io/part-of: tanzu-java-web-app
-      7 + |    apps.tanzu.vmware.com/workload-type: web
-      8 + |  name: tanzu-java-web-app
-      9 + |  namespace: default
-     10 + |spec:
-     11 + |  source:
-     12 + |    image: REGISTRY-SERVER/REGISTRY-REPOSITORY:latest@<digest>
-```
+ Where:
+
+   - `REGISTRY-SERVER` is the container image registry.
+   - `REGISTRY-REPOSITORY` is the repository in the container image registry.
+ 
 
 
 ### <a id="auth"></a>Authentication
 
 Both the cluster and the developer's machine must be configured to properly
-provide the credentials for accessing the container image registry where the 
+provide credentials for accessing the container image registry where the 
 local source code is published to. 
 
 #### <a id="dev"></a>Developer
 
-As the `tanzu` CLI must push the source code to the container image registry 
-indicated by `--source-image`, it's important for the CLI to find the credentials 
-that allows it to do so, the developer must configure their machine accordingly.
+The `tanzu` CLI must push the source code to the container image registry 
+indicated by `--source-image`. To do so, the CLI must find the credentials,
+so the developer must configure their machine accordingly.
 
 To ensure credentials are available, use `docker` to make the necessary
-credentials available for the Tanzu CLI to perform the image push:
+credentials available for the Tanzu CLI to perform the image push. Run:
 
-```
-docker login REGISTRY-SERVER -u REGISTRY-USERNAME -p REGISTRY-PASSWORD
-```
+  ```
+  docker login REGISTRY-SERVER -u REGISTRY-USERNAME -p REGISTRY-PASSWORD
+  ```
 
 #### <a id="auth"></a>Supply chain components
 
 Aside from the developer's ability to push source code to the image registry,
-the cluster must also have the proper credentials so it can pull that
-container image, unpack it, run tests, build the application and so on.
+the cluster must also have the proper credentials, so it can pull that
+container image, unpack it, run tests, build the application, and so on.
 
-To do so, point the ServiceAccount used by the workload at the
+To provide the cluster with the credentials, point the ServiceAccount used by the workload at the
 Kubernetes secret that contains the credentials.
 
-If the registry that the developer targets is the same one of which
-credentials are provided while setting up the workload namespace, no further 
+If the registry that the developer targets is the same one for which
+credentials were provided while setting up the workload namespace, no further 
 action is required. Otherwise, follow the same steps as recommended for the
 application image.
 
 
 ### <a id="how-it-works-2"></a>How it works
 
-When a workload specifies that source code must come from an image (i.e.,
-`workload.spec.source.image` is set pointing at the registry provided by using
-`--source-image`), instead of having a GitRepository object created, an
+A workload specifies that source code must come from an image by setting
+`workload.spec.source.image` to point at the registry provided by using
+`--source-image`. Then, instead of having a GitRepository object created, an
 ImageRepository object is instantiated, with its specification filled in such a
-way to keep track of images pushed the registry provided by the user.
+way to keep track of images pushed to the registry provided by the user.
 
 Take the following workload as an example:
 
-```yaml
-apiVersion: carto.run/v1alpha1
-kind: Workload
-metadata:
-  name: app
-  labels:
-    app.kubernetes.io/part-of: app
-    apps.tanzu.vmware.com/workload-type: web
-spec:
-  source:
-    image: 10.188.0.3:5000/test:latest
-```
+  ```yaml
+  apiVersion: carto.run/v1alpha1
+  kind: Workload
+  metadata:
+    name: app
+    labels:
+      app.kubernetes.io/part-of: app
+      apps.tanzu.vmware.com/workload-type: web
+  spec:
+    source:
+      image: 10.188.0.3:5000/test:latest
+  ```
 
 Instead of a `GitRepository` object, an `ImageRepository` is created:
 
-```diff
-  Workload/app
-  │
-- ├─GitRepository/app
-+ ├─ImageRepository/app
-  │
-  ├─Image/app
-  │ ├─Build/app-build-1
-  │ │ └─Pod/app-build-1-build-pod
-  │ ├─PersistentVolumeClaim/app-cache
-  │ └─SourceResolver/app-source
-  │
-  ├─PodIntent/app
-  │
-  ├─ConfigMap/app
-  │
-  └─Runnable/app-config-writer
-    └─TaskRun/app-config-writer-2zj7w
-      └─Pod/app-config-writer-2zj7w-pod
-```
+  ```diff
+    Workload/app
+    │
+  - ├─GitRepository/app
+  + ├─ImageRepository/app
+    │
+    ├─Image/app
+    │ ├─Build/app-build-1
+    │ │ └─Pod/app-build-1-build-pod
+    │ ├─PersistentVolumeClaim/app-cache
+    │ └─SourceResolver/app-source
+    │
+    ├─PodIntent/app
+    │
+    ├─ConfigMap/app
+    │
+    └─Runnable/app-config-writer
+      └─TaskRun/app-config-writer-2zj7w
+        └─Pod/app-config-writer-2zj7w-pod
+  ```
 
 `ImageRepository` provides the same semantics as `GitRepository`,
 except that it looks for source code in container image registries rather than 

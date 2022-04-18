@@ -68,7 +68,7 @@ created the workshop.
 - The `tags` field must list labels identifying what the workshop is about.
 This is used in a searchable catalog of workshops.
 
-- The `logo` field must be a image provided in embedded data URI format which depicts the
+- The `logo` field must be an image provided in embedded data URI format that depicts the
 topic of the workshop. The image must be 400 by 400 pixels. You can use it in a searchable catalog
 of workshops.
 
