@@ -7,11 +7,11 @@ Before installing Source Controller:
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
 - Install cert-manager on the cluster. See [Install Prerequisites](../install-components.md#install-prereqs).
 
-## Configuration
+## <a id="Configuration"></a> Configuration
 
 Source controller package has no configurable properties.
 
-## Installation
+##  <a id="installation"></a> Installation
 
 To install FluxCD source-controller from the Tanzu Application Platform package repository:
 
@@ -92,11 +92,11 @@ To install FluxCD source-controller from the Tanzu Application Platform package 
     Verify that `STATUS` is `Running`
 
 
-## Try fluxcd-source-controller
+##  <a id="try-fluxcd-source-controller"></a> Try fluxcd-source-controller
 
 1. Verify all the objects are installed:
 
-    This package would create a new namespace where all the elements of fluxcd will be hosted called `flux-system`
+    This package  creates a new namespace where all the elements of fluxcd is to be hosted called `flux-system`
 
     you can verify the main components of `fluxcd-source-controller` were installed by running:
 
@@ -115,11 +115,11 @@ To install FluxCD source-controller from the Tanzu Application Platform package 
     replicaset.apps/source-controller-7684c85659   1         1         1       40m
     ```
 
-    you should get something really similar!
+    you will get something really similar!
 
 2. Verify all the CRD were installed correctly:
 
-    The way you would communicate with `fluxcd-source-controller` would be through its CRDs, this will be your main action point.
+    The way you will communicate with `fluxcd-source-controller` would be through its CRDs, this will be your main action point.
 
     In order to check all the CRDs were installed you can run:
 
@@ -131,11 +131,11 @@ To install FluxCD source-controller from the Tanzu Application Platform package 
     helmrepositories.source.toolkit.fluxcd.io                2022-03-07T19:20:14Z
     ```
 
-3. Try one simple example:
+3. Try this quick example:
 
-    Try one quick example yourself, so you can check everything is working as expected
+    Try this quick example yourself, so you can verify that everything is working as expected.
 
-    - Let's consume a `GitRepository` object,
+    - Consume a `GitRepository` object,
 
       - Create the following `gitrepository-sample.yaml` file:
 
@@ -166,9 +166,9 @@ To install FluxCD source-controller from the Tanzu Application Platform package 
           gitrepository-sample   https://github.com/stefanprodan/podinfo   True    Fetched revision: master/132f4e719209eb10b9485302f8593fc0e680f4fc   4s
           ```
 
-    You can find more examples checking out the samples folder on [fluxcd/source-controller/samples](https://github.com/fluxcd/source-controller/tree/main/config/samples)
+    You can find more examples checking out the samples directory on [fluxcd/source-controller/samples](https://github.com/fluxcd/source-controller/tree/main/config/samples) in GitHub.
 
-## Documentation
+##  <a id="documentation"></a> Documentation
 
 For documentation specific to fluxcd-source-controller, check out the main repository
-[fluxcd/source-controller](https://github.com/fluxcd/source-controller).
+[fluxcd/source-controller](https://github.com/fluxcd/source-controller). in GitHub.
