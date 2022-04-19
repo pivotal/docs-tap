@@ -55,4 +55,4 @@ tanzu package installed update tap -p tap.tanzu.vmware.com -v TAP-VERSION  --val
 Where `TAP-VERSION` is your Tanzu Application Platform version. For example, [TAP-VERSION].
 
 
-[TAP-VERSION]: `1.1.0`
+[TAP-VERSION]: `1.2.0`
