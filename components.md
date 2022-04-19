@@ -14,7 +14,7 @@ into this Tanzu Application Platform documentation site.
 
 + [Application Live View Convention Service for VMware Tanzu](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-convention-server.html)
 
-+ [Cloud Native Runtimes for VMware Tanzu](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-cnr-overview.html)
++ [Cloud Native Runtimes for VMware Tanzu](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.1/tanzu-cloud-native-runtimes/GUID-cnr-overview.html)
 
 + [Convention Service for VMware Tanzu](convention-service/about.md)
 

@@ -102,7 +102,7 @@ The following packages are part of the Tanzu Application Platform:
   endpoints (in our case, HTTP endpoints). Application Live View uses those endpoints to get the
   data from the application and to interact with it.
 
-- **[Cloud Native Runtimes for VMware Tanzu](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-cnr-overview.html)**
+- **[Cloud Native Runtimes for VMware Tanzu](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.1/tanzu-cloud-native-runtimes/GUID-cnr-overview.html)**
 
   Cloud Native Runtimes for Tanzu is a serverless application runtime for Kubernetes that is based
   on Knative and runs on a single Kubernetes cluster. For information about Knative, see the
