@@ -402,5 +402,5 @@ For example:
 setting `packageinstall.spec.paused: true`.
 
 With the installations paused, further live changes to templates/supply
-chains are persisted until the `PackageInstall`s are reverted to not being
+chains are persisted until you revert the `PackageInstall`s to not being
 paused. To persist the changes, follow the steps outlined in the earlier sections.
