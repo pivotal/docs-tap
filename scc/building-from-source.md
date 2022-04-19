@@ -280,7 +280,7 @@ The digest of the latest commit looks like this:
     observedGeneration: 1
   ```
 
-Supply Chain Choreographer passes the artifact URL and revision to further
+Cartographer passes the artifact URL and revision to further
 components in the supply chain. Those components must consume the source code from
 an internal URL where a tarball with the source code can be fetched, without 
 having to process any Git-specific details in multiple places.
