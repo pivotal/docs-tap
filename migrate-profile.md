@@ -26,7 +26,7 @@ Follow these steps to add the new package repository:
         --namespace tap-install
     ```
 
-    Where `TAP-VERSION` is your Tanzu Application Platform version. For example, `1.1.0`.
+    Where `TAP-VERSION` is your Tanzu Application Platform version. For example, [TAP-VERSION].
 
 2. Add the new package repository by running:
 
@@ -52,4 +52,7 @@ To complete the Tanzu Application Platform profile migration, do the following:
 tanzu package installed update tap -p tap.tanzu.vmware.com -v TAP-VERSION  --values-file tap-values.yaml -n tap-install
 ```
 
-Where `TAP-VERSION` is your Tanzu Application Platform version. For example, `1.1.0`.
+Where `TAP-VERSION` is your Tanzu Application Platform version. For example, [TAP-VERSION].
+
+
+[TAP-VERSION]: `1.1.0`
