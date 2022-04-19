@@ -11,15 +11,21 @@ buildservice:
   kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
   tanzunet_username: "TANZUNET-USERNAME"
   tanzunet_password: "TANZUNET-PASSWORD"
-supply_chain: basic
-
-ootb_supply_chain_basic:
+supply_chain: testing_scanning
+ootb_supply_chain_testing_scanning:
   registry:
     server: "SERVER-NAME"
     repository: "REPO-NAME"
   gitops:
     ssh_secret: "SSH-SECRET-KEY"
-
+scanning:
+  metadataStore:
+    url: "METADATA_STORE_URL_ON_VIEW_CLUSTER"
+    caSecret:
+      name: store-ca-cert
+      importFromNamespace: metadata-store-secrets
+    authSecret:
+      name: store-auth-token
 grype:
   namespace: "MY-DEV-NAMESPACE" # (optional) Defaults to default namespace.
   targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
@@ -50,6 +56,7 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
     * Google Cloud Registry has the form `repository: "my-project/supply-chain"`.
 - `SSH-SECRET-KEY` is the SSH secret key supported by the specific package.
 For more information, see [Identify the values for your package](../../install.html#identify-values).
+- `METADATA_STORE_URL_ON_VIEW_CLUSTER` references the URL of the Supply Chain Security Tools Store deployed on the View cluster.  For more information, see Supply Chain Security Tools Store's [Ingress and multicluster support](../../scst-store/ingress-multicluster.html#supply-chain-security-tools--scan-installation-3) for additional details.
 - `MY-DEV-NAMESPACE` is the namespace where you want to deploy the `ScanTemplates`.
 This is the namespace where the scanning feature runs.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the Secret that contains the
