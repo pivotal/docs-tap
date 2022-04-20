@@ -20,7 +20,7 @@ Follow these steps to add the new package repository:
 
 1. Add the latest version of the Tanzu Application Platform package repository by running:
 
-    ```
+    ```console
     tanzu package repository update tanzu-tap-repository \
         --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:TAP-VERSION  \
         --namespace tap-install
@@ -30,7 +30,7 @@ Follow these steps to add the new package repository:
 
 2. Add the new package repository by running:
 
-    ```
+    ```console
     tanzu package repository get tanzu-tap-repository --namespace tap-install
     ```
 ## <a id="edit-profile-values"></a> Edit the tap-values.yaml configuration file that was used during installation
@@ -48,7 +48,7 @@ Where `PROFILE-NAME` is the desired target profile. Review the documentation on 
 
 To complete the Tanzu Application Platform profile migration, do the following:
 
-```
+```console
 tanzu package installed update tap -p tap.tanzu.vmware.com -v TAP-VERSION  --values-file tap-values.yaml -n tap-install
 ```
 
