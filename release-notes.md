@@ -260,7 +260,7 @@ properly observed.
 Search the Application Live View Connector pod logs for issues with rsocket connection
 to the back end. If you find any issues, delete the connector pod to recreate it:
 
-    ```
+    ```console
     kubectl -n app-live-view delete pods -l=name=application-live-view-connector
     ```
 
@@ -316,7 +316,7 @@ This error does not necessarily mean that the workload failed its execution thro
   The necessary `Secret` for the RBAC Auth token is created and the scan can be re-run.
   A rolling restart includes running the following:
 
-  ```
+  ```console
   kubectl rollout restart deployment.apps/scan-link-controller-manager -n scan-link-system
   ```
 
