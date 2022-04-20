@@ -41,13 +41,13 @@ Use the following procedure to verify that the packages are installed.
 
 1. List the installed packages by running:
 
-    ```
+    ```console
     tanzu package installed list --namespace tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     $ tanzu package installed list --namespace tap-install
     \ Retrieving installed packages...
     NAME                     PACKAGE-NAME                                       PACKAGE-VERSION  STATUS
@@ -81,7 +81,7 @@ that you plan to create the `Workload` in:
 
 1. Add read/write registry credentials to the developer namespace by running:
 
-    ```
+    ```console
     tanzu secret registry add registry-credentials --server REGISTRY-SERVER --username REGISTRY-USERNAME --password REGISTRY-PASSWORD --namespace YOUR-NAMESPACE
     ```
 
@@ -97,20 +97,20 @@ that you plan to create the `Workload` in:
 
     **Note:** If you observe the following issue with the above command:
 
-    ```
+    ```console
     panic: runtime error: invalid memory address or nil pointer dereference
     [signal SIGSEGV: segmentation violation code=0x1 addr=0x128 pc=0x2bcce00]
     ```
 
     Use `kubectl` to create the secret:
 
-    ```
+    ```console
     kubectl create secret docker-registry registry-credentials --docker-server=REGISTRY-SERVER --docker-username=REGISTRY-USERNAME --docker-password=REGISTRY-PASSWORD -n YOUR-NAMESPACE
     ```
 
 2. Add secrets, a service account to execute the supply chain, and RBAC rules to authorize the service account to the developer namespace by running:
 
-    ```
+    ```console
     cat <<EOF | kubectl -n YOUR-NAMESPACE apply -f -
     apiVersion: v1
     kind: Secret
@@ -162,7 +162,7 @@ that you plan to create the `Workload` in:
   * Use the `tanzu auth` plug-in to grant `app-viewer` or `app-editor` roles
   * Apply the following RBAC policy:
 
-      ```
+      ```console
       apiVersion: rbac.authorization.k8s.io/v1
       kind: RoleBinding
       metadata:
