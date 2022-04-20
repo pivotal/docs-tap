@@ -188,7 +188,7 @@ To install the Tanzu Build Service package air-gapped:
 1. Keep Tanzu Build Service dependencies up-to-date.
 
 When installing Tanzu Build Service to an air-gapped environment, dependencies cannot be automatically pulled in from the external internet.
-So dependencies must be imported and kept up to date manually. To import dependencies to an air-gapped Tanzu Build Service, follow the official [Tanzu Build Service docs](https://docs.vmware.com/en/Tanzu-Build-Service/1.5/vmware-tanzu-build-service/GUID-updating-deps.html#online-update).
+So dependencies must be imported and kept up to date manually. To import dependencies to an air-gapped Tanzu Build Service, follow the official [Tanzu Build Service docs](https://docs.vmware.com/en/Tanzu-Build-Service/1.6/vmware-tanzu-build-service/GUID-updating-deps.html#online-update).
 
 #### <a id='install-secret-refs'> Installation using Secret references for registry credentials
 

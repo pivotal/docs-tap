@@ -25,7 +25,7 @@ Before using functions workloads on Tanzu Application Platform, complete the fol
 
 To use the function `buildpacks`, you must upload their buildpackages to Build Service stores.
 
-1. Add the function's buildpackages to the default [ClusterStore](https://docs.vmware.com/en/Tanzu-Build-Service/1.5/vmware-tanzu-build-service/GUID-managing-stores.html) by running:
+1. Add the function's buildpackages to the default [ClusterStore](https://docs.vmware.com/en/Tanzu-Build-Service/1.6/vmware-tanzu-build-service/GUID-managing-stores.html) by running:
 
     ```
     kp clusterstore add default \
@@ -33,7 +33,7 @@ To use the function `buildpacks`, you must upload their buildpackages to Build S
     -b registry.tanzu.vmware.com/java-function-buildpack-for-vmware-tanzu/java-buildpack-with-deps:0.0.6
     ```
 
-1. Create and save a new [ClusterBuilder](https://docs.vmware.com/en/Tanzu-Build-Service/1.5/vmware-tanzu-build-service/GUID-managing-builders.html) by running:
+1. Create and save a new [ClusterBuilder](https://docs.vmware.com/en/Tanzu-Build-Service/1.6/vmware-tanzu-build-service/GUID-managing-builders.html) by running:
 
     ```
     kp clusterbuilder save function --store default -o - <<EOF

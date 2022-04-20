@@ -251,11 +251,11 @@ You can also troubleshoot environment variables and fine-tune the running applic
 
 Follow the following steps to diagnose Spring Boot-based applications using Application Live View:
 
-1. Confirm that the Application Live View components installed successfully. For instructions, see [Verify the Application Live View component](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.1/docs/GUID-installing.html#verify-alv-connector-component).
+1. Confirm that the Application Live View components installed successfully. For instructions, see [Verify the Application Live View component](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.2/docs/GUID-installing.html#verify-alv-connector-component).
 
 1. Access the Application Live View Tanzu Application Platform GUI. For instructions, see [Entry point to Application Live View plug-in](tap-gui/plugins/app-live-view.html#plug-in-entry-point).
 
-1. Select your running application to view the diagnostic options and inside the application. For more information, see [Product Features](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.1/docs/GUID-product-features.html).
+1. Select your running application to view the diagnostic options and inside the application. For more information, see [Product Features](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.2/docs/GUID-product-features.html).
 
 
 ---
@@ -907,7 +907,7 @@ In this section, you are about to:
 
 ### <a id="config-sc-to-img-builds"></a>Configure your supply chain to sign your image builds
 
-1. Configure Tanzu Build Service to sign your container image builds by using cosign. See [Managing Image Resources and Builds](https://docs.vmware.com/en/Tanzu-Build-Service/1.5/vmware-tanzu-build-service/GUID-managing-images.html) for instructions.
+1. Configure Tanzu Build Service to sign your container image builds by using cosign. See [Managing Image Resources and Builds](https://docs.vmware.com/en/Tanzu-Build-Service/1.6/vmware-tanzu-build-service/GUID-managing-images.html) for instructions.
 2. Create a `values.yaml` file, and install the sign supply chain security tools and image policy web-hook. See [Install Supply Chain Security Tools - Sign](install-components.html#install-scst-sign) for instructions.
 3. Configure a `ClusterImagePolicy` resource to verify image signatures when deploying resources. The resource must be named `image-policy`.
 

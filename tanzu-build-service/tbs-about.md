@@ -130,5 +130,5 @@ The Tanzu Build Service package in Tanzu Application Platform behaves identicall
 Tanzu Build Service product described in the
 [Tanzu Build Service documentation](https://docs.vmware.com/en/VMware-Tanzu-Build-Service/index.html).
 
-For updating dependencies manually, see [Updating Build Service Dependencies](https://docs.vmware.com/en/Tanzu-Build-Service/1.5/vmware-tanzu-build-service/GUID-updating-deps.html#bulk-update).
+For updating dependencies manually, see [Updating Build Service Dependencies](https://docs.vmware.com/en/Tanzu-Build-Service/1.6/vmware-tanzu-build-service/GUID-updating-deps.html#bulk-update).
 [//]: # (Link not live until release day -- probably April 12)
