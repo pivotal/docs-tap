@@ -100,7 +100,7 @@ To deploy your application, you must download an accelerator, upload it on your 
 
 7. Deploy the Tanzu Java Web App accelerator by running the `tanzu apps workload create` command:
 
-    ```
+    ```console
     tanzu apps workload create tanzu-java-web-app \
     --git-repo GIT-URL-TO-PROJECT-REPO \
     --git-branch main \
@@ -114,7 +114,7 @@ To deploy your application, you must download an accelerator, upload it on your 
 
     If you bypassed step 5 or were unable to upload your accelerator to a Git repository, use the following public version to test:
 
-    ```
+    ```console
     tanzu apps workload create tanzu-java-web-app \
     --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
     --git-branch main \
@@ -133,7 +133,7 @@ To deploy your application, you must download an accelerator, upload it on your 
 
 8. View the build and runtime logs for your app by running the `tail` command:
 
-    ```
+    ```console
     tanzu apps workload tail tanzu-java-web-app --since 10m --timestamp --namespace YOUR-DEVELOPER-NAMESPACE
     ```
 
@@ -142,7 +142,7 @@ To deploy your application, you must download an accelerator, upload it on your 
 9. After the workload is built and running, you can view the Web App in your browser. View the URL of the Web App by running the command below, and then press **ctrl-click** on the
    Workload Knative Services URL at the bottom of the command output.
 
-    ```
+    ```console
     tanzu apps workload get tanzu-java-web-app --namespace YOUR-DEVELOPER-NAMESPACE
     ```
 
@@ -299,7 +299,7 @@ To publish the new application accelerator that is created in your Git repositor
 
 1. Run the following command to publish the new application accelerator:
 
-    ```sh
+    ```console
     tanzu accelerator create simple --git-repository YOUR-GIT-REPOSITORY-URL --git-branch YOUR-GIT-BRANCH
     ```
 
@@ -320,7 +320,7 @@ To publish the new application accelerator that is created in your Git repositor
 
 After you push any changes to your Git repository, the Accelerator is refreshed based on the `git.interval` setting for the Accelerator resource. The default value is 10 minutes. You can run the following command to force an immediate reconciliation:
 
-```
+```console
 tanzu accelerator update ACCELERATOR-NAME --reconcile
 ```
 
@@ -328,7 +328,7 @@ tanzu accelerator update ACCELERATOR-NAME --reconcile
 
 When you no longer need your accelerator, you can delete it by using the Tanzu CLI:
 
-```
+```console
 tanzu accelerator delete ACCELERATOR-NAME
 ```
 
@@ -358,7 +358,7 @@ You can also create a separate manifest file and apply it to the cluster by usin
 
 1. Apply the `simple-manifest.yaml` by running the following command in the directory where you created this file:
 
-    ```sh
+    ```console
     kubectl apply -f simple-manifest.yaml
     ```
 
@@ -560,7 +560,7 @@ To apply this install method, follow the following steps:
 1. You can activate the Out of the Box Supply Chain with Testing by updating our profile to use `testing` rather than `basic` as the selected supply chain for workloads in this cluster. Update `tap-values.yml` (the file used to customize the profile in `Tanzu package install tap
 --values-file=...`) with the following changes:
 
-    ```
+    ```yaml
     - supply_chain: basic
     + supply_chain: testing
 
@@ -573,7 +573,7 @@ To apply this install method, follow the following steps:
 
 2. Update the installed profile by running:
 
-    ```
+    ```console
     tanzu package installed update tap -p tap.tanzu.vmware.com -v VERSION-NUMBER --values-file tap-values.yml -n tap-install
     ```
 
@@ -589,7 +589,7 @@ To add the Tekton supply chain to the cluster, apply the following YAML to the c
 >**Note:** Developers can perform this step because they know how their application needs to be tested.
 The operator can also add the Tekton supply chain to a cluster before the developer get access.
 
-```
+```yaml
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
@@ -643,7 +643,7 @@ the workload must be updated to point at your Tekton pipeline.
 
 1. Update the workload by running the following with the Tanzu CLI:
 
-    ```
+    ```console
     tanzu apps workload create tanzu-java-web-app \
       --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
       --git-branch main \
@@ -652,7 +652,7 @@ the workload must be updated to point at your Tekton pipeline.
       --yes
     ```
 
-    ```
+    ```console
     Create workload:
         1 + |---
         2 + |apiVersion: carto.run/v1alpha1
@@ -676,13 +676,13 @@ the workload must be updated to point at your Tekton pipeline.
 
 2. After accepting the workload creation, monitor the creation of new resources by the workload by running:
 
-    ```
+    ```console
     kubectl get workload,gitrepository,pipelinerun,images.kpack,podintent,app,services.serving
     ```
 
   You will see output similar to the following example that shows the objects that were created by the Supply Chain Choreographer:
 
-    ```
+    ```console
     NAME                                    AGE
     workload.carto.run/tanzu-java-web-app   109s
 
@@ -717,7 +717,7 @@ Follow these steps to install the OOTB Testing+Scanning supply chain:
 1. Supply Chain Security Tools - Scan is installed as part of the profiles.
 Verify that both Scan Link and Grype Scanner are installed by running:
 
-    ```
+    ```console
     tanzu package installed get scanning -n tap-install
     tanzu package installed get grype -n tap-install
     ```
@@ -728,7 +728,7 @@ Verify that both Scan Link and Grype Scanner are installed by running:
 
     A ScanPolicy is required and the following code must be in the required namespace. You can either add the namespace flag to the kubectl  command or add the namespace field to the template itself. Run:
 
-    ```
+    ```console
     kubectl apply -f - -o yaml << EOF
     ---
     apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
@@ -765,7 +765,7 @@ Verify that both Scan Link and Grype Scanner are installed by running:
 
 2. (optional) To persist and query the vulnerability results post-scan, ensure that [Supply Chain Security Tools - Store](scst-store/overview.md) is installed using the following command. The Tanzu Application Platform profiles install the package by default.
 
-    ```
+    ```console
     tanzu package installed get metadata-store -n tap-install
     ```
 
@@ -777,7 +777,7 @@ Verify that both Scan Link and Grype Scanner are installed by running:
    package install tap --values-file=...`) with the following changes:
 
 
-    ```
+    ```console
     - supply_chain: testing
     + supply_chain: testing_scanning
 
@@ -790,7 +790,7 @@ Verify that both Scan Link and Grype Scanner are installed by running:
 
 4. Update the `tap` package:
 
-    ```
+    ```console
     tanzu package installed update tap -p tap.tanzu.vmware.com -v VERSION-NUMBER --values-file tap-values.yml -n tap-install
     ```
 
@@ -803,7 +803,7 @@ pipeline:
 
 1. Update the workload by running the following using the Tanzu CLI:
 
-    ```
+    ```console
     tanzu apps workload create tanzu-java-web-app \
       --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
       --git-branch main \
@@ -814,7 +814,7 @@ pipeline:
 
     Example output:
 
-    ```
+    ```console
     Create workload:
           1 + |---
           2 + |apiVersion: carto.run/v1alpha1
@@ -838,13 +838,13 @@ pipeline:
 
 1. After accepting the workload creation, view the new resources that the workload created by running:
 
-    ```
+    ```console
     kubectl get workload,gitrepository,sourcescan,pipelinerun,images.kpack,imagescan,podintent,app,services.serving
     ```
 
     The following is an example output, which shows the objects that the Supply Chain Choreographer created:
 
-    ```
+    ```console
     NAME                                    AGE
     workload.carto.run/tanzu-java-web-app   109s
 
@@ -881,7 +881,7 @@ Scan reports are automatically saved to the [Supply Chain Security Tools - Store
 
 1. Query the tanzu-java-web-app image dependencies and vulnerabilities with the following commands:
 
-  ```
+  ```console
     insight image get --digest DIGEST
     insight image vulnerabilities --digest  DIGEST
   ```
@@ -913,7 +913,7 @@ In this section, you are about to:
 
     For example:
 
-    ```
+    ```yaml
     ---
     apiVersion: signing.apps.tanzu.vmware.com/v1beta1
     kind: ClusterImagePolicy
@@ -1147,7 +1147,7 @@ To set up a service:
 
 1. Use `kapp` to install the RabbitMQ Cluster Kubernetes Operator by running:
 
-    ```
+    ```console
     kapp -y deploy --app rmq-operator --file https://github.com/rabbitmq/cluster-operator/releases/download/v1.9.0/cluster-operator.yml
     ```
     As a result, a new API Group (`rabbitmq.com`) and Kind (`RabbitmqCluster`) are
@@ -1175,7 +1175,7 @@ To set up a service:
 
     1. Apply `resource-claims-rmq.yml` by running:
 
-        ```
+        ```console
         kubectl apply -f resource-claims-rmq.yml
         ```
 
@@ -1201,7 +1201,7 @@ To set up a service:
 
     1. Apply `rabbitmqcluster-app-operator-reader.yml` by running:
 
-        ```
+        ```console
         kubectl apply -f rabbitmqcluster-app-operator-reader.yml
         ```
 
@@ -1226,7 +1226,7 @@ To set up a service:
 
     1. Apply `rabbitmqcluster-clusterresource.yml` by running:
 
-        ```
+        ```console
         kubectl apply -f rabbitmqcluster-clusterresource.yml
         ```
         After applying this resource, it will be listed in the output of the
@@ -1245,7 +1245,7 @@ To create a service instance:
 
 1. Create a dedicated namespace for service instances by running:
 
-    ```
+    ```console
     kubectl create namespace service-instances
     ```
 
@@ -1256,13 +1256,13 @@ To create a service instance:
 
 2.  Find the list of services that are available on your cluster by running:
 
-    ```
+    ```console
     tanzu service types list
     ```
 
     Expected output:
 
-    ```
+    ```console
     Warning: This is an ALPHA command and may change without notice.
 
      NAME      DESCRIPTION               APIVERSION                    KIND
@@ -1289,7 +1289,7 @@ To create a service instance:
 
     1. Apply `rmq-1-service-instance.yml` by running:
 
-        ```
+        ```console
         kubectl apply -f rmq-1-service-instance.yml
         ```
 
@@ -1320,7 +1320,7 @@ To create a service instance:
 
     1. Apply `rmq-claim-policy.yml` by running:
 
-        ```
+        ```console
         kubectl apply -f rmq-claim-policy.yml
         ```
 
@@ -1360,13 +1360,13 @@ To claim a service instance:
 
 1. Find the information needed to make a resource claim by running:
 
-    ```
+    ```console
     tanzu service instance list -A
     ```
 
     Expected output:
 
-    ```
+    ```console
       Warning: This is an ALPHA command and may change without notice.
 
       NAMESPACE          NAME   KIND             SERVICE TYPE  AGE
@@ -1375,7 +1375,7 @@ To claim a service instance:
 
 1. Using the information from the previous command, create a claim for the service instance by running:
 
-    ```
+    ```console
     tanzu service claim create rmq-1 \
       --resource-name rmq-1 \
       --resource-namespace service-instances \
@@ -1406,13 +1406,13 @@ To create an application workload:
 1. Inspect the claims in the developer namespace to find the value to pass to
 `--service-ref` command by running:
 
-    ```
+    ```console
     tanzu services claims list
     ```
 
     Expected output:
 
-    ```
+    ```console
       Warning: This is an ALPHA command and may change without notice.
 
       NAME   READY  REASON
@@ -1421,13 +1421,13 @@ To create an application workload:
 
 1. Retrieve detailed information about the claim by running:
 
-    ```
+    ```console
     tanzu services claims get rmq-1
     ```
 
     Expected output:
 
-    ```
+    ```console
       Warning: This is an ALPHA command and may change without notice.
 
     Name: rmq-1
@@ -1448,7 +1448,7 @@ This is the value to pass to `--service-ref` to create the application workload.
 
 1. Create the application workload by running:
 
-    ```
+    ```console
     tanzu apps workload create spring-sensors-consumer-web \
       --git-repo https://github.com/sample-accelerators/spring-sensors-rabbit \
       --git-branch main \
