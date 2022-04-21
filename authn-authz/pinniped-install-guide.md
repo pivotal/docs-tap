@@ -26,7 +26,7 @@ Follow these steps to install `pinniped-supervisor`:
 
 ### Create Certificates (letsencrypt/cert-manager)
 
-Create a ClusterIssuer for `letsencrypt`, a CA certificate and TLS certificate for Pinniped Supervisor 
+Create a ClusterIssuer for `letsencrypt`, a CA certificate and TLS certificate for Pinniped Supervisor
 by creating the following resources and save them into `workspace/pinniped-supervisor/certificates.yaml`.
 
 ```yaml
@@ -172,19 +172,19 @@ spec:
 
 ### Apply the resources
 
-After creating the resource files, you can install them into the cluster. 
+After creating the resource files, you can install them into the cluster.
 Follow these steps to deploy them as a [kapp application](https://carvel.dev/kapp/):
 
 1. Install the supervisor.
-    ```
+    ```console
     kapp deploy -y --app pinniped-supervisor --into-ns pinniped-supervisor -f pinniped-supervisor -f https://get.pinniped.dev/v0.12.0/install-pinniped-supervisor.yaml
     ```
 1. Get the external IP address of Ingress.
-    ```
+    ```console
     kubectl -n tanzu-system-ingress get svc/envoy -o jsonpath='{.status.loadBalancer.ingress[0].ip}'
     ```
 1. Bind the Ingress DNS to the IP address.
-    ```
+    ```console
     *.supervisor.example.com A 35.222.xxx.yyy
     ```
 
@@ -192,18 +192,18 @@ Follow these steps to deploy them as a [kapp application](https://carvel.dev/kap
 
 1. Deploy the Pinniped Concierge.
 
-    ```
+    ```console
     kapp deploy -y --app pinniped-concierge \
       -f https://get.pinniped.dev/v0.12.0/install-pinniped-concierge-crds.yaml \
       -f https://get.pinniped.dev/v0.12.0/install-pinniped-concierge.yaml
     ```
-    
+
 1. Get the CA certificate of the supervisor.
 
-    ```
+    ```console
     kubectl get secret pinniped-supervisor-ca-cert -n pinniped-supervisor  -o 'go-template={{index .data "tls.crt"}}'
     ```
-    
+
 1. Create the following resource to `workspace/pinniped-concierge/jwt_authenticator.yaml`.
 
     ```yaml
@@ -217,11 +217,11 @@ Follow these steps to deploy them as a [kapp application](https://carvel.dev/kap
       audience: concierge
       tls:
         certificateAuthorityData: # insert the CA certificate data here
-    ``` 
+    ```
 
 1. Deploy the resource by running:
 
-    ```sh
+    ```console
     kapp deploy -y --app pinniped-concierge-jwt --into-ns pinniped-concierge -f pinniped-concierge/jwt_authenticator.yaml
     ```
 
