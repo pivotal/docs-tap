@@ -4,14 +4,14 @@
 
 The following example performs an image scan on an image in a public registry. This image revision has 223 known vulnerabilities (CVEs), spanning a number of severities. ImageScan uses the ScanPolicy to run a compliance check against the CVEs.
 
-The policy in this example is set to only consider `Critical` severity CVEs as a violation, which returns 21 Unknown Severity Vulnerability.
+The policy in this example is set to only consider `Critical` severity CVEs as a violation, which returns 21 Critical Severity Vulnerabilities.
 
 >**Note:** This example ScanPolicy is deliberately constructed to showcase the features available and must not be considered an acceptable base policy.
 
 In this example, the scan does the following (currently):
 
 * Finds all 223 of the CVEs.
-* Ignores any CVEs with severities that are not unknown severities.
+* Ignores any CVEs with severities that are not critical.
 * Indicates in the `Status.Conditions` that 21 CVEs have violated policy compliance.
 
 ### <a id="define-scanpolicy-imgscan"></a> Define the ScanPolicy and ImageScan
@@ -84,13 +84,13 @@ kubectl apply -f sample-public-image-scan-with-compliance-check.yaml
 kubectl describe imagescan sample-public-image-scan-with-compliance-check
 ```
 
-> **Note:** The `Status.Conditions` includes a `Reason: EvaluationFailed` and `Message: Policy violated because of 18 CVEs`.
+> **Note:** The `Status.Conditions` includes a `Reason: EvaluationFailed` and `Message: Policy violated because of 21 CVEs`.
 
 For more information about scan status conditions, see [Viewing and Understanding Scan Status Conditions](../results.md).
 
 ### <a id="modify-scanpolicy"></a> Modify the ScanPolicy
 
-See the previous source scan example.
+To modify the Scan Policy, see [Step 5: Sample Public Source Code Scan with Compliance Check](public-source-compliance.md#modify-scan-policy).
 
 ### <a id="clean-up"></a> Clean up
 

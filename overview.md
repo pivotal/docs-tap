@@ -92,7 +92,7 @@ The following packages are part of the Tanzu Application Platform:
   configurations and enable fleets of developers to use them, decreasing operator concerns about
   whether developers are implementing their desired best practices.
 
-- **[Application Live View for VMware Tanzu](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-index.html)**
+- **[Application Live View for VMware Tanzu](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.1/docs/GUID-index.html)**
 
   Application Live View is a lightweight insight and troubleshooting tool that helps application
   developers and application operators look inside running applications.
@@ -102,11 +102,11 @@ The following packages are part of the Tanzu Application Platform:
   endpoints (in our case, HTTP endpoints). Application Live View uses those endpoints to get the
   data from the application and to interact with it.
 
-- **[Cloud Native Runtimes for VMware Tanzu](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-cnr-overview.html)**
+- **[Cloud Native Runtimes for VMware Tanzu](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.2/tanzu-cloud-native-runtimes/GUID-cnr-overview.html)**
 
   Cloud Native Runtimes for Tanzu is a serverless application runtime for Kubernetes that is based
   on Knative and runs on a single Kubernetes cluster. For information about Knative, see the
-  [Knative documentation](https://knative.dev/docs/) Cloud Native Runtimes capabilities are included
+  [Knative documentation](https://knative.dev/docs/). Cloud Native Runtimes capabilities are included
   in VMware Tanzu Advanced Edition and VMware Tanzu Application Platform.
 
 - **[Convention Service for VMware Tanzu](convention-service/about.md)**
@@ -140,7 +140,7 @@ The following packages are part of the Tanzu Application Platform:
 
   Grype is a vulnerability scanner for container images and file systems.
 
-- **[Services Toolkit](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-overview.html)**
+- **[Services Toolkit](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.6/svc-tlk/GUID-overview.html)**
 
   Services Toolkit comprises a number of Kubernetes-native components which support the management,
   life cycle, discoverability, and connectivity of Service Resources (databases, message queues,
@@ -228,7 +228,7 @@ The following packages are part of the Tanzu Application Platform:
 
 ## <a id='profiles-and-packages'></a> Installation profiles in Tanzu Application Platform v1.1
 
-Tanzu Application Platform is available from predefined profiles or individual packages.
+Tanzu Application Platform can be deployed through predefined profiles or individual packages. The profiles are designed to allow the Tanzu Application Platform to scale across an organization's multicluster, multicloud, or hybrid cloud infrastructure. These profiles are not meant to cover all customer’s use cases, but rather serve as a starting point to allow for further customization.
 
 The following profiles are available in Tanzu Application Platform:
 

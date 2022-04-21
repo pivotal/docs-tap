@@ -45,7 +45,7 @@ metadata_store:
 
 Where `PASSWORD-0123` is the same password used between deployments.
 
->**Note:** there is a known issue related to changing database passwords [Known Issues - Persistent Volume Retains Data](known-issues.md#persistent-volume-retains-data).
+>**Note:** there is a known issue related to changing database passwords [Persistent Volume Retains Data](../release-notes.md#store-persistent-volume-retains-data).
 
 ### <a id='appserv-type'></a>App service type
 

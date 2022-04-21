@@ -1,4 +1,4 @@
-# Functions
+# Functions (Beta Feature)
 
 ## <a id="overview"></a>Overview
 
@@ -6,7 +6,12 @@ The function experience on Tanzu Application Platform enables developers to depl
 
 This document describes how to create and deploy an HTTP function from an application accelerator starter template.
 
->**Caution:** This functionality is currently in beta and is intended for evaluation and test purposes only.
+> **Important:** The functionality of beta features has been tested, but performance has not.
+> Features enter the beta stage for customers to gain early access to them and give feedback on their
+> design and behavior.
+> Beta features might undergo changes based on that feedback before leaving beta.
+> VMware discourages running beta features in production.
+> VMware doesn't guarantee that any beta feature can be upgraded in the future.
 
 ## <a id="prereqs"></a>Prerequisites
 
@@ -14,64 +19,84 @@ Before using functions workloads on Tanzu Application Platform, complete the fol
 
 - Complete all steps described in [Installing Tanzu Application Platform](../install-intro.md).
 - Download and install the kp CLI for your operating system from the [Tanzu Build Service](https://network.tanzu.vmware.com/products/build-service/) page on Tanzu Network. For more information, see the [kp CLI help text](https://github.com/vmware-tanzu/kpack-cli/blob/v0.4.0/docs/kp.md) on GitHub.
-- [Set up developer namespaces to use installed packages](https://docs.vmware.com/en/Tanzu-Application-Platform/1.0/tap/GUID-install-components.html#setup).
+- [Set up developer namespaces to use installed packages](../install-components.html#setup).
 
 ## <a id="add-buildpacks"></a>Adding function buildpacks
 
 To use the function `buildpacks`, you must upload their buildpackages to Build Service stores.
 
-1. Add the function's buildpackages to the default [ClusterStore](https://docs.vmware.com/en/Tanzu-Build-Service/1.4/vmware-tanzu-build-service-v14/GUID-managing-stores.html) by running:
+1. Add the function's buildpackages to the default [ClusterStore](https://docs.vmware.com/en/Tanzu-Build-Service/1.5/vmware-tanzu-build-service/GUID-managing-stores.html) by running:
 
     ```
-    kp clusterstore add default \-b ghcr.io/vmware-tanzu/function-buildpacks-for-knative/python-buildpack-with-deps:0.0.11 \-b ghcr.io/vmware-tanzu/function-buildpacks-for-knative/java-buildpack-with-deps:0.0.6
+    kp clusterstore add default \
+    -b registry.tanzu.vmware.com/python-function-buildpack-for-vmware-tanzu/python-buildpack-with-deps:0.0.11 \
+    -b registry.tanzu.vmware.com/java-function-buildpack-for-vmware-tanzu/java-buildpack-with-deps:0.0.6
     ```
 
-1. Create and save a new [ClusterBuilder](https://docs.vmware.com/en/Tanzu-Build-Service/1.4/vmware-tanzu-build-service-v14/GUID-managing-builders.html) by running:
-
-    ```
-    kp clusterbuilder save function --store default -o - <<EOF
-    ---
-    - group:
-    - id: tanzu-buildpacks/python-lite
-    - id: kn-fn/python-function- group:
-    - id: tanzu-buildpacks/java-native-image-lite- id: kn-fn/java-function- group:
-    - id: tanzu-buildpacks/java-lite
-    - id: kn-fn/java-function
-    ```
-
-1. (Optional) To use default Java and Python buildpacks for non-functions workloads, add an optional flag and set it to `true` to a cluster builder group to use those buildpacks.
+1. Create and save a new [ClusterBuilder](https://docs.vmware.com/en/Tanzu-Build-Service/1.5/vmware-tanzu-build-service/GUID-managing-builders.html) by running:
 
     ```
     kp clusterbuilder save function --store default -o - <<EOF
     ---
     - group:
-    - id: tanzu-buildpacks/python-lite
-    - id: kn-fn/python-functionoptional: true- group:
-    - id: tanzu-buildpacks/java-native-image-lite- id: kn-fn/java-functionoptional: true- group:
-    - id: tanzu-buildpacks/java-lite
-    - id: kn-fn/java-functionoptional: true
+      - id: tanzu-buildpacks/python-lite
+      - id: kn-fn/python-function
+    - group:
+      - id: tanzu-buildpacks/java-native-image-lite
+      - id: kn-fn/java-function
+    - group:
+      - id: tanzu-buildpacks/java-lite
+      - id: kn-fn/java-function
+
     EOF
     ```
 
-1. After creating the ClusterBuilder, update your tap\_values.yaml configuration to use the cluster builder you created:
+    If you still want to use default Java and Python buildpacks for non-functions workloads,
+    add optional `true` flags for cluster builder groups.
+    This does not enable the full capability of non-function workloads provided by the default
+    ClusterBuilder. See the following example.
+
+    ```
+    kp clusterbuilder save function --store default -o - <<EOF
+    ---
+    - group:
+      - id: tanzu-buildpacks/python-lite
+      - id: kn-fn/python-function
+      optional: true
+    - group:
+      - id: tanzu-buildpacks/java-native-image-lite-
+      - id: kn-fn/java-function
+      optional: true
+    - group:
+      - id: tanzu-buildpacks/java-lite
+      - id: kn-fn/java-function
+      optional: true
+
+    EOF
+    ```
+
+1. After creating the ClusterBuilder, update your `tap-values.yaml` configuration to use the cluster builder you created. See the following example:
 
     ```
     ootb_supply_chain_basic:
-     cluster\_builder: function 
+     cluster_builder: function
      registry:
-       server: "index.docker.io"
-       repository: "sgravesvm"
+       server: "SERVER"
+       repository: "REPO"
     ```
 
-1. Apply the update to the tap-values.yaml. Run the following command in the directory where the tap-values.yml file resides:
+    Where:
+
+    * `SERVER` is your server. For example, `index.docker.io`.
+    * `REPO` is your repository.
+
+1. Apply the update by going to the directory containing `tap-values.yml` and running:
 
     ```
     tanzu package installed update tap -p tap.tanzu.vmware.com -v VERSION --values-file tap-values.yml -n tap-install
     ```
 
-Where:
-
-- `VERSION` is the version of Tanzu Application Platform GUI you have installed. For example, 1.0.2.
+    Where `VERSION` is the version of Tanzu Application Platform GUI you have installed. For example, `1.0.2`.
 
 ## <a id="add-accelerators"></a>Add accelerators to Tanzu Application Platform GUI
 
@@ -79,11 +104,10 @@ Application Accelerator is a component of Tanzu Application Platform. An acceler
 
 The accelerator ZIP file contains a file called k8s-resource.yaml. This file contains the resource manifest for the function accelerator.
 
-1. Download the ZIP file for the appropriate accelerator.
+1. Download the ZIP file for the appropriate accelerator:
 
-- [Python HTTP Function](https://github.com/sample-accelerators/python-functions-accelerator) on GitHub.
-
-- [Java HTTP Function](https://github.com/sample-accelerators/java-functions-accelerator) on GitHub.
+    - [Python HTTP Function](https://github.com/sample-accelerators/python-functions-accelerator) on GitHub.
+    - [Java HTTP Function](https://github.com/sample-accelerators/java-functions-accelerator) on GitHub.
 
 1. Expand the accelerator ZIP file in your target cluster with Tanzu Application Platform GUI installed.
 1. To update the Application Accelerator templates in Tanzu Application Platform GUI, you must apply the k8s-resource.yaml. Run the following command in your terminal in the folder where you expanded the ZIP file:

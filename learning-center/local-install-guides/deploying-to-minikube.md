@@ -4,7 +4,7 @@ Minikube enables local deployment of Kubernetes for developing workshop content 
 
 Because you are deploying to a local machine, you are unlikely to have access to your own custom domain name and certificate you can use with the cluster. You must take extra steps over a standard install of Minikube to ensure you can run certain types of workshops.
 
-Also, because Minikube generally has limited memory resources available and is only a single-node cluster, you might be restricted from running workshops that have large memory requirements or that demonstrate the use of third-party applications requiring a multi-node cluster.
+Also, because Minikube generally has limited memory resources available and is only a single-node cluster, you might be restricted from running workshops that have large memory requirements or that demonstrate the use of third-party applications requiring a multinode cluster.
 
 Requirements and setup instructions specific to Minikube are detailed in this document. Otherwise, you can follow normal installation instructions for the Learning Center operator.
 
@@ -97,9 +97,11 @@ Follow these steps to install the Tanzu package repository:
 
     ```
     tanzu package repository add tanzu-tap-repository \
-      --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.0.0 \
+      --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:VERSION-NUMBER \
       --namespace tap-install
     ```
+
+    Where `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `1.1.0`.
 
     >**Note:** We are currently on build 7; if this changes, we need to update the command with the correct build version after the --url flag.
 

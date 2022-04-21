@@ -71,14 +71,14 @@ Where:
 
 > You may also use `tanzu insight source get --commit COMMIT` where `COMMIT` is the commit sha.  `--repo` and `--org` must be used together.
 
-For example:
+For example, to get a recent scan for https://github.com/pivotal/kpack.git:
 
 ```
-$ tanzu insight source get --repo https://github.com/pivotal/kpack.git --org pivotal-cf
+$ tanzu insight source get --repo kpack --org pivotal
 ID:       	2
-Repository:  https://github.com/pivotal/kpack.git
+Repository:  kpack
 Commit:  b66668e
-Organization:	pivotal-cf
+Organization:	pivotal
 Packages:
 		1. cloud.google.com/go/kms@v1.0.0
 		2. github.com/BurntSushi/toml@v3.1.1

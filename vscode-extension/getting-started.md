@@ -25,7 +25,7 @@ To use the Tanzu Developer Tools extension with a project, the project must have
     
         A file named **workload** with the extension **.yaml** must be included in the project. For example, `my project/config/workload.yaml`. The **workload.yaml** file provides instructions to the [Supply Chain Choreographer](../scc/about.md) for how a workload must be built and managed.
         
-        >**Note:** The Tanzu Developer Tools extension requires only one workload.yaml per project. The workload.yaml must be a single-document YAML file, not a multi-document YAML file.
+        >**Note:** The Tanzu Developer Tools extension requires only one workload.yaml per project. The workload.yaml must be a single-document YAML file, not a multidocument YAML file.
 
     - **catalog-info.yaml**
     
@@ -45,7 +45,7 @@ To use the Tanzu Developer Tools extension with a project, the project must have
 
 The **workload.yaml** file provides instructions to the Supply Chain Choreographer to build and manage a workload.
 
->**Note:** The Tanzu Developer Tools extension requires only one workload.yaml per project. The workload.yaml must be a single-document YAML file, not a multi-document YAML file.
+>**Note:** The Tanzu Developer Tools extension requires only one workload.yaml per project. The workload.yaml must be a single-document YAML file, not a multidocument YAML file.
 
 Before beginning to write your **workload.yaml** file, ensure that you know:
 
@@ -122,7 +122,7 @@ If you don’t want to use the Code Snippets templates to create the files requi
 
 The **workload.yaml** file provides instructions to the Supply Chain Choreographer for how to build and manage a workload.
 
->**Note:** The Tanzu Developer Tools extension requires only one **workload.yaml** per project. The **workload.yaml** must be a single-document YAML file, not a multi-document YAML file.
+>**Note:** The Tanzu Developer Tools extension requires only one **workload.yaml** per project. The **workload.yaml** must be a single-document YAML file, not a multidocument YAML file.
 
 Before beginning to write your workload.yaml file, ensure that you know:
 

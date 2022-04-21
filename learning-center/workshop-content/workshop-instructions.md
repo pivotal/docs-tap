@@ -215,7 +215,7 @@ text: echo "Text to copy and edit."
 
 A benefit of using these over the original methods is that by using the appropriate YAML syntax, you can control whether:
 
-- A multi-line string value is concatenated into one line.
+- A multiline string value is concatenated into one line.
 - Line breaks are preserved.
 - Initial or terminating new lines are included.
 

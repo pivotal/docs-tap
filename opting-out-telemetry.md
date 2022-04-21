@@ -15,7 +15,7 @@ To turn off telemetry collection on your Tanzu Application Platform installation
 
 2. Run the following `kubectl` command:
 
-    ```
+    ```console
     kubectl apply -f - <<EOF
     apiVersion: v1
     kind: Namespace
@@ -34,7 +34,7 @@ To turn off telemetry collection on your Tanzu Application Platform installation
 
 3. If you already have Tanzu Application Platform installed, restart the telemetry collector to pick up the change:
 
-    ```
+    ```console
     kubectl delete pods --namespace tap-telemetry --all
     ```
 

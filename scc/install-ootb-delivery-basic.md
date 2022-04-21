@@ -25,7 +25,7 @@ To install Out of the Box Delivery Basic:
    configured by running:
 
     ```
-    tanzu package available get ootb-delivery-basic.tanzu.vmware.com/0.7.0-build.2 \
+    tanzu package available get ootb-delivery-basic.tanzu.vmware.com/0.7.0 \
       --values-schema \
       -n tap-install
     ```
@@ -58,7 +58,7 @@ To install Out of the Box Delivery Basic:
     ```
     tanzu package install ootb-delivery-basic \
       --package-name ootb-delivery-basic.tanzu.vmware.com \
-      --version 0.7.0-build.2 \
+      --version 0.7.0 \
       --namespace tap-install \
       --values-file ootb-delivery-basic-values.yaml
     ```

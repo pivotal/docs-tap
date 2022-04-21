@@ -4,7 +4,7 @@ Kind was developed as a means to support development and testing of Kubernetes. 
 
 Because you are deploying to a local machine, you are unlikely to have access to your own custom domain name and certificate you can use with the cluster. If you don't, you can be restricted as to the sorts of workshops you can develop or run using the Learning Center in Kind. Kind uses `containerd`, which lacks certain features that allow you to trust any image registries hosted within a subnet. This means you cannot readily run workshops that use a local container image registry for each workshop session. If you must run workshops on your local computer that uses an image registry for each session, VMware recommends you use minikube with `dockerd` instead. For more information, see [Installing on Minikube](deploying-to-minikube.md).
 
-Also, since Kind has limited memory resources available, you may be prohibited from running workshops that have large memory requirements. Workshops that demonstrate the use of third-party applications requiring a multi-node cluster also do not work unless the Kind cluster is specifically configured to be multi-node rather than single node.
+Also, since Kind has limited memory resources available, you may be prohibited from running workshops that have large memory requirements. Workshops that demonstrate the use of third-party applications requiring a multinode cluster also do not work unless the Kind cluster is specifically configured to be multinode rather than single node.
 
 Requirements and setup instructions specific to Kind are detailed in this document. Otherwise, follow normal installation instructions for the Learning Center operator.
 
@@ -96,17 +96,19 @@ Follow these steps to install the Tanzu package repository:
     --export-to-all-namespaces --yes --namespace tap-install
   ```
 
-  Where: 
-  
+  Where:
+
   - `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are your credentials for Tanzu Network.
 
 1. Add a vpackage repository to your cluster:
 
   ```
   tanzu package repository add tanzu-tap-repository \
-    --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.0.0 \
+    --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:VERSION-NUMBER \
     --namespace tap-install
   ```
+
+  Where `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `1.1.0`.
 
   >**Note:** We are currently on build 7. If this changes, we need to update the command with the correct build version after the --url flag.
 
@@ -147,7 +149,7 @@ To create a configuration YAML file:
   storageClass: null
   storageUser: null
   storageGroup: null
-  #! Credentials for accessing training portal instances. If not specified, 
+  #! Credentials for accessing training portal instances. If not specified,
   #! random passwords are generated that you can obtain from the custom resource
   #! for the training portal.
   portalCredentials:

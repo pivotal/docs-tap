@@ -8,6 +8,5 @@
 - [Database backup recommendations](backups.md)
 - [Log configuration and usage](logs.md)
 - [Troubleshooting upgrading](upgrading.md)
-- [Known issues](known-issues.md)
 - [Failover, redundancy, and backups](failover.md)
 - [Ingress and multicluster support](ingress-multicluster.md)

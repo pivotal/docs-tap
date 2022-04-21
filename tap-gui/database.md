@@ -37,8 +37,10 @@ To use a PostgreSQL database:
 1. Update the package profile by running:
 
     ```
-    tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version 1.0.0 --values-file tap-values-file.yml -n tap-install
+    tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version VERSION-NUMBER --values-file tap-values-file.yml -n tap-install
     ```
+
+    Where `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `1.1.0`.
 
     For example:
 

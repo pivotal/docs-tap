@@ -105,8 +105,10 @@ To install Application Accelerator:
 1. Install the package by running:
 
     ```
-    tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 1.0.0 -n tap-install -f app-accelerator-values.yaml
+    tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v VERSION-NUMBER -n tap-install -f app-accelerator-values.yaml
     ```
+
+    Where `VERSION-NUMBER` is the version included in the Tanzu Application Platform installation.
 
     For example:
 

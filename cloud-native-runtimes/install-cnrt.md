@@ -78,12 +78,12 @@ To install Cloud Native Runtimes:
         `cnrs.ingress.internal.namespace` to the empty string (`""`).
 
         For more information about using Cloud Native Runtimes with kind, see the
-        [Cloud Native Runtimes documentation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-local-dns.html#config-cluster).
-        If you are running on a multi-node cluster, do not set `provider`.
+        [Cloud Native Runtimes documentation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.2/tanzu-cloud-native-runtimes/GUID-local-dns.html#config-cluster).
+        If you are running on a multinode cluster, do not set `provider`.
 
         If your environment has Contour packages, Contour might conflict with the Cloud Native Runtimes installation.
 
-        For information about how to prevent conflicts, see [Installing Cloud Native Runtimes for Tanzu with an Existing Contour Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.0/tanzu-cloud-native-runtimes-1-0/GUID-contour.html) in the Cloud Native Runtimes documentation.
+        For information about how to prevent conflicts, see [Installing Cloud Native Runtimes for Tanzu with an Existing Contour Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.2/tanzu-cloud-native-runtimes/GUID-contour.html) in the Cloud Native Runtimes documentation.
         Specify values for `ingress.reuse_crds`,
         `ingress.external.namespace`, and `ingress.internal.namespace` in the `cnr-values.yaml` file.
 

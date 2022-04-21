@@ -4,65 +4,80 @@ VMware Tanzu Build Service automates container creation, management, and governa
 
 ## <a id="dependencies"> Tanzu Build Service Dependencies
 
-Tanzu Build Service requires dependencies (buildpacks and stacks) to build OCI images.
+Tanzu Build Service requires dependencies in the form of
+[Buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html) and
+[Stacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html)
+to build OCI images.
 
-### <a id="dependencies-configuration"> Configuration
+### <a id="configuration"> Configuration
 
-On non-airgapped clusters, dependencies are imported as a part of installation of a TAP profile or the TBS component.
+On non-air-gapped clusters, dependencies are imported as a part of installation of a
+Tanzu Application Platform profile or the Tanzu Build Service component.
 
-When creating the values file during installation, include the following bolded keys (in addition to any other `buildservice` keys):
+When creating the values file during installation, include the `tanzunet_username`, `tanzunet_password`,
+and `descriptor_name` key-value pairs, in addition to any other `buildservice` key-value pairs, as
+in this example:
 
-<pre>
+<code>
 ...
 kp_default_repository: REPOSITORY
 kp_default_repository_username: REGISTRY-USERNAME
 kp_default_repository_password: REGISTRY-PASSWORD
-<b>tanzunet_username: TANZUNET-USERNAME
+tanzunet_username: TANZUNET-USERNAME
 tanzunet_password: TANZUNET-PASSWORD
-descriptor_name: DESCRIPTOR-NAME</b>
+descriptor_name: DESCRIPTOR-NAME
 ...
-</pre>
+</code>
 
 Where:
+
 - `TANZUNET-USERNAME` and `TANZUNET-PASSWORD` are the email address and password that you use to log in to VMware Tanzu Network.
-- `DESCRIPTOR-NAME` is the name of the descriptor to import automatically. See more details [here](#dependencies-descriptors). Available options are:
-    * `lite` (default if unset) has a smaller footprint that enables faster installations.
-    * `full` optimized to speed up builds and includes dependencies for all supported workload types.
+- `DESCRIPTOR-NAME` is the name of the descriptor to import automatically. For more information, see [Descriptors](#descriptors). Available options are:
+    * `lite` is the default if not set. It has a smaller footprint, which enables faster installations.
+    * `full` is optimized to speed up builds and includes dependencies for all supported workload types.
 
-### <a id="dependencies-descriptors"> Descriptors
+### <a id="descriptors"> Descriptors
 
-Tanzu Build Service descriptors are curated sets of dependencies (stacks and buildpacks) that are continuously released on [VMware Tanzu Network](https://network.pivotal.io/) to resolve all workload CRITICAL and HIGH CVEs.
-Descriptors can be imported into TBS to update the entire cluster wholesale.
+Tanzu Build Service descriptors are curated sets of dependencies (stacks and buildpacks) that are
+continuously released on [VMware Tanzu Network](https://network.pivotal.io/) to resolve all workload
+CRITICAL and HIGH CVEs.
+Descriptors can be imported into Tanzu Build Service to update the entire cluster wholesale.
 
-Different descriptors can apply to different use cases and you can configure which descriptor will be imported upon installation when installing TAP or the TBS component.
+Different descriptors can apply to different use cases and you can configure which descriptor is
+imported after installation when installing Tanzu Application Platform or the Tanzu Build Service
+component.
 
-#### <a id="dependencies-descriptors-lite"> Lite Descriptor
+#### <a id="lite-descriptor"> Lite Descriptor
 
-The Tanzu Build Service `lite` descriptor is the default descriptor selected if none are configured.
+The Tanzu Build Service `lite` descriptor is the default descriptor selected if none is configured.
 
-It contains a smaller footprint to speed up installation time. However, it does not support all workload types – for example the `lite` descriptor does not contain the php buildpack.
+It contains a smaller footprint to speed up installation time. However, it does not support all
+workload types. For example, the `lite` descriptor does not contain the PHP buildpack.
 
-The `lite` descriptor only contains the `base` [stack](https://docs.pivotal.io/tanzu-buildpacks/stacks.html). The `default` stack will be installed but is identical to the `base` stack.
+The `lite` descriptor only contains the `base` stack.
+The `default` stack is installed but is identical to the `base` stack.
+For more information, see [Stacks](https://docs.pivotal.io/tanzu-buildpacks/stacks.html).
+For differences between the descriptors, see [Descriptor Comparison](#descriptor-comparison).
 
-A full table of differences between `full` and `lite` shown [here](#descriptors-table).
+#### <a id="full-descriptor"> Full Descriptor
 
-#### <a id="dependencies-descriptors-full"> Full Descriptor
+The Tanzu Build Service `full` descriptor contains more dependencies, which allows for more workload
+types.
 
-The Tanzu Build Service `full` descriptor contains more dependencies which allows for more workload types.
+The dependencies are pre-packaged so builds don't need to download them from the internet.
+This can speed up build times.
 
-It also includes all dependencies pre-packaged so builds don't need to download them from the internet which can speed up build times.
+The `full` descriptor contains the following stacks, which support different use cases:
 
-The `full` descriptor contains the following [stacks](https://docs.pivotal.io/tanzu-buildpacks/stacks.html) which support different use cases:
 - `base`
 - `default` (identical to `base`)
 - `full`
 - `tiny`
 
-However, due to its larger-footprint, installations may take longer.
+For more information, see [Stacks](https://docs.pivotal.io/tanzu-buildpacks/stacks.html).
+Due to the larger footprint of `full`, installations might take longer.
 
-A full table of differences between `full` and `lite` shown [here](#descriptors-table).
-
-#### <a id="dependencies-descriptors-compared"> Descriptors Compared
+#### <a id="descriptor-comparison"> Descriptor Comparison
 
 Both `lite` and `full` descriptors are suitable for production environments.
 
@@ -82,13 +97,16 @@ Both `lite` and `full` descriptors are suitable for production environments.
 | Supports static workloads | Yes | Yes |
 | Supports binary workloads | Yes | Yes |
 
-### <a id="dependencies-auto-updates"> Automatic Dependency Updates
+### <a id="auto-updates"> Automatic Dependency Updates
 
-Tanzu Build Service can be configured to update dependencies in the background as they are released so workloads can automatically be kept up-to-date.
+You can configure Tanzu Build Service to update dependencies in the background as they are released.
+This enables workloads to keep up to date automatically.
 
-When creating the values file during installation, include the following bolded key (in addition to any other `buildservice` keys):
+When creating the values file during installation, include the key-value pair
+`enable_automatic_dependency_updates: true`, in addition to any other `buildservice` keys, as in this
+example:
 
-<pre>
+```
 ...
 kp_default_repository: REPOSITORY
 kp_default_repository_username: REGISTRY-USERNAME
@@ -96,16 +114,21 @@ kp_default_repository_password: REGISTRY-PASSWORD
 tanzunet_username: TANZUNET-USERNAME
 tanzunet_password: TANZUNET-PASSWORD
 descriptor_name: DESCRIPTOR-NAME
-<b>enable_automatic_dependency_updates: true</b>
+enable_automatic_dependency_updates: true
 ...
-</pre>
+```
 
-### <a id="dependencies-manual"> Manual Control of Dependency Updates
+### <a id="manual-updates"> Manual Control of Dependency Updates
 
-Sometimes, you may not want to have TBS automatically update dependencies in the background.
+Sometimes you might not want Tanzu Build Service to automatically update dependencies in the
+background.
 
-In this case, you can manually manage and update your dependencies individually or automate it yourself in a CI/CD context.
+In this case, you can manually manage and update your dependencies individually or automate the
+updating configuration yourself in a CI/CD context.
 
-The Tanzu Build Service package in TAP behaves identically to the standalone Taznu Build Service product which is documented [here](https://docs.vmware.com/en/VMware-Tanzu-Build-Service/index.html).
+The Tanzu Build Service package in Tanzu Application Platform behaves identically to the standalone
+Tanzu Build Service product described in the
+[Tanzu Build Service documentation](https://docs.vmware.com/en/VMware-Tanzu-Build-Service/index.html).
 
-For details on updating dependencies manually, see docs [here](https://docs.vmware.com/en/Tanzu-Build-Service/1.5/vmware-tanzu-build-service-v15/GUID-updating-deps.html#bulk-update).
+For updating dependencies manually, see [Updating Build Service Dependencies](https://docs.vmware.com/en/Tanzu-Build-Service/1.5/vmware-tanzu-build-service/GUID-updating-deps.html#bulk-update).
+[//]: # (Link not live until release day -- probably April 12)

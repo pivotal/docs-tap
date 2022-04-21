@@ -36,6 +36,7 @@ To install Source Controller:
     ```
 
 2. (Optional) Gather values schema:
+
     ```
     tanzu package available get controller.source.apps.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
@@ -54,9 +55,10 @@ To install Source Controller:
 3. (Optional) Enable Source Controller to connect to image registries that use self-signed or private certificate authorities.
 If a certificate error `x509: certificate signed by unknown authority` occurs, this option can be used to trust additional certificate authorities. 
 
-    To provide custom cert, create a file named `source-controller-values.yaml` that includes the PEM-encoded CA cert data.
+    To provide a custom certificate, create a file named `source-controller-values.yaml` that includes the PEM-encoded CA certificate data.
    
       For example:
+
       ```yaml
       ca_cert_data: |
           -----BEGIN CERTIFICATE-----
@@ -71,7 +73,9 @@ If a certificate error `x509: certificate signed by unknown authority` occurs, t
     ```
     tanzu package install source-controller -p controller.source.apps.tanzu.vmware.com -v VERSION-NUMBER -n tap-install -f VALUES-FILE
     ```
-    Where
+
+    Where:
+
       - `VERSION-NUMBER` is the version of the package listed in step 1 above.
       - `VALUES-FILE` is the path to the file created in step 3.
 

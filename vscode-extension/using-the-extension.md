@@ -18,7 +18,7 @@
 
 Ensure the project to use the extension with has the required files specified in the [Getting Started page](../vscode-extension/getting-started.md). 
 
->**Note:** The Tanzu Developer Tools extension requires only one **Tiltfile** and one **workload.yaml** per project. The **workload.yaml** must be a single-document YAML file, not a multi-document YAML files.
+>**Note:** The Tanzu Developer Tools extension requires only one **Tiltfile** and one **workload.yaml** per project. The **workload.yaml** must be a single-document YAML file, not a multidocument YAML files.
 
 ## <a id="multiple-projects-in-workspace"></a> Multiple Projects in Workspace
 

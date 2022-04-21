@@ -8,26 +8,63 @@ and verified the cluster, accepted the EULA, and installed the Tanzu CLI with an
 See [Installing the Tanzu CLI](install-tanzu-cli.md).
 
 
-## <a id='add-tap-package-repo'></a> Add the Tanzu Application Platform package repository
+## <a id='add-tap-package-repo'></a> Relocate images to a registry
 
-To add the Tanzu Application Platform package repository:
+VMware recommends relocating the images to your registry from VMware Tanzu Network registry before
+attempting installation.
 
-1. If you haven’t completed the
-[Install Cluster Essentials for VMware Tanzu for non-TKG clusters](install-tanzu-cli.md#tanzu-cluster-essentials)
-procedure, set up environment variables for use during the installation by running:
+If you choose not to relocate images, Tanzu Application Platform depends directly on
+VMware Tanzu Network for continued operation.
+VMware recommends relocating images because there are no uptime guarantees for installations that
+depend directly on VMware Tanzu Network in this manner.
+The option to skip relocation is documented for purposes of evaluation and proof-of-concept only.
 
+The supported container registries are Harbor, Azure Container Registry, Google Container Registry,
+and Quay.io.
+See the documentation for a registry to learn how to set it up.
+
+To relocate images from the VMware Tanzu Network registry to your registry:
+
+1. Log in to your image registry by running:
+
+    ```console
+    docker login MY-REGISTRY
     ```
-    export INSTALL_REGISTRY_USERNAME=TANZU-NET-USER
-    export INSTALL_REGISTRY_PASSWORD=TANZU-NET-PASSWORD
-    export INSTALL_REGISTRY_HOSTNAME=registry.tanzu.vmware.com
+
+    Where `MY-REGISTRY` is your own container registry.
+
+1. Log in to the VMware Tanzu Network registry with your VMware Tanzu Network credentials by running:
+
+    ```console
+    docker login registry.tanzu.vmware.com
+    ```
+
+1. Set up environment variables for use during the installation by running:
+
+    ```console
+    export INSTALL_REGISTRY_USERNAME=MY-REGISTRY-USER
+    export INSTALL_REGISTRY_PASSWORD=MY-REGISTRY-PASSWORD
+    export INSTALL_REGISTRY_HOSTNAME=MY-REGISTRY
     export TAP_VERSION=VERSION-NUMBER
     ```
 
-    Where `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `1.0.1`.
+    Where:
+
+    - `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `1.1.0`.
+    - `MY-REGISTRY-USER` is the user with write access to `MY-REGISTRY`.
+    - `MY-REGISTRY-PASSWORD` is the password for `MY-REGISTRY-USER`.
+
+1. Relocate the images with the Carvel tool imgpkg by running:
+
+    ```console
+    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:${TAP_VERSION} --to-repo ${INSTALL_REGISTRY_HOSTNAME}/TARGET-REPOSITORY/tap-packages
+    ```
+
+    Where `TARGET-REPOSITORY` is your target repository
 
 1. Create a namespace called `tap-install` for deploying any component packages by running:
 
-    ```
+    ```console
     kubectl create ns tap-install
     ```
 
@@ -35,55 +72,57 @@ procedure, set up environment variables for use during the installation by runni
 
 1. Create a registry secret by running:
 
-    ```
+    ```console
     tanzu secret registry add tap-registry \
       --username ${INSTALL_REGISTRY_USERNAME} --password ${INSTALL_REGISTRY_PASSWORD} \
       --server ${INSTALL_REGISTRY_HOSTNAME} \
       --export-to-all-namespaces --yes --namespace tap-install
     ```
 
-1. Add Tanzu Application Platform package repository to the cluster by running:
+1. Add the Tanzu Application Platform package repository to the cluster by running:
 
-    ```
+    ```console
     tanzu package repository add tanzu-tap-repository \
-      --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:$TAP_VERSION \
+      --url ${INSTALL_REGISTRY_HOSTNAME}/TARGET-REPOSITORY/tap-packages:$TAP_VERSION \
       --namespace tap-install
     ```
 
-    Where `$TAP_VERSION` is the Tanzu Application Platform version environment variable
-    you defined earlier.
+    Where:
+
+    - `$TAP_VERSION` is the Tanzu Application Platform version environment variable you defined earlier.
+    - `TARGET-REPOSITORY` is the necessary repository.
 
 1. Get the status of the Tanzu Application Platform package repository, and ensure the status updates to `Reconcile succeeded` by running:
 
-    ```
+    ```console
     tanzu package repository get tanzu-tap-repository --namespace tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     $ tanzu package repository get tanzu-tap-repository --namespace tap-install
     - Retrieving repository tap...
     NAME:          tanzu-tap-repository
-    VERSION:       121657971
-    REPOSITORY:    registry.tanzu.vmware.com/tanzu-application-platform/tap-packages
-    TAG:           1.0.0
+    VERSION:       16253001
+    REPOSITORY:    tapmdc.azurecr.io/mdc/1.0.2/tap-packages
+    TAG:           1.0.2
     STATUS:        Reconcile succeeded
     REASON:
     ```
 
-    >**Note:** the `VERSION` and `TAG` numbers differ from the example above if you are on
-    >Tanzu Application Platform v1.0.1 or later.
+    > **Note:** the `VERSION` and `TAG` numbers differ from the earlier example if you are on
+    > Tanzu Application Platform v1.0.2 or earlier.
 
 1. List the available packages by running:
 
-    ```
+    ```console
     tanzu package available list --namespace tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     $ tanzu package available list --namespace tap-install
     / Retrieving available packages...
       NAME                                                 DISPLAY-NAME                                                              SHORT-DESCRIPTION
@@ -138,7 +177,7 @@ To prepare to install a profile:
 
 1. List version information for the package by running:
 
-    ```
+    ```console
     tanzu package available list tap.tanzu.vmware.com --namespace tap-install
     ```
 
@@ -162,7 +201,7 @@ section.
 
 The following is the YAML file sample for the full-profile:
 
-```
+```yaml
 profile: full
 ceip_policy_disclosed: FALSE-OR-TRUE-VALUE # Installation fails if this is not set to true. Not a string.
 buildservice:
@@ -172,7 +211,6 @@ buildservice:
   tanzunet_username: "TANZUNET-USERNAME"
   tanzunet_password: "TANZUNET-PASSWORD"
   descriptor_name: "DESCRIPTOR-NAME"
-  enable_automatic_dependency_updates: TRUE-OR-FALSE-VALUE # Optional, set as true or false. Not a string.
 supply_chain: basic
 
 cnrs:
@@ -220,12 +258,12 @@ Where:
     * Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`
 - `KP-DEFAULT-REPO-USERNAME` is the username that can write to `KP-DEFAULT-REPO`. You should be able to `docker push` to this location with this credential.
     * For Google Cloud Registry, use `kp_default_repository_username: _json_key`
-- `KP-DEFAULT-REPO-PASSWORD` is the password for the user that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential. This credential can also be configured via a Secret reference. See [here](tanzu-build-service/install-tbs.html#install-secret-refs) for details.
-    * For Google Cloud Registry, use the contents of the service account json file.
-- `TANZUNET-USERNAME` and `TANZUNET-PASSWORD` are the email address and password that you use to log in to VMware Tanzu Network. Your VMware Tanzu Network credentials enable you to configure the dependencies updater. This resource accesses and installs the build dependencies (buildpacks and stacks) Tanzu Build Service needs on your cluster. It can also optionally keep these dependencies up to date as new versions are released on VMware Tanzu Network. This credential can also be configured via a Secret reference. See [here](tanzu-build-service/install-tbs.html#install-secret-refs) for details.
-- `DESCRIPTOR-NAME` is the name of the descriptor to import. See more details [here](tanzu-build-service/tbs-about.html#dependencies-descriptors). Available options are:
-    * `lite` (default if unset) has a smaller footprint that enables faster installations.
-    * `full` optimized to speed up builds and includes dependencies for all supported workload types.
+- `KP-DEFAULT-REPO-PASSWORD` is the password for the user that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential. This credential can also be configured through a secret reference. See [Install Tanzu Build Service](tanzu-build-service/install-tbs.html#install-secret-refs) for details.
+    * For Google Cloud Registry, use the contents of the service account JSON file.
+- `TANZUNET-USERNAME` and `TANZUNET-PASSWORD` are the email address and password that you use to log in to VMware Tanzu Network. Your VMware Tanzu Network credentials enable you to configure the dependencies updater. This resource accesses and installs the build dependencies (buildpacks and stacks) Tanzu Build Service needs on your cluster. It can also optionally keep these dependencies up to date as new versions are released on VMware Tanzu Network. This credential can also be configured through a secret reference. For more information, see [Install Tanzu Build Service](tanzu-build-service/install-tbs.html#install-secret-refs).
+- `DESCRIPTOR-NAME` is the name of the descriptor to import. For more information, see [Overview of Tanzu Build Service](tanzu-build-service/tbs-about.html#descriptors). Available options are:
+    * `lite` is the default if not set. It has a smaller footprint, which enables faster installations.
+    * `full` is optimized to speed up builds and includes dependencies for all supported workload types.
 - `SERVER-NAME` is the hostname of the registry server. Examples:
     * Harbor has the form `server: "my-harbor.io"`
     * Dockerhub has the form `server: "index.docker.io"`
@@ -236,7 +274,7 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
     * Dockerhub has the form `repository: "my-dockerhub-user"`
     * Google Cloud Registry has the form `repository: "my-project/supply-chain"`
 - `SSH-SECRET-KEY` is the SSH secret key supported by the specific package.
-See [Identify the SSH secret key for your package](#ssh-secret-key) for more information.
+See [Identify the values for your package](#identify-values) for more information.
 - `DOMAIN-NAME` has a value such as `learningcenter.example.com`.
 - `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
 service's External IP address.
@@ -249,14 +287,17 @@ If built images are pushed to the same registry as the Tanzu Application Platfor
 this can reuse the `tap-registry` secret created in
 [Add the Tanzu Application Platform package repository](#add-tap-package-repo).
 
->**Note:** When using the `tbs-values.yaml` configuration,
->`enable_automatic_dependency_updates: true` causes the dependency updater to update
->Tanzu Build Service dependencies (buildpacks and stacks) when they are released on
->VMware Tanzu Network. Use `false` to pause the automatic update of Build Service dependencies.
->When automatic updates are paused, the pinned version of the descriptor for TAP 1.1.0 is
->[100.0.279](https://network.pivotal.io/products/tbs-dependencies#/releases/1066670)
->If left undefined, this value is `false`. For details about updating dependencies manually, see
->[here](tanzu-build-service/tbs-about.html#dependencies-manual).
+> **Note:** When you install Tanzu Application Platform, it is bootstrapped with
+> a set of dependencies (buildpacks and stacks) for application builds.
+> For more information about buildpacks, see the [VMware Tanzu Buildpacks Documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html).
+> You can find the buildpack and stack artifacts installed with Tanzu Application Platform
+> in the descriptor file on [Tanzu Network](https://network.pivotal.io/products/tbs-dependencies).
+> The current installed version of the descriptor is
+> [100.0.279](https://network.pivotal.io/products/tbs-dependencies#/releases/1066670). Sometimes the dependencies get
+> out of date and require updates. You can do this using a
+> [manual process in a CI/CD context](tanzu-build-service/tbs-about.html#dependencies-manual), or
+> an [automatic update process](tanzu-build-service/tbs-about.html#auto-updates)
+> in the background by Tanzu Application Platform.
 
 ### <a id='light-profile'></a> Light Profile
 
@@ -266,7 +307,7 @@ The Light profile is deprecated. Although existing values files might still refe
 
 To view possible configuration settings for a package, run:
 
-```
+```console
 tanzu package available get tap.tanzu.vmware.com/$TAP_VERSION --values-schema --namespace tap-install
 ```
 
@@ -278,7 +319,7 @@ you defined earlier.
 >View individual package configuration settings with the same `tanzu package available get` command.
 >For example, use `tanzu package available get -n tap-install cnrs.tanzu.vmware.com/1.0.3 --values-schema` for Cloud Native Runtimes.
 
-```
+```yaml
 profile: full
 
 # ...
@@ -297,7 +338,7 @@ accelerator:
 
 You can identify the values for your Tanzu package by running:
 
-```
+```console
 tanzu package available get PACKAGE-NAME.tanzu.vmware.com/VERSION --values-schema -n tap-install
 ```
 
@@ -341,13 +382,13 @@ For information about package-specific configuration, see [Installing individual
 
 For example, to identify the SSH secret keys for Supply Chain Basic, you can run:
 
-```
+```console
 tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.5.1 --values-schema -n tap-install
 ```
 
 Expect to see the following outputs that list the all the SSH secret keys and the descriptions applicable to the package:
 
-```
+```console
 KEY                       DEFAULT                    TYPE    DESCRIPTION
 cluster_builder           default                    string  Name of the Tanzu Build Service (TBS) ClusterBuilder to use by default on image objects managed by the supply chain.
 
@@ -376,7 +417,7 @@ To install the Install the Tanzu Application Platform package:
 
 1. Install the package by running:
 
-    ```
+    ```console
     tanzu package install tap -p tap.tanzu.vmware.com -v $TAP_VERSION --values-file tap-values.yml -n tap-install
     ```
 
@@ -385,7 +426,7 @@ To install the Install the Tanzu Application Platform package:
 
 1. Verify the package install by running:
 
-    ```
+    ```console
     tanzu package installed get tap -n tap-install
     ```
 
@@ -393,7 +434,7 @@ To install the Install the Tanzu Application Platform package:
 
 1. Verify that all the necessary packages in the profile are installed by running:
 
-    ```
+    ```console
     tanzu package installed list -A
     ```
 
@@ -415,7 +456,7 @@ You can share this ingress across Cloud Native Runtimes (`cnrs`), Tanzu Applicat
 
 By default, Contour uses `NodePort` as the service type. To set the service type to `LoadBalancer`, add the following to your `tap-values.yml`:
 
-```
+```yaml
 contour:
   envoy:
     service:
@@ -426,7 +467,7 @@ If you are using AWS, the section above creates a classic LoadBalancer.
 If you want to use the Network LoadBalancer instead of the classic LoadBalancer for ingress, add the
 following to your `tap-values.yml`:
 
-```
+```yaml
 contour:
   infrastructure_provider: aws
   envoy:
@@ -451,13 +492,13 @@ To exclude packages from a Tanzu Application Platform profile:
 
 1. Find the full subordinate (child) package name:
 
-    ```
+    ```console
     tanzu package available list --namespace tap-install
     ```
 
 2. Update your `tap-values` file with a section listing the exclusions:
 
-    ```
+    ```console
     profile: PROFILE-VALUE
     excluded_packages:
       - tap-gui.tanzu.vmware.com

@@ -26,7 +26,7 @@ You can install Application Live View in single cluster or multicluster environm
 
 - `Single cluster`: All Application Live View components are deployed in a single cluster. The user can access Application Live View plug-in information of the applications across all the namespaces in the Kubernetes cluster. This is the default mode of Application Live View.
 
-- `Multi cluster`: In multi cluster environment, the Application Live View Backend component is installed only once in a single cluster and exposes a RSocket registration for the other clusters using Tanzu shared ingress. Each cluster continues to install the connector as a DaemonSet. The connectors are configured to connect to the central instance of the Application Live View Backend.
+- `Multi cluster`: In a multicluster environment, the Application Live View Backend component is installed only once in a single cluster and exposes a RSocket registration for the other clusters using Tanzu shared ingress. Each cluster continues to install the connector as a DaemonSet. The connectors are configured to connect to the central instance of the Application Live View Backend.
 
 ## <a id='install-app-live-view-backend'></a> Install Application Live View Backend
 
@@ -194,7 +194,7 @@ To install Application Live View Connector:
     
     >**Note**: The Application Live View Connector connects to the `cluster-local` backend to register the applications.
 
-    For multi cluster environment, use the following values:
+    For a multicluster environment, use the following values:
 
     ```
     backend:

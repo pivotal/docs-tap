@@ -12,7 +12,7 @@ To accept EULAs:
 
     - [Cluster Essentials for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-cluster-essentials/#/releases/1011100)
     - [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/)
-    - [Tanzu Build Service](https://network.tanzu.vmware.com/products/build-service/) and its associated components:
+    - Tanzu Build Service associated components:
         - [Tanzu Build Service Dependencies](https://network.tanzu.vmware.com/products/tbs-dependencies/)
         - [Buildpacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-buildpacks-suite)
         - [Stacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-stacks-suite)
@@ -41,13 +41,13 @@ To set the Kubernetes cluster context:
 
 1. List the existing contexts by running:
 
-    ```
+    ```console
     kubectl config get-contexts
     ```
 
     For example:
 
-    ```
+    ```console
     $ kubectl config get-contexts
     CURRENT   NAME                                CLUSTER           AUTHINFO                                NAMESPACE
             aks-repo-trial                      aks-repo-trial    clusterUser_aks-rg-01_aks-repo-trial
@@ -58,13 +58,13 @@ To set the Kubernetes cluster context:
 2.  Set the context to the cluster that you want to use for the Tanzu Application Platform packages install.
     For example, set the context to the `aks-tap-cluster` context by running:
 
-    ```
+    ```console
     kubectl config use-context aks-tap-cluster
     ```
 
     For example:
 
-    ```
+    ```console
     $ kubectl config use-context aks-tap-cluster
     Switched to context "aks-tap-cluster".
     ```
@@ -112,7 +112,7 @@ To install the Tanzu CLI on a Linux operating system:
 
 1. Create a directory named `tanzu` by running:
 
-    ```
+    ```console
     mkdir $HOME/tanzu
     ```
 
@@ -127,20 +127,20 @@ To install the Tanzu CLI on a Linux operating system:
 
 1. Download `tanzu-framework-bundle-linux` and unpack the TAR file into the `tanzu` directory by running:
 
-    ```
+    ```console
     tar -xvf tanzu-framework-linux-amd64.tar -C $HOME/tanzu
     ```
 
 1. Set environment variable `TANZU_CLI_NO_INIT` to `true` to ensure the local downloaded versions of
 the CLI core and plug-ins are installed:
 
-    ```
+    ```console
     export TANZU_CLI_NO_INIT=true
     ```
 
 1. Install the CLI core by running:
 
-    ```
+    ```console
     cd $HOME/tanzu
     sudo install cli/core/VERSION/tanzu-core-linux_amd64 /usr/local/bin/tanzu
     ```
@@ -152,7 +152,7 @@ the CLI core and plug-ins are installed:
 
 1. Confirm installation of the CLI core by running:
 
-    ```
+    ```console
     tanzu version
     ```
 
@@ -170,7 +170,7 @@ To install the Tanzu CLI on macOS:
 
 1. Create a directory named `tanzu`:
 
-    ```
+    ```console
     mkdir $HOME/tanzu
     ```
 
@@ -185,20 +185,20 @@ To install the Tanzu CLI on macOS:
 
 1. Download `tanzu-framework-bundle-mac` and unpack the TAR file into the `tanzu` directory:
 
-    ```
+    ```console
     tar -xvf tanzu-framework-darwin-amd64.tar -C $HOME/tanzu
     ```
 
 1. Set environment variable `TANZU_CLI_NO_INIT` to `true` to ensure the local downloaded versions of
 the CLI core and plug-ins are installed:
 
-     ```
+     ```console
      export TANZU_CLI_NO_INIT=true
      ```
 
 1. Install the CLI core by running:
 
-    ```
+    ```console
     cd $HOME/tanzu
     install cli/core/VERSION/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
     ```
@@ -210,7 +210,7 @@ the CLI core and plug-ins are installed:
 
 1. Confirm installation of the CLI core by running:
 
-    ```
+    ```console
     tanzu version
     ```
 
@@ -243,7 +243,7 @@ To install the Tanzu CLI on Windows:
 
 1. In the unpacked CLI folder `tanzu-bundle`, locate and copy
 
-    ```
+    ```console
     core/VERSION/tanzu-core-windows_amd64.exe
     ```
 
@@ -272,7 +272,7 @@ account has the **Full Control** permission.
 1. From the `tanzu` directory, confirm the installation of the Tanzu CLI by running the following
 command in a terminal window:
 
-    ```
+    ```console
     tanzu version
     ```
 
@@ -293,13 +293,13 @@ To perform a clean installation of the Tanzu CLI plug-ins:
 
 1. If it hasn't been done already, set environment variable `TANZU_CLI_NO_INIT` to `true` to assure the locally downloaded plug-ins are installed:
 
-    ```
+    ```console
     export TANZU_CLI_NO_INIT=true
     ```
 
 2. From your `tanzu` directory, Install the local versions of the plug-ins you downloaded by running:
 
-    ```
+    ```console
     cd $HOME/tanzu
     tanzu plugin install --local cli all
 
@@ -308,13 +308,13 @@ To perform a clean installation of the Tanzu CLI plug-ins:
 
 3. Check the plug-in installation status by running:
 
-    ```
+    ```console
     tanzu plugin list
     ```
 
     Expect to see the following:
 
-   ```
+   ```console
     tanzu plugin list
     NAME                DESCRIPTION                                                                   SCOPE       DISCOVERY             VERSION      STATUS
     login               Login to the platform                                                         Standalone  default               v0.11.1      not installed
@@ -353,7 +353,7 @@ Follow these instructions to update the Tanzu CLI that was installed for a previ
 
 1. If a directory named `tanzu` does not exist, create one by running:
 
-    ```
+    ```console
     mkdir $HOME/tanzu
     ```
 
@@ -369,31 +369,31 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
 
 6. If they exist, delete any CLI files from previous installs by running:
 
-    ```
+    ```console
     rm -rf $HOME/tanzu/cli
     ```
 
 7. Unpack the TAR file in the `tanzu` directory by running:
 
-    ```
+    ```console
     tar -xvf tanzu-framework-linux-amd64.tar -C $HOME/tanzu
     ```
 
 8. Navigate to the `tanzu` directory by running:
 
-    ```
+    ```console
     cd $HOME/tanzu
     ```
 
 9. Set environment variable `TANZU_CLI_NO_INIT` to `true` to install the local versions of the CLI core and plug-ins you've downloaded:
 
-    ```
+    ```console
     export TANZU_CLI_NO_INIT=true
     ```
 
 10. Update the core CLI by running:
 
-    ```
+    ```console
     install cli/core/VERSION/tanzu-core-linux_amd64 /usr/local/bin/tanzu
     ```
 
@@ -404,7 +404,7 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
 
 11. Check installation status for the core CLI by running:
 
-    ```
+    ```console
     tanzu version
     ```
 
@@ -413,7 +413,7 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
 
 12. Install new plug-in versions by running:
 
-    ```
+    ```console
     tanzu plugin install --local cli all
 
     tanzu plugin install --local cli/standalone all
@@ -421,13 +421,13 @@ operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle
 
 13. Check installation status for plug-ins by running:
 
-    ```
+    ```console
     tanzu plugin list
     ```
 
     Expect to see the following:
 
-    ```
+    ```console
     tanzu plugin list
     NAME                DESCRIPTION                                                                   SCOPE       DISCOVERY             VERSION      STATUS
     login               Login to the platform                                                         Standalone  default               v0.11.1      not installed
