@@ -105,6 +105,7 @@ To do so:
       resources:
       - sourcescans
       - imagescans
+      - scanpolicies
       verbs: ['get', 'watch', 'list']
     - apiGroups: ['tekton.dev']
       resources:
