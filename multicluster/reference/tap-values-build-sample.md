@@ -71,7 +71,7 @@ you can reuse the `tap-registry` Secret created in
 > You can find the buildpack and stack artifacts installed with Tanzu Application Platform
 > in the descriptor file on [Tanzu Network](https://network.pivotal.io/products/tbs-dependencies).
 > The current installed version of the descriptor is
-> [100.0.279](https://network.pivotal.io/products/tbs-dependencies#/releases/1066670). Sometimes the dependencies get
+> [100.0.293](https://network.pivotal.io/products/tbs-dependencies#/releases/1086670). Sometimes the dependencies get
 > out of date and require updates. You can do this using a
 > [manual process in a CI/CD context](tanzu-build-service/tbs-about.html#dependencies-manual), or
 > an [automatic update process](tanzu-build-service/tbs-about.html#auto-updates)
