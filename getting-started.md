@@ -1096,7 +1096,7 @@ each user role.
   </tr>
 </table>
 
-### <a id="stk-walkthrough"></a> Walkthrough [//]: # (maybe change this heading name?)
+### <a id="stk-walkthrough"></a> Walkthrough
 
 This section guides you through deploying two application workloads and learning
 how to configure them to communicate over RabbitMQ.
