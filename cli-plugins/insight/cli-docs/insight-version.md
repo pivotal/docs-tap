@@ -2,13 +2,13 @@
 
 To display tanzu insight version:
 
-```
+```console
 tanzu insight version [flags]
 ```
 
 ## <a id='options'></a>Options
 
-```
+```console
   -h, --help   help for version
 ```
 

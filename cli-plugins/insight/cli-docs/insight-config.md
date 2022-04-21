@@ -4,7 +4,7 @@ Config commands are as follows:
 
 ## <a id='options'></a>Options
 
-```
+```console
   -h, --help   help for config
 ```
 

@@ -2,20 +2,20 @@
 
 This topic will help you list workloads in a namespace or across all namespaces.
 
-```
+```console
 tanzu apps workload list [flags]
 ```
 
 ## <a id="examples"></a>Examples
 
-```
+```console
 tanzu apps workload list
 tanzu apps workload list --all-namespaces
 ```
 
 ## <a id="options"></a>Options
 
-```
+```console
   -A, --all-namespaces   use all kubernetes namespaces
       --app name         application name the workload is a part of
   -h, --help             help for list
@@ -24,7 +24,7 @@ tanzu apps workload list --all-namespaces
 
 ## <a id="parent-commands-options"></a>Options inherited from parent commands
 
-```
+```console
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
       --kubeconfig file   kubeconfig file (default is $HOME/.kube/config)
       --no-color          disable color output in terminals

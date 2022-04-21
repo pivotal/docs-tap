@@ -6,19 +6,19 @@ Get package vulnerabilities.
 
 Get package vulnerabilities.
 
-```
+```console
 tanzu insight package vulnerabilities --name <package name> [flags]
 ```
 
 ## <a id='examples'></a>Examples
 
-```
+```console
 tanzu insight package vulnerabilities --name client
 ```
 
 ## <a id='options'></a>Options
 
-```
+```console
   -f, --format string   output format which can be in 'json' or 'text'. If not present, defaults to text. (default "text")
   -h, --help            help for vulnerabilities
   -n, --name string     name of the package

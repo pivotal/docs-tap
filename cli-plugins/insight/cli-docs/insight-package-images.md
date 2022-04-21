@@ -6,19 +6,19 @@ Get images that contain the given package by name.
 
 Get images that contain the given package by name.
 
-```
+```console
 tanzu insight package images --name <package name> [flags]
 ```
 
 ## <a id='examples'></a>Examples
 
-```
+```console
 tanzu insight package images --name client
 ```
 
 ## <a id='options'></a>Options
 
-```
+```console
   -f, --format string   output format which can be in 'json' or 'text'. If not present, defaults to text. (default "text")
   -h, --help            help for images
   -n, --name string     name of the package
