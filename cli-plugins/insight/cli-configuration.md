@@ -9,7 +9,7 @@ This topic explains how to configure the Tanzu Insight plug-in.
 
 Set the target endpoint and CA certificate by running:
 
-```
+```console
 tanzu insight config set-target https://metadata-store-app.metadata-store.svc.cluster.local:PORT --ca-cert PATH
 ```
 Where
@@ -19,7 +19,7 @@ Where
 
 For example:
 
-```
+```console
 $ tanzu insight config set-target https://metadata-store-app.metadata-store.svc.cluster.local:8443 --ca-cert /tmp/ca.crt
 
 ℹ  Using config file: /Users/username/.config/tanzu/insight/config.yaml
@@ -32,13 +32,13 @@ $ tanzu insight config set-target https://metadata-store-app.metadata-store.svc.
 
 Check that your configuration is correct and you are able to make a connection.
 
-```
+```console
 tanzu insight health
 ```
 
 For example:
 
-```
+```console
 $ tanzu insight health
 Success: Reached Metadata Store!
 ```

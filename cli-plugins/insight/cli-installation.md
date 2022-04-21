@@ -9,7 +9,7 @@ This topic explains how to install the Tanzu Insight plug-in by itself, after th
 
 1. From your `tanzu` directory, install the local version of the Tanzu Insight plug-in you downloaded by running:
 
-    ```
+    ```console
     cd $HOME/tanzu
     tanzu plugin install insight --local cli
     ```

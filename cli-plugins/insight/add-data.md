@@ -23,10 +23,10 @@ To use Grype to scan an image and generate an image report in CycloneDX format:
 
 1. Scan the image and generate a report by running:
 
-    ```
+    ```console
     grype REPO:TAG -o cyclonedx > IMAGE-CVE-REPORT
     ```
-    
+
     Where:
 
     - `REPO` is the name of your repository
@@ -35,7 +35,7 @@ To use Grype to scan an image and generate an image report in CycloneDX format:
 
     For example:
 
-    ```
+    ```console
     $ grype docker.io/checkr/flagr:1.1.12 -o cyclonedx > image-cve-report
      ✔ Vulnerability DB        [updated]
      ✔ Parsed image
@@ -59,7 +59,7 @@ To use a CycloneDX-formatted image report:
 
 1. Run:
 
-    ```
+    ```console
     tanzu insight image add --cyclonedxtype TYPE --path IMAGE-CVE-REPORT
     ```
 
@@ -70,7 +70,7 @@ To use a CycloneDX-formatted image report:
 
     For example:
 
-    ```
+    ```console
     $ tanzu insight image add --cyclonedxtype xml --path downloads/image-cve-report
     Image report created.
     ```
@@ -85,7 +85,7 @@ To use a CycloneDX-formatted source report:
 
 1. Run:
 
-    ```
+    ```console
     tanzu insight source add --cyclonedxtype TYPE --path SOURCE-CVE-REPORT
     ```
 
@@ -96,7 +96,7 @@ To use a CycloneDX-formatted source report:
 
     For example:
 
-    ```
+    ```console
     $ tanzu insight source add --cyclonedxtype json --path source-cve-report
     Source report created.
     ```
