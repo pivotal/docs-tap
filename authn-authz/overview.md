@@ -1,6 +1,6 @@
 # Overview
 
-Tanzu Application Platform v1.1 includes:
+Tanzu Application Platform v1.2 includes:
 
 - Five new default roles to help you set up permissions for users and [service accounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/) within a namespace on a cluster that runs one of the Tanzu Application Platform profiles.
 - A Tanzu CLI RBAC (role-based access control) plug-in for role binding. For more information, see [Bind a user or group to a default role](binding.md).

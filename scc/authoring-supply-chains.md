@@ -40,7 +40,7 @@ cluster might encounter two possible cases of collisions:
 
   See [Selectors](https://cartographer.sh/docs/v0.3.0/architecture/#selectors).
 
-For Tanzu Application Platform 1.1, the following selection rules are in place for the
+For Tanzu Application Platform 1.2, the following selection rules are in place for the
 supply chains of the corresponding packages:
 
 - _ootb-supply-chain-basic_

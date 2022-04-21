@@ -152,7 +152,7 @@ As the Supply Chain takes action in the cluster on behalf of the users who
 created the workload, it needs permissions within Kubernetes' RBAC system to do
 so.
 
-Tanzu Application Platform v1.1 ships with two ClusterRoles that describe all of the necessary
+Tanzu Application Platform v1.2 ships with two ClusterRoles that describe all of the necessary
 permissions to grant to the service account:
 
 - `workload` clusterrole, providing the necessary roles for the supply chains
@@ -198,7 +198,7 @@ subjects:
     name: default
 ```
 
-For more information about authentication and authorization in Tanzu Application Platform v1.1, see
+For more information about authentication and authorization in Tanzu Application Platform v1.2, see
 https://github.com/pivotal/docs-tap/blob/main/authn-authz/overview.md.
 
 ### <a id="developer-workload"></a> Developer workload
