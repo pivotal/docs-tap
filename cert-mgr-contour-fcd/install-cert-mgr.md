@@ -93,7 +93,7 @@ To install cert-manager from the Tanzu Application Platform package repository:
       ```
 
       Where:
-      
+
       - `VERSION-NUMBER` is the version of the package listed in step 1.
 
 
@@ -371,13 +371,13 @@ To install FluxCD source-controller from the Tanzu Application Platform package 
 
 1. List version information for the package by running:
 
-    ```
+    ```console
     tanzu package available list fluxcd.source.controller.tanzu.vmware.com -n tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     $ tanzu package available list fluxcd.source.controller.tanzu.vmware.com -n tap-install
         \ Retrieving package versions for fluxcd.source.controller.tanzu.vmware.com...
           NAME                                       VERSION  RELEASED-AT
@@ -386,7 +386,7 @@ To install FluxCD source-controller from the Tanzu Application Platform package 
 
 2. Install the package by running:
 
-    ```
+    ```console
     tanzu package install fluxcd-source-controller -p fluxcd.source.controller.tanzu.vmware.com -v VERSION-NUMBER -n tap-install
     ```
 
@@ -396,7 +396,7 @@ To install FluxCD source-controller from the Tanzu Application Platform package 
 
     For example:
 
-    ```
+    ```console
     tanzu package install fluxcd-source-controller -p fluxcd.source.controller.tanzu.vmware.com -v 0.16.0 -n tap-install
     \ Installing package 'fluxcd.source.controller.tanzu.vmware.com'
     | Getting package metadata for 'fluxcd.source.controller.tanzu.vmware.com'
@@ -412,13 +412,13 @@ To install FluxCD source-controller from the Tanzu Application Platform package 
 
 3. Verify the package install by running:
 
-    ```
+    ```console
     tanzu package installed get fluxcd-source-controller -n tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     tanzu package installed get fluxcd-source-controller -n tap-install
     \ Retrieving installation details for fluxcd-source-controller...
     NAME:                    fluxcd-source-controller
@@ -431,13 +431,13 @@ To install FluxCD source-controller from the Tanzu Application Platform package 
 
     Verify that `STATUS` is `Reconcile succeeded`
 
-    ```
+    ```console
     kubectl get pods -n flux-system
     ```
 
     For example:
 
-    ```
+    ```console
     $ kubectl get pods -n flux-system
     NAME                                 READY   STATUS    RESTARTS   AGE
     source-controller-69859f545d-ll8fj   1/1     Running   0          3m38s
