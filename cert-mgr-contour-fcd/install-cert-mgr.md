@@ -19,13 +19,13 @@ To install cert-manager from the Tanzu Application Platform package repository:
 
 1. List version information for the package by running:
 
-      ```
+      ```console
       tanzu package available list cert-manager.tanzu.vmware.com -n tap-install
       ```
 
       For example:
 
-      ```
+      ```console
       $ tanzu package available list cert-manager.tanzu.vmware.com -n tap-install
       / Retrieving package versions for cert-manager.tanzu.vmware.com...
         NAME                           VERSION      RELEASED-AT
@@ -70,7 +70,7 @@ To install cert-manager from the Tanzu Application Platform package repository:
 
       For example:
 
-      ```
+      ```console
       kubectl apply -f cert-manager-rbac.yml
       ```
 
@@ -99,19 +99,19 @@ To install cert-manager from the Tanzu Application Platform package repository:
 
       For example:
 
-      ```
+      ```console
       kubectl apply -f cert-manager-install.yml
       ```
 
 4. Verify the package install by running:
 
-      ```
+      ```console
       tanzu package installed get cert-manager -n tap-install
       ```
 
       For example:
 
-      ```
+      ```console
       $ tanzu package installed get cert-manager -n tap-install
       / Retrieving installation details for cert-manager...
       NAME:                    cert-manager
@@ -124,13 +124,13 @@ To install cert-manager from the Tanzu Application Platform package repository:
 
       Verify that `STATUS` is `Reconcile succeeded`
 
-      ```
+      ```console
       kubectl get deployment cert-manager -n cert-manager
       ```
 
       For example:
 
-      ```
+      ```console
       $ kubectl get deploy cert-manager -n cert-manager
       NAME           READY   UP-TO-DATE   AVAILABLE   AGE
       cert-manager   1/1     1            1           2m18s
@@ -144,13 +144,13 @@ To install Contour from the Tanzu Application Platform package repository:
 
 1. List version information for the package by running:
 
-    ```
+    ```console
     tanzu package available list contour.tanzu.vmware.com -n tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     $  tanzu package available list contour.tanzu.vmware.com -n tap-install
     - Retrieving package versions for contour.tanzu.vmware.com...
       NAME                      VERSION       RELEASED-AT
@@ -194,7 +194,7 @@ To install Contour from the Tanzu Application Platform package repository:
 
 3. Apply the configuration by running:
 
-    ```
+    ```console
     kubectl apply -f contour-rbac.yml
     ```
 
@@ -222,9 +222,9 @@ To install Contour from the Tanzu Application Platform package repository:
 
     1. Gather values schema by running:
 
-        ```
+        ```console
         tanzu package available get contour.tanzu.vmware.com/1.18.2+tap.1 --values-schema -n tap-install
-        ````
+        ```
 
         For example:
 
@@ -319,20 +319,20 @@ To install Contour from the Tanzu Application Platform package repository:
 
 6. Install the package by running:
 
-    ```
+    ```console
     kubectl apply -f contour-install.yaml
     ```
 
 
 7. Verify the package install by running:
 
-    ```
+    ```console
     tanzu package installed get contour -n tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     $ tanzu package installed get contour -n tap-install
     / Retrieving installation details for contour...
     NAME:                    contour
@@ -347,13 +347,13 @@ To install Contour from the Tanzu Application Platform package repository:
 
 8. Verify the installation by running:
 
-    ```
+    ```console
     kubectl get po -n tanzu-system-ingress
     ```
 
     For example:
 
-    ```
+    ```console
     $  kubectl get po -n tanzu-system-ingress
     NAME                       READY   STATUS    RESTARTS   AGE
     contour-857d46c845-4r6c5   1/1     Running   1          18d
