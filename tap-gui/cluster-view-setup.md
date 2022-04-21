@@ -201,7 +201,7 @@ To do so:
 To view resources on multiple clusters in the Runtime Resources Visibility plug-in:
 
 1. Navigate to the Runtime Resources Visibility plug-in for a component that is running on multiple
-clusters. <!--- More detail needed? -->
+clusters.
 
 1. View the multiple resources and their statuses across the clusters.
 
