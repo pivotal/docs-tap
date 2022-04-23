@@ -21,7 +21,7 @@ You must complete the following installation prerequisites as a user prior to in
 
 When initially creating the Kind cluster, you must [configure](https://kind.sigs.k8s.io/docs/user/ingress#create-cluster) it so that the ingress controller is exposed. The Kind documentation provides the following command to do this, but check the documentation in case the details have changed.
 
-```console
+```
 cat <<EOF | kind create cluster --config=-
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
@@ -55,7 +55,7 @@ Avoid using the Ambassador ingress controller, because it requires all ingresses
 
 If you have created a contour ingress controller, verify all pods have a running status. Run:
 
-```console
+```
 kubectl get pods -n projectcontour -o wide
 ```
 
@@ -65,13 +65,13 @@ You must install the kapp controller and secret-gen controller carvel tools in o
 
  To install kapp controller, run:
 
-```console
+```
 kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/latest/download/release.yml
 ```
 
 To install secret-gen controller, run:
 
-```console
+```
 kapp deploy -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/latest/download/release.yml
 ```
 
@@ -83,13 +83,13 @@ Follow these steps to install the Tanzu package repository:
 
 1. To create a namespace, run:
 
-  ```console
+  ```
   kubectl create ns tap-install
   ```
 
 1. Create a registry secret:
 
-  ```console
+  ```
   tanzu secret registry add tap-registry \
     --username "TANZU-NET-USER" --password "TANZU-NET-PASSWORD" \
     --server registry.tanzu.vmware.com \
@@ -102,7 +102,7 @@ Follow these steps to install the Tanzu package repository:
 
 1. Add a vpackage repository to your cluster:
 
-  ```console
+  ```
   tanzu package repository add tanzu-tap-repository \
     --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:VERSION-NUMBER \
     --namespace tap-install
@@ -114,7 +114,7 @@ Follow these steps to install the Tanzu package repository:
 
 1. To check the package repository install status, run:
 
-  ```console
+  ```
   tanzu package repository get tanzu-tap-repository --namespace tap-install
   ```
 
@@ -126,7 +126,7 @@ To create a configuration YAML file:
 
 1. Create a file called learningcenter-value.yaml in your current directory with the following data:
 
-  ```yaml
+  ```
   #! The namespace in which to deploy Learning Center. For now this must be "learningcenter" as
   namespace: learningcenter
   #! DNS parent subdomain used for training portal and workshop ingresses.
@@ -211,7 +211,7 @@ After you have the IP address, add this as a prefix to the domain name `nip.io`.
 
 To configure the Learning Center operator with this cluster domain, run:
 
-```console
+```
 kubectl set env deployment/eduk8s-operator -n eduk8s INGRESS_DOMAIN=192.168.1.1.nip.io
 ```
 
@@ -223,7 +223,7 @@ This causes the Learning Center operator to redeploy with the new configuration.
 
 To install Learning Center on a Kubernetes cluster:
 
-```console
+```
 tanzu package install learningcenter --package-name learningcenter.tanzu.vmware.com --version 0.1.0 -f ./learningcenter-value.yaml --namespace tap-install
 ```
 
@@ -233,13 +233,13 @@ This package installation uses the installed Package repository with a configura
 
 To install a workshop tutorial on a Kubernetes cluster:
 
-```console
+```
 tanzu package install learningcenter-tutorials --package-name workshops.learningcenter.tanzu.vmware.com --version 0.1.0 --namespace tap-install
 ```
 
 Make sure you install the workshop package after the Learning Center package has reconciled and successfully installed onto your cluster. In case of new versioning, to obtain package version numbers, run:
 
-```console
+```
 kubectl get packages -n tap-install
 ```
 
@@ -247,7 +247,7 @@ kubectl get packages -n tap-install
 
 To get the training portal URL, run:
 
-```console
+```
 kubectl get trainingportals
 ```
 
@@ -267,13 +267,13 @@ If you must used Kind, find out the image registry host name for a workshop depl
 
 For example, if the host name for the image registry were of the form:
 
-```console
+```
 lab-docker-testing-wMM-sNNN-registry.192.168.1.1.nip.io
 ```
 
 where `NNN` changes per session, you must use a command to create the Kind cluster. For example:
 
-```console
+```
 cat <<EOF | kind create cluster --config=-
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4

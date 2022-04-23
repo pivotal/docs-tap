@@ -10,7 +10,7 @@ If you do not need to authenticate users but still want to provide your own fron
 
 Set the registration type to `anonymous` to enable full anonymous access to the training portal:
 
-```yaml
+```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
@@ -31,7 +31,7 @@ Direct users' browsers to a URL that is specific to a workshop to trigger creati
 
 The URL format looks like this:
 
-```console
+```
 TRAINING-PORTAL-URL/workshops/environment/NAME/create/?index_url=INDEX
 ```
 

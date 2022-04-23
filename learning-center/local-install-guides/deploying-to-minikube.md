@@ -20,7 +20,7 @@ If you already have a cluster running using Minikube, run `minikube ip` to disco
 
 With this information, when you start a new cluster with Minikube, run:
 
-```console
+```
 minikube start --insecure-registry=192.168.64.0/24
 ```
 
@@ -43,7 +43,7 @@ After the Minikube cluster is running, you must enable the `ingress` and `ingres
 
 To enable these after the cluster has been created, run:
 
-```console
+```
 minikube addons enable ingress
 minikube addons enable ingress-dns
 ```
@@ -58,13 +58,13 @@ You must install the kapp controller and secret-gen controller carvel tools in o
 
  To install kapp controller, run:
 
-```console
+```
 kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/latest/download/release.yml
 ```
 
 To install secret-gen controller, run:
 
-```console
+```
 kapp deploy -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/latest/download/release.yml
 ```
 
@@ -76,13 +76,13 @@ Follow these steps to install the Tanzu package repository:
 
 1. To create a namespace, run:
 
-    ```console
+    ```
     kubectl create ns tap-install
     ```
 
 1. Create a registry secret:
 
-    ```console
+    ```
     tanzu secret registry add tap-registry \
       --username "TANZU-NET-USER" --password "TANZU-NET-PASSWORD" \
       --server registry.tanzu.vmware.com \
@@ -95,7 +95,7 @@ Follow these steps to install the Tanzu package repository:
 
 1. Add a package repository to your cluster:
 
-    ```console
+    ```
     tanzu package repository add tanzu-tap-repository \
       --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:VERSION-NUMBER \
       --namespace tap-install
@@ -107,7 +107,7 @@ Follow these steps to install the Tanzu package repository:
 
 1. To check the package repository install status, run:
 
-    ```console
+    ```
     tanzu package repository get tanzu-tap-repository --namespace tap-install
     ```
 
@@ -117,7 +117,7 @@ Wait for a reconciled sucessful status before attempting to install any other pa
 
 Create a file called learningcenter-value.yaml in your current directory with the following data:
 
-```yaml
+```
 #! The namespace in which to deploy Learning Center.
 namespace: learningcenter
 #! DNS parent subdomain used for training portal and workshop ingresses.
@@ -196,7 +196,7 @@ To calculate the `nip.io` address to use, first work out the IP address of the c
 
 To configure the Learning Center operator with this cluster domain, run:
 
-```console
+```
 kubectl set env deployment/learningcenter-operator -n learningcenter INGRESS_DOMAIN=192.168.64.1.nip.io
 ```
 
@@ -208,7 +208,7 @@ This causes the Learning Center operator to redeploy with the new configuration.
 
 To install the Learning Center package onto a minikube cluster, run:
 
-```console
+```
 tanzu package install learningcenter --package-name learningcenter.tanzu.vmware.com --version 0.1.0 -f ./learningcenter-value.yaml --namespace tap-install
 ```
 
@@ -218,13 +218,13 @@ This package installation uses the installed Package repository with a configura
 
 To install the workshop tutorial package onto a minikube cluster, run:
 
-```console
+```
 tanzu package install learningcenter-tutorials --package-name workshops.learningcenter.tanzu.vmware.com --version 0.1.0 --namespace tap-install
 ```
 
 Make sure you install the workshop package after the Learning Center package has reconciled and successfully installed onto your cluster. In case of new versioning, to obtain package version numbers, run:
 
-```console
+```
 kubectl get packages -n tap-install
 ```
 
@@ -232,7 +232,7 @@ kubectl get packages -n tap-install
 
 To get the training portal URL, run:
 
-```console
+```
 kubectl get trainingportals
 ```
 
@@ -246,13 +246,13 @@ If you create or run workshops that work with the image registry created for a w
 
 To do this, run:
 
-```console
+```
 kubectl edit configmap nginx-load-balancer-conf -n kube-system
 ```
 
 To the config map resource, add the following property under `data`:
 
-```console
+```
 proxy-body-size: 1g
 ```
 
@@ -264,7 +264,7 @@ When deploying a cluster, by default Minikube only configures support for 2Gi of
 
 To view how much memory is available when a custom amount has been set as a default, run:
 
-```console
+```
 minikube config get memory
 ```
 
