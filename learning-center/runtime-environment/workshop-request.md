@@ -14,7 +14,7 @@ environment. You supply this by setting the `environment.name` field.
 
 For example:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopRequest
 metadata:
@@ -41,7 +41,7 @@ against that environment, you can specify decide the token by setting the `envir
 
 For example:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopRequest
 metadata:
