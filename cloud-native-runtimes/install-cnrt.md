@@ -19,13 +19,13 @@ To install Cloud Native Runtimes:
 
 1. List version information for the package by running:
 
-    ```
+    ```console
     tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
     ```
 
-     For example:
+    For example:
 
-    ```
+    ```console
     $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for cnrs.tanzu.vmware.com...
       NAME                   VERSION  RELEASED-AT
@@ -36,13 +36,13 @@ To install Cloud Native Runtimes:
 
     1. Gather values schema.
 
-        ```
+        ```console
         tanzu package available get cnrs.tanzu.vmware.com/1.0.3 --values-schema -n tap-install
         ```
 
         For example:
 
-        ```
+        ```console
         $ tanzu package available get cnrs.tanzu.vmware.com/1.0.3 --values-schema -n tap-install
         | Retrieving package details for cnrs.tanzu.vmware.com/1.0.3...
           KEY                         DEFAULT  TYPE             DESCRIPTION
@@ -60,7 +60,7 @@ To install Cloud Native Runtimes:
         Sample `cnr-values.yaml` for Cloud Native Runtimes:
 
 
-        ```
+        ```console
         ---
         # if deploying on a local cluster such as Kind. Otherwise, you can remove this field
         provider: local
@@ -89,13 +89,13 @@ To install Cloud Native Runtimes:
 
 1. Install the package by running:
 
-    ```
+    ```console
     tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 1.0.3 -n tap-install -f cnr-values.yaml --poll-timeout 30m
     ```
 
     For example:
 
-    ```
+    ```console
     $ tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 1.0.3 -n tap-install -f cnr-values.yaml --poll-timeout 30m
     - Installing package 'cnrs.tanzu.vmware.com'
     | Getting package metadata for 'cnrs.tanzu.vmware.com'
@@ -112,13 +112,13 @@ To install Cloud Native Runtimes:
 
 1. Verify the package install by running:
 
-    ```
+    ```console
     tanzu package installed get cloud-native-runtimes -n tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     tanzu package installed get cloud-native-runtimes -n tap-install
     | Retrieving installation details for cc...
     NAME:                    cloud-native-runtimes
@@ -149,7 +149,7 @@ To install Cloud Native Runtimes:
        Run the following commands to create an empty secret and annotate it as a target of the secretgen
        controller:
 
-        ```
+        ```console
         kubectl create secret generic pull-secret --from-literal=.dockerconfigjson={} --type=kubernetes.io/dockerconfigjson
         kubectl annotate secret pull-secret secretgen.carvel.dev/image-pull-secret=""
         ```
@@ -157,19 +157,19 @@ To install Cloud Native Runtimes:
     1. After you create a `pull-secret` secret in the same namespace as the service account,
     run the following command to add the secret to the service account:
 
-        ```
+        ```console
         kubectl patch serviceaccount default -p '{"imagePullSecrets": [{"name": "pull-secret"}]}'
         ```
 
     1. Verify that a service account is correctly configured by running:
 
-        ```
+        ```console
         kubectl describe serviceaccount default
         ```
 
         For example:
 
-        ```
+        ```console
         kubectl describe sa default
         Name:                default
         Namespace:           default
