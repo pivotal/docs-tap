@@ -10,7 +10,7 @@ Before creating the training environment, you must load the workshop definitions
 
 To specify the names of the workshops to be used for the training, list them under the `workshops` field of the training portal specification. Each entry needs to define a `name` property, matching the name of the `Workshop` resource you created.
 
-```yaml
+```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
@@ -34,7 +34,7 @@ When the training portal is created, it:
 
 When defining the training portal, you can set a limit on the workshop sessions that can be run concurrently. Set this limit by using the `portal.sessions.maximum` property:
 
-```yaml
+```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
@@ -56,7 +56,7 @@ If you do not set `portal.sessions.maximum`, you must set the capacity for each 
 
 When you have more than one workshop, you can want to limit how many instances of each workshop you can have so that they cannot grow to the maximum number of sessions for the whole training portal. This means you can stop a specific workshop from using all of the capacity of the training portal. To do this, set the `capacity` field under the entry for the workshop:
 
-```yaml
+```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
@@ -82,7 +82,7 @@ When such a reserved instance is allocated to a user, provided that the workshop
 
 To override for a specific workshop how many reserved instances are kept on standby ready for users, you can set the `reserved` setting against the workshop:
 
-```yaml
+```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
@@ -110,7 +110,7 @@ The initial number of workshop instances created for each workshop is specified 
 
 In the case where `reserved` is set in order to keep workshop instances on standby, you can indicate that initially you want more than the reserved number of instances created. This is useful when running a workshop for a set period of time. You might create up-front instances of the workshop corresponding to 75% of the expected number of attendees but with a smaller reserve number. With this configuration, new reserve instances only start to be created when the total number approaches 75% and all extra instances created up front have been allocated to users. This ensures you have enough instances ready for when most people come, but you can also create other instances later if necessary:
 
-```yaml
+```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
@@ -129,7 +129,7 @@ spec:
 
 If you have a list of workshops, and they all must be set with the same values for `capacity`, `reserved`, and `initial`, rather than add settings to each, you can set defaults to apply to all workshops under the `portal` section:
 
-```yaml
+```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
@@ -154,7 +154,7 @@ By default a single user can run more than one workshop at a time. You can cap t
 
 To apply a limit on how many concurrent workshop sessions a user can start, use the `portal.sessions.registered` setting:
 
-```yaml
+```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
@@ -175,7 +175,7 @@ spec:
 
 This limit also applies to anonymous users when anonymous access is enabled through the training portal web interface or if sessions are being created through the REST API. To set a limit on anonymous users, you can set `portal.sessions.anonymous` instead:
 
-```yaml
+```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
@@ -208,7 +208,7 @@ The maximum capacity is therefore the maximum at any one point in time, while th
 
 To set a maximum time allowed for a workshop session, use the `expires` setting:
 
-```yaml
+```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
@@ -229,7 +229,7 @@ When an expiration period is specified, or when a user finishes a workshop or re
 
 To cope with users who claim a workshop session, but leave and don't use it, you can set a time period for when a workshop session with no activity is deemed orphaned and so is deleted. Do this using the `orphaned` setting:
 
-```yaml
+```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
@@ -261,7 +261,7 @@ By default a workshop environment is left unchanged if the corresponding worksho
 
 If you prefer that workshop environments be replaced when the workshop definition changes, enable this by using the `portal.updates.workshop` setting:
 
-```yaml
+```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
@@ -291,7 +291,7 @@ When setting a custom domain, DNS must have been configured with a wildcard doma
 
 To provide the ingress domain, set the `portal.ingress.domain` field:
 
-```yaml
+```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
@@ -308,7 +308,7 @@ spec:
 
 If overriding the domain, by default the workshop session is exposed using a HTTP connection. For a secure HTTPS connection, you must have access to a wildcard SSL certificate for the domain. A secret of type `tls` should be created for the certificate in the `learningcenter` namespace or the namespace where the Learning Center Operator is deployed. The name of that secret must be set in the `portal.ingress.secret` field:
 
-```yaml
+```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
@@ -326,7 +326,7 @@ spec:
 
 You can terminate HTTPS connections by using an external load balancer instead of specifying a secret for ingresses managed by the Kubernetes ingress controller. In that case, when routing traffic into the Kubernetes cluster as HTTP connections, you can override the ingress protocol without specifying an ingress secret. Instead, set the `portal.ingress.protocol` field:
 
-```yaml
+```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
@@ -344,7 +344,7 @@ spec:
 
 To override or set the ingress class, which dictates which ingress router is used when more than one option is available, you can add `portal.ingress.class`:
 
-```yaml
+```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
@@ -367,7 +367,7 @@ The default host name given to the training portal is the name of the resource w
 
 To override the generated host name, you can set `portal.ingress.hostname`:
 
-```yaml
+```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
@@ -390,7 +390,7 @@ This causes the host name to be `labs.learningcenter.tanzu.vmware.com` rather th
 
 To override any environment variables for workshop instances created for a specific work, provide the environment variables in the `env` field of that workshop:
 
-```yaml
+```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
@@ -427,7 +427,7 @@ For the robot account, the OAuth application client details used with the REST A
 
 You can see what the credentials and client details are by running `kubectl describe` against the training portal resource. This will yield output that includes:
 
-```console
+```
 Status:
   learningcenter:
     Clients:
@@ -447,7 +447,7 @@ To override any of these values to set them to a predetermined value, you can ad
 
 To overload the credentials for the admin and robot accounts user:
 
-```yaml
+```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
@@ -469,7 +469,7 @@ spec:
 
 To override the application client details for OAuth access by the robot account user:
 
-```yaml
+```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
@@ -490,7 +490,7 @@ spec:
 
 By default the training portal web interface presents a registration page for users to create an account before selecting a workshop. If you only want to allow the administrator to log in, you can disable the registration page. Do this if you are using the REST API to create and allocate workshop sessions from a separate application:
 
-```yaml
+```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
@@ -508,7 +508,7 @@ spec:
 
 If rather than requiring users to register, you want to allow anonymous access, you can switch the registration type to anonymous:
 
-```yaml
+```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
@@ -530,7 +530,7 @@ automatically created and the user is logged in.
 
 When deploying the training portal with anonymous access or open registration, anyone who knows the URL can access workshops. To at least restrict access to those who know a common event access code or password, you can set `portal.password`:
 
-```yaml
+```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
@@ -552,7 +552,7 @@ By default the index page providing the catalog of available workshop images is 
 
 To make the catalog of available workshops public so they can be viewed before logging in, set the `portal.catalog.visibility` property:
 
-```yaml
+```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
@@ -579,7 +579,7 @@ This helps when the REST API creates a session and cookies are deleted or a sess
 
 To set the URL for the external site, use the `portal.index` property:
 
-```yaml
+```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
@@ -604,7 +604,7 @@ If a user has logged into the training portal as the admin user, the user is not
 
 By default the web interface for the training portal displays a generic Learning Center logo and a page title of "Workshops." To override these, you can set `portal.title` and `portal.logo`:
 
-```yaml
+```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
@@ -627,7 +627,7 @@ By default it is prohibited to display the web interface for the training portal
 
 To enable the ability to iframe the full training portal web interface or even a specific workshop session created using the REST API, provide the host name of the site that embeds it. Do this by using the `portal.theme.frame.ancestors` property:
 
-```yaml
+```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
@@ -660,7 +660,7 @@ To collect analytics data on usage of workshops, supply a webhook URL. When you 
 
 For example:
 
-```yaml
+```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
@@ -681,7 +681,7 @@ If the collection service needs to be provided with a client ID or access token,
 
 Include the details of the event as HTTP POST data by using the `application/json` content type:
 
-```json
+```
 {
   "portal": {
     "name": "lab-markdown-sample",
@@ -703,7 +703,7 @@ Include the details of the event as HTTP POST data by using the `application/jso
 
 When an event has associated data, it is included in the `data` dictionary:
 
-```json
+```
 {
   "portal": {
     "name": "lab-markdown-sample",
@@ -736,7 +736,7 @@ The event stream only produces events for things as they happen. For a snapshot 
 
 To record analytics data on usage of workshops by using Google Analytics, enable tracking by supplying a tracking ID for Google Analytics:
 
-```yaml
+```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
@@ -755,7 +755,7 @@ Custom dimensions are used in Google Analytics to record details about the works
 
 To support use of custom dimensions in Google Analytics, configure the Google Analytics property with the following custom dimensions. They must be added in the order shown, because Google Analytics doesn't allow you to specify the index position for a custom dimension. It allocates them for you. You can't already have custom dimensions defined for the property, as the new custom dimensions must start at index of 1.
 
-
+```
 | Custom Dimension Name | Index |
 |-----------------------|-------|
 | workshop_name         | 1     |
@@ -764,6 +764,7 @@ To support use of custom dimensions in Google Analytics, configure the Google An
 | training_portal       | 4     |
 | ingress_domain        | 5     |
 | ingress_protocol      | 6     |
+```
 
 In addition to custom dimensions against page accesses, events are also generated. These include:
 
