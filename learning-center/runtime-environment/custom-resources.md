@@ -16,7 +16,7 @@ the created namespaces and what the workshop uses.
 
 A minimal example of the `Workshop` custom resource looks like this:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -49,7 +49,7 @@ details of the workshop that you deploy.
 
 A minimal example of the `WorkshopEnvironment` custom resource looks like this:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopEnvironment
 metadata:
@@ -87,7 +87,7 @@ require elevated privileges.
 
 A minimal example of the `WorkshopRequest` custom resource looks like this:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopRequest
 metadata:
@@ -124,7 +124,7 @@ workshop environments and populating them with workshop instances.
 
 A minimal example of the `TrainingPortal` custom resource looks like this:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
@@ -148,7 +148,7 @@ operator.
 
 A minimal example of the `SystemProfile` custom resource looks like this:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:

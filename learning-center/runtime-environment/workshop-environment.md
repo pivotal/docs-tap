@@ -10,7 +10,7 @@ Creating a workshop environment is performed as a separate step to loading the w
 
 To specify which workshop definition is to be used for a workshop environment, set the `workshop.name` field of the specification for the workshop environment.
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopEnvironment
 metadata:
@@ -28,7 +28,7 @@ When the workshop environment is created, the namespace created for the workshop
 
 A workshop definition can set a list of environment variables that must be set for all workshop instances. To override an environment variable specified in the workshop definition. or one defined in the container image, you can supply a list of environment variables as `session.env`.
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopEnvironment
 metadata:
@@ -66,7 +66,7 @@ When setting a custom domain, DNS must be configured with a wildcard domain to f
 
 To provide the ingress domain, you can set the `session.ingress.domain` field.
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopEnvironment
 metadata:
@@ -81,7 +81,7 @@ spec:
 
 By default, the workshop session is exposed using an HTTP connection if overriding the domain. If you require a secure HTTPS connection, you must have access to a wildcard SSL certificate for the domain. A secret of type `tls` must be created for the certificate in the `learningcenter` namespace or the namespace where the Learning Center Operator is deployed. The name of that secret must then be set in the `session.ingress.secret` field.
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopEnvironment
 metadata:
@@ -97,7 +97,7 @@ spec:
 
 If HTTPS connections are terminated using an external load balancer and not by specifying a secret for ingresses managed by the Kubernetes ingress controller, then routing traffic into the Kubernetes cluster as HTTP connections, you can override the ingress protocol without specifying an ingress secret by setting the `session.ingress.protocol` field.
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopEnvironment
 metadata:
@@ -113,7 +113,7 @@ spec:
 
 To override or set the ingress class, which dictates which ingress router is used when more than one option is available, you can add `session.ingress.class`.
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopEnvironment
 metadata:
@@ -132,7 +132,7 @@ spec:
 
 By default, requesting a workshop using the `WorkshopRequest` custom resource is deactivated and must be enabled for a workshop environment by setting `request.enabled` to `true`.
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopEnvironment
 metadata:
@@ -148,7 +148,7 @@ With this enabled, anyone who can create a `WorkshopRequest` custom resource can
 
 To further control who can request a workshop instance in the workshop environment, you can first set an access token, which a user must know and supply with the workshop request. This is done by setting the `request.token` field.
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopEnvironment
 metadata:
@@ -167,7 +167,7 @@ As a second control measure, you can specify what namespaces the `WorkshopReques
 
 You can specify the list of namespaces from which workshop requests for the workshop environment by setting `request.namespaces`.
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopEnvironment
 metadata:
@@ -184,7 +184,7 @@ spec:
 
 To add the workshop namespace in the list, rather than list the literal name, you can reference a predefined parameter specifying the workshop namespace by including `$(workshop_namespace)`.
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopEnvironment
 metadata:
@@ -205,7 +205,7 @@ When requesting a workshop using `WorkshopRequest`, a login dialog box is presen
 
 To override the user name, you can set the `session.username` field. To set the same fixed password for all workshop instances, you can set the `session.password` field.
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopEnvironment
 metadata:
@@ -247,7 +247,7 @@ When creating deployments in the workshop namespace, set the `serviceAccountName
 
 After a workshop environment is created, you can create the workshop instances. You can request a workshop instance by using the `WorkshopRequest` custom resource. This can be a separate step, or you can add them as resources under `environment.objects`.
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopEnvironment
 metadata:
