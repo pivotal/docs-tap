@@ -21,13 +21,13 @@ To install Developer Conventions:
 1. Get the exact name and version information for the Developer Conventions package to be installed
 by running:
 
-    ```
+    ```console
     tanzu package available list developer-conventions.tanzu.vmware.com --namespace tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     $ tanzu package available list developer-conventions.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for developer-conventions.tanzu.vmware.com
       NAME                                    VERSION        RELEASED-AT
@@ -36,7 +36,7 @@ by running:
 
 1. Install the package by running:
 
-    ```
+    ```console
     tanzu package install developer-conventions \
       --package-name developer-conventions.tanzu.vmware.com \
       --version 0.3.0 \
@@ -45,13 +45,13 @@ by running:
 
 1. Verify the package install by running:
 
-    ```
+    ```console
     tanzu package installed get developer-conventions --namespace tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     tanzu package installed get developer-conventions -n tap-install
     | Retrieving installation details for developer-conventions...
     NAME:                    developer-conventions
@@ -71,11 +71,11 @@ The following resource limits are set on the Developer Conventions service:
 ```
 resources:
   limits:
-	cpu: 100m
-	memory: 256Mi
+  cpu: 100m
+  memory: 256Mi
   requests:
-	cpu: 100m
-	memory: 20Mi
+  cpu: 100m
+  memory: 20Mi
 ```
 
 ## <a id='uninstalling'></a>Uninstall

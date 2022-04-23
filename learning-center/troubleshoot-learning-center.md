@@ -15,15 +15,15 @@ The TLS secret `tls` is not available.
 
 1. Access the operator logs by running:
 
-    ```
+    ```console
     kubectl logs deployment/learningcenter-operator -n learningcenter
     ```
-    
+
 1. Observe that the TLS secret `tls` is not available. The TLS secret should be on the Learning
     Center operator namespace. If the TLS secret is not on the Learning Center operator namespace,
     the operator logs contain the following error:
 
-    ```
+    ```console
     ERROR:kopf.objects:Handler 'learningcenter' failed temporarily: TLS secret tls is not available
     ```
 
@@ -37,7 +37,7 @@ The TLS secret `tls` is not available.
 
 You are installing a TAP profile and you get this error:
 
-```
+```console
 Internal error occurred: failed calling webhook "image-policy-webhook.signing.run.tanzu.vmware.com": failed to call webhook: Post "https://image-policy-webhook-service.image-policy-system.svc:443/signing-policy-check?timeout=10s": service "image-policy-webhook-service" not found
 ```
 
@@ -58,13 +58,13 @@ Center Operator. These parameters include ingressDomain, TLS secret, ingressClas
 
 Command:
 
-```
+```console
 kubectl describe systemprofile
 ```
 
 Command:
 
-```
+```console
 kubectl describe pod  -n learningcenter
 ```
 

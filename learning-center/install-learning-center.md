@@ -32,13 +32,13 @@ To install Learning Center:
 
 1. List version information for the package by running:
 
-    ```
+    ```console
     tanzu package available list learningcenter.tanzu.vmware.com --namespace tap-install
     ```
 
     Example output:
 
-    ```
+    ```console
      NAME                             VERSION        RELEASED-AT
      learningcenter.tanzu.vmware.com  0.1.0          2021-12-01 08:18:48 -0500 EDT
     ```
@@ -46,7 +46,7 @@ To install Learning Center:
 1. (Optional) See all the configurable parameters on this package by running:
 
     **Remember to change the 0.x.x version**
-    ```
+    ```console
     tanzu package available get learningcenter.tanzu.vmware.com/0.x.x --values-schema --namespace tap-install
     ```
 
@@ -54,7 +54,7 @@ To install Learning Center:
 
 1. Add the parameter `ingressDomain` to `learning-center-config.yaml`, as in this example:
 
-    ```
+    ```yaml
     ingressDomain: YOUR-INGRESS-DOMAIN
     ```
 
@@ -79,8 +79,8 @@ To install Learning Center:
 
 1. Add the `ingressSecret` to `learning-center-config.yaml`, as in this example:
 
-    ```
-    ingressSecret:
+    ```yaml
+      ingressSecret:
       certificate: |
         -----BEGIN CERTIFICATE-----
         MIIFLTCCBBWgAwIBAgaSAys/V2NCTG9uXa9aAiYt7WJ3MA0GCSqGaIb3DQEBCwUA
@@ -100,7 +100,7 @@ To install Learning Center:
     - Copy the tls secret to the `learningcenter` namespace or the one you
     defined and use the `secretName` property as in this example:
 
-    ```
+    ```yaml
     ingressSecret:
      secretName: workshops.example.com-tls
     ```
@@ -118,14 +118,14 @@ To install Learning Center:
 If you have multiple ingress class types available, and you need to override which is used, define
 the `ingressClass` property in `learning-center-config.yaml` **before deploying any workshop**:
 
-    ```
+    ```yaml
     ingressClass: contour
     ```
 
 1. Install Learning Center operator by running:
 
     **Remember to change the 0.x.x version**
-    ```
+    ```console
     tanzu package install learning-center --package-name learningcenter.tanzu.vmware.com --version 0.x.x -f learning-center-config.yaml
     ```
 
@@ -135,7 +135,7 @@ the `ingressClass` property in `learning-center-config.yaml` **before deploying 
 
     You can check that the operator deployed successfully by running:
 
-    ```
+    ```console
     kubectl get all -n learningcenter
     ```
 
@@ -147,26 +147,26 @@ To install the Self-Guided Tour Training Portal and Workshop:
 
 1. Make sure you have the workshop package installed by running:
 
-    ```
+    ```console
     tanzu package available list workshops.learningcenter.tanzu.vmware.com --namespace tap-install
     ```
 
 1. Install the Learning Center Training Portal with the Self-Guided Tour Workshop by running:
 
     **Remember to change the 0.x.x version**
-    ```
+    ```console
     tanzu package install learning-center-workshop --package-name workshops.learningcenter.tanzu.vmware.com --version 0.x.x -n tap-install
     ```
 
 1. Check the Training Portals available in your environment by running:
 
-    ```
+    ```console
     kubectl get trainingportals
     ```
 
     Example output:
 
-    ```
+    ```console
     NAME                       URL                                           ADMINUSERNAME         ADMINPASSWORD                      STATUS
-    learningcenter-tutorials   http://learningcenter-tutorials.example.com   learningcenter        QGBaM4CF01toPiZLW5NrXTcIYSpw2UJK   Running
+        learningcenter-tutorials   http://learningcenter-tutorials.example.com   learningcenter        QGBaM4CF01toPiZLW5NrXTcIYSpw2UJK   Running
     ```
