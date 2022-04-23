@@ -85,7 +85,7 @@ The following prerequisites must be met before a convention can be developed and
 + The default supply chain is installed. Download Supply Chain Security Tools for VMware Tanzu from [Tanzu Network](https://network.tanzu.vmware.com/products/supply-chain-security-tools/).
 + Your kubeconfig context is set to the Tanzu Application Platform-enabled cluster:
 
-    ```
+    ```console
     kubectl config use-context CONTEXT_NAME
     ```
 
@@ -247,6 +247,7 @@ For example, adding a Prometheus sidecar to web applications, or adding a `workl
         return server.ListenAndServeTLS("", "")
     }
     ```
+
 ## <a id='define-conv-behavior'></a> Define the convention behavior
 
 Any property or value within the [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) or OCI image metadata associated with a workload can be used to define the criteria for applying conventions. The following are a few examples.  
@@ -475,6 +476,7 @@ The `server.yaml` defines the Kubernetes components that enable the convention s
     ---
     ...
     ```
+
 6. <a id='install-convention'></a>Finally, the [`ClusterPodConvention`](./reference/cluster-pod-convention.md) adds the convention to the cluster to make it available for the Convention Controller:
     >**Note:** The `annotations` block is only needed if you use a self-signed certificate. Otherwise, check the [cert-manager documentation](https://cert-manager.io/docs/).
 
