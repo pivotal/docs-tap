@@ -4,7 +4,7 @@ The `BOM` is a type/structure wrapping a Software Bill of Materials (SBOM) descr
 
 The structure of the `BOM` is defined as follows:
 
-```
+```toml
 {
   "name": "bom-name",
   "raw": "`some byte array`"
