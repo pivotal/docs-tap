@@ -6,7 +6,7 @@ By following the steps in this topic, you will build an application on the Build
 
 ## <a id='prerequisites'></a> Prerequisites
 
-Before implementing a multicluster topology, complete the following: 
+Before implementing a multicluster topology, complete the following:
 
 1. Complete all [installation steps for the 3 profiles](installing-multicluster.md): Build, Run, and View.
 
@@ -21,7 +21,7 @@ Before implementing a multicluster topology, complete the following:
     ```
 
     Where:
-    
+
     - `YOUR-DEVELOPER-NAMESPACE` is the namespace you set up in [Set up developer namespaces to use installed packages](../install-components.md#setup). `default` is used in this example.
 
 
@@ -43,7 +43,7 @@ The Build cluster starts by building the necessary bundle for the workload that 
 
 1. To monitor the progress of this process, run:
 
-    ```
+    ```console
     tanzu apps workload tail tanzu-java-web-app --since 10m --timestamp --namespace ${DEVELOPER_NAMESPACE}
     ```
 
@@ -62,7 +62,7 @@ The Build cluster starts by building the necessary bundle for the workload that 
     NAME                 SOURCE                                                                                                                DELIVERY   READY   REASON             AGE
     tanzu-java-web-app   tapmulticluster.azurecr.io/tap-multi-build-dev/tanzu-java-web-app-default-bundle:xxxx-xxxx-xxxx-xxxx-xxxxx              False   DeliveryNotFound   28h
     ```
-    
+
     The `Deliverable` contains the reference to the `source`. In this case, it is a bundle on the image registry you specified for the supply chain. The supply chains can also leverage Git repositories instead of ImageRepositories, but that's beyond the scope of this tutorial. 
 
 1. Create a `Deliverable` after verifying there's a `Deliver` on the build cluster. Copy its content to a file that you can take to the Run profile clusters:
@@ -71,7 +71,7 @@ The Build cluster starts by building the necessary bundle for the workload that 
     kubectl get deliverable tanzu-java-web-app --namespace ${DEVELOPER_NAMESPACE} -oyaml > deliverable.yaml
     ```
 
-1. Delete the `ownerReferences` and `status` sections from the `deliverable.yaml`. 
+1. Delete the `ownerReferences` and `status` sections from the `deliverable.yaml`.
 
     After editing, the file will look like the following:
 
