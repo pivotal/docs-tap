@@ -10,7 +10,7 @@ and testing a workshop when developing workshop content.
 Deactivate the reserved sessions by setting the `reserved` field to `0` in your
 training portal instance:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
@@ -36,7 +36,7 @@ Because you might have to wait to create a new workshop, shut down the existing 
 
 If you download workshop content from a Git repository or web server, and you are only doing simple updates to workshop instructions, scripts, or files bundled with the workshop, you can update the content in place without needing to restart the workshop session. To perform an update, download the workshop content after you have pushed back any changes to the hosted Git repository or updated the content available through the web server. From the workshop session terminal, run:
 
-```
+```console
 update-workshop
 ```
 
@@ -44,7 +44,7 @@ This command downloads any workshop content from the Git repository or web serve
 
 Find the location where the workshop content is downloading by viewing the file:
 
-```
+```console
 cat ~/.eduk8s/workshop-files.txt
 ```
 
@@ -54,7 +54,7 @@ Once the workshop content has been updated, reload the current page of the works
 
 If additional pages are added to the workshop instructions or pages are renamed, you must restart the workshop renderer process by running:
 
-```
+```console
 restart-workshop
 ```
 
@@ -66,7 +66,7 @@ To change set up scripts that create files specific to a workshop session, edit 
 
 To trigger running of any setup scripts, run:
 
-```
+```console
 rebuild-workshop
 ```
 
@@ -80,7 +80,7 @@ If your workshop uses a custom workshop image to provide additional tools and yo
 
 For example:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -98,7 +98,7 @@ When you use an image tag of `main`, `master`, `develop` or, `latest`, the image
 
 For a custom workshop image, you can set up the workshop definition to pull down the workshop content from the hosted Git repository or web server as the follows:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -117,7 +117,7 @@ Because the location of the workshop files is known, you can live update the wor
 
 If the additional set of tools required for a workshop is not specific to a workshop, VMware recommends that you create a standalone workshop base image where you can add the tools. You can always pull down content for a specific workshop from a Git repository or web server when the workshop session starts.
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -138,7 +138,7 @@ By default, to modify the definition for a workshop, you need to delete the trai
 
 During the workshop content development, to change resource allocations, role access, or to specify what resource objects to be automatically created for the workshop environment or a specific workshop session, you can enable automatic updates in the training portal definition by setting `updates.workshop` field as `true`:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
