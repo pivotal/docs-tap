@@ -40,7 +40,7 @@ The following procedure explains how to use CURL to POST an image report.
 
 6. The following is a sample POST body of a image report:
 
-    ```
+    ```json
     {
       "Name" : "burger-image-2",
       "Registry" : "test-registry",

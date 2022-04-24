@@ -4,14 +4,14 @@ The `ScanTemplate` custom resource (CR) defines the Pod with the scanner image t
 
 ## <a id="structure"></a>Structure
 
-```
+```yaml
 apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: ScanTemplate
 spec:
-    # Required. This field must specify a valid pod.spec. 
+    # Required. This field must specify a valid pod.spec.
     # This has the instructions for the scan to be successfully executed.
     # See Pod Requirements section below for more details
-    template: 
+    template:
 ```
 
 ## <a id="pod-requirements"></a>Pod requirements

@@ -25,7 +25,7 @@ To configure Amazon S3 access:
     5. Click **Add permissions** and click **Create Inline Policy**.
     6. Click the **JSON** tab and replace contents with this JSON replacing `BUCKET-NAME` with the bucket name.
 
-        ```
+        ```json
         {
             "Version": "2012-10-17",
             "Statement": [
@@ -129,7 +129,7 @@ To update the `techdocs` section `app-config.yaml` to point to the Amazon S3 buc
 
 1. Replace the `techdocs` section in `tap-gui-values.yaml` with the following YAML, substituting appropriate values for the placeholders.
 
-    ```
+    ```yaml
     techdocs:
       builder: 'external'
       publisher:
@@ -145,7 +145,7 @@ To update the `techdocs` section `app-config.yaml` to point to the Amazon S3 buc
 
 2. Update your installation using the `tanzu` CLI:
 
-    ```
+    ```shell
     tanzu package installed update tap-gui \
       --version <package-version> \
       -f <values-file>
@@ -153,7 +153,7 @@ To update the `techdocs` section `app-config.yaml` to point to the Amazon S3 buc
 
 3. Check the status of this update by running:
 
-    ```
+    ```shell
     tanzu package installed list
     ```
 

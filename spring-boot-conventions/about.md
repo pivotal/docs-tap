@@ -8,7 +8,7 @@ The Spring Boot convention server looks inside the image such as the following `
 
 `$ docker inspect springio/petclinic`
 
-```
+```bash
 [
     {
         "Id": "sha256:...",

@@ -91,7 +91,7 @@ a set of workshops to be deployed and the number of people taking the workshops.
 
 The `TrainingPortal` custom resource we use in this example is:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
@@ -200,9 +200,9 @@ Attendees can access workshops through the web portal by following two steps:
     ![Screenshot of a workshop listing on the portal catalog](images/portal-catalog.png)
 
     - An orange dot beside a workshop means that no instance for that workshop has been allocated
-    to the user as yet, but that some are available. 
+    to the user as yet, but that some are available.
     - A red dot indicates there are no more workshop instances
-    available. 
+    available.
     - A green dot indicates a workshop instance has
     already been reserved by the attendee.
 

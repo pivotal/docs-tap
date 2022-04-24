@@ -9,7 +9,7 @@ To support the use of [reveal.js](https://revealjs.com/), static media assets fo
 
 If you are using reveal.js for the slides and you have history enabled or are using section IDs to support named links, you can use an anchor to a specific slide and that slide will be opened when clicked on:
 
-```
+```text
 %slides_url%#/questions
 ```
 

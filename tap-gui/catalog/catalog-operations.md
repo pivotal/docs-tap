@@ -30,7 +30,7 @@ field.
 
 Sample user entities:
 
-  ```
+  ```yaml
   apiVersion: backstage.io/v1alpha1
   kind: User
   metadata:
@@ -45,7 +45,7 @@ Sample user entities:
 
 Sample group entities:
 
-  ```
+  ```yaml
   apiVersion: backstage.io/v1alpha1
   kind: Group
   metadata:
@@ -73,7 +73,7 @@ specifies the System name in the field `spec.system`.
 
 Sample system entity
 
-  ```
+  ```yaml
   apiVersion: backstage.io/v1alpha1
   kind: System
   metadata:
@@ -93,7 +93,7 @@ Component descriptor files require values for `apiVersion`, `kind`, `metadata.na
 `spec.lifecycle`, and `spec.owner`. Some useful optional fields are `spec.system` and
 `spec.subcomponentOf`, both of which links a Component to an entity it is a part of.
 
-  ```
+  ```yaml
   apiVersion: backstage.io/v1alpha1
   kind: Component
   metadata:
@@ -142,7 +142,7 @@ To deregister an entity, follow these steps:
     * To update components, change the catalog location in either the `app_config` section of
     `tap-gui-values.yaml` or the custom values file you used when installing. For example:
 
-        ```
+        ```yaml
         catalog:
           locations:
             - type: url
@@ -152,7 +152,7 @@ To deregister an entity, follow these steps:
     * To register components, add the new catalog's location in either the `app_config` section of
     `tap-gui-values.yaml` or the custom values file you used when installing. For example:
 
-        ```
+        ```yaml
         catalog:
           locations:
             - type: url
@@ -175,7 +175,7 @@ To deregister an entity, follow these steps:
 
 1. Update the package to include the catalog by running:
 
-    ```
+    ```console
     tanzu package installed update backstage \
       --version PACKAGE-VERSION \
       -f VALUES-FILE
@@ -183,7 +183,7 @@ To deregister an entity, follow these steps:
 
 1. Check the status of this update by running:
 
-    ```
+    ```console
     tanzu package installed list
     ```
 

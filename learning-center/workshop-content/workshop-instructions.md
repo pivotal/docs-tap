@@ -18,7 +18,7 @@ When the user clicks the code block, the command is executed in the first termin
 
 If using AsciiDoc, you can instead use the `role` annotation in an existing code block:
 
-```
+```text
 [source,bash,role=execute]
 ----
 echo "Execute command."
@@ -692,13 +692,13 @@ The workshop environment provides the following built-in data variables:
 
 To use a data variable within the page content, surround it by matching pairs of brackets:
 
-```
+```text
 {{ session_namespace }}
 ```
 
 Do this inside of code blocks, including clickable actions, as well as in URLs:
 
-```
+```text
 http://myapp-{{ session_namespace }}.{{ ingress_domain }}
 ```
 
@@ -716,7 +716,7 @@ You can introduce your own data variables by listing them in the `workshop/modul
 
 The field under which the data variables must be specified is `config.vars`:
 
-```
+```yaml
 config:
     vars:
     - name: LANGUAGE
@@ -725,7 +725,7 @@ config:
 
 To use a name for a data variable that is different from the environment variable name, add a list of `aliases`:
 
-```
+```yaml
 config:
     vars:
     - name: LANGUAGE
@@ -738,7 +738,7 @@ The environment variables with names in the list of aliases are checked first, t
 
 You can override the default value for a data variable for a specific workshop by setting it in the corresponding workshop file. For example, `workshop/workshop-python.yaml` might contain:
 
-```
+```yaml
 vars:
   LANGUAGE: python
 ```
@@ -781,7 +781,7 @@ In the case of the URL being an external website, when the URL is clicked, the U
 
 You can define a URL where components of the URL are provided by data variables. Data variables useful for this are `session_namespace` and `ingress_domain`, because they can be used to create a URL to an application deployed from a workshop:
 
-```
+```text
 https://myapp-{{ session_namespace }}.{{ ingress_domain }}
 ```
 
@@ -789,7 +789,7 @@ https://myapp-{{ session_namespace }}.{{ ingress_domain }}
 
 Rendering pages is in part handled by the [Liquid](https://www.npmjs.com/package/liquidjs) template engine. So you can use any constructs the template engine supports for conditional content:
 
-```
+```text
 {% if LANGUAGE == 'java' %}
 ....
 {% endif %}
