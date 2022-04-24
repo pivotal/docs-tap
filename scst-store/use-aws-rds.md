@@ -22,7 +22,7 @@
 
 5. In the `metadata-store-values.yaml` fill the following settings:
 
-   ```yaml
+   ```
    db_host: "<DB Instance Endpoint>"
    db_user: "<Master Username>"
    db_password: "<Master Password>"

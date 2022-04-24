@@ -15,7 +15,7 @@ To specify the workshop environment the workshop instance is created against, se
 `environment.name` field of the specification for the workshop session.
 At the same time, you must specify the session ID for the workshop instance. For example:
 
-```yaml
+```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopSession
 metadata:
@@ -41,7 +41,7 @@ This ensures a workshop attendee cannot interfere with another.
 To set login credentials for a workshop instance, set the `session.username` and `session.password`
 fields. For example:
 
-```yaml
+```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopSession
 metadata:
@@ -68,7 +68,7 @@ requests for sub-domains of the custom domain to the ingress router of the Kuber
 
 To provide the ingress domain, you can set the `session.ingress.domain` field. For example:
 
-```yaml
+```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopSession
 metadata:
@@ -92,7 +92,7 @@ You must create a secret of type `tls` for the certificate in the `learningcente
 namespace where Learning Center Operator is deployed.
 You must then set the name of that secret in the `session.ingress.secret` field. For example:
 
-```yaml
+```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopSession
 metadata:
@@ -113,7 +113,7 @@ ingress secret by setting the `session.ingress.protocol` field.
 
 For example:
 
-```yaml
+```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopSession
 metadata:
@@ -132,7 +132,7 @@ ingress router is used when more than one option is available.
 
 For example:
 
-```yaml
+```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopSession
 metadata:
@@ -152,7 +152,7 @@ spec:
 To set the environment variables for the workshop instance, provide the environment variables in the
 `session.env` field.
 
-```yaml
+```
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopSession
 metadata:

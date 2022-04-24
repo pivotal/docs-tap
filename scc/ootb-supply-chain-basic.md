@@ -28,7 +28,7 @@ To use this package, you must:
 - Install [Out of the Box Templates](ootb-templates.html).
 - Configure the Developer namespace with auxiliary objects that are used by the
   supply chain as described in the following section.
-- (Optionally) install [Out of the Box Delivery
+- (Optionally) install [Out of the Box Delivery 
   Basic](ootb-delivery-basic.html), if you are willing to deploy the application to the
 same cluster as the workload and supply chains.
 
@@ -127,7 +127,7 @@ and `imagePullSecets` fields. This allows you to provide indirect ways for
 resources to find credentials without knowing the exact name of
 the secrets.
 
-```yaml
+```
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -164,7 +164,7 @@ permissions to grant to the service account:
 To provide those permissions to the identity we created for this workload, bind
 the `workload` ClusterRole to the ServiceAccount we created above:
 
-```yaml
+```
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
@@ -184,7 +184,7 @@ it, this single RoleBinding is all that's necessary.
 If you intend to also deploy the application that's been built, bind to the same
 ServiceAccount the `deliverable` ClusterRole too:
 
-```yaml
+```
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
@@ -208,7 +208,7 @@ serviceaccount, and rolebinding), you can create the workload object.
 
 To do so, make use of the `apps` plug-in from the Tanzu CLI:
 
-```console
+```
 tanzu apps workload create [flags] [workload-name]
 ```
 

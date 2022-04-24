@@ -41,7 +41,7 @@ Error logs are always outputted regardless of the log level, even when set to `m
 ## <a id='obtain-logs'></a> Obtaining logs
 
 Kubernetes pods emit logs. The deployment has two pods: one for the database and one
-for the API back end.
+for the API back end. 
 
 Use `kubectl get pods` to obtain the names of the pods by running:
 

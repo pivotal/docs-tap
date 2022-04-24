@@ -45,7 +45,7 @@ If the container is restarted, the setup script runs again in the new container.
 
 When using a setup script to fill out values in resource files, a useful utility is `envsubst`. You can use this in a setup script as follows:
 
-```shell
+```
 #!/bin/bash
 
 envsubst < frontend/ingress.yaml.in > frontend/ingress.yaml
@@ -92,7 +92,7 @@ The name of the shell script file for a terminal session must be of the form `<s
 
 The shell script file might be used to run a terminal-based application such as `k9s`, or to create an SSH session to a remote system.
 
-```shell
+```
 #!/bin/bash
 
 exec k9s
@@ -100,7 +100,7 @@ exec k9s
 
 If the command that is run exits, the terminal session is marked as exited and you need to reload that terminal session to start over again. Alternatively, you could write the shell script file as a loop so it restarts the command you want to run if it ever exits.
 
-```shell
+```
 #!/bin/bash
 
 while true; do
@@ -111,7 +111,7 @@ done
 
 If you want to run an interactive shell and output a banner at the start of the session with special information for the user, use a script file to output the banner and then run the interactive shell:
 
-```shell
+```
 #!/bin/bash
 
 echo

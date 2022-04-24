@@ -16,7 +16,7 @@ Where you have multiple workshop files and don't have the default `workshop.yaml
 
 The format for listing the available modules in the `workshop/modules.yaml` file is:
 
-```yaml
+```
 modules:
   workshop-overview:
     name: Workshop Overview
@@ -37,7 +37,7 @@ For each module, set the `name` field to the page title to be displayed for that
 
 The corresponding `workshop/workshop.yaml` file, where all available modules are used, would have the format:
 
-```yaml
+```
 name: Markdown Sample
 modules:
   activate:
@@ -118,7 +118,7 @@ In this sample, a custom workshop image bundles the workshop content into its ow
   ```
 
   Where:
-
+  
   - `YOUR-GITHUB-URL-FOR-LAB-MARKDOWN-SAMPLE` is the Git repository URL for `lab-markdown-sample`. For example, `https://github.com/eduk8s/lab-markdown-sample`.
 
 The difference is the use of the `content.files` setting.
@@ -127,3 +127,4 @@ Here, the workshop content is overlaid on top of the standard workshop base imag
 ## Next steps
 
 - Learn about configuration options for the workshop.yaml custom resource definitions (CRD) in [Workshop resource](../runtime-environment/workshop-definition.md).
+

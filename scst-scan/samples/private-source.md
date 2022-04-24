@@ -4,7 +4,7 @@
 
 Create `sample-private-source-scan.yaml` and ensure you enter a valid private SSH key value in the secret:
 
-```yaml
+```
 ---
 apiVersion: v1
 kind: Secret
@@ -33,7 +33,7 @@ spec:
 
 Before deploying, set up a watch in another terminal to see things process, which will be quick:
 
-```console
+```
 watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
 ```
 
@@ -41,7 +41,7 @@ For more information, see [Observing and Troubleshooting](../observing.md).
 
 ## <a id="deploy-resources"></a>Deploy the resources
 
-```console
+```
 kubectl apply -f sample-private-source-scan.yaml
 ```
 
@@ -49,7 +49,7 @@ kubectl apply -f sample-private-source-scan.yaml
 
 Once the scan has completed, run:
 
-```console
+```
 kubectl describe sourcescan sample-private-source-scan
 ```
 
@@ -59,7 +59,7 @@ For more information, see [Viewing and Understanding Scan Status Conditions](../
 
 ## <a id="clean-up"></a>Clean up
 
-```console
+```
 kubectl delete -f sample-private-source-scan.yaml
 ```
 

@@ -52,14 +52,14 @@ There is no default service account bound to the `Read Only` cluster role. You m
 All containers shipped do not use root user accounts or accounts with root access. Using Kubernetes Security Context ensures that applications do not run with root users.
 
 Security Context for the API server:
-```yaml
+```
 allowPrivilegeEscalation: false
 runAsUser: 65532
 fsGroup: 65532
 ```
 
 Security Context for the Postgres DB pod:
-```yaml
+```
 allowPrivilegeEscalation: false
 runAsUser: 999
 fsGroup: 999

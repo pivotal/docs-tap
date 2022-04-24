@@ -23,7 +23,7 @@ If you need to update this location, you can change the definition file.
 Change either the Tanzu Application Platform profile file if you used the profile method to install,
 or change the standalone Tanzu Application Platform GUI values file if you're only installing that package on its own.
 
-  ```yaml
+  ```
       namespace: tap-gui
       service_type: <SERVICE-TYPE>
       app_config:
@@ -35,7 +35,7 @@ or change the standalone Tanzu Application Platform GUI values file if you're on
 
 2. You need to make sure that you provide the proper integration information for the Git location you specified above.
 
-  ```yaml
+  ```
       namespace: tap-gui
       service_type: <SERVICE-TYPE>
       app_config:
@@ -59,7 +59,7 @@ When you need to update the configuration of Tanzu Application Platform GUI (eit
 
 1. Check the logs of the Pods and verify whether the configuration reloaded by running `kubectl get pods -n tap-gui`. For example:
 
-    ```bash
+    ```
     $ kubectl get pods -n tap-gui
     NAME                      READY   STATUS    RESTARTS   AGE
     server-6b9ff657bd-hllq9   1/1     Running   0          13m
@@ -72,7 +72,7 @@ When you need to update the configuration of Tanzu Application Platform GUI (eit
 
 2. Try deleting and re-instantiating the Pod by running:
 
-    ```bash
+    ```
     kubectl delete pod -l app=backstage -n tap-gui
     ```
 
@@ -96,7 +96,7 @@ Get timestamped logs from the running pod and review the logs:
 
 1. Pull the logs using the pod label:
 
-    ```bash
+    ```
     kubectl logs -l app=backstage -n tap-gui
     ```
 
