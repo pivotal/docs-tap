@@ -1,8 +1,8 @@
 # Prebuilt image
 
-For applications that have a predefined way of building 
+For applications that have a predefined way of building
 container images, the supply chains in the Out of the Box packages
-support specifying a prebuilt image used in the final application 
+support specifying a prebuilt image used in the final application
 using the same stages as any other Workload.
 
 
@@ -16,7 +16,7 @@ workload create` command:
 
 ```console
 $ tanzu apps workload create --help
---image image        prebuilt image, skips the source resolution and build 
+--image image        prebuilt image, skips the source resolution and build
                      phases of the supply chain
 ```
 
@@ -29,6 +29,7 @@ tanzu apps workload create tanzu-java-web-app \
   --type web \
   --image IMAGE
 ```
+
 ```console
 Create workload:
       1 + |---
@@ -51,7 +52,7 @@ In Tanzu Application Platform, the `ootb-supply-chain-basic`, `ootb-supply-chain
 supply chain that provides a prebuilt container image for your
 application.
 
-```
+```text
 ootb-supply-chain-basic
 
     (cluster)  basic-image-to-url   ClusterSupplyChain            (!) new
@@ -76,7 +77,7 @@ name of the container image that brings the application to be deployed.
 
 The new supply chains use a new Cartographer feature
 that lets VMware increase the specificity of supply chain selection by using
-the `matchFields` selector rule. 
+the `matchFields` selector rule.
 
 The selection takes place as follows:
 
@@ -167,7 +168,7 @@ status:
         kind: ImageRepository
         name: tanzu-java-web-app
         namespace: workload
-      
+
       # reference to the template that defined how this object should look
       # like
       #
@@ -202,7 +203,7 @@ required runtime dependencies.
 
 Here you use the `maven` base image for compiling our application code, and
 then the minimal distroless `java17-debian11` image for providing a JRE
-that can run our built application. 
+that can run our built application.
 
 With the image built, you push it to a container image registry, and then
 reference it in the Workload.
@@ -227,7 +228,7 @@ reference it in the Workload.
             CMD [ "/demo.jar" ]
     ```
 
-2. Push the container image to a container image registry: 
+2. Push the container image to a container image registry:
 
     ```bash
     docker build -t IMAGE .
@@ -242,6 +243,7 @@ reference it in the Workload.
       --app tanzu-java-web-app \
       --image IMAGE
     ```
+
     ```console
     Create workload:
           1 + |---
@@ -262,6 +264,7 @@ reference it in the Workload.
     ```bash
     tanzu apps workload get tanzu-java-web-app
     ```
+
     ```console
     # tanzu-java-web-app: Ready
     ---
@@ -296,6 +299,7 @@ the root of that repository the following command:
 IMAGE=ghcr.io/kontinue/hello-world:tanzu-java-web-app
 ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=$IMAGE
 ```
+
 ```console
 [INFO] Scanning for projects...
 [INFO]
@@ -321,6 +325,7 @@ With the image built, you can push it to the container image registry:
 IMAGE=ghcr.io/kontinue/hello-world:tanzu-java-web-app
 docker push $IMAGE
 ```
+
 ```console
 The push refers to repository [ghcr.io/kontinue/hello-world]
 1dc94a70dbaa: Preparing
@@ -350,7 +355,7 @@ The Knative service gets created with the pod template spec being set to have
 the container port set to 8080, so it's expected that regardless of how the
 application's container image is built, to have a socket listening on 8080.
 
-```
+```yaml
 ports:
   - containerPort: 8080
     name: user-port
@@ -362,7 +367,7 @@ ports:
 By default, the container initiated as part of the pod is run as user
 1000.
 
-```
+```yaml
 securityContext:
   runAsUser: 1000
 ```

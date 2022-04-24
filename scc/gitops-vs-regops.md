@@ -6,7 +6,7 @@ repository or to a container image registry.
 
 For example:
 
-  ```
+  ```console
   Supply Chain
 
     -- fetch source
@@ -22,7 +22,7 @@ by pushing configuration to a Git repository or an
 image registry.
 
 >**Note:** For more information about providing source code either from a
-local directory or Git repository, 
+local directory or Git repository,
 see [Building from Source](building-from-source.md).  
 
 ## <a id="gitops"></a>GitOps
@@ -59,7 +59,7 @@ the repository whose name is formed by concatenating
 `gitops.repository_prefix` with the name of the workload. In this case,
 for example, `https://github.com/my-org/$(workload.metadata.name).git`.
 
-  ```
+  ```console
   Supply Chain
     params:
         - gitops_repository_prefix: GIT-REPO_PREFIX
@@ -79,7 +79,7 @@ for example, `https://github.com/my-org/$(workload.metadata.name).git`.
 
 
 Alternatively, you can force a workload to publish the configuration
-in a Git repository by providing the `gitops_repository` parameter 
+in a Git repository by providing the `gitops_repository` parameter
 to the workload:
 
   ```bash
@@ -93,18 +93,18 @@ to the workload:
   ```
 
 In this case, at the end of the supply chain, the configuration for this
-workload is published to the repository provided under the `gitops_repository` 
+workload is published to the repository provided under the `gitops_repository`
 parameter.
 
 ### <a id="auth"></a>Authentication
 
 Regardless of how the supply chains are configured, if pushing to
 Git is configured by repository prefix or repository name, you must provide
-credentials for the remote provider (for example, GitHub) by using a Kubernetes 
-secret in the same namespace as the workload attached to the workload 
+credentials for the remote provider (for example, GitHub) by using a Kubernetes
+secret in the same namespace as the workload attached to the workload
 `ServiceAccount`.
 
-Because the operation of pushing requires elevated permissions, credentials are 
+Because the operation of pushing requires elevated permissions, credentials are
 required by both public and private repositories.
 
 #### <a id="http-auth"></a>HTTP(S) Basic-auth / Token-based authentication
@@ -130,12 +130,12 @@ provide the credentials for that repository as follows:
     password: GIT-PASSWORD
   ```
 
->**Note:** Both the Tekton annotation and the `basic-auth` secret type must be 
-set. `GIT-SERVER` must be prefixed with the appropriate URL scheme and the Git 
-server. For example, for https://github.com/vmware-tanzu/cartographer, 
+>**Note:** Both the Tekton annotation and the `basic-auth` secret type must be
+set. `GIT-SERVER` must be prefixed with the appropriate URL scheme and the Git
+server. For example, for https://github.com/vmware-tanzu/cartographer,
 https://github.com must be provided as the GIT-SERVER.
 
-After the `Secret` is created, attach it to the `ServiceAccount` used by the 
+After the `Secret` is created, attach it to the `ServiceAccount` used by the
 workload. For example:
 
   ```yaml
@@ -180,7 +180,7 @@ provide the credentials for that repository as follows:
     known_hosts: GIT-SERVER-PUBLIC-KEYS # git server public keys
   ```
 
-After the `Secret` is created, attach it to the `ServiceAccount` used by the 
+After the `Secret` is created, attach it to the `ServiceAccount` used by the
 workload. For example:
 
   ```yaml
@@ -204,11 +204,11 @@ secret, see [Git Authentication's SSH section](git-auth.md#sh).
 ### <a id="gitops-params"></a>GitOps workload parameters
 
 While installing `ootb-*`, operators can configure `gitops.repository_prefix` to
-indicate what prefix the supply chain must use when forming the name of the 
-repository to push to the Kubernetes configurations produced by the supply 
+indicate what prefix the supply chain must use when forming the name of the
+repository to push to the Kubernetes configurations produced by the supply
 chains.
 
-To change the behavior to use GitOps, 
+To change the behavior to use GitOps,
 set the source of the source code to a Git repository. As the
 supply chain progresses, configuration is pushed to a repository named
 after `$(gitops.repository_prefix) + $(workload.name)`.
@@ -216,7 +216,7 @@ after `$(gitops.repository_prefix) + $(workload.name)`.
 For example, configure `gitops.repository_prefix` to `git@github.com/foo/` and
 create a workload as follows:
 
-  ```
+  ```console
   tanzu apps workload create tanzu-java-web-app \
     --git-branch main \
     --git-repo https://github.com/sample-accelerators/tanzu-java-web-app
@@ -226,7 +226,7 @@ create a workload as follows:
 
 Expect to see the following output:
 
-  ```
+  ```console
   Create workload:
         1 + |---
         2 + |apiVersion: carto.run/v1alpha1
@@ -248,7 +248,7 @@ Expect to see the following output:
 As a result, the Kubernetes configuration is pushed to
 `git@github.com/foo/tanzu-java-web-app.git`.
 
-Regardless of the setup, developers can also manually override the repository 
+Regardless of the setup, developers can also manually override the repository
 where configuration is pushed to by tweaking the following parameters:
 
 -  `gitops_ssh_secret`: Name of the secret in the same namespace as the
@@ -284,7 +284,7 @@ of it as a container image whose sole purpose is to carry arbitrary files.
 
 To enable this mode of operation, the supply chains must be configured
 **without** the following parameters being configured during the installation
-of the `ootb-` packages or overwritten by the workload by using the following 
+of the `ootb-` packages or overwritten by the workload by using the following
 parameters:
 
 - `gitops_repository_prefix`
@@ -295,8 +295,8 @@ same container image registry as the application image. That is, to
 the registry configured under the `registry: {}` section of the `ootb-`
 values.
 
-For example, assuming the installation of Tanzu Application Platform by using 
-profiles, configure the `ootb-supply-chain*` package as follows: 
+For example, assuming the installation of Tanzu Application Platform by using
+profiles, configure the `ootb-supply-chain*` package as follows:
 
   ```yaml
   ootb_supply_chain_basic:

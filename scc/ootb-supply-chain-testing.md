@@ -42,11 +42,11 @@ same cluster as the workload and supply chains.
 To verify that you have the right set of supply chains installed (that is, the
 one with Scanning and _not_ the one with testing), run:
 
-```
+```console
 tanzu apps cluster-supply-chain list
 ```
 
-```
+```console
 NAME                      LABEL SELECTOR
 source-test-to-url        apps.tanzu.vmware.com/has-tests=true,apps.tanzu.vmware.com/workload-type=web
 source-to-url             apps.tanzu.vmware.com/workload-type=web
@@ -120,7 +120,7 @@ that it expects to take two parameters:
 
 For example:
 
-```
+```console
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
@@ -171,7 +171,7 @@ Basic, except that you mark the workload with tests enabled by means of the
 
 For example:
 
-```
+```console
 tanzu apps workload create tanzu-java-web-app \
   --git-branch main \
   --git-repo https://github.com/sample-accelerators/tanzu-java-web-app
@@ -179,7 +179,8 @@ tanzu apps workload create tanzu-java-web-app \
   --label app.kubernetes.io/part-of=tanzu-java-web-app \
   --type web
 ```
-```
+
+```console
 Create workload:
       1 + |---
       2 + |apiVersion: carto.run/v1alpha1
