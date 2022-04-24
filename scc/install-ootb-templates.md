@@ -26,7 +26,7 @@ To install Out of the Box Templates:
 
 1. View the configurable values of the package by running:
 
-    ```
+    ```console
     tanzu package available get ootb-templates.tanzu.vmware.com/0.7.0 \
       --values-schema \
       -n tap-install
@@ -34,7 +34,7 @@ To install Out of the Box Templates:
 
     For example:
 
-    ```
+    ```console
     KEY                  DEFAULT  TYPE    DESCRIPTION
     excluded_templates   []       array   List of templates to exclude from the
                                           installation (e.g. ['git-writer'])
@@ -45,14 +45,14 @@ To install Out of the Box Templates:
 
    For example, the contents of the file might look like this:
 
-    ```
+    ```yaml
     excluded_templates: []
     ```
 
 
 1. After the configuration is ready, install the package by running:
 
-    ```
+    ```console
     tanzu package install ootb-templates \
       --package-name ootb-templates.tanzu.vmware.com \
       --version 0.7.0 \
@@ -62,7 +62,7 @@ To install Out of the Box Templates:
 
     Example output:
 
-    ```
+    ```console
     \ Installing package 'ootb-templates.tanzu.vmware.com'
     | Getting package metadata for 'ootb-templates.tanzu.vmware.com'
     | Creating service account 'ootb-templates-tap-install-sa'

@@ -46,10 +46,11 @@ same cluster as the workload and supply chains.
 To verify you have the right set of supply chains installed (that is, the
 one with scanning and _not_ the one with testing), run:
 
-```
+```console
 tanzu apps cluster-supply-chain list
 ```
-```
+
+```console
 NAME                      LABEL SELECTOR
 source-test-scan-to-url   apps.tanzu.vmware.com/has-tests=true,apps.tanzu.vmware.com/workload-type=web
 source-to-url             apps.tanzu.vmware.com/workload-type=web
@@ -124,7 +125,7 @@ consider the artifacts (image or source code) either compliant or not.
 When a ImageScan or SourceScan is created to run a scan, those reference a
 policy whose name **must** match the one below (`scan-policy`):
 
-```
+```console
 apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: ScanPolicy
 metadata:
@@ -179,7 +180,7 @@ Tools - Scan](../install-components.md#install-scst-scan):
 1. Create a file named `ootb-supply-chain-basic-values.yaml` that specifies the corresponding values
 to the properties you want to change. For example:
 
-    ```
+    ```yaml
     grype:
       namespace: YOUR-DEV-NAMESPACE
       targetImagePullSecret: registry-credentials
@@ -187,7 +188,7 @@ to the properties you want to change. For example:
 
 1. With the configuration ready, install the templates by running:
 
-    ```
+    ```console
     tanzu package install grype-scanner \
       --package-name grype.scanning.apps.tanzu.vmware.com \
       --version 1.0.0 \
@@ -213,7 +214,7 @@ Basic, except that you mark the workload as having tests enabled.
 
 For example:
 
-```
+```console
 tanzu apps workload create tanzu-java-web-app \
   --git-branch main \
   --git-repo https://github.com/sample-accelerators/tanzu-java-web-app
@@ -221,7 +222,8 @@ tanzu apps workload create tanzu-java-web-app \
   --label app.kubernetes.io/part-of=tanzu-java-web-app \
   --type web
 ```
-```
+
+```console
 Create workload:
       1 + |---
       2 + |apiVersion: carto.run/v1alpha1

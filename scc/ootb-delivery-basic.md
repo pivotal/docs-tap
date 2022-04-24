@@ -17,7 +17,7 @@ To make use of this package you must have installed:
 
 Out of the Box Delivery Basic support both GitOps and local development workflows:
 
-```
+```text
 GITOPS
 
     Deliverable:
