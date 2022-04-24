@@ -1,6 +1,6 @@
 # Presenter slides
 
-If a workshop includes a presentation, include slides by placing them in the `workshop/slides` directory. 
+If a workshop includes a presentation, include slides by placing them in the `workshop/slides` directory.
 Anything in this directory is served up as static files through a HTTP web server. The default webpage must be provided as `index.html`.
 
 ## <a id="presentation-tool"></a> Using reveal.js presentation tool
@@ -9,7 +9,7 @@ To support the use of [reveal.js](https://revealjs.com/), static media assets fo
 
 If you are using reveal.js for the slides and you have history enabled or are using section IDs to support named links, you can use an anchor to a specific slide and that slide will be opened when clicked on:
 
-```
+```text
 %slides_url%#/questions
 ```
 
