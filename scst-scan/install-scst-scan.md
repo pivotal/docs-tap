@@ -40,13 +40,13 @@ To install Supply Chain Security Tools - Scan (Scan controller):
 
 1. List version information for the package by running:
 
-    ```
+    ```console
     tanzu package available list scanning.apps.tanzu.vmware.com --namespace tap-install
     ```
 
      For example:
 
-    ```
+    ```console
     $ tanzu package available list scanning.apps.tanzu.vmware.com --namespace tap-install
     / Retrieving package versions for scanning.apps.tanzu.vmware.com...
       NAME                             VERSION       RELEASED-AT
@@ -55,7 +55,7 @@ To install Supply Chain Security Tools - Scan (Scan controller):
 
 1. (Optional) Make changes to the default installation settings by running:
 
-    ```
+    ```console
     tanzu package available get scanning.apps.tanzu.vmware.com/VERSION --values-schema -n tap-install
     ```
 
@@ -65,7 +65,7 @@ To install Supply Chain Security Tools - Scan (Scan controller):
 
 1. Install the package with default configuration by running:
 
-    ```
+    ```console
     tanzu package install scan-controller \
       --package-name scanning.apps.tanzu.vmware.com \
       --version VERSION \
@@ -93,13 +93,13 @@ To install Supply Chain Security Tools - Scan (Grype scanner):
 
 1. List version information for the package by running:
 
-    ```
+    ```console
     tanzu package available list grype.scanning.apps.tanzu.vmware.com --namespace tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     $ tanzu package available list grype.scanning.apps.tanzu.vmware.com --namespace tap-install
     / Retrieving package versions for grype.scanning.apps.tanzu.vmware.com...
       NAME                                  VERSION       RELEASED-AT
@@ -108,7 +108,7 @@ To install Supply Chain Security Tools - Scan (Grype scanner):
 
 1. (Optional) Make changes to the default installation settings by running:
 
-    ```
+    ```console
     tanzu package available get grype.scanning.apps.tanzu.vmware.com/VERSION --values-schema -n tap-install
     ```
 
@@ -116,7 +116,7 @@ To install Supply Chain Security Tools - Scan (Grype scanner):
 
     For example:
 
-    ```
+    ```console
     $ tanzu package available get grype.scanning.apps.tanzu.vmware.com/1.1.0 --values-schema -n tap-install
     | Retrieving package details for grype.scanning.apps.tanzu.vmware.com/1.1.0...
       KEY                        DEFAULT  TYPE    DESCRIPTION
@@ -152,7 +152,7 @@ To change the default values, see the Scan controller instructions for more info
 
 1. Install the package by running:
 
-    ```
+    ```console
     tanzu package install grype-scanner \
       --package-name grype.scanning.apps.tanzu.vmware.com \
       --version VERSION \
@@ -164,7 +164,7 @@ To change the default values, see the Scan controller instructions for more info
 
     For example:
 
-    ```
+    ```console
     $ tanzu package install grype-scanner \
       --package-name grype.scanning.apps.tanzu.vmware.com \
       --version 1.1.0 \
