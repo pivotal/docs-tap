@@ -6,6 +6,7 @@ Platform component and is not included in either the full or light profile.
 ## <a id='scst-sign-prereqs'></a> Prerequisites
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
+- A container image registry that supports TLS connections. This component will not work with insecure registries.
 - During configuration for this component, you are asked to provide a cosign public key to use to
 validate signed images. An example cosign public key is provided that can validate an image from the
 public cosign registry. If you want to provide your own key and images, follow the
@@ -44,7 +45,7 @@ To install Supply Chain Security Tools - Sign:
     ```
     tanzu package available get image-policy-webhook.signing.apps.tanzu.vmware.com/VERSION --values-schema --namespace tap-install
     ```
-    
+
     Where `VERSION` is the version number you discovered. For example, `1.1.1`.
 
     For example:
@@ -125,7 +126,7 @@ To install Supply Chain Security Tools - Sign:
       secret is stored.
 
       For example:
-      
+
       ```yaml
       custom_ca_secrets:
       - secret_name: first-ca
@@ -137,18 +138,18 @@ To install Supply Chain Security Tools - Sign:
       >**Note:** This setting is allowed even if `custom_cas` was informed.
 
     - `custom_cas`:
-      This setting enables adding certificate content in PEM format. 
-      The certificate content are added to the application container as custom 
-      certificate authorities (CAs) to communicate with registries deployed with 
-      self-signed certificates. 
+      This setting enables adding certificate content in PEM format.
+      The certificate content are added to the application container as custom
+      certificate authorities (CAs) to communicate with registries deployed with
+      self-signed certificates.
       `custom_cas` consists of an array of items. Each item contains
       a single field named `ca_content`. The value of this field must be a
       PEM-formatted certificate authority. The certificate content must be
-      defined as a YAML block, preceded by the literal indicator (`|`) to 
+      defined as a YAML block, preceded by the literal indicator (`|`) to
       preserve line breaks and ensure the certificates are interpreted correctly.
 
       For example:
-      
+
       ```yaml
       custom_cas:
       - ca_content: |
@@ -213,7 +214,7 @@ To install Supply Chain Security Tools - Sign:
       --namespace tap-install \
       --values-file scst-sign-values.yaml
     ```
-    
+
     Where `VERSION` is the version number you discovered earlier. For example, `1.1.1`.
 
     For example:
