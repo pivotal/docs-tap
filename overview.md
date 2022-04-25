@@ -157,7 +157,7 @@ The following packages are part of the Tanzu Application Platform:
   value to their users while also providing app operators with the peace of mind that all code in
   production has passed through all the steps of an approved workflow.
 
-- **Supply Chain Security tools for Tanzu - Scan**
+- **[Supply Chain Security tools for Tanzu - Scan](scst-scan/overview.md)**
 
   With Supply Chain Security Tools for VMware Tanzu - Scan, Tanzu customers can build and deploy
   secure trusted software that complies with their corporate security requirements.
@@ -182,7 +182,7 @@ The following packages are part of the Tanzu Application Platform:
   It integrates with Supply Chain Security Tools - Scan to automatically store the resulting source
   and image vulnerability reports.
 
-- **Tanzu Application Platform GUI**
+- **[Tanzu Application Platform GUI](tap-gui/about.md)**
 
   Tanzu Application Platform GUI lets your developers view your organization's running applications
   and services. It provides a central location for viewing dependencies, relationships, technical
@@ -202,14 +202,14 @@ The following packages are part of the Tanzu Application Platform:
   The kpack CLI tool, kp, can aid in managing kpack resources. Build Service helps you
   develop and automate containerized software workflows securely and at scale.
 
-- **Tanzu Developer Tools for VSCode**
+- **[Tanzu Developer Tools for VSCode](vscode-extension/about.md)**
 
   Tanzu Developer Tools for Visual Studio Code is the official VMware Tanzu IDE extension for VSCode
   to help you develop code using the Tanzu Application Platform.
   The VSCode extension enables live updates of your application while it runs on the cluster and
   lets you debug your application directly on the cluster.
 
-- **Tanzu Learning Center**
+- **[Tanzu Learning Center](learning-center/about.md)**
 
   Learning Center provides a platform for creating and self-hosting workshops. With Learning Center, content
   creators can create workshops from markdown files that learners can view in a terminal
