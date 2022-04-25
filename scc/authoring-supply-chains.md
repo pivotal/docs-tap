@@ -267,7 +267,7 @@ hardcode an environment variable.
 installs by upating `tap-values.yml`:
 
     ```yaml
-ootb_templates:
+      ootb_templates:
       excluded_templates: ['kpack-template']
     ```
 
