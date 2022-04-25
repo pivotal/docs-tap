@@ -4,7 +4,7 @@ This topic includes a description of applications (apps) available on Kubernetes
 
 ## <a id="options"></a>Options
 
-```
+```console
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
   -h, --help              help for apps
       --kubeconfig file   kubeconfig file (default is $HOME/.kube/config)
@@ -16,4 +16,3 @@ This topic includes a description of applications (apps) available on Kubernetes
 
 - [Tanzu Apps Cluster Supply Chain](tanzu-apps-cluster-supply-chain.md)	- Patterns for building and configuring workloads
 - [Tanzu Apps Workload](tanzu-apps-workload.md)	- Workload life cycle management
-

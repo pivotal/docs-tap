@@ -91,7 +91,7 @@ To install Tanzu Build Service by using the Tanzu CLI:
      >Tanzu Build Service dependencies (buildpacks and stacks) when they are released on
      >VMware Tanzu Network. You can set `enable_automatic_dependency_updates` as `false` to
      >pause the automatic update of Build Service dependencies. When automatic updates are paused,
-     >the pinned version of the descriptor for Tanzu Application Platform v1.1.0 is [100.0.293](https://network.pivotal.io/products/tbs-dependencies#/releases/1086670).
+     >the pinned version of the descriptor for Tanzu Application Platform v1.2.0 is [100.0.293](https://network.pivotal.io/products/tbs-dependencies#/releases/1086670).
      >If left undefined, this value is `false`. For information about updating dependencies manually,
      >see [Manual Control of Dependency Updates](tbs-about.html#manual-updates).
 

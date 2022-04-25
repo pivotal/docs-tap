@@ -7,7 +7,7 @@ This topic describes upgrading issues and resolutions.
 To prevent issues with the metadata store database, such as the ones described in
 this topic, the database deployment is `StatefulSet` in
 
-* Tanzu Application Platform v1.1 and later
+* Tanzu Application Platform v1.2 and later
 * Metadata Store v1.1 and later
 
 If you have scripts searching for a `metadata-store-db` deployment, edit the scripts to

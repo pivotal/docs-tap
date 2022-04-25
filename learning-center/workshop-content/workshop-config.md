@@ -16,7 +16,7 @@ Where you have multiple workshop files and don't have the default `workshop.yaml
 
 The format for listing the available modules in the `workshop/modules.yaml` file is:
 
-```
+```yaml
 modules:
   workshop-overview:
     name: Workshop Overview
@@ -37,7 +37,7 @@ For each module, set the `name` field to the page title to be displayed for that
 
 The corresponding `workshop/workshop.yaml` file, where all available modules are used, would have the format:
 
-```
+```yaml
 name: Markdown Sample
 modules:
   activate:
@@ -65,7 +65,7 @@ VMware recommends that for the last page, the `exit_sign` be set to "Finish Work
 
 You can deploy workshop images directly to a container runtime. The Learning Center Operator is provided to manage deployments into a Kubernetes cluster. You define the configuration for the Learning Center Operator with a `Workshop` CRD in the `resources/workshop.yaml` file:
 
-  ```
+  ```yaml
   apiVersion: learningcenter.tanzu.vmware.com/v1beta1
   kind: Workshop
   metadata:
@@ -94,7 +94,7 @@ You can deploy workshop images directly to a container runtime. The Learning Cen
 
 In this sample, a custom workshop image bundles the workshop content into its own container image. The `content.image` setting specifies this. To instead download workshop content from a GitHub repository at runtime, use:
 
-  ```
+  ```yaml
   apiVersion: learningcenter.tanzu.vmware.com/v1beta1
   kind: Workshop
   metadata:
@@ -127,4 +127,3 @@ Here, the workshop content is overlaid on top of the standard workshop base imag
 ## Next steps
 
 - Learn about configuration options for the workshop.yaml custom resource definitions (CRD) in [Workshop resource](../runtime-environment/workshop-definition.md).
-

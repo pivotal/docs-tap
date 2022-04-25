@@ -8,7 +8,7 @@ This CLI plug-in is used to post data and query the Supply Chain Security Tools 
 
 ## <a id='options'></a>Options
 
-```
+```console
   -h, --help   help for tanzu insight
 ```
 

@@ -40,7 +40,7 @@ cluster might encounter two possible cases of collisions:
 
   See [Selectors](https://cartographer.sh/docs/v0.3.0/architecture/#selectors).
 
-For Tanzu Application Platform 1.1, the following selection rules are in place for the
+For Tanzu Application Platform 1.2, the following selection rules are in place for the
 supply chains of the corresponding packages:
 
 - _ootb-supply-chain-basic_
@@ -162,6 +162,7 @@ modification to is `source-to-url` provided by the
       -n tap-install \
       -o jsonpath={.spec.fetch[0].imgpkgBundle.image}
     ```
+
     ```console
     registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:f2ad401bb3e850940...
     ```
@@ -173,6 +174,7 @@ modification to is `source-to-url` provided by the
       -b registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:f2ad401bb3e850940... \
       -o ootb-supply-chain-basic
     ```
+
     ```console
     Pulling bundle 'registry.tanzu.vmware.com/tanzu-...
       Extracting layer 'sha256:542f2bb8eb946fe9d2c8a...
@@ -188,6 +190,7 @@ modification to is `source-to-url` provided by the
     ```bash
     tree ./ootb-supply-chain-basic/
     ```
+
     ```console
     ./ootb-supply-chain-basic/
     ├── config
@@ -263,8 +266,8 @@ hardcode an environment variable.
 1. Exclude the `kpack-template` from the set of templates that `ootb-templates`
 installs by upating `tap-values.yml`:
 
-    ```
-    ootb_templates:
+    ```yaml
+ootb_templates:
       excluded_templates: ['kpack-template']
     ```
 
@@ -275,6 +278,7 @@ installs by upating `tap-values.yml`:
       -n tap-install \
       -o jsonpath={.spec.fetch[0].imgpkgBundle.image}
     ```
+
     ```console
     registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:a5e177f38d7287f2ca7ee2afd67ff178645d8f1b1e47af4f192a5ddd6404825e
     ```
@@ -286,7 +290,8 @@ installs by upating `tap-values.yml`:
       -b registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:a5e177f38d7.. \
       -o ootb-templates
     ```
-    ```
+
+    ```console
     Pulling bundle 'registry.tanzu.vmware.com/tanzu-...
       Extracting layer 'sha256:a5e177f38d7...
 
@@ -301,6 +306,7 @@ installs by upating `tap-values.yml`:
     ```bash
     tree ./ootb-templates
     ```
+
     ```console
     ./ootb-templates
     ├── config
@@ -346,7 +352,7 @@ When you install Tanzu Application Platform by using profiles, a `PackageInstall
 created. This in turn creates a set of children `PackageInstall` objects
 for installing the individual components that make up the platform.
 
-```
+```console
 PackageInstall/tap
 └─App/tap
   ├─ PackageInstall/cert-manager

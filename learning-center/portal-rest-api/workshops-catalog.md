@@ -6,14 +6,14 @@ A single training portal can host one or more workshops. The REST API endpoints 
 
 The URL sub path for accessing the list of available workshop environments is `/workshops/catalog/environments/`. When making the request, you must supply the access token in the HTTP `Authorization` header with type set as `Bearer`:
 
-```
+```console
 curl -v -H "Authorization: Bearer <access-token>" \
 <training-portal-url>/workshops/catalog/environments/
 ```
 
 The JSON response looks like this:
 
-```
+```console
 {
   "portal": {
     "name": "learningcenter-tutorials",
@@ -78,7 +78,7 @@ Where `maximum`, `registered`, and `anonymous` are nonzero, they are the limit o
 
 By default, only workshop environments currently marked with a `state` of `RUNNING` are returned, that is, those workshop environments which are taking new workshop session requests. If you also want to see the workshop environments which are currently in the process of being shut down, you must provide the `state` query string parameter to the REST API call and indicate which states workshop environments to return for.
 
-```
+```console
 curl -v -H "Authorization: Bearer <access-token>" \
 https://lab-markdown-sample-ui.test/workshops/catalog/environments/?state=RUNNING&state=STOPPING
 ```

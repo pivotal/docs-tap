@@ -2,7 +2,7 @@
 
 This is the table of contents from which the Tanzu Application Platform Documentation site on docs.vmware.com is built.
 
-- [Tanzu Application Platform v1.1](overview.md)
+- [Tanzu Application Platform v1.2](overview.md)
 - [Release notes](release-notes.md)
 - [Installing Tanzu Application Platform](install-intro.md)
   - [Prerequisites](prerequisites.md)

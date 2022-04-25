@@ -2,21 +2,21 @@
 
 Regardless of the Out of the Box Supply Chain Package you've installed, you can provide source code for the workload either from a directory in your local computer's file system or from a Git repository.
 
-  ```
+  ```console
   Supply Chain
-    
+
     -- fetch source                 * either from Git or local directory
-      -- test 
-        -- build 
-          -- scan 
-            -- apply-conventions 
+      -- test
+        -- build
+          -- scan
+            -- apply-conventions
               -- push config
   ```
 
 This document provides details about both approaches.
 
->**Note:** To provide a prebuilt container image instead of 
-building the application from the beginning by using the supply chain, see 
+>**Note:** To provide a prebuilt container image instead of
+building the application from the beginning by using the supply chain, see
 [Prebuilt image](pre-built-image.md).
 
 ## <a id="git-source"></a>Git source
@@ -70,7 +70,7 @@ Expect to see the following output:
 
 To fetch source code from a repository that requires credentials, you must
 provide those by using a Kubernetes secret object that is referenced by the
-`GitRepostiory` object created for that workload. See [How It Works](#how-it-works) 
+`GitRepostiory` object created for that workload. See [How It Works](#how-it-works)
 to learn more about the underlying process of detecting changes to the repository.
 
 ```scala
@@ -83,8 +83,8 @@ Workload/tanzu-java-web-app
 ```
 
 Platform operators who install the Out of the Box Supply Chain packages
-by using Tanzu Application Platform profiles can customize the default name of 
-the secret (`git-ssh`) by editing the corresponding `ootb_supply_chain*` 
+by using Tanzu Application Platform profiles can customize the default name of
+the secret (`git-ssh`) by editing the corresponding `ootb_supply_chain*`
 property in the `tap-values.yml` file:
 
 
@@ -94,8 +94,8 @@ property in the `tap-values.yml` file:
       ssh_secret: GIT-SECRET-NAME
   ```
 
-For platform operators who install the `ootb-supply-chain-*` package individually 
-by using `tanzu package install`, they can edit the 
+For platform operators who install the `ootb-supply-chain-*` package individually
+by using `tanzu package install`, they can edit the
 `ootb-supply-chain-*-values.yml` as follows:
 
   ```yaml
@@ -103,8 +103,8 @@ by using `tanzu package install`, they can edit the
     ssh_secret: GIT-SECRET-NAME
   ```
 
-You can also override the default secret name directly in the workload by using 
-the `gitops_ssh_secret` parameter, regardless of how Tanzu Application Platform 
+You can also override the default secret name directly in the workload by using
+the `gitops_ssh_secret` parameter, regardless of how Tanzu Application Platform
 is installed. You can use the `--param` flag in Tanzu CLI. For example:
 
   ```bash
@@ -140,21 +140,21 @@ Expect to see the following output:
       18 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
   ```
 
->**Note:** A secret reference is only provided to `GitRepository` if 
-`gitops_ssh_secret` is set to a non-empty string in some fashion, 
-either by a package property or a workload parameter. To force a `GitRepository` to 
+>**Note:** A secret reference is only provided to `GitRepository` if
+`gitops_ssh_secret` is set to a non-empty string in some fashion,
+either by a package property or a workload parameter. To force a `GitRepository` to
 not reference a secret, set the value to an empty string (`""`).
 
-After defining the name of the Kubernetes secret, you can define 
+After defining the name of the Kubernetes secret, you can define
 the secret.
 
 #### <a id="http-auth"></a>HTTP(S) Basic-auth / Token-based authentication
 
 Despite both the package value and workload parameter being called `gitops.ssh_secret`, you can use HTTP(S) transports as well:
 
-1. Ensure that the repository in the `Workload` specification 
+1. Ensure that the repository in the `Workload` specification
 uses `http://` or `https://` schemes in any URLs that relate to the repositories.
-For example, `https://github.com/my-org/my-repo` instead of 
+For example, `https://github.com/my-org/my-repo` instead of
 `github.com/my-org/my-repo` or `ssh://github.com:my-org/my-repo`.
 
 1. In the same namespace as the workload, create a Kubernetes secret object
@@ -192,7 +192,7 @@ example:
       - name: tap-registry
     ```
 
-For more information about the credentials and setting up the Kubernetes secret, see 
+For more information about the credentials and setting up the Kubernetes secret, see
 [Git Authentication's HTTP section](git-auth.md#http).
 
 #### <a id="ssh-auth"></a>SSH auth
@@ -282,7 +282,7 @@ The digest of the latest commit looks like this:
 
 Cartographer passes the artifact URL and revision to further
 components in the supply chain. Those components must consume the source code from
-an internal URL where a tarball with the source code can be fetched, without 
+an internal URL where a tarball with the source code can be fetched, without
 having to process any Git-specific details in multiple places.
 
 
@@ -299,7 +299,7 @@ You can pass the following parameters by using the workload object's
   where credentials to fetch the repository can be found.
 
 You can also customize the following parameters with defaults for the whole cluster.
-Do this by using properties for either `tap-values.yml` 
+Do this by using properties for either `tap-values.yml`
 when installing supply chains by using Tanzu Application Platform profiles,
 or `ootb-supply-chain-*-values.yml` when installing the OOTB packages
 individually):
@@ -310,16 +310,16 @@ individually):
 ## <a id="local-source"></a>Local source
 
 You can provide source code from a local directory; that is, from a directory in the
-developer's file system. The `tanzu` CLI provides two flags to specify 
+developer's file system. The `tanzu` CLI provides two flags to specify
 the source code location in the file system and where the source code is
 pushed to as a container image:
 
-- `--local-path`: path on the local file system to a directory of source code 
+- `--local-path`: path on the local file system to a directory of source code
 to build for the workload
-- `--source-image`: destination image repository where source code is staged 
+- `--source-image`: destination image repository where source code is staged
 before being built
 
-This way, whether the cluster the developer targets is local 
+This way, whether the cluster the developer targets is local
 (a cluster in the developer's machine) or not, the source code
 is made available by using a container image registry.
 
@@ -334,10 +334,10 @@ registry, you can create a workload as follows:
     --local-path . \
     --source-image $REGISTRY/test
   ```
- 
+
   ```console
-  Publish source in "." to "REGISTRY-SERVER/REGISTRY-REPOSITORY"? 
-  It may be visible to others who can pull images from that repository 
+  Publish source in "." to "REGISTRY-SERVER/REGISTRY-REPOSITORY"?
+  It may be visible to others who can pull images from that repository
 
     Yes
 
@@ -363,25 +363,25 @@ registry, you can create a workload as follows:
 
    - `REGISTRY-SERVER` is the container image registry.
    - `REGISTRY-REPOSITORY` is the repository in the container image registry.
- 
+
 
 
 ### <a id="auth"></a>Authentication
 
 Both the cluster and the developer's machine must be configured to properly
-provide credentials for accessing the container image registry where the 
-local source code is published to. 
+provide credentials for accessing the container image registry where the
+local source code is published to.
 
 #### <a id="dev"></a>Developer
 
-The `tanzu` CLI must push the source code to the container image registry 
+The `tanzu` CLI must push the source code to the container image registry
 indicated by `--source-image`. To do so, the CLI must find the credentials,
 so the developer must configure their machine accordingly.
 
 To ensure credentials are available, use `docker` to make the necessary
 credentials available for the Tanzu CLI to perform the image push. Run:
 
-  ```
+  ```console
   docker login REGISTRY-SERVER -u REGISTRY-USERNAME -p REGISTRY-PASSWORD
   ```
 
@@ -395,7 +395,7 @@ To provide the cluster with the credentials, point the ServiceAccount used by th
 Kubernetes secret that contains the credentials.
 
 If the registry that the developer targets is the same one for which
-credentials were provided while setting up the workload namespace, no further 
+credentials were provided while setting up the workload namespace, no further
 action is required. Otherwise, follow the same steps as recommended for the
 application image.
 
@@ -447,5 +447,5 @@ Instead of a `GitRepository` object, an `ImageRepository` is created:
   ```
 
 `ImageRepository` provides the same semantics as `GitRepository`,
-except that it looks for source code in container image registries rather than 
+except that it looks for source code in container image registries rather than
 Git repositories.

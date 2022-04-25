@@ -6,19 +6,19 @@ Checks if endpoint is reachable.
 
 Checks if endpoint is reachable.
 
-```
+```console
 tanzu insight health [flags]
 ```
 
 ### <a id='examples'></a>Examples
 
-```
+```console
 tanzu insight health
 ```
 
 ### <a id='options'></a>Options
 
-```
+```console
   -h, --help   help for health
 ```
 

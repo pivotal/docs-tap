@@ -6,19 +6,19 @@ Get source packages.
 
 Get source packages.
 
-```
+```console
 tanzu insight source packages [--commit <commit-hash>] [--repo <repo-url>] [--format <format>] [flags]
 ```
 
 ## <a id='examples'></a>Examples
 
-```
+```console
 tanzu insight sources packages --commit 0b1b659907 --format json
 ```
 
 ## <a id='options'></a>Options
 
-```
+```console
   -c, --commit string   commit hash
   -f, --format string   output format (default "text")
   -h, --help            help for packages

@@ -13,13 +13,13 @@ Workload configuration includes:
 
 ## <a id="options"></a>Options
 
-```
+```console
   -h, --help   help for workload
 ```
 
 ## <a id="parent-commands-options"></a>Options inherited from parent commands
 
-```
+```console
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
       --kubeconfig file   kubeconfig file (default is $HOME/.kube/config)
       --no-color          disable color output in terminals
@@ -36,4 +36,3 @@ Workload configuration includes:
 - [Tanzu apps workload list](tanzu-apps-workload-list.md) - Table listing of workloads
 - [Tanzu apps workload tail](tanzu-apps-workload-tail.md) - Watch workload-related logs
 - [Tanzu apps workload update](tanzu-apps-workload-update.md)	- Update configuration of an existing workload
-
