@@ -23,19 +23,19 @@ keys that were used to sign the images.
 Each image name pattern maps to the required public keys. (Optional) Use a secret to authenticate the private registry where images and signatures matching a name pattern are stored.
 
 * `spec.verification.exclude.resources.namespaces`: A list of namespaces where
-this policy is not enforced. 
+this policy is not enforced.
 
 System namespaces specific to your cloud provider may need to be excluded from the policy. VMware also recommends configuring exclusions for Tanzu Application Platform system namespaces. This prevents the Image Policy Webhook from blocking components of Tanzu Application Platform.
 
 To get a list of created namespaces, run:
 
-  ```
+  ```console
   kubectl get namespaces
   ```
 
 Tanzu Application Platform system namespaces can include:
 
-  ```
+  ```console
   - accelerator-system
   - api-portal
   - app-live-view
@@ -77,7 +77,7 @@ Tanzu Application Platform system namespaces can include:
 
 The following is an example `ClusterImagePolicy`:
 
-  ```
+  ```yaml
   ---
   apiVersion: signing.apps.tanzu.vmware.com/v1beta1
   kind: ClusterImagePolicy
@@ -117,7 +117,7 @@ Add any namespaces that run container images that are not signed in the
 If no `ClusterImagePolicy` resource is created, all images are admitted into
 the cluster with the following warning:
 
-  ```
+  ```console
   Warning: clusterimagepolicies.signing.apps.tanzu.vmware.com "image-policy" not found. Image policy enforcement was not applied.
   ```
 
@@ -136,7 +136,7 @@ signed. You must configure the Image Policy Webhook to allow these unsigned
 images by adding system namespaces to the
 `spec.verification.exclude.resources.namespaces` section.
 
-```
+```console
 cat <<EOF | kubectl apply -f -
 apiVersion: signing.apps.tanzu.vmware.com/v1beta1
 kind: ClusterImagePolicy
@@ -247,7 +247,7 @@ in the `ServiceAccount`s that your runnable resources use.
 
 See the following example:
 
-```
+```yaml
 ---
 apiVersion: signing.apps.tanzu.vmware.com/v1beta1
 kind: ClusterImagePolicy
@@ -290,7 +290,7 @@ service account, follow these steps:
 
 1. Create the required secrets in the deployment namespace (once per secret):
 
-    ```
+    ```console
     kubectl create secret docker-registry SECRET-1 \
       --namespace image-policy-system \
       --docker-server=<server> \
@@ -302,7 +302,7 @@ service account, follow these steps:
 deployment namespace and add the secret name (one or more) in the previous step to the
 `imagePullSecrets` section:
 
-    ```
+    ```console
     cat <<EOF | kubectl apply -f -
     apiVersion: v1
     kind: ServiceAccount
@@ -351,7 +351,7 @@ then you can run the following commands to check your configuration:
 1. Verify that a signed image, validated with a configured public key, launches.
 Run:
 
-    ```
+    ```console
     kubectl run cosign \
       --image=gcr.io/projectsigstore/cosign:v1.2.1 \
       --restart=Never \
@@ -360,7 +360,7 @@ Run:
 
     For example:
 
-    ```
+    ```console
     $ kubectl run cosign \
       --image=gcr.io/projectsigstore/cosign:v1.2.1 \
       --restart=Never \
@@ -370,13 +370,13 @@ Run:
 
 1. Verify that an unsigned image does not launch. Run:
 
-    ```
+    ```console
     kubectl run bb --image=busybox --restart=Never
     ```
 
     For example:
 
-    ```
+    ```console
     $ kubectl run bb --image=busybox --restart=Never
     Warning: busybox did not match any image policies. Container will be created as AllowUnmatchedImages flag is true.
     pod/bb created
@@ -385,7 +385,7 @@ Run:
 1. Verify that an image signed with a key that does not match the configured
 public key will not launch. Run:
 
-    ```
+    ```console
     kubectl run cosign-fail \
       --image=gcr.io/projectsigstore/cosign:v0.3.0 \
       --command -- sleep 900
@@ -393,7 +393,7 @@ public key will not launch. Run:
 
     For example:
 
-    ```
+    ```console
     $ kubectl run cosign-fail \
       --image=gcr.io/projectsigstore/cosign:v0.3.0 \
       --command -- sleep 900
