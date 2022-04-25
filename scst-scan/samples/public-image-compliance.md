@@ -18,7 +18,7 @@ In this example, the scan does the following (currently):
 
 Create `sample-public-image-scan-with-compliance-check.yaml`:
 
-```
+```yaml
 ---
 apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: ScanPolicy
@@ -66,7 +66,7 @@ spec:
 
 Before deploying, set up a watch in another terminal to view the process:
 
-```
+```console
 watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
 ```
 
@@ -74,13 +74,13 @@ For more information about setting up a watch, see [Observing and Troubleshootin
 
 ### <a id="deploy-resources"></a> Deploy the resources
 
-```
+```console
 kubectl apply -f sample-public-image-scan-with-compliance-check.yaml
 ```
 
 ### <a id="view-scan-results"></a> View the scan results
 
-```
+```console
 kubectl describe imagescan sample-public-image-scan-with-compliance-check
 ```
 
@@ -96,6 +96,6 @@ To modify the Scan Policy, see [Step 5: Sample Public Source Code Scan with Comp
 
 To clean up, run:
 
-```
+```console
 kubectl delete -f sample-public-image-scan-with-compliance-check.yaml
 ```

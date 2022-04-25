@@ -19,7 +19,7 @@ The `SourceScan` custom resource helps you define and trigger a scan for a given
 
     Example:
 
-    ```
+    ```yaml
     apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
     kind: SourceScan
     metadata:
@@ -51,13 +51,13 @@ The `SourceScan` custom resource helps you define and trigger a scan for a given
 
 1. Deploy the `SourceScan` custom resource to the desired namespace on cluster by running:
 
-    ```
+    ```console
     kubectl apply -f <path_to_the_cr>/<custom_resource_filename>.yml -n <desired_namespace>
     ```
 
     After the scanning completes, the following fields appear in the custom resource and are filled by the scanner:
 
-    ```
+    ```console
     # These fields are populated from the source scan results
     status:
       # The source code information as provided in the CycloneDX `bom>metadata>component>*` fields
@@ -107,7 +107,7 @@ The `ImageScan` custom resource helps you define and trigger a scan for a given 
 
     Example:
 
-    ```
+    ```yaml
     apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
     kind: ImageScan
     metadata:
@@ -131,13 +131,13 @@ The `ImageScan` custom resource helps you define and trigger a scan for a given 
 
 1. Deploy the `ImageScan` custom resource to the desired namespace on cluster by running:
 
-    ```
+    ```console
     kubectl apply -f <path_to_the_cr>/<custom_resource_filename>.yml -n <desired_namespace>
     ```
 
     After the scanning completes, the following fields appear in the custom resource and are filled by the scanner:
 
-    ```
+    ```yaml
      # These fields are populated from the image scan results
     status:
       artifact:

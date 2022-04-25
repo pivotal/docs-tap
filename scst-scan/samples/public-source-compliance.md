@@ -24,7 +24,7 @@ To perform an example source scan on a public repository:
 1. Create `sample-public-source-scan-with-compliance-check.yaml` to define the ScanPolicy and
 SourceScan:
 
-    ```
+    ```yaml
     ---
     apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
     kind: ScanPolicy
@@ -71,7 +71,7 @@ SourceScan:
 
 1. (Optional) Before deploying, set up a watch in another terminal to view processing by running:
 
-    ```
+    ```console
     watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
     ```
 
@@ -79,13 +79,13 @@ SourceScan:
 
 1. Deploy the resources by running:
 
-    ```
+    ```console
     kubectl apply -f sample-public-source-scan-with-compliance-check.yaml
     ```
 
 1. When the scan completes, view the results by running:
 
-    ```
+    ```console
     kubectl describe sourcescan sample-public-source-scan-with-compliance-check
     ```
 
@@ -96,7 +96,7 @@ SourceScan:
 the app is patched to remove the vulnerabilities. Update the `ignoreCVEs` array in the ScanPolicy to
 include the CVEs to ignore:
 
-    ```
+    ```console
     ...
     spec:
       regoFile: |
@@ -113,14 +113,14 @@ include the CVEs to ignore:
 
 1. The changes applied to the new ScanPolicy trigger the scan to run again. Reapply the resources by running:
 
-    ```
+    ```console
     kubectl apply -f sample-public-source-scan-with-compliance-check.yaml
     ```
 
 1. Re-describe the SourceScan CR by running:
 
-    ```
-    kubectl describe sourcescan sample-public-source-scan-with-compliance-check
+    ```console
+kubectl describe sourcescan sample-public-source-scan-with-compliance-check
     ```
 
 1. Check that `Status.Conditions` now includes a `Reason: EvaluationPassed` and
@@ -137,6 +137,6 @@ Grype scan returns the following Severity spread of vulnerabilities (currently):
 
 1.  Clean up by running:
 
-    ```
+    ```console
     kubectl delete -f sample-public-source-scan-with-compliance-check.yaml
     ```
