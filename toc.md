@@ -2,7 +2,7 @@
 
 This is the table of contents from which the Tanzu Application Platform Documentation site on docs.vmware.com is built.
 
-- [Tanzu Application Platform v1.1](overview.md)
+- [Tanzu Application Platform v1.2](overview.md)
 - [Release notes](release-notes.md)
 - [Installing Tanzu Application Platform](install-intro.md)
   - [Prerequisites](prerequisites.md)
@@ -109,6 +109,8 @@ This is the table of contents from which the Tanzu Application Platform Document
       - [Resources](service-bindings/resources.md)
     - [Services Toolkit](services-toolkit/about.md)
       - [Install Services Toolkit](services-toolkit/install-services-toolkit.md)
+    - [FluxCD Source Controller](fluxcd-source-controller/about.md)
+      - [Install FluxCD Source Controller](fluxcd-source-controller/install-fluxcd-source-controller.md)
     - [Source Controller](source-controller/about.md)
       - [Install Source Controller](source-controller/install-source-controller.md)
       - [Troubleshoot Source Controller](source-controller/troubleshooting.md)

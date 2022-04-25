@@ -14,13 +14,13 @@ To install the Apps CLI plug-in:
 
 1. From the `$HOME/tanzu` directory, run:
 
-    ```
+    ```console
     tanzu plugin install --local ./cli apps
     ```
 
 2. To verify that the CLI is installed correctly, run:
 
-    ```
+    ```console
     tanzu apps version
     ```
 
@@ -28,7 +28,7 @@ To install the Apps CLI plug-in:
 
     If the following error is displayed during installation:
 
-    ```
+    ```console
     Error: could not find plug-in "apps" in any known repositories
 
     ✖  could not find plug-in "apps" in any known repositories
@@ -36,7 +36,7 @@ To install the Apps CLI plug-in:
 
     Verify that there is an `apps` entry in the `cli/manifest.yaml` file. It should look like this:
 
-    ```
+    ```yaml
     plugins:
     ...
         - name: apps

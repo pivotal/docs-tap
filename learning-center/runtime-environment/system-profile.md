@@ -17,7 +17,7 @@ if it exists, named `default-system-profile`. You can override the name of the r
 Learning Center Operator as the default by setting the `SYSTEM_PROFILE` environment variable on the
 deployment for the Learning Center Operator. For example:
 
-```
+```console
 kubectl set env deployment/learningcenter-operator -e SYSTEM_PROFILE=default-system-profile -n learningcenter
 ```
 
@@ -31,7 +31,7 @@ such as the ingress domain, secret, and class.
 Instead of setting `INGRESS_DOMAIN`, `INGRESS_SECRET`, and `INGRESS_CLASS` environment variables,
 create an instance of the `SystemProfile` custom resource named `default-system-profile`:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
@@ -48,7 +48,7 @@ secret for ingresses managed by the Kubernetes ingress controller, then routing 
 Kubernetes cluster as HTTP connections, you can override the ingress protocol without specifying an
 ingress secret:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
@@ -66,7 +66,7 @@ To work with custom workshop images stored in a private image registry, the syst
 can define a list of image pull secrets. Add this to the service accounts used to deploy
 and run the workshop images. Set the `environment.secrets.pull` property to the list of secret names:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
@@ -90,7 +90,7 @@ training portal web interface and the builtin base workshop images. If you have 
 public image registries and stored them in a local private registry, use the `registry` section
 instead of the above setting. For example:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
@@ -112,7 +112,7 @@ By default the persistent volume claims do not specify a storage class for the v
 If the Kubernetes cluster doesn't define a suitable default storage class or you need to override it,
 you can set the `storage.class` property. For example:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
@@ -137,7 +137,7 @@ institutes a fallback to enable access to volumes by enabling group access using
 In situations where the only class of persistent storage available is NFS or similar, you might have to override the group ID applied and set it to an alternate ID dictated by the file system
 storage provider. If this is required, you can set the `storage.group` property. For example:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
@@ -158,7 +158,7 @@ volume.
 
 To trigger this change of ownership and permissions, set the `storage.user` property. For example:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
@@ -204,7 +204,7 @@ it can expose sensitive information that workshop users should not haves access 
 Learning Center will block the AWS endpoint on the TAP SystemProfile. If you need to replicate this
 block to other SystemProfiles, the configuration is as follows:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
@@ -230,7 +230,7 @@ kernel configuration or other incompatibilities.
 
 To enable rootless mode, you can set the `dockerd.rootless` property to `true`:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
@@ -246,7 +246,7 @@ cluster.
 With this configuration, you can disable the use of a privileged container by setting
 `dockerd.privileged` to `false`:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
@@ -275,7 +275,7 @@ You might need to override this value to an even lower value if you experience p
 
 To lower the value, set the `dockerd.mtu` property:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
@@ -288,7 +288,7 @@ spec:
 To discover the maximum viable size, access the `docker` container run with a
 workshop and run `ifconfig eth0`. This yields something similar to:
 
-```
+```console
 eth0      Link encap:Ethernet  HWaddr 02:42:AC:11:00:07
           inet addr:172.17.0.7  Bcast:172.17.255.255  Mask:255.255.0.0
           UP BROADCAST RUNNING MULTICAST  MTU:1350  Metric:1
@@ -326,7 +326,7 @@ image, because the mirror is deployed to the same cluster.
 
 To enable the use of an image registry mirror against Docker Hub, use:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
@@ -342,7 +342,7 @@ Then set the `username` and `password` using the access token as the `password`.
 Do not use the password for the account itself. Using an access token makes it easier to revoke the
 token if necessary.
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
@@ -378,7 +378,7 @@ To override the credentials for the portals so the same set of credentials are u
 
 To override the user name and password for the admin and robot accounts, use `portal.credentials`:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
@@ -396,7 +396,7 @@ spec:
 
 To override the client ID and secret used for OAuth access by the robot account, use `portal.clients`:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
@@ -433,7 +433,7 @@ matched with the current version of the Learning Center Operator.
 To override the version of the `base-environment` workshop image mapped to by the `*`
 tag, use:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
@@ -449,7 +449,7 @@ This could be used where you want to cache the images for a workshop in a local 
 avoid going outside of your network, or the cluster, to get them.
 This means you wouldn't need to override the workshop definitions for a specific workshop to change it. For example:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
@@ -465,7 +465,7 @@ spec:
 If you want to record analytics data on usage of workshops using Google Analytics, you can enable
 tracking by supplying a tracking ID for Google Analytics. For example:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
@@ -517,7 +517,7 @@ adding hooks to report on progress through a workshop to a separate service, sup
 JavaScript as part of the theme under `theme.dashboard.script`, `theme.workshop.script`, and
 `theme.portal.script`. For example:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: SystemProfile
 metadata:
@@ -554,7 +554,7 @@ Learning Center Operator, unless it was overridden by the system profile to use 
 deployment. You can set the name of the system profile for deployments by setting the `system.profile`
 property of `TrainingPortal`, `WorkshopEnvironment`, and `WorkshopSession` custom resources. For example:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:

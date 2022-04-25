@@ -38,7 +38,7 @@ Plug-in commands support only one file per command.
 
 For example, a valid file looks similar to the following example:
 
-```
+```yaml
 ---
 apiVersion: carto.run/v1alpha1
 kind: Workload
@@ -54,6 +54,7 @@ spec:
       ref:
         tag: tap-1.1
 ```
+
 ## <a id='autocompletion'></a> Autocompletion
 
 To enable command autocompletion, the Tanzu CLI offers the `tanzu completion` command.
@@ -62,13 +63,13 @@ Add the following command to the shell config file according to the current setu
 
 ### <a id='bash'></a> Bash
 
-```
+```console
 tanzu completion bash >  $HOME/.tanzu/completion.bash.inc
 ```
 
 ### <a id='zsh'></a> Zsh
 
-```
+```console
 echo "autoload -U compinit; compinit" >> ~/.zshrc
 tanzu completion zsh > "${fpath[1]}/_tanzu"
 ```

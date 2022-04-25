@@ -57,13 +57,13 @@ To install Application Accelerator:
 
 1. List version information for the package by running:
 
-    ```
+    ```console
     tanzu package available list accelerator.apps.tanzu.vmware.com --namespace tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     $ tanzu package available list accelerator.apps.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for accelerator.apps.tanzu.vmware.com...
       NAME                               VERSION  RELEASED-AT
@@ -72,7 +72,7 @@ To install Application Accelerator:
 
 1. (Optional) To make changes to the default installation settings, run:
 
-    ```
+    ```console
     tanzu package available get accelerator.apps.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
 
@@ -80,7 +80,7 @@ To install Application Accelerator:
 
     For example:
 
-    ```
+    ```console
     $ tanzu package available get accelerator.apps.tanzu.vmware.com/0.5.1 --values-schema --namespace tap-install
     ```
 
@@ -89,7 +89,7 @@ To install Application Accelerator:
 
 1. Create an `app-accelerator-values.yaml` using the following example code:
 
-    ```
+    ```yaml
     server:
       service_type: "LoadBalancer"
       watched_namespace: "accelerator-system"
@@ -104,7 +104,7 @@ To install Application Accelerator:
 
 1. Install the package by running:
 
-    ```
+    ```console
     tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v VERSION-NUMBER -n tap-install -f app-accelerator-values.yaml
     ```
 
@@ -112,7 +112,7 @@ To install Application Accelerator:
 
     For example:
 
-    ```
+    ```console
     $ tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 1.0.0 -n tap-install -f app-accelerator-values.yaml
     - Installing package 'accelerator.apps.tanzu.vmware.com'
     | Getting package metadata for 'accelerator.apps.tanzu.vmware.com'
@@ -128,13 +128,13 @@ To install Application Accelerator:
 
 1. Verify the package install by running:
 
-    ```
+    ```console
     tanzu package installed get app-accelerator -n tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     $ tanzu package installed get app-accelerator -n tap-install
     | Retrieving installation details for cc...
     NAME:                    app-accelerator
@@ -149,7 +149,7 @@ To install Application Accelerator:
 
 1. To see the IP address for the Application Accelerator API when the `server.service_type` is set to `LoadBalancer`, run the following command:
 
-    ```
+    ```console
     kubectl get service -n accelerator-system
     ```
 

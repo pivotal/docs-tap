@@ -6,7 +6,7 @@ The `Workshop` custom resource defines a workshop.
 
 Each workshop must have the `title` and `description` fields. If you do not supply these fields, the `Workshop` resource is rejected when you attempt to load it into the Kubernetes cluster.
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -25,7 +25,7 @@ Where:
 
 You can also supply the following optional information for the workshop:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -88,7 +88,7 @@ Learning Center workshop base image.
 To download workshop content at the time the workshop instance starts, set the `content.files`
 field to the location of the workshop content:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -183,7 +183,7 @@ Access to the registry using a secure connection of `https` must have a valid ce
 You can create the OCI image artifact by using `imgpkg` from the Carvel tool set. For example, from the
 top-level directory of the Git repository containing the workshop content, run:
 
-```
+```console
 imgpkg push -i harbor.example.com/organisation/project:version -f .
 ```
 
@@ -196,7 +196,7 @@ The contents of the `.eduk8signore` file are processed as a list of patterns and
 applied recursively to subdirectories. To ensure that a file is only ignored if it resides in the
 root directory, prefix it with `./`:
 
-```
+```text
 ./.dockerignore
 ./.gitignore
 ./Dockerfile
@@ -212,7 +212,7 @@ When you bundle the workshop content into a container image, the `content.image`
 the image reference identifying the location of the container image that you will deploy for the workshop
 instance:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -231,7 +231,7 @@ custom workshop base image that includes added language runtimes or tools that t
 For example, if running a Java workshop, you can enter the `jdk11-environment` for the workshop image.
 The workshop content is still downloaded from GitHub:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -257,7 +257,7 @@ When special custom workshop base images are available as part of the Learning C
 instead of specifying the full location for the image, including the image registry, you can specify
 a short name. The Learning Center Operator then fills in the rest of the details:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -285,7 +285,7 @@ for your own deployment of the Learning Center Operator, and with any of your ow
 To set or override environment variables for the workshop instance, you can supply the
 `session.env` field:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -338,7 +338,7 @@ The memory allocation is sufficient for the workshop that is mainly aimed at dep
 If you run workloads in the workshop environment container and need more memory, you can override the default by setting `memory` under
 `session.resources`:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -359,7 +359,7 @@ In circumstances where a workshop needs persistent storage to ensure no loss of 
 a persistent volume be mounted into the workshop container after the workshop environment container was
 killed and restarted:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -392,7 +392,7 @@ To control how much resources you can use when you set no limit ranges and resou
 or override any default limit ranges and resource quotas,
 you can set a resource budget for any namespace of the workshop instance in the `session.namespaces.budget` field:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -409,7 +409,6 @@ spec:
 
 The resource budget sizings and quotas for CPU and memory are:
 
-```
 | Budget    | CPU   | Memory |
 |-----------|-------|--------|
 | small     | 1000m | 1Gi    |
@@ -418,7 +417,6 @@ The resource budget sizings and quotas for CPU and memory are:
 | x-large   | 8000m | 8Gi    |
 | xx-large  | 8000m | 12Gi   |
 | xxx-large | 8000m | 16Gi   |
-```
 
 A value of 1000m is equivalent to 1 CPU.
 
@@ -461,7 +459,7 @@ The request and limit values are the defaults of a container when there is no re
 You can supply overrides in `session.namespaces.limits` to override the limit ranges and defaults for request and limit values
 when a budget sizing for CPU and memory is sufficient and there is no resources specification in a pod specification:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -519,7 +517,7 @@ CPU and memory limit applied to the workshop instance or to mount a volume.
 
 The patches are provided by setting `session.patches`. The patch is applied to the `spec` field of the pod template:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -571,7 +569,7 @@ You might use this to add additional custom roles to the service account for the
 when working in that namespace or to deploy a distinct instance of an application for just that
 workshop instance, such as a private image registry:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -662,7 +660,7 @@ deploy applications to the session namespace and manage secrets and service acco
 Where a workshop doesn't require `admin` access for the namespace, you can reduce the level of access
 it has to `edit` or `view` by setting the `session.namespaces.role` field:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -733,7 +731,7 @@ namespace and service account for the workshop instance are used when defining t
 
 You can add additional resources with `session.objects` to grant cluster-level roles and the service account `cluster-admin` role:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -776,7 +774,7 @@ If you are creating a workshop where a user must run containers as the root user
 must override the default `nonroot` security policy and select the `anyuid` security policy by using
 the `session.namespaces.security.policy` setting:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -805,7 +803,7 @@ couple of ways.
 If the secondary namespaces are to be created empty, you can list the details of the namespaces under
 the property `session.namespaces.secondary`:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -840,7 +838,7 @@ adding the `security.policy` setting under the entry for the secondary namespace
 To create resources in the namespaces you create, create
 the namespaces by adding an appropriate `Namespace` resource to `session.objects` with the definitions of the resources you want to create in the namespaces:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -866,7 +864,7 @@ To override what role the service account for the workshop instance has in the a
 namespace, you can set the `learningcenter.tanzu.vmware.com/session.role` annotation on the
 `Namespace` resource:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -890,7 +888,7 @@ To have a different resource budget set for the additional namespace, you can ad
 annotation `learningcenter.tanzu.vmware.com/session.budget` in the `Namespace` resource metadata and
 set the value to the required resource budget:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -913,7 +911,7 @@ spec:
 To override the limit range values applied corresponding to the budget applied, you can add
 annotations starting with `learningcenter.tanzu.vmware.com/session.limits.` for each entry:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -1019,7 +1017,7 @@ To allow a sidecar container to run as the root user with no extra
 privileges required, you can override the default `nonroot` security policy and set it to
 `anyuid`:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -1044,7 +1042,7 @@ must be in `environment.objects` and mapped by definitions added to `session.obj
 For this to be used, you must deactivate the application of the inbuilt pod security policies.
 You can do this by setting `session.security.policy` to `custom`:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -1139,7 +1137,7 @@ In this case you must provide your own resources that define and map the pod sec
 
 For example:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -1227,7 +1225,7 @@ an ingress must be created mapping to the port for the application.
 You can do this by supplying a list of the ingress points and the internal container port
 they map to by setting the `session.ingresses` field in the workshop definition:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -1245,7 +1243,7 @@ spec:
 
 The form of the host name used in the URL to access the service is:
 
-```
+```console
 $(session_namespace)-application.$(ingress_domain)
 ```
 
@@ -1257,7 +1255,7 @@ In addition to specifying ingresses for proxying to internal ports within the sa
 enter a `host`, `protocol` and `port` corresponding to a separate service running in the Kubernetes
 cluster:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -1278,7 +1276,7 @@ spec:
 You can use variables providing information about the current session within the `host` property if
 required:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -1312,7 +1310,7 @@ port is set based on the value of `protocol`.
 When a request is proxied, you can specify additional request headers that must be passed to the
 service:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -1348,7 +1346,7 @@ In place of using workshop instructions provided with the workshop content, you 
 hosted instructions instead. To do this set `sessions.applications.workshop.url` to the URL of an
 external web site:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -1382,7 +1380,7 @@ instance runs.
 These could be used, for example, to reference workshops instructions hosted as part of the workshop
 environment:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -1413,7 +1411,7 @@ workshop instructions provided with the workshop content. In this case, only the
 terminals, console, and so on, is displayed. To deactivate display of workshop instructions, add a
 `session.applications.workshop` section and set the `enabled` property to `false`:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -1435,7 +1433,7 @@ By default the Kubernetes console is not enabled. To enable it and make it avail
 through the web browser when accessing a workshop, add a `session.applications.console`
 section to the workshop definition, and set the `enabled` property to `true`:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -1454,7 +1452,7 @@ spec:
 The Kubernetes dashboard provided by the Kubernetes project is used.
 To use Octant as the console, you can set the `vendor` property to `octant`:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -1479,7 +1477,7 @@ By default the integrated web based editor is not enabled. To enable it and make
 available through the web browser when accessing a workshop, add a
 `session.applications.editor` section to the workshop definition, and set the `enabled` property to `true`:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -1501,7 +1499,7 @@ To install additional VS Code extensions, do this from the editor.
 Alternatively, if building a custom workshop, you can install them from your `Dockerfile` into your
 workshop image by running:
 
-```
+```console
 code-server --install-extension vendor.extension
 ```
 
@@ -1519,7 +1517,7 @@ You can provide a way for a workshop user to download files as
 part of the workshop content. Enable this by adding the `session.applications.files`
 section to the workshop definition and setting the `enabled` property to `true`:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -1542,7 +1540,7 @@ machine and is not displayed in the browser in place of the workshop instruction
 By default the user can access any files located under the home directory of the workshop user account.
 To restrict where the user can download files from, set the `directory` setting:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -1569,7 +1567,7 @@ the workshop instructions can trigger. The test examiner is deactivated by defau
 To enable it, add a `session.applications.examiner` section to the workshop
 definition and set the `enabled` property to `true`:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -1606,7 +1604,7 @@ To enable the deployment of a registry per workshop session, add a
 `session.applications.registry` section to the workshop definition and set the `enabled` property to
 `true`:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -1626,7 +1624,7 @@ The registry mounts a persistent volume for storing of images. By default the si
 persistent volume is 5Gi. To override the size of the persistent volume, add the `storage`
 property under the `registry` section:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -1646,7 +1644,7 @@ spec:
 The amount of memory provided to the registry defaults to 768Mi. To increase this,
 add the `memory` property under the `registry` section.
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -1711,7 +1709,7 @@ a public service that is always kept running and where arbitrary users can acces
 To enable support for using `docker` add a `session.applications.docker` section to the
 workshop definition and set the `enabled` property to `true`:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -1731,7 +1729,7 @@ The container that runs the Docker daemon mounts a persistent volume for storing
 are pulled down or built locally. By default the size of that persistent volume is 5Gi.
 To override the size of the persistent volume, add the `storage` property under the `docker` section:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -1751,7 +1749,7 @@ spec:
 The amount of memory provided to the container running the Docker daemon defaults to 768Mi.
 To increase this, add the `memory` property under the `registry` section:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -1785,7 +1783,7 @@ To access the files remotely, you can enable WebDAV support for the workshop ses
 To enable support for accessing files over WebDAV, add a `session.applications.webdav`
 section to the workshop definition, and set the `enabled` property to `true`:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -1812,7 +1810,7 @@ To use any of the environment variables related to the container image registry 
 in workshop content, declare this in the `workshop/modules.yaml` file in the `config.vars`
 section:
 
-```
+```yaml
 config:
   vars:
   - name: WEBDAV_USERNAME
@@ -1822,13 +1820,13 @@ config:
 The URL endpoint for accessing the WebDAV server is the same as the workshop session, with
 `/webdav/` path added. This can be constructed from the terminal using:
 
-```
+```console
 $INGRESS_PROTOCOL://$SESSION_NAMESPACE.$INGRESS_DOMAIN/webdav/
 ```
 
 In workshop content it can be constructed using:
 
-```
+```console
 {{ingress_protocol}}://{{session_namespace}}.{{ingress_domain}}/webdav/
 ```
 
@@ -1843,7 +1841,7 @@ By default a single terminal is provided in the web browser when accessing the w
 If required, you can enable alternate layouts which provide additional terminals.
 To set the layout, add the `session.applications.terminal` section and include the `layout` property with the desired layout:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -1879,7 +1877,7 @@ If you don't want a terminal displayed and also want to deactivate the ability t
 Exposed applications, external sites and additional terminals, can be given their own custom
 dashboard tab. This is done by specifying the list of dashboard panels and the target URL:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -1921,7 +1919,7 @@ terminal session. The name of the terminal session can be any name you choose, b
 to lowercase letters, numbers, and dashes. You should avoid using numeric terminal session names such
 as "1", "2", and "3" as these are used for the default terminal sessions.
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:

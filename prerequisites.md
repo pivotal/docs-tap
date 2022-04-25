@@ -86,7 +86,7 @@ For vSphere with Tanzu, [pod security policies](https://kubernetes.io/docs/conce
 must be configured so that Tanzu Application Platform controller pods can run as root.
 To set the pod security policies, run:
 
-    ```
+    ```console
     kubectl create clusterrolebinding default-tkg-admin-privileged-binding --clusterrole=psp:vmware-system-privileged --group=system:authenticated
     ```
 

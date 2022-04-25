@@ -19,7 +19,8 @@ Here is how you can get started with an example workload.
 
 - To name the workload and specify a source code location to create the workload from, run:
 
-    ```sh
+
+    ```console
     tanzu apps workload create pet-clinic --git-repo https://github.com/sample-accelerators/spring-petclinic --git-tag tap-1.1 --type web  
     ```
 
@@ -41,12 +42,12 @@ Once the workload is created, you can tail the workload to view the build and ru
 
 - Check logs by running:
 
-    ```
+    ```console
     tanzu apps workload tail pet-clinic --since 10m --timestamp
     ```
 
     Where:
-    
+
     - `pet-clinic` is the name you gave the workload.
     - `--since` (optional) the amount of time to go back to begin streaming logs. The default is 1 second.
     - `--timestamp` (optional) prints the timestamp with each log line.
@@ -58,7 +59,7 @@ You can view workload details at anytime in the process. Some details, such as t
 
 1. To check the workload details, run:
 
-    ```
+    ```console
     tanzu apps workload get pet-clinic
     ```
 
@@ -74,7 +75,7 @@ You can create a workload using code from a local folder.
 
 - Inside the folder that contains the source code, run:
 
-    ```
+    ```console
     tanzu apps workload create pet-clinic --local-path . --source-image springio/petclinic
     ```
 
@@ -92,7 +93,7 @@ Multiple services can be configured for each workload. The cluster supply chain 
 
 - To bind a database service to a workload, run:
 
-    ```
+    ```console
     tanzu apps workload update pet-clinic --service-ref "database=services.tanzu.vmware.com/v1alpha1:MySQL:my-prod-db"
     ```
 
@@ -107,19 +108,19 @@ You can add environment variables, export definitions, and use flags with these 
 
 1. To add environment variables, run:
 
-    ```
+    ```console
     tanzu apps workload update pet-clinic --env foo=bar
     ```
 
 2. To export the workload definition into git, or to migrate to another environment, run:
 
-    ```
+    ```console
     tanzu apps workload get pet-clinic --export
     ```
 
 3. To see flags available for the workload commands, run:
 
-    ```
+    ```console
     tanzu apps workload -h
     tanzu apps workload get -h
     tanzu apps workload create -h

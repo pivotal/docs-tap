@@ -4,13 +4,13 @@ This topic includes patterns for building and configuring workloads.
 
 ## <a id="options"></a>Options
 
-```
+```console
   -h, --help   help for cluster-supply-chain
 ```
 
 ## <a id="parent-commands-options"></a> Options inherited from parent commands
 
-```
+```console
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
       --kubeconfig file   kubeconfig file (default is $HOME/.kube/config)
       --no-color          disable color output in terminals

@@ -28,7 +28,7 @@ intended for evaluation and test purposes only.
 
 1. Untar the `tar.gz` file:
 
-    ```
+    ```console
     tar -zxvf <NAME OF THE TAR>
     ```
 
@@ -36,19 +36,19 @@ intended for evaluation and test purposes only.
 
     - For macOS, run:
 
-        ```
+        ```console
         tanzu plugin install rbac --local darwin-amd64
         ```
 
     - For Linux, run:
 
-        ```
+        ```console
         tanzu plugin install rbac --local linux-amd64
         ```
 
     - For Windows, run:
 
-        ```
+        ```console
         tanzu plugin install rbac --local windows-amd64
         ```
 
@@ -57,7 +57,7 @@ intended for evaluation and test purposes only.
 
 Use a different kubeconfig location by running:
 
-```
+```console
 tanzu rbac --kubeconfig PATH-OF-KUBECONFIG binding add ...
 ```
 
@@ -66,7 +66,7 @@ tanzu rbac --kubeconfig PATH-OF-KUBECONFIG binding add ...
 
 For example:
 
-```
+```console
 $ tanzu rbac --kubeconfig /tmp/pinniped_kubeconfig.yaml binding add --user username@vmware.com --role app-editor --namespace user-ns
 ```
 
@@ -75,7 +75,7 @@ $ tanzu rbac --kubeconfig /tmp/pinniped_kubeconfig.yaml binding add --user usern
 
 Add a user or group to a role by running:
 
-```
+```console
 tanzu rbac binding add --user $user --role $role --namespace $namespace
 
 tanzu rbac binding add --group $group --role $role --namespace $namespace
@@ -83,7 +83,7 @@ tanzu rbac binding add --group $group --role $role --namespace $namespace
 
 For example:
 
-```
+```console
 $ tanzu rbac binding add --user username@vmware.com --role app-editor --namespace user-ns
 ```
 
@@ -91,7 +91,7 @@ $ tanzu rbac binding add --user username@vmware.com --role app-editor --namespac
 
 Get a list of users and groups from a role by running:
 
-```
+```console
 tanzu rbac binding get --role $role --namespace $namespace
 
 tanzu rbac binding get --role $role --namespace $namespace
@@ -99,7 +99,7 @@ tanzu rbac binding get --role $role --namespace $namespace
 
 For example:
 
-```
+```console
 $ tanzu rbac binding get --role app-editor --namespace user-ns
 ```
 
@@ -107,7 +107,7 @@ $ tanzu rbac binding get --role app-editor --namespace user-ns
 
 Remove a user or group from a role by running:
 
-```
+```console
 tanzu rbac binding delete --user $user --role $role --namespace $namespace
 
 tanzu rbac binding delete --group $group --role $role --namespace $namespace
@@ -115,7 +115,7 @@ tanzu rbac binding delete --group $group --role $role --namespace $namespace
 
 For example:
 
-```
+```console
 $ tanzu rbac binding delete --user username@vmware.com --role app-editor --namespace user-ns
 ```
 
@@ -127,7 +127,8 @@ The following errors may be included in authorization error logs.
 
 The current user does not have permissions to create or modify rolebinding objects.
 Please use an administrator account when using the rbac cli.
-```
+
+```console
 Error: rolebindings.rbac.authorization.k8s.io "app-operator" is forbidden: User "<subject>" cannot get resource "rolebindings" in API group "rbac.authorization.k8s.io" in the namespace "namespace"
 Usage:
 tanzu rbac binding add [flags]
@@ -143,8 +144,10 @@ Global Flags:
 ```
 
 #### Already Bound Error:
+
 Adding a subject, user or group, to a role that already has the subject will produce the following error:
-```
+
+```console
 Error: User ‘test-user’ is already bound to 'app-operator' role
 Usage:
 tanzu rbac binding add [flags]
@@ -167,7 +170,7 @@ There are 2 scenarios this error can happen when removing a subject from a role:
 
 Please ensure the rolebinding exists and that the subject name is correctly spelled.
 
-```
+```console
 Error: Did not find User 'test-user' in RoleBinding 'app-operator'
 Usage:
 tanzu rbac binding delete [flags]
@@ -188,7 +191,7 @@ Global Flags:
 This error is a race condition caused by running multiple rbac cli actions at the same time.
 Rerunning the rbac cli may fix the issue.
 
-```
+```console
 Removed User 'test-user' from RoleBinding 'app-operator'
 Removed User 'test-user' from ClusterRoleBinding 'app-operator-cluster-access'
 Error: Operation cannot be fulfilled on rolebindings.rbac.authorization.k8s.io "app-operator": the object has been modified; please apply your changes to the latest version and try again
@@ -207,12 +210,13 @@ Flags:
 
 1. Get a list of permissions for a user or a group
 
-	```
+	```console
 	export NAME=<subject_name>
 	kubectl get rolebindings,clusterrolebindings -A -o json | jq -r ".items[] | select(.subjects[]?.name == \"${NAME}\") | .roleRef.name" | xargs -n1 kubectl describe clusterroles
 	```
+
 1. Get a list of user or group for a specific role
 
-	```
+	```console
 	tanzu rbac binding get --role $role --namespace $namespace
 	```

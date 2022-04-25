@@ -91,7 +91,7 @@ To install Tanzu Build Service by using the Tanzu CLI:
      >Tanzu Build Service dependencies (buildpacks and stacks) when they are released on
      >VMware Tanzu Network. You can set `enable_automatic_dependency_updates` as `false` to
      >pause the automatic update of Build Service dependencies. When automatic updates are paused,
-     >the pinned version of the descriptor for Tanzu Application Platform v1.1.0 is [100.0.279](https://network.pivotal.io/products/tbs-dependencies#/releases/1066670).
+     >the pinned version of the descriptor for Tanzu Application Platform v1.2.0 is [100.0.293](https://network.pivotal.io/products/tbs-dependencies#/releases/1086670).
      >If left undefined, this value is `false`. For information about updating dependencies manually,
      >see [Manual Control of Dependency Updates](tbs-about.html#manual-updates).
 
@@ -188,7 +188,7 @@ To install the Tanzu Build Service package air-gapped:
 1. Keep Tanzu Build Service dependencies up-to-date.
 
 When installing Tanzu Build Service to an air-gapped environment, dependencies cannot be automatically pulled in from the external internet.
-So dependencies must be imported and kept up to date manually. To import dependencies to an air-gapped Tanzu Build Service, follow the official [Tanzu Build Service docs](https://docs.vmware.com/en/Tanzu-Build-Service/1.4/vmware-tanzu-build-service-v14/GUID-updating-deps.html#online-update).
+So dependencies must be imported and kept up to date manually. To import dependencies to an air-gapped Tanzu Build Service, follow the official [Tanzu Build Service docs](https://docs.vmware.com/en/Tanzu-Build-Service/1.6/vmware-tanzu-build-service/GUID-updating-deps.html#online-update).
 
 #### <a id='install-secret-refs'> Installation using Secret references for registry credentials
 

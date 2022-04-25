@@ -25,7 +25,7 @@ To install Out of the Box Supply Chain Basic:
 1. Familiarize yourself with the set of values of the package that can be
    configured by running:
 
-    ```
+    ```console
     tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.7.0 \
       --values-schema \
       -n tap-install
@@ -33,7 +33,7 @@ To install Out of the Box Supply Chain Basic:
 
     For example:
 
-    ```
+    ```console
     KEY                       DESCRIPTION
 
     registry.repository       Name of the repository in the image registry server where
@@ -80,7 +80,7 @@ To install Out of the Box Supply Chain Basic:
 1. Create a file named `ootb-supply-chain-basic-values.yaml` that specifies the
    corresponding values to the properties you want to change. For example:
 
-    ```
+    ```yaml
     registry:
       server: REGISTRY-SERVER
       repository: REGISTRY-REPOSITORY
@@ -99,7 +99,7 @@ To install Out of the Box Supply Chain Basic:
 
 1. With the configuration ready, install the package by running:
 
-    ```
+    ```console
     tanzu package install ootb-supply-chain-basic \
       --package-name ootb-supply-chain-basic.tanzu.vmware.com \
       --version 0.7.0 \
@@ -109,7 +109,7 @@ To install Out of the Box Supply Chain Basic:
 
     Example output:
 
-    ```
+    ```console
     \ Installing package 'ootb-supply-chain-basic.tanzu.vmware.com'
     | Getting package metadata for 'ootb-supply-chain-basic.tanzu.vmware.com'
     | Creating service account 'ootb-supply-chain-basic-tap-install-sa'

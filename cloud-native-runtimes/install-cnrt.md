@@ -19,13 +19,13 @@ To install Cloud Native Runtimes:
 
 1. List version information for the package by running:
 
-    ```
+    ```console
     tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
     ```
 
-     For example:
+    For example:
 
-    ```
+    ```console
     $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for cnrs.tanzu.vmware.com...
       NAME                   VERSION  RELEASED-AT
@@ -36,13 +36,13 @@ To install Cloud Native Runtimes:
 
     1. Gather values schema.
 
-        ```
+        ```console
         tanzu package available get cnrs.tanzu.vmware.com/1.0.3 --values-schema -n tap-install
         ```
 
         For example:
 
-        ```
+        ```console
         $ tanzu package available get cnrs.tanzu.vmware.com/1.0.3 --values-schema -n tap-install
         | Retrieving package details for cnrs.tanzu.vmware.com/1.0.3...
           KEY                         DEFAULT  TYPE             DESCRIPTION
@@ -60,7 +60,7 @@ To install Cloud Native Runtimes:
         Sample `cnr-values.yaml` for Cloud Native Runtimes:
 
 
-        ```
+        ```console
         ---
         # if deploying on a local cluster such as Kind. Otherwise, you can remove this field
         provider: local
@@ -78,24 +78,24 @@ To install Cloud Native Runtimes:
         `cnrs.ingress.internal.namespace` to the empty string (`""`).
 
         For more information about using Cloud Native Runtimes with kind, see the
-        [Cloud Native Runtimes documentation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.1/tanzu-cloud-native-runtimes-1-1/GUID-local-dns.html#config-cluster).
+        [Cloud Native Runtimes documentation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.2/tanzu-cloud-native-runtimes/GUID-local-dns.html#config-cluster).
         If you are running on a multinode cluster, do not set `provider`.
 
         If your environment has Contour packages, Contour might conflict with the Cloud Native Runtimes installation.
 
-        For information about how to prevent conflicts, see [Installing Cloud Native Runtimes for Tanzu with an Existing Contour Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.1/tanzu-cloud-native-runtimes-1-1/GUID-contour.html) in the Cloud Native Runtimes documentation.
+        For information about how to prevent conflicts, see [Installing Cloud Native Runtimes for Tanzu with an Existing Contour Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.2/tanzu-cloud-native-runtimes/GUID-contour.html) in the Cloud Native Runtimes documentation.
         Specify values for `ingress.reuse_crds`,
         `ingress.external.namespace`, and `ingress.internal.namespace` in the `cnr-values.yaml` file.
 
 1. Install the package by running:
 
-    ```
+    ```console
     tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 1.0.3 -n tap-install -f cnr-values.yaml --poll-timeout 30m
     ```
 
     For example:
 
-    ```
+    ```console
     $ tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 1.0.3 -n tap-install -f cnr-values.yaml --poll-timeout 30m
     - Installing package 'cnrs.tanzu.vmware.com'
     | Getting package metadata for 'cnrs.tanzu.vmware.com'
@@ -112,13 +112,13 @@ To install Cloud Native Runtimes:
 
 1. Verify the package install by running:
 
-    ```
+    ```console
     tanzu package installed get cloud-native-runtimes -n tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     tanzu package installed get cloud-native-runtimes -n tap-install
     | Retrieving installation details for cc...
     NAME:                    cloud-native-runtimes
@@ -149,7 +149,7 @@ To install Cloud Native Runtimes:
        Run the following commands to create an empty secret and annotate it as a target of the secretgen
        controller:
 
-        ```
+        ```console
         kubectl create secret generic pull-secret --from-literal=.dockerconfigjson={} --type=kubernetes.io/dockerconfigjson
         kubectl annotate secret pull-secret secretgen.carvel.dev/image-pull-secret=""
         ```
@@ -157,19 +157,19 @@ To install Cloud Native Runtimes:
     1. After you create a `pull-secret` secret in the same namespace as the service account,
     run the following command to add the secret to the service account:
 
-        ```
+        ```console
         kubectl patch serviceaccount default -p '{"imagePullSecrets": [{"name": "pull-secret"}]}'
         ```
 
     1. Verify that a service account is correctly configured by running:
 
-        ```
+        ```console
         kubectl describe serviceaccount default
         ```
 
         For example:
 
-        ```
+        ```console
         kubectl describe sa default
         Name:                default
         Namespace:           default

@@ -13,19 +13,19 @@ Workload configuration options include:
 - environment variables
 - services to bind
 
-```
+```console
 tanzu apps workload apply [name] [flags]
 ```
 
 ## <a id="examples"></a> Examples
 
-```
+```console
 tanzu apps workload apply --file workload.yaml
 ```
 
 ## <a id="options"></a> Options
 
-```
+```console
       --annotation "key=value" pair    annotation is represented as a "key=value" pair, or "key-" to remove. This flag may be specified multiple times
       --app name                       application name the workload is a part of
       --build-env "key=value" pair     build environment variables represented as a "key=value" pair, or "key-" to remove. This flag may be specified multiple times
@@ -60,7 +60,7 @@ tanzu apps workload apply --file workload.yaml
 
 ## <a id="parent-commands-options"></a> Options inherited from parent commands
 
-```
+```console
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
       --kubeconfig file   kubeconfig file (default is $HOME/.kube/config)
       --no-color          disable color output in terminals

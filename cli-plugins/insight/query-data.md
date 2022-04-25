@@ -27,7 +27,7 @@ Use `tanzu insight -h` or see [Tanzu Insight Details](cli-docs/insight.md) for m
 
 Run:
 
-```
+```console
 tanzu insight image get --digest DIGEST
 ```
 
@@ -37,7 +37,7 @@ Where:
 
 For example:
 
-```
+```console
 $ tanzu insight image get --digest sha256:407d7099d6ce7e3632b6d00682a43028d75d3b088600797a833607bd629d1ed5
 Registry:	docker.io
 Image Name:	checkr/flagr:1.1.12
@@ -59,7 +59,7 @@ Packages:
 
 Run:
 
-```
+```console
 tanzu insight source get --repo REPO --org ORG
 ```
 
@@ -73,7 +73,7 @@ Where:
 
 For example, to get a recent scan for https://github.com/pivotal/kpack.git:
 
-```
+```console
 $ tanzu insight source get --repo kpack --org pivotal
 ID:       	2
 Repository:  kpack
@@ -91,7 +91,7 @@ Packages:
 
 Run:
 
-```
+```console
 tanzu insight vulnerabilities get --cveid CVE-IDENTIFIER
 ```
 
@@ -101,7 +101,7 @@ Where:
 
 For example:
 
-```
+```console
 $ tanzu insight vulnerabilities get --cveid CVE-2010-4051
 1. CVE-2010-4051 (Low)
 Packages:
