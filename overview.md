@@ -92,7 +92,7 @@ The following packages are part of the Tanzu Application Platform:
   configurations and enable fleets of developers to use them, decreasing operator concerns about
   whether developers are implementing their desired best practices.
 
-- **[Application Live View for VMware Tanzu](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-index.html)**
+- **[Application Live View for VMware Tanzu](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/index.html)**
 
   Application Live View is a lightweight insight and troubleshooting tool that helps application
   developers and application operators look inside running applications.
@@ -102,7 +102,7 @@ The following packages are part of the Tanzu Application Platform:
   endpoints (in our case, HTTP endpoints). Application Live View uses those endpoints to get the
   data from the application and to interact with it.
 
-- **[Cloud Native Runtimes for VMware Tanzu](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.1/tanzu-cloud-native-runtimes/GUID-cnr-overview.html)**
+- **[Cloud Native Runtimes for VMware Tanzu](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/index.html)**
 
   Cloud Native Runtimes for Tanzu is a serverless application runtime for Kubernetes that is based
   on Knative and runs on a single Kubernetes cluster. For information about Knative, see the
@@ -134,7 +134,7 @@ The following packages are part of the Tanzu Application Platform:
 
   Grype is a vulnerability scanner for container images and file systems.
 
-- **[Services Toolkit](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.5/svc-tlk/GUID-overview.html)**
+- **[Services Toolkit](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/index.html)**
 
   Services Toolkit comprises a number of Kubernetes-native components which support the management,
   life cycle, discoverability, and connectivity of Service Resources (databases, message queues,

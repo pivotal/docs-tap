@@ -10,7 +10,7 @@ into this Tanzu Application Platform documentation site.
 
 + [Application Accelerator for VMware Tanzu](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/index.html)
 
-+ [Application Live View for VMware Tanzu](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-index.html)
+- [Application Live View for VMware Tanzu](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/index.html)
 
 + [Application Live View Convention Service for VMware Tanzu](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.0/docs/GUID-convention-server.html)
 
@@ -22,7 +22,7 @@ into this Tanzu Application Platform documentation site.
 
 + [Learning Center for Tanzu Application Platform](learning-center/about.md)
 
-+ [Services Toolkit](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.5/svc-tlk/GUID-overview.html)
++ [Services Toolkit](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/index.html)
 
 + [Supply Chain Choreographer for VMware Tanzu](scc/about.html)
 
