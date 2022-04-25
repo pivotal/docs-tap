@@ -9,6 +9,7 @@ on multicloud. It provides many supported integrations for widely used identity 
 To use Pinniped, see [Installing Pinniped on a single cluster](pinniped-install-guide.md) and
 [Logging in using Pinniped](pinniped-login.md).
 
+See [Azure Active Directory](azure-ad.md) for Azure Active Directory Integration
 
 ## <a id="tkg"></a> Tanzu Kubernetes Grid
 
