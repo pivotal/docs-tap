@@ -26,13 +26,13 @@ To install Supply Chain Security Tools - Sign:
 
 1. List version information for the package by running:
 
-    ```
+    ```console
     tanzu package available list image-policy-webhook.signing.apps.tanzu.vmware.com --namespace tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     $ tanzu package available list image-policy-webhook.signing.apps.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for image-policy-webhook.signing.apps.tanzu.vmware.com...
       NAME                                                VERSION        RELEASED-AT
@@ -41,15 +41,15 @@ To install Supply Chain Security Tools - Sign:
 
 1. (Optional) Make changes to the default installation settings by running:
 
-    ```
+    ```console
     tanzu package available get image-policy-webhook.signing.apps.tanzu.vmware.com/VERSION --values-schema --namespace tap-install
     ```
-    
+
     Where `VERSION` is the version number you discovered. For example, `1.1.2`.
 
     For example:
 
-    ```
+    ```console
     $ tanzu package available get image-policy-webhook.signing.apps.tanzu.vmware.com/1.1.2 --values-schema --namespace tap-install
     | Retrieving package details for image-policy-webhook.signing.apps.tanzu.vmware.com/1.1.2...
       KEY                     DEFAULT              TYPE     DESCRIPTION
@@ -96,14 +96,14 @@ To install Supply Chain Security Tools - Sign:
           do not match any pattern in the policy, but still allow them into
           the cluster, set `allow_unmatched_images` to `true`.
 
-            ```
+            ```yaml
             ---
             allow_unmatched_images: true
             ```
 
         * **For production environments**: To deny images that match no patterns in the policy set `allow_unmatched_images` to `false`.
 
-            ```
+            ```yaml
             ---
             allow_unmatched_images: false
             ```
@@ -125,7 +125,7 @@ To install Supply Chain Security Tools - Sign:
       secret is stored.
 
       For example:
-      
+
       ```yaml
       custom_ca_secrets:
       - secret_name: first-ca
@@ -137,18 +137,18 @@ To install Supply Chain Security Tools - Sign:
       >**Note:** This setting is allowed even if `custom_cas` was informed.
 
     - `custom_cas`:
-      This setting enables adding certificate content in PEM format. 
-      The certificate content are added to the application container as custom 
-      certificate authorities (CAs) to communicate with registries deployed with 
-      self-signed certificates. 
+      This setting enables adding certificate content in PEM format.
+      The certificate content are added to the application container as custom
+      certificate authorities (CAs) to communicate with registries deployed with
+      self-signed certificates.
       `custom_cas` consists of an array of items. Each item contains
       a single field named `ca_content`. The value of this field must be a
       PEM-formatted certificate authority. The certificate content must be
-      defined as a YAML block, preceded by the literal indicator (`|`) to 
+      defined as a YAML block, preceded by the literal indicator (`|`) to
       preserve line breaks and ensure the certificates are interpreted correctly.
 
       For example:
-      
+
       ```yaml
       custom_cas:
       - ca_content: |
@@ -206,19 +206,19 @@ To install Supply Chain Security Tools - Sign:
 
 1. Install the package:
 
-    ```
+    ```console
     tanzu package install image-policy-webhook \
       --package-name image-policy-webhook.signing.apps.tanzu.vmware.com \
       --version VERSION \
       --namespace tap-install \
       --values-file scst-sign-values.yaml
     ```
-    
+
     Where `VERSION` is the version number you discovered earlier. For example, `1.1.2`.
 
     For example:
 
-    ```
+    ```console
     $ tanzu package install image-policy-webhook \
         --package-name image-policy-webhook.signing.apps.tanzu.vmware.com \
         --version 1.1.2 \
