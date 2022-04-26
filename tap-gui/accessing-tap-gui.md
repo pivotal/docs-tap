@@ -11,7 +11,7 @@ Use one or two methods to access Tanzu Application Platform GUI:
 Verify that you specified the `service_type` for Tanzu Application Platform GUI in your
 Tanzu Application Platform values YAML file as in this example:
 
-```
+```yaml
 tap_gui:
   service_type: LoadBalancer
 ```
@@ -20,16 +20,17 @@ Follow these steps:
 
 1. Obtain the external IP address of your LoadBalancer by running:
 
-    ```
+    ```console
     kubectl get svc -n tap-gui
     ```
 
 1. Access Tanzu Application Platform GUI by using the external IP address with the default port of 7000.
 It has the following form:
 
-    ```
+    ```text
     http://EXTERNAL-IP:7000
     ```
+
     Where `EXTERNAL-IP` is the external IP address of your LoadBalancer.
 
 ## <a id="ingress-method"></a> Ingress Method
@@ -41,13 +42,13 @@ instance of Contour that is installed as part of the Profile installation.
 IP address of the `envoy` service that the shared `tanzu-system-ingress` uses. Retrieve this IP address by
 running:
 
-    ```
+    ```console
     kubectl get service envoy -n tanzu-system-ingress
     ```
 
     This returns a value similar to this example:
 
-    ```
+    ```console
     kubectl get service envoy -n tanzu-system-ingress
     NAME    TYPE           CLUSTER-IP     EXTERNAL-IP      PORT(S)                      AGE
     envoy   LoadBalancer   10.0.242.171   40.118.168.232   80:31389/TCP,443:31780/TCP   27h
@@ -60,7 +61,7 @@ running:
 
 1. Specify parameters in your `tap-values.yaml` related to Ingress following this example:
 
-    ```
+    ```yaml
     tap_gui:
       service_type: ClusterIP
       ingressEnabled: "true"
@@ -69,7 +70,7 @@ running:
 
 1. Update your other host names in the `tap_gui` section of your `tap-values.yaml` with the new host name following this example:
 
-    ```
+    ```yaml
     tap_gui:
       service_type: ClusterIP
       ingressEnabled: "true"
@@ -99,7 +100,7 @@ running:
 
 1. Update your package installation with your changed values file by running:
 
-    ```
+    ```console
     tanzu package installed update tap --package-name tap.tanzu.vmware.com --version VERSION-NUMBER --values-file tap-values.yaml -n tap-install
     ```
 

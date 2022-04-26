@@ -4,7 +4,7 @@ Tanzu Application Platform GUI supports integrating with several Git providers. 
 
 Below is an example of this integration using the GitHub provider integration:
 
-```
+```yaml
       app_config:
         app:
           baseUrl: http://EXTERNAL-IP:7000
@@ -23,7 +23,7 @@ Where `GITHUB-TOKEN` is a valid token generated from your Git infrastructure of 
 To allow Tanzu Application GUI to read non-GitHub repositories containing component information,
 add the following to the `tap-values-file.yml` file:
 
-```
+```yaml
       app_config:
         # Existing tap-values-file.yml above  
         backend:
@@ -41,7 +41,7 @@ For more information about registering new components, see
 
 After making changes to the `tap-values-file.yml`, update the package profile by running:
 
-```
+```console
 tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version VERSION-NUMBER --values-file tap-values-file.yml -n tap-install
 ```
 
@@ -49,7 +49,7 @@ Where `VERSION-NUMBER` is the Tanzu Application Platform version. For example, `
 
 For example:
 
-```
+```console
 $ tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version 1.0.0 --values-file tap-values-file.yml -n tap-install
 | Updating package 'tap'
 | Getting package install for 'tap'
