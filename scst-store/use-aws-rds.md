@@ -14,7 +14,7 @@
    1. DB Instance Endpoint
    1. Master Username
    1. Master Password
-   1. Database Name 
+   1. Database Name
 
 3. Create a security group to allow inbound connections from the cluster to the Postgres DB
 
@@ -22,7 +22,7 @@
 
 5. In the `metadata-store-values.yaml` fill the following settings:
 
-   ```
+   ```yaml
    db_host: "<DB Instance Endpoint>"
    db_user: "<Master Username>"
    db_password: "<Master Password>"

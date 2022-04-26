@@ -10,9 +10,10 @@ You can use [Velero](https://velero.io/) to create regular backups.
 ```bash
 velero install --provider <provider> --bucket <bucket-name> --plugins <plugin-image-location> --secret-file <secrets-file>
 ```
+
 For example:
 
-```
+```console
 velero install --provider gcp --bucket <gcs-bucket-name> --plugins velero/velero-plugin-for-gcp:v1.3.0 --secret-file <gcp-json-credentials>
 ```
 
