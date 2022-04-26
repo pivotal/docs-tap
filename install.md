@@ -181,7 +181,7 @@ To prepare to install a profile:
     tanzu package available list tap.tanzu.vmware.com --namespace tap-install
     ```
 
-1. Create a `tap-values.yml` file by using the
+1. Create a `tap-values.yaml` file by using the
 [Full Profile sample](#full-profile) as a guide.
 These samples have the minimum configuration required to deploy Tanzu Application Platform.
 The sample values file contains the necessary defaults for:
@@ -346,7 +346,7 @@ Where:
 
 - `VERSION` is the version number of the package. For example, `0.5.1` for Supply Chain Basic package.
 - `PACKAGE-NAME` is the value of `Top-level Key` for package-specific configuration within
-your `tap-values.yml`, as summarized in the following table:  
+your `tap-values.yaml`, as summarized in the following table:  
 
 |Package|Top-level Key|
 |----|----|
@@ -418,7 +418,7 @@ To install the Install the Tanzu Application Platform package:
 1. Install the package by running:
 
     ```console
-    tanzu package install tap -p tap.tanzu.vmware.com -v $TAP_VERSION --values-file tap-values.yml -n tap-install
+    tanzu package install tap -p tap.tanzu.vmware.com -v $TAP_VERSION --values-file tap-values.yaml -n tap-install
     ```
 
     Where `$TAP_VERSION` is the Tanzu Application Platform version environment variable
@@ -454,7 +454,7 @@ This section only applies when you use Tanzu Application Platform to deploy its 
 
 You can share this ingress across Cloud Native Runtimes (`cnrs`), Tanzu Application Platform GUI (`tap_gui`), and Learning Center (`learningcenter`).
 
-By default, Contour uses `NodePort` as the service type. To set the service type to `LoadBalancer`, add the following to your `tap-values.yml`:
+By default, Contour uses `NodePort` as the service type. To set the service type to `LoadBalancer`, add the following to your `tap-values.yaml`:
 
 ```yaml
 contour:
@@ -465,7 +465,7 @@ contour:
 
 If you are using AWS, the section above creates a classic LoadBalancer.
 If you want to use the Network LoadBalancer instead of the classic LoadBalancer for ingress, add the
-following to your `tap-values.yml`:
+following to your `tap-values.yaml`:
 
 ```yaml
 contour:

@@ -23,7 +23,7 @@ Before installing Tekton:
   - To install, navigate to [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/). Under the list of available files to download, there is a folder titled `tap-gui-catalogs-latest`. Inside that folder is a compressed archive titled `Tanzu Application Platform GUI Blank Catalog`. You must extract that catalog to the preceding Git repository of choice. This serves as the configuration location for your Organization's Catalog inside Tanzu Application Platform GUI.
 - The Tanzu Application Platform GUI catalog allows for two approaches towards storing catalog information:
     - The default option uses an in-memory database and is suitable for test and development scenarios.
-          The in-memory database reads the catalog data from Git URLs that you enter in the `tap-values.yml` file.
+          The in-memory database reads the catalog data from Git URLs that you enter in the `tap-values.yaml` file.
           This data is temporary, and any operations that cause the `server` Pod in the `tap-gui` namespace to be re-created
           also cause this data to be rebuilt from the Git location.
           This can cause issues when you manually register entities by using the UI because

@@ -158,7 +158,7 @@ To deploy your application, you must download an accelerator, upload it on your 
 
     ![REGISTER button on the right side of the header](images/getting-started-tap-gui-5.png)
 
-    Alternatively, you can add a link to the `catalog-info.yaml` to the `tap-values.yml` configuration file in the `tap_gui.app_config.catalog.locations` section. See [Installing the Tanzu Application Platform Package and Profiles](install.md#a-idfull-profilea-full-profile).
+    Alternatively, you can add a link to the `catalog-info.yaml` to the `tap-values.yaml` configuration file in the `tap_gui.app_config.catalog.locations` section. See [Installing the Tanzu Application Platform Package and Profiles](install.md#a-idfull-profilea-full-profile).
 
 1. **Register an existing component** prompts you to type a repository URL.
 Type the link to the `catalog-info.yaml` file of the tanzu-java-web-app in the Git repository field, for example,
@@ -557,7 +557,7 @@ either additional testing or other tasks with Tekton Pipelines.
 
 To apply this install method, follow the following steps:
 
-1. You can activate the Out of the Box Supply Chain with Testing by updating our profile to use `testing` rather than `basic` as the selected supply chain for workloads in this cluster. Update `tap-values.yml` (the file used to customize the profile in `Tanzu package install tap
+1. You can activate the Out of the Box Supply Chain with Testing by updating our profile to use `testing` rather than `basic` as the selected supply chain for workloads in this cluster. Update `tap-values.yaml` (the file used to customize the profile in `Tanzu package install tap
 --values-file=...`) with the following changes:
 
     ```yaml
@@ -574,7 +574,7 @@ To apply this install method, follow the following steps:
 2. Update the installed profile by running:
 
     ```console
-    tanzu package installed update tap -p tap.tanzu.vmware.com -v VERSION-NUMBER --values-file tap-values.yml -n tap-install
+    tanzu package installed update tap -p tap.tanzu.vmware.com -v VERSION-NUMBER --values-file tap-values.yaml -n tap-install
     ```
 
     Where `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `1.1.0`.
@@ -773,7 +773,7 @@ Verify that both Scan Link and Grype Scanner are installed by running:
 
 
 3. Update the profile to use the supply chain with testing and scanning by
-   updating `tap-values.yml` (the file used to customize the profile in `tanzu
+   updating `tap-values.yaml` (the file used to customize the profile in `tanzu
    package install tap --values-file=...`) with the following changes:
 
 
@@ -791,7 +791,7 @@ Verify that both Scan Link and Grype Scanner are installed by running:
 4. Update the `tap` package:
 
     ```console
-    tanzu package installed update tap -p tap.tanzu.vmware.com -v VERSION-NUMBER --values-file tap-values.yml -n tap-install
+    tanzu package installed update tap -p tap.tanzu.vmware.com -v VERSION-NUMBER --values-file tap-values.yaml -n tap-install
     ```
 
     Where `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `1.1.0`.

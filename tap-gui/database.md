@@ -17,7 +17,7 @@ To use a PostgreSQL database:
             baseUrl: http://tap-gui.INGRESS-DOMAIN
             cors:
                 origin: http://tap-gui.INGRESS-DOMAIN
-        # Existing tap-values.yml above
+        # Existing tap-values.yaml above
             database:
             client: pg
                 connection:
