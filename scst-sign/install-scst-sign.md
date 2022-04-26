@@ -16,7 +16,7 @@ generate your own keys and sign an image.
 >**Caution:** This component rejects pods if the webhook fails or is incorrectly configured.
 >If the webhook is preventing the cluster from functioning,
 >see [Supply Chain Security Tools - Sign Known Issues](../release-notes.md)
-> in the Tanzu Application Plantform release notes for recovery steps.
+> in the Tanzu Application Platform release notes for recovery steps.
 
 ## <a id='install-scst-sign'></a> Install
 
