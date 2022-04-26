@@ -106,7 +106,7 @@ When creating the values file during installation, include the key-value pair
 `enable_automatic_dependency_updates: true`, in addition to any other `buildservice` keys, as in this
 example:
 
-```
+```yaml
 ...
 kp_default_repository: REPOSITORY
 kp_default_repository_username: REGISTRY-USERNAME

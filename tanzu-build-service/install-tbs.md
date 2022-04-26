@@ -26,13 +26,13 @@ To install Tanzu Build Service by using the Tanzu CLI:
 
 1. List version information for the package by running:
 
-    ```
+    ```console
     tanzu package available list buildservice.tanzu.vmware.com --namespace tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     $ tanzu package available list buildservice.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for buildservice.tanzu.vmware.com...
       NAME                           VERSION  RELEASED-AT
@@ -41,7 +41,7 @@ To install Tanzu Build Service by using the Tanzu CLI:
 
 1. (Optional) To make changes to the default installation settings, run:
 
-    ```
+    ```console
     tanzu package available get buildservice.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
 
@@ -49,20 +49,20 @@ To install Tanzu Build Service by using the Tanzu CLI:
 
     For example:
 
-    ```
+    ```console
     $ tanzu package available get buildservice.tanzu.vmware.com/1.5.0 --values-schema --namespace tap-install
     ```
 
 
 1. Gather the values schema by running:
 
-    ```
+    ```console
     tanzu package available get buildservice.tanzu.vmware.com/1.5.0 --values-schema --namespace tap-install
     ```
 
 2. Create a `tbs-values.yaml` file.
 
-    ```
+    ```yaml
     ---
     kp_default_repository: "KP-DEFAULT-REPO"
     kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
@@ -97,13 +97,13 @@ To install Tanzu Build Service by using the Tanzu CLI:
 
 3. Install the package by running:
 
-    ```
+    ```console
     tanzu package install tbs -p buildservice.tanzu.vmware.com -v 1.5.0 -n tap-install -f tbs-values.yaml --poll-timeout 30m
     ```
 
     For example:
 
-    ```
+    ```console
     $ tanzu package install tbs -p buildservice.tanzu.vmware.com -v 1.5.0 -n tap-install -f tbs-values.yaml --poll-timeout 30m
     | Installing package 'buildservice.tanzu.vmware.com'
     | Getting namespace 'tap-install'
@@ -127,7 +127,7 @@ To install Tanzu Build Service by using the Tanzu CLI:
 
 4. (Optional) Verify the clusterbuilders that the Tanzu Build Service installation created by running:
 
-    ```
+    ```console
     tanzu package installed get tbs -n tap-install
     ```
 
@@ -141,13 +141,13 @@ To install the Tanzu Build Service package air-gapped:
 
 1. Gather the values schema by running:
 
-    ```
+    ```console
     tanzu package available get buildservice.tanzu.vmware.com/1.5.0 --values-schema --namespace tap-install
     ```
 
 1. Create a `tbs-values.yaml` file. The required fields for an air-gapped installation are:
 
-    ```
+    ```yaml
     ---
     kp_default_repository: REPOSITORY
     kp_default_repository_username: REGISTRY-USERNAME
@@ -165,13 +165,13 @@ To install the Tanzu Build Service package air-gapped:
 
 1. Install the package by running:
 
-    ```
+    ```console
    tanzu package install tbs -p buildservice.tanzu.vmware.com -v 1.5.0 -n tap-install -f tbs-values.yaml
     ```
 
    For example:
 
-    ```
+    ```console
     $ tanzu package install tbs -p buildservice.tanzu.vmware.com -v 1.5.0 -n tap-install -f tbs-values.yaml
     | Installing package 'buildservice.tanzu.vmware.com'
     | Getting namespace 'tap-install'
@@ -206,7 +206,7 @@ credentials for `kp_default_repository` and the VMware Tanzu Network registry.
 
 Use the following alternative configuration for `values.yaml`:
 
-    ```
+    ```yaml
     ---
     kp_default_repository: "KP-DEFAULT-REPO"
     kp_default_repository_secret:
