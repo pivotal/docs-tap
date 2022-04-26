@@ -72,7 +72,7 @@ section.
 
 You can exclude a supply chain package from the installation to
 prevent the conflicts mentioned earlier, by using the
-`excluded_packages` property in `tap-values.yml`. For example:
+`excluded_packages` property in `tap-values.yaml`. For example:
 
 ```yaml
 # add to exclued_packages `ootb-*` packages you DON'T want to install
@@ -123,7 +123,7 @@ installation the template you want to override by using the
 
 For example, perhaps you want to override the `ClusterConfigTemplate` named
 `config-template` to provide your own with the same name, so that you don't
-need to edit the supply chain. In `tap-values.yml`, you can exclude template provided by
+need to edit the supply chain. In `tap-values.yaml`, you can exclude template provided by
 Tanzu Application Platform:
 
 ```yaml
@@ -218,7 +218,7 @@ modification to is `source-to-url` provided by the
 4. Submit the supply chain to Kubernetes:
 
     The supply chain definition found in the bundle expects the values you provided
-    through `tap-values.yml` to be interpolated through YTT before
+    through `tap-values.yaml` to be interpolated through YTT before
     they are submitted to Kubernetes. So before applying the modified supply chain
     to the cluster, use YTT to interpolate those values. After that, run:
 
@@ -264,7 +264,7 @@ In this example, you want to update the `ClusterImageTemplate` object called
 hardcode an environment variable.
 
 1. Exclude the `kpack-template` from the set of templates that `ootb-templates`
-installs by upating `tap-values.yml`:
+installs by upating `tap-values.yaml`:
 
     ```yaml
       ootb_templates:

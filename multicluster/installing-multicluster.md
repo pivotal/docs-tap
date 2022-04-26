@@ -18,7 +18,7 @@ The installation order is flexible given the ability to update the installation 
   5. Update the View cluster's installation values file with the previous information and run the `tanzu package installed update` command as the following shows to pass the updated config values to Tanzu Application Platform GUI:
 
     ```shell
-    tanzu package install tap -p tap.tanzu.vmware.com -v TAP-VERSION --values-file tap-values.yml -n tap-install
+    tanzu package install tap -p tap.tanzu.vmware.com -v TAP-VERSION --values-file tap-values.yaml -n tap-install
     ```
 
     Where `TAP-VERSION` is the Tanzu Application Platform version you've installed

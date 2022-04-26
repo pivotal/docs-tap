@@ -34,8 +34,8 @@ Tanzu Application Platform to store images.
 
 There are some optional but recommended DNS records you should allocate if you decide to use these particular components:
 
-- Cloud Native Runtimes (knative) - Allocate a wildcard subdomain for your developer's applications. This is specified in the `cnrs.domain_name` key of the `tap-values.yml` configuration file that you input with the installation. This wildcard should be pointed at the external IP address of the `tanzu-system-ingress`'s `envoy` service. See [Ingress Method](tap-gui/accessing-tap-gui.md#ingress-method) for more information about `tanzu-system-ingress`.
-- Tanzu Learning Center - Similar to Cloud Native Runtimes, allocate a wildcard subdomain for your workshops and content. This is specified in the `learningcenter.ingressDomain` key of the `tap-values.yml` configuration file that you input with the installation. This wildcard should be pointed at the external IP address of the `tanzu-system-ingress`'s `envoy` service.
+- Cloud Native Runtimes (knative) - Allocate a wildcard subdomain for your developer's applications. This is specified in the `cnrs.domain_name` key of the `tap-values.yaml` configuration file that you input with the installation. This wildcard should be pointed at the external IP address of the `tanzu-system-ingress`'s `envoy` service. See [Ingress Method](tap-gui/accessing-tap-gui.md#ingress-method) for more information about `tanzu-system-ingress`.
+- Tanzu Learning Center - Similar to Cloud Native Runtimes, allocate a wildcard subdomain for your workshops and content. This is specified in the `learningcenter.ingressDomain` key of the `tap-values.yaml` configuration file that you input with the installation. This wildcard should be pointed at the external IP address of the `tanzu-system-ingress`'s `envoy` service.
 - Tanzu Application Platform GUI - If you decide to implement the shared ingress and include Tanzu Application Platform GUI, allocate a fully Qualified Domain Name (FQDN) that can be pointed at the `tanzu-system-ingress` service.
 The default host name consists of `tap-gui` plus an `IngressDomain` of your choice. For example,
 `tap-gui.example.com`.
@@ -53,7 +53,7 @@ The default host name consists of `tap-gui` plus an `IngressDomain` of your choi
   - To install, navigate to [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/). Under the list of available files to download, there is a folder titled `tap-gui-catalogs-latest`. Inside that folder is a compressed archive titled `Tanzu Application Platform GUI Blank Catalog`. You must extract that catalog to the preceding Git repository of choice. This serves as the configuration location for your Organization's Catalog inside Tanzu Application Platform GUI.
 - The Tanzu Application Platform GUI catalog allows for two approaches towards storing catalog information:
     - The default option uses an in-memory database and is suitable for test and development scenarios.
-          This reads the catalog data from Git URLs that you specify in the `tap-values.yml` file.
+          This reads the catalog data from Git URLs that you specify in the `tap-values.yaml` file.
           This data is temporary, and any operations that cause the `server` pod in the `tap-gui` namespace to be re-created
           also cause this data to be rebuilt from the Git location.
           This can cause issues when you manually register entities through the UI because

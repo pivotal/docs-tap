@@ -41,7 +41,7 @@ parameters are set in the supply chain:
 - `gitops_repository`: configured as a workload parameter.
 
 For example, assuming the installation of the supply chain packages through
-Tanzu Application Platform profiles and a `tap-values.yml`:
+Tanzu Application Platform profiles and a `tap-values.yaml`:
 
   ```yaml
   ootb_supply_chain_basic:
@@ -119,7 +119,7 @@ provide the credentials for that repository as follows:
   metadata:
     name: GIT-SECRET-NAME  # `git-ssh` is the default name.
                           #   - operators can change such default by using the
-                          #     `gitops.ssh_secret` property in `tap-values.yml`
+                          #     `gitops.ssh_secret` property in `tap-values.yaml`
                           #   - developers can override by using the workload parameter
                           #     named `gitops_ssh_secret`.
     annotations:
@@ -167,7 +167,7 @@ provide the credentials for that repository as follows:
   metadata:
     name: GIT-SECRET-NAME  # `git-ssh` is the default name.
                           #   - operators can change such default via the
-                          #     `gitops.ssh_secret` property in `tap-values.yml`
+                          #     `gitops.ssh_secret` property in `tap-values.yaml`
                           #   - developers can override by using the workload parameter
                           #     named `gitops_ssh_secret`.
     annotations:

@@ -90,10 +90,10 @@ To use the function `buildpacks`, you must upload their buildpackages to Build S
     * `SERVER` is your server. For example, `index.docker.io`.
     * `REPO` is your repository.
 
-1. Apply the update by going to the directory containing `tap-values.yml` and running:
+1. Apply the update by going to the directory containing `tap-values.yaml` and running:
 
     ```
-    tanzu package installed update tap -p tap.tanzu.vmware.com -v VERSION --values-file tap-values.yml -n tap-install
+    tanzu package installed update tap -p tap.tanzu.vmware.com -v VERSION --values-file tap-values.yaml -n tap-install
     ```
 
     Where `VERSION` is the version of Tanzu Application Platform GUI you have installed. For example, `1.0.2`.

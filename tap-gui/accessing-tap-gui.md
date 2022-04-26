@@ -56,7 +56,7 @@ running:
     The IP address in the `EXTERNAL-IP` field is the one that you point a DNS host record to.
     Tanzu Application Platform GUI prepends `tap-gui` to your provided subdomain.
     This makes the final host name `tap-gui.YOUR-SUBDOMAIN`. You use this host name in the appropriate
-    fields in the `tap-values.yml` mentioned later.
+    fields in the `tap-values.yaml` mentioned later.
 
 1. Specify parameters in your `tap-values.yaml` related to Ingress following this example:
 
@@ -67,14 +67,14 @@ running:
       ingressDomain: 'example.com' # This makes the host name tap-gui.example.com
     ```
 
-1. Update your other host names in the `tap_gui` section of your `tap-values.yml` with the new host name following this example:
+1. Update your other host names in the `tap_gui` section of your `tap-values.yaml` with the new host name following this example:
 
     ```
     tap_gui:
       service_type: ClusterIP
       ingressEnabled: "true"
       ingressDomain: 'example.com' # This makes the host name tap-gui.example.com
-    # Existing tap-values.yml above  
+    # Existing tap-values.yaml above  
       app_config:
         app:
           baseUrl: http://tap-gui.example.com # No port needed with Ingress
@@ -100,7 +100,7 @@ running:
 1. Update your package installation with your changed values file by running:
 
     ```
-    tanzu package installed update tap --package-name tap.tanzu.vmware.com --version VERSION-NUMBER --values-file tap-values.yml -n tap-install
+    tanzu package installed update tap --package-name tap.tanzu.vmware.com --version VERSION-NUMBER --values-file tap-values.yaml -n tap-install
     ```
 
     Where `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `1.1.0`.

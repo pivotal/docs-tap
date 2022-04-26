@@ -18,7 +18,7 @@ kubectl -n scan-link-system logs -f deployment/scan-link-controller-manager -c m
 
 ### <a id="miss-img-ps"></a>Missing target image pull secret
 
-Scanning an image from a private registry requires an image pull secret to exist in the Scan CR's namespace and be referenced as `grype.targetImagePullSecret` in `tap-values.yml`. See [Installing the Tanzu Application Platform Package and Profiles](../install.md) for more information.
+Scanning an image from a private registry requires an image pull secret to exist in the Scan CR's namespace and be referenced as `grype.targetImagePullSecret` in `tap-values.yaml`. See [Installing the Tanzu Application Platform Package and Profiles](../install.md) for more information.
 
 If a private image scan is triggered and the secret is not configured, the scan job will fail with the error as follows:
 

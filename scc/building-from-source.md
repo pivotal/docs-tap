@@ -85,7 +85,7 @@ Workload/tanzu-java-web-app
 Platform operators who install the Out of the Box Supply Chain packages
 by using Tanzu Application Platform profiles can customize the default name of
 the secret (`git-ssh`) by editing the corresponding `ootb_supply_chain*`
-property in the `tap-values.yml` file:
+property in the `tap-values.yaml` file:
 
 
   ```yaml
@@ -299,7 +299,7 @@ You can pass the following parameters by using the workload object's
   where credentials to fetch the repository can be found.
 
 You can also customize the following parameters with defaults for the whole cluster.
-Do this by using properties for either `tap-values.yml`
+Do this by using properties for either `tap-values.yaml`
 when installing supply chains by using Tanzu Application Platform profiles,
 or `ootb-supply-chain-*-values.yml` when installing the OOTB packages
 individually):
