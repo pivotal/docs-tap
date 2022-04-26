@@ -6,7 +6,7 @@ Platform component and is not included in either the full or light profile.
 ## <a id='scst-sign-prereqs'></a> Prerequisites
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
-- A container image registry that supports TLS connections. This component will not work with insecure registries.
+- A container image registry that supports TLS connections. This component does not work with insecure registries.
 - During configuration for this component, you are asked to provide a cosign public key to use to
 validate signed images. An example cosign public key is provided that can validate an image from the
 public cosign registry. If you want to provide your own key and images, follow the
@@ -139,7 +139,7 @@ To install Supply Chain Security Tools - Sign:
 
     - `custom_cas`:
       This setting enables adding certificate content in PEM format.
-      The certificate content are added to the application container as custom
+      The certificate content is added to the application container as custom
       certificate authorities (CAs) to communicate with registries deployed with
       self-signed certificates.
       `custom_cas` consists of an array of items. Each item contains
