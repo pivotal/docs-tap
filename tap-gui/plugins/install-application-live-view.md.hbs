@@ -53,7 +53,7 @@ To install Application Live View Backend:
     tanzu package available get backend.appliveview.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
 
-    Where `VERSION-NUMBER` is the version of the package listed. For example, `1.1.1`.
+    Where `VERSION-NUMBER` is the version of the package listed. For example, `{{ vars.tap_version }}`.
 
     For example:
 
@@ -172,7 +172,7 @@ To install Application Live View Connector:
     tanzu package available get connector.appliveview.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
 
-    Where `VERSION-NUMBER` is the version of the package listed. For example, `1.1.1`.
+    Where `VERSION-NUMBER` is the version of the package listed. For example, `{{ vars.tap_version }}`.
 
     For example:
 
@@ -217,7 +217,7 @@ To install Application Live View Connector:
     tanzu package install appliveview-connector -p connector.appliveview.tanzu.vmware.com -v VERSION-NUMBER -n tap-install -f app-live-view-connector-values.yaml
     ```
 
-    Where `VERSION-NUMBER` is the version of the package listed. For example, `1.1.1`.
+    Where `VERSION-NUMBER` is the version of the package listed. For example, `{{ vars.tap_version }}`.
 
     For example:
 
@@ -282,7 +282,7 @@ To install Application Live View Connector:
     tanzu package install appliveview-conventions -p conventions.appliveview.tanzu.vmware.com -v VERSION-NUMBER -n tap-install
     ```
 
-    Where `VERSION-NUMBER` is the version of the package listed. For example, `1.1.1`.
+    Where `VERSION-NUMBER` is the version of the package listed. For example, `{{ vars.tap_version }}`.
 
     For example:
 
