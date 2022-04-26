@@ -6,7 +6,7 @@ In this topic, you'll find troubleshooting information to help resolve issues us
 
 You create a workload, but no logs appear when you check for logs by running the following command:
 
-  ```
+  ```console
   tanzu apps workload tail workload-name --since 10m --timestamp
   ```
 
@@ -22,16 +22,24 @@ Common causes include:
 
 To resolve this issue, run each of the following commands to receive the relevant error message:
 
-- ```kubectl get clusterbuilder.kpack.io -o yaml```
-- ```kubectl get image.kpack.io <workload-name> -o yaml```
-- ```kubectl get build.kpack.io -o yaml```
+```console
+kubectl get clusterbuilder.kpack.io -o yaml
+```
+
+```console
+kubectl get image.kpack.io <workload-name> -o yaml
+```
+
+```console
+kubectl get build.kpack.io -o yaml
+```
 
 
 ## <a id='error-update'></a> "Workload already exists" error after updating the workload
 
 When you update the workload, you receive the following error:
 
-```
+```console
 Error: workload "default/APP-NAME" already exists
 Error: exit status 1
 ```
@@ -39,7 +47,7 @@ Where `APP-NAME` is the name of the app.
 
 For example, when you run:
 
-```
+```console
 $ tanzu apps workload create tanzu-java-web-app \
 --git-repo https://github.com/dbuchko/tanzu-java-web-app \
 --git-branch main \
@@ -50,7 +58,7 @@ $ tanzu apps workload create tanzu-java-web-app \
 
 You receive the following error
 
-```
+```console
 Error: workload "default/tanzu-java-web-app" already exists
 Error: exit status 1
 ```
@@ -69,7 +77,7 @@ To resolve this issue, either delete the app or use a different name for the app
 When you view the logs of the `tap-telemetry` controller by running `kubectl logs -n
 tap-telemetry <tap-telemetry-controller-<hash> -f`, you see the following error:
 
-  ```
+  ```console
   "Error retrieving secret reg-creds on namespace tap-telemetry","error":"secrets \"reg-creds\" is forbidden: User \"system:serviceaccount:tap-telemetry:controller\" cannot get resource \"secrets\" in API group \"\" in the namespace \"tap-telemetry\""
   ```
 
@@ -84,7 +92,7 @@ in _Using RBAC Authorization_ in the Kubernetes documentation.
 
 To resolve this issue, run:
 
-```
+```console
 kubectl patch roles -n tap-telemetry tap-telemetry-controller --type='json' -p='[{"op": "add", "path": "/rules/-", "value": {"apiGroups": [""],"resources": ["secrets"],"verbs": ["get", "list", "watch"]} }]'
 ```
 
@@ -113,14 +121,15 @@ project is generated from the accelerator.
 
 Explicitly set the execute bit by running the `chmod` command:
 
-```
+```console
 chmod +x BUILD-SCRIPT-NAME
 ```
+
 Where `BUILD-SCRIPT-NAME` is the name of the build script.
 
 For example, for a project generated from the "Spring PetClinic" accelerator, run:
 
-```
+```console
 chmod +x ./mvnw
 ```
 
@@ -136,7 +145,7 @@ The connector must discover the application instances and render the details in 
 
 Recreate the Application Live View Connector pod by running:
 
-```
+```console
 kubectl -n app-live-view delete pods -l=name=application-live-view-connector
 ```
 
@@ -146,7 +155,7 @@ This allows the connector to discover the application instances and render the d
 
 When installing a Tanzu Application Platform profile, you receive the following error:
 
-```
+```console
 Internal error occurred: failed calling webhook "image-policy-webhook.signing.apps.tanzu.vmware.com": failed to call webhook: Post "https://image-policy-webhook-service.image-policy-system.svc:443/signing-policy-check?timeout=10s": service "image-policy-webhook-service" not found
 ```
 
@@ -185,14 +194,14 @@ components expect the webhook to verify their image signatures and the webhook i
 A known rare condition during Tanzu Application Platform profiles installation can cause this. If so,
 you may see a message similar to one of the following in component statuses:
 
-```
+```console
 Events:
   Type     Reason            Age                   From                   Message
   ----     ------            ----                  ----                   -------
   Warning  FailedCreate      4m28s                 replicaset-controller  Error creating: Internal error occurred: failed calling webhook "image-policy-webhook.signing.apps.tanzu.vmware.com": Post "https://image-policy-webhook-service.image-policy-system.svc:443/signing-policy-check?timeout=10s": no endpoints available for service "image-policy-webhook-service"
 ```
 
-```
+```console
 Events:
   Type     Reason            Age                   From                   Message
   ----     ------            ----                  ----                   -------
@@ -209,13 +218,13 @@ image signing enforcement.
 
 1. Back up `MutatingWebhookConfiguration` to a file by running:
 
-    ```
+    ```console
     kubectl get MutatingWebhookConfiguration image-policy-mutating-webhook-configuration -o yaml > image-policy-mutating-webhook-configuration.yaml
     ```
 
 1. Delete `MutatingWebhookConfiguration` by running:
 
-    ```
+    ```console
     kubectl delete MutatingWebhookConfiguration image-policy-mutating-webhook-configuration
     ```
 
@@ -224,7 +233,7 @@ image signing enforcement.
 
 1. Re-apply `MutatingWebhookConfiguration` by running:
 
-    ```
+    ```console
     kubectl apply -f image-policy-mutating-webhook-configuration.yaml
     ```
 
@@ -232,7 +241,7 @@ image signing enforcement.
 
 When viewing the output of `kubectl get events`, you see events similar to the following:
 
-```
+```console
 $ kubectl get events
 LAST SEEN   TYPE      REASON             OBJECT               MESSAGE
 28s         Normal    Preempted          pod/testpod          Preempted by image-policy-system/image-policy-controller-manager-59dc669d99-frwcp on node test-node
@@ -251,7 +260,7 @@ their pods preempted or evicted instead.
     down as follows:
 
     1. Create a values file named `scst-sign-values.yaml` with the following contents:
-        ```
+        ```console
         ---
         replicas: N
         ```
@@ -259,7 +268,7 @@ their pods preempted or evicted instead.
         cluster configuration.
 
     1. Apply the new configuration by running:
-        ```
+        ```console
         tanzu package installed update image-policy-webhook \
           --package-name image-policy-webhook.signing.apps.tanzu.vmware.com \
           --version 1.0.0-beta.3 \
@@ -279,7 +288,7 @@ their pods preempted or evicted instead.
 Supply Chain Security Tools - Store does not start. You see the following error in the
 `metadata-store-app` Pod logs:
 
-    ```
+    ```console
     $ kubectl logs pod/metadata-store-app-* -n metadata-store -c metadata-store-app
     ...
     [error] failed to initialize database, got error failed to connect to `host=metadata-store-db user=metadata-store-user database=metadata-store`: server error (FATAL: password authentication failed for user "metadata-store-user" (SQLSTATE 28P01))
@@ -299,13 +308,13 @@ data on the volume:
 1. Verify that the `metadata-store-db-*` Pod fails.
 
 1. Run:
-    ```
+    ```console
     kubectl exec -it metadata-store-db-KUBERNETES-ID -n metadata-store /bin/bash
     ```
     Where `KUBERNETES-ID` is the ID generated by Kubernetes and appended to the Pod name.
 
 1. To delete all database data, run:
-    ```
+    ```console
     rm -rf /var/lib/postgresql/data/*
     ```
     This is the path found in `postgres-db-deployment.yaml`.
@@ -320,7 +329,7 @@ data on the volume:
 Supply Chain Security Tools - Store does not start. You see the following error in the
 `metadata-store-app` Pod logs:
 
-```
+```console
 $ kubectl logs pod/metadata-store-app-* -n metadata-store -c metadata-store-app
 ...
 [error] failed to initialize database, got error failed to connect to `host=metadata-store-db user=metadata-store-user database=metadata-store`: server error (FATAL: password authentication failed for user "metadata-store-user" (SQLSTATE 28P01))
@@ -340,13 +349,14 @@ data on the volume:
 1. Verify that the `metadata-store-db-*` Pod fails.
 
 1. Run:
-    ```
+
+    ```console
     kubectl exec -it metadata-store-db-KUBERNETES-ID -n metadata-store /bin/bash
     ```
     Where `KUBERNETES-ID` is the ID generated by Kubernetes and appended to the Pod name.
 
 1. To delete all database data, run:
-    ```
+    ```console
     rm -rf /var/lib/postgresql/data/*
     ```
     This is the path found in `postgres-db-deployment.yaml`.
@@ -375,13 +385,13 @@ data on the volume:
 1. Verify that the `metadata-store-db-*` Pod fails.
 
 1. Run:
-    ```
+    ```console
     kubectl exec -it metadata-store-db-KUBERNETES-ID -n metadata-store /bin/bash
     ```
     Where `KUBERNETES-ID` is the ID generated by Kubernetes and appended to the Pod name.
 
 1. To delete all database data, run:
-    ```
+    ```console
     rm -rf /var/lib/postgresql/data/*
     ```
     This is the path found in `postgres-db-deployment.yaml`.
@@ -405,12 +415,12 @@ defined. The provisioner of `storageclass` is responsible for creating the persi
 **Solution**
 
 1. Verify that your cluster has `storageclass` by running:
-    ```
+    ```console
     kubectl get storageclass
     ```
 
 1. Create a `storageclass` in your cluster before deploying Supply Chain Security Tools - Store. For example:
-    ```
+    ```console
     # This is the storageclass that Kind uses
     kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml
 
