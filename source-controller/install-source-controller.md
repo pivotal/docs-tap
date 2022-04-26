@@ -20,13 +20,13 @@ To install Source Controller:
 
 1. List version information for the package by running:
 
-    ```
+    ```console
     tanzu package available list controller.source.apps.tanzu.vmware.com --namespace tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     $ tanzu package available list controller.source.apps.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for controller.source.apps.tanzu.vmware.com...
       NAME                                     VERSION  RELEASED-AT
@@ -37,7 +37,7 @@ To install Source Controller:
 
 2. (Optional) Gather values schema:
 
-    ```
+    ```console
     tanzu package available get controller.source.apps.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
 
@@ -45,7 +45,7 @@ To install Source Controller:
 
     For example:
 
-    ```
+    ```console
     $ tanzu package available get controller.source.apps.tanzu.vmware.com/0.3.3 --values-schema --namespace tap-install
      Retrieving package details for controller.source.apps.tanzu.vmware.com/0.3.3...
      KEY           DEFAULT  TYPE    DESCRIPTION
@@ -53,10 +53,10 @@ To install Source Controller:
     ```
 
 3. (Optional) Enable Source Controller to connect to image registries that use self-signed or private certificate authorities.
-If a certificate error `x509: certificate signed by unknown authority` occurs, this option can be used to trust additional certificate authorities. 
+If a certificate error `x509: certificate signed by unknown authority` occurs, this option can be used to trust additional certificate authorities.
 
     To provide a custom certificate, create a file named `source-controller-values.yaml` that includes the PEM-encoded CA certificate data.
-   
+
       For example:
 
       ```yaml
@@ -70,7 +70,7 @@ If a certificate error `x509: certificate signed by unknown authority` occurs, t
 
 4. Install the package:
 
-    ```
+    ```console
     tanzu package install source-controller -p controller.source.apps.tanzu.vmware.com -v VERSION-NUMBER -n tap-install -f VALUES-FILE
     ```
 
@@ -81,7 +81,7 @@ If a certificate error `x509: certificate signed by unknown authority` occurs, t
 
     For example:
 
-    ```
+    ```console
     tanzu package install source-controller -p controller.source.apps.tanzu.vmware.com -v 0.3.3  -n tap-install -f source-controller-values.yaml
     \ Installing package 'controller.source.apps.tanzu.vmware.com'
     | Getting package metadata for 'controller.source.apps.tanzu.vmware.com'
@@ -100,13 +100,13 @@ If a certificate error `x509: certificate signed by unknown authority` occurs, t
 
 5. Verify the package installation by running:
 
-    ```
+    ```console
     tanzu package installed get source-controller -n tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     tanzu package installed get source-controller -n tap-install
    - Retrieving installation details for source-controller...
     NAME:                    source-controller
@@ -119,13 +119,13 @@ If a certificate error `x509: certificate signed by unknown authority` occurs, t
 
     Verify that `STATUS` is `Reconcile succeeded`:
 
-    ```
+    ```console
     kubectl get pods -n source-system
     ```
 
     For example:
 
-    ```
+    ```console
     $ kubectl get pods -n source-system
     NAME                                        READY   STATUS    RESTARTS   AGE
     source-controller-manager-f68dc7bb6-4lrn6   1/1     Running   0          100s

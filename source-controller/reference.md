@@ -4,7 +4,7 @@ The following reference documentation exists.
 
 ## <a id="image-repository"></a> ImageRepository
 
-```
+```yaml
 apiVersion: source.apps.tanzu.vmware.com/v1alpha1
 kind: ImageRepository
 spec:
