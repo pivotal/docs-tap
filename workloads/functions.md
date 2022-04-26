@@ -27,7 +27,7 @@ To use the function `buildpacks`, you must upload their buildpackages to Build S
 
 1. Add the function's buildpackages to the default [ClusterStore](https://docs.vmware.com/en/Tanzu-Build-Service/1.6/vmware-tanzu-build-service/GUID-managing-stores.html) by running:
 
-    ```
+    ```console
     kp clusterstore add default \
     -b registry.tanzu.vmware.com/python-function-buildpack-for-vmware-tanzu/python-buildpack-with-deps:0.0.11 \
     -b registry.tanzu.vmware.com/java-function-buildpack-for-vmware-tanzu/java-buildpack-with-deps:0.0.6
@@ -35,7 +35,7 @@ To use the function `buildpacks`, you must upload their buildpackages to Build S
 
 1. Create and save a new [ClusterBuilder](https://docs.vmware.com/en/Tanzu-Build-Service/1.6/vmware-tanzu-build-service/GUID-managing-builders.html) by running:
 
-    ```
+    ```console
     kp clusterbuilder save function --store default -o - <<EOF
     ---
     - group:
@@ -56,7 +56,7 @@ To use the function `buildpacks`, you must upload their buildpackages to Build S
     This does not enable the full capability of non-function workloads provided by the default
     ClusterBuilder. See the following example.
 
-    ```
+    ```console
     kp clusterbuilder save function --store default -o - <<EOF
     ---
     - group:
@@ -77,7 +77,7 @@ To use the function `buildpacks`, you must upload their buildpackages to Build S
 
 1. After creating the ClusterBuilder, update your `tap-values.yaml` configuration to use the cluster builder you created. See the following example:
 
-    ```
+    ```yaml
     ootb_supply_chain_basic:
      cluster_builder: function
      registry:
@@ -92,7 +92,7 @@ To use the function `buildpacks`, you must upload their buildpackages to Build S
 
 1. Apply the update by going to the directory containing `tap-values.yaml` and running:
 
-    ```
+    ```console
     tanzu package installed update tap -p tap.tanzu.vmware.com -v VERSION --values-file tap-values.yaml -n tap-install
     ```
 
@@ -112,7 +112,7 @@ The accelerator ZIP file contains a file called k8s-resource.yaml. This file con
 1. Expand the accelerator ZIP file in your target cluster with Tanzu Application Platform GUI installed.
 1. To update the Application Accelerator templates in Tanzu Application Platform GUI, you must apply the k8s-resource.yaml. Run the following command in your terminal in the folder where you expanded the ZIP file:
 
-    ```
+    ```console
     kubectl apply -f k8s-resource.yaml --namespace accelerator-system
     ```
 
@@ -139,9 +139,9 @@ The accelerator ZIP file contains a file called k8s-resource.yaml. This file con
 
 ## <a id="deploy-function"></a>Deploy your function
 
-1. Deploy the Function accelerator by running the tanzu apps workload create command:
+1. Deploy the Function accelerator by running the `tanzu apps workload` create command:
 
-    ```
+    ```console
     tanzu apps workload create functions-accelerator-python \
     --local-path . \
     --source-image REGISTRY/IMAGE:TAG \
@@ -161,12 +161,12 @@ The accelerator ZIP file contains a file called k8s-resource.yaml. This file con
 
 1. View the build and runtime logs for your application by running the tail command:
 
-    ```
+    ```console
     tanzu apps workload tail functions-accelerator-python --since 10m --timestamp
     ```
 
 1. After the workload is built and running, you can view the web application in your browser. To view the URL of the web application, run the following command and then ctrl-click the Workload Knative Services URL at the bottom of the command output.
 
-    ```
+    ```console
     tanzu apps workload get functions-accelerator-python
     ```
