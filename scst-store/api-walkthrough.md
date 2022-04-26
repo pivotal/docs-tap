@@ -8,25 +8,25 @@ The following procedure explains how to use CURL to POST an image report.
 
 1. Port Forward the metadata-store-app. Run the following:
 
-    ```
+    ```console
     kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store
     ```
 
 2. Retrieve the `metadata-store-read-write-client` access token. Ensure the Service Account is [created](create-service-account-access-token.md). Run:
 
-    ```
+    ```console
     export METADATA_STORE_ACCESS_TOKEN=$(kubectl get secrets -n metadata-store -o jsonpath="{.items[?(@.metadata.annotations['kubernetes\.io/service-account\.name']=='metadata-store-read-write-client')].data.token}" | base64 -d)
     ```
 
 3. Retrieve the CA Certificate and store it locally. Run the following:
 
-    ```
+    ```console
     kubectl get secret app-tls-cert -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d > /tmp/ca.crt
     ```
 
 4. Run the Curl POST Command:
 
-    ```
+    ```console
     curl https://metadata-store-app:8443/api/imageReport \
         --resolve metadata-store-app:8443:127.0.0.1 \
         --cacert /tmp/ca.crt \
@@ -40,7 +40,7 @@ The following procedure explains how to use CURL to POST an image report.
 
 6. The following is a sample POST body of a image report:
 
-    ```
+    ```text
     {
       "Name" : "burger-image-2",
       "Registry" : "test-registry",

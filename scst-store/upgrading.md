@@ -19,7 +19,7 @@ instead search for `StatefulSet`.
 When using Tanzu to upgrade to a new version of the store, there is occasionally data
 corruption. Here is an example of how this shows up in the log:
 
-```
+```console
 PostgreSQL Database directory appears to contain a database; Skipping initialization
 
 2022-01-21 21:53:38.799 UTC [1] LOG:  starting PostgreSQL 13.5 (Ubuntu 13.5-1.pgdg18.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0, 64-bit
@@ -50,12 +50,12 @@ persistent volume:
 
 1. Discover the name of the app pod that is not in a pending state by running:
 
-    ```
+    ```console
     kubectl get pods -n metadata-store
     ```
 
 1. Delete the pod by running:
 
-    ```
+    ```console
     kubectl delete pod METADATA-STORE-APP-POD-NAME -n metadata-store
     ```

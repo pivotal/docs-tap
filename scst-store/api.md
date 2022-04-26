@@ -1,6 +1,3 @@
-
-
-
 # API details
 
 See [API walkthrough](api-walkthrough.md) for a walkthrough and example.
@@ -83,7 +80,7 @@ See [API walkthrough](api-walkthrough.md) for a walkthrough and example.
 
 ### <a id="cir"></a> Create a new image report. Related packages and vulnerabilities are also created. (*CreateImageReport*)
 
-```
+```console
 POST /api/imageReport
 ```
 
@@ -122,7 +119,7 @@ ErrorMessage
 
 ### <a id="create-sr"></a> Create a new source report. Related packages and vulnerabilities are also created. (*CreateSourceReport*)
 
-```
+```console
 POST /api/sourceReport
 ```
 
@@ -161,7 +158,7 @@ ErrorMessage
 
 ### <a id="gip"></a> List the packages in an image. (*GetImagePackages*)
 
-```
+```console
 GET /api/images/{IDorDigest}/packages
 ```
 
@@ -200,7 +197,7 @@ ErrorMessage
 
 ### <a id="giv"></a> List vulnerabilities from the given image. (*GetImageVulnerabilities*)
 
-```
+```console
 GET /api/images/{IDorDigest}/vulnerabilities
 ```
 
@@ -239,7 +236,7 @@ ErrorMessage
 
 ### <a id="get-images"></a> Search image by id or digest. (*GetImages*)
 
-```
+```console
 GET /api/images
 ```
 
@@ -279,7 +276,7 @@ ErrorMessage
 
 ### <a id="gpi"></a> List the images that contain the given package. (*GetPackageImages*)
 
-```
+```console
 GET /api/packages/{IDorName}/images
 ```
 
@@ -318,7 +315,7 @@ ErrorMessage
 
 ### <a id="gps"></a> List the sources containing the given package. (*GetPackageSources*)
 
-```
+```console
 GET /api/packages/{IDorName}/sources
 ```
 
@@ -357,7 +354,7 @@ ErrorMessage
 
 ### <a id="gpv"></a> List vulnerabilities from the given package. (*GetPackageVulnerabilities*)
 
-```
+```console
 GET /api/packages/{IDorName}/vulnerabilities
 ```
 
@@ -396,7 +393,7 @@ ErrorMessage
 
 ### <a id="gp"></a> Search packages by id, name and/or version. (*GetPackages*)
 
-```
+```console
 GET /api/packages
 ```
 
@@ -437,7 +434,7 @@ ErrorMessage
 
 ### <a id="gsp"></a> get source packages (*GetSourcePackages*)
 
-```
+```console
 GET /api/sources/{IDorRepoorSha}/packages
 ```
 
@@ -476,7 +473,7 @@ ErrorMessage
 
 ### <a id="gsp"></a> List packages of the given source. (*GetSourcePackagesQuery*)
 
-```
+```console
 GET /api/sources/packages
 ```
 
@@ -517,7 +514,7 @@ ErrorMessage
 
 ### <a id="gsv"></a> get source vulnerabilities (*GetSourceVulnerabilities*)
 
-```
+```console
 GET /api/sources/{IDorRepoorSha}/vulnerabilities
 ```
 
@@ -556,7 +553,7 @@ ErrorMessage
 
 ### <a id="gsvq"></a> List vulnerabilities of the given source. (*GetSourceVulnerabilitiesQuery*)
 
-```
+```console
 GET /api/sources/vulnerabilities
 ```
 
@@ -597,7 +594,7 @@ ErrorMessage
 
 ### <a id="get-sourcs"></a> Search for sources by ID, repository, commit sha and/or organization. (*GetSourcs*)
 
-```
+```console
 GET /api/sources
 ```
 
@@ -630,7 +627,7 @@ ErrorMessage
 
 ### <a id="gv"></a> Search for vulnerabilities by CVE id. (*GetVulnerabilities*)
 
-```
+```console
 GET /api/vulnerabilities
 ```
 
@@ -669,7 +666,7 @@ ErrorMessage
 
 ### <a id="gvi"></a> List the images that contain the given vulnerability. (*GetVulnerabilityImages*)
 
-```
+```console
 GET /api/vulnerabilities/{CVEID}/images
 ```
 
@@ -708,7 +705,7 @@ ErrorMessage
 
 ### <a id="gvp"></a> List packages that contain the given CVE id. (*GetVulnerabilityPackages*)
 
-```
+```console
 GET /api/vulnerabilities/{CVEID}/packages
 ```
 
@@ -747,7 +744,7 @@ ErrorMessage
 
 ### <a id="gvs"></a> List sources that contain the given vulnerability. (*GetVulnerabilitySources*)
 
-```
+```console
 GET /api/vulnerabilities/{CVEID}/sources
 ```
 
@@ -786,7 +783,7 @@ ErrorMessage
 
 ### <a id="health-check"></a> health check (*HealthCheck*)
 
-```
+```console
 GET /api/health
 ```
 

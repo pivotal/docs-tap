@@ -4,7 +4,7 @@
 
 The installation creates the following in your Kubernetes cluster:
 
-* Two components — an API back end and a database. 
+* Two components — an API back end and a database.
   Each component includes:
     * service
     * deployment
@@ -32,13 +32,13 @@ Users can also configure the deployment to use their own RDS database instead of
 
 By default, a database password is generated automatically upon deployment. To configure a custom password, use the `db_password` property in the `metadata-store-values.yaml` during deployment.
 
-```
+```yaml
 db_password: "PASSWORD-0123"
 ```
 
 If you're deploying with Tanzu Application Platform profiles, in `tap-values.yaml`, put:
 
-```
+```yaml
 metadata_store:
   db_password: "PASSWORD-0123"
 ```
@@ -51,7 +51,7 @@ Where `PASSWORD-0123` is the same password used between deployments.
 
 If your environment does not support `LoadBalancer`, and you want to use `NodePort`, configure the `app_service_type` property in your `metadata-store-values.yaml`:
 
-```
+```yaml
 app_service_type: "LoadBalancer"
 ```
 
@@ -62,7 +62,7 @@ This service account is a cluster-wide account that uses ClusterRole.
 If you don't want the service account and role, set the `add_default_rw_service_account` property to `"false"`.
 To create a custom service account, see [Configure access tokens](create-service-account-access-token.md).
 
-The store creates a read-only cluster role, which can be bound to a service account through `ClusterRoleBinding`. To create service accounts to bind to this cluster role, see [Configure access tokens](create-service-account-access-token.md). 
+The store creates a read-only cluster role, which can be bound to a service account through `ClusterRoleBinding`. To create service accounts to bind to this cluster role, see [Configure access tokens](create-service-account-access-token.md).
 
 ## <a id='export-cert'></a>Exporting certificates
 
@@ -72,7 +72,7 @@ Supply Chain Security Tools - Store creates [Secret Export](https://github.com/v
 
 Supply Chain Security Tools - Store's values file allows you to enable ingress support and to configure a custom domain name to use Contour to provide external access to Supply Chain Security Tools - Store's API. For example:
 
-```
+```yaml
 ingress_enabled: "true"
 ingress_domain: "example.com"
 ```
