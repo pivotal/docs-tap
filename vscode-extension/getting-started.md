@@ -17,24 +17,24 @@ Ensure you have completed the [Installation](../vscode-extension/installation.md
 
 To use the Tanzu Developer Tools extension with a project, the project must have 3 required files. There are two ways to create these files:
 
-- Use the [VS Code Snippets](#catalog-information) that the Tanzu Developer Tools provides. For more information about the Snippets, see the [VS Code Documentation](https://code.visualstudio.com/docs/editor/userdefinedsnippets). 
+- Use the [VS Code Snippets](#catalog-information) that the Tanzu Developer Tools provides. For more information about the Snippets, see the [VS Code Documentation](https://code.visualstudio.com/docs/editor/userdefinedsnippets).
 
 - Write the three files manually by following [Set Up Manually](#set-up-manually). The required files are:
 
     - **workload.yaml**
-    
+
         A file named **workload** with the extension **.yaml** must be included in the project. For example, `my project/config/workload.yaml`. The **workload.yaml** file provides instructions to the [Supply Chain Choreographer](../scc/about.md) for how a workload must be built and managed.
-        
+
         >**Note:** The Tanzu Developer Tools extension requires only one workload.yaml per project. The workload.yaml must be a single-document YAML file, not a multidocument YAML file.
 
     - **catalog-info.yaml**
-    
+
         A file named **catalog-info** with the extension **.yaml** must be included in the project. For example, `my project/catalog/catalog-info.yaml`. The **catalog-info.yaml** file enables the workloads created with the Tanzu Developer Tools extension to be visible in the [TAP GUI](../tap-gui/about.md).
 
     - **Tiltfile**
-    
+
         A file named **Tiltfile** with no extension (no filetype) must be included in the project. For example, `My project/Tiltfile`. The **Tiltfile** provides the configuration for [Tilt](https://docs.tilt.dev/) to enable your project to live update on the Tanzu Application Platform.
-        
+
         >**Note:** The Tanzu Developer Tools extension requires only one Tiltfile per project.
 
 ## <a id="catalog-information"></a> Set Up Using Code Snippets
@@ -106,7 +106,7 @@ To create a **workload.yaml** file by using the Code Snippets:
 1. Fill out the template by using the **tab** key.
 1. If the targeting Kubernetes cluster enabled by Tanzu Application Platform is not running on your local machine, add a new line to the end of the **Tiltfile** template and enter the following text:
 
-    ```
+    ```console
     allow_k8s_contexts('<context-name>')
     ```
 
@@ -133,7 +133,7 @@ Before beginning to write your workload.yaml file, ensure that you know:
 
 The following is an example **workload.yaml** file:
 
-```
+```yaml
 apiVersion: carto.run/v1alpa1
 kind: Workload
 metadata:
@@ -169,7 +169,7 @@ Before beginning to write your **catalog-info.yaml** file, ensure that you:
 
 The following is an example **catalog-info.yaml** file:
 
-```
+```yaml
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
@@ -206,7 +206,7 @@ Before beginning to write your **Tiltfile** file, ensure that you know:
 
 The following is an example **Tiltfile** file:
 
-```
+```text
 SOURCE_IMAGE = os.getenv("SOURCE_IMAGE", default='<source-image>')
 LOCAL_PATH = os.getenv("LOCAL_PATH", default='.')
 NAMESPACE = os.getenv("NAMESPACE", default='default')
@@ -252,7 +252,7 @@ If your company has configured [Application Accelerator](https://docs.vmware.com
 1. Open **Application Accelerator**.
 
     >**Note:** The application accelerator location will vary based on where your company placed it, contact the appropriate team to determine its location.
-    
+
 1. Search for **Tanzu Java Web App** in the Application Accelerator.
 1. Add the required configuration information and generate the application.
 1. Unzip the file and open the project in a VS Code workspace.
