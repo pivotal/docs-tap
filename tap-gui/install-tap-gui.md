@@ -40,13 +40,13 @@ To install Tanzu Application Platform GUI:
 
 1. List version information for the package by running:
 
-    ```
+    ```console
     tanzu package available list tap-gui.tanzu.vmware.com --namespace tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     $ tanzu package available list tap-gui.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for tap-gui.tanzu.vmware.com...
       NAME                      VERSION     RELEASED-AT
@@ -55,7 +55,7 @@ To install Tanzu Application Platform GUI:
 
 2. (Optional) To make changes to the default installation settings, run:
 
-    ```
+    ```console
     tanzu package available get tap-gui.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
 
@@ -66,7 +66,7 @@ To install Tanzu Application Platform GUI:
 1. Create `tap-gui-values.yaml` using the following example code, replacing all placeholders
 with your relevant values. The meanings of some placeholders are explained in this example:
 
-    ```
+    ```yaml
     service_type: ClusterIP
     ingressEnabled: "true"
     ingressDomain: "INGRESS-DOMAIN"
@@ -91,7 +91,7 @@ service's External IP address.
 
 1. Install the package by running:
 
-    ```
+    ```console
     tanzu package install tap-gui \
      --package-name tap-gui.tanzu.vmware.com \
      --version VERSION -n tap-install \
@@ -102,7 +102,7 @@ service's External IP address.
 
     For example:
 
-    ```
+    ```console
     $ tanzu package install tap-gui -package-name tap-gui.tanzu.vmware.com --version 1.0.1 -n tap-install -f tap-gui-values.yaml
     - Installing package 'tap-gui.tanzu.vmware.com'
     | Getting package metadata for 'tap-gui.tanzu.vmware.com'
@@ -118,13 +118,13 @@ service's External IP address.
 
 1. Verify that the package installed by running:
 
-    ```
+    ```console
     tanzu package installed get tap-gui -n tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     $ tanzu package installed get tap-gui -n tap-install
     | Retrieving installation details for cc...
     NAME:                    tap-gui

@@ -25,7 +25,7 @@ To configure Amazon S3 access:
     5. Click **Add permissions** and click **Create Inline Policy**.
     6. Click the **JSON** tab and replace contents with this JSON replacing `BUCKET-NAME` with the bucket name.
 
-        ```
+        ```json
         {
             "Version": "2012-10-17",
             "Statement": [
@@ -87,13 +87,13 @@ To generate and publish TechDocs by using the TechDocs CLI:
 1. [Download and install Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
 2. Install `npx`:
 
-    ```
+    ```console
     npm install -g npx
     ```
 
 3. Generate the TechDocs for the root of the catalog by running:
 
-    ```
+    ```console
     npx @techdocs/cli generate --source-dir DIRECTORY-CONTAINING-THE-ROOT-YAML-FILE --output-dir ./site
     ```
 
@@ -102,7 +102,7 @@ To generate and publish TechDocs by using the TechDocs CLI:
 4. Review the contents of the `site` directory to verify the TechDocs were generated successfully.
 5. Set environment variables for authenticating with AWS S3 with an account that has read/write access:
 
-    ```
+    ```console
     export AWS_ACCESS_KEY_ID=AWS-ACCESS-KEY-ID
     export AWS_SECRET_ACCESS_KEY=AWS-SECRET-ACCESS-KEY
     export AWS_REGION=AWS-REGION
@@ -114,7 +114,7 @@ To generate and publish TechDocs by using the TechDocs CLI:
 
     For example, `default/location/yelb-catalog-info`.
 
-    ```
+    ```console
     npx @techdocs/cli publish --publisher-type awsS3 --storage-name BUCKET-NAME --entity NAMESPACE/KIND/NAME --directory ./site
     ```
 
@@ -129,7 +129,7 @@ To update the `techdocs` section `app-config.yaml` to point to the Amazon S3 buc
 
 1. Replace the `techdocs` section in `tap-gui-values.yaml` with the following YAML, substituting appropriate values for the placeholders.
 
-    ```
+    ```yaml
     techdocs:
       builder: 'external'
       publisher:
@@ -145,7 +145,7 @@ To update the `techdocs` section `app-config.yaml` to point to the Amazon S3 buc
 
 2. Update your installation using the `tanzu` CLI:
 
-    ```
+    ```console
     tanzu package installed update tap-gui \
       --version <package-version> \
       -f <values-file>
@@ -153,7 +153,7 @@ To update the `techdocs` section `app-config.yaml` to point to the Amazon S3 buc
 
 3. Check the status of this update by running:
 
-    ```
+    ```console
     tanzu package installed list
     ```
 

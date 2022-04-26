@@ -12,7 +12,7 @@ To use a PostgreSQL database:
 
 1. Use the following values in your `tap-values-file.yml`:
 
-    ```
+    ```yaml
         backend:
             baseUrl: http://tap-gui.INGRESS-DOMAIN
             cors:
@@ -36,7 +36,7 @@ To use a PostgreSQL database:
 
 1. Update the package profile by running:
 
-    ```
+    ```console
     tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version VERSION-NUMBER --values-file tap-values-file.yml -n tap-install
     ```
 
@@ -44,7 +44,7 @@ To use a PostgreSQL database:
 
     For example:
 
-    ```
+    ```console
     $ tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version 1.0.0 --values-file tap-values-file.yml -n tap-install
     | Updating package 'tap'
     | Getting package install for 'tap'

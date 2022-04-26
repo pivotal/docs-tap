@@ -22,7 +22,7 @@ Before installing Application Live View:
 
 ## <a id='install-app-live-view'></a> Install Application Live View
 
-You can install Application Live View in single cluster or multicluster environment: 
+You can install Application Live View in single cluster or multicluster environment:
 
 - `Single cluster`: All Application Live View components are deployed in a single cluster. The user can access Application Live View plug-in information of the applications across all the namespaces in the Kubernetes cluster. This is the default mode of Application Live View.
 
@@ -34,22 +34,22 @@ To install Application Live View Backend:
 
 1. List version information for the package by running:
 
-    ```
+    ```console
     tanzu package available list backend.appliveview.tanzu.vmware.com --namespace tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     $ tanzu package available list backend.appliveview.tanzu.vmware.com --namespace tap-install
-    - Retrieving package versions for backend.appliveview.tanzu.vmware.com... 
+    - Retrieving package versions for backend.appliveview.tanzu.vmware.com...
       NAME                                  VERSION        RELEASED-AT           
       backend.appliveview.tanzu.vmware.com  1.1.1          2022-04-22T00:00:10Z
     ```
 
 1. (Optional) Change the default installation settings by running:
 
-    ```
+    ```console
     tanzu package available get backend.appliveview.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
 
@@ -57,7 +57,7 @@ To install Application Live View Backend:
 
     For example:
 
-    ```
+    ```console
     $ tanzu package available get backend.appliveview.tanzu.vmware.com/1.1.1 --values-schema --namespace tap-install
     ```
 
@@ -68,31 +68,31 @@ To install Application Live View Backend:
 
     For single cluster environment, use the following values:
 
-    ```
+    ```yaml
     ingressEnabled: "false"
     ```
 
     For a multicluster environment, use the following values:
 
-    ```
+    ```yaml
     ingressEnabled: "true"
     ingressDomain: ${INGRESS-DOMAIN}
     ```
 
-    Where `INGRESS-DOMAIN` is the top level domain you use for the `tanzu-shared-ingress` service’s external IP address. The `appliveview` 
+    Where `INGRESS-DOMAIN` is the top level domain you use for the `tanzu-shared-ingress` service’s external IP address. The `appliveview`
     subdomain is prepended to the value provided.
 
     To configure TLS certificate delegation information for the domain, add the following values to `app-live-view-backend-values.yaml`:
-    
-    ```
+
+    ```yaml
     tls:
-        namespace: "NAMESPACE" 
+        namespace: "NAMESPACE"
         secretName: "SECRET NAME"
     ```
 
-    Where: 
-    
-    - `NAMESPACE` is the targeted namespace of TLS secret for the domain. 
+    Where:
+
+    - `NAMESPACE` is the targeted namespace of TLS secret for the domain.
     - `SECRET NAME` is the name of TLS secret for the domain.
 
 
@@ -101,41 +101,41 @@ To install Application Live View Backend:
 
 1. Install the Application Live View Backend package by running:
 
-    ```
+    ```console
     tanzu package install appliveview -p backend.appliveview.tanzu.vmware.com -v VERSION-NUMBER -n tap-install -f app-live-view-backend-values.yaml
     ```
-    
+
     Where `VERSION-NUMBER` is the version of the package listed.
 
     For example:
 
-    ```
+    ```console
     $ tanzu package install appliveview -p backend.appliveview.tanzu.vmware.com -v 1.1.1 -n tap-install -f app-live-view-backend-values.yaml
-    - Installing package 'backend.appliveview.tanzu.vmware.com' 
-    | Getting namespace 'tap-install' 
-    | Getting package metadata for 'backend.appliveview.tanzu.vmware.com' 
-    | Creating service account 'appliveview-tap-install-sa' 
-    | Creating cluster admin role 'appliveview-tap-install-cluster-role' 
-    | Creating cluster role binding 'appliveview-tap-install-cluster-rolebinding' 
-    | Creating package resource 
-    | Package install status: Reconciling 
+    - Installing package 'backend.appliveview.tanzu.vmware.com'
+    | Getting namespace 'tap-install'
+    | Getting package metadata for 'backend.appliveview.tanzu.vmware.com'
+    | Creating service account 'appliveview-tap-install-sa'
+    | Creating cluster admin role 'appliveview-tap-install-cluster-role'
+    | Creating cluster role binding 'appliveview-tap-install-cluster-rolebinding'
+    | Creating package resource
+    | Package install status: Reconciling
 
     Added installed package 'appliveview' in namespace 'tap-install'
     ```
 
-    >**Note**: The Application Live View Backend component is deployed in `app-live-view` namespace by default. 
+    >**Note**: The Application Live View Backend component is deployed in `app-live-view` namespace by default.
 
 1. Verify the Application Live View Backend package installation by running:
 
-    ```
+    ```console
     tanzu package installed get appliveview -n tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     tanzu package installed get appliveview -n tap-install            
-    \ Retrieving installation details for appliveview... 
+    \ Retrieving installation details for appliveview...
     NAME:                    appliveview
     PACKAGE-NAME:            backend.appliveview.tanzu.vmware.com
     PACKAGE-VERSION:         1.1.1
@@ -153,22 +153,22 @@ To install Application Live View Connector:
 
 1. List version information for the package by running:
 
-    ```
+    ```console
     tanzu package available list connector.appliveview.tanzu.vmware.com --namespace tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     $ tanzu package available list connector.appliveview.tanzu.vmware.com --namespace tap-install
-    - Retrieving package versions for connector.appliveview.tanzu.vmware.com... 
+    - Retrieving package versions for connector.appliveview.tanzu.vmware.com...
       NAME                                    VERSION        RELEASED-AT           
       connector.appliveview.tanzu.vmware.com  1.1.1          2022-04-22T00:00:10Z
     ```
 
 1. (Optional) Change the default installation settings by running:
 
-    ```
+    ```console
     tanzu package available get connector.appliveview.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
 
@@ -176,7 +176,7 @@ To install Application Live View Connector:
 
     For example:
 
-    ```
+    ```console
     $ tanzu package available get connector.appliveview.tanzu.vmware.com/1.1.1 --values-schema --namespace tap-install
     ```
 
@@ -187,16 +187,16 @@ To install Application Live View Connector:
 
     For single cluster environment, use the following values:
 
-    ```
+    ```yaml
     backend:
         sslDisabled: "true"
     ```
-    
+
     >**Note**: The Application Live View Connector connects to the `cluster-local` backend to register the applications.
 
     For a multicluster environment, use the following values:
 
-    ```
+    ```yaml
     backend:
         sslDisabled: "false"
         host: appliveview.INGRESS-DOMAIN
@@ -208,46 +208,46 @@ To install Application Live View Connector:
 
     You can edit the values to suit your project needs or leave the default values as is.
 
-    >**Note:** Using the HTTP proxy either on 80 or 443 based on SSL config exposes the Backend service running on port 7000. The connector connects to the Backend on port 80/443 by default. Therefore, you are not required to explicitly configure the `port` field. 
-        
+    >**Note:** Using the HTTP proxy either on 80 or 443 based on SSL config exposes the Backend service running on port 7000. The connector connects to the Backend on port 80/443 by default. Therefore, you are not required to explicitly configure the `port` field.
+
 
 1. Install the Application Live View Connector package by running:
 
-    ```
+    ```console
     tanzu package install appliveview-connector -p connector.appliveview.tanzu.vmware.com -v VERSION-NUMBER -n tap-install -f app-live-view-connector-values.yaml
     ```
-    
+
     Where `VERSION-NUMBER` is the version of the package listed. For example, `1.1.1`.
 
     For example:
 
-    ```
+    ```console
     $ tanzu package install appliveview-connector -p connector.appliveview.tanzu.vmware.com -v 1.1.1 -n tap-install -f app-live-view-connector-values.yaml
-    | Installing package 'connector.appliveview.tanzu.vmware.com' 
-    | Getting namespace 'tap-install' 
-    | Getting package metadata for 'connector.appliveview.tanzu.vmware.com' 
-    | Creating service account 'appliveview-connector-tap-install-sa' 
-    | Creating cluster admin role 'appliveview-connector-tap-install-cluster-role' 
-    | Creating cluster role binding 'appliveview-connector-tap-install-cluster-rolebinding' 
-    - Creating package resource 
-    / Package install status: Reconciling 
+    | Installing package 'connector.appliveview.tanzu.vmware.com'
+    | Getting namespace 'tap-install'
+    | Getting package metadata for 'connector.appliveview.tanzu.vmware.com'
+    | Creating service account 'appliveview-connector-tap-install-sa'
+    | Creating cluster admin role 'appliveview-connector-tap-install-cluster-role'
+    | Creating cluster role binding 'appliveview-connector-tap-install-cluster-rolebinding'
+    - Creating package resource
+    / Package install status: Reconciling
 
     Added installed package 'appliveview-connector' in namespace 'tap-install'
     ```
 
-    >**Note:** Each cluster installs the connector as a DaemonSet. The connector is configured to connect to the central instance of the Backend. The Application Live View Connector component is deployed in `app-live-view-connector` namespace by default. 
+    >**Note:** Each cluster installs the connector as a DaemonSet. The connector is configured to connect to the central instance of the Backend. The Application Live View Connector component is deployed in `app-live-view-connector` namespace by default.
 
 1. Verify the `Application Live View Connector` package installation by running:
 
-    ```
-    tanzu package installed get appliveview-connector -n tap-install 
+    ```console
+    tanzu package installed get appliveview-connector -n tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     tanzu package installed get appliveview-connector -n tap-install                                                                              5s
-    | Retrieving installation details for appliveview-connector... 
+    | Retrieving installation details for appliveview-connector...
     NAME:                    appliveview-connector
     PACKAGE-NAME:            connector.appliveview.tanzu.vmware.com
     PACKAGE-VERSION:         1.1.1
@@ -263,22 +263,22 @@ To install Application Live View Connector:
 
 1. List version information for the package by running:
 
-    ```
+    ```console
     tanzu package available list conventions.appliveview.tanzu.vmware.com --namespace tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     $ tanzu package available list conventions.appliveview.tanzu.vmware.com --namespace tap-install
-    - Retrieving package versions for conventions.appliveview.tanzu.vmware.com... 
+    - Retrieving package versions for conventions.appliveview.tanzu.vmware.com...
       NAME                                      VERSION        RELEASED-AT           
       conventions.appliveview.tanzu.vmware.com  1.1.1          2022-04-22T00:00:00Z
     ```
 
 1. Install the Application Live View Conventions package by running:
 
-    ```
+    ```console
     tanzu package install appliveview-conventions -p conventions.appliveview.tanzu.vmware.com -v VERSION-NUMBER -n tap-install
     ```
 
@@ -286,29 +286,29 @@ To install Application Live View Connector:
 
     For example:
 
-    ```
-    $ tanzu package install appliveview-conventions -p conventions.appliveview.tanzu.vmware.com -v 1.1.1 -n tap-install 
-    - Installing package 'conventions.appliveview.tanzu.vmware.com' 
-    | Getting namespace 'tap-install' 
-    | Getting package metadata for 'conventions.appliveview.tanzu.vmware.com' 
-    | Creating service account 'appliveview-conventions-tap-install-sa' 
-    | Creating cluster admin role 'appliveview-conventions-tap-install-cluster-role' 
-    | Creating cluster role binding 'appliveview-conventions-tap-install-cluster-rolebinding' 
-    - Creating package resource 
-    \ Package install status: Reconciling 
+    ```console
+    $ tanzu package install appliveview-conventions -p conventions.appliveview.tanzu.vmware.com -v 1.1.1 -n tap-install
+    - Installing package 'conventions.appliveview.tanzu.vmware.com'
+    | Getting namespace 'tap-install'
+    | Getting package metadata for 'conventions.appliveview.tanzu.vmware.com'
+    | Creating service account 'appliveview-conventions-tap-install-sa'
+    | Creating cluster admin role 'appliveview-conventions-tap-install-cluster-role'
+    | Creating cluster role binding 'appliveview-conventions-tap-install-cluster-rolebinding'
+    - Creating package resource
+    \ Package install status: Reconciling
 
     Added installed package 'appliveview-conventions' in namespace 'tap-install'
     ```
 
 1. Verify the package install for Application Live View Conventions package by running:
 
-    ```
+    ```console
     tanzu package installed get appliveview-conventions -n tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     tanzu package installed get appliveview-conventions -n tap-install
     | Retrieving installation details for appliveview-conventions... 
     NAME:                    appliveview-conventions

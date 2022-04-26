@@ -19,7 +19,7 @@ We also support a custom OpenID Connect (OIDC) provider shown here:
 
     Example:
 
-    ```
+    ```yaml
     tap_gui:
       service_type: ClusterIP
       ingressEnabled: "true"
@@ -61,7 +61,7 @@ We also support a custom OpenID Connect (OIDC) provider shown here:
 
 If you want to enable guest access along with other providers, you can do it by providing the following flag under your authentication configuration:
 
-  ```
+  ```yaml
   auth:
     allowGuestAccess: true
   ```
@@ -70,7 +70,7 @@ If you want to enable guest access along with other providers, you can do it by 
 
 You can change the card's title and/or description for a specific provider with the following configuration:
 
-  ```
+  ```yaml
   auth:
     environment: development
     providers:

@@ -121,7 +121,7 @@ To do so:
 
 1. Create the `Namespace`, `ServiceAccount`, `ClusterRole` and `ClusterRoleBinding` by running:
 
-    ```
+    ```console
     kubectl create -f tap-gui-viewer-service-account-rbac.yaml
     ```
 
@@ -183,14 +183,14 @@ To do so:
 
 1. Update the `tap-gui` package by running this command:
 
-    ```
+    ```console
     tanzu package installed update tap-gui --values-file tap-gui-values.yaml
     ```
 
 1. Wait a moment for the `tap-gui` package to update and then verify that `STATUS` is
 `Reconcile succeeded` by running:
 
-    ```
+    ```console
     tanzu package installed get tap-gui -n tap-install
     ```
 
