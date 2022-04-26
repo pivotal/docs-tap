@@ -37,6 +37,8 @@ Follow these steps to add the new package repository:
 
 ### <a id="profile-based-instruct"></a> Upgrade instructions for Profile-based installation
 
+>**Important:** Ensure `descriptor_name` is set to either `full` or `lite` in the [full-profile YAML](install.md#full-profile).
+
 For Tanzu Application Platform that is installed by profile, you can perform the upgrade by running:
 
 >**Note:** Ensure you run the following command in the directory where the `tap-values.yaml` file resides.
