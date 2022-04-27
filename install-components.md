@@ -160,10 +160,28 @@ that you plan to create the `Workload` in:
     ```
 
 3. Give developers namespace-level access and view access to appropriate cluster-level resources by doing one of the following:
-  * Use the `tanzu auth` plug-in to grant `app-viewer` or `app-editor` roles
-  * Apply the following RBAC policy:
+
+  **Note:** In order to apply the bindings below, an adminstrator account is required. However to use the pre-defined roles, a non adminstrator account (i.e. developer account) is required.
+
+  1) Use the [`tanzu rbac`](authn-authz/binding.md) plug-in to grant `app-viewer` or `app-editor` roles to an identity provider group
 
       ```console
+      tanzu rbac binding add -g <GROUP-FOR-APP-VIEWER> -n <YOUR-NAMESPACE> -r app-viewer
+      tanzu rbac binding add -g <GROUP-FOR-APP-EDITOR> -n <YOUR-NAMESPACE> -r app-editor
+      ```
+
+      Where:
+
+      - `<YOUR-NAMESPACE>` is the name that you want to use for the developer namespace
+      - `<GROUP-FOR-APP-VIEWER>` is the group from the upstream identity provider should have access to `app-viewer` resources on the current cluster
+      - `<GROUP-FOR-APP-EDITOR>` is the group from the upstream identity provider should have access to `app-editor` resources on the current cluster
+
+      Recommendation: Create a group in your identity provider's grouping system for each developer namespace, then add the users accordingly.
+
+  1) Apply the following RBAC policy:
+
+      ```console
+      cat <<EOF | kubectl -n <YOUR-NAMESPACE> apply -f -
       apiVersion: rbac.authorization.k8s.io/v1
       kind: RoleBinding
       metadata:
@@ -174,23 +192,57 @@ that you plan to create the `Workload` in:
         name: app-viewer
       subjects:
         - kind: Group
-          name: "namespace-developers"
+          name: <GROUP-FOR-APP-VIEWER>
           apiGroup: rbac.authorization.k8s.io
-      --
+      ---
       apiVersion: rbac.authorization.k8s.io/v1
       kind: ClusterRoleBinding
       metadata:
-        name: namespace-dev-permit-app-viewer
+        name: <YOUR-NAMESPACE>-permit-app-viewer
       roleRef:
         apiGroup: rbac.authorization.k8s.io
         kind: ClusterRole
         name: app-viewer-cluster-access
       subjects:
         - kind: Group
-          name: "namespace-developers"
+          name: <GROUP-FOR-APP-VIEWER>
+          apiGroup: rbac.authorization.k8s.io
+      ---
+      apiVersion: rbac.authorization.k8s.io/v1
+      kind: RoleBinding
+      metadata:
+        name: dev-permit-app-editor
+      roleRef:
+        apiGroup: rbac.authorization.k8s.io
+        kind: ClusterRole
+        name: app-editor
+      subjects:
+        - kind: Group
+          name: <GROUP-FOR-APP-EDITOR>
+          apiGroup: rbac.authorization.k8s.io
+      ---
+      apiVersion: rbac.authorization.k8s.io/v1
+      kind: ClusterRoleBinding
+      metadata:
+        name: <YOUR-NAMESPACE>-permit-app-editor
+      roleRef:
+        apiGroup: rbac.authorization.k8s.io
+        kind: ClusterRole
+        name: app-editor-cluster-access
+      subjects:
+        - kind: Group
+          name: <GROUP-FOR-APP-EDITOR>
           apiGroup: rbac.authorization.k8s.io
       EOF
       ```
+
+      Where:
+
+      - `<YOUR-NAMESPACE>` is the name that you want to use for the developer namespace
+      - `<GROUP-FOR-APP-VIEWER>` is the group from the upstream identity provider should have access to `app-viewer` resources on the current cluster
+      - `<GROUP-FOR-APP-EDITOR>` is the group id from the upstream identity provider should have access to `app-editor` resources on the current cluster
+
+      Recommendation: Create a group in your identity provider's grouping system for each developer namespace, then add the users accordingly.
 
       VMware recommends using your identity provider's groups system to grant access to a group of
       developers, rather than granting roles directly to individuals.
