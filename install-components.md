@@ -159,9 +159,9 @@ that you plan to create the `Workload` in:
     EOF
     ```
 
-3. Give developers namespace-level access and view access to appropriate cluster-level resources by doing one of the following:
+3. Give developers namespace-level access and view access to appropriate cluster-level resources by doing **one of the following**:
 
-  **Note:** In order to apply the bindings below, an adminstrator account is required. However to use the pre-defined roles, a non adminstrator account (i.e. developer account) is required.
+  **Note:** An administrator user is required to apply the bindings below. However once the bindings are applied, you must login as a non administrator user (i.e. developer) to see the effects of rbac
 
   1) Use the [`tanzu rbac`](authn-authz/binding.md) plug-in to grant `app-viewer` or `app-editor` roles to an identity provider group
 
@@ -173,8 +173,8 @@ that you plan to create the `Workload` in:
       Where:
 
       - `<YOUR-NAMESPACE>` is the name that you want to use for the developer namespace
-      - `<GROUP-FOR-APP-VIEWER>` is the group from the upstream identity provider should have access to `app-viewer` resources on the current cluster
-      - `<GROUP-FOR-APP-EDITOR>` is the group from the upstream identity provider should have access to `app-editor` resources on the current cluster
+      - `<GROUP-FOR-APP-VIEWER>` is the group from the upstream identity provider that would like to have access to `app-viewer` resources on the current namespace/cluster
+      - `<GROUP-FOR-APP-EDITOR>` is the group from the upstream identity provider that would like to have access to `app-editor` resources on the current namespace/cluster
 
       Recommendation: Create a group in your identity provider's grouping system for each developer namespace, then add the users accordingly.
 
@@ -239,8 +239,8 @@ that you plan to create the `Workload` in:
       Where:
 
       - `<YOUR-NAMESPACE>` is the name that you want to use for the developer namespace
-      - `<GROUP-FOR-APP-VIEWER>` is the group from the upstream identity provider should have access to `app-viewer` resources on the current cluster
-      - `<GROUP-FOR-APP-EDITOR>` is the group id from the upstream identity provider should have access to `app-editor` resources on the current cluster
+      - `<GROUP-FOR-APP-VIEWER>` is the group from the upstream identity provider that would like to have access to `app-viewer` resources on the current namespace/cluster
+      - `<GROUP-FOR-APP-EDITOR>` is the group from the upstream identity provider that would like to have access to `app-editor` resources on the current namespace/cluster
 
       Recommendation: Create a group in your identity provider's grouping system for each developer namespace, then add the users accordingly.
 
