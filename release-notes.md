@@ -204,7 +204,7 @@ Updated Spring Boot to v2.5.12 to address [CVE-2022-22965](https://cve.mitre.org
 
 - Resolved two scan jobs and two scan pods that are created when reconciling `ScanTemplates` and `ScanPolicies`
 - Updated package `client_golang` to v1.11.1 to address [CVE-2022-21698](https://nvd.nist.gov/vuln/detail/CVE-2022-21698)
-- Resolved edge case for scan phase to correctly indicate `Error` when error occurs during scanning.
+- Resolved edge case for scan phase to correctly indicate `Error` when error occurs during scanning
 - Added missing `SecretImport` for the RBAC Auth token `store-auth-token` for multicluster
 - Resolved race condition involving reading Store secrets and exporting to the Scan Controller namespace
 - Removed package `gnutls` to address [CVE-2021-20232](https://nvd.nist.gov/vuln/detail/CVE-2021-20232) and [CVE-2021-20231](https://nvd.nist.gov/vuln/detail/CVE-2021-20231)
