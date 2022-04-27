@@ -204,6 +204,12 @@ Updated Spring Boot to v2.5.12 to address [CVE-2022-22965](https://cve.mitre.org
 
 - Resolved two scan jobs and two scan pods that are created when reconciling `ScanTemplates` and `ScanPolicies`
 - Updated package `client_golang` to v1.11.1 to address [CVE-2022-21698](https://nvd.nist.gov/vuln/detail/CVE-2022-21698)
+- Resolved edge case for scan phase to correctly indicate `Error` when error occurs during scanning.
+- Added missing `SecretImport` for the RBAC Auth token `store-auth-token` for multicluster
+- Resolved race condition involving reading Store secrets and exporting to the Scan Controller namespace
+- Removed package `gnutls` to address [CVE-2021-20232](https://nvd.nist.gov/vuln/detail/CVE-2021-20232) and [CVE-2021-20231](https://nvd.nist.gov/vuln/detail/CVE-2021-20231)
+- Removed package `lua` to address [CVE-2022-28805](https://nvd.nist.gov/vuln/detail/CVE-2022-28805)
+- Updated module `golang.org/x/crypto` to v0.0.0-20210220033148-5ea612d1eb83 to address [CVE-2022-27191](https://nvd.nist.gov/vuln/detail/CVE-2022-27191)
 
 #### Grype Scanner
 
@@ -298,29 +304,6 @@ This error does not necessarily mean that the workload failed its execution thro
 - **Scan results not shown:** Current CVEs found during Image or Build scanning do not appear. However, results are still present in the metadata store and are available by using the Tanzu CLI.
 
 #### Supply Chain Security Tools - Scan
-
-- **Scan Phase indicates `Scanning` incorrectly:** Scans have an edge case that when an error
-  occurs during scanning, the `Scan Phase` field is not updated to `Error` and remains in the
-  `Scanning` phase. Read the scan pod logs to verify the existence of an error.
-- **Multicluster Support: Error sending results to SCST - Store (Store) running in a different cluster** The [Store Ingress and multicluster support](scst-store/ingress-multicluster.md) document instructs you on how to create `SecretExports` to share secrets for communicating with the Store. During installation, Supply Chain Security Tools - Scan (Scan) automatically creates the `SecretImport` necessary for ingesting the TLS CA certificate secret, but is missing the `SecretImport` for the RBAC Auth token. As a workaround, apply the following YAML, updating the namespaces if necessary, to the cluster running Scan and then perform a rolling restart:
-  ```yaml
-  ---
-  apiVersion: secretgen.carvel.dev/v1alpha1
-  kind: SecretImport
-  metadata:
-    name: store-auth-token
-    namespace: scan-link-system
-  spec:
-    fromNamespace: metadata-store-secrets
-  ```
-  The necessary `Secret` for the RBAC Auth token is created and the scan can be re-run.
-  A rolling restart includes running the following:
-
-  ```console
-  kubectl rollout restart deployment.apps/scan-link-controller-manager -n scan-link-system
-  ```
-
-- **User sees error message saying Supply Chain Security Tools - Store (Store) is not configured even though configuration values were supplied:** The Scan Controller experiences a race-condition when deploying Store in the same cluster, that shows Store as not configured, even when it is present and properly configured. This happens when the Scan Controller is deployed and reconciled before the Store is reconciled and the corresponding secrets are exported to the Scan Controller namespace. As a workaround to this, once your Store is successfully reconciled, you would need to restart your Supply Chain Security Tools - Scan deployment by running: `kubectl rollout restart deployment.apps/scan-link-controller-manager -n scan-link-system`. If you deployed Supply Chain Security Tools - Scan to a different namespace than the default one, you can replace `-n scan-link-system` with `-n <my_custom_namespace>`.
 
 #### Supply Chain Security Tools - Store
 
