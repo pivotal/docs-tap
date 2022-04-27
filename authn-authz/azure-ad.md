@@ -20,7 +20,7 @@
 
 1) Create an AKS Cluster with  Azure Active Directory enabled
 
-	```
+	```console
 	az group create --name <resource-group> --location <location>
 	az aks create -g <resource-group> -n <managed-cluster> --enable-aad --aad-admin-group-object-ids <object-id>
 	```
@@ -28,7 +28,7 @@
 	or
 
 	Enable Azure AD integration on the existing cluster
-	```
+	```console
 	az aks update -g <resource-group> -n <managed-cluster> --enable-aad --aad-admin-group-object-ids <object-id>
 	```
 
@@ -36,7 +36,7 @@
 
 1) Log on to the AKS cluster:
 
-	```
+	```console
 	az aks get-credentials --resource-group <resource-group> --name <managed-cluster> --admin
 	```
 
@@ -55,21 +55,21 @@ Replace the `<resource-group>`, `<managed-cluster>`, `<location>`, and`<object-i
 1) Add users to the groups accordingly
 
 1) For each `object id` retrieved in step 4, use the Tanzu CLI RBAC plugin to bind `object id` group to a role
-	```
+	```console
 	tanzu rbac binding add -g <object-id> -r <tap-role> -n <namespace>
 	```
 	Replace the `<object-id>`, `<tap-role>`, `<namespace>` fields
 	
 ##### <a id="azure-kubeconfig" /> KUBECONFIG Setup
 1) Setup the `kubeconfig` to point to the AKS cluster
-	```
+	```console
 	az aks get-credentials --resource-group <resource-group> --name <managed-cluster>
 	```
 	Replace the `<resource-group>` and `<managed-cluster>` fields
 	
 1) Run any `kubectl` command to trigger a browser login
 Example
-	```
+	```console
 	kubectl get pods
 	```
 	
@@ -167,13 +167,13 @@ Follow the same steps in the [Azure Active Directory](#azure-default-role) secti
 
 ##### <a id="pinniped-kubeconfig" /> KUBECONFIG Setup
 1) Setup the `kubeconfig` using the pinniped cli
-	```
+	```console
 	pinniped  get kubeconfig --kubeconfig-context <your-kubeconfig-context> > /tmp/concierge-kubeconfig
 	```
 	
 1) Run any `kubectl` command to trigger a browser login
 Example
-	```
+	```console
 	export KUBECONFIG="/tmp/concierge-kubeconfig"
 	kubectl get pods
 	```
