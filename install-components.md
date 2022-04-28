@@ -95,7 +95,7 @@ that you plan to create the `Workload` in:
     Based on the information used in [Installing the Tanzu Application Platform Package and Profiles](install.md), you can use the
     same registry server as in `ootb_supply_chain_basic` - `registry` - `server`.
     - `REGISTRY-PASSWORD` is the password of the registry. 
-    For GCR or Google Artifact Registry, this must be the `cat`'ed version of the JSON key.
+    For GCR or Google Artifact Registry, this must be the concatenated version of the JSON key.
 
     **Note:** If you observe the following issue with the above command:
 
