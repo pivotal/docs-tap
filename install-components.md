@@ -175,10 +175,12 @@ that you plan to create the `Workload` in:
         Where:
 
         - `<YOUR-NAMESPACE>` is the name that you want to use for the developer namespace
-        - `<GROUP-FOR-APP-VIEWER>` is the group from the upstream identity provider that would like to have access to `app-viewer` resources on the current namespace/cluster
-        - `<GROUP-FOR-APP-EDITOR>` is the group from the upstream identity provider that would like to have access to `app-editor` resources on the current namespace/cluster
+        - `<GROUP-FOR-APP-VIEWER>` is the user group from the upstream identity provider that would like to have access to `app-viewer` resources on the current namespace/cluster
+        - `<GROUP-FOR-APP-EDITOR>` is the user group from the upstream identity provider that would like to have access to `app-editor` resources on the current namespace/cluster
 
-        Recommendation: Create a group in your identity provider's grouping system for each developer namespace, then add the users accordingly.
+        Recommendation: Create a user group in your identity provider's grouping system for each developer namespace, then add the users accordingly.
+
+        Depending on your identity provider, you may need to do additional research on how to federate user groups appropriately with your cluster. An example for setuping Azure Active Directory with your cluster can be found [here](./authn-authz/azure-ad.md)
 
     1) Apply the following RBAC policy:
 
@@ -241,12 +243,14 @@ that you plan to create the `Workload` in:
         Where:
 
         - `<YOUR-NAMESPACE>` is the name that you want to use for the developer namespace
-        - `<GROUP-FOR-APP-VIEWER>` is the group from the upstream identity provider that would like to have access to `app-viewer` resources on the current namespace/cluster
-        - `<GROUP-FOR-APP-EDITOR>` is the group from the upstream identity provider that would like to have access to `app-editor` resources on the current namespace/cluster
+        - `<GROUP-FOR-APP-VIEWER>` is the user group from the upstream identity provider that would like to have access to `app-viewer` resources on the current namespace/cluster
+        - `<GROUP-FOR-APP-EDITOR>` is the user group from the upstream identity provider that would like to have access to `app-editor` resources on the current namespace/cluster
 
-        Recommendation: Create a group in your identity provider's grouping system for each developer namespace, then add the users accordingly.
+        Recommendation: Create a user group in your identity provider's grouping system for each developer namespace, then add the users accordingly.
 
-        VMware recommends using your identity provider's groups system to grant access to a group of
+        Depending on your identity provider, you may need to do additional research on how to federate user groups appropriately with your cluster. An example for setuping Azure Active Directory with your cluster can be found [here](./authn-authz/azure-ad.md)
+
+        VMware recommends using your identity provider's user groups system to grant access to a group of
         developers, rather than granting roles directly to individuals.
         For more information, see the
         [Kubernetes documentation](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#referring-to-subjects).
