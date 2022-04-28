@@ -165,7 +165,34 @@ that you plan to create the `Workload` in:
   * Use the `tanzu auth` plug-in to grant `app-viewer` or `app-editor` roles
   * Apply the following RBAC policy:
 
-      ```console
+    ```console
+    cat <<EOF | kubectl -n YOUR_NAMESPACE apply -f -
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: dev-permit-app-viewer
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: app-viewer
+subjects:
+  - kind: Group
+    name: "namespace-developers"
+    apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: namespace-dev-permit-app-viewer
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: app-viewer-cluster-access
+subjects:
+  - kind: Group
+    name: "namespace-developers"
+    apiGroup: rbac.authorization.k8s.io
+EOF
       apiVersion: rbac.authorization.k8s.io/v1
       kind: RoleBinding
       metadata:
