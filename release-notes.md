@@ -90,7 +90,7 @@ For more information, see [Overview of Default Roles](authn-authz/overview.md).
 - Application Live View Convention Service is compatible with cert-manager v1.7.1
 - Application Live View Convention takes the management port setting from the Spring Boot Convention into account
 - Structured JSON logging is integrated into Application Live View Backend and Application Live View Convention
-- Updated Spring Native v0.10.5v to v0.10.6
+- Updated Spring Native v0.10.5 to v0.10.6
 
 #### Tanzu CLI - Apps plug-in
 
