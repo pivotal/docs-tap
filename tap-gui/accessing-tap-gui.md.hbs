@@ -104,6 +104,6 @@ running:
     tanzu package installed update tap --package-name tap.tanzu.vmware.com --version VERSION-NUMBER --values-file tap-values.yaml -n tap-install
     ```
 
-    Where `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `1.1.0`.
+    Where `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`.
 
 1. Access your Tanzu Application Platform GUI by using a web browser at the host name that you provided.

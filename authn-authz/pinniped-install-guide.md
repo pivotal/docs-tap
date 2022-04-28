@@ -4,7 +4,7 @@
 
 The **Pinniped Supervisor** is an OIDC server which allows users to authenticate with an external identity provider (IDP). It hosts an API for the concierge component to fulfill authentication requests.
 
-The **Pinniped Concierge** is a credential exchange API which takes a credential from an identity source, for example, Pinniped Supervisor, proprietary IDP, as input. The **Pinniped Concierge** authenticates the user via the credential, and returns another credential which is parsable by the host Kubernetes cluster or by an impersonation proxy that acts on behalf of the user.
+The **Pinniped Concierge** is a credential exchange API which takes a credential from an identity source, for example, Pinniped Supervisor, proprietary IDP, as input. The **Pinniped Concierge** authenticates the user by using the credential, and returns another credential which is parsable by the host Kubernetes cluster or by an impersonation proxy that acts on behalf of the user.
 
 
 ## Prerequisites
@@ -26,7 +26,7 @@ Follow these steps to install `pinniped-supervisor`:
 
 ### Create Certificates (letsencrypt/cert-manager)
 
-Create a ClusterIssuer for `letsencrypt`, a CA certificate and TLS certificate for Pinniped Supervisor
+Create a ClusterIssuer for `letsencrypt` and a TLS certificate resource for Pinniped Supervisor
 by creating the following resources and save them into `workspace/pinniped-supervisor/certificates.yaml`.
 
 ```yaml
@@ -45,23 +45,7 @@ spec:
     solvers:
     - http01:
         ingress:
-        class: contour
-
----
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: pinniped-supervisor-ca-cert
-  namespace: pinniped-supervisor
-spec:
-  isCA: true
-  secretName: pinniped-supervisor-ca-cert
-  commonName:  ca.supervisor.example.com
-  dnsNames:
-  - ca.supervisor.example.com
-  issuerRef:
-    name: letsencrypt-staging
-    kind: ClusterIssuer
+          class: contour
 
 ---
 apiVersion: cert-manager.io/v1
@@ -72,7 +56,7 @@ metadata:
 spec:
   secretName: pinniped-supervisor-tls-cert
   dnsNames:
-  - pinniped.supervisor.example.com
+  - pinniped-supervisor.example.com
   issuerRef:
     name: letsencrypt-staging
     kind: ClusterIssuer
@@ -107,7 +91,7 @@ metadata:
   name: pinniped-supervisor
 spec:
   virtualhost:
-    fqdn: pinniped.supervisor.example.com
+    fqdn: pinniped-supervisor.example.com
     tls:
       secretName: pinniped-supervisor-tls-cert
   routes:
@@ -165,7 +149,7 @@ metadata:
   name: pinniped-supervisor-federation-domain
   namespace: pinniped-supervisor
 spec:
-  issuer: https://pinniped.supervisor.example.com
+  issuer: https://pinniped-supervisor.example.com
   tls:
     secretName: pinniped-supervisor-tls-cert
 ```
@@ -185,7 +169,7 @@ Follow these steps to deploy them as a [kapp application](https://carvel.dev/kap
     ```
 1. Bind the Ingress DNS to the IP address.
     ```console
-    *.supervisor.example.com A 35.222.xxx.yyy
+    *.example.com A 35.222.xxx.yyy
     ```
 
 ## Install Pinniped Concierge
@@ -201,9 +185,11 @@ Follow these steps to deploy them as a [kapp application](https://carvel.dev/kap
 1. Get the CA certificate of the supervisor.
 
     ```console
-    kubectl get secret pinniped-supervisor-ca-cert -n pinniped-supervisor  -o 'go-template={{index .data "tls.crt"}}'
+    kubectl get secret pinniped-supervisor-tls-cert -n pinniped-supervisor -o 'go-template={{index .data "tls.crt"}}'
     ```
 
+    **Note** the `tls.crt` contains the entire certificate chain including the CA certificate for letsencrypt generated certificates
+    
 1. Create the following resource to `workspace/pinniped-concierge/jwt_authenticator.yaml`.
 
     ```yaml
@@ -213,7 +199,7 @@ Follow these steps to deploy them as a [kapp application](https://carvel.dev/kap
     metadata:
       name: pinniped-jwt-authenticator
     spec:
-      issuer: https://pinniped.supervisor.example.com
+      issuer: https://pinniped-supervisor.example.com
       audience: concierge
       tls:
         certificateAuthorityData: # insert the CA certificate data here

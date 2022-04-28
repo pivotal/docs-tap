@@ -2,7 +2,7 @@
 
 This topic explains how to configure the Tanzu Insight plug-in.
 
-> **Note:** All [required setup](cli-overview.md) must be completed in addition to configuring the CLI
+> **Note:** All [required setup](cli-overview.md) must be completed in addition to configuring the CLI.
 
 
 ## <a id='set-tar-cert'></a>Set the target and certificate authority certificate

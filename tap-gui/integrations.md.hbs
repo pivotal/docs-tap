@@ -45,7 +45,7 @@ After making changes to the `tap-values-file.yml`, update the package profile by
 tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version VERSION-NUMBER --values-file tap-values-file.yml -n tap-install
 ```
 
-Where `VERSION-NUMBER` is the Tanzu Application Platform version. For example, `1.1.0`.
+Where `VERSION-NUMBER` is the Tanzu Application Platform version. For example, `{{ vars.tap_version }}`.
 
 For example:
 
