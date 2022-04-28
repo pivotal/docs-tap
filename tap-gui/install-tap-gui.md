@@ -59,7 +59,7 @@ To install Tanzu Application Platform GUI:
     tanzu package available get tap-gui.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
 
-    Where `VERSION-NUMBER` is the number you discovered previously. For example, `{{ vars.tap_version }}`.
+    Where `VERSION-NUMBER` is the number you discovered previously. For example, `1.0.1`.
 
     For more information about values schema options, see the individual product documentation.
 
@@ -98,7 +98,7 @@ service's External IP address.
      -f tap-gui-values.yaml
     ```
 
-    Where `VERSION` is the desired version. For example, `{{ vars.tap_version }}`.
+    Where `VERSION` is the desired version. For example, `1.0.1`.
 
     For example:
 

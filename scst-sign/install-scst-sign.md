@@ -46,7 +46,7 @@ To install Supply Chain Security Tools - Sign:
     tanzu package available get image-policy-webhook.signing.apps.tanzu.vmware.com/VERSION --values-schema --namespace tap-install
     ```
 
-    Where `VERSION` is the version number you discovered. For example, `{{ vars.tap_version }}`.
+    Where `VERSION` is the version number you discovered. For example, `1.1.1`.
 
     For example:
 
@@ -215,7 +215,7 @@ To install Supply Chain Security Tools - Sign:
       --values-file scst-sign-values.yaml
     ```
 
-    Where `VERSION` is the version number you discovered earlier. For example, `{{ vars.tap_version }}`.
+    Where `VERSION` is the version number you discovered earlier. For example, `1.1.1`.
 
     For example:
 

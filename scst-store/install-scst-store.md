@@ -52,7 +52,7 @@ To install Supply Chain Security Tools - Store:
     tanzu package available get metadata-store.apps.tanzu.vmware.com/VERSION --values-schema -n tap-install
     ```
 
-    Where `VERSION` is the your package version number. For example, `{{ vars.tap_version }}`.
+    Where `VERSION` is the your package version number. For example, `1.0.2`.
 
     For example:
 
@@ -116,7 +116,7 @@ and you want to use `NodePort`, then create a `metadata-store-values.yaml` and c
 
     * `--values-file` is an optional flag. Only use it to customize the deployment
     configuration.
-    * `VERSION` is the package version number. For example, `{{ vars.tap_version }}`.
+    * `VERSION` is the package version number. For example, `1.0.2`.
 
     For example:
 

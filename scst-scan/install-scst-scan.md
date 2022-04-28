@@ -59,7 +59,7 @@ To install Supply Chain Security Tools - Scan (Scan controller):
     tanzu package available get scanning.apps.tanzu.vmware.com/VERSION --values-schema -n tap-install
     ```
 
-    Where `VERSION` is your package version number. For example, `{{ vars.tap_version }}`.
+    Where `VERSION` is your package version number. For example, `1.1.0`.
 
 1. Gather the values schema.
 
@@ -72,7 +72,7 @@ To install Supply Chain Security Tools - Scan (Scan controller):
       --namespace tap-install
     ```
 
-    Where `VERSION` is your package version number. For example, `{{ vars.tap_version }}`.
+    Where `VERSION` is your package version number. For example, `1.1.0`.
 
 1. (Optional) Configure Supply Chain Security Tools - Store in a different cluster
 
@@ -112,7 +112,7 @@ To install Supply Chain Security Tools - Scan (Grype scanner):
     tanzu package available get grype.scanning.apps.tanzu.vmware.com/VERSION --values-schema -n tap-install
     ```
 
-    Where `VERSION` is your package version number. For example, `{{ vars.tap_version }}`.
+    Where `VERSION` is your package version number. For example, `1.1.0`.
 
     For example:
 
@@ -160,7 +160,7 @@ To change the default values, see the Scan controller instructions for more info
       --values-file grype-values.yaml
     ```
 
-    Where `VERSION` is your package version number. For example, `{{ vars.tap_version }}`.
+    Where `VERSION` is your package version number. For example, `1.1.0`.
 
     For example:
 
