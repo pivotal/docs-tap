@@ -40,13 +40,13 @@ To install default roles:
 
     Where:
 
-    - `VERSION` is the package version number. For example, `{{ vars.tap_version }}`.
+    - `VERSION` is the package version number. For example, `1.0.1`.
 
     For example:
 
     ```console
     $ tanzu package install tap-auth \
       --package-name tap-auth.tanzu.vmware.com \
-      --version {{ vars.tap_version }} \
+      --version 1.0.1 \
       --namespace tap-install
     ```
