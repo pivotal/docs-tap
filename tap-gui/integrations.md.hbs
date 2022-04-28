@@ -50,7 +50,7 @@ Where `VERSION-NUMBER` is the Tanzu Application Platform version. For example, `
 For example:
 
 ```console
-$ tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version 1.0.0 --values-file tap-values-file.yml -n tap-install
+$ tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version {{ vars.tap_version }} --values-file tap-values-file.yml -n tap-install
 | Updating package 'tap'
 | Getting package install for 'tap'
 | Getting package metadata for 'tap.tanzu.vmware.com'
