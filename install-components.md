@@ -180,7 +180,7 @@ that you plan to create the `Workload` in:
 
         Recommendation: Create a user group in your identity provider's grouping system for each developer namespace, then add the users accordingly.
 
-        Depending on your identity provider, you may need to do additional research on how to federate user groups appropriately with your cluster. An example for setuping Azure Active Directory with your cluster can be found [here](./authn-authz/azure-ad.md)
+        Depending on your identity provider, you may need to do additional research on how to federate user groups appropriately with your cluster. An example for setting up Azure Active Directory with your cluster can be found [here](./authn-authz/azure-ad.md)
 
     1) Apply the following RBAC policy:
 
@@ -248,7 +248,7 @@ that you plan to create the `Workload` in:
 
         Recommendation: Create a user group in your identity provider's grouping system for each developer namespace, then add the users accordingly.
 
-        Depending on your identity provider, you may need to do additional research on how to federate user groups appropriately with your cluster. An example for setuping Azure Active Directory with your cluster can be found [here](./authn-authz/azure-ad.md)
+        Depending on your identity provider, you may need to do additional research on how to federate user groups appropriately with your cluster. An example for setting up Azure Active Directory with your cluster can be found [here](./authn-authz/azure-ad.md)
 
         VMware recommends using your identity provider's user groups system to grant access to a group of
         developers, rather than granting roles directly to individuals.
