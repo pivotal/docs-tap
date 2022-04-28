@@ -7,7 +7,7 @@ The `WorkshopSession` custom resource defines a workshop session.
 When running training for multiple people, typically you'll use the `TrainingPortal` custom
 resource to set up a training environment. Alternatively, you can set up a workshop environment by using the
 `WorkshopEnvironment` custom resource, and then create requests for workshop instances by using the
-`WorkshopRequest` custom resource. If you're creating requests for workshop instances and you need
+`WorkshopRequest` custom resource. If you're creating requests for workshop instances, and you need
 more control over how the workshop instances are set up, you can use `WorkshopSession` custom
 resource instead of `WorkshopRequest`.
 
@@ -29,14 +29,14 @@ spec:
 
 The `name` of the workshop specified in the `metadata` of the training environment must be
 globally unique for the workshop instance you're creating. You must create a separate
-`WorkshopSession` custom resource for each workshop instance you want.
+`WorkshopSession` custom resource for each workshop instance.
 
 The session ID must be unique within the workshop environment that you're creating the workshop instance against.
 
 ## <a id="specify-login-creds"></a> Specifying the login credentials
 
 You can control access to each workshop instance using login credentials.
-This ensures a workshop attendee cannot interfere with another.
+This ensures one workshop attendee cannot interfere with another.
 
 To set login credentials for a workshop instance, set the `session.username` and `session.password`
 fields. For example:
@@ -60,7 +60,7 @@ access it.
 ## <a id="specify-ingress-domain"></a> Specifying the ingress domain
 
 To access the workshop instance by using a public URL, you must specify an ingress domain.
-If an ingress domain isn't specified, use the default ingress domain that the Learning Center Operator
+If an ingress domain isn't specified, use the default ingress domain that the Learning Center operator
 was configured with.
 
 When setting a custom domain, configure DNS with a wildcard domain to forward all
@@ -89,7 +89,7 @@ If you require a secure HTTPS connection, you must have access to a wildcard SSL
 the domain.
 
 You must create a secret of type `tls` for the certificate in the `learningcenter` namespace or in the
-namespace where Learning Center Operator is deployed.
+namespace where the Learning Center operator is deployed.
 You must then set the name of that secret in the `session.ingress.secret` field. For example:
 
 ```yaml
