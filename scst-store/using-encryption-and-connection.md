@@ -1,26 +1,32 @@
 # Configure target endpoint and certificate
 
-The connection to the Store requires TLS encryption, the configuration depends on the kind of installation. Use the following instructions to set up the TLS connection, depending on which type of setup you are using:
+The connection to the Store requires TLS encryption, the configuration depends on the kind of installation. 
+Use the following instructions to set up the TLS connection according to the type of your setup:
 
-1. <a href="#ingress">Using `Ingress`</a>
-1. <a href="#no-ingress">Without `Ingress`</a>
-    - <a href="#use-lb">Using `LoadBalancer`</a>
-    - <a href="#use-np">Using `NodePort`</a> — commonly used with local clusters such as kind or minikube
+- [Use `Ingress`](#ingress)
+- [Not use `Ingress`](#no-ingress)
+    - [Use `LoadBalancer`](#use-lb)
+    - [Use `NodePort`](#use-np)
+    
+        >**Note:** `NodePort`is commonly used with local clusters such as kind or minikube.
 
 
-## <a id="ingress"></a>Using `Ingress`
+## <a id="ingress"></a>Use `Ingress`
 
-When using an [Ingress setup](./ingress-multicluster.md), the Store creates a specific TLS Certificate for HTTPS communications under the `metadata-store` namespace.
+When using an [Ingress setup](ingress-multicluster.md), the Store creates a 
+specific TLS Certificate for HTTPS communications under the `metadata-store` namespace.
 
-To get such certificate you can use the following command:
+To get such certificate, run the following command:
 
 ```bash
 kubectl get secret ingress-cert -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d > insight-ca.crt
 ```
 
-Additionally, the endpoint host will be set to `metadata-store.<ingress-domain>` (ex: `metadata-store.example.domain.com`), depending on the value of `ingress_domain` set during the setup.
+The endpoint host is set to `metadata-store.<ingress-domain>`, 
+for example, `metadata-store.example.domain.com`). 
+This value matches the value of `ingress_domain`.
 
-If no accessible DNS record exists for such domain, you can edit your `/etc/hosts` file to add a local record.
+If no accessible DNS record exists for such domain, edit the `/etc/hosts` file to add a local record:
 
 ```bash
 ENVOY_IP=$(kubectl get svc envoy -n tanzu-system-ingress -o jsonpath="{.status.loadBalancer.ingress[0].ip}")
@@ -34,23 +40,25 @@ sudo sed -i '' "/$METADATA_STORE_DOMAIN/d" /etc/hosts
 echo "$ENVOY_IP $METADATA_STORE_DOMAIN" | sudo tee -a /etc/hosts > /dev/null
 ```
 
-Finally, set the target 
+Set the target by running:
 
 ```bash
 tanzu insight config set-target https://$METADATA_STORE_DOMAIN --ca-cert insight-ca.crt
 ```
 
-## <a id="no-ingress"></a>Without `Ingress`
+## <a id="no-ingress"></a>Not use `Ingress`
 
-When the Store installation is done without using the Ingress alternative, a different Certificate resource should be used for HTTPS communication, in this case the `app-tls-cert` should be queried to get the CA Certificate:
+If you install the Store without using the Ingress alternative, 
+you must use a different Certificate resource for HTTPS communication. 
+In this case, query the `app-tls-cert` to get the CA Certificate:
 
 ```bash
 kubectl get secret app-tls-cert -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d > insight-ca.crt
 ```
 
-### <a id='use-lb'></a>Using `LoadBalancer`
+### <a id='use-lb'></a>Use `LoadBalancer`
 
-If you are using a `LoadBalancer` configuration, you need to find the external IP address of the `metadata-store-app` service. You can use kubectl to do this.
+To use a `LoadBalancer` configuration, you must find the external IP address of the `metadata-store-app` service by using kubectl.
 
 >**Note**: For all kubectl commands, use the `--namespace metadata-store` flag.
 
@@ -65,29 +73,30 @@ sudo sed -i '' "/$METADATA_STORE_DOMAIN/d" /etc/hosts
 echo "$METADATA_STORE_IP $METADATA_STORE_DOMAIN" | sudo tee -a /etc/hosts > /dev/null
 ```
 
-Finally, set the target 
+Set the target by running:
 
 ```bash
 tanzu insight config set-target https://$METADATA_STORE_DOMAIN:$METADATA_STORE_PORT --ca-cert insight-ca.crt
 ```
 
-## <a id='use-np'></a>Using `NodePort`
+## <a id='use-np'></a>Use `NodePort`
 
-To use NodePort, obtain the CA certificate as illustrated at the <a href="no-ingress">top of this section</a>, configure portforwarding and modify the `/etc/hosts` file.
+To use `NodePort`, you must obtain the CA certificate by following the instructions in [Not use `Ingress`](#no-ingress), 
+then [Configure port forwarding](#config-pf) and [Modify your `/etc/hosts` file](#mod-etchost).
 
-### <a id='config-pf'></a>Configuring port forwarding
+### <a id='config-pf'></a>Configure port forwarding
 
-When using `NodePort`, configure port forwarding for the service for the CLI to access Supply Chain Security Tools - Store. Run:
+When using `NodePort`, configure port forwarding for the service so the CLI can access Supply Chain Security Tools - Store. Run:
 
 ```console
 kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store
 ```
 
-Run this command in a separate terminal window.
+>**Note:** You must run this command in a separate terminal window.
 
-### <a id='mod-etchost'></a>Modifying your `/etc/hosts` file
+### <a id='mod-etchost'></a>Modify your `/etc/hosts` file
 
-The following script illustrates how to add a new local entry to `/etc/hosts`:
+Use the following script to add a new local entry to `/etc/hosts`:
 
 ```bash
 METADATA_STORE_PORT=$(kubectl get service/metadata-store-app --namespace metadata-store -o jsonpath="{.spec.ports[0].port}")
@@ -99,7 +108,7 @@ sudo sed -i '' "/$METADATA_STORE_DOMAIN/d" /etc/hosts
 echo "127.0.0.1 $METADATA_STORE_DOMAIN" | sudo tee -a /etc/hosts > /dev/null
 ```
 
-Finally, set the target 
+Set the target by running:
 
 ```bash
 tanzu insight config set-target https://$METADATA_STORE_DOMAIN:$METADATA_STORE_PORT --ca-cert insight-ca.crt
