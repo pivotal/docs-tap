@@ -20,6 +20,13 @@ This following issues, listed by area and component, are resolved in this releas
 - Removed package `lua` to address [CVE-2022-28805](https://nvd.nist.gov/vuln/detail/CVE-2022-28805)
 - Updated module `golang.org/x/crypto` to v0.0.0-20210220033148-5ea612d1eb83 to address [CVE-2022-27191](https://nvd.nist.gov/vuln/detail/CVE-2022-27191)
 
+#### Tanzu Application Platform GUI
+
+- CVE fixes
+- Various styling fixes
+- TLS Certificate and Ingress bug fix
+- Supply Chain plugin upgrade
+
 ### <a id='1-1-1-known-issues'></a> Known issues
 
 This release has the following known issues, listed by area and component.
@@ -32,6 +39,17 @@ Source Code Scanning only scans files present in the source code repository. No 
 For Java, dependency lock files are not guaranteed, so Grype instead uses the dependencies present in the built binaries (`.jar` or `.war` files).
 
 Because VMware discourages committing binaries to source code repositories, Grype fails to find vulnerabilities during a Source Scan. The vulnerabilities are still found during the Image Scan, after the binaries are built and packaged as images.
+
+#### Tanzu Application Platform GUI
+- **When the `app_config.backend.reading.allow` section is configured during the tap-gui package install, there are no accelerators on the accelerator page.** This is because this section will override the default configuration which allows TAP-GUI access to the accelerators. Two use cases for this field are for reading catalog locations from a non-standard git server for which there is no built-in integration and for reading specs for API Entities from openAPI endpoints. As a workaround, if you are modifying this section, you must provide a value for Application Accelerator:
+```
+app_config:
+  # Existing tap-values-file.yml above
+  backend:
+    reading:
+      allow:
+      - host: acc-server.accelerator-system.svc.cluster.local
+```
 
 ## <a id='1-1'></a> v1.1
 
