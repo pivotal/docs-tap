@@ -1,18 +1,21 @@
-# <a id="azure-active-directory"></a> Azure Active Directory Integration
+# Azure Active Directory Integration
 
 This topic describes how to integrate the Azure Active Directory (AD).
+
 
 ## <a id="azure-without-pinniped"></a> Integrate Azure AD with a new or existing AKS without Pinniped
 
 Perform the following procedures to integrate Azure AD with a new or existing AKS without Pinniped.
 
+
 ### <a id="azure-prerequisites"></a> Prerequisites
 
 Meet these prerequisites:
 
-* Download and install the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli).
-* Download and install the [Tanzu CLI](../install-tanzu-cli.html#-install-or-update-the-tanzu-cli-and-plug-ins).
-* Download and install the [Tanzu CLI RBAC plug-in](binding.html).
+* Download and install the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
+* Download and install the [Tanzu CLI](../install-tanzu-cli.html#-install-or-update-the-tanzu-cli-and-plug-ins)
+* Download and install the [Tanzu CLI RBAC plug-in](binding.html)
+
 
 ### <a id="azure-platform-setup"></a> Set up a platform operator
 
@@ -26,7 +29,7 @@ To set up a platform operator:
 
 1. Retrieve the object ID of the admin group.
 
-1. Take one of the following actions:
+1. Take one of the following actions.
 
   * Create an AKS Cluster with Azure AD enabled by running:
 
@@ -54,7 +57,7 @@ To set up a platform operator:
     * `MANAGED-CLUSTER` is your managed cluster
     * `OBJECT-ID` is the object ID
 
-1. Add `Platform Operators` to the admin group.
+1. Add **Platform Operators** to the admin group.
 
 1. Log in to the AKS cluster by running:
 
@@ -100,7 +103,7 @@ Tanzu Application Platform default roles (`app-operator`, `app-viewer`, and `app
 
 To set up kubeconfig:
 
-1. Set up the `kubeconfig` to point to the AKS cluster
+1. Set up the `kubeconfig` to point to the AKS cluster by running:
 
     ```console
     az aks get-credentials --resource-group RESOURCE-GROUP --name MANAGED-CLUSTER
@@ -129,7 +132,7 @@ Meet these prerequisites:
 
 * Download and install the [Tanzu CLI](../install-tanzu-cli.html#-install-or-update-the-tanzu-cli-and-plug-ins)
 * Download and install the [Tanzu CLI RBAC plug-in](binding.html)
-* Install [pinniped supervisor and concierge](pinniped-install-guide.md) on the cluster without
+* Install [Pinniped supervisor and concierge](pinniped-install-guide.html) on the cluster without
 setting up the [`OIDCIdentityProvider` and `secret`](pinniped-install-guide.html#create-pinniped-supervisor-configuration) yet.
 
 
@@ -157,23 +160,23 @@ To set up the Azure AD app:
 
 1. Select **Token configuration** under the **Manage** menu.
 
-1. Select **Add groups claim**.
-
-1. Select **All groups (includes distribution lists but not groups assigned to the application)**.
+1. Select **Add groups claim** > **All groups (includes distribution lists but not groups assigned to the application)**.
 
 1. Select **Add** to create the group claim.
 
-1. Return to the app settings page by clicking on the **app name** in the breadcrumb navigation.
+1. Select the app name in the breadcrumb navigation to return to the app settings page.
 
 1. Select the **Endpoints** tab and record the value in the **OpenID Connect metadata document** field.
 
-1. Go back to the app settings page.
+1. Return to the app settings page.
 
 1. Record the **Application (client) ID**.
 
 1. Select **Certificates & secrets** under the **Manage** menu.
 
 1. Create a new client secret and record this value.
+
+1. Add the following YAML to `FILENAME-MISSING.yaml`.
 
     ```yaml
     ---
@@ -217,7 +220,11 @@ To set up the Azure AD app:
     * `AZURE-AD-CLIENT-ID` is the Azure Active Directory client ID you recorded earlier
     * `AZURE-AD-CLIENT-SECRET` is the Azure Active Directory client secret you recorded earlier
 
-1. Use the kubectl CLI to apply this YAML.
+1. Apply your changes from the kubectl CLI by running:
+
+    ```console
+    kubectl apply FILENAME-MISSING.yaml
+    ```
 
 
 ### <a id="pinniped-default-role"></a> Set up the Tanzu Application Platform default role group
@@ -235,7 +242,7 @@ Tanzu Application Platform default roles (`app-operator`, `app-viewer`, and `app
 
 1. Add users to the groups accordingly.
 
-1. For each object ID retrieved earlier, use the Tanzu CLI RBAC plug-in to bind the `object id` group to a role.
+1. For each object ID retrieved earlier, use the Tanzu CLI RBAC plug-in to bind the `object id` group to a role by running:
 
     ```console
     tanzu rbac binding add -g OBJECT-ID -r TAP-ROLE -n NAMESPACE
@@ -255,9 +262,10 @@ Follow these steps to set up kubeconfig:
 1. Set up `kubeconfig` using the Pinniped CLI by running:
 
     ```console
-    pinniped  get kubeconfig --kubeconfig-context <your-kubeconfig-context> > /tmp/concierge-kubeconfig
+    pinniped get kubeconfig --kubeconfig-context YOUR-KUBECONFIG-CONTEXT > /tmp/concierge-kubeconfig
     ```
-    <!--- Accidental double space? -->
+
+    Where `YOUR-KUBECONFIG-CONTEXT` is your your kubeconfig context.
 
 1. Run any kubectl command to trigger a browser login. For example:
 
