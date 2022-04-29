@@ -8,6 +8,12 @@ This topic contains release notes for Tanzu Application Platform v1.1
 
 This following issues, listed by area and component, are resolved in this release.
 
+#### <a id="scc-resolved"></a>Supply Chain Choreographer plug-in
+
+- ImageScan stage shows incorrect status
+- Workloads page does not show errors
+- Build stage shows error while building
+
 #### Supply Chain Security Tools - Scan
 
 - Resolved edge case for scan phase to correctly indicate `Error` when error occurs during scanning
