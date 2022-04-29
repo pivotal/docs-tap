@@ -1,20 +1,25 @@
 # Getting started with API documentation plug-in
 
-## <a id="dev-first-app"></a>Add your API entry to the Tanzu Application Platform GUI Software Catalog
+This topic describes how to get started with the API documentation plug-in.
 
-In this section, you are going to:
 
-  - Learn about API entities of the Software Catalog
-  - Add a demo API entity and its related Catalog objects to Tanzu Application Platform GUI
-  - Update your demo API entry
+## <a id="dev-first-app"></a> Add your API entry to the Tanzu Application Platform GUI software catalog
 
-### <a id="about-app-accs"></a>About API entities
+In this section, you will:
 
-The list of API entities is visible on the left-hand side navigation panel of Tanzu Application Platform GUI. It is also visible on the overview page of specific components on the home page. APIs are a definition of the interface between components. Their definition is provided in machine-readable ("raw")  and human-readable formats. For more details, see [API plugin documentation](api-docs.md).
+- [Learn about API entities of the Software Catalog](#about-app-accs)
+- [Add a demo API entity and its related Catalog objects to Tanzu Application Platform GUI](#deploy-your-app)
+- [Update your demo API entry](#deploy-your-app)
 
-### <a id="deploy-your-app"></a>Add a demo API entity to Tanzu Application Platform GUI Software Catalog
 
-To add a demo API entity and its related Catalog objects, follow the same steps as registering any other Software Catalog entity:
+### <a id="about-app-accs"></a> About API entities
+
+The list of API entities is visible on the left-hand side navigation panel of Tanzu Application Platform GUI. It is also visible on the overview page of specific components on the home page. APIs are a definition of the interface between components. Their definition is provided in machine-readable ("raw")  and human-readable formats. For more details, see [API plugin documentation](api-docs.html).
+
+
+### <a id="deploy-your-app"></a> Add a demo API entity to Tanzu Application Platform GUI software catalog
+
+To add a demo API entity and its related Catalog objects, follow the same steps as registering any other software catalog entity:
 
 1. Navigate to the home page of Tanzu Application Platform GUI. Click **Home** on the left-side navigation bar.
    Click **REGISTER ENTITY**.
@@ -23,7 +28,7 @@ To add a demo API entity and its related Catalog objects, follow the same steps 
 
 1. **Register an existing component** prompts you to type a repository URL. Type the link to the `catalog-info.yaml` file of your choice or use the following sample definition. Save this code block as `catalog-info.yaml`, upload it to the Git repository of your choice, and copy the link to `catalog-info.yaml`.
 
-    This demo setup includes a domain called `demo-domain` with a single system called `demo-system`. This systems consists of two microservices - `demo-app-ms-1` and `demo-app-ms-1` - and one API called `demo-api` that is provided by `demo-app-ms-1` and is consumed by `demo-app-ms-2`.
+    This demo setup includes a domain called `demo-domain` with a single system called `demo-system`. This systems consists of two microservices - `demo-app-ms-1` and `demo-app-ms-1` - and one API called `demo-api` that `demo-app-ms-1` provides and `demo-app-ms-2` consumes.
 
     ```yaml
     apiVersion: backstage.io/v1alpha1
@@ -137,15 +142,14 @@ To add a demo API entity and its related Catalog objects, follow the same steps 
 
     ![Review the entities to be added to the catalog](./tap-gui/images/../../../images/api-plugin-7.png)
 
-1. Navigate to the **API** page by clicking **APIs** on the left-hand side navigation panel. The catalog changes and entries are visible for further inspection. If you select the system `demo-app`, the diagram looks like this:
-
+1. Navigate to the **API** page by clicking **APIs** on the left-hand side navigation panel. The catalog changes and entries are visible for further inspection. If you select the system `demo-app`, the diagram appears as follows:
 
     ![Review the entities to be added to the catalog](./tap-gui/images/../../../images/api-plugin-8.png)
 
 
-### <a id="deploy-your-app"></a>Update your demo API entry
+### <a id="deploy-your-app"></a> Update your demo API entry
 
-1. To update your demo API entity, select `demo-api` from the list of available APIs in your Software Catalog and click the **Edit** icon on the **Overview** page.
+1. To update your demo API entity, select `demo-api` from the list of available APIs in your software catalog and click the **Edit** icon on the **Overview** page.
 
     ![Review the entities to be added to the catalog](./tap-gui/images/../../../images/api-plugin-9.png)
 
