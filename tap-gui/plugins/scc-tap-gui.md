@@ -1,24 +1,38 @@
 # Supply Chain Choreographer in Tanzu Application Platform GUI
 
+This topic describes Supply Chain Choreographer in Tanzu Application Platform GUI.
+
+
 ## <a id="overview"></a> Overview
 
-The Supply Chain Choreographer (SCC) plug-in enables you to visualize the execution of a workload through any of the installed Out-Of-The-Box supply chains. See [Supply Chain Choreographer for Tanzu](../../scc/about.md) for more information about the Out-Of-The-Box Supply Chains that are available in Tanzu Application Platform, and their installation guides.
+The Supply Chain Choreographer (SCC) plug-in enables you to visualize the execution of a workload
+through any of the installed Out-Of-The-Box supply chains.
+For more information about the Out-Of-The-Box Supply Chains that are available in
+Tanzu Application Platform, and their installation guides, see [Supply Chain Choreographer for Tanzu](../../scc/about.md).
+
 
 ## <a id="prerequisites"></a> Prerequisites
 
-You must have either of the Full or View profiles installed on your cluster, which includes Tanzu Application Platform GUI, or having installed Tanzu Application Platform GUI package.
+You must have the Full profile or View profile installed on your cluster, which includes
+Tanzu Application Platform GUI, or have installed the Tanzu Application Platform GUI package.
+
 
 ## <a id="sc-visibility"></a> Supply Chain Visibility
 
 To visualize your workload through the SCC plug-in, you must first create a workload.
 
-Use the left sidebar navigation to access your workload and visualize it in the supply chain that is installed on your cluster.
+The workload must have the `app.kubernetes.io/part-of` label specified, whether you manually create 
+the workload or use those supplied with the OOTB supply chains.
+
+Use the left sidebar navigation to access your workload and visualize it in the supply chain that is
+installed on your cluster.
 
 For this example, we will look at the `tanzu-java-web-app`.
 
 ![Screen Shot of Workloads](images/workloads.png)
 
-Click **tanzu-java-web-app** in the **WORKLOADS** table to navigate to the visualization of the supply chain.
+Click **tanzu-java-web-app** in the **WORKLOADS** table to navigate to the visualization of the
+supply chain.
 
 ![Screen Shot of Supply Chain Visualization](images/visual-sc.png)
 
