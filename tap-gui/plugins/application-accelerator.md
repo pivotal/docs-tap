@@ -8,7 +8,7 @@ This topic describes Application Accelerator in Tanzu Application Platform GUI.
 Application Accelerator for VMware Tanzu helps you bootstrap developing and deploying your
 applications in a discoverable and repeatable way.
 
-Enterprise Architects author and publish accelerator projects that provide developers and operators 
+Enterprise Architects author and publish accelerator projects that provide developers and operators
 with ready-made, enterprise-conformant code and configurations.
 You can then use Application Accelerator to create new projects based on those accelerator projects.
 
@@ -20,7 +20,7 @@ configure them, and generate new projects to download.
 
 The Application Accelerator UI plug-in is part of Tanzu Application Platform GUI.
 To access Application Accelerator, click **Create** in the left-hand navigation bar of
-Tanzu Application Platform. This opens the **Accelerators page**.
+Tanzu Application Platform. This opens the **Accelerators** page.
 
 ![Screenshot of Accelerators page](images/aa1-acc-page.png)
 

@@ -51,7 +51,7 @@ In this page, additional information is available for Knative resources, includi
 - revisions
 - pod details
 
-![Screenshot of Java web app deployment page](images/runtime-resources-details.png)
+   ![Screenshot of Java web app deployment page](images/runtime-resources-details.png)
 
 
 ## <a id="view-resource-details"></a> View details for a specific resource
@@ -89,7 +89,7 @@ The following are some attributes that are displayed in the overview card:
 - Namespace
 - Cluster
 
-![Screenshot of Tanzu web app default url](images/runtime-resources-overview.png)
+   ![Screenshot of Tanzu web app default url](images/runtime-resources-overview.png)
 
 
 ### <a id="status-card"></a>Status card
