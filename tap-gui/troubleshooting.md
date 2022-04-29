@@ -3,6 +3,7 @@
 This topic describes troubleshooting information for problems with installing Tanzu Application Platform GUI.
 
 ## <a id='catalog-not-found'></a> Catalog not found
+
 ### Symptom
 
 When you pull up the Tanzu Application Platform UI, you get the error `Catalog Not Found`.
@@ -51,6 +52,7 @@ or change the standalone Tanzu Application Platform GUI values file if you're on
 You can substitute for other integrations as defined in the [Backstage documentation](https://backstage.io/docs/integrations/)
 
 ## <a id='updating-tap-gui-values'></a> Issues updating the values file
+
 ### Symptom
 
 When you need to update the configuration of Tanzu Application Platform GUI (either by using the profiles method or as a standalone package install), how can you tell whether the configuration has reloaded?
@@ -110,7 +112,7 @@ Here are some common troubleshooting steps for errors presented in the Runtime R
 
 ### Symptom
 
-When accessing the **Runtime Resource Visibility** tab, the system displays, "Error communicating with TAP GUI back end."
+When accessing the **Runtime Resource Visibility** tab, the system displays, `Error communicating with TAP GUI back end.`
 
 ### Causes
 
@@ -127,7 +129,7 @@ When accessing the **Runtime Resource Visibility** tab, the system displays, "Er
 ### Symptom
 
 When accessing the **Runtime Resource Visibility** tab, the system displays,
-"One or more resources are missing. This could be due to a label mismatch. Please make sure your resources have the label(s) "LABEL_SELECTOR"."
+`One or more resources are missing. This could be due to a label mismatch. Please make sure your resources have the label(s) "LABEL_SELECTOR".`
 
 ### Cause
 
@@ -136,21 +138,22 @@ No communications error has occurred, but no resources were found.
 ### Solution
 
 Confirm that you are using the correct label:
+
 - Check the [Component definition](catalog/catalog-operations.md)
- for the annotation `backstage.io/kubernetes-label-selector`
+ for the annotation `backstage.io/kubernetes-label-selector`.
 - Confirm your Kubernetes resources match that label selector.
 
 ## Errors retrieving resources
 
 ### Symptom
 
-When opening the **Runtime Resource Visibility** tab, the system displays, “One or more resources might be missing because of cluster query errors.”
+When opening the **Runtime Resource Visibility** tab, the system displays, `One or more resources might be missing because of cluster query errors.`
 
-The reported errors might not indicate a real problem. A build cluster might not have runtime CRDs (like Knative Service) installed, and a run cluster might not have build CRDs (like a Cartographer Workload) installed. In these cases, 403 and 404 errors may be false positives.
+The reported errors might not indicate a real problem. A build cluster might not have runtime CRDs installed, such as Knative Service, and a run cluster might not have build CRDs installed, such as a Cartographer workload. In these cases, 403 and 404 errors may be false positives.
 
 ### Error Details
 
--  <a id='rrv-cluster-configuration'></a> "Access error when querying cluster ‘CLUSTER_NAME’ for resource 'KUBERNETES_RESOURCE_PATH' (status: 401). Contact your administrator."
+-  <a id='rrv-cluster-configuration'></a> `Access error when querying cluster `CLUSTER_NAME` for resource 'KUBERNETES_RESOURCE_PATH' (status: 401). Contact your administrator.`
 
     #### Cause
 
@@ -160,7 +163,7 @@ The reported errors might not indicate a real problem. A build cluster might not
 
     Confirm the access token used to request information in the cluster.
 
-- <a id='rrv-resource-access'></a> "Access error when querying cluster ‘CLUSTER_NAME’ for resource 'KUBERNETES_RESOURCE_PATH' (status: 403). Contact your administrator."
+- <a id='rrv-resource-access'></a> `Access error when querying cluster ‘CLUSTER_NAME’ for resource 'KUBERNETES_RESOURCE_PATH' (status: 403). Contact your administrator.`
 
     #### Cause
 
@@ -172,7 +175,7 @@ The reported errors might not indicate a real problem. A build cluster might not
     If the error is in a watched cluster, review the process to grant access to it in [Viewing resources on multiple clusters in Tanzu Application Platform GUI](cluster-view-setup.md).
 
 
-- <a id='rrv-missing-knative'></a> "Knative is not installed on ‘CLUSTER_NAME’ (status: 404). Contact your administrator."
+- <a id='rrv-missing-knative'></a> `Knative is not installed on ‘CLUSTER_NAME’ (status: 404). Contact your administrator.`
 
     #### Cause
 
@@ -182,7 +185,7 @@ The reported errors might not indicate a real problem. A build cluster might not
 
     Install the Knative components by following the instructions in [Install Cloud Native Runtimes](../cloud-native-runtimes/install-cnrt.md).
 
-- <a id='rrv-missing-resource'></a> "Error when querying cluster ‘CLUSTER_NAME’ for resource 'KUBERNETES_RESOURCE_PATH' (status: 404). Contact your administrator."
+- <a id='rrv-missing-resource'></a> `Error when querying cluster ‘CLUSTER_NAME’ for resource 'KUBERNETES_RESOURCE_PATH' (status: 404). Contact your administrator.`
 
     #### Cause
 
