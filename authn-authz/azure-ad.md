@@ -8,7 +8,7 @@ This topic describes how to integrate the Azure Active Directory (AD).
 Perform the following procedures to integrate Azure AD with a new or existing AKS without Pinniped.
 
 
-### <a id="azure-prerequisites"></a> Prerequisites
+### <a id="azure-prereqs"></a> Prerequisites
 
 Meet these prerequisites:
 
@@ -17,7 +17,7 @@ Meet these prerequisites:
 * Download and install the [Tanzu CLI RBAC plug-in](binding.html)
 
 
-### <a id="azure-platform-setup"></a> Set up a platform operator
+### <a id="set-up-azure-platform"></a> Set up a platform operator
 
 To set up a platform operator:
 
@@ -71,7 +71,7 @@ To set up a platform operator:
     * `MANAGED-CLUSTER` is your managed cluster
 
 
-### <a id="azure-default-role"></a> Set up a Tanzu Application Platform default role group
+### <a id="set-up-azure-default-role"></a> Set up a Tanzu Application Platform default role group
 
 To set up a Tanzu Application Platform default role group:
 
@@ -79,8 +79,8 @@ To set up a Tanzu Application Platform default role group:
 
 1. Select **Groups** under the **Manage** side menu.
 
-1. Identify or create a list of groups in the Azure Active Directory for each of the
-Tanzu Application Platform default roles (`app-operator`, `app-viewer`, and `app-editor`).
+1. Identify or create a list of groups in the Azure AD for each of the Tanzu Application Platform
+default roles (`app-operator`, `app-viewer`, and `app-editor`).
 
 1. Retrieve the corresponding object IDs for each group.
 
@@ -99,7 +99,7 @@ Tanzu Application Platform default roles (`app-operator`, `app-viewer`, and `app
     * `NAMESPACE` is the namespace
 
 
-### <a id="azure-kubeconfig"></a> Set up kubeconfig
+### <a id="set-up-azure-kubeconfig"></a> Set up kubeconfig
 
 To set up kubeconfig:
 
@@ -121,12 +121,12 @@ To set up kubeconfig:
     ```
 
 
-## <a id="azure-ad-pinniped"></a> Azure Active Directory with Pinniped
+## <a id="azure-ad-pinniped"></a> Integrate Azure AD with Pinniped
 
-Perform the following procedures to set up Azure Active Directory with Pinniped.
+Perform the following procedures to set up Azure AD with Pinniped.
 
 
-### <a id="azure-pinniped"></a> Prerequisites
+### <a id="azure-pinniped-prereqs"></a> Prerequisites
 
 Meet these prerequisites:
 
@@ -136,7 +136,7 @@ Meet these prerequisites:
 setting up the [`OIDCIdentityProvider` and `secret`](pinniped-install-guide.html#create-pinniped-supervisor-configuration) yet.
 
 
-### <a id="azure-ad-app-setup"></a> Set up the Azure Active Directory app
+### <a id="set-up-azure-ad-app"></a> Set up the Azure AD app
 
 To set up the Azure AD app:
 
@@ -217,8 +217,8 @@ To set up the Azure AD app:
     Where:
 
     * `ISSUER-URL` is the OpenID Connect metadata document URL you recorded earlier, but without the trailing `/.well-known/openid-configuration`
-    * `AZURE-AD-CLIENT-ID` is the Azure Active Directory client ID you recorded earlier
-    * `AZURE-AD-CLIENT-SECRET` is the Azure Active Directory client secret you recorded earlier
+    * `AZURE-AD-CLIENT-ID` is the Azure AD client ID you recorded earlier
+    * `AZURE-AD-CLIENT-SECRET` is the Azure AD client secret you recorded earlier
 
 1. Apply your changes from the kubectl CLI by running:
 
@@ -227,7 +227,7 @@ To set up the Azure AD app:
     ```
 
 
-### <a id="pinniped-default-role"></a> Set up the Tanzu Application Platform default role group
+### <a id="set-up-pinniped-dflt-role"></a> Set up the Tanzu Application Platform default role group
 
 To set up a Tanzu Application Platform default role group:
 
@@ -235,7 +235,7 @@ To set up a Tanzu Application Platform default role group:
 
 1. Select **Groups** under the **Manage** side menu.
 
-1. Identify or create a list of groups in the Azure Active Directory for each of the
+1. Identify or create a list of groups in the Azure AD for each of the
 Tanzu Application Platform default roles (`app-operator`, `app-viewer`, and `app-editor`).
 
 1. Retrieve the corresponding object IDs for each group.
