@@ -7,7 +7,7 @@ This topic contains release notes for Tanzu Application Platform v1.1.1
 
 **Release Date**: MONTH DAY, 2022
 
-### <a id='1-1-1-breaking-changes'></a> Breaking changes
+### <a id='1-2-breaking-changes'></a> Breaking changes
 
 This release has the following breaking changes, listed by area and component.
 
@@ -47,12 +47,11 @@ This following issues, listed by area and component, are resolved in this releas
 - Resolved issue 1
 - Resolved issue 2
 
-#### <a id="scc-resolved"></a>Supply Chain Choreographer plug-in
-
+#### Supply Chain Choreographer Plug-in
 - 500 Network Errors
-- ImageScan stage shows incorrect status
-- Workloads page does not show errors
-- Build stage shows error while building
+- ImageScan stage showed incorrect status
+- Errors were not shown on Workloads page
+- Build stage showed error while building
 
 #### Supply Chain Security Tools - Scan
 
