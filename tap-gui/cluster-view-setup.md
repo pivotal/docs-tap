@@ -117,9 +117,9 @@ To do so:
       verbs: ['get', 'watch', 'list']
     ```
 
-    This YAML content creates the `Namespace`, `ServiceAccount`, `ClusterRole`, and `ClusterRoleBinding`.
+    This YAML content creates `Namespace`, `ServiceAccount`, `ClusterRole`, and `ClusterRoleBinding`.
 
-1. Create the `Namespace`, `ServiceAccount`, `ClusterRole` and `ClusterRoleBinding` by running:
+1. Create `Namespace`, `ServiceAccount`, `ClusterRole`, and `ClusterRoleBinding` by running:
 
     ```console
     kubectl create -f tap-gui-viewer-service-account-rbac.yaml
@@ -146,7 +146,7 @@ To do so:
 [Update Tanzu Application Platform GUI to view resources on multiple clusters](#update-tap-gui) later.
 
 
-## <a id="update-tap-gui"></a>Update Tanzu Application Platform GUI to view resources on multiple clusters
+## <a id="update-tap-gui"></a> Update Tanzu Application Platform GUI to view resources on multiple clusters
 
 The cluster must be identified to Tanzu Application Platform GUI with the `ServiceAccount` token
 and the cluster Kubernetes control plane URL.

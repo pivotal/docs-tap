@@ -1,6 +1,8 @@
-# Tanzu Application Platform GUI Integrations
+# Tanzu Application Platform GUI integrations
 
-Tanzu Application Platform GUI supports integrating with several Git providers. To leverage this integration, you must enable it and provide the necessary token or credentials in your `tap-values-file.yml`.
+Tanzu Application Platform GUI supports integrating with several Git providers.
+To leverage this integration, you must enable it and provide the necessary token or credentials in
+your `tap-values-file.yml`.
 
 Below is an example of this integration using the GitHub provider integration:
 
@@ -8,24 +10,26 @@ Below is an example of this integration using the GitHub provider integration:
       app_config:
         app:
           baseUrl: http://EXTERNAL-IP:7000
-        # Existing tap-values-file.yml above  
+        # Existing tap-values-file.yml above
         integrations:
           github: # Other integrations available see NOTE below
             - host: github.com
               token: GITHUB-TOKEN
 ```
 
-Where `GITHUB-TOKEN` is a valid token generated from your Git infrastructure of choice with the necessary read permissions for the catalog definition files you extracted from the Blank Software Catalog introduced in the prerequisites documentation.
+Where `GITHUB-TOKEN` is a valid token generated from your Git infrastructure of choice with the
+necessary read permissions for the catalog definition files you extracted from the Blank Software Catalog
+introduced in the prerequisites documentation.
 
->**Note:** The `integrations` section earlier uses GitHub. For additional integrations, see the
->format in the [Backstage integration documentation](https://backstage.io/docs/integrations/).
+>**Note:** The `integrations` section earlier mentioned uses GitHub. For additional integrations,
+see the format in the [Backstage integration documentation](https://backstage.io/docs/integrations/).
 
 To allow Tanzu Application GUI to read non-GitHub repositories containing component information,
 add the following to the `tap-values-file.yml` file:
 
 ```yaml
       app_config:
-        # Existing tap-values-file.yml above  
+        # Existing tap-values-file.yml above
         backend:
           reading:
             allow:
@@ -34,10 +38,10 @@ add the following to the `tap-values-file.yml` file:
 ```
 
 Where `GIT-CATALOG-URL-1` and `GIT-CATALOG-URL-2` are URLs in a list of URLs that
-Tanzu Application Platform GUI can read when registering new components. For example, `git.example.com.`
+Tanzu Application Platform GUI can read when registering new components.
+For example, `git.example.com.`
 For more information about registering new components, see
-[Adding catalog entities](catalog/catalog-operations.md#add-cat-entities).
-
+[Adding catalog entities](catalog/catalog-operations.html#add-cat-entities).
 
 After making changes to the `tap-values-file.yml`, update the package profile by running:
 

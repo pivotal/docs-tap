@@ -3,7 +3,7 @@
 The default database mechanism for Tanzu Application Platform GUI is an in-memory database that is
 recommended for testing and development only.
 
-If you choose this method, when Tanzu Application Platform GUI server Pod is re-created,
+If you choose this method, when Tanzu Application Platform GUI server pod is re-created,
 you lose all user preferences and any manually registered entities.
 
 For production or general-purpose use-cases, VMware recommends using a PostgreSQL database.
