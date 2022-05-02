@@ -39,8 +39,6 @@ To accept the Tanzu Application Platform EULA:
 
     ![Screenshot of a dialog box inviting the reader to accept the EULA. The AGREE button is framed.](images/install-tanzu-cli-eulas2.png)
 
-![EULA Dialog Box](images/install-tanzu-cli-eulas2.png)
-
 This example shows that you have now accepted the EULAs for Tanzu Application Platform. In addition, you must accept the EULAs for Cluster Essentials for VMware Tanzu and for Tanzu Build Services and its associated components as stated above.
 
 ## <a id='install-tanzu-cli'></a> Installing the Tanzu CLI
