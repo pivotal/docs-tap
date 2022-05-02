@@ -191,3 +191,27 @@ The reported errors might not indicate a real problem. A build cluster might not
     #### Solution
 
     Install the missing package.
+
+# <a id='app-accelerators-page'></a> Accelerators page
+
+Here are some common troubleshooting steps for errors presented in the App Accelerators page.
+
+##  <a id='no-accelerators'></a> No accelerators
+
+### Symptom
+When the `app_config.backend.reading.allow` section is configured in the `tap-values-file.yml` file during the tap-gui package install, there are no accelerators on the accelerator page.
+
+### Cause
+
+This is because this section in the `tap-values-file.yml` file will override the default configuration which allows TAP-GUI access to the accelerators.
+
+### Solution
+As a workaround, if you are modifying this section, you must provide a value for Application Accelerator:
+```
+app_config:
+  # Existing tap-values-file.yml above
+  backend:
+    reading:
+      allow:
+      - host: acc-server.accelerator-system.svc.cluster.local
+```
