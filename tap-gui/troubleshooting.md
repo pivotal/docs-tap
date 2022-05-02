@@ -153,7 +153,9 @@ The reported errors might not indicate a real problem. A build cluster might not
 
 ### Error Details
 
--  <a id='rrv-cluster-configuration'></a> `Access error when querying cluster `CLUSTER_NAME` for resource 'KUBERNETES_RESOURCE_PATH' (status: 401). Contact your administrator.`
+You might receive the following specific error messages:
+
+-  <a id='rrv-cluster-configuration'></a> `Access error when querying cluster CLUSTER_NAME for resource KUBERNETES_RESOURCE_PATH (status: 401). Contact your administrator.`
 
     #### Cause
 
@@ -163,7 +165,7 @@ The reported errors might not indicate a real problem. A build cluster might not
 
     Confirm the access token used to request information in the cluster.
 
-- <a id='rrv-resource-access'></a> `Access error when querying cluster ‘CLUSTER_NAME’ for resource 'KUBERNETES_RESOURCE_PATH' (status: 403). Contact your administrator.`
+- <a id='rrv-resource-access'></a> `Access error when querying cluster CLUSTER_NAME for resource KUBERNETES_RESOURCE_PATH (status: 403). Contact your administrator.`
 
     #### Cause
 
@@ -175,7 +177,7 @@ The reported errors might not indicate a real problem. A build cluster might not
     If the error is in a watched cluster, review the process to grant access to it in [Viewing resources on multiple clusters in Tanzu Application Platform GUI](cluster-view-setup.md).
 
 
-- <a id='rrv-missing-knative'></a> `Knative is not installed on ‘CLUSTER_NAME’ (status: 404). Contact your administrator.`
+- <a id='rrv-missing-knative'></a> `Knative is not installed on CLUSTER_NAME (status: 404). Contact your administrator.`
 
     #### Cause
 
@@ -185,7 +187,7 @@ The reported errors might not indicate a real problem. A build cluster might not
 
     Install the Knative components by following the instructions in [Install Cloud Native Runtimes](../cloud-native-runtimes/install-cnrt.md).
 
-- <a id='rrv-missing-resource'></a> `Error when querying cluster ‘CLUSTER_NAME’ for resource 'KUBERNETES_RESOURCE_PATH' (status: 404). Contact your administrator.`
+- <a id='rrv-missing-resource'></a> `Error when querying cluster CLUSTER_NAME for resource KUBERNETES_RESOURCE_PATH (status: 404). Contact your administrator.`
 
     #### Cause
 
