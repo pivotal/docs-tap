@@ -13,7 +13,7 @@ resource instead of `WorkshopRequest`.
 
 To specify the workshop environment the workshop instance is created against, set the
 `environment.name` field of the specification for the workshop session.
-At the same time, you must specify the session ID for the workshop instance. For example:
+You must also specify the session ID for the workshop instance. For example:
 
 ```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1

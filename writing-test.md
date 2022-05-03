@@ -8,7 +8,7 @@ The WorkshopSession custom resource defines a workshop session.
 
 When running training for multiple people, it would be more typical to use the TrainingPortal custom resource to setup a training environment. Alternatively you would set up a Workshop environment using the WorkshopEnvironment custom Resource, then create requests for Workshop instances using the WorkshopRequest Custom Resource. If doing the latter and you need more control over how the workshop instances are setup, you may use WorkshopSession custom resource instead of WorkshopRequest.
 
-Note that to specify the workshop environment the workshop instance is created against, set the environment.name field of the specification for the workshop session. At the same time, you must specify the session ID for the Workshop instance.
+Note that to specify the workshop environment the workshop instance is created agaisnt, set the environment.name field of the specification for the workshop session. At the same time, you must specify the session ID for the Workshop instance.
 
 ```yaml
 <strong>apiVersion</strong>: learningcenter.tanzu.vmware.com/v1beta1
@@ -22,14 +22,8 @@ spec:
     id: user1
 ```
 
-The name of the workshop specified in the metadata of the training environment needs to be globally unique for the workshop instance being created. You actually need to create a separate WorkshopSession custom resource for each workshop instance you want.
-
-The session ID needs to be unique within the workshop environment the workshop instance is being created against. Also, it's important to note that user access to each workshop instance can be controlled through login credentials. This is so that a workshop attendee cannot interfere with another.
-
-# <a id='cluster-context'></a> Set the Kubernetes cluster context
-
-Next, if you haven't already done so, you need to set the Kubernetes cluster context. Here are the steps you need to follow:
-
+## <a id='cluster-context'></a> Set the Kubernetes cluster context
+Next, you need to set the Kubernetes cluster context. Here are the steps you need to follow:
 1. List the existing contexts by running the following command:
 ```console
 kubectl config get-contexts
