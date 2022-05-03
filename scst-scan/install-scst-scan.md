@@ -12,7 +12,7 @@ For more information about profiles, see [Installing the Tanzu Application Platf
 Before installing Supply Chain Security Tools - Scan:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
-- Install [Supply Chain Security Tools - Store](../install-components.md#install-scst-store) for scan results to persist. It can be present on the same cluster or a different one. You can install Supply Chain Security Tools - Scan by using the CA Secret name for Supply Chain Security Tools - Store present in the same cluster, with Token Secret name for Supply Chain Security Tools - Store in different cluster, or without Supply Chain Security Tools - Store. In this case, skip creating a values file. After you complete installing Supply Chain Security Tools - Store, you must update the Supply Chain Security Tools - Scan values file.
+- Install [Supply Chain Security Tools - Store](../install-components.md#install-scst-store) for scan results to persist. It can be present on the same cluster or a different one. You can install Supply Chain Security Tools - Scan by using the CA Secret name for Supply Chain Security Tools - Store present in the same cluster, with Token Secret name for Supply Chain Security Tools - Store in different cluster, or without Supply Chain Security Tools - Store. After you complete installing Supply Chain Security Tools - Store, you must update the Supply Chain Security Tools - Scan values file.
 
     For usage instructions, see [Using the Supply Chain Security Tools - Store](../scst-store/overview.md).
 
@@ -74,6 +74,21 @@ To install Supply Chain Security Tools - Scan (Scan controller):
 
     Where `VERSION` is your package version number. For example, `1.1.0`.
 
+1. (Optional) Disable Supply Chain Security Tools - Store if installing Supply Chain Security Tools - Scan without it
+    ```yaml
+    ---
+    metadataStore:
+      url: ""
+    ```
+    Install the package with the edited configurations by running:
+    ```console
+    tanzu package install scan-controller \
+      --package-name scanning.apps.tanzu.vmware.com \
+      --version VERSION \
+      --namespace tap-install \
+      --values-file tap-values.yml
+    ```
+
 1. (Optional) Configure Supply Chain Security Tools - Store in a different cluster
 
     ```yaml
@@ -88,6 +103,15 @@ To install Supply Chain Security Tools - Scan (Scan controller):
 
     - `META-DATA-STORE-URL` is the URL pointing to the Supply Chain Security Tools - Store ingress in the cluster that has your Supply Chain Security Tools - Store deployment. For example, `https://metadata-store.example.com:8443`.
     - `AUTH-SECRET-NAME` is the name of the secret that has the auth token to post to the Supply Chain Security Tools - Store.
+
+    Install the package with the updated configurations by running:
+    ```console
+    tanzu package install scan-controller \
+      --package-name scanning.apps.tanzu.vmware.com \
+      --version VERSION \
+      --namespace tap-install \
+      --values-file tap-values.yml
+    ```
 
 To install Supply Chain Security Tools - Scan (Grype scanner):
 
