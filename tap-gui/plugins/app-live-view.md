@@ -145,10 +145,19 @@ The page also has a feature to download thread dump for analysis purposes.
 
 ### <a id="memory-page"></a> Memory page
 
-To navigate to the **Memory** page, the user can select the `Memory` option from the `Information Category` drop-down menu.
+To navigate to the **Memory** page, the user can select the **Memory** option from the
+**Information Category** drop-down menu.
 
-- The memory page highlights the memory use inside of the JVM. It displays a graphical representation of the different memory regions within heap and non-heap memory. This visualizes data from inside of the JVM (in case of Spring Boot apps running on a JVM) and therefore provides memory insights into the application in contrast to "outside" information about the Kubernetes pod level.
-- The real-time graphs displays a stacked overview of the different spaces in memory with the total memory used and total memory size. The page contains graphs to display the GC pauses and GC events. The **Heap Dump** on top right corner allows the user to download heap dump data.
+The memory page highlights the memory use inside of the JVM.
+It displays a graphical representation of the different memory regions within heap and non-heap memory.
+This visualizes data from inside of the JVM, in case of Spring Boot apps running on a JVM, and
+therefore provides memory insights into the application in contrast to outside information about
+the Kubernetes pod level.
+
+The real-time graphs displays a stacked overview of the different spaces in memory with the total
+memory used and total memory size.
+The page contains graphs to display the GC pauses and GC events.
+The **Heap Dump** on top right corner allows the user to download heap dump data.
 
 ![Memory Page in UI](images/memory.png)
 
