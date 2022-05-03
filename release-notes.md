@@ -386,7 +386,7 @@ but misses the `SecretImport` for the RBAC Auth token.
 As a workaround, apply the following YAML to the cluster running Scan and then 
 perform a rolling restart:
 
->**Note:** It is optional to update the namespaces before performing the rolling start.
+    >**Note:** It is optional to update the namespaces before performing the rolling start.
 
     ```yaml
     ---
@@ -398,7 +398,8 @@ perform a rolling restart:
     spec:
       fromNamespace: metadata-store-secrets
     ```
-    The necessary `Secret` for the RBAC Auth token is created and the scan can be re-run.
+    
+    The `Secret` for the RBAC Auth token is created and the scan can be re-run.
     A rolling restart includes running the following:
 
     ```console
@@ -413,10 +414,13 @@ This happens when the Scan Controller is deployed and reconciled before the Stor
 is reconciled and the corresponding secrets are exported to the Scan Controller namespace. 
 As a workaround, after your Store is successfully reconciled, 
 restart your Supply Chain Security Tools - Scan deployment by running: 
-`kubectl rollout restart deployment.apps/scan-link-controller-manager -n scan-link-system`
 
-If you deploy Supply Chain Security Tools - Scan to a different namespace than the default one, 
-replace `-n scan-link-system` with `-n <my_custom_namespace>`.
+    ```console
+    kubectl rollout restart deployment.apps/scan-link-controller-manager -n scan-link-system
+    ```
+
+    >**Note:** If you deploy Supply Chain Security Tools - Scan to a different namespace than the default one, 
+    replace `-n scan-link-system` with `-n <my_custom_namespace>`.
 
 #### Supply Chain Security Tools - Store
 
