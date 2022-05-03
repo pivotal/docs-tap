@@ -31,7 +31,7 @@ The following issues, listed by area and component, are resolved in this release
 - CVE fixes
 - Various styling fixes
 - TLS Certificate and Ingress bug fix
-- Supply Chain plugin upgrade
+- Supply Chain plug-in upgrade
 
 ### <a id='1-1-1-known-issues'></a> Known issues
 
@@ -55,9 +55,19 @@ after the binaries are built and packaged as images.
 
 #### <a id="1-1-1-known-issues-gui"></a>Tanzu Application Platform GUI
 
-**When the `app_config.backend.reading.allow` section is configured during the tap-gui package install, there are no accelerators on the accelerator page:** This is because this section will override the default configuration which allows TAP-GUI access to the accelerators. Two use cases for this field are for reading catalog locations from a non-standard git server for which there is no built-in integration and for reading specs for API Entities from openAPI endpoints. As a workaround, if you are modifying this section, you must provide a value for Application Accelerator:
+**If the `app_config.backend.reading.allow` section is configured during the 
+tap-gui package install, no accelerators shows on the accelerator page:** 
+This is because `app_config.backend.reading.allow` overrides the default 
+configuration, which allows Tanzu Application Platform GUI access to the accelerators. 
+There are two use cases for the `app_config.backend.reading.allow` field: 
 
-```
+- Read catalog locations from a non-standard Git server with no built-in integration. 
+- Read specifications for API Entities from openAPI endpoints.
+
+As a workaround, when modifying the `app_config.backend.reading.allow` section, 
+you must provide a value for Application Accelerator:
+
+```yaml
 app_config:
   # Existing tap-values-file.yml above
   backend:
