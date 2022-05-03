@@ -415,7 +415,7 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>
+   <td>&check;
    </td>
   </tr>
   <tr>
@@ -569,7 +569,7 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>
+   <td>&check;
    </td>
   </tr>
   <tr>
