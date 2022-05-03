@@ -386,7 +386,7 @@ but misses the `SecretImport` for the RBAC Auth token.
 As a workaround, apply the following YAML to the cluster running Scan and then 
 perform a rolling restart:
 
-    >**Note:** It is optional to update the namespaces before performing the rolling start.
+    >**Note:** In some cases, you must update the namespaces before performing the rolling start.
 
     ```yaml
     ---
