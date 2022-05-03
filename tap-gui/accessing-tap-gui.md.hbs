@@ -75,7 +75,7 @@ running:
       service_type: ClusterIP
       ingressEnabled: "true"
       ingressDomain: 'example.com' # This makes the host name tap-gui.example.com
-    # Existing tap-values.yaml above  
+    # Existing tap-values.yaml above
       app_config:
         app:
           baseUrl: http://tap-gui.example.com # No port needed with Ingress
@@ -94,7 +94,7 @@ running:
     ```
 
     This snippet is from a values file in the
-    [Configure Tanzu Application Platform GUI section](../install.md#configure-tap-gui) of the
+    [Configure Tanzu Application Platform GUI section](../install.html#configure-tap-gui) of the
     Profiles installation topic. The new host names are populated based on the example host name
     `tap-gui.example.com`.
 

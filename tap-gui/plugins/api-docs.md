@@ -2,7 +2,7 @@
 
 This section provides a general overview of the API documentation plug-in of the
 Tanzu Application Platform GUI.
-For more information, see [Getting started with API documentation plug-in](api-docs-getting-started.md).
+For more information, see [Getting started with API documentation plug-in](api-docs-getting-started.html).
 
 
 ## <a id="overview"></a> Overview
@@ -68,8 +68,8 @@ being provided by the component.
 
 ![Screenshot of VIEW API page](../images/api-plugin-3.png)
 
-Clicking on the API itself takes you to the catalog entry for the API, which is denoted by the Kind
-type listed in the upper-left corner.
+Clicking on the API itself takes you to the catalog entry for the API, which the Kind
+type listed in the upper-left corner denotes.
 Every API entity has a title and short description, including a reference to the team that owns the
 definition of that API and the software catalog objects that are connected to it.
 
@@ -82,10 +82,10 @@ API in human-readable and machine-readable format.
 
 The API documentation plug-in supports the following API formats:
 
-* OpenAPI 2 & 3
-* AsyncAPI
-* GraphQL
-* Plain (to support any other format)
+- OpenAPI 2 & 3
+- AsyncAPI
+- GraphQL
+- Plain (to support any other format)
 
 
 ## <a id='create-project'></a> Create a new API entry

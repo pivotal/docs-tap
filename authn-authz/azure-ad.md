@@ -176,7 +176,7 @@ To set up the Azure AD app:
 
 1. Create a new client secret and record this value.
 
-1. Add the following YAML to `FILENAME-MISSING.yaml`.
+1. Add the following YAML to `oidc_identity_provider.yaml`.
 
     ```yaml
     ---
@@ -223,7 +223,7 @@ To set up the Azure AD app:
 1. Apply your changes from the kubectl CLI by running:
 
     ```console
-    kubectl apply FILENAME-MISSING.yaml
+    kubectl apply workspace/pinniped-supervisor/oidc_identity_provider.yaml
     ```
 
 

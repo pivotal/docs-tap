@@ -1,9 +1,9 @@
 # Install Application Live View
 
-This document describes how to install Application Live View
-from the Tanzu Application Platform package repository.
+This topic describes how to install Application Live View from the Tanzu Application Platform package
+repository.
 
-Application Live View installs three packages for `full` , `light` and `iterate` profiles:
+Application Live View installs three packages for `full`, `light`, and `iterate` profiles:
 
 - For the `view` profile, Application Live View installs Application Live View Backend package (`backend.appliveview.tanzu.vmware.com`). This installs the Application Live View Backend component with Tanzu Application Platform GUI in `app-live-view` namespace.
 
@@ -12,13 +12,14 @@ Application Live View installs three packages for `full` , `light` and `iterate`
 - For the `build` profile, Application Live View installs Application Live View Conventions package (`conventions.appliveview.tanzu.vmware.com`). This installs the Application Live View Convention Service in `app-live-view-conventions` namespace.
 
 >**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
-For more information about profiles, see [Installing the Tanzu Application Platform Package and Profiles](../../install.md).
+For more information about profiles, see [Installing the Tanzu Application Platform Package and Profiles](../../install.html).
+
 
 ## <a id='prereqs'></a>Prerequisites
 
-Before installing Application Live View:
+Before installing Application Live View, complete all prerequisites to install Tanzu Application Platform.
+For more information, see [Prerequisites](../../prerequisites.html).
 
-- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../../prerequisites.md).
 
 ## <a id='install-app-live-view'></a> Install Application Live View
 
@@ -26,7 +27,8 @@ You can install Application Live View in single cluster or multicluster environm
 
 - `Single cluster`: All Application Live View components are deployed in a single cluster. The user can access Application Live View plug-in information of the applications across all the namespaces in the Kubernetes cluster. This is the default mode of Application Live View.
 
-- `Multi cluster`: In a multicluster environment, the Application Live View Backend component is installed only once in a single cluster and exposes a RSocket registration for the other clusters using Tanzu shared ingress. Each cluster continues to install the connector as a DaemonSet. The connectors are configured to connect to the central instance of the Application Live View Backend.
+- `Multicluster`: In a multicluster environment, the Application Live View Backend component is installed only once in a single cluster and exposes a RSocket registration for the other clusters using Tanzu shared ingress. Each cluster continues to install the connector as a DaemonSet. The connectors are configured to connect to the central instance of the Application Live View Backend.
+
 
 ## <a id='install-app-live-view-backend'></a> Install Application Live View Backend
 
@@ -63,7 +65,6 @@ To install Application Live View Backend:
 
     For more information about values schema options, see the properties listed earlier.
 
-
 1. Create `app-live-view-backend-values.yaml` with the following details:
 
     For single cluster environment, use the following values:
@@ -79,10 +80,11 @@ To install Application Live View Backend:
     ingressDomain: ${INGRESS-DOMAIN}
     ```
 
-    Where `INGRESS-DOMAIN` is the top level domain you use for the `tanzu-shared-ingress` service’s external IP address. The `appliveview`
-    subdomain is prepended to the value provided.
+    Where `INGRESS-DOMAIN` is the top level domain you use for the `tanzu-shared-ingress` service’s
+    external IP address. The `appliveview` subdomain is prepended to the value provided.
 
-    To configure TLS certificate delegation information for the domain, add the following values to `app-live-view-backend-values.yaml`:
+    To configure TLS certificate delegation information for the domain, add the following values to
+    `app-live-view-backend-values.yaml`:
 
     ```yaml
     tls:
@@ -123,7 +125,7 @@ To install Application Live View Backend:
     Added installed package 'appliveview' in namespace 'tap-install'
     ```
 
-    >**Note**: The Application Live View Backend component is deployed in `app-live-view` namespace by default.
+    >**Note:** The Application Live View Backend component is deployed in `app-live-view` namespace by default.
 
 1. Verify the Application Live View Backend package installation by running:
 
@@ -192,7 +194,7 @@ To install Application Live View Connector:
         sslDisabled: "true"
     ```
 
-    >**Note**: The Application Live View Connector connects to the `cluster-local` backend to register the applications.
+    >**Note:** The Application Live View Connector connects to the `cluster-local` back end to register the applications.
 
     For a multicluster environment, use the following values:
 
@@ -202,9 +204,10 @@ To install Application Live View Connector:
         host: appliveview.INGRESS-DOMAIN
     ```
 
-    Where `INGRESS-DOMAIN` is the top level domain the Application Live View Backend exposes by using `tanzu-shared-ingress` for the Connectors in other clusters to reach the backend. Prepend the `appliveview` subdomain to the provided value.
+    Where `INGRESS-DOMAIN` is the top level domain the Application Live View Backend exposes by using `tanzu-shared-ingress` for the Connectors in other clusters to reach the back end. Prepend the `appliveview` subdomain to the provided value.
 
-    The `sslDisabled` boolean flag is treated as a string in Kubernetes YAML and hence, should be specified in `double-quotes` for the configuration to be picked up.
+    The `sslDisabled` boolean flag is treated as a string in Kubernetes YAML.
+    Therefore it must be specified in `double-quotes` for the configuration to be picked up.
 
     You can edit the values to suit your project needs or leave the default values as is.
 
@@ -261,6 +264,8 @@ To install Application Live View Connector:
 
 ## <a id='install-app-live-view-conventions'></a> Install Application Live View Conventions
 
+To install Application Live View Conventions:
+
 1. List version information for the package by running:
 
     ```console
@@ -310,7 +315,7 @@ To install Application Live View Connector:
 
     ```console
     tanzu package installed get appliveview-conventions -n tap-install
-    | Retrieving installation details for appliveview-conventions... 
+    | Retrieving installation details for appliveview-conventions...
     NAME:                    appliveview-conventions
     PACKAGE-NAME:            conventions.appliveview.tanzu.vmware.com
     PACKAGE-VERSION:         1.1.1
@@ -328,4 +333,4 @@ see the [Application Live View documentation](https://docs.vmware.com/en/Applica
 
 The Application Live View UI plug-in is part of Tanzu Application Platform GUI.
 To access the Application Live View UI,
-see [Application Live View in Tanzu Application Platform GUI](app-live-view.md).
+see [Application Live View in Tanzu Application Platform GUI](app-live-view.html).
