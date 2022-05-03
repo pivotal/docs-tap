@@ -6,7 +6,7 @@ This topic contains release notes for Tanzu Application Platform v1.1
 
 ### <a id='1-1-1-resolved-issues'></a> Resolved issues
 
-This following issues, listed by area and component, are resolved in this release.
+The following issues, listed by area and component, are resolved in this release.
 
 #### <a id="scc-resolved"></a>Supply Chain Choreographer plug-in
 
@@ -14,19 +14,19 @@ This following issues, listed by area and component, are resolved in this releas
 - Workloads page does not show errors
 - Build stage shows error while building
 
-#### Supply Chain Security Tools - Scan
+#### <a id="scst-resolved"></a>Supply Chain Security Tools - Scan
 
 - Resolved edge case for scan phase to correctly indicate `Error` when error occurs during scanning
 - Added missing `SecretImport` for the RBAC Auth token `store-auth-token` for multicluster
 - Resolved race condition involving reading Store secrets and exporting to the Scan Controller namespace
 
-#### Grype Scanner
+#### <a id="grype-resolved"></a>Grype Scanner
 
 - Removed package `gnutls` to address [CVE-2021-20232](https://nvd.nist.gov/vuln/detail/CVE-2021-20232) and [CVE-2021-20231](https://nvd.nist.gov/vuln/detail/CVE-2021-20231)
 - Removed package `lua` to address [CVE-2022-28805](https://nvd.nist.gov/vuln/detail/CVE-2022-28805)
 - Updated module `golang.org/x/crypto` to v0.0.0-20210220033148-5ea612d1eb83 to address [CVE-2022-27191](https://nvd.nist.gov/vuln/detail/CVE-2022-27191)
 
-#### Tanzu Application Platform GUI
+#### <a id="gui-resolved"></a>Tanzu Application Platform GUI
 
 - CVE fixes
 - Various styling fixes
@@ -37,17 +37,26 @@ This following issues, listed by area and component, are resolved in this releas
 
 This release has the following known issues, listed by area and component.
 
-#### Grype scanner
+#### <a id="1-1-1-known-issues-grype"></a>Grype scanner
 
 **Scanning Java source code may not reveal vulnerabilities:**
-Source Code Scanning only scans files present in the source code repository. No network calls are made to fetch dependencies. For languages using dependency lock files, such as Golang and Node.js, Grype uses the lock files to check the dependencies for vulnerabilities.
+Source Code Scanning only scans files present in the source code repository. 
+No network calls are made to fetch dependencies. 
+For languages using dependency lock files, such as Golang and Node.js, 
+Grype uses the lock files to check the dependencies for vulnerabilities.
 
-For Java, dependency lock files are not guaranteed, so Grype instead uses the dependencies present in the built binaries (`.jar` or `.war` files).
+For Java, dependency lock files are not guaranteed, so Grype uses 
+the dependencies present in the built binaries (`.jar` or `.war` files) instead.
 
-Because VMware discourages committing binaries to source code repositories, Grype fails to find vulnerabilities during a Source Scan. The vulnerabilities are still found during the Image Scan, after the binaries are built and packaged as images.
+Because VMware discourages committing binaries to source code repositories, 
+Grype fails to find vulnerabilities during a Source Scan. 
+The vulnerabilities are still found during the Image Scan, 
+after the binaries are built and packaged as images.
 
-#### Tanzu Application Platform GUI
-- **When the `app_config.backend.reading.allow` section is configured during the tap-gui package install, there are no accelerators on the accelerator page.** This is because this section will override the default configuration which allows TAP-GUI access to the accelerators. Two use cases for this field are for reading catalog locations from a non-standard git server for which there is no built-in integration and for reading specs for API Entities from openAPI endpoints. As a workaround, if you are modifying this section, you must provide a value for Application Accelerator:
+#### <a id="1-1-1-known-issues-gui"></a>Tanzu Application Platform GUI
+
+**When the `app_config.backend.reading.allow` section is configured during the tap-gui package install, there are no accelerators on the accelerator page:** This is because this section will override the default configuration which allows TAP-GUI access to the accelerators. Two use cases for this field are for reading catalog locations from a non-standard git server for which there is no built-in integration and for reading specs for API Entities from openAPI endpoints. As a workaround, if you are modifying this section, you must provide a value for Application Accelerator:
+
 ```
 app_config:
   # Existing tap-values-file.yml above
@@ -351,30 +360,53 @@ graph view of a supply chain.
 This error does not necessarily mean that the workload failed its execution through the supply chain.
 - **Scan results not shown:** Current CVEs found during Image or Build scanning do not appear. However, results are still present in the metadata store and are available by using the Tanzu CLI.
 
-#### Supply Chain Security Tools - Scan
+#### <a id='1-1-known-issues-scst'></a>Supply Chain Security Tools - Scan
 
-- **Scan Phase indicates `Scanning` incorrectly:** Scans have an edge case that when an error
-  occurs during scanning, the `Scan Phase` field is not updated to `Error` and remains in the
-  `Scanning` phase. Read the scan pod logs to verify the existence of an error.
-- **Multicluster Support: Error sending results to SCST - Store (Store) running in a different cluster** The [Store Ingress and multicluster support](scst-store/ingress-multicluster.md) document instructs you on how to create `SecretExports` to share secrets for communicating with the Store. During installation, Supply Chain Security Tools - Scan (Scan) automatically creates the `SecretImport` necessary for ingesting the TLS CA certificate secret, but is missing the `SecretImport` for the RBAC Auth token. As a workaround, apply the following YAML, updating the namespaces if necessary, to the cluster running Scan and then perform a rolling restart:
-  ```yaml
-  ---
-  apiVersion: secretgen.carvel.dev/v1alpha1
-  kind: SecretImport
-  metadata:
-    name: store-auth-token
-    namespace: scan-link-system
-  spec:
-    fromNamespace: metadata-store-secrets
-  ```
-  The necessary `Secret` for the RBAC Auth token is created and the scan can be re-run.
-  A rolling restart includes running the following:
+- **Scan Phase indicates `Scanning` incorrectly:** Scans have an edge case that when an error 
+occurs during scanning, the `Scan Phase` field is not updated to `Error` and remains in the 
+`Scanning` phase. Read the scan pod logs to verify the existence of an error.
 
-  ```console
-  kubectl rollout restart deployment.apps/scan-link-controller-manager -n scan-link-system
-  ```
+- **Multicluster Support: Error sending results to SCST - Store (Store) running in a different cluster:** 
+The [Store Ingress and multicluster support](scst-store/ingress-multicluster.md) 
+document instructs you on how to create `SecretExports` to share secrets for 
+communicating with the Store. 
+During installation, Supply Chain Security Tools - Scan (Scan) creates the 
+`SecretImport` for ingesting the TLS CA certificate secret, 
+but misses the `SecretImport` for the RBAC Auth token. 
+As a workaround, apply the following YAML to the cluster running Scan and then 
+perform a rolling restart:
 
-- **User sees error message saying Supply Chain Security Tools - Store (Store) is not configured even though configuration values were supplied:** The Scan Controller experiences a race-condition when deploying Store in the same cluster, that shows Store as not configured, even when it is present and properly configured. This happens when the Scan Controller is deployed and reconciled before the Store is reconciled and the corresponding secrets are exported to the Scan Controller namespace. As a workaround to this, once your Store is successfully reconciled, you would need to restart your Supply Chain Security Tools - Scan deployment by running: `kubectl rollout restart deployment.apps/scan-link-controller-manager -n scan-link-system`. If you deployed Supply Chain Security Tools - Scan to a different namespace than the default one, you can replace `-n scan-link-system` with `-n <my_custom_namespace>`.
+>**Note:** It is optional to update the namespaces before performing the rolling start.
+
+    ```yaml
+    ---
+    apiVersion: secretgen.carvel.dev/v1alpha1
+    kind: SecretImport
+    metadata:
+      name: store-auth-token
+      namespace: scan-link-system
+    spec:
+      fromNamespace: metadata-store-secrets
+    ```
+    The necessary `Secret` for the RBAC Auth token is created and the scan can be re-run.
+    A rolling restart includes running the following:
+
+    ```console
+    kubectl rollout restart deployment.apps/scan-link-controller-manager -n scan-link-system
+    ```
+
+- **User sees error message indicating Supply Chain Security Tools - Store (Store) 
+is not configured even though configuration values were supplied:** 
+The Scan Controller experiences a race-condition when deploying Store in the same cluster, 
+that shows Store as not configured, even when it is present and properly configured. 
+This happens when the Scan Controller is deployed and reconciled before the Store 
+is reconciled and the corresponding secrets are exported to the Scan Controller namespace. 
+As a workaround, after your Store is successfully reconciled, 
+restart your Supply Chain Security Tools - Scan deployment by running: 
+`kubectl rollout restart deployment.apps/scan-link-controller-manager -n scan-link-system`
+
+If you deploy Supply Chain Security Tools - Scan to a different namespace than the default one, 
+replace `-n scan-link-system` with `-n <my_custom_namespace>`.
 
 #### Supply Chain Security Tools - Store
 
