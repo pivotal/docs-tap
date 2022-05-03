@@ -210,22 +210,28 @@ You might receive the following specific error messages:
 
     Install the missing package.
 
-# <a id='app-accelerators-page'></a> Accelerators page
+## <a id='app-accelerators-page'></a> Accelerators page
 
 Here are some common troubleshooting steps for errors presented in the App Accelerators page.
 
-##  <a id='no-accelerators'></a> No accelerators
+### <a id='no-accelerators'></a> No accelerators
 
-### Symptom
-When the `app_config.backend.reading.allow` section is configured in the `tap-values-file.yml` file during the tap-gui package install, there are no accelerators on the accelerator page.
+#### Symptom
 
-### Cause
+When the `app_config.backend.reading.allow` section is configured in the `tap-values-file.yml` file
+during the `tap-gui` package installation, there are no accelerators on the Accelerator page.
 
-This is because this section in the `tap-values-file.yml` file will override the default configuration which allows TAP-GUI access to the accelerators.
+#### Cause
 
-### Solution
-As a workaround, if you are modifying this section, you must provide a value for Application Accelerator:
-```
+This is because this section in the `tap-values-file.yml` file overrides the default configuration
+that gives Tanzu Application Platform GUI access to the accelerators.
+
+#### Solution
+
+As a workaround, if you are modifying this section, provide a value for Application Accelerator.
+For example:
+
+```yaml
 app_config:
   # Existing tap-values-file.yml above
   backend:
