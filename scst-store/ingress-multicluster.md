@@ -2,11 +2,11 @@
 
 Supply Chain Security Tools - Store has ingress support by using Contour's HTTPProxy resources. To enable ingress support, a Contour installation must be available in the cluster.
 
-Supply Chain Security Tools - Store's configuration includes two options to configure the proxy: `ingress_enabled` and `ingress_domain`. 
+Supply Chain Security Tools - Store's configuration includes two options to configure the proxy: `ingress_enabled` and `ingress_domain`.
 
 For example:
 
-```yml
+```yaml
 ingress_enabled: "true"
 ingress_domain: "example.com"
 ```
