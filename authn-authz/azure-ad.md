@@ -33,29 +33,29 @@ To set up a platform operator:
 
   * Create an AKS Cluster with Azure AD enabled by running:
 
-    ```console
-    az group create --name RESOURCE-GROUP --location LOCATION
-    az aks create -g RESOURCE-GROUP -n MANAGED-CLUSTER --enable-aad --aad-admin-group-object-ids OBJECT-ID
-    ```
+      ```console
+      az group create --name RESOURCE-GROUP --location LOCATION
+      az aks create -g RESOURCE-GROUP -n MANAGED-CLUSTER --enable-aad --aad-admin-group-object-ids OBJECT-ID
+      ```
 
-    Where:
+      Where:
 
-    * `RESOURCE-GROUP` is your resource group
-    * `LOCATION` is your location
-    * `MANAGED-CLUSTER` is your managed cluster
-    * `OBJECT-ID` is the object ID
+      * `RESOURCE-GROUP` is your resource group
+      * `LOCATION` is your location
+      * `MANAGED-CLUSTER` is your managed cluster
+      * `OBJECT-ID` is the object ID
 
   * Enable Azure AD integration on the existing cluster by running:
 
-    ```console
-    az aks update -g RESOURCE-GROUP -n MANAGED-CLUSTER --enable-aad --aad-admin-group-object-ids OBJECT-ID
-    ```
+      ```console
+      az aks update -g RESOURCE-GROUP -n MANAGED-CLUSTER --enable-aad --aad-admin-group-object-ids OBJECT-ID
+      ```
 
-    Where:
+      Where:
 
-    * `RESOURCE-GROUP` is your resource group
-    * `MANAGED-CLUSTER` is your managed cluster
-    * `OBJECT-ID` is the object ID
+      * `RESOURCE-GROUP` is your resource group
+      * `MANAGED-CLUSTER` is your managed cluster
+      * `OBJECT-ID` is the object ID
 
 1. Add **Platform Operators** to the admin group.
 
@@ -86,7 +86,7 @@ default roles (`app-operator`, `app-viewer`, and `app-editor`).
 
 1. Add users to the groups accordingly.
 
-1. For each object ID retrieved earlier, use the Tanzu CLI RBAC plug-in to bind the `object id` group to a role.
+1. For each object ID retrieved earlier, use the Tanzu CLI RBAC plug-in to bind the `object id` group to a role by running:
 
     ```console
     tanzu rbac binding add -g OBJECT-ID -r TAP-ROLE -n NAMESPACE
