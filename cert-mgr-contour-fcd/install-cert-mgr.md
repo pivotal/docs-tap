@@ -32,7 +32,7 @@ To install cert-manager from the Tanzu Application Platform package repository:
         cert-manager.tanzu.vmware.com  1.5.3+tap.1  2021-08-23T17:22:51Z
       ```
 
-2. Create a `cert-manager-rbac.yml` using the following sample and apply the configuration.
+2. Create a file named `cert-manager-rbac.yaml` using the following sample and apply the configuration.
 
 
       ```yaml
@@ -71,10 +71,10 @@ To install cert-manager from the Tanzu Application Platform package repository:
       For example:
 
       ```console
-      kubectl apply -f cert-manager-rbac.yml
+      kubectl apply -f cert-manager-rbac.yaml
       ```
 
-3. Create a `cert-manager-install.yml` using the following sample and apply the configuration.
+3. Create a file named `cert-manager-install.yaml` using the following sample and apply the configuration.
 
 
       ```yaml
@@ -100,7 +100,7 @@ To install cert-manager from the Tanzu Application Platform package repository:
       For example:
 
       ```console
-      kubectl apply -f cert-manager-install.yml
+      kubectl apply -f cert-manager-install.yaml
       ```
 
 4. Verify the package install by running:
@@ -157,7 +157,7 @@ To install Contour from the Tanzu Application Platform package repository:
       contour.tanzu.vmware.com  1.18.2+tap.1  2021-10-05T00:00:00Z
     ```
 
-2. Create a `contour-rbac.yml` using the following sample and apply the configuration.
+2. Create a file named `contour-rbac.yaml` using the following sample and apply the configuration.
 
     ```yaml
     apiVersion: rbac.authorization.k8s.io/v1
@@ -195,10 +195,10 @@ To install Contour from the Tanzu Application Platform package repository:
 3. Apply the configuration by running:
 
     ```console
-    kubectl apply -f contour-rbac.yml
+    kubectl apply -f contour-rbac.yaml
     ```
 
-4. Create a `contour-install.yml` using the following sample and apply the configuration.
+4. Create a file named `contour-install.yaml` using the following sample and apply the configuration.
     The following configuration installs the Contour package with default options.
     If you want to make changes to the default installation settings, go to the next step.
 
