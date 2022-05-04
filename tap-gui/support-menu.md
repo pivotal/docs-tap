@@ -56,8 +56,8 @@ tap_gui:
 The `url` field under the `support` section, for example,
 
 ```yaml
-support:
-  url: https://tanzu.vmware.com/support
+      support:
+        url: https://tanzu.vmware.com/support
 ```
 
 provides the address of the **contact support** link that appears on error
@@ -78,8 +78,8 @@ provides the set of support item groupings to display when the support menu is e
 The `title` field on a support item grouping, for example,
 
 ```yaml
-items:
-  - title: Contact Support
+        items:
+          - title: Contact Support
 ```
 
 provides the label for the grouping.
@@ -90,8 +90,8 @@ provides the label for the grouping.
 The `icon` field on a support item grouping, for example,
 
 ```yaml
-items:
-  - icon: email
+        items:
+          - icon: email
 ```
 
 provides the icon to use for that grouping. The valid choices are:
@@ -114,10 +114,10 @@ provides the icon to use for that grouping. The valid choices are:
 The `links` field on a support item grouping, for example,
 
 ```yaml
-items:
-  - links:
-      - url: https://tanzu.vmware.com/support
-        title: Tanzu Support Page
+        items:
+          - links:
+              - url: https://tanzu.vmware.com/support
+                title: Tanzu Support Page
 ```
 
 is a list of YAML objects that render as links.
