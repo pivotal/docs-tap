@@ -59,5 +59,5 @@ Follow these steps to define a Rego file for policy enforcement that you can reu
 1. Deploy the scan policy to the cluster by running:
 
     ```console
-    kubectl apply -f <path_to_scan_policy>/<scan_policy_filename>.yml -n <desired_namespace>
+    kubectl apply -f <path_to_scan_policy>/<scan_policy_filename>.yaml -n <desired_namespace>
     ```

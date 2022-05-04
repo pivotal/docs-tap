@@ -52,7 +52,7 @@ The `SourceScan` custom resource helps you define and trigger a scan for a given
 1. Deploy the `SourceScan` custom resource to the desired namespace on cluster by running:
 
     ```console
-    kubectl apply -f <path_to_the_cr>/<custom_resource_filename>.yml -n <desired_namespace>
+    kubectl apply -f <path_to_the_cr>/<custom_resource_filename>.yaml -n <desired_namespace>
     ```
 
     After the scanning completes, the following fields appear in the custom resource and are filled by the scanner:
@@ -132,7 +132,7 @@ The `ImageScan` custom resource helps you define and trigger a scan for a given 
 1. Deploy the `ImageScan` custom resource to the desired namespace on cluster by running:
 
     ```console
-    kubectl apply -f <path_to_the_cr>/<custom_resource_filename>.yml -n <desired_namespace>
+    kubectl apply -f <path_to_the_cr>/<custom_resource_filename>.yaml -n <desired_namespace>
     ```
 
     After the scanning completes, the following fields appear in the custom resource and are filled by the scanner:

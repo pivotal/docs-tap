@@ -58,7 +58,7 @@ To get Supply Chain Security Tools - Store's TLS CA certificate, run:
 ```bash
 # On the Supply Chain Security Tools - Store's cluster
 $ CA_CERT=$(kubectl get secret -n metadata-store ingress-cert -o json | jq -r ".data.\"ca.crt\"")
-$ cat <<EOF > store_ca.yml
+$ cat <<EOF > store_ca.yaml
 ---
 apiVersion: v1
 kind: Secret
@@ -78,7 +78,7 @@ EOF
 $ kubectl create ns metadata-store-secrets
 
 # Create the CA Certificate secret
-$ kubectl apply -f store_ca.yml
+$ kubectl apply -f store_ca.yaml
 ```
 
 ## <a id="rbac-auth-token"></a>RBAC Auth token
@@ -104,7 +104,7 @@ To allow Supply Chain Security Tools - Scan to access the created secrets, `Secr
 Here is an example for supporting Supply Chain Security Tools - Scan installation on the default namespace `scan-link-system`:
 
 ```bash
-$ cat <<EOF > store_secrets_export.yml
+$ cat <<EOF > store_secrets_export.yaml
 ---
 apiVersion: secretgen.carvel.dev/v1alpha1
 kind: SecretExport
@@ -124,12 +124,12 @@ spec:
 EOF
 
 # Export secrets to the Supply Chain Security Tools - Scan namespace
-$ kubectl apply -f store_secrets_export.yml
+$ kubectl apply -f store_secrets_export.yaml
 ```
 
 Install Supply Chain Security Tools - Scan with the following configuration:
 
-```yml
+```yaml
 ---
 metadataStore:
     url: https://metadata-store.example.com
