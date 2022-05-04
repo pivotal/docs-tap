@@ -584,10 +584,10 @@ To apply this install method, follow the following steps:
 In this section, a Tekton pipeline is added to the cluster. In the next section,
 the workload is updated to point to the pipeline and resolve any current errors.
 
-To add the Tekton supply chain to the cluster, apply the following YAML to the cluster:
-
 >**Note:** Developers can perform this step because they know how their application needs to be tested.
 The operator can also add the Tekton supply chain to a cluster before the developer get access.
+
+To add the Tekton supply chain to the cluster, apply the following YAML to the cluster:
 
 ```yaml
 apiVersion: tekton.dev/v1beta1
