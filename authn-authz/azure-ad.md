@@ -1,4 +1,4 @@
-# Azure Active Directory Integration
+# Integrating Azure Active Directory
 
 This topic describes how to integrate the Azure Active Directory (AD).
 
