@@ -4,7 +4,7 @@
 
 The WorkshopSession custom resource defines a workshop session.
 
-## Specifying the session identity
+## <a id='specify-session-id'></a> Specifying the session identity
 
 When running training for multiple people, it would be more typical to use the TrainingPortal custom resource to setup a training environment. Alternatively you would set up a Workshop environment using the WorkshopEnvironment custom Resource, then create requests for Workshop instances using the WorkshopRequest Custom Resource. If doing the latter and you need more control over how the workshop instances are setup, you may use WorkshopSession custom resource instead of WorkshopRequest.
 
@@ -22,7 +22,7 @@ spec:
     id: user1
 ```
 
-## <a id='cluster-context'></a> Set the Kubernetes cluster context
+## <a id=''></a> Set the Kubernetes cluster context
 Next, you need to set the Kubernetes cluster context. Here are the steps you need to follow:
 1. List the existing contexts by running the following command:
 ```console
