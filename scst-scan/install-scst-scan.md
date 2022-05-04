@@ -12,7 +12,7 @@ For more information about profiles, see [Installing the Tanzu Application Platf
 Before installing Supply Chain Security Tools - Scan:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
-- Install [Supply Chain Security Tools - Store](../install-components.md#install-scst-store) for scan results to persist. It can be present on the same cluster or a different one. You can install Supply Chain Security Tools - Scan by using the CA Secret name for Supply Chain Security Tools - Store present in the same cluster, with Token Secret name for Supply Chain Security Tools - Store in different cluster, or without Supply Chain Security Tools - Store. In this case, skip creating a values file. After you complete installing Supply Chain Security Tools - Store, you must update the Supply Chain Security Tools - Scan values file.
+- Install [Supply Chain Security Tools - Store](../install-components.md#install-scst-store) for scan results to persist. It can be present on the same cluster or a different one. You can install Supply Chain Security Tools - Scan by using the CA Secret name for Supply Chain Security Tools - Store present in the same cluster, with Token Secret name for Supply Chain Security Tools - Store in different cluster, or without Supply Chain Security Tools - Store. After you complete installing Supply Chain Security Tools - Store, you must update the Supply Chain Security Tools - Scan values file.
 
     For usage instructions, see [Using the Supply Chain Security Tools - Store](../scst-store/overview.md).
 
@@ -79,9 +79,9 @@ To install Supply Chain Security Tools - Scan (Scan controller):
     ```yaml
     ---
     metadataStore:
-    url: META-DATA-STORE-URL
-    authSecret:
-      name: AUTH-SECRET-NAME
+      url: META-DATA-STORE-URL
+      authSecret:
+        name: AUTH-SECRET-NAME
     ```
 
     Where:

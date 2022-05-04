@@ -25,3 +25,21 @@ If a private image scan is triggered and the secret is not configured, the scan 
 ```console
 Job.batch "scan-${app}-${id}" is invalid: [spec.template.spec.volumes[2].secret.secretName: Required value, spec.template.spec.containers[0].volumeMounts[2].name: Not found: "registry-cred"]
 ```
+### <a id="diasble-scst-store"></a>Disable Supply Chain Security Tools - Store
+The installation of Supply Chain Security Tools - Scan assumes that the Supply Chain Security Tools - Store is already present. If you choose to install without the Supply Chain Security Tools - Store,  you need to edit the configurations to disable the Store.
+
+    ```yaml
+    ---
+    metadataStore:
+      url: ""
+    ```
+
+Install the package with the edited configurations by running:
+
+    ```console
+    tanzu package install scan-controller \
+      --package-name scanning.apps.tanzu.vmware.com \
+      --version VERSION \
+      --namespace tap-install \
+      --values-file tap-values.yml
+    ```
