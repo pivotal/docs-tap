@@ -128,7 +128,7 @@ To install Supply Chain Security Tools - Scan (Grype scanner):
       targetSourceSshSecret      <EMPTY>  string  Reference to the secret containing SSH credentials for cloning private repositories.
     ```
 
-1. (Optional) You can define the `--values-file` flag to customize the default configuration. Create a `grype-values.yml` file by using the following configuration:
+1. (Optional) You can define the `--values-file` flag to customize the default configuration. Create a `grype-values.yaml` file by using the following configuration:
 
     ```yaml
     ---

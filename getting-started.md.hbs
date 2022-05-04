@@ -1156,11 +1156,11 @@ To set up a service:
 
 1. Apply RBAC rules to grant Tanzu Application Platform permission to interact with the new API.
 
-    1. In a file named `resource-claims-rmq.yml`, create a `ClusterRole` that defines the rules and label it
+    1. In a file named `resource-claims-rmq.yaml`, create a `ClusterRole` that defines the rules and label it
     so that the rules are aggregated to the appropriate controller:
 
         ```yaml
-        # resource-claims-rmq.yml
+        # resource-claims-rmq.yaml
         ---
         apiVersion: rbac.authorization.k8s.io/v1
         kind: ClusterRole
@@ -1174,19 +1174,19 @@ To set up a service:
           verbs: ["get", "list", "watch", "update"]
         ```
 
-    1. Apply `resource-claims-rmq.yml` by running:
+    1. Apply `resource-claims-rmq.yaml` by running:
 
         ```console
-        kubectl apply -f resource-claims-rmq.yml
+        kubectl apply -f resource-claims-rmq.yaml
         ```
 
-    1. In a file named `rabbitmqcluster-app-operator-reader.yml`, define RBAC
+    1. In a file named `rabbitmqcluster-app-operator-reader.yaml`, define RBAC
     rules that permit the users of the cluster to interact with the new APIs.
     For example, to permit application operators to get, list, and watch for `RabbitmqCluster` service instances,
     apply the following RBAC `ClusterRole`, labeled so that the rules are aggregated to the `app-operator` role:
 
         ```yaml
-        # rabbitmqcluster-app-operator-reader.yml
+        # rabbitmqcluster-app-operator-reader.yaml
         ---
         apiVersion: rbac.authorization.k8s.io/v1
         kind: ClusterRole
@@ -1200,19 +1200,19 @@ To set up a service:
           verbs: ["get", "list", "watch"]
         ```
 
-    1. Apply `rabbitmqcluster-app-operator-reader.yml` by running:
+    1. Apply `rabbitmqcluster-app-operator-reader.yaml` by running:
 
         ```console
-        kubectl apply -f rabbitmqcluster-app-operator-reader.yml
+        kubectl apply -f rabbitmqcluster-app-operator-reader.yaml
         ```
 
 1. Make the new API discoverable.
 
-    1. In a file named `rabbitmqcluster-clusterresource.yml`, create a `ClusterResource`
+    1. In a file named `rabbitmqcluster-clusterresource.yaml`, create a `ClusterResource`
     that refers to the new service, and set any additional metadata. For example:
 
         ```yaml
-        # rabbitmqcluster-clusterresource.yml
+        # rabbitmqcluster-clusterresource.yaml
         apiVersion: services.apps.tanzu.vmware.com/v1alpha1
         kind: ClusterResource
         metadata:
@@ -1225,10 +1225,10 @@ To set up a service:
             kind: RabbitmqCluster
         ```
 
-    1. Apply `rabbitmqcluster-clusterresource.yml` by running:
+    1. Apply `rabbitmqcluster-clusterresource.yaml` by running:
 
         ```console
-        kubectl apply -f rabbitmqcluster-clusterresource.yml
+        kubectl apply -f rabbitmqcluster-clusterresource.yaml
         ```
         After applying this resource, it will be listed in the output of the
         `tanzu service types list` command, and is discoverable in the `tanzu` tooling.
@@ -1275,11 +1275,11 @@ To create a service instance:
 
 1. Create a `RabbitmqCluster` service instance.
 
-    1. Create a file named `rmq-1-service-instance.yml` using the `APIVERSION` and
+    1. Create a file named `rmq-1-service-instance.yaml` using the `APIVERSION` and
     `KIND` from the output of the `tanzu service types list` command:
 
         ```yaml
-        # rmq-1-service-instance.yml
+        # rmq-1-service-instance.yaml
         ---
         apiVersion: rabbitmq.com/v1beta1
         kind: RabbitmqCluster
@@ -1288,10 +1288,10 @@ To create a service instance:
           namespace: service-instances
         ```
 
-    1. Apply `rmq-1-service-instance.yml` by running:
+    1. Apply `rmq-1-service-instance.yaml` by running:
 
         ```console
-        kubectl apply -f rmq-1-service-instance.yml
+        kubectl apply -f rmq-1-service-instance.yaml
         ```
 
 3. Create a resource claim policy to define the namespaces the instance can be claimed and bound from:
@@ -1301,10 +1301,10 @@ To create a service instance:
     > To claim service instances that are running in a different namespace, you must
     > create a resource claim policy.
 
-    1. Create a file named `rmq-claim-policy.yml` as follows:
+    1. Create a file named `rmq-claim-policy.yaml` as follows:
 
         ```yaml
-        # rmq-claim-policy.yml
+        # rmq-claim-policy.yaml
         ---
         apiVersion: services.apps.tanzu.vmware.com/v1alpha1
         kind: ResourceClaimPolicy
@@ -1319,10 +1319,10 @@ To create a service instance:
             kind: RabbitmqCluster
         ```
 
-    1. Apply `rmq-claim-policy.yml` by running:
+    1. Apply `rmq-claim-policy.yaml` by running:
 
         ```console
-        kubectl apply -f rmq-claim-policy.yml
+        kubectl apply -f rmq-claim-policy.yaml
         ```
 
     This policy states that any resource of kind `RabbitmqCluster` on the `rabbitmq.com`
