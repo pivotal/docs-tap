@@ -82,7 +82,7 @@ All detail pages provide an overview card with information related to the select
 Most of the information feeds from the `metadata` attribute in each object.
 The following are some attributes that are displayed in the overview card:
 
-- **.YAML** button
+- .YAML button
 - URL (URL is available for Knative services and Kubernetes services)
 - Type
 - System
