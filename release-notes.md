@@ -78,9 +78,16 @@ app_config:
 
 #### <a id="1-1-1-known-issues-gui"></a>Functions (Beta Feature)
 
-At this time deploying Java functions workloads using the OOTB Testing+Scanning supply chain results in an error. The workload deployed shows an error for sourcescan as it is not able to find the scan template. A fix is planned for Tanzu Application Platform v1.2.1.
+Deploying Java functions workloads by using the Out of the Box Supply Chain 
+with Testing and Scanning causes an error. 
+The workload deployed shows an error for `SourceScan` as it can not find 
+the scan template. A fix is planned for Tanzu Application Platform v1.2.1.
 
-Note: When leveraging both Tanzu Build Service and Grype in your Tanzu Application Platform supply chain, you can receive enhanced scanning coverage for Java and Node.js workloads that includes application runtime layer dependencies. Python workloads are not supported at this time.
+>**Note:** When using both Tanzu Build Service and Grype in your 
+Tanzu Application Platform supply chain, 
+you can receive enhanced scanning coverage for Java and Node.js workloads that 
+includes application runtime layer dependencies. 
+Python workloads are not supported.
 
 
 ## <a id='1-1'></a> v1.1
