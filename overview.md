@@ -163,7 +163,7 @@ The following packages are part of the Tanzu Application Platform:
   secure trusted software that complies with their corporate security requirements.
 
   To enable this, Supply Chain Security Tools - Scan provides scanning and gatekeeping capabilities
-  that Application and DevSecOps teams can easily incorporate earlier in their path to production.
+  that Application and DevSecOps teams can incorporate earlier in their path to production.
   This is an established industry best practice for reducing security risk and ensuring more
   efficient remediation.
 
