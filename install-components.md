@@ -15,7 +15,7 @@ For more information, see [Prerequisites](prerequisites.md).
 - [Install API portal](api-portal/install-api-portal.md)
 - [Install Application Accelerator](application-accelerator/install-app-acc.md)
 - [Install Application Live View](tap-gui/plugins/install-application-live-view.md)
-- [Install cert-manager, Contour](cert-mgr-contour-fcd/install-cert-mgr.md)
+- [Install cert-manager, Contour, and FluxCD](cert-mgr-contour-fcd/install-cert-mgr.md)
 - [Install Cloud Native Runtimes](cloud-native-runtimes/install-cnrt.md)
 - [Install Convention Service](convention-service/install-conv-service.md)
 - [Install default roles for Tanzu Application Platform](authn-authz/install.md)  
@@ -26,7 +26,6 @@ For more information, see [Prerequisites](prerequisites.md).
 - [Install Out of the Box Supply Chain with Testing and Scanning](scc/install-ootb-sc-wtest-scan.md)
 - [Install Service Bindings](service-bindings/install-service-bindings.md)
 - [Install Services Toolkit](services-toolkit/install-services-toolkit.md)
-- [Install FluxCD Source Controller](fluxcd-source-controller/install-fluxcd-source-controller.md)
 - [Install Source Controller](source-controller/install-source-controller.md)
 - [Install Spring Boot Conventions](spring-boot-conventions/install-spring-boot-conventions.md)
 - [Install Supply Chain Choreographer](scc/install-scc.md)
@@ -63,7 +62,7 @@ Use the following procedure to verify that the packages are installed.
     convention-controller    controller.conventions.apps.tanzu.vmware.com       0.4.2            Reconcile succeeded
     developer-conventions    developer-conventions.tanzu.vmware.com             0.3.0-build.1    Reconcile succeeded
     grype-scanner            grype.scanning.apps.tanzu.vmware.com               1.0.0            Reconcile succeeded
-    image-policy-webhook     image-policy-webhook.signing.apps.tanzu.vmware.com 1.1.1            Reconcile succeeded
+    image-policy-webhook     image-policy-webhook.signing.apps.tanzu.vmware.com 1.1.2            Reconcile succeeded
     metadata-store           metadata-store.apps.tanzu.vmware.com               1.0.2            Reconcile succeeded
     ootb-supply-chain-basic  ootb-supply-chain-basic.tanzu.vmware.com           0.5.1            Reconcile succeeded
     ootb-templates           ootb-templates.tanzu.vmware.com                    0.5.1            Reconcile succeeded
@@ -166,11 +165,7 @@ that you plan to create the `Workload` in:
 
 3. Perform one of the following actions to give developers namespace-level access and view access to appropriate cluster-level resources:
 
-    > **Note:** Admin permissions are required to apply the following bindings.
-    > However, to see the effects of RBAC after the bindings are applied, you must log in as a
-    > non-administrator user, such as a developer.
-
-    * Use the [`tanzu rbac`](authn-authz/binding.html) plug-in to grant `app-viewer` or `app-editor` roles to an identity provider group by running:
+    * Use the `tanzu rbac` plug-in to grant `app-viewer` and `app-editor` roles to an identity provider group by running:
 
         ```console
         tanzu rbac binding add -g GROUP-FOR-APP-VIEWER -n YOUR-NAMESPACE -r app-viewer
@@ -180,8 +175,11 @@ that you plan to create the `Workload` in:
         Where:
 
         - `YOUR-NAMESPACE` is the name that you want to use for the developer namespace
-        - `GROUP-FOR-APP-VIEWER` is the user group from the upstream identity provider that requires access to `app-viewer` resources on the current namespace/cluster
-        - `GROUP-FOR-APP-EDITOR` is the user group from the upstream identity provider that requires access to `app-editor` resources on the current namespace/cluster
+        - `GROUP-FOR-APP-VIEWER` is the user group from the upstream identity provider that requires access to `app-viewer` resources on the current namespace and cluster
+        - `GROUP-FOR-APP-EDITOR` is the user group from the upstream identity provider that requires access to `app-editor` resources on the current namespace and cluster
+
+        For more information about `tanzu rbac`, see
+        [Bind a user or group to a default role](authn-authz/binding.html).
 
         VMware recommends creating a user group in your identity provider's grouping system for each
         developer namespace, and then adding the users accordingly.
@@ -252,8 +250,8 @@ that you plan to create the `Workload` in:
         Where:
 
         - `YOUR-NAMESPACE` is the name that you want to use for the developer namespace
-        - `GROUP-FOR-APP-VIEWER` is the user group from the upstream identity provider that requires access to `app-viewer` resources on the current namespace/cluster
-        - `GROUP-FOR-APP-EDITOR` is the user group from the upstream identity provider that requires access to `app-editor` resources on the current namespace/cluster
+        - `GROUP-FOR-APP-VIEWER` is the user group from the upstream identity provider that requires access to `app-viewer` resources on the current namespace and cluster
+        - `GROUP-FOR-APP-EDITOR` is the user group from the upstream identity provider that requires access to `app-editor` resources on the current namespace and cluster
 
         VMware recommends creating a user group in your identity provider's grouping system for each
         developer namespace, and then adding the users accordingly.
@@ -267,3 +265,5 @@ that you plan to create the `Workload` in:
         group of developers, rather than granting roles directly to individuals.
         For an example of how to set up Azure AD with your cluster, see
         [Integrating Azure Active Directory](authn-authz/azure-ad.html).
+
+4. (Optional) Log in as a non-admin user, such as a developer, to see the effects of RBAC after the bindings are applied.
