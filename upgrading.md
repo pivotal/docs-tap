@@ -55,3 +55,39 @@ Verify the versions of packages after the upgrade by running:
 ```
 tanzu package installed list --namespace tap-install
 ```
+
+Your output is similar, but probably not identical, to the following example output:
+
+```console
+- Retrieving installed packages...
+  NAME                      PACKAGE-NAME                                        PACKAGE-VERSION  STATUS
+  accelerator               accelerator.apps.tanzu.vmware.com                   1.0.2            Reconcile succeeded
+  api-portal                api-portal.tanzu.vmware.com                         1.0.9            Reconcile succeeded
+  appliveview               run.appliveview.tanzu.vmware.com                    1.0.2            Reconcile succeeded
+  appliveview-conventions   build.appliveview.tanzu.vmware.com                  1.0.2            Reconcile succeeded
+  buildservice              buildservice.tanzu.vmware.com                       1.4.3            Reconcile succeeded
+  cartographer              cartographer.tanzu.vmware.com                       0.2.2            Reconcile succeeded
+  cert-manager              cert-manager.tanzu.vmware.com                       1.5.3+tap.1      Reconcile succeeded
+  cnrs                      cnrs.tanzu.vmware.com                               1.1.1            Reconcile succeeded
+  contour                   contour.tanzu.vmware.com                            1.18.2+tap.1     Reconcile succeeded
+  conventions-controller    controller.conventions.apps.tanzu.vmware.com        0.5.1            Reconcile succeeded
+  developer-conventions     developer-conventions.tanzu.vmware.com              0.5.0            Reconcile succeeded
+  fluxcd-source-controller  fluxcd.source.controller.tanzu.vmware.com           0.16.3           Reconcile succeeded
+  grype                     grype.scanning.apps.tanzu.vmware.com                1.0.1            Reconcile succeeded
+  image-policy-webhook      image-policy-webhook.signing.apps.tanzu.vmware.com  1.0.2            Reconcile succeeded
+  learningcenter            learningcenter.tanzu.vmware.com                     0.1.1            Reconcile succeeded
+  learningcenter-workshops  workshops.learningcenter.tanzu.vmware.com           0.1.1            Reconcile succeeded
+  metadata-store            metadata-store.apps.tanzu.vmware.com                1.0.2            Reconcile succeeded
+  ootb-delivery-basic       ootb-delivery-basic.tanzu.vmware.com                0.6.1            Reconcile succeeded
+  ootb-supply-chain-basic   ootb-supply-chain-basic.tanzu.vmware.com            0.6.1            Reconcile succeeded
+  ootb-templates            ootb-templates.tanzu.vmware.com                     0.6.1            Reconcile succeeded
+  scanning                  scanning.apps.tanzu.vmware.com                      1.0.1            Reconcile succeeded
+  service-bindings          service-bindings.labs.vmware.com                    0.6.1            Reconcile succeeded
+  services-toolkit          services-toolkit.tanzu.vmware.com                   0.5.1            Reconcile succeeded
+  source-controller         controller.source.apps.tanzu.vmware.com             0.2.1            Reconcile succeeded
+  spring-boot-conventions   spring-boot-conventions.tanzu.vmware.com            0.3.0            Reconcile succeeded
+  tap                       tap.tanzu.vmware.com                                1.0.2            Reconcile succeeded
+  tap-gui                   tap-gui.tanzu.vmware.com                            1.0.2            Reconcile succeeded
+  tap-telemetry             tap-telemetry.tanzu.vmware.com                      0.1.4            Reconcile succeeded
+  tekton-pipelines          tekton.tanzu.vmware.com                             0.30.1           Reconcile succeeded
+```
