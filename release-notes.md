@@ -20,6 +20,14 @@ The following issues, listed by area and component, are resolved in this release
 - Added missing `SecretImport` for the RBAC Auth token `store-auth-token` for multicluster
 - Resolved race condition involving reading Store secrets and exporting to the Scan Controller namespace
 
+#### <a id="scst-store-resolved"></a>Supply Chain Security Tools - Store
+
+- Updated `containerd` version to `v1.5.10` to resolve [GHSA-crp2-qrr5-8pq7](https://github.com/advisories/GHSA-crp2-qrr5-8pq7)
+- Updated postgres image to resolve [CVE-2018-25032](https://nvd.nist.gov/vuln/detail/CVE-2018-25032)
+- Updated `brancz/kube-rbac-proxy` image to `0.12.0` to resolve [GHSA-c3h9-896r-86jm](https://github.com/advisories/GHSA-c3h9-896r-86jm)
+- Fixed issue where new vulnerabilities were not appended to existing packages
+- Fixed issue where Insight CLI plugin failed to start on Windows platforms
+
 #### <a id="grype-resolved"></a>Grype Scanner
 
 - Removed package `gnutls` to address [CVE-2021-20232](https://nvd.nist.gov/vuln/detail/CVE-2021-20232) and [CVE-2021-20231](https://nvd.nist.gov/vuln/detail/CVE-2021-20231)
@@ -52,6 +60,10 @@ Because VMware discourages committing binaries to source code repositories,
 Grype fails to find vulnerabilities during a Source Scan. 
 The vulnerabilities are still found during the Image Scan, 
 after the binaries are built and packaged as images.
+
+#### <a id="1-1-1-known-issues-scst-store"></a>Supply Chain Security Tools - Store
+
+The Supply Change Security Tools - Store has [CVE-2022-21698](https://nvd.nist.gov/vuln/detail/CVE-2022-21698) at high severity from `brancz/kube-rbac-proxy:0.12.0` image.
 
 #### <a id="1-1-1-known-issues-gui"></a>Tanzu Application Platform GUI
 
