@@ -26,10 +26,6 @@ The following issues, listed by area and component, are resolved in this release
 - Removed package `lua` to address [CVE-2022-28805](https://nvd.nist.gov/vuln/detail/CVE-2022-28805)
 - Updated module `golang.org/x/crypto` to v0.0.0-20210220033148-5ea612d1eb83 to address [CVE-2022-27191](https://nvd.nist.gov/vuln/detail/CVE-2022-27191)
 
-#### <a id="scst-sign-resolved"></a>Supply Chain Security Tools - Sign
-
-- Updated golang to 1.17.9 to address [CVE-2022-27191](https://nvd.nist.gov/vuln/detail/CVE-2022-27191)
-
 #### <a id="gui-resolved"></a>Tanzu Application Platform GUI
 
 - CVE fixes
@@ -79,6 +75,13 @@ app_config:
       allow:
       - host: acc-server.accelerator-system.svc.cluster.local
 ```
+
+#### <a id="1-1-1-known-issues-gui"></a>Functions (Beta Feature)
+
+At this time deploying Java functions workloads using the OOTB Testing+Scanning supply chain results in an error. The workload deployed shows an error for sourcescan as it is not able to find the scan template. A fix is planned for Tanzu Application Platform v1.2.1.
+
+Note: When leveraging both Tanzu Build Service and Grype in your Tanzu Application Platform supply chain, you can receive enhanced scanning coverage for Java and Node.js workloads that includes application runtime layer dependencies. Python workloads are not supported at this time.
+
 
 ## <a id='1-1'></a> v1.1
 
