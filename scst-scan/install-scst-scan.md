@@ -12,10 +12,7 @@ For more information about profiles, see [Installing the Tanzu Application Platf
 Before installing Supply Chain Security Tools - Scan:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
-- [Supply Chain Security Tools - Store](../install-components.md#install-scst-store) must be installed on the cluster for scan results to persist. Supply Chain Security Tools - Scan can be installed without Supply Chain Security Tools - Store already installed. In this case, skip creating a values file. Once Supply Chain Security Tools - Store is installed, the Supply Chain Security Tools - Scan values file must be updated.
-  For usage instructions, see [Using the Supply Chain Security Tools - Store](../scst-store/overview.md).
-- Install Supply Chain Security Tools - Store CLI to query the Supply Chain Security Tools - Store for CVE results.
-  See [Installing the CLI](../scst-store/cli_installation.md).
+- Install [Supply Chain Security Tools - Store](../install-components.md#install-scst-store) for scan results to persist. It can be present on the same cluster or a different one. You can install Supply Chain Security Tools - Scan by using the CA Secret name for Supply Chain Security Tools - Store present in the same cluster, with Token Secret name for Supply Chain Security Tools - Store in different cluster, or without Supply Chain Security Tools - Store. After you complete installing Supply Chain Security Tools - Store, you must update the Supply Chain Security Tools - Scan values file.
 
 ## <a id="scanner-support"></a>Scanner support
 
@@ -67,6 +64,23 @@ To install Supply Chain Security Tools - Scan (Scan controller):
       --version 1.0.0 \
       --namespace tap-install
     ```
+
+    Where `VERSION` is your package version number. For example, `1.1.0`.
+
+1. (Optional) Configure Supply Chain Security Tools - Store in a different cluster
+
+    ```yaml
+    ---
+    metadataStore:
+      url: META-DATA-STORE-URL
+      authSecret:
+        name: AUTH-SECRET-NAME
+    ```
+
+    Where:
+
+    - `META-DATA-STORE-URL` is the URL pointing to the Supply Chain Security Tools - Store ingress in the cluster that has your Supply Chain Security Tools - Store deployment. For example, `https://metadata-store.example.com:8443`.
+    - `AUTH-SECRET-NAME` is the name of the secret that has the auth token to post to the Supply Chain Security Tools - Store.
 
 To install Supply Chain Security Tools - Scan (Grype scanner):
 
