@@ -163,45 +163,6 @@ that you plan to create the `Workload` in:
     EOF
     ```
 
-<<<<<<< HEAD
-3. Give developers namespace-level access and view access to appropriate cluster-level resources by doing one of the following:
-  * Use the `tanzu auth` plug-in to grant `app-viewer` or `app-editor` roles
-  * Apply the following RBAC policy:
-
-      ```console
-      apiVersion: rbac.authorization.k8s.io/v1
-      kind: RoleBinding
-      metadata:
-        name: dev-permit-app-viewer
-      roleRef:
-        apiGroup: rbac.authorization.k8s.io
-        kind: ClusterRole
-        name: app-viewer
-      subjects:
-        - kind: Group
-          name: "namespace-developers"
-          apiGroup: rbac.authorization.k8s.io
-      --
-      apiVersion: rbac.authorization.k8s.io/v1
-      kind: ClusterRoleBinding
-      metadata:
-        name: namespace-dev-permit-app-viewer
-      roleRef:
-        apiGroup: rbac.authorization.k8s.io
-        kind: ClusterRole
-        name: app-viewer-cluster-access
-      subjects:
-        - kind: Group
-          name: "namespace-developers"
-          apiGroup: rbac.authorization.k8s.io
-      EOF
-      ```
-
-      VMware recommends using your identity provider's groups system to grant access to a group of
-      developers, rather than granting roles directly to individuals.
-      For more information, see the
-      [Kubernetes documentation](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#referring-to-subjects).
-=======
 3. Perform one of the following actions to give developers namespace-level access and view access to appropriate cluster-level resources:
 
     > **Note:** Admin permissions are required to apply the following bindings.
@@ -305,4 +266,3 @@ that you plan to create the `Workload` in:
         group of developers, rather than granting roles directly to individuals.
         For an example of how to set up Azure AD with your cluster, see
         [Integrating Azure Active Directory](authn-authz/azure-ad.html).
->>>>>>> f2d7c9f9 ([#182029365] More style edits)
