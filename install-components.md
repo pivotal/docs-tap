@@ -9,6 +9,7 @@ Before installing the packages, be sure to complete the prerequisites, configure
 and verify the cluster, accept the EULA, and install the Tanzu CLI with any required plug-ins.
 For more information, see [Prerequisites](prerequisites.md).
 
+
 ## <a id='individual-package-toc'></a> Install pages for individual Tanzu Application Platform packages
 
 - [Install API portal](api-portal/install-api-portal.md)
@@ -35,6 +36,7 @@ For more information, see [Prerequisites](prerequisites.md).
 - [Install Tanzu Application Platform GUI](tap-gui/install-tap-gui.md)
 - [Install Tanzu Build Service](tanzu-build-service/install-tbs.md)
 - [Install Tekton](tekton/install-tekton.md)
+
 
 ## <a id='verify'></a> Verify the installed packages
 
@@ -74,6 +76,7 @@ Use the following procedure to verify that the packages are installed.
     tbs                      buildservice.tanzu.vmware.com                      1.5.0            Reconcile succeeded
     ```
 
+
 ## <a id='setup'></a> Set up developer namespaces to use installed packages
 
 To create a `Workload` for your application using the registry credentials specified,
@@ -95,7 +98,7 @@ that you plan to create the `Workload` in:
     and the trailing `/`. For GCR, this is `gcr.io`.
     Based on the information used in [Installing the Tanzu Application Platform Package and Profiles](install.md), you can use the
     same registry server as in `ootb_supply_chain_basic` - `registry` - `server`.
-    - `REGISTRY-PASSWORD` is the password of the registry. 
+    - `REGISTRY-PASSWORD` is the password of the registry.
     For GCR or Google Artifact Registry, this must be the concatenated version of the JSON key. For example: `"$(cat ~/gcp-key.json)"`.
 
     **Note:** If you observe the following issue with the above command:
@@ -161,31 +164,37 @@ that you plan to create the `Workload` in:
     EOF
     ```
 
-3. Give developers namespace-level access and view access to appropriate cluster-level resources by doing **one of the following**:
+3. Perform one of the following actions to give developers namespace-level access and view access to appropriate cluster-level resources:
 
-    **Note:** An administrator user is required to apply the bindings below. However once the bindings are applied, you must login as a non administrator user (i.e. developer) to see the effects of rbac
+    > **Note:** Admin permissions are required to apply the following bindings.
+    > However, to see the effects of RBAC after the bindings are applied, you must log in as a
+    > non-administrator user, such as a developer.
 
-    1) Use the [`tanzu rbac`](authn-authz/binding.md) plug-in to grant `app-viewer` or `app-editor` roles to an identity provider group
+    * Use the [`tanzu rbac`](authn-authz/binding.html) plug-in to grant `app-viewer` or `app-editor` roles to an identity provider group by running:
 
         ```console
-        tanzu rbac binding add -g <GROUP-FOR-APP-VIEWER> -n <YOUR-NAMESPACE> -r app-viewer
-        tanzu rbac binding add -g <GROUP-FOR-APP-EDITOR> -n <YOUR-NAMESPACE> -r app-editor
+        tanzu rbac binding add -g GROUP-FOR-APP-VIEWER -n YOUR-NAMESPACE -r app-viewer
+        tanzu rbac binding add -g GROUP-FOR-APP-EDITOR -n YOUR-NAMESPACE -r app-editor
         ```
 
         Where:
 
-        - `<YOUR-NAMESPACE>` is the name that you want to use for the developer namespace
-        - `<GROUP-FOR-APP-VIEWER>` is the user group from the upstream identity provider that would like to have access to `app-viewer` resources on the current namespace/cluster
-        - `<GROUP-FOR-APP-EDITOR>` is the user group from the upstream identity provider that would like to have access to `app-editor` resources on the current namespace/cluster
+        - `YOUR-NAMESPACE` is the name that you want to use for the developer namespace
+        - `GROUP-FOR-APP-VIEWER` is the user group from the upstream identity provider that requires access to `app-viewer` resources on the current namespace/cluster
+        - `GROUP-FOR-APP-EDITOR` is the user group from the upstream identity provider that requires access to `app-editor` resources on the current namespace/cluster
 
-        Recommendation: Create a user group in your identity provider's grouping system for each developer namespace, then add the users accordingly.
+        VMware recommends creating a user group in your identity provider's grouping system for each
+        developer namespace, and then adding the users accordingly.
 
-        Depending on your identity provider, you may need to do additional research on how to federate user groups appropriately with your cluster. An example for setting up Azure Active Directory with your cluster can be found [here](./authn-authz/azure-ad.md)
+        Depending on your identity provider, you might need to take further action to
+        federate user groups appropriately with your cluster.
+        For an example of how to set up Azure Active Directory (AD) with your cluster, see
+        [Integrating Azure Active Directory](authn-authz/azure-ad.html).
 
-    1) Apply the following RBAC policy:
+    * Apply the RBAC policy by running:
 
         ```console
-        cat <<EOF | kubectl -n <YOUR-NAMESPACE> apply -f -
+        cat <<EOF | kubectl -n YOUR-NAMESPACE apply -f -
         apiVersion: rbac.authorization.k8s.io/v1
         kind: RoleBinding
         metadata:
@@ -196,20 +205,20 @@ that you plan to create the `Workload` in:
           name: app-viewer
         subjects:
           - kind: Group
-            name: <GROUP-FOR-APP-VIEWER>
+            name: GROUP-FOR-APP-VIEWER
             apiGroup: rbac.authorization.k8s.io
         ---
         apiVersion: rbac.authorization.k8s.io/v1
         kind: ClusterRoleBinding
         metadata:
-          name: <YOUR-NAMESPACE>-permit-app-viewer
+          name: YOUR-NAMESPACE-permit-app-viewer
         roleRef:
           apiGroup: rbac.authorization.k8s.io
           kind: ClusterRole
           name: app-viewer-cluster-access
         subjects:
           - kind: Group
-            name: <GROUP-FOR-APP-VIEWER>
+            name: GROUP-FOR-APP-VIEWER
             apiGroup: rbac.authorization.k8s.io
         ---
         apiVersion: rbac.authorization.k8s.io/v1
@@ -222,35 +231,39 @@ that you plan to create the `Workload` in:
           name: app-editor
         subjects:
           - kind: Group
-            name: <GROUP-FOR-APP-EDITOR>
+            name: GROUP-FOR-APP-EDITOR
             apiGroup: rbac.authorization.k8s.io
         ---
         apiVersion: rbac.authorization.k8s.io/v1
         kind: ClusterRoleBinding
         metadata:
-          name: <YOUR-NAMESPACE>-permit-app-editor
+          name: YOUR-NAMESPACE-permit-app-editor
         roleRef:
           apiGroup: rbac.authorization.k8s.io
           kind: ClusterRole
           name: app-editor-cluster-access
         subjects:
           - kind: Group
-            name: <GROUP-FOR-APP-EDITOR>
+            name: GROUP-FOR-APP-EDITOR
             apiGroup: rbac.authorization.k8s.io
         EOF
         ```
 
         Where:
 
-        - `<YOUR-NAMESPACE>` is the name that you want to use for the developer namespace
-        - `<GROUP-FOR-APP-VIEWER>` is the user group from the upstream identity provider that would like to have access to `app-viewer` resources on the current namespace/cluster
-        - `<GROUP-FOR-APP-EDITOR>` is the user group from the upstream identity provider that would like to have access to `app-editor` resources on the current namespace/cluster
+        - `YOUR-NAMESPACE` is the name that you want to use for the developer namespace
+        - `GROUP-FOR-APP-VIEWER` is the user group from the upstream identity provider that requires access to `app-viewer` resources on the current namespace/cluster
+        - `GROUP-FOR-APP-EDITOR` is the user group from the upstream identity provider that requires access to `app-editor` resources on the current namespace/cluster
 
-        Recommendation: Create a user group in your identity provider's grouping system for each developer namespace, then add the users accordingly.
+        VMware recommends creating a user group in your identity provider's grouping system for each
+        developer namespace, and then adding the users accordingly.
 
-        Depending on your identity provider, you may need to do additional research on how to federate user groups appropriately with your cluster. An example for setting up Azure Active Directory with your cluster can be found [here](./authn-authz/azure-ad.md)
+        Depending on your identity provider, you might need to take further action to
+        federate user groups appropriately with your cluster.
+        For an example of how to set up Azure AD with your cluster, see
+        [Integrating Azure Active Directory](authn-authz/azure-ad.html).
 
-        VMware recommends using your identity provider's user groups system to grant access to a group of
-        developers, rather than granting roles directly to individuals.
-        For more information, see the
-        [Kubernetes documentation](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#referring-to-subjects).
+        VMware recommends using your identity provider's user groups system to grant access to a
+        group of developers, rather than granting roles directly to individuals.
+        For an example of how to set up Azure AD with your cluster, see
+        [Integrating Azure Active Directory](authn-authz/azure-ad.html).
