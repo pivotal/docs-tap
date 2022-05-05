@@ -165,11 +165,7 @@ that you plan to create the `Workload` in:
 
 3. Perform one of the following actions to give developers namespace-level access and view access to appropriate cluster-level resources:
 
-    > **Note:** Admin permissions are required to apply the following bindings.
-    > However, to see the effects of RBAC after the bindings are applied, you must log in as a
-    > non-administrator user, such as a developer.
-
-    * Use the [`tanzu rbac`](authn-authz/binding.html) plug-in to grant `app-viewer` or `app-editor` roles to an identity provider group by running:
+    * Use the `tanzu rbac` plug-in to grant `app-viewer` and `app-editor` roles to an identity provider group by running:
 
         ```console
         tanzu rbac binding add -g GROUP-FOR-APP-VIEWER -n YOUR-NAMESPACE -r app-viewer
@@ -179,8 +175,11 @@ that you plan to create the `Workload` in:
         Where:
 
         - `YOUR-NAMESPACE` is the name that you want to use for the developer namespace
-        - `GROUP-FOR-APP-VIEWER` is the user group from the upstream identity provider that requires access to `app-viewer` resources on the current namespace/cluster
-        - `GROUP-FOR-APP-EDITOR` is the user group from the upstream identity provider that requires access to `app-editor` resources on the current namespace/cluster
+        - `GROUP-FOR-APP-VIEWER` is the user group from the upstream identity provider that requires access to `app-viewer` resources on the current namespace and cluster
+        - `GROUP-FOR-APP-EDITOR` is the user group from the upstream identity provider that requires access to `app-editor` resources on the current namespace and cluster
+
+        For more information about `tanzu rbac`, see
+        [Bind a user or group to a default role](authn-authz/binding.html).
 
         VMware recommends creating a user group in your identity provider's grouping system for each
         developer namespace, and then adding the users accordingly.
@@ -251,8 +250,8 @@ that you plan to create the `Workload` in:
         Where:
 
         - `YOUR-NAMESPACE` is the name that you want to use for the developer namespace
-        - `GROUP-FOR-APP-VIEWER` is the user group from the upstream identity provider that requires access to `app-viewer` resources on the current namespace/cluster
-        - `GROUP-FOR-APP-EDITOR` is the user group from the upstream identity provider that requires access to `app-editor` resources on the current namespace/cluster
+        - `GROUP-FOR-APP-VIEWER` is the user group from the upstream identity provider that requires access to `app-viewer` resources on the current namespace and cluster
+        - `GROUP-FOR-APP-EDITOR` is the user group from the upstream identity provider that requires access to `app-editor` resources on the current namespace and cluster
 
         VMware recommends creating a user group in your identity provider's grouping system for each
         developer namespace, and then adding the users accordingly.
@@ -266,3 +265,5 @@ that you plan to create the `Workload` in:
         group of developers, rather than granting roles directly to individuals.
         For an example of how to set up Azure AD with your cluster, see
         [Integrating Azure Active Directory](authn-authz/azure-ad.html).
+
+4. (Optional) Log in as a non-admin user, such as a developer, to see the effects of RBAC after the bindings are applied.
