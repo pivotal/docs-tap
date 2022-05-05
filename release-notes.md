@@ -26,6 +26,10 @@ The following issues, listed by area and component, are resolved in this release
 - Removed package `lua` to address [CVE-2022-28805](https://nvd.nist.gov/vuln/detail/CVE-2022-28805)
 - Updated module `golang.org/x/crypto` to v0.0.0-20210220033148-5ea612d1eb83 to address [CVE-2022-27191](https://nvd.nist.gov/vuln/detail/CVE-2022-27191)
 
+#### <a id="scst-sign-resolved"></a>Supply Chain Security Tools - Sign
+
+- Updated golang to 1.17.9 to address [CVE-2022-27191](https://nvd.nist.gov/vuln/detail/CVE-2022-27191)
+
 #### <a id="gui-resolved"></a>Tanzu Application Platform GUI
 
 - CVE fixes
