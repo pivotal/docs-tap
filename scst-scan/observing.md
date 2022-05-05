@@ -59,5 +59,5 @@ configurations to disable the Store.
       --package-name scanning.apps.tanzu.vmware.com \
       --version VERSION \
       --namespace tap-install \
-      --values-file tap-values.yml
+      --values-file tap-values.yaml
     ```
