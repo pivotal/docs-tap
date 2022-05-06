@@ -44,7 +44,7 @@ Vulnerability scanners aren’t always able to access the information that they 
 - The version of a component might be incorrectly flagged as impacted
 - The detected component doesn’t always include a canonical name and vendor, requiring the scanner to infer and attempt fuzzy matching
 
-## <a id="protect-software"></a>So what can you do to protect yourselves and your software?
+### <a id="protect-software"></a>So what can you do to protect yourselves and your software?
 Although vulnerability scanning is not a perfect solution, it is an essential part of the process for keeping your organization secure – and there are measures you can take to maximize the benefits while minimizing the impact of the limitations.
 
 - Scan more continuously and comprehensively to identify and remediate zero-day vulnerabilities quicker. Comprehensive scanning can be achieved by:
