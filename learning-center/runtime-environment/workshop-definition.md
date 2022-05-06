@@ -241,7 +241,7 @@ spec:
   description: Playground for testing Spring development
   content:
     image: registry.tanzu.vmware.com/learning-center/jdk11-environment:latest
-    files: github.com/you-git-space/lab-spring-testing
+    files: {YOUR-GIT-REPO-URL}/lab-spring-testing
 ```
 
 If you want to use the latest version of an image, always include the `:latest` tag.

@@ -76,7 +76,7 @@ You can deploy workshop images directly to a container runtime. The Learning Cen
     description: A sample workshop using Markdown
     url: YOUR-GIT-URL-FOR-LAB-MARKDOWN-SAMPLE
     content:
-      image: image-url/lab-markdown-sample:master
+      image: {YOUR-REGISTRY-URL}/lab-markdown-sample:master
     duration: 15m
     session:
       namespaces:
