@@ -20,6 +20,10 @@ The following issues, listed by area and component, are resolved in this release
 - Added missing `SecretImport` for the RBAC Auth token `store-auth-token` for multicluster
 - Resolved race condition involving reading Store secrets and exporting to the Scan Controller namespace
 
+#### <a id="scst-sign-resolved"></a>Supply Chain Security Tools - Sign
+
+- Updated golang to v1.17.9 to address [CVE-2022-27191](https://nvd.nist.gov/vuln/detail/CVE-2022-27191)
+
 #### <a id="scst-store-resolved"></a>Supply Chain Security Tools - Store
 
 - Updated `containerd` version to `v1.5.10` to resolve [GHSA-crp2-qrr5-8pq7](https://github.com/advisories/GHSA-crp2-qrr5-8pq7) in Github
