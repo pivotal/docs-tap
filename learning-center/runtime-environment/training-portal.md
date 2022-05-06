@@ -405,7 +405,7 @@ spec:
       value: YOUR-GIT-URL-FOR-LAB-MARKDOWN-SAMPLE
 ```
 
-Where `YOUR-GIT-URL-FOR-LAB-MARKDOWN-SAMPLE` is the Git repository URL for `lab-markdown-sample`. For example, `https://github.com/my-github-space/lab-markdown-sample`.
+Where `YOUR-GIT-URL-FOR-LAB-MARKDOWN-SAMPLE` is the Git repository URL for `lab-markdown-sample`. For example, `{YOUR-GIT-REPO-URL}/lab-markdown-sample`.
 
 Values of fields in the list of resource objects can reference a number of predefined parameters. The available parameters are:
 
