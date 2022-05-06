@@ -2,6 +2,110 @@
 
 This topic contains release notes for Tanzu Application Platform v1.1
 
+## <a id='1-1-1'></a> v1.1.1
+
+### <a id='1-1-1-resolved-issues'></a> Resolved issues
+
+The following issues, listed by area and component, are resolved in this release.
+
+#### <a id="scc-resolved"></a>Supply Chain Choreographer plug-in
+
+- ImageScan stage shows incorrect status
+- Workloads page does not show errors
+- Build stage shows error while building
+
+#### <a id="scst-resolved"></a>Supply Chain Security Tools - Scan
+
+- Resolved edge case for scan phase to correctly indicate `Error` when error occurs during scanning
+- Added missing `SecretImport` for the RBAC Auth token `store-auth-token` for multicluster
+- Resolved race condition involving reading Store secrets and exporting to the Scan Controller namespace
+
+#### <a id="scst-sign-resolved"></a>Supply Chain Security Tools - Sign
+
+- Updated golang to v1.17.9 to address [CVE-2022-27191](https://nvd.nist.gov/vuln/detail/CVE-2022-27191)
+
+#### <a id="scst-store-resolved"></a>Supply Chain Security Tools - Store
+
+- Updated `containerd` version to `v1.5.10` to resolve [GHSA-crp2-qrr5-8pq7](https://github.com/advisories/GHSA-crp2-qrr5-8pq7) in Github
+- Updated postgres image to resolve [CVE-2018-25032](https://nvd.nist.gov/vuln/detail/CVE-2018-25032)
+- Updated `brancz/kube-rbac-proxy` image to `0.12.0` to resolve [GHSA-c3h9-896r-86jm](https://github.com/advisories/GHSA-c3h9-896r-86jm) in Github
+- Fixed the issue where new vulnerabilities are not appended to the existing packages
+- Fixed the issue where Insight CLI plug-in fails to start on Windows platforms
+
+#### <a id="grype-resolved"></a>Grype Scanner
+
+- Removed package `gnutls` to address [CVE-2021-20232](https://nvd.nist.gov/vuln/detail/CVE-2021-20232) and [CVE-2021-20231](https://nvd.nist.gov/vuln/detail/CVE-2021-20231)
+- Removed package `lua` to address [CVE-2022-28805](https://nvd.nist.gov/vuln/detail/CVE-2022-28805)
+- Updated module `golang.org/x/crypto` to v0.0.0-20210220033148-5ea612d1eb83 to address [CVE-2022-27191](https://nvd.nist.gov/vuln/detail/CVE-2022-27191)
+
+#### <a id="gui-resolved"></a>Tanzu Application Platform GUI
+
+- CVE fixes
+- Various styling fixes
+- TLS Certificate and Ingress bug fix
+- Supply Chain plug-in upgrade
+
+### <a id='1-1-1-known-issues'></a> Known issues
+
+This release has the following known issues, listed by area and component.
+
+#### <a id="1-1-1-known-issues-grype"></a>Grype scanner
+
+**Scanning Java source code may not reveal vulnerabilities:**
+Source Code Scanning only scans files present in the source code repository.
+No network calls are made to fetch dependencies.
+For languages using dependency lock files, such as Golang and Node.js,
+Grype uses the lock files to check the dependencies for vulnerabilities.
+
+For Java, dependency lock files are not guaranteed, so Grype uses
+the dependencies present in the built binaries (`.jar` or `.war` files) instead.
+
+Because VMware discourages committing binaries to source code repositories,
+Grype fails to find vulnerabilities during a Source Scan.
+The vulnerabilities are still found during the Image Scan,
+after the binaries are built and packaged as images.
+
+#### <a id="1-1-1-known-issues-scst-store"></a>Supply Chain Security Tools - Store
+
+The Supply Change Security Tools - Store has [CVE-2022-21698](https://nvd.nist.gov/vuln/detail/CVE-2022-21698)
+at high severity from `brancz/kube-rbac-proxy:0.12.0` image.
+
+#### <a id="1-1-1-known-issues-gui"></a>Tanzu Application Platform GUI
+
+**If the `app_config.backend.reading.allow` section is configured during the
+tap-gui package install, no accelerators shows on the accelerator page:**
+This is because `app_config.backend.reading.allow` overrides the default
+configuration, which allows Tanzu Application Platform GUI access to the accelerators.
+There are two use cases for the `app_config.backend.reading.allow` field:
+
+- Read catalog locations from a non-standard Git server with no built-in integration.
+- Read specifications for API Entities from openAPI endpoints.
+
+As a workaround, when modifying the `app_config.backend.reading.allow` section,
+you must provide a value for Application Accelerator:
+
+```yaml
+app_config:
+  # Existing tap-values-file.yml above
+  backend:
+    reading:
+      allow:
+      - host: acc-server.accelerator-system.svc.cluster.local
+```
+
+#### <a id="1-1-1-known-issues-gui"></a>Functions (Beta Feature)
+
+Deploying Java functions workloads by using the Out of the Box Supply Chain
+with Testing and Scanning causes an error.
+The workload deployed shows an error for `SourceScan` as it can not find
+the scan template. A fix is planned for Tanzu Application Platform v1.2.1.
+
+>**Note:** When using both Tanzu Build Service and Grype in your
+Tanzu Application Platform supply chain,
+you can receive enhanced scanning coverage for Java and Node.js workloads that
+includes application runtime layer dependencies.
+Python workloads are not supported.
+
 
 ## <a id='1-1'></a> v1.1
 
