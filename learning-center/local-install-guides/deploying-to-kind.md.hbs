@@ -170,7 +170,6 @@ To create a configuration YAML file:
   #! Container image versions for various components of Learning Center. The Learning Center
   #! operator needs to be modified to read names of images for the registry
   #! and docker-in-docker from config map to enable disconnected install.
-  #!   https://github.com/eduk8s/eduk8s-operator/issues/112
   #! Prepull images to nodes in cluster. Should be an empty list if no images
   #! should be prepulled. Normally you would only want to prepull workshop
   #! images. This is done to reduce start-up times for sessions.
@@ -212,7 +211,7 @@ After you have the IP address, add this as a prefix to the domain name `nip.io`.
 To configure the Learning Center operator with this cluster domain, run:
 
 ```console
-kubectl set env deployment/eduk8s-operator -n eduk8s INGRESS_DOMAIN=192.168.1.1.nip.io
+kubectl set env deployment/learningcenter-operator -n eduk8s INGRESS_DOMAIN=192.168.1.1.nip.io
 ```
 
 This causes the Learning Center operator to redeploy with the new configuration. You can now deploy workshops.

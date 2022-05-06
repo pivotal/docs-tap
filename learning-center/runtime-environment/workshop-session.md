@@ -164,10 +164,10 @@ spec:
     id: user1
     env:
     - name: REPOSITORY-URL
-      value: YOUR-GITHUB-URL-FOR-LAB-MARKDOWN-SAMPLE
+      value: YOUR-GIT-URL-FOR-LAB-MARKDOWN-SAMPLE
 ```
 
-Where `YOUR-GITHUB-URL-FOR-LAB-MARKDOWN-SAMPLE` is the Git repository URL for `lab-markdown-sample`. For example, `https://github.com/eduk8s/lab-markdown-sample`.
+Where `YOUR-GIT-URL-FOR-LAB-MARKDOWN-SAMPLE` is the Git repository URL for `lab-markdown-sample`. For example, `{YOUR-GIT-REPO-URL}/lab-markdown-sample`.
 
 Values of fields in the list of resource objects can reference a number of predefined parameters.
 Available parameters are:

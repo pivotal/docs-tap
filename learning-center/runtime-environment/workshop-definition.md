@@ -15,7 +15,7 @@ spec:
   title: Markdown Sample
   description: A sample workshop using Markdown
   content:
-    files: github.com/eduk8s/lab-markdown-sample
+    files: {YOUR-GIT-REPO-URL}/lab-markdown-sample
 ```
 
 Where:
@@ -33,7 +33,7 @@ metadata:
 spec:
   title: Markdown Sample
   description: A sample workshop using Markdown
-  url: YOUR-GITHUB-URL-FOR-LAB-MARKDOWN-SAMPLE
+  url: YOUR-GIT-URL-FOR-LAB-MARKDOWN-SAMPLE
   difficulty: beginner
   duration: 15m
   vendor: learningcenter.tanzu.vmware.com
@@ -43,12 +43,12 @@ spec:
   - template
   logo: data:image/png;base64,....
   content:
-    files: YOUR-GITHUB-URL-FOR-LAB-MARKDOWN-SAMPLE
+    files: YOUR-GIT-URL-FOR-LAB-MARKDOWN-SAMPLE
 ```
 
 Where:
 
-- The `url` field is the Git repository URL for `lab-markdown-sample`. For example, `https://github.com/eduk8s/lab-markdown-sample`.
+- The `url` field is the Git repository URL for `lab-markdown-sample`. For example, `{YOUR-GIT-REPO-URL}/lab-markdown-sample`.
 It must be a URL you can use to get more information about the workshop.
 
 - The `difficulty` field indicates the target audiences of the workshop.
@@ -72,7 +72,7 @@ This is used in a searchable catalog of workshops.
 topic of the workshop. The image must be 400 by 400 pixels. You can use it in a searchable catalog
 of workshops.
 
-- The `files` field is the Git repository URL for `lab-markdown-sample`. For example, `https://github.com/eduk8s/lab-markdown-sample`.
+- The `files` field is the Git repository URL for `lab-markdown-sample`. For example, `{YOUR-GIT-REPO-URL}/lab-markdown-sample`.
 
 When referring to a workshop definition after you load it into a Kubernetes cluster, use the
 value of the `name` field given in the metadata. To experiment with different variations of a workshop,
@@ -97,7 +97,7 @@ spec:
   title: Markdown Sample
   description: A sample workshop using Markdown
   content:
-    files: github.com/eduk8s/lab-markdown-sample
+    files: {YOUR-GIT-REPO-URL}/lab-markdown-sample
 ```
 
 The location is a GitHub or GitLab repository, a URL to a tarball hosted on a HTTP
@@ -221,7 +221,7 @@ spec:
   title: Markdown Sample
   description: A sample workshop using Markdown
   content:
-    image: quay.io/eduk8s/lab-markdown-sample:master
+    image: {YOUR-REGISTRY-URL}/lab-markdown-sample:master
 ```
 
 Even though you can download workshop content when the workshop environment starts,
@@ -241,7 +241,7 @@ spec:
   description: Playground for testing Spring development
   content:
     image: registry.tanzu.vmware.com/learning-center/jdk11-environment:latest
-    files: github.com/eduk8s-tests/lab-spring-testing
+    files: {YOUR-GIT-REPO-URL}/lab-spring-testing
 ```
 
 If you want to use the latest version of an image, always include the `:latest` tag.
@@ -294,17 +294,17 @@ spec:
   title: Markdown Sample
   description: A sample workshop using Markdown
   content:
-    files: github.com/eduk8s/lab-markdown-sample
+    files: {YOUR-GIT-REPO-URL}/lab-markdown-sample
   session:
     env:
     - name: REPOSITORY-URL
-      value: YOUR-GITHUB-URL-FOR-LAB-MARKDOWN-SAMPLE
+      value: YOUR-GIT-URL-FOR-LAB-MARKDOWN-SAMPLE
 ```
 
 Where:
 
 - The `session.env` field is a list of dictionaries with the `name` and `value` fields.
-- The `value` field is the Git repository for `lab-markdown-sample`. For example, `https://github.com/eduk8s/lab-markdown-sample`.
+- The `value` field is the Git repository for `lab-markdown-sample`. For example, `{YOUR-GIT-REPO-URL}/lab-markdown-sample`.
 
 Values of fields in the list of resource objects can reference a number of predefined parameters.
 The available parameters are:
@@ -347,7 +347,7 @@ spec:
   title: Markdown Sample
   description: A sample workshop using Markdown
   content:
-    image: quay.io/eduk8s/lab-markdown-sample:master
+    image: {YOUR-REGISTRY-URL}/lab-markdown-sample:master
   session:
     resources:
       memory: 2Gi
@@ -368,7 +368,7 @@ spec:
   title: Markdown Sample
   description: A sample workshop using Markdown
   content:
-    image: quay.io/eduk8s/lab-markdown-sample:master
+    image: {YOUR-REGISTRY-URL}/lab-markdown-sample:master
   session:
     resources:
       storage: 5Gi
@@ -401,7 +401,7 @@ spec:
   title: Markdown Sample
   description: A sample workshop using Markdown
   content:
-    image: quay.io/eduk8s/lab-markdown-sample:master
+    image: {YOUR-REGISTRY-URL}/lab-markdown-sample:master
   session:
     namespaces:
       budget: small
@@ -468,7 +468,7 @@ spec:
   title: Markdown Sample
   description: A sample workshop using Markdown
   content:
-    image: quay.io/eduk8s/lab-markdown-sample:master
+    image: {YOUR-REGISTRY-URL}/lab-markdown-sample:master
   session:
     namespaces:
       budget: medium
@@ -1234,7 +1234,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: {YOUR-REGISTRY-URL}/lab-application-testing:master
   session:
     ingresses:
     - name: application
@@ -1264,7 +1264,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: {YOUR-REGISTRY-URL}/lab-application-testing:master
   session:
     ingresses:
     - name: application
@@ -1285,7 +1285,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: {YOUR-REGISTRY-URL}/lab-application-testing:master
   session:
     ingresses:
     - name: application
@@ -1319,7 +1319,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: {YOUR-REGISTRY-URL}/lab-application-testing:master
   session:
     ingresses:
     - name: application
@@ -1355,7 +1355,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: {YOUR-REGISTRY-URL}/lab-application-testing:master
   session:
     applications:
       workshop:
@@ -1389,7 +1389,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: {YOUR-REGISTRY-URL}/lab-application-testing:master
   session:
     applications:
       workshop:
@@ -1420,7 +1420,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: {YOUR-REGISTRY-URL}/lab-application-testing:master
   session:
     applications:
       workshop:
@@ -1442,7 +1442,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: {YOUR-REGISTRY-URL}/lab-application-testing:master
   session:
     applications:
       console:
@@ -1461,7 +1461,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: {YOUR-REGISTRY-URL}/lab-application-testing:master
   session:
     applications:
       console:
@@ -1486,7 +1486,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: {YOUR-REGISTRY-URL}/lab-application-testing:master
   session:
     applications:
       editor:
@@ -1526,7 +1526,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: {YOUR-REGISTRY-URL}/lab-application-testing:master
   session:
     applications:
       files:
@@ -1549,7 +1549,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: {YOUR-REGISTRY-URL}/lab-application-testing:master
   session:
     applications:
       files:
@@ -1576,7 +1576,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: {YOUR-REGISTRY-URL}/lab-application-testing:master
   session:
     applications:
       examiner:
@@ -1613,7 +1613,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: {YOUR-REGISTRY-URL}/lab-application-testing:master
   session:
     applications:
       registry:
@@ -1633,7 +1633,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: {YOUR-REGISTRY-URL}/lab-application-testing:master
   session:
     applications:
       registry:
@@ -1653,7 +1653,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: {YOUR-REGISTRY-URL}/lab-application-testing:master
   session:
     applications:
       registry:
@@ -1718,7 +1718,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: {YOUR-REGISTRY-URL}/lab-application-testing:master
   session:
     applications:
       docker:
@@ -1738,7 +1738,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: {YOUR-REGISTRY-URL}/lab-application-testing:master
   session:
     applications:
       docker:
@@ -1758,7 +1758,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: {YOUR-REGISTRY-URL}/lab-application-testing:master
   session:
     applications:
       docker:
@@ -1792,7 +1792,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: {YOUR-REGISTRY-URL}/lab-application-testing:master
   session:
     applications:
       webdav:
@@ -1850,7 +1850,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: {YOUR-REGISTRY-URL}/lab-application-testing:master
   session:
     applications:
       terminal:
@@ -1886,7 +1886,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: {YOUR-REGISTRY-URL}/lab-application-testing:master
   session:
     ingresses:
     - name: application
@@ -1928,7 +1928,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: {YOUR-REGISTRY-URL}/lab-application-testing:master
   session:
     dashboards:
     - name: Example
