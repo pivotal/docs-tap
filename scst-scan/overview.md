@@ -26,7 +26,7 @@ The following Supply Chain Security Tools - Scan features make the use cases ava
 ## <a id="scst-scan-note"></a>A Note on Vulnerability Scanners
 While vulnerability scanning is an important practice in DevSecOps and the benefits of doing this well are widely recognized and accepted, it is important to remember that there are limitations present that impact its efficacy. Here we share some examples of these limitations that are prevalent in most scanners today:
 
-### <a id="missed-cves"></a>Missed CVEs
+#### <a id="missed-cves"></a>Missed CVEs
 One of the biggest limitations of all vulnerability scanners is that there is no one tool that can find 100% of all CVEs, which means there will always be a risk that a missed CVE could get exploited. Some reasons for why this happens:
 - The scanner is not aware of the vulnerability yet because it has only just been discovered and the CVE databases that the scanner is checking against are yet to be updated
 - Scanners check different CVE sources based on detected package type and OS
@@ -35,7 +35,7 @@ One of the biggest limitations of all vulnerability scanners is that there is no
 - The detected component doesn’t always include a canonical name and vendor, requiring the scanner to infer and attempt fuzzy matching
 - When vendors register impacted software with NVD the provided information might not exactly match the values included in the release artifacts
 
-### <a id="false-positives"></a>False positives
+#### <a id="false-positives"></a>False positives
 Vulnerability scanners aren’t always able to access the information that they need to accurately identify whether a CVE exists. This often leads to an influx of false positives where the tool mistakenly flags something as a vulnerability when it isn’t. Unless a user is specialized in security or is deeply familiar with what is deemed to be a vulnerable component by the scanner, assessing and determining false positives becomes a challenging and time-consuming activity. Some reasons for a false positive flag:
 - A component might be misidentified due to similar names
 - A subcomponent might be identified as the parent component
