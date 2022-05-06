@@ -2,7 +2,7 @@
 
 ## <a id='overview'></a> Overview of Tanzu Application Platform
 
-VMware Tanzu Application Platform is a modular, application development platform that provides a rich set
+VMware Tanzu Application Platform is a modular application development platform that provides a rich set
 of developer tools and a paved path to production to build and deploy software quickly and
 securely on any compliant public cloud or on-premises Kubernetes cluster.
 
