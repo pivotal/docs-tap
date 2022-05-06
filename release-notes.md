@@ -70,7 +70,16 @@ The vulnerabilities are still found during the Image Scan,
 after the binaries are built and packaged as images.
 
 #### <a id="1-1-1-known-issues-scst-scan"></a>Supply Chain Security Tools - Scan
-- [CVE-2022-23772](https://nvd.nist.gov/vuln/detail/CVE-2022-23772), [CVE-2022-23806](https://nvd.nist.gov/vuln/detail/CVE-2022-23806), [CVE-2022-24921](https://nvd.nist.gov/vuln/detail/CVE-2022-24921), [CVE-2022-23773](https://nvd.nist.gov/vuln/detail/CVE-2022-23773), [CVE-2021-29923](https://nvd.nist.gov/vuln/detail/CVE-2021-29923), [CVE-2022-27191](https://nvd.nist.gov/vuln/detail/CVE-2022-27191) at high severity from the `kube-rbac-proxy v0.11.0-vmware.1` image
+
+The Supply Change Security Tools - Scan has the following CVEs at high severity 
+from the `kube-rbac-proxy v0.11.0-vmware.1` image:
+
+- [CVE-2022-23772](https://nvd.nist.gov/vuln/detail/CVE-2022-23772)
+- [CVE-2022-23806](https://nvd.nist.gov/vuln/detail/CVE-2022-23806) 
+- [CVE-2022-24921](https://nvd.nist.gov/vuln/detail/CVE-2022-24921)
+- [CVE-2022-23773](https://nvd.nist.gov/vuln/detail/CVE-2022-23773)
+- [CVE-2021-29923](https://nvd.nist.gov/vuln/detail/CVE-2021-29923) 
+- [CVE-2022-27191](https://nvd.nist.gov/vuln/detail/CVE-2022-27191) 
 
 #### <a id="1-1-1-known-issues-scst-store"></a>Supply Chain Security Tools - Store
 
