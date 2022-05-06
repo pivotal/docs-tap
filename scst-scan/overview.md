@@ -49,7 +49,7 @@ Although vulnerability scanning is not a perfect solution, it is an essential pa
 
 - Scan more continuously and comprehensively to identify and remediate zero-day vulnerabilities quicker. Comprehensive scanning can be achieved by:
     - scanning earlier in the development cycle to ensure issues can be addressed more efficiently and do not delay a release. Tanzu Application Platform includes security practices such as source and container image vulnerability scanning earlier in the path to production for application teams
-    - scanning any base images used. As a part of TAP image scanning, the scanner will recognize the OS packages from the base image
+    - scanning any base images used. TAP image scanning includes the ability to recognize and scan the OS packages from a base image
     - scanning running software in test/stage/production environments at a regular cadence
     - generating accurate provenance at any level so that scanners have a complete picture of the dependencies to scan. This is where a software bill of materials (SBoM) comes into play. To help you automate this process, VMware Tanzu Build Service, leveraging Cloud Native Buildpacks, automatically generates an SBoM for Java- and Node.js-based projects. Since this SBoM is generated during the image building stage, it is more accurate and complete than one generated earlier or later in the release lifecycle. This is because it can highlight dependencies introduced at the time of build that could introduce potential for compromise
 - Scan using multiple scanners to maximize CVE coverage
