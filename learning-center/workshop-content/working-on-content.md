@@ -89,7 +89,7 @@ spec:
   title: Sample Workshop
   description: A sample workshop
   content:
-    image: <YOUR-GIT-REPO>/lab-sample-workshop:master
+    image: {YOUR-GIT-REPO-URL}/lab-sample-workshop:master
 ```
 
 When you use an image tag of `main`, `master`, `develop` or, `latest`, the image pull policy is set to `Always` to ensure that the custom workshop image is pulled down again for a new workshop session if the remote image changes. If the image tag is for a specific version, you must change the workshop definition every time when the workshop image changes.
@@ -107,8 +107,8 @@ spec:
   title: Sample Workshop
   description: A sample workshop
   content:
-    image: ghcr.io/eduk8s-labs/lab-sample-workshop:master
-    files: <YOUR-GIT-REPO>/lab-sample-workshop
+    image: {YOUR-REGISTRY-URL}/lab-sample-workshop:master
+    files: {YOUR-GIT-REPO-URL}/lab-sample-workshop
 ```
 
 By pulling down the workshop content as an overlay of the custom workshop image when the workshop session starts, you only need to rebuild the custom workshop image when you need to make changes such as to include additional tools or to ensure the latest workshop instructions are included in the final custom workshop image.
@@ -126,8 +126,8 @@ spec:
   title: Sample Workshop
   description: A sample workshop
   content:
-    image: ghcr.io/eduk8s-labs/custom-environment:master
-    files: github.com/eduk8s-labs/lab-sample-workshop
+    image: {YOUR-REGISTRY-URL}/custom-environment:master
+    files: {YOUR-GIT-REPO-URL}/lab-sample-workshop
 ```
 
 This separates generic tooling from specific workshops and so you can use the custom workshop base image for multiple workshops on different, but related topics that require the same tooling.

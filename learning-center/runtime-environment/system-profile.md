@@ -457,7 +457,7 @@ metadata:
 spec:
   workshop:
     images:
-      "quay.io/eduk8s-labs/lab-k8s-fundamentals:master": "registry.test/lab-k8s-fundamentals:master"
+      "{YOUR-REGISTRY-URL}/lab-k8s-fundamentals:master": "registry.test/lab-k8s-fundamentals:master"
 ```
 
 ## <a id="track-w-google-analytics"></a>Tracking using Google Analytics

@@ -74,9 +74,9 @@ You can deploy workshop images directly to a container runtime. The Learning Cen
     vendor: learningcenter.tanzu.vmware.com
     title: Markdown Sample
     description: A sample workshop using Markdown
-    url: YOUR-GITHUB-URL-FOR-LAB-MARKDOWN-SAMPLE
+    url: YOUR-GIT-URL-FOR-LAB-MARKDOWN-SAMPLE
     content:
-      image: quay.io/eduk8s/lab-markdown-sample:master
+      image: image-url/lab-markdown-sample:master
     duration: 15m
     session:
       namespaces:
@@ -90,7 +90,7 @@ You can deploy workshop images directly to a container runtime. The Learning Cen
 
   Where:
 
-  - `YOUR-GITHUB-URL-FOR-LAB-MARKDOWN-SAMPLE` is the Git repository URL for `lab-markdown-sample`. For example, `https://github.com/eduk8s/lab-markdown-sample`.
+  - `YOUR-GIT-URL-FOR-LAB-MARKDOWN-SAMPLE` is the Git repository URL for `lab-markdown-sample`. For example, `{YOUR-GIT-REPO-URL}/lab-markdown-sample`.
 
 In this sample, a custom workshop image bundles the workshop content into its own container image. The `content.image` setting specifies this. To instead download workshop content from a GitHub repository at runtime, use:
 
@@ -103,9 +103,9 @@ In this sample, a custom workshop image bundles the workshop content into its ow
     vendor: learningcenter.tanzu.vmware.com
     title: Markdown Sample
     description: A sample workshop using Markdown
-    url: YOUR-GITHUB-URL-FOR-LAB-MARKDOWN-SAMPLE
+    url: YOUR-GIT-URL-FOR-LAB-MARKDOWN-SAMPLE
     content:
-      files: YOUR-GITHUB-URL-FOR-LAB-MARKDOWN-SAMPLE
+      files: YOUR-GIT-URL-FOR-LAB-MARKDOWN-SAMPLE
     duration: 15m
     session:
       namespaces:
@@ -119,7 +119,7 @@ In this sample, a custom workshop image bundles the workshop content into its ow
 
   Where:
   
-  - `YOUR-GITHUB-URL-FOR-LAB-MARKDOWN-SAMPLE` is the Git repository URL for `lab-markdown-sample`. For example, `https://github.com/eduk8s/lab-markdown-sample`.
+  - `YOUR-GIT-URL-FOR-LAB-MARKDOWN-SAMPLE` is the Git repository URL for `lab-markdown-sample`. For example, `{YOUR-GIT-REPO-URL}/lab-markdown-sample`.
 
 The difference is the use of the `content.files` setting.
 Here, the workshop content is overlaid on top of the standard workshop base image. To use an alternate base image with additional applications or packages installed, specify the alternate image against the `content.image` setting at the same time you set `content.files`.

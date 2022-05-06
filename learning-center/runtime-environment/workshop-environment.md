@@ -39,10 +39,10 @@ spec:
   session:
     env:
     - name: REPOSITORY-URL
-      value: YOUR-GITHUB-URL-FOR-LAB-MARKDOWN-SAMPLE
+      value: YOUR-GIT-URL-FOR-LAB-MARKDOWN-SAMPLE
 ```
 
-Where `YOUR-GITHUB-URL-FOR-LAB-MARKDOWN-SAMPLE` is the Git repository URL for `lab-markdown-sample`. For example, `https://github.com/eduk8s/lab-markdown-sample`.
+Where `YOUR-GIT-URL-FOR-LAB-MARKDOWN-SAMPLE` is the Git repository URL for `lab-markdown-sample`. For example, `{YOUR-GIT-REPO-URL}/lab-markdown-sample`.
 
 You can use this to set the location of a back-end service, such as an image registry, used by the workshop.
 
