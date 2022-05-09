@@ -41,10 +41,9 @@ Job.batch "scan-${app}-${id}" is invalid: [spec.template.spec.volumes[2].secret.
 
 ### <a id="diasble-scst-store"></a> Disable Supply Chain Security Tools - Store
 
-The installation of Supply Chain Security Tools - Scan assumes that the
-Supply Chain Security Tools - Store is already present.
+Supply Chain Security Tools - Store is a prerequisite for installing Supply Chain Security Tools - Scan.
 If you choose to install without the Supply Chain Security Tools - Store,  you need to edit the
-configurations to disable the Store.
+configurations to disable the Store:
 
     ```yaml
     ---
