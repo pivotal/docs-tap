@@ -45,18 +45,18 @@ Supply Chain Security Tools - Store is a prerequisite for installing Supply Chai
 If you choose to install without the Supply Chain Security Tools - Store,  you need to edit the
 configurations to disable the Store:
 
-    ```yaml
-    ---
-    metadataStore:
-      url: ""
-    ```
+  ```yaml
+  ---
+  metadataStore:
+    url: ""
+  ```
 
-    Install the package with the edited configurations by running:
+  Install the package with the edited configurations by running:
 
-    ```console
-    tanzu package install scan-controller \
-      --package-name scanning.apps.tanzu.vmware.com \
-      --version VERSION \
-      --namespace tap-install \
-      --values-file tap-values.yaml
-    ```
+  ```console
+  tanzu package install scan-controller \
+    --package-name scanning.apps.tanzu.vmware.com \
+    --version VERSION \
+    --namespace tap-install \
+    --values-file tap-values.yaml
+  ```
