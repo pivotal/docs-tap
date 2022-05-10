@@ -988,7 +988,7 @@ To try the scan and store features in a supply chain, see [Section 3: Add testin
 
   - [Observing and Troubleshooting](scst-scan/observing.md)
 
-  - [Tanzu Insight plug-in overview](../cli-plugins/insight/cli-overview.md)
+  - [Tanzu Insight plug-in overview](cli-plugins/insight/cli-overview.md)
 
 ## <a id='stk'></a> Section 5: Consuming services on Tanzu Application Platform
 
