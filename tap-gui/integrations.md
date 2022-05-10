@@ -7,14 +7,14 @@ your `tap-values-file.yml`.
 Below is an example of this integration using the GitHub provider integration:
 
 ```yaml
-      app_config:
-        app:
-          baseUrl: http://EXTERNAL-IP:7000
-        # Existing tap-values-file.yml above
-        integrations:
-          github: # Other integrations available see NOTE below
-            - host: github.com
-              token: GITHUB-TOKEN
+  app_config:
+    app:
+      baseUrl: http://EXTERNAL-IP:7000
+    # Existing tap-values-file.yml above
+    integrations:
+      github: # Other integrations available see NOTE below
+        - host: github.com
+          token: GITHUB-TOKEN
 ```
 
 Where `GITHUB-TOKEN` is a valid token generated from your Git infrastructure of choice with the
@@ -28,13 +28,13 @@ To allow Tanzu Application GUI to read non-GitHub repositories containing compon
 add the following to the `tap-values-file.yml` file:
 
 ```yaml
-      app_config:
-        # Existing tap-values-file.yml above
-        backend:
-          reading:
-            allow:
-            - host: "GIT-CATALOG-URL-1"
-            - host: "GIT-CATALOG-URL-2" # Including more than one URL is optional
+  app_config:
+    # Existing tap-values-file.yml above
+    backend:
+      reading:
+        allow:
+          - host: "GIT-CATALOG-URL-1"
+          - host: "GIT-CATALOG-URL-2" # Including more than one URL is optional
 ```
 
 Where `GIT-CATALOG-URL-1` and `GIT-CATALOG-URL-2` are URLs in a list of URLs that
@@ -48,12 +48,12 @@ break and not show any accelerators.
 A temporary workaround is to provide a value for Application Accelerator:
 
 ```yaml
-      app_config:
-        # Existing tap-values-file.yml above
-        backend:
-          reading:
-            allow:
-            - host: acc-server.accelerator-system.svc.cluster.local
+  app_config:
+    # Existing tap-values-file.yml above
+    backend:
+      reading:
+        allow:
+          - host: acc-server.accelerator-system.svc.cluster.local
 ```
 
 Specifying this section of the `tap-values-file.yml` file currently causes the Accelerators page to
@@ -61,12 +61,12 @@ break and not show any accelerators.
 A temporary workaround is to provide a value for Application Accelerator:
 
 ```yaml
-      app_config:
-        # Existing tap-values-file.yml above
-        backend:
-          reading:
-            allow:
-            - host: acc-server.accelerator-system.svc.cluster.local
+  app_config:
+    # Existing tap-values-file.yml above
+    backend:
+      reading:
+        allow:
+          - host: acc-server.accelerator-system.svc.cluster.local
 ```
 
 After making changes to the `tap-values-file.yml`, update the package profile by running:
