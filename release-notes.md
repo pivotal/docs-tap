@@ -1,10 +1,10 @@
 # Release notes
 
-**Release Date**: May 10, 2022
-
 This topic contains release notes for Tanzu Application Platform v1.1
 
 ## <a id='1-1-1'></a> v1.1.1
+
+**Release Date**: May 10, 2022
 
 ### <a id='1-1-1-resolved-issues'></a> Resolved issues
 
