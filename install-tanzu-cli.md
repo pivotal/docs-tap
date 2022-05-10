@@ -109,6 +109,8 @@ To install the Tanzu CLI and plug-ins:
 1. Download the Tanzu framework bundle for your operating system.
 1. (Optional) If an earlier upgrade attempt failed, it might be best to uninstall the previous version of the Tanzu CLI and associated plug-ins and files. To do so, see [Remove Tanzu CLI, plug-ins, and associated files](uninstall.html#remove-tanzu-cli).
 
+Windows installation instructions can be found [here](#windows-tanzu-cli).
+
 ### <a id='linux-mac-tanzu-cli'></a> Install Tanzu CLI: Linux or macOS
 
 1. Create a `$HOME/tanzu` directory on your machine.
@@ -192,7 +194,7 @@ the CLI core and plug-ins are installed by running:
 
 1. Select the **Path** row under **System variables** and click **Edit**.
 
-1. Click **New** to add a new row and enter the path to **tanzu.exe**.
+1. Click **New** to add a new row and enter the path to, but not including, **tanzu.exe** (for example `Program Files\tanzu`)
 
 1. Set the environmental variable `TANZU_CLI_NO_INIT` to `true`.
 
