@@ -14,18 +14,18 @@ To use a PostgreSQL database:
 
     ```yaml
         backend:
-            baseUrl: http://tap-gui.INGRESS-DOMAIN
-            cors:
-                origin: http://tap-gui.INGRESS-DOMAIN
+          baseUrl: http://tap-gui.INGRESS-DOMAIN
+          cors:
+            origin: http://tap-gui.INGRESS-DOMAIN
         # Existing tap-values.yaml above
-            database:
-            client: pg
-                connection:
-                  host: PG-SQL-HOSTNAME
-                  port: 5432
-                  user: PG-SQL-USERNAME
-                  password: PG-SQL-PASSWORD
-                  ssl: {rejectUnauthorized: false} # Set to true if using SSL
+          database:
+          client: pg
+            connection:
+              host: PG-SQL-HOSTNAME
+              port: 5432
+              user: PG-SQL-USERNAME
+              password: PG-SQL-PASSWORD
+              ssl: {rejectUnauthorized: false} # Set to true if using SSL
     ```
 
     Where:
