@@ -10,22 +10,22 @@ For production or general-purpose use-cases, VMware recommends using a PostgreSQ
 
 To use a PostgreSQL database:
 
-1. Use the following values in your `tap-values-file.yml`:
+1. Use the following values in your `tap-values.yaml`:
 
     ```yaml
         backend:
-            baseUrl: http://tap-gui.INGRESS-DOMAIN
-            cors:
-                origin: http://tap-gui.INGRESS-DOMAIN
+          baseUrl: http://tap-gui.INGRESS-DOMAIN
+          cors:
+            origin: http://tap-gui.INGRESS-DOMAIN
         # Existing tap-values.yaml above
-            database:
-            client: pg
-                connection:
-                  host: PG-SQL-HOSTNAME
-                  port: 5432
-                  user: PG-SQL-USERNAME
-                  password: PG-SQL-PASSWORD
-                  ssl: {rejectUnauthorized: false} # Set to true if using SSL
+          database:
+          client: pg
+            connection:
+              host: PG-SQL-HOSTNAME
+              port: 5432
+              user: PG-SQL-USERNAME
+              password: PG-SQL-PASSWORD
+              ssl: {rejectUnauthorized: false} # Set to true if using SSL
     ```
 
     Where:
@@ -37,7 +37,7 @@ To use a PostgreSQL database:
 1. Update the package profile by running:
 
     ```console
-    tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version VERSION-NUMBER --values-file tap-values-file.yml -n tap-install
+    tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version VERSION-NUMBER --values-file tap-values.yaml -n tap-install
     ```
 
     Where `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `1.1.0`.
@@ -45,7 +45,7 @@ To use a PostgreSQL database:
     For example:
 
     ```console
-    $ tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version 1.0.0 --values-file tap-values-file.yml -n tap-install
+    $ tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version 1.0.0 --values-file tap-values.yaml -n tap-install
     | Updating package 'tap'
     | Getting package install for 'tap'
     | Getting package metadata for 'tap.tanzu.vmware.com'
