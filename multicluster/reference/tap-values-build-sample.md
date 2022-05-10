@@ -73,6 +73,6 @@ you can reuse the `tap-registry` Secret created in
 > The current installed version of the descriptor is
 > [100.0.293](https://network.pivotal.io/products/tbs-dependencies#/releases/1086670). Sometimes the dependencies get
 > out of date and require updates. You can do this using a
-> [manual process in a CI/CD context](https://docs.vmware.com/en/Tanzu-Buxild-Service/1.5/vmware-tanzu-build-service/GUID-tbs-in-ci.html), or
+> [manual process in a CI/CD context](https://docs.vmware.com/en/Tanzu-Build-Service/1.5/vmware-tanzu-build-service/GUID-tbs-in-ci.html), or
 > an [automatic update process](https://docs.vmware.com/en/Tanzu-Build-Service/1.5/vmware-tanzu-build-service/GUID-updating-deps.html)
 > in the background by Tanzu Application Platform.
