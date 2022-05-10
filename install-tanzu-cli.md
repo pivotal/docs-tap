@@ -144,6 +144,7 @@ the CLI core and plug-ins are installed by running:
     ...
     ```
 
+1. Proceed to [Install/Update Tanzu CLI plug-ins](#cli-plugin-install)
 
 ### <a id='windows-tanzu-cli'></a> Install Tanzu CLI: Windows
 
@@ -189,11 +190,13 @@ the CLI core and plug-ins are installed by running:
     version: v0.11.2
     ...
     ```
+ 
+ 1. Proceed to [Install/Update Tanzu CLI plug-ins](#cli-plugin-install)
 
 
-## <a id='cli-plugin-install'></a> Install Tanzu CLI plug-ins only
+## <a id='cli-plugin-install'></a> Install/Update Tanzu CLI plug-ins
 
-To perform a clean installation of the Tanzu CLI plug-ins:
+To install or update Tanzu CLI plug-ins follow the steps below:
 
 1. Install plug-ins from the `$HOME/tanzu` directory (if on Linux or macOS) or `Program Files\tanzu` directory (if on Windows) by running:
 
