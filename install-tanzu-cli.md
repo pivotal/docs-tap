@@ -198,8 +198,8 @@ the CLI core and plug-ins are installed by running:
     version: v0.11.2
     ...
     ```
- 
- 1. Proceed to [Install/Update Tanzu CLI plug-ins](#cli-plugin-install)
+
+1. Proceed to [Install/Update Tanzu CLI plug-ins](#cli-plugin-install)
 
 
 ## <a id='cli-plugin-install'></a> Install/Update Tanzu CLI plug-ins
