@@ -206,7 +206,7 @@ To perform a clean installation of the Tanzu CLI plug-ins:
 1. Install plug-ins from the `$HOME/tanzu` directory (if on Linux or macOS) or `Program Files\tanzu` directory (if on Windows) by running:
 
     ```console
-    export TANZU_CLI_NO_INIT=true
+    tanzu plugin install --local cli all
     ```
 
 1. Verify that you installed the plug-ins by running:
