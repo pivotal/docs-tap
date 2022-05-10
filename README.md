@@ -8,7 +8,7 @@ This repo contains the content for Tanzu Application Platform docs, v0.1–v1.1
 
 | Branch | Usage |
 |--------|-------|
-| main | Development branch for pre-release v1.1 docs staged at https://docs-staging.vmware.com/en/Tanzu-Application-Platform/1.1/tap/GUID-overview.html |
+| main | Development branch for pre-release v1.1 docs staged at https://docs-staging.vmware.com/en/draft/Tanzu-Application-Platform/1.1/tap/GUID-overview.html |
 | 1-0 | Branch that is published to https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/index.html |
 | beta-4 | Branch that is published to https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/index.html |
 | beta-3 | Branch that is published to https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.3/tap-0-3/GUID-overview.html |
@@ -47,7 +47,7 @@ Use this table to keep a running list of terms used and how they should be defin
 | convention server | Lowercase; this is one of the minor components that make up Convention Service |
 | Convention Service | Title case; this is a component with its own TanzuNet product page |
 | Default Supply Chain | singular |
-| Insight CLI | There was a mix of Insight CLI and `insight` CLI. Standardized on the former. |
+| Tanzu Insight | This CLI plug-in is named simply Insight in the v1.0 documentation because it is separate from the Tanzu CLI |
 | packageRepository | Is a definition. Variations found in original doc (Package repository, PackageRepository, packagerepository) but standardize on the one shown. 2021.08.26 |
 | PackageRepositories | Don't use. There is really only one packageRepository of interest for this page. |
 | packageRepository custom resource | Because we don't use CR in other Kubernetes docs, spell out custom resource here too. An example of the packageRepository custom resource is given in the YAML file named `tap-package-repo.yaml`.|

@@ -7,4 +7,4 @@ The Services Toolkit comprises the following Kubernetes native components which 
 - Service Resource Replication
 - Service Resource Claims
 
-To learn more about Services Toolkit, see the [Services Toolkit for VMware Tanzu Product Documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu/0.5/services-toolkit-0-5/GUID-overview.html)
+To learn more about Services Toolkit, see the [Services Toolkit for VMware Tanzu Product Documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.6/svc-tlk/GUID-overview.html)

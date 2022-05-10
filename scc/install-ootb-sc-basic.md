@@ -13,9 +13,10 @@ instance of it running in a Kubernetes environment.
 
 ## <a id='ootb-sc-basic-prereqs'></a> Prerequisites
 
-- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
-- Install cartographer. For more information, see [Install Supply Chain Choreographer](install-scc.md).
+Fulfill the following prerequisites:
 
+- Fulfill the [prerequisites](../prerequisites.md) for installing Tanzu Application Platform.
+- [Install Supply Chain Choreographer](install-scc.md).
 
 ## <a id='inst-ootb-sc-basic'></a> Install
 
@@ -24,15 +25,15 @@ To install Out of the Box Supply Chain Basic:
 1. Familiarize yourself with the set of values of the package that can be
    configured by running:
 
-    ```
-    tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.5.1 \
+    ```console
+    tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.7.0 \
       --values-schema \
       -n tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     KEY                       DESCRIPTION
 
     registry.repository       Name of the repository in the image registry server where
@@ -41,6 +42,9 @@ To install Out of the Box Supply Chain Basic:
     registry.server           Name of the registry server where application images should
                               be pushed to (required).
 
+
+    git_implementation        Determines which git client library to use.
+                              Valid options are go-git or libgit2.
 
 
     gitops.username           Default user name to be used for the commits produced by the
@@ -76,7 +80,7 @@ To install Out of the Box Supply Chain Basic:
 1. Create a file named `ootb-supply-chain-basic-values.yaml` that specifies the
    corresponding values to the properties you want to change. For example:
 
-    ```
+    ```yaml
     registry:
       server: REGISTRY-SERVER
       repository: REGISTRY-REPOSITORY
@@ -95,17 +99,17 @@ To install Out of the Box Supply Chain Basic:
 
 1. With the configuration ready, install the package by running:
 
-    ```
+    ```console
     tanzu package install ootb-supply-chain-basic \
       --package-name ootb-supply-chain-basic.tanzu.vmware.com \
-      --version 0.5.1 \
+      --version 0.7.0 \
       --namespace tap-install \
       --values-file ootb-supply-chain-basic-values.yaml
     ```
 
     Example output:
 
-    ```
+    ```console
     \ Installing package 'ootb-supply-chain-basic.tanzu.vmware.com'
     | Getting package metadata for 'ootb-supply-chain-basic.tanzu.vmware.com'
     | Creating service account 'ootb-supply-chain-basic-tap-install-sa'

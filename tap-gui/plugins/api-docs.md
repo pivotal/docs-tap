@@ -1,12 +1,24 @@
-# API Documentation plugin in Tanzu Application Platform GUI
+# API documentation plug-in in Tanzu Application Platform GUI
 
-This section provides a general overview of the API Documentation plugin of the Tanzu Application Platform GUI. For additional information, please refer to the [Getting started with API documentation plug-in](api-docs-getting-started.md).
+This section provides a general overview of the API documentation plug-in of the
+Tanzu Application Platform GUI.
+For more information, see [Getting started with API documentation plug-in](api-docs-getting-started.html).
+
 
 ## <a id="overview"></a> Overview
 
-The API Documentation plugin provides a standalone list of APIs that can be connected to Components and Systems of Tanzu Application Platform GUI's Software Catalog. Each API entity can reflect the Components that provide that API, as well as the list of Components that are consumers of that API. Also, an API entity can be associated to Systems and show up on the System's diagram. To show such dependency, `spec.providesApis:` and `spec.consumesApis:` sections of the Component definition files should reference the name of the API entity.
+The API documentation plug-in provides a standalone list of APIs that can be connected to
+components and systems of the Tanzu Application Platform GUI software catalog.
 
-Here's a sample of how `providesApis` and `consumesApis` can be added to an existing Component's catalog definition, linking them together.
+Each API entity can reflect the components that provide that API and the list of components
+that are consumers of that API.
+Also, an API entity can be associated to systems and show up on the system diagram.
+To show such dependency, make the `spec.providesApis:` and `spec.consumesApis:` sections of the
+component definition files reference the name of the API entity.
+
+Here's a sample of how you can add `providesApis` and `consumesApis` to an existing component's
+catalog definition, linking them together.
+
 ```yaml
 apiVersion: backstage.io/v1alpha1
 kind: Component
@@ -24,51 +36,76 @@ spec:
     - example-api-2
 ```
 
-For more information on the structure of the definition file for an API entity, please refer to [Backstage Kind: API](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-api). For more information on the API Documentation plugin, please refer to [Backstage API Documentation](https://github.com/backstage/backstage/blob/master/plugins/api-docs/README.md).
+For more information about the structure of the definition file for an API entity, see the
+[Backstage Kind: API documentation](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-api).
+For more information about the API documentation plug-in, see the
+[Backstage API documentation](https://github.com/backstage/backstage/blob/master/plugins/api-docs/README.md)
+in GitHub.
 
-## <a id='utilizing'></a>Utilizing the API Documentation plugin
 
-The API Documentation plugin is part of Tanzu Application Platform GUI.
+## <a id='use-api-docs-plug-in'></a> Use the API documentation plug-in
 
-The first way to use the API Documentation plugin is API-first. Click **APIs** in the left-hand navigation sidebar of Tanzu Application Platform GUI. This opens the **API catalog page**.
+The API documentation plug-in is part of Tanzu Application Platform GUI.
 
-![Screenshot of API catalog page](./tap-gui/images/../../../images/api-plugin-1.png)
+The first way to use the API documentation plug-in is API-first.
+Click **APIs** in the left-hand navigation sidebar of Tanzu Application Platform GUI.
+This opens the **API catalog page**.
 
-On that page, you can view all the APIs already registered in the catalog regardless if they are associated with Components or Systems.
+![Screenshot of API catalog page](../images/api-plugin-1.png)
 
-The second way to utilize the API Documentation plugin is through Components and Systems of the Software Catalog, listed on the Home page of Tanzu Application Platform GUI. If there is an API entity associated with the selected Component or System, the **VIEW API** icon shall be active.
+On that page, you can view all the APIs already registered in the catalog regardless of whether they
+are associated with components or systems.
 
-![Screenshot of Component page](./tap-gui/images/../../../images/api-plugin-2.png)
+The second way to use the API documentation plug-in is by using components and systems of the
+software catalog, listed on the home page of Tanzu Application Platform GUI.
+If there is an API entity associated with the selected component or system, the **VIEW API** icon
+is active.
 
-The **VIEW API** tab demonstrates which APIs are being consumed by a Component and which APIs are being provided by the Component.
+![Screenshot of Component page](../images/api-plugin-2.png)
 
-![Screenshot of VIEW API page](./tap-gui/images/../../../images/api-plugin-3.png)
+The **VIEW API** tab displays which APIs are being consumed by a component and which APIs are
+being provided by the component.
 
-Clicking on the API itself takes you to the Catalog entry for the API (denoted by the Kind type listed in the upper-left corner). Every API entity has a title and short description, including reference to the team that owns the definition of that API and the Software Catalog objects that are connected to it.
+![Screenshot of VIEW API page](../images/api-plugin-3.png)
 
-![Screenshot of API page - Overview](./tap-gui/images/../../../images/api-plugin-4.png)
+Clicking on the API itself takes you to the catalog entry for the API, which the Kind
+type listed in the upper-left corner denotes.
+Every API entity has a title and short description, including a reference to the team that owns the
+definition of that API and the software catalog objects that are connected to it.
 
-By choosing the **Definition** tab on the top of the API page, you can see the definition of that API in human-readable and machine-readable format.
+![Screenshot of API page - Overview](../images/api-plugin-4.png)
 
-![Screenshot of API page - Definition](./tap-gui/images/../../../images/api-plugin-5.png)
+By choosing the **Definition** tab on the top of the API page, you can see the definition of that
+API in human-readable and machine-readable format.
 
-The API Documentation plugin supports the following API formats
-* OpenAPI 2 & 3
-* AsyncAPI
-* GraphQL
-* Plain (to support any other format)
+![Screenshot of API page - Definition](../images/api-plugin-5.png)
 
-## <a id='create-project'></a>Creating a new API entry
+The API documentation plug-in supports the following API formats:
 
-To create a new API entity, you must follow the same steps as if you were registering any other Software Catalog entity.
+- OpenAPI 2 & 3
+- AsyncAPI
+- GraphQL
+- Plain (to support any other format)
 
-1. Navigate to the home page of Tanzu Application Platform GUI by clicking on the **Home** icon, located on the left-side navigation bar. Click **REGISTER ENTITY**.
 
-    ![REGISTER button on the right side of the header](../images/../../images/getting-started-tap-gui-5.png)
+## <a id='create-project'></a> Create a new API entry
 
-2. **Register an existing component** prompts you to type a repository URL. Paste the link to the `catalog-info.yaml` file of your choice that contains the defintion of your API entity. For example, you can copy the text below and save it as `catalog-info.yaml` on a Git repository of your choice.
+To create a new API entity, you must follow the same steps as if you were registering any other
+software catalog entity:
 
-    ```
+1. Click the **Home** icon located on the left-side navigation bar to access the home page of Tanzu Application Platform GUI.
+
+1. Click **REGISTER ENTITY**.
+
+    ![REGISTER button on the right side of the header](../../images/getting-started-tap-gui-5.png)
+
+1. **Register an existing component** prompts you to type a repository URL.
+Paste the link to the `catalog-info.yaml` file of your choice that contains the definition of your
+API entity.
+For example, you can copy the following YAML content and save it as `catalog-info.yaml` on a Git
+repository of your choice.
+
+    ```yaml
     apiVersion: backstage.io/v1alpha1
     kind: API
     metadata:
@@ -111,8 +148,10 @@ To create a new API entity, you must follow the same steps as if you were regist
                       examples: {}        
     ```
 
-3. Click **ANALYZE**, review the catalog entities to be added and click **IMPORT**.
+1. Click **ANALYZE** and then review the catalog entities to be added.
 
-    ![Review the entities to be added to the catalog](./tap-gui/images/../../../images/api-plugin-6.png)
+    ![Review the entities to be added to the catalog](../images/api-plugin-6.png)
 
-4. Navigate to the API page by clicking **APIs** on the left-hand side navigation panel. The catalog changes and entries are visible for further inspection.
+1. Click **IMPORT**.
+
+1. Click **APIs** on the left-hand side navigation panel to view entries on the **API** page.

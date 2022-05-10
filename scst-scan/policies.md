@@ -22,7 +22,7 @@ Follow these steps to define a Rego file for policy enforcement that you can reu
 
 1. Create a scan policy with a Rego file. Here is a sample scan policy resource:
 
-    ```
+    ```console
     apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
     kind: ScanPolicy
     metadata:
@@ -58,4 +58,6 @@ Follow these steps to define a Rego file for policy enforcement that you can reu
 
 1. Deploy the scan policy to the cluster by running:
 
-    `kubectl apply -f <path_to_scan_policy>/<scan_policy_filename>.yml -n <desired_namespace>`
+    ```console
+    kubectl apply -f <path_to_scan_policy>/<scan_policy_filename>.yaml -n <desired_namespace>
+    ```

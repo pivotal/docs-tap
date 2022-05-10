@@ -34,17 +34,17 @@ Tanzu Application Platform to store images.
 
 There are some optional but recommended DNS records you should allocate if you decide to use these particular components:
 
-- Cloud Native Runtimes (knative) - Allocate a wildcard subdomain for your developer's applications. This is specified in the `cnrs.domain_name` key of the `tap-values.yml` configuration file that you input with the installation. This wildcard should be pointed at the external IP address of the `tanzu-system-ingress`'s `envoy` service. See [Ingress Method](tap-gui/accessing-tap-gui.md#ingress-method) for more information about `tanzu-system-ingress`.
-- Tanzu Learning Center - Similar to Cloud Native Runtimes, allocate a wildcard subdomain for your workshops and content. This is specified in the `learningcenter.ingressDomain` key of the `tap-values.yml` configuration file that you input with the installation. This wildcard should be pointed at the external IP address of the `tanzu-system-ingress`'s `envoy` service.
-- Tanzu Application Platform GUI - Should you decide to implement the shared ingress and include the Tanzu Application Platform GUI, allocate a fully Qualified Domain Name (FQDN) that can be pointed at the `tanzu-system-ingress` service.
-The default hostname consists of `tap-gui` plus an `IngressDomain` of your choice. For example,
+- Cloud Native Runtimes (knative) - Allocate a wildcard subdomain for your developer's applications. This is specified in the `cnrs.domain_name` key of the `tap-values.yaml` configuration file that you input with the installation. This wildcard should be pointed at the external IP address of the `tanzu-system-ingress`'s `envoy` service. See [Ingress Method](tap-gui/accessing-tap-gui.md#ingress-method) for more information about `tanzu-system-ingress`.
+- Tanzu Learning Center - Similar to Cloud Native Runtimes, allocate a wildcard subdomain for your workshops and content. This is specified in the `learningcenter.ingressDomain` key of the `tap-values.yaml` configuration file that you input with the installation. This wildcard should be pointed at the external IP address of the `tanzu-system-ingress`'s `envoy` service.
+- Tanzu Application Platform GUI - If you decide to implement the shared ingress and include Tanzu Application Platform GUI, allocate a fully Qualified Domain Name (FQDN) that can be pointed at the `tanzu-system-ingress` service.
+The default host name consists of `tap-gui` plus an `IngressDomain` of your choice. For example,
 `tap-gui.example.com`.
 
 
 ### <a id='tap-gui'></a>Tanzu Application Platform GUI
 
 * Latest version of Chrome, Firefox, or Edge. Tanzu Application Platform GUI currently does not support Safari browser.
-- Git repository for the Tanzu Application Platform GUI's software catalogs, along with a token allowing read access. For more information about how you will use your Git repository, see the Using accelerator.yaml section in [Getting started with the Tanzu Application Platform](getting-started.md#accelerator-yaml).
+- Git repository for Tanzu Application Platform GUI's software catalogs, along with a token allowing read access. For more information about how you will use your Git repository, see the Using accelerator.yaml section in [Getting started with the Tanzu Application Platform](getting-started.md#accelerator-yaml).
   Supported Git infrastructure includes:
     - GitHub
     - GitLab
@@ -53,7 +53,7 @@ The default hostname consists of `tap-gui` plus an `IngressDomain` of your choic
   - To install, navigate to [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/). Under the list of available files to download, there is a folder titled `tap-gui-catalogs-latest`. Inside that folder is a compressed archive titled `Tanzu Application Platform GUI Blank Catalog`. You must extract that catalog to the preceding Git repository of choice. This serves as the configuration location for your Organization's Catalog inside Tanzu Application Platform GUI.
 - The Tanzu Application Platform GUI catalog allows for two approaches towards storing catalog information:
     - The default option uses an in-memory database and is suitable for test and development scenarios.
-          This reads the catalog data from Git URLs that you specify in the `tap-values.yml` file.
+          This reads the catalog data from Git URLs that you specify in the `tap-values.yaml` file.
           This data is temporary, and any operations that cause the `server` pod in the `tap-gui` namespace to be re-created
           also cause this data to be rebuilt from the Git location.
           This can cause issues when you manually register entities through the UI because
@@ -67,7 +67,7 @@ The default hostname consists of `tap-gui` plus an `IngressDomain` of your choic
 
 ## <a id='k8s-cluster-reqs'></a>Kubernetes cluster requirements
 
-Installation requires Kubernetes cluster v1.20, v1.21, or v1.22 on one of the following Kubernetes
+Installation requires Kubernetes cluster v1.21, v1.22, or v1.23 on one of the following Kubernetes
 providers:
 
 * Azure Kubernetes Service
@@ -80,13 +80,13 @@ providers:
 * Minikube
     * Reference the resource requirements below
     * Hyperkit driver is supported on macOS only; Docker driver is not supported.
-* Tanzu Kubernetes Grid multi-cloud
+* Tanzu Kubernetes Grid multicloud
 * vSphere with Tanzu v7.0 U3a (not possible with Tanzu Application Platform v1.0.0 or earlier).<br>
 For vSphere with Tanzu, [pod security policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/)
 must be configured so that Tanzu Application Platform controller pods can run as root.
 To set the pod security policies, run:
 
-    ```
+    ```console
     kubectl create clusterrolebinding default-tkg-admin-privileged-binding --clusterrole=psp:vmware-system-privileged --group=system:authenticated
     ```
 

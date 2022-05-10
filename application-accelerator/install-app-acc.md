@@ -21,20 +21,20 @@ See [Install Source Controller](../source-controller/install-source-controller.m
 
 ## <a id='app-acc-config'></a> Configure properties and resource usage
 
-When you install the Application Accelerator,
-you can configure the following optional properties:
+When you install the Application Accelerator, you can configure the following optional properties:
 
 | Property | Default | Description |
 | --- | --- | --- |
 | registry.secret_ref | registry.tanzu.vmware.com | The secret used for accessing the registry where the App-Accelerator images are located |
-| server.service_type | LoadBalancer | The service type for the acc-ui-server service including, LoadBalancer, NodePort, or ClusterIP |
+| server.service_type | LoadBalancer | The service type for the acc-ui-server service including LoadBalancer, NodePort, or ClusterIP |
 | server.watched_namespace | accelerator-system | The namespace the server watches for accelerator resources |
 | server.engine_invocation_url | http://acc-engine.accelerator-system.svc.cluster.local/invocations | The URL to use for invoking the accelerator engine |
-| engine.service_type | ClusterIP | The service type for the acc-engine service including, LoadBalancer, NodePort, or ClusterIP |
+| engine.service_type | ClusterIP | The service type for the acc-engine service including LoadBalancer, NodePort, or ClusterIP |
 | engine.max_direct_memory_size | 32M | The maximum size for the Java -XX:MaxDirectMemorySize setting |
-| samples.include | True | Whether to include the bundled sample Accelerators in the installation |
-| ingress.include | False | Whether to include the ingress configuration in the installation |
-| domain | tap.example.com | Top level domain to use for ingress configuration |
+| samples.include | True | Option to include the bundled sample Accelerators in the installation |
+| ingress.include | False | Option to include the ingress configuration in the installation |
+| ingress.enable_tls | False | Option to include TLS for the ingress configuration |
+| domain | tap.example.com | Top-level domain to use for ingress configuration |
 | tls.secretName | tls | The name of the secret |
 | tls.namespace | tanzu-system-ingress | The namespace for the secret |
 
@@ -57,13 +57,13 @@ To install Application Accelerator:
 
 1. List version information for the package by running:
 
-    ```
+    ```console
     tanzu package available list accelerator.apps.tanzu.vmware.com --namespace tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     $ tanzu package available list accelerator.apps.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for accelerator.apps.tanzu.vmware.com...
       NAME                               VERSION  RELEASED-AT
@@ -72,7 +72,7 @@ To install Application Accelerator:
 
 1. (Optional) To make changes to the default installation settings, run:
 
-    ```
+    ```console
     tanzu package available get accelerator.apps.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
 
@@ -80,7 +80,7 @@ To install Application Accelerator:
 
     For example:
 
-    ```
+    ```console
     $ tanzu package available get accelerator.apps.tanzu.vmware.com/0.5.1 --values-schema --namespace tap-install
     ```
 
@@ -89,7 +89,7 @@ To install Application Accelerator:
 
 1. Create an `app-accelerator-values.yaml` using the following example code:
 
-    ```
+    ```yaml
     server:
       service_type: "LoadBalancer"
       watched_namespace: "accelerator-system"
@@ -104,13 +104,15 @@ To install Application Accelerator:
 
 1. Install the package by running:
 
+    ```console
+    tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v VERSION-NUMBER -n tap-install -f app-accelerator-values.yaml
     ```
-    tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 1.0.0 -n tap-install -f app-accelerator-values.yaml
-    ```
+
+    Where `VERSION-NUMBER` is the version included in the Tanzu Application Platform installation.
 
     For example:
 
-    ```
+    ```console
     $ tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 1.0.0 -n tap-install -f app-accelerator-values.yaml
     - Installing package 'accelerator.apps.tanzu.vmware.com'
     | Getting package metadata for 'accelerator.apps.tanzu.vmware.com'
@@ -126,13 +128,13 @@ To install Application Accelerator:
 
 1. Verify the package install by running:
 
-    ```
+    ```console
     tanzu package installed get app-accelerator -n tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     $ tanzu package installed get app-accelerator -n tap-install
     | Retrieving installation details for cc...
     NAME:                    app-accelerator
@@ -147,7 +149,7 @@ To install Application Accelerator:
 
 1. To see the IP address for the Application Accelerator API when the `server.service_type` is set to `LoadBalancer`, run the following command:
 
-    ```
+    ```console
     kubectl get service -n accelerator-system
     ```
 

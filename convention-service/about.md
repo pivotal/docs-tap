@@ -10,7 +10,7 @@ saving operator and developer time.
 The service is composed of two components:
 
 * **The convention controller:**
-  The convention controller provides the metadata to the convention server and executes the updates Pod Template Spec as per the convention server's requests.
+  The convention controller provides the metadata to the convention server and executes the updates to Pod Template Spec as per the convention server's requests.
 
 * **The convention server:**
   The convention server receives and evaluates metadata associated with a workload and
