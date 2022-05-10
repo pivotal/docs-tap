@@ -25,7 +25,7 @@ As standard, there are two support item groupings:
 The set of support item groupings is completely customizable. However, you might
 want to offer custom in-house links for your Tanzu Application Platform users rather than simply
 sending them to VMware support and documentation. You can provide this
-configuration by using your `tap-values-file.yml`.
+configuration by using your `tap-values.yaml`.
 Here is a configuration snippet, which produces the default support menu:
 
 ```yaml

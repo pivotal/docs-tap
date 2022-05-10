@@ -218,12 +218,12 @@ Here are some common troubleshooting steps for errors presented in the App Accel
 
 #### Symptom
 
-When the `app_config.backend.reading.allow` section is configured in the `tap-values-file.yml` file
+When the `app_config.backend.reading.allow` section is configured in the `tap-values.yaml` file
 during the `tap-gui` package installation, there are no accelerators on the Accelerator page.
 
 #### Cause
 
-This is because this section in the `tap-values-file.yml` file overrides the default configuration
+This is because this section in the `tap-values.yaml` file overrides the default configuration
 that gives Tanzu Application Platform GUI access to the accelerators.
 
 #### Solution
@@ -233,7 +233,7 @@ For example:
 
 ```yaml
 app_config:
-  # Existing tap-values-file.yml above
+  # Existing tap-values.yaml above
   backend:
     reading:
       allow:

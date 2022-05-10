@@ -10,7 +10,7 @@ For production or general-purpose use-cases, VMware recommends using a PostgreSQ
 
 To use a PostgreSQL database:
 
-1. Use the following values in your `tap-values-file.yml`:
+1. Use the following values in your `tap-values.yaml`:
 
     ```yaml
         backend:
@@ -37,7 +37,7 @@ To use a PostgreSQL database:
 1. Update the package profile by running:
 
     ```console
-    tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version VERSION-NUMBER --values-file tap-values-file.yml -n tap-install
+    tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version VERSION-NUMBER --values-file tap-values.yaml -n tap-install
     ```
 
     Where `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`.
@@ -45,7 +45,7 @@ To use a PostgreSQL database:
     For example:
 
     ```console
-    $ tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version {{ vars.tap_version }} --values-file tap-values-file.yml -n tap-install
+    $ tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version {{ vars.tap_version }} --values-file tap-values.yaml -n tap-install
     | Updating package 'tap'
     | Getting package install for 'tap'
     | Getting package metadata for 'tap.tanzu.vmware.com'
