@@ -102,11 +102,19 @@ To install the Tanzu CLI and plug-ins:
 ### <a id='linux-mac-tanzu-cli'></a> Install Tanzu CLI: Linux or macOS
 
 1. Create a `$HOME/tanzu` directory on your machine.
-1. Unpack the downloaded TAR file into the `$HOME/tanzu` directory by running:
+1. Unpack the downloaded TAR file into the `$HOME/tanzu` directory by running:  
 
-    ```console
-    tar -xvf tanzu-framework-linux-amd64.tar -C $HOME/tanzu
-    ```
+   * **For Linux:**
+
+     ```console
+     tar -xvf tanzu-framework-linux-amd64.tar -C $HOME/tanzu
+     ```
+
+   * **For macOS:**
+
+     ```console
+     tar -xvf tanzu-framework-darwin-amd64.tar -C $HOME/tanzu
+     ```
 
 1. Set the environment variable `TANZU_CLI_NO_INIT` to `true` to ensure the local downloaded versions of
 the CLI core and plug-ins are installed by running:
