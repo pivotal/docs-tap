@@ -163,7 +163,7 @@ the CLI core and plug-ins are installed by running:
 1. From the `Program Files\tanzu` directory, move and rename the executable file from
 
     ```console
-    Program Files\tanzu\core\v0.11.2\tanzu-core-windows_amd64.exe
+    Program Files\tanzu\cli\core\v0.11.2\tanzu-core-windows_amd64.exe
     ```
 
     to
