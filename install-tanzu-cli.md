@@ -229,7 +229,7 @@ To install the Tanzu CLI on macOS:
     mkdir $HOME/tanzu
     ```
 
-1. Sign in to [Tanzu Network](https://network.tanzu.vmware.com).
+1. Proceed to [Install/Update Tanzu CLI plug-ins](#cli-plugin-install)
 
 1. Navigate to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/) on VMware Tanzu Network.
 
@@ -333,14 +333,18 @@ command in a terminal window:
 
     The expected output is:
 
-    * `version: v0.11.1` for Tanzu Application Platform v1.0.1 or v1.0.2
-    * `version: v0.10.0` for Tanzu Application Platform v1.0.0
+    ```console
+    version: v0.11.2
+    ...
+    ```
+
+ 1. Proceed to [Install/Update Tanzu CLI plug-ins](#cli-plugin-install)
 
 1. Proceed to [Cleanly Install Tanzu CLI Plug-ins](#cli-plugin-clean-install)
 
-## <a id='cli-plugin-clean-install'></a> Cleanly Install Tanzu CLI Plug-ins
+## <a id='cli-plugin-install'></a> Install/Update Tanzu CLI plug-ins
 
-To perform a clean installation of the Tanzu CLI plug-ins:
+To install or update Tanzu CLI plug-ins follow the steps below:
 
 1. If it hasn't been done already, set environment variable `TANZU_CLI_NO_INIT` to `true` to assure the locally downloaded plug-ins are installed:
 
