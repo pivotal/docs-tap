@@ -62,15 +62,15 @@ To use the function `buildpacks`, you must upload their buildpackages to Build S
     - group:
       - id: tanzu-buildpacks/python-lite
       - id: kn-fn/python-function
-      optional: true
+        optional: true
     - group:
       - id: tanzu-buildpacks/java-native-image-lite
       - id: kn-fn/java-function
-      optional: true
+        optional: true
     - group:
       - id: tanzu-buildpacks/java-lite
       - id: kn-fn/java-function
-      optional: true
+        optional: true
 
     EOF
     ```
