@@ -11,7 +11,7 @@ add the `spring-boot-starter-actuator` module dependency.
 
 Add the maven dependency in `pom.xml` as follows:
 
-```
+```xml
 <dependency>
   <groupId>org.springframework.boot</groupId>
   <artifactId>spring-boot-starter-actuator</artifactId>

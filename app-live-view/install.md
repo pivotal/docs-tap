@@ -95,7 +95,7 @@ To access the Application Live View UI, see
 
 Run the following commands to verify the cluster configuration:
 
-```
+```console
 kubectl config current-context
 kubectl cluster-info
 ```
@@ -113,7 +113,7 @@ To download the Application Live View installation bundle:
 
 1. Provide pull secrets for Tanzu Network by running:
 
-    ```
+    ```console
     kubectl apply -f- << EOF
     ---
     apiVersion: v1
@@ -147,7 +147,7 @@ To download the Application Live View installation bundle:
 
 1. Run the following command and provide your username and password at the prompts:
 
-    ```
+    ```console
     docker login registry.tanzu.vmware.com
     ```
 
@@ -161,7 +161,7 @@ Follow the procedures in this section to install the Application Live View Backe
 To install the Application Live View Backend component, pull the
 Application Live View Backend bundle by running:
 
-```
+```console
 imgpkg pull -b registry.tanzu.vmware.com/app-live-view/application-live-view-install-bundle:1.1.0 \
   -o /tmp/application-live-view-backend-bundle
 ```
@@ -172,7 +172,7 @@ To deploy the Application Live View Backend component:
 
 1. Deploy the bundle with default installation settings by running:
 
-    ```
+    ```console
     ytt -f /tmp/application-live-view-backend-bundle/config -f /tmp/application-live-view-backend-bundle/values.yaml \
     | kbld -f /tmp/application-live-view-backend-bundle/.imgpkg/images.yml -f- \
     | kapp deploy -y -a application-live-view -f-
@@ -186,7 +186,7 @@ To deploy the Application Live View Backend component:
     1. Create the `app-live-view-backend-values.yaml` file using the following example,
     replacing all placeholders with your values:
 
-        ```
+        ```yaml
         #@data/values
         ---
         ingressEnabled: "true"
@@ -200,7 +200,7 @@ To deploy the Application Live View Backend component:
     1. To configure Transport Layer Security (TLS) certificate delegation information for the domain, add the
     following values to your `app-live-view-backend-values.yaml`.
 
-        ```
+        ```yaml
         tls:
             namespace: "NAMESPACE"
             secretName: "SECRET NAME"
@@ -213,7 +213,7 @@ To deploy the Application Live View Backend component:
 
     1. Deploy the bundle by running:
 
-        ```
+        ```console
         ytt -f /tmp/application-live-view-backend-bundle/config -f app-live-view-backend-values.yaml \
         | kbld -f /tmp/application-live-view-backend-bundle/.imgpkg/images.yml -f- \
         | kapp deploy -y -a application-live-view -f-
@@ -227,13 +227,13 @@ To verify your installation of the Application Live View Backend component:
 
 1. List the resources deployed in the `app-live-view` namespace by running:
 
-    ```
+    ```console
     kubectl get -n app-live-view service,deploy,pod
     ```
 
 1. Verify that your output is similar to the following:
 
-    ```
+    ```console
     NAME                                 TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
     service/application-live-view-5112   ClusterIP   10.100.44.226    <none>        80/TCP     15m
     service/application-live-view-7000   ClusterIP   10.100.226.242   <none>        7000/TCP   15m
@@ -255,7 +255,7 @@ Follow the procedures in this section to install the Application Live View Conne
 To install the Application Live View Connector component, pull the
 Application Live View Connector installation bundle by running:
 
-```
+```console
 imgpkg pull -b registry.tanzu.vmware.com/app-live-view/application-live-view-connector-bundle:1.1.0 \
   -o /tmp/application-live-view-connector
 ```
@@ -266,7 +266,7 @@ To deploy the Application Live View Connector component:
 
 1. Deploy the bundle with default installation settings by running:
 
-    ```
+    ```console
     ytt -f /tmp/application-live-view-connector/config -f /tmp/application-live-view-connector/values.yaml \
     | kbld -f /tmp/application-live-view-connector/.imgpkg/images.yml -f- \
     | kapp deploy -y -a application-live-view-connector -f-
@@ -282,7 +282,7 @@ To deploy the Application Live View Connector component:
     1. Create the `app-live-view-connector-values.yaml` file using the following example,
     replacing all placeholders with your values:
 
-        ```
+        ```yaml
         #@data/values
         ---
         backend:
@@ -305,7 +305,7 @@ To deploy the Application Live View Connector component:
 
     1. Deploy the bundle by running:
 
-        ```
+        ```console
         ytt -f /tmp/application-live-view-connector/config -f app-live-view-connector-values.yaml \
         | kbld -f /tmp/application-live-view-connector/.imgpkg/images.yml -f- \
         | kapp deploy -y -a application-live-view-connector -f-
@@ -322,13 +322,13 @@ To verify your installation of the Application Live View Connector component:
 
 1. List the resources deployed in the `app-live-view-connector` namespace by running:
 
-    ```
+    ```console
     kubectl get -n app-live-view-connector deploy,pod
     ```
 
 1. Verify that your output is similar to the following:
 
-    ```
+    ```console
     NAME                                        READY   STATUS    RESTARTS   AGE
     pod/application-live-view-connector-6tb8n   1/1     Running   0          103s
     ```
@@ -343,7 +343,7 @@ Follow the procedures in this section to install the Application Live View Conve
 To install the Application Live View Conventions component, pull the
 Application Live View Conventions installation bundle by running:
 
-```
+```console
 imgpkg pull -b registry.tanzu.vmware.com/app-live-view/application-live-view-conventions-bundle:1.1.0 \
   -o /tmp/application-live-view-conventions
 ```
@@ -353,7 +353,7 @@ imgpkg pull -b registry.tanzu.vmware.com/app-live-view/application-live-view-con
 
 Deploy the Application Live View Conventions component by running:
 
-```
+```console
 ytt -f /tmp/application-live-view-conventions/config -f /tmp/application-live-view-conventions/values.yaml \
 | kbld -f /tmp/application-live-view-conventions/.imgpkg/images.yml -f- \
 | kapp deploy -y -a application-live-view-conventions -f-
@@ -372,13 +372,13 @@ To verify your installation of the Application Live View Convention component:
 
 1. List the resources deployed in the `app-live-view-conventions` namespace by running:
 
-    ```
+    ```console
     kubectl get -n app-live-view-conventions service,deploy,pod
     ```
 
 1. Verify that your output is similar to the following:
 
-    ```
+    ```console
     NAME                          TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)   AGE
     service/appliveview-webhook   ClusterIP   10.96.25.27   <none>        443/TCP   11m
 
@@ -397,7 +397,7 @@ credentials in `values.yaml`.
 
 Add `registry.username` and `registry.password` arguments with your credentials as follows:
 
-```
+```console
 ytt -f /tmp/application-live-view-install-bundle/config -f /tmp/application-live-view-install-bundle/values.yaml -v registry.server='registry.tanzu.vmware.com' -v registry.username='your username' -v registry.password='your password' \
 | kbld -f /tmp/application-live-view-install-bundle/.imgpkg/images.yml -f- \
 | kapp deploy -y -a application-live-view -f-

@@ -34,7 +34,7 @@ the existing label `tanzu.app.live.view: "false"`.
 The following YAML is an example of a Spring PetClinic workload that overrides the
 connector label to `tanzu.app.live.view: "false"`:
 
-```
+```yaml
 apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
@@ -53,13 +53,12 @@ spec:
         branch: main
       url: https://github.com/kdvolder/spring-petclinic
 ```
-<br />
 
 ## <a id="deploy-workloads"></a> Deploy the workload
 
 To deploy the workload, run:
 
-```
+```console
 kapp -y deploy -n default -a workloads -f workloads.yaml
 ```
 
@@ -70,7 +69,7 @@ To verify the label:
 
 1. Verify that the workload build is successful by ensuring that `SUCCEEDED` is set to `True`:
 
-    ```
+    ```console
     kubectl get builds
     NAME                         IMAGE                                                                                                                                                 SUCCEEDED
     spring-petclinic-build-1     dev.registry.tanzu.vmware.com/app-live-view/test/spring-petclinic-default@sha256:9db2a8a8e77e9215239431fd8afe3f2ecdf09cce8afac565dad7b5f0c5ac0cdf     True
@@ -79,7 +78,7 @@ To verify the label:
 1. Verify the PodIntent of your workload by ensuring `status.template.metadata.labels`
 shows the newly added label has propagated through the Supply Chain:
 
-    ```
+    ```console
     kubectl get podintents.conventions.apps.tanzu.vmware.com spring-petclinic -oyaml  
 
     status:
@@ -128,7 +127,7 @@ shows the newly added label has propagated through the Supply Chain:
 1. Verify the ConfigMap was created for the app by ensuring `metadata.labels`
 shows the newly added label has propagated through the Supply Chain:
 
-    ```
+    ```console
     kubectl describe configmap spring-petclinic
     Name:         spring-petclinic
     Namespace:    default
@@ -161,7 +160,7 @@ shows the newly added label has propagated through the Supply Chain:
 1. Verify the running Knative application pod by ensuring `labels` shows the newly
 added label on the Knative application pod:
 
-    ```
+    ```console
     kubectl get pods -o yaml spring-petclinic-00002-deployment-77dbb85c65-cf7rn | grep labels
         kapp.k14s.io/original: '{"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"annotations":{"autoscaling.knative.dev/minScale":"1"},"labels":{"app.kubernetes.io/part-of":"tanzu-java-web-app","apps.tanzu.vmware.com/workload-type":"web","kapp.k14s.io/app":"1638455805474051000","kapp.k14s.io/association":"v1.5a9384bd7b93ca74ef494c4dec2caa4b","tanzu.app.live.view":"false"},"name":"spring-petclinic","namespace":"default"},"spec":{"source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/ksankaranara-vmw/spring-petclinic"}}}}'
     ```
