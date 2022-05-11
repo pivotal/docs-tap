@@ -407,7 +407,7 @@ The list of the supported intents are:
 - __Label__: `services.conventions.apps.tanzu.vmware.com/mysql`
 - __Dependencies__: `mysql-connector-java`, `r2dbc-mysql`
 
-**PostreSql**
+**PostgreSQL**
 
 - __Name__: `service-intent-postgres`
 - __Label__: `services.conventions.apps.tanzu.vmware.com/postgres`
