@@ -18,7 +18,7 @@ To troubleshoot, confirm the following:
 
 1. Confirm that an instance of a connector is located in the same namespace as your app.
 
-   ```bash
+   ```console
    kubectl get pods -n NAMESPACE | grep connector
    ```
 
@@ -26,7 +26,7 @@ To troubleshoot, confirm the following:
 
 1. Confirm that the actuator endpoints are enabled for your app as follows:
 
-    ```
+    ```console
     management.endpoints.web.exposure.include: "*"
     ```
 
@@ -110,7 +110,7 @@ The app shows up in Application Live View UI, but the **Health** page does not s
 The information exposed by the health endpoint depends on the `management.endpoint.health.show-details` property.
 This must be set to `always` as as follows:
 
-```
+```console
 management.endpoint.health.show-details: "always"
 ```
 

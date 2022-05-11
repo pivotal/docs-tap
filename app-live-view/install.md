@@ -96,7 +96,6 @@ To install Application Live View Backend:
     - `NAMESPACE` is the targeted namespace of TLS secret for the domain.
     - `SECRET NAME` is the name of TLS secret for the domain.
 
-
     You can edit the values to suit your project needs or leave the default values as is.
 
 
@@ -105,7 +104,7 @@ To install Application Live View Backend:
     ```console
     tanzu package install appliveview -p backend.appliveview.tanzu.vmware.com -v VERSION-NUMBER -n tap-install -f app-live-view-backend-values.yaml
     ```
-
+    
     Where `VERSION-NUMBER` is the version of the package listed.
 
     For example:
@@ -147,7 +146,6 @@ To install Application Live View Backend:
 
     Verify that `STATUS` is `Reconcile succeeded`.
 
-
 ## <a id='install-app-live-view-connector'></a> Install Application Live View Connector
 
 To install Application Live View Connector:
@@ -166,7 +164,7 @@ To install Application Live View Connector:
       NAME                                    VERSION        RELEASED-AT           
       connector.appliveview.tanzu.vmware.com  1.1.1          2022-04-22T00:00:10Z
     ```
-
+    
 1. (Optional) Change the default installation settings by running:
 
     ```console
@@ -182,7 +180,6 @@ To install Application Live View Connector:
     ```
 
     For more information about values schema options, see the properties listed earlier.
-
 
 1. Create `app-live-view-connector-values.yaml` with the following details:
 
@@ -202,7 +199,7 @@ To install Application Live View Connector:
         sslDisabled: "false"
         host: appliveview.INGRESS-DOMAIN
     ```
-
+    
     Where `INGRESS-DOMAIN` is the top level domain the Application Live View Backend exposes by using `tanzu-shared-ingress` for the Connectors in other clusters to reach the back end. Prepend the `appliveview` subdomain to the provided value.
 
     The `sslDisabled` boolean flag is treated as a string in Kubernetes YAML.
@@ -258,8 +255,7 @@ To install Application Live View Connector:
     USEFUL-ERROR-MESSAGE:
     ```
 
-    Verify that `STATUS` is `Reconcile succeeded`
-
+    Verify that `STATUS` is `Reconcile succeeded`.
 
 ## <a id='install-app-live-view-conventions'></a> Install Application Live View Conventions
 
@@ -270,7 +266,7 @@ To install Application Live View Conventions:
     ```console
     tanzu package available list conventions.appliveview.tanzu.vmware.com --namespace tap-install
     ```
-
+    
     For example:
 
     ```console
@@ -324,9 +320,10 @@ To install Application Live View Conventions:
 
     ```
 
-    Verify that `STATUS` is `Reconcile succeeded`
+    Verify that `STATUS` is `Reconcile succeeded`.
 
 
 The Application Live View UI plug-in is part of Tanzu Application Platform GUI.
 To access the Application Live View UI,
 see [Application Live View in Tanzu Application Platform GUI](https://docs-staging.vmware.com/en/draft/Tanzu-Application-Platform/1.2/tap/GUID-tap-gui-plugins-app-live-view.html).
+

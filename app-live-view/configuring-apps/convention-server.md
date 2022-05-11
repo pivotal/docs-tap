@@ -63,7 +63,7 @@ Another option is to keep Application Live View enabled for workloads, but
 set the corresponding labels and environment properties explicitly yourself.
 For example, using the `workload.yml`:
 
-```
+```yaml
 apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
@@ -108,7 +108,7 @@ you can override the labels listed in the following table using the `Workload` Y
 
 Similarly, to override the default value for `management.endpoints.web.exposure.include` or `management.endpoint.health.show-details`, add it to the workload as follows:
 
-```
+```yaml
 apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
@@ -133,7 +133,7 @@ by the Application Live View Convention default values.
 
 You can verify the applied labels and annotations by running:
 
-```
+```console
 kubectl get podintents.conventions.apps.tanzu.vmware.com WORKLOAD-NAME -o yaml
 ```
 
@@ -141,7 +141,7 @@ Where `WORKLOAD-NAME` the name of the deployed workload, for example `tanzu-java
 
 Expected output:
 
-```
+```console
 apiVersion: conventions.apps.tanzu.vmware.com/v1alpha1
 kind: PodIntent
 metadata:

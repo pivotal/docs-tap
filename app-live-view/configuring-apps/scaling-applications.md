@@ -17,7 +17,7 @@ Workload > PodIntent > ConfigMap > Push Config > to repository/registry > git-re
 
 The following YAML is an example `Workload` that adds the annotation `autoscaling.knative.dev/minScale = "1"` to set the minimum scale for the `spring-petclinic` app:
 
-```
+```yaml
 apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
@@ -40,7 +40,7 @@ spec:
 
 To deploy the workload, run:
 
-```
+```console
 kapp -y deploy -n default -a workloads -f workloads.yaml
 ```
 
@@ -50,7 +50,7 @@ To verify the annotation:
 
 1. Verify that the workload build is successful by ensuring that `SUCCEEDED` is set to `True`:
 
-    ```
+    ```console
     kubectl get builds
     NAME                         IMAGE                                                                                                                                                 SUCCEEDED
     spring-petclinic-build-1     dev.registry.tanzu.vmware.com/app-live-view/test/spring-petclinic-default@sha256:9db2a8a8e77e9215239431fd8afe3f2ecdf09cce8afac565dad7b5f0c5ac0cdf     True
@@ -59,7 +59,7 @@ To verify the annotation:
 1. Verify the PodIntent of your workload by ensuring `status.template.metadata.annotations`
 shows the newly added annotation has propagated through the Supply Chain:
 
-    ```
+    ```console
     kubectl get podintents.conventions.apps.tanzu.vmware.com spring-petclinic -oyaml  
 
     status:
@@ -80,7 +80,7 @@ shows the newly added annotation has propagated through the Supply Chain:
 1. Verify the ConfigMap was created for the app by ensuring `spec.template.metadata.annotations`
 shows the newly added annotation has propagated through the Supply Chain:
 
-    ```
+    ```console
     kubectl describe configmap spring-petclinic
     Name:         spring-petclinic
     Namespace:    default
@@ -117,7 +117,8 @@ shows the newly added annotation has propagated through the Supply Chain:
 
 1. Verify the running Knative application pod by ensuring `annotations` shows the newly
 added annotation on the Knative application pod:
-    ```
+
+    ```console
     kubectl get pods -o yaml spring-petclinic-00002-deployment-77dbb85c65-cf7rn | grep annotations
       annotations:
         kapp.k14s.io/original: '{"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"annotations":{"autoscaling.knative.dev/minScale":"1"},"labels":{"app.kubernetes.io/part-of":"tanzu-java-web-app","apps.tanzu.vmware.com/workload-type":"web","kapp.k14s.io/app":"1638455805474051000","kapp.k14s.io/association":"v1.5a9384bd7b93ca74ef494c4dec2caa4b","tanzu.app.live.view":"false"},"name":"spring-petclinic","namespace":"default"},"spec":{"source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/ksankaranara-vmw/spring-petclinic"}}}}'
