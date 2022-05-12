@@ -318,4 +318,4 @@ The user can choose from a list of actuator endpoints and parse through the raw 
 
 You might run into cases where a workload running on your cluster does not show up in the
 Application Live View overview, the detail pages do not load any information while running, or similar issues.
-See [Troubleshooting](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.2/docs/GUID-troubleshooting.html) in the Application Live View documentation.
+See [Troubleshooting](https://docs-staging.vmware.com/en/draft/Tanzu-Application-Platform/1.2/tap/GUID-app-live-view-troubleshooting.html) in the Application Live View documentation.

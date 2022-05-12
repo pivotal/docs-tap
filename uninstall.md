@@ -1,4 +1,4 @@
-# Uninstalling Tanzu Application Platform
+# Uninstall Tanzu Application Platform
 
 This document describes how to uninstall Tanzu Application Platform packages from the
 Tanzu Application Platform package repository.
