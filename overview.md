@@ -92,7 +92,7 @@ The following packages are part of the Tanzu Application Platform:
   configurations and enable fleets of developers to use them, decreasing operator concerns about
   whether developers are implementing their desired best practices.
 
-- **[Application Live View for VMware Tanzu](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/index.html)**
+- **[Application Live View for VMware Tanzu](app-live-view/about-app-live-view.md)**
 
   Application Live View is a lightweight insight and troubleshooting tool that helps application
   developers and application operators look inside running applications.
