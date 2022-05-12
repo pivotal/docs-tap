@@ -4,6 +4,12 @@
 
 The function experience on Tanzu Application Platform enables developers to deploy functions, use starter templates to bootstrap their function and write only the code that matters to your business. Developers can run a single CLI command to deploy their functions to an auto-scaled cluster.
 
+Functions provide a quick way to get started writing an application. Compared with a traditional application:
+
+* Functions have a single entry-point and perform a single task. This means that functions can be easier to understand and monitor
+* The initial webserver and application boilerplate are managed by the function supplychain, and can be updated without needing to update each function application
+* A traditional webserver application may be a better fit if you want to implement an entire website or API in a single container 
+
 This document describes how to create and deploy an HTTP function from an application accelerator starter template.
 
 > **Important:** The functionality of beta features has been tested, but performance has not.
