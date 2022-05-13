@@ -4,7 +4,7 @@ This topic describes how to install Tanzu Application Platform GUI from the
 Tanzu Application Platform package repository.
 
 >**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
-Both the full and light profiles include Tanzu Application Platform GUI.
+The Full and View profiles include Tanzu Application Platform GUI.
 For more information about profiles, see [Installing the Tanzu Application Platform Package and Profiles](../install.html).
 
 To install Tanzu Application Platform GUI, see the following sections.
@@ -12,32 +12,23 @@ To install Tanzu Application Platform GUI, see the following sections.
 
 ## <a id='prereqs'></a> Prerequisites
 
-Before installing Tekton:
+Before installing Tanzu Application Platform GUI:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.html).
-- Git repository for Tanzu Application Platform GUI software catalogs, with a token allowing read access.
+- Create a Git repository for Tanzu Application Platform GUI software catalogs, with a token allowing read access.
   Supported Git infrastructure includes:
     - GitHub
     - GitLab
     - Azure DevOps
-- Tanzu Application Platform GUI Blank Catalog from the Tanzu Application section of VMware Tanzu Network
-  - To install, navigate to [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/). Under the list of available files to download, there is a folder titled `tap-gui-catalogs-latest`. Inside that folder is a compressed archive titled `Tanzu Application Platform GUI Blank Catalog`. You must extract that catalog to the preceding Git repository of choice. This serves as the configuration location for your Organization's Catalog inside Tanzu Application Platform GUI.
-- The Tanzu Application Platform GUI catalog allows for two approaches towards storing catalog information:
-    - The default option uses an in-memory database and is suitable for test and development scenarios.
-          The in-memory database reads the catalog data from Git URLs that you write in the `tap-values.yaml` file.
-          This data is temporary, and any operations that cause the `server` pod in the `tap-gui` namespace to be re-created
-          also cause this data to be rebuilt from the Git location.
-          This can cause issues when you manually register entities by using the UI because
-          they only exist in the database and are lost when that in-memory database is rebuilt.
-    - For production use-cases, use a PostgreSQL database that exists outside the
-          Tanzu Application Platform packaging.
-          The PostgreSQL database stores all the catalog data persistently both from the Git locations
-          and the UI manual entity registrations. For more information, see
-          [Configuring the Tanzu Application Platform GUI database](database.md)
+- Install Tanzu Application Platform GUI Blank Catalog
+  1. Go to the [Tanzu Application Platform section of VMware Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
+  1. Under the list of available files to download, open the **tap-gui-catalogs-latest** folder.
+  1. Extract Tanzu Application Platform GUI Blank Catalog to your Git repository. This serves as the configuration location for your organization's Catalog inside Tanzu Application Platform GUI.
+
 
 ### <a id='tap-gui-install-proc'></a> Procedure
 
-To install Tanzu Application Platform GUI:
+To install Tanzu Application Platform GUI on a compliant Kubernetes cluster:
 
 1. List version information for the package by running:
 
@@ -64,8 +55,7 @@ To install Tanzu Application Platform GUI:
 
     For more information about values schema options, see the individual product documentation.
 
-1. Create `tap-gui-values.yaml` using the following example code, replacing all placeholders
-with your relevant values. The meanings of some placeholders are explained in this example:
+1. Create `tap-gui-values.yaml` and paste in the following code:
 
     ```yaml
     service_type: ClusterIP
@@ -87,7 +77,7 @@ with your relevant values. The meanings of some placeholders are explained in th
     Where:
 
     - `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress` service's External IP address.
-    - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog that you've already built and posted on the Git infrastructure specified in the Integration section.
+    - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog that you've already built and posted on the Git infrastructure specified in [Tanzu Application Platform GUI integrations](integrations.md).
 
 1. Install the package by running:
 
