@@ -89,7 +89,7 @@ This is the table of contents from which the Tanzu Application Platform Document
         - [Configuring an app](app-live-view/app-config.md)
             - [Enabling Spring Boot apps for Application Live View](app-live-view/configuring-apps/spring-boot-enablement.md)
             - [Convention server](app-live-view/configuring-apps/convention-server.md)
-            - [Custom Configuration for the connector](app-live-view/configuring-apps/configuring-app-for-connector.md)
+            - [Custom configuration for the connector](app-live-view/configuring-apps/configuring-app-for-connector.md)
             - [Custom configuration for application actuator endpoints](app-live-view/configuring-apps/configuring-actuator.md)
             - [Scaling Knative apps in Tanzu Application Platform](app-live-view/configuring-apps/scaling-applications.md)
         - [Supporting polyglot apps](app-live-view/polyglot.md)
