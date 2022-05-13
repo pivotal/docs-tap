@@ -1,0 +1,538 @@
+# Add testing and security scanning to your application
+
+In this guide, you are going to:
+
+- Learn about supply chains
+- Discover available out of the box (OOTB) supply chains
+  -  OOTB Basic (default)
+  -  OOTB Testing
+  -  OOTB Testing+Scanning
+- Install OOTB Testing (optional)
+- Install OOTB Testing+Scanning (optional)
+
+
+## <a id="intro-supply-chain"></a>Introducing a Supply Chain
+
+Supply Chains provide a way of codifying all of the steps of your path to production, more commonly known as continuous integration/Continuous Delivery (CI/CD). CI/CD is a method to frequently deliver applications by introducing automation into the stages of application development. The main concepts attributed to CI/CD are continuous integration, continuous delivery, and continuous deployment. CI/CD is the method used by supply chain to deliver applications through automation where supply chain allows you to use CI/CD and add any other steps necessary for an application to reach production, or a different environment such as staging.
+
+![Diagram depicting a simple path to production: CI to Security Scan to Build Image to Image Scan to CAB Approval to Deployment.](../images/path-to-production-new.png)
+
+## <a id="path-to-prod"></a>A path to production
+
+A path to production allows users to create a unified access point for all of the tools required
+for their applications to reach a customer-facing environment.
+Instead of having four tools that are loosely coupled to each other, a path to production defines
+all four tools in a single, unified layer of abstraction, which may be automated and repeatable between teams for applications at scale.
+
+Where tools typically are not able to integrate with one another and additional scripting or
+webhooks are necessary, there would be a unified automation tool to codify all the interactions
+between each of the tools.
+Supply chains used to codify the organization's path to production are configurable, allowing their
+authors to add all of the steps of their application's path to production.
+
+## <a id="avail-supply-chains"></a>Available Supply Chains
+
+The Tanzu Application Platform provides three OOTB supply chains to
+work with the Tanzu Application Platform components, and they include:
+
+## <a id="OOTB-basic-sc-default"></a>1: **OOTB Basic (default)**
+
+The default **OOTB Basic** supply chain and its dependencies were installed on your cluster during the Tanzu Application Platform install.
+The following table and diagrams provide descriptions for each of the supply chains and dependencies provided with the Tanzu Application Platform.
+
+![Diagram depicting the Source-to-URL chain: Watch Repo (Flux) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](../images/source-to-url-chain-new.png)
+
+<table>
+  <tr>
+   <td><strong>Name</strong>
+   </td>
+   <td><strong>Package Name</strong>
+   </td>
+   <td><strong>Description</strong>
+   </td>
+   <td><strong>Dependencies</strong>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Out of the Box Basic (Default - Installed during Installing Part 2)</strong>
+   </td>
+   <td><code>ootb-supply-chain-basic.tanzu.vmware.com</code>
+   </td>
+   <td>This supply chain monitors a repository that is identified in the developer’s `workload.yaml` file. When any new commits are made to the application, the supply chain:
+<ul>
+
+<li>Creates a new image.
+
+<li>Applies any predefined conventions.
+
+<li>Deploys the application to the cluster.
+</li>
+</ul>
+   </td>
+   <td>
+<ul>
+
+<li>Flux/Source Controller
+
+<li>Tanzu Build Service
+
+<li>Convention Service
+
+<li>Tekton
+
+<li>Cloud Native Runtimes
+<li>If using Service References:
+   </li>
+<ul>
+<li>Service Bindings
+<li>Services Toolkit
+   </li>
+   </ul>
+</ul>
+   </td>
+  </tr>
+</table>
+
+## <a id="OOTB-testing"></a>2: **OOTB Testing**
+
+The **OOTB Testing** supply chain runs a Tekton pipeline within the supply chain.
+
+![Diagram depicting the Source-and-Test-to-URL chain: Watch Repo (Flux) to Test Code (Tekton) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](../images/source-and-test-to-url-chain-new.png)
+
+<table>
+  <tr>
+   <td><strong>Name</strong>
+   </td>
+   <td><strong>Package Name</strong>
+   </td>
+   <td><strong>Description</strong>
+   </td>
+   <td><strong>Dependencies</strong>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Out of the Box Testing</strong>
+   </td>
+   <td><code>ootb-supply-chain-testing.tanzu.vmware.com</code>
+   </td>
+   <td>The Out of the Box Testing contains all of the same elements as the Source to URL. It allows developers to specify a Tekton pipeline that runs as part of the CI step of the supply chain.
+<ul>
+
+<li>The application tests using the Tekton pipeline.
+
+<li>A new image is created.
+
+<li>Any predefined conventions are applied.
+
+<li>The application is deployed to the cluster.
+</li>
+</ul>
+   </td>
+   <td>All of the Source to URL dependencies
+<ul>
+
+</ul>
+   </td>
+  </tr>
+</table>
+
+## <a id="OOTB-test-and-scan"></a>3: **OOTB Testing+Scanning**
+
+The **OOTB Testing+Scanning** supply chain includes integrations for secure scanning tools.
+
+![Diagram depicting the Source-and-Test-to-URL chain: Watch Repo (Flux) to Test Code (Tekton) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](../images/source-test-scan-to-url-new.png)
+
+<table>
+  <tr>
+   <td><strong>Name</strong>
+   </td>
+   <td><strong>Package Name</strong>
+   </td>
+   <td><strong>Description</strong>
+   </td>
+   <td><strong>Dependencies</strong>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Out of the Box Testing and Scanning</strong>
+   </td>
+   <td><code>ootb-supply-chain-testing-scanning.tanzu.vmware.com</code>
+   </td>
+   <td>The Out of the Box Testing and Scanning contains all of the same elements as the Out of the Box Testing supply chains but it also includes integrations out of the box with the secure scanning components of Tanzu Application Platform.
+<ul>
+
+<li>The application is tested using the provided Tekton pipeline.
+<li>The application source code is scanned for vulnerabilities.
+
+<li>A new image is created.
+<li>The image is scanned for vulnerabilities.
+
+<li>Any predefined conventions are applied.
+
+<li>The application deploys to the cluster.
+</li>
+</ul>
+   </td>
+   <td>All of the Source to URL dependencies, and:
+<ul>
+
+<li>The secure scanning components included with Tanzu Application Platform
+</li>
+</ul>
+   </td>
+  </tr>
+</table>
+
+## <a id="install-ootb-test"></a>Install OOTB Testing
+
+This section introduces how to install the OOTB Testing supply chain and
+provides a sample Tekton pipeline that tests your sample application.  The
+pipeline is configurable. Therefore, you can customize the steps to perform
+either additional testing or other tasks with Tekton Pipelines.
+
+To apply this install method, follow the following steps:
+
+1. You can activate the Out of the Box Supply Chain with Testing by updating our profile to use `testing` rather than `basic` as the selected supply chain for workloads in this cluster. Update `tap-values.yaml` (the file used to customize the profile in `Tanzu package install tap
+--values-file=...`) with the following changes:
+
+    ```yaml
+    - supply_chain: basic
+    + supply_chain: testing
+
+    - ootb_supply_chain_basic:
+    + ootb_supply_chain_testing:
+        registry:
+          server: "<SERVER-NAME>"
+          repository: "<REPO-NAME>"
+    ```
+
+2. Update the installed profile by running:
+
+    ```console
+    tanzu package installed update tap -p tap.tanzu.vmware.com -v VERSION-NUMBER --values-file tap-values.yaml -n tap-install
+    ```
+
+    Where `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`.
+
+### <a id="tekton-config-example"></a>Tekton pipeline config example
+
+In this section, a Tekton pipeline is added to the cluster. In the next section,
+the workload is updated to point to the pipeline and resolve any current errors.
+
+>**Note:** Developers can perform this step because they know how their application needs to be tested.
+The operator can also add the Tekton supply chain to a cluster before the developer get access.
+
+To add the Tekton supply chain to the cluster, apply the following YAML to the cluster:
+
+```yaml
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: developer-defined-tekton-pipeline
+  labels:
+    apps.tanzu.vmware.com/pipeline: test     # (!) required
+spec:
+  params:
+    - name: source-url                       # (!) required
+    - name: source-revision                  # (!) required
+  tasks:
+    - name: test
+      params:
+        - name: source-url
+          value: $(params.source-url)
+        - name: source-revision
+          value: $(params.source-revision)
+      taskSpec:
+        params:
+          - name: source-url
+          - name: source-revision
+        steps:
+          - name: test
+            image: gradle
+            script: |-
+              cd `mktemp -d`
+
+              wget -qO- $(params.source-url) | tar xvz -m
+              ./mvnw test
+```
+
+The preceding YAML defines a Tekton Pipeline with a single step.
+The step itself contained in the `steps` pull the code from the repository indicated
+in the developers `workload` and run the tests within the repository.
+The steps of the Tekton pipeline are configurable and allow the developer to add any additional items
+that is needed to test their code.
+Because this step is one of many in the supply chain (and the next step is an image build in this case),
+the developer is free to focus on testing their code.
+Any additional steps that the developer adds to the Tekton pipeline is independent
+for the image being built and any subsequent steps of the supply chain being executed.
+
+The `params` are templated by the Supply Chain Choreographer.
+Additionally, Tekton pipelines require a Tekton `pipelineRun` in order to execute on the cluster.
+The Supply Chain Choreographer handles creating the `pipelineRun` dynamically each time
+that step of the supply requires execution.
+
+### <a id="test-workload-update"></a>Workload update
+
+To connect the new supply chain to the workload,
+the workload must be updated to point at your Tekton pipeline.
+
+1. Update the workload by running the following with the Tanzu CLI:
+
+    ```console
+    tanzu apps workload create tanzu-java-web-app \
+      --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
+      --git-branch main \
+      --type web \
+      --label apps.tanzu.vmware.com/has-tests=true \
+      --yes
+    ```
+
+    ```console
+    Create workload:
+        1 + |---
+        2 + |apiVersion: carto.run/v1alpha1
+        3 + |kind: Workload
+        4 + |metadata:
+        5 + |  labels:
+        6 + |    apps.tanzu.vmware.com/has-tests: "true"
+        7 + |    apps.tanzu.vmware.com/workload-type: web
+        8 + |  name: tanzu-java-web-app
+        9 + |  namespace: default
+       10 + |spec:
+       11 + |  source:
+       12 + |    git:
+       13 + |      ref:
+       14 + |        branch: main
+       15 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
+
+    ? Do you want to create this workload? Yes
+    Created workload "tanzu-java-web-app"
+    ```
+
+2. After accepting the workload creation, monitor the creation of new resources by the workload by running:
+
+    ```console
+    kubectl get workload,gitrepository,pipelinerun,images.kpack,podintent,app,services.serving
+    ```
+
+  You will see output similar to the following example that shows the objects that were created by the Supply Chain Choreographer:
+
+    ```console
+    NAME                                    AGE
+    workload.carto.run/tanzu-java-web-app   109s
+
+    NAME                                                        URL                                                         READY   STATUS                                                            AGE
+    gitrepository.source.toolkit.fluxcd.io/tanzu-java-web-app   https://github.com/sample-accelerators/tanzu-java-web-app   True    Fetched revision: main/872ff44c8866b7805fb2425130edb69a9853bfdf   109s
+
+    NAME                                              SUCCEEDED   REASON      STARTTIME   COMPLETIONTIME
+    pipelinerun.tekton.dev/tanzu-java-web-app-4ftlb   True        Succeeded   104s        77s
+
+    NAME                                LATESTIMAGE                                                                                                      READY
+    image.kpack.io/tanzu-java-web-app   10.188.0.3:5000/foo/tanzu-java-web-app@sha256:1d5bc4d3d1ffeb8629fbb721fcd1c4d28b896546e005f1efd98fbc4e79b7552c   True
+
+    NAME                                                             READY   REASON   AGE
+    podintent.conventions.apps.tanzu.vmware.com/tanzu-java-web-app   True             7s
+
+    NAME                                      DESCRIPTION           SINCE-DEPLOY   AGE
+    app.kappctrl.k14s.io/tanzu-java-web-app   Reconcile succeeded   1s             2s
+
+    NAME                                             URL                                               LATESTCREATED              LATESTREADY                READY     REASON
+    service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.developer.example.com   tanzu-java-web-app-00001   tanzu-java-web-app-00001   Unknown   IngressNotConfigured
+    ```
+
+## <a id="install-OOTB-test-scan"></a>Install OOTB Testing+Scanning
+
+Follow these steps to install the OOTB Testing+Scanning supply chain:
+
+  > **Note:** When leveraging both Tanzu Build Service and Grype in your Tanzu Application Platform supply chain, you can receive enhanced scanning coverage for Java and Node.js workloads that includes application runtime layer dependencies.
+
+
+>**Important:** The grype must be installed for scanning.
+
+1. Supply Chain Security Tools - Scan is installed as part of the profiles.
+Verify that both Scan Link and Grype Scanner are installed by running:
+
+    ```console
+    tanzu package installed get scanning -n tap-install
+    tanzu package installed get grype -n tap-install
+    ```
+
+    If the packages are not already installed, follow the steps in [Supply Chain Security Tools - Scan](install-components.md#install-scst-scan) to install the required scanning components.
+
+    During installation of the Grype Scanner, sample ScanTemplates are installed into the `default` namespace. If the workload is deployed into another namespace, these sample ScanTemplates also must be present in the other namespace. One way to accomplish this is to install Grype Scanner again, and provide the namespace in the values file.
+
+    A ScanPolicy is required and the following code must be in the required namespace. You can either add the namespace flag to the kubectl  command or add the namespace field to the template itself. Run:
+
+    ```console
+    kubectl apply -f - -o yaml << EOF
+    ---
+    apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
+    kind: ScanPolicy
+    metadata:
+      name: scan-policy
+    spec:
+      regoFile: |
+        package policies
+
+        default isCompliant = false
+
+        # Accepted Values: "Critical", "High", "Medium", "Low", "Negligible", "UnknownSeverity"
+        violatingSeverities := ["Critical","High","UnknownSeverity"]
+        ignoreCVEs := []
+
+        contains(array, elem) = true {
+          array[_] = elem
+        } else = false { true }
+
+        isSafe(match) {
+          fails := contains(violatingSeverities, match.Ratings.Rating[_].Severity)
+          not fails
+        }
+
+        isSafe(match) {
+          ignore := contains(ignoreCVEs, match.Id)
+          ignore
+        }
+
+        isCompliant = isSafe(input.currentVulnerability)
+    EOF
+    ```
+
+2. (optional) To persist and query the vulnerability results post-scan, ensure that [Supply Chain Security Tools - Store](scst-store/overview.md) is installed using the following command. The Tanzu Application Platform profiles install the package by default.
+
+    ```console
+    tanzu package installed get metadata-store -n tap-install
+    ```
+
+    If the package is not installed, follow [the installation instructions](install-components.md#install-scst-store).
+
+
+3. Update the profile to use the supply chain with testing and scanning by
+   updating `tap-values.yaml` (the file used to customize the profile in `tanzu
+   package install tap --values-file=...`) with the following changes:
+
+
+    ```console
+    - supply_chain: testing
+    + supply_chain: testing_scanning
+
+    - ootb_supply_chain_testing:
+    + ootb_supply_chain_testing_scanning:
+        registry:
+          server: "<SERVER-NAME>"
+          repository: "<REPO-NAME>"
+    ```
+
+4. Update the `tap` package:
+
+    ```console
+    tanzu package installed update tap -p tap.tanzu.vmware.com -v VERSION-NUMBER --values-file tap-values.yaml -n tap-install
+    ```
+
+    Where `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`.
+
+### <a id="test-scan-workload-update"></a>Workload update
+
+To connect the new supply chain to the workload, update the workload to point to your Tekton
+pipeline:
+
+1. Update the workload by running the following using the Tanzu CLI:
+
+    ```console
+    tanzu apps workload create tanzu-java-web-app \
+      --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
+      --git-branch main \
+      --type web \
+      --label apps.tanzu.vmware.com/has-tests=true \
+      --yes
+    ```
+
+    Example output:
+
+    ```console
+    Create workload:
+          1 + |---
+          2 + |apiVersion: carto.run/v1alpha1
+          3 + |kind: Workload
+          4 + |metadata:
+          5 + |  labels:
+          6 + |    apps.tanzu.vmware.com/has-tests: "true"
+          7 + |    apps.tanzu.vmware.com/workload-type: web
+          8 + |  name: tanzu-java-web-app
+          9 + |  namespace: default
+        10 + |spec:
+        11 + |  source:
+        12 + |    git:
+        13 + |      ref:
+        14 + |        branch: main
+        15 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
+
+    ? Do you want to create this workload? Yes
+    Created workload "tanzu-java-web-app"
+    ```
+
+1. After accepting the workload creation, view the new resources that the workload created by running:
+
+    ```console
+    kubectl get workload,gitrepository,sourcescan,pipelinerun,images.kpack,imagescan,podintent,app,services.serving
+    ```
+
+    The following is an example output, which shows the objects that the Supply Chain Choreographer created:
+
+    ```console
+    NAME                                    AGE
+    workload.carto.run/tanzu-java-web-app   109s
+
+    NAME                                                        URL                                                         READY   STATUS                                                            AGE
+    gitrepository.source.toolkit.fluxcd.io/tanzu-java-web-app   https://github.com/sample-accelerators/tanzu-java-web-app   True    Fetched revision: main/872ff44c8866b7805fb2425130edb69a9853bfdf   109s
+
+    NAME                                                           PHASE       SCANNEDREVISION                            SCANNEDREPOSITORY                                           AGE    CRITICAL   HIGH   MEDIUM   LOW   UNKNOWN   CVETOTAL
+    sourcescan.scanning.apps.tanzu.vmware.com/tanzu-java-web-app   Completed   187850b39b754e425621340787932759a0838795   https://github.com/sample-accelerators/tanzu-java-web-app   90s
+
+    NAME                                              SUCCEEDED   REASON      STARTTIME   COMPLETIONTIME
+    pipelinerun.tekton.dev/tanzu-java-web-app-4ftlb   True        Succeeded   104s        77s
+
+    NAME                                LATESTIMAGE                                                                                                      READY
+    image.kpack.io/tanzu-java-web-app   10.188.0.3:5000/foo/tanzu-java-web-app@sha256:1d5bc4d3d1ffeb8629fbb721fcd1c4d28b896546e005f1efd98fbc4e79b7552c   True
+
+    NAME                                                          PHASE       SCANNEDIMAGE                                                                                                AGE   CRITICAL   HIGH   MEDIUM   LOW   UNKNOWN   CVETOTAL
+    imagescan.scanning.apps.tanzu.vmware.com/tanzu-java-web-app   Completed   10.188.0.3:5000/foo/tanzu-java-web-app@sha256:1d5bc4d3d1ffeb8629fbb721fcd1c4d28b896546e005f1efd98fbc4e79b7552c   14s
+
+    NAME                                                             READY   REASON   AGE
+    podintent.conventions.apps.tanzu.vmware.com/tanzu-java-web-app   True             7s
+
+    NAME                                      DESCRIPTION           SINCE-DEPLOY   AGE
+    app.kappctrl.k14s.io/tanzu-java-web-app   Reconcile succeeded   1s             2s
+
+    NAME                                             URL                                               LATESTCREATED              LATESTREADY                READY     REASON
+    service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.developer.example.com   tanzu-java-web-app-00001   tanzu-java-web-app-00001   Unknown   IngressNotConfigured
+    ```
+
+    If the source or image scan has a "Failed" phase, then the scan has failed compliance and the supply chain stops.
+
+### <a id="query-for-vuln"></a> Query for vulnerabilities
+
+Scan reports are automatically saved to the [Supply Chain Security Tools - Store](scst-store/overview.md), and can be queried for vulnerabilities and dependencies. For example, open-source software (OSS) or third party packages.
+
+1. Query the tanzu-java-web-app image dependencies and vulnerabilities with the following commands:
+
+  ```console
+    insight image get --digest DIGEST
+    insight image vulnerabilities --digest  DIGEST
+  ```
+
+  `DIGEST` is the component version, or image digest printed in the `KUBECTL GET` command.
+
+  > **Important:** The `Insight CLI` is separate from the Tanzu CLI.
+
+See [Tanzu Insight plug-in overview](cli-plugins/insight/cli-overview.md)
+additional information and examples.
+<br>
+
+
+## <a id="successful-deploy"></a>Congratulations! You have successfully deployed your application on the Tanzu Application Platform.
+Through the next two sections to learn about recommended supply chain security best practices and access to a powerful Services Journey experience on the Tanzu Application Platform by enabling several advanced use cases.
+
+## Next step
+
+[Configure image signing and verification in your supply chain](config-image-sign.md)
