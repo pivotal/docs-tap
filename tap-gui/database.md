@@ -1,12 +1,25 @@
 # Configuring the Tanzu Application Platform GUI database
 
-The default database mechanism for Tanzu Application Platform GUI is an in-memory database that is
-recommended for testing and development only.
+The Tanzu Application Platform GUI catalog allows for two approaches towards storing catalog information:
 
+- **In-memory database:** The default option uses an in-memory database and is suitable for test and
+development scenarios only.
+The in-memory database reads the catalog data from Git URLs that you write in the `tap-values.yaml` file.
+This data is temporary, and any operations that cause the `server` pod in the `tap-gui` namespace to
+be re-created also cause this data to be rebuilt from the Git location.
+This can cause issues when you manually register entities by using the UI because they only exist in
+the database and are lost when that in-memory database is rebuilt.
 If you choose this method, when Tanzu Application Platform GUI server pod is re-created,
 you lose all user preferences and any manually registered entities.
 
+- **PostgreSQL database:** For production use-cases, use a PostgreSQL database that exists outside
+the Tanzu Application Platform packaging.
+The PostgreSQL database stores all the catalog data persistently both from the Git locations
+and the UI manual entity registrations.
+
 For production or general-purpose use-cases, VMware recommends using a PostgreSQL database.
+
+## Configure a PostgreSQL database
 
 To use a PostgreSQL database:
 
