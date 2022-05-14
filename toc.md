@@ -11,7 +11,7 @@ This is the table of contents from which the Tanzu Application Platform Document
   - [Opting out of telemetry collection](opting-out-telemetry.md)
 - [Upgrading Tanzu Application Platform](upgrading.md)
 - [Migrate Profiles in Tanzu Application Platform](migrate-profile.md)
-- [Getting started with Tanzu Application Platform](getting-started/getting-started.md)
+- [Getting started with Tanzu Application Platform](getting-started.md)
   - [Develop your first app on Tanzu Application Platform](getting-started/develop-first-app.md)
   - [Create your application accelerator](getting-started/create-app-accelerator.md)
   - [Add testing and security scanning](getting-started/add-test-and-security.md.hbs)
