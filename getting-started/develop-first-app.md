@@ -11,6 +11,8 @@ In this guide, you are going to:
   - Debug your application
   - Monitor your running application
 
+Before you start, be sure you've completed all of the [Getting started prerequisites](../getting-started.md#get-started-prereqs).
+
 
 ## <a id="about-app-accs"></a>About application accelerators
 
