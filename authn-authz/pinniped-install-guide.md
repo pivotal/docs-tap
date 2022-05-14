@@ -1,4 +1,4 @@
-# Installing Pinniped on a single cluster
+# Installing Pinniped on Tanzu Application Service
 
 [Pinniped](https://pinniped.dev/) is used to support authentication on Tanzu Application Platform.
 This topic introduces how to install Pinniped on a single cluster of Tanzu Application Platform.
@@ -13,7 +13,6 @@ The **Pinniped Concierge** authenticates the user by using the credential, and r
 credential that is parsable by the host Kubernetes cluster or by an impersonation proxy that acts
 on behalf of the user.
 
-
 ## Prerequisites
 
 Meet these prerequisites:
@@ -22,11 +21,20 @@ Meet these prerequisites:
 * Install the package `contour`. This is included in Tanzu Application Platform.
 * Create a `workspace` directory to function as your workspace.
 
+## Environment planning (??? better heading???)
+
+If you are running Tanzu Application Platform on a single cluster both components `Pinniped Spervisor` and `Pinniped Concierge` will be installed to this cluster.
+
+When running a multi-cluster setup you need to define onto which cluster deployments are placed. 
+`Pinniped Supervisor` is supposed to run as a central component consumed by potentially multiple `Pinniped Concierge` instances. That means that a `Pinniped Supervisor` should be deployed to a single cluster that meets the mentioned prerequisites. In the current Tanzu Application Platform [multi-cluster reference architecture](https://docs-staging.vmware.com/en//Tanzu-Application-Platform/1.1/tap/GUID-multicluster-about.html) the `view cluster` is a good place for it, because it is defined as a central single instance cluster.
+
+In contrast, the `Pinniped Concierge` needs to be deployed to every cluster that you want to enable authentication for, including the `view cluster` itself.
 
 ## Install Pinniped Supervisor
 
 Follow these steps to install `pinniped-supervisor`:
 
+1. Switch tooling to the right kubecontext / cluster.
 1. Create the necessary certificate files.
 1. Create the Ingress resources.
 1. Create the `pinniped-supervisor` configuration.
@@ -195,6 +203,7 @@ Follow these steps to deploy them as a [kapp application](https://carvel.dev/kap
 
 To install Pinniped Concierge:
 
+1. Switch tooling to the right kubecontext / cluster.
 1. Deploy the Pinniped Concierge by running:
 
     ```console
@@ -203,7 +212,7 @@ To install Pinniped Concierge:
       -f https://get.pinniped.dev/v0.12.0/install-pinniped-concierge.yaml
     ```
 
-1. Get the CA certificate of the supervisor by running:
+1. Get the CA certificate of the supervisor by running the following command against the cluster running `Pinniped Supervisor`:
 
     ```console
     kubectl get secret pinniped-supervisor-tls-cert -n pinniped-supervisor -o 'go-template={{index .data "tls.crt"}}'
