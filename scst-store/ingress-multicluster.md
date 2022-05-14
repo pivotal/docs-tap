@@ -99,7 +99,7 @@ This secret is created in the Supply Chain Security Tools - Scan namespace, whic
 
 ## <a id="scst-scan-install"></a>Supply Chain Security Tools - Scan installation
 
-To allow Supply Chain Security Tools - Scan to access the created secrets, `SecretExport` resources must be created.
+To allow Supply Chain Security Tools - Scan to access the created secrets, `SecretExport` resources must be created. Note that corresponding `SecretImport` resources to receive the exported secrets are installed with the Supply Chain Security Tools - Scan package.
 
 Here is an example for supporting Supply Chain Security Tools - Scan installation on the default namespace `scan-link-system`:
 
