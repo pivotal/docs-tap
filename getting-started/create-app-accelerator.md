@@ -101,4 +101,4 @@ You can also create a separate manifest file and apply it to the cluster by usin
 
 ## Next step
 
-[Add testing and security scanning to your application](add-test-and-security.md.hbs)
+- [Add testing and security scanning to your application](add-test-and-security.md.hbs)
