@@ -49,4 +49,4 @@ When you have completed these prerequisites, you are ready to get started.
 
 ## Next step
 
-- [Develop your first application on Tanzu Application Platform](develop-first-app.md)
+- [Develop your first application on Tanzu Application Platform](getting-started/develop-first-app.md)
