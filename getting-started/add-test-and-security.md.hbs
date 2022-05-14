@@ -357,7 +357,7 @@ Verify that both Scan Link and Grype Scanner are installed by running:
     tanzu package installed get grype -n tap-install
     ```
 
-    If the packages are not already installed, follow the steps in [Supply Chain Security Tools - Scan](install-components.md#install-scst-scan) to install the required scanning components.
+    If the packages are not already installed, follow the steps in [Supply Chain Security Tools - Scan](../install-components.md#install-scst-scan) to install the required scanning components.
 
     During installation of the Grype Scanner, sample ScanTemplates are installed into the `default` namespace. If the workload is deployed into another namespace, these sample ScanTemplates also must be present in the other namespace. One way to accomplish this is to install Grype Scanner again, and provide the namespace in the values file.
 
@@ -398,13 +398,13 @@ Verify that both Scan Link and Grype Scanner are installed by running:
     EOF
     ```
 
-2. (optional) To persist and query the vulnerability results post-scan, ensure that [Supply Chain Security Tools - Store](scst-store/overview.md) is installed using the following command. The Tanzu Application Platform profiles install the package by default.
+2. (optional) To persist and query the vulnerability results post-scan, ensure that [Supply Chain Security Tools - Store](../scst-store/overview.md) is installed using the following command. The Tanzu Application Platform profiles install the package by default.
 
     ```console
     tanzu package installed get metadata-store -n tap-install
     ```
 
-    If the package is not installed, follow [the installation instructions](install-components.md#install-scst-store).
+    If the package is not installed, follow [the installation instructions](../install-components.md#install-scst-store).
 
 
 3. Update the profile to use the supply chain with testing and scanning by
@@ -535,4 +535,4 @@ Through the next two sections to learn about recommended supply chain security b
 
 ## Next step
 
-[Configure image signing and verification in your supply chain](getting-started/config-image-sign.md)
+[Configure image signing and verification in your supply chain](config-supply-chain.md)
