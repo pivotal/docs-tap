@@ -131,7 +131,8 @@ Install Supply Chain Security Tools - Scan with the following configuration:
 
 ```yaml
 ---
-metadataStore:
+scanning:
+  metadataStore:
     url: https://metadata-store.example.com
     caSecret:
         name: store-ca-cert
