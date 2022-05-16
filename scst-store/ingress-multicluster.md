@@ -139,4 +139,5 @@ scanning:
         importFromNamespace: metadata-store-secrets
     authSecret:
         name: store-auth-token
+        importFromNamespace: metadata-store-secrets
 ```
