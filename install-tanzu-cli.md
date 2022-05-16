@@ -30,9 +30,9 @@ To accept the Tanzu Application Platform EULA:
 
 1. Go to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
 
-1. Select the ***Click here to sign the EULA*** link in the yellow warning box under the release drop-down menu as seen in the screenshot below. If the yellow warning box is not visible, the EULA has already been accepted.
+1. Select the ***Click here to sign the EULA*** link in the yellow warning box under the release drop-down menu. If the yellow warning box is not visible, the EULA has already been accepted.
 
-    ![Screenshot of a VMware Tanzu Network download page. The EULA Warning has appeared.](images/install-tanzu-cli-eulas1.png)
+    ![Screenshot of a VMware Tanzu Network download page.](images/install-tanzu-cli-eulas1.png)
 
 1. Select ***Agree*** in the bottom-right of the dialog box as seen in the following screenshot.
 
