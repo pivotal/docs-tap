@@ -42,7 +42,7 @@ To install Tanzu Application Platform GUI on a compliant Kubernetes cluster:
     $ tanzu package available list tap-gui.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for tap-gui.tanzu.vmware.com...
       NAME                      VERSION     RELEASED-AT
-      tap-gui.tanzu.vmware.com  1.0.1  2022-01-10T13:14:23Z
+      tap-gui.tanzu.vmware.com  1.0.1       2022-01-10T13:14:23Z
     ```
 
 2. (Optional) Make changes to the default installation settings by running:
