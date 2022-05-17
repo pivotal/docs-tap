@@ -57,11 +57,11 @@ configurations to disable the Store:
   ```
   This means that the Syft Schema Version from the provided SBOM doesn't match the version that is supported by the installed grype-scanner. There are two different methods to resolve this incompatibility issue.
 
-  1. Install a version of [Tanzu Build Service](../tanzu-build-service/tbs-about.md) that provides an SBOM with a compatible Syft Schema Version.
-  2. Disable the `failOnSchemaErrors`. While this change bypasses the check on Syft Schema Version, it does not resolve the incompatibility issue and may produce only partial results.
-  ```yaml
-  syft:
-    schema:
-      version: syft-schema-version
-    failOnSchemaErrors: false
-  ```
+  - (Preferred method) Install a version of [Tanzu Build Service](../tanzu-build-service/tbs-about.md) that provides an SBOM with a compatible Syft Schema Version.
+  - Disable the `failOnSchemaErrors` in `grype-values.yaml` (see [installation steps](install-scst-scan.md)). While this change bypasses the check on Syft Schema Version, it does not resolve the incompatibility issue and will produce a partial scanning result.
+    ```yaml
+    syft:
+      schema:
+        version: syft-schema-version
+      failOnSchemaErrors: false
+    ```
