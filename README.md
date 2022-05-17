@@ -2,37 +2,32 @@
 
 ## Overview
 
-This repo contains the content for Tanzu Application Platform docs, v0.1–v1.1
+This repo contains the content for Tanzu Application Platform docs, v1.0–v1.2
 
 ## Branches
 
 | Branch | Usage |
 |--------|-------|
-| main | Development branch for pre-release v1.1 docs staged at https://docs-staging.vmware.com/en/draft/Tanzu-Application-Platform/1.1/tap/GUID-overview.html |
-| 1-0 | Branch that is published to https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/index.html |
-| beta-4 | Branch that is published to https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/index.html |
-| beta-3 | Branch that is published to https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.3/tap-0-3/GUID-overview.html |
-| beta-2 | Branch that is published to https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.2/tap-0-2/GUID-overview.html |
-| beta-1 | Branch that is published to https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.1/tap-0-1/GUID-overview.html |
+| main | Development branch for pre-release v1.2 docs staged at https://docs-staging.vmware.com/en/draft/Tanzu-Application-Platform/1.2/tap/GUID-overview.html |
+| 1-1 | Branch that is published to https://docs.vmware.com/en/Tanzu-Application-Platform/1.1/tap/GUID-overview.html |
+| 1-0 | Branch that is published to https://docs.vmware.com/en/Tanzu-Application-Platform/1.0/tap/GUID-overview.html |
 
 ## Product Names
 
-There is a great variety of spellings and misspellings of product names.
-JD suggests the following list:
-
-* Cloud Native Runtimes
-* Application Accelerator
-* Application Live View
-* Tanzu Build Service (not Service**s**)
-* Tanzu Application Platform (not TAP)
-
-But use the complete product name at first use:
+Use the complete product name at first use:
 
 * Cloud Native Runtimes for VMware Tanzu
 * Application Accelerator for VMware Tanzu
 * Application Live View for VMware Tanzu
 * VMware Tanzu Build Service
 
+And thereafter:
+
+* Cloud Native Runtimes
+* Application Accelerator
+* Application Live View
+* Tanzu Build Service (not Service**s**)
+* Tanzu Application Platform (not TAP)
 
 
 ## Word List
@@ -63,7 +58,6 @@ Use this table to keep a running list of terms used and how they should be defin
 | TAP packages | Right now there are three packages: one for each component. The three packages make up the bundle. The bundle is stored in the the TAP package repository. Although "Tanzu Application Platform packages" is in the original google doc, let's use "TAP packages" for consistency.|
 | TAP package repository |  How is this different from the other package repositories? (Are there non-TAP package repositories discussed on this page?) Changed from TAP to Tanzu Application Platform, Sept 24, 2021.|
 | .yaml and YAML file | Standardize on using the "a", not `.yml` |
-
 
 
 ## Placeholder List
@@ -117,7 +111,7 @@ in the documentation team wiki.
 
 ## Publishing Docs
 
-v1.1 Staging docs:  
+Staging docs:  
 
 - [docworks](https://docworks.vmware.com/) is the main tool for managing docs used by writers.
 - [docsdash](https://docsdash.vmware.com/) is a deployment UI which manages the promotion from
@@ -125,11 +119,13 @@ staging to pre-prod to production. The process below describes how to upload our
 replacing the publication with the same version.
 
 ### Prepare Markdown Files
+
 - Markdown files live in this repo.
 - Each page requires an entry in [toc.md](docs/toc.md) for the table of contents.
 - Images should live in an `images` directory at the same level and linked with a relative link.
 
 ### Create the ZIP File
+
 Starting from the repo root, this will create a new `docs.zip` with no root folder and show its
 contents.
 
