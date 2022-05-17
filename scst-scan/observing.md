@@ -27,7 +27,7 @@ Job.batch "scan-${app}-${id}" is invalid: [spec.template.spec.volumes[2].secret.
 ```
 
 
-### <a id="diasble-scst-store"></a> Disable Supply Chain Security Tools - Store
+### <a id="disable-scst-store"></a> Disable Supply Chain Security Tools - Store
 
 Supply Chain Security Tools - Store is a prerequisite for installing Supply Chain Security Tools - Scan.
 If you choose to install without the Supply Chain Security Tools - Store,  you need to edit the
@@ -47,4 +47,21 @@ configurations to disable the Store:
     --version VERSION \
     --namespace tap-install \
     --values-file tap-values.yaml
+  ```
+
+  ### <a id="incompatible-syft-schema-version"></a> Resolving Incompatible Syft Schema Version
+
+  When encountering the following error:
+  ```console
+  The provided SBOM has a Syft Schema Version which doesn't match the version that is supported by Grype...
+  ```
+  This means that the Syft Schema Version from the provided SBOM doesn't match the version that is supported by the installed grype-scanner. There are two different methods to resolve this incompatibility issue.
+
+  1. Install a version of [Tanzu Build Service](../tanzu-build-service/tbs-about.md) that provides an SBOM with a compatible Syft Schema Version.
+  2. Disable the `failOnSchemaErrors`. While this change bypasses the check on Syft Schema Version, it does not resolve the incompatibility issue and may produce only partial results.
+  ```yaml
+  syft:
+    schema:
+      version: syft-schema-version
+    failOnSchemaErrors: false
   ```
