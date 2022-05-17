@@ -51,14 +51,17 @@ configurations to disable the Store:
 
   ### <a id="incompatible-syft-schema-version"></a> Resolving Incompatible Syft Schema Version
 
-  When encountering the following error:
-  ```console
-  The provided SBOM has a Syft Schema Version which doesn't match the version that is supported by Grype...
-  ```
-  This means that the Syft Schema Version from the provided SBOM doesn't match the version that is supported by the installed grype-scanner. There are two different methods to resolve this incompatibility issue.
+  You can encounter the following error:
+
+    ```console
+    The provided SBOM has a Syft Schema Version which doesn't match the version that is supported by Grype...
+    ```
+
+  This means that the Syft Schema Version from the provided SBOM doesn't match the version supported by the installed grype-scanner. There are two different methods to resolve this incompatibility issue:
 
   - (Preferred method) Install a version of [Tanzu Build Service](../tanzu-build-service/tbs-about.md) that provides an SBOM with a compatible Syft Schema Version.
-  - Disable the `failOnSchemaErrors` in `grype-values.yaml` (see [installation steps](install-scst-scan.md)). While this change bypasses the check on Syft Schema Version, it does not resolve the incompatibility issue and will produce a partial scanning result.
+  - Disable the `failOnSchemaErrors` in `grype-values.yaml` (see [installation steps](install-scst-scan.md)). While this change bypasses the check on Syft Schema Version, it does not resolve the incompatibility issue and produces a partial scanning result.
+
     ```yaml
     syft:
       schema:
