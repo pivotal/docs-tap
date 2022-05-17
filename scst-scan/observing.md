@@ -49,9 +49,9 @@ configurations to disable the Store:
     --values-file tap-values.yaml
   ```
 
-  ### <a id="incompatible-syft-schema-version"></a> Resolving Incompatible Syft Schema Version
+### <a id="incompatible-syft-schema-version"></a> Resolving Incompatible Syft Schema Version
 
-  You can encounter the following error:
+  You might encounter the following error:
 
     ```console
     The provided SBOM has a Syft Schema Version which doesn't match the version that is supported by Grype...
