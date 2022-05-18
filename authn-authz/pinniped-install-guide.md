@@ -21,7 +21,7 @@ Meet these prerequisites:
 * Install the package `contour`. This is included in Tanzu Application Platform.
 * Create a `workspace` directory to function as your workspace.
 
-## Environment planning (??? better heading???)
+## Environment planning
 
 If you are running Tanzu Application Platform on a single cluster both components `Pinniped Supervisor` and `Pinniped Concierge` will be installed to this cluster.
 
@@ -30,6 +30,10 @@ When running a multi-cluster setup you need to decide which cluster to deploy th
 
 In contrast, the `Pinniped Concierge` needs to be deployed to every cluster that you want to enable authentication for, including the `view cluster` itself.
 
+See the following diagram showing a possible deployment model.
+![Diagram showing the multicluster topology.](../images/auth-pinniped-multi-cluster.jpg)
+
+For more information about the Pinniped architecture and deployment model check out the [Pinniped Documentation](https://pinniped.dev/docs/background/architecture/).
 ## Install Pinniped Supervisor
 
 Follow these steps to install `pinniped-supervisor`:
