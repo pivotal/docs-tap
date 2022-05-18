@@ -15,7 +15,7 @@ For general information about Application Single Sign-On, see [Application Singl
 
 Before installing Application Single Sign-On, ensure to install [Tanzu Application Platform v1.1.x](install-intro.md) on your preferred Kubernetes cluster with either of the following profiles: `run`, `iterate`, or `full`.
 
-### <a id='install'></a>Install
+## <a id='install'></a>Install
 
 To install Application Single Sign-On:
 
