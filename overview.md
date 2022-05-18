@@ -2,23 +2,27 @@
 
 ## <a id='overview'></a> Overview of Tanzu Application Platform
 
-VMware Tanzu Application Platform is a modular application development platform with a rich set
-of developer tools. It offers developers a paved path to production to build and deploy software quickly and
+VMware Tanzu Application Platform is a modular application development platform that provides a rich set
+of developer tools and a paved path to production to build and deploy software quickly and
 securely on any compliant public cloud or on-premises Kubernetes cluster.
 
-Tanzu Application Platform:
+Tanzu Application Platform delivers a superior developer experience for enterprises building and
+deploying cloud-native applications on Kubernetes.
+It enables application teams to get to production faster by automating source-to-production
+pipelines. It clearly defines the roles of developers and operators so they can work collaboratively
+and integrate their efforts.
 
-- Delivers a superior developer experience for enterprises building and deploying cloud-native applications on Kubernetes.
-- Allows developers to quickly build and test applications regardless of their familiarity with Kubernetes.
-- Helps application teams get to production faster by automating source-to-production pipelines.
-- Clearly defines the roles of developers and operators so they can work collaboratively and integrate their efforts.
+Tanzu Application Platform includes elements that enable developers to quickly begin building
+and testing applications regardless of their familiarity with Kubernetes.
 
 Operations teams can create application scaffolding templates with built-in security and compliance
 guardrails, making those considerations mostly invisible to developers. Starting with the templates,
 developers turn source code into a container and get a URL to test their app in minutes.
 
 After the container is built, it updates every time there’s a new code commit
-or dependency patch. An internal API management portal facilitates connecting to other applications and data, regardless of how they’re built or the infrastructure they run on.
+or dependency patch. And connecting to other applications and data, regardless of how they’re built
+or what kind of infrastructure they run on, has never been easier, thanks to an internal API
+management portal.
 
 ![Illustration of TAP conceptual value, starting with components that serve the developer and finishing with the components that serve the operations staff and security staff.](images/tap-conceptual-value.png)
 
