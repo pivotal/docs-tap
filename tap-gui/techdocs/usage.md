@@ -67,7 +67,7 @@ To configure Amazon S3 access:
 TechDocs are generated for catalogs that have markdown source files for TechDocs.
 To find the catalog locations and their entities' namespace/kind/name:
 
-1. The catalogs appearing in Tanzu Application Platform GUI are listed in the `tap-gui-values.yaml` under `catalog.locations`.
+1. The catalogs appearing in Tanzu Application Platform GUI are listed in the config values under `app_config.catalog.locations`.
 1. For a given catalog, clone the catalog's repository to the local file system.
 1. Find the `mkdocs.yml` that is at the root of the catalog. There is a YAML file describing the catalog at the same level called `catalog-info.yaml`.
 1. Record the values for `namespace`, `kind`, and `metadata.name`, and the directory path containing the YAML file.
@@ -126,11 +126,9 @@ To generate and publish TechDocs by using the TechDocs CLI:
 
 ## <a id="update-app-config.yaml"></a> Update techdocs section in app-config.yaml to point to the Amazon S3 bucket
 
-VMware updates the `tap-gui-values.yaml` you used during installation to point to the Amazon S3 bucket
-that has the published TechDocs files.
-To update the `techdocs` section `app-config.yaml` to point to the Amazon S3 bucket:
+Update the config values you used during installation to point to the Amazon S3 bucket that has the published TechDocs files:
 
-1. Replace the `techdocs` section in `tap-gui-values.yaml` with the following YAML, replacing placeholders with the appropriate values.
+1. Add/modify the `techdocs` section under `app_config` in the config values with the following YAML, replacing placeholders with the appropriate values.
 
     ```yaml
     techdocs:
@@ -146,7 +144,15 @@ To update the `techdocs` section `app-config.yaml` to point to the Amazon S3 buc
           s3ForcePathStyle: false
     ```
 
-2. Update your installation from the `tanzu` CLI by running:
+2. Update your installation from the `tanzu` CLI. If you installed Tanzu Application Platform GUI as part of the tap package (i.e. `tanzu package install tap ...`) then run:
+
+    ```console
+    tanzu package installed update tap \
+      --version PACKAGE-VERSION \
+      -f VALUES-FILE
+    ```
+
+    If you installed Tanzu Application Platform GUI as its own package (i.e. `tanzu package install tap-gui ...`) then run:
 
     ```console
     tanzu package installed update tap-gui \
