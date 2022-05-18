@@ -164,7 +164,7 @@ the CLI core and plug-ins are installed by running:
 
 1. Create a `Program Files\tanzu` directory on your machine.
 
-1. From the `Downloads` directory, right-click the `tanzu-framework-windows.amd64.zip` file, select the `Extract All...` menu option, enter `C:\Program files\tanzu` in the "Files will be extracted to this folder:" text field, click the "Extract" button.
+1. From the `Downloads` directory, right-click the `tanzu-framework-windows.amd64.zip` file, select the **Extract All...** menu option, enter `C:\Program files\tanzu` in the **Files will be extracted to this folder:** text box, and click the **Extract**.
 
 1. From the `Program Files\tanzu` directory, move and rename the executable file from
 
@@ -182,13 +182,15 @@ the CLI core and plug-ins are installed by running:
 
 1. Ensure that your user account has the **Full Control** permission.
 
-1. Use Windows Search to search for `env`, select **Edit the system environment variables**, click **Environment Variables** toward the bottom right of the dialogue window.
+1. Use Windows Search to search for `env`, select **Edit the system environment variables**, click **Environment Variables** on the bottom right of the dialogue box.
 
 1. Find and select the **Path** row under **System variables**, click **Edit**.
 
-1. Click **New**, enter the path to, but not including, **tanzu.exe** (for example, `C:\Program Files\tanzu`), click "OK".
+1. Click **New**, enter the path value, click **OK**.
 
-1. Click the **New** button below the "System Variables" section, add a new environmental variable named `TANZU_CLI_NO_INIT` with a variable value `true`, click "OK".
+    >**Note:** The path value must not include **tanzu.exe**. For example, `C:\Program Files\tanzu`.
+
+1. Click **New** below the **System Variables** section, add a new environmental variable named `TANZU_CLI_NO_INIT` with a variable value `true`, click **OK**.
 
 1. Use Windows Search to search for `cmd`, select **Command Prompt** to open the command line terminal.
 
@@ -210,7 +212,7 @@ the CLI core and plug-ins are installed by running:
 
 ## <a id='cli-plugin-install'></a> Install/Update Tanzu CLI plug-ins
 
-To install or update Tanzu CLI plug-ins from your terminal, follow the steps below:
+To install or update Tanzu CLI plug-ins from your terminal, follow these steps:
 
 1. Install plug-ins from the `$HOME/tanzu` directory (if on Linux or macOS) or `Program Files\tanzu` directory (if on Windows) by running:
 
