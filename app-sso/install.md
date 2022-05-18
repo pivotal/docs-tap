@@ -3,7 +3,7 @@
 This document describes how to install Application Single Sign-On
 from the Tanzu Application Platform package repository.
 
->**Note:** Use the instructions on this page if you do not want to use the full profile to install packages.
+>**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
 >Application Single Sign-On is included in `run`, `iterate`, and `full` profiles.
 >For more information about profiles, see [Installing the Tanzu Application Platform Package and Profiles](../install.md).
 
