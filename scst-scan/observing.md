@@ -53,9 +53,9 @@ configurations to disable the Store:
 
   You might encounter the following error:
 
-    ```console
-    The provided SBOM has a Syft Schema Version which doesn't match the version that is supported by Grype...
-    ```
+  ```console
+  The provided SBOM has a Syft Schema Version which doesn't match the version that is supported by Grype...
+  ```
 
   This means that the Syft Schema Version from the provided SBOM doesn't match the version supported by the installed grype-scanner. There are two different methods to resolve this incompatibility issue:
 
