@@ -225,35 +225,24 @@ The following packages are part of the Tanzu Application Platform:
 
 ## <a id='profiles-and-packages'></a> Installation profiles in Tanzu Application Platform v1.2
 
-Tanzu Application Platform can be deployed through predefined profiles or individual packages. The profiles are designed to allow the Tanzu Application Platform to scale across an organization's multicluster, multicloud, or hybrid cloud infrastructure. These profiles are not meant to cover all customers’ use cases, but rather serve as a starting point to allow for further customization.
+You can deploy Tanzu Application Platform through predefined profiles, each containing various packages, or you can install  packages individually. The profiles are designed to allow the Tanzu Application Platform to scale across an organization's multicluster, multicloud, or hybrid cloud infrastructure. These profiles are not meant to cover all customer use cases, but serve as a starting point to allow for further customization.
 
 The following profiles are available in Tanzu Application Platform:
 
-- **Full:**
+- **Full** (`full`):
   This profile contains all of the Tanzu Application Platform packages.
 
-- **Iterate:**
+- **Iterate** (`iterate`):
   This profile is intended for iterative application development.
 
-- **Build:**
+- **Build** (`build`):
   This profile is intended for the transformation of source revisions to workload revisions. Specifically, hosting workloads and SupplyChains.
 
-- **Run:**
+- **Run** (`run`):
   This profile is intended for the transformation of workload revisions to running pods. Specifically, hosting deliveries and deliverables.
 
-- **View:**
+- **View** (`view`):
   This profile is intended for instances of applications related to centralized developer experiences. Specifically, Tanzu Application Platform GUI and Metadata Store.
-
-
-## <a id='about-package-profiles'></a> About Tanzu Application Platform package profiles
-
-You can install Tanzu Application Platform through predefined profiles, each containing various packages, or you can install packages individually. There are five profiles:
-
-- Full (`full`)
-- Iterate (`iterate`)
-- Build (`build`)
-- Run (`run`)
-- View (`view`)
 
 The following table lists the packages contained in each profile:
 
