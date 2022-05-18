@@ -101,6 +101,8 @@ This is the table of contents from which the Tanzu Application Platform Document
         - [Internal Architecture](app-live-view/architecture.md)
         - [Troubleshooting](app-live-view/troubleshooting.md)
         - [Uninstall Application Live View](app-live-view/uninstalling.md)
+    - [Application Single Sign-On](app-sso/about.md)
+        - [Install Application Single Sign-On](app-sso/install.md)
     - [Convention Service](convention-service/about.md)
       - [Install Convention Service](convention-service/install-conv-service.md)
       - [Creating conventions](convention-service/creating-conventions.md)

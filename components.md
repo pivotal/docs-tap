@@ -14,6 +14,8 @@ into this Tanzu Application Platform documentation site.
 
 - [Application Live View Convention Service for VMware Tanzu](app-live-view/configuring-apps/convention-server.md)
 
+- [Application Single Sign-On for VMware Tanzu](app-sso/about.md)
+
 - [Authentication and Authorization](authn-authz/overview.md)
 
 - [Cloud Native Runtimes for VMware Tanzu](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/index.html)

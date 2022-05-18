@@ -15,6 +15,7 @@ For more information, see [Prerequisites](prerequisites.md).
 - [Install API portal](api-portal/install-api-portal.md)
 - [Install Application Accelerator](application-accelerator/install-app-acc.md)
 - [Install Application Live View](tap-gui/plugins/install-application-live-view.md)
+- [Install Application Single Sign-On](app-sso/install.md)
 - [Install cert-manager, Contour, and FluxCD](cert-mgr-contour-fcd/install-cert-mgr.md)
 - [Install Cloud Native Runtimes](cloud-native-runtimes/install-cnrt.md)
 - [Install Convention Service](convention-service/install-conv-service.md)
