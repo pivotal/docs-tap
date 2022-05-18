@@ -20,10 +20,12 @@ developers turn source code into a container and get a URL to test their app in 
 After the container is built, it updates every time there’s a new code commit
 or dependency patch. An internal API management portal facilitates connecting to other applications and data, regardless of how they’re built or the infrastructure they run on.
 
-![Illustration of TAP conceptual value, starting with components that serve the developer and finishing with the components that serve the operations staff and security staff.](images/tap-conceptual-value.png)
+## <a id='simplified-workflows'></a> Simplified workflows
 
-Customers can simplify workflows in both the inner loop and outer loop of Kubernetes-based app
-development with Tanzu Application Platform while creating supply chains.
+When creating supply chains, you can simplify workflows in both the inner loop and outer loop of Kubernetes-based app
+development with Tanzu Application Platform.
+
+![Illustration of TAP conceptual value, starting with components that serve the developer and finishing with the components that serve the operations staff and security staff.](images/tap-conceptual-value.png)
 
 - **Inner Loop**:
     - The inner loop describes a developer’s development cycle of iterating on code.
@@ -41,9 +43,7 @@ development with Tanzu Application Platform while creating supply chains.
 [^1]: https://stackoverflow.com/questions/4127241/orchestration-vs-choreography
 [^2]: https://tanzu.vmware.com/developer/guides/supply-chain-choreography/
 
-Supply Chains provide a way of codifying all of the steps of your path to production, or what is
-more commonly known as CI/CD. A supply chain differs from CI/CD in that you can add any and every
-step that is necessary for an application to reach production or a lower environment.
+Supply chains provide a way of codifying all of the steps of your path to production, or what is more commonly known as CI/CD. A supply chain differs from CI/CD in that with a supply chain, you can add any and every step necessary for an application to reach production or a lower environment.
 
 ![Diagram depicting a simple path to production: CI to Security Scan to Build Image to Image Scan to CAB Approval to Deployment.](images/path-to-production.png)
 
@@ -58,10 +58,11 @@ all the interactions between each of the tools.
 
 Tanzu Application Platform provides a default set of components that automates pushing an app to
 staging and production on Kubernetes, removing the pain points for both inner and outer loops.
-In addition, it allows the operators to customize the platform by replacing
-Tanzu Application Platform components with other products.
+It also allows operators to customize the platform by replacing Tanzu Application Platform components with other products.
 
 ![Diagram depicting the layered structure of TAP](images/tap-layered-capabilities.png)
+
+## <a id='TAP-packages'></a> Tanzu Application Platform components
 
 The following packages are part of the Tanzu Application Platform:
 
@@ -114,7 +115,7 @@ The following packages are part of the Tanzu Application Platform:
 
 - **[Default roles for Tanzu Application Platform](authn-authz/overview.md)**
 
-  This package includes five default roles for users including app-editor, app-viewer, app-operator, and service accounts including workload, and deliverable. These roles are available to help operators limit the permissions that a user or service account requires on a cluster that runs Tanzu Application Platform. They are built by using aggregated cluster roles in Kubernetes role-based access control (RBAC).
+  This package includes five default roles for users including app-editor, app-viewer, app-operator, and service accounts including workload and deliverable. These roles are available to help operators limit the permissions that a user or service account requires on a cluster that runs Tanzu Application Platform. They are built by using aggregated cluster roles in Kubernetes role-based access control (RBAC).
 
   Default roles only apply to a user interacting with the cluster using kubectl and Tanzu CLI. Tanzu Application Platform GUI support for default roles is planned for a future release.
 
@@ -138,19 +139,19 @@ The following packages are part of the Tanzu Application Platform:
 
 - **[Services Toolkit](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/index.html)**
 
-  Services Toolkit comprises a number of Kubernetes-native components which support the management,
+  Services Toolkit comprises a number of Kubernetes-native components that support the management,
   life cycle, discoverability, and connectivity of Service Resources (databases, message queues,
-  DNS records, etc) on Kubernetes.
+  DNS records, and so on) on Kubernetes.
 
 - **[Supply Chain Choreographer for VMware Tanzu](scc/about.md)**
 
   Supply Chain Choreographer is based on open-source [Cartographer](https://cartographer.sh/docs/).
-  It enables app operators to create pre-approved paths to production by integrating Kubernetes
+  It enables app operators to create preapproved paths to production by integrating Kubernetes
   resources with the elements of their existing toolchains, such as Jenkins.
 
-  Each pre-approved supply chain creates a paved road to production. It orchestrates supply chain
-  resources - test, build, scan, and deploy - enabling developers to focus on delivering
-  value to their users while also providing app operators with the peace of mind that all code in
+  Each preapproved supply chain creates a paved road to production. It orchestrates supply chain
+  resources, namely test, build, scan, and deploy, enabling developers to focus on delivering
+  value to their users. Preapproved supply chains also give application operators the peace of mind that all code in
   production has passed through all the steps of an approved workflow.
 
 - **[Supply Chain Security tools for Tanzu - Scan](scst-scan/overview.md)**
@@ -191,7 +192,7 @@ The following packages are part of the Tanzu Application Platform:
   Tanzu Build Service uses the open-source Cloud Native Buildpacks project to turn application
   source code into container images.
 
-  Build Service executes reproducible builds that align with modern container standards, and keeps
+  Build Service executes reproducible builds that align with modern container standards and keeps
   images up to date. It does so by leveraging Kubernetes infrastructure with kpack, a Cloud Native
   Buildpacks Platform, to orchestrate the image life cycle.
 
@@ -224,7 +225,7 @@ The following packages are part of the Tanzu Application Platform:
 
 ## <a id='profiles-and-packages'></a> Installation profiles in Tanzu Application Platform v1.2
 
-Tanzu Application Platform can be deployed through predefined profiles or individual packages. The profiles are designed to allow the Tanzu Application Platform to scale across an organization's multicluster, multicloud, or hybrid cloud infrastructure. These profiles are not meant to cover all customer’s use cases, but rather serve as a starting point to allow for further customization.
+Tanzu Application Platform can be deployed through predefined profiles or individual packages. The profiles are designed to allow the Tanzu Application Platform to scale across an organization's multicluster, multicloud, or hybrid cloud infrastructure. These profiles are not meant to cover all customers’ use cases, but rather serve as a starting point to allow for further customization.
 
 The following profiles are available in Tanzu Application Platform:
 
@@ -235,10 +236,10 @@ The following profiles are available in Tanzu Application Platform:
   This profile is intended for iterative application development.
 
 - **Build:**
-  This profile is intended for the transformation of source revisions to workload revisions. Specifically, hosting Workloads and SupplyChains.
+  This profile is intended for the transformation of source revisions to workload revisions. Specifically, hosting workloads and SupplyChains.
 
 - **Run:**
-  This profile is intended for the transformation of workload revisions to running Pods. Specifically, hosting Deliveries and Deliverables.
+  This profile is intended for the transformation of workload revisions to running pods. Specifically, hosting deliveries and deliverables.
 
 - **View:**
   This profile is intended for instances of applications related to centralized developer experiences. Specifically, Tanzu Application Platform GUI and Metadata Store.
@@ -246,10 +247,7 @@ The following profiles are available in Tanzu Application Platform:
 
 ## <a id='about-package-profiles'></a> About Tanzu Application Platform package profiles
 
-Tanzu Application Platform can be installed through predefined profiles or through individual
-packages. This section explains how to install a profile.
-
-Tanzu Application Platform contains the following five profiles:
+You can install Tanzu Application Platform through predefined profiles, each containing various packages, or you can install packages individually. There are five profiles:
 
 - Full (`full`)
 - Iterate (`iterate`)
