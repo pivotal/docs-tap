@@ -64,7 +64,5 @@ configurations to disable the Store:
 
     ```yaml
     syft:
-      schema:
-        version: syft-schema-version
       failOnSchemaErrors: false
     ```
