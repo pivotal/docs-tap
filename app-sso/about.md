@@ -5,7 +5,7 @@ Sign-On as a service" offering on Tanzu Application Platform.
 
 - To provide app teams with Single Sign-On service as a **service operator**, see [AppSSO for Service Operators](https://docs-staging.vmware.com/en/Application-Single-Sign-On-for-VMware-Tanzu/1.0.0-beta/appsso-1.0.0-beta/GUID-service-operators-index.html).
 - To secure your workload with Single Sign-On as an **application operator**, see [AppSSO for App Operators](https://docs-staging.vmware.com/en/Application-Single-Sign-On-for-VMware-Tanzu/1.0.0-beta/appsso-1.0.0-beta/GUID-app-operators-index.html).
-- To install AppSSO manually rather than using the Tanzu Application Platform component, see [Installing AppSSO on TAP](https://docs-staging.vmware.com/en/Application-Single-Sign-On-for-VMware-Tanzu/1.0.0-beta/appsso-1.0.0-beta/GUID-platform-operators-installation.html).
+- To install AppSSO manually rather than using the Tanzu Application Platform component as a **platform operator**, see [AppSSO for Platform Operators](https://docs-staging.vmware.com/en/Application-Single-Sign-On-for-VMware-Tanzu/1.0.0-beta/appsso-1.0.0-beta/GUID-platform-operators-index.html).
 
 With AppSSO, Service Operators can configure and deploy authorization servers. Application Operators can then
 configure their Workloads with these authorization servers to provide Single Sign-On to their end-users.
