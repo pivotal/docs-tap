@@ -39,7 +39,7 @@ For more information about the Pinniped architecture and deployment model, see t
 
 Follow these steps to install `pinniped-supervisor`:
 
-1. Switch tooling to the right kubecontext / cluster.
+1. Switch tooling to the desired cluster.
 1. Create the necessary certificate files.
 1. Create the Ingress resources.
 1. Create the `pinniped-supervisor` configuration.
