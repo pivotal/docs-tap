@@ -128,7 +128,7 @@ To generate and publish TechDocs by using the TechDocs CLI:
 
 Update the config values you used during installation to point to the Amazon S3 bucket that has the published TechDocs files:
 
-1. Add/modify the `techdocs` section under `app_config` in the config values with the following YAML, replacing placeholders with the appropriate values.
+1. Add or modify the `techdocs` section under `app_config` in the config values with the following YAML, replacing placeholders with the appropriate values.
 
     ```yaml
     techdocs:
@@ -144,7 +144,9 @@ Update the config values you used during installation to point to the Amazon S3 
           s3ForcePathStyle: false
     ```
 
-2. Update your installation from the `tanzu` CLI. If you installed Tanzu Application Platform GUI as part of the tap package (i.e. `tanzu package install tap ...`) then run:
+2. Update your installation from the `tanzu` CLI.
+
+  * If you installed Tanzu Application Platform GUI as part of the Tanzu Application Platform package (in other words, if you installed it by running `tanzu package install tap ...`) then run:
 
     ```console
     tanzu package installed update tap \
@@ -152,7 +154,12 @@ Update the config values you used during installation to point to the Amazon S3 
       -f VALUES-FILE
     ```
 
-    If you installed Tanzu Application Platform GUI as its own package (i.e. `tanzu package install tap-gui ...`) then run:
+    Where:
+
+    * `PACKAGE-VERSION` is your package version
+    * `VALUES-FILE` is your values file
+
+  * If you installed Tanzu Application Platform GUI as its own package (in other words, if you installed it by running `tanzu package install tap-gui ...`) then run:
 
     ```console
     tanzu package installed update tap-gui \
