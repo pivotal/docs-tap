@@ -148,11 +148,11 @@ Update the config values you used during installation to point to the Amazon S3 
 
   * If you installed Tanzu Application Platform GUI as part of the Tanzu Application Platform package (in other words, if you installed it by running `tanzu package install tap ...`) then run:
 
-    ```console
-    tanzu package installed update tap \
-      --version PACKAGE-VERSION \
-      -f VALUES-FILE
-    ```
+      ```console
+      tanzu package installed update tap \
+        --version PACKAGE-VERSION \
+        -f VALUES-FILE
+      ```
 
     Where:
 
@@ -161,11 +161,11 @@ Update the config values you used during installation to point to the Amazon S3 
 
   * If you installed Tanzu Application Platform GUI as its own package (in other words, if you installed it by running `tanzu package install tap-gui ...`) then run:
 
-    ```console
-    tanzu package installed update tap-gui \
-      --version PACKAGE-VERSION \
-      -f VALUES-FILE
-    ```
+      ```console
+      tanzu package installed update tap-gui \
+        --version PACKAGE-VERSION \
+        -f VALUES-FILE
+      ```
 
     Where:
 
