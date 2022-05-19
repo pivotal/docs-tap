@@ -81,7 +81,7 @@ This is the table of contents from which the Tanzu Application Platform Document
                         - [Insight vulnerabilities sources](cli-plugins/insight/cli-docs/insight-vulnerabilities-sources.md)
     - [Authentication and Authorization](authn-authz/overview.md)
         - [Setting up authentication for Tanzu Application Platform](authn-authz/integrating-identity.md)
-            - [Installing Pinniped on a single cluster](authn-authz/pinniped-install-guide.md)
+            - [Installing Pinniped on Tanzu Application Platform](authn-authz/pinniped-install-guide.md)
             - [Integrating Azure Active Directory](authn-authz/azure-ad.md)
         - [Role descriptions](authn-authz/role-descriptions.md)
             - [Detailed role permissions breakdown](authn-authz/permissions-breakdown.md)

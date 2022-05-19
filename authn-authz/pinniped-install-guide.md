@@ -13,7 +13,7 @@ The **Pinniped Concierge** authenticates the user by using the credential, and r
 credential that is parsable by the host Kubernetes cluster or by an impersonation proxy that acts
 on behalf of the user.
 
-## Prerequisites
+## <a id="prereqs"></a> Prerequisites
 
 Meet these prerequisites:
 
@@ -21,20 +21,21 @@ Meet these prerequisites:
 * Install the package `contour`. This is included in Tanzu Application Platform.
 * Create a `workspace` directory to function as your workspace.
 
-## Environment planning
+## <a id="env-plan"></a>Environment planning
 
-If you are running Tanzu Application Platform on a single cluster both components `Pinniped Supervisor` and `Pinniped Concierge` will be installed to this cluster.
+If you are running Tanzu Application Platform on a single cluster, both components `Pinniped Supervisor` and `Pinniped Concierge` are installed to this cluster.
 
-When running a multi-cluster setup you need to decide which cluster to deploy the Supervisor onto. Furthermore, every cluster should have the Concierge deployed.
-`Pinniped Supervisor` is supposed to run as a central component consumed by potentially multiple `Pinniped Concierge` instances. That means that a `Pinniped Supervisor` should be deployed to a single cluster that meets the mentioned prerequisites. In the current Tanzu Application Platform [multi-cluster reference architecture](https://docs-staging.vmware.com/en//Tanzu-Application-Platform/1.1/tap/GUID-multicluster-about.html) the `view cluster` is a good place for it, because it is defined as a central single instance cluster.
+When running a multicluster setup you must decide which cluster to deploy the Supervisor onto. Furthermore, every cluster must have the Concierge deployed.
+`Pinniped Supervisor` is supposed to run as a central component that is consumed by potentially multiple `Pinniped Concierge` instances. That means that a `Pinniped Supervisor` must be deployed to a single cluster that meets the [prerequisites](#prereqs). In the current Tanzu Application Platform, the `view cluster` is a good place for it, because it is defined as a central single instance cluster. For more information, see [Overview of multicluster Tanzu Application Platform](multicluster/about.md).
 
-In contrast, the `Pinniped Concierge` needs to be deployed to every cluster that you want to enable authentication for, including the `view cluster` itself.
+In contrast, the `Pinniped Concierge` must be deployed to every cluster that you want to enable authentication for, including the `view cluster` itself.
 
 See the following diagram showing a possible deployment model.
 ![Diagram showing the multicluster topology.](../images/auth-pinniped-multi-cluster.jpg)
 
-For more information about the Pinniped architecture and deployment model check out the [Pinniped Documentation](https://pinniped.dev/docs/background/architecture/).
-## Install Pinniped Supervisor
+For more information about the Pinniped architecture and deployment model, see the [Pinniped Documentation](https://pinniped.dev/docs/background/architecture/).
+
+## <a id="install-pinniped-super"></a>Install Pinniped Supervisor
 
 Follow these steps to install `pinniped-supervisor`:
 
@@ -45,7 +46,7 @@ Follow these steps to install `pinniped-supervisor`:
 1. Apply these resources to the cluster.
 
 
-### Create Certificates (letsencrypt/cert-manager)
+### <a id="create-certs"></a>Create Certificates (letsencrypt/cert-manager)
 
 Create a ClusterIssuer for `letsencrypt` and a TLS certificate resource for Pinniped Supervisor
 by creating the following resources and save them into `workspace/pinniped-supervisor/certificates.yaml`.
@@ -84,7 +85,7 @@ spec:
 ```
 
 
-### Create Ingress resources
+### <a id="create-ingress-resources"></a>Create Ingress resources
 
 Create a Service and Ingress resource to make the `pinniped-supervisor` accessible from outside the
 cluster.
@@ -124,7 +125,7 @@ spec:
 ```
 
 
-### Create Pinniped-Supervisor configuration
+### <a id="create-pinniped-super-config"></a>Create Pinniped-Supervisor configuration
 
 Create a FederationDomain to link the concierge to the supervisor instance and configure an
 OIDCIdentityProvider to connect the supervisor to your OIDC Provider.
@@ -184,7 +185,7 @@ spec:
 ```
 
 
-### Apply the resources
+### <a id="apply-resources"></a>Apply the resources
 
 After creating the resource files, you can install them into the cluster.
 Follow these steps to deploy them as a [kapp application](https://carvel.dev/kapp/):
@@ -203,11 +204,11 @@ Follow these steps to deploy them as a [kapp application](https://carvel.dev/kap
     ```
 
 
-## Install Pinniped Concierge
+## <a id="install-pinniped-concierge"></a>Install Pinniped Concierge
 
 To install Pinniped Concierge:
 
-1. Switch tooling to the right kubecontext / cluster.
+1. Switch tooling to the desired kubecontext / cluster.
 1. Deploy the Pinniped Concierge by running:
 
     ```console
@@ -245,6 +246,6 @@ To install Pinniped Concierge:
     kapp deploy -y --app pinniped-concierge-jwt --into-ns pinniped-concierge -f pinniped-concierge/jwt_authenticator.yaml
     ```
 
-## Log in to the cluster
+## <a id="log-in-cluster"></a>Log in to the cluster
 
 See [Login using Pinniped](pinniped-login.md).
