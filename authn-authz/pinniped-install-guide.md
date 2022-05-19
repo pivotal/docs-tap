@@ -208,7 +208,7 @@ Follow these steps to deploy them as a [kapp application](https://carvel.dev/kap
 
 To install Pinniped Concierge:
 
-1. Switch tooling to the desired kubecontext / cluster.
+1. Switch tooling to the desired cluster.
 1. Deploy the Pinniped Concierge by running:
 
     ```console
