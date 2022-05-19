@@ -154,10 +154,10 @@ Update the config values you used during installation to point to the Amazon S3 
         -f VALUES-FILE
       ```
 
-    Where:
+      Where:
 
-    * `PACKAGE-VERSION` is your package version
-    * `VALUES-FILE` is your values file
+      * `PACKAGE-VERSION` is your package version
+      * `VALUES-FILE` is your values file
 
   * If you installed Tanzu Application Platform GUI as its own package (in other words, if you installed it by running `tanzu package install tap-gui ...`) then run:
 
@@ -167,10 +167,10 @@ Update the config values you used during installation to point to the Amazon S3 
         -f VALUES-FILE
       ```
 
-    Where:
+      Where:
 
-    * `PACKAGE-VERSION` is your package version
-    * `VALUES-FILE` is your values file
+      * `PACKAGE-VERSION` is your package version
+      * `VALUES-FILE` is your values file
 
 3. Verify the status of this update by running:
 
