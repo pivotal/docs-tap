@@ -231,6 +231,7 @@ This is the table of contents from which the Tanzu Application Platform Document
       - [Troubleshoot Tanzu Application Platform GUI](tap-gui/troubleshooting.md)
     - [Tanzu Build Service](tanzu-build-service/tbs-about.md)
       - [Install Tanzu Build Service](tanzu-build-service/install-tbs.md)
+      - [Descriptors](tanzu-build-service/descriptors.md)
     - [Tekton](tekton/tekton-about.md)
       - [Install Tekton](tekton/install-tekton.md)
 - [Workload types](workloads/workload-types.md)
