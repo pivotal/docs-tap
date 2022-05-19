@@ -1,24 +1,29 @@
-# Prebuilt image
+# Using a prebuilt image
 
-For applications that have a predefined way of building
-container images, the supply chains in the Out of the Box packages
-support specifying a prebuilt image used in the final application
-using the same stages as any other Workload.
-
+For apps that have a predefined way of building container images, the supply chains
+in the Out of the Box packages support specifying a prebuilt image used in the final app.
+This uses the same stages as any other Workload.
 
 ## <a id="workload"></a> Workload
 
-To select a prebuilt image, the `workoad.spec.image` field must be set with
-the name of the container image that contains the application to deploy.
+To select a prebuilt image, set the `workoad.spec.image` field with
+the name of the container image that contains the app to deploy
+by running:
 
-Using the Tanzu CLI, run the `--image` field of `tanzu apps
-workload create` command:
-
-```console
-$ tanzu apps workload create --help
---image image        prebuilt image, skips the source resolution and build
-                     phases of the supply chain
+<!-- find out what is mandatory/optional in this -->
+```bash
+tanzu apps workload create WORKLOAD-NAME \
+  --app APP-NAME \
+  --type TYPE \
+  --image IMAGE
 ```
+
+Where:
+
+- `WORKLOAD-NAME` is the name you choose for your workload. <!-- do you choose this name? -->
+- `APP-NAME` is the name of your app.
+- `TYPE` is the type of your app
+- `IMAGE` is the container image that contains the app you want to deploy.
 
 For example, if you have an image named `IMAGE`, you can create a workload
 with the flag mentioned earlier:
@@ -29,6 +34,8 @@ tanzu apps workload create tanzu-java-web-app \
   --type web \
   --image IMAGE
 ```
+
+Expected output:
 
 ```console
 Create workload:
@@ -45,12 +52,15 @@ Create workload:
      11 + |  image: IMAGE
 ```
 
-## <a id="NAME"></a> Out of the Box Supply Chains
+When you run `tanzu apps workload create` command with the `--image` field,
+the source resolution and build phases of the supply chain are skipped.
+
+## <a id="ootb-supply-chain"></a> Out of the Box Supply Chains
 
 In Tanzu Application Platform, the `ootb-supply-chain-basic`, `ootb-supply-chain-testing`, and
 `ootb-supply-chain-testing-scanning` packages each receive a new
 supply chain that provides a prebuilt container image for your
-application.
+app.
 
 ```text
 ootb-supply-chain-basic
@@ -71,50 +81,49 @@ ootb-supply-chain-testing-scanning
     ^          source-test-scan-to-url       ClusterSupplyChain
 ```
 
-To leverage the supply chains that expect a prebuilt image, the only necessary change to
-the Workload is `workoad.spec.image` field being set to the
-name of the container image that brings the application to be deployed.
+To leverage the supply chains that expect a prebuilt image, you must set
+the `workload.spec.image` field in the workload to the
+name of the container image that contains the app to deploy.
 
-The new supply chains use a new Cartographer feature
+The new supply chains use a Cartographer feature
 that lets VMware increase the specificity of supply chain selection by using
 the `matchFields` selector rule.
 
 The selection takes place as follows:
 
 - _ootb-supply-chain-basic_
-  - from source: label `apps.tanzu.vmware.com/workload-type: web`
-  - prebuilt image: label `apps.tanzu.vmware.com/workload-type: web` **and**
+  - From source: label `apps.tanzu.vmware.com/workload-type: web`
+  - Prebuilt image: label `apps.tanzu.vmware.com/workload-type: web` **and**
     `workload.spec.image` set
 
 - _ootb-supply-chain-testing_
-  - from source: labels `apps.tanzu.vmware.com/workload-type: web` and `apps.tanzu.vmware.com/has-tests: true`
-  - prebuilt image: label `apps.tanzu.vmware.com/workload-type: web` **and**
+  - From source: labels `apps.tanzu.vmware.com/workload-type: web` and `apps.tanzu.vmware.com/has-tests: true`
+  - Prebuilt image: label `apps.tanzu.vmware.com/workload-type: web` **and**
     `workload.spec.image` set
 
 - _ootb-supply-chain-testing-scanning_
-  - from source: labels `apps.tanzu.vmware.com/workload-type: web` and `apps.tanzu.vmware.com/has-tests: true`
-  - prebuilt image: label `apps.tanzu.vmware.com/workload-type: web` **and**
+  - From source: labels `apps.tanzu.vmware.com/workload-type: web` and `apps.tanzu.vmware.com/has-tests: true`
+  - Prebuilt image: label `apps.tanzu.vmware.com/workload-type: web` **and**
     `workload.spec.image` set
 
-Workloads that already work with the supply chains before Tanzu Application Platform v1.01.00
+Workloads that already work with the supply chains before Tanzu Application Platform v1.01.00 <!-- v1.1? -->
 continue to work with the same supply chain.
 Workloads that bring a prebuilt container image must set
 `workload.spec.image`.
 
 
-
-## <a id="NAME"></a> How it works
+## <a id="how-it-works"></a> How it works <!-- what is "it"? -->
 
 An `ImageRepository` object is created to keep track of
 new images pushed under that name, making them available to further resources in the
-supply chain the final digest of the latest that is found.
+supply chain the final digest of the latest that is found. <!-- what does this mean? -->
 
 Whenever a new image is pushed with that image name, the `ImageRepository`
-object is detected, and then it is available to further resources by
+object is detected. The image is then available to further resources by
 updating its `imagerepository.status.artifact.revision` with the absolute
-name of that image.
+name of that image. <!-- does the user update this or does this happen automatically -->
 
-For example, if you create a Workload using an image named `hello-world`,
+For example, if you create a workload using an image named `hello-world`,
 tagged `tanzu-java-web-app` hosted under `ghcr.io` in the `kontinue`
 repository:
 
@@ -125,8 +134,8 @@ tanzu apps workload create tanzu-java-web-app \
   --image ghcr.io/kontinue/hello-world:tanzu-java-web-app
 ```
 
-After a couple seconds, you see the `ImageRepository` object created for
-keeping track of images named
+After a couple seconds, you see the `ImageRepository` object created to
+keep track of images named
 `ghcr.io/kontinue/hello-world:tanzu-java-web-app`:
 
 
@@ -140,9 +149,8 @@ Workload/tanzu-java-web-app
     └─Pod/tanzu-java-web-app-config-writer-p2lzv-pod
 ```
 
-Inspecting the `Workload` status (more specifically,
-`workload.status.resources`), you see the `image-provider` resource
-promoting to further resources the image it found:
+If you inspect the `Workload` status in `workload.status.resources`, you see the `image-provider` resource
+promoting the image it found to further resources:
 
 ```yaml
 apiVersion: carto.run/v1alpha1
@@ -178,37 +186,38 @@ status:
         name: image-provider-template
 ```
 
-The image found by the ImageRepository object is carried through the
-supply chain to the final configuration that is pushed to either
+The image found by the `ImageRepository` object is carried through the
+supply chain to the final configuration. This is pushed to either
 a Git repository or image registry so that it is deployed in a run cluster.
 
 >**Note:** The image name matches the image name supplied in the `workload.spec.image` field, but also includes the digest of the latest image found under the tag. If a new image is pushed to the same tag, you see the `ImageRepository` resolving the name to a different digest corresponding to the new image pushed.
 
+
 ## <a id="examples"></a> Examples
 
 Aside from the gotchas outlined in the following section, it's transparent
-to the supply chain how you come up with the image provided.
+to the supply chain how you come up with the image provided. <!-- what does this mean? -->
 
-In the following examples below, VMware showcases a couple ways that you can build
-container images for a Java-based application and complete the
+The following examples show ways that you can build
+container images for a Java-based app and complete the
 supply chains to a running service.
 
-
-### <a id="dockerfile"></a> Dockerfile
+### <a id="dockerfile"></a> Using a Dockerfile
 
 Using a Dockerfile is the most common way of building container images. You
-can select a base image, on top of which certain operations must occur, such as compiling code, mutating the contents of the file system
-to a final container image that has our application built and any
+can select a base image, on top of which certain operations must occur,
+such as compiling code, and mutate the contents of the file system
+to a final container image that has a build of your app and any
 required runtime dependencies.
 
-Here you use the `maven` base image for compiling our application code, and
+Here you use the `maven` base image for compiling your app code, and
 then the minimal distroless `java17-debian11` image for providing a JRE
-that can run our built application.
+that can run your app when it is built.
 
-With the image built, you push it to a container image registry, and then
+After building the image, you push it to a container image registry, and then
 reference it in the Workload.
 
-1. Create a Dockerfile that describes how to build our application and make it
+1. Create a Dockerfile that describes how to build your app and make it
    available as a container image:
 
     ```Dockerfile
@@ -228,14 +237,14 @@ reference it in the Workload.
             CMD [ "/demo.jar" ]
     ```
 
-2. Push the container image to a container image registry:
+2. Push the container image to a container image registry by running:
 
     ```bash
     docker build -t IMAGE .
     docker push IMAGE
     ```
 
-3. Create a workload:
+3. Create a workload by running:
 
     ```bash
     tanzu apps workload create tanzu-java-web-app \
@@ -243,6 +252,8 @@ reference it in the Workload.
       --app tanzu-java-web-app \
       --image IMAGE
     ```
+
+    Expected output:
 
     ```console
     Create workload:
@@ -264,6 +275,7 @@ reference it in the Workload.
     ```bash
     tanzu apps workload get tanzu-java-web-app
     ```
+    Expected output:
 
     ```console
     # tanzu-java-web-app: Ready
@@ -285,113 +297,114 @@ reference it in the Workload.
     ```
 
 
-### <a id="sb-maven"></a> Sprint Boot's `build-image` Maven target
+### <a id="sb-maven"></a> Using Spring Boot's `build-image` Maven target
 
-For those familiar with Spring Boot's `build-image` target, you can make use of
-it for coming up with a container image that runs out application, and making
-use of it must work with the Dockerfile.
+If you are familiar with Spring Boot's `build-image` target, you can use
+it for coming up  <!-- find better word --> with a container image that runs your app.
+Using `build-image` target must work with the Dockerfile. <!-- is this correct? -->
 
 For example, using the same sample repository as mentioned before
-(https://github.com/sample-accelerators/tanzu-java-web-app), you can run from
-the root of that repository the following command:
+(https://github.com/sample-accelerators/tanzu-java-web-app):
 
-```bash
-IMAGE=ghcr.io/kontinue/hello-world:tanzu-java-web-app
-./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=$IMAGE
-```
+1. Build the image by running the following command from the root of the repository:
 
-```console
-[INFO] Scanning for projects...
-[INFO]
-[INFO] --------------------------< com.example:demo >--------------------------
-[INFO] Building demo 0.0.1-SNAPSHOT
-[INFO] --------------------------------[ jar ]---------------------------------
-[INFO]
-...
-[INFO]
-[INFO] Successfully built image 'ghcr.io/kontinue/hello-world:tanzu-java-web-app'
-[INFO]
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time:  39.257 s
-[INFO] Finished at: 2022-04-06T19:40:16Z
-[INFO] ------------------------------------------------------------------------
-```
+    ```bash
+    IMAGE=ghcr.io/kontinue/hello-world:tanzu-java-web-app
+    ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=$IMAGE
+    ```
 
-With the image built, you can push it to the container image registry:
+    Expected output:
 
-```bash
-IMAGE=ghcr.io/kontinue/hello-world:tanzu-java-web-app
-docker push $IMAGE
-```
+    ```console
+    [INFO] Scanning for projects...
+    [INFO]
+    [INFO] --------------------------< com.example:demo >--------------------------
+    [INFO] Building demo 0.0.1-SNAPSHOT
+    [INFO] --------------------------------[ jar ]---------------------------------
+    [INFO]
+    ...
+    [INFO]
+    [INFO] Successfully built image 'ghcr.io/kontinue/hello-world:tanzu-java-web-app'
+    [INFO]
+    [INFO] ------------------------------------------------------------------------
+    [INFO] BUILD SUCCESS
+    [INFO] ------------------------------------------------------------------------
+    [INFO] Total time:  39.257 s
+    [INFO] Finished at: 2022-04-06T19:40:16Z
+    [INFO] ------------------------------------------------------------------------
+    ```
 
-```console
-The push refers to repository [ghcr.io/kontinue/hello-world]
-1dc94a70dbaa: Preparing
-...
-9d6787a516e7: Pushed
-tanzu-java-web-app: digest: sha256:7140722ea396af69fb3d0ad12e9b4419bc3e67d9c5d8a2f6a1421decc4828ace size: 4497
-```
+1. Push the image you built to the container image registry by running:
+
+    ```bash
+    IMAGE=ghcr.io/kontinue/hello-world:tanzu-java-web-app
+    docker push $IMAGE
+    ```
+
+    Expected output:
+
+    ```console
+    The push refers to repository [ghcr.io/kontinue/hello-world]
+    1dc94a70dbaa: Preparing
+    ...
+    9d6787a516e7: Pushed
+    tanzu-java-web-app: digest: sha256:7140722ea396af69fb3d0ad12e9b4419bc3e67d9c5d8a2f6a1421decc4828ace size: 4497
+    ```
 
 Having pushed the container image, you see the same results as in the
-section earlier where you built the image with a `Dockerfile`.
+section earlier where you built the image [using a Dockerfile](#dockerfile).
 
-To know more about building container images for Spring Boot application, make
-sure you check out [Spring Boot with Docker][sboot-docker]
-
-[sboot-docker]: https://spring.io/guides/gs/spring-boot-docker
+For more information about building container images for a Spring Boot app,
+see [Spring Boot with Docker](https://spring.io/guides/gs/spring-boot-docker)
 
 
 ## <a id="gotchas"></a> Gotchas
 
 As the supply chains still aim at Knative as the runtime for the container
-image provided, the application must adhere to Knative standards when it comes
-to bringing the container up and serving traffic to it:
+image provided, the app must adhere to Knative standards when bringing the container up and serving traffic to it:
 
-- **Listen on port 8080**
+- **Container port listens on port 8080**
 
-The Knative service gets created with the pod template spec being set to have
-the container port set to 8080, so it's expected that regardless of how the
-application's container image is built, to have a socket listening on 8080.
+    The Knative service is created with the container port set to `8080` in the pod template spec
+    Therefore, your container image must have a socket listening on `8080`.
 
-```yaml
-ports:
-  - containerPort: 8080
-    name: user-port
-    protocol: TCP
-```
+    ```yaml
+    ports:
+      - containerPort: 8080
+        name: user-port
+        protocol: TCP
+    ```
 
 - **Non-privileged user ID**
 
-By default, the container initiated as part of the pod is run as user
-1000.
+    By default, the container initiated as part of the pod is run as user
+    1000.
 
-```yaml
-securityContext:
-  runAsUser: 1000
-```
+    ```yaml
+    securityContext:
+      runAsUser: 1000
+    ```
 
 - **Arguments other than the image's default entrypoint**
 
-Because there is no way of supplying arguments down to the Pod template specifications
-that wis be used in the Knative service, in most cases the container
-image can run based solely on the default entrypoint configured for it
-(in the case of Dockerfiles, the combination of ENTRYPOINT and CMD).
+    Because there is no way to supply arguments down to the ps <!-- code? --> template specifications
+    that wis <!-- typo? code? --> be used in the Knative service, in most cases the container
+    image can run based solely on the default entrypoint configured for it
+    (in the case of Dockerfiles, the combination of ENTRYPOINT and CMD). <!-- What does this mean? -->
 
-In case extra configuration must
-used (see `--env` flags in `tanzu apps workload create` or
-`workload.spec.env`).
+    In case extra configuration must
+    used (see `--env` flags in `tanzu apps workload create` or
+    `workload.spec.env`). <!-- what does this mean? -->
 
 - **Credentials for pulling the container image at runtime**
 
-The image provided is not relocated to an internal container image registry. Any
-components that are touching the image must have the necessary credentials
-for pulling it. In practice, that means attaching to the service accounts used
-for both Workload and Deliverable a secret that contains the credentials to
-pull that container image.
+    The image provided is not relocated to an internal container image registry. Any
+    components that are touching the image must have the necessary credentials
+    to pull it. In practice, that means attaching a secret that contains the credentials to
+    pull that container image to the service accounts used
+    for both Workload and Deliverable.
 
-Similarly, if the image is hosted in a registry whose certificates are
-signed by a private certificate authority, not only the components of the
-supply chains and delivery must trust it, but also the Kubernetes nodes in the
-run cluster.
+    Similarly, if the image is hosted in a registry that has certificates
+    signed by a private certificate authority, not only the components of the
+    supply chains and delivery must trust it, but also the Kubernetes nodes in the
+    run cluster.

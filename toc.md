@@ -162,6 +162,7 @@ This is the table of contents from which the Tanzu Application Platform Document
       - [Out of the Box Templates](scc/ootb-templates.md)
           - [Install Out of the Box Templates](scc/install-ootb-templates.md)
       - [Building from source](scc/building-from-source.md)
+      - [Using a prebuilt image](scc/pre-built-image.md)
       - [Git authentication](scc/git-auth.md)
       - [GitOps vs. RegistryOps](scc/gitops-vs-regops.md)
       - [Authoring Supply Chains](scc/authoring-supply-chains.md)

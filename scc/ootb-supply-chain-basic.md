@@ -220,8 +220,8 @@ of the supply chains), see the following sections:
   different ways of creating a workload where the application is built from
   source code.
 
-- [Pre-built image](pre-built-image.md), for more information about how to
-  leverage pre-built images in the supply chains.
+- [Using a prebuilt image](pre-built-image.md), for more information about how to
+  leverage prebuilt images in the supply chains.
 
 - [GitOps vs RegistryOps](gitops-vs-regops.md), for a description of the
   different ways of propagating the deployment configuration through external
