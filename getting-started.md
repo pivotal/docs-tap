@@ -959,7 +959,7 @@ When you apply the `ClusterImagePolicy` resource, your cluster requires valid si
 
 This feature set allows an application operator to introduce source code and image vulnerability scanning, and scan-time rules, to their Tanzu Application Platform Supply Chain. The scan-time rules prevent critical vulnerabilities from flowing to the supply chain unresolved.
 
-[Supply Chain Security Tools - Store](scst-store/overview.md) takes the vulnerability scanning results and stores them. Users can query for information about CVEs, images, packages, and their relationships by using the using the `tanzu insight` CLI plug-in, or directly from the API.
+[Supply Chain Security Tools - Store](scst-store/overview.md) takes the vulnerability scanning results and stores them. Users can query for information about CVEs, images, packages, and their relationships by using the `tanzu insight` CLI plug-in, or directly from the API.
 
 **Features**
 
