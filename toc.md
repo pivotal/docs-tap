@@ -175,3 +175,6 @@ This is the table of contents from which the Tanzu Application Platform Document
       - [Install Tanzu Build Service](tanzu-build-service/install-tbs.md)
     - [Tekton](tekton/tekton-about.md)
       - [Install Tekton](tekton/install-tekton.md)
+- [Workload types](workloads/workload-types.md)
+  - [Web](workloads/web.md)
+  - [Functions](workloads/functions.md)
