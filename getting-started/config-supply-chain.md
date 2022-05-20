@@ -91,6 +91,4 @@ To try the scan and store features in a supply chain, see [Section 3: Add testin
 
   - [Tanzu Insight plug-in overview](cli-plugins/insight/cli-overview.md)
 
-  ## Next step
-
-- [Consume services on Tanzu Application Platform](consume-services.md)
+  - [Consume services on Tanzu Application Platform](consume-services.md)

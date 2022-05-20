@@ -448,8 +448,8 @@ The following table lists the packages contained in each profile:
 </table>
 
 <sup>\*</sup> Only one supply chain should be installed at any given time.
-For information on switching from one supply chain to another, see [Getting Started with Tanzu Application Platform](getting-started.md).
+For information on switching from one supply chain to another, see [Add testing and security scanning to your application](getting-started/add-test-and-security.md.hbs).
 
-## <a id='install'></a> About installing the Tanzu Application Platform v1.2
+## <a id='install'></a> Installing the Tanzu Application Platform
 
 To install the Tanzu Application Platform profiles, see [Installing the Tanzu Application Platform package and profiles](install.md.hbs).

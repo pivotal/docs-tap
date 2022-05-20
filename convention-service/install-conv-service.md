@@ -6,7 +6,7 @@ Convention controller is a primary component of Convention Service.
 
 >**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
 Both the full and light profiles include convention controller.
-For more information about profiles, see [Installing the Tanzu Application Platform Package and Profiles](../install.md).
+For more information about profiles, see [About Tanzu Application Platform package and profiles](../about-package-profiles.md).
 
 Convention Service allows app operators to enrich Pod Template Specs with operational knowledge
 based on specific conventions they define. It includes the following components:

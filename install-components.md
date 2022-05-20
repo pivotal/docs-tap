@@ -1,6 +1,6 @@
 # Installing individual packages
 
-You can install Tanzu Application Platform through predefined profiles or through individual packages. This page provides links to install instructions for each of the individual packages. For more information about installing through profiles, see [Installing the Tanzu Application Platform Package and Profiles](install.md#about-package-profiles).
+You can install Tanzu Application Platform through predefined profiles or through individual packages. This page provides links to install instructions for each of the individual packages. For more information about installing through profiles, see [About Tanzu Application Platform package and profiles](about-package-profiles.md).
 
 Installing individual Tanzu Application Platform packages
 is useful if you do not want to use a profile to install packages
