@@ -241,6 +241,4 @@ To install or update Tanzu CLI plug-ins from your terminal, follow these steps:
     insight             post & query image, package, source, and vulnerability data                   Standalone                        v1.1.0       installed
     ```
 
-> **Note:** Currently, `insight` plug-in only supports macOS and Linux.
-
 You can now proceed with [installing the Tanzu Application Platform Package and Profiles](install.html).
