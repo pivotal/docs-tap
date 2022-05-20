@@ -492,6 +492,6 @@ To exclude packages from a Tanzu Application Platform profile:
       - service-bindings.lab.vmware.com
     ```
 
->**Note:** If you exclude a package after performing a profile installation including that package, you cannot see the accurate package states immediately after running `tap package installed list -n tap-install`.
+>**Important:** If you exclude a package after performing a profile installation including that package, you cannot see the accurate package states immediately after running `tap package installed list -n tap-install`.
 
 >**Warning:** You can break package dependencies by removing a package. Allow 20 minutes to verify that all packages have reconciled correctly while troubleshooting.
