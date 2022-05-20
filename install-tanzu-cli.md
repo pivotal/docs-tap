@@ -83,7 +83,7 @@ secretgen-controller on the target cluster.
 It also installs the kapp, imgpkg, ytt, and kbld CLIs on your local machine.
 Currently, Cluster Essentials only supports macOS and Linux.
 
-When you are using a VMware Tanzu Kubernetes Grid cluster, it's not need to install Cluster Essentials
+When you are using a VMware Tanzu Kubernetes Grid cluster, there is no need to install Cluster Essentials
 because the contents of Cluster Essentials are already installed on your cluster.
 
 To install Cluster Essentials, see [Deploying Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.1/cluster-essentials/GUID-deploy.html).
