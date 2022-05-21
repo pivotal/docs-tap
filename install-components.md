@@ -14,7 +14,7 @@ For more information, see [Prerequisites](prerequisites.md).
 
 - [Install API portal](api-portal/install-api-portal.md)
 - [Install Application Accelerator](application-accelerator/install-app-acc.md)
-- [Install Application Live View](tap-gui/plugins/install-application-live-view.md)
+- [Install Application Live View](app-live-view/install.md)
 - [Install Application Single Sign-On](https://docs-staging.vmware.com/en/Application-Single-Sign-On-for-VMware-Tanzu/1.0.0-beta/appsso-1.0.0-beta/GUID-platform-operators-installation.html)
 - [Install cert-manager, Contour, and FluxCD](cert-mgr-contour-fcd/install-cert-mgr.md)
 - [Install Cloud Native Runtimes](cloud-native-runtimes/install-cnrt.md)

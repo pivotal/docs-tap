@@ -27,7 +27,7 @@ To deploy your application, you must download an accelerator, upload it on your 
 1. From  Tanzu Application Platform GUI portal, click **Create** located on the left-hand side of the
    navigation bar to see the list of available accelerators.
    For information about connecting to Tanzu Application Platform GUI, see
-   [Accessing Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md).
+   [Accessing Tanzu Application Platform GUI](../tap-gui/accessing-tap-gui.md.hbs).
 
     ![List of accelerators in Tanzu Application Platform GUI](../images/getting-started-tap-gui-1.png)
 
@@ -78,7 +78,7 @@ To deploy your application, you must download an accelerator, upload it on your 
 
     Where `YOUR-DEVELOPER-NAMESPACE` is the namespace configured in step 6.
 
-    For more information, see [Tanzu Apps Workload Create](cli-plugins/apps/command-reference/tanzu-apps-workload-create.md).
+    For more information, see [Tanzu Apps Workload Create](../cli-plugins/apps/command-reference/tanzu-apps-workload-create.md).
 
     > **Note:** This deployment uses an accelerator source from Git, but in later steps you use the VSCode extension
     to debug and live-update this application.
@@ -110,7 +110,7 @@ To deploy your application, you must download an accelerator, upload it on your 
 
     ![REGISTER button on the right side of the header](../images/getting-started-tap-gui-5.png)
 
-    Alternatively, you can add a link to the `catalog-info.yaml` to the `tap-values.yaml` configuration file in the `tap_gui.app_config.catalog.locations` section. See [Installing the Tanzu Application Platform Package and Profiles](install.md#a-idfull-profilea-full-profile).
+    Alternatively, you can add a link to the `catalog-info.yaml` to the `tap-values.yaml` configuration file in the `tap_gui.app_config.catalog.locations` section. See [Installing the Tanzu Application Platform Package and Profiles](../install.md.hbs#full-profile).
 
 1. **Register an existing component** prompts you to type a repository URL.
 Type the link to the `catalog-info.yaml` file of the tanzu-java-web-app in the Git repository field, for example,
@@ -126,7 +126,7 @@ Type the link to the `catalog-info.yaml` file of the tanzu-java-web-app in the G
 
 1. Navigate back to the home page. The catalog changes and entries are visible for further inspection.
 
->**Note:** If your Tanzu Application Platform GUI instance does not have a [PostgreSQL](tap-gui/database.md) database configured, the `catalog-info.yaml` location must be re-registered after the instance is restarted or upgraded.
+>**Note:** If your Tanzu Application Platform GUI instance does not have a [PostgreSQL](../tap-gui/database.md.hbs) database configured, the `catalog-info.yaml` location must be re-registered after the instance is restarted or upgraded.
 
 ## <a id="iterate"></a>Iterate on your application
 
@@ -138,7 +138,7 @@ helps you develop and receive fast feedback on your workloads running on the Tan
 The VSCode extension enables live updates of your application while running on the cluster
 and allows you to debug your application directly on the cluster.
 For information about installing the prerequisites and the Tanzu Developer Tools extension, see
-[Install Tanzu Dev Tools for VSCode](vscode-extension/installation.md).
+[Install Tanzu Dev Tools for VSCode](../vscode-extension/installation.md).
 
 
 >**Note:** Use Tilt v0.23.2 or a later version for the sample application.
@@ -203,11 +203,11 @@ You can also troubleshoot environment variables and fine-tune the running applic
 
 Follow the following steps to diagnose Spring Boot-based applications using Application Live View:
 
-1. Confirm that the Application Live View components installed successfully. For instructions, see [Install Application Live View](app-live-view/install.md#install-app-live-view-connector).
+1. Confirm that the Application Live View components installed successfully. For instructions, see [Install Application Live View](../app-live-view/install.md#install-app-live-view-connector).
 
-1. Access the Application Live View Tanzu Application Platform GUI. For instructions, see [Entry point to Application Live View plug-in](tap-gui/plugins/app-live-view.html#plug-in-entry-point).
+1. Access the Application Live View Tanzu Application Platform GUI. For instructions, see [Entry point to Application Live View plug-in](../tap-gui/plugins/app-live-view.md#plug-in-entry-point).
 
-1. Select your running application to view the diagnostic options and inside the application. For more information, see [Application Live View features](tap-gui/plugins/app-live-view.md).
+1. Select your running application to view the diagnostic options and inside the application. For more information, see [Application Live View features](../tap-gui/plugins/app-live-view.md).
 
 ## Next step
 
