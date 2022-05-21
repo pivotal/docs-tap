@@ -90,15 +90,15 @@ each user role.
   <tr>
     <td>Application operator</td>
     <td>
-      Yes - <a href="authn-authz/role-descriptions.md#app-operator">app-operator</a>
+      Yes - <a href="../authn-authz/role-descriptions.md#app-operator">app-operator</a>
     </td>
     <td>Life cycle management (CRUD) of Resource Claims</td>
   </tr>
   <tr>
     <td>Application developer</td>
     <td>
-      Yes - <a href="authn-authz/role-descriptions.md#app-editor">app-editor</a>
-      and <a href="authn-authz/role-descriptions.md#app-viewer">app-viewer</a>
+      Yes - <a href="../authn-authz/role-descriptions.md#app-editor">app-editor</a>
+      and <a href="../authn-authz/role-descriptions.md#app-viewer">app-viewer</a>
     </td>
     <td>Binding service instances to application workloads</td>
   </tr>
