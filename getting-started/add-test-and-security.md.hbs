@@ -190,6 +190,8 @@ provides a sample Tekton pipeline that tests your sample application.  The
 pipeline is configurable. Therefore, you can customize the steps to perform
 either additional testing or other tasks with Tekton Pipelines.
 
+>**Note:** You can only have one Tekton pipeline per namespace. 
+
 To apply this install method, follow the following steps:
 
 1. You can activate the Out of the Box Supply Chain with Testing by updating our profile to use `testing` rather than `basic` as the selected supply chain for workloads in this cluster. Update `tap-values.yaml` (the file used to customize the profile in `Tanzu package install tap
