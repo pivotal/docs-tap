@@ -367,6 +367,7 @@ You can also create a separate manifest file and apply it to the cluster by usin
 ## <a id="add-test-and-scan"></a> Section 3: Add Testing and Security Scanning to Your Application
 
 In this section, you are going to:
+
 - Learn about supply chains
 - Discover available out of the box (OOTB) supply chains
   -  OOTB Basic (default)
