@@ -33,7 +33,52 @@ To use the function `buildpacks`, you must upload their buildpackages to Build S
     -b registry.tanzu.vmware.com/java-function-buildpack-for-vmware-tanzu/java-buildpack-with-deps:0.0.6
     ```
 
-1. Create and save a new [ClusterBuilder](https://docs.vmware.com/en/Tanzu-Build-Service/1.5/vmware-tanzu-build-service/GUID-managing-builders.html) by running:
+1. Create and save a new [ClusterBuilder](https://docs.vmware.com/en/Tanzu-Build-Service/1.5/vmware-tanzu-build-service/GUID-managing-builders.html) based on the installed Tanzu Application Platform profile:
+
+    **Full Profile**
+
+    ```console
+    kp clusterbuilder save function --store default -o - <<EOF
+    ---
+    - group:
+      - id: tanzu-buildpacks/python
+      - id: kn-fn/python-function
+    - group:
+      - id: tanzu-buildpacks/java-native-image
+      - id: kn-fn/java-function
+    - group:
+      - id: tanzu-buildpacks/java
+      - id: kn-fn/java-function
+
+    EOF
+    ```
+
+    If you still want to use default Java and Python buildpacks for non-functions workloads,
+    add optional `true` flags for cluster builder groups.
+    This does not enable the full capability of non-function workloads provided by the default
+    ClusterBuilder. See the following example.
+
+    ```console
+    kp clusterbuilder save function --store default -o - <<EOF
+    ---
+    - group:
+      - id: tanzu-buildpacks/python
+      - id: kn-fn/python-function
+      optional: true
+    - group:
+      - id: tanzu-buildpacks/java-native-image
+      - id: kn-fn/java-function
+      optional: true
+    - group:
+      - id: tanzu-buildpacks/java
+      - id: kn-fn/java-function
+      optional: true
+
+    EOF
+    ```
+
+
+    **Lite Profile**
 
     ```console
     kp clusterbuilder save function --store default -o - <<EOF
