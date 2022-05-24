@@ -62,4 +62,4 @@ To view documentation on the Learning Center:
 
 In this section we list all deployed workshops from a specific [trainingportal](../../learning-center/getting-started/training-portal.md).
 
-![Screenshot of Learning Center Organization Content Section](images/learning-center-documentation.png)
+![Screenshot of Learning Center Organization Content Section](images/learning-center-organization-content.png)
