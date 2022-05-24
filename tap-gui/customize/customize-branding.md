@@ -34,7 +34,7 @@ tap_gui:
 
 Where:
 
-- `BASE-64-IMAGE` is the image encoded in base64. VMware recommends a 72-pixel by 72-pixel PNG image with a transparent background.
+- `BASE-64-IMAGE` is the image encoded in base64. VMware recommends a 512-pixel by 512-pixel PNG image with a transparent background.
 - `YOUR-PORTAL-NAME` is the name of your portal.
 <!-- Example, please -->
 
