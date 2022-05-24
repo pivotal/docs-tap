@@ -237,3 +237,5 @@ This is the table of contents from which the Tanzu Application Platform Document
 - [Workload types](workloads/workload-types.md)
   - [Web](workloads/web.md)
   - [Functions](workloads/functions.md)
+  - [Queue workloads (Beta)](workloads/queue.md)
+  - [TCP workloads (Beta)](workloads/tcp.md)
