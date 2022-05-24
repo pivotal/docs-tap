@@ -1,4 +1,4 @@
-# TCP workloads (Beta feature)
+# TCP workloads (Beta)
 
 This topic describes how to create and install a supply chain for the `tcp` workload type.
 

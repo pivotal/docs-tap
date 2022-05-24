@@ -1,4 +1,4 @@
-# Queue workloads (Beta feature)
+# Queue workloads (Beta)
 
 This topic describes how to create and install a supply chain for the `queue` workload type.
 
