@@ -1,12 +1,9 @@
-# Install Supply Chain Security Tools - Sign
+# Install Supply Chain Security Tools - Policy Controller
 
->**Caution:** This component is being deprecated in favor of [Supply Chain Security Tools - Policy Controller](../scst-policy/overview.md).
->To migrate from Supply Chain Security Tools - Sign to Supply Chain Security Tools - Policy Controller, please follow these [steps](./migrate.md)
-
-Supply Chain Security Tools - Sign is released as part of Tanzu Application
+Supply Chain Security Tools - Policy Controller is released as part of Tanzu Application
 Platform's full, iterate and run profiles. Follow the instructions below to manually install this component.
 
-## <a id='scst-sign-prereqs'></a> Prerequisites
+## <a id='scst-policy-prereqs'></a> Prerequisites
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
 - A container image registry that supports TLS connections. This component does not work with insecure registries.
@@ -17,49 +14,41 @@ public cosign registry. If you want to provide your own key and images, follow t
 generate your own keys and sign an image.
 
 >**Caution:** This component rejects pods if the webhook fails or is incorrectly configured.
->If the webhook is preventing the cluster from functioning,
->see [Supply Chain Security Tools - Sign Known Issues](../release-notes.md)
-> in the Tanzu Application Platform release notes for recovery steps.
+**TODO** is this true?? do we need a trouble shooting section??
 
-## <a id='install-scst-sign'></a> Install
+## <a id='install-scst-policy'></a> Install
 
->**Note:** v1alpha1 api version of the ClusterImagePolicy is no longer supported as the group name has been renamed from
-`signing.run.tanzu.vmware.com` to `signing.apps.tanzu.vmware.com`.
-
-To install Supply Chain Security Tools - Sign:
+To install Supply Chain Security Tools - Policy:
 
 1. List version information for the package by running:
 
     ```console
-    tanzu package available list image-policy-webhook.signing.apps.tanzu.vmware.com --namespace tap-install
+    tanzu package available list policy.apps.tanzu.vmware.com --namespace tap-install
     ```
 
     For example:
 
     ```console
-    $ tanzu package available list image-policy-webhook.signing.apps.tanzu.vmware.com --namespace tap-install
-    - Retrieving package versions for image-policy-webhook.signing.apps.tanzu.vmware.com...
+    $ tanzu package available list policy.apps.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for policy.apps.tanzu.vmware.com...
       NAME                                                VERSION        RELEASED-AT
-      image-policy-webhook.signing.apps.tanzu.vmware.com  1.1.1          2022-03-30 18:00:00 -0500 EST
+      policy.apps.tanzu.vmware.com                        1.0.0          2022-06-03 18:00:00 -0500 EST
     ```
 
 1. (Optional) Make changes to the default installation settings by running:
 
     ```console
-    tanzu package available get image-policy-webhook.signing.apps.tanzu.vmware.com/VERSION --values-schema --namespace tap-install
+    tanzu package available get policy.apps.tanzu.vmware.com/VERSION --values-schema --namespace tap-install
     ```
 
-    Where `VERSION` is the version number you discovered. For example, `1.1.1`.
+    Where `VERSION` is the version number you discovered. For example, `1.0.0`.
 
     For example:
 
     ```console
-    $ tanzu package available get image-policy-webhook.signing.apps.tanzu.vmware.com/1.1.1 --values-schema --namespace tap-install
-    | Retrieving package details for image-policy-webhook.signing.apps.tanzu.vmware.com/1.1.1...
+    $ tanzu package available get policy.apps.tanzu.vmware.com/1.0.0 --values-schema --namespace tap-install
+    | Retrieving package details for policy.apps.tanzu.vmware.com/1.0.0...
       KEY                     DEFAULT              TYPE     DESCRIPTION
-      allow_unmatched_images  false                boolean  Feature flag for enabling admission of images that do not match any patterns in the image policy configuration.
-                                                            Set to true to allow images that do not match any patterns into the cluster with a warning.
-
       custom_ca_secrets       <nil>                array    List of custom CA secrets that should be included in the application container for registry communication.
                                                             An array of secret references each containing a secret_name field with the secret name to be referenced
                                                             and a namespace field with the name of the namespace where the referred secret resides.
@@ -92,32 +81,7 @@ To install Supply Chain Security Tools - Sign:
                                                             https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory
     ```
 
-1. Create a file named `scst-sign-values.yaml` and add the settings you want to customize:
-
-    - `allow_unmatched_images`:
-
-        * **For non-production environments**: To warn the user when images
-          do not match any pattern in the policy, but still allow them into
-          the cluster, set `allow_unmatched_images` to `true`.
-
-            ```yaml
-            ---
-            allow_unmatched_images: true
-            ```
-
-        * **For production environments**: To deny images that match no patterns in the policy set `allow_unmatched_images` to `false`.
-
-            ```yaml
-            ---
-            allow_unmatched_images: false
-            ```
-
-            >**Note**: For a quicker installation process VMware recommends that
-            >you set `allow_unmatched_images` to `true` initially.
-            >This setting means that the webhook allows unsigned images to
-            >run if the image does not match any pattern in the policy.
-            >To promote to a production environment VMware recommends that you
-            >re-install the webhook with `allow_unmatched_images` set to `false`.
+1. Create a file named `scst-policy-values.yaml` and add the settings you want to customize:
 
     - `custom_ca_secrets`:
       This setting controls which secrets to be added to the application
@@ -211,27 +175,27 @@ To install Supply Chain Security Tools - Sign:
 1. Install the package:
 
     ```console
-    tanzu package install image-policy-webhook \
-      --package-name image-policy-webhook.signing.apps.tanzu.vmware.com \
+    tanzu package install policy-controller \
+      --package-name policy.apps.tanzu.vmware.com \
       --version VERSION \
       --namespace tap-install \
-      --values-file scst-sign-values.yaml
+      --values-file scst-policy-values.yaml
     ```
 
-    Where `VERSION` is the version number you discovered earlier. For example, `1.1.1`.
+    Where `VERSION` is the version number you discovered earlier. For example, `1.0.0`.
 
     For example:
 
     ```console
-    $ tanzu package install image-policy-webhook \
-        --package-name image-policy-webhook.signing.apps.tanzu.vmware.com \
-        --version 1.1.1 \
+    $ tanzu package install policy-controller \
+        --package-name policy.apps.tanzu.vmware.com \
+        --version 1.0.0 \
         --namespace tap-install \
-        --values-file scst-sign-values.yaml
+        --values-file scst-policy-values.yaml
 
-    | Installing package 'image-policy-webhook.signing.apps.tanzu.vmware.com'
+    | Installing package 'policy.apps.tanzu.vmware.com'
     | Getting namespace 'default'
-    | Getting package metadata for 'image-policy-webhook.signing.apps.tanzu.vmware.com'
+    | Getting package metadata for 'policy.apps.tanzu.vmware.com'
     | Creating service account 'image-policy-webhook-default-sa'
     | Creating cluster admin role 'image-policy-webhook-default-cluster-role'
     | Creating cluster role binding 'image-policy-webhook-default-cluster-rolebinding'
@@ -241,22 +205,19 @@ To install Supply Chain Security Tools - Sign:
 
     Added installed package 'image-policy-webhook' in namespace 'tap-install'
     ```
+**TODO** update console output for above^^
 
-   After you run the commands above your signing package will be running.
+   After you run the commands above the policy controller will be running.
 
    >**Note:** This component requires extra configuration steps to work properly. See
-   >[Configuring Supply Chain Security Tools - Sign](configuring.md)
+   >[Configuring Supply Chain Security Tools - Policy](configuring.md)
    >for instructions on how to apply the required configuration.
 
 
 ## <a id="configure"></a> Configure
 
-The WebHook deployed by Supply Chain Security Tools - Sign requires extra input
+The WebHook deployed by Supply Chain Security Tools - Policy requires extra input
 from the operator before it starts enforcing policies.
 
 To configure your installed component properly, see
-[Configuring Supply Chains Security Tools - Sign](configuring.md).
-
-## <a id="known-issues"></a> Known issues
-
-See [Supply Chain Security Tools - Sign Known Issues](../release-notes.md).
+[Configuring Supply Chains Security Tools - Policy](configuring.md).
