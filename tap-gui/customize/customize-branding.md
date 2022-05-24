@@ -20,7 +20,6 @@ To customize the branding in your portal:
 If you installed Tanzu Application Platform GUI as part of a Tanzu Application Platform profile,
 the file is `tap-values-file.yaml`.
 If you installed Tanzu Application Platform GUI separately, the file is `tap-gui-values.yaml`.
-
 Here is an example configuration snippet for `tap-values.yaml`:
 
     ```yaml
@@ -42,7 +41,7 @@ Here is an example configuration snippet for `tap-values.yaml`:
 After the updated values configuration file is applied in Tanzu Application Platform GUI,
 you see the customized version of your portal.
 
-![Screenshot displaying the custom branding within the Tanzu Application Platform GUI portal](../images/customized-branding.png)
+If there is an error in `BASE-64-IMAGE` or `PORTAL-NAME`, Tanzu Application Platform GUI reverts to
+the original branding template.
 
-If there is an error in `BASE-64-IMAGE` or `PORTAL-NAME`, Tanzu Application Platform GUI
-reverts to the original branding template.
+![Screenshot displaying the custom branding within the Tanzu Application Platform GUI portal](../images/customized-branding.png)
