@@ -130,9 +130,9 @@ To install Supply Chain Security Tools - Sign:
       ```yaml
       custom_ca_secrets:
       - secret_name: first-ca
-        namespace: ca-namespace
+          namespace: ca-namespace
       - secret_name: second-ca
-        namespace: ca-namespace
+          namespace: ca-namespace
       ```
 
       >**Note:** This setting is allowed even if `custom_cas` was informed.
@@ -153,13 +153,13 @@ To install Supply Chain Security Tools - Sign:
       ```yaml
       custom_cas:
       - ca_content: |
-          ----- BEGIN CERTIFICATE -----
-          first certificate content here...
-          ----- END CERTIFICATE -----
+            ----- BEGIN CERTIFICATE -----
+            first certificate content here...
+            ----- END CERTIFICATE -----
       - ca_content: |
-          ----- BEGIN CERTIFICATE -----
-          second certificate content here...
-          ----- END CERTIFICATE -----
+            ----- BEGIN CERTIFICATE -----
+            second certificate content here...
+            ----- END CERTIFICATE -----
       ```
 
       >**Note:** This setting is allowed even if `custom_ca_secrets` was informed.

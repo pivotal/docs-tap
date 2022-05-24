@@ -1,4 +1,6 @@
-# Functions (Beta Feature)
+# Functions (Beta)
+
+This topic describes how to create and deploy an HTTP function from an application accelerator starter template.
 
 ## <a id="overview"></a>Overview
 
@@ -6,26 +8,31 @@ The function experience on Tanzu Application Platform enables developers to depl
 
 Functions provide a quick way to get started writing an application. Compared with a traditional application:
 
-* Functions have a single entry-point and perform a single task. This means that functions can be easier to understand and monitor
-* The initial webserver and application boilerplate are managed by the function supplychain, and can be updated without needing to update each function application
-* A traditional webserver application may be a better fit if you want to implement an entire website or API in a single container 
+* Functions have a single entry-point and perform a single task. This means that functions can be easier to understand and monitor.
 
-This document describes how to create and deploy an HTTP function from an application accelerator starter template.
+* The initial webserver and application boilerplate are managed by the function supplychain.
+This means that you can update the webserver and application boilerplate without needing to update each function application.
 
-> **Important:** The functionality of beta features has been tested, but performance has not.
-> Features enter the beta stage for customers to gain early access to them and give feedback on their
-> design and behavior.
-> Beta features might undergo changes based on that feedback before leaving beta.
+* A traditional webserver application might be a better fit if you want to implement an entire website or API in a single container
+
+> **Important:** Beta features have been tested for functionality, but not performance.
+> Features enter the beta stage so that customers can gain early access, and give
+> feedback on the design and behavior.
+> Beta features might undergo changes based on this feedback before the end of the beta stage.
 > VMware discourages running beta features in production.
-> VMware doesn't guarantee that any beta feature can be upgraded in the future.
+> VMware cannot guarantee that you can upgrade any beta feature in the future.
 
-## <a id="prereqs"></a>Prerequisites
+## <a id="prereqs"></a> Prerequisites
 
 Before using functions workloads on Tanzu Application Platform, complete the following prerequisites:
 
-- Complete all steps described in [Installing Tanzu Application Platform](../install-intro.md).
-- Download and install the kp CLI for your operating system from the [Tanzu Build Service](https://network.tanzu.vmware.com/products/build-service/) page on Tanzu Network. For more information, see the [kp CLI help text](https://github.com/vmware-tanzu/kpack-cli/blob/v0.4.0/docs/kp.md) on GitHub.
-- [Set up developer namespaces to use installed packages](../install-components.html#setup).
+* Follow all instructions in [Installing Tanzu Application Platform](../install-intro.md).
+
+* Download and install the kp CLI for your operating system from the
+[Tanzu Build Service](https://network.tanzu.vmware.com/products/build-service/) page on Tanzu Network.
+For more information, see the [kp CLI help text](https://github.com/vmware-tanzu/kpack-cli/blob/v0.4.0/docs/kp.md) on GitHub.
+
+* Follow all instructions in [Set up developer namespaces to use installed packages](../install-components.html#setup).
 
 ## <a id="add-buildpacks"></a>Adding function buildpacks
 
@@ -45,13 +52,13 @@ To use the function `buildpacks`, you must upload their buildpackages to Build S
     kp clusterbuilder save function --store default -o - <<EOF
     ---
     - group:
-      - id: tanzu-buildpacks/python-lite
+      - id: tanzu-buildpacks/python
       - id: kn-fn/python-function
     - group:
-      - id: tanzu-buildpacks/java-native-image-lite
+      - id: tanzu-buildpacks/java-native-image
       - id: kn-fn/java-function
     - group:
-      - id: tanzu-buildpacks/java-lite
+      - id: tanzu-buildpacks/java
       - id: kn-fn/java-function
 
     EOF
@@ -66,15 +73,15 @@ To use the function `buildpacks`, you must upload their buildpackages to Build S
     kp clusterbuilder save function --store default -o - <<EOF
     ---
     - group:
-      - id: tanzu-buildpacks/python-lite
+      - id: tanzu-buildpacks/python
       - id: kn-fn/python-function
         optional: true
     - group:
-      - id: tanzu-buildpacks/java-native-image-lite
+      - id: tanzu-buildpacks/java-native-image
       - id: kn-fn/java-function
         optional: true
     - group:
-      - id: tanzu-buildpacks/java-lite
+      - id: tanzu-buildpacks/java
       - id: kn-fn/java-function
         optional: true
 

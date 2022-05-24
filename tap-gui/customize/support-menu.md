@@ -1,4 +1,4 @@
-# Support menu customization
+# Customizing the Support menu
 
 This topic describes how to customize the support menu.
 
@@ -10,7 +10,7 @@ pop-out menu.
 This menu contains a one-line description of the page the user is looking at, and a list of support
 item groupings. For example, the default menu on the Catalog page looks similar to the following image:
 
-![Support menu](images/support-menu.png)
+![Support menu](../images/support-menu.png)
 
 As standard, there are two support item groupings:
 
@@ -63,7 +63,7 @@ The `url` field under the `support` section, for example,
 provides the address of the **contact support** link that appears on error
 pages such as this one:
 
-![Error Page](./images/error-page.png)
+![Error Page](../images/error-page.png)
 
 
 ### <a id="items"></a> Items

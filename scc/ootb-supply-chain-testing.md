@@ -87,7 +87,8 @@ the namespace has the following objects in it (including the ones marked with
 
 - **Tekton pipeline** (_new_): A pipeline runs whenever the supply chain
   hits the stage of testing the source code.
-
+  
+  >**Note:** You can only have one Tekton pipeline per namespace. 
 
 Below you will find details about the new objects compared to Out of the Box
 Supply Chain Basic.
