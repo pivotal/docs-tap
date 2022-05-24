@@ -125,7 +125,7 @@ Authorization error logs might include the following errors:
 - Permission Denied:
 
     The current user does not have permissions to create or edit rolebinding objects.
-    Use an admin account when using the rbac cli.
+    Use an admin account when using the RBAC CLI.
 
     ```console
     Error: rolebindings.rbac.authorization.k8s.io "app-operator" is forbidden: User "<subject>" cannot get resource "rolebindings" in API group "rbac.authorization.k8s.io" in the namespace "namespace"
@@ -188,8 +188,8 @@ Authorization error logs might include the following errors:
 
 - Object Has Been Modified Error:
 
-    This error is a race condition caused by running multiple rbac cli actions at the same time.
-    Rerunning the rbac cli might fix the issue.
+    This error is a race condition caused by running multiple RBAC CLI actions at the same time.
+    Rerunning the RBAC CLI might fix the issue.
 
     ```console
     Removed User 'test-user' from RoleBinding 'app-operator'
