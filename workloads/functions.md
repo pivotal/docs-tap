@@ -52,13 +52,13 @@ To use the function `buildpacks`, you must upload their buildpackages to Build S
     kp clusterbuilder save function --store default -o - <<EOF
     ---
     - group:
-      - id: tanzu-buildpacks/python-lite
+      - id: tanzu-buildpacks/python
       - id: kn-fn/python-function
     - group:
-      - id: tanzu-buildpacks/java-native-image-lite
+      - id: tanzu-buildpacks/java-native-image
       - id: kn-fn/java-function
     - group:
-      - id: tanzu-buildpacks/java-lite
+      - id: tanzu-buildpacks/java
       - id: kn-fn/java-function
 
     EOF
@@ -73,15 +73,15 @@ To use the function `buildpacks`, you must upload their buildpackages to Build S
     kp clusterbuilder save function --store default -o - <<EOF
     ---
     - group:
-      - id: tanzu-buildpacks/python-lite
+      - id: tanzu-buildpacks/python
       - id: kn-fn/python-function
         optional: true
     - group:
-      - id: tanzu-buildpacks/java-native-image-lite
+      - id: tanzu-buildpacks/java-native-image
       - id: kn-fn/java-function
         optional: true
     - group:
-      - id: tanzu-buildpacks/java-lite
+      - id: tanzu-buildpacks/java
       - id: kn-fn/java-function
         optional: true
 
