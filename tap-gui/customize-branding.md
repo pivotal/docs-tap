@@ -1,0 +1,50 @@
+# Customizing branding
+
+This topic describes how to customize the branding within the Tanzu Application Platform GUI portal.
+
+
+## <a id="overview"></a> Overview
+
+You can customize the logo and the name displayed in the top banner in the
+Tanzu Application Platform GUI portal.  
+By default, the portal displays the VMware Tanzu logo and **Tanzu Application Platform** as the name.
+
+![Screenshot displaying the default VMware Tanzu branding within the Tanzu Application Platform GUI portal](images/standard-branding.png)
+
+
+## <a id="customizing"></a> Customize Branding
+
+To customize the branding in your portal:
+
+1. Provide additional configuration parameters in your configuration values file.
+If you installed Tanzu Application Platform GUI as part of a Tanzu Application Platform profile,
+the file is `tap-values-file.yaml`.
+If you installed Tanzu Application Platform GUI separately, the file is `tap-gui-values.yaml`.
+
+Here is an example configuration snippet for `tap-values.yaml`:
+<!-- tap-gui-values example needed as well? -->
+
+```yaml
+tap_gui:
+  app_config:
+    customize:
+      custom_logo: 'BASE-64-IMAGE'
+      custom_name: 'YOUR-PORTAL-NAME'
+```
+
+Where:
+
+- `BASE-64-IMAGE` is the image encoded in base64. VMware recommends a 72-pixel by 72-pixel PNG image with a transparent background.
+- `YOUR-PORTAL-NAME` is the name of your portal.
+<!-- Example, please -->
+
+1. Reinstall your Tanzu Application Platform GUI package by following steps in
+[Upgrading Tanzu Application Platform](../upgrading.html).
+
+After the updated values configuration file is applied in Tanzu Application Platform GUI,
+you see the customized version of your portal.
+
+![Screenshot displaying the custom branding within the Tanzu Application Platform GUI portal](images/customized-branding.png)
+
+If there is an error in `BASE-64-IMAGE` or `YOUR-PORTAL-NAME`, Tanzu Application Platform GUI
+reverts to the original branding template.
