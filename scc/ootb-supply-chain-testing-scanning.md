@@ -84,8 +84,6 @@ the namespace has the objects that you configured in the other supply chain setu
 
 - **Tekton pipeline**: A pipeline runs whenever the supply chain hits the stage
   of testing the source code.
-  
-  >**Note:** You can only have one Tekton pipeline per namespace. 
 
   For more information, see [Out of the Box Supply Chain Testing](ootb-supply-chain-testing.md).
 
