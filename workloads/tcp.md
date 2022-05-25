@@ -321,10 +321,10 @@ To add the additional role to the cluster:
 
 ### <a id="supplychain"></a> Define the ClusterSupplyChain
 
-When defining the ClusterSupplyChain, you must substitute in various values
-from your `tap-values` file, particularly the `registry` values (marked as `REGISTRY-SERVER` and `REGISTRY-REPO`): <!-- are these the only values you need to replace here? -->
+To define the ClusterSupplyChain:
 
-1. Create a file using the following YAML:
+1. Create a file using the following YAML and substitute in your `registry` values
+from your `tap-values.yaml` file:
 
     ```yaml
     apiVersion: carto.run/v1alpha1
@@ -427,8 +427,8 @@ from your `tap-values` file, particularly the `registry` values (marked as `REGI
 
     Where:
 
-    - `REGISTRY-SERVER` is the server
-    - `REGISTRY-REPO` is the repository
+    - `REGISTRY-SERVER` is the registry server from your `tap-values.yaml` file.
+    - `REGISTRY-REPO` is the registry repository from your `tap-values.yaml` file.
 
 1. Apply the YAML file by running the command:
 
@@ -449,9 +449,8 @@ If you have followed the Services Toolkit example, you can update the `spring-se
 to use the `tcp` supply chain by changing the workload type by running:
 
 ```console
-tanzu apps workload update spring-sensors-consumer-web --type tcp
+tanzu apps workload update spring-sensors-consumer-web --type=tcp
 ```
-<!-- should this be `--type=tcp` or should the introduction (L28) be changed to `--type tcp`? -->
 
 This shows the change in the workload label, and prompts you to accept the change. After the workload completes the new deployment, you'll notice a few differences:
 
