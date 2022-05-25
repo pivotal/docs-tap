@@ -1,6 +1,6 @@
 # Create your application accelerator
 
-In this guide, you are going to create an application accelerator by using Tanzu Application Platform GUI and CLI.
+In this guide, you are going to create an application accelerator by using Tanzu Application Platform GUI and CLI. For more information on application accelerators, see [About application accelerators](develop-first-app#about-app-accs).
 
 ## <a id="create-an-app-acc"></a>Create an application accelerator
 
