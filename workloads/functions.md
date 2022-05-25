@@ -150,6 +150,54 @@ The accelerator ZIP file contains a file called k8s-resource.yaml. This file con
 
 1. After downloading the ZIP file, expand it in a workspace directory and follow your preferred procedure for uploading the generated project files to a Git repository for your new project.
 
+## <a id="create-functions-proj"></a>Create a function project from Tanzu CLI
+
+From the CLI you can generate a functions project from an accelerator template and download project artifacts as a ZIP file.
+
+1. Validate you have added the function accelerator template to the application accelerator server :
+
+     ```console
+    tanzu accelerator list
+    ```
+    
+2. Get the server-url for the Application Accelerator server.The URL depends on the configuration settings for Application Accelerator:
+
+    - For installations configured with a shared ingress, use https://accelerator."domain" where "domain" is provided in the values file for the accelerator configuration.
+    
+    - For installations using a LoadBalancer, look up the External IP address by using:
+    
+     ```console
+    kubectl get -n accelerator-system service/acc-server
+    ```
+    Use http://External-IP as the URL.
+    
+    
+    - For any other configuration, you can use port forwarding by using:
+    
+     ```console
+    kubectl port-forward service/acc-server -n accelerator-system 8877:80
+    ```
+    Use http://localhost:8877 as the URL.
+   
+3. Generate a function project from an accelerator template by running the following command:
+
+    ```console
+    tanzu accelerator generate <ACCELERATOR-NAME> --options '{"projectName": "my-func", "interfaceType": "cloudevents"}' --server-url <YOUR-APPLICATION-ACCELERATOR-URL>
+    ```
+    Where ACCELERATOR-NAME is the name of the function accelerator template you would like to use.
+    
+    Where "projectName" is the name of your function project.
+    
+    Where "interfaceType" is the interface you would like to use for your function: “http” or “cloudevents” (CloudEvents is experimental).
+    
+    Where YOUR-APPLICATION-ACCELERATOR-URL is the URL for the Application Accelerator server.
+    
+    **Example:**
+    ```console
+   tanzu accelerator generate java-function --options '{"projectName": "my-func", "interfaceType": "http"}' --server-url http://localhost:8877ACCELERATOR-URL>
+    ```
+4. After generating the ZIP file, expand it in your directory and follow your preferred procedure for uploading the generated project files to a Git repository for your new project.
+   
 ## <a id="deploy-function"></a>Deploy your function
 
 1. Deploy the Function accelerator by running the `tanzu apps workload` create command:
