@@ -1,0 +1,15 @@
+publication:
+    RootMapFile: toc.md
+    OutputFileName: acc-docs
+    PublicationName: Application Accelerator v1.1
+    ProductName: Application Accelerator for VMware Tanzu
+    ProductVersion: 1.1
+    PublicationVersion: 1.1
+    PublicationVersionComments:
+    Language: en
+    PublicationGuid: acc-docs
+    PublicationKeywords:
+    BatchProcessingInstruction:
+    PDFLink:
+    WordLink:
+    PublicationAuthor: risbergt@vmware.com
