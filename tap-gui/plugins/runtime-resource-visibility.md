@@ -82,8 +82,9 @@ All detail pages provide an overview card with information related to the select
 Most of the information feeds from the `metadata` attribute in each object.
 The following are some attributes that are displayed in the overview card:
 
-- .YAML button
-- URL (URL is available for Knative services and Kubernetes services)
+- View Pod Logs button (for pod detail pages - see [Viewing pod logs](#viewing-pod-logs) for more information)
+- View .YAML button
+- URL (for Knative and Kubernetes service detail pages)
 - Type
 - System
 - Namespace
@@ -138,3 +139,31 @@ To view additional information about your running applications, see the
 [Application Live View](app-live-view.md) section in the Pod Details page.
 
 ![Screenshot of Tanzu Java web app runtime resource detail page](images/runtime-resources-pod-details.png)
+
+## <a id="viewing-pod-logs"></a>Viewing pod logs
+
+To view logs for a pod, click "View Pod Logs" from its details page. By default, you'll be presented with all the logs for the pod since its creation, for all the pod's containers.
+
+>**Note:** The logs displayed are not streamed in real time. To fetch new log messages, click the "Refresh" button in the upper-right corner of the page.
+
+![Screenshot of pod logs page](images/runtime-resources-pod-logs.png)
+
+### <a id="viewing-pod-logs--filtering-by-container"></a>Filtering by container
+To display logs for a specific container only, select the desired container from the "Container" selector. Clearing this selector will cause logs for all containers within the pod to be displayed.
+
+### <a id="viewing-pod-logs--filtering-by-date-and-time"></a>Filtering by date and time
+To display logs since a specific date and time, enter or select the UTC timestamp in the "Since date" selector. If no logs are displayed, try adjusting the timestamp to an earlier time. Clearing this selector will cause all logs since the pod's creation to be displayed.
+
+### <a id="viewing-pod-logs--changing-log-levels"></a>Changing log levels
+If the pod is associated with an application that supports [Application Live View](app-live-view.md), you can change the application's log levels by clicking the "Change Log Levels" button. You'll then be presented with a panel that allows you to select levels for each logger associated with your application.
+
+![Screenshot of log levels panel](images/runtime-resources-pod-log-levels.png)
+
+To change the levels for your application, select the desired level for each logger presented, then dismiss the panel by clicking the "X" button in the upper-right corner of the panel (or hit the `Escape` key on your keyboard).
+
+>**Note:** Because adjusting log levels makes a real-time configuration change to your application, log level adjustments will only be reflected in log messages produced by your application after the change. Click the "Refresh" button in the upper-right corner of the page to fetch new messages after changing log levels.
+> 
+> If, after refreshing, no log messages for the expected levels appear, ensure that:
+> - You adjusted the correct application logger(s)
+> - You are viewing logs for the correct container and time frame
+> - Your application is actively producing logs at the expected levels (for instance, your application may currently be idling or otherwise not executing a code path that invokes the desired logger)
