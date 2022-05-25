@@ -289,7 +289,7 @@ from your `tap-values` file, particularly the `registry` values (marked as `REGI
     apiVersion: carto.run/v1alpha1
     kind: ClusterSupplyChain
     metadata:
-      name: tcp <!-- should this be queue? -->
+      name: tcp
     spec:
       params:
       - default: main
@@ -302,11 +302,6 @@ from your `tap-values` file, particularly the `registry` values (marked as `REGI
         name: gitops_commit_message
       - default: git-ssh
         name: gitops_ssh_secret
-      - default:
-        - containerPort: 8080
-          port: 8080
-          name: http
-        name: ports
       resources:
       - name: source-provider
         params:
@@ -381,7 +376,7 @@ from your `tap-values` file, particularly the `registry` values (marked as `REGI
           kind: ClusterTemplate
           name: config-writer-template
       selector:
-        apps.tanzu.vmware.com/workload-type: tcp <!-- should this be queue? -->
+        apps.tanzu.vmware.com/workload-type: tcp
     ```
 
     Where:
@@ -404,13 +399,12 @@ The `spring-sensors-sensor` workload in the getting started example
 is a good match for the `queue` workload type.
 This is because it runs continuously without a UI to report sensor information to a RabbitMQ topic.
 
-If you have followed the Services Toolkit example, you can update the `spring-sensors-consumer-web`
+If you have followed the Services Toolkit example, you can update the `spring-sensors-sensor`
 to use the `queue` supply chain by changing the workload type by running:
 
 ```console
-tanzu apps workload update spring-sensors-consumer-web --type queue
+tanzu apps workload update spring-sensors-sensor --type=queue
 ```
-<!-- should this be `--type=queue` or should the introduction (L22) be changed to `--type queue`? -->
 
 This shows a diff in the workload label, and prompts you to accept the change.
 After the workload completes the new deployment, you'll notice a few differences:
