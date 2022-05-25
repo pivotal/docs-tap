@@ -93,7 +93,7 @@ This is the table of contents from which the Tanzu Application Platform Document
             - [Install default roles independently](authn-authz/install.md)
     - [Application Accelerator](application-accelerator/about-application-accelerator.md)
         - [Installing and configuring](application-accelerator/installation/install.md)
-        - - [Creating accelerators](application-accelerator/creating-accelerators/index.md)
+        - - [Creating accelerators](application-accelerator/creating-accelerators/creating-accelerators.md)
             - [Creating accelerator.yaml](application-accelerator/creating-accelerators/accelerator-yaml.md)
             - [Introduction to transforms](application-accelerator/creating-accelerators/transform-intro.md)
             - [Transform reference](application-accelerator/creating-accelerators/transforms/creating-accelerators.md)
