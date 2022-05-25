@@ -91,7 +91,7 @@ This is the table of contents from which the Tanzu Application Platform Document
         - [Login using Pinniped](authn-authz/pinniped-login.md)
         - [Additional resources](authn-authz/additional.md)
             - [Install default roles independently](authn-authz/install.md)
-    - [Application Accelerator](application-accelerator/iabout-application-accelerator.md)
+    - [Application Accelerator](application-accelerator/about-application-accelerator.md)
         - [Installing and configuring](application-accelerator/installation/install.md)
         - - [Creating accelerators](application-accelerator/creating-accelerators/index.md)
             - [Creating accelerator.yaml](application-accelerator/creating-accelerators/accelerator-yaml.md)
