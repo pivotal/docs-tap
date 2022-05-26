@@ -2,7 +2,7 @@
 
 This topic contains release notes for Tanzu Application Platform v1.1
 
-[//]: # ( Commented out until the patch release
+[//]: # (The following is commented out until the patch release.)
 ## <a id='1-1-2'></a> v1.1.2
 
 **Release Date**: June 14, 2022
@@ -16,8 +16,8 @@ This release includes the following changes, listed by component and area.
 - Application Live View Connector package now supports values without quotes in sslDisabled boolean flag.
 - Application Live View Convention Service sets `tanzu.app.live.view.application.name` to `carto.r  un/workload-name` if not set in workload yaml.
 - Application Live View now supports environment editing for newer Spring Boot apps.
-)
 
+[//]: # (The preceding text is commented out until the patch release.)
 ## <a id='1-1-1'></a> v1.1.1
 
 **Release Date**: May 10, 2022
