@@ -1,8 +1,8 @@
-# Functions (Beta)
+# Using function workloads (Beta)
 
 This topic describes how to create and deploy an HTTP function from an application accelerator starter template.
 
-## <a id="overview"></a>Overview
+## <a id="overview"></a> Overview
 
 The function experience on Tanzu Application Platform enables developers to deploy functions, use starter templates to bootstrap their function and write only the code that matters to your business. Developers can run a single CLI command to deploy their functions to an auto-scaled cluster.
 
@@ -24,7 +24,7 @@ This means that you can update the webserver and application boilerplate without
 
 ## <a id="prereqs"></a> Prerequisites
 
-Before using functions workloads on Tanzu Application Platform, complete the following prerequisites:
+Before using function workloads on Tanzu Application Platform, complete the following prerequisites:
 
 * Follow all instructions in [Installing Tanzu Application Platform](../install-intro.md).
 
@@ -34,7 +34,7 @@ For more information, see the [kp CLI help text](https://github.com/vmware-tanzu
 
 * Follow all instructions in [Set up developer namespaces to use installed packages](../install-components.html#setup).
 
-## <a id="add-buildpacks"></a>Adding function buildpacks
+## <a id="add-buildpacks"></a> Adding function buildpacks
 
 To use the function `buildpacks`, you must upload their buildpackages to Build Service stores.
 
@@ -64,7 +64,7 @@ To use the function `buildpacks`, you must upload their buildpackages to Build S
     EOF
     ```
 
-    If you still want to use default Java and Python buildpacks for non-functions workloads,
+    If you still want to use default Java and Python buildpacks for non-function workloads,
     add optional `true` flags for cluster builder groups.
     This does not enable the full capability of non-function workloads provided by the default
     ClusterBuilder. See the following example.
@@ -111,7 +111,7 @@ To use the function `buildpacks`, you must upload their buildpackages to Build S
 
     Where `VERSION` is the version of Tanzu Application Platform GUI you have installed. For example, `1.0.2`.
 
-## <a id="add-accelerators"></a>Add accelerators to Tanzu Application Platform GUI
+## <a id="add-accelerators"></a> Add accelerators to Tanzu Application Platform GUI
 
 Application Accelerator is a component of Tanzu Application Platform. An accelerator contains your enterprise-conformant code and configurations that developers can use to create new projects that automatically follow the standards defined in your accelerators.
 
@@ -129,13 +129,13 @@ The accelerator ZIP file contains a file called k8s-resource.yaml. This file con
     kubectl apply -f k8s-resource.yaml --namespace accelerator-system
     ```
 
-1. Refresh Tanzu Application Platform GUI to reveal functions accelerator(s).
+1. Refresh Tanzu Application Platform GUI to reveal function accelerator(s).
 
     ![Screenshot of Application Accelerator showing function accelerators](images/function-accelerators.png)
 
-    It might take time for Tanzu Application Platform GUI to refresh the catalog to see your added functions accelerators.
+    It might take time for Tanzu Application Platform GUI to refresh the catalog to see your added function accelerators.
 
-## <a id="create-functions-proj"></a>Create a functions project from an accelerator
+## <a id="create-function-proj-acc"></a> Create a function project from an accelerator
 
 1. From the Tanzu Application Platform GUI portal, click **Create** on the left navigation bar to see the list of available accelerators.
 
@@ -150,9 +150,70 @@ The accelerator ZIP file contains a file called k8s-resource.yaml. This file con
 
 1. After downloading the ZIP file, expand it in a workspace directory and follow your preferred procedure for uploading the generated project files to a Git repository for your new project.
 
-## <a id="deploy-function"></a>Deploy your function
+## <a id="create-function-proj-cli"></a> Create a function project using the Tanzu CLI
 
-1. Deploy the Function accelerator by running the `tanzu apps workload` create command:
+From the CLI, you can generate a function project using an accelerator template,
+then download the project artifacts as a ZIP file.
+
+1. Validate that you have added the function accelerator template to the application accelerator server by running:
+
+     ```console
+    tanzu accelerator list
+    ```
+
+1. Get the `server-url` for the Application Accelerator server.
+The URL depends on the configuration settings for Application Accelerator:
+
+    - For installations configured with a shared ingress, use `https://accelerator.DOMAIN`
+    where `DOMAIN` is provided in the values file for the accelerator configuration.
+
+    - For installations using a LoadBalancer, look up the External IP address by running:
+
+         ```console
+        kubectl get -n accelerator-system service/acc-server
+        ```
+
+        Use `http://EXTERNAL-IP` as the URL.
+
+
+    - For any other configuration, you can use port forwarding by running:
+
+        ```console
+        kubectl port-forward service/acc-server -n accelerator-system 8877:80
+        ```
+
+        Use `http://localhost:8877` as the URL.
+
+1. Generate a function project from an accelerator template by running:
+
+    ```console
+    tanzu accelerator generate ACCELERATOR-NAME \
+    --options '{"projectName": "FUNCTION-NAME", "interfaceType": "TYPE"}' \
+    --server-url APPLICATION-ACCELERATOR-URL
+    ```
+
+    Where:
+
+    - `ACCELERATOR-NAME` is the name of the function accelerator template you want to use.
+    - `FUNCTION-NAME` is the name of your function project.
+    - `TYPE` is the interface you want to use for your function. Available options are `http` or `cloudevents`. CloudEvents is experimental.
+    - `APPLICATION-ACCELERATOR-URL` is the URL for the Application Accelerator
+    server that you retrieved in the previous step.
+
+    For example:
+
+    ```console
+    tanzu accelerator generate java-function \
+    --options '{"projectName": "my-func", "interfaceType": "http"}' \
+    --server-url http://localhost:8877
+    ```
+
+1. After generating the ZIP file, expand it in your directory and follow your
+preferred procedure for uploading the generated project files to a Git repository for your new project.
+
+## <a id="deploy-function"></a> Deploy your function
+
+1. Deploy the function accelerator by running the `tanzu apps workload` create command:
 
     ```console
     tanzu apps workload create functions-accelerator-python \

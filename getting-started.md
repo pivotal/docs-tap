@@ -1,7 +1,5 @@
 # Getting started with the Tanzu Application Platform
 
-## <a id="purpose"></a>Purpose
-
 Welcome to the Tanzu Application Platform. The guides in this section offer hands-on instruction to get you started on Tanzu Application Platform. Specifically, you are going to learn how to:
 
 - Develop and promote an application
@@ -9,7 +7,7 @@ Welcome to the Tanzu Application Platform. The guides in this section offer hand
 - Add testing and security scanning to an application
 - Administer, set up, and manage supply chains
 
-Before you start, be sure to complete all of the prerequisites in the next section.
+Before you start, be sure to complete all of the prerequisites in the following section.
 
 ## <a id="get-started-prereqs"></a>Getting started prerequisites
 

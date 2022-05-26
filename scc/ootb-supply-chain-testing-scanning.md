@@ -84,8 +84,6 @@ the namespace has the objects that you configured in the other supply chain setu
 
 - **Tekton pipeline**: A pipeline runs whenever the supply chain hits the stage
   of testing the source code.
-  
-  >**Note:** You can only have one Tekton pipeline per namespace. 
 
   For more information, see [Out of the Box Supply Chain Testing](ootb-supply-chain-testing.md).
 
@@ -204,6 +202,78 @@ to the properties you want to change. For example:
 >installation as in the earlier example. For more information, see
 >[About Source and Image Scans](../scst-scan/explanation.md#about-src-and-image-scans).
 
+#### <a id="multiple-pl"></a> Allow multiple Tekton pipelines in a namespace
+
+You can configure your developer namespace to include more than one pipeline using either of the following methods:
+
+  - Use a single pipeline running on a container image that includes testing tools and runs a common script to execute tests. This allows you to accommodate multiple workloads based in different languages in the same namespace that use a common make test script, as shown in the following example:
+
+    ```
+    apiVersion: tekton.dev/v1beta1
+    kind: Pipeline
+    metadata:
+      name: developer-defined-tekton-pipeline
+      labels:
+        apps.tanzu.vmware.com/pipeline: test
+    spec:
+      #...
+            steps:
+              - name: test
+                image: <image_that_has_JDK_and_Go>
+                script: |-
+                  cd `mktemp -d`
+                  wget -qO- $(params.source-url) | tar xvz -m
+                  make test
+    ```
+
+  - Update the template to include labels that differentiate the pipelines. The configure the labels to differentiate between pipelines, as shown in the following example:
+
+    ```
+      selector:
+         resource:
+           apiVersion: tekton.dev/v1beta1
+           kind: Pipeline
+         matchingLabels:
+           apps.tanzu.vmware.com/pipeline: test
+    +         apps.tanzu.vmware.com/language: #@ data.values.workload.metadata.labels["apps.tanzu.vmware.com/language"]
+
+    ```
+    
+    The following example shows one namespace per-language pipeline:
+
+    ```
+    apiVersion: tekton.dev/v1beta1
+    kind: Pipeline
+    metadata:
+      name: java-tests
+      labels:
+        apps.tanzu.vmware.com/pipeline: test
+        apps.tanzu.vmware.com/language: java
+    spec:
+      #...
+            steps:
+              - name: test
+                image: gradle
+                script: |-
+                  # ...
+                  ./mvnw test
+    ---
+    apiVersion: tekton.dev/v1beta1
+    kind: Pipeline
+    metadata:
+      name: go-tests
+      labels:
+        apps.tanzu.vmware.com/pipeline: test
+        apps.tanzu.vmware.com/language: go
+    spec:
+      #...
+            steps:
+              - name: test
+                image: golang
+                script: |-
+                  # ...
+                  go test -v ./...
+    ```
 
 ## <a id="developer-workload"></a> Developer workload
 
