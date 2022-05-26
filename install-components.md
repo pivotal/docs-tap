@@ -31,7 +31,7 @@ For more information, see [Prerequisites](prerequisites.md).
 - [Install Spring Boot Conventions](spring-boot-conventions/install-spring-boot-conventions.md)
 - [Install Supply Chain Choreographer](scc/install-scc.md)
 - [Install Supply Chain Security Tools - Store](scst-store/install-scst-store.md)
-- [Install Supply Chain Security Tools - Sign](scst-sign/install-scst-sign.md)
+- [Install Supply Chain Security Tools - Policy Controller](scst-policy/install-scst-policy.md)
 - [Install Supply Chain Security Tools - Scan](scst-scan/install-scst-scan.md)
 - [Install Tanzu Application Platform GUI](tap-gui/install-tap-gui.md)
 - [Install Tanzu Build Service](tanzu-build-service/install-tbs.md)

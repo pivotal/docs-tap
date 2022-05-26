@@ -30,7 +30,9 @@ into this Tanzu Application Platform documentation site.
 
 - [Supply Chain Security Tools - Scan](scst-scan/overview.md)
 
-- [Supply Chain Security Tools - Sign](scst-sign/overview.md)
+- [Supply Chain Security Tools - Sign (Now deprecated)](scst-sign/overview.md)
+
+- [Supply Chain Security Tools - Policy Controller](scst-policy/overview.md)
 
 - [Supply Chain Security Tools - Store](scst-store/overview.md)
 
