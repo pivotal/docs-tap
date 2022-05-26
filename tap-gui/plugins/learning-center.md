@@ -1,72 +1,68 @@
 # Learning Center in Tanzu Application Platform GUI
 
-This topic describes Learning Center in Tanzu Application Platform GUI.
-
-## <a id="Introduction"></a> Introduction
-
-The Learning Center plug-in part of Tanzu Application Platform GUI provides a platform for viewing and accessing both your own workshops and your organizations workshops. See [Learning Center](../../learning-center/about.md) to find out more.
+The Learning Center plug-in in Tanzu Application Platform GUI allows you to view and access your workshops and your organization's workshops.
+For more information about Learning Center, see [Learning Center for Tanzu Application Platform](../../learning-center/about.md).
 
 ## <a id="prerequisite"></a> Prerequisite
 
-In order to access the Learning Center plug-in, you must first have successfully
-[installed Tanzu Application Platform](../../install-intro.md), which includes
-Tanzu Application Platform GUI and Learning Center for Tanzu Application Platform. This plugin currently assumes both Tap-gui and Learning Center have been deployed on the same kubernetes cluster.
+In order to access the Learning Center plug-in, you must first successfully install Tanzu Application Platform. For more information, see [Installing Tanzu Application Platform](../../install-intro.md). Tanzu Application Platform includes
+Tanzu Application Platform GUI and Learning Center. This plug-in assumes that both are deployed on the same Kubernetes cluster.
 
-## <a id="enable-disable-plugin"></a> Enable/Disable Learning Center Plugin on Tanzu Application Platform GUI
+## <a id="enable-disable-plugin"></a> Enable/Disable the Learning Center plug-in
 
-The Learning Center Plugin can be both enabled and disabled via Tap-GUI configuration in the app-config.yaml:
+The Learning Center plug-in can be enabled or disabled in the Tanzu Application Platform GUI configuration, in the app-config.yaml file.
 
-1. Enable the Learning Center plug-in by setting the following in your app-config.yaml:
+### <a id="enable-plugin"></a> Enable the Learning Center plug-in
 
-   ```
+Enable the Learning Center plug-in by setting the following in your app-config.yaml:
+
+   ```yaml
     learningCenter:
         enablePlugin: true
    ```
 
-Note\* If you set the enable plugin in your app-config ensure you yarn install to install appropriate dependencies. Some Plugins are installed by default so be sure to check the app-config.yaml file to see which plugins are enabled via configuration.
+If you enable the plug-in in your app-config.yaml file, be sure to yarn install to install appropriate dependencies. Some plug-ins are installed by default, so check the app-config.yaml file to see which plug-ins are enabled by the configuration.
 
-2. Disable the Learning Center plug-in by removing the learningCenter.enablePlugin configuration from the app-config.yaml file.
+### <a id="disable-plugin"></a> Disable the Learning Center plug-in
 
-## <a id="Visualize-app"></a> Visualize Learning Center's icon on Tanzu Application Platform GUI sidebar
+Disable the Learning Center plug-in by removing the learningCenter.enablePlugin configuration from the app-config.yaml file.
 
-In order to view your Learning Center workshops on Tanzu Application Platform GUI, use the following steps:
+## <a id="view-app"></a> View your Learning Center workshops
 
-1. Ensure you have a running instance of the [LearningCenter Operator](../../learning-center/getting-started/learning-center-operator.md), [Workshops](../../learning-center/getting-started/workshops.md), and [LearningCenter Training Portal](../../learning-center/getting-started/training-portal.md). These instances are required for you to see content on the plugins main page.
+To be able to view your Learning Center workshops in Tanzu Application Platform GUI:
 
-2. Ensure that the Learning Center Plugin is enabled via configuration in the Tap_GUI app-config.yaml file.
+1. Ensure you have a running instance of the following:
 
-## <a id="lc-plugin-screen"></a> Navigate to the **Learning Center Plugin** screen
+    - [Learning Center Operator](../../learning-center/getting-started/learning-center-operator.md)
+    - [Workshops](../../learning-center/getting-started/workshops.md)
+    - [Learning Center TrainingPortal](../../learning-center/getting-started/training-portal.md). 
+  
+    These are required to see content on the plug-in's main page.
 
-You can view the list of running workshops along with documentation links and additional resources on the screen.
+2. Ensure that the Learning Center plug-in is enabled by the configuration in the Tanzu Application Platform GUI app-config.yaml file.
 
-To view the list of your running workshops:
+3. Navigate to the Learning Center plug-in screen and select the Learning Center plug-in from the sidebar. You can view the list of running workshops along with documentation links and additional resources on the screen.
 
-- Select the Learning Center Plugin from the sidebar.
+![Screenshot of selecting Learning Center plug-in on Tanzu Application Platform GUI sidebar](images/learning-center-sidebar.png)
 
-![Screenshot of selecting Learning Center Plugin on TAP GUI sidebar](images/learning-center-sidebar.png)
+## <a id="lc-get-started-section"></a> Get started building a workshop section
 
-## <a id="lc-getting-started-section"></a> Getting Started with building a workshop section
+To open a guided tour workshop in a separate tab:
 
-To open a guided tour workshop in a seperate tab:
-
-- Select the Workshop Building Tutorial card.
+- Select the **Workshop Building Tutorial** card.
 
 ![Screenshot of selecting Learning Center's Workshop Building Tutorial card](images/learning-center-workshop-building.png)
 
 To view documentation on how to build a workshop:
 
-- Select the Workshop building Docs card.
-
-![Screenshot of selecting Learning Center's Workshop building Docs card](images/learning-center-workshop-docs.png)
+- Select the **Workshop building Docs** card.
 
 To view documentation on the Learning Center:
 
-- Select the Learning Center documentation card.
-
-  ![Screenshot of selecting Learning Center Documentation card](images/learning-center-documentation.png)
+- Select the **Learning Center Documentation** card.
 
 ## <a id="lc-organization-content-section"></a> Your Organization's Content section
 
-In this section we list all deployed workshops from a specific [trainingportal](../../learning-center/getting-started/training-portal.md).
+Here you can view all deployed workshops from a specific [trainingportal](../../learning-center/getting-started/training-portal.md).
 
 ![Screenshot of Learning Center Organization Content Section](images/learning-center-organization-content.png)
