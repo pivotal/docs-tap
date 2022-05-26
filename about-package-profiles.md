@@ -102,6 +102,7 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   This is an established industry best practice for reducing security risk and ensuring more
   efficient remediation.
 
+**TODO** change this to be policy controller
 - **[Supply Chain Security Tools - Sign](scst-sign/overview.md)**
 
   Supply Chain Security Tools - Sign provides an admission controller that allows a cluster operator
@@ -354,20 +355,6 @@ The following table lists the packages contained in each profile:
    </td>
   </tr>
   <tr>
-   <td>Image Policy Webhook
-  </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-  </tr>
-  <tr>
    <td>Learning Center
   </td>
    <td>&check;
@@ -515,6 +502,20 @@ The following table lists the packages contained in each profile:
    <td>&check;
    </td>
    <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Supply Chain Security Tools - Policy Controller
+  </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
    </td>
    <td>&check;
    </td>

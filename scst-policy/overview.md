@@ -1,6 +1,6 @@
 # Supply Chain Security Tools for VMware Tanzu - Policy Controller
 
-Supply Chain Security Tools - Policy Controller provides an admission WebHook that:
+Supply Chain Security Tools - Policy Controller provides an admission Webhook that:
 
 - Verifies signatures on container images used by Kubernetes resources.
 - Enforces policy by allowing or denying container images from running based
@@ -29,19 +29,23 @@ for signature verification and is compatible only with cosign signatures. When c
 an image, it generates a signature in an OCI-compliant format and pushes it to the 
 same registry where the image is stored. The signature is identified by a tag in 
 the format `sha256-<image-digest>.sig`, where `<image-digest>` is the digest of 
-the image that this signature belongs to. The WebHook needs credentials to access 
+the image that this signature belongs to. The Webhook needs credentials to access 
 this artifact when hosted in a registry protected by authentication.
 
 **TODO** is the below true??
 By default, once installed, this component does not include any policy resources
 and does not enforce any policy.
 The operator must create a `ClusterImagePolicy` resource in the cluster before
-the WebHook can perform any verifications. This `ClusterImagePolicy`
+the Webhook can perform any verifications. This `ClusterImagePolicy`
 resource contains all image patterns the operator wants to verify, and their
 corresponding cosign public keys.
 
-Typically, the WebHook gets credentials from running resources and their service
+Typically, the Webhook gets credentials from running resources and their service
 accounts to authenticate against private registries at admission time.
-There are other mechanisms that the WebHook uses for finding credentials.
+There are other mechanisms that the Webhook uses for finding credentials.
 For more information about providing credentials, see
-[Providing Credentials for the WebHook](configuring.md#provide-creds-for-package).
+[Providing Credentials for the Webhook](configuring.md#provide-creds-for-package).
+
+
+
+**change webhook to admission controller
