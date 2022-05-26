@@ -182,12 +182,14 @@ The URL depends on the configuration settings for Application Accelerator:
         kubectl port-forward service/acc-server -n accelerator-system 8877:80
         ```
 
-        Use http://localhost:8877 as the URL.
+        Use `http://localhost:8877` as the URL.
 
 1. Generate a function project from an accelerator template by running:
 
     ```console
-    tanzu accelerator generate ACCELERATOR-NAME --options '{"projectName": "FUNCTION-NAME", "interfaceType": "TYPE"}' --server-url APPLICATION-ACCELERATOR-URL
+    tanzu accelerator generate ACCELERATOR-NAME \
+    --options '{"projectName": "FUNCTION-NAME", "interfaceType": "TYPE"}' \
+    --server-url APPLICATION-ACCELERATOR-URL
     ```
 
     Where:
@@ -201,7 +203,9 @@ The URL depends on the configuration settings for Application Accelerator:
     For example:
 
     ```console
-    tanzu accelerator generate java-function --options '{"projectName": "my-func", "interfaceType": "http"}' --server-url http://localhost:8877
+    tanzu accelerator generate java-function \
+    --options '{"projectName": "my-func", "interfaceType": "http"}' \
+    --server-url http://localhost:8877
     ```
 
 1. After generating the ZIP file, expand it in your directory and follow your
