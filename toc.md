@@ -278,6 +278,7 @@ This is the table of contents from which the Tanzu Application Platform Document
          - [API documentation](tap-gui/plugins/api-docs.md)
              - [Getting started with API documentation plug-in](tap-gui/plugins/api-docs-getting-started.md)
          - [Supply Chain Choreographer](tap-gui/plugins/scc-tap-gui.md)
+         - [Learning Center](tap-gui/plugins/learning-center.md)
       - [Upgrading Tanzu Application Platform GUI](tap-gui/upgrades.md)
       - [Troubleshoot Tanzu Application Platform GUI](tap-gui/troubleshooting.md)
     - [Tanzu Build Service](tanzu-build-service/tbs-about.md)
