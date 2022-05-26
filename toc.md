@@ -96,7 +96,7 @@ This is the table of contents from which the Tanzu Application Platform Document
         - [Creating accelerators](application-accelerator/creating-accelerators/creating-accelerators.md)
             - [Creating accelerator.yaml](application-accelerator/creating-accelerators/accelerator-yaml.md)
             - [Introduction to transforms](application-accelerator/creating-accelerators/transform-intro.md)
-            - [Transform reference](application-accelerator/creating-accelerators/transforms/creating-accelerators.md)
+            - [Transform reference](application-accelerator/creating-accelerators/creating-accelerators.md)
                 - [Combo](application-accelerator/creating-accelerators/transforms/combo.md)
                 - [Include](application-accelerator/creating-accelerators/transforms/include.md)
                 - [Exclude](application-accelerator/creating-accelerators/transforms/exclude.md)
