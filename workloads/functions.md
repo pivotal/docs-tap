@@ -1,8 +1,8 @@
-# Functions (Beta)
+# Using function workloads (Beta)
 
 This topic describes how to create and deploy an HTTP function from an application accelerator starter template.
 
-## <a id="overview"></a>Overview
+## <a id="overview"></a> Overview
 
 The function experience on Tanzu Application Platform enables developers to deploy functions, use starter templates to bootstrap their function and write only the code that matters to your business. Developers can run a single CLI command to deploy their functions to an auto-scaled cluster.
 
