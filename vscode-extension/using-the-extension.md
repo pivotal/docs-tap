@@ -2,17 +2,19 @@
 
 ## <a id=on-this-page></a> On this page
 
-- [Before Beginning](#before-beginning)
-- [Multiple Projects in Workspace](#multiple-projects-in-workspace)
-- [Debugging on the Cluster](#debugging-on-the-cluster)
-  - [Start Debugging on the Cluster](#start-debugging-on-the-cluster)
-  - [Stop Debugging on the Cluster](#stop-debugging-on-the-cluster)
-- [Live Update](#live-update)
-  - [Start Live Update](#start-live-update)
-  - [Stop Live Update](#stop-live-update)
-  - [Disable Live Update](#disable-live-update)
-  - [Live Update Status](#live-update-status)
-- [Switch Namespace](#switch-namespace)
+- [Using the Tanzu Dev Tools Extension](#using-the-tanzu-dev-tools-extension)
+  - [<a id=on-this-page></a> On this page](#-on-this-page)
+  - [<a id="before-beginning"></a> Before Beginning](#-before-beginning)
+  - [<a id="multiple-projects-in-workspace"></a> Multiple Projects in Workspace](#-multiple-projects-in-workspace)
+  - [<a id="debugging-on-the-cluster"></a> Debugging on the Cluster](#-debugging-on-the-cluster)
+    - [<a id="start-debugging-on-the-cluster"></a> Start Debugging on the Cluster](#-start-debugging-on-the-cluster)
+    - [<a id="stop-debugging-on-the-cluster"></a> Stop Debugging on the Cluster](#-stop-debugging-on-the-cluster)
+  - [<a id="live-update"></a> Live Update](#-live-update)
+    - [<a id="start-live-update"></a> Start Live Update](#-start-live-update)
+    - [<a id="stop-live-update"></a> Stop Live Update](#-stop-live-update)
+    - [<a id="disable-live-update"></a> Disable Live Update](#-disable-live-update)
+    - [<a id="live-update-status"></a> Live Update Status](#-live-update-status)
+  - [<a id="switch-namespace"></a> Switch Namespace](#-switch-namespace)
 
 ## <a id="before-beginning"></a> Before Beginning
 
@@ -128,6 +130,6 @@ To switch the namespace where you created the workload:
 
 1. Navigate to settings (`Code -> Preferences -> Settings`).
 1. Expand the **Extensions** section of the Settings and select **Tanzu**.
-1. In the Namespace option, add the namespace you want to deploy to. This defaults to the default namespace.
+1. In the Namespace option, add the namespace you want to deploy to. This defaults to the `default` namespace.
 
 ![The VS Code settings scrolled to the Tanzu section within the Extensions section](../images/vscode-switchnamespace1.png)

@@ -6,9 +6,11 @@ Tanzu Developer Tools for VSCode is VMware Tanzu's official IDE extension for VS
 
 ## <a id=on-this-page></a> On this page
 
-- [Extension Features](#extension-features)
-- [Tanzu Developer Tools Extension Documentation Pages](#tanzu-developer-tools-extension-documentation-pages)
-- [What’s Next](#whats-next)
+- [VMware Tanzu Developer Tools for Visual Studio Code](#vmware-tanzu-developer-tools-for-visual-studio-code)
+	- [<a id=on-this-page></a> On this page](#-on-this-page)
+	- [<a id="extension-features"></a> Extension Features](#-extension-features)
+	- [<a id="tanzu-developer-tools-extension-documentation-pages"></a> Tanzu Developer Tools Extension Documentation](#-tanzu-developer-tools-extension-documentation)
+	- [<a id="whats-next"></a> What’s Next](#-whats-next)
 
 ## <a id="extension-features"></a> Extension Features
 
@@ -32,6 +34,7 @@ The Tanzu Developer Tools extension enables you to debug your application in a p
 - [Installation](../vscode-extension/installation.md) - Describes how to install the extension.
 - [Getting Started](../vscode-extension/getting-started.md) - Describes how to set up a project for use with the extension.
 - [Using the Extension](../vscode-extension/using-the-extension.md) - Describes how to use the various features of the extension.
+- [Experimental - Live Hover](../vscode-extension/live-hover.md) - How to use the live hover feature of the Spring Boot Tools Extension
 
 ## <a id="whats-next"></a> What’s Next
 
