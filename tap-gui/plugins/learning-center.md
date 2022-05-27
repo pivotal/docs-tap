@@ -10,22 +10,27 @@ Tanzu Application Platform GUI and Learning Center. This plug-in requires that b
 
 ## <a id="enable-disable-plugin"></a> Enable/Disable the Learning Center plug-in
 
-The Learning Center plug-in can be enabled or disabled by the Tanzu Application Platform GUI configuration, in the app-config.yaml file.
+The Learning Center plug-in can be enabled or disabled by the Tanzu Application Platform GUI configuration, by [making changes to the default installation settings](../install-tap-gui.md).
 
 ### <a id="enable-plugin"></a> Enable the Learning Center plug-in
 
-Enable the Learning Center plug-in by setting the following in your app-config.yaml:
+Enable the Learning Center plug-in by setting the following in the app_config stanza of your tap-values.yaml:
 
    ```yaml
     learningCenter:
         enablePlugin: true
    ```
 
-If you enable the plug-in in your app-config.yaml file, be sure to yarn install to install appropriate dependencies. Some plug-ins are installed by default, so check the app-config.yaml file to see which plug-ins are enabled by the configuration.
+Some plug-ins are installed by default, so check the app-_config stanza of your tap-values.yaml file to see which plug-ins are enabled by the configuration.
 
 ### <a id="disable-plugin"></a> Disable the Learning Center plug-in
 
-Disable the Learning Center plug-in by removing the learningCenter.enablePlugin configuration from the app-config.yaml file.
+Disable the Learning Center plug-in by changing the learningCenter.enablePlugin configuration value to false in your tap-values.yaml file.
+
+```yaml
+    learningCenter:
+        enablePlugin: false
+   ```
 
 ## <a id="view-app"></a> View your Learning Center workshops
 
@@ -39,7 +44,7 @@ To view your Learning Center workshops in Tanzu Application Platform GUI:
   
     These are required to see content on the plug-in's main page.
 
-2. Ensure that the Learning Center plug-in is enabled by the configuration in the Tanzu Application Platform GUI app-config.yaml file.
+2. Ensure that the Learning Center plug-in is enabled by the configuration in the app_config stanza of your tap-values.yaml file.
 
 3. Navigate to the Learning Center plug-in screen and select the Learning Center plug-in from the sidebar. You can view the list of running workshops with documentation links and additional resources.
 
