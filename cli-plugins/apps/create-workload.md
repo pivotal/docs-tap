@@ -20,7 +20,7 @@ Here is how you can get started with an example workload.
 - To name the workload and specify a source code location to create the workload from, run:
 
     ```console
-    tanzu apps workload create pet-clinic --git-repo https://github.com/sample-accelerators/spring-petclinic --git-tag-1.1 main --type web  
+    tanzu apps workload create pet-clinic --git-repo https://github.com/sample-accelerators/spring-petclinic --git-tag tap-1.1 --type web
     ```
 
     Respond `Y` to prompts to complete process.
