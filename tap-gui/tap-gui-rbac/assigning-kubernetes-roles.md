@@ -22,7 +22,7 @@ Cluster-scoped roles provide cluster-wide privileges. They allow visibility into
 
 For example, role `pod-viewer` enables Pod visibility on the cluster.
 
-```console
+```yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -40,7 +40,7 @@ Namespace-scoped roles provide privileges that are limited to a certain namespac
 
 For example, role `pod-viewer-app1` enables Pod visibility in the `app1` namespace.
 
-```console
+```yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
@@ -58,7 +58,7 @@ Creating users can be done with a `kubectl` command.
 
 For example, user `john` can be defined in the YAML file below:
 
-```console
+```yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: User
 metadata:
@@ -70,9 +70,11 @@ metadata:
 
 After the users and role have been created, the next step is to bind them together.
 
+To bind a Tanzu Application Platform default role, please refer to [Bind a user or group to a default role](./../../authn-authz/binding.md).
+
 For example, to bind user `john` with the 'pod-viewer' cluster role, you can use the following YAML file:
 
-```console
+```yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
@@ -90,7 +92,7 @@ roleRef:
 
 In another example, you can bind user `john` with the 'pod-viewer-app1' namespace-specific role:
 
-```console
+```yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
