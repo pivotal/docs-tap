@@ -240,4 +240,5 @@ This is the table of contents from which the Tanzu Application Platform Document
   - [TCP (Beta)](workloads/tcp.md)
   - [Queues (Beta)](workloads/queue.md)
   - [Functions (Beta)](workloads/functions.md)
+      - [Using function workloads](workloads/using-functions.md)
       - [Iterate on your function](workloads/iterate-function.md)
