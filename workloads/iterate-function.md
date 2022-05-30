@@ -11,7 +11,6 @@ Before you can iterate on your function, you must have:
 
 - [Tanzu Developer Tools for Visual Studio Code](../vscode-extension/installation.md)
 - [Tilt](https://docs.tilt.dev/install.html) v0.27.2 or later.
-<!-- get links for these? -->
 
 > **Note:** The Tanzu Developer Tools extension currently only supports Java Functions.
 
@@ -48,7 +47,7 @@ You can view output from Tanzu Application Platform and from Tilt indicating tha
 the container is being built and deployed.
 
     - You see `Live Update starting…` in the status bar at the bottom right.
-    
+
     - Live update can take 1 to 3 minutes while the workload deploys and the Knative service becomes available.
 
 2. Note: Depending on the type of cluster you use, you might see an error message similar to the following:
