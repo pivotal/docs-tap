@@ -1,6 +1,6 @@
 # Create a ScanTemplate
 
-The `ScanTemplate` custom resource (CR) defines the Pod with the scanner image that you use for vulnerability scanning. There's a default scanner image you can use out-of-the-box.
+The `ScanTemplate` custom resource (CR) is the component that defines how the scan pod fulfil the task of vulnerability scanning. There are  default `ScanTemplates` provided out-of-the-box using the TAP default scanner `Anchore's Grype`. The scan would be done through stages sequentially run on the scanning pod. At the end a single container on the scan pod called `summary` will cobmine the result of the initContainers and will let the controller to determine and update `Scan CR` status.
 
 ## <a id="structure"></a>Structure
 
@@ -8,37 +8,115 @@ The `ScanTemplate` custom resource (CR) defines the Pod with the scanner image t
 apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: ScanTemplate
 spec:
-    # Required. This field must specify a valid pod.spec.
-    # This has the instructions for the scan to be successfully executed.
-    # See Pod Requirements section below for more details
     template:
+      # Here are list volumes mounted for writing to or 
+      # reading from during different stages of the scan
+      volumes:
+        # required the results of different scan stages 
+        # should be saved in files digestable by the scan 
+        # controller in this volume
+        - name: workspace
+        emptyDir: { }
+      # different steps required for a scanning can be staged 
+      # in sequential stages through initContainers. 
+      initContainers:
+      # Summary container will take results of initContainers 
+      # and will let Controller to update Scan CR status.
+      containers:
+        - name: summary
 ```
 
-## <a id="pod-requirements"></a>Pod requirements
+## <a id="summary-container"></a>Summary Container
 
-You can define any valid [Kubernetes Pod](https://kubernetes.io/docs/concepts/workloads/pods/) into the `ScanTemplate` CR if you follow these requirements:
+Scanning stages are required to write structured output to a specified file location in the workspace in the form of `/${WORKSPACE_PATH}/${STAGE_NAME}/out.yaml` (in the above example of a typical `ScanTemplates` the `${WORKSPACE_PATH}` would be `workspace`). Individual stages may only populate a subset of the model depending on the nature of the stage. `Summary container` will consume and aggregate the outputs of the previous stages. And finally the controller will consume this aggregated information to populate and update the status of the `Scan CRs`.
 
-1. **Scanner Container**  
-    The Pod scan must define a container named `scanner` to hold the scanning result.  
-   * **`stdout` Logs**  
-    The scan result must be printed in the `stdout` of the `scanner` container having a valid [CycloneDX](https://cyclonedx.org/docs/1.3/) XML format.
+Below the general format of final aggregated `Output Model` and some examples of typical subsets provided by individual stages of scan are shown:
 
-2. **XML Extra Fields**  
-    **Component Name**  
-        For the scan controller to keep track of your report, provide the name of the scanned artifact in the `bom>metadata>component>name` field of the XML generated as an output. Use the `url` for a source repository. Use the `image` name for an image scan.
-    **Component Digest**  
-        For the Scan Controller to keep track of your report, provide your artifact's digest or most unique identifier of your artifact into the `bom>metadata>component>version` field of the XML generated as an output.  
-    **Scanner Name**  
-        Provide the name of the scanner you are using in the `bom>metadata>tools>tool>name` field of the XML generated as an output.  
-    **Scanner Vendor**  
-        Provide the name of the vendor from the scanner that you are using in the `bom>metadata>tools>tool>vendor` field of the XML generated as an output.  
-    **Scanner Version**  
-        Provide the version of the scanner you are using in `bom>metadata>tools>tool>version` field of the XML generated as an output.  
+1. General form of scan Output Model:
+```yaml
+fetch:
+  git: 
+    url:
+    revision:
+    path:
+  blob:
+    url:
+    revision:
+    path:
+  image:
+    url:
+    revision:
+    path:
+sbom:
+    packageCount:
+    reports: []
+scan:
+  cveCount:
+    critical:
+    high:
+    medium:
+    low:
+    unknown:
+  scanner:
+    name:
+    vendor:
+    version:
+    db:
+      version:
+  reports: []
+eval:
+  violations: []
+store:
+  locations: []
+```
 
-If the `scanner` Pod is not defined or the logs retrieved from the `stdout` do not have a valid format, the scanning condition fails.
+The `scan` portion of the above output is required and if missing the scan controller would fail to properly update final status of the `Scan CR`. Other portions of the output including those of `store` and `policy evaluation` are optional and can be omitted, if not applicable in a custom supply chain setup.
 
-## <a id="best-practices"></a>Best practices
+2. Examples of sample subset outputs:
 
-1. **SourceScan**  
-   - **Init Container**  
-        If you're doing a `SourceScan`, we recommend defining the cloning of the repository in an init container named `repo`. Any output in `stdout` in this init container is prompted if an error occurs, so you can have more context about what failed inside the job.
+```yaml
+# example for a typical git clone (source scan fetch stage)
+# saved at: /workspace/git-clone/out.yaml
+fetch:
+  git:
+    url: github.com/my/repo
+    revision: aee9f8
+    path: /workspace/git-clone/cloned-repository
+```
+```yaml
+# an example of typical scan stage
+# saved at: /workspace/grype-scan/out.yaml
+scan:
+  cveCount:
+    critical: 0
+    high: 1
+    medium: 3
+    low: 25
+    unknown: 0
+  scanner:
+    name: grype
+    vendor: Anchore
+    version: 0.33.0
+    db:
+      version: 2022-04-13
+  reports:
+  - /workspace/grype-scan/repo.cyclonedx.xml
+  - /workspace/grype-scan/app.cyclonedx.xml
+  - /workspace/grype-scan/base.cyclonedx.xml
+```
+```yaml
+# example of a typical evaluation stage
+# saved at: /workspace/policy-eval/out.yaml
+eval:
+  violations:
+    - banned package log4j
+    - critical CVE 2022-01-01-3333
+    - number of critical CVEs over threshold
+```
+```yaml
+# example of a typical upload to store stage
+# saved at: /workspace/upload-to-store/out.yaml
+store:
+  locations:
+    - http://metadata-store.cluster.local:8080/reports/3
+```
