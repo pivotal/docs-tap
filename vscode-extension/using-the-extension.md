@@ -2,19 +2,17 @@
 
 ## <a id=on-this-page></a> On this page
 
-- [Using the Tanzu Dev Tools Extension](#using-the-tanzu-dev-tools-extension)
-  - [<a id=on-this-page></a> On this page](#-on-this-page)
-  - [<a id="before-beginning"></a> Before Beginning](#-before-beginning)
-  - [<a id="multiple-projects-in-workspace"></a> Multiple Projects in Workspace](#-multiple-projects-in-workspace)
-  - [<a id="debugging-on-the-cluster"></a> Debugging on the Cluster](#-debugging-on-the-cluster)
-    - [<a id="start-debugging-on-the-cluster"></a> Start Debugging on the Cluster](#-start-debugging-on-the-cluster)
-    - [<a id="stop-debugging-on-the-cluster"></a> Stop Debugging on the Cluster](#-stop-debugging-on-the-cluster)
-  - [<a id="live-update"></a> Live Update](#-live-update)
-    - [<a id="start-live-update"></a> Start Live Update](#-start-live-update)
-    - [<a id="stop-live-update"></a> Stop Live Update](#-stop-live-update)
-    - [<a id="disable-live-update"></a> Disable Live Update](#-disable-live-update)
-    - [<a id="live-update-status"></a> Live Update Status](#-live-update-status)
-  - [<a id="switch-namespace"></a> Switch Namespace](#-switch-namespace)
+- [Before Beginning](#before-beginning)
+- [Multiple Projects in Workspace](#multiple-projects-in-workspace)
+- [Debugging on the Cluster](#debugging-on-the-cluster)
+  - [Start Debugging on the Cluster](#start-debugging-on-the-cluster)
+  - [Stop Debugging on the Cluster](#stop-debugging-on-the-cluster)
+- [Live Update](#live-update)
+  - [Start Live Update](#start-live-update)
+  - [Stop Live Update](#stop-live-update)
+  - [Disable Live Update](#disable-live-update)
+  - [Live Update Status](#live-update-status)
+- [Switch Namespace](#switch-namespace)
 
 ## <a id="before-beginning"></a> Before Beginning
 
@@ -26,7 +24,7 @@ Ensure the project to use the extension with has the required files specified in
 
 When working with multiple projects in a single workspace, you can configure the Tanzu Dev Tools Extension settings on a per-project basis by using the dropdown selector in the `Settings` page.
 
-![The VS Code interface showing the Settings open to the Tanzu Extension, with the "project" dropdown expanded to show both projects in the current workspace.](../images/vscode-multiple-projects.png)
+![The VS Code interface showing the Settings open to the Tanzu Extension, with the Project dropdown expanded to show both projects in the current workspace.](../images/vscode-multiple-projects.png)
 
 ## <a id="debugging-on-the-cluster"></a> Debugging on the Cluster
 
