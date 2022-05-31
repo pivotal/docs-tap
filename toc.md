@@ -14,6 +14,7 @@ This is the table of contents from which the Tanzu Application Platform Document
 - [Migrate Profiles in Tanzu Application Platform](migrate-profile.md)
 - [Getting started with Tanzu Application Platform](getting-started.md)
   - [Develop your first app on Tanzu Application Platform](getting-started/develop-first-app.md)
+  - [Work with your new application](getting-started/work-with-new-app.md)
   - [Create your application accelerator](getting-started/create-app-accelerator.md)
   - [Add testing and security scanning](getting-started/add-test-and-security.md.hbs)
   - [Configure your supply chain](getting-started/config-supply-chain.md)
