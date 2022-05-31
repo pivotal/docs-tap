@@ -222,6 +222,7 @@ This is the table of contents from which the Tanzu Application Platform Document
             - [Private image scan](scst-scan/samples/private-image.md)
             - [Private source scan](scst-scan/samples/private-source.md)
             - [Public source scan of a blob/tar file](scst-scan/samples/blob.md)
+        - [Offline and air gapped environments](scst-scan/offline-airgap.md)            
         - [Observing and troubleshooting](scst-scan/observing.md)
         - [Additional scan resources](scst-scan/additional.md)
             - [Configure code repositories and image artifacts to be scanned](scst-scan/scan-crs.md)
