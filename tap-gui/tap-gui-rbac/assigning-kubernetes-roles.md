@@ -1,26 +1,32 @@
-# Assigning Roles and Permissions on Kubernetes Clusters
+# Assigning roles and permissions on Kubernetes clusters
 
-This section provides a basic overview of how to create roles and persmissions on Kubernetes clusters and how to assign these roles to users. For more detailed information, please refer to [Using RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/).
+This topic gives an overview of creating roles and permissions on Kubernetes clusters
+and assigning these roles to users. For more information, see
+[Using RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) in the
+Kubernetes documentation.
 
-The steps to define and assign roles include:
+The steps to define and assign roles are:
 
-1. Create roles
-2. Create users
-3. Assign users to their roles
+1. [Create roles](#create-roles)
+2. [Create users](#create-users)
+3. [Assign users to their roles](#assign-users-to-roles)
 
 
-## <a id="create-role"></a> Create Roles
+## <a id="create-roles"></a> Create roles
 
-To control the access to Kubernetes runtime resources on Tanzu Application Platform GUI based on users' roles and permissions for each of visible remote clusters. we recommend considering two role types:
+To control the access to Kubernetes runtime resources on Tanzu Application Platform GUI based on users'
+roles and permissions for each of visible remote clusters, VMware recommends two role types:
 
-- [Cluster-scoped Roles](#-cluster-scoped-roles)
-- [Namespace-scoped Roles](#-namespace-scoped-roles)
+- [Cluster-scoped roles](#cluster-scoped-roles)
+- [Namespace-scoped roles](#namespace-scoped-roles)
 
-### <a id="cluster-scoped-roles"></a> Cluster-scoped Roles
 
-Cluster-scoped roles provide cluster-wide privileges. They allow visibility into runtime resources across all cluster's namespaces.
+### <a id="cluster-scoped-roles"></a> Cluster-scoped roles
 
-For example, role `pod-viewer` enables Pod visibility on the cluster.
+Cluster-scoped roles provide cluster-wide privileges. They enable visibility into runtime resources
+across all of a cluster's namespaces.
+
+In this example YAML snippet, the `pod-viewer` role enables pod visibility on the cluster:
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -33,12 +39,13 @@ rules:
   verbs: ["get", "watch", "list"]
 ```
 
-### <a id="namespace-scoped-roles"></a> Namespace-scoped Roles
 
+### <a id="namespace-scoped-roles"></a> Namespace-scoped roles
 
-Namespace-scoped roles provide privileges that are limited to a certain namespace. They allow visibility into runtime resources inside the namespaces.
+Namespace-scoped roles provide privileges that are limited to a certain namespace.
+They enable visibility into runtime resources inside namespaces.
 
-For example, role `pod-viewer-app1` enables Pod visibility in the `app1` namespace.
+In this example YAML snippet, the `pod-viewer-app1` role enables pod visibility in the `app1` namespace:
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -52,11 +59,11 @@ rules:
   verbs: ["get", "list"]
 ```
 
-## <a id="create-users"></a> Create Users
 
-Creating users can be done with a `kubectl` command.
+## <a id="create-users"></a> Create users
 
-For example, user `john` can be defined in the YAML file below:
+You can create users by running the `kubectl create` command.
+In this example YAML snippet, the user `john` is defined:
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -66,13 +73,15 @@ metadata:
   name: john
 ```
 
-## <a id="assign-users-to-roles"></a> Assign Users to their Roles
 
-After the users and role have been created, the next step is to bind them together.
+## <a id="assign-users-to-roles"></a> Assign users to their roles
 
-To bind a Tanzu Application Platform default role, please refer to [Bind a user or group to a default role](./../../authn-authz/binding.md).
+After the users and role are created, the next step is to bind them together.
 
-For example, to bind user `john` with the 'pod-viewer' cluster role, you can use the following YAML file:
+To bind a Tanzu Application Platform default role, see
+[Bind a user or group to a default role](../../authn-authz/binding.html).
+
+In this example YAML snippet, the user `john` is bound with the `pod-viewer` cluster role:
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -90,7 +99,8 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-In another example, you can bind user `john` with the 'pod-viewer-app1' namespace-specific role:
+In this example YAML snippet, the user `john` is bound with the `pod-viewer-app1` namespace-specific
+role:
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -108,20 +118,15 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-To verify user's permissions, try running the `can-i` commands. You will get a yes or no answer.
-
-For example, to verify your cluster-wide role to list pods, execute:
+To verify the user's permissions, run the `can-i` commands to get a `yes` or `no` answer.
+To verify that you can list pods in your cluster-wide role, run:
 
 ```console
 kubectl auth can-i get pods --all-namespaces
 ```
 
-In another example, to verify your namespace-specific role to list pods in namespace `app1`, execute:
+To verify that you can list pods in namespace `app1` in your namespace-specific role, run:
 
 ```console
 kubectl auth can-i get pods --namespace app1
 ```
-
-
-
-
