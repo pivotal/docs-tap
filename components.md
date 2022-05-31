@@ -10,9 +10,11 @@ into this Tanzu Application Platform documentation site.
 
 - [Application Accelerator for VMware Tanzu](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/index.html)
 
-- [Application Live View for VMware Tanzu](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/index.html)
+- [Application Live View for VMware Tanzu](app-live-view/about-app-live-view.md)
 
-- [Application Live View Convention Service for VMware Tanzu](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.2/docs/GUID-convention-server.html)
+- [Application Live View Convention Service for VMware Tanzu](app-live-view/configuring-apps/convention-server.md)
+
+- [Application Single Sign-On for VMware Tanzu](app-sso/about.md)
 
 - [Authentication and Authorization](authn-authz/overview.md)
 

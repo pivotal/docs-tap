@@ -5,7 +5,7 @@ from the Tanzu Application Platform package repository.
 
 >**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
 The full profile includes Supply Chain Security Tools - Scan.
-For more information about profiles, see [Installing the Tanzu Application Platform Package and Profiles](../install.md).
+For more information about profiles, see [About Tanzu Application Platform package and profiles](../about-package-profiles.md).
 
 ## <a id='scst-scan-prereqs'></a> Prerequisites
 
@@ -23,7 +23,7 @@ Before installing Supply Chain Security Tools - Scan:
 
 | Out-Of-The-Box Scanner | Version |
 | --- | --- |
-| [Anchore Grype](https://github.com/anchore/grype) | v0.33.1 |
+| [Anchore Grype](https://github.com/anchore/grype) | v0.37.0 |
 
 Let us know if there's a scanner you'd like us to support.
 

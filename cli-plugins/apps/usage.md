@@ -50,9 +50,9 @@ metadata:
 spec:
   source:
     git:
-      url: https://github.com/spring-projects/spring-petclinic
+      url: https://github.com/sample-accelerators/spring-petclinic
       ref:
-        branch: main
+        tag: tap-1.1
 ```
 
 ## <a id='autocompletion'></a> Autocompletion

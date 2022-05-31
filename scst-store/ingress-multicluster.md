@@ -15,7 +15,7 @@ Supply Chain Security Tools - Store installation creates an HTTPProxy entry with
 
 Contour and DNS setup are not part of Supply Chain Security Tools - Store installation. Access to Supply Chain Security Tools - Store through Contour depends on the correct configuration of these two components.
 
-Make the proper DNS record available to clients to resolve `metadata-store.<ingress_domain>` to Envoy service's external IP address. 
+Make the proper DNS record available to clients to resolve `metadata-store.<ingress_domain>` to Envoy service's external IP address.
 
 DNS setup example:
 
@@ -39,7 +39,7 @@ $ nslookup metadata-store.example.com
 
 $ curl https://metadata-store.example.com/api/health -k -v
 > ...
-  < HTTP/2 200 
+  < HTTP/2 200
   ...
 ```
 
@@ -47,7 +47,7 @@ $ curl https://metadata-store.example.com/api/health -k -v
 
 ## <a id="multicluster-setup"></a>Multicluster setup
 
-To support multicluster setup of Supply Chain Security Tools - Store, some communication secrets must be shared across the cluster. 
+To support multicluster setup of Supply Chain Security Tools - Store, some communication secrets must be shared across the cluster.
 
 Set up the cluster containing Supply Chain Security Tools - Store first and enable Supply Chain Security Tools - Store ingress for ease of installation. When configuring a second Tanzu Application Platform cluster, components such as Supply Chain Security Tools - Scan need access to the Store's API. This requires access to the TLS CA certificate for HTTPS support and the Authorization access token.
 
@@ -99,7 +99,9 @@ This secret is created in the Supply Chain Security Tools - Scan namespace, whic
 
 ## <a id="scst-scan-install"></a>Supply Chain Security Tools - Scan installation
 
-To allow Supply Chain Security Tools - Scan to access the created secrets, `SecretExport` resources must be created.
+To allow Supply Chain Security Tools - Scan to access the created secrets, `SecretExport` resources must be created. 
+
+>**Note:** Corresponding `SecretImport` resources that receive the exported secrets are installed with the Supply Chain Security Tools - Scan package.
 
 Here is an example for supporting Supply Chain Security Tools - Scan installation on the default namespace `scan-link-system`:
 
@@ -131,11 +133,13 @@ Install Supply Chain Security Tools - Scan with the following configuration:
 
 ```yaml
 ---
-metadataStore:
+scanning:
+  metadataStore:
     url: https://metadata-store.example.com
     caSecret:
         name: store-ca-cert
         importFromNamespace: metadata-store-secrets
     authSecret:
         name: store-auth-token
+        importFromNamespace: metadata-store-secrets
 ```
