@@ -1,9 +1,13 @@
 # Customizing branding
 
-This topic describes how to customize the branding within the Tanzu Application Platform GUI portal.
+This section describes how to customize the branding within the Tanzu Application Platform GUI portal:
+
+* [Customize logo and portal name on the top banner](#-customize-logo-and-portal-name-on-the-top-banner)
+
+* [Customize Authentication page](#-customize-authentication-page)
 
 
-## <a id="overview"></a> Overview
+## <a id="customize-logo-name"></a> Customize logo and portal name on the top banner
 
 You can customize the logo and the name displayed in the top banner in the
 Tanzu Application Platform GUI portal.  
@@ -12,15 +16,11 @@ By default, the portal displays the VMware Tanzu logo and **Tanzu Application Pl
 ![Screenshot displaying the default VMware Tanzu branding within the Tanzu Application Platform GUI portal](../images/standard-branding.png)
 
 
-## <a id="customizing"></a> Customize Branding
+### <a id="brand-customizing"></a> Customize Branding
 
 To customize the branding in your portal:
 
-1. Provide additional configuration parameters in your configuration values file.
-If you installed Tanzu Application Platform GUI as part of a Tanzu Application Platform profile,
-the file is `tap-values-file.yaml`.
-If you installed Tanzu Application Platform GUI separately, the file is `tap-gui-values.yaml`.
-Here is an example configuration snippet for `tap-values.yaml`:
+1. Provide additional configuration parameters to the `app_config` stanza of your `tap-values.yml` file:
 
     ```yaml
     tap_gui:
@@ -45,3 +45,27 @@ If there is an error in `BASE-64-IMAGE` or `PORTAL-NAME`, Tanzu Application Plat
 the original branding template.
 
 ![Screenshot displaying the custom branding within the Tanzu Application Platform GUI portal](../images/customized-branding.png)
+
+
+## <a id="customize-auth-page"></a> Customize Authentication page
+
+You can also customize the portal name on the Authentication page and the name of the browser tab for the Tanzu Application Platform GUI.
+
+1. Provide additional configuration parameters to the `app_config` stanza of your `tap-values.yml` file:
+
+    ```yaml
+    tap_gui:
+      app_config:
+        app:
+          title: 'CUSTOM-TAB-NAME'
+    ```
+
+    Where:
+
+    - `CUSTOM-TAB-NAME` is the naming on the Authentication page and the browser tab of your portal.
+
+2. Reinstall your Tanzu Application Platform GUI package by following steps in
+[Upgrading Tanzu Application Platform](../../upgrading.html).
+
+After the updated values configuration file is applied in Tanzu Application Platform GUI,
+you see the customized version of your portal.
