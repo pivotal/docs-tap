@@ -1,6 +1,7 @@
 # Work with your new application
 
-Now that you have a skeleton workload working, you are ready to begin working with your application.
+In the previous Getting started topic, [Develop your first application](develop-first-app.md), you developed your first application on Tanzu Application Platform.
+Now that you have a skeleton workload developed, you are ready to begin working with your new application.
 
 ## <a id="iterate"></a>Iterate on your application
 
