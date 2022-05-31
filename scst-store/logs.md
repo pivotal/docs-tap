@@ -10,7 +10,7 @@ There are six verbosity levels that the Supply Chain Security Tools - Store supp
 | Level   | Description                                  |
 |---------|----------------------------------------------|
 | Trace   | Output extended debugging logs.              |
-| Debug   | Output standard debugging log.               |
+| Debug   | Output standard debugging logs.               |
 | More    | Output more verbose informational logs.      |
 | Default | Output standard informational logs.          |
 | Less    | Outputs less verbose informational logs.     |
@@ -81,7 +81,7 @@ I1206 18:34:17.784900       1 main.go:180] Valid token audiences:
 {"level":"info","ts":"2022-05-27T13:47:52.541133699Z","logger":"MetadataStore","msg":"Server Settings","hostname":"metadata-store-app-5c9d6bccdb-kcrt2","bindingaddress":"localhost:9443"}
 {"level":"info","ts":"2022-05-27T13:47:52.541150096Z","logger":"MetadataStore","msg":"Database Settings","hostname":"metadata-store-app-5c9d6bccdb-kcrt2","maxopenconnection":10,"maxidleconnection":100,"connectionmaxlifetime":60}
 ```
-NOTE: The `kube-rbac-proxy` container currently uses a different log format than the Store. You can find the proxy's container log format [here](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-instrumentation/logging.md#logging-formats).
+> **Note:** The `kube-rbac-proxy` container uses a different log format than the Store. For information about the proxy's container log format, see [Logging Formats](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-instrumentation/logging.md#logging-formats) in Github.
 
 ##  <a id='api-endptlog-out'></a> API endpoint log output
 
@@ -112,7 +112,7 @@ format:
 
 ####  <a id='key-val'></a> Key-value pairs
 
-Since JSON output format use Key-value pairs, the tables in the following sections list each key and the meaning of their values.
+Since JSON output format uses Key-value pairs, the tables in the following sections list each key and the meaning of their values.
 
 #####  <a id='common-all'></a> Common to all logs
 
@@ -121,15 +121,15 @@ The following key-value pairs are common for all logs.
 | Key      | Type    | Verbosity Level | Description                                                                                                                                                                              |
 |----------|---------|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
  | level    | string  | all             | The log level of the message. This is either 'error' for error messages, or 'info' for all other messages.                                                                               |
-| ts       | string  | all             | The timestamp when the log message was generated. It uses RFC 3339 format with nanosecond precision and 00:00 offset from  UTC, aka Zulu time.                                           |
+| ts       | string  | all             | The timestamp when the log message was generated. It uses RFC 3339 format with nanosecond precision and 00:00 offset from  UTC, meaning Zulu time.                                           |
 | logger   | string  | all             | Used to identify what produced the log entry. For Store, the name always starts with `MetadataStore`. For log entries that display the raw SQL queries, the name is `MetadataStore.gorm` |
 | msg      | string  | all             | A short description of the logged event.                                                                                                                                                 |
 | hostname | string  | all             | The Kubernetes hostname of the pod handling the request. This helps identify the specific instance of the Store when you deploy multiple instances on a cluster.                         |
 | error    | string  | all             | The error message which is only available in error log entries.                                                                                                                          |
 | endpoint | string  | default         | The API endpoint the Metadata Store attempts to handle the request. This also includes any query and path parameters passed in.                                                          |
-| method   | string  | default         | The HTTP verb to access the endpoint. For example, "GET" or "POST."                                                                                                                      |
+| method   | string  | default         | The HTTP verb to access the endpoint. For example, 'GET' or 'POST'.                                                                                                                      |
 | code     | integer | default         | The HTTP response code.                                                                                                                                                                  |
-| response | string  | default         | The HTTP response in human-readable format. For example, "OK", "Bad Request", or "Internal Server Error."                                                                                |
+| response | string  | default         | The HTTP response in human-readable format. For example, 'OK', 'Bad Request', or 'Internal Server Error'.                                                                                |
 | function | string  | debug           | The function name that handles the request.                                                                                                                                              |
 
 #####  <a id='log-query'></a> Logging query and path parameter values
