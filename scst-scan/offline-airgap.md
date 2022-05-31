@@ -2,11 +2,11 @@
 
 The `grype` CLI attempts to perform two over the Internet calls: one to verify for newer versions of the CLI and another to automatically update the vulnerability database before scanning.
 
-You must deactivate both of these external calls. In addition, for the `grype` CLI to function in an offline or air gapped environment, the vulnerability database must be hosted within the environment. You must configure the `grype` CLI with the internal URL.
+You must deactivate both of these external calls. For the `grype` CLI to function in an offline or air gapped environment, the vulnerability database must be hosted within the environment. You must configure the `grype` CLI with the internal URL.
 
 The `grype` URL accepts environment variables to satisfy these needs.
 
-For information on setting up an offline vulnerability database, see the (Anchore Grype README)[https://github.com/anchore/grype#offline-and-air-gapped-environments] in Github.
+For information about setting up an offline vulnerability database, see the (Anchore Grype README)[https://github.com/anchore/grype#offline-and-air-gapped-environments] in Github.
 
 To update the existing ScanTemplates that call the `grype` CLI, you must pause the `kapp` installed `PackageInstall` before editing and then unpause after. Otherwise, Kubernetes overwrites the edits.
 
@@ -16,7 +16,7 @@ To update the existing ScanTemplates that call the `grype` CLI, you must pause t
     kubectl edit -n tap-install packageinstall tap
     ```
 
-    and make the following edit:
+    Make the following edit:
 
     ```yaml
     apiVersion: packaging.carvel.dev/v1alpha1<!-- If this is a URL then you likely need to present it per xref rules: https://confluence.eng.vmware.com/display/IXCS/Links%2C+Cross-References%2C+and+Citations -->
@@ -38,9 +38,9 @@ To update the existing ScanTemplates that call the `grype` CLI, you must pause t
     kubectl edit -n tap-install packageinstall grype-templates
     ```
 
-1. Set the `packageinstall.spec.paused` field to `true` as it was done earlier with the `tap` object.
+1. Set the `packageinstall.spec.paused` field to `true` as done earlier with the `tap` object.
 
-1. There are five installed `ScanTemplates` to edit and each is edited in the same way. For example, edit the `public-image-scan-template` by running:
+1. There are five installed `ScanTemplates` to edit. Each `ScanTemplates` is edited the same way. For example, edit the `public-image-scan-template` by running:
 
     ```bash
     kubectl edit -n MY-DEV-NAMESPACE scantemplate public-image-scan-template
@@ -48,7 +48,7 @@ To update the existing ScanTemplates that call the `grype` CLI, you must pause t
 
     Where `MY-DEV-NAMESPACE` is what was specified in the values file during installation.
 
-    Find the container within `spec.initContainers` named `scan-plugin` and append the required grype specific environment variables:
+    Find the container in `spec.initContainers` named `scan-plugin` and append the required grype specific environment variables:
 
     ```yaml
     spec:
