@@ -25,7 +25,7 @@ For globally-scoped Components, when you access `Runtime Resources`, Tanzu Appli
 
 For example, `demo-component-a` does not have a `kubernetes-label-selector` in the metadata.annotations section, making is a globally-scoped component:
 
-```console
+```yaml
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
@@ -47,7 +47,7 @@ If a Component is namespace-scoped, when you access `Runtime Resources`, Tanzu A
 
 To make a Component namespace-scoped, you will need to pass the following annotation to the Component's definition YAML file:
 
-```console
+```yaml
 annotations:
   'backstage.io/kubernetes-namespace': NAMESPACE-NAME
 ```
@@ -57,7 +57,7 @@ Where:
 
 For example, `demo-component-b` has a `kubernetes-label-selector` in the metadata.annotations section, associating it with the `component-b` namespaces on each of the visibile clusters, making is a namespace-scoped component:
 
-```console
+```yaml
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
