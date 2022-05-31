@@ -295,4 +295,4 @@ This is the table of contents from which the Tanzu Application Platform Document
   - [Queues (Beta)](workloads/queue.md)
   - [Functions (Beta)](workloads/functions.md)
       - [Using function workloads](workloads/using-functions.md)
-      - [Iterate on your function](workloads/iterate-function.md)
+      - [Iterate on your function](workloads/iterate-functions.md)
