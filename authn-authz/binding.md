@@ -29,7 +29,7 @@ Follow these steps to install the Tanzu Application Platform RBAC CLI plug-in:
 1. Untar the `tar.gz` file:
 
     ```console
-    tar -zxvf <NAME OF THE TAR>
+    tar -zxvf NAME-OF-THE-TAR
     ```
 
 1. Install the Tanzu Application Platform RBAC CLI plug-in locally on your operating system:
@@ -52,12 +52,12 @@ Follow these steps to install the Tanzu Application Platform RBAC CLI plug-in:
         tanzu plugin install rbac --local windows-amd64
         ```
 
-### <a id="use-kubeconfig"></a> Use a different kubeconfig location
+## <a id="use-kubeconfig"></a> Use a different kubeconfig location
 
 Use a different kubeconfig location by running:
 
 ```console
-tanzu rbac --kubeconfig PATH-OF-KUBECONFIG binding add ...
+tanzu rbac --kubeconfig PATH-OF-KUBECONFIG binding add --user USER --role ROLE --namespace NAMESPACE
 ```
 
 > **Note:** The environment variable `KUBECONFIG` is not implemented.
@@ -70,14 +70,16 @@ $ tanzu rbac --kubeconfig /tmp/pinniped_kubeconfig.yaml binding add --user usern
 ```
 
 
-### <a id="add-user-group-to-role"></a> Add the specified user or group to a role
+## <a id="add-user-group-to-role"></a> Add the specified user or group to a role
 
 Add a user or group to a role by running:
 
 ```console
-tanzu rbac binding add --user $user --role $role --namespace $namespace
+tanzu rbac binding add --user USER --role ROLE --namespace NAMESPACE
+```
 
-tanzu rbac binding add --group $group --role $role --namespace $namespace
+```console
+tanzu rbac binding add --group GROUP --role ROLE --namespace NAMESPACE
 ```
 
 For example:
@@ -86,14 +88,12 @@ For example:
 $ tanzu rbac binding add --user username@vmware.com --role app-editor --namespace user-ns
 ```
 
-### <a id="get-list-users"></a> Get a list of users and groups from a role
+## <a id="get-list-users"></a> Get a list of users and groups from a role
 
 Get a list of users and groups from a role by running:
 
 ```console
-tanzu rbac binding get --role $role --namespace $namespace
-
-tanzu rbac binding get --role $role --namespace $namespace
+tanzu rbac binding get --role ROLE --namespace NAMESPACE
 ```
 
 For example:
@@ -102,14 +102,16 @@ For example:
 $ tanzu rbac binding get --role app-editor --namespace user-ns
 ```
 
-### <a id="binding-delete"></a> Remove the specified user or group from a role
+## <a id="binding-delete"></a> Remove the specified user or group from a role
 
 Remove a user or group from a role by running:
 
 ```console
-tanzu rbac binding delete --user $user --role $role --namespace $namespace
+tanzu rbac binding delete --user USER --role ROLE --namespace NAMESPACE
+```
 
-tanzu rbac binding delete --group $group --role $role --namespace $namespace
+```console
+tanzu rbac binding delete --group GROUP --role ROLE --namespace NAMESPACE
 ```
 
 For example:
@@ -118,7 +120,7 @@ For example:
 $ tanzu rbac binding delete --user username@vmware.com --role app-editor --namespace user-ns
 ```
 
-### <a id="error-logs"></a> Error logs
+## <a id="error-logs"></a> Error logs
 
 Authorization error logs might include the following errors:
 
@@ -206,17 +208,17 @@ Authorization error logs might include the following errors:
     -u, --user string User Name
     ```
 
-### <a id="troubleshooting"></a> Troubleshooting
+## <a id="troubleshooting"></a> Troubleshooting
 
 1. Get a list of permissions for a user or a group:
 
 	```console
-	export NAME=<subject_name>
+	export NAME=SUBJECT-NAME
 	kubectl get rolebindings,clusterrolebindings -A -o json | jq -r ".items[] | select(.subjects[]?.name == \"${NAME}\") | .roleRef.name" | xargs -n1 kubectl describe clusterroles
 	```
 
 1. Get a list of user or group for a specific role:
 
 	```console
-	tanzu rbac binding get --role $role --namespace $namespace
+	tanzu rbac binding get --role ROLE --namespace NAMESPACE
 	```
