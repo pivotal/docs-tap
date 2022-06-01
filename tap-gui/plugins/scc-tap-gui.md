@@ -44,3 +44,9 @@ There are two sections within this view:
 Here is a sample result of the Build stage for the `tanzu-java-web-app` by using Tanzu Build Service:
 
 ![Screen Shot of Build Stage](images/build-stage-sample.png)
+
+Here is a sample result of the Image Scan stage, using Grype - only available in the **test-scan** OOTB supply chain
+--insert image here of Image Scan showing CVEs. 
+
+When a workload is deployed to a cluster that has the `deliverable` package installed, you will observe a new section in the supply chain that will show the **Pull Config** as well as the **Delivery**. A box will surround this section, showing the name of the cluster at the top, indicating what clusters the config has been deployed to. 
+-- insert image of delivery section and details being shown.
