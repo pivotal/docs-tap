@@ -128,8 +128,8 @@ uses. In the example for Auth0, copy this YAML content into `tap-values.yaml`:
     Where:
 
     - `CLIENT-ID` is the Client ID you obtained while setting up the OIDC provider
-    - `ISSUER-URL` is the Issuer URL you obtained while setting up the OIDC provider
     - `CLIENT-SECRET` is the Client Secret you obtained while setting up the OIDC provider
+    - `ISSUER-URL` is the Issuer URL you obtained while setting up the OIDC provider
 
 1. Add a `kubernetes` section to the `app_config` section that Tanzu Application Platform GUI
 uses. This section must have an entry for each cluster that has resources to view.
