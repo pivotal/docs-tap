@@ -66,11 +66,11 @@ This release includes the following changes, listed by component and area.
 #### Tanzu Application Platform GUI
 
 - Supply Chain Plug-in
-  - Added ability to visualize CVE scan results in the details pane for both Build and Image Scan stages, as well as scan policy information, without using the CLI. 
-  - Added ability to visualize the deployment of a workload as a deliverable in a multi-cluster environment in the supply chain graph
-  - Added a deeplink to "View Approvals" for PRs in a Gitrepo so that PRs can be reviewed and approved, resulting in the deployment of a workload to any cluster configured to accept a deployment
-  - Added "Reason" column to the Workloads table to indicate error reasons encountered during supply chain execution
- 
+  - Added ability to visualize CVE scan results in the Details pane for both Build and Image Scan stages, as well as scan policy information, without using the CLI
+  - Added ability to visualize the deployment of a workload as a deliverable in a multicluster environment in the supply chain graph
+  - Added a deeplink to view approvals for PRs in a GitHub repository so that PRs can be reviewed and approved, resulting in the deployment of a workload to any cluster configured to accept a deployment
+  - Added Reason column to the Workloads table to indicate causes for errors encountered during supply chain execution
+
 - Feature 2
 
 #### Functions (Beta)
