@@ -289,7 +289,7 @@ This is the table of contents from which the Tanzu Application Platform Document
       - [Authorization on remote clusters](tap-gui/tap-gui-rbac/setup-tap-gui-rbac.md)
           - [Authorization on EKS clusters](tap-gui/tap-gui-rbac/setup-tap-gui-rbac-eks.md)
           - [Authorization on GKE clusters](tap-gui/tap-gui-rbac/setup-tap-gui-rbac-gke.md)
-          - [View Runtime Resources on Authorization-Enabled Clusters](tap-gui/tap-gui-rbac/view-resouces-rbac.md)
+          - [View Runtime Resources on Authorization-Enabled Clusters](tap-gui/tap-gui-rbac/view-resources-rbac.md)
           - [Assigning Roles and Permissions on Kubernetes Clusters](tap-gui/tap-gui-rbac/assigning-kubernetes-roles.md)
       - [Integrations](tap-gui/integrations.md)
       - [Database configuration](tap-gui/database.md)
