@@ -1,19 +1,31 @@
 # Enable Authorization on Remote Clusters in Tanzu Application Platform GUI
 
-You can control the access to Kubernetes runtime resources on Tanzu Application Platform GUI based on users' role and permissions for each of visible remote clusters. Role-Based Access Control (RBAC) is currently supported for the following Kubernetes cluster providers:
+You can control the access to Kubernetes runtime resources on Tanzu Application Platform GUI based
+on user roles and permissions for each of the visible remote clusters.
+Role-based Access Control (RBAC) is currently supported for the following Kubernetes cluster
+providers:
 
-- [EKS](./setup-tap-gui-rbac-eks.md) (Elastic Kubernetes Service) on AWS
-- [GKE](./setup-tap-gui-rbac-gke.md) (Google Kubernetes Engine) on GCP
+- [EKS](setup-tap-gui-rbac-eks.html) (Elastic Kubernetes Service) on AWS
+- [GKE](setup-tap-gui-rbac-gke.html) (Google Kubernetes Engine) on GCP
 
-Support for other Kubernetes providers will be added in future releases of Tanzu Application Platform.
+Support for other Kubernetes providers is planned for future releases of Tanzu Application Platform.
 
-We assume that the roles and permissions for the Kubernetes clusters have been defined and that the users have been asigned to their roles. For more guidance on how to assign roles and permissions to users, please refer to [Assigning roles and permissions on Kubernetes clusters](./assigning-kubernetes-roles.md).
+Tanzu Application Platform GUI is designed under the assumption that the roles and permissions for
+the Kubernetes clusters are already defined and that the users are already assigned to their roles.
+For information about assigning roles and permissions to users, see
+[Assigning roles and permissions on Kubernetes clusters](assigning-kubernetes-roles.html).
 
-The general process for adding access-controlled visibility for a remote cluster is similar to [Setting up unrestricted remote cluster visibility](./../cluster-view-setup.md). The steps include:
+Adding access-controlled visibility for a remote cluster is similar to
+[Setting up unrestricted remote cluster visibility](../cluster-view-setup.html).
 
-1. Set up the OIDC provider (pre-requisite)
-2. Configure the Kubernetes cluster with the OIDC provider
-3. Configure the Tanzu Application Platform GUI to view the remote cluster
-4. Upgrade the Tanzu Application Platform GUI package
+The steps are:
 
-Once these steps are complete, you can view your runtime resources on a remote cluster in Tanzu Application Platform GUI. For more detail, please refer to [View Runtime Resources on Remote Clusters in Tanzu Application Platform GUI](./view-resouces-rbac.md).
+1. Set up the OIDC provider
+1. Configure the Kubernetes cluster with the OIDC provider
+1. Configure the Tanzu Application Platform GUI to view the remote cluster
+1. Upgrade the Tanzu Application Platform GUI package
+
+After following these steps, you can view your runtime resources on a remote cluster in
+Tanzu Application Platform GUI.
+For more information, see
+[View Runtime Resources on Remote Clusters in Tanzu Application Platform GUI](view-resouces-rbac.html).
