@@ -50,11 +50,10 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
     Where:
 
-    - `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `1.1.0`.
     - `MY-REGISTRY-USER` is the user with write access to `MY-REGISTRY`.
     - `MY-REGISTRY-PASSWORD` is the password for `MY-REGISTRY-USER`.
     - `MY-REGISTRY` is your own container registry.
-    - `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`.
+    - `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `1.1.0`.
 
 1. Relocate the images with the Carvel tool imgpkg by running:
 
