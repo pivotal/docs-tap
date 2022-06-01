@@ -49,4 +49,4 @@ accessing the new added icon:
 
 Choose any of the defined accelerators, fill the options and click on the `generate project`
 
-![accelerator][../images/acc-form.png]
+![accelerator](../images/acc-form.png)
