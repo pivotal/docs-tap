@@ -1,7 +1,7 @@
 # Install Supply Chain Security Tools - Policy Controller
 
-Supply Chain Security Tools - Policy Controller is released as part of Tanzu Application
-Platform's full, iterate and run profiles. Follow the instructions below to manually install this component.
+Supply Chain Security Tools - Policy Controller is automatically installed as part of Tanzu Application
+Platform's Full, Iterate and Run profiles. Follow the instructions below to manually install this component.
 
 ## <a id='scst-policy-prereqs'></a> Prerequisites
 
@@ -10,15 +10,16 @@ Platform's full, iterate and run profiles. Follow the instructions below to manu
 - During configuration for this component, you are asked to provide a cosign public key to use to
 validate signed images. An example cosign public key is provided that can validate an image from the
 public cosign registry. If you want to provide your own key and images, follow the
-[cosign quick start guide](https://github.com/sigstore/cosign#quick-start) in GitHub to
+[cosign quick start guide](https://github.com/sigstore/cosign#quick-start) to
 generate your own keys and sign an image.
 
->**Caution:** This component rejects pods if the webhook fails or is incorrectly configured.
+>**Caution:** This component WILL REJECT `Pods` if it is not correctly configured. Be sure to test your configuration in a test environment before applying policies to your production cluster.
+
 **TODO** is this true?? do we need a trouble shooting section??
 
 ## <a id='install-scst-policy'></a> Install
 
-To install Supply Chain Security Tools - Policy:
+To install Supply Chain Security Tools - Policy Conroller:
 
 1. List version information for the package by running:
 
@@ -67,7 +68,7 @@ To install Supply Chain Security Tools - Policy:
                                                             the Image Policy Webhook controller manager container can use.
                                                             https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory
 
-      quota.pod_number        5                    string   The maximum number of Image Policy Webhook Pods allowed to be created with the priority class
+      quota.pod_number        "5"                    string   The maximum number of Image Policy Webhook Pods allowed to be created with the priority class
                                                             system-cluster-critical. This value must be enclosed in quotes (""). If this value is not
                                                             specified then a default value of 5 is used.
       replicas                1                    integer  The number of replicas to be created for the Image Policy Webhook. This value must not be enclosed
@@ -84,9 +85,8 @@ To install Supply Chain Security Tools - Policy:
 1. Create a file named `scst-policy-values.yaml` and add the settings you want to customize:
 
     - `custom_ca_secrets`:
-      This setting controls which secrets to be added to the application
-      container as custom certificate authorities (CAs). It enables communication
-      with registries deployed with self-signed certificates. `custom_ca_secrets`
+      If your container registries are secured by self-signed certificates, this setting controls which secrets are added to the application
+      container as custom certificate authorities (CAs). `custom_ca_secrets`
       consists of an array of items. Each item contains two fields:
       the `secret_name` field defines the name of the secret,
       and the `namespace` field defines the name of the namespace where said
@@ -102,7 +102,7 @@ To install Supply Chain Security Tools - Policy:
           namespace: ca-namespace
       ```
 
-      >**Note:** This setting is allowed even if `custom_cas` was informed.
+      >**Note:** This setting is allowed even if `custom_cas` is defined.
 
     - `custom_cas`:
       This setting enables adding certificate content in PEM format.
@@ -129,7 +129,7 @@ To install Supply Chain Security Tools - Policy:
             ----- END CERTIFICATE -----
       ```
 
-      >**Note:** This setting is allowed even if `custom_ca_secrets` was informed.
+      >**Note:** This setting is allowed even if `custom_ca_secrets` is defined.
 
     - `deployment_namespace`:
       This setting controls the namespace to which this component is deployed.
@@ -154,6 +154,8 @@ To install Supply Chain Security Tools - Policy:
 
       The default value for this field is `5`. If your use case requires
       more than 5 pods, change this value to allow the number of replicas you intend to deploy.
+      
+      Note: It is recommended to run this component with a critical priority level to prevent the cluster from rejecting all admission requests if the component's `Pod`s are evicted due to resource limitations.
 
     - `replicas`:
       This setting controls the default amount of replicas to be deployed by this
@@ -209,15 +211,4 @@ To install Supply Chain Security Tools - Policy:
 
    After you run the commands above the policy controller will be running.
 
-   >**Note:** This component requires extra configuration steps to work properly. See
-   >[Configuring Supply Chain Security Tools - Policy](configuring.md)
-   >for instructions on how to apply the required configuration.
-
-
-## <a id="configure"></a> Configure
-
-The WebHook deployed by Supply Chain Security Tools - Policy requires extra input
-from the operator before it starts enforcing policies.
-
-To configure your installed component properly, see
-[Configuring Supply Chains Security Tools - Policy](configuring.md).
+   **Note:** Policy Controller is now installed, but it will not enforce any policies by default. Policies must be explicitly configured on the cluster.  To configure signature verification policies, see [Configuring Supply Chain Security Tools - Policy](configuring.md).
