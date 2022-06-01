@@ -105,6 +105,7 @@ To do so:
       resources:
       - sourcescans
       - imagescans
+      - scanpolicies
       verbs: ['get', 'watch', 'list']
     - apiGroups: ['tekton.dev']
       resources:
@@ -117,11 +118,11 @@ To do so:
       verbs: ['get', 'watch', 'list']
     ```
 
-    This YAML content creates the `Namespace`, `ServiceAccount`, `ClusterRole`, and `ClusterRoleBinding`.
+    This YAML content creates `Namespace`, `ServiceAccount`, `ClusterRole`, and `ClusterRoleBinding`.
 
-1. Create the `Namespace`, `ServiceAccount`, `ClusterRole` and `ClusterRoleBinding` by running:
+1. Create `Namespace`, `ServiceAccount`, `ClusterRole`, and `ClusterRoleBinding` by running:
 
-    ```
+    ```console
     kubectl create -f tap-gui-viewer-service-account-rbac.yaml
     ```
 
@@ -146,7 +147,7 @@ To do so:
 [Update Tanzu Application Platform GUI to view resources on multiple clusters](#update-tap-gui) later.
 
 
-## <a id="update-tap-gui"></a>Update Tanzu Application Platform GUI to view resources on multiple clusters
+## <a id="update-tap-gui"></a> Update Tanzu Application Platform GUI to view resources on multiple clusters
 
 The cluster must be identified to Tanzu Application Platform GUI with the `ServiceAccount` token
 and the cluster Kubernetes control plane URL.
@@ -183,14 +184,14 @@ To do so:
 
 1. Update the `tap-gui` package by running this command:
 
-    ```
+    ```console
     tanzu package installed update tap-gui --values-file tap-gui-values.yaml
     ```
 
 1. Wait a moment for the `tap-gui` package to update and then verify that `STATUS` is
 `Reconcile succeeded` by running:
 
-    ```
+    ```console
     tanzu package installed get tap-gui -n tap-install
     ```
 
@@ -200,7 +201,7 @@ To do so:
 To view resources on multiple clusters in the Runtime Resources Visibility plug-in:
 
 1. Navigate to the Runtime Resources Visibility plug-in for a component that is running on multiple
-clusters. [//]: # (More detail needed?)
+clusters.
 
 1. View the multiple resources and their statuses across the clusters.
 

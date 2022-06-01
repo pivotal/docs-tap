@@ -5,7 +5,7 @@ from the Tanzu Application Platform package repository.
 
 >**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
 Both the full and light profiles include Out of the Box Supply Chain with Testing.
-For more information about profiles, see [Installing the Tanzu Application Platform Package and Profiles](../install.md).
+For more information about profiles, see [About Tanzu Application Platform package and profiles](../about-package-profiles.md).
 
 The Out of the Box Supply Chain with Testing package provides a
 ClusterSupplyChain that brings an application from source code to a deployed
@@ -32,13 +32,13 @@ Install by following these steps:
 
     1. Run the following command:
 
-        ```
+        ```console
         tanzu package installed list --namespace tap-install
         ```
 
     1. Verify `ootb-supply-chain-testing-scanning` is in the output:
 
-        ```
+        ```console
         NAME                                PACKAGE-NAME
         ootb-delivery-basic                 ootb-delivery-basic.tanzu.vmware.com
         ootb-supply-chain-basic             ootb-supply-chain-basic.tanzu.vmware.com
@@ -47,13 +47,13 @@ Install by following these steps:
 
     1. If you see `ootb-supply-chain-testing-scanning` in the list, uninstall it by running:
 
-        ```
+        ```console
         tanzu package installed delete ootb-supply-chain-testing-scanning --namespace tap-install
         ```
 
         Example output:
 
-        ```
+        ```console
         Deleting installed package 'ootb-supply-chain-testing-scanning' in namespace 'tap-install'.
         Are you sure? [y/N]: y
 
@@ -70,7 +70,7 @@ Install by following these steps:
 
 1. Check the values of the package that can be configured by running:
 
-    ```
+    ```console
     KEY                       DESCRIPTION
 
     registry.repository       Name of the repository in the image registry server where
@@ -117,7 +117,7 @@ Install by following these steps:
 1. Create a file named `ootb-supply-chain-testing-values.yaml` that specifies the
    corresponding values to the properties you want to change. For example:
 
-    ```
+    ```yaml
     registry:
       server: REGISTRY-SERVER
       repository: REGISTRY-REPOSITORY
@@ -140,17 +140,17 @@ Install by following these steps:
 
 1. With the configuration ready, install the package by running:
 
-    ```
+    ```console
     tanzu package install ootb-supply-chain-testing \
       --package-name ootb-supply-chain-testing.tanzu.vmware.com \
-      --version 0.7.0-build.2 \
+      --version 0.7.0 \
       --namespace tap-install \
       --values-file ootb-supply-chain-testing-values.yaml
     ```
 
     Example output:
 
-    ```
+    ```console
     \ Installing package 'ootb-supply-chain-testing.tanzu.vmware.com'
     | Getting package metadata for 'ootb-supply-chain-testing.tanzu.vmware.com'
     | Creating service account 'ootb-supply-chain-testing-tap-install-sa'

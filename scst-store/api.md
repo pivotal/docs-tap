@@ -1,6 +1,3 @@
-
-
-
 # API details
 
 See [API walkthrough](api-walkthrough.md) for a walkthrough and example.
@@ -31,8 +28,8 @@ See [API walkthrough](api-walkthrough.md) for a walkthrough and example.
 |---------|---------|--------|---------|
 | POST | /api/imageReport | [create image report](#create-image-report) | Create a new image report. Related packages and vulnerabilities are also created. |
 | GET | /api/images | [get images](#get-images) | Search image by id or digest. |
-| GET | /api/packages/{IDorName}/images | [get package images](#get-package-images) | List the images that contain the given package. |
-| GET | /api/vulnerabilities/{CVEID}/images | [get vulnerability images](#get-vulnerability-images) | List the images that contain the given vulnerability. |
+| GET | /api/packages/{IDorName}/images | [get package images](#gpi) | List the images that contain the given package. |
+| GET | /api/vulnerabilities/{CVEID}/images | [get vulnerability images](#gvi) | List the images that contain the given vulnerability. |
 
 
 
@@ -48,11 +45,11 @@ See [API walkthrough](api-walkthrough.md) for a walkthrough and example.
 
 | Method  | URI     | Name   | Summary |
 |---------|---------|--------|---------|
-| GET | /api/images/{IDorDigest}/packages | [get image packages](#get-image-packages) | List the packages in an image. |
-| GET | /api/packages | [get packages](#get-packages) | Search packages by id, name and/or version. |
-| GET | /api/sources/{IDorRepoorSha}/packages | [get source packages](#get-source-packages) |  |
-| GET | /api/sources/packages | [get source packages query](#get-source-packages-query) | List packages of the given source. |
-| GET | /api/vulnerabilities/{CVEID}/packages | [get vulnerability packages](#get-vulnerability-packages) | List packages that contain the given CVE id. |
+| GET | /api/images/{IDorDigest}/packages | [get image packages](#gip) | List the packages in an image. |
+| GET | /api/packages | [get packages](#gp) | Search packages by id, name and/or version. |
+| GET | /api/sources/{IDorRepoorSha}/packages | [get source packages](#gsp) |  |
+| GET | /api/sources/packages | [get source packages query](#gspq) | List packages of the given source. |
+| GET | /api/vulnerabilities/{CVEID}/packages | [get vulnerability packages](#gvp) | List packages that contain the given CVE id. |
 
 
 
@@ -60,10 +57,10 @@ See [API walkthrough](api-walkthrough.md) for a walkthrough and example.
 
 | Method  | URI     | Name   | Summary |
 |---------|---------|--------|---------|
-| POST | /api/sourceReport | [create source report](#create-source-report) | Create a new source report. Related packages and vulnerabilities are also created. |
-| GET | /api/packages/{IDorName}/sources | [get package sources](#get-package-sources) | List the sources containing the given package. |
+| POST | /api/sourceReport | [create source report](#create-sr) | Create a new source report. Related packages and vulnerabilities are also created. |
+| GET | /api/packages/{IDorName}/sources | [get package sources](#gps) | List the sources containing the given package. |
 | GET | /api/sources | [get sources](#get-sources) | Search for sources by ID, repository, commit sha and/or organization. |
-| GET | /api/vulnerabilities/{CVEID}/sources | [get vulnerability sources](#get-vulnerability-sources) | List sources that contain the given vulnerability. |
+| GET | /api/vulnerabilities/{CVEID}/sources | [get vulnerability sources](#gvs) | List sources that contain the given vulnerability. |
 
 
 
@@ -71,11 +68,11 @@ See [API walkthrough](api-walkthrough.md) for a walkthrough and example.
 
 | Method  | URI     | Name   | Summary |
 |---------|---------|--------|---------|
-| GET | /api/images/{IDorDigest}/vulnerabilities | [get image vulnerabilities](#get-image-vulnerabilities) | List vulnerabilities from the given image. |
-| GET | /api/packages/{IDorName}/vulnerabilities | [get package vulnerabilities](#get-package-vulnerabilities) | List vulnerabilities from the given package. |
-| GET | /api/sources/{IDorRepoorSha}/vulnerabilities | [get source vulnerabilities](#get-source-vulnerabilities) |  |
-| GET | /api/sources/vulnerabilities | [get source vulnerabilities query](#get-source-vulnerabilities-query) | List vulnerabilities of the given source. |
-| GET | /api/vulnerabilities | [get vulnerabilities](#get-vulnerabilities) | Search for vulnerabilities by CVE id. |
+| GET | /api/images/{IDorDigest}/vulnerabilities | [get image vulnerabilities](#giv) | List vulnerabilities from the given image. |
+| GET | /api/packages/{IDorName}/vulnerabilities | [get package vulnerabilities](#gpv) | List vulnerabilities from the given package. |
+| GET | /api/sources/{IDorRepoorSha}/vulnerabilities | [get source vulnerabilities](#gsv) |  |
+| GET | /api/sources/vulnerabilities | [get source vulnerabilities query](#gsvq) | List vulnerabilities of the given source. |
+| GET | /api/vulnerabilities | [get vulnerabilities](#gv) | Search for vulnerabilities by CVE id. |
 
 
 
@@ -83,7 +80,7 @@ See [API walkthrough](api-walkthrough.md) for a walkthrough and example.
 
 ### <a id="cir"></a> Create a new image report. Related packages and vulnerabilities are also created. (*CreateImageReport*)
 
-```
+```console
 POST /api/imageReport
 ```
 
@@ -96,8 +93,8 @@ POST /api/imageReport
 #### <a id='all-responses-cir'></a>All responses
 | Code | Status | Description | Has headers | Schema |
 |------|--------|-------------|:-----------:|--------|
-| [200](#create-image-report-200) | OK | Image |  | [schema](#create-image-report-200-schema) |
-| [default](#create-image-report-default) | | ErrorMessage |  | [schema](#create-image-report-default-schema) |
+| [200](#create-im-rpt-200) | OK | Image |  | [schema](#create-im-rpt-200-schema) |
+| [default](#create-im-rpt-default) | | ErrorMessage |  | [schema](#create-im-rpt-default-schema) |
 
 #### <a id='responses-cir'></a>Responses
 
@@ -122,7 +119,7 @@ ErrorMessage
 
 ### <a id="create-sr"></a> Create a new source report. Related packages and vulnerabilities are also created. (*CreateSourceReport*)
 
-```
+```console
 POST /api/sourceReport
 ```
 
@@ -135,8 +132,8 @@ POST /api/sourceReport
 #### <a id='all-responses-csr'></a>All responses
 | Code | Status | Description | Has headers | Schema |
 |------|--------|-------------|:-----------:|--------|
-| [200](#create-source-report-200) | OK | Source |  | [schema](#create-source-report-200-schema) |
-| [default](#create-source-report-default) | | ErrorMessage |  | [schema](#create-source-report-default-schema) |
+| [200](#create-srce-rpt-200) | OK | Source |  | [schema](#create-srce-rpt-200-schema) |
+| [default](#create-srce-rpt-def) | | ErrorMessage |  | [schema](#create-srce-rpt-def-schema) |
 
 #### <a id='responses-csr'></a>Responses
 
@@ -161,7 +158,7 @@ ErrorMessage
 
 ### <a id="gip"></a> List the packages in an image. (*GetImagePackages*)
 
-```
+```console
 GET /api/images/{IDorDigest}/packages
 ```
 
@@ -174,8 +171,8 @@ GET /api/images/{IDorDigest}/packages
 #### <a id='all-responses-gip'></a>All responses
 | Code | Status | Description | Has headers | Schema |
 |------|--------|-------------|:-----------:|--------|
-| [200](#get-image-packages-200) | OK | Package |  | [schema](#get-image-packages-200-schema) |
-| [default](#get-image-packages-default) | | ErrorMessage |  | [schema](#get-image-packages-default-schema) |
+| [200](#get-im-packages-200) | OK | Package |  | [schema](#get-im-packages-200-schema) |
+| [default](#get-im-packages-def) | | ErrorMessage |  | [schema](#get-im-packages-def-schema) |
 
 #### <a id='responses-gip'></a>Responses
 
@@ -200,7 +197,7 @@ ErrorMessage
 
 ### <a id="giv"></a> List vulnerabilities from the given image. (*GetImageVulnerabilities*)
 
-```
+```console
 GET /api/images/{IDorDigest}/vulnerabilities
 ```
 
@@ -213,8 +210,8 @@ GET /api/images/{IDorDigest}/vulnerabilities
 #### <a id='all-responses-giv'></a>All responses
 | Code | Status | Description | Has headers | Schema |
 |------|--------|-------------|:-----------:|--------|
-| [200](#get-image-vulnerabilities-200) | OK | Vulnerability |  | [schema](#get-image-vulnerabilities-200-schema) |
-| [default](#get-image-vulnerabilities-default) | | ErrorMessage |  | [schema](#get-image-vulnerabilities-default-schema) |
+| [200](#get-image-vul-200) | OK | Vulnerability |  | [schema](#get-image-vul-200-schema) |
+| [default](#get-image-vul-def) | | ErrorMessage |  | [schema](#get-image-vul-def-schema) |
 
 #### <a id='responses-giv'></a>Responses
 
@@ -239,7 +236,7 @@ ErrorMessage
 
 ### <a id="get-images"></a> Search image by id or digest. (*GetImages*)
 
-```
+```console
 GET /api/images
 ```
 
@@ -279,7 +276,7 @@ ErrorMessage
 
 ### <a id="gpi"></a> List the images that contain the given package. (*GetPackageImages*)
 
-```
+```console
 GET /api/packages/{IDorName}/images
 ```
 
@@ -292,8 +289,8 @@ GET /api/packages/{IDorName}/images
 #### <a id='all-responses5'></a>All responses
 | Code | Status | Description | Has headers | Schema |
 |------|--------|-------------|:-----------:|--------|
-| [200](#get-package-images-200) | OK | Image |  | [schema](#get-package-images-200-schema) |
-| [default](#get-package-images-default) | | ErrorMessage |  | [schema](#get-package-images-default-schema) |
+| [200](#get-pckg-im-200) | OK | Image |  | [schema](#get-pckg-im-200-schema) |
+| [default](#get-pckg-im-def) | | ErrorMessage |  | [schema](#get-pckg-im-def-schema) |
 
 #### <a id='responses-gpi'></a>Responses
 
@@ -318,7 +315,7 @@ ErrorMessage
 
 ### <a id="gps"></a> List the sources containing the given package. (*GetPackageSources*)
 
-```
+```console
 GET /api/packages/{IDorName}/sources
 ```
 
@@ -331,8 +328,8 @@ GET /api/packages/{IDorName}/sources
 #### <a id='all-responses-gps'></a>All responses
 | Code | Status | Description | Has headers | Schema |
 |------|--------|-------------|:-----------:|--------|
-| [200](#get-package-sources-200) | OK | Source |  | [schema](#get-package-sources-200-schema) |
-| [default](#get-package-sources-default) | | ErrorMessage |  | [schema](#get-package-sources-default-schema) |
+| [200](#get-pckg-sources-200) | OK | Source |  | [schema](#get-pckg-sources-200-schema) |
+| [default](#get-pckg-sources-def) | | ErrorMessage |  | [schema](#get-pckg-sources-def-schema) |
 
 #### <a id='responses-gps'></a>Responses
 
@@ -357,7 +354,7 @@ ErrorMessage
 
 ### <a id="gpv"></a> List vulnerabilities from the given package. (*GetPackageVulnerabilities*)
 
-```
+```console
 GET /api/packages/{IDorName}/vulnerabilities
 ```
 
@@ -370,8 +367,8 @@ GET /api/packages/{IDorName}/vulnerabilities
 #### <a id='all-responses-gpv'></a>All responses
 | Code | Status | Description | Has headers | Schema |
 |------|--------|-------------|:-----------:|--------|
-| [200](#get-package-vulnerabilities-200) | OK | Vulnerability |  | [schema](#get-package-vulnerabilities-200-schema) |
-| [default](#get-package-vulnerabilities-default) | | ErrorMessage |  | [schema](#get-package-vulnerabilities-default-schema) |
+| [200](#get-pckg-vul-200) | OK | Vulnerability |  | [schema](#get-pckg-vul-200-schema) |
+| [default](#get-pckg-vul-default) | | ErrorMessage |  | [schema](#get-pckg-vul-def-schema) |
 
 #### <a id='responses-gpv'></a>Responses
 
@@ -396,7 +393,7 @@ ErrorMessage
 
 ### <a id="gp"></a> Search packages by id, name and/or version. (*GetPackages*)
 
-```
+```console
 GET /api/packages
 ```
 
@@ -411,8 +408,8 @@ GET /api/packages
 #### <a id='all-responses-gp'></a>All responses
 | Code | Status | Description | Has headers | Schema |
 |------|--------|-------------|:-----------:|--------|
-| [200](#get-packages-200) | OK | Package |  | [schema](#get-packages-200-schema) |
-| [default](#get-packages-default) | | ErrorMessage |  | [schema](#get-packages-default-schema) |
+| [200](#get-pckg-200) | OK | Package |  | [schema](#get-pckg-200-schema) |
+| [default](#get-pckg-default) | | ErrorMessage |  | [schema](#get-pckg-default-schema) |
 
 #### <a id='responses-gp'></a>Responses
 
@@ -437,7 +434,7 @@ ErrorMessage
 
 ### <a id="gsp"></a> get source packages (*GetSourcePackages*)
 
-```
+```console
 GET /api/sources/{IDorRepoorSha}/packages
 ```
 
@@ -450,8 +447,8 @@ GET /api/sources/{IDorRepoorSha}/packages
 #### <a id='all-responses-gsp'></a>All responses
 | Code | Status | Description | Has headers | Schema |
 |------|--------|-------------|:-----------:|--------|
-| [200](#get-source-packages-200) | OK | Package |  | [schema](#get-source-packages-200-schema) |
-| [default](#get-source-packages-default) | | ErrorMessage |  | [schema](#get-source-packages-default-schema) |
+| [200](#get-srce-pckg-200) | OK | Package |  | [schema](#get-srce-pckg-200-schema) |
+| [default](#get-srce-pckg-def) | | ErrorMessage |  | [schema](#get-srce-pckg-def-schema) |
 
 #### <a id='responses-gsp'></a>Responses
 
@@ -474,9 +471,9 @@ ErrorMessage
 
 [ErrorMessage](#error-message)
 
-### <a id="gsp"></a> List packages of the given source. (*GetSourcePackagesQuery*)
+### <a id="gspq"></a> List packages of the given source. (*GetSourcePackagesQuery*)
 
-```
+```console
 GET /api/sources/packages
 ```
 
@@ -491,8 +488,8 @@ GET /api/sources/packages
 #### <a id='all-responses-gspq'></a>All responses
 | Code | Status | Description | Has headers | Schema |
 |------|--------|-------------|:-----------:|--------|
-| [200](#get-source-packages-query-200) | OK | Package |  | [schema](#get-source-packages-query-200-schema) |
-| [default](#get-source-packages-query-default) | | ErrorMessage |  | [schema](#get-source-packages-query-default-schema) |
+| [200](#get-srce-pckg-que-200) | OK | Package |  | [schema](#getsrcepckgque-200-schema) |
+| [default](#get-srce-pckg-que-def) | | ErrorMessage |  | [schema](#getsrcepckgque-def-schema) |
 
 #### <a id='responses-gspq'></a>Responses
 
@@ -517,7 +514,7 @@ ErrorMessage
 
 ### <a id="gsv"></a> get source vulnerabilities (*GetSourceVulnerabilities*)
 
-```
+```console
 GET /api/sources/{IDorRepoorSha}/vulnerabilities
 ```
 
@@ -530,8 +527,8 @@ GET /api/sources/{IDorRepoorSha}/vulnerabilities
 #### <a id='all-responses-gsv'></a>All responses
 | Code | Status | Description | Has headers | Schema |
 |------|--------|-------------|:-----------:|--------|
-| [200](#get-source-vulnerabilities-200) | OK | Vulnerability |  | [schema](#get-source-vulnerabilities-200-schema) |
-| [default](#get-source-vulnerabilities-default) | | ErrorMessage |  | [schema](#get-source-vulnerabilities-default-schema) |
+| [200](#get-srce-vul-200) | OK | Vulnerability |  | [schema](#get-srce-vul-200-schema) |
+| [default](#get-srce-vul-def) | | ErrorMessage |  | [schema](#get-srce-vul-def-schema) |
 
 #### <a id='responses-gsv'></a>Responses
 
@@ -556,7 +553,7 @@ ErrorMessage
 
 ### <a id="gsvq"></a> List vulnerabilities of the given source. (*GetSourceVulnerabilitiesQuery*)
 
-```
+```console
 GET /api/sources/vulnerabilities
 ```
 
@@ -597,7 +594,7 @@ ErrorMessage
 
 ### <a id="get-sourcs"></a> Search for sources by ID, repository, commit sha and/or organization. (*GetSourcs*)
 
-```
+```console
 GET /api/sources
 ```
 
@@ -630,7 +627,7 @@ ErrorMessage
 
 ### <a id="gv"></a> Search for vulnerabilities by CVE id. (*GetVulnerabilities*)
 
-```
+```console
 GET /api/vulnerabilities
 ```
 
@@ -669,7 +666,7 @@ ErrorMessage
 
 ### <a id="gvi"></a> List the images that contain the given vulnerability. (*GetVulnerabilityImages*)
 
-```
+```console
 GET /api/vulnerabilities/{CVEID}/images
 ```
 
@@ -708,7 +705,7 @@ ErrorMessage
 
 ### <a id="gvp"></a> List packages that contain the given CVE id. (*GetVulnerabilityPackages*)
 
-```
+```console
 GET /api/vulnerabilities/{CVEID}/packages
 ```
 
@@ -747,7 +744,7 @@ ErrorMessage
 
 ### <a id="gvs"></a> List sources that contain the given vulnerability. (*GetVulnerabilitySources*)
 
-```
+```console
 GET /api/vulnerabilities/{CVEID}/sources
 ```
 
@@ -786,7 +783,7 @@ ErrorMessage
 
 ### <a id="health-check"></a> health check (*HealthCheck*)
 
-```
+```console
 GET /api/health
 ```
 

@@ -4,7 +4,7 @@ This document describes how to install default roles for Tanzu Application Platf
 
 >**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
 The full profile includes the defaults roles package.
-For more information about profiles, see [Installing the Tanzu Application Platform Package and Profiles](../install.md).
+For more information about profiles, see [About Tanzu Application Platform package and profiles](../about-package-profiles.md).
 
 ## <a id='prereqs'></a>Prerequisites
 
@@ -16,13 +16,13 @@ To install default roles:
 
 1. List version information for the package by running:
 
-    ```
+    ```console
     tanzu package available list tap-auth.tanzu.vmware.com --namespace tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     $ tanzu package available list tap-auth.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for tap-auth.tanzu.vmware.com...
       NAME                         VERSION       RELEASED-AT
@@ -31,7 +31,7 @@ To install default roles:
 
 1. Install the package by running:
 
-    ```
+    ```console
     tanzu package install tap-auth \
       --package-name tap-auth.tanzu.vmware.com \
       --version VERSION \
@@ -44,7 +44,7 @@ To install default roles:
 
     For example:
 
-    ```
+    ```console
     $ tanzu package install tap-auth \
       --package-name tap-auth.tanzu.vmware.com \
       --version 1.0.1 \

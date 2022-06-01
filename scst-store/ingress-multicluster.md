@@ -2,11 +2,11 @@
 
 Supply Chain Security Tools - Store has ingress support by using Contour's HTTPProxy resources. To enable ingress support, a Contour installation must be available in the cluster.
 
-Supply Chain Security Tools - Store's configuration includes two options to configure the proxy: `ingress_enabled` and `ingress_domain`. 
+Supply Chain Security Tools - Store's configuration includes two options to configure the proxy: `ingress_enabled` and `ingress_domain`.
 
 For example:
 
-```yml
+```yaml
 ingress_enabled: "true"
 ingress_domain: "example.com"
 ```
@@ -15,7 +15,7 @@ Supply Chain Security Tools - Store installation creates an HTTPProxy entry with
 
 Contour and DNS setup are not part of Supply Chain Security Tools - Store installation. Access to Supply Chain Security Tools - Store through Contour depends on the correct configuration of these two components.
 
-Make the proper DNS record available to clients to resolve `metadata-store.<ingress_domain>` to Envoy service's external IP address. 
+Make the proper DNS record available to clients to resolve `metadata-store.<ingress_domain>` to Envoy service's external IP address.
 
 DNS setup example:
 
@@ -39,7 +39,7 @@ $ nslookup metadata-store.example.com
 
 $ curl https://metadata-store.example.com/api/health -k -v
 > ...
-  < HTTP/2 200 
+  < HTTP/2 200
   ...
 ```
 
@@ -47,7 +47,7 @@ $ curl https://metadata-store.example.com/api/health -k -v
 
 ## <a id="multicluster-setup"></a>Multicluster setup
 
-To support multicluster setup of Supply Chain Security Tools - Store, some communication secrets must be shared across the cluster. 
+To support multicluster setup of Supply Chain Security Tools - Store, some communication secrets must be shared across the cluster.
 
 Set up the cluster containing Supply Chain Security Tools - Store first and enable Supply Chain Security Tools - Store ingress for ease of installation. When configuring a second Tanzu Application Platform cluster, components such as Supply Chain Security Tools - Scan need access to the Store's API. This requires access to the TLS CA certificate for HTTPS support and the Authorization access token.
 
@@ -58,7 +58,7 @@ To get Supply Chain Security Tools - Store's TLS CA certificate, run:
 ```bash
 # On the Supply Chain Security Tools - Store's cluster
 $ CA_CERT=$(kubectl get secret -n metadata-store ingress-cert -o json | jq -r ".data.\"ca.crt\"")
-$ cat <<EOF > store_ca.yml
+$ cat <<EOF > store_ca.yaml
 ---
 apiVersion: v1
 kind: Secret
@@ -78,7 +78,7 @@ EOF
 $ kubectl create ns metadata-store-secrets
 
 # Create the CA Certificate secret
-$ kubectl apply -f store_ca.yml
+$ kubectl apply -f store_ca.yaml
 ```
 
 ## <a id="rbac-auth-token"></a>RBAC Auth token
@@ -101,10 +101,12 @@ This secret is created in the Supply Chain Security Tools - Scan namespace, whic
 
 To allow Supply Chain Security Tools - Scan to access the created secrets, `SecretExport` resources must be created.
 
+>**Note:** Corresponding `SecretImport` resources that receive the exported secrets are installed with the Supply Chain Security Tools - Scan package.
+
 Here is an example for supporting Supply Chain Security Tools - Scan installation on the default namespace `scan-link-system`:
 
 ```bash
-$ cat <<EOF > store_secrets_export.yml
+$ cat <<EOF > store_secrets_export.yaml
 ---
 apiVersion: secretgen.carvel.dev/v1alpha1
 kind: SecretExport
@@ -124,18 +126,20 @@ spec:
 EOF
 
 # Export secrets to the Supply Chain Security Tools - Scan namespace
-$ kubectl apply -f store_secrets_export.yml
+$ kubectl apply -f store_secrets_export.yaml
 ```
 
 Install Supply Chain Security Tools - Scan with the following configuration:
 
-```yml
+```yaml
 ---
-metadataStore:
+scanning:
+  metadataStore:
     url: https://metadata-store.example.com
     caSecret:
         name: store-ca-cert
         importFromNamespace: metadata-store-secrets
     authSecret:
         name: store-auth-token
+        importFromNamespace: metadata-store-secrets
 ```

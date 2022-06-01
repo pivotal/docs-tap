@@ -4,7 +4,7 @@
 
 ### `apps.tanzu.vmware.com/aggregate-to-app-viewer: "true"`
 
-```
+```yaml
 - apiGroups: [""]
   resources: ["configmaps","endpoints","events","persistentvolumeclaims","pods","pods/log","resourcequotas","services"]
   verbs: ["get","list","watch"]
@@ -24,7 +24,7 @@
 
 ### `apps.tanzu.vmware.com/aggregate-to-app-operator: "true"`
 
-```
+```yaml
 - apiGroups: [""]
   resources: ["configmaps","secrets"]
   verbs: ["get","list","watch","create","patch","update","delete","deletecollection"]
@@ -34,7 +34,7 @@
 
 ### `apps.tanzu.vmware.com/aggregate-to-app-viewer: "true"`
 
-```
+```yaml
 - apiGroups: ["accelerator.apps.tanzu.vmware.com"]
   resources: ["accelerators"]
   verbs: ["get","list","watch"]
@@ -42,7 +42,7 @@
 
 ### `apps.tanzu.vmware.com/aggregate-to-app-operator: "true"`
 
-```
+```yaml
 - apiGroups: ["accelerator.apps.tanzu.vmware.com"]
   resources: ["accelerators"]
   verbs: ["get","list","watch","create","patch","update","delete","deletecollection"]
@@ -52,7 +52,7 @@
 
 ### `apps.tanzu.vmware.com/aggregate-to-app-editor: "true"`
 
-```
+```yaml
 - apiGroups: ["carto.run"]
   resources: ["deliverables","workloads"]
   verbs: ["create","patch","update","delete","deletecollection"]
@@ -60,7 +60,7 @@
 
 ### `apps.tanzu.vmware.com/aggregate-to-app-viewer: "true"`
 
-```
+```yaml
 - apiGroups: ["carto.run"]
   resources: ["deliverables","runnables","workloads"]
   verbs: ["get","list","watch"]
@@ -68,7 +68,7 @@
 
 ### `apps.tanzu.vmware.com/aggregate-to-app-viewer-cluster-access: "true"`
 
-```
+```yaml
 - apiGroups: ["carto.run"]
   resources: ["clusterconfigtemplates","clusterconfigtemplates","clusterdeliveries","clusterdeploymenttemplates","clusterimagetemplates","clusterruntemplates","clustersourcetemplates","clustersupplychains","clustertemplates"]
   verbs: ["get","list","watch"]
@@ -76,7 +76,7 @@
 
 ### `apps.tanzu.vmware.com/aggregate-to-app-operator-cluster-access`
 
-```
+```yaml
 - apiGroups: ["carto.run"]
   resources: ["clusterconfigtemplates","clusterconfigtemplates","clusterdeliveries","clusterdeploymenttemplates","clusterimagetemplates","clusterruntemplates","clustersourcetemplates","clustersupplychains","clustertemplates"]
   verbs: ["get","list","watch","create","patch","update","delete","deletecollection"]
@@ -86,7 +86,7 @@
 
 ### `apps.tanzu.vmware.com/aggregate-to-app-viewer: "true"`
 
-```
+```yaml
 - apiGroups: ["apps"]
   resources: ["deployments","replicasets","statefulsets"]
   verbs: ["get","list","watch"]
@@ -109,7 +109,7 @@
 
 ### `apps.tanzu.vmware.com/aggregate-to-app-operator: "true"`
 
-```
+```yaml
 - apiGroups: ["eventing.knative.dev"]
   resources: ["brokers"]
   verbs: ["get","list","watch","create","patch","update","delete","deletecollection"]
@@ -122,7 +122,7 @@
 
 ### `apps.tanzu.vmware.com/aggregate-to-app-viewer: "true"`
 
-```
+```yaml
 - apiGroups: ["conventions.apps.tanzu.vmware.com"]
   resources: ["podintents"]
   verbs: ["get","list","watch"]
@@ -130,7 +130,7 @@
 
 ### `apps.tanzu.vmware.com/aggregate-to-app-viewer-cluster-access: "true"`
 
-```
+```yaml
 - apiGroups: ["conventions.apps.tanzu.vmware.com"]
   resources: ["clusterpodconventions"]
   verbs: ["get","list","watch"]
@@ -138,7 +138,7 @@
 
 ### `apps.tanzu.vmware.com/aggregate-to-app-operator-cluster-access`
 
-```
+```yaml
 - apiGroups: ["conventions.apps.tanzu.vmware.com"]
   resources: ["clusterpodconventions"]
   verbs: ["get","list","watch","create","patch","update","delete","deletecollection"]
@@ -148,7 +148,7 @@
 
 ### `apps.tanzu.vmware.com/aggregate-to-app-editor: "true"`
 
-```
+```yaml
 - apiGroups: [""]
   resources: ["pods"]
   verbs: ["get","list","watch"]
@@ -164,7 +164,7 @@
 
 ### `apps.tanzu.vmware.com/aggregate-to-app-viewer: "true"`
 
-```
+```yaml
 - apiGroups: [""]
   resources: ["configmaps"]
   verbs: ["get","list","watch"]
@@ -205,7 +205,7 @@
 
 ### `apps.tanzu.vmware.com/aggregate-to-workload: "true"`
 
-```
+```yaml
 - apiGroups: ["carto.run"]
   resources: ["deliverables","runnables"]
   verbs: ["get","list","watch","create","patch","update","delete","deletecollection"]
@@ -231,7 +231,7 @@
 
 ### `apps.tanzu.vmware.com/aggregate-to-deliverable: "true"`
 
-```
+```yaml
 - apiGroups: [""]
   resources: ["configmaps"]
   verbs: ["get","list","watch","create","patch","update","delete","deletecollection"]
@@ -259,7 +259,7 @@
 
 ### `apps.tanzu.vmware.com/aggregate-to-app-viewer: "true"`
 
-```
+```yaml
 - apiGroups: ["servicebinding.io"]
   resources: ["servicebindings"]
   verbs: ["get","list","watch"]
@@ -269,7 +269,7 @@
 
 ### `apps.tanzu.vmware.com/aggregate-to-app-viewer: "true"`
 
-```
+```yaml
 - apiGroups: ["services.apps.tanzu.vmware.com"]
   resources: ["resourceclaims"]
   verbs: ["get","list","watch"]
@@ -277,7 +277,7 @@
 
 ### `apps.tanzu.vmware.com/aggregate-to-app-viewer-cluster-access: "true"`
 
-```
+```yaml
 - apiGroups: ["services.apps.tanzu.vmware.com"]
   resources: ["clusterresources"]
   verbs: ["get","list","watch"]
@@ -285,7 +285,7 @@
 
 ### `apps.tanzu.vmware.com/aggregate-to-app-operator: "true"`
 
-```
+```yaml
 - apiGroups: ["services.apps.tanzu.vmware.com"]
   resources: ["resourceclaims"]
   verbs: ["get","list","watch","create","patch","update","delete","deletecollection"]
@@ -293,7 +293,7 @@
 
 ### `apps.tanzu.vmware.com/aggregate-to-app-operator-cluster-access`
 
-```
+```yaml
 - apiGroups: ["services.apps.tanzu.vmware.com"]
   resources: ["clusterresources"]
   verbs: ["get","list","watch"]
@@ -303,7 +303,7 @@
 
 ### `apps.tanzu.vmware.com/aggregate-to-app-viewer: "true"`
 
-```
+```yaml
 - apiGroups: ["source.apps.tanzu.vmware.com"]
   resources: ["imagerepositories"]
   verbs: ["get","list","watch"]
@@ -313,7 +313,7 @@
 
 ### `apps.tanzu.vmware.com/aggregate-to-app-viewer: "true"`
 
-```
+```yaml
 - apiGroups: ["scanning.apps.tanzu.vmware.com"]
   resources: ["imagescans","scanpolicies","scantemplates","sourcescans"]
   verbs: ["get","list","watch"]
@@ -321,7 +321,7 @@
 
 ### `apps.tanzu.vmware.com/aggregate-to-app-operator: "true"`
 
-```
+```yaml
 - apiGroups: ["scanning.apps.tanzu.vmware.com"]
   resources: ["scanpolicies","scantemplates"]
   verbs: ["get","list","watch","create","patch","update","delete","deletecollection"]
@@ -331,7 +331,7 @@
 
 ### `apps.tanzu.vmware.com/aggregate-to-app-editor: "true"`
 
-```
+```yaml
 - apiGroups: ["kpack.io"]
   resources: ["builds"]
   verbs: ["patch"]
@@ -339,7 +339,7 @@
 
 ### `apps.tanzu.vmware.com/aggregate-to-app-viewer: "true"`
 
-```
+```yaml
 - apiGroups: ["kpack.io"]
   resources: ["builds","builders","images"]
   verbs: ["get","list","watch"]
@@ -347,7 +347,7 @@
 
 ### `apps.tanzu.vmware.com/aggregate-to-app-viewer-cluster-access: "true"`
 
-```
+```yaml
 - apiGroups: ["kpack.io"]
   resources: ["clusterbuilders","clusterstacks","clusterstores"]
   verbs: ["get","list","watch"]
@@ -355,7 +355,7 @@
 
 ### `apps.tanzu.vmware.com/aggregate-to-app-operator: "true"`
 
-```
+```yaml
 - apiGroups: ["kpack.io"]
   resources: ["builders"]
   verbs: ["get","list","watch","create","patch","update","delete","deletecollection"]
@@ -363,7 +363,7 @@
 
 ### `apps.tanzu.vmware.com/aggregate-to-app-operator-cluster-access`
 
-```
+```yaml
 - apiGroups: ["kpack.io"]
   resources: ["clusterbuilders","clusterstacks","clusterstores"]
   verbs: ["get","list","watch","create","patch","update","delete","deletecollection"]
@@ -373,7 +373,7 @@
 
 ### `apps.tanzu.vmware.com/aggregate-to-app-viewer: "true"`
 
-```
+```yaml
 - apiGroups: ["tekton.dev"]
   resources: ["pipelineresources","pipelineruns","pipelines","taskruns","tasks"]
   verbs: ["get","list","watch"]
@@ -381,7 +381,7 @@
 
 ### `apps.tanzu.vmware.com/aggregate-to-app-viewer-cluster-access: "true"`
 
-```
+```yaml
 - apiGroups: ["tekton.dev"]
   resources: ["clustertasks"]
   verbs: ["get","list","watch"]
@@ -389,7 +389,7 @@
 
 ### `apps.tanzu.vmware.com/aggregate-to-app-operator: "true"`
 
-```
+```yaml
 - apiGroups: ["tekton.dev"]
   resources: ["pipelineresources","pipelines","tasks"]
   verbs: ["get","list","watch","create","patch","update","delete","deletecollection"]
@@ -397,7 +397,7 @@
 
 ### `apps.tanzu.vmware.com/aggregate-to-app-operator-cluster-access`
 
-```
+```yaml
 - apiGroups: ["tekton.dev"]
   resources: ["clustertasks"]
   verbs: ["get","list","watch","create","patch","update","delete","deletecollection"]

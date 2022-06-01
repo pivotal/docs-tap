@@ -1,0 +1,4 @@
+---
+template_variables:
+  tap_version: 1.2.0
+  hide_content: true

@@ -6,7 +6,7 @@ In this topic, you'll find troubleshooting information to help resolve issues in
 
 You see the following error when you run Tanzu CLI commands, for example `tanzu version`, on macOS:
 
-```
+```console
 "tanzu" cannot be opened because the developer cannot be verified
 ```
 
@@ -29,7 +29,8 @@ To resolve this issue:
 5. Enter your system username and password in the macOS prompt window to confirm the changes.
 
 6. In the terminal window, run:
-    ```
+
+    ```console
     tanzu version
     ```
 
@@ -40,7 +41,7 @@ To resolve this issue:
 
 When installing Tanzu Application Platform, you receive an error message that includes the following:
 
-```
+```console
 (message: Error (see .status.usefulErrorMessage for details))
 ```
 
@@ -52,7 +53,7 @@ A package fails to reconcile and you must access the details in `.status.usefulE
 
 Access the details in `.status.usefulErrorMessage` by running:
 
-```
+```console
 kubectl get PACKAGE-NAME grype -n tap-install -o yaml
 ```
 
@@ -62,13 +63,13 @@ Where `PACKAGE-NAME` is the name of the package to target.
 
 When running the `tanzu package install` command, you receive an error message that includes the error:
 
-```
+```console
 UNAUTHORIZED: unauthorized to access repository
 ```
 
 Example:
 
-  ```
+  ```console
   $ tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.1.0 -n tap-install -f ./app-live-view.yml
 
   Error: package reconciliation failed: vendir: Error: Syncing directory '0':
@@ -102,13 +103,13 @@ To resolve this issue:
 
 When running the `tanzu package install` command, you receive the following error:
 
-```
+```console
 failed to create ServiceAccount resource: serviceaccounts already exists
 ```
 
 Example:
 
-  ```
+  ```console
   $ tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.2.0 -n tap-install -f app-accelerator-values.yaml
 
   Error: failed to create ServiceAccount resource: serviceaccounts "app-accelerator-tap-install-sa" already exists
@@ -124,7 +125,7 @@ The `tanzu package install` command may be executed again after failing.
 
 To update the package, run the following command after the first use of the `tanzu package install` command
 
-```
+```console
 tanzu package installed update
 ```
 
@@ -133,7 +134,7 @@ tanzu package installed update
 You run the `tanzu package install` command and one or more packages fails to install.
 For example:
 
-  ```
+  ```console
   tanzu package install tap -p tap.tanzu.vmware.com -v 0.4.0 --values-file tap-values.yaml -n tap-install
   - Installing package 'tap.tanzu.vmware.com'
   \ Getting package metadata for 'tap.tanzu.vmware.com'
@@ -171,14 +172,14 @@ in the provided `tap-config.yml` file.
 
 1. Verify if the installation is still in progress by running:
 
-    ```
+    ```console
     tanzu package installed list -A
     ```
 
     If the installation is still in progress, the command produces output similar to the following
     example, and the installation is likely to finish successfully.
 
-    ```
+    ```console
     \ Retrieving installed packages...
       NAME                      PACKAGE-NAME                                       PACKAGE-VERSION  STATUS               NAMESPACE
       accelerator               accelerator.apps.tanzu.vmware.com                  1.0.0            Reconcile succeeded  tap-install
@@ -215,13 +216,13 @@ in the provided `tap-config.yml` file.
     If the installation has stopped running, one or more reconciliations have likely failed, as seen
     in the following example:
 
-    ```
+    ```console
     NAME                       PACKAGE NAME                                         PACKAGE VERSION   DESCRIPTION                                                            AGE
     accelerator                accelerator.apps.tanzu.vmware.com                    1.0.1             Reconcile succeeded                                                    109m
     api-portal                 api-portal.tanzu.vmware.com                          1.0.9             Reconcile succeeded                                                    119m
     appliveview                run.appliveview.tanzu.vmware.com                     1.0.2-build.2     Reconcile succeeded                                                    109m
     appliveview-conventions    build.appliveview.tanzu.vmware.com                   1.0.2-build.2     Reconcile succeeded                                                    109m
-    buildservice               buildservice.tanzu.vmware.com                        1.4.2             Reconcile succeeded                                                    119m
+    buildservice               buildservice.tanzu.vmware.com                        1.5.0             Reconcile succeeded                                                    119m
     cartographer               cartographer.tanzu.vmware.com                        0.2.1             Reconcile succeeded                                                    117m
     cert-manager               cert-manager.tanzu.vmware.com                        1.5.3+tap.1       Reconcile succeeded                                                    119m
     cnrs                       cnrs.tanzu.vmware.com                                1.1.0             Reconcile succeeded                                                    109m
@@ -252,7 +253,7 @@ in the provided `tap-config.yml` file.
 
 1. To get more details on the possible cause of a reconciliation failure, run:
 
-    ```
+    ```console
     kubectl describe packageinstall/NAME -n tap-install
     ```
 

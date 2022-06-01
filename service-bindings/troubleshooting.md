@@ -6,14 +6,14 @@ To help identify issues when troubleshooting, you can retrieve and examine logs 
 
 To retrieve pod logs from the `manager` running in the `service-bindings` namespace, run:
 
-```
+```console
 kubectl -n service-bindings logs -l role=manager
 ```
 
 For example:
 
 
-```
+```console
 $ kubectl -n service-bindings logs -l role=manager
 
 2021/11/05 15:25:28 Registering 3 clients

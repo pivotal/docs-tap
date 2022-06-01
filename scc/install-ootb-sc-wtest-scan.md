@@ -5,7 +5,7 @@ from the Tanzu Application Platform package repository.
 
 >**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
 The full profile includes Out of the Box Supply Chain with Testing and Scanning.
-For more information about profiles, see [Installing the Tanzu Application Platform Package and Profiles](../install.md).
+For more information about profiles, see [About Tanzu Application Platform package and profiles](../about-package-profiles.md).
 
 The Out of the Box Supply Chain with Testing and Scanning package provides a
 ClusterSupplyChain that brings an application from source code to a deployed
@@ -32,13 +32,13 @@ To install Out of the Box Supply Chain with Testing and Scanning:
 
     1. Run the following command:
 
-        ```
+        ```console
         tanzu package installed list --namespace tap-install
         ```
 
     1. Verify `ootb-supply-chain-testing` is in the output:
 
-        ```
+        ```console
         NAME                                PACKAGE-NAME
         ootb-delivery-basic                 ootb-delivery-basic.tanzu.vmware.com
         ootb-supply-chain-basic             ootb-supply-chain-basic.tanzu.vmware.com
@@ -47,13 +47,13 @@ To install Out of the Box Supply Chain with Testing and Scanning:
 
     1. If you see `ootb-supply-chain-testing` in the list, uninstall it by running:
 
-        ```
+        ```console
         tanzu package installed delete ootb-supply-chain-testing --namespace tap-install
         ```
 
         Example output:
 
-        ```
+        ```console
         Deleting installed package 'ootb-supply-chain-testing' in namespace 'tap-install'.
         Are you sure? [y/N]: y
 
@@ -70,15 +70,15 @@ To install Out of the Box Supply Chain with Testing and Scanning:
 
 1. Check the values of the package that can be configured by running:
 
-    ```
-    tanzu package available get ootb-supply-chain-testing-scanning.tanzu.vmware.com/0.7.0-build.2 \
+    ```console
+    tanzu package available get ootb-supply-chain-testing-scanning.tanzu.vmware.com/0.7.0 \
       --values-schema \
       -n tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     KEY                       DESCRIPTION
 
     registry.repository       Name of the repository in the image registry server where
@@ -126,7 +126,7 @@ To install Out of the Box Supply Chain with Testing and Scanning:
 1. Create a file named `ootb-supply-chain-testing-scanning-values.yaml` that specifies
    the corresponding values to the properties you want to change. For example:
 
-    ```
+    ```yaml
     registry:
       server: REGISTRY-SERVER
       repository: REGISTRY-REPOSITORY
@@ -148,17 +148,17 @@ To install Out of the Box Supply Chain with Testing and Scanning:
 1. With the configuration ready, install the package by running:
 
 
-    ```
+    ```console
     tanzu package install ootb-supply-chain-testing-scanning \
       --package-name ootb-supply-chain-testing-scanning.tanzu.vmware.com \
-      --version 0.7.0-build.2 \
+      --version 0.7.0 \
       --namespace tap-install \
       --values-file ootb-supply-chain-testing-scanning-values.yaml
     ```
 
     Example output:
 
-    ```
+    ```console
     \ Installing package 'ootb-supply-chain-testing-scanning.tanzu.vmware.com'
     | Getting package metadata for 'ootb-supply-chain-testing-scanning.tanzu.vmware.com'
     | Creating service account 'ootb-supply-chain-testing-scanning-tap-install-sa'

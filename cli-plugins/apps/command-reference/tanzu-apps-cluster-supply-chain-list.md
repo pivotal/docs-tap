@@ -2,25 +2,25 @@
 
 This topic helps you list cluster supply chains.
 
-```
+```console
 tanzu apps cluster-supply-chain list [flags]
 ```
 
 ## <a id="examples"></a>Examples
 
-```
+```console
 tanzu apps cluster-supply-chain list
 ```
 
 ## <a id="options"></a>Options
 
-```
+```console
   -h, --help   help for list
 ```
 
 ## <a id="parent-commands-options"></a>Options inherited from parent commands
 
-```
+```console
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
       --kubeconfig file   kubeconfig file (default is $HOME/.kube/config)
       --no-color          disable color output in terminals

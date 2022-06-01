@@ -16,7 +16,7 @@ A custom resource of type `Workshop` describes each workshop. Before you can cre
 
 Here is an example `Workshop` custom resource:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
@@ -24,8 +24,8 @@ metadata:
 spec:
   title: Kubernetes Fundamentals
   description: Workshop on getting started with Kubernetes
-  url: https://github.com/eduk8s-labs/lab-k8s-fundamentals
-  vendor: eduk8s.io
+  url: {YOUR-GIT-REPO-URL}/lab-k8s-fundamentals
+  vendor: learningcenter.io
   authors:
   - Graham Dumpleton
   difficulty: intermediate
@@ -49,8 +49,8 @@ spec:
 
 To load the definition of the workshop, run:
 
-```
-kubectl apply -f https://raw.githubusercontent.com/eduk8s-labs/lab-k8s-fundamentals/master/resources/workshop.yaml
+```console
+kubectl apply -f {YOUR-GIT-REPO-URL}/lab-k8s-fundamentals/master/resources/workshop.yaml
 ```
 
 The custom resource created is cluster-scoped. The command must be run as a cluster admin or other appropriate
@@ -58,21 +58,21 @@ user with permission to create the resource.
 
 If successfully loaded, the command outputs:
 
-```
+```console
 workshop.learningcenter.tanzu.vmware.com/lab-k8s-fundamentals created
 ```
 
 To list the workshop definitions that have been loaded and that can be deployed, run:
 
-```
+```console
 kubectl get workshops
 ```
 
 For this workshop, this outputs:
 
-```
+```console
 NAME                  IMAGE                                            FILES  URL
-lab-k8s-fundamentals  quay.io/eduk8s-labs/lab-k8s-fundamentals:master         https://github.com/eduk8s-labs/lab-k8s-fundamentals
+lab-k8s-fundamentals  {YOUR-REGISTRY-URL}/lab-k8s-fundamentals:master         {YOUR-GIT-REPO-URL}/lab-k8s-fundamentals
 ```
 
 The added fields in this case give:
@@ -91,7 +91,7 @@ a set of workshops to be deployed and the number of people taking the workshops.
 
 The `TrainingPortal` custom resource we use in this example is:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
@@ -107,8 +107,8 @@ spec:
 
 To create the custom resource, run:
 
-```
-kubectl apply -f https://raw.githubusercontent.com/eduk8s-labs/lab-k8s-fundamentals/master/resources/training-portal.yaml
+```console
+kubectl apply -f {YOUR-GIT-REPO-URL}/lab-k8s-fundamentals/master/resources/training-portal.yaml
 ```
 
 The custom resource created is cluster-scoped. The command must be run as a cluster admin or other appropriate
@@ -116,19 +116,19 @@ user with permission to create the resource.
 
 This results in the output:
 
-```
+```console
 trainingportal.learningcenter.tanzu.vmware.com/lab-k8s-fundamentals created
 ```
 
 There is actually much more going on than this. To see all the resources created, run:
 
-```
+```console
 kubectl get learningcenter-training -o name
 ```
 
 You should see:
 
-```
+```console
 workshop.learningcenter.tanzu.vmware.com/lab-k8s-fundamentals
 trainingportal.learningcenter.tanzu.vmware.com/lab-k8s-fundamentals
 workshopenvironment.learningcenter.tanzu.vmware.comlab-k8s-fundamentals-w01
@@ -144,13 +144,13 @@ The `WorkshopSession` custom resource results in the creation of a single worksh
 
 To see a list of the workshop instances created and their details, run:
 
-```
+```console
 kubectl get workshopsessions
 ```
 
 This yields output similar to:
 
-```
+```console
 NAME                            URL                                         USERNAME   PASSWORD
 lab-k8s-fundamentals-w01-s001   http://lab-k8s-fundamentals-w01-s001.test
 ```
@@ -171,13 +171,13 @@ The first time you deploy the workshop, it can take a few moments to pull down t
 To access the workshops, attendees of a training session need to visit the web-based portal for the training session.
 Find the URL for the web portal by running:
 
-```
+```console
 kubectl get trainingportals
 ```
 
 This should yield output similar to:
 
-```
+```console
 NAME                  URL                                   ADMINUSERNAME  ADMINPASSWORD
 lab-k8s-fundamentals  https://lab-k8s-fundamentals-ui.test  learningcenter         mGI2C1TkHEBoFgKiZetxMnwAldRU80aN
 ```
@@ -200,9 +200,9 @@ Attendees can access workshops through the web portal by following two steps:
     ![Screenshot of a workshop listing on the portal catalog](images/portal-catalog.png)
 
     - An orange dot beside a workshop means that no instance for that workshop has been allocated
-    to the user as yet, but that some are available. 
+    to the user as yet, but that some are available.
     - A red dot indicates there are no more workshop instances
-    available. 
+    available.
     - A green dot indicates a workshop instance has
     already been reserved by the attendee.
 
@@ -218,6 +218,6 @@ are deleted when complete.
 
 To delete all workshop instances and the web-based portal, run:
 
-```
+```console
 kubectl delete trainingportal/lab-k8s-fundamentals
 ```

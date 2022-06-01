@@ -5,25 +5,25 @@ from the Tanzu Application Platform package repository.
 
 >**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
 The full profile includes Supply Chain Security Tools - Scan.
-For more information about profiles, see [Installing the Tanzu Application Platform Package and Profiles](../install.md).
+For more information about profiles, see [About Tanzu Application Platform package and profiles](../about-package-profiles.md).
 
-## <a id='scst-scan-prereqs'></a>Prerequisites
+## <a id='scst-scan-prereqs'></a> Prerequisites
 
 Before installing Supply Chain Security Tools - Scan:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
-- Install [Supply Chain Security Tools - Store](../install-components.md#install-scst-store) for scan results to persist. It can be present on the same cluster or a different one. You can install Supply Chain Security Tools - Scan by using the CA Secret name for Supply Chain Security Tools - Store present in the same cluster, with Token Secret name for Supply Chain Security Tools - Store in different cluster, or without Supply Chain Security Tools - Store. In this case, skip creating a values file. After you complete installing Supply Chain Security Tools - Store, you must update the Supply Chain Security Tools - Scan values file.
+- Install [Supply Chain Security Tools - Store](../install-components.md#install-scst-store) for scan results to persist. It can be present on the same cluster or a different one. You can install Supply Chain Security Tools - Scan by using the CA Secret name for Supply Chain Security Tools - Store present in the same cluster, with Token Secret name for Supply Chain Security Tools - Store in different cluster, or without Supply Chain Security Tools - Store. After you complete installing Supply Chain Security Tools - Store, you must update the Supply Chain Security Tools - Scan values file.
 
     For usage instructions, see [Using the Supply Chain Security Tools - Store](../scst-store/overview.md).
 
-- Install Supply Chain Security Tools - Store Tanzu CLI plug-in to query the Supply Chain Security Tools - Store for CVE results.
-  See [Installing the Tanzu CLI plug-in](../scst-store/cli-installation.md).
+- Install the Tanzu Insight CLI plug-in to query the Supply Chain Security Tools - Store for CVE results.
+  See [Install the Tanzu Insight CLI plug-in](../cli-plugins/insight/cli-installation.md).
 
-## <a id="scanner-support"></a>Scanner support
+## <a id="scanner-support"></a> Scanner support
 
 | Out-Of-The-Box Scanner | Version |
 | --- | --- |
-| [Anchore Grype](https://github.com/anchore/grype) | v0.33.1 |
+| [Anchore Grype](https://github.com/anchore/grype) | v0.37.0 |
 
 Let us know if there's a scanner you'd like us to support.
 
@@ -40,13 +40,13 @@ To install Supply Chain Security Tools - Scan (Scan controller):
 
 1. List version information for the package by running:
 
-    ```
+    ```console
     tanzu package available list scanning.apps.tanzu.vmware.com --namespace tap-install
     ```
 
      For example:
 
-    ```
+    ```console
     $ tanzu package available list scanning.apps.tanzu.vmware.com --namespace tap-install
     / Retrieving package versions for scanning.apps.tanzu.vmware.com...
       NAME                             VERSION       RELEASED-AT
@@ -55,7 +55,7 @@ To install Supply Chain Security Tools - Scan (Scan controller):
 
 1. (Optional) Make changes to the default installation settings by running:
 
-    ```
+    ```console
     tanzu package available get scanning.apps.tanzu.vmware.com/VERSION --values-schema -n tap-install
     ```
 
@@ -65,7 +65,7 @@ To install Supply Chain Security Tools - Scan (Scan controller):
 
 1. Install the package with default configuration by running:
 
-    ```
+    ```console
     tanzu package install scan-controller \
       --package-name scanning.apps.tanzu.vmware.com \
       --version VERSION \
@@ -75,32 +75,31 @@ To install Supply Chain Security Tools - Scan (Scan controller):
     Where `VERSION` is your package version number. For example, `1.1.0`.
 
 1. (Optional) Configure Supply Chain Security Tools - Store in a different cluster
-   
-   ```yaml
-   ---
-   metadataStore:
-    url: https://metadata-store.example.com:8443
-    authSecret:
-      name: my-auth-secret-name
-   ```
 
-   Where:
+    ```yaml
+    ---
+    metadataStore:
+      url: META-DATA-STORE-URL
+      authSecret:
+        name: AUTH-SECRET-NAME
+    ```
 
-   - `metadataStore.url` is the URL pointing to the Supply Chain Security Tools - Store ingress in the cluster that has your Supply Chain Security Tools - Store deployment.
+    Where:
 
-   - `metadataStore.authSecret.name` is the name of the secret that has the auth token to post to the Supply Chain Security Tools - Store. 
+    - `META-DATA-STORE-URL` is the URL pointing to the Supply Chain Security Tools - Store ingress in the cluster that has your Supply Chain Security Tools - Store deployment. For example, `https://metadata-store.example.com:8443`.
+    - `AUTH-SECRET-NAME` is the name of the secret that has the auth token to post to the Supply Chain Security Tools - Store.
 
 To install Supply Chain Security Tools - Scan (Grype scanner):
 
 1. List version information for the package by running:
 
-    ```
+    ```console
     tanzu package available list grype.scanning.apps.tanzu.vmware.com --namespace tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     $ tanzu package available list grype.scanning.apps.tanzu.vmware.com --namespace tap-install
     / Retrieving package versions for grype.scanning.apps.tanzu.vmware.com...
       NAME                                  VERSION       RELEASED-AT
@@ -109,7 +108,7 @@ To install Supply Chain Security Tools - Scan (Grype scanner):
 
 1. (Optional) Make changes to the default installation settings by running:
 
-    ```
+    ```console
     tanzu package available get grype.scanning.apps.tanzu.vmware.com/VERSION --values-schema -n tap-install
     ```
 
@@ -117,7 +116,7 @@ To install Supply Chain Security Tools - Scan (Grype scanner):
 
     For example:
 
-    ```
+    ```console
     $ tanzu package available get grype.scanning.apps.tanzu.vmware.com/1.1.0 --values-schema -n tap-install
     | Retrieving package details for grype.scanning.apps.tanzu.vmware.com/1.1.0...
       KEY                        DEFAULT  TYPE    DESCRIPTION
@@ -129,7 +128,7 @@ To install Supply Chain Security Tools - Scan (Grype scanner):
       targetSourceSshSecret      <EMPTY>  string  Reference to the secret containing SSH credentials for cloning private repositories.
     ```
 
-1. (Optional) You can define the `--values-file` flag to customize the default configuration. Create a `grype-values.yml` file by using the following configuration:
+1. (Optional) You can define the `--values-file` flag to customize the default configuration. Create a `grype-values.yaml` file by using the following configuration:
 
     ```yaml
     ---
@@ -153,7 +152,7 @@ To change the default values, see the Scan controller instructions for more info
 
 1. Install the package by running:
 
-    ```
+    ```console
     tanzu package install grype-scanner \
       --package-name grype.scanning.apps.tanzu.vmware.com \
       --version VERSION \
@@ -165,7 +164,7 @@ To change the default values, see the Scan controller instructions for more info
 
     For example:
 
-    ```
+    ```console
     $ tanzu package install grype-scanner \
       --package-name grype.scanning.apps.tanzu.vmware.com \
       --version 1.1.0 \

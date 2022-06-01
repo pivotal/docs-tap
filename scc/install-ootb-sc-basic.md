@@ -5,7 +5,7 @@ from the Tanzu Application Platform package repository.
 
 >**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
 Both the full and light profiles include Out of the Box Supply Chain Basic.
-For more information about profiles, see [Installing the Tanzu Application Platform Package and Profiles](../install.md).
+For more information about profiles, see [About Tanzu Application Platform package and profiles](../about-package-profiles.md).
 
 The Out of the Box Supply Chain Basic package provides the most basic
 ClusterSupplyChain that brings an application from source code to a deployed
@@ -25,15 +25,15 @@ To install Out of the Box Supply Chain Basic:
 1. Familiarize yourself with the set of values of the package that can be
    configured by running:
 
-    ```
-    tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.7.0-build.2 \
+    ```console
+    tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.7.0 \
       --values-schema \
       -n tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     KEY                       DESCRIPTION
 
     registry.repository       Name of the repository in the image registry server where
@@ -80,7 +80,7 @@ To install Out of the Box Supply Chain Basic:
 1. Create a file named `ootb-supply-chain-basic-values.yaml` that specifies the
    corresponding values to the properties you want to change. For example:
 
-    ```
+    ```yaml
     registry:
       server: REGISTRY-SERVER
       repository: REGISTRY-REPOSITORY
@@ -99,17 +99,17 @@ To install Out of the Box Supply Chain Basic:
 
 1. With the configuration ready, install the package by running:
 
-    ```
+    ```console
     tanzu package install ootb-supply-chain-basic \
       --package-name ootb-supply-chain-basic.tanzu.vmware.com \
-      --version 0.7.0-build.2 \
+      --version 0.7.0 \
       --namespace tap-install \
       --values-file ootb-supply-chain-basic-values.yaml
     ```
 
     Example output:
 
-    ```
+    ```console
     \ Installing package 'ootb-supply-chain-basic.tanzu.vmware.com'
     | Getting package metadata for 'ootb-supply-chain-basic.tanzu.vmware.com'
     | Creating service account 'ootb-supply-chain-basic-tap-install-sa'

@@ -1,9 +1,5 @@
 # Security details
 
-## <a id='sec-scan'></a>Security Scans
-
-See [SCA Scanning Results](sca-scans/sca-scanning-results.md) for security scanning results for the API and CLI components.
-
 ## <a id='app-sec'></a>Application security
 
 ### <a id='tls-encrypt'></a>TLS encryption
@@ -13,14 +9,16 @@ Supply Chain Security Tools - Store requires TLS connection. If certificates are
 ##### <a id='crypto-al'></a>Cryptographic algorithms:
 
 Elliptic Curve:
-```
+
+```text
 CurveP521
 CurveP384
 CurveP256
 ```
 
 Cipher Suites:
-```
+
+```text
 TLS_AES_128_GCM_SHA256
 TLS_AES_256_GCM_SHA384
 TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
@@ -56,14 +54,16 @@ There is no default service account bound to the `Read Only` cluster role. You m
 All containers shipped do not use root user accounts or accounts with root access. Using Kubernetes Security Context ensures that applications do not run with root users.
 
 Security Context for the API server:
-```
+
+```text
 allowPrivilegeEscalation: false
 runAsUser: 65532
 fsGroup: 65532
 ```
 
 Security Context for the Postgres DB pod:
-```
+
+```text
 allowPrivilegeEscalation: false
 runAsUser: 999
 fsGroup: 999

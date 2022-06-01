@@ -1,11 +1,20 @@
 # Setting up authentication for Tanzu Application Platform
 
-There are multiple ways to integrate Tanzu Application Platform with your identity provider depending on your Kubernetes deployment.
+There are multiple ways to set up authentication for your Tanzu Application Platform deployment.
+You can manage authentication at the infrastructure level with your Kubernetes provider,
+such as Tanzu Kubernetes Grid, EKS, AKS, or GKE.
 
-VMware recommends using the solutions provided by your Kubernetes deployment.
+VMware recommends Pinniped for integrating your identity management into Tanzu Application Platform
+on multicloud. It provides many supported integrations for widely used identity providers.
+To use Pinniped, see [Installing Pinniped on Tanzu Application Platform](pinniped-install-guide.html) and
+[Logging in using Pinniped](pinniped-login.html).
 
-When you have multiple identity management solutions to integrate, for example, if you're operating Tanzu Application Platform on multi-cloud, VMware recommends installing pinniped. See our [guide to install pinniped](pinniped-install-guide.md). 
+See [Integrating Azure Active Directory](azure-ad.html) for Azure Active Directory Integration
 
-## Tanzu Kubernetes Grid
+## <a id="tkg"></a> Tanzu Kubernetes Grid
 
-For TKG clusters, Pinniped is the default identity solution and is installed as a [core package](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.4/vmware-tanzu-kubernetes-grid-14/GUID-packages-core-index.html). See [TKG documentation](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.4/vmware-tanzu-kubernetes-grid-14/GUID-cluster-lifecycle-enable-identity-management.html) for more information about enabling the functionality.
+For Tanzu Kubernetes Grid clusters, Pinniped is the default identity solution and is installed as a
+core package. For more information, see
+[Core Packages](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.4/vmware-tanzu-kubernetes-grid-14/GUID-packages-core-index.html) and
+[Enable Identity Management in an Existing Deployment](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.4/vmware-tanzu-kubernetes-grid-14/GUID-cluster-lifecycle-enable-identity-management.html)
+in the Tanzu Kubernetes Grid documentation.

@@ -1,112 +1,224 @@
 # Bind a user or group to a default role
 
-You can take two approaches to bind a user or group to a default role:
+You can choose one of the following two approaches to bind a user or group to a default role:
 
-1. Use the beta Tanzu Application Platform Auth CLI plug-in, which only supports binding Tanzu Application Platform default roles.
-1. Use Kubernetes role-based access control (RBAC) role binding.
+- Use the Tanzu Application Platform RBAC CLI plug-in, which only supports binding Tanzu Application Platform default roles.
+- Use Kubernetes role-based access control (RBAC) role binding.
 
-VMware recommends that you use the beta Tanzu Application Platform Auth CLI plug-in, available for download from Tanzu Network. This CLI plug-in simplifies the process for you by binding the cluster-scoped resource permissions at the same time as the namespace-scoped resource permissions, where applicable, for each default role. The following sections cover the beta Tanzu Application Platform Auth CLI plug-in.
+VMware recommends that you use the Tanzu Application Platform RBAC CLI plug-in.
+This CLI plug-in simplifies the process by binding the cluster-scoped resource permissions
+at the same time as the namespace-scoped resource permissions, where applicable, for each default role.
+The following sections cover the Tanzu Application Platform RBAC CLI plug-in.
 
->**Caution:** The Auth CLI plug-in is currently in beta and is intended for evaluation and test purposes only.
+## <a id="prereqs"></a> Prerequisites
 
-## <a id="prereqs"></a>Prerequisites
+1. Download the latest Tanzu CLI version.
+1. Download the Tanzu Application Platform RBAC CLI plug-in `tar.gz` file from [Tanzu Network](https://network.tanzu.vmware.com/products/tap-auth).
+1. Ensure you have admin access to the cluster.
+1. Ensure you have configured an authentication solution for the cluster. 
+You can use [Pinniped](https://pinniped.dev/) or the authentication service native to your Kubernetes distribution.
 
-1. Download the latest Tanzu CLI.
-1. Download the beta Tanzu Application Platform Auth CLI plug-in tar.gz from [Tanzu Network](https://network.tanzu.vmware.com/products/tap-auth).
-1. Ensure you have administrator access to the cluster.
-1. Ensure you have configured an authentication solution for the cluster. You can use **Pinniped** or the authentication service native to your Kubernetes distribution.
 
+## <a id="install"></a> Install the Tanzu Application Platform RBAC CLI plug-in
 
-## <a id="install"></a>Install the Auth CLI plug-in
+Follow these steps to install the Tanzu Application Platform RBAC CLI plug-in:
 
-Follow these steps to install the Auth CLI plug-in:
+> **Caution:** The Tanzu Application Platform RBAC CLI plug-in is currently in beta and is
+>intended for evaluation and test purposes only.
 
-1. Untar the tar.gz:
+1. Untar the `tar.gz` file:
 
+    ```console
+    tar -zxvf NAME-OF-THE-TAR
     ```
-    tar zxvf <NAME OF THE TAR>
+
+1. Install the Tanzu Application Platform RBAC CLI plug-in locally on your operating system:
+
+    - For macOS, run:
+
+        ```console
+        tanzu plugin install rbac --local darwin-amd64
+        ```
+
+    - For Linux, run:
+
+        ```console
+        tanzu plugin install rbac --local linux-amd64
+        ```
+
+    - For Windows, run:
+
+        ```console
+        tanzu plugin install rbac --local windows-amd64
+        ```
+
+## <a id="use-kubeconfig"></a> Use a different kubeconfig location
+
+Use a different kubeconfig location by running:
+
+```console
+tanzu rbac --kubeconfig PATH-OF-KUBECONFIG binding add --user USER --role ROLE --namespace NAMESPACE
+```
+
+> **Note:** The environment variable `KUBECONFIG` is not implemented.
+> You must use the `--kubeconfig` flag to enter a different location.
+
+For example:
+
+```console
+$ tanzu rbac --kubeconfig /tmp/pinniped_kubeconfig.yaml binding add --user username@vmware.com --role app-editor --namespace user-ns
+```
+
+
+## <a id="add-user-group-to-role"></a> Add the specified user or group to a role
+
+Add a user or group to a role by running:
+
+```console
+tanzu rbac binding add --user USER --role ROLE --namespace NAMESPACE
+```
+
+```console
+tanzu rbac binding add --group GROUP --role ROLE --namespace NAMESPACE
+```
+
+For example:
+
+```console
+$ tanzu rbac binding add --user username@vmware.com --role app-editor --namespace user-ns
+```
+
+## <a id="get-list-users"></a> Get a list of users and groups from a role
+
+Get a list of users and groups from a role by running:
+
+```console
+tanzu rbac binding get --role ROLE --namespace NAMESPACE
+```
+
+For example:
+
+```console
+$ tanzu rbac binding get --role app-editor --namespace user-ns
+```
+
+## <a id="binding-delete"></a> Remove the specified user or group from a role
+
+Remove a user or group from a role by running:
+
+```console
+tanzu rbac binding delete --user USER --role ROLE --namespace NAMESPACE
+```
+
+```console
+tanzu rbac binding delete --group GROUP --role ROLE --namespace NAMESPACE
+```
+
+For example:
+
+```console
+$ tanzu rbac binding delete --user username@vmware.com --role app-editor --namespace user-ns
+```
+
+## <a id="error-logs"></a> Error logs
+
+Authorization error logs might include the following errors:
+
+- Permission Denied:
+
+    The current user does not have permissions to create or edit rolebinding objects.
+    Use an admin account when using the RBAC CLI.
+
+    ```console
+    Error: rolebindings.rbac.authorization.k8s.io "app-operator" is forbidden: User "<subject>" cannot get resource "rolebindings" in API group "rbac.authorization.k8s.io" in the namespace "namespace"
+    Usage:
+    tanzu rbac binding add [flags]
+    Flags:
+    -g, --group string User Group
+    -h, --help help for add
+    -n, --namespace string Namespace
+    -r, --role string Role
+    -u, --user string User Name
+
+    Global Flags:
+    --kubeconfig string kubeconfig file
     ```
 
-1. Install the Auth plug-in locally:
+- Already Bound Error:
 
-    - For macOS:
+    Adding a subject, user or group, to a role that already has the subject produces the following error:
 
-        ```
-        tanzu plugin install auth --local published/darwin-amd64
-        ```
+    ```console
+    Error: User ‘test-user’ is already bound to 'app-operator' role
+    Usage:
+    tanzu rbac binding add [flags]
+    Flags:
+    -g, --group string User Group
+    -h, --help help for add
+    -n, --namespace string Namespace
+    -r, --role string Role
+    -u, --user string User Name
 
-    - For Linux:
+    Global Flags:
+    --kubeconfig string kubeconfig file
+    ```
 
-        ```
-        tanzu plugin install auth --local published/linux-amd64
-        ```
+- Could Not Find Error:
 
-    - For Windows:
+    When removing a subject from a role, this error can occur in the following two scenarios:
 
-        ```
-        tanzu plugin install auth --local published/windows-amd64
-        ```
+    1. The rolebinding does not exist.
+    1. The subject does not exist in the rolebinding.
 
-### <a id="use-kubeconfig"></a>Use a different kubeconfig location
+    Ensure the rolebinding exists and that the subject name is correctly spelled.
 
-Use the `--kubeconfig` flag before the subcommand:
+    ```console
+    Error: Did not find User 'test-user' in RoleBinding 'app-operator'
+    Usage:
+    tanzu rbac binding delete [flags]
 
-```
-tanzu auth --kubeconfig <PATH_OF_KUBECONFIG> add-binding ...
-```
+    Flags:
+    -g, --group string User Group
+    -h, --help help for delete
+    -n, --namespace string Namespace
+    -r, --role string Role
+    -u, --user string User Name
 
-For example:
+    Global Flags:
+    --kubeconfig string kubeconfig file
+    ```
 
-```
-$ tanzu auth --kubeconfig /tmp/pinniped_kubeconfig.yaml add-binding --user username@vmware.com --role app-editor --namespace user-ns
-```
+- Object Has Been Modified Error:
 
->**Note:** The environment variable `KUBECONFIG` is not implemented. You must use the `--kubeconfig` flag to enter a different location.
+    This error is a race condition caused by running multiple RBAC CLI actions at the same time.
+    Rerunning the RBAC CLI might fix the issue.
 
-### <a id="add-user-group-to-role"></a>Add the specified user or group to a role
+    ```console
+    Removed User 'test-user' from RoleBinding 'app-operator'
+    Removed User 'test-user' from ClusterRoleBinding 'app-operator-cluster-access'
+    Error: Operation cannot be fulfilled on rolebindings.rbac.authorization.k8s.io "app-operator": the object has been modified; please apply your changes to the latest version and try again
+    Usage:
+    tanzu rbac binding delete [flags]
 
-To add a user or group to a role, run:
+    Flags:
+    -g, --group string User Group
+    -h, --help help for delete
+    -n, --namespace string Namespace
+    -r, --role string Role
+    -u, --user string User Name
+    ```
 
-```
-tanzu auth add-binding --user $user --role $role --namespace $namespace
+## <a id="troubleshooting"></a> Troubleshooting
 
-tanzu auth add-binding --group $group --role $role --namespace $namespace
-```
+1. Get a list of permissions for a user or a group:
 
-For example:
+	```console
+	export NAME=SUBJECT-NAME
+	kubectl get rolebindings,clusterrolebindings -A -o json | jq -r ".items[] | select(.subjects[]?.name == \"${NAME}\") | .roleRef.name" | xargs -n1 kubectl describe clusterroles
+	```
 
-```
-$ tanzu auth add-binding --user username@vmware.com --role app-editor --namespace user-ns
-```
+1. Get a list of user or group for a specific role:
 
-### <a id="get-list-users"></a>Get a list of users and groups from a role
-
-To get a list of users and groups from a role, run:
-
-```
-tanzu auth get-binding --role $role --namespace $namespace
-
-tanzu auth get-binding --role $role --namespace $namespace
-```
-
-For example:
-
-```
-$ tanzu auth get-binding --role app-editor --namespace user-ns
-```
-
-### <a id="remove-binding"></a>Remove the specified user or group from a role
-
-To remove a user or group from a role, run:
-
-```
-tanzu auth remove-binding --user $user --role  $role --namespace $namespace
-
-tanzu auth remove-binding --group $group --role $role --namespace $namespace
-```
-
-For example:
-
-```
-$ tanzu auth remove-binding --user username@vmware.com --role app-editor --namespace user-ns
-```
+	```console
+	tanzu rbac binding get --role ROLE --namespace NAMESPACE
+	```

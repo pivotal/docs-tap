@@ -11,13 +11,13 @@ create the workshop environment.
 
 To create the workshop environment run:
 
-```
-kubectl apply -f https://raw.githubusercontent.com/eduk8s-labs/lab-k8s-fundamentals/master/resources/workshop-environment.yaml
+```console
+kubectl apply -f {YOUR-GIT-REPO-URL}/lab-k8s-fundamentals/master/resources/workshop-environment.yaml
 ```
 
 This results in a custom resource being created called `WorkshopEnvironment`:
 
-```
+```console
 workshopenvironment.learningcenter.tanzu.vmware.com/lab-k8s-fundamentals created
 ```
 
@@ -33,15 +33,15 @@ provisioned by the Learning Center Operator when the workshop environment is cre
 
 You can list the workshop environments which have been created by running:
 
-```
+```console
 kubectl get workshopenvironments
 ```
 
 This results in the output:
 
-```
+```console
 NAME                   NAMESPACE              WORKSHOP               IMAGE                                             URL
-lab-k8s-fundamentals   lab-k8s-fundamentals   lab-k8s-fundamentals   quay.io/eduk8s-labs/lab-k8s-fundamentals:master   https://github.com/eduk8s-labs/lab-k8s-fundamentals
+lab-k8s-fundamentals   lab-k8s-fundamentals   lab-k8s-fundamentals   {YOUR-REGISTRY-URL}/lab-k8s-fundamentals:master   {YOUR-GIT-REPO-URL}/lab-k8s-fundamentals
 ```
 
 Additional fields give the name of the workshop environment, the namespace created for the workshop environment, and
@@ -58,25 +58,25 @@ environment can also be constrained to a specific set of namespaces on top of an
 
 In the context of an appropriate namespace, run:
 
-```
-kubectl apply -f https://raw.githubusercontent.com/eduk8s-labs/lab-k8s-fundamentals/master/resources/workshop-request.yaml
+```console
+kubectl apply -f {YOUR-GIT-REPO-URL}/lab-k8s-fundamentals/master/resources/workshop-request.yaml
 ```
 
 This should result in the output:
 
-```
+```console
 workshoprequest.learningcenter.tanzu.vmware.com/lab-k8s-fundamentals created
 ```
 
 You can list the workshop requests in a namespace by running:
 
-```
+```console
 kubectl get workshoprequests
 ```
 
 This displays output similar to:
 
-```
+```console
 NAME                   URL                                      USERNAME   PASSWORD
 lab-k8s-fundamentals   http://lab-k8s-fundamentals-cvh51.test   learningcenter     buQOgZvfHM7m
 ```
@@ -93,7 +93,7 @@ to the web portal in order to log in if necessary.
 You can monitor the progress of this workshop deployment by listing the deployments in the namespace created for the
 workshop environment:
 
-```
+```console
 kubectl get all -n lab-k8s-fundamentals
 ```
 
@@ -114,7 +114,7 @@ to allow non-cluster administrators to create workshop instances.
 When you have finished with the workshop instance, you can delete it by deleting the custom resource for the workshop
 request:
 
-```
+```console
 kubectl delete workshoprequest/lab-k8s-fundamentals
 ```
 
@@ -123,7 +123,7 @@ kubectl delete workshoprequest/lab-k8s-fundamentals
 If you want to delete the whole workshop environment, it is recommended to first delete all workshop instances. Once
 this has been done, you can then delete the custom resource for the workshop environment:
 
-```
+```console
 kubectl delete workshopenvironment/lab-k8s-fundamentals
 ```
 

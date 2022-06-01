@@ -6,9 +6,11 @@ The Spring Boot convention server is a bundle of smaller conventions applied to 
 
 The Spring Boot convention server looks inside the image such as the following `docker inspect` command:
 
-`$ docker inspect springio/petclinic`
-
+```console
+$ docker inspect springio/petclinic
 ```
+
+```console
 [
     {
         "Id": "sha256:...",

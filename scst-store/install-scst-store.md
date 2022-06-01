@@ -3,7 +3,7 @@
 This document describes how to install Supply Chain Security Tools - Store
 from the Tanzu Application Platform package repository.
 
->**Note:** It is recommended to install Supply Chain Security Tools - Store using Tanzu Application Platform Profiles.  See [Installing the Tanzu Application Platform Package and Profiles](../install.md).  Use the following instructions if you do not want to use a profile to install the Supply Chain Security Tools - Store package.
+>**Note:** VMware recommends installing Supply Chain Security Tools - Store by using Tanzu Application Platform Profiles.  See [About Tanzu Application Platform package and profiles](../about-package-profiles.md) and [Installing the Tanzu Application Platform Package and Profiles](../install.md).  Use the following instructions if you do not want to use a profile to install the Supply Chain Security Tools - Store package.
 
 ## <a id='prereqs'></a>Prerequisites
 
@@ -19,13 +19,13 @@ To install Supply Chain Security Tools - Store:
 
 1. The deployment assumes the user has set up the Kubernetes cluster to provision persistent volumes on demand. Make sure a default storage class is available in your cluster. Check whether default storage class is set in your cluster by running:
 
-    ```
+    ```console
     kubectl get storageClass
     ```
 
     For example:
 
-    ```
+    ```console
     $ kubectl get storageClass
     NAME                 PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
     standard (default)   rancher.io/local-path   Delete          WaitForFirstConsumer   false                  7s
@@ -33,13 +33,13 @@ To install Supply Chain Security Tools - Store:
 
 1. List version information for the package by running:
 
-    ```
+    ```console
     tanzu package available list metadata-store.apps.tanzu.vmware.com --namespace tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     $ tanzu package available list metadata-store.apps.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for metadata-store.apps.tanzu.vmware.com...
       NAME                         VERSION       RELEASED-AT
@@ -48,7 +48,7 @@ To install Supply Chain Security Tools - Store:
 
 1. (Optional) List out all the available deployment configuration options:
 
-    ```
+    ```console
     tanzu package available get metadata-store.apps.tanzu.vmware.com/VERSION --values-schema -n tap-install
     ```
 
@@ -56,7 +56,7 @@ To install Supply Chain Security Tools - Store:
 
     For example:
 
-    ```
+    ```console
     $ tanzu package available get metadata-store.apps.tanzu.vmware.com/1.0.2 --values-schema -n tap-install
     | Retrieving package details for metadata-store.apps.tanzu.vmware.com/1.0.2...
       KEY                               DEFAULT              TYPE     DESCRIPTION
@@ -92,7 +92,7 @@ custom configuration values you want. For example, if your environment does not 
 and you want to use `NodePort`, then create a `metadata-store-values.yaml` and configure the
 `app_service_type` property.
 
-    ```
+    ```yaml
     ---
     app_service_type: "NodePort"
     ```
@@ -104,7 +104,7 @@ and you want to use `NodePort`, then create a `metadata-store-values.yaml` and c
 
 1. Install the package by running:
 
-    ```
+    ```console
     tanzu package install metadata-store \
       --package-name metadata-store.apps.tanzu.vmware.com \
       --version VERSION \
@@ -120,7 +120,7 @@ and you want to use `NodePort`, then create a `metadata-store-values.yaml` and c
 
     For example:
 
-    ```
+    ```console
     $ tanzu package install metadata-store \
       --package-name metadata-store.apps.tanzu.vmware.com \
       --version 1.0.2 \

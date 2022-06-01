@@ -5,7 +5,7 @@ from the Tanzu Application Platform package repository.
 
 >**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
 Both the full and light profiles include Services Toolkit.
-For more information about profiles, see [Installing the Tanzu Application Platform Package and Profiles](../install.md).
+For more information about profiles, see [About Tanzu Application Platform package and profiles](../about-package-profiles.md).
 
 ## <a id='prereqs'></a>Prerequisites
 
@@ -19,13 +19,13 @@ To install Services Toolkit:
 
 1. See what versions of Services Toolkit are available to install by running:
 
-    ```
+    ```console
     tanzu package available list -n tap-install services-toolkit.tanzu.vmware.com
     ```
 
     For example:
 
-    ```
+    ```console
     $ tanzu package available list -n tap-install services-toolkit.tanzu.vmware.com
     - Retrieving package versions for services-toolkit.tanzu.vmware.com...
       NAME                               VERSION           RELEASED-AT
@@ -34,7 +34,7 @@ To install Services Toolkit:
 
 1. Install Services Toolkit by running:
 
-    ```
+    ```console
     tanzu package install services-toolkit -n tap-install -p services-toolkit.tanzu.vmware.com -v VERSION-NUMBER
     ```
 
@@ -42,7 +42,7 @@ To install Services Toolkit:
 
 1. Verify that the package installed by running:
 
-    ```
+    ```console
     tanzu package installed get services-toolkit -n tap-install
     ```
 
@@ -50,7 +50,7 @@ To install Services Toolkit:
 
     For example:
 
-    ```
+    ```console
     $ tanzu package installed get services-toolkit -n tap-install
     | Retrieving installation details for services-toolkit...
     NAME:                    services-toolkit

@@ -6,6 +6,7 @@ Platform component and is not included in either the full or light profile.
 ## <a id='scst-sign-prereqs'></a> Prerequisites
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
+- A container image registry that supports TLS connections. This component does not work with insecure registries.
 - During configuration for this component, you are asked to provide a cosign public key to use to
 validate signed images. An example cosign public key is provided that can validate an image from the
 public cosign registry. If you want to provide your own key and images, follow the
@@ -15,7 +16,7 @@ generate your own keys and sign an image.
 >**Caution:** This component rejects pods if the webhook fails or is incorrectly configured.
 >If the webhook is preventing the cluster from functioning,
 >see [Supply Chain Security Tools - Sign Known Issues](../release-notes.md)
-> in the Tanzu Application Plantform release notes for recovery steps.
+> in the Tanzu Application Platform release notes for recovery steps.
 
 ## <a id='install-scst-sign'></a> Install
 
@@ -26,32 +27,32 @@ To install Supply Chain Security Tools - Sign:
 
 1. List version information for the package by running:
 
-    ```
+    ```console
     tanzu package available list image-policy-webhook.signing.apps.tanzu.vmware.com --namespace tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     $ tanzu package available list image-policy-webhook.signing.apps.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for image-policy-webhook.signing.apps.tanzu.vmware.com...
       NAME                                                VERSION        RELEASED-AT
-      image-policy-webhook.signing.apps.tanzu.vmware.com  1.1.0          2022-03-17 18:00:00 -0500 EST
+      image-policy-webhook.signing.apps.tanzu.vmware.com  1.1.1          2022-03-30 18:00:00 -0500 EST
     ```
 
 1. (Optional) Make changes to the default installation settings by running:
 
-    ```
+    ```console
     tanzu package available get image-policy-webhook.signing.apps.tanzu.vmware.com/VERSION --values-schema --namespace tap-install
     ```
-    
-    Where `VERSION` is the version number you discovered. For example, `1.1.0`.
+
+    Where `VERSION` is the version number you discovered. For example, `1.1.1`.
 
     For example:
 
-    ```
-    $ tanzu package available get image-policy-webhook.signing.apps.tanzu.vmware.com/1.1.0 --values-schema --namespace tap-install
-    | Retrieving package details for image-policy-webhook.signing.apps.tanzu.vmware.com/1.1.0...
+    ```console
+    $ tanzu package available get image-policy-webhook.signing.apps.tanzu.vmware.com/1.1.1 --values-schema --namespace tap-install
+    | Retrieving package details for image-policy-webhook.signing.apps.tanzu.vmware.com/1.1.1...
       KEY                     DEFAULT              TYPE     DESCRIPTION
       allow_unmatched_images  false                boolean  Feature flag for enabling admission of images that do not match any patterns in the image policy configuration.
                                                             Set to true to allow images that do not match any patterns into the cluster with a warning.
@@ -96,14 +97,14 @@ To install Supply Chain Security Tools - Sign:
           do not match any pattern in the policy, but still allow them into
           the cluster, set `allow_unmatched_images` to `true`.
 
-            ```
+            ```yaml
             ---
             allow_unmatched_images: true
             ```
 
         * **For production environments**: To deny images that match no patterns in the policy set `allow_unmatched_images` to `false`.
 
-            ```
+            ```yaml
             ---
             allow_unmatched_images: false
             ```
@@ -125,40 +126,40 @@ To install Supply Chain Security Tools - Sign:
       secret is stored.
 
       For example:
-      
+
       ```yaml
       custom_ca_secrets:
       - secret_name: first-ca
-        namespace: ca-namespace
+          namespace: ca-namespace
       - secret_name: second-ca
-        namespace: ca-namespace
+          namespace: ca-namespace
       ```
 
       >**Note:** This setting is allowed even if `custom_cas` was informed.
 
     - `custom_cas`:
-      This setting enables adding certificate content in PEM format. 
-      The certificate content are added to the application container as custom 
-      certificate authorities (CAs) to communicate with registries deployed with 
-      self-signed certificates. 
+      This setting enables adding certificate content in PEM format.
+      The certificate content is added to the application container as custom
+      certificate authorities (CAs) to communicate with registries deployed with
+      self-signed certificates.
       `custom_cas` consists of an array of items. Each item contains
       a single field named `ca_content`. The value of this field must be a
       PEM-formatted certificate authority. The certificate content must be
-      defined as a YAML block, preceded by the literal indicator (`|`) to 
+      defined as a YAML block, preceded by the literal indicator (`|`) to
       preserve line breaks and ensure the certificates are interpreted correctly.
 
       For example:
-      
+
       ```yaml
       custom_cas:
       - ca_content: |
-          ----- BEGIN CERTIFICATE -----
-          first certificate content here...
-          ----- END CERTIFICATE -----
+            ----- BEGIN CERTIFICATE -----
+            first certificate content here...
+            ----- END CERTIFICATE -----
       - ca_content: |
-          ----- BEGIN CERTIFICATE -----
-          second certificate content here...
-          ----- END CERTIFICATE -----
+            ----- BEGIN CERTIFICATE -----
+            second certificate content here...
+            ----- END CERTIFICATE -----
       ```
 
       >**Note:** This setting is allowed even if `custom_ca_secrets` was informed.
@@ -206,22 +207,22 @@ To install Supply Chain Security Tools - Sign:
 
 1. Install the package:
 
-    ```
+    ```console
     tanzu package install image-policy-webhook \
       --package-name image-policy-webhook.signing.apps.tanzu.vmware.com \
       --version VERSION \
       --namespace tap-install \
       --values-file scst-sign-values.yaml
     ```
-    
-    Where `VERSION` is the version number you discovered earlier. For example, `1.1.0`.
+
+    Where `VERSION` is the version number you discovered earlier. For example, `1.1.1`.
 
     For example:
 
-    ```
+    ```console
     $ tanzu package install image-policy-webhook \
         --package-name image-policy-webhook.signing.apps.tanzu.vmware.com \
-        --version 1.1.0 \
+        --version 1.1.1 \
         --namespace tap-install \
         --values-file scst-sign-values.yaml
 
