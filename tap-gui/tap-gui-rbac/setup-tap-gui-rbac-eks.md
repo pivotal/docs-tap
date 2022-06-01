@@ -5,7 +5,7 @@ To add access-controlled visibility for a remote EKS cluster:
 1. Set up the OIDC provider
 1. Configure the EKS cluster with the OIDC provider
 1. Configure the Tanzu Application Platform GUI to view the remote EKS cluster
-1. Upgrade the Tanzu Application GUI package
+1. Upgrade the Tanzu Application Platform GUI package
 
 After these steps are complete, you can view your runtime resources on a remote EKS cluster in
 Tanzu Application Platform GUI. For more information, see

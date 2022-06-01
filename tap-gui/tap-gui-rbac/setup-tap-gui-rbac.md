@@ -14,6 +14,6 @@ The general process for adding access-controlled visibility for a remote cluster
 1. Set up the OIDC provider (pre-requisite)
 2. Configure the Kubernetes cluster with the OIDC provider
 3. Configure the Tanzu Application Platform GUI to view the remote cluster
-4. Upgrade the Tanzu Application GUI package
+4. Upgrade the Tanzu Application Platform GUI package
 
 Once these steps are complete, you can view your runtime resources on a remote cluster in Tanzu Application Platform GUI. For more detail, please refer to [View Runtime Resources on Remote Clusters in Tanzu Application Platform GUI](./view-resouces-rbac.md).
