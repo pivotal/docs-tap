@@ -2,9 +2,8 @@
 
 This section describes how to customize the branding within the Tanzu Application Platform GUI portal:
 
-* [Customize logo and portal name on the top banner](#-customize-logo-and-portal-name-on-the-top-banner)
-
-* [Customize Authentication page](#-customize-authentication-page)
+* [Customize logo and portal name on the top banner](#customize-logo-name)
+* [Customize Authentication page](#customize-auth-page)
 
 
 ## <a id="customize-logo-name"></a> Customize logo and portal name on the top banner
@@ -16,7 +15,7 @@ By default, the portal displays the VMware Tanzu logo and **Tanzu Application Pl
 ![Screenshot displaying the default VMware Tanzu branding within the Tanzu Application Platform GUI portal](../images/standard-branding.png)
 
 
-### <a id="brand-customizing"></a> Customize Branding
+### <a id="brand-customizing"></a> Customize branding
 
 To customize the branding in your portal:
 
@@ -49,9 +48,11 @@ the original branding template.
 
 ## <a id="customize-auth-page"></a> Customize Authentication page
 
-You can also customize the portal name on the Authentication page and the name of the browser tab for the Tanzu Application Platform GUI.
+To customize the portal name on the **Authentication** page and the name of the browser tab
+for Tanzu Application Platform GUI:
 
-1. Provide additional configuration parameters to the `app_config` stanza of your `tap-values.yml` file:
+1. Provide additional configuration parameters to the `app_config` section of your `tap-values.yaml`
+file:
 
     ```yaml
     tap_gui:
@@ -63,7 +64,7 @@ You can also customize the portal name on the Authentication page and the name o
     Where `CUSTOM-TAB-NAME` is the name on the Authentication page and the browser tab of your portal,
     such as `Our Organization Full Name`.
 
-2. Reinstall your Tanzu Application Platform GUI package by following steps in
+1. Reinstall your Tanzu Application Platform GUI package by following the steps in
 [Upgrading Tanzu Application Platform](../../upgrading.html).
 
 After the updated values configuration file is applied in Tanzu Application Platform GUI,
