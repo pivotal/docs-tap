@@ -293,7 +293,7 @@ kubectl get accelerators.accelerator.apps.tanzu.vmware.com -n accelerator-system
     source-controller   1/1     0            0           5d4h
     ```
 
-####n <a id="reson-ImageRepositoryResolutionPending"></a> REASON: `ImageRepositoryResolutionPending`
+#### <a id="reson-ImageRepositoryResolutionPending"></a> REASON: `ImageRepositoryResolutionPending`
 
 ```console
 $ kubectl get accelerators.accelerator.apps.tanzu.vmware.com -n accelerator-system
