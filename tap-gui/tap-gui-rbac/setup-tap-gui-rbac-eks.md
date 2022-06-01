@@ -32,7 +32,7 @@ Auth0 is used here as an example.
     ```
 
     Where `INGRESS-DOMAIN` is the domain you chose for your Tanzu Application Platform GUI in
-    [Installing the Tanzu Application Platform package and profiles](../../install.md.hbs).
+    [Installing the Tanzu Application Platform package and profiles](../../install.html).
 
 1. Click **Save Changes**.
 
@@ -155,13 +155,13 @@ To do so, copy this YAML content into `tap-values.yaml`:
     - `CLUSTER-NAME-UNCONSTRAINED` is the cluster name of your choice for your EKS cluster
     - `CLUSTER-URL` is the URL for the remote cluster you are connecting to Tanzu Application Platform GUI. You obtained this earlier in the procedure.
 
-    If there are any other clusters that you want to make visible in Tanzu Application Platform GUI, add
-    their entries to `clusters` as well.
+    If there are any other clusters that you want to make visible in Tanzu Application Platform GUI,
+    add their entries to `clusters` as well.
 
 
 ## <a id="upgrade-tap-gui"></a> Upgrade the Tanzu Application Platform GUI package
 
-After the new configuration file is ready update the `tap` package:
+After the new configuration file is ready, update the `tap` package:
 
 1. Run:
 
