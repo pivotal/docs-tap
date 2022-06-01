@@ -33,7 +33,7 @@ To customize the branding in your portal:
     Where:
 
     - `BASE-64-IMAGE` is the image encoded in base64. VMware recommends a 512-pixel by 512-pixel PNG image with a transparent background.
-    - `PORTAL-NAME` is the name of your portal. This field supports lower and upper cases and spacing between words, for example: `Our Custom Developer Experience Portal`.
+    - `PORTAL-NAME` is the name of your portal, such as `Our Custom Developer Experience Portal`.
 
 1. Reinstall your Tanzu Application Platform GUI package by following steps in
 [Upgrading Tanzu Application Platform](../../upgrading.html).
@@ -60,9 +60,8 @@ You can also customize the portal name on the Authentication page and the name o
           title: 'CUSTOM-TAB-NAME'
     ```
 
-    Where:
-
-    - `CUSTOM-TAB-NAME` is the naming on the Authentication page and the browser tab of your portal. This field supports lower and upper cases and spacing between words, for example: `Our Organization Full Name`.
+    Where `CUSTOM-TAB-NAME` is the name on the Authentication page and the browser tab of your portal,
+    such as `Our Organization Full Name`.
 
 2. Reinstall your Tanzu Application Platform GUI package by following steps in
 [Upgrading Tanzu Application Platform](../../upgrading.html).
