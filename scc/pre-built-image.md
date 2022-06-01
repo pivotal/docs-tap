@@ -1,16 +1,15 @@
 # Using a prebuilt image
 
-For apps that have a predefined way of building container images, the supply chains
-in the Out of the Box packages support specifying a prebuilt image used in the final app.
-This uses the same stages as any other Workload.
+For apps that build container images in a predefined way, the supply chains
+in the Out of the Box packages enable you to specify a prebuilt image.
+This uses the same stages as any other workload.
 
-## <a id="workload"></a> Workload
+## <a id="workload"></a> Configure your workload to use a prebuilt image
 
-To select a prebuilt image, set the `workoad.spec.image` field with
+To select a prebuilt image, set the `workload.spec.image` field with
 the name of the container image that contains the app to deploy
 by running:
 
-<!-- find out what is mandatory/optional in this -->
 ```bash
 tanzu apps workload create WORKLOAD-NAME \
   --app APP-NAME \
@@ -20,9 +19,9 @@ tanzu apps workload create WORKLOAD-NAME \
 
 Where:
 
-- `WORKLOAD-NAME` is the name you choose for your workload. <!-- do you choose this name? -->
+- `WORKLOAD-NAME` is the name you choose for your workload.
 - `APP-NAME` is the name of your app.
-- `TYPE` is the type of your app
+- `TYPE` is the type of your app.
 - `IMAGE` is the container image that contains the app you want to deploy.
 
 For example, if you have an image named `IMAGE`, you can create a workload
@@ -55,7 +54,7 @@ Create workload:
 When you run `tanzu apps workload create` command with the `--image` field,
 the source resolution and build phases of the supply chain are skipped.
 
-## <a id="ootb-supply-chain"></a> Out of the Box Supply Chains
+## <a id="ootb-supply-chain"></a> About Out of the Box Supply Chains
 
 In Tanzu Application Platform, the `ootb-supply-chain-basic`, `ootb-supply-chain-testing`, and
 `ootb-supply-chain-testing-scanning` packages each receive a new
@@ -106,22 +105,23 @@ The selection takes place as follows:
   - Prebuilt image: label `apps.tanzu.vmware.com/workload-type: web` **and**
     `workload.spec.image` set
 
-Workloads that already work with the supply chains before Tanzu Application Platform v1.01.00 <!-- v1.1? -->
+Workloads that already work with the supply chains before Tanzu Application Platform v1.1
 continue to work with the same supply chain.
 Workloads that bring a prebuilt container image must set
 `workload.spec.image`.
 
 
-## <a id="how-it-works"></a> How it works <!-- what is "it"? -->
+## <a id="how-it-works"></a> Understanding the supply chain for a prebuilt image
 
 An `ImageRepository` object is created to keep track of
-new images pushed under that name, making them available to further resources in the
-supply chain the final digest of the latest that is found. <!-- what does this mean? -->
+new images pushed under that name.
+`ImageRepository` makes the image available to further resources in the
+supply chain, providing the final digest of the latest image.
 
-Whenever a new image is pushed with that image name, the `ImageRepository`
-object is detected. The image is then available to further resources by
-updating its `imagerepository.status.artifact.revision` with the absolute
-name of that image. <!-- does the user update this or does this happen automatically -->
+Whenever a new image is pushed to the workload's image location, the `ImageRepository`
+detects the change. The image is then available to further resources by
+updating its `imagerepository.status.artifact.revision` with an absolute
+reference to that image.
 
 For example, if you create a workload using an image named `hello-world`,
 tagged `tanzu-java-web-app` hosted under `ghcr.io` in the `kontinue`
@@ -194,9 +194,6 @@ a Git repository or image registry so that it is deployed in a run cluster.
 
 
 ## <a id="examples"></a> Examples
-
-Aside from the gotchas outlined in the following section, it's transparent
-to the supply chain how you come up with the image provided. <!-- what does this mean? -->
 
 The following examples show ways that you can build
 container images for a Java-based app and complete the
@@ -299,9 +296,8 @@ reference it in the Workload.
 
 ### <a id="sb-maven"></a> Using Spring Boot's `build-image` Maven target
 
-If you are familiar with Spring Boot's `build-image` target, you can use
-it for coming up  <!-- find better word --> with a container image that runs your app.
-Using `build-image` target must work with the Dockerfile. <!-- is this correct? -->
+You can use Spring Boot's `build-image` target to build a container image that runs your app.
+The `build-image` target must use a Dockerfile.
 
 For example, using the same sample repository as mentioned before
 (https://github.com/sample-accelerators/tanzu-java-web-app):
@@ -358,7 +354,7 @@ For more information about building container images for a Spring Boot app,
 see [Spring Boot with Docker](https://spring.io/guides/gs/spring-boot-docker)
 
 
-## <a id="gotchas"></a> Gotchas
+## <a id="requirements"></a> Requirements for images
 
 As the supply chains still aim at Knative as the runtime for the container
 image provided, the app must adhere to Knative standards when bringing the container up and serving traffic to it:
@@ -377,34 +373,29 @@ image provided, the app must adhere to Knative standards when bringing the conta
 
 - **Non-privileged user ID**
 
-    By default, the container initiated as part of the pod is run as user
-    1000.
+    By default, the container initiated as part of the pod is run as user 1000.
 
     ```yaml
     securityContext:
       runAsUser: 1000
     ```
 
-- **Arguments other than the image's default entrypoint**
+- **Arguments other than the image's default ENTRYPOINT**
 
-    Because there is no way to supply arguments down to the ps <!-- code? --> template specifications
-    that wis <!-- typo? code? --> be used in the Knative service, in most cases the container
-    image can run based solely on the default entrypoint configured for it
-    (in the case of Dockerfiles, the combination of ENTRYPOINT and CMD). <!-- What does this mean? -->
+    In most cases the container image runs using the `ENTRYPOINT` it was configured with.
+    In the case of Dockerfiles, the combination of `ENTRYPOINT` and `CMD`.
 
-    In case extra configuration must
-    used (see `--env` flags in `tanzu apps workload create` or
-    `workload.spec.env`). <!-- what does this mean? -->
+    If you need extra configuration for your image, use `--env` flags with the
+    `tanzu apps workload create` command or modify `spec.env` in your `workload.yaml` file.
 
 - **Credentials for pulling the container image at runtime**
 
-    The image provided is not relocated to an internal container image registry. Any
-    components that are touching the image must have the necessary credentials
-    to pull it. In practice, that means attaching a secret that contains the credentials to
-    pull that container image to the service accounts used
-    for both Workload and Deliverable.
+    The image you provide is not relocated to an internal container image registry.
+    Any components associated with the image must have the necessary credentials
+    to pull it. For the service accounts used for the workload and deliverable,
+    you must attach a secret that contains the credentials to pull the container image.
 
-    Similarly, if the image is hosted in a registry that has certificates
-    signed by a private certificate authority, not only the components of the
-    supply chains and delivery must trust it, but also the Kubernetes nodes in the
-    run cluster.
+    If the image is hosted in a registry that has certificates
+    signed by a private certificate authority, the components of the
+    supply chains, delivery, and the Kubernetes nodes in the run cluster must
+    trust the certificate.
