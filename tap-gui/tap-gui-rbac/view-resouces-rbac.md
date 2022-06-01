@@ -4,7 +4,7 @@ To visualize runtime resources on Authorization-enabled clusters in Tanzu Applic
 
 ![Screenshot of Runtime Resources](./../images/tap-gui-multiple-clusters.png)
 
-Once you click on `Runtime Resources`, the system shall prompt for your OIDC credentials. Tanzu Application Platform GUI will use your credentials to query the clusters for the respective Runtime Resources.
+Once you click on `Runtime Resources`, Tanzu Application Platform GUI will use your credentials to query the clusters for the respective Runtime Resources. The system will check if you are authenticated with the OIDC providers configured for the remote clusters. If you are not authenticated, the system shall prompt for your OIDC credentials.
 
 Visibility of remote clusters that are not restricted by Authorization, is done through the general Service Account of Tanzu Application Platform GUI and is not restricted for users. For more information on how to set up unrestrictred remote cluster visibility, please refer to [Viewing resources on multiple clusters in Tanzu Application Platform GUI](./../cluster-view-setup.md).
 
@@ -23,7 +23,7 @@ To have visibility into `Runtime Resources` of globally-scoped Components, you w
 
 For globally-scoped Components, when you access `Runtime Resources`, Tanzu Application Platform GUI will query all Kubernetes namespaces for runtime resources that with a matching `kubernetes-label-selector` (usually with a `part-Of` prefix).
 
-For example, `demo-component-a` does not have a `kubernetes-label-selector` in the metadata.annotations section, making is a globally-scoped component:
+For example, `demo-component-a` does not have a `kubernetes-namespace` in the metadata.annotations section, making is a globally-scoped component:
 
 ```yaml
 apiVersion: backstage.io/v1alpha1
@@ -55,7 +55,7 @@ Where:
    - `NAMESPACE-NAME` is the Kubernetes namespace you want to associate your Component with.
 
 
-For example, `demo-component-b` has a `kubernetes-label-selector` in the metadata.annotations section, associating it with the `component-b` namespaces on each of the visibile clusters, making is a namespace-scoped component:
+For example, `demo-component-b` has a `kubernetes-namespace` in the metadata.annotations section, associating it with the `component-b` namespaces on each of the visibile clusters, making is a namespace-scoped component:
 
 ```yaml
 apiVersion: backstage.io/v1alpha1
@@ -74,4 +74,4 @@ spec:
   owner: team-b
 ```
 
-When the `kubernetes-label-selector` annotation is absent, the Component is considered globally-scoped by default. For more information, please refer to [Adding Namespace Annotation](https://backstage.io/docs/features/kubernetes/configuration#adding-the-namespace-annotation).
+When the `kubernetes-namespace` annotation is absent, the Component is considered globally-scoped by default. For more information, please refer to [Adding Namespace Annotation](https://backstage.io/docs/features/kubernetes/configuration#adding-the-namespace-annotation).

@@ -14,7 +14,7 @@ When levearging an external OIDC provider (e.g., Auth0), the process of enabling
 1. Set up the OIDC provider (pre-requisite)
 2. Configure the GKE cluster with the OIDC provider
 3. Configure the Tanzu Application Platform GUI to view the remote GKE cluster
-4. Upgrade the Tanzu Application GUI package
+4. Upgrade the Tanzu Application Platform GUI package
 
 ### <a id="set-up-oidc-provider"></a> Set up the OIDC provider
 
@@ -62,7 +62,7 @@ The next step is to configure visibility of the remote cluster in Tanzu Applicat
 auth:
   environment: development
   providers:
-    autho:
+    auth0:
       development:
         clientId: "CLIENT-ID"
         clientSecret: "CLIENT-SECRET"
