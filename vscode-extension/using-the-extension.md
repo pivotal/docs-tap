@@ -26,6 +26,36 @@ When working with multiple projects in a single workspace, you can configure the
 
 ![The VS Code interface showing the Settings open to the Tanzu Extension, with the Project dropdown expanded to show both projects in the current workspace.](../images/vscode-multiple-projects.png)
 
+## <a id="apply-workload"></a> Apply Workload
+
+The Tanzu Developer Tools extension enables you to apply workloads on your TAP-enabled Kubernetes cluster.
+
+To apply a workload from the command palette:
+
+1. Start the Command Palette (`⇧⌘P`).
+
+2. Run the `Tanzu: Apply Workload` command.
+
+    ![Command palette open showing text Tanzu: Apply Workload](../images/vscode-applyworkload1.png)
+
+    - If there are multiple projects with workloads, select the workload to apply.
+
+        ![Apply Workload menu open showing workloads available to apply](../images/vscode-applyworkload2.png)
+
+3. A notification appears showing that the workload was applied.
+
+    ![Apply Workload notification showing workload has been applied](../images/vscode-applyworkload3.png)
+
+To apply a workload from the context menu:
+
+1. Right click on your workload file and select `Tanzu: Apply Workload`.
+
+    ![Context menu open showing text Tanzu: Apply Workload](../images/vscode-applyworkload4.png)
+
+2. A notification appears showing that the workload was applied.
+
+    ![Apply Workload notification showing workload has been applied](../images/vscode-applyworkload3.png)
+
 ## <a id="debugging-on-the-cluster"></a> Debugging on the Cluster
 
 The Tanzu Developer Tools extension enables you to debug your application on your TAP-enabled Kubernetes cluster.
@@ -122,7 +152,7 @@ The Live Update status bar entry can be hidden by right-clicking on it and selec
 
 ![The VS Code interface showing the Tanzu Live Update Status section of the Status bar with the right-click menu open and the "Hide 'Tanzu Developer Tools (Extension)'" option highlighted](../images/vscode-liveupdatestatus2.png)
 
-## <a id="live-update-status"></a> Delete Workload
+## <a id="delete-workload"></a> Delete Workload
 
 The Tanzu Developer Tools extension enables you to delete workloads on your TAP-enabled Kubernetes cluster.
 
@@ -142,10 +172,9 @@ To delete a workload:
 
     ![Delete Confirmation Notification showing delete options](../images/vscode-deleteworkload3.png)
 
-5. A notification appears showing that the workload was deleted.
+4. A notification appears showing that the workload was deleted.
 
-    ![Delete Confirmation Notification showing delete options](../images/vscode-deleteworkload4.png)
-
+    ![Delete Workload Notification showing workload has been deleted](../images/vscode-deleteworkload4.png)
 
 ## <a id="switch-namespace"></a> Switch Namespace
 
