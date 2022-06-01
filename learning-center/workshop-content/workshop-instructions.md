@@ -250,6 +250,26 @@ name: Terminal
 ```
 ~~~
 
+To allow the user to click in the workshop content to display the console tab use:
+
+~~~
+```dashboard:open-dashboard
+name: Console
+```
+~~~
+
+To allow the user to click in the workshop content to display a specific view within the Kubernetes web console using a clickable action block, rather than relying on them being able to find the correct view use:
+
+~~~
+```dashboard:reload-dashboard
+name: Console
+prefix: Console
+title: List pods in namespace {{session_namespace}}
+url: {{ingress_protocol}}://{{session_namespace}}-console.{{ingress_domain}}/#/pod?namespace={{session_namespace}}
+description: ""
+```
+~~~
+
 To allow the user to create a new dashboard tab with a specific URL, use:
 
 ~~~
