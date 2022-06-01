@@ -16,6 +16,7 @@ This is the table of contents from which the Tanzu Application Platform Document
   - [Develop your first app on Tanzu Application Platform](getting-started/develop-first-app.md)
   - [Work with your new application](getting-started/work-with-new-app.md)
   - [Create your application accelerator](getting-started/create-app-accelerator.md)
+  - [Supply chains on Tanzu Application Platform](getting-started/about-supply-chains.md)
   - [Add testing and security scanning](getting-started/add-test-and-security.md.hbs)
   - [Configure your supply chain](getting-started/config-supply-chain.md)
   - [Consume services](getting-started/consume-services.md)

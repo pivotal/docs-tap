@@ -1,6 +1,4 @@
-# About supply chains on Tanzu Application Platform
-
-## <a id="intro-supply-chain"></a>Introducing a Supply Chain
+# Supply chains on Tanzu Application Platform
 
 Supply Chains provide a way of codifying all of the steps of your path to production, more commonly known as continuous integration/Continuous Delivery (CI/CD). CI/CD is a method to frequently deliver applications by introducing automation into the stages of application development. The main concepts attributed to CI/CD are continuous integration, continuous delivery, and continuous deployment. CI/CD is the method used by supply chain to deliver applications through automation where supply chain allows you to use CI/CD and add any other steps necessary for an application to reach production, or a different environment such as staging.
 
@@ -24,9 +22,9 @@ authors to add all of the steps of their application's path to production.
 The Tanzu Application Platform provides three out of the box (OOTB) supply chains to
 work with the Tanzu Application Platform components. They include:
 
--  OOTB Basic (default)
--  OOTB Testing
--  OOTB Testing+Scanning
+-  OOTB Supply Chain Basic (default)
+-  OOTB Supply Chain with Testing (optional)
+-  OOTB Supply Chain with Testing+Scanning (optional)
 
 ## <a id="OOTB-basic-sc-default"></a>1: **OOTB Basic (default)**
 
