@@ -251,8 +251,8 @@ For example, using the same sample repository as mentioned before
     tanzu-java-web-app: digest: sha256:7140722ea396af69fb3d0ad12e9b4419bc3e67d9c5d8a2f6a1421decc4828ace size: 4497
     ```
 
-Having pushed the container image, you see the same results as in the
-section earlier where you built the image [using a Dockerfile](#dockerfile).
+After you push the container image, you see the same results as building the image
+[using a Dockerfile](#dockerfile).
 
 For more information about building container images for a Spring Boot app,
 see [Spring Boot with Docker](https://spring.io/guides/gs/spring-boot-docker)
