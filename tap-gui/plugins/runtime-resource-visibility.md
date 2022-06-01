@@ -124,10 +124,9 @@ The Annotations and Labels card displays information about `metadata.annotations
 
 ## <a id="selecting-supply-chain-pods"></a>Selecting Completed Supply Chain Pods
 
-The completed Supply Chain Pods (Build and ConfigWriter Pods) are not shown by default in the index table as they
-are additional resources. Users can select to show them or not via the **Show Additional Resources** dropdown, 
-which is above the Resources index table. This dropdown is visible if the resources include Build and/or 
-ConfigWriter Pods. Otherwise, the dropdown will not be visible.
+Completed Supply Chain Pods (Build Pods and ConfigWriter Pods) are hidden by default in the index table.
+Users can choose to show them via the Show Additional Resources dropdown, above the Resources index table.
+This dropdown is only visible if the resources include Build and/or ConfigWriter Pods.
 
 ![Screenshot of Completed Supply Chain Pods dropdown](images/runtime-resources-supply-chain-pods.png)
 
