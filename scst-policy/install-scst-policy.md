@@ -207,9 +207,12 @@ To install Supply Chain Security Tools - Policy Conroller:
       'PackageInstall' resource install status: ReconcileSucceeded
       'PackageInstall' resource successfully reconciled
 
-      Added installed package 'cosigned'
+      Added installed package 'policy-controller'
     ```
 
-   After you run the commands above the policy controller will be running.
+After you run the commands above the policy controller will be running.
 
-   **Note:** Policy Controller is now installed, but it will not enforce any policies by default. Policies must be explicitly configured on the cluster.  To configure signature verification policies, see [Configuring Supply Chain Security Tools - Policy](configuring.md).
+**Note:** Policy Controller is now installed, but it will not enforce any
+policies by default. Policies must be explicitly configured on the cluster.
+To configure signature verification policies, see [Configuring Supply Chain
+Security Tools - Policy](configuring.md).
