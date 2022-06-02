@@ -5,21 +5,21 @@ container images properly.
 
 ## <a id="admission-of-images"></a> Admission of Images
 
-An image is admitted after it has been validated against all
-[ClusterImagePolicy](#create-cip-resource) that matched the digest of the image
-and that there was at least one valid signature or attestation obtained from the
-authorities provided in each of the matched ClusterImagePolicy. So each
-ClusterImagePolicy that matches is AND for admission, and within each
-ClusterImagePolicy authorities are ON.
+An image is admitted after it has been validated against all policies with
+matching image patterns, and where at least one valid signature obtained from
+the authorities provided in each of the matched
+[ClusterImagePolicy](#create-cip-resource). Within a single policy, any single
+signature must be valid. When more than one policy has a matching image pattern,
+the image much match at least one signature from each ClusterImagePolicy.
 
 ## <a id="including-namespaces"></a> Including Namespaces
 
 The cosigned admission controller will only validate resources in namespaces
 that have chosen to opt-in. This can be done by adding the label
-cosigned.sigstore.dev/include: "true" to the namespace resource.
+`policy.sigstore.dev/include: "true"` to the namespace resource.
 
 ```console
-kubectl label namespace my-secure-namespace cosigned.sigstore.dev/include=true
+kubectl label namespace my-secure-namespace policy.sigstore.dev/include=true
 ```
 
 ## <a id="create-cip-resource"></a> Create a `ClusterImagePolicy` resource
@@ -30,7 +30,7 @@ The cluster image policy is a custom resource containing the following propertie
   subject to the ClusterImagePolicy. If multiple policies match a particular
   image, _ALL_ of those policies must be satisfied for the image to be admitted.
   If there is no host in the `glob` field, `index.docker.io` is used for the
-  host.
+  host. When no repository is specified, the image pattern defaults to `library`.
 
 * `authorities`: The authorities block defines the rules for discovering and
   validating signatures. Discovery is done through the `sources` field, and can
@@ -43,20 +43,20 @@ satisfied and a signature is validated, the policy is validated.
 
 ### <a id="cip-images"></a> `images`
 
-The ClusterImagePolicy specifies spec.images which specifies a list of glob
+The ClusterImagePolicy specifies `spec.images` which specifies a list of glob
 matching patterns. These matching patterns will be matched against the image
 digest of PodSpec resources attempting to be deployed.
 
-Glob uses golang filepath semantics for matching the images against. To make it
-easier to specify images, there are few defaults when an image is matched,
-namely:
+Glob matches against images using semantics similar to Golang filepaths. A `**`
+may be used to match against all subdirectories. To make it easier to specify
+images, there are few defaults when an image is matched, namely:
 
-- If there is no host in the glob pattern index.docker.io is used for the host.
+- If there is no host in the glob pattern, `index.docker.io` is used for the host.
   This allows users to specify commonly found images from Docker simply as
-  myproject/nginx instead of inded.docker.io/myproject/nginx
+  `myproject/nginx` instead of `index.docker.io/myproject/nginx`
 
 - If the image is specified without multiple path elements (so not separated by
-  /), then library is defaulted. For example specifying busybox will result in
+  `/`), then library is defaulted. For example specifying busybox will result in
   library/busybox. And combined with above, will result in match being made
   against index.docker.io/library/busybox.
 
@@ -123,19 +123,19 @@ images using a glob:
 
 ```yaml
 apiVersion: cosigned.sigstore.dev/v1alpha1
-  kind: ClusterImagePolicy
-  metadata:
-    name: image-policy
-  spec:
-    images:
-    - glob: "*"
+kind: ClusterImagePolicy
+metadata:
+  name: image-policy
+spec:
+  images:
+  - glob: "*"
 ```
 
-The patterns are evaluated using the any of operator to admit container
-images. For each pod, the Image Policy Webhook iterates over the list of
-containers and init containers. The pod is verified when there is at least
-one key specified in `spec.verification.images[].keys[]` for each container image
-that matches `spec.verification.images[].namePattern`.
+The patterns are evaluated using the "any of" operator to admit container
+images. For each pod, the Policy Controller iterates over the list of containers
+and init containers. The pod is verified when there is at least one key
+specified in `spec.verification.images[].keys[]` for each container image that
+matches `spec.verification.images[].namePattern`.
 
 ## <a id='provide-creds-for-package'></a> Provide credentials for the package
 
@@ -181,7 +181,7 @@ configuration provided your use case meets the following conditions:
 
 * Your images and signatures reside in a registry protected by authentication.
 
-* You do not have `signaturePullSecrets` configured in your runnable resources
+* You do not have `signaturePullSecrets` configured in your ClusterImagePolicy
   or in the `ServiceAccount`s that your runnable resources use.
 
 * You want this WebHook to check these container images.
