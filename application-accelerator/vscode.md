@@ -16,7 +16,7 @@ information on how to expose this server follow the instructions [here](./acc-cl
      
     1. From the Command Palette (cmd + shift + P), run "Extensions: Install from VSIX...".
     
-    2. Select the extension file **tanzu-app-accelerator-0.1.0.vsix**.
+    2. Select the extension file **tanzu-app-accelerator-0.1.1.vsix**.
     
     ![Command palette open showing text Extensions: INSTALL FROM VSIX...](../images/vscode-install1.png)
     
