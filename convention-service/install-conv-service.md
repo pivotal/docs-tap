@@ -115,7 +115,7 @@ If a certificate error `x509: certificate signed by unknown authority` occurs, t
     For example:
 
     ```console
-    tanzu package installed get convention-controller -n tap-install
+    tanzu package installed get conventions-controller -n tap-install
     Retrieving installation details for conventions-controller...
     NAME:                    conventions-controller
     PACKAGE-NAME:            controller.conventions.apps.tanzu.vmware.com
