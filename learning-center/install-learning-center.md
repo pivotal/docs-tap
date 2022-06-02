@@ -52,7 +52,7 @@ To install Learning Center:
 
 1. Create a config file named `learning-center-config.yaml`.
 
-1. Add the parameter `ingressDomain` to `learning-center-config.yaml`, as in this example:
+1. If you want to override the `shared.ingress_domain` in the TAP-level values file, add the parameter `ingressDomain` to `learning-center-config.yaml`, as in this example:
 
     ```yaml
     ingressDomain: YOUR-INGRESS-DOMAIN

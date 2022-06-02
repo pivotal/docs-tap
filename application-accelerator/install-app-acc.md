@@ -34,7 +34,7 @@ When you install the Application Accelerator, you can configure the following op
 | samples.include | True | Option to include the bundled sample Accelerators in the installation |
 | ingress.include | False | Option to include the ingress configuration in the installation |
 | ingress.enable_tls | False | Option to include TLS for the ingress configuration |
-| domain | tap.example.com | Top-level domain to use for ingress configuration |
+| domain | tap.example.com | Top-level domain to use for ingress configuration, defaults to `shared.ingress_domain` if set |
 | tls.secretName | tls | The name of the secret |
 | tls.namespace | tanzu-system-ingress | The namespace for the secret |
 

@@ -25,10 +25,11 @@ Configure the OIDC provider with your OAuth App values.
 For example:
 
 ```yaml
+shared:
+  ingress_domain: "INGRESS-DOMAIN"
+
 tap_gui:
   service_type: ClusterIP
-  ingressEnabled: "true"
-  ingressDomain: "INGRESS-DOMAIN"
   app_config:
     app:
       baseUrl: http://tap-gui.INGRESS-DOMAIN
