@@ -49,37 +49,38 @@ To install Supply Chain Security Tools - Policy Conroller:
     ```console
     $ tanzu package available get policy.apps.tanzu.vmware.com/1.0.0 --values-schema --namespace tap-install
     | Retrieving package details for policy.apps.tanzu.vmware.com/1.0.0...
-      KEY                     DEFAULT              TYPE     DESCRIPTION
-      custom_ca_secrets       <nil>                array    List of custom CA secrets that should be included in the application container for registry communication.
-                                                            An array of secret references each containing a secret_name field with the secret name to be referenced
-                                                            and a namespace field with the name of the namespace where the referred secret resides.
 
-      custom_cas              <nil>                array    List of custom CA contents that should be included in the application container for registry communication.
-                                                            An array of items containing a ca_content field with the PEM-encoded contents of a certificate authority.
+    KEY                   DEFAULT        TYPE     DESCRIPTION
+    custom_ca_secrets     <nil>          array    List of custom CA secrets that should be included in the application container
+                                                  for registry communication. An array of secret references each containing a
+                                                  secret_name field with the secret name to be referenced and a namespace field
+                                                  with the name of the namespace where the referred secret resides.
+    custom_cas            <nil>          array    List of custom CA contents that should be included in the application container
+                                                  for registry communication. An array of items containing a ca_content field with
+                                                  the PEM-encoded contents of a certificate authority.
+    requests_cpu          20m            string   The CPU request defines the minimum CPU time for the Policy
+                                                  Controller manager. During CPU contention, CPU request is used as
+                                                  a weighting where higher CPU requests are allocated more CPU time.
+                                                  https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu
 
-      deployment_namespace    image-policy-system  string   Deployment namespace specifies the namespace where this component should be deployed to.
-                                                            If not specified, "image-policy-system" is assumed.
+    deployment_namespace  cosign-system  string   Deployment namespace specifies the namespace where this component should be
+                                                  deployed to. If not specified, "cosign-system" is assumed.
+    limits_cpu            200m           string   The CPU limit defines a hard ceiling on how much CPU time
+                                                  that the Policy Controller manager container can use.
+                                                  https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu
 
-      limits_cpu              200m                 string   The CPU limit defines a hard ceiling on how much CPU time that
-                                                            the Image Policy Webhook controller manager container can use.
-                                                            https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu
+    limits_memory         200Mi          string   The memory limit defines a hard ceiling on how much memory
+                                                  that the Policy Controller manager container can use.
+                                                  https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory
 
-      limits_memory           256Mi                string   The memory limit defines a hard ceiling on how much memory that
-                                                            the Image Policy Webhook controller manager container can use.
-                                                            https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory
-
-      quota.pod_number        "5"                    string   The maximum number of Image Policy Webhook Pods allowed to be created with the priority class
-                                                            system-cluster-critical. This value must be enclosed in quotes (""). If this value is not
-                                                            specified then a default value of 5 is used.
-      replicas                1                    integer  The number of replicas to be created for the Image Policy Webhook. This value must not be enclosed
-                                                            in quotes. If this value is not specified then a default value of 1 is used.
-      requests_cpu            100m                 string   The CPU request defines the minimum CPU time for the Image Policy
-                                                            Webhook controller manager. During CPU contention, CPU request is used
-                                                            as a weighting where higher CPU requests are allocated more CPU time.
-                                                            https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu
-
-      requests_memory         50Mi                 string   The memory request defines the minium memory amount for the Image Policy Webhook controller manager.
-                                                            https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory
+    quota.pod_number      6              string   The maximum number of Policy Controller Pods allowed to be created with the
+                                                  priority class system-cluster-critical. This value must be enclosed in quotes
+                                                  (""). If this value is not specified then a default value of 6 is used.
+    replicas              1              integer  The number of replicas to be created for the Policy Controller. This value must
+                                                  not be enclosed in quotes. If this value is not specified then a default value
+                                                  of 1 is used.
+    requests_memory       20Mi           string   The memory request defines the minium memory amount for the Policy Controller manager.
+                                                  https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory
     ```
 
 1. Create a file named `scst-policy-values.yaml` and add the settings you want to customize:
@@ -139,12 +140,12 @@ To install Supply Chain Security Tools - Policy Conroller:
       other components.
 
     - `limits_cpu`:
-      This setting controls the maximum CPU resource allocated to the Image Policy
-      Webhook controller. The default value is "200m". See [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu) for more details.
+      This setting controls the maximum CPU resource allocated to the Policy
+      admission controller. The default value is "200m". See [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu) for more details.
 
     - `limits_memory`:
-      This setting controls the maximum memory resource allocated to the Image Policy
-      Webhook controller. The default value is "256Mi". See [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory) for more details.
+      This setting controls the maximum memory resource allocated to the Policy
+      admission controller. The default value is "256Mi". See [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory) for more details.
 
     - `quota.pod_number`:
       This setting controls the maximum number of pods that are allowed in the
@@ -165,14 +166,14 @@ To install Supply Chain Security Tools - Policy Conroller:
         `3` to ensure availability of the component and better admission performance.
 
     - `requests_cpu`:
-      This setting controls the minimum CPU resource allocated to the Image Policy
-      Webhook controller. During CPU contention, this value is used as a weighting
+      This setting controls the minimum CPU resource allocated to the Policy
+      admission controller. During CPU contention, this value is used as a weighting
       where higher values indicate more CPU time is allocated. The default value is "100m".
       See [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu) for more details.
 
     - `requests_memory`:
-      This setting controls the minimum memory resource allocated to the Image Policy
-      Webhook controller. The default value is "50Mi". See [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory) for more details.
+      This setting controls the minimum memory resource allocated to the Policy
+      admission controller. The default value is "50Mi". See [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory) for more details.
 
 1. Install the package:
 
@@ -195,20 +196,23 @@ To install Supply Chain Security Tools - Policy Conroller:
         --namespace tap-install \
         --values-file scst-policy-values.yaml
 
-    | Installing package 'policy.apps.tanzu.vmware.com'
-    | Getting namespace 'default'
-    | Getting package metadata for 'policy.apps.tanzu.vmware.com'
-    | Creating service account 'image-policy-webhook-default-sa'
-    | Creating cluster admin role 'image-policy-webhook-default-cluster-role'
-    | Creating cluster role binding 'image-policy-webhook-default-cluster-rolebinding'
-    | Creating secret 'image-policy-webhook-default-values'
-    / Creating package resource
-    - Package install status: Reconciling
+      Installing package 'policy.apps.tanzu.vmware.com'
+      Getting package metadata for 'policy.apps.tanzu.vmware.com'
+      Creating service account 'policy-controller-tap-install-sa'
+      Creating cluster admin role 'policy-controller-tap-install-cluster-role'
+      Creating cluster role binding 'policy-controller-tap-install-cluster-rolebinding'
+      Creating package resource
+      Waiting for 'PackageInstall' reconciliation for 'policy-controller'
+      'PackageInstall' resource install status: Reconciling
+      'PackageInstall' resource install status: ReconcileSucceeded
+      'PackageInstall' resource successfully reconciled
 
-    Added installed package 'image-policy-webhook' in namespace 'tap-install'
+      Added installed package 'policy-controller'
     ```
-**TODO** update console output for above^^
 
-   After you run the commands above the policy controller will be running.
+After you run the commands above the policy controller will be running.
 
-   **Note:** Policy Controller is now installed, but it will not enforce any policies by default. Policies must be explicitly configured on the cluster.  To configure signature verification policies, see [Configuring Supply Chain Security Tools - Policy](configuring.md).
+**Note:** Policy Controller is now installed, but it will not enforce any
+policies by default. Policies must be explicitly configured on the cluster.
+To configure signature verification policies, see [Configuring Supply Chain
+Security Tools - Policy](configuring.md).
