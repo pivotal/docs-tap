@@ -55,19 +55,19 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
     ```console
     $ tanzu package available get snyk.scanning.apps.tanzu.vmware.com/1.0.0 --values-schema -n scan-install
 
-  KEY                                           DEFAULT                                                           TYPE    DESCRIPTION
-  metadataStore.authSecret.name                                                                                   string  Name of deployed Secret with key auth_token
-  metadataStore.authSecret.importFromNamespace                                                                    string  Namespace from which to import the Insight Metadata Store auth_token
-  metadataStore.caSecret.importFromNamespace    metadata-store                                                    string  Namespace from which to import the Insight Metadata Store CA Cert
-  metadataStore.caSecret.name                   app-tls-cert                                                      string  Name of deployed Secret with key ca.crt holding the CA Cert of the Insight Metadata Store
-  metadataStore.clusterRole                     metadata-store-read-write                                         string  Name of the deployed ClusterRole for read/write access to the Insight Metadata Store deployed in the same cluster
-  metadataStore.url                             https://metadata-store-app.metadata-store.svc.cluster.local:8443  string  Url of the Insight Metadata Store
-  namespace                                     default                                                           string  Deployment namespace for the Scan Templates
-  resources.requests.cpu                        250m                                                              <nil>   Requests describes the minimum amount of cpu resources required.
-  resources.requests.memory                     128Mi                                                             <nil>   Requests describes the minimum amount of memory resources required.
-  resources.limits.cpu                          1000m                                                             <nil>   Limits describes the maximum amount of cpu resources allowed.
-  snyk.tokenSecret.name                                                                                           string  Reference to the secret containing a Snyk API Token as snyk_token.
-  targetImagePullSecret                                                                                           string  Reference to the secret used for pulling images from private registry.
+    KEY                                           DEFAULT                                                           TYPE    DESCRIPTION
+    metadataStore.authSecret.name                                                                                   string  Name of deployed Secret with key auth_token
+    metadataStore.authSecret.importFromNamespace                                                                    string  Namespace from which to import the Insight Metadata Store auth_token
+    metadataStore.caSecret.importFromNamespace    metadata-store                                                    string  Namespace from which to import the Insight Metadata Store CA Cert
+    metadataStore.caSecret.name                   app-tls-cert                                                      string  Name of deployed Secret with key ca.crt holding the CA Cert of the Insight Metadata Store
+    metadataStore.clusterRole                     metadata-store-read-write                                         string  Name of the deployed ClusterRole for read/write access to the Insight Metadata Store deployed in the same cluster
+    metadataStore.url                             https://metadata-store-app.metadata-store.svc.cluster.local:8443  string  Url of the Insight Metadata Store
+    namespace                                     default                                                           string  Deployment namespace for the Scan Templates
+    resources.requests.cpu                        250m                                                              <nil>   Requests describes the minimum amount of cpu resources required.
+    resources.requests.memory                     128Mi                                                             <nil>   Requests describes the minimum amount of memory resources required.
+    resources.limits.cpu                          1000m                                                             <nil>   Limits describes the maximum amount of cpu resources allowed.
+    snyk.tokenSecret.name                                                                                           string  Reference to the secret containing a Snyk API Token as snyk_token.
+    targetImagePullSecret                                                                                           string  Reference to the secret used for pulling images from private registry.
     ```
 
 1. Define the `--values-file` flag to customize the default configuration. Create a `values.yaml` file by using the following configuration:
