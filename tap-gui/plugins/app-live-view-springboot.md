@@ -1,6 +1,6 @@
-# Application Live View in Tanzu Application Platform GUI
+# Application Live View for Spring Boot Applications in Tanzu Application Platform GUI
 
-This topic describes Application Live View in Tanzu Application Platform GUI.
+This topic describes Application Live View for Spring Boot Applications in Tanzu Application Platform GUI.
 
 
 ## <a id="overview"></a> Overview

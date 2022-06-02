@@ -21,7 +21,7 @@ the list of labels in the following table gives you an overview of the options:
 | `tanzu.app.live.view.application.actuator.path` |false| String| `/actuator` | Actuator context path |
 | `tanzu.app.live.view.application.protocol` | false| http / https | `http` | Protocol scheme |
 | `tanzu.app.live.view.application.actuator.health.port` | false | Integer | `8080` | Health endpoint port |
-| `tanzu.app.live.view.application.flavours` | false | Comma separated string | `spring-boot` | Application flavors |
+| `tanzu.app.live.view.application.flavours` | false | Comma separated string | `spring-boot,spring-cloud-gateway` | Application flavors |
 
 
 You can add connector labels in the app `Workload` or override labels that the convention applies,
@@ -97,8 +97,8 @@ shows the newly added label has propagated through the Supply Chain:
             boot.spring.io/actuator: http://:8080/actuator
             boot.spring.io/version: 2.5.6
             conventions.apps.tanzu.vmware.com/applied-conventions: |-
-              appliveview-sample/app-live-view-connector
-              appliveview-sample/app-live-view-appflavours
+              appliveview-sample/app-live-view-connector-boot
+              appliveview-sample/app-live-view-appflavours-boot
               appliveview-sample/app-live-view-systemproperties
               spring-boot-convention/spring-boot
               spring-boot-convention/spring-boot-graceful-shutdown
