@@ -198,11 +198,11 @@ To install Supply Chain Security Tools - Policy Conroller:
 
       Installing package 'policy.apps.tanzu.vmware.com'
       Getting package metadata for 'policy.apps.tanzu.vmware.com'
-      Creating service account 'cosigned-tap-install-sa'
-      Creating cluster admin role 'cosigned-tap-install-cluster-role'
-      Creating cluster role binding 'cosigned-tap-install-cluster-rolebinding'
+      Creating service account 'policy-controller-tap-install-sa'
+      Creating cluster admin role 'policy-controller-tap-install-cluster-role'
+      Creating cluster role binding 'policy-controller-tap-install-cluster-rolebinding'
       Creating package resource
-      Waiting for 'PackageInstall' reconciliation for 'cosigned'
+      Waiting for 'PackageInstall' reconciliation for 'policy-controller'
       'PackageInstall' resource install status: Reconciling
       'PackageInstall' resource install status: ReconcileSucceeded
       'PackageInstall' resource successfully reconciled
