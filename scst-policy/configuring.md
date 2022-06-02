@@ -134,8 +134,8 @@ spec:
 The patterns are evaluated using the "any of" operator to admit container
 images. For each pod, the Policy Controller iterates over the list of containers
 and init containers. The pod is verified when there is at least one key
-specified in `spec.verification.images[].keys[]` for each container image that
-matches `spec.verification.images[].namePattern`.
+specified in `spec.authorities[]` for each container image that matches
+`spec.images[]`.
 
 ## <a id='provide-creds-for-package'></a> Provide credentials for the package
 
