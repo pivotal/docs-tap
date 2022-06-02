@@ -23,36 +23,39 @@ Follow these steps to define a Rego file for policy enforcement that you can reu
 1. Create a scan policy with a Rego file. Here is a sample scan policy resource:
 
     ```console
+    ---
     apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
     kind: ScanPolicy
     metadata:
       name: scanpolicy-sample
     spec:
-      # A multiline string defining a valid Rego file for policy validation
       regoFile: |
-        # Define the package policies
-        package policies
+        package main
 
-        # Give default value to isCompliant to be returned
-        # if no change to `true` is applied
-        default isCompliant = false
-
-        # Not fail on any CVE with this severities in it
-        ignoreSeverities := ["Low"]
+        # Accepted Values: "Critical", "High", "Medium", "Low", "Negligible", "UnknownSeverity"
+        notAllowedSeverities := ["Low"]
+        ignoreCves := []
 
         contains(array, elem) = true {
           array[_] = elem
         } else = false { true }
 
-        # Define the rule structure for evaluating CVEs
-        isCompliant {
-          # Check if the severity level in any of the ratings associated
-          # with the current CVEs is present in the ignoreSeverities
-          # array.
-          ignore := contains(ignoreSeverities, input.currentVulnerability.Ratings.Rating[_].Severity)
-          # If the severity level is in the array, isCompliant will be true
-          # since `ignore` is. isCompliant will have the default value if `ignore` is false.
+        isSafe(match) {
+          fails := contains(notAllowedSeverities, match.ratings.rating[_])
+          not fails
+        }
+
+        isSafe(match) {
+          ignore := contains(ignoreCves, match.Id)
           ignore
+        }
+
+        deny[msg] {
+          comp := input.bom.components.component[_]
+          vuln := comp.vulnerabilities.vulnerability[_]
+          ratings := vuln.ratings.rating[_]
+          not isSafe(vuln)
+          msg = sprintf("CVE %s %s %s", [comp.name, vuln.id, ratings])
         }
     ```
 

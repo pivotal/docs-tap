@@ -125,35 +125,40 @@ When a ImageScan or SourceScan is created to run a scan, those reference a
 policy whose name **must** match the one below (`scan-policy`):
 
 ```console
+---
 apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: ScanPolicy
 metadata:
   name: scan-policy
 spec:
   regoFile: |
-    package policies
-
-    default isCompliant = false
+    package main
 
     # Accepted Values: "Critical", "High", "Medium", "Low", "Negligible", "UnknownSeverity"
-    violatingSeverities := ["Critical","High","UnknownSeverity"]
-    ignoreCVEs := []
+    notAllowedSeverities := ["Critical","High","UnknownSeverity"]
+    ignoreCves := []
 
     contains(array, elem) = true {
       array[_] = elem
     } else = false { true }
 
     isSafe(match) {
-      fails := contains(violatingSeverities, match.Ratings.Rating[_].Severity)
+      fails := contains(notAllowedSeverities, match.ratings.rating[_])
       not fails
     }
 
     isSafe(match) {
-      ignore := contains(ignoreCVEs, match.Id)
+      ignore := contains(ignoreCves, match.Id)
       ignore
     }
 
-    isCompliant = isSafe(input.currentVulnerability)
+    deny[msg] {
+      comp := input.bom.components.component[_]
+      vuln := comp.vulnerabilities.vulnerability[_]
+      ratings := vuln.ratings.rating[_]
+      not isSafe(vuln)
+      msg = sprintf("CVE %s %s %s", [comp.name, vuln.id, ratings])
+    }
 ```
 
 See [Writing Policy Templates](../scst-scan/policies.md) for more details.

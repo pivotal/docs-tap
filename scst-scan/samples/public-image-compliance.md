@@ -26,29 +26,33 @@ metadata:
   name: sample-scan-policy
 spec:
   regoFile: |
-    package policies
+    package main
 
-    default isCompliant = false
-
-    # Accepted Values: "UnknownSeverity", "Critical", "High", "Medium", "Low", "Negligible"
-    violatingSeverities := ["Critical"]
-    ignoreCVEs := []
+    # Accepted Values: "Critical", "High", "Medium", "Low", "Negligible", "UnknownSeverity"
+    notAllowedSeverities := ["Critical"]
+    ignoreCves := []
 
     contains(array, elem) = true {
       array[_] = elem
     } else = false { true }
 
     isSafe(match) {
-      fails := contains(violatingSeverities, match.Ratings.Rating[_].Severity)
+      fails := contains(notAllowedSeverities, match.ratings.rating[_])
       not fails
     }
 
     isSafe(match) {
-      ignore := contains(ignoreCVEs, match.Id)
+      ignore := contains(ignoreCves, match.Id)
       ignore
     }
 
-    isCompliant = isSafe(input.currentVulnerability)
+    deny[msg] {
+      comp := input.bom.components.component[_]
+      vuln := comp.vulnerabilities.vulnerability[_]
+      ratings := vuln.ratings.rating[_]
+      not isSafe(vuln)
+      msg = sprintf("CVE %s %s %s", [comp.name, vuln.id, ratings])
+    }
 
 ---
 apiVersion: scanning.apps.tanzu.vmware.com/v1beta1

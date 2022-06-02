@@ -143,47 +143,9 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
 
 ## Using the Synk scanner to run an ImageScan
 
-The OOTB Scanning Supply Chain implements a `SourceScan` and `ImageScan`, which references `ScanTemplate`s that use the Grype scanner. To use the Snyk scanner for the `ImageScan` (the Snyk `SourceScan` is not yet supported), the following `ScanPolicy` and `ImageScan` will need to be used instead.
+The OOTB Scanning Supply Chain implements a `SourceScan` and `ImageScan`, which references `ScanTemplate`s that use the Grype scanner. To use the Snyk scanner for the `ImageScan` (the Snyk `SourceScan` is not yet supported), the `ImageScan` `ScanTemplate` will need to be used instead. In the OOTB Scanning Supply Chain, update `spec.scanTemplate` from `public-image-scan-template` to `snyk-public-image-scan-template`.
 
-The Grype scanner outputs in CycloneDX, whereas the Snyk scanner outputs in SPDX. As such, the Rego required within the `ScanPolicy` is different for each. An example Snyk `ScanPolicy` which uses SPDX input is the following:
-```yaml
----
-apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
-kind: ScanPolicy
-metadata:
-  name: snyk-sample-scan-policy
-spec:
-  regoFile: |
-    package main
-
-    notAllowedSeverities := ["Low"]
-    ignoreCves := ["SNYK-DEBIAN10-XZUTILS-2444279"]
-
-    contains(array, elem) = true {
-      array[_] = elem
-    } else = false { true }
-
-    # Severity
-    isSafe(match) {
-      fails := contains(notAllowedSeverities, match.relationships[_].ratedBy.rating[_].severity)
-      not fails
-    }
-
-    # SNYK ID
-    isSafe(match) {
-      ignore := contains(ignoreCves, match.id)
-      ignore
-    }
-
-    deny[msg] {
-      vuln := input.vulnerabilities[_]
-      ratings := vuln.relationships[_].ratedBy.rating[_].severity
-      comp := vuln.relationships[_].affect.to[_]
-      not isSafe(vuln)
-      msg = sprintf("%s %s %s", [comp, vuln.id, ratings])
-```
-
-And an example `ImageScan` which uses both a Snyk `ScanTemplate` and the above `ScanPolicy` is the following:
+Similarly, to run a scan manually, apply the following to the developer namespace:
 ```yaml
 apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: ImageScan
@@ -193,7 +155,7 @@ spec:
   registry:
     image: "nginx:1.16"
   scanTemplate: snyk-public-image-scan-template
-  scanPolicy: snyk-sample-scan-policy
+  scanPolicy: scan-policy
 ```
 
 Applying both of these into a developer namespace would result in an image scan being run using the Snyk scanner instead of the Grype scanner.
