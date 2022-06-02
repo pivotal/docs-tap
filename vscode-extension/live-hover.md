@@ -14,17 +14,17 @@ Once you have a workload deployed, you should see the live hovers.
 
 ## A Concrete Example
 
-Assuming you have the pre-requisited installed. Let's go through the 
-steps deploy the sample app [tanzu-java-web-app](https://github.com/sample-accelerators/tanzu-java-web-app) to our cluster; and get live
+Assuming you have the prerequisite [Spring Boot Tools](https://marketplace.visualstudio.com/items?itemName=Pivotal.vscode-spring-boot) installed. 
+Let's go through the steps to deploy the sample [tanzu-java-web-app](https://github.com/sample-accelerators/tanzu-java-web-app) workload to our cluster; and get live
 hovers working.
 
-*Step 1:* Clone the repo 
+*Step 1:* Clone the repo
 
 ```
 $ git clone https://github.com/sample-accelerators/tanzu-java-web-app
 ```
 
-*Step 2*: Open the project in vscode, with the live-hover feature enabled
+*Step 2*: Open the project in Vscode, with the live-hover feature enabled
 
 ```
 $ TAP_LIVE_HOVER=true code ./tanzu-java-web-app
@@ -32,10 +32,11 @@ $ TAP_LIVE_HOVER=true code ./tanzu-java-web-app
 
 *Step 3*: Target a cluster
 
-Vscode-tanzu-tools will periodcailly connect to your cluster to try and 
-find pods from which live-data may be extracted / shown.
+Vscode Tanzu Tools will periodically connect to your cluster to try and 
+find pods from which live-data may be extracted and shown.
 
-Vscode-tanzu-tools will use your current context from `~/.kube/config`. 
+Vscode Tanzu Tools will use your current context from `~/.kube/config` to
+determine the cluster to connect to.
 
 Make sure that you are targetting the cluster on which you will be running
 the workload. For example:
@@ -50,7 +51,7 @@ To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 
 *Step 3*: Deploy the workload to the cluster 
 
-Vscode-tanzu-tools will periodically connect to the cluster pods in your 
+Vscode Tanzu Tools will periodically look for pods in your 
 cluster that match the workload configurations it finds in your workspace. 
 
 If you don't have the workload running yet, now is a good time to deploy it.
@@ -62,7 +63,7 @@ $ kubectl create -f config/workload.yaml
 workload.carto.run/tanzu-java-web-app created
 ```
 
-It will take some time for the workload to build and then startup running pod. 
+It will take some time for the workload to build and then startup a running pod. 
 To check if a pod is running yet you can do:
 
 ```
@@ -80,7 +81,7 @@ can be extracted.
 *Step 5*: Open a file and see live hovers
 
 To see some live hovers, simply open a Java file such as `HelloController.java`.
-After a short delay of upto 30 seconds (on account of a live-hover polling loop),
+After a short delay of upto 30 seconds (on account of a 30 second polling loop),
 green bubbles will appear as highlights in your code. Hover over any of the bubbles
 to see live info about the corresponding element. For more details about the
 functionality refer to the  documentation of 

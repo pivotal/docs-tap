@@ -1,6 +1,6 @@
 # Create a ScanTemplate
 
-The `ScanTemplate` custom resource (CR) is the component that defines how the scan Pod fulfills the task of vulnerability scanning. There are  default `ScanTemplates` provided out-of-the-box using the Tanzu Application Platform default scanner `Anchore's Grype`. The scan is done by using stages sequentially run on the scanning Pod. At the end a single container on the scan Pod called `summary` combines the result of the initContainers and the controller to discover and update `Scan CR` status.
+The `ScanTemplate` custom resource (CR) is the component that defines how the scan Pod fulfills the task of vulnerability scanning. There are  default `ScanTemplates` provided out of the box using the Tanzu Application Platform default scanner, `Anchore's Grype`. The scan is done using stages sequentially run on the scanning Pod. At the end, a single container on the scan Pod called `summary` combines the result of the initContainers and the controller to discover and update `Scan CR` status.
 
 ## <a id="structure"></a>Structure
 
@@ -28,9 +28,9 @@ spec:
 
 ## <a id="summary-container"></a>Summary Container
 
-Scanning stages are required to write structured output to a specified file location in the workspace in the form of `/${WORKSPACE_PATH}/${STAGE_NAME}/out.yaml` (in the earlier example of a typical `ScanTemplates` the `${WORKSPACE_PATH}` is `workspace`). Individual stages can only populate a subset of the model depending on the nature of the stage. `Summary container` consumes and aggregates the outputs of the previous stages. And finally the controller consumes this aggregated information to populate and update the status of the `Scan CRs`.
+Scanning stages are required to write structured output to a specified file location in the workspace in the form of `/${WORKSPACE_PATH}/${STAGE_NAME}/out.yaml`. In the earlier example of a typical `ScanTemplates`, the `${WORKSPACE_PATH}` is `workspace`. Individual stages can only populate a subset of the model depending on the nature of the stage. The `Summary container` consumes and aggregates the outputs of the previous stages. And finally the controller consumes this aggregated information to populate and update the status of the `Scan CRs`.
 
-Below the general format of final aggregated `Output Model` and some examples of typical subsets provided by individual stages of scan are shown:
+Below is the general format of final aggregated `Output Model` and some examples of typical subsets provided by individual stages of scan are shown:
 
 1. General form of scan Output Model:
 ```yaml
@@ -70,7 +70,7 @@ store:
   locations: []
 ```
 
-The `scan` portion of the earlier output is required and if missing the scan controller fails to properly update final status of the `Scan CR`. Other portions of the output including those of `store` and `policy evaluation` are optional and can be omitted, if not applicable in a custom supply chain setup.
+The `scan` portion of the earlier output is required and if missing the scan controller fails to properly update the final status of the `Scan CR`. Other portions of the output, including those of `store` and `policy evaluation`, are optional and can be omitted if not applicable in a custom supply chain setup.
 
 2. Examples of sample subset outputs:
 
