@@ -112,32 +112,33 @@ To set up a service:
         kubectl apply -f rabbitmqcluster-app-operator-reader.yaml
         ```
 
-1. Make the new API discoverable.
+1. Make the new API seen as claimable to Application Operators.
 
-    1. In a file named `rabbitmqcluster-clusterresource.yaml`, create a `ClusterResource`
+    1. In a file named `rabbitmqcluster-clusterinstanceclass.yaml`, create a `ClusterInstanceClass`
     that refers to the new service, and set any additional metadata. For example:
 
         ```yaml
-        # rabbitmqcluster-clusterresource.yaml
+        # rabbitmqcluster-clusterinstanceclass.yaml
+        ---
         apiVersion: services.apps.tanzu.vmware.com/v1alpha1
-        kind: ClusterResource
+        kind: ClusterInstanceClass
         metadata:
           name: rabbitmq
         spec:
-          shortDescription: It's a RabbitMQ cluster!
-          longDescription: A consistent and easy way to deploy RabbitMQ clusters to Kubernetes and run them, including "day two" (continuous) operations.
-          resourceRef:
+          description:
+            short: It's a RabbitMQ cluster!
+          pool:
             group: rabbitmq.com
             kind: RabbitmqCluster
         ```
 
-    1. Apply `rabbitmqcluster-clusterresource.yaml` by running:
+    1. Apply `rabbitmqcluster-clusterinstanceclass.yaml` by running:
 
         ```console
-        kubectl apply -f rabbitmqcluster-clusterresource.yaml
+        kubectl apply -f rabbitmqcluster-clusterinstanceclass.yaml
         ```
         After applying this resource, it will be listed in the output of the
-        `tanzu service types list` command, and is discoverable in the `tanzu` tooling.
+        `tanzu service classes list` command, and is discoverable in the `tanzu` tooling.
 
 ## <a id="stk-create-svc-instances"></a> Create a service instance
 
@@ -161,19 +162,19 @@ To create a service instance:
     > over who has access to what. However, this is not a strict requirement.
     > You can create both service instances and application workloads in the same namespace if desired.
 
-2.  Find the list of services that are available on your cluster by running:
+2.  Find the list of Service Instance Classes that are available on your cluster by running:
 
     ```console
-    tanzu service types list
+    tanzu service classes list
     ```
 
     Expected output:
 
     ```console
-    Warning: This is an ALPHA command and may change without notice.
+    tanzu service classes list
 
-     NAME      DESCRIPTION               APIVERSION                    KIND
-     rabbitmq  It's a RabbitMQ cluster!  rabbitmq.com/v1beta1          RabbitmqCluster
+     NAME      DESCRIPTION
+     rabbitmq  It's a RabbitMQ cluster!
     ```
 
     > **Note**: If you see `No service types found.`, ensure you have completed the
@@ -238,7 +239,7 @@ To create a service instance:
 
 This section covers the following:
 
-* Using `tanzu service instance list` to view details about service instances.
+* Using `tanzu service claimable list --class` to view details about service instances claimable from a namespace.
 * Using `tanzu service claim create` to create a claim for the service instance.
 
 For this part of the walkthrough you assume the role of the **application operator**.
@@ -265,19 +266,19 @@ This command requires the following information to create a claim successfully:
 
 To claim a service instance:
 
-1. Find the information needed to make a resource claim by running:
+1. Find the claimable instance and the necessary claim information by running:
 
     ```console
-    tanzu service instance list -A
+    tanzu service claimable list --class rabbitmq
     ```
 
     Expected output:
 
     ```console
-      Warning: This is an ALPHA command and may change without notice.
+      tanzu services claimable list --class rabbitmq
 
-      NAMESPACE          NAME   KIND             SERVICE TYPE  AGE
-      service-instances  rmq-1  RabbitmqCluster  rabbitmq      24h
+      NAME    NAMESPACE            API KIND         API GROUP/VERSION
+      rmq-1   service-instances    RabbitmqCluster  rabbitmq.com/v1beta1
     ```
 
 1. Using the information from the previous command, create a claim for the service instance by running:
