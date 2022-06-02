@@ -27,7 +27,7 @@ containerized apps in a Kubernetes environment.
 ## <a id="supported-app-platforms"></a>Supported application platforms
 
 You can extend Application Live View to support multiple app platforms, including,
-but not limited to, Spring Boot and Steeltoe.
+but not limited to, Spring Boot, Spring Cloud Gateway and Steeltoe.
 Developers can use plug-ins to integrate their existing polyglot apps.
 
 ##<a id="multicloud-compatibility"></a> Multi-cloud compatibility

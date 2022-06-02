@@ -1,20 +1,24 @@
-# Enabling Spring Boot apps for Application Live View
+# Enabling Spring Cloud Gateway apps for Application Live View
 
-This topic describes how to configure a Spring Boot app to be observed by
+This topic describes how to configure a Spring Cloud Gateway app to be observed by
 Application Live View within Tanzu Application Platform.
 
 
-## Enable Spring Boot apps
+## Enable Spring Cloud Gateway apps
 
-For Application Live View to interact with a Spring Boot app within Tanzu Application Platform,
-add the `spring-boot-starter-actuator` module dependency.
+For Application Live View to interact with a Spring Cloud Gateway app within Tanzu Application Platform,
+add the `spring-boot-starter-actuator` and `spring-cloud-starter-gateway` module dependency.
 
-Add the maven dependency in `pom.xml` as follows:
+Add the maven dependencies in `pom.xml` as follows:
 
 ```xml
 <dependency>
   <groupId>org.springframework.boot</groupId>
   <artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+<dependency>
+  <groupId>org.springframework.cloud</groupId>
+  <artifactId>spring-cloud-starter-gateway</artifactId>
 </dependency>
 ```
 
@@ -30,4 +34,4 @@ so that Application Live View can access all those actuator endpoints and visual
 This overrides configuration settings that your app itself might contain, for example,
 if you configured your app to expose only specific actuators.
 
-Read about the [Application Live View Convention](convention-server.md) and the [Spring Boot Convention](https://docs.vmware.com/en/Tanzu-Application-Platform/1.1/tap/GUID-spring-boot-conventions-about.html) to understand the potential impact of this, and manually configure this to suit your security needs.
+Read about the [Application Live View Convention](convention-server.md) and the [Spring Boot Convention](https://docs-staging.vmware.com/en/draft/Tanzu-Application-Platform/1.2/tap/GUID-spring-boot-conventions-about.html) to understand the potential impact of this, and manually configure this to suit your security needs.
