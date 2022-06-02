@@ -19,12 +19,12 @@ To update the existing ScanTemplates that call the `grype` CLI, you must pause t
     Make the following edit:
 
     ```yaml
-    apiVersion: packaging.carvel.dev/v1alpha1<!-- If this is a URL then you likely need to present it per xref rules: https://confluence.eng.vmware.com/display/IXCS/Links%2C+Cross-References%2C+and+Citations -->
+    apiVersion: packaging.carvel.dev/v1alpha1
     kind: PackageInstall
     metadata:
       name: tap
       namespace: tap-install
-    spec<!-- |specifications| is preferred. -->:
+    spec:
       paused: true                    # ! set this field to `paused: true`.
       packageRef:
         refName: tap.tanzu.vmware.com
