@@ -1,6 +1,10 @@
 # Supply Chain Security Tools for VMware Tanzu - Policy Controller
 
-Supply Chain Security Tools - Policy Controller is a security tool that helps operators ensure that the container images in their registry have not been tampered with. Policy Controller is a Kubernetes Admission Controller that allows operators to apply policies that verify container images have valid signatures before being admitted to a cluster.
+Supply Chain Security Tools - Policy Controller is a security tool that helps
+operators ensure that the container images in their registry have not been
+tampered with. Policy Controller is a Kubernetes Admission Controller that
+allows operators to apply policies that verify container images have valid
+signatures before being admitted to a cluster.
 
 The Policy Controller:
 - Verifies signatures on container images used by Kubernetes resources

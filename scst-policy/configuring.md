@@ -1,204 +1,141 @@
-**TODO** update this section
 # Configuring Supply Chain Security Tools - Policy
 
 This component requires extra configuration steps to start verifying your
 container images properly.
 
-The instructions in this section only apply to the deployment namespace of
-Supply Chain Security Tools - Sign. In most cases, this namespace is
-rendered as the default namespace `image-policy-system`.
+## <a id="admission-of-images"></a> Admission of Images
 
-If you deployed Supply Chain Security Tools - Sign by using a customized
-namespace specified in the installation values file, replace `image-policy-system`
-with the namespace name that you specified in `deployment_namespace` before
-performing the configuration steps.
+An image is admitted after it has been validated against all
+[ClusterImagePolicy](#create-cip-resource) that matched the digest of the image
+and that there was at least one valid signature or attestation obtained from the
+authorities provided in each of the matched ClusterImagePolicy. So each
+ClusterImagePolicy that matches is AND for admission, and within each
+ClusterImagePolicy authorities are ON.
+
+## <a id="including-namespaces"></a> Including Namespaces
+
+The cosigned admission controller will only validate resources in namespaces
+that have chosen to opt-in. This can be done by adding the label
+cosigned.sigstore.dev/include: "true" to the namespace resource.
+
+```console
+kubectl label namespace my-secure-namespace cosigned.sigstore.dev/include=true
+```
 
 ## <a id="create-cip-resource"></a> Create a `ClusterImagePolicy` resource
 
 The cluster image policy is a custom resource containing the following properties:
 
-* `spec.verification.keys`: A list of public keys complementary to the private
-keys that were used to sign the images.
+* `images`: The images block defines the patterns of images that should be
+  subject to the ClusterImagePolicy. If multiple policies match a particular
+  image, _ALL_ of those policies must be satisfied for the image to be admitted.
+  If there is no host in the `glob` field, `index.docker.io` is used for the
+  host.
 
-* `spec.verification.images[].namePattern`: Image name patterns that the policy enforces.
-Each image name pattern maps to the required public keys. (Optional) Use a secret to authenticate the private registry where images and signatures matching a name pattern are stored.
+* `authorities`: The authorities block defines the rules for discovering and
+  validating signatures. Discovery is done through the `sources` field, and can
+  be specified on any entry. Signatures are cryptographically verified using one
+  of the `key` or `keyless` fields.
 
-* `spec.verification.exclude.resources.namespaces`: A list of namespaces where
-this policy is not enforced.
+When a policy is selected to be evaluated against the matched image, the
+authorities will be used to validate signatures. If at least one authority is
+satisfied and a signature is validated, the policy is validated.
 
-System namespaces specific to your cloud provider may need to be excluded from the policy. VMware also recommends configuring exclusions for Tanzu Application Platform system namespaces. This prevents the Image Policy Webhook from blocking components of Tanzu Application Platform.
+### <a id="cip-images"></a> `images`
 
-To get a list of created namespaces, run:
+The ClusterImagePolicy specifies spec.images which specifies a list of glob
+matching patterns. These matching patterns will be matched against the image
+digest of PodSpec resources attempting to be deployed.
 
-  ```console
-  kubectl get namespaces
-  ```
+Glob uses golang filepath semantics for matching the images against. To make it
+easier to specify images, there are few defaults when an image is matched,
+namely:
 
-Tanzu Application Platform system namespaces can include:
+- If there is no host in the glob pattern index.docker.io is used for the host.
+  This allows users to specify commonly found images from Docker simply as
+  myproject/nginx instead of inded.docker.io/myproject/nginx
 
-  ```console
-  - accelerator-system
-  - api-portal
-  - app-live-view
-  - app-live-view-connector
-  - app-live-view-conventions
-  - build-service
-  - cartographer-system
-  - cert-injection-webhook
-  - cert-manager
-  - conventions-system
-  - developer-conventions
-  - flux-system
-  - image-policy-system
-  - kapp-controller
-  - knative-eventing
-  - knative-serving
-  - knative-sources
-  - kpack
-  - learning-center-guided-ui
-  - learning-center-guided-w01
-  - learningcenter
-  - metadata-store
-  - scan-link-system
-  - secretgen-controller
-  - service-bindings
-  - services-toolkit
-  - source-system
-  - spring-boot-convention
-  - stacks-operator-system
-  - tanzu-cluster-essentials
-  - tanzu-package-repo-global
-  - tanzu-system-ingress
-  - tap-gui
-  - tap-install
-  - tap-telemetry
-  - tekton-pipelines
-  - triggermesh
-  ```
+- If the image is specified without multiple path elements (so not separated by
+  /), then library is defaulted. For example specifying busybox will result in
+  library/busybox. And combined with above, will result in match being made
+  against index.docker.io/library/busybox.
 
-The following is an example `ClusterImagePolicy`:
+A sample of a ClusterImagePolicy which matches against all images using glob:
 
-  ```yaml
-  ---
-  apiVersion: signing.apps.tanzu.vmware.com/v1beta1
-  kind: ClusterImagePolicy
-  metadata:
-      name: image-policy
-  spec:
-    verification:
-      exclude:
-        resources:
-          namespaces:
-          - kube-system
-          - <TAP system namespaces>
-      keys:
-      - name: first-key
-        publicKey: |
+```console
+apiVersion: cosigned.sigstore.dev/v1alpha1
+kind: ClusterImagePolicy
+metadata:
+  name: image-policy
+spec:
+  images:
+  - glob: "*"
+```
+
+### <a id="cip-authorities"></a> `authorities`
+
+Authorities listed in the `authorities` block of the ClusterImagePolicy may be
+`key` specifications. Each `key` authority may contain a raw public key, a
+`secretRef` or a `kms` path.
+
+**Note**: Currently, only ECDSA public keys are supported.
+
+```yaml
+spec:
+  authorities:
+    - key:
+        data: |
           -----BEGIN PUBLIC KEY-----
           ...
           -----END PUBLIC KEY-----
-      images:
-      - namePattern: registry.example.org/myproject/*
-        keys:
-        - name: first-key
-      - namePattern: registry.example.org/authproject/*
+    - key:
         secretRef:
-          name: secret-name
-          namespace: namespace-name
-        keys:
-        - name: first-key
-  ```
+          name: secretName
+    - key:
+        kms: KMSPATH
+```
 
-The `name` for the `ClusterImagePolicy` resource must be `image-policy`.
+Authorities may be `keyless` specifications. Each keyless authority may contain
+a Fulcio URL, a certificate or an array of identities.
 
-Add any namespaces that run container images that are not signed in the
-`spec.verification.exclude.resources.namespaces` section, such as the
-`kube-system` namespace.
+```yaml
+spec:
+  authorities:
+    - keyless:
+        url: https://fulcio.example.com
+        ca-cert:
+          data: Certificate Data
+    - keyless:
+        url: https://fulcio.example.com
+        ca-cert:
+          secretRef:
+            name: secretName
+    - keyless:
+        identities:
+          - issuer: https://accounts.google.com
+            subject: .*@example.com
+          - issuer: https://token.actions.githubusercontent.com
+            subject: https://github.com/mycompany/*/.github/workflows/*@*
+```
 
-If no `ClusterImagePolicy` resource is created, all images are admitted into
-the cluster with the following warning:
+The following is an example `ClusterImagePolicy` which matches against all
+images using a glob:
 
-  ```console
-  Warning: clusterimagepolicies.signing.apps.tanzu.vmware.com "image-policy" not found. Image policy enforcement was not applied.
-  ```
+```yaml
+apiVersion: cosigned.sigstore.dev/v1alpha1
+  kind: ClusterImagePolicy
+  metadata:
+    name: image-policy
+  spec:
+    images:
+    - glob: "*"
+```
 
 The patterns are evaluated using the any of operator to admit container
 images. For each pod, the Image Policy Webhook iterates over the list of
 containers and init containers. The pod is verified when there is at least
 one key specified in `spec.verification.images[].keys[]` for each container image
 that matches `spec.verification.images[].namePattern`.
-
-For a simpler installation process in a non-production environment,
-use the manifest below to create the `ClusterImagePolicy`
-resource. This manifest includes a cosign public key which signed the public
-cosign v1.2.1 image. The cosign public key validates the specified cosign
-images. Container images running in system namespaces are currently not
-signed. You must configure the Image Policy Webhook to allow these unsigned
-images by adding system namespaces to the
-`spec.verification.exclude.resources.namespaces` section.
-
-```console
-cat <<EOF | kubectl apply -f -
-apiVersion: signing.apps.tanzu.vmware.com/v1beta1
-kind: ClusterImagePolicy
-metadata:
-  name: image-policy
-spec:
-  verification:
-    exclude:
-      resources:
-        namespaces:
-        - kube-system
-        - accelerator-system
-        - api-portal
-        - app-live-view
-        - app-live-view-connector
-        - app-live-view-conventions
-        - build-service
-        - cartographer-system
-        - cert-injection-webhook
-        - cert-manager
-        - conventions-system
-        - developer-conventions
-        - flux-system
-        - image-policy-system
-        - kapp-controller
-        - knative-eventing
-        - knative-serving
-        - knative-sources
-        - kpack
-        - learning-center-guided-ui
-        - learning-center-guided-w01
-        - learningcenter
-        - metadata-store
-        - scan-link-system
-        - secretgen-controller
-        - service-bindings
-        - services-toolkit
-        - source-system
-        - spring-boot-convention
-        - stacks-operator-system
-        - tanzu-cluster-essentials
-        - tanzu-package-repo-global
-        - tanzu-system-ingress
-        - tap-gui
-        - tap-install
-        - tap-telemetry
-        - tekton-pipelines
-        - triggermesh
-    keys:
-    - name: cosign-key
-      publicKey: |
-        -----BEGIN PUBLIC KEY-----
-        MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEhyQCx0E9wQWSFI9ULGwy3BuRklnt
-        IqozONbbdbqz11hlRJy9c7SG+hdcFl9jE9uE/dwtuwU2MqU9T/cN0YkWww==
-        -----END PUBLIC KEY-----
-    images:
-    - namePattern: gcr.io/projectsigstore/cosign*
-      keys:
-      - name: cosign-key
-EOF
-```
 
 ## <a id='provide-creds-for-package'></a> Provide credentials for the package
 
@@ -217,8 +154,10 @@ in the deployment namespace.
 
 Authentication fails in the following scenario:
 
-- A valid credential is specified in the `ClusterImagePolicy` `secretRef` field, or in the `image-policy-registry-credentials` service account.
-- An invalid credential is specified in the `imagePullSecrets` of the resource or in the service account the resource runs as.
+- A valid credential is specified in the `ClusterImagePolicy` `secretRef` field,
+  or in the `image-policy-registry-credentials` service account.
+- An invalid credential is specified in the `imagePullSecrets` of the resource
+  or in the service account the resource runs as.
 
 To prevent this issue, choose a single authentication method to validate signatures for your resources.
 
@@ -237,43 +176,34 @@ deployment namespace.
 
 ### <a id="provide-pol-auth-secrets"></a> Provide secrets for authentication in your policy
 
-You can provide secrets for authentication as part of the name pattern policy configuration provided your use case meets the following conditions:
+You can provide secrets for authentication as part of the name pattern policy
+configuration provided your use case meets the following conditions:
 
 * Your images and signatures reside in a registry protected by authentication.
 
-* You do not have `imagePullSecrets` configured in your runnable resources or
-in the `ServiceAccount`s that your runnable resources use.
+* You do not have `signaturePullSecrets` configured in your runnable resources
+  or in the `ServiceAccount`s that your runnable resources use.
 
 * You want this WebHook to check these container images.
 
 See the following example:
 
 ```yaml
----
-apiVersion: signing.apps.tanzu.vmware.com/v1beta1
-kind: ClusterImagePolicy
-metadata:
-  name: image-policy
 spec:
-  verification:
-    exclude:
-      resources:
-        namespaces:
-        - kube-system
-    keys:
-    - name: first-key
-      publicKey: |
-        -----BEGIN PUBLIC KEY-----
-        ...
-        -----END PUBLIC KEY-----
-    images:
-    - namePattern: registry.example.org/myproject/*
-      # Your secret reference must be included here
-      secretRef:
-        name: your-secret
-        namespace: your-namespace
-      keys:
-      - name: first-key
+  authorities:
+    - key:
+        data: |
+          -----BEGIN PUBLIC KEY-----
+          ...
+          -----END PUBLIC KEY-----
+      source:
+        - oci: registry.example.com/project/signature-location
+    - keyless:
+        url: https://fulcio.example.com
+      source:
+        - oci: registry.example.com/project/signature-location
+          signaturePullSecrets:
+          - name: mysecret
 ```
 
 > **Note**: You may need to grant the service account
@@ -318,31 +248,6 @@ deployment namespace and add the secret name (one or more) in the previous step 
     the private registry.
 
     Add additional secrets to `imagePullSecrets` as required.
-
-## <a id="image-name-patterns"></a> Image name patterns
-
-The container image names can be matched exactly or use a wildcard (*)
-that matches any number of characters.
-
-Example name patterns:
-
-|Description|Pattern|Matches Image Name|
-|----|----|----|
-Exact Match|registry.example.org/myproject/my-image:mytag|registry.example.org/myproject/my-image:mytag|
-Any Tag|registry.example.org/myproject/my-image|registry.example.org/myproject/my-image:mytag<br>registry.example.org/myproject/my-image:other-tag|
-Any Tag|registry.example.org/myproject/my-image:*|registry.example.org/myproject/my-image:mytag<br>registry.example.org/myproject/my-image:other-tag|
-Any Image and Tag|registry.example.org/myproject/*|registry.example.org/myproject/my-image:mytag<br>registry.example.org/myproject/anotherimage:anothertag|
-Any Project|registry.example.org/*/my-image:mytag|registry.example.org/myproject/my-image:mytag<br>registry.example.org/anotherproject/my-image:mytag|
-Any Project and Tag|registry.example.org/*/my-image|registry.example.org/myproject/my-image:mytag<br>registry.example.org/myproject/my-image:anothertag|
-Registry|registry.example.org/*|registry.example.org/myproject/my-image:mytag<br>registry.example.org/anotherproject/anotherimage:anothertag|
-Any Subdomain|\*.example.org/\*|my-registry.example.org/myproject/my-image:mytag<br>registry.example.org/anotherproject/anotherimage:anothertag|
-Anything|\*|my-registry.example.org/myproject/my-image:mytag<br>registry.example.org/anotherproject/anotherimage:anothertag<br>registry.io/project/image:tag|
-
-> **Note**: Providing a name pattern without specifying a tag acts as a
-> wildcard for the tag even if other wildcards are specified. The pattern `registry.example.org/myproject/my-image` is the same
-> as `registry.example.org/myproject/my-image:*`. In the same way,
-> `*.example.org/project/image` is equivalent to `*.example.org/project/image:*`
-
 
 ## <a id="verify-configuration"></a> Verify your configuration
 
