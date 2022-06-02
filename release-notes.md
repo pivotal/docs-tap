@@ -45,8 +45,10 @@ This release includes the following changes, listed by component and area.
 
 #### Supply Chain Choreographer
 
-- Feature 1
-- Feature 2
+- View resource status on a workload
+  - Added ability to indicate how Cartographer can read the state of the resource and reflect it on the owner status.
+  - Surfaces information about the health of resources directly on the owner status.
+  - Adds a field in the spec `healthRule` where authors can specify how to determine the health of the underlying resource for that template. The resource can be in one of the following states: A stamped resource can be in one of three states: 'Healthy' (status True), 'Unhealthy' (status False), or 'Unknown'  (status Unknown). If no healthRule is defined, Cartographer defaults to listing the resource as `Healthy` once it is successfully applied to the cluster and any outputs are read off the resource.
 
 #### Supply Chain Security Tools - Scan
 
