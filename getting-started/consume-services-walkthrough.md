@@ -139,7 +139,7 @@ To set up a service:
         After applying this resource, it will be listed in the output of the
         `tanzu service types list` command, and is discoverable in the `tanzu` tooling.
 
-### <a id="stk-create-svc-instances"></a> Create a service instance
+## <a id="stk-create-svc-instances"></a> Create a service instance
 
 This section covers the following:
 
@@ -234,7 +234,7 @@ To create a service instance:
     This policy states that any resource of kind `RabbitmqCluster` on the `rabbitmq.com`
     API group in the `service-instances` namespace can be consumed from any namespace.
 
-### <a id="stk-claim"></a> Claim a service instance
+## <a id="stk-claim"></a> Claim a service instance
 
 This section covers the following:
 
@@ -292,7 +292,7 @@ To claim a service instance:
 
 In the next section you will see how to inspect the claim and to then use it to bind to application workloads.
 
-### <a id="stk-bind"></a> Bind an application workload to the service instance
+## <a id="stk-bind"></a> Bind an application workload to the service instance
 
 This section covers the following:
 

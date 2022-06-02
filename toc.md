@@ -21,7 +21,7 @@ This is the table of contents from which the Tanzu Application Platform Document
   - [Add testing and security scanning](getting-started/add-test-and-security.md.hbs)
   - [Configure your supply chain](getting-started/config-supply-chain.md)
   - [Consuming services on Tanzu Application Platform](getting-started/consume-services.md)
-  - [Consume services walkthrough](consume-services-walkthrough.md)
+  - [Consume services walkthrough](getting-started/consume-services-walkthrough.md)
 - [Multicluster Tanzu Application Platform](multicluster/about.md)
   - [Install multicluster](multicluster/installing-multicluster.md)
   - [Multicluster getting started](multicluster/getting-started.md)
