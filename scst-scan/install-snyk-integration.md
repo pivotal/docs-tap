@@ -141,9 +141,11 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
      Added installed package 'snyk-scanner' in namespace 'tap-install'
     ```
 
-## Using the Synk scanner within an ImageScan
+## Using the Synk scanner to run an ImageScan
 
-The Grype scanner outputs in CycloneDX, whereas the Snyk scanner outputs in SPDX. As such, the Rego required within the `ScanPolicy` is different for each. An example which uses SPDX input is the following:
+The OOTB Scanning Supply Chain implements a `SourceScan` and `ImageScan`, which references `ScanTemplate`s that use the Grype scanner. To use the Snyk scanner for the `ImageScan` (the Snyk `SourceScan` is not yet supported), the following `ScanPolicy` and `ImageScan` will need to be used instead.
+
+The Grype scanner outputs in CycloneDX, whereas the Snyk scanner outputs in SPDX. As such, the Rego required within the `ScanPolicy` is different for each. An example Snyk `ScanPolicy` which uses SPDX input is the following:
 ```yaml
 ---
 apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
