@@ -50,7 +50,7 @@ that a missed CVE can be exploited. Some reasons for missed CVEs include:
 
 #### <a id="false-positives"></a>False positives
 
-Vulnerability scanners can not always access the information to accurately identify whether a CVE exists. 
+Vulnerability scanners cannot always access the information to accurately identify whether a CVE exists. 
 This often leads to an influx of false positives where the tool mistakenly flags something as a vulnerability when it isn’t. 
 Unless a user is specialized in security or is deeply familiar with what is deemed to be a vulnerable component by the scanner, 
 assessing and determining false positives becomes a challenging and time-consuming activity. Some reasons for a false positive flag include:

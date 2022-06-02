@@ -1,6 +1,5 @@
 # Out of the Box Supply Chain with Testing and Scanning
 
-
 This package contains Cartographer Supply Chains that tie together a series of
 Kubernetes resources that drive a developer-provided workload from source code
 to a Kubernetes configuration ready to be deployed to a cluster.
