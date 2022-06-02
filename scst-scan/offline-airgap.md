@@ -1,4 +1,4 @@
-# Offline and air gapped environments
+# Using Grype in offline and air gapped environments
 
 The `grype` CLI attempts to perform two over the Internet calls: one to verify for newer versions of the CLI and another to automatically update the vulnerability database before scanning.
 
