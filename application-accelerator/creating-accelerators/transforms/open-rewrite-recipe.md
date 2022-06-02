@@ -4,7 +4,7 @@ The `OpenRewriteRecipe` transform allows you to apply any [Open Rewrite](https:/
 **Recipe** to a set of files and gather the results.
 
 >**Note:** Currently, only [Java related recipes](https://docs.openrewrite.org/reference/recipes/java)
-are supported. The engine leverages version `7.0.0` of Open Rewrite and parses
+are supported. The engine leverages version `7.21.3` of Open Rewrite and parses
 Java files using the grammar for Java 11.
 
 ## <a id="syntax-ref"></a>Syntax reference
@@ -32,7 +32,6 @@ chain:
   - type: OpenRewriteRecipe
     recipe: org.openrewrite.java.ChangePackage
     options:
-      oldFullyQualifiedPackageName: "'com.acme'"
-      newFullyQualifiedPackageName: "#companyPkg"
-      recursive: true
+      oldPackageName: "'com.acme'"
+      newPackageName: "#companyPkg"
 ```
