@@ -10,6 +10,7 @@ Here is a list of available transforms and a brief description of their uses. Yo
 * [Merge](merge.md) to work on subsets of inputs and to gather the results at the end.
 * [Chain](chain.md) to apply several transforms in sequence using function composition.
 * [Let](let.md) to introduce new scoped variables to the model.
+* [InvokeFragment](invoke-fragment.md) allows re-using various fragments across accelerators.
 * [ReplaceText](replace-text.md) to perform simple token replacement in text files.
 * [RewritePath](rewrite-path.md) to move files around using regular expression (regex) rules.
 * [OpenRewriteRecipe](open-rewrite-recipe.md) to apply [Rewrite](https://docs.openrewrite.org/) recipes, such as package rename.
