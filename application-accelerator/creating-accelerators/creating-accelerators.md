@@ -53,7 +53,7 @@ Use the following procedure to create an accelerator based on this Git repositor
 
 3. Refresh Tanzu Application Platform GUI to reveal the newly published accelerator.
 
-    ![Screenshot of another accelerator in Tanzu Application Platform GUI](../images/new-accelerator-deployed-v1.1.png)
+    ![Screenshot of another accelerator in Tanzu Application Platform GUI](../images/new-accelerator-deployed-v1-1.png)
 
     >**Note:** It might take a few seconds for Tanzu Application Platform GUI to refresh the catalog and add an entry for your new accelerator.
 
