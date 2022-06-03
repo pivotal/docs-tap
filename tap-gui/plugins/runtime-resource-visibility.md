@@ -141,11 +141,27 @@ Alternatively, you can see the pod table in each resource details page, as shown
 
 ![Screenshot of object detail table listing pod](images/runtime-resources-pods.png)
 
+### <a id="pod-details-metrics"></a> Understanding Pod Metrics
+
+The overview card displays the user-configured resource limits on the Pod, defined as per the Kubernetes documentation for [Configuring Pods Limits](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/). These limits do not represent actual real-time resource usage. ([The Live View Plugin can help you with that!](app-live-view-springboot.md#a-id"threads-page"a-threads-page))
+
+Each container displays its resource limits, if defined:
+
+![Container limits](images/runtime-resources-container-metrics-pod-page.png)
+
+Pods display the sum of the limits of all their containers. If any container fails to specify a limit, both it and its Pod will be presented as requiring "Unlimited" resources.
+
+![Pod limits overview](images/runtime-resources-pod-limits-overview.png)
+
+Namespace-level resource limits (e.g. [default memory limits](https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/memory-default-namespace/) and [default CPU limits](https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/cpu-default-namespace/)) are not considered as part of these calculations.
+
+These limits apply only for Memory and CPU usage that a Pod or Container could use; Kubernetes manage these resource units using a binary base as is explained on their [Quantity](https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/quantity/) docs.
+
 
 ## <a id="pod-details"></a>Navigating to Application Live View
 
 To view additional information about your running applications, see the
-[Application Live View](app-live-view.md) section in the Pod Details page.
+[Application Live View](app-live-view-springboot.md) section in the Pod Details page.
 
 ![Screenshot of Tanzu Java web app runtime resource detail page](images/runtime-resources-pod-details.png)
 
