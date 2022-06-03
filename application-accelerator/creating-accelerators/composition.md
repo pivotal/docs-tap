@@ -6,12 +6,13 @@ Despite their benefits, writing and maintaining accelerators can become repetiti
 verbose as new accelerators are added: some create a project different from the next but
 with similar aspects, which would require some form of copy-paste. 
 
-To alleviate this concern, Application Accelerators support a feature named _Compsition_
+To alleviate this concern, Application Accelerators support a feature named _Composition_
 that allows re-use of parts of an accelerator, named **Fragments**.
  
 
 ## Introducing Fragments
 A **Fragment** looks exactly the same as an accelerator:
+
 * it is made of a set of files
 * contains an `accelerator.yaml` descriptor, with options declarations as well as a root Transform.
 
@@ -22,12 +23,13 @@ they typically use dedicated conflict resolution [strategies](transforms/conflic
 (more on that later).
 
 Fragments can be thought of as "functions" in programming languages: once defined and
-referenced, they can "called" at various points in the main accelerator.
+referenced, they can be "called" at various points in the main accelerator.
 The composition feature has been designed with ease-of-use and "common use case first"
 in mind, so these "functions" are typically called with as little noise as possible,
 but it is also possible to call them with complex or different values.
 
 Composition relies on two building blocks that play hand in hand:
+
 * the `imports` section at the top of an accelerator manifest,
 * and the `InvokeFragment` Transform, to be used alongside any other Transform.
 
@@ -50,11 +52,12 @@ engine:
 ```
 
 The effect of importing a fragment this way is twofold:
+
 * it makes its files available to the engine (this is why importing a fragment is required),
 * it exposes all of its options as options of the accelerator, as if they had been defined
   by the accelerator itself.
 
-So in the above example, if the my-first-fragment had the following `accelerator.yaml`
+So in the above example, if the `my-first-fragment` fragment had the following `accelerator.yaml`
 file
 ```yaml
 accelerator
@@ -88,7 +91,7 @@ engine:
 All of the metadata about options (type, default value, description, choices if applicable, _etc._)
 is coming along when being imported.
 
-As a consequence of this, users are prompted for a value for those options that come
+As a consequence of this, users will be prompted for a value for those options that come
 from fragments, as if they were options of the accelerator.
 
 ## Using the `InvokeFragment` Transform
@@ -96,7 +99,7 @@ The second part at play in composition is the `InvokeFragment` Transform.
 
 Just as any other transform, it can be used anywhere in the `engine` tree and
 will receive files that are "visible" at that point. Those files, alongside those
-that make up the fragment are available to the fragment logic. If the fragment
+that make up the fragment are made available to the fragment logic. If the fragment
 wants to choose between two versions of a file for a given path, two new
 conflict resolution [strategies](transforms/conflict-resolution.md) are available: `FavorForeign` and `FavorOwn`.
 
@@ -149,6 +152,7 @@ to make available as options of the accelerator. **This feature should only be u
 when a name clash arises in option names.** 
 
 The semantics of the `expose` block are as follows:
+
 * for every `name`/`as` pair, don't use the original (`name`) of the
   option but instead use the alias (`as`). Other metadata about the option
   is left unchanged.

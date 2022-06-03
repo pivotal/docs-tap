@@ -62,7 +62,7 @@ To better cope with this typical situation, the `InvokeFragment` transform
 exposes the optional `anchor` configuration property. Continuing with the example
 above, by using `anchor: somedir`, then all files coming from the current accelerator
 will be exposed as if their `path` had the `somedir/` prefix removed. When it comes
-to gather the result of the invocation though, all resulting files are re-introduced
+to gathering the result of the invocation though, all resulting files are re-introduced
 with a prefix prepended to their `path` (this applies to **all** files produced by
 the fragment, not just the ones originating from the accelerator).
 
