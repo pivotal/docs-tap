@@ -250,7 +250,7 @@ name: Terminal
 ```
 ~~~
 
-To allow the user to click in the workshop content to display the console tab use:
+To allow the user to click in the workshop content to display the console tab, use:
 
 ~~~
 ```dashboard:open-dashboard
@@ -258,7 +258,7 @@ name: Console
 ```
 ~~~
 
-To allow the user to click in the workshop content to display a specific view within the Kubernetes web console using a clickable action block, rather than relying on them being able to find the correct view use:
+To allow the user to click in the workshop content to display a specific view within the Kubernetes web console by using a clickable action block, rather than requiring the user to find the correct view, use:
 
 ~~~
 ```dashboard:reload-dashboard
