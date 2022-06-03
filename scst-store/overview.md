@@ -3,12 +3,12 @@
 Supply Chain Security Tools - Store saves software bills of materials (SBoMs) to a database and allows you to query for image, source code, package, and vulnerability relationships.  It integrates with [Supply Chain Security Tools - Scan](../scst-scan/overview.md) to automatically store the resulting source code and image vulnerability reports. It accepts CycloneDX input and outputs in both human-readable and machine-readable formats, including JSON, text, and CycloneDX.
 
 
-The following is a four-minute demo of scanning an image for CVEs and querying the database for CVEs and dependencies.
+The following is a quick demo of configuring the tanzu insight plug-in and querying the metadata store for CVEs and scan results.
 
 <iframe width="480" height="270"
-src="https://www.youtube.com/embed/UoWSsJBjFgc"
+src="https://www.youtube.com/embed/qBBv3YKwH2E"
 frameborder="0" allow="autoplay; encrypted-media" allowfullscreen
-alt="A demonstration of the features. First ingesting a bill of materials file. Then investigating vulnerabilities of different images."></iframe>
+alt="A demonstration of the tanzu insight cli plug-in. Querying for the supply chain scan results and vulnerabilities stored in the metadata store."></iframe>
 
 ## Using the Tanzu Insight CLI plug-in
 
