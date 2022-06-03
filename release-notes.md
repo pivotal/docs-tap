@@ -56,7 +56,12 @@ This release includes the following changes, listed by component and area.
 - Feature 2
 
 #### Supply Chain Security Tools - Sign
+**TODO** deprecation notice, namespace bug as known issue
+- Feature 1
+- Feature 2
 
+#### Supply Chain Security Tools - Policy Controller
+**TODO fill this out**
 - Feature 1
 - Feature 2
 
