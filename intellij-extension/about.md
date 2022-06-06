@@ -22,11 +22,11 @@ Tanzu Developer Tools for IntelliJ is VMware Tanzu's official IDE extension for 
 
 ## <a id="tanzu-developer-tools-extension-documentation-pages"></a> Tanzu Developer Tools Extension Documentation Pages
 
-- About - This page, details about the extension.
-- [Installation](installation.md) - How to install the extension.
-- [Getting Started](getting-started.md) - How to set up a project for use with the extension.
-- [Using the Extension](using-the-extension.md) - How to use the various features of the extension.
-- [Glossary of Terms](glossary.md) - Terms to know for using the extension and TAP.
+- **About:** This page, details about the extension.
+- **[Installing Tanzu Dev Tools for IntelliJ](installation.md):** How to install the extension.
+- **[Using Tanzu Dev Tools to get started](getting-started.md):** How to set up a project with the extension.
+- **[Using the Tanzu Dev Tools Extension](using-the-extension.md):** How to use the various features of the extension.
+- **[Glossary of terms](glossary.md):** Terms to know for using the extension and Tanzu Application Platform.
 
 ## <a id="whats-next"></a> What’s Next
 

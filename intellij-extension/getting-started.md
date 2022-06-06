@@ -1,4 +1,4 @@
-# Getting Started Using Tanzu Dev Tools
+# Using Tanzu Dev Tools to get started
 
 ## <a id=on-this-page></a> On this page
 
